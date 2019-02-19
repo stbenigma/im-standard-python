@@ -1,0 +1,110 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="3BB3FEC5-74CF-BFED-12EE-62FA36B8CFA3" name="TXT_ATTRIBUT">
+<createdBy>stb</createdBy>
+<createdTime>2018-10-21 13:54:34 UTC</createdTime>
+<comment>Freitextattribut.  </comment>
+<generatorID>8D664425-F70B-B141-EC2B-F6F48F3B33E9</generatorID>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="TECHNISCHER_NAME" id="9F194B3B-4827-6427-D528-DB5729616487">
+<createdBy>stb</createdBy>
+<createdTime>2018-10-21 13:54:35 UTC</createdTime>
+<generatorID>EDEE919C-7C94-15E9-147C-57317A603D15</generatorID>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="29EC6277-A7FB-9C19-D28C-745F49273BB2" referredColumn="9C8AC513-3BDE-9409-6D3F-793EECB4524B"/>
+</associations>
+</Column>
+<Column name="MIN_NAMENLÄNGE" id="9206B978-2A49-D222-DF7A-02517AB0550E">
+<createdBy>stb</createdBy>
+<createdTime>2018-10-21 13:54:35 UTC</createdTime>
+<comment>Minmallänge des Namens, muss grösser oder gleich der Domänenvorgabe sein.. Leer -&gt; Wert aus der Domäne gilt</comment>
+<generatorID>3F1A887E-02C7-316E-B89D-2D17A7C12039</generatorID>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<defaultValue>1</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>0</beginValue>
+<endValue>4000</endValue>
+</rangeDef>
+</listOfRanges>
+</Column>
+<Column name="MAX_NAMENLÄNGE" id="B94FC7FE-5CA7-0674-7E70-E045AF39D3AA">
+<createdBy>stb</createdBy>
+<createdTime>2018-10-21 13:54:35 UTC</createdTime>
+<comment>Maximallänge, muss kleiner oder gleich der Domänenvorgabe sein.  Leer -&gt; Wert aus der Domäne gilt</comment>
+<generatorID>F5851F74-5BC6-9EFD-979F-9D95EE0EED12</generatorID>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<defaultValue>1</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>0</beginValue>
+<endValue>4000</endValue>
+</rangeDef>
+</listOfRanges>
+</Column>
+<Column name="ZEICHENREGEL_(REGEXP)" id="CBB91684-1807-1020-4CF3-2C8284BE0AF6">
+<createdBy>stb</createdBy>
+<createdTime>2018-10-21 13:54:35 UTC</createdTime>
+<generatorID>47C7AABB-5CEB-E169-333E-47763DD5E274</generatorID>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="C2D55ADB-89BE-1272-25F9-4E538CF7C320" name="TXT_ATTRIBUT_TECHNISCHER_NAME_UN">
+<createdBy>stb</createdBy>
+<createdTime>2018-10-21 13:54:35 UTC</createdTime>
+<generatorID>A494C6B5-1083-D458-9E27-C4CC11AE6E27</generatorID>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="9F194B3B-4827-6427-D528-DB5729616487"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="0309A904-5C45-3059-7144-552888E435E6" name="TXT_ATTRIBUT__IDX">
+<createdBy>stb</createdBy>
+<createdTime>2019-01-26 15:45:02 UTC</createdTime>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="9F194B3B-4827-6427-D528-DB5729616487"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="3FEA1A1F-9E33-5567-ABAD-73F90426433F" name="TXT_ATTRIBUT_ATTRIBUT_FK">
+<createdBy>stb</createdBy>
+<createdTime>2018-10-21 13:54:35 UTC</createdTime>
+<generatorID>E498ACD0-B00E-7761-9869-F3C3F1A248E9</generatorID>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="9F194B3B-4827-6427-D528-DB5729616487"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -1,0 +1,33 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="0590D490-04C6-A60A-D9D3-DF5BE0E8C93C" name="Server Hardware">
+<createdBy>stb</createdBy>
+<createdTime>2018-11-26 16:16:50 UTC</createdTime>
+<comment>Computer Hardware, auf dem IT-systeme, Anwendungen und Datenbanken installiert sind und laufen.&lt;br/&gt;&lt;br/&gt;</comment>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<hierarchicalParent>CFE2B0E2-7C7C-3289-90F3-1467F54FCB9E</hierarchicalParent>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Virtuell (J/N)" id="BA7B43A1-CC8C-BEF3-1AE4-ED10488BB11D">
+<createdBy>stb</createdBy>
+<createdTime>2018-11-26 16:16:50 UTC</createdTime>
+<comment>Ist dies eine physische Maschine oder ein genutzte virtuelle?</comment>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<use>0</use>
+<domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+</Entity>

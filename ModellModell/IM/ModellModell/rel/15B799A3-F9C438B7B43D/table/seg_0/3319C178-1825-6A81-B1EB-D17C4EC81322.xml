@@ -1,0 +1,121 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="3319C178-1825-6A81-B1EB-D17C4EC81322" name="Einheitumrechnung">
+<createdBy>stb</createdBy>
+<createdTime>2018-10-21 13:54:34 UTC</createdTime>
+<generatorID>4621AA4B-521B-D902-A8B5-2A26DC08D5A9</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Faktor" id="BDB308D3-3D49-70D2-6B37-FE0C20CD4A39">
+<createdBy>stb</createdBy>
+<createdTime>2018-10-21 13:54:34 UTC</createdTime>
+<generatorID>22210B27-1A76-E058-2F35-3AE76EC6197D</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>20</dataTypePrecision>
+<dataTypeScale>10</dataTypeScale>
+<domain>9519F611-7F37-CA7C-1088-EDDCA6F81D17</domain>
+<ownDataTypeParameters>,20,10</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Einheitumrechnung_ID" id="7B9B1D93-3659-6EC8-44B1-C3A6C51FB4DF">
+<createdBy>stb</createdBy>
+<createdTime>2018-10-21 13:54:34 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+<Column name="{ref table  abbr}_Physikalische_Einheit_ID" id="70893307-0D4E-7AE8-6DA6-11BF23152BDD">
+<createdBy>stb</createdBy>
+<createdTime>2018-10-21 13:54:35 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="D7074FFF-B530-CE57-76D1-6C2180AEB58D" referredColumn="F4EDCA59-F7D9-EC99-204A-396FA09121FF"/>
+</associations>
+</Column>
+<Column name="{ref table  abbr}_Physikalische_Einheit_ID1" id="A6BE2AF2-BEDC-6132-8084-205DE35542FD">
+<createdBy>stb</createdBy>
+<createdTime>2018-10-21 13:54:35 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="947D20C9-915B-A8DA-0EBD-3445C2BF8C18" referredColumn="F4EDCA59-F7D9-EC99-204A-396FA09121FF"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="80890BA6-5420-1C8A-618E-636F9ECE39CB" name="Einheitumrechnung_PK">
+<createdBy>stb</createdBy>
+<createdTime>2018-10-21 13:54:34 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="7B9B1D93-3659-6EC8-44B1-C3A6C51FB4DF"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="1673D940-5FD8-885A-35E1-47C49BFAFB9F" name="Einheitumrechnung_{ref_table__abbr}_Physikalische_Einheit_ID_{ref_table__abbr}_Physikalische_Einheit_ID1_UN">
+<createdBy>stb</createdBy>
+<createdTime>2018-10-21 13:54:34 UTC</createdTime>
+<generatorID>85A21106-25A5-D2D7-7BDF-42DE560076E5</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="70893307-0D4E-7AE8-6DA6-11BF23152BDD"/>
+<colUsage columnID="A6BE2AF2-BEDC-6132-8084-205DE35542FD"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="7897F602-764B-225A-2F7B-F9A04ABE7467" name="Einheitumrechnung__UN">
+<createdBy>stb</createdBy>
+<createdTime>2018-10-21 13:54:34 UTC</createdTime>
+<generatorID>6693BBD0-08A0-A4F5-ACF9-EA356AA5A136</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+</ind_PK_UK>
+<ind_PK_UK id="10D2BB58-3F56-2E45-753B-FD9425AB9E2F" name="Einheitumrechnung_Physikalische_Einheit_FK">
+<createdBy>stb</createdBy>
+<createdTime>2018-10-21 13:54:35 UTC</createdTime>
+<generatorID>A4CEEC49-60C1-4322-19D5-452966DD134B</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="70893307-0D4E-7AE8-6DA6-11BF23152BDD"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="6DDD4D12-14F6-F469-FAAE-86B552AD0232" name="Einheitumrechnung_Physikalische_Einheit_FKv2">
+<createdBy>stb</createdBy>
+<createdTime>2018-10-21 13:54:35 UTC</createdTime>
+<generatorID>ED95C954-15C5-904B-967F-CFD3C12A497D</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="A6BE2AF2-BEDC-6132-8084-205DE35542FD"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

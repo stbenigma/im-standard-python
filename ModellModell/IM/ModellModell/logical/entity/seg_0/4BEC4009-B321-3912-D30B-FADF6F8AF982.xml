@@ -1,0 +1,159 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="4BEC4009-B321-3912-D30B-FADF6F8AF982" name="Beziehung">
+<createdBy>stb</createdBy>
+<createdTime>2018-11-04 11:27:00 UTC</createdTime>
+<comment>Verbindung zweier Entitäten mit Assoziationstext, Optionalität und Abbildungstyp&lt;br/&gt;&lt;br/&gt;Die in anderen Darstellungsarten gebräuchlichen Beziehungen können aus  Optionalität und Abbildungstyp hergeleitet werden&lt;br/&gt;0-1	Optional  - 1&lt;br/&gt;1-1	Pflicht - 1&lt;br/&gt;0-many	Optional - many&lt;br/&gt;1-many	Pflicht - many</comment>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<propertyMap>
+<property name="Beispiele" value="1 (Kunde) kauft mehrere (Artikel), (Organisationseinheit) wird geführt von 1 (Angestellter) "/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Assoziation von-zu" id="1E4F5AA9-8DAA-B81A-4D48-EDCE07CDC56A">
+<createdBy>stb</createdBy>
+<createdTime>2018-11-04 11:38:18 UTC</createdTime>
+<comment>Was verbindet die von-Entität mit der zu-Entität</comment>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<use>0</use>
+<domain>D6C502B3-C779-CE1C-86D5-5492C6CA1E9F</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="ist historisiert (von-zu)" id="075993E1-1E10-7A12-4137-89129E7305FB">
+<createdBy>stb</createdBy>
+<createdTime>2018-11-04 11:51:59 UTC</createdTime>
+<comment>JA -&gt; Beziehung kann über die Zeit ändern. Zu einem Zeitpunkt kann nur 1 Beziehung gelten. System muss Historie der Änderungen führen.&lt;br/&gt;Über Extratabelle zu lösen.</comment>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<use>0</use>
+<domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Assoziation zu-von" id="04281DBE-816F-1F3F-8ED9-0CFDF3ADD26F">
+<createdBy>stb</createdBy>
+<createdTime>2018-11-04 11:40:09 UTC</createdTime>
+<comment>Was verbindet die zu-Entität mit der von-Entität</comment>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<use>0</use>
+<domain>D6C502B3-C779-CE1C-86D5-5492C6CA1E9F</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="ist Pflichtbeziehung (zu-von)" id="06AEDDE9-FE7B-7129-3EA6-401A12A010FF">
+<createdBy>stb</createdBy>
+<createdTime>2018-11-04 11:41:00 UTC</createdTime>
+<comment>von-Entität muss mind. 1 eine Verbindung zur zu-Entität haben</comment>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<use>0</use>
+<domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="ist historisiert (zu-von)" id="52497C2F-C07A-31B9-B155-25C63FF74114">
+<createdBy>stb</createdBy>
+<createdTime>2018-11-04 11:53:20 UTC</createdTime>
+<comment>JA -&gt; Beziehung kann über die Zeit ändern. Zu einem Zeitpunkt kann nur 1 Beziehung gelten. System muss Historie der Änderungen führen.&lt;br/&gt;Über Extratabelle zu lösen.</comment>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<use>0</use>
+<domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Entitätname [L]" id="F024C5A0-4E7F-73FE-22DF-E11D4DFE5F93">
+<createdBy>stb</createdBy>
+<createdTime>2018-11-04 11:33:07 UTC</createdTime>
+<comment>Name der Entität der in der Kommunikation normalerweise gebraucht wird.</comment>
+<generatorID>5B591EE4-3AA3-08AD-366A-312484E7B6E5</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<referedAttribute>0F2758D2-C7D1-07D3-5C35-F1697AF2FBE0</referedAttribute>
+<use>0</use>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Entitätname [L]1" id="BD550A3D-10DD-61F1-8353-8C7215A160B2">
+<createdBy>stb</createdBy>
+<createdTime>2018-11-04 11:34:46 UTC</createdTime>
+<comment>Name der Entität der in der Kommunikation normalerweise gebraucht wird.</comment>
+<generatorID>0D6F90C6-EA21-2ED3-63D7-F12B6A0A64FC</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<referedAttribute>0F2758D2-C7D1-07D3-5C35-F1697AF2FBE0</referedAttribute>
+<use>0</use>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Entitätname [L]2" id="57D096F3-F63F-4E8F-D7FD-139267B31473">
+<createdBy>stb</createdBy>
+<createdTime>2018-11-04 12:26:56 UTC</createdTime>
+<comment>Name der Entität der in der Kommunikation normalerweise gebraucht wird.</comment>
+<generatorID>30103B52-A596-5AF7-4BCB-EE275F6DAA40</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<referedAttribute>046F66BA-05DC-63A1-00EE-B9ABD308C7DB</referedAttribute>
+<use>0</use>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Laufnr" id="3C3CF89E-3E85-149A-D03E-1CE74E506168">
+<createdBy>stb</createdBy>
+<createdTime>2018-11-04 12:26:56 UTC</createdTime>
+<comment>willkürliche Nummerierung zur Untescheidung mehrere Exklusivbeziehungen in einer Entität</comment>
+<generatorID>30103B52-A596-5AF7-4BCB-EE275F6DAA40</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<referedAttribute>F8F374B8-F266-21F0-ADA1-DE808B4EF15F</referedAttribute>
+<use>0</use>
+<domain>E2DCFC37-5428-9FE8-64FF-368960199E02</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="CEB0C7CA-9CEF-89CC-1712-0634D0BB6B99" name="Beziehung PK">
+<createdBy>stb</createdBy>
+<createdTime>2018-11-04 11:34:35 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<newElementsIDs>5B591EE4-3AA3-08AD-366A-312484E7B6E5,0D6F90C6-EA21-2ED3-63D7-F12B6A0A64FC,1E4F5AA9-8DAA-B81A-4D48-EDCE07CDC56A,04281DBE-816F-1F3F-8ED9-0CFDF3ADD26F</newElementsIDs>
+<usedAttributes>
+<attributeRef>F024C5A0-4E7F-73FE-22DF-E11D4DFE5F93</attributeRef>
+<attributeRef>BD550A3D-10DD-61F1-8353-8C7215A160B2</attributeRef>
+<attributeRef>1E4F5AA9-8DAA-B81A-4D48-EDCE07CDC56A</attributeRef>
+<attributeRef>04281DBE-816F-1F3F-8ED9-0CFDF3ADD26F</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

@@ -1,0 +1,226 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<DomainFile class="oracle.dbtools.crest.model.design.DomainFileWrapper" fileName="defaultdomains">
+   <domains>
+      <Domain class="oracle.dbtools.crest.model.design.Domain" name="Farbcode" id="06269521-C0BC-78CB-FBC8-656101307358">
+         <createdBy>stb</createdBy>
+         <createdTime>2018-11-03 12:57:26 UTC</createdTime>
+         <comment>6stelliger RGB Code in Hexadezimalzeichen</comment>
+         <ownerDesignName>System</ownerDesignName>
+      </Domain>
+      <Domain class="oracle.dbtools.crest.model.design.Domain" name="Technischer Datentyp" id="06475D8D-E9C3-9A63-A19D-2EF365B97D2D">
+         <createdBy>stb</createdBy>
+         <createdTime>2018-06-23 14:07:50 UTC</createdTime>
+         <comment>Technischer Datentyp in einem System (String, integer, date etc.), inkl. Grössenangaben (byte, zeichen etc.)</comment>
+         <ownerDesignName>System</ownerDesignName>
+      </Domain>
+      <Domain class="oracle.dbtools.crest.model.design.Domain" name="Zeitpunkt" id="0AD80E26-0F5C-D068-29EA-4740A04582AE">
+         <createdBy>stb</createdBy>
+         <createdTime>2018-05-17 16:19:03 UTC</createdTime>
+         <comment>Zeitpunkt (Tag, Zeit)</comment>
+         <ownerDesignName>System</ownerDesignName>
+      </Domain>
+      <Domain class="oracle.dbtools.crest.model.design.Domain" name="Dokument" id="1DD73E5D-0E1F-A292-71E3-05600D84D49D">
+         <createdBy>stb</createdBy>
+         <createdTime>2019-01-08 20:10:21 UTC</createdTime>
+         <comment>Irgend eine Datei in einem mit üblichen Werkzeugen lesbaren Format (Word, Excel, PDF, etc.)</comment>
+         <ownerDesignName>System</ownerDesignName>
+      </Domain>
+      <Domain class="oracle.dbtools.crest.model.design.Domain" name="Schriftgrösse" id="435C11BA-FCF7-BBBA-6AA9-FAB7326273D3">
+         <createdBy>stb</createdBy>
+         <createdTime>2019-01-08 19:12:01 UTC</createdTime>
+         <comment>Grösse der Schrift auf einem Diagramm in points</comment>
+         <ownerDesignName>System</ownerDesignName>
+      </Domain>
+      <Domain class="oracle.dbtools.crest.model.design.Domain" name="Businessrule Ebene" id="4655A975-6C53-BBE1-01B9-D658AD7C5FC5">
+         <createdBy>stb</createdBy>
+         <createdTime>2019-01-10 08:07:47 UTC</createdTime>
+         <comment>Ebene auf der eine Business Rule die Konsistenz prüft</comment>
+         <ownerDesignName>System</ownerDesignName>
+      </Domain>
+      <Domain class="oracle.dbtools.crest.model.design.Domain" name="eMail-Adresse" id="4B4F8F40-D3A4-4F39-8CB3-BB6C57534E96">
+         <createdBy>stb</createdBy>
+         <createdTime>2018-06-23 13:57:37 UTC</createdTime>
+         <comment>gültige eMail-Adresse gemäss SMTP/RFC-Protokoll</comment>
+         <ownerDesignName>System</ownerDesignName>
+      </Domain>
+      <Domain class="oracle.dbtools.crest.model.design.Domain" name="Transformationsauslöseart" id="55CB11A1-3EFC-3253-465C-D58D3D8252AD">
+         <createdBy>stb</createdBy>
+         <createdTime>2018-06-23 14:10:55 UTC</createdTime>
+         <comment>Art der Auslösung einer Transformation eines Attributwertes</comment>
+         <ownerDesignName>System</ownerDesignName>
+      </Domain>
+      <Domain class="oracle.dbtools.crest.model.design.Domain" name="Name" id="57EF5654-BB1B-99CD-E31A-A47A05AD3EE6">
+         <createdBy>stb</createdBy>
+         <createdTime>2018-05-17 14:50:10 UTC</createdTime>
+         <comment>Frei wählbare Namen für etwas</comment>
+         <ownerDesignName>System</ownerDesignName>
+      </Domain>
+      <Domain class="oracle.dbtools.crest.model.design.Domain" name="Datum" id="631FC893-D28E-5FE4-89DB-473C78BB2B2A">
+         <createdBy>stb</createdBy>
+         <createdTime>2018-05-17 14:57:41 UTC</createdTime>
+         <comment>Datum auf einen Tag genau</comment>
+         <ownerDesignName>System</ownerDesignName>
+      </Domain>
+      <Domain class="oracle.dbtools.crest.model.design.Domain" name="Transformationsverarbeitung" id="70371CD6-E734-52D3-6D46-C65613C10CE8">
+         <createdBy>stb</createdBy>
+         <createdTime>2018-06-25 08:02:15 UTC</createdTime>
+         <comment>Art der Verarbeitung einer Transformation</comment>
+         <ownerDesignName>System</ownerDesignName>
+      </Domain>
+      <Domain class="oracle.dbtools.crest.model.design.Domain" name="Boolean" id="7F06A64B-0C00-1355-F863-DBD9FDE5B848">
+         <createdBy>stb</createdBy>
+         <createdTime>2018-05-17 14:58:19 UTC</createdTime>
+         <comment>Logischer Wert TRUE/FALSE</comment>
+         <ownerDesignName>System</ownerDesignName>
+      </Domain>
+      <Domain class="oracle.dbtools.crest.model.design.Domain" name="Telefon-Nr" id="7F98E20B-63A1-C3F1-F7AE-0E2F6BC2C8D5">
+         <createdBy>stb</createdBy>
+         <createdTime>2018-06-23 13:50:27 UTC</createdTime>
+         <comment>Internationale Darstellung einer Telefonnummer (inkl. Land, Vorwahl etc.)</comment>
+         <ownerDesignName>System</ownerDesignName>
+      </Domain>
+      <Domain class="oracle.dbtools.crest.model.design.Domain" name="Zeitgranularität" id="802FD5C1-7C5B-0290-1F1C-F8FBB1AD2AA9">
+         <createdBy>stb</createdBy>
+         <createdTime>2018-11-03 15:37:22 UTC</createdTime>
+         <comment>Kleinste Einheit in der ein Zeitpunkt dargestellt werden kann</comment>
+         <ownerDesignName>System</ownerDesignName>
+      </Domain>
+      <Domain class="oracle.dbtools.crest.model.design.Domain" name="Abbildungstyp" id="8831EDF9-D218-4FB3-5BB6-7B34E8325AF7">
+         <createdBy>stb</createdBy>
+         <createdTime>2018-11-04 11:43:33 UTC</createdTime>
+         <comment>Anzahl der Verknüpfungen zur verknüpften Entität</comment>
+         <ownerDesignName>System</ownerDesignName>
+      </Domain>
+      <Domain class="oracle.dbtools.crest.model.design.Domain" name="Regular Expression" id="8BF234D0-8881-3198-71ED-131ADD4FF53E">
+         <createdBy>stb</createdBy>
+         <createdTime>2018-05-17 15:26:21 UTC</createdTime>
+         <comment>Regulärer Ausdruck zur Überprüfung von Texten</comment>
+         <ownerDesignName>System</ownerDesignName>
+      </Domain>
+      <Domain class="oracle.dbtools.crest.model.design.Domain" name="Transformationsstatus" id="8E5E9BA3-FC75-C21A-8AC5-C0DB38C2D07A">
+         <createdBy>stb</createdBy>
+         <createdTime>2018-06-25 07:55:45 UTC</createdTime>
+         <comment>Status über den Stand der Transformation eines Wertes</comment>
+         <ownerDesignName>System</ownerDesignName>
+      </Domain>
+      <Domain class="oracle.dbtools.crest.model.design.Domain" name="Einheitenumrechnungsfaktor" id="9519F611-7F37-CA7C-1088-EDDCA6F81D17">
+         <createdBy>stb</createdBy>
+         <createdTime>2018-06-23 13:51:27 UTC</createdTime>
+         <comment>Faktor um eine Masseinheit in eine andere Umrechnen zu können</comment>
+         <ownerDesignName>System</ownerDesignName>
+      </Domain>
+      <Domain class="oracle.dbtools.crest.model.design.Domain" name="Längenmass" id="9899F774-954D-6AB0-8DC2-BB1FE9F99D28">
+         <createdBy>stb</createdBy>
+         <createdTime>2018-11-03 14:27:52 UTC</createdTime>
+         <comment>eindimensionale Ausdehnung</comment>
+         <ownerDesignName>System</ownerDesignName>
+      </Domain>
+      <Domain class="oracle.dbtools.crest.model.design.Domain" name="Stellen#" id="9CA83673-0453-9943-665C-CCB4497CF164">
+         <createdBy>stb</createdBy>
+         <createdTime>2018-05-17 14:56:21 UTC</createdTime>
+         <comment>Anzahl Vor- oder Nachkommastellen bei einer Zahl</comment>
+         <ownerDesignName>System</ownerDesignName>
+      </Domain>
+      <Domain class="oracle.dbtools.crest.model.design.Domain" name="Rundungseinheit" id="9D57C5ED-8336-6617-9BC7-29B138AA6191">
+         <createdBy>stb</createdBy>
+         <createdTime>2018-11-03 14:39:39 UTC</createdTime>
+         <comment>EInheit, auf die eine Zahl gerundet wird (0.5, 0,1, 100)</comment>
+         <ownerDesignName>System</ownerDesignName>
+      </Domain>
+      <Domain class="oracle.dbtools.crest.model.design.Domain" name="erwartete Tupelanzahl" id="A32A539A-AA2C-608E-1F61-A290079F25AD">
+         <createdBy>stb</createdBy>
+         <createdTime>2019-01-08 15:34:03 UTC</createdTime>
+         <comment>Grössenordnung der Anzahl Tupel in dieser Entität</comment>
+         <ownerDesignName>System</ownerDesignName>
+      </Domain>
+      <Domain class="oracle.dbtools.crest.model.design.Domain" name="Diagramm Koordinate" id="ACC90DC4-5B08-1F67-561C-C9389709269B">
+         <createdBy>stb</createdBy>
+         <createdTime>2018-11-03 14:29:28 UTC</createdTime>
+         <comment>x/y Position in mm gemessen ab oberer linken Ecke des Diagramms</comment>
+         <ownerDesignName>System</ownerDesignName>
+      </Domain>
+      <Domain class="oracle.dbtools.crest.model.design.Domain" name="DB Technologie" id="B0B9E99A-15A9-E130-AC4D-23A0FE4E1919">
+         <createdBy>stb</createdBy>
+         <createdTime>2018-11-26 16:02:24 UTC</createdTime>
+         <comment>Art der Datenhaltung in einem DBMS</comment>
+         <ownerDesignName>System</ownerDesignName>
+      </Domain>
+      <Domain class="oracle.dbtools.crest.model.design.Domain" name="Beschreibung" id="C3DAFABD-5133-27CA-E0E5-B039A45135D6">
+         <createdBy>stb</createdBy>
+         <createdTime>2018-05-17 14:50:40 UTC</createdTime>
+         <comment>Text als Beschreibung für etwas</comment>
+         <ownerDesignName>System</ownerDesignName>
+      </Domain>
+      <Domain class="oracle.dbtools.crest.model.design.Domain" name="Zeichensatz" id="C44ED88C-D820-1BFA-9CD0-841B752A5E4B">
+         <createdBy>stb</createdBy>
+         <createdTime>2018-06-23 14:02:22 UTC</createdTime>
+         <comment>Zeichensatzname für die Codierung von Zeichen (ASCII, Unicode, UTF-x)</comment>
+         <ownerDesignName>System</ownerDesignName>
+      </Domain>
+      <Domain class="oracle.dbtools.crest.model.design.Domain" name="Textlänge" id="C9DBFF99-FC63-E2AC-8EB8-BE5A63AA7B61">
+         <createdBy>stb</createdBy>
+         <createdTime>2018-11-03 14:47:33 UTC</createdTime>
+         <comment>Anzahl der Zeichen eines Textes (semantisch, nicht technisch)</comment>
+         <ownerDesignName>System</ownerDesignName>
+      </Domain>
+      <Domain class="oracle.dbtools.crest.model.design.Domain" name="Anwendungszweck" id="CEF66788-EC07-3347-F213-6A5B74AB29A4">
+         <createdBy>stb</createdBy>
+         <createdTime>2018-11-26 15:49:58 UTC</createdTime>
+         <comment>Zweck/Bereich einer Anwendung</comment>
+         <ownerDesignName>System</ownerDesignName>
+      </Domain>
+      <Domain class="oracle.dbtools.crest.model.design.Domain" name="Textposition" id="D4726645-0ECA-68CF-0787-5C779C7A2458">
+         <createdBy>stb</createdBy>
+         <createdTime>2018-11-04 12:35:04 UTC</createdTime>
+         <comment>Position von Textfeldern auf einem Diagramm</comment>
+         <ownerDesignName>System</ownerDesignName>
+      </Domain>
+      <Domain class="oracle.dbtools.crest.model.design.Domain" name="Assotziationstext" id="D6C502B3-C779-CE1C-86D5-5492C6CA1E9F">
+         <createdBy>stb</createdBy>
+         <createdTime>2018-11-04 11:38:55 UTC</createdTime>
+         <comment>Text der auf der Beziehung zwischen 2 Entitäten steht. </comment>
+         <ownerDesignName>System</ownerDesignName>
+      </Domain>
+      <Domain class="oracle.dbtools.crest.model.design.Domain" name="Linienpfad" id="D87F0AC2-8B47-16C7-5D9C-A77A3626F787">
+         <createdBy>stb</createdBy>
+         <createdTime>2018-11-04 12:34:38 UTC</createdTime>
+         <comment>Pfad einer Linie auf einem Diagramm (Vetkroen)</comment>
+         <ownerDesignName>System</ownerDesignName>
+      </Domain>
+      <Domain class="oracle.dbtools.crest.model.design.Domain" name="SI-Einheit" id="DD765D8A-B6DE-C725-89D4-5A0AE9EEB09A">
+         <createdBy>stb</createdBy>
+         <createdTime>2018-06-23 13:55:39 UTC</createdTime>
+         <comment>Bane einer physikalischen Einheit gemäss SI</comment>
+         <ownerDesignName>System</ownerDesignName>
+      </Domain>
+      <Domain class="oracle.dbtools.crest.model.design.Domain" name="Unknown" id="DOM3000004">
+         <createdBy>fyayc</createdBy>
+         <createdTime>2018-04-24 10:58:28 UTC</createdTime>
+         <ownerDesignName>System</ownerDesignName>
+      </Domain>
+      <Domain class="oracle.dbtools.crest.model.design.Domain" name="Ordnungsnummer" id="E2DCFC37-5428-9FE8-64FF-368960199E02">
+         <createdBy>stb</createdBy>
+         <createdTime>2018-11-03 15:48:28 UTC</createdTime>
+         <comment>Nummer für die Sequenz/ Ordnung (aufsteigend)</comment>
+         <ownerDesignName>System</ownerDesignName>
+      </Domain>
+      <Domain class="oracle.dbtools.crest.model.design.Domain" name="RegExp" id="EAB77EBE-9C06-2899-E462-A33684354F43">
+         <createdBy>stb</createdBy>
+         <createdTime>2018-11-03 14:45:52 UTC</createdTime>
+         <comment>Regulärer Ausdruck  (regexp) für die Einschränkung von Zeichenfolgen</comment>
+         <ownerDesignName>System</ownerDesignName>
+      </Domain>
+      <Domain class="oracle.dbtools.crest.model.design.Domain" name="Format" id="F8923415-2F34-2023-2112-9B16A52B1FD6">
+         <createdBy>stb</createdBy>
+         <createdTime>2018-06-23 14:07:15 UTC</createdTime>
+         <comment>Formatierungsvorgabe für numerische oder Zeitpunkt-Attribute</comment>
+         <ownerDesignName>System</ownerDesignName>
+      </Domain>
+      <Domain class="oracle.dbtools.crest.model.design.Domain" name="Periodizität" id="FEA1A894-BD6D-FEF8-423C-6857A9D694A1">
+         <createdBy>stb</createdBy>
+         <createdTime>2018-06-23 14:13:55 UTC</createdTime>
+         <comment>Beschreibung einer Zeitdifferenz, nach der etwas erneut geschieht (Dauer, fixe Zeitpunkte am Tag/im Jahr)</comment>
+         <ownerDesignName>System</ownerDesignName>
+      </Domain>
+   </domains>
+</DomainFile>

@@ -1,0 +1,75 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="31A55AAB-304C-FF69-F684-757D12937F5B" name="Relation_89">
+<createdBy>stb</createdBy>
+<createdTime>2018-10-21 13:54:35 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="{ref table  abbr}_Entität_ID" id="08F334E8-043F-ADD1-8160-3E880DAEC162">
+<createdBy>stb</createdBy>
+<createdTime>2018-10-21 13:54:35 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="4133F344-3AC1-5485-F80D-B26875E121FC" referredColumn="B53A54A2-7725-B574-6A72-01964F006A02"/>
+</associations>
+</Column>
+<Column name="{ref table  abbr}_Business_Rule_ID" id="EED07053-62AA-C473-CFA4-F418EAE1DC30">
+<createdBy>stb</createdBy>
+<createdTime>2018-10-21 13:54:35 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="5C91AD06-430B-D11F-40B2-22205480D0F5" referredColumn="3B52AAE9-A2C5-80EB-D5DA-758CFDE56E5C"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="7B266874-3EF4-67F8-C472-258FC2651BB9" name="Relation_89_PK">
+<createdBy>stb</createdBy>
+<createdTime>2018-10-21 13:54:35 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="08F334E8-043F-ADD1-8160-3E880DAEC162"/>
+<colUsage columnID="EED07053-62AA-C473-CFA4-F418EAE1DC30"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="6BB0D433-5619-C5EE-42B1-8A9C1A728729" name="Relation_89_Entität_FK">
+<createdBy>stb</createdBy>
+<createdTime>2018-10-21 13:54:35 UTC</createdTime>
+<generatorID>0D56E423-B362-DDCB-C707-9E807F3D1A34</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="08F334E8-043F-ADD1-8160-3E880DAEC162"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="59E92331-67F6-C66B-00E1-93ED924A6F73" name="Relation_89_Business_Rule_FK">
+<createdBy>stb</createdBy>
+<createdTime>2018-10-21 13:54:35 UTC</createdTime>
+<generatorID>0D56E423-B362-DDCB-C707-9E807F3D1A34</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="EED07053-62AA-C473-CFA4-F418EAE1DC30"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

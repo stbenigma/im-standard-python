@@ -1,0 +1,73 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="89C9DBA0-DB39-26D1-BF54-3FFFB5212903" name="Hersteller">
+<createdBy>stb</createdBy>
+<createdTime>2018-11-26 15:48:17 UTC</createdTime>
+<comment>Herstellerfirma einer Applikation, einer SW-Lösung, einer IT-Komponente.&lt;br/&gt;Kann eine externe Firma sein, die eigene Organisationseinheit (IT-Abteilung für Applikationen, alle Abteilungen für Excel, Templates etc.)&lt;br/&gt;&lt;br/&gt;Beispiele:&lt;br/&gt;SAP&lt;br/&gt;Oracle&lt;br/&gt;IBM&lt;br/&gt;HR-Abteilung (die ein Excel entwickelt hat)&lt;br/&gt;eigene IT-Abteilung (die einen Konfigurator geschrieben hat)</comment>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Name" id="ED106FAC-BF49-B9CD-121E-9149A01D3CAD">
+<createdBy>stb</createdBy>
+<createdTime>2018-11-26 16:14:08 UTC</createdTime>
+<generatorID>E4775B5A-F604-A872-BCBD-8BE8DCBE2B51</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<referedAttribute>CC63CA99-3BB9-F97B-EC7C-FCEB913C8BE0</referedAttribute>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Name1" id="3D91B964-7FFB-E83C-8AF6-8CDB1142B93B">
+<createdBy>stb</createdBy>
+<createdTime>2018-11-26 16:14:08 UTC</createdTime>
+<comment>Name eines Geschäftsbereichs</comment>
+<generatorID>E4775B5A-F604-A872-BCBD-8BE8DCBE2B51</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<referedAttribute>5F1855D0-5C50-083E-F00A-56D7A0E3E93F</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Name11" id="78787114-4D6D-7818-69A3-A412B49B44EC">
+<createdBy>stb</createdBy>
+<createdTime>2018-11-26 16:14:08 UTC</createdTime>
+<comment>Name der Entität der in der Kommunikation normalerweise gebraucht wird.</comment>
+<generatorID>E4775B5A-F604-A872-BCBD-8BE8DCBE2B51</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<referedAttribute>6E28D8D2-162A-F709-A400-9F16EC7872AF</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Name2" id="E4AABCE7-3B4D-B51D-5A7F-E0C737F09232">
+<createdBy>stb</createdBy>
+<createdTime>2019-02-05 07:47:59 UTC</createdTime>
+<generatorID>9B59068A-F0BD-6C8E-BC37-2DF9EBDDCCB6</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<referedAttribute>227D29AF-4CBF-3054-B612-D3E7EE40E7E1</referedAttribute>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+</Entity>

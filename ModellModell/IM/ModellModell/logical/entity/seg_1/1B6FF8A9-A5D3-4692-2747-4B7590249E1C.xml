@@ -1,0 +1,65 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="1B6FF8A9-A5D3-4692-2747-4B7590249E1C" name="Textlicher Wertebereich">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-22 14:50:13 UTC</createdTime>
+<comment>Freitextattribut.  </comment>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<hierarchicalParent>D2A42970-AC5F-B209-EC1C-8C8F92DF7345</hierarchicalParent>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<createSurrogateKey>true</createSurrogateKey>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Min. Textlänge" id="14A349DC-24D3-7ADC-8C56-3A429E600D91">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-22 14:50:13 UTC</createdTime>
+<comment>Minimale Anzahl Zeichen die ein Text haben muss. Leer -&gt; Keine Einschränkung der Inhalte</comment>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<domain>C9DBFF99-FC63-E2AC-8EB8-BE5A63AA7B61</domain>
+<defaultValue>1</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Max. Textlänge" id="C6CF1D6D-7648-4855-5483-1FF307873B9E">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-22 14:50:13 UTC</createdTime>
+<comment>Maximale Anzahl Zeichen die ein Text haben darf. Leer -&gt; so viele, wie das System zulässt</comment>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<domain>C9DBFF99-FC63-E2AC-8EB8-BE5A63AA7B61</domain>
+<defaultValue>1</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Zeichenregel" id="05EDDEB1-FA1E-A904-288F-E9D936A9EE1D">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-22 14:50:13 UTC</createdTime>
+<comment>Formel zur Einschränkung der möglichen Werte eines (Fast-)Freitextattributes</comment>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>EAB77EBE-9C06-2899-E462-A33684354F43</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+</Entity>

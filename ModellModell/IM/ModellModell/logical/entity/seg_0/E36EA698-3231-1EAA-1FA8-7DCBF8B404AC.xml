@@ -1,0 +1,125 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="E36EA698-3231-1EAA-1FA8-7DCBF8B404AC" name="Organisationseinheit">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-23 13:17:42 UTC</createdTime>
+<comment>Organisationseinheit in der Firma (intern oder extern), die für die Definition oder Pflege eines Attributwertes verantwortlich ist.</comment>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<createSurrogateKey>true</createSurrogateKey>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Name" id="CC63CA99-3BB9-F97B-EC7C-FCEB913C8BE0">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-23 13:17:42 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="eMail" id="8123A71C-5147-1CCE-B023-5EAE3BBD9651">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-23 13:17:42 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<domain>4B4F8F40-D3A4-4F39-8CB3-BB6C57534E96</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Telefon-Nr" id="E2C73959-1A2F-694B-FE9C-3722261AFA80">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-23 13:20:41 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<domain>7F98E20B-63A1-C3F1-F7AE-0E2F6BC2C8D5</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Name1" id="5F1855D0-5C50-083E-F00A-56D7A0E3E93F">
+<createdBy>stb</createdBy>
+<createdTime>2018-11-03 14:01:19 UTC</createdTime>
+<comment>Name eines Geschäftsbereichs</comment>
+<generatorID>78F60E90-01C4-13A2-1EE2-A6C082F5B23A</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<referedAttribute>9FC8C28A-8074-92B6-C5B5-3378905C15D0</referedAttribute>
+<use>0</use>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Name11" id="6E28D8D2-162A-F709-A400-9F16EC7872AF">
+<createdBy>stb</createdBy>
+<createdTime>2018-11-03 14:01:19 UTC</createdTime>
+<comment>Name der Entität der in der Kommunikation normalerweise gebraucht wird.</comment>
+<generatorID>78F60E90-01C4-13A2-1EE2-A6C082F5B23A</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<referedAttribute>0D6D7CC5-02F9-66CF-24BB-AC8AC5003C95</referedAttribute>
+<use>0</use>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Name2" id="5C34D5B5-EA15-19CD-E1B2-B612FD69DD08">
+<createdBy>stb</createdBy>
+<createdTime>2018-11-04 11:11:51 UTC</createdTime>
+<comment>Name der Entität der in der Kommunikation normalerweise gebraucht wird.</comment>
+<generatorID>78F60E90-01C4-13A2-1EE2-A6C082F5B23A</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<referedAttribute>158D6530-A023-BDA9-20B0-7ED13799AF9A</referedAttribute>
+<use>0</use>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Adresse" id="21FE67D3-4081-E782-B399-C7B77DDC83A1">
+<createdBy>stb</createdBy>
+<createdTime>2018-12-03 13:05:33 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="39E74C59-95D0-629B-5AEB-6E14E9251C03" name="ITSY_NAME_UK">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-23 13:17:42 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<newElementsIDs>CC63CA99-3BB9-F97B-EC7C-FCEB913C8BE0,78F60E90-01C4-13A2-1EE2-A6C082F5B23A</newElementsIDs>
+<usedAttributes>
+<attributeRef>CC63CA99-3BB9-F97B-EC7C-FCEB913C8BE0</attributeRef>
+<attributeRef>5F1855D0-5C50-083E-F00A-56D7A0E3E93F</attributeRef>
+<attributeRef>6E28D8D2-162A-F709-A400-9F16EC7872AF</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

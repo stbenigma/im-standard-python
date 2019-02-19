@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<udp_library>
+	<udp_groups>
+		<group name="AttribiutMapping" id="A9B24304-550B-6245-FF26-615ED5FD316D" />
+	</udp_groups>
+	<properties>
+		<property name="MieleName" dispalay_name="MieleName" type="Text" group_id="A9B24304-550B-6245-FF26-615ED5FD316D" default_value="">
+		<description>
+			<![CDATA[Name in Mieledatenbank]]>
+		</description>
+			<objects>
+				<object class="oracle.dbtools.crest.model.design.logical.Attribute" visible="false" color="-1"/>
+			</objects>
+		</property>
+		<property name="MieleDatentyp" dispalay_name="MieleDatentyp" type="Text" group_id="A9B24304-550B-6245-FF26-615ED5FD316D" default_value="">
+			<objects>
+				<object class="oracle.dbtools.crest.model.design.logical.Attribute" visible="false" color="-1"/>
+			</objects>
+		</property>
+		<property name="LPIMNr" dispalay_name="LIPIMNr" type="Number" group_id="A9B24304-550B-6245-FF26-615ED5FD316D" default_value="">
+			<objects>
+				<object class="oracle.dbtools.crest.model.design.logical.Attribute" visible="false" color="-1"/>
+			</objects>
+		</property>
+		<property name="LPIMName" dispalay_name="LPIMName" type="Text" group_id="A9B24304-550B-6245-FF26-615ED5FD316D" default_value="">
+			<objects>
+				<object class="oracle.dbtools.crest.model.design.logical.Attribute" visible="false" color="-1"/>
+			</objects>
+		</property>
+	</properties>
+</udp_library>
