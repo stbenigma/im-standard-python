@@ -1,0 +1,61 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="1EE35030-873D-DB24-F4BF-DF1900306B98" name="TEMPLATE TABELLE">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-02 10:25:05 UTC</createdTime>
+<ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<ordsAlias>table_1</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="UCRE" id="F2F46297-5B0E-FAF3-296E-677C20806696">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-02 10:27:56 UTC</createdTime>
+<commentInRDBMS>User der diesen Eintrag erstellt hat</commentInRDBMS>
+<ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 CHAR</dataTypeSize>
+<defaultValue>USER</defaultValue>
+<ownDataTypeParameters>30 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="TCRE" id="ED41D3DC-5018-F7D0-19E4-DFD01F29CCEA">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-02 10:28:12 UTC</createdTime>
+<commentInRDBMS>Zeitpunkt (Time) zu dem dieser Eintrag erstellt wurde.</commentInRDBMS>
+<ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT047</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="UMOD" id="35D3CD1E-16AB-3F41-6DBF-CF7D63852DEC">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-02 10:26:10 UTC</createdTime>
+<ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 CHAR</dataTypeSize>
+<ownDataTypeParameters>30 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="TMOD" id="C6762D9B-1CEC-D07A-3720-C11F0E93E055">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-02 10:27:56 UTC</createdTime>
+<commentInRDBMS>Zeitpunkt (Time) zu dem dieser Eintrag modifiziert wurde.</commentInRDBMS>
+<ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT047</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+</Table>

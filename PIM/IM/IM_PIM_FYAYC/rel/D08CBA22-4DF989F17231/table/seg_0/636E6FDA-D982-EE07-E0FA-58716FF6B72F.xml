@@ -1,0 +1,219 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="636E6FDA-D982-EE07-E0FA-58716FF6B72F" name="ATTR_VG_TEXT">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-02 12:46:03 UTC</createdTime>
+<generatorID>E11DCAF6-FEF4-5DD7-CAD9-7B3623B98F9D</generatorID>
+<ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
+<ordsAlias>attribut_vorgabewertv1</ordsAlias>
+<abbreviation>ATVT</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ATVT_ID" id="EB8F8789-9A7B-18D6-EAE0-90F83C054FBD">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-02 12:46:03 UTC</createdTime>
+<ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>EEE08598-697A-DDA5-3CD6-F5F8A17DD6AA</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_ATVT_ATVT_ID</notNullConstraintName>
+</Column>
+<Column name="ATVT_WERT" id="CB20E90D-28C5-C54E-7BCB-6A2396E8480B">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-02 12:46:03 UTC</createdTime>
+<comment>Ein Wert den ein Attribut annehmen kann.</comment>
+<generatorID>455A9AF6-A15D-EEBA-DC70-9AA7AA004B58</generatorID>
+<ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_ATVT_ATVT_WERT</notNullConstraintName>
+</Column>
+<Column name="ATVT_KRZTXT" id="647D71B2-8362-E3A3-AF85-ED94B1578433">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-02 12:46:03 UTC</createdTime>
+<comment>Kurzer Text eines Wertes in mehreren Sprachen möglich.</comment>
+<generatorID>01AB129E-EF1A-794F-08C3-FB6C5E7A1713</generatorID>
+<ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ATVT_LNGTXT" id="14FAD393-E811-3B94-B57F-03308171FB14">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-02 12:46:03 UTC</createdTime>
+<comment>Langer Text eines Wertes in mehreren Sprachen möglich.</comment>
+<generatorID>2E286809-1E35-DB7C-E2CC-CC181ADF5190</generatorID>
+<ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ATVT_GSPR_ID" id="7683EB14-992D-9177-A1B9-CF3D65DA0239">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-02 12:49:33 UTC</createdTime>
+<ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>EEE08598-697A-DDA5-3CD6-F5F8A17DD6AA</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_ATVT_ATVT_GSPR_ID</notNullConstraintName>
+<associations>
+<colAssociation fkAssociation="A25CAFA9-E491-3673-4379-AB65408F8C20" referredColumn="7BFC20B1-BF31-D9DB-F206-CCA9F68166F5"/>
+</associations>
+</Column>
+<Column name="ATVT_ATVG_ID" id="EEA39302-681C-99D3-6920-BE079EDCB710">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-02 12:50:36 UTC</createdTime>
+<ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>EEE08598-697A-DDA5-3CD6-F5F8A17DD6AA</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_ATVT_ATVT_ATVG_ID</notNullConstraintName>
+<associations>
+<colAssociation fkAssociation="1624EAEE-3E20-C309-A4F3-B86FEB94D04F" referredColumn="3F5F1371-246C-7E8F-0341-405A6640B889"/>
+</associations>
+</Column>
+<Column name="ATVT_UCRE" id="5C4F1681-621D-92AF-D57C-7C84C15860FA">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-02 12:46:03 UTC</createdTime>
+<commentInRDBMS>User der diesen Eintrag erstellt hat</commentInRDBMS>
+<ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 CHAR</dataTypeSize>
+<defaultValue>USER</defaultValue>
+<ownDataTypeParameters>30 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_ATVT_ATVT_UCRE</notNullConstraintName>
+<propertyMap>
+<property name="ctemplateID" value="F2F46297-5B0E-FAF3-296E-677C20806696"/>
+</propertyMap>
+</Column>
+<Column name="ATVT_TCRE" id="DF300F36-4440-C91B-DDC2-33238F6278DE">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-02 12:46:03 UTC</createdTime>
+<commentInRDBMS>Zeitpunkt (Time) zu dem dieser Eintrag erstellt wurde.</commentInRDBMS>
+<ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT047</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_ATVT_ATVT_TCRE</notNullConstraintName>
+<propertyMap>
+<property name="ctemplateID" value="ED41D3DC-5018-F7D0-19E4-DFD01F29CCEA"/>
+</propertyMap>
+</Column>
+<Column name="ATVT_UMOD" id="A09EFE09-C940-8AE2-33BC-424EC88EA68E">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-02 12:46:03 UTC</createdTime>
+<ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 CHAR</dataTypeSize>
+<ownDataTypeParameters>30 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="35D3CD1E-16AB-3F41-6DBF-CF7D63852DEC"/>
+</propertyMap>
+</Column>
+<Column name="ATVT_TMOD" id="DB99AE4E-8E9A-D21E-D182-A8C4ABAAF7D1">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-02 12:46:03 UTC</createdTime>
+<commentInRDBMS>Zeitpunkt (Time) zu dem dieser Eintrag modifiziert wurde.</commentInRDBMS>
+<ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT047</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="C6762D9B-1CEC-D07A-3720-C11F0E93E055"/>
+</propertyMap>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="07CAD43E-5E29-C675-6B71-CFAEFE135A7A" name="ATVT_PK">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-02 12:46:03 UTC</createdTime>
+<ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="EB8F8789-9A7B-18D6-EAE0-90F83C054FBD"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="174D064C-E39A-D2FB-2447-0ED3DCA6E5DE" name="ATVT_UN">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-02 12:51:14 UTC</createdTime>
+<ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="7683EB14-992D-9177-A1B9-CF3D65DA0239"/>
+<colUsage columnID="EEA39302-681C-99D3-6920-BE079EDCB710"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="7519F635-27EC-284D-414B-86AE28A11FAA" name="ATVT_ATVT_GSPR_ID_IDX">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-02 13:32:41 UTC</createdTime>
+<ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="7683EB14-992D-9177-A1B9-CF3D65DA0239"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="8F6D24BD-ED81-4E96-C39C-8A7BE49D034F" name="ATVT_ATVT_ATVG_ID_IDX">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-02 13:32:41 UTC</createdTime>
+<ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="EEA39302-681C-99D3-6920-BE079EDCB710"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="2856F9F9-F2EF-9C2C-E92F-BE7F35024640" name="ATVT_GSPR_FK">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-02 12:49:33 UTC</createdTime>
+<ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="7683EB14-992D-9177-A1B9-CF3D65DA0239"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="5A6BC97A-2F61-4F23-8B92-CC607F7CFBA4" name="ATVT_ATVG_FK">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-02 12:50:36 UTC</createdTime>
+<ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="EEA39302-681C-99D3-6920-BE079EDCB710"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

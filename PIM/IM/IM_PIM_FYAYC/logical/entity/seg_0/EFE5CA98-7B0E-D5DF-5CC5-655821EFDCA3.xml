@@ -1,0 +1,124 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="EFE5CA98-7B0E-D5DF-5CC5-655821EFDCA3" name="Business Rule">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-02 09:08:31 UTC</createdTime>
+<comment>Regel, die für diese Verwendung des Attributs gelten muss (über die Regeln in der Attributdefinition hinaus.&lt;br/&gt;Die Regel kann weitere Attributverwendeungen referenzieren, wenn die Attributwerte voneinander abhängig sind.</comment>
+<ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
+<engineerTo>
+<item key="D08CBA22-8AB1-A78D-26DE-4DF989F17231" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<shortName>BUSR</shortName>
+<createSurrogateKey>true</createSurrogateKey>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Name" id="5CC12D61-A406-697F-320E-1C2BC9C27D51">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-02 09:08:49 UTC</createdTime>
+<comment>Bezeichnung der Regel</comment>
+<ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
+<engineerTo>
+<item key="D08CBA22-8AB1-A78D-26DE-4DF989F17231" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Beschreibung [L]" id="39F301B2-7180-AD29-8A1D-29EF588921D3">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-02 09:09:02 UTC</createdTime>
+<comment>Umschreibung der Prüfregel</comment>
+<ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
+<engineerTo>
+<item key="D08CBA22-8AB1-A78D-26DE-4DF989F17231" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Regel" id="FC25CF04-FE84-04CC-A6E5-7F2C9941FF55">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-02 09:09:12 UTC</createdTime>
+<comment>(möglichst formale) Beschreibung der Regel, die für dieses Attribut gelten muss</comment>
+<ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
+<engineerTo>
+<item key="D08CBA22-8AB1-A78D-26DE-4DF989F17231" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>7EA6DA26-F21D-B053-2D0E-CA84861ECAAB</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Fehlermeldung [L]" id="4E7DD1EE-E75E-22E6-8848-AB70CE0DB272">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-02 09:10:44 UTC</createdTime>
+<comment>Fehlermeldung die ausgegeben wird, wenn die Regel verletzt ist.</comment>
+<ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
+<engineerTo>
+<item key="D08CBA22-8AB1-A78D-26DE-4DF989F17231" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="3D4427C0-EED8-AB04-11D6-297A12D26524" name="BUSR_UK">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-02 09:16:16 UTC</createdTime>
+<ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
+<engineerTo>
+<item key="D08CBA22-8AB1-A78D-26DE-4DF989F17231" value="true"/>
+</engineerTo>
+<newElementsIDs>FC25CF04-FE84-04CC-A6E5-7F2C9941FF55,023EEBD4-4770-B878-A5D6-04C36D48B540</newElementsIDs>
+<usedAttributes>
+<attributeRef>FC25CF04-FE84-04CC-A6E5-7F2C9941FF55</attributeRef>
+</usedAttributes>
+</identifier>
+<identifier id="F85EAC84-2CF2-077E-34A1-F0C607F36055" name="Business Rule PK">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-02 09:17:10 UTC</createdTime>
+<ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
+<engineerTo>
+<item key="D08CBA22-8AB1-A78D-26DE-4DF989F17231" value="true"/>
+</engineerTo>
+</identifier>
+<identifier id="F24DCB2D-87B1-8CD8-2919-576DF5143A5A" name="Business Rule PKv1">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-02 09:17:10 UTC</createdTime>
+<ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
+<engineerTo>
+<item key="D08CBA22-8AB1-A78D-26DE-4DF989F17231" value="true"/>
+</engineerTo>
+</identifier>
+<identifier id="D2A88D49-123E-B21C-81AF-7B1DFF30FC9F" name="Business Rule PKv2">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-02 09:17:10 UTC</createdTime>
+<ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
+<engineerTo>
+<item key="D08CBA22-8AB1-A78D-26DE-4DF989F17231" value="true"/>
+</engineerTo>
+</identifier>
+<identifier id="0BCF5B34-1595-A58F-2D61-D1DB63377051" name="Business Rule PKv3">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-02 09:17:10 UTC</createdTime>
+<ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
+<engineerTo>
+<item key="D08CBA22-8AB1-A78D-26DE-4DF989F17231" value="true"/>
+</engineerTo>
+<pk>true</pk>
+</identifier>
+</identifiers>
+</Entity>

@@ -1,0 +1,68 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="157C2569-BF61-0E63-9ECE-60D7106C1906" name="Zeitpunktattribut">
+<createdBy>stb</createdBy>
+<createdTime>2018-05-17 14:53:17 UTC</createdTime>
+<ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="D08CBA22-8AB1-A78D-26DE-4DF989F17231" value="false"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<hierarchicalParent>E928F51D-B4DB-A8B5-4033-A5DE2900FEBF</hierarchicalParent>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<shortName>ZATT</shortName>
+<createSurrogateKey>true</createSurrogateKey>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Min Zeitpunkt" id="1FFD0A61-CE64-69AE-9532-F9961AB2DEE3">
+<createdBy>stb</createdBy>
+<createdTime>2018-05-17 15:18:13 UTC</createdTime>
+<comment>frühestes Datum in diesem Attribut. Leer -&gt; es gibt keine Untergrenze</comment>
+<ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
+<engineerTo>
+<item key="D08CBA22-8AB1-A78D-26DE-4DF989F17231" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>5595B09A-F334-06B9-E641-60634C73D28B</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Max Maxzeitpunkt" id="3E7198FC-CBDE-5208-A803-05EFAC3B2114">
+<createdBy>stb</createdBy>
+<createdTime>2018-05-17 15:19:06 UTC</createdTime>
+<comment>spätestes Datum in diesem Attribut. Leer -&gt; es gibt keine Obergrenze</comment>
+<ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
+<engineerTo>
+<item key="D08CBA22-8AB1-A78D-26DE-4DF989F17231" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT015</logicalDatatype>
+<domain>0AD80E26-0F5C-D068-29EA-4740A04582AE</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Granularitaet" id="63A60677-2A94-08E3-CC8F-043B7AA64BA8">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-02 08:40:24 UTC</createdTime>
+<ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
+<engineerTo>
+<item key="D08CBA22-8AB1-A78D-26DE-4DF989F17231" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<domain>9CA83673-0453-9943-665C-CCB4497CF164</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>0</beginValue>
+</rangeDef>
+</listOfRanges>
+</Attribute>
+</attributes>
+</Entity>

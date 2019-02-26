@@ -1,0 +1,65 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="A8435A7A-CDCC-3040-1442-D0936F45ABE2" name="Attributverwendung">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-02 08:56:28 UTC</createdTime>
+<comment>Gruppierung von allen Entitäten, die zur Beschreibung und Verwaltung von Artikel-Attributen benötigt werden.</comment>
+<ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
+<engineerTo>
+<item key="D08CBA22-8AB1-A78D-26DE-4DF989F17231" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<shortName>ATVW</shortName>
+<synonym>attribute usage</synonym>
+<createSurrogateKey>true</createSurrogateKey>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="ist Pflichtattribut" id="77660323-65FF-44E5-9D93-BC4C6D93884E">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-02 08:56:42 UTC</createdTime>
+<comment>Ist das Attribut in dieser Verwendung ein Pflichtattribut, d.h. es darf nicht leer sein.</comment>
+<ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
+<engineerTo>
+<item key="D08CBA22-8AB1-A78D-26DE-4DF989F17231" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
+<defaultValue>TRUE</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="B25B0D12-3CE0-108D-D89C-FCF92D3397CF" name="ATUS_UK">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-02 09:01:07 UTC</createdTime>
+<ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
+<engineerTo>
+<item key="D08CBA22-8AB1-A78D-26DE-4DF989F17231" value="true"/>
+</engineerTo>
+<newElementsIDs>DF18F141-FA70-E579-15CC-6AE168551F20,666BC121-B53F-DC8D-98D9-60FD0FAC3917</newElementsIDs>
+</identifier>
+<identifier id="2CB2E469-87FA-21AE-5CBE-2E21F7C3ED99" name="Attributverwendung PK">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-02 09:01:44 UTC</createdTime>
+<ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
+<engineerTo>
+<item key="D08CBA22-8AB1-A78D-26DE-4DF989F17231" value="true"/>
+</engineerTo>
+</identifier>
+<identifier id="5AC71408-018C-5B7B-657B-E0424A215688" name="Attributverwendung PKv1">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-02 09:01:44 UTC</createdTime>
+<ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
+<engineerTo>
+<item key="D08CBA22-8AB1-A78D-26DE-4DF989F17231" value="true"/>
+</engineerTo>
+<pk>true</pk>
+</identifier>
+</identifiers>
+</Entity>

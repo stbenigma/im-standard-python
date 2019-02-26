@@ -1,0 +1,140 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="99406F6E-5449-5C92-95AA-763CA7B16652" name="PHYS_EINHEIT">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-02 12:26:22 UTC</createdTime>
+<comment>Physikalische Messeinheit.&lt;br/&gt;Siehe dazu z.B. https://de.wikipedia.org/wiki/Liste_physikalischer_Größen#SI-Basisgrößen_und_-einheiten</comment>
+<generatorID>07BDF8BC-95D9-2C86-6F4E-BE8D0881F9D4</generatorID>
+<ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
+<ordsAlias>physikalische_einheit</ordsAlias>
+<abbreviation>PHEI</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="PHEI_ID" id="F311CE04-1D72-F858-616F-E49517D68FE2">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-02 12:26:22 UTC</createdTime>
+<ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>EEE08598-697A-DDA5-3CD6-F5F8A17DD6AA</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_PHEI_PHEI_ID</notNullConstraintName>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+<Column name="PHEI_SI_EINHEIT" id="143B9EEB-4762-1052-A0D0-ACA655947670">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-02 12:26:22 UTC</createdTime>
+<comment>Einheit gemäss SI-Vorgabe</comment>
+<generatorID>267C695D-4C75-7A68-12A6-A86F9E2E847F</generatorID>
+<ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>8C66DAD3-1A37-83CB-43FA-DFE3C73A6F26</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_PHEI_PHEI_SI_EINHEIT</notNullConstraintName>
+</Column>
+<Column name="PHEI_NAME" id="19D4514D-47B9-621C-46FD-91D90E6C6A1E">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-02 12:26:22 UTC</createdTime>
+<generatorID>1B55434C-D97A-9A45-0169-55038D64CEA1</generatorID>
+<ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="PHEI_BESCHR" id="2FC9ABD8-E723-4830-7E86-739AB7560659">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-02 12:26:22 UTC</createdTime>
+<generatorID>5C1E0AC2-ECCC-F2A1-4C09-4CB4015DE68E</generatorID>
+<ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="PHEI_UCRE" id="5A74C5DB-381A-7FAC-7D5D-BAB5BDB4E397">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-02 12:26:22 UTC</createdTime>
+<commentInRDBMS>User der diesen Eintrag erstellt hat</commentInRDBMS>
+<ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 CHAR</dataTypeSize>
+<defaultValue>USER</defaultValue>
+<ownDataTypeParameters>30 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_PHEI_PHEI_UCRE</notNullConstraintName>
+<propertyMap>
+<property name="ctemplateID" value="F2F46297-5B0E-FAF3-296E-677C20806696"/>
+</propertyMap>
+</Column>
+<Column name="PHEI_TCRE" id="E7B18FF1-DA15-8B8D-DEBD-ED30749507F0">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-02 12:26:22 UTC</createdTime>
+<commentInRDBMS>Zeitpunkt (Time) zu dem dieser Eintrag erstellt wurde.</commentInRDBMS>
+<ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT047</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_PHEI_PHEI_TCRE</notNullConstraintName>
+<propertyMap>
+<property name="ctemplateID" value="ED41D3DC-5018-F7D0-19E4-DFD01F29CCEA"/>
+</propertyMap>
+</Column>
+<Column name="PHEI_UMOD" id="306ED6F6-667D-ADCE-0D2C-B46AF08182F2">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-02 12:26:22 UTC</createdTime>
+<ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 CHAR</dataTypeSize>
+<ownDataTypeParameters>30 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="35D3CD1E-16AB-3F41-6DBF-CF7D63852DEC"/>
+</propertyMap>
+</Column>
+<Column name="PHEI_TMOD" id="F691A4EA-E17F-7EE5-4DC7-E217E75C4B02">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-02 12:26:22 UTC</createdTime>
+<commentInRDBMS>Zeitpunkt (Time) zu dem dieser Eintrag modifiziert wurde.</commentInRDBMS>
+<ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT047</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="C6762D9B-1CEC-D07A-3720-C11F0E93E055"/>
+</propertyMap>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="41834AEF-9150-1162-1107-B91953ED98CD" name="PHEI_PK">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-02 12:26:22 UTC</createdTime>
+<ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="F311CE04-1D72-F858-616F-E49517D68FE2"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

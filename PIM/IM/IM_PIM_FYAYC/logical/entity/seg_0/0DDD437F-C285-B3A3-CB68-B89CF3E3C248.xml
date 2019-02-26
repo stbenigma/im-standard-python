@@ -1,0 +1,51 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="0DDD437F-C285-B3A3-CB68-B89CF3E3C248" name="Geografische Einheit">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-02 08:30:57 UTC</createdTime>
+<ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="D08CBA22-8AB1-A78D-26DE-4DF989F17231" value="false"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<shortName>GEIN</shortName>
+<synonym>Geografical Unit</synonym>
+<attributeInherType>All atributes</attributeInherType>
+<createSurrogateKey>true</createSurrogateKey>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Name" id="A9A6A545-A7E2-B23B-DD56-F34A224DC484">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-02 08:30:57 UTC</createdTime>
+<ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
+<importedID>13CCB626-5DD8-2504-E13E-391E04CC9DF8</importedID>
+<engineerTo>
+<item key="D08CBA22-8AB1-A78D-26DE-4DF989F17231" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="3774FD5C-4FA8-5CAF-0D7E-31C992D14054" name="GEOU_UK">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-02 08:30:57 UTC</createdTime>
+<ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
+<engineerTo>
+<item key="D08CBA22-8AB1-A78D-26DE-4DF989F17231" value="true"/>
+</engineerTo>
+<usedAttributes>
+<attributeRef>A9A6A545-A7E2-B23B-DD56-F34A224DC484</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

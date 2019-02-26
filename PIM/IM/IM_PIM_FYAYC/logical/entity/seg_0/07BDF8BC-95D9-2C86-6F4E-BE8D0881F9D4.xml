@@ -1,0 +1,61 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="07BDF8BC-95D9-2C86-6F4E-BE8D0881F9D4" name="Physikalische Einheit">
+<createdBy>stb</createdBy>
+<createdTime>2018-05-17 19:44:47 UTC</createdTime>
+<comment>Physikalische Messeinheit.&lt;br/&gt;Siehe dazu z.B. https://de.wikipedia.org/wiki/Liste_physikalischer_Größen#SI-Basisgrößen_und_-einheiten</comment>
+<ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
+<engineerTo>
+<item key="D08CBA22-8AB1-A78D-26DE-4DF989F17231" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<shortName>PHEI</shortName>
+<createSurrogateKey>true</createSurrogateKey>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="SI-Einheit" id="267C695D-4C75-7A68-12A6-A86F9E2E847F">
+<createdBy>stb</createdBy>
+<createdTime>2018-05-17 19:45:17 UTC</createdTime>
+<comment>Einheit gemäss SI-Vorgabe</comment>
+<ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
+<engineerTo>
+<item key="D08CBA22-8AB1-A78D-26DE-4DF989F17231" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>8C66DAD3-1A37-83CB-43FA-DFE3C73A6F26</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Name [L]" id="1B55434C-D97A-9A45-0169-55038D64CEA1">
+<createdBy>stb</createdBy>
+<createdTime>2018-05-17 19:48:19 UTC</createdTime>
+<ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
+<engineerTo>
+<item key="D08CBA22-8AB1-A78D-26DE-4DF989F17231" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Beschreibung [L]" id="5C1E0AC2-ECCC-F2A1-4C09-4CB4015DE68E">
+<createdBy>stb</createdBy>
+<createdTime>2018-05-17 19:47:51 UTC</createdTime>
+<ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
+<engineerTo>
+<item key="D08CBA22-8AB1-A78D-26DE-4DF989F17231" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+</Entity>

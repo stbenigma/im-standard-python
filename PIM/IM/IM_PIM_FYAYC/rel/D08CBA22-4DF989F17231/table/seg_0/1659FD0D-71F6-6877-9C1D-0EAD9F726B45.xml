@@ -1,0 +1,183 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="1659FD0D-71F6-6877-9C1D-0EAD9F726B45" name="LAND">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-02 12:17:22 UTC</createdTime>
+<generatorID>0A43F002-2313-B2C6-B5AE-6A455F3161AB</generatorID>
+<ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
+<abbreviation>LAND</abbreviation>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="LAND_ID" id="0D147A16-8E78-FC01-0D5B-B8DDE9FB55C8">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-02 12:17:22 UTC</createdTime>
+<ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>EEE08598-697A-DDA5-3CD6-F5F8A17DD6AA</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_LAND_LAND_ID</notNullConstraintName>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+<Column name="LAND_NAME" id="156A2E44-9AF2-76F6-F04C-CB86B12164F8">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-02 12:17:22 UTC</createdTime>
+<generatorID>A9A6A545-A7E2-B23B-DD56-F34A224DC484</generatorID>
+<ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_LAND_LAND_NAME</notNullConstraintName>
+</Column>
+<Column name="LAND_ISO_CODE" id="3047BE0C-B2F6-B4E5-B856-A4AECF05873D">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-02 12:17:22 UTC</createdTime>
+<generatorID>B04AE1B0-09F9-D76C-0348-C7844E8BF476</generatorID>
+<ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>FC85688A-BE92-2820-35E2-EB148361AAE1</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_LAND_LAND_ISO_CODE</notNullConstraintName>
+</Column>
+<Column name="LAND_REGI_ID" id="4D3E5DF9-2E5B-9DEA-390C-3713CE448F8F">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-02 12:17:22 UTC</createdTime>
+<ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>EEE08598-697A-DDA5-3CD6-F5F8A17DD6AA</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_LAND_LAND_REGI_ID</notNullConstraintName>
+<associations>
+<colAssociation fkAssociation="838CAEA4-07A7-906D-D27D-859D52D29A72" referredColumn="F545C35C-71EB-57EE-002D-AD5F79F35E7E"/>
+</associations>
+</Column>
+<Column name="LAND_TPLT_UCRE" id="93F141E6-8251-E647-E29E-FC69DEE0F24A">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-02 12:17:22 UTC</createdTime>
+<commentInRDBMS>User der diesen Eintrag erstellt hat</commentInRDBMS>
+<ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 CHAR</dataTypeSize>
+<defaultValue>USER</defaultValue>
+<ownDataTypeParameters>30 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_LAND_LAND_TPLT_UCRE</notNullConstraintName>
+<propertyMap>
+<property name="ctemplateID" value="F2F46297-5B0E-FAF3-296E-677C20806696"/>
+</propertyMap>
+</Column>
+<Column name="LAND_TPLT_TCRE" id="AD6A01B5-2752-2CD0-E155-3D10FF819E79">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-02 12:17:22 UTC</createdTime>
+<commentInRDBMS>Zeitpunkt (Time) zu dem dieser Eintrag erstellt wurde.</commentInRDBMS>
+<ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT047</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_LAND_LAND_TPLT_TCRE</notNullConstraintName>
+<propertyMap>
+<property name="ctemplateID" value="ED41D3DC-5018-F7D0-19E4-DFD01F29CCEA"/>
+</propertyMap>
+</Column>
+<Column name="LAND_TPLT_UMOD" id="86BA67D2-D21A-098F-9D4E-5EA8735D2E73">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-02 12:17:22 UTC</createdTime>
+<ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 CHAR</dataTypeSize>
+<ownDataTypeParameters>30 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="35D3CD1E-16AB-3F41-6DBF-CF7D63852DEC"/>
+</propertyMap>
+</Column>
+<Column name="LAND_TPLT_TMOD" id="2EB58A2B-5F87-B0BE-AAA2-82C82B4D9F83">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-02 12:17:22 UTC</createdTime>
+<commentInRDBMS>Zeitpunkt (Time) zu dem dieser Eintrag modifiziert wurde.</commentInRDBMS>
+<ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT047</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="C6762D9B-1CEC-D07A-3720-C11F0E93E055"/>
+</propertyMap>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="C86FE231-A8EF-A5F7-2390-A508B81263AD" name="LAND_PK">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-02 12:17:22 UTC</createdTime>
+<ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="0D147A16-8E78-FC01-0D5B-B8DDE9FB55C8"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="E1C5A390-FAE5-6907-8B8D-8B8093152EA2" name="LAND_UN">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-02 12:17:22 UTC</createdTime>
+<generatorID>449BFE39-FFD1-B18D-1695-A91A1C760625</generatorID>
+<ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="3047BE0C-B2F6-B4E5-B856-A4AECF05873D"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="0B1595C3-2CA2-23D2-DD20-5F88EA2AC54C" name="LAND_UNv2">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-02 12:17:22 UTC</createdTime>
+<generatorID>3774FD5C-4FA8-5CAF-0D7E-31C992D14054</generatorID>
+<ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="156A2E44-9AF2-76F6-F04C-CB86B12164F8"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="A3686C2A-01E3-5D46-045E-7F192FF28E63" name="LAND_LAND_REGI_ID_IDX">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-02 13:32:41 UTC</createdTime>
+<ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="4D3E5DF9-2E5B-9DEA-390C-3713CE448F8F"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="5C20521E-762E-A389-B526-B7C90FAAADAC" name="LAND_REGI_FK">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-02 12:17:22 UTC</createdTime>
+<generatorID>8A33ABC5-F0EA-E2EF-F0B7-5D2D9D8135F9</generatorID>
+<ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="4D3E5DF9-2E5B-9DEA-390C-3713CE448F8F"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

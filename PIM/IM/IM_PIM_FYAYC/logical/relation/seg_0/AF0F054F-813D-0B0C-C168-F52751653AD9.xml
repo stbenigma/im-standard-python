@@ -1,0 +1,41 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_17" directorySegmentName="seg_0" id="AF0F054F-813D-0B0C-C168-F52751653AD9">
+<createdBy>stb</createdBy>
+<createdTime>2018-05-22 07:46:59 UTC</createdTime>
+<ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
+<engineerTo>
+<item key="D08CBA22-8AB1-A78D-26DE-4DF989F17231" value="true"/>
+</engineerTo>
+<useSurrogateKey>true</useSurrogateKey>
+<identifying>false</identifying>
+<nameOnSource>verwendet in</nameOnSource>
+<nameOnTarget>besteht aus [T]</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>E1455130-5348-4334-7A73-BBDB38EEF58F</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>F31B42E9-659F-0C7B-4215-AFE87CF401D4</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<attribute name="Anzahl" id="97B8420F-0FA3-5D94-7DF6-377B457FC366">
+<createdBy>stb</createdBy>
+<createdTime>2018-05-22 08:01:41 UTC</createdTime>
+<comment>Anzahl eines Teils, das in der Baugruppe enthalten ist.</comment>
+<ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
+<engineerTo>
+<item key="D08CBA22-8AB1-A78D-26DE-4DF989F17231" value="true"/>
+</engineerTo>
+<use>0</use>
+<domain>4371DA6A-2A2E-094E-B223-F78464D5EDE8</domain>
+<defaultValue>1</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>0</beginValue>
+</rangeDef>
+</listOfRanges>
+</attribute>
+</attributes>
+</Relation>

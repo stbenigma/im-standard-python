@@ -1,0 +1,192 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="621E5DBF-B1C1-68B8-6C79-71299F688E7D" name="ATTR_WARENGRUPPIERUNG">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-02 12:34:39 UTC</createdTime>
+<comment>Hierarchische Gruppe von Attribut Artikel.&lt;br/&gt;Jede Gruppe fasst Artikel mit gleichen Attributen zusammen.&lt;br/&gt;&lt;br/&gt;Jede Hierarchiestufe erbt alle Attribute, die einer übergeordneten Stufe zugewiesen sind.&lt;br/&gt;Sie vererbt ihre Attribute an alle Untergeordneten Gruppen oder Hierarchistufen.&lt;br/&gt;Falls ein Attribut über mehrer Väter definiert ist, wird es nur ein Mal vererbt.&lt;br/&gt;&lt;br/&gt;Beispiele:&lt;br/&gt; -Gerät (Gewicht, Länge, Breite, Höhe)&lt;br/&gt;  -- Elektrische Geräte (Nennspannung, Max. Leistungsaufnahme...)  &lt;br/&gt;     --- Gleichstrom    (...)&lt;br/&gt;       ---- Batterie (min. Leistung) &lt;br/&gt;       ---- Akku   (min. Ladezeit)&lt;br/&gt;     --- Wechselstrom (Scheinleistung)  &lt;br/&gt;  -- Fräsmaschinen (max. Umdrehungsgeschw.,  typischer Vorschub, max. Vorschub ...)&lt;br/&gt; -Sicherheit    (Zertifikat)&lt;br/&gt;   -- Spannungsschutz  (...)&lt;br/&gt;   -- Explositionsschutz (...)&lt;br/&gt;   -- Mechanischer Schutz (min. Abstand, ...)&lt;br/&gt; &lt;br/&gt; Ein Artikel &quot;Elektrische Fräsmaschine mit Stromkabel&quot; wird dem Wechselstrom, den Fräsmaschinen und dem Mechanischen Schutz zugeordnet und hat demnach alle Attribute  die diesen Gruppen zugeordnet sind (direkt ober über Vererbung).</comment>
+<generatorID>7A311256-F4EE-02DF-BF39-2F6F7A7BDB8A</generatorID>
+<ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
+<ordsAlias>attribut_warengruppierung</ordsAlias>
+<abbreviation>ATWG</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ATWG_ID" id="2F105213-BEB7-6033-8BCD-47AD681FB0BF">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-02 12:34:39 UTC</createdTime>
+<ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>EEE08598-697A-DDA5-3CD6-F5F8A17DD6AA</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_ATWG_ATWG_ID</notNullConstraintName>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+<Column name="ATWG_NAME" id="09C02B3D-9C57-7901-EEF9-357ABEB32735">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-02 12:34:39 UTC</createdTime>
+<generatorID>B97BC311-9667-3260-EA0C-3E0A4043C032</generatorID>
+<ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_ATWG_ATWG_NAME</notNullConstraintName>
+</Column>
+<Column name="ATWG_SORTRHFG" id="122EAE74-11D7-0627-691B-43714400A9E3">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-02 12:34:39 UTC</createdTime>
+<comment>Reihenfolge innerhalb einer Stufe. Leer -&gt; wird am Schluss zufällgi angeordnet.</comment>
+<generatorID>8A0B7F28-5473-5AC7-25A5-8A27E690D11E</generatorID>
+<ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ATWG_TYP" id="47F1EDBB-3026-46ED-EB47-DF64E22E8F01">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-02 12:34:39 UTC</createdTime>
+<ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
+<constraintName>CK_ATWG_ATWG_TYP</constraintName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>4</dataTypeSize>
+<listOfValues>
+<valueDef value="ATGR" description="entity Attribut Warengruppe"/>
+<valueDef value="ATWH" description="entity Attribut Warenhierarchie"/>
+</listOfValues>
+<ownDataTypeParameters>4,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_ATWG_ATWG_TYP</notNullConstraintName>
+<isDiscriminatorColumn>true</isDiscriminatorColumn>
+</Column>
+<Column name="ATWG_ATWG_ID" id="8AF1F479-55DF-77BE-DF68-15EB4CBE6F73">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-02 12:37:27 UTC</createdTime>
+<ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>EEE08598-697A-DDA5-3CD6-F5F8A17DD6AA</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="553DCB46-7882-9396-D062-29480C291DD6" referredColumn="2F105213-BEB7-6033-8BCD-47AD681FB0BF"/>
+</associations>
+</Column>
+<Column name="ATWG_UCRE" id="F1621B88-0F98-E1B9-5A35-8B8D71624A6E">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-02 12:34:39 UTC</createdTime>
+<commentInRDBMS>User der diesen Eintrag erstellt hat</commentInRDBMS>
+<ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 CHAR</dataTypeSize>
+<defaultValue>USER</defaultValue>
+<ownDataTypeParameters>30 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_ATWG_ATWG_UCRE</notNullConstraintName>
+<propertyMap>
+<property name="ctemplateID" value="F2F46297-5B0E-FAF3-296E-677C20806696"/>
+</propertyMap>
+</Column>
+<Column name="ATWG_TCRE" id="3E895186-2FCB-671D-930E-C2777F13E116">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-02 12:34:39 UTC</createdTime>
+<commentInRDBMS>Zeitpunkt (Time) zu dem dieser Eintrag erstellt wurde.</commentInRDBMS>
+<ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT047</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_ATWG_ATWG_TCRE</notNullConstraintName>
+<propertyMap>
+<property name="ctemplateID" value="ED41D3DC-5018-F7D0-19E4-DFD01F29CCEA"/>
+</propertyMap>
+</Column>
+<Column name="ATWG_UMOD" id="0DA26BED-4673-B5F7-9018-FD23C1DD9647">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-02 12:34:39 UTC</createdTime>
+<ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 CHAR</dataTypeSize>
+<ownDataTypeParameters>30 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="35D3CD1E-16AB-3F41-6DBF-CF7D63852DEC"/>
+</propertyMap>
+</Column>
+<Column name="ATWG_TMOD" id="E0031CA1-A492-5DB7-C4B4-F745A076FDA7">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-02 12:34:39 UTC</createdTime>
+<commentInRDBMS>Zeitpunkt (Time) zu dem dieser Eintrag modifiziert wurde.</commentInRDBMS>
+<ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT047</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="C6762D9B-1CEC-D07A-3720-C11F0E93E055"/>
+</propertyMap>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="6CAC03D1-1212-40BA-6A19-B406FED93DFE" name="ATWG_PK">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-02 12:34:39 UTC</createdTime>
+<ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="2F105213-BEB7-6033-8BCD-47AD681FB0BF"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="49AF3E34-ABFE-C529-016A-288C4A9DDF70" name="ATWG_UN">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-02 12:34:39 UTC</createdTime>
+<generatorID>BDA719F1-DC77-7F60-6DBB-44421C84DD59</generatorID>
+<ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="09C02B3D-9C57-7901-EEF9-357ABEB32735"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="495472BC-443D-C82D-1DD8-29FE6AD424A9" name="ATWG_ATWG_ATWG_ID_IDX">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-02 13:32:41 UTC</createdTime>
+<ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="8AF1F479-55DF-77BE-DF68-15EB4CBE6F73"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="2CCE6A30-2E25-8C5D-E4A9-06BC4611C592" name="ATWG_ATWG_FK">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-02 12:37:27 UTC</createdTime>
+<generatorID>78AD6E68-EC1C-D202-A6E9-7D2E537E7BC1</generatorID>
+<ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="8AF1F479-55DF-77BE-DF68-15EB4CBE6F73"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

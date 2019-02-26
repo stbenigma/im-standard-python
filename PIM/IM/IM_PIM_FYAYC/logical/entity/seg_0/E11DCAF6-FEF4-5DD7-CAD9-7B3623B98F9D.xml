@@ -1,0 +1,108 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="E11DCAF6-FEF4-5DD7-CAD9-7B3623B98F9D" name="Attribut Vorgabewert">
+<createdBy>stb</createdBy>
+<createdTime>2018-05-17 15:28:01 UTC</createdTime>
+<ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
+<engineerTo>
+<item key="D08CBA22-8AB1-A78D-26DE-4DF989F17231" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<shortName>ATVG</shortName>
+<createSurrogateKey>true</createSurrogateKey>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Wert" id="455A9AF6-A15D-EEBA-DC70-9AA7AA004B58">
+<createdBy>stb</createdBy>
+<createdTime>2018-05-17 15:28:18 UTC</createdTime>
+<comment>Ein Wert den ein Attribut annehmen kann.</comment>
+<ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
+<engineerTo>
+<item key="D08CBA22-8AB1-A78D-26DE-4DF989F17231" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Kurztext [L]" id="01AB129E-EF1A-794F-08C3-FB6C5E7A1713">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-02 08:51:57 UTC</createdTime>
+<comment>Kurzer Text eines Wertes in mehreren Sprachen möglich.</comment>
+<ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
+<engineerTo>
+<item key="D08CBA22-8AB1-A78D-26DE-4DF989F17231" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Langtext [L]" id="2E286809-1E35-DB7C-E2CC-CC181ADF5190">
+<createdBy>stb</createdBy>
+<createdTime>2018-05-17 15:29:30 UTC</createdTime>
+<comment>Langer Text eines Wertes in mehreren Sprachen möglich.</comment>
+<ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
+<engineerTo>
+<item key="D08CBA22-8AB1-A78D-26DE-4DF989F17231" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Sortierreihenfolge" id="F1ECFE5B-5FA3-91EE-8ADD-60791EEA214A">
+<createdBy>stb</createdBy>
+<createdTime>2018-05-17 15:31:33 UTC</createdTime>
+<comment>Zahl nach der die Werte in einer Anzeige aufsteigend sortiert werden. Leer -&gt; Wert kommt an den Schluss der Liste in zufälliger Reihenfolge</comment>
+<ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
+<engineerTo>
+<item key="D08CBA22-8AB1-A78D-26DE-4DF989F17231" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="105AC9FF-8150-77A1-45AB-43247C093132" name="Attr Wert UK">
+<createdBy>stb</createdBy>
+<createdTime>2018-05-17 15:30:44 UTC</createdTime>
+<ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
+<engineerTo>
+<item key="D08CBA22-8AB1-A78D-26DE-4DF989F17231" value="true"/>
+</engineerTo>
+<newElementsIDs>455A9AF6-A15D-EEBA-DC70-9AA7AA004B58,3C43D769-5E35-2F6A-F69E-4F5671474862</newElementsIDs>
+<usedAttributes>
+<attributeRef>455A9AF6-A15D-EEBA-DC70-9AA7AA004B58</attributeRef>
+</usedAttributes>
+</identifier>
+<identifier id="14325FB5-010A-66FD-CB6C-CB5BEB621EDB" name="Attribut Vorgabewert PK">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-02 08:53:17 UTC</createdTime>
+<ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
+<engineerTo>
+<item key="D08CBA22-8AB1-A78D-26DE-4DF989F17231" value="true"/>
+</engineerTo>
+<pk>true</pk>
+</identifier>
+<identifier id="34568AD0-7B64-ACCA-FA34-68D021B8C36A" name="Attribut Vorgabewert PKv1">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-02 08:53:17 UTC</createdTime>
+<ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
+<engineerTo>
+<item key="D08CBA22-8AB1-A78D-26DE-4DF989F17231" value="true"/>
+</engineerTo>
+<pk>true</pk>
+</identifier>
+</identifiers>
+</Entity>
