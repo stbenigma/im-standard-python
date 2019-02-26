@@ -1,0 +1,42 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="ABA8381E-73AE-8694-BFD7-84A0D297C14A" name="Prozess">
+<createdBy>stb</createdBy>
+<createdTime>2018-05-03 08:06:40 UTC</createdTime>
+<comment>Sammlung für Aufgaben für bestimmte Prozessgruppen.&lt;br/&gt;&lt;br/&gt;Beispiele:&lt;br/&gt;Finanzen, fincamce&lt;br/&gt;Rekrutieriung, recruting</comment>
+<ownerDesignName>IM_TQMI_FYAYC</ownerDesignName>
+<engineerTo>
+<item key="0FBE62B5-EA6E-67EB-52B2-298C9D3D71C1" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<createSurrogateKey>true</createSurrogateKey>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Name" id="FCC8B981-7319-D55E-D045-1B9A14DBEF6D">
+<createdBy>stb</createdBy>
+<createdTime>2018-05-03 08:11:47 UTC</createdTime>
+<ownerDesignName>IM_TQMI_FYAYC</ownerDesignName>
+<engineerTo>
+<item key="0FBE62B5-EA6E-67EB-52B2-298C9D3D71C1" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Nr" id="E22DB17D-ED68-37FF-7225-EEA0B3EDEC3A">
+<createdBy>stb</createdBy>
+<createdTime>2018-05-03 12:02:22 UTC</createdTime>
+<comment>1 .. 9</comment>
+<ownerDesignName>IM_TQMI_FYAYC</ownerDesignName>
+<engineerTo>
+<item key="0FBE62B5-EA6E-67EB-52B2-298C9D3D71C1" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+</Entity>

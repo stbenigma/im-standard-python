@@ -1,0 +1,31 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="BAE1E103-E99D-52AC-08D7-37E3B0F3D970" name="Aufgabengruppe">
+<createdBy>stb</createdBy>
+<createdTime>2018-05-03 12:08:42 UTC</createdTime>
+<ownerDesignName>IM_TQMI_FYAYC</ownerDesignName>
+<engineerTo>
+<item key="0FBE62B5-EA6E-67EB-52B2-298C9D3D71C1" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<synonym>Taskgroup</synonym>
+<createSurrogateKey>true</createSurrogateKey>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Überschrift" id="0915A01E-1979-F9A2-CB34-4A68C0DA27B9">
+<createdBy>stb</createdBy>
+<createdTime>2018-05-03 12:09:25 UTC</createdTime>
+<ownerDesignName>IM_TQMI_FYAYC</ownerDesignName>
+<engineerTo>
+<item key="0FBE62B5-EA6E-67EB-52B2-298C9D3D71C1" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+</Entity>

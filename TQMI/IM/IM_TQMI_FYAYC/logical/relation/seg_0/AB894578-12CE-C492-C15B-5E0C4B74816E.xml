@@ -1,0 +1,20 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_33" directorySegmentName="seg_0" id="AB894578-12CE-C492-C15B-5E0C4B74816E">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-08 11:35:49 UTC</createdTime>
+<ownerDesignName>IM_TQMI_FYAYC</ownerDesignName>
+<engineerTo>
+<item key="0FBE62B5-EA6E-67EB-52B2-298C9D3D71C1" value="true"/>
+</engineerTo>
+<useSurrogateKey>true</useSurrogateKey>
+<identifying>false</identifying>
+<nameOnSource>ist führungshierarchisch unter</nameOnSource>
+<nameOnTarget>führungshierachisch über</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>8F38B461-434F-71CA-22FE-E83B4C0C33FA</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>8F38B461-434F-71CA-22FE-E83B4C0C33FA</targetEntity>
+<transferable>true</transferable>
+</Relation>
