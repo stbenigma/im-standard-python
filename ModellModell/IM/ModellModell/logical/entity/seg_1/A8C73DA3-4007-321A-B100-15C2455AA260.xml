@@ -1,0 +1,45 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="A8C73DA3-4007-321A-B100-15C2455AA260" name="Technologie">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-04 16:46:51 UTC</createdTime>
+<comment>Beschreibung einer IT-Umgebung (Framework, Programmiersprache, Templates, etc.)&lt;br/&gt;&lt;br/&gt;Beispiele:&lt;br/&gt;SQL&lt;br/&gt;Java&lt;br/&gt;Eclipse&lt;br/&gt;Microsoft Office&lt;br/&gt;Oracle-APEX&lt;br/&gt;SAP-Hana</comment>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<shortName>TECH</shortName>
+<createSurrogateKey>true</createSurrogateKey>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Bezeichnung" id="212F81BB-13C3-5562-9FDD-48A894ED72AB">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-04 16:47:08 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<use>0</use>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Beschreibung" id="6A3738A9-0326-BFAD-CD7F-F09947EA350F">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-04 16:47:22 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+</Entity>
