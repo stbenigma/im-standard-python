@@ -4,8 +4,9 @@
 <createdTime>2018-11-26 16:11:23 UTC</createdTime>
 <comment>Externe Firma, die irgend etwas mit der IT-landschaft / - Lösungen zu tun hat</comment>
 <ownerDesignName>ModellModell</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <engineerTo>
-<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
 </engineerTo>
 <adequatelyNormalized>NO</adequatelyNormalized>
 <expectedVolumes>0</expectedVolumes>
@@ -16,4 +17,9 @@
 <maxVolumes>9999999</maxVolumes>
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
+<shortName>FIRM</shortName>
+<attributeInherType>All atributes</attributeInherType>
+<discriminatorColumnName>TYPE</discriminatorColumnName>
+<discriminatorValue>FIRM</discriminatorValue>
+<completeSubtypes>true</completeSubtypes>
 </Entity>

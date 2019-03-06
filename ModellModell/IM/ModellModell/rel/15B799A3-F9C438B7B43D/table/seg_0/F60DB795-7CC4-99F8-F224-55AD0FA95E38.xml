@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="F60DB795-7CC4-99F8-F224-55AD0FA95E38" name="Relation_90">
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="F60DB795-7CC4-99F8-F224-55AD0FA95E38" name="RELATION_90">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:35 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
@@ -7,7 +7,7 @@
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
-<Column name="{ref table  abbr}_Business_Rule_ID" id="4BFA3AAA-0806-C2D2-1325-BD4347C4589C">
+<Column name="{REF TABLE  ABBR}_BUSINESS_RULE_ID" id="4BFA3AAA-0806-C2D2-1325-BD4347C4589C">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:35 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
@@ -21,7 +21,7 @@
 <colAssociation fkAssociation="557BE1D3-82FB-541A-D1B1-9DF0091E2646" referredColumn="3B52AAE9-A2C5-80EB-D5DA-758CFDE56E5C"/>
 </associations>
 </Column>
-<Column name="{ref table  abbr}_Attribut_ID" id="E9AE0645-EDB3-D077-10DA-586D4A3CFC42">
+<Column name="{REF TABLE  ABBR}_ATTRIBUT_ID" id="E9AE0645-EDB3-D077-10DA-586D4A3CFC42">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:35 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
@@ -37,7 +37,7 @@
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
-<ind_PK_UK id="97DEBCF8-6909-F901-78BC-EEEA043059A6" name="Relation_90_PK">
+<ind_PK_UK id="97DEBCF8-6909-F901-78BC-EEEA043059A6" name="RELATION_90_PK">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:35 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
@@ -49,7 +49,7 @@
 <colUsage columnID="E9AE0645-EDB3-D077-10DA-586D4A3CFC42"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="3AF2649E-86E8-CEC0-59DC-E0D01FB5DEA2" name="Relation_90_Business_Rule_FK">
+<ind_PK_UK id="3AF2649E-86E8-CEC0-59DC-E0D01FB5DEA2" name="RELATION_90_BUSINESS_RULE_FK">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:35 UTC</createdTime>
 <generatorID>8C373B73-F94E-1E97-BDC0-16E01909D343</generatorID>
@@ -60,7 +60,7 @@
 <colUsage columnID="4BFA3AAA-0806-C2D2-1325-BD4347C4589C"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="18789C12-A16C-33BE-6409-320F2B08F0E2" name="Relation_90_Attribut_FK">
+<ind_PK_UK id="18789C12-A16C-33BE-6409-320F2B08F0E2" name="RELATION_90_ATTRIBUT_FK">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:59:23 UTC</createdTime>
 <generatorID>8C373B73-F94E-1E97-BDC0-16E01909D343</generatorID>

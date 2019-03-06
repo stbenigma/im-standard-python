@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="33A0BB8A-9427-892B-19BC-C000368BEF21" name="Relation_87">
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="33A0BB8A-9427-892B-19BC-C000368BEF21" name="RELATION_87">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:35 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
@@ -7,7 +7,7 @@
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
-<Column name="{ref table  abbr}_Organisationseinheit_ID" id="BD83FD3A-1F19-A760-6BF9-3AB8C6D0CCD4">
+<Column name="{REF TABLE  ABBR}_ORGANISATIONSEINHEIT_ID" id="BD83FD3A-1F19-A760-6BF9-3AB8C6D0CCD4">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:35 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
@@ -17,11 +17,8 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
-<associations>
-<colAssociation fkAssociation="7986AD59-8EB8-E474-1F11-F7471B38945E" referredColumn="C0BC07FE-AF9B-552B-E985-BE6E2BA15DE3"/>
-</associations>
 </Column>
-<Column name="{ref table  abbr}_Systemattribut_ID" id="032622BC-2E9A-9E06-B141-F21F48DBF780">
+<Column name="{REF TABLE  ABBR}_SYSTEMATTRIBUT_ID" id="032622BC-2E9A-9E06-B141-F21F48DBF780">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:35 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
@@ -37,7 +34,7 @@
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
-<ind_PK_UK id="A324B659-900A-15A1-2000-2AF42A47010A" name="Relation_87_PK">
+<ind_PK_UK id="A324B659-900A-15A1-2000-2AF42A47010A" name="RELATION_87_PK">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:35 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
@@ -49,18 +46,7 @@
 <colUsage columnID="032622BC-2E9A-9E06-B141-F21F48DBF780"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="C50FCEBE-C0C4-5B84-9E86-2A5268CDCC33" name="Relation_87_Organisationseinheit_FK">
-<createdBy>stb</createdBy>
-<createdTime>2018-10-21 13:54:35 UTC</createdTime>
-<generatorID>5F1A1E49-754A-B3F9-3159-D65060936ED4</generatorID>
-<ownerDesignName>ModellModell</ownerDesignName>
-<indexState>Foreign Key</indexState>
-<isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
-<colUsage columnID="BD83FD3A-1F19-A760-6BF9-3AB8C6D0CCD4"/>
-</indexColumnUsage>
-</ind_PK_UK>
-<ind_PK_UK id="63D97310-DF17-F1D6-6380-1D171C3720F0" name="Relation_87_Systemattribut_FK">
+<ind_PK_UK id="63D97310-DF17-F1D6-6380-1D171C3720F0" name="RELATION_87_SYSTEMATTRIBUT_FK">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:35 UTC</createdTime>
 <generatorID>5F1A1E49-754A-B3F9-3159-D65060936ED4</generatorID>

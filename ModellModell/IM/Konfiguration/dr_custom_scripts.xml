@@ -204,7 +204,7 @@ for (var t = 0; t<tables.length;t++){
 }]]>
 		</script>
 	</scr>
-	<scr id="B673F271-4836-DD48-15AC-487DDECCAF49" name="Tables to upper case - JRuby" object="relational" engine="JSR 223 JRuby Engine" type="" var="model" library="" method="" purpose="transformation" >
+	<scr id="B673F271-4836-DD48-15AC-487DDECCAF49" name="Tables to upper case - JRuby" object="relational" engine="Oracle Nashorn" type="" var="model" library="" method="" purpose="transformation" >
 		<script>
 			<![CDATA[tables =$model.getTableSet().toArray()
 for t in 0..tables.length-1
@@ -227,32 +227,6 @@ for t in 0..tables.length-1
 end]]>
 		</script>
 	</scr>
-	<scr id="3E7C4F9E-9FCB-56C7-086F-F976F9A66384" name="Tables to upper case - JRuby - library usage" object="relational" engine="JSR 223 JRuby Engine" type="" var="model" library="Jruby lib" method="tables_up" purpose="transformation" >
-		<script>
-			<![CDATA[def tables_up(model)
-tables = model.getTableSet().toArray()
-for t in 0..tables.length-1
- table = tables[t]
- name = table.getName().upcase
- table.setName(name)
- columns = table.getElements()
- size = table.getElementsCollection().size()-1
- for i in 0..size
-	column = columns[i]
-	cname = column.getName().upcase
-	column.setName(cname)
- end
- keys = table.getKeys()
- for i in 0..keys.length-1
-  key = keys[i]
-  kname = key.getName().upcase
-  key.setName(kname)
- end
-end
-return true
-end]]>
-		</script>
-	</scr>
 	<scr id="E60A5A28-BB9B-3787-10E7-259DF900B9E6" name="Table abbreviation to column" object="relational" engine="Oracle Nashorn" type="" var="model" library="" method="" purpose="transformation" >
 		<script>
 			<![CDATA[tables = model.getTableSet().toArray();
@@ -265,7 +239,7 @@ for (var t = 0; t<tables.length;t++){
         column = columns[i];
         cname = column.getName();
         if(!cname.startsWith(abbr)){
-         column.setName(abbr+cname);
+         column.setName((abbr+cname).toUpperCase());
         }
      }
  }

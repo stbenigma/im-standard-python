@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="CCF12126-A67B-7EDA-879F-5AF0824DA941" name="Attributtransformation">
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="CCF12126-A67B-7EDA-879F-5AF0824DA941" name="ATTRIBUTTRANSFORMATION">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:34 UTC</createdTime>
 <comment> Eine Attributtransformation transformiert 1-viele Ausgangsattribute in einen Attributwert.&lt;br/&gt; Transformationen von externen Systemen zum konsolidierten Modell befüllen ein Attribut und verwenden min. 1 Systemattribut.&lt;br/&gt; Transformationen vom Modell zu externen Systemen befüllen ein Systemattribut und verwenden min. 1 Attribut.&lt;br/&gt;&lt;br/&gt; &lt;br/&gt; </comment>
@@ -9,7 +9,7 @@
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
-<Column name="Attributtransformation_ID" id="580E8015-1DDF-1BB9-D4EB-C200B7B5A70D">
+<Column name="ATTRIBUTTRANSFORMATION_ID" id="580E8015-1DDF-1BB9-D4EB-C200B7B5A70D">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:34 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
@@ -22,31 +22,29 @@
 <autoIncrementCycle>false</autoIncrementCycle>
 <isSurrogateColumn>true</isSurrogateColumn>
 </Column>
-<Column name="Transformationformel" id="8E35BA30-1AC3-C9E1-6713-2C1D647600CC">
+<Column name="TRANSFORMATIONFORMEL" id="8E35BA30-1AC3-C9E1-6713-2C1D647600CC">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:34 UTC</createdTime>
 <comment>Formel, die 1-n Ausgangsattribute in ein Zielattribut umwandelt.</comment>
 <generatorID>AE8CA88C-4254-81E2-AB8A-3955B36E5FBB</generatorID>
 <ownerDesignName>ModellModell</ownerDesignName>
 <use>0</use>
-<logicalDatatype>LOGDT024</logicalDatatype>
 <domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="Auslöseart" id="ED2746F2-F1E4-0513-C781-19714A7A3413">
+<Column name="AUSLÖSEART" id="ED2746F2-F1E4-0513-C781-19714A7A3413">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:34 UTC</createdTime>
 <comment>Art der Auslösung der Transformation (Mutation, Periode, Manuell)</comment>
 <generatorID>CC74EF5D-D5D2-2AD9-D000-8B748A382BB3</generatorID>
 <ownerDesignName>ModellModell</ownerDesignName>
 <use>0</use>
-<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <domain>55CB11A1-3EFC-3253-465C-D58D3D8252AD</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="Auslöseperiodizität" id="C36706F7-70D1-155F-7105-3DC1CE5103DB">
+<Column name="AUSLÖSEPERIODIZITÄT" id="C36706F7-70D1-155F-7105-3DC1CE5103DB">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:34 UTC</createdTime>
 <comment>Täglich, alle 2 Minuten o.ä. Obligatorisch, falls die Auslöseart Zeitpunkt ist.</comment>
@@ -58,7 +56,7 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="{ref table  abbr}_Attribut_ID" id="6AD45CFE-9FDE-A950-DC22-6C7D43650DAD">
+<Column name="{REF TABLE  ABBR}_ATTRIBUT_ID" id="6AD45CFE-9FDE-A950-DC22-6C7D43650DAD">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:35 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
@@ -70,7 +68,7 @@
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="{ref table  abbr}_Systemattribut_ID" id="E83469EB-C671-75F4-F7D1-6983AFD77092">
+<Column name="{REF TABLE  ABBR}_SYSTEMATTRIBUT_ID" id="E83469EB-C671-75F4-F7D1-6983AFD77092">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:35 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
@@ -85,7 +83,7 @@
 <colAssociation fkAssociation="E101DD48-F351-2CB4-B4FB-3E324E2DD06F" referredColumn="AC00B2CD-443E-268D-0ACB-B1665F569AF6"/>
 </associations>
 </Column>
-<Column name="{ref table  abbr}_Attribut_ID1" id="03C25FBE-E58A-B817-071E-132701F2464B">
+<Column name="{REF TABLE  ABBR}_ATTRIBUT_ID1" id="03C25FBE-E58A-B817-071E-132701F2464B">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:57:12 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
@@ -97,7 +95,7 @@
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="{ref table  abbr}_Attribut_ID2" id="23CF8070-B748-95DE-286A-151954015B76">
+<Column name="{REF TABLE  ABBR}_ATTRIBUT_ID2" id="23CF8070-B748-95DE-286A-151954015B76">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:59:23 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
@@ -114,7 +112,7 @@
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
-<ind_PK_UK id="66E6E6F0-8646-3FB4-F2C3-8911141C268A" name="Attributtransformation_PK">
+<ind_PK_UK id="66E6E6F0-8646-3FB4-F2C3-8911141C268A" name="ATTRIBUTTRANSFORMATION_PK">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:34 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
@@ -124,7 +122,7 @@
 <colUsage columnID="580E8015-1DDF-1BB9-D4EB-C200B7B5A70D"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="A503D5C9-D773-D54E-66A9-B0C46D37EC40" name="Attributtransformation_Systemattribut_FK">
+<ind_PK_UK id="A503D5C9-D773-D54E-66A9-B0C46D37EC40" name="ATTRIBUTTRANSFORMATION_SYSTEMATTRIBUT_FK">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:35 UTC</createdTime>
 <generatorID>9B4EC0A2-559A-2F76-9BEA-09D015826CAC</generatorID>
@@ -135,7 +133,7 @@
 <colUsage columnID="E83469EB-C671-75F4-F7D1-6983AFD77092"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="CFCF0F45-C6D3-1B99-BDE2-5B3CD892A3A1" name="Attributtransformation_Attribut_FK">
+<ind_PK_UK id="CFCF0F45-C6D3-1B99-BDE2-5B3CD892A3A1" name="ATTRIBUTTRANSFORMATION_ATTRIBUT_FK">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:59:23 UTC</createdTime>
 <generatorID>2F15D374-673D-BEF0-67CD-51FF95B324D9</generatorID>

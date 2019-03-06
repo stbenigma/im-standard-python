@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="6641E423-B182-6223-4F8F-A2AE969C6B37" name="Attribut">
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="6641E423-B182-6223-4F8F-A2AE969C6B37" name="ATTRIBUT">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:34 UTC</createdTime>
 <comment>Beschreibung eines Trägers einers Wertes.&lt;br/&gt;Dieses Attribut ist die gültige Single Source of Truth des konzeptionellen Modells. Die Definition gilt, nabhängig davon, ob es nur als virtuelle Einheit (z.B. in Form von Schittstellen) oder als eigenes Attribut in einer eigenen DB verwaltet wird.&lt;br/&gt;&lt;br/&gt;Beispiele:&lt;br/&gt;Netto-Gewicht &lt;br/&gt;Beleuchtungsmodell </comment>
@@ -9,7 +9,7 @@
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
-<Column name="Attribut_ID" id="D8469506-6FD4-3358-1C9D-64435152B23C">
+<Column name="ATTRIBUT_ID" id="D8469506-6FD4-3358-1C9D-64435152B23C">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:59:23 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
@@ -22,7 +22,7 @@
 <autoIncrementCycle>false</autoIncrementCycle>
 <isSurrogateColumn>true</isSurrogateColumn>
 </Column>
-<Column name="Technischer_Name" id="9C8AC513-3BDE-9409-6D3F-793EECB4524B">
+<Column name="TECHNISCHER_NAME" id="9C8AC513-3BDE-9409-6D3F-793EECB4524B">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:35 UTC</createdTime>
 <generatorID>EDEE919C-7C94-15E9-147C-57317A603D15</generatorID>
@@ -31,7 +31,7 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="Anzeigename_[L]" id="40B69719-D7C5-6555-DF94-A535031E1CC8">
+<Column name="ANZEIGENAME_[L]" id="40B69719-D7C5-6555-DF94-A535031E1CC8">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:35 UTC</createdTime>
 <generatorID>42340745-75FE-7894-8994-67BE8A912F7A</generatorID>
@@ -41,7 +41,7 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="Beschreibung_[L]" id="BB191A5F-2313-6CC8-EC9A-27FD19779501">
+<Column name="BESCHREIBUNG_[L]" id="BB191A5F-2313-6CC8-EC9A-27FD19779501">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:35 UTC</createdTime>
 <generatorID>C4A32F25-630E-965E-C29A-27C4C6F29B16</generatorID>
@@ -51,7 +51,7 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="Tooltip_[L]" id="375CB27A-BF59-6EF2-F3BA-55E1FFF03DA9">
+<Column name="TOOLTIP_[L]" id="375CB27A-BF59-6EF2-F3BA-55E1FFF03DA9">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:35 UTC</createdTime>
 <generatorID>18044B2B-E9C9-F62B-A516-84B3A24746F4</generatorID>
@@ -61,7 +61,7 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="Business_Rule" id="FD3B7911-AE01-DCEE-E3F6-4AB566AC5E84">
+<Column name="BUSINESS_RULE" id="FD3B7911-AE01-DCEE-E3F6-4AB566AC5E84">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:35 UTC</createdTime>
 <comment>Regel über die Werte eines Attributs, die über die einfachen Regeln der Domänendefinition hinausgehen.</comment>
@@ -69,12 +69,11 @@
 <ownerDesignName>ModellModell</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <use>0</use>
-<logicalDatatype>LOGDT024</logicalDatatype>
 <domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="{ref table  abbr}_Domäne_ID" id="D362B3E9-BBF0-AF1E-B979-CF879DC35AC8">
+<Column name="{REF TABLE  ABBR}_DOMÄNE_ID" id="D362B3E9-BBF0-AF1E-B979-CF879DC35AC8">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:35 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
@@ -88,7 +87,7 @@
 <colAssociation fkAssociation="6DDB1C09-25EB-95A8-4ED8-7E0D17BDDBC0" referredColumn="A378345E-C3A2-1DAB-A09D-67630ADC17A8"/>
 </associations>
 </Column>
-<Column name="{ref table  abbr}_Entität_ID" id="D549EF49-F0D6-3DA1-CB37-ACDF020F478C">
+<Column name="{REF TABLE  ABBR}_ENTITÄT_ID" id="D549EF49-F0D6-3DA1-CB37-ACDF020F478C">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:35 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
@@ -102,24 +101,9 @@
 <colAssociation fkAssociation="8B34647A-EA0B-1241-4ABD-D03630842246" referredColumn="B53A54A2-7725-B574-6A72-01964F006A02"/>
 </associations>
 </Column>
-<Column name="{ref table  abbr}_Organisationseinheit_ID" id="2847D6F5-D8A1-1507-0D40-7D472AE8B0C0">
-<createdBy>stb</createdBy>
-<createdTime>2018-10-21 13:54:35 UTC</createdTime>
-<ownerDesignName>ModellModell</ownerDesignName>
-<nullsAllowed>true</nullsAllowed>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<previousColumn>false</previousColumn>
-<autoIncrementCycle>false</autoIncrementCycle>
-<associations>
-<colAssociation fkAssociation="9422132A-7928-C66A-B5BF-102C38E13EA5" referredColumn="C0BC07FE-AF9B-552B-E985-BE6E2BA15DE3"/>
-</associations>
-</Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
-<ind_PK_UK id="DBB67B3F-B7B3-81DC-8C7D-7BB2EEF8B49D" name="Attribut_PK">
+<ind_PK_UK id="DBB67B3F-B7B3-81DC-8C7D-7BB2EEF8B49D" name="ATTRIBUT_PK">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:59:23 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
@@ -129,7 +113,7 @@
 <colUsage columnID="D8469506-6FD4-3358-1C9D-64435152B23C"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="E0B5AC02-4958-6692-9D84-F8D03F53B2FA" name="Attribut_Technischer_Name_{ref_table__abbr}_Entität_ID_UN">
+<ind_PK_UK id="E0B5AC02-4958-6692-9D84-F8D03F53B2FA" name="ATTRIBUT_TECHNISCHER_NAME_{REF_TABLE__ABBR}_ENTITÄT_ID_UN">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:35 UTC</createdTime>
 <generatorID>A494C6B5-1083-D458-9E27-C4CC11AE6E27</generatorID>
@@ -141,7 +125,7 @@
 <colUsage columnID="D549EF49-F0D6-3DA1-CB37-ACDF020F478C"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="B41D07FD-4887-3FEC-E3DE-077A82D319D3" name="Attribut_Domäne_FK">
+<ind_PK_UK id="B41D07FD-4887-3FEC-E3DE-077A82D319D3" name="ATTRIBUT_DOMÄNE_FK">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:35 UTC</createdTime>
 <generatorID>5F51F051-951A-520B-C8CA-07AA8F3BDCC7</generatorID>
@@ -152,7 +136,7 @@
 <colUsage columnID="D362B3E9-BBF0-AF1E-B979-CF879DC35AC8"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="1F571D4D-81E6-4144-4330-28E1A74D249C" name="Attribut_Entität_FK">
+<ind_PK_UK id="1F571D4D-81E6-4144-4330-28E1A74D249C" name="ATTRIBUT_ENTITÄT_FK">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:35 UTC</createdTime>
 <generatorID>E891A82C-46E2-563E-A13D-F371EDAFF51D</generatorID>
@@ -161,17 +145,6 @@
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
 <colUsage columnID="D549EF49-F0D6-3DA1-CB37-ACDF020F478C"/>
-</indexColumnUsage>
-</ind_PK_UK>
-<ind_PK_UK id="0B859C6A-4449-2E21-413E-9423A13D3B1B" name="Attribut_Organisationseinheit_FK">
-<createdBy>stb</createdBy>
-<createdTime>2018-10-21 13:54:35 UTC</createdTime>
-<generatorID>C001ED59-F1E5-7C9F-D3DA-3934364061D2</generatorID>
-<ownerDesignName>ModellModell</ownerDesignName>
-<indexState>Foreign Key</indexState>
-<isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
-<colUsage columnID="2847D6F5-D8A1-1507-0D40-7D472AE8B0C0"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>

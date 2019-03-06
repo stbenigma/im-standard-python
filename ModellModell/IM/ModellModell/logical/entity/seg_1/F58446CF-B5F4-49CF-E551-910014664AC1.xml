@@ -15,6 +15,10 @@
 <maxVolumes>9999999</maxVolumes>
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
+<shortName>ORGE</shortName>
+<generateDiscrimColumn>true</generateDiscrimColumn>
+<discriminatorColumnName>TYPE</discriminatorColumnName>
+<completeSubtypes>true</completeSubtypes>
 <createSurrogateKey>true</createSurrogateKey>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Name" id="29431D60-7158-498E-8055-8318732FCA9B">
@@ -64,4 +68,32 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 </attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="C4C359FF-1967-9775-223B-5A5A4A15A162" name="ORGE_UK">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-06 14:19:49 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+</engineerTo>
+<newElementsIDs>29431D60-7158-498E-8055-8318732FCA9B</newElementsIDs>
+<usedAttributes>
+<attributeRef>29431D60-7158-498E-8055-8318732FCA9B</attributeRef>
+</usedAttributes>
+</identifier>
+<identifier id="DD922EDC-39BC-87E3-94C8-C9569BECE786" name="ORGE_UK2">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-06 14:41:57 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+</engineerTo>
+<newElementsIDs>C834690D-0AA6-49A5-2296-AEAB32007AF1</newElementsIDs>
+<usedAttributes>
+<attributeRef>C834690D-0AA6-49A5-2296-AEAB32007AF1</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
 </Entity>

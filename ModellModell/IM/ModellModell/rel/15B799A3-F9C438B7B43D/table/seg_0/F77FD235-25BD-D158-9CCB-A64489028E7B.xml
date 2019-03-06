@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="F77FD235-25BD-D158-9CCB-A64489028E7B" name="Zeitpunkt_Attribut">
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="F77FD235-25BD-D158-9CCB-A64489028E7B" name="ZEITPUNKT_ATTRIBUT">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:34 UTC</createdTime>
 <comment> Die Einschränkungen für ein Zeitpunktattribut können die Domänenvorgaben weiter einschränken, aber nicht erweitern.</comment>
@@ -9,7 +9,7 @@
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
-<Column name="Technischer_Name" id="9197138B-241B-349C-6AA1-F3C87A7E2F92">
+<Column name="TECHNISCHER_NAME" id="9197138B-241B-349C-6AA1-F3C87A7E2F92">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:35 UTC</createdTime>
 <generatorID>EDEE919C-7C94-15E9-147C-57317A603D15</generatorID>
@@ -21,7 +21,7 @@
 <colAssociation fkAssociation="8B375897-5EA5-D456-F041-AF6B4BB0D842" referredColumn="9C8AC513-3BDE-9409-6D3F-793EECB4524B"/>
 </associations>
 </Column>
-<Column name="Min_Zeitpunkt" id="ACECDA78-B964-830D-5205-D5DDFC30A8FC">
+<Column name="MIN_ZEITPUNKT" id="ACECDA78-B964-830D-5205-D5DDFC30A8FC">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:35 UTC</createdTime>
 <comment>Minimalzeitpunkt (frühester), muss grösser oder gleich der Domänenvorgabe sein.. Leer -&gt; Wert aus der Domäne gilt</comment>
@@ -34,7 +34,7 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="Max_Zeitpunkt" id="31770830-3B26-0B4B-0D78-7BB0780D51DA">
+<Column name="MAX_ZEITPUNKT" id="31770830-3B26-0B4B-0D78-7BB0780D51DA">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:35 UTC</createdTime>
 <comment>Maximalzeitpunkt (spätester), muss kleiner oder gleich der Domänenvorgabe sein. Leer -&gt; Wert aus der Domäne gi</comment>
@@ -49,7 +49,7 @@
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
-<ind_PK_UK id="8719DB00-BEDB-6C3A-DF4B-18C74F13C358" name="Zeitpunkt_Attribut_Technischer_Name_UN">
+<ind_PK_UK id="8719DB00-BEDB-6C3A-DF4B-18C74F13C358" name="ZEITPUNKT_ATTRIBUT_TECHNISCHER_NAME_UN">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:35 UTC</createdTime>
 <generatorID>A494C6B5-1083-D458-9E27-C4CC11AE6E27</generatorID>
@@ -60,7 +60,7 @@
 <colUsage columnID="9197138B-241B-349C-6AA1-F3C87A7E2F92"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="915C78C3-01A6-CB99-6B52-0ED482C3E8AF" name="Zeitpunkt_Attribut_Attribut_FK">
+<ind_PK_UK id="915C78C3-01A6-CB99-6B52-0ED482C3E8AF" name="ZEITPUNKT_ATTRIBUT_ATTRIBUT_FK">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:35 UTC</createdTime>
 <generatorID>240C5E36-03EA-DA21-33AB-E2ABF8FEB9DD</generatorID>

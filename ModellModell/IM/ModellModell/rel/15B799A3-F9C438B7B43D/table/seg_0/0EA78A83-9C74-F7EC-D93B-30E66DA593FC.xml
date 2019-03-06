@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="0EA78A83-9C74-F7EC-D93B-30E66DA593FC" name="Vorgabewerttransfomation">
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="0EA78A83-9C74-F7EC-D93B-30E66DA593FC" name="VORGABEWERTTRANSFOMATION">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:34 UTC</createdTime>
 <comment>Wert, der für eine Aufzählungs-Domäne im Fremdsystem den Wert aus dem SSoT System repräsentiert.&lt;br/&gt;</comment>
@@ -9,7 +9,7 @@
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
-<Column name="Wert" id="60C64E45-6FA6-DC4C-0B18-B1C3CA9312AB">
+<Column name="WERT" id="60C64E45-6FA6-DC4C-0B18-B1C3CA9312AB">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:34 UTC</createdTime>
 <comment>physikalischer Wert eines Vorgabewertes im Fremdsystem</comment>
@@ -21,7 +21,7 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="Sortierreihenfolge" id="B9BC62B6-FC88-2F6D-647A-F631B1FCF65B">
+<Column name="SORTIERREIHENFOLGE" id="B9BC62B6-FC88-2F6D-647A-F631B1FCF65B">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:34 UTC</createdTime>
 <comment>Zahl nach der die Werte im Zielsystem aufsteigend sortiert werden. Leer -&gt; Wert kommt an den Schluss der Liste in zufälliger Reihenfolge</comment>
@@ -34,7 +34,7 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="Vorgabewerttransfomation_ID" id="3C705933-2FBA-EB98-E9F7-5A31008897DE">
+<Column name="VORGABEWERTTRANSFOMATION_ID" id="3C705933-2FBA-EB98-E9F7-5A31008897DE">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:34 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
@@ -47,7 +47,7 @@
 <autoIncrementCycle>false</autoIncrementCycle>
 <isSurrogateColumn>true</isSurrogateColumn>
 </Column>
-<Column name="{ref table  abbr}_IT-System_ID" id="F6C02354-EBFF-D735-9794-CF2C5D038798">
+<Column name="{REF TABLE  ABBR}_IT-SYSTEM_ID" id="F6C02354-EBFF-D735-9794-CF2C5D038798">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:35 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
@@ -61,7 +61,7 @@
 <colAssociation fkAssociation="49F7B82C-0DCD-F6AA-9040-D5EF7DECD61A" referredColumn="48D50372-D5F8-8AAF-B019-0548029832E5"/>
 </associations>
 </Column>
-<Column name="{ref table  abbr}_Vorgabewert_ID" id="8559D9F2-10D8-1D6B-50AB-1AF69A0D1088">
+<Column name="{REF TABLE  ABBR}_VORGABEWERT_ID" id="8559D9F2-10D8-1D6B-50AB-1AF69A0D1088">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:35 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
@@ -77,7 +77,7 @@
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
-<ind_PK_UK id="21C5E10C-802C-B6E8-9C35-63566785922F" name="Vorgabewerttransfomation_PK">
+<ind_PK_UK id="21C5E10C-802C-B6E8-9C35-63566785922F" name="VORGABEWERTTRANSFOMATION_PK">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:34 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
@@ -87,7 +87,7 @@
 <colUsage columnID="3C705933-2FBA-EB98-E9F7-5A31008897DE"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="5DA2BE78-6458-9414-14A5-328CDD614934" name="Vorgabewerttransfomation_{ref_table__abbr}_IT-System_ID_{ref_table__abbr}_Vorgabewert_ID_UN">
+<ind_PK_UK id="5DA2BE78-6458-9414-14A5-328CDD614934" name="VORGABEWERTTRANSFOMATION_{REF_TABLE__ABBR}_IT-SYSTEM_ID_{REF_TABLE__ABBR}_VORGABEWERT_ID_UN">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:34 UTC</createdTime>
 <generatorID>F773DDC1-736A-593A-180F-DB0ED6181D6B</generatorID>
@@ -99,7 +99,7 @@
 <colUsage columnID="8559D9F2-10D8-1D6B-50AB-1AF69A0D1088"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="61821EE6-7563-A7B5-ABB2-B88577D3AE9B" name="Vorgabewerttransfomation_IT-System_FK">
+<ind_PK_UK id="61821EE6-7563-A7B5-ABB2-B88577D3AE9B" name="VORGABEWERTTRANSFOMATION_IT-SYSTEM_FK">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:35 UTC</createdTime>
 <generatorID>BB9928A8-0EC7-33EB-43B5-945E2A38DBC1</generatorID>
@@ -110,7 +110,7 @@
 <colUsage columnID="F6C02354-EBFF-D735-9794-CF2C5D038798"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="DE20D3BC-070A-91C5-E6F0-A0D8C668B26A" name="Vorgabewerttransfomation_Vorgabewert_FK">
+<ind_PK_UK id="DE20D3BC-070A-91C5-E6F0-A0D8C668B26A" name="VORGABEWERTTRANSFOMATION_VORGABEWERT_FK">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:35 UTC</createdTime>
 <generatorID>D737BBB7-56C9-201C-7A6C-F620A3EA7254</generatorID>

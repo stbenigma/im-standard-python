@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="40E8BAEF-6201-C0D7-25DE-53610BCB8E50" name="Domäne">
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="40E8BAEF-6201-C0D7-25DE-53610BCB8E50" name="DOMÄNE">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:35 UTC</createdTime>
 <comment>Beschreibung des Wertebereichs eines (oder mehrerer) Attributs.&lt;br/&gt;&lt;br/&gt;Die Typen Numerisch, Text, Zeitpunkt oder Aufzählung sind konzeptionell zu verfstehen. Die echten Datentypen und ggf. Formate (für Zahlen und Zeitpunkte) für die Speicherung werden in der Implementierung festgelegt.&lt;br/&gt;&lt;br/&gt;Beispiele:&lt;br/&gt;Netto-Gewicht &lt;br/&gt;Beleuchtungsmodell </comment>
@@ -9,7 +9,7 @@
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
-<Column name="Domäne_ID" id="A378345E-C3A2-1DAB-A09D-67630ADC17A8">
+<Column name="DOMÄNE_ID" id="A378345E-C3A2-1DAB-A09D-67630ADC17A8">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:35 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
@@ -22,30 +22,28 @@
 <autoIncrementCycle>false</autoIncrementCycle>
 <isSurrogateColumn>true</isSurrogateColumn>
 </Column>
-<Column name="Name_[L]" id="0396244D-45B7-15DC-D652-CF6B5E1FB67D">
+<Column name="NAME_[L]" id="0396244D-45B7-15DC-D652-CF6B5E1FB67D">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:35 UTC</createdTime>
 <generatorID>80ECD913-F2CD-DD01-BC96-70FDEC06AB21</generatorID>
 <ownerDesignName>ModellModell</ownerDesignName>
 <use>0</use>
-<logicalDatatype>LOGDT024</logicalDatatype>
 <domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="Beschreibung_[L]" id="CD9076ED-165C-A7FE-D7CC-84A4CB73BFFB">
+<Column name="BESCHREIBUNG_[L]" id="CD9076ED-165C-A7FE-D7CC-84A4CB73BFFB">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:35 UTC</createdTime>
 <generatorID>5475B516-9581-9D04-BF8D-8C8476B28CD4</generatorID>
 <ownerDesignName>ModellModell</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <use>0</use>
-<logicalDatatype>LOGDT024</logicalDatatype>
 <domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="Business_Rule" id="450575AA-2C0C-0E0C-5546-734FB4B7833D">
+<Column name="BUSINESS_RULE" id="450575AA-2C0C-0E0C-5546-734FB4B7833D">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:35 UTC</createdTime>
 <comment>Regel über die Werte einer Domäne, die nicht mit einfachen min/max o.ä. beschrieben werden können.</comment>
@@ -53,14 +51,13 @@
 <ownerDesignName>ModellModell</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <use>0</use>
-<logicalDatatype>LOGDT024</logicalDatatype>
 <domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
-<ind_PK_UK id="CDBD4638-E412-5780-ADD7-23C1BC82D90C" name="Domäne_PK">
+<ind_PK_UK id="CDBD4638-E412-5780-ADD7-23C1BC82D90C" name="DOMÄNE_PK">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:35 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
@@ -70,7 +67,7 @@
 <colUsage columnID="A378345E-C3A2-1DAB-A09D-67630ADC17A8"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="2AF32A8C-B4E4-8F02-8463-144C842B8E9E" name="Domäne_Name_[L]_UN">
+<ind_PK_UK id="2AF32A8C-B4E4-8F02-8463-144C842B8E9E" name="DOMÄNE_NAME_[L]_UN">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:35 UTC</createdTime>
 <generatorID>C0E5C5AE-DE43-05AD-FB5B-BBE7BDE7440B</generatorID>

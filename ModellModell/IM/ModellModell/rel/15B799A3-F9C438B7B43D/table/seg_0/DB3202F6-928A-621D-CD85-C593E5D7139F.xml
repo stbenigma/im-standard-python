@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="DB3202F6-928A-621D-CD85-C593E5D7139F" name="Text_Domäne">
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="DB3202F6-928A-621D-CD85-C593E5D7139F" name="TEXT_DOMÄNE">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:35 UTC</createdTime>
 <comment>Freitextattribut.  </comment>
@@ -9,7 +9,7 @@
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
-<Column name="{ref table  abbr}_Domäne_ID" id="D6D9F7FA-6955-93DF-E23B-C3410D796B39">
+<Column name="{REF TABLE  ABBR}_DOMÄNE_ID" id="D6D9F7FA-6955-93DF-E23B-C3410D796B39">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:35 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
@@ -23,7 +23,7 @@
 <colAssociation fkAssociation="57E98E51-9B17-AB69-F751-2D0BB4703792" referredColumn="A378345E-C3A2-1DAB-A09D-67630ADC17A8"/>
 </associations>
 </Column>
-<Column name="Min_Textlänge" id="60CA9E46-4006-69F2-7610-C0740611F1B4">
+<Column name="MIN_TEXTLÄNGE" id="60CA9E46-4006-69F2-7610-C0740611F1B4">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:35 UTC</createdTime>
 <comment>Minimale Anzahl Zeichen die ein Text haben muss. Leer -&gt; Keine Einschränkung der Inhalte</comment>
@@ -42,7 +42,7 @@
 </rangeDef>
 </listOfRanges>
 </Column>
-<Column name="Max_Textlänge" id="B5036A64-6DE2-AEC9-7102-C15A6C920315">
+<Column name="MAX_TEXTLÄNGE" id="B5036A64-6DE2-AEC9-7102-C15A6C920315">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:35 UTC</createdTime>
 <comment>Maximale Anzahl Zeichen die ein Text haben darf. Leer -&gt; so viele, wie das System zulässt</comment>
@@ -62,7 +62,7 @@
 </rangeDef>
 </listOfRanges>
 </Column>
-<Column name="Zeichenregel_(regexp)" id="C063DD6B-5036-52CC-79B8-7E3CE013B5CA">
+<Column name="ZEICHENREGEL_(REGEXP)" id="C063DD6B-5036-52CC-79B8-7E3CE013B5CA">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:35 UTC</createdTime>
 <generatorID>05EDDEB1-FA1E-A904-288F-E9D936A9EE1D</generatorID>
@@ -74,7 +74,7 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="Text_Domäne_ID" id="7DF70A14-D661-1B84-4C94-D016CC269DCA">
+<Column name="TEXT_DOMÄNE_ID" id="7DF70A14-D661-1B84-4C94-D016CC269DCA">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:35 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
@@ -89,7 +89,7 @@
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
-<ind_PK_UK id="2BB0D32F-67A8-2C0E-D745-BB7F2CB16447" name="Text_Domäne_PK">
+<ind_PK_UK id="2BB0D32F-67A8-2C0E-D745-BB7F2CB16447" name="TEXT_DOMÄNE_PK">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:35 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
@@ -99,7 +99,7 @@
 <colUsage columnID="D6D9F7FA-6955-93DF-E23B-C3410D796B39"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="94C0B9E0-FC10-A9C9-DAED-4E22D568E4E9" name="Text_Domäne_Text_Domäne_ID_UN">
+<ind_PK_UK id="94C0B9E0-FC10-A9C9-DAED-4E22D568E4E9" name="TEXT_DOMÄNE_TEXT_DOMÄNE_ID_UN">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:35 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
@@ -108,7 +108,7 @@
 <colUsage columnID="7DF70A14-D661-1B84-4C94-D016CC269DCA"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="055743DE-47E7-FD24-7981-DAC70EA26B75" name="Text_Domäne_Domäne_FK">
+<ind_PK_UK id="055743DE-47E7-FD24-7981-DAC70EA26B75" name="TEXT_DOMÄNE_DOMÄNE_FK">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:35 UTC</createdTime>
 <generatorID>B29883E8-BE37-664A-4668-1B657AD97FCF</generatorID>
