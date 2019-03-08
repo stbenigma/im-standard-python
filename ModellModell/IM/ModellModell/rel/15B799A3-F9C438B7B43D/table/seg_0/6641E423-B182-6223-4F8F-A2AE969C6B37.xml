@@ -30,8 +30,11 @@
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="4A35C58B-2F21-1806-D596-B23EF469C822" referredColumn="9197138B-241B-349C-6AA1-F3C87A7E2F92"/>
+</associations>
 </Column>
-<Column name="ANZEIGENAME_[L]" id="40B69719-D7C5-6555-DF94-A535031E1CC8">
+<Column name="ANZGNAME_[L]" id="40B69719-D7C5-6555-DF94-A535031E1CC8">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:35 UTC</createdTime>
 <generatorID>42340745-75FE-7894-8994-67BE8A912F7A</generatorID>
@@ -41,7 +44,7 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="BESCHREIBUNG_[L]" id="BB191A5F-2313-6CC8-EC9A-27FD19779501">
+<Column name="BESCHR_[L]" id="BB191A5F-2313-6CC8-EC9A-27FD19779501">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:35 UTC</createdTime>
 <generatorID>C4A32F25-630E-965E-C29A-27C4C6F29B16</generatorID>
@@ -113,7 +116,7 @@
 <colUsage columnID="D8469506-6FD4-3358-1C9D-64435152B23C"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="E0B5AC02-4958-6692-9D84-F8D03F53B2FA" name="ATTRIBUT_TECHNISCHER_NAME_{REF_TABLE__ABBR}_ENTITÄT_ID_UN">
+<ind_PK_UK id="E0B5AC02-4958-6692-9D84-F8D03F53B2FA" name="ATTRIBUT_TECHNISCHER_NAME_{REF_TABLE_ABBR}_ENTITÄT_ID_UN">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:35 UTC</createdTime>
 <generatorID>A494C6B5-1083-D458-9E27-C4CC11AE6E27</generatorID>
@@ -146,6 +149,23 @@
 <indexColumnUsage>
 <colUsage columnID="D549EF49-F0D6-3DA1-CB37-ACDF020F478C"/>
 </indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="9A21CBA1-1B78-9AEA-1E1F-4BB6224111E0" name="ATTRIBUT_ZPKT_ATTRIBUT_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-08 08:57:02 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="9C8AC513-3BDE-9409-6D3F-793EECB4524B"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="1A92EE29-B7DC-2DC7-D1F6-1F0F265C96D9" name="ATTRIBUT_EINHEITUMRECHNUNG_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-08 08:57:02 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
 </ind_PK_UK>
 </indexes>
 </Table>

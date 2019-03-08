@@ -10,7 +10,7 @@
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
-<Column name="META_UC" id="F7EEFF47-7A42-2A3E-7DFC-D0558D6996B8">
+<Column name="UC" id="F7EEFF47-7A42-2A3E-7DFC-D0558D6996B8">
 <createdBy>stb</createdBy>
 <createdTime>2019-03-06 14:13:54 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
@@ -24,7 +24,7 @@
 <computed>true</computed>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="META_DC" id="74D877A0-4C3B-63EE-06C5-071C7695907C">
+<Column name="DC" id="74D877A0-4C3B-63EE-06C5-071C7695907C">
 <createdBy>stb</createdBy>
 <createdTime>2019-03-06 14:13:54 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
@@ -34,7 +34,7 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="META_UM" id="B2E17D53-C2F7-74D9-022D-5D63F3931519">
+<Column name="UM" id="B2E17D53-C2F7-74D9-022D-5D63F3931519">
 <createdBy>stb</createdBy>
 <createdTime>2019-03-06 14:13:54 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
@@ -46,7 +46,7 @@
 <ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="META_DM" id="B398D247-00C1-F016-3BBB-FE65CFFFF7AA">
+<Column name="DM" id="B398D247-00C1-F016-3BBB-FE65CFFFF7AA">
 <createdBy>stb</createdBy>
 <createdTime>2019-03-06 14:13:54 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
@@ -58,4 +58,13 @@
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
 </columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="2BF57139-2ED2-9294-1CC1-E368A01C2843" name="META_EINHEITUMRECHNUNG_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-08 08:57:02 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+</ind_PK_UK>
+</indexes>
 </Table>

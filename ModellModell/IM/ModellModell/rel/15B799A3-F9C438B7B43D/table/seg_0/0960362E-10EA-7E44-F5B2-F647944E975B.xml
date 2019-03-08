@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="0960362E-10EA-7E44-F5B2-F647944E975B" name="ZEITPUNKT_DOMÄNE">
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="0960362E-10EA-7E44-F5B2-F647944E975B" name="ZPKT_DOMÄNE">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:35 UTC</createdTime>
 <comment> </comment>
@@ -23,7 +23,7 @@
 <colAssociation fkAssociation="1A93F277-6E6E-AD34-F750-0B9AFD32C87B" referredColumn="A378345E-C3A2-1DAB-A09D-67630ADC17A8"/>
 </associations>
 </Column>
-<Column name="MIN_ZEITPUNKT" id="5E49418D-1107-72D0-FE46-F24ECDCBB097">
+<Column name="MIN_ZPKT" id="5E49418D-1107-72D0-FE46-F24ECDCBB097">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:35 UTC</createdTime>
 <comment>frühestes Datum in diesem Attribut. Leer -&gt; es gibt keine Untergrenze</comment>
@@ -36,7 +36,7 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="MAX_ZEITPUNKT" id="1D893F4C-A7CF-849F-D145-AA53F5CBD5F7">
+<Column name="MAX_ZPKT" id="1D893F4C-A7CF-849F-D145-AA53F5CBD5F7">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:35 UTC</createdTime>
 <comment>spätestes Datum in diesem Attribut. Leer -&gt; es gibt keine Obergrenze</comment>
@@ -59,7 +59,7 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="ZEITPUNKT_DOMÄNE_ID" id="5D481707-88DD-05D4-36D0-B2E92C200168">
+<Column name="ZPKT_DOMÄNE_ID" id="5D481707-88DD-05D4-36D0-B2E92C200168">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:35 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
@@ -74,7 +74,7 @@
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
-<ind_PK_UK id="096DF8C1-63AB-558D-E17E-13BD24E0EB06" name="ZEITPUNKT_DOMÄNE_PK">
+<ind_PK_UK id="096DF8C1-63AB-558D-E17E-13BD24E0EB06" name="ZPKT_DOMÄNE_PK">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:35 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
@@ -84,7 +84,7 @@
 <colUsage columnID="26D48C8F-EE17-9668-D5EE-84DB615A6412"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="DCD203A7-9721-A70D-558B-F2A9A49675F4" name="ZEITPUNKT_DOMÄNE_ZEITPUNKT_DOMÄNE_ID_UN">
+<ind_PK_UK id="DCD203A7-9721-A70D-558B-F2A9A49675F4" name="ZPKT_DOMÄNE_ZPKT_DOMÄNE_ID_UN">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:35 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
@@ -93,7 +93,7 @@
 <colUsage columnID="5D481707-88DD-05D4-36D0-B2E92C200168"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="01D3E751-B61F-D246-7DB0-CDECE1282E37" name="ZEITPUNKT_DOMÄNE_DOMÄNE_FK">
+<ind_PK_UK id="01D3E751-B61F-D246-7DB0-CDECE1282E37" name="ZPKT_DOMÄNE_DOMÄNE_FK">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:35 UTC</createdTime>
 <generatorID>897AA7F1-C18D-31F6-CEE2-589309ECD9F2</generatorID>
@@ -103,6 +103,13 @@
 <indexColumnUsage>
 <colUsage columnID="26D48C8F-EE17-9668-D5EE-84DB615A6412"/>
 </indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="20B67180-412C-4553-CE03-2448C690F39B" name="ZPKT_DOMÄNE_EINHEITUMRECHNUNG_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-08 08:57:02 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
 </ind_PK_UK>
 </indexes>
 </Table>

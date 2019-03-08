@@ -44,8 +44,11 @@
 <domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="2727E1CB-1D9A-623D-10C2-7DBDA1055A07" referredColumn="0396244D-45B7-15DC-D652-CF6B5E1FB67D"/>
+</associations>
 </Column>
-<Column name="BESCHREIBUNG_[L]" id="AA47CBD4-1503-F347-4F5D-68491B21BA40">
+<Column name="BESCHR_[L]" id="AA47CBD4-1503-F347-4F5D-68491B21BA40">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:34 UTC</createdTime>
 <generatorID>3A2394FA-CB07-573D-46E0-7BE1D89248A6</generatorID>
@@ -90,6 +93,23 @@
 <indexColumnUsage>
 <colUsage columnID="63C1E3EB-6DE5-2E7F-251B-FD5E02D33CC7"/>
 </indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="B8239B15-5A55-B6D5-5BF5-5AADA93107CF" name="PHYSIKALISCHE_EINHEIT_DOMÄNE_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-08 08:57:02 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="63C1E3EB-6DE5-2E7F-251B-FD5E02D33CC7"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="78E3077D-44FD-B17C-8EB3-EB1E90BD8AA6" name="PHYSIKALISCHE_EINHEIT_EINHEITUMRECHNUNG_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-08 08:57:02 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
 </ind_PK_UK>
 </indexes>
 </Table>

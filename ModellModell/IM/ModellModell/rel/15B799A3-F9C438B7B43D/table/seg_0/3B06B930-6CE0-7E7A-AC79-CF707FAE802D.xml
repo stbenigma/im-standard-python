@@ -28,9 +28,11 @@
 <generatorID>35DBBA84-48EA-1A41-A747-DF4AD1161468</generatorID>
 <ownerDesignName>ModellModell</ownerDesignName>
 <use>0</use>
-<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="9BFC846C-8B24-4D64-BEB8-4558976B922A" referredColumn="2ACD4FD6-8B77-DB18-BE91-32525D70D161"/>
+</associations>
 </Column>
 <Column name="ZEICHNSATZ" id="A8860DF9-93B6-B580-550A-C2531524CF69">
 <createdBy>stb</createdBy>
@@ -65,6 +67,23 @@
 <indexColumnUsage>
 <colUsage columnID="064D7C77-841C-E01F-DF08-1320913E80A7"/>
 </indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="35E39A7B-1C62-8C65-8D92-5CE06FC0AAAE" name="IT-SYSTEM_BUSINESS_RULE_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-08 08:57:02 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="064D7C77-841C-E01F-DF08-1320913E80A7"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="EB5DE298-1AAB-CD9C-5435-F03BA994032E" name="IT-SYSTEM_EINHEITUMRECHNUNG_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-08 08:57:02 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
 </ind_PK_UK>
 </indexes>
 </Table>

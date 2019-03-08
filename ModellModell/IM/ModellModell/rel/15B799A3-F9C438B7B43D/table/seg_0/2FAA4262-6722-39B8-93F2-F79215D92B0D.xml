@@ -23,7 +23,7 @@
 <colAssociation fkAssociation="DB532982-0EDE-2D5E-7E6A-C75FAF8C12DD" referredColumn="A378345E-C3A2-1DAB-A09D-67630ADC17A8"/>
 </associations>
 </Column>
-<Column name="VORKOMMASTELLEN#" id="5C8E292E-1A16-86EE-C43A-74886675EF5B">
+<Column name="VORKOMMST" id="5C8E292E-1A16-86EE-C43A-74886675EF5B">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:35 UTC</createdTime>
 <generatorID>6013584E-6DC3-0F87-63DB-782BE75793F2</generatorID>
@@ -32,7 +32,7 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="NACHKOMMASTELLEN#" id="C02B81E1-C008-9E20-B0D7-30E4BE735669">
+<Column name="NACHKOMMST" id="C02B81E1-C008-9E20-B0D7-30E4BE735669">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:35 UTC</createdTime>
 <generatorID>1A0F5548-154B-9B85-CAD0-538CA8502229</generatorID>
@@ -125,6 +125,13 @@
 <indexColumnUsage>
 <colUsage columnID="3FAF7248-3E30-F02C-BE65-0FBC8E815CE3"/>
 </indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="2075EC64-1BC0-A276-F47D-3E815BF889F9" name="NUMERISCHE_DOMÄNE_EINHEITUMRECHNUNG_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-08 08:57:02 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
 </ind_PK_UK>
 </indexes>
 </Table>

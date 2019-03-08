@@ -23,7 +23,7 @@
 <colAssociation fkAssociation="57E98E51-9B17-AB69-F751-2D0BB4703792" referredColumn="A378345E-C3A2-1DAB-A09D-67630ADC17A8"/>
 </associations>
 </Column>
-<Column name="MIN_TEXTLÄNGE" id="60CA9E46-4006-69F2-7610-C0740611F1B4">
+<Column name="MIN_TXTLNG" id="60CA9E46-4006-69F2-7610-C0740611F1B4">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:35 UTC</createdTime>
 <comment>Minimale Anzahl Zeichen die ein Text haben muss. Leer -&gt; Keine Einschränkung der Inhalte</comment>
@@ -42,7 +42,7 @@
 </rangeDef>
 </listOfRanges>
 </Column>
-<Column name="MAX_TEXTLÄNGE" id="B5036A64-6DE2-AEC9-7102-C15A6C920315">
+<Column name="MAX_TXTLNG" id="B5036A64-6DE2-AEC9-7102-C15A6C920315">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:35 UTC</createdTime>
 <comment>Maximale Anzahl Zeichen die ein Text haben darf. Leer -&gt; so viele, wie das System zulässt</comment>
@@ -118,6 +118,13 @@
 <indexColumnUsage>
 <colUsage columnID="D6D9F7FA-6955-93DF-E23B-C3410D796B39"/>
 </indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="E18FFA13-E6DA-F4EA-607F-2C9DFDF86935" name="TEXT_DOMÄNE_EINHEITUMRECHNUNG_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-08 08:57:02 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
 </ind_PK_UK>
 </indexes>
 </Table>

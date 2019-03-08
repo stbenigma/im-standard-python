@@ -18,8 +18,11 @@
 <domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="CCCA5F23-A835-0ECC-51F0-25F6313AC54F" referredColumn="064D7C77-841C-E01F-DF08-1320913E80A7"/>
+</associations>
 </Column>
-<Column name="BESCHREIBUNG" id="DB491B1C-F5C5-66CE-89A1-96454309015A">
+<Column name="BESCHR" id="DB491B1C-F5C5-66CE-89A1-96454309015A">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:34 UTC</createdTime>
 <generatorID>2B940275-6B40-64A6-6459-46A41243F4EF</generatorID>
@@ -41,7 +44,7 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="FEHLERMELDUNG_[L]" id="A1E49ACA-D991-871E-0054-B46629807CDE">
+<Column name="FHLMLD_[L]" id="A1E49ACA-D991-871E-0054-B46629807CDE">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:34 UTC</createdTime>
 <comment>Meldung, bei Verletzung der Regel.</comment>
@@ -88,6 +91,23 @@
 <indexColumnUsage>
 <colUsage columnID="2ACD4FD6-8B77-DB18-BE91-32525D70D161"/>
 </indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="AFA6AB0A-950A-E814-D03B-81E34F97A884" name="BUSINESS_RULE_IT-SYSTEM_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-08 08:57:02 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="2ACD4FD6-8B77-DB18-BE91-32525D70D161"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="72425E11-D7AF-556B-A789-D82DEF9E46C7" name="BUSINESS_RULE_EINHEITUMRECHNUNG_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-08 08:57:02 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
 </ind_PK_UK>
 </indexes>
 </Table>

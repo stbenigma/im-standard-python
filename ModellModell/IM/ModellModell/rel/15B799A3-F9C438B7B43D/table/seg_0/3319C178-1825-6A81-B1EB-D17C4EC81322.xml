@@ -74,7 +74,7 @@
 <colUsage columnID="7B9B1D93-3659-6EC8-44B1-C3A6C51FB4DF"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="1673D940-5FD8-885A-35E1-47C49BFAFB9F" name="EINHEITUMRECHNUNG_{REF_TABLE__ABBR}_PHYSIKALISCHE_EINHEIT_ID_{REF_TABLE__ABBR}_PHYSIKALISCHE_EINHEIT_ID1_UN">
+<ind_PK_UK id="1673D940-5FD8-885A-35E1-47C49BFAFB9F" name="EINHEITUMRECHNUNG_{REF_TABLE_ABBR}_PHYSIKALISCHE_EINHEIT_ID_{REF_TABLE_ABBR}_PHYSIKALISCHE_EINHEIT_ID1_UN">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:34 UTC</createdTime>
 <generatorID>85A21106-25A5-D2D7-7BDF-42DE560076E5</generatorID>
@@ -86,7 +86,7 @@
 <colUsage columnID="A6BE2AF2-BEDC-6132-8084-205DE35542FD"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="7897F602-764B-225A-2F7B-F9A04ABE7467" name="EINHEITUMRECHNUNG__UN">
+<ind_PK_UK id="7897F602-764B-225A-2F7B-F9A04ABE7467" name="EINHEITUMRECHNUNG_UN">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:34 UTC</createdTime>
 <generatorID>6693BBD0-08A0-A4F5-ACF9-EA356AA5A136</generatorID>
@@ -115,6 +115,13 @@
 <indexColumnUsage>
 <colUsage columnID="A6BE2AF2-BEDC-6132-8084-205DE35542FD"/>
 </indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="9EC23A66-2C8E-D0F6-7495-5A268288EBC3" name="EINHEITUMRECHNUNG_EINHEITUMRECHNUNG_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-08 08:57:02 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
 </ind_PK_UK>
 </indexes>
 </Table>
