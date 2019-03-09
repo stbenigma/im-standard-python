@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <logtypes>
 	<logicaltype name="unknown" objectid="LOGDT017" default="true">
+		<mapping rdbms="Oracle Database 12cR2">UNKNOWN</mapping>
 		<mapping rdbms="Oracle Database 12c">UNKNOWN</mapping>
 		<mapping rdbms="Oracle Database 11g">UNKNOWN</mapping>
 		<mapping rdbms="Oracle Database 10g">UNKNOWN</mapping>
@@ -16,6 +17,7 @@
 		<mapping rdbms="DB2/UDB 7.1">UNKNOWN</mapping>
 	</logicaltype>
 	<logicaltype name="Audio" objectid="LOGDT005">
+		<mapping rdbms="Oracle Database 12cR2">BLOB</mapping>
 		<mapping rdbms="Oracle Database 12c">BLOB</mapping>
 		<mapping rdbms="Oracle Database 11g">BLOB</mapping>
 		<mapping rdbms="Oracle Database 10g">BLOB</mapping>
@@ -31,6 +33,7 @@
 		<mapping rdbms="DB2/UDB 7.1">BLOB, size</mapping>
 	</logicaltype>
 	<logicaltype name="BFile" objectid="LogDes-7DD553FD-11E8-61FA-399D-2E531FB621D0@LOGDT10034">
+		<mapping rdbms="Oracle Database 12cR2">BFILE</mapping>
 		<mapping rdbms="Oracle Database 12c">BFILE</mapping>
 		<mapping rdbms="Oracle Database 11g">BFILE</mapping>
 		<mapping rdbms="Oracle Database 10g">BFILE</mapping>
@@ -46,6 +49,7 @@
 		<mapping rdbms="DB2/UDB 7.1">DATALINK</mapping>
 	</logicaltype>
 	<logicaltype name="BIGINT" objectid="LOGDT027">
+		<mapping rdbms="Oracle Database 12cR2">INTEGER</mapping>
 		<mapping rdbms="Oracle Database 12c">INTEGER</mapping>
 		<mapping rdbms="Oracle Database 11g">INTEGER</mapping>
 		<mapping rdbms="Oracle Database 10g">INTEGER</mapping>
@@ -61,6 +65,7 @@
 		<mapping rdbms="DB2/UDB 7.1">INTEGER</mapping>
 	</logicaltype>
 	<logicaltype name="BINARY" objectid="LOGDT033">
+		<mapping rdbms="Oracle Database 12cR2" size_default_value="2000">RAW, size</mapping>
 		<mapping rdbms="Oracle Database 12c" size_default_value="2000">RAW, size</mapping>
 		<mapping rdbms="Oracle Database 11g">BLOB</mapping>
 		<mapping rdbms="Oracle Database 10g">BLOB</mapping>
@@ -76,6 +81,7 @@
 		<mapping rdbms="DB2/UDB 7.1">BLOB, size</mapping>
 	</logicaltype>
 	<logicaltype name="BINARY DOUBLE" objectid="LOGDT056">
+		<mapping rdbms="Oracle Database 12cR2">BINARY_DOUBLE</mapping>
 		<mapping rdbms="Oracle Database 12c">BINARY_DOUBLE</mapping>
 		<mapping rdbms="Oracle Database 11g">BINARY_DOUBLE</mapping>
 		<mapping rdbms="Oracle Database 10g">BINARY_DOUBLE</mapping>
@@ -91,6 +97,7 @@
 		<mapping rdbms="DB2/UDB 7.1">DOUBLE</mapping>
 	</logicaltype>
 	<logicaltype name="BINARY FLOAT" objectid="LOGDT055">
+		<mapping rdbms="Oracle Database 12cR2">BINARY_FLOAT</mapping>
 		<mapping rdbms="Oracle Database 12c">BINARY_FLOAT</mapping>
 		<mapping rdbms="Oracle Database 11g">BINARY_FLOAT</mapping>
 		<mapping rdbms="Oracle Database 10g">BINARY_FLOAT</mapping>
@@ -106,6 +113,7 @@
 		<mapping rdbms="DB2/UDB 7.1">REAL</mapping>
 	</logicaltype>
 	<logicaltype name="BIT" objectid="LOGDT034">
+		<mapping rdbms="Oracle Database 12cR2">CHAR</mapping>
 		<mapping rdbms="Oracle Database 12c">CHAR</mapping>
 		<mapping rdbms="Oracle Database 11g">CHAR</mapping>
 		<mapping rdbms="Oracle Database 10g">CHAR</mapping>
@@ -121,6 +129,7 @@
 		<mapping rdbms="DB2/UDB 7.1">CHAR, size</mapping>
 	</logicaltype>
 	<logicaltype name="BLOB" objectid="LOGDT029">
+		<mapping rdbms="Oracle Database 12cR2">BLOB</mapping>
 		<mapping rdbms="Oracle Database 12c">BLOB</mapping>
 		<mapping rdbms="Oracle Database 11g">BLOB</mapping>
 		<mapping rdbms="Oracle Database 10g">BLOB</mapping>
@@ -136,6 +145,7 @@
 		<mapping rdbms="DB2/UDB 7.1">BLOB, size</mapping>
 	</logicaltype>
 	<logicaltype name="Boolean" objectid="LOGDT006">
+		<mapping rdbms="Oracle Database 12cR2">NUMBER</mapping>
 		<mapping rdbms="Oracle Database 12c">NUMBER</mapping>
 		<mapping rdbms="Oracle Database 11g">CHAR</mapping>
 		<mapping rdbms="Oracle Database 10g">CHAR</mapping>
@@ -151,6 +161,7 @@
 		<mapping rdbms="DB2/UDB 7.1">CHAR</mapping>
 	</logicaltype>
 	<logicaltype name="CHAR" objectid="LOGDT025">
+		<mapping rdbms="Oracle Database 12cR2">CHAR, size</mapping>
 		<mapping rdbms="Oracle Database 12c">CHAR, size</mapping>
 		<mapping rdbms="Oracle Database 11g">CHAR, size</mapping>
 		<mapping rdbms="Oracle Database 10g">CHAR, size</mapping>
@@ -166,6 +177,7 @@
 		<mapping rdbms="DB2/UDB 7.1">CHAR, size</mapping>
 	</logicaltype>
 	<logicaltype name="CLOB" objectid="LOGDT028">
+		<mapping rdbms="Oracle Database 12cR2">CLOB</mapping>
 		<mapping rdbms="Oracle Database 12c">CLOB</mapping>
 		<mapping rdbms="Oracle Database 11g">CLOB</mapping>
 		<mapping rdbms="Oracle Database 10g">CLOB</mapping>
@@ -181,6 +193,7 @@
 		<mapping rdbms="DB2/UDB 7.1">CLOB, size</mapping>
 	</logicaltype>
 	<logicaltype name="DATALINK" objectid="LOGDT030">
+		<mapping rdbms="Oracle Database 12cR2">BLOB</mapping>
 		<mapping rdbms="Oracle Database 12c">BLOB</mapping>
 		<mapping rdbms="Oracle Database 11g">BLOB</mapping>
 		<mapping rdbms="Oracle Database 10g">BLOB</mapping>
@@ -196,6 +209,7 @@
 		<mapping rdbms="DB2/UDB 7.1">DATALINK</mapping>
 	</logicaltype>
 	<logicaltype name="Date" objectid="LOGDT007">
+		<mapping rdbms="Oracle Database 12cR2">DATE</mapping>
 		<mapping rdbms="Oracle Database 12c">DATE</mapping>
 		<mapping rdbms="Oracle Database 11g">DATE</mapping>
 		<mapping rdbms="Oracle Database 10g">DATE</mapping>
@@ -211,6 +225,7 @@
 		<mapping rdbms="DB2/UDB 7.1">DATE</mapping>
 	</logicaltype>
 	<logicaltype name="Datetime" objectid="LOGDT008">
+		<mapping rdbms="Oracle Database 12cR2">DATE</mapping>
 		<mapping rdbms="Oracle Database 12c">DATE</mapping>
 		<mapping rdbms="Oracle Database 11g">DATE</mapping>
 		<mapping rdbms="Oracle Database 10g">DATE</mapping>
@@ -226,6 +241,7 @@
 		<mapping rdbms="DB2/UDB 7.1">TIMESTAMP</mapping>
 	</logicaltype>
 	<logicaltype name="DATETIME2" objectid="91229484-D19C-D458-8647-333C7FFE7B60">
+		<mapping rdbms="Oracle Database 12cR2">TIMESTAMP</mapping>
 		<mapping rdbms="Oracle Database 12c">TIMESTAMP</mapping>
 		<mapping rdbms="Oracle Database 11g">TIMESTAMP</mapping>
 		<mapping rdbms="Oracle Database 10g">TIMESTAMP</mapping>
@@ -241,6 +257,7 @@
 		<mapping rdbms="DB2/UDB 7.1">TIMESTAMP</mapping>
 	</logicaltype>
 	<logicaltype name="DBURIType" objectid="LOGDT054">
+		<mapping rdbms="Oracle Database 12cR2">DBURITYPE</mapping>
 		<mapping rdbms="Oracle Database 12c">DBURITYPE</mapping>
 		<mapping rdbms="Oracle Database 11g">DBURITYPE</mapping>
 		<mapping rdbms="Oracle Database 10g">DBURITYPE</mapping>
@@ -256,6 +273,7 @@
 		<mapping rdbms="DB2/UDB 7.1">DATALINK</mapping>
 	</logicaltype>
 	<logicaltype name="DECIMAL" objectid="LOGDT026">
+		<mapping rdbms="Oracle Database 12cR2">NUMBER, precision, scale</mapping>
 		<mapping rdbms="Oracle Database 12c">NUMBER, precision, scale</mapping>
 		<mapping rdbms="Oracle Database 11g">NUMBER, precision, scale</mapping>
 		<mapping rdbms="Oracle Database 10g">NUMBER, precision, scale</mapping>
@@ -271,6 +289,7 @@
 		<mapping rdbms="DB2/UDB 7.1">DECIMAL, precision, scale</mapping>
 	</logicaltype>
 	<logicaltype name="DECFLOAT" objectid="69230305-AB6A-99EB-35A1-CC306D543604">
+		<mapping rdbms="Oracle Database 12cR2">NUMBER</mapping>
 		<mapping rdbms="Oracle Database 12c">NUMBER</mapping>
 		<mapping rdbms="Oracle Database 11g">NUMBER</mapping>
 		<mapping rdbms="Oracle Database 10g">NUMBER</mapping>
@@ -286,6 +305,7 @@
 		<mapping rdbms="DB2/UDB 7.1">NUMERIC</mapping>
 	</logicaltype>
 	<logicaltype name="DOUBLE" objectid="LOGDT020">
+		<mapping rdbms="Oracle Database 12cR2">NUMBER</mapping>
 		<mapping rdbms="Oracle Database 12c">NUMBER</mapping>
 		<mapping rdbms="Oracle Database 11g">NUMBER</mapping>
 		<mapping rdbms="Oracle Database 10g">NUMBER</mapping>
@@ -301,6 +321,7 @@
 		<mapping rdbms="DB2/UDB 7.1">DOUBLE</mapping>
 	</logicaltype>
 	<logicaltype name="FLOAT" objectid="LOGDT021">
+		<mapping rdbms="Oracle Database 12cR2">FLOAT, precision</mapping>
 		<mapping rdbms="Oracle Database 12c">FLOAT, precision</mapping>
 		<mapping rdbms="Oracle Database 11g">FLOAT, precision</mapping>
 		<mapping rdbms="Oracle Database 10g">FLOAT, precision</mapping>
@@ -316,6 +337,7 @@
 		<mapping rdbms="DB2/UDB 7.1">FLOAT, precision</mapping>
 	</logicaltype>
 	<logicaltype name="GRAPHIC" objectid="LOGDT031">
+		<mapping rdbms="Oracle Database 12cR2">BLOB</mapping>
 		<mapping rdbms="Oracle Database 12c">BLOB</mapping>
 		<mapping rdbms="Oracle Database 11g">BLOB</mapping>
 		<mapping rdbms="Oracle Database 10g">BLOB</mapping>
@@ -331,6 +353,7 @@
 		<mapping rdbms="DB2/UDB 7.1">GRAPHIC, size</mapping>
 	</logicaltype>
 	<logicaltype name="HTTPURIType" objectid="LOGDT052">
+		<mapping rdbms="Oracle Database 12cR2">HTTPURITYPE</mapping>
 		<mapping rdbms="Oracle Database 12c">HTTPURITYPE</mapping>
 		<mapping rdbms="Oracle Database 11g">HTTPURITYPE</mapping>
 		<mapping rdbms="Oracle Database 10g">HTTPURITYPE</mapping>
@@ -346,6 +369,7 @@
 		<mapping rdbms="DB2/UDB 7.1">CHAR, size</mapping>
 	</logicaltype>
 	<logicaltype name="INTERVAL DAY TO SECOND" objectid="LOGDT049">
+		<mapping rdbms="Oracle Database 12cR2">INTERVAL DAY TO SECOND, precision, scale</mapping>
 		<mapping rdbms="Oracle Database 12c">INTERVAL DAY TO SECOND, precision, scale</mapping>
 		<mapping rdbms="Oracle Database 11g">INTERVAL DAY TO SECOND, precision, scale</mapping>
 		<mapping rdbms="Oracle Database 10g">INTERVAL DAY TO SECOND, precision, scale</mapping>
@@ -361,6 +385,7 @@
 		<mapping rdbms="DB2/UDB 7.1">CHAR, size</mapping>
 	</logicaltype>
 	<logicaltype name="INTERVAL YEAR TO MONTH" objectid="LOGDT048">
+		<mapping rdbms="Oracle Database 12cR2">INTERVAL YEAR TO MONTH, precision</mapping>
 		<mapping rdbms="Oracle Database 12c">INTERVAL YEAR TO MONTH, precision</mapping>
 		<mapping rdbms="Oracle Database 11g">INTERVAL YEAR TO MONTH, precision</mapping>
 		<mapping rdbms="Oracle Database 10g">INTERVAL YEAR TO MONTH, precision</mapping>
@@ -376,6 +401,7 @@
 		<mapping rdbms="DB2/UDB 7.1">CHAR, size</mapping>
 	</logicaltype>
 	<logicaltype name="Image" objectid="LOGDT010">
+		<mapping rdbms="Oracle Database 12cR2">BLOB</mapping>
 		<mapping rdbms="Oracle Database 12c">BLOB</mapping>
 		<mapping rdbms="Oracle Database 11g">BLOB</mapping>
 		<mapping rdbms="Oracle Database 10g">BLOB</mapping>
@@ -391,6 +417,7 @@
 		<mapping rdbms="DB2/UDB 7.1">BLOB, size</mapping>
 	</logicaltype>
 	<logicaltype name="Integer" objectid="LOGDT011">
+		<mapping rdbms="Oracle Database 12cR2">INTEGER</mapping>
 		<mapping rdbms="Oracle Database 12c">INTEGER</mapping>
 		<mapping rdbms="Oracle Database 11g">INTEGER</mapping>
 		<mapping rdbms="Oracle Database 10g">INTEGER</mapping>
@@ -406,6 +433,7 @@
 		<mapping rdbms="DB2/UDB 7.1">INTEGER</mapping>
 	</logicaltype>
 	<logicaltype name="Long Char" objectid="LogDes-1768A872-F385-FDBA-D95E-0CB63F5908E2@LOGDT10045">
+		<mapping rdbms="Oracle Database 12cR2">LONG</mapping>
 		<mapping rdbms="Oracle Database 12c">LONG</mapping>
 		<mapping rdbms="Oracle Database 11g">LONG</mapping>
 		<mapping rdbms="Oracle Database 10g">LONG</mapping>
@@ -421,6 +449,7 @@
 		<mapping rdbms="DB2/UDB 7.1">CLOB, size</mapping>
 	</logicaltype>
 	<logicaltype name="Long_Raw" objectid="LogDes-7DD553FD-11E8-61FA-399D-2E531FB621D0@LOGDT10036">
+		<mapping rdbms="Oracle Database 12cR2">LONG RAW</mapping>
 		<mapping rdbms="Oracle Database 12c">LONG RAW</mapping>
 		<mapping rdbms="Oracle Database 11g">LONG RAW</mapping>
 		<mapping rdbms="Oracle Database 10g">LONG RAW</mapping>
@@ -436,6 +465,7 @@
 		<mapping rdbms="DB2/UDB 7.1">BLOB, size</mapping>
 	</logicaltype>
 	<logicaltype name="MONEY" objectid="LOGDT043">
+		<mapping rdbms="Oracle Database 12cR2">NUMBER, precision, scale</mapping>
 		<mapping rdbms="Oracle Database 12c">NUMBER, precision, scale</mapping>
 		<mapping rdbms="Oracle Database 11g">NUMBER, precision, scale</mapping>
 		<mapping rdbms="Oracle Database 10g">NUMBER, precision, scale</mapping>
@@ -451,6 +481,7 @@
 		<mapping rdbms="DB2/UDB 7.1">DOUBLE</mapping>
 	</logicaltype>
 	<logicaltype name="NCHAR" objectid="LOGDT035">
+		<mapping rdbms="Oracle Database 12cR2">NCHAR, size</mapping>
 		<mapping rdbms="Oracle Database 12c">NCHAR, size</mapping>
 		<mapping rdbms="Oracle Database 11g">NCHAR, size</mapping>
 		<mapping rdbms="Oracle Database 10g">NCHAR, size</mapping>
@@ -466,6 +497,7 @@
 		<mapping rdbms="DB2/UDB 7.1">CHAR, size</mapping>
 	</logicaltype>
 	<logicaltype name="NClob" objectid="LogDes-7DD553FD-11E8-61FA-399D-2E531FB621D0@LOGDT10035">
+		<mapping rdbms="Oracle Database 12cR2">NCLOB</mapping>
 		<mapping rdbms="Oracle Database 12c">NCLOB</mapping>
 		<mapping rdbms="Oracle Database 11g">NCLOB</mapping>
 		<mapping rdbms="Oracle Database 10g">NCLOB</mapping>
@@ -481,6 +513,7 @@
 		<mapping rdbms="DB2/UDB 7.1">CLOB, size</mapping>
 	</logicaltype>
 	<logicaltype name="NTEXT" objectid="LOGDT036">
+		<mapping rdbms="Oracle Database 12cR2">NCLOB</mapping>
 		<mapping rdbms="Oracle Database 12c">NCLOB</mapping>
 		<mapping rdbms="Oracle Database 11g">NCLOB</mapping>
 		<mapping rdbms="Oracle Database 10g">NCLOB</mapping>
@@ -496,6 +529,7 @@
 		<mapping rdbms="DB2/UDB 7.1">CLOB, size</mapping>
 	</logicaltype>
 	<logicaltype name="NUMERIC" objectid="LOGDT019">
+		<mapping rdbms="Oracle Database 12cR2">NUMBER, precision, scale</mapping>
 		<mapping rdbms="Oracle Database 12c">NUMBER, precision, scale</mapping>
 		<mapping rdbms="Oracle Database 11g">NUMBER, precision, scale</mapping>
 		<mapping rdbms="Oracle Database 10g">NUMBER, precision, scale</mapping>
@@ -511,6 +545,7 @@
 		<mapping rdbms="DB2/UDB 7.1">NUMERIC, precision, scale</mapping>
 	</logicaltype>
 	<logicaltype name="NVARCHAR" objectid="LOGDT037">
+		<mapping rdbms="Oracle Database 12cR2">NVARCHAR2, size</mapping>
 		<mapping rdbms="Oracle Database 12c">NVARCHAR2, size</mapping>
 		<mapping rdbms="Oracle Database 11g">NVARCHAR2, size</mapping>
 		<mapping rdbms="Oracle Database 10g">NVARCHAR2, size</mapping>
@@ -526,6 +561,7 @@
 		<mapping rdbms="DB2/UDB 7.1">VARCHAR, size</mapping>
 	</logicaltype>
 	<logicaltype name="ORDAUDIO" objectid="LogDes-4972B6D2-6F93-8AE5-6E24-3599E65A7CFE@LOGDT10005">
+		<mapping rdbms="Oracle Database 12cR2">ORDSYS.ORDAudio</mapping>
 		<mapping rdbms="Oracle Database 12c">ORDSYS.ORDAudio</mapping>
 		<mapping rdbms="Oracle Database 11g">ORDSYS.ORDAudio</mapping>
 		<mapping rdbms="Oracle Database 10g">ORDSYS.ORDAudio</mapping>
@@ -541,6 +577,7 @@
 		<mapping rdbms="DB2/UDB 7.1">UNKNOWN</mapping>
 	</logicaltype>
 	<logicaltype name="ORDDOC" objectid="LogDes-4972B6D2-6F93-8AE5-6E24-3599E65A7CFE@LOGDT10009">
+		<mapping rdbms="Oracle Database 12cR2">ORDSYS.ORDDoc</mapping>
 		<mapping rdbms="Oracle Database 12c">ORDSYS.ORDDoc</mapping>
 		<mapping rdbms="Oracle Database 11g">ORDSYS.ORDDoc</mapping>
 		<mapping rdbms="Oracle Database 10g">ORDSYS.ORDDoc</mapping>
@@ -556,6 +593,7 @@
 		<mapping rdbms="DB2/UDB 7.1">UNKNOWN</mapping>
 	</logicaltype>
 	<logicaltype name="ORDIMAGE" objectid="LogDes-4972B6D2-6F93-8AE5-6E24-3599E65A7CFE@LOGDT10006">
+		<mapping rdbms="Oracle Database 12cR2">ORDSYS.ORDImage</mapping>
 		<mapping rdbms="Oracle Database 12c">ORDSYS.ORDImage</mapping>
 		<mapping rdbms="Oracle Database 11g">ORDSYS.ORDImage</mapping>
 		<mapping rdbms="Oracle Database 10g">ORDSYS.ORDImage</mapping>
@@ -571,6 +609,7 @@
 		<mapping rdbms="DB2/UDB 7.1">UNKNOWN</mapping>
 	</logicaltype>
 	<logicaltype name="ORDIMAGE_SIGNATURE" objectid="LogDes-4972B6D2-6F93-8AE5-6E24-3599E65A7CFE@LOGDT10007">
+		<mapping rdbms="Oracle Database 12cR2">ORDSYS.ORDImageSignature</mapping>
 		<mapping rdbms="Oracle Database 12c">ORDSYS.ORDImageSignature</mapping>
 		<mapping rdbms="Oracle Database 11g">ORDSYS.ORDImageSignature</mapping>
 		<mapping rdbms="Oracle Database 10g">ORDSYS.ORDImageSignature</mapping>
@@ -586,6 +625,7 @@
 		<mapping rdbms="DB2/UDB 7.1">UNKNOWN</mapping>
 	</logicaltype>
 	<logicaltype name="ORDVIDEO" objectid="LogDes-4972B6D2-6F93-8AE5-6E24-3599E65A7CFE@LOGDT10008">
+		<mapping rdbms="Oracle Database 12cR2">ORDSYS.ORDVideo</mapping>
 		<mapping rdbms="Oracle Database 12c">ORDSYS.ORDVideo</mapping>
 		<mapping rdbms="Oracle Database 11g">ORDSYS.ORDVideo</mapping>
 		<mapping rdbms="Oracle Database 10g">ORDSYS.ORDVideo</mapping>
@@ -601,6 +641,7 @@
 		<mapping rdbms="DB2/UDB 7.1">UNKNOWN</mapping>
 	</logicaltype>
 	<logicaltype name="REAL" objectid="LOGDT022">
+		<mapping rdbms="Oracle Database 12cR2">REAL</mapping>
 		<mapping rdbms="Oracle Database 12c">REAL</mapping>
 		<mapping rdbms="Oracle Database 11g">REAL</mapping>
 		<mapping rdbms="Oracle Database 10g">REAL</mapping>
@@ -616,6 +657,7 @@
 		<mapping rdbms="DB2/UDB 7.1">REAL</mapping>
 	</logicaltype>
 	<logicaltype name="ROWID" objectid="LOGDT032">
+		<mapping rdbms="Oracle Database 12cR2">ROWID</mapping>
 		<mapping rdbms="Oracle Database 12c">ROWID</mapping>
 		<mapping rdbms="Oracle Database 11g">ROWID</mapping>
 		<mapping rdbms="Oracle Database 10g">ROWID</mapping>
@@ -631,6 +673,7 @@
 		<mapping rdbms="DB2/UDB 7.1">CHAR, size</mapping>
 	</logicaltype>
 	<logicaltype name="Raw" objectid="LogDes-4BABEC65-108B-2A3C-F7C4-84AC47D292B0@LOGDT10040">
+		<mapping rdbms="Oracle Database 12cR2">RAW, size</mapping>
 		<mapping rdbms="Oracle Database 12c">RAW, size</mapping>
 		<mapping rdbms="Oracle Database 11g">RAW, size</mapping>
 		<mapping rdbms="Oracle Database 10g">RAW, size</mapping>
@@ -646,6 +689,7 @@
 		<mapping rdbms="DB2/UDB 7.1">VARGRAPHIC, size</mapping>
 	</logicaltype>
 	<logicaltype name="SMALLDATETIME" objectid="LOGDT038">
+		<mapping rdbms="Oracle Database 12cR2">DATE</mapping>
 		<mapping rdbms="Oracle Database 12c">DATE</mapping>
 		<mapping rdbms="Oracle Database 11g">DATE</mapping>
 		<mapping rdbms="Oracle Database 10g">DATE</mapping>
@@ -661,6 +705,7 @@
 		<mapping rdbms="DB2/UDB 7.1">TIMESTAMP</mapping>
 	</logicaltype>
 	<logicaltype name="SMALLINT" objectid="LOGDT018">
+		<mapping rdbms="Oracle Database 12cR2">SMALLINT</mapping>
 		<mapping rdbms="Oracle Database 12c">SMALLINT</mapping>
 		<mapping rdbms="Oracle Database 11g">SMALLINT</mapping>
 		<mapping rdbms="Oracle Database 10g">SMALLINT</mapping>
@@ -676,6 +721,7 @@
 		<mapping rdbms="DB2/UDB 7.1">SMALLINT</mapping>
 	</logicaltype>
 	<logicaltype name="SMALLMONEY" objectid="LOGDT044">
+		<mapping rdbms="Oracle Database 12cR2">NUMBER, precision, scale</mapping>
 		<mapping rdbms="Oracle Database 12c">NUMBER, precision, scale</mapping>
 		<mapping rdbms="Oracle Database 11g">NUMBER, precision, scale</mapping>
 		<mapping rdbms="Oracle Database 10g">NUMBER, precision, scale</mapping>
@@ -691,6 +737,7 @@
 		<mapping rdbms="DB2/UDB 7.1">REAL</mapping>
 	</logicaltype>
 	<logicaltype name="SQL_VARIANT" objectid="LOGDT045">
+		<mapping rdbms="Oracle Database 12cR2">SYS.ANYDATA</mapping>
 		<mapping rdbms="Oracle Database 12c">SYS.ANYDATA</mapping>
 		<mapping rdbms="Oracle Database 11g">SYS.ANYDATA</mapping>
 		<mapping rdbms="Oracle Database 10g">SYS.ANYDATA</mapping>
@@ -706,6 +753,7 @@
 		<mapping rdbms="DB2/UDB 7.1">UNKNOWN</mapping>
 	</logicaltype>
 	<logicaltype name="SYSNAME" objectid="LOGDT039">
+		<mapping rdbms="Oracle Database 12cR2">VARCHAR2, size</mapping>
 		<mapping rdbms="Oracle Database 12c">VARCHAR2, size</mapping>
 		<mapping rdbms="Oracle Database 11g">VARCHAR2, size</mapping>
 		<mapping rdbms="Oracle Database 10g">VARCHAR2, size</mapping>
@@ -721,6 +769,7 @@
 		<mapping rdbms="DB2/UDB 7.1">VARCHAR, size</mapping>
 	</logicaltype>
 	<logicaltype name="SYS_ANYDATA" objectid="LogDes-F046B719-7D91-3873-3302-38C441683842@LOGDT10010">
+		<mapping rdbms="Oracle Database 12cR2">SYS.ANYDATA</mapping>
 		<mapping rdbms="Oracle Database 12c">SYS.ANYDATA</mapping>
 		<mapping rdbms="Oracle Database 11g">SYS.ANYDATA</mapping>
 		<mapping rdbms="Oracle Database 10g">SYS.ANYDATA</mapping>
@@ -736,6 +785,7 @@
 		<mapping rdbms="DB2/UDB 7.1">UNKNOWN</mapping>
 	</logicaltype>
 	<logicaltype name="SYS_ANYDATASET" objectid="LogDes-22E251EB-9F6C-8137-56B2-DD4B87DC1E33@LOGDT10030">
+		<mapping rdbms="Oracle Database 12cR2">SYS.ANYDATASET</mapping>
 		<mapping rdbms="Oracle Database 12c">SYS.ANYDATASET</mapping>
 		<mapping rdbms="Oracle Database 11g">SYS.ANYDATASET</mapping>
 		<mapping rdbms="Oracle Database 10g">SYS.ANYDATASET</mapping>
@@ -751,6 +801,7 @@
 		<mapping rdbms="DB2/UDB 7.1">UNKNOWN</mapping>
 	</logicaltype>
 	<logicaltype name="SYS_ANYTYPE" objectid="LogDes-F046B719-7D91-3873-3302-38C441683842@LOGDT10011">
+		<mapping rdbms="Oracle Database 12cR2">SYS.ANYTYPE</mapping>
 		<mapping rdbms="Oracle Database 12c">SYS.ANYTYPE</mapping>
 		<mapping rdbms="Oracle Database 11g">SYS.ANYTYPE</mapping>
 		<mapping rdbms="Oracle Database 10g">SYS.ANYTYPE</mapping>
@@ -766,6 +817,7 @@
 		<mapping rdbms="DB2/UDB 7.1">UNKNOWN</mapping>
 	</logicaltype>
 	<logicaltype name="TEXT" objectid="LOGDT040">
+		<mapping rdbms="Oracle Database 12cR2">CLOB</mapping>
 		<mapping rdbms="Oracle Database 12c">CLOB</mapping>
 		<mapping rdbms="Oracle Database 11g">CLOB</mapping>
 		<mapping rdbms="Oracle Database 10g">CLOB</mapping>
@@ -781,6 +833,7 @@
 		<mapping rdbms="DB2/UDB 7.1">VARCHAR, size</mapping>
 	</logicaltype>
 	<logicaltype name="TIMESTAMP WITH LOCAL TIME ZONE" objectid="LOGDT047">
+		<mapping rdbms="Oracle Database 12cR2">TIMESTAMP WITH LOCAL TIME ZONE, precision</mapping>
 		<mapping rdbms="Oracle Database 12c">TIMESTAMP WITH LOCAL TIME ZONE, precision</mapping>
 		<mapping rdbms="Oracle Database 11g">TIMESTAMP WITH LOCAL TIME ZONE, precision</mapping>
 		<mapping rdbms="Oracle Database 10g">TIMESTAMP WITH LOCAL TIME ZONE, precision</mapping>
@@ -796,6 +849,7 @@
 		<mapping rdbms="DB2/UDB 7.1">TIMESTAMP</mapping>
 	</logicaltype>
 	<logicaltype name="TIMESTAMP WITH TIME ZONE" objectid="LOGDT046">
+		<mapping rdbms="Oracle Database 12cR2">TIMESTAMP WITH TIME ZONE, precision</mapping>
 		<mapping rdbms="Oracle Database 12c">TIMESTAMP WITH TIME ZONE, precision</mapping>
 		<mapping rdbms="Oracle Database 11g">TIMESTAMP WITH TIME ZONE, precision</mapping>
 		<mapping rdbms="Oracle Database 10g">TIMESTAMP WITH TIME ZONE, precision</mapping>
@@ -811,6 +865,7 @@
 		<mapping rdbms="DB2/UDB 7.1">TIMESTAMP</mapping>
 	</logicaltype>
 	<logicaltype name="TINYINT" objectid="LOGDT042">
+		<mapping rdbms="Oracle Database 12cR2">SMALLINT</mapping>
 		<mapping rdbms="Oracle Database 12c">SMALLINT</mapping>
 		<mapping rdbms="Oracle Database 11g">SMALLINT</mapping>
 		<mapping rdbms="Oracle Database 10g">SMALLINT</mapping>
@@ -826,6 +881,7 @@
 		<mapping rdbms="DB2/UDB 7.1">SMALLINT</mapping>
 	</logicaltype>
 	<logicaltype name="Time" objectid="LOGDT014">
+		<mapping rdbms="Oracle Database 12cR2">DATE</mapping>
 		<mapping rdbms="Oracle Database 12c">DATE</mapping>
 		<mapping rdbms="Oracle Database 11g">DATE</mapping>
 		<mapping rdbms="Oracle Database 10g">DATE</mapping>
@@ -841,6 +897,7 @@
 		<mapping rdbms="DB2/UDB 7.1">TIME</mapping>
 	</logicaltype>
 	<logicaltype name="Timestamp" objectid="LOGDT015">
+		<mapping rdbms="Oracle Database 12cR2">TIMESTAMP, precision</mapping>
 		<mapping rdbms="Oracle Database 12c">TIMESTAMP, precision</mapping>
 		<mapping rdbms="Oracle Database 11g">TIMESTAMP, precision</mapping>
 		<mapping rdbms="Oracle Database 10g">TIMESTAMP, precision</mapping>
@@ -856,6 +913,7 @@
 		<mapping rdbms="DB2/UDB 7.1">TIMESTAMP</mapping>
 	</logicaltype>
 	<logicaltype name="UNIQUEIDENTIFIER" objectid="LOGDT057">
+		<mapping rdbms="Oracle Database 12cR2">CHAR, size</mapping>
 		<mapping rdbms="Oracle Database 12c">CHAR, size</mapping>
 		<mapping rdbms="Oracle Database 11g">CHAR, size</mapping>
 		<mapping rdbms="Oracle Database 10g">CHAR, size</mapping>
@@ -871,6 +929,7 @@
 		<mapping rdbms="DB2/UDB 7.1">CHAR, size</mapping>
 	</logicaltype>
 	<logicaltype name="URIType" objectid="LOGDT051">
+		<mapping rdbms="Oracle Database 12cR2">URITYPE</mapping>
 		<mapping rdbms="Oracle Database 12c">URITYPE</mapping>
 		<mapping rdbms="Oracle Database 11g">URITYPE</mapping>
 		<mapping rdbms="Oracle Database 10g">URITYPE</mapping>
@@ -886,6 +945,7 @@
 		<mapping rdbms="DB2/UDB 7.1">CHAR, size</mapping>
 	</logicaltype>
 	<logicaltype name="URowID" objectid="LogDes-4BABEC65-108B-2A3C-F7C4-84AC47D292B0@LOGDT10041">
+		<mapping rdbms="Oracle Database 12cR2">UROWID, size</mapping>
 		<mapping rdbms="Oracle Database 12c">UROWID, size</mapping>
 		<mapping rdbms="Oracle Database 11g">UROWID, size</mapping>
 		<mapping rdbms="Oracle Database 10g">UROWID, size</mapping>
@@ -901,6 +961,7 @@
 		<mapping rdbms="DB2/UDB 7.1">VARCHAR, size</mapping>
 	</logicaltype>
 	<logicaltype name="VARBINARY" objectid="LOGDT041">
+		<mapping rdbms="Oracle Database 12cR2">BLOB</mapping>
 		<mapping rdbms="Oracle Database 12c">BLOB</mapping>
 		<mapping rdbms="Oracle Database 11g">BLOB</mapping>
 		<mapping rdbms="Oracle Database 10g">BLOB</mapping>
@@ -916,6 +977,7 @@
 		<mapping rdbms="DB2/UDB 7.1">BLOB, size</mapping>
 	</logicaltype>
 	<logicaltype name="VARCHAR" objectid="LOGDT024">
+		<mapping rdbms="Oracle Database 12cR2">VARCHAR2, size</mapping>
 		<mapping rdbms="Oracle Database 12c">VARCHAR2, size</mapping>
 		<mapping rdbms="Oracle Database 11g">VARCHAR2, size</mapping>
 		<mapping rdbms="Oracle Database 10g">VARCHAR2, size</mapping>
@@ -931,6 +993,7 @@
 		<mapping rdbms="DB2/UDB 7.1">VARCHAR, size</mapping>
 	</logicaltype>
 	<logicaltype name="VARGRAPHIC" objectid="LOGDT023">
+		<mapping rdbms="Oracle Database 12cR2">BLOB</mapping>
 		<mapping rdbms="Oracle Database 12c">BLOB</mapping>
 		<mapping rdbms="Oracle Database 11g">BLOB</mapping>
 		<mapping rdbms="Oracle Database 10g">BLOB</mapping>
@@ -946,6 +1009,7 @@
 		<mapping rdbms="DB2/UDB 7.1">VARGRAPHIC, size</mapping>
 	</logicaltype>
 	<logicaltype name="Video" objectid="LOGDT016">
+		<mapping rdbms="Oracle Database 12cR2">BLOB</mapping>
 		<mapping rdbms="Oracle Database 12c">BLOB</mapping>
 		<mapping rdbms="Oracle Database 11g">BLOB</mapping>
 		<mapping rdbms="Oracle Database 10g">BLOB</mapping>
@@ -961,6 +1025,7 @@
 		<mapping rdbms="DB2/UDB 7.1">BLOB</mapping>
 	</logicaltype>
 	<logicaltype name="XDBURIType" objectid="LOGDT053">
+		<mapping rdbms="Oracle Database 12cR2">XDBURITYPE</mapping>
 		<mapping rdbms="Oracle Database 12c">XDBURITYPE</mapping>
 		<mapping rdbms="Oracle Database 11g">XDBURITYPE</mapping>
 		<mapping rdbms="Oracle Database 10g">XDBURITYPE</mapping>
@@ -976,6 +1041,7 @@
 		<mapping rdbms="DB2/UDB 7.1">CHAR, size</mapping>
 	</logicaltype>
 	<logicaltype name="XMLType" objectid="LOGDT050">
+		<mapping rdbms="Oracle Database 12cR2">XMLTYPE</mapping>
 		<mapping rdbms="Oracle Database 12c">XMLTYPE</mapping>
 		<mapping rdbms="Oracle Database 11g">XMLTYPE</mapping>
 		<mapping rdbms="Oracle Database 10g">XMLTYPE</mapping>
@@ -991,11 +1057,12 @@
 		<mapping rdbms="DB2/UDB 7.1">CLOB, size</mapping>
 	</logicaltype>
 	<logicaltype name="String" objectid="A3A3C77D-0366-9768-FF89-1C25E56881C8">
+		<mapping rdbms="Oracle Database 12cR2" size_default_value="max">VARCHAR2, size</mapping>
 		<mapping rdbms="Oracle Database 12c" size_default_value="max">VARCHAR2, size</mapping>
 		<mapping rdbms="Oracle Database 11g" size_default_value="max">VARCHAR2, size</mapping>
 		<mapping rdbms="Oracle Database 10g" size_default_value="max">VARCHAR2, size</mapping>
 		<mapping rdbms="Oracle9i" size_default_value="max">VARCHAR2, size</mapping>
-        <mapping rdbms="SQL Server 2012" size_default_value="max">VARCHAR, size</mapping>
+		<mapping rdbms="SQL Server 2012" size_default_value="max">VARCHAR, size</mapping>
 		<mapping rdbms="SQL Server 2008" size_default_value="max">VARCHAR, size</mapping>
 		<mapping rdbms="SQL Server 2005" size_default_value="max">VARCHAR, size</mapping>
 		<mapping rdbms="SQL Server 2000" size_default_value="max">VARCHAR, size</mapping>
@@ -1006,6 +1073,7 @@
 		<mapping rdbms="DB2/UDB 7.1" size_default_value="max">VARCHAR, size</mapping>
 	</logicaltype>
 	<native_to_logical_mappings>
+		<mappings_for_RDBMS_type rdbms_type="Oracle Database 12cR2" />
 		<mappings_for_RDBMS_type rdbms_type="Oracle Database 12c">
 			<mapping native_type="BFILE" logicaltype="BFile" log_type_id="LogDes-7DD553FD-11E8-61FA-399D-2E531FB621D0@LOGDT10034" />
 			<mapping native_type="BINARY_DOUBLE" logicaltype="BINARY DOUBLE" log_type_id="LOGDT056" />
