@@ -1,0 +1,75 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="E51CA802-FFC4-55BB-37CF-868A890BDE51" name="Textdefinition">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-10 11:35:25 UTC</createdTime>
+<comment>Wertebereich (Domäne) für einen Textl</comment>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<shortName>TXDE</shortName>
+<createSurrogateKey>true</createSurrogateKey>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Name" id="629BEF31-32A6-C1FA-6808-78CAFD8B8B00">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-10 11:35:52 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Max Länge" id="FED80564-8043-573A-E431-31FE2706B7FF">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-10 11:36:33 UTC</createdTime>
+<comment>Maximale Länge des Textes in Buchstaben (CHAR)</comment>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>C9DBFF99-FC63-E2AC-8EB8-BE5A63AA7B61</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Werteregel" id="A60F9702-1D1F-2326-5024-A280EAACBB9B">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-10 11:37:26 UTC</createdTime>
+<comment>Einschränkende Regel für die erlaubten Zeichen eines Textes.</comment>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>EAB77EBE-9C06-2899-E462-A33684354F43</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="B83FE2B9-D725-3B55-5E7E-A0F7009C886B" name="TXDE_UK">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-10 11:43:28 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<newElementsIDs>629BEF31-32A6-C1FA-6808-78CAFD8B8B00</newElementsIDs>
+<usedAttributes>
+<attributeRef>629BEF31-32A6-C1FA-6808-78CAFD8B8B00</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

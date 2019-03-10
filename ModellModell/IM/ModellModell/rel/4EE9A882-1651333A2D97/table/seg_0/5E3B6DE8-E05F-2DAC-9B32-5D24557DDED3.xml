@@ -1,0 +1,176 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="5E3B6DE8-E05F-2DAC-9B32-5D24557DDED3" name="SPRACHE">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-10 11:52:10 UTC</createdTime>
+<comment>Sprache gemäss ISO 629-1,2,3&lt;br/&gt;&lt;br/&gt;Eine alternative Ausgabe, erlaubt es, einen Text zu dem eine Übersetzung fehlt in einer Default-Sprache auszugeben.</comment>
+<generatorID>3E8032B0-5673-6691-00B9-475546860A3A</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<abbreviation>SPRA</abbreviation>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="SPRA_ISO_NAME" id="5662BAF7-CCFF-AFCE-0038-67C146F0A6DE">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-10 11:52:10 UTC</createdTime>
+<comment>englischer ISO Standardname</comment>
+<generatorID>269691A8-E995-F39D-38EE-D4B9D25563F4</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="SPRA_NAME" id="E691096D-1C52-060D-C9A3-32422E78BEEE">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-10 11:52:10 UTC</createdTime>
+<comment>Name übersetzt, Originialname</comment>
+<generatorID>A48C7265-3B50-E7F5-E97C-A5683ED08B99</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="SPRA_ISO_CODE2" id="32D32CCF-7FE0-277F-8FFD-C2E30C487EDE">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-10 11:52:10 UTC</createdTime>
+<comment>2-Stelliger ISO-Code</comment>
+<generatorID>72F01738-8D10-1571-BF1F-54798C2B6A1C</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<domain>3CFAACDE-10D2-A99A-844A-975DA633F49B</domain>
+<checkConstraint>
+<implementationDef dbType="Oracle Database 12cR2" definition="SPRA_ISO_CODE2 = lower(SPRA_ISO_CODE2)"/>
+</checkConstraint>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="SPRA_ISO_CODE3" id="31236123-B652-8778-2786-482260C063D8">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-10 11:52:10 UTC</createdTime>
+<comment>3-stelliger ISO-Code</comment>
+<generatorID>95ED45B4-51CC-3B9B-6E4D-7959CD703675</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<domain>7EF070A4-018B-18D6-E996-291F316D16A7</domain>
+<checkConstraint>
+<implementationDef dbType="Oracle Database 12cR2" definition="SPRA_ISO_CODE3 = lower(SPRA_ISO_CODE3)"/>
+</checkConstraint>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="SPRA_IST_TEXTSPRACHE" id="DA5A88F1-BC5F-0F8D-9259-F6AB8A9089E7">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-10 11:52:10 UTC</createdTime>
+<comment>Sprache kann für Übersetzung von Texten verwendet werden</comment>
+<generatorID>7946129A-B876-FC35-FA72-27CA9051B460</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="SPRA_ID" id="C7D8D8E5-AB6D-4272-183B-CDEF8764AC9A">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-10 11:52:10 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<autoIncrementSequenceName>INFRA_SEQ</autoIncrementSequenceName>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+<Column name="SPRA_SPRA_ID" id="D83F54AF-8E96-733D-AE37-90FD5CEF5E3A">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-10 11:52:10 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="E3289950-78C8-EC1A-6911-EA16DA3C9192" referredColumn="C7D8D8E5-AB6D-4272-183B-CDEF8764AC9A"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="AAFBF228-546E-FA3A-55F4-D123E50D3D7E" name="SPRA_PK">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-10 11:52:10 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="C7D8D8E5-AB6D-4272-183B-CDEF8764AC9A"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="6311100F-E56A-813F-790C-A1A43DD8BDDA" name="SPRA_ISO_NAME_UN">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-10 11:52:10 UTC</createdTime>
+<generatorID>48F60096-94C7-0C06-6F1B-FE84B9B7B8E0</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="5662BAF7-CCFF-AFCE-0038-67C146F0A6DE"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="C4E25B9F-B696-615E-EB06-89031318FE87" name="SPRA_ISO_CODE2_UN">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-10 11:52:10 UTC</createdTime>
+<generatorID>ACEDF785-628E-7018-27B9-808F2D207BD9</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="32D32CCF-7FE0-277F-8FFD-C2E30C487EDE"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="880650B5-B6D8-CC14-16DC-08DCC5402D2C" name="SPRA_ISO_CODE3_UN">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-10 11:52:10 UTC</createdTime>
+<generatorID>E6AF3633-86BA-7700-E962-D399006C1AFD</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="31236123-B652-8778-2786-482260C063D8"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="C2070DB0-0E9D-81E2-75D1-7E8500918C50" name="SPRA__IDX">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-10 11:53:10 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="D83F54AF-8E96-733D-AE37-90FD5CEF5E3A"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="510BC5DE-B443-B6D9-8C45-DF41E9C7168E" name="SPRA_SPRA_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-10 11:52:10 UTC</createdTime>
+<generatorID>D91D6FF6-D756-91C3-95A7-95F3B62FCDA3</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="D83F54AF-8E96-733D-AE37-90FD5CEF5E3A"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

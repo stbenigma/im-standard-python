@@ -1,0 +1,35 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="4418BA52-4396-F91F-ADDC-B19812403A64" name="Übersetzungstext">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-10 11:27:25 UTC</createdTime>
+<comment>Text, der in alle Sprachen übersetzt werden kann, die als Textsprache markiert ist.&lt;br/&gt;Dies weird für alle mit [L] markierten Texte in den Entitäten als Standardverwaltung verwendet.&lt;br/&gt;&lt;br/&gt;Wird ein Text in einer gewünschten Sprache nicht gefunden, wird er in der Alternativsprache ausgegeben. Ist auch dazu kein Text vorhanden, in der Originialsprache.&lt;br/&gt;&lt;br/&gt;Diese Entität wird verwendet um für alle Attribute mit [L] einen Fremdschlüssel zu erhalten, der auf den Text zeigt, hinter dem sich die Übersetzung versteckt.</comment>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<shortName>UETX</shortName>
+<createSurrogateKey>true</createSurrogateKey>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Originaltext" id="8163FB92-0A78-2B10-F74C-17D72169F578">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-10 11:30:11 UTC</createdTime>
+<comment>Text in der Originalsprache. Ausgangstext für alle Übersetzungen</comment>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+</Entity>

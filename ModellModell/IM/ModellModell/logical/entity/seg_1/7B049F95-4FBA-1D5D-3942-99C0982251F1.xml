@@ -1,0 +1,92 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="7B049F95-4FBA-1D5D-3942-99C0982251F1" name="Sprachtext">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-10 11:22:05 UTC</createdTime>
+<comment>Text interpretiert in Sprache, die als Textstprachen markiert ist.</comment>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<shortName>SPTX</shortName>
+<createSurrogateKey>true</createSurrogateKey>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Text" id="BBF26E99-27D7-208B-5FCE-538468111F80">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-10 11:26:13 UTC</createdTime>
+<comment>Text interpretierbar in der Sprache, gehorcht den Regeln des Sprachtextwertebereichs</comment>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="gültig ab" id="8F714F8E-FEAC-06EE-AFA7-6902E6B307B2">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-10 11:32:26 UTC</createdTime>
+<comment>Ab diesem Zeitpunkt ist der Text gültig, bis zum nächsten Zeitpunkt bzw. für immer</comment>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>LOGDT015</logicalDatatype>
+<domain>0AD80E26-0F5C-D068-29EA-4740A04582AE</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="FFA8D864-9FDC-E968-AE27-68EA2F35F87C" name="SPTX_UK">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-10 11:31:57 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<newElementsIDs>392453B6-717C-F2CA-3E8A-447AA249AB50,D6D2AF92-19CF-C020-6DFF-704DC2E018BB,8F714F8E-FEAC-06EE-AFA7-6902E6B307B2</newElementsIDs>
+<usedAttributes>
+<attributeRef>8F714F8E-FEAC-06EE-AFA7-6902E6B307B2</attributeRef>
+</usedAttributes>
+</identifier>
+<identifier id="92C6BA9F-2E11-4645-1C68-18FADDC8242C" name="Sprachtext_PK">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-10 11:34:26 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<deprecated>true</deprecated>
+<pk>true</pk>
+</identifier>
+<identifier id="F886920F-0D1D-C99E-62FB-F492CEB37894" name="Sprachtext_PKv1">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-10 11:34:26 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<deprecated>true</deprecated>
+<pk>true</pk>
+</identifier>
+<identifier id="4222A29F-BBD6-E1A8-FFBA-340A6F3EDE7D" name="Sprachtext_PKv2">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-10 11:34:26 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<deprecated>true</deprecated>
+<pk>true</pk>
+</identifier>
+</identifiers>
+</Entity>

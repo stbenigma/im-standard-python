@@ -1,0 +1,86 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="312266FC-646B-82F0-4686-5952152E0F7A" name="TEXTDEFINITION">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-10 11:52:10 UTC</createdTime>
+<comment>Wertebereich (Domäne) für einen Textl</comment>
+<generatorID>E51CA802-FFC4-55BB-37CF-868A890BDE51</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<abbreviation>TXDE</abbreviation>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="TXDE_NAME" id="61A4CA72-FB66-DF90-A319-8C3DB03A575D">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-10 11:52:10 UTC</createdTime>
+<generatorID>629BEF31-32A6-C1FA-6808-78CAFD8B8B00</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="TXDE_MAX_LNG" id="C8412300-672A-1F89-BB4D-0EAE7C0A75A0">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-10 11:52:10 UTC</createdTime>
+<comment>Maximale Länge des Textes in Buchstaben (CHAR)</comment>
+<generatorID>FED80564-8043-573A-E431-31FE2706B7FF</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>C9DBFF99-FC63-E2AC-8EB8-BE5A63AA7B61</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="TXDE_WERTEREGEL" id="024F3B7F-3BB7-5B92-2AB6-4EDCAA0B4C9A">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-10 11:52:10 UTC</createdTime>
+<comment>Einschränkende Regel für die erlaubten Zeichen eines Textes.</comment>
+<generatorID>A60F9702-1D1F-2326-5024-A280EAACBB9B</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>EAB77EBE-9C06-2899-E462-A33684354F43</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="TXDE_ID" id="F8CE5C84-AC4E-A9B4-DDE6-4D1C30D42CC9">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-10 11:52:10 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<autoIncrementSequenceName>INFRA_SEQ</autoIncrementSequenceName>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="FEDAA9B2-5329-E891-112F-DECFB0D1BB0F" name="TXDE_PK">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-10 11:52:10 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="F8CE5C84-AC4E-A9B4-DDE6-4D1C30D42CC9"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="AE9532C1-B923-1C67-7BA4-7916194C50DB" name="TXDE_NAME_UN">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-10 11:52:10 UTC</createdTime>
+<generatorID>B83FE2B9-D725-3B55-5E7E-A0F7009C886B</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="61A4CA72-FB66-DF90-A319-8C3DB03A575D"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
