@@ -16,7 +16,7 @@
 <objectViews>
 <OView class="oracle.dbtools.crest.swingui.relational.TVTable" oid="312266FC-646B-82F0-4686-5952152E0F7A" otype="Table" vid="F967E763-9030-2A33-BAF3-066FEA8462D6">
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
-<bounds x="593" y="165" width="188" height="192"/>
+<bounds x="647" y="164" width="188" height="192"/>
 <generatorID>2F4287BD-4A07-8E33-D8A0-FE505587760A</generatorID>
 </OView>
 <OView class="oracle.dbtools.crest.swingui.relational.TVTable" oid="5854944E-F08E-14A7-BD4D-5016456A2AAD" otype="Table" vid="6365721D-EE67-1B00-FA64-9349ADA4CA35">
@@ -54,13 +54,24 @@
 <point x="375" y="607"/>
 </points>
 </Connector>
+<Connector class="oracle.dbtools.crest.swingui.relational.TVFKRelation" oid="50E5C9E3-FC77-71B1-3878-6E3D7A6B1D35" otype="FKIndexAssociation" vid_source="1BD6D7BF-8534-23B5-69A4-3339BBFECA93" vid_target="4C24C74C-6006-FBFB-4F21-4C46C32B6509">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<backgroundColor>-16777216</backgroundColor>
+<lineWidth>1</lineWidth>
+<points>
+<point x="610" y="521"/>
+<point x="610" y="160"/>
+<point x="337" y="160"/>
+</points>
+</Connector>
 <Connector class="oracle.dbtools.crest.swingui.relational.TVFKRelation" oid="A3229A79-7CD4-63F2-0D30-76311424F689" otype="FKIndexAssociation" vid_source="4C24C74C-6006-FBFB-4F21-4C46C32B6509" vid_target="1BD6D7BF-8534-23B5-69A4-3339BBFECA93">
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
 <backgroundColor>-16777216</backgroundColor>
 <lineWidth>1</lineWidth>
 <points>
-<point x="337" y="315"/>
-<point x="578" y="521"/>
+<point x="337" y="190"/>
+<point x="563" y="190"/>
+<point x="563" y="521"/>
 </points>
 </Connector>
 <Connector class="oracle.dbtools.crest.swingui.relational.TVFKRelation" oid="E3289950-78C8-EC1A-6911-EA16DA3C9192" otype="FKIndexAssociation" vid_source="4C24C74C-6006-FBFB-4F21-4C46C32B6509" vid_target="4C24C74C-6006-FBFB-4F21-4C46C32B6509">
@@ -80,8 +91,8 @@
 <backgroundColor>-16777216</backgroundColor>
 <lineWidth>1</lineWidth>
 <points>
-<point x="687" y="357"/>
-<point x="687" y="521"/>
+<point x="739" y="356"/>
+<point x="739" y="521"/>
 </points>
 </Connector>
 </connectors>

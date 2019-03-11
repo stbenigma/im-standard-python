@@ -1,10 +1,11 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="E51CA802-FFC4-55BB-37CF-868A890BDE51" name="Textdefinition">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="E51CA802-FFC4-55BB-37CF-868A890BDE51" name="Textlicher Wertebereich">
 <createdBy>stb</createdBy>
 <createdTime>2019-03-10 11:35:25 UTC</createdTime>
-<comment>Wertebereich (Domäne) für einen Textl</comment>
+<comment>Wertebereich (Domäne) für ein Freitextattribut</comment>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
+<item key="4EE9A882-EA48-83FA-35DC-1651333A2D97" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 </engineerTo>
 <adequatelyNormalized>NO</adequatelyNormalized>
@@ -12,6 +13,7 @@
 <fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
 <growthPercent>0</growthPercent>
 <growthType>Year</growthType>
+<hierarchicalParent>D2A42970-AC5F-B209-EC1C-8C8F92DF7345</hierarchicalParent>
 <maxVolumes>9999999</maxVolumes>
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
@@ -23,6 +25,7 @@
 <createdTime>2019-03-10 11:35:52 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
+<item key="4EE9A882-EA48-83FA-35DC-1651333A2D97" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 </engineerTo>
 <use>0</use>
@@ -36,6 +39,7 @@
 <comment>Maximale Länge des Textes in Buchstaben (CHAR)</comment>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
+<item key="4EE9A882-EA48-83FA-35DC-1651333A2D97" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 </engineerTo>
 <use>0</use>
@@ -49,6 +53,7 @@
 <comment>Einschränkende Regel für die erlaubten Zeichen eines Textes.</comment>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
+<item key="4EE9A882-EA48-83FA-35DC-1651333A2D97" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
@@ -64,6 +69,7 @@
 <createdTime>2019-03-10 11:43:28 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
+<item key="4EE9A882-EA48-83FA-35DC-1651333A2D97" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 </engineerTo>
 <newElementsIDs>629BEF31-32A6-C1FA-6808-78CAFD8B8B00</newElementsIDs>

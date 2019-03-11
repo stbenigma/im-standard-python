@@ -1,0 +1,95 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev12c class="oracle.dbtools.crest.model.design.storage.oracle.v12c.TableProxyOraclev12c" name="SPRACHE" directorySegmentName="seg_0" id="5E3B6DE8-E05F-2DAC-9B32-5D24557DDED3">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-11 07:04:17 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<temporaryChanged>false</temporaryChanged>
+<accessDriverType>oracle_loader</accessDriverType>
+<rejectLimit></rejectLimit>
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="SPRA_ISO_CODE3" id="31236123-B652-8778-2786-482260C063D8">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-11 07:04:17 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="SPRA_ISO_CODE2" id="32D32CCF-7FE0-277F-8FFD-C2E30C487EDE">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-11 07:04:17 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="SPRA_ISO_NAME" id="5662BAF7-CCFF-AFCE-0038-67C146F0A6DE">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-11 07:04:17 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="SPRA_ID" id="C7D8D8E5-AB6D-4272-183B-CDEF8764AC9A">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-11 07:04:17 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="SPRA_SPRA_ID" id="D83F54AF-8E96-733D-AE37-90FD5CEF5E3A">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-11 07:04:17 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="SPRA_IST_TEXTSPRACHE" id="DA5A88F1-BC5F-0F8D-9259-F6AB8A9089E7">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-11 07:04:17 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="SPRA_NAME" id="E691096D-1C52-060D-C9A3-32422E78BEEE">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-11 07:04:17 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+<indexProxies>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="SPRA__IDX" id="C2070DB0-0E9D-81E2-75D1-7E8500918C50">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-11 07:04:17 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</IndexProxy>
+</indexProxies>
+<foreignKeys>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="SPRA_UETX_FK" id="3A163B2D-BD59-0F31-BB13-9393FD8AE462">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-11 07:04:17 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ForeignKey>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="SPRA_SPRA_FK" id="510BC5DE-B443-B6D9-8C45-DF41E9C7168E">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-11 07:04:17 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ForeignKey>
+</foreignKeys>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="SPRA_PK" id="AAFBF228-546E-FA3A-55F4-D123E50D3D7E">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-11 07:04:17 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexSort>SORTED</indexSort>
+</PrimaryKey>
+</primaryKeys>
+<uniqueKeys>
+<UniqueKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.UniqueOraclev10g" name="SPRA_ISO_NAME_UN" id="6311100F-E56A-813F-790C-A1A43DD8BDDA">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-11 07:04:18 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexSort>SORTED</indexSort>
+</UniqueKey>
+<UniqueKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.UniqueOraclev10g" name="SPRA_ISO_CODE3_UN" id="880650B5-B6D8-CC14-16DC-08DCC5402D2C">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-11 07:04:18 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexSort>SORTED</indexSort>
+</UniqueKey>
+<UniqueKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.UniqueOraclev10g" name="SPRA_ISO_CODE2_UN" id="C4E25B9F-B696-615E-EB06-89031318FE87">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-11 07:04:18 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexSort>SORTED</indexSort>
+</UniqueKey>
+</uniqueKeys>
+</TableProxyOraclev12c>

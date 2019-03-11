@@ -15,6 +15,7 @@
 <comment>englischer ISO Standardname</comment>
 <generatorID>269691A8-E995-F39D-38EE-D4B9D25563F4</generatorID>
 <ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
 <use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
@@ -29,10 +30,13 @@
 <ownerDesignName>ModellModell</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <use>0</use>
-<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
-<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="50E5C9E3-FC77-71B1-3878-6E3D7A6B1D35" referredColumn="A97666BD-91D6-3179-6380-555F39A072EC"/>
+</associations>
 </Column>
 <Column name="SPRA_ISO_CODE2" id="32D32CCF-7FE0-277F-8FFD-C2E30C487EDE">
 <createdBy>stb</createdBy>
@@ -170,6 +174,16 @@
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
 <colUsage columnID="D83F54AF-8E96-733D-AE37-90FD5CEF5E3A"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="3A163B2D-BD59-0F31-BB13-9393FD8AE462" name="SPRA_UETX_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-11 06:55:46 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="E691096D-1C52-060D-C9A3-32422E78BEEE"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>

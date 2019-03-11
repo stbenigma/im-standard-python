@@ -5,6 +5,7 @@
 <comment>Sprache gemäss ISO 629-1,2,3&lt;br/&gt;&lt;br/&gt;Eine alternative Ausgabe, erlaubt es, einen Text zu dem eine Übersetzung fehlt in einer Default-Sprache auszugeben.</comment>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
+<item key="4EE9A882-EA48-83FA-35DC-1651333A2D97" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 </engineerTo>
 <adequatelyNormalized>NO</adequatelyNormalized>
@@ -24,6 +25,7 @@
 <comment>englischer ISO Standardname</comment>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
+<item key="4EE9A882-EA48-83FA-35DC-1651333A2D97" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 </engineerTo>
 <use>0</use>
@@ -37,6 +39,7 @@
 <comment>Name übersetzt, Originialname</comment>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
+<item key="4EE9A882-EA48-83FA-35DC-1651333A2D97" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
@@ -51,11 +54,16 @@
 <comment>2-Stelliger ISO-Code</comment>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
+<item key="4EE9A882-EA48-83FA-35DC-1651333A2D97" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 </engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
 <use>0</use>
 <logicalDatatype>LOGDT025</logicalDatatype>
 <domain>3CFAACDE-10D2-A99A-844A-975DA633F49B</domain>
+<checkConstraint>
+<implementationDef dbType="Oracle Database 12cR2" definition="SPRA_ISO_CODE2 = lower(SPRA_ISO_CODE2)"/>
+</checkConstraint>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 <Attribute name="ISO Code3" id="95ED45B4-51CC-3B9B-6E4D-7959CD703675">
@@ -64,11 +72,16 @@
 <comment>3-stelliger ISO-Code</comment>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
+<item key="4EE9A882-EA48-83FA-35DC-1651333A2D97" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 </engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
 <use>0</use>
 <logicalDatatype>LOGDT025</logicalDatatype>
 <domain>7EF070A4-018B-18D6-E996-291F316D16A7</domain>
+<checkConstraint>
+<implementationDef dbType="Oracle Database 12cR2" definition="SPRA_ISO_CODE3 = lower(SPRA_ISO_CODE3)"/>
+</checkConstraint>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 <Attribute name="Textsprache (J/N)" id="7946129A-B876-FC35-FA72-27CA9051B460">
@@ -77,6 +90,7 @@
 <comment>Sprache kann für Übersetzung von Texten verwendet werden</comment>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
+<item key="4EE9A882-EA48-83FA-35DC-1651333A2D97" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 </engineerTo>
 <use>0</use>
@@ -91,6 +105,7 @@
 <createdTime>2019-03-10 11:19:55 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
+<item key="4EE9A882-EA48-83FA-35DC-1651333A2D97" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 </engineerTo>
 <newElementsIDs>269691A8-E995-F39D-38EE-D4B9D25563F4</newElementsIDs>
@@ -103,6 +118,7 @@
 <createdTime>2019-03-10 11:20:09 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
+<item key="4EE9A882-EA48-83FA-35DC-1651333A2D97" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 </engineerTo>
 <newElementsIDs>72F01738-8D10-1571-BF1F-54798C2B6A1C</newElementsIDs>
@@ -115,6 +131,7 @@
 <createdTime>2019-03-10 11:20:19 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
+<item key="4EE9A882-EA48-83FA-35DC-1651333A2D97" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 </engineerTo>
 <newElementsIDs>95ED45B4-51CC-3B9B-6E4D-7959CD703675</newElementsIDs>

@@ -1,0 +1,84 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev12c class="oracle.dbtools.crest.model.design.storage.oracle.v12c.TableProxyOraclev12c" name="SPRACHTEXT" directorySegmentName="seg_0" id="5854944E-F08E-14A7-BD4D-5016456A2AAD">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-11 07:04:18 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<temporaryChanged>false</temporaryChanged>
+<accessDriverType>oracle_loader</accessDriverType>
+<rejectLimit></rejectLimit>
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="SPTX_GUELTIG_AB" id="31F00709-767A-953F-BC95-C993172A5BA2">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-11 07:04:17 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="SPTX_TEXT" id="3F880E51-712A-9DF1-3193-886C5F6846DC">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-11 07:04:17 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="SPTX_ID" id="434BC77B-92A3-3648-E28A-2C30408680CD">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-11 07:04:17 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="SPTX_SPRA_ID" id="5C1A6BA0-9F07-9A38-01D0-D0FCA73459BA">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-11 07:04:17 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="SPTX_UETX_ID" id="D15A299F-FACD-91A1-A303-E4B89AE81C19">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-11 07:04:17 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+<indexProxies>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="SPTX__IDXv1" id="C8A353E6-7B92-2637-120B-E6AC9BD553E6">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-11 07:04:17 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</IndexProxy>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="SPTX__IDX" id="CAB54F49-E48C-CBF0-A34A-47F698E88E84">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-11 07:04:17 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</IndexProxy>
+</indexProxies>
+<foreignKeys>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="SPTX_SPRA_FK" id="08E40531-C3C7-5695-5937-DA0BA02A9078">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-11 07:04:17 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ForeignKey>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="SPTX_UETX_FK" id="B77CB9AF-B43A-AC7A-2B28-E68A0419D13B">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-11 07:04:17 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ForeignKey>
+</foreignKeys>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="SPTX_PK" id="0407563D-7914-6A82-E716-9741CE3AEBA2">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-11 07:04:17 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexSort>SORTED</indexSort>
+</PrimaryKey>
+</primaryKeys>
+<uniqueKeys>
+<UniqueKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.UniqueOraclev10g" name="SPTX__UNV2" id="4E4C7CEC-39EA-42AE-ED75-06D25F05EAC7">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-11 07:04:18 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexSort>SORTED</indexSort>
+</UniqueKey>
+<UniqueKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.UniqueOraclev10g" name="SPTX_GÜLTIG_AB_UN" id="FC63518F-17C6-14BD-8CD3-6BFAA4A2BAB6">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-11 07:04:18 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexSort>SORTED</indexSort>
+</UniqueKey>
+</uniqueKeys>
+</TableProxyOraclev12c>

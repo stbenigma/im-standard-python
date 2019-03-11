@@ -1,0 +1,49 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev12c class="oracle.dbtools.crest.model.design.storage.oracle.v12c.TableProxyOraclev12c" name="TEXT_WERTEBER" directorySegmentName="seg_0" id="312266FC-646B-82F0-4686-5952152E0F7A">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-11 07:04:18 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<temporaryChanged>false</temporaryChanged>
+<accessDriverType>oracle_loader</accessDriverType>
+<rejectLimit></rejectLimit>
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="TXWE_WERTEREGEL" id="024F3B7F-3BB7-5B92-2AB6-4EDCAA0B4C9A">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-11 07:04:17 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="TXWE_NAME" id="61A4CA72-FB66-DF90-A319-8C3DB03A575D">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-11 07:04:17 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="TXWE_MAX_LNG" id="C8412300-672A-1F89-BB4D-0EAE7C0A75A0">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-11 07:04:17 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="TXWE_ID" id="F8CE5C84-AC4E-A9B4-DDE6-4D1C30D42CC9">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-11 07:04:17 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="TXWE_PK" id="FEDAA9B2-5329-E891-112F-DECFB0D1BB0F">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-11 07:04:17 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexSort>SORTED</indexSort>
+</PrimaryKey>
+</primaryKeys>
+<uniqueKeys>
+<UniqueKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.UniqueOraclev10g" name="TXWE_NAME_UN" id="AE9532C1-B923-1C67-7BA4-7916194C50DB">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-11 07:04:18 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexSort>SORTED</indexSort>
+</UniqueKey>
+</uniqueKeys>
+</TableProxyOraclev12c>

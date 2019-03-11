@@ -1,0 +1,65 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev12c class="oracle.dbtools.crest.model.design.storage.oracle.v12c.TableProxyOraclev12c" name="UEBERSETZ_TEXT" directorySegmentName="seg_0" id="F4EB6642-7FCF-6274-D27D-2DEB5CD33208">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-11 07:04:18 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<temporaryChanged>false</temporaryChanged>
+<accessDriverType>oracle_loader</accessDriverType>
+<rejectLimit></rejectLimit>
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="UETX_SPRA_ID" id="0EBACB66-FEB3-1786-EC85-5AE4E60A0B43">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-11 07:04:17 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="UETX_TXDE_ID" id="4E08984B-072A-5EB9-9BB4-792BBF11E016">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-11 07:04:17 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="UETX_ID" id="A97666BD-91D6-3179-6380-555F39A072EC">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-11 07:04:17 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="UETX_ORIGINALTEXT" id="B47C321C-1E44-18B7-98A1-4DB0AFE511AA">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-11 07:04:17 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+<indexProxies>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="UETX_IDX_SPRA" id="0F65B6FB-3E0B-2FA1-9327-F39D4FF6AC23">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-11 07:04:17 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</IndexProxy>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="UETX_IDX_TXT" id="7662F7FF-AEB8-9C07-FD28-EEA988CBDCF2">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-11 07:04:17 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</IndexProxy>
+</indexProxies>
+<foreignKeys>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="UETX_SPRA_FK" id="03FF2A6F-D414-75AC-700B-E229A637217F">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-11 07:04:17 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ForeignKey>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="UETX_TXDE_FK" id="ECF51B9C-AD82-1C56-A9B3-C39DD0524DDB">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-11 07:04:17 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ForeignKey>
+</foreignKeys>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="UETX_PK" id="51528DCE-AC74-70FB-1558-46AD68CC1319">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-11 07:04:17 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexSort>SORTED</indexSort>
+</PrimaryKey>
+</primaryKeys>
+</TableProxyOraclev12c>

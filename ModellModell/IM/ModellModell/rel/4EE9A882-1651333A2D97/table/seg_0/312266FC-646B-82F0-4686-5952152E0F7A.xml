@@ -1,15 +1,16 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="312266FC-646B-82F0-4686-5952152E0F7A" name="TEXTDEFINITION">
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="312266FC-646B-82F0-4686-5952152E0F7A" name="TEXT_WERTEBER">
 <createdBy>stb</createdBy>
 <createdTime>2019-03-10 11:52:10 UTC</createdTime>
 <comment>Wertebereich (Domäne) für einen Textl</comment>
 <generatorID>E51CA802-FFC4-55BB-37CF-868A890BDE51</generatorID>
 <ownerDesignName>ModellModell</ownerDesignName>
-<abbreviation>TXDE</abbreviation>
+<ordsAlias>textdefinition</ordsAlias>
+<abbreviation>TXWE</abbreviation>
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
-<Column name="TXDE_NAME" id="61A4CA72-FB66-DF90-A319-8C3DB03A575D">
+<Column name="TXWE_NAME" id="61A4CA72-FB66-DF90-A319-8C3DB03A575D">
 <createdBy>stb</createdBy>
 <createdTime>2019-03-10 11:52:10 UTC</createdTime>
 <generatorID>629BEF31-32A6-C1FA-6808-78CAFD8B8B00</generatorID>
@@ -20,7 +21,7 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="TXDE_MAX_LNG" id="C8412300-672A-1F89-BB4D-0EAE7C0A75A0">
+<Column name="TXWE_MAX_LNG" id="C8412300-672A-1F89-BB4D-0EAE7C0A75A0">
 <createdBy>stb</createdBy>
 <createdTime>2019-03-10 11:52:10 UTC</createdTime>
 <comment>Maximale Länge des Textes in Buchstaben (CHAR)</comment>
@@ -32,7 +33,7 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="TXDE_WERTEREGEL" id="024F3B7F-3BB7-5B92-2AB6-4EDCAA0B4C9A">
+<Column name="TXWE_WERTEREGEL" id="024F3B7F-3BB7-5B92-2AB6-4EDCAA0B4C9A">
 <createdBy>stb</createdBy>
 <createdTime>2019-03-10 11:52:10 UTC</createdTime>
 <comment>Einschränkende Regel für die erlaubten Zeichen eines Textes.</comment>
@@ -45,7 +46,7 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="TXDE_ID" id="F8CE5C84-AC4E-A9B4-DDE6-4D1C30D42CC9">
+<Column name="TXWE_ID" id="F8CE5C84-AC4E-A9B4-DDE6-4D1C30D42CC9">
 <createdBy>stb</createdBy>
 <createdTime>2019-03-10 11:52:10 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
@@ -61,7 +62,7 @@
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
-<ind_PK_UK id="FEDAA9B2-5329-E891-112F-DECFB0D1BB0F" name="TXDE_PK">
+<ind_PK_UK id="FEDAA9B2-5329-E891-112F-DECFB0D1BB0F" name="TXWE_PK">
 <createdBy>stb</createdBy>
 <createdTime>2019-03-10 11:52:10 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
@@ -71,7 +72,7 @@
 <colUsage columnID="F8CE5C84-AC4E-A9B4-DDE6-4D1C30D42CC9"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="AE9532C1-B923-1C67-7BA4-7916194C50DB" name="TXDE_NAME_UN">
+<ind_PK_UK id="AE9532C1-B923-1C67-7BA4-7916194C50DB" name="TXWE_NAME_UN">
 <createdBy>stb</createdBy>
 <createdTime>2019-03-10 11:52:10 UTC</createdTime>
 <generatorID>B83FE2B9-D725-3B55-5E7E-A0F7009C886B</generatorID>
