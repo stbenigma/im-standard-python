@@ -1,10 +1,11 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="6D701BFA-96C8-4476-67E2-B0821BCC7224" name="Wertegruppe">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="6D701BFA-96C8-4476-67E2-B0821BCC7224" name="Wertebereichgruppe">
 <createdBy>stb</createdBy>
 <createdTime>2019-01-29 12:45:08 UTC</createdTime>
 <comment>Es gibt Attribute, die aus mehreren Bestandteilen bestehen, aber für eine Entität wie ein Attribut angesehen werden (können).&lt;br/&gt;Die Bestandteile dieser Attributgruppe treten immer gemeinsam auf.&lt;br/&gt;Dass ein Attribut Teilwerte enthält, für die man sich separat interessiert, verletzt im Grundsatz die 1. Normalform. Wenn aber die Elemente einer Attributgruppe selber Attribute sind und die Gruppe als Platzhalter von mehreren Attributen verstanden werden kann, ist diese Verletzung auflösbar.&lt;br/&gt;&lt;br/&gt;Beispiele:&lt;br/&gt;Telefon-Nr: bestehend aus Landesvorwahl und Rufnummer&lt;br/&gt;Koordinaten bestehend aus X und Y-Koordinate (bzw. Westliche länge und nördliche Breite)&lt;br/&gt;Hotelzimmer-Nr bestehend aus Stockwerk und ZimmerNr (ACHTUNG: nicht 1. Stelle = Stockwerk, sondern 1 Feld Stockwerk und 1 Feld ZimmerNr)&lt;br/&gt;Flugkennung bestehend aus Fluggesellschaft kürzel und Flugnummer (LX 247)</comment>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
+<item key="4EE9A882-EA48-83FA-35DC-1651333A2D97" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 </engineerTo>
 <adequatelyNormalized>NO</adequatelyNormalized>

@@ -184,6 +184,16 @@
          <fileName>defaultdomains</fileName>
          <logicalDatatype>LOGDT017</logicalDatatype>
       </Domain>
+      <Domain class="oracle.dbtools.crest.model.design.Domain" name="Bezeichnung" id="897B91BA-60B8-3A16-793A-97B535605E5E">
+         <createdBy>stb</createdBy>
+         <createdTime>2019-03-13 18:00:28 UTC</createdTime>
+         <comment>Bezeichnung (mit mehr Zeichen als typischerweise ein Name)</comment>
+         <ownerDesignName>System</ownerDesignName>
+         <avTSortOrder>0</avTSortOrder>
+         <dataTypeSize>100 CHAR</dataTypeSize>
+         <fileName>defaultdomains</fileName>
+         <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+      </Domain>
       <Domain class="oracle.dbtools.crest.model.design.Domain" name="Transformationsstatus" id="8E5E9BA3-FC75-C21A-8AC5-C0DB38C2D07A">
          <createdBy>stb</createdBy>
          <createdTime>2019-03-10 11:09:09 UTC</createdTime>

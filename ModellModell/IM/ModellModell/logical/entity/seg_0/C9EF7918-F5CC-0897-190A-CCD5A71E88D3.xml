@@ -1,10 +1,11 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="C9EF7918-F5CC-0897-190A-CCD5A71E88D3" name="Systemattribut">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="C9EF7918-F5CC-0897-190A-CCD5A71E88D3" name="Sschnittstellenattribut">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-23 12:57:13 UTC</createdTime>
 <comment> Attribut in einem System, das mit anderen Systemen ausgetauscht werden soll.&lt;br/&gt; Datentyp, Format und Constraints können in div. Sprachen und Dialekten geführ werden&lt;br/&gt;  SQL (mit dialekt)&lt;br/&gt;  Jason&lt;br/&gt;  XML&lt;br/&gt;</comment>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
+<item key="4EE9A882-EA48-83FA-35DC-1651333A2D97" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 </engineerTo>
 <adequatelyNormalized>NO</adequatelyNormalized>
@@ -22,6 +23,7 @@
 <createdTime>2018-06-23 12:57:13 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
+<item key="4EE9A882-EA48-83FA-35DC-1651333A2D97" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 </engineerTo>
 <use>0</use>
@@ -35,6 +37,7 @@
 <comment>Beschreibung des Attributes im Fremdsystem</comment>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
+<item key="4EE9A882-EA48-83FA-35DC-1651333A2D97" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
@@ -46,6 +49,7 @@
 <createdTime>2018-06-23 12:57:13 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
+<item key="4EE9A882-EA48-83FA-35DC-1651333A2D97" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 </engineerTo>
 <use>0</use>
@@ -59,6 +63,7 @@
 <comment>Technischer Datentyp im Fremdsystem (z.B. String(20), NUMERIC(20,4), integer,date,  etc.)</comment>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
+<item key="4EE9A882-EA48-83FA-35DC-1651333A2D97" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 </engineerTo>
 <use>0</use>
@@ -71,6 +76,7 @@
 <comment>Textliche Formatierung eines numerischen oder Zeitpunkt-Wertes</comment>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
+<item key="4EE9A882-EA48-83FA-35DC-1651333A2D97" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
@@ -85,6 +91,7 @@
 <createdTime>2018-06-23 12:57:13 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
+<item key="4EE9A882-EA48-83FA-35DC-1651333A2D97" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 </engineerTo>
 <pk>true</pk>
