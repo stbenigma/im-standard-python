@@ -1,8 +1,8 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="590887CF-B0AB-E7A0-BCE7-5A6DFF776800" name="Berührungspunkt">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="F79A9731-1F4B-26B6-3A4C-448E04C6D774" name="Externer Auslöser">
 <createdBy>stb</createdBy>
-<createdTime>2019-02-04 13:44:16 UTC</createdTime>
-<comment>Kanal über den Informationen ausgetauscht werden können.&lt;br/&gt;Siehe Channel Cards bei foryouandyourcustomers&lt;br/&gt;&lt;br/&gt;Beispiele:&lt;br/&gt; Telefon&lt;br/&gt; Email&lt;br/&gt; TV-Spot&lt;br/&gt; Facebook&lt;br/&gt; persönliches Gespräch</comment>
+<createdTime>2019-03-15 17:48:52 UTC</createdTime>
+<comment>Ein externes System, das z.B. durch Datenlieferung oder durch Zusenden einer Information (Mail, SMS,  Messgerät) etwas in unserem System anstösst.&lt;br/&gt;</comment>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
 <item key="4EE9A882-EA48-83FA-35DC-1651333A2D97" value="true"/>
@@ -13,11 +13,9 @@
 <fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
 <growthPercent>0</growthPercent>
 <growthType>Year</growthType>
+<hierarchicalParent>5555ED41-5590-13C8-C379-5FC83128838D</hierarchicalParent>
 <maxVolumes>9999999</maxVolumes>
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
-<preferredAbbreviation>BEPT</preferredAbbreviation>
-<shortName>BeruerPunkt</shortName>
-<synonym>touchpoint</synonym>
 <createSurrogateKey>true</createSurrogateKey>
 </Entity>

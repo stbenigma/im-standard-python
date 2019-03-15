@@ -1,0 +1,21 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="6A7CCECE-7C3D-BB08-EEB5-04BE1DEEFBB8" name="Interner Prozess">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-15 17:43:04 UTC</createdTime>
+<comment>Geschäftsprozess, der durch ein System durchgeführt ist. Er kann durch einen Akteur ausglöst werden, die Ergebnisse sind aber typischerweise nicht direkt für den Akteur berstimmt.&lt;br/&gt;&lt;br/&gt;Beispiel:&lt;br/&gt;- (automatisch) Mahnungen versenden&lt;br/&gt;- Lohnzahlungen durchführen.&lt;br/&gt;- nächtliche Datenübernahme ab einem Fremdsystem</comment>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="4EE9A882-EA48-83FA-35DC-1651333A2D97" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<hierarchicalParent>F86E14F1-5AB3-D203-38C5-60F7A9FE6085</hierarchicalParent>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<createSurrogateKey>true</createSurrogateKey>
+</Entity>

@@ -1,8 +1,8 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="590887CF-B0AB-E7A0-BCE7-5A6DFF776800" name="Berührungspunkt">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="FC9A4A82-B2DA-9035-78F2-1D15759278F7" name="Kundenreiseetappe">
 <createdBy>stb</createdBy>
-<createdTime>2019-02-04 13:44:16 UTC</createdTime>
-<comment>Kanal über den Informationen ausgetauscht werden können.&lt;br/&gt;Siehe Channel Cards bei foryouandyourcustomers&lt;br/&gt;&lt;br/&gt;Beispiele:&lt;br/&gt; Telefon&lt;br/&gt; Email&lt;br/&gt; TV-Spot&lt;br/&gt; Facebook&lt;br/&gt; persönliches Gespräch</comment>
+<createdTime>2019-03-15 18:11:41 UTC</createdTime>
+<comment>Teil der Reise, die ein Kunde mit unserem Unternehmen für bestimmte Produkte / Dienstleistungen geht.</comment>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
 <item key="4EE9A882-EA48-83FA-35DC-1651333A2D97" value="true"/>
@@ -16,8 +16,5 @@
 <maxVolumes>9999999</maxVolumes>
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
-<preferredAbbreviation>BEPT</preferredAbbreviation>
-<shortName>BeruerPunkt</shortName>
-<synonym>touchpoint</synonym>
 <createSurrogateKey>true</createSurrogateKey>
 </Entity>

@@ -1,8 +1,8 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="E01B186E-0D97-4357-C767-3929B4283C2B" name="Personenrolle">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="E01B186E-0D97-4357-C767-3929B4283C2B" name="Akteurrolle">
 <createdBy>stb</createdBy>
 <createdTime>2019-02-03 11:55:05 UTC</createdTime>
-<comment>Zuammenfassung eines Aufgaben- und Verantwortungsbereichs, den eine Person ausfüllen kann.&lt;br/&gt;&lt;br/&gt;Eine Personenrolle muss immer als mindestens einen der Subtypen (intern, extern) vorkommen.&lt;br/&gt;&lt;br/&gt;Beispiel:&lt;br/&gt; Produkt Manager&lt;br/&gt; Leiter Marketing &lt;br/&gt; CEO&lt;br/&gt; CFO&lt;br/&gt; Servicetechniker</comment>
+<comment>Zuammenfassung eines Aufgaben- und Verantwortungsbereichs, den eine Person als Akteur im System ausfüllen kann.&lt;br/&gt;&lt;br/&gt;Eine Personenrolle muss immer als mindestens einen der Subtypen (intern, extern) vorkommen.&lt;br/&gt;&lt;br/&gt;Beispiel:&lt;br/&gt; Produkt Manager&lt;br/&gt; Leiter Marketing &lt;br/&gt; CEO&lt;br/&gt; CFO&lt;br/&gt; Servicetechniker</comment>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
 <item key="4EE9A882-EA48-83FA-35DC-1651333A2D97" value="true"/>
@@ -13,10 +13,24 @@
 <fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
 <growthPercent>0</growthPercent>
 <growthType>Year</growthType>
+<hierarchicalParent>5555ED41-5590-13C8-C379-5FC83128838D</hierarchicalParent>
 <maxVolumes>9999999</maxVolumes>
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
-<preferredAbbreviation>PERR</preferredAbbreviation>
-<shortName>PERSROLLE</shortName>
+<preferredAbbreviation>AKRR</preferredAbbreviation>
+<shortName>AKTRO</shortName>
 <createSurrogateKey>true</createSurrogateKey>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Bezeichnung" id="6D5DBE35-6DBC-09ED-8347-C035B31581A7">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-14 13:36:54 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="4EE9A882-EA48-83FA-35DC-1651333A2D97" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
 </Entity>
