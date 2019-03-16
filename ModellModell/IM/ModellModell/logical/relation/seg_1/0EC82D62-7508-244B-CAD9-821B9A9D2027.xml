@@ -1,7 +1,7 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<InheritanceRelation class="oracle.dbtools.crest.model.design.logical.InheritanceRelation" name="Hierarchy_47" directorySegmentName="seg_0" id="E87C05EB-00D0-AF63-DBD4-EB325CFB3548">
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_223" directorySegmentName="seg_1" id="0EC82D62-7508-244B-CAD9-821B9A9D2027">
 <createdBy>stb</createdBy>
-<createdTime>2019-03-15 17:48:01 UTC</createdTime>
+<createdTime>2019-03-16 14:59:38 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
 <item key="4EE9A882-EA48-83FA-35DC-1651333A2D97" value="true"/>
@@ -9,11 +9,13 @@
 </engineerTo>
 <useSurrogateKey>true</useSurrogateKey>
 <identifying>false</identifying>
-<nameOnSource>Super Type</nameOnSource>
-<nameOnTarget>Sub Type</nameOnTarget>
+<nameOnSource>nimmt wahr</nameOnSource>
+<nameOnTarget>wahrgenommen durch</nameOnTarget>
 <optionalSource>true</optionalSource>
 <optionalTarget>true</optionalTarget>
-<sourceEntity>5555ED41-5590-13C8-C379-5FC83128838D</sourceEntity>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>275339EE-5E42-8B7F-EE4D-AA56A94ECA65</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
 <targetEntity>E01B186E-0D97-4357-C767-3929B4283C2B</targetEntity>
 <transferable>true</transferable>
-</InheritanceRelation>
+</Relation>
