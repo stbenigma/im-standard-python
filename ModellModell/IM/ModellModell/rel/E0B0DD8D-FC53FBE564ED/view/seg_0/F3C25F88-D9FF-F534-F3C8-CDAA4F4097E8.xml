@@ -1,0 +1,161 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableView class="oracle.dbtools.crest.model.design.relational.TableView" directorySegmentName="seg_0" id="F3C25F88-D9FF-F534-F3C8-CDAA4F4097E8" schemaObject="19221298-76C4-E323-B35B-7857802DF7E7" name="DMRV_AGGR_FUNC_DIMENSIONS">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>ADMIN</sourceObjSchema>
+<sourceObjName>DMRV_AGGR_FUNC_DIMENSIONS</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:25 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<userDefined>true</userDefined>
+<userDefinedSQL>CREATE OR REPLACE VIEW DMRV_AGGR_FUNC_DIMENSIONS&lt;br/&gt;AS &lt;br/&gt;select  Aggregate_Function_ID, Aggregate_Function_Name, Aggregate_Function_OVID, Dimension_ID, Dimension_Name, Dimension_OVID, Design_OVID from DMRS_AGGR_FUNC_DIMENSIONS</userDefinedSQL>
+<parsed>true</parsed>
+<viewElements>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="AGGREGATE_FUNCTION_ID" id="E75B062B-D3B6-ADB8-95C2-E85C38E9F775">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_AGGR_FUNC_DIMENSIONS</sourceObjSchema>
+<sourceObjName>AGGREGATE_FUNCTION_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:25 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>AGGREGATE_FUNCTION_ID</alias>
+<dataType>VARCHAR2 (70 BYTE)</dataType>
+<headerAlias>AGGREGATE_FUNCTION_ID</headerAlias>
+<reference>false</reference>
+<referencedColumn>CBE082B1-8257-1B5E-30D3-FFF3F3F7DF01</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="AGGREGATE_FUNCTION_NAME" id="9E6DFD67-E27A-8B80-24D7-C80E14B12425">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_AGGR_FUNC_DIMENSIONS</sourceObjSchema>
+<sourceObjName>AGGREGATE_FUNCTION_NAME</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:25 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>AGGREGATE_FUNCTION_NAME</alias>
+<dataType>VARCHAR2 (256 BYTE)</dataType>
+<headerAlias>AGGREGATE_FUNCTION_NAME</headerAlias>
+<reference>false</reference>
+<referencedColumn>E5AB9957-ACD6-6DA8-0780-D65C9DF90A74</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="AGGREGATE_FUNCTION_OVID" id="E418E736-1DB0-9773-878B-9D28AE913009">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_AGGR_FUNC_DIMENSIONS</sourceObjSchema>
+<sourceObjName>AGGREGATE_FUNCTION_OVID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:25 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>AGGREGATE_FUNCTION_OVID</alias>
+<dataType>VARCHAR2 (36 BYTE)</dataType>
+<headerAlias>AGGREGATE_FUNCTION_OVID</headerAlias>
+<reference>false</reference>
+<referencedColumn>0119E1B5-F281-D1E9-A22C-400806E6ECAD</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="DIMENSION_ID" id="F07E1AA6-34F3-D404-B3A0-5E52E41D780C">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_AGGR_FUNC_DIMENSIONS</sourceObjSchema>
+<sourceObjName>DIMENSION_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:25 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>DIMENSION_ID</alias>
+<dataType>VARCHAR2 (70 BYTE)</dataType>
+<headerAlias>DIMENSION_ID</headerAlias>
+<reference>false</reference>
+<referencedColumn>2683D0F1-3A57-8B47-7E1E-B34B906D6314</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="DIMENSION_NAME" id="9E561547-910A-6494-B725-FA7314E23847">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_AGGR_FUNC_DIMENSIONS</sourceObjSchema>
+<sourceObjName>DIMENSION_NAME</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:25 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>DIMENSION_NAME</alias>
+<dataType>VARCHAR2 (256 BYTE)</dataType>
+<headerAlias>DIMENSION_NAME</headerAlias>
+<reference>false</reference>
+<referencedColumn>12D937F7-EE91-7699-6225-90C02E326493</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="DIMENSION_OVID" id="01628C04-74CB-CC2E-7DF1-3D9AA3BB5520">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_AGGR_FUNC_DIMENSIONS</sourceObjSchema>
+<sourceObjName>DIMENSION_OVID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:25 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>DIMENSION_OVID</alias>
+<dataType>VARCHAR2 (36 BYTE)</dataType>
+<headerAlias>DIMENSION_OVID</headerAlias>
+<reference>false</reference>
+<referencedColumn>0F075AED-42F9-8374-CDB0-895125EF178B</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="DESIGN_OVID" id="5224DBF8-440A-23BE-1CAA-910997B480A5">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_AGGR_FUNC_DIMENSIONS</sourceObjSchema>
+<sourceObjName>DESIGN_OVID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:25 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>DESIGN_OVID</alias>
+<dataType>VARCHAR2 (36 BYTE)</dataType>
+<headerAlias>DESIGN_OVID</headerAlias>
+<reference>false</reference>
+<referencedColumn>DD498C20-99E6-03C8-AB8E-FA05D8E2E00D</referencedColumn>
+</viewElement>
+</viewElements>
+<usedObjects>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="CBE082B1-8257-1B5E-30D3-FFF3F3F7DF01">
+<columnName>AGGREGATE_FUNCTION_ID</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_AGGR_FUNC_DIMENSIONS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="E5AB9957-ACD6-6DA8-0780-D65C9DF90A74">
+<columnName>AGGREGATE_FUNCTION_NAME</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_AGGR_FUNC_DIMENSIONS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="0119E1B5-F281-D1E9-A22C-400806E6ECAD">
+<columnName>AGGREGATE_FUNCTION_OVID</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_AGGR_FUNC_DIMENSIONS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="2683D0F1-3A57-8B47-7E1E-B34B906D6314">
+<columnName>DIMENSION_ID</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_AGGR_FUNC_DIMENSIONS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="12D937F7-EE91-7699-6225-90C02E326493">
+<columnName>DIMENSION_NAME</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_AGGR_FUNC_DIMENSIONS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="0F075AED-42F9-8374-CDB0-895125EF178B">
+<columnName>DIMENSION_OVID</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_AGGR_FUNC_DIMENSIONS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="DD498C20-99E6-03C8-AB8E-FA05D8E2E00D">
+<columnName>DESIGN_OVID</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_AGGR_FUNC_DIMENSIONS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="A3731ABF-3E9A-1156-E0CC-08C08E666111">
+<container>true</container>
+<schema>ADMIN</schema>
+<tableName>DMRS_AGGR_FUNC_DIMENSIONS</tableName>
+</UsedObject>
+</usedObjects>
+</TableView>

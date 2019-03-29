@@ -1,0 +1,56 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableView class="oracle.dbtools.crest.model.design.relational.TableView" directorySegmentName="seg_0" id="88911EB9-523D-38A9-ECB2-8A0A151FB8C1" schemaObject="19221298-76C4-E323-B35B-7857802DF7E7" name="DMRS_INSTALLATION">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>ADMIN</sourceObjSchema>
+<sourceObjName>DMRS_INSTALLATION</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:24 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<userDefined>true</userDefined>
+<userDefinedSQL>CREATE OR REPLACE VIEW DMRS_INSTALLATION&lt;br/&gt;AS &lt;br/&gt;select 1.6 DMRS_Persistence_Version, 1.0 DMRS_Reports_Version, to_timestamp(&apos;2019/03/05 17:41:01&apos;,&apos;YYYY/MM/DD HH24:MI:SS&apos;) Created_On from dual </userDefinedSQL>
+<parsed>true</parsed>
+<viewElements>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="DMRS_PERSISTENCE_VERSION" id="A6F3F683-2B44-3B80-4FD0-CCA31AF62D77">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_INSTALLATION</sourceObjSchema>
+<sourceObjName>DMRS_PERSISTENCE_VERSION</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:24 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>DMRS_PERSISTENCE_VERSION</alias>
+<dataType>NUMBER</dataType>
+<headerAlias>DMRS_PERSISTENCE_VERSION</headerAlias>
+<reference>false</reference>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="DMRS_REPORTS_VERSION" id="3C3BDDEF-D402-8E1A-3A35-4553421E0A6E">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_INSTALLATION</sourceObjSchema>
+<sourceObjName>DMRS_REPORTS_VERSION</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:24 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>DMRS_REPORTS_VERSION</alias>
+<dataType>NUMBER</dataType>
+<headerAlias>DMRS_REPORTS_VERSION</headerAlias>
+<reference>false</reference>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="CREATED_ON" id="1341065E-3411-C5CA-ACF9-D8A0F595345C">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_INSTALLATION</sourceObjSchema>
+<sourceObjName>CREATED_ON</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:24 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>CREATED_ON</alias>
+<dataType>TIMESTAMP(9)</dataType>
+<headerAlias>CREATED_ON</headerAlias>
+<reference>false</reference>
+</viewElement>
+</viewElements>
+</TableView>

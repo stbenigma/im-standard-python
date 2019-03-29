@@ -1,0 +1,141 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_1" id="8C988483-2A78-ADDF-8D5A-950807DE16AB" schemaObject="19221298-76C4-E323-B35B-7857802DF7E7" name="DMRS_RESOURCE_LOCATORS">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>ADMIN</sourceObjSchema>
+<sourceObjName>DMRS_RESOURCE_LOCATORS</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:44 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="RESOURCE_LOCATOR_ID" id="95D6A323-E1E4-C190-0735-9AF76C585D9F">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_RESOURCE_LOCATORS</sourceObjSchema>
+<sourceObjName>RESOURCE_LOCATOR_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:51 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>70 BYTE</dataTypeSize>
+<ownDataTypeParameters>70 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="RESOURCE_LOCATOR_OVID" id="F4CF0BDB-0E1C-28BF-9A36-C12787AB6B92">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_RESOURCE_LOCATORS</sourceObjSchema>
+<sourceObjName>RESOURCE_LOCATOR_OVID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:51 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>36 BYTE</dataTypeSize>
+<ownDataTypeParameters>36 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="RESOURCE_LOCATOR_NAME" id="28C18748-A03E-CF0B-761E-744608E970B3">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_RESOURCE_LOCATORS</sourceObjSchema>
+<sourceObjName>RESOURCE_LOCATOR_NAME</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:51 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>256 BYTE</dataTypeSize>
+<ownDataTypeParameters>256 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="BUSINESS_INFO_ID" id="57B52B53-5B09-2353-C039-D7CE695B3DB6">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_RESOURCE_LOCATORS</sourceObjSchema>
+<sourceObjName>BUSINESS_INFO_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:51 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>70 BYTE</dataTypeSize>
+<ownDataTypeParameters>70 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="BUSINESS_INFO_OVID" id="B3E5C206-541B-17C7-0FE4-70FCB9CC7EA1">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_RESOURCE_LOCATORS</sourceObjSchema>
+<sourceObjName>BUSINESS_INFO_OVID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:51 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>36 BYTE</dataTypeSize>
+<ownDataTypeParameters>36 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="BUSINESS_INFO_NAME" id="0BD09E2F-F103-AAAE-5C29-FF8CAF516D0A">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_RESOURCE_LOCATORS</sourceObjSchema>
+<sourceObjName>BUSINESS_INFO_NAME</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:51 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>256 BYTE</dataTypeSize>
+<ownDataTypeParameters>256 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="URL" id="00EFB653-6AB1-16B9-C3E7-FC95C19B153F">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_RESOURCE_LOCATORS</sourceObjSchema>
+<sourceObjName>URL</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:51 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>2000 BYTE</dataTypeSize>
+<ownDataTypeParameters>2000 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DESIGN_OVID" id="547F9F12-CF27-68AD-9863-490C9E1C0BB5">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_RESOURCE_LOCATORS</sourceObjSchema>
+<sourceObjName>DESIGN_OVID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:51 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>36 BYTE</dataTypeSize>
+<ownDataTypeParameters>36 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="D7DD9256-9D05-87F0-FA55-E1C295DE6F8F" schemaObject="19221298-76C4-E323-B35B-7857802DF7E7" name="RESOURCE_LOCATORS_PK_IDX">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>ADMIN</sourceObjSchema>
+<sourceObjName>RESOURCE_LOCATORS_PK_IDX</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:55 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="F4CF0BDB-0E1C-28BF-9A36-C12787AB6B92"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

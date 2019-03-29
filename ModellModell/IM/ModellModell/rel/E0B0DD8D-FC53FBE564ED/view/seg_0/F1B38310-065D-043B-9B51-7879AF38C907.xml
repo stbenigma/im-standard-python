@@ -1,0 +1,281 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableView class="oracle.dbtools.crest.model.design.relational.TableView" directorySegmentName="seg_0" id="F1B38310-065D-043B-9B51-7879AF38C907" schemaObject="19221298-76C4-E323-B35B-7857802DF7E7" name="DMRV_LOCATIONS">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>ADMIN</sourceObjSchema>
+<sourceObjName>DMRV_LOCATIONS</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:31 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<userDefined>true</userDefined>
+<userDefinedSQL>CREATE OR REPLACE VIEW DMRV_LOCATIONS&lt;br/&gt;AS &lt;br/&gt;select  Location_ID, Location_OVID, Location_Name, Business_Info_ID, Business_Info_OVID, Business_Info_Name, Loc_Address, Loc_City, Loc_Post_Code, Loc_Area, Loc_Country, Loc_Type, Design_OVID from DMRS_LOCATIONS</userDefinedSQL>
+<parsed>true</parsed>
+<viewElements>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="LOCATION_ID" id="D76082FD-2EE9-B8F6-EE9F-81B82936D08E">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_LOCATIONS</sourceObjSchema>
+<sourceObjName>LOCATION_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:31 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>LOCATION_ID</alias>
+<dataType>VARCHAR2 (70 BYTE)</dataType>
+<headerAlias>LOCATION_ID</headerAlias>
+<reference>false</reference>
+<referencedColumn>001B5E92-C523-8994-4161-1FC65BDD824E</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="LOCATION_OVID" id="578C9AAC-FD7D-0D7D-098C-1F7A788FDAE8">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_LOCATIONS</sourceObjSchema>
+<sourceObjName>LOCATION_OVID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:31 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>LOCATION_OVID</alias>
+<dataType>VARCHAR2 (36 BYTE)</dataType>
+<headerAlias>LOCATION_OVID</headerAlias>
+<reference>false</reference>
+<referencedColumn>8E966D11-013F-F7F1-1792-DA1B6259E9E3</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="LOCATION_NAME" id="A937E2E2-0C22-4A72-59CB-FC68080E5888">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_LOCATIONS</sourceObjSchema>
+<sourceObjName>LOCATION_NAME</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:31 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>LOCATION_NAME</alias>
+<dataType>VARCHAR2 (256 BYTE)</dataType>
+<headerAlias>LOCATION_NAME</headerAlias>
+<reference>false</reference>
+<referencedColumn>3969181C-0DBE-1607-B0BF-A7D19F198A34</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="BUSINESS_INFO_ID" id="E1C1778E-BF90-3020-7980-53A45754BDF6">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_LOCATIONS</sourceObjSchema>
+<sourceObjName>BUSINESS_INFO_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:31 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>BUSINESS_INFO_ID</alias>
+<dataType>VARCHAR2 (70 BYTE)</dataType>
+<headerAlias>BUSINESS_INFO_ID</headerAlias>
+<reference>false</reference>
+<referencedColumn>10A5B653-9027-F023-31F1-34A322882382</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="BUSINESS_INFO_OVID" id="4C04D717-1807-A720-E158-AF11060902B5">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_LOCATIONS</sourceObjSchema>
+<sourceObjName>BUSINESS_INFO_OVID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:31 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>BUSINESS_INFO_OVID</alias>
+<dataType>VARCHAR2 (36 BYTE)</dataType>
+<headerAlias>BUSINESS_INFO_OVID</headerAlias>
+<reference>false</reference>
+<referencedColumn>80390C3A-E1B7-34AA-E201-794E7BA6CC12</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="BUSINESS_INFO_NAME" id="5B4249EB-F210-6116-3E84-D60F88C3E49C">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_LOCATIONS</sourceObjSchema>
+<sourceObjName>BUSINESS_INFO_NAME</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:31 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>BUSINESS_INFO_NAME</alias>
+<dataType>VARCHAR2 (256 BYTE)</dataType>
+<headerAlias>BUSINESS_INFO_NAME</headerAlias>
+<reference>false</reference>
+<referencedColumn>630272FA-9E01-7DDA-371C-1415B58AE2B9</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="LOC_ADDRESS" id="613B13E9-D7F4-B292-ACA1-5C7F82A406FE">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_LOCATIONS</sourceObjSchema>
+<sourceObjName>LOC_ADDRESS</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:31 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>LOC_ADDRESS</alias>
+<dataType>VARCHAR2 (1000 BYTE)</dataType>
+<headerAlias>LOC_ADDRESS</headerAlias>
+<reference>false</reference>
+<referencedColumn>919CD747-BEC3-95FA-0013-03EFA0044DAE</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="LOC_CITY" id="3804029B-C81A-7DCD-3B20-E09942E78588">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_LOCATIONS</sourceObjSchema>
+<sourceObjName>LOC_CITY</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:31 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>LOC_CITY</alias>
+<dataType>VARCHAR2 (1000 BYTE)</dataType>
+<headerAlias>LOC_CITY</headerAlias>
+<reference>false</reference>
+<referencedColumn>5576B0A4-CFC6-C999-28EB-EB80AB5E5767</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="LOC_POST_CODE" id="591849B9-2F48-1CF9-B661-BBF26393D540">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_LOCATIONS</sourceObjSchema>
+<sourceObjName>LOC_POST_CODE</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:31 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>LOC_POST_CODE</alias>
+<dataType>VARCHAR2 (1000 BYTE)</dataType>
+<headerAlias>LOC_POST_CODE</headerAlias>
+<reference>false</reference>
+<referencedColumn>19770625-AC2D-62DB-4355-3CD85CED24CE</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="LOC_AREA" id="74B30EAE-4FF9-485A-D1E8-3A98D51C83B4">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_LOCATIONS</sourceObjSchema>
+<sourceObjName>LOC_AREA</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:31 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>LOC_AREA</alias>
+<dataType>VARCHAR2 (1000 BYTE)</dataType>
+<headerAlias>LOC_AREA</headerAlias>
+<reference>false</reference>
+<referencedColumn>935962D0-F490-3714-A7E6-B171062BEE59</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="LOC_COUNTRY" id="3F65EC8D-6E8F-2B56-A672-6BA04BEB2E88">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_LOCATIONS</sourceObjSchema>
+<sourceObjName>LOC_COUNTRY</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:31 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>LOC_COUNTRY</alias>
+<dataType>VARCHAR2 (1000 BYTE)</dataType>
+<headerAlias>LOC_COUNTRY</headerAlias>
+<reference>false</reference>
+<referencedColumn>05278BAE-8F21-0092-0DCF-73F574CA3847</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="LOC_TYPE" id="D98962F8-F9A5-19BE-0C46-DB2E7D152421">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_LOCATIONS</sourceObjSchema>
+<sourceObjName>LOC_TYPE</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:31 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>LOC_TYPE</alias>
+<dataType>VARCHAR2 (1000 BYTE)</dataType>
+<headerAlias>LOC_TYPE</headerAlias>
+<reference>false</reference>
+<referencedColumn>66ACDDF0-70F1-38A2-7825-F0E2973DC905</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="DESIGN_OVID" id="BBE42979-5037-A51A-C731-BA6BAA2F7188">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_LOCATIONS</sourceObjSchema>
+<sourceObjName>DESIGN_OVID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:31 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>DESIGN_OVID</alias>
+<dataType>VARCHAR2 (36 BYTE)</dataType>
+<headerAlias>DESIGN_OVID</headerAlias>
+<reference>false</reference>
+<referencedColumn>7F34058D-5036-CF24-39DB-FE8102777A70</referencedColumn>
+</viewElement>
+</viewElements>
+<usedObjects>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="001B5E92-C523-8994-4161-1FC65BDD824E">
+<columnName>LOCATION_ID</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_LOCATIONS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="8E966D11-013F-F7F1-1792-DA1B6259E9E3">
+<columnName>LOCATION_OVID</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_LOCATIONS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="3969181C-0DBE-1607-B0BF-A7D19F198A34">
+<columnName>LOCATION_NAME</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_LOCATIONS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="10A5B653-9027-F023-31F1-34A322882382">
+<columnName>BUSINESS_INFO_ID</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_LOCATIONS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="80390C3A-E1B7-34AA-E201-794E7BA6CC12">
+<columnName>BUSINESS_INFO_OVID</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_LOCATIONS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="630272FA-9E01-7DDA-371C-1415B58AE2B9">
+<columnName>BUSINESS_INFO_NAME</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_LOCATIONS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="919CD747-BEC3-95FA-0013-03EFA0044DAE">
+<columnName>LOC_ADDRESS</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_LOCATIONS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="5576B0A4-CFC6-C999-28EB-EB80AB5E5767">
+<columnName>LOC_CITY</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_LOCATIONS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="19770625-AC2D-62DB-4355-3CD85CED24CE">
+<columnName>LOC_POST_CODE</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_LOCATIONS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="935962D0-F490-3714-A7E6-B171062BEE59">
+<columnName>LOC_AREA</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_LOCATIONS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="05278BAE-8F21-0092-0DCF-73F574CA3847">
+<columnName>LOC_COUNTRY</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_LOCATIONS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="66ACDDF0-70F1-38A2-7825-F0E2973DC905">
+<columnName>LOC_TYPE</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_LOCATIONS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="7F34058D-5036-CF24-39DB-FE8102777A70">
+<columnName>DESIGN_OVID</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_LOCATIONS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="E8ED4EA3-0C0C-E63E-F5A8-161D716FD640">
+<container>true</container>
+<schema>ADMIN</schema>
+<tableName>DMRS_LOCATIONS</tableName>
+</UsedObject>
+</usedObjects>
+</TableView>

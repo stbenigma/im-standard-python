@@ -1,0 +1,161 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableView class="oracle.dbtools.crest.model.design.relational.TableView" directorySegmentName="seg_0" id="22C9D74D-011B-F4D7-E194-B01629F94B6E" schemaObject="19221298-76C4-E323-B35B-7857802DF7E7" name="DMRV_CONTACT_EMAILS">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>ADMIN</sourceObjSchema>
+<sourceObjName>DMRV_CONTACT_EMAILS</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:26 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<userDefined>true</userDefined>
+<userDefinedSQL>CREATE OR REPLACE VIEW DMRV_CONTACT_EMAILS&lt;br/&gt;AS &lt;br/&gt;select  Contact_ID, Contact_OVID, Contact_Name, Email_ID, Email_OVID, Email_Name, Design_OVID from DMRS_CONTACT_EMAILS</userDefinedSQL>
+<parsed>true</parsed>
+<viewElements>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="CONTACT_ID" id="AD688E92-8BA6-8EAD-BEF8-C2F968FA04DF">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_CONTACT_EMAILS</sourceObjSchema>
+<sourceObjName>CONTACT_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:26 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>CONTACT_ID</alias>
+<dataType>VARCHAR2 (70 BYTE)</dataType>
+<headerAlias>CONTACT_ID</headerAlias>
+<reference>false</reference>
+<referencedColumn>A1ED3096-BB54-D2E6-CA00-976D6DA6E147</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="CONTACT_OVID" id="D9AAFBFC-10E7-BB11-6F79-71344A92363F">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_CONTACT_EMAILS</sourceObjSchema>
+<sourceObjName>CONTACT_OVID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:26 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>CONTACT_OVID</alias>
+<dataType>VARCHAR2 (36 BYTE)</dataType>
+<headerAlias>CONTACT_OVID</headerAlias>
+<reference>false</reference>
+<referencedColumn>A9276219-611C-F30D-0DBF-102A339E4258</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="CONTACT_NAME" id="23BE3079-35C2-9B73-8D32-1982CD09B32D">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_CONTACT_EMAILS</sourceObjSchema>
+<sourceObjName>CONTACT_NAME</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:26 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>CONTACT_NAME</alias>
+<dataType>VARCHAR2 (256 BYTE)</dataType>
+<headerAlias>CONTACT_NAME</headerAlias>
+<reference>false</reference>
+<referencedColumn>96372443-0853-38B2-A5FB-18A89E85A284</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="EMAIL_ID" id="99EFFAF6-BD40-9EE3-511F-505D342988F9">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_CONTACT_EMAILS</sourceObjSchema>
+<sourceObjName>EMAIL_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:26 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>EMAIL_ID</alias>
+<dataType>VARCHAR2 (70 BYTE)</dataType>
+<headerAlias>EMAIL_ID</headerAlias>
+<reference>false</reference>
+<referencedColumn>F2E6ABC6-0110-9E17-1AA5-D836646EDEB4</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="EMAIL_OVID" id="69A48426-0E4E-7849-6480-AC93FBE52DDF">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_CONTACT_EMAILS</sourceObjSchema>
+<sourceObjName>EMAIL_OVID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:26 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>EMAIL_OVID</alias>
+<dataType>VARCHAR2 (36 BYTE)</dataType>
+<headerAlias>EMAIL_OVID</headerAlias>
+<reference>false</reference>
+<referencedColumn>6F4CCACA-7251-496F-6ABB-37D5A7C4A40D</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="EMAIL_NAME" id="459D47D3-9B75-7883-371C-F45C146297F9">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_CONTACT_EMAILS</sourceObjSchema>
+<sourceObjName>EMAIL_NAME</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:26 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>EMAIL_NAME</alias>
+<dataType>VARCHAR2 (256 BYTE)</dataType>
+<headerAlias>EMAIL_NAME</headerAlias>
+<reference>false</reference>
+<referencedColumn>CD6A3EAA-ACEF-39CF-B88C-FE2A5D4CAEDD</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="DESIGN_OVID" id="63F508F8-E63E-1539-B6C7-5E4BE5727689">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_CONTACT_EMAILS</sourceObjSchema>
+<sourceObjName>DESIGN_OVID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:26 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>DESIGN_OVID</alias>
+<dataType>VARCHAR2 (36 BYTE)</dataType>
+<headerAlias>DESIGN_OVID</headerAlias>
+<reference>false</reference>
+<referencedColumn>3213F45C-DA88-8935-6904-4884E5E92D12</referencedColumn>
+</viewElement>
+</viewElements>
+<usedObjects>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="A1ED3096-BB54-D2E6-CA00-976D6DA6E147">
+<columnName>CONTACT_ID</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_CONTACT_EMAILS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="A9276219-611C-F30D-0DBF-102A339E4258">
+<columnName>CONTACT_OVID</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_CONTACT_EMAILS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="96372443-0853-38B2-A5FB-18A89E85A284">
+<columnName>CONTACT_NAME</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_CONTACT_EMAILS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="F2E6ABC6-0110-9E17-1AA5-D836646EDEB4">
+<columnName>EMAIL_ID</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_CONTACT_EMAILS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="6F4CCACA-7251-496F-6ABB-37D5A7C4A40D">
+<columnName>EMAIL_OVID</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_CONTACT_EMAILS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="CD6A3EAA-ACEF-39CF-B88C-FE2A5D4CAEDD">
+<columnName>EMAIL_NAME</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_CONTACT_EMAILS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="3213F45C-DA88-8935-6904-4884E5E92D12">
+<columnName>DESIGN_OVID</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_CONTACT_EMAILS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="2095E4FD-077E-DBC9-875A-54349E8BB798">
+<container>true</container>
+<schema>ADMIN</schema>
+<tableName>DMRS_CONTACT_EMAILS</tableName>
+</UsedObject>
+</usedObjects>
+</TableView>

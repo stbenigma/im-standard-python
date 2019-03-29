@@ -1,0 +1,161 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableView class="oracle.dbtools.crest.model.design.relational.TableView" directorySegmentName="seg_1" id="46F14FB5-C8DF-897D-D1F1-11BCB3BD8328" schemaObject="19221298-76C4-E323-B35B-7857802DF7E7" name="DMRV_RECORD_STRUCT_EXT_DATAS">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>ADMIN</sourceObjSchema>
+<sourceObjName>DMRV_RECORD_STRUCT_EXT_DATAS</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:33 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<userDefined>true</userDefined>
+<userDefinedSQL>CREATE OR REPLACE VIEW DMRV_RECORD_STRUCT_EXT_DATAS&lt;br/&gt;AS &lt;br/&gt;select  Record_Structure_ID, Record_Structure_OVID, Record_Structure_Name, External_Data_ID, External_Data_OVID, External_Data_Name, Design_OVID from DMRS_RECORD_STRUCT_EXT_DATAS</userDefinedSQL>
+<parsed>true</parsed>
+<viewElements>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="RECORD_STRUCTURE_ID" id="3CD2A2AE-1C09-3FBC-6DF4-8D04FAC6CFB2">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_RECORD_STRUCT_EXT_DATAS</sourceObjSchema>
+<sourceObjName>RECORD_STRUCTURE_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:33 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>RECORD_STRUCTURE_ID</alias>
+<dataType>VARCHAR2 (70 BYTE)</dataType>
+<headerAlias>RECORD_STRUCTURE_ID</headerAlias>
+<reference>false</reference>
+<referencedColumn>235BBC62-FDB3-E41A-4BC5-D40F008BB6DA</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="RECORD_STRUCTURE_OVID" id="F5111670-78EE-98BC-872F-DDE466CDD412">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_RECORD_STRUCT_EXT_DATAS</sourceObjSchema>
+<sourceObjName>RECORD_STRUCTURE_OVID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:33 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>RECORD_STRUCTURE_OVID</alias>
+<dataType>VARCHAR2 (36 BYTE)</dataType>
+<headerAlias>RECORD_STRUCTURE_OVID</headerAlias>
+<reference>false</reference>
+<referencedColumn>3EBD06FA-C183-2516-9DA8-93DED2065569</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="RECORD_STRUCTURE_NAME" id="EEABB7F6-D7F4-25E4-EE93-ECCDE9801202">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_RECORD_STRUCT_EXT_DATAS</sourceObjSchema>
+<sourceObjName>RECORD_STRUCTURE_NAME</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:33 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>RECORD_STRUCTURE_NAME</alias>
+<dataType>VARCHAR2 (256 BYTE)</dataType>
+<headerAlias>RECORD_STRUCTURE_NAME</headerAlias>
+<reference>false</reference>
+<referencedColumn>FF03CB4B-E3E3-F89D-5B12-333323418824</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="EXTERNAL_DATA_ID" id="A0902132-26DE-3FF4-9EF1-BF282BC99524">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_RECORD_STRUCT_EXT_DATAS</sourceObjSchema>
+<sourceObjName>EXTERNAL_DATA_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:33 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>EXTERNAL_DATA_ID</alias>
+<dataType>VARCHAR2 (70 BYTE)</dataType>
+<headerAlias>EXTERNAL_DATA_ID</headerAlias>
+<reference>false</reference>
+<referencedColumn>A28B8FCF-6E14-1468-09E6-608F1A799EBA</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="EXTERNAL_DATA_OVID" id="F3E11A6C-8CE5-F331-1022-B127544DFA77">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_RECORD_STRUCT_EXT_DATAS</sourceObjSchema>
+<sourceObjName>EXTERNAL_DATA_OVID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:33 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>EXTERNAL_DATA_OVID</alias>
+<dataType>VARCHAR2 (36 BYTE)</dataType>
+<headerAlias>EXTERNAL_DATA_OVID</headerAlias>
+<reference>false</reference>
+<referencedColumn>4441BE6C-6062-9D0D-1505-3CD8C070A033</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="EXTERNAL_DATA_NAME" id="96453FA7-05F4-FB5E-106F-2F9DA7CF0F76">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_RECORD_STRUCT_EXT_DATAS</sourceObjSchema>
+<sourceObjName>EXTERNAL_DATA_NAME</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:33 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>EXTERNAL_DATA_NAME</alias>
+<dataType>VARCHAR2 (256 BYTE)</dataType>
+<headerAlias>EXTERNAL_DATA_NAME</headerAlias>
+<reference>false</reference>
+<referencedColumn>F3A2573C-6582-64C9-6BB9-57F1B410C7F4</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="DESIGN_OVID" id="2D9E6025-CC14-644C-E7EB-8C149E85AF2E">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_RECORD_STRUCT_EXT_DATAS</sourceObjSchema>
+<sourceObjName>DESIGN_OVID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:33 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>DESIGN_OVID</alias>
+<dataType>VARCHAR2 (36 BYTE)</dataType>
+<headerAlias>DESIGN_OVID</headerAlias>
+<reference>false</reference>
+<referencedColumn>8D10C913-8193-39F3-286E-4FE565361524</referencedColumn>
+</viewElement>
+</viewElements>
+<usedObjects>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="235BBC62-FDB3-E41A-4BC5-D40F008BB6DA">
+<columnName>RECORD_STRUCTURE_ID</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_RECORD_STRUCT_EXT_DATAS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="3EBD06FA-C183-2516-9DA8-93DED2065569">
+<columnName>RECORD_STRUCTURE_OVID</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_RECORD_STRUCT_EXT_DATAS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="FF03CB4B-E3E3-F89D-5B12-333323418824">
+<columnName>RECORD_STRUCTURE_NAME</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_RECORD_STRUCT_EXT_DATAS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="A28B8FCF-6E14-1468-09E6-608F1A799EBA">
+<columnName>EXTERNAL_DATA_ID</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_RECORD_STRUCT_EXT_DATAS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="4441BE6C-6062-9D0D-1505-3CD8C070A033">
+<columnName>EXTERNAL_DATA_OVID</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_RECORD_STRUCT_EXT_DATAS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="F3A2573C-6582-64C9-6BB9-57F1B410C7F4">
+<columnName>EXTERNAL_DATA_NAME</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_RECORD_STRUCT_EXT_DATAS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="8D10C913-8193-39F3-286E-4FE565361524">
+<columnName>DESIGN_OVID</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_RECORD_STRUCT_EXT_DATAS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="6A3148DC-E06B-69AE-D747-775F1A97259D">
+<container>true</container>
+<schema>ADMIN</schema>
+<tableName>DMRS_RECORD_STRUCT_EXT_DATAS</tableName>
+</UsedObject>
+</usedObjects>
+</TableView>

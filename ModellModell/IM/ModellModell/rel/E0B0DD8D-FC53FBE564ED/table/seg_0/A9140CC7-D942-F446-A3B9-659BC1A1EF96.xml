@@ -1,0 +1,141 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="A9140CC7-D942-F446-A3B9-659BC1A1EF96" schemaObject="19221298-76C4-E323-B35B-7857802DF7E7" name="DMRS_DIMENSION_CALC_ATTRS">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>ADMIN</sourceObjSchema>
+<sourceObjName>DMRS_DIMENSION_CALC_ATTRS</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:42 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="DIMENSION_ID" id="CDEFD51F-5EB8-A556-FF6D-26C5C038206E">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_DIMENSION_CALC_ATTRS</sourceObjSchema>
+<sourceObjName>DIMENSION_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:47 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>70 BYTE</dataTypeSize>
+<ownDataTypeParameters>70 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DIMENSION_NAME" id="A58F1E8B-EAE4-A838-8AB3-C08760B522F1">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_DIMENSION_CALC_ATTRS</sourceObjSchema>
+<sourceObjName>DIMENSION_NAME</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:47 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>256 BYTE</dataTypeSize>
+<ownDataTypeParameters>256 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DIMENSION_OVID" id="9AF8E8E2-7F7E-1CF7-7400-8DA6D3090882">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_DIMENSION_CALC_ATTRS</sourceObjSchema>
+<sourceObjName>DIMENSION_OVID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:47 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>36 BYTE</dataTypeSize>
+<ownDataTypeParameters>36 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="CALC_ATTRIBUTE_ID" id="72A2D9DB-44EF-7290-88F9-FF770AE9B0E2">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_DIMENSION_CALC_ATTRS</sourceObjSchema>
+<sourceObjName>CALC_ATTRIBUTE_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:47 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>70 BYTE</dataTypeSize>
+<ownDataTypeParameters>70 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="CALC_ATTRIBUTE_NAME" id="B799AFA4-42D7-2CA8-FB4A-838953E8D06A">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_DIMENSION_CALC_ATTRS</sourceObjSchema>
+<sourceObjName>CALC_ATTRIBUTE_NAME</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:47 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>256 BYTE</dataTypeSize>
+<ownDataTypeParameters>256 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="CALC_ATTRIBUTE_OVID" id="B723FFC6-BF19-3C95-CE4A-FF9EE38AFA70">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_DIMENSION_CALC_ATTRS</sourceObjSchema>
+<sourceObjName>CALC_ATTRIBUTE_OVID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:47 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>36 BYTE</dataTypeSize>
+<ownDataTypeParameters>36 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="CALCULATED_EXPR" id="3B1B578F-F0F1-2CA2-5371-C3BCB299F559">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_DIMENSION_CALC_ATTRS</sourceObjSchema>
+<sourceObjName>CALCULATED_EXPR</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:47 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>4000 BYTE</dataTypeSize>
+<ownDataTypeParameters>4000 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DESIGN_OVID" id="26F2A9E0-C20F-547D-55E9-40CFC5806D65">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_DIMENSION_CALC_ATTRS</sourceObjSchema>
+<sourceObjName>DESIGN_OVID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:47 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>36 BYTE</dataTypeSize>
+<ownDataTypeParameters>36 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="42FDE464-8B95-7E27-1FB7-8094BB217BD9" schemaObject="19221298-76C4-E323-B35B-7857802DF7E7" name="DIMENSION_CALC_ATTRS_FK_IDX">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>ADMIN</sourceObjSchema>
+<sourceObjName>DIMENSION_CALC_ATTRS_FK_IDX</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:54 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="9AF8E8E2-7F7E-1CF7-7400-8DA6D3090882"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

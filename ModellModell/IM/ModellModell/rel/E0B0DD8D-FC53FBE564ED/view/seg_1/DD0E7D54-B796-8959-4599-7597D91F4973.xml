@@ -1,0 +1,241 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableView class="oracle.dbtools.crest.model.design.relational.TableView" directorySegmentName="seg_1" id="DD0E7D54-B796-8959-4599-7597D91F4973" schemaObject="19221298-76C4-E323-B35B-7857802DF7E7" name="DMRV_TASK_PARAMS_ITEMS">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>ADMIN</sourceObjSchema>
+<sourceObjName>DMRV_TASK_PARAMS_ITEMS</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:35 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<userDefined>true</userDefined>
+<userDefinedSQL>CREATE OR REPLACE VIEW DMRV_TASK_PARAMS_ITEMS&lt;br/&gt;AS &lt;br/&gt;select  Task_Params_Item_ID, Task_Params_Item_OVID, Task_Params_Item_Name, Task_Params_ID, Task_Params_OVID, Task_Params_Name, Logical_Type_ID, Logical_Type_OVID, Logical_Type_Name, Task_Params_Item_Type, Design_OVID from DMRS_TASK_PARAMS_ITEMS</userDefinedSQL>
+<parsed>true</parsed>
+<viewElements>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="TASK_PARAMS_ITEM_ID" id="C2DD808E-69C8-5217-2D59-137A687728D3">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_TASK_PARAMS_ITEMS</sourceObjSchema>
+<sourceObjName>TASK_PARAMS_ITEM_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:35 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>TASK_PARAMS_ITEM_ID</alias>
+<dataType>VARCHAR2 (70 BYTE)</dataType>
+<headerAlias>TASK_PARAMS_ITEM_ID</headerAlias>
+<reference>false</reference>
+<referencedColumn>E4B3EA44-D06A-2318-081B-77A2D59F7D0F</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="TASK_PARAMS_ITEM_OVID" id="DA7C5837-D73A-663D-D55D-DDFD2C37FD7B">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_TASK_PARAMS_ITEMS</sourceObjSchema>
+<sourceObjName>TASK_PARAMS_ITEM_OVID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:35 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>TASK_PARAMS_ITEM_OVID</alias>
+<dataType>VARCHAR2 (36 BYTE)</dataType>
+<headerAlias>TASK_PARAMS_ITEM_OVID</headerAlias>
+<reference>false</reference>
+<referencedColumn>C364F412-4E12-E21F-5969-92CFEB997B5E</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="TASK_PARAMS_ITEM_NAME" id="F28377E4-6513-18D9-6213-45BD27802F79">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_TASK_PARAMS_ITEMS</sourceObjSchema>
+<sourceObjName>TASK_PARAMS_ITEM_NAME</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:35 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>TASK_PARAMS_ITEM_NAME</alias>
+<dataType>VARCHAR2 (256 BYTE)</dataType>
+<headerAlias>TASK_PARAMS_ITEM_NAME</headerAlias>
+<reference>false</reference>
+<referencedColumn>0B1DD2CF-2F56-B5FD-B024-97E334886BE0</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="TASK_PARAMS_ID" id="10A8F9A3-9CF7-726D-8D6C-327253DF9121">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_TASK_PARAMS_ITEMS</sourceObjSchema>
+<sourceObjName>TASK_PARAMS_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:35 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>TASK_PARAMS_ID</alias>
+<dataType>VARCHAR2 (70 BYTE)</dataType>
+<headerAlias>TASK_PARAMS_ID</headerAlias>
+<reference>false</reference>
+<referencedColumn>BFF8B212-5965-0686-0B81-986243C55CE0</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="TASK_PARAMS_OVID" id="1146084D-EA44-932A-1EBA-697644CBF0E0">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_TASK_PARAMS_ITEMS</sourceObjSchema>
+<sourceObjName>TASK_PARAMS_OVID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:35 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>TASK_PARAMS_OVID</alias>
+<dataType>VARCHAR2 (36 BYTE)</dataType>
+<headerAlias>TASK_PARAMS_OVID</headerAlias>
+<reference>false</reference>
+<referencedColumn>0A431EB9-7D14-A39F-2470-11C75DAF9FEB</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="TASK_PARAMS_NAME" id="2954BB3F-D01F-0E87-861C-DB76DAA06E30">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_TASK_PARAMS_ITEMS</sourceObjSchema>
+<sourceObjName>TASK_PARAMS_NAME</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:35 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>TASK_PARAMS_NAME</alias>
+<dataType>VARCHAR2 (256 BYTE)</dataType>
+<headerAlias>TASK_PARAMS_NAME</headerAlias>
+<reference>false</reference>
+<referencedColumn>9707682C-B4F3-C5C5-6D42-83D28876C4D9</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="LOGICAL_TYPE_ID" id="72DF0B84-D8E6-282D-70DD-41C600064C54">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_TASK_PARAMS_ITEMS</sourceObjSchema>
+<sourceObjName>LOGICAL_TYPE_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:35 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>LOGICAL_TYPE_ID</alias>
+<dataType>VARCHAR2 (70 BYTE)</dataType>
+<headerAlias>LOGICAL_TYPE_ID</headerAlias>
+<reference>false</reference>
+<referencedColumn>23832E53-B33A-CDDF-19BC-AB612DBFFBE4</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="LOGICAL_TYPE_OVID" id="76F9C416-B970-55CF-9106-2AE957024B71">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_TASK_PARAMS_ITEMS</sourceObjSchema>
+<sourceObjName>LOGICAL_TYPE_OVID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:35 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>LOGICAL_TYPE_OVID</alias>
+<dataType>VARCHAR2 (36 BYTE)</dataType>
+<headerAlias>LOGICAL_TYPE_OVID</headerAlias>
+<reference>false</reference>
+<referencedColumn>C2F45A10-ABCA-B84D-58B2-A77119FA5B30</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="LOGICAL_TYPE_NAME" id="C8CBBA99-39A9-3CF3-F6F5-AEFD4906E762">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_TASK_PARAMS_ITEMS</sourceObjSchema>
+<sourceObjName>LOGICAL_TYPE_NAME</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:35 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>LOGICAL_TYPE_NAME</alias>
+<dataType>VARCHAR2 (256 BYTE)</dataType>
+<headerAlias>LOGICAL_TYPE_NAME</headerAlias>
+<reference>false</reference>
+<referencedColumn>35812B32-5030-7736-E92D-5A2F3823F4AA</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="TASK_PARAMS_ITEM_TYPE" id="9CAE0895-5983-FBBB-5178-C27A2BB83C19">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_TASK_PARAMS_ITEMS</sourceObjSchema>
+<sourceObjName>TASK_PARAMS_ITEM_TYPE</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:35 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>TASK_PARAMS_ITEM_TYPE</alias>
+<dataType>VARCHAR2 (30 BYTE)</dataType>
+<headerAlias>TASK_PARAMS_ITEM_TYPE</headerAlias>
+<reference>false</reference>
+<referencedColumn>ABAD0984-50BA-6EA5-CB8B-C24374FC4338</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="DESIGN_OVID" id="7010147A-05DB-8852-7E12-C0ADC336485E">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_TASK_PARAMS_ITEMS</sourceObjSchema>
+<sourceObjName>DESIGN_OVID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:35 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>DESIGN_OVID</alias>
+<dataType>VARCHAR2 (36 BYTE)</dataType>
+<headerAlias>DESIGN_OVID</headerAlias>
+<reference>false</reference>
+<referencedColumn>0442C6AF-2108-3CE8-62F2-85BCE7E3C37A</referencedColumn>
+</viewElement>
+</viewElements>
+<usedObjects>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="E4B3EA44-D06A-2318-081B-77A2D59F7D0F">
+<columnName>TASK_PARAMS_ITEM_ID</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_TASK_PARAMS_ITEMS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="C364F412-4E12-E21F-5969-92CFEB997B5E">
+<columnName>TASK_PARAMS_ITEM_OVID</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_TASK_PARAMS_ITEMS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="0B1DD2CF-2F56-B5FD-B024-97E334886BE0">
+<columnName>TASK_PARAMS_ITEM_NAME</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_TASK_PARAMS_ITEMS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="BFF8B212-5965-0686-0B81-986243C55CE0">
+<columnName>TASK_PARAMS_ID</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_TASK_PARAMS_ITEMS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="0A431EB9-7D14-A39F-2470-11C75DAF9FEB">
+<columnName>TASK_PARAMS_OVID</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_TASK_PARAMS_ITEMS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="9707682C-B4F3-C5C5-6D42-83D28876C4D9">
+<columnName>TASK_PARAMS_NAME</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_TASK_PARAMS_ITEMS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="23832E53-B33A-CDDF-19BC-AB612DBFFBE4">
+<columnName>LOGICAL_TYPE_ID</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_TASK_PARAMS_ITEMS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="C2F45A10-ABCA-B84D-58B2-A77119FA5B30">
+<columnName>LOGICAL_TYPE_OVID</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_TASK_PARAMS_ITEMS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="35812B32-5030-7736-E92D-5A2F3823F4AA">
+<columnName>LOGICAL_TYPE_NAME</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_TASK_PARAMS_ITEMS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="ABAD0984-50BA-6EA5-CB8B-C24374FC4338">
+<columnName>TASK_PARAMS_ITEM_TYPE</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_TASK_PARAMS_ITEMS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="0442C6AF-2108-3CE8-62F2-85BCE7E3C37A">
+<columnName>DESIGN_OVID</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_TASK_PARAMS_ITEMS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="8D722AFB-7848-7E3B-FD9A-D61CF76A8475">
+<container>true</container>
+<schema>ADMIN</schema>
+<tableName>DMRS_TASK_PARAMS_ITEMS</tableName>
+</UsedObject>
+</usedObjects>
+</TableView>

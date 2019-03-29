@@ -1,0 +1,181 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableView class="oracle.dbtools.crest.model.design.relational.TableView" directorySegmentName="seg_0" id="EC6290AD-1029-B556-0EDE-0B4B6E2C0283" schemaObject="19221298-76C4-E323-B35B-7857802DF7E7" name="DMRV_EXT_AGENT_FLOWS">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>ADMIN</sourceObjSchema>
+<sourceObjName>DMRV_EXT_AGENT_FLOWS</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:29 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<userDefined>true</userDefined>
+<userDefinedSQL>CREATE OR REPLACE VIEW DMRV_EXT_AGENT_FLOWS&lt;br/&gt;AS &lt;br/&gt;select  External_Agent_ID, External_Agent_OVID, External_Agent_Name, Flow_ID, Flow_OVID, Flow_Name, Incoming_Outgoing_Flag, Design_OVID from DMRS_EXT_AGENT_FLOWS</userDefinedSQL>
+<parsed>true</parsed>
+<viewElements>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="EXTERNAL_AGENT_ID" id="363D9AAF-B006-FAE8-B063-DD266109795D">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_EXT_AGENT_FLOWS</sourceObjSchema>
+<sourceObjName>EXTERNAL_AGENT_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:29 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>EXTERNAL_AGENT_ID</alias>
+<dataType>VARCHAR2 (70 BYTE)</dataType>
+<headerAlias>EXTERNAL_AGENT_ID</headerAlias>
+<reference>false</reference>
+<referencedColumn>286DA850-1D12-87EE-08B4-FD903479DBD9</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="EXTERNAL_AGENT_OVID" id="2329E39E-02D4-CFDE-4D71-F959F398F9D1">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_EXT_AGENT_FLOWS</sourceObjSchema>
+<sourceObjName>EXTERNAL_AGENT_OVID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:29 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>EXTERNAL_AGENT_OVID</alias>
+<dataType>VARCHAR2 (36 BYTE)</dataType>
+<headerAlias>EXTERNAL_AGENT_OVID</headerAlias>
+<reference>false</reference>
+<referencedColumn>DA8B5385-75BB-FF35-1798-07DA167D84E0</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="EXTERNAL_AGENT_NAME" id="E605A88E-E92B-FD8C-5D70-B2CA81C294E0">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_EXT_AGENT_FLOWS</sourceObjSchema>
+<sourceObjName>EXTERNAL_AGENT_NAME</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:29 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>EXTERNAL_AGENT_NAME</alias>
+<dataType>VARCHAR2 (256 BYTE)</dataType>
+<headerAlias>EXTERNAL_AGENT_NAME</headerAlias>
+<reference>false</reference>
+<referencedColumn>A8AE98E6-73E6-B70C-9580-43A48BBB4D3F</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="FLOW_ID" id="264C30D9-ADFF-4062-7A28-A4221ACE9A28">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_EXT_AGENT_FLOWS</sourceObjSchema>
+<sourceObjName>FLOW_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:29 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>FLOW_ID</alias>
+<dataType>VARCHAR2 (70 BYTE)</dataType>
+<headerAlias>FLOW_ID</headerAlias>
+<reference>false</reference>
+<referencedColumn>66E3A18E-E742-4A36-8CAB-6A531212BFDF</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="FLOW_OVID" id="D5E56FFB-E4C2-2912-FEBD-671CB5C69B92">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_EXT_AGENT_FLOWS</sourceObjSchema>
+<sourceObjName>FLOW_OVID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:29 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>FLOW_OVID</alias>
+<dataType>VARCHAR2 (36 BYTE)</dataType>
+<headerAlias>FLOW_OVID</headerAlias>
+<reference>false</reference>
+<referencedColumn>568ABF49-AB4B-05CE-6B91-2635354BAA54</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="FLOW_NAME" id="8C535B89-FB05-64F2-1A3D-E308997CAEC2">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_EXT_AGENT_FLOWS</sourceObjSchema>
+<sourceObjName>FLOW_NAME</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:29 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>FLOW_NAME</alias>
+<dataType>VARCHAR2 (256 BYTE)</dataType>
+<headerAlias>FLOW_NAME</headerAlias>
+<reference>false</reference>
+<referencedColumn>98B9ADE4-9FDD-529F-87B0-A5650FE345B7</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="INCOMING_OUTGOING_FLAG" id="4273C92F-1A33-9772-9B3E-E4F7EF703567">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_EXT_AGENT_FLOWS</sourceObjSchema>
+<sourceObjName>INCOMING_OUTGOING_FLAG</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:29 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>INCOMING_OUTGOING_FLAG</alias>
+<dataType>CHAR (1 BYTE)</dataType>
+<headerAlias>INCOMING_OUTGOING_FLAG</headerAlias>
+<reference>false</reference>
+<referencedColumn>ADBD7E41-D6F6-4BE7-02CB-B79F45412D45</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="DESIGN_OVID" id="4E28EE62-CB5D-2A07-6872-E91A3BD7FE3F">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_EXT_AGENT_FLOWS</sourceObjSchema>
+<sourceObjName>DESIGN_OVID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:29 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>DESIGN_OVID</alias>
+<dataType>VARCHAR2 (36 BYTE)</dataType>
+<headerAlias>DESIGN_OVID</headerAlias>
+<reference>false</reference>
+<referencedColumn>BD65F3ED-15B7-56DD-F680-5DC384696978</referencedColumn>
+</viewElement>
+</viewElements>
+<usedObjects>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="286DA850-1D12-87EE-08B4-FD903479DBD9">
+<columnName>EXTERNAL_AGENT_ID</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_EXT_AGENT_FLOWS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="DA8B5385-75BB-FF35-1798-07DA167D84E0">
+<columnName>EXTERNAL_AGENT_OVID</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_EXT_AGENT_FLOWS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="A8AE98E6-73E6-B70C-9580-43A48BBB4D3F">
+<columnName>EXTERNAL_AGENT_NAME</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_EXT_AGENT_FLOWS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="66E3A18E-E742-4A36-8CAB-6A531212BFDF">
+<columnName>FLOW_ID</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_EXT_AGENT_FLOWS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="568ABF49-AB4B-05CE-6B91-2635354BAA54">
+<columnName>FLOW_OVID</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_EXT_AGENT_FLOWS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="98B9ADE4-9FDD-529F-87B0-A5650FE345B7">
+<columnName>FLOW_NAME</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_EXT_AGENT_FLOWS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="ADBD7E41-D6F6-4BE7-02CB-B79F45412D45">
+<columnName>INCOMING_OUTGOING_FLAG</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_EXT_AGENT_FLOWS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="BD65F3ED-15B7-56DD-F680-5DC384696978">
+<columnName>DESIGN_OVID</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_EXT_AGENT_FLOWS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="33D0B04B-9E45-9D50-9201-718FA4504358">
+<container>true</container>
+<schema>ADMIN</schema>
+<tableName>DMRS_EXT_AGENT_FLOWS</tableName>
+</UsedObject>
+</usedObjects>
+</TableView>
