@@ -1,17 +1,15 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="B4E1D654-7B47-F539-BEEE-3B588E484182" containerWithKeyObject="57BEC8D1-0BAE-4DA0-0F3B-AF53B7F9984B" localFKIndex="5A85A4F4-92B0-975E-3B72-D56F00560098" name="AUFZÄHLUNG_DOMÄNE_DOMÄNE_FK">
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="B1BA3ABE-38E9-1CFC-4B2D-6B5E4C69C219" containerWithKeyObject="3780498C-EAD8-492F-7376-371CD70C0C40" localFKIndex="412D21B5-48C9-13A5-7A84-A1F2D8FD37F3" name="VGWT_DOMA_FK">
 <createdBy>stb</createdBy>
-<createdTime>2018-10-21 13:54:35 UTC</createdTime>
-<generatorID>ABB5FA5B-9D7F-4BB3-14A6-955C26AE9DEF</generatorID>
+<createdTime>2019-03-30 10:59:33 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 <referredTableLongName>DOMÄNE</referredTableLongName>
-<arc>2AA215DB-AC7B-0E18-0333-9AF797BC7299</arc>
-<deleteRule>NO ACTION</deleteRule>
+<deleteRule>CASCADE</deleteRule>
 <referredTableID>40E8BAEF-6201-C0D7-25DE-53610BCB8E50</referredTableID>
 <keyObject>CDBD4638-E412-5780-ADD7-23C1BC82D90C</keyObject>
 <referredKeyID>CDBD4638-E412-5780-ADD7-23C1BC82D90C</referredKeyID>
 <mandatory>true</mandatory>
-<refColNames>DOMÄNE_ID</refColNames>
+<refColNames>DOMA_ID</refColNames>
 <transferable>true</transferable>
 <rely>false</rely>
 <columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>

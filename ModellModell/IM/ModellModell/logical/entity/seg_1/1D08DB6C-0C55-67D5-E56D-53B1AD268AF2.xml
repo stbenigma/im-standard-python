@@ -5,6 +5,8 @@
 <comment>Kann Zahlenwerte aufnehmen </comment>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="4EE9A882-EA48-83FA-35DC-1651333A2D97" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 </engineerTo>
 <adequatelyNormalized>NO</adequatelyNormalized>
@@ -24,18 +26,14 @@
 <comment>Anzahl der Stellen vor dem Komma</comment>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="4EE9A882-EA48-83FA-35DC-1651333A2D97" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 </engineerTo>
 <use>0</use>
-<logicalDatatype>LOGDT011</logicalDatatype>
+<logicalDatatype>LOGDT019</logicalDatatype>
 <domain>9CA83673-0453-9943-665C-CCB4497CF164</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
-<listOfRanges>
-<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
-<beginValue>0</beginValue>
-<endValue>99</endValue>
-</rangeDef>
-</listOfRanges>
 </Attribute>
 <Attribute name="Nachkommastellen#" id="1A0F5548-154B-9B85-CAD0-538CA8502229">
 <createdBy>stb</createdBy>
@@ -43,11 +41,13 @@
 <comment>Anzahl der Stellen nach dem Komma</comment>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="4EE9A882-EA48-83FA-35DC-1651333A2D97" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>0</use>
-<logicalDatatype>LOGDT011</logicalDatatype>
+<logicalDatatype>LOGDT019</logicalDatatype>
 <domain>9CA83673-0453-9943-665C-CCB4497CF164</domain>
 <defaultValue>0</defaultValue>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
@@ -58,6 +58,8 @@
 <comment>Minimaler Wert für ein numerisches Feld. Leer -&gt; so klein wie das System zulässt</comment>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="4EE9A882-EA48-83FA-35DC-1651333A2D97" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
@@ -72,6 +74,8 @@
 <comment>Maximaler Wert für ein numerisches Feld. Leer -&gt; so gross wie das System zulässt</comment>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="4EE9A882-EA48-83FA-35DC-1651333A2D97" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
@@ -86,19 +90,16 @@
 <comment>Wert, der angibt, auf welche Einheit ein numerischer Wert für die Speicherung gerundet wird. (z.B. 0.5, 0.25, 1000) leer -&gt; es wird nicht explizit gerundet</comment>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="4EE9A882-EA48-83FA-35DC-1651333A2D97" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <use>0</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
 <domain>9D57C5ED-8336-6617-9BC7-29B138AA6191</domain>
+<defaultValue>1</defaultValue>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
-<listOfRanges>
-<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
-<beginValue>0.00001</beginValue>
-<endValue>99999.99999</endValue>
-</rangeDef>
-</listOfRanges>
 </Attribute>
 </attributes>
 </Entity>

@@ -171,8 +171,21 @@
          <ownerDesignName>System</ownerDesignName>
          <importedID>802FD5C1-7C5B-0290-1F1C-F8FBB1AD2AA9</importedID>
          <avTSortOrder>0</avTSortOrder>
+         <dataTypeSize>15 CHAR</dataTypeSize>
          <fileName>defaultdomains</fileName>
-         <logicalDatatype>LOGDT017</logicalDatatype>
+         <logicalDatatype>LOGDT024</logicalDatatype>
+         <listOfValues>
+            <valueDef value="JAHR" description="Jahr"/>
+            <valueDef value="MILLISEKUNDE" description="Millisekunde"/>
+            <valueDef value="MINUTE" description="Minute"/>
+            <valueDef value="MONAT" description="Monat"/>
+            <valueDef value="QUARTAL" description="Quartal"/>
+            <valueDef value="SEKUNDE" description="Sekunde"/>
+            <valueDef value="SEMESTER" description="Semester"/>
+            <valueDef value="STUNDE" description="Stunde"/>
+            <valueDef value="TAG" description="Tag"/>
+            <valueDef value="WOCHE" description="Woche"/>
+         </listOfValues>
       </Domain>
       <Domain class="oracle.dbtools.crest.model.design.Domain" name="Abbildungstyp" id="8831EDF9-D218-4FB3-5BB6-7B34E8325AF7">
          <createdBy>stb</createdBy>
@@ -211,8 +224,10 @@
          <ownerDesignName>System</ownerDesignName>
          <importedID>9519F611-7F37-CA7C-1088-EDDCA6F81D17</importedID>
          <avTSortOrder>0</avTSortOrder>
+         <dataTypePrecision>20</dataTypePrecision>
+         <dataTypeScale>10</dataTypeScale>
          <fileName>defaultdomains</fileName>
-         <logicalDatatype>LOGDT017</logicalDatatype>
+         <logicalDatatype>LOGDT019</logicalDatatype>
       </Domain>
       <Domain class="oracle.dbtools.crest.model.design.Domain" name="Längenmass" id="9899F774-954D-6AB0-8DC2-BB1FE9F99D28">
          <createdBy>stb</createdBy>
@@ -231,8 +246,10 @@
          <ownerDesignName>System</ownerDesignName>
          <importedID>9CA83673-0453-9943-665C-CCB4497CF164</importedID>
          <avTSortOrder>0</avTSortOrder>
+         <dataTypePrecision>2</dataTypePrecision>
+         <dataTypeScale>0</dataTypeScale>
          <fileName>defaultdomains</fileName>
-         <logicalDatatype>LOGDT017</logicalDatatype>
+         <logicalDatatype>LOGDT019</logicalDatatype>
       </Domain>
       <Domain class="oracle.dbtools.crest.model.design.Domain" name="Rundungseinheit" id="9D57C5ED-8336-6617-9BC7-29B138AA6191">
          <createdBy>stb</createdBy>
@@ -241,8 +258,23 @@
          <ownerDesignName>System</ownerDesignName>
          <importedID>9D57C5ED-8336-6617-9BC7-29B138AA6191</importedID>
          <avTSortOrder>0</avTSortOrder>
+         <dataTypePrecision>7</dataTypePrecision>
+         <dataTypeScale>3</dataTypeScale>
+         <defaultValue>1</defaultValue>
          <fileName>defaultdomains</fileName>
-         <logicalDatatype>LOGDT017</logicalDatatype>
+         <logicalDatatype>LOGDT019</logicalDatatype>
+         <listOfValues>
+            <valueDef value="0.001" description=""/>
+            <valueDef value="0.01" description=""/>
+            <valueDef value="0.05" description=""/>
+            <valueDef value="0.1" description=""/>
+            <valueDef value="0.25" description=""/>
+            <valueDef value="0.5" description=""/>
+            <valueDef value="1" description=""/>
+            <valueDef value="10" description=""/>
+            <valueDef value="100" description=""/>
+            <valueDef value="1000" description=""/>
+         </listOfValues>
       </Domain>
       <Domain class="oracle.dbtools.crest.model.design.Domain" name="erwartete Tupelanzahl" id="A32A539A-AA2C-608E-1F61-A290079F25AD">
          <createdBy>stb</createdBy>
@@ -350,12 +382,13 @@
       <Domain class="oracle.dbtools.crest.model.design.Domain" name="SI-Einheit" id="DD765D8A-B6DE-C725-89D4-5A0AE9EEB09A">
          <createdBy>stb</createdBy>
          <createdTime>2019-03-10 11:09:09 UTC</createdTime>
-         <comment>Bane einer physikalischen Einheit gemäss SI</comment>
+         <comment>Name einer physikalischen Einheit gemäss SI</comment>
          <ownerDesignName>System</ownerDesignName>
          <importedID>DD765D8A-B6DE-C725-89D4-5A0AE9EEB09A</importedID>
          <avTSortOrder>0</avTSortOrder>
+         <dataTypeSize>10 CHAR</dataTypeSize>
          <fileName>defaultdomains</fileName>
-         <logicalDatatype>LOGDT017</logicalDatatype>
+         <logicalDatatype>LOGDT024</logicalDatatype>
       </Domain>
       <Domain class="oracle.dbtools.crest.model.design.Domain" name="Unknown" id="DOM3000004">
          <createdBy>stb</createdBy>
