@@ -2,9 +2,10 @@
 <Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="3CEC80DC-9AC7-5783-79EC-A5B9D15FE871" name="Attribut">
 <createdBy>stb</createdBy>
 <createdTime>2018-05-30 12:08:58 UTC</createdTime>
-<comment>Beschreibung eines Trägers einers Wertes.&lt;br/&gt;Dieses Attribut ist die gültige Single Source of Truth des konzeptionellen Modells. &lt;br/&gt;&lt;br/&gt;Es ist nicht zwingend notwendig, dass dieses Attribut in dieser Form in einem der Systeme verwaltet wird. Die Definition gilt als Referenz für alle, die mit dieser Information arbeiten wollen&lt;br/&gt;&lt;br/&gt;Werteeinschränkungen für ein Attribut können nur eine Einengung der Wertegrenzen des zugehörigen Wertebereichs sein.&lt;br/&gt;Beispiel: Prozentzahl (definiert als 0..100%) darf in dieser Attributrolle nur zwischen 10 und 30 liegen</comment>
+<comment>Beschreibung eines Trägers einers Wertes.&lt;br/&gt;Dieses Attribut ist die gültige Single Source of Truth des konzeptionellen Modells. &lt;br/&gt;&lt;br/&gt;Es ist nicht zwingend notwendig, dass dieses Attribut in dieser Form in einem der Systeme verwaltet wird. Die Definition gilt als Referenz für alle, die mit dieser Information arbeiten wollen&lt;br/&gt;&lt;br/&gt;</comment>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="4EE9A882-EA48-83FA-35DC-1651333A2D97" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 </engineerTo>
@@ -23,12 +24,13 @@
 <property name="Beispiele" value="Preis, Name, Startdatum"/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<Attribute name="Attributmame [L]" id="EDEE919C-7C94-15E9-147C-57317A603D15">
+<Attribute name="Attributmame" id="EDEE919C-7C94-15E9-147C-57317A603D15">
 <createdBy>stb</createdBy>
 <createdTime>2018-05-30 12:09:49 UTC</createdTime>
 <comment>Name, der etwas über die Rolle, Verwendung der Eigenschaft in der Entität aussagt. Häufig = Domänenname</comment>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="4EE9A882-EA48-83FA-35DC-1651333A2D97" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 </engineerTo>
@@ -37,12 +39,13 @@
 <domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="Kurzname [L]" id="5786D6AD-9848-D503-A7AE-9758E9D42223">
+<Attribute name="Anzeigename [L]" id="5786D6AD-9848-D503-A7AE-9758E9D42223">
 <createdBy>stb</createdBy>
 <createdTime>2018-11-04 11:15:32 UTC</createdTime>
 <comment>Kurzbezeichnung der Entität für die Verwendung aus Überschrift, in Referenzen </comment>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="4EE9A882-EA48-83FA-35DC-1651333A2D97" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 </engineerTo>
@@ -57,6 +60,7 @@
 <createdTime>2018-05-30 12:10:47 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="4EE9A882-EA48-83FA-35DC-1651333A2D97" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 </engineerTo>
@@ -72,6 +76,7 @@
 <comment>Anzeige in Masken für die Erläuterung der Nutzung, Bearbeitung, Verwendung des Attributwertes</comment>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="4EE9A882-EA48-83FA-35DC-1651333A2D97" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 </engineerTo>
@@ -87,6 +92,7 @@
 <comment>JA -&gt; Das Feld muss einen Wert enthalten.</comment>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="4EE9A882-EA48-83FA-35DC-1651333A2D97" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 </engineerTo>
@@ -101,6 +107,7 @@
 <comment>Das Attribut charakterisiert die Entität und ist wichtig für ihr Verständnis</comment>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="4EE9A882-EA48-83FA-35DC-1651333A2D97" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 </engineerTo>
@@ -115,6 +122,7 @@
 <comment>JA -&gt; Das Feld kann mehere Werte enthalten. &lt;br/&gt;NEIN -&gt; Feld enthält maximal einen Wert.&lt;br/&gt;Kann  über Extratabelle gelöst werden.</comment>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="4EE9A882-EA48-83FA-35DC-1651333A2D97" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 </engineerTo>
@@ -129,6 +137,7 @@
 <comment>JA -&gt; Der Feldwert kann in mehreren Sprachen vorkommen.&lt;br/&gt;Über Extratabelle die mit Sprachen verknüpft ist lösen</comment>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="4EE9A882-EA48-83FA-35DC-1651333A2D97" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 </engineerTo>
@@ -143,6 +152,7 @@
 <comment>JA -&gt; Der Feldwert kann über die Zeit ändern, Die Historie muss im System verwaltet werden. Zu einem Zeitpunkt kann nur 1 Wert gültig sein.&lt;br/&gt;Über Extratabelle verknüpft ist lösen</comment>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="4EE9A882-EA48-83FA-35DC-1651333A2D97" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 </engineerTo>
@@ -151,32 +161,19 @@
 <domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="Werteinschränkung" id="6265BB6F-9347-0AB3-7106-9B9CF67EF039">
-<createdBy>stb</createdBy>
-<createdTime>2018-06-23 13:37:22 UTC</createdTime>
-<comment>Regel über die Werte eines Attributs, die die Regeln der Wertebereichsdefinition zusätzlich einschränken kann.</comment>
-<ownerDesignName>ModellModell</ownerDesignName>
-<engineerTo>
-<item key="4EE9A882-EA48-83FA-35DC-1651333A2D97" value="true"/>
-<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
-</engineerTo>
-<nullsAllowed>true</nullsAllowed>
-<use>0</use>
-<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
-<domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-</Attribute>
 <Attribute name="Anzeigereihenfolge" id="598275C8-6915-4D18-A03A-DDE739950A91">
 <createdBy>stb</createdBy>
 <createdTime>2018-11-04 11:14:15 UTC</createdTime>
 <comment>Riehenfolge der Anzeige auf Diagrammen, in Reports. Leer-&gt; Attribut kommt nach Name sortiert an den Schluss einer Liste</comment>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="4EE9A882-EA48-83FA-35DC-1651333A2D97" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
 <domain>E2DCFC37-5428-9FE8-64FF-368960199E02</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
@@ -187,6 +184,7 @@
 <generatorID>5ADA0099-E18A-0713-9E1D-9A615137188C</generatorID>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="4EE9A882-EA48-83FA-35DC-1651333A2D97" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 </engineerTo>
@@ -203,13 +201,27 @@
 <createdTime>2018-05-30 12:12:27 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="4EE9A882-EA48-83FA-35DC-1651333A2D97" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<newElementsIDs>EDEE919C-7C94-15E9-147C-57317A603D15</newElementsIDs>
+<usedAttributes>
+<attributeRef>EDEE919C-7C94-15E9-147C-57317A603D15</attributeRef>
+</usedAttributes>
+</identifier>
+<identifier id="CF56302E-CDD3-0F96-2C4F-D3F3489FAE65" name="Attribut_PK">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-30 18:37:07 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="4EE9A882-EA48-83FA-35DC-1651333A2D97" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 </engineerTo>
 <pk>true</pk>
-<newElementsIDs>EDEE919C-7C94-15E9-147C-57317A603D15</newElementsIDs>
 <usedAttributes>
-<attributeRef>EDEE919C-7C94-15E9-147C-57317A603D15</attributeRef>
+<attributeRef>0C01D9CE-61C5-17EA-B371-14E7D8D04675</attributeRef>
 </usedAttributes>
 </identifier>
 </identifiers>

@@ -1,0 +1,174 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableView class="oracle.dbtools.crest.model.design.relational.TableView" directorySegmentName="seg_0" id="262F9A3B-57A6-219A-BF6B-581D1AF0E2C3" name="WERTEBEREICH_ZPKT">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-30 18:16:01 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<ordsAlias>view_1</ordsAlias>
+<userDefined>true</userDefined>
+<userDefinedSQL>SELECT&lt;br/&gt;    wertebereich.wrtb_id,&lt;br/&gt;    wertebereich.wrtb_business_rule,&lt;br/&gt;    uetx_name.uetx_originaltext as WRTB_NAME,&lt;br/&gt;    wertebereich.wrtb_uetx_id_name,&lt;br/&gt;    uetx_beschr.uetx_originaltext as WRTB_BESCHR,&lt;br/&gt;    wertebereich.wrtb_uetx_id_beschr,&lt;br/&gt;    wertebereich.wrtb_zpkt_maxwert,&lt;br/&gt;    wertebereich.wrtb_zpkt_minwert,&lt;br/&gt;    wertebereich.wrtb_zpkt_granularitaet&lt;br/&gt;FROM&lt;br/&gt;    wertebereich&lt;br/&gt;    LEFT JOIN uebersetz_text uetx_name ON uetx_name.uetx_id = wertebereich.wrtb_uetx_id_name                              &lt;br/&gt;    left JOIN uebersetz_text uetx_beschr ON uetx_beschr.uetx_id = wertebereich.wrtb_uetx_id_beschr &lt;br/&gt;WHERE wrtb_typ = &apos;ZPKT&apos;</userDefinedSQL>
+<parsed>true</parsed>
+<usedContainers>
+<container alias="uetx_name" containerID="4E63E732-8F22-56FC-6B42-D5D65C1A95A5"/>
+<container containerID="40E8BAEF-6201-C0D7-25DE-53610BCB8E50"/>
+</usedContainers>
+<viewElements>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="WRTB_ID" id="3FD1E337-34A3-1EE8-402F-7882E5A5353D">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-30 18:16:01 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<dataType>NUMBER (10)</dataType>
+<reference>false</reference>
+<referencedColumn>A378345E-C3A2-1DAB-A09D-67630ADC17A8</referencedColumn>
+<table>40E8BAEF-6201-C0D7-25DE-53610BCB8E50</table>
+<viewID>262F9A3B-57A6-219A-BF6B-581D1AF0E2C3</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="WRTB_BUSINESS_RULE" id="BAC57B7E-47AD-C9DF-352F-643C548FC55A">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-30 18:16:01 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<dataType>VARCHAR2 (4000 CHAR)</dataType>
+<reference>false</reference>
+<referencedColumn>450575AA-2C0C-0E0C-5546-734FB4B7833D</referencedColumn>
+<table>40E8BAEF-6201-C0D7-25DE-53610BCB8E50</table>
+<viewID>262F9A3B-57A6-219A-BF6B-581D1AF0E2C3</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="WRTB_NAME" id="38D9EE5B-6E8C-BA1E-BB52-A36834B28A94">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-30 18:16:01 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>WRTB_NAME</alias>
+<dataType>VARCHAR2 (4000 CHAR)</dataType>
+<reference>false</reference>
+<referencedColumn>FACF6440-37A4-1D95-D6F3-84A0356CB061</referencedColumn>
+<table>6AB41CA3-DB72-2EB5-4975-11E7010B4515</table>
+<viewID>262F9A3B-57A6-219A-BF6B-581D1AF0E2C3</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="WRTB_UETX_ID_NAME" id="DECCAF66-2C9D-AD9E-B609-5E97975B514F">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-30 18:16:01 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<dataType>NUMBER (10)</dataType>
+<reference>false</reference>
+<referencedColumn>02619A13-3C8E-180C-80CA-27D791529A48</referencedColumn>
+<table>40E8BAEF-6201-C0D7-25DE-53610BCB8E50</table>
+<viewID>262F9A3B-57A6-219A-BF6B-581D1AF0E2C3</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="WRTB_BESCHR" id="D811479B-8FAA-F7CF-260D-3A57159D606C">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-30 18:16:01 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>WRTB_BESCHR</alias>
+<dataType>VARCHAR2 (4000 CHAR)</dataType>
+<reference>false</reference>
+<referencedColumn>FACF6440-37A4-1D95-D6F3-84A0356CB061</referencedColumn>
+<table>6AB41CA3-DB72-2EB5-4975-11E7010B4515</table>
+<tableAlias>sptx_beschr</tableAlias>
+<viewID>262F9A3B-57A6-219A-BF6B-581D1AF0E2C3</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="WRTB_UETX_ID_BESCHR" id="69A0D02C-336C-7B6C-1AF0-03BDA73C038B">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-30 18:16:01 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<dataType>NUMBER (10)</dataType>
+<reference>false</reference>
+<referencedColumn>3B69F5A2-CD30-58B9-5A55-0667CB54EAA7</referencedColumn>
+<table>40E8BAEF-6201-C0D7-25DE-53610BCB8E50</table>
+<viewID>262F9A3B-57A6-219A-BF6B-581D1AF0E2C3</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="WRTB_ZPKT_MAXWERT" id="5CF9787C-5325-6E58-2A7B-86CC7D908624">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-30 18:18:33 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<dataType>TIMESTAMP</dataType>
+<reference>false</reference>
+<referencedColumn>FB94DACC-1B66-9790-47D7-0DBB79F7902F</referencedColumn>
+<table>40E8BAEF-6201-C0D7-25DE-53610BCB8E50</table>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="WRTB_ZPKT_MINWERT" id="1E66F140-6D57-5416-A7E8-7197193A026A">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-30 18:18:33 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<dataType>TIMESTAMP</dataType>
+<reference>false</reference>
+<referencedColumn>0546EABA-AA01-192A-5EF2-52B1A54BC9F5</referencedColumn>
+<table>40E8BAEF-6201-C0D7-25DE-53610BCB8E50</table>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="WRTB_ZPKT_GRANULARITAET" id="166CAA72-22C3-2291-B8BB-6831B093FF23">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-30 18:18:33 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<dataType>VARCHAR2 (15 CHAR)</dataType>
+<reference>false</reference>
+<referencedColumn>1CA354DA-542C-666C-04A8-5A5A21C409CE</referencedColumn>
+<table>40E8BAEF-6201-C0D7-25DE-53610BCB8E50</table>
+</viewElement>
+</viewElements>
+<usedObjects>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="40E8BAEF-6201-C0D7-25DE-53610BCB8E50">
+<container>true</container>
+<tableName>WERTEBEREICH</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="4E63E732-8F22-56FC-6B42-D5D65C1A95A5">
+<container>true</container>
+<tableName>UEBERSETZ_TEXT</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="A378345E-C3A2-1DAB-A09D-67630ADC17A8">
+<columnName>WRTB_ID</columnName>
+<tableName>WERTEBEREICH</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="450575AA-2C0C-0E0C-5546-734FB4B7833D">
+<columnName>WRTB_BUSINESS_RULE</columnName>
+<tableName>WERTEBEREICH</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="FACF6440-37A4-1D95-D6F3-84A0356CB061">
+<columnName>UETX_ORIGINALTEXT</columnName>
+<tableName>UEBERSETZ_TEXT</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="02619A13-3C8E-180C-80CA-27D791529A48">
+<columnName>WRTB_UETX_ID_NAME</columnName>
+<tableName>WERTEBEREICH</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="3B69F5A2-CD30-58B9-5A55-0667CB54EAA7">
+<columnName>WRTB_UETX_ID_BESCHR</columnName>
+<tableName>WERTEBEREICH</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="FB94DACC-1B66-9790-47D7-0DBB79F7902F">
+<columnName>WRTB_ZPKT_MAXWERT</columnName>
+<tableName>WERTEBEREICH</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="0546EABA-AA01-192A-5EF2-52B1A54BC9F5">
+<columnName>WRTB_ZPKT_MINWERT</columnName>
+<tableName>WERTEBEREICH</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="1CA354DA-542C-666C-04A8-5A5A21C409CE">
+<columnName>WRTB_ZPKT_GRANULARITAET</columnName>
+<tableName>WERTEBEREICH</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="1D6F6207-8B39-E3AB-6614-F36F05CDB3F3">
+<columnName>UETX_ID</columnName>
+<tableName>UEBERSETZ_TEXT</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="3A384167-E73F-E1FD-1E5A-0652D28AAF65">
+<columnName>WRTB_TYP</columnName>
+<tableName>WERTEBEREICH</tableName>
+</UsedObject>
+</usedObjects>
+</TableView>

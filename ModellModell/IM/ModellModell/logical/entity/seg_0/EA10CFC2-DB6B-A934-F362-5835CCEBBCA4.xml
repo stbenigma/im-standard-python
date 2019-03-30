@@ -5,6 +5,8 @@
 <comment>Wert, der für eine Aufzählungs-Werteliste ein gültiger Wert ist.&lt;br/&gt;Das Attribut &quot;Wert&quot; ist der physikalische (sprachunabhängige) Wert, der als eigentlicher Wert im konzeptionellen Modell gilt. </comment>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="4EE9A882-EA48-83FA-35DC-1651333A2D97" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 </engineerTo>
 <adequatelyNormalized>NO</adequatelyNormalized>
@@ -27,6 +29,8 @@
 <ownerDesignName>ModellModell</ownerDesignName>
 <importedID>455A9AF6-A15D-EEBA-DC70-9AA7AA004B58</importedID>
 <engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="4EE9A882-EA48-83FA-35DC-1651333A2D97" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
@@ -41,6 +45,8 @@
 <comment>Textliche Darstellung eines Wertes in mehreren Sprachen möglich.</comment>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="4EE9A882-EA48-83FA-35DC-1651333A2D97" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
@@ -56,6 +62,8 @@
 <ownerDesignName>ModellModell</ownerDesignName>
 <importedID>2E286809-1E35-DB7C-E2CC-CC181ADF5190</importedID>
 <engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="4EE9A882-EA48-83FA-35DC-1651333A2D97" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
@@ -72,11 +80,14 @@
 <ownerDesignName>ModellModell</ownerDesignName>
 <importedID>F1ECFE5B-5FA3-91EE-8ADD-60791EEA214A</importedID>
 <engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="4EE9A882-EA48-83FA-35DC-1651333A2D97" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
 <use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
 <domain>E2DCFC37-5428-9FE8-64FF-368960199E02</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
@@ -87,13 +98,36 @@
 <createdTime>2018-06-23 12:47:11 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="4EE9A882-EA48-83FA-35DC-1651333A2D97" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 </engineerTo>
-<pk>true</pk>
 <newElementsIDs>D058CDFF-28C0-9AF9-2033-31AE4D171C8D,2AA897FB-0A76-72B7-BCB1-272244764C2B</newElementsIDs>
 <usedAttributes>
 <attributeRef>D058CDFF-28C0-9AF9-2033-31AE4D171C8D</attributeRef>
 </usedAttributes>
+</identifier>
+<identifier id="F81F6911-3BF7-AFE1-3BD9-384253FCE601" name="Vorgabewert_PK">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-30 18:38:17 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="4EE9A882-EA48-83FA-35DC-1651333A2D97" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<pk>true</pk>
+</identifier>
+<identifier id="218E98FF-14F7-5658-168B-75847E358CA3" name="Vorgabewert_PKv1">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-30 18:38:17 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="4EE9A882-EA48-83FA-35DC-1651333A2D97" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<pk>true</pk>
 </identifier>
 </identifiers>
 </Entity>
