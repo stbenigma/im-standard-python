@@ -1,18 +1,17 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="5854944E-F08E-14A7-BD4D-5016456A2AAD" name="SPRACHTEXT">
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="D813D7B1-32BE-CD84-427F-AE53DFA3C37A" name="SPRACHTEXT">
 <createdBy>stb</createdBy>
-<createdTime>2019-03-10 11:52:10 UTC</createdTime>
+<createdTime>2019-04-01 08:11:59 UTC</createdTime>
 <comment>Text interpretiert in Sprache, die als Textstprachen markiert ist.</comment>
 <generatorID>7B049F95-4FBA-1D5D-3942-99C0982251F1</generatorID>
 <ownerDesignName>ModellModell</ownerDesignName>
-<usedAsRemoteObject>true</usedAsRemoteObject>
 <abbreviation>SPTX</abbreviation>
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
-<Column name="SPTX_TEXT" id="3F880E51-712A-9DF1-3193-886C5F6846DC">
+<Column name="SPTX_TEXT" id="CF892116-5DE7-E91B-29E7-3244161B41DB">
 <createdBy>stb</createdBy>
-<createdTime>2019-03-10 11:52:10 UTC</createdTime>
+<createdTime>2019-04-01 08:11:59 UTC</createdTime>
 <comment>Text interpretierbar in der Sprache, gehorcht den Regeln des Sprachtextwertebereichs</comment>
 <generatorID>BBF26E99-27D7-208B-5FCE-538468111F80</generatorID>
 <ownerDesignName>ModellModell</ownerDesignName>
@@ -22,9 +21,9 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="SPTX_GUELTIG_AB" id="31F00709-767A-953F-BC95-C993172A5BA2">
+<Column name="SPTX_GUELTIG_AB" id="63F51E3B-77FF-545D-03BC-C2DA6DB13570">
 <createdBy>stb</createdBy>
-<createdTime>2019-03-10 11:52:10 UTC</createdTime>
+<createdTime>2019-04-01 08:11:59 UTC</createdTime>
 <comment>Ab diesem Zeitpunkt ist der Text gültig, bis zum nächsten Zeitpunkt bzw. für immer</comment>
 <generatorID>8F714F8E-FEAC-06EE-AFA7-6902E6B307B2</generatorID>
 <ownerDesignName>ModellModell</ownerDesignName>
@@ -34,9 +33,9 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="SPTX_ID" id="434BC77B-92A3-3648-E28A-2C30408680CD">
+<Column name="SPTX_ID" id="D19F7D22-7F3E-71A8-FADE-5155622772D0">
 <createdBy>stb</createdBy>
-<createdTime>2019-03-10 11:52:10 UTC</createdTime>
+<createdTime>2019-04-01 08:11:59 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 <use>0</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
@@ -46,11 +45,10 @@
 <identityColumn>true</identityColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 <autoIncrementSequenceName>INFRA_SEQ</autoIncrementSequenceName>
-<isSurrogateColumn>true</isSurrogateColumn>
 </Column>
-<Column name="SPTX_SPRA_ID" id="5C1A6BA0-9F07-9A38-01D0-D0FCA73459BA">
+<Column name="SPTX_SPRA_ID" id="959AA987-10FD-812C-F3B7-86EF8ACB4425">
 <createdBy>stb</createdBy>
-<createdTime>2019-03-10 11:52:10 UTC</createdTime>
+<createdTime>2019-04-01 08:11:59 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 <use>0</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
@@ -59,12 +57,12 @@
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 <associations>
-<colAssociation fkAssociation="0022E2B2-9090-4398-DEBF-27B4A2E9A098" referredColumn="C7D8D8E5-AB6D-4272-183B-CDEF8764AC9A"/>
+<colAssociation fkAssociation="E6381DA2-5C64-C155-A35F-E4C284824D19" referredColumn="2FB7B8A7-8D51-5FF0-5AF2-D5AB9375E9DC"/>
 </associations>
 </Column>
-<Column name="SPTX_UETX_ID" id="D15A299F-FACD-91A1-A303-E4B89AE81C19">
+<Column name="SPTX_UETX_ID" id="996A04E5-91C7-D7DE-D22D-0C3C19056924">
 <createdBy>stb</createdBy>
-<createdTime>2019-03-10 11:52:10 UTC</createdTime>
+<createdTime>2019-04-01 08:11:59 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 <use>0</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
@@ -73,37 +71,37 @@
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 <associations>
-<colAssociation fkAssociation="1EB50835-5AE8-AC90-8B6C-F4CDE1F2176C" referredColumn="A97666BD-91D6-3179-6380-555F39A072EC"/>
+<colAssociation fkAssociation="27F7A23B-FC09-E83D-193C-2A34D7C14344" referredColumn="55253521-18EF-4491-BA38-A5FE10DD40CE"/>
 </associations>
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
-<ind_PK_UK id="0407563D-7914-6A82-E716-9741CE3AEBA2" name="SPTX_PK">
+<ind_PK_UK id="C7CACC80-61FB-64D2-AC93-9DAF5C5F9822" name="SPTX_PK">
 <createdBy>stb</createdBy>
-<createdTime>2019-03-10 11:52:10 UTC</createdTime>
+<createdTime>2019-04-01 08:11:59 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 <pk>true</pk>
 <indexState>Primary Constraint</indexState>
 <indexColumnUsage>
-<colUsage columnID="434BC77B-92A3-3648-E28A-2C30408680CD"/>
+<colUsage columnID="D19F7D22-7F3E-71A8-FADE-5155622772D0"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="FC63518F-17C6-14BD-8CD3-6BFAA4A2BAB6" name="SPTX_GÜLTIG_AB_UN">
+<ind_PK_UK id="4D585EA8-B3A6-6B27-6CAB-577289FE53B2" name="SPTX_GÜLTIG_AB_UN">
 <createdBy>stb</createdBy>
-<createdTime>2019-03-10 11:52:10 UTC</createdTime>
+<createdTime>2019-04-01 08:11:59 UTC</createdTime>
 <generatorID>FFA8D864-9FDC-E968-AE27-68EA2F35F87C</generatorID>
 <ownerDesignName>ModellModell</ownerDesignName>
 <indexState>Unique Constraint</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
-<colUsage columnID="5C1A6BA0-9F07-9A38-01D0-D0FCA73459BA"/>
-<colUsage columnID="D15A299F-FACD-91A1-A303-E4B89AE81C19"/>
-<colUsage columnID="31F00709-767A-953F-BC95-C993172A5BA2"/>
+<colUsage columnID="959AA987-10FD-812C-F3B7-86EF8ACB4425"/>
+<colUsage columnID="996A04E5-91C7-D7DE-D22D-0C3C19056924"/>
+<colUsage columnID="63F51E3B-77FF-545D-03BC-C2DA6DB13570"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="4E4C7CEC-39EA-42AE-ED75-06D25F05EAC7" name="SPTX__UNV2">
+<ind_PK_UK id="A5257D20-9E6B-B385-AE6E-008B81C636E1" name="SPTX__UNV2">
 <createdBy>stb</createdBy>
-<createdTime>2019-03-10 11:52:10 UTC</createdTime>
+<createdTime>2019-04-01 08:11:59 UTC</createdTime>
 <generatorID>4222A29F-BBD6-E1A8-FFBA-340A6F3EDE7D</generatorID>
 <ownerDesignName>ModellModell</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
@@ -111,48 +109,46 @@
 <indexState>Unique Constraint</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
-<colUsage columnID="D15A299F-FACD-91A1-A303-E4B89AE81C19"/>
-<colUsage columnID="5C1A6BA0-9F07-9A38-01D0-D0FCA73459BA"/>
+<colUsage columnID="996A04E5-91C7-D7DE-D22D-0C3C19056924"/>
+<colUsage columnID="959AA987-10FD-812C-F3B7-86EF8ACB4425"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="CAB54F49-E48C-CBF0-A34A-47F698E88E84" name="SPTX__IDX">
+<ind_PK_UK id="2FCE511F-F9D9-5BC8-9A68-3B72664EB4E2" name="SPTX__IDX">
 <createdBy>stb</createdBy>
-<createdTime>2019-03-10 11:53:10 UTC</createdTime>
+<createdTime>2019-04-01 08:11:59 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
-<colUsage columnID="5C1A6BA0-9F07-9A38-01D0-D0FCA73459BA"/>
+<colUsage columnID="959AA987-10FD-812C-F3B7-86EF8ACB4425"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="C8A353E6-7B92-2637-120B-E6AC9BD553E6" name="SPTX__IDXv1">
+<ind_PK_UK id="37C795D1-74E5-3262-99E8-0E78BE708CC0" name="SPTX__IDXv1">
 <createdBy>stb</createdBy>
-<createdTime>2019-03-10 11:53:10 UTC</createdTime>
+<createdTime>2019-04-01 08:11:59 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
-<colUsage columnID="D15A299F-FACD-91A1-A303-E4B89AE81C19"/>
+<colUsage columnID="996A04E5-91C7-D7DE-D22D-0C3C19056924"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="08E40531-C3C7-5695-5937-DA0BA02A9078" name="SPTX_SPRA_FK">
+<ind_PK_UK id="868E894E-FF37-2F1E-DD6B-FA2DC0F18BDB" name="SPTX_SPRA_FK">
 <createdBy>stb</createdBy>
-<createdTime>2019-03-10 11:52:10 UTC</createdTime>
-<generatorID>392453B6-717C-F2CA-3E8A-447AA249AB50</generatorID>
-<ownerDesignName>ModellModell</ownerDesignName>
-<indexState>Foreign Key</indexState>
-<isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
-<colUsage columnID="5C1A6BA0-9F07-9A38-01D0-D0FCA73459BA"/>
-</indexColumnUsage>
-</ind_PK_UK>
-<ind_PK_UK id="B77CB9AF-B43A-AC7A-2B28-E68A0419D13B" name="SPTX_UETX_FK">
-<createdBy>stb</createdBy>
-<createdTime>2019-03-10 11:52:10 UTC</createdTime>
-<generatorID>D6D2AF92-19CF-C020-6DFF-704DC2E018BB</generatorID>
+<createdTime>2019-04-01 08:13:53 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 <indexState>Foreign Key</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
-<colUsage columnID="D15A299F-FACD-91A1-A303-E4B89AE81C19"/>
+<colUsage columnID="959AA987-10FD-812C-F3B7-86EF8ACB4425"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="63BC4E26-6270-2468-EB2C-61DD51286B46" name="SPTX_UETX_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 08:14:53 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="996A04E5-91C7-D7DE-D22D-0C3C19056924"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>

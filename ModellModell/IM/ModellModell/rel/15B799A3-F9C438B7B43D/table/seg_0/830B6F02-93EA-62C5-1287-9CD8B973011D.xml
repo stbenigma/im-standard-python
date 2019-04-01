@@ -1,37 +1,31 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="4E63E732-8F22-56FC-6B42-D5D65C1A95A5" name="UEBERSETZ_TEXT">
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="830B6F02-93EA-62C5-1287-9CD8B973011D" name="UEBERSETZ_TEXT">
 <createdBy>stb</createdBy>
-<createdTime>2019-03-30 10:35:36 UTC</createdTime>
+<createdTime>2019-04-01 08:11:41 UTC</createdTime>
 <comment>Text, der in alle Sprachen übersetzt werden kann, die als Textsprache markiert ist.&lt;br/&gt;Dies weird für alle mit [L] markierten Texte in den Entitäten als Standardverwaltung verwendet.&lt;br/&gt;&lt;br/&gt;Wird ein Text in einer gewünschten Sprache nicht gefunden, wird er in der Alternativsprache ausgegeben. Ist auch dazu kein Text vorhanden, in der Originialsprache.&lt;br/&gt;&lt;br/&gt;Diese Entität wird verwendet um für alle Attribute mit [L] einen Fremdschlüssel zu erhalten, der auf den Text zeigt, hinter dem sich die Übersetzung versteckt.</comment>
 <generatorID>4418BA52-4396-F91F-ADDC-B19812403A64</generatorID>
 <ownerDesignName>ModellModell</ownerDesignName>
-<remoteDesignID>4C73711C-AE6D-0394-6773-CF2AD132A6F3</remoteDesignID>
-<remoteModelID>4EE9A882-EA48-83FA-35DC-1651333A2D97</remoteModelID>
-<remoteObjectID>F4EB6642-7FCF-6274-D27D-2DEB5CD33208</remoteObjectID>
-<remoteObjectRelativeStorageName>/rel/4EE9A882-1651333A2D97/table/seg_0/F4EB6642-7FCF-6274-D27D-2DEB5CD33208.xml</remoteObjectRelativeStorageName>
 <ordsAlias>uebersetzungstext</ordsAlias>
 <abbreviation>UETX</abbreviation>
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
-<Column name="UETX_ORIGINALTEXT" id="FACF6440-37A4-1D95-D6F3-84A0356CB061">
+<Column name="UETX_ORIGINALTEXT" id="FFD7A444-C4F8-E162-C814-49EA5F5998E7">
 <createdBy>stb</createdBy>
-<createdTime>2019-03-30 10:35:36 UTC</createdTime>
+<createdTime>2019-04-01 08:11:41 UTC</createdTime>
 <comment>Text in der Originalsprache. Ausgangstext für alle Übersetzungen</comment>
 <generatorID>8163FB92-0A78-2B10-F74C-17D72169F578</generatorID>
 <ownerDesignName>ModellModell</ownerDesignName>
-<remoteObjectID>B47C321C-1E44-18B7-98A1-4DB0AFE511AA</remoteObjectID>
 <use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="UETX_ID" id="1D6F6207-8B39-E3AB-6614-F36F05CDB3F3">
+<Column name="UETX_ID" id="55253521-18EF-4491-BA38-A5FE10DD40CE">
 <createdBy>stb</createdBy>
-<createdTime>2019-03-30 10:35:36 UTC</createdTime>
+<createdTime>2019-04-01 08:11:41 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
-<remoteObjectID>A97666BD-91D6-3179-6380-555F39A072EC</remoteObjectID>
 <use>0</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
 <domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
@@ -41,61 +35,82 @@
 <autoIncrementCycle>false</autoIncrementCycle>
 <autoIncrementSequenceName>INFRA_SEQ</autoIncrementSequenceName>
 </Column>
-<Column name="UETX_SPRA_ID" id="0C1F80F8-2D5C-9397-B790-21B37986352F">
+<Column name="UETX_SPRA_ID" id="4F6475B5-6A66-4C54-A2E7-DE36C9CE7CDD">
 <createdBy>stb</createdBy>
-<createdTime>2019-03-30 10:35:36 UTC</createdTime>
+<createdTime>2019-04-01 08:11:41 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
-<remoteObjectID>0EBACB66-FEB3-1786-EC85-5AE4E60A0B43</remoteObjectID>
 <use>0</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
 <domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="972BDCCC-3CAE-9637-8B0B-6A1377B3DF0E" referredColumn="2FB7B8A7-8D51-5FF0-5AF2-D5AB9375E9DC"/>
+</associations>
 </Column>
-<Column name="UETX_WRTB_ID" id="BFA5EC15-90BD-8C69-F57B-4E0E57D04E02">
+<Column name="UETX_WRTB_ID" id="D99B3678-D5AB-F07F-2331-D07A27E21BF4">
 <createdBy>stb</createdBy>
-<createdTime>2019-03-30 10:35:36 UTC</createdTime>
+<createdTime>2019-04-01 08:11:41 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
-<remoteObjectID>4E08984B-072A-5EB9-9BB4-792BBF11E016</remoteObjectID>
 <use>0</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
 <domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="6B604752-E10F-1C1C-0FE6-6E73D1CF2586" referredColumn="A378345E-C3A2-1DAB-A09D-67630ADC17A8"/>
+</associations>
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
-<ind_PK_UK id="449BD178-D3E0-1455-49F5-530F10AD5E19" name="UETX_PK">
+<ind_PK_UK id="71B59EDA-5F6F-62FF-DB27-A6FBC54DD2F4" name="UETX_PK">
 <createdBy>stb</createdBy>
-<createdTime>2019-03-30 10:35:36 UTC</createdTime>
+<createdTime>2019-04-01 08:11:41 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
-<remoteObjectID>51528DCE-AC74-70FB-1558-46AD68CC1319</remoteObjectID>
 <pk>true</pk>
 <indexState>Primary Constraint</indexState>
 <indexColumnUsage>
-<colUsage columnID="1D6F6207-8B39-E3AB-6614-F36F05CDB3F3"/>
+<colUsage columnID="55253521-18EF-4491-BA38-A5FE10DD40CE"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="C976D2A9-4071-671A-7A96-EC7EB27C433E" name="UETX_IDX_SPRA">
+<ind_PK_UK id="91B1F18A-A518-9384-427C-217F87C9DCE7" name="UETX_IDX_SPRA">
 <createdBy>stb</createdBy>
-<createdTime>2019-03-30 10:35:36 UTC</createdTime>
+<createdTime>2019-04-01 08:11:41 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
-<remoteObjectID>0F65B6FB-3E0B-2FA1-9327-F39D4FF6AC23</remoteObjectID>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
-<colUsage columnID="0C1F80F8-2D5C-9397-B790-21B37986352F"/>
+<colUsage columnID="4F6475B5-6A66-4C54-A2E7-DE36C9CE7CDD"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="8117083C-CBA7-8805-5499-523B9675B509" name="UETX_IDX_TXT">
+<ind_PK_UK id="0A084CF4-4DE9-3544-0EA9-14E35C1B0B3E" name="UETX_IDX_TXT">
 <createdBy>stb</createdBy>
-<createdTime>2019-03-30 10:35:36 UTC</createdTime>
+<createdTime>2019-04-01 08:11:41 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
-<remoteObjectID>7662F7FF-AEB8-9C07-FD28-EEA988CBDCF2</remoteObjectID>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
-<colUsage columnID="BFA5EC15-90BD-8C69-F57B-4E0E57D04E02"/>
+<colUsage columnID="D99B3678-D5AB-F07F-2331-D07A27E21BF4"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="2B773218-A2D4-78B0-2721-ADCA380CC232" name="UETX_SPRA_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 08:20:05 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="4F6475B5-6A66-4C54-A2E7-DE36C9CE7CDD"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="9989F292-14B0-1F29-F0D7-190D0A6754FA" name="UETX_WRTB_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 09:30:22 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="D99B3678-D5AB-F07F-2331-D07A27E21BF4"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>

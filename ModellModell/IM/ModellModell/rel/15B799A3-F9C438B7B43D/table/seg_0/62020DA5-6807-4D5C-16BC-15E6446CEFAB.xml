@@ -1,0 +1,162 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="62020DA5-6807-4D5C-16BC-15E6446CEFAB" name="Firma">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 08:54:14 UTC</createdTime>
+<comment>Externe Firma, die irgend etwas mit der IT-landschaft / - Lösungen zu tun hat</comment>
+<generatorID>337FCB5B-4DC2-DCB6-AE9A-70A918B554EB</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<abbreviation>FIRM</abbreviation>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="FIRM_ID" id="D9FAD087-E61C-D56D-CFB4-654A535B8ED3">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 08:54:14 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+<Column name="Name" id="DEC5E5AC-89C7-E5D7-B9D0-4F8EC0B424F7">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 08:54:14 UTC</createdTime>
+<generatorID>29431D60-7158-498E-8055-8318732FCA9B</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="eMail" id="C6F914A5-AE23-DCAB-7CB3-A24403BAB4CA">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 08:54:14 UTC</createdTime>
+<generatorID>C834690D-0AA6-49A5-2296-AEAB32007AF1</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<domain>4B4F8F40-D3A4-4F39-8CB3-BB6C57534E96</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Telefon-Nr" id="BAB89644-52CB-7879-CBA8-6C4EEE4FFF18">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 08:54:14 UTC</createdTime>
+<generatorID>204E4D3B-5BC1-9C6B-F4E4-0885AFE1DD70</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<domain>7F98E20B-63A1-C3F1-F7AE-0E2F6BC2C8D5</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Adresse" id="2A205C59-E563-DA1B-0C5D-F7EB5D5713D9">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 08:54:14 UTC</createdTime>
+<generatorID>FC854C29-3D28-6DE1-994C-F8B8DA68A419</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="UC" id="E0AA7349-6738-0791-1C58-C8766C7E6612">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 08:54:14 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<formulaDesc>USER</formulaDesc>
+<sourceType>System</sourceType>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<computed>true</computed>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="F7EEFF47-7A42-2A3E-7DFC-D0558D6996B8"/>
+</propertyMap>
+</Column>
+<Column name="DC" id="B71591A0-3EB4-0263-6830-5AB714D5F0FB">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 08:54:14 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT047</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="74D877A0-4C3B-63EE-06C5-071C7695907C"/>
+</propertyMap>
+</Column>
+<Column name="UM" id="D4FD2102-7802-BD76-987D-0220EDCF8325">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 08:54:14 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="B2E17D53-C2F7-74D9-022D-5D63F3931519"/>
+</propertyMap>
+</Column>
+<Column name="DM" id="5BD01E5B-C834-19A0-4665-2B56FA8AE432">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 08:54:14 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT047</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="B398D247-00C1-F016-3BBB-FE65CFFFF7AA"/>
+</propertyMap>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="95755AF9-D3B3-F2AD-E035-1C913CCC2CB4" name="FIRM_PK">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 08:54:14 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="D9FAD087-E61C-D56D-CFB4-654A535B8ED3"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="597ECF46-F52F-89E9-6D0F-339653686C99" name="FIRM_Name_UN">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 08:54:14 UTC</createdTime>
+<generatorID>C4C359FF-1967-9775-223B-5A5A4A15A162</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="DEC5E5AC-89C7-E5D7-B9D0-4F8EC0B424F7"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="AA5BF2E0-6FC2-0FD2-6F9E-5A3239700B13" name="FIRM_eMail_UN">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 08:54:14 UTC</createdTime>
+<generatorID>DD922EDC-39BC-87E3-94C8-C9569BECE786</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="C6F914A5-AE23-DCAB-7CB3-A24403BAB4CA"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
