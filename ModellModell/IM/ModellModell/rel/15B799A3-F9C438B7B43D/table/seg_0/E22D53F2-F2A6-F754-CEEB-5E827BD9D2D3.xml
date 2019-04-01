@@ -1,0 +1,137 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="E22D53F2-F2A6-F754-CEEB-5E827BD9D2D3" name="Abteilung">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 13:37:53 UTC</createdTime>
+<comment>Organisationseinheit in der Firma (intern oder extern), die für die Definition oder Pflege eines Attributwertes verantwortlich ist.</comment>
+<generatorID>E36EA698-3231-1EAA-1FA8-7DCBF8B404AC</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<abbreviation>ABTE</abbreviation>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ORGE_ORGE_ID" id="50E23AA3-FC98-C365-F8CC-526C760D5F3A">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 13:37:54 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Name" id="5AF7D206-903C-8C4B-2B61-A04671038238">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 13:37:53 UTC</createdTime>
+<comment>Name eines Geschäftsbereichs</comment>
+<generatorID>5F1855D0-5C50-083E-F00A-56D7A0E3E93F</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Name1" id="4C7F2A07-1175-E5DE-A4FF-E6B664F5DA76">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 13:37:53 UTC</createdTime>
+<comment>Name der Entität der in der Kommunikation normalerweise gebraucht wird.</comment>
+<generatorID>6E28D8D2-162A-F709-A400-9F16EC7872AF</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="TYPE" id="6047F807-FAED-E0F1-FE9A-AE31E5224D1C">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 13:37:53 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<constraintName>CH_INH_ABTE</constraintName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>4</dataTypeSize>
+<listOfValues>
+<valueDef value="ABTE" description="entity Abteilung"/>
+</listOfValues>
+<ownDataTypeParameters>4,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isDiscriminatorColumn>true</isDiscriminatorColumn>
+</Column>
+<Column name="UC" id="3AA87F35-43D6-2B25-3528-B0EF808B9737">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 13:37:54 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<formulaDesc>USER</formulaDesc>
+<sourceType>System</sourceType>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<computed>true</computed>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="F7EEFF47-7A42-2A3E-7DFC-D0558D6996B8"/>
+</propertyMap>
+</Column>
+<Column name="DC" id="B2D97D0E-F9A9-AF2C-3671-B3AF9694CA2F">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 13:37:54 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT047</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="74D877A0-4C3B-63EE-06C5-071C7695907C"/>
+</propertyMap>
+</Column>
+<Column name="UM" id="6BE36D7F-0217-1B1F-7B85-3501ED0BAE5D">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 13:37:54 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="B2E17D53-C2F7-74D9-022D-5D63F3931519"/>
+</propertyMap>
+</Column>
+<Column name="DM" id="25EF5141-31A0-1ABE-0207-C83685117A01">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 13:37:54 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT047</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="B398D247-00C1-F016-3BBB-FE65CFFFF7AA"/>
+</propertyMap>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="78F7FB54-B8A2-B0FC-D362-7BF9FAAC3590" name="ABTE_PK">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 13:37:54 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="50E23AA3-FC98-C365-F8CC-526C760D5F3A"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

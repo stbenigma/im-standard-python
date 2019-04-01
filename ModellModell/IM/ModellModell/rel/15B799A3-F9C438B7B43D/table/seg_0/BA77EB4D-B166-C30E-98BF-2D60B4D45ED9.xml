@@ -1,0 +1,162 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="BA77EB4D-B166-C30E-98BF-2D60B4D45ED9" name="IsA_Beziehung">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 13:37:53 UTC</createdTime>
+<comment>1:1 Beziehung, einen Subtyp definiert.&lt;br/&gt;Monohierarchie, exklusive  IsA Subtypen können als Subtypen in der Entität gezeichnet werden. &lt;br/&gt;&lt;br/&gt;Eine IsA Beziehung beginnt immer bei Subtyp (von Kind zu Vater). Diese Beziehung (Kind zu Vater) kann nicht optional sein.</comment>
+<generatorID>56A35196-8576-F9DF-D1A6-349573645D77</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Assoziation_von-zu" id="44913539-A14C-7207-494E-3812E276805A">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 13:37:53 UTC</createdTime>
+<comment>Was verbindet die von-Entität mit der zu-Entität</comment>
+<generatorID>1E4F5AA9-8DAA-B81A-4D48-EDCE07CDC56A</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<use>0</use>
+<domain>D6C502B3-C779-CE1C-86D5-5492C6CA1E9F</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="901FA483-03BE-C80E-5521-653551E0DC72" referredColumn="D26575BF-AE32-0BBB-75E9-BEED5818324C"/>
+</associations>
+</Column>
+<Column name="Entitätname_[L]" id="06D3F605-6BBC-1155-60C9-02B8AFCC8D9C">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 13:37:53 UTC</createdTime>
+<comment>Name der Entität der in der Kommunikation normalerweise gebraucht wird.</comment>
+<generatorID>F024C5A0-4E7F-73FE-22DF-E11D4DFE5F93</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="901FA483-03BE-C80E-5521-653551E0DC72" referredColumn="C0D283E8-A7E7-9589-9E42-6AE8C87F420A"/>
+</associations>
+</Column>
+<Column name="Assoziation_zu-von" id="5E26C2DE-0901-A123-8750-574022C31E5A">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 13:37:53 UTC</createdTime>
+<comment>Was verbindet die zu-Entität mit der von-Entität</comment>
+<generatorID>04281DBE-816F-1F3F-8ED9-0CFDF3ADD26F</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<use>0</use>
+<domain>D6C502B3-C779-CE1C-86D5-5492C6CA1E9F</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="901FA483-03BE-C80E-5521-653551E0DC72" referredColumn="78F7B32D-1ADC-1299-06FA-0CBDD3FDE094"/>
+</associations>
+</Column>
+<Column name="Entitätname_[L]2" id="75DFAAE2-C6CE-DB2A-B431-F86F1F477B9D">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 13:37:53 UTC</createdTime>
+<comment>Name der Entität der in der Kommunikation normalerweise gebraucht wird.</comment>
+<generatorID>BD550A3D-10DD-61F1-8353-8C7215A160B2</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="901FA483-03BE-C80E-5521-653551E0DC72" referredColumn="2B6037BF-3965-60EF-51D0-23EEFADAA567"/>
+</associations>
+</Column>
+<Column name="UC" id="3A3DB76F-9BE6-C6BD-FDF3-2F947F1BBA67">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 13:37:54 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<formulaDesc>USER</formulaDesc>
+<sourceType>System</sourceType>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<computed>true</computed>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="F7EEFF47-7A42-2A3E-7DFC-D0558D6996B8"/>
+</propertyMap>
+</Column>
+<Column name="DC" id="031BDAB5-BAF7-9F0F-C4D7-6A2C1D9933D5">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 13:37:54 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT047</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="74D877A0-4C3B-63EE-06C5-071C7695907C"/>
+</propertyMap>
+</Column>
+<Column name="UM" id="C1DFF324-D006-2291-3E31-A9A31C92A6AE">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 13:37:54 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="B2E17D53-C2F7-74D9-022D-5D63F3931519"/>
+</propertyMap>
+</Column>
+<Column name="DM" id="50218244-F040-9453-42B1-C3BB0A387DAF">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 13:37:54 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT047</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="B398D247-00C1-F016-3BBB-FE65CFFFF7AA"/>
+</propertyMap>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="D515877F-97CA-6A27-B800-2794AD04E973" name="IsA_Beziehung_PK">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 13:37:53 UTC</createdTime>
+<generatorID>CEB0C7CA-9CEF-89CC-1712-0634D0BB6B99</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="06D3F605-6BBC-1155-60C9-02B8AFCC8D9C"/>
+<colUsage columnID="75DFAAE2-C6CE-DB2A-B431-F86F1F477B9D"/>
+<colUsage columnID="44913539-A14C-7207-494E-3812E276805A"/>
+<colUsage columnID="5E26C2DE-0901-A123-8750-574022C31E5A"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="EE434D19-2ADA-C917-8A44-67B3338E35D0" name="IsA_Beziehung_Beziehung_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 13:37:53 UTC</createdTime>
+<generatorID>2A10707B-654E-2D0F-9C66-DFC09569BB4F</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="06D3F605-6BBC-1155-60C9-02B8AFCC8D9C"/>
+<colUsage columnID="75DFAAE2-C6CE-DB2A-B431-F86F1F477B9D"/>
+<colUsage columnID="44913539-A14C-7207-494E-3812E276805A"/>
+<colUsage columnID="5E26C2DE-0901-A123-8750-574022C31E5A"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
