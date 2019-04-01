@@ -221,6 +221,63 @@
 <colAssociation fkAssociation="1E39DE0C-0B88-6316-0D15-9103EDBE7121" referredColumn="F4EDCA59-F7D9-EC99-204A-396FA09121FF"/>
 </associations>
 </Column>
+<Column name="WRTB_UC" id="6E5D1A00-E30F-2563-3A7F-0072B7F316F8">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 09:33:42 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<computed>true</computed>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="F7EEFF47-7A42-2A3E-7DFC-D0558D6996B8"/>
+</propertyMap>
+</Column>
+<Column name="WRTB_DC" id="18611BF0-6A20-61DD-FAD2-A749B19BD61C">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 09:33:42 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT047</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="74D877A0-4C3B-63EE-06C5-071C7695907C"/>
+</propertyMap>
+</Column>
+<Column name="WRTB_UM" id="F05D0E96-8359-F408-58E8-588DFEEF6E21">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 09:33:42 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="B2E17D53-C2F7-74D9-022D-5D63F3931519"/>
+</propertyMap>
+</Column>
+<Column name="WRTB_DM" id="69180F10-8C72-A5BC-A5CE-C7D73BC60EE1">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 09:33:42 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT047</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="B398D247-00C1-F016-3BBB-FE65CFFFF7AA"/>
+</propertyMap>
+</Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
 <ind_PK_UK id="CDBD4638-E412-5780-ADD7-23C1BC82D90C" name="WRTB_PK">
@@ -244,7 +301,7 @@
 <colUsage columnID="02619A13-3C8E-180C-80CA-27D791529A48"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="0130A100-5FDF-9C61-11C4-C7CD8511B75B" name="DOMA_UETX_FK_NAME">
+<ind_PK_UK id="0130A100-5FDF-9C61-11C4-C7CD8511B75B" name="WRTB_UETX_FK_NAME">
 <createdBy>stb</createdBy>
 <createdTime>2019-03-30 10:44:18 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
@@ -252,16 +309,6 @@
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
 <colUsage columnID="02619A13-3C8E-180C-80CA-27D791529A48"/>
-</indexColumnUsage>
-</ind_PK_UK>
-<ind_PK_UK id="09DDC208-29DD-8FFC-EDA1-709D29D0EE60" name="DOMA_UETX_FK_BESCHR">
-<createdBy>stb</createdBy>
-<createdTime>2019-03-30 10:45:10 UTC</createdTime>
-<ownerDesignName>ModellModell</ownerDesignName>
-<indexState>Foreign Key</indexState>
-<isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
-<colUsage columnID="3B69F5A2-CD30-58B9-5A55-0667CB54EAA7"/>
 </indexColumnUsage>
 </ind_PK_UK>
 <ind_PK_UK id="F4BBB57C-442F-0AD2-C6DD-D30EC19C4070" name="WRTB_PHYS_EINHEIT_FK">

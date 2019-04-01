@@ -110,6 +110,63 @@
 <colAssociation fkAssociation="82E5786F-D63D-75D4-971B-0F670F6FB7BE" referredColumn="2FB7B8A7-8D51-5FF0-5AF2-D5AB9375E9DC"/>
 </associations>
 </Column>
+<Column name="SPRA_UC" id="D7C7050F-8646-7E39-4B07-C8B81905FB28">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 09:35:20 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<computed>true</computed>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="F7EEFF47-7A42-2A3E-7DFC-D0558D6996B8"/>
+</propertyMap>
+</Column>
+<Column name="SPRA_DC" id="5BAA16B4-FA65-0F77-FF8D-C4A27A7BD29F">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 09:35:20 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT047</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="74D877A0-4C3B-63EE-06C5-071C7695907C"/>
+</propertyMap>
+</Column>
+<Column name="SPRA_UM" id="A9C0F5A5-7017-DAEC-B6AE-4634B46AD0BE">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 09:35:20 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="B2E17D53-C2F7-74D9-022D-5D63F3931519"/>
+</propertyMap>
+</Column>
+<Column name="SPRA_DM" id="62E1554A-B31F-DDC6-0081-31F02707DB36">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 09:35:20 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT047</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="B398D247-00C1-F016-3BBB-FE65CFFFF7AA"/>
+</propertyMap>
+</Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
 <ind_PK_UK id="6F1BCB46-8DD5-D4F2-C8A8-199BD423AB13" name="SPRA_PK">

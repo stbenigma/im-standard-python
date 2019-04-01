@@ -95,9 +95,66 @@
 <colAssociation fkAssociation="1D2948F2-3F41-7D76-5448-5637AA4977FB" referredColumn="55253521-18EF-4491-BA38-A5FE10DD40CE"/>
 </associations>
 </Column>
+<Column name="VGWT_UC" id="85901998-C02F-DC4D-EC51-8A9D2756E02F">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 09:34:23 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<computed>true</computed>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="F7EEFF47-7A42-2A3E-7DFC-D0558D6996B8"/>
+</propertyMap>
+</Column>
+<Column name="VGWT_DC" id="E769FC7D-358E-04C9-BB7A-864F8EDD9150">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 09:34:23 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT047</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="74D877A0-4C3B-63EE-06C5-071C7695907C"/>
+</propertyMap>
+</Column>
+<Column name="VGWT_UM" id="0016B961-E83D-32C8-A3B8-6AFA0FC758E7">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 09:34:23 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="B2E17D53-C2F7-74D9-022D-5D63F3931519"/>
+</propertyMap>
+</Column>
+<Column name="VGWT_DM" id="5D17834C-D1C8-7A15-06E0-3E946A5A1CAC">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 09:34:23 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT047</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="B398D247-00C1-F016-3BBB-FE65CFFFF7AA"/>
+</propertyMap>
+</Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
-<ind_PK_UK id="B7EA30B4-2C62-BA4B-A245-1A5A551C273B" name="VORGABEWERT_PK">
+<ind_PK_UK id="B7EA30B4-2C62-BA4B-A245-1A5A551C273B" name="VGWT_PK">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:34 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
@@ -107,7 +164,7 @@
 <colUsage columnID="DD90C865-C842-4AC3-B30F-3935F4A8EE2F"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="2464A781-EE63-1F0D-7BD1-6A4FFFD68160" name="VORGABEWERT_WERT_{REF_TABLE_ABBR}_{REF_TABLE_ABBR}_DOMÄNE_ID_{REF_TABLE_ABBR}_AUFZÄHLUNG_DOMÄNE_ID_UN">
+<ind_PK_UK id="2464A781-EE63-1F0D-7BD1-6A4FFFD68160" name="  VGWT_UK">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:34 UTC</createdTime>
 <generatorID>824FA372-7B8A-3105-4784-FC4BC65A3261</generatorID>
@@ -117,6 +174,16 @@
 <indexColumnUsage>
 <colUsage columnID="9269B165-ED6E-B12B-C49E-FA58A3BC8129"/>
 <colUsage columnID="79290766-74BB-E78B-4781-3F5F0E6E607B"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="F84E1AF5-015F-735E-386C-687DB86C2E58" name="VGWT_UETX_FK_ANZEIGE">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 09:27:16 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="17DF90D1-9E1B-1AE8-1996-BCA661FBBE19"/>
 </indexColumnUsage>
 </ind_PK_UK>
 <ind_PK_UK id="6FAE5D42-7F8C-713F-2F43-BE7D5DE7F3C1" name="VGWT_UETX_FK_NAME">
@@ -139,20 +206,6 @@
 <colUsage columnID="1B37B53F-7AE0-2E28-FA61-27C1C85BD74C"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="F84E1AF5-015F-735E-386C-687DB86C2E58" name="VGWT_UETX_FK_ANZEIGE">
-<createdBy>stb</createdBy>
-<createdTime>2019-04-01 09:27:16 UTC</createdTime>
-<ownerDesignName>ModellModell</ownerDesignName>
-<indexState>Foreign Key</indexState>
-<isSurrogateKey>false</isSurrogateKey>
-</ind_PK_UK>
-<ind_PK_UK id="D6A1E8B9-905A-7D90-956D-D695CA8D7939" name="VGWT_UETX_FK_BESCHR">
-<createdBy>stb</createdBy>
-<createdTime>2019-04-01 09:27:16 UTC</createdTime>
-<ownerDesignName>ModellModell</ownerDesignName>
-<indexState>Foreign Key</indexState>
-<isSurrogateKey>false</isSurrogateKey>
-</ind_PK_UK>
 <ind_PK_UK id="D92E4C14-21DE-39C9-5B22-DAF0D71C0246" name="VGWT_WRTB_FK">
 <createdBy>stb</createdBy>
 <createdTime>2019-04-01 09:28:26 UTC</createdTime>
@@ -162,6 +215,20 @@
 <indexColumnUsage>
 <colUsage columnID="9269B165-ED6E-B12B-C49E-FA58A3BC8129"/>
 </indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="C31CA993-21C9-D6FA-E113-037CB9E08DC5" name="VGWT_UETX_FK_ANZEIGE">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 09:33:07 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+</ind_PK_UK>
+<ind_PK_UK id="924D5004-BB34-9249-E02C-6F72C76AD527" name="VGWT_UETX_FK_BESCHR">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 09:33:07 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
 </ind_PK_UK>
 </indexes>
 </Table>

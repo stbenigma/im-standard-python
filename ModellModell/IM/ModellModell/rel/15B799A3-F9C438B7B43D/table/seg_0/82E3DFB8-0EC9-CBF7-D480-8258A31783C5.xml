@@ -16,8 +16,9 @@
 <createdTime>2018-10-21 13:54:34 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementColumn>true</autoIncrementColumn>
 <identityColumn>true</identityColumn>
@@ -86,19 +87,6 @@
 <use>0</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
 <domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-</Column>
-<Column name="Synonym_[N]" id="CFD1C8BB-ED17-C9AC-1F66-84D2D79FB174">
-<createdBy>stb</createdBy>
-<createdTime>2019-04-01 08:54:14 UTC</createdTime>
-<comment>Name, der für diese Entität auch verwendet wird</comment>
-<generatorID>86F63762-7E3D-9675-C4EB-5EF70C2112E7</generatorID>
-<ownerDesignName>ModellModell</ownerDesignName>
-<nullsAllowed>true</nullsAllowed>
-<use>0</use>
-<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
-<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
@@ -247,7 +235,7 @@
 <colUsage columnID="4B7B14A7-FB9C-FB8B-00C1-D2975C29A910"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="860483F6-CBB9-FBA1-7267-A6DEBA399D49" name="Entität_Aufgabenbereich_FK">
+<ind_PK_UK id="860483F6-CBB9-FBA1-7267-A6DEBA399D49" name="ENTI_AUGB_RK">
 <createdBy>stb</createdBy>
 <createdTime>2019-04-01 08:54:14 UTC</createdTime>
 <generatorID>7F637C63-8542-9D1B-DA7A-880287278EE4</generatorID>
