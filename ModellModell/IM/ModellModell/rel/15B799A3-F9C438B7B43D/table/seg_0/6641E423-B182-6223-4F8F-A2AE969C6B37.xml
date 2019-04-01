@@ -48,9 +48,6 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
-<associations>
-<colAssociation fkAssociation="6DDB1C09-25EB-95A8-4ED8-7E0D17BDDBC0" referredColumn="A378345E-C3A2-1DAB-A09D-67630ADC17A8"/>
-</associations>
 </Column>
 <Column name="ATTR_TECH_NAME" id="9C8AC513-3BDE-9409-6D3F-793EECB4524B">
 <createdBy>stb</createdBy>
@@ -74,6 +71,9 @@
 <domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="52F956FD-AA6F-40CF-C786-964B058EDF4C" referredColumn="55253521-18EF-4491-BA38-A5FE10DD40CE"/>
+</associations>
 </Column>
 <Column name="ATTR_UETX_ID_TOOLTIP" id="BB191A5F-2313-6CC8-EC9A-27FD19779501">
 <createdBy>stb</createdBy>
@@ -86,6 +86,9 @@
 <domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="858EC5AD-0A74-B2BB-AEE5-496D49D7FCB5" referredColumn="55253521-18EF-4491-BA38-A5FE10DD40CE"/>
+</associations>
 </Column>
 <Column name="ATTR_UETX_ID_BESCHR" id="375CB27A-BF59-6EF2-F3BA-55E1FFF03DA9">
 <createdBy>stb</createdBy>
@@ -98,6 +101,9 @@
 <domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="4ED10C1E-42E4-CB1B-5363-3D7104535B92" referredColumn="55253521-18EF-4491-BA38-A5FE10DD40CE"/>
+</associations>
 </Column>
 <Column name="ATTR_BUSINESS_RULE" id="FD3B7911-AE01-DCEE-E3F6-4AB566AC5E84">
 <createdBy>stb</createdBy>
@@ -173,6 +179,63 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
+<Column name="ATTR_UC" id="396A633C-9B91-D0E8-E397-9C638E9829CC">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 09:12:30 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<computed>true</computed>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="F7EEFF47-7A42-2A3E-7DFC-D0558D6996B8"/>
+</propertyMap>
+</Column>
+<Column name="ATTR_DC" id="C5E6F469-6C5F-A89E-654B-B83B03097BA0">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 09:12:30 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT047</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="74D877A0-4C3B-63EE-06C5-071C7695907C"/>
+</propertyMap>
+</Column>
+<Column name="ATTR_UM" id="67E92DA4-A3EB-BB31-72A7-FCF8841B42BE">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 09:12:30 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="B2E17D53-C2F7-74D9-022D-5D63F3931519"/>
+</propertyMap>
+</Column>
+<Column name="ATTR_DM" id="5F43059F-CC96-48CC-E4B5-4AB28C140A5C">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 09:12:30 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT047</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="B398D247-00C1-F016-3BBB-FE65CFFFF7AA"/>
+</propertyMap>
+</Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
 <ind_PK_UK id="DBB67B3F-B7B3-81DC-8C7D-7BB2EEF8B49D" name="ATTR_PK">
@@ -197,17 +260,6 @@
 <colUsage columnID="9C8AC513-3BDE-9409-6D3F-793EECB4524B"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="B41D07FD-4887-3FEC-E3DE-077A82D319D3" name="ATTR_WRTB_FK">
-<createdBy>stb</createdBy>
-<createdTime>2018-10-21 13:54:35 UTC</createdTime>
-<generatorID>5F51F051-951A-520B-C8CA-07AA8F3BDCC7</generatorID>
-<ownerDesignName>ModellModell</ownerDesignName>
-<indexState>Foreign Key</indexState>
-<isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
-<colUsage columnID="D362B3E9-BBF0-AF1E-B979-CF879DC35AC8"/>
-</indexColumnUsage>
-</ind_PK_UK>
 <ind_PK_UK id="1F571D4D-81E6-4144-4330-28E1A74D249C" name="ATTR_ENTI_FK">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:35 UTC</createdTime>
@@ -217,6 +269,36 @@
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
 <colUsage columnID="D549EF49-F0D6-3DA1-CB37-ACDF020F478C"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="E1B2A292-9914-B3D3-F2F2-8D1076B10F85" name="ATTR_UETX_FK_NAME">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 08:28:18 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="40B69719-D7C5-6555-DF94-A535031E1CC8"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="A0404CEB-4455-103D-FF2B-B51BCB8EF134" name="ATTR_UETX_FK_BESCHR">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 08:28:44 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="375CB27A-BF59-6EF2-F3BA-55E1FFF03DA9"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="4BDF9C4C-8F8B-3BF2-0974-EB2CFE51171B" name="ATTR_UETX_FK_TOOLTIP">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 08:29:04 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="BB191A5F-2313-6CC8-EC9A-27FD19779501"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>

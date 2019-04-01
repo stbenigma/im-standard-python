@@ -6,9 +6,9 @@
 <ordsAlias>view_1</ordsAlias>
 <userDefined>true</userDefined>
 <userDefinedSQL>SELECT&lt;br/&gt;    wertebereich.wrtb_id,&lt;br/&gt;    wertebereich.wrtb_business_rule,&lt;br/&gt;    uetx_name.uetx_originaltext as WRTB_NAME,&lt;br/&gt;    wertebereich.wrtb_uetx_id_name,&lt;br/&gt;    uetx_beschr.uetx_originaltext as WRTB_BESCHR,&lt;br/&gt;    wertebereich.wrtb_uetx_id_beschr,&lt;br/&gt;    wertebereich.wrtb_num_maxwert,&lt;br/&gt;    wertebereich.wrtb_num_minwert,&lt;br/&gt;    wertebereich.wrtb_num_vorkstellen,&lt;br/&gt;    wertebereich.wrtb_num_nachkstellen,&lt;br/&gt;    wertebereich.wrtb_num_rundng_einh,&lt;br/&gt;    wertebereich.werb_num_pheh_id&lt;br/&gt;FROM&lt;br/&gt;    wertebereich&lt;br/&gt;    LEFT JOIN uebersetz_text uetx_name ON uetx_name.uetx_id = wertebereich.wrtb_uetx_id_name                              &lt;br/&gt;    left JOIN uebersetz_text uetx_beschr ON uetx_beschr.uetx_id = wertebereich.wrtb_uetx_id_beschr &lt;br/&gt;WHERE wrtb_typ = &apos;NUM&apos;</userDefinedSQL>
+<validSQL>false</validSQL>
 <parsed>true</parsed>
 <usedContainers>
-<container alias="uetx_name" containerID="4E63E732-8F22-56FC-6B42-D5D65C1A95A5"/>
 <container containerID="40E8BAEF-6201-C0D7-25DE-53610BCB8E50"/>
 </usedContainers>
 <viewElements>
@@ -43,8 +43,6 @@
 <alias>WRTB_NAME</alias>
 <dataType>VARCHAR2 (4000 CHAR)</dataType>
 <reference>false</reference>
-<referencedColumn>FACF6440-37A4-1D95-D6F3-84A0356CB061</referencedColumn>
-<table>6AB41CA3-DB72-2EB5-4975-11E7010B4515</table>
 </viewElement>
 <viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="WRTB_UETX_ID_NAME" id="EA56033D-657B-F094-8B67-2DFEFEB41E3D">
 <createdBy>stb</createdBy>
@@ -66,8 +64,6 @@
 <alias>WRTB_BESCHR</alias>
 <dataType>VARCHAR2 (4000 CHAR)</dataType>
 <reference>false</reference>
-<referencedColumn>FACF6440-37A4-1D95-D6F3-84A0356CB061</referencedColumn>
-<table>6AB41CA3-DB72-2EB5-4975-11E7010B4515</table>
 <tableAlias>sptx_beschr</tableAlias>
 </viewElement>
 <viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="WRTB_UETX_ID_BESCHR" id="0E790193-E271-12F8-3F5B-F4DD9CC71427">
@@ -136,13 +132,13 @@
 <referencedColumn>2C7B083D-B504-2130-69FE-238805CE0358</referencedColumn>
 <table>40E8BAEF-6201-C0D7-25DE-53610BCB8E50</table>
 </viewElement>
-<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="WERB_NUM_PHEH_ID" id="AF2EA2B6-D231-DB42-3A98-E413BBD05A9D">
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="WRTB_NUM_PHEH_ID" id="AF2EA2B6-D231-DB42-3A98-E413BBD05A9D">
 <createdBy>stb</createdBy>
 <createdTime>2019-03-30 18:10:16 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
-<dataType>NUMBER</dataType>
+<dataType>NUMBER (10)</dataType>
 <reference>false</reference>
 <referencedColumn>F4D6EDBE-4D04-AD50-8AB2-78848F319B92</referencedColumn>
 <table>40E8BAEF-6201-C0D7-25DE-53610BCB8E50</table>

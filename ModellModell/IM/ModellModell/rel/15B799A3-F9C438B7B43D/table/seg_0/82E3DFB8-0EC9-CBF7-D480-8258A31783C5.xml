@@ -1,15 +1,17 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="82E3DFB8-0EC9-CBF7-D480-8258A31783C5" name="ENTITÄT">
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="82E3DFB8-0EC9-CBF7-D480-8258A31783C5" name="ENTITAET">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:34 UTC</createdTime>
 <comment>Entität im systemübergreifenden, konsolidierten, konzeptionellen Modell eines Unternehmens&lt;br/&gt;</comment>
 <generatorID>C579AF88-68C9-5A94-FD4C-E7B9A73BB814</generatorID>
 <ownerDesignName>ModellModell</ownerDesignName>
+<ordsAlias>entitaet$</ordsAlias>
+<abbreviation>ENTI</abbreviation>
 <allowColumnReorder>false</allowColumnReorder>
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
-<Column name="ENTITÄT_ID" id="B53A54A2-7725-B574-6A72-01964F006A02">
+<Column name="ENTI_ID" id="B53A54A2-7725-B574-6A72-01964F006A02">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:34 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
@@ -22,7 +24,22 @@
 <autoIncrementCycle>false</autoIncrementCycle>
 <isSurrogateColumn>true</isSurrogateColumn>
 </Column>
-<Column name="TECHNISCHER_NAME" id="1669D46F-27CD-83CD-EF66-1591403B3DD7">
+<Column name="ENTI_AUGB_ID" id="C67312DB-A4B3-B791-FD0B-C3C005229CC1">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 08:58:17 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="193FF1D2-715A-F1BC-0F49-BE338815E799" referredColumn="6B4CA9DE-2F44-3468-F54B-3ED00AB57FA5"/>
+</associations>
+</Column>
+<Column name="ENTI_TECH_NAME" id="1669D46F-27CD-83CD-EF66-1591403B3DD7">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:34 UTC</createdTime>
 <comment>Eindeutiger, technischer Name der Entität (z.B. der Tabelle, die die Entität repräsentiert)</comment>
@@ -34,11 +51,49 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="ANZGNAME_[L]" id="4B7B14A7-FB9C-FB8B-00C1-D2975C29A910">
+<Column name="ENTI_UETX_ID_NAME" id="4B7B14A7-FB9C-FB8B-00C1-D2975C29A910">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:34 UTC</createdTime>
 <comment>Name der Entität der in der Kommunikation normalerweise gebraucht wird.</comment>
 <generatorID>0F2758D2-C7D1-07D3-5C35-F1697AF2FBE0</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ENTI_UETX_ID_BESCHR" id="213BDB4D-0E2C-2F1E-1473-40E5B8D57933">
+<createdBy>stb</createdBy>
+<createdTime>2018-10-21 13:54:34 UTC</createdTime>
+<comment>Bedeutung, Nutzen, Nutzung der Entität</comment>
+<generatorID>78E7CC00-D288-42DD-98DE-293BD4C4788A</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ENTI_UETX_ID_TOOLTIP" id="1A07CCC5-7F5D-B8A9-578F-A58A0AD233B0">
+<createdBy>stb</createdBy>
+<createdTime>2018-10-21 13:54:34 UTC</createdTime>
+<comment>Anzeige der Bedeutung für Bediener auf einer Maske.</comment>
+<generatorID>54A2577F-F95D-B646-574D-6693D12215E0</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Synonym_[N]" id="CFD1C8BB-ED17-C9AC-1F66-84D2D79FB174">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 08:54:14 UTC</createdTime>
+<comment>Name, der für diese Entität auch verwendet wird</comment>
+<generatorID>86F63762-7E3D-9675-C4EB-5EF70C2112E7</generatorID>
 <ownerDesignName>ModellModell</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <use>0</use>
@@ -47,11 +102,38 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="BESCHR_[L]" id="213BDB4D-0E2C-2F1E-1473-40E5B8D57933">
+<Column name="ENTI_UETX_ID_KURZNAME" id="2D570C1B-F8B7-5107-9D9E-EDA1DCEBA598">
 <createdBy>stb</createdBy>
-<createdTime>2018-10-21 13:54:34 UTC</createdTime>
-<comment>Bedeutung, Nutzen, Nutzung der Entität</comment>
-<generatorID>78E7CC00-D288-42DD-98DE-293BD4C4788A</generatorID>
+<createdTime>2019-04-01 08:54:14 UTC</createdTime>
+<comment>Kurzbezeichnung der Entität für die Verwendung aus Überschrift, in Referenzen </comment>
+<generatorID>3F71D6FF-01E1-8249-78A0-A7FF4F70650A</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ENTI_PREFIX" id="D59A7658-545A-C8AD-D836-CC2728CC6506">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 08:54:14 UTC</createdTime>
+<comment>Kürzestname (3-5 Zeichen, Normalerweise Grossbuchstaben) der als Präfix für  Implementierungsnamen verwendet werden kann.</comment>
+<generatorID>05044FC2-ACB4-20D7-8B53-8FCF430B32D9</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>10 CHAR</dataTypeSize>
+<ownDataTypeParameters>10 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ENTI_BEISPIELE" id="71888730-C488-05FE-4A03-983B319002A1">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 08:54:14 UTC</createdTime>
+<comment>Typische Beispiele für eine Ausprägung dieser Entität, als Hinweis auf die Bedeutung</comment>
+<generatorID>0A3BF2BE-3C66-86F6-C0C4-789EE9EC7833</generatorID>
 <ownerDesignName>ModellModell</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <use>0</use>
@@ -60,18 +142,87 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="TOOLTIP_[L]" id="1A07CCC5-7F5D-B8A9-578F-A58A0AD233B0">
+<Column name="ENTI_FARBCODE" id="D70C1780-24A1-7649-9726-B9F742974D68">
 <createdBy>stb</createdBy>
-<createdTime>2018-10-21 13:54:34 UTC</createdTime>
-<comment>Anzeige der Bedeutung für Bediener auf einer Maske.</comment>
-<generatorID>54A2577F-F95D-B646-574D-6693D12215E0</generatorID>
+<createdTime>2019-04-01 08:54:14 UTC</createdTime>
+<comment>RGB-Code für die Darstellung von Entitäten. Default aus Hoheitsbereich übernommen</comment>
+<generatorID>E6EA02ED-FBDF-A7B3-D40C-65EA77152BBF</generatorID>
 <ownerDesignName>ModellModell</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <use>0</use>
-<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
-<domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>06269521-C0BC-78CB-FBC8-656101307358</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ENTI_ERW_TUPEL#" id="7A6612F1-9107-2275-2C22-30917587ECD9">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 08:54:14 UTC</createdTime>
+<comment>Grössenordnung der Tupelanzahl in dieser Entität</comment>
+<generatorID>5D1A133A-66CD-CCDD-815F-E71B76100EF4</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<domain>A32A539A-AA2C-608E-1F61-A290079F25AD</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ENTI_UC" id="57C1A7CC-904B-088F-D660-C30E00D74A5C">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 09:12:06 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<computed>true</computed>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="F7EEFF47-7A42-2A3E-7DFC-D0558D6996B8"/>
+</propertyMap>
+</Column>
+<Column name="ENTI_DC" id="FD0CF49E-523B-90D7-8ACB-38948D9E08D9">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 09:12:06 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT047</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="74D877A0-4C3B-63EE-06C5-071C7695907C"/>
+</propertyMap>
+</Column>
+<Column name="ENTI_UM" id="E8AD8E77-E0E5-3FDE-25EA-B75D4E349216">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 09:12:06 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="B2E17D53-C2F7-74D9-022D-5D63F3931519"/>
+</propertyMap>
+</Column>
+<Column name="ENTI_DM" id="3C629701-9020-9F0B-7C89-E569CB8C77B0">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 09:12:06 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT047</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="B398D247-00C1-F016-3BBB-FE65CFFFF7AA"/>
+</propertyMap>
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
@@ -93,7 +244,18 @@
 <indexState>Unique Constraint</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
-<colUsage columnID="1669D46F-27CD-83CD-EF66-1591403B3DD7"/>
+<colUsage columnID="4B7B14A7-FB9C-FB8B-00C1-D2975C29A910"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="860483F6-CBB9-FBA1-7267-A6DEBA399D49" name="Entität_Aufgabenbereich_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 08:54:14 UTC</createdTime>
+<generatorID>7F637C63-8542-9D1B-DA7A-880287278EE4</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="C67312DB-A4B3-B791-FD0B-C3C005229CC1"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>

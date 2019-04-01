@@ -43,8 +43,9 @@
 <createdTime>2018-10-21 13:54:35 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
@@ -57,14 +58,72 @@
 <createdTime>2018-10-21 13:54:35 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 <associations>
 <colAssociation fkAssociation="947D20C9-915B-A8DA-0EBD-3445C2BF8C18" referredColumn="F4EDCA59-F7D9-EC99-204A-396FA09121FF"/>
 </associations>
+</Column>
+<Column name="EHUR_UC" id="022B5C00-E065-6557-7C31-81E9816CCFB4">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 09:13:16 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<computed>true</computed>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="F7EEFF47-7A42-2A3E-7DFC-D0558D6996B8"/>
+</propertyMap>
+</Column>
+<Column name="EHUR_DC" id="DB780E7C-CB92-C386-9DC9-7FA955C877A5">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 09:13:16 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT047</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="74D877A0-4C3B-63EE-06C5-071C7695907C"/>
+</propertyMap>
+</Column>
+<Column name="EHUR_UM" id="3949542F-929E-9992-83FD-108B975031E0">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 09:13:16 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="B2E17D53-C2F7-74D9-022D-5D63F3931519"/>
+</propertyMap>
+</Column>
+<Column name="EHUR_DM" id="ADFD7C0C-CCBC-04AA-6688-59FCEB42CB4F">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 09:13:16 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT047</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="B398D247-00C1-F016-3BBB-FE65CFFFF7AA"/>
+</propertyMap>
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">

@@ -16,8 +16,9 @@
 <createdTime>2018-10-21 13:54:34 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementColumn>true</autoIncrementColumn>
 <identityColumn>true</identityColumn>
@@ -48,9 +49,6 @@
 <domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
-<associations>
-<colAssociation fkAssociation="49DCC216-4BE6-9AC5-C5F9-4335173558E7" referredColumn="1D6F6207-8B39-E3AB-6614-F36F05CDB3F3"/>
-</associations>
 </Column>
 <Column name="PHEH_UETX_ID_BESCHR" id="AA47CBD4-1503-F347-4F5D-68491B21BA40">
 <createdBy>stb</createdBy>
@@ -65,8 +63,66 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 <associations>
-<colAssociation fkAssociation="31643ABE-0171-5BC7-11B3-466F75E27820" referredColumn="1D6F6207-8B39-E3AB-6614-F36F05CDB3F3"/>
+<colAssociation fkAssociation="1C69139C-A2A1-BDF0-9E45-C0F2C4BF6D73" referredColumn="55253521-18EF-4491-BA38-A5FE10DD40CE"/>
+<colAssociation fkAssociation="456CDB7F-DA28-AE82-7D69-4DD746C30685" referredColumn="55253521-18EF-4491-BA38-A5FE10DD40CE"/>
 </associations>
+</Column>
+<Column name="PHEH_UC" id="E2B2B98B-F507-62B1-4B6E-6849640DC42E">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 09:12:57 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<computed>true</computed>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="F7EEFF47-7A42-2A3E-7DFC-D0558D6996B8"/>
+</propertyMap>
+</Column>
+<Column name="PHEH_DC" id="416EB493-1D58-401F-3047-2DFF0EDC32EC">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 09:12:57 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT047</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="74D877A0-4C3B-63EE-06C5-071C7695907C"/>
+</propertyMap>
+</Column>
+<Column name="PHEH_UM" id="107F045F-7996-F6B3-10A2-44901ADC48B6">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 09:12:57 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="B2E17D53-C2F7-74D9-022D-5D63F3931519"/>
+</propertyMap>
+</Column>
+<Column name="PHEH_DM" id="38FE4CE9-C6B8-AE63-8CBC-FDDA05F1232C">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 09:12:57 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT047</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="B398D247-00C1-F016-3BBB-FE65CFFFF7AA"/>
+</propertyMap>
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
@@ -102,19 +158,19 @@
 <colUsage columnID="63C1E3EB-6DE5-2E7F-251B-FD5E02D33CC7"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="AB2F5E05-41E3-EF7D-C314-351A217B9BEA" name="PHEH_UETX_FK_NAME">
+<ind_PK_UK id="7C800154-A0E2-CF66-8CC0-EA06A3DE2D06" name="PHEH_UETX_FK">
 <createdBy>stb</createdBy>
-<createdTime>2019-03-30 11:39:21 UTC</createdTime>
+<createdTime>2019-04-01 08:22:47 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 <indexState>Foreign Key</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
-<colUsage columnID="63C1E3EB-6DE5-2E7F-251B-FD5E02D33CC7"/>
+<colUsage columnID="AA47CBD4-1503-F347-4F5D-68491B21BA40"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="2234659D-7E89-7B83-7B91-89FF67ED9E91" name="PHEH_UETX_RK_BESCHR">
+<ind_PK_UK id="785613CD-A4DA-2310-E1D8-CE1DB6DBA0E3" name="PHEH_UETX_FK_BESCHR">
 <createdBy>stb</createdBy>
-<createdTime>2019-03-30 11:39:48 UTC</createdTime>
+<createdTime>2019-04-01 08:23:01 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 <indexState>Foreign Key</indexState>
 <isSurrogateKey>false</isSurrogateKey>
