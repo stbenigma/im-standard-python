@@ -21,7 +21,7 @@
 <property name="Beispiele" value="1 (Kunde) kauft mehrere (Artikel), (Organisationseinheit) wird geführt von 1 (Angestellter) "/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<Attribute name="Assoziation von-zu" id="1E4F5AA9-8DAA-B81A-4D48-EDCE07CDC56A">
+<Attribute name="Assoziation von-zu [L]" id="1E4F5AA9-8DAA-B81A-4D48-EDCE07CDC56A">
 <createdBy>stb</createdBy>
 <createdTime>2018-11-04 11:38:18 UTC</createdTime>
 <comment>Was verbindet die von-Entität mit der zu-Entität</comment>
@@ -32,6 +32,7 @@
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
 </engineerTo>
 <use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
 <domain>D6C502B3-C779-CE1C-86D5-5492C6CA1E9F</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
@@ -50,7 +51,7 @@
 <domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="Assoziation zu-von" id="04281DBE-816F-1F3F-8ED9-0CFDF3ADD26F">
+<Attribute name="Assoziation zu-von [L]" id="04281DBE-816F-1F3F-8ED9-0CFDF3ADD26F">
 <createdBy>stb</createdBy>
 <createdTime>2018-11-04 11:40:09 UTC</createdTime>
 <comment>Was verbindet die zu-Entität mit der von-Entität</comment>
@@ -61,6 +62,7 @@
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
 </engineerTo>
 <use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
 <domain>D6C502B3-C779-CE1C-86D5-5492C6CA1E9F</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>

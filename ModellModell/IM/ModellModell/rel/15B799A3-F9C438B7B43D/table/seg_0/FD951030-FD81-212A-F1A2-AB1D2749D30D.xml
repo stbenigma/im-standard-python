@@ -59,9 +59,13 @@
 <ownerDesignName>ModellModell</ownerDesignName>
 <constraintName>AUGB_FARBCODE_CHK</constraintName>
 <nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
 <use>0</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
 <domain>06269521-C0BC-78CB-FBC8-656101307358</domain>
+<checkConstraint>
+<implementationDef dbType="Generic Constraint" definition="LENGTH(AUGB_FARBCODE) = 6"/>
+</checkConstraint>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>

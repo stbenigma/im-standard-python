@@ -12,7 +12,7 @@
          <fileName>defaultdomains</fileName>
          <logicalDatatype>LOGDT024</logicalDatatype>
          <checkConstraint>
-            <implementationDef dbType="Generic Constraint" definition="LENGTH(AUG_FARBCODE) = 6"/>
+            <implementationDef dbType="Generic Constraint" definition="LENGTH() = 6"/>
          </checkConstraint>
       </Domain>
       <Domain class="oracle.dbtools.crest.model.design.Domain" name="Technischer Datentyp" id="06475D8D-E9C3-9A63-A19D-2EF365B97D2D">
@@ -198,8 +198,13 @@
          <ownerDesignName>System</ownerDesignName>
          <importedID>8831EDF9-D218-4FB3-5BB6-7B34E8325AF7</importedID>
          <avTSortOrder>0</avTSortOrder>
+         <dataTypeSize>1 CHAR</dataTypeSize>
          <fileName>defaultdomains</fileName>
-         <logicalDatatype>LOGDT017</logicalDatatype>
+         <logicalDatatype>LOGDT025</logicalDatatype>
+         <listOfValues>
+            <valueDef value="1" description="1:1"/>
+            <valueDef value="M" description="1:M"/>
+         </listOfValues>
       </Domain>
       <Domain class="oracle.dbtools.crest.model.design.Domain" name="Bezeichnung" id="897B91BA-60B8-3A16-793A-97B535605E5E">
          <createdBy>stb</createdBy>
@@ -370,8 +375,9 @@
          <ownerDesignName>System</ownerDesignName>
          <importedID>D6C502B3-C779-CE1C-86D5-5492C6CA1E9F</importedID>
          <avTSortOrder>0</avTSortOrder>
+         <dataTypeSize>100 CHAR</dataTypeSize>
          <fileName>defaultdomains</fileName>
-         <logicalDatatype>LOGDT017</logicalDatatype>
+         <logicalDatatype>LOGDT024</logicalDatatype>
       </Domain>
       <Domain class="oracle.dbtools.crest.model.design.Domain" name="Linienpfad" id="D87F0AC2-8B47-16C7-5D9C-A77A3626F787">
          <createdBy>stb</createdBy>

@@ -137,9 +137,13 @@
 <generatorID>E6EA02ED-FBDF-A7B3-D40C-65EA77152BBF</generatorID>
 <ownerDesignName>ModellModell</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
 <use>0</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
 <domain>06269521-C0BC-78CB-FBC8-656101307358</domain>
+<checkConstraint>
+<implementationDef dbType="Generic Constraint" definition="LENGTH(ENTI_FARBCODE) = 6"/>
+</checkConstraint>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
