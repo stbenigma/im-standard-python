@@ -155,6 +155,7 @@
 <ownerDesignName>ModellModell</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
 <domain>A32A539A-AA2C-608E-1F61-A290079F25AD</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
@@ -218,7 +219,7 @@
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
-<ind_PK_UK id="D2D79305-2A98-35EE-F956-1CA2D3435712" name="ENTITÄT_PK">
+<ind_PK_UK id="D2D79305-2A98-35EE-F956-1CA2D3435712" name="ENTI_PK">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:34 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
@@ -228,7 +229,7 @@
 <colUsage columnID="B53A54A2-7725-B574-6A72-01964F006A02"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="520A0B31-098A-E869-E0C8-794D02BF4459" name="ENTITÄT_TECHNISCHER_NAME_UN">
+<ind_PK_UK id="520A0B31-098A-E869-E0C8-794D02BF4459" name="ENTI_TECH_NAME_UK">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:34 UTC</createdTime>
 <generatorID>298E6664-EE9B-35DA-F9A6-566EA31E3066</generatorID>
@@ -236,10 +237,10 @@
 <indexState>Unique Constraint</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
-<colUsage columnID="4B7B14A7-FB9C-FB8B-00C1-D2975C29A910"/>
+<colUsage columnID="1669D46F-27CD-83CD-EF66-1591403B3DD7"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="860483F6-CBB9-FBA1-7267-A6DEBA399D49" name="ENTI_AUGB_RK">
+<ind_PK_UK id="860483F6-CBB9-FBA1-7267-A6DEBA399D49" name="ENTI_AUGB_FK">
 <createdBy>stb</createdBy>
 <createdTime>2019-04-01 08:54:14 UTC</createdTime>
 <generatorID>7F637C63-8542-9D1B-DA7A-880287278EE4</generatorID>

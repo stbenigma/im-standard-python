@@ -126,7 +126,7 @@
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
-<ind_PK_UK id="7E7564F8-64B2-39B4-24DE-10225D96BF52" name="ENTI_PK">
+<ind_PK_UK id="7E7564F8-64B2-39B4-24DE-10225D96BF52" name="SYNO_PK">
 <createdBy>stb</createdBy>
 <createdTime>2019-04-01 09:38:45 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
@@ -134,18 +134,6 @@
 <indexState>Primary Constraint</indexState>
 <indexColumnUsage>
 <colUsage columnID="9121B2CE-A2E8-0767-D42B-AFC1DBEC9F53"/>
-</indexColumnUsage>
-</ind_PK_UK>
-<ind_PK_UK id="3CE4F6A6-CCBE-D200-A7A5-6E5EBDFD01F2" name="SYNO_NAME_UK">
-<createdBy>stb</createdBy>
-<createdTime>2019-04-01 09:38:45 UTC</createdTime>
-<generatorID>298E6664-EE9B-35DA-F9A6-566EA31E3066</generatorID>
-<ownerDesignName>ModellModell</ownerDesignName>
-<indexState>Unique Constraint</indexState>
-<isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
-<colUsage columnID="09168800-43D1-2888-937D-707AC93B36AD"/>
-<colUsage columnID="48B804B2-6D79-D2A1-C9C3-7E2EB8654EFE"/>
 </indexColumnUsage>
 </ind_PK_UK>
 <ind_PK_UK id="4B853EF4-67BC-76CD-8E51-9977420E08AB" name="SYNO_TECH_NAME_UK">

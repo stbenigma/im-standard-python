@@ -50,6 +50,9 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="6DDB1C09-25EB-95A8-4ED8-7E0D17BDDBC0" referredColumn="A378345E-C3A2-1DAB-A09D-67630ADC17A8"/>
+</associations>
 </Column>
 <Column name="ATTR_TECH_NAME" id="9C8AC513-3BDE-9409-6D3F-793EECB4524B">
 <createdBy>stb</createdBy>
@@ -262,6 +265,26 @@
 <colUsage columnID="9C8AC513-3BDE-9409-6D3F-793EECB4524B"/>
 </indexColumnUsage>
 </ind_PK_UK>
+<ind_PK_UK id="44DEF6E4-21CD-5B6B-A536-F343AD7697CB" name="ATTR_WRTB_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 14:07:14 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="D362B3E9-BBF0-AF1E-B979-CF879DC35AC8"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="9D7306DA-2F81-E96F-1882-5CCA5D71EA7E" name="ATTR_ENTI_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 14:07:14 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="D549EF49-F0D6-3DA1-CB37-ACDF020F478C"/>
+</indexColumnUsage>
+</ind_PK_UK>
 <ind_PK_UK id="1F571D4D-81E6-4144-4330-28E1A74D249C" name="ATTR_ENTI_FK">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:35 UTC</createdTime>
@@ -303,19 +326,15 @@
 <colUsage columnID="BB191A5F-2313-6CC8-EC9A-27FD19779501"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="44DEF6E4-21CD-5B6B-A536-F343AD7697CB" name="ATTR_WRTB_FK">
+<ind_PK_UK id="9B607D04-7CEC-0987-5707-0CC7E119EEFC" name="ATTR_WRTB_FK">
 <createdBy>stb</createdBy>
-<createdTime>2019-04-01 14:07:14 UTC</createdTime>
+<createdTime>2019-04-03 13:17:00 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 <indexState>Foreign Key</indexState>
 <isSurrogateKey>false</isSurrogateKey>
-</ind_PK_UK>
-<ind_PK_UK id="9D7306DA-2F81-E96F-1882-5CCA5D71EA7E" name="ATTR_Entität_FK">
-<createdBy>stb</createdBy>
-<createdTime>2019-04-01 14:07:14 UTC</createdTime>
-<ownerDesignName>ModellModell</ownerDesignName>
-<indexState>Foreign Key</indexState>
-<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="D362B3E9-BBF0-AF1E-B979-CF879DC35AC8"/>
+</indexColumnUsage>
 </ind_PK_UK>
 </indexes>
 </Table>

@@ -45,6 +45,22 @@
          <fileName>defaultdomains</fileName>
          <logicalDatatype>LOGDT017</logicalDatatype>
       </Domain>
+      <Domain class="oracle.dbtools.crest.model.design.Domain" name="Inhaltstyp" id="23CFFE8F-D989-8ED0-93D0-C4BF59140074">
+         <createdBy>stb</createdBy>
+         <createdTime>2019-04-03 13:22:40 UTC</createdTime>
+         <ownerDesignName>System</ownerDesignName>
+         <avTSortOrder>0</avTSortOrder>
+         <dataTypeSize>30 CHAR</dataTypeSize>
+         <fileName>defaultdomains</fileName>
+         <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+         <listOfValues>
+            <valueDef value="BILD" description="Bild"/>
+            <valueDef value="FILM" description="Film"/>
+            <valueDef value="GRAPH" description="Graphik"/>
+            <valueDef value="TEXT" description="Formatierter Text"/>
+            <valueDef value="TON" description="Ton"/>
+         </listOfValues>
+      </Domain>
       <Domain class="oracle.dbtools.crest.model.design.Domain" name="ISO Sprachcode 2" id="3CFAACDE-10D2-A99A-844A-975DA633F49B">
          <createdBy>stb</createdBy>
          <createdTime>2019-03-10 10:49:47 UTC</createdTime>
@@ -291,8 +307,15 @@
          <ownerDesignName>System</ownerDesignName>
          <importedID>A32A539A-AA2C-608E-1F61-A290079F25AD</importedID>
          <avTSortOrder>0</avTSortOrder>
+         <dataTypeSize>10 CHAR</dataTypeSize>
          <fileName>defaultdomains</fileName>
-         <logicalDatatype>LOGDT017</logicalDatatype>
+         <logicalDatatype>LOGDT024</logicalDatatype>
+         <listOfValues>
+            <valueDef value="1 Mio" description="viel"/>
+            <valueDef value="100" description="sehr wenig"/>
+            <valueDef value="10000" description="wenig"/>
+            <valueDef value="&gt;100 Mio" description="sehr viel"/>
+         </listOfValues>
       </Domain>
       <Domain class="oracle.dbtools.crest.model.design.Domain" name="Diagramm Koordinate" id="ACC90DC4-5B08-1F67-561C-C9389709269B">
          <createdBy>stb</createdBy>
@@ -443,15 +466,16 @@
          <fileName>defaultdomains</fileName>
          <logicalDatatype>LOGDT019</logicalDatatype>
       </Domain>
-      <Domain class="oracle.dbtools.crest.model.design.Domain" name="Format" id="F8923415-2F34-2023-2112-9B16A52B1FD6">
+      <Domain class="oracle.dbtools.crest.model.design.Domain" name="Anzeigeformat" id="F8923415-2F34-2023-2112-9B16A52B1FD6">
          <createdBy>stb</createdBy>
          <createdTime>2019-03-10 11:09:09 UTC</createdTime>
          <comment>Formatierungsvorgabe für numerische oder Zeitpunkt-Attribute</comment>
          <ownerDesignName>System</ownerDesignName>
          <importedID>F8923415-2F34-2023-2112-9B16A52B1FD6</importedID>
          <avTSortOrder>0</avTSortOrder>
+         <dataTypeSize>200 CHAR</dataTypeSize>
          <fileName>defaultdomains</fileName>
-         <logicalDatatype>LOGDT017</logicalDatatype>
+         <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
       </Domain>
       <Domain class="oracle.dbtools.crest.model.design.Domain" name="Periodizität" id="FEA1A894-BD6D-FEF8-423C-6857A9D694A1">
          <createdBy>stb</createdBy>
