@@ -77,7 +77,7 @@
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 <associations>
-<colAssociation fkAssociation="EAE4FDCD-6831-6822-A631-5C1838D8B599" referredColumn="55253521-18EF-4491-BA38-A5FE10DD40CE"/>
+<colAssociation fkAssociation="884D0310-C486-2026-5BCC-BBB1D377E4D3" referredColumn="55253521-18EF-4491-BA38-A5FE10DD40CE"/>
 </associations>
 </Column>
 <Column name="VGWT_UETX_ID_BESCHR" id="1B37B53F-7AE0-2E28-FA61-27C1C85BD74C">
@@ -176,26 +176,6 @@
 <colUsage columnID="79290766-74BB-E78B-4781-3F5F0E6E607B"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="F84E1AF5-015F-735E-386C-687DB86C2E58" name="VGWT_UETX_FK_ANZEIGE">
-<createdBy>stb</createdBy>
-<createdTime>2019-04-01 09:27:16 UTC</createdTime>
-<ownerDesignName>ModellModell</ownerDesignName>
-<indexState>Foreign Key</indexState>
-<isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
-<colUsage columnID="17DF90D1-9E1B-1AE8-1996-BCA661FBBE19"/>
-</indexColumnUsage>
-</ind_PK_UK>
-<ind_PK_UK id="6FAE5D42-7F8C-713F-2F43-BE7D5DE7F3C1" name="VGWT_UETX_FK_NAME">
-<createdBy>stb</createdBy>
-<createdTime>2019-04-01 08:24:14 UTC</createdTime>
-<ownerDesignName>ModellModell</ownerDesignName>
-<indexState>Foreign Key</indexState>
-<isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
-<colUsage columnID="17DF90D1-9E1B-1AE8-1996-BCA661FBBE19"/>
-</indexColumnUsage>
-</ind_PK_UK>
 <ind_PK_UK id="43EAFCC7-9FC5-D32E-288A-A4727A7A33AE" name="VGWT_UETX_FK_BESCHR">
 <createdBy>stb</createdBy>
 <createdTime>2019-04-01 08:25:14 UTC</createdTime>
@@ -216,19 +196,15 @@
 <colUsage columnID="9269B165-ED6E-B12B-C49E-FA58A3BC8129"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="6D962A01-610C-9DED-0957-E41CD23B94FC" name="VGWT_UETX_FK_ANZEIGE">
+<ind_PK_UK id="60F43B6C-A6F2-0FAA-264D-26F04EDA7E16" name="VGWT_UETX_FK_ANZEIGE">
 <createdBy>stb</createdBy>
-<createdTime>2019-04-02 14:32:29 UTC</createdTime>
+<createdTime>2019-04-03 07:53:07 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 <indexState>Foreign Key</indexState>
 <isSurrogateKey>false</isSurrogateKey>
-</ind_PK_UK>
-<ind_PK_UK id="CC4F218E-796C-DB61-2A4F-AEC646FC440E" name="VGWT_UETX_FK_BESCHR">
-<createdBy>stb</createdBy>
-<createdTime>2019-04-02 14:32:29 UTC</createdTime>
-<ownerDesignName>ModellModell</ownerDesignName>
-<indexState>Foreign Key</indexState>
-<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="17DF90D1-9E1B-1AE8-1996-BCA661FBBE19"/>
+</indexColumnUsage>
 </ind_PK_UK>
 </indexes>
 </Table>

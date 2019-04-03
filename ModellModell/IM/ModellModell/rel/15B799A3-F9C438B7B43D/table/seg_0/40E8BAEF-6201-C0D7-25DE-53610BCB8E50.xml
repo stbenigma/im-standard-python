@@ -202,7 +202,6 @@
 <use>0</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
 <domain>9D57C5ED-8336-6617-9BC7-29B138AA6191</domain>
-<defaultValue>1</defaultValue>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
@@ -231,7 +230,6 @@
 <logicalDatatype>LOGDT024</logicalDatatype>
 <dataTypeSize>30 BYTE</dataTypeSize>
 <ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
-<computed>true</computed>
 <autoIncrementCycle>false</autoIncrementCycle>
 <propertyMap>
 <property name="ctemplateID" value="F7EEFF47-7A42-2A3E-7DFC-D0558D6996B8"/>
@@ -348,31 +346,31 @@
 <createdBy>stb</createdBy>
 <createdTime>2019-03-30 10:56:32 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
-<rule>(WRTB_TYP = &apos;ZPKT&apos; AND WRTB_ZPKT_GRANULARITAET IS NOT NULL&lt;br/&gt; AND WRTB_TEXT_MAXLNG IS NULL&lt;br/&gt; AND WRTB_TEXT_SYNTAXREGEL IS NULL&lt;br/&gt;AND WRTB_NUM_VORKSTELLEN IS NULL&lt;br/&gt; AND WRTB_NUM_NACHKSTELLEN IS NULL&lt;br/&gt; AND WRTB_NUM_RUNDNG_EINH IS NULL&lt;br/&gt; AND WRTB_NUM_MINWERT IS NULL&lt;br/&gt; AND WRTB_NUM_MAXWERT IS NULL&lt;br/&gt; AND WERB_NUM_PHEH_ID IS NULL)&lt;br/&gt;OR &lt;br/&gt;(WRTB_TYP &lt;&gt; &apos;ZPKT&apos; AND WRTB_ZPKT_GRANULARITAET IS NULL&lt;br/&gt;AND WRTB_ZPKT_MAXWERT IS NULL AND WRTB_ZPKT_MINWERT  IS NULL)</rule>
+<rule>(WRTB_TYP = &apos;ZPKT&apos; AND WRTB_ZPKT_GRANULARITAET IS NOT NULL&lt;br/&gt; AND WRTB_TEXT_MAXLNG IS NULL&lt;br/&gt; AND WRTB_TEXT_SYNTAXREGEL IS NULL&lt;br/&gt;AND WRTB_NUM_VORKSTELLEN IS NULL&lt;br/&gt; AND WRTB_NUM_NACHKSTELLEN IS NULL&lt;br/&gt; AND WRTB_NUM_RUNDNG_EINH IS NULL&lt;br/&gt; AND WRTB_NUM_MINWERT IS NULL&lt;br/&gt; AND WRTB_NUM_MAXWERT IS NULL&lt;br/&gt; AND WRTB_NUM_PHEH_ID IS NULL)&lt;br/&gt;OR &lt;br/&gt;(WRTB_TYP &lt;&gt; &apos;ZPKT&apos; AND WRTB_ZPKT_GRANULARITAET IS NULL&lt;br/&gt;AND WRTB_ZPKT_MAXWERT IS NULL AND WRTB_ZPKT_MINWERT  IS NULL)</rule>
 </tableCheckConstraint>
 <tableCheckConstraint name="WRTB_CK_LOV" directorySegmentName="seg_1" id="9617DF55-9C8E-5F4C-3D93-D9A818371401">
 <createdBy>stb</createdBy>
 <createdTime>2019-03-30 10:58:49 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
-<rule>(WRTB_TYP = &apos;LOV&apos; &lt;br/&gt;AND WRTB_ZPKT_GRANULARITAET IS NULL&lt;br/&gt;AND WRTB_ZPKT_MAXWERT IS NULL &lt;br/&gt;AND WRTB_ZPKT_MINWERT  IS NULL&lt;br/&gt;AND WRTB_TEXT_MAXLNG IS NULL&lt;br/&gt;AND WRTB_TEXT_SYNTAXREGEL IS NULL&lt;br/&gt;AND WRTB_NUM_VORKSTELLEN IS NULL&lt;br/&gt; AND WRTB_NUM_NACHKSTELLEN IS NULL&lt;br/&gt; AND WRTB_NUM_RUNDNG_EINH IS NULL&lt;br/&gt; AND WRTB_NUM_MINWERT IS NULL&lt;br/&gt; AND WRTB_NUM_MAXWERT IS NULL&lt;br/&gt; AND WERB_NUM_PHEH_ID IS NULL)&lt;br/&gt;OR&lt;br/&gt;(WRTB_TYP &lt;&gt; &apos;LOV&apos;)</rule>
+<rule>(WRTB_TYP = &apos;LOV&apos; &lt;br/&gt;AND WRTB_ZPKT_GRANULARITAET IS NULL&lt;br/&gt;AND WRTB_ZPKT_MAXWERT IS NULL &lt;br/&gt;AND WRTB_ZPKT_MINWERT  IS NULL&lt;br/&gt;AND WRTB_TEXT_MAXLNG IS NULL&lt;br/&gt;AND WRTB_TEXT_SYNTAXREGEL IS NULL&lt;br/&gt;AND WRTB_NUM_VORKSTELLEN IS NULL&lt;br/&gt; AND WRTB_NUM_NACHKSTELLEN IS NULL&lt;br/&gt; AND WRTB_NUM_RUNDNG_EINH IS NULL&lt;br/&gt; AND WRTB_NUM_MINWERT IS NULL&lt;br/&gt; AND WRTB_NUM_MAXWERT IS NULL&lt;br/&gt; AND WRTB_NUM_PHEH_ID IS NULL)&lt;br/&gt;OR&lt;br/&gt;(WRTB_TYP &lt;&gt; &apos;LOV&apos;)</rule>
 </tableCheckConstraint>
 <tableCheckConstraint name="WRTB_CK_TEXT" directorySegmentName="seg_1" id="D4AFB028-8B1A-D131-AF19-D2A2832ACD2B">
 <createdBy>stb</createdBy>
 <createdTime>2019-03-30 11:06:05 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
-<rule>(WRTB_TYP = &apos;TEXT&apos; &lt;br/&gt;AND WRTB_ZPKT_GRANULARITAET IS NULL&lt;br/&gt;AND WRTB_ZPKT_MAXWERT IS NULL &lt;br/&gt;AND WRTB_ZPKT_MINWERT  IS NULL&lt;br/&gt;AND WRTB_NUM_VORKSTELLEN IS NULL&lt;br/&gt; AND WRTB_NUM_NACHKSTELLEN IS NULL&lt;br/&gt; AND WRTB_NUM_RUNDNG_EINH IS NULL&lt;br/&gt; AND WRTB_NUM_MINWERT IS NULL&lt;br/&gt; AND WRTB_NUM_MAXWERT IS NULL&lt;br/&gt; AND WERB_NUM_PHEH_ID IS NULL)&lt;br/&gt;OR&lt;br/&gt;(WRTB_TYP &lt;&gt; &apos;TEXT&apos;)</rule>
+<rule>(WRTB_TYP = &apos;TEXT&apos; &lt;br/&gt;AND WRTB_ZPKT_GRANULARITAET IS NULL&lt;br/&gt;AND WRTB_ZPKT_MAXWERT IS NULL &lt;br/&gt;AND WRTB_ZPKT_MINWERT  IS NULL&lt;br/&gt;AND WRTB_NUM_VORKSTELLEN IS NULL&lt;br/&gt; AND WRTB_NUM_NACHKSTELLEN IS NULL&lt;br/&gt; AND WRTB_NUM_RUNDNG_EINH IS NULL&lt;br/&gt; AND WRTB_NUM_MINWERT IS NULL&lt;br/&gt; AND WRTB_NUM_MAXWERT IS NULL&lt;br/&gt; AND WRTB_NUM_PHEH_ID IS NULL)&lt;br/&gt;OR&lt;br/&gt;(WRTB_TYP &lt;&gt; &apos;TEXT&apos;)</rule>
 </tableCheckConstraint>
 <tableCheckConstraint name="WRTB_CK_NUM" directorySegmentName="seg_1" id="8E70B571-F147-F55F-FD3B-57B60FF8CFD7">
 <createdBy>stb</createdBy>
 <createdTime>2019-03-30 11:28:09 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
-<rule>(WRTB_TYP = &apos;NUM&apos; WRTB_NUM_VORKSTELLEN IS NOT NULL&lt;br/&gt; AND WRTB_NUM_VORKSTELLEN IS NOT NULL&lt;br/&gt; AND WRTB_NUM_RUNDNG_EINH IS NOT NULL&lt;br/&gt; AND WRTB_ZPKT_GRANULARITAET IS NULL&lt;br/&gt; AND WRTB_TEXT_MAXLNG IS NULL&lt;br/&gt; AND WRTB_TEXT_SYNTAXREGEL IS NULL&lt;br/&gt;)&lt;br/&gt;OR &lt;br/&gt;(WRTB_TYP &lt;&gt; &apos;NUM&apos; AND WRTB_NUM_VORKSTELLEN IS NULL&lt;br/&gt; AND WRTB_NUM_NACHKSTELLEN IS NULL&lt;br/&gt; AND WRTB_NUM_RUNDNG_EINH IS NULL&lt;br/&gt; AND WRTB_NUM_MINWERT IS NULL&lt;br/&gt; AND WRTB_NUM_MAXWERT IS NULL&lt;br/&gt; AND WERB_NUM_PHEH_ID IS NULL&lt;br/&gt; )</rule>
+<rule>(WRTB_TYP = &apos;NUM&apos; and WRTB_NUM_VORKSTELLEN IS NOT NULL&lt;br/&gt; AND WRTB_NUM_VORKSTELLEN IS NOT NULL&lt;br/&gt; AND WRTB_NUM_RUNDNG_EINH IS NOT NULL&lt;br/&gt; AND WRTB_ZPKT_GRANULARITAET IS NULL&lt;br/&gt; AND WRTB_TEXT_MAXLNG IS NULL&lt;br/&gt; AND WRTB_TEXT_SYNTAXREGEL IS NULL&lt;br/&gt;)&lt;br/&gt;OR &lt;br/&gt;(WRTB_TYP &lt;&gt; &apos;NUM&apos; AND WRTB_NUM_VORKSTELLEN IS NULL&lt;br/&gt; AND WRTB_NUM_NACHKSTELLEN IS NULL&lt;br/&gt; AND WRTB_NUM_RUNDNG_EINH IS NULL&lt;br/&gt; AND WRTB_NUM_MINWERT IS NULL&lt;br/&gt; AND WRTB_NUM_MAXWERT IS NULL&lt;br/&gt; AND WRTB_NUM_PHEH_ID IS NULL)</rule>
 </tableCheckConstraint>
 <tableCheckConstraint name="WRTB_CK_GRP" directorySegmentName="seg_0" id="D5DC41D4-F5D4-3E40-F74D-AF29FA616252">
 <createdBy>stb</createdBy>
 <createdTime>2019-04-02 14:39:02 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
-<rule>(WRTB_TYP = &apos;GRP&apos; &lt;br/&gt;AND WRTB_ZPKT_GRANULARITAET IS NULL&lt;br/&gt;AND WRTB_ZPKT_MAXWERT IS NULL &lt;br/&gt;AND WRTB_ZPKT_MINWERT  IS NULL&lt;br/&gt;AND WRTB_TEXT_MAXLNG IS NULL&lt;br/&gt;AND WRTB_TEXT_SYNTAXREGEL IS NULL&lt;br/&gt;AND WRTB_NUM_VORKSTELLEN IS NULL&lt;br/&gt; AND WRTB_NUM_NACHKSTELLEN IS NULL&lt;br/&gt; AND WRTB_NUM_RUNDNG_EINH IS NULL&lt;br/&gt; AND WRTB_NUM_MINWERT IS NULL&lt;br/&gt; AND WRTB_NUM_MAXWERT IS NULL&lt;br/&gt; AND WERB_NUM_PHEH_ID IS NULL)&lt;br/&gt;OR&lt;br/&gt;(WRTB_TYP &lt;&gt; &apos;GRP&apos;)</rule>
+<rule>(WRTB_TYP = &apos;GRP&apos; &lt;br/&gt;AND WRTB_ZPKT_GRANULARITAET IS NULL&lt;br/&gt;AND WRTB_ZPKT_MAXWERT IS NULL &lt;br/&gt;AND WRTB_ZPKT_MINWERT  IS NULL&lt;br/&gt;AND WRTB_TEXT_MAXLNG IS NULL&lt;br/&gt;AND WRTB_TEXT_SYNTAXREGEL IS NULL&lt;br/&gt;AND WRTB_NUM_VORKSTELLEN IS NULL&lt;br/&gt; AND WRTB_NUM_NACHKSTELLEN IS NULL&lt;br/&gt; AND WRTB_NUM_RUNDNG_EINH IS NULL&lt;br/&gt; AND WRTB_NUM_MINWERT IS NULL&lt;br/&gt; AND WRTB_NUM_MAXWERT IS NULL&lt;br/&gt; AND WRTB_NUM_PHEH_ID IS NULL)&lt;br/&gt;OR&lt;br/&gt;(WRTB_TYP &lt;&gt; &apos;GRP&apos;)</rule>
 </tableCheckConstraint>
 </tableCheckConstraints>
 </Table>
