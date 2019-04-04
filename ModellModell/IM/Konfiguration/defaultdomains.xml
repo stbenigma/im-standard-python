@@ -102,8 +102,9 @@
          <ownerDesignName>System</ownerDesignName>
          <importedID>4B4F8F40-D3A4-4F39-8CB3-BB6C57534E96</importedID>
          <avTSortOrder>0</avTSortOrder>
+         <dataTypeSize>200 CHAR</dataTypeSize>
          <fileName>defaultdomains</fileName>
-         <logicalDatatype>LOGDT017</logicalDatatype>
+         <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
       </Domain>
       <Domain class="oracle.dbtools.crest.model.design.Domain" name="Transformationsauslöseart" id="55CB11A1-3EFC-3253-465C-D58D3D8252AD">
          <createdBy>stb</createdBy>
@@ -181,8 +182,9 @@
          <ownerDesignName>System</ownerDesignName>
          <importedID>7F98E20B-63A1-C3F1-F7AE-0E2F6BC2C8D5</importedID>
          <avTSortOrder>0</avTSortOrder>
+         <dataTypeSize>30 CHAR</dataTypeSize>
          <fileName>defaultdomains</fileName>
-         <logicalDatatype>LOGDT017</logicalDatatype>
+         <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
       </Domain>
       <Domain class="oracle.dbtools.crest.model.design.Domain" name="Zeitgranularität" id="802FD5C1-7C5B-0290-1F1C-F8FBB1AD2AA9">
          <createdBy>stb</createdBy>
@@ -263,6 +265,16 @@
          <avTSortOrder>0</avTSortOrder>
          <fileName>defaultdomains</fileName>
          <logicalDatatype>LOGDT017</logicalDatatype>
+      </Domain>
+      <Domain class="oracle.dbtools.crest.model.design.Domain" name="Adresse" id="9B99E814-DBEA-128A-C17E-01680EEEDFBC">
+         <createdBy>stb</createdBy>
+         <createdTime>2019-04-04 15:21:19 UTC</createdTime>
+         <comment>Postalische Adresse als Textfeld</comment>
+         <ownerDesignName>System</ownerDesignName>
+         <avTSortOrder>0</avTSortOrder>
+         <dataTypeSize>400 CHAR</dataTypeSize>
+         <fileName>defaultdomains</fileName>
+         <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
       </Domain>
       <Domain class="oracle.dbtools.crest.model.design.Domain" name="Stellen#" id="9CA83673-0453-9943-665C-CCB4497CF164">
          <createdBy>stb</createdBy>

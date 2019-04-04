@@ -130,23 +130,6 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="ENTI_FARBCODE" id="D70C1780-24A1-7649-9726-B9F742974D68">
-<createdBy>stb</createdBy>
-<createdTime>2019-04-01 08:54:14 UTC</createdTime>
-<comment>RGB-Code für die Darstellung von Entitäten. Default aus Hoheitsbereich übernommen</comment>
-<generatorID>E6EA02ED-FBDF-A7B3-D40C-65EA77152BBF</generatorID>
-<ownerDesignName>ModellModell</ownerDesignName>
-<nullsAllowed>true</nullsAllowed>
-<useDomainConstraints>false</useDomainConstraints>
-<use>0</use>
-<logicalDatatype>LOGDT024</logicalDatatype>
-<domain>06269521-C0BC-78CB-FBC8-656101307358</domain>
-<checkConstraint>
-<implementationDef dbType="Generic Constraint" definition="LENGTH(ENTI_FARBCODE) = 6"/>
-</checkConstraint>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-</Column>
 <Column name="ENTI_ERW_TUPEL#" id="7A6612F1-9107-2275-2C22-30917587ECD9">
 <createdBy>stb</createdBy>
 <createdTime>2019-04-01 08:54:14 UTC</createdTime>
