@@ -1,8 +1,8 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="5555ED41-5590-13C8-C379-5FC83128838D" name="Prozessauslöser">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="A0088A0E-0DAE-CEB0-2B99-BE1265DB35E9" name="Geschäftsereignis">
 <createdBy>stb</createdBy>
-<createdTime>2019-02-04 13:50:58 UTC</createdTime>
-<comment>Ein externes System, das z.B. durch Datenlieferung oder durch Zusenden einer Information (Mail, SMS,  Messgerät) etwas in unserem System anstösst.&lt;br/&gt;&lt;br/&gt;Beispiele:&lt;br/&gt;&lt;br/&gt;</comment>
+<createdTime>2019-04-05 07:42:44 UTC</createdTime>
+<comment>Etwas, das in einem Geschäft etwas auslöst&lt;br/&gt;&lt;br/&gt;Beispiele:&lt;br/&gt;- Monatsende (Lohnzahlung, Bericht an Mgt, Mahnläufe)&lt;br/&gt;- jeden Montag (überprüfung der offenen Bestellungen)&lt;br/&gt;- Kunde beschwert sich&lt;br/&gt;- Kunde bestellt&lt;br/&gt;- Quartalszahlen sind schlecht</comment>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
@@ -16,7 +16,5 @@
 <maxVolumes>9999999</maxVolumes>
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
-<preferredAbbreviation>AUSL</preferredAbbreviation>
-<shortName>AUSLOES</shortName>
 <createSurrogateKey>true</createSurrogateKey>
 </Entity>
