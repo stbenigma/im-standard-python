@@ -1,0 +1,65 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="DC7D3A49-7135-87EB-430D-0CDE657C7C6B" name="Schlüssel">
+<createdBy>stb</createdBy>
+<createdTime>2018-11-04 11:57:07 UTC</createdTime>
+<comment>Gruppe von identifizierenden Beziehungen und oder Attributen einer Entität.&lt;br/&gt;Jede Kombination von Werten in einem Schlüssel ist für die Entität einmalig. &lt;br/&gt;D.h. sie identifiziert genau 1 Eintrag in der Entität.&lt;br/&gt;&lt;br/&gt;Die Laufnummer ist ein Hilfsmittel. Genau genommen ist für einen Schlüssel nur eindeutig&lt;br/&gt;Entität + Menge aller Schlüsselelemente.</comment>
+<ownerDesignName>Testnik</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<propertyMap>
+<property name="Beispiele" value="Rechnungsposition: Rechnung (Beziehung),  Position-Nr, Kunde: Kunden-Nr"/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Laufnr" id="0F57A3C6-A117-9DD0-D738-0C5304B50953">
+<createdBy>stb</createdBy>
+<createdTime>2018-11-04 12:01:26 UTC</createdTime>
+<comment>Schlüssel einer Entität müssen durch ein Merkmal unterscheidbar werden.</comment>
+<ownerDesignName>Testnik</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Entitätname [L]" id="C2F010F2-7FFD-ED64-4BB8-349B6679C246">
+<createdBy>stb</createdBy>
+<createdTime>2018-11-04 11:59:53 UTC</createdTime>
+<comment>Name der Entität der in der Kommunikation normalerweise gebraucht wird.</comment>
+<generatorID>A3F5C580-9F75-32B1-4F8D-41C2C9715BBB</generatorID>
+<ownerDesignName>Testnik</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<referedAttribute>0F2758D2-C7D1-07D3-5C35-F1697AF2FBE0</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="0B9DBD0B-9D1E-62D8-C348-01E30DD8A3A5" name="Schlüssel PK">
+<createdBy>stb</createdBy>
+<createdTime>2018-11-04 11:59:53 UTC</createdTime>
+<ownerDesignName>Testnik</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<newElementsIDs>A3F5C580-9F75-32B1-4F8D-41C2C9715BBB,0F57A3C6-A117-9DD0-D738-0C5304B50953</newElementsIDs>
+<usedAttributes>
+<attributeRef>C2F010F2-7FFD-ED64-4BB8-349B6679C246</attributeRef>
+<attributeRef>0F57A3C6-A117-9DD0-D738-0C5304B50953</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

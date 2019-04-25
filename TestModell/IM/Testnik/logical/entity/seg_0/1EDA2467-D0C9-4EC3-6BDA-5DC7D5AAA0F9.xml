@@ -1,0 +1,100 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="1EDA2467-D0C9-4EC3-6BDA-5DC7D5AAA0F9" name="Geschäftsregel">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-23 13:39:01 UTC</createdTime>
+<comment>Geschäftsregel, die Attributwerte auf Regelkonformität prüft.&lt;br/&gt;Diese Regeln sind passiv. D.h. es wird überprüft, ob der Wert (ggf. im Zusammenhang mit anderen Werten dieser oder anderer Entitäten) aus fachlicher Sicht korrekt ist.&lt;br/&gt;&lt;br/&gt;Regelverletzungen können als SQL Selects angegeben werden. Jedes Tupel, das das Select liefert verletzt die Regel.   </comment>
+<ownerDesignName>Testnik</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<synonym>Business Rule</synonym>
+<createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="Beispiele" value="Liefermenge &lt;= Bestellmenge, Kunden mit zu vielen offenen Rechnungen können keine Bestellung aufgeben"/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Name" id="D4367DA7-6021-7E29-BEFC-2F6B66AB1763">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-23 13:39:01 UTC</createdTime>
+<ownerDesignName>Testnik</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Beschreibung" id="2B940275-6B40-64A6-6459-46A41243F4EF">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-23 13:40:18 UTC</createdTime>
+<comment>Umschreibung, Erklärung der Regel</comment>
+<ownerDesignName>Testnik</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Regel" id="723B41D1-B556-FACB-A890-B8B7F4FD8F6B">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-23 13:40:24 UTC</createdTime>
+<comment>Regel, die Werte beschränken auf Grund von komplexen Zusammenhängen (mehere Entitäten, Attribute, Beziehungen)</comment>
+<ownerDesignName>Testnik</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Fehlermeldung [L]" id="F0D0A02C-116A-DB0F-5438-DED076F0352F">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-23 13:40:55 UTC</createdTime>
+<comment>Meldung, die bei Verletzung der Regel angezeigt wird.</comment>
+<ownerDesignName>Testnik</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Regelebene" id="B4010BF0-A568-7476-4439-5CB48CB7997D">
+<createdBy>stb</createdBy>
+<createdTime>2019-01-10 08:07:01 UTC</createdTime>
+<comment>Ebene auf der die Regel prüft (Tupel, Entität, Datenbank)</comment>
+<ownerDesignName>Testnik</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="CD61460D-CC3B-5EE7-EEA7-2807443DEBA7" name="ITSY_NAME_UK">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-23 13:39:01 UTC</createdTime>
+<ownerDesignName>Testnik</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<newElementsIDs>D4367DA7-6021-7E29-BEFC-2F6B66AB1763</newElementsIDs>
+<usedAttributes>
+<attributeRef>D4367DA7-6021-7E29-BEFC-2F6B66AB1763</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

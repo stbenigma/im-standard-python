@@ -1,0 +1,96 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="C9EF7918-F5CC-0897-190A-CCD5A71E88D3" name="Systemattribut">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-23 12:57:13 UTC</createdTime>
+<comment> Attribut in einem System, das mit anderen Systemen ausgetauscht werden soll.&lt;br/&gt; Datentyp, Format und Constraints können in div. Sprachen und Dialekten geführ werden&lt;br/&gt;  SQL (mit dialekt)&lt;br/&gt;  Jason&lt;br/&gt;  XML&lt;br/&gt;</comment>
+<ownerDesignName>Testnik</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<createSurrogateKey>true</createSurrogateKey>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Name" id="B41BF0C7-0AD6-E2FF-307E-0E3AB8A27120">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-23 12:57:13 UTC</createdTime>
+<ownerDesignName>Testnik</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Beschreibung" id="182949AB-4842-155F-CCBA-717176E0E2E8">
+<createdBy>stb</createdBy>
+<createdTime>2018-11-05 08:13:20 UTC</createdTime>
+<comment>Beschreibung des Attributes im Fremdsystem</comment>
+<ownerDesignName>Testnik</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Tabellenname" id="A4F8AE1B-96D5-63B5-DAEA-8A543607CDE9">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-23 12:57:13 UTC</createdTime>
+<ownerDesignName>Testnik</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Datentyp" id="43799535-BB40-2FF9-9A10-9AFA0B987604">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-23 12:57:13 UTC</createdTime>
+<comment>Technischer Datentyp im Fremdsystem (z.B. String(20), NUMERIC(20,4), integer,date,  etc.)</comment>
+<ownerDesignName>Testnik</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Format" id="41BDC830-A46D-219F-EB0F-7B05805D6919">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-23 14:05:06 UTC</createdTime>
+<comment>Textliche Formatierung eines numerischen oder Zeitpunkt-Wertes</comment>
+<ownerDesignName>Testnik</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="0FBDB4CB-947F-3421-FF5C-5765ED98D65C" name="ATMP_UK">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-23 12:57:13 UTC</createdTime>
+<ownerDesignName>Testnik</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<newElementsIDs>B41BF0C7-0AD6-E2FF-307E-0E3AB8A27120,A4F8AE1B-96D5-63B5-DAEA-8A543607CDE9,DC7CB504-6419-8B00-4117-ABBE79443FD3</newElementsIDs>
+<usedAttributes>
+<attributeRef>B41BF0C7-0AD6-E2FF-307E-0E3AB8A27120</attributeRef>
+<attributeRef>A4F8AE1B-96D5-63B5-DAEA-8A543607CDE9</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

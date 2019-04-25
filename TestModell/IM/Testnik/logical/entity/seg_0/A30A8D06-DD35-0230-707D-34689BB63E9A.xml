@@ -1,0 +1,175 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="A30A8D06-DD35-0230-707D-34689BB63E9A" name="Modellelement">
+<createdBy>stb</createdBy>
+<createdTime>2019-01-08 19:50:05 UTC</createdTime>
+<comment>Irgend ein Element des Modells, über das wir Metainformationen verwalten sollen / wollen.</comment>
+<ownerDesignName>Testnik</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Name" id="409D3F0D-57F3-C416-B27C-83747E2BA6D8">
+<createdBy>stb</createdBy>
+<createdTime>2019-01-08 20:04:10 UTC</createdTime>
+<generatorID>08C0C0F1-B37B-1B46-521C-BBF37961FDA3</generatorID>
+<ownerDesignName>Testnik</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<referedAttribute>CC63CA99-3BB9-F97B-EC7C-FCEB913C8BE0</referedAttribute>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Name1" id="AC7E8E19-0E3A-56F0-46E1-24633B2E02DF">
+<createdBy>stb</createdBy>
+<createdTime>2019-01-08 20:04:10 UTC</createdTime>
+<comment>Name eines Geschäftsbereichs</comment>
+<generatorID>08C0C0F1-B37B-1B46-521C-BBF37961FDA3</generatorID>
+<ownerDesignName>Testnik</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<referedAttribute>5F1855D0-5C50-083E-F00A-56D7A0E3E93F</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Name11" id="31351F46-144D-8024-2DD0-F9F3E4D1AB0D">
+<createdBy>stb</createdBy>
+<createdTime>2019-01-08 20:04:10 UTC</createdTime>
+<comment>Name der Entität der in der Kommunikation normalerweise gebraucht wird.</comment>
+<generatorID>08C0C0F1-B37B-1B46-521C-BBF37961FDA3</generatorID>
+<ownerDesignName>Testnik</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<referedAttribute>6E28D8D2-162A-F709-A400-9F16EC7872AF</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Entitätname [L]" id="DF9762EB-1910-FA52-D14A-48E7D5AD6464">
+<createdBy>stb</createdBy>
+<createdTime>2019-01-08 20:05:10 UTC</createdTime>
+<comment>Name der Entität der in der Kommunikation normalerweise gebraucht wird.</comment>
+<generatorID>8D3A0C32-8AC0-E6A3-8A35-0FD533B78C90</generatorID>
+<ownerDesignName>Testnik</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<referedAttribute>0F2758D2-C7D1-07D3-5C35-F1697AF2FBE0</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Entitätname [L]1" id="FEA2D780-8E62-19D1-BD0B-32CF1BDD5044">
+<createdBy>stb</createdBy>
+<createdTime>2019-01-08 20:05:20 UTC</createdTime>
+<comment>Name der Entität der in der Kommunikation normalerweise gebraucht wird.</comment>
+<generatorID>55B1498E-327A-8EB9-6B83-EF62EAF84DBE</generatorID>
+<ownerDesignName>Testnik</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<referedAttribute>F024C5A0-4E7F-73FE-22DF-E11D4DFE5F93</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Entitätname [L]11" id="F75DB684-D28C-2146-D2D4-5E4208EEA0D8">
+<createdBy>stb</createdBy>
+<createdTime>2019-01-08 20:05:20 UTC</createdTime>
+<comment>Name der Entität der in der Kommunikation normalerweise gebraucht wird.</comment>
+<generatorID>55B1498E-327A-8EB9-6B83-EF62EAF84DBE</generatorID>
+<ownerDesignName>Testnik</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<referedAttribute>BD550A3D-10DD-61F1-8353-8C7215A160B2</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Assoziation von-zu" id="F13EB339-C6C0-6891-BB0E-29F3F6528E8B">
+<createdBy>stb</createdBy>
+<createdTime>2019-01-08 20:05:20 UTC</createdTime>
+<comment>Was verbindet die von-Entität mit der zu-Entität</comment>
+<generatorID>55B1498E-327A-8EB9-6B83-EF62EAF84DBE</generatorID>
+<ownerDesignName>Testnik</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<referedAttribute>1E4F5AA9-8DAA-B81A-4D48-EDCE07CDC56A</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Assoziation zu-von" id="1E032569-62C8-0771-0C3F-F452D633FA69">
+<createdBy>stb</createdBy>
+<createdTime>2019-01-08 20:05:20 UTC</createdTime>
+<comment>Was verbindet die zu-Entität mit der von-Entität</comment>
+<generatorID>55B1498E-327A-8EB9-6B83-EF62EAF84DBE</generatorID>
+<ownerDesignName>Testnik</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<referedAttribute>04281DBE-816F-1F3F-8ED9-0CFDF3ADD26F</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Name [L]" id="C75D5761-2622-F5AB-34AE-6D60FE266471">
+<createdBy>stb</createdBy>
+<createdTime>2019-01-08 20:05:30 UTC</createdTime>
+<generatorID>EEB98997-9074-2584-DA47-200E76AB1678</generatorID>
+<ownerDesignName>Testnik</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<referedAttribute>80ECD913-F2CD-DD01-BC96-70FDEC06AB21</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Attributmame [L]" id="B333233B-7389-783B-16BC-66CB848E12C7">
+<createdBy>stb</createdBy>
+<createdTime>2019-01-08 20:07:14 UTC</createdTime>
+<comment>Name, der etwas über die Rolle, Verwendung der Eigenschaft in der Entität aussagt. Häufig = Domänenname</comment>
+<generatorID>7D7B5EA8-8899-630D-13D5-1E8406CB32FA</generatorID>
+<ownerDesignName>Testnik</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<referedAttribute>EDEE919C-7C94-15E9-147C-57317A603D15</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Name2" id="48C63688-8F6D-A68D-1DA1-4E1CF1D58E02">
+<createdBy>admin</createdBy>
+<createdTime>2019-04-25 09:07:27 UTC</createdTime>
+<comment>Name der Entität der in der Kommunikation normalerweise gebraucht wird.</comment>
+<generatorID>08C0C0F1-B37B-1B46-521C-BBF37961FDA3</generatorID>
+<ownerDesignName>Testnik</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<referedAttribute>5C34D5B5-EA15-19CD-E1B2-B612FD69DD08</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+</Entity>

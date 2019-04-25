@@ -1,0 +1,91 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="413400B0-2EDF-28F3-6A05-89A2AF848391" name="Physikalische_Einheit">
+<createdBy>stb</createdBy>
+<createdTime>2018-10-21 13:54:34 UTC</createdTime>
+<comment>Physikalische Messeinheit .&lt;br/&gt;Siehe dazu z.B. https://de.wikipedia.org/wiki/Liste_physikalischer_Größen#SI-Basisgrößen_und_-einheiten</comment>
+<generatorID>DC28FCDB-CC97-5454-BD78-F1021F1567DC</generatorID>
+<ownerDesignName>Testnik</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Physikalische_Einheit_ID" id="F4EDCA59-F7D9-EC99-204A-396FA09121FF">
+<createdBy>stb</createdBy>
+<createdTime>2018-10-21 13:54:34 UTC</createdTime>
+<ownerDesignName>Testnik</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+<Column name="SI-Einheit" id="49B52436-EFAE-AD03-EB19-C88295618601">
+<createdBy>stb</createdBy>
+<createdTime>2018-10-21 13:54:34 UTC</createdTime>
+<comment>Einheit gemäss SI-Vorgabe</comment>
+<generatorID>EB7B509C-E485-EFAE-3DC7-C07E94245DB7</generatorID>
+<ownerDesignName>Testnik</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Name_[L]" id="63C1E3EB-6DE5-2E7F-251B-FD5E02D33CC7">
+<createdBy>stb</createdBy>
+<createdTime>2018-10-21 13:54:34 UTC</createdTime>
+<generatorID>B63051FE-1409-073C-01EA-C372603FDBA3</generatorID>
+<ownerDesignName>Testnik</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Beschreibung_[L]" id="AA47CBD4-1503-F347-4F5D-68491B21BA40">
+<createdBy>stb</createdBy>
+<createdTime>2018-10-21 13:54:34 UTC</createdTime>
+<generatorID>3A2394FA-CB07-573D-46E0-7BE1D89248A6</generatorID>
+<ownerDesignName>Testnik</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="90264223-020F-063D-0126-CD55A5912CEA" name="Physikalische_Einheit_PK">
+<createdBy>stb</createdBy>
+<createdTime>2018-10-21 13:54:34 UTC</createdTime>
+<ownerDesignName>Testnik</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="F4EDCA59-F7D9-EC99-204A-396FA09121FF"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="17246FFE-6B57-F278-8A98-2403E834202C" name="Physikalische_Einheit_SI-Einheit_UN">
+<createdBy>stb</createdBy>
+<createdTime>2018-10-21 13:54:34 UTC</createdTime>
+<generatorID>1962C4FF-FAA9-EE74-A6C0-780CEAFDE513</generatorID>
+<ownerDesignName>Testnik</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="49B52436-EFAE-AD03-EB19-C88295618601"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="72A7E1FA-8771-CF03-40A3-BE7941650414" name="Physikalische_Einheit_Name_[L]_UN">
+<createdBy>stb</createdBy>
+<createdTime>2018-10-21 13:54:34 UTC</createdTime>
+<generatorID>40B2B073-BAA3-6F9A-E56A-61E4809B9DE4</generatorID>
+<ownerDesignName>Testnik</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="63C1E3EB-6DE5-2E7F-251B-FD5E02D33CC7"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

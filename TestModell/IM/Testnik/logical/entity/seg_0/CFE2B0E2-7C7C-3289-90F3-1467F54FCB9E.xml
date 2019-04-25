@@ -1,0 +1,71 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="CFE2B0E2-7C7C-3289-90F3-1467F54FCB9E" name="IT-Komponente">
+<createdBy>stb</createdBy>
+<createdTime>2018-11-26 16:08:10 UTC</createdTime>
+<comment>Irgend eine Komponente die mit Informations Technologie zu tun hat und beschafft, betrieben und betreut  werden muss.&lt;br/&gt;&lt;br/&gt;Jede IT-Komponente hat einen Hersteller. D.h. es handelt sich um konkrete Produkte.</comment>
+<ownerDesignName>Testnik</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Name" id="E620B7E5-21B9-ADF5-D530-981CC31D9FDB">
+<createdBy>stb</createdBy>
+<createdTime>2018-11-26 16:08:10 UTC</createdTime>
+<ownerDesignName>Testnik</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Zweck" id="BF98F3F1-663A-71B7-4491-1BECD8F47FC1">
+<createdBy>stb</createdBy>
+<createdTime>2018-11-26 16:08:10 UTC</createdTime>
+<comment>Anwendungsgebiet (ERP, PIM, FiBu etc.)</comment>
+<ownerDesignName>Testnik</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Name [L]" id="4C325749-DFB7-ACE2-F931-7C64890C2EC0">
+<createdBy>stb</createdBy>
+<createdTime>2018-12-03 13:00:12 UTC</createdTime>
+<comment>Name des Hoheitsbereichs</comment>
+<generatorID>621EF2F9-FAEF-21B1-DEBD-36894107F476</generatorID>
+<ownerDesignName>Testnik</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<referedAttribute>53DC075C-058F-2C59-D396-901F1B597822</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Name1" id="63E8397B-467B-7C3A-3C1F-E4FB9A554B89">
+<createdBy>stb</createdBy>
+<createdTime>2018-12-03 13:00:12 UTC</createdTime>
+<comment>Name der Entität der in der Kommunikation normalerweise gebraucht wird.</comment>
+<generatorID>621EF2F9-FAEF-21B1-DEBD-36894107F476</generatorID>
+<ownerDesignName>Testnik</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<referedAttribute>63F3F918-F1A2-B2D8-42C7-B60721C8D8F0</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+</Entity>

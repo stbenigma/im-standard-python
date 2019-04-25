@@ -1,0 +1,143 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="CCF12126-A67B-7EDA-879F-5AF0824DA941" name="Attributtransformation">
+<createdBy>stb</createdBy>
+<createdTime>2018-10-21 13:54:34 UTC</createdTime>
+<comment> Eine Attributtransformation transformiert 1-viele Ausgangsattribute in einen Attributwert.&lt;br/&gt; Transformationen von externen Systemen zum konsolidierten Modell befüllen ein Attribut und verwenden min. 1 Systemattribut.&lt;br/&gt; Transformationen vom Modell zu externen Systemen befüllen ein Systemattribut und verwenden min. 1 Attribut.&lt;br/&gt;&lt;br/&gt; &lt;br/&gt; </comment>
+<generatorID>A159EC23-3A78-19D6-A2D3-8EFABD56E8E2</generatorID>
+<ownerDesignName>Testnik</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Attributtransformation_ID" id="580E8015-1DDF-1BB9-D4EB-C200B7B5A70D">
+<createdBy>stb</createdBy>
+<createdTime>2018-10-21 13:54:34 UTC</createdTime>
+<ownerDesignName>Testnik</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+<Column name="Transformationformel" id="8E35BA30-1AC3-C9E1-6713-2C1D647600CC">
+<createdBy>stb</createdBy>
+<createdTime>2018-10-21 13:54:34 UTC</createdTime>
+<comment>Formel, die 1-n Ausgangsattribute in ein Zielattribut umwandelt.</comment>
+<generatorID>AE8CA88C-4254-81E2-AB8A-3955B36E5FBB</generatorID>
+<ownerDesignName>Testnik</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Auslöseart" id="ED2746F2-F1E4-0513-C781-19714A7A3413">
+<createdBy>stb</createdBy>
+<createdTime>2018-10-21 13:54:34 UTC</createdTime>
+<comment>Art der Auslösung der Transformation (Mutation, Periode, Manuell)</comment>
+<generatorID>CC74EF5D-D5D2-2AD9-D000-8B748A382BB3</generatorID>
+<ownerDesignName>Testnik</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Auslöseperiodizität" id="C36706F7-70D1-155F-7105-3DC1CE5103DB">
+<createdBy>stb</createdBy>
+<createdTime>2018-10-21 13:54:34 UTC</createdTime>
+<comment>Täglich, alle 2 Minuten o.ä. Obligatorisch, falls die Auslöseart Zeitpunkt ist.</comment>
+<generatorID>A9E272F7-87CE-CB00-912F-E64A693881CF</generatorID>
+<ownerDesignName>Testnik</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="{ref table  abbr}_Attribut_ID" id="6AD45CFE-9FDE-A950-DC22-6C7D43650DAD">
+<createdBy>stb</createdBy>
+<createdTime>2018-10-21 13:54:35 UTC</createdTime>
+<ownerDesignName>Testnik</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="{ref table  abbr}_Systemattribut_ID" id="E83469EB-C671-75F4-F7D1-6983AFD77092">
+<createdBy>stb</createdBy>
+<createdTime>2018-10-21 13:54:35 UTC</createdTime>
+<ownerDesignName>Testnik</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="E101DD48-F351-2CB4-B4FB-3E324E2DD06F" referredColumn="AC00B2CD-443E-268D-0ACB-B1665F569AF6"/>
+</associations>
+</Column>
+<Column name="{ref table  abbr}_Attribut_ID1" id="03C25FBE-E58A-B817-071E-132701F2464B">
+<createdBy>stb</createdBy>
+<createdTime>2018-10-21 13:57:12 UTC</createdTime>
+<ownerDesignName>Testnik</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="{ref table  abbr}_Attribut_ID2" id="23CF8070-B748-95DE-286A-151954015B76">
+<createdBy>stb</createdBy>
+<createdTime>2018-10-21 13:59:23 UTC</createdTime>
+<ownerDesignName>Testnik</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="2D39E66C-9C87-2137-99B4-B4A238594822" referredColumn="D8469506-6FD4-3358-1C9D-64435152B23C"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="66E6E6F0-8646-3FB4-F2C3-8911141C268A" name="Attributtransformation_PK">
+<createdBy>stb</createdBy>
+<createdTime>2018-10-21 13:54:34 UTC</createdTime>
+<ownerDesignName>Testnik</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="580E8015-1DDF-1BB9-D4EB-C200B7B5A70D"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="A503D5C9-D773-D54E-66A9-B0C46D37EC40" name="Attributtransformation_Systemattribut_FK">
+<createdBy>stb</createdBy>
+<createdTime>2018-10-21 13:54:35 UTC</createdTime>
+<generatorID>9B4EC0A2-559A-2F76-9BEA-09D015826CAC</generatorID>
+<ownerDesignName>Testnik</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="E83469EB-C671-75F4-F7D1-6983AFD77092"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="CFCF0F45-C6D3-1B99-BDE2-5B3CD892A3A1" name="Attributtransformation_Attribut_FK">
+<createdBy>stb</createdBy>
+<createdTime>2018-10-21 13:59:23 UTC</createdTime>
+<generatorID>2F15D374-673D-BEF0-67CD-51FF95B324D9</generatorID>
+<ownerDesignName>Testnik</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="23CF8070-B748-95DE-286A-151954015B76"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

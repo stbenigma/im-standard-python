@@ -1,0 +1,100 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="970CECCE-B21B-9362-2CDC-66622EE7EB09" name="Ansprechpartner">
+<createdBy>stb</createdBy>
+<createdTime>2018-10-21 13:54:34 UTC</createdTime>
+<comment>Person in einer Organisationseinheit  die für die Definition oder Pflege eines Attributwertes verantwortlich ist.</comment>
+<generatorID>275339EE-5E42-8B7F-EE4D-AA56A94ECA65</generatorID>
+<ownerDesignName>Testnik</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Name" id="25D772B8-C8EA-5254-1B6D-7386843E2500">
+<createdBy>stb</createdBy>
+<createdTime>2018-10-21 13:54:34 UTC</createdTime>
+<generatorID>DCDDC1A5-F6DB-3BB2-F9D5-ADF019DD4636</generatorID>
+<ownerDesignName>Testnik</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Vorname" id="E93D6B95-F162-DF3B-C41E-8B94C2EE2D17">
+<createdBy>stb</createdBy>
+<createdTime>2018-10-21 13:54:34 UTC</createdTime>
+<generatorID>AB2F0A85-6238-D648-5EF6-EFF32C6A082B</generatorID>
+<ownerDesignName>Testnik</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="eMail" id="4A029AE3-8941-2DA5-BF14-7BDD450BBEB2">
+<createdBy>stb</createdBy>
+<createdTime>2018-10-21 13:54:34 UTC</createdTime>
+<generatorID>74BD582A-25CC-9ADB-E21F-CC8EE5B52A61</generatorID>
+<ownerDesignName>Testnik</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Privattelefon-Nr" id="77B83B65-4DD3-7647-966B-9AC3670E20A2">
+<createdBy>stb</createdBy>
+<createdTime>2018-10-21 13:54:34 UTC</createdTime>
+<generatorID>5A77DAC0-43AC-2982-9897-CA38B844DED0</generatorID>
+<ownerDesignName>Testnik</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Geschäftstelefon-Nr" id="66797A3B-5081-84D1-15B3-73E149C630E1">
+<createdBy>stb</createdBy>
+<createdTime>2018-10-21 13:54:34 UTC</createdTime>
+<generatorID>7485D82F-1E2F-338B-0AD3-253B9C1237AB</generatorID>
+<ownerDesignName>Testnik</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Ansprechpartner_ID" id="DE7CB3AA-FAE5-C266-1E0C-C72FF2CFA96B">
+<createdBy>stb</createdBy>
+<createdTime>2018-10-21 13:54:34 UTC</createdTime>
+<ownerDesignName>Testnik</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="F6F0041C-FB67-1370-6962-3D0EB0D13EC8" name="Ansprechpartner_PK">
+<createdBy>stb</createdBy>
+<createdTime>2018-10-21 13:54:34 UTC</createdTime>
+<ownerDesignName>Testnik</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="DE7CB3AA-FAE5-C266-1E0C-C72FF2CFA96B"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="914071CB-1260-2DC1-FF64-D874987DD55A" name="Ansprechpartner_eMail_UN">
+<createdBy>stb</createdBy>
+<createdTime>2018-10-21 13:54:34 UTC</createdTime>
+<generatorID>7AA2840A-6C04-F07C-CEC9-444E2C71A17A</generatorID>
+<ownerDesignName>Testnik</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="4A029AE3-8941-2DA5-BF14-7BDD450BBEB2"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

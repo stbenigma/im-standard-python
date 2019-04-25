@@ -1,0 +1,188 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="E1E5EC11-0F3D-94EA-701A-BCB16D190026" name="Elementdarstellung">
+<createdBy>stb</createdBy>
+<createdTime>2018-11-03 14:22:30 UTC</createdTime>
+<comment>Information zur Darstellung eines grafischen Elementes (Entität, etc.) auf einem Diagramm</comment>
+<ownerDesignName>Testnik</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Breite" id="99E8CA49-C721-3E8B-91E6-AFAC524C18C4">
+<createdBy>stb</createdBy>
+<createdTime>2018-11-03 14:26:18 UTC</createdTime>
+<comment>Breite der Entitätsdarstellung in mm</comment>
+<ownerDesignName>Testnik</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>0</beginValue>
+<endValue>999</endValue>
+</rangeDef>
+</listOfRanges>
+</Attribute>
+<Attribute name="Höhe" id="A3AACD77-EBE7-A47A-2D49-C8986DB11EFE">
+<createdBy>stb</createdBy>
+<createdTime>2018-11-03 14:26:38 UTC</createdTime>
+<comment>Höhe der Entitätsdarstellung in mm</comment>
+<ownerDesignName>Testnik</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>0</beginValue>
+<endValue>999</endValue>
+</rangeDef>
+</listOfRanges>
+</Attribute>
+<Attribute name="Position" id="01928E50-335D-FFD6-D550-FE00B78EEC06">
+<createdBy>stb</createdBy>
+<createdTime>2018-11-03 14:26:45 UTC</createdTime>
+<comment>Position der oberen linken Ecke einer Entität</comment>
+<ownerDesignName>Testnik</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Name [L]" id="A3C9731C-AB46-3608-8EFC-C040100A45AD">
+<createdBy>stb</createdBy>
+<createdTime>2018-11-03 14:31:48 UTC</createdTime>
+<generatorID>EA5BE36E-D298-45EB-3BD7-34DB557812CE</generatorID>
+<ownerDesignName>Testnik</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<referedAttribute>4DA5699D-EE03-51A3-A977-DBA7D07B46CA</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Name" id="85B1FCCF-7A20-CF0A-DBB4-FD296C4B8501">
+<createdBy>stb</createdBy>
+<createdTime>2018-11-03 14:31:48 UTC</createdTime>
+<comment>Name eines Geschäftsbereichs</comment>
+<generatorID>EA5BE36E-D298-45EB-3BD7-34DB557812CE</generatorID>
+<ownerDesignName>Testnik</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<referedAttribute>2DCBFE07-8721-71CA-D16E-9E078C96CF67</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Name1" id="225EEADC-063D-3D33-DE9F-B0D419C7A675">
+<createdBy>stb</createdBy>
+<createdTime>2018-11-03 14:31:48 UTC</createdTime>
+<comment>Name der Entität der in der Kommunikation normalerweise gebraucht wird.</comment>
+<generatorID>EA5BE36E-D298-45EB-3BD7-34DB557812CE</generatorID>
+<ownerDesignName>Testnik</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<referedAttribute>37A28E78-6788-8230-EFF6-97B5FB4AD2E3</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Entitätname [L]" id="3CF74241-8BC8-AFA0-4E32-F5B11A2084C8">
+<createdBy>stb</createdBy>
+<createdTime>2018-11-03 14:32:00 UTC</createdTime>
+<comment>Name der Entität der in der Kommunikation normalerweise gebraucht wird.</comment>
+<generatorID>CCD9C8D5-790A-EFAD-365F-13072447416D</generatorID>
+<ownerDesignName>Testnik</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<referedAttribute>0F2758D2-C7D1-07D3-5C35-F1697AF2FBE0</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Inhalt Farbcode" id="CB87BF96-64FD-5C72-4CE4-BC8864A3A060">
+<createdBy>stb</createdBy>
+<createdTime>2018-12-04 09:05:47 UTC</createdTime>
+<ownerDesignName>Testnik</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Rand Farbcode" id="230C453F-3369-D343-E0E3-6B3DDA8AEFCE">
+<createdBy>stb</createdBy>
+<createdTime>2018-12-04 09:06:03 UTC</createdTime>
+<ownerDesignName>Testnik</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Schrift Farbcode" id="97434F1D-0EC3-DC6D-792E-78B2785B5796">
+<createdBy>stb</createdBy>
+<createdTime>2018-12-04 09:06:19 UTC</createdTime>
+<ownerDesignName>Testnik</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Schrift grösse" id="A377F7BA-0EC9-57BE-7A96-4CA068788CB4">
+<createdBy>stb</createdBy>
+<createdTime>2019-01-08 19:10:38 UTC</createdTime>
+<ownerDesignName>Testnik</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="E6A23890-AA61-1F59-7790-A40D4710B196" name="Entitätdarstellung PK">
+<createdBy>stb</createdBy>
+<createdTime>2018-11-03 14:31:48 UTC</createdTime>
+<ownerDesignName>Testnik</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>A3C9731C-AB46-3608-8EFC-C040100A45AD</attributeRef>
+<attributeRef>85B1FCCF-7A20-CF0A-DBB4-FD296C4B8501</attributeRef>
+<attributeRef>225EEADC-063D-3D33-DE9F-B0D419C7A675</attributeRef>
+<attributeRef>3CF74241-8BC8-AFA0-4E32-F5B11A2084C8</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

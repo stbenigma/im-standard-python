@@ -1,0 +1,19 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="56A35196-8576-F9DF-D1A6-349573645D77" name="IsA Beziehung">
+<createdBy>stb</createdBy>
+<createdTime>2018-12-01 14:09:07 UTC</createdTime>
+<comment>1:1 Beziehung, einen Subtyp definiert.&lt;br/&gt;Monohierarchie, exklusive  IsA Subtypen können als Subtypen in der Entität gezeichnet werden. &lt;br/&gt;&lt;br/&gt;Eine IsA Beziehung beginnt immer bei Subtyp (von Kind zu Vater). Diese Beziehung (Kind zu Vater) kann nicht optional sein.</comment>
+<ownerDesignName>Testnik</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<hierarchicalParent>4BEC4009-B321-3912-D30B-FADF6F8AF982</hierarchicalParent>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+</Entity>

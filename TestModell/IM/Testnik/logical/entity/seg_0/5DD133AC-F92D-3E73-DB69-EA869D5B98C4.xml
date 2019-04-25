@@ -1,0 +1,34 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="5DD133AC-F92D-3E73-DB69-EA869D5B98C4" name="Diagrammelement">
+<createdBy>stb</createdBy>
+<createdTime>2019-01-08 19:21:24 UTC</createdTime>
+<comment>Element aus der Modellbeschreibung, das auf einem Diagramm als eigenes Symbol dargestellt werden kann.&lt;br/&gt;&lt;br/&gt;Beispiele:&lt;br/&gt;Entität&lt;br/&gt;System&lt;br/&gt;Beziehung&lt;br/&gt;User&lt;br/&gt;Prozess&lt;br/&gt;Vorbedingung</comment>
+<ownerDesignName>Testnik</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Entitätname [L]" id="D9AE725A-A277-3392-AFA3-24EC13DC6682">
+<createdBy>stb</createdBy>
+<createdTime>2019-01-08 19:23:37 UTC</createdTime>
+<comment>Name der Entität der in der Kommunikation normalerweise gebraucht wird.</comment>
+<generatorID>1EB6A64F-D26B-DAEE-9830-85768B096627</generatorID>
+<ownerDesignName>Testnik</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<referedAttribute>0F2758D2-C7D1-07D3-5C35-F1697AF2FBE0</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+</Entity>
