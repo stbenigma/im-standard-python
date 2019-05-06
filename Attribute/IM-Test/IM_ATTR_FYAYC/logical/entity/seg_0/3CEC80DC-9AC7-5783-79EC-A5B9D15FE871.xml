@@ -1,0 +1,115 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="3CEC80DC-9AC7-5783-79EC-A5B9D15FE871" name="Attribut">
+<createdBy>stb</createdBy>
+<createdTime>2018-05-30 12:08:58 UTC</createdTime>
+<comment>Beschreibung eines Trägers einers Wertes.&lt;br/&gt;Dieses Attribut ist die gültige Single Source of Truth des konzeptionellen Modells. Die Definition gilt, nabhängig davon, ob es nur als virtuelle Einheit (z.B. in Form von Schittstellen) oder als eigenes Attribut in einer eigenen DB verwaltet wird.&lt;br/&gt;&lt;br/&gt;Beispiele:&lt;br/&gt;Netto-Gewicht &lt;br/&gt;Beleuchtungsmodell </comment>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<synonym>Merkmal</synonym>
+<createSurrogateKey>true</createSurrogateKey>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Technischer Name" id="EDEE919C-7C94-15E9-147C-57317A603D15">
+<createdBy>stb</createdBy>
+<createdTime>2018-05-30 12:09:49 UTC</createdTime>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="LPIMName" value="TECH-NAME"/>
+<property name="LPIMNr" value="1332"/>
+</propertyMap>
+</Attribute>
+<Attribute name="Anzeigename [L]" id="42340745-75FE-7894-8994-67BE8A912F7A">
+<createdBy>stb</createdBy>
+<createdTime>2018-05-30 13:26:33 UTC</createdTime>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="LPIMName" value="DisplayName"/>
+<property name="LPIMNr" value="5542"/>
+<property name="MieleDatentyp" value="CHAR"/>
+<property name="MieleName" value="DISPNAME"/>
+</propertyMap>
+<documents usedDucuments="DE2DBE01-3E30-B9BE-C670-62E7713C0746"/>
+</Attribute>
+<Attribute name="Beschreibung [L]" id="C4A32F25-630E-965E-C29A-27C4C6F29B16">
+<createdBy>stb</createdBy>
+<createdTime>2018-05-30 12:10:47 UTC</createdTime>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="LPIMName" value="Description"/>
+<property name="LPIMNr" value="123"/>
+<property name="MieleDatentyp" value="CHAR"/>
+<property name="MieleName" value="DESC"/>
+</propertyMap>
+</Attribute>
+<Attribute name="Tooltip [L]" id="18044B2B-E9C9-F62B-A516-84B3A24746F4">
+<createdBy>stb</createdBy>
+<createdTime>2018-05-30 12:10:52 UTC</createdTime>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="LPIMName" value="TOOLTIP"/>
+<property name="LPIMNr" value="7723"/>
+</propertyMap>
+</Attribute>
+<Attribute name="Business Rule" id="6265BB6F-9347-0AB3-7106-9B9CF67EF039">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-23 13:37:22 UTC</createdTime>
+<comment>Regel über die Werte eines Attributs, die über die einfachen Regeln der Domänendefinition hinausgehen.</comment>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="A494C6B5-1083-D458-9E27-C4CC11AE6E27" name="ATTR_UK">
+<createdBy>stb</createdBy>
+<createdTime>2018-05-30 12:12:27 UTC</createdTime>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<newElementsIDs>EDEE919C-7C94-15E9-147C-57317A603D15,E891A82C-46E2-563E-A13D-F371EDAFF51D</newElementsIDs>
+<usedAttributes>
+<attributeRef>EDEE919C-7C94-15E9-147C-57317A603D15</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

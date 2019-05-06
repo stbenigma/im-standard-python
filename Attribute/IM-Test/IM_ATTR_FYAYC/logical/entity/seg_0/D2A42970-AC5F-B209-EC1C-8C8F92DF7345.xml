@@ -1,0 +1,74 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="D2A42970-AC5F-B209-EC1C-8C8F92DF7345" name="Domäne">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-22 14:50:13 UTC</createdTime>
+<comment>Beschreibung des Wertebereichs eines (oder mehrerer) Attributs.&lt;br/&gt;&lt;br/&gt;Die Typen Numerisch, Text, Zeitpunkt oder Aufzählung sind konzeptionell zu verfstehen. Die echten Datentypen und ggf. Formate (für Zahlen und Zeitpunkte) für die Speicherung werden in der Implementierung festgelegt.&lt;br/&gt;&lt;br/&gt;Beispiele:&lt;br/&gt;Netto-Gewicht &lt;br/&gt;Beleuchtungsmodell </comment>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<synonym>Merkmal</synonym>
+<createSurrogateKey>true</createSurrogateKey>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Name [L]" id="80ECD913-F2CD-DD01-BC96-70FDEC06AB21">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-22 14:50:13 UTC</createdTime>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Beschreibung [L]" id="5475B516-9581-9D04-BF8D-8C8476B28CD4">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-22 14:50:13 UTC</createdTime>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Business Rule" id="49F12B6E-5C8F-96B2-6ED5-99B496CB5EC4">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-23 13:38:02 UTC</createdTime>
+<comment>Regel über die Werte einer Domäne, die nicht mit einfachen min/max o.ä. beschrieben werden können.</comment>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="C0E5C5AE-DE43-05AD-FB5B-BBE7BDE7440B" name="ATTR_UK">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-22 14:50:13 UTC</createdTime>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<usedAttributes>
+<attributeRef>80ECD913-F2CD-DD01-BC96-70FDEC06AB21</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

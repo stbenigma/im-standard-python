@@ -1,0 +1,175 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="631DF421-737F-F3F7-FB7E-A014B5D63038" name="Attributwerttransformation">
+<createdBy>stb</createdBy>
+<createdTime>2018-10-21 13:54:34 UTC</createdTime>
+<comment>Historie der verarbeiteten Transformationen.&lt;br/&gt;Werte werden geladen, je nach Richtung der Transformation aus dem Fremdsystem oder aus dem konzeptionellen Schema.&lt;br/&gt;Sobald ein Wert den Status &apos;verarbeitet&quot; hat muss Verarbeitungsart und Transformationszeitpunkt gesetzt sein. Erst dann darf er weiter verwendet werden.&lt;br/&gt;Gültige verarbeitete Werte haben einen Transformationszeitpunkt, eine Verarbeitungsart, den Transformationsstatus =&quot;verarbeitet&quot; und Transformation gültig = &apos;J&apos; .&lt;br/&gt;Ungültige Werte haben den Transformationsstatus =&quot;verarbeitet&quot;, eine Verarbeitungsart, Transformation gültig = &quot;N&quot;  und zusätzlich eine Feherbeschreibung (Fehler-Nr, -Beschrieb, oder (Name der) Regel die verletzt wurde).</comment>
+<generatorID>8D9AABA7-CACE-77F4-5A97-C11F51D67FD2</generatorID>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Ladezeitpunkt" id="F7936C14-A83C-DD49-D306-AC5B838FCB08">
+<createdBy>stb</createdBy>
+<createdTime>2018-10-21 13:54:34 UTC</createdTime>
+<comment>Zeitpunkt (in möglichst kleiner Zeiteinheit) zu dem der zu transformierende Wert geladen wurde.</comment>
+<generatorID>839DB6EF-5D18-06F6-0C8B-C80C0903C057</generatorID>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT015</logicalDatatype>
+<domain>0AD80E26-0F5C-D068-29EA-4740A04582AE</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Fremdsystemwert_[N]" id="746C4989-ED98-5A16-078E-59EE43D4C6BD">
+<createdBy>stb</createdBy>
+<createdTime>2018-10-21 13:54:34 UTC</createdTime>
+<comment>Wert(e) aus dem bzw. für das  Fremdsystem. Falls die Transformation nach &quot;aussen&quot; geht, genau 1 Wert</comment>
+<generatorID>BEDD94FB-BED4-A8B1-E379-747ABE68F187</generatorID>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="SSoT_Wert_[N]" id="E9171641-F23E-37A8-7D51-93221B73222D">
+<createdBy>stb</createdBy>
+<createdTime>2018-10-21 13:54:34 UTC</createdTime>
+<comment>Wert(e) aus dem bzw. für das  Konzueptionelle System. Falls die Transformation nach &quot;innen&quot; geht, genau 1 Wert</comment>
+<generatorID>E2B826E6-B1C1-FCCF-2A9F-BDEB6D586324</generatorID>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Transformationszeitpunkt" id="01AE2E60-10AB-8480-FD44-54C9D1D53469">
+<createdBy>stb</createdBy>
+<createdTime>2018-10-21 13:54:34 UTC</createdTime>
+<comment>Zeitpunkt (in möglichst kleiner Zeiteinheit) zu dem die Transformation durchgeführt wurde. Leer-&gt; die Transformation wurde noch nicht durchgeführt.</comment>
+<generatorID>CC4EDFC1-84DF-78A6-2523-D79F3E99F98A</generatorID>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT015</logicalDatatype>
+<domain>0AD80E26-0F5C-D068-29EA-4740A04582AE</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Transformationsstatus" id="AFF60799-DB6B-6ADB-D919-9E056B1F0838">
+<createdBy>stb</createdBy>
+<createdTime>2018-10-21 13:54:34 UTC</createdTime>
+<comment>Status der Transformation (geladen, verarbeitet)</comment>
+<generatorID>140B1168-4991-E49D-AD6E-097DD5C955A9</generatorID>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>8E5E9BA3-FC75-C21A-8AC5-C0DB38C2D07A</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Verarbeitungsart" id="6C60D7BD-5D73-A13E-B6D2-B749CF3A73E7">
+<createdBy>stb</createdBy>
+<createdTime>2018-10-21 13:54:34 UTC</createdTime>
+<comment>Art der Durchführung einer Transformation (manuell, automatisch)</comment>
+<generatorID>B61394D2-299D-36A2-E499-2A126D9BD41B</generatorID>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>70371CD6-E734-52D3-6D46-C65613C10CE8</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Transformation_gültig_(J/N)" id="002D7980-4036-4649-8749-070388834582">
+<createdBy>stb</createdBy>
+<createdTime>2018-10-21 13:54:34 UTC</createdTime>
+<comment>Angabe, ob der transformierte Wert gültig ist. </comment>
+<generatorID>4DD742E9-1881-D9FD-AD66-0CB10663F0B5</generatorID>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Transformationsfehler" id="E54BD83F-35B6-622D-2D4F-EEA466063028">
+<createdBy>stb</createdBy>
+<createdTime>2018-10-21 13:54:34 UTC</createdTime>
+<comment>Fehlerbeschrieb, falls der Wert nicht übersetzt werden konnte. Falls Transformation gültig = FALSE und Transformationsstatus = verarbeitet, muss ein Fehlerbeschrieb vorliegen.</comment>
+<generatorID>77A78CB5-940D-D8F4-C9F2-B10B6D2E9FF8</generatorID>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Attributwerttransformation_ID" id="05EEA532-5C92-5A1C-316F-757B514D615A">
+<createdBy>stb</createdBy>
+<createdTime>2018-10-21 13:54:34 UTC</createdTime>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+<Column name="{ref table  abbr}_Attributtransformation_ID" id="5B3A8D1C-56C7-E00B-99C5-C025D2D014E7">
+<createdBy>stb</createdBy>
+<createdTime>2018-10-21 13:54:35 UTC</createdTime>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="A96DAD08-1D8E-2EC5-98F9-857EA9324A8F" referredColumn="580E8015-1DDF-1BB9-D4EB-C200B7B5A70D"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="37187AE3-F745-6B5F-C1DA-805DB97FC801" name="Attributwerttransformation_PK">
+<createdBy>stb</createdBy>
+<createdTime>2018-10-21 13:54:34 UTC</createdTime>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="05EEA532-5C92-5A1C-316F-757B514D615A"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="F00F85DF-AD3A-F0EB-5829-63DC81F838A7" name="Attributwerttransformation_Ladezeitpunkt_UN">
+<createdBy>stb</createdBy>
+<createdTime>2018-10-21 13:54:34 UTC</createdTime>
+<generatorID>51C9F534-8999-6799-F23B-E63269ED6313</generatorID>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="F7936C14-A83C-DD49-D306-AC5B838FCB08"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="E08CA681-D1AD-A31D-AE52-6250F01A14F2" name="Attributwerttransformation_Attributtransformation_FK">
+<createdBy>stb</createdBy>
+<createdTime>2018-10-21 13:54:35 UTC</createdTime>
+<generatorID>178EB502-A567-D362-D3AC-253A015B25BD</generatorID>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="5B3A8D1C-56C7-E00B-99C5-C025D2D014E7"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
