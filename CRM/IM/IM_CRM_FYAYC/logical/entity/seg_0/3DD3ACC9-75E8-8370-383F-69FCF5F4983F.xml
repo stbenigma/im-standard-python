@@ -11,11 +11,23 @@
 <fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
 <growthPercent>0</growthPercent>
 <growthType>Year</growthType>
+<hierarchicalParent>FFAF9724-74C2-E2A0-9908-B5EE9AB30C02</hierarchicalParent>
 <maxVolumes>9999999</maxVolumes>
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
 <createSurrogateKey>true</createSurrogateKey>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Vorname" id="34425C84-C83D-CD8C-C3A8-A29A523A971B">
+<createdBy>stb</createdBy>
+<createdTime>2019-05-06 08:44:03 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<engineerTo>
+<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
 <Attribute name="Geburtsdatum" id="BAA2C6EF-0C92-9643-BF97-C6828D6F6188">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 08:00:37 UTC</createdTime>
@@ -33,6 +45,17 @@
 <createdTime>2019-05-06 08:00:37 UTC</createdTime>
 <ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
 <importedID>1C71B8DF-3794-7782-447D-19E2BB20BE20</importedID>
+<engineerTo>
+<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Mobil Tel Nr" id="5DDBA981-5769-0477-9E23-0DD6F89E60D6">
+<createdBy>stb</createdBy>
+<createdTime>2019-05-06 11:14:10 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
 <engineerTo>
 <item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true"/>
 </engineerTo>

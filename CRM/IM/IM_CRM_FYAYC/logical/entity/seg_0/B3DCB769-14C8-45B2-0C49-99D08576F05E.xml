@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="B3DCB769-14C8-45B2-0C49-99D08576F05E" name="Juristische Einheit">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="B3DCB769-14C8-45B2-0C49-99D08576F05E" name="Juristische Person">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 08:04:25 UTC</createdTime>
 <comment>Rechte über das Handelsrecht geregelt.</comment>
@@ -18,17 +18,6 @@
 <normalForm>Third</normalForm>
 <createSurrogateKey>true</createSurrogateKey>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<Attribute name="Name" id="BFAEEE46-2B6E-992E-540F-8822FD29122E">
-<createdBy>stb</createdBy>
-<createdTime>2019-05-06 08:04:25 UTC</createdTime>
-<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
-<importedID>980D19D3-3659-6836-EA43-5C733AF0C9C1</importedID>
-<engineerTo>
-<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true"/>
-</engineerTo>
-<use>0</use>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-</Attribute>
 <Attribute name="Gesellschaftsform" id="806AD84D-8B56-AFCC-9697-97A65B55EE91">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 08:04:25 UTC</createdTime>
@@ -37,6 +26,18 @@
 <engineerTo>
 <item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true"/>
 </engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="UID Nr" id="FAA500CB-8DCA-5D0C-FC74-01746823AE95">
+<createdBy>stb</createdBy>
+<createdTime>2019-05-06 08:50:29 UTC</createdTime>
+<comment>Umsatzsteuer-Identifikationsnummer (AT), Ust-IdNr (DE), Unternehmens-Identifikationsnummer (CH)</comment>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<engineerTo>
+<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>

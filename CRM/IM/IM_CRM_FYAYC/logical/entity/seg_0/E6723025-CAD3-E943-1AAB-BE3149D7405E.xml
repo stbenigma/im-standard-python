@@ -2,6 +2,7 @@
 <Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="E6723025-CAD3-E943-1AAB-BE3149D7405E" name="Geografische Einheit">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 07:55:51 UTC</createdTime>
+<comment>Ein geographisches Gebilde das nach geographischen, polititischen oder postalischen Kriterien in dieser Form definiert ist.</comment>
 <ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
@@ -16,10 +17,9 @@
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
 <shortName>GEIN</shortName>
-<synonym>Geografical Unit</synonym>
 <createSurrogateKey>true</createSurrogateKey>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<Attribute name="Name" id="5E75C083-4B08-9B98-D615-C1F359FB7915">
+<Attribute name="Name [L]" id="5E75C083-4B08-9B98-D615-C1F359FB7915">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 07:55:51 UTC</createdTime>
 <ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
@@ -33,18 +33,17 @@
 <domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-</attributes>
-<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
-<identifier id="A2DA57E5-CB0D-6836-63B6-74A4AE8434CF" name="GEOU_UK">
+<Attribute name="GeoInformation" id="FE56DE90-386C-5805-3D69-2C70A1861A61">
 <createdBy>stb</createdBy>
-<createdTime>2019-05-06 07:55:51 UTC</createdTime>
+<createdTime>2019-05-06 09:20:23 UTC</createdTime>
+<comment>Fläche eines Gebiets als geo-Information</comment>
 <ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
 <engineerTo>
 <item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true"/>
 </engineerTo>
-<usedAttributes>
-<attributeRef>5E75C083-4B08-9B98-D615-C1F359FB7915</attributeRef>
-</usedAttributes>
-</identifier>
-</identifiers>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
 </Entity>

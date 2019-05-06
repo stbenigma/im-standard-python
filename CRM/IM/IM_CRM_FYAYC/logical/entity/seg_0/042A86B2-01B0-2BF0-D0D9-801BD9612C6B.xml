@@ -1,0 +1,45 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="042A86B2-01B0-2BF0-D0D9-801BD9612C6B" name="PLZ-Gebiet">
+<createdBy>stb</createdBy>
+<createdTime>2019-05-06 08:36:39 UTC</createdTime>
+<comment>Durch die Post vergebene Gebietseinteilung.&lt;br/&gt;Die Postleitzahl ist in vielen Ländern keine Zahl sondern eine Zeichenfolge mit Ziffern und Buchstaben&lt;br/&gt;&lt;br/&gt;Es gibt hierarchische Systeme beim Aufbau von PLZ:&lt;br/&gt;Z.B. USA&lt;br/&gt;221 - 62 -10 -10	 &lt;br/&gt;Segment - Sektor - Postdienststelle oder Zustellabschnitt - Leitzone oder Bearbeitungs- und Zustellzentrum&lt;br/&gt;&lt;br/&gt;Es kann andere genormte Systeme geben&lt;br/&gt;P3: Postleitzahl&lt;br/&gt;P2: Postleitzahluntergebiet&lt;br/&gt;P1: Postleitzahlgebiet&lt;br/&gt;P0: Land&lt;br/&gt;</comment>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<engineerTo>
+<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<hierarchicalParent>F5C9D6EA-E8A5-9F5B-1FC6-73903D18666C</hierarchicalParent>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<createSurrogateKey>true</createSurrogateKey>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Postleitzahl" id="B5F33891-F2FE-CAF2-EB56-D971EE142581">
+<createdBy>stb</createdBy>
+<createdTime>2019-05-06 08:36:39 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<importedID>9DB6D33B-AEE6-C903-32CE-9E60DB15B2AD</importedID>
+<engineerTo>
+<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="PLZ-Ebene" id="07E07412-DAC0-FD4E-59BF-E4FF52A462BE">
+<createdBy>stb</createdBy>
+<createdTime>2019-05-06 08:36:39 UTC</createdTime>
+<comment>P1-P3</comment>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<importedID>AE2AEEDC-E968-3546-D3E1-83335EF74C90</importedID>
+<engineerTo>
+<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+</Entity>

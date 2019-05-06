@@ -2,6 +2,7 @@
 <Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="38B61F56-E01A-41E2-D258-AD6114B9B659" name="Sprache">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 07:55:51 UTC</createdTime>
+<comment>Sprache nach ISO-639-1</comment>
 <ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
 <engineerTo>
 <item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true"/>
@@ -18,7 +19,21 @@
 <synonym>Language</synonym>
 <createSurrogateKey>true</createSurrogateKey>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<Attribute name="ISO-Code" id="EF4F6F91-827E-49E2-052E-88DB557168F4">
+<Attribute name="Name [L]" id="EA16140A-BD03-FC98-FB55-8FC572F0C88B">
+<createdBy>stb</createdBy>
+<createdTime>2019-05-06 07:55:51 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<importedID>2080322C-1F63-D5D3-1888-077A42271F91</importedID>
+<engineerTo>
+<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="ISO2-Code" id="EF4F6F91-827E-49E2-052E-88DB557168F4">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 07:55:51 UTC</createdTime>
 <ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
@@ -33,43 +48,19 @@
 <domain>FC85688A-BE92-2820-35E2-EB148361AAE1</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="Name" id="EA16140A-BD03-FC98-FB55-8FC572F0C88B">
+<Attribute name="ISO3-Code" id="51E7ADEB-8774-22E7-A057-92EB203AE902">
 <createdBy>stb</createdBy>
-<createdTime>2019-05-06 07:55:51 UTC</createdTime>
+<createdTime>2019-05-06 09:29:09 UTC</createdTime>
 <ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
-<importedID>2080322C-1F63-D5D3-1888-077A42271F91</importedID>
+<shouldEngineer>false</shouldEngineer>
 <engineerTo>
-<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true"/>
+<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="false"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>0</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
-<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<domain>FC85688A-BE92-2820-35E2-EB148361AAE1</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 </attributes>
-<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
-<identifier id="2C41B679-63F9-6B5E-649C-DF15EFD06510" name="SPRA_UK">
-<createdBy>stb</createdBy>
-<createdTime>2019-05-06 07:55:51 UTC</createdTime>
-<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
-<engineerTo>
-<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true"/>
-</engineerTo>
-<usedAttributes>
-<attributeRef>EF4F6F91-827E-49E2-052E-88DB557168F4</attributeRef>
-</usedAttributes>
-</identifier>
-<identifier id="4D09E535-F888-9FC2-EC2F-3B619A6A03B7" name="SPRA_UK_Name">
-<createdBy>stb</createdBy>
-<createdTime>2019-05-06 07:55:51 UTC</createdTime>
-<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
-<engineerTo>
-<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true"/>
-</engineerTo>
-<usedAttributes>
-<attributeRef>EA16140A-BD03-FC98-FB55-8FC572F0C88B</attributeRef>
-</usedAttributes>
-</identifier>
-</identifiers>
 </Entity>
