@@ -1,0 +1,45 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="A9F11893-59B8-6E90-C662-8004F4C013B0" name="Händler">
+<createdBy>stb</createdBy>
+<createdTime>2019-05-06 08:04:25 UTC</createdTime>
+<comment>Service Händler sind Händler, die aussschliesslich Service machen.&lt;br/&gt;Jeder Händler macht Service.&lt;br/&gt;Profi-Partner (ehemals B-Händler) sind Händler mit niedrigerem Professionalisierungsgrad; verkaufen deshalb keine grossen Maschinen.&lt;br/&gt;A-Händler sind Händler mit hohem Professionalisierungsgrad, verkaufen alles.&lt;br/&gt;&lt;br/&gt;Händlerabstufung muss noch diskutiert werden.</comment>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="false"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<createSurrogateKey>true</createSurrogateKey>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Professionalisierungsgrad" id="63F65A29-407B-C802-4676-F9AEA6422F7B">
+<createdBy>stb</createdBy>
+<createdTime>2019-05-06 08:04:25 UTC</createdTime>
+<comment>P(rofi), A(-Händler)</comment>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<importedID>B0927846-E3D4-2636-4B72-D10E5BE1907D</importedID>
+<engineerTo>
+<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="macht Service (J/N)" id="8C6A8CC2-2C07-4C71-5836-315681BD2B1C">
+<createdBy>stb</createdBy>
+<createdTime>2019-05-06 08:04:25 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<importedID>E141795E-74AF-B67F-37A9-801859995C2A</importedID>
+<engineerTo>
+<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+</Entity>

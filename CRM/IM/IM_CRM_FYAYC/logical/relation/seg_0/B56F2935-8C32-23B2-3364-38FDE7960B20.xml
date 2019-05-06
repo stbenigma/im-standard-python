@@ -1,0 +1,20 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_113" directorySegmentName="seg_0" id="B56F2935-8C32-23B2-3364-38FDE7960B20">
+<createdBy>stb</createdBy>
+<createdTime>2019-05-06 08:04:25 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<engineerTo>
+<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<nameOnSource>bedient</nameOnSource>
+<nameOnTarget>bedient von</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>B7370B42-AB19-CD15-7BA2-87B1C54C7D8C</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>D7E28BBB-0BD6-42BD-A970-3BF025E221D7</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>
