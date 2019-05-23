@@ -1,29 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <udp_library>
 	<udp_groups>
-		<group name="AP_Import" id="E4D0379F-51D7-4C86-2595-A656491C77EA" />
-		<group name="SAP-3x" id="CBD680DB-6185-0305-80FF-37C1A6DF26C7" />
+		<group name="1 AP_Import" id="E4D0379F-51D7-4C86-2595-A656491C77EA" />
+		<group name="2 SAP-3x" id="CBD680DB-6185-0305-80FF-37C1A6DF26C7" />
 	</udp_groups>
 	<properties>
-		<property name="Tabellenname" dispalay_name="" type="Text" group_id="CBD680DB-6185-0305-80FF-37C1A6DF26C7" default_value="">
+		<property name="AP TabName" dispalay_name="" type="Text" group_id="E4D0379F-51D7-4C86-2595-A656491C77EA" default_value="">
 		<description>
-			<![CDATA[Name der Tabelle in der Schnittstelle ]]>
+			<![CDATA[Name der Tabelle in der Schnittstelle AB_Import]]>
 		</description>
 			<objects>
 				<object class="oracle.dbtools.crest.model.design.logical.Entity" visible="true" color="-1"/>
 				<object class="oracle.dbtools.crest.model.design.relational.Table" visible="true" color="-1"/>
 			</objects>
 		</property>
-		<property name="Tabellenname" dispalay_name="" type="Text" group_id="E4D0379F-51D7-4C86-2595-A656491C77EA" default_value="">
-		<description>
-			<![CDATA[Name der Tabelle in der Schnittstelle]]>
-		</description>
-			<objects>
-				<object class="oracle.dbtools.crest.model.design.logical.Entity" visible="true" color="-1"/>
-				<object class="oracle.dbtools.crest.model.design.relational.Table" visible="true" color="-1"/>
-			</objects>
-		</property>
-		<property name="Attributname" dispalay_name="" type="Text" group_id="E4D0379F-51D7-4C86-2595-A656491C77EA" default_value="">
+		<property name="AP AttrName" dispalay_name="" type="Text" group_id="E4D0379F-51D7-4C86-2595-A656491C77EA" default_value="">
 		<description>
 			<![CDATA[Name des Attributes in der Schnittstelle]]>
 		</description>
@@ -34,7 +25,7 @@
 				<object class="oracle.dbtools.crest.model.design.logical.Relation" visible="false" color="-1"/>
 			</objects>
 		</property>
-		<property name="Attributtyp" dispalay_name="" type="Text" group_id="CBD680DB-6185-0305-80FF-37C1A6DF26C7" default_value="">
+		<property name="AP Typ" dispalay_name="" type="Text" group_id="E4D0379F-51D7-4C86-2595-A656491C77EA" default_value="">
 		<description>
 			<![CDATA[Attributtyp mit Längenangabe Bsp CHAR(10), Number(5,2)]]>
 		</description>
@@ -45,9 +36,46 @@
 				<object class="oracle.dbtools.crest.model.design.logical.Relation" visible="false" color="-1"/>
 			</objects>
 		</property>
-		<property name="Umrechnung" dispalay_name="" type="Text" group_id="CBD680DB-6185-0305-80FF-37C1A6DF26C7" default_value="">
+		<property name="AP Umrechnung" dispalay_name="" type="Text" group_id="E4D0379F-51D7-4C86-2595-A656491C77EA" default_value="">
 		<description>
-			<![CDATA[Für Zahlen und Datum die Formatangabe, falls in der Schnittstelle Text dargestellt wird.&amp;amp;lt;br/&amp;amp;gt;Oder Funktion für die Umrechnung]]>
+			<![CDATA[Für Zahlen und Datum die Formatangabe, falls in der Schnittstelle Text dargestellt wird.&amp;amp;amp;amp;lt;br/&amp;amp;amp;amp;gt;Oder Funktion für die Umrechnung]]>
+		</description>
+			<objects>
+				<object class="oracle.dbtools.crest.model.design.logical.Attribute" visible="false" color="-1"/>
+				<object class="oracle.dbtools.crest.model.design.relational.Column" visible="false" color="-1"/>
+			</objects>
+		</property>
+		<property name="SAP TabName" dispalay_name="" type="Text" group_id="CBD680DB-6185-0305-80FF-37C1A6DF26C7" default_value="">
+			<objects>
+				<object class="oracle.dbtools.crest.model.design.logical.Entity" visible="true" color="-1"/>
+				<object class="oracle.dbtools.crest.model.design.relational.Table" visible="true" color="-1"/>
+			</objects>
+		</property>
+		<property name="SAP AttrName" dispalay_name="" type="Text" group_id="CBD680DB-6185-0305-80FF-37C1A6DF26C7" default_value="">
+		<description>
+			<![CDATA[Name des Attributes in der Schnittstelle]]>
+		</description>
+			<objects>
+				<object class="oracle.dbtools.crest.model.design.logical.Attribute" visible="false" color="-1"/>
+				<object class="oracle.dbtools.crest.model.design.relational.Column" visible="false" color="-1"/>
+				<object class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" visible="false" color="-1"/>
+				<object class="oracle.dbtools.crest.model.design.logical.Relation" visible="false" color="-1"/>
+			</objects>
+		</property>
+		<property name="SAP Typ" dispalay_name="" type="Text" group_id="CBD680DB-6185-0305-80FF-37C1A6DF26C7" default_value="">
+		<description>
+			<![CDATA[Attributtyp mit Längenangabe Bsp CHAR(10), Number(5,2)]]>
+		</description>
+			<objects>
+				<object class="oracle.dbtools.crest.model.design.logical.Attribute" visible="false" color="-1"/>
+				<object class="oracle.dbtools.crest.model.design.relational.Column" visible="false" color="-1"/>
+				<object class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" visible="false" color="-1"/>
+				<object class="oracle.dbtools.crest.model.design.logical.Relation" visible="false" color="-1"/>
+			</objects>
+		</property>
+		<property name="SAP Umrechnung" dispalay_name="" type="Text" group_id="CBD680DB-6185-0305-80FF-37C1A6DF26C7" default_value="">
+		<description>
+			<![CDATA[Für Zahlen und Datum die Formatangabe, falls in der Schnittstelle Text dargestellt wird.&amp;amp;amp;amp;lt;br/&amp;amp;amp;amp;gt;Oder Funktion für die Umrechnung]]>
 		</description>
 			<objects>
 				<object class="oracle.dbtools.crest.model.design.logical.Attribute" visible="false" color="-1"/>

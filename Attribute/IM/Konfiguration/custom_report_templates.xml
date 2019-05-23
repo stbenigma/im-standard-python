@@ -387,6 +387,29 @@
 		</section>
 	</sections>
 	</custom_report_template>
+	<custom_report_template id="11BB022D-E9BA-46A8-6A5E-58015CF370EF" name="Entity Mapping" description="" class="oracle.dbtools.crest.model.design.logical.Entity" >
+	<sections>
+		<section propertyName="Entity" type="" customName="Entity" level="0" class="oracle.dbtools.crest.model.design.logical.Entity">
+		<columns>
+				<column name="name" customName="Name" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="synonym" customName="Synonym" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="comment" customName="Comment" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+		</columns>
+		</section>
+		<section propertyName="attributes" type="collection" customName="Attributes" level="1" class="oracle.dbtools.crest.model.design.logical.Attribute">
+		<columns>
+				<column name="name" customName="Name" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="domain" customName="Domain" width="0.0" order="" massUpdatable="true" dynamic="false"/>
+				<column name="comment" customName="Comment" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="AP AttrName" customName="AP AttrName" width="0.0" order="" massUpdatable="false" dynamic="true"/>
+				<column name="AP Typ" customName="AP Typ" width="0.0" order="" massUpdatable="false" dynamic="true"/>
+				<column name="SAP AttrName" customName="SAP AttrName" width="0.0" order="" massUpdatable="false" dynamic="true"/>
+				<column name="SAP Typ" customName="SAP Typ" width="0.0" order="" massUpdatable="false" dynamic="true"/>
+				<column name="SAP Umrechnung" customName="SAP Umrechnung" width="0.0" order="" massUpdatable="false" dynamic="true"/>
+		</columns>
+		</section>
+	</sections>
+	</custom_report_template>
 </custom_report_templates>
 <boolean_values>
 <str_true>

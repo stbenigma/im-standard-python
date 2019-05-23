@@ -26,6 +26,31 @@
          <fileName>defaultdomains</fileName>
          <logicalDatatype>LOGDT019</logicalDatatype>
       </Domain>
+      <Domain class="oracle.dbtools.crest.model.design.Domain" name="Zivilstand" id="6625154F-6115-21E9-C926-42BA87E22CB2">
+         <createdBy>stb</createdBy>
+         <createdTime>2019-05-23 19:24:35 UTC</createdTime>
+         <ownerDesignName>System</ownerDesignName>
+         <avTSortOrder>0</avTSortOrder>
+         <dataTypeSize>4 CHAR</dataTypeSize>
+         <fileName>defaultdomains</fileName>
+         <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+         <listOfValues>
+            <valueDef value="GESC" description="geschieden"/>
+            <valueDef value="LEDI" description="ledig"/>
+            <valueDef value="VERH" description="verheiratet"/>
+            <valueDef value="VERW" description="verwitwet"/>
+         </listOfValues>
+      </Domain>
+      <Domain class="oracle.dbtools.crest.model.design.Domain" name="Sozialversicherungs Nr" id="A132AE79-16F5-9902-26A0-16DFEDFD7E42">
+         <createdBy>stb</createdBy>
+         <createdTime>2019-05-23 19:26:42 UTC</createdTime>
+         <ownerDesignName>System</ownerDesignName>
+         <avTSortOrder>0</avTSortOrder>
+         <dataTypePrecision>20</dataTypePrecision>
+         <dataTypeScale>0</dataTypeScale>
+         <fileName>defaultdomains</fileName>
+         <logicalDatatype>LOGDT019</logicalDatatype>
+      </Domain>
       <Domain class="oracle.dbtools.crest.model.design.Domain" name="PirmaryKey" id="048C2DD5-2DF8-4EC7-E4D0-B6E6BA0D0667">
          <createdBy>stb</createdBy>
          <createdTime>2019-01-26 15:33:32 UTC</createdTime>

@@ -17,6 +17,8 @@
 <shortName>NatPers</shortName>
 <createSurrogateKey>true</createSurrogateKey>
 <propertyMap>
+<property name="1-Tabellenname" value="NatPers"/>
+<property name="2-Tabellenname" value="PERSON"/>
 <property name="Tabellenname" value="NatPers"/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
@@ -31,6 +33,13 @@
 <use>0</use>
 <domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="1-Attributname" value="NAME"/>
+<property name="1-Attributtyp" value="String(25)"/>
+<property name="1-Umrechnung" value="SUBSTR(1,25)"/>
+<property name="2-Attributname" value="nachname"/>
+<property name="2-Attributtyp" value="varchar2(80)"/>
+</propertyMap>
 </Attribute>
 <Attribute name="Vorname" id="B36F299F-2D69-4979-DE67-9F45CD03C27C">
 <createdBy>stb</createdBy>
@@ -43,6 +52,13 @@
 <use>0</use>
 <domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AP AttrName" value="Vorname"/>
+<property name="AP Typ" value="VARCHAR2(80)"/>
+<property name="SAP AttrName" value="PRENAME"/>
+<property name="SAP Typ" value="string(25)"/>
+<property name="SAP Umrechnung" value="substr(1,25)"/>
+</propertyMap>
 </Attribute>
 <Attribute name="Privat TelNr" id="61725A0E-64CA-5931-DC2C-FD8452AB86C3">
 <createdBy>stb</createdBy>
@@ -81,6 +97,13 @@
 <use>0</use>
 <domain>631FC893-D28E-5FE4-89DB-473C78BB2B2A</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AP AttrName" value="birthdate"/>
+<property name="AP Typ" value="date"/>
+<property name="SAP AttrName" value="birthdate"/>
+<property name="SAP Typ" value="string(10)"/>
+<property name="SAP Umrechnung" value="YYYY-MM-DD"/>
+</propertyMap>
 </Attribute>
 <Attribute name="Zivilstand" id="F3EEE55A-0A1C-0725-EAC4-0FAF80CEC86F">
 <createdBy>stb</createdBy>
