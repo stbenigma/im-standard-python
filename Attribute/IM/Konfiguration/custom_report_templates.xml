@@ -520,6 +520,20 @@
 		</section>
 	</sections>
 	</custom_report_template>
+	<custom_report_template id="2DC854F0-81BA-5B7B-1698-3AF3A76FC0AA" name="Relation Mapping" description="" class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" >
+	<sections>
+		<section propertyName="FKIndexAssociation" type="" customName="FKIndexAssociation" level="0" class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation">
+		<columns>
+				<column name="name" customName="Name" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="table" customName="Table" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="remoteTable" customName="Remote table" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="refColNames" customName="Ref col names" width="0.0" order="" massUpdatable="true" dynamic="false"/>
+				<column name="AP FKName" customName="AP FKName" width="0.0" order="" massUpdatable="false" dynamic="true"/>
+				<column name="SAP FKName" customName="SAP FKName" width="0.0" order="" massUpdatable="false" dynamic="true"/>
+		</columns>
+		</section>
+	</sections>
+	</custom_report_template>
 </custom_report_templates>
 <boolean_values>
 <str_true>
