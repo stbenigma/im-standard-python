@@ -1,0 +1,65 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="F015F09E-9DFD-465F-91D4-D1C9A82CF1CA" name="Ansprechsperson">
+<createdBy>stb</createdBy>
+<createdTime>2019-05-24 07:31:23 UTC</createdTime>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<shortName>contact</shortName>
+<createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="AP TabName" value="PERSON"/>
+<property name="SAP TabName" value="account"/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Geschäft TelNr" id="A83EAB66-BFD9-FC12-4E6D-EEA130471FBB">
+<createdBy>stb</createdBy>
+<createdTime>2019-05-24 07:31:47 UTC</createdTime>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>7F98E20B-63A1-C3F1-F7AE-0E2F6BC2C8D5</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AP AttrName" value="businessphone"/>
+<property name="AP Typ" value="string(40)"/>
+<property name="SAP AttrName" value="phone"/>
+<property name="SAP Qualitylevel" value="high"/>
+<property name="SAP Typ" value="varchar2(20)"/>
+</propertyMap>
+</Attribute>
+<Attribute name="Geschäft eMail" id="22B4883B-04A2-E0EE-99DC-AAB87F6FEEDA">
+<createdBy>stb</createdBy>
+<createdTime>2019-05-24 07:31:56 UTC</createdTime>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>4B4F8F40-D3A4-4F39-8CB3-BB6C57534E96</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AP AttrName" value="businessmail"/>
+<property name="AP Typ" value="string(100)"/>
+<property name="SAP AttrName" value="email"/>
+<property name="SAP Qualitylevel" value="high"/>
+<property name="SAP Typ" value="varchar2(200)"/>
+</propertyMap>
+</Attribute>
+</attributes>
+</Entity>

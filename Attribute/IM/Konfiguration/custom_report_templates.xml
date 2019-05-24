@@ -409,6 +409,113 @@
 				<column name="SAP AttrName" customName="SAP AttrName" width="0.0" order="" massUpdatable="false" dynamic="true"/>
 				<column name="SAP Typ" customName="SAP Typ" width="0.0" order="" massUpdatable="false" dynamic="true"/>
 				<column name="SAP Umrechnung" customName="SAP Umrechnung" width="0.0" order="" massUpdatable="false" dynamic="true"/>
+				<column name="SAP Qualitylevel" customName="SAP Qualitylevel" width="0.0" order="" massUpdatable="false" dynamic="true"/>
+		</columns>
+		</section>
+	</sections>
+	</custom_report_template>
+	<custom_report_template id="EF919427-EE91-5F2C-A43C-DA75721A7F25" name="AttributeMapping" description="" class="oracle.dbtools.crest.model.design.logical.Attribute" >
+	<sections>
+		<section propertyName="Attribute" type="" customName="Attribute" level="0" class="oracle.dbtools.crest.model.design.logical.Attribute">
+		<columns>
+				<column name="entity" customName="Entity" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="name" customName="Name" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="domain" customName="Domain" width="0.0" order="" massUpdatable="true" dynamic="false"/>
+				<column name="logicalDatatype" customName="Logical datatype" width="0.0" order="" massUpdatable="true" dynamic="false"/>
+				<column name="mandatory" customName="Mandatory" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="comment" customName="Comment" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="AP AttrName" customName="AP AttrName" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="AP Typ" customName="AP Typ" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="AP Umrechnung" customName="AP Umrechnung" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="SAP AttrName" customName="SAP AttrName" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="SAP Qualitylevel" customName="SAP Qualitylevel" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="SAP Typ" customName="SAP Typ" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="SAP Umrechnung" customName="SAP Umrechnung" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+		</columns>
+		</section>
+	</sections>
+	</custom_report_template>
+	<custom_report_template id="4E0BC02B-6B81-633A-572C-47BF1DE1980C" name="Relationship Report" description="" class="oracle.dbtools.crest.model.design.logical.Relation" >
+	<sections>
+		<section propertyName="Relation" type="" customName="Relation" level="0" class="oracle.dbtools.crest.model.design.logical.Relation">
+		<columns>
+				<column name="sourceEntity" customName="Source entity" width="0.0" order="" massUpdatable="true" dynamic="false"/>
+				<column name="sourceCardinalityString" customName="Source cardinality string" width="0.0" order="" massUpdatable="true" dynamic="false"/>
+				<column name="targetEntity" customName="Target entity" width="0.0" order="" massUpdatable="true" dynamic="false"/>
+				<column name="targetCardinalityString" customName="Target cardinality string" width="0.0" order="" massUpdatable="true" dynamic="false"/>
+				<column name="AK FK-Name" customName="AK FK-Name" width="0.0" order="" massUpdatable="false" dynamic="true"/>
+				<column name="SAP FK-Name" customName="SAP FK-Name" width="0.0" order="" massUpdatable="false" dynamic="true"/>
+		</columns>
+		</section>
+		<section propertyName="attributes" type="collection" customName="Attributes" level="1" class="oracle.dbtools.crest.model.design.logical.Attribute">
+		<columns>
+				<column name="name" customName="Name" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="AP AttrName" customName="AP AttrName" width="0.0" order="" massUpdatable="false" dynamic="true"/>
+				<column name="AP Typ" customName="AP Typ" width="0.0" order="" massUpdatable="false" dynamic="true"/>
+				<column name="SAP AttrName" customName="SAP AttrName" width="0.0" order="" massUpdatable="false" dynamic="true"/>
+				<column name="SAP Qualitylevel" customName="SAP Qualitylevel" width="0.0" order="" massUpdatable="false" dynamic="true"/>
+				<column name="SAP Typ" customName="SAP Typ" width="0.0" order="" massUpdatable="false" dynamic="true"/>
+		</columns>
+		</section>
+	</sections>
+	</custom_report_template>
+	<custom_report_template id="8AA3700E-8D47-89E0-437F-C582527AF26E" name="ColumnMappinglist" description="" class="oracle.dbtools.crest.model.design.relational.Column" >
+	<sections>
+		<section propertyName="Column" type="" customName="Column" level="0" class="oracle.dbtools.crest.model.design.relational.Column">
+		<columns>
+				<column name="table" customName="Table" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="name" customName="Name" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="mandatory" customName="Mandatory" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="comment" customName="Comment" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="dataTypeName" customName="Data type name" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="dataTypePrecision" customName="Data type precision" width="0.0" order="" massUpdatable="true" dynamic="false"/>
+				<column name="dataTypeScale" customName="Data type scale" width="0.0" order="" massUpdatable="true" dynamic="false"/>
+				<column name="dataTypeSize" customName="Data type size" width="0.0" order="" massUpdatable="true" dynamic="false"/>
+				<column name="datatypeString" customName="Datatype string" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="defaultValue" customName="Default value" width="0.0" order="" massUpdatable="true" dynamic="false"/>
+				<column name="AP AttrName" customName="AP AttrName" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="AP Typ" customName="AP Typ" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="AP Umrechnung" customName="AP Umrechnung" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="SAP AttrName" customName="SAP AttrName" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="SAP Qualitylevel" customName="SAP Qualitylevel" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="SAP Typ" customName="SAP Typ" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="SAP Umrechnung" customName="SAP Umrechnung" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+		</columns>
+		</section>
+	</sections>
+	</custom_report_template>
+	<custom_report_template id="9E57A594-A251-E2EF-74FB-BBDE686D85BC" name="Column-Mapping" description="" class="oracle.dbtools.crest.model.design.relational.Table" >
+	<sections>
+		<section propertyName="Table" type="" customName="Table" level="0" class="oracle.dbtools.crest.model.design.relational.Table">
+		<columns>
+				<column name="name" customName="Name" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="comment" customName="Comment" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="AP TabName" customName="AP TabName" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="SAP TabName" customName="SAP TabName" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+		</columns>
+		</section>
+		<section propertyName="columns" type="collection" customName="Columns" level="1" class="oracle.dbtools.crest.model.design.relational.Column">
+		<columns>
+				<column name="name" customName="Name" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="comment" customName="Comment" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="mandatory" customName="Mandatory" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="domain" customName="Domain" width="0.0" order="" massUpdatable="true" dynamic="false"/>
+				<column name="datatypeString" customName="Datatype string" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="AP AttrName" customName="AP AttrName" width="0.0" order="" massUpdatable="false" dynamic="true"/>
+				<column name="AP Typ" customName="AP Typ" width="0.0" order="" massUpdatable="false" dynamic="true"/>
+				<column name="AP Umrechnung" customName="AP Umrechnung" width="0.0" order="" massUpdatable="false" dynamic="true"/>
+				<column name="SAP AttrName" customName="SAP AttrName" width="0.0" order="" massUpdatable="false" dynamic="true"/>
+				<column name="SAP Qualitylevel" customName="SAP Qualitylevel" width="0.0" order="" massUpdatable="false" dynamic="true"/>
+				<column name="SAP Typ" customName="SAP Typ" width="0.0" order="" massUpdatable="false" dynamic="true"/>
+				<column name="SAP Umrechnung" customName="SAP Umrechnung" width="0.0" order="" massUpdatable="false" dynamic="true"/>
+		</columns>
+		</section>
+		<section propertyName="allInds_PK_UK_NoFKeys" type="roPropertiesList" customName="All inds_PK _uk_no FK keys" level="1" class="oracle.dbtools.crest.model.design.relational.Index">
+		<columns>
+				<column name="name" customName="Name" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="pk" customName="PK " width="0.0" order="" massUpdatable="true" dynamic="false"/>
+				<column name="isSurrogateKey" customName="Is surrogate key" width="0.0" order="" massUpdatable="true" dynamic="false"/>
+				<column name="usedColumns" customName="Used columns" width="0.0" order="" massUpdatable="false" dynamic="false"/>
 		</columns>
 		</section>
 	</sections>
