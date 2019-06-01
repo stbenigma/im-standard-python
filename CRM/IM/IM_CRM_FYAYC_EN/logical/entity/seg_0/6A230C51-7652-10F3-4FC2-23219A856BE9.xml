@@ -1,0 +1,31 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="6A230C51-7652-10F3-4FC2-23219A856BE9" name="Organisational unit">
+<createdBy>stb</createdBy>
+<createdTime>2019-05-06 12:33:30 UTC</createdTime>
+<comment>Firmeninterne Organisationeinheit.&lt;br/&gt;Meist hierarchisch organisiert.&lt;br/&gt;</comment>
+<ownerDesignName>IM_CRM_FYAYC_EN</ownerDesignName>
+<engineerTo>
+<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<createSurrogateKey>true</createSurrogateKey>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Name" id="F03F4978-F19A-5AD2-722C-FC0E7553F137">
+<createdBy>stb</createdBy>
+<createdTime>2019-05-06 12:33:46 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC_EN</ownerDesignName>
+<engineerTo>
+<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+</Entity>

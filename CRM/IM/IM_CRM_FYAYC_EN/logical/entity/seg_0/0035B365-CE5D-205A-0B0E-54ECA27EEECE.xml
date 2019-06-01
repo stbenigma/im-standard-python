@@ -1,0 +1,45 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="0035B365-CE5D-205A-0B0E-54ECA27EEECE" name="Country group">
+<createdBy>stb</createdBy>
+<createdTime>2019-05-06 08:36:39 UTC</createdTime>
+<comment>Eine Zusammenfassung mehrerer Länder zu einer Gruppe.&lt;br/&gt;Es soll jeweils ein Kriterium für die Gruppenbildung bzw. einen Begründung (Zweck) für die Nutzung der Gruppe festgelegt/dokumentiert werden.&lt;br/&gt;&lt;br/&gt;Typen von Ländergruppen erlauben mehrere Gruppierungen zu führen: Vertriebsorg., Zoll, Logistik &lt;br/&gt;&lt;br/&gt;Beispiele:&lt;br/&gt;EU&lt;br/&gt;SACU Botsuana; Eswatini; Lesotho; Namibia; Südafrika (Zollunion)&lt;br/&gt;EMEA (Europe, Middle East, Africa) (Vertriebsorganisation)</comment>
+<ownerDesignName>IM_CRM_FYAYC_EN</ownerDesignName>
+<engineerTo>
+<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<hierarchicalParent>E6723025-CAD3-E943-1AAB-BE3149D7405E</hierarchicalParent>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<createSurrogateKey>true</createSurrogateKey>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Type" id="854EF45E-D99B-33BB-CEBA-CCBFD3723223">
+<createdBy>stb</createdBy>
+<createdTime>2019-05-06 09:01:27 UTC</createdTime>
+<comment>Typ der Ländergruppe (Vertrieb, Zoll, Organisation)</comment>
+<ownerDesignName>IM_CRM_FYAYC_EN</ownerDesignName>
+<engineerTo>
+<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Purpose" id="4884CAC4-510A-4F0B-4C72-FC6E2F36D0B3">
+<createdBy>stb</createdBy>
+<createdTime>2019-05-06 08:58:17 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC_EN</ownerDesignName>
+<engineerTo>
+<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+</Entity>

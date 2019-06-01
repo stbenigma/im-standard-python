@@ -1,0 +1,43 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="4E117E57-CFB5-EF2C-4F8F-638438B13812" name="Person role">
+<createdBy>stb</createdBy>
+<createdTime>2019-05-06 11:21:16 UTC</createdTime>
+<comment>Beschreibung einer Rolle, die eine Ansprechsperson haben kann.&lt;br/&gt;&lt;br/&gt;Beispiele:&lt;br/&gt;CEO&lt;br/&gt;CIO&lt;br/&gt;Sachdienstmitarbeiter&lt;br/&gt;Verkaufsleiter</comment>
+<ownerDesignName>IM_CRM_FYAYC_EN</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="false"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<createSurrogateKey>true</createSurrogateKey>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Designation" id="40B36602-4348-FB5F-5BD1-C56AD78107F8">
+<createdBy>stb</createdBy>
+<createdTime>2019-05-06 11:21:32 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC_EN</ownerDesignName>
+<engineerTo>
+<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Description" id="116DF002-EA64-1985-173B-A197A3118F61">
+<createdBy>stb</createdBy>
+<createdTime>2019-05-06 11:21:38 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC_EN</ownerDesignName>
+<engineerTo>
+<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+</Entity>

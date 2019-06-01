@@ -1,0 +1,21 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="58C824EA-3F46-FF1B-AA00-162CEBCF52FA" name="Lessee">
+<createdBy>stb</createdBy>
+<createdTime>2019-05-06 08:04:25 UTC</createdTime>
+<comment>Geschäftsfähige Einheit die einen Leasingvertrag für Produkt abgeschlossen hat.&lt;br/&gt;Damit ist sie Besitzer aber nicht Eigentümer des Produktes</comment>
+<ownerDesignName>IM_CRM_FYAYC_EN</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="false"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<hierarchicalParent>F57E2391-8CC4-D02B-8308-1E4C8BC123A7</hierarchicalParent>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<createSurrogateKey>true</createSurrogateKey>
+</Entity>

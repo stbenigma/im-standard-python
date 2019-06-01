@@ -1,0 +1,76 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="05FCEF96-1246-2B63-C700-EFAC7404D272" name="Address">
+<createdBy>stb</createdBy>
+<createdTime>2019-05-06 09:44:32 UTC</createdTime>
+<comment>Postalisch-geographische Lokalisation&lt;br/&gt;&lt;br/&gt;Jede Adresse ist für einen Akteur definiert. D.h. die selbe Adresse kann mehrfach vorkommen.&lt;br/&gt;Falls ein generelles Adressverzeichnis als Referenz geführt wird (Basisadresse), muss das zusätlich erfasst werden.&lt;br/&gt;Dann wird diese Entität zur Verknüpfung zwischen Akteur und Basisadresse.</comment>
+<ownerDesignName>IM_CRM_FYAYC_EN</ownerDesignName>
+<engineerTo>
+<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<createSurrogateKey>true</createSurrogateKey>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Address type" id="FF67251E-70A4-8810-9AAE-8D3085C3FC14">
+<createdBy>stb</createdBy>
+<createdTime>2019-05-06 11:18:19 UTC</createdTime>
+<comment>Zweck der Adresse (Finanz, Post, Lieferung etc.)</comment>
+<ownerDesignName>IM_CRM_FYAYC_EN</ownerDesignName>
+<engineerTo>
+<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Stree name" id="8DCE9DB8-E2C4-BCFC-1622-3B63D4730A07">
+<createdBy>stb</createdBy>
+<createdTime>2019-05-06 11:04:40 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC_EN</ownerDesignName>
+<engineerTo>
+<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="House no" id="69DE3C96-B9F0-F86E-230B-0AEC8F4067ED">
+<createdBy>stb</createdBy>
+<createdTime>2019-05-06 11:04:47 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC_EN</ownerDesignName>
+<engineerTo>
+<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Building name" id="A3F1453C-9777-43FA-2D3F-B9A4917113EA">
+<createdBy>stb</createdBy>
+<createdTime>2019-05-06 11:04:50 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC_EN</ownerDesignName>
+<engineerTo>
+<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Geocoordinate" id="2C711332-0D94-0253-5C07-B9271155ADB9">
+<createdBy>stb</createdBy>
+<createdTime>2019-05-06 11:05:06 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC_EN</ownerDesignName>
+<engineerTo>
+<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+</Entity>
