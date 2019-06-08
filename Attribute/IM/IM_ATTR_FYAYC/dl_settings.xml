@@ -6,7 +6,7 @@
 	<automatic_fk_generation value="false" />
 	<preserve_ddl_generation_options value="false" />
 	<use_global_design_level_settings value="false" />
-	<use_preferred_classification_types value="false" />
+	<use_preferred_classification_types value="true" />
 	<substitution_patterns>
 	</substitution_patterns>
 	<classification_types>
@@ -76,6 +76,45 @@
 		</fonts>
 		</type>
 		<type name="Extern" color="-720908" fgcolor="-16776961" prefix="" id="6" preferred="false" >
+		<fonts>
+			<font_object fo_type="Titel" font_color="-16776961" font_name="Dialog" font_size="10" font_style="1"/>
+			<font_object fo_type="Element" font_color="-16777216" font_name="Dialog" font_size="10" font_style="0"/>
+			<font_object fo_type="Datentyp" font_color="-16744448" font_name="Dialog" font_size="10" font_style="0"/>
+			<font_object fo_type="PK-Element" font_color="-16776961" font_name="Dialog" font_size="10" font_style="0"/>
+			<font_object fo_type="FK-Element" font_color="-16777216" font_name="Dialog" font_size="10" font_style="0"/>
+			<font_object fo_type="UK-Element" font_color="-16776961" font_name="Dialog" font_size="10" font_style="0"/>
+			<font_object fo_type="Nicht null" font_color="-65536" font_name="Dialog" font_size="10" font_style="0"/>
+			<font_object fo_type="Schlüssel" font_color="-16777216" font_name="Dialog" font_size="10" font_style="0"/>
+			<font_object fo_type="Kommentare" font_color="-12566464" font_name="Dialog" font_size="10" font_style="0"/>
+		</fonts>
+		</type>
+		<type name="Artikel-Attribut" color="-16711681" fgcolor="-16776961" prefix="" id="8E68C862-5EB9-FEBD-54B8-E2E35FCEDB24" preferred="true" >
+		<fonts>
+			<font_object fo_type="Titel" font_color="-16776961" font_name="Dialog" font_size="10" font_style="1"/>
+			<font_object fo_type="Element" font_color="-16777216" font_name="Dialog" font_size="10" font_style="0"/>
+			<font_object fo_type="Datentyp" font_color="-16744448" font_name="Dialog" font_size="10" font_style="0"/>
+			<font_object fo_type="PK-Element" font_color="-16776961" font_name="Dialog" font_size="10" font_style="0"/>
+			<font_object fo_type="FK-Element" font_color="-16777216" font_name="Dialog" font_size="10" font_style="0"/>
+			<font_object fo_type="UK-Element" font_color="-16776961" font_name="Dialog" font_size="10" font_style="0"/>
+			<font_object fo_type="Nicht null" font_color="-65536" font_name="Dialog" font_size="10" font_style="0"/>
+			<font_object fo_type="Schlüssel" font_color="-16777216" font_name="Dialog" font_size="10" font_style="0"/>
+			<font_object fo_type="Kommentare" font_color="-12566464" font_name="Dialog" font_size="10" font_style="0"/>
+		</fonts>
+		</type>
+		<type name="Lebensmittel" color="-3355648" fgcolor="-16776961" prefix="" id="0C87784D-E404-7747-F657-41694C9AB643" preferred="true" >
+		<fonts>
+			<font_object fo_type="Titel" font_color="-16776961" font_name="Dialog" font_size="10" font_style="1"/>
+			<font_object fo_type="Element" font_color="-16777216" font_name="Dialog" font_size="10" font_style="0"/>
+			<font_object fo_type="Datentyp" font_color="-16744448" font_name="Dialog" font_size="10" font_style="0"/>
+			<font_object fo_type="PK-Element" font_color="-16776961" font_name="Dialog" font_size="10" font_style="0"/>
+			<font_object fo_type="FK-Element" font_color="-16777216" font_name="Dialog" font_size="10" font_style="0"/>
+			<font_object fo_type="UK-Element" font_color="-16776961" font_name="Dialog" font_size="10" font_style="0"/>
+			<font_object fo_type="Nicht null" font_color="-65536" font_name="Dialog" font_size="10" font_style="0"/>
+			<font_object fo_type="Schlüssel" font_color="-16777216" font_name="Dialog" font_size="10" font_style="0"/>
+			<font_object fo_type="Kommentare" font_color="-12566464" font_name="Dialog" font_size="10" font_style="0"/>
+		</fonts>
+		</type>
+		<type name="Kunde" color="-3342592" fgcolor="-16776961" prefix="" id="F6C40A4D-8F18-BAA0-07E0-B4CECE8793F1" preferred="true" >
 		<fonts>
 			<font_object fo_type="Titel" font_color="-16776961" font_name="Dialog" font_size="10" font_style="1"/>
 			<font_object fo_type="Element" font_color="-16777216" font_name="Dialog" font_size="10" font_style="0"/>
