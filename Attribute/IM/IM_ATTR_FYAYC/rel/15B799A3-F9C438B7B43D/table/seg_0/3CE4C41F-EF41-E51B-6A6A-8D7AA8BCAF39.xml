@@ -8,7 +8,7 @@
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
-<Column name="Geschäft_TelNr" id="A93496B2-234F-D2F4-94C1-D15D2F4583DA">
+<Column name="Geschaeft_TelNr" id="A93496B2-234F-D2F4-94C1-D15D2F4583DA">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-24 07:59:00 UTC</createdTime>
 <generatorID>A83EAB66-BFD9-FC12-4E6D-EEA130471FBB</generatorID>
@@ -20,7 +20,7 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="Geschäft_eMail" id="A491BE54-74F1-A6FC-4C11-21E607B9D41E">
+<Column name="Geschaeft_eMail" id="A491BE54-74F1-A6FC-4C11-21E607B9D41E">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-24 07:59:00 UTC</createdTime>
 <generatorID>22B4883B-04A2-E0EE-99DC-AAB87F6FEEDA</generatorID>
@@ -46,7 +46,7 @@
 <autoIncrementCycle>false</autoIncrementCycle>
 <isSurrogateColumn>true</isSurrogateColumn>
 </Column>
-<Column name="NatPers_NatPers_ID" id="DE205230-E2CD-AEBA-CE64-81D69A19A3C0">
+<Column name="NatPers_ID" id="DE205230-E2CD-AEBA-CE64-81D69A19A3C0">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-24 07:59:00 UTC</createdTime>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
@@ -70,21 +70,7 @@
 <colAssociation fkAssociation="677DF10E-FDB6-ADE1-509C-9630B67668AC" referredColumn="959207B0-C3E8-1C4D-C3A4-EB263A60FBD4"/>
 </associations>
 </Column>
-<Column name="FK" id="B519929E-BD16-43A5-7809-8F2540338965">
-<createdBy>stb</createdBy>
-<createdTime>2019-05-24 07:59:00 UTC</createdTime>
-<generatorID>95B924C8-D871-59F4-891D-85DE5A5B7742</generatorID>
-<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
-<nullsAllowed>true</nullsAllowed>
-<use>0</use>
-<logicalDatatype>LOGDT011</logicalDatatype>
-<domain>8DC704A0-B677-2702-839F-B278E9EDF3E2</domain>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-<isRelationshipColumn>true</isRelationshipColumn>
-<dependOnForeignKeyID>677DF10E-FDB6-ADE1-509C-9630B67668AC</dependOnForeignKeyID>
-</Column>
-<Column name="Firma_Firma_ID" id="FC5A9FF7-CA51-7260-F5A6-66E4324148FE">
+<Column name="Firma_ID" id="FC5A9FF7-CA51-7260-F5A6-66E4324148FE">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-24 07:59:00 UTC</createdTime>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>

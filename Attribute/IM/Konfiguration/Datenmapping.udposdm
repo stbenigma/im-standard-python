@@ -38,7 +38,7 @@
 		</property>
 		<property name="AP Umrechnung" dispalay_name="" type="Text" group_id="E4D0379F-51D7-4C86-2595-A656491C77EA" default_value="-">
 		<description>
-			<![CDATA[Für Zahlen und Datum die Formatangabe, falls in der Schnittstelle Text dargestellt wird.&amp;amp;amp;amp;amp;amp;amp;lt;br/&amp;amp;amp;amp;amp;amp;amp;gt;Oder Funktion für die Umrechnung]]>
+			<![CDATA[Für Zahlen und Datum die Formatangabe, falls in der Schnittstelle Text dargestellt wird.&amp;amp;amp;amp;amp;amp;amp;amp;lt;br/&amp;amp;amp;amp;amp;amp;amp;amp;gt;Oder Funktion für die Umrechnung]]>
 		</description>
 			<objects>
 				<object class="oracle.dbtools.crest.model.design.logical.Attribute" visible="false" color="-1"/>
@@ -75,7 +75,7 @@
 		</property>
 		<property name="SAP Umrechnung" dispalay_name="" type="Text" group_id="CBD680DB-6185-0305-80FF-37C1A6DF26C7" default_value="-">
 		<description>
-			<![CDATA[Für Zahlen und Datum die Formatangabe, falls in der Schnittstelle Text dargestellt wird.&amp;amp;amp;amp;amp;amp;amp;lt;br/&amp;amp;amp;amp;amp;amp;amp;gt;Oder Funktion für die Umrechnung]]>
+			<![CDATA[Für Zahlen und Datum die Formatangabe, falls in der Schnittstelle Text dargestellt wird.&amp;amp;amp;amp;amp;amp;amp;amp;lt;br/&amp;amp;amp;amp;amp;amp;amp;amp;gt;Oder Funktion für die Umrechnung]]>
 		</description>
 			<objects>
 				<object class="oracle.dbtools.crest.model.design.logical.Attribute" visible="false" color="-1"/>
@@ -93,7 +93,30 @@
 				<item value="low" default="false"/>
 				<item value="medium" default="true"/>
 				<item value="high" default="false"/>
-				<item value="critical&gt;" default="false"/>
+				<item value="critical" default="false"/>
+				<item value="-" default="false"/>
+			</list_of_values>
+		</property>
+		<property name="AP usage" dispalay_name="" type="List" group_id="E4D0379F-51D7-4C86-2595-A656491C77EA" default_value="">
+			<objects>
+				<object class="oracle.dbtools.crest.model.design.logical.Attribute" visible="false" color="-1"/>
+				<object class="oracle.dbtools.crest.model.design.relational.Column" visible="false" color="-1"/>
+			</objects>
+			<list_of_values>
+				<item value="R" default="false"/>
+				<item value="W" default="false"/>
+				<item value="-" default="true"/>
+			</list_of_values>
+		</property>
+		<property name="SAP usage" dispalay_name="" type="List" group_id="CBD680DB-6185-0305-80FF-37C1A6DF26C7" default_value="">
+			<objects>
+				<object class="oracle.dbtools.crest.model.design.logical.Attribute" visible="false" color="-1"/>
+				<object class="oracle.dbtools.crest.model.design.relational.Column" visible="false" color="-1"/>
+			</objects>
+			<list_of_values>
+				<item value="R" default="false"/>
+				<item value="W" default="false"/>
+				<item value="-" default="true"/>
 			</list_of_values>
 		</property>
 	</properties>
