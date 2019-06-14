@@ -1,0 +1,125 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="18FCA189-886B-2488-7F4F-FB3FF64DDB87" name="PERSONENBEZIEHUNG">
+<createdBy>stb</createdBy>
+<createdTime>2019-01-26 15:50:57 UTC</createdTime>
+<generatorID>6791F8E1-CE23-9AB9-E009-7D378B289284</generatorID>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<abbreviation>PERB</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="PERB_ID" id="53D16659-E6F6-8F1C-11ED-50AF526A3F88">
+<createdBy>stb</createdBy>
+<createdTime>2019-01-26 15:50:57 UTC</createdTime>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<domain>048C2DD5-2DF8-4EC7-E4D0-B6E6BA0D0667</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+<Column name="PERB_PERS_PERS_ID" id="DA773452-ABEE-A504-796F-D59D73B47F8E">
+<createdBy>stb</createdBy>
+<createdTime>2019-01-26 15:51:16 UTC</createdTime>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<domain>048C2DD5-2DF8-4EC7-E4D0-B6E6BA0D0667</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="AB840110-C277-8271-8AFE-554E3E19F866" referredColumn="D6D26C94-2216-D29B-8E7C-C2CF56F86C77"/>
+</associations>
+</Column>
+<Column name="PERB_PERS_PERS_ID1" id="DB302691-A759-8C37-2404-EFFB7BD0CE45">
+<createdBy>stb</createdBy>
+<createdTime>2019-01-26 15:51:16 UTC</createdTime>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<domain>048C2DD5-2DF8-4EC7-E4D0-B6E6BA0D0667</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="6EE86E6E-2A2A-A569-C259-577AEE8BD182" referredColumn="D6D26C94-2216-D29B-8E7C-C2CF56F86C77"/>
+</associations>
+</Column>
+<Column name="PERB_BEZT_NAME" id="AAB73A14-EB72-DE3E-65D9-6140EF8D7174">
+<createdBy>stb</createdBy>
+<createdTime>2019-01-26 15:50:57 UTC</createdTime>
+<generatorID>70355955-BCE9-3507-300E-74F64719F173</generatorID>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="850A14C8-89D3-1C3E-0F31-56189814A9A4" referredColumn="90AF9A5B-869B-7979-DD63-E98A15C8662E"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="90F075BB-FDF1-626D-09C4-CCA6F436703D" name="PERB_PK">
+<createdBy>stb</createdBy>
+<createdTime>2019-01-26 15:50:57 UTC</createdTime>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="53D16659-E6F6-8F1C-11ED-50AF526A3F88"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="11F29BD6-E979-FDCF-345F-218DE06030EC" name="PERB_NAME_UN">
+<createdBy>stb</createdBy>
+<createdTime>2019-01-26 15:50:57 UTC</createdTime>
+<generatorID>807A9C44-ACAD-9E8C-20BC-4C32EFB84896</generatorID>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="AAB73A14-EB72-DE3E-65D9-6140EF8D7174"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="FD14CA4E-D684-9C0E-DA0D-C934659E24F9" name="PERB_PERS_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-01-26 15:51:16 UTC</createdTime>
+<generatorID>0A12EEA2-59A9-E2A4-F02C-274458A28692</generatorID>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="DA773452-ABEE-A504-796F-D59D73B47F8E"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="E9C71C50-3338-14E1-9ED3-B31A7E28BED5" name="PERB_PERS_FKV2">
+<createdBy>stb</createdBy>
+<createdTime>2019-01-26 15:51:16 UTC</createdTime>
+<generatorID>0B2A0FC6-AF29-FEF5-78E6-19CBB308DFC1</generatorID>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="DB302691-A759-8C37-2404-EFFB7BD0CE45"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="02CFAD3D-5B92-FEC7-BB78-F1EBDE992B33" name="PERB_BEZT_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-01-26 15:51:16 UTC</createdTime>
+<generatorID>A0DEF8D3-4F6E-02A8-8755-43CE48BB3BC0</generatorID>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="AAB73A14-EB72-DE3E-65D9-6140EF8D7174"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

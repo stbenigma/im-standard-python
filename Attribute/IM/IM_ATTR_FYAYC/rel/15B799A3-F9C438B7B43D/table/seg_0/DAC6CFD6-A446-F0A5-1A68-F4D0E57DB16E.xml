@@ -1,0 +1,117 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="DAC6CFD6-A446-F0A5-1A68-F4D0E57DB16E" name="LAND">
+<createdBy>stb</createdBy>
+<createdTime>2019-01-26 15:50:57 UTC</createdTime>
+<generatorID>A9C74062-144C-D030-3549-B6F50E1E1FAE</generatorID>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<abbreviation>LAND</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="LAND_ID" id="B1AD687D-4092-1EF2-E48C-5D93DB82F29E">
+<createdBy>stb</createdBy>
+<createdTime>2019-01-26 15:50:57 UTC</createdTime>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<domain>048C2DD5-2DF8-4EC7-E4D0-B6E6BA0D0667</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+<Column name="LAND_NAME_[L,T]" id="7FBBA79A-171C-54EE-AF7E-0DC12A5A47D9">
+<createdBy>stb</createdBy>
+<createdTime>2019-01-26 15:50:57 UTC</createdTime>
+<generatorID>D4DCFD86-802A-40B2-821B-1C64DE4627DF</generatorID>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="LAND_LANDISO2" id="7CF40D83-0CD0-0A45-5212-03E86EFF7AED">
+<createdBy>stb</createdBy>
+<createdTime>2019-01-26 15:50:57 UTC</createdTime>
+<generatorID>6C47BC59-F3D6-FF4C-496A-B596CA718347</generatorID>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>5325535B-F974-A419-6BF8-16F9AB305DA8</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>AA</beginValue>
+<endValue>ZZ</endValue>
+</rangeDef>
+</listOfRanges>
+</Column>
+<Column name="LAND_LANDISO3" id="D229847A-9CBF-0ECC-78D0-7D0AF815EF57">
+<createdBy>stb</createdBy>
+<createdTime>2019-01-26 15:50:57 UTC</createdTime>
+<generatorID>E469AF57-6CC3-D69C-59D1-C25116A05D12</generatorID>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>7F3D2167-58C8-4F5A-7826-F5DDA7230D13</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>AAA</beginValue>
+<endValue>ZZZ</endValue>
+</rangeDef>
+</listOfRanges>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="235E5CD1-3603-CE0F-0C16-9B85F7FAB810" name="LAND_PK">
+<createdBy>stb</createdBy>
+<createdTime>2019-01-26 15:50:57 UTC</createdTime>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="B1AD687D-4092-1EF2-E48C-5D93DB82F29E"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="126D95A4-81A2-93CA-7BE4-3DFD67DBC520" name="LAND_LANDISO2_UN">
+<createdBy>stb</createdBy>
+<createdTime>2019-01-26 15:50:57 UTC</createdTime>
+<generatorID>CB8F9B58-6BB1-7020-5E79-49B023E27EF9</generatorID>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="7CF40D83-0CD0-0A45-5212-03E86EFF7AED"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="61F4B382-3E54-9F1C-F414-F4070CB52063" name="LAND_LANDISO3_UN">
+<createdBy>stb</createdBy>
+<createdTime>2019-01-26 15:50:57 UTC</createdTime>
+<generatorID>59CEFAF8-DB29-FC17-DB0E-06B7E6170CFC</generatorID>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="D229847A-9CBF-0ECC-78D0-7D0AF815EF57"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="03DBEC13-A98F-A430-7032-CBF6C7F4053F" name="LAND_NAME_[L,T]_UN">
+<createdBy>stb</createdBy>
+<createdTime>2019-01-26 15:50:57 UTC</createdTime>
+<generatorID>1640A1C3-6FE3-8C38-6FE8-BBD27120AC25</generatorID>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="7FBBA79A-171C-54EE-AF7E-0DC12A5A47D9"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

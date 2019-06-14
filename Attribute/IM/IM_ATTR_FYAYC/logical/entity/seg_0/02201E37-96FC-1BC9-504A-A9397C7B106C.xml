@@ -1,0 +1,107 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="02201E37-96FC-1BC9-504A-A9397C7B106C" name="Adresse">
+<createdBy>stb</createdBy>
+<createdTime>2019-01-26 14:27:35 UTC</createdTime>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<shortName>ADRE</shortName>
+<createSurrogateKey>true</createSurrogateKey>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Haus-Nr" id="65CAF17A-A2B8-EC3B-824C-DD4D73B887A4">
+<createdBy>stb</createdBy>
+<createdTime>2019-01-26 14:27:49 UTC</createdTime>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Gebäudebezeichnung" id="4EC5ADDF-A28C-088F-B07E-BA6234C06A25">
+<createdBy>stb</createdBy>
+<createdTime>2019-01-26 14:28:25 UTC</createdTime>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Strassenname" id="78559A15-011E-B3D6-1EF1-48409A404D73">
+<createdBy>stb</createdBy>
+<createdTime>2019-01-26 14:42:55 UTC</createdTime>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Name [L]" id="8CD7CD87-ECEA-0A8C-9A86-BA4F85BF6A39">
+<createdBy>stb</createdBy>
+<createdTime>2019-01-26 14:56:06 UTC</createdTime>
+<generatorID>F33E4DAF-F787-9DE8-8524-29EE8018A849</generatorID>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+</engineerTo>
+<referedAttribute>D9597E91-8AE3-81A5-3B50-EEE43CFC1620</referedAttribute>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Postleitzahl" id="84FB3E33-CBCD-F30F-3BE7-A60A10AF20F1">
+<createdBy>stb</createdBy>
+<createdTime>2019-01-26 14:56:06 UTC</createdTime>
+<generatorID>F33E4DAF-F787-9DE8-8524-29EE8018A849</generatorID>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+</engineerTo>
+<referedAttribute>3DE3B377-6B79-3994-E95D-2EE45B543314</referedAttribute>
+<use>0</use>
+<domain>FEA1A894-BD6D-FEF8-423C-6857A9D694A1</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="11A126B1-BEC3-F947-5E01-A7367F3582AA" name="Key_1">
+<createdBy>stb</createdBy>
+<createdTime>2019-01-26 14:56:27 UTC</createdTime>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<newElementsIDs>65CAF17A-A2B8-EC3B-824C-DD4D73B887A4,4EC5ADDF-A28C-088F-B07E-BA6234C06A25,78559A15-011E-B3D6-1EF1-48409A404D73,F33E4DAF-F787-9DE8-8524-29EE8018A849</newElementsIDs>
+<usedAttributes>
+<attributeRef>65CAF17A-A2B8-EC3B-824C-DD4D73B887A4</attributeRef>
+<attributeRef>4EC5ADDF-A28C-088F-B07E-BA6234C06A25</attributeRef>
+<attributeRef>78559A15-011E-B3D6-1EF1-48409A404D73</attributeRef>
+<attributeRef>8CD7CD87-ECEA-0A8C-9A86-BA4F85BF6A39</attributeRef>
+<attributeRef>84FB3E33-CBCD-F30F-3BE7-A60A10AF20F1</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

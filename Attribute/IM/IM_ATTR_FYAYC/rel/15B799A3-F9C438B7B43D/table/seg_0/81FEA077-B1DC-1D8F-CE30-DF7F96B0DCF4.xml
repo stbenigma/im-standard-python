@@ -1,0 +1,96 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="81FEA077-B1DC-1D8F-CE30-DF7F96B0DCF4" name="Juristische_Person">
+<createdBy>stb</createdBy>
+<createdTime>2019-05-24 07:59:00 UTC</createdTime>
+<generatorID>9C082718-F82F-C099-3F9E-59318F8EC49B</generatorID>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<abbreviation>Firma</abbreviation>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Name" id="33477888-330E-B2AC-5913-4FCF35A754D9">
+<createdBy>stb</createdBy>
+<createdTime>2019-05-24 07:59:00 UTC</createdTime>
+<generatorID>6CA9B3DE-3D75-DED4-C84A-2296CBA7473D</generatorID>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="UID" id="0BB40962-0BAD-AA53-C427-9A11667347CB">
+<createdBy>stb</createdBy>
+<createdTime>2019-05-24 07:59:00 UTC</createdTime>
+<generatorID>B3E8A246-C631-79E5-F9BB-86ED5C743DC1</generatorID>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Website" id="BA4C8C1E-C361-1469-F625-F1C23EAFCE53">
+<createdBy>stb</createdBy>
+<createdTime>2019-05-24 07:59:00 UTC</createdTime>
+<generatorID>A04A93BA-4630-5D16-B59F-94DACD92AACA</generatorID>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<dataTypeSize>200 CHAR</dataTypeSize>
+<ownDataTypeParameters>200 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="MWST-Nr" id="B758C01F-E192-737B-7556-10959D131A98">
+<createdBy>stb</createdBy>
+<createdTime>2019-06-09 20:11:39 UTC</createdTime>
+<generatorID>62E57B43-9919-3715-6A46-233C9F666FEA</generatorID>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Firma_ID" id="7C653F48-9C2D-279B-9897-E7A83A3F555B">
+<createdBy>stb</createdBy>
+<createdTime>2019-05-24 07:59:00 UTC</createdTime>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="5F5EE080-7BAA-D333-E7A1-3AD7A9C2ECDD" name="Firma_PK">
+<createdBy>stb</createdBy>
+<createdTime>2019-05-24 07:59:00 UTC</createdTime>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="7C653F48-9C2D-279B-9897-E7A83A3F555B"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="E98D9CD0-1CF4-9755-BAEA-831D7EE1D25E" name="Firma_UID_UN">
+<createdBy>stb</createdBy>
+<createdTime>2019-05-24 07:59:00 UTC</createdTime>
+<generatorID>AE15A2CA-CB03-4AFE-9240-2FBF55D881EE</generatorID>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="0BB40962-0BAD-AA53-C427-9A11667347CB"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

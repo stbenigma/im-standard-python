@@ -1,0 +1,21 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="677DF10E-FDB6-ADE1-509C-9630B67668AC" containerWithKeyObject="3CE4C41F-EF41-E51B-6A6A-8D7AA8BCAF39" localFKIndex="A37C1C4B-1423-906B-3568-1FFBEB351A25" name="contact_NatPers_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-05-24 07:59:00 UTC</createdTime>
+<generatorID>6C5D7058-406E-4F34-4FD4-C5C36D7FFF16</generatorID>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<referredTableLongName>Natürliche_Person</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>6B9E6BB9-1AAA-197F-9A8A-DBDD3E22433B</referredTableID>
+<keyObject>9125D655-0384-69E2-152B-8A8A262B759D</keyObject>
+<referredKeyID>9125D655-0384-69E2-152B-8A8A262B759D</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>NatPers_ID</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+<propertyMap>
+<property name="AP FKName" value="persId"/>
+<property name="SAP FKName" value="acctId"/>
+</propertyMap>
+</FKIndexAssociation>
