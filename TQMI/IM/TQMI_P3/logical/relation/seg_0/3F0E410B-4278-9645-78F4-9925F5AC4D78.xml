@@ -1,0 +1,20 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_30" directorySegmentName="seg_0" id="3F0E410B-4278-9645-78F4-9925F5AC4D78">
+<createdBy>stb</createdBy>
+<createdTime>2019-06-20 07:03:42 UTC</createdTime>
+<ownerDesignName>TQMI_P3</ownerDesignName>
+<engineerTo>
+<item key="DFF66ACB-7F3D-F056-5D66-0D2D125ED73E" value="true"/>
+</engineerTo>
+<useSurrogateKey>true</useSurrogateKey>
+<identifying>false</identifying>
+<nameOnSource>genutzt von</nameOnSource>
+<nameOnTarget>nutzt</nameOnTarget>
+<optionalSource>false</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>7B233AD4-58C0-B9DE-78E1-836E484E631D</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>42634C3D-5256-CCE9-1A8D-25028638B7D6</targetEntity>
+<transferable>true</transferable>
+</Relation>

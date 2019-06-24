@@ -1,0 +1,45 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="25924205-031E-EE22-D530-C64662962863" name="Standort">
+<createdBy>stb</createdBy>
+<createdTime>2019-06-20 06:11:11 UTC</createdTime>
+<comment>Ort an dem die Firma irgendwie vertreten ist&lt;br/&gt;&lt;br/&gt;Beispiel:&lt;br/&gt;Lager&lt;br/&gt;Produktionsstätte&lt;br/&gt;Bürogebäude</comment>
+<ownerDesignName>TQMI_P3</ownerDesignName>
+<engineerTo>
+<item key="DFF66ACB-7F3D-F056-5D66-0D2D125ED73E" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<createSurrogateKey>true</createSurrogateKey>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Name" id="27B06021-4B2E-D25F-C425-722E7CA818FA">
+<createdBy>stb</createdBy>
+<createdTime>2019-06-20 06:11:11 UTC</createdTime>
+<ownerDesignName>TQMI_P3</ownerDesignName>
+<importedID>024A5411-10A2-5376-08E3-33DBA0FF5D9D</importedID>
+<engineerTo>
+<item key="DFF66ACB-7F3D-F056-5D66-0D2D125ED73E" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Typ" id="7574282D-FDC1-2413-C1B8-A436E90FFDFF">
+<createdBy>stb</createdBy>
+<createdTime>2019-06-20 06:20:11 UTC</createdTime>
+<comment>Hauptsitz&lt;br/&gt;Lager&lt;br/&gt;Produktionsstätte</comment>
+<ownerDesignName>TQMI_P3</ownerDesignName>
+<engineerTo>
+<item key="DFF66ACB-7F3D-F056-5D66-0D2D125ED73E" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+</Entity>

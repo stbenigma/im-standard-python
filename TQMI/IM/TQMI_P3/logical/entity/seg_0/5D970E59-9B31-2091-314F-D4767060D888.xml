@@ -1,0 +1,45 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="5D970E59-9B31-2091-314F-D4767060D888" name="Personenrolle">
+<createdBy>stb</createdBy>
+<createdTime>2019-06-20 06:11:11 UTC</createdTime>
+<comment>Beschreibung einer Rolle, die eine Ansprechsperson haben kann.&lt;br/&gt;&lt;br/&gt;Beispiele:&lt;br/&gt;CEO&lt;br/&gt;CIO&lt;br/&gt;Sachdienstmitarbeiter&lt;br/&gt;Verkaufsleiter</comment>
+<ownerDesignName>TQMI_P3</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="DFF66ACB-7F3D-F056-5D66-0D2D125ED73E" value="false"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<createSurrogateKey>true</createSurrogateKey>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Bezeichnung" id="44EB1E9A-1AC3-D326-0484-A37751492BD7">
+<createdBy>stb</createdBy>
+<createdTime>2019-06-20 06:11:11 UTC</createdTime>
+<ownerDesignName>TQMI_P3</ownerDesignName>
+<importedID>40B36602-4348-FB5F-5BD1-C56AD78107F8</importedID>
+<engineerTo>
+<item key="DFF66ACB-7F3D-F056-5D66-0D2D125ED73E" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Beschreibung" id="9FBCDF27-B08C-FDA1-9BD7-934D64F0F3EF">
+<createdBy>stb</createdBy>
+<createdTime>2019-06-20 06:11:11 UTC</createdTime>
+<ownerDesignName>TQMI_P3</ownerDesignName>
+<importedID>116DF002-EA64-1985-173B-A197A3118F61</importedID>
+<engineerTo>
+<item key="DFF66ACB-7F3D-F056-5D66-0D2D125ED73E" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+</Entity>
