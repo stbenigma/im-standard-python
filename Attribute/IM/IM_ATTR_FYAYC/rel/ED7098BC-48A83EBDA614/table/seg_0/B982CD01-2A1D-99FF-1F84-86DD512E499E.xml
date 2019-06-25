@@ -1,0 +1,147 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="B982CD01-2A1D-99FF-1F84-86DD512E499E" name="Natürliche_Person">
+<createdBy>stb</createdBy>
+<createdTime>2019-06-22 00:05:15 UTC</createdTime>
+<generatorID>EF71ECEA-5DD6-73A4-A60E-06DB4ECF8D52</generatorID>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<abbreviation>NatPers</abbreviation>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Name" id="7F144B05-E1B9-594B-72FC-6CF973DEE32A">
+<createdBy>stb</createdBy>
+<createdTime>2019-06-22 00:05:15 UTC</createdTime>
+<generatorID>00C86C76-77EA-66CE-417C-4B122E68C67D</generatorID>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<formulaDesc>a+b</formulaDesc>
+<sourceType>Derived</sourceType>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<computed>true</computed>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Vorname" id="563A9B86-CBF4-74A2-BA9B-47B0D51FBFC5">
+<createdBy>stb</createdBy>
+<createdTime>2019-06-22 00:05:15 UTC</createdTime>
+<generatorID>B36F299F-2D69-4979-DE67-9F45CD03C27C</generatorID>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Privat_TelNr" id="28D5E2A3-6785-E07C-18BD-490538C03498">
+<createdBy>stb</createdBy>
+<createdTime>2019-06-22 00:05:15 UTC</createdTime>
+<generatorID>61725A0E-64CA-5931-DC2C-FD8452AB86C3</generatorID>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Mobil_TelNr" id="ABE7D46B-A2CB-F045-6C5C-3DCD3772CB2A">
+<createdBy>stb</createdBy>
+<createdTime>2019-06-22 00:05:15 UTC</createdTime>
+<generatorID>3AD53335-F6F4-5172-693C-FA3B5F6B89AA</generatorID>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Geburtsdatum" id="67F1B7CC-D700-53D9-9035-9DDC3847F326">
+<createdBy>stb</createdBy>
+<createdTime>2019-06-22 00:05:15 UTC</createdTime>
+<generatorID>B708FB56-7DE8-FA14-07F2-BBBF230CDDE9</generatorID>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<domain>631FC893-D28E-5FE4-89DB-473C78BB2B2A</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Zivilstand" id="238E8A73-AA94-F420-60C7-11F8BC645922">
+<createdBy>stb</createdBy>
+<createdTime>2019-06-22 00:05:15 UTC</createdTime>
+<generatorID>F3EEE55A-0A1C-0725-EAC4-0FAF80CEC86F</generatorID>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Sozialversicherung-Nr" id="9B6C7C05-0E95-5882-DC4D-40720383C062">
+<createdBy>stb</createdBy>
+<createdTime>2019-06-22 00:05:15 UTC</createdTime>
+<generatorID>5852C1A3-5EEB-FFBB-7972-2DE62E264916</generatorID>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="NatPers_ID" id="FC180795-375D-72BE-9373-9E4C99BC0A01">
+<createdBy>stb</createdBy>
+<createdTime>2019-06-22 00:05:15 UTC</createdTime>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="B215D5BA-11D0-9576-0690-70988E362AAE" name="NatPers_PK">
+<createdBy>stb</createdBy>
+<createdTime>2019-06-22 00:05:15 UTC</createdTime>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="FC180795-375D-72BE-9373-9E4C99BC0A01"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="61816BE2-0104-148F-BD9E-E6107AD9CED6" name="NatPers_Sozialversicherung-Nr_UN">
+<createdBy>stb</createdBy>
+<createdTime>2019-06-22 00:05:15 UTC</createdTime>
+<generatorID>DF90E20B-9B0E-D508-09BF-81F7C30E9F80</generatorID>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="9B6C7C05-0E95-5882-DC4D-40720383C062"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="89106E8B-14A1-46ED-5320-5B56F1842486" name="NatPers_Mobil_TelNr_UN">
+<createdBy>stb</createdBy>
+<createdTime>2019-06-22 00:05:15 UTC</createdTime>
+<generatorID>35884E2B-E9FD-9770-B907-C6659099BA37</generatorID>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="ABE7D46B-A2CB-F045-6C5C-3DCD3772CB2A"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
