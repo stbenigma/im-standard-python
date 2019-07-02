@@ -161,6 +161,21 @@
 <domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
+<Attribute name="ist verschlüsselt" id="743343B0-7B01-8A4C-CDC6-45E8B72B3E2F">
+<createdBy>stb</createdBy>
+<createdTime>2019-07-02 15:23:05 UTC</createdTime>
+<comment>JA -&gt; Das Feld muss in Speicherung und Transport verschlüsselt werden&lt;br/&gt;NEIN -&gt; Feld wird nicht verschlüsselt&lt;br/&gt;</comment>
+<ownerDesignName>ModellModell</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
 <Attribute name="Anzeigereihenfolge" id="598275C8-6915-4D18-A03A-DDE739950A91">
 <createdBy>stb</createdBy>
 <createdTime>2018-11-04 11:14:15 UTC</createdTime>
@@ -210,14 +225,26 @@
 <attributeRef>EDEE919C-7C94-15E9-147C-57317A603D15</attributeRef>
 </usedAttributes>
 </identifier>
-<identifier id="CF56302E-CDD3-0F96-2C4F-D3F3489FAE65" name="Attribut_PK">
+<identifier id="B0A652FD-7F95-C210-33E5-71090820167E" name="Attribut_PK">
 <createdBy>stb</createdBy>
-<createdTime>2019-03-30 18:37:07 UTC</createdTime>
+<createdTime>2019-07-02 15:24:31 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
-<shouldEngineer>false</shouldEngineer>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
-<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>0C01D9CE-61C5-17EA-B371-14E7D8D04675</attributeRef>
+</usedAttributes>
+</identifier>
+<identifier id="98572F95-B4C9-C708-AC9E-C925550A7A9B" name="Attribut_PKv1">
+<createdBy>stb</createdBy>
+<createdTime>2019-07-02 15:24:31 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 </engineerTo>
 <pk>true</pk>
 <usedAttributes>

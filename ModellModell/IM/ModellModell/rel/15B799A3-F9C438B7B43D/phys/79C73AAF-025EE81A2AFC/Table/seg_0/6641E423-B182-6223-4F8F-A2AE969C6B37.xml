@@ -49,6 +49,11 @@
 <createdTime>2019-04-03 07:58:15 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 </ColumnProxy>
+<ColumnProxy name="ATTR_VERSCHLUESSELT" id="957CE0FC-3267-CFFA-732F-3AAF58254552">
+<createdBy>stb</createdBy>
+<createdTime>2019-07-02 15:25:43 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
 <ColumnProxy name="ATTR_TECH_NAME" id="9C8AC513-3BDE-9409-6D3F-793EECB4524B">
 <createdBy>stb</createdBy>
 <createdTime>2019-04-03 07:58:15 UTC</createdTime>
@@ -106,7 +111,7 @@
 <createdTime>2019-04-03 07:58:15 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 </IndexProxy>
-<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="ATTR_Entität_FK" id="9D7306DA-2F81-E96F-1882-5CCA5D71EA7E">
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="ATTR_ENTI_FK" id="9D7306DA-2F81-E96F-1882-5CCA5D71EA7E">
 <createdBy>stb</createdBy>
 <createdTime>2019-04-03 07:58:15 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
@@ -118,19 +123,14 @@
 <createdTime>2019-04-03 07:58:15 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 </ForeignKey>
-<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="ATTR_WRTB_FK" id="2838F007-B4D7-D1A3-D16E-2689C096CE94">
-<createdBy>stb</createdBy>
-<createdTime>2019-04-03 07:58:15 UTC</createdTime>
-<ownerDesignName>ModellModell</ownerDesignName>
-</ForeignKey>
 <ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="ATTR_UETX_FK_TOOLTIP" id="4BDF9C4C-8F8B-3BF2-0974-EB2CFE51171B">
 <createdBy>stb</createdBy>
 <createdTime>2019-04-03 07:58:15 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 </ForeignKey>
-<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="ATTR_Entität_FK" id="5936D096-1D10-7C86-D38E-69F06BDC9361">
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="ATTR_WRTB_FK" id="9B607D04-7CEC-0987-5707-0CC7E119EEFC">
 <createdBy>stb</createdBy>
-<createdTime>2019-04-03 07:58:15 UTC</createdTime>
+<createdTime>2019-07-02 15:18:53 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 </ForeignKey>
 <ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="ATTR_UETX_FK_BESCHR" id="A0404CEB-4455-103D-FF2B-B51BCB8EF134">

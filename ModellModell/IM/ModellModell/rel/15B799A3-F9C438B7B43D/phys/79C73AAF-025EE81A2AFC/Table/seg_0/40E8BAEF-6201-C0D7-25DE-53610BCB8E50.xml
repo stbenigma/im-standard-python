@@ -45,6 +45,11 @@
 <ownerDesignName>ModellModell</ownerDesignName>
 <defaultValue>1</defaultValue>
 </ColumnProxy>
+<ColumnProxy name="WRTB_BIN_SPFO_ID" id="32FBCF3C-66DC-DDE4-DD3D-B918EF79A2D5">
+<createdBy>stb</createdBy>
+<createdTime>2019-07-02 15:18:53 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
 <ColumnProxy name="WRTB_TYP" id="3A384167-E73F-E1FD-1E5A-0652D28AAF65">
 <createdBy>stb</createdBy>
 <createdTime>2019-04-03 07:58:15 UTC</createdTime>
@@ -96,6 +101,11 @@
 <createdTime>2019-04-03 07:58:15 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 </ColumnProxy>
+<ColumnProxy name="WRTB_BIN_INHALTTYP" id="D6C8A596-ACD1-1180-9438-3A9766F64527">
+<createdBy>stb</createdBy>
+<createdTime>2019-07-02 15:18:53 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
 <ColumnProxy name="WRTB_UM" id="F05D0E96-8359-F408-58E8-588DFEEF6E21">
 <createdBy>stb</createdBy>
 <createdTime>2019-04-03 07:58:15 UTC</createdTime>
@@ -120,6 +130,11 @@
 </IndexProxy>
 </indexProxies>
 <foreignKeys>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="WRTB_SPFO_FK" id="93385107-9288-4725-7AAD-8BC895BF1F60">
+<createdBy>stb</createdBy>
+<createdTime>2019-07-02 15:18:53 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ForeignKey>
 <ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="WRTB_UETX_FK_BESCHR" id="ACEF2AE9-B0BA-E424-6414-FEF7D4CCC3DD">
 <createdBy>stb</createdBy>
 <createdTime>2019-04-03 07:58:15 UTC</createdTime>
@@ -145,6 +160,11 @@
 </PrimaryKey>
 </primaryKeys>
 <tableCheckConstraints itemClass="oracle.dbtools.crest.model.design.storage.oracle.TableCheckConstraintOracle">
+<TableCheckConstraint name="WRTB_CK_BIN" id="4286A269-0F29-F5DE-3A79-EE2DEEF58AD1">
+<createdBy>stb</createdBy>
+<createdTime>2019-07-02 15:18:53 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</TableCheckConstraint>
 <TableCheckConstraint name="WRTB_CK_NUM" id="8E70B571-F147-F55F-FD3B-57B60FF8CFD7">
 <createdBy>stb</createdBy>
 <createdTime>2019-04-03 07:58:15 UTC</createdTime>

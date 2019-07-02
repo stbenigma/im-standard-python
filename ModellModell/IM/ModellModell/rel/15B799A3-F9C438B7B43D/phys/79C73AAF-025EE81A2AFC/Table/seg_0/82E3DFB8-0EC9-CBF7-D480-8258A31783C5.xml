@@ -69,11 +69,6 @@
 <createdTime>2019-04-03 07:58:15 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 </ColumnProxy>
-<ColumnProxy name="ENTI_FARBCODE" id="D70C1780-24A1-7649-9726-B9F742974D68">
-<createdBy>stb</createdBy>
-<createdTime>2019-04-03 07:58:15 UTC</createdTime>
-<ownerDesignName>ModellModell</ownerDesignName>
-</ColumnProxy>
 <ColumnProxy name="ENTI_UM" id="E8AD8E77-E0E5-3FDE-25EA-B75D4E349216">
 <createdBy>stb</createdBy>
 <createdTime>2019-04-03 07:58:15 UTC</createdTime>
@@ -86,14 +81,14 @@
 </ColumnProxy>
 </columnProxies>
 <foreignKeys>
-<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="ENTI_AUGB_RK" id="860483F6-CBB9-FBA1-7267-A6DEBA399D49">
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="ENTI_AUGB_FK" id="860483F6-CBB9-FBA1-7267-A6DEBA399D49">
 <createdBy>stb</createdBy>
 <createdTime>2019-04-03 07:58:15 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 </ForeignKey>
 </foreignKeys>
 <primaryKeys>
-<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="ENTITÄT_PK" id="D2D79305-2A98-35EE-F956-1CA2D3435712">
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="ENTI_PK" id="D2D79305-2A98-35EE-F956-1CA2D3435712">
 <createdBy>stb</createdBy>
 <createdTime>2019-04-03 07:58:15 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
@@ -101,7 +96,7 @@
 </PrimaryKey>
 </primaryKeys>
 <uniqueKeys>
-<UniqueKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.UniqueOraclev10g" name="ENTITÄT_TECHNISCHER_NAME_UN" id="520A0B31-098A-E869-E0C8-794D02BF4459">
+<UniqueKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.UniqueOraclev10g" name="ENTI_TECH_NAME_UK" id="520A0B31-098A-E869-E0C8-794D02BF4459">
 <createdBy>stb</createdBy>
 <createdTime>2019-04-03 07:58:15 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>

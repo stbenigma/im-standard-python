@@ -1,15 +1,16 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="3B06B930-6CE0-7E7A-AC79-CF707FAE802D" name="IT-SYSTEM">
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="3B06B930-6CE0-7E7A-AC79-CF707FAE802D" name="IT_SYSTEM">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:34 UTC</createdTime>
 <comment>IT_System, mit dem Daten ausgestauscht werden. </comment>
 <generatorID>DB450B2D-9C65-6429-1BEE-5757055BB563</generatorID>
 <ownerDesignName>ModellModell</ownerDesignName>
+<abbreviation>ITSY</abbreviation>
 <allowColumnReorder>false</allowColumnReorder>
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
-<Column name="IT-SYSTEM_ID" id="48D50372-D5F8-8AAF-B019-0548029832E5">
+<Column name="ITSY_ID" id="48D50372-D5F8-8AAF-B019-0548029832E5">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:34 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
@@ -22,19 +23,21 @@
 <autoIncrementCycle>false</autoIncrementCycle>
 <isSurrogateColumn>true</isSurrogateColumn>
 </Column>
-<Column name="NAME" id="064D7C77-841C-E01F-DF08-1320913E80A7">
+<Column name="ITSY_NAME" id="064D7C77-841C-E01F-DF08-1320913E80A7">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:34 UTC</createdTime>
 <generatorID>35DBBA84-48EA-1A41-A747-DF4AD1161468</generatorID>
 <ownerDesignName>ModellModell</ownerDesignName>
 <use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 <associations>
 <colAssociation fkAssociation="9BFC846C-8B24-4D64-BEB8-4558976B922A" referredColumn="2ACD4FD6-8B77-DB18-BE91-32525D70D161"/>
 </associations>
 </Column>
-<Column name="ZEICHNSATZ" id="A8860DF9-93B6-B580-550A-C2531524CF69">
+<Column name="ITSY_ZEICHNSATZ" id="A8860DF9-93B6-B580-550A-C2531524CF69">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:34 UTC</createdTime>
 <generatorID>CEF84331-D1F8-95B8-C3AC-2F58918460FD</generatorID>

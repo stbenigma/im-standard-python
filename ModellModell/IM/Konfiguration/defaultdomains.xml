@@ -35,6 +35,25 @@
          <fileName>defaultdomains</fileName>
          <logicalDatatype>LOGDT015</logicalDatatype>
       </Domain>
+      <Domain class="oracle.dbtools.crest.model.design.Domain" name="Dokument Inhalt" id="0BF630F8-9481-C3AD-A066-44A5FEC6E877">
+         <createdBy>stb</createdBy>
+         <createdTime>2019-07-02 15:50:33 UTC</createdTime>
+         <comment>binär abgespeichertes Dokument</comment>
+         <ownerDesignName>System</ownerDesignName>
+         <avTSortOrder>0</avTSortOrder>
+         <fileName>defaultdomains</fileName>
+         <logicalDatatype>LOGDT029</logicalDatatype>
+      </Domain>
+      <Domain class="oracle.dbtools.crest.model.design.Domain" name="Referenz" id="17A3A5E7-15FD-8979-FF7A-1FAC09CEC963">
+         <createdBy>stb</createdBy>
+         <createdTime>2019-07-02 15:51:18 UTC</createdTime>
+         <comment>externe Referenz auf einen Verzeichniseintrag oder ein URL</comment>
+         <ownerDesignName>System</ownerDesignName>
+         <avTSortOrder>0</avTSortOrder>
+         <dataTypeSize>500 CHAR</dataTypeSize>
+         <fileName>defaultdomains</fileName>
+         <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+      </Domain>
       <Domain class="oracle.dbtools.crest.model.design.Domain" name="Dokument" id="1DD73E5D-0E1F-A292-71E3-05600D84D49D">
          <createdBy>stb</createdBy>
          <createdTime>2019-03-10 11:09:09 UTC</createdTime>
@@ -136,6 +155,31 @@
          <avTSortOrder>0</avTSortOrder>
          <fileName>defaultdomains</fileName>
          <logicalDatatype>LOGDT007</logicalDatatype>
+      </Domain>
+      <Domain class="oracle.dbtools.crest.model.design.Domain" name="Dokument Format" id="6F7CFEB3-F007-D17C-AA67-F209D129C3DE">
+         <createdBy>stb</createdBy>
+         <createdTime>2019-07-02 15:48:04 UTC</createdTime>
+         <comment>Dokumenttyp im Filesystem</comment>
+         <ownerDesignName>System</ownerDesignName>
+         <avTSortOrder>0</avTSortOrder>
+         <dataTypeSize>20 CHAR</dataTypeSize>
+         <fileName>defaultdomains</fileName>
+         <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+         <listOfValues>
+            <valueDef value="doc" description=""/>
+            <valueDef value="jpeg" description=""/>
+            <valueDef value="json" description=""/>
+            <valueDef value="key" description=""/>
+            <valueDef value="numbers" description=""/>
+            <valueDef value="pages" description=""/>
+            <valueDef value="pdf" description=""/>
+            <valueDef value="png" description=""/>
+            <valueDef value="ppt" description=""/>
+            <valueDef value="text" description=""/>
+            <valueDef value="unbestimmt" description=""/>
+            <valueDef value="xls" description=""/>
+            <valueDef value="xml" description=""/>
+         </listOfValues>
       </Domain>
       <Domain class="oracle.dbtools.crest.model.design.Domain" name="Transformationsverarbeitung" id="70371CD6-E734-52D3-6D46-C65613C10CE8">
          <createdBy>stb</createdBy>

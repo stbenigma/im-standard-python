@@ -9,61 +9,54 @@
 <accessDriverType>oracle_loader</accessDriverType>
 <rejectLimit></rejectLimit>
 <columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
-<ColumnProxy name="EHUR_UM" id="29A12094-7DD6-364C-DB45-5A176B27A6F5">
+<ColumnProxy name="BURU_UM" id="29A12094-7DD6-364C-DB45-5A176B27A6F5">
 <createdBy>stb</createdBy>
 <createdTime>2019-04-03 07:58:15 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 </ColumnProxy>
-<ColumnProxy name="NAME" id="2ACD4FD6-8B77-DB18-BE91-32525D70D161">
+<ColumnProxy name="BURU_NAME" id="2ACD4FD6-8B77-DB18-BE91-32525D70D161">
 <createdBy>stb</createdBy>
 <createdTime>2019-04-03 07:58:15 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 </ColumnProxy>
-<ColumnProxy name="REGEL" id="32A126FC-CEF4-D0B4-F439-9619B102BCA8">
+<ColumnProxy name="BURU_REGEL" id="32A126FC-CEF4-D0B4-F439-9619B102BCA8">
 <createdBy>stb</createdBy>
 <createdTime>2019-04-03 07:58:15 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 </ColumnProxy>
-<ColumnProxy name="BUSINESS_RULE_ID" id="3B52AAE9-A2C5-80EB-D5DA-758CFDE56E5C">
+<ColumnProxy name="BURU_ID" id="3B52AAE9-A2C5-80EB-D5DA-758CFDE56E5C">
 <createdBy>stb</createdBy>
 <createdTime>2019-04-03 07:58:15 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 </ColumnProxy>
-<ColumnProxy name="EHUR_DM" id="681749CA-D2D0-64A9-EC1C-3387103D32C4">
+<ColumnProxy name="BURU_DM" id="681749CA-D2D0-64A9-EC1C-3387103D32C4">
 <createdBy>stb</createdBy>
 <createdTime>2019-04-03 07:58:15 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 </ColumnProxy>
-<ColumnProxy name="FHLMLD_[L]" id="A1E49ACA-D991-871E-0054-B46629807CDE">
+<ColumnProxy name="BURU_UETX_ID_FHLMLD" id="A1E49ACA-D991-871E-0054-B46629807CDE">
 <createdBy>stb</createdBy>
 <createdTime>2019-04-03 07:58:15 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 </ColumnProxy>
-<ColumnProxy name="EHUR_UC" id="A74C8DF6-9D3E-54B0-9FA1-492666D15A97">
+<ColumnProxy name="BURU_UC" id="A74C8DF6-9D3E-54B0-9FA1-492666D15A97">
 <createdBy>stb</createdBy>
 <createdTime>2019-04-03 07:58:15 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 </ColumnProxy>
-<ColumnProxy name="EHUR_DC" id="D5E8B5B9-458C-6057-7ABB-7B80CC32FCFE">
+<ColumnProxy name="BURU_DC" id="D5E8B5B9-458C-6057-7ABB-7B80CC32FCFE">
 <createdBy>stb</createdBy>
 <createdTime>2019-04-03 07:58:15 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 </ColumnProxy>
-<ColumnProxy name="BESCHR" id="DB491B1C-F5C5-66CE-89A1-96454309015A">
+<ColumnProxy name="BURU_UETX_ID_BESCHR" id="DB491B1C-F5C5-66CE-89A1-96454309015A">
 <createdBy>stb</createdBy>
 <createdTime>2019-04-03 07:58:15 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 </ColumnProxy>
 </columnProxies>
-<foreignKeys>
-<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="BUSINESS_RULE_IT-SYSTEM_FK" id="AFA6AB0A-950A-E814-D03B-81E34F97A884">
-<createdBy>stb</createdBy>
-<createdTime>2019-04-03 07:58:15 UTC</createdTime>
-<ownerDesignName>ModellModell</ownerDesignName>
-</ForeignKey>
-</foreignKeys>
 <primaryKeys>
-<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="BUSINESS_RULE_PK" id="D51E1399-AED4-E645-C146-3BB5BC09435D">
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="BURU_PK" id="D51E1399-AED4-E645-C146-3BB5BC09435D">
 <createdBy>stb</createdBy>
 <createdTime>2019-04-03 07:58:15 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
