@@ -14,7 +14,6 @@
 <createdTime>2019-01-26 15:50:57 UTC</createdTime>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <use>0</use>
-<logicalDatatype>LOGDT011</logicalDatatype>
 <domain>048C2DD5-2DF8-4EC7-E4D0-B6E6BA0D0667</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementColumn>true</autoIncrementColumn>
@@ -39,16 +38,14 @@
 <generatorID>6C47BC59-F3D6-FF4C-496A-B596CA718347</generatorID>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <use>0</use>
-<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <domain>5325535B-F974-A419-6BF8-16F9AB305DA8</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
-<listOfRanges>
-<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
-<beginValue>AA</beginValue>
-<endValue>ZZ</endValue>
-</rangeDef>
-</listOfRanges>
+<propertyMap>
+<property name="AttributGUID" value="-"/>
+<property name="AttributName" value="-"/>
+<property name="EntityName" value="-"/>
+</propertyMap>
 </Column>
 <Column name="LAND_LANDISO3" id="D229847A-9CBF-0ECC-78D0-7D0AF815EF57">
 <createdBy>stb</createdBy>
@@ -57,16 +54,14 @@
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <use>0</use>
-<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <domain>7F3D2167-58C8-4F5A-7826-F5DDA7230D13</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
-<listOfRanges>
-<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
-<beginValue>AAA</beginValue>
-<endValue>ZZZ</endValue>
-</rangeDef>
-</listOfRanges>
+<propertyMap>
+<property name="AttributGUID" value="-"/>
+<property name="AttributName" value="-"/>
+<property name="EntityName" value="-"/>
+</propertyMap>
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">

@@ -14,7 +14,6 @@
 <createdTime>2019-01-26 15:50:57 UTC</createdTime>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <use>0</use>
-<logicalDatatype>LOGDT011</logicalDatatype>
 <domain>048C2DD5-2DF8-4EC7-E4D0-B6E6BA0D0667</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementColumn>true</autoIncrementColumn>
@@ -28,17 +27,10 @@
 <generatorID>8FC79914-4622-E6C6-5A8E-529914AEDDDC</generatorID>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <use>0</use>
-<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <domain>5325535B-F974-A419-6BF8-16F9AB305DA8</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
-<listOfRanges>
-<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
-<beginValue>AA</beginValue>
-<endValue>ZZ</endValue>
-</rangeDef>
-</listOfRanges>
 <associations>
 <colAssociation fkAssociation="B0AE4370-BB79-668C-AEF8-18A704ADFAF1" referredColumn="7CF40D83-0CD0-0A45-5212-03E86EFF7AED"/>
 </associations>
@@ -53,6 +45,11 @@
 <domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="AttributGUID" value="-"/>
+<property name="AttributName" value="-"/>
+<property name="EntityName" value="-"/>
+</propertyMap>
 </Column>
 <Column name="ORTS_POSTLEITZAHL" id="210C6770-60D4-EB8F-D84F-D0461760477A">
 <createdBy>stb</createdBy>

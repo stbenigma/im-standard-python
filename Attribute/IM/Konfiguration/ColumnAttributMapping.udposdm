@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<udp_library>
+	<udp_groups>
+		<group name="InfModMapping" id="6406278C-0D33-0C0E-EFE6-8FE2BAFD457D" />
+	</udp_groups>
+	<properties>
+		<property name="EntityName" dispalay_name="" type="Text" group_id="6406278C-0D33-0C0E-EFE6-8FE2BAFD457D" default_value="">
+		<description>
+			<![CDATA[Comma separated List of Entity Names, Attributes whereof contribute to this columnm]]>
+		</description>
+			<objects>
+				<object class="oracle.dbtools.crest.model.design.relational.Column" visible="false" color="-1"/>
+			</objects>
+		</property>
+		<property name="AttributName" dispalay_name="" type="Text" group_id="" default_value="">
+		<description>
+			<![CDATA[Comma Separated List of Attributes contributing to this Column]]>
+		</description>
+			<objects>
+				<object class="oracle.dbtools.crest.model.design.relational.Column" visible="false" color="-1"/>
+			</objects>
+		</property>
+		<property name="AttributGUID" dispalay_name="" type="Text" group_id="" default_value="">
+		<description>
+			<![CDATA[Comma separated List of GUID of the Attributes contributing to this Column]]>
+		</description>
+			<objects>
+				<object class="oracle.dbtools.crest.model.design.relational.Column" visible="false" color="-1"/>
+			</objects>
+		</property>
+	</properties>
+</udp_library>

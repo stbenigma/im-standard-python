@@ -14,7 +14,6 @@
 <createdTime>2019-01-26 15:50:57 UTC</createdTime>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <use>0</use>
-<logicalDatatype>LOGDT011</logicalDatatype>
 <domain>048C2DD5-2DF8-4EC7-E4D0-B6E6BA0D0667</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementColumn>true</autoIncrementColumn>
@@ -44,6 +43,11 @@
 <domain>4B4F8F40-D3A4-4F39-8CB3-BB6C57534E96</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="AttributGUID" value="-"/>
+<property name="AttributName" value="-"/>
+<property name="EntityName" value="-"/>
+</propertyMap>
 </Column>
 <Column name="FIRM_MWST-NR" id="6562DB3C-0748-E98C-757A-B5776D73AA87">
 <createdBy>stb</createdBy>
@@ -66,6 +70,11 @@
 <domain>7F98E20B-63A1-C3F1-F7AE-0E2F6BC2C8D5</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="AttributGUID" value="-"/>
+<property name="AttributName" value="-"/>
+<property name="EntityName" value="-"/>
+</propertyMap>
 </Column>
 <Column name="FIRM_TELEON_VORWAHL" id="A1B4F69A-8627-DA11-1052-7120E5008669">
 <createdBy>stb</createdBy>
@@ -86,16 +95,10 @@
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <use>0</use>
-<logicalDatatype>LOGDT011</logicalDatatype>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <domain>C1BC1A23-B5E6-4886-CDB6-CD702D560B8E</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
-<listOfRanges>
-<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
-<beginValue>1</beginValue>
-<endValue>999</endValue>
-</rangeDef>
-</listOfRanges>
 </Column>
 <Column name="FIRM_BUR-NR" id="988B53E6-C698-4EAC-3CCF-E15C2F039E92">
 <createdBy>stb</createdBy>
@@ -114,7 +117,6 @@
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <use>0</use>
-<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <domain>4BDA4901-79C7-AF53-7AE6-4CA780C138CF</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>

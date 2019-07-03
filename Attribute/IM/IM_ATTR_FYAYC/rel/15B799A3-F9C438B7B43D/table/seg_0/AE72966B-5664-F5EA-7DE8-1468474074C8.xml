@@ -14,7 +14,6 @@
 <createdTime>2019-01-26 15:50:57 UTC</createdTime>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <use>0</use>
-<logicalDatatype>LOGDT011</logicalDatatype>
 <domain>048C2DD5-2DF8-4EC7-E4D0-B6E6BA0D0667</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementColumn>true</autoIncrementColumn>
@@ -43,6 +42,11 @@
 <domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="AttributGUID" value="-"/>
+<property name="AttributName" value="-"/>
+<property name="EntityName" value="-"/>
+</propertyMap>
 </Column>
 <Column name="PERS_EMAIL" id="0886E803-40F3-BF5C-59C9-6A56652DC9B2">
 <createdBy>stb</createdBy>
@@ -77,6 +81,11 @@
 <domain>7F98E20B-63A1-C3F1-F7AE-0E2F6BC2C8D5</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="AttributGUID" value="-"/>
+<property name="AttributName" value="-"/>
+<property name="EntityName" value="-"/>
+</propertyMap>
 </Column>
 <Column name="PERS_TELEON_VORWAHL" id="EA9B28AA-D0DC-E2D2-E1D1-A2F4D4C87B60">
 <createdBy>stb</createdBy>
@@ -97,16 +106,10 @@
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <use>0</use>
-<logicalDatatype>LOGDT011</logicalDatatype>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <domain>C1BC1A23-B5E6-4886-CDB6-CD702D560B8E</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
-<listOfRanges>
-<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
-<beginValue>1</beginValue>
-<endValue>999</endValue>
-</rangeDef>
-</listOfRanges>
 </Column>
 <Column name="PERS_GESCHLECHT" id="C2654A57-098B-4C70-897A-FB9301BEECEA">
 <createdBy>stb</createdBy>
@@ -115,7 +118,6 @@
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <use>0</use>
-<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <domain>D401C301-200D-BF8A-4E9F-822520B06CDB</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
