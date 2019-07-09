@@ -28,11 +28,10 @@
 <generatorID>B41BF0C7-0AD6-E2FF-307E-0E3AB8A27120</generatorID>
 <ownerDesignName>ModellModell</ownerDesignName>
 <use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
-<associations>
-<colAssociation fkAssociation="5AAA10F7-E25D-CFF8-623C-A6CE7AEC66E1" referredColumn="064D7C77-841C-E01F-DF08-1320913E80A7"/>
-</associations>
 </Column>
 <Column name="TABELLENNAME" id="DFC9C46D-310A-F3D4-67B3-36DF421A5D8C">
 <createdBy>stb</createdBy>
@@ -79,9 +78,6 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
-<associations>
-<colAssociation fkAssociation="8DD459B8-70B6-DF23-3B5C-C0A480696BB2" referredColumn="48D50372-D5F8-8AAF-B019-0548029832E5"/>
-</associations>
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
@@ -106,27 +102,6 @@
 <colUsage columnID="E3A7546C-6D4E-116C-84AB-191FEAF3992B"/>
 <colUsage columnID="DFC9C46D-310A-F3D4-67B3-36DF421A5D8C"/>
 <colUsage columnID="E501A401-B259-8858-91D8-B5A09D521240"/>
-</indexColumnUsage>
-</ind_PK_UK>
-<ind_PK_UK id="5B940BCE-8682-D014-6F52-17536D632901" name="SYSTEMATTRIBUT_IT-SYSTEM_FK">
-<createdBy>stb</createdBy>
-<createdTime>2018-10-21 13:54:35 UTC</createdTime>
-<generatorID>DC7CB504-6419-8B00-4117-ABBE79443FD3</generatorID>
-<ownerDesignName>ModellModell</ownerDesignName>
-<indexState>Foreign Key</indexState>
-<isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
-<colUsage columnID="E501A401-B259-8858-91D8-B5A09D521240"/>
-</indexColumnUsage>
-</ind_PK_UK>
-<ind_PK_UK id="6676FDF8-453D-88B2-2BFB-10542D0D298D" name="SYSTEMATTRIBUT_IT-SYSTEM_FKv1">
-<createdBy>stb</createdBy>
-<createdTime>2019-03-08 08:57:02 UTC</createdTime>
-<ownerDesignName>ModellModell</ownerDesignName>
-<indexState>Foreign Key</indexState>
-<isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
-<colUsage columnID="E3A7546C-6D4E-116C-84AB-191FEAF3992B"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>

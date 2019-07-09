@@ -57,9 +57,6 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
-<associations>
-<colAssociation fkAssociation="49F7B82C-0DCD-F6AA-9040-D5EF7DECD61A" referredColumn="48D50372-D5F8-8AAF-B019-0548029832E5"/>
-</associations>
 </Column>
 <Column name="{REF TABLE  ABBR}_VORGABEWERT_ID" id="8559D9F2-10D8-1D6B-50AB-1AF69A0D1088">
 <createdBy>stb</createdBy>
@@ -97,17 +94,6 @@
 <indexColumnUsage>
 <colUsage columnID="F6C02354-EBFF-D735-9794-CF2C5D038798"/>
 <colUsage columnID="8559D9F2-10D8-1D6B-50AB-1AF69A0D1088"/>
-</indexColumnUsage>
-</ind_PK_UK>
-<ind_PK_UK id="61821EE6-7563-A7B5-ABB2-B88577D3AE9B" name="VORGABEWERTTRANSFOMATION_IT-SYSTEM_FK">
-<createdBy>stb</createdBy>
-<createdTime>2018-10-21 13:54:35 UTC</createdTime>
-<generatorID>BB9928A8-0EC7-33EB-43B5-945E2A38DBC1</generatorID>
-<ownerDesignName>ModellModell</ownerDesignName>
-<indexState>Foreign Key</indexState>
-<isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
-<colUsage columnID="F6C02354-EBFF-D735-9794-CF2C5D038798"/>
 </indexColumnUsage>
 </ind_PK_UK>
 <ind_PK_UK id="DE20D3BC-070A-91C5-E6F0-A0D8C668B26A" name="VORGABEWERTTRANSFOMATION_VORGABEWERT_FK">
