@@ -2,7 +2,7 @@
 <Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="E1E5EC11-0F3D-94EA-701A-BCB16D190026" name="Elementdarstellung">
 <createdBy>stb</createdBy>
 <createdTime>2018-11-03 14:22:30 UTC</createdTime>
-<comment>Information zur Darstellung eines grafischen Elementes (Entität, etc.) auf einem Diagramm</comment>
+<comment><![CDATA[Information zur Darstellung eines grafischen Elementes (Entität, etc.) auf einem Diagramm]]></comment>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
@@ -20,7 +20,7 @@
 <Attribute name="Breite" id="99E8CA49-C721-3E8B-91E6-AFAC524C18C4">
 <createdBy>stb</createdBy>
 <createdTime>2018-11-03 14:26:18 UTC</createdTime>
-<comment>Breite der Entitätsdarstellung in mm</comment>
+<comment><![CDATA[Breite der Entitätsdarstellung in mm]]></comment>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
@@ -40,7 +40,7 @@
 <Attribute name="Höhe" id="A3AACD77-EBE7-A47A-2D49-C8986DB11EFE">
 <createdBy>stb</createdBy>
 <createdTime>2018-11-03 14:26:38 UTC</createdTime>
-<comment>Höhe der Entitätsdarstellung in mm</comment>
+<comment><![CDATA[Höhe der Entitätsdarstellung in mm]]></comment>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
@@ -60,7 +60,7 @@
 <Attribute name="Position" id="01928E50-335D-FFD6-D550-FE00B78EEC06">
 <createdBy>stb</createdBy>
 <createdTime>2018-11-03 14:26:45 UTC</createdTime>
-<comment>Position der oberen linken Ecke einer Entität</comment>
+<comment><![CDATA[Position der oberen linken Ecke einer Entität]]></comment>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
@@ -89,7 +89,7 @@
 <Attribute name="Name" id="85B1FCCF-7A20-CF0A-DBB4-FD296C4B8501">
 <createdBy>stb</createdBy>
 <createdTime>2018-11-03 14:31:48 UTC</createdTime>
-<comment>Name eines Geschäftsbereichs</comment>
+<comment><![CDATA[Name eines Geschäftsbereichs]]></comment>
 <generatorID>EA5BE36E-D298-45EB-3BD7-34DB557812CE</generatorID>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
@@ -106,7 +106,7 @@
 <Attribute name="Name2" id="225EEADC-063D-3D33-DE9F-B0D419C7A675">
 <createdBy>stb</createdBy>
 <createdTime>2018-11-03 14:31:48 UTC</createdTime>
-<comment>Name der Entität der in der Kommunikation normalerweise gebraucht wird.</comment>
+<comment><![CDATA[Name der Entität der in der Kommunikation normalerweise gebraucht wird.]]></comment>
 <generatorID>EA5BE36E-D298-45EB-3BD7-34DB557812CE</generatorID>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
@@ -123,7 +123,7 @@
 <Attribute name="Entitätname [L]" id="3CF74241-8BC8-AFA0-4E32-F5B11A2084C8">
 <createdBy>stb</createdBy>
 <createdTime>2018-11-03 14:32:00 UTC</createdTime>
-<comment>Name der Entität der in der Kommunikation normalerweise gebraucht wird.</comment>
+<comment><![CDATA[Name der Entität der in der Kommunikation normalerweise gebraucht wird.]]></comment>
 <generatorID>CCD9C8D5-790A-EFAD-365F-13072447416D</generatorID>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
@@ -149,6 +149,7 @@
 <use>0</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
 <domain>06269521-C0BC-78CB-FBC8-656101307358</domain>
+<defaultValue>000000</defaultValue>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 <Attribute name="Rand Farbcode" id="230C453F-3369-D343-E0E3-6B3DDA8AEFCE">
@@ -163,7 +164,29 @@
 <use>0</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
 <domain>06269521-C0BC-78CB-FBC8-656101307358</domain>
+<defaultValue>000000</defaultValue>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Rand Breite" id="79EC8641-50F1-7C91-BE70-27E5A86E60B9">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-07 14:51:48 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>CB54E08F-9CBF-16C7-AB25-64ADCC8C4FFB</domain>
+<defaultValue>1</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>0.0</beginValue>
+<endValue>99</endValue>
+</rangeDef>
+</listOfRanges>
 </Attribute>
 <Attribute name="Schrift Farbcode" id="97434F1D-0EC3-DC6D-792E-78B2785B5796">
 <createdBy>stb</createdBy>
@@ -177,6 +200,7 @@
 <use>0</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
 <domain>06269521-C0BC-78CB-FBC8-656101307358</domain>
+<defaultValue>000000</defaultValue>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 <Attribute name="Schrift grösse" id="A377F7BA-0EC9-57BE-7A96-4CA068788CB4">
@@ -192,6 +216,27 @@
 <domain>435C11BA-FCF7-BBBA-6AA9-FAB7326273D3</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
+<Attribute name="Deckkraft" id="3BB52FB1-0AFE-4048-C6DF-27BDFC4B5C7A">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-07 14:11:40 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>3C43C579-B2CF-0898-C553-AF95467F1601</domain>
+<defaultValue>100</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>0</beginValue>
+<endValue>100</endValue>
+</rangeDef>
+</listOfRanges>
+</Attribute>
 </attributes>
 <identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
 <identifier id="E6A23890-AA61-1F59-7790-A40D4710B196" name="Entitätdarstellung PK">
@@ -203,6 +248,13 @@
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 </engineerTo>
 <pk>true</pk>
+<newElementsIDs>CCD9C8D5-790A-EFAD-365F-13072447416D,EA5BE36E-D298-45EB-3BD7-34DB557812CE</newElementsIDs>
+<usedAttributes>
+<attributeRef>3CF74241-8BC8-AFA0-4E32-F5B11A2084C8</attributeRef>
+<attributeRef>A3C9731C-AB46-3608-8EFC-C040100A45AD</attributeRef>
+<attributeRef>85B1FCCF-7A20-CF0A-DBB4-FD296C4B8501</attributeRef>
+<attributeRef>225EEADC-063D-3D33-DE9F-B0D419C7A675</attributeRef>
+</usedAttributes>
 </identifier>
 </identifiers>
 </Entity>

@@ -2,7 +2,7 @@
 <Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="8132EFCC-4EC6-BC1A-869F-020BE679EA2F" name="Beziehungs-darstellung">
 <createdBy>stb</createdBy>
 <createdTime>2018-11-04 12:29:06 UTC</createdTime>
-<comment>Information zur Darstellung einer Entität auf einem Diagramm</comment>
+<comment><![CDATA[Information zur Darstellung einer Entität auf einem Diagramm]]></comment>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
@@ -17,23 +17,40 @@
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<Attribute name="Pfad" id="6EAEFE15-5F21-0DFD-30F0-BACE037F1C02">
+<Attribute name="Linie" id="71A04FCF-541F-6AB1-C8CE-52AEF5226573">
 <createdBy>stb</createdBy>
-<createdTime>2018-11-04 12:29:06 UTC</createdTime>
-<comment>Pfad der Beziehungslinie von der von-Entität zur zu-Entität.&lt;br/&gt;Kann komplex und relativ sein, damit bei Veränderungen ein sinnvller pfad aufrechterhalten werden kann.</comment>
+<createdTime>2019-08-07 14:36:24 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 </engineerTo>
-<use>0</use>
-<domain>D87F0AC2-8B47-16C7-5D9C-A77A3626F787</domain>
+<useDomainConstraints>false</useDomainConstraints>
+<use>3</use>
+<structuredType>3A3271AB-EE90-68BD-0EC5-E6255E34D2DE</structuredType>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="Textposition (start)" id="83C2935D-8AAD-75D9-28B9-71D837A09E02">
+<Attribute name="Andockposition (start)" id="1206A636-A5F5-5529-5B35-C848B4F4E075">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-07 15:17:38 UTC</createdTime>
+<commentInRDBMS><![CDATA[Position am Rand des Startelementes]]></commentInRDBMS>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>3</use>
+<structuredType>15C1AAF0-38D4-D58B-BBB0-7E7AFF4FA9E7</structuredType>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Verbindugstext (start)" id="83C2935D-8AAD-75D9-28B9-71D837A09E02">
 <createdBy>stb</createdBy>
 <createdTime>2018-11-04 12:33:05 UTC</createdTime>
-<comment>Position des Textes am Start des Pfades (z.B. von-Entität). Kann relativ sein  umd Verschiebungen zu ermöglichen.</comment>
+<comment><![CDATA[Position des Textes am Start des Pfades (z.B. von-Entität). Kann relativ sein  umd Verschiebungen zu ermöglichen.]]></comment>
+<commentInRDBMS><![CDATA[Ort und Grösse des Textes an der Start-Andockposition]]></commentInRDBMS>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
@@ -44,10 +61,26 @@
 <domain>D4726645-0ECA-68CF-0787-5C779C7A2458</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="Textposition (ende)" id="9ACB89C6-3A99-D2EE-61E7-CBDD72B39C39">
+<Attribute name="Andockposition (ende)" id="E466E653-911A-8D95-E33A-61DFA1E533D9">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-07 15:20:23 UTC</createdTime>
+<commentInRDBMS><![CDATA[Position am Rand des Startelementes]]></commentInRDBMS>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>3</use>
+<structuredType>15C1AAF0-38D4-D58B-BBB0-7E7AFF4FA9E7</structuredType>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Verbindungstext (ende)" id="9ACB89C6-3A99-D2EE-61E7-CBDD72B39C39">
 <createdBy>stb</createdBy>
 <createdTime>2018-11-04 12:33:51 UTC</createdTime>
-<comment>Position der Assoziation am Ende des Pfades (z.B: zu-Entität). Kann relativ sein  umd Verschiebungen zu ermöglichen.</comment>
+<comment><![CDATA[Position der Assoziation am Ende des Pfades (z.B: zu-Entität). Kann relativ sein  umd Verschiebungen zu ermöglichen.]]></comment>
+<commentInRDBMS><![CDATA[Ort und Grösse des Textes an der Ende-Andockposition]]></commentInRDBMS>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
@@ -56,6 +89,66 @@
 <nullsAllowed>true</nullsAllowed>
 <use>0</use>
 <domain>D4726645-0ECA-68CF-0787-5C779C7A2458</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Schrift Farbcode" id="5C1D0DD7-C753-1C85-38D4-2F6B7A840CF5">
+<createdBy>stb</createdBy>
+<createdTime>2019-01-08 19:11:04 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>06269521-C0BC-78CB-FBC8-656101307358</domain>
+<defaultValue>000000</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Schrift Grösse" id="9DBEA9D5-4E5C-B222-7638-38F298F0FA7B">
+<createdBy>stb</createdBy>
+<createdTime>2019-01-08 19:11:17 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<domain>435C11BA-FCF7-BBBA-6AA9-FAB7326273D3</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Assoziation von-zu [L]" id="8907BA26-873F-CF8A-D1C7-CD08355D2EE9">
+<createdBy>stb</createdBy>
+<createdTime>2018-11-04 12:31:43 UTC</createdTime>
+<comment><![CDATA[Was verbindet die von-Entität mit der zu-Entität]]></comment>
+<generatorID>D313ED7A-7A48-0B6A-638E-4335C2451FCE</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<referedAttribute>1E4F5AA9-8DAA-B81A-4D48-EDCE07CDC56A</referedAttribute>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>D6C502B3-C779-CE1C-86D5-5492C6CA1E9F</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Assoziation zu-von [L]" id="1F6C6378-1CE7-DA20-2FD4-EDF16B19E042">
+<createdBy>stb</createdBy>
+<createdTime>2018-12-01 14:16:45 UTC</createdTime>
+<comment><![CDATA[Was verbindet die zu-Entität mit der von-Entität]]></comment>
+<generatorID>D313ED7A-7A48-0B6A-638E-4335C2451FCE</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<referedAttribute>04281DBE-816F-1F3F-8ED9-0CFDF3ADD26F</referedAttribute>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>D6C502B3-C779-CE1C-86D5-5492C6CA1E9F</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 <Attribute name="Name [L]" id="A5D1539D-01CE-4464-44F8-64DCCF83D6C6">
@@ -76,7 +169,7 @@
 <Attribute name="Name" id="E8F721F2-AA56-EDE1-C015-1131261D9383">
 <createdBy>stb</createdBy>
 <createdTime>2018-11-04 12:31:27 UTC</createdTime>
-<comment>Name eines Geschäftsbereichs</comment>
+<comment><![CDATA[Name eines Geschäftsbereichs]]></comment>
 <generatorID>98D9C7D0-61D3-5D32-0317-3BA4C7A9B196</generatorID>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
@@ -92,7 +185,7 @@
 <Attribute name="Name2" id="0EA0CDC7-5991-BC9E-C80F-5DE76DD3B67C">
 <createdBy>stb</createdBy>
 <createdTime>2018-11-04 12:31:27 UTC</createdTime>
-<comment>Name der Entität der in der Kommunikation normalerweise gebraucht wird.</comment>
+<comment><![CDATA[Name der Entität der in der Kommunikation normalerweise gebraucht wird.]]></comment>
 <generatorID>98D9C7D0-61D3-5D32-0317-3BA4C7A9B196</generatorID>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
@@ -108,7 +201,7 @@
 <Attribute name="Entitätname [L]" id="6655CD64-8C62-6FEA-7AE3-83C44677D6E6">
 <createdBy>stb</createdBy>
 <createdTime>2018-11-04 12:31:43 UTC</createdTime>
-<comment>Name der Entität der in der Kommunikation normalerweise gebraucht wird.</comment>
+<comment><![CDATA[Name der Entität der in der Kommunikation normalerweise gebraucht wird.]]></comment>
 <generatorID>D313ED7A-7A48-0B6A-638E-4335C2451FCE</generatorID>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
@@ -124,7 +217,7 @@
 <Attribute name="Entitätname [L]2" id="C27F2067-3959-AB7E-BD49-FAADC7DAC3AA">
 <createdBy>stb</createdBy>
 <createdTime>2018-11-04 12:31:43 UTC</createdTime>
-<comment>Name der Entität der in der Kommunikation normalerweise gebraucht wird.</comment>
+<comment><![CDATA[Name der Entität der in der Kommunikation normalerweise gebraucht wird.]]></comment>
 <generatorID>D313ED7A-7A48-0B6A-638E-4335C2451FCE</generatorID>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
@@ -137,103 +230,188 @@
 <domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="Assoziation von-zu [L]" id="8907BA26-873F-CF8A-D1C7-CD08355D2EE9">
-<createdBy>stb</createdBy>
-<createdTime>2018-11-04 12:31:43 UTC</createdTime>
-<comment>Was verbindet die von-Entität mit der zu-Entität</comment>
-<generatorID>D313ED7A-7A48-0B6A-638E-4335C2451FCE</generatorID>
-<ownerDesignName>ModellModell</ownerDesignName>
-<engineerTo>
-<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
-<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
-</engineerTo>
-<referedAttribute>1E4F5AA9-8DAA-B81A-4D48-EDCE07CDC56A</referedAttribute>
-<use>0</use>
-<logicalDatatype>LOGDT024</logicalDatatype>
-<domain>D6C502B3-C779-CE1C-86D5-5492C6CA1E9F</domain>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-</Attribute>
-<Attribute name="Assoziation zu-von [L]" id="1F6C6378-1CE7-DA20-2FD4-EDF16B19E042">
-<createdBy>stb</createdBy>
-<createdTime>2018-12-01 14:16:45 UTC</createdTime>
-<comment>Was verbindet die zu-Entität mit der von-Entität</comment>
-<generatorID>D313ED7A-7A48-0B6A-638E-4335C2451FCE</generatorID>
-<ownerDesignName>ModellModell</ownerDesignName>
-<engineerTo>
-<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
-<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
-</engineerTo>
-<referedAttribute>04281DBE-816F-1F3F-8ED9-0CFDF3ADD26F</referedAttribute>
-<use>0</use>
-<logicalDatatype>LOGDT024</logicalDatatype>
-<domain>D6C502B3-C779-CE1C-86D5-5492C6CA1E9F</domain>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-</Attribute>
-<Attribute name="Schrift Farbcode" id="5C1D0DD7-C753-1C85-38D4-2F6B7A840CF5">
-<createdBy>stb</createdBy>
-<createdTime>2019-01-08 19:11:04 UTC</createdTime>
-<ownerDesignName>ModellModell</ownerDesignName>
-<engineerTo>
-<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
-<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
-</engineerTo>
-<nullsAllowed>true</nullsAllowed>
-<use>0</use>
-<logicalDatatype>LOGDT024</logicalDatatype>
-<domain>06269521-C0BC-78CB-FBC8-656101307358</domain>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-</Attribute>
-<Attribute name="Schrift Grösse" id="9DBEA9D5-4E5C-B222-7638-38F298F0FA7B">
-<createdBy>stb</createdBy>
-<createdTime>2019-01-08 19:11:17 UTC</createdTime>
-<ownerDesignName>ModellModell</ownerDesignName>
-<engineerTo>
-<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
-<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
-</engineerTo>
-<nullsAllowed>true</nullsAllowed>
-<use>0</use>
-<domain>435C11BA-FCF7-BBBA-6AA9-FAB7326273D3</domain>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-</Attribute>
-<Attribute name="Liniefarbcode" id="8D12167B-64ED-01CE-AAB2-38F4D9837D6A">
-<createdBy>stb</createdBy>
-<createdTime>2019-04-04 14:36:51 UTC</createdTime>
-<ownerDesignName>ModellModell</ownerDesignName>
-<engineerTo>
-<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
-<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
-</engineerTo>
-<nullsAllowed>true</nullsAllowed>
-<use>0</use>
-<logicalDatatype>LOGDT024</logicalDatatype>
-<domain>06269521-C0BC-78CB-FBC8-656101307358</domain>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-</Attribute>
-<Attribute name="Liniebreite" id="9553BFFB-0C24-BE83-A1F1-766F74255124">
-<createdBy>stb</createdBy>
-<createdTime>2019-04-04 14:37:11 UTC</createdTime>
-<ownerDesignName>ModellModell</ownerDesignName>
-<engineerTo>
-<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
-<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
-</engineerTo>
-<nullsAllowed>true</nullsAllowed>
-<use>0</use>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-</Attribute>
-<Attribute name="Linientyp" id="1E0874CA-3D95-F391-C308-C28A46988099">
-<createdBy>stb</createdBy>
-<createdTime>2019-04-04 14:36:26 UTC</createdTime>
-<ownerDesignName>ModellModell</ownerDesignName>
-<engineerTo>
-<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
-<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
-</engineerTo>
-<use>0</use>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-</Attribute>
 </attributes>
+<nestedAttributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<nestedAttribute name="Linie.Breite" directorySegmentName="seg_0" id="3476C437-6648-14C1-B32C-7227A1DF6B50">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-07 14:36:35 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<parentObject>71A04FCF-541F-6AB1-C8CE-52AEF5226573</parentObject>
+<structAttributeID>A42328A3-E515-3E9D-313D-74362F801B42</structAttributeID>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>3</dataTypePrecision>
+<dataTypeScale>1</dataTypeScale>
+<domain>CB54E08F-9CBF-16C7-AB25-64ADCC8C4FFB</domain>
+<defaultValue>1</defaultValue>
+<ownDataTypeParameters>,3,1</ownDataTypeParameters>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>0.0</beginValue>
+<endValue>99</endValue>
+</rangeDef>
+</listOfRanges>
+</nestedAttribute>
+<nestedAttribute name="Linie.Typ" directorySegmentName="seg_0" id="EBFA5652-2E2C-0B94-2E58-85FD0451A14D">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-07 14:36:35 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<parentObject>71A04FCF-541F-6AB1-C8CE-52AEF5226573</parentObject>
+<structAttributeID>CBBDC454-DFB2-0E1C-4529-412D5060AC0A</structAttributeID>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<dataTypeSize>6 CHAR</dataTypeSize>
+<domain>30B34D60-5229-19CC-A3D5-584257D800BD</domain>
+<defaultValue>SOLID</defaultValue>
+<ownDataTypeParameters>6 CHAR,,</ownDataTypeParameters>
+</nestedAttribute>
+<nestedAttribute name="Linie.Pfad" directorySegmentName="seg_0" id="D923B5DB-4019-33A0-0FD9-9435000E700D">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-07 14:36:35 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<parentObject>71A04FCF-541F-6AB1-C8CE-52AEF5226573</parentObject>
+<structAttributeID>3A7657D4-922E-39D0-AC2E-73B57538F914</structAttributeID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>4</use>
+<collectionType>C89AD2E9-29AC-3B36-E59F-F3BF7F41BBA1</collectionType>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</nestedAttribute>
+<nestedAttribute name="Linie.Farbe" directorySegmentName="seg_0" id="E7E47EB2-B413-7F79-6F03-7833CC129FF6">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-07 14:37:52 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<parentObject>71A04FCF-541F-6AB1-C8CE-52AEF5226573</parentObject>
+<structAttributeID>53602454-6F9D-CC0A-AD20-5177888E53F6</structAttributeID>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>6 CHAR</dataTypeSize>
+<domain>06269521-C0BC-78CB-FBC8-656101307358</domain>
+<defaultValue>000000</defaultValue>
+<ownDataTypeParameters>6 CHAR,,</ownDataTypeParameters>
+</nestedAttribute>
+<nestedAttribute name="Linie.Deckkraft" directorySegmentName="seg_0" id="5AE58DAC-C7EC-DE3A-80BD-215D43ABC0DC">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-07 14:50:17 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<parentObject>71A04FCF-541F-6AB1-C8CE-52AEF5226573</parentObject>
+<structAttributeID>E13C43F4-11E6-7097-AD7D-4CE6FFA4E44B</structAttributeID>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>3</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<domain>3C43C579-B2CF-0898-C553-AF95467F1601</domain>
+<defaultValue>100</defaultValue>
+<ownDataTypeParameters>,3,0</ownDataTypeParameters>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>0</beginValue>
+<endValue>100</endValue>
+</rangeDef>
+</listOfRanges>
+</nestedAttribute>
+<nestedAttribute name="Andockposition (start).Seite" directorySegmentName="seg_0" id="C7C843E4-96DB-58B9-89A4-B18B92C65CC6">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-07 15:20:21 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<parentObject>1206A636-A5F5-5529-5B35-C848B4F4E075</parentObject>
+<structAttributeID>68ECBE05-FCAB-75A1-B450-EA0861E1506C</structAttributeID>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<dataTypeSize>1 CHAR</dataTypeSize>
+<domain>6278A05A-92AB-F45B-2BB8-31C71ABC2F69</domain>
+<ownDataTypeParameters>1 CHAR,,</ownDataTypeParameters>
+</nestedAttribute>
+<nestedAttribute name="Andockposition (start).Position" directorySegmentName="seg_1" id="8B7EB4AC-2AD2-12C4-4493-BB9F04A17139">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-07 15:20:21 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<parentObject>1206A636-A5F5-5529-5B35-C848B4F4E075</parentObject>
+<structAttributeID>9539E9ED-5742-DF7A-D7B1-99E86BC23F88</structAttributeID>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>4</dataTypePrecision>
+<dataTypeScale>1</dataTypeScale>
+<domain>348830AA-2613-5D59-292A-41AAB32EB3D3</domain>
+<ownDataTypeParameters>,4,1</ownDataTypeParameters>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>0.0</beginValue>
+<endValue>100.0</endValue>
+</rangeDef>
+</listOfRanges>
+</nestedAttribute>
+<nestedAttribute name="Andockposition (ende).Seite" directorySegmentName="seg_1" id="B852D8D0-62A3-457C-5043-59A6353DC690">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-07 15:20:23 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<parentObject>E466E653-911A-8D95-E33A-61DFA1E533D9</parentObject>
+<structAttributeID>68ECBE05-FCAB-75A1-B450-EA0861E1506C</structAttributeID>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<dataTypeSize>1 CHAR</dataTypeSize>
+<domain>6278A05A-92AB-F45B-2BB8-31C71ABC2F69</domain>
+<ownDataTypeParameters>1 CHAR,,</ownDataTypeParameters>
+</nestedAttribute>
+<nestedAttribute name="Andockposition (ende).Position" directorySegmentName="seg_1" id="91C5E421-4AE6-BCDF-FCAE-CC9395C57E43">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-07 15:20:23 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<parentObject>E466E653-911A-8D95-E33A-61DFA1E533D9</parentObject>
+<structAttributeID>9539E9ED-5742-DF7A-D7B1-99E86BC23F88</structAttributeID>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>4</dataTypePrecision>
+<dataTypeScale>1</dataTypeScale>
+<domain>348830AA-2613-5D59-292A-41AAB32EB3D3</domain>
+<ownDataTypeParameters>,4,1</ownDataTypeParameters>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>0.0</beginValue>
+<endValue>100.0</endValue>
+</rangeDef>
+</listOfRanges>
+</nestedAttribute>
+</nestedAttributes>
 <identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
 <identifier id="68118B2A-67D7-5A86-0165-EBFB8275177F" name="Beziehungs-darstellung PK">
 <createdBy>stb</createdBy>
