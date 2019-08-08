@@ -2,7 +2,15 @@
 <Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="5DD133AC-F92D-3E73-DB69-EA869D5B98C4" name="Diagrammelement">
 <createdBy>stb</createdBy>
 <createdTime>2019-01-08 19:21:24 UTC</createdTime>
-<comment>Element aus der Modellbeschreibung, das auf einem Diagramm als eigenes Symbol dargestellt werden kann.&lt;br/&gt;&lt;br/&gt;Beispiele:&lt;br/&gt;Entität&lt;br/&gt;System&lt;br/&gt;Beziehung&lt;br/&gt;User&lt;br/&gt;Prozess&lt;br/&gt;Vorbedingung</comment>
+<comment><![CDATA[Element aus der Modellbeschreibung, das auf einem Diagramm als eigenes Symbol dargestellt werden kann.
+
+Beispiele:
+Entität
+System
+Beziehung
+User
+Prozess
+Vorbedingung]]></comment>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
@@ -20,7 +28,7 @@
 <Attribute name="Entitätname [L]" id="D9AE725A-A277-3392-AFA3-24EC13DC6682">
 <createdBy>stb</createdBy>
 <createdTime>2019-01-08 19:23:37 UTC</createdTime>
-<comment>Name der Entität der in der Kommunikation normalerweise gebraucht wird.</comment>
+<comment><![CDATA[Name der Entität der in der Kommunikation normalerweise gebraucht wird.]]></comment>
 <generatorID>1EB6A64F-D26B-DAEE-9830-85768B096627</generatorID>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
@@ -33,91 +41,40 @@
 <domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="Breite" id="8983C76E-9496-E6D4-98DF-8EB5B75888A4">
+<Attribute name="Inhaltdarstellung" id="BDA0B1A0-C73F-933C-E4AC-D84ACB729F99">
 <createdBy>stb</createdBy>
-<createdTime>2019-04-04 14:27:43 UTC</createdTime>
-<comment>Breite der Entitätsdarstellung in mm</comment>
+<createdTime>2019-08-08 06:04:43 UTC</createdTime>
+<commentInRDBMS><![CDATA[Vorgabewert einer Darstellung eines Elementtyps]]></commentInRDBMS>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 </engineerTo>
+<nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT011</logicalDatatype>
+<use>3</use>
+<structuredType>CE31E327-3E6B-6CEE-7DCC-818659AF196A</structuredType>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
-<listOfRanges>
-<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
-<beginValue>0</beginValue>
-<endValue>999</endValue>
-</rangeDef>
-</listOfRanges>
 </Attribute>
-<Attribute name="Höhe" id="948E55B5-3C7E-C84B-F18E-004EBD066BD2">
+<Attribute name="Randdarstellung" id="148BF126-A674-9CE1-035A-C9DCDB4C5B55">
 <createdBy>stb</createdBy>
-<createdTime>2019-04-04 14:27:09 UTC</createdTime>
-<comment>Höhe der Entitätsdarstellung in mm</comment>
+<createdTime>2019-08-08 06:04:43 UTC</createdTime>
+<commentInRDBMS><![CDATA[Vorgabewert der Darstellung des Randes um das Element]]></commentInRDBMS>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 </engineerTo>
+<nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT011</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<listOfRanges>
-<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
-<beginValue>0</beginValue>
-<endValue>999</endValue>
-</rangeDef>
-</listOfRanges>
-</Attribute>
-<Attribute name="Inhalt Farbcode" id="0C863806-C333-DCAF-25E4-B31A41702795">
-<createdBy>stb</createdBy>
-<createdTime>2019-04-04 14:27:09 UTC</createdTime>
-<ownerDesignName>ModellModell</ownerDesignName>
-<engineerTo>
-<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
-<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
-</engineerTo>
-<nullsAllowed>true</nullsAllowed>
-<use>0</use>
-<logicalDatatype>LOGDT024</logicalDatatype>
-<domain>06269521-C0BC-78CB-FBC8-656101307358</domain>
+<use>3</use>
+<structuredType>4816C7EE-B5FE-5DB1-A87E-537F82A20453</structuredType>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="Rand Farbcode" id="0A40D862-5B19-4306-354C-F3A8DD5E1DE3">
+<Attribute name="Schriftgrösse" id="C0D35F61-9ACB-410C-F525-08643AA4B198">
 <createdBy>stb</createdBy>
-<createdTime>2019-04-04 14:27:09 UTC</createdTime>
-<ownerDesignName>ModellModell</ownerDesignName>
-<engineerTo>
-<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
-<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
-</engineerTo>
-<nullsAllowed>true</nullsAllowed>
-<use>0</use>
-<logicalDatatype>LOGDT024</logicalDatatype>
-<domain>06269521-C0BC-78CB-FBC8-656101307358</domain>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-</Attribute>
-<Attribute name="Schrift Farbcode" id="EAED2B89-29E6-4DC3-7C54-1A24CBE0D716">
-<createdBy>stb</createdBy>
-<createdTime>2019-04-04 14:27:09 UTC</createdTime>
-<ownerDesignName>ModellModell</ownerDesignName>
-<engineerTo>
-<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
-<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
-</engineerTo>
-<nullsAllowed>true</nullsAllowed>
-<use>0</use>
-<logicalDatatype>LOGDT024</logicalDatatype>
-<domain>06269521-C0BC-78CB-FBC8-656101307358</domain>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-</Attribute>
-<Attribute name="Schrift grösse" id="E52F0B93-216D-19A1-0655-8BF1E556449A">
-<createdBy>stb</createdBy>
-<createdTime>2019-04-04 14:27:09 UTC</createdTime>
+<createdTime>2019-08-08 06:04:43 UTC</createdTime>
+<commentInRDBMS><![CDATA[Vorgabewert der Schriftgrösse des Elementsnamens]]></commentInRDBMS>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
@@ -128,5 +85,199 @@
 <domain>435C11BA-FCF7-BBBA-6AA9-FAB7326273D3</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
+<Attribute name="Schriftfarbe" id="FC03EB2C-C851-19A2-3E0D-33B206903144">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-08 06:27:51 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>06269521-C0BC-78CB-FBC8-656101307358</domain>
+<defaultValue>000000</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
 </attributes>
+<nestedAttributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<nestedAttribute name="Inhaltdarstellung.Farbe" directorySegmentName="seg_1" id="9BF2A681-4C3B-25E9-D4D5-CCA9BA1A4466">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-08 06:04:43 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<parentObject>BDA0B1A0-C73F-933C-E4AC-D84ACB729F99</parentObject>
+<structAttributeID>79B40FB2-0D71-B333-F11A-6BF42CB476F1</structAttributeID>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>6 CHAR</dataTypeSize>
+<domain>06269521-C0BC-78CB-FBC8-656101307358</domain>
+<defaultValue>000000</defaultValue>
+<ownDataTypeParameters>6 CHAR,,</ownDataTypeParameters>
+</nestedAttribute>
+<nestedAttribute name="Inhaltdarstellung.Deckkraft" directorySegmentName="seg_1" id="8E68529B-A200-3204-4BB8-4C58012018B4">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-08 06:04:43 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<parentObject>BDA0B1A0-C73F-933C-E4AC-D84ACB729F99</parentObject>
+<structAttributeID>78EB2EA2-1B31-B620-76C8-F0ACE44FE324</structAttributeID>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>3</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<domain>3C43C579-B2CF-0898-C553-AF95467F1601</domain>
+<defaultValue>100</defaultValue>
+<ownDataTypeParameters>,3,0</ownDataTypeParameters>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>0</beginValue>
+<endValue>100</endValue>
+</rangeDef>
+</listOfRanges>
+</nestedAttribute>
+<nestedAttribute name="Inhaltdarstellung.Breite" directorySegmentName="seg_1" id="A448F906-0402-7CB1-A481-E1DEF337B811">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-08 06:04:43 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<parentObject>BDA0B1A0-C73F-933C-E4AC-D84ACB729F99</parentObject>
+<structAttributeID>BF7C675D-F472-D4E0-D0E7-0E519F1C73EC</structAttributeID>
+<use>0</use>
+<domain>9899F774-954D-6AB0-8DC2-BB1FE9F99D28</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</nestedAttribute>
+<nestedAttribute name="Inhaltdarstellung.Höhe" directorySegmentName="seg_1" id="FD372B33-0CEB-9F6E-E742-3BB447ED73DF">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-08 06:04:43 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<parentObject>BDA0B1A0-C73F-933C-E4AC-D84ACB729F99</parentObject>
+<structAttributeID>A212ECBD-508B-BB92-4CA0-A414C275E0BF</structAttributeID>
+<use>0</use>
+<domain>9899F774-954D-6AB0-8DC2-BB1FE9F99D28</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</nestedAttribute>
+<nestedAttribute name="Inhaltdarstellung.Position" directorySegmentName="seg_1" id="C0775EE4-604F-3EC8-409D-A40055DA785A">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-08 06:04:43 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<parentObject>BDA0B1A0-C73F-933C-E4AC-D84ACB729F99</parentObject>
+<structAttributeID>4D8DC9F3-AA7A-E10B-1D50-BAC37BF7F250</structAttributeID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>3</use>
+<structuredType>6BF3BAC5-EEB4-DFEB-3305-72CD249CFFF4</structuredType>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</nestedAttribute>
+<nestedAttribute name="Inhaltdarstellung.Position.X" directorySegmentName="seg_1" id="26937007-101A-EB46-898E-DB887A12AC65">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-08 06:04:43 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<parentObject>C0775EE4-604F-3EC8-409D-A40055DA785A</parentObject>
+<structAttributeID>6F9A1317-CF2C-8CE2-E783-4714D09800EF</structAttributeID>
+<use>0</use>
+<domain>9899F774-954D-6AB0-8DC2-BB1FE9F99D28</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</nestedAttribute>
+<nestedAttribute name="Inhaltdarstellung.Position.Y" directorySegmentName="seg_1" id="44A88653-5D5A-5426-114C-5DBCC575CC89">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-08 06:04:43 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<parentObject>C0775EE4-604F-3EC8-409D-A40055DA785A</parentObject>
+<structAttributeID>C62F0CCC-3C24-63AA-E614-1047B848FE81</structAttributeID>
+<use>0</use>
+<domain>9899F774-954D-6AB0-8DC2-BB1FE9F99D28</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</nestedAttribute>
+<nestedAttribute name="Randdarstellung.Farbe" directorySegmentName="seg_1" id="F3A987E1-D17F-CCAF-A3C7-EA6DA5CA805B">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-08 06:04:43 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<parentObject>148BF126-A674-9CE1-035A-C9DCDB4C5B55</parentObject>
+<structAttributeID>31812808-1563-F130-6C44-AB28C0C55B78</structAttributeID>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>6 CHAR</dataTypeSize>
+<domain>06269521-C0BC-78CB-FBC8-656101307358</domain>
+<defaultValue>000000</defaultValue>
+<ownDataTypeParameters>6 CHAR,,</ownDataTypeParameters>
+</nestedAttribute>
+<nestedAttribute name="Randdarstellung.Deckkraft" directorySegmentName="seg_1" id="DF88A462-1E36-9413-6C24-4123ED12CBBE">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-08 06:04:43 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<parentObject>148BF126-A674-9CE1-035A-C9DCDB4C5B55</parentObject>
+<structAttributeID>475BE6D9-7955-0B4F-14EE-54AB88615752</structAttributeID>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>3</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<domain>3C43C579-B2CF-0898-C553-AF95467F1601</domain>
+<defaultValue>100</defaultValue>
+<ownDataTypeParameters>,3,0</ownDataTypeParameters>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>0</beginValue>
+<endValue>100</endValue>
+</rangeDef>
+</listOfRanges>
+</nestedAttribute>
+<nestedAttribute name="Randdarstellung.Breitev1" directorySegmentName="seg_1" id="3660DBE1-7A85-F8C1-A0D8-7FD23D4C2227">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-08 06:04:43 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<parentObject>148BF126-A674-9CE1-035A-C9DCDB4C5B55</parentObject>
+<structAttributeID>A486CC96-6094-DED7-1D64-D7757D50175A</structAttributeID>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>3</dataTypePrecision>
+<dataTypeScale>1</dataTypeScale>
+<domain>CB54E08F-9CBF-16C7-AB25-64ADCC8C4FFB</domain>
+<defaultValue>1</defaultValue>
+<ownDataTypeParameters>,3,1</ownDataTypeParameters>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>0.0</beginValue>
+<endValue>99</endValue>
+</rangeDef>
+</listOfRanges>
+</nestedAttribute>
+</nestedAttributes>
 </Entity>

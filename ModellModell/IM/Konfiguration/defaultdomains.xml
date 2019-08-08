@@ -462,6 +462,23 @@
 <fileName>defaultdomains</fileName>
 <logicalDatatype>LOGDT017</logicalDatatype>
 </Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="Winkel" id="BD2395F1-C866-A30F-511F-952C9D772388">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-08 05:39:25 UTC</createdTime>
+<comment><![CDATA[Winkel in Grad]]></comment>
+<ownerDesignName>System</ownerDesignName>
+<avTSortOrder>0</avTSortOrder>
+<dataTypePrecision>3</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<fileName>defaultdomains</fileName>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>-179</beginValue>
+<endValue>180</endValue>
+</rangeDef>
+</listOfRanges>
+</Domain>
 <Domain class="oracle.dbtools.crest.model.design.Domain" name="Beschreibung" id="C3DAFABD-5133-27CA-E0E5-B039A45135D6">
 <createdBy>stb</createdBy>
 <createdTime>2019-03-10 11:09:09 UTC</createdTime>
@@ -521,16 +538,6 @@
 <comment><![CDATA[Zweck/Bereich einer Anwendung]]></comment>
 <ownerDesignName>System</ownerDesignName>
 <importedID>CEF66788-EC07-3347-F213-6A5B74AB29A4</importedID>
-<avTSortOrder>0</avTSortOrder>
-<fileName>defaultdomains</fileName>
-<logicalDatatype>LOGDT017</logicalDatatype>
-</Domain>
-<Domain class="oracle.dbtools.crest.model.design.Domain" name="Textposition" id="D4726645-0ECA-68CF-0787-5C779C7A2458">
-<createdBy>stb</createdBy>
-<createdTime>2019-03-10 11:09:09 UTC</createdTime>
-<comment><![CDATA[Position von Textfeldern auf einem Diagramm]]></comment>
-<ownerDesignName>System</ownerDesignName>
-<importedID>D4726645-0ECA-68CF-0787-5C779C7A2458</importedID>
 <avTSortOrder>0</avTSortOrder>
 <fileName>defaultdomains</fileName>
 <logicalDatatype>LOGDT017</logicalDatatype>

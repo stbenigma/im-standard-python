@@ -2,7 +2,7 @@
 <Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="A30A8D06-DD35-0230-707D-34689BB63E9A" name="Modellelement">
 <createdBy>stb</createdBy>
 <createdTime>2019-01-08 19:50:05 UTC</createdTime>
-<comment>Irgend ein Element des Modells, über das wir Metainformationen verwalten sollen / wollen.</comment>
+<comment><![CDATA[Irgend ein Element des Modells, über das wir Metainformationen verwalten sollen / wollen.]]></comment>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
@@ -20,7 +20,7 @@
 <Attribute name="Entitätname [L]" id="DF9762EB-1910-FA52-D14A-48E7D5AD6464">
 <createdBy>stb</createdBy>
 <createdTime>2019-01-08 20:05:10 UTC</createdTime>
-<comment>Name der Entität der in der Kommunikation normalerweise gebraucht wird.</comment>
+<comment><![CDATA[Name der Entität der in der Kommunikation normalerweise gebraucht wird.]]></comment>
 <generatorID>8D3A0C32-8AC0-E6A3-8A35-0FD533B78C90</generatorID>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
@@ -36,7 +36,7 @@
 <Attribute name="Entitätname [L]2" id="FEA2D780-8E62-19D1-BD0B-32CF1BDD5044">
 <createdBy>stb</createdBy>
 <createdTime>2019-01-08 20:05:20 UTC</createdTime>
-<comment>Name der Entität der in der Kommunikation normalerweise gebraucht wird.</comment>
+<comment><![CDATA[Name der Entität der in der Kommunikation normalerweise gebraucht wird.]]></comment>
 <generatorID>55B1498E-327A-8EB9-6B83-EF62EAF84DBE</generatorID>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
@@ -52,7 +52,7 @@
 <Attribute name="Entitätname [L]1" id="F75DB684-D28C-2146-D2D4-5E4208EEA0D8">
 <createdBy>stb</createdBy>
 <createdTime>2019-01-08 20:05:20 UTC</createdTime>
-<comment>Name der Entität der in der Kommunikation normalerweise gebraucht wird.</comment>
+<comment><![CDATA[Name der Entität der in der Kommunikation normalerweise gebraucht wird.]]></comment>
 <generatorID>55B1498E-327A-8EB9-6B83-EF62EAF84DBE</generatorID>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
@@ -68,7 +68,7 @@
 <Attribute name="Assoziation von-zu [L]" id="F13EB339-C6C0-6891-BB0E-29F3F6528E8B">
 <createdBy>stb</createdBy>
 <createdTime>2019-01-08 20:05:20 UTC</createdTime>
-<comment>Was verbindet die von-Entität mit der zu-Entität</comment>
+<comment><![CDATA[Was verbindet die von-Entität mit der zu-Entität]]></comment>
 <generatorID>55B1498E-327A-8EB9-6B83-EF62EAF84DBE</generatorID>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
@@ -84,7 +84,7 @@
 <Attribute name="Assoziation zu-von [L]" id="1E032569-62C8-0771-0C3F-F452D633FA69">
 <createdBy>stb</createdBy>
 <createdTime>2019-01-08 20:05:20 UTC</createdTime>
-<comment>Was verbindet die zu-Entität mit der von-Entität</comment>
+<comment><![CDATA[Was verbindet die zu-Entität mit der von-Entität]]></comment>
 <generatorID>55B1498E-327A-8EB9-6B83-EF62EAF84DBE</generatorID>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
@@ -110,6 +110,49 @@
 <use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Attribut_Attributmame" id="9C450D47-9830-66AF-1952-22B560FAAF58">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-08 05:35:44 UTC</createdTime>
+<comment><![CDATA[Name, der etwas über die Rolle, Verwendung der Eigenschaft in der Entität aussagt. Häufig = Domänenname]]></comment>
+<generatorID>7D7B5EA8-8899-630D-13D5-1E8406CB32FA</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<referedAttribute>EDEE919C-7C94-15E9-147C-57317A603D15</referedAttribute>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Erstellzpkt" id="B1CF1AB7-77FE-E32D-AD6E-3C6A42050BA9">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-08 06:42:23 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>LOGDT015</logicalDatatype>
+<domain>0AD80E26-0F5C-D068-29EA-4740A04582AE</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Änderungszpkt [N]" id="FCC3F095-4611-9BC5-82A2-24FEDCDEEE33">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-08 06:42:45 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT015</logicalDatatype>
+<domain>0AD80E26-0F5C-D068-29EA-4740A04582AE</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 </attributes>
