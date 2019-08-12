@@ -6,6 +6,7 @@
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+<item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
 <adequatelyNormalized>NO</adequatelyNormalized>
 <expectedVolumes>0</expectedVolumes>
@@ -34,6 +35,7 @@
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+<item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
 <formulaDesc>a+b</formulaDesc>
 <sourceType>Derived</sourceType>
@@ -44,14 +46,23 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <source>System x</source>
 <propertyMap>
-<property name="AP AttrName" value="Name"/>
-<property name="AP Typ" value="string(80)"/>
-<property name="AP usage" value="R"/>
+<property name="AP AttrName" value="."/>
+<property name="AP Transformation" value="."/>
+<property name="AP Typ" value="."/>
+<property name="AP usage" value="."/>
+<property name="CRM-Salesforce" value="."/>
 <property name="DynProp Attr Name in Natürliche Person" value="Wert für diese DynProp"/>
-<property name="SAP AttrName" value="nachname"/>
-<property name="SAP Typ" value="varchar2(25)"/>
+<property name="ERP" value="."/>
+<property name="EXCEL ColumnName" value="."/>
+<property name="Excel" value="."/>
+<property name="SAP AttrName" value="."/>
+<property name="SAP FieldID" value="."/>
+<property name="SAP Qualitylevel" value="."/>
+<property name="SAP Transformation" value="."/>
+<property name="SAP Typ" value="."/>
 <property name="SAP Umrechnung" value="SUBSTR(1,25)"/>
-<property name="SAP usage" value="W"/>
+<property name="SAP usage" value="."/>
+<property name="Web-Shop" value="."/>
 </propertyMap>
 </Attribute>
 <Attribute name="Vorname" id="B36F299F-2D69-4979-DE67-9F45CD03C27C">
@@ -61,6 +72,7 @@
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+<item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>0</use>
@@ -68,14 +80,22 @@
 <domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
-<property name="AP AttrName" value="Vorname"/>
-<property name="AP Typ" value="string(80)"/>
-<property name="AP usage" value="R"/>
-<property name="SAP AttrName" value="prename"/>
-<property name="SAP Qualitylevel" value="medium"/>
-<property name="SAP Typ" value="varchar2(25)"/>
+<property name="AP AttrName" value="."/>
+<property name="AP Transformation" value="."/>
+<property name="AP Typ" value="."/>
+<property name="AP usage" value="."/>
+<property name="CRM-Salesforce" value="."/>
+<property name="ERP" value="."/>
+<property name="EXCEL ColumnName" value="."/>
+<property name="Excel" value="."/>
+<property name="SAP AttrName" value="."/>
+<property name="SAP FieldID" value="."/>
+<property name="SAP Qualitylevel" value="."/>
+<property name="SAP Transformation" value="."/>
+<property name="SAP Typ" value="."/>
 <property name="SAP Umrechnung" value="substr(1,25)"/>
-<property name="SAP usage" value="W"/>
+<property name="SAP usage" value="."/>
+<property name="Web-Shop" value="."/>
 </propertyMap>
 </Attribute>
 <Attribute name="Privat TelNr" id="61725A0E-64CA-5931-DC2C-FD8452AB86C3">
@@ -85,6 +105,7 @@
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+<item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
@@ -93,12 +114,21 @@
 <domain>7F98E20B-63A1-C3F1-F7AE-0E2F6BC2C8D5</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
-<property name="AP AttrName" value="privTel"/>
-<property name="AP Typ" value="string(30)"/>
-<property name="AP usage" value="W"/>
-<property name="SAP AttrName" value="TelP"/>
-<property name="SAP Typ" value="varchar2(20)"/>
-<property name="SAP usage" value="W"/>
+<property name="AP AttrName" value="."/>
+<property name="AP Transformation" value="."/>
+<property name="AP Typ" value="."/>
+<property name="AP usage" value="."/>
+<property name="CRM-Salesforce" value="."/>
+<property name="ERP" value="."/>
+<property name="EXCEL ColumnName" value="."/>
+<property name="Excel" value="."/>
+<property name="SAP AttrName" value="."/>
+<property name="SAP FieldID" value="."/>
+<property name="SAP Qualitylevel" value="."/>
+<property name="SAP Transformation" value="."/>
+<property name="SAP Typ" value="."/>
+<property name="SAP usage" value="."/>
+<property name="Web-Shop" value="."/>
 </propertyMap>
 </Attribute>
 <Attribute name="Mobil TelNr" id="3AD53335-F6F4-5172-693C-FA3B5F6B89AA">
@@ -108,6 +138,7 @@
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+<item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
@@ -116,8 +147,21 @@
 <domain>7F98E20B-63A1-C3F1-F7AE-0E2F6BC2C8D5</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
-<property name="AP usage" value="-"/>
-<property name="SAP usage" value="-"/>
+<property name="AP AttrName" value="."/>
+<property name="AP Transformation" value="."/>
+<property name="AP Typ" value="."/>
+<property name="AP usage" value="."/>
+<property name="CRM-Salesforce" value="."/>
+<property name="ERP" value="."/>
+<property name="EXCEL ColumnName" value="."/>
+<property name="Excel" value="."/>
+<property name="SAP AttrName" value="."/>
+<property name="SAP FieldID" value="."/>
+<property name="SAP Qualitylevel" value="."/>
+<property name="SAP Transformation" value="."/>
+<property name="SAP Typ" value="."/>
+<property name="SAP usage" value="."/>
+<property name="Web-Shop" value="."/>
 </propertyMap>
 </Attribute>
 <Attribute name="Geburtsdatum" id="B708FB56-7DE8-FA14-07F2-BBBF230CDDE9">
@@ -127,6 +171,7 @@
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+<item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>0</use>
@@ -134,14 +179,22 @@
 <domain>631FC893-D28E-5FE4-89DB-473C78BB2B2A</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
-<property name="AP AttrName" value="GebDatum"/>
-<property name="AP Typ" value="date"/>
-<property name="AP usage" value="R"/>
-<property name="SAP AttrName" value="birthdate"/>
-<property name="SAP Qualitylevel" value="medium"/>
-<property name="SAP Typ" value="varchar2(10)"/>
+<property name="AP AttrName" value="."/>
+<property name="AP Transformation" value="."/>
+<property name="AP Typ" value="."/>
+<property name="AP usage" value="."/>
+<property name="CRM-Salesforce" value="."/>
+<property name="ERP" value="."/>
+<property name="EXCEL ColumnName" value="."/>
+<property name="Excel" value="."/>
+<property name="SAP AttrName" value="."/>
+<property name="SAP FieldID" value="."/>
+<property name="SAP Qualitylevel" value="."/>
+<property name="SAP Transformation" value="."/>
+<property name="SAP Typ" value="."/>
 <property name="SAP Umrechnung" value="YYYY-MM-DD"/>
-<property name="SAP usage" value="W"/>
+<property name="SAP usage" value="."/>
+<property name="Web-Shop" value="."/>
 </propertyMap>
 </Attribute>
 <Attribute name="Zivilstand" id="F3EEE55A-0A1C-0725-EAC4-0FAF80CEC86F">
@@ -151,6 +204,7 @@
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+<item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <use>0</use>
@@ -158,11 +212,22 @@
 <domain>6625154F-6115-21E9-C926-42BA87E22CB2</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
-<property name="AP usage" value="-"/>
-<property name="SAP AttrName" value="legalStat"/>
-<property name="SAP Typ" value="integer(1)"/>
+<property name="AP AttrName" value="."/>
+<property name="AP Transformation" value="."/>
+<property name="AP Typ" value="."/>
+<property name="AP usage" value="."/>
+<property name="CRM-Salesforce" value="."/>
+<property name="ERP" value="."/>
+<property name="EXCEL ColumnName" value="."/>
+<property name="Excel" value="."/>
+<property name="SAP AttrName" value="."/>
+<property name="SAP FieldID" value="."/>
+<property name="SAP Qualitylevel" value="."/>
+<property name="SAP Transformation" value="."/>
+<property name="SAP Typ" value="."/>
 <property name="SAP Umrechnung" value="VERH:1;VERW:2;GESC:3;LEDI:4"/>
-<property name="SAP usage" value="W"/>
+<property name="SAP usage" value="."/>
+<property name="Web-Shop" value="."/>
 </propertyMap>
 </Attribute>
 <Attribute name="Sozialversicherung-Nr" id="5852C1A3-5EEB-FFBB-7972-2DE62E264916">
@@ -172,6 +237,7 @@
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+<item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <use>0</use>
@@ -179,8 +245,21 @@
 <domain>A132AE79-16F5-9902-26A0-16DFEDFD7E42</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
-<property name="AP usage" value="-"/>
-<property name="SAP usage" value="-"/>
+<property name="AP AttrName" value="."/>
+<property name="AP Transformation" value="."/>
+<property name="AP Typ" value="."/>
+<property name="AP usage" value="."/>
+<property name="CRM-Salesforce" value="."/>
+<property name="ERP" value="."/>
+<property name="EXCEL ColumnName" value="."/>
+<property name="Excel" value="."/>
+<property name="SAP AttrName" value="."/>
+<property name="SAP FieldID" value="."/>
+<property name="SAP Qualitylevel" value="."/>
+<property name="SAP Transformation" value="."/>
+<property name="SAP Typ" value="."/>
+<property name="SAP usage" value="."/>
+<property name="Web-Shop" value="."/>
 </propertyMap>
 </Attribute>
 </attributes>
@@ -192,6 +271,7 @@
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+<item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
 <newElementsIDs>5852C1A3-5EEB-FFBB-7972-2DE62E264916</newElementsIDs>
 <usedAttributes>
@@ -205,6 +285,7 @@
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+<item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
 <newElementsIDs>3AD53335-F6F4-5172-693C-FA3B5F6B89AA</newElementsIDs>
 <usedAttributes>

@@ -2,10 +2,11 @@
 <Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="23D049A4-4E3B-F218-DA7F-B561920AF2ED" name="Weinfach">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-19 15:54:49 UTC</createdTime>
-<comment> </comment>
+<comment><![CDATA[ ]]></comment>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <engineerTo>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
 <adequatelyNormalized>NO</adequatelyNormalized>
 <expectedVolumes>0</expectedVolumes>
@@ -24,11 +25,29 @@
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <engineerTo>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AP AttrName" value="."/>
+<property name="AP Transformation" value="."/>
+<property name="AP Typ" value="."/>
+<property name="AP usage" value="."/>
+<property name="CRM-Salesforce" value="."/>
+<property name="ERP" value="."/>
+<property name="EXCEL ColumnName" value="."/>
+<property name="Excel" value="."/>
+<property name="SAP AttrName" value="."/>
+<property name="SAP FieldID" value="."/>
+<property name="SAP Qualitylevel" value="."/>
+<property name="SAP Transformation" value="."/>
+<property name="SAP Typ" value="."/>
+<property name="SAP usage" value="."/>
+<property name="Web-Shop" value="."/>
+</propertyMap>
 <listOfRanges>
 <rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
 <beginValue>1</beginValue>

@@ -2,10 +2,11 @@
 <Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="41A07F74-4ADC-0F71-3AAC-1019AD8565F6" name="Aufzählung Attribut">
 <createdBy>stb</createdBy>
 <createdTime>2018-05-30 12:15:53 UTC</createdTime>
-<comment>Attribut, das einen Wert aus vordefinierten Liste annehmen kann. </comment>
+<comment><![CDATA[Attribut, das einen Wert aus vordefinierten Liste annehmen kann. ]]></comment>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <engineerTo>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
 <adequatelyNormalized>NO</adequatelyNormalized>
 <expectedVolumes>0</expectedVolumes>
@@ -21,16 +22,33 @@
 <Attribute name="Wertelisteeinschränkung" id="0A904DC6-0255-18DE-2002-20E229EF50F4">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-25 07:34:12 UTC</createdTime>
-<comment>Einschränkung der Werteliste aus der Domäne. Leer-&gt; es sind alle Werte aus der Domäne möglich.</comment>
+<comment><![CDATA[Einschränkung der Werteliste aus der Domäne. Leer-> es sind alle Werte aus der Domäne möglich.]]></comment>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <engineerTo>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <use>0</use>
-<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AP AttrName" value="."/>
+<property name="AP Transformation" value="."/>
+<property name="AP Typ" value="."/>
+<property name="AP usage" value="."/>
+<property name="CRM-Salesforce" value="."/>
+<property name="ERP" value="."/>
+<property name="EXCEL ColumnName" value="."/>
+<property name="Excel" value="."/>
+<property name="SAP AttrName" value="."/>
+<property name="SAP FieldID" value="."/>
+<property name="SAP Qualitylevel" value="."/>
+<property name="SAP Transformation" value="."/>
+<property name="SAP Typ" value="."/>
+<property name="SAP usage" value="."/>
+<property name="Web-Shop" value="."/>
+</propertyMap>
 </Attribute>
 </attributes>
 </Entity>

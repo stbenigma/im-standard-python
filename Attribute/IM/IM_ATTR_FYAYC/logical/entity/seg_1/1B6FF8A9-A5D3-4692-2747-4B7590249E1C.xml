@@ -2,10 +2,11 @@
 <Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="1B6FF8A9-A5D3-4692-2747-4B7590249E1C" name="Text Domäne">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-22 14:50:13 UTC</createdTime>
-<comment>Freitextattribut.  </comment>
+<comment><![CDATA[Freitextattribut.  ]]></comment>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <engineerTo>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
 <adequatelyNormalized>NO</adequatelyNormalized>
 <expectedVolumes>0</expectedVolumes>
@@ -21,16 +22,34 @@
 <Attribute name="Min Textlänge" id="14A349DC-24D3-7ADC-8C56-3A429E600D91">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-22 14:50:13 UTC</createdTime>
-<comment>Minimale Anzahl Zeichen die ein Text haben muss. Leer -&gt; Keine Einschränkung der Inhalte</comment>
+<comment><![CDATA[Minimale Anzahl Zeichen die ein Text haben muss. Leer -> Keine Einschränkung der Inhalte]]></comment>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <engineerTo>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT011</logicalDatatype>
 <defaultValue>1</defaultValue>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AP AttrName" value="."/>
+<property name="AP Transformation" value="."/>
+<property name="AP Typ" value="."/>
+<property name="AP usage" value="."/>
+<property name="CRM-Salesforce" value="."/>
+<property name="ERP" value="."/>
+<property name="EXCEL ColumnName" value="."/>
+<property name="Excel" value="."/>
+<property name="SAP AttrName" value="."/>
+<property name="SAP FieldID" value="."/>
+<property name="SAP Qualitylevel" value="."/>
+<property name="SAP Transformation" value="."/>
+<property name="SAP Typ" value="."/>
+<property name="SAP usage" value="."/>
+<property name="Web-Shop" value="."/>
+</propertyMap>
 <listOfRanges>
 <rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
 <beginValue>0</beginValue>
@@ -41,10 +60,11 @@
 <Attribute name="Max Textlänge" id="C6CF1D6D-7648-4855-5483-1FF307873B9E">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-22 14:50:13 UTC</createdTime>
-<comment>Maximale Anzahl Zeichen die ein Text haben darf. Leer -&gt; so viele, wie das System zulässt</comment>
+<comment><![CDATA[Maximale Anzahl Zeichen die ein Text haben darf. Leer -> so viele, wie das System zulässt]]></comment>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <engineerTo>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
@@ -52,6 +72,23 @@
 <logicalDatatype>LOGDT011</logicalDatatype>
 <defaultValue>1</defaultValue>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AP AttrName" value="."/>
+<property name="AP Transformation" value="."/>
+<property name="AP Typ" value="."/>
+<property name="AP usage" value="."/>
+<property name="CRM-Salesforce" value="."/>
+<property name="ERP" value="."/>
+<property name="EXCEL ColumnName" value="."/>
+<property name="Excel" value="."/>
+<property name="SAP AttrName" value="."/>
+<property name="SAP FieldID" value="."/>
+<property name="SAP Qualitylevel" value="."/>
+<property name="SAP Transformation" value="."/>
+<property name="SAP Typ" value="."/>
+<property name="SAP usage" value="."/>
+<property name="Web-Shop" value="."/>
+</propertyMap>
 <listOfRanges>
 <rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
 <beginValue>0</beginValue>
@@ -65,12 +102,30 @@
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <engineerTo>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AP AttrName" value="."/>
+<property name="AP Transformation" value="."/>
+<property name="AP Typ" value="."/>
+<property name="AP usage" value="."/>
+<property name="CRM-Salesforce" value="."/>
+<property name="ERP" value="."/>
+<property name="EXCEL ColumnName" value="."/>
+<property name="Excel" value="."/>
+<property name="SAP AttrName" value="."/>
+<property name="SAP FieldID" value="."/>
+<property name="SAP Qualitylevel" value="."/>
+<property name="SAP Transformation" value="."/>
+<property name="SAP Typ" value="."/>
+<property name="SAP usage" value="."/>
+<property name="Web-Shop" value="."/>
+</propertyMap>
 </Attribute>
 </attributes>
 </Entity>

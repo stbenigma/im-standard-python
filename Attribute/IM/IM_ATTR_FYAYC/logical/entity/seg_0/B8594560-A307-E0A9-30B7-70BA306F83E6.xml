@@ -2,10 +2,11 @@
 <Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="B8594560-A307-E0A9-30B7-70BA306F83E6" name="Numerisches Attribut">
 <createdBy>stb</createdBy>
 <createdTime>2018-05-30 12:15:53 UTC</createdTime>
-<comment>Die Einschränkungen für ein numerisches Attribut können die Domänenvorgaben weiter einschränken, aber nicht erweitern.</comment>
+<comment><![CDATA[Die Einschränkungen für ein numerisches Attribut können die Domänenvorgaben weiter einschränken, aber nicht erweitern.]]></comment>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <engineerTo>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
 <adequatelyNormalized>NO</adequatelyNormalized>
 <expectedVolumes>0</expectedVolumes>
@@ -21,32 +22,68 @@
 <Attribute name="Min Wert" id="7C19DD31-8189-BDB9-2878-76B9B5E929C0">
 <createdBy>stb</createdBy>
 <createdTime>2018-05-30 12:15:53 UTC</createdTime>
-<comment>Mindeswert, muss grösser als die Domänenvorgabe sein.. Leer -&gt; Wert aus der Domäne gilt</comment>
+<comment><![CDATA[Mindeswert, muss grösser als die Domänenvorgabe sein.. Leer -> Wert aus der Domäne gilt]]></comment>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <importedID>5C9E4513-EC5B-A599-4262-245889F0C34E</importedID>
 <engineerTo>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AP AttrName" value="."/>
+<property name="AP Transformation" value="."/>
+<property name="AP Typ" value="."/>
+<property name="AP usage" value="."/>
+<property name="CRM-Salesforce" value="."/>
+<property name="ERP" value="."/>
+<property name="EXCEL ColumnName" value="."/>
+<property name="Excel" value="."/>
+<property name="SAP AttrName" value="."/>
+<property name="SAP FieldID" value="."/>
+<property name="SAP Qualitylevel" value="."/>
+<property name="SAP Transformation" value="."/>
+<property name="SAP Typ" value="."/>
+<property name="SAP usage" value="."/>
+<property name="Web-Shop" value="."/>
+</propertyMap>
 </Attribute>
 <Attribute name="Max Wert" id="2591D317-7A84-DA4F-F262-DBBC9389E2EF">
 <createdBy>stb</createdBy>
 <createdTime>2018-05-30 12:15:53 UTC</createdTime>
-<comment>Maximalwert, muss kleiner als die Domänenvorgabe sein.. Leer -&gt; Wert aus der Domäne gilt</comment>
+<comment><![CDATA[Maximalwert, muss kleiner als die Domänenvorgabe sein.. Leer -> Wert aus der Domäne gilt]]></comment>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <importedID>E783D490-8CB7-D9FF-0046-792DC9EF89A3</importedID>
 <engineerTo>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AP AttrName" value="."/>
+<property name="AP Transformation" value="."/>
+<property name="AP Typ" value="."/>
+<property name="AP usage" value="."/>
+<property name="CRM-Salesforce" value="."/>
+<property name="ERP" value="."/>
+<property name="EXCEL ColumnName" value="."/>
+<property name="Excel" value="."/>
+<property name="SAP AttrName" value="."/>
+<property name="SAP FieldID" value="."/>
+<property name="SAP Qualitylevel" value="."/>
+<property name="SAP Transformation" value="."/>
+<property name="SAP Typ" value="."/>
+<property name="SAP usage" value="."/>
+<property name="Web-Shop" value="."/>
+</propertyMap>
 </Attribute>
 </attributes>
 </Entity>
