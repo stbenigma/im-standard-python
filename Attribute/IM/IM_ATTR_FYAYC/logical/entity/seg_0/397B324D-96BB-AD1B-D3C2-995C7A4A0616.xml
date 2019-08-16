@@ -24,8 +24,8 @@
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 <item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
-<nullsAllowed>true</nullsAllowed>
 <use>0</use>
+<domain>FEA1A894-BD6D-FEF8-423C-6857A9D694A1</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="AP AttrName" value="."/>
@@ -48,14 +48,17 @@
 <Attribute name="Mindestverkaufsalter" id="A2B05BA7-FC1F-FEF3-C025-2D84327EC2C5">
 <createdBy>stb</createdBy>
 <createdTime>2018-08-19 10:48:02 UTC</createdTime>
+<commentInRDBMS><![CDATA[Alter in Jahren ab dem dieser Artikel gekauft werden darf]]></commentInRDBMS>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <engineerTo>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 <item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
-<nullsAllowed>true</nullsAllowed>
-<use>0</use>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>2</dataTypePrecision>
+<ownDataTypeParameters>,2,</ownDataTypeParameters>
 <propertyMap>
 <property name="AP AttrName" value="."/>
 <property name="AP Transformation" value="."/>

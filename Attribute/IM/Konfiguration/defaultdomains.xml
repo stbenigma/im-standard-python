@@ -37,6 +37,24 @@
 <fileName>defaultdomains</fileName>
 <logicalDatatype>LOGDT017</logicalDatatype>
 </Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="Langes Längenmass" id="1928246E-59A1-7DD2-CA35-45FF4B330629">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-16 12:29:01 UTC</createdTime>
+<comment><![CDATA[Längenmass für Längen ab 1 Meter]]></comment>
+<ownerDesignName>System</ownerDesignName>
+<avTSortOrder>0</avTSortOrder>
+<dataTypePrecision>5</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<fileName>defaultdomains</fileName>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<unitOfMeasure>m</unitOfMeasure>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>0</beginValue>
+<endValue>999.99</endValue>
+</rangeDef>
+</listOfRanges>
+</Domain>
 <Domain class="oracle.dbtools.crest.model.design.Domain" name="Sprache ISO2" id="373E6E79-8146-4C2A-CBBE-EBD561C68CD5">
 <createdBy>stb</createdBy>
 <createdTime>2019-01-26 14:17:26 UTC</createdTime>
@@ -102,6 +120,46 @@
 <fileName>defaultdomains</fileName>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 </Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="Jahrgang" id="5BB5B08A-56E5-A2B5-16C1-9F4D9052A58B">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-16 12:07:32 UTC</createdTime>
+<comment><![CDATA[Jahrzahl von etwas, das heut noch existieren kann]]></comment>
+<ownerDesignName>System</ownerDesignName>
+<avTSortOrder>0</avTSortOrder>
+<dataTypePrecision>4</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<fileName>defaultdomains</fileName>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>1700</beginValue>
+<endValue>3000</endValue>
+</rangeDef>
+</listOfRanges>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="Zeiteinheit" id="5ED90093-92D2-C887-E9D3-6FC9FCE7B44C">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-16 12:00:21 UTC</createdTime>
+<ownerDesignName>System</ownerDesignName>
+<avTSortOrder>0</avTSortOrder>
+<dataTypeSize>10 CHAR</dataTypeSize>
+<fileName>defaultdomains</fileName>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<listOfValues>
+<valueDef value="D" description="Tag"/>
+<valueDef value="H" description="Stunde"/>
+<valueDef value="MCS" description="Mikrosekunde"/>
+<valueDef value="MIN" description="Minute"/>
+<valueDef value="MLS" description="Milisekunde"/>
+<valueDef value="MON" description="Monat"/>
+<valueDef value="NS" description="Nanosekunde"/>
+<valueDef value="Q" description="Quartal"/>
+<valueDef value="SEC" description="Sekunde"/>
+<valueDef value="SEM" description="Semester"/>
+<valueDef value="W" description="Woche"/>
+<valueDef value="Y" description="Jahr"/>
+</listOfValues>
+</Domain>
 <Domain class="oracle.dbtools.crest.model.design.Domain" name="Datum" id="631FC893-D28E-5FE4-89DB-473C78BB2B2A">
 <createdBy>stb</createdBy>
 <createdTime>2018-05-17 14:57:41 UTC</createdTime>
@@ -134,6 +192,22 @@
 <avTSortOrder>0</avTSortOrder>
 <fileName>defaultdomains</fileName>
 <logicalDatatype>LOGDT017</logicalDatatype>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="Weinart" id="74F537B7-5ACB-2C9E-3AFC-9967483E0DCB">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-16 12:08:59 UTC</createdTime>
+<comment><![CDATA[Art des Weines für Angebote]]></comment>
+<ownerDesignName>System</ownerDesignName>
+<avTSortOrder>0</avTSortOrder>
+<dataTypeSize>20</dataTypeSize>
+<fileName>defaultdomains</fileName>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<listOfValues>
+<valueDef value="Roséwein" description=""/>
+<valueDef value="Rotwein" description=""/>
+<valueDef value="Schaumwein" description=""/>
+<valueDef value="Weisswein" description=""/>
+</listOfValues>
 </Domain>
 <Domain class="oracle.dbtools.crest.model.design.Domain" name="Boolean" id="7F06A64B-0C00-1355-F863-DBD9FDE5B848">
 <createdBy>stb</createdBy>
@@ -235,6 +309,24 @@
 <fileName>defaultdomains</fileName>
 <logicalDatatype>LOGDT019</logicalDatatype>
 </Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="Genusstemperatur" id="AD5FF988-8610-9CDC-2A1F-9AF0FBDD151B">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-16 12:14:55 UTC</createdTime>
+<comment><![CDATA[Tempereatur, in der etwas genossen werden kann]]></comment>
+<ownerDesignName>System</ownerDesignName>
+<avTSortOrder>0</avTSortOrder>
+<dataTypePrecision>3</dataTypePrecision>
+<dataTypeScale>1</dataTypeScale>
+<fileName>defaultdomains</fileName>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<unitOfMeasure>Grad Celsius</unitOfMeasure>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>-20</beginValue>
+<endValue>90</endValue>
+</rangeDef>
+</listOfRanges>
+</Domain>
 <Domain class="oracle.dbtools.crest.model.design.Domain" name="Telefon Landvorwahl" id="C1BC1A23-B5E6-4886-CDB6-CD702D560B8E">
 <createdBy>stb</createdBy>
 <createdTime>2019-01-26 13:58:08 UTC</createdTime>
@@ -272,6 +364,24 @@
 <fileName>defaultdomains</fileName>
 <logicalDatatype>LOGDT017</logicalDatatype>
 </Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="Kurzes Längenmass" id="DD5CA6D1-82AE-AF75-31F5-988A9DAA29D5">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-16 12:27:45 UTC</createdTime>
+<comment><![CDATA[Kurze Längenangabe bis max. 10 Meter]]></comment>
+<ownerDesignName>System</ownerDesignName>
+<avTSortOrder>0</avTSortOrder>
+<dataTypePrecision>5</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<fileName>defaultdomains</fileName>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<unitOfMeasure>cm</unitOfMeasure>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>0</beginValue>
+<endValue>999.99</endValue>
+</rangeDef>
+</listOfRanges>
+</Domain>
 <Domain class="oracle.dbtools.crest.model.design.Domain" name="SI-Einheit" id="DD765D8A-B6DE-C725-89D4-5A0AE9EEB09A">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-23 13:55:39 UTC</createdTime>
@@ -288,6 +398,23 @@
 <avTSortOrder>0</avTSortOrder>
 <fileName>defaultdomains</fileName>
 <logicalDatatype>LOGDT017</logicalDatatype>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="Temperatur" id="ED63BDBA-397E-F21C-F718-30C4E2FFBB0D">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-16 12:13:28 UTC</createdTime>
+<ownerDesignName>System</ownerDesignName>
+<avTSortOrder>0</avTSortOrder>
+<dataTypePrecision>4</dataTypePrecision>
+<dataTypeScale>1</dataTypeScale>
+<fileName>defaultdomains</fileName>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<unitOfMeasure>Grad Celsius</unitOfMeasure>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>-273</beginValue>
+<endValue>2000</endValue>
+</rangeDef>
+</listOfRanges>
 </Domain>
 <Domain class="oracle.dbtools.crest.model.design.Domain" name="Format" id="F8923415-2F34-2023-2112-9B16A52B1FD6">
 <createdBy>stb</createdBy>

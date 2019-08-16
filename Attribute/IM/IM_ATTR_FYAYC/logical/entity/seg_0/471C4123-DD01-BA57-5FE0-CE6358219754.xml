@@ -25,6 +25,8 @@
 <item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
 <use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>74F537B7-5ACB-2C9E-3AFC-9967483E0DCB</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="AP AttrName" value="."/>
@@ -53,6 +55,8 @@
 <item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
 <use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>5BB5B08A-56E5-A2B5-16C1-9F4D9052A58B</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="AP AttrName" value="."/>
@@ -71,47 +75,61 @@
 <property name="SAP usage" value="."/>
 <property name="Web-Shop" value="."/>
 </propertyMap>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>1700</beginValue>
+<endValue>3000</endValue>
+</rangeDef>
+</listOfRanges>
 </Attribute>
-<Attribute name="Hersteller" id="90DC4158-38A7-B43B-CEAB-9CB7FAC3B137">
-<createdBy>stb</createdBy>
-<createdTime>2019-06-11 05:55:01 UTC</createdTime>
-<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
-<engineerTo>
-<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
-<item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
-</engineerTo>
-<use>0</use>
-<domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<propertyMap>
-<property name="AP AttrName" value="."/>
-<property name="AP Transformation" value="."/>
-<property name="AP Typ" value="."/>
-<property name="AP usage" value="."/>
-<property name="CRM-Salesforce" value="."/>
-<property name="ERP" value="."/>
-<property name="EXCEL ColumnName" value="."/>
-<property name="Excel" value="."/>
-<property name="SAP AttrName" value="."/>
-<property name="SAP FieldID" value="."/>
-<property name="SAP Qualitylevel" value="."/>
-<property name="SAP Transformation" value="."/>
-<property name="SAP Typ" value="."/>
-<property name="SAP usage" value="."/>
-<property name="Web-Shop" value="."/>
-</propertyMap>
-</Attribute>
-<Attribute name="Trinkreife" id="3A8FE787-0F6F-ECC0-F628-F4D6A72C4709">
+<Attribute name="Empfohlene Trinkreife" id="3A8FE787-0F6F-ECC0-F628-F4D6A72C4709">
 <createdBy>stb</createdBy>
 <createdTime>2019-06-11 05:58:01 UTC</createdTime>
+<commentInRDBMS><![CDATA[Angabe in Jahren, nach der der Wein (ab Jahrgang gezählt) für den Genuss empfohlen ist.]]></commentInRDBMS>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <engineerTo>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 <item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
-<use>0</use>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>2</dataTypePrecision>
+<ownDataTypeParameters>,2,</ownDataTypeParameters>
+<propertyMap>
+<property name="AP AttrName" value="."/>
+<property name="AP Transformation" value="."/>
+<property name="AP Typ" value="."/>
+<property name="AP usage" value="."/>
+<property name="CRM-Salesforce" value="."/>
+<property name="ERP" value="."/>
+<property name="EXCEL ColumnName" value="."/>
+<property name="Excel" value="."/>
+<property name="SAP AttrName" value="."/>
+<property name="SAP FieldID" value="."/>
+<property name="SAP Qualitylevel" value="."/>
+<property name="SAP Transformation" value="."/>
+<property name="SAP Typ" value="."/>
+<property name="SAP usage" value="."/>
+<property name="Web-Shop" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Max. Trinkreife" id="ABC52526-597F-92A1-94A5-96C22F6EC17F">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-16 12:11:47 UTC</createdTime>
+<commentInRDBMS><![CDATA[Angabe in Jahren (ab Jahrgang gezählt), innerhalb derer der Wein konsumiert werden sollte]]></commentInRDBMS>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>2</dataTypePrecision>
+<ownDataTypeParameters>,2,</ownDataTypeParameters>
 <propertyMap>
 <property name="AP AttrName" value="."/>
 <property name="AP Transformation" value="."/>
@@ -133,6 +151,7 @@
 <Attribute name="Trinktemperaturempfehlung" id="4E52EAE6-1C5A-F49B-47F8-B22BF13DE991">
 <createdBy>stb</createdBy>
 <createdTime>2018-08-19 10:38:26 UTC</createdTime>
+<commentInRDBMS><![CDATA[Empfohlene Trinktemperatur]]></commentInRDBMS>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <engineerTo>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
@@ -140,8 +159,10 @@
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <use>0</use>
-<domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>2</dataTypePrecision>
+<domain>AD5FF988-8610-9CDC-2A1F-9AF0FBDD151B</domain>
+<ownDataTypeParameters>,2,</ownDataTypeParameters>
 <propertyMap>
 <property name="AP AttrName" value="."/>
 <property name="AP Transformation" value="."/>
@@ -159,70 +180,16 @@
 <property name="SAP usage" value="."/>
 <property name="Web-Shop" value="."/>
 </propertyMap>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>-20</beginValue>
+<endValue>90</endValue>
+</rangeDef>
+</listOfRanges>
 </Attribute>
-<Attribute name="Speisenempfehlung" id="EB4A42EB-13DF-7405-8A76-DD842BC2E965">
-<createdBy>stb</createdBy>
-<createdTime>2019-06-11 05:55:52 UTC</createdTime>
-<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
-<engineerTo>
-<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
-<item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
-</engineerTo>
-<nullsAllowed>true</nullsAllowed>
-<use>0</use>
-<domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<propertyMap>
-<property name="AP AttrName" value="."/>
-<property name="AP Transformation" value="."/>
-<property name="AP Typ" value="."/>
-<property name="AP usage" value="."/>
-<property name="CRM-Salesforce" value="."/>
-<property name="ERP" value="."/>
-<property name="EXCEL ColumnName" value="."/>
-<property name="Excel" value="."/>
-<property name="SAP AttrName" value="."/>
-<property name="SAP FieldID" value="."/>
-<property name="SAP Qualitylevel" value="."/>
-<property name="SAP Transformation" value="."/>
-<property name="SAP Typ" value="."/>
-<property name="SAP usage" value="."/>
-<property name="Web-Shop" value="."/>
-</propertyMap>
-</Attribute>
-<Attribute name="Degustationsnotiz" id="CF1DFC76-8F0A-40B3-197A-0E951F465B90">
+<Attribute name="Degustationsnotiz [N]" id="CF1DFC76-8F0A-40B3-197A-0E951F465B90">
 <createdBy>stb</createdBy>
 <createdTime>2018-08-19 10:38:43 UTC</createdTime>
-<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
-<engineerTo>
-<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
-<item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
-</engineerTo>
-<nullsAllowed>true</nullsAllowed>
-<use>0</use>
-<domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<propertyMap>
-<property name="AP AttrName" value="."/>
-<property name="AP Transformation" value="."/>
-<property name="AP Typ" value="."/>
-<property name="AP usage" value="."/>
-<property name="CRM-Salesforce" value="."/>
-<property name="ERP" value="."/>
-<property name="EXCEL ColumnName" value="."/>
-<property name="Excel" value="."/>
-<property name="SAP AttrName" value="."/>
-<property name="SAP FieldID" value="."/>
-<property name="SAP Qualitylevel" value="."/>
-<property name="SAP Transformation" value="."/>
-<property name="SAP Typ" value="."/>
-<property name="SAP usage" value="."/>
-<property name="Web-Shop" value="."/>
-</propertyMap>
-</Attribute>
-<Attribute name="Genussreife" id="0B0AF33E-97B5-251A-250E-1BAE07AF80DA">
-<createdBy>stb</createdBy>
-<createdTime>2019-06-11 05:56:28 UTC</createdTime>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <engineerTo>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>

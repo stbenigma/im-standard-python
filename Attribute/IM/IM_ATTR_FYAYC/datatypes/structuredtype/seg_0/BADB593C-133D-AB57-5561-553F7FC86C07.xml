@@ -1,0 +1,33 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<StructuredType class="oracle.dbtools.crest.model.design.datatypes.StructuredType" name="Abmessung 2D" directorySegmentName="seg_0" id="BADB593C-133D-AB57-5561-553F7FC86C07">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-16 12:24:14 UTC</createdTime>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<predefined>false</predefined>
+<final>false</final>
+<instantiable>true</instantiable>
+<attributes itemClass="oracle.dbtools.crest.model.design.datatypes.TypeElement">
+<Attribute name="Breite" id="4BF4AD51-92D9-1F64-9B3C-B240FA1FA836">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-16 12:24:21 UTC</createdTime>
+<commentInRDBMS><![CDATA[Angabe einer 2D-ausdehung die als Breite gesehen wird.]]></commentInRDBMS>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<mandatory>true</mandatory>
+<precision>5</precision>
+<reference>false</reference>
+<scale>1</scale>
+<type>DD5CA6D1-82AE-AF75-31F5-988A9DAA29D5</type>
+</Attribute>
+<Attribute name="Länge" id="CE82E5C4-1A74-9C75-2DDD-48C7C9F26E50">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-16 12:26:42 UTC</createdTime>
+<commentInRDBMS><![CDATA[Angabe einer 2D-ausdehung die als Länge gesehen wird. Meistens grösser als Breite.]]></commentInRDBMS>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<mandatory>true</mandatory>
+<precision>5</precision>
+<reference>false</reference>
+<scale>1</scale>
+<type>DD5CA6D1-82AE-AF75-31F5-988A9DAA29D5</type>
+</Attribute>
+</attributes>
+</StructuredType>

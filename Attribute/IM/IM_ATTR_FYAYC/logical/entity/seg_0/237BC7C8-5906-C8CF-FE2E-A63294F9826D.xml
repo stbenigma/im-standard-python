@@ -128,6 +128,37 @@
 <property name="Web-Shop" value="."/>
 </propertyMap>
 </Attribute>
+<Attribute name="Web-Beschreibung" id="CBECE023-ED8C-3ECA-477B-928FD565D90C">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-12 11:18:46 UTC</createdTime>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="CRM-Salesforce" value="&lt;O&gt;"/>
+<property name="ERP" value=" A&gt;"/>
+<property name="SAP FieldID" value="."/>
+<property name="Web-Shop" value=" A&gt;"/>
+</propertyMap>
+</Attribute>
+<Attribute name="Lagerungshinweis" id="91278332-42DD-AD20-B106-9918CFF84AC7">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-16 12:23:22 UTC</createdTime>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
 <Attribute name="Nettogewicht" id="5A60B88B-EA86-5517-7686-8980EF712AF0">
 <createdBy>stb</createdBy>
 <createdTime>2018-08-19 10:45:35 UTC</createdTime>
@@ -160,13 +191,15 @@
 <Attribute name="minimale Abmessung (LxHxB)" id="776045E3-3789-E3D6-803B-673B53217216">
 <createdBy>stb</createdBy>
 <createdTime>2018-08-19 10:45:40 UTC</createdTime>
+<commentInRDBMS><![CDATA[Masse des minimalen umhüllenden Würfels (primär für Logistikzwecke gebraucht)]]></commentInRDBMS>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <engineerTo>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 <item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
-<nullsAllowed>true</nullsAllowed>
-<use>0</use>
+<useDomainConstraints>false</useDomainConstraints>
+<use>3</use>
+<structuredType>01706E60-21CC-F976-3F67-EDE5FAEEE90F</structuredType>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="AP AttrName" value="."/>
@@ -186,23 +219,91 @@
 <property name="Web-Shop" value="."/>
 </propertyMap>
 </Attribute>
-<Attribute name="Web-Beschreibung" id="CBECE023-ED8C-3ECA-477B-928FD565D90C">
+</attributes>
+<nestedAttributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<nestedAttribute name="minimale Abmessung (LxHxB).Abmessung 2D" directorySegmentName="seg_0" id="243624A2-85F4-9021-B777-D71E4411137D">
 <createdBy>stb</createdBy>
-<createdTime>2019-08-12 11:18:46 UTC</createdTime>
+<createdTime>2019-08-16 12:35:19 UTC</createdTime>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <engineerTo>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 <item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
-<nullsAllowed>true</nullsAllowed>
-<use>0</use>
+<parentObject>776045E3-3789-E3D6-803B-673B53217216</parentObject>
+<structAttributeID>55F88247-F725-769E-904A-DC2344738B90</structAttributeID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>3</use>
+<structuredType>BADB593C-133D-AB57-5561-553F7FC86C07</structuredType>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
-<propertyMap>
-<property name="CRM-Salesforce" value="&lt;O&gt;"/>
-<property name="ERP" value=" A&gt;"/>
-<property name="SAP FieldID" value="."/>
-<property name="Web-Shop" value=" A&gt;"/>
-</propertyMap>
-</Attribute>
-</attributes>
+</nestedAttribute>
+<nestedAttribute name="minimale Abmessung (LxHxB).Abmessung 2D.Breite" directorySegmentName="seg_0" id="819678DF-FE7F-EC9B-914F-276E51C297DC">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-16 12:35:19 UTC</createdTime>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
+</engineerTo>
+<parentObject>243624A2-85F4-9021-B777-D71E4411137D</parentObject>
+<structAttributeID>4BF4AD51-92D9-1F64-9B3C-B240FA1FA836</structAttributeID>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>5</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<domain>DD5CA6D1-82AE-AF75-31F5-988A9DAA29D5</domain>
+<ownDataTypeParameters>,5,2</ownDataTypeParameters>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>0</beginValue>
+<endValue>999.99</endValue>
+</rangeDef>
+</listOfRanges>
+</nestedAttribute>
+<nestedAttribute name="minimale Abmessung (LxHxB).Abmessung 2D.Länge" directorySegmentName="seg_0" id="AA141795-B940-B604-0E6E-DF8EAC138A45">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-16 12:35:19 UTC</createdTime>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
+</engineerTo>
+<parentObject>243624A2-85F4-9021-B777-D71E4411137D</parentObject>
+<structAttributeID>CE82E5C4-1A74-9C75-2DDD-48C7C9F26E50</structAttributeID>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>5</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<domain>DD5CA6D1-82AE-AF75-31F5-988A9DAA29D5</domain>
+<ownDataTypeParameters>,5,2</ownDataTypeParameters>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>0</beginValue>
+<endValue>999.99</endValue>
+</rangeDef>
+</listOfRanges>
+</nestedAttribute>
+<nestedAttribute name="minimale Abmessung (LxHxB).Höhe" directorySegmentName="seg_0" id="E5150730-9FC5-8A46-3440-FD41D68A3B80">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-16 12:35:19 UTC</createdTime>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
+</engineerTo>
+<parentObject>776045E3-3789-E3D6-803B-673B53217216</parentObject>
+<structAttributeID>DEFBC148-BFE2-53EC-8D15-BBBCE22126B3</structAttributeID>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>5</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<domain>DD5CA6D1-82AE-AF75-31F5-988A9DAA29D5</domain>
+<ownDataTypeParameters>,5,2</ownDataTypeParameters>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>0</beginValue>
+<endValue>999.99</endValue>
+</rangeDef>
+</listOfRanges>
+</nestedAttribute>
+</nestedAttributes>
 </Entity>

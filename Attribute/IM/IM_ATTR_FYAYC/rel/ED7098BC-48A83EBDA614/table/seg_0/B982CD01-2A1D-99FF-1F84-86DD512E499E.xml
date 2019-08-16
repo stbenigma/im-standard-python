@@ -6,15 +6,16 @@
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <ordsAlias>natpers</ordsAlias>
 <abbreviation>NatPers</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
-<Column name="Name" id="7F144B05-E1B9-594B-72FC-6CF973DEE32A">
+<Column name="Anzeigename" id="5AA71242-5750-E338-E56A-E833C5F24DB3">
 <createdBy>stb</createdBy>
-<createdTime>2019-06-22 00:05:15 UTC</createdTime>
+<createdTime>2019-08-16 12:41:56 UTC</createdTime>
 <generatorID>00C86C76-77EA-66CE-417C-4B122E68C67D</generatorID>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
-<formulaDesc>a+b</formulaDesc>
+<formulaDesc>&lt;Name&gt;, &lt;Vorname&gt; </formulaDesc>
 <sourceType>Derived</sourceType>
 <useDomainConstraints>false</useDomainConstraints>
 <use>0</use>
@@ -23,6 +24,35 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <computed>true</computed>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="AP AttrName" value="."/>
+<property name="AP Transformation" value="."/>
+<property name="AP Typ" value="."/>
+<property name="AP usage" value="."/>
+<property name="AttributGUID" value="."/>
+<property name="AttributeName" value="."/>
+</propertyMap>
+</Column>
+<Column name="Name" id="7F144B05-E1B9-594B-72FC-6CF973DEE32A">
+<createdBy>stb</createdBy>
+<createdTime>2019-06-22 00:05:15 UTC</createdTime>
+<generatorID>00C86C76-77EA-66CE-417C-4B122E68C67D</generatorID>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<sourceType>Derived</sourceType>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="AP AttrName" value="."/>
+<property name="AP Transformation" value="."/>
+<property name="AP Typ" value="."/>
+<property name="AP usage" value="."/>
+<property name="AttributGUID" value="."/>
+<property name="AttributeName" value="Natürliche Person.Name"/>
+</propertyMap>
 </Column>
 <Column name="Vorname" id="563A9B86-CBF4-74A2-BA9B-47B0D51FBFC5">
 <createdBy>stb</createdBy>
@@ -35,6 +65,14 @@
 <domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="AP AttrName" value="."/>
+<property name="AP Transformation" value="."/>
+<property name="AP Typ" value="."/>
+<property name="AP usage" value="."/>
+<property name="AttributGUID" value="."/>
+<property name="AttributeName" value="Natürliche Person.Vorname"/>
+</propertyMap>
 </Column>
 <Column name="Privat_TelNr" id="28D5E2A3-6785-E07C-18BD-490538C03498">
 <createdBy>stb</createdBy>
@@ -47,6 +85,14 @@
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="AP AttrName" value="."/>
+<property name="AP Transformation" value="."/>
+<property name="AP Typ" value="."/>
+<property name="AP usage" value="."/>
+<property name="AttributGUID" value="."/>
+<property name="AttributeName" value="Natürliche Person.Privat TelNr"/>
+</propertyMap>
 </Column>
 <Column name="Mobil_TelNr" id="ABE7D46B-A2CB-F045-6C5C-3DCD3772CB2A">
 <createdBy>stb</createdBy>
@@ -59,6 +105,14 @@
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="AP AttrName" value="."/>
+<property name="AP Transformation" value="."/>
+<property name="AP Typ" value="."/>
+<property name="AP usage" value="."/>
+<property name="AttributGUID" value="."/>
+<property name="AttributeName" value="Natürliche Person.Mobil TelNr"/>
+</propertyMap>
 </Column>
 <Column name="Geburtsdatum" id="67F1B7CC-D700-53D9-9035-9DDC3847F326">
 <createdBy>stb</createdBy>
@@ -71,6 +125,14 @@
 <domain>631FC893-D28E-5FE4-89DB-473C78BB2B2A</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="AP AttrName" value="."/>
+<property name="AP Transformation" value="."/>
+<property name="AP Typ" value="."/>
+<property name="AP usage" value="."/>
+<property name="AttributGUID" value="."/>
+<property name="AttributeName" value="Natürliche Person.Geburtsdatum"/>
+</propertyMap>
 </Column>
 <Column name="Zivilstand" id="238E8A73-AA94-F420-60C7-11F8BC645922">
 <createdBy>stb</createdBy>
@@ -83,6 +145,14 @@
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="AP AttrName" value="."/>
+<property name="AP Transformation" value="."/>
+<property name="AP Typ" value="."/>
+<property name="AP usage" value="."/>
+<property name="AttributGUID" value="."/>
+<property name="AttributeName" value="Natürliche Person.Zivilstand"/>
+</propertyMap>
 </Column>
 <Column name="Sozialversicherung-Nr" id="9B6C7C05-0E95-5882-DC4D-40720383C062">
 <createdBy>stb</createdBy>
@@ -95,6 +165,14 @@
 <logicalDatatype>LOGDT019</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="AP AttrName" value="."/>
+<property name="AP Transformation" value="."/>
+<property name="AP Typ" value="."/>
+<property name="AP usage" value="."/>
+<property name="AttributGUID" value="."/>
+<property name="AttributeName" value="Natürliche Person.Sozialversicherung-Nr"/>
+</propertyMap>
 </Column>
 <Column name="NatPers_ID" id="FC180795-375D-72BE-9373-9E4C99BC0A01">
 <createdBy>stb</createdBy>
@@ -109,6 +187,14 @@
 <identityColumn>true</identityColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 <isSurrogateColumn>true</isSurrogateColumn>
+<propertyMap>
+<property name="AP AttrName" value="."/>
+<property name="AP Transformation" value="."/>
+<property name="AP Typ" value="."/>
+<property name="AP usage" value="."/>
+<property name="AttributGUID" value="."/>
+<property name="AttributeName" value="."/>
+</propertyMap>
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
