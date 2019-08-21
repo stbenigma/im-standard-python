@@ -2,7 +2,15 @@
 <Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="12060E2A-CFF7-E393-8D3A-07300222DD71" name="WERTEBEREICHGRUPPE">
 <createdBy>stb</createdBy>
 <createdTime>2019-04-01 13:37:53 UTC</createdTime>
-<comment>Es gibt Attribute, die aus mehreren Bestandteilen bestehen, aber für eine Entität wie ein Attribut angesehen werden (können).&lt;br/&gt;Die Bestandteile dieser Attributgruppe treten immer gemeinsam auf.&lt;br/&gt;Dass ein Attribut Teilwerte enthält, für die man sich separat interessiert, verletzt im Grundsatz die 1. Normalform. Wenn aber die Elemente einer Attributgruppe selber Attribute sind und die Gruppe als Platzhalter von mehreren Attributen verstanden werden kann, ist diese Verletzung auflösbar.&lt;br/&gt;&lt;br/&gt;Beispiele:&lt;br/&gt;Telefon-Nr: bestehend aus Landesvorwahl und Rufnummer&lt;br/&gt;Koordinaten bestehend aus X und Y-Koordinate (bzw. Westliche länge und nördliche Breite)&lt;br/&gt;Hotelzimmer-Nr bestehend aus Stockwerk und ZimmerNr (ACHTUNG: nicht 1. Stelle = Stockwerk, sondern 1 Feld Stockwerk und 1 Feld ZimmerNr)&lt;br/&gt;Flugkennung bestehend aus Fluggesellschaft kürzel und Flugnummer (LX 247)</comment>
+<comment><![CDATA[Es gibt Attribute, die aus mehreren Bestandteilen bestehen, aber für eine Entität wie ein Attribut angesehen werden (können).
+Die Bestandteile dieser Attributgruppe treten immer gemeinsam auf.
+Dass ein Attribut Teilwerte enthält, für die man sich separat interessiert, verletzt im Grundsatz die 1. Normalform. Wenn aber die Elemente einer Attributgruppe selber Attribute sind und die Gruppe als Platzhalter von mehreren Attributen verstanden werden kann, ist diese Verletzung auflösbar.
+
+Beispiele:
+Telefon-Nr: bestehend aus Landesvorwahl und Rufnummer
+Koordinaten bestehend aus X und Y-Koordinate (bzw. Westliche länge und nördliche Breite)
+Hotelzimmer-Nr bestehend aus Stockwerk und ZimmerNr (ACHTUNG: nicht 1. Stelle = Stockwerk, sondern 1 Feld Stockwerk und 1 Feld ZimmerNr)
+Flugkennung bestehend aus Fluggesellschaft kürzel und Flugnummer (LX 247)]]></comment>
 <generatorID>6D701BFA-96C8-4476-67E2-B0821BCC7224</generatorID>
 <ownerDesignName>ModellModell</ownerDesignName>
 <abbreviation>WBGR</abbreviation>
@@ -132,7 +140,7 @@
 <colUsage columnID="432E790C-B2F1-1C03-ACB0-8F2BCCBC74EA"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="62924A86-7A9E-0416-BFE9-A6DC33B6AF9A" name="WBGR_WRTB_FK_MEMBEcR">
+<ind_PK_UK id="62924A86-7A9E-0416-BFE9-A6DC33B6AF9A" name="WBGR_WRTB_FK_MEMBECR">
 <createdBy>stb</createdBy>
 <createdTime>2019-04-02 14:45:12 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>

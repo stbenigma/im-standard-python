@@ -2,7 +2,8 @@
 <Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="A073FA53-4336-7DC0-4BAE-8F4971FC5FAA" name="MODELLELEMENT">
 <createdBy>stb</createdBy>
 <createdTime>2019-04-04 15:27:17 UTC</createdTime>
-<comment>Wert, der für eine Aufzählungs-Domäne ein gültiger Wert ist.&lt;br/&gt;Das Attribut &quot;Wert&quot; ist der physikalische (sprachunabhängige) Wert, der als eigentliche Wert im konzeptionellen Modell gilt. </comment>
+<comment><![CDATA[Wert, der für eine Aufzählungs-Domäne ein gültiger Wert ist.
+Das Attribut "Wert" ist der physikalische (sprachunabhängige) Wert, der als eigentliche Wert im konzeptionellen Modell gilt. ]]></comment>
 <generatorID>EA10CFC2-DB6B-A934-F362-5835CCEBBCA4</generatorID>
 <ownerDesignName>ModellModell</ownerDesignName>
 <ordsAlias>vorgabewertv1</ordsAlias>
@@ -236,9 +237,15 @@
 <tableCheckConstraint name="MODE_CK_1" directorySegmentName="seg_0" id="8D1087A6-63B1-FAC9-5362-4DDD9B0D5135">
 <createdBy>stb</createdBy>
 <createdTime>2019-04-04 15:34:46 UTC</createdTime>
-<notes>&lt;br/&gt;</notes>
+<notes><![CDATA[
+]]></notes>
 <ownerDesignName>ModellModell</ownerDesignName>
-<rule>CASE WHEN MODE_ENTI_ID IS NOT NULL THEN 1 ELSE 0 END +&lt;br/&gt;CASE WHEN MODE_BURU_ID IS NOT NULL THEN 1 ELSE 0 END +&lt;br/&gt;CASE WHEN MODE_ATTR_ID IS NOT NULL THEN 1 ELSE 0 END +&lt;br/&gt;CASE WHEN MODE_WRTB_ID IS NOT NULL THEN 1 ELSE 0 END &lt;br/&gt;= 1&lt;br/&gt;</rule>
+<rule><![CDATA[CASE WHEN MODE_ENTI_ID IS NOT NULL THEN 1 ELSE 0 END +
+CASE WHEN MODE_BURU_ID IS NOT NULL THEN 1 ELSE 0 END +
+CASE WHEN MODE_ATTR_ID IS NOT NULL THEN 1 ELSE 0 END +
+CASE WHEN MODE_WRTB_ID IS NOT NULL THEN 1 ELSE 0 END 
+= 1
+]]></rule>
 </tableCheckConstraint>
 </tableCheckConstraints>
 </Table>

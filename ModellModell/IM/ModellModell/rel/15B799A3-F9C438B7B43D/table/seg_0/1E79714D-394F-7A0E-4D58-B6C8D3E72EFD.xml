@@ -2,7 +2,12 @@
 <Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="1E79714D-394F-7A0E-4D58-B6C8D3E72EFD" name="SCHLUESSELELEMENT">
 <createdBy>stb</createdBy>
 <createdTime>2019-04-04 15:04:23 UTC</createdTime>
-<comment>Gruppe von identifizierenden Beziehungen und oder Attributen einer Entität.&lt;br/&gt;Jede Kombination von Werten in einem Schlüssel ist für die Entität einmalig. &lt;br/&gt;D.h. sie identifiziert genau 1 Eintrag in der Entität.&lt;br/&gt;&lt;br/&gt;Die Laufnummer ist ein Hilfsmittel. Genau genommen ist für einen Schlüssel nur eindeutig&lt;br/&gt;Entität + Menge aller Schlüsselelemente.</comment>
+<comment><![CDATA[Gruppe von identifizierenden Beziehungen und oder Attributen einer Entität.
+Jede Kombination von Werten in einem Schlüssel ist für die Entität einmalig. 
+D.h. sie identifiziert genau 1 Eintrag in der Entität.
+
+Die Laufnummer ist ein Hilfsmittel. Genau genommen ist für einen Schlüssel nur eindeutig
+Entität + Menge aller Schlüsselelemente.]]></comment>
 <generatorID>DC7D3A49-7135-87EB-430D-0CDE657C7C6B</generatorID>
 <ownerDesignName>ModellModell</ownerDesignName>
 <ordsAlias>schl</ordsAlias>
@@ -40,7 +45,7 @@
 <Column name="SCEL_ATTR_ID" id="4F87D8BB-7A80-D48A-3664-F702DB556722">
 <createdBy>stb</createdBy>
 <createdTime>2019-04-04 15:04:23 UTC</createdTime>
-<comment>Schlüssel einer Entität müssen durch ein Merkmal unterscheidbar werden.</comment>
+<comment><![CDATA[Schlüssel einer Entität müssen durch ein Merkmal unterscheidbar werden.]]></comment>
 <generatorID>0F57A3C6-A117-9DD0-D738-0C5304B50953</generatorID>
 <ownerDesignName>ModellModell</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
@@ -56,7 +61,7 @@
 <Column name="SCEL_BEZI_ID" id="5DD63A2A-A584-3819-A1EA-CF071DF548B7">
 <createdBy>stb</createdBy>
 <createdTime>2019-04-04 15:07:22 UTC</createdTime>
-<comment>Schlüssel einer Entität müssen durch ein Merkmal unterscheidbar werden.</comment>
+<comment><![CDATA[Schlüssel einer Entität müssen durch ein Merkmal unterscheidbar werden.]]></comment>
 <generatorID>0F57A3C6-A117-9DD0-D738-0C5304B50953</generatorID>
 <ownerDesignName>ModellModell</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
@@ -189,7 +194,10 @@
 <createdBy>stb</createdBy>
 <createdTime>2019-04-04 15:10:50 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
-<rule>(SCEL_ATTR_ID IS NOT NULL AND SCEL_BEZI_ID IS NULL)&lt;br/&gt;OR&lt;br/&gt;(SCEL_ATTR_ID IS NULL AND SCEL_BEZI_ID IS NOT NULL)&lt;br/&gt;</rule>
+<rule><![CDATA[(SCEL_ATTR_ID IS NOT NULL AND SCEL_BEZI_ID IS NULL)
+OR
+(SCEL_ATTR_ID IS NULL AND SCEL_BEZI_ID IS NOT NULL)
+]]></rule>
 </tableCheckConstraint>
 </tableCheckConstraints>
 </Table>

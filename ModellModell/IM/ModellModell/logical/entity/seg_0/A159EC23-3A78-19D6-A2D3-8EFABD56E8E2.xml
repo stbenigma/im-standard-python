@@ -2,7 +2,12 @@
 <Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="A159EC23-3A78-19D6-A2D3-8EFABD56E8E2" name="Attributtransformation">
 <createdBy>stb</createdBy>
 <createdTime>2018-05-30 13:22:49 UTC</createdTime>
-<comment> Eine Attributtransformation transformiert 1-viele Ausgangsattribute in einen Attributwert.&lt;br/&gt; Transformationen von externen Systemen zum konsolidierten Modell befüllen ein Attribut und verwenden min. 1 Systemattribut.&lt;br/&gt; Transformationen vom Modell zu externen Systemen befüllen ein Systemattribut und verwenden min. 1 Attribut.&lt;br/&gt;&lt;br/&gt; &lt;br/&gt; </comment>
+<comment><![CDATA[ Eine Attributtransformation transformiert 1-viele Ausgangsattribute in einen Attributwert.
+ Transformationen von externen Systemen zum konsolidierten Modell befüllen ein Attribut und verwenden min. 1 Systemattribut.
+ Transformationen vom Modell zu externen Systemen befüllen ein Systemattribut und verwenden min. 1 Attribut.
+
+ 
+ ]]></comment>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
@@ -21,7 +26,7 @@
 <Attribute name="Laufnr" id="06E59C60-500A-CD3B-9E31-B38935CD8909">
 <createdBy>stb</createdBy>
 <createdTime>2018-11-04 12:41:06 UTC</createdTime>
-<comment>Unterscheidungsmerkmal mehrerer Regeln für ein Attribut</comment>
+<comment><![CDATA[Unterscheidungsmerkmal mehrerer Regeln für ein Attribut]]></comment>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
@@ -35,12 +40,14 @@
 <Attribute name="Transformationformel" id="AE8CA88C-4254-81E2-AB8A-3955B36E5FBB">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-23 13:08:55 UTC</createdTime>
-<comment>Formel, die 1-n Ausgangsattribute in ein Zielattribut umwandelt.</comment>
+<comment><![CDATA[Formel, die 1-n Ausgangsattribute in ein Zielattribut umwandelt.]]></comment>
+<commentInRDBMS><![CDATA[Formel für die Umwandlung eines Wertes. Leer -> Wert ohne Transformation kopiert ]]></commentInRDBMS>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 </engineerTo>
+<nullsAllowed>true</nullsAllowed>
 <use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
@@ -49,12 +56,14 @@
 <Attribute name="Auslöseart" id="CC74EF5D-D5D2-2AD9-D000-8B748A382BB3">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-23 13:09:34 UTC</createdTime>
-<comment>Art der Auslösung der Transformation (Mutation, Periode, Manuell)</comment>
+<comment><![CDATA[Art der Auslösung der Transformation (Mutation, Periode, Manuell)]]></comment>
+<commentInRDBMS><![CDATA[Falls leer, wird die Auslöseart der Schnittstelle verwendet.]]></commentInRDBMS>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 </engineerTo>
+<nullsAllowed>true</nullsAllowed>
 <use>0</use>
 <domain>55CB11A1-3EFC-3253-465C-D58D3D8252AD</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
@@ -62,7 +71,7 @@
 <Attribute name="Auslöseperiodizität" id="A9E272F7-87CE-CB00-912F-E64A693881CF">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-23 13:10:19 UTC</createdTime>
-<comment>Täglich, alle 2 Minuten o.ä. Obligatorisch, falls die Auslöseart Zeitpunkt ist.</comment>
+<comment><![CDATA[Täglich, alle 2 Minuten o.ä. Obligatorisch, falls die Auslöseart Zeitpunkt ist.]]></comment>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>

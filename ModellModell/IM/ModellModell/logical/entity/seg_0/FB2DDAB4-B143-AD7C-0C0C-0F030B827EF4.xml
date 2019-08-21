@@ -2,11 +2,11 @@
 <Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="FB2DDAB4-B143-AD7C-0C0C-0F030B827EF4" name="Vorgabewerttransfomation">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-25 07:47:54 UTC</createdTime>
-<comment>Wert, der für eine Aufzählungs-Domäne im Fremdsystem den Wert aus dem SSoT System repräsentiert.&lt;br/&gt;</comment>
+<comment><![CDATA[Wert, der für eine Aufzählungs-Domäne im Fremdsystem den Wert aus dem SSoT System repräsentiert.
+]]></comment>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
-<item key="4EE9A882-EA48-83FA-35DC-1651333A2D97" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 </engineerTo>
 <adequatelyNormalized>NO</adequatelyNormalized>
@@ -22,11 +22,10 @@
 <Attribute name="Wert" id="22962A00-3A05-BCC8-D0DA-B9CC3C4F3B0A">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-25 07:47:54 UTC</createdTime>
-<comment>physikalischer Wert eines Vorgabewertes im Fremdsystem</comment>
+<comment><![CDATA[physikalischer Wert eines Vorgabewertes im Fremdsystem]]></comment>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
-<item key="4EE9A882-EA48-83FA-35DC-1651333A2D97" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
@@ -37,11 +36,10 @@
 <Attribute name="Sortierreihenfolge" id="CB5AF5E9-CCE4-918F-0C2D-D8A47ED6C58C">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-25 07:47:54 UTC</createdTime>
-<comment>Zahl nach der die Werte im Zielsystem aufsteigend sortiert werden. Leer -&gt; Wert kommt an den Schluss der Liste in zufälliger Reihenfolge</comment>
+<comment><![CDATA[Zahl nach der die Werte im Zielsystem aufsteigend sortiert werden. Leer -> Wert kommt an den Schluss der Liste in zufälliger Reihenfolge]]></comment>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
-<item key="4EE9A882-EA48-83FA-35DC-1651333A2D97" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
@@ -58,7 +56,6 @@
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
-<item key="4EE9A882-EA48-83FA-35DC-1651333A2D97" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 </engineerTo>
 <pk>true</pk>

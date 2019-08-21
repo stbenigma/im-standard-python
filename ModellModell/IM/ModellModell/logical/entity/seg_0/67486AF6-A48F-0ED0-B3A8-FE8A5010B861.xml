@@ -2,11 +2,17 @@
 <Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="67486AF6-A48F-0ED0-B3A8-FE8A5010B861" name="Schnittstelle">
 <createdBy>stb</createdBy>
 <createdTime>2018-11-26 17:29:01 UTC</createdTime>
-<comment>Eine definierte Schnittstelle zwischen 2 IT-Systemen.&lt;br/&gt;&lt;br/&gt;Synchron heisst, dass die Daten immer in kurzer Zeit (ms - einige Sekunden)  nachgeführt und aktuell sind.&lt;br/&gt;Manuell bedeutet, dass eine Person die Daten von einem Werkzeuge in ein anderes überträgt (copy-paste, abschreiben).&lt;br/&gt;online bedeutet, dass die Anwendungen direkt auf die Datenbasis (Datei, DB) einer anderen Anwendung zugreift. Z.B. via DB-Link, Service. &lt;br/&gt;&lt;br/&gt;</comment>
+<comment><![CDATA[Eine definierte Schnittstelle zwischen 2 IT-Systemen.
+
+Synchron heisst, dass die Daten immer in kurzer Zeit (ms - einige Sekunden)  nachgeführt und aktuell sind.
+Manuell bedeutet, dass eine Person die Daten von einem Werkzeuge in ein anderes überträgt (copy-paste, abschreiben).
+online bedeutet, dass die Anwendungen direkt auf die Datenbasis (Datei, DB) einer anderen Anwendung zugreift. Z.B. via DB-Link, Service. 
+
+]]></comment>
 <ownerDesignName>ModellModell</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
-<item key="4EE9A882-EA48-83FA-35DC-1651333A2D97" value="true"/>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
 </engineerTo>
 <adequatelyNormalized>NO</adequatelyNormalized>
@@ -21,11 +27,11 @@
 <Attribute name="Manuell" id="695153DA-8B28-B727-6415-2240B8831A62">
 <createdBy>stb</createdBy>
 <createdTime>2018-12-01 14:37:43 UTC</createdTime>
-<comment>Daten werden manuell übertragen (copy-paste, filetransfer)</comment>
+<comment><![CDATA[Daten werden manuell übertragen (copy-paste, filetransfer)]]></comment>
 <ownerDesignName>ModellModell</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
-<item key="4EE9A882-EA48-83FA-35DC-1651333A2D97" value="true"/>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
 </engineerTo>
 <use>0</use>
@@ -36,11 +42,11 @@
 <Attribute name="Synchron" id="9A8E6DBD-45F2-B058-15CB-0EA9555E5047">
 <createdBy>stb</createdBy>
 <createdTime>2018-12-01 14:41:18 UTC</createdTime>
-<comment>Daten werden sofort übertragen oder in Paketen die irgendwann übertragen werden.</comment>
+<comment><![CDATA[Daten werden sofort übertragen oder in Paketen die irgendwann übertragen werden.]]></comment>
 <ownerDesignName>ModellModell</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
-<item key="4EE9A882-EA48-83FA-35DC-1651333A2D97" value="true"/>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
 </engineerTo>
 <use>0</use>
@@ -51,11 +57,11 @@
 <Attribute name="Bidirektional" id="6302FB3C-12B3-8762-30A4-B329D9CFCD82">
 <createdBy>stb</createdBy>
 <createdTime>2018-12-03 12:52:51 UTC</createdTime>
-<comment>Nein bedeutet Daten gehen nur von &quot;von&quot; zu &quot;nach&quot;</comment>
+<comment><![CDATA[Nein bedeutet Daten gehen nur von "von" zu "nach"]]></comment>
 <ownerDesignName>ModellModell</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
-<item key="4EE9A882-EA48-83FA-35DC-1651333A2D97" value="true"/>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
 </engineerTo>
 <use>0</use>
@@ -66,11 +72,11 @@
 <Attribute name="Online" id="0DD96E6E-CB23-100D-1414-F2A2EEEC68B2">
 <createdBy>stb</createdBy>
 <createdTime>2019-01-21 16:12:43 UTC</createdTime>
-<comment>Daten über eine onlineschnittstelle direkt genutzt. Z.B. SQL via DB-Link</comment>
+<comment><![CDATA[Daten über eine onlineschnittstelle direkt genutzt. Z.B. SQL via DB-Link]]></comment>
 <ownerDesignName>ModellModell</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
-<item key="4EE9A882-EA48-83FA-35DC-1651333A2D97" value="true"/>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
 </engineerTo>
 <use>0</use>
@@ -78,18 +84,19 @@
 <domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-</attributes>
-<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
-<identifier id="78CF112E-3A5C-A3BE-90A1-5D880C65BEA0" name="Schnittstelle PK">
+<Attribute name="Auslöseperiodizität" id="98F896FA-EB99-C1A2-3C9B-23F46416102D">
 <createdBy>stb</createdBy>
-<createdTime>2019-03-04 17:01:32 UTC</createdTime>
+<createdTime>2019-08-21 08:23:38 UTC</createdTime>
+<commentInRDBMS><![CDATA[Periodizität mit der die Schnittstelle bedient/abgeholt wird. Standardvorgabe für alle Attribute einer Schnittstelle.]]></commentInRDBMS>
 <ownerDesignName>ModellModell</ownerDesignName>
-<shouldEngineer>false</shouldEngineer>
 <engineerTo>
-<item key="4EE9A882-EA48-83FA-35DC-1651333A2D97" value="true"/>
-<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 </engineerTo>
-<pk>true</pk>
-</identifier>
-</identifiers>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<domain>FEA1A894-BD6D-FEF8-423C-6857A9D694A1</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
 </Entity>

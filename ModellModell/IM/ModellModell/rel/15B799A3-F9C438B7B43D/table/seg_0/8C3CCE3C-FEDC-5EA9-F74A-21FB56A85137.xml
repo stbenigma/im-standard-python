@@ -2,7 +2,9 @@
 <Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="8C3CCE3C-FEDC-5EA9-F74A-21FB56A85137" name="BUSINESS_RULE">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:34 UTC</createdTime>
-<comment>Geschäftsregel, die Attributwerte auf Regelkonformität prüft.&lt;br/&gt;Diese Regeln sind passiv. D.h. es wird überprüft, ob der Wert (ggf. im Zusammenhang mit anderen Werten dieser oder anderer Entitäten) aus fachlicher Sicht korrekt ist.&lt;br/&gt;Eine Regel kann 1 oder mehrere Attribute aus beliebigen Tabellen verknüpfen.</comment>
+<comment><![CDATA[Geschäftsregel, die Attributwerte auf Regelkonformität prüft.
+Diese Regeln sind passiv. D.h. es wird überprüft, ob der Wert (ggf. im Zusammenhang mit anderen Werten dieser oder anderer Entitäten) aus fachlicher Sicht korrekt ist.
+Eine Regel kann 1 oder mehrere Attribute aus beliebigen Tabellen verknüpfen.]]></comment>
 <generatorID>1EDA2467-D0C9-4EC3-6BDA-5DC7D5AAA0F9</generatorID>
 <ownerDesignName>ModellModell</ownerDesignName>
 <abbreviation>BURU</abbreviation>
@@ -38,8 +40,8 @@
 <Column name="BURU_REGEL" id="32A126FC-CEF4-D0B4-F439-9619B102BCA8">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:34 UTC</createdTime>
-<comment>Regel, die Werte beschränken auf Grund von komplexeren Zusammenhängen</comment>
-<commentInRDBMS>Beschreibung der Regel als Funktion, Regexp, SQL-Ausdruck etc.</commentInRDBMS>
+<comment><![CDATA[Regel, die Werte beschränken auf Grund von komplexeren Zusammenhängen]]></comment>
+<commentInRDBMS><![CDATA[Beschreibung der Regel als Funktion, Regexp, SQL-Ausdruck etc.]]></commentInRDBMS>
 <generatorID>723B41D1-B556-FACB-A890-B8B7F4FD8F6B</generatorID>
 <ownerDesignName>ModellModell</ownerDesignName>
 <use>0</use>
@@ -63,7 +65,7 @@
 <Column name="BURU_UETX_ID_FHLMLD" id="A1E49ACA-D991-871E-0054-B46629807CDE">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:34 UTC</createdTime>
-<comment>Meldung, bei Verletzung der Regel.</comment>
+<comment><![CDATA[Meldung, bei Verletzung der Regel.]]></comment>
 <generatorID>F0D0A02C-116A-DB0F-5438-DED076F0352F</generatorID>
 <ownerDesignName>ModellModell</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>

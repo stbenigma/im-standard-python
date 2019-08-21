@@ -2,7 +2,12 @@
 <Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="C9EF7918-F5CC-0897-190A-CCD5A71E88D3" name="Schnittstellenattribut">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-23 12:57:13 UTC</createdTime>
-<comment> Attribut in einem System, das mit anderen Systemen ausgetauscht werden soll.&lt;br/&gt; Datentyp, Format und Constraints können in div. Sprachen und Dialekten geführ werden&lt;br/&gt;  SQL (mit dialekt)&lt;br/&gt;  Jason&lt;br/&gt;  XML&lt;br/&gt;</comment>
+<comment><![CDATA[ Attribut in einem System, das mit anderen Systemen ausgetauscht werden soll.
+ Datentyp, Format und Constraints können in div. Sprachen und Dialekten geführ werden
+  SQL (mit dialekt)
+  Jason
+  XML
+]]></comment>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
@@ -34,7 +39,7 @@
 <Attribute name="Beschreibung" id="182949AB-4842-155F-CCBA-717176E0E2E8">
 <createdBy>stb</createdBy>
 <createdTime>2018-11-05 08:13:20 UTC</createdTime>
-<comment>Beschreibung des Attributes im Fremdsystem</comment>
+<comment><![CDATA[Beschreibung des Attributes im Fremdsystem]]></comment>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
@@ -60,7 +65,7 @@
 <Attribute name="Datentyp" id="43799535-BB40-2FF9-9A10-9AFA0B987604">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-23 12:57:13 UTC</createdTime>
-<comment>Technischer Datentyp im Fremdsystem (z.B. String(20), NUMERIC(20,4), integer,date,  etc.)</comment>
+<comment><![CDATA[Technischer Datentyp im Fremdsystem (z.B. String(20), NUMERIC(20,4), integer,date,  etc.)]]></comment>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
@@ -73,7 +78,7 @@
 <Attribute name="Format" id="41BDC830-A46D-219F-EB0F-7B05805D6919">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-23 14:05:06 UTC</createdTime>
-<comment>Textliche Formatierung eines numerischen oder Zeitpunkt-Wertes</comment>
+<comment><![CDATA[Textliche Formatierung eines numerischen oder Zeitpunkt-Wertes]]></comment>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
@@ -84,6 +89,22 @@
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <domain>F8923415-2F34-2023-2112-9B16A52B1FD6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Fremdsystem-ID" id="DFC19C82-0428-0E67-1DED-3E7A2FC35B39">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-21 08:34:16 UTC</createdTime>
+<commentInRDBMS><![CDATA[ID / Code der Attributbdefinition in einer Standardsoftware]]></commentInRDBMS>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<dataTypeSize>100 CHAR</dataTypeSize>
+<ownDataTypeParameters>100 CHAR,,</ownDataTypeParameters>
 </Attribute>
 </attributes>
 <identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">

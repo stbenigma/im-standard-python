@@ -1,8 +1,10 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="5A331338-BE08-A5C8-E437-9765DD7F7E2C" name="Datatypes">
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="5A331338-BE08-A5C8-E437-9765DD7F7E2C" name="DATATYPES">
 <createdBy>stb</createdBy>
 <createdTime>2019-07-09 10:30:10 UTC</createdTime>
-<comment>Irgend eine Komponente die mit Informations Technologie zu tun hat und beschafft, betrieben und betreut  werden muss.&lt;br/&gt;&lt;br/&gt;Jede IT-Komponente hat einen Hersteller. D.h. es handelt sich um konkrete Produkte.</comment>
+<comment><![CDATA[Irgend eine Komponente die mit Informations Technologie zu tun hat und beschafft, betrieben und betreut  werden muss.
+
+Jede IT-Komponente hat einen Hersteller. D.h. es handelt sich um konkrete Produkte.]]></comment>
 <generatorID>CFE2B0E2-7C7C-3289-90F3-1467F54FCB9E</generatorID>
 <ownerDesignName>ModellModell</ownerDesignName>
 <ordsAlias>itkomponente</ordsAlias>
@@ -24,7 +26,7 @@
 <identityColumn>true</identityColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="DATY_Name" id="332D86B2-F5D4-F599-D476-825AB2EE6D39">
+<Column name="DATY_NAME" id="332D86B2-F5D4-F599-D476-825AB2EE6D39">
 <createdBy>stb</createdBy>
 <createdTime>2019-07-09 10:30:10 UTC</createdTime>
 <generatorID>E620B7E5-21B9-ADF5-D530-981CC31D9FDB</generatorID>
@@ -54,7 +56,7 @@
 <ownDataTypeParameters>5 CHAR,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="DATY_GUID" id="880DE3CB-9C01-6B17-2AB6-766387A8689F">
+<Column name="DATY_ODM_GUID" id="880DE3CB-9C01-6B17-2AB6-766387A8689F">
 <createdBy>stb</createdBy>
 <createdTime>2019-07-09 10:34:07 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>

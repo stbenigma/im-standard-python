@@ -2,7 +2,12 @@
 <Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="830B6F02-93EA-62C5-1287-9CD8B973011D" name="UEBERSETZ_TEXT">
 <createdBy>stb</createdBy>
 <createdTime>2019-04-01 08:11:41 UTC</createdTime>
-<comment>Text, der in alle Sprachen übersetzt werden kann, die als Textsprache markiert ist.&lt;br/&gt;Dies weird für alle mit [L] markierten Texte in den Entitäten als Standardverwaltung verwendet.&lt;br/&gt;&lt;br/&gt;Wird ein Text in einer gewünschten Sprache nicht gefunden, wird er in der Alternativsprache ausgegeben. Ist auch dazu kein Text vorhanden, in der Originialsprache.&lt;br/&gt;&lt;br/&gt;Diese Entität wird verwendet um für alle Attribute mit [L] einen Fremdschlüssel zu erhalten, der auf den Text zeigt, hinter dem sich die Übersetzung versteckt.</comment>
+<comment><![CDATA[Text, der in alle Sprachen übersetzt werden kann, die als Textsprache markiert ist.
+Dies weird für alle mit [L] markierten Texte in den Entitäten als Standardverwaltung verwendet.
+
+Wird ein Text in einer gewünschten Sprache nicht gefunden, wird er in der Alternativsprache ausgegeben. Ist auch dazu kein Text vorhanden, in der Originialsprache.
+
+Diese Entität wird verwendet um für alle Attribute mit [L] einen Fremdschlüssel zu erhalten, der auf den Text zeigt, hinter dem sich die Übersetzung versteckt.]]></comment>
 <generatorID>4418BA52-4396-F91F-ADDC-B19812403A64</generatorID>
 <ownerDesignName>ModellModell</ownerDesignName>
 <ordsAlias>uebersetzungstext</ordsAlias>
@@ -13,7 +18,7 @@
 <Column name="UETX_ORIGINALTEXT" id="FFD7A444-C4F8-E162-C814-49EA5F5998E7">
 <createdBy>stb</createdBy>
 <createdTime>2019-04-01 08:11:41 UTC</createdTime>
-<comment>Text in der Originalsprache. Ausgangstext für alle Übersetzungen</comment>
+<comment><![CDATA[Text in der Originalsprache. Ausgangstext für alle Übersetzungen]]></comment>
 <generatorID>8163FB92-0A78-2B10-F74C-17D72169F578</generatorID>
 <ownerDesignName>ModellModell</ownerDesignName>
 <use>0</use>
@@ -38,7 +43,7 @@
 <Column name="UETX_SPRA_ID" id="4F6475B5-6A66-4C54-A2E7-DE36C9CE7CDD">
 <createdBy>stb</createdBy>
 <createdTime>2019-04-01 08:11:41 UTC</createdTime>
-<comment>Originalsprache für den Text</comment>
+<comment><![CDATA[Originalsprache für den Text]]></comment>
 <ownerDesignName>ModellModell</ownerDesignName>
 <use>0</use>
 <logicalDatatype>LOGDT019</logicalDatatype>

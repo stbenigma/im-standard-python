@@ -1,28 +1,36 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="AA45CA51-BB37-FD47-254F-8B13B7576C7E" name="SYSTEMATTRIBUT">
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="AA45CA51-BB37-FD47-254F-8B13B7576C7E" name="SCHNITTSTELLE_ATTR">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:34 UTC</createdTime>
-<comment> Attribut in einem System, das mit anderen Systemen ausgetauscht werden soll</comment>
+<comment><![CDATA[ Attribut in einem System, das mit anderen Systemen ausgetauscht werden soll.
+ Datentyp, Format und Constraints können in div. Sprachen und Dialekten geführ werden
+  SQL (mit dialekt)
+  Jason
+  XML
+]]></comment>
 <generatorID>C9EF7918-F5CC-0897-190A-CCD5A71E88D3</generatorID>
 <ownerDesignName>ModellModell</ownerDesignName>
+<ordsAlias>schnittstellenattribut</ordsAlias>
+<abbreviation>SCHA</abbreviation>
 <allowColumnReorder>false</allowColumnReorder>
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
-<Column name="SYSTEMATTRIBUT_ID" id="AC00B2CD-443E-268D-0ACB-B1665F569AF6">
+<Column name="SCHA_ID" id="AC00B2CD-443E-268D-0ACB-B1665F569AF6">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:34 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementColumn>true</autoIncrementColumn>
 <identityColumn>true</identityColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 <isSurrogateColumn>true</isSurrogateColumn>
 </Column>
-<Column name="NAME" id="E3A7546C-6D4E-116C-84AB-191FEAF3992B">
+<Column name="SCHA_ATTR_NAME" id="E3A7546C-6D4E-116C-84AB-191FEAF3992B">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:34 UTC</createdTime>
 <generatorID>B41BF0C7-0AD6-E2FF-307E-0E3AB8A27120</generatorID>
@@ -33,7 +41,7 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="TABELLENNAME" id="DFC9C46D-310A-F3D4-67B3-36DF421A5D8C">
+<Column name="SCHA_TABELLENNAME" id="DFC9C46D-310A-F3D4-67B3-36DF421A5D8C">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:34 UTC</createdTime>
 <generatorID>A4F8AE1B-96D5-63B5-DAEA-8A543607CDE9</generatorID>
@@ -44,21 +52,10 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="DATENTYP" id="9A1915B3-BB59-8B25-E087-FF5041C4C339">
+<Column name="SCHA_FORMAT" id="9F5542C2-162D-C3D1-190C-DDA78D854C84">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:34 UTC</createdTime>
-<comment>Technischer Datentyp im Fremdsystem (z.B. String(20), NUMERIC(20,4), integer,date,  etc.)</comment>
-<generatorID>43799535-BB40-2FF9-9A10-9AFA0B987604</generatorID>
-<ownerDesignName>ModellModell</ownerDesignName>
-<use>0</use>
-<domain>06475D8D-E9C3-9A63-A19D-2EF365B97D2D</domain>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-</Column>
-<Column name="FORMAT" id="9F5542C2-162D-C3D1-190C-DDA78D854C84">
-<createdBy>stb</createdBy>
-<createdTime>2018-10-21 13:54:34 UTC</createdTime>
-<comment>Textliche Formatierung eines numerischen oder Zeitpunkt-Wertes</comment>
+<comment><![CDATA[Textliche Formatierung eines numerischen oder Zeitpunkt-Wertes]]></comment>
 <generatorID>41BDC830-A46D-219F-EB0F-7B05805D6919</generatorID>
 <ownerDesignName>ModellModell</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
@@ -68,20 +65,52 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="{REF TABLE  ABBR}_IT-SYSTEM_ID" id="E501A401-B259-8858-91D8-B5A09D521240">
+<Column name="SCHA_FREMDSYSTEM_ID" id="021C748B-94E9-7E5B-DCBE-91323C0CA4AC">
 <createdBy>stb</createdBy>
-<createdTime>2018-10-21 13:54:35 UTC</createdTime>
+<createdTime>2019-08-21 09:42:06 UTC</createdTime>
+<commentInRDBMS><![CDATA[ID / Code der Attributbdefinition in einer Standardsoftware]]></commentInRDBMS>
+<generatorID>DFC19C82-0428-0E67-1DED-3E7A2FC35B39</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<dataTypeSize>100 CHAR</dataTypeSize>
+<ownDataTypeParameters>100 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="SCHA_SCHN_ID" id="2AA6B94F-4BE5-D7FB-C9B3-CA7A3F05071A">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-21 09:56:01 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="27018D2D-E789-4681-5F6C-F5D5AA3B839E" referredColumn="B1D3D7C6-D459-592F-6DDB-6D7A3F3C1649"/>
+</associations>
+</Column>
+<Column name="SCHA_DATY_ID" id="4DF971C5-E5F4-3533-0FB9-B9DDF38156D8">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-21 10:10:08 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="68CDF678-A9E4-12ED-4C72-2FE50334C895" referredColumn="B336AD84-7106-5FB4-F28A-49B16300F4EE"/>
+</associations>
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
-<ind_PK_UK id="31356FEF-BFD1-ED2A-A0CC-EF196090E038" name="SYSTEMATTRIBUT_PK">
+<ind_PK_UK id="31356FEF-BFD1-ED2A-A0CC-EF196090E038" name="SCHA_PK">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:34 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
@@ -91,7 +120,7 @@
 <colUsage columnID="AC00B2CD-443E-268D-0ACB-B1665F569AF6"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="30744F3E-D155-AB85-0E99-48ACEA6AABC4" name="SYSTEMATTRIBUT_NAME_TABELLENNAME_{REF_TABLE_ABBR}_IT-SYSTEM_ID_UN">
+<ind_PK_UK id="30744F3E-D155-AB85-0E99-48ACEA6AABC4" name="SCHA_UN">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:34 UTC</createdTime>
 <generatorID>0FBDB4CB-947F-3421-FF5C-5765ED98D65C</generatorID>
@@ -101,7 +130,26 @@
 <indexColumnUsage>
 <colUsage columnID="E3A7546C-6D4E-116C-84AB-191FEAF3992B"/>
 <colUsage columnID="DFC9C46D-310A-F3D4-67B3-36DF421A5D8C"/>
-<colUsage columnID="E501A401-B259-8858-91D8-B5A09D521240"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="334842C2-9842-167A-CB9B-77B56B1D4B91" name="SCHA_SCHN_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-21 09:56:01 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="2AA6B94F-4BE5-D7FB-C9B3-CA7A3F05071A"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="EE821849-72AD-FB1A-39EF-2496EA279F94" name="SCHA_DATY_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-21 10:10:08 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="4DF971C5-E5F4-3533-0FB9-B9DDF38156D8"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>

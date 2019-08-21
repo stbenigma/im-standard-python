@@ -5,7 +5,21 @@
 <ownerDesignName>ModellModell</ownerDesignName>
 <ordsAlias>view_1</ordsAlias>
 <userDefined>true</userDefined>
-<userDefinedSQL>SELECT&lt;br/&gt;    wertebereich.wrtb_id,&lt;br/&gt;    wertebereich.wrtb_business_rule,&lt;br/&gt;    uetx_name.uetx_originaltext as WRTB_NAME,&lt;br/&gt;    wertebereich.wrtb_uetx_id_name,&lt;br/&gt;    uetx_beschr.uetx_originaltext as WRTB_BESCHR,&lt;br/&gt;    wertebereich.wrtb_uetx_id_beschr,&lt;br/&gt;    wertebereich.wrtb_zpkt_maxwert,&lt;br/&gt;    wertebereich.wrtb_zpkt_minwert,&lt;br/&gt;    wertebereich.wrtb_zpkt_granularitaet&lt;br/&gt;FROM&lt;br/&gt;    wertebereich&lt;br/&gt;    LEFT JOIN uebersetz_text uetx_name ON uetx_name.uetx_id = wertebereich.wrtb_uetx_id_name                              &lt;br/&gt;    left JOIN uebersetz_text uetx_beschr ON uetx_beschr.uetx_id = wertebereich.wrtb_uetx_id_beschr &lt;br/&gt;WHERE wrtb_typ = &apos;ZPKT&apos;</userDefinedSQL>
+<userDefinedSQL><![CDATA[SELECT
+    wertebereich.wrtb_id,
+    wertebereich.wrtb_business_rule,
+    uetx_name.uetx_originaltext as WRTB_NAME,
+    wertebereich.wrtb_uetx_id_name,
+    uetx_beschr.uetx_originaltext as WRTB_BESCHR,
+    wertebereich.wrtb_uetx_id_beschr,
+    wertebereich.wrtb_zpkt_maxwert,
+    wertebereich.wrtb_zpkt_minwert,
+    wertebereich.wrtb_zpkt_granularitaet
+FROM
+    wertebereich
+    LEFT JOIN uebersetz_text uetx_name ON uetx_name.uetx_id = wertebereich.wrtb_uetx_id_name                              
+    left JOIN uebersetz_text uetx_beschr ON uetx_beschr.uetx_id = wertebereich.wrtb_uetx_id_beschr 
+WHERE wrtb_typ = 'ZPKT']]></userDefinedSQL>
 <validSQL>false</validSQL>
 <parsed>true</parsed>
 <usedContainers>

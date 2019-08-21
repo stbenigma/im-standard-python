@@ -2,7 +2,13 @@
 <Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="5D825B0B-0379-0274-7B84-ABA1399D6C84" name="BEZIEHUNG">
 <createdBy>stb</createdBy>
 <createdTime>2019-04-01 13:37:53 UTC</createdTime>
-<comment>Verbindung zweier Entitäten mit Assoziationstext, Optionalität und Abbildungstyp&lt;br/&gt;&lt;br/&gt;Die in anderen Darstellungsarten gebräuchlichen Beziehungen können aus  Optionalität und Abbildungstyp hergeleitet werden&lt;br/&gt;0-1	Optional  - 1&lt;br/&gt;1-1	Pflicht - 1&lt;br/&gt;0-many	Optional - many&lt;br/&gt;1-many	Pflicht - many</comment>
+<comment><![CDATA[Verbindung zweier Entitäten mit Assoziationstext, Optionalität und Abbildungstyp
+
+Die in anderen Darstellungsarten gebräuchlichen Beziehungen können aus  Optionalität und Abbildungstyp hergeleitet werden
+0-1	Optional  - 1
+1-1	Pflicht - 1
+0-many	Optional - many
+1-many	Pflicht - many]]></comment>
 <generatorID>4BEC4009-B321-3912-D30B-FADF6F8AF982</generatorID>
 <ownerDesignName>ModellModell</ownerDesignName>
 <allowColumnReorder>false</allowColumnReorder>
@@ -47,9 +53,10 @@
 <Column name="BEZI_UETX_ID_ASSOC_VON_ZU" id="D26575BF-AE32-0BBB-75E9-BEED5818324C">
 <createdBy>stb</createdBy>
 <createdTime>2019-04-01 13:37:53 UTC</createdTime>
-<comment>Was verbindet die von-Entität mit der zu-Entität</comment>
+<comment><![CDATA[Was verbindet die von-Entität mit der zu-Entität]]></comment>
 <generatorID>1E4F5AA9-8DAA-B81A-4D48-EDCE07CDC56A</generatorID>
 <ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
 <use>0</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
 <domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
@@ -70,7 +77,7 @@
 <Column name="BEZI_PFLICHT_ASSOC_VON_ZU" id="CDE5C9E3-E43A-D3AE-664B-645F47B8605A">
 <createdBy>stb</createdBy>
 <createdTime>2019-04-02 14:56:26 UTC</createdTime>
-<comment>von-Entität muss mind. 1 eine Verbindung zur zu-Entität haben</comment>
+<comment><![CDATA[von-Entität muss mind. 1 eine Verbindung zur zu-Entität haben]]></comment>
 <generatorID>06AEDDE9-FE7B-7129-3EA6-401A12A010FF</generatorID>
 <ownerDesignName>ModellModell</ownerDesignName>
 <use>0</use>
@@ -82,7 +89,8 @@
 <Column name="BEZI_HIST_VON_ZU" id="AF72746F-5510-615F-7538-CD371E2F0350">
 <createdBy>stb</createdBy>
 <createdTime>2019-04-01 13:37:53 UTC</createdTime>
-<comment>JA -&gt; Beziehung kann über die Zeit ändern. Zu einem Zeitpunkt kann nur 1 Beziehung gelten. System muss Historie der Änderungen führen.&lt;br/&gt;Über Extratabelle zu lösen.</comment>
+<comment><![CDATA[JA -> Beziehung kann über die Zeit ändern. Zu einem Zeitpunkt kann nur 1 Beziehung gelten. System muss Historie der Änderungen führen.
+Über Extratabelle zu lösen.]]></comment>
 <generatorID>075993E1-1E10-7A12-4137-89129E7305FB</generatorID>
 <ownerDesignName>ModellModell</ownerDesignName>
 <use>0</use>
@@ -108,9 +116,10 @@
 <Column name="BEZI_UETX_ID_ASSOC_ZU_VON" id="92313DAC-23A0-979F-280E-7F4415E1AA2D">
 <createdBy>stb</createdBy>
 <createdTime>2019-04-02 14:55:01 UTC</createdTime>
-<comment>Was verbindet die von-Entität mit der zu-Entität</comment>
+<comment><![CDATA[Was verbindet die von-Entität mit der zu-Entität]]></comment>
 <generatorID>1E4F5AA9-8DAA-B81A-4D48-EDCE07CDC56A</generatorID>
 <ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
 <use>0</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
 <domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
@@ -131,7 +140,7 @@
 <Column name="BEZI_PFLICHT_ASSOC_ZU_VON " id="58FD42A2-E823-3CDC-2761-0E9955550DA4">
 <createdBy>stb</createdBy>
 <createdTime>2019-04-01 13:37:53 UTC</createdTime>
-<comment>von-Entität muss mind. 1 eine Verbindung zur zu-Entität haben</comment>
+<comment><![CDATA[von-Entität muss mind. 1 eine Verbindung zur zu-Entität haben]]></comment>
 <generatorID>06AEDDE9-FE7B-7129-3EA6-401A12A010FF</generatorID>
 <ownerDesignName>ModellModell</ownerDesignName>
 <use>0</use>
@@ -143,7 +152,8 @@
 <Column name="BEZI_HIST_ZU_VON" id="E64710BC-8C8D-A324-49F4-B5B31E383D8C">
 <createdBy>stb</createdBy>
 <createdTime>2019-04-02 14:55:37 UTC</createdTime>
-<comment>JA -&gt; Beziehung kann über die Zeit ändern. Zu einem Zeitpunkt kann nur 1 Beziehung gelten. System muss Historie der Änderungen führen.&lt;br/&gt;Über Extratabelle zu lösen.</comment>
+<comment><![CDATA[JA -> Beziehung kann über die Zeit ändern. Zu einem Zeitpunkt kann nur 1 Beziehung gelten. System muss Historie der Änderungen führen.
+Über Extratabelle zu lösen.]]></comment>
 <generatorID>075993E1-1E10-7A12-4137-89129E7305FB</generatorID>
 <ownerDesignName>ModellModell</ownerDesignName>
 <use>0</use>
@@ -273,11 +283,19 @@
 </ind_PK_UK>
 </indexes>
 <tableCheckConstraints itemClass="oracle.dbtools.crest.model.design.constraint.TableLevelConstraint">
-<tableCheckConstraint name="BEZI_ISA_CK" directorySegmentName="seg_0" id="7A199B2F-3FA8-94CF-8D7E-9D27DA24A233">
+<tableCheckConstraint name="BEZI_ISA_CK2" directorySegmentName="seg_0" id="7A199B2F-3FA8-94CF-8D7E-9D27DA24A233">
 <createdBy>stb</createdBy>
 <createdTime>2019-04-02 15:04:44 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
-<rule>(BEZI_ISA_ASSOC_= &apos;TRUE&apos; &lt;br/&gt;  AND BEZI_ISA_ABBILDTYP_VON_ZU = &apos;1&apos;&lt;br/&gt;  AND BEZI_ISA_ABBILDTYP_ZU_VON = &apos;1&apos;&lt;br/&gt;  AND BEZI_PFLICHT_ASSOC_VON_ZU = &apos;TRUE&apos;&lt;br/&gt;)&lt;br/&gt;OR (BEZI_IS_ASSOC = &apos;FALSE&apos;)</rule>
+<rule><![CDATA[(BEZI_ISA_ASSOC_= 'TRUE' 
+  AND BEZI_ISA_ABBILDTYP_VON_ZU = '1'
+  AND BEZI_ISA_ABBILDTYP_ZU_VON = '1'
+  AND BEZI_PFLICHT_ASSOC_VON_ZU = 'TRUE'
+)
+OR (BEZI_IS_ASSOC = 'FALSE'
+   AND BEZI_UETX_ID_ASSOC_ZU_VON IS NOT NULL
+   AND BEZI_UETX_ID_ASSOC_ZU_VON IS NOT NULL
+   )]]></rule>
 </tableCheckConstraint>
 </tableCheckConstraints>
 </Table>
