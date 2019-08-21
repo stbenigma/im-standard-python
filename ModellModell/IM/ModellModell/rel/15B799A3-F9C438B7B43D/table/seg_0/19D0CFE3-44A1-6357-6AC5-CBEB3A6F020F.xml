@@ -1,60 +1,45 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="0EA78A83-9C74-F7EC-D93B-30E66DA593FC" name="VGWERT_TRANSFORMATION">
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="19D0CFE3-44A1-6357-6AC5-CBEB3A6F020F" name="ENTITY_USAGE">
 <createdBy>stb</createdBy>
-<createdTime>2018-10-21 13:54:34 UTC</createdTime>
-<comment><![CDATA[Wert, der für eine Aufzählungs-Domäne im Fremdsystem den Wert aus dem SSoT System repräsentiert.
-]]></comment>
-<generatorID>FB2DDAB4-B143-AD7C-0C0C-0F030B827EF4</generatorID>
+<createdTime>2019-08-21 15:43:56 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
-<ordsAlias>vorgabewerttransfomation</ordsAlias>
-<abbreviation>VWTR</abbreviation>
+<ordsAlias>relation_80</ordsAlias>
+<abbreviation>ETUS</abbreviation>
 <allowColumnReorder>false</allowColumnReorder>
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
-<Column name="VWTR_ID" id="3C705933-2FBA-EB98-E9F7-5A31008897DE">
+<Column name="ETUS_ID" id="52A26FBE-35DD-81D0-3D5B-1561C6B13078">
 <createdBy>stb</createdBy>
-<createdTime>2018-10-21 13:54:34 UTC</createdTime>
+<createdTime>2019-08-21 15:43:56 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
-<useDomainConstraints>false</useDomainConstraints>
 <use>0</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
 <domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
-<autoIncrementColumn>true</autoIncrementColumn>
-<identityColumn>true</identityColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
-<isSurrogateColumn>true</isSurrogateColumn>
 </Column>
-<Column name="VWTR_WERT" id="60C64E45-6FA6-DC4C-0B18-B1C3CA9312AB">
+<Column name="ETUS_RICHTUNG" id="A81CC5F6-E560-A5AB-D7DA-86C87230CB45">
 <createdBy>stb</createdBy>
-<createdTime>2018-10-21 13:54:34 UTC</createdTime>
-<comment><![CDATA[physikalischer Wert eines Vorgabewertes im Fremdsystem]]></comment>
-<generatorID>22962A00-3A05-BCC8-D0DA-B9CC3C4F3B0A</generatorID>
+<createdTime>2019-08-21 15:43:56 UTC</createdTime>
+<commentInRDBMS><![CDATA[Gibt an, ob ein Attribut gelesen und nach aussen verwendet wird (OUTBOUND) bzw. neu gesetzt wird (INBOUND)]]></commentInRDBMS>
 <ownerDesignName>ModellModell</ownerDesignName>
+<constraintName>CK_TFUS_TFUS_RICHTUNG</constraintName>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>LOGDT024</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<dataTypeSize>10 CHAR</dataTypeSize>
+<listOfValues>
+<valueDef value="INBOUND" description=""/>
+<valueDef value="OUTBOUND" description=""/>
+</listOfValues>
+<ownDataTypeParameters>10 CHAR,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_TFUS_TFUS_RICHTUNG</notNullConstraintName>
 </Column>
-<Column name="VWTR_SORTNR" id="B9BC62B6-FC88-2F6D-647A-F631B1FCF65B">
+<Column name="ETUS_SCHN_ID" id="CDB6E06B-4B10-8BB8-3119-F74570D617DE">
 <createdBy>stb</createdBy>
-<createdTime>2018-10-21 13:54:34 UTC</createdTime>
-<comment><![CDATA[Zahl nach der die Werte im Zielsystem aufsteigend sortiert werden. Leer -> Wert kommt an den Schluss der Liste in zufälliger Reihenfolge]]></comment>
-<generatorID>CB5AF5E9-CCE4-918F-0C2D-D8A47ED6C58C</generatorID>
-<ownerDesignName>ModellModell</ownerDesignName>
-<nullsAllowed>true</nullsAllowed>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
-<dataTypePrecision>5</dataTypePrecision>
-<ownDataTypeParameters>,5,</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-</Column>
-<Column name="VWTR_SCHN_ID" id="F6C02354-EBFF-D735-9794-CF2C5D038798">
-<createdBy>stb</createdBy>
-<createdTime>2018-10-21 13:54:35 UTC</createdTime>
+<createdTime>2019-08-21 15:43:56 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
 <use>0</use>
@@ -64,12 +49,12 @@
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 <associations>
-<colAssociation fkAssociation="31A0945E-187B-160A-3F84-CC6AF0E4CF16" referredColumn="B1D3D7C6-D459-592F-6DDB-6D7A3F3C1649"/>
+<colAssociation fkAssociation="7694A937-E719-75D7-F458-F35D87E7DB5A" referredColumn="B1D3D7C6-D459-592F-6DDB-6D7A3F3C1649"/>
 </associations>
 </Column>
-<Column name="VWTR_VGWT_ID" id="8559D9F2-10D8-1D6B-50AB-1AF69A0D1088">
+<Column name="ETUS_ENTI_ID" id="B270A364-6338-A6A3-3A34-D8F4F373353E">
 <createdBy>stb</createdBy>
-<createdTime>2018-10-21 13:54:35 UTC</createdTime>
+<createdTime>2019-08-21 15:43:56 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
 <use>0</use>
@@ -79,12 +64,12 @@
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 <associations>
-<colAssociation fkAssociation="05C6D321-3CC8-4B28-3BE7-B85D072B7E09" referredColumn="DD90C865-C842-4AC3-B30F-3935F4A8EE2F"/>
+<colAssociation fkAssociation="E4A6A21B-C7B4-5058-4213-F5E6AF3F2F22" referredColumn="B53A54A2-7725-B574-6A72-01964F006A02"/>
 </associations>
 </Column>
-<Column name="VWTR_UC" id="8FC67697-22CE-537B-1B2C-3D0D2FDD7997">
+<Column name="ETUS_UC" id="2F3ED3FE-D725-9335-1A0E-977B03BE27F0">
 <createdBy>stb</createdBy>
-<createdTime>2019-08-21 09:52:52 UTC</createdTime>
+<createdTime>2019-08-21 15:43:56 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -97,9 +82,9 @@
 <property name="ctemplateID" value="F7EEFF47-7A42-2A3E-7DFC-D0558D6996B8"/>
 </propertyMap>
 </Column>
-<Column name="VWTR_DC" id="E3CA211B-8914-D491-FC1E-0E315A3018D1">
+<Column name="ETUS_DC" id="36C276E6-BCA3-A68A-5D7E-D797F68F0842">
 <createdBy>stb</createdBy>
-<createdTime>2019-08-21 09:52:52 UTC</createdTime>
+<createdTime>2019-08-21 15:43:56 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -110,9 +95,9 @@
 <property name="ctemplateID" value="74D877A0-4C3B-63EE-06C5-071C7695907C"/>
 </propertyMap>
 </Column>
-<Column name="VWTR_UM" id="5F68B356-9A37-2A0D-D79E-31EB84C14AB1">
+<Column name="ETUS_UM" id="4A0F86BD-B957-823C-6AFA-56C5804F3BBE">
 <createdBy>stb</createdBy>
-<createdTime>2019-08-21 09:52:52 UTC</createdTime>
+<createdTime>2019-08-21 15:43:56 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
@@ -125,9 +110,9 @@
 <property name="ctemplateID" value="B2E17D53-C2F7-74D9-022D-5D63F3931519"/>
 </propertyMap>
 </Column>
-<Column name="VWTR_DM" id="66177312-BB51-DC61-76F6-A4A1FBA6C9C8">
+<Column name="ETUS_DM" id="FA46F011-143B-FBD8-1EBE-C43FCEDA5DE8">
 <createdBy>stb</createdBy>
-<createdTime>2019-08-21 09:52:52 UTC</createdTime>
+<createdTime>2019-08-21 15:43:56 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
@@ -141,47 +126,46 @@
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
-<ind_PK_UK id="21C5E10C-802C-B6E8-9C35-63566785922F" name="VWTR_PK">
+<ind_PK_UK id="925800BB-4D67-8FAC-1099-60DD066C43FE" name="TFUS_PK">
 <createdBy>stb</createdBy>
-<createdTime>2018-10-21 13:54:34 UTC</createdTime>
+<createdTime>2019-08-21 15:43:56 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 <pk>true</pk>
 <indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
-<colUsage columnID="3C705933-2FBA-EB98-E9F7-5A31008897DE"/>
+<colUsage columnID="52A26FBE-35DD-81D0-3D5B-1561C6B13078"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="5DA2BE78-6458-9414-14A5-328CDD614934" name="VWTR_UK">
+<ind_PK_UK id="46D00746-ADE8-5F65-DDE0-879D81939DEB" name="TFUS_TFUS_ATTF_ID_TFUS_ATTR_ID_UN">
 <createdBy>stb</createdBy>
-<createdTime>2018-10-21 13:54:34 UTC</createdTime>
-<generatorID>F773DDC1-736A-593A-180F-DB0ED6181D6B</generatorID>
+<createdTime>2019-08-21 15:43:56 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 <indexState>Unique Constraint</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
-<colUsage columnID="8559D9F2-10D8-1D6B-50AB-1AF69A0D1088"/>
-<colUsage columnID="F6C02354-EBFF-D735-9794-CF2C5D038798"/>
+<colUsage columnID="CDB6E06B-4B10-8BB8-3119-F74570D617DE"/>
+<colUsage columnID="B270A364-6338-A6A3-3A34-D8F4F373353E"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="DE20D3BC-070A-91C5-E6F0-A0D8C668B26A" name="VWTR_VGWT_FK">
+<ind_PK_UK id="F5E04299-6E6E-ABE8-9D5C-95ED366C4270" name="ETUS_SCHN_FK">
 <createdBy>stb</createdBy>
-<createdTime>2018-10-21 13:54:35 UTC</createdTime>
-<generatorID>D737BBB7-56C9-201C-7A6C-F620A3EA7254</generatorID>
+<createdTime>2019-08-21 15:48:48 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 <indexState>Foreign Key</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
-<colUsage columnID="8559D9F2-10D8-1D6B-50AB-1AF69A0D1088"/>
+<colUsage columnID="CDB6E06B-4B10-8BB8-3119-F74570D617DE"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="42132EAD-4FC3-E7B7-D741-33A3985DAB7F" name="VWTR_SCHN_FK">
+<ind_PK_UK id="3513C551-7F47-3C15-72CD-A78B7E6278CB" name="ETUS_ENTI_FK">
 <createdBy>stb</createdBy>
-<createdTime>2019-08-21 09:52:01 UTC</createdTime>
+<createdTime>2019-08-21 15:49:05 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 <indexState>Foreign Key</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
-<colUsage columnID="F6C02354-EBFF-D735-9794-CF2C5D038798"/>
+<colUsage columnID="B270A364-6338-A6A3-3A34-D8F4F373353E"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>

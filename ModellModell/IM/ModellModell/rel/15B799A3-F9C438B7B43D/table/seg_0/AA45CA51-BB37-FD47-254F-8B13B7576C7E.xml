@@ -108,6 +108,63 @@
 <colAssociation fkAssociation="68CDF678-A9E4-12ED-4C72-2FE50334C895" referredColumn="B336AD84-7106-5FB4-F28A-49B16300F4EE"/>
 </associations>
 </Column>
+<Column name="SCHA_UC" id="3A0941F8-545A-33EE-B38B-CC3E9EF30344">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-21 15:37:13 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<computed>true</computed>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="F7EEFF47-7A42-2A3E-7DFC-D0558D6996B8"/>
+</propertyMap>
+</Column>
+<Column name="SCHA_DC" id="6C851CA3-0E76-E30B-B05E-25393D589A44">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-21 15:37:13 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT047</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="74D877A0-4C3B-63EE-06C5-071C7695907C"/>
+</propertyMap>
+</Column>
+<Column name="SCHA_UM" id="3265B86D-D147-4657-EBA7-6E00AFAB2F9F">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-21 15:37:13 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="B2E17D53-C2F7-74D9-022D-5D63F3931519"/>
+</propertyMap>
+</Column>
+<Column name="SCHA_DM" id="C9125EF7-130F-D51A-C930-0A3F415EBA8B">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-21 15:37:13 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT047</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="B398D247-00C1-F016-3BBB-FE65CFFFF7AA"/>
+</propertyMap>
+</Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
 <ind_PK_UK id="31356FEF-BFD1-ED2A-A0CC-EF196090E038" name="SCHA_PK">

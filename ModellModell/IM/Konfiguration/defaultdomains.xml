@@ -185,8 +185,14 @@
 <ownerDesignName>System</ownerDesignName>
 <importedID>55CB11A1-3EFC-3253-465C-D58D3D8252AD</importedID>
 <avTSortOrder>0</avTSortOrder>
+<dataTypeSize>10 CHAR</dataTypeSize>
 <fileName>defaultdomains</fileName>
-<logicalDatatype>LOGDT017</logicalDatatype>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<listOfValues>
+<valueDef value="MANUELL" description="Manuell"/>
+<valueDef value="PERIODE" description="Periodisch nach letztem Start"/>
+<valueDef value="ZPKT" description="Zeitpunkt"/>
+</listOfValues>
 </Domain>
 <Domain class="oracle.dbtools.crest.model.design.Domain" name="Name" id="57EF5654-BB1B-99CD-E31A-A47A05AD3EE6">
 <createdBy>stb</createdBy>
@@ -636,8 +642,11 @@
 <ownerDesignName>System</ownerDesignName>
 <importedID>FEA1A894-BD6D-FEF8-423C-6857A9D694A1</importedID>
 <avTSortOrder>0</avTSortOrder>
+<dataTypePrecision>5</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
 <fileName>defaultdomains</fileName>
-<logicalDatatype>LOGDT017</logicalDatatype>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<unitOfMeasure>sec</unitOfMeasure>
 </Domain>
 </domains>
 </DomainFile>

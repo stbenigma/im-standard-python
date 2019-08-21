@@ -53,6 +53,7 @@
 <ownerDesignName>ModellModell</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <domain>55CB11A1-3EFC-3253-465C-D58D3D8252AD</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
@@ -65,6 +66,7 @@
 <ownerDesignName>ModellModell</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
 <domain>FEA1A894-BD6D-FEF8-423C-6857A9D694A1</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
@@ -73,7 +75,6 @@
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:35 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
-<nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
 <use>0</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
@@ -89,7 +90,6 @@
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:59:23 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
-<nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
 <use>0</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
@@ -100,6 +100,63 @@
 <associations>
 <colAssociation fkAssociation="2D39E66C-9C87-2137-99B4-B4A238594822" referredColumn="D8469506-6FD4-3358-1C9D-64435152B23C"/>
 </associations>
+</Column>
+<Column name="ATTF_UC" id="AA1870C2-C397-8497-9DB8-33C70AE3CCE4">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-21 15:36:48 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<computed>true</computed>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="F7EEFF47-7A42-2A3E-7DFC-D0558D6996B8"/>
+</propertyMap>
+</Column>
+<Column name="ATTF_DC" id="77891A1D-292D-81A3-D4B8-4D817AED8A92">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-21 15:36:48 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT047</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="74D877A0-4C3B-63EE-06C5-071C7695907C"/>
+</propertyMap>
+</Column>
+<Column name="ATTF_UM" id="DEE6CEF7-2322-19BF-EF14-2155A74FFE7C">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-21 15:36:48 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="B2E17D53-C2F7-74D9-022D-5D63F3931519"/>
+</propertyMap>
+</Column>
+<Column name="ATTF_DM" id="E224A82C-46DB-3EC7-5D6C-E203BE62D375">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-21 15:36:48 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT047</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="B398D247-00C1-F016-3BBB-FE65CFFFF7AA"/>
+</propertyMap>
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
@@ -136,12 +193,4 @@
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>
-<tableCheckConstraints itemClass="oracle.dbtools.crest.model.design.constraint.TableLevelConstraint">
-<tableCheckConstraint name="ATTF_CK_1" directorySegmentName="seg_0" id="9506F11F-2144-4F34-7F5F-825544D02B55">
-<createdBy>stb</createdBy>
-<createdTime>2019-08-21 10:07:24 UTC</createdTime>
-<ownerDesignName>ModellModell</ownerDesignName>
-<rule><![CDATA[ATTF_SCHA_ID IS NOT NULL OR ATTF_ATTR_ID IS NOT NULL]]></rule>
-</tableCheckConstraint>
-</tableCheckConstraints>
 </Table>
