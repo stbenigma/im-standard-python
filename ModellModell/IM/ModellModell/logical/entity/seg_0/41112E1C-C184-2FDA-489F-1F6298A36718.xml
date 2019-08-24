@@ -2,7 +2,20 @@
 <Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="41112E1C-C184-2FDA-489F-1F6298A36718" name="Anwendung">
 <createdBy>stb</createdBy>
 <createdTime>2018-11-26 15:46:56 UTC</createdTime>
-<comment>Eine Anwendung mit bestimmten Funktion für die Durchführung der Geschäftsprozesse. Von einem Hersteller geliefert und normalerweise von der IT-Abteilung, einer Person (z.B. ein eine Anwendung mit Standardtools wie Excel gelöst)  oder einer externen Stelle betreut.&lt;br/&gt;&lt;br/&gt;ACHTUNG: Standardtools (Excel, Word etc.) sind keine Anwendungen. Siehe Lokale Anwendung.&lt;br/&gt;Anwendungen die mit Standardtools gelöst sind müssen nach ihrer Funktion / ihrem Zweck als eigene Anwendung beschreiben werden.&lt;br/&gt;Beispiele (in Excel gelöst): Ferienabrechnung, Preiskalkulation , Mahnungkontrolle&lt;br/&gt;&lt;br/&gt;Datenbanken ausschliesslich von einer Applikation direkt genutzt werden können und wenn überhaupt nur über Services der Applikation zugreifbar sind werden nicht als Datenbanksysteme aufgezeichnet. Sie sind integraler Bestandteil der Applikation und werden bei derer Beschreibung erwähnt.&lt;br/&gt;&lt;br/&gt;Beispiele:&lt;br/&gt;ERP&lt;br/&gt;PIM&lt;br/&gt;FiBu&lt;br/&gt;Lohnbuchhaltung&lt;br/&gt;Zeitabrechnung</comment>
+<comment><![CDATA[Eine Anwendung mit bestimmten Funktion für die Durchführung der Geschäftsprozesse. Von einem Hersteller geliefert und normalerweise von der IT-Abteilung, einer Person (z.B. ein eine Anwendung mit Standardtools wie Excel gelöst)  oder einer externen Stelle betreut.
+
+ACHTUNG: Standardtools (Excel, Word etc.) sind keine Anwendungen. Siehe Lokale Anwendung.
+Anwendungen die mit Standardtools gelöst sind müssen nach ihrer Funktion / ihrem Zweck als eigene Anwendung beschreiben werden.
+Beispiele (in Excel gelöst): Ferienabrechnung, Preiskalkulation , Mahnungkontrolle
+
+Datenbanken ausschliesslich von einer Applikation direkt genutzt werden können und wenn überhaupt nur über Services der Applikation zugreifbar sind werden nicht als Datenbanksysteme aufgezeichnet. Sie sind integraler Bestandteil der Applikation und werden bei derer Beschreibung erwähnt.
+
+Beispiele:
+ERP
+PIM
+FiBu
+Lohnbuchhaltung
+Zeitabrechnung]]></comment>
 <ownerDesignName>ModellModell</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
@@ -22,7 +35,7 @@
 <Attribute name="Name [L]" id="B38EA564-EA95-1413-91E6-077E6AC31C25">
 <createdBy>stb</createdBy>
 <createdTime>2019-03-04 18:15:05 UTC</createdTime>
-<comment>Name des Hoheitsbereichs</comment>
+<comment><![CDATA[Name des Hoheitsbereichs]]></comment>
 <generatorID>621EF2F9-FAEF-21B1-DEBD-36894107F476</generatorID>
 <ownerDesignName>ModellModell</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
@@ -40,7 +53,7 @@
 <Attribute name="Name" id="7652ACFC-5610-4C3D-27A8-ED6D4736EF34">
 <createdBy>stb</createdBy>
 <createdTime>2019-03-04 18:15:05 UTC</createdTime>
-<comment>Name der Entität der in der Kommunikation normalerweise gebraucht wird.</comment>
+<comment><![CDATA[Name der Entität der in der Kommunikation normalerweise gebraucht wird.]]></comment>
 <generatorID>621EF2F9-FAEF-21B1-DEBD-36894107F476</generatorID>
 <ownerDesignName>ModellModell</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
@@ -50,6 +63,23 @@
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <referedAttribute>63F3F918-F1A2-B2D8-42C7-B60721C8D8F0</referedAttribute>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Aufgabenbereich_Name2" id="921AE25B-CF9A-19D3-CC37-5A51F932C4DB">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-24 10:51:38 UTC</createdTime>
+<comment><![CDATA[Name der Entität der in der Kommunikation normalerweise gebraucht wird.]]></comment>
+<generatorID>621EF2F9-FAEF-21B1-DEBD-36894107F476</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<referedAttribute>0388952A-4C18-EC82-78AB-E1891FA922B8</referedAttribute>
 <use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
