@@ -2382,6 +2382,10 @@
 </FontObject>
 </fonts>
 </OView>
+<OView class="oracle.dbtools.crest.swingui.logical.TVEntity" oid="DBF21665-61D4-DBE0-83C4-F54F42321791" otype="Entity" vid="AF0BD76A-C871-091E-47F5-C28C49F1A757">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<bounds x="490" y="178" width="170" height="110"/>
+</OView>
 <OView class="oracle.dbtools.crest.swingui.logical.TVEntity" oid="DC28FCDB-CC97-5454-BD78-F1021F1567DC" otype="Entity" vid="27B0A163-908C-A663-DE5C-0BF867600FB4">
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
 <bounds x="2270" y="530" width="170" height="110"/>
@@ -3461,6 +3465,11 @@
 <point x="100" y="185"/>
 </points>
 </Connector>
+<Connector class="oracle.dbtools.crest.swingui.logical.TVInheritanceRelation" oid="6EC5D978-3890-8C79-841A-3BAFCBFF9605" otype="Hierarchy relation" vid_source="F2A249E2-2604-C65C-C738-26C295D50948" vid_target="AF0BD76A-C871-091E-47F5-C28C49F1A757">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<backgroundColor>-65536</backgroundColor>
+<lineWidth>1</lineWidth>
+</Connector>
 <Connector class="oracle.dbtools.crest.swingui.logical.TVInheritanceRelation" oid="6EC88154-06EF-A78C-A87B-0793B4AE7211" otype="Hierarchy relation" vid_source="8D3A38FE-C3FE-FB11-75B5-AAA012DC7AA6" vid_target="72049C97-93D8-9DBD-1442-D66BDB80F889">
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
 <backgroundColor>-65536</backgroundColor>
@@ -4119,6 +4128,11 @@
 <point x="447" y="609"/>
 <point x="297" y="609"/>
 </points>
+</Connector>
+<Connector class="oracle.dbtools.crest.swingui.logical.TVRelation" oid="F9ABFC78-85CC-0632-E820-65CDF454D345" otype="Relation" vid_source="AF0BD76A-C871-091E-47F5-C28C49F1A757" vid_target="218AC9FB-FF1A-2A4E-B229-FF9DBE821DE1">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<backgroundColor>-16777216</backgroundColor>
+<lineWidth>1</lineWidth>
 </Connector>
 <Connector class="oracle.dbtools.crest.swingui.logical.TVRelation" oid="FB63C5ED-F627-6947-A471-AD80B1D32D55" otype="Relation" vid_source="F2A249E2-2604-C65C-C738-26C295D50948" vid_target="637223C2-523F-F68C-CE46-FFBA5C41DD34">
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>

@@ -2,7 +2,12 @@
 <Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="3CEC80DC-9AC7-5783-79EC-A5B9D15FE871" name="Attribut">
 <createdBy>stb</createdBy>
 <createdTime>2018-05-30 12:08:58 UTC</createdTime>
-<comment>Beschreibung eines Trägers einers Wertes.&lt;br/&gt;Dieses Attribut ist die gültige Single Source of Truth des konzeptionellen Modells. &lt;br/&gt;&lt;br/&gt;Es ist nicht zwingend notwendig, dass dieses Attribut in dieser Form in einem der Systeme verwaltet wird. Die Definition gilt als Referenz für alle, die mit dieser Information arbeiten wollen&lt;br/&gt;&lt;br/&gt;</comment>
+<comment><![CDATA[Beschreibung eines Trägers einers Wertes.
+Dieses Attribut ist die gültige Single Source of Truth des konzeptionellen Modells. 
+
+Es ist nicht zwingend notwendig, dass dieses Attribut in dieser Form in einem der Systeme verwaltet wird. Die Definition gilt als Referenz für alle, die mit dieser Information arbeiten wollen
+
+]]></comment>
 <ownerDesignName>ModellModell</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
@@ -27,7 +32,7 @@
 <Attribute name="Attributmame" id="EDEE919C-7C94-15E9-147C-57317A603D15">
 <createdBy>stb</createdBy>
 <createdTime>2018-05-30 12:09:49 UTC</createdTime>
-<comment>Name, der etwas über die Rolle, Verwendung der Eigenschaft in der Entität aussagt. Häufig = Domänenname</comment>
+<comment><![CDATA[Name, der etwas über die Rolle, Verwendung der Eigenschaft in der Entität aussagt. Häufig = Domänenname]]></comment>
 <ownerDesignName>ModellModell</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
@@ -42,7 +47,7 @@
 <Attribute name="Anzeigename [L]" id="5786D6AD-9848-D503-A7AE-9758E9D42223">
 <createdBy>stb</createdBy>
 <createdTime>2018-11-04 11:15:32 UTC</createdTime>
-<comment>Kurzbezeichnung der Entität für die Verwendung aus Überschrift, in Referenzen </comment>
+<comment><![CDATA[Kurzbezeichnung der Entität für die Verwendung aus Überschrift, in Referenzen ]]></comment>
 <ownerDesignName>ModellModell</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
@@ -73,7 +78,7 @@
 <Attribute name="Tooltip [L]" id="18044B2B-E9C9-F62B-A516-84B3A24746F4">
 <createdBy>stb</createdBy>
 <createdTime>2018-05-30 12:10:52 UTC</createdTime>
-<comment>Anzeige in Masken für die Erläuterung der Nutzung, Bearbeitung, Verwendung des Attributwertes</comment>
+<comment><![CDATA[Anzeige in Masken für die Erläuterung der Nutzung, Bearbeitung, Verwendung des Attributwertes]]></comment>
 <ownerDesignName>ModellModell</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
@@ -89,7 +94,7 @@
 <Attribute name="ist Pflichtattribut" id="F73DAF6B-B2F9-9A75-F80C-24594970D8AA">
 <createdBy>stb</createdBy>
 <createdTime>2018-11-04 11:15:56 UTC</createdTime>
-<comment>JA -&gt; Das Feld muss einen Wert enthalten.</comment>
+<comment><![CDATA[JA -> Das Feld muss einen Wert enthalten.]]></comment>
 <ownerDesignName>ModellModell</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
@@ -104,7 +109,7 @@
 <Attribute name="ist Deskriptorfeld" id="472E1B0B-0BBC-8C55-1798-08BC327AB69E">
 <createdBy>stb</createdBy>
 <createdTime>2018-11-04 11:16:41 UTC</createdTime>
-<comment>Das Attribut charakterisiert die Entität und ist wichtig für ihr Verständnis</comment>
+<comment><![CDATA[Das Attribut charakterisiert die Entität und ist wichtig für ihr Verständnis]]></comment>
 <ownerDesignName>ModellModell</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
@@ -119,7 +124,9 @@
 <Attribute name="ist Wiederholattribut" id="6A9298F2-7C16-0F9A-DF34-457287FFFC4F">
 <createdBy>stb</createdBy>
 <createdTime>2018-11-04 11:47:57 UTC</createdTime>
-<comment>JA -&gt; Das Feld kann mehere Werte enthalten. &lt;br/&gt;NEIN -&gt; Feld enthält maximal einen Wert.&lt;br/&gt;Kann  über Extratabelle gelöst werden.</comment>
+<comment><![CDATA[JA -> Das Feld kann mehere Werte enthalten. 
+NEIN -> Feld enthält maximal einen Wert.
+Kann  über Extratabelle gelöst werden.]]></comment>
 <ownerDesignName>ModellModell</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
@@ -134,7 +141,8 @@
 <Attribute name="ist sprachabhängig" id="75E53EA7-9CD9-0AAE-6802-1E239D31EECA">
 <createdBy>stb</createdBy>
 <createdTime>2018-11-04 11:49:19 UTC</createdTime>
-<comment>JA -&gt; Der Feldwert kann in mehreren Sprachen vorkommen.&lt;br/&gt;Über Extratabelle die mit Sprachen verknüpft ist lösen</comment>
+<comment><![CDATA[JA -> Der Feldwert kann in mehreren Sprachen vorkommen.
+Über Extratabelle die mit Sprachen verknüpft ist lösen]]></comment>
 <ownerDesignName>ModellModell</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
@@ -149,7 +157,8 @@
 <Attribute name="ist historisiert" id="3AE5995D-55A4-6334-61C4-C0B49DA294EA">
 <createdBy>stb</createdBy>
 <createdTime>2018-11-04 11:49:22 UTC</createdTime>
-<comment>JA -&gt; Der Feldwert kann über die Zeit ändern, Die Historie muss im System verwaltet werden. Zu einem Zeitpunkt kann nur 1 Wert gültig sein.&lt;br/&gt;Über Extratabelle verknüpft ist lösen</comment>
+<comment><![CDATA[JA -> Der Feldwert kann über die Zeit ändern, Die Historie muss im System verwaltet werden. Zu einem Zeitpunkt kann nur 1 Wert gültig sein.
+Über Extratabelle verknüpft ist lösen]]></comment>
 <ownerDesignName>ModellModell</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
@@ -164,7 +173,9 @@
 <Attribute name="ist verschlüsselt" id="743343B0-7B01-8A4C-CDC6-45E8B72B3E2F">
 <createdBy>stb</createdBy>
 <createdTime>2019-07-02 15:23:05 UTC</createdTime>
-<comment>JA -&gt; Das Feld muss in Speicherung und Transport verschlüsselt werden&lt;br/&gt;NEIN -&gt; Feld wird nicht verschlüsselt&lt;br/&gt;</comment>
+<comment><![CDATA[JA -> Das Feld muss in Speicherung und Transport verschlüsselt werden
+NEIN -> Feld wird nicht verschlüsselt
+]]></comment>
 <ownerDesignName>ModellModell</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
@@ -179,7 +190,7 @@
 <Attribute name="Anzeigereihenfolge" id="598275C8-6915-4D18-A03A-DDE739950A91">
 <createdBy>stb</createdBy>
 <createdTime>2018-11-04 11:14:15 UTC</createdTime>
-<comment>Riehenfolge der Anzeige auf Diagrammen, in Reports. Leer-&gt; Attribut kommt nach Name sortiert an den Schluss einer Liste</comment>
+<comment><![CDATA[Riehenfolge der Anzeige auf Diagrammen, in Reports. Leer-> Attribut kommt nach Name sortiert an den Schluss einer Liste]]></comment>
 <ownerDesignName>ModellModell</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
@@ -195,7 +206,7 @@
 <Attribute name="Entitätname [L]" id="0C01D9CE-61C5-17EA-B371-14E7D8D04675">
 <createdBy>stb</createdBy>
 <createdTime>2018-11-26 17:19:36 UTC</createdTime>
-<comment>Name der Entität der in der Kommunikation normalerweise gebraucht wird.</comment>
+<comment><![CDATA[Name der Entität der in der Kommunikation normalerweise gebraucht wird.]]></comment>
 <generatorID>5ADA0099-E18A-0713-9E1D-9A615137188C</generatorID>
 <ownerDesignName>ModellModell</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
@@ -233,7 +244,6 @@
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 </engineerTo>
-<pk>true</pk>
 <usedAttributes>
 <attributeRef>0C01D9CE-61C5-17EA-B371-14E7D8D04675</attributeRef>
 </usedAttributes>

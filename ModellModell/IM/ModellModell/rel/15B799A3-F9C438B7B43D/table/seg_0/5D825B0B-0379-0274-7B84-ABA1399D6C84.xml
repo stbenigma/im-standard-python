@@ -13,6 +13,8 @@ Die in anderen Darstellungsarten gebräuchlichen Beziehungen können aus  Option
 <ownerDesignName>ModellModell</ownerDesignName>
 <allowColumnReorder>false</allowColumnReorder>
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<existDependencyConstraintName>BEZI_TYPE_CHJ</existDependencyConstraintName>
+<existDependencyGenerationLevel>Discriminator value</existDependencyGenerationLevel>
 <parsed>true</parsed>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
 <Column name="BEZI_ID" id="B6D90C3F-10C6-0BD1-37C5-B8BF8622003D">
@@ -25,16 +27,81 @@ Die in anderen Darstellungsarten gebräuchlichen Beziehungen können aus  Option
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="BEZI_ISA_ASSOC" id="9D53A349-AB5D-E70D-91A3-92A8244D01B0">
+<Column name="BEZI_TYPE" id="9D53A349-AB5D-E70D-91A3-92A8244D01B0">
 <createdBy>stb</createdBy>
 <createdTime>2019-04-02 15:01:07 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
 <use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
-<domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
+<domain>474B8F52-5B70-256E-A0FA-DF8164EAFE54</domain>
+<listOfValues>
+<valueDef value="1:1" description=""/>
+<valueDef value="ISA" description=""/>
+<valueDef value="M:1" description=""/>
+<valueDef value="M:N" description=""/>
+</listOfValues>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<isDiscriminatorColumn>true</isDiscriminatorColumn>
+<dependentColumns>
+<dependentColumn class="oracle.dbtools.crest.model.design.relational.Column$DependentColumnDescriptor">
+<columnID>D26575BF-AE32-0BBB-75E9-BEED5818324C</columnID>
+<dependAsMandatory>false</dependAsMandatory>
+<dependOnValue>true</dependOnValue>
+<discriminatorValue>ISA</discriminatorValue>
+<id>C0810AB9-D28F-8563-A263-712DF8BFADC9</id>
+</dependentColumn>
+<dependentColumn class="oracle.dbtools.crest.model.design.relational.Column$DependentColumnDescriptor">
+<columnID>92313DAC-23A0-979F-280E-7F4415E1AA2D</columnID>
+<dependAsMandatory>false</dependAsMandatory>
+<dependOnValue>true</dependOnValue>
+<discriminatorValue>ISA</discriminatorValue>
+<id>5381C6E7-A310-4624-CBF5-D2232C394404</id>
+</dependentColumn>
+<dependentColumn class="oracle.dbtools.crest.model.design.relational.Column$DependentColumnDescriptor">
+<columnID>D26575BF-AE32-0BBB-75E9-BEED5818324C</columnID>
+<dependAsMandatory>true</dependAsMandatory>
+<dependOnValue>true</dependOnValue>
+<discriminatorValue>M:1</discriminatorValue>
+<id>FE6611EE-4595-F5D1-842F-381F451AEB94</id>
+</dependentColumn>
+<dependentColumn class="oracle.dbtools.crest.model.design.relational.Column$DependentColumnDescriptor">
+<columnID>92313DAC-23A0-979F-280E-7F4415E1AA2D</columnID>
+<dependAsMandatory>true</dependAsMandatory>
+<dependOnValue>true</dependOnValue>
+<discriminatorValue>M:1</discriminatorValue>
+<id>42F35512-67FF-D7B0-CCA6-23B0DB9652F3</id>
+</dependentColumn>
+<dependentColumn class="oracle.dbtools.crest.model.design.relational.Column$DependentColumnDescriptor">
+<columnID>D26575BF-AE32-0BBB-75E9-BEED5818324C</columnID>
+<dependAsMandatory>true</dependAsMandatory>
+<dependOnValue>true</dependOnValue>
+<discriminatorValue>M:N</discriminatorValue>
+<id>47361F42-000C-9388-A03F-B826A73016F8</id>
+</dependentColumn>
+<dependentColumn class="oracle.dbtools.crest.model.design.relational.Column$DependentColumnDescriptor">
+<columnID>92313DAC-23A0-979F-280E-7F4415E1AA2D</columnID>
+<dependAsMandatory>true</dependAsMandatory>
+<dependOnValue>true</dependOnValue>
+<discriminatorValue>M:N</discriminatorValue>
+<id>78ACBFA7-020C-EEE5-B03E-96D0D3D6A135</id>
+</dependentColumn>
+<dependentColumn class="oracle.dbtools.crest.model.design.relational.Column$DependentColumnDescriptor">
+<columnID>D26575BF-AE32-0BBB-75E9-BEED5818324C</columnID>
+<dependAsMandatory>false</dependAsMandatory>
+<dependOnValue>true</dependOnValue>
+<discriminatorValue>1:1</discriminatorValue>
+<id>23397933-5C73-49DF-821F-B3DE21C8A7EF</id>
+</dependentColumn>
+<dependentColumn class="oracle.dbtools.crest.model.design.relational.Column$DependentColumnDescriptor">
+<columnID>92313DAC-23A0-979F-280E-7F4415E1AA2D</columnID>
+<dependAsMandatory>false</dependAsMandatory>
+<dependOnValue>true</dependOnValue>
+<discriminatorValue>1:1</discriminatorValue>
+<id>6E4FECD8-2C70-B873-9052-E9A2E0D5C965</id>
+</dependentColumn>
+</dependentColumns>
 </Column>
 <Column name="BEZI_ENTI_ID_VON" id="49F518CF-D377-BA54-5294-B02648EE3C34">
 <createdBy>stb</createdBy>
@@ -299,15 +366,26 @@ Die in anderen Darstellungsarten gebräuchlichen Beziehungen können aus  Option
 <createdBy>stb</createdBy>
 <createdTime>2019-04-02 15:04:44 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
-<rule><![CDATA[(BEZI_ISA_ASSOC_= 'TRUE' 
+<rule><![CDATA[(BEZI_TYPE = 'ISA' 
   AND BEZI_ISA_ABBILDTYP_VON_ZU = '1'
   AND BEZI_ISA_ABBILDTYP_ZU_VON = '1'
   AND BEZI_PFLICHT_ASSOC_VON_ZU = 'TRUE'
+) OR
+(BEZI_TYPE = '1:1' 
+  AND BEZI_ISA_ABBILDTYP_VON_ZU = '1'
+  AND BEZI_ISA_ABBILDTYP_ZU_VON = '1'
+) OR
+(BEZI_TYPE = 'M:1' 
+  AND BEZI_ISA_ABBILDTYP_VON_ZU = 'M'
+  AND BEZI_ISA_ABBILDTYP_ZU_VON = '1'
+) OR
+(BEZI_TYPE = 'M:N' 
+  AND BEZI_ISA_ABBILDTYP_VON_ZU = 'M'
+  AND BEZI_ISA_ABBILDTYP_ZU_VON = 'M'
 )
-OR (BEZI_IS_ASSOC = 'FALSE'
-   AND BEZI_UETX_ID_ASSOC_ZU_VON IS NOT NULL
-   AND BEZI_UETX_ID_ASSOC_ZU_VON IS NOT NULL
-   )]]></rule>
+
+
+]]></rule>
 </tableCheckConstraint>
 </tableCheckConstraints>
 </Table>

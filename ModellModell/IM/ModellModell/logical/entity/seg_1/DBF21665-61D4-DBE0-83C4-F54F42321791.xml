@@ -1,10 +1,10 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="C3D3E2A7-C0FB-C948-CCBE-2163DA02412D" name="Funktionale Beziehung">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="DBF21665-61D4-DBE0-83C4-F54F42321791" name="many2many Beziehung">
 <createdBy>stb</createdBy>
-<createdTime>2018-11-26 17:25:32 UTC</createdTime>
-<comment><![CDATA[Eine M:1 Beziehung  zwischen 2 Entitäten.
-Die M-Seite ist immer die von-Seite (im ODM nicht so geführt).
-]]></comment>
+<createdTime>2019-08-26 14:26:19 UTC</createdTime>
+<comment><![CDATA[Eine M:NBeziehung  zwischen 2 Entitäten.
+
+Sie kann (wie im ODM möglich) Attribute haben, die im physisischen Modell in die Zwischenentität wandern.]]></comment>
 <ownerDesignName>ModellModell</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
@@ -20,4 +20,5 @@ Die M-Seite ist immer die von-Seite (im ODM nicht so geführt).
 <maxVolumes>9999999</maxVolumes>
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
+<createSurrogateKey>true</createSurrogateKey>
 </Entity>
