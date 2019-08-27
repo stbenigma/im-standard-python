@@ -2335,6 +2335,10 @@
 </FontObject>
 </fonts>
 </OView>
+<OView class="oracle.dbtools.crest.swingui.logical.TVEntity" oid="DA0F8974-C901-4E3B-938A-9457DCE6435F" otype="Entity" vid="E8CDA75A-268A-4272-4E6F-C4CCAA803969">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<bounds x="520" y="238" width="170" height="110"/>
+</OView>
 <OView class="oracle.dbtools.crest.swingui.logical.TVEntity" oid="DB450B2D-9C65-6429-1BEE-5757055BB563" otype="Entity" vid="1DEF554B-29B2-E343-80B6-BF1F8B1D39EC">
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
 <bounds x="1334" y="220" width="150" height="90"/>
@@ -3286,6 +3290,11 @@
 <backgroundColor>-65536</backgroundColor>
 <lineWidth>1</lineWidth>
 </Connector>
+<Connector class="oracle.dbtools.crest.swingui.logical.TVInheritanceRelation" oid="48B8F3CF-AED0-4B63-223D-F33BAD284F24" otype="Hierarchy relation" vid_source="F2A249E2-2604-C65C-C738-26C295D50948" vid_target="E8CDA75A-268A-4272-4E6F-C4CCAA803969">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<backgroundColor>-65536</backgroundColor>
+<lineWidth>1</lineWidth>
+</Connector>
 <Connector class="oracle.dbtools.crest.swingui.logical.TVInheritanceRelation" oid="49326CC3-CF03-A518-DE64-47CC85F80698" otype="Hierarchy relation" vid_source="F7A73E15-3CB5-E4F5-A169-1A03BBCFDCE1" vid_target="C36FBA8B-BE03-A60D-E777-B837BA39A88D">
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
 <backgroundColor>-65536</backgroundColor>
@@ -4177,6 +4186,10 @@
 </Connector>
 </connectors>
 <arcs>
+<Arc class="oracle.dbtools.crest.swingui.logical.TVArc" oid="176427B8-636C-504F-6B93-73CAFA78BFC0" otype="Arc" vid="94E69526-5936-ABA0-509C-63FB0A7E5A72">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<bounds x="2250" y="340" width="210" height="150"/>
+</Arc>
 <Arc class="oracle.dbtools.crest.swingui.logical.TVArc" oid="3C6C5565-6F59-8FAB-D4BC-369F847C1A43" otype="Arc" vid="04CD8065-CEEB-1CD3-FE2B-DB1B920EDE11">
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
 <bounds x="480" y="177" width="210" height="150"/>

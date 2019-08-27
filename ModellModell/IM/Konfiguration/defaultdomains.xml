@@ -45,6 +45,23 @@
 <fileName>defaultdomains</fileName>
 <logicalDatatype>LOGDT029</logicalDatatype>
 </Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="ModellelementTyp" id="0D75D1F9-839F-41DA-8464-0FF34C2F4ABB">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-27 17:06:51 UTC</createdTime>
+<comment><![CDATA[Kürzel der Tabelle eines Modellelementes]]></comment>
+<ownerDesignName>System</ownerDesignName>
+<avTSortOrder>0</avTSortOrder>
+<dataTypeSize>4</dataTypeSize>
+<fileName>defaultdomains</fileName>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<listOfValues>
+<valueDef value="ATTR" description="Attribut"/>
+<valueDef value="BEZI" description="Beziehung"/>
+<valueDef value="BURU" description="Business Rule"/>
+<valueDef value="ENTI" description="Entität"/>
+<valueDef value="WRTB" description="Wertebereich"/>
+</listOfValues>
+</Domain>
 <Domain class="oracle.dbtools.crest.model.design.Domain" name="Referenz" id="17A3A5E7-15FD-8979-FF7A-1FAC09CEC963">
 <createdBy>stb</createdBy>
 <createdTime>2019-07-02 15:51:18 UTC</createdTime>
