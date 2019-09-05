@@ -401,6 +401,24 @@
 		</section>
 	</sections>
 	</custom_report_template>
+	<custom_report_template id="8D277DEB-97BF-5ED5-F1C3-40C39AE96D87" name="EntityAttribute" description="" class="oracle.dbtools.crest.model.design.logical.Entity" >
+	<sections>
+		<section propertyName="Entity" type="" customName="Entity" level="0" class="oracle.dbtools.crest.model.design.logical.Entity">
+		<columns>
+				<column name="name" customName="Name" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+		</columns>
+		</section>
+		<section propertyName="attributes" type="collection" customName="Attributes" level="1" class="oracle.dbtools.crest.model.design.logical.Attribute">
+		<columns>
+				<column name="name" customName="Name" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="logicalDatatype" customName="Logical datatype" width="0.0" order="" massUpdatable="true" dynamic="false"/>
+				<column name="comment" customName="Comment" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="AP AttrName" customName="AP AttrName" width="0.0" order="" massUpdatable="false" dynamic="true"/>
+				<column name="AP Transformation" customName="AP Transformation" width="0.0" order="" massUpdatable="false" dynamic="true"/>
+		</columns>
+		</section>
+	</sections>
+	</custom_report_template>
 </custom_report_templates>
 <boolean_values>
 <str_true>

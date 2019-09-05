@@ -2,7 +2,12 @@
 <Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="DC7D3A49-7135-87EB-430D-0CDE657C7C6B" name="Schlüssel">
 <createdBy>stb</createdBy>
 <createdTime>2018-11-04 11:57:07 UTC</createdTime>
-<comment>Gruppe von identifizierenden Beziehungen und oder Attributen einer Entität.&lt;br/&gt;Jede Kombination von Werten in einem Schlüssel ist für die Entität einmalig. &lt;br/&gt;D.h. sie identifiziert genau 1 Eintrag in der Entität.&lt;br/&gt;&lt;br/&gt;Die Laufnummer ist ein Hilfsmittel. Genau genommen ist für einen Schlüssel nur eindeutig&lt;br/&gt;Entität + Menge aller Schlüsselelemente.</comment>
+<comment><![CDATA[Gruppe von identifizierenden Beziehungen und oder Attributen einer Entität.
+Jede Kombination von Werten in einem Schlüssel ist für die Entität einmalig. 
+D.h. sie identifiziert genau 1 Eintrag in der Entität.
+
+Die Laufnummer ist ein Hilfsmittel. Genau genommen ist für einen Schlüssel nur eindeutig
+Entität + Menge aller Schlüsselelemente.]]></comment>
 <ownerDesignName>ModellModell</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
@@ -24,7 +29,7 @@
 <Attribute name="Laufnr" id="0F57A3C6-A117-9DD0-D738-0C5304B50953">
 <createdBy>stb</createdBy>
 <createdTime>2018-11-04 12:01:26 UTC</createdTime>
-<comment>Schlüssel einer Entität müssen durch ein Merkmal unterscheidbar werden.</comment>
+<comment><![CDATA[Schlüssel einer Entität müssen durch ein Merkmal unterscheidbar werden.]]></comment>
 <ownerDesignName>ModellModell</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
@@ -39,7 +44,7 @@
 <Attribute name="Entitätname [L]" id="C2F010F2-7FFD-ED64-4BB8-349B6679C246">
 <createdBy>stb</createdBy>
 <createdTime>2018-11-04 11:59:53 UTC</createdTime>
-<comment>Name der Entität der in der Kommunikation normalerweise gebraucht wird.</comment>
+<comment><![CDATA[Name der Entität der in der Kommunikation normalerweise gebraucht wird.]]></comment>
 <generatorID>A3F5C580-9F75-32B1-4F8D-41C2C9715BBB</generatorID>
 <ownerDesignName>ModellModell</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
@@ -48,6 +53,20 @@
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
 </engineerTo>
 <referedAttribute>0F2758D2-C7D1-07D3-5C35-F1697AF2FBE0</referedAttribute>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Name" id="6D04CA98-27CA-B063-D963-6A963B19B9A1">
+<createdBy>stb</createdBy>
+<createdTime>2019-09-05 08:05:24 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
 <use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
