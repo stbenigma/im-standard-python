@@ -1,7 +1,7 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_198" directorySegmentName="seg_1" id="84581CAE-C3C4-A3F7-2870-C54D13A22533">
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_258" directorySegmentName="seg_2" id="1C197AA5-7BC9-32E1-4365-82C6D16C8468">
 <createdBy>stb</createdBy>
-<createdTime>2019-02-04 13:46:50 UTC</createdTime>
+<createdTime>2019-09-09 09:30:27 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
@@ -9,14 +9,13 @@
 </engineerTo>
 <useSurrogateKey>true</useSurrogateKey>
 <identifying>false</identifying>
-<nameOnSource>bedient</nameOnSource>
-<nameOnTarget>bedient durch</nameOnTarget>
-<optionalSource>true</optionalSource>
+<nameOnSource>besteht aus</nameOnSource>
+<nameOnTarget>trägt bei zu</nameOnTarget>
+<optionalSource>false</optionalSource>
 <optionalTarget>true</optionalTarget>
 <sourceCardinality>*</sourceCardinality>
-<sourceEntity>F86E14F1-5AB3-D203-38C5-60F7A9FE6085</sourceEntity>
+<sourceEntity>F47DC79F-8955-9925-285F-E8929891ED39</sourceEntity>
 <targetCardinalityString>*</targetCardinalityString>
-<targetEntity>664616E5-323A-87C2-1F28-5E768107634E</targetEntity>
+<targetEntity>F86E14F1-5AB3-D203-38C5-60F7A9FE6085</targetEntity>
 <transferable>true</transferable>
-<deleteRule>NO ACTION</deleteRule>
 </Relation>

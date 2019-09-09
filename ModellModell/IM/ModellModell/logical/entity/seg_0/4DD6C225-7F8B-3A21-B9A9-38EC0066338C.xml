@@ -2,11 +2,31 @@
 <Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="4DD6C225-7F8B-3A21-B9A9-38EC0066338C" name="Anwendungsfall">
 <createdBy>stb</createdBy>
 <createdTime>2019-02-03 12:06:37 UTC</createdTime>
-<comment>Anwendungsfälle sind Geschäftsprozesse, die immer von Akteuren (intern oder extern) ausglöst und die Akteure erwarten immer einen direkten Nutzen für ihre aktuelle Aufgabe. D.h. sie haben eine Wirkung gegen aussen.&lt;br/&gt;Anwendungsfälle beschreiben, was die Umwelt (Nutzende, Kunden, Mitbewerber, Betroffene, Klienten, Öffentlichkeit, öffentliche Verwaltung, etc.) vom System erwartet.&lt;br/&gt;&lt;br/&gt;Wikipedia:&lt;br/&gt;Ein Anwendungsfall (engl. use case) bündelt alle möglichen Szenarien, die eintreten können, wenn ein Akteur versucht, mit Hilfe des betrachteten Systems ein bestimmtes fachliches Ziel (engl. business goal) zu erreichen. Er beschreibt, was inhaltlich beim Versuch der Zielerreichung passieren kann und abstrahiert von konkreten technischen Lösungen. Das Ergebnis des Anwendungsfalls kann ein Erfolg oder Fehlschlag/Abbruch sein.&lt;br/&gt;&lt;br/&gt;Spektrum De&lt;br/&gt;Ein Use-Case-Diagramm (dt. Anwendungsfall-Diagramm) zeigt das&lt;br/&gt;externe Verhalten eines Systems aus der Sicht der Nutzer, indem es die Nutzer (im&lt;br/&gt;UML-Jargon „Akteure“ genannt), die Use-Cases und deren Beziehungen zueinander&lt;br/&gt;darstellt.  Use-Cases bilden die Reaktion des Systems auf Ereignisse seiner Umwelt ab und fassen dabei&lt;br/&gt;Teile der Systemdienstleistung zusammen. &lt;br/&gt;&lt;br/&gt;Beispiele:&lt;br/&gt;- Geld beziehen am Bancomat / am Bankschalter&lt;br/&gt;- Einreichen der Steuererklärung&lt;br/&gt;- Kauf eines Produktes&lt;br/&gt;- Einholen einer Auskunft&lt;br/&gt;- Einfordern Kompensationszahlung&lt;br/&gt;</comment>
+<comment><![CDATA[Anwendungsfälle sind Geschäftsprozesse, die immer von Akteuren (intern oder extern) ausglöst werden. Die Akteure erwarten immer einen direkten Nutzen für ihre aktuelle Aufgabe. D.h. sie haben eine Wirkung gegen aussen.
+Anwendungsfälle beschreiben, was die Umwelt (Nutzende, Kunden, Mitbewerber, Betroffene, Klienten, Öffentlichkeit, öffentliche Verwaltung, etc.) vom System erwartet.
+
+Wikipedia:
+Ein Anwendungsfall (engl. use case) bündelt alle möglichen Szenarien, die eintreten können, wenn ein Akteur versucht, mit Hilfe des betrachteten Systems ein bestimmtes fachliches Ziel (engl. business goal) zu erreichen. Er beschreibt, was inhaltlich beim Versuch der Zielerreichung passieren kann und abstrahiert von konkreten technischen Lösungen. Das Ergebnis des Anwendungsfalls kann ein Erfolg oder Fehlschlag/Abbruch sein.
+
+Spektrum De
+Ein Use-Case-Diagramm (dt. Anwendungsfall-Diagramm) zeigt das
+externe Verhalten eines Systems aus der Sicht der Nutzer, indem es die Nutzer (im
+UML-Jargon „Akteure“ genannt), die Use-Cases und deren Beziehungen zueinander
+darstellt.  Use-Cases bilden die Reaktion des Systems auf Ereignisse seiner Umwelt ab und fassen dabei
+Teile der Systemdienstleistung zusammen. 
+
+Beispiele:
+- Geld beziehen am Bancomat / am Bankschalter
+- Einreichen der Steuererklärung
+- Kauf eines Produktes
+- Einholen einer Auskunft
+- Einfordern Kompensationszahlung
+]]></comment>
 <ownerDesignName>ModellModell</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <engineerTo>
-<item key="4EE9A882-EA48-83FA-35DC-1651333A2D97" value="true"/>
-<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
 </engineerTo>
 <adequatelyNormalized>NO</adequatelyNormalized>
 <expectedVolumes>0</expectedVolumes>
@@ -25,7 +45,7 @@
 <createdTime>2019-03-13 17:59:58 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
-<item key="4EE9A882-EA48-83FA-35DC-1651333A2D97" value="true"/>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 </engineerTo>
 <use>0</use>

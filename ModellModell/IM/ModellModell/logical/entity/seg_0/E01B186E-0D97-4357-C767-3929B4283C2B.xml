@@ -2,7 +2,16 @@
 <Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="E01B186E-0D97-4357-C767-3929B4283C2B" name="Akteurrolle">
 <createdBy>stb</createdBy>
 <createdTime>2019-02-03 11:55:05 UTC</createdTime>
-<comment>Zuammenfassung eines Aufgaben- und Verantwortungsbereichs, den eine Person als Akteur im System ausfüllen kann.&lt;br/&gt;&lt;br/&gt;Eine Personenrolle muss immer als mindestens einen der Subtypen (intern, extern) vorkommen.&lt;br/&gt;&lt;br/&gt;Beispiel:&lt;br/&gt; Produkt Manager&lt;br/&gt; Leiter Marketing &lt;br/&gt; CEO&lt;br/&gt; CFO&lt;br/&gt; Servicetechniker</comment>
+<comment><![CDATA[Zuammenfassung eines Aufgaben- und Verantwortungsbereichs, den eine Person als Akteur im System ausfüllen kann.
+
+Eine Personenrolle muss immer als mindestens einen der Subtypen (intern, extern) vorkommen.
+
+Beispiel:
+ Produkt Manager
+ Leiter Marketing 
+ CEO
+ CFO
+ Servicetechniker]]></comment>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
@@ -13,6 +22,7 @@
 <fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
 <growthPercent>0</growthPercent>
 <growthType>Year</growthType>
+<hierarchicalParent>A30A8D06-DD35-0230-707D-34689BB63E9A</hierarchicalParent>
 <maxVolumes>9999999</maxVolumes>
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>

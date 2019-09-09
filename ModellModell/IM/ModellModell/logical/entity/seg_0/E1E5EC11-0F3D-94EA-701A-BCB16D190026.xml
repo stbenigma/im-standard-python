@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="E1E5EC11-0F3D-94EA-701A-BCB16D190026" name="Elementdarstellung">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="E1E5EC11-0F3D-94EA-701A-BCB16D190026" name="Elemendarstellung">
 <createdBy>stb</createdBy>
 <createdTime>2018-11-03 14:22:30 UTC</createdTime>
 <comment><![CDATA[Information zur Darstellung eines grafischen Elementes (Entität, etc.) auf einem Diagramm]]></comment>
@@ -61,23 +61,6 @@
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 </engineerTo>
 <referedAttribute>37A28E78-6788-8230-EFF6-97B5FB4AD2E3</referedAttribute>
-<useDomainConstraints>false</useDomainConstraints>
-<use>0</use>
-<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
-<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-</Attribute>
-<Attribute name="Entitätname [L]" id="3CF74241-8BC8-AFA0-4E32-F5B11A2084C8">
-<createdBy>stb</createdBy>
-<createdTime>2018-11-03 14:32:00 UTC</createdTime>
-<comment><![CDATA[Name der Entität der in der Kommunikation normalerweise gebraucht wird.]]></comment>
-<generatorID>CCD9C8D5-790A-EFAD-365F-13072447416D</generatorID>
-<ownerDesignName>ModellModell</ownerDesignName>
-<engineerTo>
-<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
-<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
-</engineerTo>
-<referedAttribute>0F2758D2-C7D1-07D3-5C35-F1697AF2FBE0</referedAttribute>
 <useDomainConstraints>false</useDomainConstraints>
 <use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
@@ -333,9 +316,8 @@
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 </engineerTo>
 <pk>true</pk>
-<newElementsIDs>CCD9C8D5-790A-EFAD-365F-13072447416D,EA5BE36E-D298-45EB-3BD7-34DB557812CE</newElementsIDs>
+<newElementsIDs>EA5BE36E-D298-45EB-3BD7-34DB557812CE</newElementsIDs>
 <usedAttributes>
-<attributeRef>3CF74241-8BC8-AFA0-4E32-F5B11A2084C8</attributeRef>
 <attributeRef>A3C9731C-AB46-3608-8EFC-C040100A45AD</attributeRef>
 <attributeRef>85B1FCCF-7A20-CF0A-DBB4-FD296C4B8501</attributeRef>
 <attributeRef>225EEADC-063D-3D33-DE9F-B0D419C7A675</attributeRef>
