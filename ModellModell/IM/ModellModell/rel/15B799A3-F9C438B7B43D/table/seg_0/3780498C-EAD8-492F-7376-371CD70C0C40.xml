@@ -67,35 +67,27 @@ Das Attribut "Wert" ist der physikalische (sprachunabhängige) Wert, der als eig
 <colAssociation fkAssociation="E203C078-4906-43E2-9806-5F45B0ABABF9" referredColumn="A378345E-C3A2-1DAB-A09D-67630ADC17A8"/>
 </associations>
 </Column>
-<Column name="VGWT_UETX_ID_ANZEIGE" id="17DF90D1-9E1B-1AE8-1996-BCA661FBBE19">
+<Column name="VGWT_ANZEIGE" id="17DF90D1-9E1B-1AE8-1996-BCA661FBBE19">
 <createdBy>stb</createdBy>
 <createdTime>2019-03-30 10:36:03 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <use>0</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
-<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
-<previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
-<associations>
-<colAssociation fkAssociation="884D0310-C486-2026-5BCC-BBB1D377E4D3" referredColumn="55253521-18EF-4491-BA38-A5FE10DD40CE"/>
-</associations>
 </Column>
-<Column name="VGWT_UETX_ID_BESCHR" id="1B37B53F-7AE0-2E28-FA61-27C1C85BD74C">
+<Column name="VGWT_BESCHR" id="1B37B53F-7AE0-2E28-FA61-27C1C85BD74C">
 <createdBy>stb</createdBy>
 <createdTime>2019-03-30 10:38:23 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <use>0</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
-<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
-<previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
-<associations>
-<colAssociation fkAssociation="1D2948F2-3F41-7D76-5448-5637AA4977FB" referredColumn="55253521-18EF-4491-BA38-A5FE10DD40CE"/>
-</associations>
 </Column>
 <Column name="VGWT_UC" id="85901998-C02F-DC4D-EC51-8A9D2756E02F">
 <createdBy>stb</createdBy>
@@ -178,16 +170,6 @@ Das Attribut "Wert" ist der physikalische (sprachunabhängige) Wert, der als eig
 <colUsage columnID="79290766-74BB-E78B-4781-3F5F0E6E607B"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="43EAFCC7-9FC5-D32E-288A-A4727A7A33AE" name="VGWT_UETX_FK_BESCHR">
-<createdBy>stb</createdBy>
-<createdTime>2019-04-01 08:25:14 UTC</createdTime>
-<ownerDesignName>ModellModell</ownerDesignName>
-<indexState>Foreign Key</indexState>
-<isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
-<colUsage columnID="1B37B53F-7AE0-2E28-FA61-27C1C85BD74C"/>
-</indexColumnUsage>
-</ind_PK_UK>
 <ind_PK_UK id="D92E4C14-21DE-39C9-5B22-DAF0D71C0246" name="VGWT_WRTB_FK">
 <createdBy>stb</createdBy>
 <createdTime>2019-04-01 09:28:26 UTC</createdTime>
@@ -196,16 +178,6 @@ Das Attribut "Wert" ist der physikalische (sprachunabhängige) Wert, der als eig
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
 <colUsage columnID="9269B165-ED6E-B12B-C49E-FA58A3BC8129"/>
-</indexColumnUsage>
-</ind_PK_UK>
-<ind_PK_UK id="60F43B6C-A6F2-0FAA-264D-26F04EDA7E16" name="VGWT_UETX_FK_ANZEIGE">
-<createdBy>stb</createdBy>
-<createdTime>2019-04-03 07:53:07 UTC</createdTime>
-<ownerDesignName>ModellModell</ownerDesignName>
-<indexState>Foreign Key</indexState>
-<isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
-<colUsage columnID="17DF90D1-9E1B-1AE8-1996-BCA661FBBE19"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>

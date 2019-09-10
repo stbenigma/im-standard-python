@@ -62,13 +62,13 @@ WHERE wrtb_typ = 'TEXT'
 <reference>false</reference>
 <viewID>F89544B0-3496-B8CE-C144-554BC7C3C392</viewID>
 </viewElement>
-<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="WRTB_UETX_ID_NAME" id="A2B0F22E-8CF2-9339-495A-95B9BFD770AC">
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="WRTB_NAME" id="A2B0F22E-8CF2-9339-495A-95B9BFD770AC">
 <createdBy>stb</createdBy>
 <createdTime>2019-03-30 18:15:58 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
-<dataType>NUMBER (10)</dataType>
+<dataType>VARCHAR2 (60 CHAR)</dataType>
 <reference>false</reference>
 <referencedColumn>02619A13-3C8E-180C-80CA-27D791529A48</referencedColumn>
 <table>40E8BAEF-6201-C0D7-25DE-53610BCB8E50</table>
@@ -92,7 +92,7 @@ WHERE wrtb_typ = 'TEXT'
 <ownerDesignName>ModellModell</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
-<dataType>NUMBER (10)</dataType>
+<dataType>VARCHAR2 (4000 CHAR)</dataType>
 <reference>false</reference>
 <referencedColumn>3B69F5A2-CD30-58B9-5A55-0667CB54EAA7</referencedColumn>
 <table>40E8BAEF-6201-C0D7-25DE-53610BCB8E50</table>

@@ -46,34 +46,27 @@ Beleuchtungsmodell ]]></comment>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="WRTB_UETX_ID_NAME" id="02619A13-3C8E-180C-80CA-27D791529A48">
+<Column name="WRTB_NAME" id="02619A13-3C8E-180C-80CA-27D791529A48">
 <createdBy>stb</createdBy>
 <createdTime>2019-03-30 10:44:18 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 <use>0</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
-<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
-<associations>
-<colAssociation fkAssociation="7F4B341D-CA5C-3945-F7B1-72EBD0AEE305" referredColumn="55253521-18EF-4491-BA38-A5FE10DD40CE"/>
-</associations>
 </Column>
-<Column name="WRTB_UETX_ID_BESCHR" id="3B69F5A2-CD30-58B9-5A55-0667CB54EAA7">
+<Column name="WRTB_BESCHR" id="3B69F5A2-CD30-58B9-5A55-0667CB54EAA7">
 <createdBy>stb</createdBy>
 <createdTime>2019-03-30 10:45:10 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <use>0</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
-<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
-<previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
-<associations>
-<colAssociation fkAssociation="4F59E62E-CEA2-C02C-99E8-45564C73CEC1" referredColumn="55253521-18EF-4491-BA38-A5FE10DD40CE"/>
-</associations>
 </Column>
 <Column name="WRTB_TYP" id="3A384167-E73F-E1FD-1E5A-0652D28AAF65">
 <createdBy>stb</createdBy>
@@ -459,26 +452,6 @@ Beleuchtungsmodell ]]></comment>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
 <colUsage columnID="F4D6EDBE-4D04-AD50-8AB2-78848F319B92"/>
-</indexColumnUsage>
-</ind_PK_UK>
-<ind_PK_UK id="B98F24CC-5AC6-D6EA-1D48-958F356A83A6" name="WRTB_UETX_FK_NAME">
-<createdBy>stb</createdBy>
-<createdTime>2019-04-01 09:29:51 UTC</createdTime>
-<ownerDesignName>ModellModell</ownerDesignName>
-<indexState>Foreign Key</indexState>
-<isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
-<colUsage columnID="02619A13-3C8E-180C-80CA-27D791529A48"/>
-</indexColumnUsage>
-</ind_PK_UK>
-<ind_PK_UK id="ACEF2AE9-B0BA-E424-6414-FEF7D4CCC3DD" name="WRTB_UETX_FK_BESCHR">
-<createdBy>stb</createdBy>
-<createdTime>2019-04-01 09:29:51 UTC</createdTime>
-<ownerDesignName>ModellModell</ownerDesignName>
-<indexState>Foreign Key</indexState>
-<isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
-<colUsage columnID="3B69F5A2-CD30-58B9-5A55-0667CB54EAA7"/>
 </indexColumnUsage>
 </ind_PK_UK>
 <ind_PK_UK id="93385107-9288-4725-7AAD-8BC895BF1F60" name="WRTB_SPFO_FK">

@@ -87,50 +87,41 @@ Beleuchtungsmodell ]]></comment>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="ATTR_UETX_ID_ANZNAME" id="40B69719-D7C5-6555-DF94-A535031E1CC8">
+<Column name="ATTR_ANZNAME" id="40B69719-D7C5-6555-DF94-A535031E1CC8">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:35 UTC</createdTime>
 <generatorID>42340745-75FE-7894-8994-67BE8A912F7A</generatorID>
 <ownerDesignName>ModellModell</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <use>0</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
-<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
-<associations>
-<colAssociation fkAssociation="52F956FD-AA6F-40CF-C786-964B058EDF4C" referredColumn="55253521-18EF-4491-BA38-A5FE10DD40CE"/>
-</associations>
 </Column>
-<Column name="ATTR_UETX_ID_TOOLTIP" id="BB191A5F-2313-6CC8-EC9A-27FD19779501">
+<Column name="ATTR_TOOLTIP" id="BB191A5F-2313-6CC8-EC9A-27FD19779501">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:35 UTC</createdTime>
 <generatorID>C4A32F25-630E-965E-C29A-27C4C6F29B16</generatorID>
 <ownerDesignName>ModellModell</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <use>0</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
-<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
-<associations>
-<colAssociation fkAssociation="858EC5AD-0A74-B2BB-AEE5-496D49D7FCB5" referredColumn="55253521-18EF-4491-BA38-A5FE10DD40CE"/>
-</associations>
 </Column>
-<Column name="ATTR_UETX_ID_BESCHR" id="375CB27A-BF59-6EF2-F3BA-55E1FFF03DA9">
+<Column name="ATTR_BESCHR" id="375CB27A-BF59-6EF2-F3BA-55E1FFF03DA9">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:35 UTC</createdTime>
 <generatorID>18044B2B-E9C9-F62B-A516-84B3A24746F4</generatorID>
 <ownerDesignName>ModellModell</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <use>0</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
-<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
-<associations>
-<colAssociation fkAssociation="4ED10C1E-42E4-CB1B-5363-3D7104535B92" referredColumn="55253521-18EF-4491-BA38-A5FE10DD40CE"/>
-</associations>
 </Column>
 <Column name="ATTR_BUSINESS_RULE" id="FD3B7911-AE01-DCEE-E3F6-4AB566AC5E84">
 <createdBy>stb</createdBy>
@@ -339,36 +330,6 @@ Beleuchtungsmodell ]]></comment>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
 <colUsage columnID="D549EF49-F0D6-3DA1-CB37-ACDF020F478C"/>
-</indexColumnUsage>
-</ind_PK_UK>
-<ind_PK_UK id="E1B2A292-9914-B3D3-F2F2-8D1076B10F85" name="ATTR_UETX_FK_NAME">
-<createdBy>stb</createdBy>
-<createdTime>2019-04-01 08:28:18 UTC</createdTime>
-<ownerDesignName>ModellModell</ownerDesignName>
-<indexState>Foreign Key</indexState>
-<isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
-<colUsage columnID="40B69719-D7C5-6555-DF94-A535031E1CC8"/>
-</indexColumnUsage>
-</ind_PK_UK>
-<ind_PK_UK id="A0404CEB-4455-103D-FF2B-B51BCB8EF134" name="ATTR_UETX_FK_BESCHR">
-<createdBy>stb</createdBy>
-<createdTime>2019-04-01 08:28:44 UTC</createdTime>
-<ownerDesignName>ModellModell</ownerDesignName>
-<indexState>Foreign Key</indexState>
-<isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
-<colUsage columnID="375CB27A-BF59-6EF2-F3BA-55E1FFF03DA9"/>
-</indexColumnUsage>
-</ind_PK_UK>
-<ind_PK_UK id="4BDF9C4C-8F8B-3BF2-0974-EB2CFE51171B" name="ATTR_UETX_FK_TOOLTIP">
-<createdBy>stb</createdBy>
-<createdTime>2019-04-01 08:29:04 UTC</createdTime>
-<ownerDesignName>ModellModell</ownerDesignName>
-<indexState>Foreign Key</indexState>
-<isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
-<colUsage columnID="BB191A5F-2313-6CC8-EC9A-27FD19779501"/>
 </indexColumnUsage>
 </ind_PK_UK>
 <ind_PK_UK id="9B607D04-7CEC-0987-5707-0CC7E119EEFC" name="ATTR_WRTB_FK">

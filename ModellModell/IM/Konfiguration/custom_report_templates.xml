@@ -215,17 +215,6 @@
 		</section>
 	</sections>
 	</custom_report_template>
-	<custom_report_template id="FB7E1071-BDF7-764E-A9A1-A2D62F5BA143" name="col_non null constraint name" description="" class="oracle.dbtools.crest.model.design.relational.Column" >
-	<sections>
-		<section propertyName="Column" type="" customName="Column" level="0" class="oracle.dbtools.crest.model.design.relational.Column">
-		<columns>
-				<column name="table" customName="Table" width="0.0" order="" massUpdatable="false" dynamic="false"/>
-				<column name="name" customName="Name" width="0.0" order="" massUpdatable="false" dynamic="false"/>
-				<column name="notNullConstraintName" customName="Not null constraint name" width="0.0" order="" massUpdatable="false" dynamic="false"/>
-		</columns>
-		</section>
-	</sections>
-	</custom_report_template>
 	<custom_report_template id="AE38DE50-601D-D1EB-B7FA-267AFB51AB95" name="Structured type 2 levels" description="" class="oracle.dbtools.crest.model.design.datatypes.StructuredType" >
 	<sections>
 		<section propertyName="StructuredType" type="" customName="StructuredType" level="0" class="oracle.dbtools.crest.model.design.datatypes.StructuredType">
@@ -415,6 +404,23 @@
 				<column name="comment" customName="Comment" width="0.0" order="" massUpdatable="false" dynamic="false"/>
 				<column name="AP AttrName" customName="AP AttrName" width="0.0" order="" massUpdatable="false" dynamic="true"/>
 				<column name="AP Transformation" customName="AP Transformation" width="0.0" order="" massUpdatable="false" dynamic="true"/>
+		</columns>
+		</section>
+	</sections>
+	</custom_report_template>
+	<custom_report_template id="FB7E1071-BDF7-764E-A9A1-A2D62F5BA143" name="col_non null constraint name" description="" class="oracle.dbtools.crest.model.design.relational.Column" >
+	<sections>
+		<section propertyName="Column" type="" customName="Column" level="0" class="oracle.dbtools.crest.model.design.relational.Column">
+		<columns>
+				<column name="table" customName="Table" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="name" customName="Name" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="notNullConstraintName" customName="Not null constraint name" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="datatypeString" customName="Datatype string" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="dataTypeName" customName="Data type name" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="dataTypePrecision" customName="Data type precision" width="0.0" order="" massUpdatable="true" dynamic="false"/>
+				<column name="dataTypeScale" customName="Data type scale" width="0.0" order="" massUpdatable="true" dynamic="false"/>
+				<column name="dataTypeSize" customName="Data type size" width="0.0" order="" massUpdatable="true" dynamic="false"/>
+				<column name="domain" customName="Domain" width="0.0" order="" massUpdatable="true" dynamic="false"/>
 		</columns>
 		</section>
 	</sections>
