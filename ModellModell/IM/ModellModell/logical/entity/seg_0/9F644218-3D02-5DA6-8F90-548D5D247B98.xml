@@ -2,10 +2,11 @@
 <Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="9F644218-3D02-5DA6-8F90-548D5D247B98" name="Informationsquelle">
 <createdBy>stb</createdBy>
 <createdTime>2018-11-03 13:31:49 UTC</createdTime>
-<comment>Referenz die Informationen enthält, die zur Bildung dieses Elementes geführt haben bzw. die detaillierte Angaben (Regeln, Darstellung, Nutzung, Abhängigkeiten etc.) zum Element macht.&lt;br/&gt;</comment>
+<comment><![CDATA[Referenz die Informationen enthält, die zur Bildung dieses Elementes geführt haben bzw. die detaillierte Angaben (Regeln, Darstellung, Nutzung, Abhängigkeiten etc.) zum Element macht.
+]]></comment>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
-<item key="4EE9A882-EA48-83FA-35DC-1651333A2D97" value="true"/>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 </engineerTo>
 <adequatelyNormalized>NO</adequatelyNormalized>
@@ -24,10 +25,10 @@
 <Attribute name="Name" id="D5650C61-48B2-449A-86E4-B67584EC3AFD">
 <createdBy>stb</createdBy>
 <createdTime>2018-11-03 13:31:49 UTC</createdTime>
-<comment>Name der Quelle, des Dokumentes, </comment>
+<comment><![CDATA[Name der Quelle, des Dokumentes, ]]></comment>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
-<item key="4EE9A882-EA48-83FA-35DC-1651333A2D97" value="true"/>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 </engineerTo>
 <use>0</use>
@@ -38,10 +39,10 @@
 <Attribute name="Beschreibung" id="1DB09CC9-9FA7-72C6-7013-426EAFA528AC">
 <createdBy>stb</createdBy>
 <createdTime>2018-11-03 13:31:49 UTC</createdTime>
-<comment>Kurzbeschreibung über die Quelle</comment>
+<comment><![CDATA[Kurzbeschreibung über die Quelle]]></comment>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
-<item key="4EE9A882-EA48-83FA-35DC-1651333A2D97" value="true"/>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
@@ -53,10 +54,10 @@
 <Attribute name="Referenz" id="155EAD65-E0D2-6681-BBCF-0F617BDA544A">
 <createdBy>stb</createdBy>
 <createdTime>2018-11-03 13:32:11 UTC</createdTime>
-<comment>Angabe zum Finden der Quelle (Buch-ISBN, Webseite, digitales Dokument etc.)</comment>
+<comment><![CDATA[Angabe zum Finden der Quelle (Buch-ISBN, Webseite, digitales Dokument etc.)]]></comment>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
-<item key="4EE9A882-EA48-83FA-35DC-1651333A2D97" value="true"/>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
@@ -68,11 +69,11 @@
 <Attribute name="Name3" id="B804A6F3-AF20-CA25-2A59-CDD470175A16">
 <createdBy>stb</createdBy>
 <createdTime>2018-11-03 13:48:59 UTC</createdTime>
-<comment>Name eines Geschäftsbereichs</comment>
+<comment><![CDATA[Name eines Geschäftsbereichs]]></comment>
 <generatorID>BA27A2BE-DD57-AF0F-B087-EB20D554E664</generatorID>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
-<item key="4EE9A882-EA48-83FA-35DC-1651333A2D97" value="true"/>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 </engineerTo>
 <referedAttribute>9FC8C28A-8074-92B6-C5B5-3378905C15D0</referedAttribute>
@@ -84,11 +85,11 @@
 <Attribute name="Name1" id="442EB367-04B2-1475-F1A5-27F7A4CC0350">
 <createdBy>stb</createdBy>
 <createdTime>2018-11-03 13:48:59 UTC</createdTime>
-<comment>Name der Entität der in der Kommunikation normalerweise gebraucht wird.</comment>
+<comment><![CDATA[Name der Entität der in der Kommunikation normalerweise gebraucht wird.]]></comment>
 <generatorID>BA27A2BE-DD57-AF0F-B087-EB20D554E664</generatorID>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
-<item key="4EE9A882-EA48-83FA-35DC-1651333A2D97" value="true"/>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 </engineerTo>
 <referedAttribute>0D6D7CC5-02F9-66CF-24BB-AC8AC5003C95</referedAttribute>
@@ -100,11 +101,11 @@
 <Attribute name="Name4" id="CC446B50-CD89-1C21-216F-F419D43C9A9F">
 <createdBy>stb</createdBy>
 <createdTime>2018-11-04 11:11:51 UTC</createdTime>
-<comment>Name der Entität der in der Kommunikation normalerweise gebraucht wird.</comment>
+<comment><![CDATA[Name der Entität der in der Kommunikation normalerweise gebraucht wird.]]></comment>
 <generatorID>BA27A2BE-DD57-AF0F-B087-EB20D554E664</generatorID>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
-<item key="4EE9A882-EA48-83FA-35DC-1651333A2D97" value="true"/>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 </engineerTo>
 <referedAttribute>158D6530-A023-BDA9-20B0-7ED13799AF9A</referedAttribute>
@@ -118,7 +119,7 @@
 <createdTime>2019-01-08 20:10:08 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
-<item key="4EE9A882-EA48-83FA-35DC-1651333A2D97" value="true"/>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
@@ -133,7 +134,7 @@
 <createdTime>2018-11-03 13:31:49 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
-<item key="4EE9A882-EA48-83FA-35DC-1651333A2D97" value="true"/>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 </engineerTo>
 <pk>true</pk>
