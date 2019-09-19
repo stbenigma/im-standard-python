@@ -3,5 +3,6 @@
 # 1. Directory in dem sich das Modell (die .dmd sowie das Verzeichnis) befindet. Mit abschliessendem /
 #	es wird in IMDIR IMDIR/IM und IMDIR/gitHub/IM gesucht
 # 2. optional Modellname (nur falls es mehr als 1 .dmd Datei hat)
+SourceDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 IMDIR=$(dirname "$0")/
-python3 ~/PycharmProjects/IM_db/createDB.py "$IMDIR"
+python3 $SourceDIR/../pythonWork/pythonSource/IM_db/createDB.py "$IMDIR"
