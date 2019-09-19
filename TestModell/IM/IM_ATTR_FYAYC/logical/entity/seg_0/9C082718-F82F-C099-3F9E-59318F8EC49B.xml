@@ -1,0 +1,174 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="9C082718-F82F-C099-3F9E-59318F8EC49B" name="Juristische Person">
+<createdBy>stb</createdBy>
+<createdTime>2019-05-24 07:17:57 UTC</createdTime>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+<item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<shortName>Firma</shortName>
+<createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="AP TabName" value="account"/>
+<property name="DynProp in Juristische Persion" value="irgend ein dynamischer Wert"/>
+<property name="SAP TabName" value="firm"/>
+</propertyMap>
+<documents usedDucuments="90D4B681-4349-B790-28A6-1D296402B6AB"/>
+<responsibleParties>
+<party>BDF2EF9F-4379-6EBC-92A4-FC7EFB929946</party>
+</responsibleParties>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Name" id="6CA9B3DE-3D75-DED4-C84A-2296CBA7473D">
+<createdBy>stb</createdBy>
+<createdTime>2019-05-24 07:19:12 UTC</createdTime>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+<item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AP AttrName" value="."/>
+<property name="AP Transformation" value="."/>
+<property name="AP Typ" value="."/>
+<property name="AP usage" value="."/>
+<property name="CRM-Salesforce" value="."/>
+<property name="ERP" value="."/>
+<property name="EXCEL ColumnName" value="."/>
+<property name="Excel" value="."/>
+<property name="SAP AttrName" value="."/>
+<property name="SAP FieldID" value="."/>
+<property name="SAP Qualitylevel" value="."/>
+<property name="SAP Transformation" value="."/>
+<property name="SAP Typ" value="."/>
+<property name="SAP usage" value="."/>
+<property name="Web-Shop" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="UID" id="B3E8A246-C631-79E5-F9BB-86ED5C743DC1">
+<createdBy>stb</createdBy>
+<createdTime>2019-05-24 07:25:00 UTC</createdTime>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+<item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AP AttrName" value="."/>
+<property name="AP Transformation" value="."/>
+<property name="AP Typ" value="."/>
+<property name="AP usage" value="."/>
+<property name="CRM-Salesforce" value="."/>
+<property name="ERP" value="."/>
+<property name="EXCEL ColumnName" value="."/>
+<property name="Excel" value="."/>
+<property name="SAP AttrName" value="."/>
+<property name="SAP FieldID" value="."/>
+<property name="SAP Qualitylevel" value="."/>
+<property name="SAP Transformation" value="."/>
+<property name="SAP Typ" value="."/>
+<property name="SAP usage" value="."/>
+<property name="Web-Shop" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Website" id="A04A93BA-4630-5D16-B59F-94DACD92AACA">
+<createdBy>stb</createdBy>
+<createdTime>2019-05-24 07:27:50 UTC</createdTime>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+<item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<dataTypeSize>200 CHAR</dataTypeSize>
+<ownDataTypeParameters>200 CHAR,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AP AttrName" value="."/>
+<property name="AP Transformation" value="."/>
+<property name="AP Typ" value="."/>
+<property name="AP usage" value="."/>
+<property name="CRM-Salesforce" value="."/>
+<property name="ERP" value="."/>
+<property name="EXCEL ColumnName" value="."/>
+<property name="Excel" value="."/>
+<property name="SAP AttrName" value="."/>
+<property name="SAP FieldID" value="."/>
+<property name="SAP Qualitylevel" value="."/>
+<property name="SAP Transformation" value="."/>
+<property name="SAP Typ" value="."/>
+<property name="SAP usage" value="."/>
+<property name="Web-Shop" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="MWST-Nr" id="62E57B43-9919-3715-6A46-233C9F666FEA">
+<createdBy>stb</createdBy>
+<createdTime>2019-06-09 19:06:59 UTC</createdTime>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AP AttrName" value="."/>
+<property name="AP Transformation" value="."/>
+<property name="AP Typ" value="."/>
+<property name="AP usage" value="."/>
+<property name="CRM-Salesforce" value="."/>
+<property name="ERP" value="."/>
+<property name="EXCEL ColumnName" value="."/>
+<property name="Excel" value="."/>
+<property name="SAP AttrName" value="."/>
+<property name="SAP FieldID" value="."/>
+<property name="SAP Qualitylevel" value="."/>
+<property name="SAP Transformation" value="."/>
+<property name="SAP Typ" value="."/>
+<property name="SAP usage" value="."/>
+<property name="Web-Shop" value="."/>
+</propertyMap>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="AE15A2CA-CB03-4AFE-9240-2FBF55D881EE" name="Key_1">
+<createdBy>stb</createdBy>
+<createdTime>2019-05-24 07:27:27 UTC</createdTime>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+<item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
+</engineerTo>
+<newElementsIDs>B3E8A246-C631-79E5-F9BB-86ED5C743DC1</newElementsIDs>
+<usedAttributes>
+<attributeRef>B3E8A246-C631-79E5-F9BB-86ED5C743DC1</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

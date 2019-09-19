@@ -1,0 +1,26 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_44" directorySegmentName="seg_0" id="D3058683-BC1A-77F1-8EEB-E95217738A74">
+<createdBy>stb</createdBy>
+<createdTime>2019-05-06 11:12:58 UTC</createdTime>
+<ownerDesignName>test_stb lokal</ownerDesignName>
+<engineerTo>
+<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true"/>
+</engineerTo>
+<useSurrogateKey>true</useSurrogateKey>
+<identifying>false</identifying>
+<nameOnSource>bekannt als</nameOnSource>
+<nameOnTarget>ist</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>3DD3ACC9-75E8-8370-383F-69FCF5F4983F</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>855B3CD6-3898-7179-D003-53066C937878</targetEntity>
+<transferable>true</transferable>
+<propertyMap>
+<property name="DE_TEXT_FROM" value="bekannt als"/>
+<property name="DE_TEXT_TO" value="ist"/>
+<property name="EN_TEXT_FROM" value="*DE* bekannt als"/>
+<property name="EN_TEXT_TO" value="*DE* ist"/>
+</propertyMap>
+</Relation>

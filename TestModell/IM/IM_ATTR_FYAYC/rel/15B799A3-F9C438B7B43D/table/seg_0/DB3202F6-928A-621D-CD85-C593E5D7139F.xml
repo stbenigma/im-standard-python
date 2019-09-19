@@ -1,0 +1,137 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="DB3202F6-928A-621D-CD85-C593E5D7139F" name="TXT_DOMÄNE">
+<createdBy>stb</createdBy>
+<createdTime>2018-10-21 13:54:35 UTC</createdTime>
+<comment>Freitextattribut.  </comment>
+<generatorID>1B6FF8A9-A5D3-4692-2747-4B7590249E1C</generatorID>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="{REF TABLE  ABBR}_DOMÄNE_ID" id="D6D9F7FA-6955-93DF-E23B-C3410D796B39">
+<createdBy>stb</createdBy>
+<createdTime>2018-10-21 13:54:35 UTC</createdTime>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="57E98E51-9B17-AB69-F751-2D0BB4703792" referredColumn="A378345E-C3A2-1DAB-A09D-67630ADC17A8"/>
+</associations>
+</Column>
+<Column name="MIN_TEXTLÄNGE" id="60CA9E46-4006-69F2-7610-C0740611F1B4">
+<createdBy>stb</createdBy>
+<createdTime>2018-10-21 13:54:35 UTC</createdTime>
+<comment>Minimale Anzahl Zeichen die ein Text haben muss. Leer -&gt; Keine Einschränkung der Inhalte</comment>
+<generatorID>14A349DC-24D3-7ADC-8C56-3A429E600D91</generatorID>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<defaultValue>1</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>0</beginValue>
+<endValue>4000</endValue>
+</rangeDef>
+</listOfRanges>
+</Column>
+<Column name="TXT_DOMÄNE_ID" id="7DF70A14-D661-1B84-4C94-D016CC269DCA">
+<createdBy>stb</createdBy>
+<createdTime>2018-10-21 13:54:35 UTC</createdTime>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+<propertyMap>
+<property name="AttributGUID" value="-"/>
+<property name="AttributName" value="-"/>
+<property name="EntityName" value="-"/>
+</propertyMap>
+</Column>
+<Column name="MAX_TEXTLÄNGE" id="B5036A64-6DE2-AEC9-7102-C15A6C920315">
+<createdBy>stb</createdBy>
+<createdTime>2018-10-21 13:54:35 UTC</createdTime>
+<comment>Maximale Anzahl Zeichen die ein Text haben darf. Leer -&gt; so viele, wie das System zulässt</comment>
+<generatorID>C6CF1D6D-7648-4855-5483-1FF307873B9E</generatorID>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<defaultValue>1</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>0</beginValue>
+<endValue>4000</endValue>
+</rangeDef>
+</listOfRanges>
+</Column>
+<Column name="ZEICHENREGEL_(REGEXP)" id="C063DD6B-5036-52CC-79B8-7E3CE013B5CA">
+<createdBy>stb</createdBy>
+<createdTime>2018-10-21 13:54:35 UTC</createdTime>
+<generatorID>05EDDEB1-FA1E-A904-288F-E9D936A9EE1D</generatorID>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="2BB0D32F-67A8-2C0E-D745-BB7F2CB16447" name="TXT_DOMÄNE_PK">
+<createdBy>stb</createdBy>
+<createdTime>2018-10-21 13:54:35 UTC</createdTime>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="D6D9F7FA-6955-93DF-E23B-C3410D796B39"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="94C0B9E0-FC10-A9C9-DAED-4E22D568E4E9" name="TXT_DOMÄNE_TXT_DOMÄNE_ID_UN">
+<createdBy>stb</createdBy>
+<createdTime>2018-10-21 13:54:35 UTC</createdTime>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="7DF70A14-D661-1B84-4C94-D016CC269DCA"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="7303F97A-A160-3FB4-27D0-EA2C629C540E" name="TXT_DOMÄNE__IDX">
+<createdBy>stb</createdBy>
+<createdTime>2019-01-26 15:45:02 UTC</createdTime>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="D6D9F7FA-6955-93DF-E23B-C3410D796B39"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="055743DE-47E7-FD24-7981-DAC70EA26B75" name="TXT_DOMÄNE_DOMÄNE_FK">
+<createdBy>stb</createdBy>
+<createdTime>2018-10-21 13:54:35 UTC</createdTime>
+<generatorID>B29883E8-BE37-664A-4668-1B657AD97FCF</generatorID>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="D6D9F7FA-6955-93DF-E23B-C3410D796B39"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

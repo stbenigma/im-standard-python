@@ -1,0 +1,64 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="F5C9D6EA-E8A5-9F5B-1FC6-73903D18666C" name="Gebiet">
+<createdBy>stb</createdBy>
+<createdTime>2019-05-06 09:22:07 UTC</createdTime>
+<comment><![CDATA[Gebietsunterteilung eines Landes in kleinere Einheiten.
+
+Gemäss NUTS (https://de.wikipedia.org/wiki/NUTS) ist das Land die Gebietsstufe NUTS 0
+NUTS 0	Nationalstaat
+NUTS 1	“major socio-economic regions (grouping basic regions)” … größere Regionen/Landesteile
+NUTS 2 	“basic regions (for the application of regional policies)” … mittelgroße Regionen, Millionenstädte
+NUTS 3	“small regions (for specific diagnoses)” … kleinere Regionen, teils schon Großstädte
+LAU 1	o.A. … kommunale Verwaltungsverbände, teils Gemeinden (nicht in allen Staaten definiert)
+LAU 2	“municipalities or equivalent units” … Gemeinden, teils Gemeindegliederungen
+
+Es kann weitere Hierarchiestufenbezeichnungen geben:
+Deutschland
+A0: Land
+A1: Bundesland
+A2: leer
+A3: Landkreis
+A4: leer
+A5: Gemeinde: Administrative Gemeinde im jeweiligen Land
+Flurnamen, Gemeindegebiete, alte Gemeindenamen (unterteilen Gemeinde) oder weitere Stufen]]></comment>
+<ownerDesignName>test_stb lokal</ownerDesignName>
+<engineerTo>
+<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<hierarchicalParent>E6723025-CAD3-E943-1AAB-BE3149D7405E</hierarchicalParent>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="DE_ENT_COMMENT" value="Gebietsunterteilung eines Landes in kleinere Einheiten.
+
+Gemäss NUTS (https://de.wikipedia.org/wiki/NUTS) ist das Land die Gebietsstufe NUTS 0
+NUTS 0	Nationalstaat
+NUTS 1	“major socio-economic regions (grouping basic regions)” … größere Regionen/Landesteile
+NUTS 2 	“basic regions (for the application of regional policies)” … mittelgroße Regionen, Millionenstädte
+NUTS 3	“small regions (for specific diagnoses)” … kleinere Regionen, teils schon Großstädte
+LAU 1	o.A. … kommunale Verwaltungsverbände, teils Gemeinden (nicht in allen Staaten definiert)
+LAU 2	“municipalities or equivalent units” … Gemeinden, teils Gemeindegliederungen
+
+Es kann weitere Hierarchiestufenbezeichnungen geben:
+Deutschland
+A0: Land
+A1: Bundesland
+A2: leer
+A3: Landkreis
+A4: leer
+A5: Gemeinde: Administrative Gemeinde im jeweiligen Land
+Flurnamen, Gemeindegebiete, alte Gemeindenamen (unterteilen Gemeinde) oder weitere Stufen"/>
+<property name="DE_ENT_NAME" value="Gebiet"/>
+<property name="DE_ENT_SYNONYM" value=""/>
+<property name="EN_ENT_COMMENT" value="*DE* Gebietsunterteilung eines Landes in kleinere Einheiten.  Gemäss NUTS (https://de.wikipedia.org/wiki/NUTS) ist das Land die Gebietsstufe NUTS 0 NUTS 0 Nationalstaat NUTS 1 “major socio-economic regions (grouping basic regions)” … größere Regionen/Landesteile NUTS 2  “basic regions (for the application of regional policies)” … mittelgroße Regionen, Millionenstädte NUTS 3 “small regions (for specific diagnoses)” … kleinere Regionen, teils schon Großstädte LAU 1 o.A. … kommunale Verwaltungsverbände, teils Gemeinden (nicht in allen Staaten definiert) LAU 2 “municipalities or equivalent units” … Gemeinden, teils Gemeindegliederungen  Es kann weitere Hierarchiestufenbezeichnungen geben: Deutschland A0: Land A1: Bundesland A2: leer A3: Landkreis A4: leer A5: Gemeinde: Administrative Gemeinde im jeweiligen Land Flurnamen, Gemeindegebiete, alte Gemeindenamen (unterteilen Gemeinde) oder weitere Stufen"/>
+<property name="EN_ENT_NAME" value="aerea"/>
+<property name="EN_ENT_SYNONYM" value=""/>
+</propertyMap>
+</Entity>

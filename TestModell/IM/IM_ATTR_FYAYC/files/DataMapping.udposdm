@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<udp_library>
+	<udp_groups>
+		<group name="1 AP_Import" id="E4D0379F-51D7-4C86-2595-A656491C77EA" />
+		<group name="2 SAP-3x" id="CBD680DB-6185-0305-80FF-37C1A6DF26C7" />
+		<group name="3 Excel" id="D1EB7EC5-6EEC-B5B7-615D-478F38570EEE" />
+	</udp_groups>
+	<properties>
+		<property name="AP TabName" dispalay_name="" type="Text" group_id="E4D0379F-51D7-4C86-2595-A656491C77EA" default_value="-">
+		<description>
+			<![CDATA[Name of Table in AP-System]]>
+		</description>
+			<objects>
+				<object class="oracle.dbtools.crest.model.design.logical.Entity" visible="true" color="-1"/>
+				<object class="oracle.dbtools.crest.model.design.relational.Table" visible="true" color="-1"/>
+			</objects>
+		</property>
+		<property name="AP Typ" dispalay_name="" type="Text" group_id="E4D0379F-51D7-4C86-2595-A656491C77EA" default_value="-">
+		<description>
+			<![CDATA[Attributetype (with length) eg. CHAR(10), Number(5,2)]]>
+		</description>
+			<objects>
+				<object class="oracle.dbtools.crest.model.design.logical.Attribute" visible="false" color="-1"/>
+				<object class="oracle.dbtools.crest.model.design.relational.Column" visible="false" color="-1"/>
+				<object class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" visible="false" color="-1"/>
+				<object class="oracle.dbtools.crest.model.design.logical.Relation" visible="false" color="-1"/>
+			</objects>
+		</property>
+		<property name="AP Transformation" dispalay_name="" type="Text" group_id="E4D0379F-51D7-4C86-2595-A656491C77EA" default_value="-">
+		<description>
+			<![CDATA[Transformation  formula from origin to external sdystem]]>
+		</description>
+			<objects>
+				<object class="oracle.dbtools.crest.model.design.logical.Attribute" visible="false" color="-1"/>
+				<object class="oracle.dbtools.crest.model.design.relational.Column" visible="false" color="-1"/>
+			</objects>
+		</property>
+		<property name="SAP TabName" dispalay_name="" type="Text" group_id="CBD680DB-6185-0305-80FF-37C1A6DF26C7" default_value="-">
+			<objects>
+				<object class="oracle.dbtools.crest.model.design.logical.Entity" visible="true" color="-1"/>
+				<object class="oracle.dbtools.crest.model.design.relational.Table" visible="true" color="-1"/>
+			</objects>
+		</property>
+		<property name="SAP AttrName" dispalay_name="" type="Text" group_id="CBD680DB-6185-0305-80FF-37C1A6DF26C7" default_value="-">
+		<description>
+			<![CDATA[Name des Attributes in der Schnittstelle]]>
+		</description>
+			<objects>
+				<object class="oracle.dbtools.crest.model.design.logical.Attribute" visible="false" color="-1"/>
+				<object class="oracle.dbtools.crest.model.design.relational.Column" visible="false" color="-1"/>
+				<object class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" visible="false" color="-1"/>
+				<object class="oracle.dbtools.crest.model.design.logical.Relation" visible="false" color="-1"/>
+			</objects>
+		</property>
+		<property name="SAP Typ" dispalay_name="" type="Text" group_id="CBD680DB-6185-0305-80FF-37C1A6DF26C7" default_value="-">
+		<description>
+			<![CDATA[Attributtyp mit Längenangabe Bsp CHAR(10), Number(5,2)]]>
+		</description>
+			<objects>
+				<object class="oracle.dbtools.crest.model.design.logical.Attribute" visible="false" color="-1"/>
+				<object class="oracle.dbtools.crest.model.design.relational.Column" visible="false" color="-1"/>
+				<object class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" visible="false" color="-1"/>
+				<object class="oracle.dbtools.crest.model.design.logical.Relation" visible="false" color="-1"/>
+			</objects>
+		</property>
+		<property name="SAP Transformation" dispalay_name="" type="Text" group_id="CBD680DB-6185-0305-80FF-37C1A6DF26C7" default_value="-">
+		<description>
+			<![CDATA[Transformation formula from origin to external system]]>
+		</description>
+			<objects>
+				<object class="oracle.dbtools.crest.model.design.logical.Attribute" visible="false" color="-1"/>
+				<object class="oracle.dbtools.crest.model.design.relational.Column" visible="false" color="-1"/>
+			</objects>
+		</property>
+		<property name="SAP Qualitylevel" dispalay_name="" type="List" group_id="CBD680DB-6185-0305-80FF-37C1A6DF26C7" default_value="">
+			<objects>
+				<object class="oracle.dbtools.crest.model.design.logical.Attribute" visible="false" color="-1"/>
+				<object class="oracle.dbtools.crest.model.design.relational.Column" visible="false" color="-1"/>
+				<object class="oracle.dbtools.crest.model.design.logical.Entity" visible="true" color="-1"/>
+				<object class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" visible="false" color="-1"/>
+				<object class="oracle.dbtools.crest.model.design.logical.Relation" visible="false" color="-1"/>
+				<object class="oracle.dbtools.crest.model.design.relational.Table" visible="true" color="-1"/>
+			</objects>
+			<list_of_values>
+				<item value="low" default="false"/>
+				<item value="medium" default="true"/>
+				<item value="high" default="false"/>
+				<item value="critical" default="false"/>
+				<item value="." default="false"/>
+			</list_of_values>
+		</property>
+		<property name="AP usage" dispalay_name="" type="List" group_id="E4D0379F-51D7-4C86-2595-A656491C77EA" default_value="">
+			<objects>
+				<object class="oracle.dbtools.crest.model.design.logical.Attribute" visible="false" color="-1"/>
+				<object class="oracle.dbtools.crest.model.design.relational.Column" visible="false" color="-1"/>
+			</objects>
+			<list_of_values>
+				<item value="R" default="false"/>
+				<item value="W" default="false"/>
+				<item value="." default="true"/>
+			</list_of_values>
+		</property>
+		<property name="SAP usage" dispalay_name="" type="List" group_id="CBD680DB-6185-0305-80FF-37C1A6DF26C7" default_value="">
+			<objects>
+				<object class="oracle.dbtools.crest.model.design.logical.Attribute" visible="false" color="-1"/>
+				<object class="oracle.dbtools.crest.model.design.relational.Column" visible="false" color="-1"/>
+			</objects>
+			<list_of_values>
+				<item value="R" default="false"/>
+				<item value="W" default="false"/>
+				<item value="." default="true"/>
+			</list_of_values>
+		</property>
+		<property name="AP AttrName" dispalay_name="" type="Text" group_id="E4D0379F-51D7-4C86-2595-A656491C77EA" default_value="">
+		<description>
+			<![CDATA[Name of attribute in external System]]>
+		</description>
+			<objects>
+				<object class="oracle.dbtools.crest.model.design.logical.Attribute" visible="false" color="-1"/>
+				<object class="oracle.dbtools.crest.model.design.relational.Column" visible="false" color="-1"/>
+			</objects>
+		</property>
+		<property name="EXCEL FileName" dispalay_name="" type="Text" group_id="D1EB7EC5-6EEC-B5B7-615D-478F38570EEE" default_value="">
+		<description>
+			<![CDATA[Name (and path and tab within file) of excel-File]]>
+		</description>
+			<objects>
+				<object class="oracle.dbtools.crest.model.design.logical.Entity" visible="false" color="-1"/>
+				<object class="oracle.dbtools.crest.model.design.relational.Table" visible="false" color="-1"/>
+			</objects>
+		</property>
+		<property name="EXCEL ColumnName" dispalay_name="" type="Text" group_id="D1EB7EC5-6EEC-B5B7-615D-478F38570EEE" default_value="">
+		<description>
+			<![CDATA[Name (A .. ZZ) of columns in excel file]]>
+		</description>
+			<objects>
+				<object class="oracle.dbtools.crest.model.design.logical.Attribute" visible="false" color="-1"/>
+				<object class="oracle.dbtools.crest.model.design.relational.Column" visible="false" color="-1"/>
+			</objects>
+		</property>
+		<property name="SAP FieldID" dispalay_name="" type="Text" group_id="CBD680DB-6185-0305-80FF-37C1A6DF26C7" default_value="">
+		<description>
+			<![CDATA[ID of field / column in SAP]]>
+		</description>
+			<objects>
+				<object class="oracle.dbtools.crest.model.design.logical.Attribute" visible="false" color="-1"/>
+				<object class="oracle.dbtools.crest.model.design.relational.Column" visible="false" color="-1"/>
+				<object class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" visible="false" color="-1"/>
+				<object class="oracle.dbtools.crest.model.design.logical.Relation" visible="false" color="-1"/>
+			</objects>
+		</property>
+	</properties>
+</udp_library>

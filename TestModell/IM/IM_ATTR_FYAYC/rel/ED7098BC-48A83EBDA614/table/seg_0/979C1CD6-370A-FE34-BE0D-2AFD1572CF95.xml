@@ -1,0 +1,94 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="979C1CD6-370A-FE34-BE0D-2AFD1572CF95" name="Personenrolle">
+<createdBy>stb</createdBy>
+<createdTime>2019-06-22 00:05:15 UTC</createdTime>
+<generatorID>ED3403C5-6925-5D93-5ADA-296E0CB4F66C</generatorID>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Bezeichnung" id="0DE244F5-954A-47F1-4EC3-CF64B1714A0E">
+<createdBy>stb</createdBy>
+<createdTime>2019-06-22 00:05:15 UTC</createdTime>
+<generatorID>E95D34B6-572F-CB7D-CEEB-0DC9C50D65E5</generatorID>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="AP AttrName" value="."/>
+<property name="AP Transformation" value="."/>
+<property name="AP Typ" value="."/>
+<property name="AP usage" value="."/>
+<property name="AttributGUID" value="."/>
+<property name="AttributeName" value="Personenrolle.Bezeichnung"/>
+</propertyMap>
+</Column>
+<Column name="Beschreibung" id="9EBA0055-5C50-09E2-1FFB-08AB6BD16F3E">
+<createdBy>stb</createdBy>
+<createdTime>2019-06-22 00:05:15 UTC</createdTime>
+<generatorID>7AF1C56F-9A53-E9A4-C0A3-438F10FF8E06</generatorID>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="AP AttrName" value="."/>
+<property name="AP Transformation" value="."/>
+<property name="AP Typ" value="."/>
+<property name="AP usage" value="."/>
+<property name="AttributGUID" value="."/>
+<property name="AttributeName" value="Personenrolle.Beschreibung"/>
+</propertyMap>
+</Column>
+<Column name="Personenrolle_ID" id="5B85FC73-A74F-4226-BF14-5781DC783FCD">
+<createdBy>stb</createdBy>
+<createdTime>2019-06-22 00:05:15 UTC</createdTime>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+<propertyMap>
+<property name="AP AttrName" value="."/>
+<property name="AP Transformation" value="."/>
+<property name="AP Typ" value="."/>
+<property name="AP usage" value="."/>
+<property name="AttributGUID" value="."/>
+<property name="AttributeName" value="."/>
+</propertyMap>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="9068A363-2A10-F01E-C4CE-F4D4CF781C26" name="Personenrolle_PK">
+<createdBy>stb</createdBy>
+<createdTime>2019-06-22 00:05:15 UTC</createdTime>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="5B85FC73-A74F-4226-BF14-5781DC783FCD"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="4FDDB7E2-F09A-25AF-E26F-ADF1F5FD62A2" name="Personenrolle_Bezeichnung_UN">
+<createdBy>stb</createdBy>
+<createdTime>2019-06-22 00:05:15 UTC</createdTime>
+<generatorID>E2C81864-0400-EEE1-56D7-1A32D1E06453</generatorID>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="0DE244F5-954A-47F1-4EC3-CF64B1714A0E"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

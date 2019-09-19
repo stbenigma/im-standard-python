@@ -1,0 +1,36 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<StructuredType class="oracle.dbtools.crest.model.design.datatypes.StructuredType" name="Zeitdauer" directorySegmentName="seg_0" id="74A518D4-6AEC-76EB-040A-051126EEBAFA">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-16 11:57:07 UTC</createdTime>
+<comment><![CDATA[Angabe einer Zeitdauer einer bestimmten Granularität]]></comment>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<predefined>false</predefined>
+<final>false</final>
+<instantiable>true</instantiable>
+<attributes itemClass="oracle.dbtools.crest.model.design.datatypes.TypeElement">
+<Attribute name="Dauer" id="47322877-E7AA-747B-838B-E8160B5A21A2">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-16 11:57:26 UTC</createdTime>
+<comment><![CDATA[Wert der Zeitdauer in der Einheit Granularität]]></comment>
+<commentInRDBMS><![CDATA[Wert der Zeitdauer in der Einheit Granularität]]></commentInRDBMS>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<mandatory>true</mandatory>
+<precision>5</precision>
+<reference>false</reference>
+<scale>0</scale>
+<type>LOGDT019</type>
+</Attribute>
+<Attribute name="Granularität" id="230BB7B2-929C-9C05-DA4C-97993F00E116">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-16 11:59:53 UTC</createdTime>
+<comment><![CDATA[Einheit in der die Dauer bestimmt ist.a]]></comment>
+<commentInRDBMS><![CDATA[Einheit in der die Dauer bestimmt ist.a]]></commentInRDBMS>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<mandatory>true</mandatory>
+<precision>0</precision>
+<reference>false</reference>
+<scale>0</scale>
+<type>5ED90093-92D2-C887-E9D3-6FC9FCE7B44C</type>
+</Attribute>
+</attributes>
+</StructuredType>

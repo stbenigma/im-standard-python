@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<udp_library>
+	<udp_groups>
+		<group name="InterfaceUsage" id="E53431EA-73E5-32D3-1FBE-79D022AD5FFC" />
+	</udp_groups>
+	<properties>
+		<property name="ERP" dispalay_name="" type="List" group_id="E53431EA-73E5-32D3-1FBE-79D022AD5FFC" default_value="">
+		<description>
+			<![CDATA[Usage of an attribut in the ERP database / IT-system / IT-application 
+kleiner Zeichen 	read into Origin from system
+O(rigin), M(anual), S(ynchronous), A(synchronous)
+grösser Zeichen sent from Origin to system]]>
+		</description>
+			<objects>
+				<object class="oracle.dbtools.crest.model.design.logical.Attribute" visible="false" color="-1"/>
+				<object class="oracle.dbtools.crest.model.design.logical.Entity" visible="false" color="-1"/>
+			</objects>
+			<list_of_values>
+				<item value="&lt;O&gt;" default="false"/>
+				<item value="&lt;A" default="false"/>
+				<item value="&lt;A&gt;" default="false"/>
+				<item value=" A&gt;" default="true"/>
+				<item value="&lt;M" default="false"/>
+				<item value="&lt;M&gt;" default="false"/>
+				<item value=" M&gt;" default="false"/>
+				<item value="&lt;S" default="false"/>
+				<item value="&lt;S&gt;" default="false"/>
+				<item value=" S&gt;" default="false"/>
+				<item value="." default="false"/>
+			</list_of_values>
+		</property>
+		<property name="CRM-Salesforce" dispalay_name="" type="List" group_id="E53431EA-73E5-32D3-1FBE-79D022AD5FFC" default_value="">
+		<description>
+			<![CDATA[Usage of an attribut in the Salesforce system 
+kleiner Zeichen 	read into Origin from system
+O(rigin), M(anual), S(ynchronous), A(synchronous)
+grösser Zeichen sent from Origin to system]]>
+		</description>
+			<objects>
+				<object class="oracle.dbtools.crest.model.design.logical.Attribute" visible="false" color="-1"/>
+				<object class="oracle.dbtools.crest.model.design.logical.Entity" visible="false" color="-1"/>
+			</objects>
+			<list_of_values>
+				<item value="&lt;O&gt;" default="false"/>
+				<item value="&lt;A" default="false"/>
+				<item value="&lt;A&gt;" default="false"/>
+				<item value=" A&gt;" default="true"/>
+				<item value="&lt;M" default="false"/>
+				<item value="&lt;M&gt;" default="false"/>
+				<item value=" M&gt;" default="false"/>
+				<item value="&lt;S" default="false"/>
+				<item value="&lt;S&gt;" default="false"/>
+				<item value=" S&gt;" default="false"/>
+				<item value="." default="false"/>
+			</list_of_values>
+		</property>
+		<property name="Excel" dispalay_name="" type="List" group_id="E53431EA-73E5-32D3-1FBE-79D022AD5FFC" default_value="">
+		<description>
+			<![CDATA[Usage of an attribut in an excel-file
+kleiner Zeichen 	read into Origin from system
+O(rigin), M(anual), S(ynchronous), A(synchronous)
+grösser Zeichen	 sent from Origin to system]]>
+		</description>
+			<objects>
+				<object class="oracle.dbtools.crest.model.design.logical.Attribute" visible="false" color="-1"/>
+				<object class="oracle.dbtools.crest.model.design.logical.Entity" visible="false" color="-1"/>
+			</objects>
+			<list_of_values>
+				<item value="&lt;O&gt;" default="false"/>
+				<item value="&lt;A" default="false"/>
+				<item value="&lt;A&gt;" default="false"/>
+				<item value=" A&gt;" default="true"/>
+				<item value="&lt;M" default="false"/>
+				<item value="&lt;M&gt;" default="false"/>
+				<item value=" M&gt;" default="false"/>
+				<item value="&lt;S" default="false"/>
+				<item value="&lt;S&gt;" default="false"/>
+				<item value=" S&gt;" default="false"/>
+				<item value="." default="false"/>
+			</list_of_values>
+		</property>
+		<property name="Web-Shop" dispalay_name="" type="List" group_id="E53431EA-73E5-32D3-1FBE-79D022AD5FFC" default_value="">
+		<description>
+			<![CDATA[Usage of an attribut for webshop-Display
+M(anual), S(ynchronous), A(synchronous)
+grösser Zeichen	 sent from Origin to system]]>
+		</description>
+			<objects>
+				<object class="oracle.dbtools.crest.model.design.logical.Attribute" visible="false" color="-1"/>
+				<object class="oracle.dbtools.crest.model.design.relational.Column" visible="false" color="-1"/>
+			</objects>
+			<list_of_values>
+				<item value=" A&gt;" default="true"/>
+				<item value=" M&gt;" default="false"/>
+				<item value=" S&gt;" default="false"/>
+				<item value="." default="false"/>
+			</list_of_values>
+		</property>
+	</properties>
+</udp_library>

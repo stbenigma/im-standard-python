@@ -1,0 +1,257 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="34BADC4A-C8C9-C8FC-7F84-7EF74E21D2D9" name="ROLLENADRESSE">
+<createdBy>stb</createdBy>
+<createdTime>2019-01-26 15:50:57 UTC</createdTime>
+<generatorID>5CB857EB-4605-233E-14A4-144A0B4B9582</generatorID>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<usedAsRemoteObject>true</usedAsRemoteObject>
+<abbreviation>RADR</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="RADR_ID" id="5F674607-2C82-2FC1-1B65-C17BC9AEA629">
+<createdBy>stb</createdBy>
+<createdTime>2019-01-26 15:50:57 UTC</createdTime>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+<Column name="RADR_ADRE_HAUS-NR" id="C874F947-3636-9152-FC26-0799EA8A9574">
+<createdBy>stb</createdBy>
+<createdTime>2019-01-26 15:50:57 UTC</createdTime>
+<generatorID>EE053628-60B1-BEF9-6DBD-AE4FC3D10D67</generatorID>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="46342A75-C94E-FE30-6F6B-15D0E82693BD" referredColumn="93A421A3-8804-6D4E-6C85-C5577FDB496A"/>
+</associations>
+</Column>
+<Column name="RADR_ADRE_GEBÄUDEBEZEICHNUNG" id="A2FBDD1D-5702-42FD-C6E8-C60536425FE3">
+<createdBy>stb</createdBy>
+<createdTime>2019-01-26 15:50:57 UTC</createdTime>
+<generatorID>0EF73A4A-5A08-3F3E-67C3-945ADC29EBA6</generatorID>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="AttributGUID" value="-"/>
+<property name="AttributName" value="-"/>
+<property name="EntityName" value="-"/>
+</propertyMap>
+<associations>
+<colAssociation fkAssociation="46342A75-C94E-FE30-6F6B-15D0E82693BD" referredColumn="42F0A81C-D695-40F3-6F3B-968D390AB979"/>
+</associations>
+</Column>
+<Column name="RADR_ADRE_STRASSENNAME" id="96FE2964-6883-37B8-8F35-518B6EB3363C">
+<createdBy>stb</createdBy>
+<createdTime>2019-01-26 15:50:57 UTC</createdTime>
+<generatorID>CC47EA1F-848E-C85A-E4BC-742858B68D99</generatorID>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="46342A75-C94E-FE30-6F6B-15D0E82693BD" referredColumn="635AA3D5-E6FC-DEE4-B9AC-3B5132DB6867"/>
+</associations>
+</Column>
+<Column name="RADR_ADRE_ORTS_NAME_[L]" id="ECA0044D-6AF3-8F0D-63B5-CDE1CDC77579">
+<createdBy>stb</createdBy>
+<createdTime>2019-01-26 15:50:57 UTC</createdTime>
+<generatorID>9776AC80-7FFB-23A0-6E70-A34923182BE1</generatorID>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="46342A75-C94E-FE30-6F6B-15D0E82693BD" referredColumn="063D0382-9F54-C123-0B8F-9CCCE4088278"/>
+</associations>
+</Column>
+<Column name="RADR_ADRE_ORTS_POSTLEITZAHL" id="4354D872-57BA-1A89-7293-1057F27C0EAE">
+<createdBy>stb</createdBy>
+<createdTime>2019-01-26 15:50:57 UTC</createdTime>
+<generatorID>F50483D6-B684-AC06-2F28-3EF9A6ACD46A</generatorID>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="46342A75-C94E-FE30-6F6B-15D0E82693BD" referredColumn="1E1375E1-1E0D-F55D-760C-AD7CE8EBF8B9"/>
+</associations>
+</Column>
+<Column name="RADR_ADRT_NAME" id="16EA98B9-F936-CC11-387A-84582520075A">
+<createdBy>stb</createdBy>
+<createdTime>2019-01-26 15:50:57 UTC</createdTime>
+<generatorID>A2218309-860A-DAE6-6D14-3B6CFC076A9A</generatorID>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="74042433-D00D-13C2-954D-688DB63F2C27" referredColumn="541854E5-45B7-5C83-8F76-584A2BC1D448"/>
+</associations>
+</Column>
+<Column name="RADR_PERS_PERS_ID" id="59E49E46-E94B-EA98-0A52-937AABEE2645">
+<createdBy>stb</createdBy>
+<createdTime>2019-01-26 15:51:16 UTC</createdTime>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="CA15D90A-BF0F-12C9-DBA8-0C752B58D35F" referredColumn="D6D26C94-2216-D29B-8E7C-C2CF56F86C77"/>
+</associations>
+</Column>
+<Column name="RADR_FIRM_FIRM_ID" id="3807BED0-5496-513D-6193-7F111F40C29F">
+<createdBy>stb</createdBy>
+<createdTime>2019-01-26 15:51:16 UTC</createdTime>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="A2C1BC45-333E-CDC9-1CC4-064737AFC630" referredColumn="1D191FDD-63DB-9905-626D-99F217AEB82D"/>
+</associations>
+</Column>
+<Column name="RADR_ANSP_GESCHÄFTS-EMAIL" id="FB724F38-71CD-A59A-93D5-265B7B345896">
+<createdBy>stb</createdBy>
+<createdTime>2019-01-26 15:50:57 UTC</createdTime>
+<comment><![CDATA[EMail-Adresse der Person in der Rolle dieses Ansprechpartners]]></comment>
+<generatorID>8DF6AA9A-EB86-2A81-AEA9-1408075DCF5C</generatorID>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="6D88F785-B7A7-8067-41BC-5BD96E9C6400" referredColumn="772F9044-5AD1-C1FC-064E-EA67A82461AA"/>
+</associations>
+</Column>
+<Column name="RADR_ANREDE" id="75A5BCD6-179D-D92B-7B8A-AD6CF7733322">
+<createdBy>stb</createdBy>
+<createdTime>2019-01-26 15:50:57 UTC</createdTime>
+<generatorID>4C818778-5806-77EE-1CC7-D8C34E081BD4</generatorID>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="C979C731-9C97-D3C4-51E0-88896C3BA012" name="RADR_PK">
+<createdBy>stb</createdBy>
+<createdTime>2019-01-26 15:50:57 UTC</createdTime>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="5F674607-2C82-2FC1-1B65-C17BC9AEA629"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="18FFB84F-511C-8E2D-0031-8049B32202A9" name="RADR_GESCHÄFTS-EMAIL_HAUS-NR_GEBÄUDEBEZEICHNUNG_STRASSENNAME_NAME_[L]_POSTLEITZAHL_NAME_UN">
+<createdBy>stb</createdBy>
+<createdTime>2019-01-26 15:50:57 UTC</createdTime>
+<generatorID>94D68F49-6BFD-2B2B-CF2B-93235E2A837D</generatorID>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="FB724F38-71CD-A59A-93D5-265B7B345896"/>
+<colUsage columnID="C874F947-3636-9152-FC26-0799EA8A9574"/>
+<colUsage columnID="A2FBDD1D-5702-42FD-C6E8-C60536425FE3"/>
+<colUsage columnID="96FE2964-6883-37B8-8F35-518B6EB3363C"/>
+<colUsage columnID="ECA0044D-6AF3-8F0D-63B5-CDE1CDC77579"/>
+<colUsage columnID="4354D872-57BA-1A89-7293-1057F27C0EAE"/>
+<colUsage columnID="16EA98B9-F936-CC11-387A-84582520075A"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="7FA2F07A-9128-0F7F-4EF3-6F702AE224A2" name="RADR_ADRE_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-01-26 15:51:16 UTC</createdTime>
+<generatorID>0C981AC7-33F6-ADB0-6DC5-62B161E3A1E9</generatorID>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="C874F947-3636-9152-FC26-0799EA8A9574"/>
+<colUsage columnID="A2FBDD1D-5702-42FD-C6E8-C60536425FE3"/>
+<colUsage columnID="96FE2964-6883-37B8-8F35-518B6EB3363C"/>
+<colUsage columnID="ECA0044D-6AF3-8F0D-63B5-CDE1CDC77579"/>
+<colUsage columnID="4354D872-57BA-1A89-7293-1057F27C0EAE"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="B62CF02E-0108-B47E-80F0-7D7E367A7B9B" name="RADR_ADRT_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-01-26 15:51:16 UTC</createdTime>
+<generatorID>CE905600-580F-2EAB-43DD-FA05BF49528E</generatorID>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="16EA98B9-F936-CC11-387A-84582520075A"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="51F6FC11-6819-3B2D-0119-27B88D81101F" name="RADR_PERS_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-01-26 15:51:16 UTC</createdTime>
+<generatorID>8826F582-AAB1-AB17-CAEB-75AC61056AD3</generatorID>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="59E49E46-E94B-EA98-0A52-937AABEE2645"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="6B9E3C7E-037B-B8AF-63E7-448F68D909C6" name="RADR_FIRM_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-01-26 15:51:16 UTC</createdTime>
+<generatorID>8826F582-AAB1-AB17-CAEB-75AC61056AD3</generatorID>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="3807BED0-5496-513D-6193-7F111F40C29F"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="B1215B5C-4488-1DCB-720B-0E299F010E36" name="RADR_ANSP_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-01-26 15:51:16 UTC</createdTime>
+<generatorID>97D701E3-035A-C03D-5C17-58D362556EE5</generatorID>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="FB724F38-71CD-A59A-93D5-265B7B345896"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

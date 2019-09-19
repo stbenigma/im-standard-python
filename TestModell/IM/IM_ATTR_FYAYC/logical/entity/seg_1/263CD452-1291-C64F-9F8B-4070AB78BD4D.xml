@@ -1,0 +1,100 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="263CD452-1291-C64F-9F8B-4070AB78BD4D" name="Adresstyp">
+<createdBy>stb</createdBy>
+<createdTime>2019-01-26 14:46:01 UTC</createdTime>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+<item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<shortName>ADRT</shortName>
+<createSurrogateKey>true</createSurrogateKey>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Name" id="5113038D-92A1-17A4-FF9D-F78A2ABFD02B">
+<createdBy>stb</createdBy>
+<createdTime>2019-01-26 14:46:07 UTC</createdTime>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+<item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AP AttrName" value="."/>
+<property name="AP Transformation" value="."/>
+<property name="AP Typ" value="."/>
+<property name="AP usage" value="."/>
+<property name="CRM-Salesforce" value="."/>
+<property name="ERP" value="."/>
+<property name="EXCEL ColumnName" value="."/>
+<property name="Excel" value="."/>
+<property name="SAP AttrName" value="."/>
+<property name="SAP FieldID" value="."/>
+<property name="SAP Qualitylevel" value="."/>
+<property name="SAP Transformation" value="."/>
+<property name="SAP Typ" value="."/>
+<property name="SAP usage" value="."/>
+<property name="Web-Shop" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Verwendungszweck" id="3C377F03-26CE-C8E5-695B-74AEFE71435E">
+<createdBy>stb</createdBy>
+<createdTime>2019-01-26 14:46:17 UTC</createdTime>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+<item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AP AttrName" value="."/>
+<property name="AP Transformation" value="."/>
+<property name="AP Typ" value="."/>
+<property name="AP usage" value="."/>
+<property name="CRM-Salesforce" value="."/>
+<property name="ERP" value="."/>
+<property name="EXCEL ColumnName" value="."/>
+<property name="Excel" value="."/>
+<property name="SAP AttrName" value="."/>
+<property name="SAP FieldID" value="."/>
+<property name="SAP Qualitylevel" value="."/>
+<property name="SAP Transformation" value="."/>
+<property name="SAP Typ" value="."/>
+<property name="SAP usage" value="."/>
+<property name="Web-Shop" value="."/>
+</propertyMap>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="09B3B156-2014-E75F-4A37-166D2629FDB7" name="Adresstyp PK">
+<createdBy>stb</createdBy>
+<createdTime>2019-01-26 14:57:22 UTC</createdTime>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<engineerTo>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>5113038D-92A1-17A4-FF9D-F78A2ABFD02B</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

@@ -1,0 +1,69 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="E6723025-CAD3-E943-1AAB-BE3149D7405E" name="Geografische Einheit">
+<createdBy>stb</createdBy>
+<createdTime>2019-05-06 07:55:51 UTC</createdTime>
+<comment><![CDATA[Ein geographisches Gebilde das nach geographischen, polititischen oder postalischen Kriterien in dieser Form definiert ist.]]></comment>
+<ownerDesignName>test_stb lokal</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="false"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<shortName>GEIN</shortName>
+<createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="DE_ENT_COMMENT" value="Ein geographisches Gebilde das nach geographischen, polititischen oder postalischen Kriterien in dieser Form definiert ist."/>
+<property name="DE_ENT_NAME" value="Geografische Einheit"/>
+<property name="DE_ENT_SYNONYM" value=""/>
+<property name="EN_ENT_COMMENT" value="*DE* Ein geographisches Gebilde das nach geographischen, polititischen oder postalischen Kriterien in dieser Form definiert ist."/>
+<property name="EN_ENT_NAME" value="geografical unit"/>
+<property name="EN_ENT_SYNONYM" value=""/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Name [L]" id="5E75C083-4B08-9B98-D615-C1F359FB7915">
+<createdBy>stb</createdBy>
+<createdTime>2019-05-06 07:55:51 UTC</createdTime>
+<ownerDesignName>test_stb lokal</ownerDesignName>
+<importedID>A9A6A545-A7E2-B23B-DD56-F34A224DC484</importedID>
+<engineerTo>
+<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Name [L]"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="name [L]"/>
+</propertyMap>
+</Attribute>
+<Attribute name="GeoInformation" id="FE56DE90-386C-5805-3D69-2C70A1861A61">
+<createdBy>stb</createdBy>
+<createdTime>2019-05-06 09:20:23 UTC</createdTime>
+<comment><![CDATA[Fläche eines Gebiets als geo-Information]]></comment>
+<ownerDesignName>test_stb lokal</ownerDesignName>
+<engineerTo>
+<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value="Fläche eines Gebiets als geo-Information"/>
+<property name="DE_ATTR_NAME" value="GeoInformation"/>
+<property name="EN_ATTR_COMMENT" value="*DE* Fläche eines Gebiets als geo-Information"/>
+<property name="EN_ATTR_NAME" value="GeoInformation"/>
+</propertyMap>
+</Attribute>
+</attributes>
+</Entity>

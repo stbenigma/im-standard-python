@@ -1,0 +1,56 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="855B3CD6-3898-7179-D003-53066C937878" name="Ansprechpartner">
+<createdBy>stb</createdBy>
+<createdTime>2019-05-06 08:04:25 UTC</createdTime>
+<comment><![CDATA[Funktion einer Person für eine juristische Einheit. Im Spezialfall kann eine Person als Einzelfirma ihr eigener Ansprechspartner sein.
+
+26.6.18 - THU:
+Namen von Kontaktperson nach Ansprechpartner geändert
+Synonym von Ansprechpartner nach Kontaktperson geändert]]></comment>
+<ownerDesignName>test_stb lokal</ownerDesignName>
+<engineerTo>
+<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<synonym>Kontaktperson</synonym>
+<createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="DE_ENT_COMMENT" value="Funktion einer Person für eine juristische Einheit. Im Spezialfall kann eine Person als Einzelfirma ihr eigener Ansprechspartner sein.
+
+26.6.18 - THU:
+Namen von Kontaktperson nach Ansprechpartner geändert
+Synonym von Ansprechpartner nach Kontaktperson geändert"/>
+<property name="DE_ENT_NAME" value="Ansprechpartner"/>
+<property name="DE_ENT_SYNONYM" value="Kontaktperson"/>
+<property name="EN_ENT_COMMENT" value="*DE* Funktion einer Person für eine juristische Einheit. Im Spezialfall kann eine Person als Einzelfirma ihr eigener Ansprechspartner sein.  26.6.18 - THU: Namen von Kontaktperson nach Ansprechpartner geändert Synonym von Ansprechpartner nach Kontaktperson geändert"/>
+<property name="EN_ENT_NAME" value="*DE* Ansprechpartner"/>
+<property name="EN_ENT_SYNONYM" value="*DE* Kontaktperson"/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Gültigkeitsperiode" id="E86C351D-CBFB-5FA9-0FEE-A23EBCF81766">
+<createdBy>stb</createdBy>
+<createdTime>2019-05-06 08:04:25 UTC</createdTime>
+<ownerDesignName>test_stb lokal</ownerDesignName>
+<importedID>287B1D85-08F9-0197-0B7B-656A0C7A7C3B</importedID>
+<engineerTo>
+<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Gültigkeitsperiode"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="*DE* Gültigkeitsperiode"/>
+</propertyMap>
+</Attribute>
+</attributes>
+</Entity>

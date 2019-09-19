@@ -1,0 +1,89 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="6044DCB8-89FA-01D9-BCAE-399E5598AD14" name="Gebietssprache">
+<createdBy>stb</createdBy>
+<createdTime>2019-05-06 07:55:51 UTC</createdTime>
+<comment><![CDATA[Lokale Variante einer Sprache
+Code wird zusammengesetzt aus ISO2-Sprachcode - ISO2-Landcode
+
+Beispiele:
+de-de 
+de-at
+de-ch
+fr-ch
+fr-fr
+fr-ca]]></comment>
+<ownerDesignName>test_stb lokal</ownerDesignName>
+<engineerTo>
+<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<shortName>GSPR</shortName>
+<createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="DE_ENT_COMMENT" value="Lokale Variante einer Sprache
+Code wird zusammengesetzt aus ISO2-Sprachcode - ISO2-Landcode
+
+Beispiele:
+de-de 
+de-at
+de-ch
+fr-ch
+fr-fr
+fr-ca"/>
+<property name="DE_ENT_NAME" value="Gebietssprache"/>
+<property name="DE_ENT_SYNONYM" value=""/>
+<property name="EN_ENT_COMMENT" value="*DE* Lokale Variante einer Sprache Code wird zusammengesetzt aus ISO2-Sprachcode - ISO2-Landcode  Beispiele: de-de  de-at de-ch fr-ch fr-fr fr-ca"/>
+<property name="EN_ENT_NAME" value="*DE* Gebietssprache"/>
+<property name="EN_ENT_SYNONYM" value=""/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Name [L]" id="FC993BF2-475D-4815-1D51-2E4BF70D8192">
+<createdBy>stb</createdBy>
+<createdTime>2019-05-06 07:55:51 UTC</createdTime>
+<ownerDesignName>test_stb lokal</ownerDesignName>
+<importedID>3378DFFE-5AFC-C1E8-FF93-B75A26258FD3</importedID>
+<engineerTo>
+<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Name [L]"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="*DE* Name [L]"/>
+</propertyMap>
+</Attribute>
+<Attribute name="ISO-SprachLand_Code" id="410D6AF2-941E-E1F8-E04B-AA99D4245E6A">
+<createdBy>stb</createdBy>
+<createdTime>2019-05-06 07:55:51 UTC</createdTime>
+<comment><![CDATA[2stellen Sprache Iso, "-", 2 stellen Land-Iso]]></comment>
+<ownerDesignName>test_stb lokal</ownerDesignName>
+<importedID>CF0C212A-6465-E9CB-39F5-50E63FCCDD61</importedID>
+<engineerTo>
+<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>5</dataTypeSize>
+<ownDataTypeParameters>5,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value="2stellen Sprache Iso, &quot;-&quot;, 2 stellen Land-Iso"/>
+<property name="DE_ATTR_NAME" value="ISO-SprachLand_Code"/>
+<property name="EN_ATTR_COMMENT" value="*DE* 2stellen Sprache Iso, &quot;-&quot;, 2 stellen Land-Iso"/>
+<property name="EN_ATTR_NAME" value="*DE* ISO-SprachLand_Code"/>
+</propertyMap>
+</Attribute>
+</attributes>
+</Entity>
