@@ -4,13 +4,14 @@ outputDirectory:str = None
 from IM_ODM import odmParam
 import os,shutil
 
-htmlFileName:str = "ModellView"
-fileName:str = htmlFileName+ '.html'
-directory:str = odmParam.imDirectory
-detailDirectory:str = directory+"/"+htmlFileName+"/"
-tocFileName:str = htmlFileName + '_toc'
-contFileName:str = htmlFileName + '_cont'
-qfileName:str = directory+fileName
+webDirectory:str = "";
+webFileName:str = "";
+detailDirectory:str = "";
+webFileNameSpec:str = "";
+tocFileName:str = "";
+contFileName:str = "";
+indexFileName:str = "";
+libSourceDirec:str = "";
 
 headIndex:str ="""<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -60,23 +61,44 @@ type="text/css">@page {{ margin-left:2cm; margin-right:2cm; margin-top:2cm; marg
 ftoc = None
 fcont = None
 
+
+def setWebDirec(pwebDirec, pbaseDirec):
+    global webDirectory ,webFileName,detailDirectory,webFileNameSpec,tocFileName
+    global contFileName, indexFileName
+    global libSourceDirec
+
+    if (pwebDirec is None):
+        if (not os.path.exists(pbaseDirec+"Web")):
+            os.mkdir(pbaseDirec+"Web");
+        #fi
+        webDirectory = pbaseDirec+"Web/";
+    else:
+        webDirectory = webDirec;
+    #fi
+    webFileName = odmParam.imModelName;
+    detailDirectory = webDirectory + webFileName + "/";
+    webFileNameSpec = webFileName + '.html';
+    tocFileName = webFileName + '_toc';
+    contFileName = webFileName + '_cont';
+    indexFileName = webDirectory + webFileNameSpec;
+    libSourceDirec = os.path.dirname(os.path.abspath(__file__))+'/../';
+# setWebDirec
+
+
 def createIndex(title):
-    global qfileName,directory
     global ftoc,fcont
-    global headIndex,headToc
-    if os.path.exists(qfileName):
-        os.remove(qfileName)
+
+    if os.path.exists(indexFileName):
+        os.remove(indexFileName)
     if os.path.exists(detailDirectory):
         shutil.rmtree(detailDirectory)
 
     os.mkdir(detailDirectory)
-    shutil.copytree(odmParam.libDirectory+'html-lib/'+'js',detailDirectory+'js')
-    shutil.copytree(odmParam.libDirectory+'html-lib/'+'css',detailDirectory+'css')
-    shutil.copytree(odmParam.libDirectory+'html-lib/'+'img',detailDirectory+'img')
+    for loc in ['js','css','img']:
+        shutil.copytree(libSourceDirec+'html-lib/'+loc,detailDirectory+loc)
 
-    print (odmParam.imDirectory,odmParam.libDirectory,qfileName)
-    f = open(qfileName,'w')
-    f.write(headIndex .format(title,htmlFileName+'/'+tocFileName,htmlFileName+'/'+contFileName))
+    f = open(indexFileName,'w')
+    f.write(headIndex .format(title,webFileName+'/'+tocFileName,webFileName+'/'+contFileName))
     f.close()
 
     ftoc = open(detailDirectory+tocFileName+'.html','w')
@@ -146,12 +168,14 @@ def startTable(titel,ueberschriften,anker=''):
 
     fcont.write("""</tr></thead><tbody>""")
 #startTable
-
+def nvl(x):
+    return x if (x is not None) else ''
+#nvl
 def writeTable(werte):
     global fcont
     fcont.write("""<tr>""")
     for w in werte:
-        fcont.write("""<td class="td_r">{}</td>""" .format(w))
+        fcont.write("""<td class="td_r">{}</td>""" .format(nvl(w)))
     #rof
     fcont.write("""</tr>""")
 

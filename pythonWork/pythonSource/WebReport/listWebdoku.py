@@ -1,6 +1,7 @@
 # -*- coding: latin-1 -*-
 import sys
 sys.path.append('../IM_db')
+from datetime import date
 from IM_ODM import odmParam
 from IM_DB import dbParam,dbConnect,dbDDL,dbDML,dbErstelleTables,dbInserts
 from IM_HTML import printHTML
@@ -66,33 +67,57 @@ def bool2JN(b):
 #bool2JN
 
 def printUDP(meltName, Id):
-#    udpTypen = dbDML.select("""select distinct bdeg_thema,bdeg_gruppe
+#    printHTML.startTable('Attribute - User Defined Properties: ' + nvl(thema), udpListe, anker='ATTRUDP')#
+#
+#
+#for at in allattr:
+#    values = [href(ref=entiAnker(at[1]), anz=at[0]), href(ref=attrAnker(at[2]), anz=at[3])
+#        , nvl(at[4]), nvl(at[6])]
+
+    #    udpTypen = dbDML.select("""select distinct bdeg_thema,bdeg_gruppe
 #                                    from benudef_eigenschaft
 #                                    join modelltyp_eigensch on mote_bdeg_id = bdeg_id
 #                                    join modellelem_typ on melt_id = mote_melt_id
 #                                                        and melt_kurzname = '{}' 
 #                    """ .format(meltName))
-    printHTML.startTable('Benutzerdefinerte Werte: '
-                         , ('Thema', 'Gruppe', 'Name', 'Wert'))
-    lsql = """select  bdeg_name,bdwe_wert,bdeg_thema,bdeg_gruppe
-                           from benudef_wert
-                           join modellelement on mode_id = bdwe_mode_id
+    ludpNamen = """select  bdeg_thema,bdeg_gruppe,group_concat(bdeg_name,',') attrs
+                           from modellelem_typ
+                           join modelltyp_eigensch on mote_melt_id = melt_id  
+                           join benudef_eigenschaft on bdeg_id = mote_bdeg_id
+                           where melt_kurzname = '{}'
+                        group by bdeg_thema,bdeg_gruppe
+                        order by bdeg_thema,bdeg_gruppe""".format(meltName)
+    udpNamen = dbDML.select(ludpNamen)
+    for udpName in udpNamen:
+        lsql = """select  bdwe_wert
+                    from benudef_wert
+                    join modellelement on mode_id = bdwe_mode_id
                                             and ({} = {}) 
-                           join benudef_eigenschaft on bdeg_id = bdwe_bdeg_id
-                        order by bdeg_thema,bdeg_gruppe,bdeg_name
+                    join benudef_eigenschaft on bdeg_id = bdwe_bdeg_id
+                            and bdeg_thema = '{}' and bdeg_gruppe = '{}'
+                    order by bdeg_name
                     """.format("mode_" +
                                 ("enti" if meltName == 'ENTI'
                                  else "attr" if meltName == 'ATTR'
                                  else "")
                                 + "_id " , Id
+                               ,udpName[0],udpName[1]
                                )
-    #print(lsql)
-    udpWerte = dbDML.select(lsql)
-    for udpWert in udpWerte:
-        #print(udpWert)
-        printHTML.writeTable((udpWert[2], udpWert[3], udpWert[0], udpWert[1]))
-    # rof
-    printHTML.endTable('')
+        lwerte = dbDML.select(lsql)
+        #print(udpName[0],udpName[1],lwerte)
+        lw = [];
+        for l in lwerte:
+            lw.append(nvl(l[0]))
+        #rof
+        #print (udpName[0],udpName[1],lw)
+        namenliste = udpName[2].split(',')
+        namenliste.sort() #SQl kann keine sortierte group_concat liefern
+        printHTML.startTable('Benutzerdefinerte Werte: {} - {} '.format(udpName[0], udpName[1])
+                             , namenliste)
+
+        printHTML.writeTable(lw)
+        printHTML.endTable('')
+    #rof
 #printUDP
 
 def printAttrUDPMatrix(thema=None):
@@ -226,17 +251,25 @@ def printBezi(entiId):
     printHTML.endTable('')
 #printBez
 
+
 def main():
     limDirec = sys.argv[1] if (len(sys.argv)>1) else None
     lModelName = sys.argv[2] if (len(sys.argv)>2) else None
+    lWebDirec = sys.argv[3] if (len(sys.argv)>3) else None
 
     odmParam.initODMParam(pimDirec=limDirec,pmodelName=lModelName)
+    #print(odmParam.imModelName,odmParam.imDirectory);
+    printHTML.setWebDirec(pwebDirec=lWebDirec,pbaseDirec =  odmParam.imDirectory if (limDirec is None) else limDirec)
+#    print (printHTML.webDirectory,printHTML.webFileName,printHTML.detailDirectory
+#    ,printHTML.webFileNameSpec,printHTML.tocFileName,printHTML.contFileName,printHTML.indexFileName);
+#    print(printHTML.libSourceDirec);
 
     dbParam.initDBParam(odmParam.imDirectory
                 ,odmParam.imModelName+'.db');
     dbConnect.openDB(dbParam.dbDirectory, dbParam.dbName);
 
-    printHTML.createIndex ("Modell")
+    printHTML.createIndex ("Informationsmodell {} (Stand: {})"
+                           .format(odmParam.imModelName,date.today()));
 
     enti = dbDML.select("""select e1.enti_name,e1.enti_odm_guid,e1.enti_beschr
             ,e1.enti_uc,e1.enti_dc,e1.enti_id 

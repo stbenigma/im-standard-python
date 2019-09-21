@@ -457,7 +457,8 @@ def strNegBool(pbool):
 #strNegBool
 
 def beziType(srcCard, targCard, srcOpt,targOpt,arcId):
-    # ISA: zuSeite optional, vonSeite Pflicht
+    # ISA: 1:1 und
+    #      zuSeite Pflicht, vonSeite optional
     #           oder beide sind Pflicht und die zuSeite beziehung ist in einem Arc
     #    1:1 sonst
     #
@@ -480,6 +481,10 @@ def beziType(srcCard, targCard, srcOpt,targOpt,arcId):
 def do1Relation(fileName):
     tree = ET.parse(fileName)
     root = tree.getroot()
+#    if root.get('id') in ['E2F6422D-57B7-8EEF-2E4E-9D2B1E8A7742'
+#,'3DF2EB21-4E7D-A57A-58B5-E3220941ACE1'
+#,'ED734E28-4F24-502D-65A3-6614EE919185']:
+#        print(root.get('id'),'=',findText(root,'arc'))
     try:
         beziArcId = dbLookup.arcsID(findText(root,'arc'))
     except  sqlite3.Error as e:

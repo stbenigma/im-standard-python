@@ -2,13 +2,11 @@
 import os
 import re
 
-libDirectory:str = '/Users/stb/Documents/Projekte/FYAYC_intern/pythonScripts/'
-imDirectory:str = '/Users/stb/Documents/Projekte/FYAYC_intern/pythonScripts/'
+imDirectory:str = ''
 imModelName:str = ''
 imKonfDirectory:str = 'Konfiguration/'
 imDomainsFile:str = 'defaultdomains.xml'
 imTypesFile:str = 'types.xml'
-#imDataMappingName:str = 'Datenmapping.udposdm'
 imFilesDirec:str = imDirectory+imModelName+'/files/'
 imEntityDirec:str = imDirectory+imModelName+'/logical/entity/'
 imRelationDirec:str = imDirectory+imModelName+'/logical/relation/'
@@ -33,19 +31,16 @@ def suche1File(direc,pattern):
 #sucheFile
 
 def initODMParam(pimDirec = None , pmodelName  = None, pDomainsFile = None):
-    global libDirectory
     global imDirectory
     global imModelName
     global imKonfDirectory
     global imDomainsFile
-#    global imDataMappingName
     global imEntityDirec
     global imFilesDirec
     global imRelationDirec
     global imArcDirec
 
     imDirectory = pimDirec if (pimDirec  is not None) else imDirectory
-    libDirectory = imDirectory;
 
     # nimm den Namen des einzigen .dmd-Files im aktuellen, im IM/, im gitHub/IM-Directory
     imModelName = suche1File(direc=imDirectory,pattern= '.*' if (pmodelName is None) else pmodelName)
