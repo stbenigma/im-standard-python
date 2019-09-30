@@ -36,3 +36,15 @@ def dropTable(ptableName):
             print ("Unerwarteter SQL-Fehler: \t{}" .format(e))
             raise e
 #end dropTable
+def dropView(ptableName):
+    cursor = dbConnect.myDbConn.cursor()
+
+    try:
+        cursor.execute("drop view "+ptableName+";")
+    except sqlite3.Error as e:
+        if re.match("no such view:.* ",e.__str__()):
+            pass
+        else:
+            print ("Unerwarteter SQL-Fehler: \t{}" .format(e))
+            raise e
+#end dropView
