@@ -10,6 +10,7 @@ dbDefaultLang:str = 'DE'
 def initDBParam(pdbDirec, pdbName):
     global dbDirectory
     global dbName
+    global dbDefaultLang
 
     dbDirectory = pdbDirec
 

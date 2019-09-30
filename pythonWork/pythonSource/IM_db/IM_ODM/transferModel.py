@@ -463,9 +463,7 @@ def beziType(srcCard, targCard, srcOpt,targOpt,arcId):
     #    1:1 sonst
     #
     if ((srcCard == '1') and (targCard == '1')):
-        if (((srcOpt == 'false') and (targOpt == 'true'))
-            or ((srcOpt == 'true') and (targOpt == 'false'))
-            or ((srcOpt == 'false') and (targOpt == 'false') and (arcId is not None))
+        if ((srcOpt == 'false') and (targOpt == 'false') and (arcId is not None)
            ):
             return 'ISA'
         else:
