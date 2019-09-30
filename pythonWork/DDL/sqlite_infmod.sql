@@ -355,7 +355,7 @@ CREATE TABLE modellelement(
     mode_bezi_id   integer NULL,
     mode_enti_id   integer NULL,
     mode_orge_id   integer NULL,
-    mode_melt_id   integer NOT NULL,
+    mode_melt_id   integer NOT NULL,	
     mode_uc        varchar(30 )NOT NULL,
     mode_dc        varchar(30)NOT NULL,
     mode_um        varchar(30 )NULL,
@@ -435,6 +435,20 @@ CREATE TABLE modelltyp_eigensch(
 )
 
 
-
+create view SUPERENTI AS select ae.enti_id super_enti_id,ae.enti_name super_enti_name
+               ,e1.enti_id sub_enti_id,e1.enti_name sub_enti_name
+      from arcs
+      join entitaeten as ae on ae.enti_id = arcs_enti_id 
+      join (select bezi_arcs_id,count(*) alleanz
+           , SUM(case when bezi_type in ('ISA','1:1') then 1 else 0 end) isaanz
+           , SUM(case bezi_pflicht_assoc_von_zu when 'TRUE' then 1 else 0 end) nnvonanz
+           , SUM(case bezi_pflicht_assoc_zu_von when 'TRUE' then 1 else 0 end) nnzuanz
+            from  beziehungen
+            where bezi_type in ('ISA','1:1') 
+            group by bezi_arcs_id) as st
+            on st.bezi_arcs_id = arcs_id AND alleanz = isaanz and alleanz = nnvonanz and alleanz = nnzuanz
+      join beziehungen b1 on b1.bezi_arcs_id = arcs_id
+      join entitaeten e1 on e1.enti_id = b1.bezi_enti_id_von  
+    order by ae.enti_name
 
 
