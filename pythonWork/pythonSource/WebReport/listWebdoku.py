@@ -6,6 +6,44 @@ from IM_ODM import odmParam
 from IM_DB import dbParam,dbConnect,dbDDL,dbDML,dbErstelleTables,dbInserts
 from IM_HTML import printHTML
 
+greportLang:str = ''
+
+translNameEN = {'Attribut': 'Attribute'
+                ,'Attribut(e)': 'Attribute(s)'
+                ,'Attribute': 'Attributes'
+                ,'Author': 'Author'
+                ,'Beschreibung': 'Description'
+                ,'Beziehung': 'Relationship'
+                ,'Beziehung(en)': 'relationship(s)'
+                ,'Beziehungen': 'Relationships'
+                ,'Binär': 'Binary'
+                ,'Datentyp': 'Datatype'
+                ,'Domains': 'Domains'
+                ,'Entität': 'Entity'
+                ,'Entität1': 'Entity1'
+                ,'Entität2': 'Entity2'
+                ,'Entitäten': 'Entities'
+                ,'Erstellt': 'Generates'
+                ,'Gruppenattribut': 'Groupattribute'
+                ,'Informationsmodell {} (Stand: {})': 'Informationmodel {} (Status: {})'
+                ,'Ja': 'Yes'
+                ,'Name': 'Name'
+                ,'Nein': 'No'
+                ,'Nr': 'Nr'
+                ,'Numerisch': 'Numerical'
+                ,'Schlüssel': 'Key'
+                ,'Subentität': 'Subentity'
+                ,'Subentitäten': 'Subentities'
+                ,'Superentitäten': 'Superentity'
+                ,'Synonyme': 'Synonyms'
+                ,'Technischer Name': 'Technical Name'
+                ,'Text': 'Text'
+                ,'Typ': 'Type'
+                ,'UDP-Matrix': 'UDP-Matrix'
+                ,'Wertebereich': 'Domain'
+                ,'Werteliste': 'Valuelist'
+                ,'Zeitpunkt': 'Point in Time'
+                }
 
 udpThemenSql:str = """select distinct bdeg_thema
                     from benudef_eigenschaft
@@ -42,14 +80,27 @@ def makeAnker(ref,anz):
 #href
 
 def anzDatentyp(dt):
-    anzDT = {'BIN': 'Binär'
-             ,'GRP':'Gruppenattribut'
-             ,'LOV':'Werteliste'
-             ,'NUM':'Numerisch'
-             ,'TEXT':'Text'
-             ,'ZPKT':'Zeitpunkt'}
+    anzDT = {'BIN': transl('Binär')
+             ,'GRP': transl('Gruppenattribut')
+             ,'LOV': transl('Werteliste')
+             ,'NUM': transl('Numerisch')
+             ,'TEXT': transl('Text')
+             ,'ZPKT': transl('Zeitpunkt')}
     return anzDT[dt]
 #anzDatentyp
+
+def transl(pname):
+   if (greportLang == 'DE'):
+       return pname
+   elif (greportLang == 'EN'):
+       try:
+           return translNameEN[pname]
+       except:
+           return pname
+   else:
+       return pname
+#translate
+
 
 
 
@@ -132,7 +183,7 @@ def printUDP(meltName, Id):
 #printUDP
 
 def printAttrUDPMatrix(thema=None):
-    udpListe = ['Entität','Attribut','Technischer Name','Datentyp']
+    udpListe = [transl('Entität'),transl('Attribut'),transl('Technischer Name'),transl('Datentyp')]
     lsql = """select  bdeg_name,bdeg_thema,bdeg_gruppe
                     from benudef_eigenschaft
                     join modelltyp_eigensch on mote_bdeg_id = bdeg_id
@@ -264,9 +315,12 @@ def printBezi(entiId):
 #printBez
 
 def main():
+    global greportLang
     limDirec = sys.argv[1] if (len(sys.argv)>1) else None
-    lModelName = sys.argv[2] if (len(sys.argv)>2) else None
-    lWebDirec = sys.argv[3] if (len(sys.argv)>3) else None
+    greportLang = sys.argv[2] if (len(sys.argv)>2) else None
+    lModelName = sys.argv[3] if (len(sys.argv)>3) else None
+    lWebDirec = sys.argv[4] if (len(sys.argv)>4) else None
+
 
     odmParam.initODMParam(pimDirec=limDirec,pmodelName=lModelName)
 
@@ -278,35 +332,27 @@ def main():
 
     dbParam.initDBParam(odmParam.imDirectory
                 ,odmParam.imModelName+'.db');
+    greportLang = greportLang if (greportLang is not None) else dbParam.dbDefaultLang
     dbConnect.openDB(dbParam.dbDirectory, dbParam.dbName);
 
     printHTML.createIndex ("Informationsmodell {} (Stand: {})"
                            .format(odmParam.imModelName,date.today()));
 
-    enti = dbDML.select("""select e1.enti_name,e1.enti_odm_guid,e1.enti_beschr
+    enti = dbDML.select( """select e1.enti_name,e1.enti_odm_guid,e1.enti_beschr
             ,e1.enti_uc,e1.enti_dc,e1.enti_id 
-          ,superentity_name,superentity_id,superentity_guid
-          ,(select group_concat('<a href="#ENTI'||sube.enti_id||'" target="details">'
-                                    ||sube.enti_name||'</a>'
+          ,super_enti_name,super_enti_id,NULL superentity_guid
+          ,(select group_concat('<a href="#ENTI'||sub_enti_id||'" target="details">'
+                                    ||sub_enti_name||'</a>'
                             ,', ') subent
-              from beziehungen
-              join entitaeten sube on sube.enti_id = bezi_enti_id_von
-              where bezi_type = 'ISA'
-              and bezi_enti_id_zu = e1.enti_id
+              from superenti where super_enti_id = e1.enti_id
               ) as subentities
             ,(select group_concat(syno_name,', ') synos
               from synonyme
               where syno_enti_id = e1.enti_id
               ) as subentities
           from entitaeten e1
-          left join (select enti_name as superentity_name, enti_id superentity_id
-                        ,enti_odm_guid as superentity_guid,bezi_enti_id_von
-                      from beziehungen                                                                      
-                       join entitaeten on enti_id = bezi_enti_id_zu
-                      where  bezi_type = 'ISA'
-                    ) on bezi_enti_id_von = e1.enti_id
-          order by upper(e1.enti_name)
-          """)
+          left join superenti on  sub_enti_id = e1.enti_id
+          order by upper(e1.enti_name)""")
 #    for e in enti:
 #        print (e)
     printHTML.writeToc("""<div><ol class ="tree"><li><label for="entities">Entitäten</label>
