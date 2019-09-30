@@ -5,7 +5,7 @@
 
 dbName:str = ''
 dbDirectory:str = ''
-
+dbDefaultLang:str = 'DE'
 
 def initDBParam(pdbDirec, pdbName):
     global dbDirectory
