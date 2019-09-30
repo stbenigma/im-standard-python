@@ -159,7 +159,7 @@ def startTable(titel,ueberschriften,anker=''):
                 """.format(titel))
     else:
         fcont.write("""<p></p><span class="t_cap">{}</span>
-        	            <table name="{}"  class="w_5"><thead><tr>
+        	            <table id="{}"  class="w_5"><thead><tr>
                         """.format(titel,anker))
 
     for w in ueberschriften:

@@ -6,6 +6,14 @@ from IM_ODM import odmParam
 from IM_DB import dbParam,dbConnect,dbDDL,dbDML,dbErstelleTables,dbInserts
 from IM_HTML import printHTML
 
+
+udpThemenSql:str = """select distinct bdeg_thema
+                    from benudef_eigenschaft
+                    join modelltyp_eigensch on mote_bdeg_id = bdeg_id
+                    join modellelem_typ on melt_id = mote_melt_id
+                                    and melt_kurzname = 'ATTR'
+                    order by bdeg_thema"""
+
 def entiAnker(id):
     return 'ENTI'+str(id)
 def attrAnker(id):
@@ -16,6 +24,8 @@ def schlAnker(id):
     return 'SCHL'+str(id)
 def wrtbAnker(id):
     return 'WRTB'+str(id)
+def udpAnker(id):
+    return 'UDP'+str(id)
 
 # Main Programm
 def nvl(x,default=''):
@@ -141,7 +151,7 @@ def printAttrUDPMatrix(thema=None):
       join entitaeten on enti_id = attr_enti_id
       join wertebereiche on wrtb_id = attr_wrtb_id
       order by enti_name,upper(attr_tech_name)""")
-    printHTML.startTable('Attribute - User Defined Properties: '+nvl(thema), udpListe,anker='ATTRUDP')
+    printHTML.startTable('Attribute - User Defined Properties: '+nvl(thema), udpListe,anker=udpAnker(thema))
     for at in allattr:
         values = [href(ref=entiAnker(at[1]), anz=at[0]), href(ref=attrAnker(at[2]), anz=at[3])
                               ,nvl(at[4]),nvl(at[6])]
@@ -181,7 +191,7 @@ def printSchluessel(entiId):
                     """.format(entiId))
 
     for s in schl:
-        printHTML.writeTable((s[1],makeAnker(ref=schlAnker(s[0]),anz=s[2]),nvl(s[3]),nvl(s[4])))
+        printHTML.writeTable((s[1],s[2],nvl(s[3]),nvl(s[4])))
     printHTML.endTable('')
 
 
@@ -244,10 +254,10 @@ def printBezi(entiId):
     for c in bezi:
         if (entiId == c[0]):
             #'Name','Entität1','','Beziehung','', 'Entität2','Arc'
-            printHTML.writeTable((makeAnker(ref=beziAnker(c[10]),anz=nvl(c[16])),c[1], '->',nvl(c[3],'--'),c[4] , '',''))
+            printHTML.writeTable((nvl(c[16]),c[1], '->',nvl(c[3],'--'),c[4] , '',''))
             printHTML.writeTable(('','', c[9],nvl(c[8],'--'),'<-' , href(ref=entiAnker(c[5]), anz=c[6]),nvl(c[14])))
         else:
-            printHTML.writeTable((makeAnker(ref=beziAnker(c[10]),anz=nvl(c[16])),c[6], '->',nvl(c[8],'--'),c[9] , '',''))
+            printHTML.writeTable((nvl(c[16]),c[6], '->',nvl(c[8],'--'),c[9] , '',''))
             printHTML.writeTable(('','', c[4],nvl(c[3],'--'),'<-' , href(ref=entiAnker(c[0]), anz=c[1]),''))
         #if
     printHTML.endTable('')
@@ -347,8 +357,10 @@ def main():
     printHTML.writeToc("""<div><ol class ="tree"><li><label for="objects">UDP-Matrix</label>
             <input type="checkbox" id="objects" /><ol>
             """)
-    printHTML.writeToc("""<li class="obj"><a href="{}#{}" target="details">{}</a></li>\
-       """.format(printHTML.contFileName + ".html", 'ATTRUDP', 'Attribut-Matrix'))
+    udpAttrThema = dbDML.select(udpThemenSql)
+    for u in udpAttrThema:
+        printHTML.writeToc("""<li class="obj"><a href="{}#{}" target="details">{}</a></li>\
+           """.format(printHTML.contFileName + ".html", udpAnker(u[0]), u[0]))
     printHTML.writeToc("</ol></ol></div>")
 
     printHTML.closeToc("""</div></div>""")
@@ -442,7 +454,7 @@ def main():
 
     printAttrUDPMatrix(thema='DataMapping')
     printAttrUDPMatrix(thema='SystemAttribute')
-    printAttrUDPMatrix()
+    # printAttrUDPMatrix()
 
 
     printHTML.closeCont('')
