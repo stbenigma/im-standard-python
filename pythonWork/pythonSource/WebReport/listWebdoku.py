@@ -42,6 +42,7 @@ def anzDatentyp(dt):
 #anzDatentyp
 
 
+
 def formatDatentyp(w):
     dt = anzDatentyp(w[0])
     #print (w)
@@ -248,9 +249,9 @@ def printBezi(entiId):
         else:
             printHTML.writeTable((makeAnker(ref=beziAnker(c[10]),anz=nvl(c[16])),c[6], '->',nvl(c[8],'--'),c[9] , '',''))
             printHTML.writeTable(('','', c[4],nvl(c[3],'--'),'<-' , href(ref=entiAnker(c[0]), anz=c[1]),''))
+        #if
     printHTML.endTable('')
 #printBez
-
 
 def main():
     limDirec = sys.argv[1] if (len(sys.argv)>1) else None
@@ -258,6 +259,7 @@ def main():
     lWebDirec = sys.argv[3] if (len(sys.argv)>3) else None
 
     odmParam.initODMParam(pimDirec=limDirec,pmodelName=lModelName)
+
     #print(odmParam.imModelName,odmParam.imDirectory);
     printHTML.setWebDirec(pwebDirec=lWebDirec,pbaseDirec =  odmParam.imDirectory if (limDirec is None) else limDirec)
 #    print (printHTML.webDirectory,printHTML.webFileName,printHTML.detailDirectory
@@ -355,7 +357,7 @@ def main():
 
     for e in enti:
         printHTML.printTable({"Entität": e[0], "Beschreibung":nvl(e[2])
-                              ,"Synonyme":e[10]
+                              ,"Synonyme":nvl(e[10])
         , "Autor":e[3], "Erstellt":e[4], "Superentität":href(entiAnker(e[7]), anz=nvl(e[6]))
                 , "Subentitäten":nvl(e[9])}, anker=entiAnker(e[5]))
 
