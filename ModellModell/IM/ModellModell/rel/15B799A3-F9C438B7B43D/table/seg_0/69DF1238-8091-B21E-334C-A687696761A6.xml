@@ -8,9 +8,38 @@ Eine alternative Ausgabe, erlaubt es, einen Text zu dem eine Übersetzung fehlt 
 <generatorID>3E8032B0-5673-6691-00B9-475546860A3A</generatorID>
 <ownerDesignName>ModellModell</ownerDesignName>
 <abbreviation>SPRA</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="SPRA_ID" id="2FB7B8A7-8D51-5FF0-5AF2-D5AB9375E9DC">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 08:10:42 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<autoIncrementSequenceName>INFRA_SEQ</autoIncrementSequenceName>
+</Column>
+<Column name="SPRA_SPRA_ID" id="C8E5B648-9763-4894-DA87-9D4CC9FB137C">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 08:10:42 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="82E5786F-D63D-75D4-971B-0F670F6FB7BE" referredColumn="2FB7B8A7-8D51-5FF0-5AF2-D5AB9375E9DC"/>
+</associations>
+</Column>
 <Column name="SPRA_ISO_NAME" id="53079FF2-FC0B-0582-26F5-DE6FB0FBA258">
 <createdBy>stb</createdBy>
 <createdTime>2019-04-01 08:10:42 UTC</createdTime>
@@ -21,19 +50,6 @@ Eine alternative Ausgabe, erlaubt es, einen Text zu dem eine Übersetzung fehlt 
 <use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-</Column>
-<Column name="SPRA_UETX_ID_NAME" id="320764B7-D709-CD3D-2E34-D6CE7EAEBC4D">
-<createdBy>stb</createdBy>
-<createdTime>2019-04-01 08:10:42 UTC</createdTime>
-<comment><![CDATA[Name übersetzt, Originialname]]></comment>
-<generatorID>A48C7265-3B50-E7F5-E97C-A5683ED08B99</generatorID>
-<ownerDesignName>ModellModell</ownerDesignName>
-<nullsAllowed>true</nullsAllowed>
-<use>0</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
-<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
@@ -81,33 +97,17 @@ Eine alternative Ausgabe, erlaubt es, einen Text zu dem eine Übersetzung fehlt 
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="SPRA_ID" id="2FB7B8A7-8D51-5FF0-5AF2-D5AB9375E9DC">
+<Column name="SPRA_IST_MODELLSPRACHE" id="0F1A10E9-9EC1-06FF-4615-73A94B1771E2">
 <createdBy>stb</createdBy>
-<createdTime>2019-04-01 08:10:42 UTC</createdTime>
+<createdTime>2019-10-02 08:33:54 UTC</createdTime>
+<comment><![CDATA[Basissprache in dem das Modell beschrieben ist.]]></comment>
+<generatorID>7946129A-B876-FC35-FA72-27CA9051B460</generatorID>
 <ownerDesignName>ModellModell</ownerDesignName>
 <use>0</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
-<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
-<autoIncrementColumn>true</autoIncrementColumn>
-<identityColumn>true</identityColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
-<autoIncrementSequenceName>INFRA_SEQ</autoIncrementSequenceName>
-</Column>
-<Column name="SPRA_SPRA_ID" id="C8E5B648-9763-4894-DA87-9D4CC9FB137C">
-<createdBy>stb</createdBy>
-<createdTime>2019-04-01 08:10:42 UTC</createdTime>
-<ownerDesignName>ModellModell</ownerDesignName>
-<nullsAllowed>true</nullsAllowed>
-<use>0</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
-<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<previousColumn>false</previousColumn>
-<autoIncrementCycle>false</autoIncrementCycle>
-<associations>
-<colAssociation fkAssociation="82E5786F-D63D-75D4-971B-0F670F6FB7BE" referredColumn="2FB7B8A7-8D51-5FF0-5AF2-D5AB9375E9DC"/>
-</associations>
 </Column>
 <Column name="SPRA_UC" id="D7C7050F-8646-7E39-4B07-C8B81905FB28">
 <createdBy>stb</createdBy>

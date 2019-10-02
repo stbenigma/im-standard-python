@@ -49,9 +49,6 @@
 <domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
-<associations>
-<colAssociation fkAssociation="5CFC8DC9-42EA-717B-90CC-C353D6441A3A" referredColumn="55253521-18EF-4491-BA38-A5FE10DD40CE"/>
-</associations>
 </Column>
 <Column name="SYNO_ENTI_ID" id="09168800-43D1-2888-937D-707AC93B36AD">
 <createdBy>stb</createdBy>
@@ -156,16 +153,6 @@
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
 <colUsage columnID="09168800-43D1-2888-937D-707AC93B36AD"/>
-</indexColumnUsage>
-</ind_PK_UK>
-<ind_PK_UK id="5543EFEB-58E7-FFFF-B206-4BB047014353" name="SYNO_UETX_FK_NAME">
-<createdBy>stb</createdBy>
-<createdTime>2019-04-01 09:40:45 UTC</createdTime>
-<ownerDesignName>ModellModell</ownerDesignName>
-<indexState>Foreign Key</indexState>
-<isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
-<colUsage columnID="48B804B2-6D79-D2A1-C9C3-7E2EB8654EFE"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>

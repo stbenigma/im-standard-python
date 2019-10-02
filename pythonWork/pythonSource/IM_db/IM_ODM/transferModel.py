@@ -728,7 +728,7 @@ def transferODMModel():
         for a in att:
             print (a)
     if (1==2):
-        att=dbDML.select("""select bw.*,mode_type from benudef_wert as bw 
+        att=dbDML.select("""select bw.* from benudef_wert as bw 
                 join modellelement on mode_id = bdwe_mode_id
                 join entitaeten on enti_id = mode_enti_id
                 where enti_name = 'Adresse'""")

@@ -134,26 +134,26 @@ def insertModellElemTyp(pData):
 #insertModellElemTyp
 
 def insertModellElement(pData):
-    #mode_type,  mode_wrtb_id,,  mode_attr_id
+    #mode_wrtb_id,,  mode_attr_id
     #mode_buru_id,   mode_bezi_id,   mode_enti_id
     #mode_orge_id,   mode_melt_id,   mode_uc
     #mode_dc
-    lsql = """insert into modellelement (mode_type,  mode_wrtb_id,  mode_attr_id
+    lsql = """insert into modellelement (mode_wrtb_id,  mode_attr_id
         ,mode_buru_id,   mode_bezi_id,   mode_enti_id
         ,mode_orge_id,   mode_melt_id,   mode_uc
         ,mode_dc)
-        values(?,?,?,?,?,?,?,?,?,?)"""
+        values(?,?,?,?,?,?,?,?,?)"""
     return dbDML.insert(lsql, pData)
 #insertModellElement
 
 def insertModeEnti(entiId):
-    return insertModellElement(pData=('ENTI',None,None,None,None,entiId,None,dbLookup.meltLookup('ENTI'),'--',date.today()))
+    return insertModellElement(pData=(None,None,None,None,entiId,None,dbLookup.meltLookup('ENTI'),'--',date.today()))
 #insertModeEnti
 def insertModeAttr(attrId):
-    return insertModellElement(pData=('ATTR',None,attrId,None,None,None,None,dbLookup.meltLookup('ATTR'),'--',date.today()))
+    return insertModellElement(pData=(None,attrId,None,None,None,None,dbLookup.meltLookup('ATTR'),'--',date.today()))
 #insertModeAttr
 def insertModeBezi(beziId):
-    return insertModellElement(pData=('BEZI',None,None,None,beziId,None,None,dbLookup.meltLookup('BEZI'),'--',date.today()))
+    return insertModellElement(pData=(None,None,None,beziId,None,None,dbLookup.meltLookup('BEZI'),'--',date.today()))
 #insertModebezi
 
 def insertBenudef_wert(pData):

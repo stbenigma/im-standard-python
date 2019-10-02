@@ -389,14 +389,6 @@ CREATE TABLE modellelem_typ(
     dbDDL.createTable("""
 CREATE TABLE modellelement(
     mode_id        integer NOT NULL primary key autoincrement,
-    mode_type      varchar(4)NOT NULL
-        CHECK(mode_type IN(
-            'ATTR',
-            'BEZI',
-            'BURU',
-            'ENTI',
-            'WRTB'
-        )),
     mode_wrtb_id   integer NULL,
     mode_attr_id   integer NULL,
     mode_buru_id   integer NULL,
@@ -413,16 +405,6 @@ CREATE TABLE modellelement(
 	                                  mode_buru_id,
 	                                  mode_enti_id,
 	                                  mode_bezi_id),
-	CONSTRAINT mode_arc_fk1 CHECK(mode_type != 'ATTR'
-                                  OR(mode_attr_id IS NOT NULL)),
-	CONSTRAINT mode_arc_fk2 CHECK(mode_type != 'BEZI'
-                                      OR(mode_bezi_id IS NOT NULL)),								  
-	CONSTRAINT mode_arc_fk3 CHECK(mode_type != 'BURU'
-                                      OR(mode_buru_id IS NOT NULL)),
-	CONSTRAINT mode_arc_fk4 CHECK(mode_type != 'ENTI'
-                                      OR(mode_enti_id IS NOT NULL)),
-	CONSTRAINT mode_arc_fk5 CHECK(mode_type != 'WRTB'
-                                      OR(mode_wrtb_id IS NOT NULL)),								  
 	CONSTRAINT fkarc_4 CHECK(((mode_buru_id IS NOT NULL)
                                   AND(mode_bezi_id IS NULL)
                                   AND(mode_enti_id IS NULL)
@@ -486,9 +468,52 @@ CREATE TABLE modelltyp_eigensch(
 )
 """)
 
-#    dbDDL.dropTable("arc")
-#    dbDDL.createTable("""
-#""")
+    dbDDL.dropTable("sprache")
+    dbDDL.createTable("""CREATE TABLE sprache(
+    spra_id                integer primary key autoincrement,
+    spra_iso_name          varchar(60) NOT NULL,
+    spra_iso_code2         CHAR(2) NOT NULL,
+    spra_iso_code3         CHAR(3) NOT NULL,
+    spra_ist_textsprache   varchar(5) NOT NULL,
+    spra_spra_id           integer,
+    spra_uc                varchar(30) NOT NULL,
+    spra_dc                varchar(30) NOT NULL,
+    spra_um                varchar(30) ,
+    spra_dm                varchar(30),
+    constraint spra_txt_bool CHECK(spra_ist_textsprache IN(
+        'FALSE',
+        'TRUE'
+    )),
+    constraint spra_iso3_low CHECK(spra_iso_code3 = lower(spra_iso_code3)),
+    constraint spra_iso2_low CHECK(spra_iso_code2 = lower(spra_iso_code2)),
+	constraint spra_iso_uk unique (spra_iso_name),
+	constraint spra_iso2_uk unique (spra_iso_code2),
+	constraint spra_iso3_uk unique (spra_iso_code3)
+    )"""
+    )
+
+    dbDDL.dropTable("sprachtext")
+    dbDDL.createTable("""CREATE TABLE sprachtext(
+    sptx_id           integer primary key autoincrement,
+	sptx_attrname	  varchar(30) NOT NULL,
+    sptx_text         varchar(4000) NOT NULL,
+    sptx_spra_id      integer,
+    sptx_mode_id      integer NOT NULL,
+    sptx_uc           varchar(30) NOT NULL,
+    sptx_dc           varchar(30) NOT NULL,
+    sptx_um           varchar(30) ,
+    sptx_dm           varchar(30),
+	constraint sptx_attrnameUC check(sptx_attrname = upper(sptx_attrname)),
+	constraint sptx_uk unique (sptx_attrname,sptx_spra_id,sptx_mode_id),
+    CONSTRAINT sptx_mode_fk FOREIGN KEY(sptx_mode_id)
+									   REFERENCES modellelement(mode_id),
+	CONSTRAINT sptx_spra_fk FOREIGN KEY(sptx_spra_id)
+									   REFERENCES sprache(spra_id)	
+    )
+    """)
+    #    dbDDL.dropTable("arc")
+    #    dbDDL.createTable("""
+    # """)
 
     #dbDDL.dropView("SUPERENTI");
     dbDDL.createTable("""create view SUPERENTI AS select ae.enti_id super_enti_id,ae.enti_name super_enti_name
@@ -506,4 +531,7 @@ CREATE TABLE modelltyp_eigensch(
       join beziehungen b1 on b1.bezi_arcs_id = arcs_id
       join entitaeten e1 on e1.enti_id = b1.bezi_enti_id_von  
     order by ae.enti_name""")
+
+
+
 #end erstelleInfra

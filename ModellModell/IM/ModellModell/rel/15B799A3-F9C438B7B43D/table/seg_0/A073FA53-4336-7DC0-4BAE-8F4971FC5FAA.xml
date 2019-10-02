@@ -9,7 +9,6 @@ Das Attribut "Wert" ist der physikalische (sprachunabhängige) Wert, der als eig
 <ordsAlias>vorgabewertv1</ordsAlias>
 <abbreviation>MODE</abbreviation>
 <allowColumnReorder>false</allowColumnReorder>
-<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <existDependencyConstraintName>MODE_ARC_FK</existDependencyConstraintName>
 <existDependencyGenerationLevel>Discriminator value</existDependencyGenerationLevel>
 <parsed>true</parsed>
@@ -27,217 +26,19 @@ Das Attribut "Wert" ist der physikalische (sprachunabhängige) Wert, der als eig
 <identityColumn>true</identityColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="MODE_TYPE" id="BF481072-2A4F-0361-4DB5-D511AB56E443">
+<Column name="MODE_MELT_ID" id="E35C81FE-FADB-6CA4-06E2-925513CA4653">
 <createdBy>stb</createdBy>
-<createdTime>2019-08-27 17:06:40 UTC</createdTime>
+<createdTime>2019-10-02 08:21:47 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
-<useDomainConstraints>false</useDomainConstraints>
-<use>0</use>
-<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
-<dataTypeSize>4</dataTypeSize>
-<domain>0D75D1F9-839F-41DA-8464-0FF34C2F4ABB</domain>
-<listOfValues>
-<valueDef value="ATTR" description="Attribut"/>
-<valueDef value="BEZI" description="Beziehung"/>
-<valueDef value="BURU" description="Business Rule"/>
-<valueDef value="ENTI" description="Entität"/>
-<valueDef value="WRTB" description="Wertebereich"/>
-</listOfValues>
-<ownDataTypeParameters>4,,</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-<isDiscriminatorColumn>true</isDiscriminatorColumn>
-<dependentColumns>
-<dependentColumn class="oracle.dbtools.crest.model.design.relational.Column$DependentColumnDescriptor">
-<columnID>2A071E66-BFE3-1B3C-3B21-4644C56ADC0D</columnID>
-<dependAsMandatory>true</dependAsMandatory>
-<dependOnValue>true</dependOnValue>
-<discriminatorValue>ATTR</discriminatorValue>
-<id>B3B9CE79-2563-2262-940C-AA6F3BAD22B1</id>
-</dependentColumn>
-<dependentColumn class="oracle.dbtools.crest.model.design.relational.Column$DependentColumnDescriptor">
-<columnID>996BD115-09A4-8E55-89CE-29AD5D071FDA</columnID>
-<dependAsMandatory>false</dependAsMandatory>
-<dependOnValue>true</dependOnValue>
-<discriminatorValue>ATTR</discriminatorValue>
-<id>C5EA6030-866C-E407-DC8A-E57E4B541C4E</id>
-</dependentColumn>
-<dependentColumn class="oracle.dbtools.crest.model.design.relational.Column$DependentColumnDescriptor">
-<columnID>43684840-4402-77B7-D5FF-92F097E81853</columnID>
-<dependAsMandatory>false</dependAsMandatory>
-<dependOnValue>true</dependOnValue>
-<discriminatorValue>ATTR</discriminatorValue>
-<id>7B798FC0-004B-8A0B-2772-B76CE237BE76</id>
-</dependentColumn>
-<dependentColumn class="oracle.dbtools.crest.model.design.relational.Column$DependentColumnDescriptor">
-<columnID>72DAD7CD-22C5-5BA9-DDDC-57875CA25D81</columnID>
-<dependAsMandatory>false</dependAsMandatory>
-<dependOnValue>true</dependOnValue>
-<discriminatorValue>ATTR</discriminatorValue>
-<id>112A38F0-EC7E-A267-E6B0-6B432EADA09C</id>
-</dependentColumn>
-<dependentColumn class="oracle.dbtools.crest.model.design.relational.Column$DependentColumnDescriptor">
-<columnID>D750EEFE-1095-110C-C7E1-CEC82CE5BE5E</columnID>
-<dependAsMandatory>false</dependAsMandatory>
-<dependOnValue>true</dependOnValue>
-<discriminatorValue>ATTR</discriminatorValue>
-<id>41D3423C-14B0-DBEC-B257-F63D25EA69CE</id>
-</dependentColumn>
-<dependentColumn class="oracle.dbtools.crest.model.design.relational.Column$DependentColumnDescriptor">
-<columnID>2A071E66-BFE3-1B3C-3B21-4644C56ADC0D</columnID>
-<dependAsMandatory>false</dependAsMandatory>
-<dependOnValue>true</dependOnValue>
-<discriminatorValue>BEZI</discriminatorValue>
-<id>E11C3D56-61FF-EAE8-A54D-BDB75DC7DF35</id>
-</dependentColumn>
-<dependentColumn class="oracle.dbtools.crest.model.design.relational.Column$DependentColumnDescriptor">
-<columnID>996BD115-09A4-8E55-89CE-29AD5D071FDA</columnID>
-<dependAsMandatory>true</dependAsMandatory>
-<dependOnValue>true</dependOnValue>
-<discriminatorValue>BEZI</discriminatorValue>
-<id>FD5A9B72-B94A-797A-EEC1-2DFBF6E7C009</id>
-</dependentColumn>
-<dependentColumn class="oracle.dbtools.crest.model.design.relational.Column$DependentColumnDescriptor">
-<columnID>72DAD7CD-22C5-5BA9-DDDC-57875CA25D81</columnID>
-<dependAsMandatory>false</dependAsMandatory>
-<dependOnValue>true</dependOnValue>
-<discriminatorValue>BEZI</discriminatorValue>
-<id>F2962477-A7C9-A396-D136-2CD8A24D5E85</id>
-</dependentColumn>
-<dependentColumn class="oracle.dbtools.crest.model.design.relational.Column$DependentColumnDescriptor">
-<columnID>D750EEFE-1095-110C-C7E1-CEC82CE5BE5E</columnID>
-<dependAsMandatory>false</dependAsMandatory>
-<dependOnValue>true</dependOnValue>
-<discriminatorValue>BEZI</discriminatorValue>
-<id>09CFEB7C-C506-18A9-EE96-3EE6A8539D33</id>
-</dependentColumn>
-<dependentColumn class="oracle.dbtools.crest.model.design.relational.Column$DependentColumnDescriptor">
-<columnID>2A071E66-BFE3-1B3C-3B21-4644C56ADC0D</columnID>
-<dependAsMandatory>false</dependAsMandatory>
-<dependOnValue>true</dependOnValue>
-<discriminatorValue>ENTI</discriminatorValue>
-<id>B2679902-A904-2286-30DA-4248E69175A2</id>
-</dependentColumn>
-<dependentColumn class="oracle.dbtools.crest.model.design.relational.Column$DependentColumnDescriptor">
-<columnID>996BD115-09A4-8E55-89CE-29AD5D071FDA</columnID>
-<dependAsMandatory>false</dependAsMandatory>
-<dependOnValue>true</dependOnValue>
-<discriminatorValue>ENTI</discriminatorValue>
-<id>8EA9161C-EAA3-B6CA-90BD-B12ACEF397E6</id>
-</dependentColumn>
-<dependentColumn class="oracle.dbtools.crest.model.design.relational.Column$DependentColumnDescriptor">
-<columnID>43684840-4402-77B7-D5FF-92F097E81853</columnID>
-<dependAsMandatory>false</dependAsMandatory>
-<dependOnValue>true</dependOnValue>
-<discriminatorValue>ENTI</discriminatorValue>
-<id>FA3E5240-13E4-DBB3-0A84-9A4C65B550AB</id>
-</dependentColumn>
-<dependentColumn class="oracle.dbtools.crest.model.design.relational.Column$DependentColumnDescriptor">
-<columnID>72DAD7CD-22C5-5BA9-DDDC-57875CA25D81</columnID>
-<dependAsMandatory>true</dependAsMandatory>
-<dependOnValue>true</dependOnValue>
-<discriminatorValue>ENTI</discriminatorValue>
-<id>4A7A7F71-9EBD-9D6F-FF0C-120CB67A2B55</id>
-</dependentColumn>
-<dependentColumn class="oracle.dbtools.crest.model.design.relational.Column$DependentColumnDescriptor">
-<columnID>D750EEFE-1095-110C-C7E1-CEC82CE5BE5E</columnID>
-<dependAsMandatory>false</dependAsMandatory>
-<dependOnValue>true</dependOnValue>
-<discriminatorValue>ENTI</discriminatorValue>
-<id>E640CB68-376C-B797-5F8A-21A053BE340A</id>
-</dependentColumn>
-<dependentColumn class="oracle.dbtools.crest.model.design.relational.Column$DependentColumnDescriptor">
-<columnID>2A071E66-BFE3-1B3C-3B21-4644C56ADC0D</columnID>
-<dependAsMandatory>false</dependAsMandatory>
-<dependOnValue>true</dependOnValue>
-<discriminatorValue>BURU</discriminatorValue>
-<id>3D87F10D-AD6E-E8C4-1E9E-396700B5D072</id>
-</dependentColumn>
-<dependentColumn class="oracle.dbtools.crest.model.design.relational.Column$DependentColumnDescriptor">
-<columnID>996BD115-09A4-8E55-89CE-29AD5D071FDA</columnID>
-<dependAsMandatory>false</dependAsMandatory>
-<dependOnValue>true</dependOnValue>
-<discriminatorValue>BURU</discriminatorValue>
-<id>52FD8B6A-5E68-6E67-1ABB-0FB4F71D83AB</id>
-</dependentColumn>
-<dependentColumn class="oracle.dbtools.crest.model.design.relational.Column$DependentColumnDescriptor">
-<columnID>43684840-4402-77B7-D5FF-92F097E81853</columnID>
-<dependAsMandatory>true</dependAsMandatory>
-<dependOnValue>true</dependOnValue>
-<discriminatorValue>BURU</discriminatorValue>
-<id>5B723861-EEDE-2DA9-6196-DC253DDA90BC</id>
-</dependentColumn>
-<dependentColumn class="oracle.dbtools.crest.model.design.relational.Column$DependentColumnDescriptor">
-<columnID>72DAD7CD-22C5-5BA9-DDDC-57875CA25D81</columnID>
-<dependAsMandatory>false</dependAsMandatory>
-<dependOnValue>true</dependOnValue>
-<discriminatorValue>BURU</discriminatorValue>
-<id>79C66098-B940-92BE-742B-C909C5554A9A</id>
-</dependentColumn>
-<dependentColumn class="oracle.dbtools.crest.model.design.relational.Column$DependentColumnDescriptor">
-<columnID>D750EEFE-1095-110C-C7E1-CEC82CE5BE5E</columnID>
-<dependAsMandatory>false</dependAsMandatory>
-<dependOnValue>true</dependOnValue>
-<discriminatorValue>BURU</discriminatorValue>
-<id>FB94A418-1D43-7138-9F8E-9D7F92D6637F</id>
-</dependentColumn>
-<dependentColumn class="oracle.dbtools.crest.model.design.relational.Column$DependentColumnDescriptor">
-<columnID>2A071E66-BFE3-1B3C-3B21-4644C56ADC0D</columnID>
-<dependAsMandatory>false</dependAsMandatory>
-<dependOnValue>true</dependOnValue>
-<discriminatorValue>WRTB</discriminatorValue>
-<id>941B381F-484F-BECD-2B09-2620766AFD31</id>
-</dependentColumn>
-<dependentColumn class="oracle.dbtools.crest.model.design.relational.Column$DependentColumnDescriptor">
-<columnID>996BD115-09A4-8E55-89CE-29AD5D071FDA</columnID>
-<dependAsMandatory>false</dependAsMandatory>
-<dependOnValue>true</dependOnValue>
-<discriminatorValue>WRTB</discriminatorValue>
-<id>4FE4BE97-1B8F-CD48-2098-029F68F56321</id>
-</dependentColumn>
-<dependentColumn class="oracle.dbtools.crest.model.design.relational.Column$DependentColumnDescriptor">
-<columnID>43684840-4402-77B7-D5FF-92F097E81853</columnID>
-<dependAsMandatory>false</dependAsMandatory>
-<dependOnValue>true</dependOnValue>
-<discriminatorValue>WRTB</discriminatorValue>
-<id>CF999D79-C54F-1C14-CFB2-3D74DAB68018</id>
-</dependentColumn>
-<dependentColumn class="oracle.dbtools.crest.model.design.relational.Column$DependentColumnDescriptor">
-<columnID>72DAD7CD-22C5-5BA9-DDDC-57875CA25D81</columnID>
-<dependAsMandatory>false</dependAsMandatory>
-<dependOnValue>true</dependOnValue>
-<discriminatorValue>WRTB</discriminatorValue>
-<id>2BF3287E-0DBD-846D-6057-E6DFDC7A1E66</id>
-</dependentColumn>
-<dependentColumn class="oracle.dbtools.crest.model.design.relational.Column$DependentColumnDescriptor">
-<columnID>D750EEFE-1095-110C-C7E1-CEC82CE5BE5E</columnID>
-<dependAsMandatory>true</dependAsMandatory>
-<dependOnValue>true</dependOnValue>
-<discriminatorValue>WRTB</discriminatorValue>
-<id>A11BCC4D-19EE-31F0-C3A9-D34F58362EAA</id>
-</dependentColumn>
-<dependentColumn class="oracle.dbtools.crest.model.design.relational.Column$DependentColumnDescriptor">
-<columnID>43684840-4402-77B7-D5FF-92F097E81853</columnID>
-<dependAsMandatory>false</dependAsMandatory>
-<dependOnValue>true</dependOnValue>
-<discriminatorValue>BEZI</discriminatorValue>
-<id>02A1A515-822E-EBA7-0DD1-14958D8AF678</id>
-</dependentColumn>
-</dependentColumns>
-</Column>
-<Column name="MODE_WRTB_ID" id="D750EEFE-1095-110C-C7E1-CEC82CE5BE5E">
-<createdBy>stb</createdBy>
-<createdTime>2019-04-04 15:27:17 UTC</createdTime>
-<ownerDesignName>ModellModell</ownerDesignName>
-<nullsAllowed>true</nullsAllowed>
-<useDomainConstraints>false</useDomainConstraints>
 <use>0</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
 <domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 <associations>
-<colAssociation fkAssociation="620EDEA3-0BDC-37D9-AC98-32241691814B" referredColumn="A378345E-C3A2-1DAB-A09D-67630ADC17A8"/>
+<colAssociation fkAssociation="83E2C3B4-47CF-2EE3-7AD0-99083826113C" referredColumn="F26A5928-9E50-1BEE-28C7-9989390DFBC6"/>
 </associations>
 </Column>
 <Column name="MODE_ORGE_ID" id="041C49EF-5A1B-92B8-C4C5-442069F08951">
@@ -270,21 +71,6 @@ Das Attribut "Wert" ist der physikalische (sprachunabhängige) Wert, der als eig
 <colAssociation fkAssociation="63A51C4C-0263-4EB7-62FD-66EC3F18B64E" referredColumn="D8469506-6FD4-3358-1C9D-64435152B23C"/>
 </associations>
 </Column>
-<Column name="MODE_BURU_ID" id="43684840-4402-77B7-D5FF-92F097E81853">
-<createdBy>stb</createdBy>
-<createdTime>2019-04-04 15:30:36 UTC</createdTime>
-<ownerDesignName>ModellModell</ownerDesignName>
-<nullsAllowed>true</nullsAllowed>
-<use>0</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
-<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<previousColumn>false</previousColumn>
-<autoIncrementCycle>false</autoIncrementCycle>
-<associations>
-<colAssociation fkAssociation="9F42ABE1-04FE-B60F-C544-67A49641D4D0" referredColumn="3B52AAE9-A2C5-80EB-D5DA-758CFDE56E5C"/>
-</associations>
-</Column>
 <Column name="MODE_BEZI_ID" id="996BD115-09A4-8E55-89CE-29AD5D071FDA">
 <createdBy>stb</createdBy>
 <createdTime>2019-08-27 17:08:25 UTC</createdTime>
@@ -300,6 +86,21 @@ Das Attribut "Wert" ist der physikalische (sprachunabhängige) Wert, der als eig
 <colAssociation fkAssociation="7AF7CAEA-E5AC-8DB1-657E-BD13DF925805" referredColumn="B6D90C3F-10C6-0BD1-37C5-B8BF8622003D"/>
 </associations>
 </Column>
+<Column name="MODE_BURU_ID" id="43684840-4402-77B7-D5FF-92F097E81853">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-04 15:30:36 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="9F42ABE1-04FE-B60F-C544-67A49641D4D0" referredColumn="3B52AAE9-A2C5-80EB-D5DA-758CFDE56E5C"/>
+</associations>
+</Column>
 <Column name="MODE_ENTI_ID" id="72DAD7CD-22C5-5BA9-DDDC-57875CA25D81">
 <createdBy>stb</createdBy>
 <createdTime>2019-04-04 15:30:49 UTC</createdTime>
@@ -313,6 +114,22 @@ Das Attribut "Wert" ist der physikalische (sprachunabhängige) Wert, der als eig
 <autoIncrementCycle>false</autoIncrementCycle>
 <associations>
 <colAssociation fkAssociation="2EE813F7-12C7-CE4E-BAC4-C2EAEE1F84F5" referredColumn="B53A54A2-7725-B574-6A72-01964F006A02"/>
+</associations>
+</Column>
+<Column name="MODE_WRTB_ID" id="D750EEFE-1095-110C-C7E1-CEC82CE5BE5E">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-04 15:27:17 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="620EDEA3-0BDC-37D9-AC98-32241691814B" referredColumn="A378345E-C3A2-1DAB-A09D-67630ADC17A8"/>
 </associations>
 </Column>
 <Column name="MODE_UC" id="0C46EFB4-C00A-E893-D1CC-A5069944A434">
@@ -339,6 +156,7 @@ Das Attribut "Wert" ist der physikalische (sprachunabhängige) Wert, der als eig
 <logicalDatatype>LOGDT047</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<isDiscriminatorColumn>true</isDiscriminatorColumn>
 <propertyMap>
 <property name="ctemplateID" value="74D877A0-4C3B-63EE-06C5-071C7695907C"/>
 </propertyMap>
@@ -449,7 +267,7 @@ Das Attribut "Wert" ist der physikalische (sprachunabhängige) Wert, der als eig
 <colUsage columnID="041C49EF-5A1B-92B8-C4C5-442069F08951"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="98348E4A-CE65-5AB2-1DEE-758086CCFBD5" name="MODE_BEZI_FK">
+<ind_PK_UK id="98348E4A-CE65-5AB2-1DEE-758086CCFBD5" name="MODE_BEZI_FK_IST">
 <createdBy>stb</createdBy>
 <createdTime>2019-08-27 17:08:25 UTC</createdTime>
 <generatorID>CEB0C7CA-9CEF-89CC-1712-0634D0BB6B99</generatorID>
@@ -460,5 +278,47 @@ Das Attribut "Wert" ist der physikalische (sprachunabhängige) Wert, der als eig
 <colUsage columnID="996BD115-09A4-8E55-89CE-29AD5D071FDA"/>
 </indexColumnUsage>
 </ind_PK_UK>
+<ind_PK_UK id="23A5F4B4-CA5F-E921-EF4A-B93619347745" name="MODE_MELT_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-02 08:21:47 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="E35C81FE-FADB-6CA4-06E2-925513CA4653"/>
+</indexColumnUsage>
+</ind_PK_UK>
 </indexes>
+<tableCheckConstraints itemClass="oracle.dbtools.crest.model.design.constraint.TableLevelConstraint">
+<tableCheckConstraint name="MODE_CK_ARC" directorySegmentName="seg_0" id="1B321446-73DC-ACFE-2AB9-6F9B3A1B28F6">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-02 08:23:31 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<rule><![CDATA[(mode_buru_id IS NOT NULL
+                         AND mode_bezi_id IS NULL
+                         AND mode_enti_id IS NULL
+                         AND mode_wrtb_id IS NULL
+                         AND mode_attr_id IS NULL)
+                          OR(mode_buru_id IS NULL
+                        AND  mode_bezi_id IS NOT NULL
+                        AND  mode_enti_id IS NULL
+                        AND  mode_wrtb_id IS NULL
+                        AND  mode_attr_id IS NULL)
+                          OR(mode_buru_id IS NULL
+                        AND  mode_bezi_id IS NULL
+                        AND  mode_enti_id IS NOT NULL
+                        AND  mode_wrtb_id IS NULL
+                        AND  mode_attr_id IS NULL)
+                          OR(mode_buru_id IS NULL
+                        AND  mode_bezi_id IS NULL
+                        AND  mode_enti_id IS NULL
+                        AND  mode_wrtb_id IS NOT NULL
+                        AND  mode_attr_id IS NULL)
+                          OR(mode_buru_id IS NULL
+                        AND  mode_bezi_id IS NULL
+                        AND  mode_enti_id IS NULL
+                        AND  mode_wrtb_id IS NULL
+					    AND  mode_attr_id IS NOT NULL)]]></rule>
+</tableCheckConstraint>
+</tableCheckConstraints>
 </Table>

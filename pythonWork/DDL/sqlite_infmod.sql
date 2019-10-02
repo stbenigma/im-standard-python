@@ -341,14 +341,6 @@ CREATE TABLE modellelem_typ(
 
 CREATE TABLE modellelement(
     mode_id        integer NOT NULL primary key autoincrement,
-    mode_type      varchar(4)NOT NULL
-        CHECK(mode_type IN(
-            'ATTR',
-            'BEZI',
-            'BURU',
-            'ENTI',
-            'WRTB'
-        )),
     mode_wrtb_id   integer NULL,
     mode_attr_id   integer NULL,
     mode_buru_id   integer NULL,
@@ -365,46 +357,32 @@ CREATE TABLE modellelement(
 	                                  mode_buru_id,
 	                                  mode_enti_id,
 	                                  mode_bezi_id),
-	CONSTRAINT mode_arc_fk1 CHECK(mode_type != 'ATTR'
-                                  OR(mode_attr_id IS NOT NULL)),
-	CONSTRAINT mode_arc_fk2 CHECK(mode_type != 'BEZI'
-                                      OR(mode_bezi_id IS NOT NULL)),								  
-	CONSTRAINT mode_arc_fk3 CHECK(mode_type != 'BURU'
-                                      OR(mode_buru_id IS NOT NULL)),
-	CONSTRAINT mode_arc_fk4 CHECK(mode_type != 'ENTI'
-                                      OR(mode_enti_id IS NOT NULL)),
-	CONSTRAINT mode_arc_fk5 CHECK(mode_type != 'WRTB'
-                                      OR(mode_wrtb_id IS NOT NULL)),								  
-	CONSTRAINT fkarc_4 CHECK(((mode_buru_id IS NOT NULL)
-                                  AND(mode_bezi_id IS NULL)
-                                  AND(mode_enti_id IS NULL)
-                                  AND(mode_wrtb_id IS NULL)
-                                  AND(mode_attr_id IS NULL))
-                                 OR((mode_bezi_id IS NOT NULL)
-                                    AND(mode_buru_id IS NULL)
-                                    AND(mode_enti_id IS NULL)
-                                    AND(mode_wrtb_id IS NULL)
-                                    AND(mode_attr_id IS NULL))
-                                 OR((mode_enti_id IS NOT NULL)
-                                    AND(mode_buru_id IS NULL)
-                                    AND(mode_bezi_id IS NULL)
-                                    AND(mode_wrtb_id IS NULL)
-                                    AND(mode_attr_id IS NULL))
-                                 OR((mode_wrtb_id IS NOT NULL)
-                                    AND(mode_buru_id IS NULL)
-                                    AND(mode_bezi_id IS NULL)
-                                    AND(mode_enti_id IS NULL)
-                                    AND(mode_attr_id IS NULL))
-                                 OR((mode_attr_id IS NOT NULL)
-                                    AND(mode_buru_id IS NULL)
-                                    AND(mode_bezi_id IS NULL)
-                                    AND(mode_enti_id IS NULL)
-                                    AND(mode_wrtb_id IS NULL))
-                                 OR((mode_buru_id IS NULL)
-                                    AND(mode_bezi_id IS NULL)
-                                    AND(mode_enti_id IS NULL)
-                                    AND(mode_wrtb_id IS NULL)
-                                    AND(mode_attr_id IS NULL)))
+	CONSTRAINT fkarc_4 CHECK((mode_buru_id IS NOT NULL
+                         AND mode_bezi_id IS NULL
+                         AND mode_enti_id IS NULL
+                         AND mode_wrtb_id IS NULL
+                         AND mode_attr_id IS NULL)
+                          OR(mode_buru_id IS NULL
+                        AND  mode_bezi_id IS NOT NULL
+                        AND  mode_enti_id IS NULL
+                        AND  mode_wrtb_id IS NULL
+                        AND  mode_attr_id IS NULL)
+                          OR(mode_buru_id IS NULL
+                        AND  mode_bezi_id IS NULL
+                        AND  mode_enti_id IS NOT NULL
+                        AND  mode_wrtb_id IS NULL
+                        AND  mode_attr_id IS NULL)
+                          OR(mode_buru_id IS NULL
+                        AND  mode_bezi_id IS NULL
+                        AND  mode_enti_id IS NULL
+                        AND  mode_wrtb_id IS NOT NULL
+                        AND  mode_attr_id IS NULL)
+                          OR(mode_buru_id IS NULL
+                        AND  mode_bezi_id IS NULL
+                        AND  mode_enti_id IS NULL
+                        AND  mode_wrtb_id IS NULL
+					    AND  mode_attr_id IS NOT NULL)
+					)
 								    CONSTRAINT mode_attr_fk_ist FOREIGN KEY(mode_attr_id)
 								           REFERENCES attributes(attr_id)
 								               ON DELETE CASCADE,

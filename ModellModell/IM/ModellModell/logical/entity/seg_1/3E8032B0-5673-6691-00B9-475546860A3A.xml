@@ -2,10 +2,12 @@
 <Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="3E8032B0-5673-6691-00B9-475546860A3A" name="Sprache">
 <createdBy>stb</createdBy>
 <createdTime>2019-03-10 10:42:09 UTC</createdTime>
-<comment>Sprache gemäss ISO 629-1,2,3&lt;br/&gt;&lt;br/&gt;Eine alternative Ausgabe, erlaubt es, einen Text zu dem eine Übersetzung fehlt in einer Default-Sprache auszugeben.</comment>
+<comment><![CDATA[Sprache gemäss ISO 629-1,2,3
+
+Eine alternative Ausgabe, erlaubt es, einen Text zu dem eine Übersetzung fehlt in einer Default-Sprache auszugeben.]]></comment>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
-<item key="4EE9A882-EA48-83FA-35DC-1651333A2D97" value="true"/>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 </engineerTo>
 <adequatelyNormalized>NO</adequatelyNormalized>
@@ -22,10 +24,10 @@
 <Attribute name="ISO Name" id="269691A8-E995-F39D-38EE-D4B9D25563F4">
 <createdBy>stb</createdBy>
 <createdTime>2019-03-10 10:42:21 UTC</createdTime>
-<comment>englischer ISO Standardname</comment>
+<comment><![CDATA[englischer ISO Standardname]]></comment>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
-<item key="4EE9A882-EA48-83FA-35DC-1651333A2D97" value="true"/>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 </engineerTo>
 <use>0</use>
@@ -36,10 +38,10 @@
 <Attribute name="Name [L]" id="A48C7265-3B50-E7F5-E97C-A5683ED08B99">
 <createdBy>stb</createdBy>
 <createdTime>2019-03-10 10:42:31 UTC</createdTime>
-<comment>Name übersetzt, Originialname</comment>
+<comment><![CDATA[Name übersetzt, Originialname]]></comment>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
-<item key="4EE9A882-EA48-83FA-35DC-1651333A2D97" value="true"/>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
@@ -51,10 +53,10 @@
 <Attribute name="ISO Code2" id="72F01738-8D10-1571-BF1F-54798C2B6A1C">
 <createdBy>stb</createdBy>
 <createdTime>2019-03-10 10:48:53 UTC</createdTime>
-<comment>2-Stelliger ISO-Code</comment>
+<comment><![CDATA[2-Stelliger ISO-Code]]></comment>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
-<item key="4EE9A882-EA48-83FA-35DC-1651333A2D97" value="true"/>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
@@ -69,10 +71,10 @@
 <Attribute name="ISO Code3" id="95ED45B4-51CC-3B9B-6E4D-7959CD703675">
 <createdBy>stb</createdBy>
 <createdTime>2019-03-10 10:49:12 UTC</createdTime>
-<comment>3-stelliger ISO-Code</comment>
+<comment><![CDATA[3-stelliger ISO-Code]]></comment>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
-<item key="4EE9A882-EA48-83FA-35DC-1651333A2D97" value="true"/>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
@@ -87,10 +89,24 @@
 <Attribute name="Textsprache (J/N)" id="7946129A-B876-FC35-FA72-27CA9051B460">
 <createdBy>stb</createdBy>
 <createdTime>2019-03-10 11:22:58 UTC</createdTime>
-<comment>Sprache kann für Übersetzung von Texten verwendet werden</comment>
+<comment><![CDATA[Sprache kann für Übersetzung von Texten verwendet werden]]></comment>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
-<item key="4EE9A882-EA48-83FA-35DC-1651333A2D97" value="true"/>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Modellsprache (J/N)" id="AC8A6819-90C2-7B82-1A7F-42C079C9DEFD">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-02 08:34:17 UTC</createdTime>
+<comment><![CDATA[Basissprache in der das Modell dokumentiert ist.]]></comment>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 </engineerTo>
 <use>0</use>
@@ -105,7 +121,7 @@
 <createdTime>2019-03-10 11:19:55 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
-<item key="4EE9A882-EA48-83FA-35DC-1651333A2D97" value="true"/>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 </engineerTo>
 <newElementsIDs>269691A8-E995-F39D-38EE-D4B9D25563F4</newElementsIDs>
@@ -118,7 +134,7 @@
 <createdTime>2019-03-10 11:20:09 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
-<item key="4EE9A882-EA48-83FA-35DC-1651333A2D97" value="true"/>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 </engineerTo>
 <newElementsIDs>72F01738-8D10-1571-BF1F-54798C2B6A1C</newElementsIDs>
@@ -131,7 +147,7 @@
 <createdTime>2019-03-10 11:20:19 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
-<item key="4EE9A882-EA48-83FA-35DC-1651333A2D97" value="true"/>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 </engineerTo>
 <newElementsIDs>95ED45B4-51CC-3B9B-6E4D-7959CD703675</newElementsIDs>
