@@ -79,7 +79,7 @@ def main():
 
 #    l_sql = """select * from arcs  join entitaeten as ae on ae.enti_id = arcs_enti_id
 #      join beziehungen on bezi_arcs_id = arcs_id  where arcs_name = 'Arc_9'"""
-#    l_sql = """select * from superenti"""
+    l_sql = """select * from sprachen"""
     result = dbDML.select(l_sql)
     for row in result:
         print (row)

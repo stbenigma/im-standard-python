@@ -182,6 +182,22 @@ def insertSchlElem(pData):
     return dbDML.insert(lsql, pData)
 #insertSchlElem
 
+def insertSprache(pData):
+    lsql = """insert into sprachen (spra_iso_name, spra_iso_code2, spra_iso_code3
+                                  ,spra_ist_textsprache, spra_ist_modellsprache, spra_spra_id
+                                  , spra_uc,spra_dc) 
+                            values (?,?,?,?,?,?,?,?)
+            """
+    return dbDML.insert(lsql, pData)
+#insertSprache
+
+def insertSprachtext(pData):
+    lsql = """insert into sprachtext (sptx_attrname,  sptx_text,  sptx_spra_id
+                                ,sptx_mode_id, sptx_uc,   sptx_dc    ) 
+                            values (?,?,?,?,?,?)
+            """
+    return dbDML.insert(lsql, pData)
+#insertSprachtext
 
 def insertUdpEntity(entiId):
     dbDML.exec("""insert into benudef_wert(

@@ -468,13 +468,14 @@ CREATE TABLE modelltyp_eigensch(
 )
 """)
 
-    dbDDL.dropTable("sprache")
-    dbDDL.createTable("""CREATE TABLE sprache(
+    dbDDL.dropTable("sprachen")
+    dbDDL.createTable("""CREATE TABLE sprachen(
     spra_id                integer primary key autoincrement,
     spra_iso_name          varchar(60) NOT NULL,
     spra_iso_code2         CHAR(2) NOT NULL,
     spra_iso_code3         CHAR(3) NOT NULL,
     spra_ist_textsprache   varchar(5) NOT NULL,
+    spra_ist_modellsprache   varchar(5) NOT NULL,
     spra_spra_id           integer,
     spra_uc                varchar(30) NOT NULL,
     spra_dc                varchar(30) NOT NULL,
@@ -484,12 +485,16 @@ CREATE TABLE modelltyp_eigensch(
         'FALSE',
         'TRUE'
     )),
+    constraint spra_mod_bool CHECK(spra_ist_modellsprache IN(
+        'FALSE',
+        'TRUE'
+    )),
     constraint spra_iso3_low CHECK(spra_iso_code3 = lower(spra_iso_code3)),
     constraint spra_iso2_low CHECK(spra_iso_code2 = lower(spra_iso_code2)),
 	constraint spra_iso_uk unique (spra_iso_name),
 	constraint spra_iso2_uk unique (spra_iso_code2),
 	constraint spra_iso3_uk unique (spra_iso_code3)
-    )"""
+)"""
     )
 
     dbDDL.dropTable("sprachtext")
@@ -508,7 +513,7 @@ CREATE TABLE modelltyp_eigensch(
     CONSTRAINT sptx_mode_fk FOREIGN KEY(sptx_mode_id)
 									   REFERENCES modellelement(mode_id),
 	CONSTRAINT sptx_spra_fk FOREIGN KEY(sptx_spra_id)
-									   REFERENCES sprache(spra_id)	
+									   REFERENCES sprachen(spra_id)	
     )
     """)
     #    dbDDL.dropTable("arc")

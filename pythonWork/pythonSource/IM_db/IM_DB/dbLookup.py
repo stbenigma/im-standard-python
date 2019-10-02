@@ -50,3 +50,15 @@ def bdegLookup(pname):
 def wrtbLookupByName(pname):
     return doLookup(pname,'select wrtb_id from wertebereiche where upper(wrtb_name) = upper("{}")' )
 #wrtbLookup
+
+def spraLookup(piso):
+    if (len(piso) == 2):
+        return doLookup(pname, """select spra_id from sprachen 
+                                where spra_iso_code2 = lower("{}")""")
+    elif (len(piso) == 3):
+        return doLookup(pname, """select spra_id from sprachen 
+                            where spra_iso_code3 = lower("{}")""")
+    else:
+        return None
+    #fi
+#spraLookup

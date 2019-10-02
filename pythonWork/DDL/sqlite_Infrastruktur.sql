@@ -21,12 +21,17 @@ CREATE TABLE sprache(
     spra_iso_code2         CHAR(2) NOT NULL,
     spra_iso_code3         CHAR(3) NOT NULL,
     spra_ist_textsprache   varchar(5) NOT NULL,
+    spra_ist_modellsprache   varchar(5) NOT NULL,
     spra_spra_id           integer,
     spra_uc                varchar(30) NOT NULL,
     spra_dc                varchar(30) NOT NULL,
     spra_um                varchar(30) ,
     spra_dm                varchar(30),
     constraint spra_txt_bool CHECK(spra_ist_textsprache IN(
+        'FALSE',
+        'TRUE'
+    )),
+    constraint spra_mod_bool CHECK(spra_ist_modellsprache IN(
         'FALSE',
         'TRUE'
     )),
