@@ -283,9 +283,10 @@ def do1Attribute(n,attr,entiId=None,beziId=None):
         ,'TRUE' if (re.search('\[.*N.*\]', ganzName) is not None) else 'FALSE','TRUE' if (re.search('\[.*L.*\]', ganzName) is not None) else 'FALSE','FALSE'
         ,findText(attr,'createdBy')   ,findText(attr,'createdTime'),findField(attr,'id'),beziId
     ))
-    dbInserts.insertModeAttr(attrId)
+    lmodeId=dbInserts.insertModeAttr(attrId)
     dbInserts.insertUdpAttr(attrId)
-    updateUDP(modeId=dbLookup.modeAttrLookup(attrId),obj=attr)
+    updateUDP(modeId=lmodeId,obj=attr)
+    dbInserts.insertSprachTexte(pmodeId=lmodeId)
 
 #do1Attribute
 def    fillKeys(enti,entiId):
@@ -354,7 +355,7 @@ def do1Entity(fileName):
     #, enti_erw_tupel, enti_uc, enti_dc
     #,enti_enti_guid,enti_enti_id
     entiId = dbInserts.insertEnti(enti=row)
-    dbInserts.insertModeEnti(entiId)
+    lmodeId =dbInserts.insertModeEnti(entiId)
     dbInserts.insertUdpEntity(entiId)
 
     sobj =findText(root,'synonym')
@@ -368,7 +369,9 @@ def do1Entity(fileName):
         #rof
     #fi
 
-    updateUDP(modeId=dbLookup.modeEntiLookup(entiId),obj=root)
+    updateUDP(modeId=lmodeId,obj=root)
+    dbInserts.insertSprachTexte(pmodeId=lmodeId)
+
     attrs= root.find('attributes')
     if attrs is not None:
         idx = 0
@@ -543,7 +546,11 @@ def do1Relation(fileName):
     #print (row)
 
     beziId = dbInserts.insertBeziehung(row)
-    dbInserts.insertModeBezi(beziId)
+    lModeId = dbInserts.insertModeBezi(beziId)
+    dbInserts.insertUdpBezi(beziId)
+
+    updateUDP(modeId=lModeId,obj=root)
+    dbInserts.insertSprachTexte(pmodeId=lModeId)
 
     attrs= root.find('attributes')
     if attrs is not None:
@@ -555,12 +562,12 @@ def do1Relation(fileName):
             do1Attribute(n=idx,attr=attr,beziId=beziId)
         #endfor
     #fi
+
 #do1Relation
 
 def transferRelations():
     #lösche die Beziehungen
     dbDML.delete("beziehungen")
-
     for el in os.listdir(odmParam.imRelationDirec):
         if re.match('seg_.*', el):
             for file in os.listdir(odmParam.imRelationDirec + el):
@@ -644,7 +651,6 @@ def do1UDPFile(pudpThema,pfileName):
 
         # fi
     # rof
-
 #do1UDPFile
 
 def transferUPDdef():
@@ -660,6 +666,46 @@ def transferUPDdef():
             do1UDPFile(pudpThema=filename,pfileName=filepath)
         #fi
     # endfor
+
+    #UDP für Beziehungen sind aktuell noch als Allg. Properties aufgeführt.
+    #Kopiere alle properties <sp>_.... aus Relation in die UDP
+    for el in os.listdir(odmParam.imRelationDirec):
+        if re.match('seg_.*', el):
+            for file in os.listdir(odmParam.imRelationDirec + el):
+                fileName = odmParam.imRelationDirec + el + '/' + file
+                #               print (fileName)
+                tree = ET.parse(fileName)
+                root = tree.getroot()
+                props = root.find('propertyMap')
+                if (props is not None):
+                    for prop in props.findall('property'):
+                        lName = prop.get('name')
+                        if (re.match("(DE|EN)_",lName)):
+                            #print (fileName,lName,lName[:2])
+                            # bdeg_thema, bdeg_gruppe, bdeg_name, bdeg_default_value
+                            # bdeg_beschreibung, bdeg_optional, bdeg_wrtb_id,
+                            # bdeg_uc, bdeg_dc
+                            ludp = (odmParam.imTranslationFileName,lName[:2]
+                                   ,lName, None
+                                    , 'udp for relations from ODM', 'TRUE', None
+                                    , '--', date.today().__str__())
+                            udpId = dbInserts.insertUDP(pData=ludp)
+                            try:
+                             dbInserts.insertModellElemTyp((dbLookup.meltLookup(type2melt('Relation')), udpId))
+                            except:
+                                pass
+                            #try
+                        #fi
+                    #endfor
+                #fi
+
+                #nur das 1. ist notwendig
+                break
+            #endfor
+        #endif
+        break
+    #endfor
+
     dbConnect.myDbConn.commit()
 
 #transferUDPdef
@@ -674,7 +720,7 @@ def insertBaseData():
     #, spra_ist_textsprache, spra_spra_id, spra_uc
     #, spra_dc
     dbDML.delete('sprachtexte')
-    dbDML.delete('sprache')
+    dbDML.delete('sprachen')
     ldeId= dbInserts.insertSprache(('Deutsch','de','deu','TRUE','TRUE',None,'stb', date.today()));
     dbInserts.insertSprache(('English',  'en', 'eng', 'TRUE', 'FALSE',ldeId, 'stb', date.today()));
     dbInserts.insertSprache(('Français', 'fr', 'fra', 'TRUE', 'FALSE',ldeId, 'stb', date.today()));

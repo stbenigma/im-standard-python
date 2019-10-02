@@ -501,7 +501,7 @@ CREATE TABLE modelltyp_eigensch(
     dbDDL.createTable("""CREATE TABLE sprachtexte(
     sptx_id           integer primary key autoincrement,
 	sptx_attrname	  varchar(30) NOT NULL,
-    sptx_text         varchar(4000) NOT NULL,
+    sptx_text         varchar(4000) ,
     sptx_spra_id      integer,
     sptx_mode_id      integer NOT NULL,
     sptx_uc           varchar(30) NOT NULL,
@@ -520,7 +520,7 @@ CREATE TABLE modelltyp_eigensch(
     #    dbDDL.createTable("""
     # """)
 
-    #dbDDL.dropView("SUPERENTI");
+    dbDDL.dropView("SUPERENTI");
     dbDDL.createTable("""create view SUPERENTI AS select ae.enti_id super_enti_id,ae.enti_name super_enti_name
                ,e1.enti_id sub_enti_id,e1.enti_name sub_enti_name
       from arcs
@@ -538,5 +538,12 @@ CREATE TABLE modelltyp_eigensch(
     order by ae.enti_name""")
 
 
+    dbDDL.dropView("SPRAATTR");
+    dbDDL.createTable("""
+            create view spraattr as
+	        select sptx_text,spra_id,spra_iso_code2,sptx_mode_id,sptx_attrname
+	          from sprachtexte 
+	          join sprachen on spra_id = sptx_spra_id
+	          """);
 
 #end erstelleInfra

@@ -46,7 +46,7 @@ CREATE TABLE sprachen(
 CREATE TABLE sprachtexte(
     sptx_id           integer primary key autoincrement,
 	sptx_attrname	  varchar(30) NOT NULL,
-    sptx_text         varchar(4000) NOT NULL,
+    sptx_text         varchar(4000) ,
     sptx_spra_id      integer,
     sptx_mode_id      integer NOT NULL,
     sptx_uc           varchar(30) NOT NULL,

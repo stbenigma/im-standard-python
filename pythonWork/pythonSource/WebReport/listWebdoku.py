@@ -1,9 +1,9 @@
 # -*- coding: latin-1 -*-
-import sys
-sys.path.append('../IM_db')
+import sys,os
+sys.path.append(os.path.dirname(os.path.realpath(__file__))+'/../IM_db')
 from datetime import date
 from IM_ODM import odmParam
-from IM_DB import dbParam,dbConnect,dbDDL,dbDML,dbErstelleTables,dbInserts
+from IM_DB import dbParam,dbConnect,dbDDL,dbDML,dbErstelleTables,dbInserts,dbLookup
 from IM_HTML import printHTML
 
 greportLang:str = ''
@@ -50,7 +50,31 @@ udpThemenSql:str = """select distinct bdeg_thema
                     join modelltyp_eigensch on mote_bdeg_id = bdeg_id
                     join modellelem_typ on melt_id = mote_melt_id
                                     and melt_kurzname = 'ATTR'
+                                    and bdeg_thema != 'translation'
                     order by bdeg_thema"""
+
+def langText(attrName, sprache, modeId):
+   lsql= """select sptx_text
+    from spraattr
+    where spra_iso_code2 = lower('{}')
+     and sptx_mode_id = {}
+     and sptx_attrname = '{}'
+    """.format(sprache,modeId,attrName)
+   ltext = dbDML.select(lsql)[0][0]
+   return ltext
+#langText
+def enti_name(lang,modeId):
+    return langText('ENT_NAME', lang, modeId)
+def enti_comment(lang,modeId):
+    return langName('ENT_COMMENT',lang,modeId)
+def attr_name(lang,modeId):
+    return langName('ATTR_NAME',lang,modeId)
+def attr_comment(lang,modeId):
+    return langName('ATTR_COMMENT',lang,modeId)
+def bezi_from(lang,modeId):
+    return langName('TEXT_FROM',lang,modeId)
+def bezi_to(lang,modeId):
+    return langName('TEXT_TO',lang,modeId)
 
 def entiAnker(id):
     return 'ENTI'+str(id)
@@ -336,7 +360,9 @@ def main():
     printHTML.createIndex ("Informationsmodell {} (Stand: {})"
                            .format(odmParam.imModelName,date.today()));
 
-    enti = dbDML.select( """select e1.enti_name,e1.enti_odm_guid,e1.enti_beschr
+    enti = dbDML.select( """select * from 
+              (select case when ena.sptx_text is null then e1.enti_name else ena.sptx_text end  name,e1.enti_odm_guid,
+             case when ebe.sptx_text is null then e1.enti_beschr else ebe.sptx_text end beschr
             ,e1.enti_uc,e1.enti_dc,e1.enti_id 
           ,super_enti_name,super_enti_id,NULL superentity_guid
           ,(select group_concat('<a href="#ENTI'||sub_enti_id||'" target="details">'
@@ -349,8 +375,17 @@ def main():
               where syno_enti_id = e1.enti_id
               ) as subentities
           from entitaeten e1
+          join modellelement on mode_enti_id = enti_id
+           join sprachen sp on sp.spra_iso_code2 = '{}'         
+          left join spraattr ebe on ebe.sptx_attrname = 'ENT_COMMENT'
+                                and ebe.sptx_mode_id = mode_id
+                                and ebe.spra_id = sp.spra_id
+          left join spraattr ena on ena.sptx_attrname = 'ENT_NAME'
+                                and ena.sptx_mode_id = mode_id
+                                and ena.spra_id = sp.spra_id
           left join superenti on  sub_enti_id = e1.enti_id
-          order by upper(e1.enti_name)""")
+          ) order by upper(name)
+              """.format(greportLang))
 #    for e in enti:
 #        print (e)
     printHTML.writeToc("""<div><ol class ="tree"><li><label for="entities">Entitäten</label>
@@ -412,7 +447,7 @@ def main():
     ############################
 
     for e in enti:
-        printHTML.printTable({"Entität": e[0], "Beschreibung":nvl(e[2])
+        printHTML.printTable({transl('Entität'): e[0], "Beschreibung":nvl(e[2])
                               ,"Synonyme":nvl(e[10])
         , "Autor":e[3], "Erstellt":e[4], "Superentität":href(entiAnker(e[7]), anz=nvl(e[6]))
                 , "Subentitäten":nvl(e[9])}, anker=entiAnker(e[5]))
@@ -456,7 +491,7 @@ def main():
             #           ,attr_dc,attr_beschr,enti_name
             #           ,wrtb_id,wrtb_name,wrtb_typ
             #           ,attr_id,enti_id,schluessel
-        printHTML.printTable({"Attribut": a[3], "Entität": href(ref=entiAnker(a[13]), anz=a[8])
+        printHTML.printTable({"Attribut": a[3], transl('Entität'): href(ref=entiAnker(a[13]), anz=a[8])
                                      , "Wertebereich": href(ref=wrtbAnker(a[9]), anz=a[10])
                                      , "Datentyp": anzDatentyp(a[11])
                                      , "Beschreibung": nvl(a[7])

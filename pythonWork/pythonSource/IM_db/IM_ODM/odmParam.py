@@ -11,6 +11,7 @@ imFilesDirec:str = imDirectory+imModelName+'/files/'
 imEntityDirec:str = imDirectory+imModelName+'/logical/entity/'
 imRelationDirec:str = imDirectory+imModelName+'/logical/relation/'
 imArcDirec:str = imDirectory+imModelName+'/logical/arc/'
+imTranslationFileName:str = 'translation'
 
 def suche1File(direc,pattern):
     lretval = None

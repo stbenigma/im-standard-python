@@ -1,4 +1,5 @@
 from IM_DB import dbDML,dbLookup
+from IM_ODM import odmParam
 from datetime import date
 
 def  insertEnti(enti):
@@ -191,12 +192,12 @@ def insertSprache(pData):
     return dbDML.insert(lsql, pData)
 #insertSprache
 
-def insertSprachtext(pData):
+def insertSprachtexte(pData):
     lsql = """insert into sprachtext (sptx_attrname,  sptx_text,  sptx_spra_id
                                 ,sptx_mode_id, sptx_uc,   sptx_dc    ) 
                             values (?,?,?,?,?,?)
             """
-    return dbDML.insert(lsql, pData)
+    return dbDML.insertmany(lsql, pData)
 #insertSprachtext
 
 def insertUdpEntity(entiId):
@@ -213,6 +214,21 @@ def insertUdpEntity(entiId):
                 where enti_id = {}
             """ .format(entiId))
 #insertUdpEntity
+def insertUdpBezi(beziId):
+    dbDML.exec("""insert into benudef_wert(
+                bdwe_wert,  bdwe_mode_id,   bdwe_bdeg_id
+                ,bdwe_uc,   bdwe_dc)
+                select NULL,mode_id,bdeg_id,bezi_uc,bezi_dc
+                from beziehungen
+                join modellelement on mode_bezi_id = bezi_id
+                cross join (select mote_bdeg_id as bdeg_id
+                             from modellelem_typ
+                             join modelltyp_eigensch on mote_melt_id = melt_id
+                             where melt_kurzname = 'BEZI')
+                where bezi_id = {}
+            """ .format(beziId))
+#insertUdpBezi
+
 
 def insertUdpAttr(attrId):
     dbDML.exec("""insert into benudef_wert(
@@ -228,3 +244,17 @@ def insertUdpAttr(attrId):
                 where attr_id = {}
             """ .format(attrId))
 #insertUdpAttr
+
+def insertSprachTexte(pmodeId):
+    dbDML.exec(psql="""insert into sprachtexte 
+                    (sptx_attrname,  sptx_text, sptx_spra_id
+                   ,sptx_mode_id, sptx_uc, sptx_dc)
+                  select substr(bdeg_name,4) attrname, bdwe_wert, spra_id
+                    ,bdwe_mode_id,bdwe_uc,bdwe_dc
+                from benudef_wert
+                join benudef_eigenschaft on bdeg_id = bdwe_bdeg_id
+                join sprachen on spra_iso_code2 = lower(bdeg_gruppe)
+                where bdwe_mode_id = {}
+                  and bdeg_thema = '{}'
+                """.format(pmodeId,odmParam.imTranslationFileName))
+#insertSprachTexte
