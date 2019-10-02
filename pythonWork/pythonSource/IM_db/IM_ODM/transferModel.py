@@ -3,7 +3,7 @@ import xml.etree.ElementTree as ET
 import re,os,sqlite3
 from datetime import date
 from IM_ODM import odmParam
-from IM_DB import dbInserts,dbDML,dbLookup,dbConnect
+from IM_DB import dbInserts,dbDML,dbLookup,dbConnect,dbParam
 
 class Wertebereich:
     def __init__(self, pname, pid):
@@ -275,9 +275,10 @@ def do1Attribute(n,attr,entiId=None,beziId=None):
     attrName=re.search('[^\[]*',ganzName).group().rstrip()
     techiName = nvl(abbrevName,re.sub('[-,.()\[\]äöüèéàÄ~ÖÜ ]','_',str.upper(attrName)))
     domId=findeOderErstelleDom(domGuid=findText(attr,'domain'),typeGuid=findText(attr,'logicalDatatype'),attrName=attrName)
+    attrcomm = findText(attr,'comment')
     attrId = dbInserts.insertAttribute(pattr=(\
         entiId,domId,techiName
-        ,attrName,findText(attr,''),findText(attr,'comment')
+        ,attrName,findText(attr,''),attrcomm
         ,findText(attr,''),n
         ,'FALSE',str.upper(nvl(findText(attr,'nullsAllowed'),'TRUE')),'TRUE' if (re.search('\[.*T.*\]', ganzName) is not None) else 'FALSE'
         ,'TRUE' if (re.search('\[.*N.*\]', ganzName) is not None) else 'FALSE','TRUE' if (re.search('\[.*L.*\]', ganzName) is not None) else 'FALSE','FALSE'
@@ -286,7 +287,10 @@ def do1Attribute(n,attr,entiId=None,beziId=None):
     lmodeId=dbInserts.insertModeAttr(attrId)
     dbInserts.insertUdpAttr(attrId)
     updateUDP(modeId=lmodeId,obj=attr)
-    dbInserts.insertSprachTexte(pmodeId=lmodeId)
+    dbInserts.insertSprachTexte(pmodeId=lmodeId
+                                ,porigvalues=[(attrName,dbParam.dbDefaultLangID,'ATTR_NAME',lmodeId)
+                                             ,(attrcomm,dbParam.dbDefaultLangID,'ATTR_COMMENT',lmodeId)
+                                            ])
 
 #do1Attribute
 def    fillKeys(enti,entiId):
@@ -343,8 +347,10 @@ def transferKeys(keys):
 def do1Entity(fileName):
     tree = ET.parse(fileName)
     root = tree.getroot()
+    entname = root.get("name")
+    entcomm = findText(root,'comment')
     row=(root.get('id'),None,None\
-        ,root.get("name"),findText(root,'comment'),None\
+        ,entname,entcomm,None\
         ,None,None,None\
         ,None,findText(root,'createdBy'),findText(root,'createdTime')
         ,findText(root,'hierarchicalParent'),None)
@@ -370,7 +376,10 @@ def do1Entity(fileName):
     #fi
 
     updateUDP(modeId=lmodeId,obj=root)
-    dbInserts.insertSprachTexte(pmodeId=lmodeId)
+    dbInserts.insertSprachTexte(pmodeId=lmodeId
+                                ,porigvalues=[(entname,dbParam.dbDefaultLangID,'ENT_NAME',lmodeId)
+                                             ,(entcomm,dbParam.dbDefaultLangID,'ENT_COMMENT',lmodeId)
+                                            ])
 
     attrs= root.find('attributes')
     if attrs is not None:
@@ -510,11 +519,13 @@ def do1Relation(fileName):
         # ,bezi_enti_id_zu,bezi_assoc_zu_von, bezi_abbildtyp_zu_von
         # ,BEZI_PFLICHT_ASSOC_ZU_VON,bezi_hist_zu_von,bezi_arcs_id
         # ,bezi_odm_guid,bezi_uc, bezi_dc,bezi_name
+    vonText = findText(root,'nameOnSource')
+    zuText = findText(root, 'nameOnTarget')
     try:
         lrow=[lbeziType
-             , dbLookup.entiID(findText(root,'sourceEntity')),findText(root,'nameOnSource')
+             , dbLookup.entiID(findText(root,'sourceEntity')),vonText
              ,strNegBool(optSrc), 'FALSE'
-             , dbLookup.entiID(findText(root,'targetEntity')), findText(root, 'nameOnTarget')
+             , dbLookup.entiID(findText(root,'targetEntity')), zuText
              ,strNegBool(optTarg),'FALSE', beziArcId
              ,root.get('id'),findText(root,'createdBy'),findText(root,'createdTime'),root.get('name')
              ]
@@ -546,11 +557,14 @@ def do1Relation(fileName):
     #print (row)
 
     beziId = dbInserts.insertBeziehung(row)
-    lModeId = dbInserts.insertModeBezi(beziId)
+    lmodeId = dbInserts.insertModeBezi(beziId)
     dbInserts.insertUdpBezi(beziId)
 
-    updateUDP(modeId=lModeId,obj=root)
-    dbInserts.insertSprachTexte(pmodeId=lModeId)
+    updateUDP(modeId=lmodeId,obj=root)
+    dbInserts.insertSprachTexte(pmodeId=lmodeId
+                                ,porigvalues=[(vonText,dbParam.dbDefaultLangID,'TEXT_FROM',lmodeId)
+                                             ,(zuText,dbParam.dbDefaultLangID,'TEXT_TO',lmodeId)
+                                            ])
 
     attrs= root.find('attributes')
     if attrs is not None:
@@ -656,7 +670,10 @@ def do1UDPFile(pudpThema,pfileName):
 def transferUPDdef():
     # lösche die UDP
     dbDML.delete("benudef_eigenschaft")
-
+    l_sql = """select count(*) from benudef_wert union select count(*) from benudef_eigenschaft"""
+    result = dbDML.select(l_sql)
+    for row in result:
+        print(row)
     for file in os.listdir(odmParam.imFilesDirec):
         filename, file_extension = os.path.splitext(file)
         #print(filename, file_extension)

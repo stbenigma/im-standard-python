@@ -1,4 +1,4 @@
-from IM_DB import dbDML,dbLookup
+from IM_DB import dbDML,dbLookup,dbParam
 from IM_ODM import odmParam
 from datetime import date
 
@@ -245,7 +245,7 @@ def insertUdpAttr(attrId):
             """ .format(attrId))
 #insertUdpAttr
 
-def insertSprachTexte(pmodeId):
+def insertSprachTexte(pmodeId,porigvalues):
     dbDML.exec(psql="""insert into sprachtexte 
                     (sptx_attrname,  sptx_text, sptx_spra_id
                    ,sptx_mode_id, sptx_uc, sptx_dc)
@@ -257,4 +257,14 @@ def insertSprachTexte(pmodeId):
                 where bdwe_mode_id = {}
                   and bdeg_thema = '{}'
                 """.format(pmodeId,odmParam.imTranslationFileName))
+    # da aktuell die orginialnamen im Objekt stehen und in den UDP der Modellsprache
+    # eine möglicherweise veraltete Version des Namens steht, werden die Originalnamen
+    # in die Texte übernommen.
+    l_sql = """ update sprachtexte
+                set sptx_text = ?
+                where sptx_spra_id = ?
+                and sptx_attrname = ?
+                and sptx_mode_id = ?
+                """
+    dbDML.execmany(l_sql,porigvalues)
 #insertSprachTexte

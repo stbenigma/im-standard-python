@@ -1,4 +1,4 @@
-CREATE TABLE entitaet(
+CREATE TABLE entitaeten(
     enti_id                 integer NOT NULL primary key autoincrement,
 	enti_odm_guid		varchar(36),
     enti_augb_id            integer ,
@@ -25,7 +25,7 @@ CREATE TABLE synonyme(
     syno_name   		varchar(200),
     syno_enti_id        integer NOT NULL,
 	unique(syno_name,syno_enti_id)
-	foreign key (syno_enti_id) references(entitaet.enti_id) ON DELETE CASCADE
+	foreign key (syno_enti_id) references entitaeten(enti_id) ON DELETE CASCADE
 )
 
 CREATE TABLE schluessel(
@@ -37,7 +37,7 @@ CREATE TABLE schluessel(
     schl_dc varchar(30),
     schl_enti_id   integer NOT NULL,
 	unique (schl_enti_id,schl_laufnr),
-	foreign key (schl_enti_id) references entitaet(enti_id) ON DELETE CASCADE
+	foreign key (schl_enti_id) references entitaeten(enti_id) ON DELETE CASCADE
 )
 
 CREATE TABLE schluesselelement(
@@ -58,7 +58,7 @@ CREATE TABLE schluesselelement(
         REFERENCES attributes(attr_id)
             ON DELETE CASCADE,
 	FOREIGN KEY(scel_bezi_id)
-        REFERENCES beziehung(bezi_id)
+        REFERENCES  beziehungen(bezi_id)
             ON DELETE CASCADE,
 	FOREIGN KEY(scel_schl_id)
         REFERENCES schluessel(schl_id)
@@ -142,7 +142,7 @@ CREATE TABLE vorgabewert(
     vgwt_uc                VARCHAR(30) ,
     vgwt_dc                varchar(30),
 	unique (vgwt_wrtb_id,vgwt_wert),
-	foreign key (vgwt_wrtb_id) references wertebereich(wrtb_id) ON DELETE CASCADE
+	foreign key (vgwt_wrtb_id) references wertebereiche(wrtb_id) ON DELETE CASCADE
 )
 
 CREATE TABLE datatypes(
@@ -208,11 +208,11 @@ CREATE TABLE attributes(
 	CONSTRAINT attr_arc_chk CHECK((attr_enti_id is null and attr_bezi_id is not null) 
 								or (attr_enti_id is not null and attr_bezi_id is null)),
  	CONSTRAINT attr_enti_fk FOREIGN KEY(attr_enti_id)
-        REFERENCES entitaet(enti_id) on delete cascade,
+        REFERENCES entitaeten(enti_id) on delete cascade,
 	CONSTRAINT attr_wrtb_fk	FOREIGN KEY(attr_wrtb_id)        
-			REFERENCES wertebereich(wrtb_id),
+			REFERENCES wertebereiche(wrtb_id),
 	CONSTRAINT attr_bezi_fk FOREIGN KEY(attr_bezi_id)
-		        REFERENCES beziehungen(bezi_id) on delete cascade
+		        REFERENCES  beziehungenen(bezi_id) on delete cascade
 )
 
 CREATE TABLE arcs(
@@ -226,7 +226,7 @@ CREATE TABLE arcs(
     arcs_dm        varchar(30) NULL,
 	UNIQUE(arcs_enti_id,arcs_name),
 	CONSTRAINT arcs_enti_fk FOREIGN KEY(arcs_enti_id)
-	        REFERENCES entitaet(enti_id) ON DELETE CASCADE
+	        REFERENCES entitaeten(enti_id) ON DELETE CASCADE
 )
 
 
@@ -275,10 +275,10 @@ CREATE TABLE beziehungen(
 	CONSTRAINT bezi_arc_fk FOREIGN KEY(bezi_arcs_id)
 											         REFERENCES arcs(arcs_id),
 	CONSTRAINT bezi_enti_fk_von FOREIGN KEY(bezi_enti_id_von)
-											         REFERENCES entitaet(enti_id)
+											         REFERENCES entitaeten(enti_id)
 											             ON DELETE CASCADE,
 	CONSTRAINT bezi_enti_fk_zu FOREIGN KEY(bezi_enti_id_zu)
-											         REFERENCES entitaet(enti_id)
+											         REFERENCES entitaeten(enti_id)
 											             ON DELETE CASCADE
 )
 
@@ -301,7 +301,7 @@ CREATE TABLE benudef_eigenschaft(
     bdeg_dm             varchar(30)NULL,
 	CONSTRAINT bdeg_un UNIQUE(bdeg_name),
 	CONSTRAINT bdeg_wrtb_fk FOREIGN KEY(bdeg_wrtb_id)
-	        REFERENCES wertebereich(wrtb_id)	
+	        REFERENCES wertebereiche(wrtb_id)	
 )
 
 CREATE TABLE benudef_wert(
@@ -317,7 +317,7 @@ CREATE TABLE benudef_wert(
 	CONSTRAINT bdwe_mode_fk FOREIGN KEY(bdwe_mode_id)
 	        REFERENCES modellelement(mode_id) on delete cascade,
 	CONSTRAINT bdwe_bdeg_fk FOREIGN KEY(bdwe_bdeg_id)
-	        REFERENCES benudef_eigenschaft(bdeg_id)
+	        REFERENCES benudef_eigenschaft(bdeg_id) on delete cascade
 		)
 
 CREATE TABLE modellelem_typ(
@@ -387,13 +387,13 @@ CREATE TABLE modellelement(
 								           REFERENCES attributes(attr_id)
 								               ON DELETE CASCADE,
 								    CONSTRAINT mode_bezi_fk FOREIGN KEY(mode_bezi_id)
-								           REFERENCES beziehung(bezi_id)
+								           REFERENCES  beziehungen(bezi_id)
 								   		ON DELETE CASCADE,
 								    CONSTRAINT mode_enti_fk_ist FOREIGN KEY(mode_enti_id)
-								           REFERENCES entitaet(enti_id)
+								           REFERENCES entitaeten(enti_id)
 								               ON DELETE CASCADE,
 								    CONSTRAINT mode_wrtb_fk_ist FOREIGN KEY(mode_wrtb_id)
-								   		           REFERENCES wertebereich(wrtb_id)
+								   		           REFERENCES wertebereiche(wrtb_id)
 								   		               ON DELETE CASCADE,
 								    CONSTRAINT mode_orge_fk_verantw FOREIGN KEY(mode_orge_id)
 								           REFERENCES org_einh(orge_id),
@@ -429,4 +429,7 @@ create view SUPERENTI AS select ae.enti_id super_enti_id,ae.enti_name super_enti
       join entitaeten e1 on e1.enti_id = b1.bezi_enti_id_von  
     order by ae.enti_name
 
-
+create view spraattr as
+	select sptx_text,spra_id,spra_iso_code2,sptx_mode_id,sptx_attrname
+	              from sprachtexte 
+	              join sprachen on spra_id = sptx_spra_id

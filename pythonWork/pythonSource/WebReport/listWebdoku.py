@@ -168,8 +168,9 @@ def printUDP(meltName, Id):
                            join modelltyp_eigensch on mote_melt_id = melt_id  
                            join benudef_eigenschaft on bdeg_id = mote_bdeg_id
                            where melt_kurzname = '{}'
+                             and bdeg_thema != '{}'
                         group by bdeg_thema,bdeg_gruppe
-                        order by bdeg_thema,bdeg_gruppe""".format(meltName)
+                        order by bdeg_thema,bdeg_gruppe""".format(meltName,odmParam.imTranslationFileName)
     udpNamen = dbDML.select(ludpNamen)
     for udpName in udpNamen:
         lsql = """select  bdwe_wert
@@ -217,12 +218,25 @@ def printAttrUDPMatrix(thema=None):
     for udpWert in udpWerte:
         udpListe.append(udpWert[0])
     #print ('udpListe=',udpListe)
-    allattr = dbDML.select("""select 
-       enti_name,enti_id,attr_id,attr_anzname,attr_tech_name,wrtb_name,wrtb_typ
+    allattr = dbDML.select("""select * from 
+        (select 
+       case when ena.sptx_text is null then enti_name else ena.sptx_text end enti_name
+       ,enti_id,attr_id,case when ana.sptx_text is null then attr_anzname else ana.sptx_text end attr_anzname
+       ,attr_tech_name,wrtb_name,wrtb_typ
       from attributes 
+        join sprachen sp on sp.spra_iso_code2 = '{}'
+        join modellelement ma on ma.mode_attr_id = attr_id
+        left join spraattr  ana on ana.sptx_attrname = 'ATTR_NAME'
+                                    and ana.sptx_mode_id = ma.mode_id
+                                    and ana.spra_id = sp.spra_id            
       join entitaeten on enti_id = attr_enti_id
+        join modellelement me on me.mode_enti_id = enti_id
+        left join spraattr  ena on ena.sptx_attrname = 'ENT_NAME'
+                                    and ena.sptx_mode_id = me.mode_id
+                                    and ena.spra_id = sp.spra_id            
       join wertebereiche on wrtb_id = attr_wrtb_id
-      order by enti_name,upper(attr_tech_name)""")
+      ) order by enti_name,upper(attr_tech_name)"""
+                           .format(greportLang))
     printHTML.startTable('Attribute - User Defined Properties: '+nvl(thema), udpListe,anker=udpAnker(thema))
     for at in allattr:
         values = [href(ref=entiAnker(at[1]), anz=at[0]), href(ref=attrAnker(at[2]), anz=at[3])
@@ -249,18 +263,26 @@ def printSchluessel(entiId):
     printHTML.startTable('Schlüssel', ('Nr', 'Name', 'Attribut(e)', 'Beziehung(en)'))
 
 
-    schl = dbDML.select("""select schl_id,schl_laufnr,schl_name
+    schl = dbDML.select("""
+    select  schl_id,schl_laufnr,schl_name
                   ,group_concat('<a href="#ATTR'||attr_id||'" target="details">'
-                                    ||attr_anzname||'</a>', ', ') attrs
+                                    ||
+                                    case when ana.sptx_text is null then attr_anzname else ana.sptx_text end 
+                                    ||'</a>', ', ') attrs
                   ,group_concat('<a href="#BEZI'||bezi_id||'" target="details">'
                                     ||bezi_name||'</a>', ', ') bezis
          from schluessel
          join schluesselelement on scel_schl_id = schl_id
+            join sprachen sp on sp.spra_iso_code2 = '{}'
          left join attributes on attr_id = scel_attr_id
+            left join modellelement ma on ma.mode_attr_id = attr_id
+            left join spraattr  ana on ana.sptx_attrname = 'ATTR_NAME'
+                                    and ana.sptx_mode_id = ma.mode_id
+                                    and ana.spra_id = sp.spra_id            
          left join beziehungen on bezi_id = scel_bezi_id
          where schl_enti_id = {}
            group by schl_id,schl_laufnr,schl_name
-                    """.format(entiId))
+                    """.format(greportLang,entiId))
 
     for s in schl:
         printHTML.writeTable((s[1],s[2],nvl(s[3]),nvl(s[4])))
@@ -272,8 +294,18 @@ def printSchluessel(entiId):
 
 def printBezi(entiId):
     printHTML.startTable('Beziehungen', ('Name','Entität1','','Beziehung','', 'Entität2','Arc'))
-    bezi = dbDML.select("""select von.enti_id as von_enti_id,von.enti_name as von_name,von.enti_odm_guid as von_guid
-                        		,bezi_assoc_von_zu
+    bezi = dbDML.select("""
+          with sprenti as 
+          (select enti_id, enti_odm_guid
+                ,case when ena.sptx_text is null then enti_name else ena.sptx_text end enti_name
+                ,spra_id
+             from entitaeten
+             join modellelement on mode_enti_id = enti_id
+              left join spraattr ena on ena.sptx_attrname = 'ENT_NAME'
+                                and ena.sptx_mode_id = mode_id
+           )
+            select von.enti_id as von_enti_id,von.enti_name as von_name,von.enti_odm_guid as von_guid
+                        		,case when bvon.sptx_text is null then  bezi_assoc_von_zu else bvon.sptx_text end  bezi_assoc_von_zu
     							,case bezi_type
                            when '1:1' then 
                             case bezi_pflicht_assoc_von_zu
@@ -292,7 +324,7 @@ def printBezi(entiId):
                                end         
                             end card1
     						,zu.enti_id as zu_enti_id,zu.enti_name as zu_name,zu.enti_odm_guid as zu_guid
-    						,bezi_assoc_zu_von
+    						,case when bzu.sptx_text is null then  bezi_assoc_zu_von else bzu.sptx_text end bezi_assoc_zu_von
     	                    ,case bezi_type
     	                       when '1:1' then 
     	                          case bezi_pflicht_assoc_zu_von
@@ -312,15 +344,24 @@ def printBezi(entiId):
     	                        end card2
     						,bezi_id,bezi_type,bezi_pflicht_assoc_von_zu,bezi_pflicht_assoc_zu_von
     						,arcs_name,arcs_odm_guid,bezi_name
-                        from entitaeten as von
+                        from   sprachen sp          
+                        join sprenti as von on von.spra_id = sp.spra_id
     					join beziehungen on bezi_enti_id_von = von.enti_id
     									and bezi_type != 'ISA'
-                        join entitaeten as zu on zu.enti_id = bezi_enti_id_zu
+    					join modellelement on mode_bezi_id = bezi_id
+                        left join spraattr bvon on bvon.sptx_attrname = 'TEXT_FROM'
+                                and bvon.sptx_mode_id = mode_id
+                                and bvon.spra_id = sp.spra_id 
+                        left join spraattr bzu on bzu.sptx_attrname = 'TEXT_TO'
+                                and bzu.sptx_mode_id = mode_id
+                                and bzu.spra_id = sp.spra_id 
+                        join sprenti as zu on zu.enti_id = bezi_enti_id_zu
                         left join arcs on arcs_id = bezi_arcs_id
                                    and bezi_enti_id_von = von.enti_id
-                        where von.enti_id = {} or zu.enti_id = {}     
+                        where  sp.spra_iso_code2 = '{}'
+                           and von.enti_id = {} or zu.enti_id = {}     
                         order by arcs_name 
-                        """.format(entiId, entiId))
+                        """.format(greportLang,entiId, entiId))
 
     #print (bezi)
     for c in bezi:
@@ -474,8 +515,9 @@ def main():
                 , "Subentitäten":nvl(e[9])}, anker=entiAnker(e[5]))
 
         eattr = dbDML.select("""select 
-           attr_odm_guid,attr_tech_name,attr_anzname,
-           wrtb_odm_guid,wrtb_name,attr_pflichtattr
+           attr_odm_guid,attr_tech_name
+           ,case when ana.sptx_text is null then attr_anzname else ana.sptx_text end attr_anzname
+           ,wrtb_odm_guid,wrtb_name,attr_pflichtattr
            ,attr_historisiert,attr_wiederholt,attr_sprachabhaengig
            ,attr_verschluesselt,wrtb_typ,attr_deskriptor
            ,attr_id,wrtb_id             
@@ -486,9 +528,14 @@ def main():
                 where scel_attr_id = attr_id
             ) as schluessel
           from attributes 
-          join wertebereiche on wrtb_id = attr_wrtb_id
+                 join modellelement on mode_attr_id = attr_id
+                 join sprachen sp on sp.spra_iso_code2 = '{}'
+                 left join spraattr  ana on ana.sptx_attrname = 'ATTR_NAME'
+                                    and ana.sptx_mode_id = mode_id
+                                    and ana.spra_id = sp.spra_id            
+                join wertebereiche on wrtb_id = attr_wrtb_id
           where attr_enti_id = {}
-          order by upper(attr_tech_name)""" .format(e[5]))
+          order by upper(attr_tech_name)""" .format(greportLang,e[5]))
         entiId = e[5]
         printUDP(meltName='ENTI', Id=entiId)
         printHTML.startTable('Attribute', ('Name', 'Domäne', 'Typ','in Schlüssel'
@@ -545,12 +592,12 @@ def main():
         attcols = dbDML.select("""select 'Attribut' as attr ,enti_name,attr_tech_name
                         , attr_id,enti_id
                         from attributes 
-          join sprachen sp on sp.spra_iso_code2 = '{}'         
-          join (select case when ena.sptx_text is null then enti_name else ena.sptx_text end enti_name
-                    ,enti_id,spra_id ,enti_odm_guid
-                 from entitaeten 
-                 join modellelement on mode_enti_id = enti_id
-                left join spraattr ena on ena.sptx_attrname = 'ENT_NAME'
+                     join sprachen sp on sp.spra_iso_code2 = '{}'         
+                      join (select case when ena.sptx_text is null then enti_name else ena.sptx_text end enti_name
+                                ,enti_id,spra_id ,enti_odm_guid
+                        from entitaeten 
+                        join modellelement on mode_enti_id = enti_id
+                       left join spraattr ena on ena.sptx_attrname = 'ENT_NAME'
                                 and ena.sptx_mode_id = mode_id 
                 ) ent on enti_id = attr_enti_id
                      and ent.spra_id = sp.spra_id

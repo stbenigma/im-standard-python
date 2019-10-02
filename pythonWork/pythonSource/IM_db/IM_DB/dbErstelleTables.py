@@ -3,7 +3,10 @@
 from IM_DB import dbConnect,dbDDL
 import sqlite3
 
+
 def erstelleInfra():
+    #erlaube alles droppen
+
     dbDDL.dropTable("speicherformate");
     dbDDL.createTable("""
     CREATE TABLE speicherformate(
@@ -84,7 +87,7 @@ CREATE TABLE schluessel(
         REFERENCES attributes(attr_id)
             ON DELETE CASCADE,
 	FOREIGN KEY(scel_bezi_id)
-        REFERENCES beziehung(bezi_id)
+        REFERENCES beziehungen(bezi_id)
             ON DELETE CASCADE,
 	FOREIGN KEY(scel_schl_id)
         REFERENCES schluessel(schl_id)
@@ -239,9 +242,9 @@ CREATE TABLE attributes(
 	CONSTRAINT attr_arc_fk CHECK((attr_enti_id is null and attr_bezi_id is not null) 
 								or (attr_enti_id is not null and attr_bezi_id is null)),
  	CONSTRAINT attr_enti_fk FOREIGN KEY(attr_enti_id)
-        REFERENCES entitaet(enti_id),
+        REFERENCES entitaeten(enti_id),
 	CONSTRAINT attr_wrtb_fk	FOREIGN KEY(attr_wrtb_id)        
-			REFERENCES wertebereich(wrtb_id),
+			REFERENCES wertebereiche(wrtb_id),
 	CONSTRAINT attr_bezi_fk FOREIGN KEY(attr_bezi_id)
 		        REFERENCES beziehungen(bezi_id)
 )
@@ -260,7 +263,7 @@ CREATE TABLE arcs(
     arcs_dm        varchar(30) NULL,
 	UNIQUE(arcs_enti_id,arcs_name),
 	CONSTRAINT arcs_enti_fk FOREIGN KEY(arcs_enti_id)
-	        REFERENCES entitaet(enti_id) ON DELETE CASCADE
+	        REFERENCES entitaeten(enti_id) ON DELETE CASCADE
 )
 """);
 
@@ -310,10 +313,10 @@ CREATE TABLE beziehungen(
 	CONSTRAINT bezi_arc_fk FOREIGN KEY(bezi_arcs_id)
 											         REFERENCES arcs(arcs_id),
 	CONSTRAINT bezi_enti_fk_von FOREIGN KEY(bezi_enti_id_von)
-											         REFERENCES entitaet(enti_id)
+											         REFERENCES entitaeten(enti_id)
 											             ON DELETE CASCADE,
 	CONSTRAINT bezi_enti_fk_zu FOREIGN KEY(bezi_enti_id_zu)
-											         REFERENCES entitaet(enti_id)
+											         REFERENCES entitaeten(enti_id)
 											             ON DELETE CASCADE
 )
 """)
@@ -340,7 +343,7 @@ CREATE TABLE benudef_eigenschaft(
     bdeg_dm             varchar(30)NULL,
 	CONSTRAINT bdeg_un UNIQUE(bdeg_name),
 	CONSTRAINT bdeg_wrtb_fk FOREIGN KEY(bdeg_wrtb_id)
-	        REFERENCES wertebereich(wrtb_id)	
+	        REFERENCES wertebereiche(wrtb_id)	
 )
 """)
 
@@ -359,7 +362,7 @@ CREATE TABLE benudef_wert(
 	CONSTRAINT bdwe_mode_fk FOREIGN KEY(bdwe_mode_id)
 	        REFERENCES modellelement(mode_id) on delete cascade,
 	CONSTRAINT bdwe_bdeg_fk FOREIGN KEY(bdwe_bdeg_id)
-	        REFERENCES benudef_eigenschaft(bdeg_id)
+	        REFERENCES benudef_eigenschaft(bdeg_id) on delete cascade
 		)
 """)
 
@@ -439,20 +442,19 @@ CREATE TABLE modellelement(
 								           REFERENCES attributes(attr_id)
 								               ON DELETE CASCADE,
 								    CONSTRAINT mode_bezi_fk FOREIGN KEY(mode_bezi_id)
-								           REFERENCES beziehung(bezi_id)
+								           REFERENCES beziehungen(bezi_id)
 								   		ON DELETE CASCADE,
 								    CONSTRAINT mode_enti_fk_ist FOREIGN KEY(mode_enti_id)
-								           REFERENCES entitaet(enti_id)
+								           REFERENCES entitaeten(enti_id)
 								               ON DELETE CASCADE,
 								    CONSTRAINT mode_wrtb_fk_ist FOREIGN KEY(mode_wrtb_id)
-								   		           REFERENCES wertebereich(wrtb_id)
+								   		           REFERENCES wertebereiche(wrtb_id)
 								   		               ON DELETE CASCADE,
-								    CONSTRAINT mode_orge_fk_verantw FOREIGN KEY(mode_orge_id)
-								           REFERENCES org_einh(orge_id),
 								    CONSTRAINT mode_melt_fk_verantw FOREIGN KEY(mode_melt_id)
 								           REFERENCES modellelem_typ(melt_id)
 )
 """)
+#  CONSTRAINT mode_orge_fk_verantw FOREIGN KEY(mode_orge_id) REFERENCES org_einh(orge_id),
 
     dbDDL.dropTable("modelltyp_eigensch")
     dbDDL.createTable("""

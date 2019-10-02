@@ -20,7 +20,7 @@ def main(argv):
                         , odmParam.imModelName + '.db');
 
     print("createDB",  dbParam.dbDirectory, dbParam.dbName)
-    dbConnect.openDB(dbParam.dbDirectory, dbParam.dbName);
+    dbConnect.openDB(dbParam.dbDirectory, dbParam.dbName,'OFF');
     dbErstelleTables.erstelleInfra();
 
     dbConnect.myDbConn.close()
