@@ -15,7 +15,7 @@ CREATE TABLE speicherformat(
     spfo_dm             varchar(30),
 	constraint spfo_uk (spfo_name)
 );
-CREATE TABLE sprache(
+CREATE TABLE sprachen(
     spra_id                integer primary key autoincrement,
     spra_iso_name          varchar(60) NOT NULL,
     spra_iso_code2         CHAR(2) NOT NULL,
@@ -43,7 +43,7 @@ CREATE TABLE sprache(
 );
 
 
-CREATE TABLE sprachtext(
+CREATE TABLE sprachtexte(
     sptx_id           integer primary key autoincrement,
 	sptx_attrname	  varchar(30) NOT NULL,
     sptx_text         varchar(4000) NOT NULL,
@@ -58,6 +58,6 @@ CREATE TABLE sprachtext(
     CONSTRAINT sptx_mode_fk FOREIGN KEY(sptx_mode_id)
 									   REFERENCES modellelement(mode_id),
 	CONSTRAINT sptx_spra_fk FOREIGN KEY(sptx_spra_id)
-									   REFERENCES sprache(spra_id)	
+									   REFERENCES sprachen(spra_id)	
 );
 

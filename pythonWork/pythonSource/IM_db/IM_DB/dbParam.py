@@ -1,11 +1,12 @@
 # -*- coding: latin-1 -*-
-
+from IM_DB import dbLookup
 """ definiert alle systemparameter für die DB """
 
 
 dbName:str = ''
 dbDirectory:str = ''
-dbDefaultLang:str = 'DE'
+dbDefaultLang:str = 'de'
+dbDefaultLangID:int = None
 
 def initDBParam(pdbDirec, pdbName):
     global dbDirectory
@@ -20,3 +21,11 @@ def initDBParam(pdbDirec, pdbName):
     else:
         dbName = pdbName
 #end initDBParam
+
+def liesDefaultLang():
+    global dbDefaultLang
+    global dbDefaultLangID
+    dbDefaultLang = dbLookup.liesDefaultLang()
+    dbDefaultLangID = dbLookup.spraLookup(dbDefaultLang)
+    #print("defaultLang=" + dbDefaultLang + " " + str(dbDefaultLangID))
+#liesDefaultLang

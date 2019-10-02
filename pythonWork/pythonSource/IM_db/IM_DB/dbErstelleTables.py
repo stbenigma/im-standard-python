@@ -47,7 +47,7 @@ CREATE TABLE synonyme(
     syno_name   		varchar(200),
     syno_enti_id        integer NOT NULL,
 	unique(syno_name,syno_enti_id),
-	foreign key (syno_enti_id) references entitaeten(enti_id)
+	foreign key (syno_enti_id) references entitaeten(enti_id) ON DELETE CASCADE
 )
     """);
 
@@ -62,7 +62,7 @@ CREATE TABLE schluessel(
     schl_dc varchar(30),
     schl_enti_id   integer NOT NULL,
 	unique (schl_enti_id,schl_laufnr),
-	foreign key (schl_enti_id) references entitaeten(enti_id)
+	foreign key (schl_enti_id) references entitaeten(enti_id) ON DELETE CASCADE
 )    """);
 
     dbDDL.dropTable("schluesselelement");
@@ -168,7 +168,7 @@ CREATE TABLE vorgabewerte(
     vgwt_anzeige   varchar(200),
     vgwt_beschr    varchar(4000),
 	unique (vgwt_wrtb_id,vgwt_wert),
-	foreign key (vgwt_wrtb_id) references wertebereiche(wrtb_id)
+	foreign key (vgwt_wrtb_id) references wertebereiche(wrtb_id) ON DELETE CASCADE
 )
    """);
     dbDDL.dropTable("datatypes");
@@ -497,8 +497,8 @@ CREATE TABLE modelltyp_eigensch(
 )"""
     )
 
-    dbDDL.dropTable("sprachtext")
-    dbDDL.createTable("""CREATE TABLE sprachtext(
+    dbDDL.dropTable("sprachtexte")
+    dbDDL.createTable("""CREATE TABLE sprachtexte(
     sptx_id           integer primary key autoincrement,
 	sptx_attrname	  varchar(30) NOT NULL,
     sptx_text         varchar(4000) NOT NULL,

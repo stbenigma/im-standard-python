@@ -25,7 +25,7 @@ CREATE TABLE synonyme(
     syno_name   		varchar(200),
     syno_enti_id        integer NOT NULL,
 	unique(syno_name,syno_enti_id)
-	foreign key (syno_enti_id) references(entitaet.enti_id)
+	foreign key (syno_enti_id) references(entitaet.enti_id) ON DELETE CASCADE
 )
 
 CREATE TABLE schluessel(
@@ -37,7 +37,7 @@ CREATE TABLE schluessel(
     schl_dc varchar(30),
     schl_enti_id   integer NOT NULL,
 	unique (schl_enti_id,schl_laufnr),
-	foreign key (schl_enti_id) references entitaet(enti_id)
+	foreign key (schl_enti_id) references entitaet(enti_id) ON DELETE CASCADE
 )
 
 CREATE TABLE schluesselelement(
@@ -142,7 +142,7 @@ CREATE TABLE vorgabewert(
     vgwt_uc                VARCHAR(30) ,
     vgwt_dc                varchar(30),
 	unique (vgwt_wrtb_id,vgwt_wert),
-	foreign key (vgwt_wrtb_id) references wertebereich(wrtb_id)
+	foreign key (vgwt_wrtb_id) references wertebereich(wrtb_id) ON DELETE CASCADE
 )
 
 CREATE TABLE datatypes(

@@ -9,6 +9,7 @@ def main():
     dbParam.initDBParam(odmParam.imDirectory
                         , odmParam.imModelName + '.db');
     dbConnect.openDB(dbParam.dbDirectory, dbParam.dbName);
+    dbParam.liesDefaultLang()
     l_sql = """with arcs2 as (select name || '_subtype' arcs_name, id arcs_enti_id,uc arcs_uc,um arcs_um ,id arcs_id from 
                                   (select enti_name as name, enti_id as id,enti_uc as uc ,enti_dc as um
                                           ,(select count(*) from entitaeten as e1 where e2.enti_odm_guid = e1.enti_enti_guid) as subanz

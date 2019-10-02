@@ -19,6 +19,7 @@ def main():
 
     print ("fillDB",odmParam.imDirectory,odmParam.imModelName)
     dbConnect.openDB(dbParam.dbDirectory,dbParam.dbName);
+    dbParam.liesDefaultLang()
 
     transferModel.insertBaseData()
     transferModel.transferODMModel();

@@ -673,6 +673,8 @@ def insertBaseData():
     #(spra_iso_name, spra_iso_code2, spra_iso_code3
     #, spra_ist_textsprache, spra_spra_id, spra_uc
     #, spra_dc
+    dbDML.delete('sprachtexte')
+    dbDML.delete('sprache')
     ldeId= dbInserts.insertSprache(('Deutsch','de','deu','TRUE','TRUE',None,'stb', date.today()));
     dbInserts.insertSprache(('English',  'en', 'eng', 'TRUE', 'FALSE',ldeId, 'stb', date.today()));
     dbInserts.insertSprache(('Français', 'fr', 'fra', 'TRUE', 'FALSE',ldeId, 'stb', date.today()));

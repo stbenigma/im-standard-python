@@ -90,9 +90,9 @@ def anzDatentyp(dt):
 #anzDatentyp
 
 def transl(pname):
-   if (greportLang == 'DE'):
+   if (greportLang == 'de'):
        return pname
-   elif (greportLang == 'EN'):
+   elif (greportLang == 'en'):
        try:
            return translNameEN[pname]
        except:
@@ -100,9 +100,6 @@ def transl(pname):
    else:
        return pname
 #translate
-
-
-
 
 def formatDatentyp(w):
     dt = anzDatentyp(w[0])
@@ -332,8 +329,9 @@ def main():
 
     dbParam.initDBParam(odmParam.imDirectory
                 ,odmParam.imModelName+'.db');
-    greportLang = greportLang if (greportLang is not None) else dbParam.dbDefaultLang
     dbConnect.openDB(dbParam.dbDirectory, dbParam.dbName);
+    dbParam.liesDefaultLang()
+    greportLang = greportLang.lower() if (greportLang is not None) else dbParam.dbDefaultLang
 
     printHTML.createIndex ("Informationsmodell {} (Stand: {})"
                            .format(odmParam.imModelName,date.today()));
