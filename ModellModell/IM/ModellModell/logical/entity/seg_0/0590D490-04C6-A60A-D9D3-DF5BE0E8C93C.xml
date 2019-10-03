@@ -2,10 +2,13 @@
 <Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="0590D490-04C6-A60A-D9D3-DF5BE0E8C93C" name="Server Hardware">
 <createdBy>stb</createdBy>
 <createdTime>2018-11-26 16:16:50 UTC</createdTime>
-<comment>Computer Hardware, auf dem IT-systeme, Anwendungen und Datenbanken installiert sind und laufen.&lt;br/&gt;&lt;br/&gt;</comment>
+<comment><![CDATA[Computer Hardware, auf dem IT-systeme, Anwendungen und Datenbanken installiert sind und laufen.
+
+]]></comment>
 <ownerDesignName>ModellModell</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
 </engineerTo>
 <adequatelyNormalized>NO</adequatelyNormalized>
@@ -21,10 +24,11 @@
 <Attribute name="Virtuell (J/N)" id="BA7B43A1-CC8C-BEF3-1AE4-ED10488BB11D">
 <createdBy>stb</createdBy>
 <createdTime>2018-11-26 16:16:50 UTC</createdTime>
-<comment>Ist dies eine physische Maschine oder ein genutzte virtuelle?</comment>
+<comment><![CDATA[Ist dies eine physische Maschine oder ein genutzte virtuelle?]]></comment>
 <ownerDesignName>ModellModell</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
 </engineerTo>
 <use>0</use>

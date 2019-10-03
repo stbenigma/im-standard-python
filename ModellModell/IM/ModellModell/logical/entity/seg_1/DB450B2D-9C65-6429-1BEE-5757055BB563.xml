@@ -2,7 +2,23 @@
 <Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="DB450B2D-9C65-6429-1BEE-5757055BB563" name="IT-System">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-20 06:58:45 UTC</createdTime>
-<comment>IT_System, Betriebssystem, in dem Anwendungen laufen können.&lt;br/&gt;</comment>
+<comment><![CDATA[IT_System, Betriebssystem, Infrastruktur in oder auf dem Anwendungen laufen können.
+
+Beispiele:
+Power-DNS
+JRE java runtime environment
+Windows
+Android
+ubuntu Linux
+mongo-DB
+Excel
+Access
+SAP-Hana
+IDE  = Application for IT-People
+Eclipse / Microsoft Studio
+Jenkins
+Oracle-APEX
+]]></comment>
 <ownerDesignName>ModellModell</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
@@ -38,7 +54,7 @@
 <Attribute name="Name" id="6A0BE6EE-FACA-EE1A-B294-1071918E2DA9">
 <createdBy>stb</createdBy>
 <createdTime>2018-11-03 14:04:13 UTC</createdTime>
-<comment>Name der Entität der in der Kommunikation normalerweise gebraucht wird.</comment>
+<comment><![CDATA[Name der Entität der in der Kommunikation normalerweise gebraucht wird.]]></comment>
 <generatorID>03E094E5-D662-F557-57A5-DD289B02EBF0</generatorID>
 <ownerDesignName>ModellModell</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>

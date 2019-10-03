@@ -2,10 +2,41 @@
 <Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="A8C73DA3-4007-321A-B100-15C2455AA260" name="Technologie">
 <createdBy>stb</createdBy>
 <createdTime>2019-03-04 16:46:51 UTC</createdTime>
-<comment>Beschreibung einer IT-Umgebung (Framework, Programmiersprache, Templates, etc.)&lt;br/&gt;&lt;br/&gt;Beispiele:&lt;br/&gt;SQL&lt;br/&gt;Java&lt;br/&gt;Eclipse&lt;br/&gt;Microsoft Office&lt;br/&gt;Oracle-APEX&lt;br/&gt;SAP-Hana&lt;br/&gt;Word&lt;br/&gt;Excel&lt;br/&gt;Powerpoint&lt;br/&gt;Visio&lt;br/&gt;Access</comment>
+<comment><![CDATA[Beschreibung einer IT-Umgebung (Framework, Programmiersprache, Templates, etc.)
+
+Beispiele:
+DBMS data base mgt system (Oracle MS, Hana)
+DNS  domain name server
+IAM identiy and access mgt
+vcs Version control system
+cdn content delivery network
+vpn virtual private network
+web Protocol (http)
+
+IT-Applications
+
+Sammlung von Technologien
+Microsoft Office
+
+Tools 
+Excel
+Word
+Powerpoint
+Visio
+
+
+Sprachen:
+SQL
+Java
+HTML 
+Jason
+css
+
+]]></comment>
 <ownerDesignName>ModellModell</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
 </engineerTo>
 <adequatelyNormalized>NO</adequatelyNormalized>
@@ -17,6 +48,7 @@
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
 <shortName>TECH</shortName>
+<synonym>Technology</synonym>
 <createSurrogateKey>true</createSurrogateKey>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Bezeichnung" id="212F81BB-13C3-5562-9FDD-48A894ED72AB">
@@ -25,6 +57,7 @@
 <ownerDesignName>ModellModell</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
 </engineerTo>
 <use>0</use>
@@ -38,6 +71,7 @@
 <ownerDesignName>ModellModell</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>

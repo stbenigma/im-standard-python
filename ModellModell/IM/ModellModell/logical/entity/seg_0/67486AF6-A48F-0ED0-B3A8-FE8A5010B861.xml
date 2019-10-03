@@ -69,21 +69,6 @@ online bedeutet, dass die Anwendungen direkt auf die Datenbasis (Datei, DB) eine
 <domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="Online" id="0DD96E6E-CB23-100D-1414-F2A2EEEC68B2">
-<createdBy>stb</createdBy>
-<createdTime>2019-01-21 16:12:43 UTC</createdTime>
-<comment><![CDATA[Daten über eine onlineschnittstelle direkt genutzt. Z.B. SQL via DB-Link]]></comment>
-<ownerDesignName>ModellModell</ownerDesignName>
-<shouldEngineer>false</shouldEngineer>
-<engineerTo>
-<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
-<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
-</engineerTo>
-<use>0</use>
-<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
-<domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-</Attribute>
 <Attribute name="Auslöseperiodizität" id="98F896FA-EB99-C1A2-3C9B-23F46416102D">
 <createdBy>stb</createdBy>
 <createdTime>2019-08-21 08:23:38 UTC</createdTime>
@@ -97,6 +82,30 @@ online bedeutet, dass die Anwendungen direkt auf die Datenbasis (Datei, DB) eine
 <use>0</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
 <domain>FEA1A894-BD6D-FEF8-423C-6857A9D694A1</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Scalable" id="B8EFFE90-915E-2B89-03D4-4591F16986B2">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-03 09:51:53 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="überwacht (J/N)" id="F4363904-CEEA-1E89-A209-C5B783917961">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-03 09:53:01 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 </attributes>

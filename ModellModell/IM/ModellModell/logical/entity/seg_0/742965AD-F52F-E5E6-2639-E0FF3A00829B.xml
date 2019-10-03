@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="742965AD-F52F-E5E6-2639-E0FF3A00829B" name="Anwendungsbereich">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="742965AD-F52F-E5E6-2639-E0FF3A00829B" name="Gechäftsbereich">
 <createdBy>stb</createdBy>
 <createdTime>2018-12-01 14:27:16 UTC</createdTime>
 <comment><![CDATA[Unternehmerische Aufgabe, Typ, Bereich von Anwendungen im Rahmen der Wertschöpfungskette und -prozesse eines Unternehmens.
@@ -7,14 +7,15 @@
 Anwendungsbereiche fassen typischerweise 1 oder mehrere Anwendungen  (Hilfsmittel, Werkzeuge, Applikationen, Tools) zusammen, mit denen die eigentliche Arbeit gemacht wird.
 
 Beispiele:
-ERP
-PIM
-FiBu
-CAD
-PLM/PDM
-Projektmanagment
-Speicherung(Fileserver)
-MAM]]></comment>
+Finanz
+R&D
+Produktion
+Sales
+Marketing
+HR
+Logistik
+Customer Services
+]]></comment>
 <ownerDesignName>ModellModell</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
@@ -29,6 +30,7 @@ MAM]]></comment>
 <maxVolumes>9999999</maxVolumes>
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
+<synonym>Business Area</synonym>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Bezeichnung" id="C961C9C0-5FA6-5CDA-40A4-740B9CC54FBA">
 <createdBy>stb</createdBy>
@@ -57,40 +59,6 @@ MAM]]></comment>
 <domain>CEF66788-EC07-3347-F213-6A5B74AB29A4</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="Name [L]" id="A24CA0AE-5C17-EBCB-3FFF-9FA6D0059759">
-<createdBy>stb</createdBy>
-<createdTime>2018-12-11 12:20:40 UTC</createdTime>
-<comment><![CDATA[Name des Hoheitsbereichs]]></comment>
-<generatorID>DCAA3981-D802-F02F-6233-664CAB6AE895</generatorID>
-<ownerDesignName>ModellModell</ownerDesignName>
-<shouldEngineer>false</shouldEngineer>
-<engineerTo>
-<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
-<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
-</engineerTo>
-<referedAttribute>53DC075C-058F-2C59-D396-901F1B597822</referedAttribute>
-<use>0</use>
-<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
-<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-</Attribute>
-<Attribute name="Name" id="2E8ED529-9A58-A810-95C0-0C83C4D4990B">
-<createdBy>stb</createdBy>
-<createdTime>2018-12-11 12:20:40 UTC</createdTime>
-<comment><![CDATA[Name der Entität der in der Kommunikation normalerweise gebraucht wird.]]></comment>
-<generatorID>DCAA3981-D802-F02F-6233-664CAB6AE895</generatorID>
-<ownerDesignName>ModellModell</ownerDesignName>
-<shouldEngineer>false</shouldEngineer>
-<engineerTo>
-<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
-<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
-</engineerTo>
-<referedAttribute>63F3F918-F1A2-B2D8-42C7-B60721C8D8F0</referedAttribute>
-<use>0</use>
-<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
-<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-</Attribute>
 <Attribute name="Aufgabenbereich_Name2" id="EA9100C2-90AA-78D9-CC8A-FE67E15143DE">
 <createdBy>stb</createdBy>
 <createdTime>2019-08-24 10:51:38 UTC</createdTime>
@@ -101,6 +69,7 @@ MAM]]></comment>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 </engineerTo>
+<nullsAllowed>true</nullsAllowed>
 <referedAttribute>0388952A-4C18-EC82-78AB-E1891FA922B8</referedAttribute>
 <use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>

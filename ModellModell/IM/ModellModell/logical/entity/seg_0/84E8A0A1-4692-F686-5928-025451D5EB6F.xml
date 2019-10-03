@@ -2,23 +2,36 @@
 <Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="84E8A0A1-4692-F686-5928-025451D5EB6F" name="Datenbanksystem">
 <createdBy>stb</createdBy>
 <createdTime>2018-11-26 16:00:25 UTC</createdTime>
-<comment>Alleinstehendes Datenbanksystem, das typischerweise von mehreren Applikationen im Direktzugriff genutzt wird.&lt;br/&gt;&lt;br/&gt;Datenbanken ausschliesslich von einer Applikation direkt genutzt werden können und wenn überhaupt nur über Services der Applikation zugreifbar sind werden nicht als Datenbanksysteme aufgezeichnet. Sie sind integraler Bestandteil der Applikation.&lt;br/&gt;&lt;br/&gt;Beispiele:&lt;br/&gt;MDM-DB&lt;br/&gt;ERP-DB&lt;br/&gt;Oracle-DB&lt;br/&gt;</comment>
+<comment><![CDATA[Alleinstehendes Datenbanksystem zur Verwaltung von Daten, dietypischerweise von mehreren Applikationen im Direktzugriff genutzt werden.
+
+Datenbanken ausschliesslich von einer Applikation direkt genutzt werden können und wenn überhaupt nur über Services der Applikation zugreifbar sind werden nicht als Datenbanksysteme aufgezeichnet. Sie sind integraler Bestandteil der Applikation.
+
+Beispiele:
+MDM-DB
+ERP-DB
+Oracle-DB
+mongo-db for documentstorage
+file-system
+excel for commonly used data
+access
+elastic search
+graph db
+enterprize data warehouse]]></comment>
 <ownerDesignName>ModellModell</ownerDesignName>
-<shouldEngineer>false</shouldEngineer>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
-<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 </engineerTo>
 <adequatelyNormalized>NO</adequatelyNormalized>
 <expectedVolumes>0</expectedVolumes>
 <fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
 <growthPercent>0</growthPercent>
 <growthType>Year</growthType>
-<hierarchicalParent>CFE2B0E2-7C7C-3289-90F3-1467F54FCB9E</hierarchicalParent>
+<hierarchicalParent>DB450B2D-9C65-6429-1BEE-5757055BB563</hierarchicalParent>
 <maxVolumes>9999999</maxVolumes>
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
-<synonym>DBMS</synonym>
+<synonym>database system</synonym>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Zeichensatz" id="524F7806-58A3-DB4D-FBED-6725E831E85D">
 <createdBy>stb</createdBy>
@@ -38,7 +51,7 @@
 <Attribute name="Name1" id="D0A3C5C8-3236-E201-AB0B-174E56640B93">
 <createdBy>stb</createdBy>
 <createdTime>2018-11-26 16:00:25 UTC</createdTime>
-<comment>Name der Entität der in der Kommunikation normalerweise gebraucht wird.</comment>
+<comment><![CDATA[Name der Entität der in der Kommunikation normalerweise gebraucht wird.]]></comment>
 <generatorID>03E094E5-D662-F557-57A5-DD289B02EBF0</generatorID>
 <ownerDesignName>ModellModell</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
@@ -52,17 +65,4 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 </attributes>
-<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
-<identifier id="206CE09F-CBBF-4160-D8B8-143FD684FD16" name="ITSY_NAME_UK">
-<createdBy>stb</createdBy>
-<createdTime>2018-11-26 16:00:25 UTC</createdTime>
-<ownerDesignName>ModellModell</ownerDesignName>
-<shouldEngineer>false</shouldEngineer>
-<engineerTo>
-<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
-<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
-</engineerTo>
-<pk>true</pk>
-</identifier>
-</identifiers>
 </Entity>
