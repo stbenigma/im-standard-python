@@ -22,11 +22,9 @@
 <createSurrogateKey>true</createSurrogateKey>
 <propertyMap>
 <property name="Beispiele" value="Kunde / Verkaufs-Artikel / Land"/>
-<property name="DE_ENTI_COMMENT" value="Entität im systemübergreifenden, konsolidierten, konzeptionellen Modell eines Unternehmens
-"/>
+<property name="DE_ENTI_COMMENT" value="Entität im systemübergreifenden, konsolidierten, konzeptionellen Modell eines Unternehmens "/>
 <property name="DE_ENTI_NAME" value="Entität"/>
-<property name="EN_ENTI_COMMENT" value="*DE* Entität im systemübergreifenden, konsolidierten, konzeptionellen Modell eines Unternehmens
-"/>
+<property name="EN_ENTI_COMMENT" value="*DE* Entität im systemübergreifenden, konsolidierten, konzeptionellen Modell eines Unternehmens "/>
 <property name="EN_ENTI_NAME" value="*DE* Entität"/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
@@ -227,52 +225,6 @@
 <property name="DE_ATTR_NAME" value="Name"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Name der Entität der in der Kommunikation normalerweise gebraucht wird."/>
 <property name="EN_ATTR_NAME" value="*DE* Name"/>
-</propertyMap>
-</Attribute>
-<Attribute name="Name2" id="ACB70410-44B8-C1E3-4095-9F973E1096ED">
-<createdBy>stb</createdBy>
-<createdTime>2018-11-26 17:26:28 UTC</createdTime>
-<comment><![CDATA[Name eines Geschäftsbereichs]]></comment>
-<generatorID>D29A3D4B-8C5D-1197-84C0-FDA2BAF9AF29</generatorID>
-<ownerDesignName>ModellModell</ownerDesignName>
-<shouldEngineer>false</shouldEngineer>
-<engineerTo>
-<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
-<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
-</engineerTo>
-<referedAttribute>9FC8C28A-8074-92B6-C5B5-3378905C15D0</referedAttribute>
-<use>0</use>
-<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
-<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<propertyMap>
-<property name="DE_ATTR_COMMENT" value="Name eines Geschäftsbereichs"/>
-<property name="DE_ATTR_NAME" value="Name2"/>
-<property name="EN_ATTR_COMMENT" value="*DE* Name eines Geschäftsbereichs"/>
-<property name="EN_ATTR_NAME" value="*DE* Name2"/>
-</propertyMap>
-</Attribute>
-<Attribute name="Name1" id="91EEC9C1-218E-184E-A621-6C9234610713">
-<createdBy>stb</createdBy>
-<createdTime>2018-11-26 17:26:28 UTC</createdTime>
-<comment><![CDATA[Name der Entität der in der Kommunikation normalerweise gebraucht wird.]]></comment>
-<generatorID>D29A3D4B-8C5D-1197-84C0-FDA2BAF9AF29</generatorID>
-<ownerDesignName>ModellModell</ownerDesignName>
-<shouldEngineer>false</shouldEngineer>
-<engineerTo>
-<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
-<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
-</engineerTo>
-<referedAttribute>0D6D7CC5-02F9-66CF-24BB-AC8AC5003C95</referedAttribute>
-<use>0</use>
-<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
-<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<propertyMap>
-<property name="DE_ATTR_COMMENT" value="Name der Entität der in der Kommunikation normalerweise gebraucht wird."/>
-<property name="DE_ATTR_NAME" value="Name1"/>
-<property name="EN_ATTR_COMMENT" value="*DE* Name der Entität der in der Kommunikation normalerweise gebraucht wird."/>
-<property name="EN_ATTR_NAME" value="*DE* Name1"/>
 </propertyMap>
 </Attribute>
 <Attribute name="erwartete Tupelanzahl" id="5D1A133A-66CD-CCDD-815F-E71B76100EF4">
