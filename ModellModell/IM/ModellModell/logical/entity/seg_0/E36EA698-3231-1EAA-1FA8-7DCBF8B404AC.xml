@@ -9,6 +9,7 @@
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
 </engineerTo>
+<typeID>F3ABFF84-45A4-A802-17D7-9BF8FFE20450</typeID>
 <adequatelyNormalized>NO</adequatelyNormalized>
 <expectedVolumes>0</expectedVolumes>
 <fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
@@ -23,6 +24,14 @@
 <discriminatorColumnName>TYPE</discriminatorColumnName>
 <discriminatorValue>ABTE</discriminatorValue>
 <completeSubtypes>true</completeSubtypes>
+<propertyMap>
+<property name="DE_ENTI_COMMENT" value="Organisationseinheit in der Firma (intern oder extern), die für die Definition oder Pflege eines Attributwertes verantwortlich ist."/>
+<property name="DE_ENTI_NAME" value="Abteilung"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_COMMENT" value="*DE* Organisationseinheit in der Firma (intern oder extern), die für die Definition oder Pflege eines Attributwertes verantwortlich ist."/>
+<property name="EN_ENTI_NAME" value="*DE* Abteilung"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+</propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Name" id="5F1855D0-5C50-083E-F00A-56D7A0E3E93F">
 <createdBy>stb</createdBy>
@@ -40,6 +49,12 @@
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value="Name eines Geschäftsbereichs"/>
+<property name="DE_ATTR_NAME" value="Name"/>
+<property name="EN_ATTR_COMMENT" value="*DE* Name eines Geschäftsbereichs"/>
+<property name="EN_ATTR_NAME" value="*DE* Name"/>
+</propertyMap>
 </Attribute>
 <Attribute name="Name1" id="6E28D8D2-162A-F709-A400-9F16EC7872AF">
 <createdBy>stb</createdBy>
@@ -57,6 +72,12 @@
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value="Name der Entität der in der Kommunikation normalerweise gebraucht wird."/>
+<property name="DE_ATTR_NAME" value="Name1"/>
+<property name="EN_ATTR_COMMENT" value="*DE* Name der Entität der in der Kommunikation normalerweise gebraucht wird."/>
+<property name="EN_ATTR_NAME" value="*DE* Name1"/>
+</propertyMap>
 </Attribute>
 </attributes>
 </Entity>

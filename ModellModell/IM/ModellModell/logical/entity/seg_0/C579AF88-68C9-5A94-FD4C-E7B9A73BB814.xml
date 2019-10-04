@@ -9,6 +9,7 @@
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 </engineerTo>
+<typeID>1C6A8769-7651-51C0-9E0A-D0C138DE6193</typeID>
 <adequatelyNormalized>NO</adequatelyNormalized>
 <expectedVolumes>0</expectedVolumes>
 <fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
@@ -21,6 +22,12 @@
 <createSurrogateKey>true</createSurrogateKey>
 <propertyMap>
 <property name="Beispiele" value="Kunde / Verkaufs-Artikel / Land"/>
+<property name="DE_ENTI_COMMENT" value="Entität im systemübergreifenden, konsolidierten, konzeptionellen Modell eines Unternehmens
+"/>
+<property name="DE_ENTI_NAME" value="Entität"/>
+<property name="EN_ENTI_COMMENT" value="*DE* Entität im systemübergreifenden, konsolidierten, konzeptionellen Modell eines Unternehmens
+"/>
+<property name="EN_ENTI_NAME" value="*DE* Entität"/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Entitätname [L]" id="0F2758D2-C7D1-07D3-5C35-F1697AF2FBE0">
@@ -37,6 +44,12 @@
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value="Name der Entität der in der Kommunikation normalerweise gebraucht wird."/>
+<property name="DE_ATTR_NAME" value="Entitätname [L]"/>
+<property name="EN_ATTR_COMMENT" value="*DE* Name der Entität der in der Kommunikation normalerweise gebraucht wird."/>
+<property name="EN_ATTR_NAME" value="*DE* Entitätname [L]"/>
+</propertyMap>
 </Attribute>
 <Attribute name="Synonym [LN]" id="86F63762-7E3D-9675-C4EB-5EF70C2112E7">
 <createdBy>stb</createdBy>
@@ -53,6 +66,12 @@
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value="Name, der für diese Entität auch verwendet wird"/>
+<property name="DE_ATTR_NAME" value="Synonym [LN]"/>
+<property name="EN_ATTR_COMMENT" value="*DE* Name, der für diese Entität auch verwendet wird"/>
+<property name="EN_ATTR_NAME" value="*DE* Synonym [LN]"/>
+</propertyMap>
 </Attribute>
 <Attribute name="Beschreibung [L]" id="78E7CC00-D288-42DD-98DE-293BD4C4788A">
 <createdBy>stb</createdBy>
@@ -69,6 +88,12 @@
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value="Bedeutung, Nutzen, Nutzung der Entität"/>
+<property name="DE_ATTR_NAME" value="Beschreibung [L]"/>
+<property name="EN_ATTR_COMMENT" value="*DE* Bedeutung, Nutzen, Nutzung der Entität"/>
+<property name="EN_ATTR_NAME" value="*DE* Beschreibung [L]"/>
+</propertyMap>
 </Attribute>
 <Attribute name="Kurzname [L]" id="3F71D6FF-01E1-8249-78A0-A7FF4F70650A">
 <createdBy>stb</createdBy>
@@ -85,6 +110,12 @@
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value="Kurzbezeichnung der Entität für die Verwendung aus Überschrift, in Referenzen "/>
+<property name="DE_ATTR_NAME" value="Kurzname [L]"/>
+<property name="EN_ATTR_COMMENT" value="*DE* Kurzbezeichnung der Entität für die Verwendung aus Überschrift, in Referenzen "/>
+<property name="EN_ATTR_NAME" value="*DE* Kurzname [L]"/>
+</propertyMap>
 </Attribute>
 <Attribute name="Präfixname" id="05044FC2-ACB4-20D7-8B53-8FCF430B32D9">
 <createdBy>stb</createdBy>
@@ -101,6 +132,12 @@
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value="Kürzestname (3-5 Zeichen, Normalerweise Grossbuchstaben) der als Präfix für  Implementierungsnamen verwendet werden kann."/>
+<property name="DE_ATTR_NAME" value="Präfixname"/>
+<property name="EN_ATTR_COMMENT" value="*DE* Kürzestname (3-5 Zeichen, Normalerweise Grossbuchstaben) der als Präfix für  Implementierungsnamen verwendet werden kann."/>
+<property name="EN_ATTR_NAME" value="*DE* Präfixname"/>
+</propertyMap>
 </Attribute>
 <Attribute name="Tooltip [L]" id="54A2577F-F95D-B646-574D-6693D12215E0">
 <createdBy>stb</createdBy>
@@ -117,6 +154,12 @@
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value="Anzeige der Bedeutung für Bediener auf einer Maske."/>
+<property name="DE_ATTR_NAME" value="Tooltip [L]"/>
+<property name="EN_ATTR_COMMENT" value="*DE* Anzeige der Bedeutung für Bediener auf einer Maske."/>
+<property name="EN_ATTR_NAME" value="*DE* Tooltip [L]"/>
+</propertyMap>
 </Attribute>
 <Attribute name="Beispiele" id="0A3BF2BE-3C66-86F6-C0C4-789EE9EC7833">
 <createdBy>stb</createdBy>
@@ -133,6 +176,12 @@
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value="Typische Beispiele für eine Ausprägung dieser Entität, als Hinweis auf die Bedeutung"/>
+<property name="DE_ATTR_NAME" value="Beispiele"/>
+<property name="EN_ATTR_COMMENT" value="*DE* Typische Beispiele für eine Ausprägung dieser Entität, als Hinweis auf die Bedeutung"/>
+<property name="EN_ATTR_NAME" value="*DE* Beispiele"/>
+</propertyMap>
 </Attribute>
 <Attribute name="Name [L]" id="627C46BB-D03D-E7DB-D7EE-B726716B01B4">
 <createdBy>stb</createdBy>
@@ -150,6 +199,12 @@
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value="Name des Hoheitsbereichs"/>
+<property name="DE_ATTR_NAME" value="Name [L]"/>
+<property name="EN_ATTR_COMMENT" value="*DE* Name des Hoheitsbereichs"/>
+<property name="EN_ATTR_NAME" value="*DE* Name [L]"/>
+</propertyMap>
 </Attribute>
 <Attribute name="Name" id="D647C231-3BA6-6599-8E76-FAEE159FA973">
 <createdBy>stb</createdBy>
@@ -167,6 +222,12 @@
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value="Name der Entität der in der Kommunikation normalerweise gebraucht wird."/>
+<property name="DE_ATTR_NAME" value="Name"/>
+<property name="EN_ATTR_COMMENT" value="*DE* Name der Entität der in der Kommunikation normalerweise gebraucht wird."/>
+<property name="EN_ATTR_NAME" value="*DE* Name"/>
+</propertyMap>
 </Attribute>
 <Attribute name="Name2" id="ACB70410-44B8-C1E3-4095-9F973E1096ED">
 <createdBy>stb</createdBy>
@@ -184,6 +245,12 @@
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value="Name eines Geschäftsbereichs"/>
+<property name="DE_ATTR_NAME" value="Name2"/>
+<property name="EN_ATTR_COMMENT" value="*DE* Name eines Geschäftsbereichs"/>
+<property name="EN_ATTR_NAME" value="*DE* Name2"/>
+</propertyMap>
 </Attribute>
 <Attribute name="Name1" id="91EEC9C1-218E-184E-A621-6C9234610713">
 <createdBy>stb</createdBy>
@@ -201,6 +268,12 @@
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value="Name der Entität der in der Kommunikation normalerweise gebraucht wird."/>
+<property name="DE_ATTR_NAME" value="Name1"/>
+<property name="EN_ATTR_COMMENT" value="*DE* Name der Entität der in der Kommunikation normalerweise gebraucht wird."/>
+<property name="EN_ATTR_NAME" value="*DE* Name1"/>
+</propertyMap>
 </Attribute>
 <Attribute name="erwartete Tupelanzahl" id="5D1A133A-66CD-CCDD-815F-E71B76100EF4">
 <createdBy>stb</createdBy>
@@ -217,6 +290,12 @@
 <logicalDatatype>LOGDT024</logicalDatatype>
 <domain>A32A539A-AA2C-608E-1F61-A290079F25AD</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value="Grössenordnung der Tupelanzahl in dieser Entität"/>
+<property name="DE_ATTR_NAME" value="erwartete Tupelanzahl"/>
+<property name="EN_ATTR_COMMENT" value="*DE* Grössenordnung der Tupelanzahl in dieser Entität"/>
+<property name="EN_ATTR_NAME" value="*DE* erwartete Tupelanzahl"/>
+</propertyMap>
 </Attribute>
 <Attribute name="Aufgabenbereich_Name2" id="43707B66-DF2D-4625-CD71-9765F4ED99C4">
 <createdBy>stb</createdBy>
@@ -234,6 +313,12 @@
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value="Name der Entität der in der Kommunikation normalerweise gebraucht wird."/>
+<property name="DE_ATTR_NAME" value="Aufgabenbereich_Name2"/>
+<property name="EN_ATTR_COMMENT" value="*DE* Name der Entität der in der Kommunikation normalerweise gebraucht wird."/>
+<property name="EN_ATTR_NAME" value="*DE* Aufgabenbereich_Name2"/>
+</propertyMap>
 </Attribute>
 </attributes>
 <identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">

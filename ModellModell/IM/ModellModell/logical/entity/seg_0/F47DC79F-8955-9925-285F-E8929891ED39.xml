@@ -31,6 +31,36 @@ Beispiele:
 <shortName>GEPROC</shortName>
 <synonym>business process</synonym>
 <createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="DE_ENTI_COMMENT" value="Ein Geschäftsprozess umfasst eine Folge von Geschäftstransaktion, die in einer bestimmten Abhängigkeit ausgeführt werden, um ein übergeordnetes geschäftliches oder betriebliches Ziel zu erreichen. 
+Er beginnt immer mit einem Auslöser und kann mehrere Entscheidungen und Zwischenzustände umfassen. Am Schluss gibt es ein oder mehrere definierte Zustände / Ergebnisse.
+
+Aus Sicht des Kunden entspricht der Geschäftsprozess der Customer Journey.
+
+Beispiele:
+- Verkaufen eines Neuwagens
+- Kundenbestellung bearbeiten
+- Wartungsfall erledigen
+- Neues Produkt entwickeln.
+- Marketingkampagne planen und durchführen
+"/>
+<property name="DE_ENTI_NAME" value="Geschäftsprozess"/>
+<property name="DE_ENTI_SYNONYM" value="business process"/>
+<property name="EN_ENTI_COMMENT" value="*DE* Ein Geschäftsprozess umfasst eine Folge von Geschäftstransaktion, die in einer bestimmten Abhängigkeit ausgeführt werden, um ein übergeordnetes geschäftliches oder betriebliches Ziel zu erreichen. 
+Er beginnt immer mit einem Auslöser und kann mehrere Entscheidungen und Zwischenzustände umfassen. Am Schluss gibt es ein oder mehrere definierte Zustände / Ergebnisse.
+
+Aus Sicht des Kunden entspricht der Geschäftsprozess der Customer Journey.
+
+Beispiele:
+- Verkaufen eines Neuwagens
+- Kundenbestellung bearbeiten
+- Wartungsfall erledigen
+- Neues Produkt entwickeln.
+- Marketingkampagne planen und durchführen
+"/>
+<property name="EN_ENTI_NAME" value="*DE* Geschäftsprozess"/>
+<property name="EN_ENTI_SYNONYM" value="*DE* business process"/>
+</propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Name" id="D95A1B2F-37AD-D3BC-A588-D0645EFD83E5">
 <createdBy>stb</createdBy>
@@ -43,6 +73,12 @@ Beispiele:
 <nullsAllowed>true</nullsAllowed>
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Name"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="*DE* Name"/>
+</propertyMap>
 </Attribute>
 <Attribute name="Beschreibung" id="1A2C332F-E768-0A4E-4FC9-69B6AED0CCE0">
 <createdBy>stb</createdBy>
@@ -55,6 +91,12 @@ Beispiele:
 <nullsAllowed>true</nullsAllowed>
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Beschreibung"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="*DE* Beschreibung"/>
+</propertyMap>
 </Attribute>
 </attributes>
 </Entity>

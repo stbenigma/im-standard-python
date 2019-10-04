@@ -22,6 +22,22 @@ Beispiel:
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
 <createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="DE_ENTI_COMMENT" value="Für projekt- oder umgebungsspezifische Erweiterungen, können für jedes Modellelement eigene Eigenschaften definiert werden.
+
+Beispiel:
+- Qualitätsanspruch-Level
+- Sicherheitsstufe"/>
+<property name="DE_ENTI_NAME" value="Benutzerdefinierte Eigenschaft"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_COMMENT" value="*DE* Für projekt- oder umgebungsspezifische Erweiterungen, können für jedes Modellelement eigene Eigenschaften definiert werden.
+
+Beispiel:
+- Qualitätsanspruch-Level
+- Sicherheitsstufe"/>
+<property name="EN_ENTI_NAME" value="*DE* Benutzerdefinierte Eigenschaft"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+</propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Name" id="2A1A6E68-D38D-9101-ABF5-633C9DAFCFEC">
 <createdBy>stb</createdBy>
@@ -35,6 +51,12 @@ Beispiel:
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Name"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="*DE* Name"/>
+</propertyMap>
 </Attribute>
 <Attribute name="Beschreibung" id="87C88D1D-47B8-B820-06A5-B3ED8C8FFEE4">
 <createdBy>stb</createdBy>
@@ -49,6 +71,12 @@ Beispiel:
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Beschreibung"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="*DE* Beschreibung"/>
+</propertyMap>
 </Attribute>
 <Attribute name="Optional" id="2F4D354A-29AB-80AE-FFB1-C5784584F1CA">
 <createdBy>stb</createdBy>
@@ -62,6 +90,12 @@ Beispiel:
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Optional"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="*DE* Optional"/>
+</propertyMap>
 </Attribute>
 </attributes>
 </Entity>

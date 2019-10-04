@@ -14,6 +14,7 @@ Entität + Menge aller Schlüsselelemente.]]></comment>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
 </engineerTo>
+<typeID>1C6A8769-7651-51C0-9E0A-D0C138DE6193</typeID>
 <adequatelyNormalized>NO</adequatelyNormalized>
 <expectedVolumes>0</expectedVolumes>
 <fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
@@ -24,6 +25,20 @@ Entität + Menge aller Schlüsselelemente.]]></comment>
 <normalForm>Third</normalForm>
 <propertyMap>
 <property name="Beispiele" value="Rechnungsposition: Rechnung (Beziehung),  Position-Nr, Kunde: Kunden-Nr"/>
+<property name="DE_ENTI_COMMENT" value="Gruppe von identifizierenden Beziehungen und oder Attributen einer Entität.
+Jede Kombination von Werten in einem Schlüssel ist für die Entität einmalig. 
+D.h. sie identifiziert genau 1 Eintrag in der Entität.
+
+Die Laufnummer ist ein Hilfsmittel. Genau genommen ist für einen Schlüssel nur eindeutig
+Entität + Menge aller Schlüsselelemente."/>
+<property name="DE_ENTI_NAME" value="Schlüssel"/>
+<property name="EN_ENTI_COMMENT" value="*DE* Gruppe von identifizierenden Beziehungen und oder Attributen einer Entität.
+Jede Kombination von Werten in einem Schlüssel ist für die Entität einmalig. 
+D.h. sie identifiziert genau 1 Eintrag in der Entität.
+
+Die Laufnummer ist ein Hilfsmittel. Genau genommen ist für einen Schlüssel nur eindeutig
+Entität + Menge aller Schlüsselelemente."/>
+<property name="EN_ENTI_NAME" value="*DE* Schlüssel"/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Laufnr" id="0F57A3C6-A117-9DD0-D738-0C5304B50953">
@@ -40,6 +55,12 @@ Entität + Menge aller Schlüsselelemente.]]></comment>
 <logicalDatatype>LOGDT019</logicalDatatype>
 <domain>E2DCFC37-5428-9FE8-64FF-368960199E02</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value="Schlüssel einer Entität müssen durch ein Merkmal unterscheidbar werden."/>
+<property name="DE_ATTR_NAME" value="Laufnr"/>
+<property name="EN_ATTR_COMMENT" value="*DE* Schlüssel einer Entität müssen durch ein Merkmal unterscheidbar werden."/>
+<property name="EN_ATTR_NAME" value="*DE* Laufnr"/>
+</propertyMap>
 </Attribute>
 <Attribute name="Entitätname [L]" id="C2F010F2-7FFD-ED64-4BB8-349B6679C246">
 <createdBy>stb</createdBy>
@@ -57,6 +78,12 @@ Entität + Menge aller Schlüsselelemente.]]></comment>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value="Name der Entität der in der Kommunikation normalerweise gebraucht wird."/>
+<property name="DE_ATTR_NAME" value="Entitätname [L]"/>
+<property name="EN_ATTR_COMMENT" value="*DE* Name der Entität der in der Kommunikation normalerweise gebraucht wird."/>
+<property name="EN_ATTR_NAME" value="*DE* Entitätname [L]"/>
+</propertyMap>
 </Attribute>
 <Attribute name="Name" id="6D04CA98-27CA-B063-D963-6A963B19B9A1">
 <createdBy>stb</createdBy>
@@ -71,6 +98,12 @@ Entität + Menge aller Schlüsselelemente.]]></comment>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Name"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="*DE* Name"/>
+</propertyMap>
 </Attribute>
 </attributes>
 <identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">

@@ -18,6 +18,14 @@
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
 <createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="DE_ENTI_COMMENT" value="Für projekt- oder umgebungsspezifische Erweiterungen, können für jedes Modellelement eigene Eigenschaften definiert werden."/>
+<property name="DE_ENTI_NAME" value="Benutzerdefinierter Eigenschaftswert"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_COMMENT" value="*DE* Für projekt- oder umgebungsspezifische Erweiterungen, können für jedes Modellelement eigene Eigenschaften definiert werden."/>
+<property name="EN_ENTI_NAME" value="*DE* Benutzerdefinierter Eigenschaftswert"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+</propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Wert" id="4D65DE4B-D857-1829-A949-8A63338EF7F1">
 <createdBy>stb</createdBy>
@@ -31,6 +39,12 @@
 <use>1</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Wert"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="*DE* Wert"/>
+</propertyMap>
 </Attribute>
 </attributes>
 </Entity>

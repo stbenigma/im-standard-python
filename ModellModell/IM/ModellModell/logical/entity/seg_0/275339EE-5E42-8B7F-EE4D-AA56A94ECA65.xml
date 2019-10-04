@@ -10,6 +10,7 @@
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
 </engineerTo>
+<typeID>F3ABFF84-45A4-A802-17D7-9BF8FFE20450</typeID>
 <adequatelyNormalized>NO</adequatelyNormalized>
 <expectedVolumes>0</expectedVolumes>
 <fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
@@ -20,6 +21,16 @@
 <normalForm>Third</normalForm>
 <shortName>ANSP</shortName>
 <createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="DE_ENTI_COMMENT" value="Person in einer Organisationseinheit  die für die Definition oder Pflege eines Attributwertes verantwortlich ist.
+"/>
+<property name="DE_ENTI_NAME" value="Ansprechpartner"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_COMMENT" value="*DE* Person in einer Organisationseinheit  die für die Definition oder Pflege eines Attributwertes verantwortlich ist.
+"/>
+<property name="EN_ENTI_NAME" value="*DE* Ansprechpartner"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+</propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Name" id="DCDDC1A5-F6DB-3BB2-F9D5-ADF019DD4636">
 <createdBy>stb</createdBy>
@@ -33,6 +44,12 @@
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Name"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="*DE* Name"/>
+</propertyMap>
 </Attribute>
 <Attribute name="Vorname" id="AB2F0A85-6238-D648-5EF6-EFF32C6A082B">
 <createdBy>stb</createdBy>
@@ -46,6 +63,12 @@
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Vorname"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="*DE* Vorname"/>
+</propertyMap>
 </Attribute>
 <Attribute name="eMail" id="74BD582A-25CC-9ADB-E21F-CC8EE5B52A61">
 <createdBy>stb</createdBy>
@@ -59,6 +82,12 @@
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="eMail"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="*DE* eMail"/>
+</propertyMap>
 </Attribute>
 <Attribute name="Privattelefon-Nr" id="5A77DAC0-43AC-2982-9897-CA38B844DED0">
 <createdBy>stb</createdBy>
@@ -73,6 +102,12 @@
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Privattelefon-Nr"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="*DE* Privattelefon-Nr"/>
+</propertyMap>
 </Attribute>
 <Attribute name="Geschäftstelefon-Nr" id="7485D82F-1E2F-338B-0AD3-253B9C1237AB">
 <createdBy>stb</createdBy>
@@ -87,6 +122,12 @@
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Geschäftstelefon-Nr"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="*DE* Geschäftstelefon-Nr"/>
+</propertyMap>
 </Attribute>
 <Attribute name="Name2" id="EF475264-9B5C-D5AB-8CCE-7A9E8F075BA2">
 <createdBy>stb</createdBy>
@@ -105,6 +146,12 @@
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value="Name eines Geschäftsbereichs"/>
+<property name="DE_ATTR_NAME" value="Name2"/>
+<property name="EN_ATTR_COMMENT" value="*DE* Name eines Geschäftsbereichs"/>
+<property name="EN_ATTR_NAME" value="*DE* Name2"/>
+</propertyMap>
 </Attribute>
 <Attribute name="Name1" id="1AF52971-3896-821F-95A7-75E8BD0262B0">
 <createdBy>stb</createdBy>
@@ -123,6 +170,12 @@
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value="Name der Entität der in der Kommunikation normalerweise gebraucht wird."/>
+<property name="DE_ATTR_NAME" value="Name1"/>
+<property name="EN_ATTR_COMMENT" value="*DE* Name der Entität der in der Kommunikation normalerweise gebraucht wird."/>
+<property name="EN_ATTR_NAME" value="*DE* Name1"/>
+</propertyMap>
 </Attribute>
 </attributes>
 <identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">

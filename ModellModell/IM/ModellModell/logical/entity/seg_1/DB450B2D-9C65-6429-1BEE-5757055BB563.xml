@@ -25,6 +25,7 @@ Oracle-APEX
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
 </engineerTo>
+<typeID>57779FAE-171C-9BB2-9F88-9B2ED7060C6F</typeID>
 <adequatelyNormalized>NO</adequatelyNormalized>
 <expectedVolumes>0</expectedVolumes>
 <fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
@@ -35,6 +36,46 @@ Oracle-APEX
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
 <createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="DE_ENTI_COMMENT" value="IT_System, Betriebssystem, Infrastruktur in oder auf dem Anwendungen laufen können.
+
+Beispiele:
+Power-DNS
+JRE java runtime environment
+Windows
+Android
+ubuntu Linux
+mongo-DB
+Excel
+Access
+SAP-Hana
+IDE  = Application for IT-People
+Eclipse / Microsoft Studio
+Jenkins
+Oracle-APEX
+"/>
+<property name="DE_ENTI_NAME" value="IT-System"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_COMMENT" value="*DE* IT_System, Betriebssystem, Infrastruktur in oder auf dem Anwendungen laufen können.
+
+Beispiele:
+Power-DNS
+JRE java runtime environment
+Windows
+Android
+ubuntu Linux
+mongo-DB
+Excel
+Access
+SAP-Hana
+IDE  = Application for IT-People
+Eclipse / Microsoft Studio
+Jenkins
+Oracle-APEX
+"/>
+<property name="EN_ENTI_NAME" value="*DE* IT-System"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+</propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Zeichnsatz" id="CEF84331-D1F8-95B8-C3AC-2F58918460FD">
 <createdBy>stb</createdBy>
@@ -50,6 +91,12 @@ Oracle-APEX
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <domain>C44ED88C-D820-1BFA-9CD0-841B752A5E4B</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Zeichnsatz"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="*DE* Zeichnsatz"/>
+</propertyMap>
 </Attribute>
 <Attribute name="Name" id="6A0BE6EE-FACA-EE1A-B294-1071918E2DA9">
 <createdBy>stb</createdBy>
@@ -67,6 +114,12 @@ Oracle-APEX
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value="Name der Entität der in der Kommunikation normalerweise gebraucht wird."/>
+<property name="DE_ATTR_NAME" value="Name"/>
+<property name="EN_ATTR_COMMENT" value="*DE* Name der Entität der in der Kommunikation normalerweise gebraucht wird."/>
+<property name="EN_ATTR_NAME" value="*DE* Name"/>
+</propertyMap>
 </Attribute>
 </attributes>
 <identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">

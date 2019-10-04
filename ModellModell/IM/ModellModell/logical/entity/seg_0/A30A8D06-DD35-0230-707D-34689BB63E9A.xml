@@ -16,6 +16,14 @@
 <maxVolumes>9999999</maxVolumes>
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
+<propertyMap>
+<property name="DE_ENTI_COMMENT" value="Irgend ein Element des Modells, über das wir Metainformationen verwalten sollen / wollen."/>
+<property name="DE_ENTI_NAME" value="Modellelement"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_COMMENT" value="*DE* Irgend ein Element des Modells, über das wir Metainformationen verwalten sollen / wollen."/>
+<property name="EN_ENTI_NAME" value="*DE* Modellelement"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+</propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Erstellzpkt" id="B1CF1AB7-77FE-E32D-AD6E-3C6A42050BA9">
 <createdBy>stb</createdBy>
@@ -29,6 +37,12 @@
 <logicalDatatype>LOGDT015</logicalDatatype>
 <domain>0AD80E26-0F5C-D068-29EA-4740A04582AE</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Erstellzpkt"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="*DE* Erstellzpkt"/>
+</propertyMap>
 </Attribute>
 <Attribute name="Änderungszpkt [N]" id="FCC3F095-4611-9BC5-82A2-24FEDCDEEE33">
 <createdBy>stb</createdBy>
@@ -43,6 +57,12 @@
 <logicalDatatype>LOGDT015</logicalDatatype>
 <domain>0AD80E26-0F5C-D068-29EA-4740A04582AE</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Änderungszpkt [N]"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="*DE* Änderungszpkt [N]"/>
+</propertyMap>
 </Attribute>
 </attributes>
 </Entity>

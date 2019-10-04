@@ -20,6 +20,14 @@
 <shortName>Quelle</shortName>
 <propertyMap>
 <property name="Beispiele" value="Wikipedia: Informationsmodell / Exeldatei zu Abhängigkeiten der Attribute &lt;pfad&gt;/abcdef.xls / www.mycompany.com"/>
+<property name="DE_ENTI_COMMENT" value="Referenz die Informationen enthält, die zur Bildung dieses Elementes geführt haben bzw. die detaillierte Angaben (Regeln, Darstellung, Nutzung, Abhängigkeiten etc.) zum Element macht.
+"/>
+<property name="DE_ENTI_NAME" value="Informationsquelle"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_COMMENT" value="*DE* Referenz die Informationen enthält, die zur Bildung dieses Elementes geführt haben bzw. die detaillierte Angaben (Regeln, Darstellung, Nutzung, Abhängigkeiten etc.) zum Element macht.
+"/>
+<property name="EN_ENTI_NAME" value="*DE* Informationsquelle"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Name" id="D5650C61-48B2-449A-86E4-B67584EC3AFD">
@@ -35,6 +43,12 @@
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value="Name der Quelle, des Dokumentes, "/>
+<property name="DE_ATTR_NAME" value="Name"/>
+<property name="EN_ATTR_COMMENT" value="*DE* Name der Quelle, des Dokumentes, "/>
+<property name="EN_ATTR_NAME" value="*DE* Name"/>
+</propertyMap>
 </Attribute>
 <Attribute name="Beschreibung" id="1DB09CC9-9FA7-72C6-7013-426EAFA528AC">
 <createdBy>stb</createdBy>
@@ -50,6 +64,12 @@
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value="Kurzbeschreibung über die Quelle"/>
+<property name="DE_ATTR_NAME" value="Beschreibung"/>
+<property name="EN_ATTR_COMMENT" value="*DE* Kurzbeschreibung über die Quelle"/>
+<property name="EN_ATTR_NAME" value="*DE* Beschreibung"/>
+</propertyMap>
 </Attribute>
 <Attribute name="Referenz" id="155EAD65-E0D2-6681-BBCF-0F617BDA544A">
 <createdBy>stb</createdBy>
@@ -65,6 +85,12 @@
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value="Angabe zum Finden der Quelle (Buch-ISBN, Webseite, digitales Dokument etc.)"/>
+<property name="DE_ATTR_NAME" value="Referenz"/>
+<property name="EN_ATTR_COMMENT" value="*DE* Angabe zum Finden der Quelle (Buch-ISBN, Webseite, digitales Dokument etc.)"/>
+<property name="EN_ATTR_NAME" value="*DE* Referenz"/>
+</propertyMap>
 </Attribute>
 <Attribute name="Name3" id="B804A6F3-AF20-CA25-2A59-CDD470175A16">
 <createdBy>stb</createdBy>
@@ -81,6 +107,12 @@
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value="Name eines Geschäftsbereichs"/>
+<property name="DE_ATTR_NAME" value="Name3"/>
+<property name="EN_ATTR_COMMENT" value="*DE* Name eines Geschäftsbereichs"/>
+<property name="EN_ATTR_NAME" value="*DE* Name3"/>
+</propertyMap>
 </Attribute>
 <Attribute name="Name1" id="442EB367-04B2-1475-F1A5-27F7A4CC0350">
 <createdBy>stb</createdBy>
@@ -97,6 +129,12 @@
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value="Name der Entität der in der Kommunikation normalerweise gebraucht wird."/>
+<property name="DE_ATTR_NAME" value="Name1"/>
+<property name="EN_ATTR_COMMENT" value="*DE* Name der Entität der in der Kommunikation normalerweise gebraucht wird."/>
+<property name="EN_ATTR_NAME" value="*DE* Name1"/>
+</propertyMap>
 </Attribute>
 <Attribute name="Name4" id="CC446B50-CD89-1C21-216F-F419D43C9A9F">
 <createdBy>stb</createdBy>
@@ -113,6 +151,12 @@
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value="Name der Entität der in der Kommunikation normalerweise gebraucht wird."/>
+<property name="DE_ATTR_NAME" value="Name4"/>
+<property name="EN_ATTR_COMMENT" value="*DE* Name der Entität der in der Kommunikation normalerweise gebraucht wird."/>
+<property name="EN_ATTR_NAME" value="*DE* Name4"/>
+</propertyMap>
 </Attribute>
 <Attribute name="Dokument" id="8AF80CF5-D101-A2E5-36C5-926C90856FD2">
 <createdBy>stb</createdBy>
@@ -126,6 +170,12 @@
 <use>0</use>
 <domain>1DD73E5D-0E1F-A292-71E3-05600D84D49D</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Dokument"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="*DE* Dokument"/>
+</propertyMap>
 </Attribute>
 </attributes>
 <identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">

@@ -17,6 +17,14 @@
 <maxVolumes>9999999</maxVolumes>
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
+<propertyMap>
+<property name="DE_ENTI_COMMENT" value="Nutzung eines Datenelementes in einer Applikation"/>
+<property name="DE_ENTI_NAME" value="Informationsnutzung"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_COMMENT" value="*DE* Nutzung eines Datenelementes in einer Applikation"/>
+<property name="EN_ENTI_NAME" value="*DE* Informationsnutzung"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+</propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Lesen (J/N)" id="2A7128E0-0FFF-BE5C-BDE5-87D9A5E343CC">
 <createdBy>stb</createdBy>
@@ -31,6 +39,12 @@
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Lesen (J/N)"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="*DE* Lesen (J/N)"/>
+</propertyMap>
 </Attribute>
 <Attribute name="Erstellen (J/N)" id="8131FC15-7E35-03A7-2CA4-2B6F3D428C86">
 <createdBy>stb</createdBy>
@@ -45,6 +59,12 @@
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Erstellen (J/N)"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="*DE* Erstellen (J/N)"/>
+</propertyMap>
 </Attribute>
 <Attribute name="Löschen (J/N)" id="CAF35C45-7668-8219-8374-59ABEFD5C7DA">
 <createdBy>stb</createdBy>
@@ -59,6 +79,12 @@
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Löschen (J/N)"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="*DE* Löschen (J/N)"/>
+</propertyMap>
 </Attribute>
 <Attribute name="Ändern (J/N)" id="22AFCE0D-20BE-A2B7-988C-9B81AA3596E8">
 <createdBy>stb</createdBy>
@@ -73,6 +99,12 @@
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Ändern (J/N)"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="*DE* Ändern (J/N)"/>
+</propertyMap>
 </Attribute>
 </attributes>
 </Entity>

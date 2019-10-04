@@ -9,6 +9,7 @@
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
 </engineerTo>
 <sourcePk>298E6664-EE9B-35DA-F9A6-566EA31E3066</sourcePk>
+<arc>176427B8-636C-504F-6B93-73CAFA78BFC0</arc>
 <identifying>true</identifying>
 <nameOnSource>beschrieben durch</nameOnSource>
 <nameOnTarget>beschreibt</nameOnTarget>
@@ -20,4 +21,10 @@
 <targetEntity>3CEC80DC-9AC7-5783-79EC-A5B9D15FE871</targetEntity>
 <transferable>true</transferable>
 <deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="beschrieben durch"/>
+<property name="DE_RELA_TEXT_TO" value="beschreibt"/>
+<property name="EN_RELA_TEXT_FROM" value="*DE* beschrieben durch"/>
+<property name="EN_RELA_TEXT_TO" value="*DE* beschreibt"/>
+</propertyMap>
 </Relation>

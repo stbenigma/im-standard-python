@@ -2,10 +2,18 @@
 <Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="590887CF-B0AB-E7A0-BCE7-5A6DFF776800" name="Berührungspunkt">
 <createdBy>stb</createdBy>
 <createdTime>2019-02-04 13:44:16 UTC</createdTime>
-<comment>Kanal über den Informationen ausgetauscht werden können.&lt;br/&gt;Siehe Channel Cards bei foryouandyourcustomers&lt;br/&gt;&lt;br/&gt;Beispiele:&lt;br/&gt; Telefon&lt;br/&gt; Email&lt;br/&gt; TV-Spot&lt;br/&gt; Facebook&lt;br/&gt; persönliches Gespräch</comment>
+<comment><![CDATA[Kanal über den Informationen ausgetauscht werden können.
+Siehe Channel Cards bei foryouandyourcustomers
+
+Beispiele:
+ Telefon
+ Email
+ TV-Spot
+ Facebook
+ persönliches Gespräch]]></comment>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
-<item key="4EE9A882-EA48-83FA-35DC-1651333A2D97" value="true"/>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 </engineerTo>
 <adequatelyNormalized>NO</adequatelyNormalized>
@@ -20,4 +28,28 @@
 <shortName>BeruerPunkt</shortName>
 <synonym>touchpoint</synonym>
 <createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="DE_ENTI_COMMENT" value="Kanal über den Informationen ausgetauscht werden können.
+Siehe Channel Cards bei foryouandyourcustomers
+
+Beispiele:
+ Telefon
+ Email
+ TV-Spot
+ Facebook
+ persönliches Gespräch"/>
+<property name="DE_ENTI_NAME" value="Berührungspunkt"/>
+<property name="DE_ENTI_SYNONYM" value="touchpoint"/>
+<property name="EN_ENTI_COMMENT" value="*DE* Kanal über den Informationen ausgetauscht werden können.
+Siehe Channel Cards bei foryouandyourcustomers
+
+Beispiele:
+ Telefon
+ Email
+ TV-Spot
+ Facebook
+ persönliches Gespräch"/>
+<property name="EN_ENTI_NAME" value="*DE* Berührungspunkt"/>
+<property name="EN_ENTI_SYNONYM" value="*DE* touchpoint"/>
+</propertyMap>
 </Entity>

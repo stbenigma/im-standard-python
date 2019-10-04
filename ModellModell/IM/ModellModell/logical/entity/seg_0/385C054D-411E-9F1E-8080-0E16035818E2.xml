@@ -2,9 +2,10 @@
 <Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="385C054D-411E-9F1E-8080-0E16035818E2" name="Freier Wert">
 <createdBy>stb</createdBy>
 <createdTime>2018-05-30 12:15:53 UTC</createdTime>
-<comment>Der Wert aus einer Auswahlliste  </comment>
+<comment><![CDATA[Der Wert aus einer Auswahlliste  ]]></comment>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 </engineerTo>
 <adequatelyNormalized>NO</adequatelyNormalized>
@@ -17,20 +18,35 @@
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
 <createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="DE_ENTI_COMMENT" value="Der Wert aus einer Auswahlliste  "/>
+<property name="DE_ENTI_NAME" value="Freier Wert"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_COMMENT" value="*DE* Der Wert aus einer Auswahlliste  "/>
+<property name="EN_ENTI_NAME" value="*DE* Freier Wert"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+</propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Wert" id="5D0A3650-2E97-6E60-5EBC-0FBF1AD4D017">
 <createdBy>stb</createdBy>
 <createdTime>2018-05-30 12:15:53 UTC</createdTime>
-<comment>Der Datentyp des Wertes wird durch den Attributtyp-Subtyp bestimmt.</comment>
+<comment><![CDATA[Der Datentyp des Wertes wird durch den Attributtyp-Subtyp bestimmt.]]></comment>
 <ownerDesignName>ModellModell</ownerDesignName>
 <importedID>867EFBE5-2FDC-56D1-DC86-A1C106E7A9AE</importedID>
 <engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value="Der Datentyp des Wertes wird durch den Attributtyp-Subtyp bestimmt."/>
+<property name="DE_ATTR_NAME" value="Wert"/>
+<property name="EN_ATTR_COMMENT" value="*DE* Der Datentyp des Wertes wird durch den Attributtyp-Subtyp bestimmt."/>
+<property name="EN_ATTR_NAME" value="*DE* Wert"/>
+</propertyMap>
 </Attribute>
 </attributes>
 </Entity>

@@ -14,6 +14,7 @@ Beispiel:
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
 </engineerTo>
+<typeID>22C80650-70BB-112A-562F-823C3A147D9C</typeID>
 <adequatelyNormalized>NO</adequatelyNormalized>
 <expectedVolumes>0</expectedVolumes>
 <fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
@@ -24,4 +25,22 @@ Beispiel:
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
 <createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="DE_ENTI_COMMENT" value="Geschäftsprozess, der durch ein System durchgeführt ist. Er kann durch einen Akteur ausglöst werden, die Ergebnisse sind aber typischerweise nicht direkt für den Akteur berstimmt.
+
+Beispiel:
+- (automatisch) Mahnungen versenden
+- Lohnzahlungen durchführen.
+- nächtliche Datenübernahme ab einem Fremdsystem"/>
+<property name="DE_ENTI_NAME" value="Interner Prozess"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_COMMENT" value="*DE* Geschäftsprozess, der durch ein System durchgeführt ist. Er kann durch einen Akteur ausglöst werden, die Ergebnisse sind aber typischerweise nicht direkt für den Akteur berstimmt.
+
+Beispiel:
+- (automatisch) Mahnungen versenden
+- Lohnzahlungen durchführen.
+- nächtliche Datenübernahme ab einem Fremdsystem"/>
+<property name="EN_ENTI_NAME" value="*DE* Interner Prozess"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+</propertyMap>
 </Entity>

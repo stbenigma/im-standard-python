@@ -1,11 +1,13 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="ED5ECC24-3D63-64D4-6208-80A6709A0BBD" name="Prozesse">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="ED5ECC24-3D63-64D4-6208-80A6709A0BBD" name="Performance Layer">
 <createdBy>stb</createdBy>
 <createdTime>2019-02-03 11:53:04 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 </engineerTo>
+<typeID>22C80650-70BB-112A-562F-823C3A147D9C</typeID>
 <adequatelyNormalized>NO</adequatelyNormalized>
 <expectedVolumes>0</expectedVolumes>
 <fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
@@ -15,4 +17,12 @@
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
 <createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="DE_ENTI_COMMENT" value=""/>
+<property name="DE_ENTI_NAME" value="Performance Layer"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_COMMENT" value=""/>
+<property name="EN_ENTI_NAME" value="*DE* Performance Layer"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+</propertyMap>
 </Entity>

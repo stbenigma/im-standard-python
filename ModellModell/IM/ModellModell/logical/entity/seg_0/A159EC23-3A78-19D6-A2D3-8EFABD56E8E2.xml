@@ -22,6 +22,24 @@
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
 <createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="DE_ENTI_COMMENT" value=" Eine Attributtransformation transformiert 1-viele Ausgangsattribute in einen Attributwert.
+ Transformationen von externen Systemen zum konsolidierten Modell befüllen ein Attribut und verwenden min. 1 Systemattribut.
+ Transformationen vom Modell zu externen Systemen befüllen ein Systemattribut und verwenden min. 1 Attribut.
+
+ 
+ "/>
+<property name="DE_ENTI_NAME" value="Attributtransformation"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_COMMENT" value="*DE*  Eine Attributtransformation transformiert 1-viele Ausgangsattribute in einen Attributwert.
+ Transformationen von externen Systemen zum konsolidierten Modell befüllen ein Attribut und verwenden min. 1 Systemattribut.
+ Transformationen vom Modell zu externen Systemen befüllen ein Systemattribut und verwenden min. 1 Attribut.
+
+ 
+ "/>
+<property name="EN_ENTI_NAME" value="*DE* Attributtransformation"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+</propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Laufnr" id="06E59C60-500A-CD3B-9E31-B38935CD8909">
 <createdBy>stb</createdBy>
@@ -36,6 +54,12 @@
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value="Unterscheidungsmerkmal mehrerer Regeln für ein Attribut"/>
+<property name="DE_ATTR_NAME" value="Laufnr"/>
+<property name="EN_ATTR_COMMENT" value="*DE* Unterscheidungsmerkmal mehrerer Regeln für ein Attribut"/>
+<property name="EN_ATTR_NAME" value="*DE* Laufnr"/>
+</propertyMap>
 </Attribute>
 <Attribute name="Transformationformel" id="AE8CA88C-4254-81E2-AB8A-3955B36E5FBB">
 <createdBy>stb</createdBy>
@@ -52,6 +76,12 @@
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value="Formel, die 1-n Ausgangsattribute in ein Zielattribut umwandelt."/>
+<property name="DE_ATTR_NAME" value="Transformationformel"/>
+<property name="EN_ATTR_COMMENT" value="*DE* Formel, die 1-n Ausgangsattribute in ein Zielattribut umwandelt."/>
+<property name="EN_ATTR_NAME" value="*DE* Transformationformel"/>
+</propertyMap>
 </Attribute>
 <Attribute name="Auslöseart" id="CC74EF5D-D5D2-2AD9-D000-8B748A382BB3">
 <createdBy>stb</createdBy>
@@ -68,6 +98,12 @@
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <domain>55CB11A1-3EFC-3253-465C-D58D3D8252AD</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value="Art der Auslösung der Transformation (Mutation, Periode, Manuell)"/>
+<property name="DE_ATTR_NAME" value="Auslöseart"/>
+<property name="EN_ATTR_COMMENT" value="*DE* Art der Auslösung der Transformation (Mutation, Periode, Manuell)"/>
+<property name="EN_ATTR_NAME" value="*DE* Auslöseart"/>
+</propertyMap>
 </Attribute>
 <Attribute name="Auslöseperiodizität" id="A9E272F7-87CE-CB00-912F-E64A693881CF">
 <createdBy>stb</createdBy>
@@ -83,6 +119,12 @@
 <logicalDatatype>LOGDT019</logicalDatatype>
 <domain>FEA1A894-BD6D-FEF8-423C-6857A9D694A1</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value="Täglich, alle 2 Minuten o.ä. Obligatorisch, falls die Auslöseart Zeitpunkt ist."/>
+<property name="DE_ATTR_NAME" value="Auslöseperiodizität"/>
+<property name="EN_ATTR_COMMENT" value="*DE* Täglich, alle 2 Minuten o.ä. Obligatorisch, falls die Auslöseart Zeitpunkt ist."/>
+<property name="EN_ATTR_NAME" value="*DE* Auslöseperiodizität"/>
+</propertyMap>
 </Attribute>
 </attributes>
 <identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">

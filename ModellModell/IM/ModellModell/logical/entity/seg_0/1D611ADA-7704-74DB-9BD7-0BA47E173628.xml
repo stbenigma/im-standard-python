@@ -2,12 +2,22 @@
 <Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="1D611ADA-7704-74DB-9BD7-0BA47E173628" name="Speicherformat">
 <createdBy>stb</createdBy>
 <createdTime>2019-04-03 13:28:45 UTC</createdTime>
-<comment>Format für die Speicherung binär verkodeter Werte.&lt;br/&gt;&lt;br/&gt;Beispiele:&lt;br/&gt;GIF&lt;br/&gt;TIFF&lt;br/&gt;JPEG&lt;br/&gt;DOC&lt;br/&gt;DOCX&lt;br/&gt;SVG&lt;br/&gt;PDF</comment>
+<comment><![CDATA[Format für die Speicherung binär verkodeter Werte.
+
+Beispiele:
+GIF
+TIFF
+JPEG
+DOC
+DOCX
+SVG
+PDF]]></comment>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 </engineerTo>
+<typeID>1C6A8769-7651-51C0-9E0A-D0C138DE6193</typeID>
 <adequatelyNormalized>NO</adequatelyNormalized>
 <expectedVolumes>0</expectedVolumes>
 <fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
@@ -18,6 +28,30 @@
 <normalForm>Third</normalForm>
 <shortName>SPFO</shortName>
 <createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="DE_ENTI_COMMENT" value="Format für die Speicherung binär verkodeter Werte.
+
+Beispiele:
+GIF
+TIFF
+JPEG
+DOC
+DOCX
+SVG
+PDF"/>
+<property name="DE_ENTI_NAME" value="Speicherformat"/>
+<property name="EN_ENTI_COMMENT" value="*DE* Format für die Speicherung binär verkodeter Werte.
+
+Beispiele:
+GIF
+TIFF
+JPEG
+DOC
+DOCX
+SVG
+PDF"/>
+<property name="EN_ENTI_NAME" value="*DE* Speicherformat"/>
+</propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Name" id="35005E39-F9B5-44D6-B6BC-4DD77CDC7F86">
 <createdBy>stb</createdBy>
@@ -31,6 +65,12 @@
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Name"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="*DE* Name"/>
+</propertyMap>
 </Attribute>
 <Attribute name="Beschreibung" id="1AB68D2F-54E8-5174-768F-0F7BBAD5196E">
 <createdBy>stb</createdBy>
@@ -45,6 +85,12 @@
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Beschreibung"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="*DE* Beschreibung"/>
+</propertyMap>
 </Attribute>
 </attributes>
 <identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">

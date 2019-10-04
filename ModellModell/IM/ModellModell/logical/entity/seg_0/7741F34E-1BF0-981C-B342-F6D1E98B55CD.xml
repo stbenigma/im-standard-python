@@ -2,13 +2,18 @@
 <Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="7741F34E-1BF0-981C-B342-F6D1E98B55CD" name="Binärer Wertebereich">
 <createdBy>stb</createdBy>
 <createdTime>2019-04-03 13:18:24 UTC</createdTime>
-<comment>Dokumente irgendwelcher Art, die nicht in einem als strukturiert bezeichneten Format (Text, Zahl, Datum) abgespeichert werden kann.&lt;br/&gt;&lt;br/&gt;Als Dokumente im Filesystem (PDF, PNG, TIFF, XLS, DOC, pages, etc.) oder als finäre Datenbankobjekte verwaltet.&lt;br/&gt;&lt;br/&gt;</comment>
+<comment><![CDATA[Dokumente irgendwelcher Art, die nicht in einem als strukturiert bezeichneten Format (Text, Zahl, Datum) abgespeichert werden kann.
+
+Als Dokumente im Filesystem (PDF, PNG, TIFF, XLS, DOC, pages, etc.) oder als finäre Datenbankobjekte verwaltet.
+
+]]></comment>
 <ownerDesignName>ModellModell</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
 </engineerTo>
+<typeID>1C6A8769-7651-51C0-9E0A-D0C138DE6193</typeID>
 <adequatelyNormalized>NO</adequatelyNormalized>
 <expectedVolumes>0</expectedVolumes>
 <fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
@@ -21,6 +26,18 @@
 <createSurrogateKey>true</createSurrogateKey>
 <propertyMap>
 <property name="Beispiele" value="Geschlecht (M/W) / Bestellstatus (offen, in Arbeit, geschlossen)"/>
+<property name="DE_ENTI_COMMENT" value="Dokumente irgendwelcher Art, die nicht in einem als strukturiert bezeichneten Format (Text, Zahl, Datum) abgespeichert werden kann.
+
+Als Dokumente im Filesystem (PDF, PNG, TIFF, XLS, DOC, pages, etc.) oder als finäre Datenbankobjekte verwaltet.
+
+"/>
+<property name="DE_ENTI_NAME" value="Binärer Wertebereich"/>
+<property name="EN_ENTI_COMMENT" value="*DE* Dokumente irgendwelcher Art, die nicht in einem als strukturiert bezeichneten Format (Text, Zahl, Datum) abgespeichert werden kann.
+
+Als Dokumente im Filesystem (PDF, PNG, TIFF, XLS, DOC, pages, etc.) oder als finäre Datenbankobjekte verwaltet.
+
+"/>
+<property name="EN_ENTI_NAME" value="*DE* Binärer Wertebereich"/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Inhaltstyp" id="9625B729-C7C6-CD5F-2155-3648986FD9F6">
@@ -35,6 +52,12 @@
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <domain>23CFFE8F-D989-8ED0-93D0-C4BF59140074</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Inhaltstyp"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="*DE* Inhaltstyp"/>
+</propertyMap>
 </Attribute>
 </attributes>
 </Entity>

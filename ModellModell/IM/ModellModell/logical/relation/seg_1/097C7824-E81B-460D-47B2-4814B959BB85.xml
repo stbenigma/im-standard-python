@@ -4,6 +4,7 @@
 <createdTime>2019-01-08 20:02:15 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 </engineerTo>
 <sourcePk>31BDEBC2-D62B-4A71-15F0-D468F456FC58</sourcePk>
@@ -18,4 +19,10 @@
 <targetEntity>E36EA698-3231-1EAA-1FA8-7DCBF8B404AC</targetEntity>
 <transferable>true</transferable>
 <deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="beschreibt"/>
+<property name="DE_RELA_TEXT_TO" value="beschrieben in"/>
+<property name="EN_RELA_TEXT_FROM" value="*DE* beschreibt"/>
+<property name="EN_RELA_TEXT_TO" value="*DE* beschrieben in"/>
+</propertyMap>
 </Relation>

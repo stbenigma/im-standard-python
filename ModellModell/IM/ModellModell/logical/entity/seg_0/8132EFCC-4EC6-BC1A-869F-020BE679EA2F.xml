@@ -16,6 +16,14 @@
 <maxVolumes>9999999</maxVolumes>
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
+<propertyMap>
+<property name="DE_ENTI_COMMENT" value="Information zur Darstellung einer Entität auf einem Diagramm"/>
+<property name="DE_ENTI_NAME" value="Beziehungs-darstellung"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_COMMENT" value="*DE* Information zur Darstellung einer Entität auf einem Diagramm"/>
+<property name="EN_ENTI_NAME" value="*DE* Beziehungs-darstellung"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+</propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Linie" id="71A04FCF-541F-6AB1-C8CE-52AEF5226573">
 <createdBy>stb</createdBy>
@@ -30,6 +38,12 @@
 <collectionType>C89AD2E9-29AC-3B36-E59F-F3BF7F41BBA1</collectionType>
 <structuredType>3A3271AB-EE90-68BD-0EC5-E6255E34D2DE</structuredType>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Linie"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="*DE* Linie"/>
+</propertyMap>
 </Attribute>
 <Attribute name="Liniendarstellung" id="AAFC6709-4371-1295-C701-0259E22C1797">
 <createdBy>stb</createdBy>
@@ -43,6 +57,12 @@
 <use>3</use>
 <structuredType>3A3271AB-EE90-68BD-0EC5-E6255E34D2DE</structuredType>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Liniendarstellung"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="*DE* Liniendarstellung"/>
+</propertyMap>
 </Attribute>
 <Attribute name="Andockposition (start)" id="1206A636-A5F5-5529-5B35-C848B4F4E075">
 <createdBy>stb</createdBy>
@@ -58,6 +78,12 @@
 <structuredType>15C1AAF0-38D4-D58B-BBB0-7E7AFF4FA9E7</structuredType>
 <logicalDatatype>LOGDT019</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Andockposition (start)"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="*DE* Andockposition (start)"/>
+</propertyMap>
 </Attribute>
 <Attribute name="Textdarstellung (start)" id="83C2935D-8AAD-75D9-28B9-71D837A09E02">
 <createdBy>stb</createdBy>
@@ -74,6 +100,12 @@
 <use>3</use>
 <structuredType>47813466-960A-45B1-A2FF-81D936223094</structuredType>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value="Position des Textes am Start des Pfades (z.B. von-Entität). Kann relativ sein  umd Verschiebungen zu ermöglichen."/>
+<property name="DE_ATTR_NAME" value="Textdarstellung (start)"/>
+<property name="EN_ATTR_COMMENT" value="*DE* Position des Textes am Start des Pfades (z.B. von-Entität). Kann relativ sein  umd Verschiebungen zu ermöglichen."/>
+<property name="EN_ATTR_NAME" value="*DE* Textdarstellung (start)"/>
+</propertyMap>
 </Attribute>
 <Attribute name="Andockposition (ende)" id="E466E653-911A-8D95-E33A-61DFA1E533D9">
 <createdBy>stb</createdBy>
@@ -88,6 +120,12 @@
 <use>3</use>
 <structuredType>15C1AAF0-38D4-D58B-BBB0-7E7AFF4FA9E7</structuredType>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Andockposition (ende)"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="*DE* Andockposition (ende)"/>
+</propertyMap>
 </Attribute>
 <Attribute name="Textdarstellung (ende)" id="9ACB89C6-3A99-D2EE-61E7-CBDD72B39C39">
 <createdBy>stb</createdBy>
@@ -104,6 +142,12 @@
 <use>3</use>
 <structuredType>369416D6-67B1-E5C5-70A2-2C9BFC40A613</structuredType>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value="Position der Assoziation am Ende des Pfades (z.B: zu-Entität). Kann relativ sein  umd Verschiebungen zu ermöglichen."/>
+<property name="DE_ATTR_NAME" value="Textdarstellung (ende)"/>
+<property name="EN_ATTR_COMMENT" value="*DE* Position der Assoziation am Ende des Pfades (z.B: zu-Entität). Kann relativ sein  umd Verschiebungen zu ermöglichen."/>
+<property name="EN_ATTR_NAME" value="*DE* Textdarstellung (ende)"/>
+</propertyMap>
 </Attribute>
 <Attribute name="Schriftfarbe" id="5C1D0DD7-C753-1C85-38D4-2F6B7A840CF5">
 <createdBy>stb</createdBy>
@@ -119,6 +163,12 @@
 <domain>06269521-C0BC-78CB-FBC8-656101307358</domain>
 <defaultValue>000000</defaultValue>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Schriftfarbe"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="*DE* Schriftfarbe"/>
+</propertyMap>
 </Attribute>
 <Attribute name="Schriftgrösse" id="9DBEA9D5-4E5C-B222-7638-38F298F0FA7B">
 <createdBy>stb</createdBy>
@@ -132,6 +182,12 @@
 <use>0</use>
 <domain>435C11BA-FCF7-BBBA-6AA9-FAB7326273D3</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Schriftgrösse"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="*DE* Schriftgrösse"/>
+</propertyMap>
 </Attribute>
 <Attribute name="Name [L]" id="A5D1539D-01CE-4464-44F8-64DCCF83D6C6">
 <createdBy>stb</createdBy>
@@ -147,6 +203,12 @@
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Name [L]"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="*DE* Name [L]"/>
+</propertyMap>
 </Attribute>
 <Attribute name="Name" id="E8F721F2-AA56-EDE1-C015-1131261D9383">
 <createdBy>stb</createdBy>
@@ -163,6 +225,12 @@
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value="Name eines Geschäftsbereichs"/>
+<property name="DE_ATTR_NAME" value="Name"/>
+<property name="EN_ATTR_COMMENT" value="*DE* Name eines Geschäftsbereichs"/>
+<property name="EN_ATTR_NAME" value="*DE* Name"/>
+</propertyMap>
 </Attribute>
 <Attribute name="Name2" id="0EA0CDC7-5991-BC9E-C80F-5DE76DD3B67C">
 <createdBy>stb</createdBy>
@@ -179,6 +247,12 @@
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value="Name der Entität der in der Kommunikation normalerweise gebraucht wird."/>
+<property name="DE_ATTR_NAME" value="Name2"/>
+<property name="EN_ATTR_COMMENT" value="*DE* Name der Entität der in der Kommunikation normalerweise gebraucht wird."/>
+<property name="EN_ATTR_NAME" value="*DE* Name2"/>
+</propertyMap>
 </Attribute>
 </attributes>
 <nestedAttributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">

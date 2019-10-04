@@ -2,13 +2,22 @@
 <Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="CC42ED99-14C7-E4BF-2C0A-83506DCD0CA0" name="Zentrale Anwendung">
 <createdBy>stb</createdBy>
 <createdTime>2019-01-14 15:43:53 UTC</createdTime>
-<comment>Eine Anwendung (Programm, SW-Paket) die als SW-Produkt gekauft oder selber hergestellt wurde.&lt;br/&gt;Die Anwendung kann zentral (Server, Cloud) oder lokal (Arbeitsplatz) installiert sein. &lt;br/&gt;Wichtige Eigenschaft ist, dass die Daten nur einmal vorhanden sind und von allen Nutzenden gemeinsam genutzt werden. Durch welche Technologie ist irrelevant.&lt;br/&gt;&lt;br/&gt;Beispiele:&lt;br/&gt;ERP&lt;br/&gt;PIM&lt;br/&gt;FiBu&lt;br/&gt;</comment>
+<comment><![CDATA[Eine Anwendung (Programm, SW-Paket) die als SW-Produkt gekauft oder selber hergestellt wurde.
+Die Anwendung kann zentral (Server, Cloud) oder lokal (Arbeitsplatz) installiert sein. 
+Wichtige Eigenschaft ist, dass die Daten nur einmal vorhanden sind und von allen Nutzenden gemeinsam genutzt werden. Durch welche Technologie ist irrelevant.
+
+Beispiele:
+ERP
+PIM
+FiBu
+]]></comment>
 <ownerDesignName>ModellModell</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
 </engineerTo>
+<typeID>57779FAE-171C-9BB2-9F88-9B2ED7060C6F</typeID>
 <adequatelyNormalized>NO</adequatelyNormalized>
 <expectedVolumes>0</expectedVolumes>
 <fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
@@ -18,4 +27,28 @@
 <maxVolumes>9999999</maxVolumes>
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
+<propertyMap>
+<property name="DE_ENTI_COMMENT" value="Eine Anwendung (Programm, SW-Paket) die als SW-Produkt gekauft oder selber hergestellt wurde.
+Die Anwendung kann zentral (Server, Cloud) oder lokal (Arbeitsplatz) installiert sein. 
+Wichtige Eigenschaft ist, dass die Daten nur einmal vorhanden sind und von allen Nutzenden gemeinsam genutzt werden. Durch welche Technologie ist irrelevant.
+
+Beispiele:
+ERP
+PIM
+FiBu
+"/>
+<property name="DE_ENTI_NAME" value="Zentrale Anwendung"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_COMMENT" value="*DE* Eine Anwendung (Programm, SW-Paket) die als SW-Produkt gekauft oder selber hergestellt wurde.
+Die Anwendung kann zentral (Server, Cloud) oder lokal (Arbeitsplatz) installiert sein. 
+Wichtige Eigenschaft ist, dass die Daten nur einmal vorhanden sind und von allen Nutzenden gemeinsam genutzt werden. Durch welche Technologie ist irrelevant.
+
+Beispiele:
+ERP
+PIM
+FiBu
+"/>
+<property name="EN_ENTI_NAME" value="*DE* Zentrale Anwendung"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+</propertyMap>
 </Entity>

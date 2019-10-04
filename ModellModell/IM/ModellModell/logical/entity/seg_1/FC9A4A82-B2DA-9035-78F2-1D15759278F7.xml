@@ -2,7 +2,7 @@
 <Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="FC9A4A82-B2DA-9035-78F2-1D15759278F7" name="Kundenreiseetappe">
 <createdBy>stb</createdBy>
 <createdTime>2019-03-15 18:11:41 UTC</createdTime>
-<comment>Teil der Reise, die ein Kunde mit unserem Unternehmen für bestimmte Produkte / Dienstleistungen geht.</comment>
+<comment><![CDATA[Teil der Reise, die ein Kunde mit unserem Unternehmen für bestimmte Produkte / Dienstleistungen geht.]]></comment>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
@@ -17,4 +17,12 @@
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
 <createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="DE_ENTI_COMMENT" value="Teil der Reise, die ein Kunde mit unserem Unternehmen für bestimmte Produkte / Dienstleistungen geht."/>
+<property name="DE_ENTI_NAME" value="Kundenreiseetappe"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_COMMENT" value="*DE* Teil der Reise, die ein Kunde mit unserem Unternehmen für bestimmte Produkte / Dienstleistungen geht."/>
+<property name="EN_ENTI_NAME" value="*DE* Kundenreiseetappe"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+</propertyMap>
 </Entity>

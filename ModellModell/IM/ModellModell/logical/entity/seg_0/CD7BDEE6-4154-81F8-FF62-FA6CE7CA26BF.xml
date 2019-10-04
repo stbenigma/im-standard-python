@@ -2,10 +2,16 @@
 <Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="CD7BDEE6-4154-81F8-FF62-FA6CE7CA26BF" name="Persona">
 <createdBy>stb</createdBy>
 <createdTime>2019-02-03 12:05:01 UTC</createdTime>
-<comment>Archetyp einer Person mit einem bestimmten Verhalten in einem bestimmten Umfeld:&lt;br/&gt;Bei Firmen ist die Persona z.B. ein Einkäufer, ein Broker, ein Händler  oder ein Managementmitglied.&lt;br/&gt;&lt;br/&gt;Beispiele:&lt;br/&gt; Harry Hartmann&lt;br/&gt; Lily AmHerd&lt;br/&gt; Martin Muster</comment>
+<comment><![CDATA[Archetyp einer Person mit einem bestimmten Verhalten in einem bestimmten Umfeld:
+Bei Firmen ist die Persona z.B. ein Einkäufer, ein Broker, ein Händler  oder ein Managementmitglied.
+
+Beispiele:
+ Harry Hartmann
+ Lily AmHerd
+ Martin Muster]]></comment>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
-<item key="4EE9A882-EA48-83FA-35DC-1651333A2D97" value="true"/>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 </engineerTo>
 <adequatelyNormalized>NO</adequatelyNormalized>
@@ -19,4 +25,24 @@
 <preferredAbbreviation>PERA</preferredAbbreviation>
 <shortName>PERSONA</shortName>
 <createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="DE_ENTI_COMMENT" value="Archetyp einer Person mit einem bestimmten Verhalten in einem bestimmten Umfeld:
+Bei Firmen ist die Persona z.B. ein Einkäufer, ein Broker, ein Händler  oder ein Managementmitglied.
+
+Beispiele:
+ Harry Hartmann
+ Lily AmHerd
+ Martin Muster"/>
+<property name="DE_ENTI_NAME" value="Persona"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_COMMENT" value="*DE* Archetyp einer Person mit einem bestimmten Verhalten in einem bestimmten Umfeld:
+Bei Firmen ist die Persona z.B. ein Einkäufer, ein Broker, ein Händler  oder ein Managementmitglied.
+
+Beispiele:
+ Harry Hartmann
+ Lily AmHerd
+ Martin Muster"/>
+<property name="EN_ENTI_NAME" value="*DE* Persona"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+</propertyMap>
 </Entity>

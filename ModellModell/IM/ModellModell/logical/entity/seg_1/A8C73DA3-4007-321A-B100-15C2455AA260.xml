@@ -39,6 +39,7 @@ css
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
 </engineerTo>
+<typeID>57779FAE-171C-9BB2-9F88-9B2ED7060C6F</typeID>
 <adequatelyNormalized>NO</adequatelyNormalized>
 <expectedVolumes>0</expectedVolumes>
 <fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
@@ -50,6 +51,74 @@ css
 <shortName>TECH</shortName>
 <synonym>Technology</synonym>
 <createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="DE_ENTI_COMMENT" value="Beschreibung einer IT-Umgebung (Framework, Programmiersprache, Templates, etc.)
+
+Beispiele:
+DBMS data base mgt system (Oracle MS, Hana)
+DNS  domain name server
+IAM identiy and access mgt
+vcs Version control system
+cdn content delivery network
+vpn virtual private network
+web Protocol (http)
+
+IT-Applications
+
+Sammlung von Technologien
+Microsoft Office
+
+Tools 
+Excel
+Word
+Powerpoint
+Visio
+
+
+Sprachen:
+SQL
+Java
+HTML 
+Jason
+css
+
+"/>
+<property name="DE_ENTI_NAME" value="Technologie"/>
+<property name="DE_ENTI_SYNONYM" value="Technology"/>
+<property name="EN_ENTI_COMMENT" value="*DE* Beschreibung einer IT-Umgebung (Framework, Programmiersprache, Templates, etc.)
+
+Beispiele:
+DBMS data base mgt system (Oracle MS, Hana)
+DNS  domain name server
+IAM identiy and access mgt
+vcs Version control system
+cdn content delivery network
+vpn virtual private network
+web Protocol (http)
+
+IT-Applications
+
+Sammlung von Technologien
+Microsoft Office
+
+Tools 
+Excel
+Word
+Powerpoint
+Visio
+
+
+Sprachen:
+SQL
+Java
+HTML 
+Jason
+css
+
+"/>
+<property name="EN_ENTI_NAME" value="*DE* Technologie"/>
+<property name="EN_ENTI_SYNONYM" value="*DE* Technology"/>
+</propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Bezeichnung" id="212F81BB-13C3-5562-9FDD-48A894ED72AB">
 <createdBy>stb</createdBy>
@@ -64,6 +133,12 @@ css
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Bezeichnung"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="*DE* Bezeichnung"/>
+</propertyMap>
 </Attribute>
 <Attribute name="Beschreibung" id="6A3738A9-0326-BFAD-CD7F-F09947EA350F">
 <createdBy>stb</createdBy>
@@ -79,6 +154,12 @@ css
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Beschreibung"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="*DE* Beschreibung"/>
+</propertyMap>
 </Attribute>
 </attributes>
 </Entity>

@@ -2,13 +2,14 @@
 <Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="8DBFEADB-BD39-A440-63E9-6D81B31BDD16" name="Wertliste">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-22 14:50:13 UTC</createdTime>
-<comment>Eine Liste (abschliessende Aufzählung) von gültigen Werten Werten</comment>
+<comment><![CDATA[Eine Liste (abschliessende Aufzählung) von gültigen Werten Werten]]></comment>
 <ownerDesignName>ModellModell</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
 </engineerTo>
+<typeID>1C6A8769-7651-51C0-9E0A-D0C138DE6193</typeID>
 <adequatelyNormalized>NO</adequatelyNormalized>
 <expectedVolumes>0</expectedVolumes>
 <fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
@@ -21,5 +22,9 @@
 <createSurrogateKey>true</createSurrogateKey>
 <propertyMap>
 <property name="Beispiele" value="Geschlecht (M/W) / Bestellstatus (offen, in Arbeit, geschlossen)"/>
+<property name="DE_ENTI_COMMENT" value="Eine Liste (abschliessende Aufzählung) von gültigen Werten Werten"/>
+<property name="DE_ENTI_NAME" value="Wertliste"/>
+<property name="EN_ENTI_COMMENT" value="*DE* Eine Liste (abschliessende Aufzählung) von gültigen Werten Werten"/>
+<property name="EN_ENTI_NAME" value="*DE* Wertliste"/>
 </propertyMap>
 </Entity>

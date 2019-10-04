@@ -22,6 +22,24 @@
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
 <createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="DE_ENTI_COMMENT" value=" Attribut in einem System, das mit anderen Systemen ausgetauscht werden soll.
+ Datentyp, Format und Constraints können in div. Sprachen und Dialekten geführ werden
+  SQL (mit dialekt)
+  Jason
+  XML
+"/>
+<property name="DE_ENTI_NAME" value="Schnittstellenattribut"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_COMMENT" value="*DE*  Attribut in einem System, das mit anderen Systemen ausgetauscht werden soll.
+ Datentyp, Format und Constraints können in div. Sprachen und Dialekten geführ werden
+  SQL (mit dialekt)
+  Jason
+  XML
+"/>
+<property name="EN_ENTI_NAME" value="*DE* Schnittstellenattribut"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+</propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Name" id="B41BF0C7-0AD6-E2FF-307E-0E3AB8A27120">
 <createdBy>stb</createdBy>
@@ -35,6 +53,12 @@
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Name"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="*DE* Name"/>
+</propertyMap>
 </Attribute>
 <Attribute name="Beschreibung" id="182949AB-4842-155F-CCBA-717176E0E2E8">
 <createdBy>stb</createdBy>
@@ -48,6 +72,12 @@
 <nullsAllowed>true</nullsAllowed>
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value="Beschreibung des Attributes im Fremdsystem"/>
+<property name="DE_ATTR_NAME" value="Beschreibung"/>
+<property name="EN_ATTR_COMMENT" value="*DE* Beschreibung des Attributes im Fremdsystem"/>
+<property name="EN_ATTR_NAME" value="*DE* Beschreibung"/>
+</propertyMap>
 </Attribute>
 <Attribute name="Tabellenname" id="A4F8AE1B-96D5-63B5-DAEA-8A543607CDE9">
 <createdBy>stb</createdBy>
@@ -61,6 +91,12 @@
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Tabellenname"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="*DE* Tabellenname"/>
+</propertyMap>
 </Attribute>
 <Attribute name="Datentyp" id="43799535-BB40-2FF9-9A10-9AFA0B987604">
 <createdBy>stb</createdBy>
@@ -74,6 +110,12 @@
 <use>0</use>
 <domain>06475D8D-E9C3-9A63-A19D-2EF365B97D2D</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value="Technischer Datentyp im Fremdsystem (z.B. String(20), NUMERIC(20,4), integer,date,  etc.)"/>
+<property name="DE_ATTR_NAME" value="Datentyp"/>
+<property name="EN_ATTR_COMMENT" value="*DE* Technischer Datentyp im Fremdsystem (z.B. String(20), NUMERIC(20,4), integer,date,  etc.)"/>
+<property name="EN_ATTR_NAME" value="*DE* Datentyp"/>
+</propertyMap>
 </Attribute>
 <Attribute name="Format" id="41BDC830-A46D-219F-EB0F-7B05805D6919">
 <createdBy>stb</createdBy>
@@ -89,6 +131,12 @@
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <domain>F8923415-2F34-2023-2112-9B16A52B1FD6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value="Textliche Formatierung eines numerischen oder Zeitpunkt-Wertes"/>
+<property name="DE_ATTR_NAME" value="Format"/>
+<property name="EN_ATTR_COMMENT" value="*DE* Textliche Formatierung eines numerischen oder Zeitpunkt-Wertes"/>
+<property name="EN_ATTR_NAME" value="*DE* Format"/>
+</propertyMap>
 </Attribute>
 <Attribute name="Fremdsystem-ID" id="DFC19C82-0428-0E67-1DED-3E7A2FC35B39">
 <createdBy>stb</createdBy>
@@ -105,6 +153,12 @@
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <dataTypeSize>100 CHAR</dataTypeSize>
 <ownDataTypeParameters>100 CHAR,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Fremdsystem-ID"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="*DE* Fremdsystem-ID"/>
+</propertyMap>
 </Attribute>
 </attributes>
 <identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
