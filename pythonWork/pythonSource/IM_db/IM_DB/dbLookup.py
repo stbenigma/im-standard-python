@@ -63,6 +63,11 @@ def spraLookup(piso):
     #fi
 #spraLookup
 
+def sprachen(p_id,p_attrname):
+    return doLookup(p_id, """select {} from sprachen 
+                                where spra_id = {}""".format(p_attrname,'{}'))
+#spraLookup
+
 def liesDefaultLang():
     lDefLang = dbDML.select("""select spra_iso_code2 from sprachen 
                         where spra_ist_modellsprache = 'TRUE'""")

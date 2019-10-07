@@ -39,7 +39,7 @@ def translate(p_text,p_tolang,p_fromlang):
         raise Exception("DeepL not authenticated. See parameter deeplauthid in parameterfile.")
     if (LANGUAGES.get(str.upper(p_tolang)) is None):
         raise Exception("To language ({}) not allowed".format(p_tolang))
-    if (LANGUAGES.get(str.upper(p_fromlang)) is None):
+    if LANGUAGES.get(str.upper(p_fromlang)) is None:
         raise Exception("From language ({}) not allowed".format(p_fromlang))
 
     param = {'auth_key': g_authid
@@ -48,10 +48,12 @@ def translate(p_text,p_tolang,p_fromlang):
             , 'source_lang': None if p_fromlang is None else str.upper(p_fromlang)
             , 'preserve_formatting': 1}
 
-    r = requests.post(g_deeplurl, params=param)
+    r = requests.post(g_deeplurl, data=param)
     if (r.status_code == 200):
         rj = r.json()
+        #print (rj)
         result = rj['translations'][0]['text']
+
     elif (r.status_code == 403):
         result = "*{}* {}".format(str.upper(p_tolang),p_text)
     else:
@@ -63,8 +65,9 @@ def translate(p_text,p_tolang,p_fromlang):
 if __name__ == '__main__':
     import sys
     setauthid()
-    transl = translate(p_text=sys.argv[1] if (len(sys.argv) > 1) else ''
+    text = sys.argv[1]
+    transl = translate(p_text= text
          , p_tolang=sys.argv[2] if (len(sys.argv) > 2) else None
          , p_fromlang=sys.argv[3] if (len(sys.argv) > 3) else None
          )
-    print (sys.argv[1],transl)
+    print (text,'=',transl)

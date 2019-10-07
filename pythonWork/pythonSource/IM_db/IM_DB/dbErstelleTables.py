@@ -1,7 +1,6 @@
 # -*- coding: latin-1 -*-
 
-from IM_DB import dbConnect,dbDDL
-import sqlite3
+from IM_DB import dbDDL
 
 
 def erstelleInfra():

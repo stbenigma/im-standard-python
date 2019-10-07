@@ -91,6 +91,8 @@ def main(p_imdirec=None, p_modelname=None):
     result = dbDML.select(l_sql)
     for row in result:
         print (row)
+    dbDML.exec("""update sprachtexte set sptx_text = replace(sptx_text,'**','') 
+        """)
 #main
 #.format(entiId,entiId)
 #where von.enti_id = {} or zu.enti_id = {}
