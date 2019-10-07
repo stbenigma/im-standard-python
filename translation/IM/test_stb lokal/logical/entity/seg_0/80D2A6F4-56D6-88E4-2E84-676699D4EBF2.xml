@@ -19,27 +19,9 @@
 <synonym>county</synonym>
 <createSurrogateKey>true</createSurrogateKey>
 <propertyMap>
-<property name="DE_ENT_COMMENT" value="Gebietsunterteilung eines Landes in kleinere Einheiten.
-
-Gemäss NUTS (https://de.wikipedia.org/wiki/NUTS) ist das Land die Gebietsstufe NUTS 0
-NUTS 0	Nationalstaat
-NUTS 1	“major socio-economic regions (grouping basic regions)” … größere Regionen/Landesteile
-NUTS 2 	“basic regions (for the application of regional policies)” … mittelgroße Regionen, Millionenstädte
-NUTS 3	“small regions (for specific diagnoses)” … kleinere Regionen, teils schon Großstädte
-LAU 1	o.A. … kommunale Verwaltungsverbände, teils Gemeinden (nicht in allen Staaten definiert)
-LAU 2	“municipalities or equivalent units” … Gemeinden, teils Gemeindegliederungen
-
-Es kann weitere Hierarchiestufenbezeichnungen geben:
-Deutschland
-A0: Land
-A1: Bundesland
-A2: leer
-A3: Landkreis
-A4: leer
-A5: Gemeinde: Administrative Gemeinde im jeweiligen Land
-Flurnamen, Gemeindegebiete, alte Gemeindenamen (unterteilen Gemeinde) oder weitere Stufen"/>
-<property name="DE_ENT_NAME" value="Administrativgebiet"/>
-<property name="DE_ENT_SYNONYM" value=""/>
+<property name="DE_ENT_COMMENT" value="Territorial division of a country into smaller units. According to NUTS (https://en.wikipedia.org/wiki/NUTS) the country is the NUTS 0 NUTS 0 national state NUTS 1 &quot;major socio-economic regions (grouping basic regions)&quot; ... larger regions / districts NUTS 2 &quot;basic regions (for the application of regional policies) &quot;... medium-sized regions, megacities NUTS 3&quot; small regions (for specific diagnoses) &quot;... smaller regions, some already big cities LAU 1 oA ... municipal administrative associations, partly municipalities (not defined in all states) LAU 2 &quot;municipalities or equivalent units&quot; ... municipalities, partly church affiliations There can be further hierarchical level designations: Germany A0: Country A1: Federal state A2: empty A3: County A4: empty A5: Municipality: Administrative municipality in the respective country Field names, municipalities, old municipality names (subdivide municipality) or further stages"/>
+<property name="DE_ENT_NAME" value="administrative aerea"/>
+<property name="DE_ENT_SYNONYM" value="county"/>
 <property name="EN_ENT_COMMENT" value="Territorial division of a country into smaller units. According to NUTS (https://en.wikipedia.org/wiki/NUTS) the country is the NUTS 0 NUTS 0 national state NUTS 1 &quot;major socio-economic regions (grouping basic regions)&quot; ... larger regions / districts NUTS 2 &quot;basic regions (for the application of regional policies) &quot;... medium-sized regions, megacities NUTS 3&quot; small regions (for specific diagnoses) &quot;... smaller regions, some already big cities LAU 1 oA ... municipal administrative associations, partly municipalities (not defined in all states) LAU 2 &quot;municipalities or equivalent units&quot; ... municipalities, partly church affiliations There can be further hierarchical level designations: Germany A0: Country A1: Federal state A2: empty A3: County A4: empty A5: Municipality: Administrative municipality in the respective country Field names, municipalities, old municipality names (subdivide municipality) or further stages"/>
 <property name="EN_ENT_NAME" value="administrative aerea"/>
 <property name="EN_ENT_SYNONYM" value="county"/>
@@ -58,7 +40,7 @@ Flurnamen, Gemeindegebiete, alte Gemeindenamen (unterteilen Gemeinde) oder weite
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_COMMENT" value="A1-A4"/>
-<property name="DE_ATTR_NAME" value="Administrativebene"/>
+<property name="DE_ATTR_NAME" value="administrative level"/>
 <property name="EN_ATTR_COMMENT" value="A1-A4"/>
 <property name="EN_ATTR_NAME" value="administrative level"/>
 </propertyMap>

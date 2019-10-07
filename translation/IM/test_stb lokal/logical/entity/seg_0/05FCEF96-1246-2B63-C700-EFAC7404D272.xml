@@ -17,12 +17,8 @@
 <normalForm>Third</normalForm>
 <createSurrogateKey>true</createSurrogateKey>
 <propertyMap>
-<property name="DE_ENT_COMMENT" value="Postalisch-geographische Lokalisation
-
-Jede Adresse ist für einen Akteur definiert. D.h. die selbe Adresse kann mehrfach vorkommen.
-Falls ein generelles Adressverzeichnis als Referenz geführt wird (Basisadresse), muss das zusätlich erfasst werden.
-Dann wird diese Entität zur Verknüpfung zwischen Akteur und Basisadresse."/>
-<property name="DE_ENT_NAME" value="Adresse"/>
+<property name="DE_ENT_COMMENT" value="Postal geographical localization Each address is defined for one actor. This means that the same address can occur more than once. If a general address directory is maintained as a reference (base address), this must be entered additionally. Then this entity becomes the link between actor and base address."/>
+<property name="DE_ENT_NAME" value="Address"/>
 <property name="DE_ENT_SYNONYM" value=""/>
 <property name="EN_ENT_COMMENT" value="Postal geographical localization Each address is defined for one actor. This means that the same address can occur more than once. If a general address directory is maintained as a reference (base address), this must be entered additionally. Then this entity becomes the link between actor and base address."/>
 <property name="EN_ENT_NAME" value="Address"/>
@@ -40,8 +36,8 @@ Dann wird diese Entität zur Verknüpfung zwischen Akteur und Basisadresse."/>
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
-<property name="DE_ATTR_COMMENT" value="Zweck der Adresse (Finanz, Post, Lieferung etc.)"/>
-<property name="DE_ATTR_NAME" value="Adresstyp"/>
+<property name="DE_ATTR_COMMENT" value="**Purpose of the address (financial, postal, delivery, etc.)"/>
+<property name="DE_ATTR_NAME" value="Type of address"/>
 <property name="EN_ATTR_COMMENT" value="**Purpose of the address (financial, postal, delivery, etc.)"/>
 <property name="EN_ATTR_NAME" value="Type of address"/>
 </propertyMap>
@@ -58,7 +54,7 @@ Dann wird diese Entität zur Verknüpfung zwischen Akteur und Basisadresse."/>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_COMMENT" value=""/>
-<property name="DE_ATTR_NAME" value="Strassenname"/>
+<property name="DE_ATTR_NAME" value="Streetname"/>
 <property name="EN_ATTR_COMMENT" value=""/>
 <property name="EN_ATTR_NAME" value="Streetname"/>
 </propertyMap>
@@ -75,7 +71,7 @@ Dann wird diese Entität zur Verknüpfung zwischen Akteur und Basisadresse."/>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_COMMENT" value=""/>
-<property name="DE_ATTR_NAME" value="Hausnr"/>
+<property name="DE_ATTR_NAME" value="No"/>
 <property name="EN_ATTR_COMMENT" value=""/>
 <property name="EN_ATTR_NAME" value="No"/>
 </propertyMap>
@@ -92,7 +88,7 @@ Dann wird diese Entität zur Verknüpfung zwischen Akteur und Basisadresse."/>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_COMMENT" value=""/>
-<property name="DE_ATTR_NAME" value="Gebäudename"/>
+<property name="DE_ATTR_NAME" value="Building name"/>
 <property name="EN_ATTR_COMMENT" value=""/>
 <property name="EN_ATTR_NAME" value="Building name"/>
 </propertyMap>
@@ -109,7 +105,7 @@ Dann wird diese Entität zur Verknüpfung zwischen Akteur und Basisadresse."/>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_COMMENT" value=""/>
-<property name="DE_ATTR_NAME" value="Geokoordinate"/>
+<property name="DE_ATTR_NAME" value="Geographical coordinate"/>
 <property name="EN_ATTR_COMMENT" value=""/>
 <property name="EN_ATTR_NAME" value="Geographical coordinate"/>
 </propertyMap>

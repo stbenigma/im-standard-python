@@ -3,12 +3,16 @@ from IM_DB import dbParam,dbConnect,dbDDL,dbDML,dbErstelleTables
 from IM_DB import dbParam,dbConnect,dbDML
 import sys
 
-def main():
-    odmParam.initODMParam(pimDirec=sys.argv[1])
-    #    print (odmParam.imDirectory+odmParam.modelName)
+def main(p_imdirec=None, p_modelname=None):
+
+    odmParam.initODMParam(pimDirec=p_imdirec, pmodelName=p_modelname)
+
     dbParam.initDBParam(odmParam.imDirectory
-                        , odmParam.imModelName + '.db');
-    dbConnect.openDB(dbParam.dbDirectory, dbParam.dbName);
+                ,odmParam.imModelName+'.db');
+
+    print ("dynsql",odmParam.imDirectory,odmParam.imModelName)
+    dbConnect.openDB(dbParam.dbDirectory,dbParam.dbName);
+
     dbParam.liesDefaultLang()
     l_sql = """with arcs2 as (select name || '_subtype' arcs_name, id arcs_enti_id,uc arcs_uc,um arcs_um ,id arcs_id from 
                                   (select enti_name as name, enti_id as id,enti_uc as uc ,enti_dc as um
@@ -82,17 +86,8 @@ def main():
 #      join beziehungen on bezi_arcs_id = arcs_id  where arcs_name = 'Arc_9'"""
 #insert into sprachtext (sptx_attrname,  sptx_text,  sptx_spra_id,sptx_mode_id, sptx_uc,   sptx_dc    )
 
-    l_sql = """select enti_name,enti_comment,enti_id 
-                from entitaeten
-                join modellelemente on mode_enti_id = enti_id
-                left join sprachtexte dename on dename.sptx_mode_id = mode_id
-                left join sprachtexte dename on dename.sptx_mode_id = mode_id
-                left join sprachen desp on desp.spra_id = sptx_spra_id
-                where spra_iso_code2 = lower('{}')
-                and sptx_mode_id > {}
-                and sptx_attrname = '{}'
-                """.format('en',700,'ENT_NAME')
-    l_sql = """select * from benudef_wert  order by 2"""
+    l_sql = """select * from sprachtexte 
+                join sprachen on spra_id = sptx_spra_id where spra_iso_code2 = 'fr'"""
     result = dbDML.select(l_sql)
     for row in result:
         print (row)
@@ -101,4 +96,6 @@ def main():
 #where von.enti_id = {} or zu.enti_id = {}
 
 if __name__ == '__main__':
-    main()
+    import sys
+    main(p_imdirec=sys.argv[1] if (len(sys.argv) > 1) else None
+        ,p_modelname=sys.argv[2] if (len(sys.argv) > 2) else None)

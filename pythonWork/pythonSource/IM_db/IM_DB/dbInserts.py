@@ -245,26 +245,37 @@ def insertUdpAttr(attrId):
             """ .format(attrId))
 #insertUdpAttr
 
-def insertSprachTexte(pmodeId,porigvalues):
-    dbDML.exec(psql="""insert into sprachtexte 
-                    (sptx_attrname,  sptx_text, sptx_spra_id
-                   ,sptx_mode_id, sptx_uc, sptx_dc)
-                  select substr(bdeg_name,4) attrname, bdwe_wert, spra_id
-                    ,bdwe_mode_id,bdwe_uc,bdwe_dc
-                from benudef_wert
-                join benudef_eigenschaft on bdeg_id = bdwe_bdeg_id
-                join sprachen on spra_iso_code2 = lower(bdeg_gruppe)
-                where bdwe_mode_id = {}
-                  and bdeg_thema = '{}'
-                """.format(pmodeId,odmParam.imTranslationFileName))
-    # da aktuell die orginialnamen im Objekt stehen und in den UDP der Modellsprache
-    # eine möglicherweise veraltete Version des Namens steht, werden die Originalnamen
-    # in die Texte übernommen.
+def insertSprachtexte(p_texte, p_modeid, p_defaultlang):
+#    sprachtexte = [[vonText,'TEXT_FROM']
+#                  ,[zuText,'TEXT_TO')]]
+    values = [v for v in p_texte]
+    #print (values)
+    lsql= """insert into sprachtexte 
+                    (sptx_attrname,  sptx_text
+                   ,sptx_mode_id, sptx_uc, sptx_dc
+                   , sptx_spra_id)
+                  select  attrname, case  when defaultlang = spra_iso_code2 then '' 
+                                    else '*'|| defaultlang ||'* ' end
+                                    || ? text
+                    ,modeid, '{}' uc,'{}' dc, spra_id
+                  from sprachen
+                  cross join (select {} modeid, '{}' defaultlang, ? attrname)
+                  where not exists 
+                    (select 1 from sprachtexte
+                        where sptx_spra_id = spra_id
+                         and sptx_mode_id = modeid
+                         and  sptx_attrname = attrname
+                    ) 
+                """.format( '--', date.today().__str__(),p_modeid,p_defaultlang)
+    dbDML.execmany(lsql, values)
+# die Originalnamen werden überschrieben
     l_sql = """ update sprachtexte
                 set sptx_text = ?
-                where sptx_spra_id = ?
+                   ,sptx_um = '{}'
+                   ,sptx_dm = '{}'
+                where sptx_spra_id = {}
                 and sptx_attrname = ?
-                and sptx_mode_id = ?
-                """
-    dbDML.execmany(l_sql,porigvalues)
+                and sptx_mode_id = {}
+                """.format('--', date.today().__str__(),dbLookup.spraLookup(p_defaultlang),p_modeid)
+    dbDML.execmany(l_sql, values)
 #insertSprachTexte

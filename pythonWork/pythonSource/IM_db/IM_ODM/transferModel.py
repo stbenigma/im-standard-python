@@ -237,15 +237,15 @@ def transferArcs():
 
 #transferTypes
 
-def updateUDP(modeId,obj):
+def updateUDP(p_modeid, p_obj):
     udps = []
-    props = obj.find('propertyMap')
+    props = p_obj.find('propertyMap')
     if (props is not None):
         for prop in props:
             try:
                 bdegId = dbLookup.bdegLookup(prop.get('name'))
                 # print('      ', prop.get('name'), prop.get('value'), bdegId)
-                udps.append((prop.get('value'), modeId, bdegId))
+                udps.append((prop.get('value'), p_modeid, bdegId))
             except:
                 """dynamische Properties lassen wir aus"""
                 pass
@@ -287,11 +287,10 @@ def do1Attribute(n,attr,entiId=None,beziId=None):
     ))
     lmodeId=dbInserts.insertModeAttr(attrId)
     dbInserts.insertUdpAttr(attrId)
-    updateUDP(modeId=lmodeId,obj=attr)
-    dbInserts.insertSprachTexte(pmodeId=lmodeId
-                                ,porigvalues=[(attrName,dbParam.dbDefaultLangID,'ATTR_NAME',lmodeId)
-                                             ,(attrcomm,dbParam.dbDefaultLangID,'ATTR_COMMENT',lmodeId)
-                                            ])
+    updateUDP(p_modeid=lmodeId, p_obj=attr)
+    sprachtexte = [[attrName,'ATTR_NAME']
+                  ,[attrcomm,'ATTR_COMMENT']]
+    dbInserts.insertSprachtexte(p_texte=sprachtexte, p_modeid=lmodeId, p_defaultlang=dbParam.dbDefaultLang)
 
 #do1Attribute
 def    fillKeys(enti,entiId):
@@ -376,13 +375,12 @@ def do1Entity(fileName):
         #rof
     #fi
 
-    print (entname,translate.translate(p_text=entname,p_fromlang='de',p_tolang='en'),translate.translate(p_text=entname,p_fromlang='de',p_tolang='fr'))
+    #print (entname,translate.translate(p_text=entname,p_fromlang='de',p_tolang='en'),translate.translate(p_text=entname,p_fromlang='de',p_tolang='fr'))
 
-    updateUDP(modeId=lmodeId,obj=root)
-    dbInserts.insertSprachTexte(pmodeId=lmodeId
-                                ,porigvalues=[(entname,dbParam.dbDefaultLangID,'ENT_NAME',lmodeId)
-                                             ,(entcomm,dbParam.dbDefaultLangID,'ENT_COMMENT',lmodeId)
-                                            ])
+    updateUDP(p_modeid=lmodeId, p_obj=root)
+    sprachtexte = [[entname,'ENT_NAME']
+                  ,[entcomm,'ENT_COMMENT']]
+    dbInserts.insertSprachtexte(p_texte=sprachtexte, p_modeid=lmodeId, p_defaultlang=dbParam.dbDefaultLang)
 
     attrs= root.find('attributes')
     if attrs is not None:
@@ -563,11 +561,10 @@ def do1Relation(fileName):
     lmodeId = dbInserts.insertModeBezi(beziId)
     dbInserts.insertUdpBezi(beziId)
 
-    updateUDP(modeId=lmodeId,obj=root)
-    dbInserts.insertSprachTexte(pmodeId=lmodeId
-                                ,porigvalues=[(vonText,dbParam.dbDefaultLangID,'TEXT_FROM',lmodeId)
-                                             ,(zuText,dbParam.dbDefaultLangID,'TEXT_TO',lmodeId)
-                                            ])
+    updateUDP(p_modeid=lmodeId, p_obj=root)
+    sprachtexte = [[vonText,'TEXT_FROM']
+                  ,[zuText,'TEXT_TO']]
+    dbInserts.insertSprachtexte(p_texte=sprachtexte, p_modeid=lmodeId, p_defaultlang=dbParam.dbDefaultLang)
 
     attrs= root.find('attributes')
     if attrs is not None:
@@ -675,8 +672,8 @@ def transferUPDdef():
     dbDML.delete("benudef_eigenschaft")
     l_sql = """select count(*) from benudef_wert union select count(*) from benudef_eigenschaft"""
     result = dbDML.select(l_sql)
-    for row in result:
-        print(row)
+#    for row in result:
+#        print(row)
     for file in os.listdir(odmParam.imFilesDirec):
         filename, file_extension = os.path.splitext(file)
         #print(filename, file_extension)
@@ -711,7 +708,7 @@ def transferUPDdef():
                                     , '--', date.today().__str__())
                             udpId = dbInserts.insertUDP(pData=ludp)
                             try:
-                             dbInserts.insertModellElemTyp((dbLookup.meltLookup(type2melt('Relation')), udpId))
+                                dbInserts.insertModellElemTyp((dbLookup.meltLookup(type2melt('Relation')), udpId))
                             except:
                                 pass
                             #try

@@ -89,12 +89,12 @@ def insertmany(psql,rec):
     dbConnect.myDbConn.commit()
 #end insertmany
 
-def exec(psql):
+def exec(psql,*args):
     #print (psql)
     #return
     cursor = dbConnect.myDbConn.cursor()
     try:
-        cursor.execute(psql)
+        cursor.execute(psql,args)
     except sqlite3.Error as e:
         print(psql)
         if re.match("xxxxxxx",e.__str__()):

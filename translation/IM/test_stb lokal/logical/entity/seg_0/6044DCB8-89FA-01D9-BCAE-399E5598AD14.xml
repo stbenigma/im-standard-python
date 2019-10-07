@@ -18,17 +18,8 @@
 <shortName>GSPR</shortName>
 <createSurrogateKey>true</createSurrogateKey>
 <propertyMap>
-<property name="DE_ENT_COMMENT" value="Lokale Variante einer Sprache
-Code wird zusammengesetzt aus ISO2-Sprachcode - ISO2-Landcode
-
-Beispiele:
-de-de 
-de-at
-de-ch
-fr-ch
-fr-fr
-fr-ca"/>
-<property name="DE_ENT_NAME" value="Gebietssprache"/>
+<property name="DE_ENT_COMMENT" value="**Local variant of a language code is composed of ISO2 language code - ISO2 country code examples: de-de-de-at de-ch fr-ch fr-fr fr-ca"/>
+<property name="DE_ENT_NAME" value="**Regional language"/>
 <property name="DE_ENT_SYNONYM" value=""/>
 <property name="EN_ENT_COMMENT" value="**Local variant of a language code is composed of ISO2 language code - ISO2 country code examples: de-de-de-at de-ch fr-ch fr-fr fr-ca"/>
 <property name="EN_ENT_NAME" value="**Regional language"/>
@@ -50,7 +41,7 @@ fr-ca"/>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_COMMENT" value=""/>
-<property name="DE_ATTR_NAME" value="Name [L]"/>
+<property name="DE_ATTR_NAME" value="**Name [L]"/>
 <property name="EN_ATTR_COMMENT" value=""/>
 <property name="EN_ATTR_NAME" value="**Name [L]"/>
 </propertyMap>
@@ -70,8 +61,8 @@ fr-ca"/>
 <dataTypeSize>5</dataTypeSize>
 <ownDataTypeParameters>5,,</ownDataTypeParameters>
 <propertyMap>
-<property name="DE_ATTR_COMMENT" value="2stellen Sprache Iso, &quot;-&quot;, 2 stellen Land-Iso"/>
-<property name="DE_ATTR_NAME" value="ISO-SprachLand_Code"/>
+<property name="DE_ATTR_COMMENT" value="**2 digits Language Iso, &quot;-&quot;, 2 digits Country Iso"/>
+<property name="DE_ATTR_NAME" value="**ISO LanguageCountry_Code"/>
 <property name="EN_ATTR_COMMENT" value="**2 digits Language Iso, &quot;-&quot;, 2 digits Country Iso"/>
 <property name="EN_ATTR_NAME" value="**ISO LanguageCountry_Code"/>
 </propertyMap>
