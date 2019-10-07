@@ -1,8 +1,8 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="38B61F56-E01A-41E2-D258-AD6114B9B659" name="Sprache">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="38B61F56-E01A-41E2-D258-AD6114B9B659" name="**Language">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 07:55:51 UTC</createdTime>
-<comment><![CDATA[Sprache nach ISO-639-1]]></comment>
+<comment><![CDATA[**Language according to ISO-639-1]]></comment>
 <ownerDesignName>test_stb lokal</ownerDesignName>
 <engineerTo>
 <item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true"/>
@@ -16,18 +16,18 @@
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
 <shortName>SPRA</shortName>
-<synonym>Language</synonym>
+<synonym>**Language</synonym>
 <createSurrogateKey>true</createSurrogateKey>
 <propertyMap>
 <property name="DE_ENT_COMMENT" value="Sprache nach ISO-639-1"/>
 <property name="DE_ENT_NAME" value="Sprache"/>
 <property name="DE_ENT_SYNONYM" value="Language"/>
-<property name="EN_ENT_COMMENT" value="*DE* Sprache nach ISO-639-1"/>
-<property name="EN_ENT_NAME" value="*DE* Sprache"/>
-<property name="EN_ENT_SYNONYM" value="*DE* Language"/>
+<property name="EN_ENT_COMMENT" value="**Language according to ISO-639-1"/>
+<property name="EN_ENT_NAME" value="**Language"/>
+<property name="EN_ENT_SYNONYM" value="**Language"/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<Attribute name="Name [L]" id="EA16140A-BD03-FC98-FB55-8FC572F0C88B">
+<Attribute name="**Name [L]" id="EA16140A-BD03-FC98-FB55-8FC572F0C88B">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 07:55:51 UTC</createdTime>
 <ownerDesignName>test_stb lokal</ownerDesignName>
@@ -44,10 +44,10 @@
 <property name="DE_ATTR_COMMENT" value=""/>
 <property name="DE_ATTR_NAME" value="Name [L]"/>
 <property name="EN_ATTR_COMMENT" value=""/>
-<property name="EN_ATTR_NAME" value="*DE* Name [L]"/>
+<property name="EN_ATTR_NAME" value="**Name [L]"/>
 </propertyMap>
 </Attribute>
-<Attribute name="ISO2-Code" id="EF4F6F91-827E-49E2-052E-88DB557168F4">
+<Attribute name="**ISO2 code" id="EF4F6F91-827E-49E2-052E-88DB557168F4">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 07:55:51 UTC</createdTime>
 <ownerDesignName>test_stb lokal</ownerDesignName>
@@ -64,10 +64,10 @@
 <property name="DE_ATTR_COMMENT" value=""/>
 <property name="DE_ATTR_NAME" value="ISO2-Code"/>
 <property name="EN_ATTR_COMMENT" value=""/>
-<property name="EN_ATTR_NAME" value="*DE* ISO2-Code"/>
+<property name="EN_ATTR_NAME" value="**ISO2 code"/>
 </propertyMap>
 </Attribute>
-<Attribute name="ISO3-Code" id="51E7ADEB-8774-22E7-A057-92EB203AE902">
+<Attribute name="**ISO3 code" id="51E7ADEB-8774-22E7-A057-92EB203AE902">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 09:29:09 UTC</createdTime>
 <ownerDesignName>test_stb lokal</ownerDesignName>
@@ -83,7 +83,7 @@
 <property name="DE_ATTR_COMMENT" value=""/>
 <property name="DE_ATTR_NAME" value="ISO3-Code"/>
 <property name="EN_ATTR_COMMENT" value=""/>
-<property name="EN_ATTR_NAME" value="*DE* ISO3-Code"/>
+<property name="EN_ATTR_NAME" value="**ISO3 code"/>
 </propertyMap>
 </Attribute>
 </attributes>

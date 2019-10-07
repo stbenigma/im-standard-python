@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="3DD3ACC9-75E8-8370-383F-69FCF5F4983F" name="natürliche Person">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="3DD3ACC9-75E8-8370-383F-69FCF5F4983F" name="**natural person">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 08:00:37 UTC</createdTime>
 <ownerDesignName>test_stb lokal</ownerDesignName>
@@ -21,11 +21,11 @@
 <property name="DE_ENT_NAME" value="natürliche Person"/>
 <property name="DE_ENT_SYNONYM" value=""/>
 <property name="EN_ENT_COMMENT" value=""/>
-<property name="EN_ENT_NAME" value="*DE* natürliche Person"/>
+<property name="EN_ENT_NAME" value="**natural person"/>
 <property name="EN_ENT_SYNONYM" value=""/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<Attribute name="Vorname" id="34425C84-C83D-CD8C-C3A8-A29A523A971B">
+<Attribute name="**First name" id="34425C84-C83D-CD8C-C3A8-A29A523A971B">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 08:44:03 UTC</createdTime>
 <ownerDesignName>test_stb lokal</ownerDesignName>
@@ -39,10 +39,10 @@
 <property name="DE_ATTR_COMMENT" value=""/>
 <property name="DE_ATTR_NAME" value="Vorname"/>
 <property name="EN_ATTR_COMMENT" value=""/>
-<property name="EN_ATTR_NAME" value="*DE* Vorname"/>
+<property name="EN_ATTR_NAME" value="**First name"/>
 </propertyMap>
 </Attribute>
-<Attribute name="Geburtsdatum" id="BAA2C6EF-0C92-9643-BF97-C6828D6F6188">
+<Attribute name="**Date of birth" id="BAA2C6EF-0C92-9643-BF97-C6828D6F6188">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 08:00:37 UTC</createdTime>
 <ownerDesignName>test_stb lokal</ownerDesignName>
@@ -57,10 +57,10 @@
 <property name="DE_ATTR_COMMENT" value=""/>
 <property name="DE_ATTR_NAME" value="Geburtsdatum"/>
 <property name="EN_ATTR_COMMENT" value=""/>
-<property name="EN_ATTR_NAME" value="*DE* Geburtsdatum"/>
+<property name="EN_ATTR_NAME" value="**Date of birth"/>
 </propertyMap>
 </Attribute>
-<Attribute name="Geschlecht" id="114252E2-787D-F3A4-D874-37086E916F60">
+<Attribute name="**Sex" id="114252E2-787D-F3A4-D874-37086E916F60">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 08:00:37 UTC</createdTime>
 <ownerDesignName>test_stb lokal</ownerDesignName>
@@ -75,7 +75,7 @@
 <property name="DE_ATTR_COMMENT" value=""/>
 <property name="DE_ATTR_NAME" value="Geschlecht"/>
 <property name="EN_ATTR_COMMENT" value=""/>
-<property name="EN_ATTR_NAME" value="*DE* Geschlecht"/>
+<property name="EN_ATTR_NAME" value="**Sex"/>
 </propertyMap>
 </Attribute>
 </attributes>

@@ -1,12 +1,8 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="A32C5003-C12A-FAF9-F8F8-A38135C65A71" name="Produktinstanz">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="A32C5003-C12A-FAF9-F8F8-A38135C65A71" name="**Product instance">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 12:49:26 UTC</createdTime>
-<comment><![CDATA[einzelnes, weltweit identifizierbares Exemplar eines Produktes.
-
-Mit oder ohne IOT.
-
-]]></comment>
+<comment><![CDATA[**single, globally identifiable copy of a product.  With or without IOT.  ]]></comment>
 <ownerDesignName>test_stb lokal</ownerDesignName>
 <engineerTo>
 <item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true"/>
@@ -28,12 +24,12 @@ Mit oder ohne IOT.
 "/>
 <property name="DE_ENT_NAME" value="Produktinstanz"/>
 <property name="DE_ENT_SYNONYM" value=""/>
-<property name="EN_ENT_COMMENT" value="*DE* einzelnes, weltweit identifizierbares Exemplar eines Produktes.  Mit oder ohne IOT.  "/>
-<property name="EN_ENT_NAME" value="*DE* Produktinstanz"/>
+<property name="EN_ENT_COMMENT" value="**single, globally identifiable copy of a product.  With or without IOT.  "/>
+<property name="EN_ENT_NAME" value="**Product instance"/>
 <property name="EN_ENT_SYNONYM" value=""/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<Attribute name="Serie-Nr" id="F3C7BFA1-E8B3-80DC-668D-4EADED553B6B">
+<Attribute name="**Series No" id="F3C7BFA1-E8B3-80DC-668D-4EADED553B6B">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 12:50:08 UTC</createdTime>
 <ownerDesignName>test_stb lokal</ownerDesignName>
@@ -46,7 +42,7 @@ Mit oder ohne IOT.
 <property name="DE_ATTR_COMMENT" value=""/>
 <property name="DE_ATTR_NAME" value="Serie-Nr"/>
 <property name="EN_ATTR_COMMENT" value=""/>
-<property name="EN_ATTR_NAME" value="*DE* Serie-Nr"/>
+<property name="EN_ATTR_NAME" value="**Series No"/>
 </propertyMap>
 </Attribute>
 </attributes>

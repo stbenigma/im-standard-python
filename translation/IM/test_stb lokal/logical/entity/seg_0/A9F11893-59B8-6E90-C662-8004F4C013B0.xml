@@ -1,12 +1,8 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="A9F11893-59B8-6E90-C662-8004F4C013B0" name="Händler">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="A9F11893-59B8-6E90-C662-8004F4C013B0" name="**Dealer">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 08:04:25 UTC</createdTime>
-<comment><![CDATA[B2B Partner
-Verkauft unsere Produkte an andere Geschäfte. Möglicherweise alleiniger Vertreter in einer geographischen Einheit.
-
-A-Händler sind Händler mit hohem Professionalisierungsgrad, verkaufen alles.
-B-Händler sind Händler mit niedrigerem Professionalisierungsgrad; verkaufen deshalb nur gewisse Produkte]]></comment>
+<comment><![CDATA[**B2B Partner Sells our products to other stores. Possibly sole representative in a geographical unit.  A dealers are dealers with high degree of professionalization, sell everything. B dealers are dealers with a lower degree of professionalization; therefore only sell certain products]]></comment>
 <ownerDesignName>test_stb lokal</ownerDesignName>
 <engineerTo>
 <item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true"/>
@@ -29,8 +25,8 @@ A-Händler sind Händler mit hohem Professionalisierungsgrad, verkaufen alles.
 B-Händler sind Händler mit niedrigerem Professionalisierungsgrad; verkaufen deshalb nur gewisse Produkte"/>
 <property name="DE_ENT_NAME" value="Händler"/>
 <property name="DE_ENT_SYNONYM" value=""/>
-<property name="EN_ENT_COMMENT" value="*DE* B2B Partner Verkauft unsere Produkte an andere Geschäfte. Möglicherweise alleiniger Vertreter in einer geographischen Einheit.  A-Händler sind Händler mit hohem Professionalisierungsgrad, verkaufen alles. B-Händler sind Händler mit niedrigerem Professionalisierungsgrad; verkaufen deshalb nur gewisse Produkte"/>
-<property name="EN_ENT_NAME" value="*DE* Händler"/>
+<property name="EN_ENT_COMMENT" value="**B2B Partner Sells our products to other stores. Possibly sole representative in a geographical unit.  A dealers are dealers with high degree of professionalization, sell everything. B dealers are dealers with a lower degree of professionalization; therefore only sell certain products"/>
+<property name="EN_ENT_NAME" value="**Dealer"/>
 <property name="EN_ENT_SYNONYM" value=""/>
 </propertyMap>
 </Entity>

@@ -4,6 +4,7 @@ import re,os,sqlite3
 from datetime import date
 from IM_ODM import odmParam
 from IM_DB import dbInserts,dbDML,dbLookup,dbConnect,dbParam
+from mydeepl import translate
 
 class Wertebereich:
     def __init__(self, pname, pid):
@@ -374,6 +375,8 @@ def do1Entity(fileName):
             dbInserts.insertSynonym((synonym,entiId))
         #rof
     #fi
+
+    print (entname,translate.translate(p_text=entname,p_fromlang='de',p_tolang='en'),translate.translate(p_text=entname,p_fromlang='de',p_tolang='fr'))
 
     updateUDP(modeId=lmodeId,obj=root)
     dbInserts.insertSprachTexte(pmodeId=lmodeId

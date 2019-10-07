@@ -1,12 +1,8 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="05FCEF96-1246-2B63-C700-EFAC7404D272" name="Adresse">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="05FCEF96-1246-2B63-C700-EFAC7404D272" name="Address">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 09:44:32 UTC</createdTime>
-<comment><![CDATA[Postalisch-geographische Lokalisation
-
-Jede Adresse ist für einen Akteur definiert. D.h. die selbe Adresse kann mehrfach vorkommen.
-Falls ein generelles Adressverzeichnis als Referenz geführt wird (Basisadresse), muss das zusätlich erfasst werden.
-Dann wird diese Entität zur Verknüpfung zwischen Akteur und Basisadresse.]]></comment>
+<comment><![CDATA[Postal geographical localization Each address is defined for one actor. This means that the same address can occur more than once. If a general address directory is maintained as a reference (base address), this must be entered additionally. Then this entity becomes the link between actor and base address.]]></comment>
 <ownerDesignName>test_stb lokal</ownerDesignName>
 <engineerTo>
 <item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true"/>
@@ -33,10 +29,10 @@ Dann wird diese Entität zur Verknüpfung zwischen Akteur und Basisadresse."/>
 <property name="EN_ENT_SYNONYM" value=""/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<Attribute name="Adresstyp" id="FF67251E-70A4-8810-9AAE-8D3085C3FC14">
+<Attribute name="Type of address" id="FF67251E-70A4-8810-9AAE-8D3085C3FC14">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 11:18:19 UTC</createdTime>
-<comment><![CDATA[Zweck der Adresse (Finanz, Post, Lieferung etc.)]]></comment>
+<comment><![CDATA[**Purpose of the address (financial, postal, delivery, etc.)]]></comment>
 <ownerDesignName>test_stb lokal</ownerDesignName>
 <engineerTo>
 <item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true"/>
@@ -46,11 +42,11 @@ Dann wird diese Entität zur Verknüpfung zwischen Akteur und Basisadresse."/>
 <propertyMap>
 <property name="DE_ATTR_COMMENT" value="Zweck der Adresse (Finanz, Post, Lieferung etc.)"/>
 <property name="DE_ATTR_NAME" value="Adresstyp"/>
-<property name="EN_ATTR_COMMENT" value="*DE* Zweck der Adresse (Finanz, Post, Lieferung etc.)"/>
+<property name="EN_ATTR_COMMENT" value="**Purpose of the address (financial, postal, delivery, etc.)"/>
 <property name="EN_ATTR_NAME" value="Type of address"/>
 </propertyMap>
 </Attribute>
-<Attribute name="Strassenname" id="8DCE9DB8-E2C4-BCFC-1622-3B63D4730A07">
+<Attribute name="Streetname" id="8DCE9DB8-E2C4-BCFC-1622-3B63D4730A07">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 11:04:40 UTC</createdTime>
 <ownerDesignName>test_stb lokal</ownerDesignName>
@@ -67,7 +63,7 @@ Dann wird diese Entität zur Verknüpfung zwischen Akteur und Basisadresse."/>
 <property name="EN_ATTR_NAME" value="Streetname"/>
 </propertyMap>
 </Attribute>
-<Attribute name="Hausnr" id="69DE3C96-B9F0-F86E-230B-0AEC8F4067ED">
+<Attribute name="No" id="69DE3C96-B9F0-F86E-230B-0AEC8F4067ED">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 11:04:47 UTC</createdTime>
 <ownerDesignName>test_stb lokal</ownerDesignName>
@@ -84,7 +80,7 @@ Dann wird diese Entität zur Verknüpfung zwischen Akteur und Basisadresse."/>
 <property name="EN_ATTR_NAME" value="No"/>
 </propertyMap>
 </Attribute>
-<Attribute name="Gebäudename" id="A3F1453C-9777-43FA-2D3F-B9A4917113EA">
+<Attribute name="Building name" id="A3F1453C-9777-43FA-2D3F-B9A4917113EA">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 11:04:50 UTC</createdTime>
 <ownerDesignName>test_stb lokal</ownerDesignName>
@@ -101,7 +97,7 @@ Dann wird diese Entität zur Verknüpfung zwischen Akteur und Basisadresse."/>
 <property name="EN_ATTR_NAME" value="Building name"/>
 </propertyMap>
 </Attribute>
-<Attribute name="Geokoordinate" id="2C711332-0D94-0253-5C07-B9271155ADB9">
+<Attribute name="Geographical coordinate" id="2C711332-0D94-0253-5C07-B9271155ADB9">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 11:05:06 UTC</createdTime>
 <ownerDesignName>test_stb lokal</ownerDesignName>

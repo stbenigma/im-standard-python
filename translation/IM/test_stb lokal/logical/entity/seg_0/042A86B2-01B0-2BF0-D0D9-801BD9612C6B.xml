@@ -1,21 +1,8 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="042A86B2-01B0-2BF0-D0D9-801BD9612C6B" name="PLZ-Gebiet">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="042A86B2-01B0-2BF0-D0D9-801BD9612C6B" name="ZIP area">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 08:36:39 UTC</createdTime>
-<comment><![CDATA[Durch die Post vergebene Gebietseinteilung.
-Die Postleitzahl ist in vielen Ländern keine Zahl sondern eine Zeichenfolge mit Ziffern und Buchstaben
-
-Es gibt hierarchische Systeme beim Aufbau von PLZ:
-Z.B. USA
-221 - 62 -10 -10	 
-Segment - Sektor - Postdienststelle oder Zustellabschnitt - Leitzone oder Bearbeitungs- und Zustellzentrum
-
-Es kann andere genormte Systeme geben
-P3: Postleitzahl
-P2: Postleitzahluntergebiet
-P1: Postleitzahlgebiet
-P0: Land
-]]></comment>
+<comment><![CDATA[Postal division. The postal code is in many countries not a number but a string of numbers and letters There are hierarchical systems in the construction of postal code: Z.B. USA 221 - 62 -10 -10 Segment - Sector - Postal Service or Delivery Section - Control Zone or Processing and Delivery Center There may be other standardized systems. P3: Postal Code P2: Postal Code Subarea P1: Postal Code Area P0: Country]]></comment>
 <ownerDesignName>test_stb lokal</ownerDesignName>
 <engineerTo>
 <item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true"/>
@@ -29,7 +16,6 @@ P0: Land
 <maxVolumes>9999999</maxVolumes>
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
-<synonym>Postgebiet</synonym>
 <createSurrogateKey>true</createSurrogateKey>
 <propertyMap>
 <property name="DE_ENT_COMMENT" value="Durch die Post vergebene Gebietseinteilung.
@@ -53,7 +39,7 @@ P0: Land
 <property name="EN_ENT_SYNONYM" value=""/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<Attribute name="Postleitzahl" id="B5F33891-F2FE-CAF2-EB56-D971EE142581">
+<Attribute name="zip code" id="B5F33891-F2FE-CAF2-EB56-D971EE142581">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 08:36:39 UTC</createdTime>
 <ownerDesignName>test_stb lokal</ownerDesignName>
@@ -70,10 +56,10 @@ P0: Land
 <property name="EN_ATTR_NAME" value="zip code"/>
 </propertyMap>
 </Attribute>
-<Attribute name="PLZ-Ebene" id="07E07412-DAC0-FD4E-59BF-E4FF52A462BE">
+<Attribute name="zip level" id="07E07412-DAC0-FD4E-59BF-E4FF52A462BE">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 08:36:39 UTC</createdTime>
-<comment><![CDATA[P1-P3]]></comment>
+<comment><![CDATA[**P1-P3]]></comment>
 <ownerDesignName>test_stb lokal</ownerDesignName>
 <importedID>AE2AEEDC-E968-3546-D3E1-83335EF74C90</importedID>
 <engineerTo>
@@ -84,7 +70,7 @@ P0: Land
 <propertyMap>
 <property name="DE_ATTR_COMMENT" value="P1-P3"/>
 <property name="DE_ATTR_NAME" value="PLZ-Ebene"/>
-<property name="EN_ATTR_COMMENT" value="*DE* P1-P3"/>
+<property name="EN_ATTR_COMMENT" value="**P1-P3"/>
 <property name="EN_ATTR_NAME" value="zip level"/>
 </propertyMap>
 </Attribute>
