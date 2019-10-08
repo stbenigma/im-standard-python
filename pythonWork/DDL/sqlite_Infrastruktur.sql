@@ -15,6 +15,7 @@ CREATE TABLE speicherformat(
     spfo_dm             varchar(30),
 	constraint spfo_uk (spfo_name)
 );
+
 CREATE TABLE sprachen(
     spra_id                integer primary key autoincrement,
     spra_iso_name          varchar(60) NOT NULL,

@@ -60,12 +60,17 @@ def insert(psql,rec):
     cursor = dbConnect.myDbConn.cursor()
 
     try:
-        cursor.execute(psql,rec)
+        if (type(rec) is list):
+            cursor.executemany(psql, rec)
+        elif (type(rec) is tuple):
+            cursor.execute(psql, rec)
+        else:
+            raise Exception("unknown type for insert {}".format(type(rec)))
     except sqlite3.Error as e:
         if re.match("xxxxxxx",e.__str__()):
             pass
         else:
-            print(psql, rec)
+            print(psql, rec,type(rec))
             print ("Unerwarteter SQL-Fehler: \t{}" .format (str(e)))
             raise e
     id = cursor.lastrowid
@@ -74,19 +79,8 @@ def insert(psql,rec):
 #end insert
 
 def insertmany(psql,rec):
-    #print (psql,rec)
-    #return
-    cursor = dbConnect.myDbConn.cursor()
-    try:
-        cursor.executemany(psql,rec)
-    except sqlite3.Error as e:
-        if re.match("xxxxxxx",e.__str__()):
-            pass
-        else:
-            print(psql, rec)
-            print ("Unerwarteter SQL-Fehler: \t{}" .format (str(e)))
-            raise e
-    dbConnect.myDbConn.commit()
+    insert(psql,rec)
+    return
 #end insertmany
 
 def exec(psql,*args):

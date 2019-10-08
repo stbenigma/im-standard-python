@@ -16,14 +16,20 @@ CREATE TABLE entitaeten(
             '10000',
             '>100 Mio'
         )),
-    enti_uc varchar(30),
-    enti_dc varchar(30)
+	    enti_uc         varchar(30) NOT NULL,
+	    enti_dc        varchar(30) NOT NULL,
+	    enti_um        varchar(30),
+	    enti_dm        varchar(30)
 )
 
 CREATE TABLE synonyme(
     syno_id             integer NOT NULL primary key autoincrement,
     syno_name   		varchar(200),
     syno_enti_id        integer NOT NULL,
+    syno_uc         varchar(30) NOT NULL,
+    syno_dc        varchar(30) NOT NULL,
+    syno_um        varchar(30),
+    syno_dm        varchar(30),
 	unique(syno_name,syno_enti_id)
 	foreign key (syno_enti_id) references entitaeten(enti_id) ON DELETE CASCADE
 )
@@ -36,6 +42,10 @@ CREATE TABLE schluessel(
     schl_uc varchar(30),
     schl_dc varchar(30),
     schl_enti_id   integer NOT NULL,
+    schl_uc         varchar(30) NOT NULL,
+    schl_dc        varchar(30) NOT NULL,
+    schl_um        varchar(30),
+    schl_dm        varchar(30),
 	unique (schl_enti_id,schl_laufnr),
 	foreign key (schl_enti_id) references entitaeten(enti_id) ON DELETE CASCADE
 )
@@ -125,8 +135,10 @@ CREATE TABLE wertebereiche(
         )),
     wrtb_bin_spfo_id          integer,
 	wrtb_odm_guid		varchar(36),
-    wrtb_uc varchar(30),
-    wrtb_dc varchar(30),
+    wrtb_uc         varchar(30) NOT NULL,
+    wrtb_dc        varchar(30) NOT NULL,
+    wrtb_um        varchar(30),
+    wrtb_dm        varchar(30),
 	wrtb_odm_guid varchar(40),
     wrtb_datatype_ref varchar(40)
 )
@@ -139,8 +151,10 @@ CREATE TABLE vorgabewert(
     vgwt_wrtb_id           integer NOT NULL,
     vgwt_anzeige   varchar(200),
     vgwt_beschr    varchar(4000),
-    vgwt_uc                VARCHAR(30) ,
-    vgwt_dc                varchar(30),
+    vgwt_uc         varchar(30) NOT NULL,
+    vgwt_dc        varchar(30) NOT NULL,
+    vgwt_um        varchar(30),
+    vgwt_dm        varchar(30),
 	unique (vgwt_wrtb_id,vgwt_wert),
 	foreign key (vgwt_wrtb_id) references wertebereiche(wrtb_id) ON DELETE CASCADE
 )
@@ -201,7 +215,7 @@ CREATE TABLE attributes(
         )),
     attr_odm_guid		varchar(36),	
     attr_uc                varchar(30 )NOT NULL,
-    attr_dc                varchar(30 ),
+    attr_dc                varchar(30 ) NOT NULL,
     attr_um                varchar(30),
     attr_dm                varchar(30 ),
 	UNIQUE(attr_enti_id, attr_tech_name),
@@ -328,7 +342,8 @@ CREATE TABLE modellelem_typ(
             'BEZI',
             'BURU',
             'ENTI',
-            'WRTB'
+            'WRTB',
+            'SYNO'
         )),
     melt_name                varchar(60 )NOT NULL,
         melt_uc                  varchar(30 )NOT NULL,
@@ -341,13 +356,14 @@ CREATE TABLE modellelem_typ(
 
 CREATE TABLE modellelement(
     mode_id        integer NOT NULL primary key autoincrement,
+    mode_syno_id   integer NULL,
     mode_wrtb_id   integer NULL,
     mode_attr_id   integer NULL,
     mode_buru_id   integer NULL,
     mode_bezi_id   integer NULL,
     mode_enti_id   integer NULL,
-    mode_orge_id   integer NULL,
-    mode_melt_id   integer NOT NULL,	
+    mode_orge_id   integer NULL,    
+    mode_melt_id   integer NOT NULL,
     mode_uc        varchar(30 )NOT NULL,
     mode_dc        varchar(30)NOT NULL,
     mode_um        varchar(30 )NULL,
@@ -357,37 +373,51 @@ CREATE TABLE modellelement(
 	                                  mode_buru_id,
 	                                  mode_enti_id,
 	                                  mode_bezi_id),
-	CONSTRAINT fkarc_4 CHECK((mode_buru_id IS NOT NULL
-                         AND mode_bezi_id IS NULL
-                         AND mode_enti_id IS NULL
-                         AND mode_wrtb_id IS NULL
-                         AND mode_attr_id IS NULL)
-                          OR(mode_buru_id IS NULL
-                        AND  mode_bezi_id IS NOT NULL
-                        AND  mode_enti_id IS NULL
-                        AND  mode_wrtb_id IS NULL
-                        AND  mode_attr_id IS NULL)
-                          OR(mode_buru_id IS NULL
-                        AND  mode_bezi_id IS NULL
-                        AND  mode_enti_id IS NOT NULL
-                        AND  mode_wrtb_id IS NULL
-                        AND  mode_attr_id IS NULL)
-                          OR(mode_buru_id IS NULL
-                        AND  mode_bezi_id IS NULL
-                        AND  mode_enti_id IS NULL
-                        AND  mode_wrtb_id IS NOT NULL
-                        AND  mode_attr_id IS NULL)
-                          OR(mode_buru_id IS NULL
-                        AND  mode_bezi_id IS NULL
-                        AND  mode_enti_id IS NULL
-                        AND  mode_wrtb_id IS NULL
-					    AND  mode_attr_id IS NOT NULL)
-					)
+	CONSTRAINT fkarc_4 CHECK(((mode_buru_id IS NOT NULL)
+                                  AND(mode_bezi_id IS NULL)
+                                  AND(mode_enti_id IS NULL)
+                                  AND(mode_wrtb_id IS NULL)
+                                  AND(mode_attr_id IS NULL)
+                                  AND(mode_syno_id IS NULL))
+                                 OR((mode_bezi_id IS NOT NULL)
+                                    AND(mode_buru_id IS NULL)
+                                    AND(mode_enti_id IS NULL)
+                                    AND(mode_wrtb_id IS NULL)
+                                    AND(mode_attr_id IS NULL)
+                                  AND(mode_syno_id IS NULL))
+                                 OR((mode_enti_id IS NOT NULL)
+                                    AND(mode_buru_id IS NULL)
+                                    AND(mode_bezi_id IS NULL)
+                                    AND(mode_wrtb_id IS NULL)
+                                    AND(mode_attr_id IS NULL)
+                                  AND(mode_syno_id IS NULL))
+                                 OR((mode_wrtb_id IS NOT NULL)
+                                    AND(mode_buru_id IS NULL)
+                                    AND(mode_bezi_id IS NULL)
+                                    AND(mode_enti_id IS NULL)
+                                    AND(mode_attr_id IS NULL)
+                                  AND(mode_syno_id IS NULL))
+                                 OR((mode_attr_id IS NOT NULL)
+                                    AND(mode_buru_id IS NULL)
+                                    AND(mode_bezi_id IS NULL)
+                                    AND(mode_enti_id IS NULL)
+                                    AND(mode_wrtb_id IS NULL)
+                                  AND(mode_syno_id IS NULL))
+                                 OR((mode_syno_id IS NOT NULL)
+								    AND (mode_buru_id IS NULL)
+                                    AND(mode_bezi_id IS NULL)
+                                    AND(mode_enti_id IS NULL)
+                                    AND(mode_wrtb_id IS NULL)
+                                    AND(mode_attr_id IS NULL)
+                                  ))
+								    CONSTRAINT mode_syno_fk_ist FOREIGN KEY(mode_syno_id)
+								           REFERENCES synonyme(syno_id)
+								               ON DELETE CASCADE,
 								    CONSTRAINT mode_attr_fk_ist FOREIGN KEY(mode_attr_id)
 								           REFERENCES attributes(attr_id)
 								               ON DELETE CASCADE,
 								    CONSTRAINT mode_bezi_fk FOREIGN KEY(mode_bezi_id)
-								           REFERENCES  beziehungen(bezi_id)
+								           REFERENCES beziehungen(bezi_id)
 								   		ON DELETE CASCADE,
 								    CONSTRAINT mode_enti_fk_ist FOREIGN KEY(mode_enti_id)
 								           REFERENCES entitaeten(enti_id)
@@ -395,8 +425,6 @@ CREATE TABLE modellelement(
 								    CONSTRAINT mode_wrtb_fk_ist FOREIGN KEY(mode_wrtb_id)
 								   		           REFERENCES wertebereiche(wrtb_id)
 								   		               ON DELETE CASCADE,
-								    CONSTRAINT mode_orge_fk_verantw FOREIGN KEY(mode_orge_id)
-								           REFERENCES org_einh(orge_id),
 								    CONSTRAINT mode_melt_fk_verantw FOREIGN KEY(mode_melt_id)
 								           REFERENCES modellelem_typ(melt_id)
 )

@@ -375,7 +375,8 @@ CREATE TABLE modellelem_typ(
             'BEZI',
             'BURU',
             'ENTI',
-            'WRTB'
+            'WRTB',
+            'SYNO'
         )),
     melt_name                varchar(60 )NOT NULL,
         melt_uc                  varchar(30 )NOT NULL,
@@ -391,6 +392,7 @@ CREATE TABLE modellelem_typ(
     dbDDL.createTable("""
 CREATE TABLE modellelement(
     mode_id        integer NOT NULL primary key autoincrement,
+    mode_syno_id   integer NULL,
     mode_wrtb_id   integer NULL,
     mode_attr_id   integer NULL,
     mode_buru_id   integer NULL,
@@ -411,32 +413,41 @@ CREATE TABLE modellelement(
                                   AND(mode_bezi_id IS NULL)
                                   AND(mode_enti_id IS NULL)
                                   AND(mode_wrtb_id IS NULL)
-                                  AND(mode_attr_id IS NULL))
+                                  AND(mode_attr_id IS NULL)
+                                  AND(mode_syno_id IS NULL))
                                  OR((mode_bezi_id IS NOT NULL)
                                     AND(mode_buru_id IS NULL)
                                     AND(mode_enti_id IS NULL)
                                     AND(mode_wrtb_id IS NULL)
-                                    AND(mode_attr_id IS NULL))
+                                    AND(mode_attr_id IS NULL)
+                                  AND(mode_syno_id IS NULL))
                                  OR((mode_enti_id IS NOT NULL)
                                     AND(mode_buru_id IS NULL)
                                     AND(mode_bezi_id IS NULL)
                                     AND(mode_wrtb_id IS NULL)
-                                    AND(mode_attr_id IS NULL))
+                                    AND(mode_attr_id IS NULL)
+                                  AND(mode_syno_id IS NULL))
                                  OR((mode_wrtb_id IS NOT NULL)
                                     AND(mode_buru_id IS NULL)
                                     AND(mode_bezi_id IS NULL)
                                     AND(mode_enti_id IS NULL)
-                                    AND(mode_attr_id IS NULL))
+                                    AND(mode_attr_id IS NULL)
+                                  AND(mode_syno_id IS NULL))
                                  OR((mode_attr_id IS NOT NULL)
                                     AND(mode_buru_id IS NULL)
                                     AND(mode_bezi_id IS NULL)
                                     AND(mode_enti_id IS NULL)
-                                    AND(mode_wrtb_id IS NULL))
+                                    AND(mode_wrtb_id IS NULL)
+                                  AND(mode_syno_id IS NULL))
                                  OR((mode_buru_id IS NULL)
                                     AND(mode_bezi_id IS NULL)
                                     AND(mode_enti_id IS NULL)
                                     AND(mode_wrtb_id IS NULL)
-                                    AND(mode_attr_id IS NULL)))
+                                    AND(mode_attr_id IS NULL)
+                                  AND(mode_syno_id IS NOT NULL)))
+								    CONSTRAINT mode_syno_fk_ist FOREIGN KEY(mode_syno_id)
+								           REFERENCES synonyme(syno_id)
+								               ON DELETE CASCADE,
 								    CONSTRAINT mode_attr_fk_ist FOREIGN KEY(mode_attr_id)
 								           REFERENCES attributes(attr_id)
 								               ON DELETE CASCADE,

@@ -16,12 +16,12 @@ def  insertEnti(enti):
 
 #end insertEnti
 
-def insertSynonym(pData):
+def insertSynonym(p_data):
     lsql = """
         insert into synonyme ( syno_name, syno_enti_id) 
             values (?,?) 
         """
-    return dbDML.insert(lsql, pData)
+    return dbDML.insert(lsql, p_data)
 # end insertSynonym
 
 def  insertWrtb(wrtb):
@@ -134,27 +134,30 @@ def insertModellElemTyp(pData):
     return dbDML.insert(lsql, pData)
 #insertModellElemTyp
 
-def insertModellElement(pData):
+def insertmodellelement(pData):
     #mode_wrtb_id,,  mode_attr_id
     #mode_buru_id,   mode_bezi_id,   mode_enti_id
     #mode_orge_id,   mode_melt_id,   mode_uc
     #mode_dc
     lsql = """insert into modellelement (mode_wrtb_id,  mode_attr_id
         ,mode_buru_id,   mode_bezi_id,   mode_enti_id
-        ,mode_orge_id,   mode_melt_id,   mode_uc
+        ,mode_orge_id,   mode_syno_id ,mode_melt_id,   mode_uc
         ,mode_dc)
-        values(?,?,?,?,?,?,?,?,?)"""
+        values(?,?,?,?,?,?,?,?,?,?)"""
     return dbDML.insert(lsql, pData)
-#insertModellElement
+#insertmodellelement
 
 def insertModeEnti(entiId):
-    return insertModellElement(pData=(None,None,None,None,entiId,None,dbLookup.meltLookup('ENTI'),'--',date.today()))
+    return insertmodellelement(pData=(None, None, None, None, entiId, None, None, dbLookup.meltLookup('ENTI'), '--', date.today()))
 #insertModeEnti
 def insertModeAttr(attrId):
-    return insertModellElement(pData=(None,attrId,None,None,None,None,dbLookup.meltLookup('ATTR'),'--',date.today()))
+    return insertmodellelement(pData=(None, attrId, None, None, None, None, None, dbLookup.meltLookup('ATTR'), '--', date.today()))
+#insertModeAttr
+def insertmodesyno(p_synid):
+    return insertmodellelement(pData=(None, None, None, None, None, None, p_synid, dbLookup.meltLookup('SYNO'), '--', date.today()))
 #insertModeAttr
 def insertModeBezi(beziId):
-    return insertModellElement(pData=(None,None,None,beziId,None,None,dbLookup.meltLookup('BEZI'),'--',date.today()))
+    return insertmodellelement(pData=(None, None, None, beziId, None, None, None, dbLookup.meltLookup('BEZI'), '--', date.today()))
 #insertModebezi
 
 def insertBenudef_wert(pData):
@@ -245,9 +248,11 @@ def insertUdpAttr(attrId):
             """ .format(attrId))
 #insertUdpAttr
 
-def insertSprachtexte(p_texte, p_modeid, p_defaultlang):
-#    sprachtexte = [[vonText,'TEXT_FROM']
-#                  ,[zuText,'TEXT_TO')]]
+def insertSprachtexte(p_texte, p_modeid, p_defaultlang=None):
+#    sprachtexte = [[vonText,creby,crety,'TEXT_FROM']
+#                  ,[zuText,creby,crety,'TEXT_TO']]
+
+    p_defaultlang = dbParam.dbDefaultLang if p_defaultlang is None else p_defaultlang
     values = [v for v in p_texte]
     #print (values)
     lsql= """insert into sprachtexte 
@@ -257,7 +262,7 @@ def insertSprachtexte(p_texte, p_modeid, p_defaultlang):
                   select  attrname, case  when defaultlang = spra_iso_code2 then '' 
                                     else '*'|| defaultlang ||'* ' end
                                     || ? text
-                    ,modeid, '{}' uc,'{}' dc, spra_id
+                    ,modeid, ? uc,? dc, spra_id
                   from sprachen
                   cross join (select {} modeid, '{}' defaultlang, ? attrname)
                   where not exists 

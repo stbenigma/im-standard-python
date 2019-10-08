@@ -182,10 +182,8 @@ def transferDomains():
             print (wrtb.wrtb_datatype_ref,wrtb.wrtb_typ)
         #print("nach inset wertebereich id={}" .format(wrtbid))
 
-        idx = 0
         if (lov is not None) & (lov != {}):
-            for key in lovs.keys():
-                idx += 1
+            for idx,key in enumerate(lovs.keys(),start=1):
                 #print ('{}: {} = {}' .format(idx,key,lovs[key]))
                 #vgwt_wert,  vgwt_sortrhfg, vgwt_wrtb_id, vgwt_anzeige, vgwt_beschr
                 dbInserts.insertVorgabewert(pvgwt=(key, idx, wrtbid, lovs[key], None))
@@ -290,7 +288,7 @@ def do1Attribute(n,attr,entiId=None,beziId=None):
     updateUDP(p_modeid=lmodeId, p_obj=attr)
     sprachtexte = [[attrName,'ATTR_NAME']
                   ,[attrcomm,'ATTR_COMMENT']]
-    dbInserts.insertSprachtexte(p_texte=sprachtexte, p_modeid=lmodeId, p_defaultlang=dbParam.dbDefaultLang)
+    dbInserts.insertSprachtexte(p_texte=sprachtexte, p_modeid=lmodeId)
 
 #do1Attribute
 def    fillKeys(enti,entiId):
@@ -349,10 +347,12 @@ def do1Entity(fileName):
     root = tree.getroot()
     entname = root.get("name")
     entcomm = findText(root,'comment')
+    creby = findText(root,'createdBy')
+    creti = findText(root,'createdTime')
     row=(root.get('id'),None,None\
         ,entname,entcomm,None\
         ,None,None,None\
-        ,None,findText(root,'createdBy'),findText(root,'createdTime')
+        ,None,creby,creti
         ,findText(root,'hierarchicalParent'),None)
     #print ("Entity:", row)
     #enti_odm_guid, enti_augb_id, enti_tech_name
@@ -366,29 +366,27 @@ def do1Entity(fileName):
 
     sobj =findText(root,'synonym')
     if (sobj is not None):
-        synonyme = sobj.split(',')
+        for syn in sobj.split(','):
+            syno = syn.strip()
+            synid = dbInserts.insertSynonym((syno,entiId))
+            modeid = dbInserts.insertmodesyno(synid)
+            sprachtexte = [[syno,creby,creti, 'ENTI_SYNONYM']]
+            dbInserts.insertSprachtexte(p_texte=sprachtexte, p_modeid=modeid)
 
-        for idx in range(len(synonyme)):
-            synonym = synonyme[idx].strip()
-            #print(synonym)
-            dbInserts.insertSynonym((synonym,entiId))
-        #rof
     #fi
 
     #print (entname,translate.translate(p_text=entname,p_fromlang='de',p_tolang='en'),translate.translate(p_text=entname,p_fromlang='de',p_tolang='fr'))
 
     updateUDP(p_modeid=lmodeId, p_obj=root)
-    sprachtexte = [[entname,'ENT_NAME']
-                  ,[entcomm,'ENT_COMMENT']]
-    dbInserts.insertSprachtexte(p_texte=sprachtexte, p_modeid=lmodeId, p_defaultlang=dbParam.dbDefaultLang)
+    sprachtexte = [[entname,'ENTI_NAME']
+                  ,[entcomm,'ENTI_COMMENT']]
+    dbInserts.insertSprachtexte(p_texte=sprachtexte, p_modeid=lmodeId)
 
     attrs= root.find('attributes')
     if attrs is not None:
-        idx = 0
-        for attr in attrs:
+        for idx,attr in enumerate(attrs,start=1):
         #alle Attribute
             #print(attr.get('name'),attr.get('id'))
-            idx +=1
             do1Attribute(n=idx,attr=attr,entiId=entiId)
         #rof
     #fi
@@ -397,6 +395,7 @@ def do1Entity(fileName):
 
 def transferEntitaeten():
     #lösche die Entitäten
+    dbDML.delete("synonyme")
     dbDML.delete("entitaeten")
 
     for el in os.listdir(odmParam.imEntityDirec):
@@ -564,15 +563,13 @@ def do1Relation(fileName):
     updateUDP(p_modeid=lmodeId, p_obj=root)
     sprachtexte = [[vonText,'TEXT_FROM']
                   ,[zuText,'TEXT_TO']]
-    dbInserts.insertSprachtexte(p_texte=sprachtexte, p_modeid=lmodeId, p_defaultlang=dbParam.dbDefaultLang)
+    dbInserts.insertSprachtexte(p_texte=sprachtexte, p_modeid=lmodeId)
 
     attrs= root.find('attributes')
     if attrs is not None:
-        idx = 0
-        for attr in attrs:
+        for idx,attr in enumerate(attrs,start=1):
             #alle Attribute
             #print((attr.get('name'),attr.get('id')))
-            idx +=1
             do1Attribute(n=idx,attr=attr,beziId=beziId)
         #endfor
     #fi
@@ -605,6 +602,7 @@ def fillMelt():
         , ('BURU', 'Business Rules', 'stb', date.today()) \
         , ('ENTI', 'Entitäten', 'stb', date.today()) \
         , ('WRTB', 'Wertebereiche', 'stb', date.today()) \
+        , ('SYNO', 'Synonyme', 'stb', date.today()) \
      ]
 
     dbInserts.insertMelt(modellelementtypen)

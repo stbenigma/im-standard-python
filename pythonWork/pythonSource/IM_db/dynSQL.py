@@ -86,13 +86,10 @@ def main(p_imdirec=None, p_modelname=None):
 #      join beziehungen on bezi_arcs_id = arcs_id  where arcs_name = 'Arc_9'"""
 #insert into sprachtext (sptx_attrname,  sptx_text,  sptx_spra_id,sptx_mode_id, sptx_uc,   sptx_dc    )
 
-    l_sql = """select * from sprachtexte 
-                join sprachen on spra_id = sptx_spra_id where spra_iso_code2 = 'fr'"""
+    l_sql = """select * from synonyme join modellelement on mode_syno_id = syno_id"""
     result = dbDML.select(l_sql)
     for row in result:
         print (row)
-    dbDML.exec("""update sprachtexte set sptx_text = replace(sptx_text,'**','') 
-        """)
 #main
 #.format(entiId,entiId)
 #where von.enti_id = {} or zu.enti_id = {}

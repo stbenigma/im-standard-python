@@ -15,7 +15,7 @@ def main(p_imdirec=None, p_modelname=None):
 #    print (dbParam.dbDirectory+dbParam.dbName)
 
     print ("fillDB",odmParam.imDirectory,odmParam.imModelName)
-    dbConnect.openDB(dbParam.dbDirectory,dbParam.dbName);
+    dbConnect.openDB(dbParam.dbDirectory,dbParam.dbName,fks='ON');
 
     transferModel.insertBaseData()
     dbParam.liesDefaultLang()

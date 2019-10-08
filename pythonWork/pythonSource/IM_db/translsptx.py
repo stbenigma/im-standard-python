@@ -19,11 +19,9 @@ def translateNewText():
     return
     rows = dbDML.select(l_sql)
     rowslist = [list(l) for l in rows ]
-    i=0
-    for row in rowslist:
-        i+=1
+    for i,row in enumerate(rowslist,start=1):
         if i> 10: break
-        print (row,row[0][5:])
+        #print (row,row[0][5:])
         newval = '**'+translate.translate(p_text=row[0][5:],p_fromlang=dbParam.dbDefaultLang,p_tolang=dbLookup.sprachen(row[2],'spra_iso_code2'))
         #print (row[0][5:],newval,row[1])
         row[0] = newval
