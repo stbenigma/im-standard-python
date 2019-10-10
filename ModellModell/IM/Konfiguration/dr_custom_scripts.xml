@@ -465,16 +465,13 @@ function change2EN() {
 			<![CDATA[ents = model.getEntitySet().toArray();
 ent = ents[1];
 ent2 = model.getEntitySet().getByName('TEST');
-if (!ent.getObjectTypeName().equals("Entity")){
-	throw new Error(ent.getName());
-	}
-svs = ent.getUsedInSubviews();
-//dp = ent.getDesignPartView();
-//]dp.getDesignPartView();
-sv = svs[0];
-for (i=0;i<svs.len;i++) svs[i].setDirty(true);
-
-]]>
+var path="/Users/stb/Documents/Projekte/FYAYC_intern/gitHub/translation/translationLib.xml";
+ var Paths = Java.type('java.nio.file.Paths');
+var Files = Java.type('java.nio.file.Files');
+var lines = Files.readAllLines(Paths.get(path), Java.type('java.nio.charset.StandardCharsets').UTF_8);
+	throw new Error("this is an error"+lines[0]);
+var data = [];
+lines.forEach(function(line) { data.push(line); });]]>
 		</script>
 	</scr>
 	<scr id="4B7E11A4-7791-9090-5842-A5425B4D53A1" name="TRANSL_change2DE" object="logical" engine="Oracle Nashorn" type="" var="model" library="translation" method="change2DE" purpose="transformation" >
