@@ -509,8 +509,8 @@ def main():
     #endfor
     printHTML.writeToc("</ol></ol></div>")
 
-    printHTML.writeToc("""<div><ol class ="tree"><li><label for="objects">UDP-Matrix</label>
-            <input type="checkbox" id="objects" /><ol>
+    printHTML.writeToc("""<div><ol class ="tree"><li><label for="matrix">UDP-Matrix</label>
+            <input type="checkbox" id="matrix" /><ol>
             """)
     udpAttrThema = dbDML.select(udpThemenSql)
     for u in udpAttrThema:
