@@ -1,0 +1,195 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="D901C024-8631-EE37-8701-60D4097189D7" name="ANSPRECHPARTNER">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-08 08:53:59 UTC</createdTime>
+<comment><![CDATA[Person in einer Organisationseinheit  die für die Definition oder Pflege eines Attributwertes verantwortlich ist.
+]]></comment>
+<generatorID>275339EE-5E42-8B7F-EE4D-AA56A94ECA65</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<abbreviation>ANSP</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ANSP_ID" id="5B45AA8F-B1EB-EEF3-05C3-4494F0A94D72">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-08 08:53:59 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+<Column name="ANSP_ORGE_ID" id="6435BEE5-B4BB-2485-382D-0A1F03497643">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-04 15:22:55 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="F785891C-B1C3-5387-E246-504A454B616C" referredColumn="50E23AA3-FC98-C365-F8CC-526C760D5F3A"/>
+</associations>
+</Column>
+<Column name="ANSP_NAME" id="72749D8A-6EFB-D605-5223-2F34FF40B3AD">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-08 08:53:59 UTC</createdTime>
+<generatorID>DCDDC1A5-F6DB-3BB2-F9D5-ADF019DD4636</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ANSP_VORNAME" id="6ECB193B-70D2-1BB2-590C-8EFCF31251B9">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-08 08:53:59 UTC</createdTime>
+<generatorID>AB2F0A85-6238-D648-5EF6-EFF32C6A082B</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ANSP_EMAIL" id="F4927580-706D-AB41-DCFF-544E4D9E13A8">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-08 08:53:59 UTC</createdTime>
+<generatorID>74BD582A-25CC-9ADB-E21F-CC8EE5B52A61</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>4B4F8F40-D3A4-4F39-8CB3-BB6C57534E96</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ANSP_PRIV_TEL_NR" id="CC8D8F13-BD2B-26D8-FB35-06A9C16712FD">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-08 08:53:59 UTC</createdTime>
+<generatorID>5A77DAC0-43AC-2982-9897-CA38B844DED0</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>7F98E20B-63A1-C3F1-F7AE-0E2F6BC2C8D5</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ANSP_GESCH_TEL_NR" id="9D9BF035-9476-9605-8DA5-26D393B79098">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-08 08:53:59 UTC</createdTime>
+<generatorID>7485D82F-1E2F-338B-0AD3-253B9C1237AB</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>7F98E20B-63A1-C3F1-F7AE-0E2F6BC2C8D5</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ANSP_UC" id="CB67F370-1F22-9D6B-31A1-D33AAADB74F6">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-08 08:53:59 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<formulaDesc>USER</formulaDesc>
+<sourceType>System</sourceType>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<computed>true</computed>
+<defaultOntNull>true</defaultOntNull>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="F7EEFF47-7A42-2A3E-7DFC-D0558D6996B8"/>
+</propertyMap>
+</Column>
+<Column name="ANSP_DC" id="60331AAB-BFED-AEBC-E376-5BA1F98D10F0">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-08 08:53:59 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT047</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="74D877A0-4C3B-63EE-06C5-071C7695907C"/>
+</propertyMap>
+</Column>
+<Column name="ANSP_UM" id="D5D462DD-7CF7-F431-ABD7-B75D684EB14A">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-08 08:53:59 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="B2E17D53-C2F7-74D9-022D-5D63F3931519"/>
+</propertyMap>
+</Column>
+<Column name="ANSP_DM" id="5E1932E1-0961-E204-5BC5-94BA18741F1C">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-08 08:53:59 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT047</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="B398D247-00C1-F016-3BBB-FE65CFFFF7AA"/>
+</propertyMap>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="143EC9D5-3901-2ADA-2B8D-972F85E90FD7" name="ANSP_PK">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-08 08:53:59 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="5B45AA8F-B1EB-EEF3-05C3-4494F0A94D72"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="C51C7D37-5EF5-B3F3-8017-BB987EDE6F73" name="ANSP_EMAIL_UK">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-08 08:53:59 UTC</createdTime>
+<generatorID>7AA2840A-6C04-F07C-CEC9-444E2C71A17A</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="F4927580-706D-AB41-DCFF-544E4D9E13A8"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="91AA5937-04B1-8EB0-26C4-7D5701571FED" name="ANSP_ORGE_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-04 15:22:55 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="6435BEE5-B4BB-2485-382D-0A1F03497643"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

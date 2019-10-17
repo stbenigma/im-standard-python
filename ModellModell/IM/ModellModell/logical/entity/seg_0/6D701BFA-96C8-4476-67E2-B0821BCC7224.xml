@@ -1,0 +1,41 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="6D701BFA-96C8-4476-67E2-B0821BCC7224" name="Wertebereichgruppe">
+<createdBy>stb</createdBy>
+<createdTime>2019-01-29 12:45:08 UTC</createdTime>
+<comment><![CDATA[Es gibt Attribute, die aus mehreren Bestandteilen bestehen, aber für eine Entität wie ein Attribut angesehen werden (können).
+Die Bestandteile dieser Attributgruppe treten immer gemeinsam auf.
+Dass ein Attribut Teilwerte enthält, für die man sich separat interessiert, verletzt im Grundsatz die 1. Normalform. Wenn aber die Elemente einer Attributgruppe selber Attribute sind und die Gruppe als Platzhalter von mehreren Attributen verstanden werden kann, ist diese Verletzung auflösbar.
+
+Beispiele:
+Telefon-Nr: bestehend aus Landesvorwahl und Rufnummer
+Koordinaten bestehend aus X und Y-Koordinate (bzw. Westliche länge und nördliche Breite)
+Hotelzimmer-Nr bestehend aus Stockwerk und ZimmerNr (ACHTUNG: nicht 1. Stelle = Stockwerk, sondern 1 Feld Stockwerk und 1 Feld ZimmerNr)
+Flugkennung bestehend aus Fluggesellschaft kürzel und Flugnummer (LX 247)]]></comment>
+<ownerDesignName>ModellModell</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+</engineerTo>
+<typeID>1C6A8769-7651-51C0-9E0A-D0C138DE6193</typeID>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<hierarchicalParent>D2A42970-AC5F-B209-EC1C-8C8F92DF7345</hierarchicalParent>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<synonym>Gruppenattribut</synonym>
+<createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="Beispiele" value="Geschlecht (M/W) / Bestellstatus (offen, in Arbeit, geschlossen)"/>
+<property name="DE_ENTI_COMMENT" value="Es gibt Attribute, die aus mehreren Bestandteilen bestehen, aber für eine Entität wie ein Attribut angesehen werden (können). Die Bestandteile dieser Attributgruppe treten immer gemeinsam auf. Dass ein Attribut Teilwerte enthält, für die man sich separat interessiert, verletzt im Grundsatz die 1. Normalform. Wenn aber die Elemente einer Attributgruppe selber Attribute sind und die Gruppe als Platzhalter von mehreren Attributen verstanden werden kann, ist diese Verletzung auflösbar.  Beispiele: Telefon-Nr: bestehend aus Landesvorwahl und Rufnummer Koordinaten bestehend aus X und Y-Koordinate (bzw. Westliche länge und nördliche Breite) Hotelzimmer-Nr bestehend aus Stockwerk und ZimmerNr (ACHTUNG: nicht 1. Stelle = Stockwerk, sondern 1 Feld Stockwerk und 1 Feld ZimmerNr) Flugkennung bestehend aus Fluggesellschaft kürzel und Flugnummer (LX 247)"/>
+<property name="DE_ENTI_NAME" value="Wertebereichgruppe"/>
+<property name="DE_ENTI_SYNONYM" value="Gruppenattribut"/>
+<property name="EN_ENTI_COMMENT" value="*DE* Es gibt Attribute, die aus mehreren Bestandteilen bestehen, aber für eine Entität wie ein Attribut angesehen werden (können). Die Bestandteile dieser Attributgruppe treten immer gemeinsam auf. Dass ein Attribut Teilwerte enthält, für die man sich separat interessiert, verletzt im Grundsatz die 1. Normalform. Wenn aber die Elemente einer Attributgruppe selber Attribute sind und die Gruppe als Platzhalter von mehreren Attributen verstanden werden kann, ist diese Verletzung auflösbar.  Beispiele: Telefon-Nr: bestehend aus Landesvorwahl und Rufnummer Koordinaten bestehend aus X und Y-Koordinate (bzw. Westliche länge und nördliche Breite) Hotelzimmer-Nr bestehend aus Stockwerk und ZimmerNr (ACHTUNG: nicht 1. Stelle = Stockwerk, sondern 1 Feld Stockwerk und 1 Feld ZimmerNr) Flugkennung bestehend aus Fluggesellschaft kürzel und Flugnummer (LX 247)"/>
+<property name="EN_ENTI_NAME" value="*DE* Wertebereichgruppe"/>
+<property name="EN_ENTI_SYNONYM" value="*DE* Gruppenattribut"/>
+</propertyMap>
+</Entity>

@@ -1,0 +1,29 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="63297DBF-B544-FE58-D65A-A5BA63EE2220" name="Geschäftszustand">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-15 17:50:31 UTC</createdTime>
+<comment><![CDATA[Ein Datenzustand (z.B. tiefer Lagerbestand, zu viele offene Rechnungen für einen Kunden, tiefer oder hoher Kontostand etc.) löst einen Geschäftsprozess eine -transaktion aus oder ist das vorgesehene Ergebnis eines Prozesses.
+]]></comment>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="DE_ENTI_COMMENT" value="Ein Datenzustand (z.B. tiefer Lagerbestand, zu viele offene Rechnungen für einen Kunden, tiefer oder hoher Kontostand etc.) löst einen Geschäftsprozess eine -transaktion aus oder ist das vorgesehene Ergebnis eines Prozesses. "/>
+<property name="DE_ENTI_NAME" value="Geschäftszustand"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_COMMENT" value="*DE* Ein Datenzustand (z.B. tiefer Lagerbestand, zu viele offene Rechnungen für einen Kunden, tiefer oder hoher Kontostand etc.) löst einen Geschäftsprozess eine -transaktion aus oder ist das vorgesehene Ergebnis eines Prozesses. "/>
+<property name="EN_ENTI_NAME" value="*DE* Geschäftszustand"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+</propertyMap>
+</Entity>

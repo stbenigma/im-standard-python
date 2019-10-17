@@ -1,0 +1,27 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_232" directorySegmentName="seg_1" id="ED8B219D-D360-CA4D-8863-770AF7FB833B">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-15 18:13:37 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<useSurrogateKey>true</useSurrogateKey>
+<identifying>false</identifying>
+<nameOnSource>startet</nameOnSource>
+<nameOnTarget>gestartet an</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>590887CF-B0AB-E7A0-BCE7-5A6DFF776800</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>FC9A4A82-B2DA-9035-78F2-1D15759278F7</targetEntity>
+<transferable>true</transferable>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="startet"/>
+<property name="DE_RELA_TEXT_TO" value="gestartet an"/>
+<property name="EN_RELA_TEXT_FROM" value="*DE* startet"/>
+<property name="EN_RELA_TEXT_TO" value="*DE* gestartet an"/>
+</propertyMap>
+</Relation>

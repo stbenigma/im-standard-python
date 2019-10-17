@@ -1,0 +1,27 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_228" directorySegmentName="seg_1" id="A78C0EAC-853B-BB92-ED04-E354EA8207D3">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-15 17:53:55 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<useSurrogateKey>true</useSurrogateKey>
+<identifying>false</identifying>
+<nameOnSource>gesteuert von</nameOnSource>
+<nameOnTarget>steuert</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>63297DBF-B544-FE58-D65A-A5BA63EE2220</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>4050BC8C-EBCA-484C-5F1E-18E5920C8C5C</targetEntity>
+<transferable>true</transferable>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="gesteuert von"/>
+<property name="DE_RELA_TEXT_TO" value="steuert"/>
+<property name="EN_RELA_TEXT_FROM" value="*DE* gesteuert von"/>
+<property name="EN_RELA_TEXT_TO" value="*DE* steuert"/>
+</propertyMap>
+</Relation>

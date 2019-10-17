@@ -1,0 +1,157 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="1EDA2467-D0C9-4EC3-6BDA-5DC7D5AAA0F9" name="Geschäftsregel">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-23 13:39:01 UTC</createdTime>
+<comment><![CDATA[Geschäftsregel, die Attributwerte auf Regelkonformität prüft.
+Diese Regeln sind passiv. D.h. es wird überprüft, ob der Wert (ggf. im Zusammenhang mit anderen Werten dieser oder anderer Entitäten) aus fachlicher Sicht korrekt ist.
+
+Regelverletzungen können als SQL Selects angegeben werden. Jedes Tupel, das das Select liefert verletzt die Regel.   ]]></comment>
+<ownerDesignName>ModellModell</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+</engineerTo>
+<typeID>1C6A8769-7651-51C0-9E0A-D0C138DE6193</typeID>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<synonym>Business Rule</synonym>
+<createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="Beispiele" value="Liefermenge &lt;= Bestellmenge, Kunden mit zu vielen offenen Rechnungen können keine Bestellung aufgeben"/>
+<property name="DE_ENTI_COMMENT" value="Geschäftsregel, die Attributwerte auf Regelkonformität prüft. Diese Regeln sind passiv. D.h. es wird überprüft, ob der Wert (ggf. im Zusammenhang mit anderen Werten dieser oder anderer Entitäten) aus fachlicher Sicht korrekt ist.  Regelverletzungen können als SQL Selects angegeben werden. Jedes Tupel, das das Select liefert verletzt die Regel.   "/>
+<property name="DE_ENTI_NAME" value="Geschäftsregel"/>
+<property name="DE_ENTI_SYNONYM" value="Business Rule"/>
+<property name="EN_ENTI_COMMENT" value="*DE* Geschäftsregel, die Attributwerte auf Regelkonformität prüft. Diese Regeln sind passiv. D.h. es wird überprüft, ob der Wert (ggf. im Zusammenhang mit anderen Werten dieser oder anderer Entitäten) aus fachlicher Sicht korrekt ist.  Regelverletzungen können als SQL Selects angegeben werden. Jedes Tupel, das das Select liefert verletzt die Regel.   "/>
+<property name="EN_ENTI_NAME" value="*DE* Geschäftsregel"/>
+<property name="EN_ENTI_SYNONYM" value="*DE* Business Rule"/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Name" id="D4367DA7-6021-7E29-BEFC-2F6B66AB1763">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-23 13:39:01 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Name"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="*DE* Name"/>
+</propertyMap>
+</Attribute>
+<Attribute name="Beschreibung" id="2B940275-6B40-64A6-6459-46A41243F4EF">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-23 13:40:18 UTC</createdTime>
+<comment><![CDATA[Umschreibung, Erklärung der Regel]]></comment>
+<ownerDesignName>ModellModell</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value="Umschreibung, Erklärung der Regel"/>
+<property name="DE_ATTR_NAME" value="Beschreibung"/>
+<property name="EN_ATTR_COMMENT" value="*DE* Umschreibung, Erklärung der Regel"/>
+<property name="EN_ATTR_NAME" value="*DE* Beschreibung"/>
+</propertyMap>
+</Attribute>
+<Attribute name="Regel" id="723B41D1-B556-FACB-A890-B8B7F4FD8F6B">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-23 13:40:24 UTC</createdTime>
+<comment><![CDATA[Regel, die Werte beschränken auf Grund von komplexen Zusammenhängen (mehere Entitäten, Attribute, Beziehungen)]]></comment>
+<ownerDesignName>ModellModell</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value="Regel, die Werte beschränken auf Grund von komplexen Zusammenhängen (mehere Entitäten, Attribute, Beziehungen)"/>
+<property name="DE_ATTR_NAME" value="Regel"/>
+<property name="EN_ATTR_COMMENT" value="*DE* Regel, die Werte beschränken auf Grund von komplexen Zusammenhängen (mehere Entitäten, Attribute, Beziehungen)"/>
+<property name="EN_ATTR_NAME" value="*DE* Regel"/>
+</propertyMap>
+</Attribute>
+<Attribute name="Fehlermeldung [L]" id="F0D0A02C-116A-DB0F-5438-DED076F0352F">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-23 13:40:55 UTC</createdTime>
+<comment><![CDATA[Meldung, die bei Verletzung der Regel angezeigt wird.]]></comment>
+<ownerDesignName>ModellModell</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value="Meldung, die bei Verletzung der Regel angezeigt wird."/>
+<property name="DE_ATTR_NAME" value="Fehlermeldung [L]"/>
+<property name="EN_ATTR_COMMENT" value="*DE* Meldung, die bei Verletzung der Regel angezeigt wird."/>
+<property name="EN_ATTR_NAME" value="*DE* Fehlermeldung [L]"/>
+</propertyMap>
+</Attribute>
+<Attribute name="Regelebene" id="B4010BF0-A568-7476-4439-5CB48CB7997D">
+<createdBy>stb</createdBy>
+<createdTime>2019-01-10 08:07:01 UTC</createdTime>
+<comment><![CDATA[Ebene auf der die Regel prüft (Tupel, Entität, Datenbank)]]></comment>
+<ownerDesignName>ModellModell</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+</engineerTo>
+<use>0</use>
+<domain>4655A975-6C53-BBE1-01B9-D658AD7C5FC5</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value="Ebene auf der die Regel prüft (Tupel, Entität, Datenbank)"/>
+<property name="DE_ATTR_NAME" value="Regelebene"/>
+<property name="EN_ATTR_COMMENT" value="*DE* Ebene auf der die Regel prüft (Tupel, Entität, Datenbank)"/>
+<property name="EN_ATTR_NAME" value="*DE* Regelebene"/>
+</propertyMap>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="CD61460D-CC3B-5EE7-EEA7-2807443DEBA7" name="ITSY_NAME_UK">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-23 13:39:01 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+</engineerTo>
+<newElementsIDs>D4367DA7-6021-7E29-BEFC-2F6B66AB1763</newElementsIDs>
+<usedAttributes>
+<attributeRef>D4367DA7-6021-7E29-BEFC-2F6B66AB1763</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

@@ -1,0 +1,523 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableView class="oracle.dbtools.crest.model.design.relational.TableView" directorySegmentName="seg_0" id="D22ACBB4-8431-929A-7C53-CB5FE1BF700E" schemaObject="19221298-76C4-E323-B35B-7857802DF7E7" name="DMRV_EVENTS">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>ADMIN</sourceObjSchema>
+<sourceObjName>DMRV_EVENTS</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:28 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<userDefined>true</userDefined>
+<userDefinedSQL><![CDATA[CREATE OR REPLACE VIEW DMRV_EVENTS
+AS 
+select  Event_ID, Event_OVID, Event_Name, Model_ID, Model_OVID, Model_Name, Flow_ID, Flow_OVID, Flow_Name, Event_Type, Times_When_Run, Day_Of_Week, Months, Frequency, Time_Frequency, Minute, Hour, Day_Of_Month, Quarter, Year, On_Day, At_Time, Fiscal, Text, Design_OVID from DMRS_EVENTS]]></userDefinedSQL>
+<parsed>true</parsed>
+<viewElements>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="EVENT_ID" id="F6FA7D91-9E00-6FDB-0F24-F8D96B76145A">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_EVENTS</sourceObjSchema>
+<sourceObjName>EVENT_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:28 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>EVENT_ID</alias>
+<dataType>VARCHAR2 (70 BYTE)</dataType>
+<headerAlias>EVENT_ID</headerAlias>
+<reference>false</reference>
+<referencedColumn>120CF4A1-820A-F7F2-0398-4B24325DBCF8</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="EVENT_OVID" id="D2D94C54-2249-F543-D430-0981CB4E350F">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_EVENTS</sourceObjSchema>
+<sourceObjName>EVENT_OVID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:28 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>EVENT_OVID</alias>
+<dataType>VARCHAR2 (36 BYTE)</dataType>
+<headerAlias>EVENT_OVID</headerAlias>
+<reference>false</reference>
+<referencedColumn>D75D982A-4317-B076-F6C7-A04368F663AB</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="EVENT_NAME" id="DD450129-1593-66D8-CD95-E22BE646CFE1">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_EVENTS</sourceObjSchema>
+<sourceObjName>EVENT_NAME</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:28 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>EVENT_NAME</alias>
+<dataType>VARCHAR2 (256 BYTE)</dataType>
+<headerAlias>EVENT_NAME</headerAlias>
+<reference>false</reference>
+<referencedColumn>005E9740-029F-665D-6587-47B4AFFE447A</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="MODEL_ID" id="78C660EC-A9BD-34AF-9BA0-7FC443EFE07C">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_EVENTS</sourceObjSchema>
+<sourceObjName>MODEL_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:28 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>MODEL_ID</alias>
+<dataType>VARCHAR2 (70 BYTE)</dataType>
+<headerAlias>MODEL_ID</headerAlias>
+<reference>false</reference>
+<referencedColumn>2E9C8811-D20E-0B63-17C2-CB276A557CBB</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="MODEL_OVID" id="078EAB8F-1FCA-0482-7301-1AD9B491DC53">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_EVENTS</sourceObjSchema>
+<sourceObjName>MODEL_OVID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:28 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>MODEL_OVID</alias>
+<dataType>VARCHAR2 (36 BYTE)</dataType>
+<headerAlias>MODEL_OVID</headerAlias>
+<reference>false</reference>
+<referencedColumn>3B03DF7A-F407-C34A-58A3-7BB2F29B78AF</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="MODEL_NAME" id="A4412989-FF9B-1AF5-7DED-7BC37AB34237">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_EVENTS</sourceObjSchema>
+<sourceObjName>MODEL_NAME</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:28 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>MODEL_NAME</alias>
+<dataType>VARCHAR2 (256 BYTE)</dataType>
+<headerAlias>MODEL_NAME</headerAlias>
+<reference>false</reference>
+<referencedColumn>0BD16D52-AF56-C32A-8855-F4136CACA3E4</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="FLOW_ID" id="E617751C-6C62-1F92-61FC-061376576D8E">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_EVENTS</sourceObjSchema>
+<sourceObjName>FLOW_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:28 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>FLOW_ID</alias>
+<dataType>VARCHAR2 (70 BYTE)</dataType>
+<headerAlias>FLOW_ID</headerAlias>
+<reference>false</reference>
+<referencedColumn>0CC53322-0ADA-3003-9885-D9F167CD0B32</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="FLOW_OVID" id="9B0F3992-49F5-FA57-10E4-6F1999F82804">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_EVENTS</sourceObjSchema>
+<sourceObjName>FLOW_OVID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:28 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>FLOW_OVID</alias>
+<dataType>VARCHAR2 (36 BYTE)</dataType>
+<headerAlias>FLOW_OVID</headerAlias>
+<reference>false</reference>
+<referencedColumn>E6E4C04D-90B5-F3D2-AC32-2A6C71B5AB72</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="FLOW_NAME" id="CC882A32-7FCD-F9F2-30E6-CEB33C1E268F">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_EVENTS</sourceObjSchema>
+<sourceObjName>FLOW_NAME</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:28 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>FLOW_NAME</alias>
+<dataType>VARCHAR2 (256 BYTE)</dataType>
+<headerAlias>FLOW_NAME</headerAlias>
+<reference>false</reference>
+<referencedColumn>CA0A0021-79A1-23DF-0ED8-D0DEC9A7886F</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="EVENT_TYPE" id="88C6D2BF-B9BC-B869-23CB-7AFF2BFD531E">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_EVENTS</sourceObjSchema>
+<sourceObjName>EVENT_TYPE</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:28 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>EVENT_TYPE</alias>
+<dataType>VARCHAR2 (30 BYTE)</dataType>
+<headerAlias>EVENT_TYPE</headerAlias>
+<reference>false</reference>
+<referencedColumn>C593A11B-2C02-A464-37F9-42DEA101F97E</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="TIMES_WHEN_RUN" id="423E46A6-3767-41BD-4BE9-161879EAA62D">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_EVENTS</sourceObjSchema>
+<sourceObjName>TIMES_WHEN_RUN</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:28 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>TIMES_WHEN_RUN</alias>
+<dataType>VARCHAR2 (100 BYTE)</dataType>
+<headerAlias>TIMES_WHEN_RUN</headerAlias>
+<reference>false</reference>
+<referencedColumn>2C50AF3B-7A15-46C3-4BB5-D443A604CA56</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="DAY_OF_WEEK" id="5CF4C4A5-EA27-5F40-6253-C38E396B9D17">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_EVENTS</sourceObjSchema>
+<sourceObjName>DAY_OF_WEEK</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:28 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>DAY_OF_WEEK</alias>
+<dataType>VARCHAR2 (100 BYTE)</dataType>
+<headerAlias>DAY_OF_WEEK</headerAlias>
+<reference>false</reference>
+<referencedColumn>624E27CA-9E89-3AA2-F227-1F2CC9B9D8B8</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="MONTHS" id="107AD11C-18D5-EAA7-B984-9B4E86A427C8">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_EVENTS</sourceObjSchema>
+<sourceObjName>MONTHS</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:28 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>MONTHS</alias>
+<dataType>VARCHAR2 (100 BYTE)</dataType>
+<headerAlias>MONTHS</headerAlias>
+<reference>false</reference>
+<referencedColumn>8CFD2546-2905-2F22-A523-7392678DA802</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="FREQUENCY" id="3FCFF466-13B3-47B3-AD6A-3AAABE45D2CA">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_EVENTS</sourceObjSchema>
+<sourceObjName>FREQUENCY</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:28 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>FREQUENCY</alias>
+<dataType>NUMBER (10)</dataType>
+<headerAlias>FREQUENCY</headerAlias>
+<reference>false</reference>
+<referencedColumn>1B5B89BF-DB0B-4D74-3BAB-60A0900B9ECA</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="TIME_FREQUENCY" id="1EB84C1B-DAA0-5BD9-AA5A-F99B888F6B1F">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_EVENTS</sourceObjSchema>
+<sourceObjName>TIME_FREQUENCY</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:28 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>TIME_FREQUENCY</alias>
+<dataType>NUMBER (10)</dataType>
+<headerAlias>TIME_FREQUENCY</headerAlias>
+<reference>false</reference>
+<referencedColumn>7E523F18-697E-18C5-2711-D4F69D32EFC5</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="MINUTE" id="089CB584-B8CE-1290-3184-A6B64A514F95">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_EVENTS</sourceObjSchema>
+<sourceObjName>MINUTE</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:28 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>MINUTE</alias>
+<dataType>NUMBER (2)</dataType>
+<headerAlias>MINUTE</headerAlias>
+<reference>false</reference>
+<referencedColumn>00FF7A55-D5A9-E45C-4DC1-5632E58937C7</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="HOUR" id="6BA14277-E777-61A7-4E8D-CDE84EC4092C">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_EVENTS</sourceObjSchema>
+<sourceObjName>HOUR</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:28 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>HOUR</alias>
+<dataType>NUMBER (2)</dataType>
+<headerAlias>HOUR</headerAlias>
+<reference>false</reference>
+<referencedColumn>C35A1545-3D69-CEF3-24E1-7C8344D25FDF</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="DAY_OF_MONTH" id="B76C75CC-07F6-842E-D918-71B50EA1E214">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_EVENTS</sourceObjSchema>
+<sourceObjName>DAY_OF_MONTH</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:28 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>DAY_OF_MONTH</alias>
+<dataType>NUMBER (2)</dataType>
+<headerAlias>DAY_OF_MONTH</headerAlias>
+<reference>false</reference>
+<referencedColumn>F50AA09A-AEFC-7158-5AB0-C0B341F893DE</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="QUARTER" id="E6AF1519-1A1F-B4D1-5054-8A7B1E15679C">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_EVENTS</sourceObjSchema>
+<sourceObjName>QUARTER</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:28 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>QUARTER</alias>
+<dataType>NUMBER (1)</dataType>
+<headerAlias>QUARTER</headerAlias>
+<reference>false</reference>
+<referencedColumn>6726AA91-37B2-52BF-B3C8-6F92055CEA2C</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="YEAR" id="A08A2266-2E28-CBCC-7CEB-FEE6BB7584B8">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_EVENTS</sourceObjSchema>
+<sourceObjName>YEAR</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:28 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>YEAR</alias>
+<dataType>NUMBER (4)</dataType>
+<headerAlias>YEAR</headerAlias>
+<reference>false</reference>
+<referencedColumn>E5F31FCF-ADE7-A101-3AE4-04B5459026EA</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="ON_DAY" id="153E91C3-7990-A757-E5AA-0C272AFE3A2B">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_EVENTS</sourceObjSchema>
+<sourceObjName>ON_DAY</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:28 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>ON_DAY</alias>
+<dataType>CHAR (1 BYTE)</dataType>
+<headerAlias>ON_DAY</headerAlias>
+<reference>false</reference>
+<referencedColumn>160BDCC4-5A43-7A60-D151-1754930FACD1</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="AT_TIME" id="01B3F5B8-216A-7E25-45E3-386A0C6399ED">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_EVENTS</sourceObjSchema>
+<sourceObjName>AT_TIME</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:28 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>AT_TIME</alias>
+<dataType>CHAR (1 BYTE)</dataType>
+<headerAlias>AT_TIME</headerAlias>
+<reference>false</reference>
+<referencedColumn>FDE76FDE-762E-6490-3CCF-6E3E75FA90DB</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="FISCAL" id="AFF898E8-A9F2-DD55-5B6F-A8548238A50C">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_EVENTS</sourceObjSchema>
+<sourceObjName>FISCAL</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:28 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>FISCAL</alias>
+<dataType>CHAR (1 BYTE)</dataType>
+<headerAlias>FISCAL</headerAlias>
+<reference>false</reference>
+<referencedColumn>3F759773-49C6-1E73-22C7-6B355C8922FE</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="TEXT" id="BB0D76BD-D182-65EE-E608-09275AD6DB90">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_EVENTS</sourceObjSchema>
+<sourceObjName>TEXT</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:28 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>TEXT</alias>
+<dataType>VARCHAR2 (4000 BYTE)</dataType>
+<headerAlias>TEXT</headerAlias>
+<reference>false</reference>
+<referencedColumn>8D350B03-A901-4614-D658-F1CF5916D515</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="DESIGN_OVID" id="013ADA09-D4B1-43B2-8C17-7BFD1CEB233E">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_EVENTS</sourceObjSchema>
+<sourceObjName>DESIGN_OVID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:28 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>DESIGN_OVID</alias>
+<dataType>VARCHAR2 (36 BYTE)</dataType>
+<headerAlias>DESIGN_OVID</headerAlias>
+<reference>false</reference>
+<referencedColumn>D863E4E9-8478-DFC4-8E52-170F2136C28B</referencedColumn>
+</viewElement>
+</viewElements>
+<usedObjects>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="120CF4A1-820A-F7F2-0398-4B24325DBCF8">
+<columnName>EVENT_ID</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_EVENTS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="D75D982A-4317-B076-F6C7-A04368F663AB">
+<columnName>EVENT_OVID</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_EVENTS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="005E9740-029F-665D-6587-47B4AFFE447A">
+<columnName>EVENT_NAME</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_EVENTS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="2E9C8811-D20E-0B63-17C2-CB276A557CBB">
+<columnName>MODEL_ID</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_EVENTS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="3B03DF7A-F407-C34A-58A3-7BB2F29B78AF">
+<columnName>MODEL_OVID</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_EVENTS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="0BD16D52-AF56-C32A-8855-F4136CACA3E4">
+<columnName>MODEL_NAME</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_EVENTS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="0CC53322-0ADA-3003-9885-D9F167CD0B32">
+<columnName>FLOW_ID</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_EVENTS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="E6E4C04D-90B5-F3D2-AC32-2A6C71B5AB72">
+<columnName>FLOW_OVID</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_EVENTS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="CA0A0021-79A1-23DF-0ED8-D0DEC9A7886F">
+<columnName>FLOW_NAME</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_EVENTS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="C593A11B-2C02-A464-37F9-42DEA101F97E">
+<columnName>EVENT_TYPE</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_EVENTS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="2C50AF3B-7A15-46C3-4BB5-D443A604CA56">
+<columnName>TIMES_WHEN_RUN</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_EVENTS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="624E27CA-9E89-3AA2-F227-1F2CC9B9D8B8">
+<columnName>DAY_OF_WEEK</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_EVENTS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="8CFD2546-2905-2F22-A523-7392678DA802">
+<columnName>MONTHS</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_EVENTS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="1B5B89BF-DB0B-4D74-3BAB-60A0900B9ECA">
+<columnName>FREQUENCY</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_EVENTS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="7E523F18-697E-18C5-2711-D4F69D32EFC5">
+<columnName>TIME_FREQUENCY</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_EVENTS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="00FF7A55-D5A9-E45C-4DC1-5632E58937C7">
+<columnName>MINUTE</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_EVENTS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="C35A1545-3D69-CEF3-24E1-7C8344D25FDF">
+<columnName>HOUR</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_EVENTS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="F50AA09A-AEFC-7158-5AB0-C0B341F893DE">
+<columnName>DAY_OF_MONTH</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_EVENTS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="6726AA91-37B2-52BF-B3C8-6F92055CEA2C">
+<columnName>QUARTER</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_EVENTS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="E5F31FCF-ADE7-A101-3AE4-04B5459026EA">
+<columnName>YEAR</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_EVENTS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="160BDCC4-5A43-7A60-D151-1754930FACD1">
+<columnName>ON_DAY</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_EVENTS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="FDE76FDE-762E-6490-3CCF-6E3E75FA90DB">
+<columnName>AT_TIME</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_EVENTS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="3F759773-49C6-1E73-22C7-6B355C8922FE">
+<columnName>FISCAL</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_EVENTS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="8D350B03-A901-4614-D658-F1CF5916D515">
+<columnName>TEXT</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_EVENTS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="D863E4E9-8478-DFC4-8E52-170F2136C28B">
+<columnName>DESIGN_OVID</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_EVENTS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="34F70A32-F646-18FF-F8C9-41F0842D9997">
+<container>true</container>
+<schema>ADMIN</schema>
+<tableName>DMRS_EVENTS</tableName>
+</UsedObject>
+</usedObjects>
+</TableView>

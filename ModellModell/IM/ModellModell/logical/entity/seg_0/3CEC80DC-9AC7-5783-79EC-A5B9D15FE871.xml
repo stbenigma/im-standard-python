@@ -1,0 +1,344 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="3CEC80DC-9AC7-5783-79EC-A5B9D15FE871" name="Attribut">
+<createdBy>stb</createdBy>
+<createdTime>2018-05-30 12:08:58 UTC</createdTime>
+<comment><![CDATA[Beschreibung eines Trägers einers Wertes.
+Dieses Attribut ist die gültige Single Source of Truth des konzeptionellen Modells. 
+
+Es ist nicht zwingend notwendig, dass dieses Attribut in dieser Form in einem der Systeme verwaltet wird. Die Definition gilt als Referenz für alle, die mit dieser Information arbeiten wollen
+
+]]></comment>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<typeID>1C6A8769-7651-51C0-9E0A-D0C138DE6193</typeID>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<hierarchicalParent>A30A8D06-DD35-0230-707D-34689BB63E9A</hierarchicalParent>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<preferredAbbreviation>ATTR</preferredAbbreviation>
+<synonym>Merkmal, Eigenschaft</synonym>
+<createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="Beispiele" value="Preis, Name, Startdatum"/>
+<property name="DE_ENTI_COMMENT" value="Beschreibung eines Trägers einers Wertes. Dieses Attribut ist die gültige Single Source of Truth des konzeptionellen Modells.   Es ist nicht zwingend notwendig, dass dieses Attribut in dieser Form in einem der Systeme verwaltet wird. Die Definition gilt als Referenz für alle, die mit dieser Information arbeiten wollen  "/>
+<property name="DE_ENTI_NAME" value="Attribut"/>
+<property name="DE_ENTI_SYNONYM" value="Merkmal, Eigenschaft"/>
+<property name="EN_ENTI_COMMENT" value="*DE* Beschreibung eines Trägers einers Wertes. Dieses Attribut ist die gültige Single Source of Truth des konzeptionellen Modells.   Es ist nicht zwingend notwendig, dass dieses Attribut in dieser Form in einem der Systeme verwaltet wird. Die Definition gilt als Referenz für alle, die mit dieser Information arbeiten wollen  "/>
+<property name="EN_ENTI_NAME" value="*DE* Attribut"/>
+<property name="EN_ENTI_SYNONYM" value="*DE* Merkmal, Eigenschaft"/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Attributmame" id="EDEE919C-7C94-15E9-147C-57317A603D15">
+<createdBy>stb</createdBy>
+<createdTime>2018-05-30 12:09:49 UTC</createdTime>
+<comment><![CDATA[Name, der etwas über die Rolle, Verwendung der Eigenschaft in der Entität aussagt. Häufig = Domänenname]]></comment>
+<ownerDesignName>ModellModell</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value="Name, der etwas über die Rolle, Verwendung der Eigenschaft in der Entität aussagt. Häufig = Domänenname"/>
+<property name="DE_ATTR_NAME" value="Attributmame"/>
+<property name="EN_ATTR_COMMENT" value="*DE* Name, der etwas über die Rolle, Verwendung der Eigenschaft in der Entität aussagt. Häufig = Domänenname"/>
+<property name="EN_ATTR_NAME" value="*DE* Attributmame"/>
+</propertyMap>
+</Attribute>
+<Attribute name="Anzeigename [L]" id="5786D6AD-9848-D503-A7AE-9758E9D42223">
+<createdBy>stb</createdBy>
+<createdTime>2018-11-04 11:15:32 UTC</createdTime>
+<comment><![CDATA[Kurzbezeichnung der Entität für die Verwendung aus Überschrift, in Referenzen ]]></comment>
+<ownerDesignName>ModellModell</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value="Kurzbezeichnung der Entität für die Verwendung aus Überschrift, in Referenzen "/>
+<property name="DE_ATTR_NAME" value="Anzeigename [L]"/>
+<property name="EN_ATTR_COMMENT" value="*DE* Kurzbezeichnung der Entität für die Verwendung aus Überschrift, in Referenzen "/>
+<property name="EN_ATTR_NAME" value="*DE* Anzeigename [L]"/>
+</propertyMap>
+</Attribute>
+<Attribute name="Beschreibung [L]" id="C4A32F25-630E-965E-C29A-27C4C6F29B16">
+<createdBy>stb</createdBy>
+<createdTime>2018-05-30 12:10:47 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Beschreibung [L]"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="*DE* Beschreibung [L]"/>
+</propertyMap>
+</Attribute>
+<Attribute name="Tooltip [L]" id="18044B2B-E9C9-F62B-A516-84B3A24746F4">
+<createdBy>stb</createdBy>
+<createdTime>2018-05-30 12:10:52 UTC</createdTime>
+<comment><![CDATA[Anzeige in Masken für die Erläuterung der Nutzung, Bearbeitung, Verwendung des Attributwertes]]></comment>
+<ownerDesignName>ModellModell</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value="Anzeige in Masken für die Erläuterung der Nutzung, Bearbeitung, Verwendung des Attributwertes"/>
+<property name="DE_ATTR_NAME" value="Tooltip [L]"/>
+<property name="EN_ATTR_COMMENT" value="*DE* Anzeige in Masken für die Erläuterung der Nutzung, Bearbeitung, Verwendung des Attributwertes"/>
+<property name="EN_ATTR_NAME" value="*DE* Tooltip [L]"/>
+</propertyMap>
+</Attribute>
+<Attribute name="ist Pflichtattribut" id="F73DAF6B-B2F9-9A75-F80C-24594970D8AA">
+<createdBy>stb</createdBy>
+<createdTime>2018-11-04 11:15:56 UTC</createdTime>
+<comment><![CDATA[JA -> Das Feld muss einen Wert enthalten.]]></comment>
+<ownerDesignName>ModellModell</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value="JA -&gt; Das Feld muss einen Wert enthalten."/>
+<property name="DE_ATTR_NAME" value="ist Pflichtattribut"/>
+<property name="EN_ATTR_COMMENT" value="*DE* JA -&gt; Das Feld muss einen Wert enthalten."/>
+<property name="EN_ATTR_NAME" value="*DE* ist Pflichtattribut"/>
+</propertyMap>
+</Attribute>
+<Attribute name="ist Deskriptorfeld" id="472E1B0B-0BBC-8C55-1798-08BC327AB69E">
+<createdBy>stb</createdBy>
+<createdTime>2018-11-04 11:16:41 UTC</createdTime>
+<comment><![CDATA[Das Attribut charakterisiert die Entität und ist wichtig für ihr Verständnis]]></comment>
+<ownerDesignName>ModellModell</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value="Das Attribut charakterisiert die Entität und ist wichtig für ihr Verständnis"/>
+<property name="DE_ATTR_NAME" value="ist Deskriptorfeld"/>
+<property name="EN_ATTR_COMMENT" value="*DE* Das Attribut charakterisiert die Entität und ist wichtig für ihr Verständnis"/>
+<property name="EN_ATTR_NAME" value="*DE* ist Deskriptorfeld"/>
+</propertyMap>
+</Attribute>
+<Attribute name="ist Wiederholattribut" id="6A9298F2-7C16-0F9A-DF34-457287FFFC4F">
+<createdBy>stb</createdBy>
+<createdTime>2018-11-04 11:47:57 UTC</createdTime>
+<comment><![CDATA[JA -> Das Feld kann mehere Werte enthalten. 
+NEIN -> Feld enthält maximal einen Wert.
+Kann  über Extratabelle gelöst werden.]]></comment>
+<ownerDesignName>ModellModell</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value="JA -&gt; Das Feld kann mehere Werte enthalten.  NEIN -&gt; Feld enthält maximal einen Wert. Kann  über Extratabelle gelöst werden."/>
+<property name="DE_ATTR_NAME" value="ist Wiederholattribut"/>
+<property name="EN_ATTR_COMMENT" value="*DE* JA -&gt; Das Feld kann mehere Werte enthalten.  NEIN -&gt; Feld enthält maximal einen Wert. Kann  über Extratabelle gelöst werden."/>
+<property name="EN_ATTR_NAME" value="*DE* ist Wiederholattribut"/>
+</propertyMap>
+</Attribute>
+<Attribute name="ist sprachabhängig" id="75E53EA7-9CD9-0AAE-6802-1E239D31EECA">
+<createdBy>stb</createdBy>
+<createdTime>2018-11-04 11:49:19 UTC</createdTime>
+<comment><![CDATA[JA -> Der Feldwert kann in mehreren Sprachen vorkommen.
+Über Extratabelle die mit Sprachen verknüpft ist lösen]]></comment>
+<ownerDesignName>ModellModell</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value="JA -&gt; Der Feldwert kann in mehreren Sprachen vorkommen. Über Extratabelle die mit Sprachen verknüpft ist lösen"/>
+<property name="DE_ATTR_NAME" value="ist sprachabhängig"/>
+<property name="EN_ATTR_COMMENT" value="*DE* JA -&gt; Der Feldwert kann in mehreren Sprachen vorkommen. Über Extratabelle die mit Sprachen verknüpft ist lösen"/>
+<property name="EN_ATTR_NAME" value="*DE* ist sprachabhängig"/>
+</propertyMap>
+</Attribute>
+<Attribute name="ist historisiert" id="3AE5995D-55A4-6334-61C4-C0B49DA294EA">
+<createdBy>stb</createdBy>
+<createdTime>2018-11-04 11:49:22 UTC</createdTime>
+<comment><![CDATA[JA -> Der Feldwert kann über die Zeit ändern, Die Historie muss im System verwaltet werden. Zu einem Zeitpunkt kann nur 1 Wert gültig sein.
+Über Extratabelle verknüpft ist lösen]]></comment>
+<ownerDesignName>ModellModell</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value="JA -&gt; Der Feldwert kann über die Zeit ändern, Die Historie muss im System verwaltet werden. Zu einem Zeitpunkt kann nur 1 Wert gültig sein. Über Extratabelle verknüpft ist lösen"/>
+<property name="DE_ATTR_NAME" value="ist historisiert"/>
+<property name="EN_ATTR_COMMENT" value="*DE* JA -&gt; Der Feldwert kann über die Zeit ändern, Die Historie muss im System verwaltet werden. Zu einem Zeitpunkt kann nur 1 Wert gültig sein. Über Extratabelle verknüpft ist lösen"/>
+<property name="EN_ATTR_NAME" value="*DE* ist historisiert"/>
+</propertyMap>
+</Attribute>
+<Attribute name="ist verschlüsselt" id="743343B0-7B01-8A4C-CDC6-45E8B72B3E2F">
+<createdBy>stb</createdBy>
+<createdTime>2019-07-02 15:23:05 UTC</createdTime>
+<comment><![CDATA[JA -> Das Feld muss in Speicherung und Transport verschlüsselt werden
+NEIN -> Feld wird nicht verschlüsselt
+]]></comment>
+<ownerDesignName>ModellModell</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value="JA -&gt; Das Feld muss in Speicherung und Transport verschlüsselt werden NEIN -&gt; Feld wird nicht verschlüsselt "/>
+<property name="DE_ATTR_NAME" value="ist verschlüsselt"/>
+<property name="EN_ATTR_COMMENT" value="*DE* JA -&gt; Das Feld muss in Speicherung und Transport verschlüsselt werden NEIN -&gt; Feld wird nicht verschlüsselt "/>
+<property name="EN_ATTR_NAME" value="*DE* ist verschlüsselt"/>
+</propertyMap>
+</Attribute>
+<Attribute name="Anzeigereihenfolge" id="598275C8-6915-4D18-A03A-DDE739950A91">
+<createdBy>stb</createdBy>
+<createdTime>2018-11-04 11:14:15 UTC</createdTime>
+<comment><![CDATA[Riehenfolge der Anzeige auf Diagrammen, in Reports. Leer-> Attribut kommt nach Name sortiert an den Schluss einer Liste]]></comment>
+<ownerDesignName>ModellModell</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>E2DCFC37-5428-9FE8-64FF-368960199E02</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value="Riehenfolge der Anzeige auf Diagrammen, in Reports. Leer-&gt; Attribut kommt nach Name sortiert an den Schluss einer Liste"/>
+<property name="DE_ATTR_NAME" value="Anzeigereihenfolge"/>
+<property name="EN_ATTR_COMMENT" value="*DE* Riehenfolge der Anzeige auf Diagrammen, in Reports. Leer-&gt; Attribut kommt nach Name sortiert an den Schluss einer Liste"/>
+<property name="EN_ATTR_NAME" value="*DE* Anzeigereihenfolge"/>
+</propertyMap>
+</Attribute>
+<Attribute name="Entitätname [L]" id="0C01D9CE-61C5-17EA-B371-14E7D8D04675">
+<createdBy>stb</createdBy>
+<createdTime>2018-11-26 17:19:36 UTC</createdTime>
+<comment><![CDATA[Name der Entität der in der Kommunikation normalerweise gebraucht wird.]]></comment>
+<generatorID>5ADA0099-E18A-0713-9E1D-9A615137188C</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+</engineerTo>
+<referedAttribute>0F2758D2-C7D1-07D3-5C35-F1697AF2FBE0</referedAttribute>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value="Name der Entität der in der Kommunikation normalerweise gebraucht wird."/>
+<property name="DE_ATTR_NAME" value="Entitätname [L]"/>
+<property name="EN_ATTR_COMMENT" value="*DE* Name der Entität der in der Kommunikation normalerweise gebraucht wird."/>
+<property name="EN_ATTR_NAME" value="*DE* Entitätname [L]"/>
+</propertyMap>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="A494C6B5-1083-D458-9E27-C4CC11AE6E27" name="ATTR_UK">
+<createdBy>stb</createdBy>
+<createdTime>2018-05-30 12:12:27 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+</engineerTo>
+<newElementsIDs>EDEE919C-7C94-15E9-147C-57317A603D15</newElementsIDs>
+<usedAttributes>
+<attributeRef>EDEE919C-7C94-15E9-147C-57317A603D15</attributeRef>
+</usedAttributes>
+</identifier>
+<identifier id="B0A652FD-7F95-C210-33E5-71090820167E" name="Attribut_PK">
+<createdBy>stb</createdBy>
+<createdTime>2019-07-02 15:24:31 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<usedAttributes>
+<attributeRef>0C01D9CE-61C5-17EA-B371-14E7D8D04675</attributeRef>
+</usedAttributes>
+</identifier>
+<identifier id="98572F95-B4C9-C708-AC9E-C925550A7A9B" name="Attribut_PKv1">
+<createdBy>stb</createdBy>
+<createdTime>2019-07-02 15:24:31 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>0C01D9CE-61C5-17EA-B371-14E7D8D04675</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

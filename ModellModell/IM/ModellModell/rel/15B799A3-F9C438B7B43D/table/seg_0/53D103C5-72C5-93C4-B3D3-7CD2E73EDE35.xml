@@ -1,0 +1,159 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="53D103C5-72C5-93C4-B3D3-7CD2E73EDE35" name="SYNONYM">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 09:38:45 UTC</createdTime>
+<comment><![CDATA[Entität im systemübergreifenden, konsolidierten, konzeptionellen Modell eines Unternehmens
+]]></comment>
+<generatorID>C579AF88-68C9-5A94-FD4C-E7B9A73BB814</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<ordsAlias>entitaet$</ordsAlias>
+<abbreviation>SYNO</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="SYNO_ID" id="9121B2CE-A2E8-0767-D42B-AFC1DBEC9F53">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 09:38:45 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="SYNO_TECH_NAME" id="0824F2CE-5780-B3BC-E70C-D734AA4E5DB4">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 09:38:45 UTC</createdTime>
+<comment><![CDATA[Eindeutiger, technischer Name der Entität (z.B. der Tabelle, die die Entität repräsentiert)]]></comment>
+<generatorID>C6B30AE3-78A0-9F53-E89F-2F8E68B64092</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="SYNO_NAME" id="48B804B2-6D79-D2A1-C9C3-7E2EB8654EFE">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 09:38:45 UTC</createdTime>
+<comment><![CDATA[Name der Entität der in der Kommunikation normalerweise gebraucht wird.]]></comment>
+<generatorID>0F2758D2-C7D1-07D3-5C35-F1697AF2FBE0</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="SYNO_ENTI_ID" id="09168800-43D1-2888-937D-707AC93B36AD">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 09:40:27 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="07033003-6B42-F828-4A2F-A35AD9964617" referredColumn="B53A54A2-7725-B574-6A72-01964F006A02"/>
+</associations>
+</Column>
+<Column name="SYNO_UC" id="898DAAC5-6E39-7F55-D4F4-3AA4B9711F02">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 09:38:45 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<computed>true</computed>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="F7EEFF47-7A42-2A3E-7DFC-D0558D6996B8"/>
+</propertyMap>
+</Column>
+<Column name="SYNO_DC" id="3A6E4457-AF47-DE50-A439-FB9A31BA49C0">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 09:38:45 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT047</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="74D877A0-4C3B-63EE-06C5-071C7695907C"/>
+</propertyMap>
+</Column>
+<Column name="SYNO_UM" id="BB07E3F9-25D0-8003-4751-366558C7B4E7">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 09:38:45 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="B2E17D53-C2F7-74D9-022D-5D63F3931519"/>
+</propertyMap>
+</Column>
+<Column name="SYNO_DM" id="3E52257F-3137-9CB2-9B7F-411329899A25">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 09:38:45 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT047</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="B398D247-00C1-F016-3BBB-FE65CFFFF7AA"/>
+</propertyMap>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="7E7564F8-64B2-39B4-24DE-10225D96BF52" name="SYNO_PK">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 09:38:45 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="9121B2CE-A2E8-0767-D42B-AFC1DBEC9F53"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="4B853EF4-67BC-76CD-8E51-9977420E08AB" name="SYNO_TECH_NAME_UK">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 09:43:23 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="09168800-43D1-2888-937D-707AC93B36AD"/>
+<colUsage columnID="0824F2CE-5780-B3BC-E70C-D734AA4E5DB4"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="6BA34B98-0620-42DB-C36E-D20BA9D4954B" name="SYNO_ENTI_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 09:40:27 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="09168800-43D1-2888-937D-707AC93B36AD"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

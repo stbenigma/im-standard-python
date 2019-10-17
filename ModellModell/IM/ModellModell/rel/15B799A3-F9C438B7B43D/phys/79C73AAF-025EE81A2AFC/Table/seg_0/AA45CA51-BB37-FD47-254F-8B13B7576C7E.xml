@@ -1,0 +1,96 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev12c class="oracle.dbtools.crest.model.design.storage.oracle.v12c.TableProxyOraclev12c" name="SCHNITTSTELLE_ATTR" directorySegmentName="seg_0" id="AA45CA51-BB37-FD47-254F-8B13B7576C7E">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-03 07:58:15 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<temporaryChanged>false</temporaryChanged>
+<accessDriverType>oracle_loader</accessDriverType>
+<rejectLimit></rejectLimit>
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="SCHA_FREMDSYSTEM_ID" id="021C748B-94E9-7E5B-DCBE-91323C0CA4AC">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-17 11:54:49 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="SCHA_SCHN_ID" id="2AA6B94F-4BE5-D7FB-C9B3-CA7A3F05071A">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-17 11:54:49 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="SCHA_UM" id="3265B86D-D147-4657-EBA7-6E00AFAB2F9F">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-17 11:54:49 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="SCHA_UC" id="3A0941F8-545A-33EE-B38B-CC3E9EF30344">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-17 11:54:49 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="SCHA_DATY_ID" id="4DF971C5-E5F4-3533-0FB9-B9DDF38156D8">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-17 11:54:49 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="SCHA_DC" id="6C851CA3-0E76-E30B-B05E-25393D589A44">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-17 11:54:49 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="SCHA_FORMAT" id="9F5542C2-162D-C3D1-190C-DDA78D854C84">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-03 07:58:15 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="SCHA_ID" id="AC00B2CD-443E-268D-0ACB-B1665F569AF6">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-03 07:58:15 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="SCHA_DM" id="C9125EF7-130F-D51A-C930-0A3F415EBA8B">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-17 11:54:49 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="SCHA_TABELLENNAME" id="DFC9C46D-310A-F3D4-67B3-36DF421A5D8C">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-03 07:58:15 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="SCHA_ATTR_NAME" id="E3A7546C-6D4E-116C-84AB-191FEAF3992B">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-03 07:58:15 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+<foreignKeys>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="SCHA_SCHN_FK" id="334842C2-9842-167A-CB9B-77B56B1D4B91">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-17 11:54:49 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ForeignKey>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="SCHA_DATY_FK" id="EE821849-72AD-FB1A-39EF-2496EA279F94">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-17 11:54:49 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ForeignKey>
+</foreignKeys>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="SCHA_PK" id="31356FEF-BFD1-ED2A-A0CC-EF196090E038">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-03 07:58:15 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexSort>SORTED</indexSort>
+</PrimaryKey>
+</primaryKeys>
+<uniqueKeys>
+<UniqueKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.UniqueOraclev10g" name="SCHA_UN" id="30744F3E-D155-AB85-0E99-48ACEA6AABC4">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-03 07:58:15 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexSort>SORTED</indexSort>
+</UniqueKey>
+</uniqueKeys>
+</TableProxyOraclev12c>

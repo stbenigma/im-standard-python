@@ -1,0 +1,29 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_130" directorySegmentName="seg_0" id="30103B52-A596-5AF7-4BCB-EE275F6DAA40">
+<createdBy>stb</createdBy>
+<createdTime>2018-11-04 12:26:15 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+</engineerTo>
+<targetPk>F9DE973A-812A-5B29-35C3-AF8EDECA639D</targetPk>
+<identifying>false</identifying>
+<nameOnSource>eingeschränkt durch</nameOnSource>
+<nameOnTarget>schränkt ein</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>4BEC4009-B321-3912-D30B-FADF6F8AF982</sourceEntity>
+<targetCardinalityString>1</targetCardinalityString>
+<targetEntity>01FE8FA0-8B03-9221-68D8-2ACD5C54A486</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="eingeschränkt durch"/>
+<property name="DE_RELA_TEXT_TO" value="schränkt ein"/>
+<property name="EN_RELA_TEXT_FROM" value="*DE* eingeschränkt durch"/>
+<property name="EN_RELA_TEXT_TO" value="*DE* schränkt ein"/>
+</propertyMap>
+</Relation>

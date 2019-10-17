@@ -1,0 +1,27 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_235" directorySegmentName="seg_1" id="0FB0B409-8D6C-1A65-5A21-F8D9C07074D6">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-15 18:22:08 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<useSurrogateKey>true</useSurrogateKey>
+<identifying>false</identifying>
+<nameOnSource>beherbergt</nameOnSource>
+<nameOnTarget>ist in</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>B60CE999-9120-C0B9-0416-B06BAC6D9C32</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>F58446CF-B5F4-49CF-E551-910014664AC1</targetEntity>
+<transferable>true</transferable>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="beherbergt"/>
+<property name="DE_RELA_TEXT_TO" value="ist in"/>
+<property name="EN_RELA_TEXT_FROM" value="*DE* beherbergt"/>
+<property name="EN_RELA_TEXT_TO" value="*DE* ist in"/>
+</propertyMap>
+</Relation>

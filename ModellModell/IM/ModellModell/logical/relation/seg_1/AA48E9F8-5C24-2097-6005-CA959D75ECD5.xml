@@ -1,0 +1,28 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_240" directorySegmentName="seg_1" id="AA48E9F8-5C24-2097-6005-CA959D75ECD5">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-05 07:38:34 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<useSurrogateKey>true</useSurrogateKey>
+<arc>89022C4B-2C54-0231-7F4A-A9FF6A563A25</arc>
+<identifying>false</identifying>
+<nameOnSource>ist</nameOnSource>
+<nameOnTarget>ist</nameOnTarget>
+<optionalSource>false</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>5555ED41-5590-13C8-C379-5FC83128838D</sourceEntity>
+<targetCardinalityString>1</targetCardinalityString>
+<targetEntity>F7635D9F-5210-2E79-6F92-F9A1DFBEAB1A</targetEntity>
+<transferable>true</transferable>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="ist"/>
+<property name="DE_RELA_TEXT_TO" value="ist"/>
+<property name="EN_RELA_TEXT_FROM" value="*DE* ist"/>
+<property name="EN_RELA_TEXT_TO" value="*DE* ist"/>
+</propertyMap>
+</Relation>

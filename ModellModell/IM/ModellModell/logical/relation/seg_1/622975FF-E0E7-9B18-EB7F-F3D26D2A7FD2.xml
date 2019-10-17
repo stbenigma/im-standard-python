@@ -1,0 +1,27 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_201" directorySegmentName="seg_1" id="622975FF-E0E7-9B18-EB7F-F3D26D2A7FD2">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-03 13:00:42 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<useSurrogateKey>true</useSurrogateKey>
+<identifying>false</identifying>
+<nameOnSource>besitzt</nameOnSource>
+<nameOnTarget>besessen von</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>248D54CF-AA07-CADE-F873-1B4BAB71324E</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>CFE2B0E2-7C7C-3289-90F3-1467F54FCB9E</targetEntity>
+<transferable>true</transferable>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="besitzt"/>
+<property name="DE_RELA_TEXT_TO" value="besessen von"/>
+<property name="EN_RELA_TEXT_FROM" value="*DE* besitzt"/>
+<property name="EN_RELA_TEXT_TO" value="*DE* besessen von"/>
+</propertyMap>
+</Relation>

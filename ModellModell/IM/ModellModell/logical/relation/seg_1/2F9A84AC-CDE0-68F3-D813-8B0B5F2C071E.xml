@@ -1,0 +1,27 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_207" directorySegmentName="seg_1" id="2F9A84AC-CDE0-68F3-D813-8B0B5F2C071E">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-03 13:56:20 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<useSurrogateKey>true</useSurrogateKey>
+<identifying>false</identifying>
+<nameOnSource>fasst zusammen</nameOnSource>
+<nameOnTarget>zusammengefasst zu</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>99D59240-EC64-0DA4-AE44-C8D0CC454ECF</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>41112E1C-C184-2FDA-489F-1F6298A36718</targetEntity>
+<transferable>true</transferable>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="fasst zusammen"/>
+<property name="DE_RELA_TEXT_TO" value="zusammengefasst zu"/>
+<property name="EN_RELA_TEXT_FROM" value="*DE* fasst zusammen"/>
+<property name="EN_RELA_TEXT_TO" value="*DE* zusammengefasst zu"/>
+</propertyMap>
+</Relation>

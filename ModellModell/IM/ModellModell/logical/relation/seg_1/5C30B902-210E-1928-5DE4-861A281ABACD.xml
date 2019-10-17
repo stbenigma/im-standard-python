@@ -1,0 +1,29 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_213" directorySegmentName="seg_1" id="5C30B902-210E-1928-5DE4-861A281ABACD">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-04 16:51:44 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+</engineerTo>
+<useSurrogateKey>true</useSurrogateKey>
+<identifying>false</identifying>
+<nameOnSource>genutzt für</nameOnSource>
+<nameOnTarget>umgesetzt in</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>A8C73DA3-4007-321A-B100-15C2455AA260</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>CFE2B0E2-7C7C-3289-90F3-1467F54FCB9E</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="genutzt für"/>
+<property name="DE_RELA_TEXT_TO" value="umgesetzt in"/>
+<property name="EN_RELA_TEXT_FROM" value="*DE* genutzt für"/>
+<property name="EN_RELA_TEXT_TO" value="*DE* umgesetzt in"/>
+</propertyMap>
+</Relation>

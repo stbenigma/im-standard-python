@@ -1,0 +1,203 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="3E8032B0-5673-6691-00B9-475546860A3A" name="Sprache">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-10 10:42:09 UTC</createdTime>
+<comment><![CDATA[Sprache gemäss ISO 629-1,2,3
+
+Eine alternative Ausgabe, erlaubt es, einen Text zu dem eine Übersetzung fehlt in einer Default-Sprache auszugeben.]]></comment>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<shortName>SPRA</shortName>
+<createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="DE_ENTI_COMMENT" value="Sprache gemäss ISO 629-1,2,3  Eine alternative Ausgabe, erlaubt es, einen Text zu dem eine Übersetzung fehlt in einer Default-Sprache auszugeben."/>
+<property name="DE_ENTI_NAME" value="Sprache"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_COMMENT" value="*DE* Sprache gemäss ISO 629-1,2,3  Eine alternative Ausgabe, erlaubt es, einen Text zu dem eine Übersetzung fehlt in einer Default-Sprache auszugeben."/>
+<property name="EN_ENTI_NAME" value="*DE* Sprache"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="ISO Name" id="269691A8-E995-F39D-38EE-D4B9D25563F4">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-10 10:42:21 UTC</createdTime>
+<comment><![CDATA[englischer ISO Standardname]]></comment>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value="englischer ISO Standardname"/>
+<property name="DE_ATTR_NAME" value="ISO Name"/>
+<property name="EN_ATTR_COMMENT" value="*DE* englischer ISO Standardname"/>
+<property name="EN_ATTR_NAME" value="*DE* ISO Name"/>
+</propertyMap>
+</Attribute>
+<Attribute name="Name [L]" id="A48C7265-3B50-E7F5-E97C-A5683ED08B99">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-10 10:42:31 UTC</createdTime>
+<comment><![CDATA[Name übersetzt, Originialname]]></comment>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value="Name übersetzt, Originialname"/>
+<property name="DE_ATTR_NAME" value="Name [L]"/>
+<property name="EN_ATTR_COMMENT" value="*DE* Name übersetzt, Originialname"/>
+<property name="EN_ATTR_NAME" value="*DE* Name [L]"/>
+</propertyMap>
+</Attribute>
+<Attribute name="ISO Code2" id="72F01738-8D10-1571-BF1F-54798C2B6A1C">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-10 10:48:53 UTC</createdTime>
+<comment><![CDATA[2-Stelliger ISO-Code]]></comment>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<domain>3CFAACDE-10D2-A99A-844A-975DA633F49B</domain>
+<checkConstraint>
+<implementationDef dbType="Oracle Database 12cR2" definition="SPRA_ISO_CODE2 = lower(SPRA_ISO_CODE2)"/>
+</checkConstraint>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value="2-Stelliger ISO-Code"/>
+<property name="DE_ATTR_NAME" value="ISO Code2"/>
+<property name="EN_ATTR_COMMENT" value="*DE* 2-Stelliger ISO-Code"/>
+<property name="EN_ATTR_NAME" value="*DE* ISO Code2"/>
+</propertyMap>
+</Attribute>
+<Attribute name="ISO Code3" id="95ED45B4-51CC-3B9B-6E4D-7959CD703675">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-10 10:49:12 UTC</createdTime>
+<comment><![CDATA[3-stelliger ISO-Code]]></comment>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<domain>7EF070A4-018B-18D6-E996-291F316D16A7</domain>
+<checkConstraint>
+<implementationDef dbType="Oracle Database 12cR2" definition="SPRA_ISO_CODE3 = lower(SPRA_ISO_CODE3)"/>
+</checkConstraint>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value="3-stelliger ISO-Code"/>
+<property name="DE_ATTR_NAME" value="ISO Code3"/>
+<property name="EN_ATTR_COMMENT" value="*DE* 3-stelliger ISO-Code"/>
+<property name="EN_ATTR_NAME" value="*DE* ISO Code3"/>
+</propertyMap>
+</Attribute>
+<Attribute name="Textsprache (J/N)" id="7946129A-B876-FC35-FA72-27CA9051B460">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-10 11:22:58 UTC</createdTime>
+<comment><![CDATA[Sprache kann für Übersetzung von Texten verwendet werden]]></comment>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value="Sprache kann für Übersetzung von Texten verwendet werden"/>
+<property name="DE_ATTR_NAME" value="Textsprache (J/N)"/>
+<property name="EN_ATTR_COMMENT" value="*DE* Sprache kann für Übersetzung von Texten verwendet werden"/>
+<property name="EN_ATTR_NAME" value="*DE* Textsprache (J/N)"/>
+</propertyMap>
+</Attribute>
+<Attribute name="Modellsprache (J/N)" id="AC8A6819-90C2-7B82-1A7F-42C079C9DEFD">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-02 08:34:17 UTC</createdTime>
+<comment><![CDATA[Basissprache in der das Modell dokumentiert ist.]]></comment>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value="Basissprache in der das Modell dokumentiert ist."/>
+<property name="DE_ATTR_NAME" value="Modellsprache (J/N)"/>
+<property name="EN_ATTR_COMMENT" value="*DE* Basissprache in der das Modell dokumentiert ist."/>
+<property name="EN_ATTR_NAME" value="*DE* Modellsprache (J/N)"/>
+</propertyMap>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="48F60096-94C7-0C06-6F1B-FE84B9B7B8E0" name="SPRA_UK1">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-10 11:19:55 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<newElementsIDs>269691A8-E995-F39D-38EE-D4B9D25563F4</newElementsIDs>
+<usedAttributes>
+<attributeRef>269691A8-E995-F39D-38EE-D4B9D25563F4</attributeRef>
+</usedAttributes>
+</identifier>
+<identifier id="ACEDF785-628E-7018-27B9-808F2D207BD9" name="SPRA_UK2">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-10 11:20:09 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<newElementsIDs>72F01738-8D10-1571-BF1F-54798C2B6A1C</newElementsIDs>
+<usedAttributes>
+<attributeRef>72F01738-8D10-1571-BF1F-54798C2B6A1C</attributeRef>
+</usedAttributes>
+</identifier>
+<identifier id="E6AF3633-86BA-7700-E962-D399006C1AFD" name="SPRA_UK3">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-10 11:20:19 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+</engineerTo>
+<newElementsIDs>95ED45B4-51CC-3B9B-6E4D-7959CD703675</newElementsIDs>
+<usedAttributes>
+<attributeRef>95ED45B4-51CC-3B9B-6E4D-7959CD703675</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>
