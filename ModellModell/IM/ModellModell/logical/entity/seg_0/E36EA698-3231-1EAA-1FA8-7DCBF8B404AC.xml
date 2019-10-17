@@ -2,7 +2,7 @@
 <Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="E36EA698-3231-1EAA-1FA8-7DCBF8B404AC" name="Abteilung">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-23 13:17:42 UTC</createdTime>
-<comment><![CDATA[Organisationseinheit in der Firma (intern oder extern), die für die Definition oder Pflege eines Attributwertes verantwortlich ist.]]></comment>
+<comment><![CDATA[(Administrative) Organisationseinheit in der Firma]]></comment>
 <ownerDesignName>ModellModell</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
@@ -27,10 +27,8 @@
 <propertyMap>
 <property name="DE_ENTI_COMMENT" value="Organisationseinheit in der Firma (intern oder extern), die für die Definition oder Pflege eines Attributwertes verantwortlich ist."/>
 <property name="DE_ENTI_NAME" value="Abteilung"/>
-<property name="DE_ENTI_SYNONYM" value=""/>
 <property name="EN_ENTI_COMMENT" value="*DE* Organisationseinheit in der Firma (intern oder extern), die für die Definition oder Pflege eines Attributwertes verantwortlich ist."/>
 <property name="EN_ENTI_NAME" value="*DE* Abteilung"/>
-<property name="EN_ENTI_SYNONYM" value=""/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Name" id="5F1855D0-5C50-083E-F00A-56D7A0E3E93F">

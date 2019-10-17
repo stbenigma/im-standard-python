@@ -2,19 +2,27 @@
 <Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="8CFD0CB0-30C2-A3C6-8BBF-60044A622C7E" name="Geschäftsbereich">
 <createdBy>stb</createdBy>
 <createdTime>2018-11-03 12:35:51 UTC</createdTime>
-<comment><![CDATA[Definiert den Kontext in dem das Modell (und damit die Begriffe und ihre Definition) gültig ist.
+<comment><![CDATA[Unternehmerische Aufgabe, Typ, Bereich von Anwendungen im Rahmen der Wertschöpfungskette und -prozesse eines Unternehmens.
 
-ACHTUNG: Zwischen 2 Modellen in unterschiedlichen Geschäftsbereichen kann es keine Verbindungen von Entitäten, Wertebereichen und davon abhängigkgen Elementen geben, da die Definitionen der Begriffe nur im jeweiligen Kontext des Geschäftsereichs gelten.
+Anwendungsbereiche sind typischerweise für 1 oder mehrere Anwendungen  (Hilfsmittel, Werkzeuge, Applikationen, Tools) sowie für Geschäftstransaktionen und -prozesse verantwortlich, 
 
+Sie entsprechen häufig den administrativen Organisationeinheiten (Abteilungen, Busines Units). Sie sind aber nicht aus administrativer oder örtlicher sondern aus Geschäftsaufgabensicht organisiert.
 
-
-]]></comment>
+Beispiele:
+Finanz
+R&D
+Produktion
+Sales
+Marketing
+HR
+Logistik
+Customer Services]]></comment>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 </engineerTo>
-<typeID>F3ABFF84-45A4-A802-17D7-9BF8FFE20450</typeID>
+<typeID>22C80650-70BB-112A-562F-823C3A147D9C</typeID>
 <adequatelyNormalized>NO</adequatelyNormalized>
 <expectedVolumes>0</expectedVolumes>
 <fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
@@ -94,6 +102,27 @@ ACHTUNG: Zwischen 2 Modellen in unterschiedlichen Geschäftsbereichen kann es ke
 <property name="DE_ATTR_NAME" value="Name [L]"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Name der Entität der in der Kommunikation normalerweise gebraucht wird."/>
 <property name="EN_ATTR_NAME" value="*DE* Name [L]"/>
+</propertyMap>
+</Attribute>
+<Attribute name="Zweck" id="A41A5B15-8932-9BFD-B421-F43E2D8BA5CB">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-17 15:39:14 UTC</createdTime>
+<comment><![CDATA[Anwendungsgebiet (ERP, PIM, FiBu etc.)]]></comment>
+<ownerDesignName>ModellModell</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<domain>CEF66788-EC07-3347-F213-6A5B74AB29A4</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value="Anwendungsgebiet (ERP, PIM, FiBu etc.)"/>
+<property name="DE_ATTR_NAME" value="Zweck"/>
+<property name="EN_ATTR_COMMENT" value="*DE* Anwendungsgebiet (ERP, PIM, FiBu etc.)"/>
+<property name="EN_ATTR_NAME" value="*DE* Zweck"/>
 </propertyMap>
 </Attribute>
 </attributes>
