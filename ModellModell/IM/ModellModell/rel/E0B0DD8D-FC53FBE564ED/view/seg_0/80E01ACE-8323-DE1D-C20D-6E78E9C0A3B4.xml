@@ -7,7 +7,9 @@
 <createdTime>2019-03-29 09:01:27 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 <userDefined>true</userDefined>
-<userDefinedSQL>CREATE OR REPLACE VIEW DMRV_DATA_FLOW_DIAGRAM_INFOS&lt;br/&gt;AS &lt;br/&gt;select  Diagram_ID, Diagram_OVID, Diagram_Name, Info_Store_ID, Info_Store_OVID, Info_Store_Name, Design_OVID from DMRS_DATA_FLOW_DIAGRAM_INFOS</userDefinedSQL>
+<userDefinedSQL><![CDATA[CREATE OR REPLACE VIEW DMRV_DATA_FLOW_DIAGRAM_INFOS
+AS 
+select  Diagram_ID, Diagram_OVID, Diagram_Name, Info_Store_ID, Info_Store_OVID, Info_Store_Name, Design_OVID from DMRS_DATA_FLOW_DIAGRAM_INFOS]]></userDefinedSQL>
 <parsed>true</parsed>
 <viewElements>
 <viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="DIAGRAM_ID" id="B356EC09-ABF6-336A-F080-4A5C49E0CEAE">

@@ -7,7 +7,9 @@
 <createdTime>2019-03-29 09:01:28 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 <userDefined>true</userDefined>
-<userDefinedSQL>CREATE OR REPLACE VIEW DMRV_EXT_AGENT_EXT_DATAS&lt;br/&gt;AS &lt;br/&gt;select  External_Agent_ID, External_Agent_OVID, External_Agent_Name, External_Data_ID, External_Data_OVID, External_Data_Name, Design_OVID from DMRS_EXT_AGENT_EXT_DATAS</userDefinedSQL>
+<userDefinedSQL><![CDATA[CREATE OR REPLACE VIEW DMRV_EXT_AGENT_EXT_DATAS
+AS 
+select  External_Agent_ID, External_Agent_OVID, External_Agent_Name, External_Data_ID, External_Data_OVID, External_Data_Name, Design_OVID from DMRS_EXT_AGENT_EXT_DATAS]]></userDefinedSQL>
 <parsed>true</parsed>
 <viewElements>
 <viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="EXTERNAL_AGENT_ID" id="2B7ED958-A62D-4E55-ABA5-4A83867E308E">

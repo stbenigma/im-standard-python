@@ -7,7 +7,9 @@
 <createdTime>2019-03-29 09:01:35 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 <userDefined>true</userDefined>
-<userDefinedSQL>CREATE OR REPLACE VIEW DMRV_TABLE_INCLUDE_SCRIPTS&lt;br/&gt;AS &lt;br/&gt;select  Table_ID, Table_OVID, Table_Name, Type, Sequence, Text, Design_OVID from DMRS_TABLE_INCLUDE_SCRIPTS</userDefinedSQL>
+<userDefinedSQL><![CDATA[CREATE OR REPLACE VIEW DMRV_TABLE_INCLUDE_SCRIPTS
+AS 
+select  Table_ID, Table_OVID, Table_Name, Type, Sequence, Text, Design_OVID from DMRS_TABLE_INCLUDE_SCRIPTS]]></userDefinedSQL>
 <parsed>true</parsed>
 <viewElements>
 <viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="TABLE_ID" id="04D0369D-4977-D838-AA35-98219405BD62">

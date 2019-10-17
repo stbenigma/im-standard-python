@@ -7,7 +7,9 @@
 <createdTime>2019-03-29 09:01:32 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 <userDefined>true</userDefined>
-<userDefinedSQL>CREATE OR REPLACE VIEW DMRV_PROCESS_ENTITIES&lt;br/&gt;AS &lt;br/&gt;select  Process_ID, Process_OVID, Entity_ID, Entity_OVID, Flow_ID, Flow_OVID, DFD_ID, DFD_OVID, Process_Name, Entity_Name, Flow_Name, DFD_Name, OP_Read, OP_Create, OP_Update, OP_Delete, CRUD_Code, Flow_Direction, Model_ID, Model_OVID, Model_Name, Design_OVID from DMRS_PROCESS_ENTITIES</userDefinedSQL>
+<userDefinedSQL><![CDATA[CREATE OR REPLACE VIEW DMRV_PROCESS_ENTITIES
+AS 
+select  Process_ID, Process_OVID, Entity_ID, Entity_OVID, Flow_ID, Flow_OVID, DFD_ID, DFD_OVID, Process_Name, Entity_Name, Flow_Name, DFD_Name, OP_Read, OP_Create, OP_Update, OP_Delete, CRUD_Code, Flow_Direction, Model_ID, Model_OVID, Model_Name, Design_OVID from DMRS_PROCESS_ENTITIES]]></userDefinedSQL>
 <parsed>true</parsed>
 <viewElements>
 <viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="PROCESS_ID" id="E9B63E70-6F37-6D5C-BCE8-CFA43960660B">

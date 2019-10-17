@@ -7,7 +7,9 @@
 <createdTime>2019-03-29 09:01:32 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 <userDefined>true</userDefined>
-<userDefinedSQL>CREATE OR REPLACE VIEW DMRV_MODEL_NAMING_OPTIONS&lt;br/&gt;AS &lt;br/&gt;select  Object_type, Max_Name_Length, Character_Case, Valid_Characters, Model_ID, Model_OVID, Model_Name, Model_Type, Design_OVID from DMRS_MODEL_NAMING_OPTIONS</userDefinedSQL>
+<userDefinedSQL><![CDATA[CREATE OR REPLACE VIEW DMRV_MODEL_NAMING_OPTIONS
+AS 
+select  Object_type, Max_Name_Length, Character_Case, Valid_Characters, Model_ID, Model_OVID, Model_Name, Model_Type, Design_OVID from DMRS_MODEL_NAMING_OPTIONS]]></userDefinedSQL>
 <parsed>true</parsed>
 <viewElements>
 <viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="OBJECT_TYPE" id="CA72B254-5F27-0AB0-75C3-F57113EFA50C">

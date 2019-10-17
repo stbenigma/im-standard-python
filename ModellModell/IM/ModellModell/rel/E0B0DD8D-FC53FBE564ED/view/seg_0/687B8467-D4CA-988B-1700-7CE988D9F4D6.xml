@@ -7,7 +7,9 @@
 <createdTime>2019-03-29 09:01:26 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 <userDefined>true</userDefined>
-<userDefinedSQL>CREATE OR REPLACE VIEW DMRV_CONSTR_FK_COLUMNS&lt;br/&gt;AS &lt;br/&gt;select  Fk_ID, Fk_OVID, Column_ID, Column_OVID, Table_ID, Table_OVID, Index_Name, Table_Name, Column_Name, Sequence, Sort_Order, Design_OVID from DMRS_CONSTR_FK_COLUMNS</userDefinedSQL>
+<userDefinedSQL><![CDATA[CREATE OR REPLACE VIEW DMRV_CONSTR_FK_COLUMNS
+AS 
+select  Fk_ID, Fk_OVID, Column_ID, Column_OVID, Table_ID, Table_OVID, Index_Name, Table_Name, Column_Name, Sequence, Sort_Order, Design_OVID from DMRS_CONSTR_FK_COLUMNS]]></userDefinedSQL>
 <parsed>true</parsed>
 <viewElements>
 <viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="FK_ID" id="E14FC8C4-B57D-9171-8B1E-DCA90A43D161">

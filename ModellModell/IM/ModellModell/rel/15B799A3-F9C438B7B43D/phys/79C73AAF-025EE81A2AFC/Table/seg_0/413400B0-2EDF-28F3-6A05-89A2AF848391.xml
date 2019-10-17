@@ -29,12 +29,12 @@
 <createdTime>2019-04-03 07:58:15 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 </ColumnProxy>
-<ColumnProxy name="PHEH_UETX_ID_NAME" id="63C1E3EB-6DE5-2E7F-251B-FD5E02D33CC7">
+<ColumnProxy name="PHEH_NAME" id="63C1E3EB-6DE5-2E7F-251B-FD5E02D33CC7">
 <createdBy>stb</createdBy>
 <createdTime>2019-04-03 07:58:15 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 </ColumnProxy>
-<ColumnProxy name="PHEH_UETX_ID_BESCHR" id="AA47CBD4-1503-F347-4F5D-68491B21BA40">
+<ColumnProxy name="PHEH_BESCHR" id="AA47CBD4-1503-F347-4F5D-68491B21BA40">
 <createdBy>stb</createdBy>
 <createdTime>2019-04-03 07:58:15 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
@@ -50,18 +50,6 @@
 <ownerDesignName>ModellModell</ownerDesignName>
 </ColumnProxy>
 </columnProxies>
-<foreignKeys>
-<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="PHEH_UETX_FK_BESCHR" id="785613CD-A4DA-2310-E1D8-CE1DB6DBA0E3">
-<createdBy>stb</createdBy>
-<createdTime>2019-04-03 07:58:15 UTC</createdTime>
-<ownerDesignName>ModellModell</ownerDesignName>
-</ForeignKey>
-<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="PHEH_UETX_FK_NAME" id="CC6B2665-49DF-78A2-3FC9-9C4D24E2092E">
-<createdBy>stb</createdBy>
-<createdTime>2019-04-03 07:58:15 UTC</createdTime>
-<ownerDesignName>ModellModell</ownerDesignName>
-</ForeignKey>
-</foreignKeys>
 <primaryKeys>
 <PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="PHEH_PK" id="90264223-020F-063D-0126-CD55A5912CEA">
 <createdBy>stb</createdBy>

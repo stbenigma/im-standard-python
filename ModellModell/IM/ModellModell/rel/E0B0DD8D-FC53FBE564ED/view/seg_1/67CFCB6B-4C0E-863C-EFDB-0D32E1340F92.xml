@@ -7,7 +7,9 @@
 <createdTime>2019-03-29 09:01:33 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 <userDefined>true</userDefined>
-<userDefinedSQL>CREATE OR REPLACE VIEW DMRV_RDBMS_SITES&lt;br/&gt;AS &lt;br/&gt;select  Site_Name, Site_ID, Site_OVID, RDBMS_Type, Design_OVID from DMRS_RDBMS_SITES</userDefinedSQL>
+<userDefinedSQL><![CDATA[CREATE OR REPLACE VIEW DMRV_RDBMS_SITES
+AS 
+select  Site_Name, Site_ID, Site_OVID, RDBMS_Type, Design_OVID from DMRS_RDBMS_SITES]]></userDefinedSQL>
 <parsed>true</parsed>
 <viewElements>
 <viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="SITE_NAME" id="DDC03D32-0E5B-1425-563E-FDF4EBD8E3F0">

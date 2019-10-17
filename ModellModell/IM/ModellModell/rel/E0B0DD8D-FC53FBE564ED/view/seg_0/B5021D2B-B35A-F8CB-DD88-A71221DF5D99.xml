@@ -7,7 +7,9 @@
 <createdTime>2019-03-29 09:01:31 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 <userDefined>true</userDefined>
-<userDefinedSQL>CREATE OR REPLACE VIEW DMRV_MAPPING_TARGET_SOURCES&lt;br/&gt;AS &lt;br/&gt;select  Object_ID, Object_OVID, Object_Name, Target_ID, Target_OVID, Target_Name, Source_ID, Source_OVID, Source_Name, Object_Type, Target_Type, Source_Type, Design_OVID from DMRS_MAPPING_TARGET_SOURCES</userDefinedSQL>
+<userDefinedSQL><![CDATA[CREATE OR REPLACE VIEW DMRV_MAPPING_TARGET_SOURCES
+AS 
+select  Object_ID, Object_OVID, Object_Name, Target_ID, Target_OVID, Target_Name, Source_ID, Source_OVID, Source_Name, Object_Type, Target_Type, Source_Type, Design_OVID from DMRS_MAPPING_TARGET_SOURCES]]></userDefinedSQL>
 <parsed>true</parsed>
 <viewElements>
 <viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="OBJECT_ID" id="B869425C-7040-B30D-9BB9-F92B9C427B40">

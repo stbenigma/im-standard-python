@@ -29,6 +29,11 @@
 <createdTime>2019-07-02 15:18:53 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 </ColumnProxy>
+<ColumnProxy name="MODE_SYNO_ID" id="2944C16F-B405-257B-0C70-046ABE08CEEE">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-17 11:16:32 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
 <ColumnProxy name="MODE_ATTR_ID" id="2A071E66-BFE3-1B3C-3B21-4644C56ADC0D">
 <createdBy>stb</createdBy>
 <createdTime>2019-07-02 15:18:53 UTC</createdTime>
@@ -49,9 +54,19 @@
 <createdTime>2019-07-02 15:18:53 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 </ColumnProxy>
+<ColumnProxy name="MODE_BEZI_ID" id="996BD115-09A4-8E55-89CE-29AD5D071FDA">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-17 11:16:32 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
 <ColumnProxy name="MODE_WRTB_ID" id="D750EEFE-1095-110C-C7E1-CEC82CE5BE5E">
 <createdBy>stb</createdBy>
 <createdTime>2019-07-02 15:18:53 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="MODE_MELT_ID" id="E35C81FE-FADB-6CA4-06E2-925513CA4653">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-17 11:16:32 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 </ColumnProxy>
 <ColumnProxy name="MODE_ID" id="E7DD4494-59BC-B5B7-F31F-333747453A3D">
@@ -61,14 +76,29 @@
 </ColumnProxy>
 </columnProxies>
 <foreignKeys>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="MODE_MELT_FK" id="23A5F4B4-CA5F-E921-EF4A-B93619347745">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-17 11:16:32 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ForeignKey>
 <ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="MODE_WRTB_FK_IST" id="80D1B00B-C238-F207-9584-6C4C9C1E3F0B">
 <createdBy>stb</createdBy>
 <createdTime>2019-07-02 15:18:53 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 </ForeignKey>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="MODE_BEZI_FK_IST" id="98348E4A-CE65-5AB2-1DEE-758086CCFBD5">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-17 11:16:32 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ForeignKey>
 <ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="MODE_ENTI_FK_IST" id="9916BB5D-C612-4748-0511-85FA88DB3FC1">
 <createdBy>stb</createdBy>
 <createdTime>2019-07-02 15:18:53 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ForeignKey>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="MODE_SYNO_FK" id="9AE2698F-BC45-1C36-D4A9-14C19FC6C5BD">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-17 11:16:32 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 </ForeignKey>
 <ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="MODE_BURU_FK_IST" id="B9F57355-9289-18B3-607D-E56E991FE591">
@@ -96,9 +126,9 @@
 </PrimaryKey>
 </primaryKeys>
 <tableCheckConstraints itemClass="oracle.dbtools.crest.model.design.storage.oracle.TableCheckConstraintOracle">
-<TableCheckConstraint name="MODE_CK_1" id="8D1087A6-63B1-FAC9-5362-4DDD9B0D5135">
+<TableCheckConstraint name="MODE_CK_ARC" id="1B321446-73DC-ACFE-2AB9-6F9B3A1B28F6">
 <createdBy>stb</createdBy>
-<createdTime>2019-07-02 15:18:53 UTC</createdTime>
+<createdTime>2019-10-17 11:16:32 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 </TableCheckConstraint>
 </tableCheckConstraints>

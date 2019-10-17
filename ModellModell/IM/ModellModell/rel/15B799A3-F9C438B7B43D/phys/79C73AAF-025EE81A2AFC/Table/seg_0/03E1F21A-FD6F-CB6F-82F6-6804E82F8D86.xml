@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<TableProxyOraclev12c class="oracle.dbtools.crest.model.design.storage.oracle.v12c.TableProxyOraclev12c" name="RELATION_80" directorySegmentName="seg_0" id="03E1F21A-FD6F-CB6F-82F6-6804E82F8D86">
+<TableProxyOraclev12c class="oracle.dbtools.crest.model.design.storage.oracle.v12c.TableProxyOraclev12c" name="TRANSF_USAGE" directorySegmentName="seg_0" id="03E1F21A-FD6F-CB6F-82F6-6804E82F8D86">
 <createdBy>stb</createdBy>
 <createdTime>2019-04-03 07:58:15 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
@@ -9,12 +9,42 @@
 <accessDriverType>oracle_loader</accessDriverType>
 <rejectLimit></rejectLimit>
 <columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
-<ColumnProxy name="{REF TABLE  ABBR}_ATTRIBUTTRANSFORMATION_ID" id="C98A692B-326A-CB25-F793-52B786DD3D12">
+<ColumnProxy name="TFUS_DM" id="03070A22-7F37-5FCD-A87A-A50EE4C08451">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-17 11:16:32 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="TFUS_DC" id="053B8E61-2E8C-424F-6B87-878B600F06FC">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-17 11:16:32 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="TFUS_RICHTUNG" id="38DBE109-D0D3-0881-4DB3-9E7597BF3A4D">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-17 11:16:32 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="TFUS_UC" id="487216A9-AC36-F896-462F-89910E529DCF">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-17 11:16:32 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="TFUS_ID" id="AC1263E7-4BF6-A3C4-BA53-38F1C3A0B3C3">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-17 11:16:32 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="TFUS_UM" id="B67C1687-9003-F620-C7CF-C705C712D9A0">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-17 11:16:32 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="TFUS_ATTF_ID" id="C98A692B-326A-CB25-F793-52B786DD3D12">
 <createdBy>stb</createdBy>
 <createdTime>2019-04-03 07:58:15 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 </ColumnProxy>
-<ColumnProxy name="{REF TABLE  ABBR}_ATTRIBUT_ID" id="D4256718-A07E-B39E-7AF5-ABE4313BE484">
+<ColumnProxy name="TFUS_ATTR_ID" id="D4256718-A07E-B39E-7AF5-ABE4313BE484">
 <createdBy>stb</createdBy>
 <createdTime>2019-04-03 07:58:15 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
@@ -33,11 +63,19 @@
 </ForeignKey>
 </foreignKeys>
 <primaryKeys>
-<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="RELATION_80_PK" id="7E20AC17-164B-514E-8D7E-B31670679763">
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="TFUS_PKv2" id="7E20AC17-164B-514E-8D7E-B31670679763">
 <createdBy>stb</createdBy>
 <createdTime>2019-04-03 07:58:15 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 <indexSort>SORTED</indexSort>
 </PrimaryKey>
 </primaryKeys>
+<uniqueKeys>
+<UniqueKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.UniqueOraclev10g" name="TFUS__UN" id="F1D7944A-E0BC-DC90-2B68-F4100988567D">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-17 11:16:32 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexSort>SORTED</indexSort>
+</UniqueKey>
+</uniqueKeys>
 </TableProxyOraclev12c>

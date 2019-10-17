@@ -7,7 +7,9 @@
 <createdTime>2019-03-29 09:01:35 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 <userDefined>true</userDefined>
-<userDefinedSQL>CREATE OR REPLACE VIEW DMRV_TASK_PARAMS&lt;br/&gt;AS &lt;br/&gt;select  Task_Params_ID, Task_Params_OVID, Task_Params_Name, Transformation_Task_ID, Transformation_Task_OVID, Transformation_Task_Name, Task_Params_Type, Multiplicity, System_Objective, Design_OVID from DMRS_TASK_PARAMS</userDefinedSQL>
+<userDefinedSQL><![CDATA[CREATE OR REPLACE VIEW DMRV_TASK_PARAMS
+AS 
+select  Task_Params_ID, Task_Params_OVID, Task_Params_Name, Transformation_Task_ID, Transformation_Task_OVID, Transformation_Task_Name, Task_Params_Type, Multiplicity, System_Objective, Design_OVID from DMRS_TASK_PARAMS]]></userDefinedSQL>
 <parsed>true</parsed>
 <viewElements>
 <viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="TASK_PARAMS_ID" id="C1038890-407E-EBCD-09C5-CF2928AD9495">

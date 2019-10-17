@@ -7,7 +7,9 @@
 <createdTime>2019-03-29 09:01:30 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 <userDefined>true</userDefined>
-<userDefinedSQL>CREATE OR REPLACE VIEW DMRV_LARGE_TEXT&lt;br/&gt;AS &lt;br/&gt;select  Object_ID, OVID, Object_Name, Type, Text, Design_OVID from DMRS_LARGE_TEXT</userDefinedSQL>
+<userDefinedSQL><![CDATA[CREATE OR REPLACE VIEW DMRV_LARGE_TEXT
+AS 
+select  Object_ID, OVID, Object_Name, Type, Text, Design_OVID from DMRS_LARGE_TEXT]]></userDefinedSQL>
 <parsed>true</parsed>
 <viewElements>
 <viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="OBJECT_ID" id="5F1C825D-E8CB-F7F9-01B5-2E54B1764CAF">

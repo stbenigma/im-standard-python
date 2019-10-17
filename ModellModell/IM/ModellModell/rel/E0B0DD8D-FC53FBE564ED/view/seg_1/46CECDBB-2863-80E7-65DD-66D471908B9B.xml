@@ -7,7 +7,9 @@
 <createdTime>2019-03-29 09:01:33 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 <userDefined>true</userDefined>
-<userDefinedSQL>CREATE OR REPLACE VIEW DMRV_REPORTS_VERSION_1_0&lt;br/&gt;AS &lt;br/&gt;select 1.6 DMRS_Persistence_Version, 1.0 DMRS_Reports_Version, to_timestamp(&apos;2019/03/05 17:41:01&apos;,&apos;YYYY/MM/DD HH24:MI:SS&apos;) Created_On from dual </userDefinedSQL>
+<userDefinedSQL><![CDATA[CREATE OR REPLACE VIEW DMRV_REPORTS_VERSION_1_0
+AS 
+select 1.6 DMRS_Persistence_Version, 1.0 DMRS_Reports_Version, to_timestamp('2019/03/05 17:41:01','YYYY/MM/DD HH24:MI:SS') Created_On from dual ]]></userDefinedSQL>
 <parsed>true</parsed>
 <viewElements>
 <viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="DMRS_PERSISTENCE_VERSION" id="42FEF2A7-A320-47CA-C551-DC761C30EE5A">

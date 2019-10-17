@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<TableProxyOraclev12c class="oracle.dbtools.crest.model.design.storage.oracle.v12c.TableProxyOraclev12c" name="ATTRIBUT" directorySegmentName="seg_0" id="6641E423-B182-6223-4F8F-A2AE969C6B37">
+<TableProxyOraclev12c class="oracle.dbtools.crest.model.design.storage.oracle.v12c.TableProxyOraclev12c" name="ATTRIBUTES" directorySegmentName="seg_0" id="6641E423-B182-6223-4F8F-A2AE969C6B37">
 <createdBy>stb</createdBy>
 <createdTime>2019-04-03 07:58:15 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
@@ -14,7 +14,7 @@
 <createdTime>2019-04-03 07:58:15 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 </ColumnProxy>
-<ColumnProxy name="ATTR_UETX_ID_BESCHR" id="375CB27A-BF59-6EF2-F3BA-55E1FFF03DA9">
+<ColumnProxy name="ATTR_BESCHR" id="375CB27A-BF59-6EF2-F3BA-55E1FFF03DA9">
 <createdBy>stb</createdBy>
 <createdTime>2019-04-03 07:58:15 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
@@ -24,7 +24,7 @@
 <createdTime>2019-04-03 07:58:15 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 </ColumnProxy>
-<ColumnProxy name="ATTR_UETX_ID_ANZNAME" id="40B69719-D7C5-6555-DF94-A535031E1CC8">
+<ColumnProxy name="ATTR_ANZNAME" id="40B69719-D7C5-6555-DF94-A535031E1CC8">
 <createdBy>stb</createdBy>
 <createdTime>2019-04-03 07:58:15 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
@@ -32,6 +32,11 @@
 <ColumnProxy name="ATTR_HISTORISIERT" id="504E8F6B-8CF2-D087-9F2E-FC230AB0BC7E">
 <createdBy>stb</createdBy>
 <createdTime>2019-04-03 07:58:15 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="ATTR_ODM_GUID" id="52960D69-359E-91C3-470F-51DC68EE94C3">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-17 11:16:32 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 </ColumnProxy>
 <ColumnProxy name="ATTR_DM" id="5F43059F-CC96-48CC-E4B5-4AB28C140A5C">
@@ -59,7 +64,7 @@
 <createdTime>2019-04-03 07:58:15 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 </ColumnProxy>
-<ColumnProxy name="ATTR_UETX_ID_TOOLTIP" id="BB191A5F-2313-6CC8-EC9A-27FD19779501">
+<ColumnProxy name="ATTR_TOOLTIP" id="BB191A5F-2313-6CC8-EC9A-27FD19779501">
 <createdBy>stb</createdBy>
 <createdTime>2019-04-03 07:58:15 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
@@ -99,6 +104,11 @@
 <createdTime>2019-04-03 07:58:15 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 </ColumnProxy>
+<ColumnProxy name="ATTR_BEZI_ID" id="F6CC78C5-6B12-2DE5-0F68-9DBEA6CB32C3">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-17 11:16:32 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
 <ColumnProxy name="ATTR_BUSINESS_RULE" id="FD3B7911-AE01-DCEE-E3F6-4AB566AC5E84">
 <createdBy>stb</createdBy>
 <createdTime>2019-04-03 07:58:15 UTC</createdTime>
@@ -123,24 +133,14 @@
 <createdTime>2019-04-03 07:58:15 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 </ForeignKey>
-<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="ATTR_UETX_FK_TOOLTIP" id="4BDF9C4C-8F8B-3BF2-0974-EB2CFE51171B">
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="ATTR_BEZI_FK" id="7DB9DE46-A65D-6A1F-233F-5D0EB6EEA65A">
 <createdBy>stb</createdBy>
-<createdTime>2019-04-03 07:58:15 UTC</createdTime>
+<createdTime>2019-10-17 11:16:32 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 </ForeignKey>
 <ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="ATTR_WRTB_FK" id="9B607D04-7CEC-0987-5707-0CC7E119EEFC">
 <createdBy>stb</createdBy>
 <createdTime>2019-07-02 15:18:53 UTC</createdTime>
-<ownerDesignName>ModellModell</ownerDesignName>
-</ForeignKey>
-<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="ATTR_UETX_FK_BESCHR" id="A0404CEB-4455-103D-FF2B-B51BCB8EF134">
-<createdBy>stb</createdBy>
-<createdTime>2019-04-03 07:58:15 UTC</createdTime>
-<ownerDesignName>ModellModell</ownerDesignName>
-</ForeignKey>
-<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="ATTR_UETX_FK_NAME" id="E1B2A292-9914-B3D3-F2F2-8D1076B10F85">
-<createdBy>stb</createdBy>
-<createdTime>2019-04-03 07:58:15 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 </ForeignKey>
 </foreignKeys>
@@ -152,6 +152,13 @@
 <indexSort>SORTED</indexSort>
 </PrimaryKey>
 </primaryKeys>
+<tableCheckConstraints itemClass="oracle.dbtools.crest.model.design.storage.oracle.TableCheckConstraintOracle">
+<TableCheckConstraint name="ATTR_CK_1" id="35EE885B-DBCA-3E9A-1DFB-EA5DAB677F91">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-17 11:16:32 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</TableCheckConstraint>
+</tableCheckConstraints>
 <uniqueKeys>
 <UniqueKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.UniqueOraclev10g" name="ATTR_UK" id="E0B5AC02-4958-6692-9D84-F8D03F53B2FA">
 <createdBy>stb</createdBy>

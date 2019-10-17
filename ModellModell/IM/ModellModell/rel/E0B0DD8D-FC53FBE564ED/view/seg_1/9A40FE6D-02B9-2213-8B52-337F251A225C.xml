@@ -7,7 +7,9 @@
 <createdTime>2019-03-29 09:01:36 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 <userDefined>true</userDefined>
-<userDefinedSQL>CREATE OR REPLACE VIEW DMRV_VIEW_COLUMNS&lt;br/&gt;AS &lt;br/&gt;select  View_OVID, View_ID, View_Name, Container_ID, Container_OVID, Container_Name, Container_Alias, Is_Expression, Column_ID, Column_OVID, Column_Name, Column_Alias, Native_Type, Type, Expression, Sequence, Personally_ID_Information, Sensitive_Information, Mask_For_None_Production, Model_ID, Model_OVID, Model_Name, Design_OVID from DMRS_VIEW_COLUMNS</userDefinedSQL>
+<userDefinedSQL><![CDATA[CREATE OR REPLACE VIEW DMRV_VIEW_COLUMNS
+AS 
+select  View_OVID, View_ID, View_Name, Container_ID, Container_OVID, Container_Name, Container_Alias, Is_Expression, Column_ID, Column_OVID, Column_Name, Column_Alias, Native_Type, Type, Expression, Sequence, Personally_ID_Information, Sensitive_Information, Mask_For_None_Production, Model_ID, Model_OVID, Model_Name, Design_OVID from DMRS_VIEW_COLUMNS]]></userDefinedSQL>
 <parsed>true</parsed>
 <viewElements>
 <viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="VIEW_OVID" id="ADA628DB-10F6-0E7F-EB75-4E511E836A3D">

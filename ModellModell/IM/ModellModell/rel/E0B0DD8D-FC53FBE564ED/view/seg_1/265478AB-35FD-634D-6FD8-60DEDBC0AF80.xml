@@ -7,7 +7,9 @@
 <createdTime>2019-03-29 09:01:36 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 <userDefined>true</userDefined>
-<userDefinedSQL>CREATE OR REPLACE VIEW DMRV_VALUE_RANGES&lt;br/&gt;AS &lt;br/&gt;select  DataElement_ID, DataElement_OVID, Type, Sequence, Begin_Value, End_Value, Short_Description, Container_ID, Container_OVID, Container_Name, DataElement_Name, Design_OVID from DMRS_VALUE_RANGES</userDefinedSQL>
+<userDefinedSQL><![CDATA[CREATE OR REPLACE VIEW DMRV_VALUE_RANGES
+AS 
+select  DataElement_ID, DataElement_OVID, Type, Sequence, Begin_Value, End_Value, Short_Description, Container_ID, Container_OVID, Container_Name, DataElement_Name, Design_OVID from DMRS_VALUE_RANGES]]></userDefinedSQL>
 <parsed>true</parsed>
 <viewElements>
 <viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="DATAELEMENT_ID" id="8B015363-B4E9-5B5B-48B3-2539DAFD9FBD">
