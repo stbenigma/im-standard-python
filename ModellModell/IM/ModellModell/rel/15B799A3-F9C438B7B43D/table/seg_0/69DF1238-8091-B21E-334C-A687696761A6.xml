@@ -1,0 +1,234 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="69DF1238-8091-B21E-334C-A687696761A6" name="SPRACHE">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 08:10:42 UTC</createdTime>
+<comment><![CDATA[Sprache gemäss ISO 629-1,2,3
+
+Eine alternative Ausgabe, erlaubt es, einen Text zu dem eine Übersetzung fehlt in einer Default-Sprache auszugeben.]]></comment>
+<generatorID>3E8032B0-5673-6691-00B9-475546860A3A</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<abbreviation>SPRA</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="SPRA_ID" id="2FB7B8A7-8D51-5FF0-5AF2-D5AB9375E9DC">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 08:10:42 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<autoIncrementSequenceName>INFRA_SEQ</autoIncrementSequenceName>
+</Column>
+<Column name="SPRA_SPRA_ID" id="C8E5B648-9763-4894-DA87-9D4CC9FB137C">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 08:10:42 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="82E5786F-D63D-75D4-971B-0F670F6FB7BE" referredColumn="2FB7B8A7-8D51-5FF0-5AF2-D5AB9375E9DC"/>
+</associations>
+</Column>
+<Column name="SPRA_ISO_NAME" id="53079FF2-FC0B-0582-26F5-DE6FB0FBA258">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 08:10:42 UTC</createdTime>
+<comment><![CDATA[englischer ISO Standardname]]></comment>
+<generatorID>269691A8-E995-F39D-38EE-D4B9D25563F4</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="SPRA_ISO_CODE2" id="F42E285B-13C0-3F98-9ADB-7385C83FAF00">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 08:10:42 UTC</createdTime>
+<comment><![CDATA[2-Stelliger ISO-Code]]></comment>
+<generatorID>72F01738-8D10-1571-BF1F-54798C2B6A1C</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<domain>3CFAACDE-10D2-A99A-844A-975DA633F49B</domain>
+<checkConstraint>
+<implementationDef dbType="Oracle Database 12cR2" definition="SPRA_ISO_CODE2 = lower(SPRA_ISO_CODE2)"/>
+</checkConstraint>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="SPRA_ISO_CODE3" id="050C6BD5-8823-D8F0-5237-4052EBF5D158">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 08:10:42 UTC</createdTime>
+<comment><![CDATA[3-stelliger ISO-Code]]></comment>
+<generatorID>95ED45B4-51CC-3B9B-6E4D-7959CD703675</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<domain>7EF070A4-018B-18D6-E996-291F316D16A7</domain>
+<checkConstraint>
+<implementationDef dbType="Oracle Database 12cR2" definition="SPRA_ISO_CODE3 = lower(SPRA_ISO_CODE3)"/>
+</checkConstraint>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="SPRA_IST_TEXTSPRACHE" id="D832CAAF-A2EA-5237-C6AC-A2F820ED54F4">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 08:10:42 UTC</createdTime>
+<comment><![CDATA[Sprache kann für Übersetzung von Texten verwendet werden]]></comment>
+<generatorID>7946129A-B876-FC35-FA72-27CA9051B460</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="SPRA_IST_MODELLSPRACHE" id="0F1A10E9-9EC1-06FF-4615-73A94B1771E2">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-02 08:33:54 UTC</createdTime>
+<comment><![CDATA[Basissprache in dem das Modell beschrieben ist.]]></comment>
+<generatorID>7946129A-B876-FC35-FA72-27CA9051B460</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="SPRA_UC" id="D7C7050F-8646-7E39-4B07-C8B81905FB28">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 09:35:20 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<computed>true</computed>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="F7EEFF47-7A42-2A3E-7DFC-D0558D6996B8"/>
+</propertyMap>
+</Column>
+<Column name="SPRA_DC" id="5BAA16B4-FA65-0F77-FF8D-C4A27A7BD29F">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 09:35:20 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT047</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="74D877A0-4C3B-63EE-06C5-071C7695907C"/>
+</propertyMap>
+</Column>
+<Column name="SPRA_UM" id="A9C0F5A5-7017-DAEC-B6AE-4634B46AD0BE">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 09:35:20 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="B2E17D53-C2F7-74D9-022D-5D63F3931519"/>
+</propertyMap>
+</Column>
+<Column name="SPRA_DM" id="62E1554A-B31F-DDC6-0081-31F02707DB36">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 09:35:20 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT047</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="B398D247-00C1-F016-3BBB-FE65CFFFF7AA"/>
+</propertyMap>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="6F1BCB46-8DD5-D4F2-C8A8-199BD423AB13" name="SPRA_PK">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 08:10:42 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="2FB7B8A7-8D51-5FF0-5AF2-D5AB9375E9DC"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="38D5346A-23D6-55D8-7DCE-F644A54A0502" name="SPRA_ISO_NAME_UN">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 08:10:42 UTC</createdTime>
+<generatorID>48F60096-94C7-0C06-6F1B-FE84B9B7B8E0</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="53079FF2-FC0B-0582-26F5-DE6FB0FBA258"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="0858AA11-4C6C-A2FF-6AA5-BE3DD2ED00BD" name="SPRA_ISO_CODE2_UN">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 08:10:42 UTC</createdTime>
+<generatorID>ACEDF785-628E-7018-27B9-808F2D207BD9</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="F42E285B-13C0-3F98-9ADB-7385C83FAF00"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="6B768CE5-4768-AD4C-543C-829796DB496C" name="SPRA_ISO_CODE3_UN">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 08:10:42 UTC</createdTime>
+<generatorID>E6AF3633-86BA-7700-E962-D399006C1AFD</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="050C6BD5-8823-D8F0-5237-4052EBF5D158"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="9CA0D016-6F8A-9C50-D3FD-44E1D67FD915" name="SPRA__IDX">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 08:10:42 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="C8E5B648-9763-4894-DA87-9D4CC9FB137C"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="54296392-F4C8-B41C-D092-B71E2AD9B690" name="SPRA_ERSETZT_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 08:16:06 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="C8E5B648-9763-4894-DA87-9D4CC9FB137C"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

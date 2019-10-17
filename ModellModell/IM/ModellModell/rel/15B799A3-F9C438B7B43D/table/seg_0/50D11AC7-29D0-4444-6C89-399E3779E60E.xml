@@ -1,0 +1,159 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="50D11AC7-29D0-4444-6C89-399E3779E60E" name="BETREUER">
+<createdBy>stb</createdBy>
+<createdTime>2018-10-21 13:54:35 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<ordsAlias>relation_88</ordsAlias>
+<abbreviation>BETR</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="BETR_ID" id="CE367AE2-4F28-0C14-E20E-B6BF09EB840A">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-04 15:39:20 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="BETR_MODE_ID" id="F20B9101-CDB8-6DCC-1144-724CF0F49C12">
+<createdBy>stb</createdBy>
+<createdTime>2018-10-21 13:54:35 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="0C8B5D76-A777-B20F-0CC5-EB68A245C195" referredColumn="E7DD4494-59BC-B5B7-F31F-333747453A3D"/>
+</associations>
+</Column>
+<Column name="BETR_ANSP_ID" id="54D4B483-38C2-FD2C-0EF8-81A705056E27">
+<createdBy>stb</createdBy>
+<createdTime>2018-10-21 13:54:35 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="8A4C6B10-3565-E15D-E545-D09306360463" referredColumn="5B45AA8F-B1EB-EEF3-05C3-4494F0A94D72"/>
+</associations>
+</Column>
+<Column name="BETR_UC" id="B8B86882-09CF-26F1-9BF4-3D3C086EAD41">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-04 15:40:18 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<formulaDesc>USER</formulaDesc>
+<sourceType>System</sourceType>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<computed>true</computed>
+<defaultOntNull>true</defaultOntNull>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="F7EEFF47-7A42-2A3E-7DFC-D0558D6996B8"/>
+</propertyMap>
+</Column>
+<Column name="BETR_DC" id="D3CC2B23-5761-F604-C53E-08EABA644C52">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-04 15:40:18 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT047</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="74D877A0-4C3B-63EE-06C5-071C7695907C"/>
+</propertyMap>
+</Column>
+<Column name="BETR_UM" id="5838435F-A543-ED50-3C1C-B2B523BDC2AF">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-04 15:40:18 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="B2E17D53-C2F7-74D9-022D-5D63F3931519"/>
+</propertyMap>
+</Column>
+<Column name="BETR_DM" id="DCADBF5C-160A-3E76-A00D-6D405564D488">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-04 15:40:18 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT047</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="B398D247-00C1-F016-3BBB-FE65CFFFF7AA"/>
+</propertyMap>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="F59137F5-35FD-5ED5-5630-1ADB9C9DE755" name="BETR_PK">
+<createdBy>stb</createdBy>
+<createdTime>2018-10-21 13:54:35 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="CE367AE2-4F28-0C14-E20E-B6BF09EB840A"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="08431377-699F-B823-2415-5D665DFBB981" name="BETR__UN">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-04 15:40:18 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="F20B9101-CDB8-6DCC-1144-724CF0F49C12"/>
+<colUsage columnID="54D4B483-38C2-FD2C-0EF8-81A705056E27"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="2D22C3F7-9C18-E946-97D1-6AD8AE50E188" name="BETR_ANSP_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-04 15:40:26 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="54D4B483-38C2-FD2C-0EF8-81A705056E27"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="B70183BD-CE9A-6EAA-D54C-F93EEC11D126" name="BETR_MODE_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-04 15:40:39 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="F20B9101-CDB8-6DCC-1144-724CF0F49C12"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

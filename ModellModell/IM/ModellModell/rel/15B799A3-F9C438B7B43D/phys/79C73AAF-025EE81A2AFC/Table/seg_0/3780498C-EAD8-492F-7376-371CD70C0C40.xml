@@ -1,0 +1,86 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev12c class="oracle.dbtools.crest.model.design.storage.oracle.v12c.TableProxyOraclev12c" name="VORGABEWERT" directorySegmentName="seg_0" id="3780498C-EAD8-492F-7376-371CD70C0C40">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-03 07:58:15 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<temporaryChanged>false</temporaryChanged>
+<accessDriverType>oracle_loader</accessDriverType>
+<rejectLimit></rejectLimit>
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="VGWT_UM" id="0016B961-E83D-32C8-A3B8-6AFA0FC758E7">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-03 07:58:15 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="VGWT_SORTRHFG" id="10C500AE-B6FB-E399-2D30-2D7322591A6B">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-03 07:58:15 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="VGWT_ANZEIGE" id="17DF90D1-9E1B-1AE8-1996-BCA661FBBE19">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-03 07:58:15 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="VGWT_BESCHR" id="1B37B53F-7AE0-2E28-FA61-27C1C85BD74C">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-03 07:58:15 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="VGWT_DM" id="5D17834C-D1C8-7A15-06E0-3E946A5A1CAC">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-03 07:58:15 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="VGWT_WERT" id="79290766-74BB-E78B-4781-3F5F0E6E607B">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-03 07:58:15 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="VGWT_UC" id="85901998-C02F-DC4D-EC51-8A9D2756E02F">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-03 07:58:15 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="VGWT_WRTB_ID" id="9269B165-ED6E-B12B-C49E-FA58A3BC8129">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-03 07:58:15 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="VGWT_ID" id="DD90C865-C842-4AC3-B30F-3935F4A8EE2F">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-03 07:58:15 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="VGWT_DC" id="E769FC7D-358E-04C9-BB7A-864F8EDD9150">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-03 07:58:15 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+<foreignKeys>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="VGWT_WRTB_FK" id="D92E4C14-21DE-39C9-5B22-DAF0D71C0246">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-03 07:58:15 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ForeignKey>
+</foreignKeys>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="VGWT_PK" id="B7EA30B4-2C62-BA4B-A245-1A5A551C273B">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-03 07:58:15 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexSort>SORTED</indexSort>
+</PrimaryKey>
+</primaryKeys>
+<uniqueKeys>
+<UniqueKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.UniqueOraclev10g" name="  VGWT_UK" id="2464A781-EE63-1F0D-7BD1-6A4FFFD68160">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-03 07:58:15 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexSort>SORTED</indexSort>
+</UniqueKey>
+</uniqueKeys>
+</TableProxyOraclev12c>

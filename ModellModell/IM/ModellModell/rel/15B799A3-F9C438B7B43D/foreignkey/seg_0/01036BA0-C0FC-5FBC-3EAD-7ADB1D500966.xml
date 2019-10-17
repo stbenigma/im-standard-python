@@ -1,0 +1,17 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="01036BA0-C0FC-5FBC-3EAD-7ADB1D500966" containerWithKeyObject="D813D7B1-32BE-CD84-427F-AE53DFA3C37A" localFKIndex="7BD142F2-29D5-56B9-E26C-4D864AA00641" name="SPTX_MODE_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-02 08:47:16 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<referredTableLongName>MODELLELEMENT</referredTableLongName>
+<deleteRule>CASCADE</deleteRule>
+<referredTableID>A073FA53-4336-7DC0-4BAE-8F4971FC5FAA</referredTableID>
+<keyObject>BB688731-E555-A6AC-63B4-02FA1B4F83F5</keyObject>
+<referredKeyID>BB688731-E555-A6AC-63B4-02FA1B4F83F5</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>MODE_ID</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<discriminatorColumn>E7DD4494-59BC-B5B7-F31F-333747453A3D</discriminatorColumn>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>
