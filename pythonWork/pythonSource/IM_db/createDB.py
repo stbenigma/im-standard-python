@@ -1,30 +1,24 @@
 # -*- coding: latin-1 -*-
-from IM_ODM import odmParam
-from IM_DB import dbParam,dbConnect,dbErstelleTables
+from IM_DB import parameters,dbConnect,dbErstelleTables
 import pathlib
-import sys
+import sys,os
 
 # Main Programm
 
-def main(argv):
-    limDirec = argv[1] if (len(sys.argv) > 1) else None
-    lModelName = argv[2] if (len(sys.argv) > 2) else None
+def main(par1):
 
-    if limDirec is None:
-        limDirec = pathlib.Path(__file__).parent.__str__()+'/'
-        lModelName = 'emptyODM.db'
-    #fi
-    odmParam.initODMParam(pimDirec=limDirec, pmodelName=lModelName)
+    parameters.initparam(p_callarg=par1)
 
-    dbParam.initDBParam(odmParam.imDirectory
-                        , odmParam.imModelName + '.db');
-
-    print("createDB",  dbParam.dbDirectory, dbParam.dbName)
-    dbConnect.openDB(dbParam.dbDirectory, dbParam.dbName,'OFF');
+    print("createDB",  parameters.dbDirect(), parameters.odmModelName())
+    #falls es das Verzeichnis für die DB nicht gibt erzeuge es
+    if not os.path.isdir(parameters.dbDirect()):
+        os.mkdir(parameters.dbDirect())
+    dbConnect.openDB(parameters.dbFilePath(),'OFF');
     dbErstelleTables.erstelleInfra();
 
     dbConnect.myDbConn.close()
 #end main
 
 if __name__ == '__main__':
-    main(sys.argv)
+    par1 = sys.argv[1]
+    main(par1)

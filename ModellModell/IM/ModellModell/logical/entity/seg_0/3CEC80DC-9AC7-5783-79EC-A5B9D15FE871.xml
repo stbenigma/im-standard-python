@@ -28,12 +28,7 @@ Es ist nicht zwingend notwendig, dass dieses Attribut in dieser Form in einem de
 <createSurrogateKey>true</createSurrogateKey>
 <propertyMap>
 <property name="Beispiele" value="Preis, Name, Startdatum"/>
-<property name="DE_ENTI_COMMENT" value="Beschreibung eines Trägers einers Wertes.
-Dieses Attribut ist die gültige Single Source of Truth des konzeptionellen Modells. 
-
-Es ist nicht zwingend notwendig, dass dieses Attribut in dieser Form in einem der Systeme verwaltet wird. Die Definition gilt als Referenz für alle, die mit dieser Information arbeiten wollen
-
-"/>
+<property name="DE_ENTI_COMMENT" value="Beschreibung eines Trägers einers Wertes. Dieses Attribut ist die gültige Single Source of Truth des konzeptionellen Modells.   Es ist nicht zwingend notwendig, dass dieses Attribut in dieser Form in einem der Systeme verwaltet wird. Die Definition gilt als Referenz für alle, die mit dieser Information arbeiten wollen  "/>
 <property name="DE_ENTI_NAME" value="Attribut"/>
 <property name="DE_ENTI_SYNONYM" value="Merkmal, Eigenschaft"/>
 <property name="EN_ENTI_COMMENT" value="*DE* Beschreibung eines Trägers einers Wertes. Dieses Attribut ist die gültige Single Source of Truth des konzeptionellen Modells.   Es ist nicht zwingend notwendig, dass dieses Attribut in dieser Form in einem der Systeme verwaltet wird. Die Definition gilt als Referenz für alle, die mit dieser Information arbeiten wollen  "/>
@@ -186,9 +181,7 @@ Kann  über Extratabelle gelöst werden.]]></comment>
 <domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
-<property name="DE_ATTR_COMMENT" value="JA -&gt; Das Feld kann mehere Werte enthalten. 
-NEIN -&gt; Feld enthält maximal einen Wert.
-Kann  über Extratabelle gelöst werden."/>
+<property name="DE_ATTR_COMMENT" value="JA -&gt; Das Feld kann mehere Werte enthalten.  NEIN -&gt; Feld enthält maximal einen Wert. Kann  über Extratabelle gelöst werden."/>
 <property name="DE_ATTR_NAME" value="ist Wiederholattribut"/>
 <property name="EN_ATTR_COMMENT" value="*DE* JA -&gt; Das Feld kann mehere Werte enthalten.  NEIN -&gt; Feld enthält maximal einen Wert. Kann  über Extratabelle gelöst werden."/>
 <property name="EN_ATTR_NAME" value="*DE* ist Wiederholattribut"/>
@@ -210,8 +203,7 @@ Kann  über Extratabelle gelöst werden."/>
 <domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
-<property name="DE_ATTR_COMMENT" value="JA -&gt; Der Feldwert kann in mehreren Sprachen vorkommen.
-Über Extratabelle die mit Sprachen verknüpft ist lösen"/>
+<property name="DE_ATTR_COMMENT" value="JA -&gt; Der Feldwert kann in mehreren Sprachen vorkommen. Über Extratabelle die mit Sprachen verknüpft ist lösen"/>
 <property name="DE_ATTR_NAME" value="ist sprachabhängig"/>
 <property name="EN_ATTR_COMMENT" value="*DE* JA -&gt; Der Feldwert kann in mehreren Sprachen vorkommen. Über Extratabelle die mit Sprachen verknüpft ist lösen"/>
 <property name="EN_ATTR_NAME" value="*DE* ist sprachabhängig"/>
@@ -233,8 +225,7 @@ Kann  über Extratabelle gelöst werden."/>
 <domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
-<property name="DE_ATTR_COMMENT" value="JA -&gt; Der Feldwert kann über die Zeit ändern, Die Historie muss im System verwaltet werden. Zu einem Zeitpunkt kann nur 1 Wert gültig sein.
-Über Extratabelle verknüpft ist lösen"/>
+<property name="DE_ATTR_COMMENT" value="JA -&gt; Der Feldwert kann über die Zeit ändern, Die Historie muss im System verwaltet werden. Zu einem Zeitpunkt kann nur 1 Wert gültig sein. Über Extratabelle verknüpft ist lösen"/>
 <property name="DE_ATTR_NAME" value="ist historisiert"/>
 <property name="EN_ATTR_COMMENT" value="*DE* JA -&gt; Der Feldwert kann über die Zeit ändern, Die Historie muss im System verwaltet werden. Zu einem Zeitpunkt kann nur 1 Wert gültig sein. Über Extratabelle verknüpft ist lösen"/>
 <property name="EN_ATTR_NAME" value="*DE* ist historisiert"/>
@@ -257,9 +248,7 @@ NEIN -> Feld wird nicht verschlüsselt
 <domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
-<property name="DE_ATTR_COMMENT" value="JA -&gt; Das Feld muss in Speicherung und Transport verschlüsselt werden
-NEIN -&gt; Feld wird nicht verschlüsselt
-"/>
+<property name="DE_ATTR_COMMENT" value="JA -&gt; Das Feld muss in Speicherung und Transport verschlüsselt werden NEIN -&gt; Feld wird nicht verschlüsselt "/>
 <property name="DE_ATTR_NAME" value="ist verschlüsselt"/>
 <property name="EN_ATTR_COMMENT" value="*DE* JA -&gt; Das Feld muss in Speicherung und Transport verschlüsselt werden NEIN -&gt; Feld wird nicht verschlüsselt "/>
 <property name="EN_ATTR_NAME" value="*DE* ist verschlüsselt"/>

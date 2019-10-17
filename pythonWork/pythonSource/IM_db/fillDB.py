@@ -1,21 +1,18 @@
 # -*- coding: latin-1 -*-
 from IM_ODM import odmParam,transferModel
 from IM_DB import dbParam,dbConnect
+from IM_DB import parameters
 
 
 
 # Main Programm
 
-def main(p_imdirec=None, p_modelname=None):
+def main(p_param1):
+    parameters.initparam(p_callarg=p_param1)
 
-    odmParam.initODMParam(pimDirec=p_imdirec, pmodelName=p_modelname)
 
-    dbParam.initDBParam(odmParam.imDirectory
-                ,odmParam.imModelName+'.db');
-#    print (dbParam.dbDirectory+dbParam.dbName)
-
-    print ("fillDB",odmParam.imDirectory,odmParam.imModelName)
-    dbConnect.openDB(dbParam.dbDirectory,dbParam.dbName,fks='ON');
+    print ("fillDB",parameters.odmBaseDirec(),parameters.odmModelName())
+    dbConnect.openDB(parameters.dbFilePath(),fks='ON');
 
     transferModel.insertBaseData()
     dbParam.liesDefaultLang()
@@ -26,5 +23,4 @@ def main(p_imdirec=None, p_modelname=None):
 
 if __name__ == '__main__':
     import sys
-    main(p_imdirec=sys.argv[1] if (len(sys.argv) > 1) else None
-        ,p_modelname=sys.argv[2] if (len(sys.argv) > 2) else None)
+    main(p_param1=sys.argv[1])

@@ -6,13 +6,13 @@ import sqlite3
 
 myDbConn: sqlite3.Connection = None
 
-def createDB(ppath,pname):
+def createDB(p_filepath):
     """ erstellt eine Datenbank im Pfad mit diesem Namen """
-    openDB(ppath,pname)
+    openDB(p_filepath)
 
-def openDB(ppath,pname,fks='OFF'):
+def openDB(p_filepath,fks='OFF'):
     """ öffnet die DB pfad/Name """
     global myDbConn
-    myDbConn = sqlite3.connect(ppath.__str__()+'/'+pname)
+    myDbConn = sqlite3.connect(p_filepath)
     myDbConn.execute("PRAGMA foreign_keys = {}".format(fks))
 

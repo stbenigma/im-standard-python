@@ -2,9 +2,7 @@
 import xml.etree.ElementTree as ET
 import re,os,sqlite3
 from datetime import date
-from IM_ODM import odmParam
-from IM_DB import dbInserts,dbDML,dbLookup,dbConnect,dbParam
-from mydeepl import translate
+from IM_DB import dbInserts,dbDML,dbLookup,dbConnect
 
 class Wertebereich:
     def __init__(self, pname, pid):

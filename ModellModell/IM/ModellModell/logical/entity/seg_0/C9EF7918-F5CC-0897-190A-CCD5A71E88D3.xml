@@ -13,6 +13,7 @@
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 </engineerTo>
+<typeID>1C6A8769-7651-51C0-9E0A-D0C138DE6193</typeID>
 <adequatelyNormalized>NO</adequatelyNormalized>
 <expectedVolumes>0</expectedVolumes>
 <fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
@@ -23,17 +24,10 @@
 <normalForm>Third</normalForm>
 <createSurrogateKey>true</createSurrogateKey>
 <propertyMap>
-<property name="DE_ENTI_COMMENT" value=" Attribut in einem System, das mit anderen Systemen ausgetauscht werden soll.
- Datentyp, Format und Constraints können in div. Sprachen und Dialekten geführ werden
-  SQL (mit dialekt)
-  Jason
-  XML
-"/>
+<property name="DE_ENTI_COMMENT" value=" Attribut in einem System, das mit anderen Systemen ausgetauscht werden soll.  Datentyp, Format und Constraints können in div. Sprachen und Dialekten geführ werden   SQL (mit dialekt)   Jason   XML "/>
 <property name="DE_ENTI_NAME" value="Schnittstellenattribut"/>
-<property name="DE_ENTI_SYNONYM" value=""/>
 <property name="EN_ENTI_COMMENT" value="*DE*  Attribut in einem System, das mit anderen Systemen ausgetauscht werden soll.  Datentyp, Format und Constraints können in div. Sprachen und Dialekten geführ werden   SQL (mit dialekt)   Jason   XML "/>
 <property name="EN_ENTI_NAME" value="*DE* Schnittstellenattribut"/>
-<property name="EN_ENTI_SYNONYM" value=""/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Name" id="B41BF0C7-0AD6-E2FF-307E-0E3AB8A27120">
@@ -72,25 +66,6 @@
 <property name="DE_ATTR_NAME" value="Beschreibung"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Beschreibung des Attributes im Fremdsystem"/>
 <property name="EN_ATTR_NAME" value="*DE* Beschreibung"/>
-</propertyMap>
-</Attribute>
-<Attribute name="Tabellenname" id="A4F8AE1B-96D5-63B5-DAEA-8A543607CDE9">
-<createdBy>stb</createdBy>
-<createdTime>2018-06-23 12:57:13 UTC</createdTime>
-<ownerDesignName>ModellModell</ownerDesignName>
-<engineerTo>
-<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
-<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
-</engineerTo>
-<use>0</use>
-<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
-<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<propertyMap>
-<property name="DE_ATTR_COMMENT" value=""/>
-<property name="DE_ATTR_NAME" value="Tabellenname"/>
-<property name="EN_ATTR_COMMENT" value=""/>
-<property name="EN_ATTR_NAME" value="*DE* Tabellenname"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Datentyp" id="43799535-BB40-2FF9-9A10-9AFA0B987604">
@@ -166,11 +141,7 @@
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 </engineerTo>
 <pk>true</pk>
-<newElementsIDs>B41BF0C7-0AD6-E2FF-307E-0E3AB8A27120,A4F8AE1B-96D5-63B5-DAEA-8A543607CDE9,DC7CB504-6419-8B00-4117-ABBE79443FD3</newElementsIDs>
-<usedAttributes>
-<attributeRef>B41BF0C7-0AD6-E2FF-307E-0E3AB8A27120</attributeRef>
-<attributeRef>A4F8AE1B-96D5-63B5-DAEA-8A543607CDE9</attributeRef>
-</usedAttributes>
+<newElementsIDs>DC7CB504-6419-8B00-4117-ABBE79443FD3</newElementsIDs>
 </identifier>
 </identifiers>
 </Entity>

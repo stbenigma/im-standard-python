@@ -67,7 +67,3 @@ def initODMParam(pimDirec = None , pmodelName  = None, pDomainsFile = None):
 
 #end initODMParam
 
-# with open(filename) as fh:
-# ...     commands = dict(re.findall(r'(\S+)\s+(.+)', fh.read()))
-# ...
-# >>> print(json.dumps(commands, indent=2, sort_keys=True))
