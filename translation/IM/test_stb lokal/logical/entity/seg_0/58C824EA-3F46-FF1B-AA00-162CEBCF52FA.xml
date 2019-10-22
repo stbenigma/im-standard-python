@@ -1,8 +1,9 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="58C824EA-3F46-FF1B-AA00-162CEBCF52FA" name="**Lessee">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="58C824EA-3F46-FF1B-AA00-162CEBCF52FA" name="Leasingnehmer">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 08:04:25 UTC</createdTime>
-<comment><![CDATA[**Legal entity that has concluded a leasing contract for a product. It is the owner but not the owner of the product]]></comment>
+<comment><![CDATA[Geschäftsfähige Einheit die einen Leasingvertrag für Produkt abgeschlossen hat.
+Damit ist sie Besitzer aber nicht Eigentümer des Produktes]]></comment>
 <ownerDesignName>test_stb lokal</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
@@ -19,8 +20,9 @@
 <normalForm>Third</normalForm>
 <createSurrogateKey>true</createSurrogateKey>
 <propertyMap>
-<property name="DE_ENT_COMMENT" value="**Legal entity that has concluded a leasing contract for a product. It is the owner but not the owner of the product"/>
-<property name="DE_ENT_NAME" value="**Lessee"/>
+<property name="DE_ENT_COMMENT" value="Geschäftsfähige Einheit die einen Leasingvertrag für Produkt abgeschlossen hat.
+Damit ist sie Besitzer aber nicht Eigentümer des Produktes"/>
+<property name="DE_ENT_NAME" value="Leasingnehmer"/>
 <property name="DE_ENT_SYNONYM" value=""/>
 <property name="EN_ENT_COMMENT" value="**Legal entity that has concluded a leasing contract for a product. It is the owner but not the owner of the product"/>
 <property name="EN_ENT_NAME" value="**Lessee"/>

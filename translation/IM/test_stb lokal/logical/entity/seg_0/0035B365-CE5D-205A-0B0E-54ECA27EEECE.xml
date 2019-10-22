@@ -1,8 +1,16 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="0035B365-CE5D-205A-0B0E-54ECA27EEECE" name="land group">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="0035B365-CE5D-205A-0B0E-54ECA27EEECE" name="Ländergruppe">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 08:36:39 UTC</createdTime>
-<comment><![CDATA[**A grouping of several countries into one group. A criterion for group formation or a justification (purpose) for the use of the group should be defined/documented in each case.  Types of country groups allow you to manage several groupings: Sales org., customs, logistics examples: EU SACU Botswana; Eswatini; Lesotho; Namibia; South Africa (Customs Union) EMEA (Europe, Middle East, Africa) (Sales Organization)]]></comment>
+<comment><![CDATA[Eine Zusammenfassung mehrerer Länder zu einer Gruppe.
+Es soll jeweils ein Kriterium für die Gruppenbildung bzw. einen Begründung (Zweck) für die Nutzung der Gruppe festgelegt/dokumentiert werden.
+
+Typen von Ländergruppen erlauben mehrere Gruppierungen zu führen: Vertriebsorg., Zoll, Logistik 
+
+Beispiele:
+EU
+SACU Botsuana; Eswatini; Lesotho; Namibia; Südafrika (Zollunion)
+EMEA (Europe, Middle East, Africa) (Vertriebsorganisation)]]></comment>
 <ownerDesignName>test_stb lokal</ownerDesignName>
 <engineerTo>
 <item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true"/>
@@ -18,18 +26,26 @@
 <normalForm>Third</normalForm>
 <createSurrogateKey>true</createSurrogateKey>
 <propertyMap>
-<property name="DE_ENT_COMMENT" value="**A grouping of several countries into one group. A criterion for group formation or a justification (purpose) for the use of the group should be defined/documented in each case.  Types of country groups allow you to manage several groupings: Sales org., customs, logistics examples: EU SACU Botswana; Eswatini; Lesotho; Namibia; South Africa (Customs Union) EMEA (Europe, Middle East, Africa) (Sales Organization)"/>
-<property name="DE_ENT_NAME" value="land group"/>
+<property name="DE_ENT_COMMENT" value="Eine Zusammenfassung mehrerer Länder zu einer Gruppe.
+Es soll jeweils ein Kriterium für die Gruppenbildung bzw. einen Begründung (Zweck) für die Nutzung der Gruppe festgelegt/dokumentiert werden.
+
+Typen von Ländergruppen erlauben mehrere Gruppierungen zu führen: Vertriebsorg., Zoll, Logistik 
+
+Beispiele:
+EU
+SACU Botsuana; Eswatini; Lesotho; Namibia; Südafrika (Zollunion)
+EMEA (Europe, Middle East, Africa) (Vertriebsorganisation)"/>
+<property name="DE_ENT_NAME" value="Ländergruppe"/>
 <property name="DE_ENT_SYNONYM" value=""/>
 <property name="EN_ENT_COMMENT" value="**A grouping of several countries into one group. A criterion for group formation or a justification (purpose) for the use of the group should be defined/documented in each case.  Types of country groups allow you to manage several groupings: Sales org., customs, logistics examples: EU SACU Botswana; Eswatini; Lesotho; Namibia; South Africa (Customs Union) EMEA (Europe, Middle East, Africa) (Sales Organization)"/>
 <property name="EN_ENT_NAME" value="land group"/>
 <property name="EN_ENT_SYNONYM" value=""/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<Attribute name="type" id="854EF45E-D99B-33BB-CEBA-CCBFD3723223">
+<Attribute name="Typ" id="854EF45E-D99B-33BB-CEBA-CCBFD3723223">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 09:01:27 UTC</createdTime>
-<comment><![CDATA[type of land]]></comment>
+<comment><![CDATA[Typ der Ländergruppe (Vertrieb, Zoll, Organisation)]]></comment>
 <ownerDesignName>test_stb lokal</ownerDesignName>
 <engineerTo>
 <item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true"/>
@@ -38,16 +54,15 @@
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
-<property name="DE_ATTR_COMMENT" value="type of land"/>
-<property name="DE_ATTR_NAME" value="type"/>
+<property name="DE_ATTR_COMMENT" value="Typ der Ländergruppe (Vertrieb, Zoll, Organisation)"/>
+<property name="DE_ATTR_NAME" value="Typ"/>
 <property name="EN_ATTR_COMMENT" value="type of land"/>
 <property name="EN_ATTR_NAME" value="type"/>
 </propertyMap>
 </Attribute>
-<Attribute name="reason" id="4884CAC4-510A-4F0B-4C72-FC6E2F36D0B3">
+<Attribute name="Zweck" id="4884CAC4-510A-4F0B-4C72-FC6E2F36D0B3">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 08:58:17 UTC</createdTime>
-<comment><![CDATA[new englisch]]></comment>
 <ownerDesignName>test_stb lokal</ownerDesignName>
 <engineerTo>
 <item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true"/>
@@ -56,8 +71,8 @@
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
-<property name="DE_ATTR_COMMENT" value="new englisch"/>
-<property name="DE_ATTR_NAME" value="reason"/>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Zweck"/>
 <property name="EN_ATTR_COMMENT" value="new englisch"/>
 <property name="EN_ATTR_NAME" value="reason"/>
 </propertyMap>

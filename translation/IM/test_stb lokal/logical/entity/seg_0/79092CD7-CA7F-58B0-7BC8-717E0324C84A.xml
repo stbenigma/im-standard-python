@@ -1,8 +1,9 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="79092CD7-CA7F-58B0-7BC8-717E0324C84A" name="**Household">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="79092CD7-CA7F-58B0-7BC8-717E0324C84A" name="Haushalt">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 08:00:37 UTC</createdTime>
-<comment><![CDATA[**Housing unit (address + apartment number) as main residence shared by different persons]]></comment>
+<comment><![CDATA[Wohneinheit (Adresse + Wohnungsnummer) als Hauptwohnsitz gemeinsam genutzt durch verschiedene  Personen
+]]></comment>
 <ownerDesignName>test_stb lokal</ownerDesignName>
 <engineerTo>
 <item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true"/>
@@ -17,8 +18,9 @@
 <normalForm>Third</normalForm>
 <createSurrogateKey>true</createSurrogateKey>
 <propertyMap>
-<property name="DE_ENT_COMMENT" value="**Housing unit (address + apartment number) as main residence shared by different persons"/>
-<property name="DE_ENT_NAME" value="**Household"/>
+<property name="DE_ENT_COMMENT" value="Wohneinheit (Adresse + Wohnungsnummer) als Hauptwohnsitz gemeinsam genutzt durch verschiedene  Personen
+"/>
+<property name="DE_ENT_NAME" value="Haushalt"/>
 <property name="DE_ENT_SYNONYM" value=""/>
 <property name="EN_ENT_COMMENT" value="**Housing unit (address + apartment number) as main residence shared by different persons"/>
 <property name="EN_ENT_NAME" value="**Household"/>

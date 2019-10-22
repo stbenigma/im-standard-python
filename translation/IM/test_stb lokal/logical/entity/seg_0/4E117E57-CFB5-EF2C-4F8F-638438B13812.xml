@@ -1,8 +1,14 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="4E117E57-CFB5-EF2C-4F8F-638438B13812" name="**Person role">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="4E117E57-CFB5-EF2C-4F8F-638438B13812" name="Personenrolle">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 11:21:16 UTC</createdTime>
-<comment><![CDATA[**Description of a role that a contact person can have.  Examples: CEO CIO Sales Manager]]></comment>
+<comment><![CDATA[Beschreibung einer Rolle, die eine Ansprechsperson haben kann.
+
+Beispiele:
+CEO
+CIO
+Sachdienstmitarbeiter
+Verkaufsleiter]]></comment>
 <ownerDesignName>test_stb lokal</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
@@ -18,15 +24,21 @@
 <normalForm>Third</normalForm>
 <createSurrogateKey>true</createSurrogateKey>
 <propertyMap>
-<property name="DE_ENT_COMMENT" value="**Description of a role that a contact person can have.  Examples: CEO CIO Sales Manager"/>
-<property name="DE_ENT_NAME" value="**Person role"/>
+<property name="DE_ENT_COMMENT" value="Beschreibung einer Rolle, die eine Ansprechsperson haben kann.
+
+Beispiele:
+CEO
+CIO
+Sachdienstmitarbeiter
+Verkaufsleiter"/>
+<property name="DE_ENT_NAME" value="Personenrolle"/>
 <property name="DE_ENT_SYNONYM" value=""/>
 <property name="EN_ENT_COMMENT" value="**Description of a role that a contact person can have.  Examples: CEO CIO Sales Manager"/>
 <property name="EN_ENT_NAME" value="**Person role"/>
 <property name="EN_ENT_SYNONYM" value=""/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<Attribute name="**Designation" id="40B36602-4348-FB5F-5BD1-C56AD78107F8">
+<Attribute name="Bezeichnung" id="40B36602-4348-FB5F-5BD1-C56AD78107F8">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 11:21:32 UTC</createdTime>
 <ownerDesignName>test_stb lokal</ownerDesignName>
@@ -37,12 +49,12 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_COMMENT" value=""/>
-<property name="DE_ATTR_NAME" value="**Designation"/>
+<property name="DE_ATTR_NAME" value="Bezeichnung"/>
 <property name="EN_ATTR_COMMENT" value=""/>
 <property name="EN_ATTR_NAME" value="**Designation"/>
 </propertyMap>
 </Attribute>
-<Attribute name="**Description of the" id="116DF002-EA64-1985-173B-A197A3118F61">
+<Attribute name="Beschreibung" id="116DF002-EA64-1985-173B-A197A3118F61">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 11:21:38 UTC</createdTime>
 <ownerDesignName>test_stb lokal</ownerDesignName>
@@ -54,7 +66,7 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_COMMENT" value=""/>
-<property name="DE_ATTR_NAME" value="**Description of the"/>
+<property name="DE_ATTR_NAME" value="Beschreibung"/>
 <property name="EN_ATTR_COMMENT" value=""/>
 <property name="EN_ATTR_NAME" value="**Description of the"/>
 </propertyMap>

@@ -1,8 +1,10 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="6A230C51-7652-10F3-4FC2-23219A856BE9" name="**Organizational unit">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="6A230C51-7652-10F3-4FC2-23219A856BE9" name="Organisationseinheit">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 12:33:30 UTC</createdTime>
-<comment><![CDATA[**Internal company organizational unit. Mostly organized hierarchically]]></comment>
+<comment><![CDATA[Firmeninterne Organisationeinheit.
+Meist hierarchisch organisiert.
+]]></comment>
 <ownerDesignName>test_stb lokal</ownerDesignName>
 <engineerTo>
 <item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true"/>
@@ -17,15 +19,17 @@
 <normalForm>Third</normalForm>
 <createSurrogateKey>true</createSurrogateKey>
 <propertyMap>
-<property name="DE_ENT_COMMENT" value="**Internal company organizational unit. Mostly organized hierarchically"/>
-<property name="DE_ENT_NAME" value="**Organizational unit"/>
+<property name="DE_ENT_COMMENT" value="Firmeninterne Organisationeinheit.
+Meist hierarchisch organisiert.
+"/>
+<property name="DE_ENT_NAME" value="Organisationseinheit"/>
 <property name="DE_ENT_SYNONYM" value=""/>
 <property name="EN_ENT_COMMENT" value="**Internal company organizational unit. Mostly organized hierarchically"/>
 <property name="EN_ENT_NAME" value="**Organizational unit"/>
 <property name="EN_ENT_SYNONYM" value=""/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<Attribute name="**Name" id="F03F4978-F19A-5AD2-722C-FC0E7553F137">
+<Attribute name="Name" id="F03F4978-F19A-5AD2-722C-FC0E7553F137">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 12:33:46 UTC</createdTime>
 <ownerDesignName>test_stb lokal</ownerDesignName>
@@ -36,7 +40,7 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_COMMENT" value=""/>
-<property name="DE_ATTR_NAME" value="**Name"/>
+<property name="DE_ATTR_NAME" value="Name"/>
 <property name="EN_ATTR_COMMENT" value=""/>
 <property name="EN_ATTR_NAME" value="**Name"/>
 </propertyMap>
