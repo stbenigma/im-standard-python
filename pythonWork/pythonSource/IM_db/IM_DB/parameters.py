@@ -125,22 +125,22 @@ def odmTypesFile(newval=None):
         parameter['odmtypesfile'] = newval
 def odmFilesDirec(newval=None):
     if newval is None:
-        return odmIMDirec()+odmModelName()+parameter['odmfilesdirec']
+        return odmIMDirec()+odmModelName()+'/'+parameter['odmfilesdirec']
     else:
         parameter['odmfilesdirec'] = newval
 def odmEntityDirec(newval=None):
     if newval is None:
-        return odmIMDirec()+odmModelName()+parameter['odmentitydirec']
+        return odmIMDirec()+odmModelName()+'/'+parameter['odmentitydirec']
     else:
         parameter['odmentitydirec'] = newval
 def odmRelationDirec(newval=None):
     if newval is None:
-        return odmIMDirec()+odmModelName()+parameter['odmrelationdirec']
+        return odmIMDirec()+odmModelName()+'/'+parameter['odmrelationdirec']
     else:
         parameter['odmrelationdirec'] = newval
 def odmArcDirec(newval=None):
     if newval is None:
-        return odmIMDirec()+odmModelName()+parameter['odmarcdirec']
+        return odmIMDirec()+odmModelName()+'/'+parameter['odmarcdirec']
     else:
         parameter['odmarcdirec'] = newval
 def odmUDPTranslFileName(newval=None):

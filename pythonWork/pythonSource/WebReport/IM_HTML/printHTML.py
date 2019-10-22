@@ -1,9 +1,7 @@
-outputDirectory:str = None
-
-
 from IM_ODM import odmParam
 import os,shutil
 
+outputDirectory:str = None
 webDirectory:str = "";
 webFileName:str = "";
 detailDirectory:str = "";

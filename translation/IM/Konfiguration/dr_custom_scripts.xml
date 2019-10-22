@@ -10,6 +10,7 @@ var ruleMessage;
 // then result is colored in yellow
 var errType;
 var table;
+
 function checkcomments(object){
  result = true;
  ruleMessage="";
@@ -464,6 +465,8 @@ function change2EN() {
 		<script>
 			<![CDATA[ents = model.getEntitySet().toArray();
 ent = ents[1];
+p = modelObject.getSourceConnName()	
+throw new Error("p="+p);
 ent2 = model.getEntitySet().getByName('TEST');
 if (!ent.getObjectTypeName().equals("Entity")){
 	throw new Error(ent.getName());
