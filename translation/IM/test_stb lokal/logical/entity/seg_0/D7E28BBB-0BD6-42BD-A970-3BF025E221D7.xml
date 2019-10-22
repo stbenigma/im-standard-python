@@ -1,13 +1,12 @@
-<?xml version = '1.0' encoding = 'UTF-8'?>
 <Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="D7E28BBB-0BD6-42BD-A970-3BF025E221D7" name="Vertriebsteilnehmer">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 08:04:25 UTC</createdTime>
-<comment><![CDATA[Ein Marktteilnehmer, der mit verkaufbaren oder vermietbaren Produkten von uns direkt oder indirekt zu tun hat.
+<comment>Ein Marktteilnehmer, der mit verkaufbaren oder vermietbaren Produkten von uns direkt oder indirekt zu tun hat.
 
-]]></comment>
+</comment>
 <ownerDesignName>test_stb lokal</ownerDesignName>
 <engineerTo>
-<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true"/>
+<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true" />
 </engineerTo>
 <adequatelyNormalized>NO</adequatelyNormalized>
 <expectedVolumes>0</expectedVolumes>
@@ -19,13 +18,11 @@
 <normalForm>Third</normalForm>
 <createSurrogateKey>true</createSurrogateKey>
 <propertyMap>
-<property name="DE_ENT_COMMENT" value="Ein Marktteilnehmer, der mit verkaufbaren oder vermietbaren Produkten von uns direkt oder indirekt zu tun hat.
-
-"/>
-<property name="DE_ENT_NAME" value="Vertriebsteilnehmer"/>
-<property name="DE_ENT_SYNONYM" value=""/>
-<property name="EN_ENT_COMMENT" value="**A market participant who deals directly or indirectly with our saleable or rentable products.  "/>
-<property name="EN_ENT_NAME" value="**Distribution participants"/>
-<property name="EN_ENT_SYNONYM" value=""/>
+<property name="DE_ENT_COMMENT" value="Ein Marktteilnehmer, der mit verkaufbaren oder vermietbaren Produkten von uns direkt oder indirekt zu tun hat.  " />
+<property name="DE_ENT_NAME" value="Vertriebsteilnehmer" />
+<property name="DE_ENT_SYNONYM" value="" />
+<property name="EN_ENT_COMMENT" value="**A market participant who deals directly or indirectly with our saleable or rentable products.  " />
+<property name="EN_ENT_NAME" value="**Distribution participants" />
+<property name="EN_ENT_SYNONYM" value="" />
 </propertyMap>
 </Entity>

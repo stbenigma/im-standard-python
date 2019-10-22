@@ -1,10 +1,9 @@
-<?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="3DD3ACC9-75E8-8370-383F-69FCF5F4983F" name="natürliche Person">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="3DD3ACC9-75E8-8370-383F-69FCF5F4983F" name="nat&#252;rliche Person">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 08:00:37 UTC</createdTime>
 <ownerDesignName>test_stb lokal</ownerDesignName>
 <engineerTo>
-<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true"/>
+<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true" />
 </engineerTo>
 <adequatelyNormalized>NO</adequatelyNormalized>
 <expectedVolumes>0</expectedVolumes>
@@ -17,65 +16,65 @@
 <normalForm>Third</normalForm>
 <createSurrogateKey>true</createSurrogateKey>
 <propertyMap>
-<property name="DE_ENT_COMMENT" value=""/>
-<property name="DE_ENT_NAME" value="natürliche Person"/>
-<property name="DE_ENT_SYNONYM" value=""/>
-<property name="EN_ENT_COMMENT" value=""/>
-<property name="EN_ENT_NAME" value="**natural person"/>
-<property name="EN_ENT_SYNONYM" value=""/>
+<property name="DE_ENT_COMMENT" value="" />
+<property name="DE_ENT_NAME" value="nat&#252;rliche Person" />
+<property name="DE_ENT_SYNONYM" value="" />
+<property name="EN_ENT_COMMENT" value="" />
+<property name="EN_ENT_NAME" value="**natural person" />
+<property name="EN_ENT_SYNONYM" value="" />
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<Attribute name="Vorname" id="34425C84-C83D-CD8C-C3A8-A29A523A971B">
+<Attribute id="34425C84-C83D-CD8C-C3A8-A29A523A971B" name="Vorname">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 08:44:03 UTC</createdTime>
 <ownerDesignName>test_stb lokal</ownerDesignName>
 <engineerTo>
-<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true"/>
+<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true" />
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
-<property name="DE_ATTR_COMMENT" value=""/>
-<property name="DE_ATTR_NAME" value="Vorname"/>
-<property name="EN_ATTR_COMMENT" value=""/>
-<property name="EN_ATTR_NAME" value="**First name"/>
+<property name="DE_ATTR_COMMENT" value="" />
+<property name="DE_ATTR_NAME" value="Vorname" />
+<property name="EN_ATTR_COMMENT" value="" />
+<property name="EN_ATTR_NAME" value="**First name" />
 </propertyMap>
 </Attribute>
-<Attribute name="Geburtsdatum" id="BAA2C6EF-0C92-9643-BF97-C6828D6F6188">
+<Attribute id="BAA2C6EF-0C92-9643-BF97-C6828D6F6188" name="Geburtsdatum">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 08:00:37 UTC</createdTime>
 <ownerDesignName>test_stb lokal</ownerDesignName>
 <importedID>639F88E6-1AD8-C870-5291-27890B6F00E9</importedID>
 <engineerTo>
-<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true"/>
+<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true" />
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
-<property name="DE_ATTR_COMMENT" value=""/>
-<property name="DE_ATTR_NAME" value="Geburtsdatum"/>
-<property name="EN_ATTR_COMMENT" value=""/>
-<property name="EN_ATTR_NAME" value="**Date of birth"/>
+<property name="DE_ATTR_COMMENT" value="" />
+<property name="DE_ATTR_NAME" value="Geburtsdatum" />
+<property name="EN_ATTR_COMMENT" value="" />
+<property name="EN_ATTR_NAME" value="**Date of birth" />
 </propertyMap>
 </Attribute>
-<Attribute name="Geschlecht" id="114252E2-787D-F3A4-D874-37086E916F60">
+<Attribute id="114252E2-787D-F3A4-D874-37086E916F60" name="Geschlecht">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 08:00:37 UTC</createdTime>
 <ownerDesignName>test_stb lokal</ownerDesignName>
 <importedID>1C71B8DF-3794-7782-447D-19E2BB20BE20</importedID>
 <engineerTo>
-<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true"/>
+<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true" />
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
-<property name="DE_ATTR_COMMENT" value=""/>
-<property name="DE_ATTR_NAME" value="Geschlecht"/>
-<property name="EN_ATTR_COMMENT" value=""/>
-<property name="EN_ATTR_NAME" value="**Sex"/>
+<property name="DE_ATTR_COMMENT" value="" />
+<property name="DE_ATTR_NAME" value="Geschlecht" />
+<property name="EN_ATTR_COMMENT" value="" />
+<property name="EN_ATTR_NAME" value="**Sex" />
 </propertyMap>
 </Attribute>
 </attributes>

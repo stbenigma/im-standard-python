@@ -1,12 +1,11 @@
-<?xml version = '1.0' encoding = 'UTF-8'?>
 <Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="A62BF39A-D73C-C159-B8B1-E4EB7085DC7E" name="Agent">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 08:04:25 UTC</createdTime>
-<comment><![CDATA[Person oder Firma, die für uns (in einem Gebiet) die Vermittlung von Geschäften übernimmt.
-Handelt in dieser Rolle selber nicht mit den Waren. Hat also weder Lager noch ist sie Adressat von Lieferungen.]]></comment>
+<comment>Person oder Firma, die f&#252;r uns (in einem Gebiet) die Vermittlung von Gesch&#228;ften &#252;bernimmt.
+Handelt in dieser Rolle selber nicht mit den Waren. Hat also weder Lager noch ist sie Adressat von Lieferungen.</comment>
 <ownerDesignName>test_stb lokal</ownerDesignName>
 <engineerTo>
-<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true"/>
+<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true" />
 </engineerTo>
 <adequatelyNormalized>NO</adequatelyNormalized>
 <expectedVolumes>0</expectedVolumes>
@@ -19,12 +18,11 @@ Handelt in dieser Rolle selber nicht mit den Waren. Hat also weder Lager noch is
 <normalForm>Third</normalForm>
 <createSurrogateKey>true</createSurrogateKey>
 <propertyMap>
-<property name="DE_ENT_COMMENT" value="Person oder Firma, die für uns (in einem Gebiet) die Vermittlung von Geschäften übernimmt.
-Handelt in dieser Rolle selber nicht mit den Waren. Hat also weder Lager noch ist sie Adressat von Lieferungen."/>
-<property name="DE_ENT_NAME" value="Agent"/>
-<property name="DE_ENT_SYNONYM" value=""/>
-<property name="EN_ENT_COMMENT" value="**A person or company that acts as a broker for us (in an area). Does not deal with the goods in this role itself. So it has neither a warehouse nor is it an addressee of deliveries."/>
-<property name="EN_ENT_NAME" value="**Agent"/>
-<property name="EN_ENT_SYNONYM" value=""/>
+<property name="DE_ENT_COMMENT" value="Person oder Firma, die f&#252;r uns (in einem Gebiet) die Vermittlung von Gesch&#228;ften &#252;bernimmt. Handelt in dieser Rolle selber nicht mit den Waren. Hat also weder Lager noch ist sie Adressat von Lieferungen." />
+<property name="DE_ENT_NAME" value="Agent" />
+<property name="DE_ENT_SYNONYM" value="" />
+<property name="EN_ENT_COMMENT" value="**A person or company that acts as a broker for us (in an area). Does not deal with the goods in this role itself. So it has neither a warehouse nor is it an addressee of deliveries." />
+<property name="EN_ENT_NAME" value="**Agent" />
+<property name="EN_ENT_SYNONYM" value="" />
 </propertyMap>
 </Entity>

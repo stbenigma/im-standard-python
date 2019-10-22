@@ -1,14 +1,13 @@
-<?xml version = '1.0' encoding = 'UTF-8'?>
 <Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="27E0E472-3045-DA71-C33C-94F83ED0393E" name="Land">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 07:55:51 UTC</createdTime>
-<comment><![CDATA[Land gemäss ISO-Liste ISO-3166-1
+<comment>Land gem&#228;ss ISO-Liste ISO-3166-1
 
-Gemäss NUTS (https://de.wikipedia.org/wiki/NUTS) ist das Land die Gebietsstufe NUTS 0
-]]></comment>
+Gem&#228;ss NUTS (https://de.wikipedia.org/wiki/NUTS) ist das Land die Gebietsstufe NUTS 0
+</comment>
 <ownerDesignName>test_stb lokal</ownerDesignName>
 <engineerTo>
-<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true"/>
+<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true" />
 </engineerTo>
 <adequatelyNormalized>NO</adequatelyNormalized>
 <expectedVolumes>0</expectedVolumes>
@@ -22,87 +21,84 @@ Gemäss NUTS (https://de.wikipedia.org/wiki/NUTS) ist das Land die Gebietsstufe 
 <shortName>LAND</shortName>
 <createSurrogateKey>true</createSurrogateKey>
 <propertyMap>
-<property name="DE_ENT_COMMENT" value="Land gemäss ISO-Liste ISO-3166-1
-
-Gemäss NUTS (https://de.wikipedia.org/wiki/NUTS) ist das Land die Gebietsstufe NUTS 0
-"/>
-<property name="DE_ENT_NAME" value="Land"/>
-<property name="DE_ENT_SYNONYM" value=""/>
-<property name="EN_ENT_COMMENT" value="**Country according to ISO list ISO-3166-1 According to NUTS (https://de.wikipedia.org/wiki/NUTS), the country is the territorial level NUTS 0"/>
-<property name="EN_ENT_NAME" value="Land"/>
-<property name="EN_ENT_SYNONYM" value=""/>
+<property name="DE_ENT_COMMENT" value="Land gem&#228;ss ISO-Liste ISO-3166-1  Gem&#228;ss NUTS (https://de.wikipedia.org/wiki/NUTS) ist das Land die Gebietsstufe NUTS 0 " />
+<property name="DE_ENT_NAME" value="Land" />
+<property name="DE_ENT_SYNONYM" value="" />
+<property name="EN_ENT_COMMENT" value="**Country according to ISO list ISO-3166-1 According to NUTS (https://de.wikipedia.org/wiki/NUTS), the country is the territorial level NUTS 0" />
+<property name="EN_ENT_NAME" value="Land" />
+<property name="EN_ENT_SYNONYM" value="" />
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<Attribute name="ISO2_Code" id="2D721C1B-E511-B23D-D93E-C36B3A2D2FEA">
+<Attribute id="2D721C1B-E511-B23D-D93E-C36B3A2D2FEA" name="ISO2_Code">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 07:55:51 UTC</createdTime>
 <ownerDesignName>test_stb lokal</ownerDesignName>
 <importedID>B04AE1B0-09F9-D76C-0348-C7844E8BF476</importedID>
 <engineerTo>
-<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true"/>
+<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true" />
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
-<property name="DE_ATTR_COMMENT" value=""/>
-<property name="DE_ATTR_NAME" value="ISO2_Code"/>
-<property name="EN_ATTR_COMMENT" value=""/>
-<property name="EN_ATTR_NAME" value="ISO2_Code"/>
+<property name="DE_ATTR_COMMENT" value="" />
+<property name="DE_ATTR_NAME" value="ISO2_Code" />
+<property name="EN_ATTR_COMMENT" value="" />
+<property name="EN_ATTR_NAME" value="ISO2_Code" />
 </propertyMap>
 </Attribute>
-<Attribute name="ISO3_Code" id="080C0666-2AA9-CABB-5493-19258F936D9D">
+<Attribute id="080C0666-2AA9-CABB-5493-19258F936D9D" name="ISO3_Code">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 09:05:07 UTC</createdTime>
 <ownerDesignName>test_stb lokal</ownerDesignName>
 <engineerTo>
-<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true"/>
+<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true" />
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
-<property name="DE_ATTR_COMMENT" value=""/>
-<property name="DE_ATTR_NAME" value="ISO3_Code"/>
-<property name="EN_ATTR_COMMENT" value=""/>
-<property name="EN_ATTR_NAME" value="ISO3_Code"/>
+<property name="DE_ATTR_COMMENT" value="" />
+<property name="DE_ATTR_NAME" value="ISO3_Code" />
+<property name="EN_ATTR_COMMENT" value="" />
+<property name="EN_ATTR_NAME" value="ISO3_Code" />
 </propertyMap>
 </Attribute>
-<Attribute name="ISO_Code_numerisch" id="EAA58C83-A9F6-56BD-3C50-74BF3E45A7F9">
+<Attribute id="EAA58C83-A9F6-56BD-3C50-74BF3E45A7F9" name="ISO_Code_numerisch">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 09:05:13 UTC</createdTime>
 <ownerDesignName>test_stb lokal</ownerDesignName>
 <engineerTo>
-<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true"/>
+<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true" />
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
-<property name="DE_ATTR_COMMENT" value=""/>
-<property name="DE_ATTR_NAME" value="ISO_Code_numerisch"/>
-<property name="EN_ATTR_COMMENT" value=""/>
-<property name="EN_ATTR_NAME" value="ISO_Code_numeric"/>
+<property name="DE_ATTR_COMMENT" value="" />
+<property name="DE_ATTR_NAME" value="ISO_Code_numerisch" />
+<property name="EN_ATTR_COMMENT" value="" />
+<property name="EN_ATTR_NAME" value="ISO_Code_numeric" />
 </propertyMap>
 </Attribute>
-<Attribute name="TopLevelDomain" id="96777AC2-625D-9AD4-E724-D166F850C775">
+<Attribute id="96777AC2-625D-9AD4-E724-D166F850C775" name="TopLevelDomain">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 09:06:15 UTC</createdTime>
 <ownerDesignName>test_stb lokal</ownerDesignName>
 <engineerTo>
-<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true"/>
+<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true" />
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
-<property name="DE_ATTR_COMMENT" value=""/>
-<property name="DE_ATTR_NAME" value="TopLevelDomain"/>
-<property name="EN_ATTR_COMMENT" value=""/>
-<property name="EN_ATTR_NAME" value="TopLevelDomain"/>
+<property name="DE_ATTR_COMMENT" value="" />
+<property name="DE_ATTR_NAME" value="TopLevelDomain" />
+<property name="EN_ATTR_COMMENT" value="" />
+<property name="EN_ATTR_NAME" value="TopLevelDomain" />
 </propertyMap>
 </Attribute>
 </attributes>
@@ -113,7 +109,7 @@ Gemäss NUTS (https://de.wikipedia.org/wiki/NUTS) ist das Land die Gebietsstufe 
 <ownerDesignName>test_stb lokal</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
-<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="false"/>
+<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="false" />
 </engineerTo>
 <usedAttributes>
 <attributeRef>2D721C1B-E511-B23D-D93E-C36B3A2D2FEA</attributeRef>

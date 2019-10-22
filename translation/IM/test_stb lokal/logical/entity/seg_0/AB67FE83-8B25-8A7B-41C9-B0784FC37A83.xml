@@ -1,16 +1,15 @@
-<?xml version = '1.0' encoding = 'UTF-8'?>
 <Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="AB67FE83-8B25-8A7B-41C9-B0784FC37A83" name="Standort">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 12:35:22 UTC</createdTime>
-<comment><![CDATA[Ort an dem die Firma irgendwie vertreten ist
+<comment>Ort an dem die Firma irgendwie vertreten ist
 
 Beispiel:
 Lager
-Produktionsstätte
-Bürogebäude]]></comment>
+Produktionsst&#228;tte
+B&#252;rogeb&#228;ude</comment>
 <ownerDesignName>test_stb lokal</ownerDesignName>
 <engineerTo>
-<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true"/>
+<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true" />
 </engineerTo>
 <adequatelyNormalized>NO</adequatelyNormalized>
 <expectedVolumes>0</expectedVolumes>
@@ -22,34 +21,29 @@ Bürogebäude]]></comment>
 <normalForm>Third</normalForm>
 <createSurrogateKey>true</createSurrogateKey>
 <propertyMap>
-<property name="DE_ENT_COMMENT" value="Ort an dem die Firma irgendwie vertreten ist
-
-Beispiel:
-Lager
-Produktionsstätte
-Bürogebäude"/>
-<property name="DE_ENT_NAME" value="Standort"/>
-<property name="DE_ENT_SYNONYM" value=""/>
-<property name="EN_ENT_COMMENT" value="**Place where the company is somehow represented Example: Warehouse Production site Office building"/>
-<property name="EN_ENT_NAME" value="**Location"/>
-<property name="EN_ENT_SYNONYM" value=""/>
+<property name="DE_ENT_COMMENT" value="Ort an dem die Firma irgendwie vertreten ist  Beispiel: Lager Produktionsst&#228;tte B&#252;rogeb&#228;ude" />
+<property name="DE_ENT_NAME" value="Standort" />
+<property name="DE_ENT_SYNONYM" value="" />
+<property name="EN_ENT_COMMENT" value="**Place where the company is somehow represented Example: Warehouse Production site Office building" />
+<property name="EN_ENT_NAME" value="**Location" />
+<property name="EN_ENT_SYNONYM" value="" />
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<Attribute name="Name" id="024A5411-10A2-5376-08E3-33DBA0FF5D9D">
+<Attribute id="024A5411-10A2-5376-08E3-33DBA0FF5D9D" name="Name">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 12:35:23 UTC</createdTime>
 <ownerDesignName>test_stb lokal</ownerDesignName>
 <engineerTo>
-<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true"/>
+<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true" />
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
-<property name="DE_ATTR_COMMENT" value=""/>
-<property name="DE_ATTR_NAME" value="Name"/>
-<property name="EN_ATTR_COMMENT" value=""/>
-<property name="EN_ATTR_NAME" value="**Name"/>
+<property name="DE_ATTR_COMMENT" value="" />
+<property name="DE_ATTR_NAME" value="Name" />
+<property name="EN_ATTR_COMMENT" value="" />
+<property name="EN_ATTR_NAME" value="**Name" />
 </propertyMap>
 </Attribute>
 </attributes>

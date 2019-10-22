@@ -12,12 +12,13 @@ from IM_DB import parameters
 entityDict = {}
 tableDict = {}
 attrDict = {}
+relationDict = {}
 columnDict = {}
 
 def  getPropList(p_udpfilename):
     tree = ET.parse(parameters.odmFilesDirec()+p_udpfilename+'.udposdm')
     root = tree.getroot()
-    print(parameters.odmFilesDirec()+p_udpfilename+'.udposdm',root)
+    #print(parameters.odmFilesDirec()+p_udpfilename+'.udposdm',root)
     for child in root:
         if child.tag == 'properties':
             for props in child:
@@ -40,6 +41,8 @@ def  getPropList(p_udpfilename):
                                 attrDict[name] = defValue
                             if re.search('Column$', entry.get('class')) != None:
                                 columnDict[name] = defValue
+                            if re.search('Relation$', entry.get('class')) != None:
+                                relationDict[name] = defValue
                         #end for
                     #end if
                 #end for
@@ -47,13 +50,6 @@ def  getPropList(p_udpfilename):
         #end if
     #end for
 #end getPropList
-
-def neuesProperty(element, name, value):
-    """ definiert einen neuen Eintrag als Property in die Map"""
-    neuProp = ET.SubElement(element, 'property')
-    neuProp.set('name', name)
-    neuProp.set('value', value)
-
 
 def addProperty(element,name,value):
     """Erzeugt einen Property-Eintrag 
@@ -63,92 +59,71 @@ def addProperty(element,name,value):
     neuProp.set('value', value)
 # END addProperty
 
-def attributePropertyMap(attr):
-    """ Parsed eine PropertyMap in einem Attribut und ergaenzt sie um die notwendigen
-        Elemente,falls sie fehlen"""
-    hatPropMap = 'false'
-    for attrEl in attr:
-        if attrEl.tag == 'propertyMap':
-            print ('   ',attrEl.tag,attrEl.get('name'),attrEl.attrib)
-            hatPropMap = 'true'
-            curAttrProp = set()
-            for prop in attrEl:
-#                print '      ', prop.get('name'), prop.get('value')
-#                neuesProperty(attrEl, 'NeuProperty', '-')
-                curAttrProp.add(prop.get('name'))
-            # end for
-            for key in attrDict.iterkeys():
-                print (key)
-                if key not in curAttrProp:
-                    addProperty(attrEl, key, attrDict[key])
-            #end for
-        #end if
-    #end for
-    if hatPropMap == 'false':
-#        print '        No Property Map'
-        neuMap = ET.SubElement(attr,'propertyMap')
-        for at in attrDict:
-            addProperty(neuMap,at,attrDict[at])
-
-#end attributePropertyMap
-
-def createEntityPropertyMap(entity):
-    """Erzeugt eine Property-Map fuer die Entitaet mit allen Eintraegen
+def createpropertymap(p_obj,p_dict):
+    """Erzeugt eine Property-Map fuer das Objekt mit allen Eintraegen aus dict
     """
-    neuMap = ET.SubElement(entity, 'propertyMap')
-    for ent in entityDict:
-        addProperty(neuMap,ent,entityDict[ent])
-#END createEntityPropertyMap
+    neuMap = ET.SubElement(p_obj, 'propertyMap')
+    for ele in p_dict:
+        addProperty(neuMap,ele,p_dict[ele])
+#END createpropertymap
 
-def do1Entity(xmlName):
-    tree = ET.parse(xmlName+ '.xml')
+def dopropmap(p_obj,p_dict):
+    """ Parsed eine PropertyMap in einem objekt und ergaenzt sie um die notwendigen
+        Elemente,falls sie fehlen"""
+    propMap = p_obj.find('propertyMap')
+    if (propMap is not None):
+        # Behandle die PropertyMap des Attributes
+        curattrprop = {prop.get('name') for prop in propMap}
+        for key in p_dict:
+            if key not in curattrprop:
+                addProperty(propMap,key,p_dict[key])
+            #end if
+        #end for
+    else:
+        createpropertymap(p_obj=p_obj, p_dict=p_dict)
+    #fi
+#dopropmap
+
+
+def do1file(p_xmlname,p_dict,p_attr):
+    tree = ET.parse(p_xmlname + '.xml')
     root = tree.getroot()
 #    print "tag=",root.tag,"attrib=",root.attrib
 
-    print ("Entity:", root.get("name"))
-    hatEntityPropMap = 'false'
-    for attrs in root.findall('attributes'):
-        # Behandle die PropertyMap der Attributes
-        attributePropertyMap(attrs)
+    #print ("Entity:", root.get("name"))
 
-    child = root.find('propertyMap')
-    if child == None:
-        # Behandle die PropertyMap der Entitaet
-        curEntityProp = set()
-        for prop in child:
-#                print '  ', prop.get('name'), prop.get('value')
-            curEntityProp.add(prop.get('name'))
-            #end for
-            for key in entityDict.iterkeys():
-                print (key)
-                if key not in curEntityProp:
-                    addProperty(child,key,entityDict[key])
-                #end if
-        #end loop
-    else:
-#        hatEntityPropMap == 'false'
-        createEntityPropertyMap(root)
+    dopropmap(p_obj=root,p_dict=p_dict)
+
+    if p_attr:
+        for attrs in root.findall('attributes'):
+            # Behandle die PropertyMap der Attributes
+            for attr in attrs:
+                dopropmap(p_obj=attr,p_dict=attrDict)
+            #endfor
+        #endfor
+    #fi
 
     # schreibe die geaenderte definition zurueck als XML
-#    tree.write(xmlName + 'New.xml')
-    tree.write(xmlName + '.xml')
-#END do1Entity
+    tree.write(p_xmlname + '.xml')
+#do1file
 
-def doEntities(direc):
-    for el in os.listdir(direc):
+def dofiles(p_direc,p_dict,p_attr=False):
+    for el in os.listdir(p_direc):
         if re.match('seg_.*', el):
-            for file in os.listdir(direc + el):
-                fileName = re.sub('.xml','',direc + el + '/' + file)
-                do1Entity(fileName)
-#END doEntities
+            for file in os.listdir(p_direc + el):
+                fileName = re.sub('.xml','', p_direc + el + '/' + file)
+                #print (fileName)
+                do1file(p_xmlname=fileName,p_dict=p_dict,p_attr=p_attr)
+#dofiles
 
 # Main Programm
 def main(par1,par2):
     parameters.initparam(p_callarg=par1)
     #print(parameters.odmIMDirec(),parameters.odmFilesDirec())
     getPropList(p_udpfilename=par2)
-    #print(entityDict)
-    doEntities(parameters.odmEntityDirec())
+    #print(entityDict,attrDict,relationDict)
+    dofiles(p_direc=parameters.odmEntityDirec(),p_dict=entityDict,p_attr=True)
+    dofiles(p_direc=parameters.odmRelationDirec(),p_dict=relationDict)
 
 
 if __name__ == '__main__':

@@ -1,14 +1,13 @@
-<?xml version = '1.0' encoding = 'UTF-8'?>
-<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_4" directorySegmentName="seg_0" id="ED0D716E-4FAC-BC35-675F-EC07CD91CABF">
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" directorySegmentName="seg_0" id="ED0D716E-4FAC-BC35-675F-EC07CD91CABF" name="Relation_4">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 08:04:25 UTC</createdTime>
 <ownerDesignName>test_stb lokal</ownerDesignName>
 <engineerTo>
-<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true"/>
+<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true" />
 </engineerTo>
 <identifying>false</identifying>
-<nameOnSource>beschäftigt</nameOnSource>
-<nameOnTarget>arbeitet für</nameOnTarget>
+<nameOnSource>besch&#228;ftigt</nameOnSource>
+<nameOnTarget>arbeitet f&#252;r</nameOnTarget>
 <optionalSource>true</optionalSource>
 <optionalTarget>false</optionalTarget>
 <sourceCardinality>1</sourceCardinality>
@@ -18,9 +17,9 @@
 <transferable>true</transferable>
 <deleteRule>NO ACTION</deleteRule>
 <propertyMap>
-<property name="DE_TEXT_FROM" value="beschäftigt"/>
-<property name="DE_TEXT_TO" value="arbeitet für"/>
-<property name="EN_TEXT_FROM" value="**preoccupied"/>
-<property name="EN_TEXT_TO" value="**works for"/>
-</propertyMap>
+<property name="DE_TEXT_FROM" value="besch&#228;ftigt" />
+<property name="DE_TEXT_TO" value="arbeitet f&#252;r" />
+<property name="EN_TEXT_FROM" value="**preoccupied" />
+<property name="EN_TEXT_TO" value="**works for" />
+<property name="DE_RELA_TEXT_FROM" value="" /><property name="DE_RELA_TEXT_TO" value="" /><property name="EN_RELA_TEXT_FROM" value="" /><property name="EN_RELA_TEXT_TO" value="" /></propertyMap>
 </Relation>
