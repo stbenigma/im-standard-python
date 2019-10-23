@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<udp_library>
+	<udp_groups>
+		<group name="Tabellen" id="68908F59-B0BA-543C-602D-81FCDAF1B55A" />
+		<group name="Attribute" id="98C7D41A-4D90-CE06-F563-838CD8B577D6" />
+	</udp_groups>
+	<properties>
+		<property name="GSD-Tabellenname" dispalay_name="" type="Text" group_id="68908F59-B0BA-543C-602D-81FCDAF1B55A" default_value="">
+		<description>
+			<![CDATA[Name der Tabelle in GSD die Daten für diese Entität liefert]]>
+		</description>
+			<objects>
+				<object class="oracle.dbtools.crest.model.design.logical.Entity" visible="true" color="-1"/>
+				<object class="oracle.dbtools.crest.model.design.logical.Relation" visible="false" color="-1"/>
+				<object class="oracle.dbtools.crest.model.design.relational.Table" visible="false" color="-1"/>
+			</objects>
+		</property>
+		<property name="GSD-Attributname" dispalay_name="" type="Text" group_id="98C7D41A-4D90-CE06-F563-838CD8B577D6" default_value="">
+			<objects>
+				<object class="oracle.dbtools.crest.model.design.logical.Attribute" visible="false" color="-1"/>
+				<object class="oracle.dbtools.crest.model.design.relational.Column" visible="false" color="-1"/>
+			</objects>
+		</property>
+		<property name="GSD-Datentyp" dispalay_name="" type="Text" group_id="98C7D41A-4D90-CE06-F563-838CD8B577D6" default_value="">
+			<objects>
+				<object class="oracle.dbtools.crest.model.design.logical.Attribute" visible="false" color="-1"/>
+				<object class="oracle.dbtools.crest.model.design.relational.Column" visible="false" color="-1"/>
+			</objects>
+		</property>
+		<property name="SAP_Tabellenname" dispalay_name="" type="Text" group_id="" default_value="">
+			<objects>
+				<object class="oracle.dbtools.crest.model.design.relational.Column" visible="false" color="-1"/>
+				<object class="oracle.dbtools.crest.model.design.logical.Entity" visible="false" color="-1"/>
+				<object class="oracle.dbtools.crest.model.design.logical.Relation" visible="false" color="-1"/>
+				<object class="oracle.dbtools.crest.model.design.relational.Table" visible="false" color="-1"/>
+			</objects>
+		</property>
+		<property name="SAP_Attributname" dispalay_name="" type="Text" group_id="98C7D41A-4D90-CE06-F563-838CD8B577D6" default_value="">
+			<objects>
+				<object class="oracle.dbtools.crest.model.design.logical.Attribute" visible="false" color="-1"/>
+				<object class="oracle.dbtools.crest.model.design.relational.Column" visible="false" color="-1"/>
+			</objects>
+		</property>
+	</properties>
+</udp_library>
