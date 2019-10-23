@@ -465,28 +465,30 @@ function change2EN() {
 			<![CDATA[ents = model.getEntitySet().toArray();
 ent = ents[1];
 ent2 = model.getEntitySet().getByName('TEST');
-var path="/Users/stb/Documents/Projekte/FYAYC_intern/gitHub/translation/translation.udposdm";
+//var path="/Users/stb/Documents/Projekte/FYAYC_intern/gitHub/translation/translation.udposdm";
+ var path="/Users/stb/Documents/Projekte/EZV/gitHub/IM/EZV_Stammdaten/files/EZVProperties.udposdm";
  var Paths = Java.type('java.nio.file.Paths');
 var Files = Java.type('java.nio.file.Files');
 var lines = Files.readAllLines(Paths.get(path), Java.type('java.nio.charset.StandardCharsets').UTF_8);
-//	throw new Error("this is an error"+lines[0]);
 var entity = [];
 var attr =[]; 
+var rels =[]; 
 //lines.forEach(function(line) { data.push(line); });
-var i=0
  lines.forEach(function(line) { 
-	f = line.match('<property name="([A-Z_]*)"');
-	if (f != null) {
-		t = lines[i+2].match('design.logical.([^"]*)"');
-		if (t[1].match('Attribute')) {attr.push(f[1]);}
-		if (t[1].match('Entity')) {entity.push(f[1]);}
-		}
-	i+=1
+	//throw new Error ("line="+line);
+	f = line.match('<property name="([A-Za-z_-]+)"');
+	if (f != null ) {propName = f[1]}
+	//throw new Error ("propname="+propName);
+	t = line.match('design.logical.([^"]*)"');
+	if (t != null) {		
+		if (t[1].match('Attribute')) {attr.push(propName);}
+		if (t[1].match('Relation')) {rels.push(propName);}
+		if (t[1].match('Entity')) {entity.push(propName);}
+	}
 	});
-	i = entity.indexOf('DE_ENTI_SYNONYM');
-	if (i > -1) 	throw new Error (i+'DE_ENTI_SYNONYM')
-	throw new Error (attr[3]+":"+entity[3]);
-]]>
+//	i = entity.indexOf('DE_ENTI_SYNONYM');
+//	if (i > -1) 	throw new Error (i+'DE_ENTI_SYNONYM')
+	throw new Error (attr.length.toString()+":"+entity.length.toString()+":"+rels.length.toString());]]>
 		</script>
 	</scr>
 	<scr id="4B7E11A4-7791-9090-5842-A5425B4D53A1" name="TRANSL_change2DE" object="logical" engine="Oracle Nashorn" type="" var="model" library="translation" method="change2DE" purpose="transformation" >
