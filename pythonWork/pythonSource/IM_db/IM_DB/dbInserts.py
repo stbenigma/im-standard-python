@@ -254,7 +254,7 @@ def insertSprachtexte(p_texte, p_modeid, p_defaultlang=None):
 
     p_defaultlang = dbParam.dbDefaultLang if p_defaultlang is None else p_defaultlang
     values = [v for v in p_texte]
-    #print (values)
+    # (values)
     lsql= """insert into sprachtexte 
                     (sptx_attrname,  sptx_text
                    ,sptx_mode_id, sptx_uc, sptx_dc
@@ -264,23 +264,24 @@ def insertSprachtexte(p_texte, p_modeid, p_defaultlang=None):
                                     || ? text
                     ,modeid, ? uc,? dc, spra_id
                   from sprachen
-                  cross join (select {} modeid, '{}' defaultlang, ? attrname)
+                  cross join (select '{}' modeid, '{}' defaultlang,  ? attrname)
                   where not exists 
                     (select 1 from sprachtexte
                         where sptx_spra_id = spra_id
                          and sptx_mode_id = modeid
                          and  sptx_attrname = attrname
                     ) 
-                """.format( '--', date.today().__str__(),p_modeid,p_defaultlang)
+                """.format( p_modeid,p_defaultlang)
     dbDML.execmany(lsql, values)
+
 # die Originalnamen werden überschrieben
     l_sql = """ update sprachtexte
                 set sptx_text = ?
-                   ,sptx_um = '{}'
-                   ,sptx_dm = '{}'
+                   ,sptx_um = ?
+                   ,sptx_dm = ?
                 where sptx_spra_id = {}
                 and sptx_attrname = ?
                 and sptx_mode_id = {}
-                """.format('--', date.today().__str__(),dbLookup.spraLookup(p_defaultlang),p_modeid)
+                """.format(dbLookup.spraLookup(p_defaultlang),p_modeid)
     dbDML.execmany(l_sql, values)
 #insertSprachTexte

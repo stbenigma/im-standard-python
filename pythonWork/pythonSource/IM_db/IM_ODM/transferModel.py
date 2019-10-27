@@ -2,7 +2,7 @@
 import xml.etree.ElementTree as ET
 import re,os,sqlite3
 from datetime import date
-from IM_DB import dbInserts,dbDML,dbLookup,dbConnect
+from IM_DB import dbInserts,dbDML,dbLookup,dbConnect,parameters
 
 class Wertebereich:
     def __init__(self, pname, pid):
@@ -84,7 +84,7 @@ def transferTypes():
     dbDML.delete("datatypes")
 
 
-    types = ET.parse(odmParam.imDirectory + odmParam.imKonfDirectory + odmParam.imTypesFile)
+    types = ET.parse(parameters.odmIMDirec() + parameters.odmKonfDirec() + parameters.odmTypesFile())
     root = types.getroot()
     for typ in root.findall('logicaltype'):
         #print(typ.get('name'),typ.get('objectid'))
@@ -101,7 +101,8 @@ def transferDomains():
     dbDML.delete("wertebereiche")
     dbDML.delete("speicherformate")
 
-    domains = ET.parse(odmParam.imDirectory + odmParam.imKonfDirectory + odmParam.imDomainsFile)
+    #print(parameters.odmDomainsFilePath())
+    domains = ET.parse(parameters.odmDomainsFilePath())
     root = domains.getroot()
     for dom in root.findall('domains/Domain'):
         wrtb = Wertebereich(pname=dom.get('name'),pid=dom.get('id'))
@@ -176,8 +177,6 @@ def transferDomains():
         wrtb.wrtb_num_nachkstellen,        wrtb.wrtb_num_rundng_einh,        wrtb.wrtb_num_pheh,
         wrtb.wrtb_bin_inhalttyp,        wrtb.wrtb_bin_spfo_id,        wrtb.wrtb_uc,
         wrtb.wrtb_dc,        wrtb.wrtb_odm_guid,        wrtb.wrtb_datatype_ref))
-        if wrtb.wrtb_name == 'xx%AANumber':
-            print (wrtb.wrtb_datatype_ref,wrtb.wrtb_typ)
         #print("nach inset wertebereich id={}" .format(wrtbid))
 
         if (lov is not None) & (lov != {}):
@@ -221,10 +220,10 @@ def do1Arc(fileName):
 def transferArcs():
     dbDML.delete("arcs")
 
-    for el in os.listdir(odmParam.imArcDirec):
+    for el in os.listdir(parameters.odmArcDirec()):
         if re.match('seg_.*', el):
-            for file in os.listdir(odmParam.imArcDirec + el):
-                fileName = odmParam.imArcDirec + el + '/' + file
+            for file in os.listdir(parameters.odmArcDirec() + el):
+                fileName = parameters.odmArcDirec() + el + '/' + file
                 #print (fileName)
                 do1Arc(fileName)
             #enfor
@@ -270,6 +269,8 @@ def do1Attribute(n,attr,entiId=None,beziId=None):
     ganzName = findField(attr,'name')
     abbrevName = findText(attr,'preferredAbbreviation')
     attrName=re.search('[^\[]*',ganzName).group().rstrip()
+    creby = findText(attr,'createdBy')
+    creti = findText(attr,'createdTime')
     techiName = nvl(abbrevName,re.sub('[-,.()\[\]äöüèéàÄ~ÖÜ ]','_',str.upper(attrName)))
     domId=findeOderErstelleDom(domGuid=findText(attr,'domain'),typeGuid=findText(attr,'logicalDatatype'),attrName=attrName)
     attrcomm = findText(attr,'comment')
@@ -284,8 +285,8 @@ def do1Attribute(n,attr,entiId=None,beziId=None):
     lmodeId=dbInserts.insertModeAttr(attrId)
     dbInserts.insertUdpAttr(attrId)
     updateUDP(p_modeid=lmodeId, p_obj=attr)
-    sprachtexte = [[attrName,'ATTR_NAME']
-                  ,[attrcomm,'ATTR_COMMENT']]
+    sprachtexte = [[attrName,creby,creti,'ATTR_NAME']
+                  ,[attrcomm,creby,creti,'ATTR_COMMENT']]
     dbInserts.insertSprachtexte(p_texte=sprachtexte, p_modeid=lmodeId)
 
 #do1Attribute
@@ -376,8 +377,8 @@ def do1Entity(fileName):
     #print (entname,translate.translate(p_text=entname,p_fromlang='de',p_tolang='en'),translate.translate(p_text=entname,p_fromlang='de',p_tolang='fr'))
 
     updateUDP(p_modeid=lmodeId, p_obj=root)
-    sprachtexte = [[entname,'ENTI_NAME']
-                  ,[entcomm,'ENTI_COMMENT']]
+    sprachtexte = [[entname,creby,creti,'ENTI_NAME']
+                  ,[entcomm,creby,creti,'ENTI_COMMENT']]
     dbInserts.insertSprachtexte(p_texte=sprachtexte, p_modeid=lmodeId)
 
     attrs= root.find('attributes')
@@ -396,12 +397,12 @@ def transferEntitaeten():
     dbDML.delete("synonyme")
     dbDML.delete("entitaeten")
 
-    for el in os.listdir(odmParam.imEntityDirec):
+    for el in os.listdir(parameters.odmEntityDirec()):
         if re.match('seg_.*', el):
-            for file in os.listdir(odmParam.imEntityDirec + el):
+            for file in os.listdir(parameters.odmEntityDirec() + el):
                 if  (re.match('.*New',file) == None) and \
                         (re.search('DS_Store', file) == None):
-                    fileName = odmParam.imEntityDirec + el + '/' + file
+                    fileName = parameters.odmEntityDirec() + el + '/' + file
                     #print (fileName)
                     do1Entity(fileName)
                 #endif
@@ -519,6 +520,8 @@ def do1Relation(fileName):
         # ,bezi_odm_guid,bezi_uc, bezi_dc,bezi_name
     vonText = findText(root,'nameOnSource')
     zuText = findText(root, 'nameOnTarget')
+    creby = findText(root,'createdBy')
+    creti = findText(root,'createdTime')
     try:
         lrow=[lbeziType
              , dbLookup.entiID(findText(root,'sourceEntity')),vonText
@@ -559,8 +562,8 @@ def do1Relation(fileName):
     dbInserts.insertUdpBezi(beziId)
 
     updateUDP(p_modeid=lmodeId, p_obj=root)
-    sprachtexte = [[vonText,'TEXT_FROM']
-                  ,[zuText,'TEXT_TO']]
+    sprachtexte = [[vonText,creby,creti,'TEXT_FROM']
+                  ,[zuText,creby,creti,'TEXT_TO']]
     dbInserts.insertSprachtexte(p_texte=sprachtexte, p_modeid=lmodeId)
 
     attrs= root.find('attributes')
@@ -577,10 +580,10 @@ def do1Relation(fileName):
 def transferRelations():
     #lösche die Beziehungen
     dbDML.delete("beziehungen")
-    for el in os.listdir(odmParam.imRelationDirec):
+    for el in os.listdir(parameters.odmRelationDirec()):
         if re.match('seg_.*', el):
-            for file in os.listdir(odmParam.imRelationDirec + el):
-                fileName = odmParam.imRelationDirec + el + '/' + file
+            for file in os.listdir(parameters.odmRelationDirec() + el):
+                fileName = parameters.odmRelationDirec() + el + '/' + file
 #               print (fileName)
                 do1Relation(fileName)
             #enfor
@@ -670,11 +673,11 @@ def transferUPDdef():
     result = dbDML.select(l_sql)
 #    for row in result:
 #        print(row)
-    for file in os.listdir(odmParam.imFilesDirec):
+    for file in os.listdir(parameters.odmFilesDirec()):
         filename, file_extension = os.path.splitext(file)
         #print(filename, file_extension)
         if (file_extension =='.udposdm'):
-            filepath = odmParam.imFilesDirec + file
+            filepath = parameters.odmFilesDirec() + file
             #print (filepath)
             do1UDPFile(pudpThema=filename,pfileName=filepath)
         #fi
@@ -682,10 +685,10 @@ def transferUPDdef():
 
     #UDP für Beziehungen sind aktuell noch als Allg. Properties aufgeführt.
     #Kopiere alle properties <sp>_.... aus Relation in die UDP
-    for el in os.listdir(odmParam.imRelationDirec):
+    for el in os.listdir(parameters.odmRelationDirec()):
         if re.match('seg_.*', el):
-            for file in os.listdir(odmParam.imRelationDirec + el):
-                fileName = odmParam.imRelationDirec + el + '/' + file
+            for file in os.listdir(parameters.odmRelationDirec() + el):
+                fileName = parameters.odmRelationDirec() + el + '/' + file
                 #               print (fileName)
                 tree = ET.parse(fileName)
                 root = tree.getroot()
@@ -741,6 +744,10 @@ def insertBaseData():
 
 def transferODMModel():
     """überträgt das ganze ODM Modell in die DB"""
+    dbDML.delete("modellelement")
+    dbDML.delete("attributes")
+    dbDML.delete("benudef_eigenschaft")
+
     transferTypes()
     transferDomains()
     transferUDP()

@@ -34,7 +34,8 @@ parameter = {
             , 'odmvcsdirec' : 'gitHub/'
             , 'webdirec': None
             , 'webdefaultdirec': 'Web/'
-}
+            , 'logofilename': None
+        }
 def nvl(p_val1,p_val2):
     return p_val1 if p_val1 is not None else p_val2
 
@@ -168,6 +169,11 @@ def webDefaultDirec(newval=None):
         return parameter['webdefaultdirec']
     else:
         parameter['webdefaultdirec'] = newval
+def logoFileName(newval=None):
+    if newval is None:
+        return parameter['logofilename']
+    else:
+        parameter['logofilename'] = newval
 
 def liesparamfile(p_filepath):
     import configparser
@@ -231,7 +237,7 @@ def filldefaultparams():
     if dbFilePath() is None:
         dbFilePath(newval=dbDirect()+odmModelName()+dbFileExtension())
     if odmDomainsFilePath() is None:
-        odmDomainsFilePath(newval=odmBaseDirec()+odmKonfDirec()+odmDomainsFile())
+        odmDomainsFilePath(newval=odmIMDirec()+odmKonfDirec()+odmDomainsFile())
     if webDirec() is None:
         webDirec(newval=odmBaseDirec()+webDefaultDirec())
 #filldefaultparams
@@ -280,6 +286,8 @@ def suchemodelname(p_direc):
 def initparam(p_callarg):
     global parameter
 
+    if (p_callarg[-1] != '/'):
+        p_callarg = p_callarg + '/'
     my_file = Path(p_callarg)
     if my_file.is_file():
         #file gegeben, lies dieses

@@ -1,111 +1,527 @@
-from IM_ODM import odmParam
+from IM_DB import parameters
 import os,shutil
+from IM_HTML import web_sql
 
 outputDirectory:str = None
 webDirectory:str = "";
 webFileName:str = "";
-detailDirectory:str = "";
-webFileNameSpec:str = "";
-tocFileName:str = "";
-contFileName:str = "";
-indexFileName:str = "";
+webFileNamePath:str = "";
 libSourceDirec:str = "";
+imagedirec:str = "";
+cssdirec:str = "";
+icondirec:str = "";
 
-headIndex:str ="""<html xmlns="http://www.w3.org/1999/xhtml">
+fhtml = None
+
+greportLang:str = None
+def reportLang(newval=None):
+    global greportLang
+    if (newval is None):
+        return greportLang
+    else:
+        greportLang = newval
+#reportLang
+
+translNameEN = {'Anzeige': 'Display'
+                ,'Arc': 'Arc'
+                ,'Attribut': 'Attribute'
+                ,'Attribut(e)': 'Attribute(s)'
+                ,'Attribute': 'Attributes'
+                ,'Author': 'Author'
+                ,'Beschreibung': 'Description'
+                ,'Beziehung': 'Relationship'
+                ,'Beziehung(en)': 'relationship(s)'
+                ,'Beziehungen': 'Relationships'
+                ,'Binär': 'Binary'
+                ,'Datentyp': 'Datatype'
+                ,'Deskriptor': 'descriptor'
+                ,'Domänen': 'Domains'
+                ,'Domäne': 'Domain'
+                ,'Entität': 'Entity'
+                ,'Entität1': 'Entity1'
+                ,'Entität2': 'Entity2'
+                ,'Entität/Tabelle': 'Entity/Table'
+                ,'Entitäten': 'Entities'
+                ,'Erstellt': 'Generates'
+                ,'Gruppenattribut': 'Groupattribute'
+                ,'historisiert': 'historicized'
+                ,'in Schlüssel': 'within key'
+                ,'Informationsmodell {} (Stand: {})': 'Informationmodel {} (Status: {})'
+                ,'Ja': 'Yes'
+                ,'Mehr': 'more'
+                ,'Name': 'Name'
+                ,'Nein': 'No'
+                ,'Nr': 'Nr'
+                ,'Numerisch': 'Numerical'
+                ,'Pflichtattribut': 'Attribute of duty'
+                ,'Schlüssel': 'Key'
+                ,'Sort': 'Sort'
+                ,'Subentität': 'Subentity'
+                ,'Subentitäten': 'Subentities'
+                ,'Suchbegriff': 'search key'
+                ,'Superentitäten': 'Superentity'
+                ,'Synonyme': 'Synonyms'
+                ,'Technischer Name': 'Technical Name'
+                ,'Text': 'Text'
+                ,'Treffer': 'Hits'
+                ,'Typ': 'Type'
+                ,'UDP-Matrix': 'UDP-Matrix'
+                ,'übersetzt': 'translated'
+                ,'verschlüsselt': 'encrypted'
+                ,'Verwendet von': 'used by'
+                ,'Wert': 'Value'
+                ,'Wertebereich': 'Domain'
+                ,'Werteliste': 'Valuelist'
+                ,'wiederholt': 'repeated'
+                ,'Zeitpunkt': 'Point in Time'
+                }
+def transl(pname):
+   if (greportLang == 'de'):
+       return pname
+   elif (greportLang == 'en'):
+       try:
+           return translNameEN[pname]
+       except:
+           return pname
+   else:
+       return pname
+#transl
+
+
+def bool2icon(b):
+    lb = b if (type(b) == 'bool') else True if (b == 'TRUE') else False
+#    print (b,lb,type(b))
+    return       'class="icon-check" src="icons/checkmark.svg"'  \
+       if lb else 'class="icon-remove" src="icons/cross.svg"'
+#bool2icon
+def anzDatentyp(dt):
+    anzDT = {'BIN': transl('Binär')
+             ,'GRP': transl('Gruppenattribut')
+             ,'LOV': transl('Werteliste')
+             ,'NUM': transl('Numerisch')
+             ,'TEXT': transl('Text')
+             ,'ZPKT': transl('Zeitpunkt')}
+    return anzDT[dt]
+#anzDatentyp
+
+def printhead(p_firma,p_titel,p_info,p_logofilename):
+    htmlhead:str = """<html lang="en">
+
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-<title>{}</title>
+    <title>IME - Webseite</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 </head>
-<frameset cols="20%,80%">
-<frame name="toc" src="{}.html">
-<frame name="details" src="{}.html"></frameset>
+
+<body>
+
+    <div class="header" id="TopBar">
+        <p4>{}</p4>
+        <p4>{}</p4>
+        <p5>{}</p5>
+        <img src="image/{}" alt="{}" id="LLogo">
+    </div>
+    """.format (p_firma,p_titel,p_info,p_logofilename,p_firma)
+    fhtml.write(htmlhead)
+#printhead
+
+def printfoot():
+    htmlend:str = """    <!-- modal für mobile devices (search) -->
+    <div class="modal" id="MobileSearch" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-full" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Filter</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="closeM0">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="modalContent">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" id="closeM1">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+        
+    <script>
+        //Code for filtering input
+        function $x(pNd) {
+            var lThis;
+            switch (typeof(pNd)) {
+                case 'string':
+                    lThis = document.getElementById(pNd);
+                    break;
+                case 'object':
+                    lThis = pNd;
+                    break;
+                default:
+                    return false;
+                    break;
+            }
+            return (lThis.nodeType == 1) ? lThis : false;
+        }
+
+        var gRegex = false;
+        var gHeight = 0;
+
+        function $d_Find(pThis, pString, pTags, pClass) {
+            if (!pTags) {
+                pTags = 'DIV';
+            }
+            pThis = $x(pThis);
+            if (pThis) {
+                var d = pThis.getElementsByTagName(pTags);
+                pThis.style.display = "none";
+                if (!gRegex) {
+                    gRegex = new RegExp("test");
+                }
+                var c = 0; // Versuch eines Counters für die Resultate
+                //var e = 0; //
+                var rowCount = 0;
+                gRegex.compile(pString, "i");
+                for (var i = 0, len = d.length; i < len; i++) {
+                    if (gRegex.test(d[i].innerHTML)) {
+                        d[i].style.display = "table-row";
+                        d[i].style.visiblilty = "visible";
+                        d[i].style.height = gHeight;
+                        c++; // 
+                    } else {
+                        if (gHeight == 0) gHeight = d[i].style.height;
+                        d[i].style.height = '0';
+                        d[i].style.display = "none";
+                        d[i].style.visiblilty = "hidden";
+                    }
+
+                }
+                pThis.style.display = "block";
+            }
+            document.getElementById("count").innerHTML = c;
+            return;
+        }
+
+        //placeholder animation
+        $('input').focus(function() {
+            $(this).parents('.form-group').addClass('focused');
+        });
+
+        $('input').blur(function() {
+            var inputValue = $(this).val();
+            if (inputValue == "") {
+                $("#searcher").show();
+                $(this).removeClass('filled');
+                $(this).parents('.form-group').removeClass('focused');
+            } else {
+                $(this).addClass('filled');
+            }
+        })
+
+        //serchclearer 
+        $(document).ready(function() {
+            $("#first").keyup(function() {
+                $("#searchclear").toggle(Boolean($(this).val()));
+                $("#searcher").hide();
+            });
+            $("#searchclear").toggle(Boolean($("#first").val()));
+            $("#searchclear").click(function() {
+                $("#searcher").show();
+                $("#first").val('').focus();
+                $(this).hide();
+            });
+        });
+
+
+        //content view for sidebar(desktop) and modal (mobile)
+        document.getElementById("btnF").addEventListener("click", function() {
+
+            $("body").css("overflow", "hidden");
+
+            var tree = document.createDocumentFragment();
+            var div = document.getElementById("toc_list");
+
+            tree.appendChild(div);
+
+            document.getElementById("modalContent").appendChild(tree);
+        });
+
+        document.getElementById("closeM0").addEventListener("click", function() {
+            $("body").css("overflow", "auto");
+
+            var tree = document.createDocumentFragment();
+            var div = document.getElementById("toc_list");
+
+            tree.appendChild(div);
+
+            document.getElementById("sidebar").appendChild(tree);
+        });
+
+        document.getElementById("closeM1").addEventListener("click", function() {
+            $("body").css("overflow", "auto");
+
+            var tree = document.createDocumentFragment();
+            var div = document.getElementById("toc_list");
+
+            tree.appendChild(div);
+
+            document.getElementById("sidebar").appendChild(tree);
+        });
+    </script>
+</body>
 </html>
 """
-headToc:str ="""<html xmlns="http://www.w3.org/1999/xhtml">
-	<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/></head>
-	<link rel="stylesheet" type="text/css" href="./css/osddm_main.css">
-	<link rel="stylesheet" type="text/css" href="./css/osddm_vs.css">
-	<link rel="stylesheet" type="text/css" href="./css/osddm_toc_tree.css">
+    fhtml.write(htmlend)
+    fhtml.close()
+#printfoot
 
-	<script src="./js/toc_filter.js"></script>
-	<body>
-				<div class="t_item">
-		<div id="toc_list">
-		<table id="toc_table" width="100%" style="empty-cells:show; font-family:Tahoma; font-size:small; text-align:left; vertical-align:top; word-wrap:break-word;">
-<tr><td style="color:navy; font-family:Tahoma; font-size:small; font-style:italic; font-weight:bold;"><input type="text" style="width: 180px; margin-top: 5px;" onkeyup="$d_Find('toc_list',this.value,'a')"/></td></tr>
-<tr><td>&nbsp;</td></tr>
-</table>
+def printlistofcontenthead():
+    contenhead = """    <button id="btnF" type="button" class="btn btn-info" data-toggle="modal" data-target="#MobileSearch">
+        <img class="icon-filter" alt="filter" src="icons/search.svg">
+    </button>
+    <div class="container" id="sidebar">
+        <div id="toc_list">
+            <div class="form-wrapper">
+                <form autocomplete="off">
+                    <div class="form-group">
+                        <label class="form-label" for="first">{}</label>
+                        <input id="first" class="form-input" type="text" onkeyup="$d_Find('toc_list',this.value,'a')" />
+                        <img id="searchclear" class="icon-times" src="icons/cross.svg">
+                        <img class="icon-search" alt="minus" src="icons/search.svg" id="searcher">
+                    </div>
+                </form>
+            </div>
+            <p6>{}:</p6>
+                <output id="count"></output>
+""".format(transl("Suchbegriff"),transl("Treffer"))
+    fhtml.write(contenhead)
+#printlistofcontenthead
+
+def printlistofcontentfoot():
+    contentfoot = """
+            </div>
+    </div>
 """
-headCont:str ="""<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"> 
-<html>
-<head>
-	<META http-equiv="Content-Type" content="text/html; charset=UTF-8"> <title></title>
-		<meta name="generator" content="Altova StyleVision Enterprise Edition 2 014 (x64) (http://www.altova.com)">
-		<meta http-equiv="X-UA-Compatible" content="IE=7">
-		<link rel="stylesheet" type="text/css" href="css/osddm_main.css">
-		<link rel="stylesheet" type="text/css" href="css/osddm_vs.css">
-<!--[if IE]><STYLE type="text/css">.altova-rotate-left-textbox{{filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3)}}.altova-rotate-right-textbox{{filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1)}}</STYLE><![endif]--><!--[if !IE]><!-->
-<style type="text/css">.altova-rotate-left-textbox{{-webkit-transform: rotate(-90deg) translate(-100%, 0%); -webkit-transform-origin: 0% 0%;-moz-transform: rotate(-90deg)
-translate(-100%, 0%); -moz-transform-origin: 0% 0%;-ms-transform: rotate(-90deg) translate(-100%, 0%); -ms-transform-origin: 0%
-0%;}}.altova-rotate-right-textbox{{-webkit-transform: rotate(90deg) translate(0%, -100%); -webkit-transform-origin: 0% 0%;-moz-transform: rotate(90deg) translate(0%,
--100%); -moz-transform-origin: 0% 0%;-ms-transform: rotate(90deg) translate(0%, -100%); -ms-transform-origin: 0% 0%;}}</style><!--<![endif]--><style
-type="text/css">@page {{ margin-left:2cm; margin-right:2cm; margin-top:2cm; margin-bottom:2cm }}@media print {{ br.altova-page-break {{ page-break-before: always; }}
-</style>
-</head>
-<body style="font-family:Tahoma; font-size:xx-small; ">
-	<br><center><span class="caption">{}</span></center>
-	<p></p>
+    fhtml.write(contentfoot)
+#printlistofcontentfoot
+
+def printlistofcontentelementstart():
+    contentstart="""    <div class="contentView">
 """
-ftoc = None
-fcont = None
+    fhtml.write(contentstart)
+#printlistofcontentelementstart
+def printlistofcontentelementend():
+    contentend = """    </div>
+"""
+    fhtml.write(contentend)
+#printlistofcontentelementend
+
+def printlistofcontentelement(p_name, p_list):
+    contentelementhead= """
+                <div class="panel-body" id="entityL">
+                    <div class="panel">
+                        <div class="panel-heading collapsed" data-toggle="collapse" data-target="#bar00">
+                            <label class="label0">{}</label>
+                            <img class="icon-minus" alt="minus" src="icons/minus.svg">
+                            <img class="icon-plus" alt="plus" src="icons/plus.svg">
+                        </div>
+                    </div>
+                    <!-- The inside div eliminates the 'jumping' animation. -->
+                    <div class="collapse" id="bar00">
+                        <ol class="tree" id="entityList">
+    """.format(transl(p_name))
+    contentline="""
+                <li class="obj"><a href="#{}" target="details">{}</a></li>"""
+    contentelementfoot="""
+                    </ol>
+            </div>
+        </div>
+""";
+    fhtml.write(contentelementhead)
+    for l in p_list:
+        fhtml.write(contentline.format(l[1],l[0]))
+    fhtml.write(contentelementfoot)
+#printlistofcontentelement
+
+def printcontenthead():
+    contenthead = """    <div class="wrapper">
+        <div class="top-container">
+            <p3 {} 
+            </p3>
+        </div>
+""".format("""class="descr">Diese Webseite enhtält den ganzen Inhalt 
+            des <p2 class="IM">Informationsmodells</p2>. 
+            Diese Seite wurde von Software von <p2 class="fyayc">foryouandyourcustomers</p2> 
+            erstellt.""")
+    fhtml.write(contenthead)
+#printcontenthead
+
+def printcontentfoot():
+    contentfoot= """      </div>
+"""
+    fhtml.write(contentfoot)
+# printcontentfoot
 
 
-def setWebDirec(pwebDirec, pbaseDirec):
-    global webDirectory ,webFileName,detailDirectory,webFileNameSpec,tocFileName
-    global contFileName, indexFileName
-    global libSourceDirec
+def printcontententi(p_list):
+    contenthead="""        <!--entities-->"""
 
-    if (pwebDirec is None):
-        if (not os.path.exists(pbaseDirec+"Web")):
-            os.mkdir(pbaseDirec+"Web");
+    contentelementhead = """        <div class="entity" id="{}">
+            <div class="describtion">
+                <p>{}</p>
+                <h1>{}</h1>
+                <p1>{}</p1>
+            </div>
+        """
+    contentelementfoot = """                 <div class="panel">
+                <div class="panel-heading collapsed" data-toggle="collapse" data-target="#bar0">
+                    <img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
+                    <img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
+                    <label class="label1">{}</label>
+                </div>
+            </div>
+        </div>
+    """
+    detailshead = """            <div class="panel-body">
+                <!-- The inside div eliminates the 'jumping' animation. -->
+                    <div class="collapse" id="bar0">
+                    <h2>{}</h2>
+                    <div id="container1">
+                        <div class="table-responsive">
+"""
+    detailsfoot = """            </div>
+                            </div>
+                            </div>
+                            </div>
+"""
+
+    attrhead = """                         <table class="table borderless">
+                                        <tbody>
+                                    <tr>
+                                        <th class="attribute">{}</th>
+                                        <th class="attribute">{}</th>
+                                        <th>{}</th>
+                                        <th class="thAlgn">{}</th>
+                                        <th class="thAlgn">{}</th>
+                                        <th class="thAlgn">{}</th>
+                                        <th class="thAlgn">{}</th>
+                                        <th class="thAlgn">{}</th>
+                                        <th class="thAlgn">{}</th>
+                                    </tr>"""
+    attrfoot = """              
+                            </tbody>
+                        </table>
+"""
+
+    attrline = """                                    <tr>
+                                            <td class="attribute"><a href="#{}">{}</a></td>
+                                            <td class="attribute"><a href="#{}">{}</a></td>
+                                            <td>{}</td>
+                                            <td class="symbol"><img {}></td>
+                                            <td class="symbol"><img {}></td>
+                                            <td class="symbol"><img {}></td>
+                                            <td class="symbol"><img {}></td>
+                                            <td class="symbol"><img {}></td>
+                                            <td class="symbol"><img {}></td>
+                                        </tr>
+"""
+
+    fhtml.write(contenthead)
+    for l in p_list:
+        fhtml.write(contentelementhead.format(web_sql.entiAnker(l[0]) #id
+                                            ,transl('Entität')
+                                            ,l[1] #name
+                                            , nvl(l[2]))) #descr
+        fhtml.write(detailshead.format(transl('Attribute')))
+
+        #####Attribute block
+        fhtml.write(attrhead.format(transl('Name'),transl('Domäne'),transl('Typ')
+                                    ,transl('Pflichtattribut'),transl('Deskriptor'),transl('übersetzt')
+                                    ,transl('historisiert'),transl('wiederholt'),transl('verschlüsselt')))
+        alist = web_sql.attrlist(p_entiid=l[0],p_lang=reportLang())
+        if (alist is not None):
+            for a in alist:
+                fhtml.write(attrline.format(web_sql.attrAnker(a[0]), a[1], web_sql.wrtbAnker(a[3]), a[2], anzDatentyp(a[4])
+                                            ,bool2icon(a[5]),bool2icon(a[6]),bool2icon(a[7])
+                                            ,bool2icon(a[8]),bool2icon(a[9]),bool2icon(a[10])))
+            #for
         #fi
-        webDirectory = pbaseDirec+"Web/";
-    else:
-        webDirectory = webDirec;
-    #fi
-    webFileName = odmParam.imModelName;
-    detailDirectory = webDirectory + webFileName + "/";
-    webFileNameSpec = webFileName + '.html';
-    tocFileName = webFileName + '_toc';
-    contFileName = webFileName + '_cont';
-    indexFileName = webDirectory + webFileNameSpec;
-    libSourceDirec = os.path.dirname(os.path.abspath(__file__))+'/../';
+
+        fhtml.write(attrfoot)
+        rest = """
+                            <h2>Informationen</h2>
+                            <table class="table borderless">
+                                <tbody>
+                                    <tr>
+                                        <th>Datentyp</th>
+                                        <th>Autor</th>
+                                        <th>Erstellt</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Text (200) CHECK: Checkconstraint generic</td>
+                                        <td>stb</td>
+                                        <td>2019-01-26 14:27:35 UTC</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>"""
+        fhtml.write(detailsfoot)
+        fhtml.write(contentelementfoot.format(transl('Mehr')))
+    #for
+#printcontent
+
+def searchlogo(p_imagedirec):
+    retval=''
+    for ext in ('png','jpg','svg'):
+        if os.path.isfile(p_imagedirec+'logo.'+ext): retval = 'logo.'+ ext
+    return retval
+#searchlogo
+
+def setWebDirec(p_webdirec):
+    global webDirectory ,webFileName,webFileNamePath
+    global libSourceDirec,imagedirec,cssdirec,icondirec
+
+    webDirectory =  p_webdirec if (p_webdirec is not None)  else parameters.webDirec();
+    webFileName = parameters.odmModelName();
+    imagedirec = webDirectory + 'image/';
+    cssdirec = webDirectory + "css/";
+    icondirec = webDirectory + "icons/";
+    webFileNamePath = webDirectory + webFileName + '.html';
+    libSourceDirec = os.path.dirname(os.path.abspath(__file__))
+    libSourceDirec +='/../html-lib/';
+    if (parameters.logoFileName() is None) :parameters.logoFileName(searchlogo(imagedirec));
+
 # setWebDirec
 
 
-def createIndex(title):
-    global ftoc,fcont
+def createFile():
+    global fhtml
 
-    if os.path.exists(indexFileName):
-        os.remove(indexFileName)
-    if os.path.exists(detailDirectory):
-        shutil.rmtree(detailDirectory)
+    if os.path.exists(webFileNamePath):
+        os.remove(webFileNamePath)
+    if os.path.exists(cssdirec):
+        shutil.rmtree(cssdirec)
+    if os.path.exists(icondirec):
+        shutil.rmtree(icondirec)
+    if os.path.exists(imagedirec):
+        shutil.rmtree(imagedirec)
 
-    os.mkdir(detailDirectory)
-    for loc in ['js','css','img']:
-        shutil.copytree(libSourceDirec+'html-lib/'+loc,detailDirectory+loc)
+    shutil.copytree(libSourceDirec+'icons',icondirec)
+    shutil.copytree(libSourceDirec+'css',cssdirec)
+    shutil.copytree(libSourceDirec+'image',imagedirec)
 
-    f = open(indexFileName,'w')
-    f.write(headIndex .format(title,webFileName+'/'+tocFileName,webFileName+'/'+contFileName))
-    f.close()
+    fhtml = open(webFileNamePath,'w')
 
-    ftoc = open(detailDirectory+tocFileName+'.html','w')
-    ftoc.write(headToc)
+#createFile
 
-    fcont = open(detailDirectory+contFileName+'.html','w')
-    fcont.write(headCont .format(title))
-
-#createIndex
 
 def writeToc(str):
     global ftoc

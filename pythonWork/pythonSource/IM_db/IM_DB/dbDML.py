@@ -43,7 +43,6 @@ def lookup(psql):
 
 def delete(ptableName):
     cursor = dbConnect.myDbConn.cursor()
-
     try:
         cursor.execute("delete from " + ptableName)
     except sqlite3.Error as e:

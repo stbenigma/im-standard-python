@@ -1,107 +1,11 @@
 # -*- coding: latin-1 -*-
 import sys,os
 sys.path.append(os.path.dirname(os.path.realpath(__file__))+'/../IM_db')
-from datetime import date
-from IM_ODM import odmParam
-from IM_DB import dbParam,dbConnect,dbDDL,dbDML,dbErstelleTables,dbInserts,dbLookup
-from IM_HTML import printHTML
+from datetime import date,datetime
+from IM_DB import parameters,dbConnect,dbDDL,dbDML,dbErstelleTables,dbInserts,dbLookup,dbParam
+from IM_HTML import printHTML,web_sql
 
-greportLang:str = ''
 
-translNameEN = {'Anzeige': 'Display'
-                ,'Arc': 'Arc'
-                ,'Attribut': 'Attribute'
-                ,'Attribut(e)': 'Attribute(s)'
-                ,'Attribute': 'Attributes'
-                ,'Author': 'Author'
-                ,'Beschreibung': 'Description'
-                ,'Beziehung': 'Relationship'
-                ,'Beziehung(en)': 'relationship(s)'
-                ,'Beziehungen': 'Relationships'
-                ,'Binär': 'Binary'
-                ,'Datentyp': 'Datatype'
-                ,'Deskriptor': 'descriptor'
-                ,'Domains': 'Domains'
-                ,'Domäne': 'Domain'
-                ,'Entität': 'Entity'
-                ,'Entität1': 'Entity1'
-                ,'Entität2': 'Entity2'
-                ,'Entität/Tabelle': 'Entity/Table'
-                ,'Entitäten': 'Entities'
-                ,'Erstellt': 'Generates'
-                ,'Gruppenattribut': 'Groupattribute'
-                ,'historisiert': 'historicized'
-                ,'in Schlüssel': 'within key'
-                ,'Informationsmodell {} (Stand: {})': 'Informationmodel {} (Status: {})'
-                ,'Ja': 'Yes'
-                ,'Name': 'Name'
-                ,'Nein': 'No'
-                ,'Nr': 'Nr'
-                ,'Numerisch': 'Numerical'
-                ,'Pflichtattribut': 'Attribute of duty'
-                ,'Schlüssel': 'Key'
-                ,'Sort': 'Sort'
-                ,'Subentität': 'Subentity'
-                ,'Subentitäten': 'Subentities'
-                ,'Superentitäten': 'Superentity'
-                ,'Synonyme': 'Synonyms'
-                ,'Technischer Name': 'Technical Name'
-                ,'Text': 'Text'
-                ,'Typ': 'Type'
-                ,'UDP-Matrix': 'UDP-Matrix'
-                ,'übersetzt': 'translated'
-                ,'verschlüsselt': 'encrypted'
-                ,'Verwendet von': 'used by'
-                ,'Wert': 'Value'
-                ,'Wertebereich': 'Domain'
-                ,'Werteliste': 'Valuelist'
-                ,'wiederholt': 'repeated'
-                ,'Zeitpunkt': 'Point in Time'
-                }
-
-udpThemenSql:str = """select distinct bdeg_thema
-                    from benudef_eigenschaft
-                    join modelltyp_eigensch on mote_bdeg_id = bdeg_id
-                    join modellelem_typ on melt_id = mote_melt_id
-                                    and melt_kurzname = 'ATTR'
-                                    and bdeg_thema != 'translation'
-                    order by bdeg_thema"""
-
-def langText(attrName, sprache, modeId):
-   lsql= """select sptx_text
-    from spraattr
-    where spra_iso_code2 = lower('{}')
-     and sptx_mode_id = {}
-     and sptx_attrname = '{}'
-    """.format(sprache,modeId,attrName)
-   ltext = dbDML.select(lsql)[0][0]
-   return ltext
-#langText
-def enti_name(lang,modeId):
-    return langText('ENT_NAME', lang, modeId)
-def enti_comment(lang,modeId):
-    return langName('ENT_COMMENT',lang,modeId)
-def attr_name(lang,modeId):
-    return langName('ATTR_NAME',lang,modeId)
-def attr_comment(lang,modeId):
-    return langName('ATTR_COMMENT',lang,modeId)
-def bezi_from(lang,modeId):
-    return langName('TEXT_FROM',lang,modeId)
-def bezi_to(lang,modeId):
-    return langName('TEXT_TO',lang,modeId)
-
-def entiAnker(id):
-    return 'ENTI'+str(id)
-def attrAnker(id):
-    return 'ATTR'+str(id)
-def beziAnker(id):
-    return 'BEZI'+str(id)
-def schlAnker(id):
-    return 'SCHL'+str(id)
-def wrtbAnker(id):
-    return 'WRTB'+str(id)
-def udpAnker(id):
-    return 'UDP'+str(id)
 
 # Main Programm
 def nvl(x,default=''):
@@ -116,28 +20,6 @@ def href(ref,anz):
 def makeAnker(ref,anz):
     return """<a name = "{}" >{}</a>""".format(ref,anz)
 #href
-
-def anzDatentyp(dt):
-    anzDT = {'BIN': transl('Binär')
-             ,'GRP': transl('Gruppenattribut')
-             ,'LOV': transl('Werteliste')
-             ,'NUM': transl('Numerisch')
-             ,'TEXT': transl('Text')
-             ,'ZPKT': transl('Zeitpunkt')}
-    return anzDT[dt]
-#anzDatentyp
-
-def transl(pname):
-   if (greportLang == 'de'):
-       return pname
-   elif (greportLang == 'en'):
-       try:
-           return translNameEN[pname]
-       except:
-           return pname
-   else:
-       return pname
-#translate
 
 def formatDatentyp(w):
     dt = anzDatentyp(w[0])
@@ -250,7 +132,7 @@ def printAttrUDPMatrix(thema=None):
                                     and ena.spra_id = sp.spra_id            
       join wertebereiche on wrtb_id = attr_wrtb_id
       ) order by enti_name,upper(attr_tech_name)"""
-                           .format(greportLang))
+                           .format(printHTML.greportLang))
     printHTML.startTable('Attribute - User Defined Properties: '+nvl(thema), udpListe,anker=udpAnker(thema))
     for at in allattr:
         values = [href(ref=entiAnker(at[1]), anz=at[0]), href(ref=attrAnker(at[2]), anz=at[3])
@@ -296,7 +178,7 @@ def printSchluessel(entiId):
          left join beziehungen on bezi_id = scel_bezi_id
          where schl_enti_id = {}
            group by schl_id,schl_laufnr,schl_name
-                    """.format(greportLang,entiId))
+                    """.format(printHTML.greportLang,entiId))
 
     for s in schl:
         printHTML.writeTable((s[1],s[2],nvl(s[3]),nvl(s[4])))
@@ -375,7 +257,7 @@ def printBezi(entiId):
                         where  sp.spra_iso_code2 = '{}'
                            and von.enti_id = {} or zu.enti_id = {}     
                         order by arcs_name 
-                        """.format(greportLang,entiId, entiId))
+                        """.format(printHTML.greportLang,entiId, entiId))
 
     #print (bezi)
     for c in bezi:
@@ -390,30 +272,22 @@ def printBezi(entiId):
     printHTML.endTable('')
 #printBez
 
-def main():
-    global greportLang
-    limDirec = sys.argv[1] if (len(sys.argv)>1) else None
-    greportLang = sys.argv[2] if (len(sys.argv)>2) else None
-    lModelName = sys.argv[3] if (len(sys.argv)>3) else None
-    lWebDirec = sys.argv[4] if (len(sys.argv)>4) else None
 
+def printlistofcontent():
+    printHTML.printlistofcontenthead()
+    printHTML.printlistofcontentelement(p_name='Entitäten', p_list=web_sql.namelist(p_type='ENTI',p_lang=printHTML.reportLang()))
+    printHTML.printlistofcontentelement(p_name='Attribute', p_list=web_sql.namelist(p_type='ATTR',p_lang=printHTML.reportLang()))
+    printHTML.printlistofcontentelement(p_name='Domänen', p_list=web_sql.namelist(p_type='WRTB',p_lang=printHTML.reportLang()))
+    printHTML.printlistofcontentfoot()
+# printlistofcontent
 
-    odmParam.initODMParam(pimDirec=limDirec,pmodelName=lModelName)
-
-    #print(odmParam.imModelName,odmParam.imDirectory);
-    printHTML.setWebDirec(pwebDirec=lWebDirec,pbaseDirec =  odmParam.imDirectory if (limDirec is None) else limDirec)
-#    print (printHTML.webDirectory,printHTML.webFileName,printHTML.detailDirectory
-#    ,printHTML.webFileNameSpec,printHTML.tocFileName,printHTML.contFileName,printHTML.indexFileName);
-#    print(printHTML.libSourceDirec);
-
-    dbParam.initDBParam(odmParam.imDirectory
-                ,odmParam.imModelName+'.db');
-    dbConnect.openDB(dbParam.dbDirectory, dbParam.dbName);
-    dbParam.liesDefaultLang()
-    greportLang = greportLang.lower() if (greportLang is not None) else dbParam.dbDefaultLang
-
-    printHTML.createIndex ("Informationsmodell {} (Stand: {})"
-                           .format(odmParam.imModelName,date.today()));
+def printcontent():
+    printHTML.printcontenthead()
+    printHTML.printcontententi(p_list=web_sql.datalist(p_type='ENTI',p_lang=printHTML.reportLang()))
+    #printHTML.printcontentattr(p_list=datalist('ATTR'))
+    #printHTML.printcontentwrtb(p_list=datalist('WRTB'))
+    printHTML.printcontentfoot()
+    return
 
     enti = dbDML.select( """select * from 
               (select case when ena.sptx_text is null then e1.enti_name else ena.sptx_text end  name,e1.enti_odm_guid,
@@ -440,7 +314,7 @@ def main():
                                 and ena.spra_id = sp.spra_id
           left join superenti on  sub_enti_id = e1.enti_id
           ) order by upper(name)
-              """.format(greportLang))
+              """.format(printHTML.reportLang()))
 #    for e in enti:
 #        print (e)
     printHTML.writeToc("""<div><ol class ="tree"><li><label for="entities">Entitäten</label>
@@ -489,7 +363,7 @@ def main():
                      and ent.spra_id = attr.spra_id
           join wertebereiche on wrtb_id = attr_wrtb_id
           order by upper(attr_tech_name)
-          """.format(greportLang))
+          """.format(printHTML.greportLang))
     printHTML.writeToc("""<div><ol class ="tree"><li><label for="attributes">Attribute</label>
                 <input type="checkbox" id="attributes" /><ol>
     """)
@@ -519,7 +393,22 @@ def main():
     printHTML.writeToc("</ol></ol></div>")
 
     printHTML.closeToc("""</div></div>""")
+#printcontent
 
+def printhtmlfile(p_firma,p_titel,p_info,p_logofilename):
+
+    printHTML.createFile ();
+    """"Informationsmodell {} (Stand: {})"
+                           .format(odmParam.imModelName,datetime.today())"""
+
+    printHTML.printhead(p_firma=p_firma
+                        ,p_titel=p_titel
+                        ,  p_info=p_info
+                        ,p_logofilename=p_logofilename);
+    printlistofcontent();
+    printcontent();
+    printHTML.printfoot();
+    return
     ############################
 
     for e in enti:
@@ -549,7 +438,7 @@ def main():
                                     and ana.spra_id = sp.spra_id            
                 join wertebereiche on wrtb_id = attr_wrtb_id
           where attr_enti_id = {}
-          order by upper(attr_tech_name)""" .format(greportLang,e[5]))
+          order by upper(attr_tech_name)""" .format(printHTML.greportLang,e[5]))
         entiId = e[5]
         printUDP(meltName='ENTI', Id=entiId)
         printHTML.startTable('Attribute', ('Name', 'Domäne', 'Typ','in Schlüssel'
@@ -615,7 +504,7 @@ def main():
                                 and ena.sptx_mode_id = mode_id 
                 ) ent on enti_id = attr_enti_id
                      and ent.spra_id = sp.spra_id
-                        where attr_wrtb_id = {}""" .format(greportLang,w[0]))
+                        where attr_wrtb_id = {}""" .format(printHTML.greportLang,w[0]))
         for c in attcols:
             printHTML.writeTable((c[0], href(ref=entiAnker(c[4]), anz=c[1]), href(ref=attrAnker(c[3]), anz=c[2])))
         printHTML.endTable('')
@@ -626,9 +515,30 @@ def main():
     # printAttrUDPMatrix()
 
 
-    printHTML.closeCont('')
+#printhtmlfile
+
+def main(p_direc,p_lang,p_webdirec):
+    parameters.initparam(p_callarg=p_direc)
+    printHTML.setWebDirec(p_webdirec=p_webdirec)
+
+    dbConnect.openDB(p_filepath= parameters.dbFilePath());
+    dbParam.liesDefaultLang()
+    if (p_lang is None):
+        printHTML.reportLang(dbParam.dbDefaultLang)
+    else:
+        printHTML.reportLang(p_lang.lower())
+
+
+    printhtmlfile(    p_firma="foryouandyourcustomers"
+                        ,p_titel="Testwebreport"
+                        ,p_info="stb, {}".format(datetime.now().strftime("%Y-%m-%d, %H:%M"))
+                        ,p_logofilename=parameters.logoFileName());
+
     dbConnect.myDbConn.close()
-#end main
+#main
 
 if __name__ == '__main__':
-    main()
+    direc = sys.argv[1]
+    lang = sys.argv[2] if (len(sys.argv)>2) else None
+    webdirec = sys.argv[3] if (len(sys.argv)>3) else None
+    main(p_direc=direc,p_lang=lang,p_webdirec=webdirec)
