@@ -112,6 +112,26 @@ def datalist(p_type,p_lang):
                                                 else ena.sptx_text end  name
                 ,case when eco.sptx_text is null then e1.enti_beschr 
                                                 else eco.sptx_text end  descr 
+              ,e1.enti_uc
+              ,e1.enti_dc
+              ,super_enti_name
+              ,super_enti_id
+             ,(select group_concat('<a href="#ENTI'||sub_enti_id||'" target="details">'
+                                    ||sub_enti_name||'</a>'
+                            ,', ') subent
+              from superenti where super_enti_id = e1.enti_id
+              ) as subentities
+            ,(select group_concat(syno_name,', ') synos
+                from (select case when sna.sptx_text is null then syno_name 
+                                                else sna.sptx_text end syno_name
+                  from synonyme
+                  left join modellelement on mode_syno_id = syno_id
+                  left join spraattr sna on sna.sptx_attrname = 'SYNO_NAME'
+                                    and sna.sptx_mode_id = mode_id
+                                    and sna.spra_id = sp.spra_id
+                 where syno_enti_id = e1.enti_id
+                 )
+              ) as synos
               from entitaeten e1
               join modellelement on mode_enti_id = enti_id
               join sprachen sp on sp.spra_iso_code2 = '{}'         
@@ -121,9 +141,20 @@ def datalist(p_type,p_lang):
               left join spraattr eco on eco.sptx_attrname = 'ENT_COMMENT'
                                     and eco.sptx_mode_id = mode_id
                                     and eco.spra_id = sp.spra_id
+              left join (select case when ena.sptx_text is null then super_enti_name 
+                                                else ena.sptx_text end  super_enti_name
+                                ,super_enti_id
+                                ,sub_enti_id
+                                ,ena.spra_id super_spra_id
+                           from superenti
+                           left join modellelement on mode_enti_id = super_enti_id
+                           left join spraattr ena on ena.sptx_attrname = 'ENT_NAME'
+                                    and ena.sptx_mode_id = mode_id
+                        ) on  sub_enti_id = e1.enti_id
+                          and super_spra_id = sp.spra_id
               ) order by upper(name)
                   """.format(p_lang))
-        data = [(e[0],e[1],e[2]) for e in data]
+        data = [(e[0],e[1],e[2],e[3],e[4],e[5],e[6],e[7],e[8]) for e in data]
     #fi
     return data
 #datalist

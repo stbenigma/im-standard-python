@@ -398,9 +398,6 @@ def printcontent():
 def printhtmlfile(p_firma,p_titel,p_info,p_logofilename):
 
     printHTML.createFile ();
-    """"Informationsmodell {} (Stand: {})"
-                           .format(odmParam.imModelName,datetime.today())"""
-
     printHTML.printhead(p_firma=p_firma
                         ,p_titel=p_titel
                         ,  p_info=p_info
@@ -409,7 +406,6 @@ def printhtmlfile(p_firma,p_titel,p_info,p_logofilename):
     printcontent();
     printHTML.printfoot();
     return
-    ############################
 
     for e in enti:
         printHTML.printTable({transl('Entität'): e[0], "Beschreibung":nvl(e[2])
@@ -441,15 +437,7 @@ def printhtmlfile(p_firma,p_titel,p_info,p_logofilename):
           order by upper(attr_tech_name)""" .format(printHTML.greportLang,e[5]))
         entiId = e[5]
         printUDP(meltName='ENTI', Id=entiId)
-        printHTML.startTable('Attribute', ('Name', 'Domäne', 'Typ','in Schlüssel'
-                                             , 'Pflichtattribut','Deskriptor','übersetzt','historisiert','wiederholt'
-                                             ,'verschlüsselt'))
-        for eat in eattr:
-            printHTML.writeTable((href(ref=attrAnker(eat[12]), anz=eat[2]), href(ref=wrtbAnker(eat[13]), anz=eat[4])
-                                     , anzDatentyp(eat[10]), nvl(eat[14]),bool2JN(eat[5]), bool2JN(eat[11])
-                                     , bool2JN(eat[6]), bool2JN(eat[7]), bool2JN(eat[8]), bool2JN(eat[9])))
-        #endFor
-        printHTML.endTable('')
+
         printBezi(entiId=entiId)
         printSchluessel(entiId=entiId)
     #endfor

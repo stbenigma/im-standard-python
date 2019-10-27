@@ -43,6 +43,7 @@ translNameEN = {'Anzeige': 'Display'
                 ,'Entität/Tabelle': 'Entity/Table'
                 ,'Entitäten': 'Entities'
                 ,'Erstellt': 'Generates'
+                ,'geändert': 'updated'
                 ,'Gruppenattribut': 'Groupattribute'
                 ,'historisiert': 'historicized'
                 ,'in Schlüssel': 'within key'
@@ -59,7 +60,7 @@ translNameEN = {'Anzeige': 'Display'
                 ,'Subentität': 'Subentity'
                 ,'Subentitäten': 'Subentities'
                 ,'Suchbegriff': 'search key'
-                ,'Superentitäten': 'Superentity'
+                ,'Superentität': 'Superentity'
                 ,'Synonyme': 'Synonyms'
                 ,'Technischer Name': 'Technical Name'
                 ,'Text': 'Text'
@@ -390,18 +391,17 @@ def printcontententi(p_list):
     """
     detailshead = """            <div class="panel-body">
                 <!-- The inside div eliminates the 'jumping' animation. -->
-                    <div class="collapse" id="bar0">
-                    <h2>{}</h2>
-                    <div id="container1">
-                        <div class="table-responsive">
+                    <div class="collapse" id="bar0">                    
 """
-    detailsfoot = """            </div>
-                            </div>
+    detailsfoot = """            
                             </div>
                             </div>
 """
 
-    attrhead = """                         <table class="table borderless">
+    attrhead = """             <h2>{}</h2>
+                    <div id="container1">
+                        <div class="table-responsive">
+               <table class="table borderless">
                                         <tbody>
                                     <tr>
                                         <th class="attribute">{}</th>
@@ -417,6 +417,8 @@ def printcontententi(p_list):
     attrfoot = """              
                             </tbody>
                         </table>
+                        </div>
+                            </div>
 """
 
     attrline = """                                    <tr>
@@ -431,20 +433,44 @@ def printcontententi(p_list):
                                             <td class="symbol"><img {}></td>
                                         </tr>
 """
-
+    infohead = """
+                            <h2>{}</h2>
+                            <table class="table borderless">
+                                <tbody>
+"""
+    infoline = """
+                                    <tr>
+                                        <td>{}</td>
+                                        <td>{}</td>
+                                    </tr>
+"""
+    infofoot = """
+                                </tbody>
+                            </table>
+"""
     fhtml.write(contenthead)
-    for l in p_list:
-        fhtml.write(contentelementhead.format(web_sql.entiAnker(l[0]) #id
+    for e in p_list:
+        fhtml.write(contentelementhead.format(web_sql.entiAnker(e[0]) #id
                                             ,transl('Entität')
-                                            ,l[1] #name
-                                            , nvl(l[2]))) #descr
-        fhtml.write(detailshead.format(transl('Attribute')))
+                                            ,e[1] #name
+                                            , nvl(e[2]))) #descr
+
+        fhtml.write(detailshead)
+        fhtml.write(infohead.format(transl('Informationen')))
+        if (e[8] is not None):
+            fhtml.write(infoline.format(transl('Synonyme'),e[8]))
+        if (e[6] is not None):
+            fhtml.write(infoline.format(transl('Superentität'),e[6]))
+        if (e[7] is not None):
+            fhtml.write(infoline.format(transl('Subentitäten'),e[7]))
+        fhtml.write(infoline.format(transl('geändert'),nvl(e[3]) + ', ' + nvl(e[4])))
+        fhtml.write(infofoot)
 
         #####Attribute block
-        fhtml.write(attrhead.format(transl('Name'),transl('Domäne'),transl('Typ')
+        fhtml.write(attrhead.format(transl('Attribute'),transl('Name'),transl('Domäne'),transl('Typ')
                                     ,transl('Pflichtattribut'),transl('Deskriptor'),transl('übersetzt')
                                     ,transl('historisiert'),transl('wiederholt'),transl('verschlüsselt')))
-        alist = web_sql.attrlist(p_entiid=l[0],p_lang=reportLang())
+        alist = web_sql.attrlist(p_entiid=e[0],p_lang=reportLang())
         if (alist is not None):
             for a in alist:
                 fhtml.write(attrline.format(web_sql.attrAnker(a[0]), a[1], web_sql.wrtbAnker(a[3]), a[2], anzDatentyp(a[4])
@@ -454,25 +480,7 @@ def printcontententi(p_list):
         #fi
 
         fhtml.write(attrfoot)
-        rest = """
-                            <h2>Informationen</h2>
-                            <table class="table borderless">
-                                <tbody>
-                                    <tr>
-                                        <th>Datentyp</th>
-                                        <th>Autor</th>
-                                        <th>Erstellt</th>
-                                    </tr>
-                                    <tr>
-                                        <td>Text (200) CHECK: Checkconstraint generic</td>
-                                        <td>stb</td>
-                                        <td>2019-01-26 14:27:35 UTC</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>"""
+
         fhtml.write(detailsfoot)
         fhtml.write(contentelementfoot.format(transl('Mehr')))
     #for
