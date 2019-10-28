@@ -11,6 +11,14 @@ imagedirec:str = "";
 cssdirec:str = "";
 icondirec:str = "";
 
+"""zum Zählen der lokaen Ziele für collapse"""
+barcounter:int = 0
+def newbarcounter():
+    global barcounter
+    barcounter += 1
+    return barcounter
+#newbarcounter
+
 fhtml = None
 
 greportLang:str = None
@@ -21,6 +29,17 @@ def reportLang(newval=None):
     else:
         greportLang = newval
 #reportLang
+
+
+
+def nvl(x):
+    return x if (x is not None) else ''
+#nvl
+
+def href(ref,anz):
+    return """<a href="#{}" target="details">{}</a>""".format(ref,anz)
+#href
+
 
 translNameEN = {'Anzeige': 'Display'
                 ,'Arc': 'Arc'
@@ -105,11 +124,22 @@ def anzDatentyp(dt):
     return anzDT[dt]
 #anzDatentyp
 
-def printhead(p_firma,p_titel,p_info,p_logofilename):
-    htmlhead:str = """<html lang="en">
+def list2href(p_list):
+    """Verandelt eine kommagetrennte Liste von nnn:xxxx in einen String von kommagetrennten  HREF-Webeinträgen"""
+    list = p_list.split(",")
+    elem = []
+    for el in list:
+        el1  = el.split(':')
+        elem.append(href(ref=web_sql.entiAnker(el1[0]), anz=el1[1]))
+    return ', '.join(elem)
+#list2href
 
+
+def printhead(p_firma,p_titel,p_info,p_logofilename):
+    htmlhead:str = """<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>IME - Webseite</title>
+    <title>{}</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -129,7 +159,7 @@ def printhead(p_firma,p_titel,p_info,p_logofilename):
         <p5>{}</p5>
         <img src="image/{}" alt="{}" id="LLogo">
     </div>
-    """.format (p_firma,p_titel,p_info,p_logofilename,p_firma)
+    """.format (p_titel,p_firma,p_titel,p_info,p_logofilename,p_firma)
     fhtml.write(htmlhead)
 #printhead
 
@@ -300,6 +330,7 @@ def printlistofcontenthead():
             </div>
             <p6>{}:</p6>
                 <output id="count"></output>
+                <div class="contentView">
 """.format(transl("Suchbegriff"),transl("Treffer"))
     fhtml.write(contenhead)
 #printlistofcontenthead
@@ -307,36 +338,28 @@ def printlistofcontenthead():
 def printlistofcontentfoot():
     contentfoot = """
             </div>
+        </div>
     </div>
 """
     fhtml.write(contentfoot)
 #printlistofcontentfoot
 
-def printlistofcontentelementstart():
-    contentstart="""    <div class="contentView">
-"""
-    fhtml.write(contentstart)
-#printlistofcontentelementstart
-def printlistofcontentelementend():
-    contentend = """    </div>
-"""
-    fhtml.write(contentend)
-#printlistofcontentelementend
 
 def printlistofcontentelement(p_name, p_list):
+    lbc = str(newbarcounter())
     contentelementhead= """
-                <div class="panel-body" id="entityL">
+                <div class="panel-body" id="{}L">
                     <div class="panel">
-                        <div class="panel-heading collapsed" data-toggle="collapse" data-target="#bar00">
+                        <div class="panel-heading collapsed" data-toggle="collapse" data-target="#bar{}">
                             <label class="label0">{}</label>
                             <img class="icon-minus" alt="minus" src="icons/minus.svg">
                             <img class="icon-plus" alt="plus" src="icons/plus.svg">
                         </div>
                     </div>
                     <!-- The inside div eliminates the 'jumping' animation. -->
-                    <div class="collapse" id="bar00">
-                        <ol class="tree" id="entityList">
-    """.format(transl(p_name))
+                    <div class="collapse" id="bar{}">
+                        <ol class="tree" id="{}List">
+    """
     contentline="""
                 <li class="obj"><a href="#{}" target="details">{}</a></li>"""
     contentelementfoot="""
@@ -344,7 +367,7 @@ def printlistofcontentelement(p_name, p_list):
             </div>
         </div>
 """;
-    fhtml.write(contentelementhead)
+    fhtml.write(contentelementhead.format(p_name,lbc,transl(p_name),lbc,p_name))
     for l in p_list:
         fhtml.write(contentline.format(l[1],l[0]))
     fhtml.write(contentelementfoot)
@@ -379,22 +402,23 @@ def printcontententi(p_list):
                 <h1>{}</h1>
                 <p1>{}</p1>
             </div>
+             <div class="panel-body">
+            <div class="collapse" id="bar{}">                    
         """
     contentelementfoot = """                 <div class="panel">
-                <div class="panel-heading collapsed" data-toggle="collapse" data-target="#bar0">
+                <div class="panel-heading collapsed" data-toggle="collapse" data-target="#bar{}">
                     <img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
                     <img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
                     <label class="label1">{}</label>
                 </div>
             </div>
         </div>
+        </div>
     """
-    detailshead = """            <div class="panel-body">
+    detailshead = """           
                 <!-- The inside div eliminates the 'jumping' animation. -->
-                    <div class="collapse" id="bar0">                    
 """
     detailsfoot = """            
-                            </div>
                             </div>
 """
 
@@ -435,34 +459,41 @@ def printcontententi(p_list):
 """
     infohead = """
                             <h2>{}</h2>
+                        <div id="container2">
+                        <div class="table-responsive">
                             <table class="table borderless">
                                 <tbody>
 """
     infoline = """
                                     <tr>
-                                        <td>{}</td>
-                                        <td>{}</td>
+                                        <th>{}</th>
+                                        <td class="attribute">{}</td>
                                     </tr>
 """
     infofoot = """
                                 </tbody>
                             </table>
+                        </div>
+                        </div>
 """
     fhtml.write(contenthead)
     for e in p_list:
+        lbc = str(newbarcounter())
         fhtml.write(contentelementhead.format(web_sql.entiAnker(e[0]) #id
                                             ,transl('Entität')
                                             ,e[1] #name
-                                            , nvl(e[2]))) #descr
+                                            , nvl(e[2])
+                                            ,lbc)) #descr
 
         fhtml.write(detailshead)
+
         fhtml.write(infohead.format(transl('Informationen')))
         if (e[8] is not None):
             fhtml.write(infoline.format(transl('Synonyme'),e[8]))
         if (e[6] is not None):
-            fhtml.write(infoline.format(transl('Superentität'),e[6]))
+            fhtml.write(infoline.format(transl('Superentität'),href(ref=web_sql.entiAnker(e[6]),anz=e[5])))
         if (e[7] is not None):
-            fhtml.write(infoline.format(transl('Subentitäten'),e[7]))
+            fhtml.write(infoline.format(transl('Subentitäten'),list2href(e[7])))
         fhtml.write(infoline.format(transl('geändert'),nvl(e[3]) + ', ' + nvl(e[4])))
         fhtml.write(infofoot)
 
@@ -482,7 +513,7 @@ def printcontententi(p_list):
         fhtml.write(attrfoot)
 
         fhtml.write(detailsfoot)
-        fhtml.write(contentelementfoot.format(transl('Mehr')))
+        fhtml.write(contentelementfoot.format(lbc,transl('Mehr')))
     #for
 #printcontent
 
@@ -590,9 +621,6 @@ def startTable(titel,ueberschriften,anker=''):
 
     fcont.write("""</tr></thead><tbody>""")
 #startTable
-def nvl(x):
-    return x if (x is not None) else ''
-#nvl
 def writeTable(werte):
     global fcont
     fcont.write("""<tr>""")

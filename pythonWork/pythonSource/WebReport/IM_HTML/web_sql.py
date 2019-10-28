@@ -1,5 +1,4 @@
 from IM_DB import dbDML,dbLookup
-from IM_HTML import web_sql
 
 udpThemenSql:str = """select distinct bdeg_thema
                     from benudef_eigenschaft
@@ -106,6 +105,9 @@ def namelist(p_type,p_lang):
 def datalist(p_type,p_lang):
     if p_type == 'ENTI':
         #id, name, descr
+        #group_concat('<a href="#ENTI'||sub_enti_id||'" target="details">'
+        #                            ||sub_enti_name||'</a>'
+        #                    ,', ') subent
         data = dbDML.select("""select * from 
         (select e1.enti_id
                 ,case when ena.sptx_text is null then e1.enti_name 
@@ -116,9 +118,7 @@ def datalist(p_type,p_lang):
               ,e1.enti_dc
               ,super_enti_name
               ,super_enti_id
-             ,(select group_concat('<a href="#ENTI'||sub_enti_id||'" target="details">'
-                                    ||sub_enti_name||'</a>'
-                            ,', ') subent
+             ,(select group_concat(sub_enti_id||':'||sub_enti_name,',') subent
               from superenti where super_enti_id = e1.enti_id
               ) as subentities
             ,(select group_concat(syno_name,', ') synos
@@ -151,7 +151,8 @@ def datalist(p_type,p_lang):
                            left join spraattr ena on ena.sptx_attrname = 'ENT_NAME'
                                     and ena.sptx_mode_id = mode_id
                         ) on  sub_enti_id = e1.enti_id
-                          and super_spra_id = sp.spra_id
+                          and (super_spra_id = sp.spra_id 
+                                or super_spra_id is null)
               ) order by upper(name)
                   """.format(p_lang))
         data = [(e[0],e[1],e[2],e[3],e[4],e[5],e[6],e[7],e[8]) for e in data]

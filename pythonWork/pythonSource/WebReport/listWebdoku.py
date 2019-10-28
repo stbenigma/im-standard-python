@@ -13,10 +13,6 @@ def nvl(x,default=''):
     else: return x
 #nvl
 
-def href(ref,anz):
-    return """<a href="#{}" target="details">{}</a>""".format(ref,anz)
-#href
-
 def makeAnker(ref,anz):
     return """<a name = "{}" >{}</a>""".format(ref,anz)
 #href

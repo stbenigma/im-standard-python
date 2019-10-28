@@ -278,7 +278,7 @@ def do1Attribute(n,attr,entiId=None,beziId=None):
         entiId,domId,techiName
         ,attrName,findText(attr,''),attrcomm
         ,findText(attr,''),n
-        ,'FALSE',str.upper(nvl(findText(attr,'nullsAllowed'),'TRUE')),'TRUE' if (re.search('\[.*T.*\]', ganzName) is not None) else 'FALSE'
+        ,'FALSE','FALSE' if (findText(attr,'nullsAllowed') == 'true') else 'TRUE','TRUE' if (re.search('\[.*T.*\]', ganzName) is not None) else 'FALSE'
         ,'TRUE' if (re.search('\[.*N.*\]', ganzName) is not None) else 'FALSE','TRUE' if (re.search('\[.*L.*\]', ganzName) is not None) else 'FALSE','FALSE'
         ,findText(attr,'createdBy')   ,findText(attr,'createdTime'),findField(attr,'id'),beziId
     ))
