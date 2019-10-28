@@ -393,6 +393,118 @@ def printcontentfoot():
 # printcontentfoot
 
 
+def printattrlist(p_entiid):
+    attrhead = """             <h2>{}</h2>
+                        <div id="container1">
+                            <div class="table-responsive">
+                   <table class="table borderless">
+                                            <tbody>
+                                        <tr>
+                                            <th class="attribute">{}</th>
+                                            <th class="attribute">{}</th>
+                                            <th>{}</th>
+                                            <th class="thAlgn">{}</th>
+                                            <th class="thAlgn">{}</th>
+                                            <th class="thAlgn">{}</th>
+                                            <th class="thAlgn">{}</th>
+                                            <th class="thAlgn">{}</th>
+                                            <th class="thAlgn">{}</th>
+                                        </tr>"""
+    attrfoot = """              
+                                </tbody>
+                            </table>
+                            </div>
+                                </div>
+    """
+
+    attrline = """                                    <tr>
+                                                <td class="attribute"><a href="#{}">{}</a></td>
+                                                <td class="attribute"><a href="#{}">{}</a></td>
+                                                <td>{}</td>
+                                                <td class="symbol"><img {}></td>
+                                                <td class="symbol"><img {}></td>
+                                                <td class="symbol"><img {}></td>
+                                                <td class="symbol"><img {}></td>
+                                                <td class="symbol"><img {}></td>
+                                                <td class="symbol"><img {}></td>
+                                            </tr>
+    """
+    fhtml.write(attrhead.format(transl('Attribute'), transl('Name'), transl('Domäne'), transl('Typ')
+                            , transl('Pflichtattribut'), transl('Deskriptor'), transl('übersetzt')
+                            , transl('historisiert'), transl('wiederholt'), transl('verschlüsselt')))
+    alist = web_sql.attrlist(p_entiid=p_entiid, p_lang=reportLang())
+    if (alist is not None):
+        for a in alist:
+            fhtml.write(attrline.format(web_sql.attrAnker(a[0]), a[1], web_sql.wrtbAnker(a[3]), a[2], anzDatentyp(a[4])
+                                    , bool2icon(a[5]), bool2icon(a[6]), bool2icon(a[7])
+                                    , bool2icon(a[8]), bool2icon(a[9]), bool2icon(a[10])))
+        #for
+    #fi
+    fhtml.write(attrfoot)
+#printattrlist
+
+def starttable(titel, ueberschriften, anker=None):
+    tabhead= """        <h2>{}</h2>
+                        <div id="container1">
+                            <div class="table-responsive">
+                   <table class="table borderless">
+                                            <tbody>
+                                        <tr>
+"""
+    tabheads="""             <th>{}</th>
+"""
+#    tabheads="""<th class="attribute">{}</th>"""
+    retval = []
+    retval.append(tabhead.format(titel))
+    for u in ueberschriften:
+        retval.append(tabheads.format(u))
+    return ''.join(retval)
+#starttable
+
+def writetableline(werte):
+    linestart = """            <tr>
+"""
+    line = """             <td>{}</td>
+"""
+    lineend ="""               </tr>
+"""
+    retval = []
+    retval.append(linestart)
+    for w in werte:
+        retval.append(line.format(nvl(w)))
+    retval.append(lineend)
+    return ''.join(retval)
+#writetableline
+
+def endtable():
+    return """        
+                     </tbody>
+                            </table>
+                            </div>
+                                </div>
+    """
+#endtable
+
+
+def printentikeys(p_entiid):
+    keylist = web_sql.keylist(p_entiid=p_entiid, p_lang=reportLang())
+    if (keylist is None):
+        return
+
+    fhtml.write(starttable(transl('Schlüssel'), (transl('Nr'), transl('Name'), transl('Attribut(e)'), transl('Beziehung(en)'))))
+    for k in keylist:
+        fhtml.write(writetableline(werte=k))
+    fhtml.write(endtable())
+#printentikeys
+
+def printentirela(p_entiid):
+    fhtml.write(realhead)
+    relalist = web_sql.keylist(p_entiid=p_entiid)
+    for r in relalist:
+        fhtml.write(relaline.format())
+    fhtml.write(relafoot)
+#printentirela
+
 def printcontententi(p_list):
     contenthead="""        <!--entities-->"""
 
@@ -422,41 +534,7 @@ def printcontententi(p_list):
                             </div>
 """
 
-    attrhead = """             <h2>{}</h2>
-                    <div id="container1">
-                        <div class="table-responsive">
-               <table class="table borderless">
-                                        <tbody>
-                                    <tr>
-                                        <th class="attribute">{}</th>
-                                        <th class="attribute">{}</th>
-                                        <th>{}</th>
-                                        <th class="thAlgn">{}</th>
-                                        <th class="thAlgn">{}</th>
-                                        <th class="thAlgn">{}</th>
-                                        <th class="thAlgn">{}</th>
-                                        <th class="thAlgn">{}</th>
-                                        <th class="thAlgn">{}</th>
-                                    </tr>"""
-    attrfoot = """              
-                            </tbody>
-                        </table>
-                        </div>
-                            </div>
-"""
 
-    attrline = """                                    <tr>
-                                            <td class="attribute"><a href="#{}">{}</a></td>
-                                            <td class="attribute"><a href="#{}">{}</a></td>
-                                            <td>{}</td>
-                                            <td class="symbol"><img {}></td>
-                                            <td class="symbol"><img {}></td>
-                                            <td class="symbol"><img {}></td>
-                                            <td class="symbol"><img {}></td>
-                                            <td class="symbol"><img {}></td>
-                                            <td class="symbol"><img {}></td>
-                                        </tr>
-"""
     infohead = """
                             <h2>{}</h2>
                         <div id="container2">
@@ -486,7 +564,7 @@ def printcontententi(p_list):
                                             ,lbc)) #descr
 
         fhtml.write(detailshead)
-
+        """print entity Info"""
         fhtml.write(infohead.format(transl('Informationen')))
         if (e[8] is not None):
             fhtml.write(infoline.format(transl('Synonyme'),e[8]))
@@ -497,20 +575,10 @@ def printcontententi(p_list):
         fhtml.write(infoline.format(transl('geändert'),nvl(e[3]) + ', ' + nvl(e[4])))
         fhtml.write(infofoot)
 
-        #####Attribute block
-        fhtml.write(attrhead.format(transl('Attribute'),transl('Name'),transl('Domäne'),transl('Typ')
-                                    ,transl('Pflichtattribut'),transl('Deskriptor'),transl('übersetzt')
-                                    ,transl('historisiert'),transl('wiederholt'),transl('verschlüsselt')))
-        alist = web_sql.attrlist(p_entiid=e[0],p_lang=reportLang())
-        if (alist is not None):
-            for a in alist:
-                fhtml.write(attrline.format(web_sql.attrAnker(a[0]), a[1], web_sql.wrtbAnker(a[3]), a[2], anzDatentyp(a[4])
-                                            ,bool2icon(a[5]),bool2icon(a[6]),bool2icon(a[7])
-                                            ,bool2icon(a[8]),bool2icon(a[9]),bool2icon(a[10])))
-            #for
-        #fi
-
-        fhtml.write(attrfoot)
+        printattrlist(p_entiid=e[0])
+        printentikeys(p_entiid=e[0])
+#        printentirela(p_entiid=e[0])
+#        printentiupd(p_entiid=e[0])
 
         fhtml.write(detailsfoot)
         fhtml.write(contentelementfoot.format(lbc,transl('Mehr')))
@@ -604,34 +672,5 @@ def printTable(werte,anker=''):
     fcont.write("""</tbody></table><p></p>""")
 #printTable
 
-def startTable(titel,ueberschriften,anker=''):
-    global fcont
-    if (anker == ''):
-        fcont.write("""<p></p><span class="t_cap">{}</span>
-	            <table class="w_5"><thead><tr>
-                """.format(titel))
-    else:
-        fcont.write("""<p></p><span class="t_cap">{}</span>
-        	            <table id="{}"  class="w_5"><thead><tr>
-                        """.format(titel,anker))
 
-    for w in ueberschriften:
-        fcont.write("""<th class="td_h_v w_4"><span>{}</span></th>""" \
-                .format(w))
 
-    fcont.write("""</tr></thead><tbody>""")
-#startTable
-def writeTable(werte):
-    global fcont
-    fcont.write("""<tr>""")
-    for w in werte:
-        fcont.write("""<td class="td_r">{}</td>""" .format(nvl(w)))
-    #rof
-    fcont.write("""</tr>""")
-
-#writeTable
-
-def endTable(str):
-    global fcont
-    fcont.write("""</tr></tbody></table><p></p>""")
-#endTable

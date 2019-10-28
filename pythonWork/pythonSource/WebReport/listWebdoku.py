@@ -42,7 +42,7 @@ def bool2JN(b):
 #bool2JN
 
 def printUDP(meltName, Id):
-#    printHTML.startTable('Attribute - User Defined Properties: ' + nvl(thema), udpListe, anker='ATTRUDP')#
+#    printHTML.starttable('Attribute - User Defined Properties: ' + nvl(thema), udpListe, anker='ATTRUDP')#
 #
 #
 #for at in allattr:
@@ -88,7 +88,7 @@ def printUDP(meltName, Id):
         #print (udpName[0],udpName[1],lw)
         namenliste = udpName[2].split(',')
         namenliste.sort() #SQl kann keine sortierte group_concat liefern
-        printHTML.startTable('Benutzerdefinerte Werte: {} - {} '.format(udpName[0], udpName[1])
+        printHTML.starttable('Benutzerdefinerte Werte: {} - {} '.format(udpName[0], udpName[1])
                              , namenliste)
 
         printHTML.writeTable(lw)
@@ -129,7 +129,7 @@ def printAttrUDPMatrix(thema=None):
       join wertebereiche on wrtb_id = attr_wrtb_id
       ) order by enti_name,upper(attr_tech_name)"""
                            .format(printHTML.greportLang))
-    printHTML.startTable('Attribute - User Defined Properties: '+nvl(thema), udpListe,anker=udpAnker(thema))
+    printHTML.starttable('Attribute - User Defined Properties: ' + nvl(thema), udpListe, anker=udpAnker(thema))
     for at in allattr:
         values = [href(ref=entiAnker(at[1]), anz=at[0]), href(ref=attrAnker(at[2]), anz=at[3])
                               ,nvl(at[4]),nvl(at[6])]
@@ -151,41 +151,10 @@ def printAttrUDPMatrix(thema=None):
 #printAttrUDPMatrix
 
 
-def printSchluessel(entiId):
-    printHTML.startTable('Schlüssel', ('Nr', 'Name', 'Attribut(e)', 'Beziehung(en)'))
-
-
-    schl = dbDML.select("""
-    select  schl_id,schl_laufnr,schl_name
-                  ,group_concat('<a href="#ATTR'||attr_id||'" target="details">'
-                                    ||
-                                    case when ana.sptx_text is null then attr_anzname else ana.sptx_text end 
-                                    ||'</a>', ', ') attrs
-                  ,group_concat('<a href="#BEZI'||bezi_id||'" target="details">'
-                                    ||bezi_name||'</a>', ', ') bezis
-         from schluessel
-         join schluesselelement on scel_schl_id = schl_id
-            join sprachen sp on sp.spra_iso_code2 = '{}'
-         left join attributes on attr_id = scel_attr_id
-            left join modellelement ma on ma.mode_attr_id = attr_id
-            left join spraattr  ana on ana.sptx_attrname = 'ATTR_NAME'
-                                    and ana.sptx_mode_id = ma.mode_id
-                                    and ana.spra_id = sp.spra_id            
-         left join beziehungen on bezi_id = scel_bezi_id
-         where schl_enti_id = {}
-           group by schl_id,schl_laufnr,schl_name
-                    """.format(printHTML.greportLang,entiId))
-
-    for s in schl:
-        printHTML.writeTable((s[1],s[2],nvl(s[3]),nvl(s[4])))
-    printHTML.endTable('')
-
-
-#printSchluessel
 
 
 def printBezi(entiId):
-    printHTML.startTable('Beziehungen', ('Name','Entität1','','Beziehung','', 'Entität2','Arc'))
+    printHTML.starttable('Beziehungen', ('Name', 'Entität1', '', 'Beziehung', '', 'Entität2', 'Arc'))
     bezi = dbDML.select("""
           with sprenti as 
           (select enti_id, enti_odm_guid
@@ -433,7 +402,6 @@ def printhtmlfile(p_firma,p_titel,p_info,p_logofilename):
           order by upper(attr_tech_name)""" .format(printHTML.greportLang,e[5]))
         entiId = e[5]
         printUDP(meltName='ENTI', Id=entiId)
-
         printBezi(entiId=entiId)
         printSchluessel(entiId=entiId)
     #endfor
@@ -467,7 +435,7 @@ def printhtmlfile(p_firma,p_titel,p_info,p_logofilename):
         #print (w)
         doms = dbDML.select("select * from vorgabewerte where vgwt_wrtb_id ={} order by vgwt_sortrhfg" .format(w[0]))
         if doms != []:
-            printHTML.startTable('Werteliste', ('Sort', 'Wert', 'Anzeige', 'Beschreibung'))
+            printHTML.starttable('Werteliste', ('Sort', 'Wert', 'Anzeige', 'Beschreibung'))
             #print ("Vorgabewerte",doms)
             for d in doms:
                 #print (d)
@@ -475,7 +443,7 @@ def printhtmlfile(p_firma,p_titel,p_info,p_logofilename):
             #endfor
             printHTML.endTable('')
         #endif
-        printHTML.startTable('Verwendet von', ('Typ', 'Entität/Tabelle', 'Name'))
+        printHTML.starttable('Verwendet von', ('Typ', 'Entität/Tabelle', 'Name'))
         attcols = dbDML.select("""select 'Attribut' as attr ,enti_name,attr_tech_name
                         , attr_id,enti_id
                         from attributes 
