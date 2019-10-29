@@ -107,43 +107,12 @@ def printlistofcontent():
 
 def printcontent():
     printHTML.printcontenthead()
-    printHTML.printcontententi(p_list=web_sql.datalist(p_type='ENTI',p_lang=printHTML.reportLang()))
-#    printHTML.printcontentattr(p_list=web_sql.attrdatalist(p_lang=printHTML.reportLang()))
-    #printHTML.printcontentwrtb(p_list=datalist('WRTB'))
+    printHTML.printcontententi(p_list=web_sql.entilist(p_lang=printHTML.reportLang()))
+    printHTML.printcontentattr(p_list=web_sql.attrlist(p_lang=printHTML.reportLang()))
+    printHTML.printcontentwrtb(p_list=web_sql.wrtblist(p_lang=printHTML.reportLang()))
+#    printHTML.printattrmaps(p_list=web_sql.wrtblist(p_lang=printHTML.reportLang()))
+#    printHTML.printdiagrams(p_list=web_sql.wrtblist(p_lang=printHTML.reportLang()))
     printHTML.printcontentfoot()
-    return
-
-
-
-    printHTML.writeToc("""<div><ol class ="tree"><li><label for="attributes">Attribute</label>
-                <input type="checkbox" id="attributes" /><ol>
-    """)
-    for a in attr:
-        printHTML.writeToc("""<li class="obj"><a href="{}#{}" \
-                target="details">{}</a></li>
-                """.format(printHTML.contFileName + ".html", attrAnker(a[12]), a[3]))
-    #endfor
-    printHTML.writeToc("</ol></ol></div>")
-    wrtb = dbDML.select("""select * from wertebereiche order by upper(wrtb_name)""")
-    printHTML.writeToc("""<div><ol class ="tree"><li><label for="objects">Domains</label>
-            <input type="checkbox" id="objects" /><ol>
-            """)
-    for w in wrtb:
-        printHTML.writeToc("""<li class="obj"><a href="{}#{}" target="details">{}</a></li>\
-           """ .format(printHTML.contFileName + ".html", wrtbAnker(w[0]), w[2]))
-    #endfor
-    printHTML.writeToc("</ol></ol></div>")
-
-    printHTML.writeToc("""<div><ol class ="tree"><li><label for="matrix">UDP-Matrix</label>
-            <input type="checkbox" id="matrix" /><ol>
-            """)
-    udpAttrThema = dbDML.select(udpThemenSql)
-    for u in udpAttrThema:
-        printHTML.writeToc("""<li class="obj"><a href="{}#{}" target="details">{}</a></li>\
-           """.format(printHTML.contFileName + ".html", udpAnker(u[0]), u[0]))
-    printHTML.writeToc("</ol></ol></div>")
-
-    printHTML.closeToc("""</div></div>""")
 #printcontent
 
 def printhtmlfile(p_firma,p_titel,p_info,p_logofilename):
@@ -157,60 +126,6 @@ def printhtmlfile(p_firma,p_titel,p_info,p_logofilename):
     printcontent();
     printHTML.printfoot();
     return
-
-    for e in enti:
-        printHTML.printTable({transl('Entität'): e[0], "Beschreibung":nvl(e[2])
-                              ,"Synonyme":nvl(e[10])
-        , "Autor":e[3], "Erstellt":e[4], "Superentität":href(entiAnker(e[7]), anz=nvl(e[6]))
-                , "Subentitäten":nvl(e[9])}, anker=entiAnker(e[5]))
-
-        eattr = dbDML.select("""select 
-           attr_odm_guid,attr_tech_name
-           ,case when ana.sptx_text is null then attr_anzname else ana.sptx_text end attr_anzname
-           ,wrtb_odm_guid,wrtb_name,attr_pflichtattr
-           ,attr_historisiert,attr_wiederholt,attr_sprachabhaengig
-           ,attr_verschluesselt,wrtb_typ,attr_deskriptor
-           ,attr_id,wrtb_id             
-           ,(select group_concat('<a href="#SCHL'||schl_id||'" target="details">'
-                                    ||schl_laufnr||'</a>',',')
-               from schluesselelement 
-                join schluessel on schl_id = scel_schl_id
-                where scel_attr_id = attr_id
-            ) as schluessel
-          from attributes 
-                 join modellelement on mode_attr_id = attr_id
-                 join sprachen sp on sp.spra_iso_code2 = '{}'
-                 left join spraattr  ana on ana.sptx_attrname = 'ATTR_NAME'
-                                    and ana.sptx_mode_id = mode_id
-                                    and ana.spra_id = sp.spra_id            
-                join wertebereiche on wrtb_id = attr_wrtb_id
-          where attr_enti_id = {}
-          order by upper(attr_tech_name)""" .format(printHTML.greportLang,e[5]))
-        entiId = e[5]
-        printUDP(meltName='ENTI', Id=entiId)
-        printBezi(entiId=entiId)
-        printSchluessel(entiId=entiId)
-    #endfor
-
-
-    for a in attr:
-            #        select
-            #        attr_tech_name || ' ('||enti_name||')' as vollname,attr_odm_guid,attr_tech_name
-            #        ,attr_anzname,enti_odm_guid,attr_uc
-            #           ,attr_dc,attr_beschr,enti_name
-            #           ,wrtb_id,wrtb_name,wrtb_typ
-            #           ,attr_id,enti_id,schluessel
-        printHTML.printTable({"Attribut": a[3], transl('Entität'): href(ref=entiAnker(a[13]), anz=a[8])
-                                     , "Wertebereich": href(ref=wrtbAnker(a[9]), anz=a[10])
-                                     , "Datentyp": anzDatentyp(a[11])
-                                     , "Beschreibung": nvl(a[7])
-                                     , "in Schlüssel": nvl(a[14])
-                                     , "Autor": a[5], "Erstellt": a[6]}, anker=attrAnker(a[12]))
-
-        # print (a)
-        attrId = a[12]
-        printUDP(meltName='ATTR', Id=attrId)
-    # rof
 
     for w in wrtb:
         #print (w)

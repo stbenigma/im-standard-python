@@ -1,4 +1,4 @@
-from IM_DB import parameters
+from IM_DB import parameters,dbLookup
 import os,shutil,re
 from IM_HTML import web_sql
 
@@ -32,6 +32,7 @@ def reportLang(newval=None):
 
 
 
+
 def nvl(x,default=''):
     return x if (x is not None) else default
 #nvl
@@ -48,9 +49,9 @@ def isiconstr(w):
     else:
         return False
 #isiconstr
-
 translNameEN = {'Anzeige': 'Display'
                 ,'Arc': 'Arc'
+                ,'Anzeige': 'Display'
                 ,'Attribut': 'Attribute'
                 ,'Attribut(e)': 'Attribute(s)'
                 ,'Attribute': 'Attributes'
@@ -60,46 +61,72 @@ translNameEN = {'Anzeige': 'Display'
                 ,'Beziehung(en)': 'relationship(s)'
                 ,'Beziehungen': 'Relationships'
                 ,'Benutzerdefinerte Eigenschaften': 'User defined properties'
+                ,'Bild' : 'Picture'
                 ,'Binär': 'Binary'
                 ,'Datentyp': 'Datatype'
                 ,'Deskriptor': 'descriptor'
                 ,'Domänen': 'Domains'
                 ,'Domäne': 'Domain'
+                ,'Einheit' : 'Unit'
                 ,'Entität': 'Entity'
                 ,'Entität/Tabelle': 'Entity/Table'
                 ,'Entitäten': 'Entities'
-                ,'Erstellt': 'Generates'
+                ,'erstellt': 'created'
+                ,'Film' : 'Video'
                 ,'geändert': 'updated'
                 ,'Gruppenattribut': 'Groupattribute'
+                ,'Grafik' : 'Graphic'
+                ,'Granularität' : 'Granularity'
                 ,'historisiert': 'historicized'
                 ,'in Schlüssel': 'within key'
                 ,'Informationsmodell {} (Stand: {})': 'Informationmodel {} (Status: {})'
+                ,'Inhaltstyp' : 'Content type'
                 ,'Ja': 'Yes'
+                ,'Jahr' : 'year'
+                ,'Max. Länge' : 'Max. length'
+                ,'Max. Wert' : 'Max. value'
                 ,'Mehr': 'more'
+                ,'Millisekunde' : 'millisecond'
+                ,'Minute' : 'minute'
+                ,'Min. Wert' : 'Min. value'
+                ,'Monat' : 'month'
+                ,'Nachkommast.' : 'digits after period'
                 ,'Name': 'Name'
                 ,'Nein': 'No'
                 ,'Nr': 'Nr'
                 ,'Numerisch': 'Numerical'
                 ,'Pflichtattribut': 'Attribute of duty'
+                ,'Quartal' : 'quarter'
+                ,'Rundungseinh.' : 'rounding unit'
                 ,'Schlüssel': 'Key'
+                ,'Sekunde' : 'second'
+                ,'Semester' : 'half-year'
                 ,'Sort': 'Sort'
+                ,'Stunde' : 'hour'
                 ,'Subentität': 'Subentity'
                 ,'Subentitäten': 'Subentities'
                 ,'Suchbegriff': 'search key'
                 ,'Superentität': 'Superentity'
                 ,'Synonyme': 'Synonyms'
+                ,'Syntaxregel' : 'Syntax rule'
+                ,'Tag' : 'day'
                 ,'Technischer Name': 'Technical Name'
                 ,'Text': 'Text'
+                ,'Ton' : 'Sound'
+                ,'Tooltip': 'Tooltip'
                 ,'Treffer': 'Hits'
                 ,'Typ': 'Type'
                 ,'UDP-Matrix': 'UDP-Matrix'
                 ,'übersetzt': 'translated'
                 ,'verschlüsselt': 'encrypted'
+                ,'Verwendet für Attribute':'Used for attributes'
                 ,'Verwendet von': 'used by'
+                ,'Vorkommast.' : 'digits before period'
                 ,'Wert': 'Value'
                 ,'Wertebereich': 'Domain'
-                ,'Werteliste': 'Valuelist'
+                ,'Werteliste': 'List of values'
                 ,'wiederholt': 'repeated'
+                ,'Woche' : 'week'
                 ,'Zeitpunkt': 'Point in Time'
                 }
 def transl(pname):
@@ -141,6 +168,32 @@ def anzDatentyp(dt):
     return anzDT[dt]
 #anzDatentyp
 
+def anzinhalttyp(dt):
+    anzDT = {'BILD': transl('Bild')
+             ,'FILM': transl('Film')
+             ,'GRAPH': transl('Grafik')
+             ,'TEXT': transl('Text')
+             ,'TON': transl('Ton')}
+    return anzDT[dt]
+#anzinhalttyp
+def anzgranul(dt):
+    anzDT = {
+    'JAHR' : transl('Jahr'),
+    'MILLISEKUNDE' : transl('Millisekunde'),
+    'MINUTE' : transl('Minute'),
+    'MONAT' : transl('Monat'),
+    'QUARTAL' : transl('Quartal'),
+    'SEKUNDE' : transl('Sekunde'),
+    'SEMESTER' : transl('Semester'),
+    'STUNDE' : transl('Stunde'),
+    'TAG' : transl('Tag'),
+    'WOCHE' : transl('Woche')
+    }
+    return anzDT[dt]
+#anzgranul
+
+
+
 def list2href(p_list):
     """Verandelt eine kommagetrennte Liste von nnn:xxxx in einen String von kommagetrennten  HREF-Webeinträgen"""
     list = p_list.split(",")
@@ -151,6 +204,16 @@ def list2href(p_list):
     return ', '.join(elem)
 #list2href
 
+contentelementfoot:str = """                 <div class="panel">
+                <div class="panel-heading collapsed" data-toggle="collapse" data-target="#bar{}">
+                    <img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
+                    <img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
+                    <label class="label1">{}</label>
+                </div>
+            </div>
+        </div>
+        </div>
+    """
 
 def printhead(p_firma,p_titel,p_info,p_logofilename):
     htmlhead:str = """<!DOCTYPE html>
@@ -310,7 +373,7 @@ def printfoot():
 
             document.getElementById("sidebar").appendChild(tree);
         });
-
+        
         document.getElementById("closeM1").addEventListener("click", function() {
             $("body").css("overflow", "auto");
 
@@ -448,7 +511,7 @@ def printattrlist(p_entiid):
                                                 <td class="symbol"><img {}></td>
                                             </tr>
     """
-    alist = web_sql.attrlist(p_entiid=p_entiid, p_lang=reportLang())
+    alist = web_sql.attrlist( p_lang=reportLang(), p_entiid=p_entiid)
     if (len(alist)==0):
         return
     fhtml.write(attrhead.format(transl('Attribute'), transl('Name'), transl('Domäne'), transl('Typ')
@@ -461,6 +524,7 @@ def printattrlist(p_entiid):
     #for
     fhtml.write(attrfoot)
 #printattrlist
+
 def startabschnitt(p_titel):
     start = """        <h2>{}</h2>
                             <div id="container0">
@@ -490,7 +554,7 @@ def starttable(p_titel, p_ueberschriften, p_level=2):
     return ''.join(retval)
 #starttable
 
-def writetableline(werte):
+def writetableline(p_werte):
     linestart = """            <tr>
 """
     line = """             <td>{}</td>
@@ -501,7 +565,7 @@ def writetableline(werte):
 """
     retval = []
     retval.append(linestart)
-    for w in werte:
+    for w in p_werte:
         if (isiconstr(w)):
             retval.append(iconline.format(w))
         else:
@@ -526,7 +590,7 @@ def printentikeys(p_entiid):
         return
     fhtml.write(starttable(transl('Schlüssel'), (transl('Nr'), transl('Name'), transl('Attribut(e)'), transl('Beziehung(en)'))))
     for k in keylist:
-        fhtml.write(writetableline(werte=k))
+        fhtml.write(writetableline(p_werte=k))
     fhtml.write(endtable())
 #printentikeys
 
@@ -540,14 +604,14 @@ def printentirela(p_entiid):
     for r in relalist:
         if (p_entiid == r[0]):
             #'Name','Entität1','','Beziehung','', 'Entität2','Arc','Schluessel'
-            fhtml.write(writetableline(werte=(nvl(r[16]), r[1], '->', nvl(r[3],'--'), r[4]
-                                                        ,arrow2icon('down'), nvl(r[14]),bool2icon(r[17]))))
-            fhtml.write(writetableline(werte=(''        , arrow2icon('up')  , r[9], nvl(r[8],'--'), '<-'
+            fhtml.write(writetableline(p_werte=(nvl(r[16]), r[1], '->', nvl(r[3], '--'), r[4]
+                                                        , arrow2icon('down'), nvl(r[14]), bool2icon(r[17]))))
+            fhtml.write(writetableline(p_werte=(''        , arrow2icon('up')  , r[9], nvl(r[8], '--'), '<-'
                                                         , href(ref=web_sql.entiAnker(r[5]),anz=r[6]))))
         else:
-            fhtml.write(writetableline(werte=(nvl(r[16]), r[6], '->', nvl(r[8],'--'), r[9]
+            fhtml.write(writetableline(p_werte=(nvl(r[16]), r[6], '->', nvl(r[8], '--'), r[9]
                                                             , arrow2icon('down'),'', bool2icon(r[17]))))
-            fhtml.write(writetableline(werte=(''        , arrow2icon('up')  , r[4], nvl(r[3],'--'), '<-'
+            fhtml.write(writetableline(p_werte=(''        , arrow2icon('up')  , r[4], nvl(r[3], '--'), '<-'
                                                             , href(ref=web_sql.entiAnker(r[0]), anz=r[1]))))
         #if
     #for
@@ -578,7 +642,7 @@ def printUDP(p_meltname, p_id):
             fhtml.write(starttable(p_titel=' {} - {} '.format(udpname[0], udpname[1])
                                 , p_ueberschriften=namenliste
                                 ,p_level=3))
-            fhtml.write(writetableline(werte=lw))
+            fhtml.write(writetableline(p_werte=lw))
             fhtml.write(endtable())
         #fi
     #rof
@@ -591,36 +655,28 @@ def printentiudp(p_entiid):
     printUDP(p_meltname='ENTI',p_id=p_entiid)
 #printentiudp
 
+def printattrudp(p_attrid):
+    printUDP(p_meltname='ATTR',p_id=p_attrid)
+#printattrudp
+
 def printcontententi(p_list):
     contenthead="""        <!--entities-->"""
 
     contentelementhead = """        <div class="entity" id="{}">
             <div class="describtion">
-                <p>{}</p>
+                <p>{}</p> 
                 <h1>{}</h1>
                 <p1>{}</p1>
             </div>
              <div class="panel-body">
             <div class="collapse" id="bar{}">                    
         """
-    contentelementfoot = """                 <div class="panel">
-                <div class="panel-heading collapsed" data-toggle="collapse" data-target="#bar{}">
-                    <img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
-                    <img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
-                    <label class="label1">{}</label>
-                </div>
-            </div>
-        </div>
-        </div>
-    """
     detailshead = """           
                 <!-- The inside div eliminates the 'jumping' animation. -->
 """
     detailsfoot = """            
                             </div>
 """
-
-
     infohead = """
                             <h2>{}</h2>
                         <div id="container2">
@@ -669,12 +725,144 @@ def printcontententi(p_list):
         fhtml.write(detailsfoot)
         fhtml.write(contentelementfoot.format(lbc,transl('Mehr')))
     #for
-#printcontenti
+#printcontententi
 
 def printcontentattr(p_list):
     contenthead="""        <!--attributes-->"""
 
-    contentelementhead = """        <div class="attribute" id="{}">
+    contentelementhead = """        <div class="entity" id="{}">
+            <div class="describtion">
+                <p>{}</p>
+                <h1>{}</h1>
+                <p1>{}: {}</p1><br>
+                <p1>{}</p1>
+            </div>
+             <div class="panel-body">
+            <div class="collapse" id="bar{}">                    
+        """
+    detailshead = """           
+                <!-- The inside div eliminates the 'jumping' animation. -->
+"""
+    detailsfoot = """            
+                            </div>
+"""
+    infohead = """
+                            <h2>{}</h2>
+                        <div id="container2">
+                        <div class="table-responsive">
+                            <table class="table borderless">
+                                <tbody>
+"""
+    flaghead = """                      <tr>
+                                                <th class="thAlgn">{}</th>
+                                                <th class="thAlgn">{}</th>
+                                                <th class="thAlgn">{}</th>
+                                                <th class="thAlgn">{}</th>
+                                                <th class="thAlgn">{}</th>
+                                                <th class="thAlgn">{}</th>
+                                                <th class="thAlgn">{}</th>
+                                            </tr>
+    """
+    flagline = """
+                                        <tr>
+                                                    <td class="symbol"><img {}></td>
+                                                    <td class="symbol"><img {}></td>
+                                                    <td class="symbol"><img {}></td>
+                                                    <td class="symbol"><img {}></td>
+                                                    <td class="symbol"><img {}></td>
+                                                    <td class="symbol"><img {}></td>
+                                                    <td class="symbol"><img {}></td>                                    
+                                        </tr>
+    """
+    techhead = """                      <tr>
+                                                <th>{}</th>
+                                                <th>{}</th>
+                                                <th>{}</th>
+                                            </tr>
+    """
+    techline = """
+                                        <tr>
+                                                   <td class="attribute">{}</td>
+                                                    <td class="attribute">{}</td>
+                                                    <td class="attribute">{}</td>                                    
+                                        </tr>
+    """
+    infofoot = """
+                                </tbody>
+                            </table>
+                        </div>
+                        </div>
+"""
+    fhtml.write(contenthead)
+    for a in p_list:
+        lbc = str(newbarcounter())
+        fhtml.write(contentelementhead.format(web_sql.attrAnker(a[0]) #id
+                                            ,transl('Attribut')
+                                            ,a[1] #anzname
+                                            , transl('Entität')
+                                            ,href(ref=web_sql.entiAnker(a[22])
+                                                ,anz=web_sql.enti_name(p_lang=reportLang()
+                                                                       ,p_modeid=dbLookup.modeid(p_entiid=a[22])))
+                                            , nvl(a[18]) #Beschreib ung
+                                            ,lbc))
+
+        fhtml.write(detailshead)
+        fhtml.write(infohead.format(transl('Informationen')))
+
+        fhtml.write(techhead.format(transl('Tooltip'), transl('erstellt'), transl('geändert')))
+        fhtml.write(techline.format(nvl(a[13],''),re.sub(r'^, $','',nvl(a[16]) + ', ' + nvl(a[17]))
+                                          ,re.sub(r'^, $','',nvl(a[14]) + ', ' + nvl(a[15]))))
+
+        fhtml.write(techhead.format(transl('Technischer Name'), transl('Wertebereich'), transl('Datentyp')))
+        fhtml.write(techline.format(nvl(a[12],''),href(ref=web_sql.wrtbAnker(a[3])
+                                                ,anz=a[23])
+                                        ,nvl(a[4]),''))
+
+        fhtml.write(flaghead.format(transl('Pflichtattribut'), transl('Schlüssel'), transl('Deskriptor'),
+                                    transl('übersetzt')
+                                    , transl('historisiert'), transl('wiederholt'), transl('verschlüsselt')))
+        fhtml.write(flagline.format(bool2icon(a[5]), bool2icon(a[11]), bool2icon(a[6]), bool2icon(a[7])
+                                        , bool2icon(a[8]), bool2icon(a[9]), bool2icon(a[10])))
+        fhtml.write(infofoot)
+
+        printattrudp(p_attrid=a[0])
+
+        fhtml.write(detailsfoot)
+        fhtml.write(contentelementfoot.format(lbc,transl('Mehr')))
+    #for
+#printcontentattr
+
+
+def printwrtbattrlist(p_wrtbid):
+    alist = web_sql.namelist(p_type='ATTR',p_lang=reportLang(), p_wrtbid=p_wrtbid)
+    if (len(alist)==0):
+        return
+    fhtml.write(starttable(p_titel=transl('Verwendet für Attribute')
+                           ,p_ueberschriften=[transl('Attribut')]))
+    for a in alist:
+        fhtml.write(writetableline(p_werte=[href(ref=a[1],anz=a[0])]))
+    #for
+    fhtml.write(endtable())
+#printattrlist
+
+def printwertelist(p_wrtbid):
+
+    wlist = web_sql.wrtbwerte(p_wrtbid=p_wrtbid)
+    if (len(wlist)==0):
+        return
+    fhtml.write(starttable(p_titel=transl('Werteliste')
+                   , p_ueberschriften=(transl('Nr'), transl('Wert'), transl('Anzeige'), transl('Beschreibung'))
+                   , p_level=3))
+    for w in wlist:
+        fhtml.write(writetableline(p_werte=w))
+    fhtml.write(endtable())
+
+#printwertelist
+
+def printcontentwrtb(p_list):
+    contenthead="""        <!--domains-->"""
+
+    contentelementhead = """        <div class="entity" id="{}">
             <div class="describtion">
                 <p>{}</p>
                 <h1>{}</h1>
@@ -683,24 +871,12 @@ def printcontentattr(p_list):
              <div class="panel-body">
             <div class="collapse" id="bar{}">                    
         """
-    contentelementfoot = """                 <div class="panel">
-                <div class="panel-heading collapsed" data-toggle="collapse" data-target="#bar{}">
-                    <img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
-                    <img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
-                    <label class="label1">{}</label>
-                </div>
-            </div>
-        </div>
-        </div>
-    """
     detailshead = """           
                 <!-- The inside div eliminates the 'jumping' animation. -->
 """
     detailsfoot = """            
                             </div>
 """
-
-
     infohead = """
                             <h2>{}</h2>
                         <div id="container2">
@@ -708,12 +884,27 @@ def printcontentattr(p_list):
                             <table class="table borderless">
                                 <tbody>
 """
-    infoline = """
-                                    <tr>
-                                        <th>{}</th>
-                                        <td class="attribute">{}</td>
-                                    </tr>
-"""
+    techhead = """                      <tr>
+                                                <th>{}</th>
+                                                <th>{}</th>
+                                                <th>{}</th>
+                                                <th>{}</th>
+                                                <th>{}</th>
+                                                <th>{}</th>
+                                                <th>{}</th>
+                                            </tr>
+    """
+    techline = """
+                                        <tr>
+                                                   <td class="attribute">{}</td>
+                                                    <td class="attribute">{}</td>
+                                                    <td class="attribute">{}</td>                                    
+                                                    <td class="attribute">{}</td>                                    
+                                                    <td class="attribute">{}</td>                                    
+                                                    <td class="attribute">{}</td>                                    
+                                                    <td class="attribute">{}</td>                                    
+                                        </tr>
+    """
     infofoot = """
                                 </tbody>
                             </table>
@@ -721,36 +912,47 @@ def printcontentattr(p_list):
                         </div>
 """
     fhtml.write(contenthead)
-    for e in p_list:
+    for w in p_list:
         lbc = str(newbarcounter())
-        fhtml.write(contentelementhead.format(web_sql.entiAnker(e[0]) #id
-                                            ,transl('Entität')
-                                            ,e[1] #name
-                                            , nvl(e[2])
-                                            ,lbc)) #descr
+        fhtml.write(contentelementhead.format(web_sql.wrtbAnker(w[0]) #id
+                                            ,transl('Wertebereich')
+                                            ,w[1] #anzname
+                                            , nvl(w[4]) #Beschreibung
+                                            ,lbc))
 
         fhtml.write(detailshead)
-        """print entity Info"""
         fhtml.write(infohead.format(transl('Informationen')))
-        if (e[8] is not None):
-            fhtml.write(infoline.format(transl('Synonyme'),e[8]))
-        if (e[6] is not None):
-            fhtml.write(infoline.format(transl('Superentität'),href(ref=web_sql.entiAnker(e[6]),anz=e[5])))
-        if (e[7] is not None):
-            fhtml.write(infoline.format(transl('Subentitäten'),list2href(e[7])))
-        fhtml.write(infoline.format(transl('geändert'),nvl(e[3]) + ', ' + nvl(e[4])))
+
+        if (w[5] == 'TEXT'):
+            fhtml.write(techhead.format(transl('Datentyp'),transl('Max. Länge'),transl('Syntaxregel'),'','','',''))
+            fhtml.write(techline.format(nvl(anzDatentyp(w[5])),nvl(w[9]),nvl(w[10]),'','','',''))
+        elif (w[5] == 'BIN'):
+            fhtml.write(techhead.format(transl('Datentyp'), transl('Inhaltstyp'), transl('Format'),'','','',''))
+            fhtml.write(techline.format(nvl(anzDatentyp(w[5])), nvl(w[17]),anzinhalttyp(nvl(w[18]),'','','','')))
+        elif (w[5] == 'GRP'):
+            fhtml.write(techhead.format(transl('Datentyp'),transl(''), transl(''),'','','',''))
+            fhtml.write(techline.format(nvl(anzDatentyp(w[5])),nvl(w[9]),nvl(w[10]),'','','',''))
+        elif (w[5] == 'NUM'):
+            fhtml.write(techhead.format(transl('Datentyp'),transl('Vorkommast.'), transl('Nachkommast.')
+                                                            ,transl('Rundungseinh.')
+                                        ,transl('Einheit'),transl('Min. Wert'),transl('Max. Wwert')))
+            fhtml.write(techline.format(nvl(anzDatentyp(w[5])),nvl(w[13]),nvl(w[14]),nvl(w[15]),nvl(w[16]),nvl(w[12]),nvl(w[11])))
+        elif (w[5] == 'ZPKT'):
+            fhtml.write(techhead.format(transl('Datentyp'),transl('Min. Wert'), transl('Max. Wert'),transl('Granularität'),'','',''))
+            fhtml.write(techline.format(nvl(anzDatentyp(w[5])),nvl(w[6]),nvl(w[7]),anzgranul(nvl(w[8])),'','',''))
+        #fi
+
+        fhtml.write(techhead.format(transl('erstellt'), transl('geändert'),'','','','',''))
+
         fhtml.write(infofoot)
+        if (w[5] == 'LOV'):
+            printwertelist(p_wrtbid=w[0])
 
-#        printattrlist(p_entiid=e[0])
-#        printentikeys(p_entiid=e[0])
-#        printentirela(p_entiid=e[0])
-#        printentiudp(p_entiid=e[0])
-
+        printwrtbattrlist(p_wrtbid=w[0])
         fhtml.write(detailsfoot)
         fhtml.write(contentelementfoot.format(lbc,transl('Mehr')))
     #for
-#printcontattr
-
+#printcontentwrtb
 
 def searchlogo(p_imagedirec):
     retval=''

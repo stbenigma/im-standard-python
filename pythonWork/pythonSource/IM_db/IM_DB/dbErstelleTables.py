@@ -154,6 +154,8 @@ CREATE TABLE wertebereiche(
     wrtb_bin_spfo_id          integer,
     wrtb_uc varchar(30),
     wrtb_dc varchar(30),
+    wrtb_um        varchar(30),
+    wrtb_dm        varchar(30),
     wrtb_odm_guid varchar(36),
     wrtb_datatype_ref varchar(40)
     ,foreign key (wrtb_bin_spfo_id) REFERENCES speicherformate(spfo_id)

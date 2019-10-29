@@ -53,6 +53,8 @@ def main(p_imdirec=None, p_modelname=None):
     result = dbDML.select(l_sql)
     for row in result:
         print (row)
+    dbDML.exec("""delete from benudef_wert where bdwe_wert = '.'""")
+
 #main
 #.format(entiId,entiId)
 #where von.enti_id = {} or zu.enti_id = {}

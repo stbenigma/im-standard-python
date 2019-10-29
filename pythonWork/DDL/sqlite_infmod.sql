@@ -133,7 +133,7 @@ CREATE TABLE wertebereiche(
             'TEXT',
             'TON'
         )),
-    wrtb_bin_spfo_id          integer,
+    wrtb_bin_spfo          varchar(100),
 	wrtb_odm_guid		varchar(36),
     wrtb_uc         varchar(30) NOT NULL,
     wrtb_dc        varchar(30) NOT NULL,
@@ -458,6 +458,6 @@ create view SUPERENTI AS select ae.enti_id super_enti_id,ae.enti_name super_enti
     order by ae.enti_name
 
 create view spraattr as
-	select sptx_text,spra_id,spra_iso_code2,sptx_mode_id,sptx_attrname
+ke	select sptx_text,spra_id,spra_iso_code2,sptx_mode_id,sptx_attrname
 	              from sprachtexte 
 	              join sprachen on spra_id = sptx_spra_id

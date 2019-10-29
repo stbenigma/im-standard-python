@@ -8,20 +8,20 @@ udpThemenSql:str = """select distinct bdeg_thema
                                     and bdeg_thema != 'translation'
                     order by bdeg_thema"""
 
-def langText(attrName, sprache, modeId):
+def langText(p_attrname, p_lang, p_modeid):
    lsql= """select sptx_text
     from spraattr
     where spra_iso_code2 = lower('{}')
      and sptx_mode_id = {}
      and sptx_attrname = '{}'
-    """.format(sprache,modeId,attrName)
+    """.format(p_lang, p_modeid, p_attrname)
    ltext = dbDML.select(lsql)[0][0]
    return ltext
 #langText
-def enti_name(lang,modeId):
-    return langText('ENT_NAME', lang, modeId)
+def enti_name(p_lang, p_modeid):
+    return langText('ENTI_NAME', p_lang, p_modeid)
 def enti_comment(lang,modeId):
-    return langName('ENT_COMMENT',lang,modeId)
+    return langName('ENTI_COMMENT',lang,modeId)
 def attr_name(lang,modeId):
     return langName('ATTR_NAME',lang,modeId)
 def attr_comment(lang,modeId):
@@ -30,7 +30,6 @@ def bezi_from(lang,modeId):
     return langName('TEXT_FROM',lang,modeId)
 def bezi_to(lang,modeId):
     return langName('TEXT_TO',lang,modeId)
-
 def entiAnker(id):
     return 'ENTI'+str(id)
 def attrAnker(id):
@@ -45,7 +44,7 @@ def udpAnker(id):
     return 'UDP'+str(id)
 
 
-def namelist(p_type,p_lang):
+def namelist(p_type,p_lang,p_wrtbid=None):
     if p_type == 'ENTI':
         data = dbDML.select("""select name,enti_id from 
         (select e1.enti_id
@@ -79,8 +78,10 @@ def namelist(p_type,p_lang):
           left join spraattr ena on ena.sptx_attrname = 'ENT_NAME'
                                 and ena.sptx_mode_id = ame.mode_id
                                 and ena.spra_id = sp.spra_id
+          join wertebereiche on wrtb_id = attr_wrtb_id
+                            and wrtb_id = {}
           ) order by upper(name)
-              """.format(p_lang))
+              """.format(p_lang,p_wrtbid if (p_wrtbid is not None) else 'wrtb_id'))
         datalist = [(e[0], attrAnker(e[1])) for e in data]
     elif (p_type == 'WRTB'):
         data = dbDML.select("""select wrtbname ||' ('|| anz ||')' name, wrtb_id 
@@ -102,65 +103,63 @@ def namelist(p_type,p_lang):
     return datalist
 #namelist
 
-def datalist(p_type,p_lang):
-    if p_type == 'ENTI':
-        #id, name, descr
-        #group_concat('<a href="#ENTI'||sub_enti_id||'" target="details">'
-        #                            ||sub_enti_name||'</a>'
-        #                    ,', ') subent
-        data = dbDML.select("""select * from 
-        (select e1.enti_id
-                ,case when ena.sptx_text is null then e1.enti_name 
-                                                else ena.sptx_text end  name
-                ,case when eco.sptx_text is null then e1.enti_beschr 
-                                                else eco.sptx_text end  descr 
-              ,e1.enti_uc
-              ,e1.enti_dc
-              ,super_enti_name
-              ,super_enti_id
-             ,(select group_concat(sub_enti_id||':'||sub_enti_name,',') subent
-              from superenti where super_enti_id = e1.enti_id
-              ) as subentities
-            ,(select group_concat(syno_name,', ') synos
-                from (select case when sna.sptx_text is null then syno_name 
-                                                else sna.sptx_text end syno_name
-                  from synonyme
-                  left join modellelement on mode_syno_id = syno_id
-                  left join spraattr sna on sna.sptx_attrname = 'SYNO_NAME'
-                                    and sna.sptx_mode_id = mode_id
-                                    and sna.spra_id = sp.spra_id
-                 where syno_enti_id = e1.enti_id
-                 )
-              ) as synos
-              from entitaeten e1
-              join modellelement on mode_enti_id = enti_id
-              join sprachen sp on sp.spra_iso_code2 = '{}'         
-              left join spraattr ena on ena.sptx_attrname = 'ENT_NAME'
-                                    and ena.sptx_mode_id = mode_id
-                                    and ena.spra_id = sp.spra_id
-              left join spraattr eco on eco.sptx_attrname = 'ENT_COMMENT'
-                                    and eco.sptx_mode_id = mode_id
-                                    and eco.spra_id = sp.spra_id
-              left join (select case when ena.sptx_text is null then super_enti_name 
-                                                else ena.sptx_text end  super_enti_name
-                                ,super_enti_id
-                                ,sub_enti_id
-                                ,ena.spra_id super_spra_id
-                           from superenti
-                           left join modellelement on mode_enti_id = super_enti_id
-                           left join spraattr ena on ena.sptx_attrname = 'ENT_NAME'
-                                    and ena.sptx_mode_id = mode_id
-                        ) on  sub_enti_id = e1.enti_id
-                          and (super_spra_id = sp.spra_id 
-                                or super_spra_id is null)
-              ) order by upper(name)
-                  """.format(p_lang))
-        data = [(e[0],e[1],e[2],e[3],e[4],e[5],e[6],e[7],e[8]) for e in data]
-    #fi
+def entilist(p_lang):
+    #id, name, descr
+    #group_concat('<a href="#ENTI'||sub_enti_id||'" target="details">'
+    #                            ||sub_enti_name||'</a>'
+    #                    ,', ') subent
+    data = dbDML.select("""select * from 
+    (select e1.enti_id
+            ,case when ena.sptx_text is null then e1.enti_name 
+                                            else ena.sptx_text end  name
+            ,case when eco.sptx_text is null then e1.enti_beschr 
+                                            else eco.sptx_text end  descr 
+          ,e1.enti_uc
+          ,e1.enti_dc
+          ,super_enti_name
+          ,super_enti_id
+         ,(select group_concat(sub_enti_id||':'||sub_enti_name,',') subent
+          from superenti where super_enti_id = e1.enti_id
+          ) as subentities
+        ,(select group_concat(syno_name,', ') synos
+            from (select case when sna.sptx_text is null then syno_name 
+                                            else sna.sptx_text end syno_name
+              from synonyme
+              left join modellelement on mode_syno_id = syno_id
+              left join spraattr sna on sna.sptx_attrname = 'SYNO_NAME'
+                                and sna.sptx_mode_id = mode_id
+                                and sna.spra_id = sp.spra_id
+             where syno_enti_id = e1.enti_id
+             )
+          ) as synos
+          from entitaeten e1
+          join modellelement on mode_enti_id = enti_id
+          join sprachen sp on sp.spra_iso_code2 = '{}'         
+          left join spraattr ena on ena.sptx_attrname = 'ENT_NAME'
+                                and ena.sptx_mode_id = mode_id
+                                and ena.spra_id = sp.spra_id
+          left join spraattr eco on eco.sptx_attrname = 'ENT_COMMENT'
+                                and eco.sptx_mode_id = mode_id
+                                and eco.spra_id = sp.spra_id
+          left join (select case when ena.sptx_text is null then super_enti_name 
+                                            else ena.sptx_text end  super_enti_name
+                            ,super_enti_id
+                            ,sub_enti_id
+                            ,ena.spra_id super_spra_id
+                       from superenti
+                       left join modellelement on mode_enti_id = super_enti_id
+                       left join spraattr ena on ena.sptx_attrname = 'ENT_NAME'
+                                and ena.sptx_mode_id = mode_id
+                    ) on  sub_enti_id = e1.enti_id
+                      and (super_spra_id = sp.spra_id 
+                            or super_spra_id is null)
+          ) order by upper(name)
+              """.format(p_lang))
+    data = [(e[0], e[1], e[2], e[3], e[4], e[5], e[6], e[7], e[8]) for e in data]
     return data
-#datalist
+#entilist
 
-def attrlist(p_entiid,p_lang):
+def attrlist(p_lang,p_entiid=None):
     data = dbDML.select("""select 
         attr_id
        ,case when ana.sptx_text is null then attr_anzname else ana.sptx_text end attr_anzname
@@ -174,6 +173,16 @@ def attrlist(p_entiid,p_lang):
        ,attr_wiederholt
        ,attr_verschluesselt
        ,case when (select 'TRUE' from schluesselelement where scel_attr_id = attr_id) IS NULL THEN 'FALSE' ELSE 'TRUE' end schluessel
+       ,attr_tech_name
+       ,attr_tooltip
+       ,attr_uc,attr_dc
+       ,attr_um,attr_dm
+       ,case when aco.sptx_text is null then attr_beschr else aco.sptx_text end attr_beschr
+       ,attr_bezi_id
+       ,attr_odm_guid
+       ,amo.mode_id
+       ,attr_enti_id
+       ,wrtb_name
       from attributes 
         join wertebereiche on wrtb_id = attr_wrtb_id
         join sprachen sp on sp.spra_iso_code2 = '{}'
@@ -181,14 +190,20 @@ def attrlist(p_entiid,p_lang):
         left join spraattr  ana on ana.sptx_attrname = 'ATTR_NAME'
                                 and ana.sptx_mode_id = amo.mode_id
                                 and ana.spra_id = sp.spra_id            
-        left join modellelement wmo on wmo.mode_attr_id = attr_id
+        left join spraattr  aco on aco.sptx_attrname = 'ATTR_COMMENT'
+                                and aco.sptx_mode_id = amo.mode_id
+                                and aco.spra_id = sp.spra_id            
+        left join modellelement wmo on wmo.mode_wrtb_id = wrtb_id
         left join spraattr  wna on wna.sptx_attrname = 'WRTB_NAME'
                                 and wna.sptx_mode_id = wmo.mode_id
                                 and wna.spra_id = sp.spra_id            
       where attr_enti_id = {}
-      order by upper(attr_tech_name)""".format(p_lang, p_entiid))
+      order by {}"""
+                        .format(p_lang, p_entiid if (p_entiid is not None) else 'attr_enti_id'
+                                ,'attr_anz_rhflg' if (p_entiid is not None) else 'attr_tech_name'))
     return data
 #attrlist
+
 
 def keylist(p_entiid,p_lang):
     schl = dbDML.select("""select schl_laufnr,schl_name,attrs,bezis from
@@ -291,45 +306,6 @@ def relalist (p_entiid,p_lang):
     return bezi
 #relalist
 
-def attrdatalist(p_lang):
-    attr = dbDML.select("""select attr_tech_name || ' ('||enti_name||')' as vollname ,attr_odm_guid,attr_tech_name
-            ,attr_anzname,enti_odm_guid,attr_uc
-           ,attr_dc,attr_beschr,enti_name
-           ,wrtb_id,wrtb_name,wrtb_typ
-           ,attr_id,enti_id
-           ,(select group_concat(schl_id||':'||schl_laufnr,',')
-               from schluesselelement 
-                join schluessel on schl_id = scel_schl_id
-                where scel_attr_id = attr_id
-            ) as schluessel
-          from (select  attr_tech_name, attr_odm_guid, 
-                case when ana.sptx_text is null then attr_anzname else ana.sptx_text end attr_anzname
-                , case when abe.sptx_text is null then attr_beschr else abe.sptx_text end  attr_beschr
-                ,attr_id,sp.spra_id,
-                attr_uc,attr_dc,attr_enti_id,attr_wrtb_id
-                 from attributes
-                 join modellelement on mode_attr_id = attr_id
-                 join sprachen sp on sp.spra_iso_code2 = '{}'
-                 left join spraattr  ana on ana.sptx_attrname = 'ATTR_NAME'
-                                    and ana.sptx_mode_id = mode_id
-                                    and ana.spra_id = sp.spra_id 
-                 left join spraattr  abe on abe.sptx_attrname = 'ATTR_COMMENT'
-                                    and abe.sptx_mode_id = mode_id 
-                                    and abe.spra_id = sp.spra_id
-                ) attr         
-          join (select case when ena.sptx_text is null then enti_name else ena.sptx_text end enti_name
-                    ,enti_id,spra_id spra_id,enti_odm_guid
-                 from entitaeten 
-                 join modellelement on mode_enti_id = enti_id
-                left join spraattr ena on ena.sptx_attrname = 'ENTI_NAME'
-                                and ena.sptx_mode_id = mode_id 
-                ) ent on enti_id = attr_enti_id
-                     and ent.spra_id = attr.spra_id
-          join wertebereiche on wrtb_id = attr_wrtb_id
-          order by upper(attr_tech_name)
-          """.format(p_lang))
-    return attr
-#attrdatalist
 
 def udpnamen(p_meltname):
     data = dbDML.select("""select  bdeg_thema,bdeg_gruppe,group_concat(bdeg_name,',') attrs
@@ -357,4 +333,53 @@ def udpwerte(p_meltname,p_id,p_thema,p_gruppe):
                        , p_thema, p_gruppe
                        ))
     return data
-#
+#udpwerte
+
+def wrtblist(p_lang):
+    data = dbDML.select("""select * from 
+    (select wrtb_id
+            ,case when wna.sptx_text is null then wrtb_name 
+                                    else wna.sptx_text end  wrtbname
+            ,wrtb_business_rule
+            ,wrtb_name
+            ,wrtb_beschr
+            ,wrtb_typ
+            ,wrtb_zpkt_minwert
+            ,wrtb_zpkt_maxwert
+            ,wrtb_zpkt_granularitaet
+            ,wrtb_text_maxlng
+            ,wrtb_text_syntaxregel
+            ,wrtb_num_maxwert
+            ,wrtb_num_minwert
+            ,wrtb_num_vorkstellen
+            ,wrtb_num_nachkstellen
+            ,wrtb_num_rundng_einh
+            ,wrtb_num_pheh
+            ,wrtb_bin_inhalttyp
+            ,wrtb_bin_spfo_id
+            ,wrtb_odm_guid
+            ,wrtb_uc
+            ,wrtb_dc
+            ,wrtb_um
+            ,wrtb_dm
+            ,wrtb_datatype_ref
+        from wertebereiche 
+        join sprachen sp on sp.spra_iso_code2 = '{}'         
+        left join modellelement wmo on wmo.mode_wrtb_id = wrtb_id
+        left join spraattr wna on wna.sptx_attrname = 'WRTB_NAME'
+                                and wna.sptx_mode_id = wmo.mode_id
+                                and wna.spra_id = sp.spra_id
+        ) order by upper(wrtbname)
+      """.format(p_lang))
+    return data
+#wrtblist
+
+def wrtbwerte(p_wrtbid):
+    data = dbDML.select("""
+             select vgwt_sortrhfg,vgwt_wert,vgwt_anzeige,vgwt_beschr 
+               from vorgabewerte
+               where vgwt_wrtb_id = {}
+               order by vgwt_sortrhfg
+""".format(p_wrtbid))
+    return data
+#wrtbwerte

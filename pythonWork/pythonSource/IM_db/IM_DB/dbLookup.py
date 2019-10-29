@@ -73,3 +73,23 @@ def liesDefaultLang():
                         where spra_ist_modellsprache = 'TRUE'""")
     return lDefLang[0][0]
 #liesDefaultLang
+
+def modeid(p_entiid=None,p_attrid=None,p_wrtbid=None,p_synoid=None,p_buruid=None,p_beziid=None,p_orgeid=None):
+    mid = dbDML.select("""select mode_id
+                        from modellelement
+                            where mode_syno_id = {}
+                            or mode_wrtb_id = {}
+                            or mode_attr_id = {}
+                            or mode_buru_id = {}
+                            or mode_bezi_id = {}
+                            or mode_enti_id = {}
+                            or mode_orge_id = {}     
+""".format('NULL' if p_synoid is None else str(p_synoid)
+           ,'NULL'  if p_wrtbid is None else str(p_wrtbid)
+           ,'NULL'  if p_attrid is None else str(p_attrid)
+           ,'NULL'  if p_buruid is None else str(p_buruid)
+           ,'NULL'  if p_beziid is None else str(p_beziid)
+           ,'NULL'  if p_entiid is None else str(p_entiid)
+           ,'NULL' if p_orgeid is None else str(p_orgeid)))
+    return mid[0][0]
+#modeid
