@@ -41,60 +41,6 @@ def bool2JN(b):
     return 'Ja' if (b == 'TRUE') else 'Nein'
 #bool2JN
 
-def printUDP(meltName, Id):
-#    printHTML.starttable('Attribute - User Defined Properties: ' + nvl(thema), udpListe, anker='ATTRUDP')#
-#
-#
-#for at in allattr:
-#    values = [href(ref=entiAnker(at[1]), anz=at[0]), href(ref=attrAnker(at[2]), anz=at[3])
-#        , nvl(at[4]), nvl(at[6])]
-
-    #    udpTypen = dbDML.select("""select distinct bdeg_thema,bdeg_gruppe
-#                                    from benudef_eigenschaft
-#                                    join modelltyp_eigensch on mote_bdeg_id = bdeg_id
-#                                    join modellelem_typ on melt_id = mote_melt_id
-#                                                        and melt_kurzname = '{}' 
-#                    """ .format(meltName))
-    ludpNamen = """select  bdeg_thema,bdeg_gruppe,group_concat(bdeg_name,',') attrs
-                           from modellelem_typ
-                           join modelltyp_eigensch on mote_melt_id = melt_id  
-                           join benudef_eigenschaft on bdeg_id = mote_bdeg_id
-                           where melt_kurzname = '{}'
-                             and bdeg_thema != '{}'
-                        group by bdeg_thema,bdeg_gruppe
-                        order by bdeg_thema,bdeg_gruppe""".format(meltName,odmParam.imTranslationFileName)
-    udpNamen = dbDML.select(ludpNamen)
-    for udpName in udpNamen:
-        lsql = """select  bdwe_wert
-                    from benudef_wert
-                    join modellelement on mode_id = bdwe_mode_id
-                                            and ({} = {}) 
-                    join benudef_eigenschaft on bdeg_id = bdwe_bdeg_id
-                            and bdeg_thema = '{}' and bdeg_gruppe = '{}'
-                    order by bdeg_name
-                    """.format("mode_" +
-                                ("enti" if meltName == 'ENTI'
-                                 else "attr" if meltName == 'ATTR'
-                                 else "")
-                                + "_id " , Id
-                               ,udpName[0],udpName[1]
-                               )
-        lwerte = dbDML.select(lsql)
-        #print(udpName[0],udpName[1],lwerte)
-        lw = [];
-        for l in lwerte:
-            lw.append(nvl(l[0]))
-        #rof
-        #print (udpName[0],udpName[1],lw)
-        namenliste = udpName[2].split(',')
-        namenliste.sort() #SQl kann keine sortierte group_concat liefern
-        printHTML.starttable('Benutzerdefinerte Werte: {} - {} '.format(udpName[0], udpName[1])
-                             , namenliste)
-
-        printHTML.writeTable(lw)
-        printHTML.endTable('')
-    #rof
-#printUDP
 
 def printAttrUDPMatrix(thema=None):
     udpListe = [transl('Entität'),transl('Attribut'),transl('Technischer Name'),transl('Datentyp')]
@@ -123,7 +69,7 @@ def printAttrUDPMatrix(thema=None):
                                     and ana.spra_id = sp.spra_id            
       join entitaeten on enti_id = attr_enti_id
         join modellelement me on me.mode_enti_id = enti_id
-        left join spraattr  ena on ena.sptx_attrname = 'ENT_NAME'
+        left join spraattr  ena on ena.sptx_attrname = 'ENTI_NAME'
                                     and ena.sptx_mode_id = me.mode_id
                                     and ena.spra_id = sp.spra_id            
       join wertebereiche on wrtb_id = attr_wrtb_id
@@ -151,93 +97,6 @@ def printAttrUDPMatrix(thema=None):
 #printAttrUDPMatrix
 
 
-
-
-def printBezi(entiId):
-    printHTML.starttable('Beziehungen', ('Name', 'Entität1', '', 'Beziehung', '', 'Entität2', 'Arc'))
-    bezi = dbDML.select("""
-          with sprenti as 
-          (select enti_id, enti_odm_guid
-                ,case when ena.sptx_text is null then enti_name else ena.sptx_text end enti_name
-                ,spra_id
-             from entitaeten
-             join modellelement on mode_enti_id = enti_id
-              left join spraattr ena on ena.sptx_attrname = 'ENT_NAME'
-                                and ena.sptx_mode_id = mode_id
-           )
-            select von.enti_id as von_enti_id,von.enti_name as von_name,von.enti_odm_guid as von_guid
-                        		,case when bvon.sptx_text is null then  bezi_assoc_von_zu else bvon.sptx_text end  bezi_assoc_von_zu
-    							,case bezi_type
-                           when '1:1' then 
-                            case bezi_pflicht_assoc_von_zu
-                                 when 'TRUE' THEN '1'
-                                 else '0..1'
-                               end
-                           when 'M:N' then 
-                            case bezi_pflicht_assoc_von_zu
-                                 when 'TRUE' THEN '1..N'
-                                 else '0..N'
-                               end
-                           when 'M:1' then 
-                                case bezi_pflicht_assoc_von_zu
-                                 when 'TRUE' THEN '1'
-                                 else '0..1'
-                               end         
-                            end card1
-    						,zu.enti_id as zu_enti_id,zu.enti_name as zu_name,zu.enti_odm_guid as zu_guid
-    						,case when bzu.sptx_text is null then  bezi_assoc_zu_von else bzu.sptx_text end bezi_assoc_zu_von
-    	                    ,case bezi_type
-    	                       when '1:1' then 
-    	                          case bezi_pflicht_assoc_zu_von
-    	                             when 'TRUE' THEN '1'
-    	                             else '0..1'
-    	                           end
-    	                       when 'M:N' then 
-    	                        case bezi_pflicht_assoc_zu_von
-    	                             when 'TRUE' THEN '1..N'
-    	                             else '0..N'
-    	                           end
-    	                       when 'M:1' then 
-    	                            case bezi_pflicht_assoc_zu_von
-    	                             when 'TRUE' THEN '1..N'
-    	                             else '0..N'
-    	                           end         
-    	                        end card2
-    						,bezi_id,bezi_type,bezi_pflicht_assoc_von_zu,bezi_pflicht_assoc_zu_von
-    						,arcs_name,arcs_odm_guid,bezi_name
-                        from   sprachen sp          
-                        join sprenti as von on von.spra_id = sp.spra_id
-    					join beziehungen on bezi_enti_id_von = von.enti_id
-    									and bezi_type != 'ISA'
-    					join modellelement on mode_bezi_id = bezi_id
-                        left join spraattr bvon on bvon.sptx_attrname = 'TEXT_FROM'
-                                and bvon.sptx_mode_id = mode_id
-                                and bvon.spra_id = sp.spra_id 
-                        left join spraattr bzu on bzu.sptx_attrname = 'TEXT_TO'
-                                and bzu.sptx_mode_id = mode_id
-                                and bzu.spra_id = sp.spra_id 
-                        join sprenti as zu on zu.enti_id = bezi_enti_id_zu
-                        left join arcs on arcs_id = bezi_arcs_id
-                                   and bezi_enti_id_von = von.enti_id
-                        where  sp.spra_iso_code2 = '{}'
-                           and von.enti_id = {} or zu.enti_id = {}     
-                        order by arcs_name 
-                        """.format(printHTML.greportLang,entiId, entiId))
-
-    #print (bezi)
-    for c in bezi:
-        if (entiId == c[0]):
-            #'Name','Entität1','','Beziehung','', 'Entität2','Arc'
-            printHTML.writeTable((nvl(c[16]),c[1], '->',nvl(c[3],'--'),c[4] , '',''))
-            printHTML.writeTable(('','', c[9],nvl(c[8],'--'),'<-' , href(ref=entiAnker(c[5]), anz=c[6]),nvl(c[14])))
-        else:
-            printHTML.writeTable((nvl(c[16]),c[6], '->',nvl(c[8],'--'),c[9] , '',''))
-            printHTML.writeTable(('','', c[4],nvl(c[3],'--'),'<-' , href(ref=entiAnker(c[0]), anz=c[1]),''))
-        #if
-    printHTML.endTable('')
-#printBez
-
-
 def printlistofcontent():
     printHTML.printlistofcontenthead()
     printHTML.printlistofcontentelement(p_name='Entitäten', p_list=web_sql.namelist(p_type='ENTI',p_lang=printHTML.reportLang()))
@@ -249,86 +108,13 @@ def printlistofcontent():
 def printcontent():
     printHTML.printcontenthead()
     printHTML.printcontententi(p_list=web_sql.datalist(p_type='ENTI',p_lang=printHTML.reportLang()))
-    #printHTML.printcontentattr(p_list=datalist('ATTR'))
+#    printHTML.printcontentattr(p_list=web_sql.attrdatalist(p_lang=printHTML.reportLang()))
     #printHTML.printcontentwrtb(p_list=datalist('WRTB'))
     printHTML.printcontentfoot()
     return
 
-    enti = dbDML.select( """select * from 
-              (select case when ena.sptx_text is null then e1.enti_name else ena.sptx_text end  name,e1.enti_odm_guid,
-             case when ebe.sptx_text is null then e1.enti_beschr else ebe.sptx_text end beschr
-            ,e1.enti_uc,e1.enti_dc,e1.enti_id 
-          ,super_enti_name,super_enti_id,NULL superentity_guid
-          ,(select group_concat('<a href="#ENTI'||sub_enti_id||'" target="details">'
-                                    ||sub_enti_name||'</a>'
-                            ,', ') subent
-              from superenti where super_enti_id = e1.enti_id
-              ) as subentities
-            ,(select group_concat(syno_name,', ') synos
-              from synonyme
-              where syno_enti_id = e1.enti_id
-              ) as subentities
-          from entitaeten e1
-          join modellelement on mode_enti_id = enti_id
-           join sprachen sp on sp.spra_iso_code2 = '{}'         
-          left join spraattr ebe on ebe.sptx_attrname = 'ENT_COMMENT'
-                                and ebe.sptx_mode_id = mode_id
-                                and ebe.spra_id = sp.spra_id
-          left join spraattr ena on ena.sptx_attrname = 'ENT_NAME'
-                                and ena.sptx_mode_id = mode_id
-                                and ena.spra_id = sp.spra_id
-          left join superenti on  sub_enti_id = e1.enti_id
-          ) order by upper(name)
-              """.format(printHTML.reportLang()))
-#    for e in enti:
-#        print (e)
-    printHTML.writeToc("""<div><ol class ="tree"><li><label for="entities">Entitäten</label>
-                <input type="checkbox" id="entities" /><ol>
-    """)
-    for e in enti:
-        printHTML.writeToc("""<li class="obj"><a href="{}#{}" \
-                target="details">{}</a></li>
-                """.format(printHTML.contFileName + ".html", entiAnker(e[5]),e[0]))
-    #endfor
-    printHTML.writeToc("</ol></ol></div>")
 
-    attr = dbDML.select("""select attr_tech_name || ' ('||enti_name||')' as vollname ,attr_odm_guid,attr_tech_name
-            ,attr_anzname,enti_odm_guid,attr_uc
-           ,attr_dc,attr_beschr,enti_name
-           ,wrtb_id,wrtb_name,wrtb_typ
-           ,attr_id,enti_id
-           ,(select group_concat('<a href="#SCHL'||schl_id||'" target="details">'
-                                    ||schl_laufnr||'</a>',',')
-               from schluesselelement 
-                join schluessel on schl_id = scel_schl_id
-                where scel_attr_id = attr_id
-            ) as schluessel
-          from (select  attr_tech_name, attr_odm_guid, 
-                case when ana.sptx_text is null then attr_anzname else ana.sptx_text end attr_anzname
-                , case when abe.sptx_text is null then attr_beschr else abe.sptx_text end  attr_beschr
-                ,attr_id,sp.spra_id,
-                attr_uc,attr_dc,attr_enti_id,attr_wrtb_id
-                 from attributes
-                 join modellelement on mode_attr_id = attr_id
-                 join sprachen sp on sp.spra_iso_code2 = '{}'
-                 left join spraattr  ana on ana.sptx_attrname = 'ATTR_NAME'
-                                    and ana.sptx_mode_id = mode_id
-                                    and ana.spra_id = sp.spra_id 
-                 left join spraattr  abe on abe.sptx_attrname = 'ATTR_COMMENT'
-                                    and abe.sptx_mode_id = mode_id 
-                                    and abe.spra_id = sp.spra_id
-                ) attr         
-          join (select case when ena.sptx_text is null then enti_name else ena.sptx_text end enti_name
-                    ,enti_id,spra_id spra_id,enti_odm_guid
-                 from entitaeten 
-                 join modellelement on mode_enti_id = enti_id
-                left join spraattr ena on ena.sptx_attrname = 'ENT_NAME'
-                                and ena.sptx_mode_id = mode_id 
-                ) ent on enti_id = attr_enti_id
-                     and ent.spra_id = attr.spra_id
-          join wertebereiche on wrtb_id = attr_wrtb_id
-          order by upper(attr_tech_name)
-          """.format(printHTML.greportLang))
+
     printHTML.writeToc("""<div><ol class ="tree"><li><label for="attributes">Attribute</label>
                 <input type="checkbox" id="attributes" /><ol>
     """)

@@ -8,6 +8,8 @@ letters:int = 0
 transldict = {"Name" : "Name"
               ,"ist" : "is"
               ,"hat" : "has"
+              ,"Kürzel" : "Short name"
+              ,"Kuerzel" : "Short name"
               ,"Beschreibung" : "Description"} #sind nur Beispiele
 
 def translateString(pval,pfrom,pto):
@@ -84,6 +86,7 @@ def main():
 
     translateSheet(pfileName=lfile, pdestFileName=ldestFileName
                    , pfromLang=lfromLang, ptoLang=ltoLang, )
+    print("Wiederholte Texte: {}".format(str(len(transldict))))
     print("Wörter: {}".format(str(words)))
     print("Zeichen: {} für {} € ".format(str(letters),str(round((letters / 1000000 * 20),2))))
 

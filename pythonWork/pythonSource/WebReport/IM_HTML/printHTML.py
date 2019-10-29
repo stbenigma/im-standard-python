@@ -1,5 +1,5 @@
 from IM_DB import parameters
-import os,shutil
+import os,shutil,re
 from IM_HTML import web_sql
 
 outputDirectory:str = None
@@ -32,14 +32,22 @@ def reportLang(newval=None):
 
 
 
-def nvl(x):
-    return x if (x is not None) else ''
+def nvl(x,default=''):
+    return x if (x is not None) else default
 #nvl
 
 def href(ref,anz):
     return """<a href="#{}" target="details">{}</a>""".format(ref,anz)
 #href
 
+def isiconstr(w):
+    if (w is None) or (type(w) != str ):
+        return False
+    elif (w.startswith('class="')):
+        return True
+    else:
+        return False
+#isiconstr
 
 translNameEN = {'Anzeige': 'Display'
                 ,'Arc': 'Arc'
@@ -51,14 +59,13 @@ translNameEN = {'Anzeige': 'Display'
                 ,'Beziehung': 'Relationship'
                 ,'Beziehung(en)': 'relationship(s)'
                 ,'Beziehungen': 'Relationships'
+                ,'Benutzerdefinerte Eigenschaften': 'User defined properties'
                 ,'Binär': 'Binary'
                 ,'Datentyp': 'Datatype'
                 ,'Deskriptor': 'descriptor'
                 ,'Domänen': 'Domains'
                 ,'Domäne': 'Domain'
                 ,'Entität': 'Entity'
-                ,'Entität1': 'Entity1'
-                ,'Entität2': 'Entity2'
                 ,'Entität/Tabelle': 'Entity/Table'
                 ,'Entitäten': 'Entities'
                 ,'Erstellt': 'Generates'
@@ -109,11 +116,21 @@ def transl(pname):
 
 
 def bool2icon(b):
-    lb = b if (type(b) == 'bool') else True if (b == 'TRUE') else False
+    lb = b if (type(b) == bool) else True if (b == 'TRUE') else False
 #    print (b,lb,type(b))
-    return       'class="icon-check" src="icons/checkmark.svg"'  \
-       if lb else 'class="icon-remove" src="icons/cross.svg"'
+    return       'class="symbol"><img class="icon-check" src="icons/checkmark.svg"'  \
+       if lb else 'class="symbol"><img class="icon-remove" src="icons/cross.svg"'
 #bool2icon
+
+def arrow2icon(direc):
+    if (direc == 'up'):
+        return 'class="leftsymbol"><img class="icon-up" src="icons/uparrow.svg"'
+    elif (direc == 'down'):
+       return 'class="leftsymbol"><img class="icon-down" src="icons/downarrow.svg"'
+    else:
+        return direc
+#arrow2icon
+
 def anzDatentyp(dt):
     anzDT = {'BIN': transl('Binär')
              ,'GRP': transl('Gruppenattribut')
@@ -409,6 +426,7 @@ def printattrlist(p_entiid):
                                             <th class="thAlgn">{}</th>
                                             <th class="thAlgn">{}</th>
                                             <th class="thAlgn">{}</th>
+                                            <th class="thAlgn">{}</th>
                                         </tr>"""
     attrfoot = """              
                                 </tbody>
@@ -427,24 +445,35 @@ def printattrlist(p_entiid):
                                                 <td class="symbol"><img {}></td>
                                                 <td class="symbol"><img {}></td>
                                                 <td class="symbol"><img {}></td>
+                                                <td class="symbol"><img {}></td>
                                             </tr>
     """
-    fhtml.write(attrhead.format(transl('Attribute'), transl('Name'), transl('Domäne'), transl('Typ')
-                            , transl('Pflichtattribut'), transl('Deskriptor'), transl('übersetzt')
-                            , transl('historisiert'), transl('wiederholt'), transl('verschlüsselt')))
     alist = web_sql.attrlist(p_entiid=p_entiid, p_lang=reportLang())
-    if (alist is not None):
-        for a in alist:
-            fhtml.write(attrline.format(web_sql.attrAnker(a[0]), a[1], web_sql.wrtbAnker(a[3]), a[2], anzDatentyp(a[4])
-                                    , bool2icon(a[5]), bool2icon(a[6]), bool2icon(a[7])
+    if (len(alist)==0):
+        return
+    fhtml.write(attrhead.format(transl('Attribute'), transl('Name'), transl('Domäne'), transl('Typ')
+                            , transl('Pflichtattribut'),transl('Schlüssel'), transl('Deskriptor'), transl('übersetzt')
+                            , transl('historisiert'), transl('wiederholt'), transl('verschlüsselt')))
+    for a in alist:
+        fhtml.write(attrline.format(web_sql.attrAnker(a[0]), a[1], web_sql.wrtbAnker(a[3]), a[2], anzDatentyp(a[4])
+                                    , bool2icon(a[5]), bool2icon(a[11]), bool2icon(a[6]), bool2icon(a[7])
                                     , bool2icon(a[8]), bool2icon(a[9]), bool2icon(a[10])))
-        #for
-    #fi
+    #for
     fhtml.write(attrfoot)
 #printattrlist
-
-def starttable(titel, ueberschriften, anker=None):
-    tabhead= """        <h2>{}</h2>
+def startabschnitt(p_titel):
+    start = """        <h2>{}</h2>
+                            <div id="container0">
+    """
+    return start.format(p_titel)
+#startabschnitt
+def endabschnitt():
+    end = """        </div>
+    """
+    return end
+#startabschnitt
+def starttable(p_titel, p_ueberschriften, p_level=2):
+    tabhead= """        <h{}>{}</h{}>
                         <div id="container1">
                             <div class="table-responsive">
                    <table class="table borderless">
@@ -455,8 +484,8 @@ def starttable(titel, ueberschriften, anker=None):
 """
 #    tabheads="""<th class="attribute">{}</th>"""
     retval = []
-    retval.append(tabhead.format(titel))
-    for u in ueberschriften:
+    retval.append(tabhead.format(p_level,p_titel,p_level))
+    for u in p_ueberschriften:
         retval.append(tabheads.format(u))
     return ''.join(retval)
 #starttable
@@ -466,12 +495,17 @@ def writetableline(werte):
 """
     line = """             <td>{}</td>
 """
+    iconline= """           <td {}></td>
+"""
     lineend ="""               </tr>
 """
     retval = []
     retval.append(linestart)
     for w in werte:
-        retval.append(line.format(nvl(w)))
+        if (isiconstr(w)):
+            retval.append(iconline.format(w))
+        else:
+            retval.append(line.format(nvl(w)))
     retval.append(lineend)
     return ''.join(retval)
 #writetableline
@@ -488,9 +522,8 @@ def endtable():
 
 def printentikeys(p_entiid):
     keylist = web_sql.keylist(p_entiid=p_entiid, p_lang=reportLang())
-    if (keylist is None):
+    if (len(keylist) == 0):
         return
-
     fhtml.write(starttable(transl('Schlüssel'), (transl('Nr'), transl('Name'), transl('Attribut(e)'), transl('Beziehung(en)'))))
     for k in keylist:
         fhtml.write(writetableline(werte=k))
@@ -498,12 +531,65 @@ def printentikeys(p_entiid):
 #printentikeys
 
 def printentirela(p_entiid):
-    fhtml.write(realhead)
-    relalist = web_sql.keylist(p_entiid=p_entiid)
+
+    relalist = web_sql.relalist(p_entiid=p_entiid,p_lang=reportLang())
+    if (len(relalist) == 0):
+        return
+    fhtml.write(starttable(transl('Beziehungen'), (transl('Name'), transl('Entität')+'-1', '',transl('Beziehung'), '',transl('Entität')+'-2'
+                                                        , transl('Arc'), transl('Schlüssel'),)))
     for r in relalist:
-        fhtml.write(relaline.format())
-    fhtml.write(relafoot)
+        if (p_entiid == r[0]):
+            #'Name','Entität1','','Beziehung','', 'Entität2','Arc','Schluessel'
+            fhtml.write(writetableline(werte=(nvl(r[16]), r[1], '->', nvl(r[3],'--'), r[4]
+                                                        ,arrow2icon('down'), nvl(r[14]),bool2icon(r[17]))))
+            fhtml.write(writetableline(werte=(''        , arrow2icon('up')  , r[9], nvl(r[8],'--'), '<-'
+                                                        , href(ref=web_sql.entiAnker(r[5]),anz=r[6]))))
+        else:
+            fhtml.write(writetableline(werte=(nvl(r[16]), r[6], '->', nvl(r[8],'--'), r[9]
+                                                            , arrow2icon('down'),'', bool2icon(r[17]))))
+            fhtml.write(writetableline(werte=(''        , arrow2icon('up')  , r[4], nvl(r[3],'--'), '<-'
+                                                            , href(ref=web_sql.entiAnker(r[0]), anz=r[1]))))
+        #if
+    #for
+    fhtml.write(endtable())
 #printentirela
+
+def printUDP(p_meltname, p_id):
+    startgeschrieben = False
+
+    udpnamen = web_sql.udpnamen(p_meltname=p_meltname)
+    for udpname in udpnamen:
+        werte = web_sql.udpwerte(p_meltname=p_meltname,p_id=p_id
+                         ,p_thema=udpname[0],p_gruppe=udpname[1])
+        #print(udpName[0],udpName[1],lwerte)
+        lw = [];
+        for l in werte:
+            lw.append(nvl(l[0]))
+        #rof
+
+        if (len(lw) > lw.count('')):
+            if (not  startgeschrieben):
+                fhtml.write(startabschnitt(p_titel=transl('Benutzerdefinerte Eigenschaften')))
+                startgeschrieben = True
+            #fi
+            namenliste = udpname[2].split(',')
+            namenliste.sort() #SQl kann keine sortierte group_concat liefern
+
+            fhtml.write(starttable(p_titel=' {} - {} '.format(udpname[0], udpname[1])
+                                , p_ueberschriften=namenliste
+                                ,p_level=3))
+            fhtml.write(writetableline(werte=lw))
+            fhtml.write(endtable())
+        #fi
+    #rof
+    if (startgeschrieben):
+        fhtml.write(endabschnitt())
+    # fi
+#printUDP
+
+def printentiudp(p_entiid):
+    printUDP(p_meltname='ENTI',p_id=p_entiid)
+#printentiudp
 
 def printcontententi(p_list):
     contenthead="""        <!--entities-->"""
@@ -577,13 +663,94 @@ def printcontententi(p_list):
 
         printattrlist(p_entiid=e[0])
         printentikeys(p_entiid=e[0])
-#        printentirela(p_entiid=e[0])
-#        printentiupd(p_entiid=e[0])
+        printentirela(p_entiid=e[0])
+        printentiudp(p_entiid=e[0])
 
         fhtml.write(detailsfoot)
         fhtml.write(contentelementfoot.format(lbc,transl('Mehr')))
     #for
-#printcontent
+#printcontenti
+
+def printcontentattr(p_list):
+    contenthead="""        <!--attributes-->"""
+
+    contentelementhead = """        <div class="attribute" id="{}">
+            <div class="describtion">
+                <p>{}</p>
+                <h1>{}</h1>
+                <p1>{}</p1>
+            </div>
+             <div class="panel-body">
+            <div class="collapse" id="bar{}">                    
+        """
+    contentelementfoot = """                 <div class="panel">
+                <div class="panel-heading collapsed" data-toggle="collapse" data-target="#bar{}">
+                    <img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
+                    <img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
+                    <label class="label1">{}</label>
+                </div>
+            </div>
+        </div>
+        </div>
+    """
+    detailshead = """           
+                <!-- The inside div eliminates the 'jumping' animation. -->
+"""
+    detailsfoot = """            
+                            </div>
+"""
+
+
+    infohead = """
+                            <h2>{}</h2>
+                        <div id="container2">
+                        <div class="table-responsive">
+                            <table class="table borderless">
+                                <tbody>
+"""
+    infoline = """
+                                    <tr>
+                                        <th>{}</th>
+                                        <td class="attribute">{}</td>
+                                    </tr>
+"""
+    infofoot = """
+                                </tbody>
+                            </table>
+                        </div>
+                        </div>
+"""
+    fhtml.write(contenthead)
+    for e in p_list:
+        lbc = str(newbarcounter())
+        fhtml.write(contentelementhead.format(web_sql.entiAnker(e[0]) #id
+                                            ,transl('Entität')
+                                            ,e[1] #name
+                                            , nvl(e[2])
+                                            ,lbc)) #descr
+
+        fhtml.write(detailshead)
+        """print entity Info"""
+        fhtml.write(infohead.format(transl('Informationen')))
+        if (e[8] is not None):
+            fhtml.write(infoline.format(transl('Synonyme'),e[8]))
+        if (e[6] is not None):
+            fhtml.write(infoline.format(transl('Superentität'),href(ref=web_sql.entiAnker(e[6]),anz=e[5])))
+        if (e[7] is not None):
+            fhtml.write(infoline.format(transl('Subentitäten'),list2href(e[7])))
+        fhtml.write(infoline.format(transl('geändert'),nvl(e[3]) + ', ' + nvl(e[4])))
+        fhtml.write(infofoot)
+
+#        printattrlist(p_entiid=e[0])
+#        printentikeys(p_entiid=e[0])
+#        printentirela(p_entiid=e[0])
+#        printentiudp(p_entiid=e[0])
+
+        fhtml.write(detailsfoot)
+        fhtml.write(contentelementfoot.format(lbc,transl('Mehr')))
+    #for
+#printcontattr
+
 
 def searchlogo(p_imagedirec):
     retval=''
@@ -629,48 +796,6 @@ def createFile():
 
 #createFile
 
-
-def writeToc(str):
-    global ftoc
-    ftoc.write(str)
-
-
-def closeToc(str):
-    global ftoc
-    ftoc.write(str)
-    ftoc.write ("""</body> </html>""")
-    ftoc.close()
-
-def writeCont(str,values=()):
-    global fcont
-    vals:str = '' if values == () else ','.join(values)
-    fcont.write(str .format(vals))
-
-def closeCont(str):
-    global fcont
-    fcont.write(str)
-    fcont.write("""</body> </html>""")
-    fcont.close()
-
-def printTable(werte,anker=''):
-    global fcont
-    fcont.write("""<table class="w_15">
-		<tbody>
-    """)
-    idx = 0
-    for w in werte:
-        idx += 1
-        if (anker == '' or idx > 1):
-            fcont.write("""<tr> <td class="td_h_v w_4" ><span>{}</span></td>\
-	    	    <td class="td w_16"><span>{}</span></td></tr>""" \
-                .format(w,werte[w]))
-        else:
-            fcont.write("""<tr> <td class="td_h_v w_4" > <span>{}</span></td>\
-        		    <td class="td obj_name w_12"><a name="{}">{}</a></td></tr>""" \
-                    .format(w,  anker , werte[w]))
-
-    fcont.write("""</tbody></table><p></p>""")
-#printTable
 
 
 

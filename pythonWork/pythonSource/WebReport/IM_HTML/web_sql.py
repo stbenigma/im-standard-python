@@ -173,6 +173,7 @@ def attrlist(p_entiid,p_lang):
        ,attr_historisiert
        ,attr_wiederholt
        ,attr_verschluesselt
+       ,case when (select 'TRUE' from schluesselelement where scel_attr_id = attr_id) IS NULL THEN 'FALSE' ELSE 'TRUE' end schluessel
       from attributes 
         join wertebereiche on wrtb_id = attr_wrtb_id
         join sprachen sp on sp.spra_iso_code2 = '{}'
@@ -190,25 +191,170 @@ def attrlist(p_entiid,p_lang):
 #attrlist
 
 def keylist(p_entiid,p_lang):
-    schl = dbDML.select("""
-    select  schl_id,schl_laufnr,schl_name
-                  ,group_concat('<a href="#ATTR'||attr_id||'" target="details">'
-                                    ||
-                                    case when ana.sptx_text is null then attr_anzname else ana.sptx_text end 
-                                    ||'</a>', ', ') attrs
-                  ,group_concat('<a href="#BEZI'||bezi_id||'" target="details">'
-                                    ||bezi_name||'</a>', ', ') bezis
+    schl = dbDML.select("""select schl_laufnr,schl_name,attrs,bezis from
+    (select  schl_id,schl_laufnr,schl_name
+                  ,group_concat(case when ana.sptx_text is null then attr_anzname else ana.sptx_text end 
+                                    ,', ') attrs
+                  ,group_concat(bezi_name, ', ') bezis
          from schluessel
          join schluesselelement on scel_schl_id = schl_id
             join sprachen sp on sp.spra_iso_code2 = '{}'
          left join attributes on attr_id = scel_attr_id
-            left join modellelement ma on ma.mode_attr_id = attr_id
-            left join spraattr  ana on ana.sptx_attrname = 'ATTR_NAME'
+         left join modellelement ma on ma.mode_attr_id = attr_id
+         left join spraattr  ana on ana.sptx_attrname = 'ATTR_NAME'
                                     and ana.sptx_mode_id = ma.mode_id
                                     and ana.spra_id = sp.spra_id            
          left join beziehungen on bezi_id = scel_bezi_id
          where schl_enti_id = {}
-           group by schl_id,schl_laufnr,schl_name
+           group by schl_id,schl_laufnr,schl_name)
                     """.format(p_lang,p_entiid))
     return schl
 #keylist
+
+def relalist (p_entiid,p_lang):
+    bezi = dbDML.select("""
+          with sprenti as 
+          (select enti_id, enti_odm_guid
+                ,case when ena.sptx_text is null then enti_name else ena.sptx_text end enti_name
+                ,spra_id
+             from entitaeten
+             join modellelement on mode_enti_id = enti_id
+              left join spraattr ena on ena.sptx_attrname = 'ENTI_NAME'
+                                and ena.sptx_mode_id = mode_id
+           )
+            select von.enti_id as von_enti_id,von.enti_name as von_name,von.enti_odm_guid as von_guid
+                        		,case when bvon.sptx_text is null then  bezi_assoc_von_zu else bvon.sptx_text end  bezi_assoc_von_zu
+    							,case bezi_type
+                           when '1:1' then 
+                            case bezi_pflicht_assoc_von_zu
+                                 when 'TRUE' THEN '1'
+                                 else '0..1'
+                               end
+                           when 'M:N' then 
+                            case bezi_pflicht_assoc_von_zu
+                                 when 'TRUE' THEN '1..N'
+                                 else '0..N'
+                               end
+                           when 'M:1' then 
+                                case bezi_pflicht_assoc_von_zu
+                                 when 'TRUE' THEN '1'
+                                 else '0..1'
+                               end         
+                            end card1
+    						,zu.enti_id as zu_enti_id,zu.enti_name as zu_name,zu.enti_odm_guid as zu_guid
+    						,case when bzu.sptx_text is null then  bezi_assoc_zu_von else bzu.sptx_text end bezi_assoc_zu_von
+    	                    ,case bezi_type
+    	                       when '1:1' then 
+    	                          case bezi_pflicht_assoc_zu_von
+    	                             when 'TRUE' THEN '1'
+    	                             else '0..1'
+    	                           end
+    	                       when 'M:N' then 
+    	                        case bezi_pflicht_assoc_zu_von
+    	                             when 'TRUE' THEN '1..N'
+    	                             else '0..N'
+    	                           end
+    	                       when 'M:1' then 
+    	                            case bezi_pflicht_assoc_zu_von
+    	                             when 'TRUE' THEN '1..N'
+    	                             else '0..N'
+    	                           end         
+    	                        end card2
+    						,bezi_id,bezi_type,bezi_pflicht_assoc_von_zu,bezi_pflicht_assoc_zu_von
+    						,arcs_name,arcs_odm_guid,bezi_name
+                            ,case when (select 1 from schluesselelement 
+                                         join schluessel on schl_id = scel_schl_id
+                                         where scel_bezi_id = bezi_id
+                                         and schl_enti_id = von.enti_id
+                                         ) IS NULL 
+                            THEN 'FALSE' ELSE 'TRUE' end schluessel
+                        from   sprachen sp          
+                        join sprenti as von on von.enti_id = bezi_enti_id_von
+                                        and von.spra_id = sp.spra_id
+    					join beziehungen on bezi_enti_id_von = von.enti_id
+    									 and bezi_type != 'ISA'
+    					join modellelement on mode_bezi_id = bezi_id
+                        left join spraattr bvon on bvon.sptx_attrname = 'TEXT_FROM'
+                                and bvon.sptx_mode_id = mode_id
+                                and bvon.spra_id = sp.spra_id 
+                        left join spraattr bzu on bzu.sptx_attrname = 'TEXT_TO'
+                                and bzu.sptx_mode_id = mode_id
+                                and bzu.spra_id = sp.spra_id 
+                        join sprenti as zu on zu.enti_id = bezi_enti_id_zu
+                                        and zu.spra_id = sp.spra_id
+                        left join arcs on arcs_id = bezi_arcs_id
+                                   and bezi_enti_id_von = von.enti_id
+                        where  sp.spra_iso_code2 = '{}'
+                           and (von.enti_id = {} or zu.enti_id = {})     
+                        order by arcs_name 
+                        """.format(p_lang,p_entiid, p_entiid))
+    return bezi
+#relalist
+
+def attrdatalist(p_lang):
+    attr = dbDML.select("""select attr_tech_name || ' ('||enti_name||')' as vollname ,attr_odm_guid,attr_tech_name
+            ,attr_anzname,enti_odm_guid,attr_uc
+           ,attr_dc,attr_beschr,enti_name
+           ,wrtb_id,wrtb_name,wrtb_typ
+           ,attr_id,enti_id
+           ,(select group_concat(schl_id||':'||schl_laufnr,',')
+               from schluesselelement 
+                join schluessel on schl_id = scel_schl_id
+                where scel_attr_id = attr_id
+            ) as schluessel
+          from (select  attr_tech_name, attr_odm_guid, 
+                case when ana.sptx_text is null then attr_anzname else ana.sptx_text end attr_anzname
+                , case when abe.sptx_text is null then attr_beschr else abe.sptx_text end  attr_beschr
+                ,attr_id,sp.spra_id,
+                attr_uc,attr_dc,attr_enti_id,attr_wrtb_id
+                 from attributes
+                 join modellelement on mode_attr_id = attr_id
+                 join sprachen sp on sp.spra_iso_code2 = '{}'
+                 left join spraattr  ana on ana.sptx_attrname = 'ATTR_NAME'
+                                    and ana.sptx_mode_id = mode_id
+                                    and ana.spra_id = sp.spra_id 
+                 left join spraattr  abe on abe.sptx_attrname = 'ATTR_COMMENT'
+                                    and abe.sptx_mode_id = mode_id 
+                                    and abe.spra_id = sp.spra_id
+                ) attr         
+          join (select case when ena.sptx_text is null then enti_name else ena.sptx_text end enti_name
+                    ,enti_id,spra_id spra_id,enti_odm_guid
+                 from entitaeten 
+                 join modellelement on mode_enti_id = enti_id
+                left join spraattr ena on ena.sptx_attrname = 'ENTI_NAME'
+                                and ena.sptx_mode_id = mode_id 
+                ) ent on enti_id = attr_enti_id
+                     and ent.spra_id = attr.spra_id
+          join wertebereiche on wrtb_id = attr_wrtb_id
+          order by upper(attr_tech_name)
+          """.format(p_lang))
+    return attr
+#attrdatalist
+
+def udpnamen(p_meltname):
+    data = dbDML.select("""select  bdeg_thema,bdeg_gruppe,group_concat(bdeg_name,',') attrs
+                           from modellelem_typ
+                           join modelltyp_eigensch on mote_melt_id = melt_id  
+                           join benudef_eigenschaft on bdeg_id = mote_bdeg_id
+                           where melt_kurzname = '{}'
+                        group by bdeg_thema,bdeg_gruppe
+                        order by bdeg_thema,bdeg_gruppe""".format(p_meltname))
+    return data
+#udpnamen
+def udpwerte(p_meltname,p_id,p_thema,p_gruppe):
+    data = dbDML.select("""select  bdwe_wert
+            from benudef_wert
+            join modellelement on mode_id = bdwe_mode_id
+                                    and ({} = {}) 
+            join benudef_eigenschaft on bdeg_id = bdwe_bdeg_id
+                    and bdeg_thema = '{}' and bdeg_gruppe = '{}'
+            order by bdeg_name
+            """.format("mode_" +
+                       ("enti" if p_meltname == 'ENTI'
+                        else "attr" if p_meltname == 'ATTR'
+                       else "")
+                       + "_id ",p_id
+                       , p_thema, p_gruppe
+                       ))
+    return data
+#
