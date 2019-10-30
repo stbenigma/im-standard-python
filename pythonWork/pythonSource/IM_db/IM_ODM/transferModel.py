@@ -81,7 +81,6 @@ def transferTypes():
     """rudimentäre Version der Typenübernahme
         müsste noch mit Systemen verknüpft werden.
     """
-    dbDML.delete("datatypes")
 
 
     types = ET.parse(parameters.odmIMDirec() + parameters.odmKonfDirec() + parameters.odmTypesFile())
@@ -97,10 +96,6 @@ def transferTypes():
 
 def transferDomains():
     #lösche die Domains
-    dbDML.delete("vorgabewerte")
-    dbDML.delete("wertebereiche")
-    dbDML.delete("speicherformate")
-
     #print(parameters.odmDomainsFilePath())
     domains = ET.parse(parameters.odmDomainsFilePath())
     root = domains.getroot()
@@ -194,6 +189,31 @@ def toString(str,upper = False):
         return(str.upper())
     #fi
 #toString
+def do1diagramm(p_filename):
+    #print (p_filename)
+    diagramme = ET.parse(p_filename)
+    dia = diagramme.getroot()
+    dianame = dia.get('name')
+    if (dianame == 'Logical'):
+        return
+    #entcomm = findText(root,'comment')
+    #creby = findText(root,'createdBy')
+    #creti = findText(root,'createdTime')
+    diatid = dbLookup.diatid(p_name='Entitätendiagramm')
+    #print(dia.get('name'), dia.get('id'))
+    #diag_name,diag_diat_id,diag_uc,diag_dc,diag_um,diag_dm
+    row = (dianame, diatid,dia.get('id'), dia.find('createdBy').text
+           ,dia.find('createdTime').text,dia.find('modifiedBy').text,None)
+    #print (row)
+    dbInserts.insertdiagramm(p_data=row)
+#do1diagramm
+
+def transferdiagramme():
+    for el in os.listdir(parameters.odmentisubviewdirec()):
+        filename = parameters.odmentisubviewdirec() +  el
+        do1diagramm(p_filename=filename)
+    #endfor
+#transferdiagramme
 
 def findeOderErstelleDom(domGuid,typeGuid,attrName):
     if (domGuid == None):
@@ -218,7 +238,6 @@ def do1Arc(fileName):
 #do1Arc
 
 def transferArcs():
-    dbDML.delete("arcs")
 
     for el in os.listdir(parameters.odmArcDirec()):
         if re.match('seg_.*', el):
@@ -290,8 +309,9 @@ def do1Attribute(n,attr,entiId=None,beziId=None):
     dbInserts.insertSprachtexte(p_texte=sprachtexte, p_modeid=lmodeId)
 
 #do1Attribute
-def    fillKeys(enti,entiId):
-    allkeys = enti.find('identifiers')
+def    fillKeys(p_enti, p_entiid):
+    global keys
+    allkeys = p_enti.find('identifiers')
     if allkeys is not None:
         idx = 0
         for key in allkeys.findall('identifier'):
@@ -307,25 +327,25 @@ def    fillKeys(enti,entiId):
                 keyrefs = kr.split(',')
                 idx += 1
                 #print(idx, enti.get('name'), key.get('id'), enti.get('id'), keyrefs)
-                keys[key.get('id')] = (entiId,idx, key.get('name'),findText(key,'createdBy'),findText(key,'createdTime')
-                                       ,keyrefs)
+                keys[key.get('id')] = (p_entiid, idx, key.get('name'), findText(key, 'createdBy'), findText(key, 'createdTime')
+                                       , keyrefs)
             #fi
         # rof
         # (keyguid:(entiid,idx,keyName,uc,dc, (listof attr and relationship guids))
     # fi
 #fillKeys
 
-def transferKeys(keys):
+def transferKeys(p_keys):
     # (keyguid:(entiid,idx,keyName,uc,dc, (listof attr and relationship guids))
-    for keyGuid in keys:
+    for keyGuid in p_keys:
         #schl_laufnr, schl_name, schl_odm_guid
         #, schl_uc, schl_dc, schl_enti_id
-        keyId = dbInserts.insertSchluessel((keys[keyGuid][1],keys[keyGuid][2],keyGuid
-                                    ,keys[keyGuid][3],keys[keyGuid][4],keys[keyGuid][0]))
+        keyId = dbInserts.insertSchluessel((p_keys[keyGuid][1], p_keys[keyGuid][2], keyGuid
+                                    , p_keys[keyGuid][3], p_keys[keyGuid][4], p_keys[keyGuid][0]))
         #print (keyGuid,keys[keyGuid])
 
         #nun die Schlüsselelemente
-        for ke in keys[keyGuid][5]:
+        for ke in p_keys[keyGuid][5]:
             try:
                 attrId = dbLookup.attrID(ke)
                 beziId = None
@@ -334,7 +354,7 @@ def transferKeys(keys):
                 attrId = None
             #yrt
             #scel_schl_id,   scel_attr_id,scel_bezi_id,  scel_uc, scel_dc
-            dbInserts.insertSchlElem((keyId,attrId,beziId,keys[keyGuid][3],keys[keyGuid][4]))
+            dbInserts.insertSchlElem((keyId, attrId, beziId, p_keys[keyGuid][3], p_keys[keyGuid][4]))
             #print(keyId, ke,attrId,beziId)
         #rof
     #rof
@@ -389,13 +409,11 @@ def do1Entity(fileName):
             do1Attribute(n=idx,attr=attr,entiId=entiId)
         #rof
     #fi
-    fillKeys(enti=root,entiId=entiId)
+    fillKeys(p_enti=root, p_entiid=entiId)
 #do1Entity
 
 def transferEntitaeten():
     #lösche die Entitäten
-    dbDML.delete("synonyme")
-    dbDML.delete("entitaeten")
 
     for el in os.listdir(parameters.odmEntityDirec()):
         if re.match('seg_.*', el):
@@ -579,7 +597,6 @@ def do1Relation(fileName):
 
 def transferRelations():
     #lösche die Beziehungen
-    dbDML.delete("beziehungen")
     for el in os.listdir(parameters.odmRelationDirec()):
         if re.match('seg_.*', el):
             for file in os.listdir(parameters.odmRelationDirec() + el):
@@ -594,7 +611,6 @@ def transferRelations():
 
 def fillMelt():
     #lösche die Modellelementtypen
-    dbDML.delete("modellelem_typ")
 
     # melt_kurzname,  melt_name    ,melt_uc,  melt_dc
     modellelementtypen = \
@@ -668,7 +684,6 @@ def do1UDPFile(pudpThema,pfileName):
 
 def transferUPDdef():
     # lösche die UDP
-    dbDML.delete("benudef_eigenschaft")
     l_sql = """select count(*) from benudef_wert union select count(*) from benudef_eigenschaft"""
     result = dbDML.select(l_sql)
 #    for row in result:
@@ -727,7 +742,6 @@ def transferUPDdef():
 #transferUDPdef
 
 def transferUDP():
-    fillMelt()
     transferUPDdef()
 #transferUDP
 
@@ -735,23 +749,40 @@ def insertBaseData():
     #(spra_iso_name, spra_iso_code2, spra_iso_code3
     #, spra_ist_textsprache, spra_spra_id, spra_uc
     #, spra_dc
-    dbDML.delete('sprachtexte')
-    dbDML.delete('sprachen')
     ldeId= dbInserts.insertSprache(('Deutsch','de','deu','TRUE','TRUE',None,'stb', date.today()));
     dbInserts.insertSprache(('English',  'en', 'eng', 'TRUE', 'FALSE',ldeId, 'stb', date.today()));
     dbInserts.insertSprache(('Français', 'fr', 'fra', 'TRUE', 'FALSE',ldeId, 'stb', date.today()));
 
-    dbDML.delete('diagramme')
-    dbDML.delete('diagrammtypen')
-    dbInserts.insertdiagrammtyp(('Entitätendiagramm','stb',date.today(),None,None))
+    fillMelt()
+
+    entidiaid = dbInserts.insertdiagrammtyp(('Entitätendiagramm','stb',date.today(),None,None))
+    #    medi_diat_id, medi_melt_id,medi_uc,mdei_dc,medi_um,mdei_dm
+    dbInserts.insertmeltdiat((entidiaid, dbLookup.meltLookup(p_kurzname='ENTI'),'stb', date.today(), None, None))
+    dbInserts.insertmeltdiat((entidiaid, dbLookup.meltLookup(p_kurzname='BEZI'),'stb', date.today(), None, None))
 #insertBaseData
+
+def loeschmodell():
+    dbDML.delete("benudef_eigenschaft")
+    dbDML.delete("beziehungen")
+    dbDML.delete("arcs")
+    dbDML.delete("attributes")
+    dbDML.delete("synonyme")
+    dbDML.delete("entitaeten")
+    dbDML.delete("modellelement")
+    dbDML.delete('diagramme')
+    dbDML.delete("benudef_eigenschaft")
+    dbDML.delete("vorgabewerte")
+    dbDML.delete("wertebereiche")
+    dbDML.delete("speicherformate")
+    dbDML.delete("datatypes")
+    dbDML.delete("modellelem_typ")
+    dbDML.delete('diagrammtypen')
+    dbDML.delete('sprachtexte')
+    dbDML.delete('sprachen')
+#loeschmodell
 
 def transferODMModel():
     """überträgt das ganze ODM Modell in die DB"""
-    dbDML.delete("modellelement")
-    dbDML.delete("attributes")
-    dbDML.delete("benudef_eigenschaft")
-
     transferTypes()
     transferDomains()
     transferUDP()
@@ -760,6 +791,7 @@ def transferODMModel():
     transferRelations()
     doSubentities()
     transferKeys(keys)
+    transferdiagramme()
 
     if (1==2):
         print("\nARCS")

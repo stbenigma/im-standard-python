@@ -11,7 +11,7 @@ def main(p_imdirec=None, p_modelname=None):
     dbParam.liesDefaultLang()
 
 #, e1.enti_name , e2.enti_name
-    l_sql ="""select * from modellelement join modellelem_typ on melt_id = mode_melt_id"""
+    l_sql ="""select * from diagramme"""
 
     #l_sql = """select * from entitaeten where enti_id = 835"""
     result = dbDML.select(l_sql)

@@ -170,8 +170,9 @@ def insertModeBezi(beziId):
 def insertmeltdiat(p_Data):
     lsql= """insert into
 melt_diat(
-    medi_diat_id, medi_melt_id,medi_uc,mdei_dc,medi_um,mdei_dm   )
-     values(?,?,?,?,?,',')
+    medi_diat_id, medi_melt_id,medi_uc,medi_dc
+    ,medi_um,medi_dm   )
+     values(?,?,?,?,?,?)
      """
     dbDML.insert(lsql,p_Data)
 #insertmeltdiat
@@ -262,10 +263,11 @@ def insertUdpEntity(entiId):
 def insertdiagramm(p_data):
     lsql = """insert into
 diagramme(
-    diag_name,diag_diat_id,diag_uc,diag_dc,diag_um,diag_dm      
-                            values (?,?,?,?,?,?,?,?)
+    diag_name,diag_diat_id,diag_odm_guid,diag_uc
+    ,diag_dc,diag_um,diag_dm )     
+        values (?,?,?,?,?,?,?)
     """
-    return dbDML.insert(lsql, p_Data)
+    return dbDML.insert(lsql, p_data)
 #insertdiagramme
 
 def insertlinieseg(p_data):

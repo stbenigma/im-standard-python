@@ -32,12 +32,12 @@ def wrtbLookup (pguid):
     return doLookup(pguid,'select wrtb_id from wertebereiche where wrtb_odm_guid = "{}"' )
 #wrtbLookup
 
-def meltLookup(pkurzname):
-    return doLookup(pkurzname, 'select melt_id from modellelem_typ where melt_kurzname = "{}"')
+def meltLookup(p_kurzname):
+    return doLookup(p_kurzname, 'select melt_id from modellelem_typ where melt_kurzname = "{}"')
 # MeltLookup
 
 def diatid (p_name):
-    return doLookup(p_name,'select diat_id from diagrammtypen where upper(diat_name) =upper("{}")')
+    return doLookup(p_name,'select diat_id from diagrammtypen where upper(diat_bez) =upper("{}")')
 #diatid
 
 def modeAttrLookup(attrId):

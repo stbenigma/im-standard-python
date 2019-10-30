@@ -12,8 +12,12 @@ def main(p_param1):
 
 
     print ("fillDB",parameters.odmBaseDirec(),parameters.odmModelName())
-    dbConnect.openDB(parameters.dbFilePath(),fks='ON');
 
+    dbConnect.openDB(parameters.dbFilePath(),fks='OFF');
+    transferModel.loeschmodell()
+#    dbConnect.myDbConn.close()
+
+#    dbConnect.openDB(parameters.dbFilePath(),fks='ON');
     transferModel.insertBaseData()
     dbParam.liesDefaultLang()
     transferModel.transferODMModel();

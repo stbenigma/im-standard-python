@@ -27,6 +27,7 @@ parameter = {
             , 'odmfilesdirec': 'files/'
             , 'odmentitydirec': 'logical/entity/'
             , 'odmrelationdirec': 'logical/relation/'
+            , 'odmentisubviewdirec': 'logical/subviews/'
             , 'odmarcdirec': 'logical/arc/'
             , 'odmudptranslfilename': 'translation'
             , 'odmudpmappingfilename': 'datamapping'
@@ -99,6 +100,11 @@ def odmModelName(newval=None):
         return parameter[MODELNAME]
     else:
         parameter[MODELNAME] = newval
+def odmentisubviewdirec(newval=None):
+    if newval is None:
+        return odmIMDirec()+odmModelName()+'/'+parameter['odmentisubviewdirec']
+    else:
+        parameter['odmentisubviewdirec'] = newval
 def odmKonfDirec(newval=None):
     if newval is None:
         return parameter['odmkonfdirec']
