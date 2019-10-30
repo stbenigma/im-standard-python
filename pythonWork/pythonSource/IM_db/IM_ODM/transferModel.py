@@ -103,8 +103,8 @@ def transferDomains():
         wrtb = Wertebereich(pname=dom.get('name'),pid=dom.get('id'))
         #print ("Domain name={} id={}" .format (wrtb.wrtb_name,wrtb.wrtb_odm_guid));
         #print (dom.find('createdBy').text,dom.find('createdTime').text)
-        wrtb.wrtb_uc = dom.find('createdBy').text
-        wrtb.wrtb_dc = dom.find('createdTime').text
+        wrtb.wrtb_uc = findText(dom,'createdBy')
+        wrtb.wrtb_dc = findText(dom,'createdTime')
         wrtb.wrtb_beschr = findText(dom,'comment')
         logDT = dom.find('logicalDatatype')
         wrtb.wrtb_datatype_ref = logDT.text if logDT is not None else None
@@ -189,6 +189,57 @@ def toString(str,upper = False):
         return(str.upper())
     #fi
 #toString
+
+def transferentity(p_enti,p_diagid,p_uc,p_dc):
+    entiodm = p_enti.get('oid')
+    entiid = dbLookup.entiID(entiodm)
+    layout= p_enti.find('bounds')
+    #print (entiid,layout,layout.get('x'),layout.get('y'),layout.get('width'),layout.get('height'))
+    #eled_position_x,eled_position_y,eled_breite,eled_hoehe
+    #,eled_deckkraft,eled_farbe,eled_randbreite,eled_randdeckkraft
+    #,eled_randfarbe, eled_schriftgroesse, eled_schriftfarbe, eled_mode_id
+    #,eled_diag_id, eled_uc, eled_dc, eled_um
+    #, eled_dm
+    if (findText(p_enti,'useDefaultColor') == 'false'):
+        backgroundc = findText(p_enti,'backgroundColor')
+        foregroundc = findText(p_enti, 'foregroundColor')
+        fonts = p_enti.findall('fonts/FontObject/')
+        for f in fonts:
+            if (findText(f,'foType') == 'Titel'):
+                entifontc =findText(f,'colorRGB')
+            if (findText(f, 'foType') == 'Attribut'):
+                attrfontc = findText(f, 'colorRGB')
+        #for
+    else:
+        pass
+    #fi
+
+    row = ( layout.get('x'),layout.get('y'),layout.get('width'),layout.get('height')
+              ,None,None,None,None
+              ,None,None,None,dbLookup.modeEntiLookup(p_entiid=entiid)
+             ,p_diagid,p_uc,p_dc,None
+             ,None)
+    print (row)
+#transferentity
+
+def transferdiaobj(p_objects,p_diagid,p_uc,p_dc):
+    for o in p_objects:
+        type = o.get('otype')
+        if (type == 'Image'):
+            pass
+        elif (type == 'Entity'):
+            transferentity(p_enti=o,p_diagid=p_diagid,p_uc=p_uc,p_dc=p_dc)
+        elif (type == 'Note'):
+            pass
+        #fi
+#transferdiaobj
+def transferdiaconnect(p_connectors,p_diagid,p_uc,p_dc):
+    pass
+# transferdiaconnect
+def transferdiaarc(p_arcs,p_diagid,p_uc,p_dc):
+    pass
+# transferdiaarc
+
 def do1diagramm(p_filename):
     #print (p_filename)
     diagramme = ET.parse(p_filename)
@@ -202,10 +253,22 @@ def do1diagramm(p_filename):
     diatid = dbLookup.diatid(p_name='Entitätendiagramm')
     #print(dia.get('name'), dia.get('id'))
     #diag_name,diag_diat_id,diag_uc,diag_dc,diag_um,diag_dm
-    row = (dianame, diatid,dia.get('id'), dia.find('createdBy').text
-           ,dia.find('createdTime').text,dia.find('modifiedBy').text,None)
+    uc = findText(dia,'createdBy')
+    dc = findText(dia,'createdTime')
+    row = (dianame, diatid,dia.get('id'), uc
+           ,dc,findText(dia,'modifiedBy'),None)
     #print (row)
-    dbInserts.insertdiagramm(p_data=row)
+    diagid = dbInserts.insertdiagramm(p_data=row)
+    objects = dia.findall('objectViews/OView')
+    if (len(objects) > 0):
+        transferdiaobj(p_objects=objects,p_diagid=diagid,p_uc=uc,p_dc=dc)
+    connectors = dia.findall('connectors/Connector')
+    if (len(connectors) > 0):
+        transferdiaconnect(connectors,p_diagid=diagid,p_uc=uc,p_dc=dc)
+    arcs = dia.findall('arcs/Arc')
+    if (len(arcs) > 0):
+        transferdiaarc(arcs,p_diagid=diagid,p_uc=uc,p_dc=dc)
+    #print (dianame,len(objects),len(connectors),len(arcs))
 #do1diagramm
 
 def transferdiagramme():

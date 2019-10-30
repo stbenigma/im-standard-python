@@ -43,8 +43,8 @@ def diatid (p_name):
 def modeAttrLookup(attrId):
     return doLookup(attrId, 'select mode_id from modellelement where mode_attr_id = "{}"')
 # modeAttrLookup
-def modeEntiLookup(entiId):
-    return doLookup(entiId, 'select mode_id from modellelement where mode_enti_id = "{}"')
+def modeEntiLookup(p_entiid):
+    return doLookup(p_entiid, 'select mode_id from modellelement where mode_enti_id = "{}"')
 # modeEntiLookup
 
 def bdegLookup(pname):
