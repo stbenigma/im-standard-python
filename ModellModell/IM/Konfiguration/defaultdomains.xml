@@ -172,8 +172,16 @@
 <ownerDesignName>System</ownerDesignName>
 <importedID>435C11BA-FCF7-BBBA-6AA9-FAB7326273D3</importedID>
 <avTSortOrder>0</avTSortOrder>
+<dataTypePrecision>3</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
 <fileName>defaultdomains</fileName>
-<logicalDatatype>LOGDT017</logicalDatatype>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>1</beginValue>
+<endValue>999</endValue>
+</rangeDef>
+</listOfRanges>
 </Domain>
 <Domain class="oracle.dbtools.crest.model.design.Domain" name="Businessrule Ebene" id="4655A975-6C53-BBE1-01B9-D658AD7C5FC5">
 <createdBy>stb</createdBy>
@@ -425,8 +433,17 @@
 <ownerDesignName>System</ownerDesignName>
 <importedID>9899F774-954D-6AB0-8DC2-BB1FE9F99D28</importedID>
 <avTSortOrder>0</avTSortOrder>
+<dataTypePrecision>4</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
 <fileName>defaultdomains</fileName>
-<logicalDatatype>LOGDT017</logicalDatatype>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<unitOfMeasure>mm</unitOfMeasure>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>1</beginValue>
+<endValue>9999</endValue>
+</rangeDef>
+</listOfRanges>
 </Domain>
 <Domain class="oracle.dbtools.crest.model.design.Domain" name="Adresse" id="9B99E814-DBEA-128A-C17E-01680EEEDFBC">
 <createdBy>stb</createdBy>
@@ -494,12 +511,20 @@
 <Domain class="oracle.dbtools.crest.model.design.Domain" name="Diagramm Koordinate" id="ACC90DC4-5B08-1F67-561C-C9389709269B">
 <createdBy>stb</createdBy>
 <createdTime>2019-03-10 11:09:09 UTC</createdTime>
-<comment><![CDATA[x/y Position in mm gemessen ab oberer linken Ecke des Diagramms]]></comment>
+<comment><![CDATA[x/y Position gemessen ab oberer linken Ecke des Diagramms]]></comment>
 <ownerDesignName>System</ownerDesignName>
 <importedID>ACC90DC4-5B08-1F67-561C-C9389709269B</importedID>
 <avTSortOrder>0</avTSortOrder>
+<dataTypePrecision>6</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
 <fileName>defaultdomains</fileName>
-<logicalDatatype>LOGDT017</logicalDatatype>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>0</beginValue>
+<endValue>999999</endValue>
+</rangeDef>
+</listOfRanges>
 </Domain>
 <Domain class="oracle.dbtools.crest.model.design.Domain" name="DB Technologie" id="B0B9E99A-15A9-E130-AC4D-23A0FE4E1919">
 <createdBy>stb</createdBy>
