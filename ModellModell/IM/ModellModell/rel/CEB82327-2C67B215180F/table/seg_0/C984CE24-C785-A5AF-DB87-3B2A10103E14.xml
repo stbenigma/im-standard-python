@@ -1,0 +1,82 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="C984CE24-C785-A5AF-DB87-3B2A10103E14" name="Wertebereichgruppe">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<comment><![CDATA[Es gibt Attribute, die aus mehreren Bestandteilen bestehen, aber für eine Entität wie ein Attribut angesehen werden (können).
+Die Bestandteile dieser Attributgruppe treten immer gemeinsam auf.
+Dass ein Attribut Teilwerte enthält, für die man sich separat interessiert, verletzt im Grundsatz die 1. Normalform. Wenn aber die Elemente einer Attributgruppe selber Attribute sind und die Gruppe als Platzhalter von mehreren Attributen verstanden werden kann, ist diese Verletzung auflösbar.
+
+Beispiele:
+Telefon-Nr: bestehend aus Landesvorwahl und Rufnummer
+Koordinaten bestehend aus X und Y-Koordinate (bzw. Westliche länge und nördliche Breite)
+Hotelzimmer-Nr bestehend aus Stockwerk und ZimmerNr (ACHTUNG: nicht 1. Stelle = Stockwerk, sondern 1 Feld Stockwerk und 1 Feld ZimmerNr)
+Flugkennung bestehend aus Fluggesellschaft kürzel und Flugnummer (LX 247)]]></comment>
+<generatorID>6D701BFA-96C8-4476-67E2-B0821BCC7224</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<typeID>1C6A8769-7651-51C0-9E0A-D0C138DE6193</typeID>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Wertebereich_Modellelement_Modellelement_ID" id="5A1A2161-98AB-EF69-5803-1F859E542BFC">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="D0594A62-39F9-D62F-6D34-B71498CCC0A6" referredColumn="9FC5982B-2A47-B59D-A525-415732968AB0"/>
+</associations>
+</Column>
+<Column name="Wertebereichgruppe_ID" id="75E525A8-5D89-7CAC-B55B-F4B1B8D37E23">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="E7115C14-E6A9-3BCE-98D9-F75DB4B6908F" name="Wertebereichgruppe_PK">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="5A1A2161-98AB-EF69-5803-1F859E542BFC"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="0182DE9A-0484-5DE0-DE18-DD017BB7CF73" name="Wertebereichgruppe_Wertebereichgruppe_ID_UN">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="75E525A8-5D89-7CAC-B55B-F4B1B8D37E23"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="F2546A39-D353-20E6-D8A6-51954BDEB69C" name="Wertebereichgruppe_Wertebereich_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<generatorID>99E90589-F58D-8A05-99ED-928ED47E8064</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="5A1A2161-98AB-EF69-5803-1F859E542BFC"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

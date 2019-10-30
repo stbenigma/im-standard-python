@@ -1,0 +1,523 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="BD0F4EE5-B431-7E40-8592-62AA3A78CA08" name="BEZIEHUNG_DARST">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:28:04 UTC</createdTime>
+<comment><![CDATA[Information zur Darstellung einer Entität auf einem Diagramm]]></comment>
+<generatorID>8132EFCC-4EC6-BC1A-869F-020BE679EA2F</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<ordsAlias>beziehdarst</ordsAlias>
+<abbreviation>BEDA</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="BEDA_ID" id="D13C32E9-1536-E8F8-E49B-FC8EC934CD53">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:56:10 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="BEDA_NAME" id="DEA23E49-F00D-3B7E-CAA0-31D500B17D01">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:28:04 UTC</createdTime>
+<comment><![CDATA[Name eines Geschäftsbereichs]]></comment>
+<generatorID>E8F721F2-AA56-EDE1-C015-1131261D9383</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="BEDA_DIAG_ID" id="E21B992C-DC74-A846-0074-64814F699A9B">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:39:37 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="F7250111-F11B-1590-2124-854B6033A7B0" referredColumn="FFF8E8C9-39A7-7B00-759E-2D57DEEDE633"/>
+</associations>
+</Column>
+<Column name="Linie" id="1AA574BB-16B3-51B7-1553-5F69AE42CA18">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:28:04 UTC</createdTime>
+<generatorID>71A04FCF-541F-6AB1-C8CE-52AEF5226573</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>4</use>
+<collectionType>C89AD2E9-29AC-3B36-E59F-F3BF7F41BBA1</collectionType>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Liniendarstellung" id="DB13DEB2-644E-FFA4-8193-6F98F6080BB4">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:28:04 UTC</createdTime>
+<generatorID>AAFC6709-4371-1295-C701-0259E22C1797</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>3</use>
+<structuredType>3A3271AB-EE90-68BD-0EC5-E6255E34D2DE</structuredType>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Andockposition_(start)" id="6C40FD21-FCAB-91EB-1EFC-C902CCF41DB7">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:28:04 UTC</createdTime>
+<commentInRDBMS><![CDATA[Position am Rand des Startelementes]]></commentInRDBMS>
+<generatorID>1206A636-A5F5-5529-5B35-C848B4F4E075</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>3</use>
+<structuredType>15C1AAF0-38D4-D58B-BBB0-7E7AFF4FA9E7</structuredType>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Textdarstellung_(start)" id="E3841AAA-92E5-6AA9-C41D-D8C8CE17E6BD">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:28:04 UTC</createdTime>
+<comment><![CDATA[Position des Textes am Start des Pfades (z.B. von-Entität). Kann relativ sein  umd Verschiebungen zu ermöglichen.]]></comment>
+<commentInRDBMS><![CDATA[Ort und Grösse des Textes an der Start-Andockposition]]></commentInRDBMS>
+<generatorID>83C2935D-8AAD-75D9-28B9-71D837A09E02</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>3</use>
+<structuredType>47813466-960A-45B1-A2FF-81D936223094</structuredType>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Andockposition_(ende)" id="772469D6-18C4-1611-15A2-DC9FCA6FDEAD">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:28:04 UTC</createdTime>
+<commentInRDBMS><![CDATA[Position am Rand des Startelementes]]></commentInRDBMS>
+<generatorID>E466E653-911A-8D95-E33A-61DFA1E533D9</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>3</use>
+<structuredType>15C1AAF0-38D4-D58B-BBB0-7E7AFF4FA9E7</structuredType>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Textdarstellung_(ende)" id="75AEABE2-7C94-310C-7F34-B5248C1055C6">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:28:04 UTC</createdTime>
+<comment><![CDATA[Position der Assoziation am Ende des Pfades (z.B: zu-Entität). Kann relativ sein  umd Verschiebungen zu ermöglichen.]]></comment>
+<commentInRDBMS><![CDATA[Ort und Grösse des Textes an der Ende-Andockposition]]></commentInRDBMS>
+<generatorID>9ACB89C6-3A99-D2EE-61E7-CBDD72B39C39</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>3</use>
+<structuredType>369416D6-67B1-E5C5-70A2-2C9BFC40A613</structuredType>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="BEDA_SCHRIFTFARBE" id="7D69D3CF-E974-3758-F7D2-440B8D04E07A">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:28:04 UTC</createdTime>
+<generatorID>5C1D0DD7-C753-1C85-38D4-2F6B7A840CF5</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>06269521-C0BC-78CB-FBC8-656101307358</domain>
+<defaultValue>000000</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="BEDA_SCHRIFTGROESSE" id="1ACB6A45-2356-870A-299B-4CF2737A32D3">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:28:04 UTC</createdTime>
+<generatorID>9DBEA9D5-4E5C-B222-7638-38F298F0FA7B</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>435C11BA-FCF7-BBBA-6AA9-FAB7326273D3</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>1</beginValue>
+<endValue>999</endValue>
+</rangeDef>
+</listOfRanges>
+</Column>
+<Column name="BEDA_UC" id="9F1AD4C5-B68A-D051-7449-94A22508D378">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:56:10 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<formulaDesc>USER</formulaDesc>
+<sourceType>System</sourceType>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<computed>true</computed>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="F7EEFF47-7A42-2A3E-7DFC-D0558D6996B8"/>
+</propertyMap>
+</Column>
+<Column name="BEDA_DC" id="961E3D34-C5D2-6BA3-BF40-30520B016101">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:56:10 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT047</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="74D877A0-4C3B-63EE-06C5-071C7695907C"/>
+</propertyMap>
+</Column>
+<Column name="BEDA_UM" id="AB1360B9-0C48-B305-8F5C-851DEA2D04D9">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:56:10 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="B2E17D53-C2F7-74D9-022D-5D63F3931519"/>
+</propertyMap>
+</Column>
+<Column name="BEDA_DM" id="55E70F05-02CC-9981-5629-E8B6F5307896">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:56:10 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT047</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="B398D247-00C1-F016-3BBB-FE65CFFFF7AA"/>
+</propertyMap>
+</Column>
+</columns>
+<nestedColumns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<nestedColumn name="Liniendarstellung.Breite" id="6C984295-04A5-82F6-D171-9AA9D082A4D4">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:28:04 UTC</createdTime>
+<generatorID>C85DAA0F-523E-021D-39A4-5D11AFCAC534</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<parentObject>DB13DEB2-644E-FFA4-8193-6F98F6080BB4</parentObject>
+<structAttributeID>A42328A3-E515-3E9D-313D-74362F801B42</structAttributeID>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>3</dataTypePrecision>
+<dataTypeScale>1</dataTypeScale>
+<domain>CB54E08F-9CBF-16C7-AB25-64ADCC8C4FFB</domain>
+<defaultValue>1</defaultValue>
+<ownDataTypeParameters>,3,1</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>0.0</beginValue>
+<endValue>99</endValue>
+</rangeDef>
+</listOfRanges>
+</nestedColumn>
+<nestedColumn name="Liniendarstellung.Typ" id="F26B29A3-0E1A-41BF-EA86-7062AB883B65">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:28:04 UTC</createdTime>
+<generatorID>29998999-78DD-D996-E8C3-B3FF2A9A0579</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<parentObject>DB13DEB2-644E-FFA4-8193-6F98F6080BB4</parentObject>
+<structAttributeID>CBBDC454-DFB2-0E1C-4529-412D5060AC0A</structAttributeID>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<dataTypeSize>6 CHAR</dataTypeSize>
+<domain>30B34D60-5229-19CC-A3D5-584257D800BD</domain>
+<defaultValue>SOLID</defaultValue>
+<ownDataTypeParameters>6 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</nestedColumn>
+<nestedColumn name="Liniendarstellung.Farbe" id="3E708F43-4D3E-8E24-937D-7D0B1D66F0A2">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:28:04 UTC</createdTime>
+<generatorID>D969F251-833C-64F4-BCF5-295C6B1BC949</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<parentObject>DB13DEB2-644E-FFA4-8193-6F98F6080BB4</parentObject>
+<structAttributeID>53602454-6F9D-CC0A-AD20-5177888E53F6</structAttributeID>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>6 CHAR</dataTypeSize>
+<domain>06269521-C0BC-78CB-FBC8-656101307358</domain>
+<defaultValue>000000</defaultValue>
+<ownDataTypeParameters>6 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</nestedColumn>
+<nestedColumn name="Liniendarstellung.Deckkraft" id="62D7AC7E-2F42-1B05-512B-C5C291331A36">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:28:04 UTC</createdTime>
+<generatorID>5355E273-8979-4B55-13D1-F77FE3C0A4E1</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<parentObject>DB13DEB2-644E-FFA4-8193-6F98F6080BB4</parentObject>
+<structAttributeID>E13C43F4-11E6-7097-AD7D-4CE6FFA4E44B</structAttributeID>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>3</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<domain>3C43C579-B2CF-0898-C553-AF95467F1601</domain>
+<defaultValue>100</defaultValue>
+<ownDataTypeParameters>,3,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>0</beginValue>
+<endValue>100</endValue>
+</rangeDef>
+</listOfRanges>
+</nestedColumn>
+<nestedColumn name="Andockposition_(start).Seite" id="8487482F-18E8-EF8B-A688-009BA9397A95">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:28:04 UTC</createdTime>
+<generatorID>C7C843E4-96DB-58B9-89A4-B18B92C65CC6</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<parentObject>6C40FD21-FCAB-91EB-1EFC-C902CCF41DB7</parentObject>
+<structAttributeID>68ECBE05-FCAB-75A1-B450-EA0861E1506C</structAttributeID>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<dataTypeSize>1 CHAR</dataTypeSize>
+<domain>6278A05A-92AB-F45B-2BB8-31C71ABC2F69</domain>
+<ownDataTypeParameters>1 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</nestedColumn>
+<nestedColumn name="Andockposition_(start).Position" id="68116945-5037-0ABA-BE21-09E8009A15A1">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:28:04 UTC</createdTime>
+<generatorID>8B7EB4AC-2AD2-12C4-4493-BB9F04A17139</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<parentObject>6C40FD21-FCAB-91EB-1EFC-C902CCF41DB7</parentObject>
+<structAttributeID>9539E9ED-5742-DF7A-D7B1-99E86BC23F88</structAttributeID>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>4</dataTypePrecision>
+<dataTypeScale>1</dataTypeScale>
+<domain>348830AA-2613-5D59-292A-41AAB32EB3D3</domain>
+<ownDataTypeParameters>,4,1</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>0.0</beginValue>
+<endValue>100.0</endValue>
+</rangeDef>
+</listOfRanges>
+</nestedColumn>
+<nestedColumn name="Textdarstellung_(start).Winkel" id="81E8B9E5-2022-CCD4-EEBD-0ACD6943C71B">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:28:04 UTC</createdTime>
+<generatorID>D88571FD-4F32-2549-61C3-70AAF9104600</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<parentObject>E3841AAA-92E5-6AA9-C41D-D8C8CE17E6BD</parentObject>
+<structAttributeID>937C758B-A5D3-15B7-9D4F-7CFB8ACC9123</structAttributeID>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>3</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<domain>BD2395F1-C866-A30F-511F-952C9D772388</domain>
+<ownDataTypeParameters>,3,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>-179</beginValue>
+<endValue>180</endValue>
+</rangeDef>
+</listOfRanges>
+</nestedColumn>
+<nestedColumn name="Textdarstellung_(start).Abstand" id="6E0771E9-8FA8-C825-7A24-13163CE2462B">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:28:04 UTC</createdTime>
+<generatorID>0D14CE18-94BA-1BA8-0C0D-FF21123CB1AE</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<parentObject>E3841AAA-92E5-6AA9-C41D-D8C8CE17E6BD</parentObject>
+<structAttributeID>2B4D17D2-CE68-79C8-73B4-444CFDBF05D4</structAttributeID>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>9899F774-954D-6AB0-8DC2-BB1FE9F99D28</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>1</beginValue>
+<endValue>9999</endValue>
+</rangeDef>
+</listOfRanges>
+</nestedColumn>
+<nestedColumn name="Andockposition_(ende).Seite" id="753DC1E9-FBEE-E4DF-258F-8AAABD312E96">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:28:04 UTC</createdTime>
+<generatorID>B852D8D0-62A3-457C-5043-59A6353DC690</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<parentObject>772469D6-18C4-1611-15A2-DC9FCA6FDEAD</parentObject>
+<structAttributeID>68ECBE05-FCAB-75A1-B450-EA0861E1506C</structAttributeID>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<dataTypeSize>1 CHAR</dataTypeSize>
+<domain>6278A05A-92AB-F45B-2BB8-31C71ABC2F69</domain>
+<ownDataTypeParameters>1 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</nestedColumn>
+<nestedColumn name="Andockposition_(ende).Position" id="8DCBBC72-CE92-D263-2D6A-E3C79FF8687F">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:28:04 UTC</createdTime>
+<generatorID>91C5E421-4AE6-BCDF-FCAE-CC9395C57E43</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<parentObject>772469D6-18C4-1611-15A2-DC9FCA6FDEAD</parentObject>
+<structAttributeID>9539E9ED-5742-DF7A-D7B1-99E86BC23F88</structAttributeID>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>4</dataTypePrecision>
+<dataTypeScale>1</dataTypeScale>
+<domain>348830AA-2613-5D59-292A-41AAB32EB3D3</domain>
+<ownDataTypeParameters>,4,1</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>0.0</beginValue>
+<endValue>100.0</endValue>
+</rangeDef>
+</listOfRanges>
+</nestedColumn>
+<nestedColumn name="Textdarstellung_(ende).Breite" id="343E9CCB-1F87-DE5E-F23E-DC23C834CD28">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:28:04 UTC</createdTime>
+<generatorID>AE94B403-87B9-A76C-7758-6EC0865E19CD</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<parentObject>75AEABE2-7C94-310C-7F34-B5248C1055C6</parentObject>
+<structAttributeID>BEE943DB-2D9E-077E-895D-6F79EB67694D</structAttributeID>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>9899F774-954D-6AB0-8DC2-BB1FE9F99D28</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>1</beginValue>
+<endValue>9999</endValue>
+</rangeDef>
+</listOfRanges>
+</nestedColumn>
+<nestedColumn name="Textdarstellung_(ende).Höhe" id="6ECB86FD-3BAE-637F-A791-7A39BE06BCD0">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:28:04 UTC</createdTime>
+<generatorID>352D5241-2387-99A3-8CD4-8A1C52BF08F9</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<parentObject>75AEABE2-7C94-310C-7F34-B5248C1055C6</parentObject>
+<structAttributeID>E123F444-014C-30CE-CB9C-52D571D48B22</structAttributeID>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>9899F774-954D-6AB0-8DC2-BB1FE9F99D28</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>1</beginValue>
+<endValue>9999</endValue>
+</rangeDef>
+</listOfRanges>
+</nestedColumn>
+<nestedColumn name="Textdarstellung_(ende).Position" id="E0240DB0-DC70-8DE0-6CFA-C5C4967DDE7D">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:28:04 UTC</createdTime>
+<generatorID>E7738E72-02E8-BE64-5565-F64CB8791F42</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<parentObject>75AEABE2-7C94-310C-7F34-B5248C1055C6</parentObject>
+<structAttributeID>13E0A16C-C9F5-24E0-0F7B-E74C71D51442</structAttributeID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>3</use>
+<structuredType>47813466-960A-45B1-A2FF-81D936223094</structuredType>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</nestedColumn>
+<nestedColumn name="Textdarstellung_(ende).Position.Winkel" id="60FBE4A2-01C2-FB0E-09EE-CA9ADCDC908C">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:28:04 UTC</createdTime>
+<generatorID>B7C4068A-8508-9DC7-2C53-A3F295AFDB96</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<parentObject>E0240DB0-DC70-8DE0-6CFA-C5C4967DDE7D</parentObject>
+<structAttributeID>937C758B-A5D3-15B7-9D4F-7CFB8ACC9123</structAttributeID>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>3</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<domain>BD2395F1-C866-A30F-511F-952C9D772388</domain>
+<ownDataTypeParameters>,3,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>-179</beginValue>
+<endValue>180</endValue>
+</rangeDef>
+</listOfRanges>
+</nestedColumn>
+<nestedColumn name="Textdarstellung_(ende).Position.Abstand" id="7EC9E16F-7544-05EA-B931-0BBBC02C0CF0">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:28:04 UTC</createdTime>
+<generatorID>F53DC260-AF2A-5385-B5D1-59EC02A7FC87</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<parentObject>E0240DB0-DC70-8DE0-6CFA-C5C4967DDE7D</parentObject>
+<structAttributeID>2B4D17D2-CE68-79C8-73B4-444CFDBF05D4</structAttributeID>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>9899F774-954D-6AB0-8DC2-BB1FE9F99D28</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>1</beginValue>
+<endValue>9999</endValue>
+</rangeDef>
+</listOfRanges>
+</nestedColumn>
+</nestedColumns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="7C3B429E-0126-27A7-64D2-778F08ACBD82" name="BEDA_PK">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:28:04 UTC</createdTime>
+<generatorID>68118B2A-67D7-5A86-0165-EBFB8275177F</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="D13C32E9-1536-E8F8-E49B-FC8EC934CD53"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="4CEEEAD2-4581-C8F3-D538-075133DCF029" name="BEDA_DIAG_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:28:04 UTC</createdTime>
+<generatorID>98D9C7D0-61D3-5D32-0317-3BA4C7A9B196</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="E21B992C-DC74-A846-0074-64814F699A9B"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
