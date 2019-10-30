@@ -740,6 +740,10 @@ def insertBaseData():
     ldeId= dbInserts.insertSprache(('Deutsch','de','deu','TRUE','TRUE',None,'stb', date.today()));
     dbInserts.insertSprache(('English',  'en', 'eng', 'TRUE', 'FALSE',ldeId, 'stb', date.today()));
     dbInserts.insertSprache(('Français', 'fr', 'fra', 'TRUE', 'FALSE',ldeId, 'stb', date.today()));
+
+    dbDML.delete('diagramme')
+    dbDML.delete('diagrammtypen')
+    dbInserts.insertdiagrammtyp(('Entitätendiagramm','stb',date.today(),None,None))
 #insertBaseData
 
 def transferODMModel():

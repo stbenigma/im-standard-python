@@ -95,7 +95,7 @@ CREATE TABLE melt_diat(
 	CONSTRAINT medi__un UNIQUE(medi_diat_id,
 	                                   medi_melt_id),
     CONSTRAINT medi_diat_fk FOREIGN KEY(medi_diat_id)			           
-					REFERENCES diagrammtyp(diat_id)
+					REFERENCES diagrammtpyen(diat_id)
 								    ON DELETE CASCADE,
 	CONSTRAINT modi_melt_fk FOREIGN KEY(medi_melt_id)
 		REFERENCES modellelem_typ(melt_id)
@@ -112,16 +112,16 @@ CREATE TABLE elementdarst(
     eled_deckkraft        integer NULL
         CHECK(eled_deckkraft BETWEEN 0 AND 100),
     eled_farbe            varchar(6)  NOT NULL
-        CHECK(length()= 6),
+        CHECK(length(eled_farbe)= 6),
     eled_randbreite       integer NULL,
     eled_randdeckkraft    integer NULL
         CHECK(eled_randdeckkraft BETWEEN 0 AND 100),
     eled_randfarbe        varchar(6)  NULL
-        CHECK(length()= 6),
+        CHECK(length(eled_randfarbe)= 6),
     eled_schriftgroesse   integer NULL
         CHECK(eled_schriftgroesse BETWEEN 1 AND 999),
     eled_schriftfarbe     varchar(6) NULL
-        CHECK(length()= 6),
+        CHECK(length(eled_schriftfarbe)= 6),
     eled_mode_id          integer NOT NULL,
     eled_diag_id          integer NOT NULL,
         eled_uc           varchar(30) NOT NULL,
@@ -130,7 +130,7 @@ CREATE TABLE elementdarst(
     eled_dm               varchar(30),
 	CONSTRAINT eled_un UNIQUE(eled_diag_id,eled_mode_id),
     CONSTRAINT eled_diag_fk FOREIGN KEY(eled_diag_id)
-        REFERENCES diagramm(diag_id)
+        REFERENCES diagramme(diag_id)
             ON DELETE CASCADE,
 	CONSTRAINT eled_mode_fk FOREIGN KEY(eled_mode_id)
 			        REFERENCES modellelement(mode_id)
@@ -142,7 +142,7 @@ CREATE TABLE beziehung_darst(
     beda_mode_id             integer NOT NULL,
     beda_linienbreite        integer DEFAULT 1 NOT NULL,
     beda_liniefarbe          varchar(6) DEFAULT '000000' NULL
-        CHECK(length()= 6),
+        CHECK(length(beda_liniefarbe)= 6),
     beda_liniedeckkraft      integer DEFAULT 100 NULL
         CHECK(beda_liniedeckkraft BETWEEN 0 AND 100),
     beda_startkante          varchar(1) NULL
@@ -188,7 +188,7 @@ CREATE TABLE beziehung_darst(
     beda_endtext_hoehe       integer NULL
         CHECK(beda_endtext_hoehe BETWEEN 1 AND 9999),
     beda_schriftfarbe        varchar(6) DEFAULT '000000' NULL
-        CHECK(length()= 6),
+        CHECK(length(beda_schriftfarbe)= 6),
     beda_schriftgroesse      integer NULL
         CHECK(beda_schriftgroesse BETWEEN 1 AND 999),
         beda_uc              varchar(30) NOT NULL,
@@ -197,8 +197,35 @@ CREATE TABLE beziehung_darst(
     beda_dm                  varchar(30),
 	CONSTRAINT beda_un UNIQUE(beda_diag_id,beda_mode_id),
     CONSTRAINT beda_diag_fk FOREIGN KEY(beda_diag_id)
-        REFERENCES diagramm(diag_id)
+        REFERENCES diagramme(diag_id),
 	CONSTRAINT beda_mode_fk FOREIGN KEY(beda_mode_id)
         REFERENCES modellelement(mode_id)
             ON DELETE CASCADE
 );
+
+CREATE TABLE linie_segment(
+    lise_id          integer primary key autoincrement,
+    lise_rhfg        integer NOT NULL,
+    lise_beda_id     integer NOT NULL,
+    lise_x           integer NOT NULL
+        CONSTRAINT ck_beda_beda_schriftfarbe CHECK(lise_x BETWEEN 0 AND 999999) ,
+    lise_y           integer NOT NULL
+        CONSTRAINT ck_beda_beda_schriftfarbe CHECK(lise_y BETWEEN 0 AND 999999) ,
+    lise_linientyp   VARCHAR2(6)NULL
+        CONSTRAINT ck_beda_beda_schriftgroesse CHECK(lise_linientyp IN(
+            'DADO',
+            'DASHED',
+            'DOTTED',
+            'SOLID'
+        )),
+    lise_konnektor   VARCHAR2(3)NULL,
+        lise_uc       varchar(30) NOT NULL,
+    lise_dc           varchar(30) NOT NULL,
+    lise_um           varchar(30) ,
+    lise_dm           varchar(30),
+	CONSTRAINT lise__un UNIQUE(lise_beda_id,lise_rhfg),
+	CONSTRAINT lise_beda_fk FOREIGN KEY(lise_beda_id)
+	        REFERENCES beziehung_darst(beda_id)
+	            ON DELETE CASCADE
+)
+;

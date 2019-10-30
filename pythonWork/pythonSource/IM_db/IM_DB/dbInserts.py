@@ -59,6 +59,14 @@ def insertVorgabewert(pvgwt):
     """
     return dbDML.insert(lsql,pvgwt)
 #end insertVorgabewert
+def insertdiagrammtyp(p_data):
+    lsql="""
+    insert into diagrammtypen(
+    diat_bez   ,diat_uc ,diat_dc,diat_um ,diat_dm) 
+        values (?,?,?,?,?)
+    """
+    return dbDML.insert(lsql,p_data)
+#end insertVorgabewert
 
 def insertAttribute(pattr):
     lsql="""
@@ -159,6 +167,14 @@ def insertmodesyno(p_synid):
 def insertModeBezi(beziId):
     return insertmodellelement(pData=(None, None, None, beziId, None, None, None, dbLookup.meltLookup('BEZI'), '--', date.today()))
 #insertModebezi
+def insertmeltdiat(p_Data):
+    lsql= """insert into
+melt_diat(
+    medi_diat_id, medi_melt_id,medi_uc,mdei_dc,medi_um,mdei_dm   )
+     values(?,?,?,?,?,',')
+     """
+    dbDML.insert(lsql,p_Data)
+#insertmeltdiat
 
 def insertBenudef_wert(pData):
     lsql= """insert into benudef_wert(
@@ -203,6 +219,32 @@ def insertSprachtexte(pData):
     return dbDML.insertmany(lsql, pData)
 #insertSprachtext
 
+def insertelementdarst(p_data):
+    lsql = """insert into 
+elementdarst(
+    eled_position_x,eled_position_y,eled_breite,eled_hoehe
+    ,eled_deckkraft,eled_farbe,eled_randbreite,eled_randdeckkraft
+    ,eled_randfarbe, eled_schriftgroesse, eled_schriftfarbe, eled_mode_id
+    ,eled_diag_id, eled_uc, eled_dc, eled_um
+    , eled_dm)
+    values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)    
+)	          """
+    return dbDML.insertmany(lsql, p_Data)
+#insertelementdarst
+
+def insertelbezidarst(p_data):
+    lsql = """insert into 
+beziehung_darst(
+    beda_diag_id, beda_mode_id, beda_linienbreite, beda_liniefarbe
+    ,beda_liniedeckkraft, beda_starttext_x, beda_starttext_y, beda_starttext_breite
+    ,beda_starttext_hoehe, beda_endtext_x, beda_endtext_y, beda_endtext_breite
+    ,beda_endtext_hoehe, beda_schriftfarbe, beda_schriftgroesse, beda_uc
+    ,beda_dc, beda_um, beda_dm)
+    values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)    
+)	          """
+    return dbDML.insertmany(lsql, p_Data)
+#insertbezidarst
+
 def insertUdpEntity(entiId):
     dbDML.exec("""insert into benudef_wert(
                 bdwe_wert,  bdwe_mode_id,   bdwe_bdeg_id
@@ -217,6 +259,26 @@ def insertUdpEntity(entiId):
                 where enti_id = {}
             """ .format(entiId))
 #insertUdpEntity
+def insertdiagramm(p_data):
+    lsql = """insert into
+diagramme(
+    diag_name,diag_diat_id,diag_uc,diag_dc,diag_um,diag_dm      
+                            values (?,?,?,?,?,?,?,?)
+    """
+    return dbDML.insert(lsql, p_Data)
+#insertdiagramme
+
+def insertlinieseg(p_data):
+    lsql = """insert into
+linie_segment(
+    lise_rhfg, lise_beda_id, lise_x, lise_y
+    , lise_linientyp,lise_konnektor, lise_uc, lise_dc
+    , lise_um,lise_dm 
+                            values (?,?,?,?,?,?,?,?,?,?)
+    """
+    return dbDML.insert(lsql, p_Data)
+#insertlinieseg
+
 def insertUdpBezi(beziId):
     dbDML.exec("""insert into benudef_wert(
                 bdwe_wert,  bdwe_mode_id,   bdwe_bdeg_id

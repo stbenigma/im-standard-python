@@ -36,6 +36,10 @@ def meltLookup(pkurzname):
     return doLookup(pkurzname, 'select melt_id from modellelem_typ where melt_kurzname = "{}"')
 # MeltLookup
 
+def diatid (p_name):
+    return doLookup(p_name,'select diat_id from diagrammtypen where upper(diat_name) =upper("{}")')
+#diatid
+
 def modeAttrLookup(attrId):
     return doLookup(attrId, 'select mode_id from modellelement where mode_attr_id = "{}"')
 # modeAttrLookup
