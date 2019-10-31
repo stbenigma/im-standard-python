@@ -1,0 +1,73 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="6A804D2B-0EA1-996E-2558-550999F83B9E" name="Anderes_IT-System">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<generatorID>24152049-C80B-1FD9-0F12-023358B0A6C1</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<typeID>57779FAE-171C-9BB2-9F88-9B2ED7060C6F</typeID>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="IT-System_IT-Komponente_Modellelement_Modellelement_ID" id="CFFCAC16-C02D-1E97-E781-0BB5CDB5D56C">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="12A3E644-5D2A-F257-5190-2B368F41475A" referredColumn="F5191C5A-745F-0194-51B1-01233C963137"/>
+</associations>
+</Column>
+<Column name="Anderes_IT-System_ID" id="C9A08697-0196-7EA4-1980-A6C51DFBBD29">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="C1B049F1-95CE-CED2-A67D-DFF795C3B6BB" name="Anderes_IT-System_PK">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="CFFCAC16-C02D-1E97-E781-0BB5CDB5D56C"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="48B2CA33-71E9-D45E-380A-61177F0F2151" name="Anderes_IT-System_Anderes_IT-System_ID_UN">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="C9A08697-0196-7EA4-1980-A6C51DFBBD29"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="224014DE-EA17-4CE0-9E61-1A512CFC4012" name="Anderes_IT-System_IT-System_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<generatorID>1356651A-23CE-6DAA-B056-7C162900C076</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="CFFCAC16-C02D-1E97-E781-0BB5CDB5D56C"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -14,7 +14,8 @@ Hersteller]]></comment>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
-<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
 <adequatelyNormalized>NO</adequatelyNormalized>
 <expectedVolumes>0</expectedVolumes>
@@ -40,7 +41,8 @@ Hersteller]]></comment>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
-<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
 <use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
@@ -60,7 +62,8 @@ Hersteller]]></comment>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
-<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>3</use>
@@ -80,7 +83,8 @@ Hersteller]]></comment>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
-<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
@@ -101,10 +105,12 @@ Hersteller]]></comment>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
-<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
 <domain>435C11BA-FCF7-BBBA-6AA9-FAB7326273D3</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
@@ -113,6 +119,12 @@ Hersteller]]></comment>
 <property name="EN_ATTR_COMMENT" value=""/>
 <property name="EN_ATTR_NAME" value="*DE* Schriftgrösse"/>
 </propertyMap>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>1</beginValue>
+<endValue>999</endValue>
+</rangeDef>
+</listOfRanges>
 </Attribute>
 <Attribute name="Schriftfarbe" id="1F173911-54B3-F632-33E4-3E24E25C1797">
 <createdBy>stb</createdBy>
@@ -120,7 +132,8 @@ Hersteller]]></comment>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
-<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <use>0</use>
@@ -144,6 +157,7 @@ Hersteller]]></comment>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
 <parentObject>8324A2C5-4F48-5510-28B3-1D130AD244BA</parentObject>
 <structAttributeID>79B40FB2-0D71-B333-F11A-6BF42CB476F1</structAttributeID>
@@ -161,6 +175,7 @@ Hersteller]]></comment>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
 <parentObject>8324A2C5-4F48-5510-28B3-1D130AD244BA</parentObject>
 <structAttributeID>78EB2EA2-1B31-B620-76C8-F0ACE44FE324</structAttributeID>
@@ -185,12 +200,20 @@ Hersteller]]></comment>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
 <parentObject>8324A2C5-4F48-5510-28B3-1D130AD244BA</parentObject>
 <structAttributeID>BF7C675D-F472-D4E0-D0E7-0E519F1C73EC</structAttributeID>
 <use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
 <domain>9899F774-954D-6AB0-8DC2-BB1FE9F99D28</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>1</beginValue>
+<endValue>9999</endValue>
+</rangeDef>
+</listOfRanges>
 </nestedAttribute>
 <nestedAttribute name="Inhaltdarstellung.Höhe" directorySegmentName="seg_1" id="3E6C2BCC-3812-B139-FE8D-15D1B340778B">
 <createdBy>stb</createdBy>
@@ -199,12 +222,20 @@ Hersteller]]></comment>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
 <parentObject>8324A2C5-4F48-5510-28B3-1D130AD244BA</parentObject>
 <structAttributeID>A212ECBD-508B-BB92-4CA0-A414C275E0BF</structAttributeID>
 <use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
 <domain>9899F774-954D-6AB0-8DC2-BB1FE9F99D28</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>1</beginValue>
+<endValue>9999</endValue>
+</rangeDef>
+</listOfRanges>
 </nestedAttribute>
 <nestedAttribute name="Inhaltdarstellung.Position" directorySegmentName="seg_1" id="B1D5E887-7DEE-C40C-CBB2-F1C7D2715FB2">
 <createdBy>stb</createdBy>
@@ -213,6 +244,7 @@ Hersteller]]></comment>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
 <parentObject>8324A2C5-4F48-5510-28B3-1D130AD244BA</parentObject>
 <structAttributeID>4D8DC9F3-AA7A-E10B-1D50-BAC37BF7F250</structAttributeID>
@@ -228,12 +260,20 @@ Hersteller]]></comment>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
 <parentObject>B1D5E887-7DEE-C40C-CBB2-F1C7D2715FB2</parentObject>
 <structAttributeID>6F9A1317-CF2C-8CE2-E783-4714D09800EF</structAttributeID>
 <use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
 <domain>9899F774-954D-6AB0-8DC2-BB1FE9F99D28</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>1</beginValue>
+<endValue>9999</endValue>
+</rangeDef>
+</listOfRanges>
 </nestedAttribute>
 <nestedAttribute name="Inhaltdarstellung.Position.Y" directorySegmentName="seg_1" id="2DF85822-82EE-5C06-E507-8AC4D5A36B11">
 <createdBy>stb</createdBy>
@@ -242,12 +282,20 @@ Hersteller]]></comment>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
 <parentObject>B1D5E887-7DEE-C40C-CBB2-F1C7D2715FB2</parentObject>
 <structAttributeID>C62F0CCC-3C24-63AA-E614-1047B848FE81</structAttributeID>
 <use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
 <domain>9899F774-954D-6AB0-8DC2-BB1FE9F99D28</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>1</beginValue>
+<endValue>9999</endValue>
+</rangeDef>
+</listOfRanges>
 </nestedAttribute>
 <nestedAttribute name="Randdarstellung.Farbe" directorySegmentName="seg_1" id="77031E8F-901E-0500-FD75-9277570BDDC8">
 <createdBy>stb</createdBy>
@@ -256,6 +304,7 @@ Hersteller]]></comment>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
 <parentObject>D1FE1928-45DF-3F5A-7DC1-8DEEB01936FA</parentObject>
 <structAttributeID>31812808-1563-F130-6C44-AB28C0C55B78</structAttributeID>
@@ -273,6 +322,7 @@ Hersteller]]></comment>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
 <parentObject>D1FE1928-45DF-3F5A-7DC1-8DEEB01936FA</parentObject>
 <structAttributeID>475BE6D9-7955-0B4F-14EE-54AB88615752</structAttributeID>
@@ -297,6 +347,7 @@ Hersteller]]></comment>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
 <parentObject>D1FE1928-45DF-3F5A-7DC1-8DEEB01936FA</parentObject>
 <structAttributeID>A486CC96-6094-DED7-1D64-D7757D50175A</structAttributeID>

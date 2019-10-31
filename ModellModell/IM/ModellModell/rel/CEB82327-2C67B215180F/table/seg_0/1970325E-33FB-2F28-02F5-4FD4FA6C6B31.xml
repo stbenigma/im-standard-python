@@ -1,0 +1,84 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="1970325E-33FB-2F28-02F5-4FD4FA6C6B31" name="IT-Komponente">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<comment><![CDATA[Irgend eine Komponente die mit Informations Technologie zu tun hat und beschafft, betrieben und betreut  werden muss.
+
+Jede IT-Komponente hat einen Hersteller. D.h. es handelt sich um konkrete Produkte.]]></comment>
+<generatorID>CFE2B0E2-7C7C-3289-90F3-1467F54FCB9E</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<typeID>57779FAE-171C-9BB2-9F88-9B2ED7060C6F</typeID>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Modellelement_Modellelement_ID" id="EBE9F0A0-0C2B-712B-09E8-9FCD33A9EF7C">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="6F136551-42BA-E26C-696C-CB2856843D72" referredColumn="53372A54-640A-07EE-CBDE-B0E5EB59DBD2"/>
+</associations>
+</Column>
+<Column name="Name" id="5FBBC661-2002-3E38-D2C1-80D99742A2E2">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<generatorID>E620B7E5-21B9-ADF5-D530-981CC31D9FDB</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Zweck" id="75CB0110-697A-90D8-DB5B-76C847B98FD0">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<comment><![CDATA[Anwendungsgebiet (ERP, PIM, FiBu etc.)]]></comment>
+<generatorID>BF98F3F1-663A-71B7-4491-1BECD8F47FC1</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<domain>CEF66788-EC07-3347-F213-6A5B74AB29A4</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Sicherheitsanforderung" id="BDD014CC-A880-1F6E-B5E6-DF554B763FB2">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<generatorID>6E0763A8-AB52-8D0C-B09E-650796B1CAA2</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="BB77005C-1036-CB0E-3EA8-2CE5732D7CE7" name="IT-Komponente_PK">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="EBE9F0A0-0C2B-712B-09E8-9FCD33A9EF7C"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="A9117046-E734-5288-54FE-6DEE9926295C" name="IT-Komponente_Modellelement_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<generatorID>6B4DAB43-B735-FA6A-ACEB-96563FF2F69F</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="EBE9F0A0-0C2B-712B-09E8-9FCD33A9EF7C"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

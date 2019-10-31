@@ -1,0 +1,104 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="1D2D6662-8A09-90D3-CDA3-FA04CD3721CF" name="Anwendungsfall">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<comment><![CDATA[Anwendungsfälle sind Geschäftsprozesse, die immer von Akteuren (intern oder extern) ausglöst werden. Die Akteure erwarten immer einen direkten Nutzen für ihre aktuelle Aufgabe. D.h. sie haben eine Wirkung gegen aussen.
+Anwendungsfälle beschreiben, was die Umwelt (Nutzende, Kunden, Mitbewerber, Betroffene, Klienten, Öffentlichkeit, öffentliche Verwaltung, etc.) vom System erwartet.
+
+Wikipedia:
+Ein Anwendungsfall (engl. use case) bündelt alle möglichen Szenarien, die eintreten können, wenn ein Akteur versucht, mit Hilfe des betrachteten Systems ein bestimmtes fachliches Ziel (engl. business goal) zu erreichen. Er beschreibt, was inhaltlich beim Versuch der Zielerreichung passieren kann und abstrahiert von konkreten technischen Lösungen. Das Ergebnis des Anwendungsfalls kann ein Erfolg oder Fehlschlag/Abbruch sein.
+
+Spektrum De
+Ein Use-Case-Diagramm (dt. Anwendungsfall-Diagramm) zeigt das
+externe Verhalten eines Systems aus der Sicht der Nutzer, indem es die Nutzer (im
+UML-Jargon „Akteure“ genannt), die Use-Cases und deren Beziehungen zueinander
+darstellt.  Use-Cases bilden die Reaktion des Systems auf Ereignisse seiner Umwelt ab und fassen dabei
+Teile der Systemdienstleistung zusammen. 
+
+Beispiele:
+- Geld beziehen am Bancomat / am Bankschalter
+- Einreichen der Steuererklärung
+- Kauf eines Produktes
+- Einholen einer Auskunft
+- Einfordern Kompensationszahlung
+]]></comment>
+<generatorID>4DD6C225-7F8B-3A21-B9A9-38EC0066338C</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<typeID>22C80650-70BB-112A-562F-823C3A147D9C</typeID>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="GETRANS_Modellelement_Modellelement_ID" id="FBB46DA2-234A-11B2-5049-ADDABAC51238">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="5CB2419D-7962-04A0-24E0-028AC46FD4D7" referredColumn="D69D4359-CDB7-EF6D-C333-9D5BC6DC565F"/>
+</associations>
+</Column>
+<Column name="Anwendungsfall_ID" id="C4722729-5709-7AF3-958A-5A18BA86D720">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+<Column name="Bezeichnung" id="E896B7F0-A569-F297-03F2-04714A5109A9">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<generatorID>1BF0D330-157B-02AD-7AD7-DC147BBE5477</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>897B91BA-60B8-3A16-793A-97B535605E5E</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="55560852-389B-EDDD-E061-A9765EAC51BE" name="Anwendungsfall_PK">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="FBB46DA2-234A-11B2-5049-ADDABAC51238"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="2DA7FB16-5FE7-1468-52A2-8B3E03CF94CF" name="Anwendungsfall_Anwendungsfall_ID_UN">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="C4722729-5709-7AF3-958A-5A18BA86D720"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="64C5B4B7-80C3-4316-8588-374677111CBD" name="Anwendungsfall_GETRANS_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<generatorID>1D456BB6-CF90-4ED3-5A05-C0D56A32F9AB</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="FBB46DA2-234A-11B2-5049-ADDABAC51238"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

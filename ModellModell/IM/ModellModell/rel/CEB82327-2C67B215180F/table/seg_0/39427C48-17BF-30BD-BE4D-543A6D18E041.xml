@@ -1,0 +1,73 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="39427C48-17BF-30BD-BE4D-543A6D18E041" name="intern_verwalteter_Server">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<generatorID>7E09BC4D-A51E-F0A7-F722-3ED28DB9119B</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<typeID>57779FAE-171C-9BB2-9F88-9B2ED7060C6F</typeID>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Server_Hardware_IT-Komponente_Modellelement_Modellelement_ID" id="F586C8B4-78C5-E00F-B104-9395E5B97E93">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="420CBE7C-CFE5-7A8C-0BA8-3DB501B122C2" referredColumn="5D7C724A-398F-55DC-485D-14BE07448B4C"/>
+</associations>
+</Column>
+<Column name="intern_verwalteter_Server_ID" id="3F0991A3-793C-BFA1-1D88-C91F5D66B7CA">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="5C8B3676-C920-6344-7512-D78CDB540282" name="intern_verwalteter_Server_PK">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="F586C8B4-78C5-E00F-B104-9395E5B97E93"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="25436AD1-9F93-9C4F-8D79-1E7042ABC4CB" name="intern_verwalteter_Server_intern_verwalteter_Server_ID_UN">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="3F0991A3-793C-BFA1-1D88-C91F5D66B7CA"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="00704AA9-2C6E-8F0D-82F6-21E7092664E1" name="intern_verwalteter_Server_Server_Hardware_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<generatorID>49059145-A94A-7F2D-2FCE-AA388C252386</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="F586C8B4-78C5-E00F-B104-9395E5B97E93"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

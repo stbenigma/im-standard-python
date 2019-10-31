@@ -56,34 +56,114 @@ Hersteller]]></comment>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="MELT_INHALTDARSTELLUNG" id="EFFDA692-325F-F81E-C131-A26D197AD230">
+<Column name="MELT_BREITE" id="AC02CE6B-1A00-9FBF-3F1F-67521499BD5A">
 <createdBy>stb</createdBy>
-<createdTime>2019-08-27 16:33:55 UTC</createdTime>
-<commentInRDBMS><![CDATA[Vorgabewert einer Darstellung eines Elementtyps]]></commentInRDBMS>
-<generatorID>8324A2C5-4F48-5510-28B3-1D130AD244BA</generatorID>
-<ownerDesignName>ModellModell</ownerDesignName>
-<shouldEngineer>false</shouldEngineer>
-<useDomainConstraints>false</useDomainConstraints>
-<use>3</use>
-<structuredType>CE31E327-3E6B-6CEE-7DCC-818659AF196A</structuredType>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-</Column>
-<Column name="MELT_RANDDARSTELLUNG" id="2942F010-DBFA-B93D-7384-498A4109D690">
-<createdBy>stb</createdBy>
-<createdTime>2019-08-27 16:33:55 UTC</createdTime>
+<createdTime>2019-10-30 10:28:54 UTC</createdTime>
 <commentInRDBMS><![CDATA[Vorgabewert der Darstellung des Randes um das Element]]></commentInRDBMS>
-<generatorID>D1FE1928-45DF-3F5A-7DC1-8DEEB01936FA</generatorID>
+<generatorID>8B735900-0D91-B088-FE52-28C12ECB5967</generatorID>
 <ownerDesignName>ModellModell</ownerDesignName>
-<shouldEngineer>false</shouldEngineer>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
-<use>3</use>
-<structuredType>4816C7EE-B5FE-5DB1-A87E-537F82A20453</structuredType>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>9899F774-954D-6AB0-8DC2-BB1FE9F99D28</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="MELT_SCHRIFTGRÖSSE" id="06877437-3BCB-288B-20DC-41E5F66C3BFE">
+<Column name="MELT_HOEHE" id="61916C3A-2221-589C-F591-800DF46E30F5">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 10:28:54 UTC</createdTime>
+<commentInRDBMS><![CDATA[Vorgabewert der Darstellung des Randes um das Element]]></commentInRDBMS>
+<generatorID>8B735900-0D91-B088-FE52-28C12ECB5967</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>9899F774-954D-6AB0-8DC2-BB1FE9F99D28</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="MELT_DECKKRAFT" id="C772BBE7-D010-B307-675E-16FC4CD33F96">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 10:28:54 UTC</createdTime>
+<generatorID>81F5FE40-4448-69B3-37C1-E5DE22FC7B0A</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>3C43C579-B2CF-0898-C553-AF95467F1601</domain>
+<defaultValue>100</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>0</beginValue>
+<endValue>100</endValue>
+</rangeDef>
+</listOfRanges>
+</Column>
+<Column name="MELT_FARBE" id="76B53E35-999B-6466-CDA7-AE372E7693EC">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 10:28:54 UTC</createdTime>
+<generatorID>81F5FE40-4448-69B3-37C1-E5DE22FC7B0A</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>06269521-C0BC-78CB-FBC8-656101307358</domain>
+<defaultValue>000000</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="MELT_RANDBREITE" id="956E1294-6152-6C8A-E84D-7D012A89430E">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 10:28:54 UTC</createdTime>
+<commentInRDBMS><![CDATA[Vorgabewert der Darstellung des Randes um das Element]]></commentInRDBMS>
+<generatorID>8B735900-0D91-B088-FE52-28C12ECB5967</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>CB54E08F-9CBF-16C7-AB25-64ADCC8C4FFB</domain>
+<defaultValue>1</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="MELT_RANDDECKKRAFT" id="403AAD9F-EA65-E6E0-DA1A-7B4E0FB0E8B1">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 10:28:54 UTC</createdTime>
+<generatorID>81F5FE40-4448-69B3-37C1-E5DE22FC7B0A</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>3C43C579-B2CF-0898-C553-AF95467F1601</domain>
+<defaultValue>100</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>0</beginValue>
+<endValue>100</endValue>
+</rangeDef>
+</listOfRanges>
+</Column>
+<Column name="MELT_RANDFARBE" id="AB6EA9E8-E771-9ABD-E2CA-D5DADD68ACAE">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 10:28:54 UTC</createdTime>
+<generatorID>81F5FE40-4448-69B3-37C1-E5DE22FC7B0A</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>06269521-C0BC-78CB-FBC8-656101307358</domain>
+<defaultValue>000000</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="MELT_SCHRIFTGROESSE" id="06877437-3BCB-288B-20DC-41E5F66C3BFE">
 <createdBy>stb</createdBy>
 <createdTime>2019-08-27 16:33:55 UTC</createdTime>
 <commentInRDBMS><![CDATA[Vorgabewert der Schriftgrösse des Elementsnamens]]></commentInRDBMS>
@@ -92,9 +172,16 @@ Hersteller]]></comment>
 <shouldEngineer>false</shouldEngineer>
 <nullsAllowed>true</nullsAllowed>
 <use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
 <domain>435C11BA-FCF7-BBBA-6AA9-FAB7326273D3</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>1</beginValue>
+<endValue>999</endValue>
+</rangeDef>
+</listOfRanges>
 </Column>
 <Column name="MELT_SCHRIFTFARBE" id="D15B5F33-314C-C007-A349-50CD883FF629">
 <createdBy>stb</createdBy>
@@ -170,165 +257,6 @@ Hersteller]]></comment>
 </propertyMap>
 </Column>
 </columns>
-<nestedColumns itemClass="oracle.dbtools.crest.model.design.relational.Column">
-<nestedColumn name="MELT_INHALTDARSTELLUNG.Farbe" id="335B8DEC-DE45-F5AA-2B7C-E44689F70EA9">
-<createdBy>stb</createdBy>
-<createdTime>2019-08-27 16:33:55 UTC</createdTime>
-<generatorID>EDD25EF1-ED18-917C-316A-C23EA9E25BE3</generatorID>
-<ownerDesignName>ModellModell</ownerDesignName>
-<parentObject>EFFDA692-325F-F81E-C131-A26D197AD230</parentObject>
-<structAttributeID>79B40FB2-0D71-B333-F11A-6BF42CB476F1</structAttributeID>
-<use>0</use>
-<logicalDatatype>LOGDT024</logicalDatatype>
-<dataTypeSize>6 CHAR</dataTypeSize>
-<domain>06269521-C0BC-78CB-FBC8-656101307358</domain>
-<defaultValue>000000</defaultValue>
-<ownDataTypeParameters>6 CHAR,,</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-</nestedColumn>
-<nestedColumn name="MELT_INHALTDARSTELLUNG.Deckkraft" id="0E7BEBFB-6298-8763-27D6-53A9DD3F9E41">
-<createdBy>stb</createdBy>
-<createdTime>2019-08-27 16:33:55 UTC</createdTime>
-<generatorID>39EBAD40-FBD9-98AC-0183-3CECF829D7C3</generatorID>
-<ownerDesignName>ModellModell</ownerDesignName>
-<parentObject>EFFDA692-325F-F81E-C131-A26D197AD230</parentObject>
-<structAttributeID>78EB2EA2-1B31-B620-76C8-F0ACE44FE324</structAttributeID>
-<use>0</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
-<dataTypePrecision>3</dataTypePrecision>
-<dataTypeScale>0</dataTypeScale>
-<domain>3C43C579-B2CF-0898-C553-AF95467F1601</domain>
-<defaultValue>100</defaultValue>
-<ownDataTypeParameters>,3,0</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-<listOfRanges>
-<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
-<beginValue>0</beginValue>
-<endValue>100</endValue>
-</rangeDef>
-</listOfRanges>
-</nestedColumn>
-<nestedColumn name="MELT_INHALTDARSTELLUNG.Breite" id="1BB3E1C9-46AD-2E3C-4C09-AC0C78651818">
-<createdBy>stb</createdBy>
-<createdTime>2019-08-27 16:33:55 UTC</createdTime>
-<generatorID>61026470-457C-EF5E-9F56-48EB1559E5D8</generatorID>
-<ownerDesignName>ModellModell</ownerDesignName>
-<parentObject>EFFDA692-325F-F81E-C131-A26D197AD230</parentObject>
-<structAttributeID>BF7C675D-F472-D4E0-D0E7-0E519F1C73EC</structAttributeID>
-<use>0</use>
-<domain>9899F774-954D-6AB0-8DC2-BB1FE9F99D28</domain>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-</nestedColumn>
-<nestedColumn name="MELT_INHALTDARSTELLUNG.Höhe" id="9D935BC6-F88C-8CA2-AB9F-49311B4FEECC">
-<createdBy>stb</createdBy>
-<createdTime>2019-08-27 16:33:55 UTC</createdTime>
-<generatorID>3E6C2BCC-3812-B139-FE8D-15D1B340778B</generatorID>
-<ownerDesignName>ModellModell</ownerDesignName>
-<parentObject>EFFDA692-325F-F81E-C131-A26D197AD230</parentObject>
-<structAttributeID>A212ECBD-508B-BB92-4CA0-A414C275E0BF</structAttributeID>
-<use>0</use>
-<domain>9899F774-954D-6AB0-8DC2-BB1FE9F99D28</domain>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-</nestedColumn>
-<nestedColumn name="MELT_INHALTDARSTELLUNG.Position" id="395E6ADF-FEFB-7B23-BD2A-610261D4F1E6">
-<createdBy>stb</createdBy>
-<createdTime>2019-08-27 16:33:55 UTC</createdTime>
-<generatorID>B1D5E887-7DEE-C40C-CBB2-F1C7D2715FB2</generatorID>
-<ownerDesignName>ModellModell</ownerDesignName>
-<parentObject>EFFDA692-325F-F81E-C131-A26D197AD230</parentObject>
-<structAttributeID>4D8DC9F3-AA7A-E10B-1D50-BAC37BF7F250</structAttributeID>
-<useDomainConstraints>false</useDomainConstraints>
-<use>3</use>
-<structuredType>6BF3BAC5-EEB4-DFEB-3305-72CD249CFFF4</structuredType>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-</nestedColumn>
-<nestedColumn name="MELT_INHALTDARSTELLUNG.Position.X" id="68B3D259-80BA-3896-8DB8-9FAFB0FE5C55">
-<createdBy>stb</createdBy>
-<createdTime>2019-08-27 16:33:55 UTC</createdTime>
-<generatorID>1C299E49-21E6-98A3-733A-C6D2A0AA5206</generatorID>
-<ownerDesignName>ModellModell</ownerDesignName>
-<parentObject>395E6ADF-FEFB-7B23-BD2A-610261D4F1E6</parentObject>
-<structAttributeID>6F9A1317-CF2C-8CE2-E783-4714D09800EF</structAttributeID>
-<use>0</use>
-<domain>9899F774-954D-6AB0-8DC2-BB1FE9F99D28</domain>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-</nestedColumn>
-<nestedColumn name="MELT_INHALTDARSTELLUNG.Position.Y" id="AF104F64-B722-B4B4-2926-CE01332EF399">
-<createdBy>stb</createdBy>
-<createdTime>2019-08-27 16:33:55 UTC</createdTime>
-<generatorID>2DF85822-82EE-5C06-E507-8AC4D5A36B11</generatorID>
-<ownerDesignName>ModellModell</ownerDesignName>
-<parentObject>395E6ADF-FEFB-7B23-BD2A-610261D4F1E6</parentObject>
-<structAttributeID>C62F0CCC-3C24-63AA-E614-1047B848FE81</structAttributeID>
-<use>0</use>
-<domain>9899F774-954D-6AB0-8DC2-BB1FE9F99D28</domain>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-</nestedColumn>
-<nestedColumn name="MELT_RANDDARSTELLUNG.Farbe" id="2C63C86F-E5C8-D6E8-57BF-3DE36DBF6931">
-<createdBy>stb</createdBy>
-<createdTime>2019-08-27 16:33:55 UTC</createdTime>
-<generatorID>77031E8F-901E-0500-FD75-9277570BDDC8</generatorID>
-<ownerDesignName>ModellModell</ownerDesignName>
-<parentObject>2942F010-DBFA-B93D-7384-498A4109D690</parentObject>
-<structAttributeID>31812808-1563-F130-6C44-AB28C0C55B78</structAttributeID>
-<use>0</use>
-<logicalDatatype>LOGDT024</logicalDatatype>
-<dataTypeSize>6 CHAR</dataTypeSize>
-<domain>06269521-C0BC-78CB-FBC8-656101307358</domain>
-<defaultValue>000000</defaultValue>
-<ownDataTypeParameters>6 CHAR,,</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-</nestedColumn>
-<nestedColumn name="MELT_RANDDARSTELLUNG.Deckkraft" id="6A5E6200-1712-9D1D-C1A7-517D2E9B4D68">
-<createdBy>stb</createdBy>
-<createdTime>2019-08-27 16:33:55 UTC</createdTime>
-<generatorID>26327A5B-26DA-B3E7-F814-27E95CBE868A</generatorID>
-<ownerDesignName>ModellModell</ownerDesignName>
-<parentObject>2942F010-DBFA-B93D-7384-498A4109D690</parentObject>
-<structAttributeID>475BE6D9-7955-0B4F-14EE-54AB88615752</structAttributeID>
-<use>0</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
-<dataTypePrecision>3</dataTypePrecision>
-<dataTypeScale>0</dataTypeScale>
-<domain>3C43C579-B2CF-0898-C553-AF95467F1601</domain>
-<defaultValue>100</defaultValue>
-<ownDataTypeParameters>,3,0</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-<listOfRanges>
-<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
-<beginValue>0</beginValue>
-<endValue>100</endValue>
-</rangeDef>
-</listOfRanges>
-</nestedColumn>
-<nestedColumn name="MELT_RANDDARSTELLUNG.Breitev1" id="37B088CD-9C93-7214-D628-95274EEFCA85">
-<createdBy>stb</createdBy>
-<createdTime>2019-08-27 16:33:55 UTC</createdTime>
-<generatorID>18BC3179-FF0D-6316-7A3F-0EEA3AB61799</generatorID>
-<ownerDesignName>ModellModell</ownerDesignName>
-<parentObject>2942F010-DBFA-B93D-7384-498A4109D690</parentObject>
-<structAttributeID>A486CC96-6094-DED7-1D64-D7757D50175A</structAttributeID>
-<use>0</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
-<dataTypePrecision>3</dataTypePrecision>
-<dataTypeScale>1</dataTypeScale>
-<domain>CB54E08F-9CBF-16C7-AB25-64ADCC8C4FFB</domain>
-<defaultValue>1</defaultValue>
-<ownDataTypeParameters>,3,1</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-<listOfRanges>
-<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
-<beginValue>0.0</beginValue>
-<endValue>99</endValue>
-</rangeDef>
-</listOfRanges>
-</nestedColumn>
-</nestedColumns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
 <ind_PK_UK id="711C5DFD-EB90-2CCD-2862-5531E750CCD0" name="MELT_PK">
 <createdBy>stb</createdBy>

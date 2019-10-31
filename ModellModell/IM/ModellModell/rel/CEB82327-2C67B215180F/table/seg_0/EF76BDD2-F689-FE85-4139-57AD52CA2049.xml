@@ -1,0 +1,95 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="EF76BDD2-F689-FE85-4139-57AD52CA2049" name="Informationsnutzung">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<comment><![CDATA[Nutzung eines Datenelementes in einer Applikation]]></comment>
+<generatorID>526D416C-C253-C817-1CD1-E4D6118CA176</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<typeID>22C80650-70BB-112A-562F-823C3A147D9C</typeID>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Modellelement_Modellelement_ID" id="0F958E4F-0C56-78EA-27A6-63A2261783AC">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="D35B8C9B-5221-E9C2-961A-CDAC4FD82926" referredColumn="53372A54-640A-07EE-CBDE-B0E5EB59DBD2"/>
+</associations>
+</Column>
+<Column name="Lesen_(J/N)" id="4AD67C26-445C-B2DA-C1AC-201EEACFE5CB">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<generatorID>2A7128E0-0FFF-BE5C-BDE5-87D9A5E343CC</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Erstellen_(J/N)" id="F1923187-F38F-FD6C-6152-4EC51BA6D51A">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<generatorID>8131FC15-7E35-03A7-2CA4-2B6F3D428C86</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Löschen_(J/N)" id="CCBE387F-68C3-D135-17D6-76FDA4D7ECC2">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<generatorID>CAF35C45-7668-8219-8374-59ABEFD5C7DA</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Ändern_(J/N)" id="3A7B9988-4727-9A4F-9AF8-5241F6A9DF95">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<generatorID>22AFCE0D-20BE-A2B7-988C-9B81AA3596E8</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="9A2B3B63-5DB7-2ED6-EF1D-029215BD77C9" name="Informationsnutzung_PK">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="0F958E4F-0C56-78EA-27A6-63A2261783AC"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="2BBD69C1-B3DE-9FA6-2F40-F4F5CFC0A61B" name="Informationsnutzung_Modellelement_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<generatorID>D9252CEA-A186-80D1-089B-D90E5938C30E</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="0F958E4F-0C56-78EA-27A6-63A2261783AC"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -7,6 +7,7 @@
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
 <adequatelyNormalized>NO</adequatelyNormalized>
 <expectedVolumes>0</expectedVolumes>
@@ -33,6 +34,7 @@
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
 <referedAttribute>4DA5699D-EE03-51A3-A977-DBA7D07B46CA</referedAttribute>
 <useDomainConstraints>false</useDomainConstraints>
@@ -56,6 +58,7 @@
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
 <referedAttribute>2DCBFE07-8721-71CA-D16E-9E078C96CF67</referedAttribute>
 <useDomainConstraints>false</useDomainConstraints>
@@ -79,6 +82,7 @@
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
 <referedAttribute>37A28E78-6788-8230-EFF6-97B5FB4AD2E3</referedAttribute>
 <useDomainConstraints>false</useDomainConstraints>
@@ -101,6 +105,7 @@
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
@@ -122,6 +127,7 @@
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
@@ -143,9 +149,11 @@
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
 <domain>435C11BA-FCF7-BBBA-6AA9-FAB7326273D3</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
@@ -154,6 +162,12 @@
 <property name="EN_ATTR_COMMENT" value=""/>
 <property name="EN_ATTR_NAME" value="*DE* Schriftgrösse"/>
 </propertyMap>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>1</beginValue>
+<endValue>999</endValue>
+</rangeDef>
+</listOfRanges>
 </Attribute>
 <Attribute name="Schriftfarbe" id="81F5FE40-4448-69B3-37C1-E5DE22FC7B0A">
 <createdBy>stb</createdBy>
@@ -162,6 +176,7 @@
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <use>0</use>
@@ -185,6 +200,7 @@
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
 <parentObject>4513F410-C3CF-A0F8-0DA3-06A48FCBAC9B</parentObject>
 <structAttributeID>79B40FB2-0D71-B333-F11A-6BF42CB476F1</structAttributeID>
@@ -202,6 +218,7 @@
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
 <parentObject>4513F410-C3CF-A0F8-0DA3-06A48FCBAC9B</parentObject>
 <structAttributeID>78EB2EA2-1B31-B620-76C8-F0ACE44FE324</structAttributeID>
@@ -226,12 +243,20 @@
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
 <parentObject>4513F410-C3CF-A0F8-0DA3-06A48FCBAC9B</parentObject>
 <structAttributeID>BF7C675D-F472-D4E0-D0E7-0E519F1C73EC</structAttributeID>
 <use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
 <domain>9899F774-954D-6AB0-8DC2-BB1FE9F99D28</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>1</beginValue>
+<endValue>9999</endValue>
+</rangeDef>
+</listOfRanges>
 </nestedAttribute>
 <nestedAttribute name="Inhaltdarstellung.Höhe" directorySegmentName="seg_1" id="577EF1A7-8F51-BF7F-69AF-44913F2430D9">
 <createdBy>stb</createdBy>
@@ -240,12 +265,20 @@
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
 <parentObject>4513F410-C3CF-A0F8-0DA3-06A48FCBAC9B</parentObject>
 <structAttributeID>A212ECBD-508B-BB92-4CA0-A414C275E0BF</structAttributeID>
 <use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
 <domain>9899F774-954D-6AB0-8DC2-BB1FE9F99D28</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>1</beginValue>
+<endValue>9999</endValue>
+</rangeDef>
+</listOfRanges>
 </nestedAttribute>
 <nestedAttribute name="Inhaltdarstellung.Position" directorySegmentName="seg_1" id="A02D3150-E0D1-AB70-459F-88911523ACA1">
 <createdBy>stb</createdBy>
@@ -254,6 +287,7 @@
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
 <parentObject>4513F410-C3CF-A0F8-0DA3-06A48FCBAC9B</parentObject>
 <structAttributeID>4D8DC9F3-AA7A-E10B-1D50-BAC37BF7F250</structAttributeID>
@@ -269,12 +303,20 @@
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
 <parentObject>A02D3150-E0D1-AB70-459F-88911523ACA1</parentObject>
 <structAttributeID>6F9A1317-CF2C-8CE2-E783-4714D09800EF</structAttributeID>
 <use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
 <domain>9899F774-954D-6AB0-8DC2-BB1FE9F99D28</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>1</beginValue>
+<endValue>9999</endValue>
+</rangeDef>
+</listOfRanges>
 </nestedAttribute>
 <nestedAttribute name="Inhaltdarstellung.Position.Y" directorySegmentName="seg_1" id="BAC86FB3-000A-AA3C-4B8E-46C4305CE5F5">
 <createdBy>stb</createdBy>
@@ -283,12 +325,20 @@
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
 <parentObject>A02D3150-E0D1-AB70-459F-88911523ACA1</parentObject>
 <structAttributeID>C62F0CCC-3C24-63AA-E614-1047B848FE81</structAttributeID>
 <use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
 <domain>9899F774-954D-6AB0-8DC2-BB1FE9F99D28</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>1</beginValue>
+<endValue>9999</endValue>
+</rangeDef>
+</listOfRanges>
 </nestedAttribute>
 <nestedAttribute name="Randdarstellung.Farbe" directorySegmentName="seg_1" id="E7257366-852C-64F3-CDB2-DA919F463FA0">
 <createdBy>stb</createdBy>
@@ -297,6 +347,7 @@
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
 <parentObject>8B735900-0D91-B088-FE52-28C12ECB5967</parentObject>
 <structAttributeID>31812808-1563-F130-6C44-AB28C0C55B78</structAttributeID>
@@ -314,6 +365,7 @@
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
 <parentObject>8B735900-0D91-B088-FE52-28C12ECB5967</parentObject>
 <structAttributeID>475BE6D9-7955-0B4F-14EE-54AB88615752</structAttributeID>
@@ -338,6 +390,7 @@
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
 <parentObject>8B735900-0D91-B088-FE52-28C12ECB5967</parentObject>
 <structAttributeID>A486CC96-6094-DED7-1D64-D7757D50175A</structAttributeID>
@@ -361,9 +414,11 @@
 <createdBy>stb</createdBy>
 <createdTime>2018-11-03 14:31:48 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="false"/>
 </engineerTo>
 <pk>true</pk>
 <newElementsIDs>EA5BE36E-D298-45EB-3BD7-34DB557812CE</newElementsIDs>
