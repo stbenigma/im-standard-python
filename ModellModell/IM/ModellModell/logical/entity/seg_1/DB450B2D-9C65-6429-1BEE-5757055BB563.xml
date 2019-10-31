@@ -24,6 +24,7 @@ Oracle-APEX
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
 <typeID>57779FAE-171C-9BB2-9F88-9B2ED7060C6F</typeID>
 <adequatelyNormalized>NO</adequatelyNormalized>
@@ -39,10 +40,8 @@ Oracle-APEX
 <propertyMap>
 <property name="DE_ENTI_COMMENT" value="IT_System, Betriebssystem, Infrastruktur in oder auf dem Anwendungen laufen können.  Beispiele: Power-DNS JRE java runtime environment Windows Android ubuntu Linux mongo-DB Excel Access SAP-Hana IDE  = Application for IT-People Eclipse / Microsoft Studio Jenkins Oracle-APEX "/>
 <property name="DE_ENTI_NAME" value="IT-System"/>
-<property name="DE_ENTI_SYNONYM" value=""/>
 <property name="EN_ENTI_COMMENT" value="*DE* IT_System, Betriebssystem, Infrastruktur in oder auf dem Anwendungen laufen können.  Beispiele: Power-DNS JRE java runtime environment Windows Android ubuntu Linux mongo-DB Excel Access SAP-Hana IDE  = Application for IT-People Eclipse / Microsoft Studio Jenkins Oracle-APEX "/>
 <property name="EN_ENTI_NAME" value="*DE* IT-System"/>
-<property name="EN_ENTI_SYNONYM" value=""/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Zeichnsatz" id="CEF84331-D1F8-95B8-C3AC-2F58918460FD">
@@ -53,6 +52,7 @@ Oracle-APEX
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <use>0</use>
@@ -76,6 +76,7 @@ Oracle-APEX
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
 <referedAttribute>158D6530-A023-BDA9-20B0-7ED13799AF9A</referedAttribute>
 <use>0</use>
@@ -89,6 +90,26 @@ Oracle-APEX
 <property name="EN_ATTR_NAME" value="*DE* Name"/>
 </propertyMap>
 </Attribute>
+<Attribute name="Name_" id="F3557BB1-0486-BA65-69E0-90425C9A4AED">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-31 07:11:23 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Name"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="*DE* Name"/>
+</propertyMap>
+</Attribute>
 </attributes>
 <identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
 <identifier id="2608DA3A-BEF7-23E8-4779-062F797D4E7E" name="ITSY_NAME_UK">
@@ -98,6 +119,7 @@ Oracle-APEX
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
 <pk>true</pk>
 <newElementsIDs>03E094E5-D662-F557-57A5-DD289B02EBF0</newElementsIDs>

@@ -2,19 +2,13 @@
 <Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="51A29F90-6A42-D746-7C3F-2EF284F47DDD" name="Geschäftsfunktion">
 <createdBy>stb</createdBy>
 <createdTime>2018-11-03 12:49:04 UTC</createdTime>
-<comment><![CDATA[Definiert eine Einheit, die für eine sinnvoll zusammenfassbare Gruppe von Informationen, Prozesse und Systemen zuständig ist.
-Ein Hoheitsbereich kümmert sich um eine bestimmte Art von Aufgaben im Unternehmen. Es ist ein Aufgabenbereich.
-Häufig entsprechen Hoheitsbereiche den Divisionen, Geschäftsbereichen oder Sparten d.h. der Organisationeinheinheit auf der obersten Stufe.  Dies ist aber nur eine mögliche Lösung.
+<comment><![CDATA[Definiert eine Einheit, die eine sinnvoll zusammenfassbare Gruppe von Informationen, Prozesse und Systemen nutzt bzw. dafür zuständig ist.
 
-Hoheitsbereich bestimmt
-- Wer erstellt Datensätze zu einer Entität.
-- Wer bestimmt über Änderungen / Qualität etc.
-- Wer verwendet die Informationen dieser Entität haupstächlich
-- ??
+Geschäftsfunktionen können über mehrere Geschäftsbereiche und/oder Abteilungen verteilt sein.
+(Beispiele: Projektleitung kann in vielen Bereichen vorkommen)
 
-ACHTUNG: Es sollten KEINE technischen Aufteilungen (Systeme, Technologie, Medien) für die Unterscheidung verwendet werden, da diese 
-häufiger ändern können.
-Es geht um die semantische Hoheit über die Informationen.
+ACHTUNG: Es sollten KEINE technischen Aufteilungen (Systeme, Technologie, Medien) für die Unterscheidung verwendet werden, da diese häufiger ändern können.
+Es geht um die semantische Gruppierung der Anwendungen und Geschäftstransaktionen
 
 Beispiele:
   Management
@@ -30,6 +24,7 @@ Beispiele:
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
 <typeID>22C80650-70BB-112A-562F-823C3A147D9C</typeID>
 <adequatelyNormalized>NO</adequatelyNormalized>
@@ -59,6 +54,7 @@ Beispiele:
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
 <use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
@@ -79,6 +75,7 @@ Beispiele:
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <use>0</use>
@@ -92,28 +89,6 @@ Beispiele:
 <property name="EN_ATTR_NAME" value="*DE* Beschreibung [L]"/>
 </propertyMap>
 </Attribute>
-<Attribute name="Farbcode" id="17C3BB97-B462-AAB8-7466-3237B0DB48EE">
-<createdBy>stb</createdBy>
-<createdTime>2018-11-03 12:56:28 UTC</createdTime>
-<comment><![CDATA[RGB-Code als Farbevorgabe für die Darstellung von Entitäten aus diesem Hoheitsbereich]]></comment>
-<ownerDesignName>ModellModell</ownerDesignName>
-<engineerTo>
-<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
-<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
-</engineerTo>
-<nullsAllowed>true</nullsAllowed>
-<use>0</use>
-<logicalDatatype>LOGDT024</logicalDatatype>
-<domain>06269521-C0BC-78CB-FBC8-656101307358</domain>
-<defaultValue>000000</defaultValue>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<propertyMap>
-<property name="DE_ATTR_COMMENT" value="RGB-Code als Farbevorgabe für die Darstellung von Entitäten aus diesem Hoheitsbereich"/>
-<property name="DE_ATTR_NAME" value="Farbcode"/>
-<property name="EN_ATTR_COMMENT" value="*DE* RGB-Code als Farbevorgabe für die Darstellung von Entitäten aus diesem Hoheitsbereich"/>
-<property name="EN_ATTR_NAME" value="*DE* Farbcode"/>
-</propertyMap>
-</Attribute>
 </attributes>
 <identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
 <identifier id="19AF3B00-7767-D7FB-695C-A41E111C413D" name="HBER PK">
@@ -123,6 +98,7 @@ Beispiele:
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
 <pk>true</pk>
 <newElementsIDs>53DC075C-058F-2C59-D396-901F1B597822</newElementsIDs>

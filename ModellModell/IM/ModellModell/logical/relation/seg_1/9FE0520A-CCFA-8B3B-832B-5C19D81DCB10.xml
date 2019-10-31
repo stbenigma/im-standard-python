@@ -1,17 +1,16 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_242" directorySegmentName="seg_1" id="1463563D-806E-CE55-0B0F-0B45D8C28742">
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_222" directorySegmentName="seg_1" id="9FE0520A-CCFA-8B3B-832B-5C19D81DCB10">
 <createdBy>stb</createdBy>
-<createdTime>2019-04-05 07:44:36 UTC</createdTime>
+<createdTime>2019-10-31 06:55:17 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
 <useSurrogateKey>true</useSurrogateKey>
-<arc>89022C4B-2C54-0231-7F4A-A9FF6A563A25</arc>
+<arc>5972BF52-65C0-C1BD-6D7B-3D24515CCC0A</arc>
 <identifying>false</identifying>
-<nameOnSource>ist</nameOnSource>
-<nameOnTarget>ist</nameOnTarget>
 <optionalSource>true</optionalSource>
 <optionalTarget>false</optionalTarget>
 <sourceCardinality>1</sourceCardinality>
@@ -19,10 +18,4 @@
 <targetCardinalityString>1</targetCardinalityString>
 <targetEntity>5555ED41-5590-13C8-C379-5FC83128838D</targetEntity>
 <transferable>true</transferable>
-<propertyMap>
-<property name="DE_RELA_TEXT_FROM" value="ist"/>
-<property name="DE_RELA_TEXT_TO" value="ist"/>
-<property name="EN_RELA_TEXT_FROM" value="*DE* ist"/>
-<property name="EN_RELA_TEXT_TO" value="*DE* ist"/>
-</propertyMap>
 </Relation>

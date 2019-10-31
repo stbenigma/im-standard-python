@@ -1,16 +1,15 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="A0088A0E-0DAE-CEB0-2B99-BE1265DB35E9" name="Geschäftsereignis">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="35BEC93D-0A88-2624-4501-982E09D4A203" name="externes Geschäftsereignis">
 <createdBy>stb</createdBy>
-<createdTime>2019-04-05 07:42:44 UTC</createdTime>
-<comment><![CDATA[Eine geschäftliche Entscheidung, Vorgabe oder Regel, die dazu führt, dass eine Geschäftsfunktion oder ein -Prozess ausgelöst wird.
-Bei einem Geschäftsereignis ist immer eine Person involviert, die das Ereignis als solches definiert.
-Automatisch ausgelöste Ereignisse sind Geschäftszustände
+<createdTime>2019-10-31 07:39:54 UTC</createdTime>
+<comment><![CDATA[Eine Ereignis, das von aussen an unsere Firma herangetragen wird. Es kann automatisch (via externe Anwendung) oder manuell durch einen Kunden / Lieferanten geschehen
 
 Beispiele:
-- Eine Kündigung wird ausgesprochen
 - Kunde beschwert sich
 - Kunde bestellt (mit Brief, Telefon, Fax oder per Webshop)
-- Quartalszahlen sind schlecht]]></comment>
+- eine Lieferung trifft ein
+- wir erhalten eine Mahnung  / Rechnung
+- eine Bewerbung geht ein]]></comment>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
@@ -23,6 +22,7 @@ Beispiele:
 <fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
 <growthPercent>0</growthPercent>
 <growthType>Year</growthType>
+<hierarchicalParent>A0088A0E-0DAE-CEB0-2B99-BE1265DB35E9</hierarchicalParent>
 <maxVolumes>9999999</maxVolumes>
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
