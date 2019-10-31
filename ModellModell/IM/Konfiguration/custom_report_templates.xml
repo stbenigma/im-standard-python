@@ -329,19 +329,6 @@
 		</section>
 	</sections>
 	</custom_report_template>
-	<custom_report_template id="3B62549B-0B4B-A8E3-ACFB-01CF0A6293E7" name="Entity simple" description="" class="oracle.dbtools.crest.model.design.logical.Entity" >
-	<sections>
-		<section propertyName="Entity" type="" customName="Entity" level="0" class="oracle.dbtools.crest.model.design.logical.Entity">
-		<columns>
-				<column name="name" customName="Name" width="10.0" order="1" massUpdatable="false" dynamic="false"/>
-				<column name="synonym" customName="Synonyme" width="7.0" order="" massUpdatable="false" dynamic="false"/>
-				<column name="shortName" customName="Kurzname" width="5.0" order="" massUpdatable="true" dynamic="false"/>
-				<column name="parentEntity" customName="Super-Entität" width="10.0" order="" massUpdatable="false" dynamic="false"/>
-				<column name="comment" customName="Beschreibung" width="68.0" order="" massUpdatable="false" dynamic="false"/>
-		</columns>
-		</section>
-	</sections>
-	</custom_report_template>
 	<custom_report_template id="B4BC7C12-C389-BDC8-B0EB-5A0CA1595CFE" name="Entity Details" description="" class="oracle.dbtools.crest.model.design.logical.Entity" >
 	<sections>
 		<section propertyName="Entity" type="" customName="Entity" level="0" class="oracle.dbtools.crest.model.design.logical.Entity">
@@ -421,6 +408,43 @@
 				<column name="dataTypeScale" customName="Data type scale" width="0.0" order="" massUpdatable="true" dynamic="false"/>
 				<column name="dataTypeSize" customName="Data type size" width="0.0" order="" massUpdatable="true" dynamic="false"/>
 				<column name="domain" customName="Domain" width="0.0" order="" massUpdatable="true" dynamic="false"/>
+		</columns>
+		</section>
+	</sections>
+	</custom_report_template>
+	<custom_report_template id="A21D9485-A526-45B5-F833-0656CFFE88C6" name="EntityTRANSL" description="" class="oracle.dbtools.crest.model.design.logical.Entity" >
+	<sections>
+		<section propertyName="Entity" type="" customName="Entity" level="0" class="oracle.dbtools.crest.model.design.logical.Entity">
+		<columns>
+				<column name="name" customName="Name" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="EN_ENTI_NAME" customName="EN_ENTI_NAME" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="synonym" customName="Synonym" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="EN_ENTI_SYNONYM" customName="EN_ENTI_SYNONYM" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="comment" customName="Comment" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="EN_ENTI_COMMENT" customName="EN_ENTI_COMMENT" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+		</columns>
+		</section>
+		<section propertyName="attributes" type="collection" customName="Attributes" level="1" class="oracle.dbtools.crest.model.design.logical.Attribute">
+		<columns>
+				<column name="name" customName="Name" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="EN_ATTR_NAME" customName="EN_ATTR_NAME" width="0.0" order="" massUpdatable="false" dynamic="true"/>
+				<column name="comment" customName="Comment" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="EN_ATTR_COMMENT" customName="EN_ATTR_COMMENT" width="0.0" order="" massUpdatable="false" dynamic="true"/>
+		</columns>
+		</section>
+	</sections>
+	</custom_report_template>
+	<custom_report_template id="3B62549B-0B4B-A8E3-ACFB-01CF0A6293E7" name="Entity simple" description="" class="oracle.dbtools.crest.model.design.logical.Entity" >
+	<sections>
+		<section propertyName="Entity" type="" customName="Entity" level="0" class="oracle.dbtools.crest.model.design.logical.Entity">
+		<columns>
+				<column name="name" customName="Name" width="10.0" order="1" massUpdatable="false" dynamic="false"/>
+				<column name="synonym" customName="Synonyme" width="7.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="parentEntity" customName="Super-Entität" width="10.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="comment" customName="Beschreibung" width="68.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="EN_ENTI_NAME" customName="EN_ENTI_NAME" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="EN_ENTI_SYNONYM" customName="EN_ENTI_SYNONYM" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="EN_ENTI_COMMENT" customName="EN_ENTI_COMMENT" width="0.0" order="" massUpdatable="false" dynamic="false"/>
 		</columns>
 		</section>
 	</sections>

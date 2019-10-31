@@ -459,7 +459,7 @@ def printcontenthead():
             <p3 {} 
             </p3>
         </div>
-""".format("""class="descr">Diese Webseite enhtält den ganzen Inhalt 
+""".format("""class="descr">Diese Webseite enthält den ganzen Inhalt 
             des <p2 class="IM">Informationsmodells</p2>. 
             Diese Seite wurde von Software von <p2 class="fyayc">foryouandyourcustomers</p2> 
             erstellt.""")
