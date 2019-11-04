@@ -1,4 +1,6 @@
-
+	<lib id="3648E159-EDD2-ECD1-C014-A11CB3E804A5" name="translation" engine="Oracle Nashorn" methods="initTranslation,change2DE,change2EN" >
+		<script>
+			<![CDATA[
 //scripts to handle translation of model
 var gLogNote = "LOG";
 var gCurrentLang = "DE";
@@ -260,3 +262,5 @@ function change2EN() {
 		changeLang(gCurrentLang,'EN');
 	}
 }
+]]>
+		</script>
