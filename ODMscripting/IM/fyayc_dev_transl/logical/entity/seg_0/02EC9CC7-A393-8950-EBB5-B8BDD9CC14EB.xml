@@ -1,0 +1,291 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="02EC9CC7-A393-8950-EBB5-B8BDD9CC14EB" name="Super Entiät">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-06 12:21:42 UTC</createdTime>
+<comment><![CDATA[*Eine Entität, die aus 2 Subtypen besteht]]></comment>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+*Eine Entität, die aus 2 Subtypen besteht
+]DE_ENTI_COMMENT]
+
+
+
+
+
+
+
+
+
+[EN_ENTI_COMMENT[
+*Eine Entität, die aus 2 Subtypen besteht
+]EN_ENTI_COMMENT]
+
+
+
+
+
+
+
+
+
+
+]]></notes>
+<ownerDesignName>fyayc_dev_transl</ownerDesignName>
+<engineerTo>
+<item key="5BE1D3DE-1298-62A6-B8A4-2793AE250A49" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<synonym>*EN* englsynonym</synonym>
+<createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="DE_ENTI_NAME" value="Super Entiät"/>
+<property name="DE_ENTI_SYNONYM" value="*EN* englsynonym"/>
+<property name="EN_ENTI_NAME" value="**Super Entity"/>
+<property name="EN_ENTI_SYNONYM" value="englsynonym"/>
+<property name="undefined_ENTI_SYNONYM" value="*DE* *EN* englsynonym"/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Kürzel" id="55CABD5F-9462-BF35-239C-E8A1A1D0848C">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-06 12:21:42 UTC</createdTime>
+<comment><![CDATA[*EN* *]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+*EN* *
+]DE_ATTR_COMMENT]
+
+
+
+
+
+
+
+
+
+[EN_ATTR_COMMENT[
+*
+]EN_ATTR_COMMENT]
+
+
+
+
+
+
+
+
+]]></notes>
+<ownerDesignName>fyayc_dev_transl</ownerDesignName>
+<engineerTo>
+<item key="5BE1D3DE-1298-62A6-B8A4-2793AE250A49" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Kürzel"/>
+<property name="EN_ATTR_NAME" value="*DE* Kürzel"/>
+</propertyMap>
+</Attribute>
+<Attribute name="Beschreibung" id="F867E8A4-918F-6080-28A2-29F17C191237">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-06 12:21:42 UTC</createdTime>
+<comment><![CDATA[*EN* *]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+*EN* *
+]DE_ATTR_COMMENT]
+
+
+
+
+
+
+
+
+
+[EN_ATTR_COMMENT[
+*
+]EN_ATTR_COMMENT]
+
+
+
+
+
+
+
+
+]]></notes>
+<ownerDesignName>fyayc_dev_transl</ownerDesignName>
+<engineerTo>
+<item key="5BE1D3DE-1298-62A6-B8A4-2793AE250A49" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT040</logicalDatatype>
+<domain>710CB1D1-E463-4093-CDA3-938B989B0822</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Beschreibung"/>
+<property name="EN_ATTR_NAME" value="*DE* Beschreibung"/>
+</propertyMap>
+</Attribute>
+<Attribute name="Gültigperiode" id="BF0C6DE8-EB85-2BA9-957F-24D2906D86AA">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-06 12:22:14 UTC</createdTime>
+<comment><![CDATA[*EN* *]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+*EN* *
+]DE_ATTR_COMMENT]
+
+
+
+
+
+
+
+
+
+[EN_ATTR_COMMENT[
+*
+]EN_ATTR_COMMENT]
+
+
+
+
+
+
+
+
+]]></notes>
+<ownerDesignName>fyayc_dev_transl</ownerDesignName>
+<engineerTo>
+<item key="5BE1D3DE-1298-62A6-B8A4-2793AE250A49" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>3</use>
+<structuredType>66BFBF95-B0E6-4D93-EB1C-93CEEE4064C6</structuredType>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Gültigperiode"/>
+<property name="EN_ATTR_NAME" value="*DE* Gültigperiode"/>
+</propertyMap>
+</Attribute>
+<Attribute name="Standort" id="ADC7A453-19E1-879D-D4DF-B9DF8368A828">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-06 12:22:25 UTC</createdTime>
+<comment><![CDATA[*EN* *]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+*EN* *
+]DE_ATTR_COMMENT]
+
+
+
+
+
+
+
+
+
+[EN_ATTR_COMMENT[
+*
+]EN_ATTR_COMMENT]
+
+
+
+
+
+
+
+
+]]></notes>
+<ownerDesignName>fyayc_dev_transl</ownerDesignName>
+<engineerTo>
+<item key="5BE1D3DE-1298-62A6-B8A4-2793AE250A49" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>3</use>
+<structuredType>34FE0B62-C82A-7934-B36E-07AD3210A8E3</structuredType>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Standort"/>
+<property name="EN_ATTR_NAME" value="*DE* Standort"/>
+</propertyMap>
+</Attribute>
+</attributes>
+<nestedAttributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<nestedAttribute name="Gültigperiode.StartTag" directorySegmentName="seg_0" id="493C64FB-3E0D-3CBC-F792-C5E97F8C0179">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-06 12:27:39 UTC</createdTime>
+<ownerDesignName>fyayc_dev_transl</ownerDesignName>
+<engineerTo>
+<item key="5BE1D3DE-1298-62A6-B8A4-2793AE250A49" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<parentObject>BF0C6DE8-EB85-2BA9-957F-24D2906D86AA</parentObject>
+<structAttributeID>75CB5D9B-F0B2-FDD1-F756-82E0ABC6C802</structAttributeID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<dataTypePrecision>0</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,0,0</ownDataTypeParameters>
+</nestedAttribute>
+<nestedAttribute name="Gültigperiode.EndTag" directorySegmentName="seg_0" id="A7D058E2-0D3B-3397-1399-02EEA0F0C51F">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-06 12:27:39 UTC</createdTime>
+<ownerDesignName>fyayc_dev_transl</ownerDesignName>
+<engineerTo>
+<item key="5BE1D3DE-1298-62A6-B8A4-2793AE250A49" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<parentObject>BF0C6DE8-EB85-2BA9-957F-24D2906D86AA</parentObject>
+<structAttributeID>E10E3347-DF54-339D-538C-4574D87C192F</structAttributeID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<dataTypePrecision>0</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,0,0</ownDataTypeParameters>
+</nestedAttribute>
+<nestedAttribute name="Standort.X" directorySegmentName="seg_0" id="16894671-35E0-92A8-8694-A2800F545AD8">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-06 12:27:46 UTC</createdTime>
+<ownerDesignName>fyayc_dev_transl</ownerDesignName>
+<engineerTo>
+<item key="5BE1D3DE-1298-62A6-B8A4-2793AE250A49" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<parentObject>ADC7A453-19E1-879D-D4DF-B9DF8368A828</parentObject>
+<structAttributeID>87F8587F-4D88-50B9-0341-B1BA3E318037</structAttributeID>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>12</dataTypePrecision>
+<dataTypeScale>9</dataTypeScale>
+<domain>5D6F945C-D1FD-ED55-14C3-F06C4DF2D519</domain>
+<ownDataTypeParameters>,12,9</ownDataTypeParameters>
+</nestedAttribute>
+<nestedAttribute name="Standort.Y" directorySegmentName="seg_0" id="5D27944F-A278-212B-A3DD-9C7716B470CF">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-06 12:27:46 UTC</createdTime>
+<ownerDesignName>fyayc_dev_transl</ownerDesignName>
+<engineerTo>
+<item key="5BE1D3DE-1298-62A6-B8A4-2793AE250A49" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<parentObject>ADC7A453-19E1-879D-D4DF-B9DF8368A828</parentObject>
+<structAttributeID>8705B46A-CBF4-5307-9F98-7AF46BE10BAE</structAttributeID>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>12</dataTypePrecision>
+<dataTypeScale>9</dataTypeScale>
+<domain>DC9EA111-9C1A-C273-8536-70CE9CF65363</domain>
+<ownDataTypeParameters>,12,9</ownDataTypeParameters>
+</nestedAttribute>
+</nestedAttributes>
+</Entity>
