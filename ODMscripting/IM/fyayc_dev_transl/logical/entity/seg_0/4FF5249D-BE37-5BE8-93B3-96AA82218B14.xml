@@ -2,6 +2,13 @@
 <Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="4FF5249D-BE37-5BE8-93B3-96AA82218B14" name="Subentität 1">
 <createdBy>stb</createdBy>
 <createdTime>2019-11-06 12:28:05 UTC</createdTime>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+
+]EN_ENTI_COMMENT]
+]]></notes>
 <ownerDesignName>fyayc_dev_transl</ownerDesignName>
 <engineerTo>
 <item key="5BE1D3DE-1298-62A6-B8A4-2793AE250A49" value="true"/>
@@ -16,10 +23,23 @@
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
 <createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="DE_ENTI_NAME" value="Subentität 1"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_NAME" value="*DE* Subentität 1"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+</propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Zusatzattribut subenti1" id="5F5E841A-6B04-C288-C598-A61658F8D1BD">
 <createdBy>stb</createdBy>
 <createdTime>2019-11-06 12:28:05 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>fyayc_dev_transl</ownerDesignName>
 <engineerTo>
 <item key="5BE1D3DE-1298-62A6-B8A4-2793AE250A49" value="true"/>
@@ -29,6 +49,10 @@
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <domain>9DEE9E83-5B47-BAD9-CC36-EC93AB677F7F</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Zusatzattribut subenti1"/>
+<property name="EN_ATTR_NAME" value="*DE* Zusatzattribut subenti1"/>
+</propertyMap>
 </Attribute>
 </attributes>
 </Entity>

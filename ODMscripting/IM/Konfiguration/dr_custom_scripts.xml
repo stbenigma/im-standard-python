@@ -2,1301 +2,653 @@
 <dr_custom_scripts>
 	<scr id="5A11B035-F057-610C-DA96-682126DB3D13" name="change2EN" object="logical" engine="Oracle Nashorn" type="" var="model" library="translation" method="change2EN" purpose="transformation" >
 		<script>
-			<![CDATA[//scripts to handle translation of model
-			var gLogNote = "LOG";
-			var gCurrentLang = "DE";
-			var gLanguages = "DE,EN";
-			var gTranslInforegexp =/TRANSLATION\{[^}]*\}/;
-			var logInitialized = false;
-			var notesStartTag = '[<tag>[\n';
-			var notesEndTag = '\n]<tag>]';
-			var plainMessage = 1;
-			var errorMessage = 0;
-			var gLangArray = []; 
-			var gCurVersion = '';
-			var CODEVERSION = '1.0';
-			
-
-			function fullmessage(msg,type) {
-				Java.type("javax.swing.JOptionPane").showMessageDialog(null
-				, msg,'ODM-Translation', type);
-			}
-
-			function error(msg) {
-				fullmessage(msg,errorMessage);
-				}
-			function message(msg) {
-				fullmessage(msg,plainMessage);
-				}
-
-			function initLog(){
-				if (! logInitialized){
-					var lNote = model.getNoteSet().getByName(gLogNote);
-			     	if (lNote == null) {
-			    	    		lNote = model.createNote()
-				    		lNote.setName(gLogNote);
-			     	}
-			     	lNote.setComment("");
-			     	logInitialized = true;
-				}
-			}
-			function log(plog){
-				initLog();
-				var lNote = model.getNoteSet().getByName(gLogNote);
-			     lNote.setComment(lNote.getComment()+"\n"+plog);
-			}
-
-			function getTranslInfo(){
-				var lDesignComment = model.design.getComment();
-			     lmatchTransl= lDesignComment.match(gTranslInforegexp);
-			     return lmatchTransl;    
-			}
-
-			function setTranslInfo(curLang,langs,version) {
-				model.design.setComment(
-					"TRANSLATION{\ncurrentLang="+curLang
-					+"\nlanguages="+langs
-					+"\nlastSync="
-					+"\nversion="+version+"\n}\n"
-					+ model.design.getComment());
-			}
-			function updTranslInfo(curLang,langs,version,datetime) {
-				curComment = model.design.getComment();
-				model.design.setComment(
-					curComment.replace(gTranslInforegexp,
-					"TRANSLATION{\ncurrentLang="+curLang
-					+"\nlanguages="+langs
-					+"\nlastSync="+datetime
-					+"\nversion="+version+"\n}"
-					));
-			}
-			
-			function buildRegExpTag(innertag,tag){
-				return tag.replace('<tag>',innertag).replace(/\[/g,'\\[').replace(/\]/g,'\\]')
-			}
-
-			function textFromNote(tag,obj) {
-			    	note = obj.getNotes()
-			    	restart =  buildRegExpTag(tag, notesStartTag)
-			    	reend =  buildRegExpTag (tag, notesEndTag)
-			    	//throw new Error (restart+"*"+reend);
-			    	re = new RegExp(restart + '([^]*)' + reend)
-			    	ma = note.match(re)
-			    	retval = ''
-			   	if (ma != null) {
-			   		retval = ma[1]
-				}
-				return retval
-			}
-
-			function textToNote(tag,obj,value) {
-			    	note = obj.getNotes()
-			    	restart =  buildRegExpTag(tag, notesStartTag)
-			    	reend =  buildRegExpTag (tag, notesEndTag)
-			    	re = new RegExp(restart + '([^]*)' + reend)
-			    	ma = note.match(re)
-			    	newentry = notesStartTag.replace('<tag>',tag) 
-			    			+ value 
-			    			+ notesEndTag.replace('<tag>',tag)
-			    			+ "\n"
-			   	if (ma == null) {
-			   		note = note + newentry
-				} else {
-					note = note.replace(re , newentry)
-				}
-
-				obj.setNotes(note)
-			}
-
-			function init(istUpgrade){
-				lmatchTransl = getTranslInfo();
-				if (lmatchTransl == null) {
-					throw new Error("\n***TRANSLATION not installed***\n");
-				}
-				ltext= String(lmatchTransl).match(/currentLang=[A-Z]{2}/);
-				lparts = String(ltext).split("=");
-				//log("curLang="+lparts[1]);
-			     gCurrentLang = lparts[1];
-
-				ltext= String(lmatchTransl).match(/languages=[A-Z,]*/);
-				lparts = String(ltext).split("=");
-			     //log("languages="+lparts[1]);
-			     gLanguages = lparts[1]
-				gLangArray = gLanguages.split(',');
-				
-				ltext= String(lmatchTransl).match(/version=[0-9\.]*/);
-				lparts = String(ltext).split("=");
-				gCurVersion = lparts[1]
-				if (gCurVersion != CODEVERSION && !istUpgrade) {
-					msg = "\n***TRANSLATION version mismatch: "
-						+"expected " + CODEVERSION + " found "+gCurVersion
-						+"\nPlease upgrade.***\n"
-					throw new Error(msg);
-				}
-			}
-
-			function doProperty(lang,propName,obj,value){
-				lpropName = lang + propName;
-				if (lang == gCurrentLang) {
-					// falls der Wert geändert hat, markiere die Fremdsprachen und überschreibe
-					oldval = obj.getProperty(lpropName)
-					if (oldval != value) {
-						//Porperty hat geändert, markiere die fremden Properties
-						for (il=0;il<gLangArray.length;il++) {
-							// nur die fremden Sprachen ersetzen
-							flang = gLangArray[il]
-							if (flang != gCurrentLang) {
-								fpropName = flang + propName;
-								fprop = obj.getProperty(fpropName)
-								if (fprop.startsWith('*')){
-									// ** und * sind in Bearbeitiung nichts ersetzen
-								} else if (fprop.startsWith("**"+lang+"** ") 
-											|| (fprop == "" && value != "")) {
-									lprefix =  '*'+gCurrentLang+'* '
-									obj.setProperty(fpropName,lprefix+value)
-								} else {
-									// Wert markieren mit *
-									obj.setProperty(fpropName,"*"+fprop)
-								}
-							} 
-						}
-						// die Werte kommen aus dem Objekt, überschreibe immer
-						obj.setProperty(lpropName, value)
-					}
-				} else {
-				   	ldest = obj.getProperty(lpropName);
-				   	// überschreibe nur, wenn das Ziel leer ist
-					if (ldest == '')  {
-					 	// bei leerem sourceWert setze keinen Prefix
-						if (value != '') {
-							lprefix =  '*'+gCurrentLang+'* '
-							obj.setProperty(lpropName,lprefix+value)
-						} 
-			
-					}
-				}
-			}
-
-			function doNote(lang,tag,obj,value) {
-				if (lang == gCurrentLang) {
-					// die Werte kommen aus dem Objekt, überschreibe immer
-					textToNote(lang+tag,obj,value)
-				} else {
-				   	ldest = textFromNote(lang+tag,obj);
-				   	// überschreibe nur, wenn das Ziel leer ist
-					if (ldest == '')  {
-					 	// bei leerem sourceWert setze keinen Prefix
-						if (value != '') {
-							lprefix =  '*'+gCurrentLang+'* '
-							textToNote(lang+tag,obj,lprefix+value)
-						} 
-			
-					}
-				}
+			<![CDATA[
+//scripts to handle translation of model
+	var gLogNote = "LOG";
+	var gCurrentLang = "DE";
+	var gLanguages = "DE,EN";
+	var gTranslInforegexp =/TRANSLATION\{[^}]*\}/;
+	var logInitialized = false;
+	var NOTESSTARTTAG = '[<tag>[\n';
+	var NOTESENDTAG = '\n]<tag>]';
+	var plainMessage = 1;
+	var errorMessage = 0;
+	var gLangArray = []; 
+	var gCurVersion = '';
+	var CODEVERSION = '1.0';
 	
-			}			
-	
-			function fuellUDP(){
-				entities = model.getEntitySet().toArray();
-				for (ie=0;ie<entities.length;ie++) { //
-					ent = entities[ie];
-					// noch nicht initialisiert
-					for (il=0;il<gLangArray.length;il++) {
-						doProperty(gLangArray[il],"_ENTI_NAME",ent,ent.getName())
-						doNote(gLangArray[il],"_ENTI_COMMENT",ent,ent.getComment())
-						doProperty(gLangArray[il],"_ENTI_SYNONYM",ent,ent.getSynonym())
-					}
-	
-					attrs = ent.getAttributes().toArray();
-					//log("Attrs="+attrs.length)
-					for (ia=0;ia<attrs.length;ia++) { //
-						attr = attrs[ia];
-						for (il=0;il<gLangArray.length;il++) {
-							doProperty(gLangArray[il],"_ATTR_NAME",attr,attr.getName());
-							doNote(gLangArray[il],"_ATTR_COMMENT",attr,attr.getComment());			
-					}
-					}
-					ent.setDirty(true);
-				}
-				relationships = model.getRelationSet().toArray();
-				for (ir=0;ir<relationships.length;ir++) { //
-					rel = relationships[ir];
-					sourcename = rel.getNameOnSource()
-					targetname = rel.getNameOnTarget()
-					for (il=0;il<gLangArray.length;il++) {
-						//if (i > 0) throw new Error ("\n"+gLangArray[i]+"_RELA_TEXT_FROM"+"\n"+gLangArray.length);
-						doProperty(gLangArray[il],"_RELA_TEXT_FROM",rel,sourcename)
-						doProperty(gLangArray[il],"_RELA_TEXT_TO",rel,targetname)	
-					}
-					rel.setDirty(true);
-				}
-			}
 
-			function setProperties(lang){
-				entities = model.getEntitySet().toArray();
-				for (ie=0;ie<entities.length;ie++) { //
-					ent = entities[ie];
-					ent.setName(ent.getProperty(lang+"_ENTI_NAME"));
-					ent.setComment(textFromNote(lang+"_ENTI_COMMENT",ent))
-					ent.setSynonym(ent.getProperty(lang+"_ENTI_SYNONYM"));
+	function fullmessage(msg,type) {
+		Java.type("javax.swing.JOptionPane").showMessageDialog(null
+		, msg,'ODM-Translation', type);
+	}
+
+	function error(msg) {
+		fullmessage(msg,errorMessage);
+		}
+	function message(msg) {
+		fullmessage(msg,plainMessage);
+		}
+
+	function initLog(){
+		if (! logInitialized){
+			var lNote = model.getNoteSet().getByName(gLogNote);
+	     	if (lNote == null) {
+	    	    		lNote = model.createNote()
+		    		lNote.setName(gLogNote);
+	     	}
+	     	lNote.setComment("");
+	     	logInitialized = true;
+		}
+	}
+	function log(plog){
+		initLog();
+		var lNote = model.getNoteSet().getByName(gLogNote);
+	     lNote.setComment(lNote.getComment()+"\n"+plog);
+	}
+
+	function getTranslInfo(){
+		var lDesignComment = model.design.getComment();
+	     lmatchTransl= lDesignComment.match(gTranslInforegexp);
+	     return lmatchTransl;    
+	}
+
+	function setTranslInfo(curLang,langs,version) {
+		model.design.setComment(
+			"TRANSLATION{\ncurrentLang="+curLang
+			+"\nlanguages="+langs
+			+"\nlastSync="
+			+"\nversion="+version+"\n}\n"
+			+ model.design.getComment());
+	}
+	function updTranslInfo(curLang,langs,version,datetime) {
+		curComment = model.design.getComment();
+		model.design.setComment(
+			curComment.replace(gTranslInforegexp,
+			"TRANSLATION{\ncurrentLang="+curLang
+			+"\nlanguages="+langs
+			+"\nlastSync="+datetime
+			+"\nversion="+version+"\n}"
+			));
+	}
+	
+	function buildRegExpTag(innertag,tag){
+		return tag.replace('<tag>',innertag).replace(/\[/g,'\\[').replace(/\]/g,'\\]')
+	}
+
+	function textFromNote(tag,obj) {
+    	note = obj.getNotes()
+    	restart =  buildRegExpTag(tag, NOTESSTARTTAG)
+    	reend =  buildRegExpTag (tag, NOTESENDTAG)+"[\n]*"
+    	re = new RegExp(restart + '([^]*)' + reend)
+    	ma = note.match(re)
+    	retval = ''
+	   	if (ma != null) {
+			//message("|"+reend+"|\n"+"|"+ma[0]+"|")
+	   		retval = ma[1]
+		}
+		return retval
+	}
+
+	function textToNote(tag,obj,value) {
+    	note = obj.getNotes()
+    	restart =  buildRegExpTag(tag, NOTESSTARTTAG)
+    	reend =  buildRegExpTag (tag, NOTESENDTAG)+"[\n]*"
+    	re = new RegExp(restart + '([^]*)' + reend)
+    	ma = note.match(re)
+		newentry = NOTESSTARTTAG.replace('<tag>',tag) 
+			+ value 
+			+ NOTESENDTAG.replace('<tag>',tag)
+			+'\n'
+	   	if (ma == null) {
+	   		note = note + newentry
+		} else {
+			//message("|"+newentry+"|\n"+"|"+ma[0]+"|")
+			note = note.replace(ma[0] , newentry)
+		}
+
+		obj.setNotes(note)
+	}
+
+	function init(istUpgrade){
+		lmatchTransl = getTranslInfo();
+		if (lmatchTransl == null) {
+			throw new Error("\n***TRANSLATION not installed***\n");
+		}
+		ltext= String(lmatchTransl).match(/currentLang=[A-Z]{2}/);
+		lparts = String(ltext).split("=");
+		//log("curLang="+lparts[1]);
+	     gCurrentLang = lparts[1];
+
+		ltext= String(lmatchTransl).match(/languages=[A-Z,]*/);
+		lparts = String(ltext).split("=");
+	     //log("languages="+lparts[1]);
+	     gLanguages = lparts[1]
+		gLangArray = gLanguages.split(',');
 		
-					attrs = ent.getAttributes().toArray();
-					//log("Attrs="+attrs.length)
-					for (ia=0;ia<attrs.length;ia++) { //
-						attr = attrs[ia];
-						//log(attr.getName(),attr.getComment());
-						attr.setName(attr.getProperty(lang+"_ATTR_NAME"));
-						attr.setComment(textFromNote(lang+"_ATTR_COMMENT",attr))
-					}		
-					ent.setDirty(true);
-				}
-				relationships = model.getRelationSet().toArray();
-				for (ir=0;ir<relationships.length;ir++) { 
-					rel = relationships[ir];
-					rel.setNameOnSource(rel.getProperty(lang+"_RELA_TEXT_FROM"));
-					rel.setNameOnTarget(rel.getProperty(lang+"_RELA_TEXT_TO"));
-					rel.setDirty(true);
-				}
-			}
+		ltext= String(lmatchTransl).match(/version=[0-9\.]*/);
+		lparts = String(ltext).split("=");
+		gCurVersion = lparts[1]
+		if (gCurVersion != CODEVERSION && !istUpgrade) {
+			msg = "\n***TRANSLATION version mismatch: "
+				+"expected " + CODEVERSION + " found "+gCurVersion
+				+"\nPlease upgrade.***\n"
+			throw new Error(msg);
+		}
+	}
 
-			function curDateStr(){
-				var currentdate = new Date();
-				return  currentdate.getDate() 
-				+ "/" + (currentdate.getMonth()+1) 
-				+ "/" + currentdate.getFullYear() + "  " 
-				+ currentdate.getHours() + ":" 
-				+ currentdate.getMinutes() + ":" + currentdate.getSeconds();
-			}
-
-			function changeLang(pfromLang,ptoLang){
-				//log("3:"+gLanguages);
-			//	log("change from " + pfromLang + " to " + ptoLang);
-				fuellUDP();
-				setProperties(ptoLang);
-				gCurrentLang = ptoLang;
-				updTranslInfo(gCurrentLang, gLanguages
-							,gCurVersion,curDateStr());	
-				model.design.setDirty(true);
-			}
-
-			function initTranslation() {
-				lmatchTransl= getTranslInfo()
-				if (lmatchTransl == null) {
-					setTranslInfo(gCurrentLang
-					,gLanguages,CODEVERSION);		
-				} else {
-					lversion = String(lmatchTransl).match(/version=[0-9\.]*/);
-					throw new Error("\n***TRANSLATION ("+lversion+") already installed***\n");
-				}
-				//hier gibt es einen Eintrag für die Translation
-				init();
-				// fülle die UDP für die Übersetzungen
-				fuellUDP();
-				updTranslInfo(gCurrentLang, gLanguages
-							 ,gCurVersion,curDateStr());
-				model.design.setDirty(true);
-			}
-
-			function change2DE() {
-				init();
-				if (gCurrentLang != 'DE') {
-					changeLang(gCurrentLang,'DE');
-					message ("Modell auf DE übersetzt. Bitte Labels aus- und wieder einblenden."
-					        ,plainMessage);
-				}
-			}
-	
-			function change2EN() {
-				init();
-				if (gCurrentLang != 'EN') {
-					changeLang(gCurrentLang,'EN');
-					message ("Model translated to EN. Please hide and re-display labels."
-					        ,plainMessage);
-				}
-			}
-			
-			function upgradeTranslation () {
-				init(true);				
-				//1.0 has no upgrades
-				if (gCurVersion  == CODEVERSION) {
-					message("TRANSLATE: latest version ("+gCurVersion+") is installed")
-				} else {
-					if (gCurVersion == "1.0") {
-						// installiere 1. Stufe nach 1.0
-					} else {
-						message("TRANSLATE: unknown version ("+gCurVersion+").\n"
-								+"Please contact support");
+	function doLangValue(propName,obj,value,isNote,notNull){
+		lpropName = gCurrentLang + propName;
+	    oldval = (isNote) ? textFromNote(lpropName,obj) : obj.getProperty(lpropName);
+		lprefix =  '*'+gCurrentLang+'* '
+		//markiere oder fülle die fremden Properties
+		for (il=0;il<gLangArray.length;il++) {
+			// nur die fremden Sprachen ersetzen
+			flang = gLangArray[il]
+			if (flang != gCurrentLang) {
+				fpropName = flang + propName;
+				fprop = (isNote) ? textFromNote(fpropName,obj) : obj.getProperty(fpropName);
+				// Falls die Fremdsprache noch automtaisch übersetzt ist ( *XX* vorneweg hat), überschreibe sie
+				if (fprop.match(/^\*[A-Z]{2}\* /)) {
+				   if (isNote) textToNote(fpropName,obj,lprefix+value);
+					  else obj.setProperty(fpropName,lprefix+value);
+				} else if (fprop.startsWith('*')) {
+					// ** und * sind in Bearbeitung nichts ersetzen
+				} else if (fprop == "" && value == "" && ! notNull) {
+					// das Ziel ist leer, der neue Wert auch und es ist kein Mussfeld. lass das Ziel leer
+				} else if (fprop == "") {
+					// das Ziel ist leer aber aus einem Grund muss ich es überschreiben (siehe vorheriges IF)
+				   if (isNote) textToNote(fpropName,obj,lprefix+value);
+					  else obj.setProperty(fpropName,lprefix+value);
+			    } else {
+					// das Ziel ist gefüllt, nicht in Bearbeitung und nicht automatisch übersetzt.
+					// d.h. es hat einen gültigen Wert. Markiere es, falls die Quelle wirklich geändert hat
+					if ( ! (oldval.match(/^\*[A-Z]{2}\* /)
+						  || oldval.startsWith("**")
+						  || oldval.startsWith("*")) ) {
+						  // die Quelle ist kein Feld, das in Bearbeitung oder autmoatisch übersetzt ist
+						  if (isNote) textToNote(fpropName,obj,"*"+fprop);
+					   		else obj.setProperty(fpropName,"*"+fprop)
 					}
-					updTranslInfo(gCurrentLang, gLanguages
-							 ,CODEVERSION,curDateStr());
-				
-				}			
-			}]]>
+				}
+			} 
+		}
+		// die Werte der CurrentLang kommen aus dem Objekt, überschreibe immer
+		if (isNote) textToNote(lpropName,obj,value);
+		   else obj.setProperty(lpropName, value);
+	}
+
+	function doProperty(propName,obj,value,notNull){
+		doLangValue(propName,obj,value,false,notNull);
+	}
+
+	function doNote(tag,obj,value) {
+		doLangValue(tag,obj,value,true,false);
+	}
+
+	function fuellUDP(){
+		entities = model.getEntitySet().toArray();
+		for (ie=0;ie<entities.length;ie++) { //
+			ent = entities[ie];
+			doProperty("_ENTI_NAME",ent,ent.getName(),true)
+			doNote("_ENTI_COMMENT",ent,ent.getComment())
+			doProperty("_ENTI_SYNONYM",ent,ent.getSynonym())
+
+			attrs = ent.getAttributes().toArray();
+			//log("Attrs="+attrs.length)
+			for (ia=0;ia<attrs.length;ia++) { //
+				attr = attrs[ia];
+				for (il=0;il<gLangArray.length;il++) {
+					doProperty("_ATTR_NAME",attr,attr.getName(),true);
+					doNote("_ATTR_COMMENT",attr,attr.getComment());			
+				}
+			}
+		ent.setDirty(true);
+		}
+		relationships = model.getRelationSet().toArray();
+		for (ir=0;ir<relationships.length;ir++) { //
+			rel = relationships[ir];
+			sourcename = rel.getNameOnSource()
+			targetname = rel.getNameOnTarget()
+			//if (i > 0) throw new Error ("\n"+gLangArray[i]+"_RELA_TEXT_FROM"+"\n"+gLangArray.length);
+			doProperty("_RELA_TEXT_FROM",rel,sourcename)
+			doProperty("_RELA_TEXT_TO",rel,targetname)	
+			rel.setDirty(true);
+		}
+	}
+
+	function setProperties(lang){
+		entities = model.getEntitySet().toArray();
+		for (ie=0;ie<entities.length;ie++) { //
+			ent = entities[ie];
+			ent.setName(ent.getProperty(lang+"_ENTI_NAME"));
+			ent.setComment(textFromNote(lang+"_ENTI_COMMENT",ent))
+			ent.setSynonym(ent.getProperty(lang+"_ENTI_SYNONYM"));
+
+			attrs = ent.getAttributes().toArray();
+			//log("Attrs="+attrs.length)
+			for (ia=0;ia<attrs.length;ia++) { //
+				attr = attrs[ia];
+				//log(attr.getName(),attr.getComment());
+				attr.setName(attr.getProperty(lang+"_ATTR_NAME"));
+				attr.setComment(textFromNote(lang+"_ATTR_COMMENT",attr))
+			}		
+			ent.setDirty(true);
+		}
+		relationships = model.getRelationSet().toArray();
+		for (ir=0;ir<relationships.length;ir++) { 
+			rel = relationships[ir];
+			rel.setNameOnSource(rel.getProperty(lang+"_RELA_TEXT_FROM"));
+			rel.setNameOnTarget(rel.getProperty(lang+"_RELA_TEXT_TO"));
+			rel.setDirty(true);
+		}
+	}
+
+	function curDateStr(){
+		var currentdate = new Date();
+		return  currentdate.getDate() 
+		+ "/" + (currentdate.getMonth()+1) 
+		+ "/" + currentdate.getFullYear() + "  " 
+		+ currentdate.getHours() + ":" 
+		+ currentdate.getMinutes() + ":" + currentdate.getSeconds();
+	}
+
+	function changeLang(pfromLang,ptoLang){
+		//log("3:"+gLanguages);
+	//	log("change from " + pfromLang + " to " + ptoLang);
+		fuellUDP();
+		setProperties(ptoLang);
+		gCurrentLang = ptoLang;
+		updTranslInfo(gCurrentLang, gLanguages
+					,gCurVersion,curDateStr());	
+		model.design.setDirty(true);
+	}
+
+	function initTranslation() {
+		lmatchTransl= getTranslInfo()
+		if (lmatchTransl == null) {
+			setTranslInfo(gCurrentLang
+			,gLanguages,CODEVERSION);		
+		} else {
+			lversion = String(lmatchTransl).match(/version=[0-9\.]*/);
+			throw new Error("\n***TRANSLATION ("+lversion+") already installed***\n");
+		}
+		//hier gibt es einen Eintrag für die Translation
+		init();
+		// fülle die UDP für die Übersetzungen
+		fuellUDP();
+		updTranslInfo(gCurrentLang, gLanguages
+					 ,gCurVersion,curDateStr());
+		model.design.setDirty(true);
+		message ("TRANLSATION installed current-language="+gCurrentLang
+		         + " languages="+gLanguages+" version="+gCurVersion
+			        ,plainMessage);
+	}
+
+	function change2DE() {
+		init();
+		if (gCurrentLang != 'DE') {
+			changeLang(gCurrentLang,'DE');
+			message ("Modell auf DE übersetzt. Bitte Labels aus- und wieder einblenden."
+			        ,plainMessage);
+		}
+	}
+
+	function change2EN() {
+		init();
+		if (gCurrentLang != 'EN') {
+			changeLang(gCurrentLang,'EN');
+			message ("Model translated to EN. Please hide and re-display labels."
+			        ,plainMessage);
+		}
+	}
+	
+	function upgradeTranslation () {
+		init(true);				
+		//1.0 has no upgrades
+		if (gCurVersion  == CODEVERSION) {
+			message("TRANSLATE: latest version ("+gCurVersion+") is installed")
+		} else {
+			if (gCurVersion == "1.0") {
+				// installiere 1. Stufe nach 1.0
+			} else {
+				message("TRANSLATE: unknown version ("+gCurVersion+").\n"
+						+"Please contact support");
+			}
+			updTranslInfo(gCurrentLang, gLanguages
+					 ,CODEVERSION,curDateStr());
+		
+		}			
+	}
+]]>
 		</script>
 	</scr>
 	<scr id="DD17C73B-0487-4BD0-C058-2267ADEE209F" name="change2DE" object="logical" engine="Oracle Nashorn" type="" var="model" library="translation" method="change2DE" purpose="transformation" >
 		<script>
-			<![CDATA[//scripts to handle translation of model
-			var gLogNote = "LOG";
-			var gCurrentLang = "DE";
-			var gLanguages = "DE,EN";
-			var gTranslInforegexp =/TRANSLATION\{[^}]*\}/;
-			var logInitialized = false;
-			var notesStartTag = '[<tag>[\n';
-			var notesEndTag = '\n]<tag>]';
-			var plainMessage = 1;
-			var errorMessage = 0;
-			var gLangArray = []; 
-			var gCurVersion = '';
-			var CODEVERSION = '1.0';
-			
-
-			function fullmessage(msg,type) {
-				Java.type("javax.swing.JOptionPane").showMessageDialog(null
-				, msg,'ODM-Translation', type);
-			}
-
-			function error(msg) {
-				fullmessage(msg,errorMessage);
-				}
-			function message(msg) {
-				fullmessage(msg,plainMessage);
-				}
-
-			function initLog(){
-				if (! logInitialized){
-					var lNote = model.getNoteSet().getByName(gLogNote);
-			     	if (lNote == null) {
-			    	    		lNote = model.createNote()
-				    		lNote.setName(gLogNote);
-			     	}
-			     	lNote.setComment("");
-			     	logInitialized = true;
-				}
-			}
-			function log(plog){
-				initLog();
-				var lNote = model.getNoteSet().getByName(gLogNote);
-			     lNote.setComment(lNote.getComment()+"\n"+plog);
-			}
-
-			function getTranslInfo(){
-				var lDesignComment = model.design.getComment();
-			     lmatchTransl= lDesignComment.match(gTranslInforegexp);
-			     return lmatchTransl;    
-			}
-
-			function setTranslInfo(curLang,langs,version) {
-				model.design.setComment(
-					"TRANSLATION{\ncurrentLang="+curLang
-					+"\nlanguages="+langs
-					+"\nlastSync="
-					+"\nversion="+version+"\n}\n"
-					+ model.design.getComment());
-			}
-			function updTranslInfo(curLang,langs,version,datetime) {
-				curComment = model.design.getComment();
-				model.design.setComment(
-					curComment.replace(gTranslInforegexp,
-					"TRANSLATION{\ncurrentLang="+curLang
-					+"\nlanguages="+langs
-					+"\nlastSync="+datetime
-					+"\nversion="+version+"\n}"
-					));
-			}
-			
-			function buildRegExpTag(innertag,tag){
-				return tag.replace('<tag>',innertag).replace(/\[/g,'\\[').replace(/\]/g,'\\]')
-			}
-
-			function textFromNote(tag,obj) {
-			    	note = obj.getNotes()
-			    	restart =  buildRegExpTag(tag, notesStartTag)
-			    	reend =  buildRegExpTag (tag, notesEndTag)
-			    	//throw new Error (restart+"*"+reend);
-			    	re = new RegExp(restart + '([^]*)' + reend)
-			    	ma = note.match(re)
-			    	retval = ''
-			   	if (ma != null) {
-			   		retval = ma[1]
-				}
-				return retval
-			}
-
-			function textToNote(tag,obj,value) {
-			    	note = obj.getNotes()
-			    	restart =  buildRegExpTag(tag, notesStartTag)
-			    	reend =  buildRegExpTag (tag, notesEndTag)
-			    	re = new RegExp(restart + '([^]*)' + reend)
-			    	ma = note.match(re)
-			    	newentry = notesStartTag.replace('<tag>',tag) 
-			    			+ value 
-			    			+ notesEndTag.replace('<tag>',tag)
-			    			+ "\n"
-			   	if (ma == null) {
-			   		note = note + newentry
-				} else {
-					note = note.replace(re , newentry)
-				}
-
-				obj.setNotes(note)
-			}
-
-			function init(istUpgrade){
-				lmatchTransl = getTranslInfo();
-				if (lmatchTransl == null) {
-					throw new Error("\n***TRANSLATION not installed***\n");
-				}
-				ltext= String(lmatchTransl).match(/currentLang=[A-Z]{2}/);
-				lparts = String(ltext).split("=");
-				//log("curLang="+lparts[1]);
-			     gCurrentLang = lparts[1];
-
-				ltext= String(lmatchTransl).match(/languages=[A-Z,]*/);
-				lparts = String(ltext).split("=");
-			     //log("languages="+lparts[1]);
-			     gLanguages = lparts[1]
-				gLangArray = gLanguages.split(',');
-				
-				ltext= String(lmatchTransl).match(/version=[0-9\.]*/);
-				lparts = String(ltext).split("=");
-				gCurVersion = lparts[1]
-				if (gCurVersion != CODEVERSION && !istUpgrade) {
-					msg = "\n***TRANSLATION version mismatch: "
-						+"expected " + CODEVERSION + " found "+gCurVersion
-						+"\nPlease upgrade.***\n"
-					throw new Error(msg);
-				}
-			}
-
-			function doProperty(lang,propName,obj,value){
-				lpropName = lang + propName;
-				if (lang == gCurrentLang) {
-					// falls der Wert geändert hat, markiere die Fremdsprachen und überschreibe
-					oldval = obj.getProperty(lpropName)
-					if (oldval != value) {
-						//Porperty hat geändert, markiere die fremden Properties
-						for (il=0;il<gLangArray.length;il++) {
-							// nur die fremden Sprachen ersetzen
-							flang = gLangArray[il]
-							if (flang != gCurrentLang) {
-								fpropName = flang + propName;
-								fprop = obj.getProperty(fpropName)
-								if (fprop.startsWith('*')){
-									// ** und * sind in Bearbeitiung nichts ersetzen
-								} else if (fprop.startsWith("**"+lang+"** ") 
-											|| (fprop == "" && value != "")) {
-									lprefix =  '*'+gCurrentLang+'* '
-									obj.setProperty(fpropName,lprefix+value)
-								} else {
-									// Wert markieren mit *
-									obj.setProperty(fpropName,"*"+fprop)
-								}
-							} 
-						}
-						// die Werte kommen aus dem Objekt, überschreibe immer
-						obj.setProperty(lpropName, value)
-					}
-				} else {
-				   	ldest = obj.getProperty(lpropName);
-				   	// überschreibe nur, wenn das Ziel leer ist
-					if (ldest == '')  {
-					 	// bei leerem sourceWert setze keinen Prefix
-						if (value != '') {
-							lprefix =  '*'+gCurrentLang+'* '
-							obj.setProperty(lpropName,lprefix+value)
-						} 
-			
-					}
-				}
-			}
-
-			function doNote(lang,tag,obj,value) {
-				if (lang == gCurrentLang) {
-					// die Werte kommen aus dem Objekt, überschreibe immer
-					textToNote(lang+tag,obj,value)
-				} else {
-				   	ldest = textFromNote(lang+tag,obj);
-				   	// überschreibe nur, wenn das Ziel leer ist
-					if (ldest == '')  {
-					 	// bei leerem sourceWert setze keinen Prefix
-						if (value != '') {
-							lprefix =  '*'+gCurrentLang+'* '
-							textToNote(lang+tag,obj,lprefix+value)
-						} 
-			
-					}
-				}
+			<![CDATA[
+//scripts to handle translation of model
+	var gLogNote = "LOG";
+	var gCurrentLang = "DE";
+	var gLanguages = "DE,EN";
+	var gTranslInforegexp =/TRANSLATION\{[^}]*\}/;
+	var logInitialized = false;
+	var NOTESSTARTTAG = '[<tag>[\n';
+	var NOTESENDTAG = '\n]<tag>]';
+	var plainMessage = 1;
+	var errorMessage = 0;
+	var gLangArray = []; 
+	var gCurVersion = '';
+	var CODEVERSION = '1.0';
 	
-			}			
-	
-			function fuellUDP(){
-				entities = model.getEntitySet().toArray();
-				for (ie=0;ie<entities.length;ie++) { //
-					ent = entities[ie];
-					// noch nicht initialisiert
-					for (il=0;il<gLangArray.length;il++) {
-						doProperty(gLangArray[il],"_ENTI_NAME",ent,ent.getName())
-						doNote(gLangArray[il],"_ENTI_COMMENT",ent,ent.getComment())
-						doProperty(gLangArray[il],"_ENTI_SYNONYM",ent,ent.getSynonym())
-					}
-	
-					attrs = ent.getAttributes().toArray();
-					//log("Attrs="+attrs.length)
-					for (ia=0;ia<attrs.length;ia++) { //
-						attr = attrs[ia];
-						for (il=0;il<gLangArray.length;il++) {
-							doProperty(gLangArray[il],"_ATTR_NAME",attr,attr.getName());
-							doNote(gLangArray[il],"_ATTR_COMMENT",attr,attr.getComment());			
-					}
-					}
-					ent.setDirty(true);
-				}
-				relationships = model.getRelationSet().toArray();
-				for (ir=0;ir<relationships.length;ir++) { //
-					rel = relationships[ir];
-					sourcename = rel.getNameOnSource()
-					targetname = rel.getNameOnTarget()
-					for (il=0;il<gLangArray.length;il++) {
-						//if (i > 0) throw new Error ("\n"+gLangArray[i]+"_RELA_TEXT_FROM"+"\n"+gLangArray.length);
-						doProperty(gLangArray[il],"_RELA_TEXT_FROM",rel,sourcename)
-						doProperty(gLangArray[il],"_RELA_TEXT_TO",rel,targetname)	
-					}
-					rel.setDirty(true);
-				}
-			}
 
-			function setProperties(lang){
-				entities = model.getEntitySet().toArray();
-				for (ie=0;ie<entities.length;ie++) { //
-					ent = entities[ie];
-					ent.setName(ent.getProperty(lang+"_ENTI_NAME"));
-					ent.setComment(textFromNote(lang+"_ENTI_COMMENT",ent))
-					ent.setSynonym(ent.getProperty(lang+"_ENTI_SYNONYM"));
+	function fullmessage(msg,type) {
+		Java.type("javax.swing.JOptionPane").showMessageDialog(null
+		, msg,'ODM-Translation', type);
+	}
+
+	function error(msg) {
+		fullmessage(msg,errorMessage);
+		}
+	function message(msg) {
+		fullmessage(msg,plainMessage);
+		}
+
+	function initLog(){
+		if (! logInitialized){
+			var lNote = model.getNoteSet().getByName(gLogNote);
+	     	if (lNote == null) {
+	    	    		lNote = model.createNote()
+		    		lNote.setName(gLogNote);
+	     	}
+	     	lNote.setComment("");
+	     	logInitialized = true;
+		}
+	}
+	function log(plog){
+		initLog();
+		var lNote = model.getNoteSet().getByName(gLogNote);
+	     lNote.setComment(lNote.getComment()+"\n"+plog);
+	}
+
+	function getTranslInfo(){
+		var lDesignComment = model.design.getComment();
+	     lmatchTransl= lDesignComment.match(gTranslInforegexp);
+	     return lmatchTransl;    
+	}
+
+	function setTranslInfo(curLang,langs,version) {
+		model.design.setComment(
+			"TRANSLATION{\ncurrentLang="+curLang
+			+"\nlanguages="+langs
+			+"\nlastSync="
+			+"\nversion="+version+"\n}\n"
+			+ model.design.getComment());
+	}
+	function updTranslInfo(curLang,langs,version,datetime) {
+		curComment = model.design.getComment();
+		model.design.setComment(
+			curComment.replace(gTranslInforegexp,
+			"TRANSLATION{\ncurrentLang="+curLang
+			+"\nlanguages="+langs
+			+"\nlastSync="+datetime
+			+"\nversion="+version+"\n}"
+			));
+	}
+	
+	function buildRegExpTag(innertag,tag){
+		return tag.replace('<tag>',innertag).replace(/\[/g,'\\[').replace(/\]/g,'\\]')
+	}
+
+	function textFromNote(tag,obj) {
+    	note = obj.getNotes()
+    	restart =  buildRegExpTag(tag, NOTESSTARTTAG)
+    	reend =  buildRegExpTag (tag, NOTESENDTAG)+"[\n]*"
+    	re = new RegExp(restart + '([^]*)' + reend)
+    	ma = note.match(re)
+    	retval = ''
+	   	if (ma != null) {
+			//message("|"+reend+"|\n"+"|"+ma[0]+"|")
+	   		retval = ma[1]
+		}
+		return retval
+	}
+
+	function textToNote(tag,obj,value) {
+    	note = obj.getNotes()
+    	restart =  buildRegExpTag(tag, NOTESSTARTTAG)
+    	reend =  buildRegExpTag (tag, NOTESENDTAG)+"[\n]*"
+    	re = new RegExp(restart + '([^]*)' + reend)
+    	ma = note.match(re)
+		newentry = NOTESSTARTTAG.replace('<tag>',tag) 
+			+ value 
+			+ NOTESENDTAG.replace('<tag>',tag)
+			+'\n'
+	   	if (ma == null) {
+	   		note = note + newentry
+		} else {
+			//message("|"+newentry+"|\n"+"|"+ma[0]+"|")
+			note = note.replace(ma[0] , newentry)
+		}
+
+		obj.setNotes(note)
+	}
+
+	function init(istUpgrade){
+		lmatchTransl = getTranslInfo();
+		if (lmatchTransl == null) {
+			throw new Error("\n***TRANSLATION not installed***\n");
+		}
+		ltext= String(lmatchTransl).match(/currentLang=[A-Z]{2}/);
+		lparts = String(ltext).split("=");
+		//log("curLang="+lparts[1]);
+	     gCurrentLang = lparts[1];
+
+		ltext= String(lmatchTransl).match(/languages=[A-Z,]*/);
+		lparts = String(ltext).split("=");
+	     //log("languages="+lparts[1]);
+	     gLanguages = lparts[1]
+		gLangArray = gLanguages.split(',');
 		
-					attrs = ent.getAttributes().toArray();
-					//log("Attrs="+attrs.length)
-					for (ia=0;ia<attrs.length;ia++) { //
-						attr = attrs[ia];
-						//log(attr.getName(),attr.getComment());
-						attr.setName(attr.getProperty(lang+"_ATTR_NAME"));
-						attr.setComment(textFromNote(lang+"_ATTR_COMMENT",attr))
-					}		
-					ent.setDirty(true);
-				}
-				relationships = model.getRelationSet().toArray();
-				for (ir=0;ir<relationships.length;ir++) { 
-					rel = relationships[ir];
-					rel.setNameOnSource(rel.getProperty(lang+"_RELA_TEXT_FROM"));
-					rel.setNameOnTarget(rel.getProperty(lang+"_RELA_TEXT_TO"));
-					rel.setDirty(true);
-				}
-			}
+		ltext= String(lmatchTransl).match(/version=[0-9\.]*/);
+		lparts = String(ltext).split("=");
+		gCurVersion = lparts[1]
+		if (gCurVersion != CODEVERSION && !istUpgrade) {
+			msg = "\n***TRANSLATION version mismatch: "
+				+"expected " + CODEVERSION + " found "+gCurVersion
+				+"\nPlease upgrade.***\n"
+			throw new Error(msg);
+		}
+	}
 
-			function curDateStr(){
-				var currentdate = new Date();
-				return  currentdate.getDate() 
-				+ "/" + (currentdate.getMonth()+1) 
-				+ "/" + currentdate.getFullYear() + "  " 
-				+ currentdate.getHours() + ":" 
-				+ currentdate.getMinutes() + ":" + currentdate.getSeconds();
-			}
-
-			function changeLang(pfromLang,ptoLang){
-				//log("3:"+gLanguages);
-			//	log("change from " + pfromLang + " to " + ptoLang);
-				fuellUDP();
-				setProperties(ptoLang);
-				gCurrentLang = ptoLang;
-				updTranslInfo(gCurrentLang, gLanguages
-							,gCurVersion,curDateStr());	
-				model.design.setDirty(true);
-			}
-
-			function initTranslation() {
-				lmatchTransl= getTranslInfo()
-				if (lmatchTransl == null) {
-					setTranslInfo(gCurrentLang
-					,gLanguages,CODEVERSION);		
-				} else {
-					lversion = String(lmatchTransl).match(/version=[0-9\.]*/);
-					throw new Error("\n***TRANSLATION ("+lversion+") already installed***\n");
-				}
-				//hier gibt es einen Eintrag für die Translation
-				init();
-				// fülle die UDP für die Übersetzungen
-				fuellUDP();
-				updTranslInfo(gCurrentLang, gLanguages
-							 ,gCurVersion,curDateStr());
-				model.design.setDirty(true);
-			}
-
-			function change2DE() {
-				init();
-				if (gCurrentLang != 'DE') {
-					changeLang(gCurrentLang,'DE');
-					message ("Modell auf DE übersetzt. Bitte Labels aus- und wieder einblenden."
-					        ,plainMessage);
-				}
-			}
-	
-			function change2EN() {
-				init();
-				if (gCurrentLang != 'EN') {
-					changeLang(gCurrentLang,'EN');
-					message ("Model translated to EN. Please hide and re-display labels."
-					        ,plainMessage);
-				}
-			}
-			
-			function upgradeTranslation () {
-				init(true);				
-				//1.0 has no upgrades
-				if (gCurVersion  == CODEVERSION) {
-					message("TRANSLATE: latest version ("+gCurVersion+") is installed")
-				} else {
-					if (gCurVersion == "1.0") {
-						// installiere 1. Stufe nach 1.0
-					} else {
-						message("TRANSLATE: unknown version ("+gCurVersion+").\n"
-								+"Please contact support");
+	function doLangValue(propName,obj,value,isNote,notNull){
+		lpropName = gCurrentLang + propName;
+	    oldval = (isNote) ? textFromNote(lpropName,obj) : obj.getProperty(lpropName);
+		lprefix =  '*'+gCurrentLang+'* '
+		//markiere oder fülle die fremden Properties
+		for (il=0;il<gLangArray.length;il++) {
+			// nur die fremden Sprachen ersetzen
+			flang = gLangArray[il]
+			if (flang != gCurrentLang) {
+				fpropName = flang + propName;
+				fprop = (isNote) ? textFromNote(fpropName,obj) : obj.getProperty(fpropName);
+				// Falls die Fremdsprache noch automtaisch übersetzt ist ( *XX* vorneweg hat), überschreibe sie
+				if (fprop.match(/^\*[A-Z]{2}\* /)) {
+				   if (isNote) textToNote(fpropName,obj,lprefix+value);
+					  else obj.setProperty(fpropName,lprefix+value);
+				} else if (fprop.startsWith('*')) {
+					// ** und * sind in Bearbeitung nichts ersetzen
+				} else if (fprop == "" && value == "" && ! notNull) {
+					// das Ziel ist leer, der neue Wert auch und es ist kein Mussfeld. lass das Ziel leer
+				} else if (fprop == "") {
+					// das Ziel ist leer aber aus einem Grund muss ich es überschreiben (siehe vorheriges IF)
+				   if (isNote) textToNote(fpropName,obj,lprefix+value);
+					  else obj.setProperty(fpropName,lprefix+value);
+			    } else {
+					// das Ziel ist gefüllt, nicht in Bearbeitung und nicht automatisch übersetzt.
+					// d.h. es hat einen gültigen Wert. Markiere es, falls die Quelle wirklich geändert hat
+					if ( ! (oldval.match(/^\*[A-Z]{2}\* /)
+						  || oldval.startsWith("**")
+						  || oldval.startsWith("*")) ) {
+						  // die Quelle ist kein Feld, das in Bearbeitung oder autmoatisch übersetzt ist
+						  if (isNote) textToNote(fpropName,obj,"*"+fprop);
+					   		else obj.setProperty(fpropName,"*"+fprop)
 					}
-					updTranslInfo(gCurrentLang, gLanguages
-							 ,CODEVERSION,curDateStr());
-				
-				}			
-			}]]>
+				}
+			} 
+		}
+		// die Werte der CurrentLang kommen aus dem Objekt, überschreibe immer
+		if (isNote) textToNote(lpropName,obj,value);
+		   else obj.setProperty(lpropName, value);
+	}
+
+	function doProperty(propName,obj,value,notNull){
+		doLangValue(propName,obj,value,false,notNull);
+	}
+
+	function doNote(tag,obj,value) {
+		doLangValue(tag,obj,value,true,false);
+	}
+
+	function fuellUDP(){
+		entities = model.getEntitySet().toArray();
+		for (ie=0;ie<entities.length;ie++) { //
+			ent = entities[ie];
+			doProperty("_ENTI_NAME",ent,ent.getName(),true)
+			doNote("_ENTI_COMMENT",ent,ent.getComment())
+			doProperty("_ENTI_SYNONYM",ent,ent.getSynonym())
+
+			attrs = ent.getAttributes().toArray();
+			//log("Attrs="+attrs.length)
+			for (ia=0;ia<attrs.length;ia++) { //
+				attr = attrs[ia];
+				for (il=0;il<gLangArray.length;il++) {
+					doProperty("_ATTR_NAME",attr,attr.getName(),true);
+					doNote("_ATTR_COMMENT",attr,attr.getComment());			
+				}
+			}
+		ent.setDirty(true);
+		}
+		relationships = model.getRelationSet().toArray();
+		for (ir=0;ir<relationships.length;ir++) { //
+			rel = relationships[ir];
+			sourcename = rel.getNameOnSource()
+			targetname = rel.getNameOnTarget()
+			//if (i > 0) throw new Error ("\n"+gLangArray[i]+"_RELA_TEXT_FROM"+"\n"+gLangArray.length);
+			doProperty("_RELA_TEXT_FROM",rel,sourcename)
+			doProperty("_RELA_TEXT_TO",rel,targetname)	
+			rel.setDirty(true);
+		}
+	}
+
+	function setProperties(lang){
+		entities = model.getEntitySet().toArray();
+		for (ie=0;ie<entities.length;ie++) { //
+			ent = entities[ie];
+			ent.setName(ent.getProperty(lang+"_ENTI_NAME"));
+			ent.setComment(textFromNote(lang+"_ENTI_COMMENT",ent))
+			ent.setSynonym(ent.getProperty(lang+"_ENTI_SYNONYM"));
+
+			attrs = ent.getAttributes().toArray();
+			//log("Attrs="+attrs.length)
+			for (ia=0;ia<attrs.length;ia++) { //
+				attr = attrs[ia];
+				//log(attr.getName(),attr.getComment());
+				attr.setName(attr.getProperty(lang+"_ATTR_NAME"));
+				attr.setComment(textFromNote(lang+"_ATTR_COMMENT",attr))
+			}		
+			ent.setDirty(true);
+		}
+		relationships = model.getRelationSet().toArray();
+		for (ir=0;ir<relationships.length;ir++) { 
+			rel = relationships[ir];
+			rel.setNameOnSource(rel.getProperty(lang+"_RELA_TEXT_FROM"));
+			rel.setNameOnTarget(rel.getProperty(lang+"_RELA_TEXT_TO"));
+			rel.setDirty(true);
+		}
+	}
+
+	function curDateStr(){
+		var currentdate = new Date();
+		return  currentdate.getDate() 
+		+ "/" + (currentdate.getMonth()+1) 
+		+ "/" + currentdate.getFullYear() + "  " 
+		+ currentdate.getHours() + ":" 
+		+ currentdate.getMinutes() + ":" + currentdate.getSeconds();
+	}
+
+	function changeLang(pfromLang,ptoLang){
+		//log("3:"+gLanguages);
+	//	log("change from " + pfromLang + " to " + ptoLang);
+		fuellUDP();
+		setProperties(ptoLang);
+		gCurrentLang = ptoLang;
+		updTranslInfo(gCurrentLang, gLanguages
+					,gCurVersion,curDateStr());	
+		model.design.setDirty(true);
+	}
+
+	function initTranslation() {
+		lmatchTransl= getTranslInfo()
+		if (lmatchTransl == null) {
+			setTranslInfo(gCurrentLang
+			,gLanguages,CODEVERSION);		
+		} else {
+			lversion = String(lmatchTransl).match(/version=[0-9\.]*/);
+			throw new Error("\n***TRANSLATION ("+lversion+") already installed***\n");
+		}
+		//hier gibt es einen Eintrag für die Translation
+		init();
+		// fülle die UDP für die Übersetzungen
+		fuellUDP();
+		updTranslInfo(gCurrentLang, gLanguages
+					 ,gCurVersion,curDateStr());
+		model.design.setDirty(true);
+		message ("TRANLSATION installed current-language="+gCurrentLang
+		         + " languages="+gLanguages+" version="+gCurVersion
+			        ,plainMessage);
+	}
+
+	function change2DE() {
+		init();
+		if (gCurrentLang != 'DE') {
+			changeLang(gCurrentLang,'DE');
+			message ("Modell auf DE übersetzt. Bitte Labels aus- und wieder einblenden."
+			        ,plainMessage);
+		}
+	}
+
+	function change2EN() {
+		init();
+		if (gCurrentLang != 'EN') {
+			changeLang(gCurrentLang,'EN');
+			message ("Model translated to EN. Please hide and re-display labels."
+			        ,plainMessage);
+		}
+	}
+	
+	function upgradeTranslation () {
+		init(true);				
+		//1.0 has no upgrades
+		if (gCurVersion  == CODEVERSION) {
+			message("TRANSLATE: latest version ("+gCurVersion+") is installed")
+		} else {
+			if (gCurVersion == "1.0") {
+				// installiere 1. Stufe nach 1.0
+			} else {
+				message("TRANSLATE: unknown version ("+gCurVersion+").\n"
+						+"Please contact support");
+			}
+			updTranslInfo(gCurrentLang, gLanguages
+					 ,CODEVERSION,curDateStr());
+		
+		}			
+	}
+]]>
 		</script>
 	</scr>
 	<scr id="33D532DB-8720-433C-E976-B86B038F9DF9" name="initTranslation" object="logical" engine="Oracle Nashorn" type="" var="model" library="translation" method="initTranslation" purpose="transformation" >
 		<script>
 			<![CDATA[//scripts to handle translation of model
-			var gLogNote = "LOG";
-			var gCurrentLang = "DE";
-			var gLanguages = "DE,EN";
-			var gTranslInforegexp =/TRANSLATION\{[^}]*\}/;
-			var logInitialized = false;
-			var notesStartTag = '[<tag>[\n';
-			var notesEndTag = '\n]<tag>]';
-			var plainMessage = 1;
-			var errorMessage = 0;
-			var gLangArray = []; 
-			var gCurVersion = '';
-			var CODEVERSION = '1.0';
-			
-
-			function fullmessage(msg,type) {
-				Java.type("javax.swing.JOptionPane").showMessageDialog(null
-				, msg,'ODM-Translation', type);
-			}
-
-			function error(msg) {
-				fullmessage(msg,errorMessage);
-				}
-			function message(msg) {
-				fullmessage(msg,plainMessage);
-				}
-
-			function initLog(){
-				if (! logInitialized){
-					var lNote = model.getNoteSet().getByName(gLogNote);
-			     	if (lNote == null) {
-			    	    		lNote = model.createNote()
-				    		lNote.setName(gLogNote);
-			     	}
-			     	lNote.setComment("");
-			     	logInitialized = true;
-				}
-			}
-			function log(plog){
-				initLog();
-				var lNote = model.getNoteSet().getByName(gLogNote);
-			     lNote.setComment(lNote.getComment()+"\n"+plog);
-			}
-
-			function getTranslInfo(){
-				var lDesignComment = model.design.getComment();
-			     lmatchTransl= lDesignComment.match(gTranslInforegexp);
-			     return lmatchTransl;    
-			}
-
-			function setTranslInfo(curLang,langs,version) {
-				model.design.setComment(
-					"TRANSLATION{\ncurrentLang="+curLang
-					+"\nlanguages="+langs
-					+"\nlastSync="
-					+"\nversion="+version+"\n}\n"
-					+ model.design.getComment());
-			}
-			function updTranslInfo(curLang,langs,version,datetime) {
-				curComment = model.design.getComment();
-				message(curLang+":"+version+":"+datetime);
-				model.design.setComment(
-					curComment.replace(gTranslInforegexp,
-					"TRANSLATION{\ncurrentLang="+curLang
-					+"\nlanguages="+langs
-					+"\nlastSync="+datetime
-					+"\nversion="+version+"\n}"
-					));
-			}
-			
-			function buildRegExpTag(innertag,tag){
-				return tag.replace('<tag>',innertag).replace(/\[/g,'\\[').replace(/\]/g,'\\]')
-			}
-
-			function textFromNote(tag,obj) {
-			    	note = obj.getNotes()
-			    	restart =  buildRegExpTag(tag, notesStartTag)
-			    	reend =  buildRegExpTag (tag, notesEndTag)
-			    	//throw new Error (restart+"*"+reend);
-			    	re = new RegExp(restart + '([^]*)' + reend)
-			    	ma = note.match(re)
-			    	retval = ''
-			   	if (ma != null) {
-			   		retval = ma[1]
-				}
-				return retval
-			}
-
-			function textToNote(tag,obj,value) {
-			    	note = obj.getNotes()
-			    	restart =  buildRegExpTag(tag, notesStartTag)
-			    	reend =  buildRegExpTag (tag, notesEndTag)
-			    	re = new RegExp(restart + '([^]*)' + reend)
-			    	ma = note.match(re)
-			    	newentry = notesStartTag.replace('<tag>',tag) 
-			    			+ value 
-			    			+ notesEndTag.replace('<tag>',tag)
-			    			+ "\n"
-			   	if (ma == null) {
-			   		note = note + newentry
-				} else {
-					note = note.replace(re , newentry)
-				}
-
-				obj.setNotes(note)
-			}
-
-			function init(){
-				lmatchTransl = getTranslInfo();
-				if (lmatchTransl == null) {
-					throw new Error("\n***TRANSLATION not installed***\n");
-				}
-				ltext= String(lmatchTransl).match(/currentLang=[A-Z]{2}/);
-				lparts = String(ltext).split("=");
-				//log("curLang="+lparts[1]);
-			     gCurrentLang = lparts[1];
-
-				ltext= String(lmatchTransl).match(/languages=[A-Z,]*/);
-				lparts = String(ltext).split("=");
-			     //log("languages="+lparts[1]);
-			     gLanguages = lparts[1]
-				gLangArray = gLanguages.split(',');
-				
-				ltext= String(lmatchTransl).match(/version=[0-9\.]*/);
-				lparts = String(ltext).split("=");
-				gCurVersion = lparts[1]
-				if (gCurVersion != CODEVERSION) {
-					msg = "\n***TRANSLATION version mismatch: "
-						+"expected " + CODEVERSION + " found "+gCurVersion
-						+"\nPlease upgrade.***\n"
-					throw new Error(msg);
-				}
-			}
-
-			function doProperty(lang,propName,obj,value){
-				lpropName = lang + propName;
-				if (lang == gCurrentLang) {
-					// die Werte kommen aus dem Objekt, überschreibe immer
-					obj.setProperty(lpropName
-					      	 	,value)
-				} else {
-				   	ldest = obj.getProperty(lpropName);
-				   	// überschreibe nur, wenn das Ziel leer ist
-					if (ldest == '')  {
-					 	// bei leerem sourceWert setze keinen Prefix
-						if (value != '') {
-							lprefix =  '*'+gCurrentLang+'* '
-							obj.setProperty(lpropName,lprefix+value)
-						} 
-			
-					}
-				}
-			}
-
-			function doNote(lang,tag,obj,value) {
-				if (lang == gCurrentLang) {
-					// die Werte kommen aus dem Objekt, überschreibe immer
-					textToNote(lang+tag,obj,value)
-				} else {
-				   	ldest = textFromNote(lang+tag,obj);
-				   	// überschreibe nur, wenn das Ziel leer ist
-					if (ldest == '')  {
-					 	// bei leerem sourceWert setze keinen Prefix
-						if (value != '') {
-							lprefix =  '*'+gCurrentLang+'* '
-							textToNote(lang+tag,obj,lprefix+value)
-						} 
-			
-					}
-				}
-	
-			}			
-	
-			function fuellUDP(){
-				entities = model.getEntitySet().toArray();
-				for (ie=0;ie<entities.length;ie++) { //
-					ent = entities[ie];
-					// noch nicht initialisiert
-					for (il=0;il<gLangArray.length;il++) {
-						doProperty(gLangArray[il],"_ENTI_NAME",ent,ent.getName())
-			//			doProperty(gLangArray[il],"_ENTI_COMMENT",ent,ent.getComment())
-						doNote(gLangArray[il],"_ENTI_COMMENT",ent,ent.getComment())
-						doProperty(gLangArray[il],"_ENTI_SYNONYM",ent,ent.getSynonym())
-					}
-	
-					attrs = ent.getAttributes().toArray();
-					//log("Attrs="+attrs.length)
-					for (ia=0;ia<attrs.length;ia++) { //
-						attr = attrs[ia];
-						//log(attr.getName(),attr.getComment());
-						for (il=0;il<gLangArray.length;il++) {
-							doProperty(gLangArray[il],"_ATTR_NAME",attr,attr.getName());
-			//				doProperty(gLangArray[il],"_ATTR_COMMENT",attr,attr.getComment());			
-							doNote(gLangArray[il],"_ATTR_COMMENT",attr,attr.getComment());			
-					}
-					}
-					ent.setDirty(true);
-				}
-				relationships = model.getRelationSet().toArray();
-				for (ir=0;ir<relationships.length;ir++) { //
-					rel = relationships[ir];
-					sourcename = rel.getNameOnSource()
-					targetname = rel.getNameOnTarget()
-					for (il=0;il<gLangArray.length;il++) {
-						//if (i > 0) throw new Error ("\n"+gLangArray[i]+"_RELA_TEXT_FROM"+"\n"+gLangArray.length);
-						doProperty(gLangArray[il],"_RELA_TEXT_FROM",rel,sourcename)
-						doProperty(gLangArray[il],"_RELA_TEXT_TO",rel,targetname)	
-					}
-					rel.setDirty(true);
-				}
-			}
-
-			function setProperties(lang){
-				entities = model.getEntitySet().toArray();
-				for (ie=0;ie<entities.length;ie++) { //
-					ent = entities[ie];
-					ent.setName(ent.getProperty(lang+"_ENTI_NAME"));
-			//		ent.setComment(ent.getProperty(lang+"_ENTI_COMMENT"));
-					ent.setComment(textFromNote(lang+"_ENTI_COMMENT",ent))
-					ent.setSynonym(ent.getProperty(lang+"_ENTI_SYNONYM"));
-		
-					attrs = ent.getAttributes().toArray();
-					//log("Attrs="+attrs.length)
-					for (ia=0;ia<attrs.length;ia++) { //
-						attr = attrs[ia];
-						//log(attr.getName(),attr.getComment());
-						attr.setName(attr.getProperty(lang+"_ATTR_NAME"));
-			//			attr.setComment(attr.getProperty(lang+"_ATTR_COMMENT"));			
-						attr.setComment(textFromNote(lang+"_ATTR_COMMENT",attr))
-					}		
-					ent.setDirty(true);
-				}
-				relationships = model.getRelationSet().toArray();
-				for (ir=0;ir<relationships.length;ir++) { 
-					rel = relationships[ir];
-					rel.setNameOnSource(rel.getProperty(lang+"_RELA_TEXT_FROM"));
-					rel.setNameOnTarget(rel.getProperty(lang+"_RELA_TEXT_TO"));
-					rel.setDirty(true);
-				}
-			}
-
-			function curDateStr(){
-				var currentdate = new Date();
-				return  currentdate.getDate() 
-				+ "/" + (currentdate.getMonth()+1) 
-				+ "/" + currentdate.getFullYear() + "  " 
-				+ currentdate.getHours() + ":" 
-				+ currentdate.getMinutes() + ":" + currentdate.getSeconds();
-			}
-
-			function changeLang(pfromLang,ptoLang){
-				//log("3:"+gLanguages);
-			//	log("change from " + pfromLang + " to " + ptoLang);
-				fuellUDP();
-				setProperties(ptoLang);
-				gCurrentLang = ptoLang;
-				updTranslInfo(gCurrentLang, gLanguages
-							,curDateStr());	
-				model.design.setDirty(true);
-			}
-
-			function initTranslation() {
-				lmatchTransl= getTranslInfo()
-				if (lmatchTransl == null) {
-					setTranslInfo(gCurrentLang
-					,gLanguages,CODEVERSION);		
-				} else {
-					lversion = String(lmatchTransl).match(/version=[0-9\.]*/);
-					throw new Error("\n***TRANSLATION ("+lversion+") already installed***\n");
-				}
-				//hier gibt es einen Eintrag für die Translation
-				init();
-				// fülle die UDP für die Übersetzungen
-				fuellUDP();
-				updTranslInfo(gCurrentLang, gLanguages
-							 ,gCurVersion,curDateStr());
-				model.design.setDirty(true);
-			}
-
-			function change2DE() {
-				init();
-				if (gCurrentLang != 'DE') {
-					changeLang(gCurrentLang,'DE');
-					message ("Modell auf DE übersetzt. Bitte Labels aus- und wieder einblenden."
-					        ,plainMessage);
-				}
-			}
-	
-			function change2EN() {
-				init();
-				if (gCurrentLang != 'EN') {
-					changeLang(gCurrentLang,'EN');
-					message ("Model translated to EN. Please hide and re-display labels."
-					        ,plainMessage);
-				}
-			}
-			
-			function upgradeTranslation () {
-				init();				
-				//1.0 has no upgrades
-				if (gCurVersion  == CODEVERSION) {
-					message("TRANSLATE: latest version ("+gCurVersion+") is installed")
-				} else {
-				// if (gCurVersion == "1.1")  install upgrade 1.0 to 1.1
-				}
-				
-			
-			}]]>
-		</script>
-	</scr>
-	<scr id="250556D5-21DF-2C6B-181B-47754D9FDA23" name="upgradeTranslation" object="logical" engine="Oracle Nashorn" type="" var="model" library="translation" method="upgradeTranslation" purpose="transformation" >
-		<script>
-			<![CDATA[//scripts to handle translation of model
-			var gLogNote = "LOG";
-			var gCurrentLang = "DE";
-			var gLanguages = "DE,EN";
-			var gTranslInforegexp =/TRANSLATION\{[^}]*\}/;
-			var logInitialized = false;
-			var notesStartTag = '[<tag>[\n';
-			var notesEndTag = '\n]<tag>]';
-			var plainMessage = 1;
-			var errorMessage = 0;
-			var gLangArray = []; 
-			var gCurVersion = '';
-			var CODEVERSION = '1.0';
-			
-
-			function fullmessage(msg,type) {
-				Java.type("javax.swing.JOptionPane").showMessageDialog(null
-				, msg,'ODM-Translation', type);
-			}
-
-			function error(msg) {
-				fullmessage(msg,errorMessage);
-				}
-			function message(msg) {
-				fullmessage(msg,plainMessage);
-				}
-
-			function initLog(){
-				if (! logInitialized){
-					var lNote = model.getNoteSet().getByName(gLogNote);
-			     	if (lNote == null) {
-			    	    		lNote = model.createNote()
-				    		lNote.setName(gLogNote);
-			     	}
-			     	lNote.setComment("");
-			     	logInitialized = true;
-				}
-			}
-			function log(plog){
-				initLog();
-				var lNote = model.getNoteSet().getByName(gLogNote);
-			     lNote.setComment(lNote.getComment()+"\n"+plog);
-			}
-
-			function getTranslInfo(){
-				var lDesignComment = model.design.getComment();
-			     lmatchTransl= lDesignComment.match(gTranslInforegexp);
-			     return lmatchTransl;    
-			}
-
-			function setTranslInfo(curLang,langs,version) {
-				model.design.setComment(
-					"TRANSLATION{\ncurrentLang="+curLang
-					+"\nlanguages="+langs
-					+"\nlastSync="
-					+"\nversion="+version+"\n}\n"
-					+ model.design.getComment());
-			}
-			function updTranslInfo(curLang,langs,version,datetime) {
-				curComment = model.design.getComment();
-				message(curLang+":"+version+":"+datetime);
-				model.design.setComment(
-					curComment.replace(gTranslInforegexp,
-					"TRANSLATION{\ncurrentLang="+curLang
-					+"\nlanguages="+langs
-					+"\nlastSync="+datetime
-					+"\nversion="+version+"\n}"
-					));
-			}
-			
-			function buildRegExpTag(innertag,tag){
-				return tag.replace('<tag>',innertag).replace(/\[/g,'\\[').replace(/\]/g,'\\]')
-			}
-
-			function textFromNote(tag,obj) {
-			    	note = obj.getNotes()
-			    	restart =  buildRegExpTag(tag, notesStartTag)
-			    	reend =  buildRegExpTag (tag, notesEndTag)
-			    	//throw new Error (restart+"*"+reend);
-			    	re = new RegExp(restart + '([^]*)' + reend)
-			    	ma = note.match(re)
-			    	retval = ''
-			   	if (ma != null) {
-			   		retval = ma[1]
-				}
-				return retval
-			}
-
-			function textToNote(tag,obj,value) {
-			    	note = obj.getNotes()
-			    	restart =  buildRegExpTag(tag, notesStartTag)
-			    	reend =  buildRegExpTag (tag, notesEndTag)
-			    	re = new RegExp(restart + '([^]*)' + reend)
-			    	ma = note.match(re)
-			    	newentry = notesStartTag.replace('<tag>',tag) 
-			    			+ value 
-			    			+ notesEndTag.replace('<tag>',tag)
-			    			+ "\n"
-			   	if (ma == null) {
-			   		note = note + newentry
-				} else {
-					note = note.replace(re , newentry)
-				}
-
-				obj.setNotes(note)
-			}
-
-			function init(){
-				lmatchTransl = getTranslInfo();
-				if (lmatchTransl == null) {
-					throw new Error("\n***TRANSLATION not installed***\n");
-				}
-				ltext= String(lmatchTransl).match(/currentLang=[A-Z]{2}/);
-				lparts = String(ltext).split("=");
-				//log("curLang="+lparts[1]);
-			     gCurrentLang = lparts[1];
-
-				ltext= String(lmatchTransl).match(/languages=[A-Z,]*/);
-				lparts = String(ltext).split("=");
-			     //log("languages="+lparts[1]);
-			     gLanguages = lparts[1]
-				gLangArray = gLanguages.split(',');
-				
-				ltext= String(lmatchTransl).match(/version=[0-9\.]*/);
-				lparts = String(ltext).split("=");
-				gCurVersion = lparts[1]
-				if (gCurVersion != CODEVERSION) {
-					msg = "\n***TRANSLATION version mismatch: "
-						+"expected " + CODEVERSION + " found "+gCurVersion
-						+"\nPlease upgrade.***\n"
-					throw new Error(msg);
-				}
-			}
-
-			function doProperty(lang,propName,obj,value){
-				lpropName = lang + propName;
-				if (lang == gCurrentLang) {
-					// die Werte kommen aus dem Objekt, überschreibe immer
-					obj.setProperty(lpropName
-					      	 	,value)
-				} else {
-				   	ldest = obj.getProperty(lpropName);
-				   	// überschreibe nur, wenn das Ziel leer ist
-					if (ldest == '')  {
-					 	// bei leerem sourceWert setze keinen Prefix
-						if (value != '') {
-							lprefix =  '*'+gCurrentLang+'* '
-							obj.setProperty(lpropName,lprefix+value)
-						} 
-			
-					}
-				}
-			}
-
-			function doNote(lang,tag,obj,value) {
-				if (lang == gCurrentLang) {
-					// die Werte kommen aus dem Objekt, überschreibe immer
-					textToNote(lang+tag,obj,value)
-				} else {
-				   	ldest = textFromNote(lang+tag,obj);
-				   	// überschreibe nur, wenn das Ziel leer ist
-					if (ldest == '')  {
-					 	// bei leerem sourceWert setze keinen Prefix
-						if (value != '') {
-							lprefix =  '*'+gCurrentLang+'* '
-							textToNote(lang+tag,obj,lprefix+value)
-						} 
-			
-					}
-				}
-	
-			}			
-	
-			function fuellUDP(){
-				entities = model.getEntitySet().toArray();
-				for (ie=0;ie<entities.length;ie++) { //
-					ent = entities[ie];
-					// noch nicht initialisiert
-					for (il=0;il<gLangArray.length;il++) {
-						doProperty(gLangArray[il],"_ENTI_NAME",ent,ent.getName())
-			//			doProperty(gLangArray[il],"_ENTI_COMMENT",ent,ent.getComment())
-						doNote(gLangArray[il],"_ENTI_COMMENT",ent,ent.getComment())
-						doProperty(gLangArray[il],"_ENTI_SYNONYM",ent,ent.getSynonym())
-					}
-	
-					attrs = ent.getAttributes().toArray();
-					//log("Attrs="+attrs.length)
-					for (ia=0;ia<attrs.length;ia++) { //
-						attr = attrs[ia];
-						//log(attr.getName(),attr.getComment());
-						for (il=0;il<gLangArray.length;il++) {
-							doProperty(gLangArray[il],"_ATTR_NAME",attr,attr.getName());
-			//				doProperty(gLangArray[il],"_ATTR_COMMENT",attr,attr.getComment());			
-							doNote(gLangArray[il],"_ATTR_COMMENT",attr,attr.getComment());			
-					}
-					}
-					ent.setDirty(true);
-				}
-				relationships = model.getRelationSet().toArray();
-				for (ir=0;ir<relationships.length;ir++) { //
-					rel = relationships[ir];
-					sourcename = rel.getNameOnSource()
-					targetname = rel.getNameOnTarget()
-					for (il=0;il<gLangArray.length;il++) {
-						//if (i > 0) throw new Error ("\n"+gLangArray[i]+"_RELA_TEXT_FROM"+"\n"+gLangArray.length);
-						doProperty(gLangArray[il],"_RELA_TEXT_FROM",rel,sourcename)
-						doProperty(gLangArray[il],"_RELA_TEXT_TO",rel,targetname)	
-					}
-					rel.setDirty(true);
-				}
-			}
-
-			function setProperties(lang){
-				entities = model.getEntitySet().toArray();
-				for (ie=0;ie<entities.length;ie++) { //
-					ent = entities[ie];
-					ent.setName(ent.getProperty(lang+"_ENTI_NAME"));
-			//		ent.setComment(ent.getProperty(lang+"_ENTI_COMMENT"));
-					ent.setComment(textFromNote(lang+"_ENTI_COMMENT",ent))
-					ent.setSynonym(ent.getProperty(lang+"_ENTI_SYNONYM"));
-		
-					attrs = ent.getAttributes().toArray();
-					//log("Attrs="+attrs.length)
-					for (ia=0;ia<attrs.length;ia++) { //
-						attr = attrs[ia];
-						//log(attr.getName(),attr.getComment());
-						attr.setName(attr.getProperty(lang+"_ATTR_NAME"));
-			//			attr.setComment(attr.getProperty(lang+"_ATTR_COMMENT"));			
-						attr.setComment(textFromNote(lang+"_ATTR_COMMENT",attr))
-					}		
-					ent.setDirty(true);
-				}
-				relationships = model.getRelationSet().toArray();
-				for (ir=0;ir<relationships.length;ir++) { 
-					rel = relationships[ir];
-					rel.setNameOnSource(rel.getProperty(lang+"_RELA_TEXT_FROM"));
-					rel.setNameOnTarget(rel.getProperty(lang+"_RELA_TEXT_TO"));
-					rel.setDirty(true);
-				}
-			}
-
-			function curDateStr(){
-				var currentdate = new Date();
-				return  currentdate.getDate() 
-				+ "/" + (currentdate.getMonth()+1) 
-				+ "/" + currentdate.getFullYear() + "  " 
-				+ currentdate.getHours() + ":" 
-				+ currentdate.getMinutes() + ":" + currentdate.getSeconds();
-			}
-
-			function changeLang(pfromLang,ptoLang){
-				//log("3:"+gLanguages);
-			//	log("change from " + pfromLang + " to " + ptoLang);
-				fuellUDP();
-				setProperties(ptoLang);
-				gCurrentLang = ptoLang;
-				updTranslInfo(gCurrentLang, gLanguages
-							,curDateStr());	
-				model.design.setDirty(true);
-			}
-
-			function initTranslation() {
-				lmatchTransl= getTranslInfo()
-				if (lmatchTransl == null) {
-					setTranslInfo(gCurrentLang
-					,gLanguages,CODEVERSION);		
-				} else {
-					lversion = String(lmatchTransl).match(/version=[0-9\.]*/);
-					throw new Error("\n***TRANSLATION ("+lversion+") already installed***\n");
-				}
-				//hier gibt es einen Eintrag für die Translation
-				init();
-				// fülle die UDP für die Übersetzungen
-				fuellUDP();
-				updTranslInfo(gCurrentLang, gLanguages
-							 ,gCurVersion,curDateStr());
-				model.design.setDirty(true);
-			}
-
-			function change2DE() {
-				init();
-				if (gCurrentLang != 'DE') {
-					changeLang(gCurrentLang,'DE');
-					message ("Modell auf DE übersetzt. Bitte Labels aus- und wieder einblenden."
-					        ,plainMessage);
-				}
-			}
-	
-			function change2EN() {
-				init();
-				if (gCurrentLang != 'EN') {
-					changeLang(gCurrentLang,'EN');
-					message ("Model translated to EN. Please hide and re-display labels."
-					        ,plainMessage);
-				}
-			}
-			
-			function upgradeTranslation () {
-				init();				
-				//1.0 has no upgrades
-				if (gCurVersion  == CODEVERSION) {
-					message("TRANSLATE: latest version ("+gCurVersion+") is installed")
-				} else {
-				// if (gCurVersion == "1.1")  install upgrade 1.0 to 1.1
-				}
-				
-			
-			}]]>
-		</script>
-	</scr>
-
-	<lib id="8C5E208C-44EF-D2FB-A3AD-61EAE950C916" name="translation" engine="Oracle Nashorn" methods="change2EN,change2DE,initTranslation,upgradeTranslation" >
-		<script>
-			<![CDATA[
-//scripts to handle translation of model
 	var gLogNote = "LOG";
 	var gCurrentLang = "DE";
 	var gLanguages = "DE,EN";
@@ -1612,8 +964,733 @@
 					 ,CODEVERSION,curDateStr());
 		
 		}			
+	}]]>
+		</script>
+	</scr>
+	<scr id="250556D5-21DF-2C6B-181B-47754D9FDA23" name="upgradeTranslation" object="logical" engine="Oracle Nashorn" type="" var="model" library="translation" method="upgradeTranslation" purpose="transformation" >
+		<script>
+			<![CDATA[
+//scripts to handle translation of model
+	var gLogNote = "LOG";
+	var gCurrentLang = "DE";
+	var gLanguages = "DE,EN";
+	var gTranslInforegexp =/TRANSLATION\{[^}]*\}/;
+	var logInitialized = false;
+	var NOTESSTARTTAG = '[<tag>[\n';
+	var NOTESENDTAG = '\n]<tag>]';
+	var plainMessage = 1;
+	var errorMessage = 0;
+	var gLangArray = []; 
+	var gCurVersion = '';
+	var CODEVERSION = '1.0';
+	
+
+	function fullmessage(msg,type) {
+		Java.type("javax.swing.JOptionPane").showMessageDialog(null
+		, msg,'ODM-Translation', type);
 	}
+
+	function error(msg) {
+		fullmessage(msg,errorMessage);
+		}
+	function message(msg) {
+		fullmessage(msg,plainMessage);
+		}
+
+	function initLog(){
+		if (! logInitialized){
+			var lNote = model.getNoteSet().getByName(gLogNote);
+	     	if (lNote == null) {
+	    	    		lNote = model.createNote()
+		    		lNote.setName(gLogNote);
+	     	}
+	     	lNote.setComment("");
+	     	logInitialized = true;
+		}
+	}
+	function log(plog){
+		initLog();
+		var lNote = model.getNoteSet().getByName(gLogNote);
+	     lNote.setComment(lNote.getComment()+"\n"+plog);
+	}
+
+	function getTranslInfo(){
+		var lDesignComment = model.design.getComment();
+	     lmatchTransl= lDesignComment.match(gTranslInforegexp);
+	     return lmatchTransl;    
+	}
+
+	function setTranslInfo(curLang,langs,version) {
+		model.design.setComment(
+			"TRANSLATION{\ncurrentLang="+curLang
+			+"\nlanguages="+langs
+			+"\nlastSync="
+			+"\nversion="+version+"\n}\n"
+			+ model.design.getComment());
+	}
+	function updTranslInfo(curLang,langs,version,datetime) {
+		curComment = model.design.getComment();
+		model.design.setComment(
+			curComment.replace(gTranslInforegexp,
+			"TRANSLATION{\ncurrentLang="+curLang
+			+"\nlanguages="+langs
+			+"\nlastSync="+datetime
+			+"\nversion="+version+"\n}"
+			));
+	}
+	
+	function buildRegExpTag(innertag,tag){
+		return tag.replace('<tag>',innertag).replace(/\[/g,'\\[').replace(/\]/g,'\\]')
+	}
+
+	function textFromNote(tag,obj) {
+    	note = obj.getNotes()
+    	restart =  buildRegExpTag(tag, NOTESSTARTTAG)
+    	reend =  buildRegExpTag (tag, NOTESENDTAG)+"[\n]*"
+    	re = new RegExp(restart + '([^]*)' + reend)
+    	ma = note.match(re)
+    	retval = ''
+	   	if (ma != null) {
+			//message("|"+reend+"|\n"+"|"+ma[0]+"|")
+	   		retval = ma[1]
+		}
+		return retval
+	}
+
+	function textToNote(tag,obj,value) {
+    	note = obj.getNotes()
+    	restart =  buildRegExpTag(tag, NOTESSTARTTAG)
+    	reend =  buildRegExpTag (tag, NOTESENDTAG)+"[\n]*"
+    	re = new RegExp(restart + '([^]*)' + reend)
+    	ma = note.match(re)
+		newentry = NOTESSTARTTAG.replace('<tag>',tag) 
+			+ value 
+			+ NOTESENDTAG.replace('<tag>',tag)
+			+'\n'
+	   	if (ma == null) {
+	   		note = note + newentry
+		} else {
+			//message("|"+newentry+"|\n"+"|"+ma[0]+"|")
+			note = note.replace(ma[0] , newentry)
+		}
+
+		obj.setNotes(note)
+	}
+
+	function init(istUpgrade){
+		lmatchTransl = getTranslInfo();
+		if (lmatchTransl == null) {
+			throw new Error("\n***TRANSLATION not installed***\n");
+		}
+		ltext= String(lmatchTransl).match(/currentLang=[A-Z]{2}/);
+		lparts = String(ltext).split("=");
+		//log("curLang="+lparts[1]);
+	     gCurrentLang = lparts[1];
+
+		ltext= String(lmatchTransl).match(/languages=[A-Z,]*/);
+		lparts = String(ltext).split("=");
+	     //log("languages="+lparts[1]);
+	     gLanguages = lparts[1]
+		gLangArray = gLanguages.split(',');
+		
+		ltext= String(lmatchTransl).match(/version=[0-9\.]*/);
+		lparts = String(ltext).split("=");
+		gCurVersion = lparts[1]
+		if (gCurVersion != CODEVERSION && !istUpgrade) {
+			msg = "\n***TRANSLATION version mismatch: "
+				+"expected " + CODEVERSION + " found "+gCurVersion
+				+"\nPlease upgrade.***\n"
+			throw new Error(msg);
+		}
+	}
+
+	function doLangValue(propName,obj,value,isNote,notNull){
+		lpropName = gCurrentLang + propName;
+	    oldval = (isNote) ? textFromNote(lpropName,obj) : obj.getProperty(lpropName);
+		lprefix =  '*'+gCurrentLang+'* '
+		//markiere oder fülle die fremden Properties
+		for (il=0;il<gLangArray.length;il++) {
+			// nur die fremden Sprachen ersetzen
+			flang = gLangArray[il]
+			if (flang != gCurrentLang) {
+				fpropName = flang + propName;
+				fprop = (isNote) ? textFromNote(fpropName,obj) : obj.getProperty(fpropName);
+				// Falls die Fremdsprache noch automtaisch übersetzt ist ( *XX* vorneweg hat), überschreibe sie
+				if (fprop.match(/^\*[A-Z]{2}\* /)) {
+				   if (isNote) textToNote(fpropName,obj,lprefix+value);
+					  else obj.setProperty(fpropName,lprefix+value);
+				} else if (fprop.startsWith('*')) {
+					// ** und * sind in Bearbeitung nichts ersetzen
+				} else if (fprop == "" && value == "" && ! notNull) {
+					// das Ziel ist leer, der neue Wert auch und es ist kein Mussfeld. lass das Ziel leer
+				} else if (fprop == "") {
+					// das Ziel ist leer aber aus einem Grund muss ich es überschreiben (siehe vorheriges IF)
+				   if (isNote) textToNote(fpropName,obj,lprefix+value);
+					  else obj.setProperty(fpropName,lprefix+value);
+			    } else {
+					// das Ziel ist gefüllt, nicht in Bearbeitung und nicht automatisch übersetzt.
+					// d.h. es hat einen gültigen Wert. Markiere es, falls die Quelle wirklich geändert hat
+					if ( ! (oldval.match(/^\*[A-Z]{2}\* /)
+						  || oldval.startsWith("**")
+						  || oldval.startsWith("*")) ) {
+						  // die Quelle ist kein Feld, das in Bearbeitung oder autmoatisch übersetzt ist
+						  if (isNote) textToNote(fpropName,obj,"*"+fprop);
+					   		else obj.setProperty(fpropName,"*"+fprop)
+					}
+				}
+			} 
+		}
+		// die Werte der CurrentLang kommen aus dem Objekt, überschreibe immer
+		if (isNote) textToNote(lpropName,obj,value);
+		   else obj.setProperty(lpropName, value);
+	}
+
+	function doProperty(propName,obj,value,notNull){
+		doLangValue(propName,obj,value,false,notNull);
+	}
+
+	function doNote(tag,obj,value) {
+		doLangValue(tag,obj,value,true,false);
+	}
+
+	function fuellUDP(){
+		entities = model.getEntitySet().toArray();
+		for (ie=0;ie<entities.length;ie++) { //
+			ent = entities[ie];
+			doProperty("_ENTI_NAME",ent,ent.getName(),true)
+			doNote("_ENTI_COMMENT",ent,ent.getComment())
+			doProperty("_ENTI_SYNONYM",ent,ent.getSynonym())
+
+			attrs = ent.getAttributes().toArray();
+			//log("Attrs="+attrs.length)
+			for (ia=0;ia<attrs.length;ia++) { //
+				attr = attrs[ia];
+				for (il=0;il<gLangArray.length;il++) {
+					doProperty("_ATTR_NAME",attr,attr.getName(),true);
+					doNote("_ATTR_COMMENT",attr,attr.getComment());			
+				}
+			}
+		ent.setDirty(true);
+		}
+		relationships = model.getRelationSet().toArray();
+		for (ir=0;ir<relationships.length;ir++) { //
+			rel = relationships[ir];
+			sourcename = rel.getNameOnSource()
+			targetname = rel.getNameOnTarget()
+			//if (i > 0) throw new Error ("\n"+gLangArray[i]+"_RELA_TEXT_FROM"+"\n"+gLangArray.length);
+			doProperty("_RELA_TEXT_FROM",rel,sourcename)
+			doProperty("_RELA_TEXT_TO",rel,targetname)	
+			rel.setDirty(true);
+		}
+	}
+
+	function setProperties(lang){
+		entities = model.getEntitySet().toArray();
+		for (ie=0;ie<entities.length;ie++) { //
+			ent = entities[ie];
+			ent.setName(ent.getProperty(lang+"_ENTI_NAME"));
+			ent.setComment(textFromNote(lang+"_ENTI_COMMENT",ent))
+			ent.setSynonym(ent.getProperty(lang+"_ENTI_SYNONYM"));
+
+			attrs = ent.getAttributes().toArray();
+			//log("Attrs="+attrs.length)
+			for (ia=0;ia<attrs.length;ia++) { //
+				attr = attrs[ia];
+				//log(attr.getName(),attr.getComment());
+				attr.setName(attr.getProperty(lang+"_ATTR_NAME"));
+				attr.setComment(textFromNote(lang+"_ATTR_COMMENT",attr))
+			}		
+			ent.setDirty(true);
+		}
+		relationships = model.getRelationSet().toArray();
+		for (ir=0;ir<relationships.length;ir++) { 
+			rel = relationships[ir];
+			rel.setNameOnSource(rel.getProperty(lang+"_RELA_TEXT_FROM"));
+			rel.setNameOnTarget(rel.getProperty(lang+"_RELA_TEXT_TO"));
+			rel.setDirty(true);
+		}
+	}
+
+	function curDateStr(){
+		var currentdate = new Date();
+		return  currentdate.getDate() 
+		+ "/" + (currentdate.getMonth()+1) 
+		+ "/" + currentdate.getFullYear() + "  " 
+		+ currentdate.getHours() + ":" 
+		+ currentdate.getMinutes() + ":" + currentdate.getSeconds();
+	}
+
+	function changeLang(pfromLang,ptoLang){
+		//log("3:"+gLanguages);
+	//	log("change from " + pfromLang + " to " + ptoLang);
+		fuellUDP();
+		setProperties(ptoLang);
+		gCurrentLang = ptoLang;
+		updTranslInfo(gCurrentLang, gLanguages
+					,gCurVersion,curDateStr());	
+		model.design.setDirty(true);
+	}
+
+	function initTranslation() {
+		lmatchTransl= getTranslInfo()
+		if (lmatchTransl == null) {
+			setTranslInfo(gCurrentLang
+			,gLanguages,CODEVERSION);		
+		} else {
+			lversion = String(lmatchTransl).match(/version=[0-9\.]*/);
+			throw new Error("\n***TRANSLATION ("+lversion+") already installed***\n");
+		}
+		//hier gibt es einen Eintrag für die Translation
+		init();
+		// fülle die UDP für die Übersetzungen
+		fuellUDP();
+		updTranslInfo(gCurrentLang, gLanguages
+					 ,gCurVersion,curDateStr());
+		model.design.setDirty(true);
+		message ("TRANLSATION installed current-language="+gCurrentLang
+		         + " languages="+gLanguages+" version="+gCurVersion
+			        ,plainMessage);
+	}
+
+	function change2DE() {
+		init();
+		if (gCurrentLang != 'DE') {
+			changeLang(gCurrentLang,'DE');
+			message ("Modell auf DE übersetzt. Bitte Labels aus- und wieder einblenden."
+			        ,plainMessage);
+		}
+	}
+
+	function change2EN() {
+		init();
+		if (gCurrentLang != 'EN') {
+			changeLang(gCurrentLang,'EN');
+			message ("Model translated to EN. Please hide and re-display labels."
+			        ,plainMessage);
+		}
+	}
+	
+	function upgrade09_to_10() {
+		// move comments from properties to comments
+		entities = model.getEntitySet().toArray();
+		for (ie=0;ie<entities.length;ie++) { 
+			ent = entities[ie];
+			for (il=0;il<gLangArray.length;il++) {
+				// nur die fremden Sprachen ersetzen
+				lang = gLangArray[il];
+				textToNote(lang+"_ENTI_COMMENT",attr,ent.getProperty(lang+"_ENTI???_COMMENT"));
+				ent.setProperty(lang+"_ENTI???_COMMENT","")
+
+				attrs = ent.getAttributes().toArray();
+				for (ia=0;ia<attrs.length;ia++) { //
+					attr = attrs[ia];
+					textToNote(lang+"_ATTR_COMMENT",attr,ent.getProperty(lang+"_ATTR_COMMENT"));
+					attr.setProperty(lang+"_ATTR_COMMENT","")
+				}
+			}
+			ent.setDirty(true);
+		}
+	}
+	
+	function upgradeTranslation () {
+		init(true);				
+		//1.0 has no upgrades
+		if (gCurVersion  == CODEVERSION) {
+			message("TRANSLATE: latest version ("+gCurVersion+") is installed")
+		} else {
+			upgraded = false
+			if (gCurVersion == "0.9") {
+				upgrade09_to_10();
+				gCurVersion == "1.0";
+				upgraded = true
+			}
+			if (upgraded) {
+				updTranslInfo(gCurrentLang, gLanguages
+					 ,CODEVERSION,curDateStr());	
+			} else {
+				throw new Error("\nTRANSLATE: unknown version ("+gCurVersion+").\n"
+						+"Please contact support\n");
+			}
+		}			
+	}
+	]]>
+		</script>
+	</scr>
+	<scr id="B3436385-09C7-6DF2-B0BC-1AE0101D527D" name="testJS" object="logical" engine="Oracle Nashorn" type="" var="model" library="" method="" purpose="transformation" >
+		<script>
+			<![CDATA[//	Java.type("javax.swing.JOptionPane").showMessageDialog(null, "ok"+antwort);
+
+	var lm = model.getDesign().getLogicalDesign();
+	var notesStartTag = '[<tag>[\n';
+	var notesEndTag = '\n]<tag>]';
+
+	entity = lm.getEntitySet().getByName("Entiät1");
+
+    	notes = entity.getNotes()
+    	restart =  notesStartTag.replace('<tag>',"EN_ENTI_COMMENT").replace(/\[/g,'\\[').replace(/\]/g,'\\]')
+    	reend =  notesEndTag.replace('<tag>',"EN_ENTI_COMMENT").replace(/\[/g,'\\[').replace(/\]/g,'\\]')
+    			+"[\n]*"
+    	re = new RegExp(restart + '([^]*)' + reend)
+    	ma = notes.match(re)
+	Java.type("javax.swing.JOptionPane").showMessageDialog(null
+		,'|\n'+ma[0]+'\n|'+notes+'\n|');
+	notes = notes.replace(ma[0] , "[EN_ENTI_COMMENT[\nDies ist neu englisch.\n]EN_ENTI_COMMENT]\n")
+	Java.type("javax.swing.JOptionPane").showMessageDialog(null
+		, '|\n'+ma[0]+'|\n'+notes+'\n|');
+
+
 ]]>
+		</script>
+	</scr>
+
+	<lib id="8C5E208C-44EF-D2FB-A3AD-61EAE950C916" name="translation" engine="Oracle Nashorn" methods="change2EN,change2DE,initTranslation,upgradeTranslation" >
+		<script>
+			<![CDATA[
+//scripts to handle translation of model
+	var gLogNote = "LOG";
+	var gCurrentLang = "DE";
+	var gLanguages = "DE,EN";
+	var gTranslInforegexp =/TRANSLATION\{[^}]*\}/;
+	var logInitialized = false;
+	var NOTESSTARTTAG = '[<tag>[\n';
+	var NOTESENDTAG = '\n]<tag>]';
+	var plainMessage = 1;
+	var errorMessage = 0;
+	var gLangArray = []; 
+	var gCurVersion = '';
+	var CODEVERSION = '1.0';
+	
+
+	function fullmessage(msg,type) {
+		Java.type("javax.swing.JOptionPane").showMessageDialog(null
+		, msg,'ODM-Translation', type);
+	}
+
+	function error(msg) {
+		fullmessage(msg,errorMessage);
+		}
+	function message(msg) {
+		fullmessage(msg,plainMessage);
+		}
+
+	function initLog(){
+		if (! logInitialized){
+			var lNote = model.getNoteSet().getByName(gLogNote);
+	     	if (lNote == null) {
+	    	    		lNote = model.createNote()
+		    		lNote.setName(gLogNote);
+	     	}
+	     	lNote.setComment("");
+	     	logInitialized = true;
+		}
+	}
+	function log(plog){
+		initLog();
+		var lNote = model.getNoteSet().getByName(gLogNote);
+	     lNote.setComment(lNote.getComment()+"\n"+plog);
+	}
+
+	function getTranslInfo(){
+		var lDesignComment = model.design.getComment();
+	     lmatchTransl= lDesignComment.match(gTranslInforegexp);
+	     return lmatchTransl;    
+	}
+
+	function setTranslInfo(curLang,langs,version) {
+		model.design.setComment(
+			"TRANSLATION{\ncurrentLang="+curLang
+			+"\nlanguages="+langs
+			+"\nlastSync="
+			+"\nversion="+version+"\n}\n"
+			+ model.design.getComment());
+	}
+	function updTranslInfo(curLang,langs,version,datetime) {
+		curComment = model.design.getComment();
+		model.design.setComment(
+			curComment.replace(gTranslInforegexp,
+			"TRANSLATION{\ncurrentLang="+curLang
+			+"\nlanguages="+langs
+			+"\nlastSync="+datetime
+			+"\nversion="+version+"\n}"
+			));
+	}
+	
+	function buildRegExpTag(innertag,tag){
+		return tag.replace('<tag>',innertag).replace(/\[/g,'\\[').replace(/\]/g,'\\]')
+	}
+
+	function textFromNote(tag,obj) {
+    	note = obj.getNotes()
+    	restart =  buildRegExpTag(tag, NOTESSTARTTAG)
+    	reend =  buildRegExpTag (tag, NOTESENDTAG)+"[\n]*"
+    	re = new RegExp(restart + '([^]*)' + reend)
+    	ma = note.match(re)
+    	retval = ''
+	   	if (ma != null) {
+			//message("|"+reend+"|\n"+"|"+ma[0]+"|")
+	   		retval = ma[1]
+		}
+		return retval
+	}
+
+	function textToNote(tag,obj,value) {
+    	note = obj.getNotes()
+    	restart =  buildRegExpTag(tag, NOTESSTARTTAG)
+    	reend =  buildRegExpTag (tag, NOTESENDTAG)+"[\n]*"
+    	re = new RegExp(restart + '([^]*)' + reend)
+    	ma = note.match(re)
+		newentry = NOTESSTARTTAG.replace('<tag>',tag) 
+			+ value 
+			+ NOTESENDTAG.replace('<tag>',tag)
+			+'\n'
+	   	if (ma == null) {
+	   		note = note + newentry
+		} else {
+			//message("|"+newentry+"|\n"+"|"+ma[0]+"|")
+			note = note.replace(ma[0] , newentry)
+		}
+
+		obj.setNotes(note)
+	}
+
+	function init(istUpgrade){
+		lmatchTransl = getTranslInfo();
+		if (lmatchTransl == null) {
+			throw new Error("\n***TRANSLATION not installed***\n");
+		}
+		ltext= String(lmatchTransl).match(/currentLang=[A-Z]{2}/);
+		lparts = String(ltext).split("=");
+		//log("curLang="+lparts[1]);
+	     gCurrentLang = lparts[1];
+
+		ltext= String(lmatchTransl).match(/languages=[A-Z,]*/);
+		lparts = String(ltext).split("=");
+	     //log("languages="+lparts[1]);
+	     gLanguages = lparts[1]
+		gLangArray = gLanguages.split(',');
+		
+		ltext= String(lmatchTransl).match(/version=[0-9\.]*/);
+		lparts = String(ltext).split("=");
+		gCurVersion = lparts[1]
+		if (gCurVersion != CODEVERSION && !istUpgrade) {
+			msg = "\n***TRANSLATION version mismatch: "
+				+"expected " + CODEVERSION + " found "+gCurVersion
+				+"\nPlease upgrade.***\n"
+			throw new Error(msg);
+		}
+	}
+
+	function doLangValue(propName,obj,value,isNote,notNull){
+		lpropName = gCurrentLang + propName;
+	    oldval = (isNote) ? textFromNote(lpropName,obj) : obj.getProperty(lpropName);
+		lprefix =  '*'+gCurrentLang+'* '
+		//markiere oder fülle die fremden Properties
+		for (il=0;il<gLangArray.length;il++) {
+			// nur die fremden Sprachen ersetzen
+			flang = gLangArray[il]
+			if (flang != gCurrentLang) {
+				fpropName = flang + propName;
+				fprop = (isNote) ? textFromNote(fpropName,obj) : obj.getProperty(fpropName);
+				// Falls die Fremdsprache noch automtaisch übersetzt ist ( *XX* vorneweg hat), überschreibe sie
+				if (fprop.match(/^\*[A-Z]{2}\* /)) {
+				   if (isNote) textToNote(fpropName,obj,lprefix+value);
+					  else obj.setProperty(fpropName,lprefix+value);
+				} else if (fprop.startsWith('*')) {
+					// ** und * sind in Bearbeitung nichts ersetzen
+				} else if (fprop == "" && value == "" && ! notNull) {
+					// das Ziel ist leer, der neue Wert auch und es ist kein Mussfeld. lass das Ziel leer
+				} else if (fprop == "") {
+					// das Ziel ist leer aber aus einem Grund muss ich es überschreiben (siehe vorheriges IF)
+				   if (isNote) textToNote(fpropName,obj,lprefix+value);
+					  else obj.setProperty(fpropName,lprefix+value);
+			    } else {
+					// das Ziel ist gefüllt, nicht in Bearbeitung und nicht automatisch übersetzt.
+					// d.h. es hat einen gültigen Wert. Markiere es, falls die Quelle wirklich geändert hat
+					if ( ! (oldval.match(/^\*[A-Z]{2}\* /)
+						  || oldval.startsWith("**")
+						  || oldval.startsWith("*")) ) {
+						  // die Quelle ist kein Feld, das in Bearbeitung oder autmoatisch übersetzt ist
+						  if (isNote) textToNote(fpropName,obj,"*"+fprop);
+					   		else obj.setProperty(fpropName,"*"+fprop)
+					}
+				}
+			} 
+		}
+		// die Werte der CurrentLang kommen aus dem Objekt, überschreibe immer
+		if (isNote) textToNote(lpropName,obj,value);
+		   else obj.setProperty(lpropName, value);
+	}
+
+	function doProperty(propName,obj,value,notNull){
+		doLangValue(propName,obj,value,false,notNull);
+	}
+
+	function doNote(tag,obj,value) {
+		doLangValue(tag,obj,value,true,false);
+	}
+
+	function fuellUDP(){
+		entities = model.getEntitySet().toArray();
+		for (ie=0;ie<entities.length;ie++) { //
+			ent = entities[ie];
+			doProperty("_ENTI_NAME",ent,ent.getName(),true)
+			doNote("_ENTI_COMMENT",ent,ent.getComment())
+			doProperty("_ENTI_SYNONYM",ent,ent.getSynonym())
+
+			attrs = ent.getAttributes().toArray();
+			//log("Attrs="+attrs.length)
+			for (ia=0;ia<attrs.length;ia++) { //
+				attr = attrs[ia];
+				for (il=0;il<gLangArray.length;il++) {
+					doProperty("_ATTR_NAME",attr,attr.getName(),true);
+					doNote("_ATTR_COMMENT",attr,attr.getComment());			
+				}
+			}
+		ent.setDirty(true);
+		}
+		relationships = model.getRelationSet().toArray();
+		for (ir=0;ir<relationships.length;ir++) { //
+			rel = relationships[ir];
+			sourcename = rel.getNameOnSource()
+			targetname = rel.getNameOnTarget()
+			//if (i > 0) throw new Error ("\n"+gLangArray[i]+"_RELA_TEXT_FROM"+"\n"+gLangArray.length);
+			doProperty("_RELA_TEXT_FROM",rel,sourcename)
+			doProperty("_RELA_TEXT_TO",rel,targetname)	
+			rel.setDirty(true);
+		}
+	}
+
+	function setProperties(lang){
+		entities = model.getEntitySet().toArray();
+		for (ie=0;ie<entities.length;ie++) { //
+			ent = entities[ie];
+			ent.setName(ent.getProperty(lang+"_ENTI_NAME"));
+			ent.setComment(textFromNote(lang+"_ENTI_COMMENT",ent))
+			ent.setSynonym(ent.getProperty(lang+"_ENTI_SYNONYM"));
+
+			attrs = ent.getAttributes().toArray();
+			//log("Attrs="+attrs.length)
+			for (ia=0;ia<attrs.length;ia++) { //
+				attr = attrs[ia];
+				//log(attr.getName(),attr.getComment());
+				attr.setName(attr.getProperty(lang+"_ATTR_NAME"));
+				attr.setComment(textFromNote(lang+"_ATTR_COMMENT",attr))
+			}		
+			ent.setDirty(true);
+		}
+		relationships = model.getRelationSet().toArray();
+		for (ir=0;ir<relationships.length;ir++) { 
+			rel = relationships[ir];
+			rel.setNameOnSource(rel.getProperty(lang+"_RELA_TEXT_FROM"));
+			rel.setNameOnTarget(rel.getProperty(lang+"_RELA_TEXT_TO"));
+			rel.setDirty(true);
+		}
+	}
+
+	function curDateStr(){
+		var currentdate = new Date();
+		return  currentdate.getDate() 
+		+ "/" + (currentdate.getMonth()+1) 
+		+ "/" + currentdate.getFullYear() + "  " 
+		+ currentdate.getHours() + ":" 
+		+ currentdate.getMinutes() + ":" + currentdate.getSeconds();
+	}
+
+	function changeLang(pfromLang,ptoLang){
+		//log("3:"+gLanguages);
+	//	log("change from " + pfromLang + " to " + ptoLang);
+		fuellUDP();
+		setProperties(ptoLang);
+		gCurrentLang = ptoLang;
+		updTranslInfo(gCurrentLang, gLanguages
+					,gCurVersion,curDateStr());	
+		model.design.setDirty(true);
+	}
+
+	function initTranslation() {
+		lmatchTransl= getTranslInfo()
+		if (lmatchTransl == null) {
+			setTranslInfo(gCurrentLang
+			,gLanguages,CODEVERSION);		
+		} else {
+			lversion = String(lmatchTransl).match(/version=[0-9\.]*/);
+			throw new Error("\n***TRANSLATION ("+lversion+") already installed***\n");
+		}
+		//hier gibt es einen Eintrag für die Translation
+		init();
+		// fülle die UDP für die Übersetzungen
+		fuellUDP();
+		updTranslInfo(gCurrentLang, gLanguages
+					 ,gCurVersion,curDateStr());
+		model.design.setDirty(true);
+		message ("TRANLSATION installed current-language="+gCurrentLang
+		         + " languages="+gLanguages+" version="+gCurVersion
+			        ,plainMessage);
+	}
+
+	function change2DE() {
+		init();
+		if (gCurrentLang != 'DE') {
+			changeLang(gCurrentLang,'DE');
+			message ("Modell auf DE übersetzt. Bitte Labels aus- und wieder einblenden."
+			        ,plainMessage);
+		}
+	}
+
+	function change2EN() {
+		init();
+		if (gCurrentLang != 'EN') {
+			changeLang(gCurrentLang,'EN');
+			message ("Model translated to EN. Please hide and re-display labels."
+			        ,plainMessage);
+		}
+	}
+	
+	function upgrade09_to_10() {
+		// move comments from properties to comments
+		entities = model.getEntitySet().toArray();
+		for (ie=0;ie<entities.length;ie++) { 
+			ent = entities[ie];
+			for (il=0;il<gLangArray.length;il++) {
+				// nur die fremden Sprachen ersetzen
+				lang = gLangArray[il];
+				textToNote(lang+"_ENTI_COMMENT",ent,ent.getProperty(lang+"_ENTI_COMMENT"));
+				ent.setProperty(lang+"_ENTI_COMMENT","")
+
+				attrs = ent.getAttributes().toArray();
+				for (ia=0;ia<attrs.length;ia++) { //
+					attr = attrs[ia];
+					textToNote(lang+"_ATTR_COMMENT",attr,attr.getProperty(lang+"_ATTR_COMMENT"));
+					attr.setProperty(lang+"_ATTR_COMMENT","")
+				}
+			}
+			ent.setDirty(true);
+		}
+	}
+	
+	function upgradeTranslation () {
+		init(true);				
+		//1.0 has no upgrades
+		if (gCurVersion  == CODEVERSION) {
+			message("TRANSLATE: latest version ("+gCurVersion+") is installed")
+		} else {
+			upgraded = false
+			if (gCurVersion == "0.9") {
+				upgrade09_to_10();
+				gCurVersion == "1.0";
+				upgraded = true
+			}
+			if (upgraded) {
+				updTranslInfo(gCurrentLang, gLanguages
+					 ,CODEVERSION,curDateStr());	
+				message("TRANSLATE: latest version ("+gCurVersion+") is installed")
+			} else {
+				throw new Error("\nTRANSLATE: unknown version ("+gCurVersion+").\n"
+						+"Please contact support\n");
+			}
+		}			
+	}
+	]]>
 		</script>
 	</lib>
 
