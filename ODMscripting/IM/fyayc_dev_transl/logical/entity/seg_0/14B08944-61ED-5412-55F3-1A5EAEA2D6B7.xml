@@ -3,24 +3,6 @@
 <createdBy>stb</createdBy>
 <createdTime>2019-11-06 09:26:00 UTC</createdTime>
 <comment><![CDATA[Eine Entität die einfach so da steht.]]></comment>
-<notes><![CDATA[[DE_ENTI_COMMENT[
-Eine Entität die einfach so da steht.
-]DE_ENTI_COMMENT]
-[EN_ENTI_COMMENT[
-*An entity which stands like that.
-and a second line.
-]EN_ENTI_COMMENT]
-
-
-
-
-
-
-
-
-[undefined_ENTI_COMMENT[
-*DE* Eine Entität die einfach so da steht.
-]undefined_ENTI_COMMENT]]]></notes>
 <ownerDesignName>fyayc_dev_transl</ownerDesignName>
 <engineerTo>
 <item key="5BE1D3DE-1298-62A6-B8A4-2793AE250A49" value="true"/>
@@ -33,44 +15,11 @@ and a second line.
 <maxVolumes>9999999</maxVolumes>
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
-<synonym>Zweitname</synonym>
 <createSurrogateKey>true</createSurrogateKey>
-<propertyMap>
-<property name="DE_ENTI_NAME" value="Entiät1"/>
-<property name="DE_ENTI_SYNONYM" value="Zweitname"/>
-<property name="EN_ENTI_NAME" value="Entity1"/>
-<property name="EN_ENTI_SYNONYM" value="second Name"/>
-<property name="undefined_ENTI_SYNONYM" value="*DE* Zweitnamex"/>
-</propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Name" id="42C69A69-647B-2103-8105-2F55DE2A5A54">
 <createdBy>stb</createdBy>
 <createdTime>2019-11-06 09:26:20 UTC</createdTime>
-<comment><![CDATA[*EN* *]]></comment>
-<notes><![CDATA[[DE_ATTR_COMMENT[
-*EN* *
-]DE_ATTR_COMMENT]
-
-
-
-
-
-
-
-
-
-[EN_ATTR_COMMENT[
-*
-]EN_ATTR_COMMENT]
-
-
-
-
-
-
-
-
-]]></notes>
 <ownerDesignName>fyayc_dev_transl</ownerDesignName>
 <engineerTo>
 <item key="5BE1D3DE-1298-62A6-B8A4-2793AE250A49" value="true"/>
@@ -80,39 +29,10 @@ and a second line.
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <domain>9DEE9E83-5B47-BAD9-CC36-EC93AB677F7F</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
-<propertyMap>
-<property name="DE_ATTR_NAME" value="Name"/>
-<property name="EN_ATTR_NAME" value="*DE* Name"/>
-</propertyMap>
 </Attribute>
 <Attribute name="Beschreibung" id="8AF6A732-985B-11AB-14DC-914AD756EFA5">
 <createdBy>stb</createdBy>
 <createdTime>2019-11-06 09:26:25 UTC</createdTime>
-<comment><![CDATA[*EN* *]]></comment>
-<notes><![CDATA[[DE_ATTR_COMMENT[
-*EN* *
-]DE_ATTR_COMMENT]
-
-
-
-
-
-
-
-
-
-[EN_ATTR_COMMENT[
-*
-]EN_ATTR_COMMENT]
-
-
-
-
-
-
-
-
-]]></notes>
 <ownerDesignName>fyayc_dev_transl</ownerDesignName>
 <engineerTo>
 <item key="5BE1D3DE-1298-62A6-B8A4-2793AE250A49" value="true"/>
@@ -122,10 +42,6 @@ and a second line.
 <logicalDatatype>LOGDT040</logicalDatatype>
 <domain>710CB1D1-E463-4093-CDA3-938B989B0822</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
-<propertyMap>
-<property name="DE_ATTR_NAME" value="Beschreibung"/>
-<property name="EN_ATTR_NAME" value="*DE* Beschreibung"/>
-</propertyMap>
 </Attribute>
 </attributes>
 </Entity>
