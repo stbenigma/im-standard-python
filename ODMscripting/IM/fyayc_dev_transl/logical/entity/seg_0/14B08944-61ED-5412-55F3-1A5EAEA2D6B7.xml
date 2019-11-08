@@ -9,6 +9,9 @@
 [DE_ENTI_COMMENT[
 Eine Entität die einfach so da steht.
 ]DE_ENTI_COMMENT]
+[FR_ENTI_COMMENT[
+*EN* *DE* Eine Entität die einfach so da steht.
+]FR_ENTI_COMMENT]
 ]]></notes>
 <ownerDesignName>fyayc_dev_transl</ownerDesignName>
 <engineerTo>
@@ -28,6 +31,7 @@ Eine Entität die einfach so da steht.
 <property name="DE_ENTI_SYNONYM" value=""/>
 <property name="EN_ENTI_NAME" value="*DE* Entiät1"/>
 <property name="EN_ENTI_SYNONYM" value=""/>
+<property name="FR_ENTI_NAME" value="*EN* *DE* Entiät1"/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Name" id="42C69A69-647B-2103-8105-2F55DE2A5A54">
@@ -52,6 +56,7 @@ Eine Entität die einfach so da steht.
 <propertyMap>
 <property name="DE_ATTR_NAME" value="Name"/>
 <property name="EN_ATTR_NAME" value="*DE* Name"/>
+<property name="FR_ATTR_NAME" value="*EN* *DE* Name"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Beschreibung" id="8AF6A732-985B-11AB-14DC-914AD756EFA5">
@@ -76,6 +81,7 @@ Eine Entität die einfach so da steht.
 <propertyMap>
 <property name="DE_ATTR_NAME" value="Beschreibung"/>
 <property name="EN_ATTR_NAME" value="*DE* Beschreibung"/>
+<property name="FR_ATTR_NAME" value="*EN* *DE* Beschreibung"/>
 </propertyMap>
 </Attribute>
 </attributes>
