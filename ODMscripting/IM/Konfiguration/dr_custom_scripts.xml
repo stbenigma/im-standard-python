@@ -287,8 +287,9 @@
 	function changeLanguage() {
 		init();
 		options = [];
+		lcurlang = gCurrentLang
 		for (il=0;il<gLangArray.length;il++) {
-			if (gLangArray[il] != gCurrentLang) {
+			if (gLangArray[il] != lcurlang) {
 				options.push(gCurrentLang + '->' + gLangArray[il])
 			}
 		}
@@ -298,16 +299,16 @@
 			antwort = Java.type("javax.swing.JOptionPane").showInputDialog(null, 
 	        	"Choose language change",
 				"Change language",
-				2, //JOptionPane.QUESTION_MESSAGE, 
+				3, //JOptionPane.QUESTION_MESSAGE, 
 				null, 
 				options, 
 				options[0]);
 		}
         if (antwort != null){
 			toLang = antwort.substr(-2)
-			Java.type("javax.swing.JOptionPane").showMessageDialog(null, antwort+'|'+toLang);
+			//Java.type("javax.swing.JOptionPane").showMessageDialog(null, antwort+'|'+toLang);
 			changeLang(gCurrentLang,toLang);
-			message ("Model language changed from "+gCurrentLang+" to "+toLang
+			message ("Model language changed from "+lcurlang+" to "+toLang
 						+".\n Please hide and re-display labels."
 			        ,PLAINMESSAGE);
 		}
@@ -753,6 +754,8 @@
 	var NOTESENDTAG = '\n]<tag>]';
 	var PLAINMESSAGE = 1;
 	var ERRORMESSAGE = 0;
+	var WARNINGMESSAGE = 2;
+	var QUESTIONMESSAGE = 3;
 	var gLangArray = []; 
 	var gCurVersion = '';
 	var CODEVERSION = '1.0';
@@ -1040,7 +1043,7 @@
 			antwort = Java.type("javax.swing.JOptionPane").showInputDialog(null, 
 	        	"Choose language change",
 				"Change language",
-				2, //JOptionPane.QUESTION_MESSAGE, 
+				QUESTIONMESSAGE,
 				null, 
 				options, 
 				options[0]);
@@ -1114,6 +1117,8 @@
 	var NOTESENDTAG = '\n]<tag>]';
 	var PLAINMESSAGE = 1;
 	var ERRORMESSAGE = 0;
+	var WARNINGMESSAGE = 2;
+	var QUESTIONMESSAGE = 3;
 	var gLangArray = []; 
 	var gCurVersion = '';
 	var CODEVERSION = '1.0';
@@ -1401,7 +1406,7 @@
 			antwort = Java.type("javax.swing.JOptionPane").showInputDialog(null, 
 	        	"Choose language change",
 				"Change language",
-				2, //JOptionPane.QUESTION_MESSAGE, 
+				QUESTIONMESSAGE,
 				null, 
 				options, 
 				options[0]);
