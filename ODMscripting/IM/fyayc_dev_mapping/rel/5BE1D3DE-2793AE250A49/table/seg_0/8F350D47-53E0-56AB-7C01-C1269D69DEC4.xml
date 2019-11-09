@@ -1,0 +1,84 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="8F350D47-53E0-56AB-7C01-C1269D69DEC4" name="Subentität_2-2">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-09 16:58:15 UTC</createdTime>
+<generatorID>50BF9A59-DC85-FE47-9B4F-2B54510F08EF</generatorID>
+<ownerDesignName>fyayc_dev_mapping</ownerDesignName>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Super_Entiät_Super_Entiät_ID" id="4B9BE288-D56B-1D9C-849D-9883FAC1F78E">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-09 16:58:15 UTC</createdTime>
+<ownerDesignName>fyayc_dev_mapping</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="5BDC1894-5E4C-DF7F-87BC-DFD086127299" referredColumn="F7713253-1CD5-486A-3B78-ED3E75B9DDA6"/>
+</associations>
+</Column>
+<Column name="Zusatzattribut_subenti1" id="F51862BB-0F33-FD49-F0D0-6F47393FF574">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-09 16:58:15 UTC</createdTime>
+<generatorID>67F51C8D-63BE-AA45-777B-9ECA1BE05DCA</generatorID>
+<ownerDesignName>fyayc_dev_mapping</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Subentität_2-2_ID" id="4637AF52-870F-8EDE-3D27-1030A73DF2F6">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-09 16:58:15 UTC</createdTime>
+<ownerDesignName>fyayc_dev_mapping</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="2EAADE61-9A9A-3E6E-2AA3-1F9E7C42D906" name="Subentität_2-2_PK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-09 16:58:15 UTC</createdTime>
+<ownerDesignName>fyayc_dev_mapping</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="4B9BE288-D56B-1D9C-849D-9883FAC1F78E"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="B4616143-FC19-578F-BCD7-FC99AB77E68F" name="Subentität_2-2_Subentität_2-2_ID_UN">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-09 16:58:15 UTC</createdTime>
+<ownerDesignName>fyayc_dev_mapping</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="4637AF52-870F-8EDE-3D27-1030A73DF2F6"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="549BE09D-90C6-5E64-654C-96E939AE9561" name="Subentität_2-2_Super_Entiät_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-09 16:58:15 UTC</createdTime>
+<generatorID>ECA0F273-3D40-E6B2-7A71-56A56E9A951F</generatorID>
+<ownerDesignName>fyayc_dev_mapping</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="4B9BE288-D56B-1D9C-849D-9883FAC1F78E"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

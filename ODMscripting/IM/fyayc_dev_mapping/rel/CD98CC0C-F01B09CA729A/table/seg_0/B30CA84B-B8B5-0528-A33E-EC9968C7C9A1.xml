@@ -1,0 +1,76 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="B30CA84B-B8B5-0528-A33E-EC9968C7C9A1" name="Relation_4">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-09 17:04:10 UTC</createdTime>
+<ownerDesignName>fyayc_dev_mapping</ownerDesignName>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Subentität_2-2_Subentität_2_Super_Entiät_Super_Entiät_ID" id="E059D260-948D-D566-0EC9-9B70E37BF40A">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-09 17:04:10 UTC</createdTime>
+<ownerDesignName>fyayc_dev_mapping</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="7C49F7F1-D1D3-8861-E195-72045F9B65F2" referredColumn="4DBB10D9-BF54-67CE-9A5F-5F44E679B7BE"/>
+</associations>
+</Column>
+<Column name="Subentit_1-2_Subentit_1-2_ID" id="91B14FC3-07F7-B882-8CC8-E3A164C5A7EC">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-09 17:04:10 UTC</createdTime>
+<ownerDesignName>fyayc_dev_mapping</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="A96FEAC4-32DA-E1A2-E40F-39E3E53C0FA4" referredColumn="9FCBD821-531B-5C86-49C7-9F306ED3ABFB"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="01E40DC6-9DD7-D4BD-2378-91C96BEFC9B8" name="Relation_4_PK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-09 17:04:10 UTC</createdTime>
+<ownerDesignName>fyayc_dev_mapping</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="E059D260-948D-D566-0EC9-9B70E37BF40A"/>
+<colUsage columnID="91B14FC3-07F7-B882-8CC8-E3A164C5A7EC"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="CBE2EF3E-2847-D4AB-CA2B-44C32816AC61" name="Relation_4_Subentität_2-2_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-09 17:04:10 UTC</createdTime>
+<generatorID>A24AFDD7-209F-67D4-5EA8-D3C1BD1D41BC</generatorID>
+<ownerDesignName>fyayc_dev_mapping</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="E059D260-948D-D566-0EC9-9B70E37BF40A"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="F839157D-84E3-F2DE-B3CB-06028B866736" name="Relation_4_Subentit_1-2_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-09 17:04:10 UTC</createdTime>
+<generatorID>A24AFDD7-209F-67D4-5EA8-D3C1BD1D41BC</generatorID>
+<ownerDesignName>fyayc_dev_mapping</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="91B14FC3-07F7-B882-8CC8-E3A164C5A7EC"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -147,7 +147,6 @@
 			// nur die fremden Sprachen ersetzen
 			flang = gLangArray[il]
 			if (flang != gCurrentLang) {
-				if (oldval == 'Entität 1') message("vor allem "+oldval)
 				fpropName = flang + propName;
 				fprop = (isNote) ? textFromNote(fpropName,obj) : obj.getProperty(fpropName);
 				// Falls die Fremdsprache noch automtaisch übersetzt ist ( *XX* vorneweg hat), überschreibe sie
@@ -165,11 +164,12 @@
 			    } else {
 					// das Ziel ist gefüllt, nicht in Bearbeitung und nicht automatisch übersetzt.
 					// d.h. es hat einen gültigen Wert. Markiere es, falls die Quelle wirklich geändert hat
-					if (oldval == 'Entität 1') message("vor IF "+oldval)
-					if ( ! (oldval.match(/^\*[A-Z]{2}\* /)
+					//**if (oldval == 'Entität 1') message("vor IF "+oldval)
+					if ( ! (value == oldval 
+						  || oldval.match(/^\*[A-Z]{2}\* /)
 						  || oldval.startsWith("**")
 						  || oldval.startsWith("*")) ) {
-						  if (oldval == 'Entität 1') message("in IF "+oldval)
+						  //**if (oldval == 'Entität 1') message("in IF "+oldval)
 						  // die Quelle ist kein Feld, das in Bearbeitung oder autmoatisch übersetzt ist
 						  if (isNote) textToNote(fpropName,obj,"*"+fprop);
 					   		else obj.setProperty(fpropName,"*"+fprop)
@@ -1106,6 +1106,36 @@
 			}
 		}			
 	}]]>
+		</script>
+	</scr>
+	<scr id="D33DF62E-9AEA-9E5B-02C3-44F4C9B8005B" name="dummy" object="logical" engine="Oracle Nashorn" type="" var="model" library="" method="" purpose="transformation" >
+		<script>
+			<![CDATA[
+	var lm = model.getDesign().getLogicalDesign();
+	entity = lm.getEntitySet().getByName('Entiät1');	 
+	var rd = model.getDesign().getRelationalDesigns().getByName('Relational_2');
+	tab = rd.getTableSet().getByName('DUMMY');
+	if (tab != null) 
+       rd.getRMExtendedMap().createMapping(entity,tab);
+       
+	  attr = entity.getElementByName('Name');
+	  col = tab.getElementByName('DUMMYCOL');
+	  if(attr!=null && col!=null){
+	    rd.getRMExtendedMap().createMapping(attr,col);
+//	 Java.type("javax.swing.JOptionPane").showMessageDialog(null , 'Hallo '+rd+':'+tab.getName());
+	  }
+	entity = lm.getEntitySet().getByName('Entiät1');	 
+	attr = entity.getElementByName('Beschreibung')
+	tab = rd.getTableSet().getByName('Super_Entiät');
+	col = tab.getElementByName('Kürzel');
+      rd.getRMExtendedMap().createMapping(entity,tab);
+	  if(attr!=null && col!=null){
+	    rd.getRMExtendedMap().createMapping(attr,col);
+	  }
+	
+	
+
+	]]>
 		</script>
 	</scr>
 
