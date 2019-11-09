@@ -62,10 +62,22 @@ def translateSheet (pfileName, pdestFileName
         for val in row:
             y+=1
             if (val is not None):
+                #ersetze nur den String in der Zielsprache in einer Note
+                noteregex = r"(\[{}_(ENTI|ATTR)_COMMENT\[\n)(.*)(\n\]{}_(ENTI|ATTR)_COMMENT\])"\
+                                .format(ptoLang.upper(),ptoLang.upper())
+                ma = re.search(noteregex, val, re.DOTALL)
+                #print(ma.group(0),ma.group(1),ma.group(2),ma.group(3),ma.group(4))
+                if (ma):
+                    tval = ma.group(3)
+                else:
+                    tval = val  #ist keine Note. behandle den ganzen val
+
                 lregexpFromMarker = "\*{}\* ".format(str.upper(pfromLang))
-                if (re.match(lregexpFromMarker, val)) :
-                    newval = "**"+ translateString(pval=val[len(lregexpFromMarker)-2:],pfrom=pfromLang,pto=ptoLang)
-                    #print(val,newval)
+                if (re.match(lregexpFromMarker, tval)) :
+                    newval = "**"+ translateString(pval=tval[len(lregexpFromMarker)-2:],pfrom=pfromLang,pto=ptoLang)
+                    #print(tval,newval)
+                    if (ma):
+                        newval = val.replace(ma.group(0),ma.group(1)+newval+ma.group(4)) #es ist ein einzelnes Feld
                     _ = ws.cell(column=y
                             , row=x
                             , value="{}".format(newval))
@@ -76,19 +88,18 @@ def translateSheet (pfileName, pdestFileName
 #translateSheet
 
 def main():
-    #print(    translateString("""""",'de','en')     )
-    #return
     lfile =  sys.argv[1]
     lfromLang=  sys.argv[2]
     ltoLang =  sys.argv[3]
+    #return
     lfileName, lfileExt = os.path.splitext(lfile)
-    ldestFileName = lfileName + str.upper(ltoLang)+lfileExt
+    ldestFileName = lfileName + ltoLang.upper()+lfileExt
 
     translateSheet(pfileName=lfile, pdestFileName=ldestFileName
                    , pfromLang=lfromLang, ptoLang=ltoLang, )
     print("Wiederholte Texte: {}".format(str(len(transldict))))
     print("Wörter: {}".format(str(words)))
-    print("Zeichen: {} für {} € ".format(str(letters),str(round((letters / 1000000 * 20),2))))
+    print("Zeichen: {} für {} € ".format(str(letters),round((letters / 1000000 * 20),2)))
 
 if __name__ == '__main__':
     main()

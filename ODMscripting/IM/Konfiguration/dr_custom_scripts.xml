@@ -12,6 +12,8 @@
 	var NOTESENDTAG = '\n]<tag>]';
 	var PLAINMESSAGE = 1;
 	var ERRORMESSAGE = 0;
+	var WARNINGMESSAGE = 2;
+	var QUESTIONMESSAGE = 3;
 	var gLangArray = []; 
 	var gCurVersion = '';
 	var CODEVERSION = '1.0';
@@ -145,6 +147,7 @@
 			// nur die fremden Sprachen ersetzen
 			flang = gLangArray[il]
 			if (flang != gCurrentLang) {
+				if (oldval == 'Entität 1') message("vor allem "+oldval)
 				fpropName = flang + propName;
 				fprop = (isNote) ? textFromNote(fpropName,obj) : obj.getProperty(fpropName);
 				// Falls die Fremdsprache noch automtaisch übersetzt ist ( *XX* vorneweg hat), überschreibe sie
@@ -162,9 +165,11 @@
 			    } else {
 					// das Ziel ist gefüllt, nicht in Bearbeitung und nicht automatisch übersetzt.
 					// d.h. es hat einen gültigen Wert. Markiere es, falls die Quelle wirklich geändert hat
+					if (oldval == 'Entität 1') message("vor IF "+oldval)
 					if ( ! (oldval.match(/^\*[A-Z]{2}\* /)
 						  || oldval.startsWith("**")
 						  || oldval.startsWith("*")) ) {
+						  if (oldval == 'Entität 1') message("in IF "+oldval)
 						  // die Quelle ist kein Feld, das in Bearbeitung oder autmoatisch übersetzt ist
 						  if (isNote) textToNote(fpropName,obj,"*"+fprop);
 					   		else obj.setProperty(fpropName,"*"+fprop)
@@ -299,7 +304,7 @@
 			antwort = Java.type("javax.swing.JOptionPane").showInputDialog(null, 
 	        	"Choose language change",
 				"Change language",
-				3, //JOptionPane.QUESTION_MESSAGE, 
+				QUESTIONMESSAGE,
 				null, 
 				options, 
 				options[0]);
@@ -323,13 +328,11 @@
 				// nur die fremden Sprachen ersetzen
 				lang = gLangArray[il];
 				textToNote(lang+"_ENTI_COMMENT",ent,ent.getProperty(lang+"_ENTI_COMMENT"));
-				ent.setProperty(lang+"_ENTI_COMMENT","")
 
 				attrs = ent.getAttributes().toArray();
 				for (ia=0;ia<attrs.length;ia++) { //
 					attr = attrs[ia];
 					textToNote(lang+"_ATTR_COMMENT",attr,attr.getProperty(lang+"_ATTR_COMMENT"));
-					attr.setProperty(lang+"_ATTR_COMMENT","")
 				}
 			}
 			ent.setDirty(true);
@@ -345,16 +348,16 @@
 			upgraded = false
 			if (gCurVersion == "0.9") {
 				upgrade09_to_10();
-				gCurVersion == "1.0";
+				gCurVersion = "1.0";
 				upgraded = true
 			}
 			if (upgraded) {
 				updTranslInfo(gCurrentLang, gLanguages
 					 ,CODEVERSION,curDateStr());	
-				message("TRANSLATE: latest version ("+gCurVersion+") is installed")
+				message("TRANSLATE: latest version ("+CODEVERSION+") is now installed")
 			} else {
-				throw new Error("\nTRANSLATE: unknown version ("+gCurVersion+").\n"
-						+"Please contact support\n");
+			error("\nTRANSLATE: unknown version ("+gCurVersion+").\n"
+					+"Please contact support\n");
 			}
 		}			
 	}]]>
@@ -906,9 +909,12 @@
 			    } else {
 					// das Ziel ist gefüllt, nicht in Bearbeitung und nicht automatisch übersetzt.
 					// d.h. es hat einen gültigen Wert. Markiere es, falls die Quelle wirklich geändert hat
-					if ( ! (oldval.match(/^\*[A-Z]{2}\* /)
+					//**if (oldval == 'Entität 1') message("vor IF "+oldval)
+					if ( ! (value == oldval 
+						  || oldval.match(/^\*[A-Z]{2}\* /)
 						  || oldval.startsWith("**")
 						  || oldval.startsWith("*")) ) {
+						  //**if (oldval == 'Entität 1') message("in IF "+oldval)
 						  // die Quelle ist kein Feld, das in Bearbeitung oder autmoatisch übersetzt ist
 						  if (isNote) textToNote(fpropName,obj,"*"+fprop);
 					   		else obj.setProperty(fpropName,"*"+fprop)
@@ -1067,13 +1073,11 @@
 				// nur die fremden Sprachen ersetzen
 				lang = gLangArray[il];
 				textToNote(lang+"_ENTI_COMMENT",ent,ent.getProperty(lang+"_ENTI_COMMENT"));
-				ent.setProperty(lang+"_ENTI_COMMENT","")
 
 				attrs = ent.getAttributes().toArray();
 				for (ia=0;ia<attrs.length;ia++) { //
 					attr = attrs[ia];
 					textToNote(lang+"_ATTR_COMMENT",attr,attr.getProperty(lang+"_ATTR_COMMENT"));
-					attr.setProperty(lang+"_ATTR_COMMENT","")
 				}
 			}
 			ent.setDirty(true);
@@ -1089,16 +1093,16 @@
 			upgraded = false
 			if (gCurVersion == "0.9") {
 				upgrade09_to_10();
-				gCurVersion == "1.0";
+				gCurVersion = "1.0";
 				upgraded = true
 			}
 			if (upgraded) {
 				updTranslInfo(gCurrentLang, gLanguages
 					 ,CODEVERSION,curDateStr());	
-				message("TRANSLATE: latest version ("+gCurVersion+") is installed")
+				message("TRANSLATE: latest version ("+CODEVERSION+") is now installed")
 			} else {
-				throw new Error("\nTRANSLATE: unknown version ("+gCurVersion+").\n"
-						+"Please contact support\n");
+			error("\nTRANSLATE: unknown version ("+gCurVersion+").\n"
+					+"Please contact support\n");
 			}
 		}			
 	}]]>
@@ -1269,9 +1273,12 @@
 			    } else {
 					// das Ziel ist gefüllt, nicht in Bearbeitung und nicht automatisch übersetzt.
 					// d.h. es hat einen gültigen Wert. Markiere es, falls die Quelle wirklich geändert hat
-					if ( ! (oldval.match(/^\*[A-Z]{2}\* /)
+					//**if (oldval == 'Entität 1') message("vor IF "+oldval)
+					if ( ! (value == oldval 
+						  || oldval.match(/^\*[A-Z]{2}\* /)
 						  || oldval.startsWith("**")
 						  || oldval.startsWith("*")) ) {
+						  //**if (oldval == 'Entität 1') message("in IF "+oldval)
 						  // die Quelle ist kein Feld, das in Bearbeitung oder autmoatisch übersetzt ist
 						  if (isNote) textToNote(fpropName,obj,"*"+fprop);
 					   		else obj.setProperty(fpropName,"*"+fprop)
@@ -1430,13 +1437,11 @@
 				// nur die fremden Sprachen ersetzen
 				lang = gLangArray[il];
 				textToNote(lang+"_ENTI_COMMENT",ent,ent.getProperty(lang+"_ENTI_COMMENT"));
-				ent.setProperty(lang+"_ENTI_COMMENT","")
 
 				attrs = ent.getAttributes().toArray();
 				for (ia=0;ia<attrs.length;ia++) { //
 					attr = attrs[ia];
 					textToNote(lang+"_ATTR_COMMENT",attr,attr.getProperty(lang+"_ATTR_COMMENT"));
-					attr.setProperty(lang+"_ATTR_COMMENT","")
 				}
 			}
 			ent.setDirty(true);
@@ -1452,16 +1457,16 @@
 			upgraded = false
 			if (gCurVersion == "0.9") {
 				upgrade09_to_10();
-				gCurVersion == "1.0";
+				gCurVersion = "1.0";
 				upgraded = true
 			}
 			if (upgraded) {
 				updTranslInfo(gCurrentLang, gLanguages
 					 ,CODEVERSION,curDateStr());	
-				message("TRANSLATE: latest version ("+gCurVersion+") is installed")
+				message("TRANSLATE: latest version ("+CODEVERSION+") is now installed")
 			} else {
-				throw new Error("\nTRANSLATE: unknown version ("+gCurVersion+").\n"
-						+"Please contact support\n");
+			error("\nTRANSLATE: unknown version ("+gCurVersion+").\n"
+					+"Please contact support\n");
 			}
 		}			
 	}]]>

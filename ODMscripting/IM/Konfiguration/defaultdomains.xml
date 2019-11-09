@@ -1,48 +1,20 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
 <DomainFile class="oracle.dbtools.crest.model.design.DomainFileWrapper" fileName="defaultdomains">
 <domains>
-<Domain class="oracle.dbtools.crest.model.design.Domain" name="Geographische Breite" id="5D6F945C-D1FD-ED55-14C3-F06C4DF2D519">
-<createdBy>stb</createdBy>
-<createdTime>2019-11-06 12:23:12 UTC</createdTime>
-<comment><![CDATA[Koordinate auf der Weltkugel (west-ost)]]></comment>
-<ownerDesignName>System</ownerDesignName>
-<avTSortOrder>0</avTSortOrder>
-<dataTypePrecision>12</dataTypePrecision>
-<dataTypeScale>9</dataTypeScale>
-<fileName>defaultdomains</fileName>
-<logicalDatatype>LOGDT019</logicalDatatype>
-<unitOfMeasure>grad</unitOfMeasure>
-</Domain>
-<Domain class="oracle.dbtools.crest.model.design.Domain" name="Beschreibung" id="710CB1D1-E463-4093-CDA3-938B989B0822">
-<createdBy>stb</createdBy>
-<createdTime>2019-11-06 12:25:54 UTC</createdTime>
-<comment><![CDATA[Freitext beliebiger Länge]]></comment>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="Nachkommastellen" id="6CD38CF5-A726-AC5D-5E57-6F51E3309D64">
+<createdBy>ch1011185</createdBy>
+<createdTime>2019-02-28 08:22:10 UTC</createdTime>
+<comment><![CDATA[Anzahl Nachkommastellen]]></comment>
 <ownerDesignName>System</ownerDesignName>
 <avTSortOrder>0</avTSortOrder>
 <fileName>defaultdomains</fileName>
-<logicalDatatype>LOGDT040</logicalDatatype>
-</Domain>
-<Domain class="oracle.dbtools.crest.model.design.Domain" name="Name" id="9DEE9E83-5B47-BAD9-CC36-EC93AB677F7F">
-<createdBy>stb</createdBy>
-<createdTime>2019-11-06 12:25:29 UTC</createdTime>
-<comment><![CDATA[Typischer Name für ein Ding]]></comment>
-<ownerDesignName>System</ownerDesignName>
-<avTSortOrder>0</avTSortOrder>
-<dataTypeSize>60</dataTypeSize>
-<fileName>defaultdomains</fileName>
-<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
-</Domain>
-<Domain class="oracle.dbtools.crest.model.design.Domain" name="Geographische Höhe" id="DC9EA111-9C1A-C273-8536-70CE9CF65363">
-<createdBy>stb</createdBy>
-<createdTime>2019-11-06 12:24:35 UTC</createdTime>
-<comment><![CDATA[Koordinate auf der Weltkugel Nord-Süd]]></comment>
-<ownerDesignName>System</ownerDesignName>
-<avTSortOrder>0</avTSortOrder>
-<dataTypePrecision>12</dataTypePrecision>
-<dataTypeScale>9</dataTypeScale>
-<fileName>defaultdomains</fileName>
-<logicalDatatype>LOGDT019</logicalDatatype>
-<unitOfMeasure>grad</unitOfMeasure>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>0</beginValue>
+<endValue>10</endValue>
+</rangeDef>
+</listOfRanges>
 </Domain>
 <Domain class="oracle.dbtools.crest.model.design.Domain" name="Unknown" id="DOM3000004">
 <createdBy>ch1011185</createdBy>
