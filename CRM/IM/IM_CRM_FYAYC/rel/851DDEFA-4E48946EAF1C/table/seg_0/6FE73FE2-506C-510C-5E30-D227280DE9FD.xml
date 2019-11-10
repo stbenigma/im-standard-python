@@ -1,0 +1,87 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="6FE73FE2-506C-510C-5E30-D227280DE9FD" name="Agent">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:56 UTC</createdTime>
+<comment><![CDATA[Person oder Firma, die für uns (in einem Gebiet) die Vermittlung von Geschäften übernimmt.
+Handelt in dieser Rolle selber nicht mit den Waren. Hat also weder Lager noch ist sie Adressat von Lieferungen.]]></comment>
+<generatorID>A62BF39A-D73C-C159-B8B1-E4EB7085DC7E</generatorID>
+<notes><![CDATA[[EN_ENTI_COMMENT[
+*DE* Person oder Firma, die für uns (in einem Gebiet) die Vermittlung von Geschäften übernimmt.
+Handelt in dieser Rolle selber nicht mit den Waren. Hat also weder Lager noch ist sie Adressat von Lieferungen.
+]EN_ENTI_COMMENT]
+[DE_ENTI_COMMENT[
+Person oder Firma, die für uns (in einem Gebiet) die Vermittlung von Geschäften übernimmt.
+Handelt in dieser Rolle selber nicht mit den Waren. Hat also weder Lager noch ist sie Adressat von Lieferungen.
+]DE_ENTI_COMMENT]
+[FR_ENTI_COMMENT[
+*EN* *DE* Person oder Firma, die für uns (in einem Gebiet) die Vermittlung von Geschäften übernimmt.
+Handelt in dieser Rolle selber nicht mit den Waren. Hat also weder Lager noch ist sie Adressat von Lieferungen.
+]FR_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Handelseinheit_Handelseinheit_ID" id="E9959BF1-5CB5-3A87-6612-42093E98DF64">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:56 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="C8985AE5-964C-0A25-59F4-CF5065D6C98F" referredColumn="B04DD40D-2DED-4051-AA2E-C0D5F71C7A3D"/>
+</associations>
+</Column>
+<Column name="Agent_ID" id="D08F5CB5-9FB9-A395-5134-8C5C5C1DF352">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:56 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="67D8BC1D-6150-B7F3-D0FD-F9B45C588211" name="Agent_PK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:56 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="E9959BF1-5CB5-3A87-6612-42093E98DF64"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="1B066C1D-403B-EE35-3059-FC61718112FB" name="Agent_Agent_ID_UN">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:56 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="D08F5CB5-9FB9-A395-5134-8C5C5C1DF352"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="1CA681CD-AE2B-0829-F5DA-20437455835D" name="Agent_Handelseinheit_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:56 UTC</createdTime>
+<generatorID>653BDAB0-2FF3-C85C-0CE9-B95C96D7D3C0</generatorID>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="E9959BF1-5CB5-3A87-6612-42093E98DF64"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

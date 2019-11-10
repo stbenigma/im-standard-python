@@ -1,0 +1,175 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="941CED24-2F13-39A5-0250-8192DD58221E" name="PLZ-Gebiet">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:03 UTC</createdTime>
+<comment><![CDATA[Durch die Post vergebene Gebietseinteilung.
+Die Postleitzahl ist in vielen Ländern keine Zahl sondern eine Zeichenfolge mit Ziffern und Buchstaben
+
+Es gibt hierarchische Systeme beim Aufbau von PLZ:
+Z.B. USA
+221 - 62 -10 -10	 
+Segment - Sektor - Postdienststelle oder Zustellabschnitt - Leitzone oder Bearbeitungs- und Zustellzentrum
+
+Es kann andere genormte Systeme geben
+P3: Postleitzahl
+P2: Postleitzahluntergebiet
+P1: Postleitzahlgebiet
+P0: Land
+]]></comment>
+<generatorID>042A86B2-01B0-2BF0-D0D9-801BD9612C6B</generatorID>
+<notes><![CDATA[[EN_ENTI_COMMENT[
+*DE* Durch die Post vergebene Gebietseinteilung.
+Die Postleitzahl ist in vielen Ländern keine Zahl sondern eine Zeichenfolge mit Ziffern und Buchstaben
+
+Es gibt hierarchische Systeme beim Aufbau von PLZ:
+Z.B. USA
+221 - 62 -10 -10	 
+Segment - Sektor - Postdienststelle oder Zustellabschnitt - Leitzone oder Bearbeitungs- und Zustellzentrum
+
+Es kann andere genormte Systeme geben
+P3: Postleitzahl
+P2: Postleitzahluntergebiet
+P1: Postleitzahlgebiet
+P0: Land
+
+]EN_ENTI_COMMENT]
+[DE_ENTI_COMMENT[
+Durch die Post vergebene Gebietseinteilung.
+Die Postleitzahl ist in vielen Ländern keine Zahl sondern eine Zeichenfolge mit Ziffern und Buchstaben
+
+Es gibt hierarchische Systeme beim Aufbau von PLZ:
+Z.B. USA
+221 - 62 -10 -10	 
+Segment - Sektor - Postdienststelle oder Zustellabschnitt - Leitzone oder Bearbeitungs- und Zustellzentrum
+
+Es kann andere genormte Systeme geben
+P3: Postleitzahl
+P2: Postleitzahluntergebiet
+P1: Postleitzahlgebiet
+P0: Land
+
+]DE_ENTI_COMMENT]
+[FR_ENTI_COMMENT[
+*EN* *DE* Durch die Post vergebene Gebietseinteilung.
+Die Postleitzahl ist in vielen Ländern keine Zahl sondern eine Zeichenfolge mit Ziffern und Buchstaben
+
+Es gibt hierarchische Systeme beim Aufbau von PLZ:
+Z.B. USA
+221 - 62 -10 -10	 
+Segment - Sektor - Postdienststelle oder Zustellabschnitt - Leitzone oder Bearbeitungs- und Zustellzentrum
+
+Es kann andere genormte Systeme geben
+P3: Postleitzahl
+P2: Postleitzahluntergebiet
+P1: Postleitzahlgebiet
+P0: Land
+
+]FR_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Postleitzahl" id="6D4D0055-DA85-6F4F-418B-22A001C504C8">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:03 UTC</createdTime>
+<generatorID>B5F33891-F2FE-CAF2-EB56-D971EE142581</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+[FR_ATTR_COMMENT[
+
+]FR_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="PLZ-Ebene" id="1CB28E7F-8BBF-08D2-A291-0A2CF93AAC7C">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:03 UTC</createdTime>
+<comment><![CDATA[P1-P3]]></comment>
+<generatorID>07E07412-DAC0-FD4E-59BF-E4FF52A462BE</generatorID>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+*DE* P1-P3
+]EN_ATTR_COMMENT]
+[DE_ATTR_COMMENT[
+P1-P3
+]DE_ATTR_COMMENT]
+[FR_ATTR_COMMENT[
+*EN* *DE* P1-P3
+]FR_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="PLZ-Gebiet_ID" id="88D507B2-0A7D-2645-8B04-72ED547B995C">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:03 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+<Column name="Gebiet_Geografische_Einheit_GEIN_ID" id="125CAD6E-D6DA-8AA5-B36D-18B1CFFE422A">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:03 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="82FEC7D0-51A5-102A-D1CB-45F2C7D5BD6A" referredColumn="66B37378-86EE-426A-31E0-A10CAB8825E8"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="07080E8E-3971-6CBE-B301-FC3D0369013A" name="PLZ-Gebiet_PK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:03 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="125CAD6E-D6DA-8AA5-B36D-18B1CFFE422A"/>
+<colUsage columnID="88D507B2-0A7D-2645-8B04-72ED547B995C"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="29624994-9BEE-8BD7-BDDB-057F37E4945C" name="PLZ-Gebiet_PLZ-Gebiet_ID_UN">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:03 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="88D507B2-0A7D-2645-8B04-72ED547B995C"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="56E30099-0D5E-51EA-5A83-EF7EC7D218A3" name="PLZ-Gebiet_Gebiet_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:03 UTC</createdTime>
+<generatorID>5E04AA32-8062-6E79-28E9-67301B730F31</generatorID>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="125CAD6E-D6DA-8AA5-B36D-18B1CFFE422A"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -1,0 +1,87 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="5982D485-99DA-782B-24C7-4B124D297779" name="Mieter">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:56 UTC</createdTime>
+<comment><![CDATA[Geschäftsfähige Einheit, die ein Produkt zum Gebrauch vom Eigentümer mietet.
+Egal ob pay per use  oder Zeitmiete.]]></comment>
+<generatorID>924C6AB6-7EA7-77BC-2E8E-EA6A768F61D1</generatorID>
+<notes><![CDATA[[EN_ENTI_COMMENT[
+*DE* Geschäftsfähige Einheit, die ein Produkt zum Gebrauch vom Eigentümer mietet.
+Egal ob pay per use  oder Zeitmiete.
+]EN_ENTI_COMMENT]
+[DE_ENTI_COMMENT[
+Geschäftsfähige Einheit, die ein Produkt zum Gebrauch vom Eigentümer mietet.
+Egal ob pay per use  oder Zeitmiete.
+]DE_ENTI_COMMENT]
+[FR_ENTI_COMMENT[
+*EN* *DE* Geschäftsfähige Einheit, die ein Produkt zum Gebrauch vom Eigentümer mietet.
+Egal ob pay per use  oder Zeitmiete.
+]FR_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Vertriebskunde_Vertriebsteilnehmer_Vertriebsteilnehmer_ID" id="AD82B405-8C4A-9DFD-81A2-1874DC6D5E1F">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:57 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="5DA8EBFD-5BBC-E7E1-55D5-38F51392C685" referredColumn="2B31972E-483B-EBE4-E12E-6863BD668D2C"/>
+</associations>
+</Column>
+<Column name="Mieter_ID" id="C4A4CA66-DD8A-5243-C1C4-D0485C85849E">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:56 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="09A5FDBC-D2A4-1A8D-4E2E-19AE1483EE8A" name="Mieter_PK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:57 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="AD82B405-8C4A-9DFD-81A2-1874DC6D5E1F"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="18E030FD-DFCB-4972-5F19-3D917068F594" name="Mieter_Mieter_ID_UN">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:56 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="C4A4CA66-DD8A-5243-C1C4-D0485C85849E"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="B2844D9A-B2F2-BE62-19D6-82C490206FBF" name="Mieter_Vertriebskunde_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:57 UTC</createdTime>
+<generatorID>D182C3B2-70FB-9069-B6C3-357E81869E7F</generatorID>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="AD82B405-8C4A-9DFD-81A2-1874DC6D5E1F"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

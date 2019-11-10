@@ -1,0 +1,110 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="090552D2-20B1-9DDA-4A9A-19B7D8DBC5E7" name="Relation_57">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:57 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="natürliche_Person_Geschäftsfähige_Einheit_Geschäftsfähige_Einheit_ID" id="94E5F24B-6030-7613-A79E-165A8FDFCC5E">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:57 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="1907C4B0-19C4-1AAC-58FB-5C074E7C96B4" referredColumn="45D2A9FB-84A3-CBEB-C3B6-9BDF783C26C9"/>
+</associations>
+</Column>
+<Column name="natürliche_Person_natürliche_Person_ID" id="91A4F3A9-61A0-8519-22B8-15E86F12DBC0">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:57 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="1907C4B0-19C4-1AAC-58FB-5C074E7C96B4" referredColumn="3A67E2E7-FD44-6C54-440C-E620ED7761C6"/>
+</associations>
+</Column>
+<Column name="natürliche_Person_Geschäftsfähige_Einheit_Geschäftsfähige_Einheit_ID1" id="76614255-1B93-CB07-D990-40A881DA3306">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:57 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="F19FA19C-CCCD-51B0-805F-7AB27BA1B294" referredColumn="45D2A9FB-84A3-CBEB-C3B6-9BDF783C26C9"/>
+</associations>
+</Column>
+<Column name="natürliche_Person_natürliche_Person_ID1" id="93ECD8F5-09B7-7797-53AB-6B598C88A728">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:57 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="F19FA19C-CCCD-51B0-805F-7AB27BA1B294" referredColumn="3A67E2E7-FD44-6C54-440C-E620ED7761C6"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="D5C813AB-23BB-1F18-264C-140C63D2DBE6" name="Relation_57_PK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:57 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="94E5F24B-6030-7613-A79E-165A8FDFCC5E"/>
+<colUsage columnID="91A4F3A9-61A0-8519-22B8-15E86F12DBC0"/>
+<colUsage columnID="76614255-1B93-CB07-D990-40A881DA3306"/>
+<colUsage columnID="93ECD8F5-09B7-7797-53AB-6B598C88A728"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="0D5E2EF9-B084-BDAA-3082-6205536911A5" name="Relation_57_natürliche_Person_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:57 UTC</createdTime>
+<generatorID>688D0870-DC81-CDD2-58D5-490E0CE3BE21</generatorID>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="94E5F24B-6030-7613-A79E-165A8FDFCC5E"/>
+<colUsage columnID="91A4F3A9-61A0-8519-22B8-15E86F12DBC0"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="320A2095-A32E-4209-D0C4-CAD74D1134D9" name="Relation_57_natürliche_Person_FKv1">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:57 UTC</createdTime>
+<generatorID>688D0870-DC81-CDD2-58D5-490E0CE3BE21</generatorID>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="76614255-1B93-CB07-D990-40A881DA3306"/>
+<colUsage columnID="93ECD8F5-09B7-7797-53AB-6B598C88A728"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

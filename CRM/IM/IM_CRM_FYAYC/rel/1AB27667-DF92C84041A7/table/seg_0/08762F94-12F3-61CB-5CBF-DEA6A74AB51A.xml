@@ -1,0 +1,207 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="08762F94-12F3-61CB-5CBF-DEA6A74AB51A" name="Gebiet">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:10 UTC</createdTime>
+<comment><![CDATA[Gebietsunterteilung eines Landes in kleinere Einheiten.
+
+Gemäss NUTS (https://de.wikipedia.org/wiki/NUTS) ist das Land die Gebietsstufe NUTS 0
+NUTS 0	Nationalstaat
+NUTS 1	“major socio-economic regions (grouping basic regions)” … größere Regionen/Landesteile
+NUTS 2 	“basic regions (for the application of regional policies)” … mittelgroße Regionen, Millionenstädte
+NUTS 3	“small regions (for specific diagnoses)” … kleinere Regionen, teils schon Großstädte
+LAU 1	o.A. … kommunale Verwaltungsverbände, teils Gemeinden (nicht in allen Staaten definiert)
+LAU 2	“municipalities or equivalent units” … Gemeinden, teils Gemeindegliederungen
+
+Es kann weitere Hierarchiestufenbezeichnungen geben:
+Deutschland
+A0: Land
+A1: Bundesland
+A2: leer
+A3: Landkreis
+A4: leer
+A5: Gemeinde: Administrative Gemeinde im jeweiligen Land
+Flurnamen, Gemeindegebiete, alte Gemeindenamen (unterteilen Gemeinde) oder weitere Stufen]]></comment>
+<generatorID>F5C9D6EA-E8A5-9F5B-1FC6-73903D18666C</generatorID>
+<notes><![CDATA[[EN_ENTI_COMMENT[
+*DE* Gebietsunterteilung eines Landes in kleinere Einheiten.
+
+Gemäss NUTS (https://de.wikipedia.org/wiki/NUTS) ist das Land die Gebietsstufe NUTS 0
+NUTS 0	Nationalstaat
+NUTS 1	“major socio-economic regions (grouping basic regions)” … größere Regionen/Landesteile
+NUTS 2 	“basic regions (for the application of regional policies)” … mittelgroße Regionen, Millionenstädte
+NUTS 3	“small regions (for specific diagnoses)” … kleinere Regionen, teils schon Großstädte
+LAU 1	o.A. … kommunale Verwaltungsverbände, teils Gemeinden (nicht in allen Staaten definiert)
+LAU 2	“municipalities or equivalent units” … Gemeinden, teils Gemeindegliederungen
+
+Es kann weitere Hierarchiestufenbezeichnungen geben:
+Deutschland
+A0: Land
+A1: Bundesland
+A2: leer
+A3: Landkreis
+A4: leer
+A5: Gemeinde: Administrative Gemeinde im jeweiligen Land
+Flurnamen, Gemeindegebiete, alte Gemeindenamen (unterteilen Gemeinde) oder weitere Stufen
+]EN_ENTI_COMMENT]
+[DE_ENTI_COMMENT[
+Gebietsunterteilung eines Landes in kleinere Einheiten.
+
+Gemäss NUTS (https://de.wikipedia.org/wiki/NUTS) ist das Land die Gebietsstufe NUTS 0
+NUTS 0	Nationalstaat
+NUTS 1	“major socio-economic regions (grouping basic regions)” … größere Regionen/Landesteile
+NUTS 2 	“basic regions (for the application of regional policies)” … mittelgroße Regionen, Millionenstädte
+NUTS 3	“small regions (for specific diagnoses)” … kleinere Regionen, teils schon Großstädte
+LAU 1	o.A. … kommunale Verwaltungsverbände, teils Gemeinden (nicht in allen Staaten definiert)
+LAU 2	“municipalities or equivalent units” … Gemeinden, teils Gemeindegliederungen
+
+Es kann weitere Hierarchiestufenbezeichnungen geben:
+Deutschland
+A0: Land
+A1: Bundesland
+A2: leer
+A3: Landkreis
+A4: leer
+A5: Gemeinde: Administrative Gemeinde im jeweiligen Land
+Flurnamen, Gemeindegebiete, alte Gemeindenamen (unterteilen Gemeinde) oder weitere Stufen
+]DE_ENTI_COMMENT]
+[FR_ENTI_COMMENT[
+*EN* *DE* Gebietsunterteilung eines Landes in kleinere Einheiten.
+
+Gemäss NUTS (https://de.wikipedia.org/wiki/NUTS) ist das Land die Gebietsstufe NUTS 0
+NUTS 0	Nationalstaat
+NUTS 1	“major socio-economic regions (grouping basic regions)” … größere Regionen/Landesteile
+NUTS 2 	“basic regions (for the application of regional policies)” … mittelgroße Regionen, Millionenstädte
+NUTS 3	“small regions (for specific diagnoses)” … kleinere Regionen, teils schon Großstädte
+LAU 1	o.A. … kommunale Verwaltungsverbände, teils Gemeinden (nicht in allen Staaten definiert)
+LAU 2	“municipalities or equivalent units” … Gemeinden, teils Gemeindegliederungen
+
+Es kann weitere Hierarchiestufenbezeichnungen geben:
+Deutschland
+A0: Land
+A1: Bundesland
+A2: leer
+A3: Landkreis
+A4: leer
+A5: Gemeinde: Administrative Gemeinde im jeweiligen Land
+Flurnamen, Gemeindegebiete, alte Gemeindenamen (unterteilen Gemeinde) oder weitere Stufen
+]FR_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Geografische_Einheit_GEIN_ID" id="3A2CF8C3-5349-356A-BEDC-3E6C86C3B592">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:10 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Gebiet_ID" id="77B7F5BC-ED5B-BB2B-AB03-A3EE70EB6556">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:10 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+<Column name="Land_Geografische_Einheit_GEIN_ID" id="D9358EED-99D8-918A-55EE-449526641F78">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:10 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="4D9C9A6F-4AD7-1F77-8C8A-2B5529CCA5B7" referredColumn="16FA01FD-EC30-8DF9-F1DE-152C54AB72C5"/>
+</associations>
+</Column>
+<Column name="Land_LAND_ID" id="08EE2DE3-AE7A-6427-FB72-50C51B3954E7">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:10 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="4D9C9A6F-4AD7-1F77-8C8A-2B5529CCA5B7" referredColumn="C99E648F-82FC-0A77-93CF-AF043358B3B0"/>
+</associations>
+</Column>
+<Column name="Gebiet_Geografische_Einheit_GEIN_ID" id="16362F29-1F97-CBFE-0A7F-D13F1BCC99D0">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:10 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="6E0F293D-254B-21F3-BBF3-521C1948294F" referredColumn="3A2CF8C3-5349-356A-BEDC-3E6C86C3B592"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="DC109753-C46F-5647-36A3-C1D7E6B88314" name="Gebiet_PK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:10 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="3A2CF8C3-5349-356A-BEDC-3E6C86C3B592"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="9454D80E-9E1A-E7B6-333C-8B44298AD587" name="Gebiet_Gebiet_ID_UN">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:10 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="77B7F5BC-ED5B-BB2B-AB03-A3EE70EB6556"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="DC268AEA-E0BD-2253-F491-3FFC82895E48" name="Gebiet_Land_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:10 UTC</createdTime>
+<generatorID>3C1888B7-49CC-94FE-9104-4ACEBE15905F</generatorID>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="D9358EED-99D8-918A-55EE-449526641F78"/>
+<colUsage columnID="08EE2DE3-AE7A-6427-FB72-50C51B3954E7"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="F93E1E9F-A306-9DED-9A4A-B5C28B766553" name="Gebiet_Gebiet_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:10 UTC</createdTime>
+<generatorID>1F500F46-9874-6393-F53A-6F44B3E3901D</generatorID>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="16362F29-1F97-CBFE-0A7F-D13F1BCC99D0"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -2,10 +2,39 @@
 <Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="A32C5003-C12A-FAF9-F8F8-A38135C65A71" name="Produktinstanz">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 12:49:26 UTC</createdTime>
-<comment>einzelnes, weltweit identifizierbares Exemplar eines Produktes.&lt;br/&gt;&lt;br/&gt;Mit oder ohne IOT.&lt;br/&gt;&lt;br/&gt;</comment>
+<comment><![CDATA[einzelnes, weltweit identifizierbares Exemplar eines Produktes.
+
+Mit oder ohne IOT.
+
+]]></comment>
+<notes><![CDATA[[EN_ENTI_COMMENT[
+*DE* einzelnes, weltweit identifizierbares Exemplar eines Produktes.
+
+Mit oder ohne IOT.
+
+
+]EN_ENTI_COMMENT]
+[DE_ENTI_COMMENT[
+einzelnes, weltweit identifizierbares Exemplar eines Produktes.
+
+Mit oder ohne IOT.
+
+
+]DE_ENTI_COMMENT]
+[FR_ENTI_COMMENT[
+*DE* einzelnes, weltweit identifizierbares Exemplar eines Produktes.
+
+Mit oder ohne IOT.
+
+
+]FR_ENTI_COMMENT]
+]]></notes>
 <ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
 <engineerTo>
-<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true"/>
+<item key="1AB27667-C11D-3493-68AA-DF92C84041A7" value="true"/>
+<item key="851DDEFA-B048-37E9-7826-4E48946EAF1C" value="true"/>
+<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="false"/>
+<item key="015DE428-05B6-58DD-323D-ECDC72266F4A" value="true"/>
 </engineerTo>
 <adequatelyNormalized>NO</adequatelyNormalized>
 <expectedVolumes>0</expectedVolumes>
@@ -16,16 +45,42 @@
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
 <createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="DE_ENTI_NAME" value="Produktinstanz"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_NAME" value="Product instance"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+<property name="FR_ENTI_NAME" value="*DE* Produktinstanz"/>
+<property name="FR_ENTI_SYNONYM" value=""/>
+</propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Serie-Nr" id="F3C7BFA1-E8B3-80DC-668D-4EADED553B6B">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 12:50:08 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+[FR_ATTR_COMMENT[
+
+]FR_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
 <engineerTo>
-<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true"/>
+<item key="1AB27667-C11D-3493-68AA-DF92C84041A7" value="true"/>
+<item key="851DDEFA-B048-37E9-7826-4E48946EAF1C" value="true"/>
+<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="false"/>
+<item key="015DE428-05B6-58DD-323D-ECDC72266F4A" value="true"/>
 </engineerTo>
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Serie-Nr"/>
+<property name="EN_ATTR_NAME" value="*DE* Serie-Nr"/>
+<property name="FR_ATTR_NAME" value="*DE* Serie-Nr"/>
+</propertyMap>
 </Attribute>
 </attributes>
 </Entity>

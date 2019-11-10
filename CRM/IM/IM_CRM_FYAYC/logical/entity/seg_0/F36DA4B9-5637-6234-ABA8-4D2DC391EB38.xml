@@ -2,10 +2,39 @@
 <Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="F36DA4B9-5637-6234-ABA8-4D2DC391EB38" name="Installateur">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 12:20:19 UTC</createdTime>
-<comment>Partner, der die Produkte / Geräte in Betrieb nimmt, montiert, zusammenbaut.&lt;br/&gt;&lt;br/&gt;Beispiele:&lt;br/&gt;Montagefirma &lt;br/&gt;Handwerker der Geräten (Elektro, Sanitär) in Häusern einbaut</comment>
+<comment><![CDATA[Partner, der die Produkte / Geräte in Betrieb nimmt, montiert, zusammenbaut.
+
+Beispiele:
+Montagefirma 
+Handwerker der Geräten (Elektro, Sanitär) in Häusern einbaut]]></comment>
+<notes><![CDATA[[EN_ENTI_COMMENT[
+*DE* Partner, der die Produkte / Geräte in Betrieb nimmt, montiert, zusammenbaut.
+
+Beispiele:
+Montagefirma 
+Handwerker der Geräten (Elektro, Sanitär) in Häusern einbaut
+]EN_ENTI_COMMENT]
+[DE_ENTI_COMMENT[
+Partner, der die Produkte / Geräte in Betrieb nimmt, montiert, zusammenbaut.
+
+Beispiele:
+Montagefirma 
+Handwerker der Geräten (Elektro, Sanitär) in Häusern einbaut
+]DE_ENTI_COMMENT]
+[FR_ENTI_COMMENT[
+*DE* Partner, der die Produkte / Geräte in Betrieb nimmt, montiert, zusammenbaut.
+
+Beispiele:
+Montagefirma 
+Handwerker der Geräten (Elektro, Sanitär) in Häusern einbaut
+]FR_ENTI_COMMENT]
+]]></notes>
 <ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
 <engineerTo>
-<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true"/>
+<item key="1AB27667-C11D-3493-68AA-DF92C84041A7" value="true"/>
+<item key="851DDEFA-B048-37E9-7826-4E48946EAF1C" value="true"/>
+<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="false"/>
+<item key="015DE428-05B6-58DD-323D-ECDC72266F4A" value="true"/>
 </engineerTo>
 <adequatelyNormalized>NO</adequatelyNormalized>
 <expectedVolumes>0</expectedVolumes>
@@ -17,4 +46,12 @@
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
 <createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="DE_ENTI_NAME" value="Installateur"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_NAME" value="*Installateur"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+<property name="FR_ENTI_NAME" value="*DE* Installateur"/>
+<property name="FR_ENTI_SYNONYM" value=""/>
+</propertyMap>
 </Entity>

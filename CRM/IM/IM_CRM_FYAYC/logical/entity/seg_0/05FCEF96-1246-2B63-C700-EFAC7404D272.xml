@@ -2,10 +2,39 @@
 <Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="05FCEF96-1246-2B63-C700-EFAC7404D272" name="Adresse">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 09:44:32 UTC</createdTime>
-<comment>Postalisch-geographische Lokalisation&lt;br/&gt;&lt;br/&gt;Jede Adresse ist für einen Akteur definiert. D.h. die selbe Adresse kann mehrfach vorkommen.&lt;br/&gt;Falls ein generelles Adressverzeichnis als Referenz geführt wird (Basisadresse), muss das zusätlich erfasst werden.&lt;br/&gt;Dann wird diese Entität zur Verknüpfung zwischen Akteur und Basisadresse.</comment>
+<comment><![CDATA[Postalisch-geographische Lokalisation
+
+Jede Adresse ist für einen Akteur definiert. D.h. die selbe Adresse kann mehrfach vorkommen.
+Falls ein generelles Adressverzeichnis als Referenz geführt wird (Basisadresse), muss das zusätlich erfasst werden.
+Dann wird diese Entität zur Verknüpfung zwischen Akteur und Basisadresse.]]></comment>
+<notes><![CDATA[[EN_ENTI_COMMENT[
+*DE* Postalisch-geographische Lokalisation
+
+Jede Adresse ist für einen Akteur definiert. D.h. die selbe Adresse kann mehrfach vorkommen.
+Falls ein generelles Adressverzeichnis als Referenz geführt wird (Basisadresse), muss das zusätlich erfasst werden.
+Dann wird diese Entität zur Verknüpfung zwischen Akteur und Basisadresse.
+]EN_ENTI_COMMENT]
+[DE_ENTI_COMMENT[
+Postalisch-geographische Lokalisation
+
+Jede Adresse ist für einen Akteur definiert. D.h. die selbe Adresse kann mehrfach vorkommen.
+Falls ein generelles Adressverzeichnis als Referenz geführt wird (Basisadresse), muss das zusätlich erfasst werden.
+Dann wird diese Entität zur Verknüpfung zwischen Akteur und Basisadresse.
+]DE_ENTI_COMMENT]
+[FR_ENTI_COMMENT[
+*DE* Postalisch-geographische Lokalisation
+
+Jede Adresse ist für einen Akteur definiert. D.h. die selbe Adresse kann mehrfach vorkommen.
+Falls ein generelles Adressverzeichnis als Referenz geführt wird (Basisadresse), muss das zusätlich erfasst werden.
+Dann wird diese Entität zur Verknüpfung zwischen Akteur und Basisadresse.
+]FR_ENTI_COMMENT]
+]]></notes>
 <ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
 <engineerTo>
-<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true"/>
+<item key="1AB27667-C11D-3493-68AA-DF92C84041A7" value="true"/>
+<item key="851DDEFA-B048-37E9-7826-4E48946EAF1C" value="true"/>
+<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="false"/>
+<item key="015DE428-05B6-58DD-323D-ECDC72266F4A" value="true"/>
 </engineerTo>
 <adequatelyNormalized>NO</adequatelyNormalized>
 <expectedVolumes>0</expectedVolumes>
@@ -16,61 +45,159 @@
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
 <createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="DE_ENTI_NAME" value="Adresse"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_NAME" value="Adress"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+<property name="FR_ENTI_NAME" value="*DE* Adresse"/>
+<property name="FR_ENTI_SYNONYM" value=""/>
+</propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Adresstyp" id="FF67251E-70A4-8810-9AAE-8D3085C3FC14">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 11:18:19 UTC</createdTime>
-<comment>Zweck der Adresse (Finanz, Post, Lieferung etc.)</comment>
+<comment><![CDATA[Zweck der Adresse (Finanz, Post, Lieferung etc.)]]></comment>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+*DE* Zweck der Adresse (Finanz, Post, Lieferung etc.)
+]EN_ATTR_COMMENT]
+[DE_ATTR_COMMENT[
+Zweck der Adresse (Finanz, Post, Lieferung etc.)
+]DE_ATTR_COMMENT]
+[FR_ATTR_COMMENT[
+*DE* Zweck der Adresse (Finanz, Post, Lieferung etc.)
+]FR_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
 <engineerTo>
-<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true"/>
+<item key="1AB27667-C11D-3493-68AA-DF92C84041A7" value="true"/>
+<item key="851DDEFA-B048-37E9-7826-4E48946EAF1C" value="true"/>
+<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="false"/>
+<item key="015DE428-05B6-58DD-323D-ECDC72266F4A" value="true"/>
 </engineerTo>
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Adresstyp"/>
+<property name="EN_ATTR_NAME" value="Address type"/>
+<property name="FR_ATTR_NAME" value="*DE* Adresstyp"/>
+</propertyMap>
 </Attribute>
 <Attribute name="Strassenname" id="8DCE9DB8-E2C4-BCFC-1622-3B63D4730A07">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 11:04:40 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+[FR_ATTR_COMMENT[
+
+]FR_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
 <engineerTo>
-<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true"/>
+<item key="1AB27667-C11D-3493-68AA-DF92C84041A7" value="true"/>
+<item key="851DDEFA-B048-37E9-7826-4E48946EAF1C" value="true"/>
+<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="false"/>
+<item key="015DE428-05B6-58DD-323D-ECDC72266F4A" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Strassenname"/>
+<property name="EN_ATTR_NAME" value="Street name"/>
+<property name="FR_ATTR_NAME" value="*DE* Strassenname"/>
+</propertyMap>
 </Attribute>
 <Attribute name="Hausnr" id="69DE3C96-B9F0-F86E-230B-0AEC8F4067ED">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 11:04:47 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+[FR_ATTR_COMMENT[
+
+]FR_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
 <engineerTo>
-<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true"/>
+<item key="1AB27667-C11D-3493-68AA-DF92C84041A7" value="true"/>
+<item key="851DDEFA-B048-37E9-7826-4E48946EAF1C" value="true"/>
+<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="false"/>
+<item key="015DE428-05B6-58DD-323D-ECDC72266F4A" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Hausnr"/>
+<property name="EN_ATTR_NAME" value="House no"/>
+<property name="FR_ATTR_NAME" value="*DE* Hausnr"/>
+</propertyMap>
 </Attribute>
 <Attribute name="Gebäudename" id="A3F1453C-9777-43FA-2D3F-B9A4917113EA">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 11:04:50 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+[FR_ATTR_COMMENT[
+
+]FR_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
 <engineerTo>
-<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true"/>
+<item key="1AB27667-C11D-3493-68AA-DF92C84041A7" value="true"/>
+<item key="851DDEFA-B048-37E9-7826-4E48946EAF1C" value="true"/>
+<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="false"/>
+<item key="015DE428-05B6-58DD-323D-ECDC72266F4A" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Gebäudename"/>
+<property name="EN_ATTR_NAME" value="Building name"/>
+<property name="FR_ATTR_NAME" value="*DE* Gebäudename"/>
+</propertyMap>
 </Attribute>
 <Attribute name="Geokoordinate" id="2C711332-0D94-0253-5C07-B9271155ADB9">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 11:05:06 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+[FR_ATTR_COMMENT[
+
+]FR_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
 <engineerTo>
-<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true"/>
+<item key="1AB27667-C11D-3493-68AA-DF92C84041A7" value="true"/>
+<item key="851DDEFA-B048-37E9-7826-4E48946EAF1C" value="true"/>
+<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="false"/>
+<item key="015DE428-05B6-58DD-323D-ECDC72266F4A" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Geokoordinate"/>
+<property name="EN_ATTR_NAME" value="Geocoordinate"/>
+<property name="FR_ATTR_NAME" value="*DE* Geokoordinate"/>
+</propertyMap>
 </Attribute>
 </attributes>
 </Entity>

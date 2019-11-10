@@ -1,0 +1,121 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="AE760EB7-28EB-2685-4E29-4324E12AC110" name="Ansprechpartner">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:10 UTC</createdTime>
+<comment><![CDATA[Funktion einer Person für eine juristische Einheit. Im Spezialfall kann eine Person als Einzelfirma ihr eigener Ansprechspartner sein.
+
+26.6.18 - THU:
+Namen von Kontaktperson nach Ansprechpartner geändert
+Synonym von Ansprechpartner nach Kontaktperson geändert]]></comment>
+<generatorID>855B3CD6-3898-7179-D003-53066C937878</generatorID>
+<notes><![CDATA[[EN_ENTI_COMMENT[
+*DE* Funktion einer Person für eine juristische Einheit. Im Spezialfall kann eine Person als Einzelfirma ihr eigener Ansprechspartner sein.
+
+26.6.18 - THU:
+Namen von Kontaktperson nach Ansprechpartner geändert
+Synonym von Ansprechpartner nach Kontaktperson geändert
+]EN_ENTI_COMMENT]
+[DE_ENTI_COMMENT[
+Funktion einer Person für eine juristische Einheit. Im Spezialfall kann eine Person als Einzelfirma ihr eigener Ansprechspartner sein.
+
+26.6.18 - THU:
+Namen von Kontaktperson nach Ansprechpartner geändert
+Synonym von Ansprechpartner nach Kontaktperson geändert
+]DE_ENTI_COMMENT]
+[FR_ENTI_COMMENT[
+*EN* *DE* Funktion einer Person für eine juristische Einheit. Im Spezialfall kann eine Person als Einzelfirma ihr eigener Ansprechspartner sein.
+
+26.6.18 - THU:
+Namen von Kontaktperson nach Ansprechpartner geändert
+Synonym von Ansprechpartner nach Kontaktperson geändert
+]FR_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Gültigkeitsperiode" id="65AF0028-CD9E-E84C-78AF-58F05AE0265C">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:10 UTC</createdTime>
+<generatorID>E86C351D-CBFB-5FA9-0FEE-A23EBCF81766</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+[FR_ATTR_COMMENT[
+
+]FR_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Ansprechpartner_ID" id="14AFB77A-BE71-AD2A-2277-065ACA7DA178">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:10 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+<Column name="Kommunikationsmittel_Kommunikationsmittel_ID" id="38BF4B32-4811-3A0B-9F60-764533A1A5A1">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:10 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="5A49977E-D767-84C9-9C65-DAF90A9B3B08" referredColumn="43F58460-BCD5-CFC3-1C2B-5AD507069FD3"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="0C7DF168-BCC4-CAF0-A420-CE8019AB60C0" name="Ansprechpartner_PK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:10 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="14AFB77A-BE71-AD2A-2277-065ACA7DA178"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="4ED0755A-B503-FE9C-1CD6-7BD4BF0CCBF4" name="Ansprechpartner__IDX">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:10 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<relationGeneratorID>D2536102-340A-51A1-584D-4FDDA6A2272C</relationGeneratorID>
+<indexColumnUsage>
+<colUsage columnID="38BF4B32-4811-3A0B-9F60-764533A1A5A1"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="878EA1C9-5A0C-36C4-3C92-328276D0464B" name="Ansprechpartner_Kommunikationsmittel_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:10 UTC</createdTime>
+<generatorID>D2536102-340A-51A1-584D-4FDDA6A2272C</generatorID>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="38BF4B32-4811-3A0B-9F60-764533A1A5A1"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

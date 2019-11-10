@@ -1,0 +1,76 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="287C0437-7D46-873A-BBFF-6D84B613815E" name="Relation_46">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:57 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Ansprechpartner_Ansprechpartner_ID" id="BA3AFC76-7358-F528-0035-9595050223B1">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:57 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="B883CC7F-6FCE-C179-3D80-E85A37B9DF65" referredColumn="0DD35B80-367C-1E79-388B-5D0811B611C3"/>
+</associations>
+</Column>
+<Column name="Personenrolle_Personenrolle_ID" id="746F4B94-4F56-D6F6-CCE8-9CADCD028EFD">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:57 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="82C582F0-0C28-FB47-72DE-9239F8884593" referredColumn="8E9B8110-6EBC-5F7A-46E5-FEB5F505492A"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="D4406176-B3E7-2FA5-6C61-0956109C7B50" name="Relation_46_PK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:57 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="BA3AFC76-7358-F528-0035-9595050223B1"/>
+<colUsage columnID="746F4B94-4F56-D6F6-CCE8-9CADCD028EFD"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="271CC459-C302-D780-EAF6-CA9033B485EA" name="Relation_46_Ansprechpartner_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:57 UTC</createdTime>
+<generatorID>9271A5E1-5775-567C-4754-A50F8486BDF3</generatorID>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="BA3AFC76-7358-F528-0035-9595050223B1"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="CE3CEA04-F1BF-D8A0-7FCF-9F327326D8FD" name="Relation_46_Personenrolle_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:57 UTC</createdTime>
+<generatorID>9271A5E1-5775-567C-4754-A50F8486BDF3</generatorID>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="746F4B94-4F56-D6F6-CCE8-9CADCD028EFD"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

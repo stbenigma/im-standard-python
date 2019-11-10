@@ -2,11 +2,47 @@
 <Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="4E117E57-CFB5-EF2C-4F8F-638438B13812" name="Personenrolle">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 11:21:16 UTC</createdTime>
-<comment>Beschreibung einer Rolle, die eine Ansprechsperson haben kann.&lt;br/&gt;&lt;br/&gt;Beispiele:&lt;br/&gt;CEO&lt;br/&gt;CIO&lt;br/&gt;Sachdienstmitarbeiter&lt;br/&gt;Verkaufsleiter</comment>
+<comment><![CDATA[Beschreibung einer Rolle, die eine Ansprechsperson haben kann.
+
+Beispiele:
+CEO
+CIO
+Sachdienstmitarbeiter
+Verkaufsleiter]]></comment>
+<notes><![CDATA[[EN_ENTI_COMMENT[
+*DE* Beschreibung einer Rolle, die eine Ansprechsperson haben kann.
+
+Beispiele:
+CEO
+CIO
+Sachdienstmitarbeiter
+Verkaufsleiter
+]EN_ENTI_COMMENT]
+[DE_ENTI_COMMENT[
+Beschreibung einer Rolle, die eine Ansprechsperson haben kann.
+
+Beispiele:
+CEO
+CIO
+Sachdienstmitarbeiter
+Verkaufsleiter
+]DE_ENTI_COMMENT]
+[FR_ENTI_COMMENT[
+*DE* Beschreibung einer Rolle, die eine Ansprechsperson haben kann.
+
+Beispiele:
+CEO
+CIO
+Sachdienstmitarbeiter
+Verkaufsleiter
+]FR_ENTI_COMMENT]
+]]></notes>
 <ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
-<shouldEngineer>false</shouldEngineer>
 <engineerTo>
+<item key="1AB27667-C11D-3493-68AA-DF92C84041A7" value="true"/>
+<item key="851DDEFA-B048-37E9-7826-4E48946EAF1C" value="true"/>
 <item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="false"/>
+<item key="015DE428-05B6-58DD-323D-ECDC72266F4A" value="true"/>
 </engineerTo>
 <adequatelyNormalized>NO</adequatelyNormalized>
 <expectedVolumes>0</expectedVolumes>
@@ -17,27 +53,71 @@
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
 <createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="DE_ENTI_NAME" value="Personenrolle"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_NAME" value="Role"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+<property name="FR_ENTI_NAME" value="*DE* Personenrolle"/>
+<property name="FR_ENTI_SYNONYM" value=""/>
+</propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Bezeichnung" id="40B36602-4348-FB5F-5BD1-C56AD78107F8">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 11:21:32 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+[FR_ATTR_COMMENT[
+
+]FR_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
 <engineerTo>
-<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true"/>
+<item key="1AB27667-C11D-3493-68AA-DF92C84041A7" value="true"/>
+<item key="851DDEFA-B048-37E9-7826-4E48946EAF1C" value="true"/>
+<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="false"/>
+<item key="015DE428-05B6-58DD-323D-ECDC72266F4A" value="true"/>
 </engineerTo>
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Bezeichnung"/>
+<property name="EN_ATTR_NAME" value="*DE* Bezeichnung"/>
+<property name="FR_ATTR_NAME" value="*DE* Bezeichnung"/>
+</propertyMap>
 </Attribute>
 <Attribute name="Beschreibung" id="116DF002-EA64-1985-173B-A197A3118F61">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 11:21:38 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+[FR_ATTR_COMMENT[
+
+]FR_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
 <engineerTo>
-<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true"/>
+<item key="1AB27667-C11D-3493-68AA-DF92C84041A7" value="true"/>
+<item key="851DDEFA-B048-37E9-7826-4E48946EAF1C" value="true"/>
+<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="false"/>
+<item key="015DE428-05B6-58DD-323D-ECDC72266F4A" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Beschreibung"/>
+<property name="EN_ATTR_NAME" value="*DE* Beschreibung"/>
+<property name="FR_ATTR_NAME" value="*DE* Beschreibung"/>
+</propertyMap>
 </Attribute>
 </attributes>
 </Entity>

@@ -1,0 +1,76 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="ABF8B4FE-73C8-7B81-9C12-6AB36CF0AA04" name="Relation_111">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:03 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Wettbewerber_Wettbewerber_ID" id="BF890AC1-ABD8-5C44-E07A-DA1E91DB19DD">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:03 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="0F0159FB-9EA0-76B5-8C29-24B073E0DFB9" referredColumn="76CE6587-072C-59F5-460A-9305BFC600C6"/>
+</associations>
+</Column>
+<Column name="Interessent_Interessent_ID" id="B05AD4A5-F66F-E60D-DDC8-4D80AA6AC813">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:03 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="AB6E8216-EB63-9B6F-EDFD-614D791A95BF" referredColumn="2A55BF15-76D2-4946-E7BF-FE0EBB34380F"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="DA528FE9-F8D7-A959-7AAF-ED43349980C8" name="Relation_111_PK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:03 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="BF890AC1-ABD8-5C44-E07A-DA1E91DB19DD"/>
+<colUsage columnID="B05AD4A5-F66F-E60D-DDC8-4D80AA6AC813"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="F88CB293-3BC5-2C96-FEE6-112144FAC070" name="Relation_111_Wettbewerber_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:03 UTC</createdTime>
+<generatorID>24180985-A5F7-1A78-6C1F-4EE9B3CFC12C</generatorID>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="BF890AC1-ABD8-5C44-E07A-DA1E91DB19DD"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="E6CC44A6-9258-A68B-C244-FC3BF6E31479" name="Relation_111_Interessent_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:03 UTC</createdTime>
+<generatorID>24180985-A5F7-1A78-6C1F-4EE9B3CFC12C</generatorID>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="B05AD4A5-F66F-E60D-DDC8-4D80AA6AC813"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
