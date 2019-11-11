@@ -1,6 +1,6 @@
 [ODM]
 #base directory for all model data (with ending /)
-#odmbasedirec = 
+odmbasedirec = "/Users/stb/Documents/Projekte/FYAYC_intern/gitHub/ODMscripting/"
 
 #base directory for odm-model-files (with ending /)
 #default <odmBaseDirec> + odmIMDefaultDirec
@@ -8,7 +8,7 @@
 
 #model name
 #default: single .dmd file in <odmIMDirec> or <odmIMDirec>/IM or <odmIMDirec>/github/IM
-#odmmodelname = 
+odmmodelname = "fyayc_dev_base"
 
 #directory containing versioned model
 odmvcsdirec = "gitHub/"
@@ -35,6 +35,9 @@ odmvcsdirec = "gitHub/"
 
 #name of file in odm-configuration containing type definitions
 #odmtypesfile =  "types.xml"
+
+#name of file in odm-configuration containing structured type definitions
+#odmstructypesdir =  "datatypes/structuredtype/"
 
 #directory in odm-directory-structure containing files 
 #odmfilesdirec =  "files/"

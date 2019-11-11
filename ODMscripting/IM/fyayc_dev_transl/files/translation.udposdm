@@ -3,6 +3,7 @@
 	<udp_groups>
 		<group name="EN" id="E440DDD0-F80B-D860-C1E1-8FD113152BF4" />
 		<group name="DE" id="22CACA77-B34D-DA6C-6BC2-771480AB8778" />
+		<group name="FR" id="085C5BE3-C41C-5BB9-4507-160B79D21051" />
 	</udp_groups>
 	<properties>
 		<property name="DE_ENTI_NAME" dispalay_name="" type="Text" group_id="22CACA77-B34D-DA6C-6BC2-771480AB8778" default_value="">
@@ -33,6 +34,21 @@
 		<property name="EN_ATTR_NAME" dispalay_name="" type="Text" group_id="E440DDD0-F80B-D860-C1E1-8FD113152BF4" default_value="">
 			<objects>
 				<object class="oracle.dbtools.crest.model.design.logical.Attribute" visible="false" color="-1"/>
+			</objects>
+		</property>
+		<property name="FR_ATTR_NAME" dispalay_name="" type="Text" group_id="085C5BE3-C41C-5BB9-4507-160B79D21051" default_value="">
+			<objects>
+				<object class="oracle.dbtools.crest.model.design.logical.Attribute" visible="false" color="-1"/>
+			</objects>
+		</property>
+		<property name="FR_ENTI_NAME" dispalay_name="" type="Text" group_id="085C5BE3-C41C-5BB9-4507-160B79D21051" default_value="">
+			<objects>
+				<object class="oracle.dbtools.crest.model.design.logical.Entity" visible="false" color="-1"/>
+			</objects>
+		</property>
+		<property name="FR_ENTI_SYNONYM" dispalay_name="" type="Text" group_id="085C5BE3-C41C-5BB9-4507-160B79D21051" default_value="">
+			<objects>
+				<object class="oracle.dbtools.crest.model.design.logical.Entity" visible="false" color="-1"/>
 			</objects>
 		</property>
 	</properties>

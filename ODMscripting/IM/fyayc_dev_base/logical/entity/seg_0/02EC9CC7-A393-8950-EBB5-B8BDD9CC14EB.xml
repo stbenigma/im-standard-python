@@ -25,8 +25,11 @@
 <item key="5BE1D3DE-1298-62A6-B8A4-2793AE250A49" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
-<use>0</use>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<dataTypeSize>10</dataTypeSize>
+<ownDataTypeParameters>10,,</ownDataTypeParameters>
 </Attribute>
 <Attribute name="Beschreibung" id="F867E8A4-918F-6080-28A2-29F17C191237">
 <createdBy>stb</createdBy>
@@ -37,8 +40,8 @@
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <use>0</use>
-<logicalDatatype>LOGDT040</logicalDatatype>
-<domain>710CB1D1-E463-4093-CDA3-938B989B0822</domain>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>A1C92196-C338-7A03-9785-9C26AC235EA0</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 <Attribute name="Gültigperiode" id="BF0C6DE8-EB85-2BA9-957F-24D2906D86AA">
@@ -65,6 +68,19 @@
 <useDomainConstraints>false</useDomainConstraints>
 <use>3</use>
 <structuredType>34FE0B62-C82A-7934-B36E-07AD3210A8E3</structuredType>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="wahroderfalsch" id="66598900-5B1C-00B3-05F0-E5C935F7D9BC">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-11 08:22:33 UTC</createdTime>
+<ownerDesignName>fyayc_dev_base</ownerDesignName>
+<engineerTo>
+<item key="5BE1D3DE-1298-62A6-B8A4-2793AE250A49" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>F83AAA80-35DB-1B71-F978-AF2CF19A0540</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 </attributes>
@@ -113,11 +129,11 @@
 <nullsAllowed>true</nullsAllowed>
 <parentObject>ADC7A453-19E1-879D-D4DF-B9DF8368A828</parentObject>
 <structAttributeID>87F8587F-4D88-50B9-0341-B1BA3E318037</structAttributeID>
-<use>0</use>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
 <dataTypePrecision>12</dataTypePrecision>
 <dataTypeScale>9</dataTypeScale>
-<domain>5D6F945C-D1FD-ED55-14C3-F06C4DF2D519</domain>
 <ownDataTypeParameters>,12,9</ownDataTypeParameters>
 </nestedAttribute>
 <nestedAttribute name="Standort.Y" directorySegmentName="seg_0" id="5D27944F-A278-212B-A3DD-9C7716B470CF">
@@ -130,11 +146,11 @@
 <nullsAllowed>true</nullsAllowed>
 <parentObject>ADC7A453-19E1-879D-D4DF-B9DF8368A828</parentObject>
 <structAttributeID>8705B46A-CBF4-5307-9F98-7AF46BE10BAE</structAttributeID>
-<use>0</use>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
 <dataTypePrecision>12</dataTypePrecision>
 <dataTypeScale>9</dataTypeScale>
-<domain>DC9EA111-9C1A-C273-8536-70CE9CF65363</domain>
 <ownDataTypeParameters>,12,9</ownDataTypeParameters>
 </nestedAttribute>
 </nestedAttributes>

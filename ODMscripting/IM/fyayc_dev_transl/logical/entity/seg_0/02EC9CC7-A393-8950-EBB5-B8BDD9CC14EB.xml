@@ -10,7 +10,7 @@
 Eine Entität, die aus 2 Subtypen besteht
 ]DE_ENTI_COMMENT]
 [FR_ENTI_COMMENT[
-*EN* *DE* Eine Entität, die aus 2 Subtypen besteht
+*DE* Eine Entität, die aus 2 Subtypen besteht
 ]FR_ENTI_COMMENT]
 ]]></notes>
 <ownerDesignName>fyayc_dev_transl</ownerDesignName>
@@ -31,7 +31,8 @@ Eine Entität, die aus 2 Subtypen besteht
 <property name="DE_ENTI_SYNONYM" value=""/>
 <property name="EN_ENTI_NAME" value="Super Entity"/>
 <property name="EN_ENTI_SYNONYM" value=""/>
-<property name="FR_ENTI_NAME" value="*EN* *DE* Super Entiät"/>
+<property name="FR_ENTI_NAME" value="*EN* Super Entity"/>
+<property name="FR_ENTI_SYNONYM" value=""/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Kürzel" id="55CABD5F-9462-BF35-239C-E8A1A1D0848C">
@@ -45,7 +46,7 @@ Kürzel wird im Kommentar geführt
 *DE* Kürzel wird im Kommentar geführt
 ]EN_ATTR_COMMENT]
 [FR_ATTR_COMMENT[
-*EN* *DE* Kürzel wird im Kommentar geführt
+*DE* Kürzel wird im Kommentar geführt
 ]FR_ATTR_COMMENT]
 ]]></notes>
 <ownerDesignName>fyayc_dev_transl</ownerDesignName>
@@ -58,7 +59,7 @@ Kürzel wird im Kommentar geführt
 <propertyMap>
 <property name="DE_ATTR_NAME" value="Kürzel"/>
 <property name="EN_ATTR_NAME" value="Short Name"/>
-<property name="FR_ATTR_NAME" value="*EN* *DE* Kürzel"/>
+<property name="FR_ATTR_NAME" value="*EN* Short Name"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Beschreibung" id="F867E8A4-918F-6080-28A2-29F17C191237">
@@ -70,6 +71,9 @@ Kürzel wird im Kommentar geführt
 [EN_ATTR_COMMENT[
 
 ]EN_ATTR_COMMENT]
+[FR_ATTR_COMMENT[
+
+]FR_ATTR_COMMENT]
 ]]></notes>
 <ownerDesignName>fyayc_dev_transl</ownerDesignName>
 <engineerTo>
@@ -83,7 +87,7 @@ Kürzel wird im Kommentar geführt
 <propertyMap>
 <property name="DE_ATTR_NAME" value="Beschreibung"/>
 <property name="EN_ATTR_NAME" value="Description"/>
-<property name="FR_ATTR_NAME" value="*EN* *DE* Beschreibung"/>
+<property name="FR_ATTR_NAME" value="*EN* Description"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Gültigperiode" id="BF0C6DE8-EB85-2BA9-957F-24D2906D86AA">
@@ -95,6 +99,9 @@ Kürzel wird im Kommentar geführt
 [EN_ATTR_COMMENT[
 
 ]EN_ATTR_COMMENT]
+[FR_ATTR_COMMENT[
+
+]FR_ATTR_COMMENT]
 ]]></notes>
 <ownerDesignName>fyayc_dev_transl</ownerDesignName>
 <engineerTo>
@@ -108,7 +115,7 @@ Kürzel wird im Kommentar geführt
 <propertyMap>
 <property name="DE_ATTR_NAME" value="Gültigperiode"/>
 <property name="EN_ATTR_NAME" value="Valid period"/>
-<property name="FR_ATTR_NAME" value="*EN* *DE* Gültigperiode"/>
+<property name="FR_ATTR_NAME" value="*EN* Valid period"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Standort" id="ADC7A453-19E1-879D-D4DF-B9DF8368A828">
@@ -120,6 +127,9 @@ Kürzel wird im Kommentar geführt
 [EN_ATTR_COMMENT[
 
 ]EN_ATTR_COMMENT]
+[FR_ATTR_COMMENT[
+
+]FR_ATTR_COMMENT]
 ]]></notes>
 <ownerDesignName>fyayc_dev_transl</ownerDesignName>
 <engineerTo>
@@ -133,7 +143,7 @@ Kürzel wird im Kommentar geführt
 <propertyMap>
 <property name="DE_ATTR_NAME" value="Standort"/>
 <property name="EN_ATTR_NAME" value="Location"/>
-<property name="FR_ATTR_NAME" value="*EN* *DE* Standort"/>
+<property name="FR_ATTR_NAME" value="*EN* Location"/>
 </propertyMap>
 </Attribute>
 </attributes>
