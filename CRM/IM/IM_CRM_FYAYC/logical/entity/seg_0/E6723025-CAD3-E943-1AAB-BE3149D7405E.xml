@@ -1,8 +1,8 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="E6723025-CAD3-E943-1AAB-BE3149D7405E" name="Geografische Einheit">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="E6723025-CAD3-E943-1AAB-BE3149D7405E" name="Geografical Unit">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 07:55:51 UTC</createdTime>
-<comment><![CDATA[Ein geographisches Gebilde das nach geographischen, polititischen oder postalischen Kriterien in dieser Form definiert ist.]]></comment>
+<comment><![CDATA[*DE* Ein geographisches Gebilde das nach geographischen, polititischen oder postalischen Kriterien in dieser Form definiert ist.]]></comment>
 <notes><![CDATA[[EN_ENTI_COMMENT[
 *DE* Ein geographisches Gebilde das nach geographischen, polititischen oder postalischen Kriterien in dieser Form definiert ist.
 ]EN_ENTI_COMMENT]
@@ -39,7 +39,7 @@ Ein geographisches Gebilde das nach geographischen, polititischen oder postalisc
 <property name="FR_ENTI_SYNONYM" value=""/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<Attribute name="Name [L]" id="5E75C083-4B08-9B98-D615-C1F359FB7915">
+<Attribute name="*DE* Name [L]" id="5E75C083-4B08-9B98-D615-C1F359FB7915">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 07:55:51 UTC</createdTime>
 <notes><![CDATA[[DE_ATTR_COMMENT[
@@ -71,10 +71,10 @@ Ein geographisches Gebilde das nach geographischen, polititischen oder postalisc
 <property name="FR_ATTR_NAME" value="*DE* Name [L]"/>
 </propertyMap>
 </Attribute>
-<Attribute name="GeoInformation" id="FE56DE90-386C-5805-3D69-2C70A1861A61">
+<Attribute name="*DE* GeoInformation" id="FE56DE90-386C-5805-3D69-2C70A1861A61">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 09:20:23 UTC</createdTime>
-<comment><![CDATA[Fläche eines Gebiets als geo-Information]]></comment>
+<comment><![CDATA[*DE* Fläche eines Gebiets als geo-Information]]></comment>
 <notes><![CDATA[[EN_ATTR_COMMENT[
 *DE* Fläche eines Gebiets als geo-Information
 ]EN_ATTR_COMMENT]

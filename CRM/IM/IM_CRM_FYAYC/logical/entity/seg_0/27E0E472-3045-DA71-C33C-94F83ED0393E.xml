@@ -2,7 +2,7 @@
 <Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="27E0E472-3045-DA71-C33C-94F83ED0393E" name="Land">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 07:55:51 UTC</createdTime>
-<comment><![CDATA[Land gemäss ISO-Liste ISO-3166-1
+<comment><![CDATA[*DE* Land gemäss ISO-Liste ISO-3166-1
 
 Gemäss NUTS (https://de.wikipedia.org/wiki/NUTS) ist das Land die Gebietsstufe NUTS 0
 ]]></comment>
@@ -52,7 +52,7 @@ Gemäss NUTS (https://de.wikipedia.org/wiki/NUTS) ist das Land die Gebietsstufe 
 <property name="FR_ENTI_SYNONYM" value=""/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<Attribute name="ISO2_Code" id="2D721C1B-E511-B23D-D93E-C36B3A2D2FEA">
+<Attribute name="ISO2 code" id="2D721C1B-E511-B23D-D93E-C36B3A2D2FEA">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 07:55:51 UTC</createdTime>
 <notes><![CDATA[[DE_ATTR_COMMENT[
@@ -84,7 +84,7 @@ Gemäss NUTS (https://de.wikipedia.org/wiki/NUTS) ist das Land die Gebietsstufe 
 <property name="FR_ATTR_NAME" value="*DE* ISO2_Code"/>
 </propertyMap>
 </Attribute>
-<Attribute name="ISO3_Code" id="080C0666-2AA9-CABB-5493-19258F936D9D">
+<Attribute name="ISO3 code" id="080C0666-2AA9-CABB-5493-19258F936D9D">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 09:05:07 UTC</createdTime>
 <notes><![CDATA[[DE_ATTR_COMMENT[
@@ -115,7 +115,7 @@ Gemäss NUTS (https://de.wikipedia.org/wiki/NUTS) ist das Land die Gebietsstufe 
 <property name="FR_ATTR_NAME" value="*DE* ISO3_Code"/>
 </propertyMap>
 </Attribute>
-<Attribute name="ISO_Code_numerisch" id="EAA58C83-A9F6-56BD-3C50-74BF3E45A7F9">
+<Attribute name="ISO code numeric" id="EAA58C83-A9F6-56BD-3C50-74BF3E45A7F9">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 09:05:13 UTC</createdTime>
 <notes><![CDATA[[DE_ATTR_COMMENT[

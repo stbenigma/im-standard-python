@@ -94,13 +94,34 @@ def transferTypes():
 #transferTypes
 
 
+def do1structtype(filename):
+    structdomains = ET.parse(filename)
+    structdom = structdomains.getroot()
+    #print (structdom.get("name"))
+    wrtb = Wertebereich(pname=findField(structdom,("name")),pid=findField(structdom,"id"))
+    wrtb.wrtb_uc = findText(structdom,"createdBy")
+    wrtb.wrtb_dc = findText(structdom,"createdTime")
+    wrtb.wrtb_typ = 'GRP'
+    dbInserts.insertWrtb(wrtb=(
+        wrtb.wrtb_business_rule,wrtb.wrtb_name ,        wrtb.wrtb_beschr,
+        wrtb.wrtb_typ,        wrtb.wrtb_zpkt_minwert,        wrtb.wrtb_zpkt_maxwert,
+        wrtb.wrtb_zpkt_granularitaet,        wrtb.wrtb_text_maxlng,
+        wrtb.wrtb_text_syntaxregel,        wrtb.wrtb_num_maxwert,
+        wrtb.wrtb_num_minwert,        wrtb.wrtb_num_vorkstellen,
+        wrtb.wrtb_num_nachkstellen,        wrtb.wrtb_num_rundng_einh,        wrtb.wrtb_num_pheh,
+        wrtb.wrtb_bin_inhalttyp,        wrtb.wrtb_bin_spfo_id,        wrtb.wrtb_uc,
+        wrtb.wrtb_dc,        wrtb.wrtb_odm_guid,        wrtb.wrtb_datatype_ref))
+
+    elements = structdom.findall("attributes/Attribute")
+    for el in elements:
+        print (wrtb.wrtb_name,findField(el,"name"))
 def transferDomains():
     #lösche die Domains
     #print(parameters.odmDomainsFilePath())
     domains = ET.parse(parameters.odmDomainsFilePath())
     root = domains.getroot()
     for dom in root.findall('domains/Domain'):
-        wrtb = Wertebereich(pname=dom.get('name'),pid=dom.get('id'))
+        wrtb = Wertebereich(pname=findField(dom, ("name")), pid=findField(dom, "id"))
         #print ("Domain name={} id={}" .format (wrtb.wrtb_name,wrtb.wrtb_odm_guid));
         #print (dom.find('createdBy').text,dom.find('createdTime').text)
         wrtb.wrtb_uc = findText(dom,'createdBy')
@@ -181,6 +202,9 @@ def transferDomains():
                 dbInserts.insertVorgabewert(pvgwt=(key, idx, wrtbid, lovs[key], None))
             #end for
         #endif
+
+    dosegfiles(pdirec=parameters.odmstructypesdir(),transferfiles=do1structtype)
+
 #end transferDomains
 def toString(str,upper = False):
     if str is None:
@@ -219,7 +243,7 @@ def transferentity(p_enti,p_diagid,p_uc,p_dc):
               ,None,None,None,dbLookup.modeEntiLookup(p_entiid=entiid)
              ,p_diagid,p_uc,p_dc,None
              ,None)
-    print (row)
+    #print (row)
 #transferentity
 
 def transferdiaobj(p_objects,p_diagid,p_uc,p_dc):
@@ -239,6 +263,20 @@ def transferdiaconnect(p_connectors,p_diagid,p_uc,p_dc):
 def transferdiaarc(p_arcs,p_diagid,p_uc,p_dc):
     pass
 # transferdiaarc
+
+def dosegfiles(pdirec,transferfiles):
+    for el in os.listdir(pdirec):
+        if re.match('seg_.*', el):
+            for file in os.listdir(pdirec + el):
+                if  (re.search('DS_Store', file) == None):
+                    fileName = pdirec + el + '/' + file
+                    #print (fileName)
+                    transferfiles(fileName)
+                #endif
+            #enfor
+        #endif
+    #endfor
+#dosegfiles
 
 def do1diagramm(p_filename):
     #print (p_filename)
@@ -301,18 +339,8 @@ def do1Arc(fileName):
 #do1Arc
 
 def transferArcs():
-
-    for el in os.listdir(parameters.odmArcDirec()):
-        if re.match('seg_.*', el):
-            for file in os.listdir(parameters.odmArcDirec() + el):
-                fileName = parameters.odmArcDirec() + el + '/' + file
-                #print (fileName)
-                do1Arc(fileName)
-            #enfor
-        #endif
-    #endfor
-
-#transferTypes
+    dosegfiles(pdirec=parameters.odmArcDirec(),transferfiles=do1Arc)
+#transferArcs
 
 def updateUDP(p_modeid, p_obj):
     udps = []
@@ -475,21 +503,10 @@ def do1Entity(fileName):
     fillKeys(p_enti=root, p_entiid=entiId)
 #do1Entity
 
+
 def transferEntitaeten():
     #lösche die Entitäten
-
-    for el in os.listdir(parameters.odmEntityDirec()):
-        if re.match('seg_.*', el):
-            for file in os.listdir(parameters.odmEntityDirec() + el):
-                if  (re.match('.*New',file) == None) and \
-                        (re.search('DS_Store', file) == None):
-                    fileName = parameters.odmEntityDirec() + el + '/' + file
-                    #print (fileName)
-                    do1Entity(fileName)
-                #endif
-            #enfor
-        #endif
-    #endfor
+    dosegfiles(pdirec=parameters.odmEntityDirec(),transferfiles=do1Entity)
 #transferEntitaeten
 
 def doSubentities():
@@ -660,15 +677,7 @@ def do1Relation(fileName):
 
 def transferRelations():
     #lösche die Beziehungen
-    for el in os.listdir(parameters.odmRelationDirec()):
-        if re.match('seg_.*', el):
-            for file in os.listdir(parameters.odmRelationDirec() + el):
-                fileName = parameters.odmRelationDirec() + el + '/' + file
-#               print (fileName)
-                do1Relation(fileName)
-            #enfor
-        #endif
-    #endfor
+    dosegfiles(pdirec=parameters.odmRelationDirec(),transferfiles=do1Relation)
     dbConnect.myDbConn.commit()
 #transferRelations
 

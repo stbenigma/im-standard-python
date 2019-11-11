@@ -1,6 +1,6 @@
 # -*- coding: latin-1 -*-
 
-from IM_DB import dbDDL
+from IM_DB import dbDDL,dbDML
 
 
 def erstelleInfra():
@@ -142,7 +142,7 @@ CREATE TABLE wertebereiche(
             100,
             1000
         )),
-    wrtb_num_pheh          varchar(100) ,
+    wrtb_num_pheh_id          integer ,
     wrtb_bin_inhalttyp        varchar(30)
         CHECK(wrtb_bin_inhalttyp IN(
             'BILD',
@@ -151,30 +151,35 @@ CREATE TABLE wertebereiche(
             'TEXT',
             'TON'
         )),
-    wrtb_bin_spfo_id          integer,
-    wrtb_uc varchar(30),
-    wrtb_dc varchar(30),
+    wrtb_bin_spfo_id          varchar(100),
+	wrtb_odm_guid		varchar(36),
+    wrtb_uc         varchar(30) NOT NULL,
+    wrtb_dc        varchar(30) NOT NULL,
     wrtb_um        varchar(30),
     wrtb_dm        varchar(30),
-    wrtb_odm_guid varchar(36),
     wrtb_datatype_ref varchar(40)
-    ,foreign key (wrtb_bin_spfo_id) REFERENCES speicherformate(spfo_id)
-)    
+)
 """);
 
-    dbDDL.dropTable("vorgabewerte");
+    dbDDL.dropTable("wertebereichgruppen");
     dbDDL.createTable("""
-CREATE TABLE vorgabewerte(
-    vgwt_id               integer NOT NULL primary key autoincrement,
-    vgwt_wert              varchar(100) NOT NULL,
-    vgwt_sortrhfg          integer NULL,
-    vgwt_wrtb_id           integer NOT NULL,
-    vgwt_anzeige   varchar(200),
-    vgwt_beschr    varchar(4000),
-	unique (vgwt_wrtb_id,vgwt_wert),
-	foreign key (vgwt_wrtb_id) references wertebereiche(wrtb_id) ON DELETE CASCADE
-)
+    CREATE TABLE wertebereichgruppen 
+    (
+    wbgr_id               integer NOT NULL primary key autoincrement,
+    wbgr_wrtb_id_gruppe   integer NOT NULL ,
+     WBGR_WRTB_ID_MEMBER integer NOT NULL , 
+     WBGR_UC VARCHAR (30) NOT NULL , 
+     WBGR_DC VARCHAR (30) NOT NULL , 
+     WBGR_UM VARCHAR (30)    null,
+      wbgr_dm VARCHAR (30) null
+,CONSTRAINT WBGR_WRTB_UK UNIQUE (wbgr_wrtb_id_member,wbgr_wrtb_id_gruppe )
+,FOREIGN KEY(wbgr_wrtb_id_gruppe)
+        REFERENCES wertebereich(wrtb_id) ON DELETE CASCADE
+, FOREIGN KEY(wbgr_wrtb_id_member)
+        REFERENCES wertebereich(wrtb_id)
+) 
    """);
+
     dbDDL.dropTable("datatypes");
     dbDDL.createTable("""
 CREATE TABLE datatypes(

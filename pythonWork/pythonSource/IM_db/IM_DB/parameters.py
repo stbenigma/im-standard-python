@@ -24,6 +24,7 @@ parameter = {
             , 'odmdomainsfile': 'defaultdomains.xml'
             , 'odmdomainsfilepath': None
             , 'odmtypesfile': 'types.xml'
+            , 'odmstructypesdir':  "datatypes/structuredtype/"
             , 'odmfilesdirec': 'files/'
             , 'odmentitydirec': 'logical/entity/'
             , 'odmrelationdirec': 'logical/relation/'
@@ -135,6 +136,12 @@ def odmFilesDirec(newval=None):
         return odmIMDirec()+odmModelName()+'/'+parameter['odmfilesdirec']
     else:
         parameter['odmfilesdirec'] = newval
+def odmstructypesdir(newval=None):
+    if newval is None:
+        return odmIMDirec()+odmModelName()+'/'+parameter['odmstructypesdir']
+    else:
+        parameter['odmstructypesdir'] = newval
+
 def odmEntityDirec(newval=None):
     if newval is None:
         return odmIMDirec()+odmModelName()+'/'+parameter['odmentitydirec']
@@ -238,6 +245,8 @@ def liesparamfile(p_filepath):
 #liesparamfile
 
 def filldefaultparams():
+    if odmIMDirec() is None:
+        odmIMDirec(newval=odmBaseDirec() + odmIMDefaultDirec())
     if dbDirect() is None:
         dbDirect(newval=odmBaseDirec()+dbDefaultDirect())
     if dbFilePath() is None:
@@ -292,13 +301,13 @@ def suchemodelname(p_direc):
 def initparam(p_callarg):
     global parameter
 
-    if (p_callarg[-1] != '/'):
-        p_callarg = p_callarg + '/'
     my_file = Path(p_callarg)
     if my_file.is_file():
         #file gegeben, lies dieses
         paramfile = p_callarg
     elif my_file.is_dir():
+        if (p_callarg[-1] != '/'):
+            p_callarg = p_callarg + '/'
         #Verzeichnis gegeben, suche ein Modell und dann ein Parameterfile
         (imdirec,modelname) = suchemodelname(p_direc=p_callarg)
         odmIMDirec(newval=imdirec)

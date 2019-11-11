@@ -1,8 +1,8 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="B3DCB769-14C8-45B2-0C49-99D08576F05E" name="Juristische Person">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="B3DCB769-14C8-45B2-0C49-99D08576F05E" name="Company">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 08:04:25 UTC</createdTime>
-<comment><![CDATA[Rechte über das Handelsrecht geregelt.]]></comment>
+<comment><![CDATA[*DE* Rechte über das Handelsrecht geregelt.]]></comment>
 <notes><![CDATA[[EN_ENTI_COMMENT[
 *DE* Rechte über das Handelsrecht geregelt.
 ]EN_ENTI_COMMENT]
@@ -39,7 +39,7 @@ Rechte über das Handelsrecht geregelt.
 <property name="FR_ENTI_SYNONYM" value=""/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<Attribute name="Gesellschaftsform" id="806AD84D-8B56-AFCC-9697-97A65B55EE91">
+<Attribute name="Society type" id="806AD84D-8B56-AFCC-9697-97A65B55EE91">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 08:04:25 UTC</createdTime>
 <notes><![CDATA[[DE_ATTR_COMMENT[
@@ -68,10 +68,10 @@ Rechte über das Handelsrecht geregelt.
 <property name="FR_ATTR_NAME" value="*DE* Gesellschaftsform"/>
 </propertyMap>
 </Attribute>
-<Attribute name="UID Nr" id="FAA500CB-8DCA-5D0C-FC74-01746823AE95">
+<Attribute name="UID no" id="FAA500CB-8DCA-5D0C-FC74-01746823AE95">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 08:50:29 UTC</createdTime>
-<comment><![CDATA[Umsatzsteuer-Identifikationsnummer (AT), Ust-IdNr (DE), Unternehmens-Identifikationsnummer (CH)]]></comment>
+<comment><![CDATA[*DE* Umsatzsteuer-Identifikationsnummer (AT), Ust-IdNr (DE), Unternehmens-Identifikationsnummer (CH)]]></comment>
 <notes><![CDATA[[EN_ATTR_COMMENT[
 *DE* Umsatzsteuer-Identifikationsnummer (AT), Ust-IdNr (DE), Unternehmens-Identifikationsnummer (CH)
 ]EN_ATTR_COMMENT]

@@ -32,7 +32,7 @@ def  insertWrtb(wrtb):
        ,wrtb_typ,        wrtb_zpkt_minwert   ,wrtb_zpkt_maxwert          
        ,wrtb_zpkt_granularitaet,        wrtb_text_maxlng    ,wrtb_text_syntaxregel
        ,        wrtb_num_maxwert        ,wrtb_num_minwert           ,wrtb_num_vorkstellen       
-        ,wrtb_num_nachkstellen          ,wrtb_num_rundng_einh,        wrtb_num_pheh  
+        ,wrtb_num_nachkstellen          ,wrtb_num_rundng_einh,        wrtb_num_pheh_id  
           ,wrtb_bin_inhalttyp,        wrtb_bin_spfo_id    ,wrtb_uc  
             ,wrtb_dc        ,wrtb_odm_guid ,wrtb_datatype_ref)
         values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) 
@@ -40,6 +40,17 @@ def  insertWrtb(wrtb):
     return dbDML.insert(lsql,wrtb)
 
 #end insertWrtb
+def insertwrtbgruppe(wbgr):
+    lsql="""
+    insert into wertebereiche 
+       (wbgr_wrtb_id_gruppe, WBGR_WRTB_ID_MEMBER
+       ,WBGR_UC,WBGR_DC,WBGR_UM,
+        wbgr_dm)
+        values (?,?,?,?,?,?,?) 
+    """
+    return dbDML.insert(lsql,wbgr)
+
+#insertwrtbgruppe
 
 def  insertLovWrtb(pName):
     return insertWrtb(wrtb=(None,pName, 'einfache Werteliste '

@@ -1,5 +1,5 @@
 # -*- coding: latin-1 -*-
-from IM_ODM import odmParam,transferModel
+import transferModel
 from IM_DB import dbParam,dbConnect
 from IM_DB import parameters
 

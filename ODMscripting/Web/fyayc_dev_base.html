@@ -1,0 +1,2393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Testwebreport</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+
+<body>
+
+    <div class="header" id="TopBar">
+        <p4>foryouandyourcustomers</p4>
+        <p4>Testwebreport</p4>
+        <p5>stb, 2019-11-11, 09:23</p5>
+        <img src="image/logo.jpg" alt="foryouandyourcustomers" id="LLogo">
+    </div>
+        <button id="btnF" type="button" class="btn btn-info" data-toggle="modal" data-target="#MobileSearch">
+        <img class="icon-filter" alt="filter" src="icons/search.svg">
+    </button>
+    <div class="container" id="sidebar">
+        <div id="toc_list">
+            <div class="form-wrapper">
+                <form autocomplete="off">
+                    <div class="form-group">
+                        <label class="form-label" for="first">Suchbegriff</label>
+                        <input id="first" class="form-input" type="text" onkeyup="$d_Find('toc_list',this.value,'a')" />
+                        <img id="searchclear" class="icon-times" src="icons/cross.svg">
+                        <img class="icon-search" alt="minus" src="icons/search.svg" id="searcher">
+                    </div>
+                </form>
+            </div>
+            <p6>Treffer:</p6>
+                <output id="count"></output>
+                <div class="contentView">
+
+                <div class="panel-body" id="EntitätenL">
+                    <div class="panel">
+                        <div class="panel-heading collapsed" data-toggle="collapse" data-target="#bar1">
+                            <label class="label0">Entitäten</label>
+                            <img class="icon-minus" alt="minus" src="icons/minus.svg">
+                            <img class="icon-plus" alt="plus" src="icons/plus.svg">
+                        </div>
+                    </div>
+                    <!-- The inside div eliminates the 'jumping' animation. -->
+                    <div class="collapse" id="bar1">
+                        <ol class="tree" id="EntitätenList">
+    
+                <li class="obj"><a href="#ENTI25" target="details">Entiät1</a></li>
+                <li class="obj"><a href="#ENTI27" target="details">IsA Entity 1</a></li>
+                <li class="obj"><a href="#ENTI21" target="details">IsA Entity 2</a></li>
+                <li class="obj"><a href="#ENTI30" target="details">Subentit 1-1</a></li>
+                <li class="obj"><a href="#ENTI26" target="details">Subentit 1-2</a></li>
+                <li class="obj"><a href="#ENTI29" target="details">Subentität 1</a></li>
+                <li class="obj"><a href="#ENTI22" target="details">Subentität 2</a></li>
+                <li class="obj"><a href="#ENTI28" target="details">Subentität 2-1</a></li>
+                <li class="obj"><a href="#ENTI24" target="details">Subentität 2-2</a></li>
+                <li class="obj"><a href="#ENTI23" target="details">Super Entiät</a></li>
+                    </ol>
+            </div>
+        </div>
+
+                <div class="panel-body" id="AttributeL">
+                    <div class="panel">
+                        <div class="panel-heading collapsed" data-toggle="collapse" data-target="#bar2">
+                            <label class="label0">Attribute</label>
+                            <img class="icon-minus" alt="minus" src="icons/minus.svg">
+                            <img class="icon-plus" alt="plus" src="icons/plus.svg">
+                        </div>
+                    </div>
+                    <!-- The inside div eliminates the 'jumping' animation. -->
+                    <div class="collapse" id="bar2">
+                        <ol class="tree" id="AttributeList">
+    
+                <li class="obj"><a href="#ATTR29" target="details">Beschreibung (Entiät1)</a></li>
+                <li class="obj"><a href="#ATTR24" target="details">Beschreibung (Super Entiät)</a></li>
+                <li class="obj"><a href="#ATTR25" target="details">Gültigperiode (Super Entiät)</a></li>
+                <li class="obj"><a href="#ATTR23" target="details">Kürzel (Super Entiät)</a></li>
+                <li class="obj"><a href="#ATTR28" target="details">Name (Entiät1)</a></li>
+                <li class="obj"><a href="#ATTR26" target="details">Standort (Super Entiät)</a></li>
+                <li class="obj"><a href="#ATTR27" target="details">wahroderfalsch (Super Entiät)</a></li>
+                <li class="obj"><a href="#ATTR30" target="details">Zusatzattribut 1-2 (Subentit 1-2)</a></li>
+                <li class="obj"><a href="#ATTR32" target="details">Zusatzattribut subenti1 (Subentität 1)</a></li>
+                <li class="obj"><a href="#ATTR22" target="details">Zusatzattribut subenti1 (Subentität 2)</a></li>
+                <li class="obj"><a href="#ATTR31" target="details">Zusatzattribut subenti21 (Subentität 2-1)</a></li>
+                    </ol>
+            </div>
+        </div>
+
+                <div class="panel-body" id="DomänenL">
+                    <div class="panel">
+                        <div class="panel-heading collapsed" data-toggle="collapse" data-target="#bar3">
+                            <label class="label0">Domänen</label>
+                            <img class="icon-minus" alt="minus" src="icons/minus.svg">
+                            <img class="icon-plus" alt="plus" src="icons/plus.svg">
+                        </div>
+                    </div>
+                    <!-- The inside div eliminates the 'jumping' animation. -->
+                    <div class="collapse" id="bar3">
+                        <ol class="tree" id="DomänenList">
+    
+                <li class="obj"><a href="#WRTB6" target="details">Beschreibung (1)</a></li>
+                <li class="obj"><a href="#WRTB9" target="details">Boolean (1)</a></li>
+                <li class="obj"><a href="#WRTB5" target="details">Nachkommastellen (0)</a></li>
+                <li class="obj"><a href="#WRTB7" target="details">Name (0)</a></li>
+                <li class="obj"><a href="#WRTB8" target="details">Unknown (9)</a></li>
+                    </ol>
+            </div>
+        </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="wrapper">
+        <div class="top-container">
+            <p3 class="descr">Diese Webseite enthält den ganzen Inhalt 
+            des <p2 class="IM">Informationsmodells</p2>. 
+            Diese Seite wurde von Software von <p2 class="fyayc">foryouandyourcustomers</p2> 
+            erstellt. 
+            </p3>
+        </div>
+        <!--entities-->        <div class="entity" id="ENTI25">
+            <div class="describtion">
+                <p>Entität</p> 
+                <h1>Entiät1</h1>
+                <p1>Eine Entität die einfach so da steht.</p1>
+            </div>
+             <div class="panel-body">
+            <div class="collapse" id="bar4">                    
+                   
+                <!-- The inside div eliminates the 'jumping' animation. -->
+
+                            <h2>Informationen</h2>
+                        <div id="container2">
+                        <div class="table-responsive">
+                            <table class="table borderless">
+                                <tbody>
+
+                                    <tr>
+                                        <th>geändert</th>
+                                        <td class="attribute">stb, 2019-11-06 09:26:00 UTC</td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                        </div>
+             <h2>Attribute</h2>
+                        <div id="container1">
+                            <div class="table-responsive">
+                   <table class="table borderless">
+                                            <tbody>
+                                        <tr>
+                                            <th class="attribute">Name</th>
+                                            <th class="attribute">Domäne</th>
+                                            <th>Typ</th>
+                                            <th class="thAlgn">Pflichtattribut</th>
+                                            <th class="thAlgn">Schlüssel</th>
+                                            <th class="thAlgn">Deskriptor</th>
+                                            <th class="thAlgn">übersetzt</th>
+                                            <th class="thAlgn">historisiert</th>
+                                            <th class="thAlgn">wiederholt</th>
+                                            <th class="thAlgn">verschlüsselt</th>
+                                        </tr>                                    <tr>
+                                                <td class="attribute"><a href="#ATTR28">Name</a></td>
+                                                <td class="attribute"><a href="#WRTB8">Unknown</a></td>
+                                                <td>Text</td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                            </tr>
+                                        <tr>
+                                                <td class="attribute"><a href="#ATTR29">Beschreibung</a></td>
+                                                <td class="attribute"><a href="#WRTB8">Unknown</a></td>
+                                                <td>Text</td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                            </tr>
+                  
+                                </tbody>
+                            </table>
+                            </div>
+                                </div>
+            <h2>Beziehungen</h2>
+                        <div id="container1">
+                            <div class="table-responsive">
+                   <table class="table borderless">
+                                            <tbody>
+                                        <tr>
+             <th>Name</th>
+             <th>Entität-1</th>
+             <th></th>
+             <th>Beziehung</th>
+             <th></th>
+             <th>Entität-2</th>
+             <th>Arc</th>
+             <th>Schlüssel</th>
+            <tr>
+             <td>Relation_6</td>
+             <td>Entiät1</td>
+             <td>-></td>
+             <td>--</td>
+             <td>0..1</td>
+           <td class="leftsymbol"><img class="icon-down" src="icons/downarrow.svg"></td>
+             <td></td>
+           <td class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+               </tr>
+            <tr>
+             <td></td>
+           <td class="leftsymbol"><img class="icon-up" src="icons/uparrow.svg"></td>
+             <td>1</td>
+             <td>--</td>
+             <td><-</td>
+             <td><a href="#ENTI21" target="details">IsA Entity 2</a></td>
+               </tr>
+            <tr>
+             <td>Relation_5</td>
+             <td>Entiät1</td>
+             <td>-></td>
+             <td>--</td>
+             <td>0..1</td>
+           <td class="leftsymbol"><img class="icon-down" src="icons/downarrow.svg"></td>
+             <td></td>
+           <td class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+               </tr>
+            <tr>
+             <td></td>
+           <td class="leftsymbol"><img class="icon-up" src="icons/uparrow.svg"></td>
+             <td>1</td>
+             <td>--</td>
+             <td><-</td>
+             <td><a href="#ENTI27" target="details">IsA Entity 1</a></td>
+               </tr>
+            <tr>
+             <td>Relation_3</td>
+             <td>Entiät1</td>
+             <td>-></td>
+             <td>geht an</td>
+             <td>1</td>
+           <td class="leftsymbol"><img class="icon-down" src="icons/downarrow.svg"></td>
+             <td></td>
+           <td class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+               </tr>
+            <tr>
+             <td></td>
+           <td class="leftsymbol"><img class="icon-up" src="icons/uparrow.svg"></td>
+             <td>0..N</td>
+             <td>kommt von</td>
+             <td><-</td>
+             <td><a href="#ENTI23" target="details">Super Entiät</a></td>
+               </tr>
+        
+                     </tbody>
+                            </table>
+                            </div>
+                                </div>
+                
+                            </div>
+                 <div class="panel">
+                <div class="panel-heading collapsed" data-toggle="collapse" data-target="#bar4">
+                    <img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
+                    <img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
+                    <label class="label1">Mehr</label>
+                </div>
+            </div>
+        </div>
+        </div>
+            <div class="entity" id="ENTI27">
+            <div class="describtion">
+                <p>Entität</p> 
+                <h1>IsA Entity 1</h1>
+                <p1>Eine Entität die eine Rolle darstellt (ISA)</p1>
+            </div>
+             <div class="panel-body">
+            <div class="collapse" id="bar5">                    
+                   
+                <!-- The inside div eliminates the 'jumping' animation. -->
+
+                            <h2>Informationen</h2>
+                        <div id="container2">
+                        <div class="table-responsive">
+                            <table class="table borderless">
+                                <tbody>
+
+                                    <tr>
+                                        <th>geändert</th>
+                                        <td class="attribute">stb, 2019-11-06 12:33:45 UTC</td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                        </div>
+        <h2>Beziehungen</h2>
+                        <div id="container1">
+                            <div class="table-responsive">
+                   <table class="table borderless">
+                                            <tbody>
+                                        <tr>
+             <th>Name</th>
+             <th>Entität-1</th>
+             <th></th>
+             <th>Beziehung</th>
+             <th></th>
+             <th>Entität-2</th>
+             <th>Arc</th>
+             <th>Schlüssel</th>
+            <tr>
+             <td>Relation_5</td>
+             <td>IsA Entity 1</td>
+             <td>-></td>
+             <td>--</td>
+             <td>1</td>
+           <td class="leftsymbol"><img class="icon-down" src="icons/downarrow.svg"></td>
+             <td></td>
+           <td class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+               </tr>
+            <tr>
+             <td></td>
+           <td class="leftsymbol"><img class="icon-up" src="icons/uparrow.svg"></td>
+             <td>0..1</td>
+             <td>--</td>
+             <td><-</td>
+             <td><a href="#ENTI25" target="details">Entiät1</a></td>
+               </tr>
+        
+                     </tbody>
+                            </table>
+                            </div>
+                                </div>
+                
+                            </div>
+                 <div class="panel">
+                <div class="panel-heading collapsed" data-toggle="collapse" data-target="#bar5">
+                    <img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
+                    <img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
+                    <label class="label1">Mehr</label>
+                </div>
+            </div>
+        </div>
+        </div>
+            <div class="entity" id="ENTI21">
+            <div class="describtion">
+                <p>Entität</p> 
+                <h1>IsA Entity 2</h1>
+                <p1>Eine Entität die eine Rolle darstellt (ISA)</p1>
+            </div>
+             <div class="panel-body">
+            <div class="collapse" id="bar6">                    
+                   
+                <!-- The inside div eliminates the 'jumping' animation. -->
+
+                            <h2>Informationen</h2>
+                        <div id="container2">
+                        <div class="table-responsive">
+                            <table class="table borderless">
+                                <tbody>
+
+                                    <tr>
+                                        <th>geändert</th>
+                                        <td class="attribute">stb, 2019-11-06 12:34:20 UTC</td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                        </div>
+        <h2>Beziehungen</h2>
+                        <div id="container1">
+                            <div class="table-responsive">
+                   <table class="table borderless">
+                                            <tbody>
+                                        <tr>
+             <th>Name</th>
+             <th>Entität-1</th>
+             <th></th>
+             <th>Beziehung</th>
+             <th></th>
+             <th>Entität-2</th>
+             <th>Arc</th>
+             <th>Schlüssel</th>
+            <tr>
+             <td>Relation_6</td>
+             <td>IsA Entity 2</td>
+             <td>-></td>
+             <td>--</td>
+             <td>1</td>
+           <td class="leftsymbol"><img class="icon-down" src="icons/downarrow.svg"></td>
+             <td></td>
+           <td class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+               </tr>
+            <tr>
+             <td></td>
+           <td class="leftsymbol"><img class="icon-up" src="icons/uparrow.svg"></td>
+             <td>0..1</td>
+             <td>--</td>
+             <td><-</td>
+             <td><a href="#ENTI25" target="details">Entiät1</a></td>
+               </tr>
+        
+                     </tbody>
+                            </table>
+                            </div>
+                                </div>
+                
+                            </div>
+                 <div class="panel">
+                <div class="panel-heading collapsed" data-toggle="collapse" data-target="#bar6">
+                    <img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
+                    <img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
+                    <label class="label1">Mehr</label>
+                </div>
+            </div>
+        </div>
+        </div>
+            <div class="entity" id="ENTI30">
+            <div class="describtion">
+                <p>Entität</p> 
+                <h1>Subentit 1-1</h1>
+                <p1>Subentität, die mit einer 1:1 Verbindung verknüpft ist.</p1>
+            </div>
+             <div class="panel-body">
+            <div class="collapse" id="bar7">                    
+                   
+                <!-- The inside div eliminates the 'jumping' animation. -->
+
+                            <h2>Informationen</h2>
+                        <div id="container2">
+                        <div class="table-responsive">
+                            <table class="table borderless">
+                                <tbody>
+
+                                    <tr>
+                                        <th>Superentität</th>
+                                        <td class="attribute"><a href="#ENTI29" target="details">Subentität 1</a></td>
+                                    </tr>
+
+                                    <tr>
+                                        <th>geändert</th>
+                                        <td class="attribute">stb, 2019-11-06 12:30:45 UTC</td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                        </div>
+            
+                            </div>
+                 <div class="panel">
+                <div class="panel-heading collapsed" data-toggle="collapse" data-target="#bar7">
+                    <img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
+                    <img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
+                    <label class="label1">Mehr</label>
+                </div>
+            </div>
+        </div>
+        </div>
+            <div class="entity" id="ENTI26">
+            <div class="describtion">
+                <p>Entität</p> 
+                <h1>Subentit 1-2</h1>
+                <p1>Subentität, die mit einer 1:1 Verbindung verknüpft ist.</p1>
+            </div>
+             <div class="panel-body">
+            <div class="collapse" id="bar8">                    
+                   
+                <!-- The inside div eliminates the 'jumping' animation. -->
+
+                            <h2>Informationen</h2>
+                        <div id="container2">
+                        <div class="table-responsive">
+                            <table class="table borderless">
+                                <tbody>
+
+                                    <tr>
+                                        <th>Superentität</th>
+                                        <td class="attribute"><a href="#ENTI29" target="details">Subentität 1</a></td>
+                                    </tr>
+
+                                    <tr>
+                                        <th>geändert</th>
+                                        <td class="attribute">stb, 2019-11-06 12:31:36 UTC</td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                        </div>
+             <h2>Attribute</h2>
+                        <div id="container1">
+                            <div class="table-responsive">
+                   <table class="table borderless">
+                                            <tbody>
+                                        <tr>
+                                            <th class="attribute">Name</th>
+                                            <th class="attribute">Domäne</th>
+                                            <th>Typ</th>
+                                            <th class="thAlgn">Pflichtattribut</th>
+                                            <th class="thAlgn">Schlüssel</th>
+                                            <th class="thAlgn">Deskriptor</th>
+                                            <th class="thAlgn">übersetzt</th>
+                                            <th class="thAlgn">historisiert</th>
+                                            <th class="thAlgn">wiederholt</th>
+                                            <th class="thAlgn">verschlüsselt</th>
+                                        </tr>                                    <tr>
+                                                <td class="attribute"><a href="#ATTR30">Zusatzattribut 1-2</a></td>
+                                                <td class="attribute"><a href="#WRTB8">Unknown</a></td>
+                                                <td>Text</td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                            </tr>
+                  
+                                </tbody>
+                            </table>
+                            </div>
+                                </div>
+            <h2>Beziehungen</h2>
+                        <div id="container1">
+                            <div class="table-responsive">
+                   <table class="table borderless">
+                                            <tbody>
+                                        <tr>
+             <th>Name</th>
+             <th>Entität-1</th>
+             <th></th>
+             <th>Beziehung</th>
+             <th></th>
+             <th>Entität-2</th>
+             <th>Arc</th>
+             <th>Schlüssel</th>
+            <tr>
+             <td>Relation_4</td>
+             <td>Subentit 1-2</td>
+             <td>-></td>
+             <td>steht über</td>
+             <td>1..N</td>
+           <td class="leftsymbol"><img class="icon-down" src="icons/downarrow.svg"></td>
+             <td></td>
+           <td class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+               </tr>
+            <tr>
+             <td></td>
+           <td class="leftsymbol"><img class="icon-up" src="icons/uparrow.svg"></td>
+             <td>0..N</td>
+             <td>ist neben</td>
+             <td><-</td>
+             <td><a href="#ENTI24" target="details">Subentität 2-2</a></td>
+               </tr>
+        
+                     </tbody>
+                            </table>
+                            </div>
+                                </div>
+                
+                            </div>
+                 <div class="panel">
+                <div class="panel-heading collapsed" data-toggle="collapse" data-target="#bar8">
+                    <img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
+                    <img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
+                    <label class="label1">Mehr</label>
+                </div>
+            </div>
+        </div>
+        </div>
+            <div class="entity" id="ENTI29">
+            <div class="describtion">
+                <p>Entität</p> 
+                <h1>Subentität 1</h1>
+                <p1></p1>
+            </div>
+             <div class="panel-body">
+            <div class="collapse" id="bar9">                    
+                   
+                <!-- The inside div eliminates the 'jumping' animation. -->
+
+                            <h2>Informationen</h2>
+                        <div id="container2">
+                        <div class="table-responsive">
+                            <table class="table borderless">
+                                <tbody>
+
+                                    <tr>
+                                        <th>Superentität</th>
+                                        <td class="attribute"><a href="#ENTI23" target="details">Super Entiät</a></td>
+                                    </tr>
+
+                                    <tr>
+                                        <th>Subentitäten</th>
+                                        <td class="attribute"><a href="#ENTI26" target="details">Subentit 1-2</a>, <a href="#ENTI30" target="details">Subentit 1-1</a></td>
+                                    </tr>
+
+                                    <tr>
+                                        <th>geändert</th>
+                                        <td class="attribute">stb, 2019-11-06 12:28:05 UTC</td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                        </div>
+             <h2>Attribute</h2>
+                        <div id="container1">
+                            <div class="table-responsive">
+                   <table class="table borderless">
+                                            <tbody>
+                                        <tr>
+                                            <th class="attribute">Name</th>
+                                            <th class="attribute">Domäne</th>
+                                            <th>Typ</th>
+                                            <th class="thAlgn">Pflichtattribut</th>
+                                            <th class="thAlgn">Schlüssel</th>
+                                            <th class="thAlgn">Deskriptor</th>
+                                            <th class="thAlgn">übersetzt</th>
+                                            <th class="thAlgn">historisiert</th>
+                                            <th class="thAlgn">wiederholt</th>
+                                            <th class="thAlgn">verschlüsselt</th>
+                                        </tr>                                    <tr>
+                                                <td class="attribute"><a href="#ATTR32">Zusatzattribut subenti1</a></td>
+                                                <td class="attribute"><a href="#WRTB8">Unknown</a></td>
+                                                <td>Text</td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                            </tr>
+                  
+                                </tbody>
+                            </table>
+                            </div>
+                                </div>
+                
+                            </div>
+                 <div class="panel">
+                <div class="panel-heading collapsed" data-toggle="collapse" data-target="#bar9">
+                    <img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
+                    <img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
+                    <label class="label1">Mehr</label>
+                </div>
+            </div>
+        </div>
+        </div>
+            <div class="entity" id="ENTI22">
+            <div class="describtion">
+                <p>Entität</p> 
+                <h1>Subentität 2</h1>
+                <p1></p1>
+            </div>
+             <div class="panel-body">
+            <div class="collapse" id="bar10">                    
+                   
+                <!-- The inside div eliminates the 'jumping' animation. -->
+
+                            <h2>Informationen</h2>
+                        <div id="container2">
+                        <div class="table-responsive">
+                            <table class="table borderless">
+                                <tbody>
+
+                                    <tr>
+                                        <th>Superentität</th>
+                                        <td class="attribute"><a href="#ENTI23" target="details">Super Entiät</a></td>
+                                    </tr>
+
+                                    <tr>
+                                        <th>Subentitäten</th>
+                                        <td class="attribute"><a href="#ENTI24" target="details">Subentität 2-2</a>, <a href="#ENTI28" target="details">Subentität 2-1</a></td>
+                                    </tr>
+
+                                    <tr>
+                                        <th>geändert</th>
+                                        <td class="attribute">stb, 2019-11-06 12:28:52 UTC</td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                        </div>
+             <h2>Attribute</h2>
+                        <div id="container1">
+                            <div class="table-responsive">
+                   <table class="table borderless">
+                                            <tbody>
+                                        <tr>
+                                            <th class="attribute">Name</th>
+                                            <th class="attribute">Domäne</th>
+                                            <th>Typ</th>
+                                            <th class="thAlgn">Pflichtattribut</th>
+                                            <th class="thAlgn">Schlüssel</th>
+                                            <th class="thAlgn">Deskriptor</th>
+                                            <th class="thAlgn">übersetzt</th>
+                                            <th class="thAlgn">historisiert</th>
+                                            <th class="thAlgn">wiederholt</th>
+                                            <th class="thAlgn">verschlüsselt</th>
+                                        </tr>                                    <tr>
+                                                <td class="attribute"><a href="#ATTR22">Zusatzattribut subenti1</a></td>
+                                                <td class="attribute"><a href="#WRTB8">Unknown</a></td>
+                                                <td>Text</td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                            </tr>
+                  
+                                </tbody>
+                            </table>
+                            </div>
+                                </div>
+                
+                            </div>
+                 <div class="panel">
+                <div class="panel-heading collapsed" data-toggle="collapse" data-target="#bar10">
+                    <img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
+                    <img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
+                    <label class="label1">Mehr</label>
+                </div>
+            </div>
+        </div>
+        </div>
+            <div class="entity" id="ENTI28">
+            <div class="describtion">
+                <p>Entität</p> 
+                <h1>Subentität 2-1</h1>
+                <p1></p1>
+            </div>
+             <div class="panel-body">
+            <div class="collapse" id="bar11">                    
+                   
+                <!-- The inside div eliminates the 'jumping' animation. -->
+
+                            <h2>Informationen</h2>
+                        <div id="container2">
+                        <div class="table-responsive">
+                            <table class="table borderless">
+                                <tbody>
+
+                                    <tr>
+                                        <th>Superentität</th>
+                                        <td class="attribute"><a href="#ENTI22" target="details">Subentität 2</a></td>
+                                    </tr>
+
+                                    <tr>
+                                        <th>geändert</th>
+                                        <td class="attribute">stb, 2019-11-06 12:29:07 UTC</td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                        </div>
+             <h2>Attribute</h2>
+                        <div id="container1">
+                            <div class="table-responsive">
+                   <table class="table borderless">
+                                            <tbody>
+                                        <tr>
+                                            <th class="attribute">Name</th>
+                                            <th class="attribute">Domäne</th>
+                                            <th>Typ</th>
+                                            <th class="thAlgn">Pflichtattribut</th>
+                                            <th class="thAlgn">Schlüssel</th>
+                                            <th class="thAlgn">Deskriptor</th>
+                                            <th class="thAlgn">übersetzt</th>
+                                            <th class="thAlgn">historisiert</th>
+                                            <th class="thAlgn">wiederholt</th>
+                                            <th class="thAlgn">verschlüsselt</th>
+                                        </tr>                                    <tr>
+                                                <td class="attribute"><a href="#ATTR31">Zusatzattribut subenti21</a></td>
+                                                <td class="attribute"><a href="#WRTB8">Unknown</a></td>
+                                                <td>Text</td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                            </tr>
+                  
+                                </tbody>
+                            </table>
+                            </div>
+                                </div>
+                
+                            </div>
+                 <div class="panel">
+                <div class="panel-heading collapsed" data-toggle="collapse" data-target="#bar11">
+                    <img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
+                    <img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
+                    <label class="label1">Mehr</label>
+                </div>
+            </div>
+        </div>
+        </div>
+            <div class="entity" id="ENTI24">
+            <div class="describtion">
+                <p>Entität</p> 
+                <h1>Subentität 2-2</h1>
+                <p1></p1>
+            </div>
+             <div class="panel-body">
+            <div class="collapse" id="bar12">                    
+                   
+                <!-- The inside div eliminates the 'jumping' animation. -->
+
+                            <h2>Informationen</h2>
+                        <div id="container2">
+                        <div class="table-responsive">
+                            <table class="table borderless">
+                                <tbody>
+
+                                    <tr>
+                                        <th>Superentität</th>
+                                        <td class="attribute"><a href="#ENTI22" target="details">Subentität 2</a></td>
+                                    </tr>
+
+                                    <tr>
+                                        <th>geändert</th>
+                                        <td class="attribute">stb, 2019-11-06 12:29:50 UTC</td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                        </div>
+        <h2>Beziehungen</h2>
+                        <div id="container1">
+                            <div class="table-responsive">
+                   <table class="table borderless">
+                                            <tbody>
+                                        <tr>
+             <th>Name</th>
+             <th>Entität-1</th>
+             <th></th>
+             <th>Beziehung</th>
+             <th></th>
+             <th>Entität-2</th>
+             <th>Arc</th>
+             <th>Schlüssel</th>
+            <tr>
+             <td>Relation_4</td>
+             <td>Subentität 2-2</td>
+             <td>-></td>
+             <td>ist neben</td>
+             <td>0..N</td>
+           <td class="leftsymbol"><img class="icon-down" src="icons/downarrow.svg"></td>
+             <td></td>
+           <td class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+               </tr>
+            <tr>
+             <td></td>
+           <td class="leftsymbol"><img class="icon-up" src="icons/uparrow.svg"></td>
+             <td>1..N</td>
+             <td>steht über</td>
+             <td><-</td>
+             <td><a href="#ENTI26" target="details">Subentit 1-2</a></td>
+               </tr>
+        
+                     </tbody>
+                            </table>
+                            </div>
+                                </div>
+                
+                            </div>
+                 <div class="panel">
+                <div class="panel-heading collapsed" data-toggle="collapse" data-target="#bar12">
+                    <img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
+                    <img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
+                    <label class="label1">Mehr</label>
+                </div>
+            </div>
+        </div>
+        </div>
+            <div class="entity" id="ENTI23">
+            <div class="describtion">
+                <p>Entität</p> 
+                <h1>Super Entiät</h1>
+                <p1>Eine Entität, die aus 2 Subtypen besteht</p1>
+            </div>
+             <div class="panel-body">
+            <div class="collapse" id="bar13">                    
+                   
+                <!-- The inside div eliminates the 'jumping' animation. -->
+
+                            <h2>Informationen</h2>
+                        <div id="container2">
+                        <div class="table-responsive">
+                            <table class="table borderless">
+                                <tbody>
+
+                                    <tr>
+                                        <th>Subentitäten</th>
+                                        <td class="attribute"><a href="#ENTI22" target="details">Subentität 2</a>, <a href="#ENTI29" target="details">Subentität 1</a></td>
+                                    </tr>
+
+                                    <tr>
+                                        <th>geändert</th>
+                                        <td class="attribute">stb, 2019-11-06 12:21:42 UTC</td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                        </div>
+             <h2>Attribute</h2>
+                        <div id="container1">
+                            <div class="table-responsive">
+                   <table class="table borderless">
+                                            <tbody>
+                                        <tr>
+                                            <th class="attribute">Name</th>
+                                            <th class="attribute">Domäne</th>
+                                            <th>Typ</th>
+                                            <th class="thAlgn">Pflichtattribut</th>
+                                            <th class="thAlgn">Schlüssel</th>
+                                            <th class="thAlgn">Deskriptor</th>
+                                            <th class="thAlgn">übersetzt</th>
+                                            <th class="thAlgn">historisiert</th>
+                                            <th class="thAlgn">wiederholt</th>
+                                            <th class="thAlgn">verschlüsselt</th>
+                                        </tr>                                    <tr>
+                                                <td class="attribute"><a href="#ATTR23">Kürzel</a></td>
+                                                <td class="attribute"><a href="#WRTB8">Unknown</a></td>
+                                                <td>Text</td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                            </tr>
+                                        <tr>
+                                                <td class="attribute"><a href="#ATTR24">Beschreibung</a></td>
+                                                <td class="attribute"><a href="#WRTB6">Beschreibung</a></td>
+                                                <td>Text</td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                            </tr>
+                                        <tr>
+                                                <td class="attribute"><a href="#ATTR25">Gültigperiode</a></td>
+                                                <td class="attribute"><a href="#WRTB8">Unknown</a></td>
+                                                <td>Text</td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                            </tr>
+                                        <tr>
+                                                <td class="attribute"><a href="#ATTR26">Standort</a></td>
+                                                <td class="attribute"><a href="#WRTB8">Unknown</a></td>
+                                                <td>Text</td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                            </tr>
+                                        <tr>
+                                                <td class="attribute"><a href="#ATTR27">wahroderfalsch</a></td>
+                                                <td class="attribute"><a href="#WRTB9">Boolean</a></td>
+                                                <td>Werteliste</td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                            </tr>
+                  
+                                </tbody>
+                            </table>
+                            </div>
+                                </div>
+            <h2>Beziehungen</h2>
+                        <div id="container1">
+                            <div class="table-responsive">
+                   <table class="table borderless">
+                                            <tbody>
+                                        <tr>
+             <th>Name</th>
+             <th>Entität-1</th>
+             <th></th>
+             <th>Beziehung</th>
+             <th></th>
+             <th>Entität-2</th>
+             <th>Arc</th>
+             <th>Schlüssel</th>
+            <tr>
+             <td>Relation_3</td>
+             <td>Super Entiät</td>
+             <td>-></td>
+             <td>kommt von</td>
+             <td>0..N</td>
+           <td class="leftsymbol"><img class="icon-down" src="icons/downarrow.svg"></td>
+             <td></td>
+           <td class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+               </tr>
+            <tr>
+             <td></td>
+           <td class="leftsymbol"><img class="icon-up" src="icons/uparrow.svg"></td>
+             <td>1</td>
+             <td>geht an</td>
+             <td><-</td>
+             <td><a href="#ENTI25" target="details">Entiät1</a></td>
+               </tr>
+        
+                     </tbody>
+                            </table>
+                            </div>
+                                </div>
+                
+                            </div>
+                 <div class="panel">
+                <div class="panel-heading collapsed" data-toggle="collapse" data-target="#bar13">
+                    <img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
+                    <img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
+                    <label class="label1">Mehr</label>
+                </div>
+            </div>
+        </div>
+        </div>
+            <!--attributes-->        <div class="entity" id="ATTR24">
+            <div class="describtion">
+                <p>Attribut</p>
+                <h1>Beschreibung</h1>
+                <p1>Entität: <a href="#ENTI23" target="details">Super Entiät</a></p1><br>
+                <p1></p1>
+            </div>
+             <div class="panel-body">
+            <div class="collapse" id="bar14">                    
+                   
+                <!-- The inside div eliminates the 'jumping' animation. -->
+
+                            <h2>Informationen</h2>
+                        <div id="container2">
+                        <div class="table-responsive">
+                            <table class="table borderless">
+                                <tbody>
+                      <tr>
+                                                <th>Tooltip</th>
+                                                <th>erstellt</th>
+                                                <th>geändert</th>
+                                            </tr>
+    
+                                        <tr>
+                                                   <td class="attribute"></td>
+                                                    <td class="attribute"></td>
+                                                    <td class="attribute">stb, 2019-11-06 12:21:42 UTC</td>                                    
+                                        </tr>
+                          <tr>
+                                                <th>Technischer Name</th>
+                                                <th>Wertebereich</th>
+                                                <th>Datentyp</th>
+                                            </tr>
+    
+                                        <tr>
+                                                   <td class="attribute">BESCHREIBUNG</td>
+                                                    <td class="attribute"><a href="#WRTB6" target="details">Beschreibung</a></td>
+                                                    <td class="attribute">TEXT</td>                                    
+                                        </tr>
+                          <tr>
+                                                <th class="thAlgn">Pflichtattribut</th>
+                                                <th class="thAlgn">Schlüssel</th>
+                                                <th class="thAlgn">Deskriptor</th>
+                                                <th class="thAlgn">übersetzt</th>
+                                                <th class="thAlgn">historisiert</th>
+                                                <th class="thAlgn">wiederholt</th>
+                                                <th class="thAlgn">verschlüsselt</th>
+                                            </tr>
+    
+                                        <tr>
+                                                    <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                    <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                    <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                    <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                    <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                    <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                    <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>                                    
+                                        </tr>
+    
+                                </tbody>
+                            </table>
+                        </div>
+                        </div>
+            
+                            </div>
+                 <div class="panel">
+                <div class="panel-heading collapsed" data-toggle="collapse" data-target="#bar14">
+                    <img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
+                    <img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
+                    <label class="label1">Mehr</label>
+                </div>
+            </div>
+        </div>
+        </div>
+            <div class="entity" id="ATTR29">
+            <div class="describtion">
+                <p>Attribut</p>
+                <h1>Beschreibung</h1>
+                <p1>Entität: <a href="#ENTI25" target="details">Entiät1</a></p1><br>
+                <p1></p1>
+            </div>
+             <div class="panel-body">
+            <div class="collapse" id="bar15">                    
+                   
+                <!-- The inside div eliminates the 'jumping' animation. -->
+
+                            <h2>Informationen</h2>
+                        <div id="container2">
+                        <div class="table-responsive">
+                            <table class="table borderless">
+                                <tbody>
+                      <tr>
+                                                <th>Tooltip</th>
+                                                <th>erstellt</th>
+                                                <th>geändert</th>
+                                            </tr>
+    
+                                        <tr>
+                                                   <td class="attribute"></td>
+                                                    <td class="attribute"></td>
+                                                    <td class="attribute">stb, 2019-11-06 09:26:25 UTC</td>                                    
+                                        </tr>
+                          <tr>
+                                                <th>Technischer Name</th>
+                                                <th>Wertebereich</th>
+                                                <th>Datentyp</th>
+                                            </tr>
+    
+                                        <tr>
+                                                   <td class="attribute">BESCHREIBUNG</td>
+                                                    <td class="attribute"><a href="#WRTB8" target="details">Unknown</a></td>
+                                                    <td class="attribute">TEXT</td>                                    
+                                        </tr>
+                          <tr>
+                                                <th class="thAlgn">Pflichtattribut</th>
+                                                <th class="thAlgn">Schlüssel</th>
+                                                <th class="thAlgn">Deskriptor</th>
+                                                <th class="thAlgn">übersetzt</th>
+                                                <th class="thAlgn">historisiert</th>
+                                                <th class="thAlgn">wiederholt</th>
+                                                <th class="thAlgn">verschlüsselt</th>
+                                            </tr>
+    
+                                        <tr>
+                                                    <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                    <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                    <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                    <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                    <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                    <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                    <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>                                    
+                                        </tr>
+    
+                                </tbody>
+                            </table>
+                        </div>
+                        </div>
+            
+                            </div>
+                 <div class="panel">
+                <div class="panel-heading collapsed" data-toggle="collapse" data-target="#bar15">
+                    <img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
+                    <img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
+                    <label class="label1">Mehr</label>
+                </div>
+            </div>
+        </div>
+        </div>
+            <div class="entity" id="ATTR25">
+            <div class="describtion">
+                <p>Attribut</p>
+                <h1>Gültigperiode</h1>
+                <p1>Entität: <a href="#ENTI23" target="details">Super Entiät</a></p1><br>
+                <p1></p1>
+            </div>
+             <div class="panel-body">
+            <div class="collapse" id="bar16">                    
+                   
+                <!-- The inside div eliminates the 'jumping' animation. -->
+
+                            <h2>Informationen</h2>
+                        <div id="container2">
+                        <div class="table-responsive">
+                            <table class="table borderless">
+                                <tbody>
+                      <tr>
+                                                <th>Tooltip</th>
+                                                <th>erstellt</th>
+                                                <th>geändert</th>
+                                            </tr>
+    
+                                        <tr>
+                                                   <td class="attribute"></td>
+                                                    <td class="attribute"></td>
+                                                    <td class="attribute">stb, 2019-11-06 12:22:14 UTC</td>                                    
+                                        </tr>
+                          <tr>
+                                                <th>Technischer Name</th>
+                                                <th>Wertebereich</th>
+                                                <th>Datentyp</th>
+                                            </tr>
+    
+                                        <tr>
+                                                   <td class="attribute">G_LTIGPERIODE</td>
+                                                    <td class="attribute"><a href="#WRTB8" target="details">Unknown</a></td>
+                                                    <td class="attribute">TEXT</td>                                    
+                                        </tr>
+                          <tr>
+                                                <th class="thAlgn">Pflichtattribut</th>
+                                                <th class="thAlgn">Schlüssel</th>
+                                                <th class="thAlgn">Deskriptor</th>
+                                                <th class="thAlgn">übersetzt</th>
+                                                <th class="thAlgn">historisiert</th>
+                                                <th class="thAlgn">wiederholt</th>
+                                                <th class="thAlgn">verschlüsselt</th>
+                                            </tr>
+    
+                                        <tr>
+                                                    <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                    <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                    <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                    <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                    <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                    <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                    <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>                                    
+                                        </tr>
+    
+                                </tbody>
+                            </table>
+                        </div>
+                        </div>
+            
+                            </div>
+                 <div class="panel">
+                <div class="panel-heading collapsed" data-toggle="collapse" data-target="#bar16">
+                    <img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
+                    <img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
+                    <label class="label1">Mehr</label>
+                </div>
+            </div>
+        </div>
+        </div>
+            <div class="entity" id="ATTR23">
+            <div class="describtion">
+                <p>Attribut</p>
+                <h1>Kürzel</h1>
+                <p1>Entität: <a href="#ENTI23" target="details">Super Entiät</a></p1><br>
+                <p1></p1>
+            </div>
+             <div class="panel-body">
+            <div class="collapse" id="bar17">                    
+                   
+                <!-- The inside div eliminates the 'jumping' animation. -->
+
+                            <h2>Informationen</h2>
+                        <div id="container2">
+                        <div class="table-responsive">
+                            <table class="table borderless">
+                                <tbody>
+                      <tr>
+                                                <th>Tooltip</th>
+                                                <th>erstellt</th>
+                                                <th>geändert</th>
+                                            </tr>
+    
+                                        <tr>
+                                                   <td class="attribute"></td>
+                                                    <td class="attribute"></td>
+                                                    <td class="attribute">stb, 2019-11-06 12:21:42 UTC</td>                                    
+                                        </tr>
+                          <tr>
+                                                <th>Technischer Name</th>
+                                                <th>Wertebereich</th>
+                                                <th>Datentyp</th>
+                                            </tr>
+    
+                                        <tr>
+                                                   <td class="attribute">K_RZEL</td>
+                                                    <td class="attribute"><a href="#WRTB8" target="details">Unknown</a></td>
+                                                    <td class="attribute">TEXT</td>                                    
+                                        </tr>
+                          <tr>
+                                                <th class="thAlgn">Pflichtattribut</th>
+                                                <th class="thAlgn">Schlüssel</th>
+                                                <th class="thAlgn">Deskriptor</th>
+                                                <th class="thAlgn">übersetzt</th>
+                                                <th class="thAlgn">historisiert</th>
+                                                <th class="thAlgn">wiederholt</th>
+                                                <th class="thAlgn">verschlüsselt</th>
+                                            </tr>
+    
+                                        <tr>
+                                                    <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                    <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                    <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                    <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                    <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                    <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                    <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>                                    
+                                        </tr>
+    
+                                </tbody>
+                            </table>
+                        </div>
+                        </div>
+            
+                            </div>
+                 <div class="panel">
+                <div class="panel-heading collapsed" data-toggle="collapse" data-target="#bar17">
+                    <img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
+                    <img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
+                    <label class="label1">Mehr</label>
+                </div>
+            </div>
+        </div>
+        </div>
+            <div class="entity" id="ATTR28">
+            <div class="describtion">
+                <p>Attribut</p>
+                <h1>Name</h1>
+                <p1>Entität: <a href="#ENTI25" target="details">Entiät1</a></p1><br>
+                <p1></p1>
+            </div>
+             <div class="panel-body">
+            <div class="collapse" id="bar18">                    
+                   
+                <!-- The inside div eliminates the 'jumping' animation. -->
+
+                            <h2>Informationen</h2>
+                        <div id="container2">
+                        <div class="table-responsive">
+                            <table class="table borderless">
+                                <tbody>
+                      <tr>
+                                                <th>Tooltip</th>
+                                                <th>erstellt</th>
+                                                <th>geändert</th>
+                                            </tr>
+    
+                                        <tr>
+                                                   <td class="attribute"></td>
+                                                    <td class="attribute"></td>
+                                                    <td class="attribute">stb, 2019-11-06 09:26:20 UTC</td>                                    
+                                        </tr>
+                          <tr>
+                                                <th>Technischer Name</th>
+                                                <th>Wertebereich</th>
+                                                <th>Datentyp</th>
+                                            </tr>
+    
+                                        <tr>
+                                                   <td class="attribute">NAME</td>
+                                                    <td class="attribute"><a href="#WRTB8" target="details">Unknown</a></td>
+                                                    <td class="attribute">TEXT</td>                                    
+                                        </tr>
+                          <tr>
+                                                <th class="thAlgn">Pflichtattribut</th>
+                                                <th class="thAlgn">Schlüssel</th>
+                                                <th class="thAlgn">Deskriptor</th>
+                                                <th class="thAlgn">übersetzt</th>
+                                                <th class="thAlgn">historisiert</th>
+                                                <th class="thAlgn">wiederholt</th>
+                                                <th class="thAlgn">verschlüsselt</th>
+                                            </tr>
+    
+                                        <tr>
+                                                    <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                    <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                    <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                    <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                    <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                    <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                    <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>                                    
+                                        </tr>
+    
+                                </tbody>
+                            </table>
+                        </div>
+                        </div>
+            
+                            </div>
+                 <div class="panel">
+                <div class="panel-heading collapsed" data-toggle="collapse" data-target="#bar18">
+                    <img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
+                    <img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
+                    <label class="label1">Mehr</label>
+                </div>
+            </div>
+        </div>
+        </div>
+            <div class="entity" id="ATTR26">
+            <div class="describtion">
+                <p>Attribut</p>
+                <h1>Standort</h1>
+                <p1>Entität: <a href="#ENTI23" target="details">Super Entiät</a></p1><br>
+                <p1></p1>
+            </div>
+             <div class="panel-body">
+            <div class="collapse" id="bar19">                    
+                   
+                <!-- The inside div eliminates the 'jumping' animation. -->
+
+                            <h2>Informationen</h2>
+                        <div id="container2">
+                        <div class="table-responsive">
+                            <table class="table borderless">
+                                <tbody>
+                      <tr>
+                                                <th>Tooltip</th>
+                                                <th>erstellt</th>
+                                                <th>geändert</th>
+                                            </tr>
+    
+                                        <tr>
+                                                   <td class="attribute"></td>
+                                                    <td class="attribute"></td>
+                                                    <td class="attribute">stb, 2019-11-06 12:22:25 UTC</td>                                    
+                                        </tr>
+                          <tr>
+                                                <th>Technischer Name</th>
+                                                <th>Wertebereich</th>
+                                                <th>Datentyp</th>
+                                            </tr>
+    
+                                        <tr>
+                                                   <td class="attribute">STANDORT</td>
+                                                    <td class="attribute"><a href="#WRTB8" target="details">Unknown</a></td>
+                                                    <td class="attribute">TEXT</td>                                    
+                                        </tr>
+                          <tr>
+                                                <th class="thAlgn">Pflichtattribut</th>
+                                                <th class="thAlgn">Schlüssel</th>
+                                                <th class="thAlgn">Deskriptor</th>
+                                                <th class="thAlgn">übersetzt</th>
+                                                <th class="thAlgn">historisiert</th>
+                                                <th class="thAlgn">wiederholt</th>
+                                                <th class="thAlgn">verschlüsselt</th>
+                                            </tr>
+    
+                                        <tr>
+                                                    <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                    <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                    <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                    <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                    <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                    <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                    <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>                                    
+                                        </tr>
+    
+                                </tbody>
+                            </table>
+                        </div>
+                        </div>
+            
+                            </div>
+                 <div class="panel">
+                <div class="panel-heading collapsed" data-toggle="collapse" data-target="#bar19">
+                    <img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
+                    <img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
+                    <label class="label1">Mehr</label>
+                </div>
+            </div>
+        </div>
+        </div>
+            <div class="entity" id="ATTR27">
+            <div class="describtion">
+                <p>Attribut</p>
+                <h1>wahroderfalsch</h1>
+                <p1>Entität: <a href="#ENTI23" target="details">Super Entiät</a></p1><br>
+                <p1></p1>
+            </div>
+             <div class="panel-body">
+            <div class="collapse" id="bar20">                    
+                   
+                <!-- The inside div eliminates the 'jumping' animation. -->
+
+                            <h2>Informationen</h2>
+                        <div id="container2">
+                        <div class="table-responsive">
+                            <table class="table borderless">
+                                <tbody>
+                      <tr>
+                                                <th>Tooltip</th>
+                                                <th>erstellt</th>
+                                                <th>geändert</th>
+                                            </tr>
+    
+                                        <tr>
+                                                   <td class="attribute"></td>
+                                                    <td class="attribute"></td>
+                                                    <td class="attribute">stb, 2019-11-11 08:22:33 UTC</td>                                    
+                                        </tr>
+                          <tr>
+                                                <th>Technischer Name</th>
+                                                <th>Wertebereich</th>
+                                                <th>Datentyp</th>
+                                            </tr>
+    
+                                        <tr>
+                                                   <td class="attribute">WAHRODERFALSCH</td>
+                                                    <td class="attribute"><a href="#WRTB9" target="details">Boolean</a></td>
+                                                    <td class="attribute">LOV</td>                                    
+                                        </tr>
+                          <tr>
+                                                <th class="thAlgn">Pflichtattribut</th>
+                                                <th class="thAlgn">Schlüssel</th>
+                                                <th class="thAlgn">Deskriptor</th>
+                                                <th class="thAlgn">übersetzt</th>
+                                                <th class="thAlgn">historisiert</th>
+                                                <th class="thAlgn">wiederholt</th>
+                                                <th class="thAlgn">verschlüsselt</th>
+                                            </tr>
+    
+                                        <tr>
+                                                    <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                    <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                    <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                    <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                    <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                    <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                    <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>                                    
+                                        </tr>
+    
+                                </tbody>
+                            </table>
+                        </div>
+                        </div>
+            
+                            </div>
+                 <div class="panel">
+                <div class="panel-heading collapsed" data-toggle="collapse" data-target="#bar20">
+                    <img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
+                    <img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
+                    <label class="label1">Mehr</label>
+                </div>
+            </div>
+        </div>
+        </div>
+            <div class="entity" id="ATTR30">
+            <div class="describtion">
+                <p>Attribut</p>
+                <h1>Zusatzattribut 1-2</h1>
+                <p1>Entität: <a href="#ENTI26" target="details">Subentit 1-2</a></p1><br>
+                <p1></p1>
+            </div>
+             <div class="panel-body">
+            <div class="collapse" id="bar21">                    
+                   
+                <!-- The inside div eliminates the 'jumping' animation. -->
+
+                            <h2>Informationen</h2>
+                        <div id="container2">
+                        <div class="table-responsive">
+                            <table class="table borderless">
+                                <tbody>
+                      <tr>
+                                                <th>Tooltip</th>
+                                                <th>erstellt</th>
+                                                <th>geändert</th>
+                                            </tr>
+    
+                                        <tr>
+                                                   <td class="attribute"></td>
+                                                    <td class="attribute"></td>
+                                                    <td class="attribute">stb, 2019-11-06 12:31:48 UTC</td>                                    
+                                        </tr>
+                          <tr>
+                                                <th>Technischer Name</th>
+                                                <th>Wertebereich</th>
+                                                <th>Datentyp</th>
+                                            </tr>
+    
+                                        <tr>
+                                                   <td class="attribute">ZUSATZATTRIBUT_1_2</td>
+                                                    <td class="attribute"><a href="#WRTB8" target="details">Unknown</a></td>
+                                                    <td class="attribute">TEXT</td>                                    
+                                        </tr>
+                          <tr>
+                                                <th class="thAlgn">Pflichtattribut</th>
+                                                <th class="thAlgn">Schlüssel</th>
+                                                <th class="thAlgn">Deskriptor</th>
+                                                <th class="thAlgn">übersetzt</th>
+                                                <th class="thAlgn">historisiert</th>
+                                                <th class="thAlgn">wiederholt</th>
+                                                <th class="thAlgn">verschlüsselt</th>
+                                            </tr>
+    
+                                        <tr>
+                                                    <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                    <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                    <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                    <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                    <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                    <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                    <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>                                    
+                                        </tr>
+    
+                                </tbody>
+                            </table>
+                        </div>
+                        </div>
+            
+                            </div>
+                 <div class="panel">
+                <div class="panel-heading collapsed" data-toggle="collapse" data-target="#bar21">
+                    <img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
+                    <img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
+                    <label class="label1">Mehr</label>
+                </div>
+            </div>
+        </div>
+        </div>
+            <div class="entity" id="ATTR22">
+            <div class="describtion">
+                <p>Attribut</p>
+                <h1>Zusatzattribut subenti1</h1>
+                <p1>Entität: <a href="#ENTI22" target="details">Subentität 2</a></p1><br>
+                <p1></p1>
+            </div>
+             <div class="panel-body">
+            <div class="collapse" id="bar22">                    
+                   
+                <!-- The inside div eliminates the 'jumping' animation. -->
+
+                            <h2>Informationen</h2>
+                        <div id="container2">
+                        <div class="table-responsive">
+                            <table class="table borderless">
+                                <tbody>
+                      <tr>
+                                                <th>Tooltip</th>
+                                                <th>erstellt</th>
+                                                <th>geändert</th>
+                                            </tr>
+    
+                                        <tr>
+                                                   <td class="attribute"></td>
+                                                    <td class="attribute"></td>
+                                                    <td class="attribute">stb, 2019-11-06 12:28:52 UTC</td>                                    
+                                        </tr>
+                          <tr>
+                                                <th>Technischer Name</th>
+                                                <th>Wertebereich</th>
+                                                <th>Datentyp</th>
+                                            </tr>
+    
+                                        <tr>
+                                                   <td class="attribute">ZUSATZATTRIBUT_SUBENTI1</td>
+                                                    <td class="attribute"><a href="#WRTB8" target="details">Unknown</a></td>
+                                                    <td class="attribute">TEXT</td>                                    
+                                        </tr>
+                          <tr>
+                                                <th class="thAlgn">Pflichtattribut</th>
+                                                <th class="thAlgn">Schlüssel</th>
+                                                <th class="thAlgn">Deskriptor</th>
+                                                <th class="thAlgn">übersetzt</th>
+                                                <th class="thAlgn">historisiert</th>
+                                                <th class="thAlgn">wiederholt</th>
+                                                <th class="thAlgn">verschlüsselt</th>
+                                            </tr>
+    
+                                        <tr>
+                                                    <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                    <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                    <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                    <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                    <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                    <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                    <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>                                    
+                                        </tr>
+    
+                                </tbody>
+                            </table>
+                        </div>
+                        </div>
+            
+                            </div>
+                 <div class="panel">
+                <div class="panel-heading collapsed" data-toggle="collapse" data-target="#bar22">
+                    <img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
+                    <img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
+                    <label class="label1">Mehr</label>
+                </div>
+            </div>
+        </div>
+        </div>
+            <div class="entity" id="ATTR32">
+            <div class="describtion">
+                <p>Attribut</p>
+                <h1>Zusatzattribut subenti1</h1>
+                <p1>Entität: <a href="#ENTI29" target="details">Subentität 1</a></p1><br>
+                <p1></p1>
+            </div>
+             <div class="panel-body">
+            <div class="collapse" id="bar23">                    
+                   
+                <!-- The inside div eliminates the 'jumping' animation. -->
+
+                            <h2>Informationen</h2>
+                        <div id="container2">
+                        <div class="table-responsive">
+                            <table class="table borderless">
+                                <tbody>
+                      <tr>
+                                                <th>Tooltip</th>
+                                                <th>erstellt</th>
+                                                <th>geändert</th>
+                                            </tr>
+    
+                                        <tr>
+                                                   <td class="attribute"></td>
+                                                    <td class="attribute"></td>
+                                                    <td class="attribute">stb, 2019-11-06 12:28:05 UTC</td>                                    
+                                        </tr>
+                          <tr>
+                                                <th>Technischer Name</th>
+                                                <th>Wertebereich</th>
+                                                <th>Datentyp</th>
+                                            </tr>
+    
+                                        <tr>
+                                                   <td class="attribute">ZUSATZATTRIBUT_SUBENTI1</td>
+                                                    <td class="attribute"><a href="#WRTB8" target="details">Unknown</a></td>
+                                                    <td class="attribute">TEXT</td>                                    
+                                        </tr>
+                          <tr>
+                                                <th class="thAlgn">Pflichtattribut</th>
+                                                <th class="thAlgn">Schlüssel</th>
+                                                <th class="thAlgn">Deskriptor</th>
+                                                <th class="thAlgn">übersetzt</th>
+                                                <th class="thAlgn">historisiert</th>
+                                                <th class="thAlgn">wiederholt</th>
+                                                <th class="thAlgn">verschlüsselt</th>
+                                            </tr>
+    
+                                        <tr>
+                                                    <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                    <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                    <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                    <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                    <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                    <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                    <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>                                    
+                                        </tr>
+    
+                                </tbody>
+                            </table>
+                        </div>
+                        </div>
+            
+                            </div>
+                 <div class="panel">
+                <div class="panel-heading collapsed" data-toggle="collapse" data-target="#bar23">
+                    <img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
+                    <img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
+                    <label class="label1">Mehr</label>
+                </div>
+            </div>
+        </div>
+        </div>
+            <div class="entity" id="ATTR31">
+            <div class="describtion">
+                <p>Attribut</p>
+                <h1>Zusatzattribut subenti21</h1>
+                <p1>Entität: <a href="#ENTI28" target="details">Subentität 2-1</a></p1><br>
+                <p1></p1>
+            </div>
+             <div class="panel-body">
+            <div class="collapse" id="bar24">                    
+                   
+                <!-- The inside div eliminates the 'jumping' animation. -->
+
+                            <h2>Informationen</h2>
+                        <div id="container2">
+                        <div class="table-responsive">
+                            <table class="table borderless">
+                                <tbody>
+                      <tr>
+                                                <th>Tooltip</th>
+                                                <th>erstellt</th>
+                                                <th>geändert</th>
+                                            </tr>
+    
+                                        <tr>
+                                                   <td class="attribute"></td>
+                                                    <td class="attribute"></td>
+                                                    <td class="attribute">stb, 2019-11-06 12:29:07 UTC</td>                                    
+                                        </tr>
+                          <tr>
+                                                <th>Technischer Name</th>
+                                                <th>Wertebereich</th>
+                                                <th>Datentyp</th>
+                                            </tr>
+    
+                                        <tr>
+                                                   <td class="attribute">ZUSATZATTRIBUT_SUBENTI21</td>
+                                                    <td class="attribute"><a href="#WRTB8" target="details">Unknown</a></td>
+                                                    <td class="attribute">TEXT</td>                                    
+                                        </tr>
+                          <tr>
+                                                <th class="thAlgn">Pflichtattribut</th>
+                                                <th class="thAlgn">Schlüssel</th>
+                                                <th class="thAlgn">Deskriptor</th>
+                                                <th class="thAlgn">übersetzt</th>
+                                                <th class="thAlgn">historisiert</th>
+                                                <th class="thAlgn">wiederholt</th>
+                                                <th class="thAlgn">verschlüsselt</th>
+                                            </tr>
+    
+                                        <tr>
+                                                    <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                    <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                    <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                    <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                    <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                    <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                    <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>                                    
+                                        </tr>
+    
+                                </tbody>
+                            </table>
+                        </div>
+                        </div>
+            
+                            </div>
+                 <div class="panel">
+                <div class="panel-heading collapsed" data-toggle="collapse" data-target="#bar24">
+                    <img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
+                    <img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
+                    <label class="label1">Mehr</label>
+                </div>
+            </div>
+        </div>
+        </div>
+            <!--domains-->        <div class="entity" id="WRTB6">
+            <div class="describtion">
+                <p>Wertebereich</p>
+                <h1>Beschreibung</h1>
+                <p1>Beschreibung eines Sachverhalts</p1>
+            </div>
+             <div class="panel-body">
+            <div class="collapse" id="bar25">                    
+                   
+                <!-- The inside div eliminates the 'jumping' animation. -->
+
+                            <h2>Informationen</h2>
+                        <div id="container2">
+                        <div class="table-responsive">
+                            <table class="table borderless">
+                                <tbody>
+                      <tr>
+                                                <th>Datentyp</th>
+                                                <th>Max. Länge</th>
+                                                <th>Syntaxregel</th>
+                                                <th></th>
+                                                <th></th>
+                                                <th></th>
+                                                <th></th>
+                                            </tr>
+    
+                                        <tr>
+                                                   <td class="attribute">Text</td>
+                                                    <td class="attribute"></td>
+                                                    <td class="attribute"></td>                                    
+                                                    <td class="attribute"></td>                                    
+                                                    <td class="attribute"></td>                                    
+                                                    <td class="attribute"></td>                                    
+                                                    <td class="attribute"></td>                                    
+                                        </tr>
+                          <tr>
+                                                <th>erstellt</th>
+                                                <th>geändert</th>
+                                                <th></th>
+                                                <th></th>
+                                                <th></th>
+                                                <th></th>
+                                                <th></th>
+                                            </tr>
+    
+                                </tbody>
+                            </table>
+                        </div>
+                        </div>
+        <h2>Verwendet für Attribute</h2>
+                        <div id="container1">
+                            <div class="table-responsive">
+                   <table class="table borderless">
+                                            <tbody>
+                                        <tr>
+             <th>Attribut</th>
+            <tr>
+             <td><a href="#ATTR24" target="details">Beschreibung (Super Entiät)</a></td>
+               </tr>
+        
+                     </tbody>
+                            </table>
+                            </div>
+                                </div>
+                
+                            </div>
+                 <div class="panel">
+                <div class="panel-heading collapsed" data-toggle="collapse" data-target="#bar25">
+                    <img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
+                    <img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
+                    <label class="label1">Mehr</label>
+                </div>
+            </div>
+        </div>
+        </div>
+            <div class="entity" id="WRTB9">
+            <div class="describtion">
+                <p>Wertebereich</p>
+                <h1>Boolean</h1>
+                <p1>JA/NEIN Wahr/falsch Wert</p1>
+            </div>
+             <div class="panel-body">
+            <div class="collapse" id="bar26">                    
+                   
+                <!-- The inside div eliminates the 'jumping' animation. -->
+
+                            <h2>Informationen</h2>
+                        <div id="container2">
+                        <div class="table-responsive">
+                            <table class="table borderless">
+                                <tbody>
+                      <tr>
+                                                <th>erstellt</th>
+                                                <th>geändert</th>
+                                                <th></th>
+                                                <th></th>
+                                                <th></th>
+                                                <th></th>
+                                                <th></th>
+                                            </tr>
+    
+                                </tbody>
+                            </table>
+                        </div>
+                        </div>
+        <h3>Werteliste</h3>
+                        <div id="container1">
+                            <div class="table-responsive">
+                   <table class="table borderless">
+                                            <tbody>
+                                        <tr>
+             <th>Nr</th>
+             <th>Wert</th>
+             <th>Anzeige</th>
+             <th>Beschreibung</th>
+            <tr>
+             <td>1</td>
+             <td>FALSE</td>
+             <td>falsch</td>
+             <td></td>
+               </tr>
+            <tr>
+             <td>2</td>
+             <td>TRUE</td>
+             <td>wahr</td>
+             <td></td>
+               </tr>
+        
+                     </tbody>
+                            </table>
+                            </div>
+                                </div>
+            <h2>Verwendet für Attribute</h2>
+                        <div id="container1">
+                            <div class="table-responsive">
+                   <table class="table borderless">
+                                            <tbody>
+                                        <tr>
+             <th>Attribut</th>
+            <tr>
+             <td><a href="#ATTR27" target="details">wahroderfalsch (Super Entiät)</a></td>
+               </tr>
+        
+                     </tbody>
+                            </table>
+                            </div>
+                                </div>
+                
+                            </div>
+                 <div class="panel">
+                <div class="panel-heading collapsed" data-toggle="collapse" data-target="#bar26">
+                    <img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
+                    <img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
+                    <label class="label1">Mehr</label>
+                </div>
+            </div>
+        </div>
+        </div>
+            <div class="entity" id="WRTB5">
+            <div class="describtion">
+                <p>Wertebereich</p>
+                <h1>Nachkommastellen</h1>
+                <p1>Anzahl Nachkommastellen</p1>
+            </div>
+             <div class="panel-body">
+            <div class="collapse" id="bar27">                    
+                   
+                <!-- The inside div eliminates the 'jumping' animation. -->
+
+                            <h2>Informationen</h2>
+                        <div id="container2">
+                        <div class="table-responsive">
+                            <table class="table borderless">
+                                <tbody>
+                      <tr>
+                                                <th>Datentyp</th>
+                                                <th>Vorkommast.</th>
+                                                <th>Nachkommast.</th>
+                                                <th>Rundungseinh.</th>
+                                                <th>Einheit</th>
+                                                <th>Min. Wert</th>
+                                                <th>Max. Wwert</th>
+                                            </tr>
+    
+                                        <tr>
+                                                   <td class="attribute">Numerisch</td>
+                                                    <td class="attribute"></td>
+                                                    <td class="attribute"></td>                                    
+                                                    <td class="attribute"></td>                                    
+                                                    <td class="attribute"></td>                                    
+                                                    <td class="attribute">0</td>                                    
+                                                    <td class="attribute">10</td>                                    
+                                        </tr>
+                          <tr>
+                                                <th>erstellt</th>
+                                                <th>geändert</th>
+                                                <th></th>
+                                                <th></th>
+                                                <th></th>
+                                                <th></th>
+                                                <th></th>
+                                            </tr>
+    
+                                </tbody>
+                            </table>
+                        </div>
+                        </div>
+            
+                            </div>
+                 <div class="panel">
+                <div class="panel-heading collapsed" data-toggle="collapse" data-target="#bar27">
+                    <img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
+                    <img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
+                    <label class="label1">Mehr</label>
+                </div>
+            </div>
+        </div>
+        </div>
+            <div class="entity" id="WRTB7">
+            <div class="describtion">
+                <p>Wertebereich</p>
+                <h1>Name</h1>
+                <p1>typisches Namensfeld</p1>
+            </div>
+             <div class="panel-body">
+            <div class="collapse" id="bar28">                    
+                   
+                <!-- The inside div eliminates the 'jumping' animation. -->
+
+                            <h2>Informationen</h2>
+                        <div id="container2">
+                        <div class="table-responsive">
+                            <table class="table borderless">
+                                <tbody>
+                      <tr>
+                                                <th>Datentyp</th>
+                                                <th>Max. Länge</th>
+                                                <th>Syntaxregel</th>
+                                                <th></th>
+                                                <th></th>
+                                                <th></th>
+                                                <th></th>
+                                            </tr>
+    
+                                        <tr>
+                                                   <td class="attribute">Text</td>
+                                                    <td class="attribute"></td>
+                                                    <td class="attribute"></td>                                    
+                                                    <td class="attribute"></td>                                    
+                                                    <td class="attribute"></td>                                    
+                                                    <td class="attribute"></td>                                    
+                                                    <td class="attribute"></td>                                    
+                                        </tr>
+                          <tr>
+                                                <th>erstellt</th>
+                                                <th>geändert</th>
+                                                <th></th>
+                                                <th></th>
+                                                <th></th>
+                                                <th></th>
+                                                <th></th>
+                                            </tr>
+    
+                                </tbody>
+                            </table>
+                        </div>
+                        </div>
+            
+                            </div>
+                 <div class="panel">
+                <div class="panel-heading collapsed" data-toggle="collapse" data-target="#bar28">
+                    <img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
+                    <img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
+                    <label class="label1">Mehr</label>
+                </div>
+            </div>
+        </div>
+        </div>
+            <div class="entity" id="WRTB8">
+            <div class="describtion">
+                <p>Wertebereich</p>
+                <h1>Unknown</h1>
+                <p1></p1>
+            </div>
+             <div class="panel-body">
+            <div class="collapse" id="bar29">                    
+                   
+                <!-- The inside div eliminates the 'jumping' animation. -->
+
+                            <h2>Informationen</h2>
+                        <div id="container2">
+                        <div class="table-responsive">
+                            <table class="table borderless">
+                                <tbody>
+                      <tr>
+                                                <th>Datentyp</th>
+                                                <th>Max. Länge</th>
+                                                <th>Syntaxregel</th>
+                                                <th></th>
+                                                <th></th>
+                                                <th></th>
+                                                <th></th>
+                                            </tr>
+    
+                                        <tr>
+                                                   <td class="attribute">Text</td>
+                                                    <td class="attribute"></td>
+                                                    <td class="attribute"></td>                                    
+                                                    <td class="attribute"></td>                                    
+                                                    <td class="attribute"></td>                                    
+                                                    <td class="attribute"></td>                                    
+                                                    <td class="attribute"></td>                                    
+                                        </tr>
+                          <tr>
+                                                <th>erstellt</th>
+                                                <th>geändert</th>
+                                                <th></th>
+                                                <th></th>
+                                                <th></th>
+                                                <th></th>
+                                                <th></th>
+                                            </tr>
+    
+                                </tbody>
+                            </table>
+                        </div>
+                        </div>
+        <h2>Verwendet für Attribute</h2>
+                        <div id="container1">
+                            <div class="table-responsive">
+                   <table class="table borderless">
+                                            <tbody>
+                                        <tr>
+             <th>Attribut</th>
+            <tr>
+             <td><a href="#ATTR29" target="details">Beschreibung (Entiät1)</a></td>
+               </tr>
+            <tr>
+             <td><a href="#ATTR25" target="details">Gültigperiode (Super Entiät)</a></td>
+               </tr>
+            <tr>
+             <td><a href="#ATTR23" target="details">Kürzel (Super Entiät)</a></td>
+               </tr>
+            <tr>
+             <td><a href="#ATTR28" target="details">Name (Entiät1)</a></td>
+               </tr>
+            <tr>
+             <td><a href="#ATTR26" target="details">Standort (Super Entiät)</a></td>
+               </tr>
+            <tr>
+             <td><a href="#ATTR30" target="details">Zusatzattribut 1-2 (Subentit 1-2)</a></td>
+               </tr>
+            <tr>
+             <td><a href="#ATTR32" target="details">Zusatzattribut subenti1 (Subentität 1)</a></td>
+               </tr>
+            <tr>
+             <td><a href="#ATTR22" target="details">Zusatzattribut subenti1 (Subentität 2)</a></td>
+               </tr>
+            <tr>
+             <td><a href="#ATTR31" target="details">Zusatzattribut subenti21 (Subentität 2-1)</a></td>
+               </tr>
+        
+                     </tbody>
+                            </table>
+                            </div>
+                                </div>
+                
+                            </div>
+                 <div class="panel">
+                <div class="panel-heading collapsed" data-toggle="collapse" data-target="#bar29">
+                    <img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
+                    <img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
+                    <label class="label1">Mehr</label>
+                </div>
+            </div>
+        </div>
+        </div>
+          </div>
+    <!-- modal für mobile devices (search) -->
+    <div class="modal" id="MobileSearch" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-full" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Filter</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="closeM0">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="modalContent">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" id="closeM1">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+        
+    <script>
+        //Code for filtering input
+        function $x(pNd) {
+            var lThis;
+            switch (typeof(pNd)) {
+                case 'string':
+                    lThis = document.getElementById(pNd);
+                    break;
+                case 'object':
+                    lThis = pNd;
+                    break;
+                default:
+                    return false;
+                    break;
+            }
+            return (lThis.nodeType == 1) ? lThis : false;
+        }
+
+        var gRegex = false;
+        var gHeight = 0;
+
+        function $d_Find(pThis, pString, pTags, pClass) {
+            if (!pTags) {
+                pTags = 'DIV';
+            }
+            pThis = $x(pThis);
+            if (pThis) {
+                var d = pThis.getElementsByTagName(pTags);
+                pThis.style.display = "none";
+                if (!gRegex) {
+                    gRegex = new RegExp("test");
+                }
+                var c = 0; // Versuch eines Counters für die Resultate
+                //var e = 0; //
+                var rowCount = 0;
+                gRegex.compile(pString, "i");
+                for (var i = 0, len = d.length; i < len; i++) {
+                    if (gRegex.test(d[i].innerHTML)) {
+                        d[i].style.display = "table-row";
+                        d[i].style.visiblilty = "visible";
+                        d[i].style.height = gHeight;
+                        c++; // 
+                    } else {
+                        if (gHeight == 0) gHeight = d[i].style.height;
+                        d[i].style.height = '0';
+                        d[i].style.display = "none";
+                        d[i].style.visiblilty = "hidden";
+                    }
+
+                }
+                pThis.style.display = "block";
+            }
+            document.getElementById("count").innerHTML = c;
+            return;
+        }
+
+        //placeholder animation
+        $('input').focus(function() {
+            $(this).parents('.form-group').addClass('focused');
+        });
+
+        $('input').blur(function() {
+            var inputValue = $(this).val();
+            if (inputValue == "") {
+                $("#searcher").show();
+                $(this).removeClass('filled');
+                $(this).parents('.form-group').removeClass('focused');
+            } else {
+                $(this).addClass('filled');
+            }
+        })
+
+        //serchclearer 
+        $(document).ready(function() {
+            $("#first").keyup(function() {
+                $("#searchclear").toggle(Boolean($(this).val()));
+                $("#searcher").hide();
+            });
+            $("#searchclear").toggle(Boolean($("#first").val()));
+            $("#searchclear").click(function() {
+                $("#searcher").show();
+                $("#first").val('').focus();
+                $(this).hide();
+            });
+        });
+
+
+        //content view for sidebar(desktop) and modal (mobile)
+        document.getElementById("btnF").addEventListener("click", function() {
+
+            $("body").css("overflow", "hidden");
+
+            var tree = document.createDocumentFragment();
+            var div = document.getElementById("toc_list");
+
+            tree.appendChild(div);
+
+            document.getElementById("modalContent").appendChild(tree);
+        });
+
+        document.getElementById("closeM0").addEventListener("click", function() {
+            $("body").css("overflow", "auto");
+
+            var tree = document.createDocumentFragment();
+            var div = document.getElementById("toc_list");
+
+            tree.appendChild(div);
+
+            document.getElementById("sidebar").appendChild(tree);
+        });
+        
+        document.getElementById("closeM1").addEventListener("click", function() {
+            $("body").css("overflow", "auto");
+
+            var tree = document.createDocumentFragment();
+            var div = document.getElementById("toc_list");
+
+            tree.appendChild(div);
+
+            document.getElementById("sidebar").appendChild(tree);
+        });
+    </script>
+</body>
+</html>
