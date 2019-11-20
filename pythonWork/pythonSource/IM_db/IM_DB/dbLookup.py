@@ -1,11 +1,19 @@
 from IM_DB import dbDML
+import sqlite3
 
-def doLookup(pguid,psql):
+def doLookup(pguid,psql,withnotfound=False):
     if (pguid == None):
-        return None
+        lretval =  None
     else:
-        return dbDML.lookup(psql . format(pguid))
+        try:
+            lretval = dbDML.lookup(psql . format(pguid))
+        except sqlite3.Error as er:
+            if withnotfound:
+                lretval = None
+            else:
+                raise er
     #fi
+    return lretval
 #doLookup
 
 def entiID (pguid):
@@ -29,7 +37,8 @@ def datyLookupGrundTyp (pguid):
 #datyLookup
 
 def wrtbLookup (pguid):
-    return doLookup(pguid,'select wrtb_id from wertebereiche where wrtb_odm_guid = "{}"' )
+    return doLookup(pguid,'select wrtb_id from wertebereiche where wrtb_odm_guid = "{}"'
+                    ,withnotfound=True)
 #wrtbLookup
 
 def meltLookup(p_kurzname):
@@ -73,8 +82,10 @@ def sprachen(p_id,p_attrname):
 #spraLookup
 
 def liesDefaultLang():
-    lDefLang = dbDML.select("""select spra_iso_code2 from sprachen 
-                        where spra_ist_modellsprache = 'TRUE'""")
+    lDefLang = dbDML.select("""select spra_iso_code2 from sprachen""")
+#                        where spra_ist_modellsprache = 'TRUE'""")
+    if lDefLang is None : return None
+    if len(lDefLang) == 0 : return None
     return lDefLang[0][0]
 #liesDefaultLang
 

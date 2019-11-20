@@ -28,11 +28,27 @@ class Wertebereich:
         self.wrtb_odm_guid = pid
         self.wrtb_datatype_ref = None
     #end __init__
-
 #end Wertebereich
+class color:
+    def __init__(self, foregcolor, backgcolor,fontcolor,fontname,fontsize,fontstyle):
+        self.backgcolor = backgcolor
+        self.foregcolor = foregcolor
+        self.fontcolor = fontcolor
+        self.fontname = fontname
+        self.fontsize = fontsize
+        self.fontstyle = fontstyle
+    #end __init__
+#color
+
 #entry of keys found in entites
 # (keyguid:(entiid,idx,keyName,uc,dc, (listof attr and relationship guids))
 keys = dict()
+# Classification type colors
+# classguid : color
+classcolors = dict()
+# default colors
+# elementtypename : color
+defcolors = dict()
 
 def nvl(x,y=''):
     if x is None: return y
@@ -102,7 +118,7 @@ def do1structtype(filename):
     wrtb.wrtb_uc = findText(structdom,"createdBy")
     wrtb.wrtb_dc = findText(structdom,"createdTime")
     wrtb.wrtb_typ = 'GRP'
-    dbInserts.insertWrtb(wrtb=(
+    wrtbid = dbInserts.insertWrtb(wrtb=(
         wrtb.wrtb_business_rule,wrtb.wrtb_name ,        wrtb.wrtb_beschr,
         wrtb.wrtb_typ,        wrtb.wrtb_zpkt_minwert,        wrtb.wrtb_zpkt_maxwert,
         wrtb.wrtb_zpkt_granularitaet,        wrtb.wrtb_text_maxlng,
@@ -114,7 +130,17 @@ def do1structtype(filename):
 
     elements = structdom.findall("attributes/Attribute")
     for el in elements:
-        print (wrtb.wrtb_name,findField(el,"name"))
+        #print (wrtb.wrtb_name,findField(el,"name"),findText(el,'type'))
+        reftype = findText(el,'type')
+        elwrtb = dbLookup.wrtbLookup(pguid=reftype)
+        if elwrtb is None:
+            #nimm vorläufig unknown, da mein Typ evtl. noch nicht da ist.
+            elwrtb = dbLookup.wrtbLookupByName(pname='Unknown')
+        dbInserts.insertwrtbgruppe(wbgr=(wrtbid, findField(el,"name")
+            ,findText(el,"comment"),elwrtb,reftype,findText(el,"createdBy")
+            ,findText(el,"createdTime"),None,None))
+    #for
+#do1structtype
 def transferDomains():
     #lösche die Domains
     #print(parameters.odmDomainsFilePath())
@@ -199,13 +225,41 @@ def transferDomains():
             for idx,key in enumerate(lovs.keys(),start=1):
                 #print ('{}: {} = {}' .format(idx,key,lovs[key]))
                 #vgwt_wert,  vgwt_sortrhfg, vgwt_wrtb_id, vgwt_anzeige, vgwt_beschr
-                dbInserts.insertVorgabewert(pvgwt=(key, idx, wrtbid, lovs[key], None))
+                dbInserts.insertVorgabewert(pvgwt=(key, idx, wrtbid, lovs[key], None
+                                                   ,wrtb.wrtb_uc, wrtb.wrtb_dc))
             #end for
         #endif
 
     dosegfiles(pdirec=parameters.odmstructypesdir(),transferfiles=do1structtype)
 
+    """update group domains a their types may now be available"""
+    ukwnid = dbLookup.wrtbLookupByName(pname='Unknown')
+    lsql= """select wbgr_id,wbgr_type_ref
+            from wertebereichgruppen
+    """
+    lupd= """update wertebereichgruppen
+            set wbgr_wrtb_id_member = ?
+            where wbgr_id = ?
+    """
+    wbgrs = dbDML.select(lsql)
+    for wbgr in wbgrs:
+        wrtbid = dbLookup.wrtbLookup(pguid=wbgr[1])
+        if wrtbid is None:
+            wrtbid = ukwnid
+        dbDML.exec(lupd,wrtbid,wbgr[0])
+
 #end transferDomains
+
+def hex2int(phex):
+    return  None if (phex is None)  else int(phex,16)
+def int2hex(pint):
+    if (pint is None): return pint
+    lint = pint if (type(pint) == int) else int(pint)
+    lint = lint + hex2int('FFFFFF') if (lint < 0) else 0
+    retval = '000000'+ hex(lint)[2:]
+    retval = retval[len(retval)-6:]
+    return retval
+
 def toString(str,upper = False):
     if str is None:
         return "''"
@@ -214,53 +268,59 @@ def toString(str,upper = False):
     #fi
 #toString
 
-def transferentity(p_enti,p_diagid,p_uc,p_dc):
-    entiodm = p_enti.get('oid')
+def transferentity(penti, pdiagid, puc, pdc):
+    entiodm = penti.get('oid')
+    enticategorey = findField(penti,'typeID')
     entiid = dbLookup.entiID(entiodm)
-    layout= p_enti.find('bounds')
-    #print (entiid,layout,layout.get('x'),layout.get('y'),layout.get('width'),layout.get('height'))
+    layout= penti.find('bounds')
+    col = color(None,None,None,None,None,None)
+    if (findText(penti, 'useDefaultColor') == 'false'):
+
+        col.backgcolor = findText(penti, 'backgroundColor')
+        col.foregcolor = findText(penti, 'foregroundColor')
+        #print (backgroundc,foregroundc)
+        font = penti.findall('fonts/FontObject[foType ="Title"]')
+        if font is None: font = penti.findall('fonts/FontObject[foType ="Titel"]')
+        #fontname,fontsize,fontstyle):
+        col.fontcolor = findText(font,'colorRGB')
+        col.fontstyle = findText(font,'fontStyle')
+    else:
+        #check wether entity belongs to categor
+        #muss über Modell und saubere Tabellen abgehandelt werden
+        # if (enticategorey is None):
+        col = defcolors['Entity']
+    #fi
+    #print (col.foregcolor,col.backgcolor)
     #eled_position_x,eled_position_y,eled_breite,eled_hoehe
     #,eled_deckkraft,eled_farbe,eled_randbreite,eled_randdeckkraft
     #,eled_randfarbe, eled_schriftgroesse, eled_schriftfarbe, eled_mode_id
     #,eled_diag_id, eled_uc, eled_dc, eled_um
     #, eled_dm
-    if (findText(p_enti,'useDefaultColor') == 'false'):
-        backgroundc = findText(p_enti,'backgroundColor')
-        foregroundc = findText(p_enti, 'foregroundColor')
-        fonts = p_enti.findall('fonts/FontObject/')
-        for f in fonts:
-            if (findText(f,'foType') == 'Titel'):
-                entifontc =findText(f,'colorRGB')
-            if (findText(f, 'foType') == 'Attribut'):
-                attrfontc = findText(f, 'colorRGB')
-        #for
-    else:
-        pass
-    #fi
 
-    row = ( layout.get('x'),layout.get('y'),layout.get('width'),layout.get('height')
-              ,None,None,None,None
-              ,None,None,None,dbLookup.modeEntiLookup(p_entiid=entiid)
-             ,p_diagid,p_uc,p_dc,None
-             ,None)
+    row = (layout.get('x'), layout.get('y'), layout.get('width'), layout.get('height')
+              , 100, int2hex(col.backgcolor), None, 100
+              , int2hex(col.foregcolor), None, int2hex(col.fontcolor), dbLookup.modeEntiLookup(p_entiid=entiid)
+             , pdiagid, puc, pdc, None
+             , None)
     #print (row)
+    dbInserts.insertelementdarst(pdata=row)
 #transferentity
 
-def transferdiaobj(p_objects,p_diagid,p_uc,p_dc):
-    for o in p_objects:
+def transferdiaobj(pobjects, pdiagid, puc, pdc):
+    for o in pobjects:
         type = o.get('otype')
         if (type == 'Image'):
             pass
         elif (type == 'Entity'):
-            transferentity(p_enti=o,p_diagid=p_diagid,p_uc=p_uc,p_dc=p_dc)
+            transferentity(penti=o, pdiagid=pdiagid, puc=puc, pdc=pdc)
         elif (type == 'Note'):
             pass
         #fi
 #transferdiaobj
-def transferdiaconnect(p_connectors,p_diagid,p_uc,p_dc):
+def transferdiaconnect(pconnectors, pdiagid, puc, pdc):
     pass
 # transferdiaconnect
-def transferdiaarc(p_arcs,p_diagid,p_uc,p_dc):
+def transferdiaarc(parcs, pdiagid, puc, pdc):
     pass
 # transferdiaarc
 
@@ -288,7 +348,7 @@ def do1diagramm(p_filename):
     #entcomm = findText(root,'comment')
     #creby = findText(root,'createdBy')
     #creti = findText(root,'createdTime')
-    diatid = dbLookup.diatid(p_name='Entitätendiagramm')
+    diatid = dbLookup.diatid(p_name='Entity')
     #print(dia.get('name'), dia.get('id'))
     #diag_name,diag_diat_id,diag_uc,diag_dc,diag_um,diag_dm
     uc = findText(dia,'createdBy')
@@ -299,17 +359,18 @@ def do1diagramm(p_filename):
     diagid = dbInserts.insertdiagramm(p_data=row)
     objects = dia.findall('objectViews/OView')
     if (len(objects) > 0):
-        transferdiaobj(p_objects=objects,p_diagid=diagid,p_uc=uc,p_dc=dc)
+        transferdiaobj(pobjects=objects, pdiagid=diagid, puc=uc, pdc=dc)
     connectors = dia.findall('connectors/Connector')
     if (len(connectors) > 0):
-        transferdiaconnect(connectors,p_diagid=diagid,p_uc=uc,p_dc=dc)
+        transferdiaconnect(connectors, pdiagid=diagid, puc=uc, pdc=dc)
     arcs = dia.findall('arcs/Arc')
     if (len(arcs) > 0):
-        transferdiaarc(arcs,p_diagid=diagid,p_uc=uc,p_dc=dc)
+        transferdiaarc(arcs, pdiagid=diagid, puc=uc, pdc=dc)
     #print (dianame,len(objects),len(connectors),len(arcs))
 #do1diagramm
 
 def transferdiagramme():
+
     for el in os.listdir(parameters.odmentisubviewdirec()):
         filename = parameters.odmentisubviewdirec() +  el
         do1diagramm(p_filename=filename)
@@ -318,10 +379,12 @@ def transferdiagramme():
 
 def findeOderErstelleDom(domGuid,typeGuid,attrName):
     if (domGuid == None):
-        domGuid='unkwown'
+        domGuid='Unkwown'
     #fi
     try:
         domId = dbLookup.wrtbLookup(domGuid)
+        if domId is None:
+            domId = dbLookup.wrtbLookupByName('Unknown')
     except:
         domId = dbLookup.wrtbLookupByName('Unknown')
     #try
@@ -743,7 +806,8 @@ def do1UDPFile(pudpThema,pfileName):
 
             for val in lov:
                 #print (val.get('value'),val.get('default'))
-                dbInserts.insertVorgabewert(pvgwt=(val.get('value'),None,wrtbId,val.get('value'),None))
+                dbInserts.insertVorgabewert(pvgwt=(val.get('value'),None,wrtbId,val.get('value'),None
+                                                   ,'--',date.today().__str__()))
                   #vgwt_wert ,    vgwt_sortrhfg,
                 #          vgwt_wrtb_id,   vgwt_anzeige   ,    vgwt_beschr)
             #rof
@@ -826,8 +890,7 @@ def insertBaseData():
     dbInserts.insertSprache(('Français', 'fr', 'fra', 'TRUE', 'FALSE',ldeId, 'stb', date.today()));
 
     fillMelt()
-
-    entidiaid = dbInserts.insertdiagrammtyp(('Entitätendiagramm','stb',date.today(),None,None))
+    entidiaid = dbInserts.insertdiagrammtyp(('Entity','stb',date.today(),None,None))
     #    medi_diat_id, medi_melt_id,medi_uc,mdei_dc,medi_um,mdei_dm
     dbInserts.insertmeltdiat((entidiaid, dbLookup.meltLookup(p_kurzname='ENTI'),'stb', date.today(), None, None))
     dbInserts.insertmeltdiat((entidiaid, dbLookup.meltLookup(p_kurzname='BEZI'),'stb', date.today(), None, None))
@@ -844,14 +907,57 @@ def loeschmodell():
     dbDML.delete('diagramme')
     dbDML.delete("benudef_eigenschaft")
     dbDML.delete("vorgabewerte")
+    dbDML.delete("wertebereichgruppen")
     dbDML.delete("wertebereiche")
     dbDML.delete("speicherformate")
+    dbDML.delete("linie_segment")
+    dbDML.delete("beziehung_darst")
+    dbDML.delete("elementdarst")
+    dbDML.delete("melt_diat")
     dbDML.delete("datatypes")
+    dbDML.delete("diagramme")
     dbDML.delete("modellelem_typ")
     dbDML.delete('diagrammtypen')
     dbDML.delete('sprachtexte')
     dbDML.delete('sprachen')
 #loeschmodell
+
+def loadcolors(coldict, classkey, elem):
+    for fo in elem.findall('fonts'):
+        if ((findField(fo, 'name') == 'Title')
+           or (findField(fo, 'name') == 'Titel')): #es könnte auch Deutsch sein
+            coldict[classkey].fontcolor = findField(fo, 'font_color')
+            coldict[classkey].fontname = findField(fo, 'font_name')
+            coldict[classkey].fontsize = findField(fo, 'font_size')
+            coldict[classkey].fontstyle = findField(fo, 'font_style')
+        # fi
+    # for
+#loadcolors
+
+def loaddefaultcolors():
+    settings = ET.parse(parameters.odmsettingsfile())
+    root = settings.getroot()
+    classif = root.find('classification_types')
+
+    for ty in classif:
+        #classname = findField(ty,'name')
+        classguid = findField(ty,'id')
+        # foregcolor, backgcolor,fontcolor,fontname,fontsize,fontstyle):
+        classcolors[classguid] = \
+           color(findField(ty,'fgcolor'),findField(ty,'color'),None,None,None,None)
+        loadcolors(coldict=classcolors,classkey=classguid,elem=ty)
+        #print(classname,classcolors[classguid].foregcolor,classcolors[classguid].backgcolor)
+    #for
+    default = root.find('default_fonts_and_colors')
+    for de in default:
+        classname = findField(de,'classname')
+        defcolors[classname] = color(findField(de,'foreground')
+                                                     ,findField(de,'background')
+                                                     ,None,None,None,None)
+        loadcolors(coldict=defcolors,classkey=classname,elem=de)
+        #print(classname,defcolors[classname].foregcolor,defcolors[classname].backgcolor)
+    #for
+#loaddefaultcolors
 
 def transferODMModel():
     """überträgt das ganze ODM Modell in die DB"""
@@ -863,82 +969,7 @@ def transferODMModel():
     transferRelations()
     doSubentities()
     transferKeys(keys)
+    loaddefaultcolors()
     transferdiagramme()
-
-    if (1==2):
-        print("\nARCS")
-        att=dbDML.select("select * from arcs "
-                         "join (select enti_id, enti_name from entitaeten) on enti_id = arcs_enti_id")
-        for a in att:
-            print (a)
-
-#    att=dbDML.select("""select von_name, bezi_assoc_von_zu,bezi_assoc_zu_von,zu_name
-#                    ,beziehungen.*  
-#                     from beziehungen 
-#                    join (select enti_id as von_id, enti_name as von_name from entitaeten) on von_id = bezi_enti_id_von
-#                     join (select enti_id as zu_id, enti_name as zu_name from entitaeten) on zu_id = bezi_enti_id_zu
-#                     """)
-    if (1==2):
-        att=dbDML.select("""select *   from beziehungen order by bezi_odm_guid""")
-        print("\nRELATIONS")
-        for a in att:
-            print (a)
-    if (1==2):
-        att = dbDML.select("""select attr_id,attr_anzname, attr_tech_name,enti_name,enti_odm_guid,enti_id  
-        from attributes join entitaeten on enti_id = attr_enti_id 
-        order by enti_id,attr_anzname""")
-        print("\nAttributes")
-        for a in att:
-            print(a)
-    if (1==2):
-        att=dbDML.select("""select be.*,wrtb_name   from  benudef_eigenschaft as be
-                            left join wertebereiche on wrtb_id = bdeg_wrtb_id""")
-        print("\nUDP")
-        for a in att:
-            print (a)
-    if (1==2):
-        att=dbDML.select("""select * from wertebereiche""")
-        print("\nDomains")
-        for a in att:
-            print (a)
-
-    if (1==2):
-        att=dbDML.select("""select * from modellelement""")
-        print("\nModellelemente")
-        for a in att:
-            print (a)
-    if (1==2):
-        att=dbDML.select("""select * from modellelem_typ join modelltyp_eigensch on melt_id = mote_melt_id""")
-        print("\nModellelementtypen")
-        for a in att:
-            print (a)
-    if (1==2):
-        att=dbDML.select("""select bw.* from benudef_wert as bw 
-                join modellelement on mode_id = bdwe_mode_id
-                join entitaeten on enti_id = mode_enti_id
-                where enti_name = 'Adresse'""")
-        print("\nBenudef Werte")
-        for a in att:
-            print (a)
-
-        if (1 == 2):
-            #        att = dbDML.select("""select * from wertebereiche""")
-            att = dbDML.select("""select * from modelltyp_eigensch""")
-            print("\nModelltypeigenschaften")
-            for a in att:
-                print(a)
-
-    if (1 == 2):
-        att = dbDML.select("""select * from benudef_eigenschaft """)
-        print("\nBenudef Eigensch")
-        for a in att:
-            print(a)
-    if (1 == 2):
-        att = dbDML.select("""select * FROM schluessel join schluesselelement
-        left join attributes on attr_id = scel_attr_id
-        left join beziehungen on bezi_id = scel_bezi_id""")
-        print("\nSchluessel")
-        for a in att:
-            print(a)
 
 #end transferODMModel

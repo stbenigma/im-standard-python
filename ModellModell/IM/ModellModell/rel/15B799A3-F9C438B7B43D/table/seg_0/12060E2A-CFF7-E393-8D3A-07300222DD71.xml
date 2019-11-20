@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="12060E2A-CFF7-E393-8D3A-07300222DD71" name="WERTEBEREICHGRUPPE">
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="12060E2A-CFF7-E393-8D3A-07300222DD71" name="WERTEBEREICHGRUPPEN">
 <createdBy>stb</createdBy>
 <createdTime>2019-04-01 13:37:53 UTC</createdTime>
 <comment><![CDATA[Es gibt Attribute, die aus mehreren Bestandteilen bestehen, aber für eine Entität wie ein Attribut angesehen werden (können).
@@ -13,6 +13,7 @@ Hotelzimmer-Nr bestehend aus Stockwerk und ZimmerNr (ACHTUNG: nicht 1. Stelle = 
 Flugkennung bestehend aus Fluggesellschaft kürzel und Flugnummer (LX 247)]]></comment>
 <generatorID>6D701BFA-96C8-4476-67E2-B0821BCC7224</generatorID>
 <ownerDesignName>ModellModell</ownerDesignName>
+<ordsAlias>wertebereichgruppe</ordsAlias>
 <abbreviation>WBGR</abbreviation>
 <allowColumnReorder>false</allowColumnReorder>
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
@@ -28,6 +29,27 @@ Flugkennung bestehend aus Fluggesellschaft kürzel und Flugnummer (LX 247)]]></c
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementColumn>true</autoIncrementColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="WBGR_NAME" id="36861EB4-F248-FB5F-7EED-D7A9F8EFC545">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-11 11:25:06 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="WBGR_BESCHR" id="4E044850-94E2-F6A5-9431-ECF8DD15F543">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-11 11:25:06 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
 <Column name="WBGR_WRTB_ID_GRUPPE" id="432E790C-B2F1-1C03-ACB0-8F2BCCBC74EA">
@@ -136,8 +158,8 @@ Flugkennung bestehend aus Fluggesellschaft kürzel und Flugnummer (LX 247)]]></c
 <indexState>Unique Constraint</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
-<colUsage columnID="38D9092A-29C8-09D2-56B3-403CCF5146F2"/>
 <colUsage columnID="432E790C-B2F1-1C03-ACB0-8F2BCCBC74EA"/>
+<colUsage columnID="36861EB4-F248-FB5F-7EED-D7A9F8EFC545"/>
 </indexColumnUsage>
 </ind_PK_UK>
 <ind_PK_UK id="62924A86-7A9E-0416-BFE9-A6DC33B6AF9A" name="WBGR_WRTB_FK_MEMBECR">

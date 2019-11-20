@@ -4,7 +4,7 @@
 	<automatic_pk_generation value="false" />
 	<automatic_uk_generation value="false" />
 	<automatic_fk_generation value="false" />
-	<preserve_ddl_generation_options value="true" />
+	<preserve_ddl_generation_options value="false" />
 	<use_global_design_level_settings value="false" />
 	<use_preferred_classification_types value="false" />
 	<substitution_patterns>
@@ -78,6 +78,19 @@
 		<type name="External" color="-720908" fgcolor="-16776961" prefix="" id="6" preferred="false" >
 		<fonts>
 			<font_object fo_type="Title" font_color="-16776961" font_name="Dialog" font_size="10" font_style="1"/>
+			<font_object fo_type="Element" font_color="-16777216" font_name="Dialog" font_size="10" font_style="0"/>
+			<font_object fo_type="Datatype" font_color="-16744448" font_name="Dialog" font_size="10" font_style="0"/>
+			<font_object fo_type="PK Element" font_color="-16776961" font_name="Dialog" font_size="10" font_style="0"/>
+			<font_object fo_type="FK Element" font_color="-16777216" font_name="Dialog" font_size="10" font_style="0"/>
+			<font_object fo_type="UK Element" font_color="-16776961" font_name="Dialog" font_size="10" font_style="0"/>
+			<font_object fo_type="Not Null" font_color="-65536" font_name="Dialog" font_size="10" font_style="0"/>
+			<font_object fo_type="Key" font_color="-16777216" font_name="Dialog" font_size="10" font_style="0"/>
+			<font_object fo_type="Comments" font_color="-12566464" font_name="Dialog" font_size="10" font_style="0"/>
+		</fonts>
+		</type>
+		<type name="Testtype" color="-39322" fgcolor="-16776961" prefix="" id="1B18AA50-FE42-0EC2-2009-80DE47DDF109" preferred="false" >
+		<fonts>
+			<font_object fo_type="Title" font_color="-1" font_name="Dialog" font_size="10" font_style="1"/>
 			<font_object fo_type="Element" font_color="-16777216" font_name="Dialog" font_size="10" font_style="0"/>
 			<font_object fo_type="Datatype" font_color="-16744448" font_name="Dialog" font_size="10" font_style="0"/>
 			<font_object fo_type="PK Element" font_color="-16776961" font_name="Dialog" font_size="10" font_style="0"/>
@@ -297,7 +310,7 @@
 	<engineering_params>
 		<delete_without_origin value="false"/>
 		<engineer_coordinates value="true"/>
-		<engineer_generated value="true"/>
+		<engineer_generated value="false"/>
 		<show_engineering_intree value="false"/>
 		<apply_naming_std value="true"/>
 		<use_pref_abbreviation value="true"/>
@@ -310,26 +323,26 @@
 		<entity_table>
 			<property name="Name" selected="true"/>
 			<property name="Short Name / Abbreviation" selected="true"/>
-			<property name="Deprecated" selected="false"/>
+			<property name="Deprecated" selected="true"/>
 			<property name="Comment" selected="true"/>
 			<property name="Comment in RDBMS" selected="true"/>
 			<property name="Notes" selected="true"/>
-			<property name="Temporary Table Scope" selected="false"/>
+			<property name="Temporary Table Scope" selected="true"/>
 			<property name="Table Type" selected="true"/>
 			<property name="Structured Type" selected="true"/>
-			<property name="Type Substitution (Super-Type Object)" selected="false"/>
-			<property name="Allow Type Substitution" selected="false"/>
-			<property name="Min Volumes" selected="false"/>
-			<property name="Expected Volumes" selected="false"/>
-			<property name="Max Volumes" selected="false"/>
-			<property name="Growth Percent" selected="false"/>
-			<property name="Growth Type" selected="false"/>
-			<property name="Normal Form" selected="false"/>
-			<property name="Adequately Normalized" selected="false"/>
+			<property name="Type Substitution (Super-Type Object)" selected="true"/>
+			<property name="Allow Type Substitution" selected="true"/>
+			<property name="Min Volumes" selected="true"/>
+			<property name="Expected Volumes" selected="true"/>
+			<property name="Max Volumes" selected="true"/>
+			<property name="Growth Percent" selected="true"/>
+			<property name="Growth Type" selected="true"/>
+			<property name="Normal Form" selected="true"/>
+			<property name="Adequately Normalized" selected="true"/>
 		</entity_table>
 		<attribute_column>
 			<property name="Name" selected="true"/>
-			<property name="Deprecated" selected="false"/>
+			<property name="Deprecated" selected="true"/>
 			<property name="Data Type" selected="true"/>
 			<property name="Data Type Kind" selected="true"/>
 			<property name="Mandatory" selected="true"/>
@@ -342,10 +355,10 @@
 			<property name="Comment" selected="true"/>
 			<property name="Comment in RDBMS" selected="true"/>
 			<property name="Notes" selected="true"/>
-			<property name="Source Type" selected="false"/>
-			<property name="Formula Description" selected="false"/>
-			<property name="Type Substitution" selected="false"/>
-			<property name="Scope" selected="false"/>
+			<property name="Source Type" selected="true"/>
+			<property name="Formula Description" selected="true"/>
+			<property name="Type Substitution" selected="true"/>
+			<property name="Scope" selected="true"/>
 		</attribute_column>
 		<key_index>
 			<property name="Name" selected="true"/>
@@ -397,14 +410,6 @@
 			<naming_option class_name="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" max_name_length="128" case_type="2" valid_characters="" all_valid="true" />
 			<naming_option class_name="oracle.dbtools.crest.model.design.relational.Index" max_name_length="128" case_type="2" valid_characters="" all_valid="true" />
 		</model_options>
-		<model_options objectid="CD98CC0C-21D9-8B56-A4DB-F01B09CA729A">
-			<naming_option class_name="oracle.dbtools.crest.model.design.relational.Table" max_name_length="128" case_type="2" valid_characters="" all_valid="true" />
-			<naming_option class_name="oracle.dbtools.crest.model.design.relational.Column" max_name_length="128" case_type="2" valid_characters="" all_valid="true" />
-			<naming_option class_name="oracle.dbtools.crest.model.design.relational.TableView" max_name_length="128" case_type="2" valid_characters="" all_valid="true" />
-			<naming_option class_name="oracle.dbtools.crest.model.design.constraint.TableLevelConstraint" max_name_length="128" case_type="2" valid_characters="" all_valid="true" />
-			<naming_option class_name="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" max_name_length="128" case_type="2" valid_characters="" all_valid="true" />
-			<naming_option class_name="oracle.dbtools.crest.model.design.relational.Index" max_name_length="128" case_type="2" valid_characters="" all_valid="true" />
-		</model_options>
 		<model_options objectid="38C94748-E51A-FAFB-E753-08A7D83F70D9">
 			<naming_option class_name="oracle.dbtools.crest.model.design.logical.Entity" max_name_length="254" case_type="2" valid_characters="" all_valid="true" />
 			<naming_option class_name="oracle.dbtools.crest.model.design.logical.Attribute" max_name_length="254" case_type="2" valid_characters="" all_valid="true" />
@@ -437,15 +442,6 @@
 				<subviews value="70"/>
 				<arcs value="70"/>
 			</relational_model_0_estimates>
-			<relational_model_1_estimates>
-				<relational_model_name value="Relational_2"/>
-				<tables value="70"/>
-				<views value="70"/>
-				<foreign_keys value="70"/>
-				<schemas value="70"/>
-				<subviews value="70"/>
-				<arcs value="70"/>
-			</relational_model_1_estimates>
 		</relational_model_estimates>
 	</design_estimates>
 </settings>

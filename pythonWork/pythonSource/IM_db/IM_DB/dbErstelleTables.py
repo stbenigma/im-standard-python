@@ -163,22 +163,45 @@ CREATE TABLE wertebereiche(
 
     dbDDL.dropTable("wertebereichgruppen");
     dbDDL.createTable("""
-    CREATE TABLE wertebereichgruppen 
+CREATE TABLE wertebereichgruppen
     (
     wbgr_id               integer NOT NULL primary key autoincrement,
+    wbgr_name             VARCHAR(60)NOT NULL,
+    wbgr_beschr           VARCHAR(4000)NULL,
     wbgr_wrtb_id_gruppe   integer NOT NULL ,
      WBGR_WRTB_ID_MEMBER integer NOT NULL , 
+	 wbgr_type_ref	varchar(40),
      WBGR_UC VARCHAR (30) NOT NULL , 
      WBGR_DC VARCHAR (30) NOT NULL , 
      WBGR_UM VARCHAR (30)    null,
       wbgr_dm VARCHAR (30) null
-,CONSTRAINT WBGR_WRTB_UK UNIQUE (wbgr_wrtb_id_member,wbgr_wrtb_id_gruppe )
+,CONSTRAINT WBGR_WRTB_UK UNIQUE (wbgr_wrtb_id_gruppe ,wbgr_name )
 ,FOREIGN KEY(wbgr_wrtb_id_gruppe)
         REFERENCES wertebereich(wrtb_id) ON DELETE CASCADE
-, FOREIGN KEY(wbgr_wrtb_id_member)
-        REFERENCES wertebereich(wrtb_id)
-) 
-   """);
+,FOREIGN KEY(wbgr_wrtb_id_member)
+        REFERENCES wertebereich(wrtb_id) 
+	)
+;
+""");
+
+    dbDDL.dropTable("vorgabewerte");
+    dbDDL.createTable("""
+CREATE TABLE vorgabewerte(
+    vgwt_id               integer NOT NULL primary key autoincrement,
+	vgwt_guid varchar(40),
+    vgwt_wert              VARCHAR(100) NOT NULL,
+    vgwt_sortrhfg          integer NULL,
+    vgwt_wrtb_id           integer NOT NULL,
+    vgwt_anzeige   varchar(200),
+    vgwt_beschr    varchar(4000),
+    vgwt_uc         varchar(30) NOT NULL,
+    vgwt_dc        varchar(30) NOT NULL,
+    vgwt_um        varchar(30),
+    vgwt_dm        varchar(30),
+	unique (vgwt_wrtb_id,vgwt_wert),
+	foreign key (vgwt_wrtb_id) references wertebereiche(wrtb_id) ON DELETE CASCADE
+)
+""");
 
     dbDDL.dropTable("datatypes");
     dbDDL.createTable("""
@@ -732,8 +755,13 @@ CREATE TABLE linie_segment(
             'DOTTED',
             'SOLID'
         )),
-    lise_konnektor   VARCHAR2(3)NULL,
-        lise_uc       varchar(30) NOT NULL,
+    lise_konnektor   VARCHAR2(3)NULL
+    CHECK(lise_konnektor IN(
+        '1:1',
+        'ISA',
+        'M:1',
+        'M:N')),
+    lise_uc       varchar(30) NOT NULL,
     lise_dc           varchar(30) NOT NULL,
     lise_um           varchar(30) ,
     lise_dm           varchar(30),
@@ -745,5 +773,6 @@ CREATE TABLE linie_segment(
 	          """);
 #    dbDDL.dropTable("");
 #    dbDDL.createTable("""
-#	          """);
+#""");
+
 #end erstelleInfra

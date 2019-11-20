@@ -159,23 +159,27 @@ CREATE TABLE wertebereiche(
  OR ( WRTB_BIN_INHALTTYP IS NULL AND WRTB_BIN_SPFO_ID IS NULL AND WRTB_NUM_NACHKSTELLEN IS NULL AND WRTB_NUM_MAXWERT IS NULL AND WRTB_NUM_MINWERT IS NULL AND WRTB_NUM_PHEH_ID IS NULL AND WRTB_NUM_RUNDNG_EINH IS NULL AND WRTB_NUM_VORKSTELLEN IS NULL AND WRTB_TEXT_MAXLNG IS NULL AND WRTB_TEXT_SYNTAXREGEL IS NULL AND WRTB_ZPKT_GRANULARITAET IS NOT NULL)) 
 )
 ;
-CREATE TABLE wertebereichgruppe 
+CREATE TABLE wertebereichgruppen
     (
     wbgr_id               integer NOT NULL primary key autoincrement,
+    wbgr_name             VARCHAR(60)NOT NULL,
+    wbgr_beschr           VARCHAR(4000)NULL,
     wbgr_wrtb_id_gruppe   integer NOT NULL ,
      WBGR_WRTB_ID_MEMBER integer NOT NULL , 
+	 wbgr_type_ref	varchar(40),
      WBGR_UC VARCHAR (30) NOT NULL , 
      WBGR_DC VARCHAR (30) NOT NULL , 
      WBGR_UM VARCHAR (30)    null,
       wbgr_dm VARCHAR (30) null
-,CONSTRAINT WBGR_WRTB_UK UNIQUE (wbgr_wrtb_id_member,wbgr_wrtb_id_gruppe )
+,CONSTRAINT WBGR_WRTB_UK UNIQUE (wbgr_wrtb_id_gruppe ,wbgr_name )
 ,FOREIGN KEY(wbgr_wrtb_id_gruppe)
         REFERENCES wertebereich(wrtb_id) ON DELETE CASCADE
-, FOREIGN KEY(wbgr_wrtb_id_member)
+,FOREIGN KEY(wbgr_wrtb_id_member)
         REFERENCES wertebereich(wrtb_id) 
+	)
 ;
 		
-CREATE TABLE vorgabewert(
+CREATE TABLE vorgabewerte(
     vgwt_id               integer NOT NULL primary key autoincrement,
 	vgwt_guid varchar(40),
     vgwt_wert              VARCHAR(100) NOT NULL,

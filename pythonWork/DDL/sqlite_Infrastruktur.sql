@@ -70,13 +70,14 @@ CREATE TABLE diagrammtypen(
     diat_um    varchar(30) ,
     diat_dm    varchar(30),
 	CONSTRAINT diat_un UNIQUE(diat_bez)
-);
+)
+;
 CREATE TABLE diagramme(
     diag_id      integer primary key autoincrement,
     diag_name      varchar(60) NOT NULL,
     diag_diat_id   integer NOT NULL,
     diag_odm_guid       varchar(36),
-        diag_uc    varchar(30) NOT NULL,
+     diag_uc    varchar(30) NOT NULL,
     diag_dc        varchar(30) NOT NULL,
     diag_um        varchar(30) ,
     diag_dm        varchar(30),
@@ -89,7 +90,7 @@ CREATE TABLE melt_diat(
     medi_id        integer primary key autoincrement,
     medi_diat_id   integer NOT NULL,
     medi_melt_id   integer NOT NULL,
-        medi_uc    varchar(30) NOT NULL,
+    medi_uc    varchar(30) NOT NULL,
     medi_dc        varchar(30) NOT NULL,
     medi_um        varchar(30) ,
     medi_dm        varchar(30),
@@ -125,7 +126,7 @@ CREATE TABLE elementdarst(
         CHECK(length(eled_schriftfarbe)= 6),
     eled_mode_id          integer NOT NULL,
     eled_diag_id          integer NOT NULL,
-        eled_uc           varchar(30) NOT NULL,
+    eled_uc           varchar(30) NOT NULL,
     eled_dc               varchar(30) NOT NULL,
     eled_um               varchar(30) ,
     eled_dm               varchar(30),
@@ -142,9 +143,9 @@ CREATE TABLE beziehung_darst(
     beda_diag_id             integer NOT NULL,
     beda_mode_id             integer NOT NULL,
     beda_linienbreite        integer DEFAULT 1 NOT NULL,
-    beda_liniefarbe          varchar(6) DEFAULT '000000' NULL
+    beda_liniefarbe          varchar(6) NULL
         CHECK(length(beda_liniefarbe)= 6),
-    beda_liniedeckkraft      integer DEFAULT 100 NULL
+    beda_liniedeckkraft      integer NULL
         CHECK(beda_liniedeckkraft BETWEEN 0 AND 100),
     beda_startkante          varchar(1) NULL
         CHECK(beda_startkante IN(
@@ -213,14 +214,19 @@ CREATE TABLE linie_segment(
     lise_y           integer NOT NULL
         CONSTRAINT ck_beda_beda_schriftfarbe CHECK(lise_y BETWEEN 0 AND 999999) ,
     lise_linientyp   VARCHAR2(6)NULL
-        CONSTRAINT ck_beda_beda_schriftgroesse CHECK(lise_linientyp IN(
+        CONSTRAINT ck_beda_beda_dado CHECK(lise_linientyp IN(
             'DADO',
             'DASHED',
             'DOTTED',
             'SOLID'
         )),
-    lise_konnektor   VARCHAR2(3)NULL,
-        lise_uc       varchar(30) NOT NULL,
+    lise_konnektor   VARCHAR2(3)NULL
+    CHECK(lise_konnektor IN(
+        '1:1',
+        'ISA',
+        'M:1',
+        'M:N')),
+    lise_uc       varchar(30) NOT NULL,
     lise_dc           varchar(30) NOT NULL,
     lise_um           varchar(30) ,
     lise_dm           varchar(30),

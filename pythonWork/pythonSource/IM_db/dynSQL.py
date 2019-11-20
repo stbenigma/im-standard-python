@@ -7,13 +7,13 @@ def main(p_imdirec=None, p_modelname=None):
     parameters.initparam(p_imdirec)
     print ("dynsql",parameters.dbFilePath())
     dbConnect.openDB(parameters.dbFilePath());
-
-    dbParam.liesDefaultLang()
+#    dbParam.liesDefaultLang()
 
 #, e1.enti_name , e2.enti_name
-    l_sql ="""select * from wertebereiche"""
-
-    #l_sql = """select * from entitaeten where enti_id = 835"""
+    l_sql ="""select * FROM DIAGRAMME join diagrammtypen on diat_id = diag_diat_id """
+    l_sql ="""select * FROM melt_diat    join modellelem_typ on melt_id = medi_melt_id"""
+    l_sql ="""select * FROM elementdarst"""
+    l_sql ="""select * from diagrammtypen"""
     result = dbDML.select(l_sql)
     for row in result:
         print (row)

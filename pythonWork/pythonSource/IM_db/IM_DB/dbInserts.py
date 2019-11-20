@@ -42,11 +42,11 @@ def  insertWrtb(wrtb):
 #end insertWrtb
 def insertwrtbgruppe(wbgr):
     lsql="""
-    insert into wertebereiche 
-       (wbgr_wrtb_id_gruppe, WBGR_WRTB_ID_MEMBER
-       ,WBGR_UC,WBGR_DC,WBGR_UM,
-        wbgr_dm)
-        values (?,?,?,?,?,?,?) 
+    insert into wertebereichgruppen 
+       (wbgr_wrtb_id_gruppe, wbgr_name,wbgr_beschr
+       ,WBGR_WRTB_ID_MEMBER,wbgr_type_ref,WBGR_UC
+       ,WBGR_DC,WBGR_UM, wbgr_dm)
+        values (?,?,?,?,?,?,?,?,?) 
     """
     return dbDML.insert(lsql,wbgr)
 
@@ -65,8 +65,9 @@ def  insertLovWrtb(pName):
 def insertVorgabewert(pvgwt):
     lsql="""
     insert into vorgabewerte (vgwt_wert ,    vgwt_sortrhfg,
-        vgwt_wrtb_id,   vgwt_anzeige   ,    vgwt_beschr) 
-        values (?,?,?,?,?)
+        vgwt_wrtb_id,   vgwt_anzeige   ,    vgwt_beschr
+        ,vgwt_uc, vgwt_dc) 
+        values (?,?,?,?,?,?,?)
     """
     return dbDML.insert(lsql,pvgwt)
 #end insertVorgabewert
@@ -231,17 +232,17 @@ def insertSprachtexte(pData):
     return dbDML.insertmany(lsql, pData)
 #insertSprachtext
 
-def insertelementdarst(p_data):
+def insertelementdarst(pdata):
     lsql = """insert into 
-elementdarst(
+    elementdarst(     
     eled_position_x,eled_position_y,eled_breite,eled_hoehe
     ,eled_deckkraft,eled_farbe,eled_randbreite,eled_randdeckkraft
     ,eled_randfarbe, eled_schriftgroesse, eled_schriftfarbe, eled_mode_id
     ,eled_diag_id, eled_uc, eled_dc, eled_um
     , eled_dm)
     values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)    
-)	          """
-    return dbDML.insertmany(lsql, p_Data)
+    """
+    return dbDML.insertmany(lsql, pdata)
 #insertelementdarst
 
 def insertelbezidarst(p_data):

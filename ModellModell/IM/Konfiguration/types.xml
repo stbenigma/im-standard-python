@@ -233,7 +233,7 @@
 		<mapping rdbms="SQL Server 2012">DATETIME</mapping>
 		<mapping rdbms="SQL Server 2008">DATETIME</mapping>
 		<mapping rdbms="SQL Server 2005">DATETIME</mapping>
-		<mapping rdbms="SQL Server 2000">DATETIME</mapping>
+		<mapping rdbms="SQL Server 2000" size_default_value="20">VARCHAR, size</mapping>
 		<mapping rdbms="DB2/390 8">TIMESTAMP</mapping>
 		<mapping rdbms="DB2/390 7">TIMESTAMP</mapping>
 		<mapping rdbms="DB2/UDB 9">TIMESTAMP</mapping>
@@ -537,7 +537,7 @@
 		<mapping rdbms="SQL Server 2012">NUMERIC, precision, scale</mapping>
 		<mapping rdbms="SQL Server 2008">NUMERIC, precision, scale</mapping>
 		<mapping rdbms="SQL Server 2005">NUMERIC, precision, scale</mapping>
-		<mapping rdbms="SQL Server 2000">NUMERIC, precision, scale</mapping>
+		<mapping rdbms="SQL Server 2000">INTEGER</mapping>
 		<mapping rdbms="DB2/390 8">NUMERIC, precision, scale</mapping>
 		<mapping rdbms="DB2/390 7">NUMERIC, precision, scale</mapping>
 		<mapping rdbms="DB2/UDB 9">NUMERIC, precision, scale</mapping>
@@ -825,7 +825,7 @@
 		<mapping rdbms="SQL Server 2012">TEXT</mapping>
 		<mapping rdbms="SQL Server 2008">TEXT</mapping>
 		<mapping rdbms="SQL Server 2005">TEXT</mapping>
-		<mapping rdbms="SQL Server 2000">TEXT</mapping>
+		<mapping rdbms="SQL Server 2000" size_default_value="4000">VARCHAR, size</mapping>
 		<mapping rdbms="DB2/390 8">VARCHAR, size</mapping>
 		<mapping rdbms="DB2/390 7">VARCHAR, size</mapping>
 		<mapping rdbms="DB2/UDB 9">VARCHAR, size</mapping>
@@ -905,7 +905,7 @@
 		<mapping rdbms="SQL Server 2012">DATETIME</mapping>
 		<mapping rdbms="SQL Server 2008">DATETIME</mapping>
 		<mapping rdbms="SQL Server 2005">DATETIME</mapping>
-		<mapping rdbms="SQL Server 2000">DATETIME</mapping>
+		<mapping rdbms="SQL Server 2000" size_default_value="20">VARCHAR, size</mapping>
 		<mapping rdbms="DB2/390 8">TIMESTAMP</mapping>
 		<mapping rdbms="DB2/390 7">TIMESTAMP</mapping>
 		<mapping rdbms="DB2/UDB 9">TIMESTAMP</mapping>
@@ -1071,6 +1071,22 @@
 		<mapping rdbms="DB2/UDB 9" size_default_value="max">VARCHAR, size</mapping>
 		<mapping rdbms="DB2/UDB 8.1" size_default_value="max">VARCHAR, size</mapping>
 		<mapping rdbms="DB2/UDB 7.1" size_default_value="max">VARCHAR, size</mapping>
+	</logicaltype>
+	<logicaltype name="TIMESTAMP WITH TIME ZONEv1" objectid="ADE6924F-0A16-8C05-1F3B-8B9D2245689F">
+		<mapping rdbms="Oracle Database 12cR2">TIMESTAMP WITH TIME ZONE, precision</mapping>
+		<mapping rdbms="Oracle Database 12c">TIMESTAMP WITH TIME ZONE, precision</mapping>
+		<mapping rdbms="Oracle Database 11g">TIMESTAMP WITH TIME ZONE, precision</mapping>
+		<mapping rdbms="Oracle Database 10g">TIMESTAMP WITH TIME ZONE, precision</mapping>
+		<mapping rdbms="Oracle9i">TIMESTAMP WITH TIME ZONE, precision</mapping>
+		<mapping rdbms="SQL Server 2012">DATETIME</mapping>
+		<mapping rdbms="SQL Server 2008">DATETIME</mapping>
+		<mapping rdbms="SQL Server 2005">DATETIME</mapping>
+		<mapping rdbms="SQL Server 2000" size_default_value="30">VARCHAR, size</mapping>
+		<mapping rdbms="DB2/390 8">TIMESTAMP</mapping>
+		<mapping rdbms="DB2/390 7">TIMESTAMP</mapping>
+		<mapping rdbms="DB2/UDB 9">TIMESTAMP</mapping>
+		<mapping rdbms="DB2/UDB 8.1">TIMESTAMP</mapping>
+		<mapping rdbms="DB2/UDB 7.1">TIMESTAMP</mapping>
 	</logicaltype>
 	<native_to_logical_mappings>
 		<mappings_for_RDBMS_type rdbms_type="Oracle Database 12cR2" />

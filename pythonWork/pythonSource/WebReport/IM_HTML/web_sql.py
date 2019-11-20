@@ -1,3 +1,5 @@
+import sys,os
+sys.path.append(os.path.dirname(os.path.realpath(__file__))+'/../../IM_db')
 from IM_DB import dbDML,dbLookup
 
 udpThemenSql:str = """select distinct bdeg_thema
@@ -34,6 +36,8 @@ def entiAnker(id):
     return 'ENTI'+str(id)
 def attrAnker(id):
     return 'ATTR'+str(id)
+def attgAnker(id):
+    return 'ATTG'+str(id)
 def beziAnker(id):
     return 'BEZI'+str(id)
 def schlAnker(id):
@@ -42,10 +46,12 @@ def wrtbAnker(id):
     return 'WRTB'+str(id)
 def udpAnker(id):
     return 'UDP'+str(id)
+def diagAnker(id):
+    return 'DIAG'+str(id)
 
 
-def namelist(p_type,p_lang,p_wrtbid=None):
-    if p_type == 'ENTI':
+def namelist(ptype, plang, pwrtbid=None):
+    if ptype == 'ENTI':
         data = dbDML.select("""select name,enti_id from 
         (select e1.enti_id
                 ,case when ena.sptx_text is null then e1.enti_name 
@@ -57,9 +63,9 @@ def namelist(p_type,p_lang,p_wrtbid=None):
                                     and ena.sptx_mode_id = mode_id
                                     and ena.spra_id = sp.spra_id
               ) order by upper(name)
-                  """.format(p_lang))
+                  """.format(plang))
         datalist = [(e[0],entiAnker(e[1])) for e in data]
-    elif (p_type == 'ATTR'):
+    elif (ptype == 'ATTR'):
         data = dbDML.select("""select attrname || ' ('||entname||')' name, attr_id 
         from 
          (select case when ana.sptx_text is null then attr_anzname 
@@ -81,9 +87,27 @@ def namelist(p_type,p_lang,p_wrtbid=None):
           join wertebereiche on wrtb_id = attr_wrtb_id
                             and wrtb_id = {}
           ) order by upper(name)
-              """.format(p_lang,p_wrtbid if (p_wrtbid is not None) else 'wrtb_id'))
+              """.format(plang, pwrtbid if (pwrtbid is not None) else 'wrtb_id'))
         datalist = [(e[0], attrAnker(e[1])) for e in data]
-    elif (p_type == 'WRTB'):
+    elif (ptype == 'ATTG'):
+        data = dbDML.select("""select wbgrname || ' ('||wrtbname||')' name, wbgr_id,wrtbname,wrtb_id 
+            from 
+             (select  wbgr_name wbgrname
+                ,wbgr_id,w2.wrtb_id
+                ,case when ana.sptx_text is null then w2.wrtb_name 
+                                                else ana.sptx_text end  wrtbname
+              from wertebereichgruppen 
+              join wertebereiche w2 on w2.wrtb_id = wbgr_wrtb_id_gruppe
+              join sprachen sp on sp.spra_iso_code2 = '{}'         
+              left join modellelement amo on amo.mode_attr_id = w2.wrtb_id
+              left join spraattr ana on ana.sptx_attrname = 'WRTB_NAME'
+                                    and ana.sptx_mode_id = amo.mode_id
+                                    and ana.spra_id = sp.spra_id
+              where wbgr_wrtb_id_member = {}
+              ) order by wrtbname,upper(name)
+                  """.format(plang, pwrtbid if (pwrtbid is not None) else 'wrtb_id' ))
+        datalist = [(e[0], wrtbAnker(e[3])) for e in data]
+    elif (ptype == 'WRTB'):
         data = dbDML.select("""select wrtbname ||' ('|| anz ||')' name, wrtb_id 
         from 
          (select case when wna.sptx_text is null then wrtb_name 
@@ -97,8 +121,19 @@ def namelist(p_type,p_lang,p_wrtbid=None):
                                 and wna.sptx_mode_id = wmo.mode_id
                                 and wna.spra_id = sp.spra_id
           ) order by upper(name)
-              """.format(p_lang))
+              """.format(plang))
         datalist = [(e[0], wrtbAnker(e[1])) for e in data]
+    elif (ptype == 'DIAG'):
+        data = dbDML.select("""select diag_name ||' ('|| diat_bez ||')' name, diag_id 
+        from 
+         (select  diag_name
+            ,diag_id
+            ,diat_bez
+          from diagramme 
+          join diagrammtypen on diat_id = diag_diat_id
+          ) order by upper(diat_bez),upper(diag_name)
+              """.format(plang))
+        datalist = [(e[0], diagAnker(e[1])) for e in data]
     #fi
     return datalist
 #namelist
@@ -354,7 +389,7 @@ def wrtblist(p_lang):
             ,wrtb_num_vorkstellen
             ,wrtb_num_nachkstellen
             ,wrtb_num_rundng_einh
-            ,wrtb_num_pheh
+            ,wrtb_num_pheh_id
             ,wrtb_bin_inhalttyp
             ,wrtb_bin_spfo_id
             ,wrtb_odm_guid
@@ -374,12 +409,45 @@ def wrtblist(p_lang):
     return data
 #wrtblist
 
+def diaglist(pentiid=None):
+    if pentiid is None:
+        lsql = """  
+        select diag_name,diag_id
+        from diagramme
+     order by upper(diag_name)
+"""
+    else:
+        lsql = """
+        select diag_name,diag_id
+        from diagramme
+        join  elementdarst on eled_diag_id = diag_id
+        join modellelement on mode_id = eled_mode_id
+        where mode_enti_id = {}
+     order by upper(diag_name)
+""".format(pentiid)
+    #fi
+    data = dbDML.select(lsql)
+    return data
+#diaglist
+
+def wbgrelements(wrtbid):
+    data = dbDML.select("""select wbgr_name, wbgr_beschr ,  wrtb_name
+            ,wrtb_typ, wrtb_bin_inhalttyp, wbgr_uc
+            ,wbgr_dc, wbgr_um, wbgr_dm
+            , wbgr_wrtb_id_member, wbgr_id
+            from wertebereichgruppen
+            join wertebereiche on wrtb_id = wbgr_wrtb_id_member
+            where wbgr_wrtb_id_gruppe = {}
+    """.format(wrtbid))
+    return data
+#wbgrelements
+
 def wrtbwerte(p_wrtbid):
     data = dbDML.select("""
              select vgwt_sortrhfg,vgwt_wert,vgwt_anzeige,vgwt_beschr 
                from vorgabewerte
                where vgwt_wrtb_id = {}
                order by vgwt_sortrhfg
-""".format(p_wrtbid))
+    """.format(p_wrtbid))
     return data
 #wrtbwerte

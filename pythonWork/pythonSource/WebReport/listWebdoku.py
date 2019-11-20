@@ -1,5 +1,8 @@
 # -*- coding: latin-1 -*-
 import sys,os
+
+import IM_HTML.printdiagHTML
+
 sys.path.append(os.path.dirname(os.path.realpath(__file__))+'/../IM_db')
 from datetime import date,datetime
 from IM_DB import parameters,dbConnect,dbDDL,dbDML,dbErstelleTables,dbInserts,dbLookup,dbParam
@@ -99,17 +102,19 @@ def printAttrUDPMatrix(thema=None):
 
 def printlistofcontent():
     printHTML.printlistofcontenthead()
-    printHTML.printlistofcontentelement(p_name='Entitäten', p_list=web_sql.namelist(p_type='ENTI',p_lang=printHTML.reportLang()))
-    printHTML.printlistofcontentelement(p_name='Attribute', p_list=web_sql.namelist(p_type='ATTR',p_lang=printHTML.reportLang()))
-    printHTML.printlistofcontentelement(p_name='Domänen', p_list=web_sql.namelist(p_type='WRTB',p_lang=printHTML.reportLang()))
+    printHTML.printlistofcontentelement(p_name='Entitäten', p_list=web_sql.namelist(ptype='ENTI', plang=printHTML.reportLang()))
+    printHTML.printlistofcontentelement(p_name='Attribute', p_list=web_sql.namelist(ptype='ATTR', plang=printHTML.reportLang()))
+    printHTML.printlistofcontentelement(p_name='Domänen', p_list=web_sql.namelist(ptype='WRTB', plang=printHTML.reportLang()))
+    printHTML.printlistofcontentelement(p_name='Diagramme', p_list=web_sql.namelist(ptype='DIAG', plang=printHTML.reportLang()))
     printHTML.printlistofcontentfoot()
 # printlistofcontent
 
 def printcontent():
     printHTML.printcontenthead()
     printHTML.printcontententi(p_list=web_sql.entilist(p_lang=printHTML.reportLang()))
-    printHTML.printcontentattr(p_list=web_sql.attrlist(p_lang=printHTML.reportLang()))
+    printHTML.printcontentattr(plist=web_sql.attrlist(p_lang=printHTML.reportLang()))
     printHTML.printcontentwrtb(p_list=web_sql.wrtblist(p_lang=printHTML.reportLang()))
+    IM_HTML.printdiagHTML.printcontentdiag(plist=web_sql.diaglist())
 #    printHTML.printattrmaps(p_list=web_sql.wrtblist(p_lang=printHTML.reportLang()))
 #    printHTML.printdiagrams(p_list=web_sql.wrtblist(p_lang=printHTML.reportLang()))
     printHTML.printcontentfoot()

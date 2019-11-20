@@ -22,6 +22,7 @@ parameter = {
             , MODELNAME: None
             , 'odmkonfdirec': 'Konfiguration/'
             , 'odmdomainsfile': 'defaultdomains.xml'
+            , 'odmsettingsfile': 'dl_settings.xml'
             , 'odmdomainsfilepath': None
             , 'odmtypesfile': 'types.xml'
             , 'odmstructypesdir':  "datatypes/structuredtype/"
@@ -101,6 +102,12 @@ def odmModelName(newval=None):
         return parameter[MODELNAME]
     else:
         parameter[MODELNAME] = newval
+
+def odmsettingsfile(newval=None):
+    if newval is None:
+        return odmIMDirec()+odmKonfDirec()+parameter['odmsettingsfile']
+    else:
+        parameter['odmsettingsfile'] = newval
 def odmentisubviewdirec(newval=None):
     if newval is None:
         return odmIMDirec()+odmModelName()+'/'+parameter['odmentisubviewdirec']

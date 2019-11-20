@@ -55,6 +55,8 @@ translNameEN = {'Anzeige': 'Display'
                 ,'Attribut': 'Attribute'
                 ,'Attribut(e)': 'Attribute(s)'
                 ,'Attribute': 'Attributes'
+                , 'Attributgruppe': 'Attribut group'
+                ,'auf Diagramm(en)':'on diagram(s)'
                 ,'Author': 'Author'
                 ,'Beschreibung': 'Description'
                 ,'Beziehung': 'Relationship'
@@ -66,8 +68,12 @@ translNameEN = {'Anzeige': 'Display'
                 ,'Datentyp': 'Datatype'
                 ,'Deskriptor': 'descriptor'
                 ,'Domänen': 'Domains'
+                ,'Diagramm': 'Diagram'
+                ,'Diagramme': 'Diagrams'
                 ,'Domäne': 'Domain'
                 ,'Einheit' : 'Unit'
+                ,'Element': 'Element'
+                ,'Elemente': 'Elements'
                 ,'Entität': 'Entity'
                 ,'Entität/Tabelle': 'Entity/Table'
                 ,'Entitäten': 'Entities'
@@ -120,6 +126,7 @@ translNameEN = {'Anzeige': 'Display'
                 ,'übersetzt': 'translated'
                 ,'verschlüsselt': 'encrypted'
                 ,'Verwendet für Attribute':'Used for attributes'
+                ,'Verwendet in Attributgruppen':'Used in attribute groups'
                 ,'Verwendet von': 'used by'
                 ,'Vorkommast.' : 'digits before period'
                 ,'Wert': 'Value'
@@ -536,7 +543,7 @@ def endabschnitt():
     """
     return end
 #startabschnitt
-def starttable(p_titel, p_ueberschriften, p_level=2):
+def starttable(ptitel, pueberschriften, plevel=2):
     tabhead= """        <h{}>{}</h{}>
                         <div id="container1">
                             <div class="table-responsive">
@@ -548,15 +555,16 @@ def starttable(p_titel, p_ueberschriften, p_level=2):
 """
 #    tabheads="""<th class="attribute">{}</th>"""
     retval = []
-    retval.append(tabhead.format(p_level,p_titel,p_level))
-    for u in p_ueberschriften:
+    retval.append(tabhead.format(plevel, ptitel, plevel))
+    for u in pueberschriften:
         retval.append(tabheads.format(u))
     return ''.join(retval)
 #starttable
 
-def writetableline(p_werte):
+def writetableline(pwerte,pid = None):
     linestart = """            <tr>
-"""
+""" if pid is None else """            <tr id = "{}">
+""".format(pid)
     line = """             <td>{}</td>
 """
     iconline= """           <td {}></td>
@@ -565,7 +573,7 @@ def writetableline(p_werte):
 """
     retval = []
     retval.append(linestart)
-    for w in p_werte:
+    for w in pwerte:
         if (isiconstr(w)):
             retval.append(iconline.format(w))
         else:
@@ -584,13 +592,13 @@ def endtable():
 #endtable
 
 
-def printentikeys(p_entiid):
-    keylist = web_sql.keylist(p_entiid=p_entiid, p_lang=reportLang())
+def printentikeys(pentiid):
+    keylist = web_sql.keylist(p_entiid=pentiid, p_lang=reportLang())
     if (len(keylist) == 0):
         return
     fhtml.write(starttable(transl('Schlüssel'), (transl('Nr'), transl('Name'), transl('Attribut(e)'), transl('Beziehung(en)'))))
     for k in keylist:
-        fhtml.write(writetableline(p_werte=k))
+        fhtml.write(writetableline(pwerte=k))
     fhtml.write(endtable())
 #printentikeys
 
@@ -604,14 +612,14 @@ def printentirela(p_entiid):
     for r in relalist:
         if (p_entiid == r[0]):
             #'Name','Entität1','','Beziehung','', 'Entität2','Arc','Schluessel'
-            fhtml.write(writetableline(p_werte=(nvl(r[16]), r[1], '->', nvl(r[3], '--'), r[4]
+            fhtml.write(writetableline(pwerte=(nvl(r[16]), r[1], '->', nvl(r[3], '--'), r[4]
                                                         , arrow2icon('down'), nvl(r[14]), bool2icon(r[17]))))
-            fhtml.write(writetableline(p_werte=(''        , arrow2icon('up')  , r[9], nvl(r[8], '--'), '<-'
+            fhtml.write(writetableline(pwerte=(''        , arrow2icon('up')  , r[9], nvl(r[8], '--'), '<-'
                                                         , href(ref=web_sql.entiAnker(r[5]),anz=r[6]))))
         else:
-            fhtml.write(writetableline(p_werte=(nvl(r[16]), r[6], '->', nvl(r[8], '--'), r[9]
+            fhtml.write(writetableline(pwerte=(nvl(r[16]), r[6], '->', nvl(r[8], '--'), r[9]
                                                             , arrow2icon('down'),'', bool2icon(r[17]))))
-            fhtml.write(writetableline(p_werte=(''        , arrow2icon('up')  , r[4], nvl(r[3], '--'), '<-'
+            fhtml.write(writetableline(pwerte=(''        , arrow2icon('up')  , r[4], nvl(r[3], '--'), '<-'
                                                             , href(ref=web_sql.entiAnker(r[0]), anz=r[1]))))
         #if
     #for
@@ -639,10 +647,10 @@ def printUDP(p_meltname, p_id):
             namenliste = udpname[2].split(',')
             namenliste.sort() #SQl kann keine sortierte group_concat liefern
 
-            fhtml.write(starttable(p_titel=' {} - {} '.format(udpname[0], udpname[1])
-                                , p_ueberschriften=namenliste
-                                ,p_level=3))
-            fhtml.write(writetableline(p_werte=lw))
+            fhtml.write(starttable(ptitel=' {} - {} '.format(udpname[0], udpname[1])
+                                   , pueberschriften=namenliste
+                                   , plevel=3))
+            fhtml.write(writetableline(pwerte=lw))
             fhtml.write(endtable())
         #fi
     #rof
@@ -718,8 +726,9 @@ def printcontententi(p_list):
         fhtml.write(infofoot)
 
         printattrlist(p_entiid=e[0])
-        printentikeys(p_entiid=e[0])
+        printentikeys(pentiid=e[0])
         printentirela(p_entiid=e[0])
+        printentidiag(pentiid=e[0])
         printentiudp(p_entiid=e[0])
 
         fhtml.write(detailsfoot)
@@ -727,7 +736,7 @@ def printcontententi(p_list):
     #for
 #printcontententi
 
-def printcontentattr(p_list):
+def printcontentattr(plist):
     contenthead="""        <!--attributes-->"""
 
     contentelementhead = """        <div class="entity" id="{}">
@@ -794,7 +803,7 @@ def printcontentattr(p_list):
                         </div>
 """
     fhtml.write(contenthead)
-    for a in p_list:
+    for a in plist:
         lbc = str(newbarcounter())
         fhtml.write(contentelementhead.format(web_sql.attrAnker(a[0]) #id
                                             ,transl('Attribut')
@@ -833,28 +842,52 @@ def printcontentattr(p_list):
 #printcontentattr
 
 
-def printwrtbattrlist(p_wrtbid):
-    alist = web_sql.namelist(p_type='ATTR',p_lang=reportLang(), p_wrtbid=p_wrtbid)
+def printwrtbattrlist(pwrtbid, wrtgruppe=False):
+    alist = web_sql.namelist(ptype='ATTG' if wrtgruppe else 'ATTR'
+                             , plang=reportLang(), pwrtbid=pwrtbid)
     if (len(alist)==0):
         return
-    fhtml.write(starttable(p_titel=transl('Verwendet für Attribute')
-                           ,p_ueberschriften=[transl('Attribut')]))
+    fhtml.write(starttable(ptitel=transl('Verwendet in Attributgruppen' if wrtgruppe
+                                                else 'Verwendet für Attribute')
+                           , pueberschriften=[transl('Attribut' if wrtgruppe
+                                                else 'Attributgruppe')]))
     for a in alist:
-        fhtml.write(writetableline(p_werte=[href(ref=a[1],anz=a[0])]))
+        fhtml.write(writetableline(pwerte=[href(ref=a[1], anz=a[0])])
+                    )
     #for
     fhtml.write(endtable())
 #printattrlist
+def printwrtbmembers(pwrtbid):
+    elems = web_sql.wbgrelements(wrtbid=pwrtbid)
+    if (len(elems)==0):
+        return
+    fhtml.write(starttable(ptitel=transl('Elemente')
+                           , pueberschriften=
+                                [transl('Element')
+                                ,transl('Beschreibung')
+                                ,transl('Wertebereich')
+                                ,transl('geändert')
+                                 ]))
+    for e in elems:
+        fhtml.write(writetableline(pwerte=[e[0], e[1]
+                                            , href(ref=web_sql.wrtbAnker(e[9])
+                                                    ,anz=e[2]+' ('+anzDatentyp(e[3])+')')
+                                            , e[5] +' , ' + e[6]]
+                                   ))#,pid=web_sql.attgAnker(e[10])))
+    #for
+    fhtml.write(endtable())
+#printwrtbmembers
 
 def printwertelist(p_wrtbid):
 
     wlist = web_sql.wrtbwerte(p_wrtbid=p_wrtbid)
     if (len(wlist)==0):
         return
-    fhtml.write(starttable(p_titel=transl('Werteliste')
-                   , p_ueberschriften=(transl('Nr'), transl('Wert'), transl('Anzeige'), transl('Beschreibung'))
-                   , p_level=3))
+    fhtml.write(starttable(ptitel=transl('Werteliste')
+                           , pueberschriften=(transl('Nr'), transl('Wert'), transl('Anzeige'), transl('Beschreibung'))
+                           , plevel=3))
     for w in wlist:
-        fhtml.write(writetableline(p_werte=w))
+        fhtml.write(writetableline(pwerte=w))
     fhtml.write(endtable())
 
 #printwertelist
@@ -948,11 +981,15 @@ def printcontentwrtb(p_list):
         if (w[5] == 'LOV'):
             printwertelist(p_wrtbid=w[0])
 
-        printwrtbattrlist(p_wrtbid=w[0])
+        if (w[5] == 'GRP'):
+            printwrtbmembers(pwrtbid=w[0])
+        printwrtbattrlist(pwrtbid=w[0])
+        printwrtbattrlist(pwrtbid=w[0],wrtgruppe=True)
         fhtml.write(detailsfoot)
         fhtml.write(contentelementfoot.format(lbc,transl('Mehr')))
     #for
 #printcontentwrtb
+
 
 def searchlogo(p_imagedirec):
     retval=''
@@ -999,5 +1036,15 @@ def createFile():
 #createFile
 
 
-
-
+def printentidiag(pentiid):
+    diaglist  = web_sql.diaglist(pentiid=pentiid)
+    if (len(diaglist) == 0):
+        return
+    fhtml.write(starttable(ptitel=transl('auf Diagramm(en)')
+                           ,pueberschriften=[transl('Diagramm')]
+                           ,plevel = 3))
+    for d in diaglist:
+        fhtml.write(writetableline(pwerte=[href(ref=web_sql.diagAnker(d[1])
+                                                ,anz=d[0])]))
+    fhtml.write(endtable())
+#printentidiag
