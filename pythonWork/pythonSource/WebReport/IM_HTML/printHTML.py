@@ -631,6 +631,8 @@ def printUDP(p_meltname, p_id):
 
     udpnamen = web_sql.udpnamen(p_meltname=p_meltname)
     for udpname in udpnamen:
+        if udpname[0] != parameters.odmUDPTranslFileName():
+            continue
         werte = web_sql.udpwerte(p_meltname=p_meltname,p_id=p_id
                          ,p_thema=udpname[0],p_gruppe=udpname[1])
         #print(udpName[0],udpName[1],lwerte)
@@ -729,6 +731,7 @@ def printcontententi(p_list):
         printentikeys(pentiid=e[0])
         printentirela(p_entiid=e[0])
         printentidiag(pentiid=e[0])
+        printentitransl(pentiid=e[0])
         printentiudp(p_entiid=e[0])
 
         fhtml.write(detailsfoot)
@@ -1035,6 +1038,19 @@ def createFile():
 
 #createFile
 
+def printentitransl(pentiid):
+#    transllist  = web_sql.translist(pentiid=pentiid)
+    return
+    if (len(diaglist) == 0):
+        return
+    fhtml.write(starttable(ptitel=transl('auf Diagramm(en)')
+                           ,pueberschriften=[transl('Diagramm')]
+                           ,plevel = 3))
+    for d in diaglist:
+        fhtml.write(writetableline(pwerte=[href(ref=web_sql.diagAnker(d[1])
+                                                ,anz=d[0])]))
+    fhtml.write(endtable())
+#printentitransl
 
 def printentidiag(pentiid):
     diaglist  = web_sql.diaglist(pentiid=pentiid)

@@ -772,8 +772,19 @@ CREATE TABLE linie_segment(
 	            ON DELETE CASCADE
 )
 	          """);
+    dbDDL.dropTable("projekt");
+    dbDDL.createTable("""CREATE TABLE projekt(
+    proj_id            integer primary key autoincrement,
+    proj_name          VARCHAR(60) NOT NULL,
+    proj_uc            VARCHAR(30) NOT NULL,
+    proj_dc            VARCHAR(30) NOT NULL,
+    proj_sprachen      VARCHAR(60),
+    proj_akt_sprache   VARCHAR2(2),
+	CONSTRAINT proj__un UNIQUE(proj_name)
+    )"""
+    );
+
 #    dbDDL.dropTable("");
 #    dbDDL.createTable("""
-#""");
 
 #end erstelleInfra

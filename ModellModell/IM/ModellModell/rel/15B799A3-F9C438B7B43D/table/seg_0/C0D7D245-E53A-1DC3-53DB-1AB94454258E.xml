@@ -1,0 +1,84 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="C0D7D245-E53A-1DC3-53DB-1AB94454258E" name="GETR">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-20 17:44:28 UTC</createdTime>
+<comment><![CDATA[Eine Geschäftstransaktion beschreibt eine Folge von Einzeltätigkeiten, die schrittweise ausgeführt werden, um ein geschäftliches oder betriebliches Ziel zu erreichen. 
+Eine Geschäftstransaktion überführt das System "Geschäft" von einem stabilen, definierten Zustand in einen neuen.
+Sie besteht aus Einzelschritten, die alle oder gar nicht ausgeführt werden. 
+Sie kann Medienbrüche enthalten (z.B. wenn der Output reale Produkte und ihre digitalen Zwillinge sind).
+
+Wird auch als Geschäftsprozess (Business Process) bezeichnet. 
+
+Wikipedia:
+Ein Geschäftsprozess (Abkürzung: GP) ist eine Menge logisch verknüpfter Einzeltätigkeiten (Aufgaben, Arbeitsabläufe), die ausgeführt werden, um ein bestimmtes 
+geschäftliches oder betriebliches Ziel zu erreichen. Er wird durch ein definiertes Ereignis ausgelöst und transformiert ‚Input‘ durch den Einsatz materieller und immaterieller Güter und unter Beachtung bestimmter Regeln und unternehmensinterner und -externer Faktoren zu einem ‚Output‘.
+
+Das Prozesssystem strebt einen Wertschöpfungsprozess an, der bezüglich Ressourcenverzehr, Durchlaufzeiten und Qualität permanent optimiert werden sollte. Idealerweise stellt demnach der erzielte Output für das jeweilige Unternehmen einen höheren Wert als der ursprünglich eingesetzte Input dar.
+
+Beispiele:
+- Erfassen und prüfen Bestellung
+- Mahnung versenden
+- Buchhaltungsjahr abschliessen
+- Produkt ausliefern
+- Steuerschuld verfügen
+- Angestellem/r kündigen
+
+]]></comment>
+<generatorID>F86E14F1-5AB3-D203-38C5-60F7A9FE6085</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<typeID>22C80650-70BB-112A-562F-823C3A147D9C</typeID>
+<abbreviation>GETRANS</abbreviation>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="GETRANS_ID" id="AFA8DFB3-828E-E8E4-798C-B1D4BABDC1FF">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-20 17:44:28 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+<Column name="Erstellzpkt" id="21D8259F-B9BE-E9BD-ACAF-6C82DB906574">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-20 17:44:28 UTC</createdTime>
+<generatorID>B1CF1AB7-77FE-E32D-AD6E-3C6A42050BA9</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT015</logicalDatatype>
+<domain>0AD80E26-0F5C-D068-29EA-4740A04582AE</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Änderungszpkt_[N]" id="A393EACA-12AF-0E46-DE60-31C4C4515AFE">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-20 17:44:28 UTC</createdTime>
+<generatorID>FCC3F095-4611-9BC5-82A2-24FEDCDEEE33</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT015</logicalDatatype>
+<domain>0AD80E26-0F5C-D068-29EA-4740A04582AE</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="8F2E7A20-5CB5-0D92-F46B-FFBC55F55763" name="GETRANS_PK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-20 17:44:28 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="AFA8DFB3-828E-E8E4-798C-B1D4BABDC1FF"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

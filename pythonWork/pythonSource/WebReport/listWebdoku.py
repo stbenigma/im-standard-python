@@ -8,8 +8,6 @@ from datetime import date,datetime
 from IM_DB import parameters,dbConnect,dbDDL,dbDML,dbErstelleTables,dbInserts,dbLookup,dbParam
 from IM_HTML import printHTML,web_sql
 
-
-
 # Main Programm
 def nvl(x,default=''):
     if x is None: return default

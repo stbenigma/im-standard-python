@@ -19,10 +19,7 @@ def main(p_param1):
 
 #    dbConnect.openDB(parameters.dbFilePath(),fks='ON');
     transferModel.insertBaseData()
-
-    dbParam.liesDefaultLang()
     transferModel.transferODMModel();
-
     dbConnect.myDbConn.close()
 #end main
 

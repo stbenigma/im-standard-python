@@ -2,7 +2,7 @@
 import xml.etree.ElementTree as ET
 import re,os,sqlite3
 from datetime import date
-from IM_DB import dbInserts,dbDML,dbLookup,dbConnect,parameters
+from IM_DB import dbInserts,dbDML,dbLookup,dbConnect,parameters,dbParam
 
 class Wertebereich:
     def __init__(self, pname, pid):
@@ -308,7 +308,10 @@ def transferentity(penti, pdiagid, puc, pdc):
              , pdiagid, puc, pdc, None
              , None)
     #print (row)
-    dbInserts.insertelementdarst(pdata=row)
+    try:
+        dbInserts.insertelementdarst(pdata=row)
+    except:
+        print (pdiagid,entiid,dbLookup.modeEntiLookup(p_entiid=entiid))
 #transferentity
 
 def transferdiaobj(pobjects, pdiagid, puc, pdc):
@@ -416,19 +419,34 @@ def transferArcs():
     dosegfiles(pdirec=parameters.odmArcDirec(),transferfiles=do1Arc)
 #transferArcs
 
-def updateUDP(p_modeid, p_obj):
+def updateUDP(pmodeid, pobj):
     udps = []
-    props = p_obj.find('propertyMap')
+    props = pobj.find('propertyMap')
     if (props is not None):
         for prop in props:
             try:
                 bdegId = dbLookup.bdegLookup(prop.get('name'))
                 # print('      ', prop.get('name'), prop.get('value'), bdegId)
-                udps.append((prop.get('value'), p_modeid, bdegId))
+                udps.append((prop.get('value'), pmodeid, bdegId))
             except:
                 """dynamische Properties lassen wir aus"""
                 pass
-        # rof
+        #for
+    #fi
+    # look for comments in the notesfield of the element
+    note = findText(pobj, 'notes')
+    if (note is not None):
+        prop = re.finditer(r'\[(([A-Z]{2})[^[]+)\[\n([^]]*)\][A-Z]{2}[^]]+\]', note, re.DOTALL)
+        # liefert group1 name,group2 sprache, group3 text
+        for i, p in enumerate(prop):
+            #print (i,p.group(0),'\n1:',p.group(1),'\n2:',p.group(2),'\n3:',p.group(3))
+            bdegId = dbLookup.bdegLookup(p.group(1))
+            # print('      ', prop.get('name'), prop.get('value'), bdegId)
+            udps.append((p.group(3).rstrip(), pmodeid, bdegId))
+        #for
+    # fi
+
+    if len(udps) > 0:
         #print (udps)
         dbDML.execmany(psql="""update benudef_wert
                             set bdwe_wert = ?
@@ -468,12 +486,10 @@ def do1Attribute(n,attr,entiId=None,beziId=None):
     ))
     lmodeId=dbInserts.insertModeAttr(attrId)
     dbInserts.insertUdpAttr(attrId)
-    updateUDP(p_modeid=lmodeId, p_obj=attr)
-    sprachtexte = [[attrName,creby,creti,'ATTR_NAME']
-                  ,[attrcomm,creby,creti,'ATTR_COMMENT']]
-    dbInserts.insertSprachtexte(p_texte=sprachtexte, p_modeid=lmodeId)
+    updateUDP(pmodeid=lmodeId, pobj=attr)
 
 #do1Attribute
+
 def    fillKeys(p_enti, p_entiid):
     global keys
     allkeys = p_enti.find('identifiers')
@@ -554,17 +570,11 @@ def do1Entity(fileName):
             syno = syn.strip()
             synid = dbInserts.insertSynonym((syno,entiId))
             modeid = dbInserts.insertmodesyno(synid)
-            sprachtexte = [[syno,creby,creti, 'ENTI_SYNONYM']]
-            dbInserts.insertSprachtexte(p_texte=sprachtexte, p_modeid=modeid)
-
     #fi
 
     #print (entname,translate.translate(p_text=entname,p_fromlang='de',p_tolang='en'),translate.translate(p_text=entname,p_fromlang='de',p_tolang='fr'))
 
-    updateUDP(p_modeid=lmodeId, p_obj=root)
-    sprachtexte = [[entname,creby,creti,'ENTI_NAME']
-                  ,[entcomm,creby,creti,'ENTI_COMMENT']]
-    dbInserts.insertSprachtexte(p_texte=sprachtexte, p_modeid=lmodeId)
+    updateUDP(pmodeid=lmodeId, pobj=root)
 
     attrs= root.find('attributes')
     if attrs is not None:
@@ -662,10 +672,6 @@ def beziType(srcCard, targCard, srcOpt,targOpt,arcId):
 def do1Relation(fileName):
     tree = ET.parse(fileName)
     root = tree.getroot()
-#    if root.get('id') in ['E2F6422D-57B7-8EEF-2E4E-9D2B1E8A7742'
-#,'3DF2EB21-4E7D-A57A-58B5-E3220941ACE1'
-#,'ED734E28-4F24-502D-65A3-6614EE919185']:
-#        print(root.get('id'),'=',findText(root,'arc'))
     try:
         beziArcId = dbLookup.arcsID(findText(root,'arc'))
     except  sqlite3.Error as e:
@@ -733,10 +739,7 @@ def do1Relation(fileName):
     lmodeId = dbInserts.insertModeBezi(beziId)
     dbInserts.insertUdpBezi(beziId)
 
-    updateUDP(p_modeid=lmodeId, p_obj=root)
-    sprachtexte = [[vonText,creby,creti,'TEXT_FROM']
-                  ,[zuText,creby,creti,'TEXT_TO']]
-    dbInserts.insertSprachtexte(p_texte=sprachtexte, p_modeid=lmodeId)
+    updateUDP(pmodeid=lmodeId, pobj=root)
 
     attrs= root.find('attributes')
     if attrs is not None:
@@ -781,10 +784,8 @@ def do1UDPFile(pudpThema,pfileName):
         for child in groups:
             #print(child.get('name'))
             lgroups[child.get('id')] = child.get('name')
-            #groups,findText(groups,'group name'))
-        #endfor
-    #enffor
-    #print (lgroups)
+        #for
+    #for
 
     props = root.find('properties')
     #print (props)
@@ -798,6 +799,27 @@ def do1UDPFile(pudpThema,pfileName):
                 ,findText(prop,'description'),'FALSE',None
                 ,'--',date.today().__str__())
         udpId = dbInserts.insertUDP(pData=ludp)
+        if (lupdThema == parameters.odmUDPTranslFileName()):
+            #die speziellen Properties manuell
+            try: #do it only once. any error  is supposed to be double entry
+                ludpid=dbInserts.insertUDP(pData=(lupdThema, lgroups[prop.get('group_id')]
+                    , lgroups[prop.get('group_id')]+'_RELA_TEXT_FROM', None
+                    , None, 'FALSE', None, '--', date.today().__str__()))
+                dbInserts.insertModellElemTyp((dbLookup.meltLookup(type2melt('Relation')), ludpid))
+                ludpid=dbInserts.insertUDP(pData=(lupdThema, lgroups[prop.get('group_id')]
+                    , lgroups[prop.get('group_id')]+'_RELA_TEXT_TO', None
+                    , None, 'FALSE', None, '--', date.today().__str__()))
+                dbInserts.insertModellElemTyp((dbLookup.meltLookup(type2melt('Relation')), ludpid))
+                ludpid=dbInserts.insertUDP(pData=(lupdThema, lgroups[prop.get('group_id')]
+                    , lgroups[prop.get('group_id')]+'_ENTI_COMMENT', None
+                    , None, 'FALSE', None, '--', date.today().__str__()))
+                dbInserts.insertModellElemTyp((dbLookup.meltLookup(type2melt('Entity')), ludpid))
+                ludpid=dbInserts.insertUDP(pData=(lupdThema, lgroups[prop.get('group_id')]
+                    , lgroups[prop.get('group_id')]+'_ATTR_COMMENT', None
+                    , None, 'FALSE', None, '--', date.today().__str__()))
+                dbInserts.insertModellElemTyp((dbLookup.meltLookup(type2melt('Attribute')), ludpid))
+            except: pass
+        #fi
 
         obj = prop.findall('objects/object')
         for o in obj:
@@ -831,8 +853,8 @@ def do1UDPFile(pudpThema,pfileName):
 
 def transferUPDdef():
     # lösche die UDP
-    l_sql = """select count(*) from benudef_wert union select count(*) from benudef_eigenschaft"""
-    result = dbDML.select(l_sql)
+#    l_sql = """select count(*) from benudef_wert union select count(*) from benudef_eigenschaft"""
+#    result = dbDML.select(l_sql)
 #    for row in result:
 #        print(row)
     for file in os.listdir(parameters.odmFilesDirec()):
@@ -844,45 +866,6 @@ def transferUPDdef():
             do1UDPFile(pudpThema=filename,pfileName=filepath)
         #fi
     # endfor
-
-    #UDP für Beziehungen sind aktuell noch als Allg. Properties aufgeführt.
-    #Kopiere alle properties <sp>_.... aus Relation in die UDP
-    for el in os.listdir(parameters.odmRelationDirec()):
-        if re.match('seg_.*', el):
-            for file in os.listdir(parameters.odmRelationDirec() + el):
-                fileName = parameters.odmRelationDirec() + el + '/' + file
-                #               print (fileName)
-                tree = ET.parse(fileName)
-                root = tree.getroot()
-                props = root.find('propertyMap')
-                if (props is not None):
-                    for prop in props.findall('property'):
-                        lName = prop.get('name')
-                        if (re.match("(DE|EN)_",lName)):
-                            #print (fileName,lName,lName[:2])
-                            # bdeg_thema, bdeg_gruppe, bdeg_name, bdeg_default_value
-                            # bdeg_beschreibung, bdeg_optional, bdeg_wrtb_id,
-                            # bdeg_uc, bdeg_dc
-                            ludp = (parameters.odmUDPTranslFileName(),lName[:2]
-                                   ,lName, None
-                                    , 'udp for relations from ODM', 'TRUE', None
-                                    , '--', date.today().__str__())
-                            udpId = dbInserts.insertUDP(pData=ludp)
-                            try:
-                                dbInserts.insertModellElemTyp((dbLookup.meltLookup(type2melt('Relation')), udpId))
-                            except:
-                                pass
-                            #try
-                        #fi
-                    #endfor
-                #fi
-
-                #nur das 1. ist notwendig
-                break
-            #endfor
-        #endif
-        break
-    #endfor
 
     dbConnect.myDbConn.commit()
 
@@ -899,6 +882,8 @@ def insertBaseData():
     ldeId= dbInserts.insertSprache(('Deutsch','de','deu','TRUE','TRUE',None,'stb', date.today()));
     dbInserts.insertSprache(('English',  'en', 'eng', 'TRUE', 'FALSE',ldeId, 'stb', date.today()));
     dbInserts.insertSprache(('Français', 'fr', 'fra', 'TRUE', 'FALSE',ldeId, 'stb', date.today()));
+    dbInserts.insertSprache(('Español,', 'es', 'esp', 'TRUE', 'FALSE',ldeId, 'stb', date.today()));
+    dbInserts.insertSprache(('Italiano,', 'it', 'ita', 'TRUE', 'FALSE',ldeId, 'stb', date.today()));
 
     fillMelt()
     entidiaid = dbInserts.insertdiagrammtyp(('Entity','stb',date.today(),None,None))
@@ -931,6 +916,7 @@ def loeschmodell():
     dbDML.delete('diagrammtypen')
     dbDML.delete('sprachtexte')
     dbDML.delete('sprachen')
+    dbDML.delete('projekt')
 #loeschmodell
 
 def loadcolors(coldict, classkey, elem):
@@ -970,8 +956,65 @@ def loaddefaultcolors():
     #for
 #loaddefaultcolors
 
+def filllanguages():
+    translations = dbDML.select("""
+    select * from 
+    (select substr(bdeg_name,4)attrname, bdwe_wert
+            ,mode_id, bdwe_uc, bdwe_dc
+            ,substr(bdeg_name,1,2) sprache
+            ,bdeg_thema
+     from benudef_wert
+     join benudef_eigenschaft on bdeg_id = bdwe_bdeg_id
+     join modellelement on mode_id = bdwe_mode_id
+    )
+     where bdeg_thema = '{}'
+     and upper(sprache) != upper('{}')
+    """.format(parameters.odmUDPTranslFileName(),dbParam.dbDefaultLang))
+    for t in translations:
+        #print (t )
+        #sptx_attrname,  sptx_text,sptx_mode_id, sptx_uc, sptx_dc, sptx_spra_id
+        dbInserts.insertSprachtext(pdata=(t[0],t[1],t[2],t[3],t[4],dbLookup.spraLookup(t[5])))
+#    sprachtexte = [[attrName,creby,creti,'ATTR_NAME']
+#                  ,[attrcomm,creby,creti,'ATTR_COMMENT']]
+#    dbInserts.insertSprachtexte(p_texte=sprachtexte, p_modeid=lmodeId)
+#sprachtexte = [[syno, creby, creti, 'ENTI_SYNONYM']]
+#dbInserts.insertSprachtexte(p_texte=sprachtexte, p_modeid=modeid)
+#    sprachtexte = [[entname,creby,creti,'ENTI_NAME']
+#                  ,[entcomm,creby,creti,'ENTI_COMMENT']]
+#    dbInserts.insertSprachtexte(p_texte=sprachtexte, p_modeid=lmodeId)
+#    sprachtexte = [[vonText,creby,creti,'TEXT_FROM']
+#                  ,[zuText,creby,creti,'TEXT_TO']]
+#    dbInserts.insertSprachtexte(p_texte=sprachtexte, p_modeid=lmodeId)
+
+
+#filllanguages
+def transferprojekt():
+    proj = ET.parse(parameters.odmIMDirec() + parameters.odmModelName() + parameters.odmIMExtension())
+    root = proj.getroot()
+    comm = findText(root,'comment')
+    defspra=re.search(r'currentLang=([A-Z]{2})',comm).group(1)
+    sprachen=re.search(r'languages=([A-Z,]*)',comm).group(1)
+    #print (findField(root,'name'),comm,sprachen,defspra)
+    dbInserts.insertprojekt(pdata=(findField(root,'name'),findText(root,'createdBy')
+        , findText(root, 'createdTime'),defspra,sprachen))
+    if (defspra is not None
+        and dbParam.dbDefaultLang.lower() != defspra.lower()):
+        #setze die Defaultsprache aus dem Modell
+        if dbLookup.spraLookup(defspra.lower()) is None:
+            raise Exception("Language '{}' does not exist".format(defspra))
+        dbDML.exec("""update sprachen set spra_ist_modellsprache = 'FALSE'
+                           where lower(spra_iso_code2)  = lower('{}')
+                      """.format (dbParam.dbDefaultLang))
+        dbDML.exec("""update sprachen set spra_ist_modellsprache = 'TRUE'
+                       where lower(spra_iso_code2)  = lower('{}')
+                    """.format(defspra))
+    #fi
+#transferprojekt
+
 def transferODMModel():
     """überträgt das ganze ODM Modell in die DB"""
+    transferprojekt()
+    dbParam.liesDefaultLang()
     transferTypes()
     transferDomains()
     transferUDP()
@@ -982,5 +1025,6 @@ def transferODMModel():
     transferKeys(keys)
     loaddefaultcolors()
     transferdiagramme()
+    #filllanguages()
 
 #end transferODMModel

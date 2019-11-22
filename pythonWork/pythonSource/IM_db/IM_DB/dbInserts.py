@@ -362,3 +362,22 @@ def insertSprachtexte(p_texte, p_modeid, p_defaultlang=None):
                 """.format(dbLookup.spraLookup(p_defaultlang),p_modeid)
     dbDML.execmany(l_sql, values)
 #insertSprachTexte
+def insertSprachtext(pdata):
+    lsql= """insert into sprachtexte 
+                    (sptx_attrname,  sptx_text
+                   ,sptx_mode_id, sptx_uc, sptx_dc
+                   , sptx_spra_id)
+                  values (?,?,?,?,?,?)
+          """
+    try: dbDML.exec(lsql, pdata)
+    except: pass
+
+#insertSprachText
+def insertprojekt(pdata):
+    lsql = """insert into projekt 
+                        (proj_name ,  proj_uc, proj_dc
+                        ,proj_sprachen, proj_akt_sprache)
+                      values (?,?,?,?,?)
+              """
+    return dbDML.insert(lsql, pdata)
+#insertprojekt

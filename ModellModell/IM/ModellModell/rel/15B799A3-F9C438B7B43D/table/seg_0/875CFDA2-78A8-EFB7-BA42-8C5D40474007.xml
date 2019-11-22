@@ -1,0 +1,210 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="875CFDA2-78A8-EFB7-BA42-8C5D40474007" name="Beziehungv1">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-20 17:44:28 UTC</createdTime>
+<comment><![CDATA[Verbindung zweier Entitäten mit Assoziationstext, Optionalität und Abbildungstyp
+
+Die in anderen Darstellungsarten gebräuchlichen Beziehungen können aus  Optionalität und Abbildungstyp hergeleitet werden
+0-1	Optional  - 1
+1-1	Pflicht - 1
+0-many	Optional - many
+1-many	Pflicht - many]]></comment>
+<generatorID>4BEC4009-B321-3912-D30B-FADF6F8AF982</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<typeID>1C6A8769-7651-51C0-9E0A-D0C138DE6193</typeID>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Beziehungv1_ID" id="330F6B81-36C1-5D05-AC83-EF941B1069A6">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-20 17:44:28 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+<Column name="Erstellzpkt" id="FE3F18E6-2755-7C8F-40EE-904E0EFC3441">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-20 17:44:28 UTC</createdTime>
+<generatorID>B1CF1AB7-77FE-E32D-AD6E-3C6A42050BA9</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT015</logicalDatatype>
+<domain>0AD80E26-0F5C-D068-29EA-4740A04582AE</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Änderungszpkt_[N]" id="FD3F4900-5821-329C-4415-14D3CFF1C224">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-20 17:44:28 UTC</createdTime>
+<generatorID>FCC3F095-4611-9BC5-82A2-24FEDCDEEE33</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT015</logicalDatatype>
+<domain>0AD80E26-0F5C-D068-29EA-4740A04582AE</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Assoziation_von-zu_[L]" id="6822933D-E3D1-547D-2B7E-E85ECC89ADD1">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-20 17:44:28 UTC</createdTime>
+<comment><![CDATA[Was verbindet die von-Entität mit der zu-Entität]]></comment>
+<generatorID>1E4F5AA9-8DAA-B81A-4D48-EDCE07CDC56A</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>D6C502B3-C779-CE1C-86D5-5492C6CA1E9F</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ist_historisiert_(von-zu)" id="44244E52-67CE-ADB9-6334-ECAEF677A8E5">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-20 17:44:28 UTC</createdTime>
+<comment><![CDATA[JA -> Beziehung kann über die Zeit ändern. Zu einem Zeitpunkt kann nur 1 Beziehung gelten. System muss Historie der Änderungen führen.
+Über Extratabelle zu lösen.]]></comment>
+<generatorID>075993E1-1E10-7A12-4137-89129E7305FB</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Assoziation_zu-von_[L]" id="45F647C5-1F03-588C-B3EE-DED434E50939">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-20 17:44:28 UTC</createdTime>
+<comment><![CDATA[Was verbindet die zu-Entität mit der von-Entität]]></comment>
+<generatorID>04281DBE-816F-1F3F-8ED9-0CFDF3ADD26F</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>D6C502B3-C779-CE1C-86D5-5492C6CA1E9F</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ist_Pflichtbeziehung_(zu-von)" id="0C8A42D9-93F5-55F2-385E-FEDD508AFBD8">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-20 17:44:28 UTC</createdTime>
+<comment><![CDATA[von-Entität muss mind. 1 eine Verbindung zur zu-Entität haben]]></comment>
+<generatorID>06AEDDE9-FE7B-7129-3EA6-401A12A010FF</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ist_Pflichtbeziehung_(von-zu)" id="BA471BF7-112C-2CCC-7011-36E3616C01C0">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-20 17:44:28 UTC</createdTime>
+<comment><![CDATA[zu-Entität muss mind. 1 eine Verbindung zur von-Entität haben]]></comment>
+<generatorID>EC3CAC2D-2EF8-5719-D7EA-DE61683E4F7F</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ist_historisiert_(zu-von)" id="FBE5CACC-C343-BD4C-F324-D64ED1336DAD">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-20 17:44:28 UTC</createdTime>
+<comment><![CDATA[JA -> Beziehung kann über die Zeit ändern. Zu einem Zeitpunkt kann nur 1 Beziehung gelten. System muss Historie der Änderungen führen.
+Über Extratabelle zu lösen.]]></comment>
+<generatorID>52497C2F-C07A-31B9-B155-25C63FF74114</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Entitätname_[L]" id="91466217-629B-95FD-1662-CECF7FF969BD">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-20 17:44:28 UTC</createdTime>
+<comment><![CDATA[Name der Entität der in der Kommunikation normalerweise gebraucht wird.]]></comment>
+<generatorID>F024C5A0-4E7F-73FE-22DF-E11D4DFE5F93</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Entitätname_[L]2" id="5C0BDDD8-9A85-0892-528A-26215520B74D">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-20 17:44:28 UTC</createdTime>
+<comment><![CDATA[Name der Entität der in der Kommunikation normalerweise gebraucht wird.]]></comment>
+<generatorID>BD550A3D-10DD-61F1-8353-8C7215A160B2</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Entitätname_[L]3" id="DA6B3959-28B7-F0D8-2295-EC8FB5E19D16">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-20 17:44:28 UTC</createdTime>
+<comment><![CDATA[Name der Entität der in der Kommunikation normalerweise gebraucht wird.]]></comment>
+<generatorID>57D096F3-F63F-4E8F-D7FD-139267B31473</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Laufnr" id="24C9DE42-ACD2-4968-C38E-AD43F7F8A972">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-20 17:44:28 UTC</createdTime>
+<comment><![CDATA[willkürliche Nummerierung zur Untescheidung mehrere Exklusivbeziehungen in einer Entität]]></comment>
+<generatorID>3C3CF89E-3E85-149A-D03E-1CE74E506168</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>E2DCFC37-5428-9FE8-64FF-368960199E02</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="A2436C91-FB3D-E545-9E74-F07D358AEFFF" name="Beziehungv1_PK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-20 17:44:28 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="330F6B81-36C1-5D05-AC83-EF941B1069A6"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="67C4A066-C4A0-F91D-129E-42778EFFF25B" name="Beziehungv1_Entitätname_[L]_Entitätname_[L]2_Assoziation_von-zu_[L]_Assoziation_zu-von_[L]_UN">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-20 17:44:28 UTC</createdTime>
+<generatorID>CEB0C7CA-9CEF-89CC-1712-0634D0BB6B99</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="91466217-629B-95FD-1662-CECF7FF969BD"/>
+<colUsage columnID="5C0BDDD8-9A85-0892-528A-26215520B74D"/>
+<colUsage columnID="6822933D-E3D1-547D-2B7E-E85ECC89ADD1"/>
+<colUsage columnID="45F647C5-1F03-588C-B3EE-DED434E50939"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -1,0 +1,82 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="AAB4C20A-42E9-3B6E-7EA6-7B3A5115293F" name="AKTEURROLLE">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-20 17:44:28 UTC</createdTime>
+<comment><![CDATA[Zuammenfassung eines Aufgaben- und Verantwortungsbereichs, den eine Person als Akteur im System ausfüllen kann.
+
+Eine Personenrolle muss immer als mindestens einen der Subtypen (intern, extern) vorkommen.
+
+Beispiel:
+ Produkt Manager
+ Leiter Marketing 
+ CEO
+ CFO
+ Servicetechniker]]></comment>
+<generatorID>E01B186E-0D97-4357-C767-3929B4283C2B</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<ordsAlias>akrr</ordsAlias>
+<typeID>F3ABFF84-45A4-A802-17D7-9BF8FFE20450</typeID>
+<abbreviation>AKRO</abbreviation>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="AKTRO_ID" id="96233709-EE23-75CF-7E8D-B379D44DCA51">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-20 17:44:28 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+<Column name="Erstellzpkt" id="9BD690DA-CC41-C98A-8016-180571D99C4E">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-20 17:44:28 UTC</createdTime>
+<generatorID>B1CF1AB7-77FE-E32D-AD6E-3C6A42050BA9</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT015</logicalDatatype>
+<domain>0AD80E26-0F5C-D068-29EA-4740A04582AE</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Änderungszpkt_[N]" id="05369DFC-C09B-7E82-3AFC-6C034DF59099">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-20 17:44:28 UTC</createdTime>
+<generatorID>FCC3F095-4611-9BC5-82A2-24FEDCDEEE33</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT015</logicalDatatype>
+<domain>0AD80E26-0F5C-D068-29EA-4740A04582AE</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Bezeichnung" id="2D49C0DB-FC64-3949-1404-95CB70C93AE8">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-20 17:44:28 UTC</createdTime>
+<generatorID>6D5DBE35-6DBC-09ED-8347-C035B31581A7</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="F42985E6-7768-1D49-0090-582FB9F39E2C" name="AKTRO_PK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-20 17:44:28 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="96233709-EE23-75CF-7E8D-B379D44DCA51"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

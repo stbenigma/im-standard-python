@@ -65,15 +65,17 @@ def wrtbLookupByName(pname):
 #wrtbLookup
 
 def spraLookup(piso):
-    if (len(piso) == 2):
-        return doLookup(piso, """select spra_id from sprachen 
+    try:
+        if (len(piso) == 2):
+            return doLookup(piso, """select spra_id from sprachen 
                                 where spra_iso_code2 = lower("{}")""")
-    elif (len(piso) == 3):
-        return doLookup(piso, """select spra_id from sprachen 
+        elif (len(piso) == 3):
+            return doLookup(piso, """select spra_id from sprachen 
                             where spra_iso_code3 = lower("{}")""")
-    else:
-        return None
-    #fi
+        else:
+            return None
+        #fi
+    except: return None
 #spraLookup
 
 def sprachen(p_id,p_attrname):
@@ -82,8 +84,8 @@ def sprachen(p_id,p_attrname):
 #spraLookup
 
 def liesDefaultLang():
-    lDefLang = dbDML.select("""select spra_iso_code2 from sprachen""")
-#                        where spra_ist_modellsprache = 'TRUE'""")
+    lDefLang = dbDML.select("""select spra_iso_code2 from sprachen 
+                            where spra_ist_modellsprache = 'TRUE'""")
     if lDefLang is None : return None
     if len(lDefLang) == 0 : return None
     return lDefLang[0][0]

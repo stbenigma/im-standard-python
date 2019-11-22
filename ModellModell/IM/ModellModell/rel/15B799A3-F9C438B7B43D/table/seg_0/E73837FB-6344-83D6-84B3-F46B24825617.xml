@@ -1,0 +1,47 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="E73837FB-6344-83D6-84B3-F46B24825617" name="Diagrammkommentar">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-20 17:44:28 UTC</createdTime>
+<comment><![CDATA[Kommentar als eigenes Symbol auf einem Diagramm.
+"Post It" Zettel.]]></comment>
+<generatorID>8D4B9847-E2C2-D667-9EF7-DD2C641E32BD</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Erstellzpkt" id="0BDFB293-F93A-84D6-5789-98649874F885">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-20 17:44:28 UTC</createdTime>
+<generatorID>B1CF1AB7-77FE-E32D-AD6E-3C6A42050BA9</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT015</logicalDatatype>
+<domain>0AD80E26-0F5C-D068-29EA-4740A04582AE</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Änderungszpkt_[N]" id="3DE01B97-21EE-9B43-A305-912BD810E16E">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-20 17:44:28 UTC</createdTime>
+<generatorID>FCC3F095-4611-9BC5-82A2-24FEDCDEEE33</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT015</logicalDatatype>
+<domain>0AD80E26-0F5C-D068-29EA-4740A04582AE</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Kommentar" id="10BCA8FB-4255-EAA4-512B-4374D0D060E4">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-20 17:44:28 UTC</createdTime>
+<generatorID>B41AC20C-C450-02D2-F5BD-4BF648EBD29E</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+</Table>

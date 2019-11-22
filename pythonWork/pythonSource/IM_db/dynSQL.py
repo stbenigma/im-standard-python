@@ -51,6 +51,31 @@ def main(p_imdirec=None, p_modelname=None):
                 where eled_diag_id = {}
     """.format('de',5)
     """            where eled_diag_id = {}"""
+    l_sql = """select spra_iso_name,enti_name,ena.sptx_text entiname
+                    ,ens.sptx_text entisyno
+                    ,enc.sptx_text enticomment
+                 from modellelement
+                 join entitaeten on enti_id = mode_enti_id
+                    join sprachen sp on sp.spra_iso_code2 <> '{}'         
+                left join sprachtexte ena on ena.sptx_attrname = 'ENTI_NAME'
+                                        and ena.sptx_mode_id = mode_id
+                                        and ena.sptx_spra_id = sp.spra_id
+                left join sprachtexte ens on ens.sptx_attrname = 'ENTI_SYNONYM'
+                                        and ens.sptx_mode_id = mode_id
+                                        and ens.sptx_spra_id = sp.spra_id
+                left join sprachtexte enc on enc.sptx_attrname = 'ENTI_COMMENT'
+                                        and enc.sptx_mode_id = mode_id
+                                        and enc.sptx_spra_id = sp.spra_id
+""".format('de')
+    l_sql2 = """select bdeg_thema,substr(bdeg_name,1,2) sprache,substr(bdeg_name,4)udpname,bdeg_name,bdwe_wert,enti_name
+     from benudef_wert
+    join benudef_eigenschaft on bdeg_id = bdwe_bdeg_id
+    join modellelement on mode_id = bdwe_mode_id
+     join entitaeten on enti_id = mode_enti_id
+     where bdeg_thema = 'translation'"""
+    l_sql = """select * from benudef_eigenschaft
+    join benudef_wert on bdwe_bdeg_id = bdeg_id 
+                            """
     result = dbDML.select(l_sql)
     for row in result:
         print (row)
