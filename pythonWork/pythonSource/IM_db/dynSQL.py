@@ -73,9 +73,48 @@ def main(p_imdirec=None, p_modelname=None):
     join modellelement on mode_id = bdwe_mode_id
      join entitaeten on enti_id = mode_enti_id
      where bdeg_thema = 'translation'"""
-    l_sql = """select * from benudef_eigenschaft
-    join benudef_wert on bdwe_bdeg_id = bdeg_id 
+    l_sql = """select * from 
+                    (select 'ENTI_NAME' attrname, enti_name text 
+                        ,mode_id,enti_uc,enti_dc
+                    from modellelement
+                    join entitaeten on enti_id = mode_enti_id
+                    union all
+                   select 'ENTI_COMMENT' attrname, enti_beschr text 
+                        ,mode_id,enti_uc,enti_dc
+                    from modellelement
+                    join entitaeten on enti_id = mode_enti_id                    
+                    union all
+                   select 'ENTI_SYNONYM' attrname, group_concat(syno_name,', ') text 
+                        ,enti_id,enti_uc,enti_dc
+                    from modellelement
+                    join synonyme on syno_id = mode_syno_id
+                    join entitaeten on enti_id = syno_enti_id
+                    group by enti_id,enti_uc,enti_dc                    
+                    union all
+                   select 'ATTR_COMMENT' attrname, attr_beschr text 
+                        ,mode_id,attr_uc,attr_dc
+                    from modellelement
+                    join attributes on attr_id = mode_attr_id    
+                    union all                
+                   select 'ATTR_NAME' attrname, attr_anzname text 
+                        ,mode_id,attr_uc,attr_dc
+                    from modellelement
+                    join attributes on attr_id = mode_attr_id 
+                    union all                
+                   select 'RELA_TEXT_FROM' attrname, bezi_assoc_von_zu text 
+                        ,mode_id,bezi_uc,bezi_dc
+                    from modellelement
+                    join beziehungen on bezi_id = mode_bezi_id 
+                    union all                
+                   select 'RELA_TEXT_TO' attrname, bezi_assoc_zu_von text 
+                        ,mode_id,bezi_uc,bezi_dc
+                    from modellelement
+                    join beziehungen on bezi_id = mode_bezi_id 
+                )
+                cross join (select 123)
+                where text is not null
                             """
+    l_sql = """select * from projekt"""
     result = dbDML.select(l_sql)
     for row in result:
         print (row)

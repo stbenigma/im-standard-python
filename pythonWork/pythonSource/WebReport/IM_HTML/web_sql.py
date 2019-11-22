@@ -478,7 +478,10 @@ def wbgrelements(wrtbid):
     """.format(wrtbid))
     return data
 #wbgrelements
-
+def projektlangs():
+    data = dbDML.select("select proj_sprachen from projekt")
+    return data[0][0]
+#
 def wrtbwerte(p_wrtbid):
     data = dbDML.select("""
              select vgwt_sortrhfg,vgwt_wert,vgwt_anzeige,vgwt_beschr 
@@ -488,3 +491,16 @@ def wrtbwerte(p_wrtbid):
     """.format(p_wrtbid))
     return data
 #wrtbwerte
+
+def transltext(pattr, pmodeid, plang):
+    data = dbDML.select("""
+    select sptx_text
+    from sprachtexte
+    join sprachen on spra_id = sptx_spra_id
+    join modellelement on mode_id = sptx_mode_id
+    where mode_id ={}
+    and sptx_attrname = '{}'
+    and lower(spra_iso_code2) = lower('{}') 
+    """.format(pmodeid, pattr, plang))
+    return data[0] if (len(data)> 0) else ''
+#translist

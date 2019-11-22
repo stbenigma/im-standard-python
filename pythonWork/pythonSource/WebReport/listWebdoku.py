@@ -112,14 +112,13 @@ def printcontent():
     printHTML.printcontententi(p_list=web_sql.entilist(p_lang=printHTML.reportLang()))
     printHTML.printcontentattr(plist=web_sql.attrlist(p_lang=printHTML.reportLang()))
     printHTML.printcontentwrtb(p_list=web_sql.wrtblist(p_lang=printHTML.reportLang()))
-    IM_HTML.printdiagHTML.printcontentdiag(plist=web_sql.diaglist(),plang=printHTML.reportLang())
+    #IM_HTML.printdiagHTML.printcontentdiag(plist=web_sql.diaglist(),plang=printHTML.reportLang())
 #    printHTML.printattrmaps(p_list=web_sql.wrtblist(p_lang=printHTML.reportLang()))
 #    printHTML.printdiagrams(p_list=web_sql.wrtblist(p_lang=printHTML.reportLang()))
     printHTML.printcontentfoot()
 #printcontent
 
 def printhtmlfile(p_firma,p_titel,p_info,p_logofilename):
-
     printHTML.createFile ();
     printHTML.printhead(p_firma=p_firma
                         ,p_titel=p_titel
@@ -128,6 +127,7 @@ def printhtmlfile(p_firma,p_titel,p_info,p_logofilename):
     printlistofcontent();
     printcontent();
     printHTML.printfoot();
+    printHTML.closefile ();
     return
 
     for w in wrtb:
@@ -169,8 +169,6 @@ def printhtmlfile(p_firma,p_titel,p_info,p_logofilename):
     for u in udpAttrThema:
         printAttrUDPMatrix(thema=u[0])
     # printAttrUDPMatrix()
-
-
 #printhtmlfile
 
 def main(p_direc,p_lang,p_webdirec):
@@ -179,16 +177,24 @@ def main(p_direc,p_lang,p_webdirec):
 
     dbConnect.openDB(p_filepath= parameters.dbFilePath());
     dbParam.liesDefaultLang()
+    printHTML.createlib()
     if (p_lang is None):
-        printHTML.reportLang(dbParam.dbDefaultLang)
+        langs = web_sql.projektlangs().split(',')
+        if (len(langs) == 0):
+            langs = [printHTML.reportLang()]
     else:
         printHTML.reportLang(p_lang.lower())
+        langs = [printHTML.reportLang()]
+    #fi
 
-
-    printhtmlfile(    p_firma="foryouandyourcustomers"
-                        ,p_titel="Testwebreport"
-                        ,p_info="stb, {}".format(datetime.now().strftime("%Y-%m-%d, %H:%M"))
-                        ,p_logofilename=parameters.logoFileName());
+    for lang in langs:
+        printHTML.reportLang(lang.lower())
+        printhtmlfile(p_firma="foryouandyourcustomers"
+                          , p_titel=parameters.odmModelName()+' ({})'.format(printHTML.reportLang())
+                          , p_info="{}".format(datetime.now().strftime("%Y-%m-%d, %H:%M"))
+                          , p_logofilename=parameters.logoFileName()
+                          )
+    # for
 
     dbConnect.myDbConn.close()
 #main

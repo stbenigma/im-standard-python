@@ -1,8 +1,8 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="80D2A6F4-56D6-88E4-2E84-676699D4EBF2" name="Administrative Territory">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="80D2A6F4-56D6-88E4-2E84-676699D4EBF2" name="Administrativgebiet">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 08:36:39 UTC</createdTime>
-<comment><![CDATA[*DE* Gebietsunterteilung eines Landes in kleinere Einheiten.
+<comment><![CDATA[Gebietsunterteilung eines Landes in kleinere Einheiten.
 
 Gemäss NUTS (https://de.wikipedia.org/wiki/NUTS) ist das Land die Gebietsstufe NUTS 0
 NUTS 0	Nationalstaat
@@ -111,10 +111,10 @@ Flurnamen, Gemeindegebiete, alte Gemeindenamen (unterteilen Gemeinde) oder weite
 <property name="FR_ENTI_SYNONYM" value=""/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<Attribute name="Administrative Level" id="E285B361-7F82-B5D1-44DC-064EFA1C70D3">
+<Attribute name="Administrativebene" id="E285B361-7F82-B5D1-44DC-064EFA1C70D3">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 08:36:39 UTC</createdTime>
-<comment><![CDATA[*DE* A1-A4]]></comment>
+<comment><![CDATA[A1-A4]]></comment>
 <notes><![CDATA[[EN_ATTR_COMMENT[
 *DE* A1-A4
 ]EN_ATTR_COMMENT]

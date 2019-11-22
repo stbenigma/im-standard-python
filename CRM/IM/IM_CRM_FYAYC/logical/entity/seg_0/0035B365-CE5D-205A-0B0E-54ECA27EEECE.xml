@@ -1,8 +1,8 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="0035B365-CE5D-205A-0B0E-54ECA27EEECE" name="Group of land">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="0035B365-CE5D-205A-0B0E-54ECA27EEECE" name="Ländergruppe">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 08:36:39 UTC</createdTime>
-<comment><![CDATA[*DE* Eine Zusammenfassung mehrerer Länder zu einer Gruppe.
+<comment><![CDATA[Eine Zusammenfassung mehrerer Länder zu einer Gruppe.
 Es soll jeweils ein Kriterium für die Gruppenbildung bzw. einen Begründung (Zweck) für die Nutzung der Gruppe festgelegt/dokumentiert werden.
 
 Typen von Ländergruppen erlauben mehrere Gruppierungen zu führen: Vertriebsorg., Zoll, Logistik 
@@ -61,7 +61,7 @@ EMEA (Europe, Middle East, Africa) (Vertriebsorganisation)
 <maxVolumes>9999999</maxVolumes>
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
-<synonym>*DE* ldgrp</synonym>
+<synonym>ldgrp</synonym>
 <createSurrogateKey>true</createSurrogateKey>
 <propertyMap>
 <property name="DE_ENTI_NAME" value="Ländergruppe"/>
@@ -72,10 +72,10 @@ EMEA (Europe, Middle East, Africa) (Vertriebsorganisation)
 <property name="FR_ENTI_SYNONYM" value="*DE* ldgrp"/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<Attribute name="Purpose" id="854EF45E-D99B-33BB-CEBA-CCBFD3723223">
+<Attribute name="Typ" id="854EF45E-D99B-33BB-CEBA-CCBFD3723223">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 09:01:27 UTC</createdTime>
-<comment><![CDATA[*DE* Typ der Ländergruppe (Vertrieb, Zoll, Organisation)]]></comment>
+<comment><![CDATA[Typ der Ländergruppe (Vertrieb, Zoll, Organisation)]]></comment>
 <notes><![CDATA[[EN_ATTR_COMMENT[
 *DE* Typ der Ländergruppe (Vertrieb, Zoll, Organisation)
 ]EN_ATTR_COMMENT]
@@ -102,7 +102,7 @@ Typ der Ländergruppe (Vertrieb, Zoll, Organisation)
 <property name="FR_ATTR_NAME" value="*DE* Typ"/>
 </propertyMap>
 </Attribute>
-<Attribute name="Type" id="4884CAC4-510A-4F0B-4C72-FC6E2F36D0B3">
+<Attribute name="Zweck" id="4884CAC4-510A-4F0B-4C72-FC6E2F36D0B3">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 08:58:17 UTC</createdTime>
 <notes><![CDATA[[DE_ATTR_COMMENT[

@@ -1,8 +1,8 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="6044DCB8-89FA-01D9-BCAE-399E5598AD14" name="Area Language">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="6044DCB8-89FA-01D9-BCAE-399E5598AD14" name="Gebietssprache">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 07:55:51 UTC</createdTime>
-<comment><![CDATA[*DE* Lokale Variante einer Sprache
+<comment><![CDATA[Lokale Variante einer Sprache
 Code wird zusammengesetzt aus ISO2-Sprachcode - ISO2-Landcode
 
 Beispiele:
@@ -75,7 +75,7 @@ fr-ca
 <property name="FR_ENTI_SYNONYM" value=""/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<Attribute name="*DE* Name [L]" id="FC993BF2-475D-4815-1D51-2E4BF70D8192">
+<Attribute name="Name [L]" id="FC993BF2-475D-4815-1D51-2E4BF70D8192">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 07:55:51 UTC</createdTime>
 <notes><![CDATA[[DE_ATTR_COMMENT[
@@ -107,10 +107,10 @@ fr-ca
 <property name="FR_ATTR_NAME" value="*DE* Name [L]"/>
 </propertyMap>
 </Attribute>
-<Attribute name="*DE* ISO-SprachLand_Code" id="410D6AF2-941E-E1F8-E04B-AA99D4245E6A">
+<Attribute name="ISO-SprachLand_Code" id="410D6AF2-941E-E1F8-E04B-AA99D4245E6A">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 07:55:51 UTC</createdTime>
-<comment><![CDATA[*DE* 2stellen Sprache Iso, "-", 2 stellen Land-Iso]]></comment>
+<comment><![CDATA[2stellen Sprache Iso, "-", 2 stellen Land-Iso]]></comment>
 <notes><![CDATA[[EN_ATTR_COMMENT[
 *DE* 2stellen Sprache Iso, "-", 2 stellen Land-Iso
 ]EN_ATTR_COMMENT]

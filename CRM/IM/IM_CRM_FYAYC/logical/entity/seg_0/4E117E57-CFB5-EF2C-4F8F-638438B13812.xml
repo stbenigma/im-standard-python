@@ -1,8 +1,8 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="4E117E57-CFB5-EF2C-4F8F-638438B13812" name="*Role">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="4E117E57-CFB5-EF2C-4F8F-638438B13812" name="*Personenrolle">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 11:21:16 UTC</createdTime>
-<comment><![CDATA[*DE* Beschreibung einer Rolle, die eine Ansprechsperson haben kann.
+<comment><![CDATA[Beschreibung einer Rolle, die eine Ansprechsperson haben kann.
 
 Beispiele:
 CEO
@@ -54,12 +54,13 @@ Verkaufsleiter
 <normalForm>Third</normalForm>
 <createSurrogateKey>true</createSurrogateKey>
 <propertyMap>
-<property name="DE_ENTI_NAME" value="Personenrolle"/>
-<property name="EN_ENTI_NAME" value="Role"/>
+<property name="DE_ENTI_NAME" value="*Personenrolle"/>
+<property name="EN_ENTI_NAME" value="*Role"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
 <property name="FR_ENTI_NAME" value="*DE* Personenrolle"/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<Attribute name="*DE* Bezeichnung" id="40B36602-4348-FB5F-5BD1-C56AD78107F8">
+<Attribute name="Bezeichnung" id="40B36602-4348-FB5F-5BD1-C56AD78107F8">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 11:21:32 UTC</createdTime>
 <notes><![CDATA[[DE_ATTR_COMMENT[
@@ -87,7 +88,7 @@ Verkaufsleiter
 <property name="FR_ATTR_NAME" value="*DE* Bezeichnung"/>
 </propertyMap>
 </Attribute>
-<Attribute name="*DE* Beschreibung" id="116DF002-EA64-1985-173B-A197A3118F61">
+<Attribute name="Beschreibung" id="116DF002-EA64-1985-173B-A197A3118F61">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 11:21:38 UTC</createdTime>
 <notes><![CDATA[[DE_ATTR_COMMENT[

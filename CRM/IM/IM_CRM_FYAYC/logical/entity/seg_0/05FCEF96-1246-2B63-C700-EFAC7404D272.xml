@@ -1,8 +1,8 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="05FCEF96-1246-2B63-C700-EFAC7404D272" name="Adress">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="05FCEF96-1246-2B63-C700-EFAC7404D272" name="Adresse">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 09:44:32 UTC</createdTime>
-<comment><![CDATA[*DE* Postalisch-geographische Lokalisation
+<comment><![CDATA[Postalisch-geographische Lokalisation
 
 Jede Adresse ist für einen Akteur definiert. D.h. die selbe Adresse kann mehrfach vorkommen.
 Falls ein generelles Adressverzeichnis als Referenz geführt wird (Basisadresse), muss das zusätlich erfasst werden.
@@ -47,17 +47,17 @@ Dann wird diese Entität zur Verknüpfung zwischen Akteur und Basisadresse.
 <createSurrogateKey>true</createSurrogateKey>
 <propertyMap>
 <property name="DE_ENTI_NAME" value="Adresse"/>
-<property name="DE_ENTI_SYNONYM" value=""/>
 <property name="EN_ENTI_NAME" value="Adress"/>
-<property name="EN_ENTI_SYNONYM" value=""/>
 <property name="FR_ENTI_NAME" value="*DE* Adresse"/>
-<property name="FR_ENTI_SYNONYM" value=""/>
+<property name="FR_ENTI_SYNONYM" value="frsynonym"/>
+<property name="PENTA TabName" value="postaladr"/>
+<property name="PIM TabName" value="ADRESS"/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<Attribute name="Address type" id="FF67251E-70A4-8810-9AAE-8D3085C3FC14">
+<Attribute name="Adresstyp" id="FF67251E-70A4-8810-9AAE-8D3085C3FC14">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 11:18:19 UTC</createdTime>
-<comment><![CDATA[*DE* Zweck der Adresse (Finanz, Post, Lieferung etc.)]]></comment>
+<comment><![CDATA[Zweck der Adresse (Finanz, Post, Lieferung etc.)]]></comment>
 <notes><![CDATA[[EN_ATTR_COMMENT[
 *DE* Zweck der Adresse (Finanz, Post, Lieferung etc.)
 ]EN_ATTR_COMMENT]
@@ -81,9 +81,13 @@ Zweck der Adresse (Finanz, Post, Lieferung etc.)
 <property name="DE_ATTR_NAME" value="Adresstyp"/>
 <property name="EN_ATTR_NAME" value="Address type"/>
 <property name="FR_ATTR_NAME" value="*DE* Adresstyp"/>
+<property name="PIM AttrID" value="11445"/>
+<property name="PIM AttrName" value="adress Type"/>
+<property name="PIM datatype" value="integer"/>
+<property name="PIM usage" value="RW"/>
 </propertyMap>
 </Attribute>
-<Attribute name="Street name" id="8DCE9DB8-E2C4-BCFC-1622-3B63D4730A07">
+<Attribute name="Strassenname" id="8DCE9DB8-E2C4-BCFC-1622-3B63D4730A07">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 11:04:40 UTC</createdTime>
 <notes><![CDATA[[DE_ATTR_COMMENT[
@@ -110,9 +114,13 @@ Zweck der Adresse (Finanz, Post, Lieferung etc.)
 <property name="DE_ATTR_NAME" value="Strassenname"/>
 <property name="EN_ATTR_NAME" value="Street name"/>
 <property name="FR_ATTR_NAME" value="*DE* Strassenname"/>
+<property name="PIM AttrID" value="5454"/>
+<property name="PIM AttrName" value="street"/>
+<property name="PIM datatype" value="string"/>
+<property name="PIM usage" value="R"/>
 </propertyMap>
 </Attribute>
-<Attribute name="House no" id="69DE3C96-B9F0-F86E-230B-0AEC8F4067ED">
+<Attribute name="Hausnr" id="69DE3C96-B9F0-F86E-230B-0AEC8F4067ED">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 11:04:47 UTC</createdTime>
 <notes><![CDATA[[DE_ATTR_COMMENT[
@@ -139,9 +147,13 @@ Zweck der Adresse (Finanz, Post, Lieferung etc.)
 <property name="DE_ATTR_NAME" value="Hausnr"/>
 <property name="EN_ATTR_NAME" value="House no"/>
 <property name="FR_ATTR_NAME" value="*DE* Hausnr"/>
+<property name="PIM AttrID" value="1142"/>
+<property name="PIM AttrName" value="no"/>
+<property name="PIM datatype" value="string"/>
+<property name="PIM usage" value="RW"/>
 </propertyMap>
 </Attribute>
-<Attribute name="Building name" id="A3F1453C-9777-43FA-2D3F-B9A4917113EA">
+<Attribute name="Gebäudename" id="A3F1453C-9777-43FA-2D3F-B9A4917113EA">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 11:04:50 UTC</createdTime>
 <notes><![CDATA[[DE_ATTR_COMMENT[
@@ -168,9 +180,10 @@ Zweck der Adresse (Finanz, Post, Lieferung etc.)
 <property name="DE_ATTR_NAME" value="Gebäudename"/>
 <property name="EN_ATTR_NAME" value="Building name"/>
 <property name="FR_ATTR_NAME" value="*DE* Gebäudename"/>
+<property name="PIM AttrName" value=""/>
 </propertyMap>
 </Attribute>
-<Attribute name="Geocoordinate" id="2C711332-0D94-0253-5C07-B9271155ADB9">
+<Attribute name="Geokoordinate" id="2C711332-0D94-0253-5C07-B9271155ADB9">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 11:05:06 UTC</createdTime>
 <notes><![CDATA[[DE_ATTR_COMMENT[

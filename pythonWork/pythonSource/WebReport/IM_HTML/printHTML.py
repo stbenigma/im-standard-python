@@ -124,6 +124,7 @@ translNameEN = {'Anzeige': 'Display'
                 ,'Typ': 'Type'
                 ,'UDP-Matrix': 'UDP-Matrix'
                 ,'übersetzt': 'translated'
+                ,'Übersetzungen': 'Translations'
                 ,'verschlüsselt': 'encrypted'
                 ,'Verwendet für Attribute':'Used for attributes'
                 ,'Verwendet in Attributgruppen':'Used in attribute groups'
@@ -631,7 +632,7 @@ def printUDP(p_meltname, p_id):
 
     udpnamen = web_sql.udpnamen(p_meltname=p_meltname)
     for udpname in udpnamen:
-        if udpname[0] != parameters.odmUDPTranslFileName():
+        if udpname[0] == parameters.odmUDPTranslFileName():
             continue
         werte = web_sql.udpwerte(p_meltname=p_meltname,p_id=p_id
                          ,p_thema=udpname[0],p_gruppe=udpname[1])
@@ -731,7 +732,7 @@ def printcontententi(p_list):
         printentikeys(pentiid=e[0])
         printentirela(p_entiid=e[0])
         printentidiag(pentiid=e[0])
-        printentitransl(pentiid=e[0])
+        printtransl(pentiid=e[0])
         printentiudp(p_entiid=e[0])
 
         fhtml.write(detailsfoot)
@@ -837,6 +838,7 @@ def printcontentattr(plist):
                                         , bool2icon(a[8]), bool2icon(a[9]), bool2icon(a[10])))
         fhtml.write(infofoot)
 
+        printtransl(pattrid=a[0])
         printattrudp(p_attrid=a[0])
 
         fhtml.write(detailsfoot)
@@ -1010,19 +1012,13 @@ def setWebDirec(p_webdirec):
     imagedirec = webDirectory + 'image/';
     cssdirec = webDirectory + "css/";
     icondirec = webDirectory + "icons/";
-    webFileNamePath = webDirectory + webFileName + '.html';
     libSourceDirec = os.path.dirname(os.path.abspath(__file__))
     libSourceDirec +='/../html-lib/';
     if (parameters.logoFileName() is None) :parameters.logoFileName(searchlogo(imagedirec));
 
 # setWebDirec
 
-
-def createFile():
-    global fhtml
-
-    if os.path.exists(webFileNamePath):
-        os.remove(webFileNamePath)
+def createlib():
     if os.path.exists(cssdirec):
         shutil.rmtree(cssdirec)
     if os.path.exists(icondirec):
@@ -1034,23 +1030,60 @@ def createFile():
     shutil.copytree(libSourceDirec+'css',cssdirec)
     shutil.copytree(libSourceDirec+'image',imagedirec)
 
-    fhtml = open(webFileNamePath,'w')
-
+#createlib
+def createFile():
+    global fhtml
+    webfile =webDirectory + webFileName + '_' + reportLang() + '.html'
+    if os.path.exists(webfile):
+        os.remove(webfile)
+    fhtml = open(webfile,'w')
 #createFile
+def closefile():
+    global fhtml
+    fhtml.close()
+#closefile
 
-def printentitransl(pentiid):
-#    transllist  = web_sql.translist(pentiid=pentiid)
-    return
-    if (len(diaglist) == 0):
-        return
-    fhtml.write(starttable(ptitel=transl('auf Diagramm(en)')
-                           ,pueberschriften=[transl('Diagramm')]
-                           ,plevel = 3))
-    for d in diaglist:
-        fhtml.write(writetableline(pwerte=[href(ref=web_sql.diagAnker(d[1])
-                                                ,anz=d[0])]))
+def attname2element(pattrname):
+    if pattrname in ['ENTI_NAME','ATTR_NAME']:
+        return transl('Name')
+    elif pattrname in ['ENTI_COMMENT','ATTR_COMMENT']:
+        return transl('Beschreibung')
+    elif pattrname in ['ENTI_SYNONYM']:
+        return transl('Synonym')
+    else:
+        return pattrname
+    #fi
+#attrname2element
+def findtransl(pattr,pmodeid,plangs):
+    tl = [attname2element(pattr)]
+    for l in plangs:
+        tl.extend(web_sql.transltext(pattr=pattr, pmodeid=pmodeid, plang=l))
+    return tl
+#findtransl
+
+def printtransl(pentiid=None, pattrid=None):
+    langs=web_sql.projektlangs().split(',')
+    try: langs.remove(reportLang().upper())
+    except: pass
+    head=[transl('Element')]
+    head.extend(langs)
+    if (pentiid is not None):
+        modeid=dbLookup.modeid(p_entiid=pentiid)
+        transllist= [findtransl(pattr='ENTI_NAME',pmodeid=modeid,plangs=langs)
+                    ,findtransl(pattr='ENTI_SYNONYM',pmodeid=modeid,plangs=langs)
+                    ,findtransl(pattr='ENTI_COMMENT',pmodeid=modeid,plangs=langs)]
+    elif (pattrid is not None):
+        modeid=dbLookup.modeid(p_attrid=pattrid)
+        transllist= [findtransl(pattr='ATTR_NAME',pmodeid=modeid,plangs=langs)
+                    ,findtransl(pattr='ATTR_COMMENT',pmodeid=modeid,plangs=langs)]
+    #print(transllist)
+    fhtml.write(starttable(ptitel=transl('Übersetzungen')
+                           ,pueberschriften=head
+                           ,plevel = 2))
+    for d in transllist:
+        fhtml.write(writetableline(pwerte=d))
     fhtml.write(endtable())
-#printentitransl
+#printtransl
 
 def printentidiag(pentiid):
     diaglist  = web_sql.diaglist(pentiid=pentiid)

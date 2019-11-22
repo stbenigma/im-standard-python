@@ -973,21 +973,57 @@ def filllanguages():
     for t in translations:
         #print (t )
         #sptx_attrname,  sptx_text,sptx_mode_id, sptx_uc, sptx_dc, sptx_spra_id
-        dbInserts.insertSprachtext(pdata=(t[0],t[1],t[2],t[3],t[4],dbLookup.spraLookup(t[5])))
-#    sprachtexte = [[attrName,creby,creti,'ATTR_NAME']
-#                  ,[attrcomm,creby,creti,'ATTR_COMMENT']]
-#    dbInserts.insertSprachtexte(p_texte=sprachtexte, p_modeid=lmodeId)
-#sprachtexte = [[syno, creby, creti, 'ENTI_SYNONYM']]
-#dbInserts.insertSprachtexte(p_texte=sprachtexte, p_modeid=modeid)
-#    sprachtexte = [[entname,creby,creti,'ENTI_NAME']
-#                  ,[entcomm,creby,creti,'ENTI_COMMENT']]
-#    dbInserts.insertSprachtexte(p_texte=sprachtexte, p_modeid=lmodeId)
-#    sprachtexte = [[vonText,creby,creti,'TEXT_FROM']
-#                  ,[zuText,creby,creti,'TEXT_TO']]
-#    dbInserts.insertSprachtexte(p_texte=sprachtexte, p_modeid=lmodeId)
-
-
+        dbInserts.insertSprachtext(pdata=[(t[0],t[1],t[2],t[3],t[4],dbLookup.spraLookup(t[5]))])
+    #for
+    #fill all elements in default language
+    dbDML.exec("""insert into sprachtexte 
+                    (sptx_attrname,  sptx_text
+                   ,sptx_mode_id, sptx_uc, sptx_dc
+                   , sptx_spra_id)
+                  select * from 
+                    (select 'ENTI_NAME' attrname, enti_name text 
+                        ,mode_id,enti_uc,enti_dc
+                    from modellelement
+                    join entitaeten on enti_id = mode_enti_id
+                    union all
+                   select 'ENTI_COMMENT' attrname, enti_beschr text 
+                        ,mode_id,enti_uc,enti_dc
+                    from modellelement
+                    join entitaeten on enti_id = mode_enti_id                    
+                    union all
+                   select 'ENTI_SYNONYM' attrname, group_concat(syno_name,', ') text 
+                        ,enti_id,enti_uc,enti_dc
+                    from modellelement
+                    join synonyme on syno_id = mode_syno_id
+                    join entitaeten on enti_id = syno_enti_id
+                    group by enti_id,enti_uc,enti_dc                    
+                    union all
+                   select 'ATTR_COMMENT' attrname, attr_beschr text 
+                        ,mode_id,attr_uc,attr_dc
+                    from modellelement
+                    join attributes on attr_id = mode_attr_id    
+                    union all                
+                   select 'ATTR_NAME' attrname, attr_anzname text 
+                        ,mode_id,attr_uc,attr_dc
+                    from modellelement
+                    join attributes on attr_id = mode_attr_id 
+                    union all                
+                   select 'RELA_TEXT_FROM' attrname, bezi_assoc_von_zu text 
+                        ,mode_id,bezi_uc,bezi_dc
+                    from modellelement
+                    join beziehungen on bezi_id = mode_bezi_id 
+                    union all                
+                   select 'RELA_TEXT_TO' attrname, bezi_assoc_zu_von text 
+                        ,mode_id,bezi_uc,bezi_dc
+                    from modellelement
+                    join beziehungen on bezi_id = mode_bezi_id 
+                )
+                cross join (select {})
+                where text is not null
+                   """.format(dbParam.dbDefaultLangID))
+    # sptx_attrname,  sptx_text,sptx_mode_id, sptx_uc, sptx_dc, sptx_spra_id
 #filllanguages
+
 def transferprojekt():
     proj = ET.parse(parameters.odmIMDirec() + parameters.odmModelName() + parameters.odmIMExtension())
     root = proj.getroot()
@@ -996,7 +1032,7 @@ def transferprojekt():
     sprachen=re.search(r'languages=([A-Z,]*)',comm).group(1)
     #print (findField(root,'name'),comm,sprachen,defspra)
     dbInserts.insertprojekt(pdata=(findField(root,'name'),findText(root,'createdBy')
-        , findText(root, 'createdTime'),defspra,sprachen))
+        , findText(root, 'createdTime'),sprachen,defspra))
     if (defspra is not None
         and dbParam.dbDefaultLang.lower() != defspra.lower()):
         #setze die Defaultsprache aus dem Modell
@@ -1025,6 +1061,6 @@ def transferODMModel():
     transferKeys(keys)
     loaddefaultcolors()
     transferdiagramme()
-    #filllanguages()
+    filllanguages()
 
 #end transferODMModel

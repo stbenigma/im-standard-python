@@ -363,15 +363,14 @@ def insertSprachtexte(p_texte, p_modeid, p_defaultlang=None):
     dbDML.execmany(l_sql, values)
 #insertSprachTexte
 def insertSprachtext(pdata):
+    #print (pdata)
     lsql= """insert into sprachtexte 
                     (sptx_attrname,  sptx_text
                    ,sptx_mode_id, sptx_uc, sptx_dc
                    , sptx_spra_id)
                   values (?,?,?,?,?,?)
           """
-    try: dbDML.exec(lsql, pdata)
-    except: pass
-
+    dbDML.insertmany(lsql, pdata)
 #insertSprachText
 def insertprojekt(pdata):
     lsql = """insert into projekt 
