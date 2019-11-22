@@ -114,7 +114,7 @@ def printcontent():
     printHTML.printcontententi(p_list=web_sql.entilist(p_lang=printHTML.reportLang()))
     printHTML.printcontentattr(plist=web_sql.attrlist(p_lang=printHTML.reportLang()))
     printHTML.printcontentwrtb(p_list=web_sql.wrtblist(p_lang=printHTML.reportLang()))
-    IM_HTML.printdiagHTML.printcontentdiag(plist=web_sql.diaglist())
+    IM_HTML.printdiagHTML.printcontentdiag(plist=web_sql.diaglist(),plang=printHTML.reportLang())
 #    printHTML.printattrmaps(p_list=web_sql.wrtblist(p_lang=printHTML.reportLang()))
 #    printHTML.printdiagrams(p_list=web_sql.wrtblist(p_lang=printHTML.reportLang()))
     printHTML.printcontentfoot()

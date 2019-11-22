@@ -1,95 +1,115 @@
 from IM_HTML import web_sql, printHTML
 
 
-def printlegend(pdiagname,pwidth,pheigh):
+def printlegend(pdata,pwidth,pheigh,px,py):
 
     legenhead = """<g  fill="rgb(255,255,255)" stroke="rgb(0,0,0)" 
                 fill-opacity="1.0" stroke-opacity="1.0" 
-                clip-path="url(#clipPath271_0___dg_rm_4)" 
-                transform="translate(10,10)" >
+                clip-path="url(#clipPathlegend)" 
+                transform="translate({},{})" >
                 """
     legendentry1 = """
 <rect x="0" y="0" width="{}" height="{}" />
-<text x="{}" y="{}" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
+<text x="10" y="{}" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
 {}:
 </text>
-<text x="{}" y="{}" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
+<text x="86" y="{}" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
 {}
 </text>
 """
-    legendentry2 = """<line x1="0" y1="19" x2="261" y2="19" fill="none" stroke="rgb(0,0,0)"/>
-<text x="10" y="32" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
-Author:
+    legendentry2 = """<line x1="0" y1="{}" x2="261" y2="{}" fill="none" stroke="rgb(0,0,0)"/>
+<text x="10" y="{}" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
+{}:
 </text>
-<text x="86" y="32" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
-stb
-</text>
-"""
-    """<line x1="0" y1="37" x2="261" y2="37" fill="none" stroke="rgb(0,0,0)"/>
-<text x="10" y="50" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
-Created on:
-</text>
-<text x="86" y="50" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
-2019-02-03 11:51:30 UTC
-</text>
-<line x1="0" y1="55" x2="261" y2="55" fill="none" stroke="rgb(0,0,0)"/>
-<text x="10" y="68" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
-Modified on:
-</text>
-<text x="86" y="68" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
-2019-09-12 14:29:23 UTC
-</text>
-<line x1="0" y1="73" x2="261" y2="73" fill="none" stroke="rgb(0,0,0)"/>
-<text x="10" y="86" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
-Modified by:
-</text>
-<text x="86" y="86" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
-stb
-</text>
-<line x1="0" y1="91" x2="261" y2="91" fill="none" stroke="rgb(0,0,0)"/>
-<text x="10" y="104" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
-Design:
-</text>
-<text x="86" y="104" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
-ModellModell
-</text>
-<line x1="0" y1="109" x2="261" y2="109" fill="none" stroke="rgb(0,0,0)"/>
-<text x="10" y="122" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
-Model:
-</text>
-<text x="86" y="122" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
-Logical
+<text x="86" y="{}" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
+{}
 </text>
 """
     legendfoot= """</g>
 """
-    startx=10
     starty=14
-    printHTML.fhtml.write('TEST')
-    printHTML.fhtml.write(legenhead)
-    printHTML.fhtml.write(legendentry1.format(pwidth,pheigh
-                                    ,startx,starty,'Diagram'
-                                    ,startx + 76,starty,pdiagname))
+    printHTML.fhtml.write(legenhead.format(px+2,py+1))
+    printHTML.fhtml.write(legendentry1.format(pwidth-100,pheigh-2
+                                    ,starty,'Diagram'
+                                    ,starty,pdata[0]))
+    starty += 18
+    printHTML.fhtml.write(legendentry2.format(starty-13,starty-13
+                                    ,starty,'Author'
+                                    ,starty,pdata[1]))
+    starty += 18
+    printHTML.fhtml.write(legendentry2.format(starty-13,starty-13
+                                    ,starty,'Created on:'
+                                    ,starty,pdata[2]))
+    starty += 18
+    printHTML.fhtml.write(legendentry2.format(starty-13,starty-13
+                                    ,starty,'Modified on'
+                                    ,starty,pdata[3]))
+    starty += 18
+    printHTML.fhtml.write(legendentry2.format(starty-13,starty-13
+                                    ,starty,'Modified by'
+                                    ,starty,pdata[4]))
+    starty += 18
+    printHTML.fhtml.write(legendentry2.format(starty-13,starty-13
+                                    ,starty,'Model'
+                                    ,starty,pdata[5]))
+    starty += 18
+    printHTML.fhtml.write(legendentry2.format(starty-13,starty-13
+                                    ,starty,'Modeltype'
+                                    ,starty,pdata[6]))
     printHTML.fhtml.write(legendfoot)
-
-
 #printlegend
-def printcontentdiag(plist):
+
+def hex2rbg(phex):
+    if phex is None:
+        return "rbg(0,0,0)"
+    r = int(phex[0:2], 16)
+    g = int(phex[2:4], 16)
+    b = int(phex[4:6], 16)
+    return "rbg({},{},{})".format(r,g,b)
+#hex2rbg
+def printelements(pdiagid,plang):
+    enti ="""<g  fill="{}" stroke="{}" fill-opacity="{}" stroke-opacity="{}" 
+        clip-path="url(#clipPath34_0___dg_rm_4)" transform="translate({},{})" >
+<rect x="0" y="0" width="{}" height="{}" rx="10" ry="10" /><a href="#{}" >
+<text x="20" y="13" fill="{}" font-weight="bold"  fill-opacity="1.0" font-size="{}" stroke="none">
+{} </text></a></g>
+"""
+    #             eled_position_x xpos,eled_breite breite
+    #            ,eled_position_y ypos, eled_hoehe hoehe
+    #            ,eled_deckkraft,eled_farbe
+    #            ,eled_randbreite,eled_randdeckkraft,eled_randfarbe
+    #            ,eled_schriftgroesse, eled_schriftfarbe
+    #            ,entiname,enti_id
+    elist = web_sql.diagenti(pdiagid,plang)
+    if elist is None: return
+    for e in elist:
+        #print (e[5],e[8],e[10],hex2rbg(e[5]))
+        print (enti.format(hex2rbg(e[5]), hex2rbg(e[8])
+            ,e[4],e[7]
+            ,e[0],e[1],e[1],e[3]
+           ,web_sql.entiAnker(e[12]),hex2rbg(e[10]),e[9],e[11]))
+
+        printHTML.fhtml.write(enti.format(hex2rbg(e[5]), hex2rbg(e[8])
+            ,e[4],e[7]
+            ,e[0],e[1],e[1],e[3]
+           ,web_sql.entiAnker(e[12]),hex2rbg(e[10]),e[9],e[11]))
+    #for
+#printelements
+
+def printcontentdiag(plist,plang):
     contenthead="""        <!--diagramms-->"""
 
-    contentelementhead = """        <br><hr><br><br>
+    diagramhead = """        <br><hr><br><br>
        <h3 id="{}">{}</h3>
         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
-        version="1.1"  width="1252" height="1778">
+        version="1.1"  width="{}" height="{}">
         <defs id="dmw_defs" >
-        <svg id="fk_sym" viewBox="0 0 48.665 48.665" style="enable-background:new 0 0 48.665 48.665;" >
+        <clipPath clipPathUnits="userSpaceOnUse" id="clipPathlegend">
+             <rect x="0" y="0" width="{}" height="{}" />
+        </clipPath>
+        </defs>
 """
-    contentelementfoot = """
-<g>
-<path d="M40.332,31.592c-2.377,0-4.515,1-6.033,2.598l-17.737-8.686c0.061-0.406,0.103-0.82,0.103-1.246    c0-0.414-0.04-0.818-0.098-1.215l17.711-8.589c1.519,1.609,3.666,2.619,6.054,2.619c4.603,0,8.333-3.731,8.333-8.333    c0-4.603-3.73-8.333-8.333-8.333s-8.333,3.73-8.333,8.333c0,0.414,0.04,0.817,0.098,1.215l-17.709,8.589    c-1.519-1.609-3.666-2.619-6.054-2.619C3.73,15.925,0,19.656,0,24.258c0,4.603,3.73,8.333,8.333,8.333    c2.377,0,4.515-1,6.033-2.596l17.736,8.685c-0.062,0.406-0.104,0.82-0.104,1.245c0,4.604,3.73,8.333,8.333,8.333    s8.333-3.729,8.333-8.333C48.665,35.322,44.935,31.592,40.332,31.592z" fill="#13bf3b"/>
-</g>
-</svg>
-</defs>
+    diagramfoot = """
 </svg>
 """
     detailshead = """           
@@ -105,9 +125,23 @@ def printcontentdiag(plist):
                             <table class="table borderless">
                                 <tbody>
 """
+    legendwidth = 363
+    legendhigh = 128
     for dia in plist:
-        printHTML.fhtml.write (contentelementhead.format(web_sql.diagAnker(dia[1]),dia[0]))
+        #diag_name,diag_id,diag_legendx,diag_legendy,breite,hoehe
+        printHTML.fhtml.write (diagramhead.format(web_sql.diagAnker(dia[1]),dia[0]
+                                ,dia[4],dia[5]
+                                ,legendwidth,legendhigh))
 
-        printlegend(pdiagname=dia[0],pwidth=262,pheigh=127)
-        printHTML.fhtml.write(contentelementfoot)
+        if (dia[2] is not None):
+            #es hat eine Legende
+            printlegend(pdata=[dia[0],'*Autor','*Erstellt am','*geändert am'
+                ,'*geändert von','*Modell','*modelltyp',]
+                        ,pwidth=legendwidth,pheigh=legendhigh
+                        ,px=dia[2],py=dia[3])
+        #fi
+
+        printelements(pdiagid=dia[1],plang=plang)
+        printHTML.fhtml.write(diagramfoot)
+    #for
 #printcontendiag

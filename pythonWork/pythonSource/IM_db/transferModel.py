@@ -172,7 +172,12 @@ def transferDomains():
         # endif
         ranges = dom.findall('listOfRanges/rangeDef')
         if not (ranges == []):
-            range=(ranges[0].find('beginValue').text,ranges[0].find('endValue').text)
+            try:
+                range=(ranges[0].find('beginValue').text,ranges[0].find('endValue').text)
+            except:
+                print ("was ist hier los *******")
+                pass
+
         else:
             range = (None,None)
         #endif
@@ -351,9 +356,16 @@ def do1diagramm(p_filename):
     diatid = dbLookup.diatid(p_name='Entity')
     #print(dia.get('name'), dia.get('id'))
     #diag_name,diag_diat_id,diag_uc,diag_dc,diag_um,diag_dm
+    if (findText(dia,'showLegend') == 'true'):
+        legendx = findText(dia,'legendPosX')
+        legendy = findText(dia,'legendPosY')
+    else:
+        legendx = None
+        legendy = None
+    #fi
     uc = findText(dia,'createdBy')
     dc = findText(dia,'createdTime')
-    row = (dianame, diatid,dia.get('id'), uc
+    row = (dianame, diatid,dia.get('id'),legendx,legendy, uc
            ,dc,findText(dia,'modifiedBy'),None)
     #print (row)
     diagid = dbInserts.insertdiagramm(p_data=row)
@@ -370,7 +382,6 @@ def do1diagramm(p_filename):
 #do1diagramm
 
 def transferdiagramme():
-
     for el in os.listdir(parameters.odmentisubviewdirec()):
         filename = parameters.odmentisubviewdirec() +  el
         do1diagramm(p_filename=filename)
@@ -852,7 +863,7 @@ def transferUPDdef():
                             # bdeg_thema, bdeg_gruppe, bdeg_name, bdeg_default_value
                             # bdeg_beschreibung, bdeg_optional, bdeg_wrtb_id,
                             # bdeg_uc, bdeg_dc
-                            ludp = (odmParam.imTranslationFileName,lName[:2]
+                            ludp = (parameters.odmUDPTranslFileName(),lName[:2]
                                    ,lName, None
                                     , 'udp for relations from ODM', 'TRUE', None
                                     , '--', date.today().__str__())

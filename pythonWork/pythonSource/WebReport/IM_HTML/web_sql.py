@@ -138,6 +138,7 @@ def namelist(ptype, plang, pwrtbid=None):
     return datalist
 #namelist
 
+
 def entilist(p_lang):
     #id, name, descr
     #group_concat('<a href="#ENTI'||sub_enti_id||'" target="details">'
@@ -412,10 +413,25 @@ def wrtblist(p_lang):
 def diaglist(pentiid=None):
     if pentiid is None:
         lsql = """  
-        select diag_name,diag_id
-        from diagramme
-     order by upper(diag_name)
-"""
+        select diag_name,diag_id,diag_legendx,diag_legendy,breite,hoehe
+           from diagramme
+           left join  (select diag_id size_diag_id,max(xpos + breite) breite,max(ypos + hoehe) hoehe
+                FROM (select eled_diag_id diag_id,eled_position_x xpos,eled_breite breite
+                     ,eled_position_y ypos, eled_hoehe hoehe
+                     from elementdarst
+                     union all 
+                     select beda_diag_id, beda_endtext_x xpos, beda_endtext_breite breite
+                     ,beda_endtext_y ypos, beda_endtext_hoehe hoehe
+                     from beziehung_darst
+                     union all 
+                     select beda_diag_id, lise_x xpos, 3 breite
+                     ,lise_y ypos, 3 hoehe
+                     from beziehung_darst
+                     join linie_segment on lise_beda_id = beda_id
+                    )
+                    group by size_diag_id
+                ) on size_diag_id = diag_id
+            order by upper(diag_name)"""
     else:
         lsql = """
         select diag_name,diag_id
@@ -423,12 +439,33 @@ def diaglist(pentiid=None):
         join  elementdarst on eled_diag_id = diag_id
         join modellelement on mode_id = eled_mode_id
         where mode_enti_id = {}
-     order by upper(diag_name)
-""".format(pentiid)
+     order by upper(diag_name)""".format(pentiid)
     #fi
     data = dbDML.select(lsql)
     return data
 #diaglist
+
+def diagenti(pdiagid,plang):
+    data = dbDML.select("""select 
+                eled_position_x xpos,eled_breite breite
+                ,eled_position_y ypos, eled_hoehe hoehe
+                ,eled_deckkraft,eled_farbe
+                ,eled_randbreite,eled_randdeckkraft,eled_randfarbe
+                ,eled_schriftgroesse, eled_schriftfarbe
+                ,case when ena.sptx_text is null then enti_name 
+                                                else ena.sptx_text end  entiname
+                ,enti_id 
+                from elementdarst
+                join modellelement on mode_id = eled_mode_id
+                join entitaeten on enti_id = mode_enti_id
+                join sprachen sp on sp.spra_iso_code2 = '{}'         
+                left join spraattr ena on ena.sptx_attrname = 'ENT_NAME'
+                                        and ena.sptx_mode_id = mode_id
+                                        and ena.spra_id = sp.spra_id
+                where eled_diag_id = {}
+    """.format(plang,pdiagid))
+    return data
+#diagenti
 
 def wbgrelements(wrtbid):
     data = dbDML.select("""select wbgr_name, wbgr_beschr ,  wrtb_name

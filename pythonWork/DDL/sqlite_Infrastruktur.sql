@@ -77,6 +77,8 @@ CREATE TABLE diagramme(
     diag_name      varchar(60) NOT NULL,
     diag_diat_id   integer NOT NULL,
     diag_odm_guid       varchar(36),
+    diag_legendx       integer,
+    diag_legendy       integer,
      diag_uc    varchar(30) NOT NULL,
     diag_dc        varchar(30) NOT NULL,
     diag_um        varchar(30) ,

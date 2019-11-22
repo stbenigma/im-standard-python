@@ -275,9 +275,10 @@ def insertUdpEntity(entiId):
 def insertdiagramm(p_data):
     lsql = """insert into
 diagramme(
-    diag_name,diag_diat_id,diag_odm_guid,diag_uc
+    diag_name,diag_diat_id,diag_odm_guid
+    ,diag_legendx,diag_legendy,diag_uc
     ,diag_dc,diag_um,diag_dm )     
-        values (?,?,?,?,?,?,?)
+        values (?,?,?,?,?,?,?,?,?)
     """
     return dbDML.insert(lsql, p_data)
 #insertdiagramme
