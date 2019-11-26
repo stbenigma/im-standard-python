@@ -379,7 +379,8 @@ CREATE TABLE modellelem_typ(
             'BURU',
             'ENTI',
             'WRTB',
-            'SYNO'
+            'SYNO',
+            'ORGE'
         )),
     melt_name                varchar(60 )NOT NULL,
         melt_uc                  varchar(30 )NOT NULL,

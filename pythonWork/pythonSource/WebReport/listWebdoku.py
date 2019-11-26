@@ -100,18 +100,20 @@ def printAttrUDPMatrix(thema=None):
 
 def printlistofcontent():
     printHTML.printlistofcontenthead()
-    printHTML.printlistofcontentelement(p_name='Entitäten', p_list=web_sql.namelist(ptype='ENTI', plang=printHTML.reportLang()))
-    printHTML.printlistofcontentelement(p_name='Attribute', p_list=web_sql.namelist(ptype='ATTR', plang=printHTML.reportLang()))
-    printHTML.printlistofcontentelement(p_name='Domänen', p_list=web_sql.namelist(ptype='WRTB', plang=printHTML.reportLang()))
-    printHTML.printlistofcontentelement(p_name='Diagramme', p_list=web_sql.namelist(ptype='DIAG', plang=printHTML.reportLang()))
+    printHTML.printlistofcontentelement(pname='Entitäten', plist=web_sql.namelist(ptype='ENTI', plang=printHTML.reportLang()))
+    printHTML.printlistofcontentelement(pname='Attribute', plist=web_sql.namelist(ptype='ATTR', plang=printHTML.reportLang()))
+    printHTML.printlistofcontentelement(pname='Domänen', plist=web_sql.namelist(ptype='WRTB', plang=printHTML.reportLang()))
+    printHTML.printlistofcontentelement(pname='Attribut-Mapping', plist=web_sql.namelist(ptype='UDP', plang=printHTML.reportLang()))
+    printHTML.printlistofcontentelement(pname='Diagramme', plist=web_sql.namelist(ptype='DIAG', plang=printHTML.reportLang()))
     printHTML.printlistofcontentfoot()
 # printlistofcontent
 
-def printcontent():
-    printHTML.printcontenthead()
+def printcontent(pfirma,ptitel):
+    printHTML.printcontenthead(pfirma=pfirma,ptitel=ptitel)
     printHTML.printcontententi(p_list=web_sql.entilist(p_lang=printHTML.reportLang()))
     printHTML.printcontentattr(plist=web_sql.attrlist(p_lang=printHTML.reportLang()))
     printHTML.printcontentwrtb(p_list=web_sql.wrtblist(p_lang=printHTML.reportLang()))
+    printHTML.printcontentudp(plist=web_sql.namelist(ptype='UDP', plang=printHTML.reportLang()))
     #IM_HTML.printdiagHTML.printcontentdiag(plist=web_sql.diaglist(),plang=printHTML.reportLang())
 #    printHTML.printattrmaps(p_list=web_sql.wrtblist(p_lang=printHTML.reportLang()))
 #    printHTML.printdiagrams(p_list=web_sql.wrtblist(p_lang=printHTML.reportLang()))
@@ -125,7 +127,7 @@ def printhtmlfile(p_firma,p_titel,p_info,p_logofilename):
                         ,  p_info=p_info
                         ,p_logofilename=p_logofilename);
     printlistofcontent();
-    printcontent();
+    printcontent(pfirma=p_firma,ptitel=p_titel);
     printHTML.printfoot();
     printHTML.closefile ();
     return

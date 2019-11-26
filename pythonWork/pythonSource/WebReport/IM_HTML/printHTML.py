@@ -37,6 +37,11 @@ def nvl(x,default=''):
     return x if (x is not None) else default
 #nvl
 
+def filehref(ref,anz,plang,pimg=None):
+    img = '' if pimg is None else '<img class="icon-check" src="icons/{}">'.format(pimg)
+    return """<a href="{}#{}" target="_blank" >{}{}</a>"""\
+        .format(webFileName + '_' + plang.lower() + '.html',ref,anz,img)
+#href
 def href(ref,anz):
     return """<a href="#{}" target="details">{}</a>""".format(ref,anz)
 #href
@@ -86,6 +91,7 @@ translNameEN = {'Anzeige': 'Display'
                 ,'historisiert': 'historicized'
                 ,'in Schlüssel': 'within key'
                 ,'Informationsmodell {} (Stand: {})': 'Informationmodel {} (Status: {})'
+                ,'Informationen':'Informations'
                 ,'Inhaltstyp' : 'Content type'
                 ,'Ja': 'Yes'
                 ,'Jahr' : 'year'
@@ -137,15 +143,108 @@ translNameEN = {'Anzeige': 'Display'
                 ,'Woche' : 'week'
                 ,'Zeitpunkt': 'Point in Time'
                 }
+translNameFR = {'Anzeige':"**Écran d'affichage"
+	,'Arc':'**Décrire un arc'
+	,'Attribut':'**Particularité'
+	,'Attribut(e)':'**Attribut(s)'
+	,'Attribute':'**Particularités'
+	,'Attributgruppe':"**Groupe d'attributs"
+	,'auf Diagramm(en)':'**sur le(s) diagramme(s)'
+	,'Author':'**Créatrice'
+	,'Beschreibung':'**Description de la'
+	,'Beziehung':'**Parenté'
+	,'Beziehung(en)':'**Lien(s) de parenté'
+	,'Beziehungen':'**Relations'
+	,'Benutzerdefinerte Eigenschaften':"**Propriétés définies par l'utilisateur"
+	,'Bild':'**Portrait'
+	,'Binär':'*DE* Binär'
+	,'Datentyp':'**Type de données'
+	,'Deskriptor':'**Descripteur'
+	,'Domänen':'**Domaine'
+	,'Diagramm':'**Représentation schématique'
+	,'Diagramme':'**Diagrammes'
+	,'Domäne':'**Domaine'
+	,'Einheit':'**Groupe'
+	,'Element':'**Aspect'
+	,'Elemente':'**Articles'
+	,'Entität':'**Entité'
+	,'Entität/Tabelle':'**Entité/Tableau'
+	,'Entitäten':'Entités'
+	,'erstellt':'**créé'
+	,'Film':'**Film'
+	,'geändert':'changé'
+	,'Gruppenattribut':'**Attribut de groupe'
+	,'Grafik':'**Graphique'
+	,'Granularität':'**Granularité'
+	,'historisiert':'**historicisé'
+	,'in Schlüssel':'**Clée'
+	,'Informationsmodell {} (Stand {})':"**Modèle d'information {} (statut {}){})"
+	,'Informationen':'**Information et'
+	,'Inhaltstyp':'**Type de contenu'
+	,'Ja':'**Oui'
+	,'Jahr':'**Année'
+	,'Max. Länge':'**Max. Länge'
+	,'Max. Wert':'**Max. Mérite'
+	,'Mehr':'Plus'
+	,'Millisekunde':'**Milliseconde'
+	,'Minute':'**Minute'
+	,'Min. Wert':'**Valeur min.'
+	,'Monat':'**Mois'
+	,'Nachkommast.':'**Point décimal.'
+	,'Name':'**Appellation'
+	,'Nein':'**Non'
+	,'Nr':'**No'
+	,'Numerisch':'**Numérique'
+	,'Pflichtattribut':'**Caractéristique obligatoire'
+	,'Quartal':'**Pièce de 25 cents'
+	,'Rundungseinh.':"**Unité d'arrondi"
+	,'Schlüssel':'**Schlüssel'
+	,'Sekunde':'**Second'
+	,'Semester':'**Semestres'
+	,'Sort':'**Trier'
+	,'Stunde':'**Heure'
+	,'Subentität':'Subentité'
+	,'Subentitäten':'**Subentités'
+	,'Suchbegriff':'**Terme de recherche'
+	,'Superentität':'Super Entité'
+	,'Synonyme':'**Synonymes'
+	,'Syntaxregel':'**Règle syntaxique'
+	,'Tag':'**Journée'
+	,'Technischer Name':'**Nom technique'
+	,'Text':'**Texto'
+	,'Ton':'**Sonorité'
+	,'Tooltip':'**Infobulle'
+	,'Treffer':'**Cogner'
+	,'Typ':'**Type'
+	,'UDP-Matrix':'**Matrice UDP'
+	,'übersetzt':'**übersetzt'
+	,'Übersetzungen':'**Traductions'
+	,'verschlüsselt':'**verschlüsselt'
+	,'Verwendet für Attribute':'**Utilise les attributs de für'
+	,'Verwendet in Attributgruppen':"**Utilisé dans les groupes d'attributs"
+	,'Verwendet von':'**Utilisé par'
+	,'Vorkommast.':'**Avant la virgule.'
+	,'Wert':'**Mérite'
+	,'Wertebereich':'**Plage de valeurs'
+	,'Werteliste':'**Liste de valeurs'
+	,'wiederholt':'**réitéré'
+	,'Woche':'**Semaine'
+	,'Zeitpunkt':'**Chronologique'
+}
 def transl(pname):
-   if (greportLang == 'de'):
+    if (greportLang == 'de'):
        return pname
-   elif (greportLang == 'en'):
-       try:
-           return translNameEN[pname]
-       except:
-           return pname
-   else:
+    elif (greportLang == 'en'):
+        try:
+            return translNameEN[pname]
+        except:
+            return pname
+    elif (greportLang == 'fr'):
+        try:
+           return translNameFR[pname]
+        except:
+            return pname
+    else:
        return pname
 #transl
 
@@ -433,7 +532,8 @@ def printlistofcontentfoot():
 #printlistofcontentfoot
 
 
-def printlistofcontentelement(p_name, p_list):
+def printlistofcontentelement(pname, plist):
+    if len(plist) == 0: return
     lbc = str(newbarcounter())
     contentelementhead= """
                 <div class="panel-body" id="{}L">
@@ -455,23 +555,50 @@ def printlistofcontentelement(p_name, p_list):
             </div>
         </div>
 """;
-    fhtml.write(contentelementhead.format(p_name,lbc,transl(p_name),lbc,p_name))
-    for l in p_list:
+    fhtml.write(contentelementhead.format(pname, lbc, transl(pname), lbc, pname))
+    for l in plist:
         fhtml.write(contentline.format(l[1],l[0]))
     fhtml.write(contentelementfoot)
 #printlistofcontentelement
 
-def printcontenthead():
+def lang2img(plang):
+    if plang in ('de','fr'):
+        return plang+".png"
+    elif plang == 'en':
+        return "gb.png"
+    else:
+        return None
+#lang2img
+def printcontenthead(pfirma,ptitel):
     contenthead = """    <div class="wrapper">
         <div class="top-container">
             <p3 {} 
             </p3>
+        <div>
+            {}
+        </div>          
         </div>
-""".format("""class="descr">Diese Webseite enthält den ganzen Inhalt 
-            des <p2 class="IM">Informationsmodells</p2>. 
+"""
+    if reportLang()== 'de' :
+        f = """class="descr">Diese Webseite enthält den ganzen Inhalt 
+            des <p2 class="IM">Informationsmodells {}</p2> von {}. 
             Diese Seite wurde von Software von <p2 class="fyayc">foryouandyourcustomers</p2> 
-            erstellt.""")
-    fhtml.write(contenthead)
+            erstellt.""".format(ptitel,pfirma)
+    else:
+        f = """class="descr">This website contains the complete content 
+            of the <p2 class="IM">Information model {}</p2> from {}. 
+            This page was created with software from <p2 class="fyayc">foryouandyourcustomers</p2>."""\
+            .format(ptitel,pfirma)
+    #fi
+    langs = web_sql.projektlangs().split(',')
+    try:
+        langs.remove(reportLang().upper())
+    except:
+        pass
+    str = ''
+    for l in langs:
+        str += filehref(ref=None,anz=l+'   ',plang=l,pimg=lang2img(l.lower()))
+    fhtml.write(contenthead.format(f,str))
 #printcontenthead
 
 def printcontentfoot():
@@ -627,15 +754,102 @@ def printentirela(p_entiid):
     fhtml.write(endtable())
 #printentirela
 
+def printcontentudp(plist):
+    if len(plist)==0: return
+    contenthead = """        <!--mapping-->"""
+
+    contentelementhead = """        <div class="entity" id="{}">
+                <div class="describtion">
+                    <p>{}</p>
+                    <h1>{}</h1>
+                </div>
+                 <div class="panel-body">
+                <div class="collapse" id="bar{}">                    
+            """
+    detailshead = """           
+                    <!-- The inside div eliminates the 'jumping' animation. -->
+    """
+    detailsfoot = """            
+                                </div>
+    """
+    infohead = """         <div id="container2">
+                            <div class="table-responsive">
+                                <table class="table borderless">
+                                    <tbody>
+    """
+    techhead = """                      <tr>
+                                                    <th>{}</th>
+                                                    <th>{}</th>
+                                                    <th>{}</th>
+                                                    <th>{}</th>
+                                                    <th>{}</th>
+                                                    <th>{}</th>
+                                                    <th>{}</th>
+                                                </tr>
+        """
+    techline = """
+                                            <tr>
+                                                       <td class="attribute">{}</td>
+                                                        <td class="attribute">{}</td>
+                                                        <td class="attribute">{}</td>                                    
+                                                        <td class="attribute">{}</td>                                    
+                                                        <td class="attribute">{}</td>                                    
+                                                        <td class="attribute">{}</td>                                    
+                                                        <td class="attribute">{}</td>                                    
+                                            </tr>
+        """
+    infofoot = """
+                                    </tbody>
+                                </table>
+                            </div>
+                            </div>
+    """
+    fhtml.write(contenthead)
+    for m in plist:
+        namenliste = [transl('Attribut')]
+        udpnamen = web_sql.udpnamen(pmeltname='ATTR',pthema=m[2],pgruppe=m[0])
+        #print ('udpnamen=',udpnamen,m[2],m[0])
+        if len(udpnamen) == 0: continue
+        udpnamen = udpnamen[0][2].split(',')
+        #print ('udpnamen=',udpnamen)
+        namenliste.extend(udpnamen)
+
+        print ("für * müssen die Gruppen und die Namen sortiert werden, bei Überschriften gleich wie bei Werten")
+        al = web_sql.udpattrlist(pthema=m[2],pgruppe=m[0],plang=reportLang())
+        werte = []
+        for a in al:
+            zeile = [href(ref=a[1],anz=a[0])]
+            udpwerte = web_sql.udpwerte(pmeltname='ATTR',pthema=m[2],pgruppe=m[0],pid = a[2])
+            if udpwerte is None: continue
+            zeile.extend(w[0] for w in udpwerte)
+            werte.append(zeile)
+
+        lbc = str(newbarcounter())
+        fhtml.write(contentelementhead.format(m[1]
+                                              , transl('Attribute - Mapping')
+                                              , m[0]  # anzname
+                                              , lbc))
+        fhtml.write(detailshead)
+
+        fhtml.write(starttable(ptitel='Mapping'
+                               , pueberschriften=namenliste
+                               , plevel=3))
+        for w in werte: fhtml.write(writetableline(pwerte=w))
+        fhtml.write(endtable())
+
+        fhtml.write(detailsfoot)
+        fhtml.write(contentelementfoot.format(lbc, transl('Mehr')))
+    # for
+#printcontentudp
+
 def printUDP(p_meltname, p_id):
     startgeschrieben = False
 
-    udpnamen = web_sql.udpnamen(p_meltname=p_meltname)
+    udpnamen = web_sql.udpnamen(pmeltname=p_meltname)
     for udpname in udpnamen:
         if udpname[0] == parameters.odmUDPTranslFileName():
             continue
-        werte = web_sql.udpwerte(p_meltname=p_meltname,p_id=p_id
-                         ,p_thema=udpname[0],p_gruppe=udpname[1])
+        werte = web_sql.udpwerte(pmeltname=p_meltname, pthema=udpname[0], pgruppe=udpname[1], pid=p_id)
         #print(udpName[0],udpName[1],lwerte)
         lw = [];
         for l in werte:
@@ -650,7 +864,8 @@ def printUDP(p_meltname, p_id):
             namenliste = udpname[2].split(',')
             namenliste.sort() #SQl kann keine sortierte group_concat liefern
 
-            fhtml.write(starttable(ptitel=' {} - {} '.format(udpname[0], udpname[1])
+            fhtml.write(starttable(ptitel=href(ref=web_sql.udpAnker('{}-{}'.format(udpname[0],udpname[1]))
+                                               ,anz=' {} - {} '.format(udpname[0], udpname[1]))
                                    , pueberschriften=namenliste
                                    , plevel=3))
             fhtml.write(writetableline(pwerte=lw))
@@ -1057,7 +1272,14 @@ def attname2element(pattrname):
 def findtransl(pattr,pmodeid,plangs):
     tl = [attname2element(pattr)]
     for l in plangs:
-        tl.extend(web_sql.transltext(pattr=pattr, pmodeid=pmodeid, plang=l))
+        eintrag = web_sql.transltext(pattr=pattr, pmodeid=pmodeid, plang=l)
+        if (pattr in ('ENTI_NAME','ATTR_NAME')):
+            id=web_sql.elementid(pmodeid=pmodeid,ptyp=pattr[0:4])
+            eintrag = filehref(ref=web_sql.entiAnker(id) if pattr == 'ENTI_NAME'
+                                        else web_sql.attrAnker(id)
+                               ,anz=eintrag,plang=l)
+        #fi
+        tl.extend([eintrag])
     return tl
 #findtransl
 

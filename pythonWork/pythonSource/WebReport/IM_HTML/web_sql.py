@@ -1,14 +1,7 @@
 import sys,os
 sys.path.append(os.path.dirname(os.path.realpath(__file__))+'/../../IM_db')
-from IM_DB import dbDML,dbLookup
+from IM_DB import dbDML,dbLookup,parameters
 
-udpThemenSql:str = """select distinct bdeg_thema
-                    from benudef_eigenschaft
-                    join modelltyp_eigensch on mote_bdeg_id = bdeg_id
-                    join modellelem_typ on melt_id = mote_melt_id
-                                    and melt_kurzname = 'ATTR'
-                                    and bdeg_thema != 'translation'
-                    order by bdeg_thema"""
 
 def langText(p_attrname, p_lang, p_modeid):
    lsql= """select sptx_text
@@ -48,7 +41,12 @@ def udpAnker(id):
     return 'UDP'+str(id)
 def diagAnker(id):
     return 'DIAG'+str(id)
-
+def elementid(pmodeid,ptyp):
+    data = dbDML.select("""select mode_{}_id id
+                            from modellelement 
+                            where mode_id = {}""".format(ptyp.lower(),pmodeid))
+    return data[0][0]
+#entiid
 
 def namelist(ptype, plang, pwrtbid=None):
     if ptype == 'ENTI':
@@ -59,7 +57,7 @@ def namelist(ptype, plang, pwrtbid=None):
               from entitaeten e1
               join modellelement on mode_enti_id = enti_id
               join sprachen sp on sp.spra_iso_code2 = '{}'         
-              left join spraattr ena on ena.sptx_attrname = 'ENT_NAME'
+              left join spraattr ena on ena.sptx_attrname = 'ENTI_NAME'
                                     and ena.sptx_mode_id = mode_id
                                     and ena.spra_id = sp.spra_id
               ) order by upper(name)
@@ -81,7 +79,7 @@ def namelist(ptype, plang, pwrtbid=None):
                                 and ana.sptx_mode_id = amo.mode_id
                                 and ana.spra_id = sp.spra_id
           join modellelement ame on ame.mode_enti_id = enti_id
-          left join spraattr ena on ena.sptx_attrname = 'ENT_NAME'
+          left join spraattr ena on ena.sptx_attrname = 'ENTI_NAME'
                                 and ena.sptx_mode_id = ame.mode_id
                                 and ena.spra_id = sp.spra_id
           join wertebereiche on wrtb_id = attr_wrtb_id
@@ -123,6 +121,20 @@ def namelist(ptype, plang, pwrtbid=None):
           ) order by upper(name)
               """.format(plang))
         datalist = [(e[0], wrtbAnker(e[1])) for e in data]
+    elif (ptype == 'UDP'):
+        data = dbDML.select("""select  distinct bdeg_gruppe,bdeg_thema||'-'||bdeg_gruppe id
+                             ,bdeg_thema
+                            from benudef_eigenschaft 
+                           where bdeg_thema = '{}'
+                           union 
+                           select '*' grp,'datamapping-alle','{}'
+                           where exists (select  1 from
+                                    benudef_eigenschaft 
+                                    where bdeg_thema = '{}')
+                        order by bdeg_gruppe""".format(parameters.odmUDPMappingFileName()
+                                                       ,parameters.odmUDPMappingFileName()
+                                                       ,parameters.odmUDPMappingFileName()))
+        datalist = [(e[0], udpAnker(e[1]),e[2]) for e in data]
     elif (ptype == 'DIAG'):
         data = dbDML.select("""select diag_name ||' ('|| diat_bez ||')' name, diag_id 
         from 
@@ -138,7 +150,35 @@ def namelist(ptype, plang, pwrtbid=None):
     return datalist
 #namelist
 
-
+def udpattrlist(plang,pthema,pgruppe):
+    data = dbDML.select("""select attrname || ' ('||entname||')' name, attr_id 
+        from 
+ (select case when ana.sptx_text is null then attr_anzname 
+                                    else ana.sptx_text end  attrname
+    ,attr_id
+    ,case when ena.sptx_text is null then enti_name 
+                                    else ena.sptx_text end  entname
+  from attributes 
+  join entitaeten on enti_id = attr_enti_id
+  join sprachen sp on sp.spra_iso_code2 = '{}'         
+  join modellelement amo on amo.mode_attr_id = attr_id
+  left join spraattr ana on ana.sptx_attrname = 'ATTR_NAME'
+                        and ana.sptx_mode_id = amo.mode_id
+                        and ana.spra_id = sp.spra_id
+  join modellelement ame on ame.mode_enti_id = enti_id
+  left join spraattr ena on ena.sptx_attrname = 'ENTI_NAME'
+                        and ena.sptx_mode_id = ame.mode_id
+                        and ena.spra_id = sp.spra_id
+ where exists (select 1 from benudef_wert
+                    join benudef_eigenschaft on bdeg_id = bdwe_bdeg_id
+                    where bdwe_mode_id = amo.mode_id
+                      and bdeg_thema = '{}' and bdeg_gruppe = {}
+                      and bdwe_wert != '.')
+  ) order by upper(name)
+      """.format(plang,pthema,'bdeg_gruppe' if pgruppe == '*' else "'{}'".format(pgruppe)))
+    datalist = [(e[0], attrAnker(e[1]),e[1]) for e in data]
+    return datalist
+#udpattrlist
 def entilist(p_lang):
     #id, name, descr
     #group_concat('<a href="#ENTI'||sub_enti_id||'" target="details">'
@@ -171,10 +211,10 @@ def entilist(p_lang):
           from entitaeten e1
           join modellelement on mode_enti_id = enti_id
           join sprachen sp on sp.spra_iso_code2 = '{}'         
-          left join spraattr ena on ena.sptx_attrname = 'ENT_NAME'
+          left join spraattr ena on ena.sptx_attrname = 'ENTI_NAME'
                                 and ena.sptx_mode_id = mode_id
                                 and ena.spra_id = sp.spra_id
-          left join spraattr eco on eco.sptx_attrname = 'ENT_COMMENT'
+          left join spraattr eco on eco.sptx_attrname = 'ENTI_COMMENT'
                                 and eco.sptx_mode_id = mode_id
                                 and eco.spra_id = sp.spra_id
           left join (select case when ena.sptx_text is null then super_enti_name 
@@ -184,7 +224,7 @@ def entilist(p_lang):
                             ,ena.spra_id super_spra_id
                        from superenti
                        left join modellelement on mode_enti_id = super_enti_id
-                       left join spraattr ena on ena.sptx_attrname = 'ENT_NAME'
+                       left join spraattr ena on ena.sptx_attrname = 'ENTI_NAME'
                                 and ena.sptx_mode_id = mode_id
                     ) on  sub_enti_id = e1.enti_id
                       and (super_spra_id = sp.spra_id 
@@ -342,31 +382,54 @@ def relalist (p_entiid,p_lang):
     return bezi
 #relalist
 
-
-def udpnamen(p_meltname):
-    data = dbDML.select("""select  bdeg_thema,bdeg_gruppe,group_concat(bdeg_name,',') attrs
+def udpnamen(pmeltname, pthema=None, pgruppe=None):
+    if pgruppe is None:
+        lsql = """select  bdeg_thema,bdeg_gruppe,group_concat(bdeg_name,',') attrs
                            from modellelem_typ
                            join modelltyp_eigensch on mote_melt_id = melt_id  
                            join benudef_eigenschaft on bdeg_id = mote_bdeg_id
                            where melt_kurzname = '{}'
                         group by bdeg_thema,bdeg_gruppe
-                        order by bdeg_thema,bdeg_gruppe""".format(p_meltname))
+                        order by bdeg_thema,bdeg_gruppe""".format(pmeltname)
+    elif pgruppe == '*':
+        lsql="""select  bdeg_thema,'*'gr,group_concat(bdeg_name,',') attrs
+                           from modellelem_typ
+                           join modelltyp_eigensch on mote_melt_id = melt_id  
+                           join benudef_eigenschaft on bdeg_id = mote_bdeg_id
+                           where melt_kurzname = '{}'
+                           and bdeg_thema = {} 
+                        group by bdeg_thema
+                        order by bdeg_thema""".format(pmeltname
+                         ,'bdeg_thema' if pthema is None else "'{}'".format(pthema))
+    else:
+        lsql = """select  bdeg_thema,bdeg_gruppe,group_concat(bdeg_name,',') attrs
+                   from modellelem_typ
+                   join modelltyp_eigensch on mote_melt_id = melt_id  
+                   join benudef_eigenschaft on bdeg_id = mote_bdeg_id
+                   where melt_kurzname = '{}'
+                   and bdeg_thema = {} 
+                   and bdeg_gruppe = '{}' 
+                group by bdeg_thema,bdeg_gruppe
+                order by bdeg_thema,bdeg_gruppe""".format(pmeltname
+        , 'bdeg_thema' if pthema is None else "'{}'".format(pthema)
+            ,pgruppe)
+    data = dbDML.select(lsql)
     return data
 #udpnamen
-def udpwerte(p_meltname,p_id,p_thema,p_gruppe):
+def udpwerte(pmeltname, pthema, pgruppe, pid):
     data = dbDML.select("""select  bdwe_wert
             from benudef_wert
             join modellelement on mode_id = bdwe_mode_id
                                     and ({} = {}) 
             join benudef_eigenschaft on bdeg_id = bdwe_bdeg_id
-                    and bdeg_thema = '{}' and bdeg_gruppe = '{}'
-            order by bdeg_name
+                    and bdeg_thema = '{}' and bdeg_gruppe = {}
+            order by bdeg_thema,bdeg_gruppe,bdeg_name
             """.format("mode_" +
-                       ("enti" if p_meltname == 'ENTI'
-                        else "attr" if p_meltname == 'ATTR'
+                       ("enti" if pmeltname == 'ENTI'
+                        else "attr" if pmeltname == 'ATTR'
                        else "")
-                       + "_id ",p_id
-                       , p_thema, p_gruppe
+                       + "_id" ,pid
+                       , pthema, 'bdeg_gruppe' if pgruppe =='*'  else  "'{}'".format (pgruppe)
                        ))
     return data
 #udpwerte
@@ -459,7 +522,7 @@ def diagenti(pdiagid,plang):
                 join modellelement on mode_id = eled_mode_id
                 join entitaeten on enti_id = mode_enti_id
                 join sprachen sp on sp.spra_iso_code2 = '{}'         
-                left join spraattr ena on ena.sptx_attrname = 'ENT_NAME'
+                left join spraattr ena on ena.sptx_attrname = 'ENTI_NAME'
                                         and ena.sptx_mode_id = mode_id
                                         and ena.spra_id = sp.spra_id
                 where eled_diag_id = {}
@@ -492,6 +555,14 @@ def wrtbwerte(p_wrtbid):
     return data
 #wrtbwerte
 
+def udplist(ptyp):
+    data = dbDML.select("""select distinct bdeg_thema,bdet_gruppe
+                    from benudef_eigenschaft
+                    where bdeg_thema = '{}'
+                    order by bdeg_thema,gruppe"""
+            .format(ptyp))
+    return data
+#udplist
 def transltext(pattr, pmodeid, plang):
     data = dbDML.select("""
     select sptx_text
@@ -502,5 +573,5 @@ def transltext(pattr, pmodeid, plang):
     and sptx_attrname = '{}'
     and lower(spra_iso_code2) = lower('{}') 
     """.format(pmodeid, pattr, plang))
-    return data[0] if (len(data)> 0) else ''
+    return data[0][0] if (len(data)> 0) else ''
 #translist

@@ -113,8 +113,11 @@ def main(p_imdirec=None, p_modelname=None):
                 )
                 cross join (select 123)
                 where text is not null
-                            """
-    l_sql = """select * from projekt"""
+  """
+    l_sql = """ select   * from 
+                            benudef_eigenschaft 
+                           """
+    #l_sql = """select * from benudef_wert"""
     result = dbDML.select(l_sql)
     for row in result:
         print (row)

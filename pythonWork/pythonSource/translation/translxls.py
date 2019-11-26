@@ -5,12 +5,7 @@ import requests
 
 words:int = 0
 letters:int = 0
-transldict = {"Name" : "Name"
-              ,"ist" : "is"
-              ,"hat" : "has"
-              ,"Kürzel" : "Short name"
-              ,"Kuerzel" : "Short name"
-              ,"Beschreibung" : "Description"} #sind nur Beispiele
+transldict = {} #sind nur Beispiele
 
 def translateString(pval,pfrom,pto):
     global words
