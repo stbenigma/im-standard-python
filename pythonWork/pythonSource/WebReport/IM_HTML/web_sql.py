@@ -436,31 +436,19 @@ def udpwerte(pmeltname, pthema, pgruppe, pid):
 
 def wrtblist(p_lang):
     data = dbDML.select("""select * from 
-    (select wrtb_id
-            ,case when wna.sptx_text is null then wrtb_name 
+    (select wrtb_id, case when wna.sptx_text is null then wrtb_name 
                                     else wna.sptx_text end  wrtbname
-            ,wrtb_business_rule
-            ,wrtb_name
-            ,wrtb_beschr
-            ,wrtb_typ
-            ,wrtb_zpkt_minwert
-            ,wrtb_zpkt_maxwert
-            ,wrtb_zpkt_granularitaet
-            ,wrtb_text_maxlng
-            ,wrtb_text_syntaxregel
-            ,wrtb_num_maxwert
-            ,wrtb_num_minwert
-            ,wrtb_num_vorkstellen
-            ,wrtb_num_nachkstellen
-            ,wrtb_num_rundng_einh
-            ,wrtb_num_pheh_id
-            ,wrtb_bin_inhalttyp
-            ,wrtb_bin_spfo_id
-            ,wrtb_odm_guid
-            ,wrtb_uc
-            ,wrtb_dc
-            ,wrtb_um
-            ,wrtb_dm
+            ,wrtb_business_rule, wrtb_name
+            ,wrtb_beschr, wrtb_typ
+            ,wrtb_zpkt_minwert, wrtb_zpkt_maxwert
+            ,wrtb_zpkt_granularitaet, wrtb_text_maxlng
+            ,wrtb_text_syntaxregel, wrtb_num_maxwert
+            ,wrtb_num_minwert, wrtb_num_vorkstellen
+            ,wrtb_num_nachkstellen, wrtb_num_rundng_einh
+            ,wrtb_num_pheh_id, wrtb_bin_inhalttyp
+            ,wrtb_bin_spfo_id, wrtb_odm_guid
+            ,wrtb_uc, wrtb_dc
+            ,wrtb_um, wrtb_dm
             ,wrtb_datatype_ref
         from wertebereiche 
         join sprachen sp on sp.spra_iso_code2 = '{}'         

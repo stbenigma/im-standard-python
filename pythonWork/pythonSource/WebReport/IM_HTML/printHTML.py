@@ -371,7 +371,37 @@ def printfoot():
     </div>
         
     <script>
-        //Code for filtering input
+		// Quick and simple export target #table_id into a csv
+		function download_table_as_csv(table_id) {
+		    // Select rows from table_id
+		    var rows = document.querySelectorAll('table#' + table_id + ' tr');
+		    // Construct csv
+		    var csv = [];
+		    for (var i = 0; i < rows.length; i++) {
+		        var row = [], cols = rows[i].querySelectorAll('td, th');
+		        for (var j = 0; j < cols.length; j++) {
+		            // Clean innertext to remove multiple spaces and jumpline (break csv)
+		            var data = cols[j].innerText.replace(/(\\r\\n|\\n|\\r)/gm, '').replace(/(\\s\\s)/gm, ' ')
+		            // Escape double-quote with double-double-quote (see https://stackoverflow.com/questions/17808511/properly-escape-a-double-quote-in-csv)
+		            data = data.replace(/"/g, '""');
+		            // Push escaped string
+		            row.push('"' + data + '"');
+		        }
+		        csv.push(row.join(';'));
+		    }
+		    var csv_string = csv.join('\\n');
+		    // Download it
+		    var filename = 'export_' + table_id + '_' + new Date().toLocaleDateString() + '.csv';
+		    var link = document.createElement('a');
+		    link.style.display = 'none';
+		    link.setAttribute('target', '_blank');
+		    link.setAttribute('href', 'data:text/csv;charset=utf-8,' + encodeURIComponent(csv_string));
+		    link.setAttribute('download', filename);
+		    document.body.appendChild(link);
+		    link.click();
+		    document.body.removeChild(link);
+		}
+		//Code for filtering input
         function $x(pNd) {
             var lThis;
             switch (typeof(pNd)) {
@@ -671,11 +701,11 @@ def endabschnitt():
     """
     return end
 #startabschnitt
-def starttable(ptitel, pueberschriften, plevel=2):
-    tabhead= """        <h{}>{}</h{}>
+def starttable(ptitel, pueberschriften, plevel=2,ptabid=None,pselfanker=None):
+    tabhead= """        <h{}>{}</h{}>{}
                         <div id="container1">
                             <div class="table-responsive">
-                   <table class="table borderless">
+                   <table class="table borderless" {}>
                                             <tbody>
                                         <tr>
 """
@@ -683,7 +713,11 @@ def starttable(ptitel, pueberschriften, plevel=2):
 """
 #    tabheads="""<th class="attribute">{}</th>"""
     retval = []
-    retval.append(tabhead.format(plevel, ptitel, plevel))
+    retval.append(tabhead.format(plevel, ptitel, plevel
+                                 ,'' if ptabid is None
+                                    else  '<a href="#{}" onclick="download_table_as_csv(\'{}\');">download as CSV</a>'.format(pselfanker,ptabid)
+                                 ,'' if ptabid is None
+                                    else 'id="{}"'.format(ptabid)))
     for u in pueberschriften:
         retval.append(tabheads.format(u))
     return ''.join(retval)
@@ -806,34 +840,40 @@ def printcontentudp(plist):
     """
     fhtml.write(contenthead)
     for m in plist:
+        lthema=m[2]
+        lgruppe=m[0]
+        lanker=m[1]
         namenliste = [transl('Attribut')]
-        udpnamen = web_sql.udpnamen(pmeltname='ATTR',pthema=m[2],pgruppe=m[0])
+        udpnamen = web_sql.udpnamen(pmeltname='ATTR',pthema=lthema,pgruppe=lgruppe)
         #print ('udpnamen=',udpnamen,m[2],m[0])
         if len(udpnamen) == 0: continue
         udpnamen = udpnamen[0][2].split(',')
+        udpnamen.sort()  # SQl kann keine sortierte group_concat liefern
+
         #print ('udpnamen=',udpnamen)
         namenliste.extend(udpnamen)
 
-        print ("für * müssen die Gruppen und die Namen sortiert werden, bei Überschriften gleich wie bei Werten")
-        al = web_sql.udpattrlist(pthema=m[2],pgruppe=m[0],plang=reportLang())
+        al = web_sql.udpattrlist(pthema=lthema,pgruppe=lgruppe,plang=reportLang())
         werte = []
         for a in al:
             zeile = [href(ref=a[1],anz=a[0])]
-            udpwerte = web_sql.udpwerte(pmeltname='ATTR',pthema=m[2],pgruppe=m[0],pid = a[2])
+            udpwerte = web_sql.udpwerte(pmeltname='ATTR',pthema=lthema,pgruppe=lgruppe,pid = a[2])
             if udpwerte is None: continue
             zeile.extend(w[0] for w in udpwerte)
             werte.append(zeile)
 
         lbc = str(newbarcounter())
-        fhtml.write(contentelementhead.format(m[1]
+        fhtml.write(contentelementhead.format(lanker
                                               , transl('Attribute - Mapping')
-                                              , m[0]  # anzname
+                                              , lgruppe  # anzname
                                               , lbc))
         fhtml.write(detailshead)
 
         fhtml.write(starttable(ptitel='Mapping'
                                , pueberschriften=namenliste
-                               , plevel=3))
+                               , plevel=3
+                               , ptabid='TAB-{}'.format(lgruppe if lgruppe != '*' else 'ALL')
+                               , pselfanker=lanker))
         for w in werte: fhtml.write(writetableline(pwerte=w))
         fhtml.write(endtable())
 

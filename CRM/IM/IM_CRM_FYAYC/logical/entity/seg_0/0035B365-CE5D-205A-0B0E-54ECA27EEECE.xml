@@ -70,6 +70,8 @@ EMEA (Europe, Middle East, Africa) (Vertriebsorganisation)
 <property name="EN_ENTI_SYNONYM" value="*DE* ldgrp"/>
 <property name="FR_ENTI_NAME" value="*DE* Ländergruppe"/>
 <property name="FR_ENTI_SYNONYM" value="*DE* ldgrp"/>
+<property name="PENTA TabName" value="landgroups"/>
+<property name="PIM TabName" value="ldgroup"/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Typ" id="854EF45E-D99B-33BB-CEBA-CCBFD3723223">
@@ -100,6 +102,10 @@ Typ der Ländergruppe (Vertrieb, Zoll, Organisation)
 <property name="DE_ATTR_NAME" value="Typ"/>
 <property name="EN_ATTR_NAME" value="Purpose"/>
 <property name="FR_ATTR_NAME" value="*DE* Typ"/>
+<property name="PENTA AttrName" value="type"/>
+<property name="PENTA datatype" value="number"/>
+<property name="PIM AttrName" value="ldtp"/>
+<property name="PIM datatype" value="number"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Zweck" id="4884CAC4-510A-4F0B-4C72-FC6E2F36D0B3">
@@ -129,6 +135,9 @@ Typ der Ländergruppe (Vertrieb, Zoll, Organisation)
 <property name="DE_ATTR_NAME" value="Zweck"/>
 <property name="EN_ATTR_NAME" value="Type"/>
 <property name="FR_ATTR_NAME" value="*DE* Zweck"/>
+<property name="PENTA AttrName" value="reason"/>
+<property name="PIM AttrName" value="ldreason"/>
+<property name="PIM datatype" value="text"/>
 </propertyMap>
 </Attribute>
 </attributes>

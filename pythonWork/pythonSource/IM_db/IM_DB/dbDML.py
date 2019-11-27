@@ -16,7 +16,7 @@ def select(psql):
             pass
         else:
             print (psql)
-            print ("Unerwarteter SQL-Fehler: \t%s" % e)
+            print ("select: Unerwarteter SQL-Fehler: \t%s" % e)
             raise e
     result = cursor.fetchall()
     return result
@@ -31,7 +31,7 @@ def lookup(psql):
         if re.match("bekannter Fehler",e.__str__()):
             pass
         else:
-            print ("Unerwarteter SQL-Fehler: \t%s" % e)
+            print ("lookup: Unerwarteter SQL-Fehler: \t%s" % e)
             raise e
     result = cursor.fetchall()
     if result == []:
@@ -49,9 +49,9 @@ def delete(ptableName):
         if re.match("table .* already exists",e.__str__()):
             pass
         else:
-            print ("Unerwarteter SQL-Fehler: \t%s" % e)
+            print ("delete: Unerwarteter SQL-Fehler: \t%s" % e)
             raise e
-#end delete
+#delete
 
 def insert(psql,rec):
     #print (psql,rec)
@@ -70,12 +70,12 @@ def insert(psql,rec):
             pass
         else:
             print(psql, rec,type(rec))
-            print ("Unerwarteter SQL-Fehler: \t{}" .format (str(e)))
+            print ("insert: Unerwarteter SQL-Fehler: \t{}" .format (str(e)))
             raise e
     id = cursor.lastrowid
     dbConnect.myDbConn.commit()
     return id
-#end insert
+#insert
 
 def insertmany(psql,rec):
     insert(psql,rec)
@@ -93,7 +93,7 @@ def exec(psql,*args):
         if re.match("xxxxxxx",e.__str__()):
             pass
         else:
-            print ("Unerwarteter SQL-Fehler: \t%s" % e)
+            print ("exec: Unerwarteter SQL-Fehler: \t%s" % e)
             raise e
     dbConnect.myDbConn.commit()
 #end exec
@@ -108,7 +108,7 @@ def execmany(psql,recs):
         if re.match("xxxxxxx",e.__str__()):
             pass
         else:
-            print ("Unerwarteter SQL-Fehler: \t%s" % e)
+            print ("execmany: Unerwarteter SQL-Fehler: \t%s" % e)
             raise e
     dbConnect.myDbConn.commit()
 #execmany

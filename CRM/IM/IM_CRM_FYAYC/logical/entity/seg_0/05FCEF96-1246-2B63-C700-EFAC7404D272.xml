@@ -81,8 +81,11 @@ Zweck der Adresse (Finanz, Post, Lieferung etc.)
 <property name="DE_ATTR_NAME" value="Adresstyp"/>
 <property name="EN_ATTR_NAME" value="Address type"/>
 <property name="FR_ATTR_NAME" value="*DE* Adresstyp"/>
+<property name="PENTA AttrID" value=""/>
+<property name="PENTA AttrName" value="adresstyp"/>
 <property name="PIM AttrID" value="11445"/>
 <property name="PIM AttrName" value="adress Type"/>
+<property name="PIM EnglName" value="ADR type"/>
 <property name="PIM datatype" value="integer"/>
 <property name="PIM usage" value="RW"/>
 </propertyMap>
@@ -114,8 +117,10 @@ Zweck der Adresse (Finanz, Post, Lieferung etc.)
 <property name="DE_ATTR_NAME" value="Strassenname"/>
 <property name="EN_ATTR_NAME" value="Street name"/>
 <property name="FR_ATTR_NAME" value="*DE* Strassenname"/>
+<property name="PENTA AttrName" value="str_name"/>
 <property name="PIM AttrID" value="5454"/>
 <property name="PIM AttrName" value="street"/>
+<property name="PIM EnglName" value="street"/>
 <property name="PIM datatype" value="string"/>
 <property name="PIM usage" value="R"/>
 </propertyMap>
@@ -147,8 +152,10 @@ Zweck der Adresse (Finanz, Post, Lieferung etc.)
 <property name="DE_ATTR_NAME" value="Hausnr"/>
 <property name="EN_ATTR_NAME" value="House no"/>
 <property name="FR_ATTR_NAME" value="*DE* Hausnr"/>
+<property name="PENTA AttrName" value="haus_nr"/>
 <property name="PIM AttrID" value="1142"/>
 <property name="PIM AttrName" value="no"/>
+<property name="PIM EnglName" value="number"/>
 <property name="PIM datatype" value="string"/>
 <property name="PIM usage" value="RW"/>
 </propertyMap>
@@ -180,7 +187,9 @@ Zweck der Adresse (Finanz, Post, Lieferung etc.)
 <property name="DE_ATTR_NAME" value="Gebäudename"/>
 <property name="EN_ATTR_NAME" value="Building name"/>
 <property name="FR_ATTR_NAME" value="*DE* Gebäudename"/>
+<property name="PENTA AttrName" value="build_name"/>
 <property name="PIM AttrName" value=""/>
+<property name="PIM EnglName" value="building name"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Geokoordinate" id="2C711332-0D94-0253-5C07-B9271155ADB9">
@@ -210,6 +219,8 @@ Zweck der Adresse (Finanz, Post, Lieferung etc.)
 <property name="DE_ATTR_NAME" value="Geokoordinate"/>
 <property name="EN_ATTR_NAME" value="Geocoordinate"/>
 <property name="FR_ATTR_NAME" value="*DE* Geokoordinate"/>
+<property name="PENTA AttrName" value="coord"/>
+<property name="PIM EnglName" value="coordinate"/>
 </propertyMap>
 </Attribute>
 </attributes>

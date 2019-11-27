@@ -161,7 +161,7 @@ def transferDomains():
         #print (wrtb.wrtb_datatype_ref,wrtb.wrtb_typ )
 
         lov = dom.find('listOfValues')
-        if (lov is not None) & (lov != {}):
+        if (lov is not None) and (lov != {}):
             wrtb.wrtb_typ = 'LOV'
             lovs = dict()
             for lovval in lov:
@@ -173,11 +173,10 @@ def transferDomains():
         ranges = dom.findall('listOfRanges/rangeDef')
         if not (ranges == []):
             try:
-                range=(ranges[0].find('beginValue').text,ranges[0].find('endValue').text)
+                range=(findText(ranges[0],'beginValue'),findText(ranges[0],'endValue'))
             except:
                 print ("was ist hier los *******")
                 pass
-
         else:
             range = (None,None)
         #endif
@@ -789,36 +788,39 @@ def do1UDPFile(pudpThema,pfileName):
 
     props = root.find('properties')
     #print (props)
+    propgroups=[]
     for prop in props.findall('property'):
+        group = prop.get('group_id')
         #print (prop.get('name'))
         #print (prop.get('name'),prop.get('dispalay_name'),lgroups[prop.get('group_id')],prop.get('default_value'),findText(prop,'description'))
         #bdeg_thema, bdeg_gruppe, bdeg_name, bdeg_default_value
         #bdeg_beschreibung, bdeg_optional, bdeg_wrtb_id,
         #bdeg_uc, bdeg_dc
-        ludp = (lupdThema,lgroups[prop.get('group_id')],prop.get('name'),prop.get('default_value')
+        ludp = (lupdThema,lgroups[group],prop.get('name'),prop.get('default_value')
                 ,findText(prop,'description'),'FALSE',None
                 ,'--',date.today().__str__())
         udpId = dbInserts.insertUDP(pData=ludp)
         if (lupdThema == parameters.odmUDPTranslFileName()):
             #die speziellen Properties manuell
-            try: #do it only once. any error  is supposed to be double entry
+            if not (group in propgroups): #nur einmal eintragen je Sprache (Gruppe)
+                propgroups.append(group)
                 ludpid=dbInserts.insertUDP(pData=(lupdThema, lgroups[prop.get('group_id')]
-                    , lgroups[prop.get('group_id')]+'_RELA_TEXT_FROM', None
+                    , lgroups[group]+'_RELA_TEXT_FROM', None
                     , None, 'FALSE', None, '--', date.today().__str__()))
                 dbInserts.insertModellElemTyp((dbLookup.meltLookup(type2melt('Relation')), ludpid))
                 ludpid=dbInserts.insertUDP(pData=(lupdThema, lgroups[prop.get('group_id')]
-                    , lgroups[prop.get('group_id')]+'_RELA_TEXT_TO', None
+                    , lgroups[group]+'_RELA_TEXT_TO', None
                     , None, 'FALSE', None, '--', date.today().__str__()))
                 dbInserts.insertModellElemTyp((dbLookup.meltLookup(type2melt('Relation')), ludpid))
                 ludpid=dbInserts.insertUDP(pData=(lupdThema, lgroups[prop.get('group_id')]
-                    , lgroups[prop.get('group_id')]+'_ENTI_COMMENT', None
+                    , lgroups[group]+'_ENTI_COMMENT', None
                     , None, 'FALSE', None, '--', date.today().__str__()))
                 dbInserts.insertModellElemTyp((dbLookup.meltLookup(type2melt('Entity')), ludpid))
                 ludpid=dbInserts.insertUDP(pData=(lupdThema, lgroups[prop.get('group_id')]
-                    , lgroups[prop.get('group_id')]+'_ATTR_COMMENT', None
+                    , lgroups[group]+'_ATTR_COMMENT', None
                     , None, 'FALSE', None, '--', date.today().__str__()))
                 dbInserts.insertModellElemTyp((dbLookup.meltLookup(type2melt('Attribute')), ludpid))
-            except: pass
+            #fi
         #fi
 
         obj = prop.findall('objects/object')
@@ -826,10 +828,11 @@ def do1UDPFile(pudpThema,pfileName):
             lMelt = re.split( "\.",o.get('class'))[6]
             #print( type2melt(lMelt))
             #print (lMelt)
-            try:
-                dbInserts.insertModellElemTyp((dbLookup.meltLookup(type2melt(lMelt)),udpId))
-            except:
-                None
+            lmeltid=type2melt(lMelt)
+            if lmeltid != "":
+                try:    dbInserts.insertModellElemTyp((dbLookup.meltLookup(lmeltid),udpId))
+                except: pass
+            #fi
 
 
         #print (ludp)

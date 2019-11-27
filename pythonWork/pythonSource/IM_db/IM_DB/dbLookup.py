@@ -42,7 +42,8 @@ def wrtbLookup (pguid):
 #wrtbLookup
 
 def meltLookup(p_kurzname):
-    return doLookup(p_kurzname, 'select melt_id from modellelem_typ where melt_kurzname = "{}"')
+    return doLookup(p_kurzname, 'select melt_id from modellelem_typ where melt_kurzname = "{}"'
+                    ,withnotfound=True)
 # MeltLookup
 
 def diatid (p_name):
@@ -57,7 +58,8 @@ def modeEntiLookup(p_entiid):
 # modeEntiLookup
 
 def bdegLookup(pname):
-        return doLookup(pname, 'select bdeg_id from benudef_eigenschaft where bdeg_name = "{}"')
+        return doLookup(pname, 'select bdeg_id from benudef_eigenschaft where bdeg_name = "{}"'
+                        ,withnotfound=True)
 # MeltLookup
 
 def wrtbLookupByName(pname):

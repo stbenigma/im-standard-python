@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>fyayc_dev_base (de)</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+
+<body>
+
+    <div class="header" id="TopBar">
+        <p4>foryouandyourcustomers</p4>
+        <p4>fyayc_dev_base (de)</p4>
+        <p5>2019-11-27, 14:34</p5>
+        <img src="image/logo.jpg" alt="foryouandyourcustomers" id="LLogo">
+    </div>
+        <button id="btnF" type="button" class="btn btn-info" data-toggle="modal" data-target="#MobileSearch">
+        <img class="icon-filter" alt="filter" src="icons/search.svg">
+    </button>
+    <div class="container" id="sidebar">
+        <div id="toc_list">
+            <div class="form-wrapper">
+                <form autocomplete="off">
+                    <div class="form-group">
+                        <label class="form-label" for="first">Suchbegriff</label>
+                        <input id="first" class="form-input" type="text" onkeyup="$d_Find('toc_list',this.value,'a')" />
+                        <img id="searchclear" class="icon-times" src="icons/cross.svg">
+                        <img class="icon-search" alt="minus" src="icons/search.svg" id="searcher">
+                    </div>
+                </form>
+            </div>
+            <p6>Treffer:</p6>
+                <output id="count"></output>
+                <div class="contentView">
+
+            </div>
+        </div>
+    </div>
