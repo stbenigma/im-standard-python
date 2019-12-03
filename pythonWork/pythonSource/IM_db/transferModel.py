@@ -277,22 +277,27 @@ def transferentity(penti, pdiagid, puc, pdc):
     enticategorey = findField(penti,'typeID')
     entiid = dbLookup.entiID(entiodm)
     layout= penti.find('bounds')
-    col = color(None,None,None,None,None,None)
+    col = defcolors['Entity'] #defaults können mal geladen werden
     if (findText(penti, 'useDefaultColor') == 'false'):
 
         col.backgcolor = findText(penti, 'backgroundColor')
         col.foregcolor = findText(penti, 'foregroundColor')
         #print (backgroundc,foregroundc)
-        font = penti.findall('fonts/FontObject[foType ="Title"]')
-        if font is None: font = penti.findall('fonts/FontObject[foType ="Titel"]')
+        font = penti.find('fonts/FontObject[foType ="Title"]')
+        #deutsche ODMnutzuer schreiben Titel in die Kongig....
+        if font is None: font = penti.find('fonts/FontObject[foType ="Titel"]')
         #fontname,fontsize,fontstyle):
-        col.fontcolor = findText(font,'colorRGB')
-        col.fontstyle = findText(font,'fontStyle')
+        v = findText(font,'colorRGB')
+        col.fontcolor = v if v is not None else col.fontcolor
+        v = findText(font, 'fontStyle')
+        col.fontstyle = v if v is not None else col.fontstyle
+        v = findText(font, 'fontSize')
+        col.fontsize = v if v is not None else col.fontsize
     else:
         #check wether entity belongs to categor
         #muss über Modell und saubere Tabellen abgehandelt werden
         # if (enticategorey is None):
-        col = defcolors['Entity']
+        pass
     #fi
     #print (col.foregcolor,col.backgcolor)
     #eled_position_x,eled_position_y,eled_breite,eled_hoehe
@@ -301,16 +306,23 @@ def transferentity(penti, pdiagid, puc, pdc):
     #,eled_diag_id, eled_uc, eled_dc, eled_um
     #, eled_dm
 
-    row = (layout.get('x'), layout.get('y'), layout.get('width'), layout.get('height')
+    index = 0
+    #if there are several copies on a diagramm, repeat the insert with new index und insert succeeds
+    while True:
+        row = (layout.get('x'), layout.get('y'), layout.get('width'), layout.get('height')
               , 100, int2hex(col.backgcolor), None, 100
-              , int2hex(col.foregcolor), None, int2hex(col.fontcolor), dbLookup.modeEntiLookup(p_entiid=entiid)
-             , pdiagid, puc, pdc, None
+              , int2hex(col.foregcolor),col.fontsize, int2hex(col.fontcolor), dbLookup.modeEntiLookup(p_entiid=entiid)
+             , pdiagid, index,puc, pdc, None
              , None)
-    #print (row)
-    try:
-        dbInserts.insertelementdarst(pdata=row)
-    except:
-        print (pdiagid,entiid,dbLookup.modeEntiLookup(p_entiid=entiid))
+        #print (row)
+        try:
+            dbInserts.insertelementdarst(pdata=row)
+            break # no more looping for copies of element on diagramm
+        except sqlite3.IntegrityError:
+            index +=1
+        except Exception as ex:
+            raise ex
+    #while
 #transferentity
 
 def transferdiaobj(pobjects, pdiagid, puc, pdc):
@@ -923,9 +935,9 @@ def loeschmodell():
 #loeschmodell
 
 def loadcolors(coldict, classkey, elem):
-    for fo in elem.findall('fonts'):
-        if ((findField(fo, 'name') == 'Title')
-           or (findField(fo, 'name') == 'Titel')): #es könnte auch Deutsch sein
+    for fo in elem.findall('fonts/font_object'):
+        if ((findField(fo, 'fo_type') == 'Title')
+           or (findField(fo, 'fo_type') == 'Titel')): #es könnte auch Deutsch sein
             coldict[classkey].fontcolor = findField(fo, 'font_color')
             coldict[classkey].fontname = findField(fo, 'font_name')
             coldict[classkey].fontsize = findField(fo, 'font_size')
@@ -955,7 +967,7 @@ def loaddefaultcolors():
                                                      ,findField(de,'background')
                                                      ,None,None,None,None)
         loadcolors(coldict=defcolors,classkey=classname,elem=de)
-        #print(classname,defcolors[classname].foregcolor,defcolors[classname].backgcolor)
+        #print(classname,defcolors[classname].fontsize)
     #for
 #loaddefaultcolors
 

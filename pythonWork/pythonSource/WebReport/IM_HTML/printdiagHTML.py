@@ -10,18 +10,18 @@ def printlegend(pdata,pwidth,pheigh,px,py):
                 """
     legendentry1 = """
 <rect x="0" y="0" width="{}" height="{}" />
-<text x="10" y="{}" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
+<text x="10" y="{}" fill="rgb(0,0,255)" fill-opacity="1.0" font-size="10" stroke="none">
 {}:
 </text>
-<text x="86" y="{}" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
+<text x="86" y="{}" fill="rgb(0,0,255)" fill-opacity="1.0" font-size="10" stroke="none">
 {}
 </text>
 """
     legendentry2 = """<line x1="0" y1="{}" x2="261" y2="{}" fill="none" stroke="rgb(0,0,0)"/>
-<text x="10" y="{}" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
+<text x="10" y="{}" fill="rgb(0,0,255)" fill-opacity="1.0" font-size="10" stroke="none">
 {}:
 </text>
-<text x="86" y="{}" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
+<text x="86" y="{}" fill="rgb(0,0,255)" fill-opacity="1.0" font-size="10" stroke="none">
 {}
 </text>
 """
@@ -83,16 +83,18 @@ def printelements(pdiagid,plang):
     elist = web_sql.diagenti(pdiagid,plang)
     if elist is None: return
     for e in elist:
+        if e[12]== 456:
         #print (e[5],e[8],e[10],hex2rbg(e[5]))
-        print (enti.format(hex2rbg(e[5]), hex2rbg(e[8])
-            ,e[4],e[7]
+            print (enti.format(hex2rbg(e[5]), hex2rbg(e[8])
+            ,round(e[4]/100,2),round(e[7]/100,2)
             ,e[0],e[1],e[1],e[3]
-           ,web_sql.entiAnker(e[12]),hex2rbg(e[10]),e[9],e[11]))
+           ,web_sql.entiAnker(e[12]),hex2rbg(e[10]),e[9],e[11]+('' if (e[13]==0) else':'+str(e[13]))))
 
         printHTML.fhtml.write(enti.format(hex2rbg(e[5]), hex2rbg(e[8])
-            ,e[4],e[7]
+            ,round(e[4]/100,2),round(e[7]/100,2)
             ,e[0],e[1],e[1],e[3]
-           ,web_sql.entiAnker(e[12]),hex2rbg(e[10]),e[9],e[11]))
+           ,web_sql.entiAnker(e[12])
+                          ,hex2rbg(e[10]),e[9],e[11]+('' if (e[13]==0) else':'+str(e[13]))))
     #for
 #printelements
 

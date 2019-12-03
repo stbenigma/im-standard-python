@@ -1,12 +1,9 @@
 # -*- coding: latin-1 -*-
 import sys,os
-
-import IM_HTML.printdiagHTML
-
 sys.path.append(os.path.dirname(os.path.realpath(__file__))+'/../IM_db')
 from datetime import date,datetime
 from IM_DB import parameters,dbConnect,dbDDL,dbDML,dbErstelleTables,dbInserts,dbLookup,dbParam
-from IM_HTML import printHTML,web_sql
+from IM_HTML import printHTML,web_sql,printdiagHTML
 
 # Main Programm
 def nvl(x,default=''):
@@ -94,7 +91,6 @@ def printAttrUDPMatrix(thema=None):
         printHTML.writeTable(values)
     # endFor
     printHTML.endTable('')
-
 #printAttrUDPMatrix
 
 
@@ -104,7 +100,7 @@ def printlistofcontent():
     printHTML.printlistofcontentelement(pname='Attribute', plist=web_sql.namelist(ptype='ATTR', plang=printHTML.reportLang()))
     printHTML.printlistofcontentelement(pname='Domänen', plist=web_sql.namelist(ptype='WRTB', plang=printHTML.reportLang()))
     printHTML.printlistofcontentelement(pname='Attribut-Mapping', plist=web_sql.namelist(ptype='UDP', plang=printHTML.reportLang()))
-    printHTML.printlistofcontentelement(pname='Diagramme', plist=web_sql.namelist(ptype='DIAG', plang=printHTML.reportLang()))
+    #printHTML.printlistofcontentelement(pname='Diagramme', plist=web_sql.namelist(ptype='DIAG', plang=printHTML.reportLang()))
     printHTML.printlistofcontentfoot()
 # printlistofcontent
 
@@ -114,7 +110,7 @@ def printcontent(pfirma,ptitel):
     printHTML.printcontentattr(plist=web_sql.attrlist(p_lang=printHTML.reportLang()))
     printHTML.printcontentwrtb(p_list=web_sql.wrtblist(p_lang=printHTML.reportLang()))
     printHTML.printcontentudp(plist=web_sql.namelist(ptype='UDP', plang=printHTML.reportLang()))
-    #IM_HTML.printdiagHTML.printcontentdiag(plist=web_sql.diaglist(),plang=printHTML.reportLang())
+    #printdiagHTML.printcontentdiag(plist=web_sql.diaglist(),plang=printHTML.reportLang())
 #    printHTML.printattrmaps(p_list=web_sql.wrtblist(p_lang=printHTML.reportLang()))
 #    printHTML.printdiagrams(p_list=web_sql.wrtblist(p_lang=printHTML.reportLang()))
     printHTML.printcontentfoot()
@@ -130,62 +126,19 @@ def printhtmlfile(p_firma,p_titel,p_info,p_logofilename):
     printcontent(pfirma=p_firma,ptitel=p_titel);
     printHTML.printfoot();
     printHTML.closefile ();
-    return
 
-    for w in wrtb:
-        #print (w)
-        printHTML.printTable({"Wertebereich": w[2], "Beschreibung":nvl(w[3])\
-                                    ,"Datentyp":formatDatentyp((w[4],w[5],w[6],w[7],w[8],w[9],w[10],w[11],w[12],w[13],w[6],w[10]))
-        , "Autor":w[18], "Erstellt":w[19]} \
-                             , anker=wrtbAnker(w[0]))
-        #print (w)
-        doms = dbDML.select("select * from vorgabewerte where vgwt_wrtb_id ={} order by vgwt_sortrhfg" .format(w[0]))
-        if doms != []:
-            printHTML.starttable('Werteliste', ('Sort', 'Wert', 'Anzeige', 'Beschreibung'))
-            #print ("Vorgabewerte",doms)
-            for d in doms:
-                #print (d)
-                printHTML.writeTable((d[2], d[1], d[4], d[5]))
-            #endfor
-            printHTML.endTable('')
-        #endif
-        printHTML.starttable('Verwendet von', ('Typ', 'Entität/Tabelle', 'Name'))
-        attcols = dbDML.select("""select 'Attribut' as attr ,enti_name,attr_tech_name
-                        , attr_id,enti_id
-                        from attributes 
-                     join sprachen sp on sp.spra_iso_code2 = '{}'         
-                      join (select case when ena.sptx_text is null then enti_name else ena.sptx_text end enti_name
-                                ,enti_id,spra_id ,enti_odm_guid
-                        from entitaeten 
-                        join modellelement on mode_enti_id = enti_id
-                       left join spraattr ena on ena.sptx_attrname = 'ENT_NAME'
-                                and ena.sptx_mode_id = mode_id 
-                ) ent on enti_id = attr_enti_id
-                     and ent.spra_id = sp.spra_id
-                        where attr_wrtb_id = {}""" .format(printHTML.greportLang,w[0]))
-        for c in attcols:
-            printHTML.writeTable((c[0], href(ref=entiAnker(c[4]), anz=c[1]), href(ref=attrAnker(c[3]), anz=c[2])))
-        printHTML.endTable('')
-    #endfor
 
-    for u in udpAttrThema:
-        printAttrUDPMatrix(thema=u[0])
-    # printAttrUDPMatrix()
 #printhtmlfile
 
-def main(p_direc,p_lang,p_webdirec):
-    parameters.initparam(p_callarg=p_direc)
-    printHTML.setWebDirec(p_webdirec=p_webdirec)
-
-    dbConnect.openDB(p_filepath= parameters.dbFilePath());
+def listwebmain(plang):
     dbParam.liesDefaultLang()
     printHTML.createlib()
-    if (p_lang is None):
+    if (plang is None):
         langs = web_sql.projektlangs().split(',')
         if (len(langs) == 0):
             langs = [printHTML.reportLang()]
     else:
-        printHTML.reportLang(p_lang.lower())
+        printHTML.reportLang(plang.lower())
         langs = [printHTML.reportLang()]
     #fi
 
@@ -197,6 +150,14 @@ def main(p_direc,p_lang,p_webdirec):
                           , p_logofilename=parameters.logoFileName()
                           )
     # for
+#listwebmain
+
+def main(pdirec, plang):
+    parameters.initparam(p_callarg=pdirec)
+    printHTML.setWebDirec(p_webdirec=None)
+
+    dbConnect.openDB(p_filepath= parameters.dbFilePath());
+    listwebmain(plang=plang)
 
     dbConnect.myDbConn.close()
 #main
@@ -204,5 +165,4 @@ def main(p_direc,p_lang,p_webdirec):
 if __name__ == '__main__':
     direc = sys.argv[1]
     lang = sys.argv[2] if (len(sys.argv)>2) else None
-    webdirec = sys.argv[3] if (len(sys.argv)>3) else None
-    main(p_direc=direc,p_lang=lang,p_webdirec=webdirec)
+    main(pdirec=direc, plang=lang)

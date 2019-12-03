@@ -238,9 +238,9 @@ def insertelementdarst(pdata):
     eled_position_x,eled_position_y,eled_breite,eled_hoehe
     ,eled_deckkraft,eled_farbe,eled_randbreite,eled_randdeckkraft
     ,eled_randfarbe, eled_schriftgroesse, eled_schriftfarbe, eled_mode_id
-    ,eled_diag_id, eled_uc, eled_dc, eled_um
+    ,eled_diag_id, eled_index, eled_uc, eled_dc, eled_um
     , eled_dm)
-    values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)    
+    values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)    
     """
     return dbDML.insertmany(lsql, pdata)
 #insertelementdarst

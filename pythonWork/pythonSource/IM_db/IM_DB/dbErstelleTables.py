@@ -638,38 +638,39 @@ CREATE TABLE melt_diat(
     dbDDL.dropTable("elementdarst");
     dbDDL.createTable("""
 CREATE TABLE elementdarst(
-    eled_id               integer primary key autoincrement,
-    eled_position_x       integer NULL,
-    eled_position_y       integer NULL,
-    eled_breite           integer NOT NULL,
-    eled_hoehe            integer NOT NULL,
-    eled_deckkraft        integer NULL
-        CHECK(eled_deckkraft BETWEEN 0 AND 100),
-    eled_farbe            varchar(6)  NOT NULL
-        CHECK(length(eled_farbe)= 6),
-    eled_randbreite       integer NULL,
-    eled_randdeckkraft    integer NULL
-        CHECK(eled_randdeckkraft BETWEEN 0 AND 100),
-    eled_randfarbe        varchar(6)  NULL
-        CHECK(length(eled_randfarbe)= 6),
-    eled_schriftgroesse   integer NULL
-        CHECK(eled_schriftgroesse BETWEEN 1 AND 999),
-    eled_schriftfarbe     varchar(6) NULL
-        CHECK(length(eled_schriftfarbe)= 6),
-    eled_mode_id          integer NOT NULL,
-    eled_diag_id          integer NOT NULL,
-        eled_uc           varchar(30) NOT NULL,
-    eled_dc               varchar(30) NOT NULL,
-    eled_um               varchar(30) ,
-    eled_dm               varchar(30),
-	CONSTRAINT eled_un UNIQUE(eled_diag_id,eled_mode_id),
-    CONSTRAINT eled_diag_fk FOREIGN KEY(eled_diag_id)
-        REFERENCES diagramme(diag_id)
-            ON DELETE CASCADE,
-	CONSTRAINT eled_mode_fk FOREIGN KEY(eled_mode_id)
-			        REFERENCES modellelement(mode_id)
-			            ON DELETE CASCADE
-)	          """);
+				      eled_id               integer primary key autoincrement,
+				      eled_position_x       integer NULL,
+				      eled_position_y       integer NULL,
+				      eled_breite           integer NOT NULL,
+				      eled_hoehe            integer NOT NULL,
+				      eled_deckkraft        integer NULL
+				          CHECK(eled_deckkraft BETWEEN 0 AND 100),
+				      eled_farbe            varchar(6)  NOT NULL
+				          CHECK(length(eled_farbe)= 6),
+				      eled_randbreite       integer NULL,
+				      eled_randdeckkraft    integer NULL
+				          CHECK(eled_randdeckkraft BETWEEN 0 AND 100),
+				      eled_randfarbe        varchar(6)  NULL
+				          CHECK(length(eled_randfarbe)= 6),
+				      eled_schriftgroesse   integer NULL
+				          CHECK(eled_schriftgroesse BETWEEN 1 AND 999),
+				      eled_schriftfarbe     varchar(6) NULL
+				          CHECK(length(eled_schriftfarbe)= 6),
+				      eled_mode_id          integer NOT NULL,
+				      eled_diag_id          integer NOT NULL,
+				      eled_index            NUMBER(4)DEFAULT 0 NOT NULL,
+				      eled_uc           varchar(30) NOT NULL,
+				      eled_dc               varchar(30) NOT NULL,
+				      eled_um               varchar(30) ,
+				      eled_dm               varchar(30),
+				  	CONSTRAINT eled_un UNIQUE(eled_diag_id,eled_mode_id,eled_index),
+				      CONSTRAINT eled_diag_fk FOREIGN KEY(eled_diag_id)
+				          REFERENCES diagramme(diag_id)
+				              ON DELETE CASCADE,
+				  	CONSTRAINT eled_mode_fk FOREIGN KEY(eled_mode_id)
+				  			        REFERENCES modellelement(mode_id)
+				  			            ON DELETE CASCADE
+				  )""");
     dbDDL.dropTable("beziehung_darst");
     dbDDL.createTable("""
 CREATE TABLE beziehung_darst(

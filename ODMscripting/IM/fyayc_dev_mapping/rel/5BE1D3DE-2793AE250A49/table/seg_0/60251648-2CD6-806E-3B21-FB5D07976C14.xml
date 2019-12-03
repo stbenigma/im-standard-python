@@ -5,10 +5,11 @@
 <comment><![CDATA[Eine Entität die einfach so da steht.]]></comment>
 <generatorID>14B08944-61ED-5412-55F3-1A5EAEA2D6B7</generatorID>
 <ownerDesignName>fyayc_dev_mapping</ownerDesignName>
+<ordsAlias>entiaet1</ordsAlias>
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
-<Column name="Name" id="7F2D9997-82A1-0F71-7682-C5C54326A60D">
+<Column name="name" id="7F2D9997-82A1-0F71-7682-C5C54326A60D">
 <createdBy>stb</createdBy>
 <createdTime>2019-11-09 16:58:14 UTC</createdTime>
 <generatorID>42C69A69-647B-2103-8105-2F55DE2A5A54</generatorID>
@@ -54,7 +55,7 @@
 <use>1</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
 <dataTypePrecision>10</dataTypePrecision>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 <associations>

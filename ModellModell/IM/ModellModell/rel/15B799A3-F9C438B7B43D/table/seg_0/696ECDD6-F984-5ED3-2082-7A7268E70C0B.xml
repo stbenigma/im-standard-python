@@ -216,6 +216,18 @@
 <colAssociation fkAssociation="0B5BA5F7-C10B-C531-13CE-C95A3372F888" referredColumn="FFF8E8C9-39A7-7B00-759E-2D57DEEDE633"/>
 </associations>
 </Column>
+<Column name="ELED_INDEX" id="A9E2DC85-FC60-DF68-3176-09A5E80EE268">
+<createdBy>stb</createdBy>
+<createdTime>2019-12-01 10:18:34 UTC</createdTime>
+<comment><![CDATA[Falls ein Element mehrfach auf einem Diagramm ist, füge einen Index hinzu. Default ist 0]]></comment>
+<ownerDesignName>ModellModell</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>E2DCFC37-5428-9FE8-64FF-368960199E02</domain>
+<defaultValue>0</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
 <Column name="ELED_UC" id="A5C91EE2-1D08-D2AE-3074-C9555E103E4B">
 <createdBy>stb</createdBy>
 <createdTime>2019-10-30 09:42:08 UTC</createdTime>
@@ -298,6 +310,7 @@
 <indexColumnUsage>
 <colUsage columnID="6BC66B23-42B0-DDBC-88AD-65515A02B7DA"/>
 <colUsage columnID="A946A598-43E4-6950-FBF3-03948D98A231"/>
+<colUsage columnID="A9E2DC85-FC60-DF68-3176-09A5E80EE268"/>
 </indexColumnUsage>
 </ind_PK_UK>
 <ind_PK_UK id="BCA91CCE-3970-C4FA-1C13-A24C0A108101" name="ELED_DIAG_FK">

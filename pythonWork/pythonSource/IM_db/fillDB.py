@@ -1,11 +1,20 @@
 # -*- coding: latin-1 -*-
 import transferModel
-from IM_DB import dbParam,dbConnect
-from IM_DB import parameters,dbDML
+from IM_DB import dbConnect
+from IM_DB import parameters
 
 
 
 # Main Programm
+
+def filldbmain():
+    transferModel.loeschmodell()
+    #    dbConnect.myDbConn.close()
+
+    #    dbConnect.openDB(parameters.dbFilePath(),fks='ON');
+    transferModel.insertBaseData()
+    transferModel.transferODMModel();
+#filldbmain
 
 def main(p_param1):
     parameters.initparam(p_callarg=p_param1)
@@ -13,13 +22,8 @@ def main(p_param1):
 
     print ("fillDB",parameters.odmBaseDirec(),parameters.odmModelName())
 
-    dbConnect.openDB(parameters.dbFilePath(),fks='OFF');
-    transferModel.loeschmodell()
-#    dbConnect.myDbConn.close()
-
-#    dbConnect.openDB(parameters.dbFilePath(),fks='ON');
-    transferModel.insertBaseData()
-    transferModel.transferODMModel();
+    dbConnect.openDB(parameters.dbFilePath(),fks='OFF')
+    filldbmain()
     dbConnect.myDbConn.close()
 #end main
 

@@ -30,12 +30,22 @@
 <use>1</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
 <dataTypePrecision>10</dataTypePrecision>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 <associations>
 <colAssociation fkAssociation="F23E102E-B867-CD1B-6C30-6A9D38C33673" referredColumn="50500D68-5802-F99A-148B-AF85E2DF1A2D"/>
 </associations>
+</Column>
+<Column name="deletecolumn" id="7CCF1FAB-8C5A-A71C-C5A9-1D3633C42661">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-28 15:50:48 UTC</createdTime>
+<comment><![CDATA[Created on 28/11/2019  16:50:48 during import from /Users/stb/Documents/DataModeler/Import/enti_attr_mapping.csv]]></comment>
+<ownerDesignName>fyayc_dev_mapping</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">

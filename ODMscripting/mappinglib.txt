@@ -1,0 +1,114 @@
+	var PLAINMESSAGE = 1;
+	var ERRORMESSAGE = 0;
+	var WARNINGMESSAGE = 2;
+	var QUESTIONMESSAGE = 3;
+
+	function fullmessage(msg,type) {
+		Java.type("javax.swing.JOptionPane").showMessageDialog(null
+		, msg,'ODM-Translation', type);
+	}
+
+	function error(msg) {
+		fullmessage(msg,ERRORMESSAGE);
+		}
+	function message(msg) {
+		fullmessage(msg,PLAINMESSAGE);
+		}
+function trimapo(s){
+	return s.replace(/^"|"$/g, '');
+}
+
+function curDateStr(){
+		var currentdate = new Date();
+		return  currentdate.getDate() 
+		+ "/" + (currentdate.getMonth()+1) 
+		+ "/" + currentdate.getFullYear() + "  " 
+		+ currentdate.getHours() + ":" 
+		+ currentdate.getMinutes() + ":" + currentdate.getSeconds();
+}
+
+function do1line(rmodelname,values){
+	//message('do1line '+rmodelname+' '+values);
+	var rmodel = model.getDesign().getRelationalDesigns().getByName(rmodelname);
+	if (rmodel == null){
+		throw new Error("\nRelational model '"+rmodelname+"' does not exist.\n");
+	}
+	var lm = model.getDesign().getLogicalDesign();
+	entiName = values[0];
+	attrName = values[1];
+	domName = values[2];
+	tabName = values[3];
+	colName = values[4];
+	typeName = values[5];
+	entity = lm.getEntitySet().getByName(entiName);	
+	if (entity == null){
+		lm.createEntity(entiName);
+		entity = lm.getEntitySet().getByName(entiName)
+		entity.setComment("Created on "+curDateStr() +" during import from "+imppath)
+	}
+	attribute=entity.getElementByName(attrName);
+	if (attribute == null){
+		entity.createAttribute(attrName)
+		attribute = entity.getElementByName(attrName);
+		attribute.setComment("Created on "+curDateStr() +" during import from "+imppath)		
+	}
+	table = rmodel.getTableSet().getByName(tabName);	
+	if (table == null){
+		rmodel.createTable(tabName);
+		table = rmodel.getTableSet().getByName(tabName);	
+		table.setComment("Created on "+curDateStr() +" during import from "+imppath)
+	}
+	column=table.getElementByName(colName);
+	if (column == null){
+		table.createColumn(colName)
+		column=table.getElementByName(colName);
+		column.setComment("Created on "+curDateStr() +" during import from "+imppath)		
+	}
+	rmodel.getRMExtendedMap().createMapping(entity,table);
+     rmodel.getRMExtendedMap().createMapping(attribute,column);	
+}
+function importFile(fpath){
+	var Paths = Java.type('java.nio.file.Paths');
+	var Files = Java.type('java.nio.file.Files');
+	var lines = Files.readAllLines(Paths.get(fpath)
+	             , Java.type('java.nio.charset.StandardCharsets').UTF_8);
+	for (lno=1;lno<lines.length;lno++)
+ 	{	line=lines[lno]
+ 		values= line.split(";");
+ 		for (i=0;i<values.length;i++){values[i]=trimapo(values[i]);}
+ 		if (lno==1){
+ 			relModel=values[0];
+ 			//message("RelModel= "+relModel);
+ 		} else {
+	 		//message(lno+': '+values);
+ 			do1line(relModel,values);
+ 		} 		
+ 	};
+}
+
+var imppath="/Users/stb/Documents/DataModeler/Import/enti_attr_mapping.csv";
+importFile(imppath);
+	msg=rd+':'+" rel designs\n"
+	rds.forEach(function(ra){
+		msg = msg + ra + '\n';
+	});
+	message(msg);
+
+	tab = rd.getTableSet().getByName('DUMMY');
+	if (tab != null) 
+       rd.getRMExtendedMap().createMapping(entity,tab);
+       
+	  attr = entity.getElementByName('Name');
+	  col = tab.getElementByName('DUMMYCOL');
+	  if(attr!=null && col!=null){
+	    rd.getRMExtendedMap().createMapping(attr,col);
+//	 Java.type("javax.swing.JOptionPane").showMessageDialog(null , 'Hallo '+rd+':'+tab.getName());
+	  }
+	entity = lm.getEntitySet().getByName('Entiät1');	 
+	attr = entity.getElementByName('Beschreibung')
+	tab = rd.getTableSet().getByName('Super_Entiät');
+	col = tab.getElementByName('Kürzel');
+      rd.getRMExtendedMap().createMapping(entity,tab);
+	  if(attr!=null && col!=null){
+	    rd.getRMExtendedMap().createMapping(attr,col);
+	  }

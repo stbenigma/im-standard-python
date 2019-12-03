@@ -65,13 +65,12 @@ def insert(psql,rec):
             cursor.execute(psql, rec)
         else:
             raise Exception("unknown type for insert {}".format(type(rec)))
+    except sqlite3.IntegrityError as ei:
+        raise ei
     except sqlite3.Error as e:
-        if re.match("xxxxxxx",e.__str__()):
-            pass
-        else:
-            print(psql, rec,type(rec))
-            print ("insert: Unerwarteter SQL-Fehler: \t{}" .format (str(e)))
-            raise e
+        print(psql, rec,type(rec))
+        print ("insert: Unerwarteter SQL-Fehler: \t{}" .format (str(e)))
+        raise e
     id = cursor.lastrowid
     dbConnect.myDbConn.commit()
     return id

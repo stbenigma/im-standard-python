@@ -143,93 +143,93 @@ translNameEN = {'Anzeige': 'Display'
                 ,'Woche' : 'week'
                 ,'Zeitpunkt': 'Point in Time'
                 }
-translNameFR = {'Anzeige':"**Écran d'affichage"
-	,'Arc':'**Décrire un arc'
-	,'Attribut':'**Particularité'
-	,'Attribut(e)':'**Attribut(s)'
-	,'Attribute':'**Particularités'
-	,'Attributgruppe':"**Groupe d'attributs"
-	,'auf Diagramm(en)':'**sur le(s) diagramme(s)'
-	,'Author':'**Créatrice'
-	,'Beschreibung':'**Description de la'
-	,'Beziehung':'**Parenté'
-	,'Beziehung(en)':'**Lien(s) de parenté'
-	,'Beziehungen':'**Relations'
-	,'Benutzerdefinerte Eigenschaften':"**Propriétés définies par l'utilisateur"
-	,'Bild':'**Portrait'
-	,'Binär':'*DE* Binär'
-	,'Datentyp':'**Type de données'
-	,'Deskriptor':'**Descripteur'
-	,'Domänen':'**Domaine'
-	,'Diagramm':'**Représentation schématique'
-	,'Diagramme':'**Diagrammes'
-	,'Domäne':'**Domaine'
-	,'Einheit':'**Groupe'
-	,'Element':'**Aspect'
-	,'Elemente':'**Articles'
-	,'Entität':'**Entité'
-	,'Entität/Tabelle':'**Entité/Tableau'
-	,'Entitäten':'Entités'
-	,'erstellt':'**créé'
-	,'Film':'**Film'
-	,'geändert':'changé'
-	,'Gruppenattribut':'**Attribut de groupe'
-	,'Grafik':'**Graphique'
-	,'Granularität':'**Granularité'
-	,'historisiert':'**historicisé'
-	,'in Schlüssel':'**Clée'
-	,'Informationsmodell {} (Stand {})':"**Modèle d'information {} (statut {}){})"
-	,'Informationen':'**Information et'
-	,'Inhaltstyp':'**Type de contenu'
-	,'Ja':'**Oui'
-	,'Jahr':'**Année'
-	,'Max. Länge':'**Max. Länge'
-	,'Max. Wert':'**Max. Mérite'
-	,'Mehr':'Plus'
-	,'Millisekunde':'**Milliseconde'
-	,'Minute':'**Minute'
-	,'Min. Wert':'**Valeur min.'
-	,'Monat':'**Mois'
-	,'Nachkommast.':'**Point décimal.'
-	,'Name':'**Appellation'
-	,'Nein':'**Non'
-	,'Nr':'**No'
-	,'Numerisch':'**Numérique'
-	,'Pflichtattribut':'**Caractéristique obligatoire'
-	,'Quartal':'**Pièce de 25 cents'
-	,'Rundungseinh.':"**Unité d'arrondi"
-	,'Schlüssel':'**Schlüssel'
-	,'Sekunde':'**Second'
-	,'Semester':'**Semestres'
-	,'Sort':'**Trier'
-	,'Stunde':'**Heure'
-	,'Subentität':'Subentité'
-	,'Subentitäten':'**Subentités'
-	,'Suchbegriff':'**Terme de recherche'
-	,'Superentität':'Super Entité'
-	,'Synonyme':'**Synonymes'
-	,'Syntaxregel':'**Règle syntaxique'
-	,'Tag':'**Journée'
-	,'Technischer Name':'**Nom technique'
-	,'Text':'**Texto'
-	,'Ton':'**Sonorité'
-	,'Tooltip':'**Infobulle'
-	,'Treffer':'**Cogner'
-	,'Typ':'**Type'
-	,'UDP-Matrix':'**Matrice UDP'
-	,'übersetzt':'**übersetzt'
-	,'Übersetzungen':'**Traductions'
-	,'verschlüsselt':'**verschlüsselt'
-	,'Verwendet für Attribute':'**Utilise les attributs de für'
-	,'Verwendet in Attributgruppen':"**Utilisé dans les groupes d'attributs"
-	,'Verwendet von':'**Utilisé par'
-	,'Vorkommast.':'**Avant la virgule.'
-	,'Wert':'**Mérite'
-	,'Wertebereich':'**Plage de valeurs'
-	,'Werteliste':'**Liste de valeurs'
-	,'wiederholt':'**réitéré'
-	,'Woche':'**Semaine'
-	,'Zeitpunkt':'**Chronologique'
+translNameFR = {"Anzeige":"Affichage"
+,"Arc":"Arc"
+,"Attribut":"Attribut"
+,"Attribut(e)":"Attribut(s)"
+,"Attribute":"Attributs"
+,"Attributgruppe":"Groupe d'attributs"
+,"auf Diagramm(en)":"sur ce diagramme(s)"
+,"Autor":"Auteur"
+,"Beschreibung":"Déscription"
+,"Beziehung":"Relation"
+,"Beziehung(en)":"Relation(s)"
+,"Beziehungen":"Relations"
+,"Benutzerdefinerte Eigenschaften":"Propriétés définies par l'utilisateur"
+,"Bild":"Image"
+,"Binär":"Binaire"
+,"Datentyp":"Type de données"
+,"Deskriptor":"Descripteur"
+,"Domänen":"Domaines"
+,"Diagramm":"Diagramme"
+,"Diagramme":"Diagrammes"
+,"Domäne":"Domaine"
+,"Einheit":"Unité"
+,"Element":"Élément"
+,"Elemente":"Éléments"
+,"Entität":"Entité"
+,"Entität/Tabelle":"Entité/Tableau"
+,"Entitäten":"Entités"
+,"erstellt":"Élaboré"
+,"Film":"Film"
+,"geändert":"changé"
+,"Gruppenattribut":"Attribut de groupe"
+,"Grafik":"Graphique"
+,"Granularität":"Granularité"
+,"historisiert":"historisé"
+,"in Schlüssel":"dans une clef"
+,"Informationsmodell {} (Stand {})":"Modèle d'informations {} (État {})"
+,"Informationen":"Informations"
+,"Inhaltstyp":"Type de contenu"
+,"Ja":"Oui"
+,"Jahr":"Année"
+,"Max. Länge":"Longueur max."
+,"Max. Wert":"Valeur max."
+,"Mehr":"Plus"
+,"Millisekunde":"Milliseconde"
+,"Minute":"Minute"
+,"Min. Wert":"Valeur min."
+,"Monat":"Mois"
+,"Nachkommastellen":"Décimales"
+,"Name":"Nom"
+,"Nein":"Non"
+,"Nr":"N°"
+,"Numerisch":"Numérique"
+,"Pflichtattribut":"Attribut obligatoire"
+,"Quartal":"Trimestre"
+,"Rundungseinheit":"Unité de l'arrondi"
+,"Schlüssel":"Clef"
+,"Sekunde":"Seconde"
+,"Semester":"Semestre"
+,"Sort":"Sorte"
+,"Stunde":"Heure"
+,"Subentität":"Sous-entité"
+,"Subentitäten":"Sous-entités"
+,"Suchbegriff":"Clef de reherche"
+,"Superentität":"Superentité"
+,"Synonyme":"Synonyme"
+,"Syntaxregel":"Règle syntaxique"
+,"Tag":"Jour"
+,"Technischer Name":"Terme technique"
+,"Text":"Texte"
+,"Ton":"Ton"
+,"Tooltip":"Info-bulle"
+,"Treffer":"Occurrence"
+,"Typ":"Type"
+,"UDP-Matrix":"Matrice UDP"
+,"übersetzt":"traduit"
+,"Übersetzungen":"Traductions"
+,"verschlüsselt":"Chiffré"
+,"Verwendet für Attribute":"Utilisé par les attributs"
+,"Verwendet in Attributgruppen":"Utilisé dans les groupes d'attributs"
+,"Verwendet von":"Utilisé pour"
+,"Vorkommastellen":"Position avant la décimale"
+,"Wert":"Valeur"
+,"Wertebereich":"Domaine de valeurs"
+,"Werteliste":"Liste des Valeur"
+,"wiederholt":"répété"
+,"Woche":"Semaine"
+,"Zeitpunkt":"Instant"
 }
 def transl(pname):
     if (greportLang == 'de'):

@@ -505,7 +505,7 @@ def diagenti(pdiagid,plang):
                 ,eled_schriftgroesse, eled_schriftfarbe
                 ,case when ena.sptx_text is null then enti_name 
                                                 else ena.sptx_text end  entiname
-                ,enti_id 
+                ,enti_id ,eled_index
                 from elementdarst
                 join modellelement on mode_id = eled_mode_id
                 join entitaeten on enti_id = mode_enti_id

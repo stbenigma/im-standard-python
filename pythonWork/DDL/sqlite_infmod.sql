@@ -629,11 +629,12 @@ create view spraattr as
 				          CHECK(length(eled_schriftfarbe)= 6),
 				      eled_mode_id          integer NOT NULL,
 				      eled_diag_id          integer NOT NULL,
+				      eled_index            NUMBER(4)DEFAULT 0 NOT NULL,
 				      eled_uc           varchar(30) NOT NULL,
 				      eled_dc               varchar(30) NOT NULL,
 				      eled_um               varchar(30) ,
 				      eled_dm               varchar(30),
-				  	CONSTRAINT eled_un UNIQUE(eled_diag_id,eled_mode_id),
+				  	CONSTRAINT eled_un UNIQUE(eled_diag_id,eled_mode_id,eled_index),
 				      CONSTRAINT eled_diag_fk FOREIGN KEY(eled_diag_id)
 				          REFERENCES diagramme(diag_id)
 				              ON DELETE CASCADE,

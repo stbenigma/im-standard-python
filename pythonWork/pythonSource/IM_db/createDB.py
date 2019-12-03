@@ -14,7 +14,6 @@ def main(par1):
         os.mkdir(parameters.dbDirect())
     dbConnect.openDB(parameters.dbFilePath(),'OFF');
     dbErstelleTables.erstelleInfra();
-
     dbConnect.myDbConn.close()
 #end main
 
