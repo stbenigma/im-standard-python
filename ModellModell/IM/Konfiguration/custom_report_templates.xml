@@ -412,28 +412,6 @@
 		</section>
 	</sections>
 	</custom_report_template>
-	<custom_report_template id="A21D9485-A526-45B5-F833-0656CFFE88C6" name="EntityTRANSL" description="" class="oracle.dbtools.crest.model.design.logical.Entity" >
-	<sections>
-		<section propertyName="Entity" type="" customName="Entity" level="0" class="oracle.dbtools.crest.model.design.logical.Entity">
-		<columns>
-				<column name="name" customName="Name" width="0.0" order="" massUpdatable="false" dynamic="false"/>
-				<column name="EN_ENTI_NAME" customName="EN_ENTI_NAME" width="0.0" order="" massUpdatable="false" dynamic="false"/>
-				<column name="synonym" customName="Synonym" width="0.0" order="" massUpdatable="false" dynamic="false"/>
-				<column name="EN_ENTI_SYNONYM" customName="EN_ENTI_SYNONYM" width="0.0" order="" massUpdatable="false" dynamic="false"/>
-				<column name="comment" customName="Comment" width="0.0" order="" massUpdatable="false" dynamic="false"/>
-				<column name="EN_ENTI_COMMENT" customName="EN_ENTI_COMMENT" width="0.0" order="" massUpdatable="false" dynamic="false"/>
-		</columns>
-		</section>
-		<section propertyName="attributes" type="collection" customName="Attributes" level="1" class="oracle.dbtools.crest.model.design.logical.Attribute">
-		<columns>
-				<column name="name" customName="Name" width="0.0" order="" massUpdatable="false" dynamic="false"/>
-				<column name="EN_ATTR_NAME" customName="EN_ATTR_NAME" width="0.0" order="" massUpdatable="false" dynamic="true"/>
-				<column name="comment" customName="Comment" width="0.0" order="" massUpdatable="false" dynamic="false"/>
-				<column name="EN_ATTR_COMMENT" customName="EN_ATTR_COMMENT" width="0.0" order="" massUpdatable="false" dynamic="true"/>
-		</columns>
-		</section>
-	</sections>
-	</custom_report_template>
 	<custom_report_template id="3B62549B-0B4B-A8E3-ACFB-01CF0A6293E7" name="Entity simple" description="" class="oracle.dbtools.crest.model.design.logical.Entity" >
 	<sections>
 		<section propertyName="Entity" type="" customName="Entity" level="0" class="oracle.dbtools.crest.model.design.logical.Entity">
@@ -442,13 +420,52 @@
 				<column name="synonym" customName="Synonyme" width="7.0" order="" massUpdatable="false" dynamic="false"/>
 				<column name="parentEntity" customName="Super-Entität" width="10.0" order="" massUpdatable="false" dynamic="false"/>
 				<column name="comment" customName="Beschreibung" width="68.0" order="" massUpdatable="false" dynamic="false"/>
-				<column name="EN_ENTI_NAME" customName="EN_ENTI_NAME" width="0.0" order="" massUpdatable="false" dynamic="false"/>
-				<column name="EN_ENTI_SYNONYM" customName="EN_ENTI_SYNONYM" width="0.0" order="" massUpdatable="false" dynamic="false"/>
-				<column name="EN_ENTI_COMMENT" customName="EN_ENTI_COMMENT" width="0.0" order="" massUpdatable="false" dynamic="false"/>
 		</columns>
 		</section>
 	</sections>
 	</custom_report_template>
+	<custom_report_template id="016B3B27-C5E3-F699-7F45-DC7D9FD582C3" name="Entity Translation" description="" class="oracle.dbtools.crest.model.design.logical.Entity" >
+<sections>
+	<section propertyName="Entity" type="" customName="Entity" level="0" class="oracle.dbtools.crest.model.design.logical.Entity">
+	<columns>
+			<column name="name" customName="Name" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+			<column name="EN_ENTI_NAME" customName="EN_ENTI_NAME" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+			<column name="synonym" customName="Synonym" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+			<column name="EN_ENTI_SYNONYM" customName="EN_ENTI_SYNONYM" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+			<column name="comment" customName="Comment" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+			<column name="notes" customName="Notes" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+	</columns>
+	</section>
+</sections>
+</custom_report_template>
+	<custom_report_template id="50CAEDF6-D1FA-0048-0783-12EEB9229075" name="Attriburtes Translation" description="" class="oracle.dbtools.crest.model.design.logical.Attribute" >
+<sections>
+	<section propertyName="Attribute" type="" customName="Attribute" level="0" class="oracle.dbtools.crest.model.design.logical.Attribute">
+	<columns>
+			<column name="entity" customName="Entity" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+			<column name="name" customName="Name" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+			<column name="EN_ATTR_NAME" customName="EN_ATTR_NAME" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+			<column name="comment" customName="Comment" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+			<column name="notes" customName="Notes" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+	</columns>
+	</section>
+</sections>
+</custom_report_template>
+	<custom_report_template id="0210D7F8-7D5D-E33B-A9FB-107C24B0BDBB" name="Relation Translation" description="" class="oracle.dbtools.crest.model.design.logical.Relation" >
+<sections>
+	<section propertyName="Relation" type="" customName="Relation" level="0" class="oracle.dbtools.crest.model.design.logical.Relation">
+	<columns>
+			<column name="name" customName="Name" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+			<column name="sourceEntity" customName="Source entity" width="0.0" order="" massUpdatable="true" dynamic="false"/>
+			<column name="nameOnSource" customName="Name on source" width="0.0" order="" massUpdatable="true" dynamic="false"/>
+			<column name="EN_RELA_TEXT_FROM" customName="EN_RELA_TEXT_FROM" width="0.0" order="" massUpdatable="false" dynamic="true"/>
+			<column name="targetEntity" customName="Target entity" width="0.0" order="" massUpdatable="true" dynamic="false"/>
+			<column name="nameOnTarget" customName="Name on target" width="0.0" order="" massUpdatable="true" dynamic="false"/>
+			<column name="EN_RELA_TEXT_TO" customName="EN_RELA_TEXT_TO" width="0.0" order="" massUpdatable="false" dynamic="true"/>
+	</columns>
+	</section>
+</sections>
+</custom_report_template>
 </custom_report_templates>
 <boolean_values>
 <str_true>

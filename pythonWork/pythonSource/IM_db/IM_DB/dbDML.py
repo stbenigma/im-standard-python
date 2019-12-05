@@ -66,6 +66,7 @@ def insert(psql,rec):
         else:
             raise Exception("unknown type for insert {}".format(type(rec)))
     except sqlite3.IntegrityError as ei:
+        print(psql,rec,type(rec))
         raise ei
     except sqlite3.Error as e:
         print(psql, rec,type(rec))
@@ -92,6 +93,7 @@ def exec(psql,*args):
         if re.match("xxxxxxx",e.__str__()):
             pass
         else:
+            print (psql)
             print ("exec: Unerwarteter SQL-Fehler: \t%s" % e)
             raise e
     dbConnect.myDbConn.commit()
@@ -107,6 +109,7 @@ def execmany(psql,recs):
         if re.match("xxxxxxx",e.__str__()):
             pass
         else:
+            print (psql)
             print ("execmany: Unerwarteter SQL-Fehler: \t%s" % e)
             raise e
     dbConnect.myDbConn.commit()

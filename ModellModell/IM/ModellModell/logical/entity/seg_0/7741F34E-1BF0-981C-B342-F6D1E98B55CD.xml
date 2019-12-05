@@ -7,11 +7,19 @@
 Als Dokumente im Filesystem (PDF, PNG, TIFF, XLS, DOC, pages, etc.) oder als finäre Datenbankobjekte verwaltet.
 
 ]]></comment>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+Dokumente irgendwelcher Art, die nicht in einem als strukturiert bezeichneten Format (Text, Zahl, Datum) abgespeichert werden kann.  Als Dokumente im Filesystem (PDF, PNG, TIFF, XLS, DOC, pages, etc.) oder als finäre Datenbankobjekte verwaltet.  
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+Documents of any kind that cannot be saved in a format called structured (text, number, date).  Managed as documents in the file system (PDF, PNG, TIFF, XLS, DOC, pages, etc.) or as final database objects.  
+]EN_ENTI_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
 <typeID>1C6A8769-7651-51C0-9E0A-D0C138DE6193</typeID>
 <adequatelyNormalized>NO</adequatelyNormalized>
@@ -30,17 +38,25 @@ Als Dokumente im Filesystem (PDF, PNG, TIFF, XLS, DOC, pages, etc.) oder als fin
 <property name="DE_ENTI_NAME" value="Binärer Wertebereich"/>
 <property name="DE_ENTI_SYNONYM" value=""/>
 <property name="EN_ENTI_COMMENT" value="*DE* Dokumente irgendwelcher Art, die nicht in einem als strukturiert bezeichneten Format (Text, Zahl, Datum) abgespeichert werden kann.  Als Dokumente im Filesystem (PDF, PNG, TIFF, XLS, DOC, pages, etc.) oder als finäre Datenbankobjekte verwaltet.  "/>
-<property name="EN_ENTI_NAME" value="*DE* Binärer Wertebereich"/>
+<property name="EN_ENTI_NAME" value="Binary value range"/>
 <property name="EN_ENTI_SYNONYM" value=""/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Inhaltstyp" id="9625B729-C7C6-CD5F-2155-3648986FD9F6">
 <createdBy>stb</createdBy>
 <createdTime>2019-04-03 13:21:52 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
 <use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
@@ -50,7 +66,7 @@ Als Dokumente im Filesystem (PDF, PNG, TIFF, XLS, DOC, pages, etc.) oder als fin
 <property name="DE_ATTR_COMMENT" value=""/>
 <property name="DE_ATTR_NAME" value="Inhaltstyp"/>
 <property name="EN_ATTR_COMMENT" value=""/>
-<property name="EN_ATTR_NAME" value="*DE* Inhaltstyp"/>
+<property name="EN_ATTR_NAME" value="Content type"/>
 </propertyMap>
 </Attribute>
 </attributes>

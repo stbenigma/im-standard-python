@@ -3,11 +3,19 @@
 <createdBy>stb</createdBy>
 <createdTime>2019-03-10 11:35:25 UTC</createdTime>
 <comment><![CDATA[Wertebereich (Domäne) für ein Freitextattribut]]></comment>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+Wertebereich (Domäne) für ein Freitextattribut
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+Value range (domain) for a user-defined text attribute
+]EN_ENTI_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
 <typeID>1C6A8769-7651-51C0-9E0A-D0C138DE6193</typeID>
 <adequatelyNormalized>NO</adequatelyNormalized>
@@ -26,7 +34,7 @@
 <property name="DE_ENTI_NAME" value="Textlicher Wertebereich"/>
 <property name="DE_ENTI_SYNONYM" value=""/>
 <property name="EN_ENTI_COMMENT" value="*DE* Wertebereich (Domäne) für ein Freitextattribut"/>
-<property name="EN_ENTI_NAME" value="*DE* Textlicher Wertebereich"/>
+<property name="EN_ENTI_NAME" value="Text value range"/>
 <property name="EN_ENTI_SYNONYM" value=""/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
@@ -34,11 +42,19 @@
 <createdBy>stb</createdBy>
 <createdTime>2019-03-10 11:36:33 UTC</createdTime>
 <comment><![CDATA[Maximale Länge des Textes in Buchstaben (CHAR)]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Maximale Länge des Textes in Buchstaben (CHAR)
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Maximum length of text in letters (CHAR)
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
 <use>0</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
@@ -48,18 +64,26 @@
 <property name="DE_ATTR_COMMENT" value="Maximale Länge des Textes in Buchstaben (CHAR)"/>
 <property name="DE_ATTR_NAME" value="Max Länge"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Maximale Länge des Textes in Buchstaben (CHAR)"/>
-<property name="EN_ATTR_NAME" value="*DE* Max Länge"/>
+<property name="EN_ATTR_NAME" value="Max length"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Werteregel" id="A60F9702-1D1F-2326-5024-A280EAACBB9B">
 <createdBy>stb</createdBy>
 <createdTime>2019-03-10 11:37:26 UTC</createdTime>
 <comment><![CDATA[Einschränkende Regel für die erlaubten Zeichen eines Textes.]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Einschränkende Regel für die erlaubten Zeichen eines Textes.
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Restrictive rule for the permitted characters of a text.
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <use>0</use>
@@ -70,7 +94,7 @@
 <property name="DE_ATTR_COMMENT" value="Einschränkende Regel für die erlaubten Zeichen eines Textes."/>
 <property name="DE_ATTR_NAME" value="Werteregel"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Einschränkende Regel für die erlaubten Zeichen eines Textes."/>
-<property name="EN_ATTR_NAME" value="*DE* Werteregel"/>
+<property name="EN_ATTR_NAME" value="Value rule"/>
 </propertyMap>
 </Attribute>
 </attributes>

@@ -1081,10 +1081,10 @@ def printcontentattr(plist):
         fhtml.write(techline.format(nvl(a[13],''),re.sub(r'^, $','',nvl(a[16]) + ', ' + nvl(a[17]))
                                           ,re.sub(r'^, $','',nvl(a[14]) + ', ' + nvl(a[15]))))
 
-        fhtml.write(techhead.format(transl('Technischer Name'), transl('Wertebereich'), transl('Datentyp')))
-        fhtml.write(techline.format(nvl(a[12],''),href(ref=web_sql.wrtbAnker(a[3])
-                                                ,anz=a[23])
-                                        ,nvl(a[4]),''))
+        fhtml.write(techhead.format(transl('Technischer Name'), transl('Wertebereich')
+                                    , transl('Datentyp')))
+        fhtml.write(techline.format(nvl(a[12],''),href(ref=web_sql.wrtbAnker(a[3]),anz=a[23])
+                                    , anzDatentyp(a[4]),''))
 
         fhtml.write(flaghead.format(transl('Pflichtattribut'), transl('Schlüssel'), transl('Deskriptor'),
                                     transl('übersetzt')
@@ -1221,7 +1221,7 @@ def printcontentwrtb(p_list):
             fhtml.write(techline.format(nvl(anzDatentyp(w[5])),nvl(w[9]),nvl(w[10]),'','','',''))
         elif (w[5] == 'BIN'):
             fhtml.write(techhead.format(transl('Datentyp'), transl('Inhaltstyp'), transl('Format'),'','','',''))
-            fhtml.write(techline.format(nvl(anzDatentyp(w[5])), nvl(w[17]),anzinhalttyp(nvl(w[18]),'','','','')))
+            fhtml.write(techline.format(nvl(anzDatentyp(w[5])),anzinhalttyp(nvl(w[17])), nvl(w[18]),'','','',''))
         elif (w[5] == 'GRP'):
             fhtml.write(techhead.format(transl('Datentyp'),transl(''), transl(''),'','','',''))
             fhtml.write(techline.format(nvl(anzDatentyp(w[5])),nvl(w[9]),nvl(w[10]),'','','',''))

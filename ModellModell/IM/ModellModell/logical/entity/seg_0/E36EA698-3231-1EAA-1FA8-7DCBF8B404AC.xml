@@ -3,11 +3,19 @@
 <createdBy>stb</createdBy>
 <createdTime>2018-06-23 13:17:42 UTC</createdTime>
 <comment><![CDATA[(Administrative) Organisationseinheit in der Firma]]></comment>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+Organisationseinheit in der Firma (intern oder extern), die für die Definition oder Pflege eines Attributwertes verantwortlich ist.
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+Organizational unit in the company (internal or external) that is responsible for defining or maintaining an attribute value.
+]EN_ENTI_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
 <typeID>F3ABFF84-45A4-A802-17D7-9BF8FFE20450</typeID>
 <adequatelyNormalized>NO</adequatelyNormalized>
@@ -28,7 +36,7 @@
 <property name="DE_ENTI_COMMENT" value="Organisationseinheit in der Firma (intern oder extern), die für die Definition oder Pflege eines Attributwertes verantwortlich ist."/>
 <property name="DE_ENTI_NAME" value="Abteilung"/>
 <property name="EN_ENTI_COMMENT" value="*DE* Organisationseinheit in der Firma (intern oder extern), die für die Definition oder Pflege eines Attributwertes verantwortlich ist."/>
-<property name="EN_ENTI_NAME" value="*DE* Abteilung"/>
+<property name="EN_ENTI_NAME" value="Division"/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Name" id="5F1855D0-5C50-083E-F00A-56D7A0E3E93F">
@@ -36,11 +44,19 @@
 <createdTime>2018-11-03 14:01:19 UTC</createdTime>
 <comment><![CDATA[Name eines Geschäftsbereichs]]></comment>
 <generatorID>78F60E90-01C4-13A2-1EE2-A6C082F5B23A</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Name eines Geschäftsbereichs
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Business division name
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
 <referedAttribute>9FC8C28A-8074-92B6-C5B5-3378905C15D0</referedAttribute>
 <use>0</use>
@@ -51,7 +67,7 @@
 <property name="DE_ATTR_COMMENT" value="Name eines Geschäftsbereichs"/>
 <property name="DE_ATTR_NAME" value="Name"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Name eines Geschäftsbereichs"/>
-<property name="EN_ATTR_NAME" value="*DE* Name"/>
+<property name="EN_ATTR_NAME" value="Name"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Name1" id="6E28D8D2-162A-F709-A400-9F16EC7872AF">
@@ -59,11 +75,19 @@
 <createdTime>2018-11-03 14:01:19 UTC</createdTime>
 <comment><![CDATA[Name der Entität der in der Kommunikation normalerweise gebraucht wird.]]></comment>
 <generatorID>78F60E90-01C4-13A2-1EE2-A6C082F5B23A</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Name der Entität der in der Kommunikation normalerweise gebraucht wird.
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Name of the entity normally used in communication.
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
 <referedAttribute>0D6D7CC5-02F9-66CF-24BB-AC8AC5003C95</referedAttribute>
 <use>0</use>
@@ -74,7 +98,7 @@
 <property name="DE_ATTR_COMMENT" value="Name der Entität der in der Kommunikation normalerweise gebraucht wird."/>
 <property name="DE_ATTR_NAME" value="Name1"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Name der Entität der in der Kommunikation normalerweise gebraucht wird."/>
-<property name="EN_ATTR_NAME" value="*DE* Name1"/>
+<property name="EN_ATTR_NAME" value="Name1"/>
 </propertyMap>
 </Attribute>
 </attributes>

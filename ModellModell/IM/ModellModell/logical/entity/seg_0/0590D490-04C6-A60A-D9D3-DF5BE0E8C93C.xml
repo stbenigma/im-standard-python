@@ -5,11 +5,19 @@
 <comment><![CDATA[Computer Hardware, auf dem IT-systeme, Anwendungen und Datenbanken installiert sind und laufen.
 
 ]]></comment>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+Computer Hardware, auf dem IT-systeme, Anwendungen und Datenbanken installiert sind und laufen.  
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+Computer hardware on which IT systems, applications and databases are installed and running.  
+]EN_ENTI_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
 <typeID>57779FAE-171C-9BB2-9F88-9B2ED7060C6F</typeID>
 <adequatelyNormalized>NO</adequatelyNormalized>
@@ -26,7 +34,7 @@
 <property name="DE_ENTI_NAME" value="Server Hardware"/>
 <property name="DE_ENTI_SYNONYM" value=""/>
 <property name="EN_ENTI_COMMENT" value="*DE* Computer Hardware, auf dem IT-systeme, Anwendungen und Datenbanken installiert sind und laufen.  "/>
-<property name="EN_ENTI_NAME" value="*DE* Server Hardware"/>
+<property name="EN_ENTI_NAME" value="Server Hardware"/>
 <property name="EN_ENTI_SYNONYM" value=""/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
@@ -34,11 +42,19 @@
 <createdBy>stb</createdBy>
 <createdTime>2018-11-26 16:16:50 UTC</createdTime>
 <comment><![CDATA[Ist dies eine physische Maschine oder ein genutzte virtuelle?]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Ist dies eine physische Maschine oder ein genutzte virtuelle?
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Is this a physical machine or a virtual one in use?
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
 <use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
@@ -48,7 +64,7 @@
 <property name="DE_ATTR_COMMENT" value="Ist dies eine physische Maschine oder ein genutzte virtuelle?"/>
 <property name="DE_ATTR_NAME" value="Virtuell (J/N)"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Ist dies eine physische Maschine oder ein genutzte virtuelle?"/>
-<property name="EN_ATTR_NAME" value="*DE* Virtuell (J/N)"/>
+<property name="EN_ATTR_NAME" value="Virtual (Y/N)"/>
 </propertyMap>
 </Attribute>
 </attributes>

@@ -4,6 +4,13 @@
 <createdTime>2018-11-04 12:21:40 UTC</createdTime>
 <comment><![CDATA[Beziehungen die von einer Entität ausgehen können exklusiv sein. D.h. keine oder 1 davon ist möglich, aber nie mehrere gleichzeitig
 Exklusivbeziehungen einer Gruppe sind alle IsA Beziehungen oder alle funktionale Beziehungen.]]></comment>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+Beziehungen die von einer Entität ausgehen können exklusiv sein. D.h. keine oder 1 davon ist möglich, aber nie mehrere gleichzeitig Exklusivbeziehungen einer Gruppe sind alle IsA Beziehungen oder alle funktionale Beziehungen.
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+Relationships that emanate from an entity can be exclusive. I.e. none or 1 of them is possible, but never several simultaneously exclusive relations of a group are all IsA relations or all functional relations.
+]EN_ENTI_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
@@ -27,8 +34,8 @@ Exklusivbeziehungen einer Gruppe sind alle IsA Beziehungen oder alle funktionale
 <property name="DE_ENTI_NAME" value="Exklusivbeziehung"/>
 <property name="DE_ENTI_SYNONYM" value="Arc"/>
 <property name="EN_ENTI_COMMENT" value="*DE* Beziehungen die von einer Entität ausgehen können exklusiv sein. D.h. keine oder 1 davon ist möglich, aber nie mehrere gleichzeitig Exklusivbeziehungen einer Gruppe sind alle IsA Beziehungen oder alle funktionale Beziehungen."/>
-<property name="EN_ENTI_NAME" value="*DE* Exklusivbeziehung"/>
-<property name="EN_ENTI_SYNONYM" value="*DE* Arc"/>
+<property name="EN_ENTI_NAME" value="Exclusive relationship"/>
+<property name="EN_ENTI_SYNONYM" value="Arc"/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Entitätname [L]" id="046F66BA-05DC-63A1-00EE-B9ABD308C7DB">
@@ -36,6 +43,13 @@ Exklusivbeziehungen einer Gruppe sind alle IsA Beziehungen oder alle funktionale
 <createdTime>2018-11-04 12:24:41 UTC</createdTime>
 <comment><![CDATA[Name der Entität der in der Kommunikation normalerweise gebraucht wird.]]></comment>
 <generatorID>9FF4FE9D-9F37-EEB1-116B-F0858C005DB7</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Name der Entität der in der Kommunikation normalerweise gebraucht wird.
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Name of the entity normally used in communication.
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
@@ -52,13 +66,20 @@ Exklusivbeziehungen einer Gruppe sind alle IsA Beziehungen oder alle funktionale
 <property name="DE_ATTR_COMMENT" value="Name der Entität der in der Kommunikation normalerweise gebraucht wird."/>
 <property name="DE_ATTR_NAME" value="Entitätname [L]"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Name der Entität der in der Kommunikation normalerweise gebraucht wird."/>
-<property name="EN_ATTR_NAME" value="*DE* Entitätname [L]"/>
+<property name="EN_ATTR_NAME" value="Entity name [L]"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Laufnr" id="F8F374B8-F266-21F0-ADA1-DE808B4EF15F">
 <createdBy>stb</createdBy>
 <createdTime>2018-11-04 12:25:25 UTC</createdTime>
 <comment><![CDATA[willkürliche Nummerierung zur Untescheidung mehrere Exklusivbeziehungen in einer Entität]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+willkürliche Nummerierung zur Untescheidung mehrere Exklusivbeziehungen in einer Entität
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+arbitrary numbering to distinguish several exclusive relationships in an entity
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
@@ -74,7 +95,7 @@ Exklusivbeziehungen einer Gruppe sind alle IsA Beziehungen oder alle funktionale
 <property name="DE_ATTR_COMMENT" value="willkürliche Nummerierung zur Untescheidung mehrere Exklusivbeziehungen in einer Entität"/>
 <property name="DE_ATTR_NAME" value="Laufnr"/>
 <property name="EN_ATTR_COMMENT" value="*DE* willkürliche Nummerierung zur Untescheidung mehrere Exklusivbeziehungen in einer Entität"/>
-<property name="EN_ATTR_NAME" value="*DE* Laufnr"/>
+<property name="EN_ATTR_NAME" value="Runnr"/>
 </propertyMap>
 </Attribute>
 </attributes>

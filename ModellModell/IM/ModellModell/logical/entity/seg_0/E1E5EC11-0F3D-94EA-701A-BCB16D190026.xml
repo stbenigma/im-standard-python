@@ -3,6 +3,13 @@
 <createdBy>stb</createdBy>
 <createdTime>2018-11-03 14:22:30 UTC</createdTime>
 <comment><![CDATA[Information zur Darstellung eines grafischen Elementes (Entität, etc.) auf einem Diagramm]]></comment>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+Information zur Darstellung eines grafischen Elementes (Entität, etc.) auf einem Diagramm
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+Information about the representation of a graphical element (entity, etc.) on a diagram
+]EN_ENTI_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
@@ -23,7 +30,7 @@
 <property name="DE_ENTI_NAME" value="Elemendarstellung"/>
 <property name="DE_ENTI_SYNONYM" value=""/>
 <property name="EN_ENTI_COMMENT" value="*DE* Information zur Darstellung eines grafischen Elementes (Entität, etc.) auf einem Diagramm"/>
-<property name="EN_ENTI_NAME" value="*DE* Elemendarstellung"/>
+<property name="EN_ENTI_NAME" value="Element representation"/>
 <property name="EN_ENTI_SYNONYM" value=""/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
@@ -31,6 +38,13 @@
 <createdBy>stb</createdBy>
 <createdTime>2018-11-03 14:31:48 UTC</createdTime>
 <generatorID>EA5BE36E-D298-45EB-3BD7-34DB557812CE</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
@@ -48,7 +62,7 @@
 <property name="DE_ATTR_COMMENT" value=""/>
 <property name="DE_ATTR_NAME" value="Name [L]"/>
 <property name="EN_ATTR_COMMENT" value=""/>
-<property name="EN_ATTR_NAME" value="*DE* Name [L]"/>
+<property name="EN_ATTR_NAME" value="Name [L]"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Name" id="85B1FCCF-7A20-CF0A-DBB4-FD296C4B8501">
@@ -56,6 +70,13 @@
 <createdTime>2018-11-03 14:31:48 UTC</createdTime>
 <comment><![CDATA[Name eines Geschäftsbereichs]]></comment>
 <generatorID>EA5BE36E-D298-45EB-3BD7-34DB557812CE</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Name eines Geschäftsbereichs
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Business division name
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
@@ -73,7 +94,7 @@
 <property name="DE_ATTR_COMMENT" value="Name eines Geschäftsbereichs"/>
 <property name="DE_ATTR_NAME" value="Name"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Name eines Geschäftsbereichs"/>
-<property name="EN_ATTR_NAME" value="*DE* Name"/>
+<property name="EN_ATTR_NAME" value="Name"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Name FK" id="225EEADC-063D-3D33-DE9F-B0D419C7A675">
@@ -81,6 +102,13 @@
 <createdTime>2018-11-03 14:31:48 UTC</createdTime>
 <comment><![CDATA[Name der Entität der in der Kommunikation normalerweise gebraucht wird.]]></comment>
 <generatorID>EA5BE36E-D298-45EB-3BD7-34DB557812CE</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Name der Entität der in der Kommunikation normalerweise gebraucht wird.
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Name of the entity normally used in communication.
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
@@ -98,13 +126,20 @@
 <property name="DE_ATTR_COMMENT" value="Name der Entität der in der Kommunikation normalerweise gebraucht wird."/>
 <property name="DE_ATTR_NAME" value="Name FK"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Name der Entität der in der Kommunikation normalerweise gebraucht wird."/>
-<property name="EN_ATTR_NAME" value="*DE* Name FK"/>
+<property name="EN_ATTR_NAME" value="Name FK"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Inhaltdarstellung" id="4513F410-C3CF-A0F8-0DA3-06A48FCBAC9B">
 <createdBy>stb</createdBy>
 <createdTime>2019-08-08 06:06:30 UTC</createdTime>
 <commentInRDBMS><![CDATA[Vorgabewert einer Darstellung eines Elementtyps]]></commentInRDBMS>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
@@ -121,13 +156,20 @@
 <property name="DE_ATTR_COMMENT" value=""/>
 <property name="DE_ATTR_NAME" value="Inhaltdarstellung"/>
 <property name="EN_ATTR_COMMENT" value=""/>
-<property name="EN_ATTR_NAME" value="*DE* Inhaltdarstellung"/>
+<property name="EN_ATTR_NAME" value="Content display"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Randdarstellung" id="8B735900-0D91-B088-FE52-28C12ECB5967">
 <createdBy>stb</createdBy>
 <createdTime>2019-08-08 06:06:30 UTC</createdTime>
 <commentInRDBMS><![CDATA[Vorgabewert der Darstellung des Randes um das Element]]></commentInRDBMS>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
@@ -144,13 +186,20 @@
 <property name="DE_ATTR_COMMENT" value=""/>
 <property name="DE_ATTR_NAME" value="Randdarstellung"/>
 <property name="EN_ATTR_COMMENT" value=""/>
-<property name="EN_ATTR_NAME" value="*DE* Randdarstellung"/>
+<property name="EN_ATTR_NAME" value="Marginal representation"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Schriftgrösse" id="B754768D-EC5E-FD14-B413-CA0EA96AE089">
 <createdBy>stb</createdBy>
 <createdTime>2019-08-08 06:06:30 UTC</createdTime>
 <commentInRDBMS><![CDATA[Vorgabewert der Schriftgrösse des Elementsnamens]]></commentInRDBMS>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
@@ -167,7 +216,7 @@
 <property name="DE_ATTR_COMMENT" value=""/>
 <property name="DE_ATTR_NAME" value="Schriftgrösse"/>
 <property name="EN_ATTR_COMMENT" value=""/>
-<property name="EN_ATTR_NAME" value="*DE* Schriftgrösse"/>
+<property name="EN_ATTR_NAME" value="Font size"/>
 </propertyMap>
 <listOfRanges>
 <rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
@@ -179,6 +228,13 @@
 <Attribute name="Schriftfarbe" id="81F5FE40-4448-69B3-37C1-E5DE22FC7B0A">
 <createdBy>stb</createdBy>
 <createdTime>2019-08-08 06:28:00 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
@@ -196,7 +252,7 @@
 <property name="DE_ATTR_COMMENT" value=""/>
 <property name="DE_ATTR_NAME" value="Schriftfarbe"/>
 <property name="EN_ATTR_COMMENT" value=""/>
-<property name="EN_ATTR_NAME" value="*DE* Schriftfarbe"/>
+<property name="EN_ATTR_NAME" value="Font color"/>
 </propertyMap>
 </Attribute>
 </attributes>

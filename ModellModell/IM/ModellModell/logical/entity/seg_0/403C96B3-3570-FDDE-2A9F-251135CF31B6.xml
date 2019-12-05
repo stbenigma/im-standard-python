@@ -7,6 +7,13 @@ Zwischen Elementen von Mandaten gibt es keinerlei Beziehung
 
  
 ]]></comment>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+Organisation, Kunde, für den ein Modell definiert ist. Zwischen Elementen von Mandaten gibt es keinerlei Beziehung    
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+Organization, customer for whom a model is defined. There is no relationship between elements of mandates
+]EN_ENTI_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
@@ -29,7 +36,7 @@ Zwischen Elementen von Mandaten gibt es keinerlei Beziehung
 <property name="DE_ENTI_NAME" value="Mandant"/>
 <property name="DE_ENTI_SYNONYM" value=""/>
 <property name="EN_ENTI_COMMENT" value="*DE* Organisation, Kunde, für den ein Modell definiert ist. Zwischen Elementen von Mandaten gibt es keinerlei Beziehung    "/>
-<property name="EN_ENTI_NAME" value="*DE* Mandant"/>
+<property name="EN_ENTI_NAME" value="Client"/>
 <property name="EN_ENTI_SYNONYM" value=""/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
@@ -37,6 +44,13 @@ Zwischen Elementen von Mandaten gibt es keinerlei Beziehung
 <createdBy>stb</createdBy>
 <createdTime>2018-11-03 12:34:47 UTC</createdTime>
 <comment><![CDATA[Name der Entität der in der Kommunikation normalerweise gebraucht wird.]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Name der Entität der in der Kommunikation normalerweise gebraucht wird.
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Name of the entity normally used in communication.
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
@@ -51,13 +65,20 @@ Zwischen Elementen von Mandaten gibt es keinerlei Beziehung
 <property name="DE_ATTR_COMMENT" value="Name der Entität der in der Kommunikation normalerweise gebraucht wird."/>
 <property name="DE_ATTR_NAME" value="Name"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Name der Entität der in der Kommunikation normalerweise gebraucht wird."/>
-<property name="EN_ATTR_NAME" value="*DE* Name"/>
+<property name="EN_ATTR_NAME" value="Name"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Beschreibung" id="2337B784-43D8-48C3-9512-AEA4C275DD75">
 <createdBy>stb</createdBy>
 <createdTime>2018-11-03 12:34:47 UTC</createdTime>
 <comment><![CDATA[Bedeutung, Nutzen, Nutzung der Entität]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Bedeutung, Nutzen, Nutzung der Entität
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Meaning, Benefits, Use of the Entity
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
@@ -73,7 +94,7 @@ Zwischen Elementen von Mandaten gibt es keinerlei Beziehung
 <property name="DE_ATTR_COMMENT" value="Bedeutung, Nutzen, Nutzung der Entität"/>
 <property name="DE_ATTR_NAME" value="Beschreibung"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Bedeutung, Nutzen, Nutzung der Entität"/>
-<property name="EN_ATTR_NAME" value="*DE* Beschreibung"/>
+<property name="EN_ATTR_NAME" value="Description of the"/>
 </propertyMap>
 </Attribute>
 </attributes>

@@ -6,11 +6,19 @@
 Diese Regeln sind passiv. D.h. es wird überprüft, ob der Wert (ggf. im Zusammenhang mit anderen Werten dieser oder anderer Entitäten) aus fachlicher Sicht korrekt ist.
 
 Regelverletzungen können als SQL Selects angegeben werden. Jedes Tupel, das das Select liefert verletzt die Regel.   ]]></comment>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+Geschäftsregel, die Attributwerte auf Regelkonformität prüft. Diese Regeln sind passiv. D.h. es wird überprüft, ob der Wert (ggf. im Zusammenhang mit anderen Werten dieser oder anderer Entitäten) aus fachlicher Sicht korrekt ist.  Regelverletzungen können als SQL Selects angegeben werden. Jedes Tupel, das das Select liefert verletzt die Regel.   
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+Transaction rule that checks attribute values for rule conformity. These rules are passive. This means that the system checks whether the value (possibly in connection with other values of these or other entities) is correct from a business point of view.  Rule violations can be specified as SQL selects. Any tuple that returns the select violates the rule.   
+]EN_ENTI_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
 <typeID>1C6A8769-7651-51C0-9E0A-D0C138DE6193</typeID>
 <adequatelyNormalized>NO</adequatelyNormalized>
@@ -29,18 +37,26 @@ Regelverletzungen können als SQL Selects angegeben werden. Jedes Tupel, das das
 <property name="DE_ENTI_NAME" value="Geschäftsregel"/>
 <property name="DE_ENTI_SYNONYM" value="Business Rule"/>
 <property name="EN_ENTI_COMMENT" value="*DE* Geschäftsregel, die Attributwerte auf Regelkonformität prüft. Diese Regeln sind passiv. D.h. es wird überprüft, ob der Wert (ggf. im Zusammenhang mit anderen Werten dieser oder anderer Entitäten) aus fachlicher Sicht korrekt ist.  Regelverletzungen können als SQL Selects angegeben werden. Jedes Tupel, das das Select liefert verletzt die Regel.   "/>
-<property name="EN_ENTI_NAME" value="*DE* Geschäftsregel"/>
-<property name="EN_ENTI_SYNONYM" value="*DE* Business Rule"/>
+<property name="EN_ENTI_NAME" value="Business rule"/>
+<property name="EN_ENTI_SYNONYM" value="Business rule"/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Name" id="D4367DA7-6021-7E29-BEFC-2F6B66AB1763">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-23 13:39:01 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
 <use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
@@ -50,18 +66,26 @@ Regelverletzungen können als SQL Selects angegeben werden. Jedes Tupel, das das
 <property name="DE_ATTR_COMMENT" value=""/>
 <property name="DE_ATTR_NAME" value="Name"/>
 <property name="EN_ATTR_COMMENT" value=""/>
-<property name="EN_ATTR_NAME" value="*DE* Name"/>
+<property name="EN_ATTR_NAME" value="Name"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Beschreibung" id="2B940275-6B40-64A6-6459-46A41243F4EF">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-23 13:40:18 UTC</createdTime>
 <comment><![CDATA[Umschreibung, Erklärung der Regel]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Umschreibung, Erklärung der Regel
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Description, explanation of the rule
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <use>0</use>
@@ -72,18 +96,26 @@ Regelverletzungen können als SQL Selects angegeben werden. Jedes Tupel, das das
 <property name="DE_ATTR_COMMENT" value="Umschreibung, Erklärung der Regel"/>
 <property name="DE_ATTR_NAME" value="Beschreibung"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Umschreibung, Erklärung der Regel"/>
-<property name="EN_ATTR_NAME" value="*DE* Beschreibung"/>
+<property name="EN_ATTR_NAME" value="Description of the"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Regel" id="723B41D1-B556-FACB-A890-B8B7F4FD8F6B">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-23 13:40:24 UTC</createdTime>
 <comment><![CDATA[Regel, die Werte beschränken auf Grund von komplexen Zusammenhängen (mehere Entitäten, Attribute, Beziehungen)]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Regel, die Werte beschränken auf Grund von komplexen Zusammenhängen (mehere Entitäten, Attribute, Beziehungen)
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Rule limiting values to complex relationships (multiple entities, attributes, relationships)
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
 <use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
@@ -93,18 +125,26 @@ Regelverletzungen können als SQL Selects angegeben werden. Jedes Tupel, das das
 <property name="DE_ATTR_COMMENT" value="Regel, die Werte beschränken auf Grund von komplexen Zusammenhängen (mehere Entitäten, Attribute, Beziehungen)"/>
 <property name="DE_ATTR_NAME" value="Regel"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Regel, die Werte beschränken auf Grund von komplexen Zusammenhängen (mehere Entitäten, Attribute, Beziehungen)"/>
-<property name="EN_ATTR_NAME" value="*DE* Regel"/>
+<property name="EN_ATTR_NAME" value="Rule"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Fehlermeldung [L]" id="F0D0A02C-116A-DB0F-5438-DED076F0352F">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-23 13:40:55 UTC</createdTime>
 <comment><![CDATA[Meldung, die bei Verletzung der Regel angezeigt wird.]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Meldung, die bei Verletzung der Regel angezeigt wird.
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Message that is displayed when the rule is violated.
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
 <use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
@@ -114,18 +154,26 @@ Regelverletzungen können als SQL Selects angegeben werden. Jedes Tupel, das das
 <property name="DE_ATTR_COMMENT" value="Meldung, die bei Verletzung der Regel angezeigt wird."/>
 <property name="DE_ATTR_NAME" value="Fehlermeldung [L]"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Meldung, die bei Verletzung der Regel angezeigt wird."/>
-<property name="EN_ATTR_NAME" value="*DE* Fehlermeldung [L]"/>
+<property name="EN_ATTR_NAME" value="Error message [L]"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Regelebene" id="B4010BF0-A568-7476-4439-5CB48CB7997D">
 <createdBy>stb</createdBy>
 <createdTime>2019-01-10 08:07:01 UTC</createdTime>
 <comment><![CDATA[Ebene auf der die Regel prüft (Tupel, Entität, Datenbank)]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Ebene auf der die Regel prüft (Tupel, Entität, Datenbank)
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Level at which the rule checks (tuple, entity, database)
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
 <use>0</use>
 <domain>4655A975-6C53-BBE1-01B9-D658AD7C5FC5</domain>
@@ -134,7 +182,7 @@ Regelverletzungen können als SQL Selects angegeben werden. Jedes Tupel, das das
 <property name="DE_ATTR_COMMENT" value="Ebene auf der die Regel prüft (Tupel, Entität, Datenbank)"/>
 <property name="DE_ATTR_NAME" value="Regelebene"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Ebene auf der die Regel prüft (Tupel, Entität, Datenbank)"/>
-<property name="EN_ATTR_NAME" value="*DE* Regelebene"/>
+<property name="EN_ATTR_NAME" value="Rule level"/>
 </propertyMap>
 </Attribute>
 </attributes>
@@ -147,6 +195,7 @@ Regelverletzungen können als SQL Selects angegeben werden. Jedes Tupel, das das
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
 <newElementsIDs>D4367DA7-6021-7E29-BEFC-2F6B66AB1763</newElementsIDs>
 <usedAttributes>

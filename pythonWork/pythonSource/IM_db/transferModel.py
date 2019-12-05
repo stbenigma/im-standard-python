@@ -113,6 +113,7 @@ def transferTypes():
 def do1structtype(filename):
     structdomains = ET.parse(filename)
     structdom = structdomains.getroot()
+    if (findField(structdom,"class") != "oracle.dbtools.crest.model.design.datatypes.StructuredType"): return
     #print (structdom.get("name"))
     wrtb = Wertebereich(pname=findField(structdom,("name")),pid=findField(structdom,"id"))
     wrtb.wrtb_uc = findText(structdom,"createdBy")
@@ -172,11 +173,7 @@ def transferDomains():
         # endif
         ranges = dom.findall('listOfRanges/rangeDef')
         if not (ranges == []):
-            try:
-                range=(findText(ranges[0],'beginValue'),findText(ranges[0],'endValue'))
-            except:
-                print ("was ist hier los *******")
-                pass
+            range=(findText(ranges[0],'beginValue'),findText(ranges[0],'endValue'))
         else:
             range = (None,None)
         #endif
@@ -185,7 +182,7 @@ def transferDomains():
         #noch nicht übernommenm< defaultValue > a @ b.ch < / defaultValue >
 
         if (wrtb.wrtb_typ =='BIN'):
-            wrtb.wrtb_bin_inhalttyp == 'BILD' # 'FILM','GRAPH','TEXT','TON'
+            wrtb.wrtb_bin_inhalttyp = 'BILD' # 'FILM','GRAPH','TEXT','TON'
             wrtb_bin_spfo_id = None
         elif (wrtb.wrtb_typ == 'LOV'):
             zahl=re.search('\A\d* ',nvl(findText(dom,'dataTypeSize')))
@@ -344,17 +341,26 @@ def transferdiaarc(parcs, pdiagid, puc, pdc):
 # transferdiaarc
 
 def dosegfiles(pdirec,transferfiles):
-    for el in os.listdir(pdirec):
+    try:
+        listdir=os.listdir(pdirec)
+    except:
+        print('directory "{}" not found.'.format(pdirec))
+        return
+    #try
+    for el in listdir:
         if re.match('seg_.*', el):
             for file in os.listdir(pdirec + el):
-                if  (re.search('DS_Store', file) == None):
+                #nur GUID als Namen erlaubt.
+                if re.match(r'[A-Z0-9-]{30,45}.xml',file):
+#                if  ((re.search('DS_Store', file) == None)
+#                    and (not file.startswith('.'))):
                     fileName = pdirec + el + '/' + file
                     #print (fileName)
                     transferfiles(fileName)
-                #endif
-            #enfor
-        #endif
-    #endfor
+                #fi
+            #for
+        #fi
+    #for
 #dosegfiles
 
 def do1diagramm(p_filename):
@@ -402,22 +408,20 @@ def transferdiagramme():
     #endfor
 #transferdiagramme
 
-def findeOderErstelleDom(domGuid,typeGuid,attrName):
-    if (domGuid == None):
-        domGuid='Unkwown'
-    #fi
-    try:
-        domId = dbLookup.wrtbLookup(domGuid)
-        if domId is None:
-            domId = dbLookup.wrtbLookupByName('Unknown')
-    except:
-        domId = dbLookup.wrtbLookupByName('Unknown')
-    #try
+def findeOderErstelleDom(pdomguid, pstructdomguid, ptypeguid, pattrname):
+    domId = None
+    if pdomguid is not None:
+        domId = dbLookup.wrtbLookup(pdomguid)
+    elif pstructdomguid is not None:
+        domId = dbLookup.wrtbLookup(pstructdomguid)
+    #
+    if domId is None: domId = dbLookup.wrtbLookupByName('Unknown')
     return domId
 #findeOderErstelleDom
 
 def do1Arc(fileName):
     arc= ET.parse(fileName).getroot()
+    if (findField(arc, "class") != "oracle.dbtools.crest.model.design.logical.Arc"): return
 #    print (arc.get("id"),arc.get("name"),arc.find('entity').text)
 
     #(arcs_name, arcs_enti_id, arcs_odm_guid
@@ -485,23 +489,33 @@ def do1Attribute(n,attr,entiId=None,beziId=None):
     creby = findText(attr,'createdBy')
     creti = findText(attr,'createdTime')
     techiName = nvl(abbrevName,re.sub('[-,.()\[\]äöüèéàÄ~ÖÜ ]','_',str.upper(attrName)))
-    domId=findeOderErstelleDom(domGuid=findText(attr,'domain'),typeGuid=findText(attr,'logicalDatatype'),attrName=attrName)
+    domId=findeOderErstelleDom(pdomguid=findText(attr, 'domain')
+                               , pstructdomguid=findText(attr,'structuredType')
+                               , ptypeguid=findText(attr, 'logicalDatatype')
+                               , pattrname=attrName)
     attrcomm = findText(attr,'comment')
-    attrId = dbInserts.insertAttribute(pattr=(\
-        entiId,domId,techiName
+    attrset=(entiId,domId,techiName
         ,attrName,findText(attr,''),attrcomm
         ,findText(attr,''),n
-        ,'FALSE','FALSE' if (findText(attr,'nullsAllowed') == 'true') else 'TRUE','TRUE' if (re.search('\[.*T.*\]', ganzName) is not None) else 'FALSE'
-        ,'TRUE' if (re.search('\[.*N.*\]', ganzName) is not None) else 'FALSE','TRUE' if (re.search('\[.*L.*\]', ganzName) is not None) else 'FALSE','FALSE'
-        ,findText(attr,'createdBy')   ,findText(attr,'createdTime'),findField(attr,'id'),beziId
-    ))
+        ,'FALSE','FALSE' if (findText(attr,'nullsAllowed') == 'true') else 'TRUE'
+             ,'TRUE' if (re.search('\[.*T.*\]', ganzName) is not None) else 'FALSE'
+        ,'TRUE' if (re.search('\[.*N.*\]', ganzName) is not None) else 'FALSE'
+             ,'TRUE' if (re.search('\[.*L.*\]', ganzName) is not None) else 'FALSE','FALSE'
+        ,creby,creti,findField(attr,'id'),beziId
+    )
+    try:
+        attrId = dbInserts.insertAttribute(pattr=attrset)
+    except  sqlite3.Error as e:
+        print(attrset)
+        raise e
+    #try
     lmodeId=dbInserts.insertModeAttr(attrId)
     dbInserts.insertUdpAttr(attrId)
     updateUDP(pmodeid=lmodeId, pobj=attr)
 
 #do1Attribute
 
-def    fillKeys(p_enti, p_entiid):
+def fillKeys(p_enti, p_entiid):
     global keys
     allkeys = p_enti.find('identifiers')
     if allkeys is not None:
@@ -532,8 +546,9 @@ def transferKeys(p_keys):
     for keyGuid in p_keys:
         #schl_laufnr, schl_name, schl_odm_guid
         #, schl_uc, schl_dc, schl_enti_id
-        keyId = dbInserts.insertSchluessel((p_keys[keyGuid][1], p_keys[keyGuid][2], keyGuid
-                                    , p_keys[keyGuid][3], p_keys[keyGuid][4], p_keys[keyGuid][0]))
+        keyset=(p_keys[keyGuid][1], p_keys[keyGuid][2], keyGuid
+                                    , p_keys[keyGuid][3], p_keys[keyGuid][4], p_keys[keyGuid][0])
+        keyId = dbInserts.insertSchluessel(keyset)
         #print (keyGuid,keys[keyGuid])
 
         #nun die Schlüsselelemente
@@ -542,8 +557,13 @@ def transferKeys(p_keys):
                 attrId = dbLookup.attrID(ke)
                 beziId = None
             except:
-                beziId = dbLookup.beziId(ke)
-                attrId = None
+                try:
+                    beziId = dbLookup.beziId(ke)
+                    attrId = None
+                except sqlite3.Error as e:
+                    print (ke,keyset)
+                    raise e
+                #try
             #yrt
             #scel_schl_id,   scel_attr_id,scel_bezi_id,  scel_uc, scel_dc
             dbInserts.insertSchlElem((keyId, attrId, beziId, p_keys[keyGuid][3], p_keys[keyGuid][4]))
@@ -556,6 +576,7 @@ def transferKeys(p_keys):
 def do1Entity(fileName):
     tree = ET.parse(fileName)
     root = tree.getroot()
+    if (findField(root,"class") != "oracle.dbtools.crest.model.design.logical.Entity"): return
     entname = root.get("name")
     entcomm = findText(root,'comment')
     creby = findText(root,'createdBy')
@@ -683,6 +704,7 @@ def beziType(srcCard, targCard, srcOpt,targOpt,arcId):
 def do1Relation(fileName):
     tree = ET.parse(fileName)
     root = tree.getroot()
+    if (findField(root,"class") != "oracle.dbtools.crest.model.design.logical.Relation"): return
     try:
         beziArcId = dbLookup.arcsID(findText(root,'arc'))
     except  sqlite3.Error as e:
@@ -691,7 +713,8 @@ def do1Relation(fileName):
         else:
             raise e
         #fi
-    #yrt
+    #try
+    relname=root.get('name')
     optSrc = findText(root, 'optionalSource')
     optTarg = findText(root, 'optionalTarget')
     cardSrc = findText(root, 'sourceCardinality')
@@ -717,7 +740,7 @@ def do1Relation(fileName):
              ,strNegBool(optSrc), 'FALSE'
              , dbLookup.entiID(findText(root,'targetEntity')), zuText
              ,strNegBool(optTarg),'FALSE', beziArcId
-             ,root.get('id'),findText(root,'createdBy'),findText(root,'createdTime'),root.get('name')
+             ,root.get('id'),creby,creti,relname
              ]
             #root.get('name')\           ,findText(root,'comment')\
            #           ,findText(root,'transferable')           ,findText(root,'deleteRule')\

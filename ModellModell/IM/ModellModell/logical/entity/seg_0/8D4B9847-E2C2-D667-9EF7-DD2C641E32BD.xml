@@ -4,10 +4,18 @@
 <createdTime>2019-01-08 19:17:40 UTC</createdTime>
 <comment><![CDATA[Kommentar als eigenes Symbol auf einem Diagramm.
 "Post It" Zettel.]]></comment>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+Kommentar als eigenes Symbol auf einem Diagramm. "Post It" Zettel.
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+Comment as a separate symbol on a diagram. "Post It" note.
+]EN_ENTI_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
 <adequatelyNormalized>NO</adequatelyNormalized>
 <expectedVolumes>0</expectedVolumes>
@@ -23,17 +31,25 @@
 <property name="DE_ENTI_NAME" value="Diagrammkommentar"/>
 <property name="DE_ENTI_SYNONYM" value=""/>
 <property name="EN_ENTI_COMMENT" value="*DE* Kommentar als eigenes Symbol auf einem Diagramm. &quot;Post It&quot; Zettel."/>
-<property name="EN_ENTI_NAME" value="*DE* Diagrammkommentar"/>
+<property name="EN_ENTI_NAME" value="Diagram comment"/>
 <property name="EN_ENTI_SYNONYM" value=""/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Kommentar" id="B41AC20C-C450-02D2-F5BD-4BF648EBD29E">
 <createdBy>stb</createdBy>
 <createdTime>2019-01-08 19:19:40 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
 <use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
@@ -43,7 +59,7 @@
 <property name="DE_ATTR_COMMENT" value=""/>
 <property name="DE_ATTR_NAME" value="Kommentar"/>
 <property name="EN_ATTR_COMMENT" value=""/>
-<property name="EN_ATTR_NAME" value="*DE* Kommentar"/>
+<property name="EN_ATTR_NAME" value="Comment"/>
 </propertyMap>
 </Attribute>
 </attributes>

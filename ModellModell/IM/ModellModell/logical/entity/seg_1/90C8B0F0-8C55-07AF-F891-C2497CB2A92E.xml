@@ -2,10 +2,18 @@
 <Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="90C8B0F0-8C55-07AF-F891-C2497CB2A92E" name="Diagrammtyp">
 <createdBy>stb</createdBy>
 <createdTime>2019-03-13 14:11:00 UTC</createdTime>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+
+]EN_ENTI_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
 <adequatelyNormalized>NO</adequatelyNormalized>
 <expectedVolumes>0</expectedVolumes>
@@ -21,17 +29,25 @@
 <property name="DE_ENTI_NAME" value="Diagrammtyp"/>
 <property name="DE_ENTI_SYNONYM" value=""/>
 <property name="EN_ENTI_COMMENT" value=""/>
-<property name="EN_ENTI_NAME" value="*DE* Diagrammtyp"/>
+<property name="EN_ENTI_NAME" value="Diagram type"/>
 <property name="EN_ENTI_SYNONYM" value=""/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Bezeichnung" id="E81B2357-B14F-682F-4601-CEE7EA574EEE">
 <createdBy>stb</createdBy>
 <createdTime>2019-08-08 06:30:12 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
 <use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
@@ -41,7 +57,7 @@
 <property name="DE_ATTR_COMMENT" value=""/>
 <property name="DE_ATTR_NAME" value="Bezeichnung"/>
 <property name="EN_ATTR_COMMENT" value=""/>
-<property name="EN_ATTR_NAME" value="*DE* Bezeichnung"/>
+<property name="EN_ATTR_NAME" value="Designation"/>
 </propertyMap>
 </Attribute>
 </attributes>

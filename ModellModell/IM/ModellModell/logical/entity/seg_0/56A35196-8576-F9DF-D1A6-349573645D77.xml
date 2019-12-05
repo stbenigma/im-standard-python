@@ -6,11 +6,19 @@
 exklusive  IsA Subtypen (monohierarchisch, optional von Vater zu Kind) können als Subtypen in der Entität gezeichnet werden. 
 
 Eine IsA Beziehung beginnt immer bei Subtyp (von Kind zu Vater). Diese Beziehung (Kind zu Vater) kann nicht optional sein.]]></comment>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+1:1 Beziehung, einen Subtyp definiert. exklusive  IsA Subtypen (monohierarchisch, optional von Vater zu Kind) können als Subtypen in der Entität gezeichnet werden.   Eine IsA Beziehung beginnt immer bei Subtyp (von Kind zu Vater). Diese Beziehung (Kind zu Vater) kann nicht optional sein.
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+1:1 relationship, one subtype defined. exclusive IsA subtypes (mono-hierarchical, optional from father to child) can be drawn as subtypes in the entity.   An IsA relationship always starts with subtype (from child to father). This relationship (child to father) cannot be optional.
+]EN_ENTI_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
 <typeID>1C6A8769-7651-51C0-9E0A-D0C138DE6193</typeID>
 <adequatelyNormalized>NO</adequatelyNormalized>
@@ -27,7 +35,7 @@ Eine IsA Beziehung beginnt immer bei Subtyp (von Kind zu Vater). Diese Beziehung
 <property name="DE_ENTI_NAME" value="IsA Beziehung"/>
 <property name="DE_ENTI_SYNONYM" value=""/>
 <property name="EN_ENTI_COMMENT" value="*DE* 1:1 Beziehung, einen Subtyp definiert. exklusive  IsA Subtypen (monohierarchisch, optional von Vater zu Kind) können als Subtypen in der Entität gezeichnet werden.   Eine IsA Beziehung beginnt immer bei Subtyp (von Kind zu Vater). Diese Beziehung (Kind zu Vater) kann nicht optional sein."/>
-<property name="EN_ENTI_NAME" value="*DE* IsA Beziehung"/>
+<property name="EN_ENTI_NAME" value="IsA Relationship"/>
 <property name="EN_ENTI_SYNONYM" value=""/>
 </propertyMap>
 </Entity>

@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="6A7CCECE-7C3D-BB08-EEB5-04BE1DEEFBB8" name="Interner Prozess">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="6A7CCECE-7C3D-BB08-EEB5-04BE1DEEFBB8" name="Technischer Prozess">
 <createdBy>stb</createdBy>
 <createdTime>2019-03-15 17:43:04 UTC</createdTime>
 <comment><![CDATA[Geschäftsprozess, der durch ein System durchgeführt ist. Er kann durch einen Akteur ausglöst werden, die Ergebnisse sind aber typischerweise nicht direkt für den Akteur berstimmt.
@@ -8,6 +8,13 @@ Beispiel:
 - (automatisch) Mahnungen versenden
 - Lohnzahlungen durchführen.
 - nächtliche Datenübernahme ab einem Fremdsystem]]></comment>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+Geschäftsprozess, der durch ein System durchgeführt ist. Er kann durch einen Akteur ausglöst werden, die Ergebnisse sind aber typischerweise nicht direkt für den Akteur berstimmt.  Beispiel: - (automatisch) Mahnungen versenden - Lohnzahlungen durchführen. - nächtliche Datenübernahme ab einem Fremdsystem
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+Business process performed by a system. It can be triggered by an actor, but the results are typically not directly attuned to the actor.  Example: - Send (automatically) dunning notices - Make wage payments. - nightly data transfer from an external system
+]EN_ENTI_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
@@ -29,6 +36,6 @@ Beispiel:
 <property name="DE_ENTI_COMMENT" value="Geschäftsprozess, der durch ein System durchgeführt ist. Er kann durch einen Akteur ausglöst werden, die Ergebnisse sind aber typischerweise nicht direkt für den Akteur berstimmt.  Beispiel: - (automatisch) Mahnungen versenden - Lohnzahlungen durchführen. - nächtliche Datenübernahme ab einem Fremdsystem"/>
 <property name="DE_ENTI_NAME" value="Interner Prozess"/>
 <property name="EN_ENTI_COMMENT" value="*DE* Geschäftsprozess, der durch ein System durchgeführt ist. Er kann durch einen Akteur ausglöst werden, die Ergebnisse sind aber typischerweise nicht direkt für den Akteur berstimmt.  Beispiel: - (automatisch) Mahnungen versenden - Lohnzahlungen durchführen. - nächtliche Datenübernahme ab einem Fremdsystem"/>
-<property name="EN_ENTI_NAME" value="*DE* Interner Prozess"/>
+<property name="EN_ENTI_NAME" value="Internal process"/>
 </propertyMap>
 </Entity>

@@ -19,6 +19,13 @@ Eclipse / Microsoft Studio
 Jenkins
 Oracle-APEX
 ]]></comment>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+IT_System, Betriebssystem, Infrastruktur in oder auf dem Anwendungen laufen können.  Beispiele: Power-DNS JRE java runtime environment Windows Android ubuntu Linux mongo-DB Excel Access SAP-Hana IDE  = Application for IT-People Eclipse / Microsoft Studio Jenkins Oracle-APEX 
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+IT_System, operating system, infrastructure in or on which applications can run.  Examples: Power-DNS JRE java runtime environment Windows Android ubuntu Linux mongo-DB Excel Access SAP-Hana IDE = Application for IT-People Eclipse / Microsoft Studio Jenkins Oracle-APEX
+]EN_ENTI_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
@@ -41,12 +48,19 @@ Oracle-APEX
 <property name="DE_ENTI_COMMENT" value="IT_System, Betriebssystem, Infrastruktur in oder auf dem Anwendungen laufen können.  Beispiele: Power-DNS JRE java runtime environment Windows Android ubuntu Linux mongo-DB Excel Access SAP-Hana IDE  = Application for IT-People Eclipse / Microsoft Studio Jenkins Oracle-APEX "/>
 <property name="DE_ENTI_NAME" value="IT-System"/>
 <property name="EN_ENTI_COMMENT" value="*DE* IT_System, Betriebssystem, Infrastruktur in oder auf dem Anwendungen laufen können.  Beispiele: Power-DNS JRE java runtime environment Windows Android ubuntu Linux mongo-DB Excel Access SAP-Hana IDE  = Application for IT-People Eclipse / Microsoft Studio Jenkins Oracle-APEX "/>
-<property name="EN_ENTI_NAME" value="*DE* IT-System"/>
+<property name="EN_ENTI_NAME" value="IT system"/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Zeichnsatz" id="CEF84331-D1F8-95B8-C3AC-2F58918460FD">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-23 12:36:00 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
@@ -63,7 +77,7 @@ Oracle-APEX
 <property name="DE_ATTR_COMMENT" value=""/>
 <property name="DE_ATTR_NAME" value="Zeichnsatz"/>
 <property name="EN_ATTR_COMMENT" value=""/>
-<property name="EN_ATTR_NAME" value="*DE* Zeichnsatz"/>
+<property name="EN_ATTR_NAME" value="Character set"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Name" id="6A0BE6EE-FACA-EE1A-B294-1071918E2DA9">
@@ -71,6 +85,13 @@ Oracle-APEX
 <createdTime>2018-11-03 14:04:13 UTC</createdTime>
 <comment><![CDATA[Name der Entität der in der Kommunikation normalerweise gebraucht wird.]]></comment>
 <generatorID>03E094E5-D662-F557-57A5-DD289B02EBF0</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Name der Entität der in der Kommunikation normalerweise gebraucht wird.
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Name of the entity normally used in communication.
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
@@ -87,12 +108,19 @@ Oracle-APEX
 <property name="DE_ATTR_COMMENT" value="Name der Entität der in der Kommunikation normalerweise gebraucht wird."/>
 <property name="DE_ATTR_NAME" value="Name"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Name der Entität der in der Kommunikation normalerweise gebraucht wird."/>
-<property name="EN_ATTR_NAME" value="*DE* Name"/>
+<property name="EN_ATTR_NAME" value="Name"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Name_" id="F3557BB1-0486-BA65-69E0-90425C9A4AED">
 <createdBy>stb</createdBy>
 <createdTime>2019-10-31 07:11:23 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
@@ -107,7 +135,7 @@ Oracle-APEX
 <property name="DE_ATTR_COMMENT" value=""/>
 <property name="DE_ATTR_NAME" value="Name"/>
 <property name="EN_ATTR_COMMENT" value=""/>
-<property name="EN_ATTR_NAME" value="*DE* Name"/>
+<property name="EN_ATTR_NAME" value="Name"/>
 </propertyMap>
 </Attribute>
 </attributes>

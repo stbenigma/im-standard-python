@@ -7,5 +7,17 @@
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
       <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/../../../CRM/IM_CRM_FYAYC.db</jdbc-url>
     </data-source>
+    <data-source source="LOCAL" name="ModellModell" uuid="c6d30759-a3e2-4e28-a3cd-71f230a72318">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/../../../ModellModell/DB/ModellModell.db</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="Komax_IM_gesamt.db" uuid="bcb81b65-77b2-4bdc-b908-8adfbda94892">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/../../../../../KOMADSC/DB/Komax_IM_gesamt.db</jdbc-url>
+    </data-source>
   </component>
 </project>

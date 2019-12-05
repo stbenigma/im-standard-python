@@ -5,11 +5,19 @@
 <comment><![CDATA[Eine M:1 Beziehung  zwischen 2 Entitäten.
 Die M-Seite ist immer die von-Seite (im ODM nicht so geführt).
 ]]></comment>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+Eine M:1 Beziehung  zwischen 2 Entitäten. Die M-Seite ist immer die von-Seite (im ODM nicht so geführt). 
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+An M:1 relationship between two entities. The M-side is always the from-side (not so guided in the ODM)
+]EN_ENTI_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
 <typeID>1C6A8769-7651-51C0-9E0A-D0C138DE6193</typeID>
 <adequatelyNormalized>NO</adequatelyNormalized>
@@ -26,7 +34,7 @@ Die M-Seite ist immer die von-Seite (im ODM nicht so geführt).
 <property name="DE_ENTI_NAME" value="Funktionale Beziehung"/>
 <property name="DE_ENTI_SYNONYM" value=""/>
 <property name="EN_ENTI_COMMENT" value="*DE* Eine M:1 Beziehung  zwischen 2 Entitäten. Die M-Seite ist immer die von-Seite (im ODM nicht so geführt). "/>
-<property name="EN_ENTI_NAME" value="*DE* Funktionale Beziehung"/>
+<property name="EN_ENTI_NAME" value="Functional relationship"/>
 <property name="EN_ENTI_SYNONYM" value=""/>
 </propertyMap>
 </Entity>
