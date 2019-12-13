@@ -39,11 +39,11 @@ def nvl(x,default=''):
 
 def filehref(ref,anz,plang,pimg=None):
     img = '' if pimg is None else '<img class="icon-check" src="icons/{}">'.format(pimg)
-    return """<a href="{}#{}" target="_blank" >{}{}</a>"""\
-        .format(webFileName + '_' + plang.lower() + '.html',ref,anz,img)
+    return """<a href="{}{}" target="_blank" >{}{}</a>"""\
+        .format(webFileName + '_' + plang.lower() + '.html',"#"+ref if ref is not None else "",anz,img)
 #href
 def href(ref,anz):
-    return """<a href="#{}" target="details">{}</a>""".format(ref,anz)
+    return """<a href="#{}" target="_self">{}</a>""".format(ref,anz)
 #href
 
 def isiconstr(w):
@@ -401,7 +401,7 @@ def printfoot():
 		    link.click();
 		    document.body.removeChild(link);
 		}
-		//Code for filtering input
+        //Code for filtering input
         function $x(pNd) {
             var lThis;
             switch (typeof(pNd)) {
@@ -432,7 +432,7 @@ def printfoot():
                 if (!gRegex) {
                     gRegex = new RegExp("test");
                 }
-                var c = 0; // Versuch eines Counters für die Resultate
+                var c = 0; // Counter for results
                 //var e = 0; //
                 var rowCount = 0;
                 gRegex.compile(pString, "i");
@@ -452,6 +452,18 @@ def printfoot():
                 }
                 pThis.style.display = "block";
             }
+
+            // Code for automatic expanding after results < 30 
+            if (c <= 30) {
+                $('#bar1').collapse('show');
+                $('#bar2').collapse('show');
+                $('#bar3').collapse('show');
+            } else {
+                $('#bar1').collapse('hide');
+                $('#bar2').collapse('hide');
+                $('#bar3').collapse('hide');
+            }
+
             document.getElementById("count").innerHTML = c;
             return;
         }
@@ -472,7 +484,7 @@ def printfoot():
             }
         })
 
-        //serchclearer 
+        //serchclearer (clears input in searchbar)
         $(document).ready(function() {
             $("#first").keyup(function() {
                 $("#searchclear").toggle(Boolean($(this).val()));
@@ -485,7 +497,6 @@ def printfoot():
                 $(this).hide();
             });
         });
-
 
         //content view for sidebar(desktop) and modal (mobile)
         document.getElementById("btnF").addEventListener("click", function() {
@@ -510,7 +521,7 @@ def printfoot():
 
             document.getElementById("sidebar").appendChild(tree);
         });
-        
+
         document.getElementById("closeM1").addEventListener("click", function() {
             $("body").css("overflow", "auto");
 
@@ -520,6 +531,57 @@ def printfoot():
             tree.appendChild(div);
 
             document.getElementById("sidebar").appendChild(tree);
+        });
+
+
+        $('a[href^="#"]').on('click', function(e) {
+
+            window.location.hash = "-------";
+
+            e.preventDefault();
+            var target = this.hash;
+            var $target = $(target);
+            $('html, body').stop().animate({
+                'scrollTop': $target.offset().top
+            }, 900, 'swing', function() {
+                $tblshow();
+                window.location.hash = target;
+            });
+        });
+
+        function $tblshow() {
+
+            //locating the clicked table
+            var url = window.location.href;
+            var sID = url.substring(url.indexOf('#') + 1);
+
+            //collapsing table
+            temp = (sID + ' > div > .collapse');
+            $('#' + temp).collapse('show');
+
+
+            //checking if its using the right data
+            console.log("URL: " + url + " \\n ");
+            console.log("ID der Tabelle: " + sID + " \\n ");
+            console.log("Suchid: " + temp);
+
+        }
+
+        $(document).ready(function() {
+            $(window).scroll(function() {
+                if ($(this).scrollTop() > 700) {
+                    $('#btnTop').fadeIn();
+                } else {
+                    $('#btnTop').fadeOut();
+                }
+            });
+            // scroll content to top by clicking on button
+            $('#btnTop').click(function() {
+                $('body,html').animate({
+                    scrollTop: 0
+                }, 400);
+                return false;
+            });
         });
     </script>
 </body>
@@ -579,7 +641,7 @@ def printlistofcontentelement(pname, plist):
                         <ol class="tree" id="{}List">
     """
     contentline="""
-                <li class="obj"><a href="#{}" target="details">{}</a></li>"""
+                <li class="obj"><a href="#{}" target="_self">{}</a></li>"""
     contentelementfoot="""
                     </ol>
             </div>
@@ -980,13 +1042,13 @@ def printcontententi(p_list):
             fhtml.write(infoline.format(transl('Superentität'),href(ref=web_sql.entiAnker(e[6]),anz=e[5])))
         if (e[7] is not None):
             fhtml.write(infoline.format(transl('Subentitäten'),list2href(e[7])))
+        printentidiag(pentiid=e[0],pline=infoline)
         fhtml.write(infoline.format(transl('geändert'),nvl(e[3]) + ', ' + nvl(e[4])))
         fhtml.write(infofoot)
 
         printattrlist(p_entiid=e[0])
         printentikeys(pentiid=e[0])
         printentirela(p_entiid=e[0])
-        printentidiag(pentiid=e[0])
         printtransl(pentiid=e[0])
         printentiudp(p_entiid=e[0])
 
@@ -1275,17 +1337,23 @@ def setWebDirec(p_webdirec):
 
 def createlib():
     if os.path.exists(cssdirec):
-        shutil.rmtree(cssdirec)
+        pass
+        #shutil.rmtree(cssdirec)
+    else:
+        shutil.copytree(libSourceDirec+'css',cssdirec)
+
     if os.path.exists(icondirec):
-        shutil.rmtree(icondirec)
+        pass
+        #shutil.rmtree(icondirec)
+    else:
+        shutil.copytree(libSourceDirec + 'icons', icondirec)
     if os.path.exists(imagedirec):
-        shutil.rmtree(imagedirec)
-
-    shutil.copytree(libSourceDirec+'icons',icondirec)
-    shutil.copytree(libSourceDirec+'css',cssdirec)
-    shutil.copytree(libSourceDirec+'image',imagedirec)
-
+        pass
+        #shutil.rmtree(imagedirec)
+    else:
+        shutil.copytree(libSourceDirec+'image',imagedirec)
 #createlib
+
 def createFile():
     global fhtml
     webfile =webDirectory + webFileName + '_' + reportLang() + '.html'
@@ -1347,15 +1415,15 @@ def printtransl(pentiid=None, pattrid=None):
     fhtml.write(endtable())
 #printtransl
 
-def printentidiag(pentiid):
+def printentidiag(pentiid,pline):
+    doppelanker="{}-{}"
     diaglist  = web_sql.diaglist(pentiid=pentiid)
     if (len(diaglist) == 0):
         return
-    fhtml.write(starttable(ptitel=transl('auf Diagramm(en)')
-                           ,pueberschriften=[transl('Diagramm')]
-                           ,plevel = 3))
-    for d in diaglist:
-        fhtml.write(writetableline(pwerte=[href(ref=web_sql.diagAnker(d[1])
-                                                ,anz=d[0])]))
-    fhtml.write(endtable())
+    diagdict = {dl[0] : dl[1] for dl in diaglist}
+    diagstring = ', '.join(href(ref=doppelanker.format(web_sql.diagAnker(id)
+                                    ,web_sql.entiAnker(pentiid))
+                                ,anz=str(name)) for name, id in diagdict.items())
+    #print (diagstring)
+    fhtml.write(pline.format(transl('auf Diagramm(en)'),diagstring))
 #printentidiag

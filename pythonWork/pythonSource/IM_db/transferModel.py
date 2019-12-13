@@ -271,8 +271,22 @@ def toString(str,upper = False):
 
 def transferentity(penti, pdiagid, puc, pdc):
     entiodm = penti.get('oid')
-    enticategorey = findField(penti,'typeID')
     entiid = dbLookup.entiID(entiodm)
+    hiddenelements = penti.find ("hiddenElements")
+    if hiddenelements is not None:
+        elemtext=findField(hiddenelements,"elements")
+    else: elemtext = ""
+    hiddenattrs=elemtext.split(' ')
+    hiddenattrs2 = []
+    for e in hiddenattrs:
+        if e != "": hiddenattrs2.append(dbLookup.attrID(e))
+    attrs = dbDML.select("""select attr_id from attributes 
+                            where attr_enti_id = {}
+                            order by attr_anz_rhflg""".format(entiid))
+    attrids = [a[0] for a in attrs]
+    attrids = list(set(attrids) - set(hiddenattrs2))
+    #print (attrids,hiddenattrs2)
+
     layout= penti.find('bounds')
     col = defcolors['Entity'] #defaults können mal geladen werden
     if (findText(penti, 'useDefaultColor') == 'false'):
@@ -291,10 +305,14 @@ def transferentity(penti, pdiagid, puc, pdc):
         v = findText(font, 'fontSize')
         col.fontsize = v if v is not None else col.fontsize
     else:
-        #check wether entity belongs to categor
+        #check wether entity belongs to category
         #muss über Modell und saubere Tabellen abgehandelt werden
-        # if (enticategorey is None):
         pass
+#        if (enticategoryid is None):
+#            col = defcolors['Entity']
+#        else:
+#            col = classcolors[enticategoryid]
+#        #fi
     #fi
     #print (col.foregcolor,col.backgcolor)
     #eled_position_x,eled_position_y,eled_breite,eled_hoehe
@@ -304,20 +322,44 @@ def transferentity(penti, pdiagid, puc, pdc):
     #, eled_dm
 
     index = 0
+    entix=int(layout.get('x'))
+    entiy=int(layout.get('y'))
+    entiwidth=int (layout.get('width'))
+    entiheight=int(layout.get('height'))
     #if there are several copies on a diagramm, repeat the insert with new index und insert succeeds
     while True:
-        row = (layout.get('x'), layout.get('y'), layout.get('width'), layout.get('height')
+        row = (entix, entiy, entiwidth, entiheight
               , 100, int2hex(col.backgcolor), None, 100
               , int2hex(col.foregcolor),col.fontsize, int2hex(col.fontcolor), dbLookup.modeEntiLookup(p_entiid=entiid)
-             , pdiagid, index,puc, pdc, None
-             , None)
+             , pdiagid, index,puc, pdc
+            , None, None)
         #print (row)
         try:
             dbInserts.insertelementdarst(pdata=row)
+            attrx = int(entix) + 26 #x1,x2=16,26 y=30
+            attry = int(entiy) + 30
+            attrwidth = int(entiwidth) - 36
+            attrheight = 13
+            for aid in attrids:
+                attrrow=(attrx,attry,attrwidth,attrheight
+                         ,100,int2hex(col.backgcolor),int2hex(col.fontcolor),100
+                         ,None,None,None,dbLookup.modeAttrLookup(aid)
+                         ,pdiagid,0,puc,pdc
+                         ,None,None)
+                try:
+                    dbInserts.insertelementdarst(pdata=attrrow)
+                except Exception as e: print(e)
+                attry += attrheight
+                # Maximal bis zur Grösse der Entität
+                if ((attry-entiy) > (entiheight - 10)): break
+            #for
+        #for
             break # no more looping for copies of element on diagramm
         except sqlite3.IntegrityError:
             index +=1
         except Exception as ex:
+            print(str(ex))
+            print(row)
             raise ex
     #while
 #transferentity
@@ -333,8 +375,76 @@ def transferdiaobj(pobjects, pdiagid, puc, pdc):
             pass
         #fi
 #transferdiaobj
+
+def linetype(pidx,pmaxidx,psourcelt,ptargetlt):
+    if (pidx <= ((pmaxidx-1) / 2)):
+        return psourcelt
+    else:
+        return ptargetlt
+    #fi
+#linetype
+
+def connector():
+    #ist kein Segment sondern in Punkt. es macht nur 1 oder M Sinn
+    return 1
+#conmector
 def transferdiaconnect(pconnectors, pdiagid, puc, pdc):
-    pass
+    for c in pconnectors:
+        type = c.get('otype')
+        if (type == 'Relation'):
+            relaguid=findField(c,"oid")
+            beziid = dbLookup.beziId(relaguid)
+            linewidth=findText(c,'lineWidth')
+            sourcelabel=c.find('sourceLabel/labelBounds')
+            sttex=findField(sourcelabel,'x')
+            sttey=findField(sourcelabel,'y')
+            sttew=findField(sourcelabel,'width')
+            stteh=findField(sourcelabel,'height')
+            targetlabel=c.find('targetLabel/labelBounds')
+            entex=findField(targetlabel,'x')
+            entey=findField(targetlabel,'y')
+            entew=findField(targetlabel,'width')
+            enteh=findField(targetlabel,'height')
+
+            """
+    beda_diag_id, beda_mode_id, beda_linienbreite, beda_liniefarbe
+    ,beda_liniedeckkraft, beda_starttext_x, beda_starttext_y, beda_starttext_breite
+    ,beda_starttext_hoehe, beda_endtext_x, beda_endtext_y, beda_endtext_breite
+    ,beda_endtext_hoehe, beda_schriftfarbe, beda_schriftgroesse, beda_uc
+    ,beda_dc, beda_um, beda_dm)
+"""
+            row=(pdiagid,dbLookup.modeid(p_beziid=beziid),linewidth,None
+                 ,1,sttex,sttey,sttew
+                 ,stteh,entex,entey,entew
+                 ,enteh,None,10,puc,pdc,None,None
+                 )
+            bedaid=dbInserts.insertelbezidarst(row)
+
+            points=c.findall('points/point')
+            pointsegs=[]
+            bezi = dbDML.select("""select bezi_enti_id_von,bezi_source_enti_guid
+                                    ,bezi_enti_id_zu ,bezi_target_enti_guid 
+                                    from beziehungen
+                                    join entitaeten source on source.enti_odm_guid = bezi_source_enti_guid
+                                    join entitaeten target on target.enti_odm_guid = bezi_target_enti_guid
+                    """)
+            sourcelinetype = 'SOLID'
+            targetlinetype = 'DASHED'
+            for idx,point in enumerate(points):
+                """ lise_rhfg, lise_beda_id, lise_x, lise_y
+    , lise_linientyp,lise_konnektor, lise_uc, lise_dc
+    , lise_um,lise_dm 
+    """
+                pointsegs.append((idx,bedaid,findField(point,'x'),findField(point,'y')
+                                ,linetype(pidx=idx, pmaxidx=len(points)
+                                          ,psourcelt= sourcelinetype,ptargetlt=targetlinetype)
+                                ,connector(),puc,pdc,None,None))
+            #for
+            dbInserts.insertlinieseg(pointsegs)
+        else: pass
+        #fi
+#transferdiaconnect
+
 # transferdiaconnect
 def transferdiaarc(parcs, pdiagid, puc, pdc):
     pass
@@ -377,8 +487,10 @@ def do1diagramm(p_filename):
     #print(dia.get('name'), dia.get('id'))
     #diag_name,diag_diat_id,diag_uc,diag_dc,diag_um,diag_dm
     if (findText(dia,'showLegend') == 'true'):
-        legendx = findText(dia,'legendPosX')
-        legendy = findText(dia,'legendPosY')
+        legende =dia.find("objectViews/OView[@otype='Legend']")
+        bounds=legende.find("bounds")
+        legendx = findField(bounds,'x')
+        legendy = findField(bounds,'y')
     else:
         legendx = None
         legendy = None
@@ -394,10 +506,10 @@ def do1diagramm(p_filename):
         transferdiaobj(pobjects=objects, pdiagid=diagid, puc=uc, pdc=dc)
     connectors = dia.findall('connectors/Connector')
     if (len(connectors) > 0):
-        transferdiaconnect(connectors, pdiagid=diagid, puc=uc, pdc=dc)
+        transferdiaconnect(pconnectors=connectors, pdiagid=diagid, puc=uc, pdc=dc)
     arcs = dia.findall('arcs/Arc')
     if (len(arcs) > 0):
-        transferdiaarc(arcs, pdiagid=diagid, puc=uc, pdc=dc)
+        transferdiaarc(parcs=arcs, pdiagid=diagid, puc=uc, pdc=dc)
     #print (dianame,len(objects),len(connectors),len(arcs))
 #do1diagramm
 
@@ -479,7 +591,7 @@ def do1Attribute(n,attr,entiId=None,beziId=None):
 #    , attr_deskriptor, attr_pflichtattr, attr_historisiert
 #    , attr_wiederholt, attr_sprachabhaengig, attr_verschluesselt
 #    attr_uc, attr_dc,attr_odm_guid,attr_bezi_id
-    #wegen FK-PK zursätzliche Attribute werden nicht übernommen
+    #wegen FK-PK zusätzliche Attribute werden nicht übernommen
     if (findText(attr, 'referedAttribute') is not None):
         return
 
@@ -506,6 +618,7 @@ def do1Attribute(n,attr,entiId=None,beziId=None):
     try:
         attrId = dbInserts.insertAttribute(pattr=attrset)
     except  sqlite3.Error as e:
+        print(str(e))
         print(attrset)
         raise e
     #try
@@ -561,6 +674,7 @@ def transferKeys(p_keys):
                     beziId = dbLookup.beziId(ke)
                     attrId = None
                 except sqlite3.Error as e:
+                    print (str(e))
                     print (ke,keyset)
                     raise e
                 #try
@@ -581,6 +695,7 @@ def do1Entity(fileName):
     entcomm = findText(root,'comment')
     creby = findText(root,'createdBy')
     creti = findText(root,'createdTime')
+    enticategoryid = findText(root,'typeID')
     row=(root.get('id'),None,None\
         ,entname,entcomm,None\
         ,None,None,None\
@@ -734,19 +849,22 @@ def do1Relation(fileName):
     zuText = findText(root, 'nameOnTarget')
     creby = findText(root,'createdBy')
     creti = findText(root,'createdTime')
+    sourceentiguid = findText(root,'sourceEntity')
+    targetentiguid = findText(root,'targetEntity')
     try:
         lrow=[lbeziType
-             , dbLookup.entiID(findText(root,'sourceEntity')),vonText
+             , dbLookup.entiID(sourceentiguid),vonText
              ,strNegBool(optSrc), 'FALSE'
-             , dbLookup.entiID(findText(root,'targetEntity')), zuText
+             , dbLookup.entiID(targetentiguid), zuText
              ,strNegBool(optTarg),'FALSE', beziArcId
              ,root.get('id'),creby,creti,relname
+            ,sourceentiguid,targetentiguid
              ]
             #root.get('name')\           ,findText(root,'comment')\
            #           ,findText(root,'transferable')           ,findText(root,'deleteRule')\
     except  sqlite3.Error as e:
         if (e.__str__() == 'No Data Found'):
-            """Entity Id nicht gefunden. Datenleichen von Bezi mit gelöschten Entities"""
+            print ("Entity Id {} oder {} nicht gefunden. Datenleichen von Bezi mit gelöschten Entities".format(sourceentiguid,targetentiguid))
             return
         else:
             raise e
@@ -1074,7 +1192,7 @@ def transferprojekt():
     if (defspra is not None
         and dbParam.dbDefaultLang.lower() != defspra.lower()):
         #setze die Defaultsprache aus dem Modell
-        if dbLookup.spraLookup(defspra.lower()) is None:
+        if dbLookup.spraLookup(defespra.lower()) is None:
             raise Exception("Language '{}' does not exist".format(defspra))
         dbDML.exec("""update sprachen set spra_ist_modellsprache = 'FALSE'
                            where lower(spra_iso_code2)  = lower('{}')

@@ -118,8 +118,10 @@ def insertBeziehung(pdata):
      ,bezi_pflicht_assoc_von_zu, bezi_hist_von_zu
     , bezi_enti_id_zu,bezi_assoc_zu_von
     , BEZI_PFLICHT_ASSOC_ZU_VON,bezi_hist_zu_von, bezi_arcs_id
-    , bezi_odm_guid,bezi_uc, bezi_dc,bezi_name) 
-            values (?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+    , bezi_odm_guid,bezi_uc, bezi_dc,bezi_name
+    ,bezi_source_enti_guid,  bezi_target_enti_guid
+    ) 
+            values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
         """
     return dbDML.insert(lsql, pdata)
 
@@ -245,17 +247,17 @@ def insertelementdarst(pdata):
     return dbDML.insertmany(lsql, pdata)
 #insertelementdarst
 
-def insertelbezidarst(p_data):
+def insertelbezidarst(pdata):
     lsql = """insert into 
-beziehung_darst(
+    beziehung_darst(
     beda_diag_id, beda_mode_id, beda_linienbreite, beda_liniefarbe
     ,beda_liniedeckkraft, beda_starttext_x, beda_starttext_y, beda_starttext_breite
     ,beda_starttext_hoehe, beda_endtext_x, beda_endtext_y, beda_endtext_breite
     ,beda_endtext_hoehe, beda_schriftfarbe, beda_schriftgroesse, beda_uc
     ,beda_dc, beda_um, beda_dm)
     values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)    
-)	          """
-    return dbDML.insertmany(lsql, p_Data)
+    """
+    return dbDML.insert(lsql, pdata)
 #insertbezidarst
 
 def insertUdpEntity(entiId):
@@ -283,15 +285,15 @@ diagramme(
     return dbDML.insert(lsql, p_data)
 #insertdiagramme
 
-def insertlinieseg(p_data):
+def insertlinieseg(pdata):
     lsql = """insert into
 linie_segment(
     lise_rhfg, lise_beda_id, lise_x, lise_y
     , lise_linientyp,lise_konnektor, lise_uc, lise_dc
-    , lise_um,lise_dm 
+    , lise_um,lise_dm )
                             values (?,?,?,?,?,?,?,?,?,?)
     """
-    return dbDML.insert(lsql, p_Data)
+    return dbDML.insert(lsql, pdata)
 #insertlinieseg
 
 def insertUdpBezi(beziId):

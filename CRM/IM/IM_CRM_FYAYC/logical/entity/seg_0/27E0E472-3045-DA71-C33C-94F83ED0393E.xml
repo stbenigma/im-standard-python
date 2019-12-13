@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="27E0E472-3045-DA71-C33C-94F83ED0393E" name="Land">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="27E0E472-3045-DA71-C33C-94F83ED0393E" name="*Land">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 07:55:51 UTC</createdTime>
 <comment><![CDATA[Land gemäss ISO-Liste ISO-3166-1
@@ -32,6 +32,7 @@ Gemäss NUTS (https://de.wikipedia.org/wiki/NUTS) ist das Land die Gebietsstufe 
 <item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="false"/>
 <item key="015DE428-05B6-58DD-323D-ECDC72266F4A" value="true"/>
 </engineerTo>
+<typeID>33675414-33E1-1BE8-99DF-264D33446509</typeID>
 <adequatelyNormalized>NO</adequatelyNormalized>
 <expectedVolumes>0</expectedVolumes>
 <fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
@@ -44,12 +45,9 @@ Gemäss NUTS (https://de.wikipedia.org/wiki/NUTS) ist das Land die Gebietsstufe 
 <shortName>LAND</shortName>
 <createSurrogateKey>true</createSurrogateKey>
 <propertyMap>
-<property name="DE_ENTI_NAME" value="Land"/>
-<property name="DE_ENTI_SYNONYM" value=""/>
-<property name="EN_ENTI_NAME" value="Land"/>
-<property name="EN_ENTI_SYNONYM" value=""/>
+<property name="DE_ENTI_NAME" value="*Land"/>
+<property name="EN_ENTI_NAME" value="Country"/>
 <property name="FR_ENTI_NAME" value="*DE* Land"/>
-<property name="FR_ENTI_SYNONYM" value=""/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="ISO2_Code" id="2D721C1B-E511-B23D-D93E-C36B3A2D2FEA">
@@ -115,6 +113,31 @@ Gemäss NUTS (https://de.wikipedia.org/wiki/NUTS) ist das Land die Gebietsstufe 
 <property name="FR_ATTR_NAME" value="*DE* ISO3_Code"/>
 </propertyMap>
 </Attribute>
+<Attribute name="NichtAnzeigen1" id="64D7A76B-F213-0937-7EBE-DDB0F6D1AA2D">
+<createdBy>stb</createdBy>
+<createdTime>2019-12-06 08:20:04 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<engineerTo>
+<item key="1AB27667-C11D-3493-68AA-DF92C84041A7" value="true"/>
+<item key="851DDEFA-B048-37E9-7826-4E48946EAF1C" value="true"/>
+<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true"/>
+<item key="015DE428-05B6-58DD-323D-ECDC72266F4A" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="NichtAnzeigen1"/>
+<property name="EN_ATTR_NAME" value="*DE* NichtAnzeigen1"/>
+</propertyMap>
+</Attribute>
 <Attribute name="ISO_Code_numerisch" id="EAA58C83-A9F6-56BD-3C50-74BF3E45A7F9">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 09:05:13 UTC</createdTime>
@@ -173,6 +196,31 @@ Gemäss NUTS (https://de.wikipedia.org/wiki/NUTS) ist das Land die Gebietsstufe 
 <property name="DE_ATTR_NAME" value="TopLevelDomain"/>
 <property name="EN_ATTR_NAME" value="TopLevelDomain"/>
 <property name="FR_ATTR_NAME" value="*DE* TopLevelDomain"/>
+</propertyMap>
+</Attribute>
+<Attribute name="NichtAnzeigen2" id="F9B26671-12F3-3B0C-66C3-4722516509B3">
+<createdBy>stb</createdBy>
+<createdTime>2019-12-06 08:20:14 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<engineerTo>
+<item key="1AB27667-C11D-3493-68AA-DF92C84041A7" value="true"/>
+<item key="851DDEFA-B048-37E9-7826-4E48946EAF1C" value="true"/>
+<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true"/>
+<item key="015DE428-05B6-58DD-323D-ECDC72266F4A" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="NichtAnzeigen2"/>
+<property name="EN_ATTR_NAME" value="*DE* NichtAnzeigen2"/>
 </propertyMap>
 </Attribute>
 </attributes>

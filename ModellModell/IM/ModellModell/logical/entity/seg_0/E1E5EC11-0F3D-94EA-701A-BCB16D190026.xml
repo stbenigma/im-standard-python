@@ -17,6 +17,7 @@ Information about the representation of a graphical element (entity, etc.) on a 
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
 <item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
+<typeID>BFFB2270-6E04-AA4B-B656-44CFB03FD776</typeID>
 <adequatelyNormalized>NO</adequatelyNormalized>
 <expectedVolumes>0</expectedVolumes>
 <fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
@@ -28,10 +29,8 @@ Information about the representation of a graphical element (entity, etc.) on a 
 <propertyMap>
 <property name="DE_ENTI_COMMENT" value="Information zur Darstellung eines grafischen Elementes (Entität, etc.) auf einem Diagramm"/>
 <property name="DE_ENTI_NAME" value="Elemendarstellung"/>
-<property name="DE_ENTI_SYNONYM" value=""/>
 <property name="EN_ENTI_COMMENT" value="*DE* Information zur Darstellung eines grafischen Elementes (Entität, etc.) auf einem Diagramm"/>
 <property name="EN_ENTI_NAME" value="Element representation"/>
-<property name="EN_ENTI_SYNONYM" value=""/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Name [L]" id="A3C9731C-AB46-3608-8EFC-C040100A45AD">
@@ -132,7 +131,7 @@ Name of the entity normally used in communication.
 <Attribute name="Inhaltdarstellung" id="4513F410-C3CF-A0F8-0DA3-06A48FCBAC9B">
 <createdBy>stb</createdBy>
 <createdTime>2019-08-08 06:06:30 UTC</createdTime>
-<commentInRDBMS><![CDATA[Vorgabewert einer Darstellung eines Elementtyps]]></commentInRDBMS>
+<comment><![CDATA[Vorgabewert einer Darstellung eines Elementtyps]]></comment>
 <notes><![CDATA[[DE_ATTR_COMMENT[
 
 ]DE_ATTR_COMMENT]
@@ -162,7 +161,7 @@ Name of the entity normally used in communication.
 <Attribute name="Randdarstellung" id="8B735900-0D91-B088-FE52-28C12ECB5967">
 <createdBy>stb</createdBy>
 <createdTime>2019-08-08 06:06:30 UTC</createdTime>
-<commentInRDBMS><![CDATA[Vorgabewert der Darstellung des Randes um das Element]]></commentInRDBMS>
+<comment><![CDATA[Vorgabewert der Darstellung des Randes um das Element]]></comment>
 <notes><![CDATA[[DE_ATTR_COMMENT[
 
 ]DE_ATTR_COMMENT]
@@ -192,7 +191,7 @@ Name of the entity normally used in communication.
 <Attribute name="Schriftgrösse" id="B754768D-EC5E-FD14-B413-CA0EA96AE089">
 <createdBy>stb</createdBy>
 <createdTime>2019-08-08 06:06:30 UTC</createdTime>
-<commentInRDBMS><![CDATA[Vorgabewert der Schriftgrösse des Elementsnamens]]></commentInRDBMS>
+<comment><![CDATA[Vorgabewert der Schriftgrösse des Elementsnamens]]></comment>
 <notes><![CDATA[[DE_ATTR_COMMENT[
 
 ]DE_ATTR_COMMENT]
@@ -313,8 +312,10 @@ Name of the entity normally used in communication.
 <structAttributeID>BF7C675D-F472-D4E0-D0E7-0E519F1C73EC</structAttributeID>
 <use>0</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>4</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
 <domain>9899F774-954D-6AB0-8DC2-BB1FE9F99D28</domain>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
+<ownDataTypeParameters>,4,0</ownDataTypeParameters>
 <listOfRanges>
 <rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
 <beginValue>1</beginValue>
@@ -335,8 +336,10 @@ Name of the entity normally used in communication.
 <structAttributeID>A212ECBD-508B-BB92-4CA0-A414C275E0BF</structAttributeID>
 <use>0</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>4</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
 <domain>9899F774-954D-6AB0-8DC2-BB1FE9F99D28</domain>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
+<ownDataTypeParameters>,4,0</ownDataTypeParameters>
 <listOfRanges>
 <rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
 <beginValue>1</beginValue>
@@ -447,7 +450,7 @@ Name of the entity normally used in communication.
 </rangeDef>
 </listOfRanges>
 </nestedAttribute>
-<nestedAttribute name="Randdarstellung.Breitev1" directorySegmentName="seg_1" id="4F6287D4-42CE-7DA1-D36E-DFC70CE448E9">
+<nestedAttribute name="Randdarstellung.Breite" directorySegmentName="seg_1" id="4F6287D4-42CE-7DA1-D36E-DFC70CE448E9">
 <createdBy>stb</createdBy>
 <createdTime>2019-08-08 06:06:30 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
@@ -457,6 +460,91 @@ Name of the entity normally used in communication.
 <item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
 <parentObject>8B735900-0D91-B088-FE52-28C12ECB5967</parentObject>
+<structAttributeID>A486CC96-6094-DED7-1D64-D7757D50175A</structAttributeID>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>3</dataTypePrecision>
+<dataTypeScale>1</dataTypeScale>
+<domain>CB54E08F-9CBF-16C7-AB25-64ADCC8C4FFB</domain>
+<defaultValue>1</defaultValue>
+<ownDataTypeParameters>,3,1</ownDataTypeParameters>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>0.0</beginValue>
+<endValue>99</endValue>
+</rangeDef>
+</listOfRanges>
+</nestedAttribute>
+<nestedAttribute name="Inhaltdarstellung.Randdarstellung" directorySegmentName="seg_1" id="032A7CC9-4E09-CB9F-2078-74D363AD41DB">
+<createdBy>stb</createdBy>
+<createdTime>2019-12-10 17:45:31 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<parentObject>4513F410-C3CF-A0F8-0DA3-06A48FCBAC9B</parentObject>
+<structAttributeID>FF5FAB5B-407C-321C-7FB2-058E86A213CB</structAttributeID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>3</use>
+<structuredType>4816C7EE-B5FE-5DB1-A87E-537F82A20453</structuredType>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</nestedAttribute>
+<nestedAttribute name="Inhaltdarstellung.Randdarstellung.Farbe" directorySegmentName="seg_1" id="93715A0E-99F5-11EF-2909-6104B1B5E34D">
+<createdBy>stb</createdBy>
+<createdTime>2019-12-10 17:45:47 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
+</engineerTo>
+<parentObject>032A7CC9-4E09-CB9F-2078-74D363AD41DB</parentObject>
+<structAttributeID>31812808-1563-F130-6C44-AB28C0C55B78</structAttributeID>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>6 CHAR</dataTypeSize>
+<domain>06269521-C0BC-78CB-FBC8-656101307358</domain>
+<defaultValue>000000</defaultValue>
+<ownDataTypeParameters>6 CHAR,,</ownDataTypeParameters>
+</nestedAttribute>
+<nestedAttribute name="Inhaltdarstellung.Randdarstellung.Deckkraft" directorySegmentName="seg_1" id="002CCE0D-806C-B092-458F-022CD25B57C2">
+<createdBy>stb</createdBy>
+<createdTime>2019-12-10 17:45:47 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
+</engineerTo>
+<parentObject>032A7CC9-4E09-CB9F-2078-74D363AD41DB</parentObject>
+<structAttributeID>475BE6D9-7955-0B4F-14EE-54AB88615752</structAttributeID>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>3</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<domain>3C43C579-B2CF-0898-C553-AF95467F1601</domain>
+<defaultValue>100</defaultValue>
+<ownDataTypeParameters>,3,0</ownDataTypeParameters>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>0</beginValue>
+<endValue>100</endValue>
+</rangeDef>
+</listOfRanges>
+</nestedAttribute>
+<nestedAttribute name="Inhaltdarstellung.Randdarstellung.Breite" directorySegmentName="seg_1" id="0A4E92AD-C59E-03C6-53FD-AFC83162AED8">
+<createdBy>stb</createdBy>
+<createdTime>2019-12-10 17:45:47 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
+</engineerTo>
+<parentObject>032A7CC9-4E09-CB9F-2078-74D363AD41DB</parentObject>
 <structAttributeID>A486CC96-6094-DED7-1D64-D7757D50175A</structAttributeID>
 <use>0</use>
 <logicalDatatype>LOGDT019</logicalDatatype>

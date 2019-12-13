@@ -11,6 +11,8 @@
 </engineerTo>
 <useSurrogateKey>true</useSurrogateKey>
 <identifying>false</identifying>
+<nameOnSource>installiert</nameOnSource>
+<nameOnTarget>gugus</nameOnTarget>
 <optionalSource>true</optionalSource>
 <optionalTarget>false</optionalTarget>
 <sourceCardinality>1</sourceCardinality>
@@ -18,4 +20,10 @@
 <targetCardinalityString>*</targetCardinalityString>
 <targetEntity>FFAF9724-74C2-E2A0-9908-B5EE9AB30C02</targetEntity>
 <transferable>true</transferable>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="installiert"/>
+<property name="DE_RELA_TEXT_TO" value="gugus"/>
+<property name="EN_RELA_TEXT_FROM" value="*DE* installiert"/>
+<property name="EN_RELA_TEXT_TO" value="*DE* gugus"/>
+</propertyMap>
 </Relation>

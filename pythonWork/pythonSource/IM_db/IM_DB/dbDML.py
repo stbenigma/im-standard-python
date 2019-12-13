@@ -66,7 +66,8 @@ def insert(psql,rec):
         else:
             raise Exception("unknown type for insert {}".format(type(rec)))
     except sqlite3.IntegrityError as ei:
-        print(psql,rec,type(rec))
+        #print (str(ei))
+        #print(psql,rec,type(rec))
         raise ei
     except sqlite3.Error as e:
         print(psql, rec,type(rec))

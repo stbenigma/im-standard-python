@@ -100,7 +100,7 @@ def printlistofcontent():
     printHTML.printlistofcontentelement(pname='Attribute', plist=web_sql.namelist(ptype='ATTR', plang=printHTML.reportLang()))
     printHTML.printlistofcontentelement(pname='Domänen', plist=web_sql.namelist(ptype='WRTB', plang=printHTML.reportLang()))
     printHTML.printlistofcontentelement(pname='Attribut-Mapping', plist=web_sql.namelist(ptype='UDP', plang=printHTML.reportLang()))
-    #printHTML.printlistofcontentelement(pname='Diagramme', plist=web_sql.namelist(ptype='DIAG', plang=printHTML.reportLang()))
+    printHTML.printlistofcontentelement(pname='Diagramme', plist=web_sql.namelist(ptype='DIAG', plang=printHTML.reportLang()))
     printHTML.printlistofcontentfoot()
 # printlistofcontent
 
@@ -110,7 +110,7 @@ def printcontent(pfirma,ptitel):
     printHTML.printcontentattr(plist=web_sql.attrlist(p_lang=printHTML.reportLang()))
     printHTML.printcontentwrtb(p_list=web_sql.wrtblist(p_lang=printHTML.reportLang()))
     printHTML.printcontentudp(plist=web_sql.namelist(ptype='UDP', plang=printHTML.reportLang()))
-    #printdiagHTML.printcontentdiag(plist=web_sql.diaglist(),plang=printHTML.reportLang())
+    printdiagHTML.printcontentdiag(plist=web_sql.diaglist(),plang=printHTML.reportLang())
 #    printHTML.printattrmaps(p_list=web_sql.wrtblist(p_lang=printHTML.reportLang()))
 #    printHTML.printdiagrams(p_list=web_sql.wrtblist(p_lang=printHTML.reportLang()))
     printHTML.printcontentfoot()
@@ -144,6 +144,7 @@ def listwebmain(plang):
 
     for lang in langs:
         printHTML.reportLang(lang.lower())
+        print ("create web-files for language {}".format(printHTML.reportLang()))
         printhtmlfile(p_firma="foryouandyourcustomers"
                           , p_titel=parameters.odmModelName()+' ({})'.format(printHTML.reportLang())
                           , p_info="{}".format(datetime.now().strftime("%Y-%m-%d, %H:%M"))

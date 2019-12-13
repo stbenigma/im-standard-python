@@ -105,7 +105,10 @@ def odmModelName(newval=None):
 
 def odmsettingsfile(newval=None):
     if newval is None:
-        return odmIMDirec()+odmKonfDirec()+parameter['odmsettingsfile']
+        filepath=odmIMDirec()+odmModelName()+'/'+parameter['odmsettingsfile']
+        if not os.path.exists(filepath):
+            filepath = odmIMDirec() + odmKonfDirec() + parameter['odmsettingsfile']
+        return filepath
     else:
         parameter['odmsettingsfile'] = newval
 def odmentisubviewdirec(newval=None):

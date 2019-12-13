@@ -724,12 +724,11 @@ create view spraattr as
 				              'DOTTED',
 				              'SOLID'
 				          )),
-				      lise_konnektor   VARCHAR2(3)NULL
-				      CHECK(lise_konnektor IN(
-				          '1:1',
-				          'ISA',
-				          'M:1',
-				          'M:N')),
+						  lise_konnektor   VARCHAR2(1) NULL
+						         CHECK(lise_konnektor IN(
+						             '1',
+						             'M'
+						         )),
 				      lise_uc       varchar(30) NOT NULL,
 				      lise_dc           varchar(30) NOT NULL,
 				      lise_um           varchar(30) ,

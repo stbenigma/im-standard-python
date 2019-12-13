@@ -235,6 +235,42 @@ def entilist(p_lang):
     return data
 #entilist
 
+def pointlist(pliseid):
+    data = dbDML.select("""
+            select lise_x,lise_y,lise_konnektor,lise_linientyp
+            from linie_segment
+            where lise_beda_id = {}
+            order by lise_rhfg
+            """.format(pliseid))
+    return data
+#pointlist
+
+def diagrelalist(pdiagid, plang):
+    data = dbDML.select("""select beda_starttext_x,beda_starttext_y
+       ,beda_starttext_breite,beda_starttext_hoehe
+        ,beda_endtext_x,beda_endtext_y
+        ,beda_endtext_breite,beda_endtext_hoehe
+       ,beda_schriftfarbe,beda_schriftgroesse
+       ,sfrom.sptx_text fromname
+       ,sto.sptx_text toname
+        ,beda_id
+       ,beda_liniefarbe,beda_linienbreite,beda_liniedeckkraft
+from beziehung_darst
+join modellelement m on beziehung_darst.beda_mode_id = m.mode_id
+join beziehungen b on m.mode_bezi_id = b.bezi_id
+cross join sprachen spra
+join sprachtexte sfrom on  spra.spra_id = sfrom.sptx_spra_id
+            and sfrom.sptx_attrname='RELA_TEXT_FROM'
+            and sfrom.sptx_mode_id = m.mode_id
+join sprachtexte sto on  spra.spra_id = sto.sptx_spra_id
+            and sto.sptx_attrname='RELA_TEXT_TO'
+            and sto.sptx_mode_id = m.mode_id
+where beda_diag_id = {}
+and lower(spra.spra_iso_code2) = lower('{}')
+""".format(pdiagid,plang))
+    return data
+#diagrelalist
+
 def attrlist(p_lang,p_entiid=None):
     data = dbDML.select("""select 
         attr_id
@@ -280,6 +316,28 @@ def attrlist(p_lang,p_entiid=None):
     return data
 #attrlist
 
+def diagattrlist(plang,pdiagid):
+    data = dbDML.select("""select 
+        attr_id
+       ,case when ana.sptx_text is null then attr_anzname else ana.sptx_text end attr_anzname
+       ,attr_pflichtattr
+       ,attr_deskriptor
+       ,case when (select 'TRUE' from schluesselelement 
+                    where scel_attr_id = attr_id) IS NULL THEN 'FALSE' ELSE 'TRUE' end schluessel
+       ,amo.mode_id
+       ,eled_position_x,eled_position_y
+      from elementdarst
+       join modellelement amo on eled_mode_id = mode_id 
+       join attributes on attr_id = mode_attr_id 
+        join sprachen sp on sp.spra_iso_code2 = '{}'
+        left join spraattr  ana on ana.sptx_attrname = 'ATTR_NAME'
+                                and ana.sptx_mode_id = amo.mode_id
+                                and ana.spra_id = sp.spra_id            
+      where eled_diag_id = {}
+      order by attr_anz_rhflg"""
+                        .format(plang, pdiagid))
+    return data
+#diagattrlist
 
 def keylist(p_entiid,p_lang):
     schl = dbDML.select("""select schl_laufnr,schl_name,attrs,bezis from
@@ -497,7 +555,17 @@ def diaglist(pentiid=None):
 #diaglist
 
 def diagenti(pdiagid,plang):
-    data = dbDML.select("""select 
+    data = dbDML.select("""
+            with recursive enti as
+                ( select  0 entilev, enti_id, enti_odm_guid,enti_name from entitaeten
+                where enti_enti_guid is null
+                union all
+                select enti.entilev + 1,entitaeten.enti_id,entitaeten.enti_odm_guid
+                ,entitaeten.enti_name
+                from entitaeten
+                    join enti on entitaeten.enti_enti_guid = enti.enti_odm_guid
+                )
+            select 
                 eled_position_x xpos,eled_breite breite
                 ,eled_position_y ypos, eled_hoehe hoehe
                 ,eled_deckkraft,eled_farbe
@@ -508,12 +576,13 @@ def diagenti(pdiagid,plang):
                 ,enti_id ,eled_index
                 from elementdarst
                 join modellelement on mode_id = eled_mode_id
-                join entitaeten on enti_id = mode_enti_id
+                join enti on enti_id = mode_enti_id
                 join sprachen sp on sp.spra_iso_code2 = '{}'         
                 left join spraattr ena on ena.sptx_attrname = 'ENTI_NAME'
                                         and ena.sptx_mode_id = mode_id
                                         and ena.spra_id = sp.spra_id
                 where eled_diag_id = {}
+                order by entilev
     """.format(plang,pdiagid))
     return data
 #diagenti

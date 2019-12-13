@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="0035B365-CE5D-205A-0B0E-54ECA27EEECE" name="Ländergruppe">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="0035B365-CE5D-205A-0B0E-54ECA27EEECE" name="*Ländergruppe">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 08:36:39 UTC</createdTime>
 <comment><![CDATA[Eine Zusammenfassung mehrerer Länder zu einer Gruppe.
@@ -10,7 +10,8 @@ Typen von Ländergruppen erlauben mehrere Gruppierungen zu führen: Vertriebsorg
 Beispiele:
 EU
 SACU Botsuana; Eswatini; Lesotho; Namibia; Südafrika (Zollunion)
-EMEA (Europe, Middle East, Africa) (Vertriebsorganisation)]]></comment>
+EMEA (Europe, Middle East, Africa) (Vertriebsorganisation)]]>
+</comment>
 <notes><![CDATA[[EN_ENTI_COMMENT[
 *DE* Eine Zusammenfassung mehrerer Länder zu einer Gruppe.
 Es soll jeweils ein Kriterium für die Gruppenbildung bzw. einen Begründung (Zweck) für die Nutzung der Gruppe festgelegt/dokumentiert werden.
@@ -44,7 +45,8 @@ EU
 SACU Botsuana; Eswatini; Lesotho; Namibia; Südafrika (Zollunion)
 EMEA (Europe, Middle East, Africa) (Vertriebsorganisation)
 ]FR_ENTI_COMMENT]
-]]></notes>
+]]>
+</notes>
 <ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
 <engineerTo>
 <item key="1AB27667-C11D-3493-68AA-DF92C84041A7" value="true"/>
@@ -52,6 +54,7 @@ EMEA (Europe, Middle East, Africa) (Vertriebsorganisation)
 <item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="false"/>
 <item key="015DE428-05B6-58DD-323D-ECDC72266F4A" value="true"/>
 </engineerTo>
+<typeID>33675414-33E1-1BE8-99DF-264D33446509</typeID>
 <adequatelyNormalized>NO</adequatelyNormalized>
 <expectedVolumes>0</expectedVolumes>
 <fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
@@ -64,9 +67,9 @@ EMEA (Europe, Middle East, Africa) (Vertriebsorganisation)
 <synonym>ldgrp</synonym>
 <createSurrogateKey>true</createSurrogateKey>
 <propertyMap>
-<property name="DE_ENTI_NAME" value="Ländergruppe"/>
+<property name="DE_ENTI_NAME" value="*Ländergruppe"/>
 <property name="DE_ENTI_SYNONYM" value="ldgrp"/>
-<property name="EN_ENTI_NAME" value="Group of land"/>
+<property name="EN_ENTI_NAME" value="Country Group"/>
 <property name="EN_ENTI_SYNONYM" value="*DE* ldgrp"/>
 <property name="FR_ENTI_NAME" value="*DE* Ländergruppe"/>
 <property name="FR_ENTI_SYNONYM" value="*DE* ldgrp"/>

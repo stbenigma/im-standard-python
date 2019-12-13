@@ -337,6 +337,8 @@ CREATE TABLE beziehungen(
     bezi_dc                        varchar(30) NOT NULL,
     bezi_um                        varchar(30) NULL,
     bezi_dm                        varchar(30) NULL,
+    bezi_source_enti_guid          VARCHAR2(36) NULL,
+    bezi_target_enti_guid          VARCHAR2(36) NULL,
 	CONSTRAINT bezi_isa_ck2 CHECK((bezi_type = 'ISA' AND bezi_pflicht_assoc_von_zu = 'TRUE')
                                    OR (bezi_type != 'ISA')),
 	CONSTRAINT bezi_arc_fk FOREIGN KEY(bezi_arcs_id)
@@ -757,12 +759,11 @@ CREATE TABLE linie_segment(
             'DOTTED',
             'SOLID'
         )),
-    lise_konnektor   VARCHAR2(3)NULL
-    CHECK(lise_konnektor IN(
-        '1:1',
-        'ISA',
-        'M:1',
-        'M:N')),
+		  lise_konnektor   VARCHAR2(1) NULL
+		CHECK(lise_konnektor IN(
+		'1',
+		'M'
+		)),
     lise_uc       varchar(30) NOT NULL,
     lise_dc           varchar(30) NOT NULL,
     lise_um           varchar(30) ,
