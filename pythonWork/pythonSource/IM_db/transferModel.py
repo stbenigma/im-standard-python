@@ -306,13 +306,12 @@ def transferentity(penti, pdiagid, puc, pdc):
         col.fontsize = v if v is not None else col.fontsize
     else:
         #check wether entity belongs to category
-        #muss über Modell und saubere Tabellen abgehandelt werden
-        pass
-#        if (enticategoryid is None):
-#            col = defcolors['Entity']
-#        else:
-#            col = classcolors[enticategoryid]
-#        #fi
+        enticategoryid=dbLookup.enticategory(pid=entiid)
+        if (enticategoryid is None):
+            col = defcolors['Entity']
+        else:
+            col = classcolors[enticategoryid]
+        #fi
     #fi
     #print (col.foregcolor,col.backgcolor)
     #eled_position_x,eled_position_y,eled_breite,eled_hoehe
@@ -377,16 +376,18 @@ def transferdiaobj(pobjects, pdiagid, puc, pdc):
 #transferdiaobj
 
 def linetype(pidx,pmaxidx,psourcelt,ptargetlt):
-    if (pidx <= ((pmaxidx-1) / 2)):
+    if (pidx < ((pmaxidx-1) / 2)):
         return psourcelt
     else:
         return ptargetlt
     #fi
 #linetype
 
-def connector():
+def connector(pidx,pmaxidx,psource,ptarget):
     #ist kein Segment sondern in Punkt. es macht nur 1 oder M Sinn
-    return 1
+    if (pidx == 0): return psource
+    if (pidx == (pmaxidx-1)): return ptarget
+    return None
 #conmector
 def transferdiaconnect(pconnectors, pdiagid, puc, pdc):
     for c in pconnectors:
@@ -406,6 +407,29 @@ def transferdiaconnect(pconnectors, pdiagid, puc, pdc):
             entew=findField(targetlabel,'width')
             enteh=findField(targetlabel,'height')
 
+            bezi = dbDML.select("""select bezi_pflicht_assoc_von_zu,bezi_pflicht_assoc_zu_von
+                                        ,bezi_type
+                                         ,case bezi_source_enti_guid 
+                                         when source.enti_odm_guid then 'FALSE' 
+                                            else 'TRUE' end switch
+                                    from beziehungen
+                                    join entitaeten source on source.enti_id = bezi_enti_id_von
+                                    where bezi_id ={}
+                    """.format(beziid))
+            bezitype=bezi[0][2]
+            sourcelinetype='SOLID' if (bezi[0][0]=='TRUE') else 'DASHED'
+            targetlinetype='SOLID' if (bezi[0][1]=='TRUE') else 'DASHED'
+            sourcecard= '1' if (bezitype in ('ISA','1:1')) else 'M'
+            targetcard='1' if (bezitype in ('ISA','1:1','M:1')) else 'M'
+            if (bezi[0][3]=='TRUE'): #switch source and target
+                sourcecard,targetcard = targetcard,sourcecard
+                sourcelinetype,targetlinetype = targetlinetype,sourcelinetype
+                sttex,entex=entex,sttex
+                sttey,entey=entey,sttey
+                sttew,entew=entew,sttew
+                stteh,enteh=enteh,stteh
+            #fi
+
             """
     beda_diag_id, beda_mode_id, beda_linienbreite, beda_liniefarbe
     ,beda_liniedeckkraft, beda_starttext_x, beda_starttext_y, beda_starttext_breite
@@ -421,24 +445,24 @@ def transferdiaconnect(pconnectors, pdiagid, puc, pdc):
             bedaid=dbInserts.insertelbezidarst(row)
 
             points=c.findall('points/point')
+            points=[{'x':int(findField(p,'x')),'y':int(findField(p,'y'))} for p in points]
+            if len(points)==2:
+                """1elementige Linien werden um einen Mittelpunkt ergänzt wegen -- oder solid"""
+                midpos = lambda x1,x2: round((x1-x2)/2+x2)
+                points.insert(1,{'x':midpos(points[0]['x'],points[1]['x']),'y':midpos(points[0]['y'],points[1]['y'])})
             pointsegs=[]
-            bezi = dbDML.select("""select bezi_enti_id_von,bezi_source_enti_guid
-                                    ,bezi_enti_id_zu ,bezi_target_enti_guid 
-                                    from beziehungen
-                                    join entitaeten source on source.enti_odm_guid = bezi_source_enti_guid
-                                    join entitaeten target on target.enti_odm_guid = bezi_target_enti_guid
-                    """)
-            sourcelinetype = 'SOLID'
-            targetlinetype = 'DASHED'
             for idx,point in enumerate(points):
                 """ lise_rhfg, lise_beda_id, lise_x, lise_y
     , lise_linientyp,lise_konnektor, lise_uc, lise_dc
     , lise_um,lise_dm 
     """
-                pointsegs.append((idx,bedaid,findField(point,'x'),findField(point,'y')
+                x,y=point['x'],point['y']
+                pointsegs.append((idx,bedaid,x,y
                                 ,linetype(pidx=idx, pmaxidx=len(points)
                                           ,psourcelt= sourcelinetype,ptargetlt=targetlinetype)
-                                ,connector(),puc,pdc,None,None))
+                                ,connector(pidx=idx,pmaxidx=len(points)
+                                           ,psource=sourcecard,ptarget=targetcard)
+                                ,puc,pdc,None,None))
             #for
             dbInserts.insertlinieseg(pointsegs)
         else: pass
@@ -695,18 +719,18 @@ def do1Entity(fileName):
     entcomm = findText(root,'comment')
     creby = findText(root,'createdBy')
     creti = findText(root,'createdTime')
-    enticategoryid = findText(root,'typeID')
+    enti_category_guid = findText(root,'typeID')
     row=(root.get('id'),None,None\
         ,entname,entcomm,None\
         ,None,None,None\
         ,None,creby,creti
-        ,findText(root,'hierarchicalParent'),None)
+        ,findText(root,'hierarchicalParent'),None,enti_category_guid)
     #print ("Entity:", row)
     #enti_odm_guid, enti_augb_id, enti_tech_name
     #, enti_name, enti_beschr, enti_tooltip
     #, enti_kurzname, enti_prefix, enti_beispiele
     #, enti_erw_tupel, enti_uc, enti_dc
-    #,enti_enti_guid,enti_enti_id
+    #,enti_enti_guid,enti_enti_id,enti_category_guid
     entiId = dbInserts.insertEnti(enti=row)
     lmodeId =dbInserts.insertModeEnti(entiId)
     dbInserts.insertUdpEntity(entiId)
@@ -840,11 +864,12 @@ def do1Relation(fileName):
                     ,srcOpt=optSrc
                     ,targOpt= optTarg
                     ,arcId=beziArcId)
-        # bezi_isa_assoc, bezi_enti_id_von, bezi_assoc_von_zu
-        # , bezi_abbildtyp_zu_von ,bezi_pflicht_assoc_von_zu,bezi_hist_von_zu
-        # ,bezi_enti_id_zu,bezi_assoc_zu_von, bezi_abbildtyp_zu_von
-        # ,BEZI_PFLICHT_ASSOC_ZU_VON,bezi_hist_zu_von,bezi_arcs_id
-        # ,bezi_odm_guid,bezi_uc, bezi_dc,bezi_name
+        # bezi_type, bezi_enti_id_von, bezi_assoc_von_zu
+    #      ,bezi_pflicht_assoc_von_zu, bezi_hist_von_zu
+    #     , bezi_enti_id_zu,bezi_assoc_zu_von
+    #     , BEZI_PFLICHT_ASSOC_ZU_VON,bezi_hist_zu_von, bezi_arcs_id
+    #     , bezi_odm_guid,bezi_uc, bezi_dc,bezi_name
+    #     ,bezi_source_enti_guid,  bezi_target_enti_guid
     vonText = findText(root,'nameOnSource')
     zuText = findText(root, 'nameOnTarget')
     creby = findText(root,'createdBy')
@@ -877,12 +902,10 @@ def do1Relation(fileName):
         or (lbeziType == 'M:1' and abbildTyp(cardSrc) == '1')
        ):
         #tausche von und zu aus
-        #Entity-Id
-        lrow[1], lrow[5] = lrow[5], lrow[1]
-        #text
-        lrow[2], lrow[6] = lrow[6], lrow[2]
-        #Optionalität
-        lrow[3], lrow[7] = lrow[7], lrow[3]
+        lrow[1], lrow[5] = lrow[5], lrow[1] #Entity-Id
+        lrow[2], lrow[6] = lrow[6], lrow[2] #text
+        lrow[3], lrow[7] = lrow[7], lrow[3] #Optionalität
+        lrow[4], lrow[8] = lrow[8], lrow[4]  # history
     #fi
     row = tuple(lrow)
     #print (row)
@@ -1068,11 +1091,15 @@ def loeschmodell():
     dbDML.delete("melt_diat")
     dbDML.delete("datatypes")
     dbDML.delete("diagramme")
+    dbDML.delete('bereich_elemdarst')
     dbDML.delete("modellelem_typ")
     dbDML.delete('diagrammtypen')
     dbDML.delete('sprachtexte')
     dbDML.delete('sprachen')
+    dbDML.delete('geschaeftsbereich')
     dbDML.delete('projekt')
+
+
 #loeschmodell
 
 def loadcolors(coldict, classkey, elem):
@@ -1184,8 +1211,12 @@ def transferprojekt():
     proj = ET.parse(parameters.odmIMDirec() + parameters.odmModelName() + parameters.odmIMExtension())
     root = proj.getroot()
     comm = findText(root,'comment')
-    defspra=re.search(r'currentLang=([A-Z]{2})',comm).group(1)
-    sprachen=re.search(r'languages=([A-Z,]*)',comm).group(1)
+    if comm is None:
+        defspra='de'
+        sprachen = 'de'
+    else:
+        defspra=re.search(r'currentLang=([A-Z]{2})',comm).group(1)
+        sprachen=re.search(r'languages=([A-Z,]*)',comm).group(1)
     #print (findField(root,'name'),comm,sprachen,defspra)
     dbInserts.insertprojekt(pdata=(findField(root,'name'),findText(root,'createdBy')
         , findText(root, 'createdTime'),sprachen,defspra))

@@ -522,7 +522,7 @@ def wrtblist(p_lang):
 def diaglist(pentiid=None):
     if pentiid is None:
         lsql = """  
-        select diag_name,diag_id,diag_legendx,diag_legendy,breite,hoehe
+        select diag_name,diag_id,diag_legendx,diag_legendy,breite,hoehe,diag_uc,diag_dc,diag_um
            from diagramme
            left join  (select diag_id size_diag_id,max(xpos + breite) breite,max(ypos + hoehe) hoehe
                 FROM (select eled_diag_id diag_id,eled_position_x xpos,eled_breite breite

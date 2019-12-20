@@ -762,19 +762,20 @@
 	var notesStartTag = '[<tag>[\n';
 	var notesEndTag = '\n]<tag>]';
 
+	var ds = model.getDesign().getDomainSet().toArray();
+	for (i=110;i<ds.length;i++){Java.type("javax.swing.JOptionPane").showMessageDialog(null
+		, 'Test'+'\n'+ds[i]+'\n'+ds[i].getScale());}
+	var x = model.getDesign().getAllTopLevelObjects().toArray();
+	for (i=110;i<x.length;i++){Java.type("javax.swing.JOptionPane").showMessageDialog(null
+		, x[i].getType()+'\n'+x[i]+'\n');}
 	entity = lm.getEntitySet().getByName("Entiät1");
 
     	notes = entity.getNotes()
-    	restart =  notesStartTag.replace('<tag>',"EN_ENTI_COMMENT").replace(/\[/g,'\\[').replace(/\]/g,'\\]')
-    	reend =  notesEndTag.replace('<tag>',"EN_ENTI_COMMENT").replace(/\[/g,'\\[').replace(/\]/g,'\\]')
-    			+"[\n]*"
-    	re = new RegExp(restart + '([^]*)' + reend)
-    	ma = notes.match(re)
+    	set = model.getAppView().getSettings();
+	pref1 = set.getUserDefinedPreferenceValue("ImportDirec");
+
 	Java.type("javax.swing.JOptionPane").showMessageDialog(null
-		,'|\n'+ma[0]+'\n|'+notes+'\n|');
-	notes = notes.replace(ma[0] , "[EN_ENTI_COMMENT[\nDies ist neu englisch.\n]EN_ENTI_COMMENT]\n")
-	Java.type("javax.swing.JOptionPane").showMessageDialog(null
-		, '|\n'+ma[0]+'|\n'+notes+'\n|');]]>
+		, 'Test'+'\n'+pref1+'\n');]]>
 		</script>
 	</scr>
 	<scr id="851DD409-78EA-145A-FBC1-5DCE7989DDAF" name="changeLanguage" object="logical" engine="Oracle Nashorn" type="" var="model" library="translation" method="changeLanguage" purpose="transformation" >

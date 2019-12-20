@@ -9,8 +9,8 @@ def  insertEnti(enti):
        ,enti_name,enti_beschr     ,enti_tooltip    
        ,enti_kurzname   ,enti_prefix             ,enti_beispiele          
        ,enti_erw_tupel         ,enti_uc ,enti_dc
-       ,enti_enti_guid,enti_enti_id) 
-        values (?,?,?,?,?,?,?,?,?,?,?,?,?,?) 
+       ,enti_enti_guid,enti_enti_id,enti_category_guid) 
+        values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) 
     """
     return dbDML.insert(lsql,enti)
 
@@ -382,3 +382,23 @@ def insertprojekt(pdata):
               """
     return dbDML.insert(lsql, pdata)
 #insertprojekt
+def insertgeschaeftsbereich(pdata):
+    lsql = """insert into geschaeftsbereich 
+            (gber_name, gber_beschreibung, gber_zweck
+            , gber_uc, GBER_DC, GBER_UM
+            , gber_dm)
+                   values (?,?,?,?,?,?,?)
+           """
+    return dbDML.insert(lsql, pdata)
+#insertgeschaeftsbereich
+def insertbereich_darst(pdata):
+    lsql = """insert into bereich_elemdarst 
+                (BELD_MELT_ID, BELD_GBER_ID, BELD_BREITE
+                , BELD_HOEHE, BELD_DECKKRAFT, BELD_FARBE
+                , BELD_RANDBREITE, BELD_RANDDECKKRAFT, BELD_RANDFARBE
+                , BELD_SCHRIFTGROESSE, BELD_SCHRIFTFARBE, BELD_UC
+                , BELD_DC, BELD_UM, BELD_DM)
+                   values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,)
+           """
+    return dbDML.insert(lsql, pdata)
+#insertbereich_darst

@@ -1,5 +1,5 @@
 from IM_HTML import web_sql, printHTML
-
+import math
 
 def printlegend(pdata,pwidth,pheigh,px,py):
 
@@ -83,7 +83,7 @@ def printrela(plist):
             stroke-dasharray="{}"  d="M{} {} L{} {}" />
             """
     konnektor = """<path stroke-opacity="{}" stroke-width="{}" stroke-dasharray="none" 
-                        d="M{} {} l{} {} l{} {}" 
+                        d="M{} {} l{} {} {} {}" 
                         fill="none"  
                         stroke="rgb(0,0,0)" />
             """
@@ -105,9 +105,26 @@ def printrela(plist):
             endconnector = (points[idx+1][2] == 'M')
             dash = "8,8" if point[3]=='DASHED' else 'none'
             printHTML.fhtml.write(relaline.format(opacity,linewidth,dash,startx,starty,endx,endy))
-            if (startconnector or endconnector):
-                printHTML.fhtml.write(konnektor.format(opacity, linewidth, startx, starty-6
-                                                , -6, 6,6,6))
+            fusslaenge=9
+            fussseite =math.sqrt((fusslaenge**2)/2)
+            winkel=math.atan2(endy-starty,endx-startx)
+            winkel1=winkel+(5 / 4 * math.pi)
+            xoffset,yoffset = round(fussseite * math.sin(winkel),2),round(fussseite * math.cos(winkel),2)
+            xl,yl = round(fusslaenge * math.sin(winkel1),2),round(fusslaenge * math.cos(winkel1),2)
+            #if not(startx in (747,238) and starty in (154,325)): continue
+            if (startconnector):
+                """print('START',startx, starty, endx, endy
+                      , round(winkel,1), winkel / math.pi * 180
+                      , round(winkel1,1), winkel1 / math.pi * 180
+                      ,xoffset,yoffset,xl,yl
+                      , sep=', ')"""
+                printHTML.fhtml.write(konnektor.format(opacity, linewidth, startx-xoffset, starty+yoffset
+                                               ,-xl,yl,yl,xl,
+                                                       ))
+            if (endconnector) :
+                printHTML.fhtml.write(konnektor.format(opacity, linewidth, endx+xoffset, endy-yoffset
+                                               ,xl,-yl,-yl,-xl,
+                                                       ))
         #for
         printHTML.fhtml.write(relaend)
     #for
@@ -177,8 +194,7 @@ def printelements(pdiagid,plang):
             #printtext(px=x1, py=y, ptext='*' if a[5] == 'TRUE' else 'o'
             #, pfillcolor=hex2rbg(e[10]), pfontsize=10  #vorläufig mal fix verdrahtet e[9]
             #)
-            ax=a[6]
-            ay=a[7]
+            ax,ay=a[6],a[7]
             aname = a[1]
             printtext(px=ax-ex, py=ay-ey, ptext=printHTML.href(ref=web_sql.attrAnker(a[0]),anz=a[1])
                       , pfillcolor=hex2rbg(e[10]), pfontsize=10  #vorläufig mal fix verdrahtet e[9]
@@ -191,7 +207,7 @@ def printelements(pdiagid,plang):
     printtexte(plist=diagrela)
 #printelements
 
-def printcontentdiag(plist,plang):
+def printcontentdiag(plist, plang, ptitel):
     contenthead="""        <!--diagramms-->"""
 
     diagramhead = """        <br><hr><br><br>
@@ -232,10 +248,10 @@ def printcontentdiag(plist,plang):
 
         if (dia[2] is not None):
             #es hat eine Legende
-            printlegend(pdata=[dia[0],'*Autor','*Erstellt am','*geändert am'
-                ,'*geändert von','*Modell','*modelltyp',]
-                        ,pwidth=legendwidth,pheigh=legendhigh
-                        ,px=dia[2],py=dia[3])
+            printlegend(pdata=[dia[0], dia[6], dia[7],''
+                , dia[8], ptitel, 'Logical']
+                    ,pwidth=legendwidth,pheigh=legendhigh
+                    ,px=dia[2],py=dia[3])
         #fi
 
         printelements(pdiagid=dia[1],plang=plang)

@@ -684,7 +684,7 @@ def printcontenthead(pfirma,ptitel):
     #fi
     langs = web_sql.projektlangs().split(',')
     try:
-        langs.remove(reportLang().upper())
+        langs.remove(reportLang().lower())
     except:
         pass
     str = ''

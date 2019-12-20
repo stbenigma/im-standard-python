@@ -2,7 +2,11 @@
 <Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="FC9A4A82-B2DA-9035-78F2-1D15759278F7" name="Kundenreiseetappe">
 <createdBy>stb</createdBy>
 <createdTime>2019-03-15 18:11:41 UTC</createdTime>
-<comment><![CDATA[Teil der Reise, die ein Kunde mit unserem Unternehmen für bestimmte Produkte / Dienstleistungen geht.]]></comment>
+<comment><![CDATA[Teil der Reise, die ein Kunde mit unserem Unternehmen für bestimmte Produkte / Dienstleistungen geht.
+
+Mögliche Ergebnisse:
+Kundenreaktion oder Firmen-Ergebnis
+führt typischerweise zu nächster Etappe bzw. Ender der Journey]]></comment>
 <notes><![CDATA[[DE_ENTI_COMMENT[
 Teil der Reise, die ein Kunde mit unserem Unternehmen für bestimmte Produkte / Dienstleistungen geht.
 ]DE_ENTI_COMMENT]
@@ -32,4 +36,45 @@ Part of the journey that a customer goes with our company for certain products /
 <property name="EN_ENTI_COMMENT" value="*DE* Teil der Reise, die ein Kunde mit unserem Unternehmen für bestimmte Produkte / Dienstleistungen geht."/>
 <property name="EN_ENTI_NAME" value="Customer travel stage"/>
 </propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Emotion" id="0D782CD1-7E2D-9D8C-F080-376D840F4BCC">
+<createdBy>stb</createdBy>
+<createdTime>2019-12-19 09:19:53 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Beschreibung" id="61966892-EBF9-9E6B-C485-D5E774162958">
+<createdBy>stb</createdBy>
+<createdTime>2019-12-19 09:23:55 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Kundenziel" id="15E359E6-1122-CF8B-E081-2FA85340B4C2">
+<createdBy>stb</createdBy>
+<createdTime>2019-12-19 09:42:18 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
 </Entity>
