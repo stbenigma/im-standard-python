@@ -1592,8 +1592,11 @@ function printColsMap(fw,tab,lastOne,enti,cmap){
 	for (icpcm=0;icpcm<cols.length;icpcm++){
 		col = cols[icpcm]
 		colkey = tab+'.'+col
+		//message('colslength'+cols.length)
+		//message(tab+'0|'+enti+'|'+'|'+col+'|'+icpcm+'|'+cols.length)
 		colmaps=getColMap(col.getObjectID(),cmap)
 		if (colmaps.length==0) {
+			//message('ohne Attribut='+enti+'|'+tab+'|'+col)
 			//nicht gemappte Columns werden nur 1x geschrieben.
 			if (lastOne && !(colkey in writtenCols)) writeMapLine(fw,tab,null,col,null)
 		}else{
@@ -1627,13 +1630,14 @@ function printCols(fw,tab){
 	}
 }
 
+
 function printCVS (fw){
 	entiType = 0
 	colType = 1
 	tableType = 4
 	attrType = 5
-	fw.write('"'+relModel+'";;;;\n')
 	fw.write('"entityName";"attrName";"tableName";"columnName";"dataType"\n')
+	fw.write('"'+relModel+'"\n')
 	tables = relModel.getTableSet().toArray();
 	for (itpc=0;itpc<tables.length;itpc++){
 		printCols(fw,tables[itpc])
@@ -1643,6 +1647,7 @@ function chooseFile(direc,fileName){
 	//Create a file chooser
 	var Filebrowse = Java.type("javax.swing.JFileChooser");
 	var File = Java.type("java.io.File");
+	message(direc+fileName)
 	f = new Filebrowse(direc);
 	f.setSelectedFile(new File(fileName));
 	returnVal= f.showSaveDialog(null);
@@ -1658,7 +1663,6 @@ function createFile(fileName){
 	fw = new FileWriter(fileName);    
 	return fw
 }
-
 function headers(rmodels){
 	retval = ''
 	for (ih=0;ih<rmodels.length;ih++){
@@ -1666,72 +1670,30 @@ function headers(rmodels){
 	}
 	return retval
 }
-
-function getColName(rmod,tabID,colID){
-	tab=rmod.getTableSet().getObjectByID(tabID)
-	col = tab.getElementByID(colID)
-	return tab+'.'+col
-}
-	
-function	getMappings(rmodels){
-	lmappings = {}
-	if (rmodels == null) return lmappings
-	for (imod=0;imod<rmodels.length;imod++){
-		rmod=rmodels[imod]
-		lmappings[rmod.getName()]={}
-		//message(lmappings[rmod.getName()]['123:123'])
-		modelMap= rmod.getRMExtendedMap().getContainerMappings().toArray();
-		if (modelMap != null) {
-			for (imgm=0;imgm<modelMap.length;imgm++){
-				entiID = modelMap[imgm].getLogID()
-				// Attributmappings
-				cmap=modelMap[imgm].getContainedMappings().toArray()
-				if (cmap != null) {
-					for (icgm=0;icgm<cmap.length;icgm++){
-						attrID = cmap[icgm].getLogID()
-						key = entiID+'.'+attrID
-						lmappings[rmod.getName()][key]=
-						   getColName(rmod,modelMap[imgm].getRelID()
-						            ,cmap[icgm].getRelID()) 
-					}
-				}
-			}
-		}
-	}
-	//message('vorReturn'+lmappings['Relational_1'])
-	return lmappings
-}
-
-function printMatrix(fw,nurX) {
+function printAllCVS(fw) {
 	logicalModel = model.getDesign().getLogicalDesign();
-	entities= logicalModel.getEntitySet().toArray()
 	rmodels = model.getDesign().getRelationalDesigns().toArray();
-	mappings = getMappings(rmodels)
-	if (entities != null) {
+	entities= logicalModel.getEntitySet().toArray()
+	if (entities != null && rmodels != null) {
+		head=headers(rmodels)
 		fw.write('"entity";"attr"'+headers(rmodels)+'\n')
-
+	
+		allAttrs = {}
 		for (ientiac=0;ientiac<entities.length;ientiac++) {
 			enti = entities[ientiac]
-			entiID = enti.getObjectID()
-			//message(enti)
+			message(enti)
 			attrs=enti.getElementsCollection().toArray()
 			if (attrs != null){
 				for (iattrac=0;iattrac<attrs.length;iattrac++){
 					attr=attrs[iattrac]
-					attrID = attr.getObjectID()
-					key=entiID+'.'+attrID
-					
-					line= '"'+enti+'";"'+attr+'"'
-					for (irmpm=0;irmpm<rmodels.length;irmpm++){
-						x= key in mappings[rmodels[irmpm].getName()] 
-								? nurX ? 'X': mappings[rmodels[irmpm].getName()][key]
-								: nvl('') 
-						line += ';"'+x+'"'
-					}
-					line+='\n'
-					fw.write(line)
+					allAttrs[enti+'.'+attr] = {"enti":enti,'attr':attr}
 				}
 			}
+		}
+		allAttrs.forEach((k, v) => message(k+v));
+		message(allAttrs[''])
+		for (aaidx=0;aaidx<allAttrs.length;aaidx++) {
+			fw.write('"'+allAttrs[aaidx]['enti']+'";"'+allAttrs[aaidx]['attr']+'"')
 		}
 	}
 }
@@ -1745,25 +1707,19 @@ function print1Mapping (){
 	fileName=chooseFile(exportDirec,relModel+'.csv')
      if (fileName == null) return
      fw = createFile(fileName)
-	printCVS (fw)
+	printCVS	(fw)
      fw.close();    
 	message("Mapping file "+fileName+" for model "+relModel+" created.");
 }
 
-function printAllMapping (nurX){
-	fileZusatz = nurX ? 'X' : ''
-	fileName=chooseFile(exportDirec,'AllMapping'+ fileZusatz +'.csv')
+function printAllMapping (){
+	fileName=chooseFile(exportDirec,'AllMapping'+'.csv')
+	message(fileName)
      if (fileName == null) return
      fw = createFile(fileName)
-     printMatrix(fw,nurX)
+	printAllCVS(fw)
      fw.close();    
 	message("Mapping file "+fileName+" created.");
-}
-function printXMapping (){
-     printAllMapping(true)
-}
-function printNameMapping (){
-     printAllMapping(false)
 }]]>
 		</script>
 	</scr>
@@ -2090,8 +2046,7 @@ function print1Mapping (){
 }
 
 function printAllMapping (nurX){
-	fileZusatz = nurX ? 'X' : ''
-	fileName=chooseFile(exportDirec,'AllMapping'+ fileZusatz +'.csv')
+	fileName=chooseFile(exportDirec,'AllMapping'+'.csv')
      if (fileName == null) return
      fw = createFile(fileName)
      printMatrix(fw,nurX)
@@ -2310,8 +2265,8 @@ function printCVS (fw){
 	colType = 1
 	tableType = 4
 	attrType = 5
-	fw.write('"'+relModel+';;;;"\n')
 	fw.write('"entityName";"attrName";"tableName";"columnName";"dataType"\n')
+	fw.write('"'+relModel+'"\n')
 	tables = relModel.getTableSet().toArray();
 	for (itpc=0;itpc<tables.length;itpc++){
 		printCols(fw,tables[itpc])
@@ -2429,8 +2384,7 @@ function print1Mapping (){
 }
 
 function printAllMapping (nurX){
-	fileZusatz = nurX ? 'X' : ''
-	fileName=chooseFile(exportDirec,'AllMapping'+ fileZusatz +'.csv')
+	fileName=chooseFile(exportDirec,'AllMapping'+'.csv')
      if (fileName == null) return
      fw = createFile(fileName)
      printMatrix(fw,nurX)
@@ -2825,8 +2779,7 @@ function printNameMapping (){
 	</lib>
 	<lib id="B2F713AD-5E48-670F-8A2B-55D1ABD0440C" name="attrmapping" engine="Oracle Nashorn" methods="importMapping,print1Mapping,printXMapping,printNameMapping" >
 		<script>
-			<![CDATA[
-	var PLAINMESSAGE = 1;
+			<![CDATA[var PLAINMESSAGE = 1;
 	var ERRORMESSAGE = 0;
 	var WARNINGMESSAGE = 2;
 	var QUESTIONMESSAGE = 3;
@@ -3028,8 +2981,8 @@ function printCVS (fw){
 	colType = 1
 	tableType = 4
 	attrType = 5
-	fw.write('"'+relModel+'";;;;\n')
 	fw.write('"entityName";"attrName";"tableName";"columnName";"dataType"\n')
+	fw.write('"'+relModel+'"\n')
 	tables = relModel.getTableSet().toArray();
 	for (itpc=0;itpc<tables.length;itpc++){
 		printCols(fw,tables[itpc])
@@ -3147,8 +3100,7 @@ function print1Mapping (){
 }
 
 function printAllMapping (nurX){
-	fileZusatz = nurX ? 'X' : ''
-	fileName=chooseFile(exportDirec,'AllMapping'+ fileZusatz +'.csv')
+	fileName=chooseFile(exportDirec,'AllMapping'+'.csv')
      if (fileName == null) return
      fw = createFile(fileName)
      printMatrix(fw,nurX)
@@ -3160,8 +3112,7 @@ function printXMapping (){
 }
 function printNameMapping (){
      printAllMapping(false)
-}
-]]>
+}]]>
 		</script>
 	</lib>
 
