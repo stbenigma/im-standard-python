@@ -3,6 +3,8 @@ import xml.etree.ElementTree as ET
 import re,os,sqlite3
 from datetime import date
 from IM_DB import dbInserts,dbDML,dbLookup,dbConnect,parameters,dbParam
+import math
+
 
 class Wertebereich:
     def __init__(self, pname, pid):
@@ -256,7 +258,9 @@ def hex2int(phex):
 def int2hex(pint):
     if (pint is None): return pint
     lint = pint if (type(pint) == int) else int(pint)
-    lint = lint + hex2int('FFFFFF') if (lint < 0) else 0
+    lint = lint + (hex2int('FFFFFF') if (lint < 0) else 0)
+    if lint == -1: #-1 wird führt zu -0x1 was die Selektion später erschwert
+        lint = hex2int('FFFFFF')
     retval = '000000'+ hex(lint)[2:]
     retval = retval[len(retval)-6:]
     return retval
@@ -352,7 +356,6 @@ def transferentity(penti, pdiagid, puc, pdc):
                 # Maximal bis zur Grösse der Entität
                 if ((attry-entiy) > (entiheight - 10)): break
             #for
-        #for
             break # no more looping for copies of element on diagramm
         except sqlite3.IntegrityError:
             index +=1
@@ -407,6 +410,10 @@ def transferdiaconnect(pconnectors, pdiagid, puc, pdc):
             entew=findField(targetlabel,'width')
             enteh=findField(targetlabel,'height')
 
+            """Labels können negative Starts haben, verschiebe sie in den positiven Bereich"""
+            if sttey is not None and int(sttey) < 0 : sttey,entey = 0,int(entey) - int(sttey)
+            if sttey is not None and int(sttey) < 0 : sttey,entey = 0,int(entey) - int(sttey)
+
             bezi = dbDML.select("""select bezi_pflicht_assoc_von_zu,bezi_pflicht_assoc_zu_von
                                         ,bezi_type
                                          ,case bezi_source_enti_guid 
@@ -454,15 +461,20 @@ def transferdiaconnect(pconnectors, pdiagid, puc, pdc):
             for idx,point in enumerate(points):
                 """ lise_rhfg, lise_beda_id, lise_x, lise_y
     , lise_linientyp,lise_konnektor, lise_uc, lise_dc
-    , lise_um,lise_dm 
+    , lise_um,lise_dm,lise_winkel
     """
                 x,y=point['x'],point['y']
-                pointsegs.append((idx,bedaid,x,y
+                if len(pointsegs)> 0:
+                    """ ab dem 2. Punkt wird im vorherigen Punkte der Winkel zum nächsten hinzugefügt"""
+                    calcwinkel = lambda ey, sy, ex, sx: math.atan2(ey - sy, ex - sx)
+                    prevpoint = pointsegs[len(pointsegs)-1]
+                    prevpoint[10] = calcwinkel(y,prevpoint[3],x,prevpoint[2])
+                pointsegs.append([idx,bedaid,x,y
                                 ,linetype(pidx=idx, pmaxidx=len(points)
                                           ,psourcelt= sourcelinetype,ptargetlt=targetlinetype)
                                 ,connector(pidx=idx,pmaxidx=len(points)
                                            ,psource=sourcecard,ptarget=targetcard)
-                                ,puc,pdc,None,None))
+                                ,puc,pdc,None,None,None])
             #for
             dbInserts.insertlinieseg(pointsegs)
         else: pass
@@ -474,6 +486,15 @@ def transferdiaarc(parcs, pdiagid, puc, pdc):
     pass
 # transferdiaarc
 
+def doGUIDfile(pdirec,pfile,transferfiles):
+    #nur GUID als Namen erlaubt.
+    if re.match(r'[A-Z0-9-]{30,45}.xml',pfile):
+        fileName = pdirec + pfile
+        #print (fileName)
+        transferfiles(fileName)
+    #fi
+#doGUIDfile
+
 def dosegfiles(pdirec,transferfiles):
     try:
         listdir=os.listdir(pdirec)
@@ -484,14 +505,7 @@ def dosegfiles(pdirec,transferfiles):
     for el in listdir:
         if re.match('seg_.*', el):
             for file in os.listdir(pdirec + el):
-                #nur GUID als Namen erlaubt.
-                if re.match(r'[A-Z0-9-]{30,45}.xml',file):
-#                if  ((re.search('DS_Store', file) == None)
-#                    and (not file.startswith('.'))):
-                    fileName = pdirec + el + '/' + file
-                    #print (fileName)
-                    transferfiles(fileName)
-                #fi
+                doGUIDfile(pdirec=pdirec + el + '/',pfile=file,transferfiles=transferfiles)
             #for
         #fi
     #for
@@ -499,7 +513,11 @@ def dosegfiles(pdirec,transferfiles):
 
 def do1diagramm(p_filename):
     #print (p_filename)
-    diagramme = ET.parse(p_filename)
+    try:
+        diagramme = ET.parse(p_filename)
+    except:
+        print("Diagramm nicht lesbar: {}".format(p_filename))
+        return
     dia = diagramme.getroot()
     dianame = dia.get('name')
     if (dianame == 'Logical'):
@@ -539,8 +557,11 @@ def do1diagramm(p_filename):
 
 def transferdiagramme():
     for el in os.listdir(parameters.odmentisubviewdirec()):
-        filename = parameters.odmentisubviewdirec() +  el
-        do1diagramm(p_filename=filename)
+        #filename = parameters.odmentisubviewdirec() +  el
+        #do1diagramm(p_filename=filename)
+        doGUIDfile(pdirec = parameters.odmentisubviewdirec()
+                   , pfile = el
+                   , transferfiles = do1diagramm)
     #endfor
 #transferdiagramme
 

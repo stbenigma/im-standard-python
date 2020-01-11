@@ -62,9 +62,13 @@ def printlegend(pdata,pwidth,pheigh,px,py):
 def hex2rbg(phex):
     if phex is None:
         return "rgb(0,0,0)"
-    r = int(phex[0:2], 16)
-    g = int(phex[2:4], 16)
-    b = int(phex[4:6], 16)
+    try:
+        r = int(phex[0:2], 16)
+        g = int(phex[2:4], 16)
+        b = int(phex[4:6], 16)
+    except:
+        print(phex)
+        raise
     return "rgb({},{},{})".format(r,g,b)
 #hex2rbg
 def printtext(px, py, ptext, pfillcolor, pfontsize, pstandalone=False):
@@ -76,6 +80,19 @@ def printtext(px, py, ptext, pfillcolor, pfontsize, pstandalone=False):
     printHTML.fhtml.write(showtext.format(px, py,pfillcolor, pfontsize, ptext))
     if pstandalone: printHTML.fhtml.write("</g>\n")
 #printtext
+
+calcwinkel = lambda ey,sy,ex,sx : math.atan2(ey - sy, ex - sx)
+def calccrowfoot(pstartx, pstarty, pendx, pendy):
+    fusslaenge = 9
+    fussseite = math.sqrt((fusslaenge ** 2) / 2)
+#    winkel = math.atan2(pendy - pstarty, pendx - pstartx)
+    winkel = calcwinkel(pendy,pstarty,pendx, pstartx)
+    winkel1 = winkel + (5 / 4 * math.pi)
+    xoffset, yoffset = round(fussseite * math.sin(winkel), 2), round(fussseite * math.cos(winkel), 2)
+    xl, yl = round(fusslaenge * math.sin(winkel1), 2), round(fusslaenge * math.cos(winkel1), 2)
+    return xoffset,yoffset,xl,yl
+#calccrowfoot
+
 def printrela(plist):
     relastart = """<g stroke-linecap="butt" >
                 """
@@ -105,26 +122,26 @@ def printrela(plist):
             endconnector = (points[idx+1][2] == 'M')
             dash = "8,8" if point[3]=='DASHED' else 'none'
             printHTML.fhtml.write(relaline.format(opacity,linewidth,dash,startx,starty,endx,endy))
-            fusslaenge=9
-            fussseite =math.sqrt((fusslaenge**2)/2)
-            winkel=math.atan2(endy-starty,endx-startx)
-            winkel1=winkel+(5 / 4 * math.pi)
-            xoffset,yoffset = round(fussseite * math.sin(winkel),2),round(fussseite * math.cos(winkel),2)
-            xl,yl = round(fusslaenge * math.sin(winkel1),2),round(fusslaenge * math.cos(winkel1),2)
-            #if not(startx in (747,238) and starty in (154,325)): continue
-            if (startconnector):
-                """print('START',startx, starty, endx, endy
+
+            if startconnector or endconnector:
+                """zeichne die Krähenfüsse"""
+                xoffset, yoffset, xl, yl = calccrowfoot(pstartx=startx, pstarty=starty, pendx=endx, pendy=endy)
+                if (startconnector):
+                    """print('START',startx, starty, endx, endy
                       , round(winkel,1), winkel / math.pi * 180
                       , round(winkel1,1), winkel1 / math.pi * 180
                       ,xoffset,yoffset,xl,yl
                       , sep=', ')"""
-                printHTML.fhtml.write(konnektor.format(opacity, linewidth, startx-xoffset, starty+yoffset
-                                               ,-xl,yl,yl,xl,
+                    printHTML.fhtml.write(konnektor.format(opacity, linewidth, startx-xoffset, starty+yoffset
+                                               ,-xl,yl,yl,xl
                                                        ))
-            if (endconnector) :
-                printHTML.fhtml.write(konnektor.format(opacity, linewidth, endx+xoffset, endy-yoffset
-                                               ,xl,-yl,-yl,-xl,
+                #fi
+                if (endconnector) :
+                    printHTML.fhtml.write(konnektor.format(opacity, linewidth, endx+xoffset, endy-yoffset
+                                               ,xl,-yl,-yl,-xl
                                                        ))
+                #fi
+            #fi
         #for
         printHTML.fhtml.write(relaend)
     #for
@@ -157,6 +174,83 @@ def printtexte(plist):
     #for
 #printtexte
 
+def print1arc(pdiagid,parcid,pentipos):
+    startarcstr = """
+        <g fill="none" stroke="rgb(0,0,0)" transform="translate({},{})" >
+    """
+    circle = """<circle stroke-dasharray="none" cx="{}" cy="{}"
+            stroke="rgb(0,0,0)" r="2" fill="rgb(0,0,0)" stroke-width="1" />
+    """
+    endarcstr = """    
+        <path d=" {}"/>
+        </g>
+    """
+    punktabstand = 20
+    bogenlng = 10
+    vorhalt = 10
+    startx,starty = pentipos[0]-punktabstand, pentipos[1]-punktabstand
+    print (startx,starty)
+    printHTML.fhtml.write(startarcstr.format(startx,starty))
+#    printHTML.fhtml.write(circle.format(0, 0))
+    """select beda_id,startx,starty, endx,endy"""
+    arcselem = web_sql.liesarcselem(pdiagid=pdiagid, parcsid=parcid)
+    circles=[]
+    for ae in arcselem:
+        winkel = calcwinkel(ae[3], ae[1],ae[4], ae[2])
+        print(ae, winkel / math.pi * 180
+              ,ae[1] - startx + round(punktabstand * math.sin(winkel),1),round(punktabstand * math.sin(winkel),1)
+              ,ae[2] - starty + round(punktabstand * math.cos(winkel),1),round(punktabstand * math.cos(winkel),1)
+              )
+        circles.append([ae[1] - startx + round(punktabstand * math.sin(winkel),1)
+                        ,ae[2] - starty  + round(punktabstand * math.cos(winkel),1)
+                        ,winkel
+                        ])
+    #for
+    # circles sortieren, damit Pfad des arc
+    #    minimal wird und nicht springt: Winkel zum Start von der Mitte der Entität aus
+    for c in circles:
+        printHTML.fhtml.write(circle.format(c[0],c[1]))
+    # for
+    for idx,c in enumerate(circles):
+        print(idx,c
+              ,round(math.cos(c[2]),1),round(10.0 * math.cos(c[2]),1),c[0] - round(10.0 * math.cos(c[2]),1)
+              , round(math.sin(c[2]),1), round(10.0 * math.sin(c[2]),1),c[1] - round(10.0 * math.sin(c[2]),1))
+        mx, my = c[0] - round(vorhalt * math.cos(c[2]), 1), c[1] - round(vorhalt * math.sin(c[2]), 1)
+        startc, endc = '', ''
+        if idx == 0:
+            mx,my = c[0] - round((bogenlng) * math.sin(c[2]),1) , c[1] - round((vorhalt + bogenlng) * math.sin(c[2]),1)
+            startc = 'c{} {} {} {} {} {}'.format(0,0,bogenlng,0,bogenlng,bogenlng)
+        elif idx == len(c)-1:
+            pass
+        else:
+            pass
+        #fi
+        printHTML.fhtml.write(endarcstr.
+                                format("M{} {} {} l{} {} {}".
+                                       format(mx,my
+                                              ,startc
+                                              ,round(20.0 * math.cos(c[2]),1),round(20.0 * math.sin(c[2]),1)
+                                              ,endc)))
+    # for
+#    printHTML.fhtml.write(endarcstr.format(""))
+#    printHTML.fhtml.write(startarcstr.format(120,930))
+#    printHTML.fhtml.write(circle.format(0,0))
+#    printHTML.fhtml.write(circle.format(30,50))
+#    printHTML.fhtml.write(circle.format(186,89))
+#    printHTML.fhtml.write(endarcstr.format(
+#        "M177.0 40.0 C 177.0 40.0 187.0 40.0 187.0 50.0 L187.0 100.0 C 187.0 100.0 187.0 110.0 177.0 110.0"))
+
+#print1arc
+
+def printarcs(pdiagid):
+
+    """select arcs_id,beda_id"""
+    arcs = web_sql.liesarcs(pdiagid=pdiagid)
+    for arc in arcs:
+        print (arc)
+        print1arc(pdiagid=pdiagid,parcid=arc[0],pentipos=[arc[4],arc[5]])
+    #for
+#printarcs
 def printelements(pdiagid,plang):
     entistart ="""<g  fill="{}" stroke="{}" fill-opacity="{}" stroke-opacity="{}" 
         transform="translate({},{})" >
@@ -185,7 +279,7 @@ def printelements(pdiagid,plang):
             ,web_sql.entiAnker(e[12])
             ,web_sql.diagAnker(pdiagid)+'-'+web_sql.entiAnker(e[12])
             ,hex2rbg(e[10])
-            ,10 #vorläufig mal fix verdrahtet e[9]
+            ,12 #vorläufig mal fix verdrahtet e[9], font size
             ,e[11]+('' if (e[13]==0) else':'+str(e[13]))))
 
         attrs=web_sql.diagattrlist(plang=plang,pdiagid=pdiagid)
@@ -203,8 +297,9 @@ def printelements(pdiagid,plang):
         printHTML.fhtml.write(entiende)
     #for
     diagrela = web_sql.diagrelalist(pdiagid=pdiagid,plang=plang)
-    printrela(plist=diagrela),
+    printrela(plist=diagrela)
     printtexte(plist=diagrela)
+    printarcs(pdiagid=pdiagid)
 #printelements
 
 def printcontentdiag(plist, plang, ptitel):

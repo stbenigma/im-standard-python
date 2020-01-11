@@ -482,11 +482,8 @@ def udpwerte(pmeltname, pthema, pgruppe, pid):
             join benudef_eigenschaft on bdeg_id = bdwe_bdeg_id
                     and bdeg_thema = '{}' and bdeg_gruppe = {}
             order by bdeg_thema,bdeg_gruppe,bdeg_name
-            """.format("mode_" +
-                       ("enti" if pmeltname == 'ENTI'
-                        else "attr" if pmeltname == 'ATTR'
-                       else "")
-                       + "_id" ,pid
+            """.format("mode_{}_id".format("enti" if pmeltname == 'ENTI' else "attr" if pmeltname == 'ATTR'else "")
+                        ,pid
                        , pthema, 'bdeg_gruppe' if pgruppe =='*'  else  "'{}'".format (pgruppe)
                        ))
     return data
@@ -632,3 +629,46 @@ def transltext(pattr, pmodeid, plang):
     """.format(pmodeid, pattr, plang))
     return data[0][0] if (len(data)> 0) else ''
 #translist
+
+def liesarcs(pdiagid):
+    data = dbDML.select("""
+        select arcs_id,beda_id,enti_id,enti_name,eled_position_x,eled_position_y
+        from arcs
+        join beziehungen  on arcs_id = bezi_arcs_id
+        join modellelement  m on bezi_id = m.mode_bezi_id
+        join beziehung_darst on beda_mode_id = m.mode_id
+        join entitaeten on arcs_enti_id = enti_id
+        join modellelement m2 on m2.mode_enti_id = enti_id
+        join elementdarst e on m2.mode_id = eled_mode_id
+        where beda_diag_id = {}
+    """.format(pdiagid))
+    return data
+#liesarcs
+def liesarcselem(pdiagid,parcsid):
+    data = dbDML.select("""with lseg as (select linie_segment.*
+               ,row_number() over (PARTITION BY lise_beda_id ORDER BY lise_rhfg ASC) up
+               ,row_number() over (PARTITION BY lise_beda_id ORDER BY lise_rhfg desc) down
+           from linie_segment)
+        select beda_id,lsegstart.lise_x startx,lsegstart.lise_y starty
+             ,lsegend.lise_x endx,lsegend.lise_y endy
+             ,evon.enti_id,evon.enti_name,ezu.enti_id,ezu.enti_name
+        from arcs 
+        join entitaeten earc on earc.enti_id =arcs_enti_id
+        join beziehungen on bezi_arcs_id = arcs_id
+        join modellelement on bezi_id = mode_bezi_id
+        join entitaeten evon on evon.enti_odm_guid = bezi_source_enti_guid
+        join entitaeten ezu on ezu.enti_odm_guid = bezi_target_enti_guid
+        join beziehung_darst on beda_mode_id = mode_id
+        join lseg lsegstart        on beda_id = lsegstart.lise_beda_id
+             and ((lsegstart.up = 1 and bezi_source_enti_guid = earc.enti_odm_guid
+                ) or (lsegstart.down = 1 and bezi_target_enti_guid = earc.enti_odm_guid
+                ))
+        join lseg lsegend on beda_id = lsegend.lise_beda_id
+             and ((lsegend.up = 2 and bezi_source_enti_guid != earc.enti_odm_guid
+                ) or (lsegend.down = 2 and bezi_target_enti_guid != earc.enti_odm_guid
+                ))                
+    where beda_diag_id = {}
+    and arcs_id = {}
+    """.format(pdiagid,parcsid))
+    return data
+#liesarcselem

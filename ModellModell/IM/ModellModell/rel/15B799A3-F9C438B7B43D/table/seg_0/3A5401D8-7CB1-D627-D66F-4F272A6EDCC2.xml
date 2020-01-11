@@ -116,6 +116,21 @@
 <ownDataTypeParameters>1 CHAR,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
+<Column name="LISE_WINKEL" id="FB936EA2-893A-2A48-FCD6-B604627A9E40">
+<createdBy>stb</createdBy>
+<createdTime>2020-01-11 15:22:23 UTC</createdTime>
+<comment><![CDATA[Winkel zum nächsten (rhfg + 1) Punkt dieser Linie. (Leer beim letzten Punkt einer Folge). 0 ist nach rechts, 90 nach unten, 180 nach links, -90 nach oben]]></comment>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="B398D247-00C1-F016-3BBB-FE65CFFFF7AA"/>
+</propertyMap>
+</Column>
 <Column name="LISE_UC" id="8531E976-2F08-1F63-3068-598F6AD91108">
 <createdBy>stb</createdBy>
 <createdTime>2019-10-30 09:59:46 UTC</createdTime>

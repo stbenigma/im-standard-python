@@ -290,8 +290,8 @@ def insertlinieseg(pdata):
 linie_segment(
     lise_rhfg, lise_beda_id, lise_x, lise_y
     , lise_linientyp,lise_konnektor, lise_uc, lise_dc
-    , lise_um,lise_dm )
-                            values (?,?,?,?,?,?,?,?,?,?)
+    , lise_um,lise_dm,lise_winkel )
+                            values (?,?,?,?,?,?,?,?,?,?,?)
     """
     return dbDML.insert(lsql, pdata)
 #insertlinieseg

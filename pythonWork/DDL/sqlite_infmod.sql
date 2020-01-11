@@ -648,55 +648,55 @@ create view spraattr as
 				      beda_mode_id             integer NOT NULL,
 				      beda_linienbreite        integer DEFAULT 1 NOT NULL,
 				      beda_liniefarbe          varchar(6) NULL
-				          CHECK(length(beda_liniefarbe)= 6),
+				          constraint beda_lf_chk CHECK  (length(beda_liniefarbe)= 6),
 				      beda_liniedeckkraft      integer NULL
-				          CHECK(beda_liniedeckkraft BETWEEN 0 AND 100),
+				          constraint beda_ldk_chk CHECK(beda_liniedeckkraft BETWEEN 0 AND 100),
 				      beda_startkante          varchar(1) NULL
-				          CHECK(beda_startkante IN(
+				          constraint beda_stk_chk CHECK(beda_startkante IN(
 				              'N',
 				              'O',
 				              'S',
 				              'W'
 				          )),
 				      beda_startposition       integer NULL
-				          CHECK(beda_startposition BETWEEN 0.0 AND 100.0),
+				          constraint beda_stp_chk CHECK(beda_startposition BETWEEN 0.0 AND 100.0),
 				      beda_starttext_winkel    integer NULL
-				          CHECK(beda_starttext_winkel BETWEEN - 179 AND 180),
+				          constraint beda_stwi_chk CHECK(beda_starttext_winkel BETWEEN - 179 AND 180),
 				      beda_starttext_abstand   integer NULL
-				          CHECK(beda_starttext_abstand BETWEEN 1 AND 9999),
+				          constraint beda_stab_chk CHECK(beda_starttext_abstand BETWEEN 1 AND 9999),
 				      beda_starttext_x         integer NULL
-				          CHECK(beda_starttext_x BETWEEN 0 AND 999999),
+				          constraint beda_stx_chk CHECK(beda_starttext_x BETWEEN 0 AND 999999),
 				      beda_starttext_y         integer NULL
-				          CHECK(beda_starttext_y BETWEEN 0 AND 999999),
+				          constraint beda_sty_chk CHECK(beda_starttext_y BETWEEN 0 AND 999999),
 				      beda_starttext_breite    integer NULL
-				          CHECK(beda_starttext_breite BETWEEN 1 AND 9999),
+				          constraint beda_stb_chk CHECK(beda_starttext_breite BETWEEN 1 AND 9999),
 				      beda_starttext_hoehe     integer NULL
-				          CHECK(beda_starttext_hoehe BETWEEN 1 AND 9999),
+				          constraint beda_sth_chk CHECK(beda_starttext_hoehe BETWEEN 1 AND 9999),
 				      beda_endkante            varchar(1) NULL
-				          CHECK(beda_endkante IN(
+				          constraint beda_ek_chk CHECK(beda_endkante IN(
 				              'N',
 				              'O',
 				              'S',
 				              'W'
 				          )),
 				      beda_endposition         integer NULL
-				          CHECK(beda_endposition BETWEEN 0.0 AND 100.0),
+				          constraint beda_ep_chk CHECK(beda_endposition BETWEEN 0.0 AND 100.0),
 				      beda_endtext_winkel      integer NULL
-				          CHECK(beda_endtext_winkel BETWEEN - 179 AND 180),
+				          constraint beda_ewi_chk CHECK(beda_endtext_winkel BETWEEN - 179 AND 180),
 				      beda_endtext_abstand     integer NULL
-				          CHECK(beda_endtext_abstand BETWEEN 1 AND 9999),
+				          constraint beda_eab_chk CHECK(beda_endtext_abstand BETWEEN 1 AND 9999),
 				      beda_endtext_x           integer NULL
-				          CHECK(beda_endtext_x BETWEEN 0 AND 999999),
+				          constraint beda_ex_chk CHECK(beda_endtext_x BETWEEN 0 AND 999999),
 				      beda_endtext_y           integer NULL
-				          CHECK(beda_endtext_y BETWEEN 0 AND 999999),
+				          constraint beda_ey_chk CHECK(beda_endtext_y BETWEEN 0 AND 999999),
 				      beda_endtext_breite      integer NULL
-				          CHECK(beda_endtext_breite BETWEEN 1 AND 9999),
+				          constraint beda_eb_chk CHECK(beda_endtext_breite BETWEEN 1 AND 9999),
 				      beda_endtext_hoehe       integer NULL
-				          CHECK(beda_endtext_hoehe BETWEEN 1 AND 9999),
+				          constraint beda_eh_chk CHECK(beda_endtext_hoehe BETWEEN 1 AND 9999),
 				      beda_schriftfarbe        varchar(6) DEFAULT '000000' NULL
-				          CHECK(length(beda_schriftfarbe)= 6),
+				          constraint beda_sf_chk CHECK(length(beda_schriftfarbe)= 6),
 				      beda_schriftgroesse      integer NULL
-				          CHECK(beda_schriftgroesse BETWEEN 1 AND 999),
+				          constraint beda_sg_chk CHECK(beda_schriftgroesse BETWEEN 1 AND 999),
 				          beda_uc              varchar(30) NOT NULL,
 				      beda_dc                  varchar(30) NOT NULL,
 				      beda_um                  varchar(30) ,
@@ -729,6 +729,7 @@ create view spraattr as
 						             '1',
 						             'M'
 						         )),
+					  lise_winkel 	 integer,
 				      lise_uc       varchar(30) NOT NULL,
 				      lise_dc           varchar(30) NOT NULL,
 				      lise_um           varchar(30) ,

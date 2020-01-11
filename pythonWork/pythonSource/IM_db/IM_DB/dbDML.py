@@ -66,8 +66,11 @@ def insert(psql,rec):
         else:
             raise Exception("unknown type for insert {}".format(type(rec)))
     except sqlite3.IntegrityError as ei:
-        #print (str(ei))
-        #print(psql,rec,type(rec))
+        #Unique kann für Indexweiterzählen gebraucht werden. darum keine Fehlermeldung
+        if not str(ei).startswith('UNIQUE'):
+            print(psql,rec,type(rec))
+            print ("insert: Constraint-Fehler: \t{}" .format (str(ei)))
+        #fi
         raise ei
     except sqlite3.Error as e:
         print(psql, rec,type(rec))
