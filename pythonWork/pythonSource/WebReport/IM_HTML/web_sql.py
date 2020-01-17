@@ -237,7 +237,7 @@ def entilist(p_lang):
 
 def pointlist(pliseid):
     data = dbDML.select("""
-            select lise_x,lise_y,lise_konnektor,lise_linientyp
+            select lise_x,lise_y,lise_konnektor,lise_linientyp,lise_winkel
             from linie_segment
             where lise_beda_id = {}
             order by lise_rhfg
@@ -632,7 +632,7 @@ def transltext(pattr, pmodeid, plang):
 
 def liesarcs(pdiagid):
     data = dbDML.select("""
-        select arcs_id,beda_id,enti_id,enti_name,eled_position_x,eled_position_y
+        select arcs_id,beda_id,enti_id,enti_name,eled_position_x,eled_position_y,eled_hoehe,eled_breite
         from arcs
         join beziehungen  on arcs_id = bezi_arcs_id
         join modellelement  m on bezi_id = m.mode_bezi_id
@@ -652,6 +652,7 @@ def liesarcselem(pdiagid,parcsid):
         select beda_id,lsegstart.lise_x startx,lsegstart.lise_y starty
              ,lsegend.lise_x endx,lsegend.lise_y endy
              ,evon.enti_id,evon.enti_name,ezu.enti_id,ezu.enti_name
+             ,case when lsegstart.up = 1 then lsegstart.lise_winkel else lsegend.lise_winkel  end winkel
         from arcs 
         join entitaeten earc on earc.enti_id =arcs_enti_id
         join beziehungen on bezi_arcs_id = arcs_id
@@ -664,8 +665,8 @@ def liesarcselem(pdiagid,parcsid):
                 ) or (lsegstart.down = 1 and bezi_target_enti_guid = earc.enti_odm_guid
                 ))
         join lseg lsegend on beda_id = lsegend.lise_beda_id
-             and ((lsegend.up = 2 and bezi_source_enti_guid != earc.enti_odm_guid
-                ) or (lsegend.down = 2 and bezi_target_enti_guid != earc.enti_odm_guid
+             and ((lsegend.up = 2 and bezi_source_enti_guid = earc.enti_odm_guid
+                ) or (lsegend.down = 2 and bezi_target_enti_guid = earc.enti_odm_guid
                 ))                
     where beda_diag_id = {}
     and arcs_id = {}

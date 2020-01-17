@@ -457,6 +457,7 @@ def transferdiaconnect(pconnectors, pdiagid, puc, pdc):
                 """1elementige Linien werden um einen Mittelpunkt ergänzt wegen -- oder solid"""
                 midpos = lambda x1,x2: round((x1-x2)/2+x2)
                 points.insert(1,{'x':midpos(points[0]['x'],points[1]['x']),'y':midpos(points[0]['y'],points[1]['y'])})
+            #fi
             pointsegs=[]
             for idx,point in enumerate(points):
                 """ lise_rhfg, lise_beda_id, lise_x, lise_y
