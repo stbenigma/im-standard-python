@@ -765,6 +765,7 @@ CREATE TABLE linie_segment(
 		'1',
 		'M'
 		)),
+	lise_winkel 	 integer,
     lise_uc       varchar(30) NOT NULL,
     lise_dc           varchar(30) NOT NULL,
     lise_um           varchar(30) ,

@@ -462,7 +462,7 @@ def transferdiaconnect(pconnectors, pdiagid, puc, pdc):
             for idx,point in enumerate(points):
                 """ lise_rhfg, lise_beda_id, lise_x, lise_y
     , lise_linientyp,lise_konnektor, lise_uc, lise_dc
-    , lise_um,lise_dm,lise_winkel
+    , lise_um,lise_dm,nkel
     """
                 x,y=point['x'],point['y']
                 if len(pointsegs)> 0:
@@ -1077,15 +1077,23 @@ def transferUDP():
 #transferUDP
 
 def insertBaseData():
+    languages = {'de' : ['Deutsch','deu']
+                ,'en': ['English', 'eng']
+                ,'fr': ['Français', 'fra']
+                ,'es': ['Español', 'esp']
+                ,'it': ['Italiano', 'ita']
+                }
     #(spra_iso_name, spra_iso_code2, spra_iso_code3
     #, spra_ist_textsprache, spra_spra_id, spra_uc
     #, spra_dc
-    ldeId= dbInserts.insertSprache(('Deutsch','de','deu','TRUE','TRUE',None,'stb', date.today()));
-    dbInserts.insertSprache(('English',  'en', 'eng', 'TRUE', 'FALSE',ldeId, 'stb', date.today()));
-    dbInserts.insertSprache(('Français', 'fr', 'fra', 'TRUE', 'FALSE',ldeId, 'stb', date.today()));
-    dbInserts.insertSprache(('Español,', 'es', 'esp', 'TRUE', 'FALSE',ldeId, 'stb', date.today()));
-    dbInserts.insertSprache(('Italiano,', 'it', 'ita', 'TRUE', 'FALSE',ldeId, 'stb', date.today()));
-
+    deflang = parameters.dbDefaultLang()
+    for key,value in languages.items():
+        dbInserts.insertSprache((value[0], key, value[1], 'TRUE', 'FALSE', 'stb', date.today()));
+    if not deflang in languages: defland = 'de'
+    dbDML.exec('update sprachen set spra_ist_modellsprache = "TRUE" where spra_iso_code2 = "{}"'.format(deflang))
+    dbDML.exec("""update sprachen  
+                set spra_spra_id = (select sp2.spra_id from sprachen sp2 where sp2.spra_ist_modellsprache = 'TRUE')
+                where spra_ist_modellsprache = "FALSE" """)
     fillMelt()
     entidiaid = dbInserts.insertdiagrammtyp(('Entity','stb',date.today(),None,None))
     #    medi_diat_id, medi_melt_id,medi_uc,mdei_dc,medi_um,mdei_dm

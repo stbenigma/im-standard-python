@@ -19,5 +19,11 @@
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
       <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/../../../CRM/IM_CRM_FYAYC.db</jdbc-url>
     </data-source>
+    <data-source source="LOCAL" name="IM_GEBERIT.db" uuid="807edaed-dccd-45be-bb2e-1cfa9ab5b898">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/../../../../../GEBININF/gitHub/DB/IM_GEBERIT.db</jdbc-url>
+    </data-source>
   </component>
 </project>

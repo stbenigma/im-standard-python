@@ -219,9 +219,9 @@ def insertSchlElem(pData):
 
 def insertSprache(pData):
     lsql = """insert into sprachen (spra_iso_name, spra_iso_code2, spra_iso_code3
-                                  ,spra_ist_textsprache, spra_ist_modellsprache, spra_spra_id
+                                  ,spra_ist_textsprache, spra_ist_modellsprache
                                   , spra_uc,spra_dc) 
-                            values (?,?,?,?,?,?,?,?)
+                            values (?,?,?,?,?,?,?)
             """
     return dbDML.insert(lsql, pData)
 #insertSprache
