@@ -249,7 +249,9 @@ def print1arc(pdiagid,parcid,pentipos):
                 currentq = qm
                 """ neuer Quadrant, zeichne arc um ecke q4->q1, 4->2, 4->3, 1->2, 1->3 1->4, 2->3 2->4 2->1"""
                 """Linie ab aktuellem Punkt bis ans Ende der Entität"""
-                x2factor = {1: [1,2,1,1], 2: [0,0,1,1], 3: [0,0,0,1], 4: [1,1,0,0]}
+                x2factor = {1: [1,2,1,1], 2: [0,1,1,2], 3: [0,0,0,1], 4: [1,1,0,0]}
+                if parcid == 10:
+                    print(parcid)
                 arcline += ' L{} {} '.format(x2factor[currentq][0]*arcbreite + x2factor[currentq][1]*bogenlng
                                         ,x2factor[currentq][2]*archoehe + x2factor[currentq][3]*bogenlng)
 
@@ -339,7 +341,8 @@ def printelements(pdiagid,plang):
     diagrela = web_sql.diagrelalist(pdiagid=pdiagid,plang=plang)
     printrela(plist=diagrela)
     printtexte(plist=diagrela)
-    printarcs(pdiagid=pdiagid)
+    print ("printarcs disabled noch zu überprüfen mit")
+    #printarcs(pdiagid=pdiagid)
 #printelements
 
 def printcontentdiag(plist, plang, ptitel):

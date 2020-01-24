@@ -580,12 +580,55 @@ def findeOderErstelleDom(pdomguid, pstructdomguid, ptypeguid, pattrname):
 def do1Arc(fileName):
     arc= ET.parse(fileName).getroot()
     if (findField(arc, "class") != "oracle.dbtools.crest.model.design.logical.Arc"): return
-#    print (arc.get("id"),arc.get("name"),arc.find('entity').text)
 
     #(arcs_name, arcs_enti_id, arcs_odm_guid
     # , arcs_uc, arcs_dc)
-    dbInserts.insertArc(parc=(arc.get("name"),dbLookup.entiID(arc.find('entity').text)\
+    arcs_id = dbInserts.insertArc(parc=(arc.get("name"),dbLookup.entiID(arc.find('entity').text)\
                               ,arc.get("id"),arc.find('createdBy').text,arc.find('createdTime').text))
+    """map all relations to this arc"""
+    relations = arc.findall('relations/relationID')
+    relids = ''
+    for idx,r in enumerate(relations):
+        sep = ',' if idx > 0 else ''
+        relids += sep+"'"+r.text+"'"
+#    relids = ''.join("'{}',".format(r for r in relations))
+    #print (relids)
+    #DEBUG Arc 2x auf Beziehung
+    if arc.get("name") in ('xxArc_9','xxArc_11'):
+        print (arc.get("id"),arc.get("name"),arc.find('entity').text)
+        res = dbDML.select("""select case earc.enti_odm_guid
+                            when evon.enti_odm_guid
+                            then arcs_id else null end von_arcs_id
+                            ,case earc.enti_odm_guid
+                            when ezu.enti_odm_guid
+                            then arcs_id else null end zu_arcs_id
+                 ,arcs_id,arcs_name,bezi_id,bezi_name,earc.enti_name,earc.enti_odm_guid,ezu.enti_odm_guid
+                    from arcs
+                    cross join beziehungen
+                    join entitaeten earc on arcs_enti_id = earc.enti_id
+                    left join entitaeten evon on bezi_enti_id_von = evon.enti_id
+                    left join entitaeten ezu on bezi_enti_id_zu = ezu.enti_id
+                    where arcs_id = {}
+                and bezi_odm_guid in ({})""".format(arcs_id,relids))
+        print (res)
+    dbDML.exec("""update beziehungen
+                set (bezi_von_arcs_id,bezi_zu_arcs_id) =
+                    (select case earc.enti_odm_guid
+                            when evon.enti_odm_guid
+                            then arcs_id else bezi_von_arcs_id end von_arcs_id
+                            ,case earc.enti_odm_guid
+                            when ezu.enti_odm_guid
+                            then arcs_id else bezi_zu_arcs_id end zu_arcs_id
+                    from arcs
+                    join entitaeten earc on arcs_enti_id = earc.enti_id
+                    left join entitaeten evon on bezi_enti_id_von = evon.enti_id
+                    left join entitaeten ezu on bezi_enti_id_zu = ezu.enti_id
+                    where arcs_id = {}
+                    )
+                where bezi_odm_guid in ({})
+                """.format(arcs_id,relids))
+        #print(arc.get("name"),rel.text)
+
 #do1Arc
 
 def transferArcs():
@@ -805,16 +848,18 @@ def doSubentities():
     dbDML.exec("""insert into beziehungen (bezi_type, bezi_enti_id_von, bezi_assoc_von_zu
                     ,bezi_pflicht_assoc_von_zu, bezi_hist_von_zu
                     , bezi_enti_id_zu, bezi_assoc_zu_von, BEZI_PFLICHT_ASSOC_ZU_VON, bezi_hist_zu_von
-                    , bezi_arcs_id, bezi_uc, bezi_dc,bezi_name)
+                    , bezi_von_arcs_id,bezi_uc, bezi_dc,bezi_name)
                 select 'ISA', slave_enti_id,''
                             , 'TRUE','FALSE'
                             ,master_enti_id,'','TRUE','FALSE'
-                            ,arcs_id,arcs_uc, arcs_dc,'' beziname
+                            ,arcs_id,arcs_uc, arcs_dc
+                            ,arcs_name + '_' + slave_enti_name beziname
                             from arcs
                             join (select enti_id as master_enti_id
                                        , enti_odm_guid as master_guid from entitaeten) on master_enti_id = arcs_enti_id
                             join  (select enti_id as slave_enti_id
-                                       , enti_enti_guid as slave_master_guid from entitaeten) on slave_master_guid = master_guid
+                                       , enti_enti_guid as slave_master_guid 
+                                       ,enti_name as slave_enti_name from entitaeten) on slave_master_guid = master_guid
                            where arcs_odm_guid is null
                 """)
     dbConnect.myDbConn.commit()
@@ -842,15 +887,15 @@ def strNegBool(pbool):
     #fi
 #strNegBool
 
-def beziType(srcCard, targCard, srcOpt,targOpt,arcId):
+def beziType(srcCard, targCard, srcOpt,targOpt,arcId = None):
     # ISA: 1:1 und
     #      zuSeite Pflicht, vonSeite optional
     #           oder beide sind Pflicht und die zuSeite beziehung ist in einem Arc
     #    1:1 sonst
     #
     if ((srcCard == '1') and (targCard == '1')):
-        if ((srcOpt == 'false') and (targOpt == 'false') and (arcId is not None)
-           ):
+        #alte lösung        if ((srcOpt == 'false') and (targOpt == 'false') and (arcId is not None)):
+        if ((srcOpt == 'false') or (targOpt == 'false') ):
             return 'ISA'
         else:
             return '1:1'
@@ -865,16 +910,6 @@ def beziType(srcCard, targCard, srcOpt,targOpt,arcId):
 def do1Relation(fileName):
     tree = ET.parse(fileName)
     root = tree.getroot()
-    if (findField(root,"class") != "oracle.dbtools.crest.model.design.logical.Relation"): return
-    try:
-        beziArcId = dbLookup.arcsID(findText(root,'arc'))
-    except  sqlite3.Error as e:
-        if (e.__str__() == 'No Data Found'):
-            beziArcId = None
-        else:
-            raise e
-        #fi
-    #try
     relname=root.get('name')
     optSrc = findText(root, 'optionalSource')
     optTarg = findText(root, 'optionalTarget')
@@ -884,12 +919,11 @@ def do1Relation(fileName):
     lbeziType = beziType(srcCard= abbildTyp(cardSrc)
                     ,targCard=abbildTyp(cardTarg)
                     ,srcOpt=optSrc
-                    ,targOpt= optTarg
-                    ,arcId=beziArcId)
+                    ,targOpt= optTarg)
         # bezi_type, bezi_enti_id_von, bezi_assoc_von_zu
     #      ,bezi_pflicht_assoc_von_zu, bezi_hist_von_zu
     #     , bezi_enti_id_zu,bezi_assoc_zu_von
-    #     , BEZI_PFLICHT_ASSOC_ZU_VON,bezi_hist_zu_von, bezi_arcs_id
+    #     , BEZI_PFLICHT_ASSOC_ZU_VON,bezi_hist_zu_von
     #     , bezi_odm_guid,bezi_uc, bezi_dc,bezi_name
     #     ,bezi_source_enti_guid,  bezi_target_enti_guid
     vonText = findText(root,'nameOnSource')
@@ -903,7 +937,7 @@ def do1Relation(fileName):
              , dbLookup.entiID(sourceentiguid),vonText
              ,strNegBool(optSrc), 'FALSE'
              , dbLookup.entiID(targetentiguid), zuText
-             ,strNegBool(optTarg),'FALSE', beziArcId
+             ,strNegBool(optTarg),'FALSE'
              ,root.get('id'),creby,creti,relname
             ,sourceentiguid,targetentiguid
              ]
@@ -1272,8 +1306,8 @@ def transferODMModel():
     transferDomains()
     transferUDP()
     transferEntitaeten()
-    transferArcs()
     transferRelations()
+    transferArcs()
     doSubentities()
     transferKeys(keys)
     loaddefaultcolors()

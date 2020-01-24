@@ -332,7 +332,8 @@ CREATE TABLE beziehungen(
             'FALSE',
             'TRUE'
         )),
-    bezi_arcs_id                    integer NULL,
+    bezi_von_arcs_id                    integer NULL,
+    bezi_zu_arcs_id                    integer NULL,
 	bezi_odm_guid		varchar(36),bezi_name varchar(100),
         bezi_uc                        varchar(30) NOT NULL,
     bezi_dc                        varchar(30) NOT NULL,
@@ -342,8 +343,10 @@ CREATE TABLE beziehungen(
     bezi_target_enti_guid          VARCHAR2(36) NULL,
 	CONSTRAINT bezi_isa_ck2 CHECK((bezi_type = 'ISA' AND bezi_pflicht_assoc_von_zu = 'TRUE')
                                    OR (bezi_type != 'ISA')),
-	CONSTRAINT bezi_arc_fk FOREIGN KEY(bezi_arcs_id)
-											         REFERENCES arcs(arcs_id),
+	CONSTRAINT bezi_von_arc_fk FOREIGN KEY(bezi_von_arcs_id)
+							REFERENCES arcs(arcs_id),
+	CONSTRAINT bezi_zu_arc_fk FOREIGN KEY(bezi_zu_arcs_id)
+							REFERENCES arcs(arcs_id),
 	CONSTRAINT bezi_enti_fk_von FOREIGN KEY(bezi_enti_id_von)
 											         REFERENCES entitaeten(enti_id)
 											             ON DELETE CASCADE,
@@ -566,19 +569,24 @@ CREATE TABLE modelltyp_eigensch(
     # """)
 
     dbDDL.dropView("SUPERENTI");
-    dbDDL.createTable("""create view SUPERENTI AS select ae.enti_id super_enti_id,ae.enti_name super_enti_name
+    dbDDL.createTable("""create view SUPERENTI AS 
+    select ae.enti_id super_enti_id,ae.enti_name super_enti_name
                ,e1.enti_id sub_enti_id,e1.enti_name sub_enti_name
       from arcs
       join entitaeten as ae on ae.enti_id = arcs_enti_id 
-      join (select bezi_arcs_id,count(*) alleanz
-           , SUM(case when bezi_type in ('ISA','1:1') then 1 else 0 end) isaanz
+      join (select bezi_arcs_id
+                   ,count(*) alleanz
            , SUM(case bezi_pflicht_assoc_von_zu when 'TRUE' then 1 else 0 end) nnvonanz
            , SUM(case bezi_pflicht_assoc_zu_von when 'TRUE' then 1 else 0 end) nnzuanz
-            from  beziehungen
-            where bezi_type in ('ISA','1:1') 
+            from   (select case when bezi_von_arcs_id is null then bezi_zu_arcs_id else bezi_von_arcs_id end bezi_arcs_id
+                        , bezi_pflicht_assoc_von_zu
+                        , bezi_pflicht_assoc_zu_von
+                   from beziehungen
+                   where bezi_type in ('ISA', '1:1')
+                )
             group by bezi_arcs_id) as st
-            on st.bezi_arcs_id = arcs_id AND alleanz = isaanz and alleanz = nnvonanz and alleanz = nnzuanz
-      join beziehungen b1 on b1.bezi_arcs_id = arcs_id
+            on st.bezi_arcs_id = arcs_id AND  alleanz = nnvonanz and alleanz = nnzuanz
+      join beziehungen b1 on b1.bezi_von_arcs_id = arcs_id or b1.bezi_zu_arcs_id = arcs_id
       join entitaeten e1 on e1.enti_id = b1.bezi_enti_id_von  
     order by ae.enti_name""")
 

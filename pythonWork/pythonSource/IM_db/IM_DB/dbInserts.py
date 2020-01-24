@@ -117,11 +117,11 @@ def insertBeziehung(pdata):
           (bezi_type, bezi_enti_id_von, bezi_assoc_von_zu
      ,bezi_pflicht_assoc_von_zu, bezi_hist_von_zu
     , bezi_enti_id_zu,bezi_assoc_zu_von
-    , BEZI_PFLICHT_ASSOC_ZU_VON,bezi_hist_zu_von, bezi_arcs_id
+    , BEZI_PFLICHT_ASSOC_ZU_VON,bezi_hist_zu_von
     , bezi_odm_guid,bezi_uc, bezi_dc,bezi_name
     ,bezi_source_enti_guid,  bezi_target_enti_guid
     ) 
-            values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+            values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
         """
     return dbDML.insert(lsql, pdata)
 

@@ -365,7 +365,7 @@ def relalist (p_entiid,p_lang):
           with sprenti as 
           (select enti_id, enti_odm_guid
                 ,case when ena.sptx_text is null then enti_name else ena.sptx_text end enti_name
-                ,spra_id
+                ,spra_id,enti_enti_id
              from entitaeten
              join modellelement on mode_enti_id = enti_id
               left join spraattr ena on ena.sptx_attrname = 'ENTI_NAME'
@@ -421,7 +421,7 @@ def relalist (p_entiid,p_lang):
                         join sprenti as von on von.enti_id = bezi_enti_id_von
                                         and von.spra_id = sp.spra_id
     					join beziehungen on bezi_enti_id_von = von.enti_id
-    									 and bezi_type != 'ISA'
+    									 and not (bezi_type = 'ISA' and von.enti_enti_id is not NULL)
     					join modellelement on mode_bezi_id = bezi_id
                         left join spraattr bvon on bvon.sptx_attrname = 'TEXT_FROM'
                                 and bvon.sptx_mode_id = mode_id
@@ -431,8 +431,7 @@ def relalist (p_entiid,p_lang):
                                 and bzu.spra_id = sp.spra_id 
                         join sprenti as zu on zu.enti_id = bezi_enti_id_zu
                                         and zu.spra_id = sp.spra_id
-                        left join arcs on arcs_id = bezi_arcs_id
-                                   and bezi_enti_id_von = von.enti_id
+                        left join arcs on arcs_enti_id = von.enti_id
                         where  sp.spra_iso_code2 = '{}'
                            and (von.enti_id = {} or zu.enti_id = {})     
                         order by arcs_name 
@@ -634,7 +633,7 @@ def liesarcs(pdiagid):
     data = dbDML.select("""
         select arcs_id,beda_id,enti_id,enti_name,eled_position_x,eled_position_y,eled_hoehe,eled_breite
         from arcs
-        join beziehungen  on arcs_id = bezi_arcs_id
+        join beziehungen  on arcs_id = bezi_von_arcs_id or arcs_id = bezi_zu_arcs_id
         join modellelement  m on bezi_id = m.mode_bezi_id
         join beziehung_darst on beda_mode_id = m.mode_id
         join entitaeten on arcs_enti_id = enti_id
@@ -655,7 +654,7 @@ def liesarcselem(pdiagid,parcsid):
              ,case when lsegstart.up = 1 then lsegstart.lise_winkel else lsegend.lise_winkel  end winkel
         from arcs 
         join entitaeten earc on earc.enti_id =arcs_enti_id
-        join beziehungen on bezi_arcs_id = arcs_id
+        join beziehungen on bezi_von_arcs_id = arcs_id or bezi_zu_arcs_id = arcs_id
         join modellelement on bezi_id = mode_bezi_id
         join entitaeten evon on evon.enti_odm_guid = bezi_source_enti_guid
         join entitaeten ezu on ezu.enti_odm_guid = bezi_target_enti_guid
