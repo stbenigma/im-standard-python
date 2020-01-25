@@ -235,6 +235,42 @@ def entilist(p_lang):
     return data
 #entilist
 
+def pointlist(pliseid):
+    data = dbDML.select("""
+            select lise_x,lise_y,lise_konnektor,lise_linientyp,lise_winkel
+            from linie_segment
+            where lise_beda_id = {}
+            order by lise_rhfg
+            """.format(pliseid))
+    return data
+#pointlist
+
+def diagrelalist(pdiagid, plang):
+    data = dbDML.select("""select beda_starttext_x,beda_starttext_y
+       ,beda_starttext_breite,beda_starttext_hoehe
+        ,beda_endtext_x,beda_endtext_y
+        ,beda_endtext_breite,beda_endtext_hoehe
+       ,beda_schriftfarbe,beda_schriftgroesse
+       ,sfrom.sptx_text fromname
+       ,sto.sptx_text toname
+        ,beda_id
+       ,beda_liniefarbe,beda_linienbreite,beda_liniedeckkraft
+from beziehung_darst
+join modellelement m on beziehung_darst.beda_mode_id = m.mode_id
+join beziehungen b on m.mode_bezi_id = b.bezi_id
+cross join sprachen spra
+join sprachtexte sfrom on  spra.spra_id = sfrom.sptx_spra_id
+            and sfrom.sptx_attrname='RELA_TEXT_FROM'
+            and sfrom.sptx_mode_id = m.mode_id
+join sprachtexte sto on  spra.spra_id = sto.sptx_spra_id
+            and sto.sptx_attrname='RELA_TEXT_TO'
+            and sto.sptx_mode_id = m.mode_id
+where beda_diag_id = {}
+and lower(spra.spra_iso_code2) = lower('{}')
+""".format(pdiagid,plang))
+    return data
+#diagrelalist
+
 def attrlist(p_lang,p_entiid=None):
     data = dbDML.select("""select 
         attr_id
@@ -280,6 +316,28 @@ def attrlist(p_lang,p_entiid=None):
     return data
 #attrlist
 
+def diagattrlist(plang,pdiagid):
+    data = dbDML.select("""select 
+        attr_id
+       ,case when ana.sptx_text is null then attr_anzname else ana.sptx_text end attr_anzname
+       ,attr_pflichtattr
+       ,attr_deskriptor
+       ,case when (select 'TRUE' from schluesselelement 
+                    where scel_attr_id = attr_id) IS NULL THEN 'FALSE' ELSE 'TRUE' end schluessel
+       ,amo.mode_id
+       ,eled_position_x,eled_position_y
+      from elementdarst
+       join modellelement amo on eled_mode_id = mode_id 
+       join attributes on attr_id = mode_attr_id 
+        join sprachen sp on sp.spra_iso_code2 = '{}'
+        left join spraattr  ana on ana.sptx_attrname = 'ATTR_NAME'
+                                and ana.sptx_mode_id = amo.mode_id
+                                and ana.spra_id = sp.spra_id            
+      where eled_diag_id = {}
+      order by attr_anz_rhflg"""
+                        .format(plang, pdiagid))
+    return data
+#diagattrlist
 
 def keylist(p_entiid,p_lang):
     schl = dbDML.select("""select schl_laufnr,schl_name,attrs,bezis from
@@ -307,7 +365,7 @@ def relalist (p_entiid,p_lang):
           with sprenti as 
           (select enti_id, enti_odm_guid
                 ,case when ena.sptx_text is null then enti_name else ena.sptx_text end enti_name
-                ,spra_id
+                ,spra_id,enti_enti_id
              from entitaeten
              join modellelement on mode_enti_id = enti_id
               left join spraattr ena on ena.sptx_attrname = 'ENTI_NAME'
@@ -363,7 +421,7 @@ def relalist (p_entiid,p_lang):
                         join sprenti as von on von.enti_id = bezi_enti_id_von
                                         and von.spra_id = sp.spra_id
     					join beziehungen on bezi_enti_id_von = von.enti_id
-    									 and bezi_type != 'ISA'
+    									 and not (bezi_type = 'ISA' and von.enti_enti_id is not NULL)
     					join modellelement on mode_bezi_id = bezi_id
                         left join spraattr bvon on bvon.sptx_attrname = 'TEXT_FROM'
                                 and bvon.sptx_mode_id = mode_id
@@ -373,8 +431,7 @@ def relalist (p_entiid,p_lang):
                                 and bzu.spra_id = sp.spra_id 
                         join sprenti as zu on zu.enti_id = bezi_enti_id_zu
                                         and zu.spra_id = sp.spra_id
-                        left join arcs on arcs_id = bezi_arcs_id
-                                   and bezi_enti_id_von = von.enti_id
+                        left join arcs on arcs_enti_id = von.enti_id
                         where  sp.spra_iso_code2 = '{}'
                            and (von.enti_id = {} or zu.enti_id = {})     
                         order by arcs_name 
@@ -424,11 +481,8 @@ def udpwerte(pmeltname, pthema, pgruppe, pid):
             join benudef_eigenschaft on bdeg_id = bdwe_bdeg_id
                     and bdeg_thema = '{}' and bdeg_gruppe = {}
             order by bdeg_thema,bdeg_gruppe,bdeg_name
-            """.format("mode_" +
-                       ("enti" if pmeltname == 'ENTI'
-                        else "attr" if pmeltname == 'ATTR'
-                       else "")
-                       + "_id" ,pid
+            """.format("mode_{}_id".format("enti" if pmeltname == 'ENTI' else "attr" if pmeltname == 'ATTR'else "")
+                        ,pid
                        , pthema, 'bdeg_gruppe' if pgruppe =='*'  else  "'{}'".format (pgruppe)
                        ))
     return data
@@ -464,7 +518,7 @@ def wrtblist(p_lang):
 def diaglist(pentiid=None):
     if pentiid is None:
         lsql = """  
-        select diag_name,diag_id,diag_legendx,diag_legendy,breite,hoehe
+        select diag_name,diag_id,diag_legendx,diag_legendy,breite,hoehe,diag_uc,diag_dc,diag_um
            from diagramme
            left join  (select diag_id size_diag_id,max(xpos + breite) breite,max(ypos + hoehe) hoehe
                 FROM (select eled_diag_id diag_id,eled_position_x xpos,eled_breite breite
@@ -497,7 +551,17 @@ def diaglist(pentiid=None):
 #diaglist
 
 def diagenti(pdiagid,plang):
-    data = dbDML.select("""select 
+    data = dbDML.select("""
+            with recursive enti as
+                ( select  0 entilev, enti_id, enti_odm_guid,enti_name from entitaeten
+                where enti_enti_guid is null
+                union all
+                select enti.entilev + 1,entitaeten.enti_id,entitaeten.enti_odm_guid
+                ,entitaeten.enti_name
+                from entitaeten
+                    join enti on entitaeten.enti_enti_guid = enti.enti_odm_guid
+                )
+            select 
                 eled_position_x xpos,eled_breite breite
                 ,eled_position_y ypos, eled_hoehe hoehe
                 ,eled_deckkraft,eled_farbe
@@ -508,12 +572,13 @@ def diagenti(pdiagid,plang):
                 ,enti_id ,eled_index
                 from elementdarst
                 join modellelement on mode_id = eled_mode_id
-                join entitaeten on enti_id = mode_enti_id
+                join enti on enti_id = mode_enti_id
                 join sprachen sp on sp.spra_iso_code2 = '{}'         
                 left join spraattr ena on ena.sptx_attrname = 'ENTI_NAME'
                                         and ena.sptx_mode_id = mode_id
                                         and ena.spra_id = sp.spra_id
                 where eled_diag_id = {}
+                order by entilev
     """.format(plang,pdiagid))
     return data
 #diagenti
@@ -563,3 +628,47 @@ def transltext(pattr, pmodeid, plang):
     """.format(pmodeid, pattr, plang))
     return data[0][0] if (len(data)> 0) else ''
 #translist
+
+def liesarcs(pdiagid):
+    data = dbDML.select("""
+        select arcs_id,beda_id,enti_id,enti_name,eled_position_x,eled_position_y,eled_hoehe,eled_breite
+        from arcs
+        join beziehungen  on arcs_id = bezi_von_arcs_id or arcs_id = bezi_zu_arcs_id
+        join modellelement  m on bezi_id = m.mode_bezi_id
+        join beziehung_darst on beda_mode_id = m.mode_id
+        join entitaeten on arcs_enti_id = enti_id
+        join modellelement m2 on m2.mode_enti_id = enti_id
+        join elementdarst e on m2.mode_id = eled_mode_id
+        where beda_diag_id = {}
+    """.format(pdiagid))
+    return data
+#liesarcs
+def liesarcselem(pdiagid,parcsid):
+    data = dbDML.select("""with lseg as (select linie_segment.*
+               ,row_number() over (PARTITION BY lise_beda_id ORDER BY lise_rhfg ASC) up
+               ,row_number() over (PARTITION BY lise_beda_id ORDER BY lise_rhfg desc) down
+           from linie_segment)
+        select beda_id,lsegstart.lise_x startx,lsegstart.lise_y starty
+             ,lsegend.lise_x endx,lsegend.lise_y endy
+             ,evon.enti_id,evon.enti_name,ezu.enti_id,ezu.enti_name
+             ,case when lsegstart.up = 1 then lsegstart.lise_winkel else lsegend.lise_winkel  end winkel
+        from arcs 
+        join entitaeten earc on earc.enti_id =arcs_enti_id
+        join beziehungen on bezi_von_arcs_id = arcs_id or bezi_zu_arcs_id = arcs_id
+        join modellelement on bezi_id = mode_bezi_id
+        join entitaeten evon on evon.enti_odm_guid = bezi_source_enti_guid
+        join entitaeten ezu on ezu.enti_odm_guid = bezi_target_enti_guid
+        join beziehung_darst on beda_mode_id = mode_id
+        join lseg lsegstart        on beda_id = lsegstart.lise_beda_id
+             and ((lsegstart.up = 1 and bezi_source_enti_guid = earc.enti_odm_guid
+                ) or (lsegstart.down = 1 and bezi_target_enti_guid = earc.enti_odm_guid
+                ))
+        join lseg lsegend on beda_id = lsegend.lise_beda_id
+             and ((lsegend.up = 2 and bezi_source_enti_guid = earc.enti_odm_guid
+                ) or (lsegend.down = 2 and bezi_target_enti_guid = earc.enti_odm_guid
+                ))                
+    where beda_diag_id = {}
+    and arcs_id = {}
+    """.format(pdiagid,parcsid))
+    return data
+#liesarcselem

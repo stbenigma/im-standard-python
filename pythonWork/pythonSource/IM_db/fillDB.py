@@ -1,9 +1,7 @@
 # -*- coding: latin-1 -*-
-import transferModel
 from IM_DB import dbConnect
 from IM_DB import parameters
-
-
+import transferModel
 
 # Main Programm
 

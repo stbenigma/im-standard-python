@@ -124,7 +124,7 @@
 <use>1</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
 <dataTypePrecision>10</dataTypePrecision>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 <associations>
@@ -179,8 +179,10 @@
 <structAttributeID>BF7C675D-F472-D4E0-D0E7-0E519F1C73EC</structAttributeID>
 <use>0</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>4</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
 <domain>9899F774-954D-6AB0-8DC2-BB1FE9F99D28</domain>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
+<ownDataTypeParameters>,4,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 <listOfRanges>
 <rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
@@ -198,8 +200,10 @@
 <structAttributeID>A212ECBD-508B-BB92-4CA0-A414C275E0BF</structAttributeID>
 <use>0</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>4</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
 <domain>9899F774-954D-6AB0-8DC2-BB1FE9F99D28</domain>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
+<ownDataTypeParameters>,4,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 <listOfRanges>
 <rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
@@ -230,8 +234,10 @@
 <structAttributeID>6F9A1317-CF2C-8CE2-E783-4714D09800EF</structAttributeID>
 <use>0</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>4</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
 <domain>9899F774-954D-6AB0-8DC2-BB1FE9F99D28</domain>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
+<ownDataTypeParameters>,4,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 <listOfRanges>
 <rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
@@ -249,8 +255,10 @@
 <structAttributeID>C62F0CCC-3C24-63AA-E614-1047B848FE81</structAttributeID>
 <use>0</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>4</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
 <domain>9899F774-954D-6AB0-8DC2-BB1FE9F99D28</domain>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
+<ownDataTypeParameters>,4,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 <listOfRanges>
 <rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
@@ -296,12 +304,81 @@
 </rangeDef>
 </listOfRanges>
 </nestedColumn>
-<nestedColumn name="Randdarstellung.Breitev1" id="8DAE368F-0E4B-6F0B-7611-22AEDF666788">
+<nestedColumn name="Randdarstellung.Breite" id="8DAE368F-0E4B-6F0B-7611-22AEDF666788">
 <createdBy>stb</createdBy>
 <createdTime>2019-10-30 09:23:16 UTC</createdTime>
 <generatorID>4F6287D4-42CE-7DA1-D36E-DFC70CE448E9</generatorID>
 <ownerDesignName>ModellModell</ownerDesignName>
 <parentObject>EB5497C8-66C4-6EC5-7942-5FF318098FD5</parentObject>
+<structAttributeID>A486CC96-6094-DED7-1D64-D7757D50175A</structAttributeID>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>3</dataTypePrecision>
+<dataTypeScale>1</dataTypeScale>
+<domain>CB54E08F-9CBF-16C7-AB25-64ADCC8C4FFB</domain>
+<defaultValue>1</defaultValue>
+<ownDataTypeParameters>,3,1</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>0.0</beginValue>
+<endValue>99</endValue>
+</rangeDef>
+</listOfRanges>
+</nestedColumn>
+<nestedColumn name="Inhaltdarstellung.Randdarstellung" id="577C9D21-B8B0-ED0E-399C-45C70B7B76EF">
+<createdBy>stb</createdBy>
+<createdTime>2019-12-10 17:45:31 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<parentObject>64FA5E0D-4483-7E28-D181-90B006F747D0</parentObject>
+<structAttributeID>FF5FAB5B-407C-321C-7FB2-058E86A213CB</structAttributeID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>3</use>
+<structuredType>4816C7EE-B5FE-5DB1-A87E-537F82A20453</structuredType>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</nestedColumn>
+<nestedColumn name="Inhaltdarstellung.Randdarstellung.Farbe" id="F0689EB9-E629-FB08-270F-74C8A8E1EB02">
+<createdBy>stb</createdBy>
+<createdTime>2019-12-10 17:45:47 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<parentObject>577C9D21-B8B0-ED0E-399C-45C70B7B76EF</parentObject>
+<structAttributeID>31812808-1563-F130-6C44-AB28C0C55B78</structAttributeID>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>6 CHAR</dataTypeSize>
+<domain>06269521-C0BC-78CB-FBC8-656101307358</domain>
+<defaultValue>000000</defaultValue>
+<ownDataTypeParameters>6 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</nestedColumn>
+<nestedColumn name="Inhaltdarstellung.Randdarstellung.Deckkraft" id="6F484F94-DDA7-C256-50D6-2C034B78790E">
+<createdBy>stb</createdBy>
+<createdTime>2019-12-10 17:45:47 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<parentObject>577C9D21-B8B0-ED0E-399C-45C70B7B76EF</parentObject>
+<structAttributeID>475BE6D9-7955-0B4F-14EE-54AB88615752</structAttributeID>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>3</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<domain>3C43C579-B2CF-0898-C553-AF95467F1601</domain>
+<defaultValue>100</defaultValue>
+<ownDataTypeParameters>,3,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>0</beginValue>
+<endValue>100</endValue>
+</rangeDef>
+</listOfRanges>
+</nestedColumn>
+<nestedColumn name="Inhaltdarstellung.Randdarstellung.Breite" id="BC60F1DA-314B-6BBB-F37D-7F01339C8B7D">
+<createdBy>stb</createdBy>
+<createdTime>2019-12-10 17:45:47 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<parentObject>577C9D21-B8B0-ED0E-399C-45C70B7B76EF</parentObject>
 <structAttributeID>A486CC96-6094-DED7-1D64-D7757D50175A</structAttributeID>
 <use>0</use>
 <logicalDatatype>LOGDT019</logicalDatatype>

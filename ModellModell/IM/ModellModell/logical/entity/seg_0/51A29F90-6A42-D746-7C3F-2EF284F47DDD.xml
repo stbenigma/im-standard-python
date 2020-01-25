@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="51A29F90-6A42-D746-7C3F-2EF284F47DDD" name="Geschäftsfunktion">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="51A29F90-6A42-D746-7C3F-2EF284F47DDD" name="Geschäftsfähigkeit">
 <createdBy>stb</createdBy>
 <createdTime>2018-11-03 12:49:04 UTC</createdTime>
 <comment><![CDATA[Definiert eine Einheit, die eine sinnvoll zusammenfassbare Gruppe von Informationen, Prozesse und Systemen nutzt bzw. dafür zuständig ist.
@@ -42,7 +42,7 @@ Defines a unit that is responsible for a group of information, processes and sys
 <maxVolumes>9999999</maxVolumes>
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
-<synonym>Business Function</synonym>
+<synonym>Business Function, Business Skill</synonym>
 <propertyMap>
 <property name="Beispiele" value="Produktion / Vertrieb / Marketing / Finanz"/>
 <property name="DE_ENTI_COMMENT" value="Definiert eine Einheit, die für eine sinnvoll zusammenfassbare Gruppe von Informationen, Prozesse und Systemen zuständig ist. Ein Hoheitsbereich kümmert sich um eine bestimmte Art von Aufgaben im Unternehmen. Es ist ein Aufgabenbereich. Häufig entsprechen Hoheitsbereiche den Divisionen, Geschäftsbereichen oder Sparten d.h. der Organisationeinheinheit auf der obersten Stufe.  Dies ist aber nur eine mögliche Lösung.  Hoheitsbereich bestimmt - Wer erstellt Datensätze zu einer Entität. - Wer bestimmt über Änderungen / Qualität etc. - Wer verwendet die Informationen dieser Entität haupstächlich - ??  ACHTUNG: Es sollten KEINE technischen Aufteilungen (Systeme, Technologie, Medien) für die Unterscheidung verwendet werden, da diese  häufiger ändern können. Es geht um die semantische Hoheit über die Informationen.  Beispiele:   Management   Recruting   Accounting   Manufacturing   Repairing   Consulting   Projektleitung   Support "/>

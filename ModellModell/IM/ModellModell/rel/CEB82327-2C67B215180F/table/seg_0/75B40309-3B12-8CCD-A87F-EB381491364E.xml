@@ -146,8 +146,10 @@ Hersteller]]></comment>
 <structAttributeID>BF7C675D-F472-D4E0-D0E7-0E519F1C73EC</structAttributeID>
 <use>0</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>4</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
 <domain>9899F774-954D-6AB0-8DC2-BB1FE9F99D28</domain>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
+<ownDataTypeParameters>,4,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 <listOfRanges>
 <rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
@@ -165,8 +167,10 @@ Hersteller]]></comment>
 <structAttributeID>A212ECBD-508B-BB92-4CA0-A414C275E0BF</structAttributeID>
 <use>0</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>4</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
 <domain>9899F774-954D-6AB0-8DC2-BB1FE9F99D28</domain>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
+<ownDataTypeParameters>,4,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 <listOfRanges>
 <rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
@@ -197,8 +201,10 @@ Hersteller]]></comment>
 <structAttributeID>6F9A1317-CF2C-8CE2-E783-4714D09800EF</structAttributeID>
 <use>0</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>4</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
 <domain>9899F774-954D-6AB0-8DC2-BB1FE9F99D28</domain>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
+<ownDataTypeParameters>,4,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 <listOfRanges>
 <rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
@@ -216,8 +222,10 @@ Hersteller]]></comment>
 <structAttributeID>C62F0CCC-3C24-63AA-E614-1047B848FE81</structAttributeID>
 <use>0</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>4</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
 <domain>9899F774-954D-6AB0-8DC2-BB1FE9F99D28</domain>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
+<ownDataTypeParameters>,4,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 <listOfRanges>
 <rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
@@ -263,12 +271,81 @@ Hersteller]]></comment>
 </rangeDef>
 </listOfRanges>
 </nestedColumn>
-<nestedColumn name="Randdarstellung.Breitev1" id="5C11E31B-0BB5-C605-101D-6E53D8670C32">
+<nestedColumn name="Randdarstellung.Breite" id="5C11E31B-0BB5-C605-101D-6E53D8670C32">
 <createdBy>stb</createdBy>
 <createdTime>2019-10-30 09:23:16 UTC</createdTime>
 <generatorID>18BC3179-FF0D-6316-7A3F-0EEA3AB61799</generatorID>
 <ownerDesignName>ModellModell</ownerDesignName>
 <parentObject>D6125690-1CAD-A25F-0DD0-75E946ED173E</parentObject>
+<structAttributeID>A486CC96-6094-DED7-1D64-D7757D50175A</structAttributeID>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>3</dataTypePrecision>
+<dataTypeScale>1</dataTypeScale>
+<domain>CB54E08F-9CBF-16C7-AB25-64ADCC8C4FFB</domain>
+<defaultValue>1</defaultValue>
+<ownDataTypeParameters>,3,1</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>0.0</beginValue>
+<endValue>99</endValue>
+</rangeDef>
+</listOfRanges>
+</nestedColumn>
+<nestedColumn name="Inhaltdarstellung.Randdarstellung" id="F8A2D97A-6049-0126-80A4-8F230D4E1228">
+<createdBy>stb</createdBy>
+<createdTime>2019-12-10 17:45:31 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<parentObject>A8D9853A-CA4F-F03D-F506-BF0F472BE48E</parentObject>
+<structAttributeID>FF5FAB5B-407C-321C-7FB2-058E86A213CB</structAttributeID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>3</use>
+<structuredType>4816C7EE-B5FE-5DB1-A87E-537F82A20453</structuredType>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</nestedColumn>
+<nestedColumn name="Inhaltdarstellung.Randdarstellung.Farbe" id="CB014D2F-78DC-9DF9-08BC-0454A858A0C5">
+<createdBy>stb</createdBy>
+<createdTime>2019-12-10 17:45:47 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<parentObject>F8A2D97A-6049-0126-80A4-8F230D4E1228</parentObject>
+<structAttributeID>31812808-1563-F130-6C44-AB28C0C55B78</structAttributeID>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>6 CHAR</dataTypeSize>
+<domain>06269521-C0BC-78CB-FBC8-656101307358</domain>
+<defaultValue>000000</defaultValue>
+<ownDataTypeParameters>6 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</nestedColumn>
+<nestedColumn name="Inhaltdarstellung.Randdarstellung.Deckkraft" id="753F3BE5-44A1-7C3B-F3CA-0BC33680DE91">
+<createdBy>stb</createdBy>
+<createdTime>2019-12-10 17:45:47 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<parentObject>F8A2D97A-6049-0126-80A4-8F230D4E1228</parentObject>
+<structAttributeID>475BE6D9-7955-0B4F-14EE-54AB88615752</structAttributeID>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>3</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<domain>3C43C579-B2CF-0898-C553-AF95467F1601</domain>
+<defaultValue>100</defaultValue>
+<ownDataTypeParameters>,3,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>0</beginValue>
+<endValue>100</endValue>
+</rangeDef>
+</listOfRanges>
+</nestedColumn>
+<nestedColumn name="Inhaltdarstellung.Randdarstellung.Breite" id="397A6284-B5C4-78F1-6507-65E871462787">
+<createdBy>stb</createdBy>
+<createdTime>2019-12-10 17:45:47 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<parentObject>F8A2D97A-6049-0126-80A4-8F230D4E1228</parentObject>
 <structAttributeID>A486CC96-6094-DED7-1D64-D7757D50175A</structAttributeID>
 <use>0</use>
 <logicalDatatype>LOGDT019</logicalDatatype>

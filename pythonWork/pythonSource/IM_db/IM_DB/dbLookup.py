@@ -50,6 +50,9 @@ def diatid (p_name):
     return doLookup(p_name,'select diat_id from diagrammtypen where upper(diat_bez) =upper("{}")')
 #diatid
 
+def enticategory(pid):
+    return doLookup(pid,'select enti_category_guid from entitaeten where enti_id ={}')
+#enticategory
 def modeAttrLookup(attrId):
     return doLookup(attrId, 'select mode_id from modellelement where mode_attr_id = "{}"')
 # modeAttrLookup

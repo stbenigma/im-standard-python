@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="05FCEF96-1246-2B63-C700-EFAC7404D272" name="Adresse">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="05FCEF96-1246-2B63-C700-EFAC7404D272" name="*Adresse">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 09:44:32 UTC</createdTime>
 <comment><![CDATA[Postalisch-geographische Lokalisation
@@ -46,8 +46,9 @@ Dann wird diese Entität zur Verknüpfung zwischen Akteur und Basisadresse.
 <normalForm>Third</normalForm>
 <createSurrogateKey>true</createSurrogateKey>
 <propertyMap>
-<property name="DE_ENTI_NAME" value="Adresse"/>
-<property name="EN_ENTI_NAME" value="Adress"/>
+<property name="DE_ENTI_NAME" value="*Adresse"/>
+<property name="EN_ENTI_NAME" value="Address"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
 <property name="FR_ENTI_NAME" value="*DE* Adresse"/>
 <property name="FR_ENTI_SYNONYM" value="frsynonym"/>
 <property name="PENTA TabName" value="postaladr"/>

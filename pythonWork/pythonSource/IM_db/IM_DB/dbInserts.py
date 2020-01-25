@@ -9,8 +9,8 @@ def  insertEnti(enti):
        ,enti_name,enti_beschr     ,enti_tooltip    
        ,enti_kurzname   ,enti_prefix             ,enti_beispiele          
        ,enti_erw_tupel         ,enti_uc ,enti_dc
-       ,enti_enti_guid,enti_enti_id) 
-        values (?,?,?,?,?,?,?,?,?,?,?,?,?,?) 
+       ,enti_enti_guid,enti_enti_id,enti_category_guid) 
+        values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) 
     """
     return dbDML.insert(lsql,enti)
 
@@ -117,9 +117,11 @@ def insertBeziehung(pdata):
           (bezi_type, bezi_enti_id_von, bezi_assoc_von_zu
      ,bezi_pflicht_assoc_von_zu, bezi_hist_von_zu
     , bezi_enti_id_zu,bezi_assoc_zu_von
-    , BEZI_PFLICHT_ASSOC_ZU_VON,bezi_hist_zu_von, bezi_arcs_id
-    , bezi_odm_guid,bezi_uc, bezi_dc,bezi_name) 
-            values (?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+    , BEZI_PFLICHT_ASSOC_ZU_VON,bezi_hist_zu_von
+    , bezi_odm_guid,bezi_uc, bezi_dc,bezi_name
+    ,bezi_source_enti_guid,  bezi_target_enti_guid
+    ) 
+            values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
         """
     return dbDML.insert(lsql, pdata)
 
@@ -217,9 +219,9 @@ def insertSchlElem(pData):
 
 def insertSprache(pData):
     lsql = """insert into sprachen (spra_iso_name, spra_iso_code2, spra_iso_code3
-                                  ,spra_ist_textsprache, spra_ist_modellsprache, spra_spra_id
+                                  ,spra_ist_textsprache, spra_ist_modellsprache
                                   , spra_uc,spra_dc) 
-                            values (?,?,?,?,?,?,?,?)
+                            values (?,?,?,?,?,?,?)
             """
     return dbDML.insert(lsql, pData)
 #insertSprache
@@ -245,17 +247,17 @@ def insertelementdarst(pdata):
     return dbDML.insertmany(lsql, pdata)
 #insertelementdarst
 
-def insertelbezidarst(p_data):
+def insertelbezidarst(pdata):
     lsql = """insert into 
-beziehung_darst(
+    beziehung_darst(
     beda_diag_id, beda_mode_id, beda_linienbreite, beda_liniefarbe
     ,beda_liniedeckkraft, beda_starttext_x, beda_starttext_y, beda_starttext_breite
     ,beda_starttext_hoehe, beda_endtext_x, beda_endtext_y, beda_endtext_breite
     ,beda_endtext_hoehe, beda_schriftfarbe, beda_schriftgroesse, beda_uc
     ,beda_dc, beda_um, beda_dm)
     values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)    
-)	          """
-    return dbDML.insertmany(lsql, p_Data)
+    """
+    return dbDML.insert(lsql, pdata)
 #insertbezidarst
 
 def insertUdpEntity(entiId):
@@ -283,15 +285,15 @@ diagramme(
     return dbDML.insert(lsql, p_data)
 #insertdiagramme
 
-def insertlinieseg(p_data):
+def insertlinieseg(pdata):
     lsql = """insert into
 linie_segment(
     lise_rhfg, lise_beda_id, lise_x, lise_y
     , lise_linientyp,lise_konnektor, lise_uc, lise_dc
-    , lise_um,lise_dm 
-                            values (?,?,?,?,?,?,?,?,?,?)
+    , lise_um,lise_dm,lise_winkel )
+                            values (?,?,?,?,?,?,?,?,?,?,?)
     """
-    return dbDML.insert(lsql, p_Data)
+    return dbDML.insert(lsql, pdata)
 #insertlinieseg
 
 def insertUdpBezi(beziId):
@@ -380,3 +382,23 @@ def insertprojekt(pdata):
               """
     return dbDML.insert(lsql, pdata)
 #insertprojekt
+def insertgeschaeftsbereich(pdata):
+    lsql = """insert into geschaeftsbereich 
+            (gber_name, gber_beschreibung, gber_zweck
+            , gber_uc, GBER_DC, GBER_UM
+            , gber_dm)
+                   values (?,?,?,?,?,?,?)
+           """
+    return dbDML.insert(lsql, pdata)
+#insertgeschaeftsbereich
+def insertbereich_darst(pdata):
+    lsql = """insert into bereich_elemdarst 
+                (BELD_MELT_ID, BELD_GBER_ID, BELD_BREITE
+                , BELD_HOEHE, BELD_DECKKRAFT, BELD_FARBE
+                , BELD_RANDBREITE, BELD_RANDDECKKRAFT, BELD_RANDFARBE
+                , BELD_SCHRIFTGROESSE, BELD_SCHRIFTFARBE, BELD_UC
+                , BELD_DC, BELD_UM, BELD_DM)
+                   values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,)
+           """
+    return dbDML.insert(lsql, pdata)
+#insertbereich_darst

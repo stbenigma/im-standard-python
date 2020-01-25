@@ -3,9 +3,17 @@
 <createdBy>stb</createdBy>
 <createdTime>2019-11-06 09:26:00 UTC</createdTime>
 <comment><![CDATA[Eine Entität die einfach so da steht.]]></comment>
+<notes><![CDATA[[EN_ENTI_COMMENT[
+*DE* Eine Entität die einfach so da steht.
+]EN_ENTI_COMMENT]
+[DE_ENTI_COMMENT[
+Eine Entität die einfach so da steht.
+]DE_ENTI_COMMENT]
+]]></notes>
 <ownerDesignName>fyayc_dev_mapping</ownerDesignName>
 <engineerTo>
 <item key="5BE1D3DE-1298-62A6-B8A4-2793AE250A49" value="true"/>
+<item key="7FB26918-79FF-5068-E8D5-95C224C026DD" value="true"/>
 <item key="CD98CC0C-21D9-8B56-A4DB-F01B09CA729A" value="true"/>
 </engineerTo>
 <adequatelyNormalized>NO</adequatelyNormalized>
@@ -17,13 +25,22 @@
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
 <createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="DE_ENTI_NAME" value="Entiät1"/>
+<property name="EN_ENTI_NAME" value="*DE* Entiät1"/>
+</propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Name" id="42C69A69-647B-2103-8105-2F55DE2A5A54">
 <createdBy>stb</createdBy>
 <createdTime>2019-11-06 09:26:20 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>fyayc_dev_mapping</ownerDesignName>
 <engineerTo>
 <item key="5BE1D3DE-1298-62A6-B8A4-2793AE250A49" value="true"/>
+<item key="7FB26918-79FF-5068-E8D5-95C224C026DD" value="true"/>
 <item key="CD98CC0C-21D9-8B56-A4DB-F01B09CA729A" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
@@ -31,13 +48,22 @@
 <use>1</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Name"/>
+<property name="EN_ATTR_NAME" value="*DE* Name"/>
+</propertyMap>
 </Attribute>
 <Attribute name="Beschreibung" id="8AF6A732-985B-11AB-14DC-914AD756EFA5">
 <createdBy>stb</createdBy>
 <createdTime>2019-11-06 09:26:25 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>fyayc_dev_mapping</ownerDesignName>
 <engineerTo>
 <item key="5BE1D3DE-1298-62A6-B8A4-2793AE250A49" value="true"/>
+<item key="7FB26918-79FF-5068-E8D5-95C224C026DD" value="true"/>
 <item key="CD98CC0C-21D9-8B56-A4DB-F01B09CA729A" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
@@ -45,19 +71,35 @@
 <use>1</use>
 <logicalDatatype>LOGDT040</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Beschreibung"/>
+<property name="EN_ATTR_NAME" value="*DE* Beschreibung"/>
+</propertyMap>
 </Attribute>
 <Attribute name="NewAttr" id="185B8BC3-D68D-F932-2E85-7732BA7BE8B0">
 <createdBy>stb</createdBy>
 <createdTime>2019-11-28 15:30:26 UTC</createdTime>
 <comment><![CDATA[Created on 28/11/2019  16:30:26 during import from /Users/stb/Documents/DataModeler/Import/enti_attr_mapping.csv]]></comment>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+*DE* Created on 28/11/2019  16:30:26 during import from /Users/stb/Documents/DataModeler/Import/enti_attr_mapping.csv
+]EN_ATTR_COMMENT]
+[DE_ATTR_COMMENT[
+Created on 28/11/2019  16:30:26 during import from /Users/stb/Documents/DataModeler/Import/enti_attr_mapping.csv
+]DE_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>fyayc_dev_mapping</ownerDesignName>
 <engineerTo>
 <item key="5BE1D3DE-1298-62A6-B8A4-2793AE250A49" value="true"/>
+<item key="7FB26918-79FF-5068-E8D5-95C224C026DD" value="true"/>
 <item key="CD98CC0C-21D9-8B56-A4DB-F01B09CA729A" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="NewAttr"/>
+<property name="EN_ATTR_NAME" value="*DE* NewAttr"/>
+</propertyMap>
 </Attribute>
 </attributes>
 </Entity>

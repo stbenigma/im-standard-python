@@ -100,7 +100,7 @@ def printlistofcontent():
     printHTML.printlistofcontentelement(pname='Attribute', plist=web_sql.namelist(ptype='ATTR', plang=printHTML.reportLang()))
     printHTML.printlistofcontentelement(pname='Domänen', plist=web_sql.namelist(ptype='WRTB', plang=printHTML.reportLang()))
     printHTML.printlistofcontentelement(pname='Attribut-Mapping', plist=web_sql.namelist(ptype='UDP', plang=printHTML.reportLang()))
-    #printHTML.printlistofcontentelement(pname='Diagramme', plist=web_sql.namelist(ptype='DIAG', plang=printHTML.reportLang()))
+    printHTML.printlistofcontentelement(pname='Diagramme', plist=web_sql.namelist(ptype='DIAG', plang=printHTML.reportLang()))
     printHTML.printlistofcontentfoot()
 # printlistofcontent
 
@@ -110,20 +110,20 @@ def printcontent(pfirma,ptitel):
     printHTML.printcontentattr(plist=web_sql.attrlist(p_lang=printHTML.reportLang()))
     printHTML.printcontentwrtb(p_list=web_sql.wrtblist(p_lang=printHTML.reportLang()))
     printHTML.printcontentudp(plist=web_sql.namelist(ptype='UDP', plang=printHTML.reportLang()))
-    #printdiagHTML.printcontentdiag(plist=web_sql.diaglist(),plang=printHTML.reportLang())
+    printdiagHTML.printcontentdiag(plist=web_sql.diaglist(), plang=printHTML.reportLang(), ptitel=ptitel)
 #    printHTML.printattrmaps(p_list=web_sql.wrtblist(p_lang=printHTML.reportLang()))
 #    printHTML.printdiagrams(p_list=web_sql.wrtblist(p_lang=printHTML.reportLang()))
     printHTML.printcontentfoot()
 #printcontent
 
-def printhtmlfile(p_firma,p_titel,p_info,p_logofilename):
+def printhtmlfile(pfirma, ptitel, pinfo, plogofilename):
     printHTML.createFile ();
-    printHTML.printhead(p_firma=p_firma
-                        ,p_titel=p_titel
-                        ,  p_info=p_info
-                        ,p_logofilename=p_logofilename);
+    printHTML.printhead(p_firma=pfirma
+                        , p_titel=ptitel
+                        , p_info=pinfo
+                        , p_logofilename=plogofilename);
     printlistofcontent();
-    printcontent(pfirma=p_firma,ptitel=p_titel);
+    printcontent(pfirma=pfirma, ptitel=ptitel);
     printHTML.printfoot();
     printHTML.closefile ();
 
@@ -144,11 +144,12 @@ def listwebmain(plang):
 
     for lang in langs:
         printHTML.reportLang(lang.lower())
-        printhtmlfile(p_firma="foryouandyourcustomers"
-                          , p_titel=parameters.odmModelName()+' ({})'.format(printHTML.reportLang())
-                          , p_info="{}".format(datetime.now().strftime("%Y-%m-%d, %H:%M"))
-                          , p_logofilename=parameters.logoFileName()
-                          )
+        print ("create web-files for language {}".format(printHTML.reportLang()))
+        printhtmlfile(pfirma="foryouandyourcustomers"
+                      , ptitel=parameters.odmModelName() + ' ({})'.format(printHTML.reportLang())
+                      , pinfo="{}".format(datetime.now().strftime("%Y-%m-%d, %H:%M"))
+                      , plogofilename=parameters.logoFileName()
+                      )
     # for
 #listwebmain
 

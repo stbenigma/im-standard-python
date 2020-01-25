@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="8CFD0CB0-30C2-A3C6-8BBF-60044A622C7E" name="Geschäftsbereich">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="8CFD0CB0-30C2-A3C6-8BBF-60044A622C7E" name="Geschäftaufgabe">
 <createdBy>stb</createdBy>
 <createdTime>2018-11-03 12:35:51 UTC</createdTime>
 <comment><![CDATA[Unternehmerische Aufgabe, Typ, Bereich von Geschäftsfunktionen und Anwendungen, die im Rahmen der Wertschöpfungskette und -prozesse eines Unternehmens ausgeführt werden.
@@ -46,7 +46,7 @@ Defines the context in which the model (and thus the terms and their definition)
 <normalForm>Third</normalForm>
 <preferredAbbreviation>GBER</preferredAbbreviation>
 <shortName>Bereich</shortName>
-<synonym>Hoheitsbereich</synonym>
+<synonym>Hoheitsbereich, Geschäftsfeld, Aufgabenbereich, Geschäftsbereich</synonym>
 <propertyMap>
 <property name="Beispiele" value="Geschäftsbereich Automobil /  Human Ressources "/>
 <property name="DE_ENTI_COMMENT" value="Definiert den Kontext in dem das Modell (und damit die Begriffe und ihre Definition) gültig ist.  ACHTUNG: Zwischen 2 Modellen in unterschiedlichen Geschäftsbereichen kann es keine Verbindungen von Entitäten, Wertebereichen und davon abhängigkgen Elementen geben, da die Definitionen der Begriffe nur im jeweiligen Kontext des Geschäftsereichs gelten.    "/>
@@ -165,6 +165,7 @@ Application area (ERP, PIM, FiBu etc.)
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <domain>CEF66788-EC07-3347-F213-6A5B74AB29A4</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>

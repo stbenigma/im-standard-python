@@ -3,6 +3,8 @@ import xml.etree.ElementTree as ET
 import re,os,sqlite3
 from datetime import date
 from IM_DB import dbInserts,dbDML,dbLookup,dbConnect,parameters,dbParam
+import math
+
 
 class Wertebereich:
     def __init__(self, pname, pid):
@@ -256,7 +258,9 @@ def hex2int(phex):
 def int2hex(pint):
     if (pint is None): return pint
     lint = pint if (type(pint) == int) else int(pint)
-    lint = lint + hex2int('FFFFFF') if (lint < 0) else 0
+    lint = lint + (hex2int('FFFFFF') if (lint < 0) else 0)
+    if lint == -1: #-1 wird führt zu -0x1 was die Selektion später erschwert
+        lint = hex2int('FFFFFF')
     retval = '000000'+ hex(lint)[2:]
     retval = retval[len(retval)-6:]
     return retval
@@ -271,8 +275,22 @@ def toString(str,upper = False):
 
 def transferentity(penti, pdiagid, puc, pdc):
     entiodm = penti.get('oid')
-    enticategorey = findField(penti,'typeID')
     entiid = dbLookup.entiID(entiodm)
+    hiddenelements = penti.find ("hiddenElements")
+    if hiddenelements is not None:
+        elemtext=findField(hiddenelements,"elements")
+    else: elemtext = ""
+    hiddenattrs=elemtext.split(' ')
+    hiddenattrs2 = []
+    for e in hiddenattrs:
+        if e != "": hiddenattrs2.append(dbLookup.attrID(e))
+    attrs = dbDML.select("""select attr_id from attributes 
+                            where attr_enti_id = {}
+                            order by attr_anz_rhflg""".format(entiid))
+    attrids = [a[0] for a in attrs]
+    attrids = list(set(attrids) - set(hiddenattrs2))
+    #print (attrids,hiddenattrs2)
+
     layout= penti.find('bounds')
     col = defcolors['Entity'] #defaults können mal geladen werden
     if (findText(penti, 'useDefaultColor') == 'false'):
@@ -291,10 +309,13 @@ def transferentity(penti, pdiagid, puc, pdc):
         v = findText(font, 'fontSize')
         col.fontsize = v if v is not None else col.fontsize
     else:
-        #check wether entity belongs to categor
-        #muss über Modell und saubere Tabellen abgehandelt werden
-        # if (enticategorey is None):
-        pass
+        #check wether entity belongs to category
+        enticategoryid=dbLookup.enticategory(pid=entiid)
+        if (enticategoryid is None):
+            col = defcolors['Entity']
+        else:
+            col = classcolors[enticategoryid]
+        #fi
     #fi
     #print (col.foregcolor,col.backgcolor)
     #eled_position_x,eled_position_y,eled_breite,eled_hoehe
@@ -304,20 +325,43 @@ def transferentity(penti, pdiagid, puc, pdc):
     #, eled_dm
 
     index = 0
+    entix=int(layout.get('x'))
+    entiy=int(layout.get('y'))
+    entiwidth=int (layout.get('width'))
+    entiheight=int(layout.get('height'))
     #if there are several copies on a diagramm, repeat the insert with new index und insert succeeds
     while True:
-        row = (layout.get('x'), layout.get('y'), layout.get('width'), layout.get('height')
+        row = (entix, entiy, entiwidth, entiheight
               , 100, int2hex(col.backgcolor), None, 100
               , int2hex(col.foregcolor),col.fontsize, int2hex(col.fontcolor), dbLookup.modeEntiLookup(p_entiid=entiid)
-             , pdiagid, index,puc, pdc, None
-             , None)
+             , pdiagid, index,puc, pdc
+            , None, None)
         #print (row)
         try:
             dbInserts.insertelementdarst(pdata=row)
+            attrx = int(entix) + 26 #x1,x2=16,26 y=30
+            attry = int(entiy) + 30
+            attrwidth = int(entiwidth) - 36
+            attrheight = 13
+            for aid in attrids:
+                attrrow=(attrx,attry,attrwidth,attrheight
+                         ,100,int2hex(col.backgcolor),int2hex(col.fontcolor),100
+                         ,None,None,None,dbLookup.modeAttrLookup(aid)
+                         ,pdiagid,0,puc,pdc
+                         ,None,None)
+                try:
+                    dbInserts.insertelementdarst(pdata=attrrow)
+                except Exception as e: print(e)
+                attry += attrheight
+                # Maximal bis zur Grösse der Entität
+                if ((attry-entiy) > (entiheight - 10)): break
+            #for
             break # no more looping for copies of element on diagramm
         except sqlite3.IntegrityError:
             index +=1
         except Exception as ex:
+            print(str(ex))
+            print(row)
             raise ex
     #while
 #transferentity
@@ -333,12 +377,124 @@ def transferdiaobj(pobjects, pdiagid, puc, pdc):
             pass
         #fi
 #transferdiaobj
+
+def linetype(pidx,pmaxidx,psourcelt,ptargetlt):
+    if (pidx < ((pmaxidx-1) / 2)):
+        return psourcelt
+    else:
+        return ptargetlt
+    #fi
+#linetype
+
+def connector(pidx,pmaxidx,psource,ptarget):
+    #ist kein Segment sondern in Punkt. es macht nur 1 oder M Sinn
+    if (pidx == 0): return psource
+    if (pidx == (pmaxidx-1)): return ptarget
+    return None
+#conmector
 def transferdiaconnect(pconnectors, pdiagid, puc, pdc):
-    pass
+    for c in pconnectors:
+        type = c.get('otype')
+        if (type == 'Relation'):
+            relaguid=findField(c,"oid")
+            beziid = dbLookup.beziId(relaguid)
+            linewidth=findText(c,'lineWidth')
+            sourcelabel=c.find('sourceLabel/labelBounds')
+            sttex=findField(sourcelabel,'x')
+            sttey=findField(sourcelabel,'y')
+            sttew=findField(sourcelabel,'width')
+            stteh=findField(sourcelabel,'height')
+            targetlabel=c.find('targetLabel/labelBounds')
+            entex=findField(targetlabel,'x')
+            entey=findField(targetlabel,'y')
+            entew=findField(targetlabel,'width')
+            enteh=findField(targetlabel,'height')
+
+            """Labels können negative Starts haben, verschiebe sie in den positiven Bereich"""
+            if sttey is not None and int(sttey) < 0 : sttey,entey = 0,int(entey) - int(sttey)
+            if sttey is not None and int(sttey) < 0 : sttey,entey = 0,int(entey) - int(sttey)
+
+            bezi = dbDML.select("""select bezi_pflicht_assoc_von_zu,bezi_pflicht_assoc_zu_von
+                                        ,bezi_type
+                                         ,case bezi_source_enti_guid 
+                                         when source.enti_odm_guid then 'FALSE' 
+                                            else 'TRUE' end switch
+                                    from beziehungen
+                                    join entitaeten source on source.enti_id = bezi_enti_id_von
+                                    where bezi_id ={}
+                    """.format(beziid))
+            bezitype=bezi[0][2]
+            sourcelinetype='SOLID' if (bezi[0][0]=='TRUE') else 'DASHED'
+            targetlinetype='SOLID' if (bezi[0][1]=='TRUE') else 'DASHED'
+            sourcecard= '1' if (bezitype in ('ISA','1:1')) else 'M'
+            targetcard='1' if (bezitype in ('ISA','1:1','M:1')) else 'M'
+            if (bezi[0][3]=='TRUE'): #switch source and target
+                sourcecard,targetcard = targetcard,sourcecard
+                sourcelinetype,targetlinetype = targetlinetype,sourcelinetype
+                sttex,entex=entex,sttex
+                sttey,entey=entey,sttey
+                sttew,entew=entew,sttew
+                stteh,enteh=enteh,stteh
+            #fi
+
+            """
+    beda_diag_id, beda_mode_id, beda_linienbreite, beda_liniefarbe
+    ,beda_liniedeckkraft, beda_starttext_x, beda_starttext_y, beda_starttext_breite
+    ,beda_starttext_hoehe, beda_endtext_x, beda_endtext_y, beda_endtext_breite
+    ,beda_endtext_hoehe, beda_schriftfarbe, beda_schriftgroesse, beda_uc
+    ,beda_dc, beda_um, beda_dm)
+"""
+            row=(pdiagid,dbLookup.modeid(p_beziid=beziid),linewidth,None
+                 ,1,sttex,sttey,sttew
+                 ,stteh,entex,entey,entew
+                 ,enteh,None,10,puc,pdc,None,None
+                 )
+            bedaid=dbInserts.insertelbezidarst(row)
+
+            points=c.findall('points/point')
+            points=[{'x':int(findField(p,'x')),'y':int(findField(p,'y'))} for p in points]
+            if len(points)==2:
+                """1elementige Linien werden um einen Mittelpunkt ergänzt wegen -- oder solid"""
+                midpos = lambda x1,x2: round((x1-x2)/2+x2)
+                points.insert(1,{'x':midpos(points[0]['x'],points[1]['x']),'y':midpos(points[0]['y'],points[1]['y'])})
+            #fi
+            pointsegs=[]
+            for idx,point in enumerate(points):
+                """ lise_rhfg, lise_beda_id, lise_x, lise_y
+    , lise_linientyp,lise_konnektor, lise_uc, lise_dc
+    , lise_um,lise_dm,nkel
+    """
+                x,y=point['x'],point['y']
+                if len(pointsegs)> 0:
+                    """ ab dem 2. Punkt wird im vorherigen Punkte der Winkel zum nächsten hinzugefügt"""
+                    calcwinkel = lambda ey, sy, ex, sx: math.atan2(ey - sy, ex - sx)
+                    prevpoint = pointsegs[len(pointsegs)-1]
+                    prevpoint[10] = calcwinkel(y,prevpoint[3],x,prevpoint[2])
+                pointsegs.append([idx,bedaid,x,y
+                                ,linetype(pidx=idx, pmaxidx=len(points)
+                                          ,psourcelt= sourcelinetype,ptargetlt=targetlinetype)
+                                ,connector(pidx=idx,pmaxidx=len(points)
+                                           ,psource=sourcecard,ptarget=targetcard)
+                                ,puc,pdc,None,None,None])
+            #for
+            dbInserts.insertlinieseg(pointsegs)
+        else: pass
+        #fi
+#transferdiaconnect
+
 # transferdiaconnect
 def transferdiaarc(parcs, pdiagid, puc, pdc):
     pass
 # transferdiaarc
+
+def doGUIDfile(pdirec,pfile,transferfiles):
+    #nur GUID als Namen erlaubt.
+    if re.match(r'[A-Z0-9-]{30,45}.xml',pfile):
+        fileName = pdirec + pfile
+        #print (fileName)
+        transferfiles(fileName)
+    #fi
+#doGUIDfile
 
 def dosegfiles(pdirec,transferfiles):
     try:
@@ -350,14 +506,7 @@ def dosegfiles(pdirec,transferfiles):
     for el in listdir:
         if re.match('seg_.*', el):
             for file in os.listdir(pdirec + el):
-                #nur GUID als Namen erlaubt.
-                if re.match(r'[A-Z0-9-]{30,45}.xml',file):
-#                if  ((re.search('DS_Store', file) == None)
-#                    and (not file.startswith('.'))):
-                    fileName = pdirec + el + '/' + file
-                    #print (fileName)
-                    transferfiles(fileName)
-                #fi
+                doGUIDfile(pdirec=pdirec + el + '/',pfile=file,transferfiles=transferfiles)
             #for
         #fi
     #for
@@ -365,7 +514,11 @@ def dosegfiles(pdirec,transferfiles):
 
 def do1diagramm(p_filename):
     #print (p_filename)
-    diagramme = ET.parse(p_filename)
+    try:
+        diagramme = ET.parse(p_filename)
+    except:
+        print("Diagramm nicht lesbar: {}".format(p_filename))
+        return
     dia = diagramme.getroot()
     dianame = dia.get('name')
     if (dianame == 'Logical'):
@@ -377,8 +530,10 @@ def do1diagramm(p_filename):
     #print(dia.get('name'), dia.get('id'))
     #diag_name,diag_diat_id,diag_uc,diag_dc,diag_um,diag_dm
     if (findText(dia,'showLegend') == 'true'):
-        legendx = findText(dia,'legendPosX')
-        legendy = findText(dia,'legendPosY')
+        legende =dia.find("objectViews/OView[@otype='Legend']")
+        bounds=legende.find("bounds")
+        legendx = findField(bounds,'x')
+        legendy = findField(bounds,'y')
     else:
         legendx = None
         legendy = None
@@ -394,17 +549,20 @@ def do1diagramm(p_filename):
         transferdiaobj(pobjects=objects, pdiagid=diagid, puc=uc, pdc=dc)
     connectors = dia.findall('connectors/Connector')
     if (len(connectors) > 0):
-        transferdiaconnect(connectors, pdiagid=diagid, puc=uc, pdc=dc)
+        transferdiaconnect(pconnectors=connectors, pdiagid=diagid, puc=uc, pdc=dc)
     arcs = dia.findall('arcs/Arc')
     if (len(arcs) > 0):
-        transferdiaarc(arcs, pdiagid=diagid, puc=uc, pdc=dc)
+        transferdiaarc(parcs=arcs, pdiagid=diagid, puc=uc, pdc=dc)
     #print (dianame,len(objects),len(connectors),len(arcs))
 #do1diagramm
 
 def transferdiagramme():
     for el in os.listdir(parameters.odmentisubviewdirec()):
-        filename = parameters.odmentisubviewdirec() +  el
-        do1diagramm(p_filename=filename)
+        #filename = parameters.odmentisubviewdirec() +  el
+        #do1diagramm(p_filename=filename)
+        doGUIDfile(pdirec = parameters.odmentisubviewdirec()
+                   , pfile = el
+                   , transferfiles = do1diagramm)
     #endfor
 #transferdiagramme
 
@@ -422,12 +580,55 @@ def findeOderErstelleDom(pdomguid, pstructdomguid, ptypeguid, pattrname):
 def do1Arc(fileName):
     arc= ET.parse(fileName).getroot()
     if (findField(arc, "class") != "oracle.dbtools.crest.model.design.logical.Arc"): return
-#    print (arc.get("id"),arc.get("name"),arc.find('entity').text)
 
     #(arcs_name, arcs_enti_id, arcs_odm_guid
     # , arcs_uc, arcs_dc)
-    dbInserts.insertArc(parc=(arc.get("name"),dbLookup.entiID(arc.find('entity').text)\
+    arcs_id = dbInserts.insertArc(parc=(arc.get("name"),dbLookup.entiID(arc.find('entity').text)\
                               ,arc.get("id"),arc.find('createdBy').text,arc.find('createdTime').text))
+    """map all relations to this arc"""
+    relations = arc.findall('relations/relationID')
+    relids = ''
+    for idx,r in enumerate(relations):
+        sep = ',' if idx > 0 else ''
+        relids += sep+"'"+r.text+"'"
+#    relids = ''.join("'{}',".format(r for r in relations))
+    #print (relids)
+    #DEBUG Arc 2x auf Beziehung
+    if arc.get("name") in ('xxArc_9','xxArc_11'):
+        print (arc.get("id"),arc.get("name"),arc.find('entity').text)
+        res = dbDML.select("""select case earc.enti_odm_guid
+                            when evon.enti_odm_guid
+                            then arcs_id else null end von_arcs_id
+                            ,case earc.enti_odm_guid
+                            when ezu.enti_odm_guid
+                            then arcs_id else null end zu_arcs_id
+                 ,arcs_id,arcs_name,bezi_id,bezi_name,earc.enti_name,earc.enti_odm_guid,ezu.enti_odm_guid
+                    from arcs
+                    cross join beziehungen
+                    join entitaeten earc on arcs_enti_id = earc.enti_id
+                    left join entitaeten evon on bezi_enti_id_von = evon.enti_id
+                    left join entitaeten ezu on bezi_enti_id_zu = ezu.enti_id
+                    where arcs_id = {}
+                and bezi_odm_guid in ({})""".format(arcs_id,relids))
+        print (res)
+    dbDML.exec("""update beziehungen
+                set (bezi_von_arcs_id,bezi_zu_arcs_id) =
+                    (select case earc.enti_odm_guid
+                            when evon.enti_odm_guid
+                            then arcs_id else bezi_von_arcs_id end von_arcs_id
+                            ,case earc.enti_odm_guid
+                            when ezu.enti_odm_guid
+                            then arcs_id else bezi_zu_arcs_id end zu_arcs_id
+                    from arcs
+                    join entitaeten earc on arcs_enti_id = earc.enti_id
+                    left join entitaeten evon on bezi_enti_id_von = evon.enti_id
+                    left join entitaeten ezu on bezi_enti_id_zu = ezu.enti_id
+                    where arcs_id = {}
+                    )
+                where bezi_odm_guid in ({})
+                """.format(arcs_id,relids))
+        #print(arc.get("name"),rel.text)
+
 #do1Arc
 
 def transferArcs():
@@ -479,7 +680,7 @@ def do1Attribute(n,attr,entiId=None,beziId=None):
 #    , attr_deskriptor, attr_pflichtattr, attr_historisiert
 #    , attr_wiederholt, attr_sprachabhaengig, attr_verschluesselt
 #    attr_uc, attr_dc,attr_odm_guid,attr_bezi_id
-    #wegen FK-PK zursätzliche Attribute werden nicht übernommen
+    #wegen FK-PK zusätzliche Attribute werden nicht übernommen
     if (findText(attr, 'referedAttribute') is not None):
         return
 
@@ -506,6 +707,7 @@ def do1Attribute(n,attr,entiId=None,beziId=None):
     try:
         attrId = dbInserts.insertAttribute(pattr=attrset)
     except  sqlite3.Error as e:
+        print(str(e))
         print(attrset)
         raise e
     #try
@@ -561,6 +763,7 @@ def transferKeys(p_keys):
                     beziId = dbLookup.beziId(ke)
                     attrId = None
                 except sqlite3.Error as e:
+                    print (str(e))
                     print (ke,keyset)
                     raise e
                 #try
@@ -581,17 +784,18 @@ def do1Entity(fileName):
     entcomm = findText(root,'comment')
     creby = findText(root,'createdBy')
     creti = findText(root,'createdTime')
+    enti_category_guid = findText(root,'typeID')
     row=(root.get('id'),None,None\
         ,entname,entcomm,None\
         ,None,None,None\
         ,None,creby,creti
-        ,findText(root,'hierarchicalParent'),None)
+        ,findText(root,'hierarchicalParent'),None,enti_category_guid)
     #print ("Entity:", row)
     #enti_odm_guid, enti_augb_id, enti_tech_name
     #, enti_name, enti_beschr, enti_tooltip
     #, enti_kurzname, enti_prefix, enti_beispiele
     #, enti_erw_tupel, enti_uc, enti_dc
-    #,enti_enti_guid,enti_enti_id
+    #,enti_enti_guid,enti_enti_id,enti_category_guid
     entiId = dbInserts.insertEnti(enti=row)
     lmodeId =dbInserts.insertModeEnti(entiId)
     dbInserts.insertUdpEntity(entiId)
@@ -644,16 +848,18 @@ def doSubentities():
     dbDML.exec("""insert into beziehungen (bezi_type, bezi_enti_id_von, bezi_assoc_von_zu
                     ,bezi_pflicht_assoc_von_zu, bezi_hist_von_zu
                     , bezi_enti_id_zu, bezi_assoc_zu_von, BEZI_PFLICHT_ASSOC_ZU_VON, bezi_hist_zu_von
-                    , bezi_arcs_id, bezi_uc, bezi_dc,bezi_name)
+                    , bezi_von_arcs_id,bezi_uc, bezi_dc,bezi_name)
                 select 'ISA', slave_enti_id,''
                             , 'TRUE','FALSE'
                             ,master_enti_id,'','TRUE','FALSE'
-                            ,arcs_id,arcs_uc, arcs_dc,'' beziname
+                            ,arcs_id,arcs_uc, arcs_dc
+                            ,arcs_name + '_' + slave_enti_name beziname
                             from arcs
                             join (select enti_id as master_enti_id
                                        , enti_odm_guid as master_guid from entitaeten) on master_enti_id = arcs_enti_id
                             join  (select enti_id as slave_enti_id
-                                       , enti_enti_guid as slave_master_guid from entitaeten) on slave_master_guid = master_guid
+                                       , enti_enti_guid as slave_master_guid 
+                                       ,enti_name as slave_enti_name from entitaeten) on slave_master_guid = master_guid
                            where arcs_odm_guid is null
                 """)
     dbConnect.myDbConn.commit()
@@ -681,15 +887,15 @@ def strNegBool(pbool):
     #fi
 #strNegBool
 
-def beziType(srcCard, targCard, srcOpt,targOpt,arcId):
+def beziType(srcCard, targCard, srcOpt,targOpt,arcId = None):
     # ISA: 1:1 und
     #      zuSeite Pflicht, vonSeite optional
     #           oder beide sind Pflicht und die zuSeite beziehung ist in einem Arc
     #    1:1 sonst
     #
     if ((srcCard == '1') and (targCard == '1')):
-        if ((srcOpt == 'false') and (targOpt == 'false') and (arcId is not None)
-           ):
+        #alte lösung        if ((srcOpt == 'false') and (targOpt == 'false') and (arcId is not None)):
+        if ((srcOpt == 'false') or (targOpt == 'false') ):
             return 'ISA'
         else:
             return '1:1'
@@ -704,16 +910,6 @@ def beziType(srcCard, targCard, srcOpt,targOpt,arcId):
 def do1Relation(fileName):
     tree = ET.parse(fileName)
     root = tree.getroot()
-    if (findField(root,"class") != "oracle.dbtools.crest.model.design.logical.Relation"): return
-    try:
-        beziArcId = dbLookup.arcsID(findText(root,'arc'))
-    except  sqlite3.Error as e:
-        if (e.__str__() == 'No Data Found'):
-            beziArcId = None
-        else:
-            raise e
-        #fi
-    #try
     relname=root.get('name')
     optSrc = findText(root, 'optionalSource')
     optTarg = findText(root, 'optionalTarget')
@@ -723,30 +919,33 @@ def do1Relation(fileName):
     lbeziType = beziType(srcCard= abbildTyp(cardSrc)
                     ,targCard=abbildTyp(cardTarg)
                     ,srcOpt=optSrc
-                    ,targOpt= optTarg
-                    ,arcId=beziArcId)
-        # bezi_isa_assoc, bezi_enti_id_von, bezi_assoc_von_zu
-        # , bezi_abbildtyp_zu_von ,bezi_pflicht_assoc_von_zu,bezi_hist_von_zu
-        # ,bezi_enti_id_zu,bezi_assoc_zu_von, bezi_abbildtyp_zu_von
-        # ,BEZI_PFLICHT_ASSOC_ZU_VON,bezi_hist_zu_von,bezi_arcs_id
-        # ,bezi_odm_guid,bezi_uc, bezi_dc,bezi_name
+                    ,targOpt= optTarg)
+        # bezi_type, bezi_enti_id_von, bezi_assoc_von_zu
+    #      ,bezi_pflicht_assoc_von_zu, bezi_hist_von_zu
+    #     , bezi_enti_id_zu,bezi_assoc_zu_von
+    #     , BEZI_PFLICHT_ASSOC_ZU_VON,bezi_hist_zu_von
+    #     , bezi_odm_guid,bezi_uc, bezi_dc,bezi_name
+    #     ,bezi_source_enti_guid,  bezi_target_enti_guid
     vonText = findText(root,'nameOnSource')
     zuText = findText(root, 'nameOnTarget')
     creby = findText(root,'createdBy')
     creti = findText(root,'createdTime')
+    sourceentiguid = findText(root,'sourceEntity')
+    targetentiguid = findText(root,'targetEntity')
     try:
         lrow=[lbeziType
-             , dbLookup.entiID(findText(root,'sourceEntity')),vonText
+             , dbLookup.entiID(sourceentiguid),vonText
              ,strNegBool(optSrc), 'FALSE'
-             , dbLookup.entiID(findText(root,'targetEntity')), zuText
-             ,strNegBool(optTarg),'FALSE', beziArcId
+             , dbLookup.entiID(targetentiguid), zuText
+             ,strNegBool(optTarg),'FALSE'
              ,root.get('id'),creby,creti,relname
+            ,sourceentiguid,targetentiguid
              ]
             #root.get('name')\           ,findText(root,'comment')\
            #           ,findText(root,'transferable')           ,findText(root,'deleteRule')\
     except  sqlite3.Error as e:
         if (e.__str__() == 'No Data Found'):
-            """Entity Id nicht gefunden. Datenleichen von Bezi mit gelöschten Entities"""
+            print ("Entity Id {} oder {} nicht gefunden. Datenleichen von Bezi mit gelöschten Entities".format(sourceentiguid,targetentiguid))
             return
         else:
             raise e
@@ -759,12 +958,10 @@ def do1Relation(fileName):
         or (lbeziType == 'M:1' and abbildTyp(cardSrc) == '1')
        ):
         #tausche von und zu aus
-        #Entity-Id
-        lrow[1], lrow[5] = lrow[5], lrow[1]
-        #text
-        lrow[2], lrow[6] = lrow[6], lrow[2]
-        #Optionalität
-        lrow[3], lrow[7] = lrow[7], lrow[3]
+        lrow[1], lrow[5] = lrow[5], lrow[1] #Entity-Id
+        lrow[2], lrow[6] = lrow[6], lrow[2] #text
+        lrow[3], lrow[7] = lrow[7], lrow[3] #Optionalität
+        lrow[4], lrow[8] = lrow[8], lrow[4]  # history
     #fi
     row = tuple(lrow)
     #print (row)
@@ -914,15 +1111,23 @@ def transferUDP():
 #transferUDP
 
 def insertBaseData():
+    languages = {'de' : ['Deutsch','deu']
+                ,'en': ['English', 'eng']
+                ,'fr': ['Français', 'fra']
+                ,'es': ['Español', 'esp']
+                ,'it': ['Italiano', 'ita']
+                }
     #(spra_iso_name, spra_iso_code2, spra_iso_code3
     #, spra_ist_textsprache, spra_spra_id, spra_uc
     #, spra_dc
-    ldeId= dbInserts.insertSprache(('Deutsch','de','deu','TRUE','TRUE',None,'stb', date.today()));
-    dbInserts.insertSprache(('English',  'en', 'eng', 'TRUE', 'FALSE',ldeId, 'stb', date.today()));
-    dbInserts.insertSprache(('Français', 'fr', 'fra', 'TRUE', 'FALSE',ldeId, 'stb', date.today()));
-    dbInserts.insertSprache(('Español,', 'es', 'esp', 'TRUE', 'FALSE',ldeId, 'stb', date.today()));
-    dbInserts.insertSprache(('Italiano,', 'it', 'ita', 'TRUE', 'FALSE',ldeId, 'stb', date.today()));
-
+    deflang = parameters.dbDefaultLang()
+    for key,value in languages.items():
+        dbInserts.insertSprache((value[0], key, value[1], 'TRUE', 'FALSE', 'stb', date.today()));
+    if not deflang in languages: defland = 'de'
+    dbDML.exec('update sprachen set spra_ist_modellsprache = "TRUE" where spra_iso_code2 = "{}"'.format(deflang))
+    dbDML.exec("""update sprachen  
+                set spra_spra_id = (select sp2.spra_id from sprachen sp2 where sp2.spra_ist_modellsprache = 'TRUE')
+                where spra_ist_modellsprache = "FALSE" """)
     fillMelt()
     entidiaid = dbInserts.insertdiagrammtyp(('Entity','stb',date.today(),None,None))
     #    medi_diat_id, medi_melt_id,medi_uc,mdei_dc,medi_um,mdei_dm
@@ -950,11 +1155,15 @@ def loeschmodell():
     dbDML.delete("melt_diat")
     dbDML.delete("datatypes")
     dbDML.delete("diagramme")
+    dbDML.delete('bereich_elemdarst')
     dbDML.delete("modellelem_typ")
     dbDML.delete('diagrammtypen')
     dbDML.delete('sprachtexte')
     dbDML.delete('sprachen')
+    dbDML.delete('geschaeftsbereich')
     dbDML.delete('projekt')
+
+
 #loeschmodell
 
 def loadcolors(coldict, classkey, elem):
@@ -1066,15 +1275,19 @@ def transferprojekt():
     proj = ET.parse(parameters.odmIMDirec() + parameters.odmModelName() + parameters.odmIMExtension())
     root = proj.getroot()
     comm = findText(root,'comment')
-    defspra=re.search(r'currentLang=([A-Z]{2})',comm).group(1)
-    sprachen=re.search(r'languages=([A-Z,]*)',comm).group(1)
+    if comm is None:
+        defspra='de'
+        sprachen = 'de'
+    else:
+        defspra=re.search(r'currentLang=([A-Z]{2})',comm).group(1)
+        sprachen=re.search(r'languages=([A-Z,]*)',comm).group(1)
     #print (findField(root,'name'),comm,sprachen,defspra)
     dbInserts.insertprojekt(pdata=(findField(root,'name'),findText(root,'createdBy')
         , findText(root, 'createdTime'),sprachen,defspra))
     if (defspra is not None
         and dbParam.dbDefaultLang.lower() != defspra.lower()):
         #setze die Defaultsprache aus dem Modell
-        if dbLookup.spraLookup(defspra.lower()) is None:
+        if dbLookup.spraLookup(defespra.lower()) is None:
             raise Exception("Language '{}' does not exist".format(defspra))
         dbDML.exec("""update sprachen set spra_ist_modellsprache = 'FALSE'
                            where lower(spra_iso_code2)  = lower('{}')
@@ -1093,8 +1306,8 @@ def transferODMModel():
     transferDomains()
     transferUDP()
     transferEntitaeten()
-    transferArcs()
     transferRelations()
+    transferArcs()
     doSubentities()
     transferKeys(keys)
     loaddefaultcolors()
