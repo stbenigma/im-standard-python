@@ -207,7 +207,7 @@ function getTabMap(modelMapping,tabID){
 function printCols(modelMapping,fw,tab){
 	maps = getTabMap(modelMapping,tab.getObjectID())
 	if (maps.length==0) {
-		printColsMap(fw,tab,null,null)
+		printColsMap(fw,tab,true,null,null)
 	} else {
 		for (impc=0;impc<maps.length;impc++){
 			enti=logicalModel.getEntitySet().getObjectByID(maps[impc].getLogID())
@@ -223,7 +223,7 @@ function printCVS (modelMapping,fw){
 	colType = 1
 	tableType = 4
 	attrType = 5
-	fw.write(relModel+';;;;\n')
+	fw.write(relModel+';;;;created by ODM, '+curDateStr()+'\n')
 	fw.write('entityName;attrName;tableName;columnName;dataType\n')
 	tables = relModel.getTableSet().toArray();
 	for (itpc=0;itpc<tables.length;itpc++){
