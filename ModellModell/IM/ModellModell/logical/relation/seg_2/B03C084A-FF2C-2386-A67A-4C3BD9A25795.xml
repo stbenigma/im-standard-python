@@ -1,7 +1,7 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_94" directorySegmentName="seg_0" id="DC7CB504-6419-8B00-4117-ABBE79443FD3">
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_273" directorySegmentName="seg_2" id="B03C084A-FF2C-2386-A67A-4C3BD9A25795">
 <createdBy>stb</createdBy>
-<createdTime>2018-06-20 06:59:52 UTC</createdTime>
+<createdTime>2020-01-25 10:18:39 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
@@ -10,19 +10,13 @@
 </engineerTo>
 <useSurrogateKey>true</useSurrogateKey>
 <identifying>false</identifying>
-<nameOnSource>benutzt</nameOnSource>
-<nameOnTarget>definiert für</nameOnTarget>
+<nameOnSource>verwendet</nameOnSource>
+<nameOnTarget>verwendet in</nameOnTarget>
 <optionalSource>true</optionalSource>
 <optionalTarget>false</optionalTarget>
-<sourceCardinality>1</sourceCardinality>
+<sourceCardinality>*</sourceCardinality>
 <sourceEntity>67486AF6-A48F-0ED0-B3A8-FE8A5010B861</sourceEntity>
 <targetCardinalityString>*</targetCardinalityString>
-<targetEntity>E911984E-2D09-0FE8-E277-A1E7BAFCA3BF</targetEntity>
+<targetEntity>C8E2057C-7665-B533-FFC8-55D85793919D</targetEntity>
 <transferable>true</transferable>
-<propertyMap>
-<property name="DE_RELA_TEXT_FROM" value="benutzt"/>
-<property name="DE_RELA_TEXT_TO" value="definiert für"/>
-<property name="EN_RELA_TEXT_FROM" value="utilised"/>
-<property name="EN_RELA_TEXT_TO" value="defined for"/>
-</propertyMap>
 </Relation>
