@@ -1,0 +1,38 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="9FAC023A-0712-3F3A-8BD7-DEEEB3DA0F61" name="Fertigkeit">
+<createdBy>stb</createdBy>
+<createdTime>2020-01-20 15:21:51 UTC</createdTime>
+<comment><![CDATA[Zusammengefasste Fähigkeiten nach Kriterien, die dem Umfeld, dem Unternehmen und der Erfahrung der Expoerten angepasst sind.
+
+Gibt es messbare Kriterien für die Gruppenbildung?]]></comment>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
+</engineerTo>
+<typeID>22C80650-70BB-112A-562F-823C3A147D9C</typeID>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<synonym>Capability, Skillset</synonym>
+<createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="DE_ENTI_COMMENT" value=""/>
+<property name="DE_ENTI_NAME" value="Performance Layer"/>
+<property name="EN_ENTI_COMMENT" value=""/>
+<property name="EN_ENTI_NAME" value="Performance layer"/>
+</propertyMap>
+</Entity>

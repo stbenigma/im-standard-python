@@ -1,0 +1,29 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_79" directorySegmentName="seg_0" id="92330BCD-0B2B-1E15-D04A-FCC904E47A06">
+<createdBy>stb</createdBy>
+<createdTime>2019-12-01 10:10:13 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<engineerTo>
+<item key="1AB27667-C11D-3493-68AA-DF92C84041A7" value="true"/>
+<item key="851DDEFA-B048-37E9-7826-4E48946EAF1C" value="true"/>
+<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true"/>
+<item key="015DE428-05B6-58DD-323D-ECDC72266F4A" value="true"/>
+</engineerTo>
+<useSurrogateKey>true</useSurrogateKey>
+<identifying>false</identifying>
+<nameOnSource>installiert</nameOnSource>
+<nameOnTarget>gugus</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>F36DA4B9-5637-6234-ABA8-4D2DC391EB38</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>FFAF9724-74C2-E2A0-9908-B5EE9AB30C02</targetEntity>
+<transferable>true</transferable>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="installiert"/>
+<property name="DE_RELA_TEXT_TO" value="gugus"/>
+<property name="EN_RELA_TEXT_FROM" value="*DE* installiert"/>
+<property name="EN_RELA_TEXT_TO" value="*DE* gugus"/>
+</propertyMap>
+</Relation>

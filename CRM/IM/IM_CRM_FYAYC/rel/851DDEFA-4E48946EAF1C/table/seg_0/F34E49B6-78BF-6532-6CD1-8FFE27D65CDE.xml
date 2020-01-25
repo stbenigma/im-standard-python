@@ -1,0 +1,99 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="F34E49B6-78BF-6532-6CD1-8FFE27D65CDE" name="Installateur">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:56 UTC</createdTime>
+<comment><![CDATA[Partner, der die Produkte / Geräte in Betrieb nimmt, montiert, zusammenbaut.
+
+Beispiele:
+Montagefirma 
+Handwerker der Geräten (Elektro, Sanitär) in Häusern einbaut]]></comment>
+<generatorID>F36DA4B9-5637-6234-ABA8-4D2DC391EB38</generatorID>
+<notes><![CDATA[[EN_ENTI_COMMENT[
+*DE* Partner, der die Produkte / Geräte in Betrieb nimmt, montiert, zusammenbaut.
+
+Beispiele:
+Montagefirma 
+Handwerker der Geräten (Elektro, Sanitär) in Häusern einbaut
+]EN_ENTI_COMMENT]
+[DE_ENTI_COMMENT[
+Partner, der die Produkte / Geräte in Betrieb nimmt, montiert, zusammenbaut.
+
+Beispiele:
+Montagefirma 
+Handwerker der Geräten (Elektro, Sanitär) in Häusern einbaut
+]DE_ENTI_COMMENT]
+[FR_ENTI_COMMENT[
+*EN* *DE* Partner, der die Produkte / Geräte in Betrieb nimmt, montiert, zusammenbaut.
+
+Beispiele:
+Montagefirma 
+Handwerker der Geräten (Elektro, Sanitär) in Häusern einbaut
+]FR_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Handelseinheit_Handelseinheit_ID" id="5FF69D12-558E-3872-11BE-1286439A422F">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:56 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="EEBAB5B5-55D6-DE3D-69A4-817A7A48DA0A" referredColumn="B04DD40D-2DED-4051-AA2E-C0D5F71C7A3D"/>
+</associations>
+</Column>
+<Column name="Installateur_ID" id="FA38260C-FAA2-0354-24DE-6DA4F7580300">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:56 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="273092BF-38EF-C91C-EA89-DA9810B54BAF" name="Installateur_PK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:56 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="5FF69D12-558E-3872-11BE-1286439A422F"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="BC81440F-AD91-AB56-C491-ECBC77CF51F1" name="Installateur_Installateur_ID_UN">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:56 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="FA38260C-FAA2-0354-24DE-6DA4F7580300"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="B5B47400-BE28-AF8D-E537-4B94480F5DB1" name="Installateur_Handelseinheit_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:56 UTC</createdTime>
+<generatorID>0823F629-73DE-7665-F925-E07C2C7F46C1</generatorID>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="5FF69D12-558E-3872-11BE-1286439A422F"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

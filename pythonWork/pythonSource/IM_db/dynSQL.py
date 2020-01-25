@@ -1,95 +1,128 @@
-from IM_ODM import odmParam,transferModel
-from IM_DB import dbParam,dbConnect,dbDDL,dbDML,dbErstelleTables
-from IM_DB import dbParam,dbConnect,dbDML
+
 import sys
+from  IM_DB  import parameters,dbConnect,dbParam,dbDML
 
 def main(p_imdirec=None, p_modelname=None):
 
-    odmParam.initODMParam(pimDirec=p_imdirec, pmodelName=p_modelname)
+    parameters.initparam(p_imdirec)
+    print ("dynsql",parameters.dbFilePath())
+    dbConnect.openDB(parameters.dbFilePath());
+#    dbParam.liesDefaultLang()
 
-    dbParam.initDBParam(odmParam.imDirectory
-                ,odmParam.imModelName+'.db');
-
-    print ("dynsql",odmParam.imDirectory,odmParam.imModelName)
-    dbConnect.openDB(dbParam.dbDirectory,dbParam.dbName);
-
-    dbParam.liesDefaultLang()
-    l_sql = """with arcs2 as (select name || '_subtype' arcs_name, id arcs_enti_id,uc arcs_uc,um arcs_um ,id arcs_id from 
-                                  (select enti_name as name, enti_id as id,enti_uc as uc ,enti_dc as um
-                                          ,(select count(*) from entitaeten as e1 where e2.enti_odm_guid = e1.enti_enti_guid) as subanz
-                                   from entitaeten as e2
-                                   ) where subanz > 0)     
-                select 'ISA', slave_enti_id,''
-                            , 'TRUE','FALSE'
-                            ,master_enti_id,'','TRUE','FALSE'
-                            ,arcs_id,arcs_uc, arcs_um,'' beziname
-                            ,enti_master_name,enti_slave_name
-                            from arcs
-                            join (select enti_id as master_enti_id,enti_name as enti_master_name
-                                       , enti_odm_guid as master_guid from entitaeten) on master_enti_id = arcs_enti_id
-                            join  (select enti_id as slave_enti_id,enti_name as enti_slave_name
-                                       , enti_enti_guid as slave_master_guid from entitaeten) on slave_master_guid = master_guid
-                    """;
 #, e1.enti_name , e2.enti_name
-    l_sql = """select von.enti_id as von_enti_id,von.enti_name as von_name,von.enti_odm_guid as von_guid
-                        		,bezi_assoc_von_zu
-    							,case bezi_type
-                           when '1:1' then 
-                            case bezi_pflicht_assoc_von_zu
-                                 when 'TRUE' THEN '1'
-                                 else '0..1'
-                               end
-                           when 'M:N' then 
-                            case bezi_pflicht_assoc_von_zu
-                                 when 'TRUE' THEN '1..N'
-                                 else '0..N'
-                               end
-                           when 'M:1' then 
-                                case bezi_pflicht_assoc_von_zu
-                                 when 'TRUE' THEN '1'
-                                 else '0..1'
-                               end         
-                            end card1
-    						,zu.enti_id as zu_enti_id,zu.enti_name as zu_name,zu.enti_odm_guid as zu_guid
-    						,bezi_assoc_zu_von
-    	                    ,case bezi_type
-    	                       when '1:1' then 
-    	                          case bezi_pflicht_assoc_zu_von
-    	                             when 'TRUE' THEN '1'
-    	                             else '0..1'
-    	                           end
-    	                       when 'M:N' then 
-    	                        case bezi_pflicht_assoc_zu_von
-    	                             when 'TRUE' THEN '1..N'
-    	                             else '0..N'
-    	                           end
-    	                       when 'M:1' then 
-    	                            case bezi_pflicht_assoc_zu_von
-    	                             when 'TRUE' THEN '1..N'
-    	                             else '0..N'
-    	                           end         
-    	                        end card2
-    						,bezi_id,bezi_type,bezi_pflicht_assoc_von_zu,bezi_pflicht_assoc_zu_von
-    						,arcs_name,arcs_odm_guid,bezi_name
-                        from entitaeten as von
-    					join beziehungen on bezi_enti_id_von = von.enti_id
-                        join entitaeten as zu on zu.enti_id = bezi_enti_id_zu
-                        left join arcs on arcs_id = bezi_arcs_id
-                                   and bezi_enti_id_von = von.enti_id
-                                   where bezi_type = 'ISA'
-                        order by von.enti_name
-""";
-#      join entitaeten as e1 on e1.enti_id = bezi_enti_id_von
-#      join entitaeten as e2 on e2.enti_id = bezi_enti_id_zu
-
-#    l_sql = """select * from arcs  join entitaeten as ae on ae.enti_id = arcs_enti_id
-#      join beziehungen on bezi_arcs_id = arcs_id  where arcs_name = 'Arc_9'"""
-#insert into sprachtext (sptx_attrname,  sptx_text,  sptx_spra_id,sptx_mode_id, sptx_uc,   sptx_dc    )
-
-    l_sql = """select * from synonyme join modellelement on mode_syno_id = syno_id"""
+    l_sql ="""select * FROM DIAGRAMME join diagrammtypen on diat_id = diag_diat_id """
+    l_sql ="""select * FROM melt_diat    join modellelem_typ on melt_id = medi_melt_id"""
+    l_sql ="""select diag_id,diag_name,diag_legendx,diag_legendy,breite,hoehe
+           from diagramme
+           left join  (select diag_id size_diag_id,max(xpos + breite) breite,max(ypos + hoehe) hoehe
+                FROM (select eled_diag_id diag_id,eled_position_x xpos,eled_breite breite
+                     ,eled_position_y ypos, eled_hoehe hoehe
+                     from elementdarst
+                     union all 
+                     select beda_diag_id, beda_endtext_x xpos, beda_endtext_breite breite
+                     ,beda_endtext_y ypos, beda_endtext_hoehe hoehe
+                     from beziehung_darst
+                     union all 
+                     select beda_diag_id, lise_x xpos, 3 breite
+                     ,lise_y ypos, 3 hoehe
+                     from beziehung_darst
+                     join linie_segment on lise_beda_id = beda_id
+                    )
+                    group by size_diag_id
+                ) on size_diag_id = diag_id
+            where diag_id = diag_id"""
+    l_sql = """select * from elementdarst"""
+    l_sql = """select 
+                eled_position_x xpos,eled_breite breite
+                ,eled_position_y ypos, eled_hoehe hoehe
+                ,eled_deckkraft,eled_farbe
+                ,eled_randbreite,eled_randdeckkraft,eled_randfarbe
+                ,eled_schriftgroesse, eled_schriftfarbe
+                ,case when ena.sptx_text is null then enti_name 
+                                                else ena.sptx_text end  entiname
+                ,enti_id 
+                from elementdarst
+                join modellelement on mode_id = eled_mode_id
+                join entitaeten on enti_id = mode_enti_id
+                join sprachen sp on sp.spra_iso_code2 = '{}'         
+                left join spraattr ena on ena.sptx_attrname = 'ENT_NAME'
+                                        and ena.sptx_mode_id = mode_id
+                                        and ena.spra_id = sp.spra_id
+                where eled_diag_id = {}
+    """.format('de',5)
+    """            where eled_diag_id = {}"""
+    l_sql = """select spra_iso_name,enti_name,ena.sptx_text entiname
+                    ,ens.sptx_text entisyno
+                    ,enc.sptx_text enticomment
+                 from modellelement
+                 join entitaeten on enti_id = mode_enti_id
+                    join sprachen sp on sp.spra_iso_code2 <> '{}'         
+                left join sprachtexte ena on ena.sptx_attrname = 'ENTI_NAME'
+                                        and ena.sptx_mode_id = mode_id
+                                        and ena.sptx_spra_id = sp.spra_id
+                left join sprachtexte ens on ens.sptx_attrname = 'ENTI_SYNONYM'
+                                        and ens.sptx_mode_id = mode_id
+                                        and ens.sptx_spra_id = sp.spra_id
+                left join sprachtexte enc on enc.sptx_attrname = 'ENTI_COMMENT'
+                                        and enc.sptx_mode_id = mode_id
+                                        and enc.sptx_spra_id = sp.spra_id
+""".format('de')
+    l_sql2 = """select bdeg_thema,substr(bdeg_name,1,2) sprache,substr(bdeg_name,4)udpname,bdeg_name,bdwe_wert,enti_name
+     from benudef_wert
+    join benudef_eigenschaft on bdeg_id = bdwe_bdeg_id
+    join modellelement on mode_id = bdwe_mode_id
+     join entitaeten on enti_id = mode_enti_id
+     where bdeg_thema = 'translation'"""
+    l_sql = """select * from 
+                    (select 'ENTI_NAME' attrname, enti_name text 
+                        ,mode_id,enti_uc,enti_dc
+                    from modellelement
+                    join entitaeten on enti_id = mode_enti_id
+                    union all
+                   select 'ENTI_COMMENT' attrname, enti_beschr text 
+                        ,mode_id,enti_uc,enti_dc
+                    from modellelement
+                    join entitaeten on enti_id = mode_enti_id                    
+                    union all
+                   select 'ENTI_SYNONYM' attrname, group_concat(syno_name,', ') text 
+                        ,enti_id,enti_uc,enti_dc
+                    from modellelement
+                    join synonyme on syno_id = mode_syno_id
+                    join entitaeten on enti_id = syno_enti_id
+                    group by enti_id,enti_uc,enti_dc                    
+                    union all
+                   select 'ATTR_COMMENT' attrname, attr_beschr text 
+                        ,mode_id,attr_uc,attr_dc
+                    from modellelement
+                    join attributes on attr_id = mode_attr_id    
+                    union all                
+                   select 'ATTR_NAME' attrname, attr_anzname text 
+                        ,mode_id,attr_uc,attr_dc
+                    from modellelement
+                    join attributes on attr_id = mode_attr_id 
+                    union all                
+                   select 'RELA_TEXT_FROM' attrname, bezi_assoc_von_zu text 
+                        ,mode_id,bezi_uc,bezi_dc
+                    from modellelement
+                    join beziehungen on bezi_id = mode_bezi_id 
+                    union all                
+                   select 'RELA_TEXT_TO' attrname, bezi_assoc_zu_von text 
+                        ,mode_id,bezi_uc,bezi_dc
+                    from modellelement
+                    join beziehungen on bezi_id = mode_bezi_id 
+                )
+                cross join (select 123)
+                where text is not null
+  """
+    l_sql = """ select   * from 
+                            benudef_eigenschaft 
+                           """
+    #l_sql = """select * from benudef_wert"""
     result = dbDML.select(l_sql)
     for row in result:
         print (row)
+#    dbDML.exec("""delete from benudef_wert where bdwe_wert = '.'""")
+
 #main
 #.format(entiId,entiId)
 #where von.enti_id = {} or zu.enti_id = {}

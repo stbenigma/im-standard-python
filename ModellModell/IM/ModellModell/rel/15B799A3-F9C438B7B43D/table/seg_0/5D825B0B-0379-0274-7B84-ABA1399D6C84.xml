@@ -229,7 +229,7 @@ Die in anderen Darstellungsarten gebräuchlichen Beziehungen können aus  Option
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="BEZI_ARC_ID" id="5AC66F6D-67E2-A9E3-F86F-12C1B57A7971">
+<Column name="BEZI_VON_ARC_ID" id="5AC66F6D-67E2-A9E3-F86F-12C1B57A7971">
 <createdBy>stb</createdBy>
 <createdTime>2019-04-02 15:16:51 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
@@ -244,10 +244,49 @@ Die in anderen Darstellungsarten gebräuchlichen Beziehungen können aus  Option
 <colAssociation fkAssociation="828F14FD-A762-63FA-A10B-BDCE9806FB0F" referredColumn="39EC1658-D2FF-E19F-2DED-D5B4F5BD321F"/>
 </associations>
 </Column>
+<Column name="BEZI_ZU_ARC_ID" id="DCCBF29E-0C4E-E0D0-321E-ADFC880969DC">
+<createdBy>stb</createdBy>
+<createdTime>2020-01-21 10:23:23 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="7052162E-D912-4D15-9858-9540658AC587" referredColumn="39EC1658-D2FF-E19F-2DED-D5B4F5BD321F"/>
+</associations>
+</Column>
 <Column name="BEZI_ODM_GUID" id="5CBB627D-C962-F490-92A9-BD01A81A29C7">
 <createdBy>stb</createdBy>
 <createdTime>2019-08-24 10:49:14 UTC</createdTime>
 <commentInRDBMS><![CDATA[ID aus dem ODM übernommen]]></commentInRDBMS>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>5D3D105A-15CC-2DBC-8E41-2A63484D069D</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="BEZI_SOURCE_ENTI_GUID" id="F1608D72-CA3F-D92D-AAFA-A078908A88A1">
+<createdBy>stb</createdBy>
+<createdTime>2019-12-12 11:57:54 UTC</createdTime>
+<comment><![CDATA[GUID der SOURCE-Entity aus der Subview-Beschreibung. VON/ZU können vertauscht sein.]]></comment>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>5D3D105A-15CC-2DBC-8E41-2A63484D069D</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="BEZI_TARGET_ENTI_GUID" id="913FFD81-464B-A0CD-6F9A-2E011A3D765E">
+<createdBy>stb</createdBy>
+<createdTime>2019-12-12 11:57:54 UTC</createdTime>
+<comment><![CDATA[GUID der arget-Entity aus der Subview-Beschreibung. VON/ZU können vertauscht sein.]]></comment>
 <ownerDesignName>ModellModell</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <use>0</use>
@@ -350,7 +389,7 @@ Die in anderen Darstellungsarten gebräuchlichen Beziehungen können aus  Option
 <colUsage columnID="6E1AA102-8EDD-9687-9ADD-2FA808FC98F7"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="F3784918-1AF1-9809-9142-3D46ADB8527A" name="BEZI_ARC_FK">
+<ind_PK_UK id="F3784918-1AF1-9809-9142-3D46ADB8527A" name="BEZI_VON_ARC_FK">
 <createdBy>stb</createdBy>
 <createdTime>2019-04-02 15:16:51 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
@@ -358,6 +397,16 @@ Die in anderen Darstellungsarten gebräuchlichen Beziehungen können aus  Option
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
 <colUsage columnID="5AC66F6D-67E2-A9E3-F86F-12C1B57A7971"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="98C58FC0-449F-C184-271A-72E8F8DADB30" name="BEZI_ZU_ARC_FK">
+<createdBy>stb</createdBy>
+<createdTime>2020-01-21 10:24:15 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="DCCBF29E-0C4E-E0D0-321E-ADFC880969DC"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>

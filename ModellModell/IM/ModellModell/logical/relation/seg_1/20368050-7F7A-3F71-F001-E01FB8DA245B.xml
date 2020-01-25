@@ -6,15 +6,16 @@
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
 <useSurrogateKey>true</useSurrogateKey>
 <identifying>false</identifying>
-<nameOnSource>nutzt</nameOnSource>
-<nameOnTarget>genutzt für</nameOnTarget>
+<nameOnSource>kommunziert über</nameOnSource>
+<nameOnTarget>vermittelt</nameOnTarget>
 <optionalSource>false</optionalSource>
 <optionalTarget>true</optionalTarget>
 <sourceCardinality>*</sourceCardinality>
-<sourceEntity>590887CF-B0AB-E7A0-BCE7-5A6DFF776800</sourceEntity>
+<sourceEntity>AC4679EE-D3A6-B303-D562-D3D5CDFDA545</sourceEntity>
 <targetCardinalityString>*</targetCardinalityString>
 <targetEntity>664616E5-323A-87C2-1F28-5E768107634E</targetEntity>
 <transferable>true</transferable>
@@ -22,7 +23,7 @@
 <propertyMap>
 <property name="DE_RELA_TEXT_FROM" value="nutzt"/>
 <property name="DE_RELA_TEXT_TO" value="genutzt für"/>
-<property name="EN_RELA_TEXT_FROM" value="*DE* nutzt"/>
-<property name="EN_RELA_TEXT_TO" value="*DE* genutzt für"/>
+<property name="EN_RELA_TEXT_FROM" value="uses"/>
+<property name="EN_RELA_TEXT_TO" value="used for"/>
 </propertyMap>
 </Relation>

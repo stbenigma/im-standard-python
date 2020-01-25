@@ -2,10 +2,39 @@
 <Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="A9F11893-59B8-6E90-C662-8004F4C013B0" name="Händler">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 08:04:25 UTC</createdTime>
-<comment>B2B Partner&lt;br/&gt;Verkauft unsere Produkte an andere Geschäfte. Möglicherweise alleiniger Vertreter in einer geographischen Einheit.&lt;br/&gt;&lt;br/&gt;A-Händler sind Händler mit hohem Professionalisierungsgrad, verkaufen alles.&lt;br/&gt;B-Händler sind Händler mit niedrigerem Professionalisierungsgrad; verkaufen deshalb nur gewisse Produkte</comment>
+<comment><![CDATA[B2B Partner
+Verkauft unsere Produkte an andere Geschäfte. Möglicherweise alleiniger Vertreter in einer geographischen Einheit.
+
+A-Händler sind Händler mit hohem Professionalisierungsgrad, verkaufen alles.
+B-Händler sind Händler mit niedrigerem Professionalisierungsgrad; verkaufen deshalb nur gewisse Produkte]]></comment>
+<notes><![CDATA[[EN_ENTI_COMMENT[
+*DE* B2B Partner
+Verkauft unsere Produkte an andere Geschäfte. Möglicherweise alleiniger Vertreter in einer geographischen Einheit.
+
+A-Händler sind Händler mit hohem Professionalisierungsgrad, verkaufen alles.
+B-Händler sind Händler mit niedrigerem Professionalisierungsgrad; verkaufen deshalb nur gewisse Produkte
+]EN_ENTI_COMMENT]
+[DE_ENTI_COMMENT[
+B2B Partner
+Verkauft unsere Produkte an andere Geschäfte. Möglicherweise alleiniger Vertreter in einer geographischen Einheit.
+
+A-Händler sind Händler mit hohem Professionalisierungsgrad, verkaufen alles.
+B-Händler sind Händler mit niedrigerem Professionalisierungsgrad; verkaufen deshalb nur gewisse Produkte
+]DE_ENTI_COMMENT]
+[FR_ENTI_COMMENT[
+*DE* B2B Partner
+Verkauft unsere Produkte an andere Geschäfte. Möglicherweise alleiniger Vertreter in einer geographischen Einheit.
+
+A-Händler sind Händler mit hohem Professionalisierungsgrad, verkaufen alles.
+B-Händler sind Händler mit niedrigerem Professionalisierungsgrad; verkaufen deshalb nur gewisse Produkte
+]FR_ENTI_COMMENT]
+]]></notes>
 <ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
 <engineerTo>
-<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true"/>
+<item key="1AB27667-C11D-3493-68AA-DF92C84041A7" value="true"/>
+<item key="851DDEFA-B048-37E9-7826-4E48946EAF1C" value="true"/>
+<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="false"/>
+<item key="015DE428-05B6-58DD-323D-ECDC72266F4A" value="true"/>
 </engineerTo>
 <adequatelyNormalized>NO</adequatelyNormalized>
 <expectedVolumes>0</expectedVolumes>
@@ -17,4 +46,12 @@
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
 <createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="DE_ENTI_NAME" value="Händler"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_NAME" value="Household"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+<property name="FR_ENTI_NAME" value="*DE* Händler"/>
+<property name="FR_ENTI_SYNONYM" value=""/>
+</propertyMap>
 </Entity>

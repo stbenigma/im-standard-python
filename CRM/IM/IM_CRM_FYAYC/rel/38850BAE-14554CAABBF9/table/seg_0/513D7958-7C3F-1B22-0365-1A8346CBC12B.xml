@@ -1,0 +1,75 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="513D7958-7C3F-1B22-0365-1A8346CBC12B" name="Relation_61">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:48 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Ansprechpartner_Ansprechpartner_ID" id="D5D8E5D8-C1D8-FDB2-0F0D-8492A65952DD">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:48 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="69723BA3-A0D0-F728-4D8F-81AE718D5CB6" referredColumn="4DA64D8D-F394-DE5D-D7AE-4E4DC72B6ECA"/>
+</associations>
+</Column>
+<Column name="Vertriebskunde_Vertriebsteilnehmer_Vertriebsteilnehmer_ID" id="8C3B45E9-4D13-8776-2E40-112EAA1B7CFA">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:48 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Vertriebskunde_Vertriebskunde_ID" id="B98576A3-2642-0099-EEA3-D8493E9FD451">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:48 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="31413CF0-6535-14E8-2F33-E9CA4E419EC0" name="Relation_61_PK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:48 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="D5D8E5D8-C1D8-FDB2-0F0D-8492A65952DD"/>
+<colUsage columnID="8C3B45E9-4D13-8776-2E40-112EAA1B7CFA"/>
+<colUsage columnID="B98576A3-2642-0099-EEA3-D8493E9FD451"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="A1A951A9-E3E9-1871-9B68-96116A58457D" name="Relation_61_Ansprechpartner_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:48 UTC</createdTime>
+<generatorID>08AC50D7-D0F5-BDD4-DCA7-38CCDC4CB901</generatorID>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="D5D8E5D8-C1D8-FDB2-0F0D-8492A65952DD"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

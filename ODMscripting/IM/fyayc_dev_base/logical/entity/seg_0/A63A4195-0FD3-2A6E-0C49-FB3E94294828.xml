@@ -1,0 +1,32 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="A63A4195-0FD3-2A6E-0C49-FB3E94294828" name="Subentit 1-2">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-06 12:31:36 UTC</createdTime>
+<comment><![CDATA[Subentität, die mit einer 1:1 Verbindung verknüpft ist.]]></comment>
+<ownerDesignName>fyayc_dev_base</ownerDesignName>
+<engineerTo>
+<item key="5BE1D3DE-1298-62A6-B8A4-2793AE250A49" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<createSurrogateKey>true</createSurrogateKey>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Zusatzattribut 1-2" id="D7FCD7A6-1ECF-C45B-953D-7BFE943B363A">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-06 12:31:48 UTC</createdTime>
+<ownerDesignName>fyayc_dev_base</ownerDesignName>
+<engineerTo>
+<item key="5BE1D3DE-1298-62A6-B8A4-2793AE250A49" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+</Entity>

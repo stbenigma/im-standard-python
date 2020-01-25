@@ -16,7 +16,7 @@ def select(psql):
             pass
         else:
             print (psql)
-            print ("Unerwarteter SQL-Fehler: \t%s" % e)
+            print ("select: Unerwarteter SQL-Fehler: \t%s" % e)
             raise e
     result = cursor.fetchall()
     return result
@@ -31,7 +31,7 @@ def lookup(psql):
         if re.match("bekannter Fehler",e.__str__()):
             pass
         else:
-            print ("Unerwarteter SQL-Fehler: \t%s" % e)
+            print ("lookup: Unerwarteter SQL-Fehler: \t%s" % e)
             raise e
     result = cursor.fetchall()
     if result == []:
@@ -43,16 +43,15 @@ def lookup(psql):
 
 def delete(ptableName):
     cursor = dbConnect.myDbConn.cursor()
-
     try:
         cursor.execute("delete from " + ptableName)
     except sqlite3.Error as e:
         if re.match("table .* already exists",e.__str__()):
             pass
         else:
-            print ("Unerwarteter SQL-Fehler: \t%s" % e)
+            print ("delete: Unerwarteter SQL-Fehler: \t%s" % e)
             raise e
-#end delete
+#delete
 
 def insert(psql,rec):
     #print (psql,rec)
@@ -66,17 +65,21 @@ def insert(psql,rec):
             cursor.execute(psql, rec)
         else:
             raise Exception("unknown type for insert {}".format(type(rec)))
+    except sqlite3.IntegrityError as ei:
+        #Unique kann für Indexweiterzählen gebraucht werden. darum keine Fehlermeldung
+        if not str(ei).startswith('UNIQUE'):
+            print(psql,rec,type(rec))
+            print ("insert: Constraint-Fehler: \t{}" .format (str(ei)))
+        #fi
+        raise ei
     except sqlite3.Error as e:
-        if re.match("xxxxxxx",e.__str__()):
-            pass
-        else:
-            print(psql, rec,type(rec))
-            print ("Unerwarteter SQL-Fehler: \t{}" .format (str(e)))
-            raise e
+        print(psql, rec,type(rec))
+        print ("insert: Unerwarteter SQL-Fehler: \t{}" .format (str(e)))
+        raise e
     id = cursor.lastrowid
     dbConnect.myDbConn.commit()
     return id
-#end insert
+#insert
 
 def insertmany(psql,rec):
     insert(psql,rec)
@@ -94,7 +97,8 @@ def exec(psql,*args):
         if re.match("xxxxxxx",e.__str__()):
             pass
         else:
-            print ("Unerwarteter SQL-Fehler: \t%s" % e)
+            print (psql)
+            print ("exec: Unerwarteter SQL-Fehler: \t%s" % e)
             raise e
     dbConnect.myDbConn.commit()
 #end exec
@@ -109,7 +113,8 @@ def execmany(psql,recs):
         if re.match("xxxxxxx",e.__str__()):
             pass
         else:
-            print ("Unerwarteter SQL-Fehler: \t%s" % e)
+            print (psql)
+            print ("execmany: Unerwarteter SQL-Fehler: \t%s" % e)
             raise e
     dbConnect.myDbConn.commit()
 #execmany

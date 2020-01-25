@@ -1,0 +1,172 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="940A9645-0513-201D-51C7-2457F265B9C1" name="Super_Entiät">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-09 17:04:10 UTC</createdTime>
+<comment><![CDATA[Eine Entität, die aus 2 Subtypen besteht]]></comment>
+<generatorID>02EC9CC7-A393-8950-EBB5-B8BDD9CC14EB</generatorID>
+<ownerDesignName>fyayc_dev_mapping</ownerDesignName>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Super_Entiät_ID" id="FCE2100C-53DE-6314-1C73-1A7C9D933BCE">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-09 17:04:10 UTC</createdTime>
+<ownerDesignName>fyayc_dev_mapping</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+<Column name="Kürzel" id="45EFD31A-837B-9B24-8A13-B81C312D1F96">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-09 17:04:10 UTC</createdTime>
+<generatorID>55CABD5F-9462-BF35-239C-E8A1A1D0848C</generatorID>
+<ownerDesignName>fyayc_dev_mapping</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Beschreibung" id="2A6EA1BA-EFFE-8E50-D97F-F89BBACDA71A">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-09 17:04:10 UTC</createdTime>
+<generatorID>F867E8A4-918F-6080-28A2-29F17C191237</generatorID>
+<ownerDesignName>fyayc_dev_mapping</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT040</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Gültigperiode" id="A9902B3F-0F89-1CC8-E4DC-3B204F1A88A6">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-09 17:04:10 UTC</createdTime>
+<generatorID>BF0C6DE8-EB85-2BA9-957F-24D2906D86AA</generatorID>
+<ownerDesignName>fyayc_dev_mapping</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>3</use>
+<structuredType>66BFBF95-B0E6-4D93-EB1C-93CEEE4064C6</structuredType>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Standort" id="D5C47FFB-9A05-F856-B9F5-F5699C23C9A4">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-09 17:04:10 UTC</createdTime>
+<generatorID>ADC7A453-19E1-879D-D4DF-B9DF8368A828</generatorID>
+<ownerDesignName>fyayc_dev_mapping</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>3</use>
+<structuredType>34FE0B62-C82A-7934-B36E-07AD3210A8E3</structuredType>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="TYPE" id="A296FAC7-FE22-F7AD-24D0-687B5E9453A8">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-09 17:04:10 UTC</createdTime>
+<ownerDesignName>fyayc_dev_mapping</ownerDesignName>
+<constraintName>CH_INH_Super_Entiät</constraintName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>14</dataTypeSize>
+<listOfValues>
+<valueDef value="Subentität_1" description="entity Subentität 1"/>
+<valueDef value="Subentität_2" description="entity Subentität 2"/>
+<valueDef value="Subentität_2-1" description="entity Subentität 2-1"/>
+<valueDef value="Subentität_2-2" description="entity Subentität 2-2"/>
+<valueDef value="Super_Entiät" description="entity Super Entiät"/>
+</listOfValues>
+<ownDataTypeParameters>14,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isDiscriminatorColumn>true</isDiscriminatorColumn>
+</Column>
+</columns>
+<nestedColumns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<nestedColumn name="Gültigperiode.StartTag" id="C39A897B-643A-3128-6DBC-21AACD940981">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-09 17:04:10 UTC</createdTime>
+<generatorID>493C64FB-3E0D-3CBC-F792-C5E97F8C0179</generatorID>
+<ownerDesignName>fyayc_dev_mapping</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<parentObject>A9902B3F-0F89-1CC8-E4DC-3B204F1A88A6</parentObject>
+<structAttributeID>75CB5D9B-F0B2-FDD1-F756-82E0ABC6C802</structAttributeID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<dataTypePrecision>0</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,0,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</nestedColumn>
+<nestedColumn name="Gültigperiode.EndTag" id="B70FFA51-067C-2BCC-2D99-ECE6A5AB080F">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-09 17:04:10 UTC</createdTime>
+<generatorID>A7D058E2-0D3B-3397-1399-02EEA0F0C51F</generatorID>
+<ownerDesignName>fyayc_dev_mapping</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<parentObject>A9902B3F-0F89-1CC8-E4DC-3B204F1A88A6</parentObject>
+<structAttributeID>E10E3347-DF54-339D-538C-4574D87C192F</structAttributeID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<dataTypePrecision>0</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,0,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</nestedColumn>
+<nestedColumn name="Standort.X" id="F2EDE4F3-D558-48CE-86D3-0B2DA198E1E2">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-09 17:04:10 UTC</createdTime>
+<generatorID>16894671-35E0-92A8-8694-A2800F545AD8</generatorID>
+<ownerDesignName>fyayc_dev_mapping</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<parentObject>D5C47FFB-9A05-F856-B9F5-F5699C23C9A4</parentObject>
+<structAttributeID>87F8587F-4D88-50B9-0341-B1BA3E318037</structAttributeID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>7</dataTypeScale>
+<domain>1C3C007F-9B8B-2903-5A3C-93E51723B926</domain>
+<ownDataTypeParameters>,10,7</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</nestedColumn>
+<nestedColumn name="Standort.Y" id="89A7C6B7-FD75-8A97-28D6-9D9617D55520">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-09 17:04:10 UTC</createdTime>
+<generatorID>5D27944F-A278-212B-A3DD-9C7716B470CF</generatorID>
+<ownerDesignName>fyayc_dev_mapping</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<parentObject>D5C47FFB-9A05-F856-B9F5-F5699C23C9A4</parentObject>
+<structAttributeID>8705B46A-CBF4-5307-9F98-7AF46BE10BAE</structAttributeID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>7</dataTypeScale>
+<domain>F59C874D-779F-76C1-B9F7-647EDDC24745</domain>
+<ownDataTypeParameters>,10,7</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</nestedColumn>
+</nestedColumns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="C1448CBA-6F9B-6A98-1004-1353ECD1D04D" name="Super_Entiät_PK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-09 17:04:10 UTC</createdTime>
+<ownerDesignName>fyayc_dev_mapping</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="FCE2100C-53DE-6314-1C73-1A7C9D933BCE"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -1,0 +1,81 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="C7435D7E-098F-6A92-5E34-7198C5621177" name="Anwendungsgruppe">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-20 17:44:28 UTC</createdTime>
+<comment><![CDATA[Zusammenfassung mehrerer Anwednungen zu einer Gruppe. Oft in einer Suite, einem Softwarepaket zusammen angeboten oder realisiert.
+
+Beispiele
+Office 365
+Google Docs
+AWS Amazon web Service
+SAP Commerce Cloud
+Jira (div. Projektaufgabenverwaltungsaufgaben)]]></comment>
+<generatorID>99D59240-EC64-0DA4-AE44-C8D0CC454ECF</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<typeID>57779FAE-171C-9BB2-9F88-9B2ED7060C6F</typeID>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="IT-Komponente_IT-Komponente_ID" id="FB6CA417-16A7-6BDE-DEB4-F8926E46FF4B">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-20 17:44:28 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="FC258A64-9ACF-6691-A049-6D6ECF62D3F7" referredColumn="F165B26A-0345-21CE-2134-A915D7A4D65D"/>
+</associations>
+</Column>
+<Column name="Anwendungsgruppe_ID" id="C6D0918F-5624-B6C6-3266-41B23A239F7D">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-20 17:44:28 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="63B084BE-B99B-5DE7-6F69-D574E5132F0A" name="Anwendungsgruppe_PK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-20 17:44:28 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="FB6CA417-16A7-6BDE-DEB4-F8926E46FF4B"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="DF1CFFC3-EAF5-82D6-CEEA-3C4BE8295BA8" name="Anwendungsgruppe_Anwendungsgruppe_ID_UN">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-20 17:44:28 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="C6D0918F-5624-B6C6-3266-41B23A239F7D"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="5163AA34-33E5-E9E5-E475-18EFC199D8E6" name="Anwendungsgruppe_IT-Komponente_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-20 17:44:28 UTC</createdTime>
+<generatorID>F9555034-D17F-301F-8C1B-B59C3D27628F</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="FB6CA417-16A7-6BDE-DEB4-F8926E46FF4B"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

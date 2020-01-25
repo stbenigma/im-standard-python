@@ -6,7 +6,6 @@ import sys,os
 # Main Programm
 
 def main(par1):
-
     parameters.initparam(p_callarg=par1)
 
     print("createDB",  parameters.dbDirect(), parameters.odmModelName())
@@ -15,7 +14,6 @@ def main(par1):
         os.mkdir(parameters.dbDirect())
     dbConnect.openDB(parameters.dbFilePath(),'OFF');
     dbErstelleTables.erstelleInfra();
-
     dbConnect.myDbConn.close()
 #end main
 

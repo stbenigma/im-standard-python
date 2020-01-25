@@ -3,12 +3,21 @@
 <createdBy>stb</createdBy>
 <createdTime>2018-11-03 14:22:30 UTC</createdTime>
 <comment><![CDATA[Information zur Darstellung eines grafischen Elementes (Entität, etc.) auf einem Diagramm]]></comment>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+Information zur Darstellung eines grafischen Elementes (Entität, etc.) auf einem Diagramm
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+Information about the representation of a graphical element (entity, etc.) on a diagram
+]EN_ENTI_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
-<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
 <item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
+<typeID>BFFB2270-6E04-AA4B-B656-44CFB03FD776</typeID>
 <adequatelyNormalized>NO</adequatelyNormalized>
 <expectedVolumes>0</expectedVolumes>
 <fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
@@ -20,20 +29,26 @@
 <propertyMap>
 <property name="DE_ENTI_COMMENT" value="Information zur Darstellung eines grafischen Elementes (Entität, etc.) auf einem Diagramm"/>
 <property name="DE_ENTI_NAME" value="Elemendarstellung"/>
-<property name="DE_ENTI_SYNONYM" value=""/>
 <property name="EN_ENTI_COMMENT" value="*DE* Information zur Darstellung eines grafischen Elementes (Entität, etc.) auf einem Diagramm"/>
-<property name="EN_ENTI_NAME" value="*DE* Elemendarstellung"/>
-<property name="EN_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_NAME" value="Element representation"/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Name [L]" id="A3C9731C-AB46-3608-8EFC-C040100A45AD">
 <createdBy>stb</createdBy>
 <createdTime>2018-11-03 14:31:48 UTC</createdTime>
 <generatorID>EA5BE36E-D298-45EB-3BD7-34DB557812CE</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
-<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
 <item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
 <referedAttribute>4DA5699D-EE03-51A3-A977-DBA7D07B46CA</referedAttribute>
@@ -46,7 +61,7 @@
 <property name="DE_ATTR_COMMENT" value=""/>
 <property name="DE_ATTR_NAME" value="Name [L]"/>
 <property name="EN_ATTR_COMMENT" value=""/>
-<property name="EN_ATTR_NAME" value="*DE* Name [L]"/>
+<property name="EN_ATTR_NAME" value="Name [L]"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Name" id="85B1FCCF-7A20-CF0A-DBB4-FD296C4B8501">
@@ -54,10 +69,18 @@
 <createdTime>2018-11-03 14:31:48 UTC</createdTime>
 <comment><![CDATA[Name eines Geschäftsbereichs]]></comment>
 <generatorID>EA5BE36E-D298-45EB-3BD7-34DB557812CE</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Name eines Geschäftsbereichs
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Business division name
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
-<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
 <item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
 <referedAttribute>2DCBFE07-8721-71CA-D16E-9E078C96CF67</referedAttribute>
@@ -70,7 +93,7 @@
 <property name="DE_ATTR_COMMENT" value="Name eines Geschäftsbereichs"/>
 <property name="DE_ATTR_NAME" value="Name"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Name eines Geschäftsbereichs"/>
-<property name="EN_ATTR_NAME" value="*DE* Name"/>
+<property name="EN_ATTR_NAME" value="Name"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Name FK" id="225EEADC-063D-3D33-DE9F-B0D419C7A675">
@@ -78,10 +101,18 @@
 <createdTime>2018-11-03 14:31:48 UTC</createdTime>
 <comment><![CDATA[Name der Entität der in der Kommunikation normalerweise gebraucht wird.]]></comment>
 <generatorID>EA5BE36E-D298-45EB-3BD7-34DB557812CE</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Name der Entität der in der Kommunikation normalerweise gebraucht wird.
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Name of the entity normally used in communication.
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
-<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
 <item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
 <referedAttribute>37A28E78-6788-8230-EFF6-97B5FB4AD2E3</referedAttribute>
@@ -94,17 +125,25 @@
 <property name="DE_ATTR_COMMENT" value="Name der Entität der in der Kommunikation normalerweise gebraucht wird."/>
 <property name="DE_ATTR_NAME" value="Name FK"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Name der Entität der in der Kommunikation normalerweise gebraucht wird."/>
-<property name="EN_ATTR_NAME" value="*DE* Name FK"/>
+<property name="EN_ATTR_NAME" value="Name FK"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Inhaltdarstellung" id="4513F410-C3CF-A0F8-0DA3-06A48FCBAC9B">
 <createdBy>stb</createdBy>
 <createdTime>2019-08-08 06:06:30 UTC</createdTime>
-<commentInRDBMS><![CDATA[Vorgabewert einer Darstellung eines Elementtyps]]></commentInRDBMS>
+<comment><![CDATA[Vorgabewert einer Darstellung eines Elementtyps]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
-<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
 <item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
@@ -116,17 +155,25 @@
 <property name="DE_ATTR_COMMENT" value=""/>
 <property name="DE_ATTR_NAME" value="Inhaltdarstellung"/>
 <property name="EN_ATTR_COMMENT" value=""/>
-<property name="EN_ATTR_NAME" value="*DE* Inhaltdarstellung"/>
+<property name="EN_ATTR_NAME" value="Content display"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Randdarstellung" id="8B735900-0D91-B088-FE52-28C12ECB5967">
 <createdBy>stb</createdBy>
 <createdTime>2019-08-08 06:06:30 UTC</createdTime>
-<commentInRDBMS><![CDATA[Vorgabewert der Darstellung des Randes um das Element]]></commentInRDBMS>
+<comment><![CDATA[Vorgabewert der Darstellung des Randes um das Element]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
-<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
 <item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
@@ -138,17 +185,25 @@
 <property name="DE_ATTR_COMMENT" value=""/>
 <property name="DE_ATTR_NAME" value="Randdarstellung"/>
 <property name="EN_ATTR_COMMENT" value=""/>
-<property name="EN_ATTR_NAME" value="*DE* Randdarstellung"/>
+<property name="EN_ATTR_NAME" value="Marginal representation"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Schriftgrösse" id="B754768D-EC5E-FD14-B413-CA0EA96AE089">
 <createdBy>stb</createdBy>
 <createdTime>2019-08-08 06:06:30 UTC</createdTime>
-<commentInRDBMS><![CDATA[Vorgabewert der Schriftgrösse des Elementsnamens]]></commentInRDBMS>
+<comment><![CDATA[Vorgabewert der Schriftgrösse des Elementsnamens]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
-<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
 <item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
@@ -160,7 +215,7 @@
 <property name="DE_ATTR_COMMENT" value=""/>
 <property name="DE_ATTR_NAME" value="Schriftgrösse"/>
 <property name="EN_ATTR_COMMENT" value=""/>
-<property name="EN_ATTR_NAME" value="*DE* Schriftgrösse"/>
+<property name="EN_ATTR_NAME" value="Font size"/>
 </propertyMap>
 <listOfRanges>
 <rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
@@ -172,10 +227,18 @@
 <Attribute name="Schriftfarbe" id="81F5FE40-4448-69B3-37C1-E5DE22FC7B0A">
 <createdBy>stb</createdBy>
 <createdTime>2019-08-08 06:28:00 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
-<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
 <item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
@@ -188,7 +251,7 @@
 <property name="DE_ATTR_COMMENT" value=""/>
 <property name="DE_ATTR_NAME" value="Schriftfarbe"/>
 <property name="EN_ATTR_COMMENT" value=""/>
-<property name="EN_ATTR_NAME" value="*DE* Schriftfarbe"/>
+<property name="EN_ATTR_NAME" value="Font color"/>
 </propertyMap>
 </Attribute>
 </attributes>
@@ -249,8 +312,10 @@
 <structAttributeID>BF7C675D-F472-D4E0-D0E7-0E519F1C73EC</structAttributeID>
 <use>0</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>4</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
 <domain>9899F774-954D-6AB0-8DC2-BB1FE9F99D28</domain>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
+<ownDataTypeParameters>,4,0</ownDataTypeParameters>
 <listOfRanges>
 <rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
 <beginValue>1</beginValue>
@@ -271,8 +336,10 @@
 <structAttributeID>A212ECBD-508B-BB92-4CA0-A414C275E0BF</structAttributeID>
 <use>0</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>4</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
 <domain>9899F774-954D-6AB0-8DC2-BB1FE9F99D28</domain>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
+<ownDataTypeParameters>,4,0</ownDataTypeParameters>
 <listOfRanges>
 <rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
 <beginValue>1</beginValue>
@@ -383,7 +450,7 @@
 </rangeDef>
 </listOfRanges>
 </nestedAttribute>
-<nestedAttribute name="Randdarstellung.Breitev1" directorySegmentName="seg_1" id="4F6287D4-42CE-7DA1-D36E-DFC70CE448E9">
+<nestedAttribute name="Randdarstellung.Breite" directorySegmentName="seg_1" id="4F6287D4-42CE-7DA1-D36E-DFC70CE448E9">
 <createdBy>stb</createdBy>
 <createdTime>2019-08-08 06:06:30 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
@@ -408,6 +475,91 @@
 </rangeDef>
 </listOfRanges>
 </nestedAttribute>
+<nestedAttribute name="Inhaltdarstellung.Randdarstellung" directorySegmentName="seg_1" id="032A7CC9-4E09-CB9F-2078-74D363AD41DB">
+<createdBy>stb</createdBy>
+<createdTime>2019-12-10 17:45:31 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<parentObject>4513F410-C3CF-A0F8-0DA3-06A48FCBAC9B</parentObject>
+<structAttributeID>FF5FAB5B-407C-321C-7FB2-058E86A213CB</structAttributeID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>3</use>
+<structuredType>4816C7EE-B5FE-5DB1-A87E-537F82A20453</structuredType>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</nestedAttribute>
+<nestedAttribute name="Inhaltdarstellung.Randdarstellung.Farbe" directorySegmentName="seg_1" id="93715A0E-99F5-11EF-2909-6104B1B5E34D">
+<createdBy>stb</createdBy>
+<createdTime>2019-12-10 17:45:47 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
+</engineerTo>
+<parentObject>032A7CC9-4E09-CB9F-2078-74D363AD41DB</parentObject>
+<structAttributeID>31812808-1563-F130-6C44-AB28C0C55B78</structAttributeID>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>6 CHAR</dataTypeSize>
+<domain>06269521-C0BC-78CB-FBC8-656101307358</domain>
+<defaultValue>000000</defaultValue>
+<ownDataTypeParameters>6 CHAR,,</ownDataTypeParameters>
+</nestedAttribute>
+<nestedAttribute name="Inhaltdarstellung.Randdarstellung.Deckkraft" directorySegmentName="seg_1" id="002CCE0D-806C-B092-458F-022CD25B57C2">
+<createdBy>stb</createdBy>
+<createdTime>2019-12-10 17:45:47 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
+</engineerTo>
+<parentObject>032A7CC9-4E09-CB9F-2078-74D363AD41DB</parentObject>
+<structAttributeID>475BE6D9-7955-0B4F-14EE-54AB88615752</structAttributeID>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>3</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<domain>3C43C579-B2CF-0898-C553-AF95467F1601</domain>
+<defaultValue>100</defaultValue>
+<ownDataTypeParameters>,3,0</ownDataTypeParameters>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>0</beginValue>
+<endValue>100</endValue>
+</rangeDef>
+</listOfRanges>
+</nestedAttribute>
+<nestedAttribute name="Inhaltdarstellung.Randdarstellung.Breite" directorySegmentName="seg_1" id="0A4E92AD-C59E-03C6-53FD-AFC83162AED8">
+<createdBy>stb</createdBy>
+<createdTime>2019-12-10 17:45:47 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
+</engineerTo>
+<parentObject>032A7CC9-4E09-CB9F-2078-74D363AD41DB</parentObject>
+<structAttributeID>A486CC96-6094-DED7-1D64-D7757D50175A</structAttributeID>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>3</dataTypePrecision>
+<dataTypeScale>1</dataTypeScale>
+<domain>CB54E08F-9CBF-16C7-AB25-64ADCC8C4FFB</domain>
+<defaultValue>1</defaultValue>
+<ownDataTypeParameters>,3,1</ownDataTypeParameters>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>0.0</beginValue>
+<endValue>99</endValue>
+</rangeDef>
+</listOfRanges>
+</nestedAttribute>
 </nestedAttributes>
 <identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
 <identifier id="E6A23890-AA61-1F59-7790-A40D4710B196" name="Entitätdarstellung PK">
@@ -417,7 +569,7 @@
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
-<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
 <item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="false"/>
 </engineerTo>
 <pk>true</pk>

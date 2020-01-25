@@ -105,12 +105,31 @@
 <ownerDesignName>ModellModell</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
-<use>0</use>
+<use>1</use>
 <collectionType>C89AD2E9-29AC-3B36-E59F-F3BF7F41BBA1</collectionType>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
-<domain>474B8F52-5B70-256E-A0FA-DF8164EAFE54</domain>
+<dataTypeSize>1 CHAR</dataTypeSize>
+<listOfValues>
+<valueDef value="1" description="1"/>
+<valueDef value="M" description="M"/>
+</listOfValues>
+<ownDataTypeParameters>1 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="LISE_WINKEL" id="FB936EA2-893A-2A48-FCD6-B604627A9E40">
+<createdBy>stb</createdBy>
+<createdTime>2020-01-11 15:22:23 UTC</createdTime>
+<comment><![CDATA[Winkel zum nächsten (rhfg + 1) Punkt dieser Linie. (Leer beim letzten Punkt einer Folge). 0 ist nach rechts, 90 nach unten, 180 nach links, -90 nach oben]]></comment>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="B398D247-00C1-F016-3BBB-FE65CFFFF7AA"/>
+</propertyMap>
 </Column>
 <Column name="LISE_UC" id="8531E976-2F08-1F63-3068-598F6AD91108">
 <createdBy>stb</createdBy>

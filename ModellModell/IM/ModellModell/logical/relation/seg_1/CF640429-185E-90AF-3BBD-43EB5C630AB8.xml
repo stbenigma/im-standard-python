@@ -1,0 +1,22 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_244" directorySegmentName="seg_1" id="CF640429-185E-90AF-3BBD-43EB5C630AB8">
+<createdBy>stb</createdBy>
+<createdTime>2019-12-19 09:09:12 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
+</engineerTo>
+<useSurrogateKey>true</useSurrogateKey>
+<identifying>false</identifying>
+<nameOnSource>kauft möglicherweise</nameOnSource>
+<nameOnTarget>gekauft von</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>CD7BDEE6-4154-81F8-FF62-FA6CE7CA26BF</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>DFA1E9CD-B9AF-E8A5-B458-B22D422B547B</targetEntity>
+<transferable>true</transferable>
+</Relation>

@@ -7,11 +7,19 @@
 Beispiel:
 - Qualitätsanspruch-Level
 - Sicherheitsstufe]]></comment>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+Für projekt- oder umgebungsspezifische Erweiterungen, können für jedes Modellelement eigene Eigenschaften definiert werden.  Beispiel: - Qualitätsanspruch-Level - Sicherheitsstufe
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+For project- or environment-specific extensions, separate properties can be defined for each model element.  Example: - Quality requirement level - Security level
+]EN_ENTI_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
 <adequatelyNormalized>NO</adequatelyNormalized>
 <expectedVolumes>0</expectedVolumes>
@@ -27,17 +35,25 @@ Beispiel:
 <property name="DE_ENTI_NAME" value="Benutzerdefinierte Eigenschaft"/>
 <property name="DE_ENTI_SYNONYM" value=""/>
 <property name="EN_ENTI_COMMENT" value="*DE* Für projekt- oder umgebungsspezifische Erweiterungen, können für jedes Modellelement eigene Eigenschaften definiert werden.  Beispiel: - Qualitätsanspruch-Level - Sicherheitsstufe"/>
-<property name="EN_ENTI_NAME" value="*DE* Benutzerdefinierte Eigenschaft"/>
+<property name="EN_ENTI_NAME" value="User-defined property"/>
 <property name="EN_ENTI_SYNONYM" value=""/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Name" id="2A1A6E68-D38D-9101-ABF5-633C9DAFCFEC">
 <createdBy>stb</createdBy>
 <createdTime>2019-08-08 06:39:45 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
 <use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
@@ -47,16 +63,24 @@ Beispiel:
 <property name="DE_ATTR_COMMENT" value=""/>
 <property name="DE_ATTR_NAME" value="Name"/>
 <property name="EN_ATTR_COMMENT" value=""/>
-<property name="EN_ATTR_NAME" value="*DE* Name"/>
+<property name="EN_ATTR_NAME" value="Name"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Beschreibung" id="87C88D1D-47B8-B820-06A5-B3ED8C8FFEE4">
 <createdBy>stb</createdBy>
 <createdTime>2019-08-08 06:39:54 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <use>0</use>
@@ -67,16 +91,24 @@ Beispiel:
 <property name="DE_ATTR_COMMENT" value=""/>
 <property name="DE_ATTR_NAME" value="Beschreibung"/>
 <property name="EN_ATTR_COMMENT" value=""/>
-<property name="EN_ATTR_NAME" value="*DE* Beschreibung"/>
+<property name="EN_ATTR_NAME" value="Description of the"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Optional" id="2F4D354A-29AB-80AE-FFB1-C5784584F1CA">
 <createdBy>stb</createdBy>
 <createdTime>2019-08-08 06:40:11 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
 <use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
@@ -86,7 +118,7 @@ Beispiel:
 <property name="DE_ATTR_COMMENT" value=""/>
 <property name="DE_ATTR_NAME" value="Optional"/>
 <property name="EN_ATTR_COMMENT" value=""/>
-<property name="EN_ATTR_NAME" value="*DE* Optional"/>
+<property name="EN_ATTR_NAME" value="Optional"/>
 </propertyMap>
 </Attribute>
 </attributes>

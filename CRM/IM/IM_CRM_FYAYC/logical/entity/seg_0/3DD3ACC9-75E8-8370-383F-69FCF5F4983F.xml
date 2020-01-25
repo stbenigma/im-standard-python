@@ -2,9 +2,22 @@
 <Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="3DD3ACC9-75E8-8370-383F-69FCF5F4983F" name="natürliche Person">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 08:00:37 UTC</createdTime>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+
+]EN_ENTI_COMMENT]
+[FR_ENTI_COMMENT[
+
+]FR_ENTI_COMMENT]
+]]></notes>
 <ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
 <engineerTo>
+<item key="1AB27667-C11D-3493-68AA-DF92C84041A7" value="true"/>
+<item key="851DDEFA-B048-37E9-7826-4E48946EAF1C" value="true"/>
 <item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true"/>
+<item key="015DE428-05B6-58DD-323D-ECDC72266F4A" value="true"/>
 </engineerTo>
 <adequatelyNormalized>NO</adequatelyNormalized>
 <expectedVolumes>0</expectedVolumes>
@@ -16,41 +29,103 @@
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
 <createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="DE_ENTI_NAME" value="natürliche Person"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_NAME" value="natural person"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+<property name="FR_ENTI_NAME" value="*DE* natürliche Person"/>
+<property name="FR_ENTI_SYNONYM" value=""/>
+</propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Vorname" id="34425C84-C83D-CD8C-C3A8-A29A523A971B">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 08:44:03 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+[FR_ATTR_COMMENT[
+
+]FR_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
 <engineerTo>
+<item key="1AB27667-C11D-3493-68AA-DF92C84041A7" value="true"/>
+<item key="851DDEFA-B048-37E9-7826-4E48946EAF1C" value="true"/>
 <item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true"/>
+<item key="015DE428-05B6-58DD-323D-ECDC72266F4A" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Vorname"/>
+<property name="EN_ATTR_NAME" value="First Name"/>
+<property name="FR_ATTR_NAME" value="*DE* Vorname"/>
+</propertyMap>
 </Attribute>
 <Attribute name="Geburtsdatum" id="BAA2C6EF-0C92-9643-BF97-C6828D6F6188">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 08:00:37 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+[FR_ATTR_COMMENT[
+
+]FR_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
 <importedID>639F88E6-1AD8-C870-5291-27890B6F00E9</importedID>
 <engineerTo>
+<item key="1AB27667-C11D-3493-68AA-DF92C84041A7" value="true"/>
+<item key="851DDEFA-B048-37E9-7826-4E48946EAF1C" value="true"/>
 <item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true"/>
+<item key="015DE428-05B6-58DD-323D-ECDC72266F4A" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Geburtsdatum"/>
+<property name="EN_ATTR_NAME" value="Birth date"/>
+<property name="FR_ATTR_NAME" value="*DE* Geburtsdatum"/>
+</propertyMap>
 </Attribute>
 <Attribute name="Geschlecht" id="114252E2-787D-F3A4-D874-37086E916F60">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 08:00:37 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+[FR_ATTR_COMMENT[
+
+]FR_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
 <importedID>1C71B8DF-3794-7782-447D-19E2BB20BE20</importedID>
 <engineerTo>
+<item key="1AB27667-C11D-3493-68AA-DF92C84041A7" value="true"/>
+<item key="851DDEFA-B048-37E9-7826-4E48946EAF1C" value="true"/>
 <item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true"/>
+<item key="015DE428-05B6-58DD-323D-ECDC72266F4A" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Geschlecht"/>
+<property name="EN_ATTR_NAME" value="Gender"/>
+<property name="FR_ATTR_NAME" value="*DE* Geschlecht"/>
+</propertyMap>
 </Attribute>
 </attributes>
 </Entity>

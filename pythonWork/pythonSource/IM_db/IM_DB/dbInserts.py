@@ -9,8 +9,8 @@ def  insertEnti(enti):
        ,enti_name,enti_beschr     ,enti_tooltip    
        ,enti_kurzname   ,enti_prefix             ,enti_beispiele          
        ,enti_erw_tupel         ,enti_uc ,enti_dc
-       ,enti_enti_guid,enti_enti_id) 
-        values (?,?,?,?,?,?,?,?,?,?,?,?,?,?) 
+       ,enti_enti_guid,enti_enti_id,enti_category_guid) 
+        values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) 
     """
     return dbDML.insert(lsql,enti)
 
@@ -32,7 +32,7 @@ def  insertWrtb(wrtb):
        ,wrtb_typ,        wrtb_zpkt_minwert   ,wrtb_zpkt_maxwert          
        ,wrtb_zpkt_granularitaet,        wrtb_text_maxlng    ,wrtb_text_syntaxregel
        ,        wrtb_num_maxwert        ,wrtb_num_minwert           ,wrtb_num_vorkstellen       
-        ,wrtb_num_nachkstellen          ,wrtb_num_rundng_einh,        wrtb_num_pheh  
+        ,wrtb_num_nachkstellen          ,wrtb_num_rundng_einh,        wrtb_num_pheh_id  
           ,wrtb_bin_inhalttyp,        wrtb_bin_spfo_id    ,wrtb_uc  
             ,wrtb_dc        ,wrtb_odm_guid ,wrtb_datatype_ref)
         values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) 
@@ -40,6 +40,17 @@ def  insertWrtb(wrtb):
     return dbDML.insert(lsql,wrtb)
 
 #end insertWrtb
+def insertwrtbgruppe(wbgr):
+    lsql="""
+    insert into wertebereichgruppen 
+       (wbgr_wrtb_id_gruppe, wbgr_name,wbgr_beschr
+       ,WBGR_WRTB_ID_MEMBER,wbgr_type_ref,WBGR_UC
+       ,WBGR_DC,WBGR_UM, wbgr_dm)
+        values (?,?,?,?,?,?,?,?,?) 
+    """
+    return dbDML.insert(lsql,wbgr)
+
+#insertwrtbgruppe
 
 def  insertLovWrtb(pName):
     return insertWrtb(wrtb=(None,pName, 'einfache Werteliste '
@@ -54,10 +65,19 @@ def  insertLovWrtb(pName):
 def insertVorgabewert(pvgwt):
     lsql="""
     insert into vorgabewerte (vgwt_wert ,    vgwt_sortrhfg,
-        vgwt_wrtb_id,   vgwt_anzeige   ,    vgwt_beschr) 
-        values (?,?,?,?,?)
+        vgwt_wrtb_id,   vgwt_anzeige   ,    vgwt_beschr
+        ,vgwt_uc, vgwt_dc) 
+        values (?,?,?,?,?,?,?)
     """
     return dbDML.insert(lsql,pvgwt)
+#end insertVorgabewert
+def insertdiagrammtyp(p_data):
+    lsql="""
+    insert into diagrammtypen(
+    diat_bez   ,diat_uc ,diat_dc,diat_um ,diat_dm) 
+        values (?,?,?,?,?)
+    """
+    return dbDML.insert(lsql,p_data)
 #end insertVorgabewert
 
 def insertAttribute(pattr):
@@ -97,9 +117,11 @@ def insertBeziehung(pdata):
           (bezi_type, bezi_enti_id_von, bezi_assoc_von_zu
      ,bezi_pflicht_assoc_von_zu, bezi_hist_von_zu
     , bezi_enti_id_zu,bezi_assoc_zu_von
-    , BEZI_PFLICHT_ASSOC_ZU_VON,bezi_hist_zu_von, bezi_arcs_id
-    , bezi_odm_guid,bezi_uc, bezi_dc,bezi_name) 
-            values (?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+    , BEZI_PFLICHT_ASSOC_ZU_VON,bezi_hist_zu_von
+    , bezi_odm_guid,bezi_uc, bezi_dc,bezi_name
+    ,bezi_source_enti_guid,  bezi_target_enti_guid
+    ) 
+            values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
         """
     return dbDML.insert(lsql, pdata)
 
@@ -159,6 +181,15 @@ def insertmodesyno(p_synid):
 def insertModeBezi(beziId):
     return insertmodellelement(pData=(None, None, None, beziId, None, None, None, dbLookup.meltLookup('BEZI'), '--', date.today()))
 #insertModebezi
+def insertmeltdiat(p_Data):
+    lsql= """insert into
+melt_diat(
+    medi_diat_id, medi_melt_id,medi_uc,medi_dc
+    ,medi_um,medi_dm   )
+     values(?,?,?,?,?,?)
+     """
+    dbDML.insert(lsql,p_Data)
+#insertmeltdiat
 
 def insertBenudef_wert(pData):
     lsql= """insert into benudef_wert(
@@ -188,9 +219,9 @@ def insertSchlElem(pData):
 
 def insertSprache(pData):
     lsql = """insert into sprachen (spra_iso_name, spra_iso_code2, spra_iso_code3
-                                  ,spra_ist_textsprache, spra_ist_modellsprache, spra_spra_id
+                                  ,spra_ist_textsprache, spra_ist_modellsprache
                                   , spra_uc,spra_dc) 
-                            values (?,?,?,?,?,?,?,?)
+                            values (?,?,?,?,?,?,?)
             """
     return dbDML.insert(lsql, pData)
 #insertSprache
@@ -202,6 +233,32 @@ def insertSprachtexte(pData):
             """
     return dbDML.insertmany(lsql, pData)
 #insertSprachtext
+
+def insertelementdarst(pdata):
+    lsql = """insert into 
+    elementdarst(     
+    eled_position_x,eled_position_y,eled_breite,eled_hoehe
+    ,eled_deckkraft,eled_farbe,eled_randbreite,eled_randdeckkraft
+    ,eled_randfarbe, eled_schriftgroesse, eled_schriftfarbe, eled_mode_id
+    ,eled_diag_id, eled_index, eled_uc, eled_dc, eled_um
+    , eled_dm)
+    values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)    
+    """
+    return dbDML.insertmany(lsql, pdata)
+#insertelementdarst
+
+def insertelbezidarst(pdata):
+    lsql = """insert into 
+    beziehung_darst(
+    beda_diag_id, beda_mode_id, beda_linienbreite, beda_liniefarbe
+    ,beda_liniedeckkraft, beda_starttext_x, beda_starttext_y, beda_starttext_breite
+    ,beda_starttext_hoehe, beda_endtext_x, beda_endtext_y, beda_endtext_breite
+    ,beda_endtext_hoehe, beda_schriftfarbe, beda_schriftgroesse, beda_uc
+    ,beda_dc, beda_um, beda_dm)
+    values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)    
+    """
+    return dbDML.insert(lsql, pdata)
+#insertbezidarst
 
 def insertUdpEntity(entiId):
     dbDML.exec("""insert into benudef_wert(
@@ -217,6 +274,28 @@ def insertUdpEntity(entiId):
                 where enti_id = {}
             """ .format(entiId))
 #insertUdpEntity
+def insertdiagramm(p_data):
+    lsql = """insert into
+diagramme(
+    diag_name,diag_diat_id,diag_odm_guid
+    ,diag_legendx,diag_legendy,diag_uc
+    ,diag_dc,diag_um,diag_dm )     
+        values (?,?,?,?,?,?,?,?,?)
+    """
+    return dbDML.insert(lsql, p_data)
+#insertdiagramme
+
+def insertlinieseg(pdata):
+    lsql = """insert into
+linie_segment(
+    lise_rhfg, lise_beda_id, lise_x, lise_y
+    , lise_linientyp,lise_konnektor, lise_uc, lise_dc
+    , lise_um,lise_dm,lise_winkel )
+                            values (?,?,?,?,?,?,?,?,?,?,?)
+    """
+    return dbDML.insert(lsql, pdata)
+#insertlinieseg
+
 def insertUdpBezi(beziId):
     dbDML.exec("""insert into benudef_wert(
                 bdwe_wert,  bdwe_mode_id,   bdwe_bdeg_id
@@ -254,7 +333,7 @@ def insertSprachtexte(p_texte, p_modeid, p_defaultlang=None):
 
     p_defaultlang = dbParam.dbDefaultLang if p_defaultlang is None else p_defaultlang
     values = [v for v in p_texte]
-    #print (values)
+    # (values)
     lsql= """insert into sprachtexte 
                     (sptx_attrname,  sptx_text
                    ,sptx_mode_id, sptx_uc, sptx_dc
@@ -264,23 +343,62 @@ def insertSprachtexte(p_texte, p_modeid, p_defaultlang=None):
                                     || ? text
                     ,modeid, ? uc,? dc, spra_id
                   from sprachen
-                  cross join (select {} modeid, '{}' defaultlang, ? attrname)
+                  cross join (select '{}' modeid, '{}' defaultlang,  ? attrname)
                   where not exists 
                     (select 1 from sprachtexte
                         where sptx_spra_id = spra_id
                          and sptx_mode_id = modeid
                          and  sptx_attrname = attrname
                     ) 
-                """.format( '--', date.today().__str__(),p_modeid,p_defaultlang)
+                """.format( p_modeid,p_defaultlang)
     dbDML.execmany(lsql, values)
+
 # die Originalnamen werden überschrieben
     l_sql = """ update sprachtexte
                 set sptx_text = ?
-                   ,sptx_um = '{}'
-                   ,sptx_dm = '{}'
+                   ,sptx_um = ?
+                   ,sptx_dm = ?
                 where sptx_spra_id = {}
                 and sptx_attrname = ?
                 and sptx_mode_id = {}
-                """.format('--', date.today().__str__(),dbLookup.spraLookup(p_defaultlang),p_modeid)
+                """.format(dbLookup.spraLookup(p_defaultlang),p_modeid)
     dbDML.execmany(l_sql, values)
 #insertSprachTexte
+def insertSprachtext(pdata):
+    #print (pdata)
+    lsql= """insert into sprachtexte 
+                    (sptx_attrname,  sptx_text
+                   ,sptx_mode_id, sptx_uc, sptx_dc
+                   , sptx_spra_id)
+                  values (?,?,?,?,?,?)
+          """
+    dbDML.insertmany(lsql, pdata)
+#insertSprachText
+def insertprojekt(pdata):
+    lsql = """insert into projekt 
+                        (proj_name ,  proj_uc, proj_dc
+                        ,proj_sprachen, proj_akt_sprache)
+                      values (?,?,?,?,?)
+              """
+    return dbDML.insert(lsql, pdata)
+#insertprojekt
+def insertgeschaeftsbereich(pdata):
+    lsql = """insert into geschaeftsbereich 
+            (gber_name, gber_beschreibung, gber_zweck
+            , gber_uc, GBER_DC, GBER_UM
+            , gber_dm)
+                   values (?,?,?,?,?,?,?)
+           """
+    return dbDML.insert(lsql, pdata)
+#insertgeschaeftsbereich
+def insertbereich_darst(pdata):
+    lsql = """insert into bereich_elemdarst 
+                (BELD_MELT_ID, BELD_GBER_ID, BELD_BREITE
+                , BELD_HOEHE, BELD_DECKKRAFT, BELD_FARBE
+                , BELD_RANDBREITE, BELD_RANDDECKKRAFT, BELD_RANDFARBE
+                , BELD_SCHRIFTGROESSE, BELD_SCHRIFTFARBE, BELD_UC
+                , BELD_DC, BELD_UM, BELD_DM)
+                   values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,)
+           """
+    return dbDML.insert(lsql, pdata)
+#insertbereich_darst

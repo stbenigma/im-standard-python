@@ -3,11 +3,20 @@
 <createdBy>stb</createdBy>
 <createdTime>2018-11-03 14:10:40 UTC</createdTime>
 <comment><![CDATA[Zusammenfassung von Entitäten in einer grafischen Darstellung]]></comment>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+Zusammenfassung von Entitäten in einer grafischen Darstellung
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+Summary of entities in a graphical representation
+]EN_ENTI_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
+<typeID>BFFB2270-6E04-AA4B-B656-44CFB03FD776</typeID>
 <adequatelyNormalized>NO</adequatelyNormalized>
 <expectedVolumes>0</expectedVolumes>
 <fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
@@ -20,19 +29,26 @@
 <property name="Beispiele" value="Vertriebssicht / Preisgestaltung / bestehende Systeme"/>
 <property name="DE_ENTI_COMMENT" value="Zusammenfassung von Entitäten in einer grafischen Darstellung"/>
 <property name="DE_ENTI_NAME" value="Diagramm"/>
-<property name="DE_ENTI_SYNONYM" value=""/>
 <property name="EN_ENTI_COMMENT" value="*DE* Zusammenfassung von Entitäten in einer grafischen Darstellung"/>
-<property name="EN_ENTI_NAME" value="*DE* Diagramm"/>
-<property name="EN_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_NAME" value="Diagram"/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Name [L]" id="4DA5699D-EE03-51A3-A977-DBA7D07B46CA">
 <createdBy>stb</createdBy>
 <createdTime>2018-11-03 14:23:40 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
-<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
 <use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
@@ -42,7 +58,7 @@
 <property name="DE_ATTR_COMMENT" value=""/>
 <property name="DE_ATTR_NAME" value="Name [L]"/>
 <property name="EN_ATTR_COMMENT" value=""/>
-<property name="EN_ATTR_NAME" value="*DE* Name [L]"/>
+<property name="EN_ATTR_NAME" value="Name [L]"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Name" id="2DCBFE07-8721-71CA-D16E-9E078C96CF67">
@@ -50,10 +66,19 @@
 <createdTime>2018-11-03 14:24:44 UTC</createdTime>
 <comment><![CDATA[Name eines Geschäftsbereichs]]></comment>
 <generatorID>209D9960-E141-7F9B-B2E6-F631C3E1EDBD</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Name eines Geschäftsbereichs
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Business division name
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
-<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
 <referedAttribute>9FC8C28A-8074-92B6-C5B5-3378905C15D0</referedAttribute>
 <use>0</use>
@@ -64,7 +89,7 @@
 <property name="DE_ATTR_COMMENT" value="Name eines Geschäftsbereichs"/>
 <property name="DE_ATTR_NAME" value="Name"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Name eines Geschäftsbereichs"/>
-<property name="EN_ATTR_NAME" value="*DE* Name"/>
+<property name="EN_ATTR_NAME" value="Name"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Name2" id="37A28E78-6788-8230-EFF6-97B5FB4AD2E3">
@@ -72,10 +97,19 @@
 <createdTime>2018-11-03 14:24:44 UTC</createdTime>
 <comment><![CDATA[Name der Entität der in der Kommunikation normalerweise gebraucht wird.]]></comment>
 <generatorID>209D9960-E141-7F9B-B2E6-F631C3E1EDBD</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Name der Entität der in der Kommunikation normalerweise gebraucht wird.
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Name of the entity normally used in communication.
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
-<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
 <referedAttribute>0D6D7CC5-02F9-66CF-24BB-AC8AC5003C95</referedAttribute>
 <use>0</use>
@@ -86,16 +120,25 @@
 <property name="DE_ATTR_COMMENT" value="Name der Entität der in der Kommunikation normalerweise gebraucht wird."/>
 <property name="DE_ATTR_NAME" value="Name2"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Name der Entität der in der Kommunikation normalerweise gebraucht wird."/>
-<property name="EN_ATTR_NAME" value="*DE* Name2"/>
+<property name="EN_ATTR_NAME" value="Name2"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Autor/in" id="CB902A8C-6CA4-DF02-FCA2-B2BAA0A8FDB4">
 <createdBy>stb</createdBy>
 <createdTime>2019-01-08 19:43:53 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
-<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <use>0</use>
@@ -106,16 +149,25 @@
 <property name="DE_ATTR_COMMENT" value=""/>
 <property name="DE_ATTR_NAME" value="Autor/in"/>
 <property name="EN_ATTR_COMMENT" value=""/>
-<property name="EN_ATTR_NAME" value="*DE* Autor/in"/>
+<property name="EN_ATTR_NAME" value="Author"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Erstellzpkt" id="4E262548-1D4A-8445-AC52-645F09FAADE4">
 <createdBy>stb</createdBy>
 <createdTime>2019-01-08 19:44:09 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
-<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
 <use>0</use>
 <logicalDatatype>LOGDT015</logicalDatatype>
@@ -125,16 +177,25 @@
 <property name="DE_ATTR_COMMENT" value=""/>
 <property name="DE_ATTR_NAME" value="Erstellzpkt"/>
 <property name="EN_ATTR_COMMENT" value=""/>
-<property name="EN_ATTR_NAME" value="*DE* Erstellzpkt"/>
+<property name="EN_ATTR_NAME" value="Creation point"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Letzt Änderung Zpkt" id="16EAC295-7C97-A4E1-A9DF-21A4B2CC267E">
 <createdBy>stb</createdBy>
 <createdTime>2019-01-08 19:44:23 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
-<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <use>0</use>
@@ -145,18 +206,92 @@
 <property name="DE_ATTR_COMMENT" value=""/>
 <property name="DE_ATTR_NAME" value="Letzt Änderung Zpkt"/>
 <property name="EN_ATTR_COMMENT" value=""/>
-<property name="EN_ATTR_NAME" value="*DE* Letzt Änderung Zpkt"/>
+<property name="EN_ATTR_NAME" value="Last change Zpkt"/>
 </propertyMap>
 </Attribute>
+<Attribute name="Legendposition" id="2A7BDD42-99F6-F8F9-23A2-191BACE2A48B">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-20 17:41:27 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>3</use>
+<structuredType>6BF3BAC5-EEB4-DFEB-3305-72CD249CFFF4</structuredType>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
 </attributes>
+<nestedAttributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<nestedAttribute name="Legendposition.X" directorySegmentName="seg_1" id="A6D1A10C-5BF1-B524-EC30-C7375FCA4F93">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-20 17:41:39 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
+</engineerTo>
+<parentObject>2A7BDD42-99F6-F8F9-23A2-191BACE2A48B</parentObject>
+<structAttributeID>6F9A1317-CF2C-8CE2-E783-4714D09800EF</structAttributeID>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>4</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<domain>9899F774-954D-6AB0-8DC2-BB1FE9F99D28</domain>
+<ownDataTypeParameters>,4,0</ownDataTypeParameters>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>1</beginValue>
+<endValue>9999</endValue>
+</rangeDef>
+</listOfRanges>
+</nestedAttribute>
+<nestedAttribute name="Legendposition.Y" directorySegmentName="seg_1" id="85A70F02-257F-DE0A-E35E-2FD9CA77FFF9">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-20 17:41:39 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
+</engineerTo>
+<parentObject>2A7BDD42-99F6-F8F9-23A2-191BACE2A48B</parentObject>
+<structAttributeID>C62F0CCC-3C24-63AA-E614-1047B848FE81</structAttributeID>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>4</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<domain>9899F774-954D-6AB0-8DC2-BB1FE9F99D28</domain>
+<ownDataTypeParameters>,4,0</ownDataTypeParameters>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>1</beginValue>
+<endValue>9999</endValue>
+</rangeDef>
+</listOfRanges>
+</nestedAttribute>
+</nestedAttributes>
 <identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
 <identifier id="4EE748DF-3DBC-DD0E-CB98-FBAE520A2DB0" name="Diagramm PK">
 <createdBy>stb</createdBy>
 <createdTime>2018-11-03 14:23:56 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
-<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
 <pk>true</pk>
 <usedAttributes>

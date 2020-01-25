@@ -4,11 +4,19 @@
 <createdTime>2019-08-27 15:44:42 UTC</createdTime>
 <comment><![CDATA[1:1 Beziehung, die keinen Subtyp definiert.
 Subtypen (ISA) gibt es nur, wenn eine Seite NULL und die andere NOT NULL ist.]]></comment>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+1:1 Beziehung, die keinen Subtyp definiert. Subtypen (ISA) gibt es nur, wenn eine Seite NULL und die andere NOT NULL ist.
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+1:1 relationship that does not define a subtype. Subtypes (ISA) only exist if one page is NULL and the other NOT is NULL.
+]EN_ENTI_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
 <typeID>1C6A8769-7651-51C0-9E0A-D0C138DE6193</typeID>
 <adequatelyNormalized>NO</adequatelyNormalized>
@@ -26,7 +34,7 @@ Subtypen (ISA) gibt es nur, wenn eine Seite NULL und die andere NOT NULL ist.]]>
 <property name="DE_ENTI_NAME" value="1zu1 Beziehung"/>
 <property name="DE_ENTI_SYNONYM" value=""/>
 <property name="EN_ENTI_COMMENT" value="*DE* 1:1 Beziehung, die keinen Subtyp definiert. Subtypen (ISA) gibt es nur, wenn eine Seite NULL und die andere NOT NULL ist."/>
-<property name="EN_ENTI_NAME" value="*DE* 1zu1 Beziehung"/>
+<property name="EN_ENTI_NAME" value="1to1 relationship"/>
 <property name="EN_ENTI_SYNONYM" value=""/>
 </propertyMap>
 </Entity>

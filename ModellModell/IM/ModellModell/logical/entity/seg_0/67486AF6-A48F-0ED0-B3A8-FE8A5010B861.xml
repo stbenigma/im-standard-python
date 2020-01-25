@@ -9,10 +9,18 @@ Manuell bedeutet, dass eine Person die Daten von einem Werkzeuge in ein anderes 
 online bedeutet, dass die Anwendungen direkt auf die Datenbasis (Datei, DB) einer anderen Anwendung zugreift. Z.B. via DB-Link, Service. 
 
 ]]></comment>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+Eine definierte Schnittstelle zwischen 2 IT-Systemen.  Synchron heisst, dass die Daten immer in kurzer Zeit (ms - einige Sekunden)  nachgeführt und aktuell sind. Manuell bedeutet, dass eine Person die Daten von einem Werkzeuge in ein anderes überträgt (copy-paste, abschreiben). online bedeutet, dass die Anwendungen direkt auf die Datenbasis (Datei, DB) einer anderen Anwendung zugreift. Z.B. via DB-Link, Service.   
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+A defined interface between 2 IT systems.  Synchronous means that the data is always updated in a short time (ms - a few seconds) and is up-to-date. Manual means that a person transfers the data from one tool to another (copy-paste). online means that the applications access the database (file, DB) of another application directly. E.g. via DB-Link, Service.   
+]EN_ENTI_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
 <typeID>57779FAE-171C-9BB2-9F88-9B2ED7060C6F</typeID>
 <adequatelyNormalized>NO</adequatelyNormalized>
@@ -29,7 +37,7 @@ online bedeutet, dass die Anwendungen direkt auf die Datenbasis (Datei, DB) eine
 <property name="DE_ENTI_NAME" value="Schnittstelle"/>
 <property name="DE_ENTI_SYNONYM" value=""/>
 <property name="EN_ENTI_COMMENT" value="*DE* Eine definierte Schnittstelle zwischen 2 IT-Systemen.  Synchron heisst, dass die Daten immer in kurzer Zeit (ms - einige Sekunden)  nachgeführt und aktuell sind. Manuell bedeutet, dass eine Person die Daten von einem Werkzeuge in ein anderes überträgt (copy-paste, abschreiben). online bedeutet, dass die Anwendungen direkt auf die Datenbasis (Datei, DB) einer anderen Anwendung zugreift. Z.B. via DB-Link, Service.   "/>
-<property name="EN_ENTI_NAME" value="*DE* Schnittstelle"/>
+<property name="EN_ENTI_NAME" value="Interface"/>
 <property name="EN_ENTI_SYNONYM" value=""/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
@@ -37,11 +45,19 @@ online bedeutet, dass die Anwendungen direkt auf die Datenbasis (Datei, DB) eine
 <createdBy>stb</createdBy>
 <createdTime>2018-12-01 14:37:43 UTC</createdTime>
 <comment><![CDATA[Daten werden manuell übertragen (copy-paste, filetransfer)]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Daten werden manuell übertragen (copy-paste, filetransfer)
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Data is transferred manually (copy-paste, file transfer)
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
 <use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
@@ -51,18 +67,26 @@ online bedeutet, dass die Anwendungen direkt auf die Datenbasis (Datei, DB) eine
 <property name="DE_ATTR_COMMENT" value="Daten werden manuell übertragen (copy-paste, filetransfer)"/>
 <property name="DE_ATTR_NAME" value="Manuell"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Daten werden manuell übertragen (copy-paste, filetransfer)"/>
-<property name="EN_ATTR_NAME" value="*DE* Manuell"/>
+<property name="EN_ATTR_NAME" value="Manual"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Synchron" id="9A8E6DBD-45F2-B058-15CB-0EA9555E5047">
 <createdBy>stb</createdBy>
 <createdTime>2018-12-01 14:41:18 UTC</createdTime>
 <comment><![CDATA[Daten werden sofort übertragen oder in Paketen die irgendwann übertragen werden.]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Daten werden sofort übertragen oder in Paketen die irgendwann übertragen werden.
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Data is transferred immediately or in packets that are eventually transferred.
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
 <use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
@@ -72,18 +96,26 @@ online bedeutet, dass die Anwendungen direkt auf die Datenbasis (Datei, DB) eine
 <property name="DE_ATTR_COMMENT" value="Daten werden sofort übertragen oder in Paketen die irgendwann übertragen werden."/>
 <property name="DE_ATTR_NAME" value="Synchron"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Daten werden sofort übertragen oder in Paketen die irgendwann übertragen werden."/>
-<property name="EN_ATTR_NAME" value="*DE* Synchron"/>
+<property name="EN_ATTR_NAME" value="Synchron"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Bidirektional" id="6302FB3C-12B3-8762-30A4-B329D9CFCD82">
 <createdBy>stb</createdBy>
 <createdTime>2018-12-03 12:52:51 UTC</createdTime>
 <comment><![CDATA[Nein bedeutet Daten gehen nur von "von" zu "nach"]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Nein bedeutet Daten gehen nur von "von" zu "nach"
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+No means data only goes from "from" to "to"
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
 <use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
@@ -93,17 +125,25 @@ online bedeutet, dass die Anwendungen direkt auf die Datenbasis (Datei, DB) eine
 <property name="DE_ATTR_COMMENT" value="Nein bedeutet Daten gehen nur von &quot;von&quot; zu &quot;nach&quot;"/>
 <property name="DE_ATTR_NAME" value="Bidirektional"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Nein bedeutet Daten gehen nur von &quot;von&quot; zu &quot;nach&quot;"/>
-<property name="EN_ATTR_NAME" value="*DE* Bidirektional"/>
+<property name="EN_ATTR_NAME" value="Bidirectional"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Auslöseperiodizität" id="98F896FA-EB99-C1A2-3C9B-23F46416102D">
 <createdBy>stb</createdBy>
 <createdTime>2019-08-21 08:23:38 UTC</createdTime>
 <commentInRDBMS><![CDATA[Periodizität mit der die Schnittstelle bedient/abgeholt wird. Standardvorgabe für alle Attribute einer Schnittstelle.]]></commentInRDBMS>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <use>0</use>
@@ -114,16 +154,24 @@ online bedeutet, dass die Anwendungen direkt auf die Datenbasis (Datei, DB) eine
 <property name="DE_ATTR_COMMENT" value=""/>
 <property name="DE_ATTR_NAME" value="Auslöseperiodizität"/>
 <property name="EN_ATTR_COMMENT" value=""/>
-<property name="EN_ATTR_NAME" value="*DE* Auslöseperiodizität"/>
+<property name="EN_ATTR_NAME" value="Trigger frequency"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Scalable" id="B8EFFE90-915E-2B89-03D4-4591F16986B2">
 <createdBy>stb</createdBy>
 <createdTime>2019-10-03 09:51:53 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <use>0</use>
@@ -132,16 +180,24 @@ online bedeutet, dass die Anwendungen direkt auf die Datenbasis (Datei, DB) eine
 <property name="DE_ATTR_COMMENT" value=""/>
 <property name="DE_ATTR_NAME" value="Scalable"/>
 <property name="EN_ATTR_COMMENT" value=""/>
-<property name="EN_ATTR_NAME" value="*DE* Scalable"/>
+<property name="EN_ATTR_NAME" value="Scalable"/>
 </propertyMap>
 </Attribute>
 <Attribute name="überwacht (J/N)" id="F4363904-CEEA-1E89-A209-C5B783917961">
 <createdBy>stb</createdBy>
 <createdTime>2019-10-03 09:53:01 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <use>0</use>
@@ -150,7 +206,7 @@ online bedeutet, dass die Anwendungen direkt auf die Datenbasis (Datei, DB) eine
 <property name="DE_ATTR_COMMENT" value=""/>
 <property name="DE_ATTR_NAME" value="überwacht (J/N)"/>
 <property name="EN_ATTR_COMMENT" value=""/>
-<property name="EN_ATTR_NAME" value="*DE* überwacht (J/N)"/>
+<property name="EN_ATTR_NAME" value="monitored (Y/N)"/>
 </propertyMap>
 </Attribute>
 </attributes>

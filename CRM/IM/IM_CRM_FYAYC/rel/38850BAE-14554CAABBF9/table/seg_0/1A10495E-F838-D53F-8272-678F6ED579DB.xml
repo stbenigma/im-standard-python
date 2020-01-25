@@ -1,0 +1,221 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="1A10495E-F838-D53F-8272-678F6ED579DB" name="natural_person">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:47 UTC</createdTime>
+<generatorID>3DD3ACC9-75E8-8370-383F-69FCF5F4983F</generatorID>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+
+]EN_ENTI_COMMENT]
+[FR_ENTI_COMMENT[
+
+]FR_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<ordsAlias>natpers</ordsAlias>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Name" id="1834EB32-F28B-AD42-686C-432397B1A9C6">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 04:04:50 UTC</createdTime>
+<generatorID>26F03530-23A5-F307-8675-22F9D0087687</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+[FR_ATTR_COMMENT[
+
+]FR_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="First_Name" id="91456F1F-927D-C76E-3E97-BC7EEE2EE37F">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:47 UTC</createdTime>
+<generatorID>34425C84-C83D-CD8C-C3A8-A29A523A971B</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+[FR_ATTR_COMMENT[
+
+]FR_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Birth_date" id="A96FDB07-E258-EF52-EF6F-4CB9E8F2381B">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:47 UTC</createdTime>
+<generatorID>BAA2C6EF-0C92-9643-BF97-C6828D6F6188</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+[FR_ATTR_COMMENT[
+
+]FR_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<domain>631FC893-D28E-5FE4-89DB-473C78BB2B2A</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Gender" id="412868BD-DF2B-B901-1606-ADEAE750AE70">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:47 UTC</createdTime>
+<generatorID>114252E2-787D-F3A4-D874-37086E916F60</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+[FR_ATTR_COMMENT[
+
+]FR_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="natpers_ID" id="0D23FADE-0B6A-D73E-BD57-4FBEEA09720E">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:47 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+<Column name="legal_entity_ID" id="EF48B7F2-1BB7-F1DA-357A-248854E0DE52">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:48 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="household_ID" id="1552CD21-9DED-CEBB-5D53-231814989346">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:48 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="1060BD92-53A6-4811-EA58-6EAAF9427E2F" referredColumn="F9939780-8F46-6522-A956-567DB9CA3560"/>
+</associations>
+</Column>
+<Column name="communic_ID" id="F3090262-463D-78E4-C298-F912DA13E0AF">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 04:04:50 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="AF8ECBD2-CE73-CA36-1F59-680FA62EF4CB" referredColumn="51038B3E-1490-8A79-C475-216599EF63D0"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="DECB744E-2DEB-0598-52CD-8D3E3B70124A" name="natural_person_PK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:48 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="EF48B7F2-1BB7-F1DA-357A-248854E0DE52"/>
+<colUsage columnID="0D23FADE-0B6A-D73E-BD57-4FBEEA09720E"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="531C6394-7CA0-0B60-A25A-E8BE3FA1F872" name="natürliche_Person_ID_UN">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:47 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="0D23FADE-0B6A-D73E-BD57-4FBEEA09720E"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="3DEDE6B2-F140-9BA8-7CD9-05F3B1B107E4" name="natural_person__IDX">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 04:04:50 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<relationGeneratorID>902EAE81-D172-7797-20F6-E331871B72FB</relationGeneratorID>
+<indexColumnUsage>
+<colUsage columnID="F3090262-463D-78E4-C298-F912DA13E0AF"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="1E88EEFD-34BE-B9EB-0E06-09A6ED2EC133" name="nathhj_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:48 UTC</createdTime>
+<generatorID>EB68E2EE-BE9C-0567-080E-536A17C223C5</generatorID>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="1552CD21-9DED-CEBB-5D53-231814989346"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="4AAEEF4B-45F8-4605-0817-CF506959CF34" name="natkom_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 04:04:50 UTC</createdTime>
+<generatorID>902EAE81-D172-7797-20F6-E331871B72FB</generatorID>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="F3090262-463D-78E4-C298-F912DA13E0AF"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

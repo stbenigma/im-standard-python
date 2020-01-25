@@ -1,0 +1,75 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="8340EE80-0DD6-8C03-E954-1BEBF88FBBFB" name="IsA_Entity_1">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-09 16:58:14 UTC</createdTime>
+<comment><![CDATA[Eine Entität die eine Rolle darstellt (ISA)]]></comment>
+<generatorID>2E5C2E2A-FFB5-B2FF-2CDD-96FDB4508EA0</generatorID>
+<ownerDesignName>fyayc_dev_mapping</ownerDesignName>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="IsA_Entity_1_ID" id="2BA27644-8563-340A-E997-C2D9DE25AF2D">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-09 16:58:14 UTC</createdTime>
+<ownerDesignName>fyayc_dev_mapping</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+<Column name="Entiät1_Entiät1_ID" id="01DE75AE-F705-FD9D-09D4-F6D4939EF55D">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-09 16:58:15 UTC</createdTime>
+<ownerDesignName>fyayc_dev_mapping</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="57D39D7E-CF0A-6379-8F2D-817EAFFB34B1" referredColumn="50500D68-5802-F99A-148B-AF85E2DF1A2D"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="326FACB5-13AD-6F5D-70A0-00745363ECDD" name="IsA_Entity_1_PK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-09 16:58:14 UTC</createdTime>
+<ownerDesignName>fyayc_dev_mapping</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="2BA27644-8563-340A-E997-C2D9DE25AF2D"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="0F343A1D-0B0B-BED0-1FF9-FFE9EF187B32" name="IsA_Entity_1__IDX">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-09 16:58:15 UTC</createdTime>
+<ownerDesignName>fyayc_dev_mapping</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<relationGeneratorID>42D07F9D-6388-61FD-CF84-29B89B10FA50</relationGeneratorID>
+<indexColumnUsage>
+<colUsage columnID="01DE75AE-F705-FD9D-09D4-F6D4939EF55D"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="382C7189-A254-5311-4F2A-8E3F5B91697C" name="IsA_Entity_1_Entiät1_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-09 16:58:15 UTC</createdTime>
+<generatorID>42D07F9D-6388-61FD-CF84-29B89B10FA50</generatorID>
+<ownerDesignName>fyayc_dev_mapping</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="01DE75AE-F705-FD9D-09D4-F6D4939EF55D"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -79,6 +79,7 @@ Beleuchtungsmodell ]]></comment>
 <Column name="ATTR_TECH_NAME" id="9C8AC513-3BDE-9409-6D3F-793EECB4524B">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:35 UTC</createdTime>
+<comment><![CDATA[Name, der etwas über die Rolle, Verwendung der Eigenschaft in der Entität aussagt. Häufig = Domänenname]]></comment>
 <generatorID>EDEE919C-7C94-15E9-147C-57317A603D15</generatorID>
 <ownerDesignName>ModellModell</ownerDesignName>
 <use>0</use>
@@ -114,6 +115,7 @@ Beleuchtungsmodell ]]></comment>
 <Column name="ATTR_BESCHR" id="375CB27A-BF59-6EF2-F3BA-55E1FFF03DA9">
 <createdBy>stb</createdBy>
 <createdTime>2018-10-21 13:54:35 UTC</createdTime>
+<comment><![CDATA[Anzeige in Masken für die Erläuterung der Nutzung, Bearbeitung, Verwendung des Attributwertes]]></comment>
 <generatorID>18044B2B-E9C9-F62B-A516-84B3A24746F4</generatorID>
 <ownerDesignName>ModellModell</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
@@ -276,6 +278,146 @@ Beleuchtungsmodell ]]></comment>
 <property name="ctemplateID" value="B398D247-00C1-F016-3BBB-FE65CFFFF7AA"/>
 </propertyMap>
 </Column>
+<Column name="Erstellzpkt" id="3F0362D1-6454-E071-E594-EE9B9487E8DD">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-20 17:44:28 UTC</createdTime>
+<generatorID>B1CF1AB7-77FE-E32D-AD6E-3C6A42050BA9</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT015</logicalDatatype>
+<domain>0AD80E26-0F5C-D068-29EA-4740A04582AE</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Änderungszpkt_[N]" id="EACA2935-96F1-C408-D16E-A18A75FE5CCE">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-20 17:44:28 UTC</createdTime>
+<generatorID>FCC3F095-4611-9BC5-82A2-24FEDCDEEE33</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT015</logicalDatatype>
+<domain>0AD80E26-0F5C-D068-29EA-4740A04582AE</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Anzeigename_[L]" id="36DD3B15-1DA2-C6A2-D1F8-87AC6D0FB5A8">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-20 17:44:28 UTC</createdTime>
+<comment><![CDATA[Kurzbezeichnung der Entität für die Verwendung aus Überschrift, in Referenzen ]]></comment>
+<generatorID>5786D6AD-9848-D503-A7AE-9758E9D42223</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ist_Pflichtattribut" id="D7176E4F-95CF-7E91-69F7-B49D09C3C2D2">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-20 17:44:28 UTC</createdTime>
+<comment><![CDATA[JA -> Das Feld muss einen Wert enthalten.]]></comment>
+<generatorID>F73DAF6B-B2F9-9A75-F80C-24594970D8AA</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ist_Deskriptorfeld" id="73F42A01-61D3-E6B6-EFB0-06B06ED8821E">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-20 17:44:28 UTC</createdTime>
+<comment><![CDATA[Das Attribut charakterisiert die Entität und ist wichtig für ihr Verständnis]]></comment>
+<generatorID>472E1B0B-0BBC-8C55-1798-08BC327AB69E</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ist_Wiederholattribut" id="2FBB6808-B023-B6EB-C4E5-08D104AD77F1">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-20 17:44:28 UTC</createdTime>
+<comment><![CDATA[JA -> Das Feld kann mehere Werte enthalten. 
+NEIN -> Feld enthält maximal einen Wert.
+Kann  über Extratabelle gelöst werden.]]></comment>
+<generatorID>6A9298F2-7C16-0F9A-DF34-457287FFFC4F</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ist_sprachabhängig" id="3F9C286C-CB65-3A40-CB08-AFF8AA4022C6">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-20 17:44:28 UTC</createdTime>
+<comment><![CDATA[JA -> Der Feldwert kann in mehreren Sprachen vorkommen.
+Über Extratabelle die mit Sprachen verknüpft ist lösen]]></comment>
+<generatorID>75E53EA7-9CD9-0AAE-6802-1E239D31EECA</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ist_historisiert" id="A634C0EA-D5D4-C918-6F8B-44596BEBC55F">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-20 17:44:28 UTC</createdTime>
+<comment><![CDATA[JA -> Der Feldwert kann über die Zeit ändern, Die Historie muss im System verwaltet werden. Zu einem Zeitpunkt kann nur 1 Wert gültig sein.
+Über Extratabelle verknüpft ist lösen]]></comment>
+<generatorID>3AE5995D-55A4-6334-61C4-C0B49DA294EA</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ist_verschlüsselt" id="C07F383C-C331-AD5D-1151-F323F38B4850">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-20 17:44:28 UTC</createdTime>
+<comment><![CDATA[JA -> Das Feld muss in Speicherung und Transport verschlüsselt werden
+NEIN -> Feld wird nicht verschlüsselt
+]]></comment>
+<generatorID>743343B0-7B01-8A4C-CDC6-45E8B72B3E2F</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Anzeigereihenfolge" id="580D7D7D-626B-34F2-92AE-2607D8169C2C">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-20 17:44:28 UTC</createdTime>
+<comment><![CDATA[Riehenfolge der Anzeige auf Diagrammen, in Reports. Leer-> Attribut kommt nach Name sortiert an den Schluss einer Liste]]></comment>
+<generatorID>598275C8-6915-4D18-A03A-DDE739950A91</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>E2DCFC37-5428-9FE8-64FF-368960199E02</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Entitätname_[L]" id="847D0F90-199B-FF2B-6996-B417A74D3A03">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-20 17:44:28 UTC</createdTime>
+<comment><![CDATA[Name der Entität der in der Kommunikation normalerweise gebraucht wird.]]></comment>
+<generatorID>0C01D9CE-61C5-17EA-B371-14E7D8D04675</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
 <ind_PK_UK id="DBB67B3F-B7B3-81DC-8C7D-7BB2EEF8B49D" name="ATTR_PK">
@@ -297,8 +439,28 @@ Beleuchtungsmodell ]]></comment>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
 <colUsage columnID="9C8AC513-3BDE-9409-6D3F-793EECB4524B"/>
-<colUsage columnID="D549EF49-F0D6-3DA1-CB37-ACDF020F478C"/>
-<colUsage columnID="F6CC78C5-6B12-2DE5-0F68-9DBEA6CB32C3"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="CE9AFBBA-05AE-3172-B0E8-4E53B42F38C7" name="ATTR_Entitätname_[L]_UN">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-20 17:44:28 UTC</createdTime>
+<generatorID>B0A652FD-7F95-C210-33E5-71090820167E</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="847D0F90-199B-FF2B-6996-B417A74D3A03"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="B5E10A95-78B3-2D57-2B32-CFE7DC744EBC" name="ATTR_Entitätname_[L]_UNv1">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-20 17:44:28 UTC</createdTime>
+<generatorID>98572F95-B4C9-C708-AC9E-C925550A7A9B</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="847D0F90-199B-FF2B-6996-B417A74D3A03"/>
 </indexColumnUsage>
 </ind_PK_UK>
 <ind_PK_UK id="44DEF6E4-21CD-5B6B-A536-F343AD7697CB" name="ATTR_WRTB_FK">

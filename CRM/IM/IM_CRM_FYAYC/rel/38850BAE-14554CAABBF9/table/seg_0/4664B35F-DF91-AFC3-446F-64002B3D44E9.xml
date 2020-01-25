@@ -1,0 +1,48 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="4664B35F-DF91-AFC3-446F-64002B3D44E9" name="Relation_48">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:48 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Handelseinheit_Handelseinheit_ID" id="D1D4D3ED-81C1-DC8E-C69F-94ADDADB82E9">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:48 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Vertriebsteilnehmer_Vertriebsteilnehmer_ID" id="29216DA9-F782-4521-D86D-DBB49324C89A">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:48 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="5C5B0918-9A14-A466-3608-5320DB4C3144" name="Relation_48_PK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:48 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="D1D4D3ED-81C1-DC8E-C69F-94ADDADB82E9"/>
+<colUsage columnID="29216DA9-F782-4521-D86D-DBB49324C89A"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

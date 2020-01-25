@@ -275,6 +275,15 @@
 <foType>Comments</foType>
 <colorRGB>-12566464</colorRGB>
 </FontObject>
+<FontObject>
+<foType>Titel</foType>
+<fontStyle>1</fontStyle>
+<colorRGB>-16776961</colorRGB>
+</FontObject>
+<FontObject>
+<foType>Attribut</foType>
+<colorRGB>-16777216</colorRGB>
+</FontObject>
 </fonts>
 </OView>
 <OView class="oracle.dbtools.crest.swingui.logical.TVEntity" oid="581FFEB4-D541-5601-4CA6-F3DCDFBC3420" otype="Entity" vid="B894CDBC-11B6-1A78-9343-3C6179062DFB">
@@ -369,6 +378,19 @@
 <foType>Comments</foType>
 <colorRGB>-12566464</colorRGB>
 </FontObject>
+<FontObject>
+<foType>Titel</foType>
+<fontStyle>1</fontStyle>
+<colorRGB>-16776961</colorRGB>
+</FontObject>
+<FontObject>
+<foType>Attribut</foType>
+<colorRGB>-16777216</colorRGB>
+</FontObject>
+<FontObject>
+<foType>Nicht null</foType>
+<colorRGB>-65536</colorRGB>
+</FontObject>
 </fonts>
 </OView>
 <OView class="oracle.dbtools.crest.swingui.TVNote" oid="6395E7A4-3788-F726-9D8B-6CB8151C2807" otype="Note" vid="6FC36CBB-E935-2947-2B3D-900563FA7D1E">
@@ -378,7 +400,8 @@
 <useDefaultColor>false</useDefaultColor>
 <backgroundColor>-205</backgroundColor>
 <foregroundColor>-16777216</foregroundColor>
-<comment>UDP Relationship-Management-Felder&lt;br/&gt;(CRM/Salesforce)</comment>
+<comment>UDP Relationship-Management-Felder
+(CRM/Salesforce)</comment>
 <fonts itemClass="oracle.dbtools.crest.model.design.FontObjectWr">
 <FontObject>
 <foType>Title</foType>
@@ -478,6 +501,15 @@
 <foType>Comments</foType>
 <colorRGB>-12566464</colorRGB>
 </FontObject>
+<FontObject>
+<foType>Titel</foType>
+<fontStyle>1</fontStyle>
+<colorRGB>-16776961</colorRGB>
+</FontObject>
+<FontObject>
+<foType>Attribut</foType>
+<colorRGB>-16777216</colorRGB>
+</FontObject>
 </fonts>
 </OView>
 <OView class="oracle.dbtools.crest.swingui.logical.TVEntity" oid="739BA660-82B5-2F02-17ED-18E391443EC8" otype="Entity" vid="FF6677FF-9EB6-5987-45DB-CBC281E9DE62">
@@ -571,6 +603,15 @@
 <FontObject>
 <foType>Comments</foType>
 <colorRGB>-12566464</colorRGB>
+</FontObject>
+<FontObject>
+<foType>Titel</foType>
+<fontStyle>1</fontStyle>
+<colorRGB>-16776961</colorRGB>
+</FontObject>
+<FontObject>
+<foType>Attribut</foType>
+<colorRGB>-16777216</colorRGB>
 </FontObject>
 </fonts>
 </OView>
@@ -905,6 +946,15 @@
 <FontObject>
 <foType>Comments</foType>
 <colorRGB>-12566464</colorRGB>
+</FontObject>
+<FontObject>
+<foType>Titel</foType>
+<fontStyle>1</fontStyle>
+<colorRGB>-16776961</colorRGB>
+</FontObject>
+<FontObject>
+<foType>Attribut</foType>
+<colorRGB>-16777216</colorRGB>
 </FontObject>
 </fonts>
 </OView>
@@ -1266,7 +1316,7 @@
 </sourceLabel>
 <targetLabel class="oracle.dbtools.crest.model.design.Label">
 <site>2</site>
-<labelBounds x="-83" y="796" width="137" height="31"/>
+<labelBounds x="-15" y="811" width="137" height="31"/>
 <noBackgroundColor>true</noBackgroundColor>
 <noForegroundColor>true</noForegroundColor>
 </targetLabel>
@@ -2291,19 +2341,19 @@
 <arcs>
 <Arc class="oracle.dbtools.crest.swingui.logical.TVArc" oid="5866E9D4-C05D-E096-394C-7563CF648A47" otype="Arc" vid="64152814-16A7-948B-7955-46CBC2327C5D">
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
-<bounds x="819" y="281" width="174" height="145"/>
+<bounds x="627" y="360" width="174" height="121"/>
 </Arc>
 <Arc class="oracle.dbtools.crest.swingui.logical.TVArc" oid="87D1CF44-F62B-B51F-4FAD-B9BD1941B028" otype="Arc" vid="951B5385-8955-3D19-5AAF-A8DF3B7AF1A7">
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
-<bounds x="430" y="367" width="210" height="141"/>
+<bounds x="362" y="425" width="210" height="143"/>
 </Arc>
 <Arc class="oracle.dbtools.crest.swingui.logical.TVArc" oid="BB52C533-2844-9F2F-033F-C9D009D0A9C3" otype="Arc" vid="C16B8545-7D8C-A715-959B-9BC27F8C69A4">
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
-<bounds x="447" y="593" width="187" height="120"/>
+<bounds x="415" y="1052" width="566" height="126"/>
 </Arc>
 <Arc class="oracle.dbtools.crest.swingui.logical.TVArc" oid="E72313DE-3E32-366C-209E-E0066DEB1AFD" otype="Arc" vid="D9356144-D49B-0033-31EB-5ED8B0F26E60">
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
-<bounds x="571" y="295" width="174" height="122"/>
+<bounds x="618" y="138" width="174" height="128"/>
 </Arc>
 </arcs>
 </Diagram>

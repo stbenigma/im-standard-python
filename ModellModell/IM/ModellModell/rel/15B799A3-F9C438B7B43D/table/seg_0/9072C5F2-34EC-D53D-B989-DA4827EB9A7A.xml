@@ -46,6 +46,13 @@ online bedeutet, dass die Anwendungen direkt auf die Datenbasis (Datei, DB) eine
 <createdTime>2019-08-21 09:44:41 UTC</createdTime>
 <comment><![CDATA[Daten werden manuell übertragen (copy-paste, filetransfer)]]></comment>
 <generatorID>695153DA-8B28-B727-6415-2240B8831A62</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Daten werden manuell übertragen (copy-paste, filetransfer)
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Data is transferred manually (copy-paste, file transfer)
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell</ownerDesignName>
 <use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
@@ -58,6 +65,13 @@ online bedeutet, dass die Anwendungen direkt auf die Datenbasis (Datei, DB) eine
 <createdTime>2019-08-21 09:44:41 UTC</createdTime>
 <comment><![CDATA[Daten werden sofort übertragen oder in Paketen die irgendwann übertragen werden.]]></comment>
 <generatorID>9A8E6DBD-45F2-B058-15CB-0EA9555E5047</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Daten werden sofort übertragen oder in Paketen die irgendwann übertragen werden.
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Data is transferred immediately or in packets that are eventually transferred.
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell</ownerDesignName>
 <use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
@@ -70,6 +84,13 @@ online bedeutet, dass die Anwendungen direkt auf die Datenbasis (Datei, DB) eine
 <createdTime>2019-08-21 09:44:41 UTC</createdTime>
 <comment><![CDATA[Nein bedeutet Daten gehen nur von "von" zu "nach"]]></comment>
 <generatorID>6302FB3C-12B3-8762-30A4-B329D9CFCD82</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Nein bedeutet Daten gehen nur von "von" zu "nach"
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+No means data only goes from "from" to "to"
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell</ownerDesignName>
 <use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
@@ -94,6 +115,13 @@ online bedeutet, dass die Anwendungen direkt auf die Datenbasis (Datei, DB) eine
 <createdTime>2019-08-21 09:44:41 UTC</createdTime>
 <commentInRDBMS><![CDATA[Periodizität mit der die Schnittstelle bedient/abgeholt wird. Standardvorgabe für alle Attribute einer Schnittstelle.]]></commentInRDBMS>
 <generatorID>98F896FA-EB99-C1A2-3C9B-23F46416102D</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <use>0</use>
@@ -158,6 +186,77 @@ online bedeutet, dass die Anwendungen direkt auf die Datenbasis (Datei, DB) eine
 <propertyMap>
 <property name="ctemplateID" value="B398D247-00C1-F016-3BBB-FE65CFFFF7AA"/>
 </propertyMap>
+</Column>
+<Column name="Erstellzpkt" id="F21C7852-9990-D6CF-9A81-A622A2E8A463">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-20 17:44:28 UTC</createdTime>
+<generatorID>B1CF1AB7-77FE-E32D-AD6E-3C6A42050BA9</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT015</logicalDatatype>
+<domain>0AD80E26-0F5C-D068-29EA-4740A04582AE</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Änderungszpkt_[N]" id="AD80D000-264B-9280-966E-37A806B5C0C9">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-20 17:44:28 UTC</createdTime>
+<generatorID>FCC3F095-4611-9BC5-82A2-24FEDCDEEE33</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT015</logicalDatatype>
+<domain>0AD80E26-0F5C-D068-29EA-4740A04582AE</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Scalable" id="B0A42F23-FCDD-4E72-FD3B-DC4EBD44D18E">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-20 17:44:28 UTC</createdTime>
+<generatorID>B8EFFE90-915E-2B89-03D4-4591F16986B2</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="überwacht_(J/N)" id="9232C767-B067-2251-F38A-DCD68B115AF3">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-20 17:44:28 UTC</createdTime>
+<generatorID>F4363904-CEEA-1E89-A209-C5B783917961</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">

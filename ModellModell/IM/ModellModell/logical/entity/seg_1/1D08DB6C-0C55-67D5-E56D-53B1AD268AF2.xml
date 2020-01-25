@@ -3,11 +3,19 @@
 <createdBy>stb</createdBy>
 <createdTime>2018-06-22 14:50:13 UTC</createdTime>
 <comment><![CDATA[Kann Zahlenwerte aufnehmen ]]></comment>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+Kann Zahlenwerte aufnehmen 
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+Can record numerical values
+]EN_ENTI_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
 <typeID>1C6A8769-7651-51C0-9E0A-D0C138DE6193</typeID>
 <adequatelyNormalized>NO</adequatelyNormalized>
@@ -25,7 +33,7 @@
 <property name="DE_ENTI_NAME" value="Numerischer Wertebereich"/>
 <property name="DE_ENTI_SYNONYM" value=""/>
 <property name="EN_ENTI_COMMENT" value="*DE* Kann Zahlenwerte aufnehmen "/>
-<property name="EN_ENTI_NAME" value="*DE* Numerischer Wertebereich"/>
+<property name="EN_ENTI_NAME" value="Numeric value range"/>
 <property name="EN_ENTI_SYNONYM" value=""/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
@@ -33,11 +41,19 @@
 <createdBy>stb</createdBy>
 <createdTime>2018-06-23 12:38:25 UTC</createdTime>
 <comment><![CDATA[Anzahl der Stellen vor dem Komma]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Anzahl der Stellen vor dem Komma
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Number of digits before the decimal point
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
 <use>0</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
@@ -47,18 +63,26 @@
 <property name="DE_ATTR_COMMENT" value="Anzahl der Stellen vor dem Komma"/>
 <property name="DE_ATTR_NAME" value="Vorkommastellen#"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Anzahl der Stellen vor dem Komma"/>
-<property name="EN_ATTR_NAME" value="*DE* Vorkommastellen#"/>
+<property name="EN_ATTR_NAME" value="Digits before decimal point#"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Nachkommastellen#" id="1A0F5548-154B-9B85-CAD0-538CA8502229">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-22 14:50:13 UTC</createdTime>
 <comment><![CDATA[Anzahl der Stellen nach dem Komma]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Anzahl der Stellen nach dem Komma
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Number of digits after the decimal point
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>0</use>
@@ -70,18 +94,26 @@
 <property name="DE_ATTR_COMMENT" value="Anzahl der Stellen nach dem Komma"/>
 <property name="DE_ATTR_NAME" value="Nachkommastellen#"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Anzahl der Stellen nach dem Komma"/>
-<property name="EN_ATTR_NAME" value="*DE* Nachkommastellen#"/>
+<property name="EN_ATTR_NAME" value="Decimal places#"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Min Wert" id="5D6EF497-1C80-55B3-9A08-19906F7E598E">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-22 14:50:13 UTC</createdTime>
 <comment><![CDATA[Minimaler Wert für ein numerisches Feld. Leer -> so klein wie das System zulässt]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Minimaler Wert für ein numerisches Feld. Leer -> so klein wie das System zulässt
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Minimum value for a numeric field. Empty -> as small as the system allows
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
@@ -92,18 +124,26 @@
 <property name="DE_ATTR_COMMENT" value="Minimaler Wert für ein numerisches Feld. Leer -&gt; so klein wie das System zulässt"/>
 <property name="DE_ATTR_NAME" value="Min Wert"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Minimaler Wert für ein numerisches Feld. Leer -&gt; so klein wie das System zulässt"/>
-<property name="EN_ATTR_NAME" value="*DE* Min Wert"/>
+<property name="EN_ATTR_NAME" value="Min value"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Max Wert" id="A72F2CB8-1949-9C66-ECCA-BF3F2AC681C0">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-22 14:50:13 UTC</createdTime>
 <comment><![CDATA[Maximaler Wert für ein numerisches Feld. Leer -> so gross wie das System zulässt]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Maximaler Wert für ein numerisches Feld. Leer -> so gross wie das System zulässt
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Maximum value for a numeric field. Empty -> as big as the system allows
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
@@ -114,18 +154,26 @@
 <property name="DE_ATTR_COMMENT" value="Maximaler Wert für ein numerisches Feld. Leer -&gt; so gross wie das System zulässt"/>
 <property name="DE_ATTR_NAME" value="Max Wert"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Maximaler Wert für ein numerisches Feld. Leer -&gt; so gross wie das System zulässt"/>
-<property name="EN_ATTR_NAME" value="*DE* Max Wert"/>
+<property name="EN_ATTR_NAME" value="Max value"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Rundungseinheit" id="7B43FC60-8938-1F2F-FFC9-AC52103A91B0">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-23 12:49:22 UTC</createdTime>
 <comment><![CDATA[Wert, der angibt, auf welche Einheit ein numerischer Wert für die Speicherung gerundet wird. (z.B. 0.5, 0.25, 1000) leer -> es wird nicht explizit gerundet]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Wert, der angibt, auf welche Einheit ein numerischer Wert für die Speicherung gerundet wird. (z.B. 0.5, 0.25, 1000) leer -> es wird nicht explizit gerundet
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+A value that indicates the unit to which a numeric value is rounded for storage. (e.g. 0.5, 0.25, 1000) empty -> not rounded explicitly
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <use>0</use>
@@ -137,7 +185,7 @@
 <property name="DE_ATTR_COMMENT" value="Wert, der angibt, auf welche Einheit ein numerischer Wert für die Speicherung gerundet wird. (z.B. 0.5, 0.25, 1000) leer -&gt; es wird nicht explizit gerundet"/>
 <property name="DE_ATTR_NAME" value="Rundungseinheit"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Wert, der angibt, auf welche Einheit ein numerischer Wert für die Speicherung gerundet wird. (z.B. 0.5, 0.25, 1000) leer -&gt; es wird nicht explizit gerundet"/>
-<property name="EN_ATTR_NAME" value="*DE* Rundungseinheit"/>
+<property name="EN_ATTR_NAME" value="Rounding unit"/>
 </propertyMap>
 </Attribute>
 </attributes>

@@ -8,10 +8,18 @@
   Jason
   XML
 ]]></comment>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+ Attribut in einem System, das mit anderen Systemen ausgetauscht werden soll.  Datentyp, Format und Constraints können in div. Sprachen und Dialekten geführ werden   SQL (mit dialekt)   Jason   XML 
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+ Attribute in a system that is to be exchanged with other systems.  Data type, format and constraints can be maintained in various languages and dialects SQL (with dialect) Jason XML
+]EN_ENTI_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
 <adequatelyNormalized>NO</adequatelyNormalized>
 <expectedVolumes>0</expectedVolumes>
@@ -26,16 +34,24 @@
 <property name="DE_ENTI_COMMENT" value=" Attribut in einem System, das mit anderen Systemen ausgetauscht werden soll.  Datentyp, Format und Constraints können in div. Sprachen und Dialekten geführ werden   SQL (mit dialekt)   Jason   XML "/>
 <property name="DE_ENTI_NAME" value="Schnittstellenattribut"/>
 <property name="EN_ENTI_COMMENT" value="*DE*  Attribut in einem System, das mit anderen Systemen ausgetauscht werden soll.  Datentyp, Format und Constraints können in div. Sprachen und Dialekten geführ werden   SQL (mit dialekt)   Jason   XML "/>
-<property name="EN_ENTI_NAME" value="*DE* Schnittstellenattribut"/>
+<property name="EN_ENTI_NAME" value="Interface attribute"/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Tabellenname" id="7B82FCEC-E09C-2A0E-321E-6C68469F1337">
 <createdBy>stb</createdBy>
 <createdTime>2019-10-17 12:01:00 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
 <use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
@@ -45,17 +61,25 @@
 <property name="DE_ATTR_COMMENT" value=""/>
 <property name="DE_ATTR_NAME" value="Tabellenname"/>
 <property name="EN_ATTR_COMMENT" value=""/>
-<property name="EN_ATTR_NAME" value="*DE* Tabellenname"/>
+<property name="EN_ATTR_NAME" value="Table name"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Beschreibung" id="A33D2A43-0519-6C7E-4698-F27DFF71D1F1">
 <createdBy>stb</createdBy>
 <createdTime>2019-10-17 12:01:00 UTC</createdTime>
 <comment><![CDATA[Beschreibung des Attributes im Fremdsystem]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Beschreibung des Attributes im Fremdsystem
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Description of the attribute in the external system
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <use>0</use>
@@ -64,7 +88,7 @@
 <property name="DE_ATTR_COMMENT" value="Beschreibung des Attributes im Fremdsystem"/>
 <property name="DE_ATTR_NAME" value="Beschreibung"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Beschreibung des Attributes im Fremdsystem"/>
-<property name="EN_ATTR_NAME" value="*DE* Beschreibung"/>
+<property name="EN_ATTR_NAME" value="Description of the"/>
 </propertyMap>
 </Attribute>
 </attributes>

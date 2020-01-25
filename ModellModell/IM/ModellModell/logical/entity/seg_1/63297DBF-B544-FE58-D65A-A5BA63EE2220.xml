@@ -3,11 +3,26 @@
 <createdBy>stb</createdBy>
 <createdTime>2019-03-15 17:50:31 UTC</createdTime>
 <comment><![CDATA[Ein Datenzustand (z.B. tiefer Lagerbestand, zu viele offene Rechnungen für einen Kunden, tiefer oder hoher Kontostand etc.) löst einen Geschäftsprozess eine -transaktion aus oder ist das vorgesehene Ergebnis eines Prozesses.
+
+Beispiele:
+- Monatsende (Lohnzahlung, Bericht an Mgt, Mahnläufe)
+- jeden Montag (überprüfung der offenen Bestellungen)
+- Lagerbestand unter Schwellwert
+- Anzahl offene Bestellungen zu gross
+- Anzahl Servicefälle in einer Periode zu hoch
 ]]></comment>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+Ein Datenzustand (z.B. tiefer Lagerbestand, zu viele offene Rechnungen für einen Kunden, tiefer oder hoher Kontostand etc.) löst einen Geschäftsprozess eine -transaktion aus oder ist das vorgesehene Ergebnis eines Prozesses. 
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+A data state (e.g. low inventory, too many open invoices for a customer, low or high account balance, etc.) triggers a business process, a transaction or is the intended result of a process
+]EN_ENTI_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
 <typeID>1C6A8769-7651-51C0-9E0A-D0C138DE6193</typeID>
 <adequatelyNormalized>NO</adequatelyNormalized>
@@ -23,6 +38,6 @@
 <property name="DE_ENTI_COMMENT" value="Ein Datenzustand (z.B. tiefer Lagerbestand, zu viele offene Rechnungen für einen Kunden, tiefer oder hoher Kontostand etc.) löst einen Geschäftsprozess eine -transaktion aus oder ist das vorgesehene Ergebnis eines Prozesses. "/>
 <property name="DE_ENTI_NAME" value="Geschäftszustand"/>
 <property name="EN_ENTI_COMMENT" value="*DE* Ein Datenzustand (z.B. tiefer Lagerbestand, zu viele offene Rechnungen für einen Kunden, tiefer oder hoher Kontostand etc.) löst einen Geschäftsprozess eine -transaktion aus oder ist das vorgesehene Ergebnis eines Prozesses. "/>
-<property name="EN_ENTI_NAME" value="*DE* Geschäftszustand"/>
+<property name="EN_ENTI_NAME" value="Business condition"/>
 </propertyMap>
 </Entity>

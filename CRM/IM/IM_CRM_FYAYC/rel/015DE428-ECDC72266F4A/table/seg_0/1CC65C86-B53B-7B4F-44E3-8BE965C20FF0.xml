@@ -1,0 +1,144 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="1CC65C86-B53B-7B4F-44E3-8BE965C20FF0" name="Handelseinheit">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:03 UTC</createdTime>
+<comment><![CDATA[B2B Partner der unsere Produkte und Dienstleistungen weiter verkauft.
+Zwischenhändler, Vermittler, Servicedienstleister, Installateur]]></comment>
+<generatorID>9E6FEB02-2D59-5F8B-AFC7-E4122B03AF81</generatorID>
+<notes><![CDATA[[EN_ENTI_COMMENT[
+*DE* B2B Partner der unsere Produkte und Dienstleistungen weiter verkauft.
+Zwischenhändler, Vermittler, Servicedienstleister, Installateur
+]EN_ENTI_COMMENT]
+[DE_ENTI_COMMENT[
+B2B Partner der unsere Produkte und Dienstleistungen weiter verkauft.
+Zwischenhändler, Vermittler, Servicedienstleister, Installateur
+]DE_ENTI_COMMENT]
+[FR_ENTI_COMMENT[
+*EN* *DE* B2B Partner der unsere Produkte und Dienstleistungen weiter verkauft.
+Zwischenhändler, Vermittler, Servicedienstleister, Installateur
+]FR_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Handelseinheit_ID" id="ED8173EC-2C5E-07A5-5C4D-CD116FA4E10D">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:03 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+<Column name="Professionalisierungsgrad" id="095DDF7D-4E40-E1D3-E6E0-341CA3C1FAFA">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:03 UTC</createdTime>
+<comment><![CDATA[P(rofi), A(-Händler)]]></comment>
+<generatorID>E8384F47-2F2C-894C-92A5-9B59E5D7F12B</generatorID>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+*DE* P(rofi), A(-Händler)
+]EN_ATTR_COMMENT]
+[DE_ATTR_COMMENT[
+P(rofi), A(-Händler)
+]DE_ATTR_COMMENT]
+[FR_ATTR_COMMENT[
+*EN* *DE* P(rofi), A(-Händler)
+]FR_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Vertriebspartner_Vertriebsteilnehmer_Vertriebsteilnehmer_ID" id="D77F5DB9-EC41-626E-B0E6-A6E60ED1DE38">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:03 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="E6AEC45F-54B9-4ED9-E193-9DE8FC264AEF" referredColumn="BFDDDA87-C6D1-47A0-A10F-24FFE9021669"/>
+</associations>
+</Column>
+<Column name="Vertriebspartner_Vertriebspartner_ID" id="6BC593FA-70AD-9DDF-823E-82564F66145A">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:03 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="E6AEC45F-54B9-4ED9-E193-9DE8FC264AEF" referredColumn="F21B17DF-976B-CC83-3E1F-5AD4029F6DA2"/>
+</associations>
+</Column>
+<Column name="Wettbewerber_Wettbewerber_ID" id="57E95C84-C19F-FAAD-E1F3-CC999991C8C7">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:03 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="31A69BA6-25CA-E76E-AF06-DCB93524B7AF" referredColumn="76CE6587-072C-59F5-460A-9305BFC600C6"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="2D18CC9F-151E-9018-E9B2-95E33F89848F" name="Handelseinheit_PK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:03 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="ED8173EC-2C5E-07A5-5C4D-CD116FA4E10D"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="C34F10C4-E47F-69B1-20DC-CCFA6E79C09A" name="Handelseinheit_Vertriebspartner_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:03 UTC</createdTime>
+<generatorID>81B5A42E-5129-BFA5-D2AC-07B9BF33DD11</generatorID>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="D77F5DB9-EC41-626E-B0E6-A6E60ED1DE38"/>
+<colUsage columnID="6BC593FA-70AD-9DDF-823E-82564F66145A"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="67EAA4E3-47C1-6F9D-C2D4-016BA03C3CF9" name="Handelseinheit_Wettbewerber_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:03 UTC</createdTime>
+<generatorID>5C653051-4213-71D0-2D5C-E4813CD8EDE3</generatorID>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="57E95C84-C19F-FAAD-E1F3-CC999991C8C7"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

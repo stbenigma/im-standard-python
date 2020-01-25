@@ -14,6 +14,7 @@
 <createdBy>stb</createdBy>
 <createdTime>2019-10-30 09:39:37 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <use>0</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
 <domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
@@ -25,6 +26,7 @@
 <createdTime>2019-10-30 09:28:04 UTC</createdTime>
 <generatorID>4DA5699D-EE03-51A3-A977-DBA7D07B46CA</generatorID>
 <ownerDesignName>ModellModell</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
@@ -35,6 +37,7 @@
 <createdBy>stb</createdBy>
 <createdTime>2019-10-30 09:28:04 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <useDomainConstraints>false</useDomainConstraints>
 <use>0</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
@@ -47,10 +50,39 @@
 <colAssociation fkAssociation="A5850C93-8F4F-44BA-0645-58A99B6282CE" referredColumn="DCC7D86E-9F81-D6AD-07D8-5E679EB61A6D"/>
 </associations>
 </Column>
+<Column name="DIAG_LEGENDX" id="51C2EA5D-0993-B7D2-175A-1E48E2359D65">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-20 17:40:25 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<collectionType>C89AD2E9-29AC-3B36-E59F-F3BF7F41BBA1</collectionType>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>8</dataTypePrecision>
+<ownDataTypeParameters>,8,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DIAG_LEGENDY" id="443F6784-8D7C-775B-8B25-67090BE10A0E">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-20 17:40:25 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>8</dataTypePrecision>
+<ownDataTypeParameters>,8,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
 <Column name="DIAG_UC" id="513FFE7E-9AA2-E180-C6FE-EB831D2C5160">
 <createdBy>stb</createdBy>
 <createdTime>2019-10-30 09:37:23 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <formulaDesc>USER</formulaDesc>
 <sourceType>System</sourceType>
 <useDomainConstraints>false</useDomainConstraints>
@@ -68,6 +100,7 @@
 <createdBy>stb</createdBy>
 <createdTime>2019-10-30 09:37:23 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT047</logicalDatatype>
@@ -81,6 +114,7 @@
 <createdBy>stb</createdBy>
 <createdTime>2019-10-30 09:37:23 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -96,6 +130,7 @@
 <createdBy>stb</createdBy>
 <createdTime>2019-10-30 09:37:23 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -113,6 +148,7 @@
 <createdTime>2019-10-30 09:28:04 UTC</createdTime>
 <generatorID>4EE748DF-3DBC-DD0E-CB98-FBAE520A2DB0</generatorID>
 <ownerDesignName>ModellModell</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <pk>true</pk>
 <indexState>Primary Constraint</indexState>
 <isSurrogateKey>false</isSurrogateKey>
@@ -124,6 +160,7 @@
 <createdBy>stb</createdBy>
 <createdTime>2019-10-30 09:39:37 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <indexState>Unique Constraint</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>

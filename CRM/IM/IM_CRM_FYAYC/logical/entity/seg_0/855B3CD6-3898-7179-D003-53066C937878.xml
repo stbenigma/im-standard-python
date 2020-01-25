@@ -2,10 +2,39 @@
 <Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="855B3CD6-3898-7179-D003-53066C937878" name="Ansprechpartner">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 08:04:25 UTC</createdTime>
-<comment>Funktion einer Person für eine juristische Einheit. Im Spezialfall kann eine Person als Einzelfirma ihr eigener Ansprechspartner sein.&lt;br/&gt;&lt;br/&gt;26.6.18 - THU:&lt;br/&gt;Namen von Kontaktperson nach Ansprechpartner geändert&lt;br/&gt;Synonym von Ansprechpartner nach Kontaktperson geändert</comment>
+<comment><![CDATA[Funktion einer Person für eine juristische Einheit. Im Spezialfall kann eine Person als Einzelfirma ihr eigener Ansprechspartner sein.
+
+26.6.18 - THU:
+Namen von Kontaktperson nach Ansprechpartner geändert
+Synonym von Ansprechpartner nach Kontaktperson geändert]]></comment>
+<notes><![CDATA[[EN_ENTI_COMMENT[
+*DE* Funktion einer Person für eine juristische Einheit. Im Spezialfall kann eine Person als Einzelfirma ihr eigener Ansprechspartner sein.
+
+26.6.18 - THU:
+Namen von Kontaktperson nach Ansprechpartner geändert
+Synonym von Ansprechpartner nach Kontaktperson geändert
+]EN_ENTI_COMMENT]
+[DE_ENTI_COMMENT[
+Funktion einer Person für eine juristische Einheit. Im Spezialfall kann eine Person als Einzelfirma ihr eigener Ansprechspartner sein.
+
+26.6.18 - THU:
+Namen von Kontaktperson nach Ansprechpartner geändert
+Synonym von Ansprechpartner nach Kontaktperson geändert
+]DE_ENTI_COMMENT]
+[FR_ENTI_COMMENT[
+*DE* Funktion einer Person für eine juristische Einheit. Im Spezialfall kann eine Person als Einzelfirma ihr eigener Ansprechspartner sein.
+
+26.6.18 - THU:
+Namen von Kontaktperson nach Ansprechpartner geändert
+Synonym von Ansprechpartner nach Kontaktperson geändert
+]FR_ENTI_COMMENT]
+]]></notes>
 <ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
 <engineerTo>
-<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true"/>
+<item key="1AB27667-C11D-3493-68AA-DF92C84041A7" value="true"/>
+<item key="851DDEFA-B048-37E9-7826-4E48946EAF1C" value="true"/>
+<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="false"/>
+<item key="015DE428-05B6-58DD-323D-ECDC72266F4A" value="true"/>
 </engineerTo>
 <adequatelyNormalized>NO</adequatelyNormalized>
 <expectedVolumes>0</expectedVolumes>
@@ -17,18 +46,45 @@
 <normalForm>Third</normalForm>
 <synonym>Kontaktperson</synonym>
 <createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="DE_ENTI_NAME" value="Ansprechpartner"/>
+<property name="DE_ENTI_SYNONYM" value="Kontaktperson"/>
+<property name="EN_ENTI_NAME" value="Contact Person"/>
+<property name="EN_ENTI_SYNONYM" value="*DE* Kontaktperson"/>
+<property name="FR_ENTI_NAME" value="*DE* Ansprechpartner"/>
+<property name="FR_ENTI_SYNONYM" value="*DE* Kontaktperson"/>
+</propertyMap>
+<documents usedDucuments="D2A2540D-782C-B4AB-45BE-E542267116D2"/>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Gültigkeitsperiode" id="E86C351D-CBFB-5FA9-0FEE-A23EBCF81766">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 08:04:25 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+[FR_ATTR_COMMENT[
+
+]FR_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
 <importedID>287B1D85-08F9-0197-0B7B-656A0C7A7C3B</importedID>
 <engineerTo>
-<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true"/>
+<item key="1AB27667-C11D-3493-68AA-DF92C84041A7" value="true"/>
+<item key="851DDEFA-B048-37E9-7826-4E48946EAF1C" value="true"/>
+<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="false"/>
+<item key="015DE428-05B6-58DD-323D-ECDC72266F4A" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Gültigkeitsperiode"/>
+<property name="EN_ATTR_NAME" value="*DE* Gültigkeitsperiode"/>
+<property name="FR_ATTR_NAME" value="*DE* Gültigkeitsperiode"/>
+</propertyMap>
 </Attribute>
 </attributes>
 </Entity>

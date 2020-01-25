@@ -5,10 +5,18 @@
 <comment><![CDATA[Irgend eine Komponente die mit Informations Technologie zu tun hat und beschafft, betrieben und betreut  werden muss.
 
 Jede IT-Komponente hat einen Hersteller. D.h. es handelt sich um konkrete Produkte.]]></comment>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+Irgend eine Komponente die mit Informations Technologie zu tun hat und beschafft, betrieben und betreut  werden muss.  Jede IT-Komponente hat einen Hersteller. D.h. es handelt sich um konkrete Produkte.
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+Any component related to information technology that needs to be procured, operated and maintained.  Each IT component has a manufacturer. I.e. they are concrete products.
+]EN_ENTI_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="false"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
 <typeID>57779FAE-171C-9BB2-9F88-9B2ED7060C6F</typeID>
 <adequatelyNormalized>NO</adequatelyNormalized>
@@ -23,19 +31,25 @@ Jede IT-Komponente hat einen Hersteller. D.h. es handelt sich um konkrete Produk
 <propertyMap>
 <property name="DE_ENTI_COMMENT" value="Irgend eine Komponente die mit Informations Technologie zu tun hat und beschafft, betrieben und betreut  werden muss.  Jede IT-Komponente hat einen Hersteller. D.h. es handelt sich um konkrete Produkte."/>
 <property name="DE_ENTI_NAME" value="IT-Komponente"/>
-<property name="DE_ENTI_SYNONYM" value=""/>
 <property name="EN_ENTI_COMMENT" value="*DE* Irgend eine Komponente die mit Informations Technologie zu tun hat und beschafft, betrieben und betreut  werden muss.  Jede IT-Komponente hat einen Hersteller. D.h. es handelt sich um konkrete Produkte."/>
-<property name="EN_ENTI_NAME" value="*DE* IT-Komponente"/>
-<property name="EN_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_NAME" value="IT component"/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Name" id="E620B7E5-21B9-ADF5-D530-981CC31D9FDB">
 <createdBy>stb</createdBy>
 <createdTime>2018-11-26 16:08:10 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
@@ -43,36 +57,53 @@ Jede IT-Komponente hat einen Hersteller. D.h. es handelt sich um konkrete Produk
 <property name="DE_ATTR_COMMENT" value=""/>
 <property name="DE_ATTR_NAME" value="Name"/>
 <property name="EN_ATTR_COMMENT" value=""/>
-<property name="EN_ATTR_NAME" value="*DE* Name"/>
+<property name="EN_ATTR_NAME" value="Name"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Zweck" id="BF98F3F1-663A-71B7-4491-1BECD8F47FC1">
 <createdBy>stb</createdBy>
 <createdTime>2018-11-26 16:08:10 UTC</createdTime>
 <comment><![CDATA[Anwendungsgebiet (ERP, PIM, FiBu etc.)]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Anwendungsgebiet (ERP, PIM, FiBu etc.)
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Application area (ERP, PIM, FiBu etc.)
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <domain>CEF66788-EC07-3347-F213-6A5B74AB29A4</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_COMMENT" value="Anwendungsgebiet (ERP, PIM, FiBu etc.)"/>
 <property name="DE_ATTR_NAME" value="Zweck"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Anwendungsgebiet (ERP, PIM, FiBu etc.)"/>
-<property name="EN_ATTR_NAME" value="*DE* Zweck"/>
+<property name="EN_ATTR_NAME" value="Purpose"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Sicherheitsanforderung" id="6E0763A8-AB52-8D0C-B09E-650796B1CAA2">
 <createdBy>stb</createdBy>
 <createdTime>2019-10-03 09:52:31 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell</ownerDesignName>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <use>0</use>
@@ -81,7 +112,7 @@ Jede IT-Komponente hat einen Hersteller. D.h. es handelt sich um konkrete Produk
 <property name="DE_ATTR_COMMENT" value=""/>
 <property name="DE_ATTR_NAME" value="Sicherheitsanforderung"/>
 <property name="EN_ATTR_COMMENT" value=""/>
-<property name="EN_ATTR_NAME" value="*DE* Sicherheitsanforderung"/>
+<property name="EN_ATTR_NAME" value="Safety requirement"/>
 </propertyMap>
 </Attribute>
 </attributes>

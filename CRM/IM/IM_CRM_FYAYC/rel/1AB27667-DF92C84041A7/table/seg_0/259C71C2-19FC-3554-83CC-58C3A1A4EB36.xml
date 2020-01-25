@@ -1,0 +1,114 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="259C71C2-19FC-3554-83CC-58C3A1A4EB36" name="Vertriebskunde">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:10 UTC</createdTime>
+<comment><![CDATA[Ein Kunde ist jemand, der ein Produkt physisch besitzt, aber nicht primär damit Handel treiben , sondern es für den angestammten Zweck nutzen will.
+
+]]></comment>
+<generatorID>F57E2391-8CC4-D02B-8308-1E4C8BC123A7</generatorID>
+<notes><![CDATA[[EN_ENTI_COMMENT[
+*DE* Ein Kunde ist jemand, der ein Produkt physisch besitzt, aber nicht primär damit Handel treiben , sondern es für den angestammten Zweck nutzen will.
+
+
+]EN_ENTI_COMMENT]
+[DE_ENTI_COMMENT[
+Ein Kunde ist jemand, der ein Produkt physisch besitzt, aber nicht primär damit Handel treiben , sondern es für den angestammten Zweck nutzen will.
+
+
+]DE_ENTI_COMMENT]
+[FR_ENTI_COMMENT[
+*EN* *DE* Ein Kunde ist jemand, der ein Produkt physisch besitzt, aber nicht primär damit Handel treiben , sondern es für den angestammten Zweck nutzen will.
+
+
+]FR_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Vertriebskunde_ID" id="095B1C39-DD89-19F2-5628-8DBCB93A2CD4">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:10 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+<Column name="Vertriebsteilnehmer_Vertriebsteilnehmer_ID" id="A1AEA750-5D61-4D1F-B2A5-BF70F7900163">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:10 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Besitzer_Besitzer_ID" id="74F81756-7CB3-F29D-A9BD-39954C9C6B0D">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:10 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="C5D10E70-FC98-44F0-C2F1-6D33D3EB968F" referredColumn="08E67104-A7D4-AA20-F1CE-8730DA047D8B"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="1654F5E2-02F4-3019-4FE9-149B578123C2" name="Vertriebskunde_PK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:10 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="A1AEA750-5D61-4D1F-B2A5-BF70F7900163"/>
+<colUsage columnID="095B1C39-DD89-19F2-5628-8DBCB93A2CD4"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="1C0125BD-513E-5727-2377-33F78CF657F1" name="Vertriebskunde_Vertriebskunde_ID_UN">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:10 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="095B1C39-DD89-19F2-5628-8DBCB93A2CD4"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="5FDDBC00-C0CF-54A6-8786-71D9FB4CB757" name="Vertriebskunde__IDX">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:10 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<relationGeneratorID>37E297A1-AD87-C7A1-4802-5DE2F049D760</relationGeneratorID>
+<indexColumnUsage>
+<colUsage columnID="74F81756-7CB3-F29D-A9BD-39954C9C6B0D"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="54C3163A-6D24-6B46-7CCD-C3CA901D5736" name="Vertriebskunde_Besitzer_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:10 UTC</createdTime>
+<generatorID>37E297A1-AD87-C7A1-4802-5DE2F049D760</generatorID>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="74F81756-7CB3-F29D-A9BD-39954C9C6B0D"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

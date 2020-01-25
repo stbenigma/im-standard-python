@@ -11,11 +11,19 @@ ERP
 PIM
 FiBu
 ]]></comment>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+Eine Anwendung (Programm, SW-Paket) die als SW-Produkt gekauft oder selber hergestellt wurde. Die Anwendung kann zentral (Server, Cloud) oder lokal (Arbeitsplatz) installiert sein.  Wichtige Eigenschaft ist, dass die Daten nur einmal vorhanden sind und von allen Nutzenden gemeinsam genutzt werden. Durch welche Technologie ist irrelevant.  Beispiele: ERP PIM FiBu 
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+An application (program, SW package) that was purchased as a SW product or produced by the user. The application can be installed centrally (server, cloud) or locally (workstation).  An important feature is that the data only exists once and is shared by all users. By what technology is irrelevant.  Examples: ERP PIM FiBu
+]EN_ENTI_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
 <item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
 <typeID>57779FAE-171C-9BB2-9F88-9B2ED7060C6F</typeID>
 <adequatelyNormalized>NO</adequatelyNormalized>
@@ -32,7 +40,7 @@ FiBu
 <property name="DE_ENTI_NAME" value="Zentrale Anwendung"/>
 <property name="DE_ENTI_SYNONYM" value=""/>
 <property name="EN_ENTI_COMMENT" value="*DE* Eine Anwendung (Programm, SW-Paket) die als SW-Produkt gekauft oder selber hergestellt wurde. Die Anwendung kann zentral (Server, Cloud) oder lokal (Arbeitsplatz) installiert sein.  Wichtige Eigenschaft ist, dass die Daten nur einmal vorhanden sind und von allen Nutzenden gemeinsam genutzt werden. Durch welche Technologie ist irrelevant.  Beispiele: ERP PIM FiBu "/>
-<property name="EN_ENTI_NAME" value="*DE* Zentrale Anwendung"/>
+<property name="EN_ENTI_NAME" value="Central application"/>
 <property name="EN_ENTI_SYNONYM" value=""/>
 </propertyMap>
 </Entity>

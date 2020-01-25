@@ -1,0 +1,137 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="5ACB350B-4F46-8F92-10E1-92B4DE65EEA2" name="Produktinstanz">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:47 UTC</createdTime>
+<comment><![CDATA[einzelnes, weltweit identifizierbares Exemplar eines Produktes.
+
+Mit oder ohne IOT.
+
+]]></comment>
+<generatorID>A32C5003-C12A-FAF9-F8F8-A38135C65A71</generatorID>
+<notes><![CDATA[[EN_ENTI_COMMENT[
+*DE* einzelnes, weltweit identifizierbares Exemplar eines Produktes.
+
+Mit oder ohne IOT.
+
+
+]EN_ENTI_COMMENT]
+[DE_ENTI_COMMENT[
+einzelnes, weltweit identifizierbares Exemplar eines Produktes.
+
+Mit oder ohne IOT.
+
+
+]DE_ENTI_COMMENT]
+[FR_ENTI_COMMENT[
+*EN* *DE* einzelnes, weltweit identifizierbares Exemplar eines Produktes.
+
+Mit oder ohne IOT.
+
+
+]FR_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Serie-Nr" id="A1F3DCD2-C962-FA9C-61B9-4185497499EC">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:47 UTC</createdTime>
+<generatorID>F3C7BFA1-E8B3-80DC-668D-4EADED553B6B</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+[FR_ATTR_COMMENT[
+
+]FR_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Produktinstanz_ID" id="99BEAE97-BEB4-8D82-2635-1DD90DF75440">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:47 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+<Column name="Besitzer_Besitzer_ID" id="F04C17E4-DD7D-BC2C-5565-84E3AC0A3EAB">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:48 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="6BD9223D-20F8-F568-41C4-AEF90AA94ECC" referredColumn="ACA296A0-C2CD-7313-6AAB-5DD0FBEE4FF0"/>
+</associations>
+</Column>
+<Column name="Eigentümer_Eigentümer_ID" id="FA0C7071-603C-436B-828A-C55393CC0616">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:48 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="D694EFF5-0701-DC04-6BC4-8A69076B948E" referredColumn="9FF7AF8E-3895-7E14-2496-708492A1B7AF"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="F5820D4D-C756-65F2-02C0-AFB9932F9714" name="Produktinstanz_PK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:47 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="99BEAE97-BEB4-8D82-2635-1DD90DF75440"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="B85A10E1-9EFE-C3A5-E79A-19CA82C414CE" name="Produktinstanz_Besitzer_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:48 UTC</createdTime>
+<generatorID>67C54062-FD2D-C383-074F-89FBD3BAC5B4</generatorID>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="F04C17E4-DD7D-BC2C-5565-84E3AC0A3EAB"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="8726857C-43B2-3883-0F90-14F5B21631EB" name="Produktinstanz_Eigentümer_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:48 UTC</createdTime>
+<generatorID>DDD2F157-89F0-31C0-E795-36ED179DB5FC</generatorID>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="FA0C7071-603C-436B-828A-C55393CC0616"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
