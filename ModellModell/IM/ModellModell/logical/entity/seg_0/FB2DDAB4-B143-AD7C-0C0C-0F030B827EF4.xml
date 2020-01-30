@@ -1,0 +1,110 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="FB2DDAB4-B143-AD7C-0C0C-0F030B827EF4" name="Vorgabewerttransfomation">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-25 07:47:54 UTC</createdTime>
+<comment><![CDATA[Wert, der für eine Aufzählungs-Domäne im Fremdsystem den Wert aus dem SSoT System repräsentiert.
+]]></comment>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+Wert, der für eine Aufzählungs-Domäne im Fremdsystem den Wert aus dem SSoT System repräsentiert. 
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+Value that represents the value from the SSoT system for an enumeration domain in the external system
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="DE_ENTI_COMMENT" value="Wert, der für eine Aufzählungs-Domäne im Fremdsystem den Wert aus dem SSoT System repräsentiert. "/>
+<property name="DE_ENTI_NAME" value="Vorgabewerttransfomation"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_COMMENT" value="*DE* Wert, der für eine Aufzählungs-Domäne im Fremdsystem den Wert aus dem SSoT System repräsentiert. "/>
+<property name="EN_ENTI_NAME" value="Standard value transformation"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Wert" id="22962A00-3A05-BCC8-D0DA-B9CC3C4F3B0A">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-25 07:47:54 UTC</createdTime>
+<comment><![CDATA[physikalischer Wert eines Vorgabewertes im Fremdsystem]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+physikalischer Wert eines Vorgabewertes im Fremdsystem
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+physical value of a default value in the external system
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value="physikalischer Wert eines Vorgabewertes im Fremdsystem"/>
+<property name="DE_ATTR_NAME" value="Wert"/>
+<property name="EN_ATTR_COMMENT" value="*DE* physikalischer Wert eines Vorgabewertes im Fremdsystem"/>
+<property name="EN_ATTR_NAME" value="Value"/>
+</propertyMap>
+</Attribute>
+<Attribute name="Sortierreihenfolge" id="CB5AF5E9-CCE4-918F-0C2D-D8A47ED6C58C">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-25 07:47:54 UTC</createdTime>
+<comment><![CDATA[Zahl nach der die Werte im Zielsystem aufsteigend sortiert werden. Leer -> Wert kommt an den Schluss der Liste in zufälliger Reihenfolge]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Zahl nach der die Werte im Zielsystem aufsteigend sortiert werden. Leer -> Wert kommt an den Schluss der Liste in zufälliger Reihenfolge
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Number by which the values in the target system are sorted in ascending order. Empty -> Value is placed at the end of the list in random order
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value="Zahl nach der die Werte im Zielsystem aufsteigend sortiert werden. Leer -&gt; Wert kommt an den Schluss der Liste in zufälliger Reihenfolge"/>
+<property name="DE_ATTR_NAME" value="Sortierreihenfolge"/>
+<property name="EN_ATTR_COMMENT" value="*DE* Zahl nach der die Werte im Zielsystem aufsteigend sortiert werden. Leer -&gt; Wert kommt an den Schluss der Liste in zufälliger Reihenfolge"/>
+<property name="EN_ATTR_NAME" value="Sort order"/>
+</propertyMap>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="F773DDC1-736A-593A-180F-DB0ED6181D6B" name="VGWT_UK">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-25 07:47:54 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<newElementsIDs>BB9928A8-0EC7-33EB-43B5-945E2A38DBC1,D737BBB7-56C9-201C-7A6C-F620A3EA7254</newElementsIDs>
+</identifier>
+</identifiers>
+</Entity>

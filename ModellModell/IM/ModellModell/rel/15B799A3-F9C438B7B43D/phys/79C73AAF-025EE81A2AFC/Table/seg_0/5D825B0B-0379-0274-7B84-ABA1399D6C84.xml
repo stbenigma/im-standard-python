@@ -45,7 +45,7 @@
 <createdTime>2019-04-03 07:58:15 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 </ColumnProxy>
-<ColumnProxy name="BEZI_ARC_ID" id="5AC66F6D-67E2-A9E3-F86F-12C1B57A7971">
+<ColumnProxy name="BEZI_VON_ARC_ID" id="5AC66F6D-67E2-A9E3-F86F-12C1B57A7971">
 <createdBy>stb</createdBy>
 <createdTime>2019-04-03 07:58:15 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
@@ -58,6 +58,11 @@
 <ColumnProxy name="BEZI_ENTI_ID_ZU" id="6E1AA102-8EDD-9687-9ADD-2FA808FC98F7">
 <createdBy>stb</createdBy>
 <createdTime>2019-04-03 07:58:15 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="BEZI_TARGET_ENTI_GUID" id="913FFD81-464B-A0CD-6F9A-2E011A3D765E">
+<createdBy>stb</createdBy>
+<createdTime>2020-01-29 10:34:57 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 </ColumnProxy>
 <ColumnProxy name="BEZI_ASSOC_ZU_VON" id="92313DAC-23A0-979F-280E-7F4415E1AA2D">
@@ -95,13 +100,28 @@
 <createdTime>2019-04-03 07:58:15 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 </ColumnProxy>
+<ColumnProxy name="BEZI_ZU_ARC_ID" id="DCCBF29E-0C4E-E0D0-321E-ADFC880969DC">
+<createdBy>stb</createdBy>
+<createdTime>2020-01-29 10:34:57 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
 <ColumnProxy name="BEZI_HIST_ZU_VON" id="E64710BC-8C8D-A324-49F4-B5B31E383D8C">
 <createdBy>stb</createdBy>
 <createdTime>2019-04-03 07:58:15 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 </ColumnProxy>
+<ColumnProxy name="BEZI_SOURCE_ENTI_GUID" id="F1608D72-CA3F-D92D-AAFA-A078908A88A1">
+<createdBy>stb</createdBy>
+<createdTime>2020-01-29 10:34:57 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
 </columnProxies>
 <foreignKeys>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="BEZI_ZU_ARC_FK" id="98C58FC0-449F-C184-271A-72E8F8DADB30">
+<createdBy>stb</createdBy>
+<createdTime>2020-01-29 10:34:57 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ForeignKey>
 <ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="BEZI_ENTI_FK_VON" id="98F9F592-34F3-163B-9068-50E31B3D6D42">
 <createdBy>stb</createdBy>
 <createdTime>2019-04-03 07:58:15 UTC</createdTime>
@@ -112,7 +132,7 @@
 <createdTime>2019-04-03 07:58:15 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 </ForeignKey>
-<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="BEZI_ARC_FK" id="F3784918-1AF1-9809-9142-3D46ADB8527A">
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="BEZI_VON_ARC_FK" id="F3784918-1AF1-9809-9142-3D46ADB8527A">
 <createdBy>stb</createdBy>
 <createdTime>2019-04-03 07:58:15 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>

@@ -9,53 +9,25 @@
 <accessDriverType>oracle_loader</accessDriverType>
 <rejectLimit></rejectLimit>
 <columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
-<ColumnProxy name="MELT_SCHRIFTGRÖSSE" id="06877437-3BCB-288B-20DC-41E5F66C3BFE">
+<ColumnProxy name="MELT_SCHRIFTGROESSE" id="06877437-3BCB-288B-20DC-41E5F66C3BFE">
 <createdBy>stb</createdBy>
 <createdTime>2019-10-17 11:54:49 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
-</ColumnProxy>
-<ColumnProxy name="MELT_INHALTDARSTELLUNG.Deckkraft" id="0E7BEBFB-6298-8763-27D6-53A9DD3F9E41">
-<createdBy>stb</createdBy>
-<createdTime>2019-10-17 11:54:49 UTC</createdTime>
-<ownerDesignName>ModellModell</ownerDesignName>
-<defaultValue>100</defaultValue>
-</ColumnProxy>
-<ColumnProxy name="MELT_INHALTDARSTELLUNG.Breite" id="1BB3E1C9-46AD-2E3C-4C09-AC0C78651818">
-<createdBy>stb</createdBy>
-<createdTime>2019-10-17 11:54:49 UTC</createdTime>
-<ownerDesignName>ModellModell</ownerDesignName>
-</ColumnProxy>
-<ColumnProxy name="MELT_RANDDARSTELLUNG" id="2942F010-DBFA-B93D-7384-498A4109D690">
-<createdBy>stb</createdBy>
-<createdTime>2019-10-17 11:54:49 UTC</createdTime>
-<ownerDesignName>ModellModell</ownerDesignName>
-</ColumnProxy>
-<ColumnProxy name="MELT_RANDDARSTELLUNG.Farbe" id="2C63C86F-E5C8-D6E8-57BF-3DE36DBF6931">
-<createdBy>stb</createdBy>
-<createdTime>2019-10-17 11:54:49 UTC</createdTime>
-<ownerDesignName>ModellModell</ownerDesignName>
-<defaultValue>000000</defaultValue>
-</ColumnProxy>
-<ColumnProxy name="MELT_INHALTDARSTELLUNG.Farbe" id="335B8DEC-DE45-F5AA-2B7C-E44689F70EA9">
-<createdBy>stb</createdBy>
-<createdTime>2019-10-17 11:54:49 UTC</createdTime>
-<ownerDesignName>ModellModell</ownerDesignName>
-<defaultValue>000000</defaultValue>
 </ColumnProxy>
 <ColumnProxy name="MELT_NAME" id="365DE1AD-D242-5639-FAD4-219E33DF4D77">
 <createdBy>stb</createdBy>
 <createdTime>2019-10-17 11:54:49 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 </ColumnProxy>
-<ColumnProxy name="MELT_RANDDARSTELLUNG.Breitev1" id="37B088CD-9C93-7214-D628-95274EEFCA85">
+<ColumnProxy name="MELT_RANDDECKKRAFT" id="403AAD9F-EA65-E6E0-DA1A-7B4E0FB0E8B1">
 <createdBy>stb</createdBy>
-<createdTime>2019-10-17 11:54:49 UTC</createdTime>
+<createdTime>2020-01-29 10:34:57 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
-<defaultValue>1</defaultValue>
+<defaultValue>100</defaultValue>
 </ColumnProxy>
-<ColumnProxy name="MELT_INHALTDARSTELLUNG.Position" id="395E6ADF-FEFB-7B23-BD2A-610261D4F1E6">
+<ColumnProxy name="MELT_HOEHE" id="61916C3A-2221-589C-F591-800DF46E30F5">
 <createdBy>stb</createdBy>
-<createdTime>2019-10-17 11:54:49 UTC</createdTime>
+<createdTime>2020-01-29 10:34:57 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 </ColumnProxy>
 <ColumnProxy name="MELT_DM" id="654D55BC-4861-D3E9-F9D3-B0D064DF577E">
@@ -63,26 +35,34 @@
 <createdTime>2019-10-17 11:54:49 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 </ColumnProxy>
-<ColumnProxy name="MELT_INHALTDARSTELLUNG.Position.X" id="68B3D259-80BA-3896-8DB8-9FAFB0FE5C55">
+<ColumnProxy name="MELT_FARBE" id="76B53E35-999B-6466-CDA7-AE372E7693EC">
 <createdBy>stb</createdBy>
-<createdTime>2019-10-17 11:54:49 UTC</createdTime>
+<createdTime>2020-01-29 10:34:57 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<defaultValue>000000</defaultValue>
+</ColumnProxy>
+<ColumnProxy name="MELT_RANDBREITE" id="956E1294-6152-6C8A-E84D-7D012A89430E">
+<createdBy>stb</createdBy>
+<createdTime>2020-01-29 10:34:57 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<defaultValue>1</defaultValue>
+</ColumnProxy>
+<ColumnProxy name="MELT_RANDFARBE" id="AB6EA9E8-E771-9ABD-E2CA-D5DADD68ACAE">
+<createdBy>stb</createdBy>
+<createdTime>2020-01-29 10:34:57 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<defaultValue>000000</defaultValue>
+</ColumnProxy>
+<ColumnProxy name="MELT_BREITE" id="AC02CE6B-1A00-9FBF-3F1F-67521499BD5A">
+<createdBy>stb</createdBy>
+<createdTime>2020-01-29 10:34:57 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 </ColumnProxy>
-<ColumnProxy name="MELT_RANDDARSTELLUNG.Deckkraft" id="6A5E6200-1712-9D1D-C1A7-517D2E9B4D68">
+<ColumnProxy name="MELT_DECKKRAFT" id="C772BBE7-D010-B307-675E-16FC4CD33F96">
 <createdBy>stb</createdBy>
-<createdTime>2019-10-17 11:54:49 UTC</createdTime>
+<createdTime>2020-01-29 10:34:57 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 <defaultValue>100</defaultValue>
-</ColumnProxy>
-<ColumnProxy name="MELT_INHALTDARSTELLUNG.Höhe" id="9D935BC6-F88C-8CA2-AB9F-49311B4FEECC">
-<createdBy>stb</createdBy>
-<createdTime>2019-10-17 11:54:49 UTC</createdTime>
-<ownerDesignName>ModellModell</ownerDesignName>
-</ColumnProxy>
-<ColumnProxy name="MELT_INHALTDARSTELLUNG.Position.Y" id="AF104F64-B722-B4B4-2926-CE01332EF399">
-<createdBy>stb</createdBy>
-<createdTime>2019-10-17 11:54:49 UTC</createdTime>
-<ownerDesignName>ModellModell</ownerDesignName>
 </ColumnProxy>
 <ColumnProxy name="MELT_UC" id="C9CD815C-0CB4-9555-E1D1-8F6EE9D36FE2">
 <createdBy>stb</createdBy>
@@ -102,11 +82,6 @@
 <ownerDesignName>ModellModell</ownerDesignName>
 </ColumnProxy>
 <ColumnProxy name="MELT_KURZNAME" id="EA527D6B-B718-FF47-5235-242C5F7A4638">
-<createdBy>stb</createdBy>
-<createdTime>2019-10-17 11:54:49 UTC</createdTime>
-<ownerDesignName>ModellModell</ownerDesignName>
-</ColumnProxy>
-<ColumnProxy name="MELT_INHALTDARSTELLUNG" id="EFFDA692-325F-F81E-C131-A26D197AD230">
 <createdBy>stb</createdBy>
 <createdTime>2019-10-17 11:54:49 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>

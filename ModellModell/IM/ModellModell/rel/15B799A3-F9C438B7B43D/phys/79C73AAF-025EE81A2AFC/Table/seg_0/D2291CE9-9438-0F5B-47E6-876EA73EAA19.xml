@@ -1,0 +1,67 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev12c class="oracle.dbtools.crest.model.design.storage.oracle.v12c.TableProxyOraclev12c" name="Anderes_IT-System" directorySegmentName="seg_0" id="D2291CE9-9438-0F5B-47E6-876EA73EAA19">
+<createdBy>stb</createdBy>
+<createdTime>2020-01-29 10:34:57 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<temporaryChanged>false</temporaryChanged>
+<accessDriverType>oracle_loader</accessDriverType>
+<rejectLimit></rejectLimit>
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="Anderes_IT-System_ID" id="2AE33F35-F804-2DBB-6D1E-937349A4E89F">
+<createdBy>stb</createdBy>
+<createdTime>2020-01-29 10:34:57 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="Name_" id="63C63737-5CA6-D2BB-0500-08CECFB3F734">
+<createdBy>stb</createdBy>
+<createdTime>2020-01-29 10:34:57 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="IT-Komponente_IT-Komponente_ID" id="799BD635-2013-72B4-AD62-E16C58C20941">
+<createdBy>stb</createdBy>
+<createdTime>2020-01-29 10:34:57 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="Zeichnsatz" id="7CAFE3E7-684C-A2FC-A86A-5C23E614AE35">
+<createdBy>stb</createdBy>
+<createdTime>2020-01-29 10:34:57 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="Name" id="B7779189-3D59-B4D2-8B16-05EB9F5766C1">
+<createdBy>stb</createdBy>
+<createdTime>2020-01-29 10:34:57 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+<foreignKeys>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="Anderes_IT-System_IT-Komponente_FK" id="D91C2582-C981-00C6-EB61-30C4E759774A">
+<createdBy>stb</createdBy>
+<createdTime>2020-01-29 10:34:57 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ForeignKey>
+</foreignKeys>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="Anderes_IT-System_PK" id="8D5BC07A-C8D2-B924-68AF-2754FA18AE69">
+<createdBy>stb</createdBy>
+<createdTime>2020-01-29 10:34:57 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexSort>SORTED</indexSort>
+</PrimaryKey>
+</primaryKeys>
+<uniqueKeys>
+<UniqueKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.UniqueOraclev10g" name="Anderes_IT-System_Name_UN" id="183CD9AD-AB82-19D7-847F-67BD2AD2B068">
+<createdBy>stb</createdBy>
+<createdTime>2020-01-29 10:34:57 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexSort>SORTED</indexSort>
+</UniqueKey>
+<UniqueKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.UniqueOraclev10g" name="Anderes_IT-System_Anderes_IT-System_ID_UN" id="46C76541-9454-6BDD-960F-2B15EDE04140">
+<createdBy>stb</createdBy>
+<createdTime>2020-01-29 10:34:57 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexSort>SORTED</indexSort>
+</UniqueKey>
+</uniqueKeys>
+</TableProxyOraclev12c>

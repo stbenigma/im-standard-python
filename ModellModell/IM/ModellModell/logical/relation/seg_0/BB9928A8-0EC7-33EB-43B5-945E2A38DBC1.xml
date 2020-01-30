@@ -1,0 +1,28 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_97" directorySegmentName="seg_0" id="BB9928A8-0EC7-33EB-43B5-945E2A38DBC1">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-25 07:49:59 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
+</engineerTo>
+<useSurrogateKey>true</useSurrogateKey>
+<identifying>true</identifying>
+<nameOnSource>nutzt</nameOnSource>
+<nameOnTarget>gilt für</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>67486AF6-A48F-0ED0-B3A8-FE8A5010B861</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>FB2DDAB4-B143-AD7C-0C0C-0F030B827EF4</targetEntity>
+<transferable>true</transferable>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="nutzt"/>
+<property name="DE_RELA_TEXT_TO" value="gilt für"/>
+<property name="EN_RELA_TEXT_FROM" value="uses"/>
+<property name="EN_RELA_TEXT_TO" value="applies to"/>
+</propertyMap>
+</Relation>

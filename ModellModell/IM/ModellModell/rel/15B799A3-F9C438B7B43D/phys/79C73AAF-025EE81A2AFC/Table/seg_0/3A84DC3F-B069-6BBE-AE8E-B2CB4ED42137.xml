@@ -1,0 +1,51 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev12c class="oracle.dbtools.crest.model.design.storage.oracle.v12c.TableProxyOraclev12c" name="Anwendungsfall" directorySegmentName="seg_0" id="3A84DC3F-B069-6BBE-AE8E-B2CB4ED42137">
+<createdBy>stb</createdBy>
+<createdTime>2020-01-29 10:34:57 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<temporaryChanged>false</temporaryChanged>
+<accessDriverType>oracle_loader</accessDriverType>
+<rejectLimit></rejectLimit>
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="GETRANS_GETRANS_ID" id="3B155288-9A31-344E-5BDA-1F381434DF9F">
+<createdBy>stb</createdBy>
+<createdTime>2020-01-29 10:34:57 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="Bezeichnung" id="63E6253E-83D7-9696-0DAF-D16449A2A534">
+<createdBy>stb</createdBy>
+<createdTime>2020-01-29 10:34:57 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="Anwendungsfall_ID" id="B58B1386-09E7-2146-88A6-8C06F27FEC99">
+<createdBy>stb</createdBy>
+<createdTime>2020-01-29 10:34:57 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+<foreignKeys>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="Anwendungsfall_GETRANS_FK" id="81FD6213-C6FE-D5F8-8546-61F11E0B388D">
+<createdBy>stb</createdBy>
+<createdTime>2020-01-29 10:34:57 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ForeignKey>
+</foreignKeys>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="Anwendungsfall_PK" id="A8F146DC-2FE1-47B9-5583-0D30297A8C91">
+<createdBy>stb</createdBy>
+<createdTime>2020-01-29 10:34:57 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexSort>SORTED</indexSort>
+</PrimaryKey>
+</primaryKeys>
+<uniqueKeys>
+<UniqueKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.UniqueOraclev10g" name="Anwendungsfall_Anwendungsfall_ID_UN" id="E5864270-4684-82FB-1543-DE1576DD680A">
+<createdBy>stb</createdBy>
+<createdTime>2020-01-29 10:34:57 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexSort>SORTED</indexSort>
+</UniqueKey>
+</uniqueKeys>
+</TableProxyOraclev12c>
