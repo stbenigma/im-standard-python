@@ -111,6 +111,8 @@ function importFile(fpath){
  			}
  		if (lnoif==0){
  			relModel=values[0];
+ 			// falls 1. Zeichen von Excel stammt, schneide es ab
+ 			 if (relModel.match(/^[^A-Za-z]/)) relModel = relModel.substring(1)
  			//message(lnoif+': '+"RelModel= |"+relModel+"|");
  		} else 
  		if (lnoif==1){
