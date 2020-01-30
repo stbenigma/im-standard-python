@@ -21,6 +21,7 @@
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 <item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
 </engineerTo>
+<typeID>57779FAE-171C-9BB2-9F88-9B2ED7060C6F</typeID>
 <adequatelyNormalized>NO</adequatelyNormalized>
 <expectedVolumes>0</expectedVolumes>
 <fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
@@ -89,6 +90,65 @@ Description of the attribute in the external system
 <property name="DE_ATTR_NAME" value="Beschreibung"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Beschreibung des Attributes im Fremdsystem"/>
 <property name="EN_ATTR_NAME" value="Description of the"/>
+</propertyMap>
+</Attribute>
+<Attribute name="Auslöseart" id="D05F94DF-2D09-8608-8254-2D195A894C6E">
+<createdBy>stb</createdBy>
+<createdTime>2020-01-30 07:54:11 UTC</createdTime>
+<comment><![CDATA[Art der Auslösung der Transformation (Mutation, Periode, Manuell)]]></comment>
+<commentInRDBMS><![CDATA[Falls leer, wird die Auslöseart der Schnittstelle verwendet.]]></commentInRDBMS>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Art der Auslösung der Transformation (Mutation, Periode, Manuell)
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Type of triggering of transformation (mutation, period, manual)
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>55CB11A1-3EFC-3253-465C-D58D3D8252AD</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value="Art der Auslösung der Transformation (Mutation, Periode, Manuell)"/>
+<property name="DE_ATTR_NAME" value="Auslöseart"/>
+<property name="EN_ATTR_COMMENT" value="*DE* Art der Auslösung der Transformation (Mutation, Periode, Manuell)"/>
+<property name="EN_ATTR_NAME" value="Trigger type"/>
+</propertyMap>
+</Attribute>
+<Attribute name="Auslöseperiodizität" id="E8D00E2F-D170-9CD4-2290-C5C2BC28DE4D">
+<createdBy>stb</createdBy>
+<createdTime>2020-01-30 07:54:11 UTC</createdTime>
+<comment><![CDATA[Täglich, alle 2 Minuten o.ä. Obligatorisch, falls die Auslöseart Zeitpunkt ist.]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Täglich, alle 2 Minuten o.ä. Obligatorisch, falls die Auslöseart Zeitpunkt ist.
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Daily, every 2 minutes or similar. Mandatory if the trigger type is Time.
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>FEA1A894-BD6D-FEF8-423C-6857A9D694A1</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value="Täglich, alle 2 Minuten o.ä. Obligatorisch, falls die Auslöseart Zeitpunkt ist."/>
+<property name="DE_ATTR_NAME" value="Auslöseperiodizität"/>
+<property name="EN_ATTR_COMMENT" value="*DE* Täglich, alle 2 Minuten o.ä. Obligatorisch, falls die Auslöseart Zeitpunkt ist."/>
+<property name="EN_ATTR_NAME" value="Trigger frequency"/>
 </propertyMap>
 </Attribute>
 </attributes>

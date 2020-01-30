@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="8DBFEADB-BD39-A440-63E9-6D81B31BDD16" name="Wertliste">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="8DBFEADB-BD39-A440-63E9-6D81B31BDD16" name="Werteliste">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-22 14:50:13 UTC</createdTime>
 <comment><![CDATA[Eine Liste (abschliessende Aufzählung) von gültigen Werten Werten]]></comment>
@@ -27,14 +27,14 @@ A list (final enumeration) of valid values
 <maxVolumes>9999999</maxVolumes>
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
+<synonym>Domäne</synonym>
 <createSurrogateKey>true</createSurrogateKey>
 <propertyMap>
 <property name="Beispiele" value="Geschlecht (M/W) / Bestellstatus (offen, in Arbeit, geschlossen)"/>
 <property name="DE_ENTI_COMMENT" value="Eine Liste (abschliessende Aufzählung) von gültigen Werten Werten"/>
 <property name="DE_ENTI_NAME" value="Wertliste"/>
-<property name="DE_ENTI_SYNONYM" value=""/>
 <property name="EN_ENTI_COMMENT" value="*DE* Eine Liste (abschliessende Aufzählung) von gültigen Werten Werten"/>
 <property name="EN_ENTI_NAME" value="Value list"/>
-<property name="EN_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_SYNONYM" value="Domain"/>
 </propertyMap>
 </Entity>
