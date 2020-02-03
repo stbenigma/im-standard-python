@@ -39,9 +39,6 @@ Beispiele:
 <ownDataTypeParameters>,10,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
-<associations>
-<colAssociation fkAssociation="5F88C5E1-87A8-F22E-F71E-2DB519213E8A" referredColumn="AFA8DFB3-828E-E8E4-798C-B1D4BABDC1FF"/>
-</associations>
 </Column>
 <Column name="Anwendungsfall_ID" id="B58B1386-09E7-2146-88A6-8C06F27FEC99">
 <createdBy>stb</createdBy>
@@ -87,17 +84,6 @@ Beispiele:
 <indexState>Unique Constraint</indexState>
 <indexColumnUsage>
 <colUsage columnID="B58B1386-09E7-2146-88A6-8C06F27FEC99"/>
-</indexColumnUsage>
-</ind_PK_UK>
-<ind_PK_UK id="81FD6213-C6FE-D5F8-8546-61F11E0B388D" name="Anwendungsfall_GETRANS_FK">
-<createdBy>stb</createdBy>
-<createdTime>2019-11-20 17:44:28 UTC</createdTime>
-<generatorID>B6A250B6-2F44-3424-1EEB-36EB0798CD61</generatorID>
-<ownerDesignName>ModellModell</ownerDesignName>
-<indexState>Foreign Key</indexState>
-<isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
-<colUsage columnID="3B155288-9A31-344E-5BDA-1F381434DF9F"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>

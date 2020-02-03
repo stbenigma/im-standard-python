@@ -35,13 +35,6 @@
 <ownerDesignName>ModellModell</ownerDesignName>
 </ColumnProxy>
 </columnProxies>
-<foreignKeys>
-<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="Netzwerksystem_IT-Komponente_FK" id="DF2E3F71-3DDA-2D53-8707-0C0735AED914">
-<createdBy>stb</createdBy>
-<createdTime>2020-01-29 10:34:57 UTC</createdTime>
-<ownerDesignName>ModellModell</ownerDesignName>
-</ForeignKey>
-</foreignKeys>
 <primaryKeys>
 <PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="Netzwerksystem_PK" id="73C7618E-1510-5D7A-A0EF-43EE6FEB7A18">
 <createdBy>stb</createdBy>
@@ -60,6 +53,12 @@
 <UniqueKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.UniqueOraclev10g" name="Netzwerksystem_Netzwerksystem_ID_UN" id="67CD71DE-9947-C3E0-9DE4-0083753AE7D2">
 <createdBy>stb</createdBy>
 <createdTime>2020-01-29 10:34:57 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexSort>SORTED</indexSort>
+</UniqueKey>
+<UniqueKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.UniqueOraclev10g" name="Netzwerksystem__UN" id="D4B3B7C8-1D86-E58D-A047-948060F99D72">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 08:21:23 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
 <indexSort>SORTED</indexSort>
 </UniqueKey>

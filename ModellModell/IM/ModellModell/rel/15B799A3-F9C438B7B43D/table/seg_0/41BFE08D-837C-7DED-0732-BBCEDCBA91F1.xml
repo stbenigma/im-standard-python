@@ -26,9 +26,6 @@ gitHub Cloud]]></comment>
 <ownDataTypeParameters>,10,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
-<associations>
-<colAssociation fkAssociation="8536F1F8-AC7D-5FFD-472E-68F204F7D5E1" referredColumn="F165B26A-0345-21CE-2134-A915D7A4D65D"/>
-</associations>
 </Column>
 <Column name="Externes_System_ID" id="7A399EFD-E486-7F3D-B9DF-7E3540BFB03A">
 <createdBy>stb</createdBy>
@@ -112,16 +109,13 @@ gitHub Cloud]]></comment>
 <colUsage columnID="7A399EFD-E486-7F3D-B9DF-7E3540BFB03A"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="CD1E0309-31B7-67DD-A23D-8D960C6B8967" name="Externes_System_IT-Komponente_FK">
+<ind_PK_UK id="8B34A2DC-4679-8575-1FA9-6ECFCC8C1E80" name="Externes_System__UN">
 <createdBy>stb</createdBy>
-<createdTime>2019-11-20 17:44:28 UTC</createdTime>
-<generatorID>520C975B-BD74-5083-D8A8-8FE3F273BE37</generatorID>
+<createdTime>2020-02-03 08:21:23 UTC</createdTime>
+<generatorID>2608DA3A-BEF7-23E8-4779-062F797D4E7E</generatorID>
 <ownerDesignName>ModellModell</ownerDesignName>
-<indexState>Foreign Key</indexState>
+<indexState>Unique Constraint</indexState>
 <isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
-<colUsage columnID="4B0C8DD8-4BED-4C95-1B94-C58F1FB37DEB"/>
-</indexColumnUsage>
 </ind_PK_UK>
 </indexes>
 </Table>

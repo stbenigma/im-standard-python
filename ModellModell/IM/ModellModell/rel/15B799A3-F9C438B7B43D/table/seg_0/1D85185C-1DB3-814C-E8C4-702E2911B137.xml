@@ -34,9 +34,6 @@ enterprize data warehouse]]></comment>
 <ownDataTypeParameters>,10,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
-<associations>
-<colAssociation fkAssociation="E9E925CD-85F1-608D-BBDC-4477CE91F00B" referredColumn="F165B26A-0345-21CE-2134-A915D7A4D65D"/>
-</associations>
 </Column>
 <Column name="Datenbanksystem_ID" id="D8E8C1CD-05AA-2E99-2B4F-C260FAFA99E8">
 <createdBy>stb</createdBy>
@@ -120,16 +117,13 @@ enterprize data warehouse]]></comment>
 <colUsage columnID="D8E8C1CD-05AA-2E99-2B4F-C260FAFA99E8"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="3A05445F-5DF5-69A0-15F8-F54F15B2AF00" name="Datenbanksystem_IT-Komponente_FK">
+<ind_PK_UK id="98562F00-3579-B080-9948-1F17B76248B9" name="Datenbanksystem__UN">
 <createdBy>stb</createdBy>
-<createdTime>2019-11-20 17:44:28 UTC</createdTime>
-<generatorID>26FC1A48-5F87-840F-CBB5-4456C76C4AF1</generatorID>
+<createdTime>2020-02-03 08:21:23 UTC</createdTime>
+<generatorID>2608DA3A-BEF7-23E8-4779-062F797D4E7E</generatorID>
 <ownerDesignName>ModellModell</ownerDesignName>
-<indexState>Foreign Key</indexState>
+<indexState>Unique Constraint</indexState>
 <isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
-<colUsage columnID="E519E137-CAD1-6420-1660-52CF8732CD88"/>
-</indexColumnUsage>
 </ind_PK_UK>
 </indexes>
 </Table>

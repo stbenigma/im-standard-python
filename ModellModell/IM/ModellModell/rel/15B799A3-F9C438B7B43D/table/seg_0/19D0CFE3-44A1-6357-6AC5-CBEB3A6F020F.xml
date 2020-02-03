@@ -48,9 +48,6 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
-<associations>
-<colAssociation fkAssociation="7694A937-E719-75D7-F458-F35D87E7DB5A" referredColumn="B1D3D7C6-D459-592F-6DDB-6D7A3F3C1649"/>
-</associations>
 </Column>
 <Column name="ETUS_ENTI_ID" id="B270A364-6338-A6A3-3A34-D8F4F373353E">
 <createdBy>stb</createdBy>
@@ -146,16 +143,6 @@
 <indexColumnUsage>
 <colUsage columnID="CDB6E06B-4B10-8BB8-3119-F74570D617DE"/>
 <colUsage columnID="B270A364-6338-A6A3-3A34-D8F4F373353E"/>
-</indexColumnUsage>
-</ind_PK_UK>
-<ind_PK_UK id="F5E04299-6E6E-ABE8-9D5C-95ED366C4270" name="ETUS_SCHN_FK">
-<createdBy>stb</createdBy>
-<createdTime>2019-08-21 15:48:48 UTC</createdTime>
-<ownerDesignName>ModellModell</ownerDesignName>
-<indexState>Foreign Key</indexState>
-<isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
-<colUsage columnID="CDB6E06B-4B10-8BB8-3119-F74570D617DE"/>
 </indexColumnUsage>
 </ind_PK_UK>
 <ind_PK_UK id="3513C551-7F47-3C15-72CD-A78B7E6278CB" name="ETUS_ENTI_FK">

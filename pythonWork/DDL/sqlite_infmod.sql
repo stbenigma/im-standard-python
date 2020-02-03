@@ -800,3 +800,23 @@ create view spraattr as
 	  				          REFERENCES geschaeftsbereich(gber_id)
 	  				              ON DELETE CASCADE 
 			      )
+				  CREATE TABLE DOKUMENTE 
+				      (
+				       DOKU_ID integer primary key autoincrement,
+				       DOKU_NAME VARCHAR (60) NOT NULL , 
+				       DOKU_FORMAT VARCHAR (20) , 
+				       DOKU_REFERENZ VARCHAR (500) , 
+				       DOKU_DOKU_ID NUMERIC (10)  
+				      )
+				 
+				  CREATE TABLE MODELELEM_DOKU 
+				      (
+				       MODO_ID integer primary key autoincrement,
+				       MODO_DOKU_ID NUMERIC (10) NOT NULL , 
+				       MODO_MODE_ID NUMERIC (10) NOT NULL,
+					   CONSTRAINT MODO_UN UNIQUE (MODO_DOKU_ID , MODO_MODE_ID),
+					   CONSTRAINT DOKU_DOKU_FK FOREIGN KEY (DOKU_DOKU_ID) 
+					   				      REFERENCES DOKUMENTE ( DOKU_ID )ON DELETE CASCADE
+				  CONSTRAINT MODO_MODE_FK FOREIGN KEY (MODO_MODE_ID) 
+				      REFERENCES MODELLELEMENT (MODE_ID)   ON DELETE CASCADE
+			      )

@@ -19,9 +19,6 @@
 <ownDataTypeParameters>,10,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
-<associations>
-<colAssociation fkAssociation="F6D7A673-F669-9D31-99AA-0307CCA82912" referredColumn="F165B26A-0345-21CE-2134-A915D7A4D65D"/>
-</associations>
 </Column>
 <Column name="intern_verwalteter_Server_ID" id="E9F19C58-8029-6F73-A09B-8101C495C85A">
 <createdBy>stb</createdBy>
@@ -49,6 +46,25 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
+<Column name="Virtuell_(J/N)1" id="25909696-A48A-4B3F-9239-24E0B29BB24F">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 08:21:23 UTC</createdTime>
+<comment><![CDATA[Ist dies eine physische Maschine oder ein genutzte virtuelle?]]></comment>
+<generatorID>BA7B43A1-CC8C-BEF3-1AE4-ED10488BB11D</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Ist dies eine physische Maschine oder ein genutzte virtuelle?
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Is this a physical machine or a virtual one in use?
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell</ownerDesignName>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
 <ind_PK_UK id="644F6CA0-1486-8E39-78BD-864E0D160C88" name="intern_verwalteter_Server_PK">
@@ -68,17 +84,6 @@
 <indexState>Unique Constraint</indexState>
 <indexColumnUsage>
 <colUsage columnID="E9F19C58-8029-6F73-A09B-8101C495C85A"/>
-</indexColumnUsage>
-</ind_PK_UK>
-<ind_PK_UK id="D2820B73-F02E-2685-8054-2877D977885F" name="intern_verwalteter_Server_IT-Komponente_FK">
-<createdBy>stb</createdBy>
-<createdTime>2019-11-20 17:44:28 UTC</createdTime>
-<generatorID>49059145-A94A-7F2D-2FCE-AA388C252386</generatorID>
-<ownerDesignName>ModellModell</ownerDesignName>
-<indexState>Foreign Key</indexState>
-<isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
-<colUsage columnID="CFC31AAF-ACB5-F89C-9D5F-A493DF65BA5B"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>

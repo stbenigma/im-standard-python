@@ -27,9 +27,6 @@ Jira (div. Projektaufgabenverwaltungsaufgaben)]]></comment>
 <ownDataTypeParameters>,10,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
-<associations>
-<colAssociation fkAssociation="FC258A64-9ACF-6691-A049-6D6ECF62D3F7" referredColumn="F165B26A-0345-21CE-2134-A915D7A4D65D"/>
-</associations>
 </Column>
 <Column name="Anwendungsgruppe_ID" id="C6D0918F-5624-B6C6-3266-41B23A239F7D">
 <createdBy>stb</createdBy>
@@ -64,17 +61,6 @@ Jira (div. Projektaufgabenverwaltungsaufgaben)]]></comment>
 <indexState>Unique Constraint</indexState>
 <indexColumnUsage>
 <colUsage columnID="C6D0918F-5624-B6C6-3266-41B23A239F7D"/>
-</indexColumnUsage>
-</ind_PK_UK>
-<ind_PK_UK id="5163AA34-33E5-E9E5-E475-18EFC199D8E6" name="Anwendungsgruppe_IT-Komponente_FK">
-<createdBy>stb</createdBy>
-<createdTime>2019-11-20 17:44:28 UTC</createdTime>
-<generatorID>F9555034-D17F-301F-8C1B-B59C3D27628F</generatorID>
-<ownerDesignName>ModellModell</ownerDesignName>
-<indexState>Foreign Key</indexState>
-<isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
-<colUsage columnID="FB6CA417-16A7-6BDE-DEB4-F8926E46FF4B"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>

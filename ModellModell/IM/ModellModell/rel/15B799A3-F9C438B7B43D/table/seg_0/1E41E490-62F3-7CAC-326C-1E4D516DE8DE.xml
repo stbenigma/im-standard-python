@@ -25,9 +25,6 @@ Beispiel:
 <ownDataTypeParameters>,10,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
-<associations>
-<colAssociation fkAssociation="A0233C38-A286-F01F-FBBC-E27CE9428E62" referredColumn="AFA8DFB3-828E-E8E4-798C-B1D4BABDC1FF"/>
-</associations>
 </Column>
 <Column name="Interner_Prozess_ID" id="8E8D05EC-B12C-BA2C-B982-F3806C3A6C29">
 <createdBy>stb</createdBy>
@@ -62,17 +59,6 @@ Beispiel:
 <indexState>Unique Constraint</indexState>
 <indexColumnUsage>
 <colUsage columnID="8E8D05EC-B12C-BA2C-B982-F3806C3A6C29"/>
-</indexColumnUsage>
-</ind_PK_UK>
-<ind_PK_UK id="8013DDE4-12CF-2772-E05D-A23DEA910FB7" name="Interner_Prozess_GETRANS_FK">
-<createdBy>stb</createdBy>
-<createdTime>2019-11-20 17:44:28 UTC</createdTime>
-<generatorID>2A18F9A6-26A7-872D-8E41-8B69751D95BA</generatorID>
-<ownerDesignName>ModellModell</ownerDesignName>
-<indexState>Foreign Key</indexState>
-<isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
-<colUsage columnID="D4244B7A-A839-82DE-615C-20F4536349AF"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>

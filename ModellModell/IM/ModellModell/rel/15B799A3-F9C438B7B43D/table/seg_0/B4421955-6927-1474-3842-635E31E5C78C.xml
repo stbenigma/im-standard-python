@@ -19,9 +19,6 @@
 <ownDataTypeParameters>,10,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
-<associations>
-<colAssociation fkAssociation="B675FB05-376B-B40B-F641-6CB83D343463" referredColumn="F165B26A-0345-21CE-2134-A915D7A4D65D"/>
-</associations>
 </Column>
 <Column name="Netzwerksystem_ID" id="2341D7C9-9378-4C66-699B-144435356EB2">
 <createdBy>stb</createdBy>
@@ -105,16 +102,13 @@
 <colUsage columnID="A5A946E6-91BD-646A-4C26-F94434E32BD6"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="DF2E3F71-3DDA-2D53-8707-0C0735AED914" name="Netzwerksystem_IT-Komponente_FK">
+<ind_PK_UK id="D4B3B7C8-1D86-E58D-A047-948060F99D72" name="Netzwerksystem__UN">
 <createdBy>stb</createdBy>
-<createdTime>2019-11-20 17:44:28 UTC</createdTime>
-<generatorID>54D06976-044D-7306-ECF2-A3DFF5887604</generatorID>
+<createdTime>2020-02-03 08:21:23 UTC</createdTime>
+<generatorID>2608DA3A-BEF7-23E8-4779-062F797D4E7E</generatorID>
 <ownerDesignName>ModellModell</ownerDesignName>
-<indexState>Foreign Key</indexState>
+<indexState>Unique Constraint</indexState>
 <isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
-<colUsage columnID="A53DA6A9-86BA-3E8F-84EE-015E784D7BB3"/>
-</indexColumnUsage>
 </ind_PK_UK>
 </indexes>
 </Table>

@@ -1,0 +1,76 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="EBD5AB19-D888-53A9-77CF-BE1F88276EE8" name="ModellElement_Doku">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 08:21:23 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Netzwerksystem_IT-Komponente_IT-Komponente_ID" id="6A7F9B4A-D2B0-81D4-52E4-F6DC71846167">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 08:21:23 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="7951B376-B2E5-B6D8-C60D-52B27AFB397B" referredColumn="A53DA6A9-86BA-3E8F-84EE-015E784D7BB3"/>
+</associations>
+</Column>
+<Column name="DOCU_DOKU_ID" id="A3A85168-5618-6727-0BC1-17DCF7475E46">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 08:21:23 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="58306EAF-1852-9E7D-2BB9-BED13BBEC328" referredColumn="AD4ABF57-5CA8-A733-3CAA-2708E1B5DB01"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="C7EE3577-6483-CECA-1566-2FA3A7F6030F" name="ModellElement_Doku_PK">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 08:21:23 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="6A7F9B4A-D2B0-81D4-52E4-F6DC71846167"/>
+<colUsage columnID="A3A85168-5618-6727-0BC1-17DCF7475E46"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="7CEA55F5-D39D-1536-46A7-F5DA5D4BAF51" name="ModellElement_Doku_Netzwerksystem_FK">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 08:21:23 UTC</createdTime>
+<generatorID>7FA3B734-526E-79FA-9821-40C7CF213B8D</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="6A7F9B4A-D2B0-81D4-52E4-F6DC71846167"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="0808F9A8-18C2-E54A-2414-3E4FFC001559" name="ModellElement_Doku_DOCU_FK">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 08:21:23 UTC</createdTime>
+<generatorID>7FA3B734-526E-79FA-9821-40C7CF213B8D</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="A3A85168-5618-6727-0BC1-17DCF7475E46"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

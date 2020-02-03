@@ -89,9 +89,6 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
-<associations>
-<colAssociation fkAssociation="27018D2D-E789-4681-5F6C-F5D5AA3B839E" referredColumn="B1D3D7C6-D459-592F-6DDB-6D7A3F3C1649"/>
-</associations>
 </Column>
 <Column name="SCHA_DATY_ID" id="4DF971C5-E5F4-3533-0FB9-B9DDF38156D8">
 <createdBy>stb</createdBy>
@@ -187,16 +184,6 @@
 <indexColumnUsage>
 <colUsage columnID="E3A7546C-6D4E-116C-84AB-191FEAF3992B"/>
 <colUsage columnID="DFC9C46D-310A-F3D4-67B3-36DF421A5D8C"/>
-</indexColumnUsage>
-</ind_PK_UK>
-<ind_PK_UK id="334842C2-9842-167A-CB9B-77B56B1D4B91" name="SCHA_SCHN_FK">
-<createdBy>stb</createdBy>
-<createdTime>2019-08-21 09:56:01 UTC</createdTime>
-<ownerDesignName>ModellModell</ownerDesignName>
-<indexState>Foreign Key</indexState>
-<isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
-<colUsage columnID="2AA6B94F-4BE5-D7FB-C9B3-CA7A3F05071A"/>
 </indexColumnUsage>
 </ind_PK_UK>
 <ind_PK_UK id="EE821849-72AD-FB1A-39EF-2496EA279F94" name="SCHA_DATY_FK">

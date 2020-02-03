@@ -19,9 +19,6 @@
 <ownDataTypeParameters>,10,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
-<associations>
-<colAssociation fkAssociation="1CE4264E-DB98-9788-E17A-4119BE699E59" referredColumn="F165B26A-0345-21CE-2134-A915D7A4D65D"/>
-</associations>
 </Column>
 <Column name="Operation_System_ID" id="382555D1-878A-5FE2-ECC8-769DA658ADC0">
 <createdBy>stb</createdBy>
@@ -105,16 +102,13 @@
 <colUsage columnID="922F18C1-3D3A-AFD3-0A3A-EB52CE4683E7"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="1B85A635-202E-1873-608A-7C44B7311073" name="Operation_System_IT-Komponente_FK">
+<ind_PK_UK id="28C1E1F5-7C45-1612-A5CC-6974F57CAF2F" name="Operation_System__UN">
 <createdBy>stb</createdBy>
-<createdTime>2019-11-20 17:44:28 UTC</createdTime>
-<generatorID>42CB8A1E-1590-D19E-1E19-8971D89F8E87</generatorID>
+<createdTime>2020-02-03 08:21:23 UTC</createdTime>
+<generatorID>2608DA3A-BEF7-23E8-4779-062F797D4E7E</generatorID>
 <ownerDesignName>ModellModell</ownerDesignName>
-<indexState>Foreign Key</indexState>
+<indexState>Unique Constraint</indexState>
 <isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
-<colUsage columnID="7E4FD054-512C-C59C-35CA-946B3C087708"/>
-</indexColumnUsage>
 </ind_PK_UK>
 </indexes>
 </Table>

@@ -63,9 +63,6 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
-<associations>
-<colAssociation fkAssociation="31A0945E-187B-160A-3F84-CC6AF0E4CF16" referredColumn="B1D3D7C6-D459-592F-6DDB-6D7A3F3C1649"/>
-</associations>
 </Column>
 <Column name="VWTR_VGWT_ID" id="8559D9F2-10D8-1D6B-50AB-1AF69A0D1088">
 <createdBy>stb</createdBy>
@@ -172,16 +169,6 @@
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
 <colUsage columnID="8559D9F2-10D8-1D6B-50AB-1AF69A0D1088"/>
-</indexColumnUsage>
-</ind_PK_UK>
-<ind_PK_UK id="42132EAD-4FC3-E7B7-D741-33A3985DAB7F" name="VWTR_SCHN_FK">
-<createdBy>stb</createdBy>
-<createdTime>2019-08-21 09:52:01 UTC</createdTime>
-<ownerDesignName>ModellModell</ownerDesignName>
-<indexState>Foreign Key</indexState>
-<isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
-<colUsage columnID="F6C02354-EBFF-D735-9794-CF2C5D038798"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>
