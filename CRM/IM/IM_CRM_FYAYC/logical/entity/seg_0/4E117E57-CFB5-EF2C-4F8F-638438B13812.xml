@@ -28,13 +28,11 @@ Sachdienstmitarbeiter
 Verkaufsleiter
 ]DE_ENTI_COMMENT]
 [FR_ENTI_COMMENT[
-*DE* Beschreibung einer Rolle, die eine Ansprechsperson haben kann.
-
-Beispiele:
-CEO
-CIO
-Sachdienstmitarbeiter
-Verkaufsleiter
+Description d'un rôle qui peut définir une personne de contact. Exemples : 
+PDG 
+CIO 
+Travailleurs sociaux 
+Directeur des ventes
 ]FR_ENTI_COMMENT]
 ]]></notes>
 <ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
@@ -58,7 +56,7 @@ Verkaufsleiter
 <property name="DE_ENTI_SYNONYM" value=""/>
 <property name="EN_ENTI_NAME" value="*Role"/>
 <property name="EN_ENTI_SYNONYM" value=""/>
-<property name="FR_ENTI_NAME" value="*DE* Personenrolle"/>
+<property name="FR_ENTI_NAME" value="Fonction"/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Bezeichnung" id="40B36602-4348-FB5F-5BD1-C56AD78107F8">
@@ -71,7 +69,6 @@ Verkaufsleiter
 
 ]EN_ATTR_COMMENT]
 [FR_ATTR_COMMENT[
-
 ]FR_ATTR_COMMENT]
 ]]></notes>
 <ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
@@ -86,7 +83,7 @@ Verkaufsleiter
 <propertyMap>
 <property name="DE_ATTR_NAME" value="Bezeichnung"/>
 <property name="EN_ATTR_NAME" value="*DE* Bezeichnung"/>
-<property name="FR_ATTR_NAME" value="*DE* Bezeichnung"/>
+<property name="FR_ATTR_NAME" value="Dénomination"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Beschreibung" id="116DF002-EA64-1985-173B-A197A3118F61">
@@ -99,7 +96,6 @@ Verkaufsleiter
 
 ]EN_ATTR_COMMENT]
 [FR_ATTR_COMMENT[
-
 ]FR_ATTR_COMMENT]
 ]]></notes>
 <ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
@@ -115,7 +111,7 @@ Verkaufsleiter
 <propertyMap>
 <property name="DE_ATTR_NAME" value="Beschreibung"/>
 <property name="EN_ATTR_NAME" value="*DE* Beschreibung"/>
-<property name="FR_ATTR_NAME" value="*DE* Beschreibung"/>
+<property name="FR_ATTR_NAME" value="Description"/>
 </propertyMap>
 </Attribute>
 </attributes>

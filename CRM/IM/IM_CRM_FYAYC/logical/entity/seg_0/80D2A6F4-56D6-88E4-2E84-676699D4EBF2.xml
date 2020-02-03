@@ -64,25 +64,23 @@ A5: Gemeinde: Administrative Gemeinde im jeweiligen Land
 Flurnamen, Gemeindegebiete, alte Gemeindenamen (unterteilen Gemeinde) oder weitere Stufen
 ]DE_ENTI_COMMENT]
 [FR_ENTI_COMMENT[
-*DE* Gebietsunterteilung eines Landes in kleinere Einheiten.
+Division territoriale d'un pays en unités plus petites. Selon la NUTS (https://de. wikipedia. org/wiki/NUTS), le pays est à NUTS 0 
+NUTS 0 État-nation 
+NUTS 1 "grandes régions socio-économiques (regroupant les régions de base)"; . . . grandes régions/divisions 
+NUTS 2 "régions de base (pour l'application des politiques régionales)"; . . . régions moyennes, mégalopoles 
+NUTS 3 "petites régions (pour des diagnostics spécifiques)"; . . . les petites régions, dont certaines sont déjà de grandes villes 
+LAU 1 o. A. . . . les associations d'administration municipale, en partie des municipalités (non définies dans tous les États) 
+LAU 2 "municipalités ou unités équivalentes"; . . . communautés, unités partiellement communautaires 
 
-Gemäss NUTS (https://de.wikipedia.org/wiki/NUTS) ist das Land die Gebietsstufe NUTS 0
-NUTS 0	Nationalstaat
-NUTS 1	“major socio-economic regions (grouping basic regions)” … größere Regionen/Landesteile
-NUTS 2 	“basic regions (for the application of regional policies)” … mittelgroße Regionen, Millionenstädte
-NUTS 3	“small regions (for specific diagnoses)” … kleinere Regionen, teils schon Großstädte
-LAU 1	o.A. … kommunale Verwaltungsverbände, teils Gemeinden (nicht in allen Staaten definiert)
-LAU 2	“municipalities or equivalent units” … Gemeinden, teils Gemeindegliederungen
-
-Es kann weitere Hierarchiestufenbezeichnungen geben:
-Deutschland
-A0: Land
-A1: Bundesland
-A2: leer
-A3: Landkreis
-A4: leer
-A5: Gemeinde: Administrative Gemeinde im jeweiligen Land
-Flurnamen, Gemeindegebiete, alte Gemeindenamen (unterteilen Gemeinde) oder weitere Stufen
+Il peut y avoir d'autres noms de niveaux hiérarchiques : 
+Allemagne 
+A0 : Pays 
+A1 : État fédéral 
+A2 : vide 
+A3 : Comté 
+A4 : blanc 
+A5 : Municipalité : commune administrative dans le pays concerné 
+noms de champs, zones municipales, anciens noms de municipalités (subdivision de la municipalité) ou autres niveaux
 ]FR_ENTI_COMMENT]
 ]]></notes>
 <ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
@@ -107,7 +105,7 @@ Flurnamen, Gemeindegebiete, alte Gemeindenamen (unterteilen Gemeinde) oder weite
 <property name="DE_ENTI_SYNONYM" value=""/>
 <property name="EN_ENTI_NAME" value="Administrative Territory"/>
 <property name="EN_ENTI_SYNONYM" value=""/>
-<property name="FR_ENTI_NAME" value="*DE* Administrativgebiet"/>
+<property name="FR_ENTI_NAME" value="Région administrative"/>
 <property name="FR_ENTI_SYNONYM" value=""/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
@@ -122,7 +120,7 @@ Flurnamen, Gemeindegebiete, alte Gemeindenamen (unterteilen Gemeinde) oder weite
 A1-A4
 ]DE_ATTR_COMMENT]
 [FR_ATTR_COMMENT[
-*DE* A1-A4
+A1-A4
 ]FR_ATTR_COMMENT]
 ]]></notes>
 <ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
@@ -138,7 +136,7 @@ A1-A4
 <propertyMap>
 <property name="DE_ATTR_NAME" value="Administrativebene"/>
 <property name="EN_ATTR_NAME" value="Administrative Level"/>
-<property name="FR_ATTR_NAME" value="*DE* Administrativebene"/>
+<property name="FR_ATTR_NAME" value="Niveau administratif"/>
 </propertyMap>
 </Attribute>
 </attributes>

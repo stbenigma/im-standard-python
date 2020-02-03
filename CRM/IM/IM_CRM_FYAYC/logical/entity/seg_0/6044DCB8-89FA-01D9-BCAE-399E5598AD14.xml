@@ -37,15 +37,15 @@ fr-fr
 fr-ca
 ]DE_ENTI_COMMENT]
 [FR_ENTI_COMMENT[
-*DE* Lokale Variante einer Sprache
-Code wird zusammengesetzt aus ISO2-Sprachcode - ISO2-Landcode
+Variante locale d'une langue 
+Le code est composé du code de langue ISO2 et du code pays ISO2 
 
-Beispiele:
-de-de 
-de-at
-de-ch
-fr-ch
-fr-fr
+Exemples : 
+de-en 
+de-at 
+de-ch 
+fr-ch 
+fr-fr 
 fr-ca
 ]FR_ENTI_COMMENT]
 ]]></notes>
@@ -71,7 +71,7 @@ fr-ca
 <property name="DE_ENTI_SYNONYM" value=""/>
 <property name="EN_ENTI_NAME" value="Area Language"/>
 <property name="EN_ENTI_SYNONYM" value=""/>
-<property name="FR_ENTI_NAME" value="*DE* Gebietssprache"/>
+<property name="FR_ENTI_NAME" value="Langue"/>
 <property name="FR_ENTI_SYNONYM" value=""/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
@@ -104,7 +104,7 @@ fr-ca
 <propertyMap>
 <property name="DE_ATTR_NAME" value="Name [L]"/>
 <property name="EN_ATTR_NAME" value="*DE* Name [L]"/>
-<property name="FR_ATTR_NAME" value="*DE* Name [L]"/>
+<property name="FR_ATTR_NAME" value="Nom [L]"/>
 </propertyMap>
 </Attribute>
 <Attribute name="ISO-SprachLand_Code" id="410D6AF2-941E-E1F8-E04B-AA99D4245E6A">
@@ -118,7 +118,7 @@ fr-ca
 2stellen Sprache Iso, "-", 2 stellen Land-Iso
 ]DE_ATTR_COMMENT]
 [FR_ATTR_COMMENT[
-*DE* 2stellen Sprache Iso, "-", 2 stellen Land-Iso
+Code ISO du pays sur 2 positions
 ]FR_ATTR_COMMENT]
 ]]></notes>
 <ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
@@ -137,7 +137,7 @@ fr-ca
 <propertyMap>
 <property name="DE_ATTR_NAME" value="ISO-SprachLand_Code"/>
 <property name="EN_ATTR_NAME" value="*DE* ISO-SprachLand_Code"/>
-<property name="FR_ATTR_NAME" value="*DE* ISO-SprachLand_Code"/>
+<property name="FR_ATTR_NAME" value="Code ISO du pays"/>
 </propertyMap>
 </Attribute>
 </attributes>
