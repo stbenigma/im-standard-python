@@ -1,0 +1,29 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_182" directorySegmentName="seg_1" id="57F1A1C7-A7A7-BCF2-2C0A-99558C8E8846">
+<createdBy>stb</createdBy>
+<createdTime>2019-02-03 12:37:44 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
+</engineerTo>
+<useSurrogateKey>true</useSurrogateKey>
+<identifying>false</identifying>
+<nameOnSource>abgewickelt mit</nameOnSource>
+<nameOnTarget>realisiert</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>F86E14F1-5AB3-D203-38C5-60F7A9FE6085</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>41112E1C-C184-2FDA-489F-1F6298A36718</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="abgewickelt mit"/>
+<property name="DE_RELA_TEXT_TO" value="realisiert"/>
+<property name="EN_RELA_TEXT_FROM" value="unwound with"/>
+<property name="EN_RELA_TEXT_TO" value="realized"/>
+</propertyMap>
+</Relation>

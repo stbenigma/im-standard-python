@@ -1,0 +1,28 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_231" directorySegmentName="seg_1" id="DE6E9CF0-3363-6A30-A8F8-EF9A595A0D57">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-15 17:55:39 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
+</engineerTo>
+<useSurrogateKey>true</useSurrogateKey>
+<identifying>false</identifying>
+<nameOnSource>führt zu</nameOnSource>
+<nameOnTarget>erreicht mit</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>F86E14F1-5AB3-D203-38C5-60F7A9FE6085</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>63297DBF-B544-FE58-D65A-A5BA63EE2220</targetEntity>
+<transferable>true</transferable>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="führt zu"/>
+<property name="DE_RELA_TEXT_TO" value="erreicht mit"/>
+<property name="EN_RELA_TEXT_FROM" value="leads to"/>
+<property name="EN_RELA_TEXT_TO" value="achieved with"/>
+</propertyMap>
+</Relation>

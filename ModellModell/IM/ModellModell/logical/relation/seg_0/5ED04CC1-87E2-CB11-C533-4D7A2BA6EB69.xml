@@ -1,0 +1,29 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_57" directorySegmentName="seg_0" id="5ED04CC1-87E2-CB11-C533-4D7A2BA6EB69">
+<createdBy>stb</createdBy>
+<createdTime>2018-11-26 15:58:29 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<nameOnSource>betreibt</nameOnSource>
+<nameOnTarget>betrieben von</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>BFF61240-9FF4-452C-7864-AA7680C548D4</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>CFE2B0E2-7C7C-3289-90F3-1467F54FCB9E</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="betreibt"/>
+<property name="DE_RELA_TEXT_TO" value="betrieben von"/>
+<property name="EN_RELA_TEXT_FROM" value="operates"/>
+<property name="EN_RELA_TEXT_TO" value="operated by"/>
+</propertyMap>
+</Relation>

@@ -1,0 +1,29 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_59" directorySegmentName="seg_0" id="4D76EB4B-24E6-A225-1E99-E4400683FAEB">
+<createdBy>stb</createdBy>
+<createdTime>2018-11-26 15:59:09 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<nameOnSource>beherbergt</nameOnSource>
+<nameOnTarget>läuft in</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>DB450B2D-9C65-6429-1BEE-5757055BB563</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>41112E1C-C184-2FDA-489F-1F6298A36718</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="beherbergt"/>
+<property name="DE_RELA_TEXT_TO" value="läuft in"/>
+<property name="EN_RELA_TEXT_FROM" value="sheltered"/>
+<property name="EN_RELA_TEXT_TO" value="runs in"/>
+</propertyMap>
+</Relation>

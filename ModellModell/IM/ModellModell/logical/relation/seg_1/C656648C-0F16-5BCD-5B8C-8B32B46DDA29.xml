@@ -1,0 +1,28 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_236" directorySegmentName="seg_1" id="C656648C-0F16-5BCD-5B8C-8B32B46DDA29">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-05 07:18:34 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
+</engineerTo>
+<useSurrogateKey>true</useSurrogateKey>
+<identifying>false</identifying>
+<nameOnSource>löst aus</nameOnSource>
+<nameOnTarget>ausgelöst durch</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>5555ED41-5590-13C8-C379-5FC83128838D</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>F47DC79F-8955-9925-285F-E8929891ED39</targetEntity>
+<transferable>true</transferable>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="löst aus"/>
+<property name="DE_RELA_TEXT_TO" value="ausgelöst durch"/>
+<property name="EN_RELA_TEXT_FROM" value="triggers"/>
+<property name="EN_RELA_TEXT_TO" value="triggered by"/>
+</propertyMap>
+</Relation>

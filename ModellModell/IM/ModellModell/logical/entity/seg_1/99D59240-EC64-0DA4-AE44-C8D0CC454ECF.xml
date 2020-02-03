@@ -1,0 +1,43 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="99D59240-EC64-0DA4-AE44-C8D0CC454ECF" name="Anwendungsgruppe">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-03 12:21:22 UTC</createdTime>
+<comment><![CDATA[Zusammenfassung mehrerer Anwednungen zu einer Gruppe. Oft in einer Suite, einem Softwarepaket zusammen angeboten oder realisiert.
+
+Beispiele
+Office 365
+Google Docs
+AWS Amazon web Service
+SAP Commerce Cloud
+Jira (div. Projektaufgabenverwaltungsaufgaben)]]></comment>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+  Beispiele Office 365 Google Docs AWS Amazon web Service SAP Commerce Cloud
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+  Examples Office 365 Google Docs AWS Amazon web service SAP Commerce Cloud
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
+</engineerTo>
+<typeID>57779FAE-171C-9BB2-9F88-9B2ED7060C6F</typeID>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<hierarchicalParent>CFE2B0E2-7C7C-3289-90F3-1467F54FCB9E</hierarchicalParent>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="DE_ENTI_COMMENT" value="  Beispiele Office 365 Google Docs AWS Amazon web Service SAP Commerce Cloud"/>
+<property name="DE_ENTI_NAME" value="Applikationsgruppe"/>
+<property name="EN_ENTI_COMMENT" value="*DE*   Beispiele Office 365 Google Docs AWS Amazon web Service SAP Commerce Cloud"/>
+<property name="EN_ENTI_NAME" value="Application group"/>
+</propertyMap>
+</Entity>

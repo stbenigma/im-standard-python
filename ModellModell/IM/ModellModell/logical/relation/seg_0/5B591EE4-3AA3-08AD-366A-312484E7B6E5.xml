@@ -1,0 +1,30 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_123" directorySegmentName="seg_0" id="5B591EE4-3AA3-08AD-366A-312484E7B6E5">
+<createdBy>stb</createdBy>
+<createdTime>2018-11-04 11:33:07 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
+</engineerTo>
+<sourcePk>298E6664-EE9B-35DA-F9A6-566EA31E3066</sourcePk>
+<identifying>true</identifying>
+<nameOnSource>verknüpft durch (von)</nameOnSource>
+<nameOnTarget>verknüpft (von)</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>C579AF88-68C9-5A94-FD4C-E7B9A73BB814</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>4BEC4009-B321-3912-D30B-FADF6F8AF982</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="verknüpft durch (von)"/>
+<property name="DE_RELA_TEXT_TO" value="verknüpft (von)"/>
+<property name="EN_RELA_TEXT_FROM" value="linked by (from)"/>
+<property name="EN_RELA_TEXT_TO" value="linked (from)"/>
+</propertyMap>
+</Relation>

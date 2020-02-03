@@ -1,0 +1,52 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="84E8A0A1-4692-F686-5928-025451D5EB6F" name="Datenbanksystem">
+<createdBy>stb</createdBy>
+<createdTime>2018-11-26 16:00:25 UTC</createdTime>
+<comment><![CDATA[Alleinstehendes Datenbanksystem zur Verwaltung von Daten, dietypischerweise von mehreren Applikationen im Direktzugriff genutzt werden.
+
+Datenbanken ausschliesslich von einer Applikation direkt genutzt werden können und wenn überhaupt nur über Services der Applikation zugreifbar sind werden nicht als Datenbanksysteme aufgezeichnet. Sie sind integraler Bestandteil der Applikation.
+
+Beispiele:
+MDM-DB
+ERP-DB
+Oracle-DB
+mongo-db for documentstorage
+file-system
+excel for commonly used data
+access
+elastic search
+graph db
+enterprize data warehouse]]></comment>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+Alleinstehendes Datenbanksystem zur Verwaltung von Daten, dietypischerweise von mehreren Applikationen im Direktzugriff genutzt werden.  Datenbanken ausschliesslich von einer Applikation direkt genutzt werden können und wenn überhaupt nur über Services der Applikation zugreifbar sind werden nicht als Datenbanksysteme aufgezeichnet. Sie sind integraler Bestandteil der Applikation.  Beispiele: MDM-DB ERP-DB Oracle-DB mongo-db for documentstorage file-system excel for commonly used data access elastic search graph db enterprize data warehouse
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+Stand-alone database system for managing data that is typically used by several applications in direct access.  Databases that can only be used directly by an application and, if at all, can only be accessed via services of the application are not recorded as database systems. They are an integral part of the application.  Examples: MDM-DB ERP-DB Oracle-DB mongo-db for documentstorage file-system excel for commonly used data access elastic search graph db enterprize data warehouse
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
+</engineerTo>
+<typeID>57779FAE-171C-9BB2-9F88-9B2ED7060C6F</typeID>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<hierarchicalParent>DB450B2D-9C65-6429-1BEE-5757055BB563</hierarchicalParent>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<synonym>database system</synonym>
+<propertyMap>
+<property name="DE_ENTI_COMMENT" value="Alleinstehendes Datenbanksystem zur Verwaltung von Daten, dietypischerweise von mehreren Applikationen im Direktzugriff genutzt werden.  Datenbanken ausschliesslich von einer Applikation direkt genutzt werden können und wenn überhaupt nur über Services der Applikation zugreifbar sind werden nicht als Datenbanksysteme aufgezeichnet. Sie sind integraler Bestandteil der Applikation.  Beispiele: MDM-DB ERP-DB Oracle-DB mongo-db for documentstorage file-system excel for commonly used data access elastic search graph db enterprize data warehouse"/>
+<property name="DE_ENTI_NAME" value="Datenbanksystem"/>
+<property name="DE_ENTI_SYNONYM" value="database system"/>
+<property name="EN_ENTI_COMMENT" value="*DE* Alleinstehendes Datenbanksystem zur Verwaltung von Daten, dietypischerweise von mehreren Applikationen im Direktzugriff genutzt werden.  Datenbanken ausschliesslich von einer Applikation direkt genutzt werden können und wenn überhaupt nur über Services der Applikation zugreifbar sind werden nicht als Datenbanksysteme aufgezeichnet. Sie sind integraler Bestandteil der Applikation.  Beispiele: MDM-DB ERP-DB Oracle-DB mongo-db for documentstorage file-system excel for commonly used data access elastic search graph db enterprize data warehouse"/>
+<property name="EN_ENTI_NAME" value="Database system"/>
+<property name="EN_ENTI_SYNONYM" value="database system"/>
+</propertyMap>
+</Entity>

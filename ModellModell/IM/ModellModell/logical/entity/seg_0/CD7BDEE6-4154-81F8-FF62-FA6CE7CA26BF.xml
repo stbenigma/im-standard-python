@@ -1,0 +1,136 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="CD7BDEE6-4154-81F8-FF62-FA6CE7CA26BF" name="Persona">
+<createdBy>stb</createdBy>
+<createdTime>2019-02-03 12:05:01 UTC</createdTime>
+<comment><![CDATA[Archetyp einer Person mit definierten Merkmalen, mit einem bestimmten Verhalten in einem bestimmten Umfeld:
+Niutzerstellvertreter durch einen möglichst authentischen Steckbriedf beschrieben
+
+Beispiele:
+ Harry Hartmann
+ Lily AmHerd
+ Martin Muster]]></comment>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+Archetyp einer Person mit einem bestimmten Verhalten in einem bestimmten Umfeld: Bei Firmen ist die Persona z.B. ein Einkäufer, ein Broker, ein Händler  oder ein Managementmitglied.  Beispiele:  Harry Hartmann  Lily AmHerd  Martin Muster
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+Archetype of a person with a certain behavior in a certain environment: In companies, the persona is, for example, a buyer, a broker, a trader or a management member.  Examples:  Harry Hartmann Lily AmHerd Martin Sample
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
+</engineerTo>
+<typeID>13BF0DA4-6BF8-2C1F-0A19-8331A425ADFA</typeID>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<preferredAbbreviation>PERA</preferredAbbreviation>
+<shortName>PERSONA</shortName>
+<createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="DE_ENTI_COMMENT" value="Archetyp einer Person mit einem bestimmten Verhalten in einem bestimmten Umfeld: Bei Firmen ist die Persona z.B. ein Einkäufer, ein Broker, ein Händler  oder ein Managementmitglied.  Beispiele:  Harry Hartmann  Lily AmHerd  Martin Muster"/>
+<property name="DE_ENTI_NAME" value="Persona"/>
+<property name="EN_ENTI_COMMENT" value="*DE* Archetyp einer Person mit einem bestimmten Verhalten in einem bestimmten Umfeld: Bei Firmen ist die Persona z.B. ein Einkäufer, ein Broker, ein Händler  oder ein Managementmitglied.  Beispiele:  Harry Hartmann  Lily AmHerd  Martin Muster"/>
+<property name="EN_ENTI_NAME" value="Persona"/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Name" id="4873AF4A-6F82-E966-6485-21F06DD3D5BB">
+<createdBy>stb</createdBy>
+<createdTime>2019-12-19 09:06:57 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Alter" id="524C03C4-1919-5CEE-58B2-30F3BDAF9621">
+<createdBy>stb</createdBy>
+<createdTime>2019-12-19 09:07:09 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name=" Familienstand" id="9374DDD1-669A-DE45-87DE-3071B21C7726">
+<createdBy>stb</createdBy>
+<createdTime>2019-12-19 09:07:22 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Berufsgruppe" id="CEA770C4-566C-707F-E966-18140D4FDC08">
+<createdBy>stb</createdBy>
+<createdTime>2019-12-19 09:07:34 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Sprache" id="35B19460-2D61-0DF0-36F9-A6D16C432D7B">
+<createdBy>stb</createdBy>
+<createdTime>2019-12-19 09:07:40 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Religion" id="54CEDAB2-4C56-EF9A-0A65-361099984001">
+<createdBy>stb</createdBy>
+<createdTime>2019-12-19 09:07:45 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Wohnsituation" id="74C751FF-65F0-BA9A-CD4B-25818257E310">
+<createdBy>stb</createdBy>
+<createdTime>2019-12-19 09:07:50 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+</Entity>

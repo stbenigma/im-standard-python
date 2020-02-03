@@ -1,0 +1,28 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_249" directorySegmentName="seg_2" id="FF740961-7889-B21A-4C2B-305BF889D1A8">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-08 06:41:41 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
+</engineerTo>
+<useSurrogateKey>true</useSurrogateKey>
+<identifying>false</identifying>
+<nameOnSource>erweitert um</nameOnSource>
+<nameOnTarget>gepflegt für</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>117C4773-B758-77B4-DFD1-F0A9B2C78B1D</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>F0C0AE3F-2E30-4AE5-C926-FCA960AF9B45</targetEntity>
+<transferable>true</transferable>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="erweitert um"/>
+<property name="DE_RELA_TEXT_TO" value="gepflegt für"/>
+<property name="EN_RELA_TEXT_FROM" value="extended by"/>
+<property name="EN_RELA_TEXT_TO" value="maintained for"/>
+</propertyMap>
+</Relation>

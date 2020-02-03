@@ -1,0 +1,28 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_87" directorySegmentName="seg_1" id="5F1A1E49-754A-B3F9-3159-D65060936ED4">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-23 13:30:34 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
+</engineerTo>
+<useSurrogateKey>true</useSurrogateKey>
+<identifying>false</identifying>
+<nameOnSource>betroffen von</nameOnSource>
+<nameOnTarget>betrifft</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>E36EA698-3231-1EAA-1FA8-7DCBF8B404AC</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>C9EF7918-F5CC-0897-190A-CCD5A71E88D3</targetEntity>
+<transferable>true</transferable>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="betroffen von"/>
+<property name="DE_RELA_TEXT_TO" value="betrifft"/>
+<property name="EN_RELA_TEXT_FROM" value="affected by"/>
+<property name="EN_RELA_TEXT_TO" value="pertains"/>
+</propertyMap>
+</Relation>

@@ -1,0 +1,29 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_88" directorySegmentName="seg_0" id="AD9A6F3F-51FE-76FC-FE67-6FB58F3F31C2">
+<createdBy>stb</createdBy>
+<createdTime>2018-11-26 17:29:38 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<nameOnSource>erreichbar über</nameOnSource>
+<nameOnTarget>kapselt</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>CFE2B0E2-7C7C-3289-90F3-1467F54FCB9E</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>67486AF6-A48F-0ED0-B3A8-FE8A5010B861</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="erreichbar über"/>
+<property name="DE_RELA_TEXT_TO" value="verbindet ab"/>
+<property name="EN_RELA_TEXT_FROM" value="reachable via"/>
+<property name="EN_RELA_TEXT_TO" value="connects from"/>
+</propertyMap>
+</Relation>

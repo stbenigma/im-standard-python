@@ -1,0 +1,152 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="DC7D3A49-7135-87EB-430D-0CDE657C7C6B" name="Schlüssel">
+<createdBy>stb</createdBy>
+<createdTime>2018-11-04 11:57:07 UTC</createdTime>
+<comment><![CDATA[Gruppe von identifizierenden Beziehungen und oder Attributen einer Entität.
+Jede Kombination von Werten in einem Schlüssel ist für die Entität einmalig. 
+D.h. sie identifiziert genau 1 Eintrag in der Entität.
+
+Die Laufnummer ist ein Hilfsmittel. Genau genommen ist für einen Schlüssel nur eindeutig
+Entität + Menge aller Schlüsselelemente.]]></comment>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+Gruppe von identifizierenden Beziehungen und oder Attributen einer Entität. Jede Kombination von Werten in einem Schlüssel ist für die Entität einmalig.  D.h. sie identifiziert genau 1 Eintrag in der Entität.  Die Laufnummer ist ein Hilfsmittel. Genau genommen ist für einen Schlüssel nur eindeutig Entität + Menge aller Schlüsselelemente.
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+Group of identifying relationships and/or attributes of an entity. Each combination of values in a key is unique to the entity.  I.e. it identifies exactly 1 entry in the entity.  The sequence number is an aid. Strictly speaking, only the entity + set of all key elements is unique for a key.
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
+</engineerTo>
+<typeID>1C6A8769-7651-51C0-9E0A-D0C138DE6193</typeID>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<propertyMap>
+<property name="Beispiele" value="Rechnungsposition: Rechnung (Beziehung),  Position-Nr, Kunde: Kunden-Nr"/>
+<property name="DE_ENTI_COMMENT" value="Gruppe von identifizierenden Beziehungen und oder Attributen einer Entität. Jede Kombination von Werten in einem Schlüssel ist für die Entität einmalig.  D.h. sie identifiziert genau 1 Eintrag in der Entität.  Die Laufnummer ist ein Hilfsmittel. Genau genommen ist für einen Schlüssel nur eindeutig Entität + Menge aller Schlüsselelemente."/>
+<property name="DE_ENTI_NAME" value="Schlüssel"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_COMMENT" value="*DE* Gruppe von identifizierenden Beziehungen und oder Attributen einer Entität. Jede Kombination von Werten in einem Schlüssel ist für die Entität einmalig.  D.h. sie identifiziert genau 1 Eintrag in der Entität.  Die Laufnummer ist ein Hilfsmittel. Genau genommen ist für einen Schlüssel nur eindeutig Entität + Menge aller Schlüsselelemente."/>
+<property name="EN_ENTI_NAME" value="Key"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Laufnr" id="0F57A3C6-A117-9DD0-D738-0C5304B50953">
+<createdBy>stb</createdBy>
+<createdTime>2018-11-04 12:01:26 UTC</createdTime>
+<comment><![CDATA[Schlüssel einer Entität müssen durch ein Merkmal unterscheidbar werden.]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Schlüssel einer Entität müssen durch ein Merkmal unterscheidbar werden.
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+The keys of an entity must be distinguishable by a characteristic.
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>E2DCFC37-5428-9FE8-64FF-368960199E02</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value="Schlüssel einer Entität müssen durch ein Merkmal unterscheidbar werden."/>
+<property name="DE_ATTR_NAME" value="Laufnr"/>
+<property name="EN_ATTR_COMMENT" value="*DE* Schlüssel einer Entität müssen durch ein Merkmal unterscheidbar werden."/>
+<property name="EN_ATTR_NAME" value="Runnr"/>
+</propertyMap>
+</Attribute>
+<Attribute name="Entitätname [L]" id="C2F010F2-7FFD-ED64-4BB8-349B6679C246">
+<createdBy>stb</createdBy>
+<createdTime>2018-11-04 11:59:53 UTC</createdTime>
+<comment><![CDATA[Name der Entität der in der Kommunikation normalerweise gebraucht wird.]]></comment>
+<generatorID>A3F5C580-9F75-32B1-4F8D-41C2C9715BBB</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Name der Entität der in der Kommunikation normalerweise gebraucht wird.
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Name of the entity normally used in communication.
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
+</engineerTo>
+<referedAttribute>0F2758D2-C7D1-07D3-5C35-F1697AF2FBE0</referedAttribute>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value="Name der Entität der in der Kommunikation normalerweise gebraucht wird."/>
+<property name="DE_ATTR_NAME" value="Entitätname [L]"/>
+<property name="EN_ATTR_COMMENT" value="*DE* Name der Entität der in der Kommunikation normalerweise gebraucht wird."/>
+<property name="EN_ATTR_NAME" value="Entity name [L]"/>
+</propertyMap>
+</Attribute>
+<Attribute name="Name" id="6D04CA98-27CA-B063-D963-6A963B19B9A1">
+<createdBy>stb</createdBy>
+<createdTime>2019-09-05 08:05:24 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Name"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="Name"/>
+</propertyMap>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="0B9DBD0B-9D1E-62D8-C348-01E30DD8A3A5" name="Schlüssel PK">
+<createdBy>stb</createdBy>
+<createdTime>2018-11-04 11:59:53 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<newElementsIDs>A3F5C580-9F75-32B1-4F8D-41C2C9715BBB,0F57A3C6-A117-9DD0-D738-0C5304B50953</newElementsIDs>
+<usedAttributes>
+<attributeRef>C2F010F2-7FFD-ED64-4BB8-349B6679C246</attributeRef>
+<attributeRef>0F57A3C6-A117-9DD0-D738-0C5304B50953</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

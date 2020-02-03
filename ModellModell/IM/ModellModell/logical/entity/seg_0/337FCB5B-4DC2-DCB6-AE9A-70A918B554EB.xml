@@ -1,0 +1,42 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="337FCB5B-4DC2-DCB6-AE9A-70A918B554EB" name="Firma">
+<createdBy>stb</createdBy>
+<createdTime>2018-11-26 16:11:23 UTC</createdTime>
+<comment><![CDATA[Externe Firma, die irgend etwas mit der IT-landschaft / - Lösungen zu tun hat]]></comment>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+Externe Firma, die irgend etwas mit der IT-landschaft / - Lösungen zu tun hat
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+External company that has anything to do with the IT landscape / solutions
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
+</engineerTo>
+<typeID>F3ABFF84-45A4-A802-17D7-9BF8FFE20450</typeID>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<hierarchicalParent>F58446CF-B5F4-49CF-E551-910014664AC1</hierarchicalParent>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<shortName>FIRM</shortName>
+<attributeInherType>All atributes</attributeInherType>
+<discriminatorColumnName>TYPE</discriminatorColumnName>
+<discriminatorValue>FIRM</discriminatorValue>
+<completeSubtypes>true</completeSubtypes>
+<propertyMap>
+<property name="DE_ENTI_COMMENT" value="Externe Firma, die irgend etwas mit der IT-landschaft / - Lösungen zu tun hat"/>
+<property name="DE_ENTI_NAME" value="Firma"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_COMMENT" value="*DE* Externe Firma, die irgend etwas mit der IT-landschaft / - Lösungen zu tun hat"/>
+<property name="EN_ENTI_NAME" value="Firm"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+</propertyMap>
+</Entity>

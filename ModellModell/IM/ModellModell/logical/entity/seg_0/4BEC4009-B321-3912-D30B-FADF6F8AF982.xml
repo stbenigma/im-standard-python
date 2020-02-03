@@ -1,0 +1,305 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="4BEC4009-B321-3912-D30B-FADF6F8AF982" name="Beziehung">
+<createdBy>stb</createdBy>
+<createdTime>2018-11-04 11:27:00 UTC</createdTime>
+<comment><![CDATA[Verbindung zweier Entitäten mit Assoziationstext, Optionalität und Abbildungstyp
+
+Die in anderen Darstellungsarten gebräuchlichen Beziehungen können aus  Optionalität und Abbildungstyp hergeleitet werden
+0-1	Optional  - 1
+1-1	Pflicht - 1
+0-many	Optional - many
+1-many	Pflicht - many]]></comment>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+Verbindung zweier Entitäten mit Assoziationstext, Optionalität und Abbildungstyp  Die in anderen Darstellungsarten gebräuchlichen Beziehungen können aus  Optionalität und Abbildungstyp hergeleitet werden 0-1 Optional  - 1 1-1 Pflicht - 1 0-many Optional - many 1-many Pflicht - many
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+Connection of two entities with association text, optionality and mapping type The relationships common in other mapping types can be derived from optionality and mapping type 0-1 Optional - 1 1-1 Mandatory - 1 0-many Optional - many 1-many Mandatory - many
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell</ownerDesignName>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
+</engineerTo>
+<typeID>1C6A8769-7651-51C0-9E0A-D0C138DE6193</typeID>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<hierarchicalParent>A30A8D06-DD35-0230-707D-34689BB63E9A</hierarchicalParent>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<propertyMap>
+<property name="Beispiele" value="1 (Kunde) kauft mehrere (Artikel), (Organisationseinheit) wird geführt von 1 (Angestellter) "/>
+<property name="DE_ENTI_COMMENT" value="Verbindung zweier Entitäten mit Assoziationstext, Optionalität und Abbildungstyp  Die in anderen Darstellungsarten gebräuchlichen Beziehungen können aus  Optionalität und Abbildungstyp hergeleitet werden 0-1 Optional  - 1 1-1 Pflicht - 1 0-many Optional - many 1-many Pflicht - many"/>
+<property name="DE_ENTI_NAME" value="Beziehung"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_COMMENT" value="*DE* Verbindung zweier Entitäten mit Assoziationstext, Optionalität und Abbildungstyp  Die in anderen Darstellungsarten gebräuchlichen Beziehungen können aus  Optionalität und Abbildungstyp hergeleitet werden 0-1 Optional  - 1 1-1 Pflicht - 1 0-many Optional - many 1-many Pflicht - many"/>
+<property name="EN_ENTI_NAME" value="Relation"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Assoziation von-zu [L]" id="1E4F5AA9-8DAA-B81A-4D48-EDCE07CDC56A">
+<createdBy>stb</createdBy>
+<createdTime>2018-11-04 11:38:18 UTC</createdTime>
+<comment><![CDATA[Was verbindet die von-Entität mit der zu-Entität]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Was verbindet die von-Entität mit der zu-Entität
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+What connects the von-Entity with the zu-Entity?
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>D6C502B3-C779-CE1C-86D5-5492C6CA1E9F</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value="Was verbindet die von-Entität mit der zu-Entität"/>
+<property name="DE_ATTR_NAME" value="Assoziation von-zu [L]"/>
+<property name="EN_ATTR_COMMENT" value="*DE* Was verbindet die von-Entität mit der zu-Entität"/>
+<property name="EN_ATTR_NAME" value="Association from - to [L]"/>
+</propertyMap>
+</Attribute>
+<Attribute name="ist historisiert (von-zu)" id="075993E1-1E10-7A12-4137-89129E7305FB">
+<createdBy>stb</createdBy>
+<createdTime>2018-11-04 11:51:59 UTC</createdTime>
+<comment><![CDATA[JA -> Beziehung kann über die Zeit ändern. Zu einem Zeitpunkt kann nur 1 Beziehung gelten. System muss Historie der Änderungen führen.
+Über Extratabelle zu lösen.]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+JA -> Beziehung kann über die Zeit ändern. Zu einem Zeitpunkt kann nur 1 Beziehung gelten. System muss Historie der Änderungen führen. Über Extratabelle zu lösen.
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+YES -> Relationship can change over time. Only 1 relationship can apply at any one time. System must keep history of changes. To be solved via extra table.
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value="JA -&gt; Beziehung kann über die Zeit ändern. Zu einem Zeitpunkt kann nur 1 Beziehung gelten. System muss Historie der Änderungen führen. Über Extratabelle zu lösen."/>
+<property name="DE_ATTR_NAME" value="ist historisiert (von-zu)"/>
+<property name="EN_ATTR_COMMENT" value="*DE* JA -&gt; Beziehung kann über die Zeit ändern. Zu einem Zeitpunkt kann nur 1 Beziehung gelten. System muss Historie der Änderungen führen. Über Extratabelle zu lösen."/>
+<property name="EN_ATTR_NAME" value="is historicized (from-to)"/>
+</propertyMap>
+</Attribute>
+<Attribute name="Assoziation zu-von [L]" id="04281DBE-816F-1F3F-8ED9-0CFDF3ADD26F">
+<createdBy>stb</createdBy>
+<createdTime>2018-11-04 11:40:09 UTC</createdTime>
+<comment><![CDATA[Was verbindet die zu-Entität mit der von-Entität]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Was verbindet die zu-Entität mit der von-Entität
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+What connects the zu-Entity with the von-Entity?
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>D6C502B3-C779-CE1C-86D5-5492C6CA1E9F</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value="Was verbindet die zu-Entität mit der von-Entität"/>
+<property name="DE_ATTR_NAME" value="Assoziation zu-von [L]"/>
+<property name="EN_ATTR_COMMENT" value="*DE* Was verbindet die zu-Entität mit der von-Entität"/>
+<property name="EN_ATTR_NAME" value="Association to -of [L]"/>
+</propertyMap>
+</Attribute>
+<Attribute name="ist Pflichtbeziehung (zu-von)" id="06AEDDE9-FE7B-7129-3EA6-401A12A010FF">
+<createdBy>stb</createdBy>
+<createdTime>2018-11-04 11:41:00 UTC</createdTime>
+<comment><![CDATA[von-Entität muss mind. 1 eine Verbindung zur zu-Entität haben]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+von-Entität muss mind. 1 eine Verbindung zur zu-Entität haben
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+from entity must have at least 1 connection to the to entity
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value="von-Entität muss mind. 1 eine Verbindung zur zu-Entität haben"/>
+<property name="DE_ATTR_NAME" value="ist Pflichtbeziehung (zu-von)"/>
+<property name="EN_ATTR_COMMENT" value="*DE* von-Entität muss mind. 1 eine Verbindung zur zu-Entität haben"/>
+<property name="EN_ATTR_NAME" value="is mandatory relationship (to-from)"/>
+</propertyMap>
+</Attribute>
+<Attribute name="ist Pflichtbeziehung (von-zu)" id="EC3CAC2D-2EF8-5719-D7EA-DE61683E4F7F">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-26 14:29:44 UTC</createdTime>
+<comment><![CDATA[zu-Entität muss mind. 1 eine Verbindung zur von-Entität haben]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+zu-Entität muss mind. 1 eine Verbindung zur von-Entität haben
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+zu entity must have at least 1 connection to the von entity
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value="zu-Entität muss mind. 1 eine Verbindung zur von-Entität haben"/>
+<property name="DE_ATTR_NAME" value="ist Pflichtbeziehung (von-zu)"/>
+<property name="EN_ATTR_COMMENT" value="*DE* zu-Entität muss mind. 1 eine Verbindung zur von-Entität haben"/>
+<property name="EN_ATTR_NAME" value="is mandatory relationship (from-to)"/>
+</propertyMap>
+</Attribute>
+<Attribute name="ist historisiert (zu-von)" id="52497C2F-C07A-31B9-B155-25C63FF74114">
+<createdBy>stb</createdBy>
+<createdTime>2018-11-04 11:53:20 UTC</createdTime>
+<comment><![CDATA[JA -> Beziehung kann über die Zeit ändern. Zu einem Zeitpunkt kann nur 1 Beziehung gelten. System muss Historie der Änderungen führen.
+Über Extratabelle zu lösen.]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+JA -> Beziehung kann über die Zeit ändern. Zu einem Zeitpunkt kann nur 1 Beziehung gelten. System muss Historie der Änderungen führen. Über Extratabelle zu lösen.
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+YES -> Relationship can change over time. Only 1 relationship can apply at any one time. System must keep history of changes. To be solved via extra table.
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value="JA -&gt; Beziehung kann über die Zeit ändern. Zu einem Zeitpunkt kann nur 1 Beziehung gelten. System muss Historie der Änderungen führen. Über Extratabelle zu lösen."/>
+<property name="DE_ATTR_NAME" value="ist historisiert (zu-von)"/>
+<property name="EN_ATTR_COMMENT" value="*DE* JA -&gt; Beziehung kann über die Zeit ändern. Zu einem Zeitpunkt kann nur 1 Beziehung gelten. System muss Historie der Änderungen führen. Über Extratabelle zu lösen."/>
+<property name="EN_ATTR_NAME" value="is historicized (to-from)"/>
+</propertyMap>
+</Attribute>
+<Attribute name="Entitätname [L]" id="F024C5A0-4E7F-73FE-22DF-E11D4DFE5F93">
+<createdBy>stb</createdBy>
+<createdTime>2018-11-04 11:33:07 UTC</createdTime>
+<comment><![CDATA[Name der Entität der in der Kommunikation normalerweise gebraucht wird.]]></comment>
+<generatorID>5B591EE4-3AA3-08AD-366A-312484E7B6E5</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Name der Entität der in der Kommunikation normalerweise gebraucht wird.
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Name of the entity normally used in communication.
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
+</engineerTo>
+<referedAttribute>0F2758D2-C7D1-07D3-5C35-F1697AF2FBE0</referedAttribute>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value="Name der Entität der in der Kommunikation normalerweise gebraucht wird."/>
+<property name="DE_ATTR_NAME" value="Entitätname [L]"/>
+<property name="EN_ATTR_COMMENT" value="*DE* Name der Entität der in der Kommunikation normalerweise gebraucht wird."/>
+<property name="EN_ATTR_NAME" value="Entity name [L]"/>
+</propertyMap>
+</Attribute>
+<Attribute name="Entitätname [L]2" id="BD550A3D-10DD-61F1-8353-8C7215A160B2">
+<createdBy>stb</createdBy>
+<createdTime>2018-11-04 11:34:46 UTC</createdTime>
+<comment><![CDATA[Name der Entität der in der Kommunikation normalerweise gebraucht wird.]]></comment>
+<generatorID>0D6F90C6-EA21-2ED3-63D7-F12B6A0A64FC</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Name der Entität der in der Kommunikation normalerweise gebraucht wird.
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Name of the entity normally used in communication.
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
+</engineerTo>
+<referedAttribute>0F2758D2-C7D1-07D3-5C35-F1697AF2FBE0</referedAttribute>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value="Name der Entität der in der Kommunikation normalerweise gebraucht wird."/>
+<property name="DE_ATTR_NAME" value="Entitätname [L]2"/>
+<property name="EN_ATTR_COMMENT" value="*DE* Name der Entität der in der Kommunikation normalerweise gebraucht wird."/>
+<property name="EN_ATTR_NAME" value="Entity name [L]2"/>
+</propertyMap>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="CEB0C7CA-9CEF-89CC-1712-0634D0BB6B99" name="Beziehung PK">
+<createdBy>stb</createdBy>
+<createdTime>2018-11-04 11:34:35 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="E0B0DD8D-C724-D6BE-06BB-FC53FBE564ED" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+<item key="CEB82327-4574-0FB7-7839-2C67B215180F" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<newElementsIDs>5B591EE4-3AA3-08AD-366A-312484E7B6E5,0D6F90C6-EA21-2ED3-63D7-F12B6A0A64FC,1E4F5AA9-8DAA-B81A-4D48-EDCE07CDC56A,04281DBE-816F-1F3F-8ED9-0CFDF3ADD26F</newElementsIDs>
+<usedAttributes>
+<attributeRef>F024C5A0-4E7F-73FE-22DF-E11D4DFE5F93</attributeRef>
+<attributeRef>BD550A3D-10DD-61F1-8353-8C7215A160B2</attributeRef>
+<attributeRef>1E4F5AA9-8DAA-B81A-4D48-EDCE07CDC56A</attributeRef>
+<attributeRef>04281DBE-816F-1F3F-8ED9-0CFDF3ADD26F</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>
