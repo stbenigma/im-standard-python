@@ -1164,10 +1164,11 @@
 	var tabanz = 0
 	var colanz = 0
 	var colmapanz = 0
+	var tabmapanz = 0
+	var lasttabmapping = ""
 	var lineanz = 0
 	var logicalModel
 	var relModel
-	var modelMapping
 	var writtenCols={}
 	var exportDirec="/Users/stb/Documents/DataModeler/Import"
 
@@ -1196,16 +1197,18 @@ function curDateStr(){
 }
 
 function do1line(rmodelname,values){
-	//message('do1line '+rmodelname+' '+values);
+	//message('do1line |'+rmodelname+'| '+values);
 	var rmodel = model.getDesign().getRelationalDesigns().getByName(rmodelname);
 	if (rmodel == null){
 		throw new Error("\nRelational model '"+rmodelname+"' does not exist.\n");
+	} else {modelMapping = rmodel.getRMExtendedMap().getContainerMappings().toArray();
 	}
 	entiName = values[0];
 	attrName = values[1];
 	tabName = values[2];
 	colName = values[3];
 	typeName = values[4];
+	//message(entiName+' | '+attrName+' | '+tabName+' | '+colName+' | '+typeName)
 	entity = logicalModel.getEntitySet().getByName(entiName);
 	if (entity != null) {
 		attribute=entity.getElementByName(attrName);
@@ -1225,19 +1228,32 @@ function do1line(rmodelname,values){
 	}
 	if (table != null){
 		column=table.getElementByName(colName);
+	} else  {column = null
 	}
 	// neue Columns werden erzeugt
 	if ((column == null) && (colName != "")){
+		//message('neue Column')
 		table.createColumn(colName)
 		column=table.getElementByName(colName);
 		column.setComment("Created on "+curDateStr() +" during import from "+imppath)		
 		colanz++
 	}	
 	if ((entity != null) && (table != null)){
-		rmodel.getRMExtendedMap().createMapping(entity,table);
+		//muss das exakte Mapping Table-Entity finden, da es mehrere haben kann
+		//maps = getTabMap(modelMapping,tab.getObjectID())
+		//if (maps.length==0) {
+		     mapped = entity.getMappingFor(table)
+			if (mapped == null) {
+				rmodel.getRMExtendedMap().createMapping(entity,table);
+				tabmapanz++
+			}
+		//}
      	if ((attribute != null) && (column != null)){
-     		rmodel.getRMExtendedMap().createMapping(attribute,column);		
-		colmapanz++
+     		mapped = column.getMappingFor(entity)
+     		if (mapped == null) {
+     			rmodel.getRMExtendedMap().createMapping(attribute,column);		
+				colmapanz++
+     		}
      	}
 	}
 }
@@ -1246,13 +1262,21 @@ function importFile(fpath){
 	var Files = Java.type('java.nio.file.Files');
 	var lines = Files.readAllLines(Paths.get(fpath)
 	             , Java.type('java.nio.charset.StandardCharsets').UTF_8);
-	for (lnoif=1;lnoif<lines.length;lnoif++)
+	for (lnoif=0;lnoif<lines.length;lnoif++)
  	{	line=lines[lnoif]
  		values= line.split(";");
- 		for (iif=0;iif<values.length;iif++){values[i]=trimapo(values[iif]);}
- 		if (lnoif==1){
+ 		for (iif=0;iif<values.length;iif++)
+ 			{values[iif]=trimapo(values[iif]);
+ 			}
+ 		if (lnoif==0){
  			relModel=values[0];
- 			//message("RelModel= "+relModel);
+ 			 if (relModel.match(/^[^A-Za-z]/)) relModel = relModel.substring(1)
+ 			 message(relModel)
+ 			//message(lnoif+': '+"RelModel= |"+relModel.charCodeAt(0)+"/"+relModel.charCodeAt(1)+relModel+"|");
+ 		} else 
+ 		if (lnoif==1){
+ 			// skip headers
+ 			//message(lnoif+': '+"headers= "+values);
  		} else {
 	 		//message(lnoif+': '+values);
  			do1line(relModel,values);
@@ -1277,7 +1301,8 @@ function importMapping() {
 	logicalModel = model.getDesign().getLogicalDesign();
 	importFile(imppath);
 	message("Parsed "+lineanz+" lines from file "+imppath+".\n"
-			+"Created "+tabanz+" tables, "+colanz+" columns and "+colmapanz+" mappings")
+			+"Created "+tabanz+" tables, "+colanz+" columns,\n"
+			+ "Mapped "+tabmapanz+" tables to entities and " +colmapanz+" columns to attributes") // +tabmapanz+" table- and " 
 	
 }
 function chooseModel(rmodel){
@@ -1309,7 +1334,7 @@ function getColMap(colID,cmap){
 }
 function writeMapLine(fw,tab,enti,col,attr){
 	//message('write'+tab+enti+col+attr)
-	fw.write('"'+nvl(enti)+'";"'+nvl(attr)+'";"'+tab+'";"'+nvl(col)+'";""\n')
+	fw.write(nvl(enti)+';'+nvl(attr)+';'+tab+';'+nvl(col)+';\n')
 }
 function printColsMap(fw,tab,lastOne,enti,cmap){
 	cols=tab.getElementsCollection().toArray()
@@ -1333,17 +1358,17 @@ function printColsMap(fw,tab,lastOne,enti,cmap){
 		}
 	}
 }
-function getTabMap(tabID){
+function getTabMap(modelMapping,tabID){
 	maps=[]
 	for (imtm=0;imtm<modelMapping.length;imtm++){
 		if (tabID == modelMapping[imtm].getRelID()) maps.push(modelMapping[imtm])
 	}
 	return maps
 }
-function printCols(fw,tab){
-	maps = getTabMap(tab.getObjectID())
+function printCols(modelMapping,fw,tab){
+	maps = getTabMap(modelMapping,tab.getObjectID())
 	if (maps.length==0) {
-		printColsMap(fw,tab,null,null)
+		printColsMap(fw,tab,true,null,null)
 	} else {
 		for (impc=0;impc<maps.length;impc++){
 			enti=logicalModel.getEntitySet().getObjectByID(maps[impc].getLogID())
@@ -1354,16 +1379,16 @@ function printCols(fw,tab){
 	}
 }
 
-function printCVS (fw){
+function printCVS (modelMapping,fw){
 	entiType = 0
 	colType = 1
 	tableType = 4
 	attrType = 5
-	fw.write('"entityName";"attrName";"tableName";"columnName";"dataType"\n')
-	fw.write('"'+relModel+'"\n')
+	fw.write(relModel+';;;;created by ODM, '+curDateStr()+'\n')
+	fw.write('entityName;attrName;tableName;columnName;dataType\n')
 	tables = relModel.getTableSet().toArray();
 	for (itpc=0;itpc<tables.length;itpc++){
-		printCols(fw,tables[itpc])
+		printCols(modelMapping,fw,tables[itpc])
 	}
 }
 function chooseFile(direc,fileName){
@@ -1389,7 +1414,7 @@ function createFile(fileName){
 function headers(rmodels){
 	retval = ''
 	for (ih=0;ih<rmodels.length;ih++){
-		retval += ';"'+rmodels[ih]+'"'
+		retval += ';'+rmodels[ih]
 	}
 	return retval
 }
@@ -1435,7 +1460,7 @@ function printMatrix(fw,nurX) {
 	rmodels = model.getDesign().getRelationalDesigns().toArray();
 	mappings = getMappings(rmodels)
 	if (entities != null) {
-		fw.write('"entity";"attr"'+headers(rmodels)+'\n')
+		fw.write('entity;attr'+headers(rmodels)+'\n')
 
 		for (ientiac=0;ientiac<entities.length;ientiac++) {
 			enti = entities[ientiac]
@@ -1460,19 +1485,20 @@ function printMatrix(fw,nurX) {
 				}
 			}
 		}
+	    fw.write('created by ODM, '+curDateStr()+'\n')
 	}
 }
 
 function print1Mapping (){
 	logicalModel = model.getDesign().getLogicalDesign();
-	relModel = chooseModel(relModel)
-	if (relModel == null) return
+	relModel = chooseModel(relModel);
+	if (relModel == null) {return;}
 	modelMapping = relModel.getRMExtendedMap().getContainerMappings().toArray();
 
 	fileName=chooseFile(exportDirec,relModel+'.csv')
      if (fileName == null) return
      fw = createFile(fileName)
-	printCVS (fw)
+	printCVS (modelMapping,fw)
      fw.close();    
 	message("Mapping file "+fileName+" for model "+relModel+" created.");
 }
@@ -2509,8 +2535,7 @@ function printNameMapping (){
 	</scr>
 	<scr id="0F251DBE-70E8-22CB-B76E-10B3C14D53CF" name="TestRef-Model" object="logical" engine="Oracle Nashorn" type="" var="model" library="" method="" purpose="transformation" >
 		<script>
-			<![CDATA[
-	function fullmessage(msg,type) {
+			<![CDATA[function fullmessage(msg,type) {
 		Java.type("javax.swing.JOptionPane").showMessageDialog(null
 		, msg,'ODM-Translation', type);
 	}
@@ -2532,11 +2557,7 @@ function printNameMapping (){
 		for (ie=0;ie<rels.length;ie++) { //
 			rel = rels[ie];
 			message(rel)
-		}
-		
-
- 
-]]>
+		}]]>
 		</script>
 	</scr>
 
@@ -2926,10 +2947,11 @@ function printNameMapping (){
 	var tabanz = 0
 	var colanz = 0
 	var colmapanz = 0
+	var tabmapanz = 0
+	var lasttabmapping = ""
 	var lineanz = 0
 	var logicalModel
 	var relModel
-	var modelMapping
 	var writtenCols={}
 	var exportDirec="/Users/stb/Documents/DataModeler/Import"
 
@@ -2958,16 +2980,18 @@ function curDateStr(){
 }
 
 function do1line(rmodelname,values){
-	//message('do1line '+rmodelname+' '+values);
+	//message('do1line |'+rmodelname+'| '+values);
 	var rmodel = model.getDesign().getRelationalDesigns().getByName(rmodelname);
 	if (rmodel == null){
 		throw new Error("\nRelational model '"+rmodelname+"' does not exist.\n");
+	} else {modelMapping = rmodel.getRMExtendedMap().getContainerMappings().toArray();
 	}
 	entiName = values[0];
 	attrName = values[1];
 	tabName = values[2];
 	colName = values[3];
 	typeName = values[4];
+	//message(entiName+' | '+attrName+' | '+tabName+' | '+colName+' | '+typeName)
 	entity = logicalModel.getEntitySet().getByName(entiName);
 	if (entity != null) {
 		attribute=entity.getElementByName(attrName);
@@ -2987,19 +3011,32 @@ function do1line(rmodelname,values){
 	}
 	if (table != null){
 		column=table.getElementByName(colName);
+	} else  {column = null
 	}
 	// neue Columns werden erzeugt
 	if ((column == null) && (colName != "")){
+		//message('neue Column')
 		table.createColumn(colName)
 		column=table.getElementByName(colName);
 		column.setComment("Created on "+curDateStr() +" during import from "+imppath)		
 		colanz++
 	}	
 	if ((entity != null) && (table != null)){
-		rmodel.getRMExtendedMap().createMapping(entity,table);
+		//muss das exakte Mapping Table-Entity finden, da es mehrere haben kann
+		//maps = getTabMap(modelMapping,tab.getObjectID())
+		//if (maps.length==0) {
+		     mapped = entity.getMappingFor(table)
+			if (mapped == null) {
+				rmodel.getRMExtendedMap().createMapping(entity,table);
+				tabmapanz++
+			}
+		//}
      	if ((attribute != null) && (column != null)){
-     		rmodel.getRMExtendedMap().createMapping(attribute,column);		
-		colmapanz++
+     		mapped = column.getMappingFor(entity)
+     		if (mapped == null) {
+     			rmodel.getRMExtendedMap().createMapping(attribute,column);		
+				colmapanz++
+     		}
      	}
 	}
 }
@@ -3008,13 +3045,21 @@ function importFile(fpath){
 	var Files = Java.type('java.nio.file.Files');
 	var lines = Files.readAllLines(Paths.get(fpath)
 	             , Java.type('java.nio.charset.StandardCharsets').UTF_8);
-	for (lnoif=1;lnoif<lines.length;lnoif++)
+	for (lnoif=0;lnoif<lines.length;lnoif++)
  	{	line=lines[lnoif]
  		values= line.split(";");
- 		for (iif=0;iif<values.length;iif++){values[i]=trimapo(values[iif]);}
- 		if (lnoif==1){
+ 		for (iif=0;iif<values.length;iif++)
+ 			{values[iif]=trimapo(values[iif]);
+ 			}
+ 		if (lnoif==0){
  			relModel=values[0];
- 			//message("RelModel= "+relModel);
+ 			// falls 1. Zeichen von Excel stammt, schneide es ab
+ 			 if (relModel.match(/^[^A-Za-z]/)) relModel = relModel.substring(1)
+ 			//message(lnoif+': '+"RelModel= |"+relModel.charCodeAt(0)+"/"+relModel.charCodeAt(1)+relModel+"|");
+ 		} else 
+ 		if (lnoif==1){
+ 			// skip headers
+ 			//message(lnoif+': '+"headers= "+values);
  		} else {
 	 		//message(lnoif+': '+values);
  			do1line(relModel,values);
@@ -3039,7 +3084,8 @@ function importMapping() {
 	logicalModel = model.getDesign().getLogicalDesign();
 	importFile(imppath);
 	message("Parsed "+lineanz+" lines from file "+imppath+".\n"
-			+"Created "+tabanz+" tables, "+colanz+" columns and "+colmapanz+" mappings")
+			+"Created "+tabanz+" tables, "+colanz+" columns,\n"
+			+ "Mapped "+tabmapanz+" tables to entities and " +colmapanz+" columns to attributes") // +tabmapanz+" table- and " 
 	
 }
 function chooseModel(rmodel){
@@ -3071,7 +3117,7 @@ function getColMap(colID,cmap){
 }
 function writeMapLine(fw,tab,enti,col,attr){
 	//message('write'+tab+enti+col+attr)
-	fw.write('"'+nvl(enti)+'";"'+nvl(attr)+'";"'+tab+'";"'+nvl(col)+'";""\n')
+	fw.write(nvl(enti)+';'+nvl(attr)+';'+tab+';'+nvl(col)+';\n')
 }
 function printColsMap(fw,tab,lastOne,enti,cmap){
 	cols=tab.getElementsCollection().toArray()
@@ -3095,17 +3141,17 @@ function printColsMap(fw,tab,lastOne,enti,cmap){
 		}
 	}
 }
-function getTabMap(tabID){
+function getTabMap(modelMapping,tabID){
 	maps=[]
 	for (imtm=0;imtm<modelMapping.length;imtm++){
 		if (tabID == modelMapping[imtm].getRelID()) maps.push(modelMapping[imtm])
 	}
 	return maps
 }
-function printCols(fw,tab){
-	maps = getTabMap(tab.getObjectID())
+function printCols(modelMapping,fw,tab){
+	maps = getTabMap(modelMapping,tab.getObjectID())
 	if (maps.length==0) {
-		printColsMap(fw,tab,null,null)
+		printColsMap(fw,tab,true,null,null)
 	} else {
 		for (impc=0;impc<maps.length;impc++){
 			enti=logicalModel.getEntitySet().getObjectByID(maps[impc].getLogID())
@@ -3116,16 +3162,16 @@ function printCols(fw,tab){
 	}
 }
 
-function printCVS (fw){
+function printCVS (modelMapping,fw){
 	entiType = 0
 	colType = 1
 	tableType = 4
 	attrType = 5
-	fw.write('"entityName";"attrName";"tableName";"columnName";"dataType"\n')
-	fw.write('"'+relModel+'"\n')
+	fw.write(relModel+';;;;created by ODM, '+curDateStr()+'\n')
+	fw.write('entityName;attrName;tableName;columnName;dataType\n')
 	tables = relModel.getTableSet().toArray();
 	for (itpc=0;itpc<tables.length;itpc++){
-		printCols(fw,tables[itpc])
+		printCols(modelMapping,fw,tables[itpc])
 	}
 }
 function chooseFile(direc,fileName){
@@ -3151,7 +3197,7 @@ function createFile(fileName){
 function headers(rmodels){
 	retval = ''
 	for (ih=0;ih<rmodels.length;ih++){
-		retval += ';"'+rmodels[ih]+'"'
+		retval += ';'+rmodels[ih]
 	}
 	return retval
 }
@@ -3197,7 +3243,7 @@ function printMatrix(fw,nurX) {
 	rmodels = model.getDesign().getRelationalDesigns().toArray();
 	mappings = getMappings(rmodels)
 	if (entities != null) {
-		fw.write('"entity";"attr"'+headers(rmodels)+'\n')
+		fw.write('entity;attr'+headers(rmodels)+'\n')
 
 		for (ientiac=0;ientiac<entities.length;ientiac++) {
 			enti = entities[ientiac]
@@ -3222,19 +3268,20 @@ function printMatrix(fw,nurX) {
 				}
 			}
 		}
+	    fw.write('created by ODM, '+curDateStr()+'\n')
 	}
 }
 
 function print1Mapping (){
 	logicalModel = model.getDesign().getLogicalDesign();
-	relModel = chooseModel(relModel)
-	if (relModel == null) return
+	relModel = chooseModel(relModel);
+	if (relModel == null) {return;}
 	modelMapping = relModel.getRMExtendedMap().getContainerMappings().toArray();
 
 	fileName=chooseFile(exportDirec,relModel+'.csv')
      if (fileName == null) return
      fw = createFile(fileName)
-	printCVS (fw)
+	printCVS (modelMapping,fw)
      fw.close();    
 	message("Mapping file "+fileName+" for model "+relModel+" created.");
 }
