@@ -1,0 +1,21 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_202v2" directorySegmentName="seg_1" id="2EFD6E05-975B-E144-FBEA-A0A5AFBEE2E1">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:06:23 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<engineerTo>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+</engineerTo>
+<useSurrogateKey>true</useSurrogateKey>
+<identifying>false</identifying>
+<nameOnSource>überträgt</nameOnSource>
+<nameOnTarget>übertragen durch</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>71FDD674-EA44-DEE3-340D-47DD9BC9711D</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>4917DB14-D641-593E-0630-7EEE7839359C</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

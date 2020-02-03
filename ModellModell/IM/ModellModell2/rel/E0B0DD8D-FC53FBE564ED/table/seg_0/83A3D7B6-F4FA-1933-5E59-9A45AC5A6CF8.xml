@@ -1,0 +1,126 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="83A3D7B6-F4FA-1933-5E59-9A45AC5A6CF8" schemaObject="19221298-76C4-E323-B35B-7857802DF7E7" name="DMRS_CONTACT_RES_LOCATORS">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>ADMIN</sourceObjSchema>
+<sourceObjName>DMRS_CONTACT_RES_LOCATORS</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:42 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="CONTACT_ID" id="A9F780F3-45F4-3025-28AB-9C7D756E27BF">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_CONTACT_RES_LOCATORS</sourceObjSchema>
+<sourceObjName>CONTACT_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:47 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>70 BYTE</dataTypeSize>
+<ownDataTypeParameters>70 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="CONTACT_OVID" id="77CCE137-80DB-0C9C-9AA0-DD0DABCA9F90">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_CONTACT_RES_LOCATORS</sourceObjSchema>
+<sourceObjName>CONTACT_OVID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:47 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>36 BYTE</dataTypeSize>
+<ownDataTypeParameters>36 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="CONTACT_NAME" id="D9B6F602-E796-AF1C-B376-188798EE3E98">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_CONTACT_RES_LOCATORS</sourceObjSchema>
+<sourceObjName>CONTACT_NAME</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:47 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>256 BYTE</dataTypeSize>
+<ownDataTypeParameters>256 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="RESOURCE_LOCATOR_ID" id="9D4FFE97-877B-4D3D-C5AC-790E02BF954C">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_CONTACT_RES_LOCATORS</sourceObjSchema>
+<sourceObjName>RESOURCE_LOCATOR_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:47 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>70 BYTE</dataTypeSize>
+<ownDataTypeParameters>70 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="RESOURCE_LOCATOR_OVID" id="49624D6B-E373-18EA-8AEE-57E2564EB89D">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_CONTACT_RES_LOCATORS</sourceObjSchema>
+<sourceObjName>RESOURCE_LOCATOR_OVID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:47 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>36 BYTE</dataTypeSize>
+<ownDataTypeParameters>36 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="RESOURCE_LOCATOR_NAME" id="EBC16D5E-EE92-9B3C-5940-F4B3D0620EC6">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_CONTACT_RES_LOCATORS</sourceObjSchema>
+<sourceObjName>RESOURCE_LOCATOR_NAME</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:47 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>256 BYTE</dataTypeSize>
+<ownDataTypeParameters>256 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DESIGN_OVID" id="97EA874E-7252-3CC4-CA0D-7A2173E08F11">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_CONTACT_RES_LOCATORS</sourceObjSchema>
+<sourceObjName>DESIGN_OVID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:47 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>36 BYTE</dataTypeSize>
+<ownDataTypeParameters>36 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="28FE3EF2-DAC6-E410-28D3-C1F977349313" schemaObject="19221298-76C4-E323-B35B-7857802DF7E7" name="CONTACT_RES_LOCATORS_FK1_IDX">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>ADMIN</sourceObjSchema>
+<sourceObjName>CONTACT_RES_LOCATORS_FK1_IDX</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:53 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="77CCE137-80DB-0C9C-9AA0-DD0DABCA9F90"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

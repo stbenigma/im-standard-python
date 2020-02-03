@@ -1,0 +1,158 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="5A331338-BE08-A5C8-E437-9765DD7F7E2C" name="DATATYPES">
+<createdBy>stb</createdBy>
+<createdTime>2019-07-09 10:30:10 UTC</createdTime>
+<comment><![CDATA[Irgend eine Komponente die mit Informations Technologie zu tun hat und beschafft, betrieben und betreut  werden muss.
+
+Jede IT-Komponente hat einen Hersteller. D.h. es handelt sich um konkrete Produkte.]]></comment>
+<generatorID>CFE2B0E2-7C7C-3289-90F3-1467F54FCB9E</generatorID>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<ordsAlias>itkomponente</ordsAlias>
+<abbreviation>DATY</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="DATY_ID" id="B336AD84-7106-5FB4-F28A-49B16300F4EE">
+<createdBy>stb</createdBy>
+<createdTime>2019-07-09 10:30:10 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DATY_NAME" id="332D86B2-F5D4-F599-D476-825AB2EE6D39">
+<createdBy>stb</createdBy>
+<createdTime>2019-07-09 10:30:10 UTC</createdTime>
+<generatorID>E620B7E5-21B9-ADF5-D530-981CC31D9FDB</generatorID>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DATY_GRUNDTYP" id="2FFA6BD1-B65A-C0A8-D27A-A45FDBDB3F65">
+<createdBy>stb</createdBy>
+<createdTime>2019-07-09 10:30:10 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<constraintName>CK_ITKO_ITKO_TYP</constraintName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<dataTypeSize>5 CHAR</dataTypeSize>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<listOfValues>
+<valueDef value="BINARY" description=""/>
+<valueDef value="NUMBER" description=""/>
+<valueDef value="TEXT" description=""/>
+<valueDef value="ZEIT" description=""/>
+</listOfValues>
+<ownDataTypeParameters>5 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DATY_ODM_GUID" id="880DE3CB-9C01-6B17-2AB6-766387A8689F">
+<createdBy>stb</createdBy>
+<createdTime>2019-07-09 10:34:07 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<constraintName>CK_ITKO_ITKO_TYP</constraintName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<dataTypeSize>40</dataTypeSize>
+<domain>5D3D105A-15CC-2DBC-8E41-2A63484D069D</domain>
+<listOfValues>
+<valueDef value="ANWEN" description="Anwendung"/>
+<valueDef value="DBMS" description="Databasemangamentsystem"/>
+<valueDef value="SERV" description="Server"/>
+</listOfValues>
+<ownDataTypeParameters>40,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DATY_UC" id="0BE81438-7376-138E-78D7-296905E41E44">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-21 15:38:15 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<computed>true</computed>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="F7EEFF47-7A42-2A3E-7DFC-D0558D6996B8"/>
+</propertyMap>
+</Column>
+<Column name="DATY_DC" id="05ED1404-56E0-94E2-6C3F-288A0B82BD4F">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-21 15:38:15 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT047</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="74D877A0-4C3B-63EE-06C5-071C7695907C"/>
+</propertyMap>
+</Column>
+<Column name="DATY_UM" id="57BEF3CD-D9B6-325E-FE15-0A7612759888">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-21 15:38:15 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="B2E17D53-C2F7-74D9-022D-5D63F3931519"/>
+</propertyMap>
+</Column>
+<Column name="DATY_DM" id="5415C3F5-A0E0-6106-B7A2-5931E9A0769F">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-21 15:38:15 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT047</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="B398D247-00C1-F016-3BBB-FE65CFFFF7AA"/>
+</propertyMap>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="BA7F01D4-0980-1B6F-B907-7D84CA36CAD2" name="ITKO_PK">
+<createdBy>stb</createdBy>
+<createdTime>2019-07-09 10:30:10 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="B336AD84-7106-5FB4-F28A-49B16300F4EE"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="57D3AD1A-1C84-11C0-D312-A0DBD59AD164" name="DATY_UN">
+<createdBy>stb</createdBy>
+<createdTime>2019-07-09 10:34:38 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="332D86B2-F5D4-F599-D476-825AB2EE6D39"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -1,0 +1,116 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableView class="oracle.dbtools.crest.model.design.relational.TableView" directorySegmentName="seg_0" id="68E9A48C-D522-6DFB-EF82-B7662FBCB6AB" name="DMRV_EXT_AGENT_FLOWS">
+<sourceDDLFile>dbms-odm.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:08 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>5D96FA67-CB03-E9D1-0BA3-17FAB681C94A</importedID>
+<userDefined>true</userDefined>
+<userDefinedSQL><![CDATA[select  External_Agent_ID, External_Agent_OVID, External_Agent_Name, Flow_ID, Flow_OVID, Flow_Name, Incoming_Outgoing_Flag, Design_OVID from DMRS_EXT_AGENT_FLOWS]]></userDefinedSQL>
+<viewElements>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="EXTERNAL_AGENT_ID" id="D29F518F-C4FF-5144-0D30-D58FFAC688AD">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:08 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<dataType>VARCHAR2 (70 BYTE)</dataType>
+<headerAlias>External_Agent_ID</headerAlias>
+<reference>false</reference>
+<referencedColumn>4CECEA06-CEA1-7122-69DD-93B65CDF89F4</referencedColumn>
+<table>F688753B-2872-5CC0-6D49-F6BEB495F4B2</table>
+<viewID>68E9A48C-D522-6DFB-EF82-B7662FBCB6AB</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="EXTERNAL_AGENT_OVID" id="6DA1D66C-495E-6FB9-C11D-B998D87120B8">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:08 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<dataType>VARCHAR2 (36 BYTE)</dataType>
+<headerAlias>External_Agent_OVID</headerAlias>
+<reference>false</reference>
+<referencedColumn>5AAB6C70-085B-D00A-1CDB-563D50D34847</referencedColumn>
+<table>F688753B-2872-5CC0-6D49-F6BEB495F4B2</table>
+<viewID>68E9A48C-D522-6DFB-EF82-B7662FBCB6AB</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="EXTERNAL_AGENT_NAME" id="FE0734B9-C0AA-ED4C-557C-C85BC0BC14D8">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:08 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<dataType>VARCHAR2 (256 BYTE)</dataType>
+<headerAlias>External_Agent_Name</headerAlias>
+<reference>false</reference>
+<referencedColumn>9C2D8C02-7F7B-6DA4-EA11-4C61639F717A</referencedColumn>
+<table>F688753B-2872-5CC0-6D49-F6BEB495F4B2</table>
+<viewID>68E9A48C-D522-6DFB-EF82-B7662FBCB6AB</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="FLOW_ID" id="709B0AAA-A978-7466-C0F8-CBD9BAA67B82">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:08 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<dataType>VARCHAR2 (70 BYTE)</dataType>
+<headerAlias>Flow_ID</headerAlias>
+<reference>false</reference>
+<referencedColumn>DE41DBC0-8E42-E48A-B766-A04F7E1287B6</referencedColumn>
+<table>F688753B-2872-5CC0-6D49-F6BEB495F4B2</table>
+<viewID>68E9A48C-D522-6DFB-EF82-B7662FBCB6AB</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="FLOW_OVID" id="FD3CB32D-43E1-8FF8-05D7-CC57B69E8D2A">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:08 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<dataType>VARCHAR2 (36 BYTE)</dataType>
+<headerAlias>Flow_OVID</headerAlias>
+<reference>false</reference>
+<referencedColumn>6DF84946-5A2E-13BC-6795-1CDD44FDDDAE</referencedColumn>
+<table>F688753B-2872-5CC0-6D49-F6BEB495F4B2</table>
+<viewID>68E9A48C-D522-6DFB-EF82-B7662FBCB6AB</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="FLOW_NAME" id="5BEBE9DC-8A2D-5D66-74B2-B0AEB4723CCF">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:08 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<dataType>VARCHAR2 (256 BYTE)</dataType>
+<headerAlias>Flow_Name</headerAlias>
+<reference>false</reference>
+<referencedColumn>88E1BA98-E896-7D92-04D8-71307CE7E76B</referencedColumn>
+<table>F688753B-2872-5CC0-6D49-F6BEB495F4B2</table>
+<viewID>68E9A48C-D522-6DFB-EF82-B7662FBCB6AB</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="INCOMING_OUTGOING_FLAG" id="97D2EF64-A25B-3694-2512-876D27A18EA9">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:08 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<dataType>CHAR (1 BYTE)</dataType>
+<headerAlias>Incoming_Outgoing_Flag</headerAlias>
+<reference>false</reference>
+<referencedColumn>C4388C84-67A5-86F4-0192-45D6C64F85B7</referencedColumn>
+<table>F688753B-2872-5CC0-6D49-F6BEB495F4B2</table>
+<viewID>68E9A48C-D522-6DFB-EF82-B7662FBCB6AB</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="DESIGN_OVID" id="CF1B1C89-46A1-735B-1D95-DD1660F6DD10">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:08 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<dataType>VARCHAR2 (36 BYTE)</dataType>
+<headerAlias>Design_OVID</headerAlias>
+<reference>false</reference>
+<referencedColumn>F28F0A37-DF4A-313D-68E7-1A4A23134BAB</referencedColumn>
+<table>F688753B-2872-5CC0-6D49-F6BEB495F4B2</table>
+<viewID>68E9A48C-D522-6DFB-EF82-B7662FBCB6AB</viewID>
+</viewElement>
+</viewElements>
+</TableView>

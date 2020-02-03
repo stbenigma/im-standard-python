@@ -1,0 +1,114 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_2" id="6D4AFE84-354C-4B87-3756-7F0C5E7539E0" name="IT-Komponentev3">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:06:05 UTC</createdTime>
+<comment><![CDATA[Irgend eine Komponente die mit Informations Technologie zu tun hat und beschafft, betrieben und betreut  werden muss.
+
+Jede IT-Komponente hat einen Hersteller. D.h. es handelt sich um konkrete Produkte.]]></comment>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+Irgend eine Komponente die mit Informations Technologie zu tun hat und beschafft, betrieben und betreut  werden muss.  Jede IT-Komponente hat einen Hersteller. D.h. es handelt sich um konkrete Produkte.
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+Any component related to information technology that needs to be procured, operated and maintained.  Each IT component has a manufacturer. I.e. they are concrete products.
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<engineerTo>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+</engineerTo>
+<typeID>57779FAE-171C-9BB2-9F88-9B2ED7060C6F</typeID>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="DE_ENTI_COMMENT" value="Irgend eine Komponente die mit Informations Technologie zu tun hat und beschafft, betrieben und betreut  werden muss.  Jede IT-Komponente hat einen Hersteller. D.h. es handelt sich um konkrete Produkte."/>
+<property name="DE_ENTI_NAME" value="IT-Komponente"/>
+<property name="EN_ENTI_COMMENT" value="*DE* Irgend eine Komponente die mit Informations Technologie zu tun hat und beschafft, betrieben und betreut  werden muss.  Jede IT-Komponente hat einen Hersteller. D.h. es handelt sich um konkrete Produkte."/>
+<property name="EN_ENTI_NAME" value="IT component"/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Name" id="AA6A92D7-4F49-AE78-20C2-81761C7C6467">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:06:05 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>E620B7E5-21B9-ADF5-D530-981CC31D9FDB</importedID>
+<engineerTo>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Name"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="Name"/>
+</propertyMap>
+</Attribute>
+<Attribute name="Zweck" id="D8613E9B-A75F-E0E8-66F1-393006591018">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:06:05 UTC</createdTime>
+<comment><![CDATA[Anwendungsgebiet (ERP, PIM, FiBu etc.)]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Anwendungsgebiet (ERP, PIM, FiBu etc.)
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Application area (ERP, PIM, FiBu etc.)
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>BF98F3F1-663A-71B7-4491-1BECD8F47FC1</importedID>
+<engineerTo>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>CEF66788-EC07-3347-F213-6A5B74AB29A4</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value="Anwendungsgebiet (ERP, PIM, FiBu etc.)"/>
+<property name="DE_ATTR_NAME" value="Zweck"/>
+<property name="EN_ATTR_COMMENT" value="*DE* Anwendungsgebiet (ERP, PIM, FiBu etc.)"/>
+<property name="EN_ATTR_NAME" value="Purpose"/>
+</propertyMap>
+</Attribute>
+<Attribute name="Sicherheitsanforderung" id="2876684A-5E1C-4F1C-DC43-8377059682A8">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:06:05 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>6E0763A8-AB52-8D0C-B09E-650796B1CAA2</importedID>
+<engineerTo>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Sicherheitsanforderung"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="Safety requirement"/>
+</propertyMap>
+</Attribute>
+</attributes>
+</Entity>

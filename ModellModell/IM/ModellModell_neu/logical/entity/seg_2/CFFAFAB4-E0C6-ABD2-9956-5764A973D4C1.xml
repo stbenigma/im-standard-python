@@ -1,0 +1,146 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_2" id="CFFAFAB4-E0C6-ABD2-9956-5764A973D4C1" name="IT-Systemv1">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:04:58 UTC</createdTime>
+<comment><![CDATA[IT_System, Betriebssystem, Infrastruktur in oder auf dem Anwendungen laufen können.
+
+Beispiele:
+Power-DNS
+JRE java runtime environment
+Windows
+Android
+ubuntu Linux
+mongo-DB
+Excel
+Access
+SAP-Hana
+IDE  = Application for IT-People
+Eclipse / Microsoft Studio
+Jenkins
+Oracle-APEX
+]]></comment>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+IT_System, Betriebssystem, Infrastruktur in oder auf dem Anwendungen laufen können.  Beispiele: Power-DNS JRE java runtime environment Windows Android ubuntu Linux mongo-DB Excel Access SAP-Hana IDE  = Application for IT-People Eclipse / Microsoft Studio Jenkins Oracle-APEX 
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+IT_System, operating system, infrastructure in or on which applications can run.  Examples: Power-DNS JRE java runtime environment Windows Android ubuntu Linux mongo-DB Excel Access SAP-Hana IDE = Application for IT-People Eclipse / Microsoft Studio Jenkins Oracle-APEX
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<engineerTo>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+</engineerTo>
+<typeID>57779FAE-171C-9BB2-9F88-9B2ED7060C6F</typeID>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<hierarchicalParent>99693ADD-81B7-E4DA-BFA7-3DB07926F66D</hierarchicalParent>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="DE_ENTI_COMMENT" value="IT_System, Betriebssystem, Infrastruktur in oder auf dem Anwendungen laufen können.  Beispiele: Power-DNS JRE java runtime environment Windows Android ubuntu Linux mongo-DB Excel Access SAP-Hana IDE  = Application for IT-People Eclipse / Microsoft Studio Jenkins Oracle-APEX "/>
+<property name="DE_ENTI_NAME" value="IT-System"/>
+<property name="EN_ENTI_COMMENT" value="*DE* IT_System, Betriebssystem, Infrastruktur in oder auf dem Anwendungen laufen können.  Beispiele: Power-DNS JRE java runtime environment Windows Android ubuntu Linux mongo-DB Excel Access SAP-Hana IDE  = Application for IT-People Eclipse / Microsoft Studio Jenkins Oracle-APEX "/>
+<property name="EN_ENTI_NAME" value="IT system"/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Zeichnsatz" id="AFD56E50-25E3-C162-128C-2E5AB902B4B2">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:04:58 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>CEF84331-D1F8-95B8-C3AC-2F58918460FD</importedID>
+<engineerTo>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>C44ED88C-D820-1BFA-9CD0-841B752A5E4B</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Zeichnsatz"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="Character set"/>
+</propertyMap>
+</Attribute>
+<Attribute name="Name" id="3ED99B78-9471-7936-BD5B-264671D19E60">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:04:58 UTC</createdTime>
+<comment><![CDATA[Name der Entität der in der Kommunikation normalerweise gebraucht wird.]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Name der Entität der in der Kommunikation normalerweise gebraucht wird.
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Name of the entity normally used in communication.
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>6A0BE6EE-FACA-EE1A-B294-1071918E2DA9</importedID>
+<engineerTo>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value="Name der Entität der in der Kommunikation normalerweise gebraucht wird."/>
+<property name="DE_ATTR_NAME" value="Name"/>
+<property name="EN_ATTR_COMMENT" value="*DE* Name der Entität der in der Kommunikation normalerweise gebraucht wird."/>
+<property name="EN_ATTR_NAME" value="Name"/>
+</propertyMap>
+</Attribute>
+<Attribute name="Name_" id="F24B46C4-57F4-CF0F-5EB8-6DC6BB10D5DA">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:04:58 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>F3557BB1-0486-BA65-69E0-90425C9A4AED</importedID>
+<engineerTo>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Name"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="Name"/>
+</propertyMap>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="F34CB18F-A82C-E0BF-8B04-BCB685D82830" name="ITSY_NAME_UK">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:04:58 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<engineerTo>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>3ED99B78-9471-7936-BD5B-264671D19E60</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

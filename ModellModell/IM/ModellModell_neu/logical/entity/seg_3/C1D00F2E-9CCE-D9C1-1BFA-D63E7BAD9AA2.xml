@@ -1,0 +1,46 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_3" id="C1D00F2E-9CCE-D9C1-1BFA-D63E7BAD9AA2" name="Wertebereichgruppev1">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:06:23 UTC</createdTime>
+<comment><![CDATA[Es gibt Attribute, die aus mehreren Bestandteilen bestehen, aber für eine Entität wie ein Attribut angesehen werden (können).
+Die Bestandteile dieser Attributgruppe treten immer gemeinsam auf.
+Dass ein Attribut Teilwerte enthält, für die man sich separat interessiert, verletzt im Grundsatz die 1. Normalform. Wenn aber die Elemente einer Attributgruppe selber Attribute sind und die Gruppe als Platzhalter von mehreren Attributen verstanden werden kann, ist diese Verletzung auflösbar.
+
+Beispiele:
+Telefon-Nr: bestehend aus Landesvorwahl und Rufnummer
+Koordinaten bestehend aus X und Y-Koordinate (bzw. Westliche länge und nördliche Breite)
+Hotelzimmer-Nr bestehend aus Stockwerk und ZimmerNr (ACHTUNG: nicht 1. Stelle = Stockwerk, sondern 1 Feld Stockwerk und 1 Feld ZimmerNr)
+Flugkennung bestehend aus Fluggesellschaft kürzel und Flugnummer (LX 247)]]></comment>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+Es gibt Attribute, die aus mehreren Bestandteilen bestehen, aber für eine Entität wie ein Attribut angesehen werden (können). Die Bestandteile dieser Attributgruppe treten immer gemeinsam auf. Dass ein Attribut Teilwerte enthält, für die man sich separat interessiert, verletzt im Grundsatz die 1. Normalform. Wenn aber die Elemente einer Attributgruppe selber Attribute sind und die Gruppe als Platzhalter von mehreren Attributen verstanden werden kann, ist diese Verletzung auflösbar.  Beispiele: Telefon-Nr: bestehend aus Landesvorwahl und Rufnummer Koordinaten bestehend aus X und Y-Koordinate (bzw. Westliche länge und nördliche Breite) Hotelzimmer-Nr bestehend aus Stockwerk und ZimmerNr (ACHTUNG: nicht 1. Stelle = Stockwerk, sondern 1 Feld Stockwerk und 1 Feld ZimmerNr) Flugkennung bestehend aus Fluggesellschaft kürzel und Flugnummer (LX 247)
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+There are attributes that consist of several components, but can be regarded as one attribute for an entity. The components of this attribute group always occur together. The fact that an attribute contains partial values in which one is interested separately basically violates the 1st normal form. However, if the elements of an attribute group are attributes themselves and the group can be understood as a placeholder for several attributes, this violation can be resolved.  Examples: Hotel room no. consisting of floor and room no. (ATTENTION: not 1st digit = floor, but 1 field floor and 1 field room no.) Flight identification consisting of airline short and flight number (LX 247)
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<engineerTo>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+</engineerTo>
+<typeID>1C6A8769-7651-51C0-9E0A-D0C138DE6193</typeID>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<hierarchicalParent>89BEC3FA-5DBC-A916-7452-1741ACF71259</hierarchicalParent>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<synonym>Gruppenattribut</synonym>
+<createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="Beispiele" value="Geschlecht (M/W) / Bestellstatus (offen, in Arbeit, geschlossen)"/>
+<property name="DE_ENTI_COMMENT" value="Es gibt Attribute, die aus mehreren Bestandteilen bestehen, aber für eine Entität wie ein Attribut angesehen werden (können). Die Bestandteile dieser Attributgruppe treten immer gemeinsam auf. Dass ein Attribut Teilwerte enthält, für die man sich separat interessiert, verletzt im Grundsatz die 1. Normalform. Wenn aber die Elemente einer Attributgruppe selber Attribute sind und die Gruppe als Platzhalter von mehreren Attributen verstanden werden kann, ist diese Verletzung auflösbar.  Beispiele: Telefon-Nr: bestehend aus Landesvorwahl und Rufnummer Koordinaten bestehend aus X und Y-Koordinate (bzw. Westliche länge und nördliche Breite) Hotelzimmer-Nr bestehend aus Stockwerk und ZimmerNr (ACHTUNG: nicht 1. Stelle = Stockwerk, sondern 1 Feld Stockwerk und 1 Feld ZimmerNr) Flugkennung bestehend aus Fluggesellschaft kürzel und Flugnummer (LX 247)"/>
+<property name="DE_ENTI_NAME" value="Wertebereichgruppe"/>
+<property name="DE_ENTI_SYNONYM" value="Gruppenattribut"/>
+<property name="EN_ENTI_COMMENT" value="*DE* Es gibt Attribute, die aus mehreren Bestandteilen bestehen, aber für eine Entität wie ein Attribut angesehen werden (können). Die Bestandteile dieser Attributgruppe treten immer gemeinsam auf. Dass ein Attribut Teilwerte enthält, für die man sich separat interessiert, verletzt im Grundsatz die 1. Normalform. Wenn aber die Elemente einer Attributgruppe selber Attribute sind und die Gruppe als Platzhalter von mehreren Attributen verstanden werden kann, ist diese Verletzung auflösbar.  Beispiele: Telefon-Nr: bestehend aus Landesvorwahl und Rufnummer Koordinaten bestehend aus X und Y-Koordinate (bzw. Westliche länge und nördliche Breite) Hotelzimmer-Nr bestehend aus Stockwerk und ZimmerNr (ACHTUNG: nicht 1. Stelle = Stockwerk, sondern 1 Feld Stockwerk und 1 Feld ZimmerNr) Flugkennung bestehend aus Fluggesellschaft kürzel und Flugnummer (LX 247)"/>
+<property name="EN_ENTI_NAME" value="Value range group"/>
+<property name="EN_ENTI_SYNONYM" value="Group attribute"/>
+</propertyMap>
+</Entity>

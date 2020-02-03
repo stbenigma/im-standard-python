@@ -1,0 +1,179 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_2" id="4F62BA9D-4583-30EA-72B7-A5F718D95F2F" name="Numerischer Wertebereichv1">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:06:23 UTC</createdTime>
+<comment><![CDATA[Kann Zahlenwerte aufnehmen ]]></comment>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+Kann Zahlenwerte aufnehmen 
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+Can record numerical values
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<engineerTo>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+</engineerTo>
+<typeID>1C6A8769-7651-51C0-9E0A-D0C138DE6193</typeID>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<hierarchicalParent>89BEC3FA-5DBC-A916-7452-1741ACF71259</hierarchicalParent>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="DE_ENTI_COMMENT" value="Kann Zahlenwerte aufnehmen "/>
+<property name="DE_ENTI_NAME" value="Numerischer Wertebereich"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_COMMENT" value="*DE* Kann Zahlenwerte aufnehmen "/>
+<property name="EN_ENTI_NAME" value="Numeric value range"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Vorkommastellen#" id="1BFE72E4-70E6-3019-6080-C131CA6F9A03">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:06:23 UTC</createdTime>
+<comment><![CDATA[Anzahl der Stellen vor dem Komma]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Anzahl der Stellen vor dem Komma
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Number of digits before the decimal point
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>6013584E-6DC3-0F87-63DB-782BE75793F2</importedID>
+<engineerTo>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>9CA83673-0453-9943-665C-CCB4497CF164</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value="Anzahl der Stellen vor dem Komma"/>
+<property name="DE_ATTR_NAME" value="Vorkommastellen#"/>
+<property name="EN_ATTR_COMMENT" value="*DE* Anzahl der Stellen vor dem Komma"/>
+<property name="EN_ATTR_NAME" value="Digits before decimal point#"/>
+</propertyMap>
+</Attribute>
+<Attribute name="Nachkommastellen#" id="A6BA198C-2A28-EE27-B48E-D7AFD9DDF10F">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:06:23 UTC</createdTime>
+<comment><![CDATA[Anzahl der Stellen nach dem Komma]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Anzahl der Stellen nach dem Komma
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Number of digits after the decimal point
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>1A0F5548-154B-9B85-CAD0-538CA8502229</importedID>
+<engineerTo>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>9CA83673-0453-9943-665C-CCB4497CF164</domain>
+<defaultValue>0</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value="Anzahl der Stellen nach dem Komma"/>
+<property name="DE_ATTR_NAME" value="Nachkommastellen#"/>
+<property name="EN_ATTR_COMMENT" value="*DE* Anzahl der Stellen nach dem Komma"/>
+<property name="EN_ATTR_NAME" value="Decimal places#"/>
+</propertyMap>
+</Attribute>
+<Attribute name="Min Wert" id="8D6EE8EA-6E3E-C58C-DADA-1125725742C5">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:06:23 UTC</createdTime>
+<comment><![CDATA[Minimaler Wert für ein numerisches Feld. Leer -> so klein wie das System zulässt]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Minimaler Wert für ein numerisches Feld. Leer -> so klein wie das System zulässt
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Minimum value for a numeric field. Empty -> as small as the system allows
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>5D6EF497-1C80-55B3-9A08-19906F7E598E</importedID>
+<engineerTo>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value="Minimaler Wert für ein numerisches Feld. Leer -&gt; so klein wie das System zulässt"/>
+<property name="DE_ATTR_NAME" value="Min Wert"/>
+<property name="EN_ATTR_COMMENT" value="*DE* Minimaler Wert für ein numerisches Feld. Leer -&gt; so klein wie das System zulässt"/>
+<property name="EN_ATTR_NAME" value="Min value"/>
+</propertyMap>
+</Attribute>
+<Attribute name="Max Wert" id="E98D4FD7-F66C-0CAB-866B-605433AA29E7">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:06:23 UTC</createdTime>
+<comment><![CDATA[Maximaler Wert für ein numerisches Feld. Leer -> so gross wie das System zulässt]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Maximaler Wert für ein numerisches Feld. Leer -> so gross wie das System zulässt
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Maximum value for a numeric field. Empty -> as big as the system allows
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>A72F2CB8-1949-9C66-ECCA-BF3F2AC681C0</importedID>
+<engineerTo>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value="Maximaler Wert für ein numerisches Feld. Leer -&gt; so gross wie das System zulässt"/>
+<property name="DE_ATTR_NAME" value="Max Wert"/>
+<property name="EN_ATTR_COMMENT" value="*DE* Maximaler Wert für ein numerisches Feld. Leer -&gt; so gross wie das System zulässt"/>
+<property name="EN_ATTR_NAME" value="Max value"/>
+</propertyMap>
+</Attribute>
+<Attribute name="Rundungseinheit" id="BDDB0AD6-7054-A92D-6F0C-D1948E414F58">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:06:23 UTC</createdTime>
+<comment><![CDATA[Wert, der angibt, auf welche Einheit ein numerischer Wert für die Speicherung gerundet wird. (z.B. 0.5, 0.25, 1000) leer -> es wird nicht explizit gerundet]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Wert, der angibt, auf welche Einheit ein numerischer Wert für die Speicherung gerundet wird. (z.B. 0.5, 0.25, 1000) leer -> es wird nicht explizit gerundet
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+A value that indicates the unit to which a numeric value is rounded for storage. (e.g. 0.5, 0.25, 1000) empty -> not rounded explicitly
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>7B43FC60-8938-1F2F-FFC9-AC52103A91B0</importedID>
+<engineerTo>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>9D57C5ED-8336-6617-9BC7-29B138AA6191</domain>
+<defaultValue>1</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value="Wert, der angibt, auf welche Einheit ein numerischer Wert für die Speicherung gerundet wird. (z.B. 0.5, 0.25, 1000) leer -&gt; es wird nicht explizit gerundet"/>
+<property name="DE_ATTR_NAME" value="Rundungseinheit"/>
+<property name="EN_ATTR_COMMENT" value="*DE* Wert, der angibt, auf welche Einheit ein numerischer Wert für die Speicherung gerundet wird. (z.B. 0.5, 0.25, 1000) leer -&gt; es wird nicht explizit gerundet"/>
+<property name="EN_ATTR_NAME" value="Rounding unit"/>
+</propertyMap>
+</Attribute>
+</attributes>
+</Entity>

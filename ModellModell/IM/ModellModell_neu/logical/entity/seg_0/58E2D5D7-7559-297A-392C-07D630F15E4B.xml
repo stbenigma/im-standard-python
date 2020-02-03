@@ -1,0 +1,326 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="58E2D5D7-7559-297A-392C-07D630F15E4B" name="Beziehungs-darstellung">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:05:50 UTC</createdTime>
+<comment><![CDATA[Information zur Darstellung einer Entität auf einem Diagramm]]></comment>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+Information zur Darstellung einer Entität auf einem Diagramm
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+Information for representing an entity on a diagram
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<engineerTo>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+</engineerTo>
+<typeID>BFFB2270-6E04-AA4B-B656-44CFB03FD776</typeID>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="DE_ENTI_COMMENT" value="Information zur Darstellung einer Entität auf einem Diagramm"/>
+<property name="DE_ENTI_NAME" value="Beziehungs-darstellung"/>
+<property name="EN_ENTI_COMMENT" value="*DE* Information zur Darstellung einer Entität auf einem Diagramm"/>
+<property name="EN_ENTI_NAME" value="Relationship representation"/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Linie" id="60B614A1-B81F-164D-5816-270C237294E2">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:05:50 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>71A04FCF-541F-6AB1-C8CE-52AEF5226573</importedID>
+<engineerTo>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>4</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Linie"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="Line"/>
+</propertyMap>
+</Attribute>
+<Attribute name="Liniendarstellung" id="069CEB04-EC94-B003-AFCF-5B08DC17DCBB">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:05:50 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>AAFC6709-4371-1295-C701-0259E22C1797</importedID>
+<engineerTo>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>3</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Liniendarstellung"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="Line display"/>
+</propertyMap>
+</Attribute>
+<Attribute name="Andockposition (start)" id="9955B4BD-42A3-95A8-A793-AFA9FC6E9912">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:05:50 UTC</createdTime>
+<commentInRDBMS><![CDATA[Position am Rand des Startelementes]]></commentInRDBMS>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>1206A636-A5F5-5529-5B35-C848B4F4E075</importedID>
+<engineerTo>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>3</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Andockposition (start)"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="Docking position (start)"/>
+</propertyMap>
+</Attribute>
+<Attribute name="Textdarstellung (start)" id="C452A251-53B6-F5D1-F79B-E4B9D3108928">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:05:50 UTC</createdTime>
+<comment><![CDATA[Position des Textes am Start des Pfades (z.B. von-Entität). Kann relativ sein  umd Verschiebungen zu ermöglichen.]]></comment>
+<commentInRDBMS><![CDATA[Ort und Grösse des Textes an der Start-Andockposition]]></commentInRDBMS>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Position des Textes am Start des Pfades (z.B. von-Entität). Kann relativ sein  umd Verschiebungen zu ermöglichen.
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Position of the text at the start of the path (e.g. from entity). Can be relative to allow displacements.
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>83C2935D-8AAD-75D9-28B9-71D837A09E02</importedID>
+<engineerTo>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>3</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value="Position des Textes am Start des Pfades (z.B. von-Entität). Kann relativ sein  umd Verschiebungen zu ermöglichen."/>
+<property name="DE_ATTR_NAME" value="Textdarstellung (start)"/>
+<property name="EN_ATTR_COMMENT" value="*DE* Position des Textes am Start des Pfades (z.B. von-Entität). Kann relativ sein  umd Verschiebungen zu ermöglichen."/>
+<property name="EN_ATTR_NAME" value="Text display (start)"/>
+</propertyMap>
+</Attribute>
+<Attribute name="Andockposition (ende)" id="79A6F73A-1420-9DA4-D320-996A8A401AFA">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:05:50 UTC</createdTime>
+<commentInRDBMS><![CDATA[Position am Rand des Startelementes]]></commentInRDBMS>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>E466E653-911A-8D95-E33A-61DFA1E533D9</importedID>
+<engineerTo>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>3</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Andockposition (ende)"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="Docking position (end)"/>
+</propertyMap>
+</Attribute>
+<Attribute name="Textdarstellung (ende)" id="CA8665E1-CD91-B7D6-4139-92EFDE3E28BB">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:05:50 UTC</createdTime>
+<comment><![CDATA[Position der Assoziation am Ende des Pfades (z.B: zu-Entität). Kann relativ sein  umd Verschiebungen zu ermöglichen.]]></comment>
+<commentInRDBMS><![CDATA[Ort und Grösse des Textes an der Ende-Andockposition]]></commentInRDBMS>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Position der Assoziation am Ende des Pfades (z.B: zu-Entität). Kann relativ sein  umd Verschiebungen zu ermöglichen.
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Position of the association at the end of the path (e.g. to entity). Can be relative to allow displacements.
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>9ACB89C6-3A99-D2EE-61E7-CBDD72B39C39</importedID>
+<engineerTo>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>3</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value="Position der Assoziation am Ende des Pfades (z.B: zu-Entität). Kann relativ sein  umd Verschiebungen zu ermöglichen."/>
+<property name="DE_ATTR_NAME" value="Textdarstellung (ende)"/>
+<property name="EN_ATTR_COMMENT" value="*DE* Position der Assoziation am Ende des Pfades (z.B: zu-Entität). Kann relativ sein  umd Verschiebungen zu ermöglichen."/>
+<property name="EN_ATTR_NAME" value="Text display (end)"/>
+</propertyMap>
+</Attribute>
+<Attribute name="Schriftfarbe" id="FFB9D1C3-BB9A-E5C0-BA2E-2D01CC9FD960">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:05:50 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>5C1D0DD7-C753-1C85-38D4-2F6B7A840CF5</importedID>
+<engineerTo>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>06269521-C0BC-78CB-FBC8-656101307358</domain>
+<defaultValue>000000</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Schriftfarbe"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="Font color"/>
+</propertyMap>
+</Attribute>
+<Attribute name="Schriftgrösse" id="AC048436-6A72-98A7-8AA7-676ED6BA892B">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:05:50 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>9DBEA9D5-4E5C-B222-7638-38F298F0FA7B</importedID>
+<engineerTo>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>435C11BA-FCF7-BBBA-6AA9-FAB7326273D3</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Schriftgrösse"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="Font size"/>
+</propertyMap>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>1</beginValue>
+<endValue>999</endValue>
+</rangeDef>
+</listOfRanges>
+</Attribute>
+<Attribute name="Name [L]" id="EDE2DC53-9155-95EF-5436-3884C28210FA">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:05:50 UTC</createdTime>
+<generatorID>1D620F66-F03C-7F39-C1BF-827CB5B35D49</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>A5D1539D-01CE-4464-44F8-64DCCF83D6C6</importedID>
+<engineerTo>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+</engineerTo>
+<referedAttribute>49509F7F-1C52-6A13-93E0-246E01806DF9</referedAttribute>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Name [L]"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="Name [L]"/>
+</propertyMap>
+</Attribute>
+<Attribute name="Name" id="F80E8C65-A08B-D0F1-A2C9-9DE68820ACE1">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:05:50 UTC</createdTime>
+<comment><![CDATA[Name eines Geschäftsbereichs]]></comment>
+<generatorID>1D620F66-F03C-7F39-C1BF-827CB5B35D49</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Name eines Geschäftsbereichs
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Business division name
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>E8F721F2-AA56-EDE1-C015-1131261D9383</importedID>
+<engineerTo>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+</engineerTo>
+<referedAttribute>C9100273-A5AD-D6D6-E275-8A6D4E344A6E</referedAttribute>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value="Name eines Geschäftsbereichs"/>
+<property name="DE_ATTR_NAME" value="Name"/>
+<property name="EN_ATTR_COMMENT" value="*DE* Name eines Geschäftsbereichs"/>
+<property name="EN_ATTR_NAME" value="Name"/>
+</propertyMap>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="1C046CF1-E435-30EF-1456-83D53C0C89C5" name="Beziehungs-darstellung PK">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:05:50 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<engineerTo>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>EDE2DC53-9155-95EF-5436-3884C28210FA</attributeRef>
+<attributeRef>F80E8C65-A08B-D0F1-A2C9-9DE68820ACE1</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

@@ -1,0 +1,44 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_2" id="CCC2C5E0-D66E-5A16-6F12-2BF97C140626" name="internes Geschäftsereignis">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:05:22 UTC</createdTime>
+<comment><![CDATA[Eine interne geschäftliche Entscheidung, Vorgabe oder Regel, die dazu führt, dass eine Geschäftsfunktion oder ein -Prozess ausgelöst wird.
+Bei einem Geschäftsereignis ist immer eine Person involviert, die das Ereignis als solches definiert.
+Automatisch ausgelöste Ereignisse sind Geschäftszustände
+
+Beispiele:
+- Eine Kündigung wird ausgesprochen
+- Quartalszahlen sind schlecht
+- Ein Manager will eine Auswertung
+- Eine Lagerhalle wird gesperrt
+- Neues Büromaterial wird angeschafft
+]]></comment>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+Etwas, das in einem Geschäft etwas auslöst  Beispiele: - Monatsende (Lohnzahlung, Bericht an Mgt, Mahnläufe) - jeden Montag (überprüfung der offenen Bestellungen) - Kunde beschwert sich - Kunde bestellt - Quartalszahlen sind schlecht
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+Something that triggers something in a business examples: - End of month (wage payment, report to Mgt, reminder runs) - every Monday (check of open orders) - customer complains - customer orders - quarterly figures are bad
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<engineerTo>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+</engineerTo>
+<typeID>13BF0DA4-6BF8-2C1F-0A19-8331A425ADFA</typeID>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<hierarchicalParent>9B83A398-864E-B973-221B-195C8CFEDA12</hierarchicalParent>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="DE_ENTI_COMMENT" value="Etwas, das in einem Geschäft etwas auslöst  Beispiele: - Monatsende (Lohnzahlung, Bericht an Mgt, Mahnläufe) - jeden Montag (überprüfung der offenen Bestellungen) - Kunde beschwert sich - Kunde bestellt - Quartalszahlen sind schlecht"/>
+<property name="DE_ENTI_NAME" value="Geschäftsereignis"/>
+<property name="EN_ENTI_COMMENT" value="*DE* Etwas, das in einem Geschäft etwas auslöst  Beispiele: - Monatsende (Lohnzahlung, Bericht an Mgt, Mahnläufe) - jeden Montag (überprüfung der offenen Bestellungen) - Kunde beschwert sich - Kunde bestellt - Quartalszahlen sind schlecht"/>
+<property name="EN_ENTI_NAME" value="Business event"/>
+</propertyMap>
+</Entity>

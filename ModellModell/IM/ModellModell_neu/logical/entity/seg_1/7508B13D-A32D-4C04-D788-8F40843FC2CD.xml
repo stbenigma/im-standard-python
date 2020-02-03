@@ -1,0 +1,111 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="7508B13D-A32D-4C04-D788-8F40843FC2CD" name="Exklusivbeziehung">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:04:00 UTC</createdTime>
+<comment><![CDATA[Beziehungen die von einer Entität ausgehen können exklusiv sein. D.h. keine oder 1 davon ist möglich, aber nie mehrere gleichzeitig
+Exklusivbeziehungen einer Gruppe sind alle IsA Beziehungen oder alle funktionale Beziehungen.]]></comment>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+Beziehungen die von einer Entität ausgehen können exklusiv sein. D.h. keine oder 1 davon ist möglich, aber nie mehrere gleichzeitig Exklusivbeziehungen einer Gruppe sind alle IsA Beziehungen oder alle funktionale Beziehungen.
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+Relationships that emanate from an entity can be exclusive. I.e. none or 1 of them is possible, but never several simultaneously exclusive relations of a group are all IsA relations or all functional relations.
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<engineerTo>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+</engineerTo>
+<typeID>1C6A8769-7651-51C0-9E0A-D0C138DE6193</typeID>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<synonym>Arc</synonym>
+<createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="Beispiele" value="Kunde kauft online oder Kunde kauft im Geschäft"/>
+<property name="DE_ENTI_COMMENT" value="Beziehungen die von einer Entität ausgehen können exklusiv sein. D.h. keine oder 1 davon ist möglich, aber nie mehrere gleichzeitig Exklusivbeziehungen einer Gruppe sind alle IsA Beziehungen oder alle funktionale Beziehungen."/>
+<property name="DE_ENTI_NAME" value="Exklusivbeziehung"/>
+<property name="DE_ENTI_SYNONYM" value="Arc"/>
+<property name="EN_ENTI_COMMENT" value="*DE* Beziehungen die von einer Entität ausgehen können exklusiv sein. D.h. keine oder 1 davon ist möglich, aber nie mehrere gleichzeitig Exklusivbeziehungen einer Gruppe sind alle IsA Beziehungen oder alle funktionale Beziehungen."/>
+<property name="EN_ENTI_NAME" value="Exclusive relationship"/>
+<property name="EN_ENTI_SYNONYM" value="Arc"/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Entitätname [L]" id="8359BB79-1816-D3DB-11A7-BE575A6D1818">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:04:00 UTC</createdTime>
+<comment><![CDATA[Name der Entität der in der Kommunikation normalerweise gebraucht wird.]]></comment>
+<generatorID>8E8A6377-DF32-1C76-25A1-B458D76ECE51</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Name der Entität der in der Kommunikation normalerweise gebraucht wird.
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Name of the entity normally used in communication.
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>046F66BA-05DC-63A1-00EE-B9ABD308C7DB</importedID>
+<engineerTo>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+</engineerTo>
+<referedAttribute>5EDB9C50-45CE-4422-F3EE-869FF2388549</referedAttribute>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value="Name der Entität der in der Kommunikation normalerweise gebraucht wird."/>
+<property name="DE_ATTR_NAME" value="Entitätname [L]"/>
+<property name="EN_ATTR_COMMENT" value="*DE* Name der Entität der in der Kommunikation normalerweise gebraucht wird."/>
+<property name="EN_ATTR_NAME" value="Entity name [L]"/>
+</propertyMap>
+</Attribute>
+<Attribute name="Laufnr" id="C725A402-0ADC-7EBF-B98F-A9FEE6E7B79F">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:04:00 UTC</createdTime>
+<comment><![CDATA[willkürliche Nummerierung zur Untescheidung mehrere Exklusivbeziehungen in einer Entität]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+willkürliche Nummerierung zur Untescheidung mehrere Exklusivbeziehungen in einer Entität
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+arbitrary numbering to distinguish several exclusive relationships in an entity
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>F8F374B8-F266-21F0-ADA1-DE808B4EF15F</importedID>
+<engineerTo>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>E2DCFC37-5428-9FE8-64FF-368960199E02</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value="willkürliche Nummerierung zur Untescheidung mehrere Exklusivbeziehungen in einer Entität"/>
+<property name="DE_ATTR_NAME" value="Laufnr"/>
+<property name="EN_ATTR_COMMENT" value="*DE* willkürliche Nummerierung zur Untescheidung mehrere Exklusivbeziehungen in einer Entität"/>
+<property name="EN_ATTR_NAME" value="Runnr"/>
+</propertyMap>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="4D8D5B78-D54B-9763-65AC-95DAF7C593D5" name="Exklusivbeziehung PK">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:04:00 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<engineerTo>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>8359BB79-1816-D3DB-11A7-BE575A6D1818</attributeRef>
+<attributeRef>C725A402-0ADC-7EBF-B98F-A9FEE6E7B79F</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

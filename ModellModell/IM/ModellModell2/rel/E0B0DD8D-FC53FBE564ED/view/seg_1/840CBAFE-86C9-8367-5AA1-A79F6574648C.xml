@@ -1,0 +1,203 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableView class="oracle.dbtools.crest.model.design.relational.TableView" directorySegmentName="seg_1" id="840CBAFE-86C9-8367-5AA1-A79F6574648C" schemaObject="19221298-76C4-E323-B35B-7857802DF7E7" name="DMRV_TELEPHONES">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>ADMIN</sourceObjSchema>
+<sourceObjName>DMRV_TELEPHONES</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:35 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<userDefined>true</userDefined>
+<userDefinedSQL><![CDATA[CREATE OR REPLACE VIEW DMRV_TELEPHONES
+AS 
+select  Telephone_ID, Telephone_OVID, Telephone_Name, Business_Info_ID, Business_Info_OVID, Business_Info_Name, Phone_Number, Phone_Type, Design_OVID from DMRS_TELEPHONES]]></userDefinedSQL>
+<parsed>true</parsed>
+<viewElements>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="TELEPHONE_ID" id="1576B84F-CC4B-E39D-EEC9-D0DA379E294D">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_TELEPHONES</sourceObjSchema>
+<sourceObjName>TELEPHONE_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:36 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>TELEPHONE_ID</alias>
+<dataType>VARCHAR2 (70 BYTE)</dataType>
+<headerAlias>TELEPHONE_ID</headerAlias>
+<reference>false</reference>
+<referencedColumn>ED4E7814-971D-402F-CCD8-348D9B12AAA8</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="TELEPHONE_OVID" id="E1FABF36-8A55-6AB7-87F4-BF716623C162">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_TELEPHONES</sourceObjSchema>
+<sourceObjName>TELEPHONE_OVID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:36 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>TELEPHONE_OVID</alias>
+<dataType>VARCHAR2 (36 BYTE)</dataType>
+<headerAlias>TELEPHONE_OVID</headerAlias>
+<reference>false</reference>
+<referencedColumn>BA7FF93F-BB5C-50A5-1CA3-23EF94B4A745</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="TELEPHONE_NAME" id="E332A4E6-CCD4-488C-BEB7-50DF8A1DA0B6">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_TELEPHONES</sourceObjSchema>
+<sourceObjName>TELEPHONE_NAME</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:36 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>TELEPHONE_NAME</alias>
+<dataType>VARCHAR2 (256 BYTE)</dataType>
+<headerAlias>TELEPHONE_NAME</headerAlias>
+<reference>false</reference>
+<referencedColumn>1E23E800-FA36-B34C-FCC0-12FD3678BD2F</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="BUSINESS_INFO_ID" id="B43BD02E-AB44-07B9-7250-2EE3D76A0637">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_TELEPHONES</sourceObjSchema>
+<sourceObjName>BUSINESS_INFO_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:36 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>BUSINESS_INFO_ID</alias>
+<dataType>VARCHAR2 (70 BYTE)</dataType>
+<headerAlias>BUSINESS_INFO_ID</headerAlias>
+<reference>false</reference>
+<referencedColumn>0CB849C3-68F3-CECD-63E5-F7B69EB07CEC</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="BUSINESS_INFO_OVID" id="CA0D1931-439C-25D5-7282-EA39286682D8">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_TELEPHONES</sourceObjSchema>
+<sourceObjName>BUSINESS_INFO_OVID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:36 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>BUSINESS_INFO_OVID</alias>
+<dataType>VARCHAR2 (36 BYTE)</dataType>
+<headerAlias>BUSINESS_INFO_OVID</headerAlias>
+<reference>false</reference>
+<referencedColumn>610C74B9-81C7-BE73-AD61-C5F005EC696D</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="BUSINESS_INFO_NAME" id="0D5D4F10-DB4F-7E62-03D5-1352047ED366">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_TELEPHONES</sourceObjSchema>
+<sourceObjName>BUSINESS_INFO_NAME</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:36 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>BUSINESS_INFO_NAME</alias>
+<dataType>VARCHAR2 (256 BYTE)</dataType>
+<headerAlias>BUSINESS_INFO_NAME</headerAlias>
+<reference>false</reference>
+<referencedColumn>5290D7D1-6E75-AC61-B989-852CBCF8AFC9</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="PHONE_NUMBER" id="157AF415-F8E4-7679-D3B1-98B9C071ED3F">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_TELEPHONES</sourceObjSchema>
+<sourceObjName>PHONE_NUMBER</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:36 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>PHONE_NUMBER</alias>
+<dataType>VARCHAR2 (1000 BYTE)</dataType>
+<headerAlias>PHONE_NUMBER</headerAlias>
+<reference>false</reference>
+<referencedColumn>5C85BEC3-94EA-5FAD-1B15-3D558649D88B</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="PHONE_TYPE" id="867E5438-4177-00AA-4060-AB551B8D611D">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_TELEPHONES</sourceObjSchema>
+<sourceObjName>PHONE_TYPE</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:36 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>PHONE_TYPE</alias>
+<dataType>VARCHAR2 (1000 BYTE)</dataType>
+<headerAlias>PHONE_TYPE</headerAlias>
+<reference>false</reference>
+<referencedColumn>A969F046-FE76-138F-54A4-903A53FBEECC</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="DESIGN_OVID" id="3DF79A8C-8C1F-A05F-D4AA-733557DDF544">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_TELEPHONES</sourceObjSchema>
+<sourceObjName>DESIGN_OVID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:36 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>DESIGN_OVID</alias>
+<dataType>VARCHAR2 (36 BYTE)</dataType>
+<headerAlias>DESIGN_OVID</headerAlias>
+<reference>false</reference>
+<referencedColumn>C657F502-68D1-73F9-5DD0-1A272D20DECC</referencedColumn>
+</viewElement>
+</viewElements>
+<usedObjects>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="ED4E7814-971D-402F-CCD8-348D9B12AAA8">
+<columnName>TELEPHONE_ID</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_TELEPHONES</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="BA7FF93F-BB5C-50A5-1CA3-23EF94B4A745">
+<columnName>TELEPHONE_OVID</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_TELEPHONES</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="1E23E800-FA36-B34C-FCC0-12FD3678BD2F">
+<columnName>TELEPHONE_NAME</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_TELEPHONES</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="0CB849C3-68F3-CECD-63E5-F7B69EB07CEC">
+<columnName>BUSINESS_INFO_ID</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_TELEPHONES</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="610C74B9-81C7-BE73-AD61-C5F005EC696D">
+<columnName>BUSINESS_INFO_OVID</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_TELEPHONES</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="5290D7D1-6E75-AC61-B989-852CBCF8AFC9">
+<columnName>BUSINESS_INFO_NAME</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_TELEPHONES</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="5C85BEC3-94EA-5FAD-1B15-3D558649D88B">
+<columnName>PHONE_NUMBER</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_TELEPHONES</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="A969F046-FE76-138F-54A4-903A53FBEECC">
+<columnName>PHONE_TYPE</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_TELEPHONES</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="C657F502-68D1-73F9-5DD0-1A272D20DECC">
+<columnName>DESIGN_OVID</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_TELEPHONES</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="2A415992-DE50-5C74-F0E5-E89BD5FBCBEF">
+<container>true</container>
+<schema>ADMIN</schema>
+<tableName>DMRS_TELEPHONES</tableName>
+</UsedObject>
+</usedObjects>
+</TableView>

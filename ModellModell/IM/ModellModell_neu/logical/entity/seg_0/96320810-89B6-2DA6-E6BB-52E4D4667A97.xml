@@ -1,0 +1,178 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="96320810-89B6-2DA6-E6BB-52E4D4667A97" name="Bereich-Elemendarstellung">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:05:50 UTC</createdTime>
+<comment><![CDATA[Information zur Darstellung eines grafischen Elementes (Entität, etc.) auf einem Diagramm]]></comment>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+Information zur Darstellung eines grafischen Elementes (Entität, etc.) auf einem Diagramm
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+Information about the representation of a graphical element (entity, etc.) on a diagram
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<engineerTo>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+</engineerTo>
+<typeID>BFFB2270-6E04-AA4B-B656-44CFB03FD776</typeID>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="DE_ENTI_COMMENT" value="Information zur Darstellung eines grafischen Elementes (Entität, etc.) auf einem Diagramm"/>
+<property name="DE_ENTI_NAME" value="Elemendarstellung"/>
+<property name="EN_ENTI_COMMENT" value="*DE* Information zur Darstellung eines grafischen Elementes (Entität, etc.) auf einem Diagramm"/>
+<property name="EN_ENTI_NAME" value="Element representation"/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Inhaltdarstellung" id="8BDFA330-6189-1B9D-E961-3037F5F12D0F">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:05:50 UTC</createdTime>
+<comment><![CDATA[Vorgabewert einer Darstellung eines Elementtyps]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>6577959C-2956-1871-4FDF-3332492907D2</importedID>
+<engineerTo>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>3</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Inhaltdarstellung"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="Content display"/>
+</propertyMap>
+</Attribute>
+<Attribute name="Randdarstellung" id="1387FFD4-2A68-08C1-A494-DA54C3DE8F56">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:05:50 UTC</createdTime>
+<comment><![CDATA[Vorgabewert der Darstellung des Randes um das Element]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>B6C803A6-2D16-83A9-A08B-61445056F6F8</importedID>
+<engineerTo>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>3</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Randdarstellung"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="Marginal representation"/>
+</propertyMap>
+</Attribute>
+<Attribute name="Schriftgrösse" id="08D53BDA-3A24-1699-9825-946ED7F513BB">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:05:50 UTC</createdTime>
+<comment><![CDATA[Vorgabewert der Schriftgrösse des Elementsnamens]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>07F8DBCD-DEF2-5076-60B0-044E807801B5</importedID>
+<engineerTo>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>435C11BA-FCF7-BBBA-6AA9-FAB7326273D3</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Schriftgrösse"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="Font size"/>
+</propertyMap>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>1</beginValue>
+<endValue>999</endValue>
+</rangeDef>
+</listOfRanges>
+</Attribute>
+<Attribute name="Schriftfarbe" id="B4CA8445-8FF6-1DB9-FDC6-C2EBAE97C02C">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:05:50 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>AB45D182-C8D6-83B3-F828-BBC85012E269</importedID>
+<engineerTo>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>06269521-C0BC-78CB-FBC8-656101307358</domain>
+<defaultValue>000000</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Schriftfarbe"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="Font color"/>
+</propertyMap>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="937593DC-815B-906F-177D-A89D57957A5E" name="Key_1">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:05:50 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<engineerTo>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+</engineerTo>
+</identifier>
+<identifier id="15DA388E-F9F2-4845-AC81-623618502076" name="Bereich-Elemendarstellung_PK">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:05:50 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<engineerTo>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+</engineerTo>
+</identifier>
+<identifier id="A460D294-559F-D9A7-792C-844DDECFC9B0" name="Bereich-Elemendarstellung_PKv1">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:05:50 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<engineerTo>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+</engineerTo>
+<pk>true</pk>
+</identifier>
+</identifiers>
+</Entity>

@@ -1,0 +1,285 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="9072C5F2-34EC-D53D-B989-DA4827EB9A7A" name="SCHNITTSTELLE">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-21 09:44:41 UTC</createdTime>
+<comment><![CDATA[Eine definierte Schnittstelle zwischen 2 IT-Systemen.
+
+Synchron heisst, dass die Daten immer in kurzer Zeit (ms - einige Sekunden)  nachgeführt und aktuell sind.
+Manuell bedeutet, dass eine Person die Daten von einem Werkzeuge in ein anderes überträgt (copy-paste, abschreiben).
+online bedeutet, dass die Anwendungen direkt auf die Datenbasis (Datei, DB) einer anderen Anwendung zugreift. Z.B. via DB-Link, Service. 
+
+]]></comment>
+<generatorID>67486AF6-A48F-0ED0-B3A8-FE8A5010B861</generatorID>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<abbreviation>SCHN</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="SCHN_ID" id="B1D3D7C6-D459-592F-6DDB-6D7A3F3C1649">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-21 09:51:32 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="SCHN_ITKO_ID" id="8305C16F-8B7D-23D2-29EB-48A2857CA245">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-21 09:54:39 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="0EEC4107-CC65-33AB-26CA-3C9EA31B2C0E" referredColumn="8AB08E74-5962-DBEC-AFFF-901D39ED3FB6"/>
+</associations>
+</Column>
+<Column name="SCHN_MANUELL" id="A16D5249-2B29-CCE4-D2DF-0E82AC75AEC5">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-21 09:44:41 UTC</createdTime>
+<comment><![CDATA[Daten werden manuell übertragen (copy-paste, filetransfer)]]></comment>
+<generatorID>695153DA-8B28-B727-6415-2240B8831A62</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Daten werden manuell übertragen (copy-paste, filetransfer)
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Data is transferred manually (copy-paste, file transfer)
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="SCHN_SYNCHRON" id="30B74AEA-28FF-4207-0BC8-8A2709B4A065">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-21 09:44:41 UTC</createdTime>
+<comment><![CDATA[Daten werden sofort übertragen oder in Paketen die irgendwann übertragen werden.]]></comment>
+<generatorID>9A8E6DBD-45F2-B058-15CB-0EA9555E5047</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Daten werden sofort übertragen oder in Paketen die irgendwann übertragen werden.
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Data is transferred immediately or in packets that are eventually transferred.
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="SCHN_BIDIREKTIONAL" id="F2936CFF-D022-39C4-54B6-0AC48DF69129">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-21 09:44:41 UTC</createdTime>
+<comment><![CDATA[Nein bedeutet Daten gehen nur von "von" zu "nach"]]></comment>
+<generatorID>6302FB3C-12B3-8762-30A4-B329D9CFCD82</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Nein bedeutet Daten gehen nur von "von" zu "nach"
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+No means data only goes from "from" to "to"
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="SCHN_ONLINE" id="D9E83A6A-AFA3-9B03-6BE6-15C1395317CE">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-21 09:44:41 UTC</createdTime>
+<comment><![CDATA[Daten über eine onlineschnittstelle direkt genutzt. Z.B. SQL via DB-Link]]></comment>
+<generatorID>0DD96E6E-CB23-100D-1414-F2A2EEEC68B2</generatorID>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="SCHN_AUSL_PERIOD" id="3A97DC27-7E4F-B174-6763-E948DCBC4C5F">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-21 09:44:41 UTC</createdTime>
+<commentInRDBMS><![CDATA[Periodizität mit der die Schnittstelle bedient/abgeholt wird. Standardvorgabe für alle Attribute einer Schnittstelle.]]></commentInRDBMS>
+<generatorID>98F896FA-EB99-C1A2-3C9B-23F46416102D</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>FEA1A894-BD6D-FEF8-423C-6857A9D694A1</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="SCHN_UC" id="BFAA3C4F-5763-E4CE-6770-C5CC43C90A9B">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-21 15:37:33 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<computed>true</computed>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="F7EEFF47-7A42-2A3E-7DFC-D0558D6996B8"/>
+</propertyMap>
+</Column>
+<Column name="SCHN_DC" id="AD03AA93-9DEE-4ACF-9BA2-D72544EF6070">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-21 09:44:41 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT047</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="74D877A0-4C3B-63EE-06C5-071C7695907C"/>
+</propertyMap>
+</Column>
+<Column name="SCHN_UM" id="635C47E5-B4F5-2F9D-9ED9-B738885AC826">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-21 09:44:41 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="B2E17D53-C2F7-74D9-022D-5D63F3931519"/>
+</propertyMap>
+</Column>
+<Column name="SCHN_DM" id="C2768620-F404-407E-637F-0B32CB1D794C">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-21 09:44:41 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT047</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="B398D247-00C1-F016-3BBB-FE65CFFFF7AA"/>
+</propertyMap>
+</Column>
+<Column name="Erstellzpkt" id="F21C7852-9990-D6CF-9A81-A622A2E8A463">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-20 17:44:28 UTC</createdTime>
+<generatorID>B1CF1AB7-77FE-E32D-AD6E-3C6A42050BA9</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT015</logicalDatatype>
+<domain>0AD80E26-0F5C-D068-29EA-4740A04582AE</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Änderungszpkt_[N]" id="AD80D000-264B-9280-966E-37A806B5C0C9">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-20 17:44:28 UTC</createdTime>
+<generatorID>FCC3F095-4611-9BC5-82A2-24FEDCDEEE33</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT015</logicalDatatype>
+<domain>0AD80E26-0F5C-D068-29EA-4740A04582AE</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Scalable" id="B0A42F23-FCDD-4E72-FD3B-DC4EBD44D18E">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-20 17:44:28 UTC</createdTime>
+<generatorID>B8EFFE90-915E-2B89-03D4-4591F16986B2</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="überwacht_(J/N)" id="9232C767-B067-2251-F38A-DCD68B115AF3">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-20 17:44:28 UTC</createdTime>
+<generatorID>F4363904-CEEA-1E89-A209-C5B783917961</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="89AB34F8-E121-1B1E-9931-53F03E5C5D47" name="SCHN_PK">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-21 09:51:32 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="B1D3D7C6-D459-592F-6DDB-6D7A3F3C1649"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="00661AA8-E715-09E8-B693-FAFD4621D0EE" name="SCHN_ITKO_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-21 09:54:39 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="8305C16F-8B7D-23D2-29EB-48A2857CA245"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

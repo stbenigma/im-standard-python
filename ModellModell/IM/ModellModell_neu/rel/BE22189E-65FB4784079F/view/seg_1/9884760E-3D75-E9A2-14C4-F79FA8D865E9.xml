@@ -1,0 +1,324 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableView class="oracle.dbtools.crest.model.design.relational.TableView" directorySegmentName="seg_1" id="9884760E-3D75-E9A2-14C4-F79FA8D865E9" name="DMRV_MEASURES">
+<sourceDDLFile>dbms-odm.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:08 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>B0C4D102-A1D5-C97E-C177-708E2AA44EFF</importedID>
+<userDefined>true</userDefined>
+<userDefinedSQL><![CDATA[select  Measure_ID, Measure_Name, Measure_OVID, Model_ID, Model_Name, Model_OVID, Cube_ID, Cube_Name, Cube_OVID, Fact_Object_ID, Fact_Object_Name, Fact_Object_OVID, Oracle_Long_Name, Oracle_Plural_Name, Oracle_Short_Name, Fact_Object_Type, Additivity_Type, Is_Fact_Dimension, Is_Formula, Is_Custom_Formula, Formula, Where_Clause, Description, Design_OVID from DMRS_MEASURES]]></userDefinedSQL>
+<viewElements>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="MEASURE_ID" id="61E4F1DA-2DF8-0088-B11F-7F5D14182045">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:08 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<dataType>VARCHAR2 (70 BYTE)</dataType>
+<headerAlias>Measure_ID</headerAlias>
+<reference>false</reference>
+<referencedColumn>1666678C-C3DF-9C5C-2992-74443F84E1B4</referencedColumn>
+<table>DD788076-8BF0-3B4D-3841-4F19F6978DE7</table>
+<viewID>9884760E-3D75-E9A2-14C4-F79FA8D865E9</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="MEASURE_NAME" id="25EC5531-C3A4-49CE-A8EF-A32A64225B38">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:08 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<dataType>VARCHAR2 (256 BYTE)</dataType>
+<headerAlias>Measure_Name</headerAlias>
+<reference>false</reference>
+<referencedColumn>792EAEF9-2B84-10BD-0106-D18D895E0678</referencedColumn>
+<table>DD788076-8BF0-3B4D-3841-4F19F6978DE7</table>
+<viewID>9884760E-3D75-E9A2-14C4-F79FA8D865E9</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="MEASURE_OVID" id="A9292740-BE72-AFE5-9ADF-044FAA01B692">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:08 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<dataType>VARCHAR2 (36 BYTE)</dataType>
+<headerAlias>Measure_OVID</headerAlias>
+<reference>false</reference>
+<referencedColumn>880B1CEF-3DB9-87A3-5669-884424B36492</referencedColumn>
+<table>DD788076-8BF0-3B4D-3841-4F19F6978DE7</table>
+<viewID>9884760E-3D75-E9A2-14C4-F79FA8D865E9</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="MODEL_ID" id="0A048CCA-0A8C-9E9D-BEC5-01EF6CED76CD">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:08 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<dataType>VARCHAR2 (70 BYTE)</dataType>
+<headerAlias>Model_ID</headerAlias>
+<reference>false</reference>
+<referencedColumn>D5DA7977-D5A6-3ECC-9A09-C110BF480689</referencedColumn>
+<table>DD788076-8BF0-3B4D-3841-4F19F6978DE7</table>
+<viewID>9884760E-3D75-E9A2-14C4-F79FA8D865E9</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="MODEL_NAME" id="FE63EC0A-3DB9-5E55-D998-0B902712A775">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:08 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<dataType>VARCHAR2 (256 BYTE)</dataType>
+<headerAlias>Model_Name</headerAlias>
+<reference>false</reference>
+<referencedColumn>FA169FC1-87EB-743C-91C8-5996A1710990</referencedColumn>
+<table>DD788076-8BF0-3B4D-3841-4F19F6978DE7</table>
+<viewID>9884760E-3D75-E9A2-14C4-F79FA8D865E9</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="MODEL_OVID" id="B5DE65D9-C691-51CF-D562-11BC7D651C86">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:08 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<dataType>VARCHAR2 (36 BYTE)</dataType>
+<headerAlias>Model_OVID</headerAlias>
+<reference>false</reference>
+<referencedColumn>273C9AE1-3110-07C7-5AA0-6C0D22EEFD02</referencedColumn>
+<table>DD788076-8BF0-3B4D-3841-4F19F6978DE7</table>
+<viewID>9884760E-3D75-E9A2-14C4-F79FA8D865E9</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="CUBE_ID" id="93BCDAD6-A72C-2AD9-789A-D85C76967AB4">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:08 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<dataType>VARCHAR2 (70 BYTE)</dataType>
+<headerAlias>Cube_ID</headerAlias>
+<reference>false</reference>
+<referencedColumn>42424390-7670-AFB6-A855-F7B5FBD53CC5</referencedColumn>
+<table>DD788076-8BF0-3B4D-3841-4F19F6978DE7</table>
+<viewID>9884760E-3D75-E9A2-14C4-F79FA8D865E9</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="CUBE_NAME" id="C0EBC3D6-E610-9E93-74BB-4C664079CBD5">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:08 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<dataType>VARCHAR2 (256 BYTE)</dataType>
+<headerAlias>Cube_Name</headerAlias>
+<reference>false</reference>
+<referencedColumn>7EF0EBE9-16D8-2F3C-2723-8AF19D62426C</referencedColumn>
+<table>DD788076-8BF0-3B4D-3841-4F19F6978DE7</table>
+<viewID>9884760E-3D75-E9A2-14C4-F79FA8D865E9</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="CUBE_OVID" id="9A973E7F-5F01-E957-B1F3-754E4FF2EA0A">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:08 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<dataType>VARCHAR2 (36 BYTE)</dataType>
+<headerAlias>Cube_OVID</headerAlias>
+<reference>false</reference>
+<referencedColumn>CCD3DE49-DD6C-B208-4115-CBB0EB4B2F7A</referencedColumn>
+<table>DD788076-8BF0-3B4D-3841-4F19F6978DE7</table>
+<viewID>9884760E-3D75-E9A2-14C4-F79FA8D865E9</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="FACT_OBJECT_ID" id="8D64F9DF-4AF7-7BD6-2B1B-B176264667A9">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:08 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<dataType>VARCHAR2 (70 BYTE)</dataType>
+<headerAlias>Fact_Object_ID</headerAlias>
+<reference>false</reference>
+<referencedColumn>3E456E92-F12F-EFF8-6936-D53E78193358</referencedColumn>
+<table>DD788076-8BF0-3B4D-3841-4F19F6978DE7</table>
+<viewID>9884760E-3D75-E9A2-14C4-F79FA8D865E9</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="FACT_OBJECT_NAME" id="F3556DAE-9D06-12E3-99F5-6A441AA1E6A4">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:08 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<dataType>VARCHAR2 (256 BYTE)</dataType>
+<headerAlias>Fact_Object_Name</headerAlias>
+<reference>false</reference>
+<referencedColumn>E8041F14-BAED-B4BE-3072-3E0B377CCF75</referencedColumn>
+<table>DD788076-8BF0-3B4D-3841-4F19F6978DE7</table>
+<viewID>9884760E-3D75-E9A2-14C4-F79FA8D865E9</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="FACT_OBJECT_OVID" id="F500F9A3-06B9-3374-1E13-AE9428EA7980">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:08 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<dataType>VARCHAR2 (36 BYTE)</dataType>
+<headerAlias>Fact_Object_OVID</headerAlias>
+<reference>false</reference>
+<referencedColumn>B9766A94-4D06-0F82-D6B4-7019D061EDE6</referencedColumn>
+<table>DD788076-8BF0-3B4D-3841-4F19F6978DE7</table>
+<viewID>9884760E-3D75-E9A2-14C4-F79FA8D865E9</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="ORACLE_LONG_NAME" id="4C425A14-8965-73F9-4FED-0E8F82B44583">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:08 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<dataType>VARCHAR2 (2000 BYTE)</dataType>
+<headerAlias>Oracle_Long_Name</headerAlias>
+<reference>false</reference>
+<referencedColumn>A0D3A9AE-A6B1-47BB-EB80-31D6AF635180</referencedColumn>
+<table>DD788076-8BF0-3B4D-3841-4F19F6978DE7</table>
+<viewID>9884760E-3D75-E9A2-14C4-F79FA8D865E9</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="ORACLE_PLURAL_NAME" id="D7BF0D5C-8BCF-7E17-5ACB-6ACA46A79429">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:08 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<dataType>VARCHAR2 (2000 BYTE)</dataType>
+<headerAlias>Oracle_Plural_Name</headerAlias>
+<reference>false</reference>
+<referencedColumn>4E9B3945-3DF4-14B7-E198-7693E5331E73</referencedColumn>
+<table>DD788076-8BF0-3B4D-3841-4F19F6978DE7</table>
+<viewID>9884760E-3D75-E9A2-14C4-F79FA8D865E9</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="ORACLE_SHORT_NAME" id="B0F0FB3A-E3FD-F551-CDC5-79AB74704E38">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:08 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<dataType>VARCHAR2 (2000 BYTE)</dataType>
+<headerAlias>Oracle_Short_Name</headerAlias>
+<reference>false</reference>
+<referencedColumn>C6455413-4289-FFE7-5597-9826AFE8C173</referencedColumn>
+<table>DD788076-8BF0-3B4D-3841-4F19F6978DE7</table>
+<viewID>9884760E-3D75-E9A2-14C4-F79FA8D865E9</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="FACT_OBJECT_TYPE" id="7701BFD0-3A77-BC19-F2DD-52CB2B96C135">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:08 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<dataType>VARCHAR2 (30 BYTE)</dataType>
+<headerAlias>Fact_Object_Type</headerAlias>
+<reference>false</reference>
+<referencedColumn>95DBBE3A-4D2B-1756-B160-6C9EE972DC1E</referencedColumn>
+<table>DD788076-8BF0-3B4D-3841-4F19F6978DE7</table>
+<viewID>9884760E-3D75-E9A2-14C4-F79FA8D865E9</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="ADDITIVITY_TYPE" id="5980F2B9-3EC2-D9FB-F6AF-908E96A05FEB">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:08 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<dataType>VARCHAR2 (30 BYTE)</dataType>
+<headerAlias>Additivity_Type</headerAlias>
+<reference>false</reference>
+<referencedColumn>87B411C9-4DFE-C9C3-A299-546D1066ED92</referencedColumn>
+<table>DD788076-8BF0-3B4D-3841-4F19F6978DE7</table>
+<viewID>9884760E-3D75-E9A2-14C4-F79FA8D865E9</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="IS_FACT_DIMENSION" id="10CEE358-00E9-91A4-1604-D614F6F604D0">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:08 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<dataType>CHAR (1 BYTE)</dataType>
+<headerAlias>Is_Fact_Dimension</headerAlias>
+<reference>false</reference>
+<referencedColumn>4DC7CD42-F8DB-0476-8E0D-2EAB0F862E60</referencedColumn>
+<table>DD788076-8BF0-3B4D-3841-4F19F6978DE7</table>
+<viewID>9884760E-3D75-E9A2-14C4-F79FA8D865E9</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="IS_FORMULA" id="80D86B23-5870-013F-1536-19393F0BCF15">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:08 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<dataType>CHAR (1 BYTE)</dataType>
+<headerAlias>Is_Formula</headerAlias>
+<reference>false</reference>
+<referencedColumn>4011039C-D500-6F7C-EB73-4C070364E27D</referencedColumn>
+<table>DD788076-8BF0-3B4D-3841-4F19F6978DE7</table>
+<viewID>9884760E-3D75-E9A2-14C4-F79FA8D865E9</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="IS_CUSTOM_FORMULA" id="C8EA0F5A-7429-6A39-9E00-EF6A3544EA49">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:08 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<dataType>CHAR (1 BYTE)</dataType>
+<headerAlias>Is_Custom_Formula</headerAlias>
+<reference>false</reference>
+<referencedColumn>EDEB16B9-DB77-91D8-946A-4C0694B5927E</referencedColumn>
+<table>DD788076-8BF0-3B4D-3841-4F19F6978DE7</table>
+<viewID>9884760E-3D75-E9A2-14C4-F79FA8D865E9</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="FORMULA" id="A5870D91-0C7B-3B6B-5938-9D140E254928">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:08 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<dataType>VARCHAR2 (4000 BYTE)</dataType>
+<headerAlias>Formula</headerAlias>
+<reference>false</reference>
+<referencedColumn>8103AFB1-8FD4-0A65-2789-EC14503F3C3D</referencedColumn>
+<table>DD788076-8BF0-3B4D-3841-4F19F6978DE7</table>
+<viewID>9884760E-3D75-E9A2-14C4-F79FA8D865E9</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="WHERE_CLAUSE" id="0183FDEE-3ACF-E640-C104-B44EC4CA3E6C">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:08 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<dataType>VARCHAR2 (4000 BYTE)</dataType>
+<headerAlias>Where_Clause</headerAlias>
+<reference>false</reference>
+<referencedColumn>35935E8D-5A86-F41C-7094-6C8A6B3C3BEA</referencedColumn>
+<table>DD788076-8BF0-3B4D-3841-4F19F6978DE7</table>
+<viewID>9884760E-3D75-E9A2-14C4-F79FA8D865E9</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="DESCRIPTION" id="722A835A-BBBF-7F0E-9CE9-C39D3CB47151">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:08 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<dataType>VARCHAR2 (4000 BYTE)</dataType>
+<headerAlias>Description</headerAlias>
+<reference>false</reference>
+<referencedColumn>9E3CE92D-B389-1034-A6F7-03871162FA73</referencedColumn>
+<table>DD788076-8BF0-3B4D-3841-4F19F6978DE7</table>
+<viewID>9884760E-3D75-E9A2-14C4-F79FA8D865E9</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="DESIGN_OVID" id="7B2D66E6-CDE2-6613-57BF-21F78F8E277F">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:08 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<dataType>VARCHAR2 (36 BYTE)</dataType>
+<headerAlias>Design_OVID</headerAlias>
+<reference>false</reference>
+<referencedColumn>0CAE9765-82F8-F3BD-62B3-154732A84A95</referencedColumn>
+<table>DD788076-8BF0-3B4D-3841-4F19F6978DE7</table>
+<viewID>9884760E-3D75-E9A2-14C4-F79FA8D865E9</viewID>
+</viewElement>
+</viewElements>
+</TableView>

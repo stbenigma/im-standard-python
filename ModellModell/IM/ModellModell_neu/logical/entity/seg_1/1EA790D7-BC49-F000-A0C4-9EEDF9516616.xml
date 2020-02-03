@@ -1,0 +1,304 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="1EA790D7-BC49-F000-A0C4-9EEDF9516616" name="Entitätv3">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:06:23 UTC</createdTime>
+<comment><![CDATA[Entität im systemübergreifenden, konsolidierten, konzeptionellen Modell eines Unternehmens
+]]></comment>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+Entität im systemübergreifenden, konsolidierten, konzeptionellen Modell eines Unternehmens 
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+Entity in the cross-system, consolidated, conceptual model of a company
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<engineerTo>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+</engineerTo>
+<typeID>1C6A8769-7651-51C0-9E0A-D0C138DE6193</typeID>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="Beispiele" value="Kunde / Verkaufs-Artikel / Land"/>
+<property name="DE_ENTI_COMMENT" value="Entität im systemübergreifenden, konsolidierten, konzeptionellen Modell eines Unternehmens "/>
+<property name="DE_ENTI_NAME" value="Entität"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_COMMENT" value="*DE* Entität im systemübergreifenden, konsolidierten, konzeptionellen Modell eines Unternehmens "/>
+<property name="EN_ENTI_NAME" value="Entity"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Entitätname [L]" id="EBB1AE28-C0C0-C9CF-FDA4-98EB321C631C">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:06:23 UTC</createdTime>
+<comment><![CDATA[Name der Entität der in der Kommunikation normalerweise gebraucht wird.]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Name der Entität der in der Kommunikation normalerweise gebraucht wird.
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Name of the entity normally used in communication.
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>0F2758D2-C7D1-07D3-5C35-F1697AF2FBE0</importedID>
+<engineerTo>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value="Name der Entität der in der Kommunikation normalerweise gebraucht wird."/>
+<property name="DE_ATTR_NAME" value="Entitätname [L]"/>
+<property name="EN_ATTR_COMMENT" value="*DE* Name der Entität der in der Kommunikation normalerweise gebraucht wird."/>
+<property name="EN_ATTR_NAME" value="Entity name [L]"/>
+</propertyMap>
+</Attribute>
+<Attribute name="Synonym [LN]" id="0AC08C83-7C4B-31D8-348D-52A5A6BDB6EF">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:06:23 UTC</createdTime>
+<comment><![CDATA[Name, der für diese Entität auch verwendet wird]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Name, der für diese Entität auch verwendet wird
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Name that is also used for this entity
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>86F63762-7E3D-9675-C4EB-5EF70C2112E7</importedID>
+<engineerTo>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value="Name, der für diese Entität auch verwendet wird"/>
+<property name="DE_ATTR_NAME" value="Synonym [LN]"/>
+<property name="EN_ATTR_COMMENT" value="*DE* Name, der für diese Entität auch verwendet wird"/>
+<property name="EN_ATTR_NAME" value="Synonym [LN]"/>
+</propertyMap>
+</Attribute>
+<Attribute name="Beschreibung [L]" id="98FF6A04-79E3-6DCA-0037-A662B433BBE7">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:06:23 UTC</createdTime>
+<comment><![CDATA[Bedeutung, Nutzen, Nutzung der Entität]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Bedeutung, Nutzen, Nutzung der Entität
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Meaning, Benefits, Use of the Entity
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>78E7CC00-D288-42DD-98DE-293BD4C4788A</importedID>
+<engineerTo>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value="Bedeutung, Nutzen, Nutzung der Entität"/>
+<property name="DE_ATTR_NAME" value="Beschreibung [L]"/>
+<property name="EN_ATTR_COMMENT" value="*DE* Bedeutung, Nutzen, Nutzung der Entität"/>
+<property name="EN_ATTR_NAME" value="Description [L]"/>
+</propertyMap>
+</Attribute>
+<Attribute name="Kurzname [L]" id="DC40FCC9-2740-C2D8-FBD4-AA9F9677E06F">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:06:23 UTC</createdTime>
+<comment><![CDATA[Kurzbezeichnung der Entität für die Verwendung aus Überschrift, in Referenzen ]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Kurzbezeichnung der Entität für die Verwendung aus Überschrift, in Referenzen 
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Entity short name for use from heading, in references
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>3F71D6FF-01E1-8249-78A0-A7FF4F70650A</importedID>
+<engineerTo>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value="Kurzbezeichnung der Entität für die Verwendung aus Überschrift, in Referenzen "/>
+<property name="DE_ATTR_NAME" value="Kurzname [L]"/>
+<property name="EN_ATTR_COMMENT" value="*DE* Kurzbezeichnung der Entität für die Verwendung aus Überschrift, in Referenzen "/>
+<property name="EN_ATTR_NAME" value="Short name [L]"/>
+</propertyMap>
+</Attribute>
+<Attribute name="Präfixname" id="A9C361A6-F8CE-78BE-D7EB-984165C7C3B6">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:06:23 UTC</createdTime>
+<comment><![CDATA[Kürzestname (3-5 Zeichen, Normalerweise Grossbuchstaben) der als Präfix für  Implementierungsnamen verwendet werden kann.]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Kürzestname (3-5 Zeichen, Normalerweise Grossbuchstaben) der als Präfix für  Implementierungsnamen verwendet werden kann.
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Abbreviated name (3-5 characters, usually capital letters) that can be used as a prefix for implementation names.
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>05044FC2-ACB4-20D7-8B53-8FCF430B32D9</importedID>
+<engineerTo>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value="Kürzestname (3-5 Zeichen, Normalerweise Grossbuchstaben) der als Präfix für  Implementierungsnamen verwendet werden kann."/>
+<property name="DE_ATTR_NAME" value="Präfixname"/>
+<property name="EN_ATTR_COMMENT" value="*DE* Kürzestname (3-5 Zeichen, Normalerweise Grossbuchstaben) der als Präfix für  Implementierungsnamen verwendet werden kann."/>
+<property name="EN_ATTR_NAME" value="Prefix name"/>
+</propertyMap>
+</Attribute>
+<Attribute name="Tooltip [L]" id="58CFC07B-15BB-5DC3-D4CB-5C8DE089E885">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:06:23 UTC</createdTime>
+<comment><![CDATA[Anzeige der Bedeutung für Bediener auf einer Maske.]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Anzeige der Bedeutung für Bediener auf einer Maske.
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Display of the meaning for the operator on a mask.
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>54A2577F-F95D-B646-574D-6693D12215E0</importedID>
+<engineerTo>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value="Anzeige der Bedeutung für Bediener auf einer Maske."/>
+<property name="DE_ATTR_NAME" value="Tooltip [L]"/>
+<property name="EN_ATTR_COMMENT" value="*DE* Anzeige der Bedeutung für Bediener auf einer Maske."/>
+<property name="EN_ATTR_NAME" value="Tooltip [L]"/>
+</propertyMap>
+</Attribute>
+<Attribute name="Beispiele" id="0A79A57B-1384-F57D-A175-80BE92FD5B9E">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:06:23 UTC</createdTime>
+<comment><![CDATA[Typische Beispiele für eine Ausprägung dieser Entität, als Hinweis auf die Bedeutung]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Typische Beispiele für eine Ausprägung dieser Entität, als Hinweis auf die Bedeutung
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Typical examples of a characteristic of this entity, as an indication of its meaning
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>0A3BF2BE-3C66-86F6-C0C4-789EE9EC7833</importedID>
+<engineerTo>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value="Typische Beispiele für eine Ausprägung dieser Entität, als Hinweis auf die Bedeutung"/>
+<property name="DE_ATTR_NAME" value="Beispiele"/>
+<property name="EN_ATTR_COMMENT" value="*DE* Typische Beispiele für eine Ausprägung dieser Entität, als Hinweis auf die Bedeutung"/>
+<property name="EN_ATTR_NAME" value="Examples"/>
+</propertyMap>
+</Attribute>
+<Attribute name="Name [L]" id="FC275A0A-D9FC-7143-28AA-0FE32F5A6808">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:06:23 UTC</createdTime>
+<comment><![CDATA[Name des Hoheitsbereichs]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Name des Hoheitsbereichs
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Name of the jurisdiction
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>627C46BB-D03D-E7DB-D7EE-B726716B01B4</importedID>
+<engineerTo>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value="Name des Hoheitsbereichs"/>
+<property name="DE_ATTR_NAME" value="Name [L]"/>
+<property name="EN_ATTR_COMMENT" value="*DE* Name des Hoheitsbereichs"/>
+<property name="EN_ATTR_NAME" value="Name [L]"/>
+</propertyMap>
+</Attribute>
+<Attribute name="erwartete Tupelanzahl" id="34E310DE-82CA-3584-3ED2-45D84BD991A2">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:06:23 UTC</createdTime>
+<comment><![CDATA[Grössenordnung der Tupelanzahl in dieser Entität]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Grössenordnung der Tupelanzahl in dieser Entität
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Order of magnitude of the number of tuples in this entity
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>5D1A133A-66CD-CCDD-815F-E71B76100EF4</importedID>
+<engineerTo>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>A32A539A-AA2C-608E-1F61-A290079F25AD</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value="Grössenordnung der Tupelanzahl in dieser Entität"/>
+<property name="DE_ATTR_NAME" value="erwartete Tupelanzahl"/>
+<property name="EN_ATTR_COMMENT" value="*DE* Grössenordnung der Tupelanzahl in dieser Entität"/>
+<property name="EN_ATTR_NAME" value="expected number of tuples"/>
+</propertyMap>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="67E08D94-A2D0-E809-8875-261C03F18940" name="ENTI_PK">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:06:23 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<engineerTo>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>EBB1AE28-C0C0-C9CF-FDA4-98EB321C631C</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

@@ -1,0 +1,173 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="03E1F21A-FD6F-CB6F-82F6-6804E82F8D86" name="TRANSF_USAGE">
+<createdBy>stb</createdBy>
+<createdTime>2018-10-21 13:54:35 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<ordsAlias>relation_80</ordsAlias>
+<abbreviation>TFUS</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="TFUS_ID" id="AC1263E7-4BF6-A3C4-BA53-38F1C3A0B3C3">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-21 15:19:24 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="TFUS_RICHTUNG" id="38DBE109-D0D3-0881-4DB3-9E7597BF3A4D">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-21 15:20:10 UTC</createdTime>
+<commentInRDBMS><![CDATA[Gibt an, ob ein Attribut gelesen und nach aussen verwendet wird (OUTBOUND) bzw. neu gesetzt wird (INBOUND)]]></commentInRDBMS>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<dataTypeSize>10 CHAR</dataTypeSize>
+<listOfValues>
+<valueDef value="INBOUND" description=""/>
+<valueDef value="OUTBOUND" description=""/>
+</listOfValues>
+<ownDataTypeParameters>10 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="TFUS_ATTF_ID" id="C98A692B-326A-CB25-F793-52B786DD3D12">
+<createdBy>stb</createdBy>
+<createdTime>2018-10-21 13:54:35 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="8F838154-1FA9-CDD6-A514-560D9C3CB83D" referredColumn="580E8015-1DDF-1BB9-D4EB-C200B7B5A70D"/>
+</associations>
+</Column>
+<Column name="TFUS_ATTR_ID" id="D4256718-A07E-B39E-7AF5-ABE4313BE484">
+<createdBy>stb</createdBy>
+<createdTime>2018-10-21 13:54:35 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="C77B8326-1A6C-C859-068B-C85493AD375E" referredColumn="D8469506-6FD4-3358-1C9D-64435152B23C"/>
+</associations>
+</Column>
+<Column name="TFUS_UC" id="487216A9-AC36-F896-462F-89910E529DCF">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-21 15:38:43 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<computed>true</computed>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="F7EEFF47-7A42-2A3E-7DFC-D0558D6996B8"/>
+</propertyMap>
+</Column>
+<Column name="TFUS_DC" id="053B8E61-2E8C-424F-6B87-878B600F06FC">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-21 15:38:43 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT047</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="74D877A0-4C3B-63EE-06C5-071C7695907C"/>
+</propertyMap>
+</Column>
+<Column name="TFUS_UM" id="B67C1687-9003-F620-C7CF-C705C712D9A0">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-21 15:38:43 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="B2E17D53-C2F7-74D9-022D-5D63F3931519"/>
+</propertyMap>
+</Column>
+<Column name="TFUS_DM" id="03070A22-7F37-5FCD-A87A-A50EE4C08451">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-21 15:38:43 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT047</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="B398D247-00C1-F016-3BBB-FE65CFFFF7AA"/>
+</propertyMap>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="7E20AC17-164B-514E-8D7E-B31670679763" name="TFUS_PKv2">
+<createdBy>stb</createdBy>
+<createdTime>2018-10-21 13:54:35 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="AC1263E7-4BF6-A3C4-BA53-38F1C3A0B3C3"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="F1D7944A-E0BC-DC90-2B68-F4100988567D" name="TFUS__UN">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-21 15:19:24 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="C98A692B-326A-CB25-F793-52B786DD3D12"/>
+<colUsage columnID="D4256718-A07E-B39E-7AF5-ABE4313BE484"/>
+<colUsage columnID="38DBE109-D0D3-0881-4DB3-9E7597BF3A4D"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="0D372D50-70AF-DBB1-9632-4CC9CA112972" name="RELATION_80_ATTRIBUTTRANSFORMATION_FK">
+<createdBy>stb</createdBy>
+<createdTime>2018-10-21 13:54:35 UTC</createdTime>
+<generatorID>7883066E-901E-87BC-EB44-F0B64BF304AB</generatorID>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="C98A692B-326A-CB25-F793-52B786DD3D12"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="DE10B0D6-174E-335A-6C4E-88CCEA5BDF19" name="RELATION_80_ATTRIBUT_FK">
+<createdBy>stb</createdBy>
+<createdTime>2018-10-21 13:59:23 UTC</createdTime>
+<generatorID>7883066E-901E-87BC-EB44-F0B64BF304AB</generatorID>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="D4256718-A07E-B39E-7AF5-ABE4313BE484"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

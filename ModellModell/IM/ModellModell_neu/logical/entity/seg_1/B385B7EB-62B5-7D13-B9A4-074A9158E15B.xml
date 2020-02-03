@@ -1,0 +1,50 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="B385B7EB-62B5-7D13-B9A4-074A9158E15B" name="Externe Anwendungv1">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:06:05 UTC</createdTime>
+<comment><![CDATA[Eine Anwendung mit bestimmten Funktion für die Durchführung der Geschäftsprozesse.
+Die externe Anwendung kennen wir nur, weil wir irgendwelche Informationen auf irgend eine Art mit ihr austauschen und weil ggf. ein Geschäftsprozess eine solche nutzt 
+Sie wird weder intern betrieben noch von einer internen Stelle verantwortet
+
+Unsere Firma ist verantwortlich für Administration (unserer Umgebung), Inhalt und Zugriffsrechten aber nie für die Software oder den aktuellen Betrieb,
+Keine authority über die effektive Software oder Hardware
+
+Muss keine Verbindung zu IT-System haben
+ 
+Beispiele:
+google Mail
+Docs
+interaktiver Kursrechner
+Wikipedia (externe Anwendung)
+Jira (Sprintverwaltung)
+]]></comment>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+Eine Anwendung mit bestimmten Funktion für die Durchführung der Geschäftsprozesse. Die externe Anwendung kennen wir nur, weil wir irgendwelche Informationen auf irgend eine Art mit ihr austauschen und weil ggf. ein Geschäftsprozess eine solche nutzt  Sie wird weder intern betrieben noch von einer internen Stelle verantwortet  Unsere Firma ist verantwortlich für Administration (unserer Umgebung), Inhalt und Zugriffsrechten aber nie für die Software oder den aktuellen Betrieb, Keine authority über die effektive Software oder Hardware  Muss keine Verbindung zu IT-System haben   Beispiele: google Mail Docs interaktiver Kursrechner Wikipedia (externe Anwendung) 
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+An application with a specific function for carrying out business processes. We only know the external application because we exchange any information with it in any way and because a business process may use such information It is neither operated internally nor is it the responsibility of an internal department Our company is responsible for administration (of our environment), content and access rights but never for the software or the current operation, No authority over the effective software or hardware Does not need to have a connection to IT system Examples: google Mail Docs interactive course calculator Wikipedia (external application)
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<engineerTo>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+</engineerTo>
+<typeID>57779FAE-171C-9BB2-9F88-9B2ED7060C6F</typeID>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<hierarchicalParent>BB09B3B6-9A53-C6DC-5C47-029C4C4F626C</hierarchicalParent>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<shortName>ExtAnw</shortName>
+<createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="DE_ENTI_COMMENT" value="Eine Anwendung mit bestimmten Funktion für die Durchführung der Geschäftsprozesse. Die externe Anwendung kennen wir nur, weil wir irgendwelche Informationen auf irgend eine Art mit ihr austauschen und weil ggf. ein Geschäftsprozess eine solche nutzt  Sie wird weder intern betrieben noch von einer internen Stelle verantwortet  Unsere Firma ist verantwortlich für Administration (unserer Umgebung), Inhalt und Zugriffsrechten aber nie für die Software oder den aktuellen Betrieb, Keine authority über die effektive Software oder Hardware  Muss keine Verbindung zu IT-System haben   Beispiele: google Mail Docs interaktiver Kursrechner Wikipedia (externe Anwendung) "/>
+<property name="DE_ENTI_NAME" value="Externe Anwendung"/>
+<property name="EN_ENTI_COMMENT" value="*DE* Eine Anwendung mit bestimmten Funktion für die Durchführung der Geschäftsprozesse. Die externe Anwendung kennen wir nur, weil wir irgendwelche Informationen auf irgend eine Art mit ihr austauschen und weil ggf. ein Geschäftsprozess eine solche nutzt  Sie wird weder intern betrieben noch von einer internen Stelle verantwortet  Unsere Firma ist verantwortlich für Administration (unserer Umgebung), Inhalt und Zugriffsrechten aber nie für die Software oder den aktuellen Betrieb, Keine authority über die effektive Software oder Hardware  Muss keine Verbindung zu IT-System haben   Beispiele: google Mail Docs interaktiver Kursrechner Wikipedia (externe Anwendung) "/>
+<property name="EN_ENTI_NAME" value="External application"/>
+</propertyMap>
+</Entity>

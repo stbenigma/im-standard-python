@@ -1,0 +1,303 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableView class="oracle.dbtools.crest.model.design.relational.TableView" directorySegmentName="seg_0" id="56B2E766-2828-96B0-5E64-DA6164439A0B" schemaObject="19221298-76C4-E323-B35B-7857802DF7E7" name="DMRV_GLOSSARIES">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>ADMIN</sourceObjSchema>
+<sourceObjName>DMRV_GLOSSARIES</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:29 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<userDefined>true</userDefined>
+<userDefinedSQL><![CDATA[CREATE OR REPLACE VIEW DMRV_GLOSSARIES
+AS 
+select  Glossary_ID, Glossary_OVID, Glossary_Name, File_Name, Description, Incomplete_Modifiers, Case_Sensitive, Unique_Abbrevs, Separator_Type, Separator_Char, Date_Published, Published_By, Persistence_Version, Version_Comments from DMRS_GLOSSARIES]]></userDefinedSQL>
+<parsed>true</parsed>
+<viewElements>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="GLOSSARY_ID" id="7CDDFD58-F3E0-48BD-0793-886B3405D6AC">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_GLOSSARIES</sourceObjSchema>
+<sourceObjName>GLOSSARY_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:29 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>GLOSSARY_ID</alias>
+<dataType>VARCHAR2 (70 BYTE)</dataType>
+<headerAlias>GLOSSARY_ID</headerAlias>
+<reference>false</reference>
+<referencedColumn>9D576005-66D0-1709-C9C2-6F0464F75F16</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="GLOSSARY_OVID" id="09D3ADAC-78A7-F70C-213F-B21356342C71">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_GLOSSARIES</sourceObjSchema>
+<sourceObjName>GLOSSARY_OVID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:29 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>GLOSSARY_OVID</alias>
+<dataType>VARCHAR2 (36 BYTE)</dataType>
+<headerAlias>GLOSSARY_OVID</headerAlias>
+<reference>false</reference>
+<referencedColumn>AC96D46C-AA4F-325A-091E-CAA5DA720F25</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="GLOSSARY_NAME" id="07EADC70-2921-0196-1280-4179787168E2">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_GLOSSARIES</sourceObjSchema>
+<sourceObjName>GLOSSARY_NAME</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:29 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>GLOSSARY_NAME</alias>
+<dataType>VARCHAR2 (256 BYTE)</dataType>
+<headerAlias>GLOSSARY_NAME</headerAlias>
+<reference>false</reference>
+<referencedColumn>7E919BA1-8129-0587-DC28-7539E2E958FF</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="FILE_NAME" id="216EA9D3-DE62-5645-3339-6125D74D7DF9">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_GLOSSARIES</sourceObjSchema>
+<sourceObjName>FILE_NAME</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:29 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>FILE_NAME</alias>
+<dataType>VARCHAR2 (256 BYTE)</dataType>
+<headerAlias>FILE_NAME</headerAlias>
+<reference>false</reference>
+<referencedColumn>A8251201-9E5A-9DF4-EDE0-378D4A6F02AD</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="DESCRIPTION" id="CE84FCF0-BA52-01CD-40DA-B04EAFE89C09">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_GLOSSARIES</sourceObjSchema>
+<sourceObjName>DESCRIPTION</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:29 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>DESCRIPTION</alias>
+<dataType>VARCHAR2 (4000 BYTE)</dataType>
+<headerAlias>DESCRIPTION</headerAlias>
+<reference>false</reference>
+<referencedColumn>47C68307-2795-EDC8-08E4-C0843E2E3343</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="INCOMPLETE_MODIFIERS" id="95E3096B-E9AD-BCA9-11BA-BD8F059A6A4A">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_GLOSSARIES</sourceObjSchema>
+<sourceObjName>INCOMPLETE_MODIFIERS</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:29 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>INCOMPLETE_MODIFIERS</alias>
+<dataType>CHAR (1 BYTE)</dataType>
+<headerAlias>INCOMPLETE_MODIFIERS</headerAlias>
+<reference>false</reference>
+<referencedColumn>15F083A1-584D-999A-250B-FABB6DAB7D46</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="CASE_SENSITIVE" id="B0BDE28E-70B9-F5BF-6BCE-9CA8EC90E69C">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_GLOSSARIES</sourceObjSchema>
+<sourceObjName>CASE_SENSITIVE</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:29 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>CASE_SENSITIVE</alias>
+<dataType>CHAR (1 BYTE)</dataType>
+<headerAlias>CASE_SENSITIVE</headerAlias>
+<reference>false</reference>
+<referencedColumn>6D27A847-AAB1-24D5-1488-27104A4E25A4</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="UNIQUE_ABBREVS" id="5C0829D9-90D9-C748-EEF1-23EAB57D5C09">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_GLOSSARIES</sourceObjSchema>
+<sourceObjName>UNIQUE_ABBREVS</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:29 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>UNIQUE_ABBREVS</alias>
+<dataType>CHAR (1 BYTE)</dataType>
+<headerAlias>UNIQUE_ABBREVS</headerAlias>
+<reference>false</reference>
+<referencedColumn>08E73C21-9E51-35CE-EF52-204F32B1C182</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="SEPARATOR_TYPE" id="5FC3A44A-02C3-BBF7-2408-7B7266232DC8">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_GLOSSARIES</sourceObjSchema>
+<sourceObjName>SEPARATOR_TYPE</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:29 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>SEPARATOR_TYPE</alias>
+<dataType>VARCHAR2 (10 BYTE)</dataType>
+<headerAlias>SEPARATOR_TYPE</headerAlias>
+<reference>false</reference>
+<referencedColumn>66580E74-FE1B-63D0-4BAC-C3D17AFF3C69</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="SEPARATOR_CHAR" id="613B052A-BC83-6C8C-DDBC-F5D0CC9F0BE5">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_GLOSSARIES</sourceObjSchema>
+<sourceObjName>SEPARATOR_CHAR</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:29 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>SEPARATOR_CHAR</alias>
+<dataType>CHAR (1 BYTE)</dataType>
+<headerAlias>SEPARATOR_CHAR</headerAlias>
+<reference>false</reference>
+<referencedColumn>74971956-24CC-18BD-04A1-5E6F858B7962</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="DATE_PUBLISHED" id="F7C0E327-24D1-1A08-34B6-9B4E598CAE04">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_GLOSSARIES</sourceObjSchema>
+<sourceObjName>DATE_PUBLISHED</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:29 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>DATE_PUBLISHED</alias>
+<dataType>TIMESTAMP</dataType>
+<headerAlias>DATE_PUBLISHED</headerAlias>
+<reference>false</reference>
+<referencedColumn>31F0E612-309C-2B8D-FC00-A2790B3778D0</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="PUBLISHED_BY" id="4FF69ABE-184B-04D6-1226-B0F9BAFDF9FA">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_GLOSSARIES</sourceObjSchema>
+<sourceObjName>PUBLISHED_BY</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:29 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>PUBLISHED_BY</alias>
+<dataType>VARCHAR2 (80 BYTE)</dataType>
+<headerAlias>PUBLISHED_BY</headerAlias>
+<reference>false</reference>
+<referencedColumn>B865405F-4CF4-8F7B-0F77-3935B743B41A</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="PERSISTENCE_VERSION" id="6906D049-8603-9C38-1943-AA38D28E76D7">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_GLOSSARIES</sourceObjSchema>
+<sourceObjName>PERSISTENCE_VERSION</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:29 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>PERSISTENCE_VERSION</alias>
+<dataType>NUMBER (5,2)</dataType>
+<headerAlias>PERSISTENCE_VERSION</headerAlias>
+<reference>false</reference>
+<referencedColumn>86786B65-BCAE-D848-908F-8C9886E1B4E4</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="VERSION_COMMENTS" id="049CE905-A2B0-755F-60D2-F20942AA8481">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_GLOSSARIES</sourceObjSchema>
+<sourceObjName>VERSION_COMMENTS</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:29 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>VERSION_COMMENTS</alias>
+<dataType>VARCHAR2 (4000 BYTE)</dataType>
+<headerAlias>VERSION_COMMENTS</headerAlias>
+<reference>false</reference>
+<referencedColumn>3BB87FE3-CE37-0B39-A7F2-C673F6465CD4</referencedColumn>
+</viewElement>
+</viewElements>
+<usedObjects>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="9D576005-66D0-1709-C9C2-6F0464F75F16">
+<columnName>GLOSSARY_ID</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_GLOSSARIES</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="AC96D46C-AA4F-325A-091E-CAA5DA720F25">
+<columnName>GLOSSARY_OVID</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_GLOSSARIES</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="7E919BA1-8129-0587-DC28-7539E2E958FF">
+<columnName>GLOSSARY_NAME</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_GLOSSARIES</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="A8251201-9E5A-9DF4-EDE0-378D4A6F02AD">
+<columnName>FILE_NAME</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_GLOSSARIES</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="47C68307-2795-EDC8-08E4-C0843E2E3343">
+<columnName>DESCRIPTION</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_GLOSSARIES</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="15F083A1-584D-999A-250B-FABB6DAB7D46">
+<columnName>INCOMPLETE_MODIFIERS</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_GLOSSARIES</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="6D27A847-AAB1-24D5-1488-27104A4E25A4">
+<columnName>CASE_SENSITIVE</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_GLOSSARIES</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="08E73C21-9E51-35CE-EF52-204F32B1C182">
+<columnName>UNIQUE_ABBREVS</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_GLOSSARIES</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="66580E74-FE1B-63D0-4BAC-C3D17AFF3C69">
+<columnName>SEPARATOR_TYPE</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_GLOSSARIES</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="74971956-24CC-18BD-04A1-5E6F858B7962">
+<columnName>SEPARATOR_CHAR</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_GLOSSARIES</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="31F0E612-309C-2B8D-FC00-A2790B3778D0">
+<columnName>DATE_PUBLISHED</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_GLOSSARIES</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="B865405F-4CF4-8F7B-0F77-3935B743B41A">
+<columnName>PUBLISHED_BY</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_GLOSSARIES</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="86786B65-BCAE-D848-908F-8C9886E1B4E4">
+<columnName>PERSISTENCE_VERSION</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_GLOSSARIES</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="3BB87FE3-CE37-0B39-A7F2-C673F6465CD4">
+<columnName>VERSION_COMMENTS</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_GLOSSARIES</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="BF9FDA0B-E635-DE93-3618-391E7EDE20AF">
+<container>true</container>
+<schema>ADMIN</schema>
+<tableName>DMRS_GLOSSARIES</tableName>
+</UsedObject>
+</usedObjects>
+</TableView>

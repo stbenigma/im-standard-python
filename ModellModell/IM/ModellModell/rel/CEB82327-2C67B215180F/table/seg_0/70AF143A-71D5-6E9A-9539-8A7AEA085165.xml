@@ -1,0 +1,59 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="70AF143A-71D5-6E9A-9539-8A7AEA085165" name="Zentrale_Anwendung">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<comment><![CDATA[Eine Anwendung (Programm, SW-Paket) die als SW-Produkt gekauft oder selber hergestellt wurde.
+Die Anwendung kann zentral (Server, Cloud) oder lokal (Arbeitsplatz) installiert sein. 
+Wichtige Eigenschaft ist, dass die Daten nur einmal vorhanden sind und von allen Nutzenden gemeinsam genutzt werden. Durch welche Technologie ist irrelevant.
+
+Beispiele:
+ERP
+PIM
+FiBu
+]]></comment>
+<generatorID>CC42ED99-14C7-E4BF-2C0A-83506DCD0CA0</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<typeID>57779FAE-171C-9BB2-9F88-9B2ED7060C6F</typeID>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Anwendung_IT-Komponente_Modellelement_Modellelement_ID" id="7509EB7D-B3EA-C417-53D6-A60CC2F23166">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="CB258328-ACD2-DCEF-EF38-AEB18A444F22" referredColumn="940863F3-C183-3945-3F86-95C0CF482D7F"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="38FD7F38-42B7-85B2-38DA-443F78BF29A9" name="Zentrale_Anwendung_PK">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="7509EB7D-B3EA-C417-53D6-A60CC2F23166"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="5B6F3E49-D2B9-351B-8B60-67F09CB96DBC" name="Zentrale_Anwendung_Anwendung_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<generatorID>767CB14C-4032-A719-AAB4-F3BAE30D3F67</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="7509EB7D-B3EA-C417-53D6-A60CC2F23166"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

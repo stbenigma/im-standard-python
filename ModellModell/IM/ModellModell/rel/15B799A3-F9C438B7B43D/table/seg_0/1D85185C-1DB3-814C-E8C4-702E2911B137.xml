@@ -1,0 +1,136 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="1D85185C-1DB3-814C-E8C4-702E2911B137" name="Datenbanksystem">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-20 17:44:28 UTC</createdTime>
+<comment><![CDATA[Alleinstehendes Datenbanksystem zur Verwaltung von Daten, dietypischerweise von mehreren Applikationen im Direktzugriff genutzt werden.
+
+Datenbanken ausschliesslich von einer Applikation direkt genutzt werden können und wenn überhaupt nur über Services der Applikation zugreifbar sind werden nicht als Datenbanksysteme aufgezeichnet. Sie sind integraler Bestandteil der Applikation.
+
+Beispiele:
+MDM-DB
+ERP-DB
+Oracle-DB
+mongo-db for documentstorage
+file-system
+excel for commonly used data
+access
+elastic search
+graph db
+enterprize data warehouse]]></comment>
+<generatorID>84E8A0A1-4692-F686-5928-025451D5EB6F</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<typeID>57779FAE-171C-9BB2-9F88-9B2ED7060C6F</typeID>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="IT-Komponente_IT-Komponente_ID" id="E519E137-CAD1-6420-1660-52CF8732CD88">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-20 17:44:28 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Datenbanksystem_ID" id="D8E8C1CD-05AA-2E99-2B4F-C260FAFA99E8">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-20 17:44:28 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+<Column name="Zeichnsatz" id="4B0944BE-C522-EB46-809E-9D3630658EB4">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-20 17:44:28 UTC</createdTime>
+<generatorID>CEF84331-D1F8-95B8-C3AC-2F58918460FD</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>C44ED88C-D820-1BFA-9CD0-841B752A5E4B</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Name" id="93E6A888-38FE-411F-9615-1E6B33EC2838">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-20 17:44:28 UTC</createdTime>
+<comment><![CDATA[Name der Entität der in der Kommunikation normalerweise gebraucht wird.]]></comment>
+<generatorID>6A0BE6EE-FACA-EE1A-B294-1071918E2DA9</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Name_" id="BB0255C9-B37F-C2B7-1595-4AC95E4FC8B4">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-20 17:44:28 UTC</createdTime>
+<generatorID>F3557BB1-0486-BA65-69E0-90425C9A4AED</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="9C3B5651-EE37-B21A-3833-AB897E2F0D1F" name="Datenbanksystem_PK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-20 17:44:28 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="E519E137-CAD1-6420-1660-52CF8732CD88"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="54BB91E3-D11B-8D6C-D60C-EEC5AA010E52" name="Datenbanksystem_Name_UN">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-20 17:44:28 UTC</createdTime>
+<generatorID>2608DA3A-BEF7-23E8-4779-062F797D4E7E</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="93E6A888-38FE-411F-9615-1E6B33EC2838"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="D207196E-CD70-8F02-3F8A-E45DE5F6B562" name="Datenbanksystem_Datenbanksystem_ID_UN">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-20 17:44:28 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="D8E8C1CD-05AA-2E99-2B4F-C260FAFA99E8"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="98562F00-3579-B080-9948-1F17B76248B9" name="Datenbanksystem__UN">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 08:21:23 UTC</createdTime>
+<generatorID>2608DA3A-BEF7-23E8-4779-062F797D4E7E</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+</ind_PK_UK>
+<ind_PK_UK id="DE88948F-3143-2697-9213-F3943A5E666F" name="Datenbanksystem_IT-Komponente_FK">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 16:54:54 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+</ind_PK_UK>
+</indexes>
+</Table>

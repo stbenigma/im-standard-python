@@ -1,0 +1,96 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev11g class="oracle.dbtools.crest.model.design.storage.oracle.v11g.TableProxyOraclev11g" name="DMRS_KEY_ELEMENTS" directorySegmentName="seg_1" id="D3916E50-B35F-0918-9A9B-52617FA9EAD6">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:43 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<schemaObject>19221298-76C4-E323-B35B-7857802DF7E7</schemaObject>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<segment>AB15D85F-40F4-541E-A553-738690116257</segment>
+<tableSpace>F75A32E8-BEE4-D5D6-B0D7-FE9E9A500018</tableSpace>
+<temporaryChanged>false</temporaryChanged>
+<accessDriverType>oracle_loader</accessDriverType>
+<rejectLimit></rejectLimit>
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="SEQUENCE" id="02C7655F-98C4-0D5C-B575-B0097129120D">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:49 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="ELEMENT_OVID" id="1C9E429A-D6EB-20F0-C2F7-DA6C0CAA2103">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:49 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="ENTITY_OVID" id="1FED51CC-8910-84FE-F82E-F4FFE8075C58">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:49 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="KEY_OVID" id="21A6038A-DF88-8A07-4CC3-6C890885CD39">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:49 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="KEY_NAME" id="338E1755-1C46-1EE2-C3CD-1DCE72E01863">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:49 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="ENTITY_NAME" id="3F8B2E9C-3209-16EF-3FF9-CE64884B4BE1">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:49 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="ENTITY_ID" id="52A6A523-19B2-FEA5-971E-F54FD9FE9C89">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:49 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="DESIGN_OVID" id="5FBD1AB5-84F4-D04C-E84A-30B30B7E9010">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:49 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="TYPE" id="69AF4597-1FD2-BD2C-65A1-CB3087F79CA0">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:49 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="TARGET_LABEL" id="77364B56-A8BC-927A-0906-28237FD38A0D">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:49 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="KEY_ID" id="B8827439-5CD3-056E-5E58-41D774291553">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:49 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="ELEMENT_NAME" id="C8E09B8E-6F09-9F29-2F77-F9C725D0FFF6">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:49 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="SOURCE_LABEL" id="E67536BD-1138-1EF1-C4B4-2054883B6533">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:49 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="ELEMENT_ID" id="F47F587F-FA56-76F7-1913-949EED418599">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:49 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+<indexProxies>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="KEY_ELEMENTS_FK_IDX" id="8E7091D1-A0E2-F61A-C5D4-F5894F25BAB2">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:54 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<schemaObject>19221298-76C4-E323-B35B-7857802DF7E7</schemaObject>
+<segment>5F4DBB4E-C2F8-BC15-FF3A-BF2B722A5A9E</segment>
+<tableSpace>F75A32E8-BEE4-D5D6-B0D7-FE9E9A500018</tableSpace>
+</IndexProxy>
+</indexProxies>
+</TableProxyOraclev11g>

@@ -1,0 +1,75 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_2" id="A5BC562A-503B-6C82-24CC-5FD1E3118617" name="Kundenreiseetappev1">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:06:48 UTC</createdTime>
+<comment><![CDATA[Teil der Reise, die ein Kunde mit unserem Unternehmen für bestimmte Produkte / Dienstleistungen geht.
+
+Mögliche Ergebnisse:
+Kundenreaktion oder Firmen-Ergebnis
+führt typischerweise zu nächster Etappe bzw. Ender der Journey]]></comment>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+Teil der Reise, die ein Kunde mit unserem Unternehmen für bestimmte Produkte / Dienstleistungen geht.
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+Part of the journey that a customer goes with our company for certain products / services.
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<engineerTo>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+</engineerTo>
+<typeID>13BF0DA4-6BF8-2C1F-0A19-8331A425ADFA</typeID>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="DE_ENTI_COMMENT" value="Teil der Reise, die ein Kunde mit unserem Unternehmen für bestimmte Produkte / Dienstleistungen geht."/>
+<property name="DE_ENTI_NAME" value="Kundenreiseetappe"/>
+<property name="EN_ENTI_COMMENT" value="*DE* Teil der Reise, die ein Kunde mit unserem Unternehmen für bestimmte Produkte / Dienstleistungen geht."/>
+<property name="EN_ENTI_NAME" value="Customer travel stage"/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Emotion" id="4BD3418C-32F5-F3DB-BC06-2F354BF5E73C">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:06:48 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>0D782CD1-7E2D-9D8C-F080-376D840F4BCC</importedID>
+<engineerTo>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Beschreibung" id="A7E398AB-B524-1B0E-D30C-2E513BB5E75B">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:06:48 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>61966892-EBF9-9E6B-C485-D5E774162958</importedID>
+<engineerTo>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Kundenziel" id="AECC36B6-D6CE-5053-D44C-51EF2B80FA6F">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:06:48 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>15E359E6-1122-CF8B-E081-2FA85340B4C2</importedID>
+<engineerTo>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+</Entity>
