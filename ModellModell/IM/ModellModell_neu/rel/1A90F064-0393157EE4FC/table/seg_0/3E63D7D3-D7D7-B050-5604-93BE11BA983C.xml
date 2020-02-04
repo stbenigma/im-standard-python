@@ -30,21 +30,10 @@
 <autoIncrementCycle>false</autoIncrementCycle>
 <isSurrogateColumn>true</isSurrogateColumn>
 </Column>
-<Column name="SCHA_ATTR_NAME" id="7B161F0F-45EB-548D-49F9-A4306E2CDD13">
+<Column name="SCHA_COLUMN_NAME" id="7B161F0F-45EB-548D-49F9-A4306E2CDD13">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <generatorID>B41BF0C7-0AD6-E2FF-307E-0E3AB8A27120</generatorID>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<use>0</use>
-<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
-<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-</Column>
-<Column name="SCHA_TABELLENNAME" id="BA122D22-E9F7-3D3A-ED95-D7CB8759EE4B">
-<createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:18:16 UTC</createdTime>
-<generatorID>A4F8AE1B-96D5-63B5-DAEA-8A543607CDE9</generatorID>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
@@ -79,7 +68,18 @@
 <ownDataTypeParameters>100 CHAR,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="SCHA_SCHN_ID" id="A7D68383-E414-2F6E-36E2-F16342D9C9C6">
+<Column name="SCHA_BESCHR" id="0E6FDFDF-ABC1-D904-9459-26857E156825">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-04 15:11:10 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="SCHA_TABL_ID" id="A7D68383-E414-2F6E-36E2-F16342D9C9C6">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -89,6 +89,9 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="648B42F4-B2BD-D5FC-A0D5-2F4602B5504E" referredColumn="8B0283C8-CA91-343F-0C6B-5DCA79EFB9E1"/>
+</associations>
 </Column>
 <Column name="SCHA_DATY_ID" id="B9051C44-95CC-E882-ECB6-9D82CD4FEF32">
 <createdBy>stb</createdBy>
@@ -183,7 +186,6 @@
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
 <colUsage columnID="7B161F0F-45EB-548D-49F9-A4306E2CDD13"/>
-<colUsage columnID="BA122D22-E9F7-3D3A-ED95-D7CB8759EE4B"/>
 </indexColumnUsage>
 </ind_PK_UK>
 <ind_PK_UK id="0C5AADF4-1F4B-B17D-A533-1D8C7A3BB4B3" name="SCHA_DATY_FK">
@@ -194,6 +196,16 @@
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
 <colUsage columnID="B9051C44-95CC-E882-ECB6-9D82CD4FEF32"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="19C943DB-AE16-732E-954A-4E18E435645B" name="SCHA_TABL_FK">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-04 15:10:08 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="A7D68383-E414-2F6E-36E2-F16342D9C9C6"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>

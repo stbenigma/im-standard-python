@@ -30,6 +30,21 @@
 <autoIncrementCycle>false</autoIncrementCycle>
 <isSurrogateColumn>true</isSurrogateColumn>
 </Column>
+<Column name="ATTF_RICHTUNG" id="8052E02E-3250-8A36-696F-3EEC702D4BFB">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-04 15:19:22 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<dataTypeSize>7 CHAR</dataTypeSize>
+<listOfValues>
+<valueDef value="INBOUND" description=""/>
+<valueDef value="OUTBOUND" description=""/>
+</listOfValues>
+<ownDataTypeParameters>7 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
 <Column name="ATTF_TRANSF_FORMEL" id="DF518FB0-8FFE-4B0F-630F-24C3CC408FBF">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
@@ -172,6 +187,18 @@
 <colUsage columnID="4F249764-0617-FAF7-5F42-63058D3E83E3"/>
 </indexColumnUsage>
 </ind_PK_UK>
+<ind_PK_UK id="3895EA9C-CB31-FDDD-48EA-807A79C527D7" name="ATTR_UN">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-04 15:19:38 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="8052E02E-3250-8A36-696F-3EEC702D4BFB"/>
+<colUsage columnID="9D95475B-6325-7F21-67E2-8D9307EC79F4"/>
+<colUsage columnID="531F2E53-4D0E-702B-B344-C94B6B5377BC"/>
+</indexColumnUsage>
+</ind_PK_UK>
 <ind_PK_UK id="45516242-379D-1080-158E-E84758AFCEAC" name="ATTF_SCHA_FK">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:17 UTC</createdTime>
@@ -195,4 +222,13 @@
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>
+<tableCheckConstraints itemClass="oracle.dbtools.crest.model.design.constraint.TableLevelConstraint">
+<tableCheckConstraint name="ATTF_CHK" directorySegmentName="seg_1" id="2E53BD4A-4314-366D-17B2-3FA8BEEF8AAF">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-04 15:25:20 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<rule><![CDATA[(ATTF_SCHA_ID IS NULL AND ATTF_ATTR_ID IS NOT NULL AND ATTR_RICHTUNG = 'INBOUND')
+OR (ATTF_SCHA_ID IS NOT NULL AND ATTF_ATTR_ID IS NULL AND ATTR_RICHTUNG = 'OUTBOUND')]]></rule>
+</tableCheckConstraint>
+</tableCheckConstraints>
 </Table>

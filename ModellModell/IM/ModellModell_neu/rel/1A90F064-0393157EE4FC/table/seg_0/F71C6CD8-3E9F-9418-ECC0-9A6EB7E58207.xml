@@ -1,0 +1,130 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="F71C6CD8-3E9F-9418-ECC0-9A6EB7E58207" name="TABL_ENTI_MAP">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-04 14:53:45 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<ordsAlias>table_56</ordsAlias>
+<abbreviation>TEMA</abbreviation>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="TEMA_ID" id="3B23DB6A-7D83-AB5A-AAC1-F152605C1ECD">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-04 14:54:18 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="TEMA_TABL_ID" id="9759C755-90F9-F68E-5927-31AEB9554889">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-04 14:54:33 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="4A031059-4898-192A-5BF1-769708997256" referredColumn="8B0283C8-CA91-343F-0C6B-5DCA79EFB9E1"/>
+</associations>
+</Column>
+<Column name="TEMA_ENTI_ID" id="AE454388-ED18-B50B-45F4-677B9CE5D48C">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-04 14:55:32 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="D1837A9B-C1F2-93BB-4AAD-E3EE7866EA10" referredColumn="E0C4ED99-82B2-04CB-AC1C-205352DDAFF3"/>
+</associations>
+</Column>
+<Column name="TEMA_BEZI_ID" id="52CCA01F-755A-DB07-6BB9-B49F3126C388">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-04 15:12:13 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="CFC7F490-0366-587E-EC64-352EB1E24F52" referredColumn="40E9736F-3ABE-3ABD-5FEA-D4131796E800"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="31B92EC1-5915-783C-5F2C-07FAE92350C0" name="TEMA_PK">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-04 14:54:18 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="3B23DB6A-7D83-AB5A-AAC1-F152605C1ECD"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="2DB98C96-2970-CF4E-FAE5-1C06EC716240" name="TEMA_UN">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-04 15:06:06 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="9759C755-90F9-F68E-5927-31AEB9554889"/>
+<colUsage columnID="AE454388-ED18-B50B-45F4-677B9CE5D48C"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="8C3A983C-2938-98C8-85D5-0FB750B6176A" name="TEMA_TABL_FK">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-04 14:54:33 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="9759C755-90F9-F68E-5927-31AEB9554889"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="E3AF84F4-AA77-D094-1222-02A688E1EF0A" name="TEMA_ENTI_FK">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-04 14:55:32 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="AE454388-ED18-B50B-45F4-677B9CE5D48C"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="40CBAF8C-C817-A37F-96E5-3E38767E04DD" name="TEMA_BEZI_FK">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-04 15:12:13 UTC</createdTime>
+<generatorID>CEB0C7CA-9CEF-89CC-1712-0634D0BB6B99</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="52CCA01F-755A-DB07-6BB9-B49F3126C388"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+<tableCheckConstraints itemClass="oracle.dbtools.crest.model.design.constraint.TableLevelConstraint">
+<tableCheckConstraint name="TABL_ENTI_MAP_CK_1" directorySegmentName="seg_1" id="60517B22-1EAD-6419-50E0-A8C9CC56E7AE">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-04 15:14:32 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<rule><![CDATA[(TABL_ENTI_ID IS NOT NULL AND TABL_BEZI_ID IS NULL )
+OR (TABL_BEZI_ID IS NULL AND TABL_BEZI_ID IS NOT NULL)]]></rule>
+</tableCheckConstraint>
+</tableCheckConstraints>
+</Table>

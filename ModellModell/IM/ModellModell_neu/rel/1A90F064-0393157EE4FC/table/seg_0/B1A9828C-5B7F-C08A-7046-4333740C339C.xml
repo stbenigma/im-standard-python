@@ -1,17 +1,17 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="BE21DBEA-2D06-CB9C-4898-9A83DFF972E6" name="TRANSF_USAGE">
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="B1A9828C-5B7F-C08A-7046-4333740C339C" name="TABELLE">
 <createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:18:16 UTC</createdTime>
+<createdTime>2020-02-04 14:46:03 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
-<ordsAlias>relation_80</ordsAlias>
-<abbreviation>TFUS</abbreviation>
+<ordsAlias>table_55</ordsAlias>
+<abbreviation>TABL</abbreviation>
 <allowColumnReorder>false</allowColumnReorder>
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
-<Column name="TFUS_ID" id="0FE1FFD6-A3F6-9E25-E598-AB3671718375">
+<Column name="TABL_ID" id="8B0283C8-CA91-343F-0C6B-5DCA79EFB9E1">
 <createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:18:16 UTC</createdTime>
+<createdTime>2020-02-04 14:48:01 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <use>0</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
@@ -19,56 +19,57 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="TFUS_ATTF_ID" id="349CEB07-2D38-CA8E-5688-B5E543B35865">
+<Column name="TABL_NAME" id="41D6685C-3041-70E6-1B04-62A942E5823F">
 <createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:18:16 UTC</createdTime>
+<createdTime>2020-02-04 14:48:01 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
-<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="TABL_SCHN_ID" id="4ACE8388-3B1B-1E20-EA7C-96B939F8A2CE">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-04 14:48:01 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
 <use>0</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
 <domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
-<previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 <associations>
-<colAssociation fkAssociation="2E8EC9E4-7562-889E-B463-08C3CC57A644" referredColumn="4F249764-0617-FAF7-5F42-63058D3E83E3"/>
+<colAssociation fkAssociation="7B224A6E-902D-8C18-41D0-601AC760762F" referredColumn="65C00228-99F0-589A-1661-9C55B64918EA"/>
 </associations>
 </Column>
-<Column name="TFUS_ATTR_ID" id="A8A7EF0B-52C0-4C18-5A9B-6640635DD1D1">
+<Column name="TABL_PREFIX" id="D4CA5B92-644F-C2D1-3B60-DE1DC8339860">
 <createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:18:16 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<nullsAllowed>true</nullsAllowed>
-<useDomainConstraints>false</useDomainConstraints>
-<use>0</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
-<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<previousColumn>false</previousColumn>
-<autoIncrementCycle>false</autoIncrementCycle>
-<associations>
-<colAssociation fkAssociation="0895810F-58D3-EA12-BD15-14DCD41B8143" referredColumn="DBACFE8C-9A7A-410E-49F7-BA4843AEF9EF"/>
-</associations>
-</Column>
-<Column name="TFUS_SCHA_ID" id="5B0D69B9-1D10-C1A0-1D63-4B0EFF4D4041">
-<createdBy>stb</createdBy>
-<createdTime>2020-02-04 15:28:16 UTC</createdTime>
+<createdTime>2020-02-04 14:48:01 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <use>0</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
-<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
-<previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
-<associations>
-<colAssociation fkAssociation="4BB775B4-87B7-8703-2596-985FFE515469" referredColumn="1866EBA9-BA3E-EBED-1E4F-3D88AC24A8D4"/>
-</associations>
 </Column>
-<Column name="TFUS_UC" id="0B3FCCC8-4A32-2DF1-643E-F8F6567BCE49">
+<Column name="TABL_BESCHR" id="CCFD2DB0-A66B-FDE4-DD03-10C81A6B04D8">
 <createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:18:16 UTC</createdTime>
+<createdTime>2020-02-04 14:48:01 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="TABL_UC" id="6633E8A0-CFF5-FC4E-93D9-8F4598DA6CDD">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-04 14:49:37 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<formulaDesc>USER</formulaDesc>
+<sourceType>System</sourceType>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
@@ -80,9 +81,9 @@
 <property name="ctemplateID" value="F7EEFF47-7A42-2A3E-7DFC-D0558D6996B8"/>
 </propertyMap>
 </Column>
-<Column name="TFUS_DC" id="B7D7257D-ABEB-052C-F266-0929DFF2CAC7">
+<Column name="TABL_DC" id="29C4F29B-387B-F1A5-B161-1E80E6816950">
 <createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:18:16 UTC</createdTime>
+<createdTime>2020-02-04 14:49:37 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -93,9 +94,9 @@
 <property name="ctemplateID" value="74D877A0-4C3B-63EE-06C5-071C7695907C"/>
 </propertyMap>
 </Column>
-<Column name="TFUS_UM" id="24B010F3-2470-CBA0-EE7B-CA9E8095CC8A">
+<Column name="TABL_UM" id="79B9CD85-6EA1-FC7E-90DC-348571D371FC">
 <createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:18:16 UTC</createdTime>
+<createdTime>2020-02-04 14:49:37 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
@@ -108,9 +109,9 @@
 <property name="ctemplateID" value="B2E17D53-C2F7-74D9-022D-5D63F3931519"/>
 </propertyMap>
 </Column>
-<Column name="TFUS_DM" id="0AE72F58-29B1-B319-6346-330EA9F54228">
+<Column name="TABL_DM" id="7D2BE413-A9D1-5F95-8EFF-56470FF2E615">
 <createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:18:16 UTC</createdTime>
+<createdTime>2020-02-04 14:49:37 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
@@ -124,59 +125,36 @@
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
-<ind_PK_UK id="E85B976D-8B3C-28F1-D046-1D2BF0282F12" name="TFUS_PKv2">
+<ind_PK_UK id="6805A9B1-C752-5029-9EC2-1EA9DE15EC17" name="TABL_PK">
 <createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:18:16 UTC</createdTime>
+<createdTime>2020-02-04 14:48:01 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <pk>true</pk>
 <indexState>Primary Constraint</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
-<colUsage columnID="0FE1FFD6-A3F6-9E25-E598-AB3671718375"/>
+<colUsage columnID="8B0283C8-CA91-343F-0C6B-5DCA79EFB9E1"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="C36BEA6F-D43C-5FF7-223D-ED935F5C13AD" name="TFUS__UN">
+<ind_PK_UK id="078BB474-5D46-6E8B-2B57-74C2A6DC0E3B" name="TABL_UN">
 <createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:18:16 UTC</createdTime>
+<createdTime>2020-02-04 14:51:01 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <indexState>Unique Constraint</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
-<colUsage columnID="349CEB07-2D38-CA8E-5688-B5E543B35865"/>
-<colUsage columnID="A8A7EF0B-52C0-4C18-5A9B-6640635DD1D1"/>
-<colUsage columnID="5B0D69B9-1D10-C1A0-1D63-4B0EFF4D4041"/>
+<colUsage columnID="4ACE8388-3B1B-1E20-EA7C-96B939F8A2CE"/>
+<colUsage columnID="41D6685C-3041-70E6-1B04-62A942E5823F"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="44403EB0-45CB-275A-7E9B-0A21DA00DF70" name="TFUS_ATTR_FK">
+<ind_PK_UK id="098945E9-8300-77B1-AF0E-5A3D8539C16A" name="TABL_SCHN_FK">
 <createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:18:17 UTC</createdTime>
-<generatorID>7883066E-901E-87BC-EB44-F0B64BF304AB</generatorID>
+<createdTime>2020-02-04 14:49:54 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <indexState>Foreign Key</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
-<colUsage columnID="A8A7EF0B-52C0-4C18-5A9B-6640635DD1D1"/>
-</indexColumnUsage>
-</ind_PK_UK>
-<ind_PK_UK id="8DE81CB3-089E-B87F-8121-EB0CC3668430" name="TFUS_ATTF_FK">
-<createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:18:17 UTC</createdTime>
-<generatorID>7883066E-901E-87BC-EB44-F0B64BF304AB</generatorID>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<indexState>Foreign Key</indexState>
-<isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
-<colUsage columnID="349CEB07-2D38-CA8E-5688-B5E543B35865"/>
-</indexColumnUsage>
-</ind_PK_UK>
-<ind_PK_UK id="8F31BBD6-FE40-D2CA-E930-89B5EBC86AB3" name="TFUS_SCHA_FK">
-<createdBy>stb</createdBy>
-<createdTime>2020-02-04 15:28:16 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<indexState>Foreign Key</indexState>
-<isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
-<colUsage columnID="5B0D69B9-1D10-C1A0-1D63-4B0EFF4D4041"/>
+<colUsage columnID="4ACE8388-3B1B-1E20-EA7C-96B939F8A2CE"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>
