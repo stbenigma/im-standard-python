@@ -16,6 +16,7 @@ parameter = {
             , 'dblanguages' : 'de,en'
             , 'dbdefaultlangid': None
             , ODMBASEDIREC: None
+            ,'localbasedirec': None
             , ODMIMDIREC: None
             , 'odmimdefaultdirec': 'IM/'
             , 'odmimextension': '.dmd'
@@ -31,6 +32,7 @@ parameter = {
             , 'odmrelationdirec': 'logical/relation/'
             , 'odmentisubviewdirec': 'logical/subviews/'
             , 'odmarcdirec': 'logical/arc/'
+            , 'odmdocumentdirec': 'businessinfo/document/'
             , 'odmudptranslfilename': 'translation'
             , 'odmudpmappingfilename': 'datamapping'
             , 'odmudpfileextension':'.udposdm'
@@ -131,6 +133,16 @@ def odmDomainsFile(newval=None):
         return parameter['odmdomainsfile']
     else:
         parameter['odmdomainsfile'] = newval
+def localbasedirec(newval=None):
+    if newval is None:
+        return parameter['localbasedirec']
+    else:
+        parameter['localbasedirec'] = newval
+def odmdocumentdirec(newval=None):
+    if newval is None:
+        return parameter['odmdocumentdirec']
+    else:
+        parameter['odmdocumentdirec'] = newval
 def odmDomainsFilePath(newval=None):
     if newval is None:
         return parameter['odmdomainsfilepath']
@@ -255,16 +267,18 @@ def liesparamfile(p_filepath):
 #liesparamfile
 
 def filldefaultparams():
+    if localbasedirec() is None:
+        localbasedirec(newval=odmBaseDirec())
     if odmIMDirec() is None:
         odmIMDirec(newval=odmBaseDirec() + odmIMDefaultDirec())
     if dbDirect() is None:
-        dbDirect(newval=odmBaseDirec()+dbDefaultDirect())
+        dbDirect(newval=localbasedirec()+dbDefaultDirect())
     if dbFilePath() is None:
         dbFilePath(newval=dbDirect()+odmModelName()+dbFileExtension())
     if odmDomainsFilePath() is None:
         odmDomainsFilePath(newval=odmIMDirec()+odmKonfDirec()+odmDomainsFile())
     if webDirec() is None:
-        webDirec(newval=odmBaseDirec()+webDefaultDirec())
+        webDirec(newval=localbasedirec()+webDefaultDirec())
 #filldefaultparams
 
 def suche1file(p_direc,p_pattern='.*'):
