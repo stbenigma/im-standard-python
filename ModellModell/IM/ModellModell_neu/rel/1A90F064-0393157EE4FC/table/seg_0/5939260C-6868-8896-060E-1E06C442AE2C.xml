@@ -1,0 +1,431 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="5939260C-6868-8896-060E-1E06C442AE2C" name="WERTEBEREICH">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-04 15:43:05 UTC</createdTime>
+<comment><![CDATA[Beschreibung des Wertebereichs eines (oder mehrerer) Attributs.
+
+Die Typen Numerisch, Text, Zeitpunkt oder Aufzählung sind konzeptionell zu verfstehen. Die echten Datentypen und ggf. Formate (für Zahlen und Zeitpunkte) für die Speicherung werden in der Implementierung festgelegt.
+
+Beispiele:
+Netto-Gewicht 
+Beleuchtungsmodell ]]></comment>
+<generatorID>D2A42970-AC5F-B209-EC1C-8C8F92DF7345</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<ordsAlias>domain</ordsAlias>
+<abbreviation>WRTB</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<existDependencyGenerationLevel>Discriminator value</existDependencyGenerationLevel>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="WRTB_ID" id="E9756F49-315F-1F97-E181-07756840736D">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-04 15:43:05 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+<Column name="WRTB_BUSINESS_RULE" id="31DBB163-9DEF-326B-3522-A933825D96DC">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-04 15:43:05 UTC</createdTime>
+<comment><![CDATA[Regel über die Werte einer Domäne, die nicht mit einfachen min/max o.ä. beschrieben werden können.]]></comment>
+<generatorID>49F12B6E-5C8F-96B2-6ED5-99B496CB5EC4</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="WRTB_NAME" id="CA265241-6F23-3093-0776-DCE67EEE3B67">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-04 15:43:05 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="WRTB_BESCHR" id="81F7CE2E-8D55-53CA-B3E7-6B99AFD25D2C">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-04 15:43:05 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="WRTB_TYP" id="9E01C515-1C04-E3B7-97C2-E124D6896E3B">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-04 15:43:05 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>4 CHAR</dataTypeSize>
+<listOfValues>
+<valueDef value="BIN" description="Binär"/>
+<valueDef value="GRP" description="Gruppe"/>
+<valueDef value="LOV" description="List of Values"/>
+<valueDef value="NUM" description="Numerisch"/>
+<valueDef value="TEXT" description="Text"/>
+<valueDef value="ZPKT" description="Zeitpunkt"/>
+</listOfValues>
+<ownDataTypeParameters>4 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isDiscriminatorColumn>true</isDiscriminatorColumn>
+<dependentColumns>
+<dependentColumn class="oracle.dbtools.crest.model.design.relational.Column$DependentColumnDescriptor">
+<columnID>F9BC031B-CEA0-D6AA-E15A-4A99CBCBBC29</columnID>
+<dependAsMandatory>true</dependAsMandatory>
+<dependOnValue>true</dependOnValue>
+<discriminatorValue>BIN</discriminatorValue>
+<id>C0755E71-E106-8A47-1528-0EA2A6D86B66</id>
+</dependentColumn>
+<dependentColumn class="oracle.dbtools.crest.model.design.relational.Column$DependentColumnDescriptor">
+<columnID>860466A3-87F7-DAD5-3D5C-616E159D9F70</columnID>
+<dependAsMandatory>false</dependAsMandatory>
+<dependOnValue>true</dependOnValue>
+<discriminatorValue>BIN</discriminatorValue>
+<id>A5B0C4EB-5898-AD18-9886-1AEBC01ED770</id>
+</dependentColumn>
+<dependentColumn class="oracle.dbtools.crest.model.design.relational.Column$DependentColumnDescriptor">
+<columnID>070CFA16-5D72-5E47-FB2C-581F0DD00D13</columnID>
+<dependAsMandatory>true</dependAsMandatory>
+<dependOnValue>true</dependOnValue>
+<discriminatorValue>NUM</discriminatorValue>
+<id>1FD37EC4-E551-CA14-3A56-48F49332F842</id>
+</dependentColumn>
+<dependentColumn class="oracle.dbtools.crest.model.design.relational.Column$DependentColumnDescriptor">
+<columnID>DBDB4B59-C105-2FBD-D8A4-C9252322ACE7</columnID>
+<dependAsMandatory>false</dependAsMandatory>
+<dependOnValue>true</dependOnValue>
+<discriminatorValue>NUM</discriminatorValue>
+<id>4BA367D8-BE52-12DA-D337-601C9EE36D25</id>
+</dependentColumn>
+<dependentColumn class="oracle.dbtools.crest.model.design.relational.Column$DependentColumnDescriptor">
+<columnID>1D4293FF-9802-0204-A841-DC79674B3330</columnID>
+<dependAsMandatory>false</dependAsMandatory>
+<dependOnValue>true</dependOnValue>
+<discriminatorValue>NUM</discriminatorValue>
+<id>547B2A3C-9310-F886-32DE-2D6B84E7A426</id>
+</dependentColumn>
+<dependentColumn class="oracle.dbtools.crest.model.design.relational.Column$DependentColumnDescriptor">
+<columnID>1EE129A2-9285-E29F-944A-2F244147E491</columnID>
+<dependAsMandatory>false</dependAsMandatory>
+<dependOnValue>true</dependOnValue>
+<discriminatorValue>NUM</discriminatorValue>
+<id>151B0EC0-DC0C-8958-5D11-A1059A984AD7</id>
+</dependentColumn>
+<dependentColumn class="oracle.dbtools.crest.model.design.relational.Column$DependentColumnDescriptor">
+<columnID>B0C53C69-FC29-4EFE-FC1D-94DF6E2CF822</columnID>
+<dependAsMandatory>false</dependAsMandatory>
+<dependOnValue>true</dependOnValue>
+<discriminatorValue>NUM</discriminatorValue>
+<id>0A180C8F-3369-9372-BD17-DADF541AED40</id>
+</dependentColumn>
+<dependentColumn class="oracle.dbtools.crest.model.design.relational.Column$DependentColumnDescriptor">
+<columnID>44683F2B-4B50-9AD5-0194-F3AC71AD4CCD</columnID>
+<dependAsMandatory>true</dependAsMandatory>
+<dependOnValue>true</dependOnValue>
+<discriminatorValue>NUM</discriminatorValue>
+<id>CAFB9428-D6DB-5BB9-A1CF-490FF67D159C</id>
+</dependentColumn>
+<dependentColumn class="oracle.dbtools.crest.model.design.relational.Column$DependentColumnDescriptor">
+<columnID>D341A36B-8912-BB09-93BF-FAD8A593D306</columnID>
+<dependAsMandatory>true</dependAsMandatory>
+<dependOnValue>true</dependOnValue>
+<discriminatorValue>TEXT</discriminatorValue>
+<id>7F7EABDE-F7EB-5AB1-C2E4-CE2286973DDF</id>
+</dependentColumn>
+<dependentColumn class="oracle.dbtools.crest.model.design.relational.Column$DependentColumnDescriptor">
+<columnID>74BC7CB3-A255-100A-EDA2-4BF9AE201E46</columnID>
+<dependAsMandatory>false</dependAsMandatory>
+<dependOnValue>true</dependOnValue>
+<discriminatorValue>TEXT</discriminatorValue>
+<id>27FB513D-262E-FDC9-7F69-68033E484843</id>
+</dependentColumn>
+<dependentColumn class="oracle.dbtools.crest.model.design.relational.Column$DependentColumnDescriptor">
+<columnID>E9D8B654-B20F-4FB2-5736-8AA9E67EFF0B</columnID>
+<dependAsMandatory>true</dependAsMandatory>
+<dependOnValue>true</dependOnValue>
+<discriminatorValue>ZPKT</discriminatorValue>
+<id>480C5A4E-D1F7-D1A2-7EB4-8B509413735E</id>
+</dependentColumn>
+<dependentColumn class="oracle.dbtools.crest.model.design.relational.Column$DependentColumnDescriptor">
+<columnID>69DAE34B-073D-10F2-2590-FEF5CF01582D</columnID>
+<dependAsMandatory>false</dependAsMandatory>
+<dependOnValue>true</dependOnValue>
+<discriminatorValue>ZPKT</discriminatorValue>
+<id>D47AF9AC-000A-03A6-AD84-6D2E4C78FC80</id>
+</dependentColumn>
+<dependentColumn class="oracle.dbtools.crest.model.design.relational.Column$DependentColumnDescriptor">
+<columnID>29A7F1B6-C1F7-A297-AE25-1FACC54BE946</columnID>
+<dependAsMandatory>false</dependAsMandatory>
+<dependOnValue>true</dependOnValue>
+<discriminatorValue>ZPKT</discriminatorValue>
+<id>BEA7B8E3-E00D-5D07-94D5-AC1DE50489AD</id>
+</dependentColumn>
+</dependentColumns>
+</Column>
+<Column name="WRTB_ZPKT_MINWERT" id="29A7F1B6-C1F7-A297-AE25-1FACC54BE946">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-04 15:43:05 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT015</logicalDatatype>
+<domain>0AD80E26-0F5C-D068-29EA-4740A04582AE</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="WRTB_ZPKT_MAXWERT" id="69DAE34B-073D-10F2-2590-FEF5CF01582D">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-04 15:43:05 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT015</logicalDatatype>
+<domain>0AD80E26-0F5C-D068-29EA-4740A04582AE</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="WRTB_ZPKT_GRANULARITAET" id="E9D8B654-B20F-4FB2-5736-8AA9E67EFF0B">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-04 15:43:05 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>802FD5C1-7C5B-0290-1F1C-F8FBB1AD2AA9</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="WRTB_TEXT_MAXLNG" id="D341A36B-8912-BB09-93BF-FAD8A593D306">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-04 15:43:05 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>C9DBFF99-FC63-E2AC-8EB8-BE5A63AA7B61</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="WRTB_TEXT_SYNTAXREGEL" id="74BC7CB3-A255-100A-EDA2-4BF9AE201E46">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-04 15:43:05 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>EAB77EBE-9C06-2899-E462-A33684354F43</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="WRTB_NUM_MAXWERT" id="DBDB4B59-C105-2FBD-D8A4-C9252322ACE7">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-04 15:43:05 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>30</dataTypePrecision>
+<dataTypeScale>10</dataTypeScale>
+<ownDataTypeParameters>,30,10</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="WRTB_NUM_MINWERT" id="1D4293FF-9802-0204-A841-DC79674B3330">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-04 15:43:05 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>30</dataTypePrecision>
+<dataTypeScale>10</dataTypeScale>
+<ownDataTypeParameters>,30,10</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="WRTB_NUM_VORKSTELLEN" id="44683F2B-4B50-9AD5-0194-F3AC71AD4CCD">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-04 15:43:05 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>9CA83673-0453-9943-665C-CCB4497CF164</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="WRTB_NUM_NACHKSTELLEN" id="070CFA16-5D72-5E47-FB2C-581F0DD00D13">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-04 15:43:05 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>9CA83673-0453-9943-665C-CCB4497CF164</domain>
+<defaultValue>0</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="WRTB_NUM_RUNDNG_EINH" id="B0C53C69-FC29-4EFE-FC1D-94DF6E2CF822">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-04 15:43:05 UTC</createdTime>
+<comment><![CDATA[Wert, der angibt, auf welche Einheit ein numerischer Wert gerundet wird. (z.B. 0.5, 0.25, 1000)]]></comment>
+<generatorID>7B43FC60-8938-1F2F-FFC9-AC52103A91B0</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>9D57C5ED-8336-6617-9BC7-29B138AA6191</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="WRTB_NUM_PHEH_ID" id="1EE129A2-9285-E29F-944A-2F244147E491">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-04 15:43:05 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="WRTB_BIN_INHALTTYP" id="F9BC031B-CEA0-D6AA-E15A-4A99CBCBBC29">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-04 15:43:05 UTC</createdTime>
+<generatorID>9625B729-C7C6-CD5F-2155-3648986FD9F6</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>23CFFE8F-D989-8ED0-93D0-C4BF59140074</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="WRTB_BIN_SPFO_ID" id="860466A3-87F7-DAD5-3D5C-616E159D9F70">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-04 15:43:05 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="WRTB_ODM_GUID" id="5193763E-E991-48CD-5CD8-42848A42C156">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-04 15:43:05 UTC</createdTime>
+<commentInRDBMS><![CDATA[ID aus dem ODM übernommen]]></commentInRDBMS>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>5D3D105A-15CC-2DBC-8E41-2A63484D069D</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="WRTB_UC" id="E5F11E24-ED85-97E7-08D4-823ADD644EA1">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-04 15:43:05 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="F7EEFF47-7A42-2A3E-7DFC-D0558D6996B8"/>
+</propertyMap>
+</Column>
+<Column name="WRTB_DC" id="85E447AA-6AE9-BA9B-BA94-444A60937D4B">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-04 15:43:05 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT047</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="74D877A0-4C3B-63EE-06C5-071C7695907C"/>
+</propertyMap>
+</Column>
+<Column name="WRTB_UM" id="6CC8AA1B-C82D-978D-C271-3C7A1693CB9D">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-04 15:43:05 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="B2E17D53-C2F7-74D9-022D-5D63F3931519"/>
+</propertyMap>
+</Column>
+<Column name="WRTB_DM" id="DEFBBC46-D79F-73A6-3F4E-8010BD22C3B1">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-04 15:43:05 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT047</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="B398D247-00C1-F016-3BBB-FE65CFFFF7AA"/>
+</propertyMap>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="D143312D-0512-8919-DFBA-4D6B6E56F9C5" name="WRTB_PK">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-04 15:43:05 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="E9756F49-315F-1F97-E181-07756840736D"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="42F2B74B-CD0B-663F-02E4-92D9526CCDA7" name="WRTB_NAME_UK">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-04 15:43:05 UTC</createdTime>
+<generatorID>C0E5C5AE-DE43-05AD-FB5B-BBE7BDE7440B</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="CA265241-6F23-3093-0776-DCE67EEE3B67"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

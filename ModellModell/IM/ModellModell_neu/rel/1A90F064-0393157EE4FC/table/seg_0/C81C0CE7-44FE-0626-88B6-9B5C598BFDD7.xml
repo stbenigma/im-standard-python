@@ -124,6 +124,9 @@ Das Attribut "Wert" ist der physikalische (sprachunabhängige) Wert, der als eig
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="E7473904-1E9E-1276-F778-7E255813FE20" referredColumn="E9756F49-315F-1F97-E181-07756840736D"/>
+</associations>
 </Column>
 <Column name="MODE_SYNO_ID" id="00B9C1AD-6E64-B389-20A6-3A5A723AE3E4">
 <createdBy>stb</createdBy>
@@ -331,6 +334,16 @@ Das Attribut "Wert" ist der physikalische (sprachunabhängige) Wert, der als eig
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
 <colUsage columnID="A14F11F7-24AD-B48F-2502-AC7F7E9B8D69"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="56DDD3E7-9586-4B45-9B6F-8E9A90958B17" name="MODE_WRTB_FK">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-04 15:43:38 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="09E7D64B-B0BD-69C5-7BE9-5995B5FBD85B"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>

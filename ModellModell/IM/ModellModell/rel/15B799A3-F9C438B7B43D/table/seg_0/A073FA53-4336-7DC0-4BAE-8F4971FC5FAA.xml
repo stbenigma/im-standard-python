@@ -75,7 +75,6 @@ Das Attribut "Wert" ist der physikalische (sprachunabhängige) Wert, der als eig
 <createdBy>stb</createdBy>
 <createdTime>2019-08-27 17:08:25 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
-<nullsAllowed>true</nullsAllowed>
 <use>0</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
 <domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
@@ -83,6 +82,7 @@ Das Attribut "Wert" ist der physikalische (sprachunabhängige) Wert, der als eig
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 <associations>
+<colAssociation fkAssociation="65AC7A57-0ADB-1D2B-4D9D-C978DCD9A139" referredColumn="B6D90C3F-10C6-0BD1-37C5-B8BF8622003D"/>
 <colAssociation fkAssociation="7AF7CAEA-E5AC-8DB1-657E-BD13DF925805" referredColumn="B6D90C3F-10C6-0BD1-37C5-B8BF8622003D"/>
 </associations>
 </Column>
@@ -310,6 +310,16 @@ Das Attribut "Wert" ist der physikalische (sprachunabhängige) Wert, der als eig
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
 <colUsage columnID="2944C16F-B405-257B-0C70-046ABE08CEEE"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="B5DF7F67-7D8F-7BD8-975D-2F51CAC5BF52" name="MODE_BEZIEHUNG_FK">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-04 15:02:28 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="996BD115-09A4-8E55-89CE-29AD5D071FDA"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>
