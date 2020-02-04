@@ -44,12 +44,11 @@ Chaque adresse est définie pour un acteur. C'est-à-dire la même adresse peut 
 <propertyMap>
 <property name="DE_ENTI_NAME" value="*Adresse"/>
 <property name="EN_ENTI_NAME" value="Address"/>
-<property name="EN_ENTI_SYNONYM" value=""/>
 <property name="FR_ENTI_NAME" value="Adresse"/>
-<property name="FR_ENTI_SYNONYM" value=""/>
 <property name="PENTA TabName" value="postaladr"/>
 <property name="PIM TabName" value="ADRESS"/>
 </propertyMap>
+<documents usedDucuments="D2A2540D-782C-B4AB-45BE-E542267116D2 48052187-2483-F809-FB78-85E5B5C3587C"/>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Adresstyp" id="FF67251E-70A4-8810-9AAE-8D3085C3FC14">
 <createdBy>stb</createdBy>
@@ -121,6 +120,7 @@ Type d'adresse (financière, postale, de lvraison etc.)
 <property name="PIM datatype" value="string"/>
 <property name="PIM usage" value="R"/>
 </propertyMap>
+<documents usedDucuments="48052187-2483-F809-FB78-85E5B5C3587C E64AB687-8012-0F0C-C84E-97BB7E8A7B4C"/>
 </Attribute>
 <Attribute name="Hausnr" id="69DE3C96-B9F0-F86E-230B-0AEC8F4067ED">
 <createdBy>stb</createdBy>
@@ -156,6 +156,7 @@ Type d'adresse (financière, postale, de lvraison etc.)
 <property name="PIM datatype" value="string"/>
 <property name="PIM usage" value="RW"/>
 </propertyMap>
+<documents usedDucuments="48052187-2483-F809-FB78-85E5B5C3587C"/>
 </Attribute>
 <Attribute name="Gebäudename" id="A3F1453C-9777-43FA-2D3F-B9A4917113EA">
 <createdBy>stb</createdBy>

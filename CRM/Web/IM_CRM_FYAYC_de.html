@@ -18,7 +18,7 @@
     <div class="header" id="TopBar">
         <p4>foryouandyourcustomers</p4>
         <p4>IM_CRM_FYAYC (de)</p4>
-        <p5>2020-01-21, 20:18</p5>
+        <p5>2020-02-04, 09:54</p5>
         <img src="image/logo.jpg" alt="foryouandyourcustomers" id="LLogo">
     </div>
         <button id="btnF" type="button" class="btn btn-info" data-toggle="modal" data-target="#MobileSearch">
@@ -382,7 +382,7 @@ Dann wird diese Entität zur Verknüpfung zwischen Akteur und Basisadresse.</p1>
              <td>Relation_76</td>
              <td>*Adresse</td>
              <td>-></td>
-             <td>definiert</td>
+             <td>defines</td>
              <td>1</td>
            <td class="leftsymbol"><img class="icon-down" src="icons/downarrow.svg"></td>
              <td>Arc_5</td>
@@ -392,7 +392,7 @@ Dann wird diese Entität zur Verknüpfung zwischen Akteur und Basisadresse.</p1>
              <td></td>
            <td class="leftsymbol"><img class="icon-up" src="icons/uparrow.svg"></td>
              <td>0..N</td>
-             <td>ist</td>
+             <td>is</td>
              <td><-</td>
              <td><a href="#ENTI1" target="_self">Kommunikationsmittel</a></td>
                </tr>
@@ -400,7 +400,7 @@ Dann wird diese Entität zur Verknüpfung zwischen Akteur und Basisadresse.</p1>
              <td>Relation_42</td>
              <td>*Adresse</td>
              <td>-></td>
-             <td>liegt in</td>
+             <td>situated in</td>
              <td>1</td>
            <td class="leftsymbol"><img class="icon-down" src="icons/downarrow.svg"></td>
              <td>Arc_5</td>
@@ -410,7 +410,7 @@ Dann wird diese Entität zur Verknüpfung zwischen Akteur und Basisadresse.</p1>
              <td></td>
            <td class="leftsymbol"><img class="icon-up" src="icons/uparrow.svg"></td>
              <td>0..N</td>
-             <td>umfasst</td>
+             <td>summarizes</td>
              <td><-</td>
              <td><a href="#ENTI12" target="_self">*PLZ-Gebiet</a></td>
                </tr>
@@ -431,12 +431,12 @@ Dann wird diese Entität zur Verknüpfung zwischen Akteur und Basisadresse.</p1>
             <tr>
              <td>Name</td>
              <td><a href="IM_CRM_FYAYC_en.html#ENTI8" target="_blank" >Address</a></td>
-             <td><a href="IM_CRM_FYAYC_fr.html#ENTI8" target="_blank" >*DE* Adresse</a></td>
+             <td><a href="IM_CRM_FYAYC_fr.html#ENTI8" target="_blank" >Adresse</a></td>
                </tr>
             <tr>
              <td>Synonym</td>
              <td></td>
-             <td>frsynonym</td>
+             <td></td>
                </tr>
             <tr>
              <td>Beschreibung</td>
@@ -445,11 +445,7 @@ Dann wird diese Entität zur Verknüpfung zwischen Akteur und Basisadresse.</p1>
 Jede Adresse ist für einen Akteur definiert. D.h. die selbe Adresse kann mehrfach vorkommen.
 Falls ein generelles Adressverzeichnis als Referenz geführt wird (Basisadresse), muss das zusätlich erfasst werden.
 Dann wird diese Entität zur Verknüpfung zwischen Akteur und Basisadresse.</td>
-             <td>*DE* Postalisch-geographische Lokalisation
-
-Jede Adresse ist für einen Akteur definiert. D.h. die selbe Adresse kann mehrfach vorkommen.
-Falls ein generelles Adressverzeichnis als Referenz geführt wird (Basisadresse), muss das zusätlich erfasst werden.
-Dann wird diese Entität zur Verknüpfung zwischen Akteur und Basisadresse.</td>
+             <td>Chaque adresse est définie pour un acteur. C'est-à-dire la même adresse peut apparaître plusieurs fois. Si un répertoire d'adresses général est conservé comme référence (adresse de base), il doit être saisi en plus. Cette entité devient alors le lien entre l'acteur et l'adresse de base.</td>
                </tr>
         
                      </tbody>
@@ -650,7 +646,7 @@ Gemäss NUTS (https://de.wikipedia.org/wiki/NUTS) ist das Land die Gebietsstufe 
              <td>Relation_31</td>
              <td>*Land</td>
              <td>-></td>
-             <td>ist in</td>
+             <td>is in</td>
              <td>1</td>
            <td class="leftsymbol"><img class="icon-down" src="icons/downarrow.svg"></td>
              <td></td>
@@ -660,7 +656,7 @@ Gemäss NUTS (https://de.wikipedia.org/wiki/NUTS) ist das Land die Gebietsstufe 
              <td></td>
            <td class="leftsymbol"><img class="icon-up" src="icons/uparrow.svg"></td>
              <td>0..N</td>
-             <td>fasst zusammen</td>
+             <td>summarizes</td>
              <td><-</td>
              <td><a href="#ENTI30" target="_self">*Ländergruppe</a></td>
                </tr>
@@ -668,7 +664,7 @@ Gemäss NUTS (https://de.wikipedia.org/wiki/NUTS) ist das Land die Gebietsstufe 
              <td>Relation_33</td>
              <td>*Land</td>
              <td>-></td>
-             <td>verwendet offiziell</td>
+             <td>uses officially</td>
              <td>1..N</td>
            <td class="leftsymbol"><img class="icon-down" src="icons/downarrow.svg"></td>
              <td></td>
@@ -678,7 +674,7 @@ Gemäss NUTS (https://de.wikipedia.org/wiki/NUTS) ist das Land die Gebietsstufe 
              <td></td>
            <td class="leftsymbol"><img class="icon-up" src="icons/uparrow.svg"></td>
              <td>0..N</td>
-             <td>offiziell verwendet in</td>
+             <td>officially used in</td>
              <td><-</td>
              <td><a href="#ENTI25" target="_self">Sprache</a></td>
                </tr>
@@ -686,7 +682,7 @@ Gemäss NUTS (https://de.wikipedia.org/wiki/NUTS) ist das Land die Gebietsstufe 
              <td>Geog Einheit Sprache</td>
              <td>*Land</td>
              <td>-></td>
-             <td>verwendet</td>
+             <td>uses</td>
              <td>0..N</td>
            <td class="leftsymbol"><img class="icon-down" src="icons/downarrow.svg"></td>
              <td></td>
@@ -696,7 +692,7 @@ Gemäss NUTS (https://de.wikipedia.org/wiki/NUTS) ist das Land die Gebietsstufe 
              <td></td>
            <td class="leftsymbol"><img class="icon-up" src="icons/uparrow.svg"></td>
              <td>1</td>
-             <td>verwendet in</td>
+             <td>used in</td>
              <td><-</td>
              <td><a href="#ENTI26" target="_self">Gebietssprache</a></td>
                </tr>
@@ -704,7 +700,7 @@ Gemäss NUTS (https://de.wikipedia.org/wiki/NUTS) ist das Land die Gebietsstufe 
              <td>Relation_30</td>
              <td>*Land</td>
              <td>-></td>
-             <td>unterteilt in</td>
+             <td>subdivided in</td>
              <td>0..N</td>
            <td class="leftsymbol"><img class="icon-down" src="icons/downarrow.svg"></td>
              <td></td>
@@ -714,7 +710,7 @@ Gemäss NUTS (https://de.wikipedia.org/wiki/NUTS) ist das Land die Gebietsstufe 
              <td></td>
            <td class="leftsymbol"><img class="icon-up" src="icons/uparrow.svg"></td>
              <td>1</td>
-             <td>unterteilt</td>
+             <td>subdivides</td>
              <td><-</td>
              <td><a href="#ENTI29" target="_self">Gebiet</a></td>
                </tr>
@@ -735,7 +731,7 @@ Gemäss NUTS (https://de.wikipedia.org/wiki/NUTS) ist das Land die Gebietsstufe 
             <tr>
              <td>Name</td>
              <td><a href="IM_CRM_FYAYC_en.html#ENTI14" target="_blank" >Country</a></td>
-             <td><a href="IM_CRM_FYAYC_fr.html#ENTI14" target="_blank" >*DE* Land</a></td>
+             <td><a href="IM_CRM_FYAYC_fr.html#ENTI14" target="_blank" >Pays</a></td>
                </tr>
             <tr>
              <td>Synonym</td>
@@ -747,9 +743,8 @@ Gemäss NUTS (https://de.wikipedia.org/wiki/NUTS) ist das Land die Gebietsstufe 
              <td>*DE* Land gemäss ISO-Liste ISO-3166-1
 
 Gemäss NUTS (https://de.wikipedia.org/wiki/NUTS) ist das Land die Gebietsstufe NUTS 0</td>
-             <td>*DE* Land gemäss ISO-Liste ISO-3166-1
-
-Gemäss NUTS (https://de.wikipedia.org/wiki/NUTS) ist das Land die Gebietsstufe NUTS 0</td>
+             <td>Pays selon la liste ISO ISO-3166-1 
+Selon la NUTS (https://de. wikipedia. org/wiki/NUTS), le pays est au niveau NUTS 0</td>
                </tr>
         
                      </tbody>
@@ -880,7 +875,7 @@ EMEA (Europe, Middle East, Africa) (Vertriebsorganisation)
              <td>Relation_31</td>
              <td>*Ländergruppe</td>
              <td>-></td>
-             <td>fasst zusammen</td>
+             <td>summarizes</td>
              <td>0..N</td>
            <td class="leftsymbol"><img class="icon-down" src="icons/downarrow.svg"></td>
              <td></td>
@@ -890,7 +885,7 @@ EMEA (Europe, Middle East, Africa) (Vertriebsorganisation)
              <td></td>
            <td class="leftsymbol"><img class="icon-up" src="icons/uparrow.svg"></td>
              <td>1</td>
-             <td>ist in</td>
+             <td>is in</td>
              <td><-</td>
              <td><a href="#ENTI14" target="_self">*Land</a></td>
                </tr>
@@ -911,12 +906,12 @@ EMEA (Europe, Middle East, Africa) (Vertriebsorganisation)
             <tr>
              <td>Name</td>
              <td><a href="IM_CRM_FYAYC_en.html#ENTI30" target="_blank" >Country Group</a></td>
-             <td><a href="IM_CRM_FYAYC_fr.html#ENTI30" target="_blank" >*DE* Ländergruppe</a></td>
+             <td><a href="IM_CRM_FYAYC_fr.html#ENTI30" target="_blank" >Groupe de pays</a></td>
                </tr>
             <tr>
              <td>Synonym</td>
              <td>*DE* ldgrp</td>
-             <td>*DE* ldgrp</td>
+             <td></td>
                </tr>
             <tr>
              <td>Beschreibung</td>
@@ -929,15 +924,12 @@ Beispiele:
 EU
 SACU Botsuana; Eswatini; Lesotho; Namibia; Südafrika (Zollunion)
 EMEA (Europe, Middle East, Africa) (Vertriebsorganisation)</td>
-             <td>*DE* Eine Zusammenfassung mehrerer Länder zu einer Gruppe.
-Es soll jeweils ein Kriterium für die Gruppenbildung bzw. einen Begründung (Zweck) für die Nutzung der Gruppe festgelegt/dokumentiert werden.
+             <td>Regroupement de plusieurs pays en un seul groupe. Dans chaque cas, un critère de formation de groupe ou une justification (but) de l'utilisation du groupe est définie/documentée. Les types de groupes de pays vous permettent de gérer plusieurs regroupements : directeur commercial Douanes, logistique 
 
-Typen von Ländergruppen erlauben mehrere Gruppierungen zu führen: Vertriebsorg., Zoll, Logistik 
-
-Beispiele:
-EU
-SACU Botsuana; Eswatini; Lesotho; Namibia; Südafrika (Zollunion)
-EMEA (Europe, Middle East, Africa) (Vertriebsorganisation)</td>
+Exemples : 
+UE 
+SACU Botswana ; Eswatini ; Lesotho ; Namibie ; Afrique du Sud (Union douanière) 
+EMEA (Europe, Moyen-Orient, Afrique) (organisation commerciale)</td>
                </tr>
         
                      </tbody>
@@ -1088,7 +1080,7 @@ Verkaufsleiter</p1>
              <td>Relation_46</td>
              <td>*Personenrolle</td>
              <td>-></td>
-             <td>wahrgenommen von</td>
+             <td>perceived by</td>
              <td>0..N</td>
            <td class="leftsymbol"><img class="icon-down" src="icons/downarrow.svg"></td>
              <td></td>
@@ -1098,7 +1090,7 @@ Verkaufsleiter</p1>
              <td></td>
            <td class="leftsymbol"><img class="icon-up" src="icons/uparrow.svg"></td>
              <td>1..N</td>
-             <td>nimmt wahr</td>
+             <td>perceives</td>
              <td><-</td>
              <td><a href="#ENTI7" target="_self">Ansprechpartner</a></td>
                </tr>
@@ -1119,7 +1111,7 @@ Verkaufsleiter</p1>
             <tr>
              <td>Name</td>
              <td><a href="IM_CRM_FYAYC_en.html#ENTI20" target="_blank" >*Role</a></td>
-             <td><a href="IM_CRM_FYAYC_fr.html#ENTI20" target="_blank" >*DE* Personenrolle</a></td>
+             <td><a href="IM_CRM_FYAYC_fr.html#ENTI20" target="_blank" >Fonction</a></td>
                </tr>
             <tr>
              <td>Synonym</td>
@@ -1135,13 +1127,11 @@ CEO
 CIO
 Sachdienstmitarbeiter
 Verkaufsleiter</td>
-             <td>*DE* Beschreibung einer Rolle, die eine Ansprechsperson haben kann.
-
-Beispiele:
-CEO
-CIO
-Sachdienstmitarbeiter
-Verkaufsleiter</td>
+             <td>Description d'un rôle qui peut définir une personne de contact. Exemples : 
+PDG 
+CIO 
+Travailleurs sociaux 
+Directeur des ventes</td>
                </tr>
         
                      </tbody>
@@ -1271,7 +1261,7 @@ P0: Land
              <td>Relation_42</td>
              <td>*PLZ-Gebiet</td>
              <td>-></td>
-             <td>umfasst</td>
+             <td>summarizes</td>
              <td>0..N</td>
            <td class="leftsymbol"><img class="icon-down" src="icons/downarrow.svg"></td>
              <td></td>
@@ -1281,7 +1271,7 @@ P0: Land
              <td></td>
            <td class="leftsymbol"><img class="icon-up" src="icons/uparrow.svg"></td>
              <td>1</td>
-             <td>liegt in</td>
+             <td>situated in</td>
              <td><-</td>
              <td><a href="#ENTI8" target="_self">*Adresse</a></td>
                </tr>
@@ -1302,7 +1292,7 @@ P0: Land
             <tr>
              <td>Name</td>
              <td><a href="IM_CRM_FYAYC_en.html#ENTI12" target="_blank" >ZIP-Area</a></td>
-             <td><a href="IM_CRM_FYAYC_fr.html#ENTI12" target="_blank" >*DE* PLZ-Gebiet</a></td>
+             <td><a href="IM_CRM_FYAYC_fr.html#ENTI12" target="_blank" >Code postal</a></td>
                </tr>
             <tr>
              <td>Synonym</td>
@@ -1324,19 +1314,18 @@ P3: Postleitzahl
 P2: Postleitzahluntergebiet
 P1: Postleitzahlgebiet
 P0: Land</td>
-             <td>*DE* Durch die Post vergebene Gebietseinteilung.
-Die Postleitzahl ist in vielen Ländern keine Zahl sondern eine Zeichenfolge mit Ziffern und Buchstaben
+             <td>Division territoriale attribuée par la Poste. Dans de nombreux pays, le code postal n'est pas un chiffre mais une suite de chiffres et de lettres 
 
-Es gibt hierarchische Systeme beim Aufbau von PLZ:
-Z.B. USA
-221 - 62 -10 -10	 
-Segment - Sektor - Postdienststelle oder Zustellabschnitt - Leitzone oder Bearbeitungs- und Zustellzentrum
+Il existe des systèmes hiérarchiques pour la structure des codes postaux : 
+E. G. USA 
+221 - 62 -10 -10 
+Segment - secteur - service postal ou stade de distribution - zone d'acheminement ou centre de traitement et de distribution 
 
-Es kann andere genormte Systeme geben
-P3: Postleitzahl
-P2: Postleitzahluntergebiet
-P1: Postleitzahlgebiet
-P0: Land</td>
+Il peut exister d'autres systèmes standardisés 
+P3 : Code postal 
+P2 : Sous-région du code postal 
+P1 : Zone du code postal 
+P0 : Pays</td>
                </tr>
         
                      </tbody>
@@ -1453,7 +1442,7 @@ Flurnamen, Gemeindegebiete, alte Gemeindenamen (unterteilen Gemeinde) oder weite
             <tr>
              <td>Name</td>
              <td><a href="IM_CRM_FYAYC_en.html#ENTI2" target="_blank" >Administrative Territory</a></td>
-             <td><a href="IM_CRM_FYAYC_fr.html#ENTI2" target="_blank" >*DE* Administrativgebiet</a></td>
+             <td><a href="IM_CRM_FYAYC_fr.html#ENTI2" target="_blank" >Région administrative</a></td>
                </tr>
             <tr>
              <td>Synonym</td>
@@ -1481,25 +1470,23 @@ A3: Landkreis
 A4: leer
 A5: Gemeinde: Administrative Gemeinde im jeweiligen Land
 Flurnamen, Gemeindegebiete, alte Gemeindenamen (unterteilen Gemeinde) oder weitere Stufen</td>
-             <td>*DE* Gebietsunterteilung eines Landes in kleinere Einheiten.
+             <td>Division territoriale d'un pays en unités plus petites. Selon la NUTS (https://de. wikipedia. org/wiki/NUTS), le pays est à NUTS 0 
+NUTS 0 État-nation 
+NUTS 1 "grandes régions socio-économiques (regroupant les régions de base)"; . . . grandes régions/divisions 
+NUTS 2 "régions de base (pour l'application des politiques régionales)"; . . . régions moyennes, mégalopoles 
+NUTS 3 "petites régions (pour des diagnostics spécifiques)"; . . . les petites régions, dont certaines sont déjà de grandes villes 
+LAU 1 o. A. . . . les associations d'administration municipale, en partie des municipalités (non définies dans tous les États) 
+LAU 2 "municipalités ou unités équivalentes"; . . . communautés, unités partiellement communautaires 
 
-Gemäss NUTS (https://de.wikipedia.org/wiki/NUTS) ist das Land die Gebietsstufe NUTS 0
-NUTS 0	Nationalstaat
-NUTS 1	“major socio-economic regions (grouping basic regions)” … größere Regionen/Landesteile
-NUTS 2 	“basic regions (for the application of regional policies)” … mittelgroße Regionen, Millionenstädte
-NUTS 3	“small regions (for specific diagnoses)” … kleinere Regionen, teils schon Großstädte
-LAU 1	o.A. … kommunale Verwaltungsverbände, teils Gemeinden (nicht in allen Staaten definiert)
-LAU 2	“municipalities or equivalent units” … Gemeinden, teils Gemeindegliederungen
-
-Es kann weitere Hierarchiestufenbezeichnungen geben:
-Deutschland
-A0: Land
-A1: Bundesland
-A2: leer
-A3: Landkreis
-A4: leer
-A5: Gemeinde: Administrative Gemeinde im jeweiligen Land
-Flurnamen, Gemeindegebiete, alte Gemeindenamen (unterteilen Gemeinde) oder weitere Stufen</td>
+Il peut y avoir d'autres noms de niveaux hiérarchiques : 
+Allemagne 
+A0 : Pays 
+A1 : État fédéral 
+A2 : vide 
+A3 : Comté 
+A4 : blanc 
+A5 : Municipalité : commune administrative dans le pays concerné 
+noms de champs, zones municipales, anciens noms de municipalités (subdivision de la municipalité) ou autres niveaux</td>
                </tr>
         
                      </tbody>
@@ -1566,7 +1553,7 @@ Handelt in dieser Rolle selber nicht mit den Waren. Hat also weder Lager noch is
             <tr>
              <td>Name</td>
              <td><a href="IM_CRM_FYAYC_en.html#ENTI39" target="_blank" >Agent</a></td>
-             <td><a href="IM_CRM_FYAYC_fr.html#ENTI39" target="_blank" >*DE* Agent</a></td>
+             <td><a href="IM_CRM_FYAYC_fr.html#ENTI39" target="_blank" >Agent</a></td>
                </tr>
             <tr>
              <td>Synonym</td>
@@ -1577,8 +1564,7 @@ Handelt in dieser Rolle selber nicht mit den Waren. Hat also weder Lager noch is
              <td>Beschreibung</td>
              <td>*DE* Person oder Firma, die für uns (in einem Gebiet) die Vermittlung von Geschäften übernimmt.
 Handelt in dieser Rolle selber nicht mit den Waren. Hat also weder Lager noch ist sie Adressat von Lieferungen.</td>
-             <td>*DE* Person oder Firma, die für uns (in einem Gebiet) die Vermittlung von Geschäften übernimmt.
-Handelt in dieser Rolle selber nicht mit den Waren. Hat also weder Lager noch ist sie Adressat von Lieferungen.</td>
+             <td>Personne ou société qui agit en tant qu'agent en notre nom (dans une région). Dans ce rôle, elle ne s'occupe pas elle-même des marchandises. Elle n'a donc ni entrepôt ni destinataire des livraisons.</td>
                </tr>
         
                      </tbody>
@@ -1639,7 +1625,7 @@ Handelt in dieser Rolle selber nicht mit den Waren. Hat also weder Lager noch is
             <tr>
              <td>Name</td>
              <td><a href="IM_CRM_FYAYC_en.html#ENTI22" target="_blank" >Information</a></td>
-             <td><a href="IM_CRM_FYAYC_fr.html#ENTI22" target="_blank" >*DE* Allg. Information</a></td>
+             <td><a href="IM_CRM_FYAYC_fr.html#ENTI22" target="_blank" >Informations générales</a></td>
                </tr>
             <tr>
              <td>Synonym</td>
@@ -1649,7 +1635,7 @@ Handelt in dieser Rolle selber nicht mit den Waren. Hat also weder Lager noch is
             <tr>
              <td>Beschreibung</td>
              <td>*DE* Stamminformationen, die über ein Unternehmen hinaus Gültigkeit haben bzw. durch Standards vorgegeben sind.</td>
-             <td>*DE* Stamminformationen, die über ein Unternehmen hinaus Gültigkeit haben bzw. durch Standards vorgegeben sind.</td>
+             <td>Les informations de base qui sont valables au-delà des limites d'une entreprise ou sont spécifiés par des normes.</td>
                </tr>
         
                      </tbody>
@@ -1763,7 +1749,7 @@ Synonym von Ansprechpartner nach Kontaktperson geändert</p1>
              <td>Relation_77</td>
              <td>Ansprechpartner</td>
              <td>-></td>
-             <td>erreichbar mittels</td>
+             <td>attainable by</td>
              <td></td>
            <td class="leftsymbol"><img class="icon-down" src="icons/downarrow.svg"></td>
              <td></td>
@@ -1773,33 +1759,15 @@ Synonym von Ansprechpartner nach Kontaktperson geändert</p1>
              <td></td>
            <td class="leftsymbol"><img class="icon-up" src="icons/uparrow.svg"></td>
              <td></td>
-             <td>gilt für</td>
+             <td>valid for</td>
              <td><-</td>
              <td><a href="#ENTI1" target="_self">Kommunikationsmittel</a></td>
-               </tr>
-            <tr>
-             <td>Relation_4</td>
-             <td>Ansprechpartner</td>
-             <td>-></td>
-             <td>arbeitet für</td>
-             <td>1</td>
-           <td class="leftsymbol"><img class="icon-down" src="icons/downarrow.svg"></td>
-             <td></td>
-           <td class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
-               </tr>
-            <tr>
-             <td></td>
-           <td class="leftsymbol"><img class="icon-up" src="icons/uparrow.svg"></td>
-             <td>0..N</td>
-             <td>beschäftigt</td>
-             <td><-</td>
-             <td><a href="#ENTI27" target="_self">Juristische Person</a></td>
                </tr>
             <tr>
              <td>Relation_44</td>
              <td>Ansprechpartner</td>
              <td>-></td>
-             <td>ist</td>
+             <td>is</td>
              <td>1</td>
            <td class="leftsymbol"><img class="icon-down" src="icons/downarrow.svg"></td>
              <td></td>
@@ -1809,15 +1777,33 @@ Synonym von Ansprechpartner nach Kontaktperson geändert</p1>
              <td></td>
            <td class="leftsymbol"><img class="icon-up" src="icons/uparrow.svg"></td>
              <td>0..N</td>
-             <td>bekannt als</td>
+             <td>known as</td>
              <td><-</td>
              <td><a href="#ENTI3" target="_self">natürliche Person</a></td>
+               </tr>
+            <tr>
+             <td>Relation_4</td>
+             <td>Ansprechpartner</td>
+             <td>-></td>
+             <td>works for</td>
+             <td>1</td>
+           <td class="leftsymbol"><img class="icon-down" src="icons/downarrow.svg"></td>
+             <td></td>
+           <td class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+               </tr>
+            <tr>
+             <td></td>
+           <td class="leftsymbol"><img class="icon-up" src="icons/uparrow.svg"></td>
+             <td>0..N</td>
+             <td>employs</td>
+             <td><-</td>
+             <td><a href="#ENTI27" target="_self">Juristische Person</a></td>
                </tr>
             <tr>
              <td>Relation_61</td>
              <td>Ansprechpartner</td>
              <td>-></td>
-             <td>betreut direkt</td>
+             <td>attends directly</td>
              <td>0..N</td>
            <td class="leftsymbol"><img class="icon-down" src="icons/downarrow.svg"></td>
              <td></td>
@@ -1827,7 +1813,7 @@ Synonym von Ansprechpartner nach Kontaktperson geändert</p1>
              <td></td>
            <td class="leftsymbol"><img class="icon-up" src="icons/uparrow.svg"></td>
              <td>0..N</td>
-             <td>direkt betreut von</td>
+             <td>directly attended by</td>
              <td><-</td>
              <td><a href="#ENTI34" target="_self">Vertriebskunde</a></td>
                </tr>
@@ -1835,7 +1821,7 @@ Synonym von Ansprechpartner nach Kontaktperson geändert</p1>
              <td>Relation_46</td>
              <td>Ansprechpartner</td>
              <td>-></td>
-             <td>nimmt wahr</td>
+             <td>perceives</td>
              <td>1..N</td>
            <td class="leftsymbol"><img class="icon-down" src="icons/downarrow.svg"></td>
              <td></td>
@@ -1845,7 +1831,7 @@ Synonym von Ansprechpartner nach Kontaktperson geändert</p1>
              <td></td>
            <td class="leftsymbol"><img class="icon-up" src="icons/uparrow.svg"></td>
              <td>0..N</td>
-             <td>wahrgenommen von</td>
+             <td>perceived by</td>
              <td><-</td>
              <td><a href="#ENTI20" target="_self">*Personenrolle</a></td>
                </tr>
@@ -1866,12 +1852,12 @@ Synonym von Ansprechpartner nach Kontaktperson geändert</p1>
             <tr>
              <td>Name</td>
              <td><a href="IM_CRM_FYAYC_en.html#ENTI7" target="_blank" >Contact Person</a></td>
-             <td><a href="IM_CRM_FYAYC_fr.html#ENTI7" target="_blank" >*DE* Ansprechpartner</a></td>
+             <td><a href="IM_CRM_FYAYC_fr.html#ENTI7" target="_blank" >Contact</a></td>
                </tr>
             <tr>
              <td>Synonym</td>
              <td>*DE* Kontaktperson</td>
-             <td>*DE* Kontaktperson</td>
+             <td></td>
                </tr>
             <tr>
              <td>Beschreibung</td>
@@ -1880,11 +1866,9 @@ Synonym von Ansprechpartner nach Kontaktperson geändert</p1>
 26.6.18 - THU:
 Namen von Kontaktperson nach Ansprechpartner geändert
 Synonym von Ansprechpartner nach Kontaktperson geändert</td>
-             <td>*DE* Funktion einer Person für eine juristische Einheit. Im Spezialfall kann eine Person als Einzelfirma ihr eigener Ansprechspartner sein.
-
-26.6.18 - THU:
-Namen von Kontaktperson nach Ansprechpartner geändert
-Synonym von Ansprechpartner nach Kontaktperson geändert</td>
+             <td>Fonction d'une personne pour une entité juridique. Dans des cas particuliers, une personne en tant qu'entreprise individuelle peut être son propre interlocuteur. 26. 6. 18 - THU : 
+Changement de nom de la personne de contact en personne de référence
+Changement de synonyme de personne de référence à personne de contact</td>
                </tr>
         
                      </tbody>
@@ -1951,7 +1935,7 @@ Synonym von Ansprechpartner nach Kontaktperson geändert</td>
              <td>Relation_59</td>
              <td>Besitzer</td>
              <td>-></td>
-             <td>besitzt physisch</td>
+             <td>owns physically</td>
              <td>0..N</td>
            <td class="leftsymbol"><img class="icon-down" src="icons/downarrow.svg"></td>
              <td></td>
@@ -1961,7 +1945,7 @@ Synonym von Ansprechpartner nach Kontaktperson geändert</td>
              <td></td>
            <td class="leftsymbol"><img class="icon-up" src="icons/uparrow.svg"></td>
              <td>0..1</td>
-             <td>physisch bei</td>
+             <td>physically at</td>
              <td><-</td>
              <td><a href="#ENTI36" target="_self">Produktinstanz</a></td>
                </tr>
@@ -1969,7 +1953,7 @@ Synonym von Ansprechpartner nach Kontaktperson geändert</td>
              <td>Relation_50</td>
              <td>Besitzer</td>
              <td>-></td>
-             <td>ist</td>
+             <td>is</td>
              <td></td>
            <td class="leftsymbol"><img class="icon-down" src="icons/downarrow.svg"></td>
              <td>Arc_3</td>
@@ -1979,7 +1963,7 @@ Synonym von Ansprechpartner nach Kontaktperson geändert</td>
              <td></td>
            <td class="leftsymbol"><img class="icon-up" src="icons/uparrow.svg"></td>
              <td></td>
-             <td>ist</td>
+             <td>is</td>
              <td><-</td>
              <td><a href="#ENTI24" target="_self">Vertriebspartner</a></td>
                </tr>
@@ -1987,7 +1971,7 @@ Synonym von Ansprechpartner nach Kontaktperson geändert</td>
              <td>Relation_47</td>
              <td>Besitzer</td>
              <td>-></td>
-             <td>ist</td>
+             <td>is</td>
              <td></td>
            <td class="leftsymbol"><img class="icon-down" src="icons/downarrow.svg"></td>
              <td>Arc_3</td>
@@ -1997,7 +1981,7 @@ Synonym von Ansprechpartner nach Kontaktperson geändert</td>
              <td></td>
            <td class="leftsymbol"><img class="icon-up" src="icons/uparrow.svg"></td>
              <td></td>
-             <td>ist</td>
+             <td>is</td>
              <td><-</td>
              <td><a href="#ENTI34" target="_self">Vertriebskunde</a></td>
                </tr>
@@ -2018,7 +2002,7 @@ Synonym von Ansprechpartner nach Kontaktperson geändert</td>
             <tr>
              <td>Name</td>
              <td><a href="IM_CRM_FYAYC_en.html#ENTI5" target="_blank" >Owner</a></td>
-             <td><a href="IM_CRM_FYAYC_fr.html#ENTI5" target="_blank" >*DE* Besitzer</a></td>
+             <td><a href="IM_CRM_FYAYC_fr.html#ENTI5" target="_blank" >Exploitant</a></td>
                </tr>
             <tr>
              <td>Synonym</td>
@@ -2028,7 +2012,7 @@ Synonym von Ansprechpartner nach Kontaktperson geändert</td>
             <tr>
              <td>Beschreibung</td>
              <td>*DE* Person oder Firma, die eine Maschine in seinem physischen Besitz hat.</td>
-             <td>*DE* Person oder Firma, die eine Maschine in seinem physischen Besitz hat.</td>
+             <td>Personne ou société qui a une machine en sa possession physique.</td>
                </tr>
         
                      </tbody>
@@ -2095,7 +2079,7 @@ Synonym von Ansprechpartner nach Kontaktperson geändert</td>
              <td>Relation_60</td>
              <td>Eigentümer</td>
              <td>-></td>
-             <td>besitzt rechtlich</td>
+             <td>owns legally</td>
              <td>0..N</td>
            <td class="leftsymbol"><img class="icon-down" src="icons/downarrow.svg"></td>
              <td></td>
@@ -2105,7 +2089,7 @@ Synonym von Ansprechpartner nach Kontaktperson geändert</td>
              <td></td>
            <td class="leftsymbol"><img class="icon-up" src="icons/uparrow.svg"></td>
              <td>0..1</td>
-             <td>gehört</td>
+             <td>legally owned by</td>
              <td><-</td>
              <td><a href="#ENTI36" target="_self">Produktinstanz</a></td>
                </tr>
@@ -2113,7 +2097,7 @@ Synonym von Ansprechpartner nach Kontaktperson geändert</td>
              <td>Relation_17</td>
              <td>Eigentümer</td>
              <td>-></td>
-             <td>ist</td>
+             <td>is</td>
              <td></td>
            <td class="leftsymbol"><img class="icon-down" src="icons/downarrow.svg"></td>
              <td>Arc_2</td>
@@ -2123,7 +2107,7 @@ Synonym von Ansprechpartner nach Kontaktperson geändert</td>
              <td></td>
            <td class="leftsymbol"><img class="icon-up" src="icons/uparrow.svg"></td>
              <td></td>
-             <td>ist</td>
+             <td>is</td>
              <td><-</td>
              <td><a href="#ENTI23" target="_self">Finanzierungspartner</a></td>
                </tr>
@@ -2131,7 +2115,7 @@ Synonym von Ansprechpartner nach Kontaktperson geändert</td>
              <td>Relation_18</td>
              <td>Eigentümer</td>
              <td>-></td>
-             <td>ist</td>
+             <td>is</td>
              <td></td>
            <td class="leftsymbol"><img class="icon-down" src="icons/downarrow.svg"></td>
              <td>Arc_2</td>
@@ -2141,7 +2125,7 @@ Synonym von Ansprechpartner nach Kontaktperson geändert</td>
              <td></td>
            <td class="leftsymbol"><img class="icon-up" src="icons/uparrow.svg"></td>
              <td></td>
-             <td>ist</td>
+             <td>is</td>
              <td><-</td>
              <td><a href="#ENTI24" target="_self">Vertriebspartner</a></td>
                </tr>
@@ -2149,7 +2133,7 @@ Synonym von Ansprechpartner nach Kontaktperson geändert</td>
              <td>Relation_19</td>
              <td>Eigentümer</td>
              <td>-></td>
-             <td>ist</td>
+             <td>is</td>
              <td></td>
            <td class="leftsymbol"><img class="icon-down" src="icons/downarrow.svg"></td>
              <td>Arc_2</td>
@@ -2159,7 +2143,7 @@ Synonym von Ansprechpartner nach Kontaktperson geändert</td>
              <td></td>
            <td class="leftsymbol"><img class="icon-up" src="icons/uparrow.svg"></td>
              <td></td>
-             <td>ist</td>
+             <td>is</td>
              <td><-</td>
              <td><a href="#ENTI28" target="_self">Käufer</a></td>
                </tr>
@@ -2167,7 +2151,7 @@ Synonym von Ansprechpartner nach Kontaktperson geändert</td>
              <td>Relation_17</td>
              <td>Eigentümer</td>
              <td>-></td>
-             <td>ist</td>
+             <td>is</td>
              <td></td>
            <td class="leftsymbol"><img class="icon-down" src="icons/downarrow.svg"></td>
              <td>Arc_7</td>
@@ -2177,7 +2161,7 @@ Synonym von Ansprechpartner nach Kontaktperson geändert</td>
              <td></td>
            <td class="leftsymbol"><img class="icon-up" src="icons/uparrow.svg"></td>
              <td></td>
-             <td>ist</td>
+             <td>is</td>
              <td><-</td>
              <td><a href="#ENTI23" target="_self">Finanzierungspartner</a></td>
                </tr>
@@ -2185,7 +2169,7 @@ Synonym von Ansprechpartner nach Kontaktperson geändert</td>
              <td>Relation_18</td>
              <td>Eigentümer</td>
              <td>-></td>
-             <td>ist</td>
+             <td>is</td>
              <td></td>
            <td class="leftsymbol"><img class="icon-down" src="icons/downarrow.svg"></td>
              <td>Arc_7</td>
@@ -2195,7 +2179,7 @@ Synonym von Ansprechpartner nach Kontaktperson geändert</td>
              <td></td>
            <td class="leftsymbol"><img class="icon-up" src="icons/uparrow.svg"></td>
              <td></td>
-             <td>ist</td>
+             <td>is</td>
              <td><-</td>
              <td><a href="#ENTI24" target="_self">Vertriebspartner</a></td>
                </tr>
@@ -2203,7 +2187,7 @@ Synonym von Ansprechpartner nach Kontaktperson geändert</td>
              <td>Relation_19</td>
              <td>Eigentümer</td>
              <td>-></td>
-             <td>ist</td>
+             <td>is</td>
              <td></td>
            <td class="leftsymbol"><img class="icon-down" src="icons/downarrow.svg"></td>
              <td>Arc_7</td>
@@ -2213,7 +2197,7 @@ Synonym von Ansprechpartner nach Kontaktperson geändert</td>
              <td></td>
            <td class="leftsymbol"><img class="icon-up" src="icons/uparrow.svg"></td>
              <td></td>
-             <td>ist</td>
+             <td>is</td>
              <td><-</td>
              <td><a href="#ENTI28" target="_self">Käufer</a></td>
                </tr>
@@ -2234,7 +2218,7 @@ Synonym von Ansprechpartner nach Kontaktperson geändert</td>
             <tr>
              <td>Name</td>
              <td><a href="IM_CRM_FYAYC_en.html#ENTI13" target="_blank" >Proprietor</a></td>
-             <td><a href="IM_CRM_FYAYC_fr.html#ENTI13" target="_blank" >*DE* Eigentümer</a></td>
+             <td><a href="IM_CRM_FYAYC_fr.html#ENTI13" target="_blank" >Propriétaire</a></td>
                </tr>
             <tr>
              <td>Synonym</td>
@@ -2244,7 +2228,7 @@ Synonym von Ansprechpartner nach Kontaktperson geändert</td>
             <tr>
              <td>Beschreibung</td>
              <td>*DE* Person, Organisation die Maschinenexemplare rechtlich besitzt.</td>
-             <td>*DE* Person, Organisation die Maschinenexemplare rechtlich besitzt.</td>
+             <td>Personne, organisation qui possède légalement des copies de la machine.</td>
                </tr>
         
                      </tbody>
@@ -2312,7 +2296,7 @@ Geschäft, Lokal, Filiale
             <tr>
              <td>Name</td>
              <td><a href="IM_CRM_FYAYC_en.html#ENTI9" target="_blank" >Branch Office</a></td>
-             <td><a href="IM_CRM_FYAYC_fr.html#ENTI9" target="_blank" >*DE* Filiale</a></td>
+             <td><a href="IM_CRM_FYAYC_fr.html#ENTI9" target="_blank" >Filiale</a></td>
                </tr>
             <tr>
              <td>Synonym</td>
@@ -2323,8 +2307,8 @@ Geschäft, Lokal, Filiale
              <td>Beschreibung</td>
              <td>*DE* B2C Handelseinheit
 Geschäft, Lokal, Filiale</td>
-             <td>*DE* B2C Handelseinheit
-Geschäft, Lokal, Filiale</td>
+             <td>Unité Commerce B2C 
+Magasin, restaurant, succursale</td>
                </tr>
         
                      </tbody>
@@ -2397,7 +2381,7 @@ Geschäft, Lokal, Filiale</td>
              <td>Relation_17</td>
              <td>Finanzierungspartner</td>
              <td>-></td>
-             <td>ist</td>
+             <td>is</td>
              <td></td>
            <td class="leftsymbol"><img class="icon-down" src="icons/downarrow.svg"></td>
              <td></td>
@@ -2407,7 +2391,7 @@ Geschäft, Lokal, Filiale</td>
              <td></td>
            <td class="leftsymbol"><img class="icon-up" src="icons/uparrow.svg"></td>
              <td></td>
-             <td>ist</td>
+             <td>is</td>
              <td><-</td>
              <td><a href="#ENTI13" target="_self">Eigentümer</a></td>
                </tr>
@@ -2415,7 +2399,7 @@ Geschäft, Lokal, Filiale</td>
              <td>Relation_17</td>
              <td>Finanzierungspartner</td>
              <td>-></td>
-             <td>ist</td>
+             <td>is</td>
              <td></td>
            <td class="leftsymbol"><img class="icon-down" src="icons/downarrow.svg"></td>
              <td></td>
@@ -2425,7 +2409,7 @@ Geschäft, Lokal, Filiale</td>
              <td></td>
            <td class="leftsymbol"><img class="icon-up" src="icons/uparrow.svg"></td>
              <td></td>
-             <td>ist</td>
+             <td>is</td>
              <td><-</td>
              <td><a href="#ENTI13" target="_self">Eigentümer</a></td>
                </tr>
@@ -2446,7 +2430,7 @@ Geschäft, Lokal, Filiale</td>
             <tr>
              <td>Name</td>
              <td><a href="IM_CRM_FYAYC_en.html#ENTI23" target="_blank" >Finance Partner</a></td>
-             <td><a href="IM_CRM_FYAYC_fr.html#ENTI23" target="_blank" >*DE* Finanzierungspartner</a></td>
+             <td><a href="IM_CRM_FYAYC_fr.html#ENTI23" target="_blank" >Partenaire financier</a></td>
                </tr>
             <tr>
              <td>Synonym</td>
@@ -2456,7 +2440,7 @@ Geschäft, Lokal, Filiale</td>
             <tr>
              <td>Beschreibung</td>
              <td>*DE* Partner der Leasingverträge vergibt, die Produkte deshalb als Eigentum hat , sie aber selber nie nutzt.</td>
-             <td>*DE* Partner der Leasingverträge vergibt, die Produkte deshalb als Eigentum hat , sie aber selber nie nutzt.</td>
+             <td>Partenaire qui accorde des contrats de leasing, qui est donc propriétaire des produits, mais ne les utilise jamais lui-même.</td>
                </tr>
         
                      </tbody>
@@ -2551,7 +2535,7 @@ Flurnamen, Gemeindegebiete, alte Gemeindenamen (unterteilen Gemeinde) oder weite
              <td>Relation_37v1v2</td>
              <td>Gebiet</td>
              <td>-></td>
-             <td>unterteilt</td>
+             <td>subdivides</td>
              <td>0..1</td>
            <td class="leftsymbol"><img class="icon-down" src="icons/downarrow.svg"></td>
              <td>Gebiet_subtype</td>
@@ -2561,7 +2545,7 @@ Flurnamen, Gemeindegebiete, alte Gemeindenamen (unterteilen Gemeinde) oder weite
              <td></td>
            <td class="leftsymbol"><img class="icon-up" src="icons/uparrow.svg"></td>
              <td>0..N</td>
-             <td>unterteilt in</td>
+             <td>subdivided in</td>
              <td><-</td>
              <td><a href="#ENTI29" target="_self">Gebiet</a></td>
                </tr>
@@ -2569,7 +2553,7 @@ Flurnamen, Gemeindegebiete, alte Gemeindenamen (unterteilen Gemeinde) oder weite
              <td>Relation_30</td>
              <td>Gebiet</td>
              <td>-></td>
-             <td>unterteilt</td>
+             <td>subdivides</td>
              <td>1</td>
            <td class="leftsymbol"><img class="icon-down" src="icons/downarrow.svg"></td>
              <td>Gebiet_subtype</td>
@@ -2579,7 +2563,7 @@ Flurnamen, Gemeindegebiete, alte Gemeindenamen (unterteilen Gemeinde) oder weite
              <td></td>
            <td class="leftsymbol"><img class="icon-up" src="icons/uparrow.svg"></td>
              <td>0..N</td>
-             <td>unterteilt in</td>
+             <td>subdivided in</td>
              <td><-</td>
              <td><a href="#ENTI14" target="_self">*Land</a></td>
                </tr>
@@ -2600,7 +2584,7 @@ Flurnamen, Gemeindegebiete, alte Gemeindenamen (unterteilen Gemeinde) oder weite
             <tr>
              <td>Name</td>
              <td><a href="IM_CRM_FYAYC_en.html#ENTI29" target="_blank" >Area</a></td>
-             <td><a href="IM_CRM_FYAYC_fr.html#ENTI29" target="_blank" >*DE* Gebiet</a></td>
+             <td><a href="IM_CRM_FYAYC_fr.html#ENTI29" target="_blank" >Région</a></td>
                </tr>
             <tr>
              <td>Synonym</td>
@@ -2628,25 +2612,7 @@ A3: Landkreis
 A4: leer
 A5: Gemeinde: Administrative Gemeinde im jeweiligen Land
 Flurnamen, Gemeindegebiete, alte Gemeindenamen (unterteilen Gemeinde) oder weitere Stufen</td>
-             <td>*DE* Gebietsunterteilung eines Landes in kleinere Einheiten.
-
-Gemäss NUTS (https://de.wikipedia.org/wiki/NUTS) ist das Land die Gebietsstufe NUTS 0
-NUTS 0	Nationalstaat
-NUTS 1	“major socio-economic regions (grouping basic regions)” … größere Regionen/Landesteile
-NUTS 2 	“basic regions (for the application of regional policies)” … mittelgroße Regionen, Millionenstädte
-NUTS 3	“small regions (for specific diagnoses)” … kleinere Regionen, teils schon Großstädte
-LAU 1	o.A. … kommunale Verwaltungsverbände, teils Gemeinden (nicht in allen Staaten definiert)
-LAU 2	“municipalities or equivalent units” … Gemeinden, teils Gemeindegliederungen
-
-Es kann weitere Hierarchiestufenbezeichnungen geben:
-Deutschland
-A0: Land
-A1: Bundesland
-A2: leer
-A3: Landkreis
-A4: leer
-A5: Gemeinde: Administrative Gemeinde im jeweiligen Land
-Flurnamen, Gemeindegebiete, alte Gemeindenamen (unterteilen Gemeinde) oder weitere Stufen</td>
+             <td>Division territoriale d'un pays en unités plus petites. Selon la NUTS (https://de. wikipedia. org/wiki/NUTS), le pays est à NUTS 0  NUTS 0 État-nation  NUTS 1 "grandes régions socio-économiques (regroupant les régions de base)"; . . . grandes régions/divisions  NUTS 2 "régions de base (pour l'application des politiques régionales)"; . . . régions moyennes, mégalopoles  NUTS 3 "petites régions (pour des diagnostics spécifiques)"; . . . les petites régions, dont certaines sont déjà de grandes villes  LAU 1 o. A. . . . les associations d'administration municipale, en partie des municipalités (pas définies dans tous les États)  LAU 2 "municipalités ou unités équivalentes"; . . . communautés, unités partiellement communautaires   Il peut y avoir d'autres noms de niveaux hiérarchiques :  Allemagne  A0 : Pays  A1 : État fédéral  A2 : vide  A3 : Comté  A4 : blanc  A5 : Municipalité : commune administrative dans le pays concerné  noms de champs, zones municipales, anciens noms de municipalités (subdivision de la municipalité) ou autres niveaux</td>
                </tr>
         
                      </tbody>
@@ -2762,7 +2728,7 @@ fr-ca</p1>
              <td>Relation_40</td>
              <td>Gebietssprache</td>
              <td>-></td>
-             <td>unterteilt</td>
+             <td>subdivides</td>
              <td>1</td>
            <td class="leftsymbol"><img class="icon-down" src="icons/downarrow.svg"></td>
              <td></td>
@@ -2772,7 +2738,7 @@ fr-ca</p1>
              <td></td>
            <td class="leftsymbol"><img class="icon-up" src="icons/uparrow.svg"></td>
              <td>0..N</td>
-             <td>unterteilt in</td>
+             <td>subdivided in</td>
              <td><-</td>
              <td><a href="#ENTI25" target="_self">Sprache</a></td>
                </tr>
@@ -2780,7 +2746,7 @@ fr-ca</p1>
              <td>Geog Einheit Sprache</td>
              <td>Gebietssprache</td>
              <td>-></td>
-             <td>verwendet in</td>
+             <td>used in</td>
              <td>1</td>
            <td class="leftsymbol"><img class="icon-down" src="icons/downarrow.svg"></td>
              <td></td>
@@ -2790,7 +2756,7 @@ fr-ca</p1>
              <td></td>
            <td class="leftsymbol"><img class="icon-up" src="icons/uparrow.svg"></td>
              <td>0..N</td>
-             <td>verwendet</td>
+             <td>uses</td>
              <td><-</td>
              <td><a href="#ENTI14" target="_self">*Land</a></td>
                </tr>
@@ -2811,7 +2777,7 @@ fr-ca</p1>
             <tr>
              <td>Name</td>
              <td><a href="IM_CRM_FYAYC_en.html#ENTI26" target="_blank" >Area Language</a></td>
-             <td><a href="IM_CRM_FYAYC_fr.html#ENTI26" target="_blank" >*DE* Gebietssprache</a></td>
+             <td><a href="IM_CRM_FYAYC_fr.html#ENTI26" target="_blank" >Langue</a></td>
                </tr>
             <tr>
              <td>Synonym</td>
@@ -2830,15 +2796,15 @@ de-ch
 fr-ch
 fr-fr
 fr-ca</td>
-             <td>*DE* Lokale Variante einer Sprache
-Code wird zusammengesetzt aus ISO2-Sprachcode - ISO2-Landcode
+             <td>Variante locale d'une langue 
+Le code est composé du code de langue ISO2 et du code pays ISO2 
 
-Beispiele:
-de-de 
-de-at
-de-ch
-fr-ch
-fr-fr
+Exemples : 
+de-en 
+de-at 
+de-ch 
+fr-ch 
+fr-fr 
 fr-ca</td>
                </tr>
         
@@ -2956,7 +2922,7 @@ fr-ca</td>
              <td>Relation_53</td>
              <td>Geografische Einheit</td>
              <td>-></td>
-             <td>bedient von</td>
+             <td>attended by</td>
              <td>0..N</td>
            <td class="leftsymbol"><img class="icon-down" src="icons/downarrow.svg"></td>
              <td>Geografische Einheit_subtype</td>
@@ -2966,7 +2932,7 @@ fr-ca</td>
              <td></td>
            <td class="leftsymbol"><img class="icon-up" src="icons/uparrow.svg"></td>
              <td>0..N</td>
-             <td>bedient</td>
+             <td>attends to</td>
              <td><-</td>
              <td><a href="#ENTI18" target="_self">Handelseinheit</a></td>
                </tr>
@@ -2987,7 +2953,7 @@ fr-ca</td>
             <tr>
              <td>Name</td>
              <td><a href="IM_CRM_FYAYC_en.html#ENTI10" target="_blank" >Geografical Unit</a></td>
-             <td><a href="IM_CRM_FYAYC_fr.html#ENTI10" target="_blank" >*DE* Geografische Einheit</a></td>
+             <td><a href="IM_CRM_FYAYC_fr.html#ENTI10" target="_blank" >Unité géographique</a></td>
                </tr>
             <tr>
              <td>Synonym</td>
@@ -2997,7 +2963,7 @@ fr-ca</td>
             <tr>
              <td>Beschreibung</td>
              <td>*DE* Ein geographisches Gebilde das nach geographischen, polititischen oder postalischen Kriterien in dieser Form definiert ist.</td>
-             <td>*DE* Ein geographisches Gebilde das nach geographischen, polititischen oder postalischen Kriterien in dieser Form definiert ist.</td>
+             <td>Une entité géographique qui est définie sous cette forme selon des critères géographiques, politiques ou postaux.</td>
                </tr>
         
                      </tbody>
@@ -3102,7 +3068,7 @@ fr-ca</td>
              <td>Relation_9</td>
              <td>Geschäftsfähige Einheit</td>
              <td>-></td>
-             <td>tritt auf als</td>
+             <td>appears as</td>
              <td>0..N</td>
            <td class="leftsymbol"><img class="icon-down" src="icons/downarrow.svg"></td>
              <td></td>
@@ -3112,7 +3078,7 @@ fr-ca</td>
              <td></td>
            <td class="leftsymbol"><img class="icon-up" src="icons/uparrow.svg"></td>
              <td>1</td>
-             <td>ist</td>
+             <td>is</td>
              <td><-</td>
              <td><a href="#ENTI21" target="_self">Wettbewerber</a></td>
                </tr>
@@ -3120,7 +3086,7 @@ fr-ca</td>
              <td>Relation_45</td>
              <td>Geschäftsfähige Einheit</td>
              <td>-></td>
-             <td>erreichbar mittels</td>
+             <td>attainable by</td>
              <td></td>
            <td class="leftsymbol"><img class="icon-down" src="icons/downarrow.svg"></td>
              <td></td>
@@ -3130,7 +3096,7 @@ fr-ca</td>
              <td></td>
            <td class="leftsymbol"><img class="icon-up" src="icons/uparrow.svg"></td>
              <td></td>
-             <td>gilt für</td>
+             <td>valid for</td>
              <td><-</td>
              <td><a href="#ENTI1" target="_self">Kommunikationsmittel</a></td>
                </tr>
@@ -3138,7 +3104,7 @@ fr-ca</td>
              <td>Relation_79</td>
              <td>Geschäftsfähige Einheit</td>
              <td>-></td>
-             <td>gugus</td>
+             <td>*DE* gugus</td>
              <td>1</td>
            <td class="leftsymbol"><img class="icon-down" src="icons/downarrow.svg"></td>
              <td>Geschäftsfähige Einheit_subtype</td>
@@ -3148,7 +3114,7 @@ fr-ca</td>
              <td></td>
            <td class="leftsymbol"><img class="icon-up" src="icons/uparrow.svg"></td>
              <td>0..N</td>
-             <td>installiert</td>
+             <td>*DE* installiert</td>
              <td><-</td>
              <td><a href="#ENTI16" target="_self">Installateur</a></td>
                </tr>
@@ -3156,7 +3122,7 @@ fr-ca</td>
              <td>Relation_112</td>
              <td>Geschäftsfähige Einheit</td>
              <td>-></td>
-             <td>tritt auf als</td>
+             <td>appears as</td>
              <td>0..N</td>
            <td class="leftsymbol"><img class="icon-down" src="icons/downarrow.svg"></td>
              <td></td>
@@ -3166,7 +3132,7 @@ fr-ca</td>
              <td></td>
            <td class="leftsymbol"><img class="icon-up" src="icons/uparrow.svg"></td>
              <td>1</td>
-             <td>ist</td>
+             <td>is</td>
              <td><-</td>
              <td><a href="#ENTI11" target="_self">Interessent</a></td>
                </tr>
@@ -3174,7 +3140,7 @@ fr-ca</td>
              <td>Relation_8</td>
              <td>Geschäftsfähige Einheit</td>
              <td>-></td>
-             <td>nimmt wahr</td>
+             <td>perceives</td>
              <td>0..N</td>
            <td class="leftsymbol"><img class="icon-down" src="icons/downarrow.svg"></td>
              <td></td>
@@ -3184,7 +3150,7 @@ fr-ca</td>
              <td></td>
            <td class="leftsymbol"><img class="icon-up" src="icons/uparrow.svg"></td>
              <td>1</td>
-             <td>wahrgenommen von</td>
+             <td>perceived by</td>
              <td><-</td>
              <td><a href="#ENTI35" target="_self">Vertriebsteilnehmer</a></td>
                </tr>
@@ -3205,7 +3171,7 @@ fr-ca</td>
             <tr>
              <td>Name</td>
              <td><a href="IM_CRM_FYAYC_en.html#ENTI38" target="_blank" >Legal Entity</a></td>
-             <td><a href="IM_CRM_FYAYC_fr.html#ENTI38" target="_blank" >*DE* Geschäftsfähige Einheit</a></td>
+             <td><a href="IM_CRM_FYAYC_fr.html#ENTI38" target="_blank" >Entité légale</a></td>
                </tr>
             <tr>
              <td>Synonym</td>
@@ -3215,7 +3181,7 @@ fr-ca</td>
             <tr>
              <td>Beschreibung</td>
              <td>*DE* Rechtlich definierte Einheit, die rechts- und geschäftsfähig ist.</td>
-             <td>*DE* Rechtlich definierte Einheit, die rechts- und geschäftsfähig ist.</td>
+             <td>Entité légalement définie qui a la capacité juridique.</td>
                </tr>
         
                      </tbody>
@@ -3321,7 +3287,7 @@ Zwischenhändler, Vermittler, Servicedienstleister, Installateur</p1>
              <td>Relation_52</td>
              <td>Handelseinheit</td>
              <td>-></td>
-             <td>ist</td>
+             <td>is</td>
              <td>1</td>
            <td class="leftsymbol"><img class="icon-down" src="icons/downarrow.svg"></td>
              <td>Arc_4</td>
@@ -3331,7 +3297,7 @@ Zwischenhändler, Vermittler, Servicedienstleister, Installateur</p1>
              <td></td>
            <td class="leftsymbol"><img class="icon-up" src="icons/uparrow.svg"></td>
              <td>0..N</td>
-             <td>tritt auf als</td>
+             <td>appears as</td>
              <td><-</td>
              <td><a href="#ENTI21" target="_self">Wettbewerber</a></td>
                </tr>
@@ -3339,7 +3305,7 @@ Zwischenhändler, Vermittler, Servicedienstleister, Installateur</p1>
              <td>Relation_51</td>
              <td>Handelseinheit</td>
              <td>-></td>
-             <td>ist</td>
+             <td>is</td>
              <td>1</td>
            <td class="leftsymbol"><img class="icon-down" src="icons/downarrow.svg"></td>
              <td>Arc_4</td>
@@ -3349,7 +3315,7 @@ Zwischenhändler, Vermittler, Servicedienstleister, Installateur</p1>
              <td></td>
            <td class="leftsymbol"><img class="icon-up" src="icons/uparrow.svg"></td>
              <td>1..N</td>
-             <td>tritt auf als</td>
+             <td>appears as</td>
              <td><-</td>
              <td><a href="#ENTI24" target="_self">Vertriebspartner</a></td>
                </tr>
@@ -3357,7 +3323,7 @@ Zwischenhändler, Vermittler, Servicedienstleister, Installateur</p1>
              <td>Relation_48</td>
              <td>Handelseinheit</td>
              <td>-></td>
-             <td>betreut</td>
+             <td>attends</td>
              <td>0..N</td>
            <td class="leftsymbol"><img class="icon-down" src="icons/downarrow.svg"></td>
              <td>Arc_4</td>
@@ -3367,7 +3333,7 @@ Zwischenhändler, Vermittler, Servicedienstleister, Installateur</p1>
              <td></td>
            <td class="leftsymbol"><img class="icon-up" src="icons/uparrow.svg"></td>
              <td>0..N</td>
-             <td>betreut von</td>
+             <td>attended by</td>
              <td><-</td>
              <td><a href="#ENTI35" target="_self">Vertriebsteilnehmer</a></td>
                </tr>
@@ -3375,7 +3341,7 @@ Zwischenhändler, Vermittler, Servicedienstleister, Installateur</p1>
              <td>Relation_53</td>
              <td>Handelseinheit</td>
              <td>-></td>
-             <td>bedient</td>
+             <td>attends to</td>
              <td>0..N</td>
            <td class="leftsymbol"><img class="icon-down" src="icons/downarrow.svg"></td>
              <td></td>
@@ -3385,7 +3351,7 @@ Zwischenhändler, Vermittler, Servicedienstleister, Installateur</p1>
              <td></td>
            <td class="leftsymbol"><img class="icon-up" src="icons/uparrow.svg"></td>
              <td>0..N</td>
-             <td>bedient von</td>
+             <td>attended by</td>
              <td><-</td>
              <td><a href="#ENTI10" target="_self">Geografische Einheit</a></td>
                </tr>
@@ -3393,7 +3359,7 @@ Zwischenhändler, Vermittler, Servicedienstleister, Installateur</p1>
              <td>Relation_52</td>
              <td>Handelseinheit</td>
              <td>-></td>
-             <td>ist</td>
+             <td>is</td>
              <td>1</td>
            <td class="leftsymbol"><img class="icon-down" src="icons/downarrow.svg"></td>
              <td>Handelseinheit_subtype</td>
@@ -3403,7 +3369,7 @@ Zwischenhändler, Vermittler, Servicedienstleister, Installateur</p1>
              <td></td>
            <td class="leftsymbol"><img class="icon-up" src="icons/uparrow.svg"></td>
              <td>0..N</td>
-             <td>tritt auf als</td>
+             <td>appears as</td>
              <td><-</td>
              <td><a href="#ENTI21" target="_self">Wettbewerber</a></td>
                </tr>
@@ -3411,7 +3377,7 @@ Zwischenhändler, Vermittler, Servicedienstleister, Installateur</p1>
              <td>Relation_51</td>
              <td>Handelseinheit</td>
              <td>-></td>
-             <td>ist</td>
+             <td>is</td>
              <td>1</td>
            <td class="leftsymbol"><img class="icon-down" src="icons/downarrow.svg"></td>
              <td>Handelseinheit_subtype</td>
@@ -3421,7 +3387,7 @@ Zwischenhändler, Vermittler, Servicedienstleister, Installateur</p1>
              <td></td>
            <td class="leftsymbol"><img class="icon-up" src="icons/uparrow.svg"></td>
              <td>1..N</td>
-             <td>tritt auf als</td>
+             <td>appears as</td>
              <td><-</td>
              <td><a href="#ENTI24" target="_self">Vertriebspartner</a></td>
                </tr>
@@ -3429,7 +3395,7 @@ Zwischenhändler, Vermittler, Servicedienstleister, Installateur</p1>
              <td>Relation_48</td>
              <td>Handelseinheit</td>
              <td>-></td>
-             <td>betreut</td>
+             <td>attends</td>
              <td>0..N</td>
            <td class="leftsymbol"><img class="icon-down" src="icons/downarrow.svg"></td>
              <td>Handelseinheit_subtype</td>
@@ -3439,7 +3405,7 @@ Zwischenhändler, Vermittler, Servicedienstleister, Installateur</p1>
              <td></td>
            <td class="leftsymbol"><img class="icon-up" src="icons/uparrow.svg"></td>
              <td>0..N</td>
-             <td>betreut von</td>
+             <td>attended by</td>
              <td><-</td>
              <td><a href="#ENTI35" target="_self">Vertriebsteilnehmer</a></td>
                </tr>
@@ -3460,7 +3426,7 @@ Zwischenhändler, Vermittler, Servicedienstleister, Installateur</p1>
             <tr>
              <td>Name</td>
              <td><a href="IM_CRM_FYAYC_en.html#ENTI18" target="_blank" >Dealer</a></td>
-             <td><a href="IM_CRM_FYAYC_fr.html#ENTI18" target="_blank" >*DE* Handelseinheit</a></td>
+             <td><a href="IM_CRM_FYAYC_fr.html#ENTI18" target="_blank" >Grossiste</a></td>
                </tr>
             <tr>
              <td>Synonym</td>
@@ -3471,8 +3437,7 @@ Zwischenhändler, Vermittler, Servicedienstleister, Installateur</p1>
              <td>Beschreibung</td>
              <td>*DE* B2B Partner der unsere Produkte und Dienstleistungen weiter verkauft.
 Zwischenhändler, Vermittler, Servicedienstleister, Installateur</td>
-             <td>*DE* B2B Partner der unsere Produkte und Dienstleistungen weiter verkauft.
-Zwischenhändler, Vermittler, Servicedienstleister, Installateur</td>
+             <td>Partenaire B2B qui revend nos produits et services. Intermédiaire, agent, prestataire de services, installateur</td>
                </tr>
         
                      </tbody>
@@ -3540,7 +3505,7 @@ Zwischenhändler, Vermittler, Servicedienstleister, Installateur</td>
              <td>Relation_103</td>
              <td>Haushalt</td>
              <td>-></td>
-             <td>umfasst</td>
+             <td>encompasses</td>
              <td>0..N</td>
            <td class="leftsymbol"><img class="icon-down" src="icons/downarrow.svg"></td>
              <td></td>
@@ -3550,7 +3515,7 @@ Zwischenhändler, Vermittler, Servicedienstleister, Installateur</td>
              <td></td>
            <td class="leftsymbol"><img class="icon-up" src="icons/uparrow.svg"></td>
              <td>0..1</td>
-             <td>lebt in</td>
+             <td>lives in</td>
              <td><-</td>
              <td><a href="#ENTI3" target="_self">natürliche Person</a></td>
                </tr>
@@ -3571,7 +3536,7 @@ Zwischenhändler, Vermittler, Servicedienstleister, Installateur</td>
             <tr>
              <td>Name</td>
              <td><a href="IM_CRM_FYAYC_en.html#ENTI33" target="_blank" >*DE* Haushalt</a></td>
-             <td><a href="IM_CRM_FYAYC_fr.html#ENTI33" target="_blank" >*DE* Haushalt</a></td>
+             <td><a href="IM_CRM_FYAYC_fr.html#ENTI33" target="_blank" >Ménage</a></td>
                </tr>
             <tr>
              <td>Synonym</td>
@@ -3581,7 +3546,7 @@ Zwischenhändler, Vermittler, Servicedienstleister, Installateur</td>
             <tr>
              <td>Beschreibung</td>
              <td>*DE* Wohneinheit (Adresse + Wohnungsnummer) als Hauptwohnsitz gemeinsam genutzt durch verschiedene  Personen</td>
-             <td>*DE* Wohneinheit (Adresse + Wohnungsnummer) als Hauptwohnsitz gemeinsam genutzt durch verschiedene  Personen</td>
+             <td>Unité de logement (adresse + numéro d'appartement) comme résidence principale partagée par différentes personnes</td>
                </tr>
         
                      </tbody>
@@ -3651,7 +3616,7 @@ B-Händler sind Händler mit niedrigerem Professionalisierungsgrad; verkaufen de
             <tr>
              <td>Name</td>
              <td><a href="IM_CRM_FYAYC_en.html#ENTI40" target="_blank" >Household</a></td>
-             <td><a href="IM_CRM_FYAYC_fr.html#ENTI40" target="_blank" >*DE* Händler</a></td>
+             <td><a href="IM_CRM_FYAYC_fr.html#ENTI40" target="_blank" >Détaillant</a></td>
                </tr>
             <tr>
              <td>Synonym</td>
@@ -3665,11 +3630,8 @@ Verkauft unsere Produkte an andere Geschäfte. Möglicherweise alleiniger Vertre
 
 A-Händler sind Händler mit hohem Professionalisierungsgrad, verkaufen alles.
 B-Händler sind Händler mit niedrigerem Professionalisierungsgrad; verkaufen deshalb nur gewisse Produkte</td>
-             <td>*DE* B2B Partner
-Verkauft unsere Produkte an andere Geschäfte. Möglicherweise alleiniger Vertreter in einer geographischen Einheit.
-
-A-Händler sind Händler mit hohem Professionalisierungsgrad, verkaufen alles.
-B-Händler sind Händler mit niedrigerem Professionalisierungsgrad; verkaufen deshalb nur gewisse Produkte</td>
+             <td>Partenaire B2B 
+Vend nos produits à d'autres magasins. Eventuellement représentant unique dans une unité géographique. Les revendeurs A sont des revendeurs très professionnels, ils vendent tout. Les concessionnaires B sont des concessionnaires moins professionnels ; ils ne vendent donc que certains produits</td>
                </tr>
         
                      </tbody>
@@ -3736,7 +3698,7 @@ Häufig die einzige Firma in einem Land, die diese Rolle übernimmt (Generalimpo
             <tr>
              <td>Name</td>
              <td><a href="IM_CRM_FYAYC_en.html#ENTI19" target="_blank" >Importer</a></td>
-             <td><a href="IM_CRM_FYAYC_fr.html#ENTI19" target="_blank" >*DE* Importeur</a></td>
+             <td><a href="IM_CRM_FYAYC_fr.html#ENTI19" target="_blank" >Importateur</a></td>
                </tr>
             <tr>
              <td>Synonym</td>
@@ -3747,8 +3709,7 @@ Häufig die einzige Firma in einem Land, die diese Rolle übernimmt (Generalimpo
              <td>Beschreibung</td>
              <td>*DE* Firma, die unsere Produkte in ein Land importiert.
 Häufig die einzige Firma in einem Land, die diese Rolle übernimmt (Generalimporteur).</td>
-             <td>*DE* Firma, die unsere Produkte in ein Land importiert.
-Häufig die einzige Firma in einem Land, die diese Rolle übernimmt (Generalimporteur).</td>
+             <td>Entreprise qui importe nos produits dans un pays. Souvent la seule entreprise d'un pays qui assume ce rôle (importateur général)</td>
                </tr>
         
                      </tbody>
@@ -3824,7 +3785,7 @@ Handwerker der Geräten (Elektro, Sanitär) in Häusern einbaut</p1>
              <td>Relation_79</td>
              <td>Installateur</td>
              <td>-></td>
-             <td>installiert</td>
+             <td>*DE* installiert</td>
              <td>0..N</td>
            <td class="leftsymbol"><img class="icon-down" src="icons/downarrow.svg"></td>
              <td></td>
@@ -3834,7 +3795,7 @@ Handwerker der Geräten (Elektro, Sanitär) in Häusern einbaut</p1>
              <td></td>
            <td class="leftsymbol"><img class="icon-up" src="icons/uparrow.svg"></td>
              <td>1</td>
-             <td>gugus</td>
+             <td>*DE* gugus</td>
              <td><-</td>
              <td><a href="#ENTI38" target="_self">Geschäftsfähige Einheit</a></td>
                </tr>
@@ -3855,7 +3816,7 @@ Handwerker der Geräten (Elektro, Sanitär) in Häusern einbaut</p1>
             <tr>
              <td>Name</td>
              <td><a href="IM_CRM_FYAYC_en.html#ENTI16" target="_blank" >*Installateur</a></td>
-             <td><a href="IM_CRM_FYAYC_fr.html#ENTI16" target="_blank" >*DE* Installateur</a></td>
+             <td><a href="IM_CRM_FYAYC_fr.html#ENTI16" target="_blank" >Installateur</a></td>
                </tr>
             <tr>
              <td>Synonym</td>
@@ -3869,11 +3830,9 @@ Handwerker der Geräten (Elektro, Sanitär) in Häusern einbaut</p1>
 Beispiele:
 Montagefirma 
 Handwerker der Geräten (Elektro, Sanitär) in Häusern einbaut</td>
-             <td>*DE* Partner, der die Produkte / Geräte in Betrieb nimmt, montiert, zusammenbaut.
-
-Beispiele:
-Montagefirma 
-Handwerker der Geräten (Elektro, Sanitär) in Häusern einbaut</td>
+             <td>Partenaire qui commande, assemble, monte les produits/appareils. Exemples : 
+Entreprise de montage 
+les artisans de l'équipement installé dans les maisons (électrique, sanitaire)</td>
                </tr>
         
                      </tbody>
@@ -3945,7 +3904,7 @@ Handwerker der Geräten (Elektro, Sanitär) in Häusern einbaut</td>
              <td>Relation_111</td>
              <td>Interessent</td>
              <td>-></td>
-             <td>bedient von</td>
+             <td>attended by</td>
              <td>0..N</td>
            <td class="leftsymbol"><img class="icon-down" src="icons/downarrow.svg"></td>
              <td></td>
@@ -3955,7 +3914,7 @@ Handwerker der Geräten (Elektro, Sanitär) in Häusern einbaut</td>
              <td></td>
            <td class="leftsymbol"><img class="icon-up" src="icons/uparrow.svg"></td>
              <td>0..N</td>
-             <td>bedient</td>
+             <td>attends to</td>
              <td><-</td>
              <td><a href="#ENTI21" target="_self">Wettbewerber</a></td>
                </tr>
@@ -3963,7 +3922,7 @@ Handwerker der Geräten (Elektro, Sanitär) in Häusern einbaut</td>
              <td>Relation_112</td>
              <td>Interessent</td>
              <td>-></td>
-             <td>ist</td>
+             <td>is</td>
              <td>1</td>
            <td class="leftsymbol"><img class="icon-down" src="icons/downarrow.svg"></td>
              <td>Interessent_subtype</td>
@@ -3973,7 +3932,7 @@ Handwerker der Geräten (Elektro, Sanitär) in Häusern einbaut</td>
              <td></td>
            <td class="leftsymbol"><img class="icon-up" src="icons/uparrow.svg"></td>
              <td>0..N</td>
-             <td>tritt auf als</td>
+             <td>appears as</td>
              <td><-</td>
              <td><a href="#ENTI38" target="_self">Geschäftsfähige Einheit</a></td>
                </tr>
@@ -3994,7 +3953,7 @@ Handwerker der Geräten (Elektro, Sanitär) in Häusern einbaut</td>
             <tr>
              <td>Name</td>
              <td><a href="IM_CRM_FYAYC_en.html#ENTI11" target="_blank" >Propspect</a></td>
-             <td><a href="IM_CRM_FYAYC_fr.html#ENTI11" target="_blank" >*DE* Interessent</a></td>
+             <td><a href="IM_CRM_FYAYC_fr.html#ENTI11" target="_blank" >Contact commercial (prospect)</a></td>
                </tr>
             <tr>
              <td>Synonym</td>
@@ -4121,7 +4080,7 @@ Handwerker der Geräten (Elektro, Sanitär) in Häusern einbaut</td>
              <td>Relation_54</td>
              <td>Juristische Person</td>
              <td>-></td>
-             <td>vertreten an</td>
+             <td>present at</td>
              <td>0..N</td>
            <td class="leftsymbol"><img class="icon-down" src="icons/downarrow.svg"></td>
              <td></td>
@@ -4131,7 +4090,7 @@ Handwerker der Geräten (Elektro, Sanitär) in Häusern einbaut</td>
              <td></td>
            <td class="leftsymbol"><img class="icon-up" src="icons/uparrow.svg"></td>
              <td>1</td>
-             <td>betrieben von</td>
+             <td>operated by</td>
              <td><-</td>
              <td><a href="#ENTI6" target="_self">Standort</a></td>
                </tr>
@@ -4139,7 +4098,7 @@ Handwerker der Geräten (Elektro, Sanitär) in Häusern einbaut</td>
              <td>Relation_4</td>
              <td>Juristische Person</td>
              <td>-></td>
-             <td>beschäftigt</td>
+             <td>employs</td>
              <td>0..N</td>
            <td class="leftsymbol"><img class="icon-down" src="icons/downarrow.svg"></td>
              <td></td>
@@ -4149,7 +4108,7 @@ Handwerker der Geräten (Elektro, Sanitär) in Häusern einbaut</td>
              <td></td>
            <td class="leftsymbol"><img class="icon-up" src="icons/uparrow.svg"></td>
              <td>1</td>
-             <td>arbeitet für</td>
+             <td>works for</td>
              <td><-</td>
              <td><a href="#ENTI7" target="_self">Ansprechpartner</a></td>
                </tr>
@@ -4157,7 +4116,7 @@ Handwerker der Geräten (Elektro, Sanitär) in Häusern einbaut</td>
              <td>Relation_56</td>
              <td>Juristische Person</td>
              <td>-></td>
-             <td>organisiert in</td>
+             <td>organized in</td>
              <td>0..N</td>
            <td class="leftsymbol"><img class="icon-down" src="icons/downarrow.svg"></td>
              <td></td>
@@ -4167,7 +4126,7 @@ Handwerker der Geräten (Elektro, Sanitär) in Häusern einbaut</td>
              <td></td>
            <td class="leftsymbol"><img class="icon-up" src="icons/uparrow.svg"></td>
              <td>1</td>
-             <td>organisiert</td>
+             <td>organizes</td>
              <td><-</td>
              <td><a href="#ENTI17" target="_self">Organisationseinheit</a></td>
                </tr>
@@ -4175,7 +4134,7 @@ Handwerker der Geräten (Elektro, Sanitär) in Häusern einbaut</td>
              <td>Relation_1</td>
              <td>Juristische Person</td>
              <td>-></td>
-             <td>besitzt</td>
+             <td>owns</td>
              <td>0..N</td>
            <td class="leftsymbol"><img class="icon-down" src="icons/downarrow.svg"></td>
              <td></td>
@@ -4185,7 +4144,7 @@ Handwerker der Geräten (Elektro, Sanitär) in Häusern einbaut</td>
              <td></td>
            <td class="leftsymbol"><img class="icon-up" src="icons/uparrow.svg"></td>
              <td>0..N</td>
-             <td>gehört</td>
+             <td>belongs to</td>
              <td><-</td>
              <td><a href="#ENTI27" target="_self">Juristische Person</a></td>
                </tr>
@@ -4206,7 +4165,7 @@ Handwerker der Geräten (Elektro, Sanitär) in Häusern einbaut</td>
             <tr>
              <td>Name</td>
              <td><a href="IM_CRM_FYAYC_en.html#ENTI27" target="_blank" >Company</a></td>
-             <td><a href="IM_CRM_FYAYC_fr.html#ENTI27" target="_blank" >*DE* Juristische Person</a></td>
+             <td><a href="IM_CRM_FYAYC_fr.html#ENTI27" target="_blank" >Entitté juridique</a></td>
                </tr>
             <tr>
              <td>Synonym</td>
@@ -4216,7 +4175,7 @@ Handwerker der Geräten (Elektro, Sanitär) in Häusern einbaut</td>
             <tr>
              <td>Beschreibung</td>
              <td>*DE* Rechte über das Handelsrecht geregelt.</td>
-             <td>*DE* Rechte über das Handelsrecht geregelt.</td>
+             <td>Les droits sont régis par le droit commercial.</td>
                </tr>
         
                      </tbody>
@@ -4363,7 +4322,7 @@ Handwerker der Geräten (Elektro, Sanitär) in Häusern einbaut</td>
              <td>Relation_55</td>
              <td>Kommunikationsmittel</td>
              <td>-></td>
-             <td>gilt für</td>
+             <td>valid for</td>
              <td></td>
            <td class="leftsymbol"><img class="icon-down" src="icons/downarrow.svg"></td>
              <td></td>
@@ -4373,7 +4332,7 @@ Handwerker der Geräten (Elektro, Sanitär) in Häusern einbaut</td>
              <td></td>
            <td class="leftsymbol"><img class="icon-up" src="icons/uparrow.svg"></td>
              <td></td>
-             <td>erreichbar mittels</td>
+             <td>attainable by</td>
              <td><-</td>
              <td><a href="#ENTI6" target="_self">Standort</a></td>
                </tr>
@@ -4381,7 +4340,7 @@ Handwerker der Geräten (Elektro, Sanitär) in Häusern einbaut</td>
              <td>Relation_77</td>
              <td>Kommunikationsmittel</td>
              <td>-></td>
-             <td>gilt für</td>
+             <td>valid for</td>
              <td></td>
            <td class="leftsymbol"><img class="icon-down" src="icons/downarrow.svg"></td>
              <td></td>
@@ -4391,7 +4350,7 @@ Handwerker der Geräten (Elektro, Sanitär) in Häusern einbaut</td>
              <td></td>
            <td class="leftsymbol"><img class="icon-up" src="icons/uparrow.svg"></td>
              <td></td>
-             <td>erreichbar mittels</td>
+             <td>attainable by</td>
              <td><-</td>
              <td><a href="#ENTI7" target="_self">Ansprechpartner</a></td>
                </tr>
@@ -4399,7 +4358,7 @@ Handwerker der Geräten (Elektro, Sanitär) in Häusern einbaut</td>
              <td>Relation_76</td>
              <td>Kommunikationsmittel</td>
              <td>-></td>
-             <td>ist</td>
+             <td>is</td>
              <td>0..N</td>
            <td class="leftsymbol"><img class="icon-down" src="icons/downarrow.svg"></td>
              <td></td>
@@ -4409,7 +4368,7 @@ Handwerker der Geräten (Elektro, Sanitär) in Häusern einbaut</td>
              <td></td>
            <td class="leftsymbol"><img class="icon-up" src="icons/uparrow.svg"></td>
              <td>1</td>
-             <td>definiert</td>
+             <td>defines</td>
              <td><-</td>
              <td><a href="#ENTI8" target="_self">*Adresse</a></td>
                </tr>
@@ -4417,7 +4376,7 @@ Handwerker der Geräten (Elektro, Sanitär) in Häusern einbaut</td>
              <td>Relation_45</td>
              <td>Kommunikationsmittel</td>
              <td>-></td>
-             <td>gilt für</td>
+             <td>valid for</td>
              <td></td>
            <td class="leftsymbol"><img class="icon-down" src="icons/downarrow.svg"></td>
              <td>Arc_6</td>
@@ -4427,7 +4386,7 @@ Handwerker der Geräten (Elektro, Sanitär) in Häusern einbaut</td>
              <td></td>
            <td class="leftsymbol"><img class="icon-up" src="icons/uparrow.svg"></td>
              <td></td>
-             <td>erreichbar mittels</td>
+             <td>attainable by</td>
              <td><-</td>
              <td><a href="#ENTI38" target="_self">Geschäftsfähige Einheit</a></td>
                </tr>
@@ -4448,7 +4407,7 @@ Handwerker der Geräten (Elektro, Sanitär) in Häusern einbaut</td>
             <tr>
              <td>Name</td>
              <td><a href="IM_CRM_FYAYC_en.html#ENTI1" target="_blank" >*DE* Kommunikationsmittel</a></td>
-             <td><a href="IM_CRM_FYAYC_fr.html#ENTI1" target="_blank" >*DE* Kommunikationsmittel</a></td>
+             <td><a href="IM_CRM_FYAYC_fr.html#ENTI1" target="_blank" >Moyen de communication</a></td>
                </tr>
             <tr>
              <td>Synonym</td>
@@ -4458,7 +4417,7 @@ Handwerker der Geräten (Elektro, Sanitär) in Häusern einbaut</td>
             <tr>
              <td>Beschreibung</td>
              <td>*DE* Kommunikationskanäle und ihre Adresse</td>
-             <td>*DE* Kommunikationskanäle und ihre Adresse</td>
+             <td>Les canaux de communication et leur adresse</td>
                </tr>
         
                      </tbody>
@@ -4519,7 +4478,7 @@ Handwerker der Geräten (Elektro, Sanitär) in Häusern einbaut</td>
             <tr>
              <td>Name</td>
              <td><a href="IM_CRM_FYAYC_en.html#ENTI4" target="_blank" >Client Information</a></td>
-             <td><a href="IM_CRM_FYAYC_fr.html#ENTI4" target="_blank" >*DE* Kundeninformation</a></td>
+             <td><a href="IM_CRM_FYAYC_fr.html#ENTI4" target="_blank" >Information client</a></td>
                </tr>
             <tr>
              <td>Synonym</td>
@@ -4529,7 +4488,7 @@ Handwerker der Geräten (Elektro, Sanitär) in Häusern einbaut</td>
             <tr>
              <td>Beschreibung</td>
              <td>*DE* Informationen über Markteilnehmer Partner (Kunden, Lieferanten, Wettberwerber)</td>
-             <td>*DE* Informationen über Markteilnehmer Partner (Kunden, Lieferanten, Wettberwerber)</td>
+             <td>Informations sur les acteurs du marché (partenaires, clients, fournisseurs, concurrents)</td>
                </tr>
         
                      </tbody>
@@ -4602,7 +4561,7 @@ Handwerker der Geräten (Elektro, Sanitär) in Häusern einbaut</td>
              <td>Relation_19</td>
              <td>Käufer</td>
              <td>-></td>
-             <td>ist</td>
+             <td>is</td>
              <td></td>
            <td class="leftsymbol"><img class="icon-down" src="icons/downarrow.svg"></td>
              <td></td>
@@ -4612,7 +4571,7 @@ Handwerker der Geräten (Elektro, Sanitär) in Häusern einbaut</td>
              <td></td>
            <td class="leftsymbol"><img class="icon-up" src="icons/uparrow.svg"></td>
              <td></td>
-             <td>ist</td>
+             <td>is</td>
              <td><-</td>
              <td><a href="#ENTI13" target="_self">Eigentümer</a></td>
                </tr>
@@ -4620,7 +4579,7 @@ Handwerker der Geräten (Elektro, Sanitär) in Häusern einbaut</td>
              <td>Relation_19</td>
              <td>Käufer</td>
              <td>-></td>
-             <td>ist</td>
+             <td>is</td>
              <td></td>
            <td class="leftsymbol"><img class="icon-down" src="icons/downarrow.svg"></td>
              <td></td>
@@ -4630,7 +4589,7 @@ Handwerker der Geräten (Elektro, Sanitär) in Häusern einbaut</td>
              <td></td>
            <td class="leftsymbol"><img class="icon-up" src="icons/uparrow.svg"></td>
              <td></td>
-             <td>ist</td>
+             <td>is</td>
              <td><-</td>
              <td><a href="#ENTI13" target="_self">Eigentümer</a></td>
                </tr>
@@ -4651,7 +4610,7 @@ Handwerker der Geräten (Elektro, Sanitär) in Häusern einbaut</td>
             <tr>
              <td>Name</td>
              <td><a href="IM_CRM_FYAYC_en.html#ENTI28" target="_blank" >Buyer</a></td>
-             <td><a href="IM_CRM_FYAYC_fr.html#ENTI28" target="_blank" >*DE* Käufer</a></td>
+             <td><a href="IM_CRM_FYAYC_fr.html#ENTI28" target="_blank" >Acheteur</a></td>
                </tr>
             <tr>
              <td>Synonym</td>
@@ -4661,7 +4620,7 @@ Handwerker der Geräten (Elektro, Sanitär) in Häusern einbaut</td>
             <tr>
              <td>Beschreibung</td>
              <td>*DE* Geschäftsfähige Einheit, die ein Produkt käuflich erworben hat oder erwerben will.</td>
-             <td>*DE* Geschäftsfähige Einheit, die ein Produkt käuflich erworben hat oder erwerben will.</td>
+             <td>Entité entrepreneuriale qui a acheté ou a l'intention d'acheter un produit.</td>
                </tr>
         
                      </tbody>
@@ -4728,7 +4687,7 @@ Damit ist sie Besitzer aber nicht Eigentümer des Produktes</p1>
             <tr>
              <td>Name</td>
              <td><a href="IM_CRM_FYAYC_en.html#ENTI43" target="_blank" >*DE* Leasingnehmer</a></td>
-             <td><a href="IM_CRM_FYAYC_fr.html#ENTI43" target="_blank" >*DE* Leasingnehmer</a></td>
+             <td><a href="IM_CRM_FYAYC_fr.html#ENTI43" target="_blank" >Preneur de leasing</a></td>
                </tr>
             <tr>
              <td>Synonym</td>
@@ -4739,8 +4698,7 @@ Damit ist sie Besitzer aber nicht Eigentümer des Produktes</p1>
              <td>Beschreibung</td>
              <td>*DE* Geschäftsfähige Einheit die einen Leasingvertrag für Produkt abgeschlossen hat.
 Damit ist sie Besitzer aber nicht Eigentümer des Produktes</td>
-             <td>*DE* Geschäftsfähige Einheit die einen Leasingvertrag für Produkt abgeschlossen hat.
-Damit ist sie Besitzer aber nicht Eigentümer des Produktes</td>
+             <td>Unité entrepreneuriale qui a conclu un contrat de leasing pour un produit. Cela fait d'elle le loueur mais pas le propriétaire du produit</td>
                </tr>
         
                      </tbody>
@@ -4807,7 +4765,7 @@ Egal ob pay per use  oder Zeitmiete.</p1>
             <tr>
              <td>Name</td>
              <td><a href="IM_CRM_FYAYC_en.html#ENTI31" target="_blank" >Tenant</a></td>
-             <td><a href="IM_CRM_FYAYC_fr.html#ENTI31" target="_blank" >*DE* Mieter</a></td>
+             <td><a href="IM_CRM_FYAYC_fr.html#ENTI31" target="_blank" >Loueur</a></td>
                </tr>
             <tr>
              <td>Synonym</td>
@@ -4818,8 +4776,7 @@ Egal ob pay per use  oder Zeitmiete.</p1>
              <td>Beschreibung</td>
              <td>*DE* Geschäftsfähige Einheit, die ein Produkt zum Gebrauch vom Eigentümer mietet.
 Egal ob pay per use  oder Zeitmiete.</td>
-             <td>*DE* Geschäftsfähige Einheit, die ein Produkt zum Gebrauch vom Eigentümer mietet.
-Egal ob pay per use  oder Zeitmiete.</td>
+             <td>Entité entrepreneuriale qui loue un produit pour l'usage de son propriétaire. Qu'il s'agisse de paiement à l'utilisation ou de location prorata temporis.</td>
                </tr>
         
                      </tbody>
@@ -4948,7 +4905,7 @@ Egal ob pay per use  oder Zeitmiete.</td>
              <td>Relation_103</td>
              <td>natürliche Person</td>
              <td>-></td>
-             <td>lebt in</td>
+             <td>lives in</td>
              <td>0..1</td>
            <td class="leftsymbol"><img class="icon-down" src="icons/downarrow.svg"></td>
              <td></td>
@@ -4958,7 +4915,7 @@ Egal ob pay per use  oder Zeitmiete.</td>
              <td></td>
            <td class="leftsymbol"><img class="icon-up" src="icons/uparrow.svg"></td>
              <td>0..N</td>
-             <td>umfasst</td>
+             <td>encompasses</td>
              <td><-</td>
              <td><a href="#ENTI33" target="_self">Haushalt</a></td>
                </tr>
@@ -4966,7 +4923,7 @@ Egal ob pay per use  oder Zeitmiete.</td>
              <td>Relation_57</td>
              <td>natürliche Person</td>
              <td>-></td>
-             <td>verbunden mit</td>
+             <td>connected with</td>
              <td>0..N</td>
            <td class="leftsymbol"><img class="icon-down" src="icons/downarrow.svg"></td>
              <td></td>
@@ -4976,7 +4933,7 @@ Egal ob pay per use  oder Zeitmiete.</td>
              <td></td>
            <td class="leftsymbol"><img class="icon-up" src="icons/uparrow.svg"></td>
              <td>0..N</td>
-             <td>verbunden mit [T]</td>
+             <td>conntected with [T]</td>
              <td><-</td>
              <td><a href="#ENTI3" target="_self">natürliche Person</a></td>
                </tr>
@@ -4984,7 +4941,7 @@ Egal ob pay per use  oder Zeitmiete.</td>
              <td>Relation_44</td>
              <td>natürliche Person</td>
              <td>-></td>
-             <td>bekannt als</td>
+             <td>known as</td>
              <td>0..N</td>
            <td class="leftsymbol"><img class="icon-down" src="icons/downarrow.svg"></td>
              <td></td>
@@ -4994,7 +4951,7 @@ Egal ob pay per use  oder Zeitmiete.</td>
              <td></td>
            <td class="leftsymbol"><img class="icon-up" src="icons/uparrow.svg"></td>
              <td>1</td>
-             <td>ist</td>
+             <td>is</td>
              <td><-</td>
              <td><a href="#ENTI7" target="_self">Ansprechpartner</a></td>
                </tr>
@@ -5015,7 +4972,7 @@ Egal ob pay per use  oder Zeitmiete.</td>
             <tr>
              <td>Name</td>
              <td><a href="IM_CRM_FYAYC_en.html#ENTI3" target="_blank" >natural person</a></td>
-             <td><a href="IM_CRM_FYAYC_fr.html#ENTI3" target="_blank" >*DE* natürliche Person</a></td>
+             <td><a href="IM_CRM_FYAYC_fr.html#ENTI3" target="_blank" >???</a></td>
                </tr>
             <tr>
              <td>Synonym</td>
@@ -5096,7 +5053,7 @@ Piloten von Flugzeugen
             <tr>
              <td>Name</td>
              <td><a href="IM_CRM_FYAYC_en.html#ENTI15" target="_blank" >User</a></td>
-             <td><a href="IM_CRM_FYAYC_fr.html#ENTI15" target="_blank" >*DE* Nutzer</a></td>
+             <td><a href="IM_CRM_FYAYC_fr.html#ENTI15" target="_blank" >Utilisateur</a></td>
                </tr>
             <tr>
              <td>Synonym</td>
@@ -5110,11 +5067,11 @@ Piloten von Flugzeugen
 Beispiele
 Fahrer von Spezalmaschinen
 Piloten von Flugzeugen</td>
-             <td>*DE* Nutzer einer Maschine eines Produktes
+             <td>Utilisateur d'une machine, d'un produit 
 
-Beispiele
-Fahrer von Spezalmaschinen
-Piloten von Flugzeugen</td>
+Exemples 
+Conducteur de machines spéciales 
+les pilotes d'avion</td>
                </tr>
         
                      </tbody>
@@ -5216,7 +5173,7 @@ Meist hierarchisch organisiert.
              <td>Relation_56</td>
              <td>Organisationseinheit</td>
              <td>-></td>
-             <td>organisiert</td>
+             <td>organizes</td>
              <td>1</td>
            <td class="leftsymbol"><img class="icon-down" src="icons/downarrow.svg"></td>
              <td></td>
@@ -5226,7 +5183,7 @@ Meist hierarchisch organisiert.
              <td></td>
            <td class="leftsymbol"><img class="icon-up" src="icons/uparrow.svg"></td>
              <td>0..N</td>
-             <td>organisiert in</td>
+             <td>organized in</td>
              <td><-</td>
              <td><a href="#ENTI27" target="_self">Juristische Person</a></td>
                </tr>
@@ -5234,7 +5191,7 @@ Meist hierarchisch organisiert.
              <td>Relation_58</td>
              <td>Organisationseinheit</td>
              <td>-></td>
-             <td>unterteilt</td>
+             <td>subdivides</td>
              <td>0..1</td>
            <td class="leftsymbol"><img class="icon-down" src="icons/downarrow.svg"></td>
              <td></td>
@@ -5244,7 +5201,7 @@ Meist hierarchisch organisiert.
              <td></td>
            <td class="leftsymbol"><img class="icon-up" src="icons/uparrow.svg"></td>
              <td>0..N</td>
-             <td>unterteilt in</td>
+             <td>subdivided in</td>
              <td><-</td>
              <td><a href="#ENTI17" target="_self">Organisationseinheit</a></td>
                </tr>
@@ -5265,7 +5222,7 @@ Meist hierarchisch organisiert.
             <tr>
              <td>Name</td>
              <td><a href="IM_CRM_FYAYC_en.html#ENTI17" target="_blank" >Organisational unit</a></td>
-             <td><a href="IM_CRM_FYAYC_fr.html#ENTI17" target="_blank" >*DE* Organisationseinheit</a></td>
+             <td><a href="IM_CRM_FYAYC_fr.html#ENTI17" target="_blank" >Unité organisationnelle</a></td>
                </tr>
             <tr>
              <td>Synonym</td>
@@ -5276,8 +5233,7 @@ Meist hierarchisch organisiert.
              <td>Beschreibung</td>
              <td>*DE* Firmeninterne Organisationeinheit.
 Meist hierarchisch organisiert.</td>
-             <td>*DE* Firmeninterne Organisationeinheit.
-Meist hierarchisch organisiert.</td>
+             <td>Unité d'organisation interne de l'entreprise. La plupart sont organisés de façon hiérarchique.</td>
                </tr>
         
                      </tbody>
@@ -5338,7 +5294,7 @@ Meist hierarchisch organisiert.</td>
             <tr>
              <td>Name</td>
              <td><a href="IM_CRM_FYAYC_en.html#ENTI37" target="_blank" >Partnerinformation</a></td>
-             <td><a href="IM_CRM_FYAYC_fr.html#ENTI37" target="_blank" >*DE* Partnerinformation</a></td>
+             <td><a href="IM_CRM_FYAYC_fr.html#ENTI37" target="_blank" >Informations sur les partenaires</a></td>
                </tr>
             <tr>
              <td>Synonym</td>
@@ -5348,7 +5304,7 @@ Meist hierarchisch organisiert.</td>
             <tr>
              <td>Beschreibung</td>
              <td>*DE* Informationen über Markteilnehmer Partner (Kunden, Lieferanten, Wettberwerber)</td>
-             <td>*DE* Informationen über Markteilnehmer Partner (Kunden, Lieferanten, Wettberwerber)</td>
+             <td>Informations sur les acteurs du marché (partenaires, clients, fournisseurs, concurrents)</td>
                </tr>
         
                      </tbody>
@@ -5414,7 +5370,7 @@ Meist hierarchisch organisiert.</td>
             <tr>
              <td>Name</td>
              <td><a href="IM_CRM_FYAYC_en.html#ENTI41" target="_blank" >*DE* Potenzieller Interessent</a></td>
-             <td><a href="IM_CRM_FYAYC_fr.html#ENTI41" target="_blank" >*DE* Potenzieller Interessent</a></td>
+             <td><a href="IM_CRM_FYAYC_fr.html#ENTI41" target="_blank" >Contact (prospect)</a></td>
                </tr>
             <tr>
              <td>Synonym</td>
@@ -5424,7 +5380,7 @@ Meist hierarchisch organisiert.</td>
             <tr>
              <td>Beschreibung</td>
              <td>*DE* Person oder Firma, von der wir wissen, dass sie sich evtl. für Produkte von CLAAS interessiert.</td>
-             <td>*DE* Person oder Firma, von der wir wissen, dass sie sich evtl. für Produkte von CLAAS interessiert.</td>
+             <td>Personne ou société dont nous savons qu'elle peut être intéressée par les produits CLAAS.</td>
                </tr>
         
                      </tbody>
@@ -5486,7 +5442,7 @@ Meist hierarchisch organisiert.</td>
             <tr>
              <td>Name</td>
              <td><a href="IM_CRM_FYAYC_en.html#ENTI44" target="_blank" >Productinformation</a></td>
-             <td><a href="IM_CRM_FYAYC_fr.html#ENTI44" target="_blank" >*DE* Produktinformation</a></td>
+             <td><a href="IM_CRM_FYAYC_fr.html#ENTI44" target="_blank" >Information produit</a></td>
                </tr>
             <tr>
              <td>Synonym</td>
@@ -5496,7 +5452,7 @@ Meist hierarchisch organisiert.</td>
             <tr>
              <td>Beschreibung</td>
              <td>*DE* Produkte die das Unternehmen vertreibt</td>
-             <td>*DE* Produkte die das Unternehmen vertreibt</td>
+             <td>Produits que l'entreprise commercialise</td>
                </tr>
         
                      </tbody>
@@ -5600,7 +5556,7 @@ Mit oder ohne IOT.
              <td>Relation_60</td>
              <td>Produktinstanz</td>
              <td>-></td>
-             <td>gehört</td>
+             <td>legally owned by</td>
              <td>0..1</td>
            <td class="leftsymbol"><img class="icon-down" src="icons/downarrow.svg"></td>
              <td></td>
@@ -5610,7 +5566,7 @@ Mit oder ohne IOT.
              <td></td>
            <td class="leftsymbol"><img class="icon-up" src="icons/uparrow.svg"></td>
              <td>0..N</td>
-             <td>besitzt rechtlich</td>
+             <td>owns legally</td>
              <td><-</td>
              <td><a href="#ENTI13" target="_self">Eigentümer</a></td>
                </tr>
@@ -5618,7 +5574,7 @@ Mit oder ohne IOT.
              <td>Relation_59</td>
              <td>Produktinstanz</td>
              <td>-></td>
-             <td>physisch bei</td>
+             <td>physically at</td>
              <td>0..1</td>
            <td class="leftsymbol"><img class="icon-down" src="icons/downarrow.svg"></td>
              <td></td>
@@ -5628,7 +5584,7 @@ Mit oder ohne IOT.
              <td></td>
            <td class="leftsymbol"><img class="icon-up" src="icons/uparrow.svg"></td>
              <td>0..N</td>
-             <td>besitzt physisch</td>
+             <td>owns physically</td>
              <td><-</td>
              <td><a href="#ENTI5" target="_self">Besitzer</a></td>
                </tr>
@@ -5649,7 +5605,7 @@ Mit oder ohne IOT.
             <tr>
              <td>Name</td>
              <td><a href="IM_CRM_FYAYC_en.html#ENTI36" target="_blank" >Product instance</a></td>
-             <td><a href="IM_CRM_FYAYC_fr.html#ENTI36" target="_blank" >*DE* Produktinstanz</a></td>
+             <td><a href="IM_CRM_FYAYC_fr.html#ENTI36" target="_blank" >Produit</a></td>
                </tr>
             <tr>
              <td>Synonym</td>
@@ -5661,9 +5617,7 @@ Mit oder ohne IOT.
              <td>*DE* einzelnes, weltweit identifizierbares Exemplar eines Produktes.
 
 Mit oder ohne IOT.</td>
-             <td>*DE* einzelnes, weltweit identifizierbares Exemplar eines Produktes.
-
-Mit oder ohne IOT.</td>
+             <td>une copie unique et identifiable au niveau mondial d'un produit. Avec ou sans IOT.</td>
                </tr>
         
                      </tbody>
@@ -5730,7 +5684,7 @@ Typischerweise bereits in Verhandlung (Beratung, Angebot, abgeschlossener Vertra
             <tr>
              <td>Name</td>
              <td><a href="IM_CRM_FYAYC_en.html#ENTI42" target="_blank" >Qualifyed Prospect</a></td>
-             <td><a href="IM_CRM_FYAYC_fr.html#ENTI42" target="_blank" >*DE* Qualifizierter Interessent</a></td>
+             <td><a href="IM_CRM_FYAYC_fr.html#ENTI42" target="_blank" >Contact avancé (lead)</a></td>
                </tr>
             <tr>
              <td>Synonym</td>
@@ -5741,8 +5695,7 @@ Typischerweise bereits in Verhandlung (Beratung, Angebot, abgeschlossener Vertra
              <td>Beschreibung</td>
              <td>*DE* Person, Firma, die sich konkret für ein Produkt interessiert.
 Typischerweise bereits in Verhandlung (Beratung, Angebot, abgeschlossener Vertrag)</td>
-             <td>*DE* Person, Firma, die sich konkret für ein Produkt interessiert.
-Typischerweise bereits in Verhandlung (Beratung, Angebot, abgeschlossener Vertrag)</td>
+             <td>Personne, entreprise qui s'intéresse spécifiquement à un produit. Généralement déjà en négociation (consultation, offre, contrat conclu)</td>
                </tr>
         
                      </tbody>
@@ -5808,7 +5761,7 @@ Typischerweise bereits in Verhandlung (Beratung, Angebot, abgeschlossener Vertra
             <tr>
              <td>Name</td>
              <td><a href="IM_CRM_FYAYC_en.html#ENTI32" target="_blank" >Servicepartner</a></td>
-             <td><a href="IM_CRM_FYAYC_fr.html#ENTI32" target="_blank" >*DE* Servicepartner</a></td>
+             <td><a href="IM_CRM_FYAYC_fr.html#ENTI32" target="_blank" >Partenaire de services</a></td>
                </tr>
             <tr>
              <td>Synonym</td>
@@ -5818,7 +5771,7 @@ Typischerweise bereits in Verhandlung (Beratung, Angebot, abgeschlossener Vertra
             <tr>
              <td>Beschreibung</td>
              <td>*DE* Partner, der die Produkte / Geräte servisiert (pflegt, repariert, ausbaut, betreut)</td>
-             <td>*DE* Partner, der die Produkte / Geräte servisiert (pflegt, repariert, ausbaut, betreut)</td>
+             <td>Partenaire qui assure le service (entretien, réparation, mise à niveau, assistance) des produits/appareils</td>
                </tr>
         
                      </tbody>
@@ -5942,7 +5895,7 @@ Typischerweise bereits in Verhandlung (Beratung, Angebot, abgeschlossener Vertra
              <td>Relation_33</td>
              <td>Sprache</td>
              <td>-></td>
-             <td>offiziell verwendet in</td>
+             <td>officially used in</td>
              <td>0..N</td>
            <td class="leftsymbol"><img class="icon-down" src="icons/downarrow.svg"></td>
              <td></td>
@@ -5952,7 +5905,7 @@ Typischerweise bereits in Verhandlung (Beratung, Angebot, abgeschlossener Vertra
              <td></td>
            <td class="leftsymbol"><img class="icon-up" src="icons/uparrow.svg"></td>
              <td>1..N</td>
-             <td>verwendet offiziell</td>
+             <td>uses officially</td>
              <td><-</td>
              <td><a href="#ENTI14" target="_self">*Land</a></td>
                </tr>
@@ -5960,7 +5913,7 @@ Typischerweise bereits in Verhandlung (Beratung, Angebot, abgeschlossener Vertra
              <td>Relation_40</td>
              <td>Sprache</td>
              <td>-></td>
-             <td>unterteilt in</td>
+             <td>subdivided in</td>
              <td>0..N</td>
            <td class="leftsymbol"><img class="icon-down" src="icons/downarrow.svg"></td>
              <td></td>
@@ -5970,7 +5923,7 @@ Typischerweise bereits in Verhandlung (Beratung, Angebot, abgeschlossener Vertra
              <td></td>
            <td class="leftsymbol"><img class="icon-up" src="icons/uparrow.svg"></td>
              <td>1</td>
-             <td>unterteilt</td>
+             <td>subdivides</td>
              <td><-</td>
              <td><a href="#ENTI26" target="_self">Gebietssprache</a></td>
                </tr>
@@ -5991,7 +5944,7 @@ Typischerweise bereits in Verhandlung (Beratung, Angebot, abgeschlossener Vertra
             <tr>
              <td>Name</td>
              <td><a href="IM_CRM_FYAYC_en.html#ENTI25" target="_blank" >Language</a></td>
-             <td><a href="IM_CRM_FYAYC_fr.html#ENTI25" target="_blank" >*DE* Sprache</a></td>
+             <td><a href="IM_CRM_FYAYC_fr.html#ENTI25" target="_blank" >Langue</a></td>
                </tr>
             <tr>
              <td>Synonym</td>
@@ -6001,7 +5954,7 @@ Typischerweise bereits in Verhandlung (Beratung, Angebot, abgeschlossener Vertra
             <tr>
              <td>Beschreibung</td>
              <td>*DE* Sprache nach ISO-639-1</td>
-             <td>*DE* Sprache nach ISO-639-1</td>
+             <td>Langue selon la norme ISO-639-1</td>
                </tr>
         
                      </tbody>
@@ -6111,7 +6064,7 @@ Bürogebäude</p1>
              <td>Relation_55</td>
              <td>Standort</td>
              <td>-></td>
-             <td>erreichbar mittels</td>
+             <td>attainable by</td>
              <td></td>
            <td class="leftsymbol"><img class="icon-down" src="icons/downarrow.svg"></td>
              <td></td>
@@ -6121,7 +6074,7 @@ Bürogebäude</p1>
              <td></td>
            <td class="leftsymbol"><img class="icon-up" src="icons/uparrow.svg"></td>
              <td></td>
-             <td>gilt für</td>
+             <td>valid for</td>
              <td><-</td>
              <td><a href="#ENTI1" target="_self">Kommunikationsmittel</a></td>
                </tr>
@@ -6129,7 +6082,7 @@ Bürogebäude</p1>
              <td>Relation_54</td>
              <td>Standort</td>
              <td>-></td>
-             <td>betrieben von</td>
+             <td>operated by</td>
              <td>1</td>
            <td class="leftsymbol"><img class="icon-down" src="icons/downarrow.svg"></td>
              <td></td>
@@ -6139,7 +6092,7 @@ Bürogebäude</p1>
              <td></td>
            <td class="leftsymbol"><img class="icon-up" src="icons/uparrow.svg"></td>
              <td>0..N</td>
-             <td>vertreten an</td>
+             <td>present at</td>
              <td><-</td>
              <td><a href="#ENTI27" target="_self">Juristische Person</a></td>
                </tr>
@@ -6160,7 +6113,7 @@ Bürogebäude</p1>
             <tr>
              <td>Name</td>
              <td><a href="IM_CRM_FYAYC_en.html#ENTI6" target="_blank" >Location</a></td>
-             <td><a href="IM_CRM_FYAYC_fr.html#ENTI6" target="_blank" >*DE* Standort</a></td>
+             <td><a href="IM_CRM_FYAYC_fr.html#ENTI6" target="_blank" >Localisation</a></td>
                </tr>
             <tr>
              <td>Synonym</td>
@@ -6175,12 +6128,12 @@ Beispiel:
 Lager
 Produktionsstätte
 Bürogebäude</td>
-             <td>*DE* Ort an dem die Firma irgendwie vertreten ist
+             <td>Lieu où l'entreprise est représentée d'une manière ou d'une autre 
 
-Beispiel:
-Lager
-Produktionsstätte
-Bürogebäude</td>
+Exemple : 
+Stock 
+Site de production 
+Immeuble de bureaux</td>
                </tr>
         
                      </tbody>
@@ -6259,7 +6212,7 @@ Bürogebäude</td>
              <td>Relation_61</td>
              <td>Vertriebskunde</td>
              <td>-></td>
-             <td>direkt betreut von</td>
+             <td>directly attended by</td>
              <td>0..N</td>
            <td class="leftsymbol"><img class="icon-down" src="icons/downarrow.svg"></td>
              <td></td>
@@ -6269,7 +6222,7 @@ Bürogebäude</td>
              <td></td>
            <td class="leftsymbol"><img class="icon-up" src="icons/uparrow.svg"></td>
              <td>0..N</td>
-             <td>betreut direkt</td>
+             <td>attends directly</td>
              <td><-</td>
              <td><a href="#ENTI7" target="_self">Ansprechpartner</a></td>
                </tr>
@@ -6277,7 +6230,7 @@ Bürogebäude</td>
              <td>Relation_62</td>
              <td>Vertriebskunde</td>
              <td>-></td>
-             <td>direkt betreut von</td>
+             <td>directly attended by</td>
              <td>0..N</td>
            <td class="leftsymbol"><img class="icon-down" src="icons/downarrow.svg"></td>
              <td></td>
@@ -6287,7 +6240,7 @@ Bürogebäude</td>
              <td></td>
            <td class="leftsymbol"><img class="icon-up" src="icons/uparrow.svg"></td>
              <td>0..N</td>
-             <td>betreut direkt</td>
+             <td>attends directly</td>
              <td><-</td>
              <td><a href="#ENTI24" target="_self">Vertriebspartner</a></td>
                </tr>
@@ -6295,7 +6248,7 @@ Bürogebäude</td>
              <td>Relation_47</td>
              <td>Vertriebskunde</td>
              <td>-></td>
-             <td>ist</td>
+             <td>is</td>
              <td></td>
            <td class="leftsymbol"><img class="icon-down" src="icons/downarrow.svg"></td>
              <td></td>
@@ -6305,7 +6258,7 @@ Bürogebäude</td>
              <td></td>
            <td class="leftsymbol"><img class="icon-up" src="icons/uparrow.svg"></td>
              <td></td>
-             <td>ist</td>
+             <td>is</td>
              <td><-</td>
              <td><a href="#ENTI5" target="_self">Besitzer</a></td>
                </tr>
@@ -6326,7 +6279,7 @@ Bürogebäude</td>
             <tr>
              <td>Name</td>
              <td><a href="IM_CRM_FYAYC_en.html#ENTI34" target="_blank" >Client</a></td>
-             <td><a href="IM_CRM_FYAYC_fr.html#ENTI34" target="_blank" >*DE* Vertriebskunde</a></td>
+             <td><a href="IM_CRM_FYAYC_fr.html#ENTI34" target="_blank" >Client</a></td>
                </tr>
             <tr>
              <td>Synonym</td>
@@ -6336,7 +6289,7 @@ Bürogebäude</td>
             <tr>
              <td>Beschreibung</td>
              <td>*DE* Ein Kunde ist jemand, der ein Produkt physisch besitzt, aber nicht primär damit Handel treiben , sondern es für den angestammten Zweck nutzen will.</td>
-             <td>*DE* Ein Kunde ist jemand, der ein Produkt physisch besitzt, aber nicht primär damit Handel treiben , sondern es für den angestammten Zweck nutzen will.</td>
+             <td>Un client est une personne qui possède physiquement un produit, mais qui n'en fait pas principalement le commerce, mais qui veut l'utiliser pour son usage initial.</td>
                </tr>
         
                      </tbody>
@@ -6408,7 +6361,7 @@ Bürogebäude</td>
              <td>Relation_62</td>
              <td>Vertriebspartner</td>
              <td>-></td>
-             <td>betreut direkt</td>
+             <td>attends directly</td>
              <td>0..N</td>
            <td class="leftsymbol"><img class="icon-down" src="icons/downarrow.svg"></td>
              <td></td>
@@ -6418,7 +6371,7 @@ Bürogebäude</td>
              <td></td>
            <td class="leftsymbol"><img class="icon-up" src="icons/uparrow.svg"></td>
              <td>0..N</td>
-             <td>direkt betreut von</td>
+             <td>directly attended by</td>
              <td><-</td>
              <td><a href="#ENTI34" target="_self">Vertriebskunde</a></td>
                </tr>
@@ -6426,7 +6379,7 @@ Bürogebäude</td>
              <td>Relation_18</td>
              <td>Vertriebspartner</td>
              <td>-></td>
-             <td>ist</td>
+             <td>is</td>
              <td></td>
            <td class="leftsymbol"><img class="icon-down" src="icons/downarrow.svg"></td>
              <td></td>
@@ -6436,7 +6389,7 @@ Bürogebäude</td>
              <td></td>
            <td class="leftsymbol"><img class="icon-up" src="icons/uparrow.svg"></td>
              <td></td>
-             <td>ist</td>
+             <td>is</td>
              <td><-</td>
              <td><a href="#ENTI13" target="_self">Eigentümer</a></td>
                </tr>
@@ -6444,7 +6397,7 @@ Bürogebäude</td>
              <td>Relation_50</td>
              <td>Vertriebspartner</td>
              <td>-></td>
-             <td>ist</td>
+             <td>is</td>
              <td></td>
            <td class="leftsymbol"><img class="icon-down" src="icons/downarrow.svg"></td>
              <td></td>
@@ -6454,7 +6407,7 @@ Bürogebäude</td>
              <td></td>
            <td class="leftsymbol"><img class="icon-up" src="icons/uparrow.svg"></td>
              <td></td>
-             <td>ist</td>
+             <td>is</td>
              <td><-</td>
              <td><a href="#ENTI5" target="_self">Besitzer</a></td>
                </tr>
@@ -6462,7 +6415,7 @@ Bürogebäude</td>
              <td>Relation_51</td>
              <td>Vertriebspartner</td>
              <td>-></td>
-             <td>tritt auf als</td>
+             <td>appears as</td>
              <td>1..N</td>
            <td class="leftsymbol"><img class="icon-down" src="icons/downarrow.svg"></td>
              <td></td>
@@ -6472,7 +6425,7 @@ Bürogebäude</td>
              <td></td>
            <td class="leftsymbol"><img class="icon-up" src="icons/uparrow.svg"></td>
              <td>1</td>
-             <td>ist</td>
+             <td>is</td>
              <td><-</td>
              <td><a href="#ENTI18" target="_self">Handelseinheit</a></td>
                </tr>
@@ -6480,7 +6433,7 @@ Bürogebäude</td>
              <td>Relation_18</td>
              <td>Vertriebspartner</td>
              <td>-></td>
-             <td>ist</td>
+             <td>is</td>
              <td></td>
            <td class="leftsymbol"><img class="icon-down" src="icons/downarrow.svg"></td>
              <td></td>
@@ -6490,7 +6443,7 @@ Bürogebäude</td>
              <td></td>
            <td class="leftsymbol"><img class="icon-up" src="icons/uparrow.svg"></td>
              <td></td>
-             <td>ist</td>
+             <td>is</td>
              <td><-</td>
              <td><a href="#ENTI13" target="_self">Eigentümer</a></td>
                </tr>
@@ -6498,7 +6451,7 @@ Bürogebäude</td>
              <td>Relation_51</td>
              <td>Vertriebspartner</td>
              <td>-></td>
-             <td>tritt auf als</td>
+             <td>appears as</td>
              <td>1..N</td>
            <td class="leftsymbol"><img class="icon-down" src="icons/downarrow.svg"></td>
              <td></td>
@@ -6508,7 +6461,7 @@ Bürogebäude</td>
              <td></td>
            <td class="leftsymbol"><img class="icon-up" src="icons/uparrow.svg"></td>
              <td>1</td>
-             <td>ist</td>
+             <td>is</td>
              <td><-</td>
              <td><a href="#ENTI18" target="_self">Handelseinheit</a></td>
                </tr>
@@ -6529,7 +6482,7 @@ Bürogebäude</td>
             <tr>
              <td>Name</td>
              <td><a href="IM_CRM_FYAYC_en.html#ENTI24" target="_blank" >Sales Partner</a></td>
-             <td><a href="IM_CRM_FYAYC_fr.html#ENTI24" target="_blank" >*DE* Vertriebspartner</a></td>
+             <td><a href="IM_CRM_FYAYC_fr.html#ENTI24" target="_blank" >Partenaire commercial</a></td>
                </tr>
             <tr>
              <td>Synonym</td>
@@ -6539,7 +6492,7 @@ Bürogebäude</td>
             <tr>
              <td>Beschreibung</td>
              <td>*DE* B2B Vertriebsteilnehmer, der unsere Produkte weiter verkauft oder vermittelt</td>
-             <td>*DE* B2B Vertriebsteilnehmer, der unsere Produkte weiter verkauft oder vermittelt</td>
+             <td>Participant aux ventes B2B qui revend ou négocie nos produits</td>
                </tr>
         
                      </tbody>
@@ -6613,7 +6566,7 @@ Bürogebäude</td>
              <td>Relation_48</td>
              <td>Vertriebsteilnehmer</td>
              <td>-></td>
-             <td>betreut von</td>
+             <td>attended by</td>
              <td>0..N</td>
            <td class="leftsymbol"><img class="icon-down" src="icons/downarrow.svg"></td>
              <td></td>
@@ -6623,7 +6576,7 @@ Bürogebäude</td>
              <td></td>
            <td class="leftsymbol"><img class="icon-up" src="icons/uparrow.svg"></td>
              <td>0..N</td>
-             <td>betreut</td>
+             <td>attends</td>
              <td><-</td>
              <td><a href="#ENTI18" target="_self">Handelseinheit</a></td>
                </tr>
@@ -6631,7 +6584,7 @@ Bürogebäude</td>
              <td>Relation_48</td>
              <td>Vertriebsteilnehmer</td>
              <td>-></td>
-             <td>betreut von</td>
+             <td>attended by</td>
              <td>0..N</td>
            <td class="leftsymbol"><img class="icon-down" src="icons/downarrow.svg"></td>
              <td></td>
@@ -6641,7 +6594,7 @@ Bürogebäude</td>
              <td></td>
            <td class="leftsymbol"><img class="icon-up" src="icons/uparrow.svg"></td>
              <td>0..N</td>
-             <td>betreut</td>
+             <td>attends</td>
              <td><-</td>
              <td><a href="#ENTI18" target="_self">Handelseinheit</a></td>
                </tr>
@@ -6649,7 +6602,7 @@ Bürogebäude</td>
              <td>Relation_8</td>
              <td>Vertriebsteilnehmer</td>
              <td>-></td>
-             <td>wahrgenommen von</td>
+             <td>perceived by</td>
              <td>1</td>
            <td class="leftsymbol"><img class="icon-down" src="icons/downarrow.svg"></td>
              <td>Vertriebsteilnehmer_subtype</td>
@@ -6659,7 +6612,7 @@ Bürogebäude</td>
              <td></td>
            <td class="leftsymbol"><img class="icon-up" src="icons/uparrow.svg"></td>
              <td>0..N</td>
-             <td>nimmt wahr</td>
+             <td>perceives</td>
              <td><-</td>
              <td><a href="#ENTI38" target="_self">Geschäftsfähige Einheit</a></td>
                </tr>
@@ -6680,7 +6633,7 @@ Bürogebäude</td>
             <tr>
              <td>Name</td>
              <td><a href="IM_CRM_FYAYC_en.html#ENTI35" target="_blank" >Sales Participant</a></td>
-             <td><a href="IM_CRM_FYAYC_fr.html#ENTI35" target="_blank" >*DE* Vertriebsteilnehmer</a></td>
+             <td><a href="IM_CRM_FYAYC_fr.html#ENTI35" target="_blank" >Partenaire commercial</a></td>
                </tr>
             <tr>
              <td>Synonym</td>
@@ -6690,7 +6643,7 @@ Bürogebäude</td>
             <tr>
              <td>Beschreibung</td>
              <td>*DE* Ein Marktteilnehmer, der mit verkaufbaren oder vermietbaren Produkten von uns direkt oder indirekt zu tun hat.</td>
-             <td>*DE* Ein Marktteilnehmer, der mit verkaufbaren oder vermietbaren Produkten von uns direkt oder indirekt zu tun hat.</td>
+             <td>Un acteur du marché qui est directement ou indirectement impliqué dans les produits que nous vendons ou louons.</td>
                </tr>
         
                      </tbody>
@@ -6758,7 +6711,7 @@ Bürogebäude</td>
              <td>Relation_9</td>
              <td>Wettbewerber</td>
              <td>-></td>
-             <td>ist</td>
+             <td>is</td>
              <td>1</td>
            <td class="leftsymbol"><img class="icon-down" src="icons/downarrow.svg"></td>
              <td></td>
@@ -6768,7 +6721,7 @@ Bürogebäude</td>
              <td></td>
            <td class="leftsymbol"><img class="icon-up" src="icons/uparrow.svg"></td>
              <td>0..N</td>
-             <td>tritt auf als</td>
+             <td>appears as</td>
              <td><-</td>
              <td><a href="#ENTI38" target="_self">Geschäftsfähige Einheit</a></td>
                </tr>
@@ -6776,7 +6729,7 @@ Bürogebäude</td>
              <td>Relation_111</td>
              <td>Wettbewerber</td>
              <td>-></td>
-             <td>bedient</td>
+             <td>attends to</td>
              <td>0..N</td>
            <td class="leftsymbol"><img class="icon-down" src="icons/downarrow.svg"></td>
              <td></td>
@@ -6786,7 +6739,7 @@ Bürogebäude</td>
              <td></td>
            <td class="leftsymbol"><img class="icon-up" src="icons/uparrow.svg"></td>
              <td>0..N</td>
-             <td>bedient von</td>
+             <td>attended by</td>
              <td><-</td>
              <td><a href="#ENTI11" target="_self">Interessent</a></td>
                </tr>
@@ -6794,7 +6747,7 @@ Bürogebäude</td>
              <td>Relation_52</td>
              <td>Wettbewerber</td>
              <td>-></td>
-             <td>tritt auf als</td>
+             <td>appears as</td>
              <td>0..N</td>
            <td class="leftsymbol"><img class="icon-down" src="icons/downarrow.svg"></td>
              <td></td>
@@ -6804,7 +6757,7 @@ Bürogebäude</td>
              <td></td>
            <td class="leftsymbol"><img class="icon-up" src="icons/uparrow.svg"></td>
              <td>1</td>
-             <td>ist</td>
+             <td>is</td>
              <td><-</td>
              <td><a href="#ENTI18" target="_self">Handelseinheit</a></td>
                </tr>
@@ -6812,7 +6765,7 @@ Bürogebäude</td>
              <td>Relation_52</td>
              <td>Wettbewerber</td>
              <td>-></td>
-             <td>tritt auf als</td>
+             <td>appears as</td>
              <td>0..N</td>
            <td class="leftsymbol"><img class="icon-down" src="icons/downarrow.svg"></td>
              <td></td>
@@ -6822,7 +6775,7 @@ Bürogebäude</td>
              <td></td>
            <td class="leftsymbol"><img class="icon-up" src="icons/uparrow.svg"></td>
              <td>1</td>
-             <td>ist</td>
+             <td>is</td>
              <td><-</td>
              <td><a href="#ENTI18" target="_self">Handelseinheit</a></td>
                </tr>
@@ -6843,7 +6796,7 @@ Bürogebäude</td>
             <tr>
              <td>Name</td>
              <td><a href="IM_CRM_FYAYC_en.html#ENTI21" target="_blank" >Competition</a></td>
-             <td><a href="IM_CRM_FYAYC_fr.html#ENTI21" target="_blank" >*DE* Wettbewerber</a></td>
+             <td><a href="IM_CRM_FYAYC_fr.html#ENTI21" target="_blank" >Compétiteur</a></td>
                </tr>
             <tr>
              <td>Synonym</td>
@@ -6853,7 +6806,7 @@ Bürogebäude</td>
             <tr>
              <td>Beschreibung</td>
              <td>*DE* Firma die ähnliche Produkte anbietet oder herstellt und oder ähnliche Kundensegmente betreut</td>
-             <td>*DE* Firma die ähnliche Produkte anbietet oder herstellt und oder ähnliche Kundensegmente betreut</td>
+             <td>Entreprise qui offre ou fabrique des produits similaires et qui dessert des segments de clientèle similaires</td>
                </tr>
         
                      </tbody>
@@ -6946,12 +6899,12 @@ Bürogebäude</td>
             <tr>
              <td>Name</td>
              <td><a href="IM_CRM_FYAYC_en.html#ATTR5" target="_blank" >Administrative Level</a></td>
-             <td><a href="IM_CRM_FYAYC_fr.html#ATTR5" target="_blank" >*DE* Administrativebene</a></td>
+             <td><a href="IM_CRM_FYAYC_fr.html#ATTR5" target="_blank" >Niveau administratif</a></td>
                </tr>
             <tr>
              <td>Beschreibung</td>
              <td>*DE* A1-A4</td>
-             <td>*DE* A1-A4</td>
+             <td>A1-A4</td>
                </tr>
         
                      </tbody>
@@ -7044,12 +6997,12 @@ Bürogebäude</td>
             <tr>
              <td>Name</td>
              <td><a href="IM_CRM_FYAYC_en.html#ATTR11" target="_blank" >Address type</a></td>
-             <td><a href="IM_CRM_FYAYC_fr.html#ATTR11" target="_blank" >*DE* Adresstyp</a></td>
+             <td><a href="IM_CRM_FYAYC_fr.html#ATTR11" target="_blank" >Type d'adresse</a></td>
                </tr>
             <tr>
              <td>Beschreibung</td>
              <td>*DE* Zweck der Adresse (Finanz, Post, Lieferung etc.)</td>
-             <td>*DE* Zweck der Adresse (Finanz, Post, Lieferung etc.)</td>
+             <td>Type d'adresse (financière, postale, de lvraison etc.)</td>
                </tr>
         
                      </tbody>
@@ -7189,7 +7142,7 @@ Bürogebäude</td>
             <tr>
              <td>Name</td>
              <td><a href="IM_CRM_FYAYC_en.html#ATTR29" target="_blank" >*DE* Beschreibung</a></td>
-             <td><a href="IM_CRM_FYAYC_fr.html#ATTR29" target="_blank" >*DE* Beschreibung</a></td>
+             <td><a href="IM_CRM_FYAYC_fr.html#ATTR29" target="_blank" >Description</a></td>
                </tr>
             <tr>
              <td>Beschreibung</td>
@@ -7287,7 +7240,7 @@ Bürogebäude</td>
             <tr>
              <td>Name</td>
              <td><a href="IM_CRM_FYAYC_en.html#ATTR28" target="_blank" >*DE* Bezeichnung</a></td>
-             <td><a href="IM_CRM_FYAYC_fr.html#ATTR28" target="_blank" >*DE* Bezeichnung</a></td>
+             <td><a href="IM_CRM_FYAYC_fr.html#ATTR28" target="_blank" >Dénomination</a></td>
                </tr>
             <tr>
              <td>Beschreibung</td>
@@ -7385,7 +7338,7 @@ Bürogebäude</td>
             <tr>
              <td>Name</td>
              <td><a href="IM_CRM_FYAYC_en.html#ATTR1" target="_blank" >eMail</a></td>
-             <td><a href="IM_CRM_FYAYC_fr.html#ATTR1" target="_blank" >*DE* eMail</a></td>
+             <td><a href="IM_CRM_FYAYC_fr.html#ATTR1" target="_blank" >Courriel</a></td>
                </tr>
             <tr>
              <td>Beschreibung</td>
@@ -7483,7 +7436,7 @@ Bürogebäude</td>
             <tr>
              <td>Name</td>
              <td><a href="IM_CRM_FYAYC_en.html#ATTR2" target="_blank" >Fixnet phone</a></td>
-             <td><a href="IM_CRM_FYAYC_fr.html#ATTR2" target="_blank" >*DE* Fixnet Tel Nr</a></td>
+             <td><a href="IM_CRM_FYAYC_fr.html#ATTR2" target="_blank" >N° de tél Fixnet</a></td>
                </tr>
             <tr>
              <td>Beschreibung</td>
@@ -7581,7 +7534,7 @@ Bürogebäude</td>
             <tr>
              <td>Name</td>
              <td><a href="IM_CRM_FYAYC_en.html#ATTR7" target="_blank" >Birth date</a></td>
-             <td><a href="IM_CRM_FYAYC_fr.html#ATTR7" target="_blank" >*DE* Geburtsdatum</a></td>
+             <td><a href="IM_CRM_FYAYC_fr.html#ATTR7" target="_blank" >Date d'anniversaire</a></td>
                </tr>
             <tr>
              <td>Beschreibung</td>
@@ -7679,7 +7632,7 @@ Bürogebäude</td>
             <tr>
              <td>Name</td>
              <td><a href="IM_CRM_FYAYC_en.html#ATTR14" target="_blank" >Building name</a></td>
-             <td><a href="IM_CRM_FYAYC_fr.html#ATTR14" target="_blank" >*DE* Gebäudename</a></td>
+             <td><a href="IM_CRM_FYAYC_fr.html#ATTR14" target="_blank" >Nom du bâtiment</a></td>
                </tr>
             <tr>
              <td>Beschreibung</td>
@@ -7824,12 +7777,12 @@ Bürogebäude</td>
             <tr>
              <td>Name</td>
              <td><a href="IM_CRM_FYAYC_en.html#ATTR17" target="_blank" >*DE* GeoInformation</a></td>
-             <td><a href="IM_CRM_FYAYC_fr.html#ATTR17" target="_blank" >*DE* GeoInformation</a></td>
+             <td><a href="IM_CRM_FYAYC_fr.html#ATTR17" target="_blank" >Géo-informations d'un territoire</a></td>
                </tr>
             <tr>
              <td>Beschreibung</td>
              <td>*DE* Fläche eines Gebiets als geo-Information</td>
-             <td>*DE* Fläche eines Gebiets als geo-Information</td>
+             <td>Superficie d'un territoire comme géo-information</td>
                </tr>
         
                      </tbody>
@@ -7922,7 +7875,7 @@ Bürogebäude</td>
             <tr>
              <td>Name</td>
              <td><a href="IM_CRM_FYAYC_en.html#ATTR15" target="_blank" >Geocoordinate</a></td>
-             <td><a href="IM_CRM_FYAYC_fr.html#ATTR15" target="_blank" >*DE* Geokoordinate</a></td>
+             <td><a href="IM_CRM_FYAYC_fr.html#ATTR15" target="_blank" >Coordonnées géographiques</a></td>
                </tr>
             <tr>
              <td>Beschreibung</td>
@@ -8067,7 +8020,7 @@ Bürogebäude</td>
             <tr>
              <td>Name</td>
              <td><a href="IM_CRM_FYAYC_en.html#ATTR8" target="_blank" >Gender</a></td>
-             <td><a href="IM_CRM_FYAYC_fr.html#ATTR8" target="_blank" >*DE* Geschlecht</a></td>
+             <td><a href="IM_CRM_FYAYC_fr.html#ATTR8" target="_blank" >Sexe</a></td>
                </tr>
             <tr>
              <td>Beschreibung</td>
@@ -8165,7 +8118,7 @@ Bürogebäude</td>
             <tr>
              <td>Name</td>
              <td><a href="IM_CRM_FYAYC_en.html#ATTR35" target="_blank" >Society type</a></td>
-             <td><a href="IM_CRM_FYAYC_fr.html#ATTR35" target="_blank" >*DE* Gesellschaftsform</a></td>
+             <td><a href="IM_CRM_FYAYC_fr.html#ATTR35" target="_blank" >Forme juridique</a></td>
                </tr>
             <tr>
              <td>Beschreibung</td>
@@ -8263,7 +8216,7 @@ Bürogebäude</td>
             <tr>
              <td>Name</td>
              <td><a href="IM_CRM_FYAYC_en.html#ATTR10" target="_blank" >*DE* Gültigkeitsperiode</a></td>
-             <td><a href="IM_CRM_FYAYC_fr.html#ATTR10" target="_blank" >*DE* Gültigkeitsperiode</a></td>
+             <td><a href="IM_CRM_FYAYC_fr.html#ATTR10" target="_blank" >Période de validité</a></td>
                </tr>
             <tr>
              <td>Beschreibung</td>
@@ -8361,7 +8314,7 @@ Bürogebäude</td>
             <tr>
              <td>Name</td>
              <td><a href="IM_CRM_FYAYC_en.html#ATTR13" target="_blank" >House no</a></td>
-             <td><a href="IM_CRM_FYAYC_fr.html#ATTR13" target="_blank" >*DE* Hausnr</a></td>
+             <td><a href="IM_CRM_FYAYC_fr.html#ATTR13" target="_blank" >Numéro du domicile</a></td>
                </tr>
             <tr>
              <td>Beschreibung</td>
@@ -8506,7 +8459,7 @@ Bürogebäude</td>
             <tr>
              <td>Name</td>
              <td><a href="IM_CRM_FYAYC_en.html#ATTR20" target="_blank" >ISO2 code</a></td>
-             <td><a href="IM_CRM_FYAYC_fr.html#ATTR20" target="_blank" >*DE* ISO2_Code</a></td>
+             <td><a href="IM_CRM_FYAYC_fr.html#ATTR20" target="_blank" >Code_ISO2</a></td>
                </tr>
             <tr>
              <td>Beschreibung</td>
@@ -8604,7 +8557,7 @@ Bürogebäude</td>
             <tr>
              <td>Name</td>
              <td><a href="IM_CRM_FYAYC_en.html#ATTR31" target="_blank" >*DE* ISO2-Code</a></td>
-             <td><a href="IM_CRM_FYAYC_fr.html#ATTR31" target="_blank" >*DE* ISO2-Code</a></td>
+             <td><a href="IM_CRM_FYAYC_fr.html#ATTR31" target="_blank" >Code ISO2</a></td>
                </tr>
             <tr>
              <td>Beschreibung</td>
@@ -8702,7 +8655,7 @@ Bürogebäude</td>
             <tr>
              <td>Name</td>
              <td><a href="IM_CRM_FYAYC_en.html#ATTR21" target="_blank" >ISO3 code</a></td>
-             <td><a href="IM_CRM_FYAYC_fr.html#ATTR21" target="_blank" >*DE* ISO3_Code</a></td>
+             <td><a href="IM_CRM_FYAYC_fr.html#ATTR21" target="_blank" >Code ISO3</a></td>
                </tr>
             <tr>
              <td>Beschreibung</td>
@@ -8800,12 +8753,12 @@ Bürogebäude</td>
             <tr>
              <td>Name</td>
              <td><a href="IM_CRM_FYAYC_en.html#ATTR32" target="_blank" >*DE* ISO3-Code</a></td>
-             <td><a href="IM_CRM_FYAYC_fr.html#ATTR32" target="_blank" >*DE* ISO3-Code</a></td>
+             <td><a href="IM_CRM_FYAYC_fr.html#ATTR32" target="_blank" >Code ISO3</a></td>
                </tr>
             <tr>
              <td>Beschreibung</td>
              <td></td>
-             <td></td>
+             <td>ISO3-Code</td>
                </tr>
         
                      </tbody>
@@ -8898,7 +8851,7 @@ Bürogebäude</td>
             <tr>
              <td>Name</td>
              <td><a href="IM_CRM_FYAYC_en.html#ATTR23" target="_blank" >ISO code numeric</a></td>
-             <td><a href="IM_CRM_FYAYC_fr.html#ATTR23" target="_blank" >*DE* ISO_Code_numerisch</a></td>
+             <td><a href="IM_CRM_FYAYC_fr.html#ATTR23" target="_blank" >Code ISO numérique</a></td>
                </tr>
             <tr>
              <td>Beschreibung</td>
@@ -8996,12 +8949,12 @@ Bürogebäude</td>
             <tr>
              <td>Name</td>
              <td><a href="IM_CRM_FYAYC_en.html#ATTR34" target="_blank" >*DE* ISO-SprachLand_Code</a></td>
-             <td><a href="IM_CRM_FYAYC_fr.html#ATTR34" target="_blank" >*DE* ISO-SprachLand_Code</a></td>
+             <td><a href="IM_CRM_FYAYC_fr.html#ATTR34" target="_blank" >Code ISO du pays</a></td>
                </tr>
             <tr>
              <td>Beschreibung</td>
              <td>*DE* 2stellen Sprache Iso, "-", 2 stellen Land-Iso</td>
-             <td>*DE* 2stellen Sprache Iso, "-", 2 stellen Land-Iso</td>
+             <td>Code ISO du pays sur 2 positions</td>
                </tr>
         
                      </tbody>
@@ -9094,7 +9047,7 @@ Bürogebäude</td>
             <tr>
              <td>Name</td>
              <td><a href="IM_CRM_FYAYC_en.html#ATTR3" target="_blank" >Mobile phone</a></td>
-             <td><a href="IM_CRM_FYAYC_fr.html#ATTR3" target="_blank" >*DE* Mobil Tel Nr</a></td>
+             <td><a href="IM_CRM_FYAYC_fr.html#ATTR3" target="_blank" >Numéro de portable </a></td>
                </tr>
             <tr>
              <td>Beschreibung</td>
@@ -9192,7 +9145,7 @@ Bürogebäude</td>
             <tr>
              <td>Name</td>
              <td><a href="IM_CRM_FYAYC_en.html#ATTR9" target="_blank" >*DE* Name</a></td>
-             <td><a href="IM_CRM_FYAYC_fr.html#ATTR9" target="_blank" >*DE* Name</a></td>
+             <td><a href="IM_CRM_FYAYC_fr.html#ATTR9" target="_blank" >Nom</a></td>
                </tr>
             <tr>
              <td>Beschreibung</td>
@@ -9290,7 +9243,7 @@ Bürogebäude</td>
             <tr>
              <td>Name</td>
              <td><a href="IM_CRM_FYAYC_en.html#ATTR16" target="_blank" >*DE* Name [L]</a></td>
-             <td><a href="IM_CRM_FYAYC_fr.html#ATTR16" target="_blank" >*DE* Name [L]</a></td>
+             <td><a href="IM_CRM_FYAYC_fr.html#ATTR16" target="_blank" >Nom [L]</a></td>
                </tr>
             <tr>
              <td>Beschreibung</td>
@@ -9388,7 +9341,7 @@ Bürogebäude</td>
             <tr>
              <td>Name</td>
              <td><a href="IM_CRM_FYAYC_en.html#ATTR26" target="_blank" >*DE* Name</a></td>
-             <td><a href="IM_CRM_FYAYC_fr.html#ATTR26" target="_blank" >*DE* Name</a></td>
+             <td><a href="IM_CRM_FYAYC_fr.html#ATTR26" target="_blank" >Nom</a></td>
                </tr>
             <tr>
              <td>Beschreibung</td>
@@ -9486,7 +9439,7 @@ Bürogebäude</td>
             <tr>
              <td>Name</td>
              <td><a href="IM_CRM_FYAYC_en.html#ATTR30" target="_blank" >*DE* Name [L]</a></td>
-             <td><a href="IM_CRM_FYAYC_fr.html#ATTR30" target="_blank" >*DE* Name [L]</a></td>
+             <td><a href="IM_CRM_FYAYC_fr.html#ATTR30" target="_blank" >Nom [L]</a></td>
                </tr>
             <tr>
              <td>Beschreibung</td>
@@ -9584,7 +9537,7 @@ Bürogebäude</td>
             <tr>
              <td>Name</td>
              <td><a href="IM_CRM_FYAYC_en.html#ATTR33" target="_blank" >*DE* Name [L]</a></td>
-             <td><a href="IM_CRM_FYAYC_fr.html#ATTR33" target="_blank" >*DE* Name [L]</a></td>
+             <td><a href="IM_CRM_FYAYC_fr.html#ATTR33" target="_blank" >Nom [L]</a></td>
                </tr>
             <tr>
              <td>Beschreibung</td>
@@ -9682,7 +9635,7 @@ Bürogebäude</td>
             <tr>
              <td>Name</td>
              <td><a href="IM_CRM_FYAYC_en.html#ATTR40" target="_blank" >Name</a></td>
-             <td><a href="IM_CRM_FYAYC_fr.html#ATTR40" target="_blank" >*DE* Name</a></td>
+             <td><a href="IM_CRM_FYAYC_fr.html#ATTR40" target="_blank" >Nom</a></td>
                </tr>
             <tr>
              <td>Beschreibung</td>
@@ -9976,12 +9929,12 @@ Bürogebäude</td>
             <tr>
              <td>Name</td>
              <td><a href="IM_CRM_FYAYC_en.html#ATTR19" target="_blank" >*ZIP level</a></td>
-             <td><a href="IM_CRM_FYAYC_fr.html#ATTR19" target="_blank" >*DE* PLZ-Ebene</a></td>
+             <td><a href="IM_CRM_FYAYC_fr.html#ATTR19" target="_blank" >Niveau du CP</a></td>
                </tr>
             <tr>
              <td>Beschreibung</td>
              <td>*DE* P1-P3</td>
-             <td>*DE* P1-P3</td>
+             <td>P1-P3</td>
                </tr>
         
                      </tbody>
@@ -10074,12 +10027,12 @@ Bürogebäude</td>
             <tr>
              <td>Name</td>
              <td><a href="IM_CRM_FYAYC_en.html#ATTR18" target="_blank" >*ZIP code</a></td>
-             <td><a href="IM_CRM_FYAYC_fr.html#ATTR18" target="_blank" >*DE* Postleitzahl</a></td>
+             <td><a href="IM_CRM_FYAYC_fr.html#ATTR18" target="_blank" >Code postal</a></td>
                </tr>
             <tr>
              <td>Beschreibung</td>
              <td></td>
-             <td></td>
+             <td>Code postal</td>
                </tr>
         
                      </tbody>
@@ -10172,12 +10125,12 @@ Bürogebäude</td>
             <tr>
              <td>Name</td>
              <td><a href="IM_CRM_FYAYC_en.html#ATTR27" target="_blank" >*DE* Professionalisierungsgrad</a></td>
-             <td><a href="IM_CRM_FYAYC_fr.html#ATTR27" target="_blank" >*DE* Professionalisierungsgrad</a></td>
+             <td><a href="IM_CRM_FYAYC_fr.html#ATTR27" target="_blank" >Niveau professionnel</a></td>
                </tr>
             <tr>
              <td>Beschreibung</td>
              <td>*DE* P(rofi), A(-Händler)</td>
-             <td>*DE* P(rofi), A(-Händler)</td>
+             <td>P(Professionnel), C(Commerçant)</td>
                </tr>
         
                      </tbody>
@@ -10270,7 +10223,7 @@ Bürogebäude</td>
             <tr>
              <td>Name</td>
              <td><a href="IM_CRM_FYAYC_en.html#ATTR39" target="_blank" >*DE* Serie-Nr</a></td>
-             <td><a href="IM_CRM_FYAYC_fr.html#ATTR39" target="_blank" >*DE* Serie-Nr</a></td>
+             <td><a href="IM_CRM_FYAYC_fr.html#ATTR39" target="_blank" >Numéro de série</a></td>
                </tr>
             <tr>
              <td>Beschreibung</td>
@@ -10368,7 +10321,7 @@ Bürogebäude</td>
             <tr>
              <td>Name</td>
              <td><a href="IM_CRM_FYAYC_en.html#ATTR12" target="_blank" >Street name</a></td>
-             <td><a href="IM_CRM_FYAYC_fr.html#ATTR12" target="_blank" >*DE* Strassenname</a></td>
+             <td><a href="IM_CRM_FYAYC_fr.html#ATTR12" target="_blank" >Nom de la rue</a></td>
                </tr>
             <tr>
              <td>Beschreibung</td>
@@ -10513,7 +10466,7 @@ Bürogebäude</td>
             <tr>
              <td>Name</td>
              <td><a href="IM_CRM_FYAYC_en.html#ATTR24" target="_blank" >TopLevelDomain</a></td>
-             <td><a href="IM_CRM_FYAYC_fr.html#ATTR24" target="_blank" >*DE* TopLevelDomain</a></td>
+             <td><a href="IM_CRM_FYAYC_fr.html#ATTR24" target="_blank" >Domaine de haut niveau</a></td>
                </tr>
             <tr>
              <td>Beschreibung</td>
@@ -10611,12 +10564,12 @@ Bürogebäude</td>
             <tr>
              <td>Name</td>
              <td><a href="IM_CRM_FYAYC_en.html#ATTR37" target="_blank" >Purpose</a></td>
-             <td><a href="IM_CRM_FYAYC_fr.html#ATTR37" target="_blank" >*DE* Typ</a></td>
+             <td><a href="IM_CRM_FYAYC_fr.html#ATTR37" target="_blank" >Type</a></td>
                </tr>
             <tr>
              <td>Beschreibung</td>
              <td>*DE* Typ der Ländergruppe (Vertrieb, Zoll, Organisation)</td>
-             <td>*DE* Typ der Ländergruppe (Vertrieb, Zoll, Organisation)</td>
+             <td>Type de groupe de pays (vente, douane, organisation)</td>
                </tr>
         
                      </tbody>
@@ -10756,12 +10709,12 @@ Bürogebäude</td>
             <tr>
              <td>Name</td>
              <td><a href="IM_CRM_FYAYC_en.html#ATTR36" target="_blank" >UID no</a></td>
-             <td><a href="IM_CRM_FYAYC_fr.html#ATTR36" target="_blank" >*DE* UID Nr</a></td>
+             <td><a href="IM_CRM_FYAYC_fr.html#ATTR36" target="_blank" >N° UID</a></td>
                </tr>
             <tr>
              <td>Beschreibung</td>
              <td>*DE* Umsatzsteuer-Identifikationsnummer (AT), Ust-IdNr (DE), Unternehmens-Identifikationsnummer (CH)</td>
-             <td>*DE* Umsatzsteuer-Identifikationsnummer (AT), Ust-IdNr (DE), Unternehmens-Identifikationsnummer (CH)</td>
+             <td>Numéro d'identification de la taxe sur le chiffre d'affaires (AT), numéro de TVA (DE), numéro d'identification de la société (CH)</td>
                </tr>
         
                      </tbody>
@@ -10854,7 +10807,7 @@ Bürogebäude</td>
             <tr>
              <td>Name</td>
              <td><a href="IM_CRM_FYAYC_en.html#ATTR6" target="_blank" >First Name</a></td>
-             <td><a href="IM_CRM_FYAYC_fr.html#ATTR6" target="_blank" >*DE* Vorname</a></td>
+             <td><a href="IM_CRM_FYAYC_fr.html#ATTR6" target="_blank" >Prénom</a></td>
                </tr>
             <tr>
              <td>Beschreibung</td>
@@ -10952,7 +10905,7 @@ Bürogebäude</td>
             <tr>
              <td>Name</td>
              <td><a href="IM_CRM_FYAYC_en.html#ATTR4" target="_blank" >Web url</a></td>
-             <td><a href="IM_CRM_FYAYC_fr.html#ATTR4" target="_blank" >*DE* Webseite</a></td>
+             <td><a href="IM_CRM_FYAYC_fr.html#ATTR4" target="_blank" >Site web</a></td>
                </tr>
             <tr>
              <td>Beschreibung</td>
@@ -11050,7 +11003,7 @@ Bürogebäude</td>
             <tr>
              <td>Name</td>
              <td><a href="IM_CRM_FYAYC_en.html#ATTR38" target="_blank" >Type</a></td>
-             <td><a href="IM_CRM_FYAYC_fr.html#ATTR38" target="_blank" >*DE* Zweck</a></td>
+             <td><a href="IM_CRM_FYAYC_fr.html#ATTR38" target="_blank" >Type</a></td>
                </tr>
             <tr>
              <td>Beschreibung</td>
@@ -13534,19 +13487,19 @@ Installateur:1 </text></a>
                         stroke="rgb(0,0,0)" />
             </g>
                <g ><text x="201" y="332" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
-    ist in
+    is in
     </text>
     </g>
 <g ><text x="276" y="318" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
-    fasst zusammen
+    summarizes
     </text>
     </g>
 <g ><text x="768" y="164" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
-    gugus
+    *DE* gugus
     </text>
     </g>
 <g ><text x="731" y="47" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
-    installiert
+    *DE* installiert
     </text>
     </g>
 
@@ -18239,395 +18192,286 @@ Leasingnehmer </text></a>
                         stroke="rgb(0,0,0)" />
             </g>
                <g ><text x="491" y="337" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
-    definiert
+    defines
     </text>
     </g>
 <g ><text x="491" y="444" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
-    ist
+    is
     </text>
     </g>
 <g ><text x="290" y="597" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
-    bedient von
+    attended by
     </text>
     </g>
 <g ><text x="802" y="873" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
-    bedient
+    attends to
     </text>
     </g>
 <g ><text x="405" y="240" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
-    liegt in
+    situated in
     </text>
     </g>
 <g ><text x="333" y="460" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
-    umfasst
+    summarizes
     </text>
     </g>
 <g ><text x="480" y="803" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
-    betreut direkt
+    attends directly
     </text>
     </g>
 <g ><text x="480" y="964" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
-    direkt betreut von
+    directly attended by
     </text>
     </g>
 <g ><text x="1009" y="515" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
-    besitzt
+    owns
     </text>
     </g>
 <g ><text x="929" y="574" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
-    gehört
+    belongs to
     </text>
     </g>
 <g ><text x="1230" y="528" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
-    ist
+    is
     </text>
     </g>
 <g ><text x="1031" y="553" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
-    tritt auf als
+    appears as
     </text>
     </g>
 <g ><text x="682" y="1015" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
-    betreut direkt
+    attends directly
     </text>
     </g>
 <g ><text x="631" y="1055" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
-    direkt betreut von
+    directly attended by
     </text>
     </g>
 <g ><text x="331" y="710" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
-    nimmt wahr
+    perceives
     </text>
     </g>
 <g ><text x="190" y="720" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
-    wahrgenommen von
+    perceived by
     </text>
     </g>
 <g ><text x="980" y="656" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
-    ist
+    is
     </text>
     </g>
 <g ><text x="980" y="631" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
-    tritt auf als
+    appears as
     </text>
     </g>
 <g ><text x="567" y="753" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
-    arbeitet für
+    works for
     </text>
     </g>
 <g ><text x="870" y="592" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
-    beschäftigt
+    employs
     </text>
     </g>
 <g ><text x="521" y="436" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
-    gilt für
+    valid for
     </text>
     </g>
 <g ><text x="560" y="410" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
-    erreichbar mittels
+    attainable by
     </text>
     </g>
 <g ><text x="1016" y="450" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
-    organisiert
+    organizes
     </text>
     </g>
 <g ><text x="905" y="446" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
-    organisiert in
+    organized in
     </text>
     </g>
 <g ><text x="1141" y="814" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
-    ist
+    is
     </text>
     </g>
 <g ><text x="1250" y="695" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
-    tritt auf als
+    appears as
     </text>
     </g>
 <g ><text x="820" y="664" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
-    erreichbar mittels
+    attainable by
     </text>
     </g>
 <g ><text x="540" y="617" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
-    gilt für
+    valid for
     </text>
     </g>
 <g ><text x="248" y="358" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
-    unterteilt
+    subdivides
     </text>
     </g>
 <g ><text x="200" y="323" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
-    unterteilt in
+    subdivided in
     </text>
     </g>
 <g ><text x="181" y="883" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
-    ist
+    is
     </text>
     </g>
 <g ><text x="450" y="956" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
-    ist
+    is
     </text>
     </g>
 <g ><text x="1252" y="442" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
-    unterteilt
+    subdivides
     </text>
     </g>
 <g ><text x="1170" y="496" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
-    unterteilt in
+    subdivided in
     </text>
     </g>
 <g ><text x="281" y="1003" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
-    ist
+    is
     </text>
     </g>
 <g ><text x="417" y="1033" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
-    ist
+    is
     </text>
     </g>
 <g ><text x="113" y="246" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
-    ist in
+    is in
     </text>
     </g>
 <g ><text x="144" y="223" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
-    fasst zusammen
+    summarizes
     </text>
     </g>
 <g ><text x="110" y="451" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
-    unterteilt
+    subdivides
     </text>
     </g>
 <g ><text x="210" y="527" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
-    unterteilt in
+    subdivided in
     </text>
     </g>
 <g ><text x="90" y="1044" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
-    physisch bei
+    physically at
     </text>
     </g>
 <g ><text x="90" y="958" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
-    besitzt physisch
+    owns physically
     </text>
     </g>
 <g ><text x="181" y="903" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
-    ist
+    is
     </text>
     </g>
 <g ><text x="552" y="900" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
-    ist
+    is
     </text>
     </g>
 <g ><text x="890" y="656" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
-    betrieben von
+    operated by
     </text>
     </g>
 <g ><text x="890" y="619" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
-    vertreten an
+    present at
     </text>
     </g>
 <g ><text x="740" y="455" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
-    verbunden mit
+    connected with
     </text>
     </g>
 <g ><text x="650" y="520" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
-    verbunden mit [T]
+    conntected with [T]
     </text>
     </g>
 <g ><text x="660" y="854" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
-    wahrgenommen von
+    perceived by
     </text>
     </g>
 <g ><text x="660" y="656" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
-    nimmt wahr
+    perceives
     </text>
     </g>
 <g ><text x="470" y="644" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
-    erreichbar mittels
+    attainable by
     </text>
     </g>
 <g ><text x="470" y="602" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
-    gilt für
+    valid for
     </text>
     </g>
 <g ><text x="567" y="713" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
-    ist
+    is
     </text>
     </g>
 <g ><text x="730" y="592" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
-    bekannt als
+    known as
     </text>
     </g>
 <g ><text x="1112" y="610" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
-    bedient
+    attends to
     </text>
     </g>
 <g ><text x="1090" y="664" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
-    bedient von
+    attended by
     </text>
     </g>
 <g ><text x="1031" y="640" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
-    gugus
+    *DE* gugus
     </text>
     </g>
 <g ><text x="1050" y="864" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
-    installiert
+    *DE* installiert
     </text>
     </g>
 <g ><text x="930" y="1101" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
-    betreut
+    attends
     </text>
     </g>
 <g ><text x="731" y="1083" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
-    betreut von
+    attended by
     </text>
     </g>
 <g ><text x="281" y="1023" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
-    ist
+    is
     </text>
     </g>
 <g ><text x="407" y="1123" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
-    ist
+    is
     </text>
     </g>
 <g ><text x="281" y="970" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
-    ist
+    is
     </text>
     </g>
 <g ><text x="552" y="920" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
-    ist
+    is
     </text>
     </g>
 <g ><text x="181" y="1133" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
-    gehört
+    legally owned by
     </text>
     </g>
 <g ><text x="230" y="1082" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
-    besitzt rechtlich
+    owns legally
     </text>
     </g>
 <g ><text x="800" y="436" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
-    lebt in
+    lives in
     </text>
     </g>
 <g ><text x="830" y="260" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
-    umfasst
+    encompasses
     </text>
     </g>
 <g ><text x="827" y="943" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
-    ist
+    is
     </text>
     </g>
 <g ><text x="721" y="910" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
-    tritt auf als
+    appears as
     </text>
     </g>
 
-        <g fill="none" stroke="rgb(0,0,0)" transform="translate(440,180)" >
-    <circle stroke-dasharray="none" cx="51.0" cy="141.0"
-            stroke="rgb(0,0,0)" r="2" fill="rgb(0,0,0)" stroke-width="1" />
-        
-        <path d=" M71.0 131.0 q0 10 -10 10 L41.0 141 q-10 0 -10 -10"/>
-        </g>
-    
-        <g fill="none" stroke="rgb(0,0,0)" transform="translate(410,460)" >
-    <circle stroke-dasharray="none" cx="111.0" cy="0.0"
-            stroke="rgb(0,0,0)" r="2" fill="rgb(0,0,0)" stroke-width="1" />
-    <circle stroke-dasharray="none" cx="130.0" cy="117.0"
-            stroke="rgb(0,0,0)" r="2" fill="rgb(0,0,0)" stroke-width="1" />
-    <circle stroke-dasharray="none" cx="60.0" cy="117.0"
-            stroke="rgb(0,0,0)" r="2" fill="rgb(0,0,0)" stroke-width="1" />
-        
-        <path d=" M91.0 10.0 q0 -10 10 -10 L177 0  q10 0 10 10 L187 107  q0 10 -10 10 L50.0 117 q-10 0 -10 -10"/>
-        </g>
-    
-        <g fill="none" stroke="rgb(0,0,0)" transform="translate(840,830)" >
-    <circle stroke-dasharray="none" cx="0.0" cy="110.0"
-            stroke="rgb(0,0,0)" r="2" fill="rgb(0,0,0)" stroke-width="1" />
-    <circle stroke-dasharray="none" cx="310.0" cy="13.6"
-            stroke="rgb(0,0,0)" r="2" fill="rgb(0,0,0)" stroke-width="1" />
-        
-        <path d=" M10.0 130.0 q-10 0 -10 -10 L0 10  q0 -10 10 -10 L301 0  q10 0 10 10 L310.0 24 q0 10 -10 10"/>
-        </g>
-    
-        <g fill="none" stroke="rgb(0,0,0)" transform="translate(410,460)" >
-    <circle stroke-dasharray="none" cx="111.0" cy="0.0"
-            stroke="rgb(0,0,0)" r="2" fill="rgb(0,0,0)" stroke-width="1" />
-    <circle stroke-dasharray="none" cx="130.0" cy="117.0"
-            stroke="rgb(0,0,0)" r="2" fill="rgb(0,0,0)" stroke-width="1" />
-    <circle stroke-dasharray="none" cx="60.0" cy="117.0"
-            stroke="rgb(0,0,0)" r="2" fill="rgb(0,0,0)" stroke-width="1" />
-        
-        <path d=" M91.0 10.0 q0 -10 10 -10 L177 0  q10 0 10 10 L187 107  q0 10 -10 10 L50.0 117 q-10 0 -10 -10"/>
-        </g>
-    
-        <g fill="none" stroke="rgb(0,0,0)" transform="translate(40,840)" >
-    <circle stroke-dasharray="none" cx="151.0" cy="40.0"
-            stroke="rgb(0,0,0)" r="2" fill="rgb(0,0,0)" stroke-width="1" />
-    <circle stroke-dasharray="none" cx="151.0" cy="60.0"
-            stroke="rgb(0,0,0)" r="2" fill="rgb(0,0,0)" stroke-width="1" />
-        
-        <path d=" M141.0 20.0 q10 0 10 10 L151.0 70 q0 10 -10 10"/>
-        </g>
-    
-        <g fill="none" stroke="rgb(0,0,0)" transform="translate(140,950)" >
-    <circle stroke-dasharray="none" cx="151.0" cy="40.0"
-            stroke="rgb(0,0,0)" r="2" fill="rgb(0,0,0)" stroke-width="1" />
-    <circle stroke-dasharray="none" cx="151.0" cy="50.0"
-            stroke="rgb(0,0,0)" r="2" fill="rgb(0,0,0)" stroke-width="1" />
-    <circle stroke-dasharray="none" cx="151.0" cy="70.0"
-            stroke="rgb(0,0,0)" r="2" fill="rgb(0,0,0)" stroke-width="1" />
-        
-        <path d=" M141.0 20.0 q10 0 10 10 L151.0 80 q0 10 -10 10"/>
-        </g>
-    
-        <g fill="none" stroke="rgb(0,0,0)" transform="translate(40,840)" >
-    <circle stroke-dasharray="none" cx="151.0" cy="40.0"
-            stroke="rgb(0,0,0)" r="2" fill="rgb(0,0,0)" stroke-width="1" />
-    <circle stroke-dasharray="none" cx="151.0" cy="60.0"
-            stroke="rgb(0,0,0)" r="2" fill="rgb(0,0,0)" stroke-width="1" />
-        
-        <path d=" M141.0 20.0 q10 0 10 10 L151.0 70 q0 10 -10 10"/>
-        </g>
-    
-        <g fill="none" stroke="rgb(0,0,0)" transform="translate(410,460)" >
-    <circle stroke-dasharray="none" cx="111.0" cy="0.0"
-            stroke="rgb(0,0,0)" r="2" fill="rgb(0,0,0)" stroke-width="1" />
-    <circle stroke-dasharray="none" cx="130.0" cy="117.0"
-            stroke="rgb(0,0,0)" r="2" fill="rgb(0,0,0)" stroke-width="1" />
-    <circle stroke-dasharray="none" cx="60.0" cy="117.0"
-            stroke="rgb(0,0,0)" r="2" fill="rgb(0,0,0)" stroke-width="1" />
-        
-        <path d=" M91.0 10.0 q0 -10 10 -10 L177 0  q10 0 10 10 L187 107  q0 10 -10 10 L50.0 117 q-10 0 -10 -10"/>
-        </g>
-    
-        <g fill="none" stroke="rgb(0,0,0)" transform="translate(140,950)" >
-    <circle stroke-dasharray="none" cx="151.0" cy="40.0"
-            stroke="rgb(0,0,0)" r="2" fill="rgb(0,0,0)" stroke-width="1" />
-    <circle stroke-dasharray="none" cx="151.0" cy="50.0"
-            stroke="rgb(0,0,0)" r="2" fill="rgb(0,0,0)" stroke-width="1" />
-    <circle stroke-dasharray="none" cx="151.0" cy="70.0"
-            stroke="rgb(0,0,0)" r="2" fill="rgb(0,0,0)" stroke-width="1" />
-        
-        <path d=" M141.0 20.0 q10 0 10 10 L151.0 80 q0 10 -10 10"/>
-        </g>
-    
-        <g fill="none" stroke="rgb(0,0,0)" transform="translate(140,950)" >
-    <circle stroke-dasharray="none" cx="151.0" cy="40.0"
-            stroke="rgb(0,0,0)" r="2" fill="rgb(0,0,0)" stroke-width="1" />
-    <circle stroke-dasharray="none" cx="151.0" cy="50.0"
-            stroke="rgb(0,0,0)" r="2" fill="rgb(0,0,0)" stroke-width="1" />
-    <circle stroke-dasharray="none" cx="151.0" cy="70.0"
-            stroke="rgb(0,0,0)" r="2" fill="rgb(0,0,0)" stroke-width="1" />
-        
-        <path d=" M141.0 20.0 q10 0 10 10 L151.0 80 q0 10 -10 10"/>
-        </g>
-    
-        <g fill="none" stroke="rgb(0,0,0)" transform="translate(840,830)" >
-    <circle stroke-dasharray="none" cx="0.0" cy="110.0"
-            stroke="rgb(0,0,0)" r="2" fill="rgb(0,0,0)" stroke-width="1" />
-    <circle stroke-dasharray="none" cx="310.0" cy="13.6"
-            stroke="rgb(0,0,0)" r="2" fill="rgb(0,0,0)" stroke-width="1" />
-        
-        <path d=" M10.0 130.0 q-10 0 -10 -10 L0 10  q0 -10 10 -10 L301 0  q10 0 10 10 L310.0 24 q0 10 -10 10"/>
-        </g>
-    
 </svg>
       </div>
     <!-- modal für mobile devices (search) -->
