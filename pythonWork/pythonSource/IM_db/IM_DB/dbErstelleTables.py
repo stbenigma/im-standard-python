@@ -15,6 +15,39 @@ def erstelleInfra():
 )
     """);
 
+    dbDDL.dropTable("SCHNITTSTELLE");
+    dbDDL.createTable("""
+CREATE TABLE SCHNITTSTELLE 
+    (
+     SCHN_ID integer primary key autoincrement, 
+     SCHN_NAME VARCHAR (60) NOT NULL , 
+     SCHN_BESCHR VARCHAR (4000)  , 
+     SCHN_UC VARCHAR (30) NOT NULL , 
+     SCHN_DC VARCHAR (30) NOT NULL , 
+     SCHN_UM VARCHAR (30) NULL , 
+     SCHN_DM VARCHAR (30) NULL ,
+ CONSTRAINT SCHN_UN UNIQUE (SCHN_NAME)
+    )
+    """)
+    dbDDL.dropTable("TABELLE");
+    dbDDL.createTable("""
+CREATE TABLE TABELLE 
+    (
+     TABL_ID integer primary key autoincrement , 
+     TABL_NAME VARCHAR (60) NOT NULL , 
+     TABL_SCHN_ID integer NOT NULL , 
+     TABL_PREFIX VARCHAR (60) NULL , 
+     TABL_BESCHR VARCHAR (4000) NULL , 
+     TABL_UC VARCHAR (30) NOT NULL , 
+     TABL_DC VARCHAR (30) NOT NULL , 
+     TABL_UM VARCHAR (30) NULL , 
+     TABL_DM VARCHAR (30) NULL ,
+	  CONSTRAINT TABL_UN UNIQUE (TABL_SCHN_ID , TABL_NAME)
+ 	   ,CONSTRAINT TABL_SCHN_FK FOREIGN KEY (TABL_SCHN_ID) 
+ 	      REFERENCES SCHNITTSTELLE (SCHN_ID ) 
+    )
+    """)
+
     dbDDL.dropTable("entitaeten");
     dbDDL.createTable("""
 CREATE TABLE entitaeten(
@@ -435,69 +468,106 @@ CREATE TABLE modellelement(
     mode_bezi_id   integer NULL,
     mode_enti_id   integer NULL,
     mode_orge_id   integer NULL,    
-    mode_melt_id   integer NOT NULL,
+    mode_melt_id   integer NULL,
+    mode_tabl_id  integer NULL,
+    mode_scha_id  integer NULL,    
     mode_uc        varchar(30 )NOT NULL,
     mode_dc        varchar(30)NOT NULL,
     mode_um        varchar(30 )NULL,
     mode_dm        varchar(30)NULL,
 	CONSTRAINT mode_uk UNIQUE(mode_wrtb_id,
-	                                  mode_attr_id,
-	                                  mode_buru_id,
-	                                  mode_enti_id,
-	                                  mode_bezi_id),
-	CONSTRAINT fkarc_4 CHECK(((mode_buru_id IS NOT NULL)
-                                  AND(mode_bezi_id IS NULL)
-                                  AND(mode_enti_id IS NULL)
-                                  AND(mode_wrtb_id IS NULL)
-                                  AND(mode_attr_id IS NULL)
-                                  AND(mode_syno_id IS NULL))
-                                 OR((mode_bezi_id IS NOT NULL)
-                                    AND(mode_buru_id IS NULL)
-                                    AND(mode_enti_id IS NULL)
-                                    AND(mode_wrtb_id IS NULL)
-                                    AND(mode_attr_id IS NULL)
-                                  AND(mode_syno_id IS NULL))
-                                 OR((mode_enti_id IS NOT NULL)
-                                    AND(mode_buru_id IS NULL)
-                                    AND(mode_bezi_id IS NULL)
-                                    AND(mode_wrtb_id IS NULL)
-                                    AND(mode_attr_id IS NULL)
-                                  AND(mode_syno_id IS NULL))
-                                 OR((mode_wrtb_id IS NOT NULL)
-                                    AND(mode_buru_id IS NULL)
-                                    AND(mode_bezi_id IS NULL)
-                                    AND(mode_enti_id IS NULL)
-                                    AND(mode_attr_id IS NULL)
-                                  AND(mode_syno_id IS NULL))
-                                 OR((mode_attr_id IS NOT NULL)
-                                    AND(mode_buru_id IS NULL)
-                                    AND(mode_bezi_id IS NULL)
-                                    AND(mode_enti_id IS NULL)
-                                    AND(mode_wrtb_id IS NULL)
-                                  AND(mode_syno_id IS NULL))
-                                 OR((mode_buru_id IS NULL)
-                                    AND(mode_bezi_id IS NULL)
-                                    AND(mode_enti_id IS NULL)
-                                    AND(mode_wrtb_id IS NULL)
-                                    AND(mode_attr_id IS NULL)
-                                  AND(mode_syno_id IS NOT NULL)))
-								    CONSTRAINT mode_syno_fk_ist FOREIGN KEY(mode_syno_id)
-								           REFERENCES synonyme(syno_id)
-								               ON DELETE CASCADE,
-								    CONSTRAINT mode_attr_fk_ist FOREIGN KEY(mode_attr_id)
-								           REFERENCES attributes(attr_id)
-								               ON DELETE CASCADE,
-								    CONSTRAINT mode_bezi_fk FOREIGN KEY(mode_bezi_id)
-								           REFERENCES beziehungen(bezi_id)
-								   		ON DELETE CASCADE,
-								    CONSTRAINT mode_enti_fk_ist FOREIGN KEY(mode_enti_id)
-								           REFERENCES entitaeten(enti_id)
-								               ON DELETE CASCADE,
-								    CONSTRAINT mode_wrtb_fk_ist FOREIGN KEY(mode_wrtb_id)
-								   		           REFERENCES wertebereiche(wrtb_id)
-								   		               ON DELETE CASCADE,
-								    CONSTRAINT mode_melt_fk_verantw FOREIGN KEY(mode_melt_id)
-								           REFERENCES modellelem_typ(melt_id)
+	       mode_attr_id,
+	       mode_buru_id,
+	       mode_enti_id,
+	       mode_bezi_id,mode_scha_id,mode_tabl_id),
+		   CONSTRAINT fkarc_4 CHECK ( ( ( mode_buru_id IS NOT NULL )
+		                                        AND ( mode_enti_id IS NULL )
+		                                        AND ( mode_attr_id IS NULL )
+		                                        AND ( mode_tabl_id IS NULL )
+		                                        AND ( mode_scha_id IS NULL )
+		                                        AND ( mode_syno_id IS NULL )
+		                                        AND ( mode_bezi_id IS NULL )
+		                                        AND ( mode_wrtb_id IS NULL ) )
+		                                      OR ( ( mode_enti_id IS NOT NULL )
+		                                           AND ( mode_buru_id IS NULL )
+		                                           AND ( mode_attr_id IS NULL )
+		                                           AND ( mode_tabl_id IS NULL )
+		                                           AND ( mode_scha_id IS NULL )
+		                                           AND ( mode_syno_id IS NULL )
+		                                           AND ( mode_bezi_id IS NULL )
+		                                           AND ( mode_wrtb_id IS NULL ) )
+		                                      OR ( ( mode_attr_id IS NOT NULL )
+		                                           AND ( mode_buru_id IS NULL )
+		                                           AND ( mode_enti_id IS NULL )
+		                                           AND ( mode_tabl_id IS NULL )
+		                                           AND ( mode_scha_id IS NULL )
+		                                           AND ( mode_syno_id IS NULL )
+		                                           AND ( mode_bezi_id IS NULL )
+		                                           AND ( mode_wrtb_id IS NULL ) )
+		                                      OR ( ( mode_tabl_id IS NOT NULL )
+		                                           AND ( mode_buru_id IS NULL )
+		                                           AND ( mode_enti_id IS NULL )
+		                                           AND ( mode_attr_id IS NULL )
+		                                           AND ( mode_scha_id IS NULL )
+		                                           AND ( mode_syno_id IS NULL )
+		                                           AND ( mode_bezi_id IS NULL )
+		                                           AND ( mode_wrtb_id IS NULL ) )
+		                                      OR ( ( mode_scha_id IS NOT NULL )
+		                                           AND ( mode_buru_id IS NULL )
+		                                           AND ( mode_enti_id IS NULL )
+		                                           AND ( mode_attr_id IS NULL )
+		                                           AND ( mode_tabl_id IS NULL )
+		                                           AND ( mode_syno_id IS NULL )
+		                                           AND ( mode_bezi_id IS NULL )
+		                                           AND ( mode_wrtb_id IS NULL ) )
+		                                      OR ( ( mode_syno_id IS NOT NULL )
+		                                           AND ( mode_buru_id IS NULL )
+		                                           AND ( mode_enti_id IS NULL )
+		                                           AND ( mode_attr_id IS NULL )
+		                                           AND ( mode_tabl_id IS NULL )
+		                                           AND ( mode_scha_id IS NULL )
+		                                           AND ( mode_bezi_id IS NULL )
+		                                           AND ( mode_wrtb_id IS NULL ) )
+		                                      OR ( ( mode_bezi_id IS NOT NULL )
+		                                           AND ( mode_buru_id IS NULL )
+		                                           AND ( mode_enti_id IS NULL )
+		                                           AND ( mode_attr_id IS NULL )
+		                                           AND ( mode_tabl_id IS NULL )
+		                                           AND ( mode_scha_id IS NULL )
+		                                           AND ( mode_syno_id IS NULL )
+		                                           AND ( mode_wrtb_id IS NULL ) )
+		                                      OR ( ( mode_wrtb_id IS NOT NULL )
+		                                           AND ( mode_buru_id IS NULL )
+		                                           AND ( mode_enti_id IS NULL )
+		                                           AND ( mode_attr_id IS NULL )
+		                                           AND ( mode_tabl_id IS NULL )
+		                                           AND ( mode_scha_id IS NULL )
+		                                           AND ( mode_syno_id IS NULL )
+		                                           AND ( mode_bezi_id IS NULL ) ) )
+	    CONSTRAINT mode_syno_fk_ist FOREIGN KEY(mode_syno_id)
+	  REFERENCES synonyme(syno_id)
+	      ON DELETE CASCADE,
+	    CONSTRAINT mode_attr_fk_ist FOREIGN KEY(mode_attr_id)
+	  REFERENCES attributes(attr_id)
+	      ON DELETE CASCADE,
+	    CONSTRAINT mode_bezi_fk FOREIGN KEY(mode_bezi_id)
+	  REFERENCES beziehungen(bezi_id)
+	   	ON DELETE CASCADE,
+	    CONSTRAINT mode_enti_fk_ist FOREIGN KEY(mode_enti_id)
+	  REFERENCES entitaeten(enti_id)
+	      ON DELETE CASCADE,
+	    CONSTRAINT mode_wrtb_fk_ist FOREIGN KEY(mode_wrtb_id)
+	   	  REFERENCES wertebereiche(wrtb_id)
+	   	      ON DELETE CASCADE,
+	    CONSTRAINT mode_melt_fk_verantw FOREIGN KEY(mode_melt_id)
+	  REFERENCES modellelem_typ(melt_id)
+	  		ON DELETE CASCADE ,
+	CONSTRAINT MODE_SCHA_FK FOREIGN KEY ( MODE_SCHA_ID) 
+	      REFERENCES SCHNITTSTELLE_ATTR (SCHA_ID ) 
+	      ON DELETE CASCADE ,
+	CONSTRAINT MODE_TABL_FK FOREIGN KEY ( MODE_TABL_ID) 
+	      REFERENCES TABELLE ( TABL_ID ) 
+	      ON DELETE CASCADE 
 )
 """)
 #  CONSTRAINT mode_orge_fk_verantw FOREIGN KEY(mode_orge_id) REFERENCES org_einh(orge_id),
@@ -862,6 +932,96 @@ CREATE TABLE linie_segment(
 				      REFERENCES MODELLELEMENT (MODE_ID)   ON DELETE CASCADE
 			      )
         """)
+    dbDDL.dropTable("TABL_ENTI_MAP");
+    dbDDL.createTable("""
+  CREATE TABLE TABL_ENTI_MAP 
+      (
+       TEMA_ID integer primary key autoincrement , 
+       TEMA_TABL_ID integer NOT NULL , 
+       TEMA_ENTI_ID integer NULL , 
+       TEMA_BEZI_ID integer NULL , 
+       CONSTRAINT TEMA_CK CHECK ((TEMA_ENTI_ID IS NOT NULL AND TEMA_BEZI_ID IS NULL )
+           	        		  OR (TEMA_BEZI_ID IS NULL AND TEMA_BEZI_ID IS NOT NULL)),
+   		   CONSTRAINT TEMA_UN UNIQUE (TEMA_TABL_ID , TEMA_ENTI_ID )
+		   ,CONSTRAINT TEMA_BEZI_FK FOREIGN KEY (TEMA_BEZI_ID) 
+		      REFERENCES BEZIEHUNG (BEZI_ID ) 
+		   ,CONSTRAINT TEMA_ENTI_FK FOREIGN KEY (TEMA_ENTI_ID) 
+		      REFERENCES ENTITAET (ENTI_ID ) 
+		   ,CONSTRAINT TEMA_TABL_FK FOREIGN KEY (TEMA_TABL_ID) 
+		      REFERENCES TABELLE (TABL_ID ) 
+      )    """)
+    dbDDL.dropTable("SCHNITTSTELLE_ATTR");
+    dbDDL.createTable("""
+  CREATE TABLE SCHNITTSTELLE_ATTR 
+      (
+       SCHA_ID integer primary key autoincrement, 
+       SCHA_COLUMN_NAME VARCHAR (60) NOT NULL , 
+       SCHA_FORMAT VARCHAR (200) NULL , 
+       SCHA_FREMDSYSTEM_ID VARCHAR (100) NULL , 
+       SCHA_BESCHR VARCHAR (4000) NULL , 
+       SCHA_TABL_ID integer NOT NULL , 
+       SCHA_DATY_ID integer NOT NULL , 
+       SCHA_UC VARCHAR (30) NOT NULL , 
+       SCHA_DC VARCHAR (30) NOT NULL , 
+       SCHA_UM VARCHAR (30) NULL , 
+       SCHA_DM VARCHAR (30) NULL ,
+   CONSTRAINT SCHA_UN UNIQUE (SCHA_COLUMN_NAME)
+   ,CONSTRAINT SCHA_DATY_FK FOREIGN KEY (SCHA_DATY_ID) 
+      REFERENCES DATATYPES (DATY_ID ) 
+   ,CONSTRAINT SCHA_TABL_FK FOREIGN KEY (SCHA_TABL_ID) 
+      REFERENCES TABELLE (TABL_ID ) 
+      )    """)
+    dbDDL.dropTable("TRANSF_USAGE");
+    dbDDL.createTable("""
+  CREATE TABLE TRANSF_USAGE 
+      (
+       TFUS_ID integer primary key autoincrement , 
+       TFUS_ATTF_ID integer NOT NULL , 
+       TFUS_ATTR_ID integer NULL , 
+       TFUS_SCHA_ID integer NULL , 
+       TFUS_UC VARCHAR (30) NOT NULL , 
+       TFUS_DC VARCHAR (30) NOT NULL , 
+       TFUS_UM VARCHAR (30) NULL , 
+       TFUS_DM VARCHAR (30) NULL ,
+       CONSTRAINT FKArc_7 CHECK ( 
+          (  (TFUS_SCHA_ID IS NOT NULL) AND   (TFUS_ATTR_ID IS NULL) ) OR 
+          (  (TFUS_ATTR_ID IS NOT NULL) AND   (TFUS_SCHA_ID IS NULL) )  ) ,
+       CONSTRAINT TFUS__UN UNIQUE  (TFUS_ATTF_ID , TFUS_ATTR_ID , TFUS_SCHA_ID )
+	   ,CONSTRAINT TFUS_ATTF_FK FOREIGN KEY (TFUS_ATTF_ID) 
+	      REFERENCES ATTR_TRANSF (ATTF_ID ) 
+	   ,CONSTRAINT TFUS_ATTR_FK FOREIGN KEY (TFUS_ATTR_ID) 
+	      REFERENCES ATTRIBUTES (ATTR_ID ) 
+	      ,CONSTRAINT TFUS_SCHA_FK FOREIGN KEY (TFUS_SCHA_ID) 
+	         REFERENCES SCHNITTSTELLE_ATTR (SCHA_ID ) 
+      )
+    """)
+    dbDDL.dropTable("ATTR_TRANSF");
+    dbDDL.createTable("""
+ CREATE TABLE ATTR_TRANSF 
+      (
+       ATTF_ID integer primary key autoincrement,
+       ATTF_RICHTUNG VARCHAR (7) NOT NULL CHECK ( ATTF_RICHTUNG IN ('INBOUND', 'OUTBOUND') ) , 
+       ATTF_TRANSF_FORMEL VARCHAR (4000) NULL , 
+       ATTF_AUSLOESEART VARCHAR (10) NULL CHECK ( ATTF_AUSLOESEART IN ('MANUELL', 'PERIODE', 'ZPKT') ) , 
+       ATTF_AUSLOESEPERIOD integer NULL , 
+       ATTF_SCHA_ID integer NULL , 
+       ATTF_ATTR_ID integer NULL , 
+       ATTF_UC VARCHAR (30)  , 
+       ATTF_DC VARCHAR (30)  , 
+       ATTF_UM VARCHAR (30) NULL , 
+       ATTF_DM VARCHAR (30)  NULL , 
+       CONSTRAINT ATTF_CHK CHECK ((ATTF_SCHA_ID IS NULL AND ATTF_ATTR_ID IS NOT NULL AND ATTF_RICHTUNG = 'INBOUND')
+   						   OR (ATTF_SCHA_ID IS NOT NULL AND ATTF_ATTR_ID IS NULL AND ATTF_RICHTUNG = 'OUTBOUND'))
+		,CONSTRAINT ATTR_UN UNIQUE (ATTF_RICHTUNG , ATTF_SCHA_ID , ATTF_ATTR_ID )
+ 	   ,CONSTRAINT ATTF_ATTR_FK FOREIGN KEY (ATTF_ATTR_ID) 
+ 	      REFERENCES ATTRIBUTES (ATTR_ID ) 
+ 	      ON DELETE CASCADE 
+ 	   ,CONSTRAINT ATTF_SCHA_FK FOREIGN KEY (ATTF_SCHA_ID) 
+ 	      REFERENCES SCHNITTSTELLE_ATTR (SCHA_ID ) 
+ 	      ON DELETE CASCADE 
+ 	      )
+ 	          """)
+
 #    dbDDL.dropTable("");
 #    dbDDL.createTable("""""")
 
