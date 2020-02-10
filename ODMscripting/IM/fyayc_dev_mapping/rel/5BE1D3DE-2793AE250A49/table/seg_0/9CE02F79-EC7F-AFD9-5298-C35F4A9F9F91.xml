@@ -4,6 +4,13 @@
 <createdTime>2019-11-09 16:58:14 UTC</createdTime>
 <comment><![CDATA[Subentität, die mit einer 1:1 Verbindung verknüpft ist.]]></comment>
 <generatorID>CC9B096B-35D2-4947-4D31-467484FF202F</generatorID>
+<notes><![CDATA[[EN_ENTI_COMMENT[
+*DE* Subentität, die mit einer 1:1 Verbindung verknüpft ist.
+]EN_ENTI_COMMENT]
+[DE_ENTI_COMMENT[
+Subentität, die mit einer 1:1 Verbindung verknüpft ist.
+]DE_ENTI_COMMENT]
+]]></notes>
 <ownerDesignName>fyayc_dev_mapping</ownerDesignName>
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
@@ -30,12 +37,9 @@
 <use>1</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
 <dataTypePrecision>10</dataTypePrecision>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
-<associations>
-<colAssociation fkAssociation="52472FBC-05FE-BE98-06D2-3423FEAE9BD5" referredColumn="F7713253-1CD5-486A-3B78-ED3E75B9DDA6"/>
-</associations>
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
@@ -56,17 +60,6 @@
 <indexState>Unique Plain Index</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <relationGeneratorID>23C50890-B7F3-4693-D8F9-572546137BFA</relationGeneratorID>
-<indexColumnUsage>
-<colUsage columnID="500180FB-2FE4-966D-D898-C82F18FCC58A"/>
-</indexColumnUsage>
-</ind_PK_UK>
-<ind_PK_UK id="8F6C6526-9774-C7BF-8973-1B7F78AE29C7" name="Subentit_1-1_Super_Entiät_FK">
-<createdBy>stb</createdBy>
-<createdTime>2019-11-09 16:58:15 UTC</createdTime>
-<generatorID>23C50890-B7F3-4693-D8F9-572546137BFA</generatorID>
-<ownerDesignName>fyayc_dev_mapping</ownerDesignName>
-<indexState>Foreign Key</indexState>
-<isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
 <colUsage columnID="500180FB-2FE4-966D-D898-C82F18FCC58A"/>
 </indexColumnUsage>

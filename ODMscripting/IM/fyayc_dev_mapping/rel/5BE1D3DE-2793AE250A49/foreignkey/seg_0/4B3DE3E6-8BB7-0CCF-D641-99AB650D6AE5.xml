@@ -1,16 +1,15 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="6F31B809-2012-0536-6D14-24D80F3803EC" containerWithKeyObject="12764E98-5921-EC20-A711-4F882E8921C7" localFKIndex="44B7CFEA-28DF-5089-E705-DFB5BA63527D" name="Super_Entiät_Subentit_1-1_FK">
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="4B3DE3E6-8BB7-0CCF-D641-99AB650D6AE5" containerWithKeyObject="79526421-4C78-8F38-AF65-05D62EEAF41F" localFKIndex="C753850B-8134-1810-11EE-B7D0610EBE5B" name="Relation_9_Subentit_1-1_FK">
 <createdBy>stb</createdBy>
-<createdTime>2019-11-09 16:58:15 UTC</createdTime>
-<generatorID>23C50890-B7F3-4693-D8F9-572546137BFA</generatorID>
+<createdTime>2020-02-10 06:16:35 UTC</createdTime>
+<generatorID>D8E7133F-8452-9AEB-AAB3-A37FA366495C</generatorID>
 <ownerDesignName>fyayc_dev_mapping</ownerDesignName>
 <referredTableLongName>Subentit_1-1</referredTableLongName>
-<arc>5AD28A4C-C561-AD96-75D7-1DF167B7FFF6</arc>
-<deleteRule>NO ACTION</deleteRule>
+<deleteRule>RESTRICT</deleteRule>
 <referredTableID>9CE02F79-EC7F-AFD9-5298-C35F4A9F9F91</referredTableID>
 <keyObject>A958E61D-A170-A217-26DF-5296D553C07E</keyObject>
 <referredKeyID>A958E61D-A170-A217-26DF-5296D553C07E</referredKeyID>
-<mandatory>false</mandatory>
+<mandatory>true</mandatory>
 <refColNames>Subentit_1-1_ID</refColNames>
 <transferable>true</transferable>
 <rely>false</rely>

@@ -1,23 +1,125 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <dr_custom_scripts>
-	<scr id="33D532DB-8720-433C-E976-B86B038F9DF9" name="initTranslation" object="logical" engine="Oracle Nashorn" type="" var="model" library="translation" method="initTranslation" purpose="transformation" >
+	<scr id="AA46D06F-D817-50B5-E547-0EEDE7B0F035" name="Before Create" object="null" engine="Oracle Nashorn" type="" var="model" library="DDLGeneration" method="" purpose="ddl_transformation" >
 		<script>
-			<![CDATA[//scripts to handle translation of model
-	var gLogNote = "LOG";
-	var gCurrentLang = "DE";
-	var gLanguages = "DE,EN";
-	var gTranslInforegexp =/TRANSLATION\{[^}]*\}/;
-	var logInitialized = false;
-	var NOTESSTARTTAG = '[<tag>[\n';
-	var NOTESENDTAG = '\n]<tag>]';
-	var PLAINMESSAGE = 1;
+			<![CDATA[function json(table) {
+ddl=  '"definitions": {'
++'      "id": {'
++'        "$comment": "primary key",'
++'        "type": "integer",'
++'        "minimum": 1,'
++'        "maximum": 1.5474250491067253e+26'
++'      },'
++'      "nickname": {'
++'        "type": "string",'
++'        "maxLength": 255'
++'      },'
++'      "deleted_at": {'
++'        "type": "string"'
++'      },'
++'      "created_at": {'
++'        "type": "string"'
++'      },'
++'      "updated_at": {'
++'        "type": "string"'
++'      }'
++'    },'
++'    "properties": {'
++'      "id": {'
++'        "$ref": "#/definitions/id"'
++'      },'
++'      "nickname": {'
++'        "$ref": "#/definitions/nickname"'
++'      },'
++'      "deleted_at": {'
++'        "$ref": "#/definitions/deleted_at"'
++'      },'
++'      "created_at": {'
++'        "$ref": "#/definitions/created_at"'
++'      },'
++'      "updated_at": {'
++'        "$ref": "#/definitions/updated_at"'
++'      }'
++'    }'
++'  }'
++']'
+ddlStatementsList.add(new java.lang.String(ddl));  
+    }]]>
+		</script>
+	</scr>
+	<scr id="FC4A6961-6F10-6D97-0954-DC164E25A630" name="Instead Of Create" object="null" engine="Oracle Nashorn" type="" var="model" library="DDLGeneration" method="json" purpose="ddl_transformation" >
+		<script>
+			<![CDATA[function json(table) {
+ddl=  '"definitions": {'
++'      "id": {'
++'        "$comment": "primary key",'
++'        "type": "integer",'
++'        "minimum": 1,'
++'        "maximum": 1.5474250491067253e+26'
++'      },'
++'      "nickname": {'
++'        "type": "string",'
++'        "maxLength": 255'
++'      },'
++'      "deleted_at": {'
++'        "type": "string"'
++'      },'
++'      "created_at": {'
++'        "type": "string"'
++'      },'
++'      "updated_at": {'
++'        "type": "string"'
++'      }'
++'    },'
++'    "properties": {'
++'      "id": {'
++'        "$ref": "#/definitions/id"'
++'      },'
++'      "nickname": {'
++'        "$ref": "#/definitions/nickname"'
++'      },'
++'      "deleted_at": {'
++'        "$ref": "#/definitions/deleted_at"'
++'      },'
++'      "created_at": {'
++'        "$ref": "#/definitions/created_at"'
++'      },'
++'      "updated_at": {'
++'        "$ref": "#/definitions/updated_at"'
++'      }'
++'    }'
++'  }'
++']'
+ddlStatementsList.add(new java.lang.String(ddl));  
+    }]]>
+		</script>
+	</scr>
+	<scr id="E0FCFBB3-43A6-C4BA-68C3-9C4BA9F7D343" name="After Create" object="null" engine="Oracle Nashorn" type="" var="model" library="" method="" purpose="ddl_transformation" >
+		<script>
+			<![CDATA[]]>
+		</script>
+	</scr>
+	<scr id="38754F1E-CEB0-24A5-561C-5E8239B34EB4" name="End Of Script" object="null" engine="Oracle Nashorn" type="" var="model" library="" method="" purpose="ddl_transformation" >
+		<script>
+			<![CDATA[]]>
+		</script>
+	</scr>
+	<scr id="33D532DB-8720-433C-E976-B86B038F9DF9" name="initTranslation" object="logical" engine="Oracle Nashorn" type="" var="model" library="attrmapping" method="printXMapping" purpose="transformation" >
+		<script>
+			<![CDATA[var PLAINMESSAGE = 1;
 	var ERRORMESSAGE = 0;
 	var WARNINGMESSAGE = 2;
 	var QUESTIONMESSAGE = 3;
-	var gLangArray = []; 
-	var gCurVersion = '';
-	var CODEVERSION = '1.1';
-	
+	var tabanz = 0
+	var colanz = 0
+	var colmapanz = 0
+	var tabmapanz = 0
+	var lasttabmapping = ""
+	var lineanz = 0
+	var logicalModel
+	var relModel
+	var writtenCols={}
+	var exportDirec="/Users/stb/Documents/DataModeler/Import"
 
 	function fullmessage(msg,type) {
 		Java.type("javax.swing.JOptionPane").showMessageDialog(null
@@ -30,351 +132,377 @@
 	function message(msg) {
 		fullmessage(msg,PLAINMESSAGE);
 		}
+function trimapo(s){
+	return s.replace(/^"|"$/g, '');
+}
 
-	function initLog(){
-		if (! logInitialized){
-			var lNote = model.getNoteSet().getByName(gLogNote);
-	     	if (lNote == null) {
-	    	    		lNote = model.createNote()
-		    		lNote.setName(gLogNote);
-	     	}
-	     	lNote.setComment("");
-	     	logInitialized = true;
-		}
-	}
-	function log(plog){
-		initLog();
-		var lNote = model.getNoteSet().getByName(gLogNote);
-	     lNote.setComment(lNote.getComment()+"\n"+plog);
-	}
-
-	function getTranslInfo(){
-		var lDesignComment = model.design.getComment();
-	     lmatchTransl= lDesignComment.match(gTranslInforegexp);
-	     return lmatchTransl;    
-	}
-
-	function setTranslInfo(curLang,langs,version) {
-		model.design.setComment(
-			"TRANSLATION{\ncurrentLang="+curLang
-			+"\nlanguages="+langs
-			+"\nlastSync="
-			+"\nversion="+version+"\n}\n"
-			+ model.design.getComment());
-	}
-	function updTranslInfo(curLang,langs,version,datetime) {
-		curComment = model.design.getComment();
-		model.design.setComment(
-			curComment.replace(gTranslInforegexp,
-			"TRANSLATION{\ncurrentLang="+curLang
-			+"\nlanguages="+langs
-			+"\nlastSync="+datetime
-			+"\nversion="+version+"\n}"
-			));
-	}
-	
-	function buildRegExpTag(innertag,tag){
-		return tag.replace('<tag>',innertag).replace(/\[/g,'\\[').replace(/\]/g,'\\]')
-	}
-
-	function textFromNote(tag,obj) {
-    	note = obj.getNotes()
-    	restart =  buildRegExpTag(tag, NOTESSTARTTAG)
-    	reend =  buildRegExpTag (tag, NOTESENDTAG)+"[\n]*"
-    	re = new RegExp(restart + '([^]*)' + reend)
-    	ma = note.match(re)
-    	retval = ''
-	   	if (ma != null) {
-			//message("|"+reend+"|\n"+"|"+ma[0]+"|")
-	   		retval = ma[1]
-		}
-		return retval
-	}
-
-	function textToNote(tag,obj,value) {
-    	note = obj.getNotes()
-    	restart =  buildRegExpTag(tag, NOTESSTARTTAG)
-    	reend =  buildRegExpTag (tag, NOTESENDTAG)+"[\n]*"
-    	re = new RegExp(restart + '([^]*)' + reend)
-    	ma = note.match(re)
-		newentry = NOTESSTARTTAG.replace('<tag>',tag) 
-			+ value 
-			+ NOTESENDTAG.replace('<tag>',tag)
-			+'\n'
-	   	if (ma == null) {
-	   		note = note + newentry
-		} else {
-			//message("|"+newentry+"|\n"+"|"+ma[0]+"|")
-			note = note.replace(ma[0] , newentry)
-		}
-
-		obj.setNotes(note)
-	}
-
-	function init(istUpgrade){
-		lmatchTransl = getTranslInfo();
-		if (lmatchTransl == null) {
-			throw new Error("\n***TRANSLATION not installed***\n");
-		}
-		ltext= String(lmatchTransl).match(/currentLang=[A-Z]{2}/);
-		lparts = String(ltext).split("=");
-		//log("curLang="+lparts[1]);
-	     gCurrentLang = lparts[1];
-
-		ltext= String(lmatchTransl).match(/languages=[A-Z,]*/);
-		lparts = String(ltext).split("=");
-	     //log("languages="+lparts[1]);
-	     gLanguages = lparts[1]
-		gLangArray = gLanguages.split(',');
-		
-		ltext= String(lmatchTransl).match(/version=[0-9\.]*/);
-		lparts = String(ltext).split("=");
-		gCurVersion = lparts[1]
-		if (gCurVersion != CODEVERSION && !istUpgrade) {
-			msg = "\n***TRANSLATION version mismatch: "
-				+"expected " + CODEVERSION + " found "+gCurVersion
-				+"\nPlease upgrade.***\n"
-			throw new Error(msg);
-		}
-	}
-
-	function doLangValue(propName,obj,value,isNote,notNull){
-		lpropName = gCurrentLang + propName;
-	     oldval = (isNote) ? textFromNote(lpropName,obj) : obj.getProperty(lpropName);
-		for (il=0;il<gLangArray.length;il++) {
-			// nur die fremden Sprachen ersetzen
-			flang = gLangArray[il]
-			if (flang != gCurrentLang) {
-				// if value contains *xx*, don't add another one
-				if (value.match(/^\*[A-Z]{2}\* /)) {
-						lprefix =  ''
-					} else {
-						lprefix =  '*'+gCurrentLang+'* '			
-					}
-				//markiere oder fülle die fremde Properties
-				fpropName = flang + propName;
-				fprop = (isNote) ? textFromNote(fpropName,obj) : obj.getProperty(fpropName);
-				// Falls die Fremdsprache noch automtaisch übersetzt ist ( *XX* vorneweg hat), überschreibe sie
-				if (fprop.match(/^\*[A-Z]{2}\* /)) {
-				   if (isNote) textToNote(fpropName,obj,lprefix+value);
-					  else obj.setProperty(fpropName,lprefix+value);
-				} else if (fprop.startsWith('*')) {
-					// ** und * sind in Bearbeitung nichts ersetzen
-				} else if (fprop == "" && value == "" && ! notNull) {
-					// das Ziel ist leer, der neue Wert auch und es ist kein Mussfeld. lass das Ziel leer
-				} else if (fprop == "") {
-					// das Ziel ist leer aber aus einem Grund muss ich es überschreiben (siehe vorheriges IF)
-				   if (isNote) textToNote(fpropName,obj,lprefix+value);
-					  else obj.setProperty(fpropName,lprefix+value);
-			    } else {
-					// das Ziel ist gefüllt, nicht in Bearbeitung und nicht automatisch übersetzt.
-					// d.h. es hat einen gültigen Wert. Markiere es, falls die Quelle wirklich geändert hat
-					//**if (oldval == 'Entität 1') message("vor IF "+oldval)
-					if ( ! (value == oldval 
-						  || oldval.match(/^\*[A-Z]{2}\* /)
-						  || oldval.startsWith("**")
-						  || oldval.startsWith("*")) ) {
-						  //**if (oldval == 'Entität 1') message("in IF "+oldval)
-						  // die Quelle ist kein Feld, das in Bearbeitung oder autmoatisch übersetzt ist
-						  if (isNote) textToNote(fpropName,obj,"*"+fprop);
-					   		else obj.setProperty(fpropName,"*"+fprop)
-					}
-				}
-			}
-		}
-		// die Werte der CurrentLang kommen aus dem Objekt, überschreibe immer
-		if (isNote) textToNote(lpropName,obj,value);
-		   else obj.setProperty(lpropName, value);
-	}
-
-	function doProperty(propName,obj,value,notNull){
-		doLangValue(propName,obj,value,false,notNull);
-	}
-
-	function doNote(tag,obj,value) {
-		doLangValue(tag,obj,value,true,false);
-	}
-
-	function fuellUDP(){
-		entities = model.getEntitySet().toArray();
-		for (ie=0;ie<entities.length;ie++) { //
-			ent = entities[ie];
-			doProperty("_ENTI_NAME",ent,ent.getName(),true)
-			doNote("_ENTI_COMMENT",ent,ent.getComment())
-			doProperty("_ENTI_SYNONYM",ent,ent.getSynonym())
-
-			attrs = ent.getAttributes().toArray();
-			//log("Attrs="+attrs.length)
-			for (ia=0;ia<attrs.length;ia++) { //
-				attr = attrs[ia];
-				for (il=0;il<gLangArray.length;il++) {
-					doProperty("_ATTR_NAME",attr,attr.getName(),true);
-					doNote("_ATTR_COMMENT",attr,attr.getComment());			
-				}
-			}
-		ent.setDirty(true);
-		}
-		relationships = model.getRelationSet().toArray();
-		for (ir=0;ir<relationships.length;ir++) { //
-			rel = relationships[ir];
-			sourcename = rel.getNameOnSource()
-			targetname = rel.getNameOnTarget()
-			//if (i > 0) throw new Error ("\n"+gLangArray[i]+"_RELA_TEXT_FROM"+"\n"+gLangArray.length);
-			doProperty("_RELA_TEXT_FROM",rel,sourcename)
-			doProperty("_RELA_TEXT_TO",rel,targetname)	
-			rel.setDirty(true);
-		}
-	}
-
-	function setProperties(lang){
-		entities = model.getEntitySet().toArray();
-		for (ie=0;ie<entities.length;ie++) { //
-			ent = entities[ie];
-			ent.setName(ent.getProperty(lang+"_ENTI_NAME"));
-			ent.setComment(textFromNote(lang+"_ENTI_COMMENT",ent))
-			ent.setSynonym(ent.getProperty(lang+"_ENTI_SYNONYM"));
-
-			attrs = ent.getAttributes().toArray();
-			//log("Attrs="+attrs.length)
-			for (ia=0;ia<attrs.length;ia++) { //
-				attr = attrs[ia];
-				//log(attr.getName(),attr.getComment());
-				attr.setName(attr.getProperty(lang+"_ATTR_NAME"));
-				attr.setComment(textFromNote(lang+"_ATTR_COMMENT",attr))
-			}		
-			ent.setDirty(true);
-		}
-		relationships = model.getRelationSet().toArray();
-		for (ir=0;ir<relationships.length;ir++) { 
-			rel = relationships[ir];
-			rel.setNameOnSource(rel.getProperty(lang+"_RELA_TEXT_FROM"));
-			rel.setNameOnTarget(rel.getProperty(lang+"_RELA_TEXT_TO"));
-			rel.setDirty(true);
-		}
-	}
-
-	function curDateStr(){
+function curDateStr(){
 		var currentdate = new Date();
 		return  currentdate.getDate() 
 		+ "/" + (currentdate.getMonth()+1) 
 		+ "/" + currentdate.getFullYear() + "  " 
 		+ currentdate.getHours() + ":" 
 		+ currentdate.getMinutes() + ":" + currentdate.getSeconds();
+}
+
+function do1line(rmodelname,values){
+	//message('do1line |'+rmodelname+'| '+values);
+	var rmodel = model.getDesign().getRelationalDesigns().getByName(rmodelname);
+	if (rmodel == null){
+		throw new Error("\nRelational model '"+rmodelname+"' does not exist.\n");
+	} else {modelMapping = rmodel.getRMExtendedMap().getContainerMappings().toArray();
 	}
-
-	function changeLang(pfromLang,ptoLang){
-		//log("3:"+gLanguages);
-	//	log("change from " + pfromLang + " to " + ptoLang);
-		fuellUDP();
-		setProperties(ptoLang);
-		gCurrentLang = ptoLang;
-		updTranslInfo(gCurrentLang, gLanguages
-					,gCurVersion,curDateStr());	
-		model.design.setDirty(true);
+	entiName = values[0];
+	attrName = values[1];
+	tabName = values[2];
+	colName = values[3];
+	typeName = values[4];
+	//message(entiName+' | '+attrName+' | '+tabName+' | '+colName+' | '+typeName)
+	entity = logicalModel.getEntitySet().getByName(entiName);
+	if (entity != null) {
+		attribute=entity.getElementByName(attrName);
+		//if (attribute = null){
+			//entity.createAttribute(attrName)
+			//attribute = entity.getElementByName(attrName);
+			//attribute.setComment("Created on "+curDateStr() +" during import from "+imppath)		
+		//}
 	}
-
-	function initTranslation() {
-		lmatchTransl= getTranslInfo()
-		if (lmatchTransl == null) {
-			setTranslInfo(gCurrentLang
-			,gLanguages,CODEVERSION);		
-		} else {
-			lversion = String(lmatchTransl).match(/version=[0-9\.]*/);
-			throw new Error("\n***TRANSLATION ("+lversion+") already installed***\n");
-		}
-		//hier gibt es einen Eintrag für die Translation
-		init();
-
-		fuellUDP();
-
-		updTranslInfo(gCurrentLang, gLanguages
-					 ,gCurVersion,curDateStr());
-		model.design.setDirty(true);
-		message ("TRANLSATION installed current-language="+gCurrentLang
-		         + " languages="+gLanguages+" version="+gCurVersion
-			        ,PLAINMESSAGE);
+	table = rmodel.getTableSet().getByName(tabName);	
+	// Neue Tabellen werden erzeugt
+	if ((table == null) && (tabName != "")) {
+		rmodel.createTable(tabName);
+		table = rmodel.getTableSet().getByName(tabName);	
+		table.setComment("Created on "+curDateStr() +" during import from "+imppath)
+		tabanz++
 	}
-	
-	function changeLanguage() {
-		init();
-		options = [];
-		lcurlang = gCurrentLang
-		for (il=0;il<gLangArray.length;il++) {
-			if (gLangArray[il] != lcurlang) {
-				options.push(gCurrentLang + '->' + gLangArray[il])
+	if (table != null){
+		column=table.getElementByName(colName);
+	} else  {column = null
+	}
+	// neue Columns werden erzeugt
+	if ((column == null) && (colName != "")){
+		//message('neue Column')
+		table.createColumn(colName)
+		column=table.getElementByName(colName);
+		column.setComment("Created on "+curDateStr() +" during import from "+imppath)		
+		colanz++
+	}	
+	if ((entity != null) && (table != null)){
+		//muss das exakte Mapping Table-Entity finden, da es mehrere haben kann
+		//maps = getTabMap(modelMapping,tab.getObjectID())
+		//if (maps.length==0) {
+		     mapped = entity.getMappingFor(table)
+			if (mapped == null) {
+				rmodel.getRMExtendedMap().createMapping(entity,table);
+				tabmapanz++
 			}
-		}
-		if (options.length == 1) {
-			antwort = options[0]
-		} else {
-			antwort = Java.type("javax.swing.JOptionPane").showInputDialog(null, 
-	        	"Choose language change",
-				"Change language",
-				QUESTIONMESSAGE,
-				null, 
-				options, 
-				options[0]);
-		}
-        if (antwort != null){
-			toLang = antwort.substr(-2)
-			//Java.type("javax.swing.JOptionPane").showMessageDialog(null, antwort+'|'+toLang);
-			changeLang(gCurrentLang,toLang);
-			message ("Model language changed from "+lcurlang+" to "+toLang
-						+".\n Please hide and re-display labels."
-			        ,PLAINMESSAGE);
-		}
+		//}
+     	if ((attribute != null) && (column != null)){
+     		mapped = column.getMappingFor(entity)
+     		if (mapped == null) {
+     			rmodel.getRMExtendedMap().createMapping(attribute,column);		
+				colmapanz++
+     		}
+     	}
 	}
+}
+function importFile(fpath){
+	var Paths = Java.type('java.nio.file.Paths');
+	var Files = Java.type('java.nio.file.Files');
+	var lines = Files.readAllLines(Paths.get(fpath)
+	             , Java.type('java.nio.charset.StandardCharsets').UTF_8);
+	for (lnoif=0;lnoif<lines.length;lnoif++)
+ 	{	line=lines[lnoif]
+ 		values= line.split(";");
+ 		for (iif=0;iif<values.length;iif++)
+ 			{values[iif]=trimapo(values[iif]);
+ 			}
+ 		if (lnoif==0){
+ 			relModel=values[0];
+ 			// falls 1. Zeichen von Excel stammt, schneide es ab
+ 			 if (relModel.match(/^[^A-Za-z]/)) relModel = relModel.substring(1)
+ 			//message(lnoif+': '+"RelModel= |"+relModel+"|");
+ 		} else 
+ 		if (lnoif==1){
+ 			// skip headers
+ 			//message(lnoif+': '+"headers= "+values);
+ 		} else {
+	 		//message(lnoif+': '+values);
+ 			do1line(relModel,values);
+ 			lineanz++
+ 		} 		
+ 	};
+}
+function importMapping() {
+	var impdirec="~/Documents/DataModeler/Import";
+	//Create a file chooser
+	var Filebrowse = Java.type("javax.swing.JFileChooser");
+	f = new Filebrowse('/Users/stb/Documents/DataModeler/Import');
+	returnVal= f.showOpenDialog(null);
+	if (returnVal == Filebrowse.APPROVE_OPTION) {
+		imppath= f.getSelectedFile();
+		//message(imppath);
+	}
+	tabanz = 0
+	colanz = 0
+	colmapanz = 0
+	lineanz = 0
+	logicalModel = model.getDesign().getLogicalDesign();
+	importFile(imppath);
+	message("Parsed "+lineanz+" lines from file "+imppath+".\n"
+			+"Created "+tabanz+" tables, "+colanz+" columns,\n"
+			+ "Mapped "+tabmapanz+" tables to entities and " +colmapanz+" columns to attributes") // +tabmapanz+" table- and " 
 	
-	function upgrade09_to_10() {
-		// move comments from properties to comments
-		entities = model.getEntitySet().toArray();
-		for (ie=0;ie<entities.length;ie++) { 
-			ent = entities[ie];
-			for (il=0;il<gLangArray.length;il++) {
-				// nur die fremden Sprachen ersetzen
-				lang = gLangArray[il];
-				textToNote(lang+"_ENTI_COMMENT",ent,ent.getProperty(lang+"_ENTI_COMMENT"));
+}
+function chooseModel(rmodel){
+	var rmodels = model.getDesign().getRelationalDesigns().toArray();
+	if (rmodels.length == 0) throw new Error("\n***MAPPING: no relational models available ***\n");
+	if (rmodels.length == 1) {
+		antwort = rmodels[0]
+	} else {
+		if (rmodel == null) rmodel = rmodels[0]
+		antwort = Java.type("javax.swing.JOptionPane").showInputDialog(null, 
+        	"Choose relational model",
+			"choose model",
+			QUESTIONMESSAGE,
+			null, 
+			rmodels,rmodel);
+	}
+	return antwort
+}
+function nvl(x){return x==null ? "" : x }
 
-				attrs = ent.getAttributes().toArray();
-				for (ia=0;ia<attrs.length;ia++) { //
-					attr = attrs[ia];
-					textToNote(lang+"_ATTR_COMMENT",attr,attr.getProperty(lang+"_ATTR_COMMENT"));
+function getColMap(colID,cmap){
+	colsmap=[]
+	if (cmap == null) return colsmap
+	for (icolmap=0;icolmap<cmap.length;icolmap++){
+		//message(colID+'|'+cmap[icolmap].getRelID())
+		if (colID == cmap[icolmap].getRelID()) colsmap.push(cmap[icolmap])
+	}
+	return colsmap
+}
+function writeMapLine(fw,tab,enti,col,attr){
+	//message('write'+tab+enti+col+attr)
+	fw.write(nvl(enti)+';'+nvl(attr)+';'+tab+';'+nvl(col)+';\n')
+}
+function printColsMap(fw,tab,lastOne,enti,cmap){
+	cols=tab.getElementsCollection().toArray()
+	//message(tab+'|'+enti+'|'+cols.length+'|'+cmap.length)
+	if (enti!=null) writeMapLine(fw,tab,enti,null,null)
+	//cols.sort()
+	for (icpcm=0;icpcm<cols.length;icpcm++){
+		col = cols[icpcm]
+		colkey = tab+'.'+col
+		colmaps=getColMap(col.getObjectID(),cmap)
+		if (colmaps.length==0) {
+			//nicht gemappte Columns werden nur 1x geschrieben.
+			if (lastOne && !(colkey in writtenCols)) writeMapLine(fw,tab,null,col,null)
+		}else{
+			if (enti != null) {
+				for (impcm=0;impcm<colmaps.length;impcm++){
+					attrName=enti.getElementByID(colmaps[impcm].getLogID())
+					//message('vor dem Schreiben='+colmaps[impcm].getLogID()+'|'+col+'|'+attrName)
+					writeMapLine(fw,tab,enti,col, attrName)
+					writtenCols[colkey]=true
 				}
 			}
-			ent.setDirty(true);
 		}
 	}
-	function upgrade10_to_11() {
-		// nothing to update so far
+}
+function getTabMap(modelMapping,tabID){
+	maps=[]
+	for (imtm=0;imtm<modelMapping.length;imtm++){
+		if (tabID == modelMapping[imtm].getRelID()) maps.push(modelMapping[imtm])
 	}
+	return maps
+}
+function printCols(modelMapping,fw,tab){
+	maps = getTabMap(modelMapping,tab.getObjectID())
+	if (maps.length==0) {
+		printColsMap(fw,tab,null,null)
+	} else {
+		for (impc=0;impc<maps.length;impc++){
+			enti=logicalModel.getEntitySet().getObjectByID(maps[impc].getLogID())
+			//message(enti+':'+maps[im].getLogType()+':'+maps[impc].getRelType())
+			cmap=maps[impc].getContainedMappings().toArray()
+			printColsMap(fw,tab,(impc==maps.length-1),enti,cmap)
+		}
+	}
+}
 
-	function upgradeTranslation () {
-		init(true);				
-		//1.0 has no upgrades
-		if (gCurVersion  == CODEVERSION) {
-			message("TRANSLATE: latest version ("+gCurVersion+") is installed")
-		} else {
-			upgraded = false
-			if (gCurVersion == "0.9") {
-				upgrade09_to_10();
-				gCurVersion = "1.0";
-				upgraded = true
+function printCVS (modelMapping,fw){
+	entiType = 0
+	colType = 1
+	tableType = 4
+	attrType = 5
+	fw.write(relModel+';;;;\n')
+	fw.write('entityName;attrName;tableName;columnName;dataType\n')
+	tables = relModel.getTableSet().toArray();
+	for (itpc=0;itpc<tables.length;itpc++){
+		printCols(modelMapping,fw,tables[itpc])
+	}
+}
+function chooseFile(direc,fileName){
+	//Create a file chooser
+	var Filebrowse = Java.type("javax.swing.JFileChooser");
+	var File = Java.type("java.io.File");
+	f = new Filebrowse(direc);
+	f.setSelectedFile(new File(fileName));
+	returnVal= f.showSaveDialog(null);
+	if (returnVal == Filebrowse.APPROVE_OPTION) {
+		return  f.getSelectedFile();
+	} else {
+		return null
+	}
+}
+function createFile(fileName){
+	//Create a file chooser
+	var FileWriter=Java.type('java.io.FileWriter')
+	fw = new FileWriter(fileName);    
+	return fw
+}
+
+function headers(rmodels,nurX){
+	retval = ''
+	for (ih=0;ih<rmodels.length;ih++){
+		retval += ';'+rmodels[ih]
+		// extra header for table | attribute entries
+		if (! nurX) { retval += ';'}
+	}
+	return retval
+}
+
+function getColName(rmod,tabID,colID){
+	tab=rmod.getTableSet().getObjectByID(tabID)
+	col = tab.getElementByID(colID)
+	return tab+'.'+col
+}
+	
+function	getMappings(rmodels){
+	lmappings = {}
+	if (rmodels == null) return lmappings
+	for (imod=0;imod<rmodels.length;imod++){
+		rmod=rmodels[imod]
+		lmappings[rmod.getName()]={}
+		//message(lmappings[rmod.getName()]['123:123'])
+		modelMap= rmod.getRMExtendedMap().getContainerMappings().toArray();
+		//message("modelMapAnz="+modelMap.length)
+		if (modelMap != null) {
+			for (imgm=0;imgm<modelMap.length;imgm++){
+				entiID = modelMap[imgm].getLogID()
+				// Attributmappings
+				cmap=modelMap[imgm].getContainedMappings().toArray()
+				if (cmap != null) {
+					for (icgm=0;icgm<cmap.length;icgm++){
+						//message("modelmap RELID="+cmap[imgm].getRelID()+"\nName="+cmap[icgm])};
+						//rmod.getElementByID(modelMap[imgm].getRelID()))
+						attrID = cmap[icgm].getLogID()
+						key = entiID+'.'+attrID
+						lmappings[rmod.getName()][key]=
+						   getColName(rmod,modelMap[imgm].getRelID()
+						            ,cmap[icgm].getRelID()) 
+					}
+				}
 			}
-			if (gCurVersion == "1.0") {
-				upgrade10_to_11();
-				gCurVersion = "1.1";
-				upgraded = true
+		}
+	}
+	//message('vorReturn'+lmappings['Relational_1'])
+	return lmappings
+}
+
+function logicalElement(mappings,rmodels,logElem,nurX){	
+	elemID = logElem.getObjectID()
+	//message(enti)
+	if (logElem.getObjectTypeName() == 'Entity'){
+		attrs=logElem.getElementsCollection().toArray()
+	} else {// assume Relationship
+		attrs=logElem.getAttributesCollection().toArray()	
+		if (! logElem.isManyToMany()) {
+			// Relationships 1:1 and m:1 can become columns
+			srcCard = logElem.getSourceCardinalityString()
+			targCard = logElem.getTargetCardinalityString()
+			srcOpt = logElem.isOptionalSource()
+			targOpt = logElem.isOptionalTarget()
+			//message(logElem.getName()+':'+srcCrd+':'+targCard+':'+srcOpt+':'+targOpt)
+			line= '"'+logElem.getName()+'";;'
+			line+='\n'
+			fw.write(line)
+		}
+	}
+	//message(logElem.getName()+'  '+attrs.length)
+	if (attrs != null){
+		for (iattrac=0;iattrac<attrs.length;iattrac++){
+			attr=attrs[iattrac]
+			attrID = attr.getObjectID()
+			key=elemID+'.'+attrID
+
+			line= logElem.getName()+';'+attr
+			for (irmpm=0;irmpm<rmodels.length;irmpm++){
+				mapentry = mappings[rmodels[irmpm].getName()][key]
+				if (mapentry != null){
+					mapentries = mapentry.split(".")
+					tabName = mapentries[0]
+					colName = mapentries[1]
+					//message(logElem.getName()+' *2* '+attrs.length+'   '+mapentry+ '  '+irmpm+'   ')
+					x =  nurX ? 'X': tabName + ';' + colName 
+				} else {x = nurX ? '' : ';'}
+				line += ';'+x
 			}
-			if (upgraded) {
-				updTranslInfo(gCurrentLang, gLanguages
-					 ,CODEVERSION,curDateStr());	
-				message("TRANSLATE: latest version ("+CODEVERSION+") is now installed")
-			} else {
-			error("\nTRANSLATE: unknown version ("+gCurVersion+").\n"
-					+"Please contact support\n");
-			}
-		}			
-	}]]>
+			line+='\n'
+			fw.write(line)
+		}
+	}
+}
+
+function printMatrix(fw,nurX) {
+	logicalModel = model.getDesign().getLogicalDesign();
+	entities= logicalModel.getEntitySet().toArray()
+	relations = logicalModel.getRelationSet().toArray()
+	rmodels = model.getDesign().getRelationalDesigns().toArray();
+	mappings = getMappings(rmodels)	
+	//message("entities="+entities.length+"   Rels="+relations.length)
+	if (entities != null) {
+		fw.write('entity;attr'+headers(rmodels,nurX)+'\n')
+		for (ientiac=0;ientiac<entities.length;ientiac++) {
+			logicalElement(mappings,rmodels,entities[ientiac],nurX)
+		}
+	}
+	if (relations != null) {
+		for (irel=0;irel<relations.length;irel++) {
+			logicalElement(mappings,rmodels,relations[irel],nurX)
+		}
+	}
+	fw.write('created by ODM, '+curDateStr()+'\n')
+}
+
+function print1Mapping (){
+	logicalModel = model.getDesign().getLogicalDesign();
+	relModel = chooseModel(relModel);
+	if (relModel == null) {return;}
+	modelMapping = relModel.getRMExtendedMap().getContainerMappings().toArray();
+
+	fileName=chooseFile(exportDirec,relModel+'.csv')
+     if (fileName == null) return
+     fw = createFile(fileName)
+	printCVS (modelMapping,fw)
+     fw.close();    
+	message("Mapping file "+fileName+" for model "+relModel+" created.");
+}
+
+function printAllMapping (nurX){
+	fileName=chooseFile(exportDirec,'AllMapping'+'.csv')
+     if (fileName == null) return
+     fw = createFile(fileName)
+     printMatrix(fw,nurX)
+     fw.close();    
+	message("Mapping file "+fileName+" created.");
+}
+function printXMapping (){
+     printAllMapping(true)
+}
+function printNameMapping (){
+     printAllMapping(false)
+}]]>
 		</script>
 	</scr>
 	<scr id="250556D5-21DF-2C6B-181B-47754D9FDA23" name="upgradeTranslation" object="logical" engine="Oracle Nashorn" type="" var="model" library="translation" method="upgradeTranslation" purpose="transformation" >
@@ -2204,10 +2332,11 @@ function printNameMapping (){
 	var tabanz = 0
 	var colanz = 0
 	var colmapanz = 0
+	var tabmapanz = 0
+	var lasttabmapping = ""
 	var lineanz = 0
 	var logicalModel
 	var relModel
-	var modelMapping
 	var writtenCols={}
 	var exportDirec="/Users/stb/Documents/DataModeler/Import"
 
@@ -2236,16 +2365,18 @@ function curDateStr(){
 }
 
 function do1line(rmodelname,values){
-	//message('do1line '+rmodelname+' '+values);
+	//message('do1line |'+rmodelname+'| '+values);
 	var rmodel = model.getDesign().getRelationalDesigns().getByName(rmodelname);
 	if (rmodel == null){
 		throw new Error("\nRelational model '"+rmodelname+"' does not exist.\n");
+	} else {modelMapping = rmodel.getRMExtendedMap().getContainerMappings().toArray();
 	}
 	entiName = values[0];
 	attrName = values[1];
 	tabName = values[2];
 	colName = values[3];
 	typeName = values[4];
+	//message(entiName+' | '+attrName+' | '+tabName+' | '+colName+' | '+typeName)
 	entity = logicalModel.getEntitySet().getByName(entiName);
 	if (entity != null) {
 		attribute=entity.getElementByName(attrName);
@@ -2265,19 +2396,32 @@ function do1line(rmodelname,values){
 	}
 	if (table != null){
 		column=table.getElementByName(colName);
+	} else  {column = null
 	}
 	// neue Columns werden erzeugt
 	if ((column == null) && (colName != "")){
+		//message('neue Column')
 		table.createColumn(colName)
 		column=table.getElementByName(colName);
 		column.setComment("Created on "+curDateStr() +" during import from "+imppath)		
 		colanz++
 	}	
 	if ((entity != null) && (table != null)){
-		rmodel.getRMExtendedMap().createMapping(entity,table);
+		//muss das exakte Mapping Table-Entity finden, da es mehrere haben kann
+		//maps = getTabMap(modelMapping,tab.getObjectID())
+		//if (maps.length==0) {
+		     mapped = entity.getMappingFor(table)
+			if (mapped == null) {
+				rmodel.getRMExtendedMap().createMapping(entity,table);
+				tabmapanz++
+			}
+		//}
      	if ((attribute != null) && (column != null)){
-     		rmodel.getRMExtendedMap().createMapping(attribute,column);		
-		colmapanz++
+     		mapped = column.getMappingFor(entity)
+     		if (mapped == null) {
+     			rmodel.getRMExtendedMap().createMapping(attribute,column);		
+				colmapanz++
+     		}
      	}
 	}
 }
@@ -2286,13 +2430,21 @@ function importFile(fpath){
 	var Files = Java.type('java.nio.file.Files');
 	var lines = Files.readAllLines(Paths.get(fpath)
 	             , Java.type('java.nio.charset.StandardCharsets').UTF_8);
-	for (lnoif=1;lnoif<lines.length;lnoif++)
+	for (lnoif=0;lnoif<lines.length;lnoif++)
  	{	line=lines[lnoif]
  		values= line.split(";");
- 		for (iif=0;iif<values.length;iif++){values[i]=trimapo(values[iif]);}
- 		if (lnoif==1){
+ 		for (iif=0;iif<values.length;iif++)
+ 			{values[iif]=trimapo(values[iif]);
+ 			}
+ 		if (lnoif==0){
  			relModel=values[0];
- 			//message("RelModel= "+relModel);
+ 			// falls 1. Zeichen von Excel stammt, schneide es ab
+ 			 if (relModel.match(/^[^A-Za-z]/)) relModel = relModel.substring(1)
+ 			//message(lnoif+': '+"RelModel= |"+relModel+"|");
+ 		} else 
+ 		if (lnoif==1){
+ 			// skip headers
+ 			//message(lnoif+': '+"headers= "+values);
  		} else {
 	 		//message(lnoif+': '+values);
  			do1line(relModel,values);
@@ -2317,7 +2469,8 @@ function importMapping() {
 	logicalModel = model.getDesign().getLogicalDesign();
 	importFile(imppath);
 	message("Parsed "+lineanz+" lines from file "+imppath+".\n"
-			+"Created "+tabanz+" tables, "+colanz+" columns and "+colmapanz+" mappings")
+			+"Created "+tabanz+" tables, "+colanz+" columns,\n"
+			+ "Mapped "+tabmapanz+" tables to entities and " +colmapanz+" columns to attributes") // +tabmapanz+" table- and " 
 	
 }
 function chooseModel(rmodel){
@@ -2349,7 +2502,7 @@ function getColMap(colID,cmap){
 }
 function writeMapLine(fw,tab,enti,col,attr){
 	//message('write'+tab+enti+col+attr)
-	fw.write('"'+nvl(enti)+'";"'+nvl(attr)+'";"'+tab+'";"'+nvl(col)+'";""\n')
+	fw.write(nvl(enti)+';'+nvl(attr)+';'+tab+';'+nvl(col)+';\n')
 }
 function printColsMap(fw,tab,lastOne,enti,cmap){
 	cols=tab.getElementsCollection().toArray()
@@ -2373,15 +2526,15 @@ function printColsMap(fw,tab,lastOne,enti,cmap){
 		}
 	}
 }
-function getTabMap(tabID){
+function getTabMap(modelMapping,tabID){
 	maps=[]
 	for (imtm=0;imtm<modelMapping.length;imtm++){
 		if (tabID == modelMapping[imtm].getRelID()) maps.push(modelMapping[imtm])
 	}
 	return maps
 }
-function printCols(fw,tab){
-	maps = getTabMap(tab.getObjectID())
+function printCols(modelMapping,fw,tab){
+	maps = getTabMap(modelMapping,tab.getObjectID())
 	if (maps.length==0) {
 		printColsMap(fw,tab,null,null)
 	} else {
@@ -2394,16 +2547,16 @@ function printCols(fw,tab){
 	}
 }
 
-function printCVS (fw){
+function printCVS (modelMapping,fw){
 	entiType = 0
 	colType = 1
 	tableType = 4
 	attrType = 5
-	fw.write('"entityName";"attrName";"tableName";"columnName";"dataType"\n')
-	fw.write('"'+relModel+'"\n')
+	fw.write(relModel+';;;;\n')
+	fw.write('entityName;attrName;tableName;columnName;dataType\n')
 	tables = relModel.getTableSet().toArray();
 	for (itpc=0;itpc<tables.length;itpc++){
-		printCols(fw,tables[itpc])
+		printCols(modelMapping,fw,tables[itpc])
 	}
 }
 function chooseFile(direc,fileName){
@@ -2426,10 +2579,12 @@ function createFile(fileName){
 	return fw
 }
 
-function headers(rmodels){
+function headers(rmodels,nurX){
 	retval = ''
 	for (ih=0;ih<rmodels.length;ih++){
-		retval += ';"'+rmodels[ih]+'"'
+		retval += ';'+rmodels[ih]
+		// extra header for table | attribute entries
+		if (! nurX) { retval += ';'}
 	}
 	return retval
 }
@@ -2448,6 +2603,7 @@ function	getMappings(rmodels){
 		lmappings[rmod.getName()]={}
 		//message(lmappings[rmod.getName()]['123:123'])
 		modelMap= rmod.getRMExtendedMap().getContainerMappings().toArray();
+		//message("modelMapAnz="+modelMap.length)
 		if (modelMap != null) {
 			for (imgm=0;imgm<modelMap.length;imgm++){
 				entiID = modelMap[imgm].getLogID()
@@ -2455,6 +2611,8 @@ function	getMappings(rmodels){
 				cmap=modelMap[imgm].getContainedMappings().toArray()
 				if (cmap != null) {
 					for (icgm=0;icgm<cmap.length;icgm++){
+						//message("modelmap RELID="+cmap[imgm].getRelID()+"\nName="+cmap[icgm])};
+						//rmod.getElementByID(modelMap[imgm].getRelID()))
 						attrID = cmap[icgm].getLogID()
 						key = entiID+'.'+attrID
 						lmappings[rmod.getName()][key]=
@@ -2469,50 +2627,70 @@ function	getMappings(rmodels){
 	return lmappings
 }
 
-function printMatrix(fw,nurX) {
-	logicalModel = model.getDesign().getLogicalDesign();
-	entities= logicalModel.getEntitySet().toArray()
-	rmodels = model.getDesign().getRelationalDesigns().toArray();
-	mappings = getMappings(rmodels)
-	if (entities != null) {
-		fw.write('"entity";"attr"'+headers(rmodels)+'\n')
+function logicalElement(mappings,rmodels,logElemen,nurX){	
+	entiID = logElemen.getObjectID()
+	//message(enti)
+	if (logElemen.getObjectTypeName() == 'Entity'){
+		attrs=logElemen.getElementsCollection().toArray()
+	} else {// assume Relationship
+		attrs=logElemen.getAttributesCollection().toArray()	
+	}
+	//message(logElemen.getName()+'  '+attrs.length)
+	if (attrs != null){
+		for (iattrac=0;iattrac<attrs.length;iattrac++){
+			attr=attrs[iattrac]
+			attrID = attr.getObjectID()
+			key=entiID+'.'+attrID
 
-		for (ientiac=0;ientiac<entities.length;ientiac++) {
-			enti = entities[ientiac]
-			entiID = enti.getObjectID()
-			//message(enti)
-			attrs=enti.getElementsCollection().toArray()
-			if (attrs != null){
-				for (iattrac=0;iattrac<attrs.length;iattrac++){
-					attr=attrs[iattrac]
-					attrID = attr.getObjectID()
-					key=entiID+'.'+attrID
-					
-					line= '"'+enti+'";"'+attr+'"'
-					for (irmpm=0;irmpm<rmodels.length;irmpm++){
-						x= key in mappings[rmodels[irmpm].getName()] 
-								? nurX ? 'X': mappings[rmodels[irmpm].getName()][key]
-								: nvl('') 
-						line += ';"'+x+'"'
-					}
-					line+='\n'
-					fw.write(line)
-				}
+			line= '"'+logElemen.getName()+'";"'+attr+'"'
+			for (irmpm=0;irmpm<rmodels.length;irmpm++){
+				mapentry = mappings[rmodels[irmpm].getName()][key]
+				if (mapentry != null){
+					mapentries = mapentry.split(".")
+					tabName = mapentries[0]
+					colName = mapentries[1]
+					//message(logElemen.getName()+' *2* '+attrs.length+'   '+mapentry+ '  '+irmpm+'   ')
+					x =  nurX ? '"X"': '"' +  tabName + '";"' + colName + '"'
+				} else {x = nurX ? '' : ';'}
+				line += ';'+x
 			}
+			line+='\n'
+			fw.write(line)
 		}
 	}
 }
 
+function printMatrix(fw,nurX) {
+	logicalModel = model.getDesign().getLogicalDesign();
+	entities= logicalModel.getEntitySet().toArray()
+	relations = logicalModel.getRelationSet().toArray()
+	rmodels = model.getDesign().getRelationalDesigns().toArray();
+	mappings = getMappings(rmodels)	
+	//message("entities="+entities.length+"   Rels="+relations.length)
+	if (entities != null) {
+		fw.write('entity;attr'+headers(rmodels,nurX)+'\n')
+		for (ientiac=0;ientiac<entities.length;ientiac++) {
+			logicalElement(mappings,rmodels,entities[ientiac],nurX)
+		}
+	}
+	if (relations != null) {
+		for (irel=0;irel<relations.length;irel++) {
+			logicalElement(mappings,rmodels,relations[irel],nurX)
+		}
+	}
+	fw.write('created by ODM, '+curDateStr()+'\n')
+}
+
 function print1Mapping (){
 	logicalModel = model.getDesign().getLogicalDesign();
-	relModel = chooseModel(relModel)
-	if (relModel == null) return
+	relModel = chooseModel(relModel);
+	if (relModel == null) {return;}
 	modelMapping = relModel.getRMExtendedMap().getContainerMappings().toArray();
 
 	fileName=chooseFile(exportDirec,relModel+'.csv')
      if (fileName == null) return
      fw = createFile(fileName)
-	printCVS (fw)
+	printCVS (modelMapping,fw)
      fw.close();    
 	message("Mapping file "+fileName+" for model "+relModel+" created.");
 }
@@ -3055,7 +3233,7 @@ function importFile(fpath){
  			relModel=values[0];
  			// falls 1. Zeichen von Excel stammt, schneide es ab
  			 if (relModel.match(/^[^A-Za-z]/)) relModel = relModel.substring(1)
- 			//message(lnoif+': '+"RelModel= |"+relModel.charCodeAt(0)+"/"+relModel.charCodeAt(1)+relModel+"|");
+ 			//message(lnoif+': '+"RelModel= |"+relModel+"|");
  		} else 
  		if (lnoif==1){
  			// skip headers
@@ -3132,11 +3310,13 @@ function printColsMap(fw,tab,lastOne,enti,cmap){
 			//nicht gemappte Columns werden nur 1x geschrieben.
 			if (lastOne && !(colkey in writtenCols)) writeMapLine(fw,tab,null,col,null)
 		}else{
-			for (impcm=0;impcm<colmaps.length;impcm++){
-				attrName=enti.getElementByID(colmaps[impcm].getLogID())
-				//message('vor dem Schreiben='+colmaps[impcm].getLogID()+'|'+col+'|'+attrName)
-				writeMapLine(fw,tab,enti,col, attrName)
-				writtenCols[colkey]=true
+			if (enti != null) {
+				for (impcm=0;impcm<colmaps.length;impcm++){
+					attrName=enti.getElementByID(colmaps[impcm].getLogID())
+					//message('vor dem Schreiben='+colmaps[impcm].getLogID()+'|'+col+'|'+attrName)
+					writeMapLine(fw,tab,enti,col, attrName)
+					writtenCols[colkey]=true
+				}
 			}
 		}
 	}
@@ -3151,7 +3331,7 @@ function getTabMap(modelMapping,tabID){
 function printCols(modelMapping,fw,tab){
 	maps = getTabMap(modelMapping,tab.getObjectID())
 	if (maps.length==0) {
-		printColsMap(fw,tab,true,null,null)
+		printColsMap(fw,tab,null,null)
 	} else {
 		for (impc=0;impc<maps.length;impc++){
 			enti=logicalModel.getEntitySet().getObjectByID(maps[impc].getLogID())
@@ -3167,7 +3347,7 @@ function printCVS (modelMapping,fw){
 	colType = 1
 	tableType = 4
 	attrType = 5
-	fw.write(relModel+';;;;created by ODM, '+curDateStr()+'\n')
+	fw.write(relModel+';;;;\n')
 	fw.write('entityName;attrName;tableName;columnName;dataType\n')
 	tables = relModel.getTableSet().toArray();
 	for (itpc=0;itpc<tables.length;itpc++){
@@ -3194,10 +3374,12 @@ function createFile(fileName){
 	return fw
 }
 
-function headers(rmodels){
+function headers(rmodels,nurX){
 	retval = ''
 	for (ih=0;ih<rmodels.length;ih++){
 		retval += ';'+rmodels[ih]
+		// extra header for table | attribute entries
+		if (! nurX) { retval += ';'}
 	}
 	return retval
 }
@@ -3216,6 +3398,7 @@ function	getMappings(rmodels){
 		lmappings[rmod.getName()]={}
 		//message(lmappings[rmod.getName()]['123:123'])
 		modelMap= rmod.getRMExtendedMap().getContainerMappings().toArray();
+		//message("modelMapAnz="+modelMap.length)
 		if (modelMap != null) {
 			for (imgm=0;imgm<modelMap.length;imgm++){
 				entiID = modelMap[imgm].getLogID()
@@ -3223,6 +3406,8 @@ function	getMappings(rmodels){
 				cmap=modelMap[imgm].getContainedMappings().toArray()
 				if (cmap != null) {
 					for (icgm=0;icgm<cmap.length;icgm++){
+						//message("modelmap RELID="+cmap[imgm].getRelID()+"\nName="+cmap[icgm])};
+						//rmod.getElementByID(modelMap[imgm].getRelID()))
 						attrID = cmap[icgm].getLogID()
 						key = entiID+'.'+attrID
 						lmappings[rmod.getName()][key]=
@@ -3237,39 +3422,69 @@ function	getMappings(rmodels){
 	return lmappings
 }
 
+function logicalElement(mappings,rmodels,logElem,nurX){	
+	elemID = logElem.getObjectID()
+	//message(enti)
+	if (logElem.getObjectTypeName() == 'Entity'){
+		attrs=logElem.getElementsCollection().toArray()
+	} else {// assume Relationship
+		attrs=logElem.getAttributesCollection().toArray()	
+		if (! logElem.isManyToMany()) {
+			// Relationships 1:1 and m:1 can become columns
+			srcCard = logElem.getSourceCardinalityString()
+			targCard = logElem.getTargetCardinalityString()
+			srcOpt = logElem.isOptionalSource()
+			targOpt = logElem.isOptionalTarget()
+			//message(logElem.getName()+':'+srcCrd+':'+targCard+':'+srcOpt+':'+targOpt)
+			line= '"'+logElem.getName()+'";;'
+			line+='\n'
+			fw.write(line)
+		}
+	}
+	//message(logElem.getName()+'  '+attrs.length)
+	if (attrs != null){
+		for (iattrac=0;iattrac<attrs.length;iattrac++){
+			attr=attrs[iattrac]
+			attrID = attr.getObjectID()
+			key=elemID+'.'+attrID
+
+			line= logElem.getName()+';'+attr
+			for (irmpm=0;irmpm<rmodels.length;irmpm++){
+				mapentry = mappings[rmodels[irmpm].getName()][key]
+				if (mapentry != null){
+					mapentries = mapentry.split(".")
+					tabName = mapentries[0]
+					colName = mapentries[1]
+					//message(logElem.getName()+' *2* '+attrs.length+'   '+mapentry+ '  '+irmpm+'   ')
+					x =  nurX ? 'X': tabName + ';' + colName 
+				} else {x = nurX ? '' : ';'}
+				line += ';'+x
+			}
+			line+='\n'
+			fw.write(line)
+		}
+	}
+}
+
 function printMatrix(fw,nurX) {
 	logicalModel = model.getDesign().getLogicalDesign();
 	entities= logicalModel.getEntitySet().toArray()
+	relations = logicalModel.getRelationSet().toArray()
 	rmodels = model.getDesign().getRelationalDesigns().toArray();
-	mappings = getMappings(rmodels)
+	mappings = getMappings(rmodels)	
+	//message("entities="+entities.length+"   Rels="+relations.length)
 	if (entities != null) {
-		fw.write('entity;attr'+headers(rmodels)+'\n')
-
+		fw.write('entity;attr'+headers(rmodels,nurX)+'\n')
 		for (ientiac=0;ientiac<entities.length;ientiac++) {
-			enti = entities[ientiac]
-			entiID = enti.getObjectID()
-			//message(enti)
-			attrs=enti.getElementsCollection().toArray()
-			if (attrs != null){
-				for (iattrac=0;iattrac<attrs.length;iattrac++){
-					attr=attrs[iattrac]
-					attrID = attr.getObjectID()
-					key=entiID+'.'+attrID
-					
-					line= '"'+enti+'";"'+attr+'"'
-					for (irmpm=0;irmpm<rmodels.length;irmpm++){
-						x= key in mappings[rmodels[irmpm].getName()] 
-								? nurX ? 'X': mappings[rmodels[irmpm].getName()][key]
-								: nvl('') 
-						line += ';"'+x+'"'
-					}
-					line+='\n'
-					fw.write(line)
-				}
-			}
+			logicalElement(mappings,rmodels,entities[ientiac],nurX)
 		}
-	    fw.write('created by ODM, '+curDateStr()+'\n')
 	}
+	if (relations != null) {
+		for (irel=0;irel<relations.length;irel++) {
+			logicalElement(mappings,rmodels,relations[irel],nurX)
+		}
+	}
+	fw.write('created by ODM, '+curDateStr()+'\n')
 }
 
 function print1Mapping (){
@@ -3302,5 +3517,59 @@ function printNameMapping (){
 }]]>
 		</script>
 	</lib>
+	<lib id="12E63B95-CEA8-74F6-377B-3B4B8E7D66E2" name="DDLGeneration" engine="Oracle Nashorn" methods="json" >
+		<script>
+			<![CDATA[function json(table) {
+ddl=  '"definitions": {'
++'      "id": {'
++'        "$comment": "primary key",'
++'        "type": "integer",'
++'        "minimum": 1,'
++'        "maximum": 1.5474250491067253e+26'
++'      },'
++'      "nickname": {'
++'        "type": "string",'
++'        "maxLength": 255'
++'      },'
++'      "deleted_at": {'
++'        "type": "string"'
++'      },'
++'      "created_at": {'
++'        "type": "string"'
++'      },'
++'      "updated_at": {'
++'        "type": "string"'
++'      }'
++'    },'
++'    "properties": {'
++'      "id": {'
++'        "$ref": "#/definitions/id"'
++'      },'
++'      "nickname": {'
++'        "$ref": "#/definitions/nickname"'
++'      },'
++'      "deleted_at": {'
++'        "$ref": "#/definitions/deleted_at"'
++'      },'
++'      "created_at": {'
++'        "$ref": "#/definitions/created_at"'
++'      },'
++'      "updated_at": {'
++'        "$ref": "#/definitions/updated_at"'
++'      }'
++'    }'
++'  }'
++']'
+ddlStatementsList.add(new java.lang.String(ddl));  
+    }]]>
+		</script>
+	</lib>
 
+
+	<ddl_transformation_script_set id="10D9D4D7-2AE0-BE64-F442-54CEBB506F3A" name="DDLJson" description="Erzeugt JSON statt SQL" active="true">
+			<script id="AA46D06F-D817-50B5-E547-0EEDE7B0F035"/>
+			<script id="FC4A6961-6F10-6D97-0954-DC164E25A630"/>
+			<script id="E0FCFBB3-43A6-C4BA-68C3-9C4BA9F7D343"/>
+			<script id="38754F1E-CEB0-24A5-561C-5E8239B34EB4"/>
+	</ddl_transformation_script_set>
 </dr_custom_scripts>

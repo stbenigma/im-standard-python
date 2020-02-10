@@ -1,0 +1,102 @@
+/* 
+variable ddlStatementsList should be used to return the list with DDL statements 
+that are created by script - as shown below: 
+ddlStatementsList.add(new java.lang.String(ddl)); 
+other available variables: 
+- model - relational model instance 
+- pModel - physical model instance 
+- table - the table in relational model 
+- tableProxy - table definition in physical model 
+*/  
+var ddl;  
+var lname;  
+//journal table name suffix  
+jnTabSuf = "_JN";  
+// trigger name suffix  
+jnTrgSuf = "_JNtrg";  
+prompt = model.getAppView().getSettings().isIncludePromptInDDL();  
+useSchema = model.getAppView().getSettings().isIncludeSchemaInDDL();  
+if(model.getStorageDesign().isOpen()){  
+    if(useSchema){  
+         lname = tableProxy.getLongName();  
+    }else{  
+        lname = tableProxy.getName();  
+    }  
+}else{  
+    if(useSchema){  
+         lname = table.getLongName();  
+    }else{  
+        lname = table.getName();  
+    }  
+}  
+if(prompt){  
+    ddl= "PROMPT Creating Journal Table for '"+lname+"';\n";  
+}else{  
+    ddl = "";  
+}  
+ddl = ddl + "CREATE TABLE "+lname+jnTabSuf+"\n"+  
+" (JN_OPERATION CHAR(3) NOT NULL"+"\n"+  
+" ,JN_ORACLE_USER VARCHAR2(30) NOT NULL"+"\n"+  
+" ,JN_DATETIME DATE NOT NULL"+"\n"+  
+" ,JN_NOTES VARCHAR2(240)"+"\n"+  
+" ,JN_APPLN VARCHAR2(35)"+"\n"+  
+" ,JN_SESSION NUMBER(38)"+"\n";  
+cols = table.getElements();  
+for(var i=0;i<cols.length;i++){  
+    col = cols[i];  
+    ddl = ddl +" ,"+col.getName()+" "+col.getDatatypeString();  
+    if(col.isMandatory()){  
+        ddl = ddl + " NOT NULL\n";  
+    }else{  
+        ddl = ddl + "\n";  
+    }  
+}  
+ddl = ddl + " );";  
+ddlStatementsList.add(new java.lang.String(ddl));  
+if(prompt){  
+    ddl= "\nPROMPT Creating Journal Trigger for '"+lname+"';\n";  
+}else{  
+    ddl = "\n";  
+}  
+ddl = ddl +  
+"CREATE OR REPLACE TRIGGER "+lname+jnTrgSuf +"\n"+  
+"  AFTER \n" +  
+"  INSERT OR \n" +  
+"  UPDATE OR \n" +  
+"  DELETE ON emp2 for each row \n" +  
+" Declare \n" +  
+"  rec "+lname+"_JN"+"%ROWTYPE; \n" +  
+"  blank "+lname+"_JN"+"%ROWTYPE; \n" +  
+"  BEGIN \n" +  
+"    rec := blank; \n" +  
+"    IF INSERTING OR UPDATING THEN \n" ;  
+for(var i=0;i<cols.length;i++){  
+    col = cols[i];  
+    ddl = ddl + "      rec."+col.getName()+" := :NEW."+col.getName()+"; \n";  
+}  
+ddl = ddl +  
+"      rec.JN_DATETIME := SYSDATE; \n" +  
+"      rec.JN_ORACLE_USER := SYS_CONTEXT ('USERENV', 'SESSION_USER'); \n" +  
+"      rec.JN_APPLN := SYS_CONTEXT ('USERENV', 'MODULE'); \n" +  
+"      rec.JN_SESSION := SYS_CONTEXT ('USERENV', 'SESSIONID'); \n" +  
+"      IF INSERTING THEN \n" +  
+"        rec.JN_OPERATION := 'INS'; \n" +  
+"      ELSIF UPDATING THEN \n" +  
+"        rec.JN_OPERATION := 'UPD'; \n" +  
+"      END IF; \n" +  
+"    ELSIF DELETING THEN \n" ;  
+for(var i=0;i<cols.length;i++){  
+    col = cols[i];  
+    ddl = ddl + "      rec."+col.getName()+" := :OLD."+col.getName()+"; \n";  
+}  
+ddl = ddl +  
+"      rec.JN_DATETIME := SYSDATE; \n" +  
+"      rec.JN_ORACLE_USER := SYS_CONTEXT ('USERENV', 'SESSION_USER'); \n" +  
+"      rec.JN_APPLN := SYS_CONTEXT ('USERENV', 'MODULE'); \n" +  
+"      rec.JN_SESSION := SYS_CONTEXT ('USERENV', 'SESSIONID'); \n" +  
+"      rec.JN_OPERATION := 'DEL'; \n" +  
+"    END IF; \n" +  
+"    INSERT into "+lname+"_JN"+" VALUES rec; \n" +  
+"  END; \n" +  
+"  /"  
+ddlStatementsList.add(new java.lang.String(ddl));  

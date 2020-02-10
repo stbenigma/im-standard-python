@@ -1,14 +1,15 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="8340EE80-0DD6-8C03-E954-1BEBF88FBBFB" name="IsA_Entity_1">
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="8340EE80-0DD6-8C03-E954-1BEBF88FBBFB" name="isatab1">
 <createdBy>stb</createdBy>
 <createdTime>2019-11-09 16:58:14 UTC</createdTime>
 <comment><![CDATA[Eine Entität die eine Rolle darstellt (ISA)]]></comment>
 <generatorID>2E5C2E2A-FFB5-B2FF-2CDD-96FDB4508EA0</generatorID>
 <ownerDesignName>fyayc_dev_mapping</ownerDesignName>
+<ordsAlias>isa_entity_1</ordsAlias>
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
-<Column name="IsA_Entity_1_ID" id="2BA27644-8563-340A-E997-C2D9DE25AF2D">
+<Column name="tab1_ID" id="2BA27644-8563-340A-E997-C2D9DE25AF2D">
 <createdBy>stb</createdBy>
 <createdTime>2019-11-09 16:58:14 UTC</createdTime>
 <ownerDesignName>fyayc_dev_mapping</ownerDesignName>
@@ -22,7 +23,7 @@
 <autoIncrementCycle>false</autoIncrementCycle>
 <isSurrogateColumn>true</isSurrogateColumn>
 </Column>
-<Column name="Entiät1_Entiät1_ID" id="01DE75AE-F705-FD9D-09D4-F6D4939EF55D">
+<Column name="tab1_tab_ID" id="01DE75AE-F705-FD9D-09D4-F6D4939EF55D">
 <createdBy>stb</createdBy>
 <createdTime>2019-11-09 16:58:15 UTC</createdTime>
 <ownerDesignName>fyayc_dev_mapping</ownerDesignName>
@@ -30,7 +31,7 @@
 <use>1</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
 <dataTypePrecision>10</dataTypePrecision>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 <associations>

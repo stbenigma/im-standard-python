@@ -190,11 +190,13 @@ function printColsMap(fw,tab,lastOne,enti,cmap){
 			//nicht gemappte Columns werden nur 1x geschrieben.
 			if (lastOne && !(colkey in writtenCols)) writeMapLine(fw,tab,null,col,null)
 		}else{
-			for (impcm=0;impcm<colmaps.length;impcm++){
-				attrName=enti.getElementByID(colmaps[impcm].getLogID())
-				//message('vor dem Schreiben='+colmaps[impcm].getLogID()+'|'+col+'|'+attrName)
-				writeMapLine(fw,tab,enti,col, attrName)
-				writtenCols[colkey]=true
+			if (enti != null) {
+				for (impcm=0;impcm<colmaps.length;impcm++){
+					attrName=enti.getElementByID(colmaps[impcm].getLogID())
+					//message('vor dem Schreiben='+colmaps[impcm].getLogID()+'|'+col+'|'+attrName)
+					writeMapLine(fw,tab,enti,col, attrName)
+					writtenCols[colkey]=true
+				}
 			}
 		}
 	}
@@ -252,10 +254,12 @@ function createFile(fileName){
 	return fw
 }
 
-function headers(rmodels){
+function headers(rmodels,nurX){
 	retval = ''
 	for (ih=0;ih<rmodels.length;ih++){
 		retval += ';'+rmodels[ih]
+		// extra header for table | attribute entries
+		if (! nurX) { retval += ';'}
 	}
 	return retval
 }
@@ -274,6 +278,7 @@ function	getMappings(rmodels){
 		lmappings[rmod.getName()]={}
 		//message(lmappings[rmod.getName()]['123:123'])
 		modelMap= rmod.getRMExtendedMap().getContainerMappings().toArray();
+		//message("modelMapAnz="+modelMap.length)
 		if (modelMap != null) {
 			for (imgm=0;imgm<modelMap.length;imgm++){
 				entiID = modelMap[imgm].getLogID()
@@ -281,6 +286,8 @@ function	getMappings(rmodels){
 				cmap=modelMap[imgm].getContainedMappings().toArray()
 				if (cmap != null) {
 					for (icgm=0;icgm<cmap.length;icgm++){
+						//message("modelmap RELID="+cmap[imgm].getRelID()+"\nName="+cmap[icgm])};
+						//rmod.getElementByID(modelMap[imgm].getRelID()))
 						attrID = cmap[icgm].getLogID()
 						key = entiID+'.'+attrID
 						lmappings[rmod.getName()][key]=
@@ -295,39 +302,69 @@ function	getMappings(rmodels){
 	return lmappings
 }
 
+function logicalElement(mappings,rmodels,logElem,nurX){	
+	elemID = logElem.getObjectID()
+	//message(enti)
+	if (logElem.getObjectTypeName() == 'Entity'){
+		attrs=logElem.getElementsCollection().toArray()
+	} else {// assume Relationship
+		attrs=logElem.getAttributesCollection().toArray()	
+		if (! logElem.isManyToMany()) {
+			// Relationships 1:1 and m:1 can become columns
+			srcCard = logElem.getSourceCardinalityString()
+			targCard = logElem.getTargetCardinalityString()
+			srcOpt = logElem.isOptionalSource()
+			targOpt = logElem.isOptionalTarget()
+			//message(logElem.getName()+':'+srcCrd+':'+targCard+':'+srcOpt+':'+targOpt)
+			line= '"'+logElem.getName()+'";;'
+			line+='\n'
+			fw.write(line)
+		}
+	}
+	//message(logElem.getName()+'  '+attrs.length)
+	if (attrs != null){
+		for (iattrac=0;iattrac<attrs.length;iattrac++){
+			attr=attrs[iattrac]
+			attrID = attr.getObjectID()
+			key=elemID+'.'+attrID
+
+			line= logElem.getName()+';'+attr
+			for (irmpm=0;irmpm<rmodels.length;irmpm++){
+				mapentry = mappings[rmodels[irmpm].getName()][key]
+				if (mapentry != null){
+					mapentries = mapentry.split(".")
+					tabName = mapentries[0]
+					colName = mapentries[1]
+					//message(logElem.getName()+' *2* '+attrs.length+'   '+mapentry+ '  '+irmpm+'   ')
+					x =  nurX ? 'X': tabName + ';' + colName 
+				} else {x = nurX ? '' : ';'}
+				line += ';'+x
+			}
+			line+='\n'
+			fw.write(line)
+		}
+	}
+}
+
 function printMatrix(fw,nurX) {
 	logicalModel = model.getDesign().getLogicalDesign();
 	entities= logicalModel.getEntitySet().toArray()
+	relations = logicalModel.getRelationSet().toArray()
 	rmodels = model.getDesign().getRelationalDesigns().toArray();
-	mappings = getMappings(rmodels)
+	mappings = getMappings(rmodels)	
+	//message("entities="+entities.length+"   Rels="+relations.length)
 	if (entities != null) {
-		fw.write('entity;attr'+headers(rmodels)+'\n')
-
+		fw.write('entity;attr'+headers(rmodels,nurX)+'\n')
 		for (ientiac=0;ientiac<entities.length;ientiac++) {
-			enti = entities[ientiac]
-			entiID = enti.getObjectID()
-			//message(enti)
-			attrs=enti.getElementsCollection().toArray()
-			if (attrs != null){
-				for (iattrac=0;iattrac<attrs.length;iattrac++){
-					attr=attrs[iattrac]
-					attrID = attr.getObjectID()
-					key=entiID+'.'+attrID
-					
-					line= '"'+enti+'";"'+attr+'"'
-					for (irmpm=0;irmpm<rmodels.length;irmpm++){
-						x= key in mappings[rmodels[irmpm].getName()] 
-								? nurX ? 'X': mappings[rmodels[irmpm].getName()][key]
-								: nvl('') 
-						line += ';"'+x+'"'
-					}
-					line+='\n'
-					fw.write(line)
-				}
-			}
+			logicalElement(mappings,rmodels,entities[ientiac],nurX)
 		}
-	    fw.write('created by ODM, '+curDateStr()+'\n')
 	}
+	if (relations != null) {
+		for (irel=0;irel<relations.length;irel++) {
+			logicalElement(mappings,rmodels,relations[irel],nurX)
+		}
+	}
+	fw.write('created by ODM, '+curDateStr()+'\n')
 }
 
 function print1Mapping (){

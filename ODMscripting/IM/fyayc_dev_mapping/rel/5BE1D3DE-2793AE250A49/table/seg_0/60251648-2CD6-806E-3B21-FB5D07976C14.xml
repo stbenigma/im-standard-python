@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="60251648-2CD6-806E-3B21-FB5D07976C14" name="Entiät1">
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="60251648-2CD6-806E-3B21-FB5D07976C14" name="Tab1">
 <createdBy>stb</createdBy>
 <createdTime>2019-11-09 16:58:14 UTC</createdTime>
 <comment><![CDATA[Eine Entität die einfach so da steht.]]></comment>
@@ -58,9 +58,15 @@
 <ownDataTypeParameters>,10,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
-<associations>
-<colAssociation fkAssociation="E0DAD738-1331-ABB1-1B3C-3F0179381691" referredColumn="F7713253-1CD5-486A-3B78-ED3E75B9DDA6"/>
-</associations>
+</Column>
+<Column name="unmapped Column" id="699D3D37-1B73-DAAF-BCFE-E13144F7892F">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-10 16:13:27 UTC</createdTime>
+<ownerDesignName>fyayc_dev_mapping</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
@@ -72,17 +78,6 @@
 <indexState>Primary Constraint</indexState>
 <indexColumnUsage>
 <colUsage columnID="50500D68-5802-F99A-148B-AF85E2DF1A2D"/>
-</indexColumnUsage>
-</ind_PK_UK>
-<ind_PK_UK id="4555A6EB-F2C3-A7B7-6178-ABA8C88DE72B" name="Entiät1_Super_Entiät_FK">
-<createdBy>stb</createdBy>
-<createdTime>2019-11-09 16:58:15 UTC</createdTime>
-<generatorID>E3CE607E-ADBE-4487-71FA-71BE3223AB62</generatorID>
-<ownerDesignName>fyayc_dev_mapping</ownerDesignName>
-<indexState>Foreign Key</indexState>
-<isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
-<colUsage columnID="E32FB763-42A3-7F1B-6019-5578B1CE88F1"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>

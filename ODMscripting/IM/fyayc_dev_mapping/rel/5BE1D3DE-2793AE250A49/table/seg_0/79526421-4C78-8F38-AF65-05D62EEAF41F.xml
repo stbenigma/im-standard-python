@@ -1,0 +1,87 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="79526421-4C78-8F38-AF65-05D62EEAF41F" name="Relation_9">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-10 06:16:35 UTC</createdTime>
+<ownerDesignName>fyayc_dev_mapping</ownerDesignName>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="rela_9_IsA_tab_2_ID" id="112F5AB3-EB32-9C69-8461-CC8EA1C055B7">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-10 06:16:35 UTC</createdTime>
+<ownerDesignName>fyayc_dev_mapping</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="E00C811A-DEB5-4963-3A73-A6B318C16CC2" referredColumn="00E258D8-3148-6DCF-F841-C3CD940AD1D2"/>
+</associations>
+</Column>
+<Column name="rela_9_Subentit_1-1_ID" id="1C7AFA5A-E67F-E233-012F-50DEC5A88623">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-10 06:16:35 UTC</createdTime>
+<ownerDesignName>fyayc_dev_mapping</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="4B3DE3E6-8BB7-0CCF-D641-99AB650D6AE5" referredColumn="0347D2E1-5061-B99A-BAB4-D106F3596237"/>
+</associations>
+</Column>
+<Column name="Beziehungsattribut" id="8956CF15-78A0-1B82-7232-F00C973D5587">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-10 06:16:35 UTC</createdTime>
+<generatorID>85273D85-D942-0B5E-4FD9-957A3CF37E4B</generatorID>
+<ownerDesignName>fyayc_dev_mapping</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isRelationshipColumn>true</isRelationshipColumn>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="72EA2322-9D61-9ADE-0D6E-6BDFCE685E80" name="Relation_9_PK">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-10 06:16:35 UTC</createdTime>
+<ownerDesignName>fyayc_dev_mapping</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="112F5AB3-EB32-9C69-8461-CC8EA1C055B7"/>
+<colUsage columnID="1C7AFA5A-E67F-E233-012F-50DEC5A88623"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="14843A74-813D-1D58-51F9-CC09AF4286C6" name="Relation_9_IsA_Entity_2_FK">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-10 06:16:35 UTC</createdTime>
+<generatorID>D8E7133F-8452-9AEB-AAB3-A37FA366495C</generatorID>
+<ownerDesignName>fyayc_dev_mapping</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="112F5AB3-EB32-9C69-8461-CC8EA1C055B7"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="C753850B-8134-1810-11EE-B7D0610EBE5B" name="Relation_9_Subentit_1-1_FK">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-10 06:16:35 UTC</createdTime>
+<generatorID>D8E7133F-8452-9AEB-AAB3-A37FA366495C</generatorID>
+<ownerDesignName>fyayc_dev_mapping</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="1C7AFA5A-E67F-E233-012F-50DEC5A88623"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
