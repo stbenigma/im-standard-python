@@ -14,8 +14,9 @@ Relationships that emanate from an entity can be exclusive. I.e. none or 1 of th
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
-<typeID>1C6A8769-7651-51C0-9E0A-D0C138DE6193</typeID>
+<typeID>899A6DDC-95E0-4AD5-5F58-B3A2FF5C2D08</typeID>
 <adequatelyNormalized>NO</adequatelyNormalized>
 <expectedVolumes>0</expectedVolumes>
 <fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
@@ -36,35 +37,6 @@ Relationships that emanate from an entity can be exclusive. I.e. none or 1 of th
 <property name="EN_ENTI_SYNONYM" value="Arc"/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<Attribute name="Entitätname [L]" id="8359BB79-1816-D3DB-11A7-BE575A6D1818">
-<createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:04:00 UTC</createdTime>
-<comment><![CDATA[Name der Entität der in der Kommunikation normalerweise gebraucht wird.]]></comment>
-<generatorID>8E8A6377-DF32-1C76-25A1-B458D76ECE51</generatorID>
-<notes><![CDATA[[DE_ATTR_COMMENT[
-Name der Entität der in der Kommunikation normalerweise gebraucht wird.
-]DE_ATTR_COMMENT]
-[EN_ATTR_COMMENT[
-Name of the entity normally used in communication.
-]EN_ATTR_COMMENT]
-]]></notes>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<importedID>046F66BA-05DC-63A1-00EE-B9ABD308C7DB</importedID>
-<engineerTo>
-<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
-</engineerTo>
-<referedAttribute>5EDB9C50-45CE-4422-F3EE-869FF2388549</referedAttribute>
-<use>0</use>
-<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
-<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<propertyMap>
-<property name="DE_ATTR_COMMENT" value="Name der Entität der in der Kommunikation normalerweise gebraucht wird."/>
-<property name="DE_ATTR_NAME" value="Entitätname [L]"/>
-<property name="EN_ATTR_COMMENT" value="*DE* Name der Entität der in der Kommunikation normalerweise gebraucht wird."/>
-<property name="EN_ATTR_NAME" value="Entity name [L]"/>
-</propertyMap>
-</Attribute>
 <Attribute name="Laufnr" id="C725A402-0ADC-7EBF-B98F-A9FEE6E7B79F">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:04:00 UTC</createdTime>
@@ -80,10 +52,11 @@ arbitrary numbering to distinguish several exclusive relationships in an entity
 <importedID>F8F374B8-F266-21F0-ADA1-DE808B4EF15F</importedID>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
-<use>0</use>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
-<domain>E2DCFC37-5428-9FE8-64FF-368960199E02</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_COMMENT" value="willkürliche Nummerierung zur Untescheidung mehrere Exklusivbeziehungen in einer Entität"/>
@@ -91,6 +64,22 @@ arbitrary numbering to distinguish several exclusive relationships in an entity
 <property name="EN_ATTR_COMMENT" value="*DE* willkürliche Nummerierung zur Untescheidung mehrere Exklusivbeziehungen in einer Entität"/>
 <property name="EN_ATTR_NAME" value="Runnr"/>
 </propertyMap>
+</Attribute>
+<Attribute name="Entitätname [L]" id="EF7B6776-A4EC-B0FE-B212-36F8B0CF226C">
+<createdBy>admin</createdBy>
+<createdTime>2020-02-10 12:41:58 UTC</createdTime>
+<comment><![CDATA[Name der Entität der in der Kommunikation normalerweise gebraucht wird.]]></comment>
+<generatorID>8E8A6377-DF32-1C76-25A1-B458D76ECE51</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<engineerTo>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
+</engineerTo>
+<referedAttribute>F1D0F128-7361-E0A9-E706-227C158FCD42</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 </attributes>
 <identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
@@ -100,11 +89,12 @@ arbitrary numbering to distinguish several exclusive relationships in an entity
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <pk>true</pk>
 <usedAttributes>
-<attributeRef>8359BB79-1816-D3DB-11A7-BE575A6D1818</attributeRef>
 <attributeRef>C725A402-0ADC-7EBF-B98F-A9FEE6E7B79F</attributeRef>
+<attributeRef>EF7B6776-A4EC-B0FE-B212-36F8B0CF226C</attributeRef>
 </usedAttributes>
 </identifier>
 </identifiers>

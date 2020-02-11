@@ -14,8 +14,9 @@ Person in an organizational unit who is responsible for defining or maintaining 
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
-<typeID>F3ABFF84-45A4-A802-17D7-9BF8FFE20450</typeID>
+<typeID>86837EFF-EE45-AD47-D8D2-5881004F25D3</typeID>
 <adequatelyNormalized>NO</adequatelyNormalized>
 <expectedVolumes>0</expectedVolumes>
 <fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
@@ -47,6 +48,7 @@ Person in an organizational unit who is responsible for defining or maintaining 
 <importedID>DCDDC1A5-F6DB-3BB2-F9D5-ADF019DD4636</importedID>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -72,6 +74,7 @@ Person in an organizational unit who is responsible for defining or maintaining 
 <importedID>AB2F0A85-6238-D648-5EF6-EFF32C6A082B</importedID>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -97,6 +100,7 @@ Person in an organizational unit who is responsible for defining or maintaining 
 <importedID>74BD582A-25CC-9ADB-E21F-CC8EE5B52A61</importedID>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -122,6 +126,7 @@ Person in an organizational unit who is responsible for defining or maintaining 
 <importedID>5A77DAC0-43AC-2982-9897-CA38B844DED0</importedID>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
@@ -148,6 +153,7 @@ Person in an organizational unit who is responsible for defining or maintaining 
 <importedID>7485D82F-1E2F-338B-0AD3-253B9C1237AB</importedID>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
@@ -175,11 +181,11 @@ Business division name
 <importedID>EF475264-9B5C-D5AB-8CCE-7A9E8F075BA2</importedID>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
-<use>0</use>
+<use>1</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
-<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_COMMENT" value="Name eines Geschäftsbereichs"/>
@@ -203,11 +209,11 @@ Name of the entity normally used in communication.
 <importedID>1AF52971-3896-821F-95A7-75E8BD0262B0</importedID>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
-<use>0</use>
+<use>1</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
-<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_COMMENT" value="Name der Entität der in der Kommunikation normalerweise gebraucht wird."/>
@@ -216,16 +222,20 @@ Name of the entity normally used in communication.
 <property name="EN_ATTR_NAME" value="Name1"/>
 </propertyMap>
 </Attribute>
-</attributes>
-<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
-<identifier id="D975F489-5D1D-9BD5-9EC1-8B6D52A610C8" name="ITSY_NAME_UK">
-<createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:03:22 UTC</createdTime>
+<Attribute name="Name3" id="4C6CAE7D-166C-7DD5-8FDF-2729B00539E8">
+<createdBy>admin</createdBy>
+<createdTime>2020-02-10 12:41:58 UTC</createdTime>
+<generatorID>E9110093-1665-73D5-6B2D-76BFC0D89F63</generatorID>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
-<pk>true</pk>
-</identifier>
-</identifiers>
+<referedAttribute>1FC34A8C-E592-091D-9966-53649013D0B4</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
 </Entity>

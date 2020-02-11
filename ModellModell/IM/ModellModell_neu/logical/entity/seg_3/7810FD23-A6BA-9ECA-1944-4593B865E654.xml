@@ -18,8 +18,9 @@ Group of identifying relationships and/or attributes of an entity. Each combinat
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
-<typeID>1C6A8769-7651-51C0-9E0A-D0C138DE6193</typeID>
+<typeID>899A6DDC-95E0-4AD5-5F58-B3A2FF5C2D08</typeID>
 <adequatelyNormalized>NO</adequatelyNormalized>
 <expectedVolumes>0</expectedVolumes>
 <fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
@@ -54,45 +55,17 @@ The keys of an entity must be distinguishable by a characteristic.
 <importedID>0F57A3C6-A117-9DD0-D738-0C5304B50953</importedID>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
-<use>0</use>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
-<domain>E2DCFC37-5428-9FE8-64FF-368960199E02</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_COMMENT" value="Schlüssel einer Entität müssen durch ein Merkmal unterscheidbar werden."/>
 <property name="DE_ATTR_NAME" value="Laufnr"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Schlüssel einer Entität müssen durch ein Merkmal unterscheidbar werden."/>
 <property name="EN_ATTR_NAME" value="Runnr"/>
-</propertyMap>
-</Attribute>
-<Attribute name="Entitätname [L]" id="948274F9-D2C3-42CC-60D6-18148F2CC8E1">
-<createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:04:00 UTC</createdTime>
-<comment><![CDATA[Name der Entität der in der Kommunikation normalerweise gebraucht wird.]]></comment>
-<generatorID>7DFF44B9-D585-A3B7-7342-79EA825C4941</generatorID>
-<notes><![CDATA[[DE_ATTR_COMMENT[
-Name der Entität der in der Kommunikation normalerweise gebraucht wird.
-]DE_ATTR_COMMENT]
-[EN_ATTR_COMMENT[
-Name of the entity normally used in communication.
-]EN_ATTR_COMMENT]
-]]></notes>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<importedID>C2F010F2-7FFD-ED64-4BB8-349B6679C246</importedID>
-<engineerTo>
-<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
-</engineerTo>
-<referedAttribute>5EDB9C50-45CE-4422-F3EE-869FF2388549</referedAttribute>
-<use>0</use>
-<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
-<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<propertyMap>
-<property name="DE_ATTR_COMMENT" value="Name der Entität der in der Kommunikation normalerweise gebraucht wird."/>
-<property name="DE_ATTR_NAME" value="Entitätname [L]"/>
-<property name="EN_ATTR_COMMENT" value="*DE* Name der Entität der in der Kommunikation normalerweise gebraucht wird."/>
-<property name="EN_ATTR_NAME" value="Entity name [L]"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Name" id="8869BA4C-0CDF-9DAA-4A99-7746E260039C">
@@ -109,11 +82,12 @@ Name of the entity normally used in communication.
 <importedID>6D04CA98-27CA-B063-D963-6A963B19B9A1</importedID>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
-<use>0</use>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
-<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_COMMENT" value=""/>
@@ -121,6 +95,22 @@ Name of the entity normally used in communication.
 <property name="EN_ATTR_COMMENT" value=""/>
 <property name="EN_ATTR_NAME" value="Name"/>
 </propertyMap>
+</Attribute>
+<Attribute name="Entitätname [L]" id="B71FC711-247D-DA25-AF29-846C25CA73C7">
+<createdBy>admin</createdBy>
+<createdTime>2020-02-10 12:41:58 UTC</createdTime>
+<comment><![CDATA[Name der Entität der in der Kommunikation normalerweise gebraucht wird.]]></comment>
+<generatorID>7DFF44B9-D585-A3B7-7342-79EA825C4941</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<engineerTo>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
+</engineerTo>
+<referedAttribute>F1D0F128-7361-E0A9-E706-227C158FCD42</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 </attributes>
 <identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
@@ -130,11 +120,12 @@ Name of the entity normally used in communication.
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <pk>true</pk>
 <usedAttributes>
 <attributeRef>93DCD20B-8AC7-6BD0-A147-A7580D8A69E3</attributeRef>
-<attributeRef>948274F9-D2C3-42CC-60D6-18148F2CC8E1</attributeRef>
+<attributeRef>B71FC711-247D-DA25-AF29-846C25CA73C7</attributeRef>
 </usedAttributes>
 </identifier>
 </identifiers>

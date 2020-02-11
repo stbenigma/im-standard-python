@@ -22,8 +22,9 @@ Manufacturer of an application, a SW solution, an IT component. Can be an extern
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
-<typeID>57779FAE-171C-9BB2-9F88-9B2ED7060C6F</typeID>
+<typeID>2EDFF465-4CEE-72F2-D2EC-896DB596D191</typeID>
 <adequatelyNormalized>NO</adequatelyNormalized>
 <expectedVolumes>0</expectedVolumes>
 <fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
@@ -43,4 +44,21 @@ Manufacturer of an application, a SW solution, an IT component. Can be an extern
 <property name="EN_ENTI_NAME" value="Manufacturer"/>
 <property name="EN_ENTI_SYNONYM" value="Manufacturer"/>
 </propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Name" id="B8BFEFCC-A380-833E-670C-8E84932C273D">
+<createdBy>admin</createdBy>
+<createdTime>2020-02-10 12:41:58 UTC</createdTime>
+<generatorID>BE2E62AF-96DC-4FA8-E914-E8205801CAA4</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<engineerTo>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
+</engineerTo>
+<referedAttribute>1FC34A8C-E592-091D-9966-53649013D0B4</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
 </Entity>

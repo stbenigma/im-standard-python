@@ -13,14 +13,15 @@
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
-<typeID>1C6A8769-7651-51C0-9E0A-D0C138DE6193</typeID>
+<typeID>899A6DDC-95E0-4AD5-5F58-B3A2FF5C2D08</typeID>
 <adequatelyNormalized>NO</adequatelyNormalized>
 <expectedVolumes>0</expectedVolumes>
 <fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
 <growthPercent>0</growthPercent>
 <growthType>Year</growthType>
-<hierarchicalParent>88BC5607-E8D0-BF5D-5720-2B1E29469D21</hierarchicalParent>
+<hierarchicalParent>1725C503-BB91-0A6D-6E10-6908B44EDA95</hierarchicalParent>
 <maxVolumes>9999999</maxVolumes>
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
@@ -49,12 +50,12 @@ earliest time in this attribute. Empty -> there is no lower limit
 <importedID>C900DFA0-C133-8F58-C3EA-D4BC024F775B</importedID>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
-<use>0</use>
+<use>1</use>
 <logicalDatatype>LOGDT015</logicalDatatype>
-<domain>0AD80E26-0F5C-D068-29EA-4740A04582AE</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_COMMENT" value="frühestes Zeitpunkt in diesem Attribut. Leer -&gt; es gibt keine Untergrenze"/>
@@ -78,12 +79,12 @@ latest time in this attribute. Empty -> there is no upper limit
 <importedID>53E73B83-83D6-4DF9-14B9-EAA8D6C39A8E</importedID>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
-<use>0</use>
+<use>1</use>
 <logicalDatatype>LOGDT015</logicalDatatype>
-<domain>0AD80E26-0F5C-D068-29EA-4740A04582AE</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_COMMENT" value="spätester Zeitpunkt in diesem Attribut. Leer -&gt; es gibt keine Obergrenze"/>
@@ -107,10 +108,11 @@ To which unit is the date rounded (day, minute, month, year)?
 <importedID>CB8DB002-CFDF-5208-AAF5-348E49AF3F17</importedID>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
-<use>0</use>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
-<domain>802FD5C1-7C5B-0290-1F1C-F8FBB1AD2AA9</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_COMMENT" value="Auf welche Einheit wird die Datumsangabe gerundet (Tag, Minute, Monat, Jahr)"/>

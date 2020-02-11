@@ -19,8 +19,9 @@ Company or organization that manages a system (corrging, supporting, expanding, 
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
-<typeID>57779FAE-171C-9BB2-9F88-9B2ED7060C6F</typeID>
+<typeID>2EDFF465-4CEE-72F2-D2EC-896DB596D191</typeID>
 <adequatelyNormalized>NO</adequatelyNormalized>
 <expectedVolumes>0</expectedVolumes>
 <fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
@@ -39,4 +40,21 @@ Company or organization that manages a system (corrging, supporting, expanding, 
 <property name="EN_ENTI_NAME" value="Chaperon"/>
 <property name="EN_ENTI_SYNONYM" value="Supporters"/>
 </propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Name" id="E99B928C-B9EC-3761-8A47-3BC5A41042D1">
+<createdBy>admin</createdBy>
+<createdTime>2020-02-10 12:41:58 UTC</createdTime>
+<generatorID>D55C9F83-5047-5873-28AC-BD8BC6719521</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<engineerTo>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
+</engineerTo>
+<referedAttribute>1FC34A8C-E592-091D-9966-53649013D0B4</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
 </Entity>

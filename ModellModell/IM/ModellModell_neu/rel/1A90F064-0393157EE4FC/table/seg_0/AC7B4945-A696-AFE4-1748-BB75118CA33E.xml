@@ -31,9 +31,9 @@ Jede IT-Komponente hat einen Hersteller. D.h. es handelt sich um konkrete Produk
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <generatorID>E620B7E5-21B9-ADF5-D530-981CC31D9FDB</generatorID>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
-<use>0</use>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
-<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
@@ -43,9 +43,8 @@ Jede IT-Komponente hat einen Hersteller. D.h. es handelt sich um konkrete Produk
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <constraintName>CK_ITKO_ITKO_TYP</constraintName>
 <useDomainConstraints>false</useDomainConstraints>
-<use>0</use>
+<use>1</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
-<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
 <listOfValues>
 <valueDef value="BINARY" description=""/>
 <valueDef value="NUMBER" description=""/>
@@ -62,9 +61,8 @@ Jede IT-Komponente hat einen Hersteller. D.h. es handelt sich um konkrete Produk
 <constraintName>CK_ITKO_ITKO_TYP</constraintName>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
-<use>0</use>
+<use>1</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
-<domain>5D3D105A-15CC-2DBC-8E41-2A63484D069D</domain>
 <listOfValues>
 <valueDef value="ANWEN" description="Anwendung"/>
 <valueDef value="DBMS" description="Databasemangamentsystem"/>
