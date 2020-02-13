@@ -12,6 +12,7 @@ var PLAINMESSAGE = 1;
 	var relModel
 	var writtenCols={}
 	var exportDirec="/Users/stb/Documents/DataModeler/Import"
+	var EXTIDPROPNAME = "EXT_ATTR_ID"
 
 	function fullmessage(msg,type) {
 		Java.type("javax.swing.JOptionPane").showMessageDialog(null
@@ -259,7 +260,7 @@ function headers(rmodels,nurX){
 	for (ih=0;ih<rmodels.length;ih++){
 		retval += ';'+rmodels[ih]
 		// extra header for table | attribute entries
-		if (! nurX) { retval += ';'}
+		if (! nurX) { retval += ';column;ID'}
 	}
 	return retval
 }
@@ -301,6 +302,12 @@ function	getMappings(rmodels){
 	//message('vorReturn'+lmappings['Relational_1'])
 	return lmappings
 }
+function colProperty(curmodel,tabname,colname,propName){
+	table = curmodel.getTableSet().getByName(tabName);	
+	column = table.getElementByName(colName);
+	extID= column.getProperty(propName)
+	return ((extID == null) || (extID == ".")) ? "" : extID
+}
 
 function logicalElement(mappings,rmodels,logElem,nurX){	
 	elemID = logElem.getObjectID()
@@ -328,16 +335,18 @@ function logicalElement(mappings,rmodels,logElem,nurX){
 			attrID = attr.getObjectID()
 			key=elemID+'.'+attrID
 
-			line= logElem.getName()+';'+attr
+			line= logElem.getName()+';'+attr.getName()
 			for (irmpm=0;irmpm<rmodels.length;irmpm++){
-				mapentry = mappings[rmodels[irmpm].getName()][key]
+				curmodel = rmodels[irmpm]
+				mapentry = mappings[curmodel.getName()][key]
 				if (mapentry != null){
 					mapentries = mapentry.split(".")
-					tabName = mapentries[0]
-					colName = mapentries[1]
+					tabName = mapentry.replace(/^([^\.]*)\.(.*)$/,'$1')
+					colName = mapentry.replace(/^([^\.]*)\.(.*)$/,'$2')
+					colID = colProperty(curmodel,tabName,colName,EXTIDPROPNAME)
 					//message(logElem.getName()+' *2* '+attrs.length+'   '+mapentry+ '  '+irmpm+'   ')
-					x =  nurX ? 'X': tabName + ';' + colName 
-				} else {x = nurX ? '' : ';'}
+					x =  nurX ? 'X': tabName + ';' + colName + ';' + colID 
+				} else {x = nurX ? '' : ';;'}
 				line += ';'+x
 			}
 			line+='\n'
