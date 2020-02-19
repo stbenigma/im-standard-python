@@ -5,6 +5,7 @@
 <comment><![CDATA[Eine Entität, die aus 2 Subtypen besteht]]></comment>
 <generatorID>02EC9CC7-A393-8950-EBB5-B8BDD9CC14EB</generatorID>
 <ownerDesignName>fyayc_dev_mapping</ownerDesignName>
+<ordsAlias>super</ordsAlias>
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
@@ -56,18 +57,6 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="Standort" id="D5C47FFB-9A05-F856-B9F5-F5699C23C9A4">
-<createdBy>stb</createdBy>
-<createdTime>2019-11-09 17:04:10 UTC</createdTime>
-<generatorID>ADC7A453-19E1-879D-D4DF-B9DF8368A828</generatorID>
-<ownerDesignName>fyayc_dev_mapping</ownerDesignName>
-<nullsAllowed>true</nullsAllowed>
-<useDomainConstraints>false</useDomainConstraints>
-<use>3</use>
-<structuredType>34FE0B62-C82A-7934-B36E-07AD3210A8E3</structuredType>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-</Column>
 <Column name="TYPE" id="A296FAC7-FE22-F7AD-24D0-687B5E9453A8">
 <createdBy>stb</createdBy>
 <createdTime>2019-11-09 17:04:10 UTC</createdTime>
@@ -87,6 +76,16 @@
 <ownDataTypeParameters>14,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 <isDiscriminatorColumn>true</isDiscriminatorColumn>
+</Column>
+<Column name="Standort" id="15A9D3B2-56C3-4457-2716-877C0154E119">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-13 16:41:27 UTC</createdTime>
+<comment><![CDATA[Created on 13/2/2020  17:41:27 during import from /Users/stb/Documents/DataModeler/Import/Relational_2.csv]]></comment>
+<ownerDesignName>fyayc_dev_mapping</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
 </Column>
 </columns>
 <nestedColumns itemClass="oracle.dbtools.crest.model.design.relational.Column">
@@ -120,40 +119,6 @@
 <dataTypePrecision>0</dataTypePrecision>
 <dataTypeScale>0</dataTypeScale>
 <ownDataTypeParameters>,0,0</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-</nestedColumn>
-<nestedColumn name="Standort.X" id="F2EDE4F3-D558-48CE-86D3-0B2DA198E1E2">
-<createdBy>stb</createdBy>
-<createdTime>2019-11-09 17:04:10 UTC</createdTime>
-<generatorID>16894671-35E0-92A8-8694-A2800F545AD8</generatorID>
-<ownerDesignName>fyayc_dev_mapping</ownerDesignName>
-<nullsAllowed>true</nullsAllowed>
-<parentObject>D5C47FFB-9A05-F856-B9F5-F5699C23C9A4</parentObject>
-<structAttributeID>87F8587F-4D88-50B9-0341-B1BA3E318037</structAttributeID>
-<useDomainConstraints>false</useDomainConstraints>
-<use>0</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
-<dataTypePrecision>10</dataTypePrecision>
-<dataTypeScale>7</dataTypeScale>
-<domain>1C3C007F-9B8B-2903-5A3C-93E51723B926</domain>
-<ownDataTypeParameters>,10,7</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-</nestedColumn>
-<nestedColumn name="Standort.Y" id="89A7C6B7-FD75-8A97-28D6-9D9617D55520">
-<createdBy>stb</createdBy>
-<createdTime>2019-11-09 17:04:10 UTC</createdTime>
-<generatorID>5D27944F-A278-212B-A3DD-9C7716B470CF</generatorID>
-<ownerDesignName>fyayc_dev_mapping</ownerDesignName>
-<nullsAllowed>true</nullsAllowed>
-<parentObject>D5C47FFB-9A05-F856-B9F5-F5699C23C9A4</parentObject>
-<structAttributeID>8705B46A-CBF4-5307-9F98-7AF46BE10BAE</structAttributeID>
-<useDomainConstraints>false</useDomainConstraints>
-<use>0</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
-<dataTypePrecision>10</dataTypePrecision>
-<dataTypeScale>7</dataTypeScale>
-<domain>F59C874D-779F-76C1-B9F7-647EDDC24745</domain>
-<ownDataTypeParameters>,10,7</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </nestedColumn>
 </nestedColumns>
