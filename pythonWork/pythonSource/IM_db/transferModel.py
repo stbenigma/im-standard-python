@@ -283,7 +283,7 @@ def transferentity(penti, pdiagid, puc, pdc):
     hiddenattrs=elemtext.split(' ')
     hiddenattrs2 = []
     for e in hiddenattrs:
-        if e != "": hiddenattrs2.append(dbLookup.attrID(e))
+        if e != "": hiddenattrs2.append(dbLookup.attrID(pguid=e,withnotfound=True))
     attrs = dbDML.select("""select attr_id from attributes 
                             where attr_enti_id = {}
                             order by attr_anz_rhflg""".format(entiid))
