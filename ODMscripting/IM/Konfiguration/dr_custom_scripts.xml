@@ -200,11 +200,15 @@ function do1line(rmodelname,values){
 		//}
      	if ((attribute != null) && (column != null)){
      		mapped = column.getMappingFor(entity)
-			if (table.getName() =='Subentität_1') {
-				 message(table.getName()
-				 +'|'+mapped.length)
-				 )
+			if (entity.getName() == 'Subentit 1-1') {
+				map2 = column.getMappingFor(entity)
+				 message(entity.getName()
+				   +'|'+table.getName()
+				   +'|'+map2.getName()
+				   +'|'+map2.getDeletedID()
+				  )
 			}
+			
      		if (mapped == null) {
      			rmodel.getRMExtendedMap().createMapping(attribute,column);		
 				colmapanz++
@@ -1392,16 +1396,7 @@ function do1line(rmodelname,values){
 			}
 		//}
      	if ((attribute != null) && (column != null)){
-     		mapped = column.getMappingFor(entity)
-			if (entity.getName() == 'Subentit 1-1') {
-				map2 = column.getMappingFor(entity)
-				 message(entity.getName()
-				   +'|'+table.getName()
-				   +'|'+map2.getName()
-				   +'|'+map2.getDeletedID()
-				  )
-			}
-			
+     		mapped = column.getMappingFor(entity)			
      		if (mapped == null) {
      			rmodel.getRMExtendedMap().createMapping(attribute,column);		
 				colmapanz++
@@ -1691,6 +1686,7 @@ function print1Mapping (){
 	relModel = chooseModel(relModel);
 	if (relModel == null) {return;}
 	modelMapping = relModel.getRMExtendedMap().getContainerMappings().toArray();
+	message(relModel.getName()+':'+modelMapping.length)
 
 	fileName=chooseFile(exportDirec,relModel+'.csv')
      if (fileName == null) return
@@ -1811,13 +1807,7 @@ function do1line(rmodelname,values){
 			}
 		//}
      	if ((attribute != null) && (column != null)){
-     		mapped = column.getMappingFor(entity)
-			if (entity.getName() == 'Subentität 1') {
-				 message(entity.getName()
-				   +'|'+table.getName()
-				   +'|'+mapped.length
-				  )
-			}
+     		mapped = column.getMappingFor(entity)			
      		if (mapped == null) {
      			rmodel.getRMExtendedMap().createMapping(attribute,column);		
 				colmapanz++
@@ -1907,7 +1897,7 @@ function writeMapLine(fw,tab,enti,col,attr){
 function printColsMap(fw,tab,lastOne,enti,cmap){
 	cols=tab.getElementsCollection().toArray()
 	//message(tab+'|'+enti+'|'+cols.length+'|'+cmap.length)
-	if (enti!=null) writeMapLine(fw,tab,enti,null,null)
+	if (enti != null) writeMapLine(fw,tab,enti,null,null)
 	//cols.sort()
 	for (icpcm=0;icpcm<cols.length;icpcm++){
 		col = cols[icpcm]
@@ -1938,7 +1928,7 @@ function getTabMap(modelMapping,tabID){
 function printCols(modelMapping,fw,tab){
 	maps = getTabMap(modelMapping,tab.getObjectID())
 	if (maps.length==0) {
-		printColsMap(fw,tab,null,null)
+		printColsMap(fw,tab,true,null,null)
 	} else {
 		for (impc=0;impc<maps.length;impc++){
 			enti=logicalModel.getEntitySet().getObjectByID(maps[impc].getLogID())
@@ -2629,11 +2619,15 @@ function do1line(rmodelname,values){
 		//}
      	if ((attribute != null) && (column != null)){
      		mapped = column.getMappingFor(entity)
-			if (table.getName() =='Subentität_1') {
-				 message(table.getName()
-				   +'|'+mapped.length
+			if (entity.getName() == 'Subentit 1-1') {
+				map2 = column.getMappingFor(entity)
+				 message(entity.getName()
+				   +'|'+table.getName()
+				   +'|'+map2.getName()
+				   +'|'+map2.getDeletedID()
 				  )
 			}
+			
      		if (mapped == null) {
      			rmodel.getRMExtendedMap().createMapping(attribute,column);		
 				colmapanz++
@@ -3505,16 +3499,7 @@ function do1line(rmodelname,values){
 			}
 		//}
      	if ((attribute != null) && (column != null)){
-     		mapped = column.getMappingFor(entity)
-			if (entity.getName() == 'Subentit 1-1') {
-				map2 = column.getMappingFor(entity)
-				 message(entity.getName()
-				   +'|'+table.getName()
-				   +'|'+map2.getName()
-				   +'|'+map2.getDeletedID()
-				  )
-			}
-			
+     		mapped = column.getMappingFor(entity)			
      		if (mapped == null) {
      			rmodel.getRMExtendedMap().createMapping(attribute,column);		
 				colmapanz++
@@ -3604,7 +3589,7 @@ function writeMapLine(fw,tab,enti,col,attr){
 function printColsMap(fw,tab,lastOne,enti,cmap){
 	cols=tab.getElementsCollection().toArray()
 	//message(tab+'|'+enti+'|'+cols.length+'|'+cmap.length)
-	if (enti!=null) writeMapLine(fw,tab,enti,null,null)
+	if (enti != null) writeMapLine(fw,tab,enti,null,null)
 	//cols.sort()
 	for (icpcm=0;icpcm<cols.length;icpcm++){
 		col = cols[icpcm]
@@ -3635,7 +3620,7 @@ function getTabMap(modelMapping,tabID){
 function printCols(modelMapping,fw,tab){
 	maps = getTabMap(modelMapping,tab.getObjectID())
 	if (maps.length==0) {
-		printColsMap(fw,tab,null,null)
+		printColsMap(fw,tab,true,null,null)
 	} else {
 		for (impc=0;impc<maps.length;impc++){
 			enti=logicalModel.getEntitySet().getObjectByID(maps[impc].getLogID())

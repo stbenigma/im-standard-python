@@ -181,7 +181,7 @@ function writeMapLine(fw,tab,enti,col,attr){
 function printColsMap(fw,tab,lastOne,enti,cmap){
 	cols=tab.getElementsCollection().toArray()
 	//message(tab+'|'+enti+'|'+cols.length+'|'+cmap.length)
-	if (enti!=null) writeMapLine(fw,tab,enti,null,null)
+	if (enti != null) writeMapLine(fw,tab,enti,null,null)
 	//cols.sort()
 	for (icpcm=0;icpcm<cols.length;icpcm++){
 		col = cols[icpcm]
@@ -212,7 +212,7 @@ function getTabMap(modelMapping,tabID){
 function printCols(modelMapping,fw,tab){
 	maps = getTabMap(modelMapping,tab.getObjectID())
 	if (maps.length==0) {
-		printColsMap(fw,tab,null,null)
+		printColsMap(fw,tab,true,null,null)
 	} else {
 		for (impc=0;impc<maps.length;impc++){
 			enti=logicalModel.getEntitySet().getObjectByID(maps[impc].getLogID())
