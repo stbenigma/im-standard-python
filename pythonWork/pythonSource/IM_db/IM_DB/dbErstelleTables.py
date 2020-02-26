@@ -914,7 +914,8 @@ CREATE TABLE linie_segment(
 				       DOKU_FORMAT VARCHAR (20) , 
 				       DOKU_REFERENZ VARCHAR (500) , 
 				       DOKU_DOKU_ID NUMERIC (10),	
-					   DOKU_ODM_GUID		varchar(36)  
+					   DOKU_ODM_GUID varchar(36),
+					   DOKU_PARENT_ODM_GUID varchar(36)  
 				      )
 				""")
 

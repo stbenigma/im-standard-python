@@ -16,6 +16,14 @@ def  insertEnti(enti):
 
 #end insertEnti
 
+def insertDocument(p_data):
+    lsql = """
+        insert into Dokumente (DOKU_NAME, DOKU_FORMAT, DOKU_REFERENZ, DOKU_ODM_GUID, DOKU_PARENT_ODM_GUID) 
+            values (?,?,?,?,?) 
+        """
+    return dbDML.insert(lsql, p_data)
+# end insertDocument
+
 def insertSynonym(p_data):
     lsql = """
         insert into synonyme ( syno_name, syno_enti_id) 
@@ -23,6 +31,19 @@ def insertSynonym(p_data):
         """
     return dbDML.insert(lsql, p_data)
 # end insertSynonym
+
+def  insertdokuref(documents, modeid) :
+    if documents is not None :
+       # pdata = tuple([doc, modeid] for doc in documents)
+       # print(pdata)
+        lsql = """
+                insert into MODELELEM_DOKU (MODO_DOKU_ID, MODO_MODE_ID) 
+                    values (?,?) 
+                """
+        for doc in documents :
+            dbDML.insert(lsql, (doc, modeid))
+    #fi
+#insertdokuref
 
 def  insertWrtb(wrtb):
     #print ('InsertWrtb',wrtb)
