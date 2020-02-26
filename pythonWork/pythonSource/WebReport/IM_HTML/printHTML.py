@@ -301,13 +301,17 @@ def anzgranul(dt):
 
 
 
-def list2href(p_list):
+def list2href(p_list,ptype):
     """Verandelt eine kommagetrennte Liste von nnn:xxxx in einen String von kommagetrennten  HREF-Webeinträgen"""
     list = p_list.split(",")
     elem = []
     for el in list:
         el1  = el.split(':')
-        elem.append(href(ref=web_sql.entiAnker(el1[0]), anz=el1[1]))
+        elem.append(href(ref=
+            web_sql.entiAnker(el1[0]) if ptype == 'ENTI' else
+            web_sql.dokuAnker(el1[0]) if ptype == 'DOKU' else
+            el1[0]
+        , anz=el1[1]))
     return ', '.join(elem)
 #list2href
 
@@ -1041,7 +1045,7 @@ def printcontententi(p_list):
         if (e[6] is not None):
             fhtml.write(infoline.format(transl('Superentität'),href(ref=web_sql.entiAnker(e[6]),anz=e[5])))
         if (e[7] is not None):
-            fhtml.write(infoline.format(transl('Subentitäten'),list2href(e[7])))
+            fhtml.write(infoline.format(transl('Subentitäten'),list2href(p_list=e[7],ptype='ENTI')))
         printentidiag(pentiid=e[0],pline=infoline)
         fhtml.write(infoline.format(transl('geändert'),nvl(e[3]) + ', ' + nvl(e[4])))
         fhtml.write(infofoot)
@@ -1179,6 +1183,38 @@ def printwrtbattrlist(pwrtbid, wrtgruppe=False):
     #for
     fhtml.write(endtable())
 #printattrlist
+def printreflist(pelemid,pelemtype):
+    if (pelemtype == 'DOKU'):
+        alist = web_sql.dokureflist(pid=pelemid, plang=reportLang())
+    else:
+        return
+    #fi
+    if (len(alist)==0):
+        return
+    fhtml.write(starttable(ptitel=transl('Referenziert von' )
+                           , pueberschriften=[transl('Typ'),transl('Element')]))
+    for a in alist:
+        fhtml.write(writetableline(pwerte=[transl(a[2]),href(ref=a[1], anz=a[0])])
+                    )
+    #for
+    fhtml.write(endtable())
+#printattrlist
+def printwrtbattrlist(pwrtbid, wrtgruppe=False):
+    alist = web_sql.namelist(ptype='ATTG' if wrtgruppe else 'ATTR'
+                             , plang=reportLang(), pwrtbid=pwrtbid)
+    if (len(alist)==0):
+        return
+    fhtml.write(starttable(ptitel=transl('Verwendet in Attributgruppen' if wrtgruppe
+                                                else 'Verwendet für Attribute')
+                           , pueberschriften=[transl('Attribut' if wrtgruppe
+                                                else 'Attributgruppe')]))
+    for a in alist:
+        fhtml.write(writetableline(pwerte=[href(ref=a[1], anz=a[0])])
+                    )
+    #for
+    fhtml.write(endtable())
+#printattrlist
+
 def printwrtbmembers(pwrtbid):
     elems = web_sql.wbgrelements(wrtbid=pwrtbid)
     if (len(elems)==0):

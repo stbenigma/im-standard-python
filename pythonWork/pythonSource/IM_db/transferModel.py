@@ -1175,6 +1175,8 @@ def loeschmodell():
     dbDML.delete('sprachen')
     dbDML.delete('geschaeftsbereich')
     dbDML.delete('projekt')
+    dbDML.delete('modelelem_doku')
+    dbDML.delete('dokumente')
 
 
 #loeschmodell

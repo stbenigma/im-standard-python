@@ -50,6 +50,32 @@ def elementid(pmodeid,ptyp):
     return data[0][0]
 #entiid
 
+def dokureflist (pid, plang):
+        data = dbDML.select("""
+        select name,id,type from (
+        select case when spa.sptx_text is null then name 
+                                                else spa.sptx_text end  name
+                ,id,type 
+        from modelelem_doku
+        join  modellelement on mode_id = modo_mode_id
+        left join (select enti_id id,'Entität' type,enti_name name 
+                   from entitaeten
+                   union all
+                   select attr_id id,'Attribut' type,attr_name name 
+                   from attributes 
+           ) on id = mode_enti_id or id = mode_attr_id
+         join sprachen sp on sp.spra_iso_code2 = '{}'
+         left join spraattr spa on spa.sptx_attrname = case type when 'Entität' then 'ENTI_NAME'
+                                                            when 'Attribut' then 'ATTR_NAME'
+                                                        end
+                                    and spa.sptx_mode_id = mode_id
+                                    and spa.spra_id = sp.spra_id
+        where modu_doku_id = {}
+    )
+    order by type,upper(name)
+                  """.format(plang,pid))
+        datalist = [(e[0],entiAnker(e[1])) for e in data]
+#dokureflist
 def namelist(ptype, plang, pwrtbid=None):
     if ptype == 'ENTI':
         data = dbDML.select("""select name,enti_id from 
@@ -522,6 +548,21 @@ def wrtblist(p_lang):
       """.format(p_lang))
     return data
 #wrtblist
+
+def dokulist(p_lang):
+    data = dbDML.select("""
+    select child.doku_id,child.DOKU_NAME,child.DOKU_FORMAT,child.DOKU_REFERENZ
+         ,parent.doku_name parent_name
+         ,(select group_concat(grandchild.doku_id||':'||grandchild.doku_name, ',') kinder
+            from DOKUMENTE grandchild
+            where grandchild.DOKU_DOKU_ID = child.DOKU_ID)
+        from DOKUMENTE child
+        left join dokumente parent on parent.DOKU_ID = child.DOKU_DOKU_ID
+     order by upper(child.doku_name)
+      """)
+    return data
+#dokulist
+
 
 def diaglist(pentiid=None):
     if pentiid is None:
