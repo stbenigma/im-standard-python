@@ -140,7 +140,7 @@ def localbasedirec(newval=None):
         parameter['localbasedirec'] = newval
 def odmdocumentdirec(newval=None):
     if newval is None:
-        return parameter['odmdocumentdirec']
+        return odmIMDirec()+odmModelName()+'/'+parameter['odmdocumentdirec']
     else:
         parameter['odmdocumentdirec'] = newval
 def odmDomainsFilePath(newval=None):
