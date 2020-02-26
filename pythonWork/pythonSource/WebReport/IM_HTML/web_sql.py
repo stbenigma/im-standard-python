@@ -41,6 +41,8 @@ def udpAnker(id):
     return 'UDP'+str(id)
 def diagAnker(id):
     return 'DIAG'+str(id)
+def dokuAnker(id):
+    return 'DOKU'+str(id)
 def elementid(pmodeid,ptyp):
     data = dbDML.select("""select mode_{}_id id
                             from modellelement 
@@ -144,8 +146,14 @@ def namelist(ptype, plang, pwrtbid=None):
           from diagramme 
           join diagrammtypen on diat_id = diag_diat_id
           ) order by upper(diat_bez),upper(diag_name)
-              """.format(plang))
+              """)
         datalist = [(e[0], diagAnker(e[1])) for e in data]
+    elif (ptype == 'DOKU') :
+        data = dbDML.select("""select doku_name name, doku_id 
+        from dokumente
+        order by upper (doku_name)
+              """)
+        datalist = [(e[0], dokuAnker(e[1])) for e in data]
     #fi
     return datalist
 #namelist
