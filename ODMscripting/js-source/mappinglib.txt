@@ -1,4 +1,4 @@
-var PLAINMESSAGE = 1;
+    var PLAINMESSAGE = 1;
 	var ERRORMESSAGE = 0;
 	var WARNINGMESSAGE = 2;
 	var QUESTIONMESSAGE = 3;
@@ -13,6 +13,44 @@ var PLAINMESSAGE = 1;
 	var writtenCols={}
 	var exportDirec="/Users/stb/Documents/DataModeler/Import"
 	var EXTIDPROPNAME = "EXT_ATTR_ID"
+
+	// Types for mapping element
+	ENTITYPE = 0
+	COLTYPE = 5
+	TABLETYPE = 4
+	ATTRTYPE = 1
+	RELATYPE = 3   //(source ent, targ ent)
+	FKTYPE = 8  
+	INHERITTYPE = 9 
+	RELARCTYPE = 13
+	LOGARCTYPE = 14
+	var containerMappings = []
+	var attrMappings = []
+
+function getAllMappings(rmodels){
+	containerMappings = []
+	if (rmodels == null) return lmappings
+	for (imod=0;imod<rmodels.length;imod++){
+		rmod=rmodels[imod]
+		modname=rmod.getName()
+		modelMap= rmod.getRMExtendedMap().getContainerMappings().toArray();
+		if (modelMap != null) {
+			for (imgm=0;imgm<modelMap.length;imgm++){
+				logMap = modelMap[imgm]
+				containerMappings.push([modname,logMap.getLogID(),logMap.getLogType()
+									,logMap.getRelID(),logMap.getRelType()
+									,logMap.getRealSourceEntityID(),logMap.getRealTargetEntityID()])
+
+				containedMaps = logMap.getContainedMappings()
+				for (icm=0;icm<containedMaps.length;icm++) {
+					cm = containedMaps[icm]
+					attrMappings.push([modname,cm.getLogID(),cm.getLogType()
+									,cm.getRelID(),cm.getRelType()])
+				}
+			}
+		}
+	}
+}
 
 	function fullmessage(msg,type) {
 		Java.type("javax.swing.JOptionPane").showMessageDialog(null
@@ -49,8 +87,7 @@ function do1line(rmodelname,values){
 	attrName = values[1];
 	tabName = values[2];
 	colName = values[3];
-	typeName = values[4];
-	//message(entiName+' | '+attrName+' | '+tabName+' | '+colName+' | '+typeName)
+	//message(entiName+' | '+attrName+' | '+tabName+' | '+colName)
 	entity = logicalModel.getEntitySet().getByName(entiName);
 	if (entity != null) {
 		attribute=entity.getElementByName(attrName);
@@ -176,7 +213,7 @@ function getColMap(colID,cmap){
 }
 function writeMapLine(fw,tab,enti,col,attr){
 	//message('write'+tab+enti+col+attr)
-	fw.write(nvl(enti)+';'+nvl(attr)+';'+tab+';'+nvl(col)+';\n')
+	fw.write(nvl(enti)+';'+nvl(attr)+';'+tab+';'+nvl(col)+'\n')
 }
 function printColsMap(fw,tab,lastOne,enti,cmap){
 	cols=tab.getElementsCollection().toArray()
@@ -224,12 +261,8 @@ function printCols(modelMapping,fw,tab){
 }
 
 function printCVS (modelMapping,fw){
-	entiType = 0
-	colType = 1
-	tableType = 4
-	attrType = 5
-	fw.write(relModel+';;;;\n')
-	fw.write('entityName;attrName;tableName;columnName;dataType\n')
+	fw.write(relModel+';;;\n')
+	fw.write('entityName;attrName;tableName;columnName\n')
 	tables = relModel.getTableSet().toArray();
 	for (itpc=0;itpc<tables.length;itpc++){
 		printCols(modelMapping,fw,tables[itpc])
@@ -314,22 +347,26 @@ function logicalElement(mappings,rmodels,logElem,nurX){
 	//message(enti)
 	if (logElem.getObjectTypeName() == 'Entity'){
 		attrs=logElem.getElementsCollection().toArray()
-	} else {// assume Relationship
+	} else if (logElem.getObjectTypeName() == 'Relation') {
 		attrs=logElem.getAttributesCollection().toArray()	
 		if (! logElem.isManyToMany()) {
 			// Relationships 1:1 and m:1 can become columns
-			srcCard = logElem.getSourceCardinalityString()
-			targCard = logElem.getTargetCardinalityString()
-			srcOpt = logElem.isOptionalSource()
-			targOpt = logElem.isOptionalTarget()
+			//srcCard = logElem.getSourceCardinalityString()
+			//targCard = logElem.getTargetCardinalityString()
+			//srcOpt = logElem.isOptionalSource()
+			//targOpt = logElem.isOptionalTarget()
 			//message(logElem.getName()+':'+srcCrd+':'+targCard+':'+srcOpt+':'+targOpt)
-			line= '"'+logElem.getName()+'";;'
+			line= logElem.getName()+';;'
 			line+='\n'
 			fw.write(line)
 		}
+	} else { // assume inheritance
+		attrs=null
+		line= logElem.getName()+';;'
+		line+='\n'
+		fw.write(line)
 	}
-	//message(logElem.getName()+'  '+attrs.length)
-	if (attrs != null){
+ 	if (attrs != null){
 		for (iattrac=0;iattrac<attrs.length;iattrac++){
 			attr=attrs[iattrac]
 			attrID = attr.getObjectID()
@@ -357,22 +394,32 @@ function logicalElement(mappings,rmodels,logElem,nurX){
 
 function printMatrix(fw,nurX) {
 	logicalModel = model.getDesign().getLogicalDesign();
-	entities= logicalModel.getEntitySet().toArray()
-	relations = logicalModel.getRelationSet().toArray()
 	rmodels = model.getDesign().getRelationalDesigns().toArray();
 	mappings = getMappings(rmodels)	
+	getAllMappings()
 	//message("entities="+entities.length+"   Rels="+relations.length)
+
+	entities= logicalModel.getEntitySet().toArray()
 	if (entities != null) {
 		fw.write('entity;attr'+headers(rmodels,nurX)+'\n')
 		for (ientiac=0;ientiac<entities.length;ientiac++) {
 			logicalElement(mappings,rmodels,entities[ientiac],nurX)
 		}
 	}
+	relations = logicalModel.getRelationSet().toArray()
 	if (relations != null) {
 		for (irel=0;irel<relations.length;irel++) {
 			logicalElement(mappings,rmodels,relations[irel],nurX)
 		}
 	}
+
+	inheritrelations = logicalModel.getInheritanceRelationSet().toArray()
+	if (inheritrelations != null) {
+		for (irel=0;irel<inheritrelations.length;irel++) {
+			logicalElement(mappings,rmodels,inheritrelations[irel],nurX)
+		}
+	}
+	
 	fw.write('created by ODM, '+curDateStr()+'\n')
 }
 
