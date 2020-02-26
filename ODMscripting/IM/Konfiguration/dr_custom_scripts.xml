@@ -3043,7 +3043,7 @@ logicalModel = model.getDesign().getLogicalDesign();
 	var QUESTIONMESSAGE = 3;
 	var gLangArray = []; 
 	var gCurVersion = '';
-	var CODEVERSION = '1.1';
+	var CODEVERSION = '1.2';
 	
 
 	function fullmessage(msg,type) {
@@ -3374,6 +3374,9 @@ logicalModel = model.getDesign().getLogicalDesign();
 	function upgrade10_to_11() {
 		// nothing to update so far
 	}
+	function upgrade11_to_12() {
+		// nothing to update so far
+	}
 
 	function upgradeTranslation () {
 		init(true);				
@@ -3390,6 +3393,11 @@ logicalModel = model.getDesign().getLogicalDesign();
 			if (gCurVersion == "1.0") {
 				upgrade10_to_11();
 				gCurVersion = "1.1";
+				upgraded = true
+			}
+			if (gCurVersion == "1.1") {
+				upgrade11_to_12();
+				gCurVersion = "1.2";
 				upgraded = true
 			}
 			if (upgraded) {

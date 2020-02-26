@@ -134,42 +134,48 @@
 		}
 	}
 
-	function doLangValue(fromlang,tolang,propName,obj,value,isNote,notNull){
-		lpropName = fromlang + propName;
+	function doLangValue(propName,obj,value,isNote,notNull){
+		lpropName = gCurrentLang + propName;
 	     oldval = (isNote) ? textFromNote(lpropName,obj) : obj.getProperty(lpropName);
-		// if value contains *xx*, don't add another one
-		if (value.match(/^\*[A-Z]{2}\* /)) {
-			lprefix =  ''
-		} else {
-			lprefix =  '*'+fromlang+'* '			
-		}
-		//markiere oder fülle die fremde Properties
-		fpropName = tolang + propName;
-		fprop = (isNote) ? textFromNote(fpropName,obj) : obj.getProperty(fpropName);
-		// Falls die Fremdsprache noch automtaisch übersetzt ist ( *XX* vorneweg hat), überschreibe sie
-		if (fprop.match(/^\*[A-Z]{2}\* /)) {
-		   if (isNote) textToNote(fpropName,obj,lprefix+value);
-			  else obj.setProperty(fpropName,lprefix+value);
-		} else if (fprop.startsWith('*')) {
-			// ** und * sind in Bearbeitung nichts ersetzen
-		} else if (fprop == "" && value == "" && ! notNull) {
-			// das Ziel ist leer, der neue Wert auch und es ist kein Mussfeld. lass das Ziel leer
-		} else if (fprop == "") {
-			// das Ziel ist leer aber aus einem Grund muss ich es überschreiben (siehe vorheriges IF)
-		   if (isNote) textToNote(fpropName,obj,lprefix+value);
-			  else obj.setProperty(fpropName,lprefix+value);
-	    } else {
-			// das Ziel ist gefüllt, nicht in Bearbeitung und nicht automatisch übersetzt.
-			// d.h. es hat einen gültigen Wert. Markiere es, falls die Quelle wirklich geändert hat
-			//**if (oldval == 'Entität 1') message("vor IF "+oldval)
-			if ( ! (value == oldval 
-				  || oldval.match(/^\*[A-Z]{2}\* /)
-				  || oldval.startsWith("**")
-				  || oldval.startsWith("*")) ) {
-				  //**if (oldval == 'Entität 1') message("in IF "+oldval)
-				  // die Quelle ist kein Feld, das in Bearbeitung oder autmoatisch übersetzt ist
-				  if (isNote) textToNote(fpropName,obj,"*"+fprop);
-			   		else obj.setProperty(fpropName,"*"+fprop)
+		for (il=0;il<gLangArray.length;il++) {
+			// nur die fremden Sprachen ersetzen
+			flang = gLangArray[il]
+			if (flang != gCurrentLang) {
+				// if value contains *xx*, don't add another one
+				if (value.match(/^\*[A-Z]{2}\* /)) {
+						lprefix =  ''
+					} else {
+						lprefix =  '*'+gCurrentLang+'* '			
+					}
+				//markiere oder fülle die fremde Properties
+				fpropName = flang + propName;
+				fprop = (isNote) ? textFromNote(fpropName,obj) : obj.getProperty(fpropName);
+				// Falls die Fremdsprache noch automtaisch übersetzt ist ( *XX* vorneweg hat), überschreibe sie
+				if (fprop.match(/^\*[A-Z]{2}\* /)) {
+				   if (isNote) textToNote(fpropName,obj,lprefix+value);
+					  else obj.setProperty(fpropName,lprefix+value);
+				} else if (fprop.startsWith('*')) {
+					// ** und * sind in Bearbeitung nichts ersetzen
+				} else if (fprop == "" && value == "" && ! notNull) {
+					// das Ziel ist leer, der neue Wert auch und es ist kein Mussfeld. lass das Ziel leer
+				} else if (fprop == "") {
+					// das Ziel ist leer aber aus einem Grund muss ich es überschreiben (siehe vorheriges IF)
+				   if (isNote) textToNote(fpropName,obj,lprefix+value);
+					  else obj.setProperty(fpropName,lprefix+value);
+			    } else {
+					// das Ziel ist gefüllt, nicht in Bearbeitung und nicht automatisch übersetzt.
+					// d.h. es hat einen gültigen Wert. Markiere es, falls die Quelle wirklich geändert hat
+					//**if (oldval == 'Entität 1') message("vor IF "+oldval)
+					if ( ! (value == oldval 
+						  || oldval.match(/^\*[A-Z]{2}\* /)
+						  || oldval.startsWith("**")
+						  || oldval.startsWith("*")) ) {
+						  //**if (oldval == 'Entität 1') message("in IF "+oldval)
+						  // die Quelle ist kein Feld, das in Bearbeitung oder autmoatisch übersetzt ist
+						  if (isNote) textToNote(fpropName,obj,"*"+fprop);
+					   		else obj.setProperty(fpropName,"*"+fprop)
+					}
+				}
 			}
 		}
 		// die Werte der CurrentLang kommen aus dem Objekt, überschreibe immer
@@ -177,29 +183,29 @@
 		   else obj.setProperty(lpropName, value);
 	}
 
-	function doProperty(fromlang,tolang,propName,obj,value,notNull){
-		doLangValue(fromlang,tolang,propName,obj,value,false,notNull);
+	function doProperty(propName,obj,value,notNull){
+		doLangValue(propName,obj,value,false,notNull);
 	}
 
-	function doNote(fromlang,tolang,tag,obj,value) {
-		doLangValue(fromlang,tolang,tag,obj,value,true,false);
+	function doNote(tag,obj,value) {
+		doLangValue(tag,obj,value,true,false);
 	}
 
-	function fuellUDP(fromlang,tolang){
+	function fuellUDP(){
 		entities = model.getEntitySet().toArray();
 		for (ie=0;ie<entities.length;ie++) { //
 			ent = entities[ie];
-			doProperty(fromlang,tolang,"_ENTI_NAME",ent,ent.getName(),true)
-			doNote(fromlang,tolang,"_ENTI_COMMENT",ent,ent.getComment())
-			doProperty(fromlang,tolang,"_ENTI_SYNONYM",ent,ent.getSynonym())
+			doProperty("_ENTI_NAME",ent,ent.getName(),true)
+			doNote("_ENTI_COMMENT",ent,ent.getComment())
+			doProperty("_ENTI_SYNONYM",ent,ent.getSynonym())
 
 			attrs = ent.getAttributes().toArray();
 			//log("Attrs="+attrs.length)
 			for (ia=0;ia<attrs.length;ia++) { //
 				attr = attrs[ia];
 				for (il=0;il<gLangArray.length;il++) {
-					doProperty(fromlang,tolang,"_ATTR_NAME",attr,attr.getName(),true);
-					doNote(fromlang,tolang,"_ATTR_COMMENT",attr,attr.getComment());			
+					doProperty("_ATTR_NAME",attr,attr.getName(),true);
+					doNote("_ATTR_COMMENT",attr,attr.getComment());			
 				}
 			}
 		ent.setDirty(true);
@@ -210,8 +216,8 @@
 			sourcename = rel.getNameOnSource()
 			targetname = rel.getNameOnTarget()
 			//if (i > 0) throw new Error ("\n"+gLangArray[i]+"_RELA_TEXT_FROM"+"\n"+gLangArray.length);
-			doProperty(fromlang,tolang,"_RELA_TEXT_FROM",rel,sourcename)
-			doProperty(fromlang,tolang,"_RELA_TEXT_TO",rel,targetname)	
+			doProperty("_RELA_TEXT_FROM",rel,sourcename)
+			doProperty("_RELA_TEXT_TO",rel,targetname)	
 			rel.setDirty(true);
 		}
 	}
@@ -255,7 +261,7 @@
 	function changeLang(pfromLang,ptoLang){
 		//log("3:"+gLanguages);
 	//	log("change from " + pfromLang + " to " + ptoLang);
-		fuellUDP(pfromLang,ptoLang);
+		fuellUDP();
 		setProperties(ptoLang);
 		gCurrentLang = ptoLang;
 		updTranslInfo(gCurrentLang, gLanguages
@@ -275,12 +281,7 @@
 		//hier gibt es einen Eintrag für die Translation
 		init();
 
-		for (il=0;il<gLangArray.length;il++) {
-			if (gLangArray[il] != gCurrentLang) {
-				// fülle die UDP für die Übersetzungen
-				fuellUDP(gCurrentLang,gLangArray[il]);
-			}
-		}
+		fuellUDP();
 
 		updTranslInfo(gCurrentLang, gLanguages
 					 ,gCurVersion,curDateStr());
