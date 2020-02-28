@@ -488,20 +488,25 @@ function attrElements(rmodels,attrID,nurX) {
 
 function logicalElement(rmodels,logElem,nurX){	
 	elemID = logElem.getObjectID()
-	line= logElem.getName()+';'
+	attrs = null
 	if (logElem.getObjectTypeName() == 'Entity'){
+		line= logElem.getName()+';'
 		line += elements(rmodels,logElem.getObjectID(),logElem.getObjectTypeName(),nurX)
+		line += '\n'
+		fw.write(line)
 		attrs=logElem.getElementsCollection().toArray()
 	} else if (logElem.getObjectTypeName() == 'Relation') {
-		line += elements(rmodels,logElem.getObjectID(),logElem.getObjectTypeName(),nurX)
-		attrs=logElem.getAttributesCollection().toArray()	
+		if (logElem.isManyToMany()) { // FK-Mapping ist nicht trivial bei seltsamen Modellen
+			line= logElem.getName()+';'
+			line += elements(rmodels,logElem.getObjectID(),logElem.getObjectTypeName(),nurX)
+			line += '\n'
+			fw.write(line)
+			attrs=logElem.getAttributesCollection().toArray()	
+		} 
 	} else { // assume inheritance
-		line += elements(rmodels,logElem.getObjectID(),logElem.getObjectTypeName(),nurX)
+		// Inheritance sind schon entities line += elements(rmodels,logElem.getObjectID(),logElem.getObjectTypeName(),nurX)
 		// Inheritance becomes fk-columns
-		attrs=null
 	}
-	line += '\n'
-	fw.write(line)
  	if (attrs != null){
 		for (iattrac=0;iattrac<attrs.length;iattrac++){
 			attr = attrs[iattrac]
@@ -533,7 +538,7 @@ function printMatrix(fw,nurX) {
 	fw.write('entity;attr'+headers(rmodels,nurX)+'\n')
 	printElementGroup(rmodels,entitySet.toArray(),nurX)
 	printElementGroup(rmodels,relationSet.toArray(),nurX)
-	printElementGroup(rmodels,inheritanceSet.toArray(),nurX)	
+	// sind schon entitiesprintElementGroup(rmodels,inheritanceSet.toArray(),nurX)	
 	fw.write('created by ODM, '+curDateStr()+'\n')
 }
 
