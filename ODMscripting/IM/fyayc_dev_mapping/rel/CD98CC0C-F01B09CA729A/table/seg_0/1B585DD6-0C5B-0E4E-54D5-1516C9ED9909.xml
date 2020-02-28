@@ -5,6 +5,7 @@
 <comment><![CDATA[Eine Entität die einfach so da steht.]]></comment>
 <generatorID>14B08944-61ED-5412-55F3-1A5EAEA2D6B7</generatorID>
 <ownerDesignName>fyayc_dev_mapping</ownerDesignName>
+<ordsAlias>a</ordsAlias>
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
@@ -54,7 +55,7 @@
 <use>1</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
 <dataTypePrecision>10</dataTypePrecision>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 <associations>
@@ -63,7 +64,7 @@
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
-<ind_PK_UK id="D2209E8E-0AC5-44A3-75CF-66BA2B056C7D" name="Entiät1_PK">
+<ind_PK_UK id="D2209E8E-0AC5-44A3-75CF-66BA2B056C7D" name="TABEntiät1_PK">
 <createdBy>stb</createdBy>
 <createdTime>2019-11-09 17:04:10 UTC</createdTime>
 <ownerDesignName>fyayc_dev_mapping</ownerDesignName>
@@ -73,7 +74,7 @@
 <colUsage columnID="E8C869DD-A539-540D-CBF8-96F604446CCE"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="1D1D2818-0847-0A20-854F-8704AD04736C" name="Entiät1_Super_Entiät_FK">
+<ind_PK_UK id="1D1D2818-0847-0A20-854F-8704AD04736C" name="TAB_Super_Entiät_FK">
 <createdBy>stb</createdBy>
 <createdTime>2019-11-09 17:04:10 UTC</createdTime>
 <generatorID>E3CE607E-ADBE-4487-71FA-71BE3223AB62</generatorID>

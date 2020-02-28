@@ -22,7 +22,7 @@
 <autoIncrementCycle>false</autoIncrementCycle>
 <isSurrogateColumn>true</isSurrogateColumn>
 </Column>
-<Column name="Entiät1_Entiät1_ID" id="7DE03B4E-E431-95DB-F273-38296E25E8EE">
+<Column name="Entiät1_2x_ID" id="7DE03B4E-E431-95DB-F273-38296E25E8EE">
 <createdBy>stb</createdBy>
 <createdTime>2019-11-09 17:04:10 UTC</createdTime>
 <ownerDesignName>fyayc_dev_mapping</ownerDesignName>
@@ -30,11 +30,12 @@
 <use>1</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
 <dataTypePrecision>10</dataTypePrecision>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 <associations>
 <colAssociation fkAssociation="273155CC-DF48-E3A5-1D61-44C742F6CDB0" referredColumn="E8C869DD-A539-540D-CBF8-96F604446CCE"/>
+<colAssociation fkAssociation="7F1AB46C-3B92-954D-1ED8-D61E8F149CA6" referredColumn="FCE2100C-53DE-6314-1C73-1A7C9D933BCE"/>
 </associations>
 </Column>
 </columns>
@@ -64,6 +65,16 @@
 <createdBy>stb</createdBy>
 <createdTime>2019-11-09 17:04:10 UTC</createdTime>
 <generatorID>02710D9F-621F-76FD-CBC2-0A7490F242BF</generatorID>
+<ownerDesignName>fyayc_dev_mapping</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="7DE03B4E-E431-95DB-F273-38296E25E8EE"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="F7B4E95A-6C35-A51E-B050-7E5E64128355" name="IsA_Entity_2_Super_Entiät_FK">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-27 13:06:33 UTC</createdTime>
 <ownerDesignName>fyayc_dev_mapping</ownerDesignName>
 <indexState>Foreign Key</indexState>
 <isSurrogateKey>false</isSurrogateKey>
