@@ -110,7 +110,7 @@ def printcontent(pfirma,ptitel):
     printHTML.printcontententi(p_list=web_sql.entilist(p_lang=printHTML.reportLang()))
     printHTML.printcontentattr(plist=web_sql.attrlist(p_lang=printHTML.reportLang()))
     printHTML.printcontentwrtb(p_list=web_sql.wrtblist(p_lang=printHTML.reportLang()))
-    #printHTML.printcontentdoku(p_list=web_sql.dokulist(p_lang=printHTML.reportLang()))
+    printHTML.printcontentdoku(p_list=web_sql.dokulist(p_lang=printHTML.reportLang()))
     printHTML.printcontentudp(plist=web_sql.namelist(ptype='UDP', plang=printHTML.reportLang()))
     printdiagHTML.printcontentdiag(plist=web_sql.diaglist(), plang=printHTML.reportLang(), ptitel=ptitel)
 #    printHTML.printattrmaps(p_list=web_sql.wrtblist(p_lang=printHTML.reportLang()))

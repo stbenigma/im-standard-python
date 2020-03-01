@@ -76,6 +76,7 @@ def dokureflist (pid, plang):
                   """.format(plang,pid))
         datalist = [(e[0],entiAnker(e[1])) for e in data]
 #dokureflist
+
 def namelist(ptype, plang, pwrtbid=None):
     if ptype == 'ENTI':
         data = dbDML.select("""select name,enti_id from 

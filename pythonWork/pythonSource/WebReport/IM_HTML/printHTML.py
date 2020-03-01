@@ -60,15 +60,15 @@ translNameEN = {'Anzeige': 'Display'
                 ,'Attribut': 'Attribute'
                 ,'Attribut(e)': 'Attribute(s)'
                 ,'Attribute': 'Attributes'
-                , 'Attributgruppe': 'Attribut group'
-                ,'auf Diagramm(en)':'on diagram(s)'
+                ,'Attributgruppe': 'Attribut group'
+                ,'auf Diagramm(en)': 'on diagram(s)'
                 ,'Author': 'Author'
                 ,'Beschreibung': 'Description'
                 ,'Beziehung': 'Relationship'
                 ,'Beziehung(en)': 'relationship(s)'
                 ,'Beziehungen': 'Relationships'
                 ,'Benutzerdefinerte Eigenschaften': 'User defined properties'
-                ,'Bild' : 'Picture'
+                ,'Bild': 'Picture'
                 ,'Binär': 'Binary'
                 ,'Datentyp': 'Datatype'
                 ,'Deskriptor': 'descriptor'
@@ -76,55 +76,55 @@ translNameEN = {'Anzeige': 'Display'
                 ,'Diagramm': 'Diagram'
                 ,'Diagramme': 'Diagrams'
                 ,'Domäne': 'Domain'
-                ,'Einheit' : 'Unit'
+                ,'Einheit': 'Unit'
                 ,'Element': 'Element'
                 ,'Elemente': 'Elements'
                 ,'Entität': 'Entity'
                 ,'Entität/Tabelle': 'Entity/Table'
                 ,'Entitäten': 'Entities'
                 ,'erstellt': 'created'
-                ,'Film' : 'Video'
+                ,'Film': 'Video'
                 ,'geändert': 'updated'
                 ,'Gruppenattribut': 'Groupattribute'
-                ,'Grafik' : 'Graphic'
-                ,'Granularität' : 'Granularity'
+                ,'Grafik': 'Graphic'
+                ,'Granularität': 'Granularity'
                 ,'historisiert': 'historicized'
                 ,'in Schlüssel': 'within key'
                 ,'Informationsmodell {} (Stand: {})': 'Informationmodel {} (Status: {})'
-                ,'Informationen':'Informations'
-                ,'Inhaltstyp' : 'Content type'
+                ,'Informationen': 'Informations'
+                ,'Inhaltstyp': 'Content type'
                 ,'Ja': 'Yes'
-                ,'Jahr' : 'year'
-                ,'Max. Länge' : 'Max. length'
-                ,'Max. Wert' : 'Max. value'
+                ,'Jahr': 'year'
+                ,'Max. Länge': 'Max. length'
+                ,'Max. Wert': 'Max. value'
                 ,'Mehr': 'more'
-                ,'Millisekunde' : 'millisecond'
-                ,'Minute' : 'minute'
-                ,'Min. Wert' : 'Min. value'
-                ,'Monat' : 'month'
-                ,'Nachkommast.' : 'digits after period'
+                ,'Millisekunde': 'millisecond'
+                ,'Minute': 'minute'
+                ,'Min. Wert': 'Min. value'
+                ,'Monat': 'month'
+                ,'Nachkommast.': 'digits after period'
                 ,'Name': 'Name'
                 ,'Nein': 'No'
                 ,'Nr': 'Nr'
                 ,'Numerisch': 'Numerical'
                 ,'Pflichtattribut': 'Attribute of duty'
-                ,'Quartal' : 'quarter'
-                ,'Rundungseinh.' : 'rounding unit'
+                ,'Quartal': 'quarter'
+                ,'Rundungseinh.': 'rounding unit'
                 ,'Schlüssel': 'Key'
-                ,'Sekunde' : 'second'
-                ,'Semester' : 'half-year'
+                ,'Sekunde': 'second'
+                ,'Semester': 'half-year'
                 ,'Sort': 'Sort'
-                ,'Stunde' : 'hour'
+                ,'Stunde': 'hour'
                 ,'Subentität': 'Subentity'
                 ,'Subentitäten': 'Subentities'
                 ,'Suchbegriff': 'search key'
                 ,'Superentität': 'Superentity'
                 ,'Synonyme': 'Synonyms'
-                ,'Syntaxregel' : 'Syntax rule'
-                ,'Tag' : 'day'
+                ,'Syntaxregel': 'Syntax rule'
+                ,'Tag': 'day'
                 ,'Technischer Name': 'Technical Name'
                 ,'Text': 'Text'
-                ,'Ton' : 'Sound'
+                ,'Ton': 'Sound'
                 ,'Tooltip': 'Tooltip'
                 ,'Treffer': 'Hits'
                 ,'Typ': 'Type'
@@ -132,15 +132,15 @@ translNameEN = {'Anzeige': 'Display'
                 ,'übersetzt': 'translated'
                 ,'Übersetzungen': 'Translations'
                 ,'verschlüsselt': 'encrypted'
-                ,'Verwendet für Attribute':'Used for attributes'
-                ,'Verwendet in Attributgruppen':'Used in attribute groups'
+                ,'Verwendet für Attribute': 'Used for attributes'
+                ,'Verwendet in Attributgruppen': 'Used in attribute groups'
                 ,'Verwendet von': 'used by'
-                ,'Vorkommast.' : 'digits before period'
+                ,'Vorkommast.': 'digits before period'
                 ,'Wert': 'Value'
                 ,'Wertebereich': 'Domain'
                 ,'Werteliste': 'List of values'
                 ,'wiederholt': 'repeated'
-                ,'Woche' : 'week'
+                ,'Woche': 'week'
                 ,'Zeitpunkt': 'Point in Time'
                 }
 translNameFR = {"Anzeige":"Affichage"
@@ -1183,6 +1183,7 @@ def printwrtbattrlist(pwrtbid, wrtgruppe=False):
     #for
     fhtml.write(endtable())
 #printattrlist
+
 def printreflist(pelemid,pelemtype):
     if (pelemtype == 'DOKU'):
         alist = web_sql.dokureflist(pid=pelemid, plang=reportLang())
@@ -1313,7 +1314,6 @@ def printcontentwrtb(p_list):
 
         fhtml.write(detailshead)
         fhtml.write(infohead.format(transl('Informationen')))
-
         if (w[5] == 'TEXT'):
             fhtml.write(techhead.format(transl('Datentyp'),transl('Max. Länge'),transl('Syntaxregel'),'','','',''))
             fhtml.write(techline.format(nvl(anzDatentyp(w[5])),nvl(w[9]),nvl(w[10]),'','','',''))
@@ -1347,6 +1347,104 @@ def printcontentwrtb(p_list):
         fhtml.write(contentelementfoot.format(lbc,transl('Mehr')))
     #for
 #printcontentwrtb
+
+def printdokulist(p_dokuid):
+    dlist = web_sql.dokulist(p_lang=p_dokuid)
+    if (len(dlist)==0):
+        return
+    fhtml.write(starttable(ptitel=transl('Dokumentenliste')
+                           , pueberschriften=(transl('Nr'), transl('Wert'), transl('Anzeige'), transl('Beschreibung'))
+                           , plevel=3))
+    for d in dlist:
+        fhtml.write(writetableline(pwerte=d))
+    fhtml.write(endtable())
+
+
+#printdokulist
+
+def printcontentdoku(p_list):
+    contenthead="""        <!--documents-->"""
+
+    contentelementhead = """        <div class="document" id="{}">
+            <div class="describtion">
+                <p>{}</p>
+                <h1>{}</h1>
+                <p1>{}</p1>
+            </div>
+             <div class="panel-body">
+            <div class="collapse" id="bar{}">                    
+        """
+    detailshead = """           
+                <!-- The inside div eliminates the 'jumping' animation. -->
+"""
+    detailsfoot = """            
+                            </div>
+"""
+    infohead = """
+                            <h2>{}</h2>
+                        <div id="container2">
+                        <div class="table-responsive">
+                            <table class="table borderless">
+                                <tbody>
+"""
+    techhead = """                      <tr>
+                                                <th>{}</th>
+                                                <th>{}</th>
+                                                <th>{}</th>
+                                                <th>{}</th>
+                                                <th>{}</th>
+                                                <th>{}</th>
+                                                <th>{}</th>
+                                            </tr>
+    """
+    techline = """
+                                        <tr>
+                                                    <td class="attribute">{}</td>
+                                                    <td class="attribute">{}</td>
+                                                    <td class="attribute">{}</td>                                    
+                                                    <td class="attribute">{}</td>                                    
+                                                    <td class="attribute">{}</td>                                    
+                                                    <td class="attribute">{}</td>                                    
+                                                    <td class="attribute">{}</td>                                    
+                                        </tr>
+    """
+    infofoot = """
+                                </tbody>
+                            </table>
+                        </div>
+                        </div>
+    """
+    fhtml.write(contenthead)
+    for d in p_list:
+        lbc = str(newbarcounter())
+        fhtml.write(contentelementhead.format(web_sql.dokuAnker(d[0]) #id
+                                            ,transl('Dokumente')
+                                            ,d[1] #anzname
+                                            , nvl(d[4]) #Beschreibung
+                                            ,lbc))
+
+        fhtml.write(detailshead)
+        fhtml.write(infohead.format(transl('Informationen')))
+
+     #   fhtml.write(techhead.format(transl('ID'), transl('Name'), transl('Format'), transl('Referenz'),
+     #                               transl('Parent_ID')))
+     #   fhtml.write(techline.format(nvl(anzDatentyp(d[5])), nvl(d[6]), nvl(d[7]), nvl(d[8]), nvl(d[9])))
+
+
+        fhtml.write(techhead.format(transl('erstellt'), transl('geändert'), '', '', '', '', ''))
+
+        fhtml.write(infofoot)
+        if (d[5] == 'LOV'):
+            printdokulist(p_dokuid=d[0])
+
+     #   if (d[5] == 'GRP'):
+     #       printdokumembers(pdokuid=d[0])
+     #   printdokuattrlist(pdokuid=d[0])
+     #   printdokuattrlist(pdokuid=d[0],dokugruppe=True)
+        fhtml.write(detailsfoot)
+        fhtml.write(contentelementfoot.format(lbc,transl('Mehr')))
+    #for
+#printcontentdoku
 
 
 def searchlogo(p_imagedirec):
