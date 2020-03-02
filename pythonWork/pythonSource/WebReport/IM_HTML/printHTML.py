@@ -75,6 +75,7 @@ translNameEN = {'Anzeige': 'Display'
                 ,'Domänen': 'Domains'
                 ,'Diagramm': 'Diagram'
                 ,'Diagramme': 'Diagrams'
+                ,'Dokument': 'Document'
                 ,'Domäne': 'Domain'
                 ,'Einheit': 'Unit'
                 ,'Element': 'Element'
@@ -164,6 +165,7 @@ translNameFR = {"Anzeige":"Affichage"
 ,"Diagramm":"Diagramme"
 ,"Diagramme":"Diagrammes"
 ,"Domäne":"Domaine"
+,"Dokument":"Document"
 ,"Einheit":"Unité"
 ,"Element":"Élément"
 ,"Elemente":"Éléments"
@@ -1365,7 +1367,7 @@ def printdokulist(p_dokuid):
 def printcontentdoku(p_list):
     contenthead="""        <!--documents-->"""
 
-    contentelementhead = """        <div class="document" id="{}">
+    contentelementhead = """        <div class="entity" id="{}">
             <div class="describtion">
                 <p>{}</p>
                 <h1>{}</h1>
@@ -1418,7 +1420,7 @@ def printcontentdoku(p_list):
     for d in p_list:
         lbc = str(newbarcounter())
         fhtml.write(contentelementhead.format(web_sql.dokuAnker(d[0]) #id
-                                            ,transl('Dokumente')
+                                            ,transl('Dokument')
                                             ,d[1] #anzname
                                             , nvl(d[4]) #Beschreibung
                                             ,lbc))
