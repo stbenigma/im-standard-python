@@ -314,7 +314,11 @@ def transferentity(penti, pdiagid, puc, pdc):
         if (enticategoryid is None):
             col = defcolors['Entity']
         else:
-            col = classcolors[enticategoryid]
+            try:
+                col = classcolors[enticategoryid]
+            except Exception as e:
+                print(e)
+                col = defcolors['Entity']
         #fi
     #fi
     #print (col.foregcolor,col.backgcolor)
