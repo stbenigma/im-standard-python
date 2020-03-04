@@ -564,6 +564,49 @@ def dokulist(p_lang):
     return data
 #dokulist
 
+def dokureference (plang,pdokuid):
+    data = dbDML.select("""
+    select melt_kurzname typ
+       ,sptx_text||enti_name||attr_anzname||bezi_name name
+       ,bezi_id,attr_id,enti_id
+ from  DOKUMENTE
+ join MODELELEM_DOKU on MODO_DOKU_ID = DOKU_ID
+join modellelement on mode_id = MODO_MODE_ID
+join modellelem_typ on melt_id = mode_melt_id
+left join beziehungen b on bezi_id = mode_bezi_id
+left join entitaeten e on enti_id = mode_enti_id
+left join attributes a on attr_id = mode_attr_id
+left join sprachen on spra_iso_code2 = '{}'
+left join sprachtexte on sptx_spra_id = spra_id
+            and sptx_mode_id = mode_id
+            and sptx_attrname =
+       case melt_kurzname
+       when 'ENTI'
+        then 'ENTI_NAME'
+       when 'ATTR'
+        then 'ATTR_ANZNAME'
+       WHEN 'BEZI'
+        then 'BEZI_NAME'
+        else ''
+       end
+    where doku_id = {}
+""".format(plang,pdokuid))
+    return data
+#dokureference
+def dokureferenced(pbeziid=None,pentiid=None,pattrid=None):
+    data = dbDML.select("""
+    select child.doku_id, child.DOKU_NAME,child.DOKU_FORMAT,child.DOKU_REFERENZ
+       ,parent.DOKU_ID parent_id,parent.DOKU_NAME parent_name
+ from  DOKUMENTE child
+left join dokumente parent on parent.DOKU_ID = child.DOKU_DOKU_ID  
+join MODELELEM_DOKU on MODO_DOKU_ID = child.DOKU_ID
+join modellelement on mode_id = MODO_MODE_ID
+where  (   mode_bezi_id = {}
+        or mode_enti_id = {}
+        or mode_attr_id = {}
+       ) """.format (pbeziid,pentiid,pattrid))
+    return data
+#dokureferenced
 
 def diaglist(pentiid=None):
     if pentiid is None:

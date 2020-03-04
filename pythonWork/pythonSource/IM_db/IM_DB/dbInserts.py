@@ -419,7 +419,17 @@ def insertbereich_darst(pdata):
                 , BELD_RANDBREITE, BELD_RANDDECKKRAFT, BELD_RANDFARBE
                 , BELD_SCHRIFTGROESSE, BELD_SCHRIFTFARBE, BELD_UC
                 , BELD_DC, BELD_UM, BELD_DM)
-                   values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,)
+                   values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
            """
     return dbDML.insert(lsql, pdata)
 #insertbereich_darst
+
+def insertschnittstelle(pschn):
+    lsql = """insert into SCHNITTSTELLE 
+                (schn_name, schn_beschr, schn_odm_guid,schn_uc, schn_dc)
+                   values (?,?,?,?,?)
+           """
+    row=(pschn.schn_name,pschn.schn_beschr,pschn.schn_odm_guid,pschn.schn_uc,pschn.schn_dc)
+    return dbDML.insert(lsql, row)
+
+#insertschnittstelle

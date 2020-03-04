@@ -32,6 +32,10 @@ def attrID (pguid,withnotfound=False):
     return doLookup(pguid,'select attr_id from attributes where attr_odm_guid ="{}"',withnotfound)
 #attrId
 
+def dokuID (pguid,withnotfound=False):
+    return doLookup(pguid,'select doku_id from DOKUMENTE where DOKU_ODM_GUID ="{}"',withnotfound)
+#dokuId
+
 def datyLookupGrundTyp (pguid):
     return doLookup(pguid,'select daty_grundtyp from datatypes where daty_odm_guid ="{}"')
 #datyLookup
