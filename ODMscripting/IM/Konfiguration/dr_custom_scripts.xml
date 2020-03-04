@@ -1523,7 +1523,7 @@ function printNameMapping (){
 	</scr>
 	<scr id="DCBECD3B-4F1F-7211-54BC-52A6E066AD18" name="importMapping" object="logical" engine="Oracle Nashorn" type="" var="model" library="attrmapping" method="importMapping" purpose="transformation" >
 		<script>
-			<![CDATA[var PLAINMESSAGE = 1;
+			<![CDATA[    var PLAINMESSAGE = 1;
 	var ERRORMESSAGE = 0;
 	var WARNINGMESSAGE = 2;
 	var QUESTIONMESSAGE = 3;
@@ -1672,8 +1672,10 @@ function getColMaps(colID){
 }
 function getColMap(colID,attrID){
 	for (key in attrMappings){
-		//message(colID+'|'+cmap[icolmap].getRelID())
-		if (colID == attrMappings[key].relID && attrID == attrMappings[key].attrID) return attrMappings[key]
+		if (attrMappings[key].modelName == "--debug--"){
+		   message(key+'\n'+colID+'\n'+attrID+'\n'+attrMappings[key].relID+'\n'+attrMappings[key].logID)
+		}
+		if (colID == attrMappings[key].relID && attrID == attrMappings[key].logID) return attrMappings[key]
 	}
 	return null
 }
@@ -1694,6 +1696,13 @@ function getRelationAttribute(attrCollection,attrName){
 	}
 	return null 
 }
+function getRelationAttrByID(attrCollection,attrID){
+	for (grakey in attrCollection) {
+		if (attrCollection[grakey].getObjectID() == attrID) return attrCollection[grakey]
+	}
+	return null 
+}
+
 
 function do1line(values){
 	modelMapping = rmodel.getRMExtendedMap().getContainerMappings().toArray();
@@ -1746,6 +1755,7 @@ function do1line(values){
 		}
 		if ((attribute != null) && (column != null)){
 			mapped = getColMap(column.getObjectID(),attribute.getObjectID())
+			
 			if (mapped == null) {
 				rmodel.getRMExtendedMap().createMapping(attribute,column);
 				colmapanz++
@@ -1879,11 +1889,11 @@ function printColsMap(fw,tab){
 				switch (parent.logType){
 				 case ENTITYPE: 
 				 	logElem = entitySet.getObjectByID(parent.logID)
-					attrName=logElem.getElementByID(curmap.logID)
+					attrName=logElem.getElementByID(curmap.logID).getName()
 					break;
 				 case RELATYPE:
 					logElem=relationSet.getObjectByID(parent.logID)
-					attrName = logElem.getElementByID(curmap.logID)
+					attrName = getRelationAttrByID(logElem.getAttributesCollection(),curmap.logID).getName()
 					break;
 				 case INHERITTYPE:
 					logElem=inheritanceSet().getObjectByID(parent.logID)
@@ -1894,7 +1904,7 @@ function printColsMap(fw,tab){
 					attrName = parent.relType
 					//throw new Error("\n  Column'"+colkey +" unknown logical mapping type: "+parent.logType);
 				}
-				writeMapLine(fw,tab,logElem,col, attrName)
+				writeMapLine(fw,tab,logElem.getName(),col, attrName)
 				writtenCols[colkey]=true
 			}
 		}
@@ -4528,7 +4538,7 @@ function getAttrMap(attrID,modName){
 	</lib>
 	<lib id="B2F713AD-5E48-670F-8A2B-55D1ABD0440C" name="attrmapping" engine="Oracle Nashorn" methods="importMapping,print1Mapping,printXMapping,printNameMapping" >
 		<script>
-			<![CDATA[var PLAINMESSAGE = 1;
+			<![CDATA[    var PLAINMESSAGE = 1;
 	var ERRORMESSAGE = 0;
 	var WARNINGMESSAGE = 2;
 	var QUESTIONMESSAGE = 3;
@@ -4677,8 +4687,10 @@ function getColMaps(colID){
 }
 function getColMap(colID,attrID){
 	for (key in attrMappings){
-		//message(colID+'|'+cmap[icolmap].getRelID())
-		if (colID == attrMappings[key].relID && attrID == attrMappings[key].attrID) return attrMappings[key]
+		if (attrMappings[key].modelName == "--debug--"){
+		   message(key+'\n'+colID+'\n'+attrID+'\n'+attrMappings[key].relID+'\n'+attrMappings[key].logID)
+		}
+		if (colID == attrMappings[key].relID && attrID == attrMappings[key].logID) return attrMappings[key]
 	}
 	return null
 }
@@ -4758,6 +4770,7 @@ function do1line(values){
 		}
 		if ((attribute != null) && (column != null)){
 			mapped = getColMap(column.getObjectID(),attribute.getObjectID())
+			
 			if (mapped == null) {
 				rmodel.getRMExtendedMap().createMapping(attribute,column);
 				colmapanz++
