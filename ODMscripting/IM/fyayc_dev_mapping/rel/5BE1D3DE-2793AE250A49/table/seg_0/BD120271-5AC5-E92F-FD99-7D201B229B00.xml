@@ -16,19 +16,6 @@ Eine Entität die eine Rolle darstellt (ISA)
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
-<Column name="deleteMapping" id="7CCF1FAB-8C5A-A71C-C5A9-1D3633C42661">
-<createdBy>stb</createdBy>
-<createdTime>2019-11-28 15:50:48 UTC</createdTime>
-<notes><![CDATA[[DE_ATTR_COMMENT[
-
-]DE_ATTR_COMMENT]
-]]></notes>
-<ownerDesignName>fyayc_dev_mapping</ownerDesignName>
-<nullsAllowed>true</nullsAllowed>
-<use>0</use>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-</Column>
 <Column name="IsA_tab_2_ID" id="00E258D8-3148-6DCF-F841-C3CD940AD1D2">
 <createdBy>stb</createdBy>
 <createdTime>2019-11-09 16:58:14 UTC</createdTime>
@@ -57,6 +44,19 @@ Eine Entität die eine Rolle darstellt (ISA)
 <associations>
 <colAssociation fkAssociation="F23E102E-B867-CD1B-6C30-6A9D38C33673" referredColumn="50500D68-5802-F99A-148B-AF85E2DF1A2D"/>
 </associations>
+</Column>
+<Column name="deleteMapping_1" id="80DEEAFA-4CA7-7090-7774-049ECE7593CE">
+<createdBy>stb</createdBy>
+<createdTime>2020-03-04 10:47:12 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>fyayc_dev_mapping</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">

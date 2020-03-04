@@ -317,7 +317,7 @@ def transferentity(penti, pdiagid, puc, pdc):
             try:
                 col = classcolors[enticategoryid]
             except Exception as e:
-                print(e)
+                #print(e) flls class nicht mehr exisitert
                 col = defcolors['Entity']
         #fi
     #fi

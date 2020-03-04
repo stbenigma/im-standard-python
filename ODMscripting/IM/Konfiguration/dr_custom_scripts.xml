@@ -106,7 +106,7 @@ ddlStatementsList.add(new java.lang.String(ddl));
 	</scr>
 	<scr id="33D532DB-8720-433C-E976-B86B038F9DF9" name="initTranslation" object="logical" engine="Oracle Nashorn" type="" var="model" library="attrmapping" method="printXMapping" purpose="transformation" >
 		<script>
-			<![CDATA[    var PLAINMESSAGE = 1;
+			<![CDATA[var PLAINMESSAGE = 1;
 	var ERRORMESSAGE = 0;
 	var WARNINGMESSAGE = 2;
 	var QUESTIONMESSAGE = 3;
@@ -221,6 +221,70 @@ function curDateStr(){
 		+ currentdate.getMinutes() + ":" + currentdate.getSeconds();
 }
 
+function getContainerMaps(tabID){
+	maps=[]
+	for (key in containerMappings) {
+		if (tabID == containerMappings[key].relID) maps.push(containerMappings[key])
+	}
+	return maps
+}
+
+function getContainerMap(entiID,tabID){
+	for (key in containerMappings) {
+		if (tabID == containerMappings[key].relID && entiID == containerMappings[key].logID) return containerMappings[key]
+	}
+	return null
+}
+
+function getLogMap(logID,modName){
+	maps=[]
+	for (key in containerMappings) {
+		if ((logID == containerMappings[key].logID)
+		     && (modName == containerMappings[key].modelName)) maps.push(containerMappings[key])
+	}
+	return maps
+}
+
+function getColMaps(colID){
+	colsmap=[]
+	for (key in attrMappings){
+		//message(colID+'|'+cmap[icolmap].getRelID())
+		if (colID == attrMappings[key].relID) colsmap.push(attrMappings[key])
+	}
+	return colsmap
+}
+function getColMap(colID,attrID){
+	for (key in attrMappings){
+		//message(colID+'|'+cmap[icolmap].getRelID())
+		if (colID == attrMappings[key].relID && attrID == attrMappings[key].attrID) return attrMappings[key]
+	}
+	return null
+}
+function getAttrMap(attrID,modName){
+	attrmaps=[]
+	for (key in attrMappings){
+		//message(colID+'|'+cmap[icolmap].getRelID())
+		if ((attrID == attrMappings[key].logID)
+		&& (modName == attrMappings[key].modelName)) attrmaps.push(attrMappings[key])
+	}
+	return attrmaps
+}
+
+
+function getRelationAttribute(attrCollection,attrName){
+	for (grakey in attrCollection) {
+		if (attrCollection[grakey].getName() == attrName) return attrCollection[grakey]
+	}
+	return null 
+}
+function getRelationAttrByID(attrCollection,attrID){
+	for (grakey in attrCollection) {
+		if (attrCollection[grakey].getObjectID() == attrID) return attrCollection[grakey]
+	}
+	return null 
+}
+
+
 function do1line(values){
 	modelMapping = rmodel.getRMExtendedMap().getContainerMappings().toArray();
 	elemName = values[0];
@@ -228,18 +292,19 @@ function do1line(values){
 	tabName = values[2];
 	colName = values[3];
 	//message(entiName+' | '+attrName+' | '+tabName+' | '+colName)
-	logEelem = entitySet.getByName(elemName);
-	if (logEelem != null) {
-		attribute=logEelem.getElementByName(attrName);
+	relation = null
+	entity = entitySet.getByName(elemName);
+	if (entity != null) {
+		attribute=entity.getElementByName(attrName);
 		//if (attribute = null){
 			//entity.createAttribute(attrName)
 			//attribute = entity.getElementByName(attrName);
 			//attribute.setComment("Created on "+curDateStr() +" during import from "+imppath)		
 		//}
 	} else {// assume Relation 
-		logEelem = relationSet.getByName(elemName)
-		if (logEelem != null) {
-			attribute=logEelem.getElementByName(attrName);
+		relation = relationSet.getByName(elemName)
+		if (relation != null) {
+			attribute=getRelationAttribute(relation.getAttributesCollection(),attrName);
 		}
 	}
 	table = rmodel.getTableSet().getByName(tabName);	
@@ -252,7 +317,8 @@ function do1line(values){
 	}
 	if (table != null){
 		column=table.getElementByName(colName);
-	} else  {column = null
+	} else  {
+		column = null
 	}
 	// neue Columns werden erzeugt
 	if ((column == null) && (colName != "")){
@@ -262,16 +328,30 @@ function do1line(values){
 		column.setComment("Created on "+curDateStr() +" during import from "+imppath)		
 		colanz++
 	}	
-	if ((logEelem != null) && (table != null)){
-		mapped = logEelem.getMappingFor(table)
+	if ((entity != null) && (table != null)){
+		mapped = getContainerMap(entity.getObjectID(),table.getObjectID())
 		if (mapped == null) {
-			rmodel.getRMExtendedMap().createMapping(logEelem,table);
+			rmodel.getRMExtendedMap().createMapping(entity,table);
 			tabmapanz++
 		}
 		if ((attribute != null) && (column != null)){
-			mapped = column.getMappingFor(logEelem)			
+			mapped = getColMap(column.getObjectID(),attribute.getObjectID())
 			if (mapped == null) {
-				rmodel.getRMExtendedMap().createMapping(attribute,column);		
+				rmodel.getRMExtendedMap().createMapping(attribute,column);
+				colmapanz++
+     		}
+     	}
+	}
+	if ((relation != null) && (table != null)){
+		mapped = getContainerMap(relation.getObjectID(),table.getObjectID())
+		if (mapped == null) {
+			rmodel.getRMExtendedMap().createMapping(relation,table);
+			tabmapanz++
+		}
+		if ((attribute != null) && (column != null)){
+			mapped = getColMap(column.getObjectID(),attribute.getObjectID())
+			if (mapped == null) {
+				rmodel.getRMExtendedMap().createMapping(attribute,column);
 				colmapanz++
      		}
      	}
@@ -294,6 +374,7 @@ function importFile(fpath){
  			 if (relModel.match(/^[^A-Za-z]/)) relModel = relModel.substring(1)
  			//message(lnoif+': '+"RelModel= |"+relModel+"|");
 			rmodel = model.getDesign().getRelationalDesigns().getByName(relModel);
+			getAllMappings([rmodel])
 			if (rmodel == null){
 				throw new Error("\nRelational model '"+relModel+"' does not exist.\n");
 			}
@@ -350,41 +431,6 @@ function chooseModel(rmodel){
 }
 function nvl(x){return x==null ? "" : x }
 
-function getContainerMap(tabID){
-	maps=[]
-	for (key in containerMappings) {
-		if (tabID == containerMappings[key].relID) maps.push(containerMappings[key])
-	}
-	return maps
-}
-
-function getLogMap(logID,modName){
-	maps=[]
-	for (key in containerMappings) {
-		if ((logID == containerMappings[key].logID)
-		     && (modName == containerMappings[key].modelName)) maps.push(containerMappings[key])
-	}
-	return maps
-}
-
-function getColMap(colID){
-	colsmap=[]
-	for (key in attrMappings){
-		//message(colID+'|'+cmap[icolmap].getRelID())
-		if (colID == attrMappings[key].relID) colsmap.push(attrMappings[key])
-	}
-	return colsmap
-}
-function getAttrMap(attrID,modName){
-	attrmaps=[]
-	for (key in attrMappings){
-		//message(colID+'|'+cmap[icolmap].getRelID())
-		if ((attrID == attrMappings[key].logID)
-		&& (modName == attrMappings[key].modelName)) attrmaps.push(attrMappings[key])
-	}
-	return attrmaps
-}
-
 function writeMapLine(fw,tab,enti,col,attr){
 	//message('write'+tab+enti+col+attr)
 	fw.write(nvl(enti)+';'+nvl(attr)+';'+tab+';'+nvl(col)+'\n')
@@ -401,7 +447,7 @@ function printColsMap(fw,tab){
 //			fks = col.getAllFKs()
 //			for (ifk=0;ifk<fks.length;ifk++){
 //				fkID=fks[ifk].getObjectID()
-//				fkmaps = getContainerMap(fkID)
+//				fkmaps = getContainerMaps(fkID)
 ////		if (colkey=="Subentität_1.Super_Entiät_Super_Entiät_ID") message(colkey+ifk+' :1: '+fkID+' : '+fkmaps.length)
 //				for (ir=0;ir<fkmaps.length;ir++){
 //					rela = relationSet.getObjectByID(fkmaps[ir].logID)
@@ -414,7 +460,7 @@ function printColsMap(fw,tab){
 //			}
 //		}
 
-		colmaps=getColMap(col.getObjectID())
+		colmaps=getColMaps(col.getObjectID())
 		if (colmaps.length>0) {
 			// Column ist gemapped
 			for (impcm=0;impcm<colmaps.length;impcm++){
@@ -423,11 +469,11 @@ function printColsMap(fw,tab){
 				switch (parent.logType){
 				 case ENTITYPE: 
 				 	logElem = entitySet.getObjectByID(parent.logID)
-					attrName=logElem.getElementByID(curmap.logID)
+					attrName=logElem.getElementByID(curmap.logID).getName()
 					break;
 				 case RELATYPE:
 					logElem=relationSet.getObjectByID(parent.logID)
-					attrName = logElem.getElementByID(curmap.logID)
+					attrName = getRelationAttrByID(logElem.getAttributesCollection(),curmap.logID).getName()
 					break;
 				 case INHERITTYPE:
 					logElem=inheritanceSet().getObjectByID(parent.logID)
@@ -438,7 +484,7 @@ function printColsMap(fw,tab){
 					attrName = parent.relType
 					//throw new Error("\n  Column'"+colkey +" unknown logical mapping type: "+parent.logType);
 				}
-				writeMapLine(fw,tab,logElem,col, attrName)
+				writeMapLine(fw,tab,logElem.getName(),col, attrName)
 				writtenCols[colkey]=true
 			}
 		}
@@ -447,7 +493,7 @@ function printColsMap(fw,tab){
 	}
 }
 function printCols(fw,tab){
-	maps = getContainerMap(tab.getObjectID())
+	maps = getContainerMaps(tab.getObjectID())
 	if (maps.length==0) {
 		printColsMap(fw,tab)
 	} else {
@@ -456,11 +502,11 @@ function printCols(fw,tab){
 			switch (maps[impc].logType) {
 			 case ENTITYPE: 
 				enti = entitySet.getObjectByID(maps[impc].logID)
-				if (enti != null) writeMapLine(fw,tab,enti,null,null)
+				if (enti != null) writeMapLine(fw,tab,enti.getName(),null,null)
 				break;
 			 case RELATYPE:
 				rela=relationSet.getObjectByID(maps[impc].logID)
-				if (rela != null) writeMapLine(fw,tab,rela,null,null)
+				if (rela != null) writeMapLine(fw,tab,rela.getName(),null,null)
 				break;
 			 case INHERITTYPE:
 //				inher=inheritanceSet().getObjectByID(maps[impc].logID)
@@ -1477,7 +1523,7 @@ function printNameMapping (){
 	</scr>
 	<scr id="DCBECD3B-4F1F-7211-54BC-52A6E066AD18" name="importMapping" object="logical" engine="Oracle Nashorn" type="" var="model" library="attrmapping" method="importMapping" purpose="transformation" >
 		<script>
-			<![CDATA[    var PLAINMESSAGE = 1;
+			<![CDATA[var PLAINMESSAGE = 1;
 	var ERRORMESSAGE = 0;
 	var WARNINGMESSAGE = 2;
 	var QUESTIONMESSAGE = 3;
@@ -2109,7 +2155,7 @@ function printNameMapping (){
 	</scr>
 	<scr id="1E255E28-D058-2421-EA89-691DC63F696D" name="print1Mapping" object="logical" engine="Oracle Nashorn" type="" var="model" library="attrmapping" method="print1Mapping" purpose="transformation" >
 		<script>
-			<![CDATA[    var PLAINMESSAGE = 1;
+			<![CDATA[var PLAINMESSAGE = 1;
 	var ERRORMESSAGE = 0;
 	var WARNINGMESSAGE = 2;
 	var QUESTIONMESSAGE = 3;
@@ -3927,19 +3973,24 @@ function printNameMapping (){
 	var ERRORMESSAGE = 0;
 	var WARNINGMESSAGE = 2;
 	var QUESTIONMESSAGE = 3;
-
-	function fullmessage(msg,type) {
-		Java.type("javax.swing.JOptionPane").showMessageDialog(null
-		, msg,'ODM-Translation', type);
-	}
-
-	function error(msg) {
-		fullmessage(msg,ERRORMESSAGE);
-		}
-	function message(msg) {
-		fullmessage(msg,PLAINMESSAGE);
-		}
+	var tabanz = 0
+	var colanz = 0
+	var colmapanz = 0
+	var tabmapanz = 0
+	var lasttabmapping = ""
+	var lineanz = 0
+	var logicalModel
+	var entitySet 
+	var relationSet 
+	var inheritanceSet 
+	var relModel
+	var writtenCols={}
+	var exportDirec="/Users/stb/Documents/DataModeler/Import"
+	var EXTIDPROPNAME = "EXT_ATTR_ID"
+	var EXCELSEPARATOR = String.fromCharCode(12)
 	
+
+	// Types for mapping element
 	ENTITYPE = 0
 	COLTYPE = 5
 	TABLETYPE = 4
@@ -3959,15 +4010,33 @@ function getAllMappings(rmodels){
 	for (imod=0;imod<rmodels.length;imod++){
 		rmod=rmodels[imod]
 		modname=rmod.getName()
+		tables = rmod.getTableSet()
 		modelMap= rmod.getRMExtendedMap().getContainerMappings().toArray();
 		if (modelMap != null) {
 			for (imgm=0;imgm<modelMap.length;imgm++){
 				logMap = modelMap[imgm]
+				relName = tables.getObjectByID(logMap.getRelID())
+				switch (logMap.getLogType()) {
+				case ENTITYPE: 
+					logName = entitySet.getObjectByID(logMap.getLogID())
+					break
+				 case RELATYPE:
+					logName=relationSet.getObjectByID(logMap.getLogID())
+					break;
+				 case INHERITTYPE:
+					logName=inheritanceSet.getObjectByID(logMap.getLogID())
+					break;
+				default:
+					logName = null
+				}
+				
 				containerMappings[logMap.getID()] = 
 				   {modelName : modname
 				   ,logID : logMap.getLogID()
+				   ,logName : logName
 				   ,logType : logMap.getLogType()
 					,relID : logMap.getRelID()
+					,tableName : relName
 					,relType : logMap.getRelType()
 					,srcEntityID : logMap.getRealSourceEntityID()
 					,trgEntityID : logMap.getRealTargetEntityID()
@@ -3990,13 +4059,85 @@ function getAllMappings(rmodels){
 	}
 }
 
+
+	function fullmessage(msg,type) {
+		Java.type("javax.swing.JOptionPane").showMessageDialog(null
+		, msg,'ODM-Translation', type);
+	}
+
+	function error(msg) {
+		fullmessage(msg,ERRORMESSAGE);
+		}
+	function message(msg) {
+		fullmessage(msg,PLAINMESSAGE);
+		}
+function trimapo(s){
+	return s.replace(/^"|"$/g, '');
+}
+function getContainerMap(entiID,tabID){
+	for (key in containerMappings) {
+		if (tabID == containerMappings[key].relID && entiID == containerMappings[key].logID) return containerMappings[key]
+	}
+	return null
+}
+
+function getLogMap(logID,modName){
+	maps=[]
+	for (key in containerMappings) {
+		if ((logID == containerMappings[key].logID)
+		     && (modName == containerMappings[key].modelName)) maps.push(containerMappings[key])
+	}
+	return maps
+}
+
+function getColMaps(colID){
+	colsmap=[]
+	for (key in attrMappings){
+		//message(colID+'|'+cmap[icolmap].getRelID())
+		if (colID == attrMappings[key].relID) colsmap.push(attrMappings[key])
+	}
+	return colsmap
+}
+function getColMap(colID,attrID){
+	for (key in attrMappings){
+		//message(colID+'|'+cmap[icolmap].getRelID())
+		if (colID == attrMappings[key].relID && attrID == attrMappings[key].attrID) return attrMappings[key]
+	}
+	return null
+}
+function getAttrMap(attrID,modName){
+	attrmaps=[]
+	for (key in attrMappings){
+		//message(colID+'|'+cmap[icolmap].getRelID())
+		if ((attrID == attrMappings[key].logID)
+		&& (modName == attrMappings[key].modelName)) attrmaps.push(attrMappings[key])
+	}
+	return attrmaps
+}
+
+	logicalModel = model.getDesign().getLogicalDesign();
+	entitySet = logicalModel.getEntitySet()
+	relationSet = logicalModel.getRelationSet()
+	inheritanceSet = logicalModel.getInheritanceRelationSet()
 	rmodels = model.getDesign().getRelationalDesigns().toArray();
 	getAllMappings(rmodels)
-	i=0
-	for ( key in containerMappings){
-	 	if (i<5) message(key+containerMappings[key].relID)
-	 	i++}
-	message(rmodels[1]+Object.keys(containerMappings).length+':'+Object.keys(attrMappings)+"\n")]]>
+	
+	tabID = "BD120271-5AC5-E92F-FD99-7D201B229B00"
+	entID = "6B0BD078-E2CB-15CE-F33B-08E7F15F954E"
+	rmodel = model.getDesign().getRelationalDesigns().getByName("Kanonisches Datenmodell")
+	table = rmodel.getTableSet().getByName("IsA_tab_2")
+	map = getContainerMap(entID,tabID)
+	//tabmap=table.getMappingsToEntities()[0]
+	message(map+':'+table.getName()+':'+table.getDeletedMapping().getID()
+	//+':'+tabmap.getOwnerID()
+	//+':'+tabmap.getTargetID()
+	//+':'+tabmap.getID()
+	)
+	tabmap.setDeletedID(tabmap.getID())
+	message(map+':'+table.getName()+':'+table.getDeletedMapping().getID()
+	+':'+tabmap.getOwnerID()
+	+':'+tabmap.getTargetID()
+	+':'+tabmap.getID())]]>
 		</script>
 	</scr>
 
@@ -4387,7 +4528,7 @@ function getAllMappings(rmodels){
 	</lib>
 	<lib id="B2F713AD-5E48-670F-8A2B-55D1ABD0440C" name="attrmapping" engine="Oracle Nashorn" methods="importMapping,print1Mapping,printXMapping,printNameMapping" >
 		<script>
-			<![CDATA[    var PLAINMESSAGE = 1;
+			<![CDATA[var PLAINMESSAGE = 1;
 	var ERRORMESSAGE = 0;
 	var WARNINGMESSAGE = 2;
 	var QUESTIONMESSAGE = 3;

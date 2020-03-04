@@ -147,8 +147,10 @@ function getColMaps(colID){
 }
 function getColMap(colID,attrID){
 	for (key in attrMappings){
-		//message(colID+'|'+cmap[icolmap].getRelID())
-		if (colID == attrMappings[key].relID && attrID == attrMappings[key].attrID) return attrMappings[key]
+		if (attrMappings[key].modelName == "--debug--"){
+		   message(key+'\n'+colID+'\n'+attrID+'\n'+attrMappings[key].relID+'\n'+attrMappings[key].logID)
+		}
+		if (colID == attrMappings[key].relID && attrID == attrMappings[key].logID) return attrMappings[key]
 	}
 	return null
 }
@@ -228,6 +230,7 @@ function do1line(values){
 		}
 		if ((attribute != null) && (column != null)){
 			mapped = getColMap(column.getObjectID(),attribute.getObjectID())
+			
 			if (mapped == null) {
 				rmodel.getRMExtendedMap().createMapping(attribute,column);
 				colmapanz++
