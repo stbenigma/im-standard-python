@@ -5,6 +5,14 @@ from datetime import date
 from IM_DB import dbInserts,dbDML,dbLookup,dbConnect,parameters,dbParam
 import math
 
+class tabelle:
+    def __init__(self):
+        pass
+#tabelle
+class schnittstelle:
+    def __init__(self):
+        pass
+#schnittstelle
 
 class Wertebereich:
     def __init__(self, pname, pid):
@@ -1181,6 +1189,8 @@ def loeschmodell():
     dbDML.delete('projekt')
     dbDML.delete('modelelem_doku')
     dbDML.delete('dokumente')
+    dbDML.delete('tabelle')
+    dbDML.delete('schnittstelle')
 
 
 #loeschmodell

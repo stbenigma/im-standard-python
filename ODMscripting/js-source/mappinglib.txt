@@ -88,7 +88,6 @@ function getAllMappings(rmodels){
 	}
 }
 
-
 	function fullmessage(msg,type) {
 		Java.type("javax.swing.JOptionPane").showMessageDialog(null
 		, msg,'ODM-Translation', type);
@@ -269,10 +268,10 @@ function importFile(fpath){
  			 if (relModel.match(/^[^A-Za-z]/)) relModel = relModel.substring(1)
  			//message(lnoif+': '+"RelModel= |"+relModel+"|");
 			rmodel = model.getDesign().getRelationalDesigns().getByName(relModel);
-			getAllMappings([rmodel])
 			if (rmodel == null){
 				throw new Error("\nRelational model '"+relModel+"' does not exist.\n");
 			}
+			getAllMappings([rmodel])
  		} else 
  		if (lnoif==1){
  			// skip headers

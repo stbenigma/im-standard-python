@@ -1,0 +1,53 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="55E1E421-F6FD-EAF7-7067-66C7A9C1098D" name="Daytype">
+<createdBy>stb</createdBy>
+<createdTime>2020-03-06 08:29:54 UTC</createdTime>
+<comment><![CDATA[
+
+Examples
+ Daytype weekday has Daytype Sublabel excl. holidays 
+ Daytype saturday has Daytype Label Saturday
+ Daytype sunday has Daytype Label Sunday or special Holiday
+ Daytype holiday has Daytype Label Ferienfahrplan Montag-Freitag
+ Daytype holiday has Daytype Sublabel 27.3.20-14.4.20, 1.7.20-15.8.20]]></comment>
+<ownerDesignName>TestCaseTalk</ownerDesignName>
+<engineerTo>
+<item key="FE341719-6B78-5A1A-378F-30E01F2C583B" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<createSurrogateKey>true</createSurrogateKey>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Label" id="4C7A7981-958C-E5E4-5412-958044910DEF">
+<createdBy>stb</createdBy>
+<createdTime>2020-03-06 08:30:01 UTC</createdTime>
+<ownerDesignName>TestCaseTalk</ownerDesignName>
+<engineerTo>
+<item key="FE341719-6B78-5A1A-378F-30E01F2C583B" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>1A3AF1B6-483C-F107-D470-658167423365</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Sublabel" id="BCCC7825-8742-9744-F822-AFD555F4584B">
+<createdBy>stb</createdBy>
+<createdTime>2020-03-06 08:30:10 UTC</createdTime>
+<ownerDesignName>TestCaseTalk</ownerDesignName>
+<engineerTo>
+<item key="FE341719-6B78-5A1A-378F-30E01F2C583B" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>1A3AF1B6-483C-F107-D470-658167423365</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+</Entity>

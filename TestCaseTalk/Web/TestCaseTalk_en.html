@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>TestCaseTalk (en)</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+
+<body>
+
+    <div class="header" id="TopBar">
+        <p4>foryouandyourcustomers</p4>
+        <p4>TestCaseTalk (en)</p4>
+        <p5>2020-03-06, 10:26</p5>
+        <img src="image/logo.jpg" alt="foryouandyourcustomers" id="LLogo">
+    </div>
+        <button id="btnF" type="button" class="btn btn-info" data-toggle="modal" data-target="#MobileSearch">
+        <img class="icon-filter" alt="filter" src="icons/search.svg">
+    </button>
+    <div class="container" id="sidebar">
+        <div id="toc_list">
+            <div class="form-wrapper">
+                <form autocomplete="off">
+                    <div class="form-group">
+                        <label class="form-label" for="first">search key</label>
+                        <input id="first" class="form-input" type="text" onkeyup="$d_Find('toc_list',this.value,'a')" />
+                        <img id="searchclear" class="icon-times" src="icons/cross.svg">
+                        <img class="icon-search" alt="minus" src="icons/search.svg" id="searcher">
+                    </div>
+                </form>
+            </div>
+            <p6>Hits:</p6>
+                <output id="count"></output>
+                <div class="contentView">
+
+                <div class="panel-body" id="EntitätenL">
+                    <div class="panel">
+                        <div class="panel-heading collapsed" data-toggle="collapse" data-target="#bar1">
+                            <label class="label0">Entities</label>
+                            <img class="icon-minus" alt="minus" src="icons/minus.svg">
+                            <img class="icon-plus" alt="plus" src="icons/plus.svg">
+                        </div>
+                    </div>
+                    <!-- The inside div eliminates the 'jumping' animation. -->
+                    <div class="collapse" id="bar1">
+                        <ol class="tree" id="EntitätenList">
+    
+                <li class="obj"><a href="#ENTI2" target="_self">Bus Departure</a></li>
+                <li class="obj"><a href="#ENTI1" target="_self">Bus Line</a></li>
+                <li class="obj"><a href="#ENTI3" target="_self">Bus Line Section</a></li>
+                <li class="obj"><a href="#ENTI6" target="_self">Bus Stop</a></li>
+                <li class="obj"><a href="#ENTI4" target="_self">Daytype</a></li>
+                <li class="obj"><a href="#ENTI5" target="_self">Timetable</a></li>
+                    </ol>
+            </div>
+        </div>
+
+                <div class="panel-body" id="AttributeL">
+                    <div class="panel">
+                        <div class="panel-heading collapsed" data-toggle="collapse" data-target="#bar2">
+                            <label class="label0">Attributes</label>
+                            <img class="icon-minus" alt="minus" src="icons/minus.svg">
+                            <img class="icon-plus" alt="plus" src="icons/plus.svg">
+                        </div>
+                    </div>
+                    <!-- The inside div eliminates the 'jumping' animation. -->
+                    <div class="collapse" id="bar2">
+                        <ol class="tree" id="AttributeList">
+    
+                <li class="obj"><a href="#ATTR4" target="_self">average traveltime (Bus Line Section)</a></li>
+                <li class="obj"><a href="#ATTR5" target="_self">direction (Bus Line Section)</a></li>
+                <li class="obj"><a href="#ATTR12" target="_self">Geo Location (Bus Stop)</a></li>
+                <li class="obj"><a href="#ATTR6" target="_self">Label (Daytype)</a></li>
+                <li class="obj"><a href="#ATTR11" target="_self">Name (Bus Stop)</a></li>
+                <li class="obj"><a href="#ATTR8" target="_self">name (Timetable)</a></li>
+                <li class="obj"><a href="#ATTR1" target="_self">No (Bus Line)</a></li>
+                <li class="obj"><a href="#ATTR2" target="_self">planned Departure Time (Bus Departure)</a></li>
+                <li class="obj"><a href="#ATTR3" target="_self">seq no (Bus Line Section)</a></li>
+                <li class="obj"><a href="#ATTR7" target="_self">Sublabel (Daytype)</a></li>
+                <li class="obj"><a href="#ATTR9" target="_self">valid from (Timetable)</a></li>
+                <li class="obj"><a href="#ATTR10" target="_self">valid to (Timetable)</a></li>
+                    </ol>
+            </div>
+        </div>
+
+                <div class="panel-body" id="DomänenL">
+                    <div class="panel">
+                        <div class="panel-heading collapsed" data-toggle="collapse" data-target="#bar3">
+                            <label class="label0">Domains</label>
+                            <img class="icon-minus" alt="minus" src="icons/minus.svg">
+                            <img class="icon-plus" alt="plus" src="icons/plus.svg">
+                        </div>
+                    </div>
+                    <!-- The inside div eliminates the 'jumping' animation. -->
+                    <div class="collapse" id="bar3">
+                        <ol class="tree" id="DomänenList">
+    
+                <li class="obj"><a href="#WRTB4" target="_self">Busline number (1)</a></li>
+                <li class="obj"><a href="#WRTB1" target="_self">Date (day) (2)</a></li>
+                <li class="obj"><a href="#WRTB7" target="_self">Geo Lattitude (0)</a></li>
+                <li class="obj"><a href="#WRTB11" target="_self">Geo Location (1)</a></li>
+                <li class="obj"><a href="#WRTB8" target="_self">Geo Longitude (0)</a></li>
+                <li class="obj"><a href="#WRTB6" target="_self">Line Direction (1)</a></li>
+                <li class="obj"><a href="#WRTB2" target="_self">Name (4)</a></li>
+                <li class="obj"><a href="#WRTB12" target="_self">SDO_GEOMETRY (0)</a></li>
+                <li class="obj"><a href="#WRTB5" target="_self">Section Number (1)</a></li>
+                <li class="obj"><a href="#WRTB3" target="_self">TimeOfDay (1)</a></li>
+                <li class="obj"><a href="#WRTB9" target="_self">Travel Time (1)</a></li>
+                <li class="obj"><a href="#WRTB10" target="_self">Unknown (0)</a></li>
+                <li class="obj"><a href="#WRTB13" target="_self">XMLTYPE (0)</a></li>
+                    </ol>
+            </div>
+        </div>
+
+                <div class="panel-body" id="DiagrammeL">
+                    <div class="panel">
+                        <div class="panel-heading collapsed" data-toggle="collapse" data-target="#bar4">
+                            <label class="label0">Diagrams</label>
+                            <img class="icon-minus" alt="minus" src="icons/minus.svg">
+                            <img class="icon-plus" alt="plus" src="icons/plus.svg">
+                        </div>
+                    </div>
+                    <!-- The inside div eliminates the 'jumping' animation. -->
+                    <div class="collapse" id="bar4">
+                        <ol class="tree" id="DiagrammeList">
+    
+                <li class="obj"><a href="#DIAG1" target="_self">PT Timetable (Entity)</a></li>
+                    </ol>
+            </div>
+        </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="wrapper">
+        <div class="top-container">
+            <p3 class="descr">This website contains the complete content 
+            of the <p2 class="IM">Information model TestCaseTalk (en)</p2> from foryouandyourcustomers. 
+            This page was created with software from <p2 class="fyayc">foryouandyourcustomers</p2>. 
+            </p3>
+        <div>
+            <a href="TestCaseTalk_de.html" target="_blank" >de   <img class="icon-check" src="icons/de.png"></a>
+        </div>          
+        </div>
+        <!--entities-->        <div class="entity" id="ENTI2">
+            <div class="describtion">
+                <p>Entity</p> 
+                <h1>Bus Departure</h1>
+                <p1>
+
+Examples:
+ Bus Departure for Bus Line 20 at Bus Stop Bollwerk for Daytype saturday is planned at Departure Time 13:53
+ Bus Departure for Bus Line 20 at Bus Stop Bollwerk for Daytype saturday is planned at Departure Time 13:59
+ Bus Departure for Bus Line 20 at Bus Stop Bollwerk for Daytype saturday is planned at Departure Time 14:11
+ Bus Departure for Bus Line 12 at Bus Stop Bern Bahnhof for Daytype weekday is planned at Departure Time 14:11
+ Bus Departure for Bus Line 12 at Bus Stop Bern Bahnhof for Daytype sunday is planned at Departure Time 14:11</p1>
+            </div>
+             <div class="panel-body">
+            <div class="collapse" id="bar5">                    
+                   
+                <!-- The inside div eliminates the 'jumping' animation. -->
+
+                            <h2>Informations</h2>
+                        <div id="container2">
+                        <div class="table-responsive">
+                            <table class="table borderless">
+                                <tbody>
+
+                                    <tr>
+                                        <th>on diagram(s)</th>
+                                        <td class="attribute"><a href="#DIAG1-ENTI2" target="_self">PT Timetable</a></td>
+                                    </tr>
+
+                                    <tr>
+                                        <th>updated</th>
+                                        <td class="attribute">stb, 2020-03-06 08:54:15 UTC</td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                        </div>
+             <h2>Attributes</h2>
+                        <div id="container1">
+                            <div class="table-responsive">
+                   <table class="table borderless">
+                                            <tbody>
+                                        <tr>
+                                            <th class="attribute">Name</th>
+                                            <th class="attribute">Domain</th>
+                                            <th>Type</th>
+                                            <th class="thAlgn">Attribute of duty</th>
+                                            <th class="thAlgn">Key</th>
+                                            <th class="thAlgn">descriptor</th>
+                                            <th class="thAlgn">translated</th>
+                                            <th class="thAlgn">historicized</th>
+                                            <th class="thAlgn">repeated</th>
+                                            <th class="thAlgn">encrypted</th>
+                                        </tr>                                    <tr>
+                                                <td class="attribute"><a href="#ATTR2">planned Departure Time</a></td>
+                                                <td class="attribute"><a href="#WRTB3">TimeOfDay</a></td>
+                                                <td>Point in Time</td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-check" src="icons/checkmark.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                            </tr>
+                  
+                                </tbody>
+                            </table>
+                            </div>
+                                </div>
+            <h2>Translations</h2>
+                        <div id="container1">
+                            <div class="table-responsive">
+                   <table class="table borderless" >
+                                            <tbody>
+                                        <tr>
+             <th>Element</th>
+             <th>de</th>
+            <tr>
+             <td>Name</td>
+             <td><a href="TestCaseTalk_de.html#ENTI2" target="_blank" >Bus Departure</a></td>
+               </tr>
+            <tr>
+             <td>Synonym</td>
+             <td></td>
+               </tr>
+            <tr>
+             <td>Description</td>
+             <td>
+
+Examples:
+ Bus Departure for Bus Line 20 at Bus Stop Bollwerk for Daytype saturday is planned at Departure Time 13:53
+ Bus Departure for Bus Line 20 at Bus Stop Bollwerk for Daytype saturday is planned at Departure Time 13:59
+ Bus Departure for Bus Line 20 at Bus Stop Bollwerk for Daytype saturday is planned at Departure Time 14:11
+ Bus Departure for Bus Line 12 at Bus Stop Bern Bahnhof for Daytype weekday is planned at Departure Time 14:11
+ Bus Departure for Bus Line 12 at Bus Stop Bern Bahnhof for Daytype sunday is planned at Departure Time 14:11</td>
+               </tr>
+        
+                     </tbody>
+                            </table>
+                            </div>
+                                </div>
+                
+                            </div>
+                 <div class="panel">
+                <div class="panel-heading collapsed" data-toggle="collapse" data-target="#bar5">
+                    <img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
+                    <img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
+                    <label class="label1">more</label>
+                </div>
+            </div>
+        </div>
+        </div>
+            <div class="entity" id="ENTI1">
+            <div class="describtion">
+                <p>Entity</p> 
+                <h1>Bus Line</h1>
+                <p1>
+
+Examples
+ Bus Line 20 starts at  Bus Stop Bahnhof
+ Bus Line 12 starts at Bus Stop Länggasse
+ Bus Line 20 ends at  Bus Stop Wankdorf Bahnhof</p1>
+            </div>
+             <div class="panel-body">
+            <div class="collapse" id="bar6">                    
+                   
+                <!-- The inside div eliminates the 'jumping' animation. -->
+
+                            <h2>Informations</h2>
+                        <div id="container2">
+                        <div class="table-responsive">
+                            <table class="table borderless">
+                                <tbody>
+
+                                    <tr>
+                                        <th>on diagram(s)</th>
+                                        <td class="attribute"><a href="#DIAG1-ENTI1" target="_self">PT Timetable</a></td>
+                                    </tr>
+
+                                    <tr>
+                                        <th>updated</th>
+                                        <td class="attribute">stb, 2020-03-06 08:28:48 UTC</td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                        </div>
+             <h2>Attributes</h2>
+                        <div id="container1">
+                            <div class="table-responsive">
+                   <table class="table borderless">
+                                            <tbody>
+                                        <tr>
+                                            <th class="attribute">Name</th>
+                                            <th class="attribute">Domain</th>
+                                            <th>Type</th>
+                                            <th class="thAlgn">Attribute of duty</th>
+                                            <th class="thAlgn">Key</th>
+                                            <th class="thAlgn">descriptor</th>
+                                            <th class="thAlgn">translated</th>
+                                            <th class="thAlgn">historicized</th>
+                                            <th class="thAlgn">repeated</th>
+                                            <th class="thAlgn">encrypted</th>
+                                        </tr>                                    <tr>
+                                                <td class="attribute"><a href="#ATTR1">No</a></td>
+                                                <td class="attribute"><a href="#WRTB4">Busline number</a></td>
+                                                <td>Numerical</td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-check" src="icons/checkmark.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                            </tr>
+                  
+                                </tbody>
+                            </table>
+                            </div>
+                                </div>
+            <h2>Translations</h2>
+                        <div id="container1">
+                            <div class="table-responsive">
+                   <table class="table borderless" >
+                                            <tbody>
+                                        <tr>
+             <th>Element</th>
+             <th>de</th>
+            <tr>
+             <td>Name</td>
+             <td><a href="TestCaseTalk_de.html#ENTI1" target="_blank" >Bus Line</a></td>
+               </tr>
+            <tr>
+             <td>Synonym</td>
+             <td></td>
+               </tr>
+            <tr>
+             <td>Description</td>
+             <td>
+
+Examples
+ Bus Line 20 starts at  Bus Stop Bahnhof
+ Bus Line 12 starts at Bus Stop Länggasse
+ Bus Line 20 ends at  Bus Stop Wankdorf Bahnhof</td>
+               </tr>
+        
+                     </tbody>
+                            </table>
+                            </div>
+                                </div>
+                
+                            </div>
+                 <div class="panel">
+                <div class="panel-heading collapsed" data-toggle="collapse" data-target="#bar6">
+                    <img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
+                    <img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
+                    <label class="label1">more</label>
+                </div>
+            </div>
+        </div>
+        </div>
+            <div class="entity" id="ENTI3">
+            <div class="describtion">
+                <p>Entity</p> 
+                <h1>Bus Line Section</h1>
+                <p1>
+
+Examples
+ Bus Line Section 2 for Bus Line 20 starts at Bus Station Bollwerk
+ Bus Line Section 2 for Bus Line 20 ends at Bus Station Gewerbeschule
+ Bus Line Section 2 for Bus Line 20 takes Average Traveltime 1 Minute
+ Bus Line Section 7 for Bus Line 12 starts at Bus Station Bollwerk
+ Bus Line Section 7 for Bus Line 12 ends at Bus Station Gewerbeschule
+ Bus Line Section 7 for Bus Line 12 takes Average Traveltime 1 Minute  </p1>
+            </div>
+             <div class="panel-body">
+            <div class="collapse" id="bar7">                    
+                   
+                <!-- The inside div eliminates the 'jumping' animation. -->
+
+                            <h2>Informations</h2>
+                        <div id="container2">
+                        <div class="table-responsive">
+                            <table class="table borderless">
+                                <tbody>
+
+                                    <tr>
+                                        <th>on diagram(s)</th>
+                                        <td class="attribute"><a href="#DIAG1-ENTI3" target="_self">PT Timetable</a></td>
+                                    </tr>
+
+                                    <tr>
+                                        <th>updated</th>
+                                        <td class="attribute">stb, 2020-03-06 08:38:39 UTC</td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                        </div>
+             <h2>Attributes</h2>
+                        <div id="container1">
+                            <div class="table-responsive">
+                   <table class="table borderless">
+                                            <tbody>
+                                        <tr>
+                                            <th class="attribute">Name</th>
+                                            <th class="attribute">Domain</th>
+                                            <th>Type</th>
+                                            <th class="thAlgn">Attribute of duty</th>
+                                            <th class="thAlgn">Key</th>
+                                            <th class="thAlgn">descriptor</th>
+                                            <th class="thAlgn">translated</th>
+                                            <th class="thAlgn">historicized</th>
+                                            <th class="thAlgn">repeated</th>
+                                            <th class="thAlgn">encrypted</th>
+                                        </tr>                                    <tr>
+                                                <td class="attribute"><a href="#ATTR3">seq no</a></td>
+                                                <td class="attribute"><a href="#WRTB5">Section Number</a></td>
+                                                <td>Numerical</td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-check" src="icons/checkmark.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                            </tr>
+                                        <tr>
+                                                <td class="attribute"><a href="#ATTR4">average traveltime</a></td>
+                                                <td class="attribute"><a href="#WRTB9">Travel Time</a></td>
+                                                <td>Numerical</td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-check" src="icons/checkmark.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                            </tr>
+                                        <tr>
+                                                <td class="attribute"><a href="#ATTR5">direction</a></td>
+                                                <td class="attribute"><a href="#WRTB6">Line Direction</a></td>
+                                                <td>List of values</td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-check" src="icons/checkmark.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                            </tr>
+                  
+                                </tbody>
+                            </table>
+                            </div>
+                                </div>
+            <h2>Translations</h2>
+                        <div id="container1">
+                            <div class="table-responsive">
+                   <table class="table borderless" >
+                                            <tbody>
+                                        <tr>
+             <th>Element</th>
+             <th>de</th>
+            <tr>
+             <td>Name</td>
+             <td><a href="TestCaseTalk_de.html#ENTI3" target="_blank" >Bus Line Section</a></td>
+               </tr>
+            <tr>
+             <td>Synonym</td>
+             <td></td>
+               </tr>
+            <tr>
+             <td>Description</td>
+             <td>
+
+Examples
+ Bus Line Section 2 for Bus Line 20 starts at Bus Station Bollwerk
+ Bus Line Section 2 for Bus Line 20 ends at Bus Station Gewerbeschule
+ Bus Line Section 2 for Bus Line 20 takes Average Traveltime 1 Minute
+ Bus Line Section 7 for Bus Line 12 starts at Bus Station Bollwerk
+ Bus Line Section 7 for Bus Line 12 ends at Bus Station Gewerbeschule
+ Bus Line Section 7 for Bus Line 12 takes Average Traveltime 1 Minute  </td>
+               </tr>
+        
+                     </tbody>
+                            </table>
+                            </div>
+                                </div>
+                
+                            </div>
+                 <div class="panel">
+                <div class="panel-heading collapsed" data-toggle="collapse" data-target="#bar7">
+                    <img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
+                    <img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
+                    <label class="label1">more</label>
+                </div>
+            </div>
+        </div>
+        </div>
+            <div class="entity" id="ENTI6">
+            <div class="describtion">
+                <p>Entity</p> 
+                <h1>Bus Stop</h1>
+                <p1>
+
+Examples:
+ Bern Bahnhof
+ Wyler
+ Länggasse
+ Bollwerk</p1>
+            </div>
+             <div class="panel-body">
+            <div class="collapse" id="bar8">                    
+                   
+                <!-- The inside div eliminates the 'jumping' animation. -->
+
+                            <h2>Informations</h2>
+                        <div id="container2">
+                        <div class="table-responsive">
+                            <table class="table borderless">
+                                <tbody>
+
+                                    <tr>
+                                        <th>on diagram(s)</th>
+                                        <td class="attribute"><a href="#DIAG1-ENTI6" target="_self">PT Timetable</a></td>
+                                    </tr>
+
+                                    <tr>
+                                        <th>updated</th>
+                                        <td class="attribute">stb, 2020-03-06 08:26:48 UTC</td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                        </div>
+             <h2>Attributes</h2>
+                        <div id="container1">
+                            <div class="table-responsive">
+                   <table class="table borderless">
+                                            <tbody>
+                                        <tr>
+                                            <th class="attribute">Name</th>
+                                            <th class="attribute">Domain</th>
+                                            <th>Type</th>
+                                            <th class="thAlgn">Attribute of duty</th>
+                                            <th class="thAlgn">Key</th>
+                                            <th class="thAlgn">descriptor</th>
+                                            <th class="thAlgn">translated</th>
+                                            <th class="thAlgn">historicized</th>
+                                            <th class="thAlgn">repeated</th>
+                                            <th class="thAlgn">encrypted</th>
+                                        </tr>                                    <tr>
+                                                <td class="attribute"><a href="#ATTR11">Name</a></td>
+                                                <td class="attribute"><a href="#WRTB2">Name</a></td>
+                                                <td>Text</td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-check" src="icons/checkmark.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                            </tr>
+                                        <tr>
+                                                <td class="attribute"><a href="#ATTR12">Geo Location</a></td>
+                                                <td class="attribute"><a href="#WRTB11">Geo Location</a></td>
+                                                <td>Groupattribute</td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-check" src="icons/checkmark.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                            </tr>
+                  
+                                </tbody>
+                            </table>
+                            </div>
+                                </div>
+            <h2>Translations</h2>
+                        <div id="container1">
+                            <div class="table-responsive">
+                   <table class="table borderless" >
+                                            <tbody>
+                                        <tr>
+             <th>Element</th>
+             <th>de</th>
+            <tr>
+             <td>Name</td>
+             <td><a href="TestCaseTalk_de.html#ENTI6" target="_blank" >Bus Stop</a></td>
+               </tr>
+            <tr>
+             <td>Synonym</td>
+             <td></td>
+               </tr>
+            <tr>
+             <td>Description</td>
+             <td>
+
+Examples:
+ Bern Bahnhof
+ Wyler
+ Länggasse
+ Bollwerk</td>
+               </tr>
+        
+                     </tbody>
+                            </table>
+                            </div>
+                                </div>
+                
+                            </div>
+                 <div class="panel">
+                <div class="panel-heading collapsed" data-toggle="collapse" data-target="#bar8">
+                    <img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
+                    <img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
+                    <label class="label1">more</label>
+                </div>
+            </div>
+        </div>
+        </div>
+            <div class="entity" id="ENTI4">
+            <div class="describtion">
+                <p>Entity</p> 
+                <h1>Daytype</h1>
+                <p1>
+
+Examples
+ Daytype weekday has Daytype Sublabel excl. holidays 
+ Daytype saturday has Daytype Label Saturday
+ Daytype sunday has Daytype Label Sunday or special Holiday
+ Daytype holiday has Daytype Label Ferienfahrplan Montag-Freitag
+ Daytype holiday has Daytype Sublabel 27.3.20-14.4.20, 1.7.20-15.8.20</p1>
+            </div>
+             <div class="panel-body">
+            <div class="collapse" id="bar9">                    
+                   
+                <!-- The inside div eliminates the 'jumping' animation. -->
+
+                            <h2>Informations</h2>
+                        <div id="container2">
+                        <div class="table-responsive">
+                            <table class="table borderless">
+                                <tbody>
+
+                                    <tr>
+                                        <th>on diagram(s)</th>
+                                        <td class="attribute"><a href="#DIAG1-ENTI4" target="_self">PT Timetable</a></td>
+                                    </tr>
+
+                                    <tr>
+                                        <th>updated</th>
+                                        <td class="attribute">stb, 2020-03-06 08:29:54 UTC</td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                        </div>
+             <h2>Attributes</h2>
+                        <div id="container1">
+                            <div class="table-responsive">
+                   <table class="table borderless">
+                                            <tbody>
+                                        <tr>
+                                            <th class="attribute">Name</th>
+                                            <th class="attribute">Domain</th>
+                                            <th>Type</th>
+                                            <th class="thAlgn">Attribute of duty</th>
+                                            <th class="thAlgn">Key</th>
+                                            <th class="thAlgn">descriptor</th>
+                                            <th class="thAlgn">translated</th>
+                                            <th class="thAlgn">historicized</th>
+                                            <th class="thAlgn">repeated</th>
+                                            <th class="thAlgn">encrypted</th>
+                                        </tr>                                    <tr>
+                                                <td class="attribute"><a href="#ATTR6">Label</a></td>
+                                                <td class="attribute"><a href="#WRTB2">Name</a></td>
+                                                <td>Text</td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-check" src="icons/checkmark.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                            </tr>
+                                        <tr>
+                                                <td class="attribute"><a href="#ATTR7">Sublabel</a></td>
+                                                <td class="attribute"><a href="#WRTB2">Name</a></td>
+                                                <td>Text</td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                            </tr>
+                  
+                                </tbody>
+                            </table>
+                            </div>
+                                </div>
+            <h2>Translations</h2>
+                        <div id="container1">
+                            <div class="table-responsive">
+                   <table class="table borderless" >
+                                            <tbody>
+                                        <tr>
+             <th>Element</th>
+             <th>de</th>
+            <tr>
+             <td>Name</td>
+             <td><a href="TestCaseTalk_de.html#ENTI4" target="_blank" >Daytype</a></td>
+               </tr>
+            <tr>
+             <td>Synonym</td>
+             <td></td>
+               </tr>
+            <tr>
+             <td>Description</td>
+             <td>
+
+Examples
+ Daytype weekday has Daytype Sublabel excl. holidays 
+ Daytype saturday has Daytype Label Saturday
+ Daytype sunday has Daytype Label Sunday or special Holiday
+ Daytype holiday has Daytype Label Ferienfahrplan Montag-Freitag
+ Daytype holiday has Daytype Sublabel 27.3.20-14.4.20, 1.7.20-15.8.20</td>
+               </tr>
+        
+                     </tbody>
+                            </table>
+                            </div>
+                                </div>
+                
+                            </div>
+                 <div class="panel">
+                <div class="panel-heading collapsed" data-toggle="collapse" data-target="#bar9">
+                    <img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
+                    <img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
+                    <label class="label1">more</label>
+                </div>
+            </div>
+        </div>
+        </div>
+            <div class="entity" id="ENTI5">
+            <div class="describtion">
+                <p>Entity</p> 
+                <h1>Timetable</h1>
+                <p1>
+
+Examples:
+ Timetable Summer20 is valid from Date 1.3.2020
+ Timetable Summer20 ends at Date 11.12..2020
+ Timetable Winter20/21 starts at Date 11.12..2020</p1>
+            </div>
+             <div class="panel-body">
+            <div class="collapse" id="bar10">                    
+                   
+                <!-- The inside div eliminates the 'jumping' animation. -->
+
+                            <h2>Informations</h2>
+                        <div id="container2">
+                        <div class="table-responsive">
+                            <table class="table borderless">
+                                <tbody>
+
+                                    <tr>
+                                        <th>on diagram(s)</th>
+                                        <td class="attribute"><a href="#DIAG1-ENTI5" target="_self">PT Timetable</a></td>
+                                    </tr>
+
+                                    <tr>
+                                        <th>updated</th>
+                                        <td class="attribute">stb, 2020-03-06 08:52:54 UTC</td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                        </div>
+             <h2>Attributes</h2>
+                        <div id="container1">
+                            <div class="table-responsive">
+                   <table class="table borderless">
+                                            <tbody>
+                                        <tr>
+                                            <th class="attribute">Name</th>
+                                            <th class="attribute">Domain</th>
+                                            <th>Type</th>
+                                            <th class="thAlgn">Attribute of duty</th>
+                                            <th class="thAlgn">Key</th>
+                                            <th class="thAlgn">descriptor</th>
+                                            <th class="thAlgn">translated</th>
+                                            <th class="thAlgn">historicized</th>
+                                            <th class="thAlgn">repeated</th>
+                                            <th class="thAlgn">encrypted</th>
+                                        </tr>                                    <tr>
+                                                <td class="attribute"><a href="#ATTR8">name</a></td>
+                                                <td class="attribute"><a href="#WRTB2">Name</a></td>
+                                                <td>Text</td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-check" src="icons/checkmark.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                            </tr>
+                                        <tr>
+                                                <td class="attribute"><a href="#ATTR9">valid from</a></td>
+                                                <td class="attribute"><a href="#WRTB1">Date (day)</a></td>
+                                                <td>Point in Time</td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-check" src="icons/checkmark.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                            </tr>
+                                        <tr>
+                                                <td class="attribute"><a href="#ATTR10">valid to</a></td>
+                                                <td class="attribute"><a href="#WRTB1">Date (day)</a></td>
+                                                <td>Point in Time</td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-check" src="icons/checkmark.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                                <td class="symbol"><img class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                                            </tr>
+                  
+                                </tbody>
+                            </table>
+                            </div>
+                                </div>
+            <h2>Translations</h2>
+                        <div id="container1">
+                            <div class="table-responsive">
+                   <table class="table borderless" >
+                                            <tbody>
+                                        <tr>
+             <th>Element</th>
+             <th>de</th>
+            <tr>
+             <td>Name</td>
+             <td><a href="TestCaseTalk_de.html#ENTI5" target="_blank" >Timetable</a></td>
+               </tr>
+            <tr>
+             <td>Synonym</td>
+             <td></td>
+               </tr>
+            <tr>
+             <td>Description</td>
+             <td>
+
+Examples:
+ Timetable Summer20 is valid from Date 1.3.2020
+ Timetable Summer20 ends at Date 11.12..2020
+ Timetable Winter20/21 starts at Date 11.12..2020</td>
+               </tr>
+        
+                     </tbody>
+                            </table>
+                            </div>
+                                </div>
+                
+                            </div>
+                 <div class="panel">
+                <div class="panel-heading collapsed" data-toggle="collapse" data-target="#bar10">
+                    <img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
+                    <img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
+                    <label class="label1">more</label>
+                </div>
+            </div>
+        </div>
+        </div>
+            <!--attributes-->

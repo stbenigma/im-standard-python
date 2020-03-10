@@ -1,0 +1,18 @@
+[ODM]
+#base directory for all modeler data (with ending /)
+odmbasedirec = "/Users/stb/Documents/Projekte/FYAYC_intern/gitHub/TestCaseTalk/"
+
+#base directory for all local results of model extract (with ending /)
+#default = odmbasedirec
+localbasedirec = "/Users/stb/Documents/Projekte/FYAYC_intern/gitHub/TestCaseTalk/"
+odmmodelname = "TestCaseTalk"
+
+#directory containing versioned model
+odmvcsdirec = "gitHub/"
+
+[DB]
+#default language of model in DB
+dbdefaultlang = "en"
+
+#comma separated languages to be maintained, choose from de, en, fr, es
+dblanguages = "en"
