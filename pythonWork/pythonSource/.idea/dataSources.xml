@@ -7,5 +7,11 @@
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
       <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/../../../CRM/DB/IM_CRM_FYAYC.db</jdbc-url>
     </data-source>
+    <data-source source="LOCAL" name="TestCaseTalk.db" uuid="750cb84f-2833-4906-8f86-eed5659bf79f">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/../../TestCaseTalk/DB/TestCaseTalk.db</jdbc-url>
+    </data-source>
   </component>
 </project>

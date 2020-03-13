@@ -5,6 +5,8 @@ from pathlib  import Path
 MODELNAME:str = 'odmmodelname'
 ODMIMDIREC:str = 'odmimdirec'
 ODMBASEDIREC:str = 'odmbasedirec'
+DBDEFAULTLANG:str = 'dbdefaultlang'
+DBLANGUAGES:str = 'dblanguages'
 
 paramFileExension:str = ".params"
 parameter = {
@@ -12,8 +14,8 @@ parameter = {
             , 'dbdirec' : None
             , 'dbfileextension' : '.db'
             , 'dbdefaultdirec':'DB/'
-            , 'dbdefaultlang': 'de'
-            , 'dblanguages' : 'de,en'
+            , DBDEFAULTLANG: 'de'
+            , DBLANGUAGES : 'de,en'
             , 'dbdefaultlangid': None
             , ODMBASEDIREC: None
             ,'localbasedirec': None
@@ -40,7 +42,11 @@ parameter = {
             , 'webdirec': None
             , 'webdefaultdirec': 'Web/'
             , 'logofilename': None
-        }
+            , 'odmreldirec': 'rel/'
+            , 'odmtabledirec': 'table/'
+            , 'odmsubviewsdirec': 'subviews/'
+            , 'odmfkdirec': 'foreignkey/'
+}
 def nvl(p_val1,p_val2):
     return p_val1 if p_val1 is not None else p_val2
 
@@ -66,14 +72,14 @@ def dbDefaultDirect(newval=None):
         parameter['dbdefaultdirec'] = newval
 def dbDefaultLang(newval=None):
     if newval is None:
-        return parameter['dbdefaultlang']
+        return parameter[DBDEFAULTLANG]
     else:
-        parameter['dbdefaultlang'] = newval
+        parameter[DBDEFAULTLANG] = newval
 def dbLanguages(newval=None):
     if newval is None:
-        return parameter['dblanguages']
+        return parameter[DBLANGUAGES]
     else:
-        parameter['dblanguages'] = newval
+        parameter[DBLANGUAGES] = newval
 def dbDefaultLangID(newval=None):
     if newval is None:
         return parameter['dbdefaultlangid']
@@ -210,6 +216,27 @@ def logoFileName(newval=None):
     else:
         parameter['logofilename'] = newval
 
+def odmtabledirec(newval=None):
+    if newval is None:
+        return parameter['odmtabledirec']
+    else:
+        parameter['odmtabledirec'] = newval
+def odmsubviewsdirec(newval=None):
+    if newval is None:
+        return parameter['odmsubviewsdirec']
+    else:
+        parameter['odmsubviewsdirec'] = newval
+def odmfkdirec(newval=None):
+    if newval is None:
+        return parameter['odmfkdirec']
+    else:
+        parameter['odmfkdirec'] = newval
+def odmreldirec(newval=None):
+    if newval is None:
+        return odmIMDirec()+odmModelName()+'/'+parameter['odmreldirec']
+    else:
+        parameter['odmreldirec'] = newval
+
 def liesparamfile(p_filepath):
     import configparser
     global parameter
@@ -237,6 +264,10 @@ def liesparamfile(p_filepath):
                         raise Exception("Base-direc mismatch '{}' and '{}'".format (val, odmBaseDirec()))
                     #fi
                 #fi
+            elif param == DBDEFAULTLANG:
+                dbDefaultLang(val)
+            elif param == DBLANGUAGES:
+                dbLanguages(val)
             elif param ==ODMIMDIREC:
                 if odmIMDirec() is None:
                     odmIMDirec(newval=val)

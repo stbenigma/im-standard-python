@@ -4,8 +4,6 @@ from IM_DB import dbConnect
 import sqlite3
 import re
 
-
-
 def select(psql):
     cursor = dbConnect.myDbConn.cursor()
 

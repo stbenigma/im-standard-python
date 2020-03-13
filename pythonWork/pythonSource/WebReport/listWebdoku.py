@@ -3,7 +3,8 @@ import sys,os
 sys.path.append(os.path.dirname(os.path.realpath(__file__))+'/../IM_db')
 from datetime import date,datetime
 from IM_DB import parameters,dbConnect,dbDDL,dbDML,dbErstelleTables,dbInserts,dbLookup,dbParam
-from IM_HTML import printHTML,web_sql,printdiagHTML
+from IM_HTML import printHTML,web_sql,printdiagHTML,printRelHTML
+from IM_OBJECTS import schnittstelle
 
 # Main Programm
 def nvl(x,default=''):
@@ -102,6 +103,8 @@ def printlistofcontent():
     printHTML.printlistofcontentelement(pname='Dokumente', plist=web_sql.namelist(ptype='DOKU', plang=printHTML.reportLang()))
     printHTML.printlistofcontentelement(pname='Attribut-Mapping', plist=web_sql.namelist(ptype='UDP', plang=printHTML.reportLang()))
     printHTML.printlistofcontentelement(pname='Diagramme', plist=web_sql.namelist(ptype='DIAG', plang=printHTML.reportLang()))
+    printHTML.printlistofcontentelement(pname='Systeme', plist=web_sql.namelist(ptype='SCHN', plang=printHTML.reportLang())
+                                        ,pfileref=True)
     printHTML.printlistofcontentfoot()
 # printlistofcontent
 
@@ -132,6 +135,18 @@ def printhtmlfile(pfirma, ptitel, pinfo, plogofilename):
 
 #printhtmlfile
 
+def printhtmlsysfile(pfirma, pfilename, ptitel, pinfo, plogofilename,pschnid):
+    printHTML.createFile (sysfilename=pfilename)
+    printHTML.printhead(p_firma=pfirma
+                        , p_titel=ptitel
+                        , p_info=pinfo
+                        , p_logofilename=plogofilename)
+    printRelHTML.printlistofcontent(pschnid)
+    printRelHTML.printcontent(pfirma=pfirma, ptitel=ptitel)
+    printHTML.printfoot();
+    printHTML.closefile ();
+#printhtmlsysfile
+
 def listwebmain(plang):
     dbParam.liesDefaultLang()
     printHTML.createlib()
@@ -153,6 +168,20 @@ def listwebmain(plang):
                       , plogofilename=parameters.logoFileName()
                       )
     # for
+    printHTML.reportLang(parameters.dbDefaultLang())
+    for s in schnittstelle.indexlist():
+        schn_name = s[0]
+        schnfilename = s[1]
+        print ("create web-files for system {}".format(schn_name))
+        printhtmlsysfile(pfirma="foryouandyourcustomers"
+                      ,pfilename= schnfilename
+                      , ptitel= parameters.odmModelName() + ' - {}'.format(schn_name)
+                      , pinfo="{}".format(datetime.now().strftime("%Y-%m-%d, %H:%M"))
+                      , plogofilename=parameters.logoFileName()
+                      ,pschnid=???
+                      )
+    #
+
 #listwebmain
 
 def main(pdirec, plang):

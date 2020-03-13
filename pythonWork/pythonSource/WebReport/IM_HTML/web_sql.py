@@ -1,6 +1,7 @@
 import sys,os
 sys.path.append(os.path.dirname(os.path.realpath(__file__))+'/../../IM_db')
 from IM_DB import dbDML,dbLookup,parameters
+from IM_OBJECTS import schnittstelle,tabelle
 
 
 def langText(p_attrname, p_lang, p_modeid):
@@ -77,7 +78,8 @@ def dokureflist (pid, plang):
         datalist = [(e[0],entiAnker(e[1])) for e in data]
 #dokureflist
 
-def namelist(ptype, plang, pwrtbid=None):
+def namelist(ptype, plang, pid=None):
+    datalist = []
     if ptype == 'ENTI':
         data = dbDML.select("""select name,enti_id from 
         (select e1.enti_id
@@ -114,7 +116,7 @@ def namelist(ptype, plang, pwrtbid=None):
           join wertebereiche on wrtb_id = attr_wrtb_id
                             and wrtb_id = {}
           ) order by upper(name)
-              """.format(plang, pwrtbid if (pwrtbid is not None) else 'wrtb_id'))
+              """.format(plang, pid if (pid is not None) else 'wrtb_id'))
         datalist = [(e[0], attrAnker(e[1])) for e in data]
     elif (ptype == 'ATTG'):
         data = dbDML.select("""select wbgrname || ' ('||wrtbname||')' name, wbgr_id,wrtbname,wrtb_id 
@@ -132,7 +134,7 @@ def namelist(ptype, plang, pwrtbid=None):
                                     and ana.spra_id = sp.spra_id
               where wbgr_wrtb_id_member = {}
               ) order by wrtbname,upper(name)
-                  """.format(plang, pwrtbid if (pwrtbid is not None) else 'wrtb_id' ))
+                  """.format(plang, pid if (pid is not None) else 'wrtb_id'))
         datalist = [(e[0], wrtbAnker(e[3])) for e in data]
     elif (ptype == 'WRTB'):
         data = dbDML.select("""select wrtbname ||' ('|| anz ||')' name, wrtb_id 
@@ -181,6 +183,10 @@ def namelist(ptype, plang, pwrtbid=None):
         order by upper (doku_name)
               """)
         datalist = [(e[0], dokuAnker(e[1])) for e in data]
+    elif (ptype == 'SCHN') :
+        datalist = schnittstelle.indexlist()
+    elif (ptype == 'TABL') :
+        datalist = tabelle.indexlist(pschnid=pid)
     #fi
     return datalist
 #namelist

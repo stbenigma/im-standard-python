@@ -31,7 +31,12 @@ def reportLang(newval=None):
 #reportLang
 
 
-
+def lf2htmlbr (pstr):
+    try:
+        return re.sub(r"\n","<br>\n",pstr)
+    except:
+        return pstr
+#lf2htmlbr
 
 def nvl(x,default=''):
     return x if (x is not None) else default
@@ -122,7 +127,9 @@ translNameEN = {'Anzeige': 'Display'
                 ,'Superentität': 'Superentity'
                 ,'Synonyme': 'Synonyms'
                 ,'Syntaxregel': 'Syntax rule'
+                ,'Systeme': 'Systems'
                 ,'Tag': 'day'
+                ,'Tabellen': 'Tables'
                 ,'Technischer Name': 'Technical Name'
                 ,'Text': 'Text'
                 ,'Ton': 'Sound'
@@ -211,6 +218,8 @@ translNameFR = {"Anzeige":"Affichage"
 ,"Superentität":"Superentité"
 ,"Synonyme":"Synonyme"
 ,"Syntaxregel":"Règle syntaxique"
+,"Systeme": "Systèmes"
+,'Tabellen': 'Tables'
 ,"Tag":"Jour"
 ,"Technischer Name":"Terme technique"
 ,"Text":"Texte"
@@ -630,7 +639,7 @@ def printlistofcontentfoot():
 #printlistofcontentfoot
 
 
-def printlistofcontentelement(pname, plist):
+def printlistofcontentelement(pname, plist,pfileref=False):
     if len(plist) == 0: return
     lbc = str(newbarcounter())
     contentelementhead= """
@@ -648,14 +657,18 @@ def printlistofcontentelement(pname, plist):
     """
     contentline="""
                 <li class="obj"><a href="#{}" target="_self">{}</a></li>"""
+    contentlinefile="""
+                <li class="obj"><a href="{}" target="_blank">{}</a></li>"""
+
     contentelementfoot="""
                     </ol>
             </div>
         </div>
-""";
+"""
     fhtml.write(contentelementhead.format(pname, lbc, transl(pname), lbc, pname))
     for l in plist:
-        fhtml.write(contentline.format(l[1],l[0]))
+        linestr = contentlinefile if pfileref else contentline
+        fhtml.write(linestr.format(l[1],l[0]))
     fhtml.write(contentelementfoot)
 #printlistofcontentelement
 
@@ -793,21 +806,21 @@ def starttable(ptitel, pueberschriften, plevel=2,ptabid=None,pselfanker=None):
 
 def writetableline(pwerte,pid = None):
     linestart = """            <tr>
-""" if pid is None else """            <tr id = "{}">
-""".format(pid)
+    """ if pid is None else """            <tr id = "{}">
+    """.format(pid)
     line = """             <td>{}</td>
-"""
+    """
     iconline= """           <td {}></td>
-"""
+    """
     lineend ="""               </tr>
-"""
+    """
     retval = []
     retval.append(linestart)
     for w in pwerte:
         if (isiconstr(w)):
-            retval.append(iconline.format(w))
+            retval.append(iconline.format(lf2htmlbr(nvl(w))))
         else:
-            retval.append(line.format(nvl(w)))
+            retval.append(line.format(nvl(lf2htmlbr(nvl(w)))))
     retval.append(lineend)
     return ''.join(retval)
 #writetableline
@@ -1036,7 +1049,7 @@ def printcontententi(p_list):
         fhtml.write(contentelementhead.format(web_sql.entiAnker(e[0]) #id
                                             ,transl('Entität')
                                             ,e[1] #name
-                                            , nvl(e[2])
+                                            , lf2htmlbr(nvl(e[2]))
                                             ,lbc)) #descr
 
         fhtml.write(detailshead)
@@ -1139,7 +1152,7 @@ def printcontentattr(plist):
                                             ,href(ref=web_sql.entiAnker(a[22])
                                                 ,anz=web_sql.enti_name(p_lang=reportLang()
                                                                        ,p_modeid=dbLookup.modeid(p_entiid=a[22])))
-                                            , nvl(a[18]) #Beschreib ung
+                                            , lf2htmlbr(nvl(a[18])) #Beschreib ung
                                             ,lbc))
 
         fhtml.write(detailshead)
@@ -1172,7 +1185,7 @@ def printcontentattr(plist):
 
 def printwrtbattrlist(pwrtbid, wrtgruppe=False):
     alist = web_sql.namelist(ptype='ATTG' if wrtgruppe else 'ATTR'
-                             , plang=reportLang(), pwrtbid=pwrtbid)
+                             , plang=reportLang(), pid=pwrtbid)
     if (len(alist)==0):
         return
     fhtml.write(starttable(ptitel=transl('Verwendet in Attributgruppen' if wrtgruppe
@@ -1204,7 +1217,7 @@ def printreflist(pelemid,pelemtype):
 #printattrlist
 def printwrtbattrlist(pwrtbid, wrtgruppe=False):
     alist = web_sql.namelist(ptype='ATTG' if wrtgruppe else 'ATTR'
-                             , plang=reportLang(), pwrtbid=pwrtbid)
+                             , plang=reportLang(), pid=pwrtbid)
     if (len(alist)==0):
         return
     fhtml.write(starttable(ptitel=transl('Verwendet in Attributgruppen' if wrtgruppe
@@ -1311,7 +1324,7 @@ def printcontentwrtb(p_list):
         fhtml.write(contentelementhead.format(web_sql.wrtbAnker(w[0]) #id
                                             ,transl('Wertebereich')
                                             ,w[1] #anzname
-                                            , nvl(w[4]) #Beschreibung
+                                            , lf2htmlbr(nvl(w[4])) #Beschreibung
                                             ,lbc))
 
         fhtml.write(detailshead)
@@ -1422,7 +1435,7 @@ def printcontentdoku(p_list):
         fhtml.write(contentelementhead.format(web_sql.dokuAnker(d[0]) #id
                                             ,transl('Dokument')
                                             ,d[1] #anzname
-                                            , nvl(d[4]) #Beschreibung
+                                            , lf2htmlbr(nvl(d[4])) #Beschreibung
                                             ,lbc))
 
         fhtml.write(detailshead)
@@ -1490,9 +1503,11 @@ def createlib():
         shutil.copytree(libSourceDirec+'image',imagedirec)
 #createlib
 
-def createFile():
+def createFile(sysfilename=None):
     global fhtml
-    webfile =webDirectory + webFileName + '_' + reportLang() + '.html'
+    webfile = webDirectory
+    if sysfilename is None: webfile += webFileName + '_' + reportLang() + '.html'
+    else: webfile += sysfilename
     if os.path.exists(webfile):
         os.remove(webfile)
     fhtml = open(webfile,'w')
@@ -1529,8 +1544,9 @@ def findtransl(pattr,pmodeid,plangs):
 
 def printtransl(pentiid=None, pattrid=None):
     langs=web_sql.projektlangs().split(',')
-    try: langs.remove(reportLang().upper())
+    try: langs.remove(reportLang())
     except: pass
+    if len(langs)== 0 : return
     head=[transl('Element')]
     head.extend(langs)
     if (pentiid is not None):

@@ -4,15 +4,7 @@ import re,os,sqlite3
 from datetime import date
 from IM_DB import dbInserts,dbDML,dbLookup,dbConnect,parameters,dbParam
 import math
-
-class tabelle:
-    def __init__(self):
-        pass
-#tabelle
-class schnittstelle:
-    def __init__(self):
-        pass
-#schnittstelle
+import transferRelational
 
 class Wertebereich:
     def __init__(self, pname, pid):
@@ -501,9 +493,8 @@ def transferdiaarc(parcs, pdiagid, puc, pdc):
 
 def doGUIDfile(pdirec,pfile,transferfiles):
     #nur GUID als Namen erlaubt.
-    if re.match(r'[A-Z0-9-]{30,45}.xml',pfile):
+    if re.match(r'[A-Z0-9-]{20,45}.xml',pfile):
         fileName = pdirec + pfile
-        #print (fileName)
         transferfiles(fileName)
     #fi
 #doGUIDfile
@@ -524,12 +515,12 @@ def dosegfiles(pdirec,transferfiles):
     #for
 #dosegfiles
 
-def do1diagramm(p_filename):
+def do1diagramm(pfilename):
     #print (p_filename)
     try:
-        diagramme = ET.parse(p_filename)
+        diagramme = ET.parse(pfilename)
     except:
-        print("Diagramm nicht lesbar: {}".format(p_filename))
+        print("Diagramm nicht lesbar: {}".format(pfilename))
         return
     dia = diagramme.getroot()
     dianame = dia.get('name')
@@ -1161,6 +1152,8 @@ def insertBaseData():
 #insertBaseData
 
 def loeschmodell():
+    transferRelational.loeschmodell()
+
     dbDML.delete("benudef_eigenschaft")
     dbDML.delete("beziehungen")
     dbDML.delete("arcs")
@@ -1190,8 +1183,6 @@ def loeschmodell():
     dbDML.delete('modelelem_doku')
     dbDML.delete('dokumente')
     dbDML.delete('tabelle')
-    dbDML.delete('schnittstelle')
-
 
 #loeschmodell
 
@@ -1305,18 +1296,18 @@ def transferprojekt():
     root = proj.getroot()
     comm = findText(root,'comment')
     if comm is None:
-        defspra='de'
-        sprachen = 'de'
+        defspra = parameters.dbDefaultLang()
+        sprachen = parameters.dbLanguages()
     else:
-        defspra=re.search(r'currentLang=([A-Z]{2})',comm).group(1)
-        sprachen=re.search(r'languages=([A-Z,]*)',comm).group(1)
+        defspra = re.search(r'currentLang=([A-Z]{2})',comm).group(1)
+        sprachen = re.search(r'languages=([A-Z,]*)',comm).group(1)
     #print (findField(root,'name'),comm,sprachen,defspra)
     dbInserts.insertprojekt(pdata=(findField(root,'name'),findText(root,'createdBy')
         , findText(root, 'createdTime'),sprachen,defspra))
     if (defspra is not None
         and dbParam.dbDefaultLang.lower() != defspra.lower()):
         #setze die Defaultsprache aus dem Modell
-        if dbLookup.spraLookup(defespra.lower()) is None:
+        if dbLookup.spraLookup(defspra.lower()) is None:
             raise Exception("Language '{}' does not exist".format(defspra))
         dbDML.exec("""update sprachen set spra_ist_modellsprache = 'FALSE'
                            where lower(spra_iso_code2)  = lower('{}')
@@ -1370,5 +1361,6 @@ def transferODMModel():
     loaddefaultcolors()
     transferdiagramme()
     filllanguages()
+    transferRelational.transfer()
 
 #end transferODMModel

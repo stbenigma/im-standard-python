@@ -1,10 +1,13 @@
 # -*- coding: latin-1 -*-
 
 from IM_DB import dbDDL,dbDML
+from IM_OBJECTS import schnittstelle,tabelle
 
 
 def erstelleInfra():
     #erlaube alles droppen
+    schnittstelle.createtable()
+    tabelle.createtable()
 
     dbDDL.dropTable("speicherformate");
     dbDDL.createTable("""
@@ -14,41 +17,6 @@ def erstelleInfra():
     spfo_beschreibung   varchar(4000)
 )
     """);
-
-    dbDDL.dropTable("SCHNITTSTELLE");
-    dbDDL.createTable("""
-CREATE TABLE SCHNITTSTELLE 
-    (
-     SCHN_ID integer primary key autoincrement, 
-     SCHN_NAME VARCHAR (60) NOT NULL , 
-     SCHN_BESCHR VARCHAR (4000)  , 
- 	 SCHN_odm_guid	varchar(36),
-     SCHN_UC VARCHAR (30) NOT NULL , 
-     SCHN_DC VARCHAR (30) NOT NULL , 
-     SCHN_UM VARCHAR (30) NULL , 
-     SCHN_DM VARCHAR (30) NULL ,
- CONSTRAINT SCHN_UN UNIQUE (SCHN_NAME)
-    )
-    """)
-    dbDDL.dropTable("TABELLE");
-    dbDDL.createTable("""
-CREATE TABLE TABELLE 
-    (
-     TABL_ID integer primary key autoincrement , 
-     TABL_NAME VARCHAR (60) NOT NULL , 
-     TABL_SCHN_ID integer NOT NULL , 
-     TABL_PREFIX VARCHAR (60) NULL , 
-     TABL_BESCHR VARCHAR (4000) NULL , 
- 	 TABL_odm_guid	varchar(36),
-     TABL_UC VARCHAR (30) NOT NULL , 
-     TABL_DC VARCHAR (30) NOT NULL , 
-     TABL_UM VARCHAR (30) NULL , 
-     TABL_DM VARCHAR (30) NULL ,
-	  CONSTRAINT TABL_UN UNIQUE (TABL_SCHN_ID , TABL_NAME)
- 	   ,CONSTRAINT TABL_SCHN_FK FOREIGN KEY (TABL_SCHN_ID) 
- 	      REFERENCES SCHNITTSTELLE (SCHN_ID ) 
-    )
-    """)
 
     dbDDL.dropTable("entitaeten");
     dbDDL.createTable("""
