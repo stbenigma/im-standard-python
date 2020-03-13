@@ -311,8 +311,7 @@ def anzgranul(dt):
 #anzgranul
 
 
-
-def list2href(p_list,ptype):
+def list2href(p_list, ptype):
     """Verandelt eine kommagetrennte Liste von nnn:xxxx in einen String von kommagetrennten  HREF-Webeinträgen"""
     list = p_list.split(",")
     elem = []
@@ -1215,6 +1214,7 @@ def printreflist(pelemid,pelemtype):
     #for
     fhtml.write(endtable())
 #printattrlist
+
 def printwrtbattrlist(pwrtbid, wrtgruppe=False):
     alist = web_sql.namelist(ptype='ATTG' if wrtgruppe else 'ATTR'
                              , plang=reportLang(), pid=pwrtbid)
@@ -1324,7 +1324,11 @@ def printcontentwrtb(p_list):
         fhtml.write(contentelementhead.format(web_sql.wrtbAnker(w[0]) #id
                                             ,transl('Wertebereich')
                                             ,w[1] #anzname
+<<<<<<< HEAD
                                             , lf2htmlbr(nvl(w[4])) #Beschreibung
+=======
+                                            ,nvl(w[4]) #Beschreibung
+>>>>>>> a0960bf05f5a9c5991c9d42401c68fddde46e4bb
                                             ,lbc))
 
         fhtml.write(detailshead)
@@ -1363,99 +1367,120 @@ def printcontentwrtb(p_list):
     #for
 #printcontentwrtb
 
-def printdokulist(p_dokuid):
-    dlist = web_sql.dokulist(p_lang=p_dokuid)
-    if (len(dlist)==0):
-        return
-    fhtml.write(starttable(ptitel=transl('Dokumentenliste')
-                           , pueberschriften=(transl('Nr'), transl('Wert'), transl('Anzeige'), transl('Beschreibung'))
-                           , plevel=3))
-    for d in dlist:
-        fhtml.write(writetableline(pwerte=d))
-    fhtml.write(endtable())
-
+#def printdokulist(p_dokuid):
+#    dlist = web_sql.dokulist(p_lang=p_dokuid)
+#    if (len(dlist)==0):
+#        return
+#    fhtml.write(starttable(ptitel=transl('Dokumentenliste')
+#                           , pueberschriften=(transl('Name'), transl('Format'), transl('Referenz'), transl('Parent ID'))
+#                           , plevel=3))
+#    for d in dlist:
+#        fhtml.write(writetableline(pwerte=d))
+#    fhtml.write(endtable())
 
 #printdokulist
 
+def printreflist(elemid, elemtype):
+    dlist = web_sql.dokureflist(pid=elemid, plang=elemtype)
+
+    if (len(dlist)==0):
+        return
+    fhtml.write(starttable(ptitel=transl('Dokumentenreferenz')
+                           , pueberschriften=(transl('ID'), transl('Typ'))
+                           , plevel=3))
+#   pelemid = 'DOKU_ID', pelemtype = 'DOKU'
+
+    for d in dlist:
+       fhtml.write(writetableline(pwerte=d))
+    fhtml.write(endtable())
+
+#    dokuref = dokureference(pbeziid=bezi_id) (pentiid = enti_id)
+
+#printreflist
+
 def printcontentdoku(p_list):
-    contenthead="""        <!--documents-->"""
+    contenthead="""        <!--domains-->"""
 
     contentelementhead = """        <div class="entity" id="{}">
-            <div class="describtion">
-                <p>{}</p>
-                <h1>{}</h1>
-                <p1>{}</p1>
-            </div>
-             <div class="panel-body">
-            <div class="collapse" id="bar{}">                    
-        """
+                <div class="describtion">
+                    <p>{}</p>
+                    <h1>{}</h1>
+                </div>
+                 <div class="panel-body">
+                <div class="collapse" id="bar{}">                    
+            """
     detailshead = """           
-                <!-- The inside div eliminates the 'jumping' animation. -->
-"""
+                    <!-- The inside div eliminates the 'jumping' animation. -->
+    """
     detailsfoot = """            
-                            </div>
-"""
+                                </div>
+    """
     infohead = """
-                            <h2>{}</h2>
-                        <div id="container2">
-                        <div class="table-responsive">
-                            <table class="table borderless">
-                                <tbody>
-"""
+                                <h2>{}</h2>
+                            <div id="container2">
+                            <div class="table-responsive">
+                                <table class="table borderless">
+                                    <tbody>
+    """
     techhead = """                      <tr>
-                                                <th>{}</th>
-                                                <th>{}</th>
-                                                <th>{}</th>
-                                                <th>{}</th>
-                                                <th>{}</th>
-                                                <th>{}</th>
-                                                <th>{}</th>
-                                            </tr>
-    """
+                                                    <th>{}</th>
+                                                    <th>{}</th>
+                                                    <th>{}</th>
+                                                    <th>{}</th>
+                                                    <th>{}</th>
+                                                    <th>{}</th>
+                                                    <th>{}</th>
+                                                </tr>
+        """
     techline = """
-                                        <tr>
-                                                    <td class="attribute">{}</td>
-                                                    <td class="attribute">{}</td>
-                                                    <td class="attribute">{}</td>                                    
-                                                    <td class="attribute">{}</td>                                    
-                                                    <td class="attribute">{}</td>                                    
-                                                    <td class="attribute">{}</td>                                    
-                                                    <td class="attribute">{}</td>                                    
-                                        </tr>
-    """
+                                            <tr>
+                                                        <td class="attribute">{}</td>
+                                                        <td class="attribute">{}</td>
+                                                        <td class="attribute">{}</td>                                    
+                                                        <td class="attribute">{}</td>                                    
+                                                        <td class="attribute">{}</td>                                    
+                                                        <td class="attribute">{}</td>                                    
+                                                        <td class="attribute">{}</td>                                    
+                                            </tr>
+        """
     infofoot = """
-                                </tbody>
-                            </table>
-                        </div>
-                        </div>
+                                    </tbody>
+                                </table>
+                            </div>
+                            </div>
     """
+
     fhtml.write(contenthead)
     for d in p_list:
         lbc = str(newbarcounter())
+<<<<<<< HEAD
         fhtml.write(contentelementhead.format(web_sql.dokuAnker(d[0]) #id
                                             ,transl('Dokument')
                                             ,d[1] #anzname
                                             , lf2htmlbr(nvl(d[4])) #Beschreibung
                                             ,lbc))
+=======
+        fhtml.write(contentelementhead.format(web_sql.dokuAnker(d[0])  #id
+                                              , transl('Dokumente')
+                                              , d[1]  #anzname
+                                              , lbc))
+>>>>>>> a0960bf05f5a9c5991c9d42401c68fddde46e4bb
 
         fhtml.write(detailshead)
+
         fhtml.write(infohead.format(transl('Informationen')))
 
-     #   fhtml.write(techhead.format(transl('ID'), transl('Name'), transl('Format'), transl('Referenz'),
-     #                               transl('Parent_ID')))
-     #   fhtml.write(techline.format(nvl(anzDatentyp(d[5])), nvl(d[6]), nvl(d[7]), nvl(d[8]), nvl(d[9])))
-
+        fhtml.write(techhead.format(transl('ID'), transl('Name'), transl('Format'), transl('Referenz'), transl('Parent ID'), '', ''))
+        fhtml.write(techline.format(nvl(d[0]), nvl(d[1]), nvl(d[2]), nvl(d[3]), nvl(d[4]), '', ''))
 
         fhtml.write(techhead.format(transl('erstellt'), transl('geändert'), '', '', '', '', ''))
 
         fhtml.write(infofoot)
-        if (d[5] == 'LOV'):
-            printdokulist(p_dokuid=d[0])
 
-     #   if (d[5] == 'GRP'):
-     #       printdokumembers(pdokuid=d[0])
-     #   printdokuattrlist(pdokuid=d[0])
-     #   printdokuattrlist(pdokuid=d[0],dokugruppe=True)
+        #printdokumembers(pdokuid=d[0])
+        #printdokuattrlist(pdokuid=d[0])
+       # printdokuattrlist(pdokuid=d[0],dokugruppe=True)
+
         fhtml.write(detailsfoot)
         fhtml.write(contentelementfoot.format(lbc,transl('Mehr')))
     #for
