@@ -559,10 +559,10 @@ def wrtblist(p_lang):
 def dokulist(p_lang):
     data = dbDML.select("""
     select child.DOKU_ID,child.DOKU_NAME,child.DOKU_FORMAT,child.DOKU_REFERENZ
-         ,parent.doku_name parent_name
-         ,(select group_concat(grandchild.doku_id||':'||grandchild.doku_name, ',') kinder
+         ,parent.DOKU_ID parent_id ,parent.doku_name parent_name
+         ,(select group_concat(grandchild.doku_id||':'||grandchild.doku_name, '|') kinder
             from DOKUMENTE grandchild
-            where grandchild.DOKU_DOKU_ID = child.DOKU_ID)
+            where grandchild.DOKU_DOKU_ID = child.DOKU_ID) kinder
         from DOKUMENTE child
         left join dokumente parent on parent.DOKU_ID = child.DOKU_DOKU_ID
      order by upper(child.doku_name)

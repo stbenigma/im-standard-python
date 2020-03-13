@@ -1,5 +1,6 @@
 # -*- coding: latin-1 -*-
 import sys,os
+sys.path.append(os.getcwd())
 sys.path.append(os.path.dirname(os.path.realpath(__file__))+'/../IM_db')
 from datetime import date,datetime
 from IM_DB import parameters,dbConnect,dbDDL,dbDML,dbErstelleTables,dbInserts,dbLookup,dbParam
@@ -172,13 +173,14 @@ def listwebmain(plang):
     for s in schnittstelle.indexlist():
         schn_name = s[0]
         schnfilename = s[1]
+        schn_id = s[2]
         print ("create web-files for system {}".format(schn_name))
         printhtmlsysfile(pfirma="foryouandyourcustomers"
                       ,pfilename= schnfilename
                       , ptitel= parameters.odmModelName() + ' - {}'.format(schn_name)
                       , pinfo="{}".format(datetime.now().strftime("%Y-%m-%d, %H:%M"))
                       , plogofilename=parameters.logoFileName()
-                      ,pschnid=None
+                      ,pschnid=schn_id
                       )
     #
 

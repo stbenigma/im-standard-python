@@ -112,6 +112,6 @@ def fileanker(name):
 
 def indexlist():
     schn = select(porderby='schn_name')
-    indexlist = [[s.schn_name,fileanker(s.schn_name)] for s in schn]
+    indexlist = [[s.schn_name,fileanker(s.schn_name),s.schn_id] for s in schn]
     return indexlist
 #indexlist

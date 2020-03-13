@@ -139,6 +139,8 @@ translNameEN = {'Anzeige': 'Display'
                 ,'UDP-Matrix': 'UDP-Matrix'
                 ,'übersetzt': 'translated'
                 ,'Übersetzungen': 'Translations'
+                ,'Unterdokumente': 'Children'
+                , "Vaterdokument": "Parent"
                 ,'verschlüsselt': 'encrypted'
                 ,'Verwendet für Attribute': 'Used for attributes'
                 ,'Verwendet in Attributgruppen': 'Used in attribute groups'
@@ -230,6 +232,8 @@ translNameFR = {"Anzeige":"Affichage"
 ,"UDP-Matrix":"Matrice UDP"
 ,"übersetzt":"traduit"
 ,"Übersetzungen":"Traductions"
+, 'Unterdokumente': 'Enfants'
+,"Vaterdokument":"Document père"
 ,"verschlüsselt":"Chiffré"
 ,"Verwendet für Attribute":"Utilisé par les attributs"
 ,"Verwendet in Attributgruppen":"Utilisé dans les groupes d'attributs"
@@ -1044,8 +1048,9 @@ def printcontententi(p_list):
 """
     fhtml.write(contenthead)
     for e in p_list:
+        enti_id = e[0]
         lbc = str(newbarcounter())
-        fhtml.write(contentelementhead.format(web_sql.entiAnker(e[0]) #id
+        fhtml.write(contentelementhead.format(web_sql.entiAnker(enti_id) #id
                                             ,transl('Entität')
                                             ,e[1] #name
                                             , lf2htmlbr(nvl(e[2]))
@@ -1060,15 +1065,16 @@ def printcontententi(p_list):
             fhtml.write(infoline.format(transl('Superentität'),href(ref=web_sql.entiAnker(e[6]),anz=e[5])))
         if (e[7] is not None):
             fhtml.write(infoline.format(transl('Subentitäten'),list2href(p_list=e[7],ptype='ENTI')))
-        printentidiag(pentiid=e[0],pline=infoline)
+        printentidiag(pentiid=enti_id,pline=infoline)
         fhtml.write(infoline.format(transl('geändert'),nvl(e[3]) + ', ' + nvl(e[4])))
         fhtml.write(infofoot)
 
-        printattrlist(p_entiid=e[0])
-        printentikeys(pentiid=e[0])
-        printentirela(p_entiid=e[0])
-        printtransl(pentiid=e[0])
-        printentiudp(p_entiid=e[0])
+        printattrlist(p_entiid=enti_id)
+        printentikeys(pentiid=enti_id)
+        printentirela(p_entiid=enti_id)
+        #printdoku(pentiid=enti_id)
+        printtransl(pentiid=enti_id)
+        printentiudp(p_entiid=enti_id)
 
         fhtml.write(detailsfoot)
         fhtml.write(contentelementfoot.format(lbc,transl('Mehr')))
@@ -1143,8 +1149,9 @@ def printcontentattr(plist):
 """
     fhtml.write(contenthead)
     for a in plist:
+        attr_id = a[0]
         lbc = str(newbarcounter())
-        fhtml.write(contentelementhead.format(web_sql.attrAnker(a[0]) #id
+        fhtml.write(contentelementhead.format(web_sql.attrAnker(attr_id) #id
                                             ,transl('Attribut')
                                             ,a[1] #anzname
                                             , transl('Entität')
@@ -1173,8 +1180,9 @@ def printcontentattr(plist):
                                         , bool2icon(a[8]), bool2icon(a[9]), bool2icon(a[10])))
         fhtml.write(infofoot)
 
-        printtransl(pattrid=a[0])
-        printattrudp(p_attrid=a[0])
+        #printdoku(attrid=attr_id)
+        printtransl(pattrid=attr_id)
+        printattrudp(p_attrid=attr_id)
 
         fhtml.write(detailsfoot)
         fhtml.write(contentelementfoot.format(lbc,transl('Mehr')))
@@ -1424,16 +1432,12 @@ def printcontentdoku(p_list):
                                                     <th>{}</th>
                                                     <th>{}</th>
                                                     <th>{}</th>
-                                                    <th>{}</th>
-                                                    <th>{}</th>
                                                 </tr>
         """
     techline = """
                                             <tr>
                                                         <td class="attribute">{}</td>
                                                         <td class="attribute">{}</td>
-                                                        <td class="attribute">{}</td>                                    
-                                                        <td class="attribute">{}</td>                                    
                                                         <td class="attribute">{}</td>                                    
                                                         <td class="attribute">{}</td>                                    
                                                         <td class="attribute">{}</td>                                    
@@ -1452,17 +1456,25 @@ def printcontentdoku(p_list):
         fhtml.write(contentelementhead.format(web_sql.dokuAnker(d[0]) #id
                                             ,transl('Dokument')
                                             ,d[1] #anzname
-                                            , lf2htmlbr(nvl(d[4])) #Beschreibung
                                             ,lbc))
 
         fhtml.write(detailshead)
 
         fhtml.write(infohead.format(transl('Informationen')))
 
-        fhtml.write(techhead.format(transl('ID'), transl('Name'), transl('Format'), transl('Referenz'), transl('Parent ID'), '', ''))
-        fhtml.write(techline.format(nvl(d[0]), nvl(d[1]), nvl(d[2]), nvl(d[3]), nvl(d[4]), '', ''))
-
-        fhtml.write(techhead.format(transl('erstellt'), transl('geändert'), '', '', '', '', ''))
+        """DOKU_ID,DOKU_NAME,DOKU_FORMAT,DOKU_REFERENZ
+            ,parent_id, parent_name, kinder"""
+        kinder = ''
+        if d[6] is not None:
+            #print(d[6], d[6].split('|'), sep=' | ')
+            for k in d[6].split('|'):
+                k1 = k.split(':')
+                kinder += href(ref=web_sql.dokuAnker(k1[0]),anz=k1[1]) + ', '
+            kinder = kinder.rstrip(', ')
+        fhtml.write(techhead.format(transl('Name'), transl('Format'), transl('Referenz'), transl('Vaterokument')
+                                        , transl('Unterdokumente')))
+        fhtml.write(techline.format(nvl(d[1]), nvl(d[2]), nvl(d[3]), href(ref=web_sql.dokuAnker(d[4]), anz=nvl(d[5]))
+                                    , kinder))
 
         fhtml.write(infofoot)
 

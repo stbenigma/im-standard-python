@@ -130,6 +130,6 @@ def anker(id):
 def indexlist(pschnid=None):
     data = select(pwhere= None if pschnid is None else "tabl_schn_id={}".format(pschnid)
                   ,porderby='tabl_name')
-    indexlist = [[d.tabl_name,anker(d.tabl_id)] for d in data]
+    indexlist = [[d.tabl_name,anker(d.tabl_id),d.tabl_id] for d in data]
     return indexlist
 #indexlist
