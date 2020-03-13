@@ -109,7 +109,6 @@
       <ColNames>ATTF_RICHTUNG
 ATTF_SCHA_ID
 ATTF_ATTR_ID</ColNames>
-      <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
     <key id="58" parent="6">
@@ -197,7 +196,6 @@ ATTF_ATTR_ID</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ColNames>MODO_DOKU_ID
 MODO_MODE_ID</ColNames>
-      <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
     <key id="77" parent="8">
@@ -278,7 +276,6 @@ MODO_MODE_ID</ColNames>
     <index id="93" parent="9" name="sqlite_autoindex_SCHNITTSTELLE_ATTR_1">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>SCHA_COLUMN_NAME</ColNames>
-      <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
     <key id="94" parent="9">
@@ -321,7 +318,6 @@ MODO_MODE_ID</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ColNames>TEMA_TABL_ID
 TEMA_ENTI_ID</ColNames>
-      <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
     <key id="103" parent="10">
@@ -393,7 +389,6 @@ TEMA_ENTI_ID</ColNames>
       <ColNames>TFUS_ATTF_ID
 TFUS_ATTR_ID
 TFUS_SCHA_ID</ColNames>
-      <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
     <key id="118" parent="11">
@@ -467,7 +462,6 @@ TFUS_SCHA_ID</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ColNames>arcs_enti_id
 arcs_name</ColNames>
-      <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
     <key id="133" parent="12">
@@ -590,7 +584,6 @@ arcs_name</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ColNames>attr_enti_id
 attr_tech_name</ColNames>
-      <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
     <key id="158" parent="13">
@@ -716,7 +709,6 @@ attr_tech_name</ColNames>
     <index id="182" parent="14" name="sqlite_autoindex_benudef_eigenschaft_1">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>bdeg_name</ColNames>
-      <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
     <key id="183" parent="14">
@@ -780,7 +772,6 @@ attr_tech_name</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ColNames>bdwe_mode_id
 bdwe_bdeg_id</ColNames>
-      <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
     <key id="196" parent="15">
@@ -882,7 +873,6 @@ bdwe_bdeg_id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ColNames>BELD_MELT_ID
 BELD_GBER_ID</ColNames>
-      <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
     <key id="217" parent="16">
@@ -1048,7 +1038,6 @@ BELD_GBER_ID</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ColNames>beda_diag_id
 beda_mode_id</ColNames>
-      <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
     <key id="256" parent="17">
@@ -1317,7 +1306,6 @@ beda_mode_id</ColNames>
     <index id="315" parent="19" name="sqlite_autoindex_datatypes_1">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>daty_name</ColNames>
-      <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
     <key id="316" parent="19">
@@ -1384,7 +1372,6 @@ beda_mode_id</ColNames>
     <index id="329" parent="20" name="sqlite_autoindex_diagramme_1">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>diag_name</ColNames>
-      <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
     <key id="330" parent="20">
@@ -1431,7 +1418,6 @@ beda_mode_id</ColNames>
     <index id="339" parent="21" name="sqlite_autoindex_diagrammtypen_1">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>diat_bez</ColNames>
-      <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
     <key id="340" parent="21">
@@ -1533,7 +1519,6 @@ beda_mode_id</ColNames>
       <ColNames>eled_diag_id
 eled_mode_id
 eled_index</ColNames>
-      <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
     <key id="362" parent="22">
@@ -1646,13 +1631,11 @@ eled_index</ColNames>
     <index id="388" parent="23" name="sqlite_autoindex_entitaeten_1">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>enti_tech_name</ColNames>
-      <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
     <index id="389" parent="23" name="sqlite_autoindex_entitaeten_2">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>enti_name</ColNames>
-      <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
     <key id="390" parent="23">
@@ -1714,7 +1697,6 @@ eled_index</ColNames>
     <index id="402" parent="24" name="sqlite_autoindex_geschaeftsbereich_1">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>gber_name</ColNames>
-      <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
     <key id="403" parent="24">
@@ -1784,7 +1766,6 @@ eled_index</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ColNames>lise_beda_id
 lise_rhfg</ColNames>
-      <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
     <key id="418" parent="25">
@@ -1856,7 +1837,6 @@ lise_rhfg</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ColNames>medi_diat_id
 medi_melt_id</ColNames>
-      <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
     <key id="432" parent="26">
@@ -1917,13 +1897,11 @@ medi_melt_id</ColNames>
     <index id="443" parent="27" name="sqlite_autoindex_modellelem_typ_1">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>melt_kurzname</ColNames>
-      <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
     <index id="444" parent="27" name="sqlite_autoindex_modellelem_typ_2">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>melt_name</ColNames>
-      <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
     <key id="445" parent="27">
@@ -2021,7 +1999,6 @@ mode_enti_id
 mode_bezi_id
 mode_scha_id
 mode_tabl_id</ColNames>
-      <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
     <key id="465" parent="28">
@@ -2172,7 +2149,6 @@ mode_tabl_id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ColNames>mote_melt_id
 mote_bdeg_id</ColNames>
-      <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
     <key id="480" parent="29">
@@ -2226,7 +2202,6 @@ mote_bdeg_id</ColNames>
     <index id="490" parent="30" name="sqlite_autoindex_projekt_1">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>proj_name</ColNames>
-      <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
     <key id="491" parent="30">
@@ -2273,7 +2248,6 @@ mote_bdeg_id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ColNames>schl_enti_id
 schl_laufnr</ColNames>
-      <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
     <key id="501" parent="31">
@@ -2333,7 +2307,6 @@ schl_laufnr</ColNames>
       <ColNames>scel_schl_id
 scel_attr_id
 scel_bezi_id</ColNames>
-      <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
     <key id="513" parent="32">
@@ -2409,7 +2382,6 @@ scel_bezi_id</ColNames>
     <index id="527" parent="33" name="sqlite_autoindex_schnittstelle_1">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>SCHN_NAME</ColNames>
-      <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
     <key id="528" parent="33">
@@ -2437,7 +2409,6 @@ scel_bezi_id</ColNames>
     <index id="533" parent="34" name="sqlite_autoindex_speicherformate_1">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>spfo_name</ColNames>
-      <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
     <key id="534" parent="34">
@@ -2503,19 +2474,16 @@ scel_bezi_id</ColNames>
     <index id="547" parent="35" name="sqlite_autoindex_sprachen_1">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>spra_iso_name</ColNames>
-      <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
     <index id="548" parent="35" name="sqlite_autoindex_sprachen_2">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>spra_iso_code2</ColNames>
-      <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
     <index id="549" parent="35" name="sqlite_autoindex_sprachen_3">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>spra_iso_code3</ColNames>
-      <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
     <key id="550" parent="35">
@@ -2598,7 +2566,6 @@ scel_bezi_id</ColNames>
       <ColNames>sptx_attrname
 sptx_spra_id
 sptx_mode_id</ColNames>
-      <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
     <key id="568" parent="36">
@@ -2669,7 +2636,6 @@ sptx_mode_id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ColNames>syno_name
 syno_enti_id</ColNames>
-      <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
     <key id="584" parent="39">
@@ -2736,7 +2702,6 @@ syno_enti_id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ColNames>TABL_SCHN_ID
 TABL_NAME</ColNames>
-      <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
     <key id="598" parent="40">
@@ -2807,7 +2772,6 @@ TABL_NAME</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ColNames>vgwt_wrtb_id
 vgwt_wert</ColNames>
-      <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
     <key id="613" parent="41">
@@ -2931,7 +2895,6 @@ vgwt_wert</ColNames>
     <index id="640" parent="42" name="sqlite_autoindex_wertebereiche_1">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>wrtb_name</ColNames>
-      <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
     <key id="641" parent="42">
@@ -3040,7 +3003,6 @@ vgwt_wert</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ColNames>wbgr_wrtb_id_gruppe
 wbgr_name</ColNames>
-      <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
     <key id="658" parent="43">

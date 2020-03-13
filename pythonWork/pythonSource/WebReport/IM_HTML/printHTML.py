@@ -1324,11 +1324,7 @@ def printcontentwrtb(p_list):
         fhtml.write(contentelementhead.format(web_sql.wrtbAnker(w[0]) #id
                                             ,transl('Wertebereich')
                                             ,w[1] #anzname
-<<<<<<< HEAD
                                             , lf2htmlbr(nvl(w[4])) #Beschreibung
-=======
-                                            ,nvl(w[4]) #Beschreibung
->>>>>>> a0960bf05f5a9c5991c9d42401c68fddde46e4bb
                                             ,lbc))
 
         fhtml.write(detailshead)
@@ -1453,18 +1449,11 @@ def printcontentdoku(p_list):
     fhtml.write(contenthead)
     for d in p_list:
         lbc = str(newbarcounter())
-<<<<<<< HEAD
         fhtml.write(contentelementhead.format(web_sql.dokuAnker(d[0]) #id
                                             ,transl('Dokument')
                                             ,d[1] #anzname
                                             , lf2htmlbr(nvl(d[4])) #Beschreibung
                                             ,lbc))
-=======
-        fhtml.write(contentelementhead.format(web_sql.dokuAnker(d[0])  #id
-                                              , transl('Dokumente')
-                                              , d[1]  #anzname
-                                              , lbc))
->>>>>>> a0960bf05f5a9c5991c9d42401c68fddde46e4bb
 
         fhtml.write(detailshead)
 

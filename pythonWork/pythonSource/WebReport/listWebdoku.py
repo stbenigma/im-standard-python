@@ -178,7 +178,7 @@ def listwebmain(plang):
                       , ptitel= parameters.odmModelName() + ' - {}'.format(schn_name)
                       , pinfo="{}".format(datetime.now().strftime("%Y-%m-%d, %H:%M"))
                       , plogofilename=parameters.logoFileName()
-                      ,pschnid=???
+                      ,pschnid=None
                       )
     #
 
