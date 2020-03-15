@@ -41,7 +41,7 @@ def  insertdokuref(documents, modeid) :
                     values (?,?) 
                 """
         for doc in documents :
-            dbDML.insert(lsql, (doc, modeid))
+            dbDML.insert(lsql, (dbLookup.dokuID (pguid=doc), modeid))
     #fi
 #insertdokuref
 

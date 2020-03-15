@@ -52,17 +52,18 @@ def elementid(pmodeid,ptyp):
 #entiid
 
 def dokureflist (pid, plang):
-        data = dbDML.select("""
-        select name,id,type from (
+    data = dbDML.select("""
+    select name,id,type,anztype from (
         select case when spa.sptx_text is null then name 
                                                 else spa.sptx_text end  name
-                ,id,type 
+                ,id,melt_kurzname type,melt_name anztype 
         from modelelem_doku
         join  modellelement on mode_id = modo_mode_id
-        left join (select enti_id id,'Entität' type,enti_name name 
+        join modellelem_Typ on melt_id = mode_melt_id
+        left join (select enti_id id ,enti_name name 
                    from entitaeten
                    union all
-                   select attr_id id,'Attribut' type,attr_name name 
+                   select attr_id id ,attr_anzname name 
                    from attributes 
            ) on id = mode_enti_id or id = mode_attr_id
          join sprachen sp on sp.spra_iso_code2 = '{}'
@@ -71,12 +72,39 @@ def dokureflist (pid, plang):
                                                         end
                                     and spa.sptx_mode_id = mode_id
                                     and spa.spra_id = sp.spra_id
-        where modu_doku_id = {}
+        where  MODO_DOKU_ID = {}
     )
     order by type,upper(name)
                   """.format(plang,pid))
-        datalist = [(e[0],entiAnker(e[1])) for e in data]
+    datalist = [(e[0],entiAnker(e[1]) if e[2] == 'ENTI'
+                        else  attrAnker(e[1]) if e[2] == 'ATTR'
+                        else ''
+                 ,e[2],e[3]) for e in data]
+    return datalist
 #dokureflist
+
+def reflist (pid,pelemtype):
+    data = dbDML.select("""
+        select name,id, type, anztype 
+        from (
+            select doku_name name,doku_id id,'DOKU' type, 'Dokumente' anztype
+                , case  '{}' 
+                   when 'ENTI' then mode_enti_id 
+                   when 'ATTR' then mode_attr_id
+                   else null
+                   end ref_id 
+            from DOKUMENTE
+            join MODELELEM_DOKU on MODO_DOKU_ID = DOKU_ID
+            join modellelement on mode_id = MODO_MODE_ID
+        ) 
+        where ref_id = {} 
+    order by type,upper(name)
+    """.format(pelemtype,pid))
+    datalist = [(e[0],dokuAnker(e[1]) if e[2] == 'DOKU'
+                        else ''
+                 ,e[2],e[3]) for e in data]
+    return datalist
+#reflist
 
 def namelist(ptype, plang, pid=None):
     datalist = []

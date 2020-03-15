@@ -48,6 +48,7 @@ def filehref(ref,anz,plang,pimg=None):
         .format(webFileName + '_' + plang.lower() + '.html',"#"+ref if ref is not None else "",anz,img)
 #href
 def href(ref,anz):
+    if anz is None: return None
     return """<a href="#{}" target="_self">{}</a>""".format(ref,anz)
 #href
 
@@ -317,6 +318,7 @@ def anzgranul(dt):
 
 def list2href(p_list, ptype):
     """Verandelt eine kommagetrennte Liste von nnn:xxxx in einen String von kommagetrennten  HREF-Webeinträgen"""
+    if p_list is None: return None
     list = p_list.split(",")
     elem = []
     for el in list:
@@ -645,7 +647,7 @@ def printlistofcontentfoot():
 def printlistofcontentelement(pname, plist,pfileref=False):
     if len(plist) == 0: return
     lbc = str(newbarcounter())
-    contentelementhead= """
+    listcontentelementhead= """
                 <div class="panel-body" id="{}L">
                     <div class="panel">
                         <div class="panel-heading collapsed" data-toggle="collapse" data-target="#bar{}">
@@ -658,21 +660,21 @@ def printlistofcontentelement(pname, plist,pfileref=False):
                     <div class="collapse" id="bar{}">
                         <ol class="tree" id="{}List">
     """
-    contentline="""
+    listcontentline="""
                 <li class="obj"><a href="#{}" target="_self">{}</a></li>"""
-    contentlinefile="""
+    listcontentlinefile="""
                 <li class="obj"><a href="{}" target="_blank">{}</a></li>"""
 
-    contentelementfoot="""
+    listcontentelementfoot="""
                     </ol>
             </div>
         </div>
 """
-    fhtml.write(contentelementhead.format(pname, lbc, transl(pname), lbc, pname))
+    fhtml.write(listcontentelementhead.format(pname, lbc, transl(pname), lbc, pname))
     for l in plist:
-        linestr = contentlinefile if pfileref else contentline
+        linestr = listcontentlinefile if pfileref else listcontentline
         fhtml.write(linestr.format(l[1],l[0]))
-    fhtml.write(contentelementfoot)
+    fhtml.write(listcontentelementfoot)
 #printlistofcontentelement
 
 def lang2img(plang):
@@ -720,6 +722,65 @@ def printcontentfoot():
 """
     fhtml.write(contentfoot)
 # printcontentfoot
+
+def printcontentstart(pname):
+    fhtml.write("        <!--{}-->".format(pname))
+#printcontentsstart
+def printcontentend(plbc):
+    fhtml.write("""            
+                            </div>""")
+    fhtml.write(contentelementfoot.format(plbc, transl('Mehr')))
+#printcontentend
+
+def printcontent (ptype,pname,panker,pdescr,plbc):
+    contentelementhead = """        <div class="entity" id="{}">
+            <div class="describtion">
+                <p>{}</p>
+                <h1>{}</h1>
+                {}
+            </div>
+             <div class="panel-body">
+            <div class="collapse" id="bar{}">                    
+"""
+
+    lbc = str(newbarcounter())
+    fhtml.write(contentelementhead.format(panker, ptype, pname
+                                          , "" if (pdescr == "") else  "<p1>{}</p1>".format(pdescr)
+                                          , plbc))
+
+#printcontent
+
+def printcontentinfo(pheaders,pvalues):
+    infohead = """
+          <!-- The inside div eliminates the 'jumping' animation. -->
+                            <h2>{}</h2>
+                            <div id="container2">
+                            <div class="table-responsive">
+                                <table class="table borderless">
+                                    <tbody>"""
+    trstart = """
+                    <tr>"""
+    trend = """
+                      </tr>"""
+    techheadline = """
+                     <th>{}</th>"""
+    techlineline = """
+                      <td class="attribute">{}</td>"""
+    infofoot = """
+                    </tbody>
+                    </table>
+                </div>
+            </div>"""
+    fhtml.write(infohead.format(transl('Informationen')))
+    fhtml.write(trstart)
+    for h in pheaders:
+        fhtml.write(techheadline.format(h))
+    fhtml.write(trstart)
+    for v in pvalues:
+        fhtml.write(techlineline.format(v))
+    fhtml.write(trend)
+    fhtml.write(infofoot)
+#printcontentinfo
 
 
 def printattrlist(p_entiid):
@@ -1009,75 +1070,47 @@ def printattrudp(p_attrid):
     printUDP(p_meltname='ATTR',p_id=p_attrid)
 #printattrudp
 
-def printcontententi(p_list):
-    contenthead="""        <!--entities-->"""
+def entidiag(pentiid):
+    doppelanker="{}-{}"
+    diaglist  = web_sql.diaglist(pentiid=pentiid)
+    if (len(diaglist) == 0):
+        return
+    diagdict = {dl[0] : dl[1] for dl in diaglist}
+    diagstring = ', '.join(href(ref=doppelanker.format(web_sql.diagAnker(id)
+                                    ,web_sql.entiAnker(pentiid))
+                                ,anz=str(name)) for name, id in diagdict.items())
+    #print (diagstring)
+    return diagstring
+#entidiag
 
-    contentelementhead = """        <div class="entity" id="{}">
-            <div class="describtion">
-                <p>{}</p> 
-                <h1>{}</h1>
-                <p1>{}</p1>
-            </div>
-             <div class="panel-body">
-            <div class="collapse" id="bar{}">                    
-        """
-    detailshead = """           
-                <!-- The inside div eliminates the 'jumping' animation. -->
-"""
-    detailsfoot = """            
-                            </div>
-"""
-    infohead = """
-                            <h2>{}</h2>
-                        <div id="container2">
-                        <div class="table-responsive">
-                            <table class="table borderless">
-                                <tbody>
-"""
-    infoline = """
-                                    <tr>
-                                        <th>{}</th>
-                                        <td class="attribute">{}</td>
-                                    </tr>
-"""
-    infofoot = """
-                                </tbody>
-                            </table>
-                        </div>
-                        </div>
-"""
-    fhtml.write(contenthead)
+def printcontententi(p_list):
+    printcontentstart ('entities')
+    infoheaders = (transl('Synonyme'), transl('Superentität'), transl('Subentitäten'),transl('auf Diagramm(en)')
+                   ,transl('geändert'))
     for e in p_list:
         enti_id = e[0]
+        enti_name = e[1]
+        enti_descr = e[2]
         lbc = str(newbarcounter())
-        fhtml.write(contentelementhead.format(web_sql.entiAnker(enti_id) #id
-                                            ,transl('Entität')
-                                            ,e[1] #name
-                                            , lf2htmlbr(nvl(e[2]))
-                                            ,lbc)) #descr
+        printcontent(ptype=transl('Entität')
+                    ,panker=web_sql.entiAnker(enti_id) #id
+                    ,pname=enti_name
+                    ,pdescr=lf2htmlbr(nvl(enti_descr))
+                    ,plbc=lbc)
 
-        fhtml.write(detailshead)
         """print entity Info"""
-        fhtml.write(infohead.format(transl('Informationen')))
-        if (e[8] is not None):
-            fhtml.write(infoline.format(transl('Synonyme'),e[8]))
-        if (e[6] is not None):
-            fhtml.write(infoline.format(transl('Superentität'),href(ref=web_sql.entiAnker(e[6]),anz=e[5])))
-        if (e[7] is not None):
-            fhtml.write(infoline.format(transl('Subentitäten'),list2href(p_list=e[7],ptype='ENTI')))
-        printentidiag(pentiid=enti_id,pline=infoline)
-        fhtml.write(infoline.format(transl('geändert'),nvl(e[3]) + ', ' + nvl(e[4])))
-        fhtml.write(infofoot)
+        infovalues = (nvl(e[8]), nvl(href(ref=web_sql.entiAnker(e[6]),anz=e[5])), nvl(list2href(p_list=e[7],ptype='ENTI'))
+                      ,entidiag(pentiid=enti_id),nvl(e[3]) + ', ' + nvl(e[4]))
+        printcontentinfo(pheaders=infoheaders,pvalues=infovalues)
 
         printattrlist(p_entiid=enti_id)
         printentikeys(pentiid=enti_id)
         printentirela(p_entiid=enti_id)
-        #printdoku(pentiid=enti_id)
+        printreflist(pelemid=enti_id,pelemtype='ENTI')
         printtransl(pentiid=enti_id)
         printentiudp(p_entiid=enti_id)
 
-        fhtml.write(detailsfoot)
-        fhtml.write(contentelementfoot.format(lbc,transl('Mehr')))
+        printcontentend(lbc)
     #for
 #printcontententi
 
@@ -1180,7 +1213,7 @@ def printcontentattr(plist):
                                         , bool2icon(a[8]), bool2icon(a[9]), bool2icon(a[10])))
         fhtml.write(infofoot)
 
-        #printdoku(attrid=attr_id)
+        printreflist(pelemid=attr_id,pelemtype='ATTR')
         printtransl(pattrid=attr_id)
         printattrudp(p_attrid=attr_id)
 
@@ -1197,8 +1230,8 @@ def printwrtbattrlist(pwrtbid, wrtgruppe=False):
         return
     fhtml.write(starttable(ptitel=transl('Verwendet in Attributgruppen' if wrtgruppe
                                                 else 'Verwendet für Attribute')
-                           , pueberschriften=[transl('Attribut' if wrtgruppe
-                                                else 'Attributgruppe')]))
+                           , pueberschriften=[transl('Attributgruppe' if wrtgruppe
+                                                else 'Attribut')]))
     for a in alist:
         fhtml.write(writetableline(pwerte=[href(ref=a[1], anz=a[0])])
                     )
@@ -1210,18 +1243,28 @@ def printreflist(pelemid,pelemtype):
     if (pelemtype == 'DOKU'):
         alist = web_sql.dokureflist(pid=pelemid, plang=reportLang())
     else:
-        return
+        alist = web_sql.reflist(pid=pelemid, pelemtype=pelemtype)
     #fi
-    if (len(alist)==0):
-        return
+    if (alist is None or len(alist)==0): return
+
     fhtml.write(starttable(ptitel=transl('Referenziert von' )
-                           , pueberschriften=[transl('Typ'),transl('Element')]))
+                           , pueberschriften=[transl('Typ'),transl('Elemente')]))
+
+    type = '' #Annahme: Dokumentenliste ist sortiert nach typ und Name
     for a in alist:
-        fhtml.write(writetableline(pwerte=[transl(a[2]),href(ref=a[1], anz=a[0])])
-                    )
+        if type == a[3]:
+            kinder += href(ref=a[1], anz=a[0])+', '
+        else:
+            if type != '':
+                fhtml.write(writetableline(pwerte=[transl(type), kinder.rstrip(', ')]))
+            #fi
+            type = a[3]
+            kinder = href(ref=a[1], anz=a[0]) + ', '
+        #fi
     #for
+    fhtml.write(writetableline(pwerte=[transl(type), kinder.rstrip(', ')]))
     fhtml.write(endtable())
-#printattrlist
+#printreflist
 
 def printwrtbattrlist(pwrtbid, wrtgruppe=False):
     alist = web_sql.namelist(ptype='ATTG' if wrtgruppe else 'ATTR'
@@ -1384,106 +1427,43 @@ def printcontentwrtb(p_list):
 
 #printdokulist
 
-def printreflist(elemid, elemtype):
-    dlist = web_sql.dokureflist(pid=elemid, plang=elemtype)
-
-    if (len(dlist)==0):
-        return
-    fhtml.write(starttable(ptitel=transl('Dokumentenreferenz')
-                           , pueberschriften=(transl('ID'), transl('Typ'))
-                           , plevel=3))
-#   pelemid = 'DOKU_ID', pelemtype = 'DOKU'
-
-    for d in dlist:
-       fhtml.write(writetableline(pwerte=d))
-    fhtml.write(endtable())
-
-#    dokuref = dokureference(pbeziid=bezi_id) (pentiid = enti_id)
-
-#printreflist
-
-def printcontentdoku(p_list):
-    contenthead="""        <!--domains-->"""
-
-    contentelementhead = """        <div class="entity" id="{}">
-                <div class="describtion">
-                    <p>{}</p>
-                    <h1>{}</h1>
-                </div>
-                 <div class="panel-body">
-                <div class="collapse" id="bar{}">                    
-            """
-    detailshead = """           
-                    <!-- The inside div eliminates the 'jumping' animation. -->
-    """
-    detailsfoot = """            
-                                </div>
-    """
-    infohead = """
-                                <h2>{}</h2>
-                            <div id="container2">
-                            <div class="table-responsive">
-                                <table class="table borderless">
-                                    <tbody>
-    """
-    techhead = """                      <tr>
-                                                    <th>{}</th>
-                                                    <th>{}</th>
-                                                    <th>{}</th>
-                                                    <th>{}</th>
-                                                    <th>{}</th>
-                                                </tr>
-        """
-    techline = """
-                                            <tr>
-                                                        <td class="attribute">{}</td>
-                                                        <td class="attribute">{}</td>
-                                                        <td class="attribute">{}</td>                                    
-                                                        <td class="attribute">{}</td>                                    
-                                                        <td class="attribute">{}</td>                                    
-                                            </tr>
-        """
-    infofoot = """
-                                    </tbody>
-                                </table>
-                            </div>
-                            </div>
-    """
-
-    fhtml.write(contenthead)
-    for d in p_list:
+def printcontentdoku(plist):
+    printcontentstart ('documents')
+    infoheaders = (transl('Format'), transl('Referenz'), transl('Vaterdokument')
+               , transl('Unterdokumente'))
+    for d in plist:
         lbc = str(newbarcounter())
-        fhtml.write(contentelementhead.format(web_sql.dokuAnker(d[0]) #id
-                                            ,transl('Dokument')
-                                            ,d[1] #anzname
-                                            ,lbc))
-
-        fhtml.write(detailshead)
-
-        fhtml.write(infohead.format(transl('Informationen')))
+        doku_id = d[0]
+        doku_name = d[1]
+        doku_format = d[2]
+        doku_referenz = d[3]
+        parent_id = d[4]
+        parent_name = d[5]
+        doku_kinder = d[6]
+        printcontent(ptype=transl('Dokument')
+                    ,panker=web_sql.dokuAnker(doku_id) #id
+                    ,pname=doku_name
+                    ,pdescr=""
+                    ,plbc=lbc)
 
         """DOKU_ID,DOKU_NAME,DOKU_FORMAT,DOKU_REFERENZ
             ,parent_id, parent_name, kinder"""
         kinder = ''
-        if d[6] is not None:
-            #print(d[6], d[6].split('|'), sep=' | ')
-            for k in d[6].split('|'):
+        if doku_kinder is not None:
+            #print(kinder, kinder.split('|'), sep=' | ')
+            for k in doku_kinder.split('|'):
                 k1 = k.split(':')
                 kinder += href(ref=web_sql.dokuAnker(k1[0]),anz=k1[1]) + ', '
+            #for
             kinder = kinder.rstrip(', ')
-        fhtml.write(techhead.format(transl('Name'), transl('Format'), transl('Referenz'), transl('Vaterokument')
-                                        , transl('Unterdokumente')))
-        fhtml.write(techline.format(nvl(d[1]), nvl(d[2]), nvl(d[3]), href(ref=web_sql.dokuAnker(d[4]), anz=nvl(d[5]))
-                                    , kinder))
+        #fi
+        infovalues = (nvl(doku_format), nvl(doku_referenz), href(ref=web_sql.dokuAnker(parent_id), anz=nvl(parent_name))
+                , kinder)
+        printcontentinfo(pheaders=infoheaders,pvalues=infovalues)
 
-        fhtml.write(infofoot)
+        printreflist(pelemid=doku_id,pelemtype='DOKU')
 
-        #printdokumembers(pdokuid=d[0])
-        #printdokuattrlist(pdokuid=d[0])
-       # printdokuattrlist(pdokuid=d[0],dokugruppe=True)
-
-        fhtml.write(detailsfoot)
-        fhtml.write(contentelementfoot.format(lbc,transl('Mehr')))
+        printcontentend(lbc)
     #for
 #printcontentdoku
 
@@ -1593,15 +1573,3 @@ def printtransl(pentiid=None, pattrid=None):
     fhtml.write(endtable())
 #printtransl
 
-def printentidiag(pentiid,pline):
-    doppelanker="{}-{}"
-    diaglist  = web_sql.diaglist(pentiid=pentiid)
-    if (len(diaglist) == 0):
-        return
-    diagdict = {dl[0] : dl[1] for dl in diaglist}
-    diagstring = ', '.join(href(ref=doppelanker.format(web_sql.diagAnker(id)
-                                    ,web_sql.entiAnker(pentiid))
-                                ,anz=str(name)) for name, id in diagdict.items())
-    #print (diagstring)
-    fhtml.write(pline.format(transl('auf Diagramm(en)'),diagstring))
-#printentidiag
