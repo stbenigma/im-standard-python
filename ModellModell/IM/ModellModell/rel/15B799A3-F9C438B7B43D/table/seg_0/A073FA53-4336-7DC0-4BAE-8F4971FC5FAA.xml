@@ -146,6 +146,48 @@ Das Attribut "Wert" ist der physikalische (sprachunabhängige) Wert, der als eig
 <colAssociation fkAssociation="2F527C0E-50CD-6D35-8242-33F9571A39A0" referredColumn="9121B2CE-A2E8-0767-D42B-AFC1DBEC9F53"/>
 </associations>
 </Column>
+<Column name="MODE_SCHA_ID" id="3A81814B-FCF2-3ADD-7B69-B1154C1EB3F4">
+<createdBy>stb</createdBy>
+<createdTime>2020-03-17 16:45:13 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="85335828-0CB8-9ACC-96D4-624FF3A1F281" referredColumn="AC00B2CD-443E-268D-0ACB-B1665F569AF6"/>
+</associations>
+</Column>
+<Column name="MODE_SCHN_ID" id="E34E0023-AF4C-5D96-DA01-853F1228A05B">
+<createdBy>stb</createdBy>
+<createdTime>2020-03-17 16:46:09 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="616E49EF-FAF9-84E0-404A-EDAD2C6B7D0F" referredColumn="B1D3D7C6-D459-592F-6DDB-6D7A3F3C1649"/>
+</associations>
+</Column>
+<Column name="MODE_TABL_ID" id="8EB571CB-D9F9-263E-0874-E46881A4E46C">
+<createdBy>stb</createdBy>
+<createdTime>2020-03-17 16:46:09 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
 <Column name="MODE_UC" id="0C46EFB4-C00A-E893-D1CC-A5069944A434">
 <createdBy>stb</createdBy>
 <createdTime>2019-04-04 15:27:17 UTC</createdTime>
@@ -322,49 +364,43 @@ Das Attribut "Wert" ist der physikalische (sprachunabhängige) Wert, der als eig
 <colUsage columnID="996BD115-09A4-8E55-89CE-29AD5D071FDA"/>
 </indexColumnUsage>
 </ind_PK_UK>
+<ind_PK_UK id="5789394E-0795-11CC-61C2-E4CED210DE6C" name="MODE_SCHA_FK">
+<createdBy>stb</createdBy>
+<createdTime>2020-03-17 16:45:13 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="3A81814B-FCF2-3ADD-7B69-B1154C1EB3F4"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="2F4CC56A-303D-9662-5B51-B35464DFCB9E" name="MODE_SCHN_FK">
+<createdBy>stb</createdBy>
+<createdTime>2020-03-17 16:46:44 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="E34E0023-AF4C-5D96-DA01-853F1228A05B"/>
+</indexColumnUsage>
+</ind_PK_UK>
 </indexes>
 <tableCheckConstraints itemClass="oracle.dbtools.crest.model.design.constraint.TableLevelConstraint">
 <tableCheckConstraint name="MODE_CK_ARC" directorySegmentName="seg_0" id="1B321446-73DC-ACFE-2AB9-6F9B3A1B28F6">
 <createdBy>stb</createdBy>
 <createdTime>2019-10-02 08:23:31 UTC</createdTime>
 <ownerDesignName>ModellModell</ownerDesignName>
-<rule><![CDATA[(mode_buru_id IS NOT NULL
-                         AND mode_bezi_id IS NULL
-                         AND mode_enti_id IS NULL
-                         AND mode_wrtb_id IS NULL
-                         AND mode_attr_id IS NULL
-						 AND mode_syno_id IS NULL)
-                          OR(mode_buru_id IS NULL
-                        AND  mode_bezi_id IS NOT NULL
-                        AND  mode_enti_id IS NULL
-                        AND  mode_wrtb_id IS NULL
-                        AND  mode_attr_id IS NULL
-						 AND mode_syno_id IS NULL)
-                          OR(mode_buru_id IS NULL
-                        AND  mode_bezi_id IS NULL
-                        AND  mode_enti_id IS NOT NULL
-                        AND  mode_wrtb_id IS NULL
-                        AND  mode_attr_id IS NULL
-						 AND mode_syno_id IS NULL)
-                          OR(mode_buru_id IS NULL
-                        AND  mode_bezi_id IS NULL
-                        AND  mode_enti_id IS NULL
-                        AND  mode_wrtb_id IS NOT NULL
-                        AND  mode_attr_id IS NULL
-						 AND mode_syno_id IS NULL)
-                          OR(mode_buru_id IS NULL
-                        AND  mode_bezi_id IS NULL
-                        AND  mode_enti_id IS NULL
-                        AND  mode_wrtb_id IS NULL
-					    AND  mode_attr_id IS NOT NULL
-						 AND mode_syno_id IS NULL)
-                           OR(mode_buru_id IS NULL
-                         AND  mode_bezi_id IS NULL
-                         AND  mode_enti_id IS NULL
-                         AND  mode_wrtb_id IS NULL
- 					    AND  mode_attr_id IS NULL
- 						 AND mode_syno_id IS NOT NULL)
-						 )]]></rule>
+<rule><![CDATA[case WHEN mode_buru_id IS NULL THEN 0 else 1 end
+		   	 						+case WHEN mode_enti_id IS NULL THEN 0 else 1 end	
+		   	 						+case WHEN mode_tabl_id IS NULL THEN 0 else 1 end	
+		   	 						+case WHEN mode_scha_id IS NULL THEN 0 else 1 end	
+		   	 						+case WHEN mode_syno_id IS NULL THEN 0 else 1 end	
+		   	 						+case WHEN mode_bezi_id IS NULL THEN 0 else 1 end	
+		   	 						+case WHEN mode_wrtb_id IS NULL THEN 0 else 1 end	
+		   	 						+case WHEN mode_attr_id IS NULL THEN 0 else 1 end	
+		   	 						+case WHEN mode_orge_id IS NULL THEN 0 else 1 end	
+		   	 						+case WHEN mode_schn_id IS NULL THEN 0 else 1 end	
+									= 1]]></rule>
 </tableCheckConstraint>
 </tableCheckConstraints>
 </Table>

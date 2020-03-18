@@ -1,7 +1,7 @@
 # -*- coding: latin-1 -*-
 import sys,os
 sys.path.append(os.getcwd())
-sys.path.append(os.path.dirname(os.path.realpath(__file__))+'/../IM_db')
+sys.path.append(os.getcwd()+'/../IM_db')
 from datetime import date,datetime
 from IM_DB import parameters,dbConnect,dbDDL,dbDML,dbErstelleTables,dbInserts,dbLookup,dbParam
 from IM_HTML import printHTML,web_sql,printdiagHTML,printRelHTML
@@ -13,8 +13,8 @@ def nvl(x,default=''):
     else: return x
 #nvl
 
-def makeAnker(ref,anz):
-    return """<a name = "{}" >{}</a>""".format(ref,anz)
+#def makeAnker(ref,anz):
+#    return """<a name = "{}" >{}</a>""".format(ref,anz)
 #href
 
 def formatDatentyp(w):
@@ -75,7 +75,9 @@ def printAttrUDPMatrix(thema=None):
       join wertebereiche on wrtb_id = attr_wrtb_id
       ) order by enti_name,upper(attr_tech_name)"""
                            .format(printHTML.greportLang))
-    printHTML.starttable('Attribute - User Defined Properties: ' + nvl(thema), udpListe, anker=udpAnker(thema))
+    printHTML.starttable(ptitel='Attribute - User Defined Properties: ' + nvl(thema)
+                         ,pueberschriften= udpListe
+                         , anker=udpAnker(thema))
     for at in allattr:
         values = [href(ref=entiAnker(at[1]), anz=at[0]), href(ref=attrAnker(at[2]), anz=at[3])
                               ,nvl(at[4]),nvl(at[6])]
@@ -104,8 +106,7 @@ def printlistofcontent():
     printHTML.printlistofcontentelement(pname='Dokumente', plist=web_sql.namelist(ptype='DOKU', plang=printHTML.reportLang()))
     printHTML.printlistofcontentelement(pname='Attribut-Mapping', plist=web_sql.namelist(ptype='UDP', plang=printHTML.reportLang()))
     printHTML.printlistofcontentelement(pname='Diagramme', plist=web_sql.namelist(ptype='DIAG', plang=printHTML.reportLang()))
-    printHTML.printlistofcontentelement(pname='Systeme', plist=web_sql.namelist(ptype='SCHN', plang=printHTML.reportLang())
-                                        ,pfileref=True)
+    printHTML.printlistofcontentelement(pname='Systeme', plist=web_sql.namelist(ptype='SCHN', plang=printHTML.reportLang()))
     printHTML.printlistofcontentfoot()
 # printlistofcontent
 
@@ -115,15 +116,13 @@ def printcontent(pfirma,ptitel):
     printHTML.printcontentattr(plist=web_sql.attrlist(p_lang=printHTML.reportLang()))
     printHTML.printcontentwrtb(p_list=web_sql.wrtblist(p_lang=printHTML.reportLang()))
     printHTML.printcontentdoku(plist=web_sql.dokulist(p_lang=printHTML.reportLang()))
-    printHTML.printcontentudp(plist=web_sql.namelist(ptype='UDP', plang=printHTML.reportLang()))
+    printHTML.printcontentmapping(plist=web_sql.namelist(ptype='UDP', plang=printHTML.reportLang()))
     printdiagHTML.printcontentdiag(plist=web_sql.diaglist(), plang=printHTML.reportLang(), ptitel=ptitel)
-#    printHTML.printattrmaps(p_list=web_sql.wrtblist(p_lang=printHTML.reportLang()))
-#    printHTML.printdiagrams(p_list=web_sql.wrtblist(p_lang=printHTML.reportLang()))
     printHTML.printcontentfoot()
 #printcontent
 
 def printhtmlfile(pfirma, ptitel, pinfo, plogofilename):
-    printHTML.createFile ();
+    printHTML.createBaseFile ();
     printHTML.printhead(p_firma=pfirma
                         , p_titel=ptitel
                         , p_info=pinfo
@@ -137,7 +136,7 @@ def printhtmlfile(pfirma, ptitel, pinfo, plogofilename):
 #printhtmlfile
 
 def printhtmlsysfile(pfirma, pfilename, ptitel, pinfo, plogofilename,pschnid):
-    printHTML.createFile (sysfilename=pfilename)
+    printHTML.createFile (pfilename=pfilename)
     printHTML.printhead(p_firma=pfirma
                         , p_titel=ptitel
                         , p_info=pinfo
@@ -154,6 +153,7 @@ def listwebmain(plang):
     if (plang is None):
         langs = web_sql.projektlangs().split(',')
         if (len(langs) == 0):
+            printHTML.reportLang(parameters.dbDefaultLang())
             langs = [printHTML.reportLang()]
     else:
         printHTML.reportLang(plang.lower())
@@ -172,8 +172,9 @@ def listwebmain(plang):
     printHTML.reportLang(parameters.dbDefaultLang())
     for s in schnittstelle.indexlist():
         schn_name = s[0]
-        schnfilename = s[1]
-        schn_id = s[2]
+        schnanker = s[1]
+        schnfilename = s[2]
+        schn_id = s[3]
         print ("create web-files for system {}".format(schn_name))
         printhtmlsysfile(pfirma="foryouandyourcustomers"
                       ,pfilename= schnfilename

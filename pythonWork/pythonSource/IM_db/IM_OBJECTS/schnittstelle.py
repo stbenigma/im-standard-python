@@ -34,6 +34,13 @@ class schnittstelle:
         #for
         return self
     #fromarray
+
+    def webfilespec(self):
+        return self.schn_name.upper() + '.html'
+
+    def anker(self):
+        return anker (self.schn_id)
+
 #schnittstelle
 
 tablename:str = 'schnittstelle'
@@ -74,7 +81,7 @@ def select (pwhere=None,porderby=None):
     data = dbDML.select(psql=lsql)
     schnlist =[schnittstelle().fromarray(val) for key,val in enumerate(data)]
     return schnlist
-#getbyid
+#select
 
 def getbyid (pid):
     data=select ("schn_id={}".format(pid))
@@ -107,11 +114,11 @@ def delete():
 def anker(id):
     return prefix.upper()+str(id)
 
-def fileanker(name):
-    return name.upper()+'.html'
+def webfilespec(pid):
+    return getbyid(pid).webfilespec()
 
 def indexlist():
     schn = select(porderby='schn_name')
-    indexlist = [[s.schn_name,fileanker(s.schn_name),s.schn_id] for s in schn]
+    indexlist = [[s.schn_name, '',s.webfilespec(), s.schn_id] for s in schn]
     return indexlist
 #indexlist

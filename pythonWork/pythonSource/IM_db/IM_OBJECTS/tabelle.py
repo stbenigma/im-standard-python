@@ -48,6 +48,9 @@ class tabelle:
         #for
         return self
     #fromarray
+    def anker(self):
+        return anker(self.tabl_id)
+
 #tabelle
 
 tablename:str = 'tabelle'
@@ -107,10 +110,10 @@ def getbyid (pid):
 #getbyid
 
 def getbyguid (pguid):
-    return select ("tabl_odm_guid = '{}'".format(pguid))
+    return select (pwhere="tabl_odm_guid = '{}'".format(pguid))
 #getbyguid
 
-def schnID (pguid):
+def tablID (pguid):
     data = getbyguid(pguid)
     if (len(data) > 1):
         raise Exception('{}: nonunique GUID={}'.format(tablename, pguid))
@@ -119,7 +122,7 @@ def schnID (pguid):
     else:
         return data[0].tabl_id
     # fi
-#schnId
+#tablId
 
 def delete():
     dbDML.delete(tablename)
@@ -130,6 +133,6 @@ def anker(id):
 def indexlist(pschnid=None):
     data = select(pwhere= None if pschnid is None else "tabl_schn_id={}".format(pschnid)
                   ,porderby='tabl_name')
-    indexlist = [[d.tabl_name,anker(d.tabl_id),d.tabl_id] for d in data]
+    indexlist = [[d.tabl_name,d.anker(),d.tabl_id] for d in data]
     return indexlist
 #indexlist

@@ -1,7 +1,7 @@
 import xml.etree.ElementTree as ET
 import re,os
 from datetime import date
-from IM_DB import dbDML,dbLookup,dbConnect,parameters,dbParam
+from IM_DB import dbDML,dbLookup,dbConnect,parameters,dbParam,dbInserts
 import math
 from IM_OBJECTS import schnittstelle,tabelle
 import transferModel
@@ -20,8 +20,11 @@ def do1table(pfilename):
     tabl.tabl_schn_id = globalschnid
     tabl.tabl_beschr = transferModel.findText(tablexml,"comment")
     tabl.tabl_id = tabelle.insert(tabl)
+    lmodeId =dbInserts.insertModeTabl(tabl.tabl_id)
 
     documents = transferModel.getdokuref(tablexml)
+    dbInserts.insertdokuref(documents = documents, modeid = lmodeId)
+
 #do1table
 
 def transfertables(pschndirec):
@@ -40,9 +43,11 @@ def do1schnittstelle(pfilename):
     schn.schn_uc = transferModel.findText(schnxml,'createdBy')
     schn.schn_dc = transferModel.findText(schnxml,'createdTime')
     schn.schn_id = schnittstelle.insert(schn)
+    lmodeId =dbInserts.insertModeSchn(schn.schn_id)
 
     #Dokumente an dieser Schnittstelle
-    documents = transferModel.getdokuref(schnxml)
+    documents = transferModel.getdokuref(pelem=schnxml,pstruct=True)
+    dbInserts.insertdokuref(documents = documents, modeid = lmodeId)
     #Tabellen
     filename, file_extension = os.path.splitext(pfilename)
     globalschnid = schn.schn_id #hässlich aber geht nicht über generische Funktionen

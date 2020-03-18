@@ -8,11 +8,17 @@ import listWebdoku
 
 def main(pdirec,plang):
     parameters.initparam(p_callarg=pdirec)
+    lang = plang
+    if plang is None:
+        printHTML.reportLang(parameters.dbDefaultLang())
+    else:
+        printHTML.reportLang(plang.lower())
+
     dbConnect.openDB(p_filepath="file::memory:?cache=shared");
     dbErstelleTables.erstelleInfra();
     fillDB.filldbmain()
     printHTML.setWebDirec(p_webdirec=None)
-    listWebdoku.listwebmain(plang=plang)
+    listWebdoku.listwebmain(plang=printHTML.reportLang())
 #main
 
 if __name__ == '__main__':

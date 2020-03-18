@@ -382,6 +382,9 @@ CREATE TABLE modellelem_typ(
    'BURU',
    'ENTI',
    'WRTB',
+   'TABL',
+   'SCHA',
+   'SCHN',
    'SYNO',
    'ORGE'
         )),
@@ -426,6 +429,7 @@ CREATE TABLE TABELLE
 
 CREATE TABLE modellelement(
     mode_id        integer NOT NULL primary key autoincrement,
+    mode_melt_id   integer NULL,
     mode_syno_id   integer NULL,
     mode_wrtb_id   integer NULL,
     mode_attr_id   integer NULL,
@@ -433,9 +437,9 @@ CREATE TABLE modellelement(
     mode_bezi_id   integer NULL,
     mode_enti_id   integer NULL,
     mode_orge_id   integer NULL,    
-    mode_melt_id   integer NULL,
     mode_tabl_id  integer NULL,
     mode_scha_id  integer NULL,    
+    mode_schn_id  integer NULL,    
     mode_uc        varchar(30 )NOT NULL,
     mode_dc        varchar(30)NOT NULL,
     mode_um        varchar(30 )NULL,
@@ -444,71 +448,19 @@ CREATE TABLE modellelement(
 	       mode_attr_id,
 	       mode_buru_id,
 	       mode_enti_id,
-	       mode_bezi_id,mode_scha_id,mode_tabl_id),
-		   CONSTRAINT fkarc_4 CHECK ( ( ( mode_buru_id IS NOT NULL )
-		                                        AND ( mode_enti_id IS NULL )
-		                                        AND ( mode_attr_id IS NULL )
-		                                        AND ( mode_tabl_id IS NULL )
-		                                        AND ( mode_scha_id IS NULL )
-		                                        AND ( mode_syno_id IS NULL )
-		                                        AND ( mode_bezi_id IS NULL )
-		                                        AND ( mode_wrtb_id IS NULL ) )
-		                                      OR ( ( mode_enti_id IS NOT NULL )
-		                                           AND ( mode_buru_id IS NULL )
-		                                           AND ( mode_attr_id IS NULL )
-		                                           AND ( mode_tabl_id IS NULL )
-		                                           AND ( mode_scha_id IS NULL )
-		                                           AND ( mode_syno_id IS NULL )
-		                                           AND ( mode_bezi_id IS NULL )
-		                                           AND ( mode_wrtb_id IS NULL ) )
-		                                      OR ( ( mode_attr_id IS NOT NULL )
-		                                           AND ( mode_buru_id IS NULL )
-		                                           AND ( mode_enti_id IS NULL )
-		                                           AND ( mode_tabl_id IS NULL )
-		                                           AND ( mode_scha_id IS NULL )
-		                                           AND ( mode_syno_id IS NULL )
-		                                           AND ( mode_bezi_id IS NULL )
-		                                           AND ( mode_wrtb_id IS NULL ) )
-		                                      OR ( ( mode_tabl_id IS NOT NULL )
-		                                           AND ( mode_buru_id IS NULL )
-		                                           AND ( mode_enti_id IS NULL )
-		                                           AND ( mode_attr_id IS NULL )
-		                                           AND ( mode_scha_id IS NULL )
-		                                           AND ( mode_syno_id IS NULL )
-		                                           AND ( mode_bezi_id IS NULL )
-		                                           AND ( mode_wrtb_id IS NULL ) )
-		                                      OR ( ( mode_scha_id IS NOT NULL )
-		                                           AND ( mode_buru_id IS NULL )
-		                                           AND ( mode_enti_id IS NULL )
-		                                           AND ( mode_attr_id IS NULL )
-		                                           AND ( mode_tabl_id IS NULL )
-		                                           AND ( mode_syno_id IS NULL )
-		                                           AND ( mode_bezi_id IS NULL )
-		                                           AND ( mode_wrtb_id IS NULL ) )
-		                                      OR ( ( mode_syno_id IS NOT NULL )
-		                                           AND ( mode_buru_id IS NULL )
-		                                           AND ( mode_enti_id IS NULL )
-		                                           AND ( mode_attr_id IS NULL )
-		                                           AND ( mode_tabl_id IS NULL )
-		                                           AND ( mode_scha_id IS NULL )
-		                                           AND ( mode_bezi_id IS NULL )
-		                                           AND ( mode_wrtb_id IS NULL ) )
-		                                      OR ( ( mode_bezi_id IS NOT NULL )
-		                                           AND ( mode_buru_id IS NULL )
-		                                           AND ( mode_enti_id IS NULL )
-		                                           AND ( mode_attr_id IS NULL )
-		                                           AND ( mode_tabl_id IS NULL )
-		                                           AND ( mode_scha_id IS NULL )
-		                                           AND ( mode_syno_id IS NULL )
-		                                           AND ( mode_wrtb_id IS NULL ) )
-		                                      OR ( ( mode_wrtb_id IS NOT NULL )
-		                                           AND ( mode_buru_id IS NULL )
-		                                           AND ( mode_enti_id IS NULL )
-		                                           AND ( mode_attr_id IS NULL )
-		                                           AND ( mode_tabl_id IS NULL )
-		                                           AND ( mode_scha_id IS NULL )
-		                                           AND ( mode_syno_id IS NULL )
-		                                           AND ( mode_bezi_id IS NULL ) ) )
+	       mode_bezi_id,mode_scha_id,mode_tabl_id,mode_schn_id),
+		   CONSTRAINT fkarc_4 CHECK (case WHEN mode_buru_id IS NULL THEN 0 else 1 end
+		   	 						+case WHEN mode_enti_id IS NULL THEN 0 else 1 end	
+		   	 						+case WHEN mode_tabl_id IS NULL THEN 0 else 1 end	
+		   	 						+case WHEN mode_scha_id IS NULL THEN 0 else 1 end	
+		   	 						+case WHEN mode_syno_id IS NULL THEN 0 else 1 end	
+		   	 						+case WHEN mode_bezi_id IS NULL THEN 0 else 1 end	
+		   	 						+case WHEN mode_wrtb_id IS NULL THEN 0 else 1 end	
+		   	 						+case WHEN mode_attr_id IS NULL THEN 0 else 1 end	
+		   	 						+case WHEN mode_orge_id IS NULL THEN 0 else 1 end	
+		   	 						+case WHEN mode_schn_id IS NULL THEN 0 else 1 end	
+									= 1
+								),
 	    CONSTRAINT mode_syno_fk_ist FOREIGN KEY(mode_syno_id)
 	  REFERENCES synonyme(syno_id)
 	      ON DELETE CASCADE,
@@ -524,15 +476,18 @@ CREATE TABLE modellelement(
 	    CONSTRAINT mode_wrtb_fk_ist FOREIGN KEY(mode_wrtb_id)
 	   	  REFERENCES wertebereiche(wrtb_id)
 	   	      ON DELETE CASCADE,
-	    CONSTRAINT mode_melt_fk_verantw FOREIGN KEY(mode_melt_id)
-	  REFERENCES modellelem_typ(melt_id)
-	  		ON DELETE CASCADE ,
 	CONSTRAINT MODE_SCHA_FK FOREIGN KEY ( MODE_SCHA_ID) 
 	      REFERENCES SCHNITTSTELLE_ATTR (SCHA_ID ) 
 	      ON DELETE CASCADE ,
 	CONSTRAINT MODE_TABL_FK FOREIGN KEY ( MODE_TABL_ID) 
-	      REFERENCES TABELLE ( TABL_ID ) 
-	      ON DELETE CASCADE 
+	  	      REFERENCES TABELLE ( TABL_ID ) 
+	  	      ON DELETE CASCADE ,
+	CONSTRAINT MODE_SCHN_FK FOREIGN KEY ( MODE_SCHN_ID) 
+		  	      REFERENCES schnittstelle ( schn_ID ) 
+		  	      ON DELETE CASCADE ,
+	    CONSTRAINT mode_melt_fk_verantw FOREIGN KEY(mode_melt_id)
+	  REFERENCES modellelem_typ(melt_id)
+	  		ON DELETE CASCADE 
 )
 
 CREATE TABLE modelltyp_eigensch(

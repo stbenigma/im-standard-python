@@ -13,5 +13,11 @@
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
       <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/../../TestCaseTalk/DB/TestCaseTalk.db</jdbc-url>
     </data-source>
+    <data-source source="LOCAL" name="EZV_Stammdaten.db" uuid="68791d99-d6e1-4793-a553-713aa5ea2957">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/../../../../EZV/DB/EZV_Stammdaten.db</jdbc-url>
+    </data-source>
   </component>
 </project>

@@ -675,7 +675,7 @@ def updateUDP(pmodeid, pobj):
     # fi
 #updateUDP
 
-def do1Attribute(n,attr,entiId=None,beziId=None):
+def do1Attribute(plfnr, pattrxml, pentiId=None, pbeziId=None):
     #print (attr.find('createdTime').text,findText(attr,'nullsAllowed'));
 #    attr_enti_id, attr_wrtb_id, attr_tech_name
 #    , attr_anzname, attr_tooltip, attr_beschr
@@ -684,30 +684,30 @@ def do1Attribute(n,attr,entiId=None,beziId=None):
 #    , attr_wiederholt, attr_sprachabhaengig, attr_verschluesselt
 #    attr_uc, attr_dc,attr_odm_guid,attr_bezi_id
     #wegen FK-PK zusätzliche Attribute werden nicht übernommen
-    if (findText(attr, 'referedAttribute') is not None):
+    if (findText(pattrxml, 'referedAttribute') is not None):
         return
 
-    ganzName = findField(attr,'name')
-    abbrevName = findText(attr,'preferredAbbreviation')
+    ganzName = findField(pattrxml, 'name')
+    abbrevName = findText(pattrxml, 'preferredAbbreviation')
     attrName=re.search('[^\[]*',ganzName).group().rstrip()
-    creby = findText(attr,'createdBy')
-    creti = findText(attr,'createdTime')
-    documents = getdokuref(elem = attr)
+    creby = findText(pattrxml, 'createdBy')
+    creti = findText(pattrxml, 'createdTime')
+    documents = getdokuref(pelem= pattrxml)
     techiName = nvl(abbrevName,re.sub('[-,.()\[\]äöüèéàÄ~ÖÜ ]','_',str.upper(attrName)))
-    domId=findeOderErstelleDom(pdomguid=findText(attr, 'domain')
-                               , pstructdomguid=findText(attr,'structuredType')
-                               , ptypeguid=findText(attr, 'logicalDatatype')
+    domId=findeOderErstelleDom(pdomguid=findText(pattrxml, 'domain')
+                               , pstructdomguid=findText(pattrxml, 'structuredType')
+                               , ptypeguid=findText(pattrxml, 'logicalDatatype')
                                , pattrname=attrName)
-    attrcomm = findText(attr,'comment')
-    attrset=(entiId,domId,techiName
-        ,attrName,findText(attr,''),attrcomm
-        ,findText(attr,''),n
-        ,'FALSE','FALSE' if (findText(attr,'nullsAllowed') == 'true') else 'TRUE'
+    attrcomm = findText(pattrxml, 'comment')
+    attrset=(pentiId, domId, techiName
+        , attrName, findText(pattrxml, ''), attrcomm
+        , findText(pattrxml, ''), plfnr
+        ,'FALSE','FALSE' if (findText(pattrxml, 'nullsAllowed') == 'true') else 'TRUE'
              ,'TRUE' if (re.search('\[.*T.*\]', ganzName) is not None) else 'FALSE'
         ,'TRUE' if (re.search('\[.*N.*\]', ganzName) is not None) else 'FALSE'
              ,'TRUE' if (re.search('\[.*L.*\]', ganzName) is not None) else 'FALSE','FALSE'
-        ,creby,creti,findField(attr,'id'),beziId
-    )
+        , creby, creti, findField(pattrxml, 'id'), pbeziId
+             )
     try:
         attrId = dbInserts.insertAttribute(pattr=attrset)
     except  sqlite3.Error as e:
@@ -717,7 +717,7 @@ def do1Attribute(n,attr,entiId=None,beziId=None):
     #try
     lmodeId=dbInserts.insertModeAttr(attrId)
     dbInserts.insertUdpAttr(attrId)
-    updateUDP(pmodeid=lmodeId, pobj=attr)
+    updateUDP(pmodeid=lmodeId, pobj=pattrxml)
 
     dbInserts.insertdokuref(documents = documents, modeid = lmodeId)
 
@@ -780,29 +780,51 @@ def transferKeys(p_keys):
         #rof
     #rof
 # transferKeys
-def getdokuref(elem) :
-    documents = findField(elem.find("documents"), 'usedDucuments')
-    if (documents is not None):
-        documents = tuple(documents.split(' '))
+def getdokuref(pelem,pstruct=False) :
+    documents = None
+    if pstruct:
+        """
+        <documents>
+        <Document id="7EBDC037-8728-C627-4B33-CEDF979E7C13"/>
+        </documents>
+        """
+        docs = pelem.find('documents')
+        if docs is not None:
+            documents = []
+            for idx, doc in enumerate(docs, start=1):
+                # alle referenzierten Dokumente
+                docguid=findField(doc,'id')
+                #print(docguid)
+                documents.append(docguid)
+            #for
+            documents = tuple(documents)
+        #fi
+    else:
+        """<documents usedDucuments="701E5525-A8EE-3C6F-E78B-28B04D93F93D"/>
+        """
+        docs = findField(pelem.find("documents"), 'usedDucuments')
+        if (docs is not None):
+            documents = tuple(docs.split(' '))
+    #fi
     #print(documents)
     return documents
 #getdokuref
 
 def do1Entity(fileName):
     tree = ET.parse(fileName)
-    root = tree.getroot()
-    if (findField(root,"class") != "oracle.dbtools.crest.model.design.logical.Entity"): return
-    entname = root.get("name")
-    entcomm = findText(root,'comment')
-    creby = findText(root,'createdBy')
-    creti = findText(root,'createdTime')
-    enti_category_guid = findText(root,'typeID')
-    documents = getdokuref(elem = root)
-    row=(root.get('id'),None,None\
+    entixml = tree.getroot()
+    if (findField(entixml,"class") != "oracle.dbtools.crest.model.design.logical.Entity"): return
+    entname = entixml.get("name")
+    entcomm = findText(entixml,'comment')
+    creby = findText(entixml,'createdBy')
+    creti = findText(entixml,'createdTime')
+    enti_category_guid = findText(entixml,'typeID')
+    documents = getdokuref(pelem= entixml)
+    row=(entixml.get('id'),None,None\
         ,entname,entcomm,None\
         ,None,None,None\
         ,None,creby,creti
-        ,findText(root,'hierarchicalParent'),None,enti_category_guid)
+        ,findText(entixml,'hierarchicalParent'),None,enti_category_guid)
     #print ("Entity:", row)
     #enti_odm_guid, enti_augb_id, enti_tech_name
     #, enti_name, enti_beschr, enti_tooltip
@@ -813,7 +835,7 @@ def do1Entity(fileName):
     lmodeId =dbInserts.insertModeEnti(entiId)
     dbInserts.insertUdpEntity(entiId)
 
-    sobj =findText(root,'synonym')
+    sobj =findText(entixml,'synonym')
     if (sobj is not None):
         for syn in sobj.split(','):
             syno = syn.strip()
@@ -823,18 +845,18 @@ def do1Entity(fileName):
 
     #print (entname,translate.translate(p_text=entname,p_fromlang='de',p_tolang='en'),translate.translate(p_text=entname,p_fromlang='de',p_tolang='fr'))
 
-    updateUDP(pmodeid=lmodeId, pobj=root)
+    updateUDP(pmodeid=lmodeId, pobj=entixml)
     dbInserts.insertdokuref(documents = documents, modeid = lmodeId)
 
-    attrs= root.find('attributes')
+    attrs= entixml.find('attributes')
     if attrs is not None:
         for idx,attr in enumerate(attrs,start=1):
         #alle Attribute
             #print(attr.get('name'),attr.get('id'))
-            do1Attribute(n=idx,attr=attr,entiId=entiId)
+            do1Attribute(plfnr=idx, pattrxml=attr, pentiId=entiId)
         #rof
     #fi
-    fillKeys(p_enti=root, p_entiid=entiId)
+    fillKeys(p_enti=entixml, p_entiid=entiId)
 #do1Entity
 
 
@@ -923,13 +945,13 @@ def beziType(srcCard, targCard, srcOpt,targOpt,arcId = None):
 
 def do1Relation(fileName):
     tree = ET.parse(fileName)
-    root = tree.getroot()
-    relname=root.get('name')
-    optSrc = findText(root, 'optionalSource')
-    optTarg = findText(root, 'optionalTarget')
-    cardSrc = findText(root, 'sourceCardinality')
-    cardTarg = findText(root, 'targetCardinalityString')
-    documents = getdokuref(elem = root)
+    relaxml = tree.getroot()
+    relname=relaxml.get('name')
+    optSrc = findText(relaxml, 'optionalSource')
+    optTarg = findText(relaxml, 'optionalTarget')
+    cardSrc = findText(relaxml, 'sourceCardinality')
+    cardTarg = findText(relaxml, 'targetCardinalityString')
+    documents = getdokuref(pelem= relaxml)
 
     lbeziType = beziType(srcCard= abbildTyp(cardSrc)
                     ,targCard=abbildTyp(cardTarg)
@@ -941,19 +963,19 @@ def do1Relation(fileName):
     #     , BEZI_PFLICHT_ASSOC_ZU_VON,bezi_hist_zu_von
     #     , bezi_odm_guid,bezi_uc, bezi_dc,bezi_name
     #     ,bezi_source_enti_guid,  bezi_target_enti_guid
-    vonText = findText(root,'nameOnSource')
-    zuText = findText(root, 'nameOnTarget')
-    creby = findText(root,'createdBy')
-    creti = findText(root,'createdTime')
-    sourceentiguid = findText(root,'sourceEntity')
-    targetentiguid = findText(root,'targetEntity')
+    vonText = findText(relaxml,'nameOnSource')
+    zuText = findText(relaxml, 'nameOnTarget')
+    creby = findText(relaxml,'createdBy')
+    creti = findText(relaxml,'createdTime')
+    sourceentiguid = findText(relaxml,'sourceEntity')
+    targetentiguid = findText(relaxml,'targetEntity')
     try:
         lrow=[lbeziType
              , dbLookup.entiID(sourceentiguid),vonText
              ,strNegBool(optSrc), 'FALSE'
              , dbLookup.entiID(targetentiguid), zuText
              ,strNegBool(optTarg),'FALSE'
-             ,root.get('id'),creby,creti,relname
+             ,relaxml.get('id'),creby,creti,relname
             ,sourceentiguid,targetentiguid
              ]
             #root.get('name')\           ,findText(root,'comment')\
@@ -985,15 +1007,15 @@ def do1Relation(fileName):
     lmodeId = dbInserts.insertModeBezi(beziId)
     dbInserts.insertUdpBezi(beziId)
 
-    updateUDP(pmodeid=lmodeId, pobj=root)
+    updateUDP(pmodeid=lmodeId, pobj=relaxml)
     dbInserts.insertdokuref(documents = documents, modeid = lmodeId)
 
-    attrs= root.find('attributes')
+    attrs= relaxml.find('attributes')
     if attrs is not None:
         for idx,attr in enumerate(attrs,start=1):
             #alle Attribute
             #print((attr.get('name'),attr.get('id')))
-            do1Attribute(n=idx,attr=attr,beziId=beziId)
+            do1Attribute(plfnr=idx, pattrxml=attr, pbeziId=beziId)
         #endfor
     #fi
 
@@ -1016,6 +1038,10 @@ def fillMelt():
         , ('ENTI', 'Entitäten', 'stb', date.today()) \
         , ('WRTB', 'Wertebereiche', 'stb', date.today()) \
         , ('SYNO', 'Synonyme', 'stb', date.today()) \
+        , ('ORGE', 'Organisationseinheit', 'stb', date.today()) \
+        , ('TABL', 'Tabelle', 'stb', date.today()) \
+        , ('SCHA', 'Schnittstellenattribut', 'stb', date.today()) \
+        , ('SCHN', 'Schnittstelle', 'stb', date.today()) \
      ]
 
     dbInserts.insertMelt(modellelementtypen)
@@ -1052,14 +1078,6 @@ def do1UDPFile(pudpThema,pfileName):
             #die speziellen Properties manuell
             if not (group in propgroups): #nur einmal eintragen je Sprache (Gruppe)
                 propgroups.append(group)
-                ludpid=dbInserts.insertUDP(pData=(lupdThema, lgroups[prop.get('group_id')]
-                    , lgroups[group]+'_RELA_TEXT_FROM', None
-                    , None, 'FALSE', None, '--', date.today().__str__()))
-                dbInserts.insertModellElemTyp((dbLookup.meltLookup(type2melt('Relation')), ludpid))
-                ludpid=dbInserts.insertUDP(pData=(lupdThema, lgroups[prop.get('group_id')]
-                    , lgroups[group]+'_RELA_TEXT_TO', None
-                    , None, 'FALSE', None, '--', date.today().__str__()))
-                dbInserts.insertModellElemTyp((dbLookup.meltLookup(type2melt('Relation')), ludpid))
                 ludpid=dbInserts.insertUDP(pData=(lupdThema, lgroups[prop.get('group_id')]
                     , lgroups[group]+'_ENTI_COMMENT', None
                     , None, 'FALSE', None, '--', date.today().__str__()))

@@ -11,7 +11,12 @@ def langText(p_attrname, p_lang, p_modeid):
      and sptx_mode_id = {}
      and sptx_attrname = '{}'
     """.format(p_lang, p_modeid, p_attrname)
-   ltext = dbDML.select(lsql)[0][0]
+   data = dbDML.select(lsql)
+   try:
+       ltext = data[0][0]
+   except:
+       print (p_attrname,p_lang,p_modeid,data,sep=' | ')
+       return ""
    return ltext
 #langText
 def enti_name(p_lang, p_modeid):
@@ -44,6 +49,10 @@ def diagAnker(id):
     return 'DIAG'+str(id)
 def dokuAnker(id):
     return 'DOKU'+str(id)
+def schnAnker(id):
+    return 'SCHN'+str(id)
+def tablAnker(id):
+    return 'TABL'+str(id)
 def elementid(pmodeid,ptyp):
     data = dbDML.select("""select mode_{}_id id
                             from modellelement 
@@ -65,7 +74,13 @@ def dokureflist (pid, plang):
                    union all
                    select attr_id id ,attr_anzname name 
                    from attributes 
-           ) on id = mode_enti_id or id = mode_attr_id
+                   union all
+                   select tabl_id id ,TABL_NAME name 
+                   from tabelle
+                   union all
+                   select SCHN_ID id ,SCHN_NAME name 
+                   from schnittstelle
+           ) on id = mode_enti_id or id = mode_attr_id or id = mode_tabl_id or id = mode_schn_id
          join sprachen sp on sp.spra_iso_code2 = '{}'
          left join spraattr spa on spa.sptx_attrname = case type when 'Entität' then 'ENTI_NAME'
                                                             when 'Attribut' then 'ATTR_NAME'
@@ -77,9 +92,11 @@ def dokureflist (pid, plang):
     order by type,upper(name)
                   """.format(plang,pid))
     datalist = [(e[0],entiAnker(e[1]) if e[2] == 'ENTI'
-                        else  attrAnker(e[1]) if e[2] == 'ATTR'
-                        else ''
-                 ,e[2],e[3]) for e in data]
+                else attrAnker(e[1]) if e[2] == 'ATTR'
+                else tablAnker(e[1]) if e[2] == 'TABL'
+                else schnAnker(e[1]) if e[2] == 'SCHN'
+                 else ''
+                 ,e[2],e[3],e[1]) for e in data]
     return datalist
 #dokureflist
 
@@ -102,7 +119,7 @@ def reflist (pid,pelemtype):
     """.format(pelemtype,pid))
     datalist = [(e[0],dokuAnker(e[1]) if e[2] == 'DOKU'
                         else ''
-                 ,e[2],e[3]) for e in data]
+                 ,e[2],e[3],e[1]) for e in data]
     return datalist
 #reflist
 
@@ -121,7 +138,7 @@ def namelist(ptype, plang, pid=None):
                                     and ena.spra_id = sp.spra_id
               ) order by upper(name)
                   """.format(plang))
-        datalist = [(e[0],entiAnker(e[1])) for e in data]
+        datalist = [(e[0],entiAnker(e[1]),'') for e in data]
     elif (ptype == 'ATTR'):
         data = dbDML.select("""select attrname || ' ('||entname||')' name, attr_id 
         from 
@@ -145,7 +162,7 @@ def namelist(ptype, plang, pid=None):
                             and wrtb_id = {}
           ) order by upper(name)
               """.format(plang, pid if (pid is not None) else 'wrtb_id'))
-        datalist = [(e[0], attrAnker(e[1])) for e in data]
+        datalist = [(e[0], attrAnker(e[1]),'') for e in data]
     elif (ptype == 'ATTG'):
         data = dbDML.select("""select wbgrname || ' ('||wrtbname||')' name, wbgr_id,wrtbname,wrtb_id 
             from 
@@ -163,7 +180,7 @@ def namelist(ptype, plang, pid=None):
               where wbgr_wrtb_id_member = {}
               ) order by wrtbname,upper(name)
                   """.format(plang, pid if (pid is not None) else 'wrtb_id'))
-        datalist = [(e[0], wrtbAnker(e[3])) for e in data]
+        datalist = [(e[0], wrtbAnker(e[3]),'') for e in data]
     elif (ptype == 'WRTB'):
         data = dbDML.select("""select wrtbname ||' ('|| anz ||')' name, wrtb_id 
         from 
@@ -179,7 +196,7 @@ def namelist(ptype, plang, pid=None):
                                 and wna.spra_id = sp.spra_id
           ) order by upper(name)
               """.format(plang))
-        datalist = [(e[0], wrtbAnker(e[1])) for e in data]
+        datalist = [(e[0], wrtbAnker(e[1]),'') for e in data]
     elif (ptype == 'UDP'):
         data = dbDML.select("""select  distinct bdeg_gruppe,bdeg_thema||'-'||bdeg_gruppe id
                              ,bdeg_thema
@@ -193,7 +210,7 @@ def namelist(ptype, plang, pid=None):
                         order by bdeg_gruppe""".format(parameters.odmUDPMappingFileName()
                                                        ,parameters.odmUDPMappingFileName()
                                                        ,parameters.odmUDPMappingFileName()))
-        datalist = [(e[0], udpAnker(e[1]),e[2]) for e in data]
+        datalist = [(e[0], udpAnker(e[1]),'',e[2]) for e in data]
     elif (ptype == 'DIAG'):
         data = dbDML.select("""select diag_name ||' ('|| diat_bez ||')' name, diag_id 
         from 
@@ -204,13 +221,13 @@ def namelist(ptype, plang, pid=None):
           join diagrammtypen on diat_id = diag_diat_id
           ) order by upper(diat_bez),upper(diag_name)
               """)
-        datalist = [(e[0], diagAnker(e[1])) for e in data]
+        datalist = [(e[0], diagAnker(e[1]),'') for e in data]
     elif (ptype == 'DOKU') :
         data = dbDML.select("""select doku_name name, doku_id 
         from dokumente
         order by upper (doku_name)
               """)
-        datalist = [(e[0], dokuAnker(e[1])) for e in data]
+        datalist = [(e[0], dokuAnker(e[1]),'') for e in data]
     elif (ptype == 'SCHN') :
         datalist = schnittstelle.indexlist()
     elif (ptype == 'TABL') :
