@@ -1,7 +1,6 @@
 from IM_DB import dbDDL,dbDML,dbLookup
-from datetime import date
 
-class schnittstelle:
+class Schnittstelle:
     def __init__(self):
         self.schn_id = None
         self.schn_name = None
@@ -79,7 +78,7 @@ def select (pwhere=None,porderby=None):
                 ,"" if porderby is None else
                   "order by {}".format(porderby))
     data = dbDML.select(psql=lsql)
-    schnlist =[schnittstelle().fromarray(val) for key,val in enumerate(data)]
+    schnlist =[Schnittstelle().fromarray(val) for key, val in enumerate(data)]
     return schnlist
 #select
 
@@ -122,3 +121,5 @@ def indexlist():
     indexlist = [[s.schn_name, '',s.webfilespec(), s.schn_id] for s in schn]
     return indexlist
 #indexlist
+
+

@@ -12,7 +12,7 @@ def do1table(pfilename):
     global globalschnid
     tablexml = ET.parse(pfilename).getroot()
     #print (tablexml.get('name'),tablexml.get('id'),sep=' | ')
-    tabl = tabelle.tabelle()
+    tabl = tabelle.Tabelle()
     tabl.tabl_name = tablexml.get("name")
     tabl.tabl_odm_guid = tablexml.get("id")
     tabl.tabl_uc = transferModel.findText(tablexml,'createdBy')
@@ -37,7 +37,7 @@ def transfertables(pschndirec):
 def do1schnittstelle(pfilename):
     global globalschnid
     schnxml = ET.parse(pfilename).getroot()
-    schn=schnittstelle.schnittstelle()
+    schn=schnittstelle.Schnittstelle()
     schn.schn_name = schnxml.get('name')
     schn.schn_odm_guid = schnxml.get('id')
     schn.schn_uc = transferModel.findText(schnxml,'createdBy')

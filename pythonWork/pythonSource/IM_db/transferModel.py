@@ -1120,6 +1120,17 @@ def do1UDPFile(pudpThema,pfileName):
     # rof
 #do1UDPFile
 
+def dofiles(pdirec,pfileregexp,ptransferfunc):
+    for file in os.listdir(parameters.odmFilesDirec()):
+        filename, file_extension = os.path.splitext(file)
+        if (pfileregexp.filename):
+            filepath = parameters.odmIMDirec() + file
+            #print (filepath)
+            ptransferfunc(filepath)
+        #fi
+    # endfor
+#dofiles
+
 def transferUPDdef():
     # lösche die UDP
 #    l_sql = """select count(*) from benudef_wert union select count(*) from benudef_eigenschaft"""
@@ -1137,7 +1148,6 @@ def transferUPDdef():
     # endfor
 
     dbConnect.myDbConn.commit()
-
 #transferUDPdef
 
 def transferUDP():
@@ -1362,7 +1372,9 @@ def transferDocuments():
     #print(dbDML.select("""select * from Dokumente """))
 
 #transferDocuments
-
+def transfermappings():
+    dosegfiles(pdirec=parameters.odmdocumentdirec(), transferfiles=do1Document)
+#transfermappings
 def transferODMModel():
     """überträgt das ganze ODM Modell in die DB"""
     transferprojekt()
@@ -1380,5 +1392,6 @@ def transferODMModel():
     transferdiagramme()
     filllanguages()
     transferRelational.transfer()
+    transfermappings()
 
 #end transferODMModel

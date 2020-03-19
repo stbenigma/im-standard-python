@@ -12,7 +12,7 @@ imagedirec:str = "";
 cssdirec:str = "";
 icondirec:str = "";
 
-"""zum Zählen der lokaen Ziele für collapse"""
+"""zum Zählen der lokalen Ziele für collapse"""
 barcounter:int = 0
 def newbarcounter():
     global barcounter

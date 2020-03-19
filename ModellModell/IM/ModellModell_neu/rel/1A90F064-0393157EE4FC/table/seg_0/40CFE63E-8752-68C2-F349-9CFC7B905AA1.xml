@@ -38,6 +38,7 @@
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
@@ -46,6 +47,21 @@
 <autoIncrementCycle>false</autoIncrementCycle>
 <associations>
 <colAssociation fkAssociation="DB98D8FF-599B-3482-F18C-5A53CFEE49DD" referredColumn="DBACFE8C-9A7A-410E-49F7-BA4843AEF9EF"/>
+</associations>
+</Column>
+<Column name="ATBR_WRTB_ID" id="C20DB459-D741-3098-DDFB-40786BB81E3C">
+<createdBy>stb</createdBy>
+<createdTime>2020-03-19 13:29:46 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="C9179B0E-E9AA-0663-0AAF-8FC2CF4F7158" referredColumn="E9756F49-315F-1F97-E181-07756840736D"/>
 </associations>
 </Column>
 <Column name="ATBR_UC" id="B314F9DC-FAA1-E180-446A-2C8CD3770774">
@@ -118,17 +134,6 @@
 <colUsage columnID="1E7B1FDD-C5DE-C901-B8EE-E7885D9F1797"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="1401D913-D590-0EC1-83B6-61A3C7CD7377" name="ATBR_UK">
-<createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:18:16 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<indexState>Unique Constraint</indexState>
-<isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
-<colUsage columnID="9608DFB6-68F4-19A3-33ED-74EC72C333EE"/>
-<colUsage columnID="5522466F-18F2-2484-1065-F3B757F91332"/>
-</indexColumnUsage>
-</ind_PK_UK>
 <ind_PK_UK id="6E32345B-215C-E923-7A03-7DAE3CBB6581" name="ATBR_BURU_FK">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:17 UTC</createdTime>
@@ -151,5 +156,24 @@
 <colUsage columnID="9608DFB6-68F4-19A3-33ED-74EC72C333EE"/>
 </indexColumnUsage>
 </ind_PK_UK>
+<ind_PK_UK id="45D28CF5-DA45-EC8D-346B-C3C696835031" name="ATBR_WRTB_FK">
+<createdBy>stb</createdBy>
+<createdTime>2020-03-19 13:30:44 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="C20DB459-D741-3098-DDFB-40786BB81E3C"/>
+</indexColumnUsage>
+</ind_PK_UK>
 </indexes>
+<tableCheckConstraints itemClass="oracle.dbtools.crest.model.design.constraint.TableLevelConstraint">
+<tableCheckConstraint name="ATTR_BUSRULE_CK_1" directorySegmentName="seg_1" id="B4F649A4-1800-AFC1-F18B-0F815BA0A6AF">
+<createdBy>stb</createdBy>
+<createdTime>2020-03-19 13:30:44 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<rule><![CDATA[(atbr_attr_id is null and atbr_wrtb_id is not null)
+		or (atbr_attr_id is not null and atbr_wrtb_id is null)]]></rule>
+</tableCheckConstraint>
+</tableCheckConstraints>
 </Table>

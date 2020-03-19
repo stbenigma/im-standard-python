@@ -1,7 +1,7 @@
 from IM_DB import dbDDL,dbDML,dbLookup
 from datetime import date
 
-class tabelle:
+class Tabelle:
     def __init__(self):
         self.tabl_id = None
         self.tabl_name = None
@@ -94,7 +94,7 @@ def select (pwhere=None,porderby=None):
                 ,"" if porderby is None else
                   "order by {}".format(porderby))
     data = dbDML.select(psql=lsql)
-    tabllist =[tabelle().fromarray(val) for key,val in enumerate(data)]
+    tabllist =[Tabelle().fromarray(val) for key, val in enumerate(data)]
     return tabllist
 #getbyid
 

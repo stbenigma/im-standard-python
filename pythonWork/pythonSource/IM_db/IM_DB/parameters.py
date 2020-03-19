@@ -37,6 +37,7 @@ parameter = {
             , 'odmdocumentdirec': 'businessinfo/document/'
             , 'odmudptranslfilename': 'translation'
             , 'odmudpmappingfilename': 'datamapping'
+            , 'odmmappingdirec': 'mapping/'
             , 'odmudpfileextension':'.udposdm'
             , 'odmvcsdirec' : 'gitHub/'
             , 'webdirec': None
@@ -190,6 +191,12 @@ def odmUDPTranslFileName(newval=None):
         return parameter['odmudptranslfilename']
     else:
         parameter['odmudptranslfilename'] = newval
+
+def odmmappingdirec(newval=None):
+    if newval is None:
+        return odmIMDirec()+odmModelName()+'/'+parameter['odmmappingdirec']
+    else:
+        parameter['odmmappingdirec'] = newval
 def odmUDPMappingFileName(newval=None):
     if newval is None:
         return parameter['odmudpmappingfilename']

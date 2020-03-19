@@ -1,5 +1,6 @@
 # -*- coding: latin-1 -*-
 from IM_DB import dbConnect,parameters
+from IM_OBJECTS import baseobject
 import transferModel
 
 
@@ -28,3 +29,4 @@ def main(p_param1):
 if __name__ == '__main__':
     import sys
     main(p_param1=sys.argv[1])
+
