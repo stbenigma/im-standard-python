@@ -410,22 +410,56 @@ CREATE TABLE SCHNITTSTELLE
  CONSTRAINT SCHN_UN UNIQUE (SCHN_NAME)
     )
 
-CREATE TABLE TABELLE 
+CREATE TABLE tabelle 
     (
-     TABL_ID integer primary key autoincrement , 
-     TABL_NAME VARCHAR (60) NOT NULL , 
-     TABL_SCHN_ID integer NOT NULL , 
-     TABL_PREFIX VARCHAR (60) NULL , 
-     TABL_BESCHR VARCHAR (4000) NULL , 
- 	 TABL_odm_guid	varchar(36),
-     TABL_UC VARCHAR (30) NOT NULL , 
-     TABL_DC VARCHAR (30) NOT NULL , 
-     TABL_UM VARCHAR (30) NULL , 
-     TABL_DM VARCHAR (30) NULL ,
-	  CONSTRAINT TABL_UN UNIQUE (TABL_SCHN_ID , TABL_NAME)
- 	   ,CONSTRAINT TABL_SCHN_FK FOREIGN KEY (TABL_SCHN_ID) 
- 	      REFERENCES SCHNITTSTELLE (SCHN_ID ) 
+     tabl_id integer primary key autoincrement , 
+     tabl_name varchar (60) not null , 
+     tabl_schn_id integer not null , 
+     tabl_prefix varchar (60) null , 
+     tabl_beschr varchar (4000) null , 
+ 	 tabl_odm_guid	varchar(36),
+     tabl_uc varchar (30) not null , 
+     tabl_dc varchar (30) not null , 
+     tabl_um varchar (30) null , 
+     tabl_dm varchar (30) null ,
+	  constraint tabl_un unique (tabl_schn_id , tabl_name)
+ 	   ,constraint tabl_schn_fk foreign key (tabl_schn_id) 
+ 	      references schnittstelle (schn_id ) 
     )
+
+	CREATE TABLE business_rule (
+	    buru_id      integer NOT NULL primary key autoincrement,
+	    buru_name    VARCHAR(4000) NOT NULL,
+	    buru_regel   VARCHAR(4000) NOT NULL,
+	    buru_beschr  VARCHAR(4000) NULL,
+	    buru_fhlmld  VARCHAR(4000) NULL,
+	    buru_uc      varchar(30) NOT NULL,
+	    buru_dc      varchar(30) NOT NULL,
+	    buru_um      varchar(30) NULL,
+	    buru_dm      varchar(30),
+		CONSTRAINT buru_uk UNIQUE(buru_name)
+	)
+
+	PROMPT CREATING TABLE 'ATTR_BUSRULE';
+	CREATE TABLE attr_busrule (
+	    atbr_id       integer NOT NULL primary key autoincrement,
+	    atbr_buru_id  integer NOT NULL,
+	    atbr_attr_id  integer,
+	    atbr_wrtb_id  integer ,
+	    atbr_uc       VARCHAR(30) NOT NULL,
+	    atbr_dc       VARCHAR(30) NOT NULL,
+	    atbr_um       VARCHAR(30),
+	    atbr_dm       VARCHAR(30) NULL,
+		constraint atbr_chk CHECK ((atbr_attr_id is null and atbr_wrtb_id is not null)
+		or (atbr_attr_id is not null and atbr_wrtb_id is null)),
+		constraint atbr_buru_fk FOREIGN KEY(atbr_buru_id)
+			  REFERENCES burinsess_rule(buru_id)
+		      ON DELETE CASCADE,
+	  	constraint atbr_attr_fk FOREIGN KEY(atbr_attr_id)
+	  	  			  REFERENCES attribute(attr_id),
+		constraint atbr_wrtb_fk FOREIGN KEY(atbr_wrtb_id)
+			  	  			  REFERENCES attribute(wrtb_id),
+	)
 
 CREATE TABLE modellelement(
     mode_id        integer NOT NULL primary key autoincrement,
@@ -821,25 +855,25 @@ create view spraattr as
 	  	 REFERENCES geschaeftsbereich(gber_id)
 	  	     ON DELETE CASCADE 
 	      )
-	  CREATE TABLE DOKUMENTE 
+	  CREATE TABLE  mente 
 	      (
-	       DOKU_ID integer primary key autoincrement,
-	       DOKU_NAME VARCHAR (60) NOT NULL , 
-	       DOKU_FORMAT VARCHAR (20) , 
-	       DOKU_REFERENZ VARCHAR (500) , 
-	       DOKU_DOKU_ID integer  
+	        _id INTEGER PRIMARY KEY AUTOINCREMENT,
+	        _name varchar (60) not null , 
+	        _format varchar (20) , 
+	        _referenz varchar (500) , 
+	        _ _id INTEGER  
 	      )
 	 
-	  CREATE TABLE MODELELEM_DOKU 
+	  CREATE TABLE modelelem_  
 	      (
-	       MODO_ID integer primary key autoincrement,
-	       MODO_DOKU_ID integer NOT NULL , 
-	       MODO_MODE_ID integer NOT NULL,
-	   CONSTRAINT MODO_UN UNIQUE (MODO_DOKU_ID , MODO_MODE_ID),
-	   CONSTRAINT DOKU_DOKU_FK FOREIGN KEY (MODO_DOKU_ID) 
-	   	      REFERENCES DOKUMENTE ( DOKU_ID )ON DELETE CASCADE
-	   CONSTRAINT MODO_MODE_FK FOREIGN KEY (MODO_MODE_ID) 
-	      REFERENCES MODELLELEMENT (MODE_ID)   ON DELETE CASCADE
+	       modo_id INTEGER PRIMARY KEY AUTOINCREMENT,
+	       modo_ _id INTEGER not null , 
+	       modo_mode_id INTEGER not null,
+	   constraint modo_un unique (modo_ _id , modo_mode_id),
+	   constraint  _ _fk foreign key (modo_ _id) 
+	   	      references  mente (  _id )on delete cascade
+	   constraint modo_mode_fk foreign key (modo_mode_id) 
+	      references modellelement (mode_id)   on delete cascade
 	      )
      
 
@@ -860,72 +894,73 @@ create view spraattr as
 		      REFERENCES TABELLE (TABL_ID ) 
       )
   
-  CREATE TABLE SCHNITTSTELLE_ATTR 
+  CREATE TABLE schnittstelle_attr 
       (
-       SCHA_ID integer primary key autoincrement, 
-       SCHA_COLUMN_NAME VARCHAR (60) NOT NULL , 
-       SCHA_FORMAT VARCHAR (200) NULL , 
-       SCHA_FREMDSYSTEM_ID VARCHAR (100) NULL , 
-       SCHA_BESCHR VARCHAR (4000) NULL , 
-       SCHA_TABL_ID integer NOT NULL , 
-       SCHA_DATY_ID integer NOT NULL , 
-       SCHA_odm_guid	varchar(36),
-       SCHA_UC VARCHAR (30) NOT NULL , 
-       SCHA_DC VARCHAR (30) NOT NULL , 
-       SCHA_UM VARCHAR (30) NULL , 
-       SCHA_DM VARCHAR (30) NULL ,
-   CONSTRAINT SCHA_UN UNIQUE (SCHA_COLUMN_NAME)
-   ,CONSTRAINT SCHA_DATY_FK FOREIGN KEY (SCHA_DATY_ID) 
-      REFERENCES DATATYPES (DATY_ID ) 
-   ,CONSTRAINT SCHA_TABL_FK FOREIGN KEY (SCHA_TABL_ID) 
-      REFERENCES TABELLE (TABL_ID ) 
+       scha_id integer primary key autoincrement, 
+       scha_column_name varchar (60) not null , 
+       scha_format varchar (200) null , 
+       scha_fremdsystem_id varchar (100) null , 
+       scha_beschr varchar (4000) null , 
+       scha_tabl_id integer not null , 
+       scha_daty_id integer not null , 
+       scha_odm_guid	varchar(36),
+       scha_uc varchar (30) not null , 
+       scha_dc varchar (30) not null , 
+       scha_um varchar (30) null , 
+       scha_dm varchar (30) null ,
+   constraint scha_un unique (scha_column_name)
+   ,constraint scha_daty_fk foreign key (scha_daty_id) 
+      references datatypes (daty_id ) 
+   ,constraint scha_tabl_fk foreign key (scha_tabl_id) 
+      references tabelle (tabl_id ) 
       )
 
-  CREATE TABLE TRANSF_USAGE 
+  CREATE TABLE transf_usage 
       (
-       TFUS_ID integer primary key autoincrement , 
-       TFUS_ATTF_ID integer NOT NULL , 
-       TFUS_ATTR_ID integer NULL , 
-       TFUS_SCHA_ID integer NULL , 
-       TFUS_UC VARCHAR (30) NOT NULL , 
-       TFUS_DC VARCHAR (30) NOT NULL , 
-       TFUS_UM VARCHAR (30) NULL , 
-       TFUS_DM VARCHAR (30) NULL ,
-       CONSTRAINT FKArc_7 CHECK ( 
-          (  (TFUS_SCHA_ID IS NOT NULL) AND   (TFUS_ATTR_ID IS NULL) ) OR 
-          (  (TFUS_ATTR_ID IS NOT NULL) AND   (TFUS_SCHA_ID IS NULL) )  ) ,
-       CONSTRAINT TFUS__UN UNIQUE  (TFUS_ATTF_ID , TFUS_ATTR_ID , TFUS_SCHA_ID )
-	   ,CONSTRAINT TFUS_ATTF_FK FOREIGN KEY (TFUS_ATTF_ID) 
-	      REFERENCES ATTR_TRANSF (ATTF_ID ) 
-	   ,CONSTRAINT TFUS_ATTR_FK FOREIGN KEY (TFUS_ATTR_ID) 
-	      REFERENCES ATTRIBUTES (ATTR_ID ) 
-	      ,CONSTRAINT TFUS_SCHA_FK FOREIGN KEY (TFUS_SCHA_ID) 
-	         REFERENCES SCHNITTSTELLE_ATTR (SCHA_ID ) 
+       tfus_id integer primary key autoincrement , 
+       tfus_attf_id integer not null , 
+       tfus_attr_id integer null , 
+       tfus_scha_id integer null , 
+       tfus_uc varchar (30) not null , 
+       tfus_dc varchar (30) not null , 
+       tfus_um varchar (30) null , 
+       tfus_dm varchar (30) null ,
+       constraint fkarc_7 check ( 
+          (  (tfus_scha_id is not null) and   (tfus_attr_id is null) ) or 
+          (  (tfus_attr_id is not null) and   (tfus_scha_id is null) )  ) ,
+       constraint tfus__un unique  (tfus_attf_id , tfus_attr_id , tfus_scha_id )
+	   ,constraint tfus_attf_fk foreign key (tfus_attf_id) 
+	      references attr_transf (attf_id ) 
+	   ,constraint tfus_attr_fk foreign key (tfus_attr_id) 
+	      references attributes (attr_id ) 
+	      ,constraint tfus_scha_fk foreign key (tfus_scha_id) 
+	         references schnittstelle_attr (scha_id ) 
       )
 
-  CREATE TABLE ATTR_TRANSF 
+  CREATE TABLE attr_transf 
       (
-       ATTF_ID integer primary key autoincrement,
-       ATTF_RICHTUNG VARCHAR (7) NOT NULL CHECK ( ATTF_RICHTUNG IN ('INBOUND', 'OUTBOUND') ) , 
-       ATTF_TRANSF_FORMEL VARCHAR (4000) NULL , 
-       ATTF_AUSLOESEART VARCHAR (10) NULL CHECK ( ATTF_AUSLOESEART IN ('MANUELL', 'PERIODE', 'ZPKT') ) , 
-       ATTF_AUSLOESEPERIOD integer NULL , 
-       ATTF_SCHA_ID integer NULL , 
-       ATTF_ATTR_ID integer NULL , 
-       ATTF_UC VARCHAR (30)  , 
-       ATTF_DC VARCHAR (30)  , 
-       ATTF_UM VARCHAR (30) NULL , 
-       ATTF_DM VARCHAR (30)  NULL , 
-       CONSTRAINT ATTF_CHK CHECK ((ATTF_SCHA_ID IS NULL AND ATTF_ATTR_ID IS NOT NULL AND ATTF_RICHTUNG = 'INBOUND')
-   						   OR (ATTF_SCHA_ID IS NOT NULL AND ATTF_ATTR_ID IS NULL AND ATTF_RICHTUNG = 'OUTBOUND'))
-		,CONSTRAINT ATTR_UN UNIQUE (ATTF_RICHTUNG , ATTF_SCHA_ID , ATTF_ATTR_ID )
- 	   ,CONSTRAINT ATTF_ATTR_FK FOREIGN KEY (ATTF_ATTR_ID) 
- 	      REFERENCES ATTRIBUTES (ATTR_ID ) 
- 	      ON DELETE CASCADE 
- 	   ,CONSTRAINT ATTF_SCHA_FK FOREIGN KEY (ATTF_SCHA_ID) 
- 	      REFERENCES SCHNITTSTELLE_ATTR (SCHA_ID ) 
- 	      ON DELETE CASCADE 
+       attf_id integer primary key autoincrement,
+       attf_richtung varchar (7) not null check ( attf_richtung in ('inbound', 'outbound') ) , 
+       attf_transf_formel varchar (4000) null , 
+       attf_ausloeseart varchar (10) null check ( attf_ausloeseart in ('manuell', 'periode', 'zpkt') ) , 
+       attf_ausloeseperiod integer null , 
+       attf_scha_id integer null , 
+       attf_attr_id integer null , 
+       attf_uc varchar (30)  , 
+       attf_dc varchar (30)  , 
+       attf_um varchar (30) null , 
+       attf_dm varchar (30)  null , 
+       constraint attf_chk check ((attf_scha_id is null and attf_attr_id is not null and attf_richtung = 'inbound')
+   						   or (attf_scha_id is not null and attf_attr_id is null and attf_richtung = 'outbound'))
+		,constraint attr_un unique (attf_richtung , attf_scha_id , attf_attr_id )
+ 	   ,constraint attf_attr_fk foreign key (attf_attr_id) 
+ 	      references attributes (attr_id ) 
+ 	      on delete cascade 
+ 	   ,constraint attf_scha_fk foreign key (attf_scha_id) 
+ 	      references schnittstelle_attr (scha_id ) 
+ 	      on delete cascade 
  	      )
+
 
 
 

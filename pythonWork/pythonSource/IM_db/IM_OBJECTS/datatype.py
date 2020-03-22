@@ -1,7 +1,6 @@
-from IM_DB import dbDDL,dbDML,dbLookup
 from IM_OBJECTS import baseobject
 
-class Datatypes(baseobject.Baseobject):
+class Datatype(baseobject.Baseobject):
 
     def __init__(self):
         super().__init__(tablename='datatypes', prefix='daty'
@@ -25,12 +24,11 @@ create table datatypes
         ))
 )
 """)
+#Datatype
 
-    def indexlist():
-        daty = self.select(porderby='daty_name')
-        indexlist = [[s.daty_name, '', s.anker(), s.daty_id] for s in daty]
+def indexlist():
+        datys = Datatype().select(porderby='daty_name')
+        indexlist = [[s.daty_name, '', s.anker(), s.daty_id] for s in datys]
         return indexlist
-    # indexlist
-#datatypes
-
+# indexlist
 

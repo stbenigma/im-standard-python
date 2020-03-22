@@ -115,12 +115,12 @@ def insertAttribute(pattr):
     return dbDML.insert(lsql,pattr)
 #end insertAttributes
 
-def insertDataTypes(pdaty):
-    lsql = """
-        insert into datatypes (daty_name,daty_grundtyp,daty_odm_guid) 
-            values (?,?,?)
-        """
-    return dbDML.insert(lsql, pdaty)
+#def insertDataTypes(pdaty):
+#    lsql = """
+#        insert into datatypes (daty_name,daty_grundtyp,daty_odm_guid)
+#            values (?,?,?)
+#        """
+#    return dbDML.insert(lsql, pdaty)
 # end insertDataTypes
 
 def insertArc(parc):

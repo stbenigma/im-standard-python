@@ -4,7 +4,9 @@ import re,os,sqlite3
 from datetime import date
 from IM_DB import dbInserts,dbDML,dbLookup,dbConnect,parameters,dbParam
 import math
+from mystring import nvl
 import transferRelational
+from IM_OBJECTS import *
 
 class Wertebereich:
     def __init__(self, pname, pid):
@@ -52,10 +54,6 @@ classcolors = dict()
 # elementtypename : color
 defcolors = dict()
 
-def nvl(x,y=''):
-    if x is None: return y
-    else: return x
-#nvl
 
 def type2melt(type):
     trans = {"Entity": "ENTI"
@@ -107,7 +105,12 @@ def transferTypes():
         #print(typ.get('name'),typ.get('objectid'))
         #print(typ.find('mapping').text) #das erste genügt für den Moment
 
-        dbInserts.insertDataTypes(pdaty=(typ.get('name'),basisType(typ.find('mapping').text),typ.get('objectid')))
+        #dbInserts.insertDataTypes(pdaty=(typ.get('name'),basisType(typ.find('mapping').text),typ.get('objectid')))
+        daty = datatype.Datatype()
+        daty.daty_name = typ.get('name')
+        daty.daty_grundtyp = basisType(typ.find('mapping').text)
+        daty.daty_odm_guid = typ.get('objectid')
+        daty.insert()
     #endfor
 #transferTypes
 
@@ -158,7 +161,8 @@ def transferDomains():
         wrtb.wrtb_beschr = findText(dom,'comment')
         logDT = dom.find('logicalDatatype')
         wrtb.wrtb_datatype_ref = logDT.text if logDT is not None else None
-        wrtb.wrtb_typ = dbLookup.datyLookupGrundTyp(wrtb.wrtb_datatype_ref)
+        wrtb.wrtb_typ = datatype.Datatype().getbyguid(wrtb.wrtb_datatype_ref).daty_grundtyp
+
         if wrtb.wrtb_typ is None:
             wrtb.wrtb_typ = 'TEXT'
         #print (wrtb.wrtb_datatype_ref,wrtb.wrtb_typ )
@@ -1210,7 +1214,6 @@ def loeschmodell():
     dbDML.delete('projekt')
     dbDML.delete('modelelem_doku')
     dbDML.delete('dokumente')
-    dbDML.delete('tabelle')
 
 #loeschmodell
 

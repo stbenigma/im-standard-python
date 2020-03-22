@@ -1,9 +1,7 @@
 import xml.etree.ElementTree as ET
-import re,os
-from datetime import date
+import os
 from IM_DB import dbDML,dbLookup,dbConnect,parameters,dbParam,dbInserts
-import math
-from IM_OBJECTS import schnittstelle,tabelle
+from IM_OBJECTS import *
 import transferModel
 
 globalschnid:int = None
@@ -19,7 +17,7 @@ def do1table(pfilename):
     tabl.tabl_dc = transferModel.findText(tablexml,'createdTime')
     tabl.tabl_schn_id = globalschnid
     tabl.tabl_beschr = transferModel.findText(tablexml,"comment")
-    tabl.tabl_id = tabelle.insert(tabl)
+    tabl.insert()
     lmodeId =dbInserts.insertModeTabl(tabl.tabl_id)
 
     documents = transferModel.getdokuref(tablexml)
@@ -42,7 +40,7 @@ def do1schnittstelle(pfilename):
     schn.schn_odm_guid = schnxml.get('id')
     schn.schn_uc = transferModel.findText(schnxml,'createdBy')
     schn.schn_dc = transferModel.findText(schnxml,'createdTime')
-    schn.schn_id = schnittstelle.insert(schn)
+    schn.insert()
     lmodeId =dbInserts.insertModeSchn(schn.schn_id)
 
     #Dokumente an dieser Schnittstelle
@@ -63,8 +61,9 @@ def transferschn():
 #transferschn
 
 def loeschmodell():
-    tabelle.delete()
-    schnittstelle.delete()
+    Schnittstelleattr().delete()
+    Tabelle().delete()
+    Schnittstelle().delete()
 #loeschmodell
 
 

@@ -1,13 +1,15 @@
 # -*- coding: latin-1 -*-
 
 from IM_DB import dbDDL,dbDML
-from IM_OBJECTS import schnittstelle,tabelle
+from IM_OBJECTS import *
 
 
 def erstelleInfra():
     #erlaube alles droppen
-    schnittstelle.createtable()
-    tabelle.createtable()
+    Schnittstelle().createtable()
+    Tabelle().createtable()
+    Schnittstelleattr().createtable()
+    Datatype().createtable()
 
     dbDDL.dropTable("speicherformate");
     dbDDL.createTable("""
@@ -204,22 +206,6 @@ CREATE TABLE vorgabewerte(
     vgwt_dm        varchar(30),
 	unique (vgwt_wrtb_id,vgwt_wert),
 	foreign key (vgwt_wrtb_id) references wertebereiche(wrtb_id) ON DELETE CASCADE
-)
-""");
-
-    dbDDL.dropTable("datatypes");
-    dbDDL.createTable("""
-CREATE TABLE datatypes(
-    daty_id         integer NOT NULL primary key autoincrement,
-    daty_name       VARCHAR2(60)NOT NULL unique,
-    daty_grundtyp   VARCHAR2(6)NOT NULL
-        CHECK(daty_grundtyp IN(
-            'BIN',
-            'NUM',
-            'TEXT',
-            'ZPKT'
-        )),
-    daty_odm_guid       VARCHAR2(36)
 )
 """);
 
@@ -876,28 +862,6 @@ CREATE TABLE linie_segment(
 		      REFERENCES ENTITAET (ENTI_ID ) 
 		   ,CONSTRAINT TEMA_TABL_FK FOREIGN KEY (TEMA_TABL_ID) 
 		      REFERENCES TABELLE (TABL_ID ) 
-      )    """)
-    dbDDL.dropTable("SCHNITTSTELLE_ATTR");
-    dbDDL.createTable("""
-  CREATE TABLE SCHNITTSTELLE_ATTR 
-      (
-       SCHA_ID integer primary key autoincrement, 
-       SCHA_COLUMN_NAME VARCHAR (60) NOT NULL , 
-       SCHA_FORMAT VARCHAR (200) NULL , 
-       SCHA_FREMDSYSTEM_ID VARCHAR (100) NULL , 
-       SCHA_BESCHR VARCHAR (4000) NULL , 
-       SCHA_TABL_ID integer NOT NULL , 
-       SCHA_DATY_ID integer NOT NULL , 
- 	   SCHA_odm_guid	varchar(36),
-       SCHA_UC VARCHAR (30) NOT NULL , 
-       SCHA_DC VARCHAR (30) NOT NULL , 
-       SCHA_UM VARCHAR (30) NULL , 
-       SCHA_DM VARCHAR (30) NULL ,
-   CONSTRAINT SCHA_UN UNIQUE (SCHA_COLUMN_NAME)
-   ,CONSTRAINT SCHA_DATY_FK FOREIGN KEY (SCHA_DATY_ID) 
-      REFERENCES DATATYPES (DATY_ID ) 
-   ,CONSTRAINT SCHA_TABL_FK FOREIGN KEY (SCHA_TABL_ID) 
-      REFERENCES TABELLE (TABL_ID ) 
       )    """)
     dbDDL.dropTable("TRANSF_USAGE");
     dbDDL.createTable("""
