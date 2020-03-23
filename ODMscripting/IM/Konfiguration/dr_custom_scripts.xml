@@ -1523,7 +1523,7 @@ function printNameMapping (){
 	</scr>
 	<scr id="DCBECD3B-4F1F-7211-54BC-52A6E066AD18" name="importMapping" object="logical" engine="Oracle Nashorn" type="" var="model" library="attrmapping" method="importMapping" purpose="transformation" >
 		<script>
-			<![CDATA[    var PLAINMESSAGE = 1;
+			<![CDATA[var PLAINMESSAGE = 1;
 	var ERRORMESSAGE = 0;
 	var WARNINGMESSAGE = 2;
 	var QUESTIONMESSAGE = 3;
@@ -4538,7 +4538,7 @@ function getAttrMap(attrID,modName){
 	</lib>
 	<lib id="B2F713AD-5E48-670F-8A2B-55D1ABD0440C" name="attrmapping" engine="Oracle Nashorn" methods="importMapping,print1Mapping,printXMapping,printNameMapping" >
 		<script>
-			<![CDATA[    var PLAINMESSAGE = 1;
+			<![CDATA[var PLAINMESSAGE = 1;
 	var ERRORMESSAGE = 0;
 	var WARNINGMESSAGE = 2;
 	var QUESTIONMESSAGE = 3;
@@ -4809,10 +4809,10 @@ function importFile(fpath){
  			 if (relModel.match(/^[^A-Za-z]/)) relModel = relModel.substring(1)
  			//message(lnoif+': '+"RelModel= |"+relModel+"|");
 			rmodel = model.getDesign().getRelationalDesigns().getByName(relModel);
-			getAllMappings([rmodel])
 			if (rmodel == null){
 				throw new Error("\nRelational model '"+relModel+"' does not exist.\n");
 			}
+			getAllMappings([rmodel])
  		} else 
  		if (lnoif==1){
  			// skip headers
