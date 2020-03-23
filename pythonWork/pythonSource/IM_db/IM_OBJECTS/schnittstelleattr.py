@@ -1,15 +1,21 @@
-from IM_OBJECTS import baseobject
+from .baseobject import Baseobject
 
-class Schnittstelleattr(baseobject.Baseobject):
+class Schnittstelleattr(Baseobject):
+
+    _tablename:str = 'schnittstelle_attr'
+    _prefix:str = 'scha'
+    _columnlist:list = ['scha_id', 'scha_column_name', 'scha_format', 'scha_fremdsystem_id'
+                                       ,'scha_beschr', 'scha_tabl_id', 'scha_daty_id', 'scha_odm_guid'
+                                       ,'scha_uc', 'scha_dc', 'scha_um', 'scha_dm']
 
     def __init__(self):
-        super().__init__(tablename='schnittstelle_attr', prefix='scha'
-                        ,columnlist = ['scha_id', 'scha_column_name', 'scha_format', 'scha_fremdsystem_id'
-                                       ,'scha_beschr', 'scha_tabl_id', 'scha_daty_id', 'scha_odm_guid'
-                                       ,'scha_uc', 'scha_dc', 'scha_um', 'scha_dm'])
+        super().__init__(tablename=Schnittstelleattr._tablename, prefix=Schnittstelleattr._prefix
+                        ,columnlist = Schnittstelleattr._columnlist)
 
-    def createtable(self):
-        super().createtable("""
+    @staticmethod
+    def createtable():
+        Baseobject.createtable(ptablename=Schnittstelleattr._tablename
+                               , psql="""
     create table schnittstelle_attr
     (
         scha_id             integer
@@ -34,9 +40,18 @@ class Schnittstelleattr(baseobject.Baseobject):
         )
         """)
 
+    @staticmethod
+    def delete():
+        Baseobject.delete(Schnittstelleattr._tablename)
+
+    @staticmethod
+    def select(pwhere=None, porderby=None):
+        return Baseobject.select(pclass=Schnittstelleattr
+                                 , pwhere=pwhere, porderby=porderby)
 #Schnittstelleattr
+
 def indexlist():
-    schas = Schnittstelleattr().select(porderby='scha_name')
+    schas = Schnittstelleattr.select(porderby='scha_name')
     indexlist = [[s.scha_name, '', s.anker(), s.scha_id] for s in schas]
     return indexlist
 # indexlist

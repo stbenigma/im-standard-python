@@ -1,14 +1,20 @@
 from .baseobject import Baseobject
 
 class Tabelle(Baseobject):
-    def __init__(self):
-        super().__init__(tablename='tabelle', prefix='tabl'
-                        ,columnlist = ['tabl_id', 	'tabl_name', 	'tabl_schn_id'
+    _tablename:str = 'tabelle'
+    _prefix:str = 'tabl'
+    _columnlist:list = ['tabl_id', 	'tabl_name', 	'tabl_schn_id'
                 ,  'tabl_prefix', 	'tabl_beschr', 	'tabl_odm_guid'
-                ,'tabl_uc', 	'tabl_dc', 	'tabl_um', 	'tabl_dm'])
+                ,'tabl_uc', 	'tabl_dc', 	'tabl_um', 	'tabl_dm']
 
-    def createtable(self):
-        super().createtable("""
+    def __init__(self):
+        super().__init__(tablename=Tabelle._tablename, prefix=Tabelle._prefix
+                        ,columnlist = Tabelle._columnlist)
+
+    @staticmethod
+    def createtable():
+        Baseobject.createtable(ptablename=Tabelle._tablename
+                               , psql="""
     CREATE TABLE tabelle
         (
          TABL_ID integer primary key autoincrement , 
@@ -26,6 +32,14 @@ class Tabelle(Baseobject):
      	      REFERENCES SCHNITTSTELLE (SCHN_ID ) 
         )"""
                             )
+    @staticmethod
+    def delete():
+        Baseobject.delete(Tabelle._tablename)
+
+    @staticmethod
+    def select(pwhere=None, porderby=None):
+        return Baseobject.select(pclass=Tabelle
+                                 , pwhere=pwhere, porderby=porderby)
 #Tabelle
 
 def indexlist(pschnid=None):

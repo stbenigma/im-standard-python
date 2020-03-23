@@ -1,13 +1,18 @@
-from IM_OBJECTS import baseobject
+from .baseobject import Baseobject
 
-class Datatype(baseobject.Baseobject):
+class Datatype(Baseobject):
+    _tablename:str = 'datatypes'
+    _prefix:str = 'daty'
+    _columnlist:list = ['daty_id',  'daty_name', 'daty_grundtyp', 'daty_odm_guid']
 
     def __init__(self):
-        super().__init__(tablename='datatypes', prefix='daty'
-                        ,columnlist = ['daty_id',  'daty_name', 'daty_grundtyp', 'daty_odm_guid'])
+        super().__init__(tablename= Datatype._tablename, prefix= Datatype._prefix
+                        ,columnlist = Datatype._columnlist)
 
-    def createtable(self):
-        super().createtable("""
+    @staticmethod
+    def createtable():
+        Baseobject.createtable(ptablename=Datatype._tablename
+                                ,psql="""
 create table datatypes
 (
     daty_id       integer      not null
@@ -24,6 +29,15 @@ create table datatypes
         ))
 )
 """)
+
+    @staticmethod
+    def delete():
+        Baseobject.delete(Datatype._tablename)
+
+    @staticmethod
+    def select(pwhere=None, porderby=None):
+        return Baseobject.select(pclass=Datatype
+                                 , pwhere=pwhere, porderby=porderby)
 #Datatype
 
 def indexlist():

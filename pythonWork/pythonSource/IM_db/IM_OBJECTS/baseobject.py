@@ -7,7 +7,7 @@ class Baseobject:
     def __init__(self,tablename,prefix,columnlist,idcolname = None,guidcolname = None):
         self.tablename = tablename
         self.prefix = prefix
-        self.idcolname = prefix + '_id'  if idcolname is None else idcolname
+        self.idcolname = prefix + '_id' if idcolname is None else idcolname
         self.guidcolname = prefix + '_odm_guid' if guidcolname is None else guidcolname
         self.columnlist = columnlist
         for col in columnlist:
@@ -24,33 +24,15 @@ class Baseobject:
             self.__dict__[self.columnlist[key]] = val
         return self
 
-    def createtable(self,psql):
-        dbDDL.dropTable(self.tablename);
-        dbDDL.createTable(psql)
-    #createtable
-
-    def columnsliststring(self):
-        return ''.join(col + ',' for col in self.columnlist).rstrip(',')
     def placehoderstring(self):
         return ''.join('?,' for col in self.columnlist).rstrip(',')
 
-    def select(self,pwhere=None, porderby=None):
-        lsql = """select {} from {} {} {} """ \
-            .format(self.columnsliststring()
-                , self.tablename
-                , "" if pwhere is None else
-                "where {}".format(pwhere)
-                , "" if porderby is None else
-                "order by {}".format(porderby))
-        data = dbDML.select(psql=lsql)
-        return data
-    # select
 
     def insert(self):
         lsql = """insert into {} ({}) values ({})
-           """.format(self.tablename, self.columnsliststring(), self.placehoderstring())
+           """.format(self.tablename, Baseobject.columnsliststring(self.columnlist), self.placehoderstring())
         id = dbDML.insert(lsql, self.totuple())
-        self.getbyid(id) #autocolumns zurücklesen
+        self.__dict__[self.idcolname] = id #autocolumns zurücklesen
     #insert
 
     def getbyid(self,pid):
@@ -60,7 +42,7 @@ class Baseobject:
         elif (len(data) == 0):
             raise Exception('{}: nonexistent ID={}'.format(self.tablename, pid))
         else:
-            self._fromarray(data[0])
+            return data[0]
     # getbyid
 
     def getbyguid(self,pguid):
@@ -72,17 +54,41 @@ class Baseobject:
         else:
             record = data[0]
         # fi
-        self._fromarray(record)
-        return self
+        return record
     # getbyguid
 
     def getID(self,pguid):
         return self.getbyguid(pguid).__dict__[self.idcolname]
 
-    def delete(self):
-        dbDML.delete(self.tablename)
-
     def anker(self):
         return self.prefix.upper() + nvl(str(self.__dict__[self.idcolname] or ''))
+
+    @staticmethod
+    def createtable(ptablename,psql):
+        dbDDL.dropTable(ptablename);
+        dbDDL.createTable(psql)
+    #createtable
+
+    @staticmethod
+    def select(pclass, pwhere=None, porderby=None):
+        lsql = """select {} from {} {} {} """ \
+            .format(Baseobject.columnsliststring(pclass._columnlist)
+                    , pclass._tablename
+                    , "" if pwhere is None else
+                "where {}".format(pwhere)
+                    , "" if porderby is None else
+                "order by {}".format(porderby))
+        data = dbDML.select(psql=lsql)
+        return [pclass()._fromarray(d) for d in data]
+    #select
+
+    @staticmethod
+    def delete(ptablename):
+        dbDML.delete(ptablename)
+
+    @staticmethod
+    def columnsliststring(pcollist):
+        return ''.join(col + ',' for col in pcollist).rstrip(',')
+
 #Baseobject
 

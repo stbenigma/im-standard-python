@@ -1170,8 +1170,16 @@ def insertBaseData():
     #, spra_dc
     deflang = parameters.dbDefaultLang()
     for key,value in languages.items():
-        dbInserts.insertSprache((value[0], key, value[1], 'TRUE', 'FALSE', 'stb', date.today()));
-    if not deflang in languages: defland = 'de'
+        spra = Sprache()
+        spra.spra_iso_name = value[0]
+        spra.spra_iso_code2 = key
+        spra.spra_iso_code3 =  value[1]
+        spra.spra_ist_textsprache ='TRUE'
+        spra.spra_ist_modellsprache = 'FALSE'
+        spra.spra_uc ='stb'
+        spra.spra_dc = date.today()
+        spra.insert()
+    if not deflang in languages: deflang = 'de'
     dbDML.exec('update sprachen set spra_ist_modellsprache = "TRUE" where spra_iso_code2 = "{}"'.format(deflang))
     dbDML.exec("""update sprachen  
                 set spra_spra_id = (select sp2.spra_id from sprachen sp2 where sp2.spra_ist_modellsprache = 'TRUE')
@@ -1203,15 +1211,15 @@ def loeschmodell():
     dbDML.delete("beziehung_darst")
     dbDML.delete("elementdarst")
     dbDML.delete("melt_diat")
-    dbDML.delete("datatypes")
+    Datatype.delete()
     dbDML.delete("diagramme")
     dbDML.delete('bereich_elemdarst')
     dbDML.delete("modellelem_typ")
     dbDML.delete('diagrammtypen')
-    dbDML.delete('sprachtexte')
-    dbDML.delete('sprachen')
+    Sprache.delete()
+    Sprachtext.delete()
     dbDML.delete('geschaeftsbereich')
-    dbDML.delete('projekt')
+    Projekt.delete()
     dbDML.delete('modelelem_doku')
     dbDML.delete('dokumente')
 
@@ -1271,55 +1279,18 @@ def filllanguages():
     for t in translations:
         #print (t )
         #sptx_attrname,  sptx_text,sptx_mode_id, sptx_uc, sptx_dc, sptx_spra_id
-        dbInserts.insertSprachtext(pdata=[(t[0],t[1],t[2],t[3],t[4],dbLookup.spraLookup(t[5]))])
+        sptx = Sprachtext()
+        sptx.sptx_attrname = t[0]
+        sptx.sptx_text = t[1]
+        sptx.sptx_mode_id = t[2]
+        sptx.sptx_uc = t[3]
+        sptx.sptx_dc = t[4]
+        sptx.sptx_spra_id = sprache.spraLookup(t[5])
+        sptx.insert()
     #for
     #fill all elements in default language
-    dbDML.exec("""insert into sprachtexte 
-                    (sptx_attrname,  sptx_text
-                   ,sptx_mode_id, sptx_uc, sptx_dc
-                   , sptx_spra_id)
-                  select * from 
-                    (select 'ENTI_NAME' attrname, enti_name text 
-                        ,mode_id,enti_uc,enti_dc
-                    from modellelement
-                    join entitaeten on enti_id = mode_enti_id
-                    union all
-                   select 'ENTI_COMMENT' attrname, enti_beschr text 
-                        ,mode_id,enti_uc,enti_dc
-                    from modellelement
-                    join entitaeten on enti_id = mode_enti_id                    
-                    union all
-                   select 'ENTI_SYNONYM' attrname, group_concat(syno_name,', ') text 
-                        ,enti_id,enti_uc,enti_dc
-                    from modellelement
-                    join synonyme on syno_id = mode_syno_id
-                    join entitaeten on enti_id = syno_enti_id
-                    group by enti_id,enti_uc,enti_dc                    
-                    union all
-                   select 'ATTR_COMMENT' attrname, attr_beschr text 
-                        ,mode_id,attr_uc,attr_dc
-                    from modellelement
-                    join attributes on attr_id = mode_attr_id    
-                    union all                
-                   select 'ATTR_NAME' attrname, attr_anzname text 
-                        ,mode_id,attr_uc,attr_dc
-                    from modellelement
-                    join attributes on attr_id = mode_attr_id 
-                    union all                
-                   select 'RELA_TEXT_FROM' attrname, bezi_assoc_von_zu text 
-                        ,mode_id,bezi_uc,bezi_dc
-                    from modellelement
-                    join beziehungen on bezi_id = mode_bezi_id 
-                    union all                
-                   select 'RELA_TEXT_TO' attrname, bezi_assoc_zu_von text 
-                        ,mode_id,bezi_uc,bezi_dc
-                    from modellelement
-                    join beziehungen on bezi_id = mode_bezi_id 
-                )
-                cross join (select {})
-                where text is not null
-                   """.format(dbParam.dbDefaultLangID))
-    # sptx_attrname,  sptx_text,sptx_mode_id, sptx_uc, sptx_dc, sptx_spra_id
+    sprachtext.fuelledefaulttexte(dbParam.dbDefaultLangID)
+
 #filllanguages
 
 def transferprojekt():
@@ -1333,12 +1304,18 @@ def transferprojekt():
         defspra = re.search(r'currentLang=([A-Z]{2})',comm).group(1)
         sprachen = re.search(r'languages=([A-Z,]*)',comm).group(1)
     #print (findField(root,'name'),comm,sprachen,defspra)
-    dbInserts.insertprojekt(pdata=(findField(root,'name'),findText(root,'createdBy')
-        , findText(root, 'createdTime'),sprachen,defspra))
+    proj = Projekt()
+    proj.proj_name = findField(root,'name')
+    proj.proj_uc = findText(root,'createdBy')
+    proj.proj_dc = findText(root, 'createdTime')
+    proj.proj_sprachen = sprachen
+    proj.proj_akt_sprache = defspra
+    proj.insert()
+
     if (defspra is not None
         and dbParam.dbDefaultLang.lower() != defspra.lower()):
         #setze die Defaultsprache aus dem Modell
-        if dbLookup.spraLookup(defspra.lower()) is None:
+        if sprache.spraLookup(defspra.lower()) is None:
             raise Exception("Language '{}' does not exist".format(defspra))
         dbDML.exec("""update sprachen set spra_ist_modellsprache = 'FALSE'
                            where lower(spra_iso_code2)  = lower('{}')
