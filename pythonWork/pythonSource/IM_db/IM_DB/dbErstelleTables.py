@@ -6,10 +6,10 @@ from IM_OBJECTS import *
 
 def erstelleInfra():
     #erlaube alles droppen
-    Schnittstelle().createtable()
-    Tabelle().createtable()
-    Schnittstelleattr().createtable()
-    Datatype().createtable()
+    Schnittstelle.createtable()
+    Tabelle.createtable()
+    Schnittstelleattr.createtable()
+    Datatype.createtable()
 
     dbDDL.dropTable("speicherformate");
     dbDDL.createTable("""
@@ -498,57 +498,8 @@ CREATE TABLE modelltyp_eigensch(
 )
 """)
 
-    dbDDL.dropTable("sprachen")
-    dbDDL.createTable("""CREATE TABLE sprachen(
-    spra_id                integer primary key autoincrement,
-    spra_iso_name          varchar(60) NOT NULL,
-    spra_iso_code2         CHAR(2) NOT NULL,
-    spra_iso_code3         CHAR(3) NOT NULL,
-    spra_ist_textsprache   varchar(5) NOT NULL,
-    spra_ist_modellsprache   varchar(5) NOT NULL,
-    spra_spra_id           integer,
-    spra_uc                varchar(30) NOT NULL,
-    spra_dc                varchar(30) NOT NULL,
-    spra_um                varchar(30) ,
-    spra_dm                varchar(30),
-    constraint spra_txt_bool CHECK(spra_ist_textsprache IN(
-        'FALSE',
-        'TRUE'
-    )),
-    constraint spra_mod_bool CHECK(spra_ist_modellsprache IN(
-        'FALSE',
-        'TRUE'
-    )),
-    constraint spra_iso3_low CHECK(spra_iso_code3 = lower(spra_iso_code3)),
-    constraint spra_iso2_low CHECK(spra_iso_code2 = lower(spra_iso_code2)),
-	constraint spra_iso_uk unique (spra_iso_name),
-	constraint spra_iso2_uk unique (spra_iso_code2),
-	constraint spra_iso3_uk unique (spra_iso_code3)
-)"""
-    )
-
-    dbDDL.dropTable("sprachtexte")
-    dbDDL.createTable("""CREATE TABLE sprachtexte(
-    sptx_id           integer primary key autoincrement,
-	sptx_attrname	  varchar(30) NOT NULL,
-    sptx_text         varchar(4000) ,
-    sptx_spra_id      integer,
-    sptx_mode_id      integer NOT NULL,
-    sptx_uc           varchar(30) NOT NULL,
-    sptx_dc           varchar(30) NOT NULL,
-    sptx_um           varchar(30) ,
-    sptx_dm           varchar(30),
-	constraint sptx_attrnameUC check(sptx_attrname = upper(sptx_attrname)),
-	constraint sptx_uk unique (sptx_attrname,sptx_spra_id,sptx_mode_id),
-    CONSTRAINT sptx_mode_fk FOREIGN KEY(sptx_mode_id)
-									   REFERENCES modellelement(mode_id),
-	CONSTRAINT sptx_spra_fk FOREIGN KEY(sptx_spra_id)
-									   REFERENCES sprachen(spra_id)	
-    )
-    """)
-    #    dbDDL.dropTable("arc")
-    #    dbDDL.createTable("""
-    # """)
+    Sprache.createtable()
+    Sprachtext.createtable()
 
     dbDDL.dropView("SUPERENTI");
     dbDDL.createTable("""create view SUPERENTI AS 
@@ -766,17 +717,7 @@ CREATE TABLE linie_segment(
 	            ON DELETE CASCADE
 )
 	          """);
-    dbDDL.dropTable("projekt");
-    dbDDL.createTable("""CREATE TABLE projekt(
-    proj_id            integer primary key autoincrement,
-    proj_name          VARCHAR(60) NOT NULL,
-    proj_uc            VARCHAR(30) NOT NULL,
-    proj_dc            VARCHAR(30) NOT NULL,
-    proj_sprachen      VARCHAR(60),
-    proj_akt_sprache   VARCHAR2(2),
-	CONSTRAINT proj__un UNIQUE(proj_name)
-    )"""
-    );
+    Projekt.createtable()
 
     dbDDL.dropTable("geschaeftsbereich");
     dbDDL.createTable("""CREATE TABLE geschaeftsbereich 

@@ -245,15 +245,6 @@ def insertSchlElem(pData):
     return dbDML.insert(lsql, pData)
 #insertSchlElem
 
-def insertSprache(pData):
-    lsql = """insert into sprachen (spra_iso_name, spra_iso_code2, spra_iso_code3
-                                  ,spra_ist_textsprache, spra_ist_modellsprache
-                                  , spra_uc,spra_dc) 
-                            values (?,?,?,?,?,?,?)
-            """
-    return dbDML.insert(lsql, pData)
-#insertSprache
-
 def insertSprachtexte(pData):
     lsql = """insert into sprachtext (sptx_attrname,  sptx_text,  sptx_spra_id
                                 ,sptx_mode_id, sptx_uc,   sptx_dc    ) 
@@ -355,61 +346,6 @@ def insertUdpAttr(attrId):
             """ .format(attrId))
 #insertUdpAttr
 
-def insertSprachtexte(p_texte, p_modeid, p_defaultlang=None):
-#    sprachtexte = [[vonText,creby,crety,'TEXT_FROM']
-#                  ,[zuText,creby,crety,'TEXT_TO']]
-
-    p_defaultlang = dbParam.dbDefaultLang if p_defaultlang is None else p_defaultlang
-    values = [v for v in p_texte]
-    # (values)
-    lsql= """insert into sprachtexte 
-                    (sptx_attrname,  sptx_text
-                   ,sptx_mode_id, sptx_uc, sptx_dc
-                   , sptx_spra_id)
-                  select  attrname, case  when defaultlang = spra_iso_code2 then '' 
-                                    else '*'|| defaultlang ||'* ' end
-                                    || ? text
-                    ,modeid, ? uc,? dc, spra_id
-                  from sprachen
-                  cross join (select '{}' modeid, '{}' defaultlang,  ? attrname)
-                  where not exists 
-                    (select 1 from sprachtexte
-                        where sptx_spra_id = spra_id
-                         and sptx_mode_id = modeid
-                         and  sptx_attrname = attrname
-                    ) 
-                """.format( p_modeid,p_defaultlang)
-    dbDML.execmany(lsql, values)
-
-# die Originalnamen werden überschrieben
-    l_sql = """ update sprachtexte
-                set sptx_text = ?
-                   ,sptx_um = ?
-                   ,sptx_dm = ?
-                where sptx_spra_id = {}
-                and sptx_attrname = ?
-                and sptx_mode_id = {}
-                """.format(dbLookup.spraLookup(p_defaultlang),p_modeid)
-    dbDML.execmany(l_sql, values)
-#insertSprachTexte
-def insertSprachtext(pdata):
-    #print (pdata)
-    lsql= """insert into sprachtexte 
-                    (sptx_attrname,  sptx_text
-                   ,sptx_mode_id, sptx_uc, sptx_dc
-                   , sptx_spra_id)
-                  values (?,?,?,?,?,?)
-          """
-    dbDML.insertmany(lsql, pdata)
-#insertSprachText
-def insertprojekt(pdata):
-    lsql = """insert into projekt 
-                        (proj_name ,  proj_uc, proj_dc
-                        ,proj_sprachen, proj_akt_sprache)
-                      values (?,?,?,?,?)
-              """
-    return dbDML.insert(lsql, pdata)
-#insertprojekt
 def insertgeschaeftsbereich(pdata):
     lsql = """insert into geschaeftsbereich 
             (gber_name, gber_beschreibung, gber_zweck

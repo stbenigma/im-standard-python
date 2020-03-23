@@ -1,14 +1,20 @@
 from .baseobject import Baseobject
 
 class Schnittstelle(Baseobject):
-    def __init__(self):
-        super().__init__(tablename='schnittstelle',prefix='schn'
-                         ,columnlist=['schn_id',  'schn_name',    'schn_beschr'
+    _tablename:str = 'schnittstelle'
+    _prefix:str = 'schn'
+    _columnlist:list = ['schn_id',  'schn_name',    'schn_beschr'
                 ,'schn_odm_guid',   'schn_uc',  'schn_dc'
-                ,'schn_um', 'schn_dm'])
+                ,'schn_um', 'schn_dm']
 
-    def createtable(self):
-        super().createtable("""
+    def __init__(self):
+        super().__init__(tablename=Schnittstelle._tablename,prefix=Schnittstelle._prefix
+                         ,columnlist= Schnittstelle._columnlist)
+
+    @staticmethod
+    def createtable():
+        Baseobject.createtable(ptablename=Schnittstelle._tablename
+                               , psql="""
     CREATE TABLE schnittstelle
         (
          SCHN_ID integer primary key autoincrement, 
@@ -25,10 +31,19 @@ class Schnittstelle(Baseobject):
 
     def webfilespec(self):
         return self.schn_name.upper() + '.html'
+
+    @staticmethod
+    def delete():
+        Baseobject.delete(Schnittstelle._tablename)
+
+    @staticmethod
+    def select(pwhere=None, porderby=None):
+        return Baseobject.select(pclass=Schnittstelle
+                                 , pwhere=pwhere, porderby=porderby)
 #Schnittstelle
 
 def indexlist():
-    schn = Schnittstelle().select(porderby='schn_name')
+    schn = Schnittstelle.select(porderby='schn_name')
     indexlist = [[s.schn_name, '',s.webfilespec(), s.schn_id] for s in schn]
     return indexlist
 #indexlist

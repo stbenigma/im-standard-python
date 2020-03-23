@@ -1,7 +1,7 @@
 from IM_DB import parameters,dbLookup
 import os,shutil,re
 from IM_HTML import web_sql
-import IM_OBJECTS
+from  IM_OBJECTS import *
 
 outputDirectory:str = None
 webDirectory:str = "";
@@ -1199,16 +1199,18 @@ def printreflist(pelemid,pelemtype):
         elemtypename = a[3]
         elemid = a[4]
         htmlname = ''
+        schn = None
         if (pelemtype in ('DOKU','ENTI','ATTR')):
             schnid = None
             if (elemtype == 'TABL'):
                 #Tabellen sind in schn-file
-                schnid = IM_OBJECTS.tabelle.getbyid(pid=elemid).tabl_schn_id
+                tabl = Tabelle().getbyid(pid=elemid)
+                schn = Schnittstelle().getbyid(pid=tabl.tabl_schn_id)
             elif (elemtype == 'SCHN'):
-                schnid = elemid
+                schn = Schnittstelle().getbyid(pid=elemid)
                 elemanker = ''
             #fi
-            htmlname = '' if schnid is None else IM_OBJECTS.schnittstelle.webfilespec(pid=schnid)
+            htmlname = '' if schn is None else schn.webfilespec()
         elif (pelemtype in ('TABL','SCHN','SCHA')): # aus schn-html zurück ins Main
             if (elemtype in ('ENTI','ATTR','WRTB','DOKU')):
                 #geh zurück ins Basefile

@@ -1,9 +1,12 @@
 
-from IM_OBJECTS import schnittstelleattr
+from IM_OBJECTS import *
+from IM_DB import parameters,dbConnect,dbDDL,dbDML,dbErstelleTables,dbInserts,dbLookup,dbParam
+import sys
 
 if (__name__ == '__main__'):
-    s = schnittstelleattr.Schnittstelleattr()
-    print (os.system('pwd'),sys.path)
-    print(s.__dict__,s.scha_id)
-    s.select()
-    print (s.anker())
+    parameters.initparam(p_callarg=sys.argv[1])
+    dbConnect.openDB(p_filepath= parameters.dbFilePath());
+
+    ss = Sprache.select()
+    for s in ss:
+        print (s.spra_iso_name)

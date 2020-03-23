@@ -69,33 +69,6 @@ def wrtbLookupByName(pname):
     return doLookup(pname,'select wrtb_id from wertebereiche where upper(wrtb_name) = upper("{}")' )
 #wrtbLookup
 
-def spraLookup(piso):
-    try:
-        if (len(piso) == 2):
-            return doLookup(piso, """select spra_id from sprachen 
-                                where spra_iso_code2 = lower("{}")""")
-        elif (len(piso) == 3):
-            return doLookup(piso, """select spra_id from sprachen 
-                            where spra_iso_code3 = lower("{}")""")
-        else:
-            return None
-        #fi
-    except: return None
-#spraLookup
-
-def sprachen(p_id,p_attrname):
-    return doLookup(p_id, """select {} from sprachen 
-                                where spra_id = {}""".format(p_attrname,'{}'))
-#spraLookup
-
-def liesDefaultLang():
-    lDefLang = dbDML.select("""select spra_iso_code2 from sprachen 
-                            where spra_ist_modellsprache = 'TRUE'""")
-    if lDefLang is None : return None
-    if len(lDefLang) == 0 : return None
-    return lDefLang[0][0]
-#liesDefaultLang
-
 def modeid(p_entiid=None,p_attrid=None,p_wrtbid=None,p_synoid=None,p_buruid=None,p_beziid=None,p_orgeid=None):
     mid = dbDML.select("""select mode_id
                         from modellelement
