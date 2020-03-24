@@ -3,7 +3,9 @@
 <custom_libraries>
 	<lib id="8C5E208C-44EF-D2FB-A3AD-61EAE950C916" name="translation" engine="Oracle Nashorn" methods="upgradeTranslation,changeLanguage,initTranslation" >
 		<script>
-			<![CDATA[//scripts to handle translation of model
+			<![CDATA[
+			//scripts to handle translation of model
+	var CODEVERSION = '1.2';
 	var gLogNote = "LOG";
 	var gCurrentLang = "DE";
 	var gLanguages = "DE,EN";
@@ -17,7 +19,6 @@
 	var QUESTIONMESSAGE = 3;
 	var gLangArray = []; 
 	var gCurVersion = '';
-	var CODEVERSION = '1.2';
 	
 
 	function fullmessage(msg,type) {

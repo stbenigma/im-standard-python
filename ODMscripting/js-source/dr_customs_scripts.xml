@@ -3,7 +3,9 @@
 <custom_libraries>
 	<lib id="8C5E208C-44EF-D2FB-A3AD-61EAE950C916" name="translation" engine="Oracle Nashorn" methods="upgradeTranslation,changeLanguage,initTranslation" >
 		<script>
-			<![CDATA[//scripts to handle translation of model
+			<![CDATA[
+	//scripts to handle translation of model
+	var CODEVERSION = '1.2';
 	var gLogNote = "LOG";
 	var gCurrentLang = "DE";
 	var gLanguages = "DE,EN";
@@ -17,7 +19,6 @@
 	var QUESTIONMESSAGE = 3;
 	var gLangArray = []; 
 	var gCurVersion = '';
-	var CODEVERSION = '1.2';
 	
 
 	function fullmessage(msg,type) {
@@ -388,7 +389,9 @@
 	</lib>
 	<lib id="B2F713AD-5E48-670F-8A2B-55D1ABD0440C" name="attrmapping" engine="Oracle Nashorn" methods="importMapping,print1Mapping,printXMapping,printNameMapping" >
 		<script>
-			<![CDATA[var PLAINMESSAGE = 1;
+			<![CDATA[
+	var CODEVERSION = '1.1'
+	var PLAINMESSAGE = 1;
 	var ERRORMESSAGE = 0;
 	var WARNINGMESSAGE = 2;
 	var QUESTIONMESSAGE = 3;
