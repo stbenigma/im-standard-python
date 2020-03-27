@@ -26,8 +26,7 @@ def do1table(pfilename):
 #do1table
 
 def transfertables(pschndirec):
-    tablesdirec = pschndirec\
-                +'/' +parameters.odmtabledirec()
+    tablesdirec = pschndirec +'/' +parameters.odmtabledirec()
     transferModel.dosegfiles(pdirec=tablesdirec
                             ,transferfiles=do1table)
 #transfertables
@@ -48,25 +47,114 @@ def do1schnittstelle(pfilename):
     dbInserts.insertdokuref(documents = documents, modeid = lmodeId)
     #Tabellen
     filename, file_extension = os.path.splitext(pfilename)
-    globalschnid = schn.schn_id #hässlich aber geht nicht über generische Funktionen
+    globalschnid = schn.schn_id #hässlich aber geht schlecht über generische Funktionen
     transfertables(pschndirec=filename)
 #do1schnittstelle
 
 def transferschn():
-    for el in os.listdir(parameters.odmreldirec()):
-        transferModel.doGUIDfile(pdirec=parameters.odmreldirec()
-                   , pfile=el
-                   , transferfiles=do1schnittstelle)
-    # endfor
+    transferModel.doxmlfiles(pdirec=parameters.odmreldirec()
+               ,ptransfer=do1schnittstelle
+               ,ppattern=r'{}.xml'.format(transferModel.GUIDPATTERN))
+#    for el in os.listdir(parameters.odmreldirec()):
+#        transferModel.doGUIDfile(pdirec=parameters.odmreldirec()
+#                   , pfile=el
+#                   , transferfiles=do1schnittstelle)
+#    # endfor
 #transferschn
 
 def loeschmodell():
+    TablEntiMap.delete()
     Schnittstelleattr().delete()
     Tabelle().delete()
     Schnittstelle().delete()
 #loeschmodell
 
+class Odmmapping:
+    ENTITYPE = 0
+    COLTYPE = 5
+    TABLETYPE = 4
+    ATTRTYPE = 1
+    RELATYPE = 3 # (source ent, targ ent)
+    FKTYPE = 8
+    INHERITTYPE = 9
+    RELARCTYPE = 13
+    LOGARCTYPE = 14
+    """
+    <CM id="43D673EB-E3DCB674F0CEBE86A026-88057DB0AEEE" lID="43D673EB-E9B4-6636-072A-E3DCB674F0CE" lT="0" rID="BE86A026-2DB5-7C03-0A73-88057DB0AEEE" rT="4">
+    <attributesSelection>61138C28-07E5-0E0E-C192-206CA0708A77,7F3CDF26-54F3-142A-4FC1-63D2DBE22319,1FAF93B9-B4A0-C357-3C10-77335807489F</attributesSelection>
+    <columnsSelection>024E6C4F-98BE-457E-D328-26290EA427D2,CCDF613E-7A7B-E502-755B-3F7C49523709,B2D67599-36F9-5CC8-F1D4-95DC14F8962A,A4E9C571-618E-B2BA-9DFD-57C65FC78B11,3B5E88F5-85E3-CE20-3AC4-89A781FC4DFC,620B6F5B-685E-BE90-CA27-9EA94B910782,0D7E59F1-9E8F-B757-4AF2-2AD85AA1F67E,1884E90F-4FD9-B7DD-0AB8-41EF59A5DE04,52245329-FCD7-F424-625A-B4BE49ABB41C,66CECCD4-3319-3E35-C742-234B0D2B5130,430308E9-5649-FE59-030E-F0E34665DB81,A93025B9-A7DD-3B06-5119-CDE3FE4E33BF</columnsSelection>
+    <keysSelection>69ED2946-947B-FF56-5526-76517C8A34B8</keysSelection>
+    <containedMappings itemClass="oracle.dbtools.crest.model.xtdmapping.RelMapping">
+    <Mg id="7F3CDF26-63D2DBE22319A93025B9-CDE3FE4E33BF" lID="7F3CDF26-54F3-142A-4FC1-63D2DBE22319" rID="A93025B9-A7DD-3B06-5119-CDE3FE4E33BF">
+    </Mg>
+    """
+
+    def __init__(self,cmxml):
+        self.mapid = transferModel.findField(cmxml,'id')
+        self.logid = transferModel.findField(cmxml,'lID')
+        self.logtype = int(transferModel.findField(cmxml, 'lT'))
+        self.relid = transferModel.findField(cmxml,'rID')
+        self.reltype = int(transferModel.findField(cmxml, 'rT'))
+        self.columnselection = Odmmapping.selections(cmxml,'columnsSelection')
+        self.attrselection = Odmmapping.selections(cmxml, 'attributesSelection')
+        self.keyselection = Odmmapping.selections(cmxml, 'keysSelection')
+        self.indexselection = Odmmapping.selections(cmxml, 'indexesSelections')
+
+        cntmapxml = cmxml.find('containedMappings')
+        self.cntmappings = []
+        if cntmapxml is not None:
+            for mg in cntmapxml:
+                self.cntmappings.append({'id': transferModel.findField(mg,'id')
+                                     ,'lID' :transferModel.findField(mg,'lID')
+                                     ,'rID' :transferModel.findField(mg,'rID')
+                                     })
+
+
+    @staticmethod
+    def selections(pxml,pname):
+        sel = transferModel.findText(pxml, pname)
+        return sel.split(',') if sel is not None else []
+    #selections
+
+#Odmmapping
+
+def do1mapping(pfilename):
+    mapxml = ET.parse(pfilename).getroot()
+    """
+    <?xml version = '1.0' encoding = 'UTF-8'?>
+    <RMExtendedMap class="oracle.dbtools.crest.model.xtdmapping.RMExtendedMap">
+    <mappings itemClass="oracle.dbtools.crest.model.xtdmapping.ContainerMapping">
+    <CM ...> ... </CM>
+"""
+    mapx = mapxml.find('mappings')
+    for cm in mapx:
+        odmmap = Odmmapping(cm)
+        #print (odmmap.__dict__)
+        tabentimap = TablEntiMap()
+        try:
+            tabentimap.tema_enti_id = dbLookup.entiID(odmmap.logid) if odmmap.logtype == odmmap.ENTITYPE else None
+            tabentimap.tema_bezi_id = dbLookup.beziID(odmmap.logid) if odmmap.logtype == odmmap.RELATYPE else None
+            tabentimap.tema_tabl_id = Tabelle().getID(odmmap.relid) if odmmap.reltype == odmmap.TABLETYPE else None
+            #tabentimap.tema_tabl_id = Tabelle().getID(odmmap.relid) if odmmap.reltype == odmmap.FKTYPE else None
+            tabentimap.insert()
+        except:
+            pass
+#            print ( 'Mapping funktioniert nicht:\n'
+#                   ,'Logic: type = {}   guid = {}\n'.format(odmmap.logtype,odmmap.logid)
+#                , 'rel: type = {}   guid = {}'.format(odmmap.reltype, odmmap.relid)
+#                )
+        #try
+
+#do1mapping
+
+def transfermappings():
+    transferModel.doxmlfiles(pdirec=parameters.odmmappingdirec(), ptransfer=do1mapping
+                             ,ppattern=r'ExtendedMap_RM{}.xml'.format(transferModel.GUIDPATTERN))
+
+#transfermappings
+
 
 def transfer():
     transferschn()
+    transfermappings()
 #transfer

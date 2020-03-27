@@ -786,24 +786,8 @@ CREATE TABLE linie_segment(
 				      REFERENCES MODELLELEMENT (MODE_ID)   ON DELETE CASCADE
 			      )
         """)
-    dbDDL.dropTable("TABL_ENTI_MAP");
-    dbDDL.createTable("""
-  CREATE TABLE TABL_ENTI_MAP 
-      (
-       TEMA_ID integer primary key autoincrement , 
-       TEMA_TABL_ID integer NOT NULL , 
-       TEMA_ENTI_ID integer NULL , 
-       TEMA_BEZI_ID integer NULL , 
-       CONSTRAINT TEMA_CK CHECK ((TEMA_ENTI_ID IS NOT NULL AND TEMA_BEZI_ID IS NULL )
-           	        		  OR (TEMA_BEZI_ID IS NULL AND TEMA_BEZI_ID IS NOT NULL)),
-   		   CONSTRAINT TEMA_UN UNIQUE (TEMA_TABL_ID , TEMA_ENTI_ID )
-		   ,CONSTRAINT TEMA_BEZI_FK FOREIGN KEY (TEMA_BEZI_ID) 
-		      REFERENCES BEZIEHUNG (BEZI_ID ) 
-		   ,CONSTRAINT TEMA_ENTI_FK FOREIGN KEY (TEMA_ENTI_ID) 
-		      REFERENCES ENTITAET (ENTI_ID ) 
-		   ,CONSTRAINT TEMA_TABL_FK FOREIGN KEY (TEMA_TABL_ID) 
-		      REFERENCES TABELLE (TABL_ID ) 
-      )    """)
+    TablEntiMap.createtable()
+
     dbDDL.dropTable("TRANSF_USAGE");
     dbDDL.createTable("""
   CREATE TABLE TRANSF_USAGE 

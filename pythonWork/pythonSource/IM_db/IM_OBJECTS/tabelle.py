@@ -1,7 +1,7 @@
 from .baseobject import Baseobject
 
 class Tabelle(Baseobject):
-    _tablename:str = 'tabelle'
+    _tablename:str = 'tabellen'
     _prefix:str = 'tabl'
     _columnlist:list = ['tabl_id', 	'tabl_name', 	'tabl_schn_id'
                 ,  'tabl_prefix', 	'tabl_beschr', 	'tabl_odm_guid'
@@ -15,7 +15,7 @@ class Tabelle(Baseobject):
     def createtable():
         Baseobject.createtable(ptablename=Tabelle._tablename
                                , psql="""
-    CREATE TABLE tabelle
+    CREATE TABLE tabellen
         (
          TABL_ID integer primary key autoincrement , 
          TABL_NAME VARCHAR (60) NOT NULL , 
@@ -32,6 +32,10 @@ class Tabelle(Baseobject):
      	      REFERENCES SCHNITTSTELLE (SCHN_ID ) 
         )"""
                             )
+
+    def webanker(self):
+        return super().webanker(self.tabl_schn_id)
+
     @staticmethod
     def delete():
         Baseobject.delete(Tabelle._tablename)
@@ -45,6 +49,6 @@ class Tabelle(Baseobject):
 def indexlist(pschnid=None):
     data = Tabelle().select(pwhere= "tabl_schn_id={}".format('tabl_schn_id' if pschnid is None else pschnid)
                   ,porderby='tabl_name')
-    indexlist = [[d.tabl_name,d.anker(),d.tabl_id] for d in data]
+    indexlist = [[d.tabl_name,d.webanker(),d.tabl_id] for d in data]
     return indexlist
 #indexlist

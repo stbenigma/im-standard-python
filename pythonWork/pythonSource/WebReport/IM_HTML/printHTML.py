@@ -11,6 +11,7 @@ libSourceDirec:str = "";
 imagedirec:str = "";
 cssdirec:str = "";
 icondirec:str = "";
+htmlfilelist = {}
 
 """zum Zählen der lokalen Ziele für collapse"""
 barcounter:int = 0
@@ -50,8 +51,8 @@ def filehref(ref,anz,plang,pimg=None):
 #filehref
 def href(ref,anz,htmlfile=''):
     if anz is None: return None
-    return """<a href="{}#{}" target="{}">{}</a>""".format(htmlfile,ref
-                                                              ,'_self' if htmlfile == '' else '_blank', anz)
+    return """<a href="{}{}" target="{}">{}</a>""".format(htmlfile,'{}{}'.format('' if ref == '' else '#', ref)
+                                                ,'_self' if htmlfile == '' else '_blank', anz)
 #href
 
 def isiconstr(w):
@@ -118,6 +119,7 @@ translNameEN = {'Anzeige': 'Display'
                 ,'Numerisch': 'Numerical'
                 ,'Pflichtattribut': 'Attribute of duty'
                 ,'Quartal': 'quarter'
+                ,'Relational Mapping (Tabellen)':'Relational Mapping (tables)'
                 ,'Rundungseinh.': 'rounding unit'
                 ,'Schlüssel': 'Key'
                 ,'Sekunde': 'second'
@@ -211,6 +213,7 @@ translNameFR = {"Anzeige":"Affichage"
 ,"Numerisch":"Numérique"
 ,"Pflichtattribut":"Attribut obligatoire"
 ,"Quartal":"Trimestre"
+,"Relational Mapping (Tabellen)":"Relational Mapping (tables)"
 ,"Rundungseinheit":"Unité de l'arrondi"
 ,"Schlüssel":"Clef"
 ,"Sekunde":"Seconde"
@@ -646,7 +649,7 @@ def printlistofcontentfoot():
 #printlistofcontentfoot
 
 
-def printlistofcontentelement(pname, plist):
+def printlistofcontentelement(pname, plist,pfileonly = False):
     if len(plist) == 0: return
     lbc = str(newbarcounter())
     listcontentelementhead= """
@@ -663,7 +666,7 @@ def printlistofcontentelement(pname, plist):
                         <ol class="tree" id="{}List">
     """
     listcontentline="""
-                <li class="obj"><a href="{}{}" target="{}">{}</a></li>"""
+                <li class="obj"><a href="{}" target="{}">{}</a></li>"""
 
     listcontentelementfoot="""
                     </ol>
@@ -672,11 +675,18 @@ def printlistofcontentelement(pname, plist):
 """
     fhtml.write(listcontentelementhead.format(pname, lbc, transl(pname), lbc, pname))
     for l in plist:
-        htmlfile = l[2]
-        anker = '' if l[1] == '' else '#'
-        anker += l[1]
+        inanker = l[1]
+        local = False
+        if type(inanker) == Webanker:
+            local = re.match(r'/(.+/)*{}'.format(htmlfilelist[inanker.modelid()])
+                             ,fhtml.name)
+            anker = '' if (local) else htmlfilelist[inanker.modelid()]
+            if not pfileonly:
+                anker += '#' + inanker.anker()
+        else:
+            anker = '#' + l[1]
         anzeige = l[0]
-        fhtml.write(listcontentline.format(htmlfile,anker,'_self' if htmlfile == '' else '_blank',anzeige))
+        fhtml.write(listcontentline.format(anker,'_self' if local else '_blank',anzeige))
     fhtml.write(listcontentelementfoot)
 #printlistofcontentelement
 
@@ -709,7 +719,7 @@ def printcontenthead(pfirma,ptitel):
             This page was created with software from <p2 class="fyayc">foryouandyourcustomers</p2>."""\
             .format(ptitel,pfirma)
     #fi
-    langs = web_sql.projektlangs().split(',')
+    langs = projekt.projektlangs().split(',')
     try:
         langs.remove(reportLang().lower())
     except:
@@ -821,7 +831,7 @@ def printcontentinfo(pheaders,pvalues):
 #printcontentinfo
 
 
-def printattrlist(p_entiid):
+def printattrlist(pentiid):
     attrhead = """             <h2>{}</h2>
                         <div id="container1">
                             <div class="table-responsive">
@@ -859,7 +869,7 @@ def printattrlist(p_entiid):
                                                 <td class="symbol"><img {}></td>
                                             </tr>
     """
-    alist = web_sql.attrlist( p_lang=reportLang(), p_entiid=p_entiid)
+    alist = web_sql.attrlist(p_lang=reportLang(), p_entiid=pentiid)
     if (len(alist)==0):
         return
     fhtml.write(attrhead.format(transl('Attribute'), transl('Name'), transl('Domäne'), transl('Typ')
@@ -884,7 +894,7 @@ def endabschnitt():
     """
     return end
 #startabschnitt
-def starttable(ptitel, pueberschriften, plevel=2,ptabid=None,pselfanker=None):
+def starttable(ptitel, pueberschriften, pheadlevel=2, ptabid=None, pselfanker=None):
     tabhead= """        <h{}>{}</h{}>{}
                         <div id="container1">
                             <div class="table-responsive">
@@ -896,7 +906,7 @@ def starttable(ptitel, pueberschriften, plevel=2,ptabid=None,pselfanker=None):
 """
 #    tabheads="""<th class="attribute">{}</th>"""
     retval = []
-    retval.append(tabhead.format(plevel, ptitel, plevel
+    retval.append(tabhead.format(pheadlevel, ptitel, pheadlevel
                                  ,'' if ptabid is None
                                     else  '<a href="#{}" onclick="download_table_as_csv(\'{}\');">download as CSV</a>'.format(pselfanker,ptabid)
                                  ,'' if ptabid is None
@@ -906,10 +916,10 @@ def starttable(ptitel, pueberschriften, plevel=2,ptabid=None,pselfanker=None):
     return ''.join(retval)
 #starttable
 
-def writetableline(pwerte,pid = None):
+def writetableline(pwerte, plineid = None):
     linestart = """            <tr>
-    """ if pid is None else """            <tr id = "{}">
-    """.format(pid)
+    """ if plineid is None else """            <tr id = "{}">
+    """.format(plineid)
     line = """             <td>{}</td>
     """
     iconline= """           <td {}></td>
@@ -936,28 +946,47 @@ def endtable():
     """
 #endtable
 
+def tablehtml(ptitel, pueberschriften, pwerteliste, plineid= None,pheadlevel=2, ptabid=None, pselfanker=None):
+    retval = starttable(ptitel=ptitel,pueberschriften=pueberschriften,pheadlevel=pheadlevel,ptabid=ptabid,pselfanker=pselfanker)
+    for lw in pwerteliste:
+        retval += writetableline(pwerte=lw,plineid=plineid)
+    retval += endtable()
+    return retval
+#tablehtml
 
 def printentikeys(pentiid):
     keylist = web_sql.keylist(p_entiid=pentiid, p_lang=reportLang())
     if (len(keylist) == 0):
         return
-    fhtml.write(starttable(ptitel=transl('Schlüssel')
-                           , pueberschriften=(transl('Nr'), transl('Name'), transl('Attribut(e)'), transl('Beziehung(en)'))))
-    for k in keylist:
-        fhtml.write(writetableline(pwerte=k))
-    fhtml.write(endtable())
+    fhtml.write(tablehtml(ptitel=transl('Schlüssel')
+                           , pueberschriften=(transl('Nr'), transl('Name'), transl('Attribut(e)'), transl('Beziehung(en)'))
+                          ,pwerteliste=keylist
+                          )
+                )
 #printentikeys
 
-def printentirela(p_entiid):
+def printmapping(pentiid):
+    tl = tablentimap.tablelist(pentiid=pentiid)
+    if (tl is None or len(tl) == 0):
+        return
+    fhtml.write(tablehtml(ptitel=transl('Relational Mapping (Tabellen)')
+                           , pueberschriften=(transl('Relational Model'), transl('Tabellen'))
+                          ,pheadlevel=2
+                          ,pwerteliste=tl
+                          )
+                )
+#printmapping
 
-    relalist = web_sql.relalist(p_entiid=p_entiid,p_lang=reportLang())
+def printentirela(pentiid):
+
+    relalist = web_sql.relalist(p_entiid=pentiid, p_lang=reportLang())
     if (len(relalist) == 0):
         return
     fhtml.write(starttable(ptitel=transl('Beziehungen')
                         ,pueberschriften= (transl('Name'), transl('Entität')+'-1', '',transl('Beziehung'), '',transl('Entität')+'-2'
                                                         , transl('Arc'), transl('Schlüssel'),)))
     for r in relalist:
-        if (p_entiid == r[0]):
+        if (pentiid == r[0]):
             #'Name','Entität1','','Beziehung','', 'Entität2','Arc','Schluessel'
             fhtml.write(writetableline(pwerte=(nvl(r[16]), r[1], '->', nvl(r[3], '--'), r[4]
                                                         , arrow2icon('down'), nvl(r[14]), bool2icon(r[17]))))
@@ -1023,9 +1052,10 @@ def printcontentmapping(plist):
                                               , lbc))
         fhtml.write(detailshead)
 
+
         fhtml.write(starttable(ptitel='Mapping'
                                , pueberschriften=namenliste
-                               , plevel=3
+                               , pheadlevel=3
                                , ptabid='TAB-{}'.format(lgruppe if lgruppe != '*' else 'ALL')
                                , pselfanker=lanker))
         for w in werte: fhtml.write(writetableline(pwerte=w))
@@ -1058,12 +1088,18 @@ def printUDP(p_meltname, p_id):
             namenliste = udpname[2].split(',')
             namenliste.sort() #SQl kann keine sortierte group_concat liefern
 
-            fhtml.write(starttable(ptitel=href(ref=web_sql.udpAnker('{}-{}'.format(udpname[0],udpname[1]))
+            fhtml.write(tablehtml(ptitel=href(ref=web_sql.udpAnker('{}-{}'.format(udpname[0],udpname[1]))
                                                ,anz=' {} - {} '.format(udpname[0], udpname[1]))
                                    , pueberschriften=namenliste
-                                   , plevel=3))
-            fhtml.write(writetableline(pwerte=lw))
-            fhtml.write(endtable())
+                                   , pheadlevel=3
+                                  ,pwerteliste=lw)
+                                )
+#            fhtml.write(starttable(ptitel=href(ref=web_sql.udpAnker('{}-{}'.format(udpname[0],udpname[1]))
+#                                               ,anz=' {} - {} '.format(udpname[0], udpname[1]))
+#                                   , pueberschriften=namenliste
+#                                   , pheadlevel=3))
+#            fhtml.write(writetableline(pwerte=lw))
+#            fhtml.write(endtable())
         #fi
     #rof
     if (startgeschrieben):
@@ -1071,12 +1107,12 @@ def printUDP(p_meltname, p_id):
     # fi
 #printUDP
 
-def printentiudp(p_entiid):
-    printUDP(p_meltname='ENTI',p_id=p_entiid)
+def printentiudp(pentiid):
+    printUDP(p_meltname='ENTI', p_id=pentiid)
 #printentiudp
 
-def printattrudp(p_attrid):
-    printUDP(p_meltname='ATTR',p_id=p_attrid)
+def printattrudp(pattrid):
+    printUDP(p_meltname='ATTR', p_id=pattrid)
 #printattrudp
 
 def entidiag(pentiid):
@@ -1092,11 +1128,11 @@ def entidiag(pentiid):
     return diagstring
 #entidiag
 
-def printcontententi(p_list):
+def printcontententi(plist):
     printcontentstart ('entities')
     infoheaders = (transl('Synonyme'), transl('Superentität'), transl('Subentitäten'),transl('auf Diagramm(en)')
                    ,transl('geändert'))
-    for e in p_list:
+    for e in plist:
         enti_id = e[0]
         enti_name = e[1]
         enti_descr = e[2]
@@ -1112,12 +1148,13 @@ def printcontententi(p_list):
                       ,entidiag(pentiid=enti_id),nvl(e[3]) + ', ' + nvl(e[4]))
         printcontentinfo(pheaders=infoheaders,pvalues=infovalues)
 
-        printattrlist(p_entiid=enti_id)
+        printattrlist(pentiid=enti_id)
         printentikeys(pentiid=enti_id)
-        printentirela(p_entiid=enti_id)
+        printentirela(pentiid=enti_id)
         printreflist(pelemid=enti_id,pelemtype='ENTI')
         printtransl(pentiid=enti_id)
-        printentiudp(p_entiid=enti_id)
+        printentiudp(pentiid=enti_id)
+        printmapping(pentiid=enti_id)
 
         printcontentend(lbc)
     #for
@@ -1157,74 +1194,50 @@ def printcontentattr(plist):
 
         printreflist(pelemid=attr_id,pelemtype='ATTR')
         printtransl(pattrid=attr_id)
-        printattrudp(p_attrid=attr_id)
+        printattrudp(pattrid=attr_id)
         printcontentend(lbc)
     #for
 #printcontentattr
 
 
-def printwrtbattrlist(pwrtbid, wrtgruppe=False):
-    alist = web_sql.namelist(ptype='ATTG' if wrtgruppe else 'ATTR'
-                             , plang=reportLang(), pid=pwrtbid)
-    if (len(alist)==0):
-        return
-    fhtml.write(starttable(ptitel=transl('Verwendet in Attributgruppen' if wrtgruppe
-                                                     else 'Verwendet für Attribute')
-                           , pueberschriften=[transl('Attributgruppe' if wrtgruppe
-                                                        else 'Attribute')]))
-    for a in alist:
-        fhtml.write(writetableline(pwerte=[href(ref=a[1], anz=a[0])])
-                    )
-    #for
-    fhtml.write(endtable())
-#printattrlist
 
 def printreflist(pelemid,pelemtype):
     if (pelemtype == 'DOKU'):
-        alist = web_sql.dokureflist(pid=pelemid, plang=reportLang())
+        refentries = web_sql.dokureflist(pid=pelemid, plang=reportLang())
     else:
-        alist = web_sql.reflist(pid=pelemid, pelemtype=pelemtype)
+        refentries = web_sql.refdokulist(pid=pelemid, pelemtype=pelemtype)
     #fi
-    if (alist is None or len(alist)==0): return
+    if (refentries is None or len(refentries)==0): return
 
     fhtml.write(starttable(ptitel=transl('Referenziert von' )
                            , pueberschriften=[transl('Typ'),transl('Elemente')]))
 
     curtype = '' #Annahme: Dokumentenliste ist sortiert nach typ und Name
     kinder = ''
-    for a in alist:
-        elemname = a[0]
-        elemanker = a[1]
-        elemtype = a[2]
-        elemtypename = a[3]
-        elemid = a[4]
+    for refentry in refentries:
         htmlname = ''
-        schn = None
-        if (pelemtype in ('DOKU','ENTI','ATTR')):
-            schnid = None
-            if (elemtype == 'TABL'):
+        if (pelemtype in ('DOKU','ENTI','ATTR','WRTB')):
+            if (refentry.elemtype == 'TABL'):
                 #Tabellen sind in schn-file
-                tabl = Tabelle().getbyid(pid=elemid)
-                schn = Schnittstelle().getbyid(pid=tabl.tabl_schn_id)
-            elif (elemtype == 'SCHN'):
-                schn = Schnittstelle().getbyid(pid=elemid)
-                elemanker = ''
+                tabl = Tabelle().getbyid(refentry.elemid)
+                htmlname = htmlfilelist[tabl.tabl_schn_id]
+            elif (refentry.elemtype == 'SCHN'):
+                htmlname = htmlfilelist[refentry.elemid]
             #fi
-            htmlname = '' if schn is None else schn.webfilespec()
         elif (pelemtype in ('TABL','SCHN','SCHA')): # aus schn-html zurück ins Main
-            if (elemtype in ('ENTI','ATTR','WRTB','DOKU')):
+            if (refentry.elemtype in ('ENTI','ATTR','WRTB','DOKU')):
                 #geh zurück ins Basefile
-                htmlname = webFileName
+                htmlname = htmlfilelist[0]
             #fi
         #fi
-        if curtype != elemtypename:
+        if curtype != refentry.typename:
             if curtype != '':
                 fhtml.write(writetableline(pwerte=[transl(curtype), kinder.rstrip(', ')]))
                 kinder = ''
             #fi
-            curtype = elemtypename
+            curtype = refentry.typename
         #fi
-        kinder += href(ref=elemanker, anz=elemname,htmlfile=htmlname) + ', '
+        kinder += href(ref=refentry.anker, anz=refentry.name,htmlfile=htmlname) + ', '
     #for
     fhtml.write(writetableline(pwerte=[transl(curtype), kinder.rstrip(', ')]))
     fhtml.write(endtable())
@@ -1235,36 +1248,28 @@ def printwrtbattrlist(pwrtbid, wrtgruppe=False):
                              , plang=reportLang(), pid=pwrtbid)
     if (len(alist)==0):
         return
-    fhtml.write(starttable(ptitel=transl('Verwendet in Attributgruppen' if wrtgruppe
+    fhtml.write(tablehtml(ptitel=transl('Verwendet in Attributgruppen' if wrtgruppe
                                                 else 'Verwendet für Attribute')
                            , pueberschriften=[transl('Attribut' if wrtgruppe
-                                                else 'Attributgruppe')]))
-    for a in alist:
-        fhtml.write(writetableline(pwerte=[href(ref=a[1], anz=a[0])])
-                    )
-    #for
-    fhtml.write(endtable())
+                                                else 'Attributgruppe')]
+                          ,pwerteliste= [[href(ref=a[1], anz=a[0])] for a in alist]))
 #printattrlist
 
 def printwrtbmembers(pwrtbid):
     elems = web_sql.wbgrelements(wrtbid=pwrtbid)
     if (len(elems)==0):
         return
-    fhtml.write(starttable(ptitel=transl('Elemente')
+    fhtml.write(tablehtml(ptitel=transl('Elemente')
                            , pueberschriften=
                                 [transl('Element')
                                 ,transl('Beschreibung')
                                 ,transl('Wertebereich')
                                 ,transl('geändert')
-                                 ]))
-    for e in elems:
-        fhtml.write(writetableline(pwerte=[e[0], e[1]
+                                 ]
+                          ,pwerteliste= [[e[0], e[1]
                                             , href(ref=web_sql.wrtbAnker(e[9])
                                                     ,anz=e[2]+' ('+anzDatentyp(e[3])+')')
-                                            , e[5] +' , ' + e[6]]
-                                   ))#,pid=web_sql.attgAnker(e[10])))
-    #for
-    fhtml.write(endtable())
+                                            , e[5] +' , ' + e[6]] for e in elems]))
 #printwrtbmembers
 
 def printwertelist(p_wrtbid):
@@ -1272,13 +1277,16 @@ def printwertelist(p_wrtbid):
     wlist = web_sql.wrtbwerte(p_wrtbid=p_wrtbid)
     if (len(wlist)==0):
         return
-    fhtml.write(starttable(ptitel=transl('Werteliste')
+    fhtml.write(tablehtml(ptitel=transl('Werteliste')
                            , pueberschriften=(transl('Nr'), transl('Wert'), transl('Anzeige'), transl('Beschreibung'))
-                           , plevel=3))
-    for w in wlist:
-        fhtml.write(writetableline(pwerte=w))
-    fhtml.write(endtable())
-
+                           , pheadlevel=3
+                          ,pwerteliste= wlist))
+    #fhtml.write(starttable(ptitel=transl('Werteliste')
+    #                       , pueberschriften=(transl('Nr'), transl('Wert'), transl('Anzeige'), transl('Beschreibung'))
+    #                       , pheadlevel=3))
+    #for w in wlist:
+    #    fhtml.write(writetableline(pwerte=w))
+    #fhtml.write(endtable())
 #printwertelist
 
 def printcontentwrtb(p_list):
@@ -1420,9 +1428,6 @@ def createFile(pfilename):
         os.remove(webfile)
     fhtml = open(webfile,'w')
 #createFile
-def createBaseFile():
-    createFile(pfilename = webFileName + '_' + reportLang() + '.html')
-#createBaseFile
 def closefile():
     global fhtml
     fhtml.close()
@@ -1454,7 +1459,7 @@ def findtransl(pattr,pmodeid,plangs):
 #findtransl
 
 def printtransl(pentiid=None, pattrid=None):
-    langs=web_sql.projektlangs().split(',')
+    langs=projekt.projektlangs().split(',')
     try: langs.remove(reportLang())
     except: pass
     if len(langs)== 0 : return
@@ -1470,11 +1475,15 @@ def printtransl(pentiid=None, pattrid=None):
         transllist= [findtransl(pattr='ATTR_NAME',pmodeid=modeid,plangs=langs)
                     ,findtransl(pattr='ATTR_COMMENT',pmodeid=modeid,plangs=langs)]
     #print(transllist)
-    fhtml.write(starttable(ptitel=transl('Übersetzungen')
-                           ,pueberschriften=head
-                           ,plevel = 2))
-    for d in transllist:
-        fhtml.write(writetableline(pwerte=d))
-    fhtml.write(endtable())
+    fhtml.write(tablehtml(ptitel=transl('Übersetzungen')
+                           , pueberschriften=head
+                           , pheadlevel= 2
+                          ,pwerteliste=transllist))
+    #fhtml.write(starttable(ptitel=transl('Übersetzungen')
+    #                       , pueberschriften=head
+    #                       , pheadlevel= 2))
+    #for d in transllist:
+    #    fhtml.write(writetableline(pwerte=d))
+    #fhtml.write(endtable())
 #printtransl
 

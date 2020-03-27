@@ -410,7 +410,7 @@ CREATE TABLE SCHNITTSTELLE
  CONSTRAINT SCHN_UN UNIQUE (SCHN_NAME)
     )
 
-CREATE TABLE tabelle 
+CREATE TABLE tabellen 
     (
      tabl_id integer primary key autoincrement , 
      tabl_name varchar (60) not null , 
@@ -514,7 +514,7 @@ CREATE TABLE modellelement(
 	      REFERENCES SCHNITTSTELLE_ATTR (SCHA_ID ) 
 	      ON DELETE CASCADE ,
 	CONSTRAINT MODE_TABL_FK FOREIGN KEY ( MODE_TABL_ID) 
-	  	      REFERENCES TABELLE ( TABL_ID ) 
+	  	      REFERENCES tabellen ( TABL_ID ) 
 	  	      ON DELETE CASCADE ,
 	CONSTRAINT MODE_SCHN_FK FOREIGN KEY ( MODE_SCHN_ID) 
 		  	      REFERENCES schnittstelle ( schn_ID ) 
@@ -877,23 +877,23 @@ create view spraattr as
 	      )
      
 
-  CREATE TABLE TABL_ENTI_MAP 
-      (
-       TEMA_ID integer primary key autoincrement , 
-       TEMA_TABL_ID integer NOT NULL , 
-       TEMA_ENTI_ID integer NULL , 
-       TEMA_BEZI_ID integer NULL , 
-       CONSTRAINT TEMA_CK CHECK ((TEMA_ENTI_ID IS NOT NULL AND TEMA_BEZI_ID IS NULL )
-           	        		  OR (TEMA_BEZI_ID IS NULL AND TEMA_BEZI_ID IS NOT NULL)),
-   		   CONSTRAINT TEMA_UN UNIQUE (TEMA_TABL_ID , TEMA_ENTI_ID )
-		   ,CONSTRAINT TEMA_BEZI_FK FOREIGN KEY (TEMA_BEZI_ID) 
-		      REFERENCES BEZIEHUNG (BEZI_ID ) 
-		   ,CONSTRAINT TEMA_ENTI_FK FOREIGN KEY (TEMA_ENTI_ID) 
-		      REFERENCES ENTITAET (ENTI_ID ) 
-		   ,CONSTRAINT TEMA_TABL_FK FOREIGN KEY (TEMA_TABL_ID) 
-		      REFERENCES TABELLE (TABL_ID ) 
-      )
-  
+          create table tabl_enti_maps 
+           (
+            tema_id integer primary key autoincrement , 
+            tema_tabl_id integer not null , 
+            tema_enti_id integer null , 
+            tema_bezi_id integer null , 
+            constraint tema_ck check ((tema_enti_id is not null and tema_bezi_id is null )
+                	        		  or (tema_enti_id is null and tema_bezi_id is not null)),
+        		   constraint tema_un unique (tema_tabl_id , tema_enti_id ,tema_bezi_id)
+     		   ,constraint tema_bezi_fk foreign key (tema_bezi_id) 
+     		      references beziehung (bezi_id ) 
+     		   ,constraint tema_enti_fk foreign key (tema_enti_id) 
+     		      references entitaet (enti_id ) 
+     		   ,constraint tema_tabl_fk foreign key (tema_tabl_id) 
+     		      references tabellen (tabl_id ) 
+           )   
+		     
   CREATE TABLE schnittstelle_attr 
       (
        scha_id integer primary key autoincrement, 
@@ -912,7 +912,7 @@ create view spraattr as
    ,constraint scha_daty_fk foreign key (scha_daty_id) 
       references datatypes (daty_id ) 
    ,constraint scha_tabl_fk foreign key (scha_tabl_id) 
-      references tabelle (tabl_id ) 
+      references tabellen (tabl_id ) 
       )
 
   CREATE TABLE transf_usage 

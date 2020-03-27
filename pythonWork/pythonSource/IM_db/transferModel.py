@@ -8,6 +8,8 @@ from mystring import nvl
 import transferRelational
 from IM_OBJECTS import *
 
+GUIDPATTERN:str = '[A-Z0-9-]{20,45}'
+
 class Wertebereich:
     def __init__(self, pname, pid):
         self.wrtb_name = pname
@@ -161,7 +163,9 @@ def transferDomains():
         wrtb.wrtb_beschr = findText(dom,'comment')
         logDT = dom.find('logicalDatatype')
         wrtb.wrtb_datatype_ref = logDT.text if logDT is not None else None
-        wrtb.wrtb_typ = datatype.Datatype().getbyguid(wrtb.wrtb_datatype_ref).daty_grundtyp
+        dt = Datatype()
+        dt.getbyguid(wrtb.wrtb_datatype_ref)
+        wrtb.wrtb_typ = dt.daty_grundtyp
 
         if wrtb.wrtb_typ is None:
             wrtb.wrtb_typ = 'TEXT'
@@ -491,30 +495,48 @@ def transferdiaconnect(pconnectors, pdiagid, puc, pdc):
 #transferdiaconnect
 
 # transferdiaconnect
+
 def transferdiaarc(parcs, pdiagid, puc, pdc):
     pass
 # transferdiaarc
 
-def doGUIDfile(pdirec,pfile,transferfiles):
-    #nur GUID als Namen erlaubt.
-    if re.match(r'[A-Z0-9-]{20,45}.xml',pfile):
-        fileName = pdirec + pfile
-        transferfiles(fileName)
-    #fi
-#doGUIDfile
+#def doGUIDfile(pdirec,pfile,transferfiles):
+#    #nur GUID als Namen erlaubt.
+##    if re.match(r'{}.xml'.format(GUIDPATTERN),pfile):
+#        fileName = pdirec + pfile
+#        transferfiles(fileName)
+#    #fi
+##doGUIDfile
+
+def doxmlfiles (pdirec,ptransfer,ppattern=r".*"):
+    try:
+        listdir=os.listdir(pdirec)
+    except:
+        print('doXMLfiles: directory "{}" not found.'.format(pdirec))
+        return
+    #try
+    for file in listdir:
+        if re.match(ppattern, file):
+            ptransfer(pdirec + file)
+        #fi
+    #for
+#doxmlfiles
 
 def dosegfiles(pdirec,transferfiles):
     try:
         listdir=os.listdir(pdirec)
     except:
-        print('directory "{}" not found.'.format(pdirec))
+        print('dosSEGfiles: directory "{}" not found.'.format(pdirec))
         return
     #try
     for el in listdir:
         if re.match('seg_.*', el):
-            for file in os.listdir(pdirec + el):
-                doGUIDfile(pdirec=pdirec + el + '/',pfile=file,transferfiles=transferfiles)
-            #for
+            doxmlfiles(pdirec=pdirec + el + '/'
+                       ,ptransfer=transferfiles
+                       ,ppattern=r'{}.xml'.format(GUIDPATTERN))
+#            for file in os.listdir(pdirec + el):
+#                doGUIDfile(pdirec=pdirec + el + '/',pfile=file,transferfiles=transferfiles)
+#            #for
         #fi
     #for
 #dosegfiles
@@ -564,13 +586,16 @@ def do1diagramm(pfilename):
 #do1diagramm
 
 def transferdiagramme():
-    for el in os.listdir(parameters.odmentisubviewdirec()):
-        #filename = parameters.odmentisubviewdirec() +  el
-        #do1diagramm(p_filename=filename)
-        doGUIDfile(pdirec = parameters.odmentisubviewdirec()
-                   , pfile = el
-                   , transferfiles = do1diagramm)
-    #endfor
+    doxmlfiles(pdirec=parameters.odmentisubviewdirec()
+               ,ptransfer=do1diagramm
+               ,ppattern=r'{}.xml'.format(GUIDPATTERN))
+#    for el in os.listdir(parameters.odmentisubviewdirec()):
+#        #filename = parameters.odmentisubviewdirec() +  el
+#        #do1diagramm(p_filename=filename)
+#        doGUIDfile(pdirec = parameters.odmentisubviewdirec()
+#                   , pfile = el
+#                   , transferfiles = do1diagramm)
+#    #endfor
 #transferdiagramme
 
 def findeOderErstelleDom(pdomguid, pstructdomguid, ptypeguid, pattrname):
@@ -1352,9 +1377,6 @@ def transferDocuments():
     #print(dbDML.select("""select * from Dokumente """))
 
 #transferDocuments
-def transfermappings():
-    dosegfiles(pdirec=parameters.odmdocumentdirec(), transferfiles=do1Document)
-#transfermappings
 def transferODMModel():
     """überträgt das ganze ODM Modell in die DB"""
     transferprojekt()
@@ -1372,6 +1394,5 @@ def transferODMModel():
     transferdiagramme()
     filllanguages()
     transferRelational.transfer()
-    transfermappings()
 
 #end transferODMModel

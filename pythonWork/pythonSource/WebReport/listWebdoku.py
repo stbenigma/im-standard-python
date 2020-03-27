@@ -5,7 +5,7 @@ sys.path.append(os.getcwd()+'/../IM_db')
 from datetime import date,datetime
 from IM_DB import parameters,dbConnect,dbDDL,dbDML,dbErstelleTables,dbInserts,dbLookup,dbParam
 from IM_HTML import printHTML,web_sql,printdiagHTML,printRelHTML
-from IM_OBJECTS import schnittstelle
+from IM_OBJECTS import *
 
 # Main Programm
 def nvl(x,default=''):
@@ -106,13 +106,14 @@ def printlistofcontent():
     printHTML.printlistofcontentelement(pname='Dokumente', plist=web_sql.namelist(ptype='DOKU', plang=printHTML.reportLang()))
     printHTML.printlistofcontentelement(pname='Attribut-Mapping', plist=web_sql.namelist(ptype='UDP', plang=printHTML.reportLang()))
     printHTML.printlistofcontentelement(pname='Diagramme', plist=web_sql.namelist(ptype='DIAG', plang=printHTML.reportLang()))
-    printHTML.printlistofcontentelement(pname='Systeme', plist=web_sql.namelist(ptype='SCHN', plang=printHTML.reportLang()))
+    printHTML.printlistofcontentelement(pname='Systeme', plist=web_sql.namelist(ptype='SCHN', plang=printHTML.reportLang())
+                                        ,pfileonly = True)
     printHTML.printlistofcontentfoot()
 # printlistofcontent
 
 def printcontent(pfirma,ptitel):
     printHTML.printcontenthead(pfirma=pfirma,ptitel=ptitel)
-    printHTML.printcontententi(p_list=web_sql.entilist(p_lang=printHTML.reportLang()))
+    printHTML.printcontententi(plist=web_sql.entilist(p_lang=printHTML.reportLang()))
     printHTML.printcontentattr(plist=web_sql.attrlist(p_lang=printHTML.reportLang()))
     printHTML.printcontentwrtb(p_list=web_sql.wrtblist(p_lang=printHTML.reportLang()))
     printHTML.printcontentdoku(plist=web_sql.dokulist(p_lang=printHTML.reportLang()))
@@ -121,8 +122,8 @@ def printcontent(pfirma,ptitel):
     printHTML.printcontentfoot()
 #printcontent
 
-def printhtmlfile(pfirma, ptitel, pinfo, plogofilename):
-    printHTML.createBaseFile ();
+def printhtmlfile(pfirma, ptitel, pinfo, plogofilename,pfilename):
+    printHTML.createFile(pfilename=pfilename)
     printHTML.printhead(p_firma=pfirma
                         , p_titel=ptitel
                         , p_info=pinfo
@@ -151,7 +152,7 @@ def listwebmain(plang):
     dbParam.liesDefaultLang()
     printHTML.createlib()
     if (plang is None):
-        langs = web_sql.projektlangs().split(',')
+        langs = projekt.projektlangs().split(',')
         if (len(langs) == 0):
             printHTML.reportLang(parameters.dbDefaultLang())
             langs = [printHTML.reportLang()]
@@ -160,6 +161,11 @@ def listwebmain(plang):
         langs = [printHTML.reportLang()]
     #fi
 
+    #erstelle die Liste der HTML Files für HREF's
+    printHTML.htmlfilelist[0] = printHTML.webFileName + '_' + parameters.dbDefaultLang() + '.html'
+    schnlist = schnittstelle.indexlist()
+    for s in schnlist: printHTML.htmlfilelist[s[2]] = s[0]+ '.html'
+
     for lang in langs:
         printHTML.reportLang(lang.lower())
         print ("create web-files for language {}".format(printHTML.reportLang()))
@@ -167,17 +173,16 @@ def listwebmain(plang):
                       , ptitel=parameters.odmModelName() + ' ({})'.format(printHTML.reportLang())
                       , pinfo="{}".format(datetime.now().strftime("%Y-%m-%d, %H:%M"))
                       , plogofilename=parameters.logoFileName()
+                      , pfilename=  printHTML.webFileName + '_' + printHTML.reportLang() + '.html'
                       )
     # for
     printHTML.reportLang(parameters.dbDefaultLang())
-    for s in schnittstelle.indexlist():
+    for s in schnlist:
         schn_name = s[0]
-        schnanker = s[1]
-        schnfilename = s[2]
-        schn_id = s[3]
+        schn_id = s[2]
         print ("create web-files for system {}".format(schn_name))
         printhtmlsysfile(pfirma="foryouandyourcustomers"
-                      ,pfilename= schnfilename
+                      ,pfilename= printHTML.htmlfilelist[schn_id]
                       , ptitel= parameters.odmModelName() + ' - {}'.format(schn_name)
                       , pinfo="{}".format(datetime.now().strftime("%Y-%m-%d, %H:%M"))
                       , plogofilename=parameters.logoFileName()

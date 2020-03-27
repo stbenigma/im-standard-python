@@ -1,7 +1,7 @@
 from .baseobject import Baseobject
 
 class Projekt(Baseobject):
-    _tablename:str ='projekt'
+    _tablename:str ='projekte'
     _prefix:str ='proj'
     _columnlist:list = ['proj_id', 'proj_name', 'proj_uc', 'proj_dc', 'proj_sprachen', 'proj_akt_sprache' ]
 
@@ -13,7 +13,7 @@ class Projekt(Baseobject):
     def createtable():
         Baseobject.createtable(ptablename=Projekt._tablename
                                , psql="""
-CREATE TABLE projekt(
+CREATE TABLE projekte(
     proj_id            integer primary key autoincrement,
     proj_name          VARCHAR(60) NOT NULL,
     proj_uc            VARCHAR(30) NOT NULL,
@@ -33,3 +33,8 @@ CREATE TABLE projekt(
                                  ,pwhere=pwhere,porderby=porderby)
 #Projekt
 
+def projektlangs():
+    """pwhere='select proj_sprachen from projekt'"""
+    data = Projekt().select()
+    return data[0].proj_sprachen
+#

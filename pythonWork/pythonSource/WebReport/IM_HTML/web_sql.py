@@ -1,7 +1,7 @@
 import sys,os
 sys.path.append(os.path.dirname(os.path.realpath(__file__))+'/../../IM_db')
 from IM_DB import dbDML,dbLookup,parameters
-from IM_OBJECTS import schnittstelle,tabelle
+from IM_OBJECTS import *
 
 
 def langText(p_attrname, p_lang, p_modeid):
@@ -49,10 +49,6 @@ def diagAnker(id):
     return 'DIAG'+str(id)
 def dokuAnker(id):
     return 'DOKU'+str(id)
-def schnAnker(id):
-    return 'SCHN'+str(id)
-def tablAnker(id):
-    return 'TABL'+str(id)
 def elementid(pmodeid,ptyp):
     data = dbDML.select("""select mode_{}_id id
                             from modellelement 
@@ -60,6 +56,14 @@ def elementid(pmodeid,ptyp):
     return data[0][0]
 #entiid
 
+class Referenceentry:
+    def __init__(self,pid,pname,ptype,ptypename,panker=None):
+        self.name = pname
+        self.anker = panker
+        self.elemtype = ptype
+        self.typename = ptypename
+        self.elemid = pid
+#Rererenceentry
 def dokureflist (pid, plang):
     data = dbDML.select("""
     select name,id,type,anztype from (
@@ -76,14 +80,15 @@ def dokureflist (pid, plang):
                    from attributes 
                    union all
                    select tabl_id id ,TABL_NAME name 
-                   from tabelle
+                   from tabellen
                    union all
                    select SCHN_ID id ,SCHN_NAME name 
-                   from schnittstelle
+                   from schnittstellen
            ) on id = mode_enti_id or id = mode_attr_id or id = mode_tabl_id or id = mode_schn_id
          join sprachen sp on sp.spra_iso_code2 = '{}'
-         left join spraattr spa on spa.sptx_attrname = case type when 'Entität' then 'ENTI_NAME'
-                                                            when 'Attribut' then 'ATTR_NAME'
+         left join spraattr spa on spa.sptx_attrname = case melt_kurzname when 'ENTI' then 'ENTI_NAME'
+                                                            when 'ATTR' then 'ATTR_NAME'
+                                                            else ''
                                                         end
                                     and spa.sptx_mode_id = mode_id
                                     and spa.spra_id = sp.spra_id
@@ -91,16 +96,17 @@ def dokureflist (pid, plang):
     )
     order by type,upper(name)
                   """.format(plang,pid))
-    datalist = [(e[0],entiAnker(e[1]) if e[2] == 'ENTI'
-                else attrAnker(e[1]) if e[2] == 'ATTR'
-                else tablAnker(e[1]) if e[2] == 'TABL'
-                else schnAnker(e[1]) if e[2] == 'SCHN'
-                 else ''
-                 ,e[2],e[3],e[1]) for e in data]
+    datalist = [Referenceentry(pid=e[1], pname=e[0], ptype=e[2], ptypename=e[3]
+                               , panker=entiAnker(e[1]) if e[2] == 'ENTI'
+                            else attrAnker(e[1]) if e[2] == 'ATTR'
+                            else baseobject.webanker(Tabelle, e[1]) if e[2] == Tabelle._prefix.upper()
+                            else baseobject.webanker(Schnittstelle, e[1]) if e[2] == Schnittstelle._prefix.upper()
+                            else ''
+                               ) for e in data]
     return datalist
 #dokureflist
 
-def reflist (pid,pelemtype):
+def refdokulist (pid, pelemtype):
     data = dbDML.select("""
         select name,id, type, anztype 
         from (
@@ -108,6 +114,7 @@ def reflist (pid,pelemtype):
                 , case  '{}' 
                    when 'ENTI' then mode_enti_id 
                    when 'ATTR' then mode_attr_id
+                   when 'SCHN' then mode_schn_id
                    else null
                    end ref_id 
             from DOKUMENTE
@@ -117,11 +124,13 @@ def reflist (pid,pelemtype):
         where ref_id = {} 
     order by type,upper(name)
     """.format(pelemtype,pid))
-    datalist = [(e[0],dokuAnker(e[1]) if e[2] == 'DOKU'
-                        else ''
-                 ,e[2],e[3],e[1]) for e in data]
+    datalist = [Referenceentry(pid=e[1], pname=e[0], ptype=e[2], ptypename=e[3]
+                               , panker=dokuAnker(e[1]) if e[2] == 'DOKU'
+                                        else ''
+                               )
+                for e in data]
     return datalist
-#reflist
+#refdokulist
 
 def namelist(ptype, plang, pid=None):
     datalist = []
@@ -738,10 +747,6 @@ def wbgrelements(wrtbid):
     """.format(wrtbid))
     return data
 #wbgrelements
-def projektlangs():
-    data = dbDML.select("select proj_sprachen from projekt")
-    return data[0][0]
-#
 def wrtbwerte(p_wrtbid):
     data = dbDML.select("""
              select vgwt_sortrhfg,vgwt_wert,vgwt_anzeige,vgwt_beschr 

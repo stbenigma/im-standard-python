@@ -2,7 +2,7 @@ from .baseobject import Baseobject
 
 class Schnittstelleattr(Baseobject):
 
-    _tablename:str = 'schnittstelle_attr'
+    _tablename:str = 'schnittstelle_attrs'
     _prefix:str = 'scha'
     _columnlist:list = ['scha_id', 'scha_column_name', 'scha_format', 'scha_fremdsystem_id'
                                        ,'scha_beschr', 'scha_tabl_id', 'scha_daty_id', 'scha_odm_guid'
@@ -16,7 +16,7 @@ class Schnittstelleattr(Baseobject):
     def createtable():
         Baseobject.createtable(ptablename=Schnittstelleattr._tablename
                                , psql="""
-    create table schnittstelle_attr
+    create table schnittstelle_attrs
     (
         scha_id             integer
             primary key autoincrement,
@@ -28,7 +28,7 @@ class Schnittstelleattr(Baseobject):
         scha_beschr         varchar(4000),
         scha_tabl_id        integer     not null
             constraint scha_tabl_fk
-                references tabelle,
+                references tabellen,
         scha_daty_id        integer     not null
             constraint scha_daty_fk
                 references datatypes (daty_id),
