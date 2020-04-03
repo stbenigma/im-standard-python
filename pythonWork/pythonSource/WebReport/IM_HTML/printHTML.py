@@ -965,16 +965,29 @@ def printentikeys(pentiid):
                 )
 #printentikeys
 
-def printmapping(pentiid):
-    tl = tablentimap.tablelist(pentiid=pentiid)
-    if (tl is None or len(tl) == 0):
+def printmappinthtml(pwerte,ptitel,pueberschriften,pheadlevel = 2):
+    # name, list of entries mit {'name':webanker}
+    if (pwerte is None or len(pwerte) == 0):
         return
-    fhtml.write(tablehtml(ptitel=transl('Relational Mapping (Tabellen)')
-                           , pueberschriften=(transl('Relational Model'), transl('Tabellen'))
-                          ,pheadlevel=2
-                          ,pwerteliste=tl
+    werte = []
+    for t in pwerte:
+        name,tabs = t[0],t[1]
+        commalist = ', '.join ([href(ref=tabs[key].anker(), anz=key, htmlfile=htmlfilelist[tabs[key].modelid()])
+                               for key in tabs])
+        werte.append([name,commalist])
+    fhtml.write(tablehtml(ptitel=ptitel
+                           , pueberschriften=pueberschriften
+                          ,pheadlevel=pheadlevel
+                          ,pwerteliste=werte
                           )
                 )
+#printmappinghtml
+def printmapping(pentiid):
+    # name, list of entries mit {'name':webanker}
+    printmappinthtml(pwerte= tablentimap.tablelist(pentiid=pentiid)
+                     ,ptitel=transl('Relational Mapping (Tabellen)')
+                     ,pueberschriften=(transl('Relational Model'), transl('Tabellen'))
+                     )
 #printmapping
 
 def printentirela(pentiid):
@@ -1199,11 +1212,13 @@ def printcontentattr(plist):
     #for
 #printcontentattr
 
-
-
 def printreflist(pelemid,pelemtype):
     if (pelemtype == 'DOKU'):
         refentries = web_sql.dokureflist(pid=pelemid, plang=reportLang())
+    elif (pelemtype in  ('TABL','SCHA')):
+        #indirekte auch anzeigen.
+        refentries = web_sql.refdokulist(pid=pelemid, pelemtype=pelemtype)
+
     else:
         refentries = web_sql.refdokulist(pid=pelemid, pelemtype=pelemtype)
     #fi
@@ -1216,6 +1231,7 @@ def printreflist(pelemid,pelemtype):
     kinder = ''
     for refentry in refentries:
         htmlname = ''
+        anker = None
         if (pelemtype in ('DOKU','ENTI','ATTR','WRTB')):
             if (refentry.elemtype == 'TABL'):
                 #Tabellen sind in schn-file
@@ -1223,6 +1239,7 @@ def printreflist(pelemid,pelemtype):
                 htmlname = htmlfilelist[tabl.tabl_schn_id]
             elif (refentry.elemtype == 'SCHN'):
                 htmlname = htmlfilelist[refentry.elemid]
+                anker = '' #Schnittstellen haben keinen Anker ausser dem Namen
             #fi
         elif (pelemtype in ('TABL','SCHN','SCHA')): # aus schn-html zurück ins Main
             if (refentry.elemtype in ('ENTI','ATTR','WRTB','DOKU')):
@@ -1237,7 +1254,8 @@ def printreflist(pelemid,pelemtype):
             #fi
             curtype = refentry.typename
         #fi
-        kinder += href(ref=refentry.anker, anz=refentry.name,htmlfile=htmlname) + ', '
+        anker = nvl(anker, refentry.anker.anker() if type(refentry.anker) == Webanker else refentry.anker)
+        kinder += href(ref=anker, anz=refentry.name,htmlfile=htmlname) + ', '
     #for
     fhtml.write(writetableline(pwerte=[transl(curtype), kinder.rstrip(', ')]))
     fhtml.write(endtable())
@@ -1250,8 +1268,8 @@ def printwrtbattrlist(pwrtbid, wrtgruppe=False):
         return
     fhtml.write(tablehtml(ptitel=transl('Verwendet in Attributgruppen' if wrtgruppe
                                                 else 'Verwendet für Attribute')
-                           , pueberschriften=[transl('Attribut' if wrtgruppe
-                                                else 'Attributgruppe')]
+                           , pueberschriften=[transl('Attributgruppe' if wrtgruppe
+                                                else 'Attribut')]
                           ,pwerteliste= [[href(ref=a[1], anz=a[0])] for a in alist]))
 #printattrlist
 

@@ -18,10 +18,14 @@ def do1table(pfilename):
     tabl.tabl_schn_id = globalschnid
     tabl.tabl_beschr = transferModel.findText(tablexml,"comment")
     tabl.insert()
-    lmodeId =dbInserts.insertModeTabl(tabl.tabl_id)
+    lmodeId = dbInserts.insertModeTabl(tabl.tabl_id)
+
+    dbInserts.insertUdpTable(ptablId=tabl.tabl_id)
 
     documents = transferModel.getdokuref(tablexml)
     dbInserts.insertdokuref(documents = documents, modeid = lmodeId)
+
+    transferModel.updateUDP(pmodeid=lmodeId, pobj=tablexml)
 
 #do1table
 
@@ -127,6 +131,7 @@ def do1mapping(pfilename):
     <CM ...> ... </CM>
 """
     mapx = mapxml.find('mappings')
+    if mapx is None: return
     for cm in mapx:
         odmmap = Odmmapping(cm)
         #print (odmmap.__dict__)
@@ -144,6 +149,7 @@ def do1mapping(pfilename):
 #                , 'rel: type = {}   guid = {}'.format(odmmap.reltype, odmmap.relid)
 #                )
         #try
+    #for
 
 #do1mapping
 

@@ -143,7 +143,7 @@ def printhtmlsysfile(pfirma, pfilename, ptitel, pinfo, plogofilename,pschnid):
                         , p_info=pinfo
                         , p_logofilename=plogofilename)
     printRelHTML.printlistofcontent(pschnid)
-    printRelHTML.printcontent(pfirma=pfirma, ptitel=ptitel)
+    printRelHTML.printcontent(pfirma=pfirma, ptitel=ptitel,pschnid=pschnid)
     printHTML.printfoot();
     printHTML.closefile ();
 #printhtmlsysfile

@@ -1,0 +1,154 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="9F31258E-9EF1-D1B6-8FF1-A41D0F71DA3C" name="LANG_VALUE-2">
+<createdBy>stb</createdBy>
+<createdTime>2020-03-30 15:06:13 UTC</createdTime>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<ordsAlias>table_2</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="LAVA_ID" id="1E4DEBD0-D18E-33FE-4A95-DC393CB3E34C">
+<createdBy>stb</createdBy>
+<createdTime>2020-03-30 15:06:13 UTC</createdTime>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<domain>8DC704A0-B677-2702-839F-B278E9EDF3E2</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="LAVA_LANG_ID" id="4839378B-2C2F-84A5-F4EB-BFA822CC0390">
+<createdBy>stb</createdBy>
+<createdTime>2020-03-30 15:06:13 UTC</createdTime>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<domain>8DC704A0-B677-2702-839F-B278E9EDF3E2</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="D57B8AC2-280C-822B-03D2-97458D842F44" referredColumn="4F8BF04A-8BB1-1B6E-1518-ECA68CBE4B3F"/>
+</associations>
+</Column>
+<Column name="LAVA_VALUE" id="B8FC5590-183B-7999-E1BB-D3C7EB2C84D2">
+<createdBy>stb</createdBy>
+<createdTime>2020-03-30 15:06:13 UTC</createdTime>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="LAVA_VALUE_SHORT" id="1D6DBD93-0E99-E590-080F-C4ECA3D4C30B">
+<createdBy>stb</createdBy>
+<createdTime>2020-03-30 15:06:13 UTC</createdTime>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="LAVA_VALUE_TYPE" id="F3E81174-CE65-2583-218D-E432E54E1308">
+<createdBy>stb</createdBy>
+<createdTime>2020-03-30 15:08:14 UTC</createdTime>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="LAVA_ATTR_ID" id="1CAB7373-0CBB-9517-CF2E-6A03D4E2028F">
+<createdBy>stb</createdBy>
+<createdTime>2020-03-30 15:09:32 UTC</createdTime>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<domain>8DC704A0-B677-2702-839F-B278E9EDF3E2</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="8AE23D4E-606D-85B9-1873-9A00B089CCCB" referredColumn="2C182265-FB7C-5123-0F32-5F4A5B2FE54F"/>
+</associations>
+</Column>
+<Column name="LAVA_PRCA_ID" id="4C68F699-86DC-4A94-2A1C-DAF195519AC4">
+<createdBy>stb</createdBy>
+<createdTime>2020-03-30 15:19:04 UTC</createdTime>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<domain>8DC704A0-B677-2702-839F-B278E9EDF3E2</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="032E3FEC-F647-6C54-BC0D-93D3D8A53D41" referredColumn="F8545AB4-66BB-D539-AC9B-2E1487B8D7D9"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="45E82F13-066E-FE9C-58D2-D53E50E77CB5" name="LAVA_PK">
+<createdBy>stb</createdBy>
+<createdTime>2020-03-30 15:06:13 UTC</createdTime>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="1E4DEBD0-D18E-33FE-4A95-DC393CB3E34C"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="FC1F6CDC-AEDC-8375-82AC-144413D53A0F" name="LAVA_UK">
+<createdBy>stb</createdBy>
+<createdTime>2020-03-30 15:21:04 UTC</createdTime>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="4839378B-2C2F-84A5-F4EB-BFA822CC0390"/>
+<colUsage columnID="F3E81174-CE65-2583-218D-E432E54E1308"/>
+<colUsage columnID="1CAB7373-0CBB-9517-CF2E-6A03D4E2028F"/>
+<colUsage columnID="4C68F699-86DC-4A94-2A1C-DAF195519AC4"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="9D0DF423-E42A-7E50-6936-6381A82F04AA" name="LAVA_LANG_FKv1">
+<createdBy>stb</createdBy>
+<createdTime>2020-03-30 15:06:13 UTC</createdTime>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="4839378B-2C2F-84A5-F4EB-BFA822CC0390"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="D867F8A0-D6B0-5B96-F90B-7666A43413DD" name="LAVA_ATTR_FK">
+<createdBy>stb</createdBy>
+<createdTime>2020-03-30 15:09:32 UTC</createdTime>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="1CAB7373-0CBB-9517-CF2E-6A03D4E2028F"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="3ED16AF3-FB32-8EC6-951A-A2EE2EC8E7EE" name="PRCA_LAVA_FK">
+<createdBy>stb</createdBy>
+<createdTime>2020-03-30 15:19:04 UTC</createdTime>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="4C68F699-86DC-4A94-2A1C-DAF195519AC4"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+<tableCheckConstraints itemClass="oracle.dbtools.crest.model.design.constraint.TableLevelConstraint">
+<tableCheckConstraint name="LAVA_TYPE_CHK" directorySegmentName="seg_0" id="D3FA57BA-2AC4-DFAD-87AA-38E56B4E43E4">
+<createdBy>stb</createdBy>
+<createdTime>2020-03-30 15:22:56 UTC</createdTime>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<rule><![CDATA[(LAVA_VALUE_TYPE = 'PRCA_NAME' AND LAVA_PRCA_ID IS NOT NULL AND LAVA_ATTR_ID IS NULL)
+OR 
+(LAVA_VALUE_TYPE in ('ATTR_NAME','ATTR_VALUE','ATTR_UOM') AND LAVA_PRCA_ID IS NULL AND LAVA_ATTR_ID IS NOT NULL)]]></rule>
+</tableCheckConstraint>
+</tableCheckConstraints>
+</Table>

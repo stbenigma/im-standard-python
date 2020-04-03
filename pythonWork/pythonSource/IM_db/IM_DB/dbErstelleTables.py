@@ -640,9 +640,9 @@ CREATE TABLE elementdarst(
 				      beda_starttext_abstand   integer NULL
 				          constraint beda_stab_chk CHECK(beda_starttext_abstand BETWEEN 1 AND 9999),
 				      beda_starttext_x         integer NULL
-				          constraint beda_stx_chk CHECK(beda_starttext_x BETWEEN 0 AND 999999),
+				          constraint beda_stx_chk CHECK(beda_starttext_x BETWEEN -9999 AND 999999),
 				      beda_starttext_y         integer NULL
-				          constraint beda_sty_chk CHECK(beda_starttext_y BETWEEN 0 AND 999999),
+				          constraint beda_sty_chk CHECK(beda_starttext_y BETWEEN -9999 AND 999999),
 				      beda_starttext_breite    integer NULL
 				          constraint beda_stb_chk CHECK(beda_starttext_breite BETWEEN 1 AND 9999),
 				      beda_starttext_hoehe     integer NULL
@@ -661,9 +661,9 @@ CREATE TABLE elementdarst(
 				      beda_endtext_abstand     integer NULL
 				          constraint beda_eab_chk CHECK(beda_endtext_abstand BETWEEN 1 AND 9999),
 				      beda_endtext_x           integer NULL
-				          constraint beda_ex_chk CHECK(beda_endtext_x BETWEEN 0 AND 999999),
+				          constraint beda_ex_chk CHECK(beda_endtext_x BETWEEN -9999 AND 999999),
 				      beda_endtext_y           integer NULL
-				          constraint beda_ey_chk CHECK(beda_endtext_y BETWEEN 0 AND 999999),
+				          constraint beda_ey_chk CHECK(beda_endtext_y BETWEEN -9999 AND 999999),
 				      beda_endtext_breite      integer NULL
 				          constraint beda_eb_chk CHECK(beda_endtext_breite BETWEEN 1 AND 9999),
 				      beda_endtext_hoehe       integer NULL

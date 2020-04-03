@@ -9,7 +9,10 @@ if (__name__ == '__main__'):
 
 #    ss = Sprache.select()
 #    s = Sprache()
-    ss = tabelle.indexlist()
-    print (baseobject.webanker(Tabelle,235).__dict__)
-    for s in ss:
-        print (s)
+    ss = Tabelle.indexlist()
+    t = Tabelle().getbyid(302)
+    print(t.__dict__)
+    print (Tabelle.mappingto(302))
+#    for s in ss:
+#        print (s)
+#    print (baseobject.webanker(Tabelle,302).__dict__)

@@ -115,6 +115,7 @@ def refdokulist (pid, pelemtype):
                    when 'ENTI' then mode_enti_id 
                    when 'ATTR' then mode_attr_id
                    when 'SCHN' then mode_schn_id
+                   when 'TABL' then mode_tabl_id
                    else null
                    end ref_id 
             from DOKUMENTE
@@ -240,7 +241,7 @@ def namelist(ptype, plang, pid=None):
     elif (ptype == 'SCHN') :
         datalist = schnittstelle.indexlist()
     elif (ptype == 'TABL') :
-        datalist = tabelle.indexlist(pschnid=pid)
+        datalist = Tabelle.indexlist(pschnid=pid)
     #fi
     return datalist
 #namelist
@@ -576,7 +577,7 @@ def udpwerte(pmeltname, pthema, pgruppe, pid):
             join benudef_eigenschaft on bdeg_id = bdwe_bdeg_id
                     and bdeg_thema = '{}' and bdeg_gruppe = {}
             order by bdeg_thema,bdeg_gruppe,bdeg_name
-            """.format("mode_{}_id".format("enti" if pmeltname == 'ENTI' else "attr" if pmeltname == 'ATTR'else "")
+            """.format("mode_{}_id".format(pmeltname.lower() )
                         ,pid
                        , pthema, 'bdeg_gruppe' if pgruppe =='*'  else  "'{}'".format (pgruppe)
                        ))

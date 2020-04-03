@@ -293,6 +293,20 @@ def insertUdpEntity(entiId):
                 where enti_id = {}
             """ .format(entiId))
 #insertUdpEntity
+def insertUdpTable(ptablId):
+    dbDML.exec("""insert into benudef_wert(
+                bdwe_wert,  bdwe_mode_id,   bdwe_bdeg_id
+                ,bdwe_uc,   bdwe_dc)
+                select NULL,mode_id,bdeg_id,tabl_uc,tabl_dc
+                from tabellen
+                join modellelement on mode_tabl_id = tabl_id
+                cross join (select mote_bdeg_id as bdeg_id
+                             from modellelem_typ
+                             join modelltyp_eigensch on mote_melt_id = melt_id
+                             where melt_kurzname = 'TABL')
+                where tabl_id = {}
+            """ .format(ptablId))
+#insertUdpTable
 def insertdiagramm(p_data):
     lsql = """insert into
 diagramme(

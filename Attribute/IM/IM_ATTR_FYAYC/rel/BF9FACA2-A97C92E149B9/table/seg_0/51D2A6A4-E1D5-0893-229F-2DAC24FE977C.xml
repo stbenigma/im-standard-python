@@ -1,0 +1,82 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="51D2A6A4-E1D5-0893-229F-2DAC24FE977C" name="PRODUCT">
+<createdBy>stb</createdBy>
+<createdTime>2020-03-30 14:55:28 UTC</createdTime>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<ordsAlias>table_6</ordsAlias>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="PROD_ID" id="98AB5BA7-5DDF-47BF-1EFC-E944CDF832C4">
+<createdBy>stb</createdBy>
+<createdTime>2020-03-30 14:55:28 UTC</createdTime>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<domain>8DC704A0-B677-2702-839F-B278E9EDF3E2</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="PROD_BASO_ID" id="25BF4AD4-A20C-5A18-E7E0-455D42E5FEDE">
+<createdBy>stb</createdBy>
+<createdTime>2020-03-30 14:59:33 UTC</createdTime>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<domain>8DC704A0-B677-2702-839F-B278E9EDF3E2</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="8217FE97-33DA-0E6D-F2D6-6793069644AC" referredColumn="200244D2-7AF4-0FBB-8A85-F78153FA7487"/>
+</associations>
+</Column>
+<Column name="PRODUCT CATETORY_PRCA_ID" id="A9D1100C-230E-2996-C965-26837A77D427">
+<createdBy>stb</createdBy>
+<createdTime>2020-03-30 15:18:07 UTC</createdTime>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<domain>8DC704A0-B677-2702-839F-B278E9EDF3E2</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="7E2926F5-3B30-024F-C85C-9D96A149339E" referredColumn="F8545AB4-66BB-D539-AC9B-2E1487B8D7D9"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="2C0DBB03-9C7C-5CA9-2D41-EB3D26B15059" name="PROD_PK">
+<createdBy>stb</createdBy>
+<createdTime>2020-03-30 15:01:47 UTC</createdTime>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="98AB5BA7-5DDF-47BF-1EFC-E944CDF832C4"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="F945F1F2-DE41-C52C-9156-6B2D2DB916BE" name="PROD_BASO_FK">
+<createdBy>stb</createdBy>
+<createdTime>2020-03-30 14:59:33 UTC</createdTime>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="25BF4AD4-A20C-5A18-E7E0-455D42E5FEDE"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="FDF58F39-C89E-AB71-2D12-04AFA9DBD32E" name="PROD_PRCA_FK">
+<createdBy>stb</createdBy>
+<createdTime>2020-03-30 15:18:07 UTC</createdTime>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="A9D1100C-230E-2996-C965-26837A77D427"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

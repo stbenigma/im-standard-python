@@ -163,8 +163,7 @@ def transferDomains():
         wrtb.wrtb_beschr = findText(dom,'comment')
         logDT = dom.find('logicalDatatype')
         wrtb.wrtb_datatype_ref = logDT.text if logDT is not None else None
-        dt = Datatype()
-        dt.getbyguid(wrtb.wrtb_datatype_ref)
+        dt = Datatype().getbyguid(wrtb.wrtb_datatype_ref)
         wrtb.wrtb_typ = dt.daty_grundtyp
 
         if wrtb.wrtb_typ is None:
@@ -669,6 +668,11 @@ def transferArcs():
 
 def updateUDP(pmodeid, pobj):
     udps = []
+    """<propertyMap>
+        <property name="EXT_ATTR_ID" value="."/>
+        <property name="EXT_SORT_ORDER" value="13.0"/>
+        </propertyMap>
+    """
     props = pobj.find('propertyMap')
     if (props is not None):
         for prop in props:
@@ -741,6 +745,8 @@ def do1Attribute(plfnr, pattrxml, pentiId=None, pbeziId=None):
         attrId = dbInserts.insertAttribute(pattr=attrset)
     except  sqlite3.Error as e:
         print(str(e))
+        ent = dbDML.select("select enti_name from entitaeten where enti_id = {}".format(pentiId))
+        print('Entity = {}'.format(ent[0][0]))
         print(attrset)
         raise e
     #try

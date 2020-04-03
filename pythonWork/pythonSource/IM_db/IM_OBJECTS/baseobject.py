@@ -10,10 +10,10 @@ class Webanker:
     """
     def __init__(self,pname,pid,pmodelid=0):
         self._id:int = pid
-        self._pname:str = pname.upper()
+        self._name:str = pname.upper()
         self._modelid:int = pmodelid
     def anker(self):
-        return self._pname + (str(self._id))
+        return nvl(self._name) + str(nvl(self._id))
     def modelid(self):
         return self._modelid
 #Webanker
@@ -21,10 +21,10 @@ class Webanker:
 class Baseobject:
 
     def __init__(self,tablename,prefix,columnlist,idcolname = None,guidcolname = None):
-        self._tablename = tablename
-        self._prefix = prefix
-        self._idcolname = prefix + '_id' if idcolname is None else idcolname
-        self._guidcolname = prefix + '_odm_guid' if guidcolname is None else guidcolname
+        self._tablename:str = tablename
+        self._prefix:str = prefix
+        self._idcolname:str = prefix + '_id' if idcolname is None else idcolname
+        self._guidcolname:str = prefix + '_odm_guid' if guidcolname is None else guidcolname
         self._columnlist = columnlist
         self.__emptyclass()
 
@@ -63,6 +63,7 @@ class Baseobject:
             raise Exception('{}: nonexistent ID={}'.format(self._tablename, pid))
         else:
             self._fromarray(data[0].toarray())
+        return self
     # getbyid
 
     def getbyguid(self,pguid):
@@ -74,6 +75,7 @@ class Baseobject:
         else:
             self._fromarray(data[0].toarray())
         # fi
+        return self
     # getbyguid
 
     def prefix(self):

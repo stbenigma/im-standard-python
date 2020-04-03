@@ -25,5 +25,11 @@
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
       <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/../../../../GEBININF/gitHub/DB/IM_GEBERIT.db</jdbc-url>
     </data-source>
+    <data-source source="LOCAL" name="ModellModell_neu.db" uuid="e057c294-87fb-4b28-a80b-5d3b189e6453">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/../../ModellModell/DB/ModellModell_neu.db</jdbc-url>
+    </data-source>
   </component>
 </project>

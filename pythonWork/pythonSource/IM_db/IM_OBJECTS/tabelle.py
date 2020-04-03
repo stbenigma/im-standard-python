@@ -1,4 +1,5 @@
 from .baseobject import Baseobject
+from IM_DB import dbDML
 
 class Tabelle(Baseobject):
     _tablename:str = 'tabellen'
@@ -44,11 +45,48 @@ class Tabelle(Baseobject):
     def select(pwhere=None, porderby=None):
         return Baseobject.select(pclass=Tabelle
                                  , pwhere=pwhere, porderby=porderby)
+    @staticmethod
+    def selectbyschnid(pschnid):
+        return Tabelle.select(pwhere="tabl_schn_id = {}".format(pschnid), porderby="tabl_name")
+
+    @staticmethod
+    def indexlist(pschnid=None):
+        data = Tabelle.select(pwhere= "tabl_schn_id={}".format('tabl_schn_id' if pschnid is None else pschnid)
+                  ,porderby='tabl_name')
+        indexlist = [[d.tabl_name,d.webanker(),d.tabl_id] for d in data]
+        return indexlist
+    #indexlist
+
+    @staticmethod
+    def mappingto(ptablid):
+        lsqle = """select 0 schn_id, 'Logisches Modell' schn_name, group_concat(enti_id,',')
+        	from  tabl_enti_maps as mastermap
+	        left join entitaeten on enti_id = mastermap.tema_enti_id
+	        where  mastermap.tema_tabl_id = {}
+	        GROUP BY mastermap.tema_tabl_id""".format(ptablid)
+        lsqlt = """select tabl_schn_id,schn_name,group_concat(tabl_id,',')
+	        from tabellen subtab
+	        join schnittstellen on schn_id = TABL_SCHN_ID
+	        where tabl_id in
+    	          (select tema1.tema_tabl_id
+	               from tabl_enti_maps tema1
+	                 join tabl_enti_maps tema2 on tema2.tema_enti_id = tema1.tema_enti_id
+	                                and tema2.tema_tabl_id != tema1.tema_tabl_id
+	                  where tema2.tema_tabl_id = {}
+	            )
+            group by tabl_schn_id,schn_name
+            """.format(ptablid)
+        retval = []
+        data = dbDML.select(lsqle)
+        """[(0,'name', [Entitaet]'), (54,'name', [Tabelle])]"""
+        ###for d in data:
+            ####retval.append([d[0], d[1],[Entitaet().getbyid(e) for e in d[2].split(',')]])
+        data = dbDML.select(lsqlt)
+        """[(0,'name', [Entitaet]'), (54,'name', [Tabelle])]"""
+        for d in data:
+            retval.append([d[0], d[1],[Tabelle().getbyid(e) for e in d[2].split(',')]])
+        return retval
+    #maopingto
 #Tabelle
 
-def indexlist(pschnid=None):
-    data = Tabelle().select(pwhere= "tabl_schn_id={}".format('tabl_schn_id' if pschnid is None else pschnid)
-                  ,porderby='tabl_name')
-    indexlist = [[d.tabl_name,d.webanker(),d.tabl_id] for d in data]
-    return indexlist
-#indexlist
+

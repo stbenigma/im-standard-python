@@ -55,14 +55,16 @@ def tablelist(pentiid=None):
                             order by schn_name
                             """.format(pentiid))
     retval = []
-    if (data is not None and len(data) > 0 and data[0][0] is not None):
+    try:
         for d in data:
             schn_name = d[0]
+            tablist = {}
             for tabid in d[1].split(','):
-                tab = Tabelle()
-                tab.getbyid(tabid)
-                retval.append([schn_name, tab.tabl_name,tab.webanker()])
+                tab = Tabelle().getbyid(tabid)
+                tablist[tab.tabl_name] = tab.webanker()
             #for
+            retval.append([schn_name, tablist])
         # for
-    #fi
+    except: pass
+    #try
     return retval
