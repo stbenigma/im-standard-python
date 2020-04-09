@@ -4538,7 +4538,8 @@ function getAttrMap(attrID,modName){
 	</lib>
 	<lib id="B2F713AD-5E48-670F-8A2B-55D1ABD0440C" name="attrmapping" engine="Oracle Nashorn" methods="importMapping,print1Mapping,printXMapping,printNameMapping" >
 		<script>
-			<![CDATA[var PLAINMESSAGE = 1;
+			<![CDATA[	var CODEVERSION = '1.2'
+	var PLAINMESSAGE = 1;
 	var ERRORMESSAGE = 0;
 	var WARNINGMESSAGE = 2;
 	var QUESTIONMESSAGE = 3;
@@ -4554,7 +4555,7 @@ function getAttrMap(attrID,modName){
 	var inheritanceSet 
 	var relModel
 	var writtenCols={}
-	var exportDirec="/Users/stb/Documents/DataModeler/Import"
+	var exportDirec=""
 	var EXTIDPROPNAME = "EXT_ATTR_ID"
 	var EXCELSEPARATOR = String.fromCharCode(12)
 	
@@ -4833,6 +4834,8 @@ function importMapping() {
 	if (returnVal == Filebrowse.APPROVE_OPTION) {
 		imppath= f.getSelectedFile();
 		//message(imppath);
+	} else {
+		return
 	}
 	tabanz = 0
 	colanz = 0
@@ -5175,7 +5178,8 @@ function printXMapping (){
 }
 function printNameMapping (){
      printAllMapping(false)
-}]]>
+}
+]]>
 		</script>
 	</lib>
 	<lib id="12E63B95-CEA8-74F6-377B-3B4B8E7D66E2" name="DDLGeneration" engine="Oracle Nashorn" methods="json" >

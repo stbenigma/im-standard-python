@@ -3,8 +3,7 @@
 <custom_libraries>
 	<lib id="B2F713AD-5E48-670F-8A2B-55D1ABD0440C" name="attrmapping" engine="Oracle Nashorn" methods="importMapping,print1Mapping,printXMapping,printNameMapping" >
 		<script>
-			<![CDATA[
-	var CODEVERSION = '1.1'
+			<![CDATA[	var CODEVERSION = '1.2'
 	var PLAINMESSAGE = 1;
 	var ERRORMESSAGE = 0;
 	var WARNINGMESSAGE = 2;
@@ -300,6 +299,8 @@ function importMapping() {
 	if (returnVal == Filebrowse.APPROVE_OPTION) {
 		imppath= f.getSelectedFile();
 		//message(imppath);
+	} else {
+		return
 	}
 	tabanz = 0
 	colanz = 0
