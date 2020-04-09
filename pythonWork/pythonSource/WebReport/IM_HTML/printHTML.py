@@ -119,6 +119,7 @@ translNameEN = {'Anzeige': 'Display'
                 ,'Numerisch': 'Numerical'
                 ,'Pflichtattribut': 'Attribute of duty'
                 ,'Quartal': 'quarter'
+                ,'Referenziert von','Referenced by'
                 ,'Relational Mapping (Tabellen)':'Relational Mapping (tables)'
                 ,'Rundungseinh.': 'rounding unit'
                 ,'Schlüssel': 'Key'
@@ -213,6 +214,7 @@ translNameFR = {"Anzeige":"Affichage"
 ,"Numerisch":"Numérique"
 ,"Pflichtattribut":"Attribut obligatoire"
 ,"Quartal":"Trimestre"
+,'Referenziert von', 'Référencé par'
 ,"Relational Mapping (Tabellen)":"Relational Mapping (tables)"
 ,"Rundungseinheit":"Unité de l'arrondi"
 ,"Schlüssel":"Clef"
@@ -972,8 +974,13 @@ def printmappinthtml(pwerte,ptitel,pueberschriften,pheadlevel = 2):
     werte = []
     for t in pwerte:
         name,tabs = t[0],t[1]
-        commalist = ', '.join ([href(ref=tabs[key].anker(), anz=key, htmlfile=htmlfilelist[tabs[key].modelid()])
-                               for key in tabs])
+        if (name == 'Logisches Modell'):
+            commalist = ', '.join([href(ref=tabs[key], anz=key, htmlfile=htmlfilelist[0])\
+                                   for key in tabs ])
+        else:
+            commalist = ', '.join ([href(ref=tabs[key].anker(), anz=key, htmlfile=htmlfilelist[tabs[key].modelid()])\
+                                    for key in tabs])
+        #fi
         werte.append([name,commalist])
     fhtml.write(tablehtml(ptitel=ptitel
                            , pueberschriften=pueberschriften
@@ -1255,7 +1262,8 @@ def printreflist(pelemid,pelemtype):
             curtype = refentry.typename
         #fi
         anker = nvl(anker, refentry.anker.anker() if type(refentry.anker) == Webanker else refentry.anker)
-        kinder += href(ref=anker, anz=refentry.name,htmlfile=htmlname) + ', '
+        kinder += href(ref=anker, anz= refentry.name if refentry.direct else '('+refentry.name+')'
+                       ,htmlfile=htmlname) + ', '
     #for
     fhtml.write(writetableline(pwerte=[transl(curtype), kinder.rstrip(', ')]))
     fhtml.write(endtable())

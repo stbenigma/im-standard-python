@@ -1,9 +1,9 @@
 from .baseobject import Baseobject
 from IM_DB import dbDML
 
-class Tabelle(Baseobject):
-    _tablename:str = 'tabellen'
-    _prefix:str = 'tabl'
+class Dokument(Baseobject):
+    _tablename:str = 'dokumente'
+    _prefix:str = 'doku'
     _columnlist:list = ['tabl_id', 	'tabl_name', 	'tabl_schn_id'
                 ,  'tabl_prefix', 	'tabl_beschr', 	'tabl_odm_guid'
                 ,'tabl_uc', 	'tabl_dc', 	'tabl_um', 	'tabl_dm']

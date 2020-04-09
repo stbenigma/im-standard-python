@@ -70,4 +70,15 @@ if __name__ == '__main__':
          , p_tolang=sys.argv[2] if (len(sys.argv) > 2) else None
          , p_fromlang=sys.argv[3] if (len(sys.argv) > 3) else None
          )
-    print (text,'=',transl)
+    print (text,'=',translate(p_text= text
+         , p_tolang='EN' if (len(sys.argv) > 2) else None
+         , p_fromlang=sys.argv[3] if (len(sys.argv) > 3) else None
+         ))
+    print (text,'=',translate(p_text= text
+         , p_tolang='FR' if (len(sys.argv) > 2) else None
+         , p_fromlang=sys.argv[3] if (len(sys.argv) > 3) else None
+         ))
+    print (text,'=',translate(p_text= text
+         , p_tolang='ES' if (len(sys.argv) > 2) else None
+         , p_fromlang=sys.argv[3] if (len(sys.argv) > 3) else None
+         ))

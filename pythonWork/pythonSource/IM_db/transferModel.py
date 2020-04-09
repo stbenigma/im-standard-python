@@ -1231,6 +1231,8 @@ def loeschmodell():
     dbDML.delete("attributes")
     dbDML.delete("synonyme")
     dbDML.delete("entitaeten")
+    dbDML.delete('modelelem_doku')
+    dbDML.delete('dokumente')
     dbDML.delete("modellelement")
     dbDML.delete('diagramme')
     dbDML.delete("benudef_eigenschaft")
@@ -1251,8 +1253,6 @@ def loeschmodell():
     Sprachtext.delete()
     dbDML.delete('geschaeftsbereich')
     Projekt.delete()
-    dbDML.delete('modelelem_doku')
-    dbDML.delete('dokumente')
 
 #loeschmodell
 

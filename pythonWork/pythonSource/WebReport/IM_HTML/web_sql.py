@@ -57,13 +57,15 @@ def elementid(pmodeid,ptyp):
 #entiid
 
 class Referenceentry:
-    def __init__(self,pid,pname,ptype,ptypename,panker=None):
+    def __init__(self,pid,pname,ptype,ptypename,pdirect='TRUE',panker=None):
         self.name = pname
         self.anker = panker
         self.elemtype = ptype
         self.typename = ptypename
         self.elemid = pid
+        self.direct = pdirect == 'TRUE'
 #Rererenceentry
+
 def dokureflist (pid, plang):
     data = dbDML.select("""
     select name,id,type,anztype from (
@@ -108,25 +110,38 @@ def dokureflist (pid, plang):
 
 def refdokulist (pid, pelemtype):
     data = dbDML.select("""
-        select name,id, type, anztype 
+        select name,id, 'DOKU' type, 'Dokumente'  anztype ,direct
         from (
-            select doku_name name,doku_id id,'DOKU' type, 'Dokumente' anztype
-                , case  '{}' 
+            select doku_name name,doku_id id
+                , case  melt_kurzname 
                    when 'ENTI' then mode_enti_id 
                    when 'ATTR' then mode_attr_id
                    when 'SCHN' then mode_schn_id
                    when 'TABL' then mode_tabl_id
                    else null
                    end ref_id 
+                ,'TRUE' direct
+                ,melt_kurzname ref_type
             from DOKUMENTE
             join MODELELEM_DOKU on MODO_DOKU_ID = DOKU_ID
             join modellelement on mode_id = MODO_MODE_ID
-        ) 
-        where ref_id = {} 
+            join modellelem_typ on melt_id = mode_melt_id
+            union all 
+            select doku_name name,doku_id id,tabl_id ref_id,'FALSE' direct,'TABL' ref_type
+            from DOKUMENTE
+            join MODELELEM_DOKU on MODO_DOKU_ID = DOKU_ID
+            join modellelement on mode_id = MODO_MODE_ID
+            join (select schn_id, TABL_ID
+                  from tabellen
+                  join schnittstellen on SCHN_ID = TABL_SCHN_ID
+                 ) on mode_schn_id = SCHN_ID        
+            ) 
+        where ref_type = '{}' and ref_id = {}  
     order by type,upper(name)
     """.format(pelemtype,pid))
     datalist = [Referenceentry(pid=e[1], pname=e[0], ptype=e[2], ptypename=e[3]
-                               , panker=dokuAnker(e[1]) if e[2] == 'DOKU'
+                               , pdirect = e[4]
+                                ,panker=dokuAnker(e[1]) if e[2] == 'DOKU'
                                         else ''
                                )
                 for e in data]

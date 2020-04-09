@@ -196,6 +196,8 @@ def main(pdirec, plang):
     parameters.initparam(p_callarg=pdirec)
     printHTML.setWebDirec(p_webdirec=None)
 
+    print ("listWebdoku",parameters.odmBaseDirec(),parameters.odmModelName())
+
     dbConnect.openDB(p_filepath= parameters.dbFilePath());
     listwebmain(plang=plang)
 
