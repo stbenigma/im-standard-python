@@ -1,7 +1,10 @@
-from IM_DB import parameters,dbLookup
-import os,shutil,re
+import os
+import re
+import shutil
+
+from IM_DB import parameters, dbLookup
 from IM_HTML import web_sql
-from  IM_OBJECTS import *
+from IM_OBJECTS import *
 
 outputDirectory:str = None
 webDirectory:str = "";
@@ -119,7 +122,7 @@ translNameEN = {'Anzeige': 'Display'
                 ,'Numerisch': 'Numerical'
                 ,'Pflichtattribut': 'Attribute of duty'
                 ,'Quartal': 'quarter'
-                ,'Referenziert von','Referenced by'
+                ,'Referenziert von':'Referenced by'
                 ,'Relational Mapping (Tabellen)':'Relational Mapping (tables)'
                 ,'Rundungseinh.': 'rounding unit'
                 ,'Schlüssel': 'Key'
@@ -135,6 +138,7 @@ translNameEN = {'Anzeige': 'Display'
                 ,'Syntaxregel': 'Syntax rule'
                 ,'Systeme': 'Systems'
                 ,'Tag': 'day'
+                ,'Tabelle': 'Table'
                 ,'Tabellen': 'Tables'
                 ,'Technischer Name': 'Technical Name'
                 ,'Text': 'Text'
@@ -214,7 +218,7 @@ translNameFR = {"Anzeige":"Affichage"
 ,"Numerisch":"Numérique"
 ,"Pflichtattribut":"Attribut obligatoire"
 ,"Quartal":"Trimestre"
-,'Referenziert von', 'Référencé par'
+,'Referenziert von': 'Référencé par'
 ,"Relational Mapping (Tabellen)":"Relational Mapping (tables)"
 ,"Rundungseinheit":"Unité de l'arrondi"
 ,"Schlüssel":"Clef"
@@ -229,6 +233,7 @@ translNameFR = {"Anzeige":"Affichage"
 ,"Synonyme":"Synonyme"
 ,"Syntaxregel":"Règle syntaxique"
 ,"Systeme": "Systèmes"
+,'Tabelle': 'Table'
 ,'Tabellen': 'Tables'
 ,"Tag":"Jour"
 ,"Technischer Name":"Terme technique"

@@ -1,8 +1,9 @@
-import xml.etree.ElementTree as ET
 import os
-from IM_DB import dbDML,dbLookup,dbConnect,parameters,dbParam,dbInserts
-from IM_OBJECTS import *
+import xml.etree.ElementTree as ET
+
 import transferModel
+from IM_DB import dbLookup, parameters, dbInserts
+from IM_OBJECTS import *
 
 globalschnid:int = None
 
@@ -23,7 +24,7 @@ def do1table(pfilename):
     dbInserts.insertUdpTable(ptablId=tabl.tabl_id)
 
     documents = transferModel.getdokuref(tablexml)
-    dbInserts.insertdokuref(documents = documents, modeid = lmodeId)
+    ModelelemDoku.insertdokuref(pdocguidlist=documents, pmodeid=lmodeId)
 
     transferModel.updateUDP(pmodeid=lmodeId, pobj=tablexml)
 
@@ -48,7 +49,7 @@ def do1schnittstelle(pfilename):
 
     #Dokumente an dieser Schnittstelle
     documents = transferModel.getdokuref(pelem=schnxml,pstruct=True)
-    dbInserts.insertdokuref(documents = documents, modeid = lmodeId)
+    ModelelemDoku.insertdokuref(pdocguidlist= documents, pmodeid= lmodeId)
     #Tabellen
     filename, file_extension = os.path.splitext(pfilename)
     globalschnid = schn.schn_id #hässlich aber geht schlecht über generische Funktionen

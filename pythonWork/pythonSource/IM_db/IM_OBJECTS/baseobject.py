@@ -1,5 +1,5 @@
 
-from IM_DB import dbDDL,dbDML,dbLookup
+from IM_DB import dbDDL,dbDML
 from mystring import nvl
 
 class Webanker:
@@ -18,7 +18,7 @@ class Webanker:
         return self._modelid
 #Webanker
 
-class Baseobject:
+class   Baseobject:
 
     def __init__(self,tablename,prefix,columnlist,idcolname = None,guidcolname = None):
         self._tablename:str = tablename
@@ -46,7 +46,6 @@ class Baseobject:
 
     def placehoderstring(self):
         return ''.join('?,' for col in self._columnlist).rstrip(',')
-
 
     def insert(self):
         lsql = """insert into {} ({}) values ({})

@@ -1,12 +1,15 @@
 
-import xml.etree.ElementTree as ET
-import re,os,sqlite3
-from datetime import date
-from IM_DB import dbInserts,dbDML,dbLookup,dbConnect,parameters,dbParam
 import math
-from mystring import nvl
+import os
+import re
+import sqlite3
+import xml.etree.ElementTree as ET
+from datetime import date
+
 import transferRelational
+from IM_DB import dbInserts, dbDML, dbLookup, dbConnect, parameters, dbParam
 from IM_OBJECTS import *
+from mystring import nvl
 
 GUIDPATTERN:str = '[A-Z0-9-]{20,45}'
 
@@ -753,8 +756,7 @@ def do1Attribute(plfnr, pattrxml, pentiId=None, pbeziId=None):
     lmodeId=dbInserts.insertModeAttr(attrId)
     dbInserts.insertUdpAttr(attrId)
     updateUDP(pmodeid=lmodeId, pobj=pattrxml)
-
-    dbInserts.insertdokuref(documents = documents, modeid = lmodeId)
+    ModelelemDoku.insertdokuref(pdocguidlist=documents, pmodeid=lmodeId)
 
 #do1Attribute
 
@@ -881,7 +883,7 @@ def do1Entity(fileName):
     #print (entname,translate.translate(p_text=entname,p_fromlang='de',p_tolang='en'),translate.translate(p_text=entname,p_fromlang='de',p_tolang='fr'))
 
     updateUDP(pmodeid=lmodeId, pobj=entixml)
-    dbInserts.insertdokuref(documents = documents, modeid = lmodeId)
+    ModelelemDoku.insertdokuref(pdocguidlist=documents, pmodeid=lmodeId)
 
     attrs= entixml.find('attributes')
     if attrs is not None:
@@ -1043,7 +1045,7 @@ def do1Relation(fileName):
     dbInserts.insertUdpBezi(beziId)
 
     updateUDP(pmodeid=lmodeId, pobj=relaxml)
-    dbInserts.insertdokuref(documents = documents, modeid = lmodeId)
+    ModelelemDoku.insertdokuref(pdocguidlist=documents, pmodeid=lmodeId)
 
     attrs= relaxml.find('attributes')
     if attrs is not None:
@@ -1231,8 +1233,8 @@ def loeschmodell():
     dbDML.delete("attributes")
     dbDML.delete("synonyme")
     dbDML.delete("entitaeten")
-    dbDML.delete('modelelem_doku')
-    dbDML.delete('dokumente')
+    ModelelemDoku.delete()
+    Dokument.delete()
     dbDML.delete("modellelement")
     dbDML.delete('diagramme')
     dbDML.delete("benudef_eigenschaft")
@@ -1360,26 +1362,19 @@ def transferprojekt():
 def do1Document(fileName):
     tree = ET.parse(fileName)
     root = tree.getroot()
-    docname = root.get("name")
-    docformat = findText(root, 'type')
-    docref = None
-    docguid = findField(root, 'id')
-    docparentguid = findText(root, 'parentDocument')
-    #print(docname, docformat, docref, docguid)
+    doku = Dokument()
+    doku.doku_name = root.get("name")
+    doku.doku_format = findText(root, 'type')
+    doku.doku_referenz = None
+    doku.doku_odm_guid = findField(root, 'id')
+    doku.doku_parent_odm_guid = findText(root, 'parentDocument')
     #DOKU_NAME, DOKU_FORMAT, DOKU_REFERENZ, DOKU_ODM_GUID, DOKU_PARENT_ODM_GUID
-    row = (docname, docformat, docref, docguid, docparentguid)
-    #print(row)
-    dbInserts.insertDocument(row)
+    doku.insert()
 #do1Document
 
 def transferDocuments():
     dosegfiles(pdirec=parameters.odmdocumentdirec(), transferfiles=do1Document)
-    dbDML.exec("""
-    update Dokumente as DOK_C
-    set DOKU_DOKU_ID = (
-    select DOK_P.DOKU_ID from Dokumente as DOK_P
-    where DOK_P.DOKU_ODM_GUID = DOK_C.DOKU_PARENT_ODM_GUID)
-    """)
+    Dokument.updparents()
     #print(dbDML.select("""select * from Dokumente """))
 
 #transferDocuments

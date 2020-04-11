@@ -855,28 +855,31 @@ create view spraattr as
 	  	 REFERENCES geschaeftsbereich(gber_id)
 	  	     ON DELETE CASCADE 
 	      )
-	  CREATE TABLE  mente 
-	      (
-	        _id INTEGER PRIMARY KEY AUTOINCREMENT,
-	        _name varchar (60) not null , 
-	        _format varchar (20) , 
-	        _referenz varchar (500) , 
-	        _ _id INTEGER  
-	      )
+		  CREATE TABLE DOKUMENTE 
+		      (
+		       DOKU_ID integer primary key autoincrement,
+		       DOKU_NAME VARCHAR (60) NOT NULL , 
+		       DOKU_FORMAT VARCHAR (20) , 
+		       DOKU_REFERENZ VARCHAR (500) , 
+		       DOKU_DOKU_ID NUMERIC (10),	
+			   DOKU_ODM_GUID varchar(36),
+			   DOKU_PARENT_ODM_GUID varchar(36),  
+			   CONSTRAINT DOKU_UK UNIQUE (DOKU_ID),
+			   CONSTRAINT DOKU_DOKU_FK FOREIGN KEY (DOKU_DOKU_ID) 
+			   				      REFERENCES DOKUMENTE ( DOKU_ID )ON DELETE CASCADE
+		      )
 	 
-	  CREATE TABLE modelelem_  
-	      (
-	       modo_id INTEGER PRIMARY KEY AUTOINCREMENT,
-	       modo_ _id INTEGER not null , 
-	       modo_mode_id INTEGER not null,
-	   constraint modo_un unique (modo_ _id , modo_mode_id),
-	   constraint  _ _fk foreign key (modo_ _id) 
-	   	      references  mente (  _id )on delete cascade
-	   constraint modo_mode_fk foreign key (modo_mode_id) 
-	      references modellelement (mode_id)   on delete cascade
-	      )
-     
-
+		  CREATE TABLE MODELELEM_DOKU 
+		  				      (
+		  				       MODO_ID integer primary key autoincrement,
+		  				       MODO_DOKU_ID NUMERIC (10) NOT NULL , 
+		  				       MODO_MODE_ID NUMERIC (10) NOT NULL,
+		  					   CONSTRAINT MODO_UN UNIQUE (MODO_DOKU_ID , MODO_MODE_ID),
+		  					   CONSTRAINT MODO_DOKU_FK FOREIGN KEY (MODO_DOKU_ID) 
+		  					   				      REFERENCES DOKUMENTE ( DOKU_ID )ON DELETE CASCADE
+		  				  CONSTRAINT MODO_MODE_FK FOREIGN KEY (MODO_MODE_ID) 
+		  				      REFERENCES MODELLELEMENT (MODE_ID)   ON DELETE CASCADE
+		  			      )
           create table tabl_enti_maps 
            (
             tema_id integer primary key autoincrement , 
