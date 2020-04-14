@@ -807,7 +807,7 @@ def printflagline(pheaders,pvalues):
 #printcontentinfo
 
 
-def printcontentinfo(pheaders,pvalues):
+def printcontentinfo(ptitle,pheaders,pvalues):
     infohead = """
           <!-- The inside div eliminates the 'jumping' animation. -->
                             <h2>{}</h2>
@@ -828,7 +828,7 @@ def printcontentinfo(pheaders,pvalues):
                     </table>
                 </div>
             </div>"""
-    fhtml.write(infohead.format(transl('Informationen')))
+    fhtml.write(infohead.format(ptitle))
     fhtml.write(trstart)
     for h in pheaders:
         fhtml.write(techheadline.format(h))
@@ -1173,7 +1173,7 @@ def printcontententi(plist):
         """print entity Info"""
         infovalues = (nvl(e[8]), nvl(href(ref=web_sql.entiAnker(e[6]),anz=e[5])), nvl(list2href(p_list=e[7],ptype='ENTI'))
                       ,entidiag(pentiid=enti_id),nvl(e[3]) + ', ' + nvl(e[4]))
-        printcontentinfo(pheaders=infoheaders,pvalues=infovalues)
+        printcontentinfo(ptitle=transl('Informationen'),pheaders=infoheaders,pvalues=infovalues)
 
         printattrlist(pentiid=enti_id)
         printentikeys(pentiid=enti_id)
@@ -1213,7 +1213,7 @@ def printcontentattr(plist):
 
         infovalues = (nvl(a[12],''),href(ref=web_sql.wrtbAnker(a[3]),anz=a[23]), anzDatentyp(a[4])
                             ,nvl(a[13],''),re.sub(r'^, $','',nvl(a[14]) + ', ' + nvl(a[15])))
-        printcontentinfo(pheaders=infoheaders,pvalues=infovalues)
+        printcontentinfo(ptitle=transl('Informationen'),pheaders=infoheaders,pvalues=infovalues)
 
         flagvalues = (bool2icon(a[5]), bool2icon(a[11]), bool2icon(a[6]), bool2icon(a[7])
                     , bool2icon(a[8]), bool2icon(a[9]), bool2icon(a[10]))
@@ -1337,26 +1337,26 @@ def printcontentwrtb(plist):
         if (w.wrtb_typ in ('TEXT','LOV')):
             infoheaders = (transl('Datentyp'), transl('Max. Länge'), transl('Syntaxregel'), transl('geändert'))
             infovalues = (nvl(anzDatentyp(w.wrtb_typ)),nvl(w.wrtb_text_maxlng),nvl(w.wrtb_text_syntaxregel),nvl(w.wrtb_uc)+','+nvl(w.wrtb_dc))
-        elif (wrtb_typ == 'BIN'):
+        elif (w.wrtb_typ == 'BIN'):
             infoheaders = (transl('Datentyp'), transl('Inhaltstyp'), transl('Format'), transl('geändert'))
             infovalues = (nvl(anzDatentyp(w.wrtb_typ)),anzinhalttyp(nvl(w.wrtb_bin_inhalttyp)), nvl(w.wrtb_bin_spfo_id),nvl(w.wrtb_uc)+','+nvl(w.wrtb_dc))
-        elif (wrtb_typ == 'GRP'):
+        elif (w.wrtb_typ == 'GRP'):
             infoheaders = (transl('Datentyp'), transl('geändert'))
             infovalues = (anzDatentyp(w.wrtb_typ),nvl(w.wrtb_uc)+','+nvl(w.wrtb_dc))
-        elif (wrtb_typ == 'NUM'):
+        elif (w.wrtb_typ == 'NUM'):
             infoheaders = (transl('Datentyp'), transl('Vorkommast.'), transl('Nachkommast.')
                            , transl('Rundungseinh.'), transl('Einheit'), transl('Min. Wert'), transl('Max. Wwert')
                            , transl('geändert'))
             infovalues = (nvl(anzDatentyp(w.wrtb_typ)),nvl(w.wrtb_num_vorkstellen),nvl(w.wrtb_num_nachkstellen),nvl(w.wrtb_num_rundng_einh),nvl(w.wrtb_num_pheh_id)
-                          ,nvl(w.wrtb_num_min_wert),nvl(w.wrtb_num_max_wert)
+                          ,nvl(w.wrtb_num_minwert),nvl(w.wrtb_num_maxwert)
                           ,nvl(w.wrtb_uc)+','+nvl(w.wrtb_dc))
-        elif (wrtb_typ == 'ZPKT'):
+        elif (w.wrtb_typ == 'ZPKT'):
             infoheaders = (transl('Datentyp'), transl('Min. Wert'), transl('Max. Wwert'), transl('Granularität')
                            , transl('geändert'))
             infovalues = (nvl(anzDatentyp(w.wrtb_typ)),nvl(w.wrtb_zpkt_minwert),nvl(w.wrtb_zpkt_maxwert),anzgranul(nvl(w.wrtb_zpkt_granularitäet)), nvl(w.wrtb_uc)+','+nvl(w.wrtb_dc))
         else: infoheaders,infovalues = None,None
         #fi
-        if infoheaders is not None: printcontentinfo(pheaders=infoheaders, pvalues=infovalues)
+        if infoheaders is not None: printcontentinfo(ptitle=transl('Informationen'),pheaders=infoheaders, pvalues=infovalues)
 
         if (w.wrtb_typ == 'LOV'):
             printwertelist(p_wrtbid=w.wrtb_id)
@@ -1412,7 +1412,7 @@ def printcontentdoku(plist):
 
         infovalues = (nvl(doc.doku_format), nvl(doc.doku_referenz), '' if parent is None else href(ref=parent.webanker().anker(), anz=nvl(parent.doku_name))
                 , kinder)
-        printcontentinfo(pheaders=infoheaders,pvalues=infovalues)
+        printcontentinfo(ptitle=transl('Informationen'),pheaders=infoheaders,pvalues=infovalues)
 
         printreflist(pelemid=doku_id,pelemtype='DOKU')
 

@@ -31,6 +31,55 @@ def printmapping(ptablid):
                      )
 #printmapping
 
+def printcollist(ptabld):
+    colhead = """             <h2>{}</h2>
+                        <div id="container1">
+                            <div class="table-responsive">
+                   <table class="table borderless">
+                                            <tbody>
+                                        <tr>
+                                            <th class="attribute">{}</th>
+                                            <th class="attribute">{}</th>
+                                            <th>{}</th>
+                                            <th class="thAlgn">{}</th>
+                                            <th class="thAlgn">{}</th>
+                                            <th class="thAlgn">{}</th>
+                                            <th class="thAlgn">{}</th>
+                                            <th class="thAlgn">{}</th>
+                                            <th class="thAlgn">{}</th>
+                                            <th class="thAlgn">{}</th>
+                                        </tr>"""
+    colfoot = """              
+                                </tbody>
+                            </table>
+                            </div>
+                                </div>
+    """
+
+    colline = """                                    <tr>
+                                                <td class="attribute"><a href="#{}">{}</a></td>
+                                                <td class="attribute"><a href="#{}">{}</a></td>
+                                                <td>{}</td>
+                                                <td class="symbol"><img {}></td>
+                                                <td class="symbol"><img {}></td>
+                                                <td class="symbol"><img {}></td>
+                                                <td class="symbol"><img {}></td>
+                                                <td class="symbol"><img {}></td>
+                                                <td class="symbol"><img {}></td>
+                                                <td class="symbol"><img {}></td>
+                                            </tr>
+    """
+    clist = [1]#web_sql.attrlist(p_lang=reportLang(), p_entiid=ptabld)
+    if (len(clist)==0):
+        return
+    printHTML.fhtml.write(printHTML.starttable(ptitel='Columns', pueberschriften=[transl('Name'),transl('Wertebereich'), transl('Datentyp')]
+            , pheadlevel=2))
+    for a in clist:
+        printHTML.fhtml.write(printHTML.writetableline(pwerte=[('x','y','z')], plineid=None))
+    #for
+    printHTML.fhtml.write(printHTML.endtable())
+#printcollist
+
 def printcontenttable(plist):
     printHTML.printcontentstart ('tables')
     infoheaders = (transl('auf Diagramm(en)'),transl('geändert'))
@@ -42,15 +91,13 @@ def printcontenttable(plist):
                     ,pdescr=printHTML.lf2htmlbr(nvl(t.tabl_beschr))
                     ,plbc=lbc)
         infovalues = ('', nvl(t.tabl_um) + ', ' + nvl(t.tabl_dm))
-        printHTML.printcontentinfo(pheaders=infoheaders,pvalues=infovalues)
+        printHTML.printcontentinfo(ptitle=transl('Informationen'),pheaders=infoheaders,pvalues=infovalues)
 
         printHTML.printreflist(pelemid=t.tabl_id,pelemtype='TABL')
         printHTML.printUDP(p_meltname=t.prefix().upper(), p_id=t.tabl_id)
         printmapping(ptablid=t.tabl_id)
+        printcollist(ptabld=t.tabl_id)
         """
-        printattrlist(pentiid=enti_id)
-        printentikeys(pentiid=enti_id)
-        printentirela(pentiid=enti_id)
         printmapping(pentiid=enti_id)
 """
         printHTML.printcontentend(lbc)
