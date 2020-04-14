@@ -2,7 +2,29 @@
 <Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="99286FF6-773B-448B-CCCE-F86CC0FE7509" name="Aufgabe">
 <createdBy>stb</createdBy>
 <createdTime>2018-05-03 09:28:55 UTC</createdTime>
-<comment>Zuteilung zu Standorten: jeder CEO darf seinen Standort neu für eine Aufgabe aufnehmen.&lt;br/&gt;Nur der Prozessowner darf für alle Standorte Zuteilungen verwalten.</comment>
+<comment><![CDATA[Zuteilung zu Standorten: jeder CEO darf seinen Standort neu für eine Aufgabe aufnehmen.
+Nur der Prozessowner darf für alle Standorte Zuteilungen verwalten.
+
+Beispiele:
+23_101 	Personal Integrity
+14_101 Enter account balance by the end of the month (last working day before 14:00 CET).]]></comment>
+<notes><![CDATA[[EN_ENTI_COMMENT[
+*DE* Zuteilung zu Standorten: jeder CEO darf seinen Standort neu für eine Aufgabe aufnehmen.
+Nur der Prozessowner darf für alle Standorte Zuteilungen verwalten.
+
+Beispiele:
+23_101 	Personal Integrity
+14_101 Enter account balance by the end of the month (last working day before 14:00 CET).
+]EN_ENTI_COMMENT]
+[DE_ENTI_COMMENT[
+Zuteilung zu Standorten: jeder CEO darf seinen Standort neu für eine Aufgabe aufnehmen.
+Nur der Prozessowner darf für alle Standorte Zuteilungen verwalten.
+
+Beispiele:
+23_101 	Personal Integrity
+14_101 Enter account balance by the end of the month (last working day before 14:00 CET).
+]DE_ENTI_COMMENT]
+]]></notes>
 <ownerDesignName>IM_TQMI_FYAYC</ownerDesignName>
 <engineerTo>
 <item key="0FBE62B5-EA6E-67EB-52B2-298C9D3D71C1" value="true"/>
@@ -17,31 +39,60 @@
 <normalForm>Third</normalForm>
 <synonym>Task</synonym>
 <createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="DE_ENTI_NAME" value="Aufgabe"/>
+<property name="DE_ENTI_SYNONYM" value="Task"/>
+<property name="EN_ENTI_NAME" value="*DE* Aufgabe"/>
+<property name="EN_ENTI_SYNONYM" value="*DE* Task"/>
+</propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Nr" id="72FDD75D-5057-02AC-DE5F-93729CB91D09">
 <createdBy>stb</createdBy>
 <createdTime>2018-05-03 12:07:38 UTC</createdTime>
-<comment>Eindeutige Nr, dient der Sortierung in der Ablaufreihenfolge</comment>
+<comment><![CDATA[Eindeutige Nr, dient der Sortierung in der Ablaufreihenfolge]]></comment>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+*DE* Eindeutige Nr, dient der Sortierung in der Ablaufreihenfolge
+]EN_ATTR_COMMENT]
+[DE_ATTR_COMMENT[
+Eindeutige Nr, dient der Sortierung in der Ablaufreihenfolge
+]DE_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>IM_TQMI_FYAYC</ownerDesignName>
 <engineerTo>
 <item key="0FBE62B5-EA6E-67EB-52B2-298C9D3D71C1" value="true"/>
 </engineerTo>
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Nr"/>
+<property name="EN_ATTR_NAME" value="*DE* Nr"/>
+</propertyMap>
 </Attribute>
 <Attribute name="Beschreibung" id="993BDBD9-4CB6-CEFA-DFBF-0B5CA7B02975">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-08 11:43:20 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>IM_TQMI_FYAYC</ownerDesignName>
 <engineerTo>
 <item key="0FBE62B5-EA6E-67EB-52B2-298C9D3D71C1" value="true"/>
 </engineerTo>
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Beschreibung"/>
+<property name="EN_ATTR_NAME" value="*DE* Beschreibung"/>
+</propertyMap>
 </Attribute>
 <Attribute name="Kurzbeschreibung" id="798873C5-A678-7AC6-9174-4BA178017F15">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-08 12:10:44 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>IM_TQMI_FYAYC</ownerDesignName>
 <engineerTo>
 <item key="0FBE62B5-EA6E-67EB-52B2-298C9D3D71C1" value="true"/>
@@ -49,6 +100,10 @@
 <nullsAllowed>true</nullsAllowed>
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Kurzbeschreibung"/>
+<property name="EN_ATTR_NAME" value="*DE* Kurzbeschreibung"/>
+</propertyMap>
 </Attribute>
 </attributes>
 </Entity>
