@@ -7,13 +7,57 @@ from IM_OBJECTS import *
 
 globalschnid:int = None
 
+def do1column(plfnr, pcolxml, ptablid):
+    #print(plfnr,ptablid,pcolxml)
+    """
+<Column name="MARQUE" id="A1AE8C02-F47A-47C5-8AB7-11F0F616DB99">
+<createdBy>stb</createdBy>
+<createdTime>2020-01-17 14:39:32 UTC</createdTime>
+<comment><![CDATA[Name of the marketing brand of the reference. Is equal, by default, to MANUFACTURER]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="108.0"/>
+</propertyMap>
+</Column>
+"""
+    scha = Schnittstelleattr()
+    scha.scha_column_name = transferModel.findField(pcolxml,'name')
+    scha.scha_odm_guid = transferModel.findField(pcolxml,'id')
+    scha.scha_format = None
+    scha.scha_beschr = transferModel.findText(pcolxml,'comment')
+    scha.scha_tabl_id = ptablid
+    scha.scha_uc = transferModel.findText(pcolxml,'createdBy')
+    scha.scha_dc = transferModel.findText(pcolxml, 'createdTime')
+    scha.scha_fremdsystem_id = None
+    daty_odm = transferModel.findText(pcolxml, 'logicalDatatype')
+    if (daty_odm is not None and daty_odm != ''):
+        scha.scha_daty_id = Datatype().getbyguid(daty_odm).daty_id
+    else:
+        scha.scha_daty_id = Wertebereich().getunknown().wrtb_id
+    scha.insert()
+
+    lmodeId=dbInserts.insertModeScha(scha.scha_id)
+    transferModel.updateUDP(pmodeid=lmodeId, pobj=pcolxml)
+    documents = transferModel.getdokuref(pelem= pcolxml)
+    ModelelemDoku.insertdokuref(pdocguidlist=documents, pmodeid=lmodeId)
+
+#do1column
+
 def do1table(pfilename):
     global globalschnid
     tablexml = ET.parse(pfilename).getroot()
     #print (tablexml.get('name'),tablexml.get('id'),sep=' | ')
     tabl = tabelle.Tabelle()
-    tabl.tabl_name = tablexml.get("name")
-    tabl.tabl_odm_guid = tablexml.get("id")
+    tabl.tabl_name = transferModel.findField(tablexml,"name")
+    tabl.tabl_odm_guid = transferModel.findField(tablexml,"id")
     tabl.tabl_uc = transferModel.findText(tablexml,'createdBy')
     tabl.tabl_dc = transferModel.findText(tablexml,'createdTime')
     tabl.tabl_schn_id = globalschnid
@@ -25,6 +69,14 @@ def do1table(pfilename):
 
     documents = transferModel.getdokuref(tablexml)
     ModelelemDoku.insertdokuref(pdocguidlist=documents, pmodeid=lmodeId)
+
+    """<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">"""
+    cols= tablexml.find('columns')
+    if cols is not None:
+        for idx,col in enumerate(cols,start=1):
+            do1column(plfnr=idx, pcolxml=col, ptablid=tabl.tabl_id)
+        #rof
+    #fi
 
     transferModel.updateUDP(pmodeid=lmodeId, pobj=tablexml)
 
@@ -40,8 +92,8 @@ def do1schnittstelle(pfilename):
     global globalschnid
     schnxml = ET.parse(pfilename).getroot()
     schn=schnittstelle.Schnittstelle()
-    schn.schn_name = schnxml.get('name')
-    schn.schn_odm_guid = schnxml.get('id')
+    schn.schn_name = transferModel.findField(schnxml,'name')
+    schn.schn_odm_guid = transferModel.findField(schnxml,'id')
     schn.schn_uc = transferModel.findText(schnxml,'createdBy')
     schn.schn_dc = transferModel.findText(schnxml,'createdTime')
     schn.insert()

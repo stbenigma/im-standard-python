@@ -6,12 +6,14 @@ from .baseobject import Baseobject
 class Dokument(Baseobject):
     _tablename:str = 'dokumente'
     _prefix:str = 'doku'
-    _columnlist:list = [ 'doku_id' ,'doku_name', 'doku_format', 'doku_referenz', 'doku_doku_id', 'doku_odm_guid', 'doku_parent_odm_guid' ]
+    _columnlist:list = [ 'doku_id' ,'doku_name', 'doku_format', 'doku_referenz', 'doku_doku_id',
+                         'doku_odm_guid', 'doku_parent_odm_guid' ]
 
     def __init__(self):
         super().__init__(tablename=self._tablename, prefix=self._prefix
                         ,columnlist = self._columnlist)
-        ?? hier die Kinder und Eltern lesen, falls der ID gesetzt ist (= gelesen!)
+        self._parent = None
+        self._children = None
 
     @staticmethod
     def createtable():
@@ -32,6 +34,24 @@ class Dokument(Baseobject):
 				      )
 				"""
                             )
+
+    def getparent(self):
+        if (self.doku_id is not None) and (self.doku_doku_id is not None)\
+                and (self._parent is None):
+            #es hat ID und es hat einen Parentid aber noch nicht gelesen
+            self._parent = Dokument.getbyid(self.doku_doku_id)
+        #fi
+        return self._parent
+    #getparent
+
+    def getchildren(self):
+        if (self.getid() is not None) and (self._children is None):
+            #
+            self._children =  Dokument.select(pwhere= 'doku_doku_id = {}'.format(self.doku_id)
+                                              ,porderby= 'doku_name')
+        #fi
+        return self._children
+    #getchildren
 
     def webanker(self):
         return super().webanker()
@@ -86,32 +106,20 @@ class Dokument(Baseobject):
             if d[0] == 'ENTI': pass #o = Entitaet().getbyid(d[1])
             elif d[0] == 'TABL': o = Tabelle().getbyid(d[2])
             elif d[0] == 'SCHN': o = Schnittstelle().getbyid(d[3])
-            elif d[0] == 'SCHA': pass #o = Schnittstelle().getbyid(d[3])
-            elif d[0] == 'ATTR': pass #o = Schnittstelle().getbyid(d[3])
-            elif d[0] == 'WRTB': pass #o = Schnittstelle().getbyid(d[3])
-            elif d[0] == 'BEZI': pass #o = Schnittstelle().getbyid(d[3])
-            elif d[0] == 'ORGE': pass #o = Schnittstelle().getbyid(d[3])
-            elif d[0] == 'BURU': pass #o = Schnittstelle().getbyid(d[3])
+            elif d[0] == 'SCHA': pass #o = SchnittstelleAttribut().getbyid(d[4])
+            elif d[0] == 'ATTR': pass #o = Attribut().getbyid(d[5])
+            elif d[0] == 'WRTB': pass #o = Wertebereich().getbyid(d[6])
+            elif d[0] == 'BEZI': pass #o = Beziehung().getbyid(d[7])
+            elif d[0] == 'ORGE': pass #o = Organisationseinheit().getbyid(d[8])
+            elif d[0] == 'BURU': pass #o = BusinessRule().getbyid(d[9])
             retval.append((d[0],o))
         #for
-    return retval
+        return retval
     #dokureference
 
     @staticmethod
     def dokulist():
-        docs = Dokument.select(porderby='doku_name'):
-
-        data = dbDML.select("""
-            select child.DOKU_ID,child.DOKU_NAME,child.DOKU_FORMAT,child.DOKU_REFERENZ
-             ,parent.DOKU_ID parent_id ,parent.doku_name parent_name
-             ,(select group_concat(grandchild.doku_id||':'||grandchild.doku_name, '|') kinder
-                from DOKUMENTE grandchild
-                where grandchild.DOKU_DOKU_ID = child.DOKU_ID) kinder
-            from DOKUMENTE child
-            left join dokumente parent on parent.DOKU_ID = child.DOKU_DOKU_ID
-            order by upper(child.doku_name)
-            """.format(p_lang))
-        return data
+        return Dokument.select(porderby='doku_name')
     #dokulist
 
     """def xxdokureferenced(pbeziid=None,pentiid=None,pattrid=None):

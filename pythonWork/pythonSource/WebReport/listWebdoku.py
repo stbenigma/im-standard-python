@@ -102,7 +102,7 @@ def printlistofcontent():
     printHTML.printlistofcontenthead()
     printHTML.printlistofcontentelement(pname='Entitäten', plist=web_sql.namelist(ptype='ENTI', plang=printHTML.reportLang()))
     printHTML.printlistofcontentelement(pname='Attribute', plist=web_sql.namelist(ptype='ATTR', plang=printHTML.reportLang()))
-    printHTML.printlistofcontentelement(pname='Domänen', plist=web_sql.namelist(ptype='WRTB', plang=printHTML.reportLang()))
+    printHTML.printlistofcontentelement(pname='Wertebereiche', plist=web_sql.namelist(ptype='WRTB', plang=printHTML.reportLang()))
     printHTML.printlistofcontentelement(pname='Dokumente', plist=web_sql.namelist(ptype='DOKU', plang=printHTML.reportLang()))
     printHTML.printlistofcontentelement(pname='Attribut-Mapping', plist=web_sql.namelist(ptype='UDP', plang=printHTML.reportLang()))
     printHTML.printlistofcontentelement(pname='Diagramme', plist=web_sql.namelist(ptype='DIAG', plang=printHTML.reportLang()))
@@ -115,8 +115,8 @@ def printcontent(pfirma,ptitel):
     printHTML.printcontenthead(pfirma=pfirma,ptitel=ptitel)
     printHTML.printcontententi(plist=web_sql.entilist(p_lang=printHTML.reportLang()))
     printHTML.printcontentattr(plist=web_sql.attrlist(p_lang=printHTML.reportLang()))
-    printHTML.printcontentwrtb(p_list=web_sql.wrtblist(p_lang=printHTML.reportLang()))
-    printHTML.printcontentdoku(plist=web_sql.dokulist(p_lang=printHTML.reportLang()))
+    printHTML.printcontentwrtb(plist=web_sql.wrtblist())
+    printHTML.printcontentdoku(plist=web_sql.dokulist())
     printHTML.printcontentmapping(plist=web_sql.namelist(ptype='UDP', plang=printHTML.reportLang()))
     printdiagHTML.printcontentdiag(plist=web_sql.diaglist(), plang=printHTML.reportLang(), ptitel=ptitel)
     printHTML.printcontentfoot()
@@ -149,7 +149,7 @@ def printhtmlsysfile(pfirma, pfilename, ptitel, pinfo, plogofilename,pschnid):
 #printhtmlsysfile
 
 def listwebmain(plang):
-    dbParam.liesDefaultLang()
+    dbParam.liesdefaultlang()
     printHTML.createlib()
     if (plang is None):
         langs = projekt.projektlangs().split(',')
@@ -162,21 +162,25 @@ def listwebmain(plang):
     #fi
 
     #erstelle die Liste der HTML Files für HREF's
-    printHTML.htmlfilelist[0] = printHTML.webFileName + '_' + parameters.dbDefaultLang() + '.html'
-    schnlist = schnittstelle.indexlist()
+    schnlist = Schnittstelle.indexlist()
     for s in schnlist: printHTML.htmlfilelist[s[2]] = s[0]+ '.html'
 
     for lang in langs:
         printHTML.reportLang(lang.lower())
-        print ("create web-files for language {}".format(printHTML.reportLang()))
+        langfilename = printHTML.webFileName + '_' + printHTML.reportLang() + '.html'
+        print ("create web-files for language {} in file {}".format(printHTML.reportLang(),langfilename))
+        printHTML.htmlfilelist[0] = langfilename
         printhtmlfile(pfirma="foryouandyourcustomers"
                       , ptitel=parameters.odmModelName() + ' ({})'.format(printHTML.reportLang())
                       , pinfo="{}".format(datetime.now().strftime("%Y-%m-%d, %H:%M"))
                       , plogofilename=parameters.logoFileName()
-                      , pfilename=  printHTML.webFileName + '_' + printHTML.reportLang() + '.html'
+                      , pfilename=  langfilename
                       )
     # for
     printHTML.reportLang(parameters.dbDefaultLang())
+    #backjumps from relational webpage goes to default-lang-model
+    printHTML.htmlfilelist[0] = printHTML.webFileName + '_' + parameters.dbDefaultLang() + '.html'
+
     for s in schnlist:
         schn_name = s[0]
         schn_id = s[2]
@@ -199,6 +203,8 @@ def main(pdirec, plang):
     print ("listWebdoku",parameters.odmBaseDirec(),parameters.odmModelName())
 
     dbConnect.openDB(p_filepath= parameters.dbFilePath());
+    deflang = Sprache.liesdeflangiso2()
+    if deflang is not None : parameters.dbDefaultLang(deflang)
     listwebmain(plang=plang)
 
     dbConnect.myDbConn.close()

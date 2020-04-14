@@ -108,6 +108,21 @@
 <colAssociation fkAssociation="68C6DA62-3ACB-0B7A-C06A-5242DC4027A3" referredColumn="AA1C8108-16B6-83B3-65DA-F1F697F75488"/>
 </associations>
 </Column>
+<Column name="SCHA_WRTB_ID" id="DC642341-ED25-977B-F3DC-825A869C1D09">
+<createdBy>stb</createdBy>
+<createdTime>2020-04-11 16:42:37 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="B6E98880-7179-752A-2072-C974A4D4E1E4" referredColumn="E9756F49-315F-1F97-E181-07756840736D"/>
+</associations>
+</Column>
 <Column name="SCHA_UC" id="DAD7E67A-ED90-A26E-3225-131E1C513A54">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
@@ -206,6 +221,16 @@
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
 <colUsage columnID="A7D68383-E414-2F6E-36E2-F16342D9C9C6"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="EEF3F6B0-A0F9-BBE4-6C0A-A9563059EC0D" name="SCHA_WRTB_FK">
+<createdBy>stb</createdBy>
+<createdTime>2020-04-11 16:42:37 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="DC642341-ED25-977B-F3DC-825A869C1D09"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>

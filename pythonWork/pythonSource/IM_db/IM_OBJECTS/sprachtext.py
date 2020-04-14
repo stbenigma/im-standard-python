@@ -1,6 +1,5 @@
 from IM_DB import dbDML
 from .baseobject import Baseobject
-from .sprache import spraLookup
 
 class Sprachtext(Baseobject):
     _tablename:str ='sprachtexte'
@@ -42,10 +41,17 @@ CREATE TABLE sprachtexte(
     def select(pwhere=None,porderby=None):
         return Baseobject.select(pclass=Sprachtext
                                 ,pwhere=pwhere,porderby=porderby)
-#Sprachtext
+    @staticmethod
+    def sptxistleer():
+        data = dbDML.select("""select count(*) from main.sprachtexte""")
+        return data[0][0] == 0
 
-def fuelledefaulttexte(plang):
-    dbDML.exec("""insert into sprachtexte 
+    @staticmethod
+    def filldefaulttext(plang):
+        """füllt sämtliche übersetzten Elemente in die Sprachtexte der Defaultsprache ein.
+           D.h. alle übersetzten Attribute haben mind. in der Defaultsprache einen  Eintrag.
+        """
+        dbDML.exec("""insert into sprachtexte 
                     (sptx_attrname,  sptx_text
                    ,sptx_mode_id, sptx_uc, sptx_dc
                    , sptx_spra_id)
@@ -60,12 +66,11 @@ def fuelledefaulttexte(plang):
                     from modellelement
                     join entitaeten on enti_id = mode_enti_id                    
                     union all
-                   select 'ENTI_SYNONYM' attrname, group_concat(syno_name,', ') text 
-                        ,enti_id,enti_uc,enti_dc
+                   select 'ENTI_SYNONYM' attrname, syno_name text 
+                        ,mode_id,enti_uc,enti_dc
                     from modellelement
                     join synonyme on syno_id = mode_syno_id
-                    join entitaeten on enti_id = syno_enti_id
-                    group by enti_id,enti_uc,enti_dc                    
+                    join entitaeten on enti_id  = syno_enti_id
                     union all
                    select 'ATTR_COMMENT' attrname, attr_beschr text 
                         ,mode_id,attr_uc,attr_dc
@@ -85,47 +90,56 @@ def fuelledefaulttexte(plang):
                    select 'RELA_TEXT_TO' attrname, bezi_assoc_zu_von text 
                         ,mode_id,bezi_uc,bezi_dc
                     from modellelement
-                    join beziehungen on bezi_id = mode_bezi_id 
+                    join beziehungen on bezi_id = mode_bezi_id
+                    union all 
+                   select 'WRTB_NAME' attrname, wrtb_name text 
+                        ,mode_id,wrtb_uc,wrtb_dc
+                    from modellelement
+                    join wertebereiche on wrtb_id = mode_wrtb_id 
                 )
-                cross join (select {})
-                where text is not null
+                cross join (select {} as spra_id)
                    """.format(plang))
-#fuelledefaulttexte
+    #filldefaulttext
 
-def insertSprachtexte(ptexte, pmodeid, plang):
-#    sprachtexte = [[vonText,creby,crety,'TEXT_FROM']
-#                  ,[zuText,creby,crety,'TEXT_TO']]
+    @staticmethod
+    def insertsprachtexte(pudpthema):
+        """übertrage alle Sprachtexte (ausser in der Default Sprache aus UDP in die Sprachtexte
+        """
+        lsql = """insert  into sprachtexte (sptx_attrname, sptx_text, sptx_spra_id, sptx_mode_id, sptx_uc, sptx_dc)
+            select attrname,bdwe_wert,spra_id,bdwe_mode_id,bdwe_uc,bdwe_dc
+            from (select bdwe_wert,
+                      bdwe_mode_id,
+                      lower(substr(bdeg_name, 1, 2)) spracheiso2,
+                      substr(bdeg_name, 4)           attrname
+                ,bdwe_uc,bdwe_dc
+               from benudef_wert
+                join benudef_eigenschaft on bdeg_id = bdwe_bdeg_id
+            where bdeg_thema = '{}'
+            )
+        join sprachen on spra_iso_code2 = spracheiso2
+        where spra_ist_modellsprache = 'FALSE'""".format(pudpthema)
+        dbDML.exec(lsql)
+    # insertsprachTexte
 
-    p_defaultlang = dbParam.dbDefaultLang if p_defaultlang is None else p_defaultlang
-    values = [v for v in p_texte]
-    # (values)
-    lsql= """insert into sprachtexte 
-                    (sptx_attrname,  sptx_text
-                   ,sptx_mode_id, sptx_uc, sptx_dc
-                   , sptx_spra_id)
-                  select  attrname, case  when defaultlang = spra_iso_code2 then '' 
-                                    else '*'|| defaultlang ||'* ' end
-                                    || ? text
-                    ,modeid, ? uc,? dc, spra_id
-                  from sprachen
-                  cross join (select '{}' modeid, '{}' defaultlang,  ? attrname)
-                  where not exists 
-                    (select 1 from sprachtexte
-                        where sptx_spra_id = spra_id
-                         and sptx_mode_id = modeid
-                         and  sptx_attrname = attrname
-                    ) 
-                """.format( p_modeid,p_defaultlang)
-    dbDML.execmany(lsql, values)
+    @staticmethod
+    def getsprachtexte(pattrname,pmodeid):
+        lsql = """with sptx as 
+            (select sptx_spra_id,sptx_text
+             from sprachtexte
+            where sptx_attrname = '{}'
+            and sptx_mode_id = {}
+            )
+        select spra_iso_code2,
+            case when sptx.sptx_text is not NULL
+                then sptx.sptx_text
+                else sptxdef.sptx_text
+                end text
+        from sprachen
+        left join sptx as sptx on sptx.sptx_spra_id = spra_id
+        left join sptx as sptxdef on sptxdef.sptx_spra_id = spra_spra_id""".format(pattrname,pmodeid if pmodeid is not None else 'NULL')
+        data = dbDML.select(lsql)
+        retval = {d[0]:d[1] for d in data}
+        return retval
+    #getsprachtexte
+#Sprachtext
 
-# die Originalnamen werden überschrieben
-    l_sql = """ update sprachtexte
-                set sptx_text = ?
-                   ,sptx_um = ?
-                   ,sptx_dm = ?
-                where sptx_spra_id = {}
-                and sptx_attrname = ?
-                and sptx_mode_id = {}
-                """.format(sprache.spraLookup(p_defaultlang),p_modeid)
-    dbDML.execmany(l_sql, values)
-#insertSprachTexte

@@ -158,6 +158,7 @@ translNameEN = {'Anzeige': 'Display'
                 ,'Vorkommast.': 'digits before period'
                 ,'Wert': 'Value'
                 ,'Wertebereich': 'Domain'
+                ,'Wertebereichs': 'Domains'
                 ,'Werteliste': 'List of values'
                 ,'wiederholt': 'repeated'
                 ,'Woche': 'week'
@@ -253,7 +254,8 @@ translNameFR = {"Anzeige":"Affichage"
 ,"Verwendet von":"Utilisé pour"
 ,"Vorkommastellen":"Position avant la décimale"
 ,"Wert":"Valeur"
-,"Wertebereich":"Domaine de valeurs"
+,"Wertebereich":"Domaine des valeurs"
+,"Wertebereiche":"Domaines des valeurs"
 ,"Werteliste":"Liste des Valeur"
 ,"wiederholt":"répété"
 ,"Woche":"Semaine"
@@ -1320,87 +1322,95 @@ def printwertelist(p_wrtbid):
     #fhtml.write(endtable())
 #printwertelist
 
-def printcontentwrtb(p_list):
+def printcontentwrtb(plist):
     printcontentstart ('domains')
-    for w in p_list:
-        wrtb_id = w[0]
-        wrtb_name = w[1]
-        wrtb_descr = w[4]
-        wrtb_typ = w[5]
+    for w in plist:
+        wrtb_name = w.wrtb_name[reportLang()]
 
         lbc = str(newbarcounter())
         printcontent(ptype=transl('Wertebereich')
-                    ,panker=web_sql.wrtbAnker(wrtb_id) #id
+                    ,panker=w.webanker().anker()
                     ,pname=wrtb_name
-                    ,pdescr=lf2htmlbr(nvl(wrtb_descr))
+                    ,pdescr=lf2htmlbr(nvl(w.wrtb_beschr))
                     ,plbc=lbc)
 
-        if (wrtb_typ in ('TEXT','LOV')):
+        if (w.wrtb_typ in ('TEXT','LOV')):
             infoheaders = (transl('Datentyp'), transl('Max. Länge'), transl('Syntaxregel'), transl('geändert'))
-            infovalues = (nvl(anzDatentyp(wrtb_typ)),nvl(w[9]),nvl(w[10]),nvl(w[22])+','+nvl(w[21]))
+            infovalues = (nvl(anzDatentyp(w.wrtb_typ)),nvl(w.wrtb_text_maxlng),nvl(w.wrtb_text_syntaxregel),nvl(w.wrtb_uc)+','+nvl(w.wrtb_dc))
         elif (wrtb_typ == 'BIN'):
             infoheaders = (transl('Datentyp'), transl('Inhaltstyp'), transl('Format'), transl('geändert'))
-            infovalues = (nvl(anzDatentyp(wrtb_typ)),anzinhalttyp(nvl(w[17])), nvl(w[18]),nvl(w[22])+','+nvl(w[21]))
+            infovalues = (nvl(anzDatentyp(w.wrtb_typ)),anzinhalttyp(nvl(w.wrtb_bin_inhalttyp)), nvl(w.wrtb_bin_spfo_id),nvl(w.wrtb_uc)+','+nvl(w.wrtb_dc))
         elif (wrtb_typ == 'GRP'):
             infoheaders = (transl('Datentyp'), transl('geändert'))
-            infovalues = (anzDatentyp(wrtb_typ),nvl(w[22])+','+nvl(w[21]))
+            infovalues = (anzDatentyp(w.wrtb_typ),nvl(w.wrtb_uc)+','+nvl(w.wrtb_dc))
         elif (wrtb_typ == 'NUM'):
             infoheaders = (transl('Datentyp'), transl('Vorkommast.'), transl('Nachkommast.')
                            , transl('Rundungseinh.'), transl('Einheit'), transl('Min. Wert'), transl('Max. Wwert')
                            , transl('geändert'))
-            infovalues = (nvl(anzDatentyp(wrtb_typ)),nvl(w[13]),nvl(w[14]),nvl(w[15]),nvl(w[16]),nvl(w[12]),nvl(w[11])
-                          ,nvl(w[22])+','+nvl(w[21]))
+            infovalues = (nvl(anzDatentyp(w.wrtb_typ)),nvl(w.wrtb_num_vorkstellen),nvl(w.wrtb_num_nachkstellen),nvl(w.wrtb_num_rundng_einh),nvl(w.wrtb_num_pheh_id)
+                          ,nvl(w.wrtb_num_min_wert),nvl(w.wrtb_num_max_wert)
+                          ,nvl(w.wrtb_uc)+','+nvl(w.wrtb_dc))
         elif (wrtb_typ == 'ZPKT'):
             infoheaders = (transl('Datentyp'), transl('Min. Wert'), transl('Max. Wwert'), transl('Granularität')
                            , transl('geändert'))
-            infovalues = (nvl(anzDatentyp(wrtb_typ)),nvl(w[6]),nvl(w[7]),anzgranul(nvl(w[8])), nvl(w[22]) + ',' + nvl(w[21]))
+            infovalues = (nvl(anzDatentyp(w.wrtb_typ)),nvl(w.wrtb_zpkt_minwert),nvl(w.wrtb_zpkt_maxwert),anzgranul(nvl(w.wrtb_zpkt_granularitäet)), nvl(w.wrtb_uc)+','+nvl(w.wrtb_dc))
         else: infoheaders,infovalues = None,None
         #fi
         if infoheaders is not None: printcontentinfo(pheaders=infoheaders, pvalues=infovalues)
 
-        if (wrtb_typ == 'LOV'):
-            printwertelist(p_wrtbid=wrtb_id)
+        if (w.wrtb_typ == 'LOV'):
+            printwertelist(p_wrtbid=w.wrtb_id)
 
-        if (wrtb_typ == 'GRP'):
-            printwrtbmembers(pwrtbid=wrtb_id)
+        if (w.wrtb_typ == 'GRP'):
+            printwrtbmembers(pwrtbid=w.wrtb_id)
 
-        printwrtbattrlist(pwrtbid=wrtb_id,wrtgruppe=False)
-        printwrtbattrlist(pwrtbid=wrtb_id,wrtgruppe=True)
+        printwrtbattrlist(pwrtbid=w.wrtb_id,wrtgruppe=False)
+        printwrtbattrlist(pwrtbid=w.wrtb_id,wrtgruppe=True)
 
         printcontentend(lbc)    #for
 #printcontentwrtb
 
 def printcontentdoku(plist):
+    """
+    #            select child.DOKU_ID,child.DOKU_NAME,child.DOKU_FORMAT,child.DOKU_REFERENZ
+    #             ,parent.DOKU_ID parent_id ,parent.doku_name parent_name
+    #             ,(select group_concat(grandchild.doku_id||':'||grandchild.doku_name, '|') kinder
+    #                from DOKUMENTE grandchild
+    #                where grandchild.DOKU_DOKU_ID = child.DOKU_ID) kinder
+    #            from DOKUMENTE child
+    #            left join dokumente parent on parent.DOKU_ID = child.DOKU_DOKU_ID
+    #            order by upper(child.doku_name)
+    #            """
     printcontentstart ('documents')
     infoheaders = (transl('Format'), transl('Referenz'), transl('Vaterdokument')
                , transl('Unterdokumente'))
-    for d in plist:
+    for doc in plist:
         lbc = str(newbarcounter())
-        doku_id = d[0]
-        doku_name = d[1]
-        doku_format = d[2]
-        doku_referenz = d[3]
-        parent_id = d[4]
-        parent_name = d[5]
-        doku_kinder = d[6]
+        doku_id = doc.doku_id
+        parent = doc.getparent()
+        children = doc.getchildren()
         printcontent(ptype=transl('Dokument')
-                    ,panker=web_sql.dokuAnker(doku_id) #id
-                    ,pname=doku_name
+                    ,panker=doc.webanker().anker()
+                    ,pname=doc.doku_name
                     ,pdescr=""
                     ,plbc=lbc)
 
         """DOKU_ID,DOKU_NAME,DOKU_FORMAT,DOKU_REFERENZ
             ,parent_id, parent_name, kinder"""
-        kinder = ''
-        if doku_kinder is not None:
-            #print(kinder, kinder.split('|'), sep=' | ')
-            for k in doku_kinder.split('|'):
-                k1 = k.split(':')
-                kinder += href(ref=web_sql.dokuAnker(k1[0]),anz=k1[1]) + ', '
-            #for
-            kinder = kinder.rstrip(', ')
+#        kinder = ''
+#        if children is not None:
+#            for child in children:
+#                kinder += href(ref=child.webanker(),anz=child.doku_name) + ', '
+#            #for
+#            kinder = kinder.rstrip(', ')
+#        #fi
+        if children is None:
+            kinder = ''
+        else:
+            kinder = ', '.join(href(ref=child.webanker().anker(),anz=child.doku_name) for child in children)
         #fi
-        infovalues = (nvl(doku_format), nvl(doku_referenz), href(ref=web_sql.dokuAnker(parent_id), anz=nvl(parent_name))
+
+        infovalues = (nvl(doc.doku_format), nvl(doc.doku_referenz), '' if parent is None else href(ref=parent.webanker().anker(), anz=nvl(parent.doku_name))
                 , kinder)
         printcontentinfo(pheaders=infoheaders,pvalues=infovalues)
 

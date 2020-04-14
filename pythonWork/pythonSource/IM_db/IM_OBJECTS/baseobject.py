@@ -47,12 +47,16 @@ class   Baseobject:
     def placehoderstring(self):
         return ''.join('?,' for col in self._columnlist).rstrip(',')
 
+    def getid(self):
+        return self.__dict__[self._idcolname]
+
     def insert(self):
         lsql = """insert into {} ({}) values ({})
            """.format(self._tablename, Baseobject.columnsliststring(self._columnlist), self.placehoderstring())
         id = dbDML.insert(lsql, self.totuple())
         self.__dict__[self._idcolname] = id #autocolumns zurücklesen
     #insert
+
 
     def getbyid(self,pid):
         data = self.select(pwhere="{}={}".format(self._idcolname, pid))
@@ -65,16 +69,20 @@ class   Baseobject:
         return self
     # getbyid
 
-    def getbyguid(self,pguid):
-        data = self.select(pwhere="{}='{}'".format(self._guidcolname, pguid))
+    def getbyuk(self,pcolname,pukvalue):
+        data = self.select(pwhere="{}='{}'".format(pcolname, pukvalue))
         if (len(data) > 1):
-            raise Exception('{}: nonunique GUID={}'.format(self._tablename, pid))
+            raise Exception('{}: nonunique {}={}'.format(self._tablename, pcolname,pukvalue))
         elif (len(data) == 0):
             self.__emptyclass()
         else:
             self._fromarray(data[0].toarray())
         # fi
         return self
+    # getbyuk
+
+    def getbyguid(self,pguid):
+        return self.getbyuk(pcolname=self._guidcolname, pukvalue=pguid)
     # getbyguid
 
     def prefix(self):

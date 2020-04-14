@@ -72,6 +72,7 @@ def printcontenthead(pfirma,ptitel,pschnid):
         <div class="top-container">
             <p3 {} 
             </p3>
+            <br>{}
         """
     contentheadend = """          
         </div>
@@ -81,13 +82,21 @@ def printcontenthead(pfirma,ptitel,pschnid):
             des <p2 class="IM">Relationalen Modells {}</p2> von {}. 
             Diese Seite wurde von Software von <p2 class="fyayc">foryouandyourcustomers</p2> 
             erstellt.""".format(ptitel,pfirma)
+        ref = """Referenzen in Klammern sind indirekte Referenzen:<br>
+                 Dokumentenreferenz bei Tabellen: Dokumente, die mit der Schnittstelle (relationales Modell) verknüpft sind<br>
+                 Tabellenreferenz bei Tabellen: Indirekte Verknüpfung einer Tabelle über eine Entität zu einer anderen Tabelle<br>
+                 Columnreferenz: Indirekte Verknüpfung einer Column über ein Attribut zu einer anderen Column"""
     else:
         f = """class="descr">This website contains the complete content 
             of the <p2 class="IM">Relational model {}</p2> from {}. 
             This page was created with software from <p2 class="fyayc">foryouandyourcustomers</p2>."""\
             .format(ptitel,pfirma)
+        ref = """References in brackets are indirect references:<br>
+                 (Document reference) for tables: Documents that are linked to the interface (relational model)<br>
+                 (Table reference) for tables: Indirect linking of a table via an entity to another table<br>
+                 (Column reference): Indirect linking of a column to another column via an attribute"""
     #fi
-    printHTML.fhtml.write(contenthead.format(f))
+    printHTML.fhtml.write(contenthead.format(f,ref))
     printHTML.printreflist(pelemid=pschnid, pelemtype='SCHN')
     printHTML.fhtml.write(contentheadend)
 #printcontenthead

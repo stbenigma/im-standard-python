@@ -26,54 +26,17 @@ def insertSynonym(p_data):
     return dbDML.insert(lsql, p_data)
 # end insertSynonym
 
-
-def  insertWrtb(wrtb):
-    #print ('InsertWrtb',wrtb)
-    lsql="""
-    insert into wertebereiche 
-       (wrtb_business_rule  ,wrtb_name  ,wrtb_beschr    
-       ,wrtb_typ,        wrtb_zpkt_minwert   ,wrtb_zpkt_maxwert          
-       ,wrtb_zpkt_granularitaet,        wrtb_text_maxlng    ,wrtb_text_syntaxregel
-       ,        wrtb_num_maxwert        ,wrtb_num_minwert           ,wrtb_num_vorkstellen       
-        ,wrtb_num_nachkstellen          ,wrtb_num_rundng_einh,        wrtb_num_pheh_id  
-          ,wrtb_bin_inhalttyp,        wrtb_bin_spfo_id    ,wrtb_uc  
-            ,wrtb_dc        ,wrtb_odm_guid ,wrtb_datatype_ref)
-        values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) 
-    """
-    return dbDML.insert(lsql,wrtb)
-
-#end insertWrtb
-def insertwrtbgruppe(wbgr):
-    lsql="""
-    insert into wertebereichgruppen 
-       (wbgr_wrtb_id_gruppe, wbgr_name,wbgr_beschr
-       ,WBGR_WRTB_ID_MEMBER,wbgr_type_ref,WBGR_UC
-       ,WBGR_DC,WBGR_UM, wbgr_dm)
-        values (?,?,?,?,?,?,?,?,?) 
-    """
-    return dbDML.insert(lsql,wbgr)
-
-#insertwrtbgruppe
-
-def  insertLovWrtb(pName):
+def  insertLovWrtb(pName,pherkunft = 'DOM'):
     return insertWrtb(wrtb=(None,pName, 'einfache Werteliste '
-                                ,'LOV',None,None
+                                ,'LOV',pherkunft,None,None
                                 ,None,None,None
                                 ,None,None,None
                                 ,None,None,None
                                 ,None,None,'--'
-                                ,date.today(),None,None))
+                                ,date.today(),None,None,None))
 #end insertLovWrtb
 
-def insertVorgabewert(pvgwt):
-    lsql="""
-    insert into vorgabewerte (vgwt_wert ,    vgwt_sortrhfg,
-        vgwt_wrtb_id,   vgwt_anzeige   ,    vgwt_beschr
-        ,vgwt_uc, vgwt_dc) 
-        values (?,?,?,?,?,?,?)
-    """
-    return dbDML.insert(lsql,pvgwt)
-#end insertVorgabewert
+
 def insertdiagrammtyp(p_data):
     lsql="""
     insert into diagrammtypen(
@@ -81,7 +44,7 @@ def insertdiagrammtyp(p_data):
         values (?,?,?,?,?)
     """
     return dbDML.insert(lsql,p_data)
-#end insertVorgabewert
+#insertdiagrammtyp
 
 def insertAttribute(pattr):
     lsql="""
@@ -190,6 +153,8 @@ def insertModeSchn(Id):
     return insertmodellelement(pData=(None, None, None, None, None, None, None, None, None, Id, dbLookup.meltLookup('SCHN'), '--', date.today()))
 def insertModeTabl(Id):
     return insertmodellelement(pData=(None, None, None, None, None, None, None, Id, None, None, dbLookup.meltLookup('TABL'), '--', date.today()))
+def insertModeWrtb(Id):
+    return insertmodellelement(pData=(Id, None, None, None, None, None, None, None, None, None, dbLookup.meltLookup('WRTB'), '--', date.today()))
 #insertModebezi
 def insertmeltdiat(p_Data):
     lsql= """insert into

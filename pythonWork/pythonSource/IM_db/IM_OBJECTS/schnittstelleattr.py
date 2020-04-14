@@ -20,23 +20,19 @@ class Schnittstelleattr(Baseobject):
     (
         scha_id             integer
             primary key autoincrement,
-        scha_column_name    varchar(60) not null
-            constraint scha_un
-                unique,
+        scha_column_name    varchar(60) not null,
         scha_format         varchar(200),
         scha_fremdsystem_id varchar(100),
         scha_beschr         varchar(4000),
-        scha_tabl_id        integer     not null
-            constraint scha_tabl_fk
-                references tabellen,
-        scha_daty_id        integer     not null
-            constraint scha_daty_fk
-                references datatypes (daty_id),
+        scha_tabl_id        integer     not null,
+        scha_daty_id        integer     not null,
         scha_odm_guid       varchar(36),
         scha_uc             varchar(30) not null,
         scha_dc             varchar(30) not null,
         scha_um             varchar(30),
-        scha_dm             varchar(30)
+        scha_dm             varchar(30),
+        constraint scha_daty_fk FOREIGN KEY (scha_daty_id) references datatypes (daty_id),
+        constraint scha_uk unique (scha_tabl_id,scha_column_name)        
         )
         """)
 

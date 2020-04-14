@@ -14,5 +14,5 @@ from .dbDML import select
 from .dbErstelleTables import erstelleInfra
 from .dbLookup import *
 from .dbInserts import *
-from .dbParam import liesDefaultLang
+from .dbParam import liesdefaultlang
 from .parameters import *

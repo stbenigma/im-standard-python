@@ -9,3 +9,5 @@ from .sprache import Sprache
 from .sprachtext import Sprachtext
 from .tabelle import Tabelle
 from .tablentimap import TablEntiMap
+from .dokument import Dokument, ModelelemDoku
+from .wertebereich import Wertebereich, Wertebereichgruppe, Vorgabewert

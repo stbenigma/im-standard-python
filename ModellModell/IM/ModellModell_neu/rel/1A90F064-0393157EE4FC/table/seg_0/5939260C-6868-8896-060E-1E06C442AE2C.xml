@@ -144,7 +144,7 @@ Beleuchtungsmodell ]]></comment>
 </dependentColumn>
 <dependentColumn class="oracle.dbtools.crest.model.design.relational.Column$DependentColumnDescriptor">
 <columnID>D341A36B-8912-BB09-93BF-FAD8A593D306</columnID>
-<dependAsMandatory>true</dependAsMandatory>
+<dependAsMandatory>false</dependAsMandatory>
 <dependOnValue>true</dependOnValue>
 <discriminatorValue>TEXT</discriminatorValue>
 <id>7F7EABDE-F7EB-5AB1-C2E4-CE2286973DDF</id>
@@ -178,6 +178,23 @@ Beleuchtungsmodell ]]></comment>
 <id>BEA7B8E3-E00D-5D07-94D5-AC1DE50489AD</id>
 </dependentColumn>
 </dependentColumns>
+</Column>
+<Column name="WRTB_HERKUNFT" id="4DF0C6E6-B501-EC13-D1D3-0531CABD851C">
+<createdBy>stb</createdBy>
+<createdTime>2020-04-11 15:29:18 UTC</createdTime>
+<comment><![CDATA[DOMainds (definiert), DERived aus Attribut, Column]]></comment>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<dataTypeSize>6 CHAR</dataTypeSize>
+<listOfValues>
+<valueDef value="DER" description="Derived"/>
+<valueDef value="DOM" description="Domaina"/>
+</listOfValues>
+<ownDataTypeParameters>6 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
 </Column>
 <Column name="WRTB_ZPKT_MINWERT" id="29A7F1B6-C1F7-A297-AE25-1FACC54BE946">
 <createdBy>stb</createdBy>
@@ -344,6 +361,21 @@ Beleuchtungsmodell ]]></comment>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
+<Column name="WRTB_SCHN_ID" id="849D0063-2E18-9CB8-CD9F-EE88B1A81F17">
+<createdBy>stb</createdBy>
+<createdTime>2020-04-11 15:30:33 UTC</createdTime>
+<comment><![CDATA[Verwendung in externer Schnittstelle, NULL -> Informationsmodell]]></comment>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="84B7B7BD-A5CE-BB82-BDC0-53CB54A71205" referredColumn="65C00228-99F0-589A-1661-9C55B64918EA"/>
+</associations>
+</Column>
 <Column name="WRTB_UC" id="E5F11E24-ED85-97E7-08D4-823ADD644EA1">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 15:43:05 UTC</createdTime>
@@ -421,6 +453,16 @@ Beleuchtungsmodell ]]></comment>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
 <colUsage columnID="CA265241-6F23-3093-0776-DCE67EEE3B67"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="2E2EAC42-204A-4056-C2C8-71D885FC3A4E" name="WRTB_SCHN_FK">
+<createdBy>stb</createdBy>
+<createdTime>2020-04-11 15:31:05 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="849D0063-2E18-9CB8-CD9F-EE88B1A81F17"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>

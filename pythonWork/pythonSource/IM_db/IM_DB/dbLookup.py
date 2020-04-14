@@ -36,11 +36,6 @@ def dokuID (pguid,withnotfound=False):
     return doLookup(pguid,'select doku_id from DOKUMENTE where DOKU_ODM_GUID ="{}"',withnotfound)
 #dokuId
 
-def wrtbLookup (pguid):
-    return doLookup(pguid,'select wrtb_id from wertebereiche where wrtb_odm_guid = "{}"'
-                    ,withnotfound=True)
-#wrtbLookup
-
 def meltLookup(p_kurzname):
     return doLookup(p_kurzname, 'select melt_id from modellelem_typ where melt_kurzname = "{}"'
                     ,withnotfound=True)
@@ -64,10 +59,6 @@ def bdegLookup(pname):
         return doLookup(pname, 'select bdeg_id from benudef_eigenschaft where bdeg_name = "{}"'
                         ,withnotfound=True)
 # MeltLookup
-
-def wrtbLookupByName(pname):
-    return doLookup(pname,'select wrtb_id from wertebereiche where upper(wrtb_name) = upper("{}")' )
-#wrtbLookup
 
 def modeid(p_entiid=None,p_attrid=None,p_wrtbid=None,p_synoid=None,p_buruid=None,p_beziid=None,p_orgeid=None):
     mid = dbDML.select("""select mode_id

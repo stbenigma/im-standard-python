@@ -13,31 +13,6 @@ from mystring import nvl
 
 GUIDPATTERN:str = '[A-Z0-9-]{20,45}'
 
-class Wertebereich:
-    def __init__(self, pname, pid):
-        self.wrtb_name = pname
-        self.wrtb_business_rule = None
-        self.wrtb_beschr = None
-        self.wrtb_typ = 'TEXT'
-        self.wrtb_zpkt_minwert = None
-        self.wrtb_zpkt_maxwert = None
-        self.wrtb_zpkt_granularitaet = None
-        self.wrtb_text_maxlng = None
-        self.wrtb_text_syntaxregel = None
-        self.wrtb_num_maxwert = None
-        self.wrtb_num_minwert = None
-        self.wrtb_num_vorkstellen = None
-        self.wrtb_num_nachkstellen = None
-        self.wrtb_num_rundng_einh = None
-        self.wrtb_num_pheh = None
-        self.wrtb_bin_inhalttyp = None
-        self.wrtb_bin_spfo_id = None
-        self.wrtb_uc = None
-        self.wrtb_dc = None
-        self.wrtb_odm_guid = pid
-        self.wrtb_datatype_ref = None
-    #end __init__
-#end Wertebereich
 class color:
     def __init__(self, foregcolor, backgcolor,fontcolor,fontname,fontsize,fontstyle):
         self.backgcolor = backgcolor
@@ -99,22 +74,13 @@ def basisType(dt):
 #basisType
 
 def transferTypes():
-    """rudimentäre Version der Typenübernahme
-        müsste noch mit Systemen verknüpft werden.
-    """
-
-
     types = ET.parse(parameters.odmIMDirec() + parameters.odmKonfDirec() + parameters.odmTypesFile())
     root = types.getroot()
     for typ in root.findall('logicaltype'):
-        #print(typ.get('name'),typ.get('objectid'))
-        #print(typ.find('mapping').text) #das erste genügt für den Moment
-
-        #dbInserts.insertDataTypes(pdaty=(typ.get('name'),basisType(typ.find('mapping').text),typ.get('objectid')))
-        daty = datatype.Datatype()
-        daty.daty_name = typ.get('name')
-        daty.daty_grundtyp = basisType(typ.find('mapping').text)
-        daty.daty_odm_guid = typ.get('objectid')
+        daty = Datatype()
+        daty.daty_name = findField(typ,'name')
+        daty.daty_grundtyp = basisType(findText(typ,'mapping'))
+        daty.daty_odm_guid = findField(typ,'objectid')
         daty.insert()
     #endfor
 #transferTypes
@@ -124,50 +90,54 @@ def do1structtype(filename):
     structdomains = ET.parse(filename)
     structdom = structdomains.getroot()
     if (findField(structdom,"class") != "oracle.dbtools.crest.model.design.datatypes.StructuredType"): return
-    #print (structdom.get("name"))
-    wrtb = Wertebereich(pname=findField(structdom,("name")),pid=findField(structdom,"id"))
+    #print (findField(structdom,"name"))
+    wrtb = Wertebereich()
+    wrtb.wrtb_name = findField(structdom,"name")
+    wrtb.wrtb_odm_guid = findField(structdom,"id")
     wrtb.wrtb_uc = findText(structdom,"createdBy")
     wrtb.wrtb_dc = findText(structdom,"createdTime")
     wrtb.wrtb_typ = 'GRP'
-    wrtbid = dbInserts.insertWrtb(wrtb=(
-        wrtb.wrtb_business_rule,wrtb.wrtb_name ,        wrtb.wrtb_beschr,
-        wrtb.wrtb_typ,        wrtb.wrtb_zpkt_minwert,        wrtb.wrtb_zpkt_maxwert,
-        wrtb.wrtb_zpkt_granularitaet,        wrtb.wrtb_text_maxlng,
-        wrtb.wrtb_text_syntaxregel,        wrtb.wrtb_num_maxwert,
-        wrtb.wrtb_num_minwert,        wrtb.wrtb_num_vorkstellen,
-        wrtb.wrtb_num_nachkstellen,        wrtb.wrtb_num_rundng_einh,        wrtb.wrtb_num_pheh,
-        wrtb.wrtb_bin_inhalttyp,        wrtb.wrtb_bin_spfo_id,        wrtb.wrtb_uc,
-        wrtb.wrtb_dc,        wrtb.wrtb_odm_guid,        wrtb.wrtb_datatype_ref))
+    wrtb.wrtb_herkunft = 'DOM'
+    wrtb.insert()
 
     elements = structdom.findall("attributes/Attribute")
     for el in elements:
         #print (wrtb.wrtb_name,findField(el,"name"),findText(el,'type'))
-        reftype = findText(el,'type')
-        elwrtb = dbLookup.wrtbLookup(pguid=reftype)
-        if elwrtb is None:
+        wbgr = Wertebereichgruppe()
+        wbgr.wbgr_type_ref = findText(el,'type')
+        wbgr.wbgr_wrtb_id_gruppe = wrtb.wrtb_id
+        wbgr.wbgr_name = findField(el,"name")
+        wbgr.wbgr_beschr = findText(el,"comment")
+        wbgr.wbgr_uc = findText(el,"createdBy")
+        wbgr.wbgr_dc = findText(el,"createdTime")
+        elwrtbid = Wertebereich().getbyguid(reftypeguid).wrtb_id
+        if elwrtbid is None:
             #nimm vorläufig unknown, da mein Typ evtl. noch nicht da ist.
-            elwrtb = dbLookup.wrtbLookupByName(pname='Unknown')
-        dbInserts.insertwrtbgruppe(wbgr=(wrtbid, findField(el,"name")
-            ,findText(el,"comment"),elwrtb,reftype,findText(el,"createdBy")
-            ,findText(el,"createdTime"),None,None))
+            elwrtbid = Wertebereich().getunknown().wrtb_id
+        #fi
+        wbgr.wbgr_wrtb_id_member = elwrtbid
+        wbgr.insert()
     #for
 #do1structtype
+
 def transferDomains():
     #lösche die Domains
     #print(parameters.odmDomainsFilePath())
     domains = ET.parse(parameters.odmDomainsFilePath())
     root = domains.getroot()
     for dom in root.findall('domains/Domain'):
-        wrtb = Wertebereich(pname=findField(dom, ("name")), pid=findField(dom, "id"))
+        wrtb = Wertebereich()
+        wrtb.wrtb_name = findField(dom, "name")
+        wrtb.wrtb_odm_guid = findField(dom, "id")
         #print ("Domain name={} id={}" .format (wrtb.wrtb_name,wrtb.wrtb_odm_guid));
         #print (dom.find('createdBy').text,dom.find('createdTime').text)
         wrtb.wrtb_uc = findText(dom,'createdBy')
         wrtb.wrtb_dc = findText(dom,'createdTime')
         wrtb.wrtb_beschr = findText(dom,'comment')
-        logDT = dom.find('logicalDatatype')
-        wrtb.wrtb_datatype_ref = logDT.text if logDT is not None else None
-        dt = Datatype().getbyguid(wrtb.wrtb_datatype_ref)
-        wrtb.wrtb_typ = dt.daty_grundtyp
+        wrtb.wrtb_datatype_ref = findText(dom,'logicalDatatype')
+        wrtb.wrtb_typ = Datatype().getbyguid(wrtb.wrtb_datatype_ref).daty_grundtyp
+        wrtb.wrtb_herkunft = 'DOM'
+
 
         if wrtb.wrtb_typ is None:
             wrtb.wrtb_typ = 'TEXT'
@@ -178,8 +148,8 @@ def transferDomains():
             wrtb.wrtb_typ = 'LOV'
             lovs = dict()
             for lovval in lov:
-                #                print (lovval.get('value'),lovval.get('description'),lovval.attrib)
-                lovs.update({lovval.get('value'): lovval.get('description')})
+                #                print (findField(lovval,'value'),findField(lovval,'description'),lovval.attrib)
+                lovs.update({findField(lovval,'value'): findField(lovval,'description')})
             # endfor
             # print (len(lovs))
         # endif
@@ -208,7 +178,7 @@ def transferDomains():
                 #print(constr.findall('*'))
                 impl = constr.find('implementationDef')
                 if not (impl is None):
-                    wrtb.wrtb_text_syntaxregel = impl.get('definition')
+                    wrtb.wrtb_text_syntaxregel = findField(impl,'definition')
         elif (wrtb.wrtb_typ =='ZPKT'):
             wrtb.wrtb_zpkt_minwert = range[0]
             wrtb.wrtb_zpkt_maxwert = range[1]
@@ -222,44 +192,26 @@ def transferDomains():
             wrtb.wrtb_num_pheh =  findText(dom,'unitOfMeasure')
         #endif
 
-        wrtbid = dbInserts.insertWrtb\
-        (wrtb=(
-        wrtb.wrtb_business_rule,wrtb.wrtb_name ,        wrtb.wrtb_beschr,
-        wrtb.wrtb_typ,        wrtb.wrtb_zpkt_minwert,        wrtb.wrtb_zpkt_maxwert,
-        wrtb.wrtb_zpkt_granularitaet,        wrtb.wrtb_text_maxlng,
-        wrtb.wrtb_text_syntaxregel,        wrtb.wrtb_num_maxwert,
-        wrtb.wrtb_num_minwert,        wrtb.wrtb_num_vorkstellen,
-        wrtb.wrtb_num_nachkstellen,        wrtb.wrtb_num_rundng_einh,        wrtb.wrtb_num_pheh,
-        wrtb.wrtb_bin_inhalttyp,        wrtb.wrtb_bin_spfo_id,        wrtb.wrtb_uc,
-        wrtb.wrtb_dc,        wrtb.wrtb_odm_guid,        wrtb.wrtb_datatype_ref))
-        #print("nach inset wertebereich id={}" .format(wrtbid))
+        wrtb.insert()
+        lmodeId = dbInserts.insertModeWrtb(wrtb.wrtb_id)
 
         if (lov is not None) & (lov != {}):
             for idx,key in enumerate(lovs.keys(),start=1):
-                #print ('{}: {} = {}' .format(idx,key,lovs[key]))
-                #vgwt_wert,  vgwt_sortrhfg, vgwt_wrtb_id, vgwt_anzeige, vgwt_beschr
-                dbInserts.insertVorgabewert(pvgwt=(key, idx, wrtbid, lovs[key], None
-                                                   ,wrtb.wrtb_uc, wrtb.wrtb_dc))
+                vgwt = Vorgabewert()
+                vgwt.vgwt_wert = key
+                vgwt.vgwt_wrtb_id = wrtb.wrtb_id
+                vgwt.vgwt_sortrhfg = idx
+                vgwt.vgwt_uc = wrtb.wrtb_uc
+                vgwt.vgwt_dc = wrtb.wrtb_dc
+                vgwt.vgwt_anzeige = lovs[key]
+                vgwt.insert()
             #end for
         #endif
 
     dosegfiles(pdirec=parameters.odmstructypesdir(),transferfiles=do1structtype)
 
     """update group domains a their types may now be available"""
-    ukwnid = dbLookup.wrtbLookupByName(pname='Unknown')
-    lsql= """select wbgr_id,wbgr_type_ref
-            from wertebereichgruppen
-    """
-    lupd= """update wertebereichgruppen
-            set wbgr_wrtb_id_member = ?
-            where wbgr_id = ?
-    """
-    wbgrs = dbDML.select(lsql)
-    for wbgr in wbgrs:
-        wrtbid = dbLookup.wrtbLookup(pguid=wbgr[1])
-        if wrtbid is None:
-            wrtbid = ukwnid
-        dbDML.exec(lupd,wrtbid,wbgr[0])
+    Wertebereichgruppe.updmembers()
 
 #end transferDomains
 
@@ -284,7 +236,7 @@ def toString(str,upper = False):
 #toString
 
 def transferentity(penti, pdiagid, puc, pdc):
-    entiodm = penti.get('oid')
+    entiodm = findField(penti,'oid')
     entiid = dbLookup.entiID(entiodm)
     hiddenelements = penti.find ("hiddenElements")
     if hiddenelements is not None:
@@ -339,10 +291,10 @@ def transferentity(penti, pdiagid, puc, pdc):
     #, eled_dm
 
     index = 0
-    entix=int(layout.get('x'))
-    entiy=int(layout.get('y'))
-    entiwidth=int (layout.get('width'))
-    entiheight=int(layout.get('height'))
+    entix=int(findField(layout,'x'))
+    entiy=int(findField(layout,'y'))
+    entiwidth=int (findField(layout,'width'))
+    entiheight=int(findField(layout,'height'))
     #if there are several copies on a diagramm, repeat the insert with new index und insert succeeds
     while True:
         row = (entix, entiy, entiwidth, entiheight
@@ -382,7 +334,7 @@ def transferentity(penti, pdiagid, puc, pdc):
 
 def transferdiaobj(pobjects, pdiagid, puc, pdc):
     for o in pobjects:
-        type = o.get('otype')
+        type = findField(o,'otype')
         if (type == 'Image'):
             pass
         elif (type == 'Entity'):
@@ -408,7 +360,7 @@ def connector(pidx,pmaxidx,psource,ptarget):
 #conmector
 def transferdiaconnect(pconnectors, pdiagid, puc, pdc):
     for c in pconnectors:
-        type = c.get('otype')
+        type = findField(c,'otype')
         if (type == 'Relation'):
             relaguid=findField(c,"oid")
             beziid = dbLookup.beziId(relaguid)
@@ -551,14 +503,14 @@ def do1diagramm(pfilename):
         print("Diagramm nicht lesbar: {}".format(pfilename))
         return
     dia = diagramme.getroot()
-    dianame = dia.get('name')
+    dianame = findField(dia,'name')
     if (dianame == 'Logical'):
         return
     #entcomm = findText(root,'comment')
     #creby = findText(root,'createdBy')
     #creti = findText(root,'createdTime')
     diatid = dbLookup.diatid(p_name='Entity')
-    #print(dia.get('name'), dia.get('id'))
+    #print(findField(dia,'name'), findField(dia,'id'))
     #diag_name,diag_diat_id,diag_uc,diag_dc,diag_um,diag_dm
     if (findText(dia,'showLegend') == 'true'):
         legende =dia.find("objectViews/OView[@otype='Legend']")
@@ -571,7 +523,7 @@ def do1diagramm(pfilename):
     #fi
     uc = findText(dia,'createdBy')
     dc = findText(dia,'createdTime')
-    row = (dianame, diatid,dia.get('id'),legendx,legendy, uc
+    row = (dianame, diatid,findField(dia,'id'),legendx,legendy, uc
            ,dc,findText(dia,'modifiedBy'),None)
     #print (row)
     diagid = dbInserts.insertdiagramm(p_data=row)
@@ -601,14 +553,15 @@ def transferdiagramme():
 #transferdiagramme
 
 def findeOderErstelleDom(pdomguid, pstructdomguid, ptypeguid, pattrname):
-    domId = None
+    dom = None
     if pdomguid is not None:
-        domId = dbLookup.wrtbLookup(pdomguid)
+        dom = Wertebereich().getbyguid(pdomguid)
     elif pstructdomguid is not None:
-        domId = dbLookup.wrtbLookup(pstructdomguid)
+        dom = Wertebereich().getbyguid(pstructdomguid)
     #
-    if domId is None: domId = dbLookup.wrtbLookupByName('Unknown')
-    return domId
+    if dom is None:
+        dom = Wertebereich().getbyname('Unknown')
+    return dom.wrtb_id
 #findeOderErstelleDom
 
 def do1Arc(fileName):
@@ -617,8 +570,8 @@ def do1Arc(fileName):
 
     #(arcs_name, arcs_enti_id, arcs_odm_guid
     # , arcs_uc, arcs_dc)
-    arcs_id = dbInserts.insertArc(parc=(arc.get("name"),dbLookup.entiID(arc.find('entity').text)\
-                              ,arc.get("id"),arc.find('createdBy').text,arc.find('createdTime').text))
+    arcs_id = dbInserts.insertArc(parc=(findField(arc,"name"),dbLookup.entiID(findText(arc,'entity'))\
+                              ,findField(arc,"id"),findText(arc,'createdBy'),findText(arc,'createdTime')))
     """map all relations to this arc"""
     relations = arc.findall('relations/relationID')
     relids = ''
@@ -628,8 +581,8 @@ def do1Arc(fileName):
 #    relids = ''.join("'{}',".format(r for r in relations))
     #print (relids)
     #DEBUG Arc 2x auf Beziehung
-    if arc.get("name") in ('xxArc_9','xxArc_11'):
-        print (arc.get("id"),arc.get("name"),arc.find('entity').text)
+    if findField(arc,"name") in ('xxArc_9','xxArc_11'):
+        print (findField(arc,"id"),findField(arc,"name"),findText(arc,'entity'))
         res = dbDML.select("""select case earc.enti_odm_guid
                             when evon.enti_odm_guid
                             then arcs_id else null end von_arcs_id
@@ -661,7 +614,7 @@ def do1Arc(fileName):
                     )
                 where bezi_odm_guid in ({})
                 """.format(arcs_id,relids))
-        #print(arc.get("name"),rel.text)
+        #print(findField(arc,"name"),rel.text)
 
 #do1Arc
 
@@ -680,9 +633,9 @@ def updateUDP(pmodeid, pobj):
     if (props is not None):
         for prop in props:
             try:
-                bdegId = dbLookup.bdegLookup(prop.get('name'))
-                # print('      ', prop.get('name'), prop.get('value'), bdegId)
-                udps.append((prop.get('value'), pmodeid, bdegId))
+                bdegId = dbLookup.bdegLookup(findField(prop,'name'))
+                # print('      ', findField(prop,'name'), findField(prop,'value'), bdegId)
+                udps.append((findField(prop,'value'), pmodeid, bdegId))
             except:
                 """dynamische Properties lassen wir aus"""
                 pass
@@ -696,7 +649,7 @@ def updateUDP(pmodeid, pobj):
         for i, p in enumerate(prop):
             #print (i,p.group(0),'\n1:',p.group(1),'\n2:',p.group(2),'\n3:',p.group(3))
             bdegId = dbLookup.bdegLookup(p.group(1))
-            # print('      ', prop.get('name'), prop.get('value'), bdegId)
+            # print('      ', findField(prop,'name'), findField(prop,'value'), bdegId)
             udps.append((p.group(3).rstrip(), pmodeid, bdegId))
         #for
     # fi
@@ -777,8 +730,8 @@ def fillKeys(p_enti, p_entiid):
             if (kr is not None):
                 keyrefs = kr.split(',')
                 idx += 1
-                #print(idx, enti.get('name'), key.get('id'), enti.get('id'), keyrefs)
-                keys[key.get('id')] = (p_entiid, idx, key.get('name'), findText(key, 'createdBy'), findText(key, 'createdTime')
+                #print(idx, findField(enti,'name'), findField(key,'id'), findField(enti,'id'), keyrefs)
+                keys[findField(key,'id')] = (p_entiid, idx, findField(key,'name'), findText(key, 'createdBy'), findText(key, 'createdTime')
                                        , keyrefs)
             #fi
         # rof
@@ -851,13 +804,13 @@ def do1Entity(fileName):
     tree = ET.parse(fileName)
     entixml = tree.getroot()
     if (findField(entixml,"class") != "oracle.dbtools.crest.model.design.logical.Entity"): return
-    entname = entixml.get("name")
+    entname = findField(entixml,"name")
     entcomm = findText(entixml,'comment')
     creby = findText(entixml,'createdBy')
     creti = findText(entixml,'createdTime')
     enti_category_guid = findText(entixml,'typeID')
     documents = getdokuref(pelem= entixml)
-    row=(entixml.get('id'),None,None\
+    row=(findField(entixml,'id'),None,None\
         ,entname,entcomm,None\
         ,None,None,None\
         ,None,creby,creti
@@ -889,7 +842,7 @@ def do1Entity(fileName):
     if attrs is not None:
         for idx,attr in enumerate(attrs,start=1):
         #alle Attribute
-            #print(attr.get('name'),attr.get('id'))
+            #print(findField(attr,'name'),findField(attr,'id'))
             do1Attribute(plfnr=idx, pattrxml=attr, pentiId=entiId)
         #rof
     #fi
@@ -983,7 +936,7 @@ def beziType(srcCard, targCard, srcOpt,targOpt,arcId = None):
 def do1Relation(fileName):
     tree = ET.parse(fileName)
     relaxml = tree.getroot()
-    relname=relaxml.get('name')
+    relname=findField(relaxml,'name')
     optSrc = findText(relaxml, 'optionalSource')
     optTarg = findText(relaxml, 'optionalTarget')
     cardSrc = findText(relaxml, 'sourceCardinality')
@@ -1012,10 +965,10 @@ def do1Relation(fileName):
              ,strNegBool(optSrc), 'FALSE'
              , dbLookup.entiID(targetentiguid), zuText
              ,strNegBool(optTarg),'FALSE'
-             ,relaxml.get('id'),creby,creti,relname
+             ,findField(relaxml,'id'),creby,creti,relname
             ,sourceentiguid,targetentiguid
              ]
-            #root.get('name')\           ,findText(root,'comment')\
+            #findField(root,'name')\           ,findText(root,'comment')\
            #           ,findText(root,'transferable')           ,findText(root,'deleteRule')\
     except  sqlite3.Error as e:
         if (e.__str__() == 'No Data Found'):
@@ -1051,7 +1004,7 @@ def do1Relation(fileName):
     if attrs is not None:
         for idx,attr in enumerate(attrs,start=1):
             #alle Attribute
-            #print((attr.get('name'),attr.get('id')))
+            #print((findField(attr,'name'),findField(attr,'id')))
             do1Attribute(plfnr=idx, pattrxml=attr, pbeziId=beziId)
         #endfor
     #fi
@@ -1092,8 +1045,8 @@ def do1UDPFile(pudpThema,pfileName):
     lgroups = {'':'-'}
     for groups in root.findall('udp_groups'):
         for child in groups:
-            #print(child.get('name'))
-            lgroups[child.get('id')] = child.get('name')
+            #print(findField(child,'name'))
+            lgroups[findField(child,'id')] = findField(child,'name')
         #for
     #for
 
@@ -1101,13 +1054,13 @@ def do1UDPFile(pudpThema,pfileName):
     #print (props)
     propgroups=[]
     for prop in props.findall('property'):
-        group = prop.get('group_id')
-        #print (prop.get('name'))
-        #print (prop.get('name'),prop.get('dispalay_name'),lgroups[prop.get('group_id')],prop.get('default_value'),findText(prop,'description'))
+        group = findField(prop,'group_id')
+        #print (findField(prop,'name'))
+        #print (findField(prop,'name'),findField(prop,'dispalay_name'),lgroups[findField(prop,'group_id')],findField(prop,'default_value'),findText(prop,'description'))
         #bdeg_thema, bdeg_gruppe, bdeg_name, bdeg_default_value
         #bdeg_beschreibung, bdeg_optional, bdeg_wrtb_id,
         #bdeg_uc, bdeg_dc
-        ludp = (lupdThema,lgroups[group],prop.get('name'),prop.get('default_value')
+        ludp = (lupdThema,lgroups[group],findField(prop,'name'),findField(prop,'default_value')
                 ,findText(prop,'description'),'FALSE',None
                 ,'--',date.today().__str__())
         udpId = dbInserts.insertUDP(pData=ludp)
@@ -1115,11 +1068,11 @@ def do1UDPFile(pudpThema,pfileName):
             #die speziellen Properties manuell
             if not (group in propgroups): #nur einmal eintragen je Sprache (Gruppe)
                 propgroups.append(group)
-                ludpid=dbInserts.insertUDP(pData=(lupdThema, lgroups[prop.get('group_id')]
+                ludpid=dbInserts.insertUDP(pData=(lupdThema, lgroups[findField(prop,'group_id')]
                     , lgroups[group]+'_ENTI_COMMENT', None
                     , None, 'FALSE', None, '--', date.today().__str__()))
                 dbInserts.insertModellElemTyp((dbLookup.meltLookup(type2melt('Entity')), ludpid))
-                ludpid=dbInserts.insertUDP(pData=(lupdThema, lgroups[prop.get('group_id')]
+                ludpid=dbInserts.insertUDP(pData=(lupdThema, lgroups[findField(prop,'group_id')]
                     , lgroups[group]+'_ATTR_COMMENT', None
                     , None, 'FALSE', None, '--', date.today().__str__()))
                 dbInserts.insertModellElemTyp((dbLookup.meltLookup(type2melt('Attribute')), ludpid))
@@ -1128,7 +1081,7 @@ def do1UDPFile(pudpThema,pfileName):
 
         obj = prop.findall('objects/object')
         for o in obj:
-            lMelt = re.split( "\.",o.get('class'))[6]
+            lMelt = re.split( "\.",findField(o,'class'))[6]
             #print( type2melt(lMelt))
             #print (lMelt)
             lmeltid=type2melt(lMelt)
@@ -1141,11 +1094,11 @@ def do1UDPFile(pudpThema,pfileName):
         #print (ludp)
         lov = prop.find('list_of_values')
         if (lov is not None):
-            wrtbId= dbInserts.insertLovWrtb(pName=lupdThema + '_' +prop.get('name'))
+            wrtbId= dbInserts.insertLovWrtb(pName=lupdThema + '_' +findField(prop,'name'))
 
             for val in lov:
-                #print (val.get('value'),val.get('default'))
-                dbInserts.insertVorgabewert(pvgwt=(val.get('value'),None,wrtbId,val.get('value'),None
+                #print (findField(val,'value'),findField(val,'default'))
+                dbInserts.insertVorgabewert(pvgwt=(findField(val,'value'),None,wrtbId,findField(val,'value'),None
                                                    ,'--',date.today().__str__()))
                   #vgwt_wert ,    vgwt_sortrhfg,
                 #          vgwt_wrtb_id,   vgwt_anzeige   ,    vgwt_beschr)
@@ -1213,10 +1166,9 @@ def insertBaseData():
         spra.spra_dc = date.today()
         spra.insert()
     if not deflang in languages: deflang = 'de'
-    dbDML.exec('update sprachen set spra_ist_modellsprache = "TRUE" where spra_iso_code2 = "{}"'.format(deflang))
-    dbDML.exec("""update sprachen  
-                set spra_spra_id = (select sp2.spra_id from sprachen sp2 where sp2.spra_ist_modellsprache = 'TRUE')
-                where spra_ist_modellsprache = "FALSE" """)
+    Sprache.setmodellang(pmodellang=deflang)
+    Sprache.setreplacementlang()
+
     fillMelt()
     entidiaid = dbInserts.insertdiagrammtyp(('Entity','stb',date.today(),None,None))
     #    medi_diat_id, medi_melt_id,medi_uc,mdei_dc,medi_um,mdei_dm
@@ -1238,9 +1190,9 @@ def loeschmodell():
     dbDML.delete("modellelement")
     dbDML.delete('diagramme')
     dbDML.delete("benudef_eigenschaft")
-    dbDML.delete("vorgabewerte")
-    dbDML.delete("wertebereichgruppen")
-    dbDML.delete("wertebereiche")
+    Vorgabewert.delete()
+    Wertebereichgruppe.delete()
+    Wertebereich.delete()
     dbDML.delete("speicherformate")
     dbDML.delete("linie_segment")
     dbDML.delete("beziehung_darst")
@@ -1296,33 +1248,10 @@ def loaddefaultcolors():
 #loaddefaultcolors
 
 def filllanguages():
-    translations = dbDML.select("""
-    select * from 
-    (select substr(bdeg_name,4)attrname, bdwe_wert
-            ,mode_id, bdwe_uc, bdwe_dc
-            ,substr(bdeg_name,1,2) sprache
-            ,bdeg_thema
-     from benudef_wert
-     join benudef_eigenschaft on bdeg_id = bdwe_bdeg_id
-     join modellelement on mode_id = bdwe_mode_id
-    )
-     where bdeg_thema = '{}'
-     and upper(sprache) != upper('{}')
-    """.format(parameters.odmUDPTranslFileName(),dbParam.dbDefaultLang))
-    for t in translations:
-        #print (t )
-        #sptx_attrname,  sptx_text,sptx_mode_id, sptx_uc, sptx_dc, sptx_spra_id
-        sptx = Sprachtext()
-        sptx.sptx_attrname = t[0]
-        sptx.sptx_text = t[1]
-        sptx.sptx_mode_id = t[2]
-        sptx.sptx_uc = t[3]
-        sptx.sptx_dc = t[4]
-        sptx.sptx_spra_id = sprache.spraLookup(t[5])
-        sptx.insert()
-    #for
+    Sprachtext.insertsprachtexte(pudpthema=parameters.odmUDPTranslFileName())
     #fill all elements in default language
-    sprachtext.fuelledefaulttexte(dbParam.dbDefaultLangID)
+    Sprachtext.filldefaulttext(dbParam.dbDefaultLangID)
+    Sprache.deleteunused()
 
 #filllanguages
 
@@ -1335,7 +1264,7 @@ def transferprojekt():
         sprachen = parameters.dbLanguages()
     else:
         defspra = re.search(r'currentLang=([A-Z]{2})',comm).group(1)
-        sprachen = re.search(r'languages=([A-Z,]*)',comm).group(1)
+        sprachen = re.search(r'languages=([A-Z,]*)', comm).group(1)
     #print (findField(root,'name'),comm,sprachen,defspra)
     proj = Projekt()
     proj.proj_name = findField(root,'name')
@@ -1345,17 +1274,16 @@ def transferprojekt():
     proj.proj_akt_sprache = defspra
     proj.insert()
 
-    if (defspra is not None
-        and dbParam.dbDefaultLang.lower() != defspra.lower()):
+    dl,dl2 = dbParam.dbDefaultLang,parameters.dbDefaultLang()
+    if defspra is not None:
+        defspra = defspra.lower()
         #setze die Defaultsprache aus dem Modell
-        if sprache.spraLookup(defspra.lower()) is None:
+        if Sprache.spraidlookup(piso=defspra) is None:
             raise Exception("Language '{}' does not exist".format(defspra))
-        dbDML.exec("""update sprachen set spra_ist_modellsprache = 'FALSE'
-                           where lower(spra_iso_code2)  = lower('{}')
-                      """.format (dbParam.dbDefaultLang))
-        dbDML.exec("""update sprachen set spra_ist_modellsprache = 'TRUE'
-                       where lower(spra_iso_code2)  = lower('{}')
-                    """.format(defspra))
+        Sprache.setmodellang(pmodellang=defspra)
+        Sprache.setreplacementlang()
+        dbParam.liesdefaultlang()
+        parameters.dbDefaultLang(defspra)
     #fi
 #transferprojekt
 
@@ -1363,7 +1291,7 @@ def do1Document(fileName):
     tree = ET.parse(fileName)
     root = tree.getroot()
     doku = Dokument()
-    doku.doku_name = root.get("name")
+    doku.doku_name = findField(root,"name")
     doku.doku_format = findText(root, 'type')
     doku.doku_referenz = None
     doku.doku_odm_guid = findField(root, 'id')
@@ -1381,7 +1309,7 @@ def transferDocuments():
 def transferODMModel():
     """überträgt das ganze ODM Modell in die DB"""
     transferprojekt()
-    dbParam.liesDefaultLang()
+    dbParam.liesdefaultlang()
     transferTypes()
     transferDocuments()
     transferDomains()
