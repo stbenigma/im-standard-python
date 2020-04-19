@@ -36,11 +36,6 @@ def dokuID (pguid,withnotfound=False):
     return doLookup(pguid,'select doku_id from DOKUMENTE where DOKU_ODM_GUID ="{}"',withnotfound)
 #dokuId
 
-def meltLookup(p_kurzname):
-    return doLookup(p_kurzname, 'select melt_id from modellelem_typ where melt_kurzname = "{}"'
-                    ,withnotfound=True)
-# MeltLookup
-
 def diatid (p_name):
     return doLookup(p_name,'select diat_id from diagrammtypen where upper(diat_bez) =upper("{}")')
 #diatid
@@ -48,34 +43,9 @@ def diatid (p_name):
 def enticategory(pid):
     return doLookup(pid,'select enti_category_guid from entitaeten where enti_id ={}')
 #enticategory
-def modeAttrLookup(attrId):
-    return doLookup(attrId, 'select mode_id from modellelement where mode_attr_id = "{}"')
-# modeAttrLookup
-def modeEntiLookup(p_entiid):
-    return doLookup(p_entiid, 'select mode_id from modellelement where mode_enti_id = "{}"')
-# modeEntiLookup
 
 def bdegLookup(pname):
         return doLookup(pname, 'select bdeg_id from benudef_eigenschaft where bdeg_name = "{}"'
                         ,withnotfound=True)
-# MeltLookup
+# bdegLookup
 
-def modeid(p_entiid=None,p_attrid=None,p_wrtbid=None,p_synoid=None,p_buruid=None,p_beziid=None,p_orgeid=None):
-    mid = dbDML.select("""select mode_id
-                        from modellelement
-                            where mode_syno_id = {}
-                            or mode_wrtb_id = {}
-                            or mode_attr_id = {}
-                            or mode_buru_id = {}
-                            or mode_bezi_id = {}
-                            or mode_enti_id = {}
-                            or mode_orge_id = {}     
-""".format('NULL' if p_synoid is None else str(p_synoid)
-           ,'NULL'  if p_wrtbid is None else str(p_wrtbid)
-           ,'NULL'  if p_attrid is None else str(p_attrid)
-           ,'NULL'  if p_buruid is None else str(p_buruid)
-           ,'NULL'  if p_beziid is None else str(p_beziid)
-           ,'NULL'  if p_entiid is None else str(p_entiid)
-           ,'NULL' if p_orgeid is None else str(p_orgeid)))
-    return mid[0][0]
-#modeid

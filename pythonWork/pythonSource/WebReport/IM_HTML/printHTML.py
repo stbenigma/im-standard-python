@@ -1205,9 +1205,10 @@ def printcontentattr(plist):
                     ,panker=web_sql.attrAnker(attr_id) #id
                     ,pname=attr_anzname
                     ,pmaster= "<p1>{}: {}</p1><br>".format(transl('Entität')
-                                    ,href(ref=web_sql.entiAnker(enti_id)
-                                        ,anz=web_sql.enti_name(p_lang=reportLang()
-                                                    ,p_modeid=dbLookup.modeid(p_entiid=enti_id))))
+                                                           , href(ref=web_sql.entiAnker(enti_id)
+                                                                  , anz=web_sql.enti_name(p_lang=reportLang()
+                                                                                          , p_modeid=dbLookup.modeid(
+                            pentiid=enti_id))))
                     ,pdescr=lf2htmlbr(nvl(attr_descr))
                     ,plbc=lbc)
 
@@ -1507,12 +1508,12 @@ def printtransl(pentiid=None, pattrid=None):
     head=[transl('Element')]
     head.extend(langs)
     if (pentiid is not None):
-        modeid=dbLookup.modeid(p_entiid=pentiid)
+        modeid=dbLookup.modeid(pentiid=pentiid)
         transllist= [findtransl(pattr='ENTI_NAME',pmodeid=modeid,plangs=langs)
                     ,findtransl(pattr='ENTI_SYNONYM',pmodeid=modeid,plangs=langs)
                     ,findtransl(pattr='ENTI_COMMENT',pmodeid=modeid,plangs=langs)]
     elif (pattrid is not None):
-        modeid=dbLookup.modeid(p_attrid=pattrid)
+        modeid=dbLookup.modeid(pattrid=pattrid)
         transllist= [findtransl(pattr='ATTR_NAME',pmodeid=modeid,plangs=langs)
                     ,findtransl(pattr='ATTR_COMMENT',pmodeid=modeid,plangs=langs)]
     #print(transllist)

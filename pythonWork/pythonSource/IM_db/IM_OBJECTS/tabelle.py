@@ -37,6 +37,9 @@ class Tabelle(Baseobject):
     def webanker(self):
         return super().webanker(self.tabl_schn_id)
 
+    def getmodellelement(self):
+        return Modellelement.getbyelemid(ptablid=self.tabl_id)
+
     @staticmethod
     def delete():
         Baseobject.delete(Tabelle._tablename)

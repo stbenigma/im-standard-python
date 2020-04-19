@@ -100,6 +100,9 @@ CREATE TABLE wertebereiche(
     def delete():
         Baseobject.delete(Wertebereich._tablename)
 
+    def getmodellelement(self):
+        return Modellelement.getbyelemid(pwrtbid=self.wrtb_id)
+
     @staticmethod
     def select(pwhere=None,porderby=None):
         wrtbs = Baseobject.select(pclass=Wertebereich

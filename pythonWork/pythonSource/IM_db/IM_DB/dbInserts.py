@@ -1,6 +1,8 @@
 from datetime import date
 
 from IM_DB import dbDML, dbLookup
+from IM_db import IM_OBJECTS
+
 
 
 def  insertEnti(enti):
@@ -123,38 +125,7 @@ def insertModellElemTyp(pData):
     return dbDML.insert(lsql, pData)
 #insertModellElemTyp
 
-def insertmodellelement(pData):
-    #mode_wrtb_id,,  mode_attr_id
-    #mode_buru_id,   mode_bezi_id,   mode_enti_id
-    #mode_orge_id,   mode_melt_id,   mode_uc
-    #mode_dc
-    lsql = """insert into modellelement (mode_wrtb_id,  mode_attr_id
-        ,mode_buru_id,   mode_bezi_id,   mode_enti_id
-        ,mode_orge_id,   mode_syno_id, mode_tabl_id,mode_scha_id,mode_schn_id 
-        ,mode_melt_id,   mode_uc, mode_dc)
-        values(?,?,?,?,?,?,?,?,?,?,?,?,?)"""
-    return dbDML.insert(lsql, pData)
-#insertmodellelement
 
-def insertModeEnti(entiId):
-    return insertmodellelement(pData=(None, None, None, None, entiId, None, None, None, None, None, dbLookup.meltLookup('ENTI'), '--', date.today()))
-#insertModeEnti
-def insertModeAttr(attrId):
-    return insertmodellelement(pData=(None, attrId, None, None, None, None, None, None, None, None, dbLookup.meltLookup('ATTR'), '--', date.today()))
-#insertModeAttr
-def insertmodesyno(p_synid):
-    return insertmodellelement(pData=(None, None, None, None, None, None, p_synid, None, None, None, dbLookup.meltLookup('SYNO'), '--', date.today()))
-#insertModeAttr
-def insertModeBezi(beziId):
-    return insertmodellelement(pData=(None, None, None, beziId, None, None, None, None, None, None, dbLookup.meltLookup('BEZI'), '--', date.today()))
-def insertModeScha(Id):
-    return insertmodellelement(pData=(None, None, None,  None, None, None, None, None, Id, None, dbLookup.meltLookup('SCHA'), '--', date.today()))
-def insertModeSchn(Id):
-    return insertmodellelement(pData=(None, None, None, None, None, None, None, None, None, Id, dbLookup.meltLookup('SCHN'), '--', date.today()))
-def insertModeTabl(Id):
-    return insertmodellelement(pData=(None, None, None, None, None, None, None, Id, None, None, dbLookup.meltLookup('TABL'), '--', date.today()))
-def insertModeWrtb(Id):
-    return insertmodellelement(pData=(Id, None, None, None, None, None, None, None, None, None, dbLookup.meltLookup('WRTB'), '--', date.today()))
 #insertModebezi
 def insertmeltdiat(p_Data):
     lsql= """insert into

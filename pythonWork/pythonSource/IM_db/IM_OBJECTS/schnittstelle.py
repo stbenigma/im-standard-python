@@ -32,6 +32,9 @@ class Schnittstelle(Baseobject):
     def webanker(self):
         return super().webanker(self.schn_id)
 
+    def getmodellelement(self):
+        return Modellelement.getbyelemid(pschnid=self.schn_id)
+
     @staticmethod
     def delete():
         Baseobject.delete(Schnittstelle._tablename)

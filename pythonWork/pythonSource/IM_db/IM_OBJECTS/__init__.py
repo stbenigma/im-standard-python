@@ -11,3 +11,4 @@ from .tabelle import Tabelle
 from .tablentimap import TablEntiMap
 from .dokument import Dokument, ModelelemDoku
 from .wertebereich import Wertebereich, Wertebereichgruppe, Vorgabewert
+from .modellelement import Modellelemtyp,Modellelement

@@ -36,6 +36,9 @@ class Schnittstelleattr(Baseobject):
         )
         """)
 
+    def getmodellelement(self):
+        return Modellelement.getbyelemid(pschaid=self.scha_id)
+
     @staticmethod
     def delete():
         Baseobject.delete(Schnittstelleattr._tablename)

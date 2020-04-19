@@ -193,7 +193,7 @@ def transferDomains():
         #endif
 
         wrtb.insert()
-        lmodeId = dbInserts.insertModeWrtb(wrtb.wrtb_id)
+        lmodeId = Modellelement.insertmode(pwrtbid=wrtb.wrtb_id)
 
         if (lov is not None) & (lov != {}):
             for idx,key in enumerate(lovs.keys(),start=1):
@@ -299,7 +299,7 @@ def transferentity(penti, pdiagid, puc, pdc):
     while True:
         row = (entix, entiy, entiwidth, entiheight
               , 100, int2hex(col.backgcolor), None, 100
-              , int2hex(col.foregcolor),col.fontsize, int2hex(col.fontcolor), dbLookup.modeEntiLookup(p_entiid=entiid)
+              , int2hex(col.foregcolor),col.fontsize, int2hex(col.fontcolor), Modellelement.getidbyelemid(pentiid=entiid)
              , pdiagid, index,puc, pdc
             , None, None)
         #print (row)
@@ -312,7 +312,7 @@ def transferentity(penti, pdiagid, puc, pdc):
             for aid in attrids:
                 attrrow=(attrx,attry,attrwidth,attrheight
                          ,100,int2hex(col.backgcolor),int2hex(col.fontcolor),100
-                         ,None,None,None,dbLookup.modeAttrLookup(aid)
+                         ,None,None,None,Modellelement.getidbyelemid(pattrid=aid)
                          ,pdiagid,0,puc,pdc
                          ,None,None)
                 try:
@@ -410,10 +410,10 @@ def transferdiaconnect(pconnectors, pdiagid, puc, pdc):
     ,beda_endtext_hoehe, beda_schriftfarbe, beda_schriftgroesse, beda_uc
     ,beda_dc, beda_um, beda_dm)
 """
-            row=(pdiagid,dbLookup.modeid(p_beziid=beziid),linewidth,None
-                 ,1,sttex,sttey,sttew
-                 ,stteh,entex,entey,entew
-                 ,enteh,None,10,puc,pdc,None,None
+            row=(pdiagid, Modellelement.getidbyelemid(pbeziid=beziid), linewidth, None
+                 , 1, sttex, sttey, sttew
+                 , stteh, entex, entey, entew
+                 , enteh, None, 10, puc, pdc, None, None
                  )
             bedaid=dbInserts.insertelbezidarst(row)
 
@@ -706,7 +706,7 @@ def do1Attribute(plfnr, pattrxml, pentiId=None, pbeziId=None):
         print(attrset)
         raise e
     #try
-    lmodeId=dbInserts.insertModeAttr(attrId)
+    lmodeId= Modellelement.insertmode(pattrid=attrId)
     dbInserts.insertUdpAttr(attrId)
     updateUDP(pmodeid=lmodeId, pobj=pattrxml)
     ModelelemDoku.insertdokuref(pdocguidlist=documents, pmodeid=lmodeId)
@@ -822,7 +822,7 @@ def do1Entity(fileName):
     #, enti_erw_tupel, enti_uc, enti_dc
     #,enti_enti_guid,enti_enti_id,enti_category_guid
     entiId = dbInserts.insertEnti(enti=row)
-    lmodeId =dbInserts.insertModeEnti(entiId)
+    lmodeId = Modellelement.insertmode(pentiid=entiId)
     dbInserts.insertUdpEntity(entiId)
 
     sobj =findText(entixml,'synonym')
@@ -830,7 +830,7 @@ def do1Entity(fileName):
         for syn in sobj.split(','):
             syno = syn.strip()
             synid = dbInserts.insertSynonym((syno,entiId))
-            modeid = dbInserts.insertmodesyno(synid)
+            modeid = Modellelement.insertmode(psynoid=synid)
     #fi
 
     #print (entname,translate.translate(p_text=entname,p_fromlang='de',p_tolang='en'),translate.translate(p_text=entname,p_fromlang='de',p_tolang='fr'))
@@ -994,7 +994,7 @@ def do1Relation(fileName):
     #print (row)
 
     beziId = dbInserts.insertBeziehung(row)
-    lmodeId = dbInserts.insertModeBezi(beziId)
+    lmodeId = Modellelement.insertmode(pbeziid=beziId)
     dbInserts.insertUdpBezi(beziId)
 
     updateUDP(pmodeid=lmodeId, pobj=relaxml)
@@ -1016,27 +1016,6 @@ def transferRelations():
     dosegfiles(pdirec=parameters.odmRelationDirec(),transferfiles=do1Relation)
     dbConnect.myDbConn.commit()
 #transferRelations
-
-def fillMelt():
-    #lösche die Modellelementtypen
-
-    # melt_kurzname,  melt_name    ,melt_uc,  melt_dc
-    modellelementtypen = \
-    [('ATTR', 'Attribute', 'stb', date.today()) \
-        , ('BEZI', 'Beziehungen', 'stb', date.today()) \
-        , ('BURU', 'Business Rules', 'stb', date.today()) \
-        , ('ENTI', 'Entitäten', 'stb', date.today()) \
-        , ('WRTB', 'Wertebereiche', 'stb', date.today()) \
-        , ('SYNO', 'Synonyme', 'stb', date.today()) \
-        , ('ORGE', 'Organisationseinheit', 'stb', date.today()) \
-        , ('TABL', 'Tabelle', 'stb', date.today()) \
-        , ('SCHA', 'Schnittstellenattribut', 'stb', date.today()) \
-        , ('SCHN', 'Schnittstelle', 'stb', date.today()) \
-     ]
-
-    dbInserts.insertMelt(modellelementtypen)
-
-#fillMelt
 
 def do1UDPFile(pudpThema,pfileName):
     tree = ET.parse(pfileName)
@@ -1071,11 +1050,11 @@ def do1UDPFile(pudpThema,pfileName):
                 ludpid=dbInserts.insertUDP(pData=(lupdThema, lgroups[findField(prop,'group_id')]
                     , lgroups[group]+'_ENTI_COMMENT', None
                     , None, 'FALSE', None, '--', date.today().__str__()))
-                dbInserts.insertModellElemTyp((dbLookup.meltLookup(type2melt('Entity')), ludpid))
+                dbInserts.insertModellElemTyp((Modellelemtyp.getidbyshortname(pkurzname=type2melt('Entity')), ludpid))
                 ludpid=dbInserts.insertUDP(pData=(lupdThema, lgroups[findField(prop,'group_id')]
                     , lgroups[group]+'_ATTR_COMMENT', None
                     , None, 'FALSE', None, '--', date.today().__str__()))
-                dbInserts.insertModellElemTyp((dbLookup.meltLookup(type2melt('Attribute')), ludpid))
+                dbInserts.insertModellElemTyp((Modellelemtyp.getidbyshortname(pkurzname=type2melt('Attribute')), ludpid))
             #fi
         #fi
 
@@ -1169,11 +1148,11 @@ def insertBaseData():
     Sprache.setmodellang(pmodellang=deflang)
     Sprache.setreplacementlang()
 
-    fillMelt()
+    Modellelemtyp.fillmelt()
     entidiaid = dbInserts.insertdiagrammtyp(('Entity','stb',date.today(),None,None))
     #    medi_diat_id, medi_melt_id,medi_uc,mdei_dc,medi_um,mdei_dm
-    dbInserts.insertmeltdiat((entidiaid, dbLookup.meltLookup(p_kurzname='ENTI'),'stb', date.today(), None, None))
-    dbInserts.insertmeltdiat((entidiaid, dbLookup.meltLookup(p_kurzname='BEZI'),'stb', date.today(), None, None))
+    dbInserts.insertmeltdiat((entidiaid, Modellelemtyp.getidbyshortname(pkurzname='ENTI'),'stb', date.today(), None, None))
+    dbInserts.insertmeltdiat((entidiaid, Modellelemtyp.getidbyshortname(pkurzname='BEZI'),'stb', date.today(), None, None))
 #insertBaseData
 
 def loeschmodell():
@@ -1187,7 +1166,7 @@ def loeschmodell():
     dbDML.delete("entitaeten")
     ModelelemDoku.delete()
     Dokument.delete()
-    dbDML.delete("modellelement")
+    Modellelement.delete()
     dbDML.delete('diagramme')
     dbDML.delete("benudef_eigenschaft")
     Vorgabewert.delete()
@@ -1201,7 +1180,7 @@ def loeschmodell():
     Datatype.delete()
     dbDML.delete("diagramme")
     dbDML.delete('bereich_elemdarst')
-    dbDML.delete("modellelem_typ")
+    Modellelemtyp.delete ()
     dbDML.delete('diagrammtypen')
     Sprache.delete()
     Sprachtext.delete()
