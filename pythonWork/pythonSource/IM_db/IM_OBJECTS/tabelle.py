@@ -1,5 +1,6 @@
 from .baseobject import Baseobject
 from IM_DB import dbDML
+from .schnittstelleattr import Schnittstelleattr
 
 class Tabelle(Baseobject):
     _tablename:str = 'tabellen'
@@ -39,6 +40,9 @@ class Tabelle(Baseobject):
 
     def getmodellelement(self):
         return Modellelement.getbyelemid(ptablid=self.tabl_id)
+
+    def columnlist(self):
+        return Schnittstelleattr.select(pwhere='scha_tabl_id = {}'.format(self.tabl_id),porderby='scha_column_name')
 
     @staticmethod
     def delete():

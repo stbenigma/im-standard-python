@@ -1,4 +1,5 @@
 from .baseobject import Baseobject
+import IM_OBJECTS
 
 class Schnittstelleattr(Baseobject):
 
@@ -36,6 +37,9 @@ class Schnittstelleattr(Baseobject):
         )
         """)
 
+    def webanker(self,pmodelid):
+        return super().webanker(pmodelid)
+
     def getmodellelement(self):
         return Modellelement.getbyelemid(pschaid=self.scha_id)
 
@@ -47,12 +51,18 @@ class Schnittstelleattr(Baseobject):
     def select(pwhere=None, porderby=None):
         return Baseobject.select(pclass=Schnittstelleattr
                                  , pwhere=pwhere, porderby=porderby)
+
+    @staticmethod
+    def indexlist(pschnid):
+        schas = Schnittstelleattr.select(pwhere= """scha_tabl_id in (select tabl_id from tabellen where tabl_schn_id={})""".format(pschnid)
+                                        ,porderby='scha_column_name')
+        indexlist = []
+        for s in schas:
+            t = IM_OBJECTS.tabelle.Tabelle().getbyid(s.scha_tabl_id)
+            indexlist.append(["{} ({})".format(s.scha_column_name,t.tabl_name),  s.webanker(t.tabl_schn_id), s.scha_id])
+        return indexlist
+    #indexlist
 #Schnittstelleattr
 
-def indexlist():
-    schas = Schnittstelleattr.select(porderby='scha_name')
-    indexlist = [[s.scha_name, '', s.anker(), s.scha_id] for s in schas]
-    return indexlist
-# indexlist
 
 

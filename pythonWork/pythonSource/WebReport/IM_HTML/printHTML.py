@@ -1207,8 +1207,10 @@ def printcontentattr(plist):
                     ,pmaster= "<p1>{}: {}</p1><br>".format(transl('Entität')
                                                            , href(ref=web_sql.entiAnker(enti_id)
                                                                   , anz=web_sql.enti_name(p_lang=reportLang()
-                                                                                          , p_modeid=dbLookup.modeid(
-                            pentiid=enti_id))))
+                                                                                          , p_modeid=Modellelement.getidbyelemid(pentiid=enti_id)
+                                                                                          )
+                                                                  )
+                                                           )
                     ,pdescr=lf2htmlbr(nvl(attr_descr))
                     ,plbc=lbc)
 
@@ -1508,12 +1510,12 @@ def printtransl(pentiid=None, pattrid=None):
     head=[transl('Element')]
     head.extend(langs)
     if (pentiid is not None):
-        modeid=dbLookup.modeid(pentiid=pentiid)
+        modeid= Modellelement.getidbyelemid(pentiid=pentiid)
         transllist= [findtransl(pattr='ENTI_NAME',pmodeid=modeid,plangs=langs)
                     ,findtransl(pattr='ENTI_SYNONYM',pmodeid=modeid,plangs=langs)
                     ,findtransl(pattr='ENTI_COMMENT',pmodeid=modeid,plangs=langs)]
     elif (pattrid is not None):
-        modeid=dbLookup.modeid(pattrid=pattrid)
+        modeid= Modellelement.getidbyelemid(pattrid=pattrid)
         transllist= [findtransl(pattr='ATTR_NAME',pmodeid=modeid,plangs=langs)
                     ,findtransl(pattr='ATTR_COMMENT',pmodeid=modeid,plangs=langs)]
     #print(transllist)

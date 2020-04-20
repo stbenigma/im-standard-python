@@ -239,6 +239,8 @@ def namelist(ptype, plang, pid=None):
         datalist = Dokument.indexlist()
     elif (ptype == 'SCHN') :
         datalist = Schnittstelle.indexlist()
+    elif (ptype == 'SCHA'):
+        datalist = Schnittstelleattr.indexlist(pschnid=pid)
     elif (ptype == 'TABL') :
         datalist = Tabelle.indexlist(pschnid=pid)
     #fi

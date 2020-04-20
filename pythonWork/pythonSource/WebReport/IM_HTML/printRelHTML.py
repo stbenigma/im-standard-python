@@ -31,7 +31,7 @@ def printmapping(ptablid):
                      )
 #printmapping
 
-def printcollist(ptabld):
+def printcollist(pcollist):
     colhead = """             <h2>{}</h2>
                         <div id="container1">
                             <div class="table-responsive">
@@ -69,13 +69,12 @@ def printcollist(ptabld):
                                                 <td class="symbol"><img {}></td>
                                             </tr>
     """
-    clist = [1]#web_sql.attrlist(p_lang=reportLang(), p_entiid=ptabld)
-    if (len(clist)==0):
-        return
+
+    if (pcollist is None or len(pcollist)==0):return
     printHTML.fhtml.write(printHTML.starttable(ptitel='Columns', pueberschriften=[transl('Name'),transl('Wertebereich'), transl('Datentyp')]
             , pheadlevel=2))
-    for a in clist:
-        printHTML.fhtml.write(printHTML.writetableline(pwerte=[('x','y','z')], plineid=None))
+    for col in pcollist:
+        printHTML.fhtml.write(printHTML.writetableline(pwerte=[col.scha_column_name,nvl(col.scha_format),col.scha_daty_id], plineid=None))
     #for
     printHTML.fhtml.write(printHTML.endtable())
 #printcollist
@@ -96,7 +95,7 @@ def printcontenttable(plist):
         printHTML.printreflist(pelemid=t.tabl_id,pelemtype='TABL')
         printHTML.printUDP(p_meltname=t.prefix().upper(), p_id=t.tabl_id)
         printmapping(ptablid=t.tabl_id)
-        printcollist(ptabld=t.tabl_id)
+        printcollist(pcollist=t.columnlist())
         """
         printmapping(pentiid=enti_id)
 """
@@ -108,6 +107,11 @@ def printlistofcontent(pschnid):
     printHTML.printlistofcontenthead()
     printHTML.printlistofcontentelement(pname='Tabellen'
                                         , plist=web_sql.namelist(ptype='TABL'
+                                                     , plang=printHTML.reportLang()
+                                                    ,pid=pschnid)
+                                        )
+    printHTML.printlistofcontentelement(pname='Columns'
+                                        , plist=web_sql.namelist(ptype='SCHA'
                                                      , plang=printHTML.reportLang()
                                                     ,pid=pschnid)
                                         )
