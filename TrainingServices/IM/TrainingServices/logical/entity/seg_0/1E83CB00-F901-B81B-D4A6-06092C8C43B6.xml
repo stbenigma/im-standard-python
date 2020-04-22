@@ -1,0 +1,79 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="1E83CB00-F901-B81B-D4A6-06092C8C43B6" name="Trainingsprodukt">
+<createdBy>toz</createdBy>
+<createdTime>2020-03-19 08:49:09 UTC</createdTime>
+<comment><![CDATA[Das Trainingsprogramm ist eine in sich abgeschlossene Zusammenfassung von einzelnen Trainingsmodulen zu einem sinnstiftenden Programm, welches auf Basis eines Trainingskonzept und eines Trainingsthemas erstellt und zum Verkauf angeboten wird. 
+
+Bsp:
+Introduction Days
+Exploded View
+]]></comment>
+<ownerDesignName>TrainingServices</ownerDesignName>
+<engineerTo>
+<item key="63A4880A-B3A1-6D5E-59D9-DC68D4A0CDF4" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="# Plätze" id="EC1B38B6-050E-B141-AEF9-8E4C47CB7433">
+<createdBy>toz</createdBy>
+<createdTime>2020-03-19 08:49:31 UTC</createdTime>
+<ownerDesignName>TrainingServices</ownerDesignName>
+<engineerTo>
+<item key="63A4880A-B3A1-6D5E-59D9-DC68D4A0CDF4" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Sprachen" id="AAA9110B-A165-9D9E-4925-E74E9189F240">
+<createdBy>toz</createdBy>
+<createdTime>2020-03-19 08:49:51 UTC</createdTime>
+<commentInRDBMS><![CDATA[Auswahl von Sprachen, in welchen das Programm angeboten wird. ]]></commentInRDBMS>
+<ownerDesignName>TrainingServices</ownerDesignName>
+<engineerTo>
+<item key="63A4880A-B3A1-6D5E-59D9-DC68D4A0CDF4" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Trainingsthema" id="04E80ACF-FC2F-2D6E-A51A-5C2092428A28">
+<createdBy>toz</createdBy>
+<createdTime>2020-03-24 15:16:17 UTC</createdTime>
+<ownerDesignName>TrainingServices</ownerDesignName>
+<engineerTo>
+<item key="63A4880A-B3A1-6D5E-59D9-DC68D4A0CDF4" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Trainingskonzept" id="2B6B66C9-7ACA-43EA-296B-B10F8EE620BC">
+<createdBy>toz</createdBy>
+<createdTime>2020-03-24 15:16:32 UTC</createdTime>
+<ownerDesignName>TrainingServices</ownerDesignName>
+<engineerTo>
+<item key="63A4880A-B3A1-6D5E-59D9-DC68D4A0CDF4" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Aushängeschild" id="CC0A1F90-6EDB-B27B-E1F1-06FEBEAA05EE">
+<createdBy>toz</createdBy>
+<createdTime>2020-03-24 16:00:38 UTC</createdTime>
+<ownerDesignName>TrainingServices</ownerDesignName>
+<engineerTo>
+<item key="63A4880A-B3A1-6D5E-59D9-DC68D4A0CDF4" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+</Entity>

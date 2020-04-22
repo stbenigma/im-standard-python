@@ -1,0 +1,22 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="45A748F6-76CA-9091-7118-D785D6EB9351" name="Trainingseinheit">
+<createdBy>toz</createdBy>
+<createdTime>2020-03-19 09:04:55 UTC</createdTime>
+<comment><![CDATA[Ein Trainingsprogrammmodul beschreibt einen Teilbereich des Trainingsprogramms. 
+
+Bsp: 
+Trainingsprogramm: Introduction Days
+Trainingsprogrammmodul: Welcome Session]]></comment>
+<ownerDesignName>TrainingServices</ownerDesignName>
+<engineerTo>
+<item key="63A4880A-B3A1-6D5E-59D9-DC68D4A0CDF4" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+</Entity>

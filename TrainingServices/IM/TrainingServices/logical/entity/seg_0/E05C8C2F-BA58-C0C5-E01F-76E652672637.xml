@@ -1,0 +1,72 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="E05C8C2F-BA58-C0C5-E01F-76E652672637" name="Training">
+<createdBy>toz</createdBy>
+<createdTime>2020-03-19 08:43:38 UTC</createdTime>
+<comment><![CDATA[Ein Training ist die Instanz eines Trainingsprogramms mit eindeutig zugeteilten Terminen, Durchführungsorten und Personenrollen.]]></comment>
+<ownerDesignName>TrainingServices</ownerDesignName>
+<engineerTo>
+<item key="63A4880A-B3A1-6D5E-59D9-DC68D4A0CDF4" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<synonym>Trainingsprogramm</synonym>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="ID" id="4032A207-89F9-4463-FABE-CD5D348F6C37">
+<createdBy>toz</createdBy>
+<createdTime>2020-03-19 08:43:54 UTC</createdTime>
+<ownerDesignName>TrainingServices</ownerDesignName>
+<engineerTo>
+<item key="63A4880A-B3A1-6D5E-59D9-DC68D4A0CDF4" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Preis" id="35E02883-066F-23DF-5F29-5BFBDBF1AB65">
+<createdBy>toz</createdBy>
+<createdTime>2020-03-19 08:43:57 UTC</createdTime>
+<ownerDesignName>TrainingServices</ownerDesignName>
+<engineerTo>
+<item key="63A4880A-B3A1-6D5E-59D9-DC68D4A0CDF4" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Sprache" id="66B24DE4-F644-9EE0-E69C-63CAE36ED83E">
+<createdBy>toz</createdBy>
+<createdTime>2020-03-19 08:44:03 UTC</createdTime>
+<ownerDesignName>TrainingServices</ownerDesignName>
+<engineerTo>
+<item key="63A4880A-B3A1-6D5E-59D9-DC68D4A0CDF4" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="online/offline" id="966C07B4-E24D-B2B3-4C14-93385C510837">
+<createdBy>toz</createdBy>
+<createdTime>2020-03-19 13:14:46 UTC</createdTime>
+<ownerDesignName>TrainingServices</ownerDesignName>
+<engineerTo>
+<item key="63A4880A-B3A1-6D5E-59D9-DC68D4A0CDF4" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="intern (J/N)" id="8878333E-5ED3-2E0C-AB0F-1378D23BF97F">
+<createdBy>toz</createdBy>
+<createdTime>2020-03-19 13:15:10 UTC</createdTime>
+<ownerDesignName>TrainingServices</ownerDesignName>
+<engineerTo>
+<item key="63A4880A-B3A1-6D5E-59D9-DC68D4A0CDF4" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+</Entity>
