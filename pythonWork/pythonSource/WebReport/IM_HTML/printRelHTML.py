@@ -95,10 +95,7 @@ def printcontenttable(plist):
         printHTML.printreflist(pelemid=t.tabl_id,pelemtype='TABL')
         printHTML.printUDP(p_meltname=t.prefix().upper(), p_id=t.tabl_id)
         printmapping(ptablid=t.tabl_id)
-        printcollist(pcollist=t.columnlist())
-        """
-        printmapping(pentiid=enti_id)
-"""
+        printcollist(pcollist= Schnittstelleattr.columnlist(ptablid=t.tabl_id))
         printHTML.printcontentend(lbc)
     #for
 #printcontenttable

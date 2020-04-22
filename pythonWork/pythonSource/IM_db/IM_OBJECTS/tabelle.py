@@ -1,6 +1,5 @@
 from .baseobject import Baseobject
 from IM_DB import dbDML
-from .schnittstelleattr import Schnittstelleattr
 
 class Tabelle(Baseobject):
     _tablename:str = 'tabellen'
@@ -41,9 +40,6 @@ class Tabelle(Baseobject):
     def getmodellelement(self):
         return Modellelement.getbyelemid(ptablid=self.tabl_id)
 
-    def columnlist(self):
-        return Schnittstelleattr.select(pwhere='scha_tabl_id = {}'.format(self.tabl_id),porderby='scha_column_name')
-
     @staticmethod
     def delete():
         Baseobject.delete(Tabelle._tablename)
@@ -81,8 +77,11 @@ class Tabelle(Baseobject):
 	                                and tema2.tema_tabl_id != tema1.tema_tabl_id
 	                  where tema2.tema_tabl_id = {}
 	            )
+	            /* eigene Schnittstelle wird nicht angezeigt*/
+	           and schn_id != (select tabl_schn_id 
+	                            from tabellen where tabl_id = {})
             group by tabl_schn_id,schn_name
-            """.format(ptablid)
+            """.format(ptablid,ptablid)
         retval = []
         data = dbDML.select(lsqle)
         """[(0,'name', [Entitaet]'), (54,'name', [Tabelle])]"""

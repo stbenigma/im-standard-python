@@ -53,6 +53,10 @@ class Schnittstelleattr(Baseobject):
                                  , pwhere=pwhere, porderby=porderby)
 
     @staticmethod
+    def columnlist(ptablid):
+        return Schnittstelleattr.select(pwhere='scha_tabl_id = {}'.format(ptablid),porderby='scha_column_name')
+
+    @staticmethod
     def indexlist(pschnid):
         schas = Schnittstelleattr.select(pwhere= """scha_tabl_id in (select tabl_id from tabellen where tabl_schn_id={})""".format(pschnid)
                                         ,porderby='scha_column_name')
