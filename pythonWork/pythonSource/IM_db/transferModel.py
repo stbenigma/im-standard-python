@@ -552,12 +552,14 @@ def transferdiagramme():
 #    #endfor
 #transferdiagramme
 
-def findeOderErstelleDom(pdomguid, pstructdomguid, ptypeguid, pattrname):
+def findeOderErstelleDom(pdomguid, pstructdomguid, ptypeguid, pattrname,pattrxml),:
     dom = None
     if pdomguid is not None:
         dom = Wertebereich().getbyguid(pdomguid)
     elif pstructdomguid is not None:
         dom = Wertebereich().getbyguid(pstructdomguid)
+    elif ptypeguid is not None:
+        insertderiveddomain(ptypeguid,pattrname,pattrxml)
     #
     if dom is None:
         dom = Wertebereich().getbyname('Unknown')
@@ -665,13 +667,6 @@ def updateUDP(pmodeid, pobj):
 #updateUDP
 
 def do1Attribute(plfnr, pattrxml, pentiId=None, pbeziId=None):
-    #print (attr.find('createdTime').text,findText(attr,'nullsAllowed'));
-#    attr_enti_id, attr_wrtb_id, attr_tech_name
-#    , attr_anzname, attr_tooltip, attr_beschr
-#    , attr_business_rule, attr_anz_rhflg
-#    , attr_deskriptor, attr_pflichtattr, attr_historisiert
-#    , attr_wiederholt, attr_sprachabhaengig, attr_verschluesselt
-#    attr_uc, attr_dc,attr_odm_guid,attr_bezi_id
     #wegen FK-PK zusätzliche Attribute werden nicht übernommen
     if (findText(pattrxml, 'referedAttribute') is not None):
         return

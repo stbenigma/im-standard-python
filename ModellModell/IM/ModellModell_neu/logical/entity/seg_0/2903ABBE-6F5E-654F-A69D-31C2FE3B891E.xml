@@ -20,7 +20,7 @@
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
-<typeID>57779FAE-171C-9BB2-9F88-9B2ED7060C6F</typeID>
+<typeID>2EDFF465-4CEE-72F2-D2EC-896DB596D191</typeID>
 <adequatelyNormalized>NO</adequatelyNormalized>
 <expectedVolumes>0</expectedVolumes>
 <fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
@@ -29,6 +29,8 @@
 <maxVolumes>9999999</maxVolumes>
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
+<generateDiscrimColumn>true</generateDiscrimColumn>
+<discriminatorColumnName>AWTF_INOUT</discriminatorColumnName>
 <createSurrogateKey>true</createSurrogateKey>
 <propertyMap>
 <property name="DE_ENTI_COMMENT" value=" Eine Attributtransformation transformiert 1-viele Ausgangsattribute in einen Attributwert.  Transformationen von externen Systemen zum konsolidierten Modell befüllen ein Attribut und verwenden min. 1 Systemattribut.  Transformationen vom Modell zu externen Systemen befüllen ein Systemattribut und verwenden min. 1 Attribut.     "/>
@@ -155,16 +157,4 @@ Daily, every 2 minutes or similar. Mandatory if the trigger type is Time.
 </propertyMap>
 </Attribute>
 </attributes>
-<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
-<identifier id="86D0CE8B-72D7-C207-F83D-EF9F39A7BC7E" name="Key_1">
-<createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:06:23 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<engineerTo>
-<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
-<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
-</engineerTo>
-<pk>true</pk>
-</identifier>
-</identifiers>
 </Entity>

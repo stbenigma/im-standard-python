@@ -1,0 +1,194 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="585CD368-9E78-3BF7-21EC-07AC33AAADA9" name="Schnittstellenattribut">
+<createdBy>stb</createdBy>
+<createdTime>2020-04-22 15:22:04 UTC</createdTime>
+<comment><![CDATA[ Attribut in einem System, das mit anderen Systemen ausgetauscht werden soll.
+ Datentyp, Format und Constraints können in div. Sprachen und Dialekten geführ werden
+  SQL (mit dialekt)
+  Jason
+  XML
+]]></comment>
+<generatorID>434F5721-A84C-C9C9-1B29-C30F54ABAD58</generatorID>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+ Attribut in einem System, das mit anderen Systemen ausgetauscht werden soll.  Datentyp, Format und Constraints können in div. Sprachen und Dialekten geführ werden   SQL (mit dialekt)   Jason   XML 
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+ Attribute in a system that is to be exchanged with other systems.  Data type, format and constraints can be maintained in various languages and dialects SQL (with dialect) Jason XML
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<typeID>2EDFF465-4CEE-72F2-D2EC-896DB596D191</typeID>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Name" id="9CD61A1F-6F1F-64F0-E633-A9ED40315DB0">
+<createdBy>stb</createdBy>
+<createdTime>2020-04-22 15:22:04 UTC</createdTime>
+<generatorID>999B70CA-BCF5-C825-8366-9D78800EA196</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Beschreibung" id="4A5C9F3F-DB75-D409-D170-9C35F93920D3">
+<createdBy>stb</createdBy>
+<createdTime>2020-04-22 15:22:04 UTC</createdTime>
+<comment><![CDATA[Beschreibung des Attributes im Fremdsystem]]></comment>
+<generatorID>BB93EAC3-E9F7-F7B8-0535-D829F9BA6BE4</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Beschreibung des Attributes im Fremdsystem
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Description of the attribute in the external system
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Datentyp" id="F034F7CC-46D1-E197-B0F4-4237B96D8DA9">
+<createdBy>stb</createdBy>
+<createdTime>2020-04-22 15:22:04 UTC</createdTime>
+<comment><![CDATA[Technischer Datentyp im Fremdsystem (z.B. String(20), NUMERIC(20,4), integer,date,  etc.)]]></comment>
+<generatorID>B7EE146C-4F67-DE0E-BB81-6E7C156A8FDB</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Technischer Datentyp im Fremdsystem (z.B. String(20), NUMERIC(20,4), integer,date,  etc.)
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Technical data type in external system (e.g. string(20), NUMERIC(20,4), integer,date, etc.)
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Format" id="04FF825E-1A08-03B3-F59B-A97B98164CDB">
+<createdBy>stb</createdBy>
+<createdTime>2020-04-22 15:22:04 UTC</createdTime>
+<comment><![CDATA[Textliche Formatierung eines numerischen oder Zeitpunkt-Wertes]]></comment>
+<generatorID>EF7D27A0-950E-6CA1-DBF2-2B2745F1683A</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Textliche Formatierung eines numerischen oder Zeitpunkt-Wertes
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Text formatting of a numeric or time value
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Fremdsystem-ID" id="C00728B6-7694-B9C4-4C6F-62AEA81E201F">
+<createdBy>stb</createdBy>
+<createdTime>2020-04-22 15:22:04 UTC</createdTime>
+<commentInRDBMS><![CDATA[ID / Code der Attributbdefinition in einer Standardsoftware]]></commentInRDBMS>
+<generatorID>87F91583-A693-53B0-CCB0-9B8A6DE89CF2</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<dataTypeSize>100 CHAR</dataTypeSize>
+<ownDataTypeParameters>100 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Vorgabewert" id="D2F95AF1-FA13-4FC5-2AFC-BE03389B3125">
+<createdBy>stb</createdBy>
+<createdTime>2020-04-22 15:22:04 UTC</createdTime>
+<comment><![CDATA[Konstanter Wert der zu verwenden ist, falls keine Quelle oder keine Transformation exisitert.]]></comment>
+<generatorID>06E1FF63-76EF-1166-CDF3-7F411F2FBF82</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Geschäftsregel" id="D8120577-82F6-1DC4-D0F7-78DD89A5B11E">
+<createdBy>stb</createdBy>
+<createdTime>2020-04-22 15:22:04 UTC</createdTime>
+<comment><![CDATA[Beschreibung von Qualitätsprüfungen / Business rules für die Eingangsprüfung]]></comment>
+<generatorID>638B0E9B-0C02-1293-49B7-EBE2C59731DF</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Schnittstellenattribut_ID" id="426ECCA7-FAC8-D245-2121-EEFA197BAC71">
+<createdBy>stb</createdBy>
+<createdTime>2020-04-22 15:22:04 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+<Column name="Schnittstellentabelle_Schnittstellentabelle_ID" id="4644D61B-0BA5-136E-E863-8CAF5B1A5A31">
+<createdBy>stb</createdBy>
+<createdTime>2020-04-22 15:22:04 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="8E11C223-8696-86F4-0810-12FA3ABFF340" referredColumn="99266761-7B17-A312-E341-D71BEAF8D72B"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="0CEEDC04-C2A3-74D7-D422-F1A5BA46826B" name="Schnittstellenattribut_PK">
+<createdBy>stb</createdBy>
+<createdTime>2020-04-22 15:22:04 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="426ECCA7-FAC8-D245-2121-EEFA197BAC71"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="8B6CC33C-F0EC-EA85-6C24-8F36339E57AF" name="Schnittstellenattribut_Schnittstellentabelle_FK">
+<createdBy>stb</createdBy>
+<createdTime>2020-04-22 15:22:04 UTC</createdTime>
+<generatorID>3357B549-5ADB-12A9-11E9-8BC17407E9B0</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="4644D61B-0BA5-136E-E863-8CAF5B1A5A31"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

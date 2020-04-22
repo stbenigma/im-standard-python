@@ -6,7 +6,8 @@ class Schnittstelleattr(Baseobject):
     _tablename:str = 'schnittstelle_attrs'
     _prefix:str = 'scha'
     _columnlist:list = ['scha_id', 'scha_column_name', 'scha_format', 'scha_fremdsystem_id'
-                                       ,'scha_beschr', 'scha_tabl_id', 'scha_daty_id', 'scha_odm_guid'
+                                       ,'scha_beschr', 'scha_type_string', 'scha_tabl_id', 'scha_daty_id'
+                                    , 'scha_wrtb_id','scha_odm_guid'
                                        ,'scha_uc', 'scha_dc', 'scha_um', 'scha_dm']
 
     def __init__(self):
@@ -25,14 +26,18 @@ class Schnittstelleattr(Baseobject):
         scha_format         varchar(200),
         scha_fremdsystem_id varchar(100),
         scha_beschr         varchar(4000),
+        scha_type_string    varchar(200),
         scha_tabl_id        integer     not null,
         scha_daty_id        integer     not null,
+        scha_wrtb_id        integer ,
         scha_odm_guid       varchar(36),
         scha_uc             varchar(30) not null,
         scha_dc             varchar(30) not null,
         scha_um             varchar(30),
         scha_dm             varchar(30),
         constraint scha_daty_fk FOREIGN KEY (scha_daty_id) references datatypes (daty_id),
+        constraint scha_wrtb_fk FOREIGN KEY (scha_wrtb_id) references wertebereiche (wrtb_id),
+        constraint scha_tabl_fk FOREIGN KEY (scha_tabl_id) references tabellen(tabl_id),
         constraint scha_uk unique (scha_tabl_id,scha_column_name)        
         )
         """)

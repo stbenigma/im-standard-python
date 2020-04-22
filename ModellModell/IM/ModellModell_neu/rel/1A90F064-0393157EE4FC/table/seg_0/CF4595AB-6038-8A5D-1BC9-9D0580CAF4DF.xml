@@ -1,0 +1,154 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="CF4595AB-6038-8A5D-1BC9-9D0580CAF4DF" name="Geschäftsregel">
+<createdBy>stb</createdBy>
+<createdTime>2020-04-22 15:22:04 UTC</createdTime>
+<comment><![CDATA[Geschäftsregel, die Attributwerte auf Regelkonformität prüft.
+Diese Regeln sind passiv. D.h. es wird überprüft, ob der Wert (ggf. im Zusammenhang mit anderen Werten dieser oder anderer Entitäten) aus fachlicher Sicht korrekt ist.
+
+Regelverletzungen können als SQL Selects angegeben werden. Jedes Tupel, das das Select liefert verletzt die Regel.   ]]></comment>
+<generatorID>AA2233B7-68AC-3424-F606-010B96DC9439</generatorID>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+Geschäftsregel, die Attributwerte auf Regelkonformität prüft. Diese Regeln sind passiv. D.h. es wird überprüft, ob der Wert (ggf. im Zusammenhang mit anderen Werten dieser oder anderer Entitäten) aus fachlicher Sicht korrekt ist.  Regelverletzungen können als SQL Selects angegeben werden. Jedes Tupel, das das Select liefert verletzt die Regel.   
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+Transaction rule that checks attribute values for rule conformity. These rules are passive. This means that the system checks whether the value (possibly in connection with other values of these or other entities) is correct from a business point of view.  Rule violations can be specified as SQL selects. Any tuple that returns the select violates the rule.   
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<typeID>899A6DDC-95E0-4AD5-5F58-B3A2FF5C2D08</typeID>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Name" id="39B070BB-6F8D-15D9-F01D-D629D413EFF3">
+<createdBy>stb</createdBy>
+<createdTime>2020-04-22 15:22:04 UTC</createdTime>
+<generatorID>2E3D74AD-8468-9CBA-F519-285EBF90304E</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Beschreibung" id="99800C2F-6761-352F-5F6C-9253E42B805B">
+<createdBy>stb</createdBy>
+<createdTime>2020-04-22 15:22:04 UTC</createdTime>
+<comment><![CDATA[Umschreibung, Erklärung der Regel]]></comment>
+<generatorID>1FEC2481-A807-AFD8-3298-7ACC4E9300CC</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Umschreibung, Erklärung der Regel
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Description, explanation of the rule
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Regel" id="484A2DD8-3DF2-08D8-209F-BCB1DDCDC0B0">
+<createdBy>stb</createdBy>
+<createdTime>2020-04-22 15:22:04 UTC</createdTime>
+<comment><![CDATA[Regel, die Werte beschränken auf Grund von komplexen Zusammenhängen (mehere Entitäten, Attribute, Beziehungen)]]></comment>
+<generatorID>18DDD1CA-270F-D5BB-691E-74C2CBBE8960</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Regel, die Werte beschränken auf Grund von komplexen Zusammenhängen (mehere Entitäten, Attribute, Beziehungen)
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Rule limiting values to complex relationships (multiple entities, attributes, relationships)
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Fehlermeldung_[L]" id="24B9E09D-7D5D-F55C-0CA6-A3B3DB8FD655">
+<createdBy>stb</createdBy>
+<createdTime>2020-04-22 15:22:04 UTC</createdTime>
+<comment><![CDATA[Meldung, die bei Verletzung der Regel angezeigt wird.]]></comment>
+<generatorID>DEA583A1-1362-7675-76D3-F647C1BD80CC</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Meldung, die bei Verletzung der Regel angezeigt wird.
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Message that is displayed when the rule is violated.
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Regelebene" id="36F75EC1-2E0A-DCC6-8B90-78F4E835F362">
+<createdBy>stb</createdBy>
+<createdTime>2020-04-22 15:22:04 UTC</createdTime>
+<comment><![CDATA[Ebene auf der die Regel prüft (Tupel, Entität, Datenbank)]]></comment>
+<generatorID>BA044AD2-C3DB-31FF-FB4C-0EA93C6FA79D</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Ebene auf der die Regel prüft (Tupel, Entität, Datenbank)
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Level at which the rule checks (tuple, entity, database)
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Geschäftsregel_ID" id="2EED3797-966D-F8D4-D625-FD46E561EC34">
+<createdBy>stb</createdBy>
+<createdTime>2020-04-22 15:22:04 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="585E274D-B044-C5D5-3224-4510D37BA4FB" name="Geschäftsregel_PK">
+<createdBy>stb</createdBy>
+<createdTime>2020-04-22 15:22:04 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="2EED3797-966D-F8D4-D625-FD46E561EC34"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="B53CA5B8-D64B-812A-35B0-CF85C213BE04" name="Geschäftsregel_Name_UN">
+<createdBy>stb</createdBy>
+<createdTime>2020-04-22 15:22:04 UTC</createdTime>
+<generatorID>B1F60E3A-1081-85A1-2F4B-813E9E8075FA</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="39B070BB-6F8D-15D9-F01D-D629D413EFF3"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

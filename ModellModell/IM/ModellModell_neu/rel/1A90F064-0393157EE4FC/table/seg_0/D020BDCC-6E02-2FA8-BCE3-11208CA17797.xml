@@ -62,12 +62,16 @@ Beleuchtungsmodell ]]></comment>
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="0977CCCB-2F74-DE57-C0FC-55C87B3745C3" referredColumn="E9756F49-315F-1F97-E181-07756840736D"/>
+</associations>
 </Column>
 <Column name="ATTR_TECH_NAME" id="894BD113-A714-B6A2-3A68-58F89E73C455">
 <createdBy>stb</createdBy>
@@ -476,6 +480,16 @@ NEIN -> Feld wird nicht verschlüsselt
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
 <colUsage columnID="303EC2B5-2E33-64BC-232F-07907FF61F66"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="8BDE67A0-9494-0E4D-07E6-D79FD8C0FCA1" name="ATTRIBUTES_WERTEBEREICH_FK">
+<createdBy>stb</createdBy>
+<createdTime>2020-04-22 15:07:01 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="3C72106F-F485-4EEC-2CE1-F9365D6B4CBA"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>

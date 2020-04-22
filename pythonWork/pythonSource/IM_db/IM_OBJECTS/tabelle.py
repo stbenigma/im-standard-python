@@ -18,16 +18,16 @@ class Tabelle(Baseobject):
                                , psql="""
     CREATE TABLE tabellen
         (
-         TABL_ID integer primary key autoincrement , 
-         TABL_NAME VARCHAR (60) NOT NULL , 
-         TABL_SCHN_ID integer NOT NULL , 
-         TABL_PREFIX VARCHAR (60) NULL , 
-         TABL_BESCHR VARCHAR (4000) NULL , 
-     	 TABL_odm_guid	varchar(36),
-         TABL_UC VARCHAR (30) NOT NULL , 
-         TABL_DC VARCHAR (30) NOT NULL , 
-         TABL_UM VARCHAR (30) NULL , 
-         TABL_DM VARCHAR (30) NULL ,
+         tabl_id integer primary key autoincrement , 
+         tabl_name varchar (60) not null , 
+         tabl_schn_id integer not null , 
+         tabl_prefix varchar (60) null , 
+         tabl_beschr varchar (4000) null , 
+     	 tabl_odm_guid	varchar(36),
+         tabl_uc varchar (30) not null , 
+         tabl_dc varchar (30) not null , 
+         tabl_um varchar (30) null , 
+         tabl_dm varchar (30) null ,
     	  CONSTRAINT TABL_UN UNIQUE (TABL_SCHN_ID , TABL_NAME)
      	   ,CONSTRAINT TABL_SCHN_FK FOREIGN KEY (TABL_SCHN_ID) 
      	      REFERENCES SCHNITTSTELLE (SCHN_ID ) 
