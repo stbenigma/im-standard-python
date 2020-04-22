@@ -9,7 +9,10 @@ oder für viele.
 Beispiele:
 Prozessverantwortlicher
 BOD
-Qualitätmgt.]]></comment>
+Qualitätmgt.
+CEO
+TL
+ACFOG]]></comment>
 <notes><![CDATA[[EN_ENTI_COMMENT[
 *DE* Rollen können für 1 Person definiert sein (V21, CEO-US)
 oder für viele.
@@ -33,7 +36,7 @@ Qualitätmgt.
 ]]></notes>
 <ownerDesignName>IM_TQMI_FYAYC</ownerDesignName>
 <engineerTo>
-<item key="0FBE62B5-EA6E-67EB-52B2-298C9D3D71C1" value="true"/>
+<item key="52BD3DF3-2C04-D27F-CBDF-5C0F0857F17C" value="true"/>
 </engineerTo>
 <adequatelyNormalized>NO</adequatelyNormalized>
 <expectedVolumes>0</expectedVolumes>
@@ -46,10 +49,29 @@ Qualitätmgt.
 <createSurrogateKey>true</createSurrogateKey>
 <propertyMap>
 <property name="DE_ENTI_NAME" value="Rolle"/>
-<property name="DE_ENTI_SYNONYM" value=""/>
 <property name="EN_ENTI_NAME" value="*DE* Rolle"/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Kürzel" id="503B77F2-8EFE-5114-8994-A5AE2A0A3C6A">
+<createdBy>stb</createdBy>
+<createdTime>2020-04-22 08:45:18 UTC</createdTime>
+<ownerDesignName>IM_TQMI_FYAYC</ownerDesignName>
+<engineerTo>
+<item key="52BD3DF3-2C04-D27F-CBDF-5C0F0857F17C" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Name" id="FCEC5016-0582-06AA-D41A-E56202BF533A">
+<createdBy>stb</createdBy>
+<createdTime>2020-04-22 08:45:27 UTC</createdTime>
+<ownerDesignName>IM_TQMI_FYAYC</ownerDesignName>
+<engineerTo>
+<item key="52BD3DF3-2C04-D27F-CBDF-5C0F0857F17C" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
 <Attribute name="ist Gruppenrolle (J/N)" id="FC89ABB7-5BE7-B9A9-4777-12B1E914E8EC">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-08 11:39:36 UTC</createdTime>
@@ -59,7 +81,7 @@ Qualitätmgt.
 ]]></notes>
 <ownerDesignName>IM_TQMI_FYAYC</ownerDesignName>
 <engineerTo>
-<item key="0FBE62B5-EA6E-67EB-52B2-298C9D3D71C1" value="true"/>
+<item key="52BD3DF3-2C04-D27F-CBDF-5C0F0857F17C" value="true"/>
 </engineerTo>
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
@@ -77,7 +99,7 @@ Qualitätmgt.
 ]]></notes>
 <ownerDesignName>IM_TQMI_FYAYC</ownerDesignName>
 <engineerTo>
-<item key="0FBE62B5-EA6E-67EB-52B2-298C9D3D71C1" value="true"/>
+<item key="52BD3DF3-2C04-D27F-CBDF-5C0F0857F17C" value="true"/>
 </engineerTo>
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
@@ -95,7 +117,7 @@ Qualitätmgt.
 ]]></notes>
 <ownerDesignName>IM_TQMI_FYAYC</ownerDesignName>
 <engineerTo>
-<item key="0FBE62B5-EA6E-67EB-52B2-298C9D3D71C1" value="true"/>
+<item key="52BD3DF3-2C04-D27F-CBDF-5C0F0857F17C" value="true"/>
 </engineerTo>
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
@@ -103,6 +125,28 @@ Qualitätmgt.
 <property name="DE_ATTR_NAME" value="ist Kundenrolle (J/N)"/>
 <property name="EN_ATTR_NAME" value="*DE* ist Kundenrolle (J/N)"/>
 </propertyMap>
+</Attribute>
+<Attribute name="Beschreibung" id="D6918958-A9EC-E5F7-BA9D-BB3D167334A4">
+<createdBy>stb</createdBy>
+<createdTime>2020-04-22 08:45:36 UTC</createdTime>
+<ownerDesignName>IM_TQMI_FYAYC</ownerDesignName>
+<engineerTo>
+<item key="52BD3DF3-2C04-D27F-CBDF-5C0F0857F17C" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Kommentare" id="D30FDF44-2AB9-BE44-9BDE-CD5151FD367C">
+<createdBy>stb</createdBy>
+<createdTime>2020-04-22 08:46:05 UTC</createdTime>
+<ownerDesignName>IM_TQMI_FYAYC</ownerDesignName>
+<engineerTo>
+<item key="52BD3DF3-2C04-D27F-CBDF-5C0F0857F17C" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 </attributes>
 </Entity>
