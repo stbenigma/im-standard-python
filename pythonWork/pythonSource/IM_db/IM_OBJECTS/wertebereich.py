@@ -3,6 +3,14 @@ from .sprachtext import Sprachtext
 from IM_DB import dbDML
 
 class Wertebereich(Baseobject):
+    DERIVED:str ='DER'
+    DOMAIN:str ='DOM'
+    BIN:str='BIN'
+    GRP:str='GRP'
+    LOV:str='LOV'
+    NUM:str='NUM'
+    TEXT:str='TEXT'
+    ZPKT:str='ZPKT'
     _tablename:str ='wertebereiche'
     _prefix:str ='wrtb'
     _columnlist:list = ['wrtb_id',  'wrtb_business_rule',   'wrtb_name',    'wrtb_beschr',
@@ -10,7 +18,7 @@ class Wertebereich(Baseobject):
                         'wrtb_zpkt_granularitaet',  'wrtb_text_maxlng', 'wrtb_text_syntaxregel',    'wrtb_num_maxwert',
                         'wrtb_num_minwert', 'wrtb_num_vorkstellen', 'wrtb_num_nachkstellen',    'wrtb_num_rundng_einh',
                         'wrtb_num_pheh_id', 'wrtb_bin_inhalttyp',   'wrtb_bin_spfo_id', 'wrtb_odm_guid',
-                        'wrtb_schn_id', 'wrtb_datatype_ref',    'wrtb_uc',  'wrtb_dc',
+                        'wrtb_schn_id', 'wrtb_datatype_odm', 'wrtb_daty_id',    'wrtb_uc',  'wrtb_dc',
                         'wrtb_um',  'wrtb_dm']
     _multilangcols:list = {'wrtb_name':'WRTB_NAME'}
     __unknowndom = None
@@ -88,12 +96,14 @@ CREATE TABLE wertebereiche(
     wrtb_bin_spfo_id          varchar(100),
 	wrtb_odm_guid		varchar(36),
     wrtb_schn_id    NUMBER(10) NULL,	
-    wrtb_datatype_ref varchar(40),
+    wrtb_datatype_odm varchar(40),
+    wrtb_daty_id integer,
     wrtb_uc         varchar(30) NOT NULL,
     wrtb_dc        varchar(30) NOT NULL,
     wrtb_um        varchar(30),
     wrtb_dm        varchar(30),
- CONSTRAINT wrtb_schn_fk FOREIGN KEY (wrtb_schn_id) references schnittstelle (schn_id)
+ CONSTRAINT wrtb_schn_fk FOREIGN KEY (wrtb_schn_id) references schnittstelle (schn_id),
+ CONSTRAINT wrtb_daty_fk FOREIGN KEY (wrtb_daty_id) references datatypes (daty_id)
  )"""
     )
     @staticmethod
@@ -143,14 +153,15 @@ CREATE TABLE wertebereiche(
 
     @staticmethod
     def indexlist(pherkunft,plang):
-        data = Wertebereich.select(porderby='wrtb_name')
+        data = Wertebereich.select(pwhere="dom_herkunft = '{}'".format(pherkunft), porderby='wrtb_name')
         indexlist = [['{} ({})'.format(d.wrtb_name[plang],d.refattranz())
                     ,d.webanker(),d.wrtb_id] for d in data]
         return indexlist
 
     #indexlist
 
-    def getbyname(self,pname):
+    @staticmethod
+    def getbyname(pname):
         return Wertebereich().getbyuk(pcolname='wrtb_name', pukvalue=pname)
     # getbyname
 

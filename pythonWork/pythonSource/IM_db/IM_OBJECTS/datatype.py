@@ -1,6 +1,11 @@
 from .baseobject import Baseobject
+import re
 
 class Datatype(Baseobject):
+    BIN:str='BIN'
+    TEXT:str='TEXT'
+    ZPKT:str='ZPKT'
+    NUM:str='NUM'
     _tablename:str = 'datatypes'
     _prefix:str = 'daty'
     _columnlist:list = ['daty_id',  'daty_name', 'daty_grundtyp', 'daty_odm_guid']
@@ -38,11 +43,19 @@ create table datatypes
     def select(pwhere=None, porderby=None):
         return Baseobject.select(pclass=Datatype
                                  , pwhere=pwhere, porderby=porderby)
+    @staticmethod
+    def basisType(dt):
+        if (dt in ('BLOB', 'RAW, size', 'BFIE', 'BINARY_DOUBLE', 'BINARY_DOUBLE', 'CLOB' \
+                           , 'LONG', 'LONG RAW', 'NCLOB', '')):
+            return Datatype.BIN
+        elif (dt in ('DATE', 'TIMESTAMP') or (re.match('INTERVAL.*', dt))):
+            return Datatype.ZPKT
+        elif (re.match('NUMBER.*', dt) or re.match('.*INT.*', dt) or re.match('FLOAT.*', dt) \
+              or re.match('.*REAL.*', dt)):
+            return Datatype.NUM
+        else:
+            return Datatype.TEXT
+    # basisType
 #Datatype
 
-def indexlist():
-        datys = Datatype().select(porderby='daty_name')
-        indexlist = [[s.daty_name, '', s.anker(), s.daty_id] for s in datys]
-        return indexlist
-# indexlist
 

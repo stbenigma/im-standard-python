@@ -60,18 +60,6 @@ def findField(set,name):
         return None
 #findField
 
-def basisType(dt):
-    if (dt in ('BLOB','RAW, size','BFIE','BINARY_DOUBLE','BINARY_DOUBLE','CLOB'\
-               ,'LONG','LONG RAW','NCLOB','')):
-        return 'BIN'
-    elif (dt in ('DATE','TIMESTAMP') or (re.match('INTERVAL.*',dt))):
-        return 'ZPKT'
-    elif (re.match('NUMBER.*',dt) or re.match('.*INT.*',dt) or re.match('FLOAT.*',dt)\
-            or re.match('.*REAL.*',dt)):
-        return 'NUM'
-    else:
-        return 'TEXT'
-#basisType
 
 def transferTypes():
     types = ET.parse(parameters.odmIMDirec() + parameters.odmKonfDirec() + parameters.odmTypesFile())
@@ -79,7 +67,7 @@ def transferTypes():
     for typ in root.findall('logicaltype'):
         daty = Datatype()
         daty.daty_name = findField(typ,'name')
-        daty.daty_grundtyp = basisType(findText(typ,'mapping'))
+        daty.daty_grundtyp = Datatype.basisType(findText(typ,'mapping'))
         daty.daty_odm_guid = findField(typ,'objectid')
         daty.insert()
     #endfor
@@ -97,7 +85,7 @@ def do1structtype(filename):
     wrtb.wrtb_uc = findText(structdom,"createdBy")
     wrtb.wrtb_dc = findText(structdom,"createdTime")
     wrtb.wrtb_typ = 'GRP'
-    wrtb.wrtb_herkunft = 'DOM'
+    wrtb.wrtb_herkunft = Wertebereich.DOMAIN
     wrtb.insert()
 
     elements = structdom.findall("attributes/Attribute")
@@ -120,6 +108,79 @@ def do1structtype(filename):
     #for
 #do1structtype
 
+def liesunsfuellwrtb(pwrtb, pxml):
+    pwrtb.wrtb_uc = findText(pxml,'createdBy')
+    pwrtb.wrtb_dc = findText(pxml,'createdTime')
+    pwrtb.wrtb_datatype_odm = findText(pxml, 'logicalDatatype')
+    daty = Datatype().getbyguid(pwrtb.wrtb_datatype_odm)
+    pwrtb.wrtb_daty_id = daty.daty_id
+    pwrtb.wrtb_typ = daty.daty_grundtyp if daty.daty_grundtyp is not None else 'TEXT'
+
+    #print (pwrtb.wrtb_datatype_ref,pwrtb.wrtb_typ )
+
+    lov = pxml.find('listOfValues')
+    if (lov is not None) and (lov != {}):
+        pwrtb.wrtb_typ = 'LOV'
+        lovs = dict()
+        for lovval in lov:
+            #                print (findField(lovval,'value'),findField(lovval,'description'),lovval.attrib)
+            lovs.update({findField(lovval,'value'): findField(lovval,'description')})
+        # endfor
+        # print (len(lovs))
+    # endif
+    ranges = pxml.findall('listOfRanges/rangeDef')
+    if not (ranges == []):
+        range=(findText(ranges[0],'beginValue'),findText(ranges[0],'endValue'))
+    else:
+        range = (None,None)
+    #endif
+ 
+    #noch nicht übernommenm< defaultValue > a @ b.ch < / defaultValue >
+ 
+    if (pwrtb.wrtb_typ =='BIN'):
+        pwrtb.wrtb_bin_inhalttyp = 'BILD' # 'FILM','GRAPH','TEXT','TON'
+        wrtb_bin_spfo_id = None
+    elif (pwrtb.wrtb_typ == 'LOV'):
+        zahl=re.search('\A\d* ',nvl(findText(pxml,'dataTypeSize')))
+        pwrtb.wrtb_text_maxlng = zahl.group() if not (zahl is None) else None
+    elif (pwrtb.wrtb_typ =='TEXT'):
+ #            print(re.search('\A\d* ','123 ab').group())
+        zahl=re.search('\A\d* ',nvl(findText(pxml,'dataTypeSize')))
+        pwrtb.wrtb_text_maxlng = zahl.group() if not (zahl is None) else None
+        constr =pxml.find('checkConstraint')
+        if not (constr is None):
+            #print(constr.findall('*'))
+            impl = constr.find('implementationDef')
+            if not (impl is None):
+              pwrtb.wrtb_text_syntaxregel = findField(impl,'definition')
+    elif (pwrtb.wrtb_typ =='ZPKT'):
+        pwrtb.wrtb_zpkt_minwert = range[0]
+        pwrtb.wrtb_zpkt_maxwert = range[1]
+        pwrtb.wrtb_zpkt_granularitaet = 'MINUTE'
+    elif (pwrtb.wrtb_typ =='NUM'):
+        pwrtb.wrtb_num_minwert = range[0]
+        pwrtb.wrtb_num_maxwert = range[1]
+        pwrtb.wrtb_num_vorkstellen = findText(pxml,'dataTypeScale')
+        pwrtb.wrtb_num_nachkstellen = findText(pxml,'dataTypePrecision')
+        pwrtb.wrtb_num_rundng_einh = None
+        pwrtb.wrtb_num_pheh =  findText(pxml,'unitOfMeasure')
+    #fi
+    pwrtb.insert()
+
+    if (lov is not None) & (lov != {}):
+        for idx, key in enumerate(lovs.keys(), start=1):
+            vgwt = Vorgabewert()
+            vgwt.vgwt_wert = key
+            vgwt.vgwt_wrtb_id = pwrtb.wrtb_id
+            vgwt.vgwt_sortrhfg = idx
+            vgwt.vgwt_uc = pwrtb.wrtb_uc
+            vgwt.vgwt_dc = pwrtb.wrtb_dc
+            vgwt.vgwt_anzeige = lovs[key]
+            vgwt.insert()
+        # for
+    # fi
+#liesundfuellwrtb
+
 def transferDomains():
     #lösche die Domains
     #print(parameters.odmDomainsFilePath())
@@ -129,85 +190,12 @@ def transferDomains():
         wrtb = Wertebereich()
         wrtb.wrtb_name = findField(dom, "name")
         wrtb.wrtb_odm_guid = findField(dom, "id")
-        #print ("Domain name={} id={}" .format (wrtb.wrtb_name,wrtb.wrtb_odm_guid));
-        #print (dom.find('createdBy').text,dom.find('createdTime').text)
-        wrtb.wrtb_uc = findText(dom,'createdBy')
-        wrtb.wrtb_dc = findText(dom,'createdTime')
         wrtb.wrtb_beschr = findText(dom,'comment')
-        wrtb.wrtb_datatype_ref = findText(dom,'logicalDatatype')
-        wrtb.wrtb_typ = Datatype().getbyguid(wrtb.wrtb_datatype_ref).daty_grundtyp
-        wrtb.wrtb_herkunft = 'DOM'
-
-
-        if wrtb.wrtb_typ is None:
-            wrtb.wrtb_typ = 'TEXT'
-        #print (wrtb.wrtb_datatype_ref,wrtb.wrtb_typ )
-
-        lov = dom.find('listOfValues')
-        if (lov is not None) and (lov != {}):
-            wrtb.wrtb_typ = 'LOV'
-            lovs = dict()
-            for lovval in lov:
-                #                print (findField(lovval,'value'),findField(lovval,'description'),lovval.attrib)
-                lovs.update({findField(lovval,'value'): findField(lovval,'description')})
-            # endfor
-            # print (len(lovs))
-        # endif
-        ranges = dom.findall('listOfRanges/rangeDef')
-        if not (ranges == []):
-            range=(findText(ranges[0],'beginValue'),findText(ranges[0],'endValue'))
-        else:
-            range = (None,None)
-        #endif
-
-        #print(wrtb.wrtb_datatype_ref,dbDML.lookup('select  daty_grundtyp  from datatypes where  daty_odm_guid ="{}"'.format(wrtb.wrtb_datatype_ref)))
-        #noch nicht übernommenm< defaultValue > a @ b.ch < / defaultValue >
-
-        if (wrtb.wrtb_typ =='BIN'):
-            wrtb.wrtb_bin_inhalttyp = 'BILD' # 'FILM','GRAPH','TEXT','TON'
-            wrtb_bin_spfo_id = None
-        elif (wrtb.wrtb_typ == 'LOV'):
-            zahl=re.search('\A\d* ',nvl(findText(dom,'dataTypeSize')))
-            wrtb.wrtb_text_maxlng = zahl.group() if not (zahl is None) else None
-        elif (wrtb.wrtb_typ =='TEXT'):
-#            print(re.search('\A\d* ','123 ab').group())
-            zahl=re.search('\A\d* ',nvl(findText(dom,'dataTypeSize')))
-            wrtb.wrtb_text_maxlng = zahl.group() if not (zahl is None) else None
-            constr =dom.find('checkConstraint')
-            if not (constr is None):
-                #print(constr.findall('*'))
-                impl = constr.find('implementationDef')
-                if not (impl is None):
-                    wrtb.wrtb_text_syntaxregel = findField(impl,'definition')
-        elif (wrtb.wrtb_typ =='ZPKT'):
-            wrtb.wrtb_zpkt_minwert = range[0]
-            wrtb.wrtb_zpkt_maxwert = range[1]
-            wrtb.wrtb_zpkt_granularitaet = 'MINUTE'
-        elif (wrtb.wrtb_typ =='NUM'):
-            wrtb.wrtb_num_minwert = range[0]
-            wrtb.wrtb_num_maxwert = range[1]
-            wrtb.wrtb_num_vorkstellen = findText(dom,'dataTypeScale')
-            wrtb.wrtb_num_nachkstellen = findText(dom,'dataTypePrecision')
-            wrtb.wrtb_num_rundng_einh = None
-            wrtb.wrtb_num_pheh =  findText(dom,'unitOfMeasure')
-        #endif
-
-        wrtb.insert()
+        wrtb.wrtb_herkunft = Wertebereich.DOMAIN
+        liesunsfuellwrtb(pwrtb=wrtb, pxml=dom)
         lmodeId = Modellelement.insertmode(pwrtbid=wrtb.wrtb_id)
-
-        if (lov is not None) & (lov != {}):
-            for idx,key in enumerate(lovs.keys(),start=1):
-                vgwt = Vorgabewert()
-                vgwt.vgwt_wert = key
-                vgwt.vgwt_wrtb_id = wrtb.wrtb_id
-                vgwt.vgwt_sortrhfg = idx
-                vgwt.vgwt_uc = wrtb.wrtb_uc
-                vgwt.vgwt_dc = wrtb.wrtb_dc
-                vgwt.vgwt_anzeige = lovs[key]
-                vgwt.insert()
-            #end for
-        #endif
-
+    #for
+    
     dosegfiles(pdirec=parameters.odmstructypesdir(),transferfiles=do1structtype)
 
     """update group domains a their types may now be available"""
@@ -552,14 +540,29 @@ def transferdiagramme():
 #    #endfor
 #transferdiagramme
 
-def findeOderErstelleDom(pdomguid, pstructdomguid, ptypeguid, pattrname,pattrxml),:
+def insertderiveddomain(ptypeguid, pattrname, pvatername, pattrxml):
+    wrtb = Wertebereich()
+    wrtb.wrtb_name = pattrname
+    if (Wertebereich().getbyname(pname=pattrname).wrtb_name == pattrname):
+        #es gibt ihn schon, füge den Vaternamen dazu
+        wrtb.wrtb_name += '-' + pvatername
+    wrtb.wrtb_herkunft = Wertebereich.DERIVED
+    wrtb.wrtb_beschr = "generiertes Domain für einen Datentyp"
+
+    liesunsfuellwrtb(pwrtb=wrtb, pxml=pattrxml)
+    lmodeId = Modellelement.insertmode(pwrtbid=wrtb.wrtb_id)
+    return wrtb
+#insertderiveddomain
+
+
+def findeOderErstelleDom(pdomguid, pstructdomguid, ptypeguid, pattrname,pvatername,pattrxml):
     dom = None
     if pdomguid is not None:
         dom = Wertebereich().getbyguid(pdomguid)
     elif pstructdomguid is not None:
         dom = Wertebereich().getbyguid(pstructdomguid)
     elif ptypeguid is not None:
-        insertderiveddomain(ptypeguid,pattrname,pattrxml)
+        dom = insertderiveddomain(ptypeguid=ptypeguid,pattrname=pattrname,pvatername=pvatername,pattrxml=pattrxml)
     #
     if dom is None:
         dom = Wertebereich().getbyname('Unknown')
@@ -671,6 +674,11 @@ def do1Attribute(plfnr, pattrxml, pentiId=None, pbeziId=None):
     if (findText(pattrxml, 'referedAttribute') is not None):
         return
 
+    if pentiId is not None:
+        vatername = dbDML.select("select enti_name from entitaeten where enti_id = {}".format(pentiId))[0][0]
+    elif pbeziId is not None:
+        vatername = "Beziehung ({})".format(pbeziId)
+
     ganzName = findField(pattrxml, 'name')
     abbrevName = findText(pattrxml, 'preferredAbbreviation')
     attrName=re.search('[^\[]*',ganzName).group().rstrip()
@@ -681,7 +689,9 @@ def do1Attribute(plfnr, pattrxml, pentiId=None, pbeziId=None):
     domId=findeOderErstelleDom(pdomguid=findText(pattrxml, 'domain')
                                , pstructdomguid=findText(pattrxml, 'structuredType')
                                , ptypeguid=findText(pattrxml, 'logicalDatatype')
-                               , pattrname=attrName)
+                               , pattrname=attrName
+                               ,pvatername=vatername
+                               ,pattrxml=pattrxml)
     attrcomm = findText(pattrxml, 'comment')
     attrset=(pentiId, domId, techiName
         , attrName, findText(pattrxml, ''), attrcomm
@@ -696,8 +706,7 @@ def do1Attribute(plfnr, pattrxml, pentiId=None, pbeziId=None):
         attrId = dbInserts.insertAttribute(pattr=attrset)
     except  sqlite3.Error as e:
         print(str(e))
-        ent = dbDML.select("select enti_name from entitaeten where enti_id = {}".format(pentiId))
-        print('Entity = {}'.format(ent[0][0]))
+        print('Entity = {}'.format(vatername))
         print(attrset)
         raise e
     #try
