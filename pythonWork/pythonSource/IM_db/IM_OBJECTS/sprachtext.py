@@ -141,5 +141,232 @@ CREATE TABLE sprachtexte(
         retval = {d[0]:d[1] for d in data}
         return retval
     #getsprachtexte
+
+
+    __translNameEN = {'Anzeige': 'Display'
+        , 'Arc': 'Arc'
+        , 'Anzeige': 'Display'
+        , 'Attribut': 'Attribute'
+        , 'Attribut(e)': 'Attribute(s)'
+        , 'Attribute': 'Attributes'
+        , 'Attributgruppe': 'Attribut group'
+        , 'auf Diagramm(en)': 'on diagram(s)'
+        , 'Author': 'Author'
+        , 'Beschreibung': 'Description'
+        , 'Beziehung': 'Relationship'
+        , 'Beziehung(en)': 'relationship(s)'
+        , 'Beziehungen': 'Relationships'
+        , 'Benutzerdefinerte Eigenschaften': 'User defined properties'
+        , 'Bild': 'Picture'
+        , 'Binär': 'Binary'
+        , 'Datentyp': 'Datatype'
+        , 'Deskriptor': 'descriptor'
+        , 'Domänen': 'Domains'
+        , 'Diagramm': 'Diagram'
+        , 'Diagramme': 'Diagrams'
+        , 'Dokument': 'Document'
+        , 'Domäne': 'Domain'
+        , 'Einheit': 'Unit'
+        , 'Element': 'Element'
+        , 'Elemente': 'Elements'
+        , 'Entität': 'Entity'
+        , 'Entität/Tabelle': 'Entity/Table'
+        , 'Entitäten': 'Entities'
+        , 'erstellt': 'created'
+        , 'Film': 'Video'
+        , 'geändert': 'updated'
+        , 'Gruppenattribut': 'Groupattribute'
+        , 'Grafik': 'Graphic'
+        , 'Granularität': 'Granularity'
+        , 'historisiert': 'historicized'
+        , 'in Schlüssel': 'within key'
+        , 'Informationsmodell {} (Stand: {})': 'Informationmodel {} (Status: {})'
+        , 'Informationen': 'Informations'
+        , 'Inhaltstyp': 'Content type'
+        , 'Ja': 'Yes'
+        , 'Jahr': 'year'
+        , 'Max. Länge': 'Max. length'
+        , 'Max. Wert': 'Max. value'
+        , 'Mehr': 'more'
+        , 'Millisekunde': 'millisecond'
+        , 'Minute': 'minute'
+        , 'Min. Wert': 'Min. value'
+        , 'Monat': 'month'
+        , 'Nachkommast.': 'digits after period'
+        , 'Name': 'Name'
+        , 'Nein': 'No'
+        , 'Nr': 'Nr'
+        , 'Numerisch': 'Numerical'
+        , 'Pflichtattribut': 'Attribute of duty'
+        , 'Quartal': 'quarter'
+        , 'Referenziert von': 'Referenced by'
+        , 'Relational Mapping (Tabellen)': 'Relational Mapping (tables)'
+        , 'Rundungseinh.': 'rounding unit'
+        , 'Schlüssel': 'Key'
+        , 'Sekunde': 'second'
+        , 'Semester': 'half-year'
+        , 'Sort': 'Sort'
+        , 'Stunde': 'hour'
+        , 'Subentität': 'Subentity'
+        , 'Subentitäten': 'Subentities'
+        , 'Suchbegriff': 'search key'
+        , 'Superentität': 'Superentity'
+        , 'Synonyme': 'Synonyms'
+        , 'Syntaxregel': 'Syntax rule'
+        , 'Systeme': 'Systems'
+        , 'Tag': 'day'
+        , 'Tabelle': 'Table'
+        , 'Tabellen': 'Tables'
+        , 'Technischer Name': 'Technical Name'
+        , 'Text': 'Text'
+        , 'Ton': 'Sound'
+        , 'Tooltip': 'Tooltip'
+        , 'Treffer': 'Hits'
+        , 'Typ': 'Type'
+        , 'UDP-Matrix': 'UDP-Matrix'
+        , 'übersetzt': 'translated'
+        , 'Übersetzungen': 'Translations'
+        , 'Unterdokumente': 'Children'
+        , "Vaterdokument": "Parent"
+        , 'verschlüsselt': 'encrypted'
+        , 'Verwendet für Attribute': 'Used for attributes'
+        , 'Verwendet in Attributgruppen': 'Used in attribute groups'
+        , 'Verwendet von': 'used by'
+        , 'Vorkommast.': 'digits before period'
+        , 'Wert': 'Value'
+        , 'Wertebereich': 'Domain'
+        , 'Wertebereichs': 'Domains'
+        , 'Werteliste': 'List of values'
+        , 'wiederholt': 'repeated'
+        , 'Woche': 'week'
+        , 'Zeitpunkt': 'Point in Time'
+                      }
+    __translNameFR = {"Anzeige": "Affichage"
+        , "Arc": "Arc"
+        , "Attribut": "Attribut"
+        , "Attribut(e)": "Attribut(s)"
+        , "Attribute": "Attributs"
+        , "Attributgruppe": "Groupe d'attributs"
+        , "auf Diagramm(en)": "sur ce diagramme(s)"
+        , "Autor": "Auteur"
+        , "Beschreibung": "Déscription"
+        , "Beziehung": "Relation"
+        , "Beziehung(en)": "Relation(s)"
+        , "Beziehungen": "Relations"
+        , "Benutzerdefinerte Eigenschaften": "Propriétés définies par l'utilisateur"
+        , "Bild": "Image"
+        , "Binär": "Binaire"
+        , "Datentyp": "Type de données"
+        , "Deskriptor": "Descripteur"
+        , "Domänen": "Domaines"
+        , "Diagramm": "Diagramme"
+        , "Diagramme": "Diagrammes"
+        , "Domäne": "Domaine"
+        , "Dokument": "Document"
+        , "Einheit": "Unité"
+        , "Element": "Élément"
+        , "Elemente": "Éléments"
+        , "Entität": "Entité"
+        , "Entität/Tabelle": "Entité/Tableau"
+        , "Entitäten": "Entités"
+        , "erstellt": "Élaboré"
+        , "Film": "Film"
+        , "geändert": "changé"
+        , "Gruppenattribut": "Attribut de groupe"
+        , "Grafik": "Graphique"
+        , "Granularität": "Granularité"
+        , "historisiert": "historisé"
+        , "in Schlüssel": "dans une clef"
+        , "Informationsmodell {} (Stand {})": "Modèle d'informations {} (État {})"
+        , "Informationen": "Informations"
+        , "Inhaltstyp": "Type de contenu"
+        , "Ja": "Oui"
+        , "Jahr": "Année"
+        , "Max. Länge": "Longueur max."
+        , "Max. Wert": "Valeur max."
+        , "Mehr": "Plus"
+        , "Millisekunde": "Milliseconde"
+        , "Minute": "Minute"
+        , "Min. Wert": "Valeur min."
+        , "Monat": "Mois"
+        , "Nachkommastellen": "Décimales"
+        , "Name": "Nom"
+        , "Nein": "Non"
+        , "Nr": "N°"
+        , "Numerisch": "Numérique"
+        , "Pflichtattribut": "Attribut obligatoire"
+        , "Quartal": "Trimestre"
+        , 'Referenziert von': 'Référencé par'
+        , "Relational Mapping (Tabellen)": "Relational Mapping (tables)"
+        , "Rundungseinheit": "Unité de l'arrondi"
+        , "Schlüssel": "Clef"
+        , "Sekunde": "Seconde"
+        , "Semester": "Semestre"
+        , "Sort": "Sorte"
+        , "Stunde": "Heure"
+        , "Subentität": "Sous-entité"
+        , "Subentitäten": "Sous-entités"
+        , "Suchbegriff": "Clef de reherche"
+        , "Superentität": "Superentité"
+        , "Synonyme": "Synonyme"
+        , "Syntaxregel": "Règle syntaxique"
+        , "Systeme": "Systèmes"
+        , 'Tabelle': 'Table'
+        , 'Tabellen': 'Tables'
+        , "Tag": "Jour"
+        , "Technischer Name": "Terme technique"
+        , "Text": "Texte"
+        , "Ton": "Ton"
+        , "Tooltip": "Info-bulle"
+        , "Treffer": "Occurrence"
+        , "Typ": "Type"
+        , "UDP-Matrix": "Matrice UDP"
+        , "übersetzt": "traduit"
+        , "Übersetzungen": "Traductions"
+        , 'Unterdokumente': 'Enfants'
+        , "Vaterdokument": "Document père"
+        , "verschlüsselt": "Chiffré"
+        , "Verwendet für Attribute": "Utilisé par les attributs"
+        , "Verwendet in Attributgruppen": "Utilisé dans les groupes d'attributs"
+        , "Verwendet von": "Utilisé pour"
+        , "Vorkommastellen": "Position avant la décimale"
+        , "Wert": "Valeur"
+        , "Wertebereich": "Domaine des valeurs"
+        , "Wertebereiche": "Domaines des valeurs"
+        , "Werteliste": "Liste des Valeur"
+        , "wiederholt": "répété"
+        , "Woche": "Semaine"
+        , "Zeitpunkt": "Instant"
+                      }
+    @staticmethod
+    def transl(pname):
+        if (__greportLang == 'de'):
+            return pname
+        elif (__greportLang == 'en'):
+            try:
+                return __translNameEN[pname]
+            except:
+                return pname
+        elif (__greportLang == 'fr'):
+            try:
+                return __translNameFR[pname]
+            except:
+                return pname
+        else:
+            return pname
+    # transl
+
+
+    __greportLang: str = None
+
+    @staticmethod
+    def reportLang(newval=None):
+        global __greportLang
+        if (newval is None):
+            return __greportLang
+        else:
+            __greportLang = newval
+    # reportLang
+
 #Sprachtext
 

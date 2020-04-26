@@ -160,8 +160,10 @@ def liesunsfuellwrtb(pwrtb, pxml):
     elif (pwrtb.wrtb_typ =='NUM'):
         pwrtb.wrtb_num_minwert = range[0]
         pwrtb.wrtb_num_maxwert = range[1]
-        pwrtb.wrtb_num_vorkstellen = findText(pxml,'dataTypeScale')
-        pwrtb.wrtb_num_nachkstellen = findText(pxml,'dataTypePrecision')
+        prec = findText(pxml,'dataTypePrecision')
+        scale = findText(pxml,'dataTypeScale')
+        pwrtb.wrtb_num_nachkstellen = 0 if scale is None else int(scale)
+        pwrtb.wrtb_num_vorkstellen = 0 if prec is None else int(prec) - pwrtb.wrtb_num_nachkstellen
         pwrtb.wrtb_num_rundng_einh = None
         pwrtb.wrtb_num_pheh =  findText(pxml,'unitOfMeasure')
     #fi
@@ -547,8 +549,6 @@ def transferdiagramme():
 def insertderiveddomain(ptypeguid, pattrname, pvatername, pattrxml):
     wrtb = Wertebereich()
     wrtb.wrtb_name = pattrname
-    if pattrname == 'REFCIALE':
-        print(wrtb.wrtb_name)
     if (Wertebereich.getbyname(pname=pattrname).wrtb_name == pattrname):
         #es gibt ihn schon, füge den Vaternamen dazu
         wrtb.wrtb_name = pattrname + '-' + pvatername

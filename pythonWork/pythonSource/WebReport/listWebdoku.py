@@ -74,7 +74,7 @@ def printAttrUDPMatrix(thema=None):
                                     and ena.spra_id = sp.spra_id            
       join wertebereiche on wrtb_id = attr_wrtb_id
       ) order by enti_name,upper(attr_tech_name)"""
-                           .format(printHTML.greportLang))
+                           .format(printHTML.__greportLang))
     printHTML.starttable(ptitel='Attribute - User Defined Properties: ' + nvl(thema)
                          ,pueberschriften= udpListe
                          , anker=udpAnker(thema))
@@ -100,25 +100,25 @@ def printAttrUDPMatrix(thema=None):
 
 def printlistofcontent():
     printHTML.printlistofcontenthead()
-    printHTML.printlistofcontentelement(pname='Entitäten', plist=web_sql.namelist(ptype='ENTI', plang=printHTML.reportLang()))
-    printHTML.printlistofcontentelement(pname='Attribute', plist=web_sql.namelist(ptype='ATTR', plang=printHTML.reportLang()))
-    printHTML.printlistofcontentelement(pname='Wertebereiche', plist=web_sql.namelist(ptype='WRTB', plang=printHTML.reportLang()))
-    printHTML.printlistofcontentelement(pname='Dokumente', plist=web_sql.namelist(ptype='DOKU', plang=printHTML.reportLang()))
-    printHTML.printlistofcontentelement(pname='Attribut-Mapping', plist=web_sql.namelist(ptype='UDP', plang=printHTML.reportLang()))
-    printHTML.printlistofcontentelement(pname='Diagramme', plist=web_sql.namelist(ptype='DIAG', plang=printHTML.reportLang()))
-    printHTML.printlistofcontentelement(pname='Systeme', plist=web_sql.namelist(ptype='SCHN', plang=printHTML.reportLang())
+    printHTML.printlistofcontentelement(pname='Entitäten', plist=web_sql.namelist(ptype='ENTI', plang=Sprachtext.reportLang()))
+    printHTML.printlistofcontentelement(pname='Attribute', plist=web_sql.namelist(ptype='ATTR', plang=Sprachtext.reportLang()))
+    printHTML.printlistofcontentelement(pname='Wertebereiche', plist=web_sql.namelist(ptype='WRTB', plang=Sprachtext.reportLang()))
+    printHTML.printlistofcontentelement(pname='Dokumente', plist=web_sql.namelist(ptype='DOKU', plang=Sprachtext.reportLang()))
+    printHTML.printlistofcontentelement(pname='Attribut-Mapping', plist=web_sql.namelist(ptype='UDP', plang=Sprachtext.reportLang()))
+    printHTML.printlistofcontentelement(pname='Diagramme', plist=web_sql.namelist(ptype='DIAG', plang=Sprachtext.reportLang()))
+    printHTML.printlistofcontentelement(pname='Systeme', plist=web_sql.namelist(ptype='SCHN', plang=Sprachtext.reportLang())
                                         ,pfileonly = True)
     printHTML.printlistofcontentfoot()
 # printlistofcontent
 
 def printcontent(pfirma,ptitel):
     printHTML.printcontenthead(pfirma=pfirma,ptitel=ptitel)
-    printHTML.printcontententi(plist=web_sql.entilist(p_lang=printHTML.reportLang()))
-    printHTML.printcontentattr(plist=web_sql.attrlist(p_lang=printHTML.reportLang()))
+    printHTML.printcontententi(plist=web_sql.entilist(p_lang=Sprachtext.reportLang()))
+    printHTML.printcontentattr(plist=web_sql.attrlist(p_lang=Sprachtext.reportLang()))
     printHTML.printcontentwrtb(plist=web_sql.wrtblist())
     printHTML.printcontentdoku(plist=web_sql.dokulist())
-    printHTML.printcontentmapping(plist=web_sql.namelist(ptype='UDP', plang=printHTML.reportLang()))
-    printdiagHTML.printcontentdiag(plist=web_sql.diaglist(), plang=printHTML.reportLang(), ptitel=ptitel)
+    printHTML.printcontentmapping(plist=web_sql.namelist(ptype='UDP', plang=Sprachtext.reportLang()))
+    printdiagHTML.printcontentdiag(plist=web_sql.diaglist(), plang=Sprachtext.reportLang(), ptitel=ptitel)
     printHTML.printcontentfoot()
 #printcontent
 
@@ -154,11 +154,11 @@ def listwebmain(plang):
     if (plang is None):
         langs = projekt.projektlangs().split(',')
         if (len(langs) == 0):
-            printHTML.reportLang(parameters.dbDefaultLang())
-            langs = [printHTML.reportLang()]
+            Sprachtext.reportLang(parameters.dbDefaultLang())
+            langs = [Sprachtext.reportLang()]
     else:
-        printHTML.reportLang(plang.lower())
-        langs = [printHTML.reportLang()]
+        Sprachtext.reportLang(plang.lower())
+        langs = [Sprachtext.reportLang()]
     #fi
 
     #erstelle die Liste der HTML Files für HREF's
@@ -166,18 +166,18 @@ def listwebmain(plang):
     for s in schnlist: printHTML.htmlfilelist[s[2]] = s[0]+ '.html'
 
     for lang in langs:
-        printHTML.reportLang(lang.lower())
-        langfilename = printHTML.webFileName + '_' + printHTML.reportLang() + '.html'
-        print ("create web-files for language {} in file {}".format(printHTML.reportLang(),langfilename))
+        Sprachtext.reportLang(lang.lower())
+        langfilename = printHTML.webFileName + '_' + Sprachtext.reportLang() + '.html'
+        print ("create web-files for language {} in file {}".format(Sprachtext.reportLang(),langfilename))
         printHTML.htmlfilelist[0] = langfilename
         printhtmlfile(pfirma="foryouandyourcustomers"
-                      , ptitel=parameters.odmModelName() + ' ({})'.format(printHTML.reportLang())
+                      , ptitel=parameters.odmModelName() + ' ({})'.format(Sprachtext.reportLang())
                       , pinfo="{}".format(datetime.now().strftime("%Y-%m-%d, %H:%M"))
                       , plogofilename=parameters.logoFileName()
                       , pfilename=  langfilename
                       )
     # for
-    printHTML.reportLang(parameters.dbDefaultLang())
+    Sprachtext.reportLang(parameters.dbDefaultLang())
     #backjumps from relational webpage goes to default-lang-model
     printHTML.htmlfilelist[0] = printHTML.webFileName + '_' + parameters.dbDefaultLang() + '.html'
 

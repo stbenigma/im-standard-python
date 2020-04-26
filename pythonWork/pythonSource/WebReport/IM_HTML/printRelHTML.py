@@ -4,12 +4,8 @@ sys.path.append(os.getcwd())
 from IM_HTML import web_sql,printHTML
 from IM_OBJECTS import *
 
-def transl(name):
-    return printHTML.transl(name)
 def nvl(s,default = ''):
     return printHTML.nvl(s,default)
-def reportLang(newval=None):
-    return printHTML.reportLang(newval)
 
 def printmapping(ptablid):
     # name, list of entries mit {'name':webanker}
@@ -26,8 +22,8 @@ def printmapping(ptablid):
             ]
     #print(werte)
     printHTML.printmappinthtml(pwerte= werte
-                     ,ptitel=transl('Mapping')
-                     ,pueberschriften=(transl('Model'), transl('Entitäten / Tabellen'))
+                     ,ptitel=Sprachtext.transl('Mapping')
+                     ,pueberschriften=(Sprachtext.transl('Model'), Sprachtext.transl('Entitäten / Tabellen'))
                      )
 #printmapping
 
@@ -71,26 +67,40 @@ def printcollist(pcollist):
     """
 
     if (pcollist is None or len(pcollist)==0):return
-    printHTML.fhtml.write(printHTML.starttable(ptitel='Columns', pueberschriften=[transl('Name'),transl('Wertebereich'), transl('Datentyp')]
+    printHTML.fhtml.write(printHTML.starttable(ptitel='Columns', pueberschriften=[Sprachtext.transl('Name'),Sprachtext.transl('Beschreibung'),Sprachtext.transl('Wertebereich'), Sprachtext.transl('Datentyp')]
             , pheadlevel=2))
     for col in pcollist:
-        printHTML.fhtml.write(printHTML.writetableline(pwerte=[col.scha_column_name,nvl(col.scha_format),col.scha_daty_id], plineid=None))
+        if col.scha_wrtb_id is None:
+            wrtbname = ''
+            if col.scha_daty_id is not None:
+                wrtbtyp = wrtb.typestring()
+                #printHTML.anzDatentyp(Datatype().getbyid(col.scha_daty_id).daty_grundtyp)
+            else:
+                wrtbtyp = ''
+            #fi
+        else:
+            wrtb = Wertebereich().getbyid(nvl(col.scha_wrtb_id,0))
+            wrtbname='' if wrtb.wrtb_herkunft == Wertebereich.DERIVED else wrtb.getwrtb_name(Sprachtext.reportLang())
+            wrtbtyp = wrtb.typestring()# printHTML.anzDatentyp(wrtb.wrtb_typ)
+        #fi
+        printHTML.fhtml.write(printHTML.writetableline(pwerte=[col.scha_column_name,nvl(col.scha_beschr)
+                                                                ,wrtbname,wrtbtyp], plineid=None))
     #for
     printHTML.fhtml.write(printHTML.endtable())
 #printcollist
 
 def printcontenttable(plist):
     printHTML.printcontentstart ('tables')
-    infoheaders = (transl('auf Diagramm(en)'),transl('geändert'))
+    infoheaders = (Sprachtext.transl('auf Diagramm(en)'),Sprachtext.transl('geändert'))
     for t in plist:
         lbc = str(printHTML.newbarcounter())
-        printHTML.printcontent(ptype=transl('Tabelle')
+        printHTML.printcontent(ptype=Sprachtext.transl('Tabelle')
                     ,panker=t.webanker().anker()
                     ,pname=t.tabl_name
                     ,pdescr=printHTML.lf2htmlbr(nvl(t.tabl_beschr))
                     ,plbc=lbc)
         infovalues = ('', nvl(t.tabl_um) + ', ' + nvl(t.tabl_dm))
-        printHTML.printcontentinfo(ptitle=transl('Informationen'),pheaders=infoheaders,pvalues=infovalues)
+        printHTML.printcontentinfo(ptitle=Sprachtext.transl('Informationen'),pheaders=infoheaders,pvalues=infovalues)
 
         printHTML.printreflist(pelemid=t.tabl_id,pelemtype='TABL')
         printHTML.printUDP(p_meltname=t.prefix().upper(), p_id=t.tabl_id)
@@ -104,12 +114,12 @@ def printlistofcontent(pschnid):
     printHTML.printlistofcontenthead()
     printHTML.printlistofcontentelement(pname='Tabellen'
                                         , plist=web_sql.namelist(ptype='TABL'
-                                                     , plang=printHTML.reportLang()
+                                                     , plang=Sprachtext.reportLang()
                                                     ,pid=pschnid)
                                         )
     printHTML.printlistofcontentelement(pname='Columns'
                                         , plist=web_sql.namelist(ptype='SCHA'
-                                                     , plang=printHTML.reportLang()
+                                                     , plang=Sprachtext.reportLang()
                                                     ,pid=pschnid)
                                         )
     printHTML.printlistofcontentfoot()
@@ -125,7 +135,7 @@ def printcontenthead(pfirma,ptitel,pschnid):
     contentheadend = """          
         </div>
         """
-    if reportLang() == 'de' :
+    if Sprachtext.reportLang() == 'de' :
         f = """class="descr">Diese Webseite enthält den ganzen Inhalt 
             des <p2 class="IM">Relationalen Modells {}</p2> von {}. 
             Diese Seite wurde von Software von <p2 class="fyayc">foryouandyourcustomers</p2> 

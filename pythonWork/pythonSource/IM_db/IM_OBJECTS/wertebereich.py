@@ -1,5 +1,6 @@
 from .baseobject import Baseobject
 from .sprachtext import Sprachtext
+from .datatype import Datatype
 from IM_DB import dbDML
 
 class Wertebereich(Baseobject):
@@ -125,11 +126,20 @@ CREATE TABLE wertebereiche(
         return wrtbs
     #select
 
+    def getwrtb_name(self,plang):
+        try:
+            name = self.wrtb_name_L[plang]
+        except:
+            name = self.wrtb_name
+        return name
+    #wrtb_name_L
+
     def getsprachvals(self):
+        modeid = self.getmodeid()
         for col in self._multilangcols.keys():
 #            print(col,self._multilangcols[col])
 #            print(Sprachtext.getsprachtexte(pattrname=self._multilangcols[col], pmodeid=self.getmodeid()))
-            self.__dict__[col] = Sprachtext.getsprachtexte(pattrname=self._multilangcols[col], pmodeid=self.getmodeid())
+            self.__dict__[col+'_L'] = Sprachtext.getsprachtexte(pattrname=self._multilangcols[col], pmodeid=modeid)
         #for
     #getsprachvals
 
@@ -140,6 +150,49 @@ CREATE TABLE wertebereiche(
         except:
             return None
     #getmodeid
+    
+    def typeinfo(self):
+        def nvl(x, default=''):
+            return x if (x is not None) else default
+
+        daty= Datatype().getbyid(self.wrtb_daty_id)
+        typestring = daty.daty_name
+        if (self.wrtb_typ in (Wertebereich.TEXT,Wertebereich.LOV)):
+            infoheaders = (Sprachtext.transl('Datentyp'), Sprachtext.transl('Max. Länge'), Sprachtext.transl('Syntaxregel'), Sprachtext.transl('geändert'))
+            infovalues = (nvl(self.wrtb_typ),nvl(self.wrtb_text_maxlng),nvl(self.wrtb_text_syntaxregel),nvl(self.wrtb_uc)+','+nvl(self.wrtb_dc))
+            typestring += " ({})".format(nvl(self.wrtb_text_maxlng))
+        elif (self.wrtb_typ == Wertebereich.BIN):
+            infoheaders = (Sprachtext.transl('Datentyp'), Sprachtext.transl('Inhaltstyp'), Sprachtext.transl('Format'), Sprachtext.transl('geändert'))
+            infovalues = (nvl(self.wrtb_typ),Wertebereich.anzinhalttyp(nvl(self.wrtb_bin_inhalttyp)), nvl(self.wrtb_bin_spfo_id),nvl(self.wrtb_uc)+','+nvl(self.wrtb_dc))
+            typestring += " ({}, {})".format(Wertebereich.anzinhalttyp(nvl(self.wrtb_bin_inhalttyp)), nvl(self.wrtb_bin_spfo_id))
+        elif (self.wrtb_typ ==  Wertebereich.GRP):
+            infoheaders = (Sprachtext.transl('Datentyp'), Sprachtext.transl('geändert'))
+            infovalues = (self.wrtb_typ,nvl(self.wrtb_uc)+','+nvl(self.wrtb_dc))
+        elif (self.wrtb_typ == Wertebereich.NUM):
+            infoheaders = (Sprachtext.transl('Datentyp'), Sprachtext.transl('Vorkommast.'), Sprachtext.transl('Nachkommast.')
+                           , Sprachtext.transl('Rundungseinh.'), Sprachtext.transl('Einheit'), Sprachtext.transl('Min. Wert'), Sprachtext.transl('Max. Wwert')
+                           , Sprachtext.transl('geändert'))
+            infovalues = (nvl(self.wrtb_typ),nvl(self.wrtb_num_vorkstellen),nvl(self.wrtb_num_nachkstellen),nvl(self.wrtb_num_rundng_einh),nvl(self.wrtb_num_pheh_id)
+                          ,nvl(self.wrtb_num_minwert),nvl(self.wrtb_num_maxwert)
+                          ,nvl(self.wrtb_uc)+','+nvl(self.wrtb_dc))
+            typestring += " ({}{}) {} {}".format(nvl(self.wrtb_num_vorkstellen)
+                                                  , '' if self.wrtb_num_nachkstellen is None else '.' + str(self.wrtb_num_nachkstellen)
+                                                  , '' if self.wrtb_num_minwert is None else '>= ' + str(self.wrtb_num_minwert)
+                                                  , '' if self.wrtb_num_maxwert is None else '<= ' + str(self.wrtb_num_maxwert))
+        elif (self.wrtb_typ == Wertebereich.ZPKT):
+            infoheaders = (Sprachtext.transl('Datentyp'), Sprachtext.transl('Min. Wert'), Sprachtext.transl('Max. Wwert'), Sprachtext.transl('Granularität')
+                           , Sprachtext.transl('geändert'))
+            infovalues = (nvl(self.wrtb_typ),nvl(self.wrtb_zpkt_minwert),nvl(self.wrtb_zpkt_maxwert),Wertebereich.anzgranul(nvl(self.wrtb_zpkt_granularitaet)), nvl(self.wrtb_uc)+','+nvl(self.wrtb_dc))
+            typestring += " {} {} {}".format( '' if self.wrtb_zpkt_granularitaet is None else  Sprachtext.transl('Granularität =') + Wertebereich.anzgranul(self.wrtb_zpkt_granularitaet)
+                                              , '' if self.wrtb_zpkt_minwert is None else '>= ' + self.wrtb_zpkt_minwert
+                                              ,   '' if self.wrtb_zpkt_maxwert is None else '<= ' + self.wrtb_zpkt_maxwert)
+        else:  infoheaders,infovalues,typestring = None,None,''
+        return [infoheaders,infovalues,typestring]
+    #typeinfo
+    def typestring(self):
+        info = self.typeinfo()
+        return info[2]
+    #typestring
 
     def webanker(self):
         return super().webanker()
@@ -153,8 +206,8 @@ CREATE TABLE wertebereiche(
 
     @staticmethod
     def indexlist(pherkunft,plang):
-        data = Wertebereich.select(pwhere="dom_herkunft = '{}'".format(pherkunft), porderby='wrtb_name')
-        indexlist = [['{} ({})'.format(d.wrtb_name[plang],d.refattranz())
+        data = Wertebereich.select(pwhere="wrtb_herkunft = '{}'".format(pherkunft), porderby='wrtb_name')
+        indexlist = [['{} ({})'.format(d.getwrtb_name(plang),d.refattranz())
                     ,d.webanker(),d.wrtb_id] for d in data]
         return indexlist
 
@@ -163,8 +216,7 @@ CREATE TABLE wertebereiche(
     @staticmethod
     def getbyname(pname):
         return Wertebereich().getbyuk(pcolname='wrtb_name', pukvalue=pname)
-    wrtb_name ist translated!!
-    # getbyname
+    # getbyname¨
 
     @staticmethod
     def getunknown():
@@ -177,6 +229,45 @@ CREATE TABLE wertebereiche(
         #fi
         return Wertebereich.__unknowndom
     #getunknown
+
+    @staticmethod
+    def anzdatentyp(dt):
+        anzDT = {'BIN': Sprachtext.transl('Binär')
+            , 'GRP': Sprachtext.transl('Gruppenattribut')
+            , 'LOV': Sprachtext.transl('Werteliste')
+            , 'NUM': Sprachtext.transl('Numerisch')
+            , 'TEXT': Sprachtext.transl('Text')
+            , 'ZPKT': Sprachtext.transl('Zeitpunkt')}
+        return anzDT[dt]
+    # anzDatentyp
+
+    @staticmethod
+    def anzinhalttyp(dt):
+        anzDT = {'BILD': Sprachtext.transl('Bild')
+            , 'FILM': Sprachtext.transl('Film')
+            , 'GRAPH': Sprachtext.transl('Grafik')
+            , 'TEXT': Sprachtext.transl('Text')
+            , 'TON': Sprachtext.transl('Ton')}
+        return anzDT[dt]
+    # anzinhalttyp
+
+    @staticmethod
+    def anzgranul(dt):
+        anzDT = {
+            'JAHR': Sprachtext.transl('Jahr'),
+            'MILLISEKUNDE': Sprachtext.transl('Millisekunde'),
+            'MINUTE': Sprachtext.transl('Minute'),
+            'MONAT': Sprachtext.transl('Monat'),
+            'QUARTAL': Sprachtext.transl('Quartal'),
+            'SEKUNDE': Sprachtext.transl('Sekunde'),
+            'SEMESTER': Sprachtext.transl('Semester'),
+            'STUNDE': Sprachtext.transl('Stunde'),
+            'TAG': Sprachtext.transl('Tag'),
+            'WOCHE': Sprachtext.transl('Woche')
+        }
+        return anzDT[dt]
+    # anzgranul
+
 #Wertebereich
 
 class Wertebereichgruppe(Baseobject):

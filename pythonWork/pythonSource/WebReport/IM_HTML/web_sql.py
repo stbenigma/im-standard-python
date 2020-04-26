@@ -587,30 +587,6 @@ def udpwerte(pmeltname, pthema, pgruppe, pid):
 
 def wrtblist():
     return Wertebereich.select(pwhere="wrtb_herkunft = 'DOM'", porderby='wrtb_name')
-#    data = dbDML.select("""select * from 
-#    (select wrtb_id, case when wna.sptx_text is null then wrtb_name 
-#                                    else wna.sptx_text end  wrtbname
-#            ,wrtb_business_rule, wrtb_name
-#            ,wrtb_beschr, wrtb_typ
-#            ,wrtb_zpkt_minwert, wrtb_zpkt_maxwert
-#            ,wrtb_zpkt_granularitaet, wrtb_text_maxlng
-#            ,wrtb_text_syntaxregel, wrtb_num_maxwert
-#            ,wrtb_num_minwert, wrtb_num_vorkstellen
-#            ,wrtb_num_nachkstellen, wrtb_num_rundng_einh
-#            ,wrtb_num_pheh_id, wrtb_bin_inhalttyp
-#            ,wrtb_bin_spfo_id, wrtb_odm_guid
-#            ,wrtb_uc, wrtb_dc
-#            ,wrtb_um, wrtb_dm
-#            ,wrtb_datatype_ref
-#        from wertebereiche 
-#        join sprachen sp on sp.spra_iso_code2 = '{}'         
-#        left join modellelement wmo on wmo.mode_wrtb_id = wrtb_id
-#        left join spraattr wna on wna.sptx_attrname = 'WRTB_NAME'
-#                                and wna.sptx_mode_id = wmo.mode_id
-#                                and wna.spra_id = sp.spra_id
-#        ) order by upper(wrtbname)
-#      """.format(p_lang))
-#    return data
 #wrtblist
 
 def dokulist():
