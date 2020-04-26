@@ -163,13 +163,15 @@ CREATE TABLE wertebereiche(
     @staticmethod
     def getbyname(pname):
         return Wertebereich().getbyuk(pcolname='wrtb_name', pukvalue=pname)
+    wrtb_name ist translated!!
     # getbyname
 
-    def getunknown(self):
+    @staticmethod
+    def getunknown():
         if Wertebereich.__unknowndom is None:
-            dom = self.getbyname(pname='Unknown')
+            dom = Wertebereich.getbyname(pname='Unknown')
             if dom.wrtb_id is None:
-                dom = self.getbyuk(pname='unknown')
+                dom = Wertebereich.getbyname(pname='unknown')
             #fi
             Wertebereich.__unknowndom = dom
         #fi

@@ -165,7 +165,11 @@ def liesunsfuellwrtb(pwrtb, pxml):
         pwrtb.wrtb_num_rundng_einh = None
         pwrtb.wrtb_num_pheh =  findText(pxml,'unitOfMeasure')
     #fi
-    pwrtb.insert()
+    try:
+        pwrtb.insert()
+    except Exception as e:
+        print (pwrtb.wrtb_name)
+        print (str(e))
 
     if (lov is not None) & (lov != {}):
         for idx, key in enumerate(lovs.keys(), start=1):
@@ -543,14 +547,16 @@ def transferdiagramme():
 def insertderiveddomain(ptypeguid, pattrname, pvatername, pattrxml):
     wrtb = Wertebereich()
     wrtb.wrtb_name = pattrname
-    if (Wertebereich().getbyname(pname=pattrname).wrtb_name == pattrname):
+    if pattrname == 'REFCIALE':
+        print(wrtb.wrtb_name)
+    if (Wertebereich.getbyname(pname=pattrname).wrtb_name == pattrname):
         #es gibt ihn schon, füge den Vaternamen dazu
-        wrtb.wrtb_name += '-' + pvatername
+        wrtb.wrtb_name = pattrname + '-' + pvatername
     wrtb.wrtb_herkunft = Wertebereich.DERIVED
-    wrtb.wrtb_beschr = "generiertes Domain für einen Datentyp"
+    wrtb.wrtb_datatype_ref = ptypeguid
+    wrtb.wrtb_beschr = "generiertes Domain für Datentyp für Attribut {}.{}".format(pvatername,pattrname)
 
     liesunsfuellwrtb(pwrtb=wrtb, pxml=pattrxml)
-    lmodeId = Modellelement.insertmode(pwrtbid=wrtb.wrtb_id)
     return wrtb
 #insertderiveddomain
 

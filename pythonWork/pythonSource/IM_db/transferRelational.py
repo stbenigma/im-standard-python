@@ -40,8 +40,15 @@ def do1column(plfnr, pcolxml, ptablid):
     daty_odm = transferModel.findText(pcolxml, 'logicalDatatype')
     if (daty_odm is not None and daty_odm != ''):
         scha.scha_daty_id = Datatype().getbyguid(daty_odm).daty_id
-    else:
-        scha.scha_daty_id = Wertebereich().getunknown().wrtb_id
+    daty_wrtb_odm = transferModel.findText(pcolxml, 'domain')
+    scha.scha_wrtb_id = transferModel.findeOderErstelleDom(pdomguid=daty_wrtb_odm
+                                                           ,pstructdomguid=None
+                                                               ,ptypeguid=daty_odm
+                                                               , pattrname=scha.scha_column_name
+                                                               , pvatername=Tabelle().getbyid(ptablid).tabl_name
+                                                               , pattrxml=pcolxml)
+    if scha.scha_daty_id is None:
+        scha.scha_daty_id = Datatype.getunknown().daty_id
     scha.insert()
 
     lmodeId= Modellelement.insertmode(pschaid=scha.scha_id)

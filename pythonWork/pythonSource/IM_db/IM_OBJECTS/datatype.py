@@ -9,6 +9,8 @@ class Datatype(Baseobject):
     _tablename:str = 'datatypes'
     _prefix:str = 'daty'
     _columnlist:list = ['daty_id',  'daty_name', 'daty_grundtyp', 'daty_odm_guid']
+    __unknowndaty = None
+
 
     def __init__(self):
         super().__init__(tablename= Datatype._tablename, prefix= Datatype._prefix
@@ -56,6 +58,21 @@ create table datatypes
         else:
             return Datatype.TEXT
     # basisType
+
+    @staticmethod
+    def getbyname(pname):
+        return Datatype().getbyuk(pcolname='daty_name', pukvalue=pname)
+    # getbyname
+
+    @staticmethod
+    def getunknown():
+        if Datatype.__unknowndaty is None:
+            daty = Datatype.getbyname(pname='unknown')
+            Datatype.__unknowndaty = daty
+        #fi
+        return Datatype.__unknowndaty
+    #getunknown
+
 #Datatype
 
 
