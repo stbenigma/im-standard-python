@@ -1,10 +1,7 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="8A52489C-9D02-7238-FCFD-101A4FBABDF3" name="Juristische Einheit">
-<createdBy>stb</createdBy>
-<createdTime>2018-06-08 11:52:55 UTC</createdTime>
-<comment><![CDATA[Juristische Einheiten sind nicht gleich Zellen. Bsp: fyayc AG Schweiz umfasst die Zellen Zürich, Baar und Uster. 
-
-Die Holding ist die juristische Einheit, der alle anderen gehören. ]]></comment>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="4605C9E4-8FC9-1744-72E4-3A1E6A586E50" name="CEOG">
+<createdBy>toz</createdBy>
+<createdTime>2020-04-29 08:51:18 UTC</createdTime>
 <notes><![CDATA[[DE_ENTI_COMMENT[
 
 ]DE_ENTI_COMMENT]
@@ -18,8 +15,7 @@ Die Holding ist die juristische Einheit, der alle anderen gehören. ]]></comment
 <maxVolumes>9999999</maxVolumes>
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
-<synonym>Firma</synonym>
-<createSurrogateKey>true</createSurrogateKey>
+<synonym>Leiter fyayc</synonym>
 <propertyMap>
 <property name="DE_ENTI_NAME" value="Juristische Einheit"/>
 <property name="DE_ENTI_SYNONYM" value="Firma"/>
