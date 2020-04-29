@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="ABA8381E-73AE-8694-BFD7-84A0D297C14A" name="Prozess">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="ABA8381E-73AE-8694-BFD7-84A0D297C14A" name="Prozesstyp">
 <createdBy>stb</createdBy>
 <createdTime>2018-05-03 08:06:40 UTC</createdTime>
 <comment><![CDATA[Sammlung für Aufgaben für bestimmte Prozessgruppen.
@@ -23,9 +23,6 @@ Beispiele:
 ]DE_ENTI_COMMENT]
 ]]></notes>
 <ownerDesignName>IM_TQMI_FYAYC</ownerDesignName>
-<engineerTo>
-<item key="0FBE62B5-EA6E-67EB-52B2-298C9D3D71C1" value="true"/>
-</engineerTo>
 <adequatelyNormalized>NO</adequatelyNormalized>
 <expectedVolumes>0</expectedVolumes>
 <fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
@@ -37,7 +34,6 @@ Beispiele:
 <createSurrogateKey>true</createSurrogateKey>
 <propertyMap>
 <property name="DE_ENTI_NAME" value="Prozess"/>
-<property name="DE_ENTI_SYNONYM" value=""/>
 <property name="EN_ENTI_NAME" value="*DE* Prozess"/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
@@ -49,9 +45,6 @@ Beispiele:
 ]DE_ATTR_COMMENT]
 ]]></notes>
 <ownerDesignName>IM_TQMI_FYAYC</ownerDesignName>
-<engineerTo>
-<item key="0FBE62B5-EA6E-67EB-52B2-298C9D3D71C1" value="true"/>
-</engineerTo>
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
@@ -71,9 +64,6 @@ Beispiele:
 ]DE_ATTR_COMMENT]
 ]]></notes>
 <ownerDesignName>IM_TQMI_FYAYC</ownerDesignName>
-<engineerTo>
-<item key="0FBE62B5-EA6E-67EB-52B2-298C9D3D71C1" value="true"/>
-</engineerTo>
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
