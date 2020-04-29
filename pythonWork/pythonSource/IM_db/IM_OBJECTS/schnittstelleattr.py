@@ -73,5 +73,87 @@ class Schnittstelleattr(Baseobject):
     #indexlist
 #Schnittstelleattr
 
+class Attrtransf(Baseobject):
+    INBOUND:str = 'INBOUND'
+    OUTBOUND:str = 'OUTBOUND'
+    MANUELL:str = 'MANUELL'
+    PERIODE:str = 'PERIODE'
+    ZPKT:str = 'ZPKT'
+
+    _tablename: str = 'attr_transf'
+    _prefix: str = 'attf'
+    _columnlist: list = ['attf_id' ,'attf_laufnr'  ,'attf_richtung'
+                        ,'attf_transf_formel'   ,'attf_ausloeseart' ,'attf_ausloeseperiod'
+                        ,'attf_scha_id' ,'attf_attr_id' ,'attf_uc'
+                        ,'attf_dc'  ,'attf_um'  ,'attf_dm']
+
+    def __init__(self):
+        super().__init__(tablename=Attrtransf._tablename, prefix=Attrtransf._prefix
+                     , columnlist=Attrtransf._columnlist)
+
+    @staticmethod
+    def createtable():
+        Baseobject.createtable(ptablename=Attrtransf._tablename
+                           , psql="""
+                            create table attr_transf 
+         (
+       attf_id integer primary key autoincrement,
+       attf_laufnr integer  not null check ( attf_laufnr > 0) , 
+       attf_richtung varchar (7) not null check ( attf_richtung in ('INBOUND', 'OUTBOUND') ) , 
+       attf_transf_formel varchar (4000) null , 
+       attf_ausloeseart varchar (10) null check ( attf_ausloeseart in ('MANUELL', 'PERIODE', 'ZPKT') ) , 
+       attf_ausloeseperiod integer null , 
+       attf_scha_id integer null , 
+       attf_attr_id integer null , 
+       attf_uc varchar (30)  , 
+       attf_dc varchar (30)  , 
+       attf_um varchar (30) null , 
+       attf_dm varchar (30)  null  
+		,constraint attf_un unique (attf_richtung , attf_scha_id , attf_attr_id, attf_laufnr )
+ 	   ,constraint attf_attr_fk foreign key (attf_attr_id) 
+ 	      references attributes (attr_id )  on delete cascade 
+ 	   ,constraint attf_scha_fk foreign key (attf_scha_id) 
+ 	      references schnittstelle_attr (scha_id ) on delete cascade 
+ 	      )
+    """)
+
+    @staticmethod
+    def delete():
+        Baseobject.delete(Attrtransf._tablename)
+
+    @staticmethod
+    def select(pwhere=None, porderby=None):
+        return Baseobject.select(pclass=Attrtransf
+                                    , pwhere=pwhere, porderby=porderby)
+    @staticmethod
+    def columnlist(pattrid):
+        data = dbDML.select("""select  schn_name,group_concat(attr_id,',') tabids
+                            from attr_transf 
+                            join attributes OM ATTR_ID = ATTF_ATTR_ID
+                            join tabellen on tabl_id = ATTF_ATTR_ID
+                            join schnittstellen on schn_id = tabl_schn_id 
+                            where attf_attr_id = {}
+                            group by schn_name
+                            order by schn_name
+                            """.format(pattrid))
+        retval = []
+        try:
+            for d in data:
+                tablist = {}
+                schn_name = d[0]
+                collist = {}
+                for colid in d[1].split(','):
+                    #collist[] = Attrtransf().getbyid(colid)
+                    collist[col.att_name] = tab.webanker()
+                # for
+                retval.append([schn_name, colist])
+            # for
+        except:
+            pass
+        # try
+        return retval
+# tablelist
+#Attrtransf
+
 
 

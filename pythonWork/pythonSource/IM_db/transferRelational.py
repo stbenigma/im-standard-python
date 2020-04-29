@@ -127,6 +127,7 @@ def transferschn():
 #transferschn
 
 def loeschmodell():
+    Attrtransf.delete()
     TablEntiMap.delete()
     Schnittstelleattr().delete()
     Tabelle().delete()
@@ -182,33 +183,66 @@ class Odmmapping:
 
 #Odmmapping
 
+def doattrmapping(pcolmappings,ptabenti):
+    for colmap in pcolmappings:
+        schaid = Schnittstelleattr().getbyguid(transferModel.findField(colmap,'rID')).scha_id
+        attrid = dbLookup.attrID(pguid=transferModel.findField(colmap,'lID'),withnotfound=True)
+        attf = Attrtransf()
+        attf.attf_laufnr =1
+        attf.attf_richtung = Attrtransf.INBOUND
+        #attf.attf_transf_formel
+        #attf.attf_ausloeseart
+        #attf.attf_ausloeseperiod
+        attf.attf_scha_id = schaid
+        attf.attf_attr_id = attrid
+        attf.insert()
+#doattrmapping
+
 def do1mapping(pfilename):
     mapxml = ET.parse(pfilename).getroot()
     """
     <?xml version = '1.0' encoding = 'UTF-8'?>
     <RMExtendedMap class="oracle.dbtools.crest.model.xtdmapping.RMExtendedMap">
     <mappings itemClass="oracle.dbtools.crest.model.xtdmapping.ContainerMapping">
-    <CM ...> ... </CM>
+    <CM ...> 
+        <containedMappings itemClass="oracle.dbtools.crest.model.xtdmapping.RelMapping">
+        <Mg id="00270901-9EFE73A100CA28444027-8D9902F67F79" lID="00270901-6B61-7CF2-AD55-9EFE73A100CA" rID="28444027-9E42-3F66-F90F-8D9902F67F79">
+        </Mg>
+        ...
+    </CM>
 """
-    mapx = mapxml.find('mappings')
-    if mapx is None: return
-    for cm in mapx:
-        odmmap = Odmmapping(cm)
+    mapxml= mapxml.find('mappings')
+    if mapxml is None: return
+    for cmxml in mapxml:
+        odmmap = Odmmapping(cmxml)
         #print (odmmap.__dict__)
         tabentimap = TablEntiMap()
         try:
             tabentimap.tema_enti_id = dbLookup.entiID(odmmap.logid) if odmmap.logtype == odmmap.ENTITYPE else None
             tabentimap.tema_bezi_id = dbLookup.beziID(odmmap.logid) if odmmap.logtype == odmmap.RELATYPE else None
             tabentimap.tema_tabl_id = Tabelle().getID(odmmap.relid) if odmmap.reltype == odmmap.TABLETYPE else None
-            #tabentimap.tema_tabl_id = Tabelle().getID(odmmap.relid) if odmmap.reltype == odmmap.FKTYPE else None
+            #tabentimap.tema_tabl_id = Tabelle().getidbyfk(odmmap.relid) if odmmap.reltype == odmmap.FKTYPE else None
             tabentimap.insert()
         except:
             pass
-#            print ( 'Mapping funktioniert nicht:\n'
-#                   ,'Logic: type = {}   guid = {}\n'.format(odmmap.logtype,odmmap.logid)
-#                , 'rel: type = {}   guid = {}'.format(odmmap.reltype, odmmap.relid)
-#                )
+            if odmmap.logtype = Odmmapping.ENTITYPE:
+                print ( 'Mapping funktioniert nicht Entity vermutlich gelöscht:\n'
+                   ,'Logic: type = {}   guid = {}\n'.format(odmmap.logtype,odmmap.logid)
+                , 'rel: type = {}   guid = {}'.format(odmmap.reltype, odmmap.relid)
+                    )
+            elif odmmap.logtype = Odmmapping.FKTYPE:
+                print ( 'Mapping funktioniert nicht FK noch nicht behandelt:\n'
+                   ,'Logic: type = {}   guid = {}\n'.format(odmmap.logtype,odmmap.logid)
+                , 'rel: type = {}   guid = {}'.format(odmmap.reltype, odmmap.relid)
+                    )
+            else:
+                print ( 'Mapping funktioniert nicht.:\n'
+                   ,'Logic: type = {}   guid = {}\n'.format(odmmap.logtype,odmmap.logid)
+                , 'rel: type = {}   guid = {}'.format(odmmap.reltype, odmmap.relid)
+                    )
+
         #try
+        doattrmapping(pcolmappings=odmmap.cntmappings,ptabenti=tabentimap)
     #for
 
 #do1mapping

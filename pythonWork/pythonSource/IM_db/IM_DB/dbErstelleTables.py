@@ -562,38 +562,9 @@ CREATE TABLE linie_segment(
 	  				              ON DELETE CASCADE 
 			      )""")
 
-
     Dokument.createtable()
-
     ModelelemDoku.createtable()
-
     TablEntiMap.createtable()
-
-
-    dbDDL.dropTable("ATTR_TRANSF");
-    dbDDL.createTable("""
- CREATE TABLE ATTR_TRANSF 
-      (
-       ATTF_ID integer primary key autoincrement,
-       ATTF_LAUFNR integer  NOT NULL CHECK ( ATTF_LAUFNR > 0) , 
-       ATTF_RICHTUNG VARCHAR (7) NOT NULL CHECK ( ATTF_RICHTUNG IN ('INBOUND', 'OUTBOUND') ) , 
-       ATTF_TRANSF_FORMEL VARCHAR (4000) NULL , 
-       ATTF_AUSLOESEART VARCHAR (10) NULL CHECK ( ATTF_AUSLOESEART IN ('MANUELL', 'PERIODE', 'ZPKT') ) , 
-       ATTF_AUSLOESEPERIOD integer NULL , 
-       ATTF_SCHA_ID integer NULL , 
-       ATTF_ATTR_ID integer NULL , 
-       ATTF_UC VARCHAR (30)  , 
-       ATTF_DC VARCHAR (30)  , 
-       ATTF_UM VARCHAR (30) NULL , 
-       ATTF_DM VARCHAR (30)  NULL  
-		,CONSTRAINT ATTF_UN UNIQUE (ATTF_RICHTUNG , ATTF_SCHA_ID , ATTF_ATTR_ID, ATTF_LAUFNR )
- 	   ,CONSTRAINT ATTF_ATTR_FK FOREIGN KEY (ATTF_ATTR_ID) 
- 	      REFERENCES ATTRIBUTES (ATTR_ID ) 
- 	      ON DELETE CASCADE 
- 	   ,CONSTRAINT ATTF_SCHA_FK FOREIGN KEY (ATTF_SCHA_ID) 
- 	      REFERENCES SCHNITTSTELLE_ATTR (SCHA_ID ) 
- 	      ON DELETE CASCADE 
- 	      )
- 	          """)
+    Attrtransf.createtable()
 
 #end erstelleInfra

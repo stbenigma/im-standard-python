@@ -739,12 +739,20 @@ def printmappinthtml(pwerte,ptitel,pueberschriften,pheadlevel = 2):
                           )
                 )
 #printmappinghtml
-def printmapping(pentiid):
+def printmapping(pentiid=None,pattrid=None):
     # name, list of entries mit {'name':webanker}
-    printmappinthtml(pwerte= tablentimap.tablelist(pentiid=pentiid)
-                     ,ptitel=Sprachtext.transl('Relational Mapping (Tabellen)')
-                     ,pueberschriften=(Sprachtext.transl('Relational Model'), Sprachtext.transl('Tabellen'))
-                     )
+    if pentiid is not None:
+        werte = TablEntiMap.tablelist(pentiid=pentiid)
+        titel = Sprachtext.transl('Relational Mapping (Tabellen)')
+        ueberschr = (Sprachtext.transl('Relational Model'), Sprachtext.transl('Tabellen'))
+    elif pattrid is not None:
+        werte = Attrtransf.columnlist(pattrid = pattrid)
+        titel = Sprachtext.transl('Relational Mapping (Columns)')
+        ueberschr = (Sprachtext.transl('Relational Model'), Sprachtext.transl('Columns'))
+    else:
+        return
+    #fi
+    printmappinthtml(pwerte= werte  ,ptitel=titel   ,pueberschriften=ueberschr)
 #printmapping
 
 def printentirela(pentiid):
@@ -968,6 +976,7 @@ def printcontentattr(plist):
         printreflist(pelemid=attr_id,pelemtype='ATTR')
         printtransl(pattrid=attr_id)
         printattrudp(pattrid=attr_id)
+        printmapping(pattrid=attr_id)
         printcontentend(lbc)
     #for
 #printcontentattr

@@ -43,10 +43,10 @@ class TablEntiMap(Baseobject):
     @staticmethod
     def anker(pid):
         return Baseobject.anker(TablEntiMap._prefix,pid)
-#TablEntiMap
 
-def tablelist(pentiid=None):
-    data = dbDML.select("""select  schn_name,group_concat(tabl_id,',') tabids
+    @staticmethod
+    def tablelist(pentiid=None):
+        data = dbDML.select("""select  schn_name,group_concat(tabl_id,',') tabids
                             from tabl_enti_maps
                             join tabellen on tabl_id = tema_tabl_id
                             join schnittstellen on schn_id = tabl_schn_id 
@@ -54,17 +54,22 @@ def tablelist(pentiid=None):
                             group by schn_name
                             order by schn_name
                             """.format(pentiid))
-    retval = []
-    try:
-        for d in data:
-            schn_name = d[0]
-            tablist = {}
-            for tabid in d[1].split(','):
-                tab = Tabelle().getbyid(tabid)
-                tablist[tab.tabl_name] = tab.webanker()
-            #for
-            retval.append([schn_name, tablist])
-        # for
-    except: pass
-    #try
-    return retval
+        retval = []
+        try:
+            for d in data:
+                schn_name = d[0]
+                tablist = {}
+                for tabid in d[1].split(','):
+                    tab = Tabelle().getbyid(tabid)
+                    tablist[tab.tabl_name] = tab.webanker()
+                # for
+                retval.append([schn_name, tablist])
+            # for
+        except:
+            pass
+        # try
+        return retval
+# tablelist
+#TablEntiMap
+
+

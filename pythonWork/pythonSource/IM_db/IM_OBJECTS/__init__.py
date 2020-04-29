@@ -5,7 +5,7 @@ from .datatype import Datatype
 from .projekt import Projekt
 from .schnittstelle import Schnittstelle
 from .tabelle import Tabelle
-from .schnittstelleattr import Schnittstelleattr
+from .schnittstelleattr import Schnittstelleattr,Attrtransf
 from .sprache import Sprache
 from .sprachtext import Sprachtext
 from .tablentimap import TablEntiMap
