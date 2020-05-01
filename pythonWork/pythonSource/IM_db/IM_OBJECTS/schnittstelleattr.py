@@ -1,5 +1,6 @@
 from .baseobject import Baseobject
-import IM_OBJECTS
+from .tabelle import Tabelle
+from IM_DB import dbDML
 
 class Schnittstelleattr(Baseobject):
 
@@ -71,6 +72,44 @@ class Schnittstelleattr(Baseobject):
             indexlist.append(["{} ({})".format(s.scha_column_name,t.tabl_name),  s.webanker(t.tabl_schn_id), s.scha_id])
         return indexlist
     #indexlist
+
+    @staticmethod
+    def mappingto(ptablid):
+        lsqle = """select 0 schn_id, 'Logisches Modell' schn_name, group_concat(enti_id,',')
+            	from  tabl_enti_maps as mastermap
+    	        left join entitaeten on enti_id = mastermap.tema_enti_id
+    	        where  mastermap.tema_tabl_id = {}
+    	        GROUP BY mastermap.tema_tabl_id""".format(ptablid)
+        lsqlt = """select tabl_schn_id,schn_name,group_concat(tabl_id,',')
+    	        from tabellen subtab
+    	        join schnittstellen on schn_id = TABL_SCHN_ID
+    	        where tabl_id in
+        	          (select tema1.tema_tabl_id
+    	               from tabl_enti_maps tema1
+    	                 join tabl_enti_maps tema2 on tema2.tema_enti_id = tema1.tema_enti_id
+    	                                and tema2.tema_tabl_id != tema1.tema_tabl_id
+    	                  where tema2.tema_tabl_id = {}
+    	            )
+    	            /* eigene Schnittstelle wird nicht angezeigt*/
+    	           and schn_id != (select tabl_schn_id 
+    	                            from tabellen where tabl_id = {})
+                group by tabl_schn_id,schn_name
+                """.format(ptablid, ptablid)
+        retval = []
+        data = dbDML.select(lsqle)
+        """[(0,'name', [Entitaet]'), (54,'name', [Tabelle])]"""
+        for d in data:
+            entis = []
+            for e in d[2].split(','):
+                ename = dbDML.select("select enti_name from entitaeten where enti_id = {}".format(e))
+                entis.append((ename[0][0], 'ENTI' + str(e)))
+            retval.append([d[0], d[1], entis])
+        data = dbDML.select(lsqlt)
+        """[(0,'name', [Entitaet]'), (54,'name', [Tabelle])]"""
+        for d in data:
+            retval.append([d[0], d[1], [Tabelle().getbyid(e) for e in d[2].split(',')]])
+        return retval
+    # maopingto
 #Schnittstelleattr
 
 class Attrtransf(Baseobject):
@@ -125,34 +164,36 @@ class Attrtransf(Baseobject):
     def select(pwhere=None, porderby=None):
         return Baseobject.select(pclass=Attrtransf
                                     , pwhere=pwhere, porderby=porderby)
+
     @staticmethod
-    def columnlist(pattrid):
-        data = dbDML.select("""select  schn_name,group_concat(attr_id,',') tabids
-                            from attr_transf 
-                            join attributes OM ATTR_ID = ATTF_ATTR_ID
-                            join tabellen on tabl_id = ATTF_ATTR_ID
+    def columnlist(pattrid=None):
+        data = dbDML.select("""select  schn_name,schn_id,group_concat(scha_id,',') schaids
+                            from attr_transf
+                            join schnittstelle_attrs on scha_id = ATTF_SCHA_ID
+                            join tabellen on tabl_id = scha_tabl_id
                             join schnittstellen on schn_id = tabl_schn_id 
-                            where attf_attr_id = {}
-                            group by schn_name
+                            where ATTF_ATTR_ID = {}
+                            group by schn_name,schn_id
                             order by schn_name
                             """.format(pattrid))
         retval = []
         try:
             for d in data:
-                tablist = {}
-                schn_name = d[0]
+                schn_name,schn_id = d[0],d[1]
                 collist = {}
-                for colid in d[1].split(','):
-                    #collist[] = Attrtransf().getbyid(colid)
-                    collist[col.att_name] = tab.webanker()
+                for schaid in d[2].split(','):
+                    scha = Schnittstelleattr().getbyid(schaid)
+                    tabname = Tabelle().getbyid(scha.scha_tabl_id).tabl_name
+                    collist[tabname+'.'+scha.scha_column_name] = scha.webanker(schn_id)
                 # for
-                retval.append([schn_name, colist])
+                retval.append([schn_name, collist])
             # for
-        except:
+        except  Exception as e:
+            print(str(e))
             pass
         # try
         return retval
-# tablelist
+    #columnlist
 #Attrtransf
 
 

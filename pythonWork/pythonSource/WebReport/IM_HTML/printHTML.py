@@ -739,6 +739,7 @@ def printmappinthtml(pwerte,ptitel,pueberschriften,pheadlevel = 2):
                           )
                 )
 #printmappinghtml
+
 def printmapping(pentiid=None,pattrid=None):
     # name, list of entries mit {'name':webanker}
     if pentiid is not None:
