@@ -49,6 +49,16 @@ class Schnittstelleattr(Baseobject):
     def getmodellelement(self):
         return Modellelement.getbyelemid(pschaid=self.scha_id)
 
+    def gettablname(self):
+        tabname = Tabelle().getbyid(self.scha_tabl_id).tabl_name
+        return tabname
+    #gettablname
+
+    def getschnid(self):
+        tab = Tabelle().getbyid(self.scha_tabl_id)
+        return tab.tabl_schn_id
+    #getschnid
+
     @staticmethod
     def delete():
         Baseobject.delete(Schnittstelleattr._tablename)
@@ -68,46 +78,49 @@ class Schnittstelleattr(Baseobject):
                                         ,porderby='scha_column_name')
         indexlist = []
         for s in schas:
-            t = IM_OBJECTS.tabelle.Tabelle().getbyid(s.scha_tabl_id)
+            t = Tabelle().getbyid(s.scha_tabl_id)
             indexlist.append(["{} ({})".format(s.scha_column_name,t.tabl_name),  s.webanker(t.tabl_schn_id), s.scha_id])
         return indexlist
     #indexlist
 
     @staticmethod
-    def mappingto(ptablid):
-        lsqle = """select 0 schn_id, 'Logisches Modell' schn_name, group_concat(enti_id,',')
-            	from  tabl_enti_maps as mastermap
-    	        left join entitaeten on enti_id = mastermap.tema_enti_id
-    	        where  mastermap.tema_tabl_id = {}
-    	        GROUP BY mastermap.tema_tabl_id""".format(ptablid)
-        lsqlt = """select tabl_schn_id,schn_name,group_concat(tabl_id,',')
-    	        from tabellen subtab
-    	        join schnittstellen on schn_id = TABL_SCHN_ID
-    	        where tabl_id in
-        	          (select tema1.tema_tabl_id
-    	               from tabl_enti_maps tema1
-    	                 join tabl_enti_maps tema2 on tema2.tema_enti_id = tema1.tema_enti_id
-    	                                and tema2.tema_tabl_id != tema1.tema_tabl_id
-    	                  where tema2.tema_tabl_id = {}
+    def mappingto(pschaid):
+        lsqle = """select 0 schn_id, 'Logisches Modell' schn_name, group_concat(attr_id,',')
+            	from  attr_transf as mastermap
+    	        left join attributes on attr_id = mastermap.attf_attr_id
+    	        where  mastermap.attf_scha_id = {}
+    	        GROUP BY mastermap.attf_scha_id""".format(pschaid)
+        lsqlt = """select schn_id,schn_name,group_concat(scha_id,',')
+    	        from schnittstelle_attrs subscha
+    	        join tabellen subtab on subtab.tabl_id = subscha.scha_tabl_id
+    	        join schnittstellen on schn_id = subtab.TABL_SCHN_ID
+    	        where subscha.scha_id in
+        	          (select attf1.ATTF_SCHA_ID
+    	               from attr_transf attf1
+    	                 join attr_transf attf2  on attf2.attf_attr_id = attf1.attf_attr_id
+    	                                and attf2.attf_scha_id != attf1.attf_scha_id
+    	                  where attf2.attf_scha_id = {}
     	            )
     	            /* eigene Schnittstelle wird nicht angezeigt*/
-    	           and schn_id != (select tabl_schn_id 
-    	                            from tabellen where tabl_id = {})
-                group by tabl_schn_id,schn_name
-                """.format(ptablid, ptablid)
+    	           and schn_id != (select supertab.tabl_schn_id 
+    	                            from schnittstelle_attrs superattr
+    	                            join tabellen supertab on supertab.tabl_id = superattr.scha_tabl_id
+    	                            where superattr.scha_id = {})
+                group by schn_id,schn_name
+                """.format(pschaid, pschaid)
         retval = []
         data = dbDML.select(lsqle)
-        """[(0,'name', [Entitaet]'), (54,'name', [Tabelle])]"""
+        """[(0,'name', [Attribute]'), (54,'name', [Schnittstelleattr])]"""
         for d in data:
-            entis = []
+            attrs = []
             for e in d[2].split(','):
-                ename = dbDML.select("select enti_name from entitaeten where enti_id = {}".format(e))
-                entis.append((ename[0][0], 'ENTI' + str(e)))
-            retval.append([d[0], d[1], entis])
+                aname = dbDML.select("select attr_anzname from attributes where attr_id = {}".format(e))
+                attrs.append((aname[0][0], 'ATTR' + str(e)))
+            retval.append([d[0], d[1], attrs])
         data = dbDML.select(lsqlt)
-        """[(0,'name', [Entitaet]'), (54,'name', [Tabelle])]"""
+        """[(0,'name', [Attribute]'), (54,'name', [Schnittstelleattr])]"""
         for d in data:
-            retval.append([d[0], d[1], [Tabelle().getbyid(e) for e in d[2].split(',')]])
+            retval.append([d[0], d[1], [Schnittstelleattr().getbyid(e) for e in d[2].split(',')]])
         return retval
     # maopingto
 #Schnittstelleattr

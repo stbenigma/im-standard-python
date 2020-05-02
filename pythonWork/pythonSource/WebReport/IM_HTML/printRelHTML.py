@@ -27,48 +27,65 @@ def printmapping(ptablid):
                      )
 #printmapping
 
-def printcollist(pcollist):
-    colhead = """             <h2>{}</h2>
-                        <div id="container1">
+def printcolmapping(pschaid,pschnid):
+    # name, list of entries mit {'name':webanker}
+    werte = Schnittstelleattr.mappingto(pschaid=pschaid)
+    """[[0, name, [[Attribute]]], [52, name, [[Schnittstelleattr]]]]"""
+    werte = [[entry[1],
+              {'('+scha.gettablname() + '.' + scha.scha_column_name+')'  if isinstance(scha,Schnittstelleattr)
+                                else scha[0]\
+                   : scha.webanker(pmodelid=pschnid) if isinstance(scha,Schnittstelleattr)
+                                else scha[1]
+                    for scha in entry[2]
+               }
+             ] for entry in werte
+            ]
+    #print(werte)
+    printHTML.printmappinthtml(pwerte= werte
+                     ,ptitel=Sprachtext.transl('Mapping')
+                     ,pueberschriften=(Sprachtext.transl('Model'), Sprachtext.transl('Attribute / Columns'))
+                     )
+#printcolmapping
+def printcolumninfo(pname,panker,pheaders,pvalues):
+    infohead = """
+          <!-- The inside div eliminates the 'jumping' animation. -->
+                            <h3>{}</h3>
+                            <div id="{}">
                             <div class="table-responsive">
-                   <table class="table borderless">
-                                            <tbody>
-                                        <tr>
-                                            <th class="attribute">{}</th>
-                                            <th class="attribute">{}</th>
-                                            <th>{}</th>
-                                            <th class="thAlgn">{}</th>
-                                            <th class="thAlgn">{}</th>
-                                            <th class="thAlgn">{}</th>
-                                            <th class="thAlgn">{}</th>
-                                            <th class="thAlgn">{}</th>
-                                            <th class="thAlgn">{}</th>
-                                            <th class="thAlgn">{}</th>
-                                        </tr>"""
-    colfoot = """              
-                                </tbody>
-                            </table>
-                            </div>
-                                </div>
-    """
+                                <table class="table borderless">
+                                    <tbody>"""
+    trstart = """
+                    <tr>"""
+    trend = """
+                      </tr>"""
+    techheadline = """
+                     <th>{}</th>"""
+    techlineline = """
+                      <td class="attribute">{}</td>"""
+    infofoot = """
+                    </tbody>
+                    </table>
+                </div>
+            </div>"""
+    printHTML.fhtml.write(infohead.format(pname,panker))
+    printHTML.fhtml.write(trstart)
+    for h in pheaders:
+        printHTML.fhtml.write(techheadline.format(h))
+    printHTML.fhtml.write(trstart)
+    for v in pvalues:
+        printHTML.fhtml.write(techlineline.format(v))
+    printHTML.fhtml.write(trend)
+    printHTML.fhtml.write(infofoot)
+#printcolumninfo
 
-    colline = """                                    <tr>
-                                                <td class="attribute"><a href="#{}">{}</a></td>
-                                                <td class="attribute"><a href="#{}">{}</a></td>
-                                                <td>{}</td>
-                                                <td class="symbol"><img {}></td>
-                                                <td class="symbol"><img {}></td>
-                                                <td class="symbol"><img {}></td>
-                                                <td class="symbol"><img {}></td>
-                                                <td class="symbol"><img {}></td>
-                                                <td class="symbol"><img {}></td>
-                                                <td class="symbol"><img {}></td>
-                                            </tr>
+def printcollist(pcollist,pschnid):
+    colheader = """            <h2>Columns</h2>
+                            <div>
     """
-
-    if (pcollist is None or len(pcollist)==0):return
-    printHTML.fhtml.write(printHTML.starttable(ptitel='Columns', pueberschriften=[Sprachtext.transl('Name'),Sprachtext.transl('Beschreibung'),Sprachtext.transl('Wertebereich'), Sprachtext.transl('Datentyp')]
-            , pheadlevel=2))
+    colfooter= """</div>
+    """
+    if (pcollist is None or len(pcollist)==0): return
+    printHTML.fhtml.write(colheader)
     for col in pcollist:
         if col.scha_wrtb_id is None:
             wrtbname = ''
@@ -83,10 +100,14 @@ def printcollist(pcollist):
             wrtbname='' if wrtb.wrtb_herkunft == Wertebereich.DERIVED else wrtb.getwrtb_name(Sprachtext.reportLang())
             wrtbtyp = wrtb.typestring()# printHTML.anzDatentyp(wrtb.wrtb_typ)
         #fi
-        printHTML.fhtml.write(printHTML.writetableline(pwerte=[col.scha_column_name,nvl(col.scha_beschr)
-                                                                ,wrtbname,wrtbtyp], plineid=None))
+        printcolumninfo(pname=col.scha_column_name, panker=col.webanker(pmodelid=pschnid).anker()
+                        ,pheaders= [Sprachtext.transl('Beschreibung')\
+                                            , Sprachtext.transl('Wertebereich'), Sprachtext.transl('Datentyp')]
+                                         ,pvalues= [nvl(col.scha_beschr), wrtbname, wrtbtyp] )
+        printcolmapping(pschaid=col.scha_id,pschnid=pschnid)
     #for
-    printHTML.fhtml.write(printHTML.endtable())
+    printHTML.fhtml.write(colfooter)
+
 #printcollist
 
 def printcontenttable(plist):
@@ -105,7 +126,7 @@ def printcontenttable(plist):
         printHTML.printreflist(pelemid=t.tabl_id,pelemtype='TABL')
         printHTML.printUDP(p_meltname=t.prefix().upper(), p_id=t.tabl_id)
         printmapping(ptablid=t.tabl_id)
-        printcollist(pcollist= Schnittstelleattr.columnlist(ptablid=t.tabl_id))
+        printcollist(pcollist= Schnittstelleattr.columnlist(ptablid=t.tabl_id),pschnid=t.tabl_schn_id)
         printHTML.printcontentend(lbc)
     #for
 #printcontenttable
