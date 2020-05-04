@@ -1,0 +1,84 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="69B15A01-9960-26F7-9996-E082CB47B781" name="Trainingsprodukt">
+<createdBy>toz</createdBy>
+<createdTime>2020-04-30 09:30:48 UTC</createdTime>
+<comment><![CDATA[Das Trainingsprogramm ist eine in sich abgeschlossene Zusammenfassung von einzelnen Trainingsmodulen zu einem sinnstiftenden Programm, welches auf Basis eines Trainingskonzept und eines Trainingsthemas erstellt und zum Verkauf angeboten wird. 
+
+Bsp:
+Introduction Days
+Exploded View
+]]></comment>
+<ownerDesignName>FYAYC_intern</ownerDesignName>
+<engineerTo>
+<item key="31F23758-7055-2533-F71A-66322F896678" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="# Plätze" id="D8F2901D-92D9-C5F5-82B7-9CA97EE8BF24">
+<createdBy>toz</createdBy>
+<createdTime>2020-04-30 09:30:48 UTC</createdTime>
+<ownerDesignName>FYAYC_intern</ownerDesignName>
+<importedID>EC1B38B6-050E-B141-AEF9-8E4C47CB7433</importedID>
+<engineerTo>
+<item key="31F23758-7055-2533-F71A-66322F896678" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Sprachen" id="A854BEC0-8E0C-C4D1-0ED5-EEEDBCDED293">
+<createdBy>toz</createdBy>
+<createdTime>2020-04-30 09:30:48 UTC</createdTime>
+<commentInRDBMS><![CDATA[Auswahl von Sprachen, in welchen das Programm angeboten wird. ]]></commentInRDBMS>
+<ownerDesignName>FYAYC_intern</ownerDesignName>
+<importedID>AAA9110B-A165-9D9E-4925-E74E9189F240</importedID>
+<engineerTo>
+<item key="31F23758-7055-2533-F71A-66322F896678" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Trainingsthema" id="B676E65E-585F-3DB2-B38F-D14C4B620130">
+<createdBy>toz</createdBy>
+<createdTime>2020-04-30 09:30:48 UTC</createdTime>
+<ownerDesignName>FYAYC_intern</ownerDesignName>
+<importedID>04E80ACF-FC2F-2D6E-A51A-5C2092428A28</importedID>
+<engineerTo>
+<item key="31F23758-7055-2533-F71A-66322F896678" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Trainingskonzept" id="119BF1D4-92F9-2F29-D8DD-A47C4C15E132">
+<createdBy>toz</createdBy>
+<createdTime>2020-04-30 09:30:48 UTC</createdTime>
+<ownerDesignName>FYAYC_intern</ownerDesignName>
+<importedID>2B6B66C9-7ACA-43EA-296B-B10F8EE620BC</importedID>
+<engineerTo>
+<item key="31F23758-7055-2533-F71A-66322F896678" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Aushängeschild" id="60C2B1BF-DE99-5800-AC29-1291B50168F2">
+<createdBy>toz</createdBy>
+<createdTime>2020-04-30 09:30:48 UTC</createdTime>
+<ownerDesignName>FYAYC_intern</ownerDesignName>
+<importedID>CC0A1F90-6EDB-B27B-E1F1-06FEBEAA05EE</importedID>
+<engineerTo>
+<item key="31F23758-7055-2533-F71A-66322F896678" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+</Entity>

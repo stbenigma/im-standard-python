@@ -1,0 +1,20 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_34v1" directorySegmentName="seg_0" id="352D9BF2-4447-4C8C-933F-AD465053DEE8">
+<createdBy>toz</createdBy>
+<createdTime>2020-04-30 09:30:48 UTC</createdTime>
+<ownerDesignName>FYAYC_intern</ownerDesignName>
+<engineerTo>
+<item key="31F23758-7055-2533-F71A-66322F896678" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<nameOnSource>finanziert</nameOnSource>
+<nameOnTarget>wird finanziert durch</nameOnTarget>
+<optionalSource>false</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>30D0DA48-BB21-5943-F47F-B34136D17E6E</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>69B15A01-9960-26F7-9996-E082CB47B781</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>
