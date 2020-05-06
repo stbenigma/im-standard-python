@@ -1,7 +1,7 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="8C8B454F-0035-EE61-FC2C-E0393A043C42" name="Ansprechpartner">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="36D8011E-7F0D-0679-6821-BCC88771F93B" name="Person">
 <createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:03:22 UTC</createdTime>
+<createdTime>2020-05-06 15:52:30 UTC</createdTime>
 <comment><![CDATA[Person in einer Organisationseinheit  die für die Definition oder Pflege eines Attributwertes verantwortlich ist.
 ]]></comment>
 <notes><![CDATA[[DE_ENTI_COMMENT[
@@ -25,7 +25,6 @@ Person in an organizational unit who is responsible for defining or maintaining 
 <maxVolumes>9999999</maxVolumes>
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
-<shortName>ANSP</shortName>
 <createSurrogateKey>true</createSurrogateKey>
 <propertyMap>
 <property name="DE_ENTI_COMMENT" value="Person in einer Organisationseinheit  die für die Definition oder Pflege eines Attributwertes verantwortlich ist. "/>
@@ -34,9 +33,9 @@ Person in an organizational unit who is responsible for defining or maintaining 
 <property name="EN_ENTI_NAME" value="Contact for"/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<Attribute name="Geschäfts eMail" id="51B112E6-26D1-65E3-2E17-3750B85C2BE6">
+<Attribute name="Name" id="C765B990-F386-0289-786D-F89B00635DC1">
 <createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:03:22 UTC</createdTime>
+<createdTime>2020-05-06 15:52:30 UTC</createdTime>
 <notes><![CDATA[[DE_ATTR_COMMENT[
 
 ]DE_ATTR_COMMENT]
@@ -45,7 +44,56 @@ Person in an organizational unit who is responsible for defining or maintaining 
 ]EN_ATTR_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
-<importedID>74BD582A-25CC-9ADB-E21F-CC8EE5B52A61</importedID>
+<engineerTo>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Name"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="Name"/>
+</propertyMap>
+</Attribute>
+<Attribute name="Vorname" id="F8A14BDB-3A39-CCB0-13FC-A493F0E9B83C">
+<createdBy>stb</createdBy>
+<createdTime>2020-05-06 15:52:30 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<engineerTo>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Vorname"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="First name"/>
+</propertyMap>
+</Attribute>
+<Attribute name="eMail" id="E39B881E-DC71-F6BC-D691-E866257879EB">
+<createdBy>stb</createdBy>
+<createdTime>2020-05-06 15:52:30 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
@@ -60,32 +108,29 @@ Person in an organizational unit who is responsible for defining or maintaining 
 <property name="EN_ATTR_NAME" value="email"/>
 </propertyMap>
 </Attribute>
-<Attribute name="Geschäftstelefon-Nr" id="16FC1AE4-9AE7-AA14-3029-1693B3B9ED25">
+<Attribute name="Geburtsdatum" id="31561F53-1D68-81BB-2B57-2709D2C70D8F">
 <createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:03:22 UTC</createdTime>
-<notes><![CDATA[[DE_ATTR_COMMENT[
-
-]DE_ATTR_COMMENT]
-[EN_ATTR_COMMENT[
-
-]EN_ATTR_COMMENT]
-]]></notes>
+<createdTime>2020-05-06 15:52:59 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
-<importedID>7485D82F-1E2F-338B-0AD3-253B9C1237AB</importedID>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
-<propertyMap>
-<property name="DE_ATTR_COMMENT" value=""/>
-<property name="DE_ATTR_NAME" value="Geschäftstelefon-Nr"/>
-<property name="EN_ATTR_COMMENT" value=""/>
-<property name="EN_ATTR_NAME" value="Business telephone number"/>
-</propertyMap>
+</Attribute>
+<Attribute name="Geschlecht" id="168F6A90-9ED6-B749-58AC-09F8A10BD7DB">
+<createdBy>stb</createdBy>
+<createdTime>2020-05-06 15:53:13 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<engineerTo>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 </attributes>
 </Entity>
