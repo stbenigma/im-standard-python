@@ -3,6 +3,13 @@
 <createdBy>toz</createdBy>
 <createdTime>2020-04-30 09:30:48 UTC</createdTime>
 <comment><![CDATA[Ein Trainingsmodul ist die Instanz eines Trainingsprogrammmoduls mit eindeutig zugeteilten Terminen, Personenrollen und Durchführungsort.]]></comment>
+<notes><![CDATA[[EN_ENTI_COMMENT[
+**A training module is the instance of a training program module with clearly assigned dates, roles and location.
+]EN_ENTI_COMMENT]
+[DE_ENTI_COMMENT[
+Ein Trainingsmodul ist die Instanz eines Trainingsprogrammmoduls mit eindeutig zugeteilten Terminen, Personenrollen und Durchführungsort.
+]DE_ENTI_COMMENT]
+]]></notes>
 <ownerDesignName>FYAYC_intern</ownerDesignName>
 <engineerTo>
 <item key="31F23758-7055-2533-F71A-66322F896678" value="true"/>
@@ -15,10 +22,23 @@
 <maxVolumes>9999999</maxVolumes>
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
+<propertyMap>
+<property name="DE_ENTI_NAME" value="Trainingsmodul"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_NAME" value="**Training module"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+</propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Durchführungsort" id="89A1FC9C-1FCA-837F-5F99-9B10E8734BBE">
 <createdBy>toz</createdBy>
 <createdTime>2020-04-30 09:30:48 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>FYAYC_intern</ownerDesignName>
 <importedID>EA518EF3-379D-F5A4-8D8F-7E7ACC35AE1D</importedID>
 <engineerTo>
@@ -26,10 +46,21 @@
 </engineerTo>
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Durchführungsort"/>
+<property name="EN_ATTR_NAME" value="**Place of implementation"/>
+</propertyMap>
 </Attribute>
 <Attribute name="Datum" id="F373BD9D-1E07-BCBE-AC12-CCE15A363B4C">
 <createdBy>toz</createdBy>
 <createdTime>2020-04-30 09:30:48 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>FYAYC_intern</ownerDesignName>
 <importedID>2F6DF54B-D0E1-A9C1-E2A8-5AA0EFCBF9CC</importedID>
 <engineerTo>
@@ -37,10 +68,21 @@
 </engineerTo>
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Datum"/>
+<property name="EN_ATTR_NAME" value="**Date"/>
+</propertyMap>
 </Attribute>
 <Attribute name="Dauer" id="4E639785-650B-CB61-E418-A8FB3C28FE4F">
 <createdBy>toz</createdBy>
 <createdTime>2020-04-30 09:30:48 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>FYAYC_intern</ownerDesignName>
 <importedID>CB3C4238-E4BB-2719-A0B1-4A98E38E4E5B</importedID>
 <engineerTo>
@@ -48,10 +90,21 @@
 </engineerTo>
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Dauer"/>
+<property name="EN_ATTR_NAME" value="**Duration"/>
+</propertyMap>
 </Attribute>
 <Attribute name="Anfangszeit" id="3A852D06-1641-C75B-CA59-8E792E5B66F1">
 <createdBy>toz</createdBy>
 <createdTime>2020-04-30 09:30:48 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>FYAYC_intern</ownerDesignName>
 <importedID>17B2C6AC-CED7-AA2B-05C9-F39232D46D04</importedID>
 <engineerTo>
@@ -59,6 +112,10 @@
 </engineerTo>
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Anfangszeit"/>
+<property name="EN_ATTR_NAME" value="**Initial period"/>
+</propertyMap>
 </Attribute>
 </attributes>
 </Entity>
