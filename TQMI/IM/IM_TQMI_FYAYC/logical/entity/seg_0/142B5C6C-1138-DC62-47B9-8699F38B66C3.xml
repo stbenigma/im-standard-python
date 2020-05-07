@@ -5,6 +5,9 @@
 <notes><![CDATA[[DE_ENTI_COMMENT[
 
 ]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+
+]EN_ENTI_COMMENT]
 ]]></notes>
 <ownerDesignName>IM_TQMI_FYAYC</ownerDesignName>
 <adequatelyNormalized>NO</adequatelyNormalized>
@@ -17,18 +20,29 @@
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
 <propertyMap>
-<property name="DE_ENTI_NAME" value="Juristische Einheit"/>
-<property name="DE_ENTI_SYNONYM" value="Firma"/>
-<property name="EN_ENTI_NAME" value="*DE* Juristische Einheit"/>
-<property name="EN_ENTI_SYNONYM" value="*DE* Firma"/>
+<property name="DE_ENTI_NAME" value="Inhaber"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_NAME" value="**Owner"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Stimmrecht (J/N)" id="CEDEF7E0-64D8-CACC-5E5E-D9B58353AE0F">
 <createdBy>toz</createdBy>
 <createdTime>2020-04-29 08:55:35 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>IM_TQMI_FYAYC</ownerDesignName>
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Stimmrecht (J/N)"/>
+<property name="EN_ATTR_NAME" value="*DE* Stimmrecht (J/N)"/>
+</propertyMap>
 </Attribute>
 </attributes>
 </Entity>

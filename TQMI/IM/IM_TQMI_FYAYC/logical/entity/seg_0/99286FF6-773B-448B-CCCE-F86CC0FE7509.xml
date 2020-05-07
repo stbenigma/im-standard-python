@@ -10,11 +10,11 @@ Beispiele:
 14_101 Enter account balance by the end of the month (last working day before 14:00 CET).
 ]]></comment>
 <notes><![CDATA[[EN_ENTI_COMMENT[
-*DE* Zuteilung zu Standorten: jeder CEO darf seinen Standort neu für eine Aufgabe aufnehmen.
-Nur der Prozessowner darf für alle Standorte Zuteilungen verwalten.
+**Allocation to locations: each CEO may reassign his location for a new task.
+Only the process owner may manage assignments for all locations.
 
-Beispiele:
-23_101 	Personal Integrity
+Examples:
+23_101 Personal Integrity
 14_101 Enter account balance by the end of the month (last working day before 14:00 CET).
 ]EN_ENTI_COMMENT]
 [DE_ENTI_COMMENT[
@@ -24,6 +24,7 @@ Nur der Prozessowner darf für alle Standorte Zuteilungen verwalten.
 Beispiele:
 23_101 	Personal Integrity
 14_101 Enter account balance by the end of the month (last working day before 14:00 CET).
+
 ]DE_ENTI_COMMENT]
 ]]></notes>
 <ownerDesignName>IM_TQMI_FYAYC</ownerDesignName>
@@ -40,8 +41,8 @@ Beispiele:
 <propertyMap>
 <property name="DE_ENTI_NAME" value="Aufgabe"/>
 <property name="DE_ENTI_SYNONYM" value="Task"/>
-<property name="EN_ENTI_NAME" value="*DE* Aufgabe"/>
-<property name="EN_ENTI_SYNONYM" value="*DE* Task"/>
+<property name="EN_ENTI_NAME" value="**Task"/>
+<property name="EN_ENTI_SYNONYM" value="**Task"/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Nr" id="72FDD75D-5057-02AC-DE5F-93729CB91D09">
@@ -49,7 +50,7 @@ Beispiele:
 <createdTime>2018-05-03 12:07:38 UTC</createdTime>
 <comment><![CDATA[Eindeutige Nr, dient der Sortierung in der Ablaufreihenfolge]]></comment>
 <notes><![CDATA[[EN_ATTR_COMMENT[
-*DE* Eindeutige Nr, dient der Sortierung in der Ablaufreihenfolge
+**Unique no., serves to sort in the sequence
 ]EN_ATTR_COMMENT]
 [DE_ATTR_COMMENT[
 Eindeutige Nr, dient der Sortierung in der Ablaufreihenfolge
@@ -60,7 +61,7 @@ Eindeutige Nr, dient der Sortierung in der Ablaufreihenfolge
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_NAME" value="Nr"/>
-<property name="EN_ATTR_NAME" value="*DE* Nr"/>
+<property name="EN_ATTR_NAME" value="**No"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Beschreibung" id="993BDBD9-4CB6-CEFA-DFBF-0B5CA7B02975">
@@ -69,13 +70,16 @@ Eindeutige Nr, dient der Sortierung in der Ablaufreihenfolge
 <notes><![CDATA[[DE_ATTR_COMMENT[
 
 ]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
 ]]></notes>
 <ownerDesignName>IM_TQMI_FYAYC</ownerDesignName>
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_NAME" value="Beschreibung"/>
-<property name="EN_ATTR_NAME" value="*DE* Beschreibung"/>
+<property name="EN_ATTR_NAME" value="**Description"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Kurzbeschreibung" id="798873C5-A678-7AC6-9174-4BA178017F15">
@@ -84,30 +88,55 @@ Eindeutige Nr, dient der Sortierung in der Ablaufreihenfolge
 <notes><![CDATA[[DE_ATTR_COMMENT[
 
 ]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
 ]]></notes>
 <ownerDesignName>IM_TQMI_FYAYC</ownerDesignName>
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_NAME" value="Kurzbeschreibung"/>
-<property name="EN_ATTR_NAME" value="*DE* Kurzbeschreibung"/>
+<property name="EN_ATTR_NAME" value="**Brief description"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Globale Attributliste" id="629E31AA-4F53-9DA8-C4D1-5013D6BB20FC">
 <createdBy>toz</createdBy>
 <createdTime>2020-04-29 14:33:41 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>IM_TQMI_FYAYC</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Globale Attributliste"/>
+<property name="EN_ATTR_NAME" value="**Global Attribute list"/>
+</propertyMap>
 </Attribute>
 <Attribute name="Lokale Attributliste" id="A2ADDCDC-2603-B8DE-52EF-548FE85E46CE">
 <createdBy>toz</createdBy>
 <createdTime>2020-04-29 14:34:02 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>IM_TQMI_FYAYC</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Lokale Attributliste"/>
+<property name="EN_ATTR_NAME" value="**Local Attribute List"/>
+</propertyMap>
 </Attribute>
 </attributes>
 </Entity>

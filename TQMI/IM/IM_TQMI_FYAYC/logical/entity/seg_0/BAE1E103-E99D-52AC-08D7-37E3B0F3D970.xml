@@ -7,12 +7,16 @@ Beispiele:
 in 14 Finance: Invoices and Account Balance]]></comment>
 <notes><![CDATA[[DE_ENTI_COMMENT[
 
+Beispiele:
+in 14 Finance: Invoices and Account Balance
 ]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+*DE* 
+Beispiele:
+in 14 Finance: Invoices and Account Balance
+]EN_ENTI_COMMENT]
 ]]></notes>
 <ownerDesignName>IM_TQMI_FYAYC</ownerDesignName>
-<engineerTo>
-<item key="52BD3DF3-2C04-D27F-CBDF-5C0F0857F17C" value="true"/>
-</engineerTo>
 <adequatelyNormalized>NO</adequatelyNormalized>
 <expectedVolumes>0</expectedVolumes>
 <fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
@@ -26,8 +30,8 @@ in 14 Finance: Invoices and Account Balance]]></comment>
 <propertyMap>
 <property name="DE_ENTI_NAME" value="Aufgabengruppe"/>
 <property name="DE_ENTI_SYNONYM" value="Taskgroup"/>
-<property name="EN_ENTI_NAME" value="*DE* Aufgabengruppe"/>
-<property name="EN_ENTI_SYNONYM" value="*DE* Taskgroup"/>
+<property name="EN_ENTI_NAME" value="**Task Force"/>
+<property name="EN_ENTI_SYNONYM" value="**Task Group"/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Überschrift" id="0915A01E-1979-F9A2-CB34-4A68C0DA27B9">
@@ -36,16 +40,16 @@ in 14 Finance: Invoices and Account Balance]]></comment>
 <notes><![CDATA[[DE_ATTR_COMMENT[
 
 ]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
 ]]></notes>
 <ownerDesignName>IM_TQMI_FYAYC</ownerDesignName>
-<engineerTo>
-<item key="52BD3DF3-2C04-D27F-CBDF-5C0F0857F17C" value="true"/>
-</engineerTo>
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_NAME" value="Überschrift"/>
-<property name="EN_ATTR_NAME" value="*DE* Überschrift"/>
+<property name="EN_ATTR_NAME" value="**Headline"/>
 </propertyMap>
 </Attribute>
 </attributes>

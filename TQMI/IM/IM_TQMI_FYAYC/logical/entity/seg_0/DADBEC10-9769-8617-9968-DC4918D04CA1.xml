@@ -8,10 +8,14 @@
 Beispiel:
 Financial Overview Group]]></comment>
 <notes><![CDATA[[EN_ENTI_COMMENT[
-*DE* Dokument, Werkzeug, Vorlage, Softwate, Applikation
+**Document, tool, template, software, application
 ]EN_ENTI_COMMENT]
 [DE_ENTI_COMMENT[
-Dokument, Werkzeug, Vorlage, Softwate, Applikation
+Dokument, Werkzeug, Vorlage, Software, Applikation
+
+
+Beispiel:
+Financial Overview Group
 ]DE_ENTI_COMMENT]
 ]]></notes>
 <ownerDesignName>IM_TQMI_FYAYC</ownerDesignName>
@@ -26,15 +30,28 @@ Dokument, Werkzeug, Vorlage, Softwate, Applikation
 <createSurrogateKey>true</createSurrogateKey>
 <propertyMap>
 <property name="DE_ENTI_NAME" value="Hilfsmittel"/>
-<property name="EN_ENTI_NAME" value="*DE* Hilfsmittel"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_NAME" value="**Resources"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Status (global/lokal)" id="E2FD198F-F711-7E51-ECCF-80E8AA30C6A5">
 <createdBy>toz</createdBy>
 <createdTime>2020-04-29 14:34:18 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>IM_TQMI_FYAYC</ownerDesignName>
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Status (global/lokal)"/>
+<property name="EN_ATTR_NAME" value="**Status (global/local)"/>
+</propertyMap>
 </Attribute>
 </attributes>
 </Entity>
