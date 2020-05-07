@@ -1,4 +1,4 @@
-from IM_DB import dbDML
+from IM_DB import dbDML,dbDDL
 from .baseobject import Baseobject
 
 class Sprachtext(Baseobject):
@@ -33,6 +33,16 @@ CREATE TABLE sprachtexte(
     									   REFERENCES sprachen(spra_id)	
         )"""
                             )
+
+        dbDDL.dropView("SPRAATTR");
+        dbDDL.createTable("""
+                    create view spraattr as
+        	        select sptx_text,spra_id,spra_iso_code2,sptx_mode_id,sptx_attrname
+        	          from sprachtexte 
+        	          join sprachen on spra_id = sptx_spra_id
+        	          """);
+    #createtable
+
     @staticmethod
     def delete():
         Baseobject.delete(Sprachtext._tablename)

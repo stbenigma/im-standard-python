@@ -1,9 +1,5 @@
 from datetime import date
-
 from IM_DB import dbDML, dbLookup
-from IM_db import IM_OBJECTS
-
-
 
 def  insertEnti(enti):
     lsql="""
@@ -37,16 +33,6 @@ def  insertLovWrtb(pName,pherkunft = 'DOM'):
                                 ,None,None,'--'
                                 ,date.today(),None,None,None))
 #end insertLovWrtb
-
-
-def insertdiagrammtyp(p_data):
-    lsql="""
-    insert into diagrammtypen(
-    diat_bez   ,diat_uc ,diat_dc,diat_um ,diat_dm) 
-        values (?,?,?,?,?)
-    """
-    return dbDML.insert(lsql,p_data)
-#insertdiagrammtyp
 
 def insertAttribute(pattr):
     lsql="""
@@ -225,16 +211,6 @@ def insertUdpTable(ptablId):
                 where tabl_id = {}
             """ .format(ptablId))
 #insertUdpTable
-def insertdiagramm(p_data):
-    lsql = """insert into
-diagramme(
-    diag_name,diag_diat_id,diag_odm_guid
-    ,diag_legendx,diag_legendy,diag_uc
-    ,diag_dc,diag_um,diag_dm )     
-        values (?,?,?,?,?,?,?,?,?)
-    """
-    return dbDML.insert(lsql, p_data)
-#insertdiagramme
 
 def insertlinieseg(pdata):
     lsql = """insert into

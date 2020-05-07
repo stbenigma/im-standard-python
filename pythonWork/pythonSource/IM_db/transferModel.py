@@ -497,39 +497,44 @@ def do1diagramm(pfilename):
         print("Diagramm nicht lesbar: {}".format(pfilename))
         return
     dia = diagramme.getroot()
-    dianame = findField(dia,'name')
-    if (dianame == 'Logical'):
+    diag = Diagramm()
+    diag.diag_name = findField(dia,'name')
+    if (diag.diag_name == 'Logical'):
         return
     #entcomm = findText(root,'comment')
     #creby = findText(root,'createdBy')
     #creti = findText(root,'createdTime')
-    diatid = dbLookup.diatid(p_name='Entity')
+    """'
+                    ,'diag_odm_guid', 
+                    """
+    diag.diag_diat_id = Diagrammtyp.getbyname(pname='Entity').diat_id
     #print(findField(dia,'name'), findField(dia,'id'))
     #diag_name,diag_diat_id,diag_uc,diag_dc,diag_um,diag_dm
+
     if (findText(dia,'showLegend') == 'true'):
         legende =dia.find("objectViews/OView[@otype='Legend']")
         bounds=legende.find("bounds")
-        legendx = findField(bounds,'x')
-        legendy = findField(bounds,'y')
+        diag.diag_legendx = findField(bounds,'x')
+        diag.diag_legendy = findField(bounds,'y')
     else:
-        legendx = None
-        legendy = None
+        diag.diag_legendx = None
+        diag.diag_legendy = None
     #fi
-    uc = findText(dia,'createdBy')
-    dc = findText(dia,'createdTime')
-    row = (dianame, diatid,findField(dia,'id'),legendx,legendy, uc
-           ,dc,findText(dia,'modifiedBy'),None)
+    diag.diag_uc = findText(dia,'createdBy')
+    diag.diag_dc = findText(dia,'createdTime')
+    diag.diag_odm_guid = findField(dia,'id')
+    diag.diag_um = findText(dia,'modifiedBy')
     #print (row)
-    diagid = dbInserts.insertdiagramm(p_data=row)
+    diag.insert()
     objects = dia.findall('objectViews/OView')
     if (len(objects) > 0):
-        transferdiaobj(pobjects=objects, pdiagid=diagid, puc=uc, pdc=dc)
+        transferdiaobj(pobjects=objects, pdiagid=diag.diag_id, puc=diag.diag_uc, pdc=diag.diag_dc)
     connectors = dia.findall('connectors/Connector')
     if (len(connectors) > 0):
-        transferdiaconnect(pconnectors=connectors, pdiagid=diagid, puc=uc, pdc=dc)
+        transferdiaconnect(pconnectors=connectors, pdiagid=diag.diag_id, puc=diag.diag_uc, pdc=diag.diag_dc)
     arcs = dia.findall('arcs/Arc')
     if (len(arcs) > 0):
-        transferdiaarc(parcs=arcs, pdiagid=diagid, puc=uc, pdc=dc)
+        transferdiaarc(parcs=arcs, pdiagid=diag.diag_id, puc=diag.diag_uc, pdc=diag.diag_dc)
     #print (dianame,len(objects),len(connectors),len(arcs))
 #do1diagramm
 
@@ -1159,10 +1164,14 @@ def insertBaseData():
     Sprache.setreplacementlang()
 
     Modellelemtyp.fillmelt()
-    entidiaid = dbInserts.insertdiagrammtyp(('Entity','stb',date.today(),None,None))
+    diat = Diagrammtyp()
+    diat.diat_bez = 'Entity'
+    diat.diat_uc = 'stb'
+    diat.diat_dc = date.today()
+    diat.insert()
     #    medi_diat_id, medi_melt_id,medi_uc,mdei_dc,medi_um,mdei_dm
-    dbInserts.insertmeltdiat((entidiaid, Modellelemtyp.getidbyshortname(pkurzname='ENTI'),'stb', date.today(), None, None))
-    dbInserts.insertmeltdiat((entidiaid, Modellelemtyp.getidbyshortname(pkurzname='BEZI'),'stb', date.today(), None, None))
+    dbInserts.insertmeltdiat((diat.diat_id, Modellelemtyp.getidbyshortname(pkurzname='ENTI'),'stb', date.today(), None, None))
+    dbInserts.insertmeltdiat((diat.diat_id, Modellelemtyp.getidbyshortname(pkurzname='BEZI'),'stb', date.today(), None, None))
 #insertBaseData
 
 def loeschmodell():
@@ -1177,7 +1186,7 @@ def loeschmodell():
     ModelelemDoku.delete()
     Dokument.delete()
     Modellelement.delete()
-    dbDML.delete('diagramme')
+    Diagramm.delete()
     dbDML.delete("benudef_eigenschaft")
     Vorgabewert.delete()
     Wertebereichgruppe.delete()
@@ -1191,7 +1200,7 @@ def loeschmodell():
     dbDML.delete("diagramme")
     dbDML.delete('bereich_elemdarst')
     Modellelemtyp.delete ()
-    dbDML.delete('diagrammtypen')
+    Diagrammtyp.delete()
     Sprache.delete()
     Sprachtext.delete()
     dbDML.delete('geschaeftsbereich')

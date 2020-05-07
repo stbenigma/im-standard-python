@@ -225,12 +225,12 @@ def do1mapping(pfilename):
             tabentimap.insert()
         except:
             pass
-            if odmmap.logtype = Odmmapping.ENTITYPE:
+            if odmmap.logtype == Odmmapping.ENTITYPE:
                 print ( 'Mapping funktioniert nicht Entity vermutlich gelöscht:\n'
                    ,'Logic: type = {}   guid = {}\n'.format(odmmap.logtype,odmmap.logid)
                 , 'rel: type = {}   guid = {}'.format(odmmap.reltype, odmmap.relid)
                     )
-            elif odmmap.logtype = Odmmapping.FKTYPE:
+            elif odmmap.logtype == Odmmapping.FKTYPE:
                 print ( 'Mapping funktioniert nicht FK noch nicht behandelt:\n'
                    ,'Logic: type = {}   guid = {}\n'.format(odmmap.logtype,odmmap.logid)
                 , 'rel: type = {}   guid = {}'.format(odmmap.reltype, odmmap.relid)

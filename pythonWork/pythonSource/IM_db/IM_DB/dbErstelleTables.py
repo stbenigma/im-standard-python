@@ -326,43 +326,9 @@ CREATE TABLE modelltyp_eigensch(
       join entitaeten e1 on e1.enti_id = b1.bezi_enti_id_von  
     order by ae.enti_name""")
 
+    Diagrammtyp.createtable()
+    Diagramm.createtable();
 
-    dbDDL.dropView("SPRAATTR");
-    dbDDL.createTable("""
-            create view spraattr as
-	        select sptx_text,spra_id,spra_iso_code2,sptx_mode_id,sptx_attrname
-	          from sprachtexte 
-	          join sprachen on spra_id = sptx_spra_id
-	          """);
-
-    dbDDL.dropTable("diagrammtypen");
-    dbDDL.createTable("""
-CREATE TABLE diagrammtypen(
-    diat_id    integer primary key autoincrement,
-    diat_bez   varchar(100) NOT NULL,
-     diat_uc varchar(30) NOT NULL,
-    diat_dc    varchar(30) NOT NULL,
-    diat_um    varchar(30) ,
-    diat_dm    varchar(30),
-	CONSTRAINT diat_un UNIQUE(diat_bez)
-)	          """);
-    dbDDL.dropTable("diagramme");
-    dbDDL.createTable("""
-CREATE TABLE diagramme(
-    diag_id      integer primary key autoincrement,
-    diag_name      varchar(60) NOT NULL,
-    diag_diat_id   integer NOT NULL,
-    diag_odm_guid       varchar(36),
-    diag_legendx       integer,
-    diag_legendy       integer,
-     diag_uc    varchar(30) NOT NULL,
-    diag_dc        varchar(30) NOT NULL,
-    diag_um        varchar(30) ,
-    diag_dm        varchar(30),
-	CONSTRAINT diag__un UNIQUE(diag_name),
-	CONSTRAINT diag_diat_fk FOREIGN KEY(diag_diat_id)
-									   REFERENCES diagrammtypen(diat_id)
-)	          """);
     dbDDL.dropTable("melt_diat");
     dbDDL.createTable("""
 CREATE TABLE melt_diat(

@@ -4,15 +4,15 @@ from IM_DB import parameters,dbConnect,dbDDL,dbDML,dbErstelleTables
 from IM_HTML import printHTML
 import fillDB
 import listWebdoku
+from IM_OBJECTS import Sprachtext
 
 
 def main(pdirec,plang):
     parameters.initparam(p_callarg=pdirec)
-    lang = plang
     if plang is None:
         printHTML.reportLang(parameters.dbDefaultLang())
     else:
-        printHTML.reportLang(plang.lower())
+        Sprachtext.reportLang(plang.lower())
 
     dbConnect.openDB(p_filepath="file::memory:?cache=shared");
     dbErstelleTables.erstelleInfra();
