@@ -13,15 +13,12 @@ SACU Botsuana; Eswatini; Lesotho; Namibia; Südafrika (Zollunion)
 EMEA (Europe, Middle East, Africa) (Vertriebsorganisation)
 ]]></comment>
 <notes><![CDATA[[EN_ENTI_COMMENT[
-*DE* Eine Zusammenfassung mehrerer Länder zu einer Gruppe.
-Es soll jeweils ein Kriterium für die Gruppenbildung bzw. einen Begründung (Zweck) für die Nutzung der Gruppe festgelegt/dokumentiert werden.
+*FR* *Regroupement de plusieurs pays en un seul groupe. Dans chaque cas, un critère de formation de groupe ou une justification (but) de l'utilisation du groupe est définie/documentée. Les types de groupes de pays vous permettent de gérer plusieurs regroupements : directeur commercial Douanes, logistique 
 
-Typen von Ländergruppen erlauben mehrere Gruppierungen zu führen: Vertriebsorg., Zoll, Logistik 
-
-Beispiele:
-EU
-SACU Botsuana; Eswatini; Lesotho; Namibia; Südafrika (Zollunion)
-EMEA (Europe, Middle East, Africa) (Vertriebsorganisation)
+Exemples : 
+UE 
+SACU Botswana ; Eswatini ; Lesotho ; Namibie ; Afrique du Sud (Union douanière) 
+EMEA (Europe, Moyen-Orient, Afrique) (organisation commerciale)
 ]EN_ENTI_COMMENT]
 [DE_ENTI_COMMENT[
 Eine Zusammenfassung mehrerer Länder zu einer Gruppe.
@@ -33,16 +30,16 @@ Beispiele:
 EU
 SACU Botsuana; Eswatini; Lesotho; Namibia; Südafrika (Zollunion)
 EMEA (Europe, Middle East, Africa) (Vertriebsorganisation)
+
 ]DE_ENTI_COMMENT]
 [FR_ENTI_COMMENT[
-Regroupement de plusieurs pays en un seul groupe. Dans chaque cas, un critère de formation de groupe ou une justification (but) de l'utilisation du groupe est définie/documentée. Les types de groupes de pays vous permettent de gérer plusieurs regroupements : directeur commercial Douanes, logistique 
+*Regroupement de plusieurs pays en un seul groupe. Dans chaque cas, un critère de formation de groupe ou une justification (but) de l'utilisation du groupe est définie/documentée. Les types de groupes de pays vous permettent de gérer plusieurs regroupements : directeur commercial Douanes, logistique 
 
 Exemples : 
 UE 
 SACU Botswana ; Eswatini ; Lesotho ; Namibie ; Afrique du Sud (Union douanière) 
 EMEA (Europe, Moyen-Orient, Afrique) (organisation commerciale)
 ]FR_ENTI_COMMENT]
-
 ]]></notes>
 <ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
 <engineerTo>
@@ -69,7 +66,7 @@ EMEA (Europe, Moyen-Orient, Afrique) (organisation commerciale)
 <property name="EN_ENTI_NAME" value="Country Group"/>
 <property name="EN_ENTI_SYNONYM" value="*DE* ldgrp"/>
 <property name="FR_ENTI_NAME" value="Groupe de pays"/>
-<property name="FR_ENTI_SYNONYM" value=""/>
+<property name="FR_ENTI_SYNONYM" value="*DE* ldgrp"/>
 <property name="PENTA TabName" value="landgroups"/>
 <property name="PIM TabName" value="ldgroup"/>
 </propertyMap>
@@ -79,7 +76,7 @@ EMEA (Europe, Moyen-Orient, Afrique) (organisation commerciale)
 <createdTime>2019-05-06 09:01:27 UTC</createdTime>
 <comment><![CDATA[Typ der Ländergruppe (Vertrieb, Zoll, Organisation)]]></comment>
 <notes><![CDATA[[EN_ATTR_COMMENT[
-*DE* Typ der Ländergruppe (Vertrieb, Zoll, Organisation)
+*FR* Type de groupe de pays (vente, douane, organisation)
 ]EN_ATTR_COMMENT]
 [DE_ATTR_COMMENT[
 Typ der Ländergruppe (Vertrieb, Zoll, Organisation)
@@ -108,7 +105,7 @@ Type de groupe de pays (vente, douane, organisation)
 <property name="PIM datatype" value="number"/>
 </propertyMap>
 </Attribute>
-<Attribute name="Zweck" id="4884CAC4-510A-4F0B-4C72-FC6E2F36D0B3">
+<Attribute name="*Zweck" id="4884CAC4-510A-4F0B-4C72-FC6E2F36D0B3">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 08:58:17 UTC</createdTime>
 <notes><![CDATA[[DE_ATTR_COMMENT[
@@ -132,9 +129,9 @@ Type de groupe de pays (vente, douane, organisation)
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
-<property name="DE_ATTR_NAME" value="Zweck"/>
-<property name="EN_ATTR_NAME" value="Type"/>
-<property name="FR_ATTR_NAME" value="Type"/>
+<property name="DE_ATTR_NAME" value="*Zweck"/>
+<property name="EN_ATTR_NAME" value="*Type"/>
+<property name="FR_ATTR_NAME" value="Type1"/>
 <property name="PENTA AttrName" value="reason"/>
 <property name="PIM AttrName" value="ldreason"/>
 <property name="PIM datatype" value="text"/>

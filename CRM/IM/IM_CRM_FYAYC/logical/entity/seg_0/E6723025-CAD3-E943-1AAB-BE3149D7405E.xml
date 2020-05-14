@@ -4,7 +4,7 @@
 <createdTime>2019-05-06 07:55:51 UTC</createdTime>
 <comment><![CDATA[Ein geographisches Gebilde das nach geographischen, polititischen oder postalischen Kriterien in dieser Form definiert ist.]]></comment>
 <notes><![CDATA[[EN_ENTI_COMMENT[
-*DE* Ein geographisches Gebilde das nach geographischen, polititischen oder postalischen Kriterien in dieser Form definiert ist.
+*FR* Une entité géographique qui est définie sous cette forme selon des critères géographiques, politiques ou postaux.
 ]EN_ENTI_COMMENT]
 [DE_ENTI_COMMENT[
 Ein geographisches Gebilde das nach geographischen, polititischen oder postalischen Kriterien in dieser Form definiert ist.
@@ -33,8 +33,10 @@ Une entité géographique qui est définie sous cette forme selon des critères 
 <createSurrogateKey>true</createSurrogateKey>
 <propertyMap>
 <property name="DE_ENTI_NAME" value="Geografische Einheit"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
 <property name="EN_ENTI_NAME" value="Geografical Unit"/>
 <property name="FR_ENTI_NAME" value="Unité géographique"/>
+<property name="FR_ENTI_SYNONYM" value=""/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Name [L]" id="5E75C083-4B08-9B98-D615-C1F359FB7915">
@@ -65,7 +67,7 @@ Une entité géographique qui est définie sous cette forme selon des critères 
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_NAME" value="Name [L]"/>
-<property name="EN_ATTR_NAME" value="*DE* Name [L]"/>
+<property name="EN_ATTR_NAME" value="*FR* Nom [L]"/>
 <property name="FR_ATTR_NAME" value="Nom [L]"/>
 </propertyMap>
 </Attribute>
@@ -74,7 +76,7 @@ Une entité géographique qui est définie sous cette forme selon des critères 
 <createdTime>2019-05-06 09:20:23 UTC</createdTime>
 <comment><![CDATA[Fläche eines Gebiets als geo-Information]]></comment>
 <notes><![CDATA[[EN_ATTR_COMMENT[
-*DE* Fläche eines Gebiets als geo-Information
+*FR* Superficie d'un territoire comme géo-information
 ]EN_ATTR_COMMENT]
 [DE_ATTR_COMMENT[
 Fläche eines Gebiets als geo-Information
@@ -95,7 +97,7 @@ Superficie d'un territoire comme géo-information
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_NAME" value="GeoInformation"/>
-<property name="EN_ATTR_NAME" value="*DE* GeoInformation"/>
+<property name="EN_ATTR_NAME" value="*FR* Géo-informations d&apos;un territoire"/>
 <property name="FR_ATTR_NAME" value="Géo-informations d&apos;un territoire"/>
 </propertyMap>
 </Attribute>

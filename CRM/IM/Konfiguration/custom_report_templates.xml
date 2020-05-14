@@ -403,25 +403,6 @@
 		</section>
 	</sections>
 	</custom_report_template>
-	<custom_report_template id="39EF7727-E854-09CA-B0C3-51325229AB9A" name="Relationship" description="" class="oracle.dbtools.crest.model.design.logical.Relation" >
-	<sections>
-		<section propertyName="Relation" type="" customName="Relation" level="0" class="oracle.dbtools.crest.model.design.logical.Relation">
-		<columns>
-				<column name="name" customName="Name" width="0.0" order="" massUpdatable="false" dynamic="false"/>
-				<column name="sourceEntity" customName="Source entity" width="0.0" order="" massUpdatable="true" dynamic="false"/>
-				<column name="sourceCardinalityString" customName="Source cardinality string" width="0.0" order="" massUpdatable="true" dynamic="false"/>
-				<column name="nameOnSource" customName="Name on source" width="0.0" order="" massUpdatable="true" dynamic="false"/>
-				<column name="EN_RELA_TEXT_FROM" customName="EN_RELA_TEXT_FROM" width="0.0" order="" massUpdatable="false" dynamic="true"/>
-				<column name="FR_RELA_TEXT_FROM" customName="FR_RELA_TEXT_FROM" width="0.0" order="" massUpdatable="false" dynamic="true"/>
-				<column name="targetEntity" customName="Target entity" width="0.0" order="" massUpdatable="true" dynamic="false"/>
-				<column name="targetCardinalityString" customName="Target cardinality string" width="0.0" order="" massUpdatable="true" dynamic="false"/>
-				<column name="nameOnTarget" customName="Name on target" width="0.0" order="" massUpdatable="true" dynamic="false"/>
-				<column name="EN_RELA_TEXT_TO" customName="EN_RELA_TEXT_TO" width="0.0" order="" massUpdatable="false" dynamic="true"/>
-				<column name="FR_RELA_TEXT_TO" customName="FR_RELA_TEXT_TO" width="0.0" order="" massUpdatable="false" dynamic="true"/>
-		</columns>
-		</section>
-	</sections>
-	</custom_report_template>
 	<custom_report_template id="36441BE8-3510-8D6E-D937-E2347ADBD456" name="Attribut Translation" description="" class="oracle.dbtools.crest.model.design.logical.Attribute" >
 	<sections>
 		<section propertyName="Attribute" type="" customName="Attribute" level="0" class="oracle.dbtools.crest.model.design.logical.Attribute">
@@ -433,6 +414,27 @@
 				<column name="FR_ATTR_NAME" customName="FR_ATTR_NAME" width="0.0" order="" massUpdatable="false" dynamic="false"/>
 				<column name="comment" customName="Comment" width="0.0" order="" massUpdatable="false" dynamic="false"/>
 				<column name="notes" customName="Notes" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+		</columns>
+		</section>
+	</sections>
+	</custom_report_template>
+	<custom_report_template id="39EF7727-E854-09CA-B0C3-51325229AB9A" name="Relationship" description="" class="oracle.dbtools.crest.model.design.logical.Relation" >
+	<sections>
+		<section propertyName="Relation" type="" customName="Relation" level="0" class="oracle.dbtools.crest.model.design.logical.Relation">
+		<columns>
+				<column name="name" customName="Name" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="sourceEntity" customName="Source entity" width="0.0" order="" massUpdatable="true" dynamic="false"/>
+				<column name="sourceCardinalityString" customName="Source cardinality string" width="0.0" order="" massUpdatable="true" dynamic="false"/>
+				<column name="nameOnSource" customName="Name on source" width="0.0" order="" massUpdatable="true" dynamic="false"/>
+				<column name="DE_RELA_TEXT_FROM" customName="DE_RELA_TEXT_FROM" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="EN_RELA_TEXT_FROM" customName="EN_RELA_TEXT_FROM" width="0.0" order="" massUpdatable="false" dynamic="true"/>
+				<column name="FR_RELA_TEXT_FROM" customName="FR_RELA_TEXT_FROM" width="0.0" order="" massUpdatable="false" dynamic="true"/>
+				<column name="targetEntity" customName="Target entity" width="0.0" order="" massUpdatable="true" dynamic="false"/>
+				<column name="targetCardinalityString" customName="Target cardinality string" width="0.0" order="" massUpdatable="true" dynamic="false"/>
+				<column name="nameOnTarget" customName="Name on target" width="0.0" order="" massUpdatable="true" dynamic="false"/>
+				<column name="DE_RELA_TEXT_TO" customName="DE_RELA_TEXT_TO" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="EN_RELA_TEXT_TO" customName="EN_RELA_TEXT_TO" width="0.0" order="" massUpdatable="false" dynamic="true"/>
+				<column name="FR_RELA_TEXT_TO" customName="FR_RELA_TEXT_TO" width="0.0" order="" massUpdatable="false" dynamic="true"/>
 		</columns>
 		</section>
 	</sections>

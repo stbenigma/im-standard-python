@@ -8,11 +8,7 @@ Jede Adresse ist für einen Akteur definiert. D.h. die selbe Adresse kann mehrfa
 Falls ein generelles Adressverzeichnis als Referenz geführt wird (Basisadresse), muss das zusätlich erfasst werden.
 Dann wird diese Entität zur Verknüpfung zwischen Akteur und Basisadresse.]]></comment>
 <notes><![CDATA[[EN_ENTI_COMMENT[
-*DE* Postalisch-geographische Lokalisation
-
-Jede Adresse ist für einen Akteur definiert. D.h. die selbe Adresse kann mehrfach vorkommen.
-Falls ein generelles Adressverzeichnis als Referenz geführt wird (Basisadresse), muss das zusätlich erfasst werden.
-Dann wird diese Entität zur Verknüpfung zwischen Akteur und Basisadresse.
+*FR* Chaque adresse est définie pour un acteur. C'est-à-dire la même adresse peut apparaître plusieurs fois. Si un répertoire d'adresses général est conservé comme référence (adresse de base), il doit être saisi en plus. Cette entité devient alors le lien entre l'acteur et l'adresse de base.
 ]EN_ENTI_COMMENT]
 [DE_ENTI_COMMENT[
 Postalisch-geographische Lokalisation
@@ -43,8 +39,10 @@ Chaque adresse est définie pour un acteur. C'est-à-dire la même adresse peut 
 <createSurrogateKey>true</createSurrogateKey>
 <propertyMap>
 <property name="DE_ENTI_NAME" value="*Adresse"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
 <property name="EN_ENTI_NAME" value="Address"/>
 <property name="FR_ENTI_NAME" value="Adresse"/>
+<property name="FR_ENTI_SYNONYM" value=""/>
 <property name="PENTA TabName" value="postaladr"/>
 <property name="PIM TabName" value="ADRESS"/>
 </propertyMap>
@@ -55,7 +53,7 @@ Chaque adresse est définie pour un acteur. C'est-à-dire la même adresse peut 
 <createdTime>2019-05-06 11:18:19 UTC</createdTime>
 <comment><![CDATA[Zweck der Adresse (Finanz, Post, Lieferung etc.)]]></comment>
 <notes><![CDATA[[EN_ATTR_COMMENT[
-*DE* Zweck der Adresse (Finanz, Post, Lieferung etc.)
+*FR* Type d'adresse (financière, postale, de lvraison etc.)
 ]EN_ATTR_COMMENT]
 [DE_ATTR_COMMENT[
 Zweck der Adresse (Finanz, Post, Lieferung etc.)
@@ -169,6 +167,9 @@ Type d'adresse (financière, postale, de lvraison etc.)
 ]EN_ATTR_COMMENT]
 [FR_ATTR_COMMENT[
 ]FR_ATTR_COMMENT]
+[FR_ATTR_COMMENT[
+
+]FR_ATTR_COMMENT]
 ]]></notes>
 <ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
 <engineerTo>
@@ -199,6 +200,9 @@ Type d'adresse (financière, postale, de lvraison etc.)
 
 ]EN_ATTR_COMMENT]
 [FR_ATTR_COMMENT[
+]FR_ATTR_COMMENT]
+[FR_ATTR_COMMENT[
+
 ]FR_ATTR_COMMENT]
 ]]></notes>
 <ownerDesignName>IM_CRM_FYAYC</ownerDesignName>

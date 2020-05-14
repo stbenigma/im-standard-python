@@ -8,11 +8,9 @@
 Namen von Kontaktperson nach Ansprechpartner geändert
 Synonym von Ansprechpartner nach Kontaktperson geändert]]></comment>
 <notes><![CDATA[[EN_ENTI_COMMENT[
-*DE* Funktion einer Person für eine juristische Einheit. Im Spezialfall kann eine Person als Einzelfirma ihr eigener Ansprechspartner sein.
-
-26.6.18 - THU:
-Namen von Kontaktperson nach Ansprechpartner geändert
-Synonym von Ansprechpartner nach Kontaktperson geändert
+*FR* Fonction d'une personne pour une entité juridique. Dans des cas particuliers, une personne en tant qu'entreprise individuelle peut être son propre interlocuteur. 26. 6. 18 - THU : 
+Changement de nom de la personne de contact en personne de référence
+Changement de synonyme de personne de référence à personne de contact
 ]EN_ENTI_COMMENT]
 [DE_ENTI_COMMENT[
 Funktion einer Person für eine juristische Einheit. Im Spezialfall kann eine Person als Einzelfirma ihr eigener Ansprechspartner sein.
@@ -50,7 +48,7 @@ Changement de synonyme de personne de référence à personne de contact
 <property name="EN_ENTI_NAME" value="Contact Person"/>
 <property name="EN_ENTI_SYNONYM" value="*DE* Kontaktperson"/>
 <property name="FR_ENTI_NAME" value="Contact"/>
-<property name="FR_ENTI_SYNONYM" value=""/>
+<property name="FR_ENTI_SYNONYM" value="*DE* Kontaktperson"/>
 </propertyMap>
 <documents usedDucuments="D2A2540D-782C-B4AB-45BE-E542267116D2"/>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
@@ -80,7 +78,7 @@ Changement de synonyme de personne de référence à personne de contact
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_NAME" value="Gültigkeitsperiode"/>
-<property name="EN_ATTR_NAME" value="*DE* Gültigkeitsperiode"/>
+<property name="EN_ATTR_NAME" value="*FR* Période de validité"/>
 <property name="FR_ATTR_NAME" value="Période de validité"/>
 </propertyMap>
 </Attribute>

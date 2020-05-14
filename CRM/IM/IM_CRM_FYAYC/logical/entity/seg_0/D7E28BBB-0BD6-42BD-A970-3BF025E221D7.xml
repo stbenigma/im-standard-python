@@ -1,13 +1,12 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="D7E28BBB-0BD6-42BD-A970-3BF025E221D7" name="Vertriebsteilnehmer">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="D7E28BBB-0BD6-42BD-A970-3BF025E221D7" name="*Vertriebsteilnehmer">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 08:04:25 UTC</createdTime>
 <comment><![CDATA[Ein Marktteilnehmer, der mit verkaufbaren oder vermietbaren Produkten von uns direkt oder indirekt zu tun hat.
 
 ]]></comment>
 <notes><![CDATA[[EN_ENTI_COMMENT[
-*DE* Ein Marktteilnehmer, der mit verkaufbaren oder vermietbaren Produkten von uns direkt oder indirekt zu tun hat.
-
+*FR* Un acteur du marché qui est directement ou indirectement impliqué dans les produits que nous vendons ou louons.
 
 ]EN_ENTI_COMMENT]
 [DE_ENTI_COMMENT[
@@ -37,11 +36,11 @@ Un acteur du marché qui est directement ou indirectement impliqué dans les pro
 <normalForm>Third</normalForm>
 <createSurrogateKey>true</createSurrogateKey>
 <propertyMap>
-<property name="DE_ENTI_NAME" value="Vertriebsteilnehmer"/>
+<property name="DE_ENTI_NAME" value="*Vertriebsteilnehmer"/>
 <property name="DE_ENTI_SYNONYM" value=""/>
-<property name="EN_ENTI_NAME" value="Sales Participant"/>
+<property name="EN_ENTI_NAME" value="*Sales Participant"/>
 <property name="EN_ENTI_SYNONYM" value=""/>
-<property name="FR_ENTI_NAME" value="Partenaire commercial"/>
+<property name="FR_ENTI_NAME" value="Partenaire commercialv1"/>
 <property name="FR_ENTI_SYNONYM" value=""/>
 </propertyMap>
 </Entity>
