@@ -4538,7 +4538,7 @@ function getAttrMap(attrID,modName){
 	</lib>
 	<lib id="B2F713AD-5E48-670F-8A2B-55D1ABD0440C" name="attrmapping" engine="Oracle Nashorn" methods="importMapping,print1Mapping,printXMapping,printNameMapping" >
 		<script>
-			<![CDATA[	var CODEVERSION = '1.2'
+			<![CDATA[var CODEVERSION = '1.2'
 	var PLAINMESSAGE = 1;
 	var ERRORMESSAGE = 0;
 	var WARNINGMESSAGE = 2;
@@ -4557,7 +4557,8 @@ function getAttrMap(attrID,modName){
 	var writtenCols={}
 	var exportDirec=""
 	var EXTIDPROPNAME = "EXT_ATTR_ID"
-	var EXCELSEPARATOR = String.fromCharCode(12)
+	var EXCELSEPARATOR = String.fromCharCode(10)
+	var EXCELLINEEND = String.fromCharCode(13,10)
 	
 
 	// Types for mapping element
@@ -4871,7 +4872,7 @@ function nvl(x){return x==null ? "" : x }
 
 function writeMapLine(fw,tab,enti,col,attr){
 	//message('write'+tab+enti+col+attr)
-	fw.write(nvl(enti)+';'+nvl(attr)+';'+tab+';'+nvl(col)+'\n')
+	fw.write(nvl(enti)+';'+nvl(attr)+';'+tab+';'+nvl(col)+EXCELLINEEND)
 }
 function printColsMap(fw,tab){
 	cols = tab.getElementsCollection().toArray()
@@ -5029,7 +5030,7 @@ function tabList (maps,elemType,curmodel) {
 				tabName = maps[i].tableName // falls es m:n ist ist es eine Table
 			}
 		}
-		retval += tabName
+		retval += '"'+tabName+'"'
 	}
 	return retval
 }
@@ -5073,7 +5074,7 @@ function attrElements(rmodels,attrID,nurX) {
 				tabNames = tabNames.slice(0,-1)
 				colNames = colNames.slice(0,-1)
 				colIDs = colIDs.slice(0,-1)
-				x +=  ';' + tabNames + ';' + colNames + ';' + colIDs  
+				x +=  ';"' + tabNames + '";"' + colNames + '";"' + colIDs  +'"'
 			}
 		} else {x = nurX ? ';' : ';;;'}
 		retval += x
@@ -5087,14 +5088,14 @@ function logicalElement(rmodels,logElem,nurX){
 	if (logElem.getObjectTypeName() == 'Entity'){
 		line= logElem.getName()+';'
 		line += elements(rmodels,logElem.getObjectID(),logElem.getObjectTypeName(),nurX)
-		line += '\n'
+		line += EXCELLINEEND
 		fw.write(line)
 		attrs=logElem.getElementsCollection().toArray()
 	} else if (logElem.getObjectTypeName() == 'Relation') {
 		if (logElem.isManyToMany()) { // FK-Mapping ist nicht trivial bei seltsamen Modellen
 			line= logElem.getName()+';'
 			line += elements(rmodels,logElem.getObjectID(),logElem.getObjectTypeName(),nurX)
-			line += '\n'
+			line += EXCELLINEEND
 			fw.write(line)
 			attrs=logElem.getAttributesCollection().toArray()	
 		} 
@@ -5110,7 +5111,7 @@ function logicalElement(rmodels,logElem,nurX){
 
 			line= logElem.getName()+';'+attr.getName()
 			line += attrElements(rmodels,attrID,nurX)
-			line += '\n'
+			line += EXCELLINEEND
 			fw.write(line)
 		}
 	}
@@ -5130,17 +5131,17 @@ function printMatrix(fw,nurX) {
 	inheritanceSet = logicalModel.getInheritanceRelationSet()
 	rmodels = model.getDesign().getRelationalDesigns().toArray();
 	getAllMappings(rmodels)
-	fw.write('entity;attr'+headers(rmodels,nurX)+'\n')
+	fw.write('entity;attr'+headers(rmodels,nurX)+EXCELLINEEND)
 	printElementGroup(rmodels,entitySet.toArray(),nurX)
 	printElementGroup(rmodels,relationSet.toArray(),nurX)
 	// sind schon entities   
 	// printElementGroup(rmodels,inheritanceSet.toArray(),nurX)	
-	fw.write('created by ODM, '+curDateStr()+'\n')
+	fw.write('created by ODM, '+curDateStr()+EXCELLINEEND)
 }
 
 function printCVS (fw){
-	fw.write(relModel+';;;\n')
-	fw.write('entityName;attrName;tableName;columnName\n')
+	fw.write(relModel+';;;'+EXCELLINEEND)
+	fw.write('entityName;attrName;tableName;columnName'+EXCELLINEEND)
 	tables = relModel.getTableSet().toArray();
 	for (itpc=0;itpc<tables.length;itpc++){
 		printCols(fw,tables[itpc])
@@ -5178,8 +5179,7 @@ function printXMapping (){
 }
 function printNameMapping (){
      printAllMapping(false)
-}
-]]>
+}]]>
 		</script>
 	</lib>
 	<lib id="12E63B95-CEA8-74F6-377B-3B4B8E7D66E2" name="DDLGeneration" engine="Oracle Nashorn" methods="json" >
