@@ -58,9 +58,6 @@
 <ownDataTypeParameters>,10,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
-<associations>
-<colAssociation fkAssociation="9844945E-00EB-8173-1AFC-7BD1E6B642EF" referredColumn="FCE2100C-53DE-6314-1C73-1A7C9D933BCE"/>
-</associations>
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
@@ -72,17 +69,6 @@
 <indexState>Primary Constraint</indexState>
 <indexColumnUsage>
 <colUsage columnID="E8C869DD-A539-540D-CBF8-96F604446CCE"/>
-</indexColumnUsage>
-</ind_PK_UK>
-<ind_PK_UK id="1D1D2818-0847-0A20-854F-8704AD04736C" name="TAB_Super_Entiät_FK">
-<createdBy>stb</createdBy>
-<createdTime>2019-11-09 17:04:10 UTC</createdTime>
-<generatorID>E3CE607E-ADBE-4487-71FA-71BE3223AB62</generatorID>
-<ownerDesignName>fyayc_dev_mapping</ownerDesignName>
-<indexState>Foreign Key</indexState>
-<isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
-<colUsage columnID="4E3FB046-B553-05F5-8B01-7E56B4810362"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>

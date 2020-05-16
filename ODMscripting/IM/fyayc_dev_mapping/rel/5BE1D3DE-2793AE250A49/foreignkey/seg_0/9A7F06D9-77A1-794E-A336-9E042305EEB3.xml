@@ -1,0 +1,19 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="9A7F06D9-77A1-794E-A336-9E042305EEB3" containerWithKeyObject="65D9AFB4-57EF-4C7D-C7DE-C644F39472E5" localFKIndex="9FF72870-DA1F-5383-FEE4-059A7FD41EF3" name="Subentität_2_Super_Entiät_FK">
+<createdBy>stb</createdBy>
+<createdTime>2020-05-16 13:21:02 UTC</createdTime>
+<generatorID>27243F6C-8EA1-74A1-84AB-A6CB82A235BF</generatorID>
+<ownerDesignName>fyayc_dev_mapping</ownerDesignName>
+<referredTableLongName>Super_Entiät</referredTableLongName>
+<arc>87615DF0-00A6-4665-D560-0ED54DB41878</arc>
+<deleteRule>RESTRICT</deleteRule>
+<referredTableID>90C933C8-7930-DF62-6FE7-FCF029AFBDC3</referredTableID>
+<keyObject>22A25678-BF10-C5BD-9DAC-2E0884FAB2C3</keyObject>
+<referredKeyID>22A25678-BF10-C5BD-9DAC-2E0884FAB2C3</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>Super_Entiät_ID</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<discriminatorValue>Subentität_2</discriminatorValue>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

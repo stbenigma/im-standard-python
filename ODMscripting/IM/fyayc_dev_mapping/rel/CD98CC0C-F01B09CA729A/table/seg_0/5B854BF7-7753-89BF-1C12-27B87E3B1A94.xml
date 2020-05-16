@@ -34,9 +34,6 @@
 <ownDataTypeParameters>,10,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
-<associations>
-<colAssociation fkAssociation="B0A28950-E190-950A-CF7D-ADA0467CCDAE" referredColumn="E2C5F94A-C55A-E4DB-0937-A737FA698633"/>
-</associations>
 </Column>
 <Column name="Subentität_1_Subentität_1_ID" id="E8164A83-4892-8AB6-8FCB-879AE41DC850">
 <createdBy>stb</createdBy>
@@ -49,9 +46,6 @@
 <ownDataTypeParameters>,10,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
-<associations>
-<colAssociation fkAssociation="B0A28950-E190-950A-CF7D-ADA0467CCDAE" referredColumn="7FB97853-3C59-F9BC-5D18-ABB56580F797"/>
-</associations>
 </Column>
 <Column name="Name" directorySegmentName="seg_0" id="24C9B6FC-E1FE-F616-9B6C-4400A74408C3">
 <createdBy>stb</createdBy>
@@ -140,18 +134,6 @@
 <indexState>Unique Plain Index</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <relationGeneratorID>23C50890-B7F3-4693-D8F9-572546137BFA</relationGeneratorID>
-<indexColumnUsage>
-<colUsage columnID="05832128-FFBC-10CE-AEE1-AFA5A67F9FB6"/>
-<colUsage columnID="E8164A83-4892-8AB6-8FCB-879AE41DC850"/>
-</indexColumnUsage>
-</ind_PK_UK>
-<ind_PK_UK id="D04FAD4C-1539-009E-172B-362AC07AE92C" name="Subentit_1-1_Subentität_1_FK">
-<createdBy>stb</createdBy>
-<createdTime>2019-11-09 17:04:10 UTC</createdTime>
-<generatorID>23C50890-B7F3-4693-D8F9-572546137BFA</generatorID>
-<ownerDesignName>fyayc_dev_mapping</ownerDesignName>
-<indexState>Foreign Key</indexState>
-<isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
 <colUsage columnID="05832128-FFBC-10CE-AEE1-AFA5A67F9FB6"/>
 <colUsage columnID="E8164A83-4892-8AB6-8FCB-879AE41DC850"/>
