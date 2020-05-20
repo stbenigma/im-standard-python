@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="AB509F4E-089C-EB24-255E-B329F8D18C2E" name="Prozesstyp">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="AB509F4E-089C-EB24-255E-B329F8D18C2E" name="Prozess">
 <createdBy>toz</createdBy>
 <createdTime>2020-05-19 14:50:32 UTC</createdTime>
 <comment><![CDATA[Sammlung für Aufgaben für bestimmte Prozessgruppen.
@@ -36,9 +36,7 @@ Beispiele:
 <normalForm>Third</normalForm>
 <propertyMap>
 <property name="DE_ENTI_NAME" value="Prozesstyp"/>
-<property name="DE_ENTI_SYNONYM" value=""/>
 <property name="EN_ENTI_NAME" value="**Process"/>
-<property name="EN_ENTI_SYNONYM" value=""/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Name" id="0B046A68-EA37-20EA-D267-99D4A9CB6F61">
