@@ -1,29 +1,6 @@
 from datetime import date
 from IM_DB import dbDML, dbLookup
 
-def  insertEnti(enti):
-    lsql="""
-    insert into entitaeten 
-       (enti_odm_guid ,enti_augb_id,enti_tech_name     
-       ,enti_name,enti_beschr     ,enti_tooltip    
-       ,enti_kurzname   ,enti_prefix             ,enti_beispiele          
-       ,enti_erw_tupel         ,enti_uc ,enti_dc
-       ,enti_enti_guid,enti_enti_id,enti_category_guid) 
-        values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) 
-    """
-    return dbDML.insert(lsql,enti)
-
-#end insertEnti
-
-
-def insertSynonym(p_data):
-    lsql = """
-        insert into synonyme ( syno_name, syno_enti_id) 
-            values (?,?) 
-        """
-    return dbDML.insert(lsql, p_data)
-# end insertSynonym
-
 def  insertLovWrtb(pName,pherkunft = 'DOM'):
     return insertWrtb(wrtb=(None,pName, 'einfache Werteliste '
                                 ,'LOV',pherkunft,None,None
@@ -48,14 +25,6 @@ def insertAttribute(pattr):
     return dbDML.insert(lsql,pattr)
 #end insertAttributes
 
-#def insertDataTypes(pdaty):
-#    lsql = """
-#        insert into datatypes (daty_name,daty_grundtyp,daty_odm_guid)
-#            values (?,?,?)
-#        """
-#    return dbDML.insert(lsql, pdaty)
-# end insertDataTypes
-
 def insertArc(parc):
     lsql = """
         insert into arcs 
@@ -78,18 +47,6 @@ def insertBeziehung(pdata):
             values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
         """
     return dbDML.insert(lsql, pdata)
-
-def insertMelt(pdata):
-    lsql = """
-        insert into modellelem_typ(
-    melt_kurzname,  melt_name
-    ,melt_uc,  melt_dc) 
-            values (?,?,?,?)
-        """
-
-    dbDML.insertmany(lsql, pdata)
-
-# end insertDataTypes
 
 def insertUDP(pData):
 # bdeg_thema, bdeg_gruppe, bdeg_name, bdeg_default_value
@@ -131,31 +88,6 @@ def insertBenudef_wert(pData):
     dbDML.insert(lsql,pData)
 #insertBenudef_wert
 
-def insertSchluessel(pData):
-    lsql = """
-            insert into schluessel (schl_laufnr,    schl_name,  schl_odm_guid
-                ,schl_uc,   schl_dc,    schl_enti_id) 
-                values (?,?,?,?,?,?)
-            """
-    return dbDML.insert(lsql, pData)
-#insertSchluessel
-
-def insertSchlElem(pData):
-    lsql = """
-            insert into schluesselelement (scel_schl_id,   scel_attr_id
-                                            ,scel_bezi_id,  scel_uc, scel_dc) 
-                values (?,?,?,?,?)
-            """
-    return dbDML.insert(lsql, pData)
-#insertSchlElem
-
-def insertSprachtexte(pData):
-    lsql = """insert into sprachtext (sptx_attrname,  sptx_text,  sptx_spra_id
-                                ,sptx_mode_id, sptx_uc,   sptx_dc    ) 
-                            values (?,?,?,?,?,?)
-            """
-    return dbDML.insertmany(lsql, pData)
-#insertSprachtext
 
 def insertelementdarst(pdata):
     lsql = """insert into 

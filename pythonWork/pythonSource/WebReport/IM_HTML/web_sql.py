@@ -153,19 +153,7 @@ def refdokulist (pid, pelemtype):
 def namelist(ptype, plang, pid=None):
     datalist = []
     if ptype == 'ENTI':
-        data = dbDML.select("""select name,enti_id from 
-        (select e1.enti_id
-                ,case when ena.sptx_text is null then e1.enti_name 
-                                                else ena.sptx_text end  name 
-              from entitaeten e1
-              join modellelement on mode_enti_id = enti_id
-              join sprachen sp on sp.spra_iso_code2 = '{}'         
-              left join spraattr ena on ena.sptx_attrname = 'ENTI_NAME'
-                                    and ena.sptx_mode_id = mode_id
-                                    and ena.spra_id = sp.spra_id
-              ) order by upper(name)
-                  """.format(plang))
-        datalist = [(e[0],entiAnker(e[1]),'') for e in data]
+        datalist = Entitaet.indexlist(plang=plang)
     elif (ptype == 'ATTR'):
         data = dbDML.select("""select attrname || ' ('||entname||')' name, attr_id 
         from 
@@ -276,6 +264,7 @@ def udpattrlist(plang,pthema,pgruppe):
     datalist = [(e[0], attrAnker(e[1]),e[1]) for e in data]
     return datalist
 #udpattrlist
+
 def entilist(p_lang):
     #id, name, descr
     #group_concat('<a href="#ENTI'||sub_enti_id||'" target="details">'

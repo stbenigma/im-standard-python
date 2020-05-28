@@ -53,7 +53,7 @@ CREATE TABLE sprachtexte(
                                 ,pwhere=pwhere,porderby=porderby)
     @staticmethod
     def sptxistleer():
-        data = dbDML.select("""select count(*) from main.sprachtexte""")
+        data = dbDML.select("""select count(*) from sprachtexte""")
         return data[0][0] == 0
 
     @staticmethod

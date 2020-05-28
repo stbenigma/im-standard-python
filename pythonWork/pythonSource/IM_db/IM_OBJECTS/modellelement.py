@@ -19,9 +19,13 @@ class Modellelemtyp(Baseobject):
                         'melt_uc',  'melt_dc',  'melt_um',
                         'melt_dm']
 
-    def __init__(self):
+    def __init__(self,pkurzname=None,pname=None):
         super().__init__(tablename= Modellelemtyp._tablename, prefix= Modellelemtyp._prefix
                         ,columnlist = Modellelemtyp._columnlist)
+        self.melt_kurzname = pkurzname
+        self.melt_name = pname
+        self.melt_uc = 'SYS'
+        self.melt_dc = date.today()
 
     @staticmethod
     def createtable():
@@ -58,33 +62,29 @@ CREATE TABLE modellelem_typ(
 
     @staticmethod
     def select(pwhere=None, porderby=None):
-        return Baseobject.select(pclass=Modellelemtyp
-                                 , pwhere=pwhere, porderby=porderby)
+        return Baseobject.select(pclass=Modellelemtyp,pwhere=pwhere, porderby=porderby)
 
     @staticmethod
     def fillmelt():
-
         # melt_kurzname,  melt_name    ,melt_uc,  melt_dc
-        modellelementtypen = \
-        [('ATTR', 'Attribute', 'stb', date.today()) \
-            , (Modellelemtyp.BEZI, 'Beziehungen', 'stb', date.today()) \
-            , (Modellelemtyp.BURU, 'Business Rules', 'stb', date.today()) \
-            , (Modellelemtyp.ENTI, 'Entitäten', 'stb', date.today()) \
-            , (Modellelemtyp.WRTB, 'Wertebereiche', 'stb', date.today()) \
-            , (Modellelemtyp.SYNO, 'Synonyme', 'stb', date.today()) \
-            , (Modellelemtyp.ORGE, 'Organisationseinheit', 'stb', date.today()) \
-            , (Modellelemtyp.TABL, 'Tabelle', 'stb', date.today()) \
-            , (Modellelemtyp.SCHA, 'Schnittstellenattribut', 'stb', date.today()) \
-            , (Modellelemtyp.SCHN, 'Schnittstelle', 'stb', date.today()) \
-         ]
-        dbInserts.insertMelt(modellelementtypen)
+        Modellelemtyp(pkurzname=Modellelemtyp.ATTR, pname='Attribute').insert()
+        Modellelemtyp(pkurzname=Modellelemtyp.BEZI, pname='Beziehungen').insert()
+        Modellelemtyp(pkurzname=Modellelemtyp.BURU, pname='Business Rules').insert()
+        Modellelemtyp(pkurzname=Modellelemtyp.ENTI, pname='Entitäten').insert()
+        Modellelemtyp(pkurzname=Modellelemtyp.WRTB, pname='Wertebereiche').insert()
+        Modellelemtyp(pkurzname=Modellelemtyp.SYNO, pname='Synonyme').insert()
+        Modellelemtyp(pkurzname=Modellelemtyp.ORGE, pname='Organisationseinheit').insert()
+        Modellelemtyp(pkurzname=Modellelemtyp.TABL, pname='Tabelle').insert()
+        Modellelemtyp(pkurzname=Modellelemtyp.SCHA, pname='Schnittstellenattribut').insert()
+        Modellelemtyp(pkurzname=Modellelemtyp.SCHN, pname='Schnittstelle').insert()
     #fillmelt
 
 
     @staticmethod
     def getbyshortname (pkurzname):
         data = Modellelemtyp.select(pwhere="melt_kurzname = '{}'".format(pkurzname))
-        if ((data is None) or (len(data) == 0)): raise Exception("no modellelem_typ found for {}".format(pkurzname))
+        if ((data is None) or (len(data) == 0)):
+            raise Exception("no modellelem_typ found for {}".format(pkurzname))
         return data[0]
     #getbyshortname
 
@@ -216,8 +216,8 @@ CREATE TABLE modellelement(
         return Modellelement.__id2meltid(pentiid=pentiid,pattrid=pattrid,pburuid=pburuid,pwrtbid=pwrtbid
                     ,pbeziid=pbeziid,porgeid=porgeid,psynoid=psynoid,ptablid=ptablid
                     ,pschaid=pschaid,pschnid=pschnid)[1]
-    @staticmethod
 
+    @staticmethod
     def getbyelemid (pentiid=None,pattrid=None,pburuid=None,pwrtbid=None
                     ,pbeziid=None,porgeid=None,psynoid=None,ptablid=None
                     ,pschaid=None,pschnid=None):
@@ -241,7 +241,7 @@ CREATE TABLE modellelement(
     #getidbyelemid
     
     @staticmethod
-    def getelement(self,pmodeid):
+    def getelement(pmodeid):
         mode = Modellelement.getbyid(pmodeid)
         if mode.mode_syno_id is not None: element = Synonym.getbyid(mode_syno_id)
         elif mode.mode_wrtb_id is not None: element = Wertebereich.getbyid(mode_wrtb_id)
@@ -264,13 +264,13 @@ CREATE TABLE modellelement(
                     (pkurzname=Modellelement.__id2melt(pentiid=pentiid,pattrid=pattrid,pburuid=pburuid,pwrtbid=pwrtbid
                     ,pbeziid=pbeziid,porgeid=porgeid,psynoid=psynoid,ptablid=ptablid
                     ,pschaid=pschaid,pschnid=pschnid))
-        mode.mode_wrtb_id =  pwrtbid 
-        mode.mode_attr_id =   pattrid
-        mode.mode_buru_id =   pburuid
-        mode.mode_bezi_id =   pbeziid
-        mode.mode_enti_id =   pentiid
-        mode.mode_orge_id =   porgeid
-        mode.mode_syno_id =   psynoid
+        mode.mode_wrtb_id = pwrtbid
+        mode.mode_attr_id = pattrid
+        mode.mode_buru_id = pburuid
+        mode.mode_bezi_id = pbeziid
+        mode.mode_enti_id = pentiid
+        mode.mode_orge_id = porgeid
+        mode.mode_syno_id = psynoid
         mode.mode_tabl_id = ptablid
         mode.mode_scha_id = pschaid
         mode.mode_schn_id = pschnid

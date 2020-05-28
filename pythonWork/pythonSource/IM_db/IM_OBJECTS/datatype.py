@@ -12,9 +12,12 @@ class Datatype(Baseobject):
     __unknowndaty = None
 
 
-    def __init__(self):
+    def __init__(self,pname=None,pgrundtyp=None,podmguid=None):
         super().__init__(tablename= Datatype._tablename, prefix= Datatype._prefix
                         ,columnlist = Datatype._columnlist)
+        self.daty_name = pname
+        self.daty_grundtyp = pgrundtyp
+        self.daty_odm_guid = podmguid
 
     @staticmethod
     def createtable():

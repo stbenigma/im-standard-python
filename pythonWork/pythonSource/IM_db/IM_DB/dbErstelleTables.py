@@ -20,84 +20,11 @@ def erstelleInfra():
 )
     """);
 
-    dbDDL.dropTable("entitaeten");
-    dbDDL.createTable("""
-CREATE TABLE entitaeten(
-    enti_id                 integer NOT NULL primary key autoincrement,
-    enti_odm_guid varchar(36),
-    enti_augb_id            integer ,
-    enti_tech_name          varchar(60) unique,
-    enti_name       varchar(60) NOT NULL unique,
-    enti_beschr     varchar(4000) ,
-    enti_tooltip    varchar(100) ,
-    enti_kurzname   varchar(20) ,
-    enti_prefix             varchar(10),
-    enti_beispiele          varchar(4000),
-    enti_erw_tupel         varchar(10)
-        CHECK(enti_erw_tupel IN(
-            '1 Mio',
-            '100',
-            '10000',
-            '>100 Mio'
-        )),
-    enti_uc varchar(30),
-    enti_dc varchar(30),
-    enti_enti_guid varchar(80),
-    enti_enti_id integer,
-    enti_category_guid varchar(80)
-    )    
-    """);
+    Entitaet.createtable()
+    Synonym.createtable()
 
-    dbDDL.dropTable("synonyme");
-    dbDDL.createTable("""
-CREATE TABLE synonyme(
-    syno_id             integer NOT NULL primary key autoincrement,
-    syno_name   		varchar(200),
-    syno_enti_id        integer NOT NULL,
-	unique(syno_name,syno_enti_id),
-	foreign key (syno_enti_id) references entitaeten(enti_id) ON DELETE CASCADE
-)
-    """);
-
-    dbDDL.dropTable("schluessel");
-    dbDDL.createTable("""
-CREATE TABLE schluessel(
-    schl_id        integer NOT NULL primary key autoincrement,
-    schl_laufnr    integer NOT NULL,
-	schl_name	varchar(60),
-	schl_odm_guid		varchar(36),
-    schl_uc varchar(30),
-    schl_dc varchar(30),
-    schl_enti_id   integer NOT NULL,
-	unique (schl_enti_id,schl_laufnr),
-	foreign key (schl_enti_id) references entitaeten(enti_id) ON DELETE CASCADE
-)    """);
-
-    dbDDL.dropTable("schluesselelement");
-    dbDDL.createTable("""CREATE TABLE schluesselelement(
-    scel_id        integer NOT NULL primary key autoincrement,
-    scel_schl_id   integer NOT NULL,
-    scel_attr_id   integer ,
-    scel_bezi_id   integer ,
-    scel_uc         varchar(30) NOT NULL,
-    scel_dc        varchar(30) NOT NULL,
-    scel_um        varchar(30),
-    scel_dm        varchar(30),
-	UNIQUE(scel_schl_id,scel_attr_id,scel_bezi_id),
-	CONSTRAINT scel_element_ck CHECK((scel_attr_id IS NOT NULL
-                                   AND scel_bezi_id IS NULL)
-                                  OR(scel_attr_id IS NULL
-                                     AND scel_bezi_id IS NOT NULL)),
-	FOREIGN KEY(scel_attr_id)
-        REFERENCES attributes(attr_id)
-            ON DELETE CASCADE,
-	FOREIGN KEY(scel_bezi_id)
-        REFERENCES beziehungen(bezi_id)
-            ON DELETE CASCADE,
-	FOREIGN KEY(scel_schl_id)
-        REFERENCES schluessel(schl_id)
-            ON DELETE CASCADE
-		)""");
+    Schluessel.createtable()
+    Schluesselelement.createtable()
 
     Wertebereich.createtable()
     Wertebereichgruppe.createtable()

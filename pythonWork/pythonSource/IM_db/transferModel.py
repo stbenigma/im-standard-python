@@ -25,8 +25,8 @@ class color:
 #color
 
 #entry of keys found in entites
-# (keyguid:(entiid,idx,keyName,uc,dc, (listof attr and relationship guids))
-keys = dict()
+# [Schluessel, (listof attr and relationship guids)]
+schluessel = []
 # Classification type colors
 # classguid : color
 classcolors = dict()
@@ -65,11 +65,9 @@ def transferTypes():
     types = ET.parse(parameters.odmIMDirec() + parameters.odmKonfDirec() + parameters.odmTypesFile())
     root = types.getroot()
     for typ in root.findall('logicaltype'):
-        daty = Datatype()
-        daty.daty_name = findField(typ,'name')
-        daty.daty_grundtyp = Datatype.basisType(findText(typ,'mapping'))
-        daty.daty_odm_guid = findField(typ,'objectid')
-        daty.insert()
+        Datatype(pname=findField(typ,'name')
+                 ,pgrundtyp=Datatype.basisType(findText(typ,'mapping'))
+                 ,podmguid = findField(typ,'objectid')).insert()
     #endfor
 #transferTypes
 
@@ -98,7 +96,7 @@ def do1structtype(filename):
         wbgr.wbgr_beschr = findText(el,"comment")
         wbgr.wbgr_uc = findText(el,"createdBy")
         wbgr.wbgr_dc = findText(el,"createdTime")
-        elwrtbid = Wertebereich().getbyguid(reftypeguid).wrtb_id
+        elwrtbid = Wertebereich().getbyguid(wbgr.wbgr_type_ref).wrtb_id
         if elwrtbid is None:
             #nimm vorläufig unknown, da mein Typ evtl. noch nicht da ist.
             elwrtbid = Wertebereich().getunknown().wrtb_id
@@ -231,7 +229,7 @@ def toString(str,upper = False):
 
 def transferentity(penti, pdiagid, puc, pdc):
     entiodm = findField(penti,'oid')
-    entiid = dbLookup.entiID(entiodm)
+    enti = Entitaet().getbyguid(entiodm)
     hiddenelements = penti.find ("hiddenElements")
     if hiddenelements is not None:
         elemtext=findField(hiddenelements,"elements")
@@ -242,7 +240,7 @@ def transferentity(penti, pdiagid, puc, pdc):
         if e != "": hiddenattrs2.append(dbLookup.attrID(pguid=e,withnotfound=True))
     attrs = dbDML.select("""select attr_id from attributes 
                             where attr_enti_id = {}
-                            order by attr_anz_rhflg""".format(entiid))
+                            order by attr_anz_rhflg""".format(enti.enti_id))
     attrids = [a[0] for a in attrs]
     attrids = list(set(attrids) - set(hiddenattrs2))
     #print (attrids,hiddenattrs2)
@@ -266,12 +264,11 @@ def transferentity(penti, pdiagid, puc, pdc):
         col.fontsize = v if v is not None else col.fontsize
     else:
         #check wether entity belongs to category
-        enticategoryid=dbLookup.enticategory(pid=entiid)
-        if (enticategoryid is None):
+        if (enti.enti_category_guid is None):
             col = defcolors['Entity']
         else:
             try:
-                col = classcolors[enticategoryid]
+                col = classcolors[enti.enti_category_guid]
             except Exception as e:
                 #print(e) flls class nicht mehr exisitert
                 col = defcolors['Entity']
@@ -293,7 +290,7 @@ def transferentity(penti, pdiagid, puc, pdc):
     while True:
         row = (entix, entiy, entiwidth, entiheight
               , 100, int2hex(col.backgcolor), None, 100
-              , int2hex(col.foregcolor),col.fontsize, int2hex(col.fontcolor), Modellelement.getidbyelemid(pentiid=entiid)
+              , int2hex(col.foregcolor),col.fontsize, int2hex(col.fontcolor), Modellelement.getidbyelemid(pentiid=enti.enti_id)
              , pdiagid, index,puc, pdc
             , None, None)
         #print (row)
@@ -586,7 +583,7 @@ def do1Arc(fileName):
 
     #(arcs_name, arcs_enti_id, arcs_odm_guid
     # , arcs_uc, arcs_dc)
-    arcs_id = dbInserts.insertArc(parc=(findField(arc,"name"),dbLookup.entiID(findText(arc,'entity'))\
+    arcs_id = dbInserts.insertArc(parc=(findField(arc,"name"),Entitaet().getID(findText(arc,'entity'))\
                               ,findField(arc,"id"),findText(arc,'createdBy'),findText(arc,'createdTime')))
     """map all relations to this arc"""
     relations = arc.findall('relations/relationID')
@@ -729,7 +726,7 @@ def do1Attribute(plfnr, pattrxml, pentiId=None, pbeziId=None):
 #do1Attribute
 
 def fillKeys(p_enti, p_entiid):
-    global keys
+    global schluessel
     allkeys = p_enti.find('identifiers')
     if allkeys is not None:
         idx = 0
@@ -746,42 +743,49 @@ def fillKeys(p_enti, p_entiid):
                 keyrefs = kr.split(',')
                 idx += 1
                 #print(idx, findField(enti,'name'), findField(key,'id'), findField(enti,'id'), keyrefs)
-                keys[findField(key,'id')] = (p_entiid, idx, findField(key,'name'), findText(key, 'createdBy'), findText(key, 'createdTime')
-                                       , keyrefs)
+                schl = Schluessel()
+                schl.schl_laufnr = idx
+                schl.schl_name = findField(key,'name')
+                schl.schl_odm_guid = findField(key,'id')
+                schl.schl_uc = findText(key, 'createdBy')
+                schl.schl_dc = findText(key, 'createdTime')
+                schl.schl_enti_id = p_entiid
+                schl.insert()
+
+                schluessel.append([schl, keyrefs])
             #fi
         # rof
-        # (keyguid:(entiid,idx,keyName,uc,dc, (listof attr and relationship guids))
+        # [Schluessel, (listof attr and relationship guids)]
     # fi
 #fillKeys
 
-def transferKeys(p_keys):
-    # (keyguid:(entiid,idx,keyName,uc,dc, (listof attr and relationship guids))
-    for keyGuid in p_keys:
-        #schl_laufnr, schl_name, schl_odm_guid
-        #, schl_uc, schl_dc, schl_enti_id
-        keyset=(p_keys[keyGuid][1], p_keys[keyGuid][2], keyGuid
-                                    , p_keys[keyGuid][3], p_keys[keyGuid][4], p_keys[keyGuid][0])
-        keyId = dbInserts.insertSchluessel(keyset)
-        #print (keyGuid,keys[keyGuid])
-
+def transferKeys():
+    global schluessel
+    # Schlüssel sind eingefügt es folgen die SchlüsselElemente, die ich jetzt alle haben sollte
+    #schlüssel [[Schluessel, (Liste der Referenzen)]]
+    for schlentry in schluessel:
+        schl = schlentry[0]
+        reflist = schlentry[1]
         #nun die Schlüsselelemente
-        for ke in p_keys[keyGuid][5]:
+        for ke in reflist:
+            scel = Schluesselelement()
+            scel.scel_schl_id = schl.schl_id
+            scel.scel_uc = schl.schl_uc
+            scel.scel_dc = schl.schl_dc
             try:
-                attrId = dbLookup.attrID(ke)
-                beziId = None
+                scel.scel_attr_id = dbLookup.attrID(ke)
+                scel.scel_bezi_id = None
             except:
                 try:
-                    beziId = dbLookup.beziId(ke)
-                    attrId = None
+                    scel.scel_bezi_id = dbLookup.beziId(ke)
+                    scel.scel_attr_id = None
                 except sqlite3.Error as e:
                     print (str(e))
-                    print (ke,keyset)
+                    print (ke, scel)
                     raise e
                 #try
             #yrt
-            #scel_schl_id,   scel_attr_id,scel_bezi_id,  scel_uc, scel_dc
-            dbInserts.insertSchlElem((keyId, attrId, beziId, p_keys[keyGuid][3], p_keys[keyGuid][4]))
-            #print(keyId, ke,attrId,beziId)
+            scel.insert()
         #rof
     #rof
 # transferKeys
@@ -825,27 +829,25 @@ def do1Entity(fileName):
     creti = findText(entixml,'createdTime')
     enti_category_guid = findText(entixml,'typeID')
     documents = getdokuref(pelem= entixml)
-    row=(findField(entixml,'id'),None,None\
-        ,entname,entcomm,None\
-        ,None,None,None\
-        ,None,creby,creti
-        ,findText(entixml,'hierarchicalParent'),None,enti_category_guid)
-    #print ("Entity:", row)
-    #enti_odm_guid, enti_augb_id, enti_tech_name
-    #, enti_name, enti_beschr, enti_tooltip
-    #, enti_kurzname, enti_prefix, enti_beispiele
-    #, enti_erw_tupel, enti_uc, enti_dc
-    #,enti_enti_guid,enti_enti_id,enti_category_guid
-    entiId = dbInserts.insertEnti(enti=row)
+    enti = Entitaet()
+    enti.enti_odm_guid = findField(entixml,'id')
+    enti.enti_name = entname
+    enti.enti_beschr = entcomm
+    enti.enti_uc = creby
+    enti.enti_dc = creti
+    enti.enti_enti_guid = findText(entixml,'hierarchicalParent')
+    enti.enti_category_guid = enti_category_guid
+    entiId = enti.insert()
     lmodeId = Modellelement.insertmode(pentiid=entiId)
     dbInserts.insertUdpEntity(entiId)
 
     sobj =findText(entixml,'synonym')
     if (sobj is not None):
         for syn in sobj.split(','):
-            syno = syn.strip()
-            synid = dbInserts.insertSynonym((syno,entiId))
-            modeid = Modellelement.insertmode(psynoid=synid)
+            synoname = syn.strip()
+            synid = Synonym(pname=synoname,pentiid=entiId).insert()
+            Modellelement.insertmode(psynoid=synid)
+        #for
     #fi
 
     #print (entname,translate.translate(p_text=entname,p_fromlang='de',p_tolang='en'),translate.translate(p_text=entname,p_fromlang='de',p_tolang='fr'))
@@ -976,9 +978,9 @@ def do1Relation(fileName):
     targetentiguid = findText(relaxml,'targetEntity')
     try:
         lrow=[lbeziType
-             , dbLookup.entiID(sourceentiguid),vonText
+             , Entitaet().getID(sourceentiguid),vonText
              ,strNegBool(optSrc), 'FALSE'
-             , dbLookup.entiID(targetentiguid), zuText
+             , Entitaet().getID(targetentiguid), zuText
              ,strNegBool(optTarg),'FALSE'
              ,findField(relaxml,'id'),creby,creti,relname
             ,sourceentiguid,targetentiguid
@@ -1150,18 +1152,10 @@ def insertBaseData():
     #, spra_dc
     deflang = parameters.dbDefaultLang()
     for key,value in languages.items():
-        spra = Sprache()
-        spra.spra_iso_name = value[0]
-        spra.spra_iso_code2 = key
-        spra.spra_iso_code3 =  value[1]
-        spra.spra_ist_textsprache ='TRUE'
-        spra.spra_ist_modellsprache = 'FALSE'
-        spra.spra_uc ='stb'
-        spra.spra_dc = date.today()
-        spra.insert()
+        Sprache(pname=value[0],piso2=key,piso3=value[1]).insert()
     if not deflang in languages: deflang = 'de'
     Sprache.setmodellang(pmodellang=deflang)
-    Sprache.setreplacementlang()
+    Sprache.setallreplacementlang()
 
     Modellelemtyp.fillmelt()
     diat = Diagrammtyp()
@@ -1178,11 +1172,13 @@ def loeschmodell():
     transferRelational.loeschmodell()
 
     dbDML.delete("benudef_eigenschaft")
+    Schluesselelement.delete()
+    Schluessel.delete()
     dbDML.delete("beziehungen")
     dbDML.delete("arcs")
     dbDML.delete("attributes")
-    dbDML.delete("synonyme")
-    dbDML.delete("entitaeten")
+    Synonym.delete()
+    Entitaet.delete()
     ModelelemDoku.delete()
     Dokument.delete()
     Modellelement.delete()
@@ -1279,7 +1275,7 @@ def transferprojekt():
         if Sprache.spraidlookup(piso=defspra) is None:
             raise Exception("Language '{}' does not exist".format(defspra))
         Sprache.setmodellang(pmodellang=defspra)
-        Sprache.setreplacementlang()
+        Sprache.setallreplacementlang()
         dbParam.liesdefaultlang()
         parameters.dbDefaultLang(defspra)
     #fi
@@ -1316,7 +1312,7 @@ def transferODMModel():
     transferRelations()
     transferArcs()
     doSubentities()
-    transferKeys(keys)
+    transferKeys()
     loaddefaultcolors()
     transferdiagramme()
     filllanguages()

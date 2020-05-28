@@ -1,9 +1,10 @@
-from .baseobject import Baseobject
+from .baseobject import Baseobject,MultilangBaseobject
 from .sprachtext import Sprachtext
 from .datatype import Datatype
+from .modellelement import Modellelement
 from IM_DB import dbDML
 
-class Wertebereich(Baseobject):
+class Wertebereich(MultilangBaseobject):
     DERIVED:str ='DER'
     DOMAIN:str ='DOM'
     BIN:str='BIN'
@@ -21,12 +22,12 @@ class Wertebereich(Baseobject):
                         'wrtb_num_pheh_id', 'wrtb_bin_inhalttyp',   'wrtb_bin_spfo_id', 'wrtb_odm_guid',
                         'wrtb_schn_id', 'wrtb_datatype_odm', 'wrtb_daty_id',    'wrtb_uc',  'wrtb_dc',
                         'wrtb_um',  'wrtb_dm']
-    _multilangcols:list = {'wrtb_name':'WRTB_NAME'}
     __unknowndom = None
 
     def __init__(self):
         super().__init__(tablename=Wertebereich._tablename,prefix=Wertebereich._prefix
-                        ,columnlist = Wertebereich._columnlist)
+                        ,columnlist = Wertebereich._columnlist
+                        ,multilangcols = {'wrtb_name':'WRTB_NAME'})
 
     @staticmethod
     def createtable():
@@ -118,37 +119,15 @@ CREATE TABLE wertebereiche(
     def select(pwhere=None,porderby=None):
         wrtbs = Baseobject.select(pclass=Wertebereich
                                 ,pwhere=pwhere,porderby=porderby)
-        if not Sprachtext.sptxistleer():
-            for wrtb in wrtbs:
-                wrtb.getsprachvals()
-            #for
-        #fi
         return wrtbs
     #select
 
-    def getwrtb_name(self,plang):
-        try:
-            name = self.wrtb_name_L[plang]
-        except:
-            name = self.wrtb_name
-        return name
-    #wrtb_name_L
-
-    def getsprachvals(self):
-        modeid = self.getmodeid()
-        for col in self._multilangcols.keys():
-#            print(col,self._multilangcols[col])
-#            print(Sprachtext.getsprachtexte(pattrname=self._multilangcols[col], pmodeid=self.getmodeid()))
-            self.__dict__[col+'_L'] = Sprachtext.getsprachtexte(pattrname=self._multilangcols[col], pmodeid=modeid)
-        #for
-    #getsprachvals
+    def getname(self,plang):
+        return self._getsprachval(colname='wrtb_name', plang=plang)
 
     def getmodeid(self):
-        data = dbDML.select("""select mode_id from modellelement where mode_wrtb_id = {}""".format(self.wrtb_id))
-        try:
-            return data[0][0]
-        except:
-            return None
+        mode = self.getmodellelement()
+        return mode.mode_id if (mode is not None) else None
     #getmodeid
     
     def typeinfo(self):

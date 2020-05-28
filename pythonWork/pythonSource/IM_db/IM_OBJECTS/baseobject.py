@@ -55,6 +55,7 @@ class   Baseobject:
            """.format(self._tablename, Baseobject.columnsliststring(self._columnlist), self.placehoderstring())
         id = dbDML.insert(lsql, self.totuple())
         self.__dict__[self._idcolname] = id #autocolumns zurücklesen
+        return id
     #insert
 
 
@@ -101,9 +102,12 @@ class   Baseobject:
         dbDDL.createTable(psql)
     #createtable
 
-    @staticmethod
-    def select(pwhere=None, porderby=None):
-        pass # Method filled by sub-class
+#    @staticmethod
+#    def select(pwhere=None, porderby=None):
+#        raise NotImplementedError("Must override select")
+
+    def getsprachvals(self):
+        raise NotImplementedError("Must override getsprachvals")
 
     @staticmethod
     def select(pclass, pwhere=None, porderby=None):
@@ -115,7 +119,17 @@ class   Baseobject:
                     , "" if porderby is None else
                 "order by {}".format(porderby))
         data = dbDML.select(psql=lsql)
-        return [pclass()._fromarray(d) for d in data]
+        retval =[]
+        for d in data:
+            obj = pclass()._fromarray(d)
+            """obj ist vom Typ des Subtypes"""
+            try:
+                """ist in MultilangBaseobject definiert"""
+                obj.getsprachvals()
+            except:
+                pass
+            retval.append(obj)
+        return retval
     #select
 
     @staticmethod
@@ -128,8 +142,39 @@ class   Baseobject:
 
 #Baseobject
 
-def webanker(pclass,pid):
-    o = pclass()
-    o.getbyid(pid)
-    return o.webanker()
+class MultilangBaseobject(Baseobject):
+    def __init__(self, tablename, prefix, columnlist, multilangcols
+                 ,idcolname=None, guidcolname=None):
+        super().__init__(tablename=tablename, prefix=prefix, columnlist=columnlist
+                        ,idcolname=idcolname, guidcolname=guidcolname
+                        )
+        self._multilangcols = multilangcols
+    #__init__
+
+    def getmodeid(self):
+        raise NotImplementedError("'getmodeid' muss implementiert werden")
+
+    def getsprachvals(self):
+        modeid = self.getmodeid()
+        for col in self._multilangcols.keys():
+            self.__dict__[col + '_L'] = Sprachtext.getsprachtexte(pattrname=self._multilangcols[col],pmodeid=modeid)
+        # for
+    # getsprachvals
+
+    def _getsprachval(self,colname,plang=None):
+        try:
+            retval = self.__dict__[colname+'_L'][plang]
+        except:
+            #keine sprache oder keinen Namen für Sprache
+            retval = self.retval = self.__dict__[colname]
+        #try
+        return retval
+    #getbeschr
+
+
+#MultilangBaseobject
+#def webanker(pclass,pid):
+#    o = pclass()
+#    o.getbyid(pid)
+#    return o.webanker()
 

@@ -3,7 +3,7 @@ import sys,os
 sys.path.append(os.getcwd())
 sys.path.append(os.getcwd()+'/../IM_db')
 from datetime import date,datetime
-from IM_DB import parameters,dbConnect,dbDDL,dbDML,dbErstelleTables,dbInserts,dbLookup,dbParam
+from IM_DB import parameters,dbConnect,dbLookup,dbParam
 from IM_HTML import printHTML,web_sql,printdiagHTML,printRelHTML
 from IM_OBJECTS import *
 

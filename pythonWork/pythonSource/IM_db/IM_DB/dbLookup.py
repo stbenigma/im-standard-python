@@ -16,10 +16,6 @@ def doLookup(pguid,psql,withnotfound=False):
     return lretval
 #doLookup
 
-def entiID (pguid):
-    return doLookup(pguid,'select enti_id from entitaeten where enti_odm_guid ="{}"')
-#entiId
-
 def beziId (pguid):
     return doLookup(pguid,'select bezi_id from beziehungen where bezi_odm_guid ="{}"')
 #beziId
@@ -32,17 +28,10 @@ def attrID (pguid,withnotfound=False):
     return doLookup(pguid,'select attr_id from attributes where attr_odm_guid ="{}"',withnotfound)
 #attrId
 
-def dokuID (pguid,withnotfound=False):
-    return doLookup(pguid,'select doku_id from DOKUMENTE where DOKU_ODM_GUID ="{}"',withnotfound)
-#dokuId
 
 def diatid (p_name):
     return doLookup(p_name,'select diat_id from diagrammtypen where upper(diat_bez) =upper("{}")')
 #diatid
-
-def enticategory(pid):
-    return doLookup(pid,'select enti_category_guid from entitaeten where enti_id ={}')
-#enticategory
 
 def bdegLookup(pname):
         return doLookup(pname, 'select bdeg_id from benudef_eigenschaft where bdeg_name = "{}"'

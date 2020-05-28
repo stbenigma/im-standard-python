@@ -377,6 +377,7 @@ def initparam(p_callarg):
         odmModelName(newval=modelname)
         paramfile = p_callarg + modelname + paramFileExension
     else:
+        print (my_file)
         raise Exception("parameter is neither file nor directory")
     if os.path.exists(paramfile):
         liesparamfile(p_filepath = paramfile)

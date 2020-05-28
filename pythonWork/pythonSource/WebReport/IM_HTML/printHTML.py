@@ -909,31 +909,33 @@ def entidiag(pentiid):
 
 def printcontententi(plist):
     printcontentstart ('entities')
-    infoheaders = (Sprachtext.transl('Synonyme'), Sprachtext.transl('Superentität'), Sprachtext.transl('Subentitäten'),Sprachtext.transl('auf Diagramm(en)')
+    infoheaders = (Sprachtext.transl('Synonyme'), Sprachtext.transl('Superentität')
+                   , Sprachtext.transl('Subentitäten'),Sprachtext.transl('auf Diagramm(en)')
                    ,Sprachtext.transl('geändert'))
-    for e in plist:
-        enti_id = e[0]
-        enti_name = e[1]
-        enti_descr = e[2]
+
+    for e in Entitaet.select(porderby='enti_name'):
+        #enti_id = e[0]
+        #enti_name = e[1]
+        #enti_descr = e[2]
         lbc = str(newbarcounter())
         printcontent(ptype=Sprachtext.transl('Entität')
-                    ,panker=web_sql.entiAnker(enti_id) #id
-                    ,pname=enti_name
-                    ,pdescr=lf2htmlbr(nvl(enti_descr))
+                    ,panker=web_sql.entiAnker(e.enti_id) #id
+                    ,pname=e.enti_name
+                    ,pdescr=lf2htmlbr(nvl(e.enti_beschr))
                     ,plbc=lbc)
 
         """print entity Info"""
         infovalues = (nvl(e[8]), nvl(href(ref=web_sql.entiAnker(e[6]),anz=e[5])), nvl(list2href(p_list=e[7],ptype='ENTI'))
-                      ,entidiag(pentiid=enti_id),nvl(e[3]) + ', ' + nvl(e[4]))
+                      ,entidiag(pentiid=enti_id),nvl(e.enti_uc) + ', ' + nvl(e.enti_dc))
         printcontentinfo(ptitle=Sprachtext.transl('Informationen'),pheaders=infoheaders,pvalues=infovalues)
 
-        printattrlist(pentiid=enti_id)
-        printentikeys(pentiid=enti_id)
-        printentirela(pentiid=enti_id)
-        printreflist(pelemid=enti_id,pelemtype='ENTI')
-        printtransl(pentiid=enti_id)
-        printentiudp(pentiid=enti_id)
-        printmapping(pentiid=enti_id)
+        printattrlist(pentiid=e.enti_id)
+        printentikeys(pentiid=e.enti_id)
+        printentirela(pentiid=e.enti_id)
+        printreflist(pelemid=e.enti_id,pelemtype='ENTI')
+        printtransl(pentiid=e.enti_id)
+        printentiudp(pentiid=e.enti_id)
+        printmapping(pentiid=e.enti_id)
 
         printcontentend(lbc)
     #for

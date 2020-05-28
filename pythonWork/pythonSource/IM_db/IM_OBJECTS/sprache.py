@@ -1,4 +1,5 @@
 from .baseobject import Baseobject
+from datetime import date
 from IM_DB import dbDML
 
 class Sprache(Baseobject):
@@ -7,9 +8,17 @@ class Sprache(Baseobject):
     _columnlist:list = ['spra_id', 'spra_iso_name', 'spra_iso_code2', 'spra_iso_code3', 'spra_ist_textsprache'
                     , 'spra_ist_modellsprache', 'spra_spra_id', 'spra_uc', 'spra_dc', 'spra_um', 'spra_dm']
 
-    def __init__(self):
+    def __init__(self,pname=None,piso2=None,piso3=None):
         super().__init__(tablename=Sprache._tablename,prefix=Sprache._prefix
-                        ,columnlist = Sprache._columnlist)
+                        ,columnlist = Sprache._columnlist
+                         ,  )
+        self.spra_iso_name = pname
+        self.spra_iso_code2 = piso2
+        self.spra_iso_code3 =  piso3
+        self.spra_ist_textsprache ='TRUE'
+        self.spra_ist_modellsprache = 'FALSE'
+        self.spra_uc ='stb'
+        self.spra_dc = date.today()
 
     @staticmethod
     def createtable():
@@ -58,6 +67,9 @@ CREATE TABLE sprachen(
         return lDefLangs[0]
     #liesdefaultlang
 
+    def getreplacementlang(self):
+        return Sprache.select(pwhere='spra_id={}'.format(self.spra_spra_id))[0]
+
     @staticmethod
     def liesdeflangid():
         ldeflang = Sprache.liesdefaultlang()
@@ -93,11 +105,6 @@ CREATE TABLE sprachen(
         except: return None
     #spraidlookup
 
-    #def sprachen(p_id,p_attrname):
-    ##    return doLookup(p_id, """select {} from sprachen
-    #                                where spra_id = {}""".format(p_attrname,'{}'))
-    #spraLookup
-
     @staticmethod
     def setmodellang(pmodellang):
         dbDML.exec("""update sprachen 
@@ -110,7 +117,7 @@ CREATE TABLE sprachen(
     #setmodellang
 
     @ staticmethod
-    def setreplacementlang():
+    def setallreplacementlang():
         #currently modellang is always replacement lang
         dbDML.exec("""update sprachen  
         set spra_spra_id = 
@@ -122,7 +129,7 @@ CREATE TABLE sprachen(
                 )
             end
         """)
-    #setreplacementlang
+    #setallreplacementlang
 #Sprache
 
 

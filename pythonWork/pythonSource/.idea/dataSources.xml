@@ -31,5 +31,11 @@
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
       <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/../../ModellModell/DB/ModellModell_neu.db</jdbc-url>
     </data-source>
+    <data-source source="LOCAL" name="fyayc_dev_mapping.db" uuid="0b63fba0-ce62-43ff-9ec1-85e00f2db589">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/../../../modelexports/DB/fyayc_dev_mapping.db</jdbc-url>
+    </data-source>
   </component>
 </project>

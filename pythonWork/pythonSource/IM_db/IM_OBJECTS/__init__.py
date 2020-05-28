@@ -1,6 +1,5 @@
 #__all__ = [""]
-from .baseobject import Baseobject
-from .baseobject import Webanker
+from .baseobject import Baseobject,Webanker,MultilangBaseobject
 from .datatype import Datatype
 from .projekt import Projekt
 from .schnittstelle import Schnittstelle
@@ -13,3 +12,5 @@ from .dokument import Dokument, ModelelemDoku
 from .wertebereich import Wertebereich, Wertebereichgruppe, Vorgabewert
 from .modellelement import Modellelemtyp,Modellelement
 from .diagramme import Diagramm,Diagrammtyp
+from .entitaet import Entitaet,Synonym
+from .schluessel import Schluessel,Schluesselelement
