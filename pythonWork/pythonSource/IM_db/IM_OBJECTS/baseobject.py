@@ -2,6 +2,21 @@
 from IM_DB import dbDDL,dbDML
 from mystring import nvl
 
+class Boolean:
+    TRUE:str='TRUE'
+    FALSE:str='FALSE'
+    @staticmethod
+    def str2bool(pstr):
+        if (pstr is None): return None
+        elif (pstr.upper() in (TRUE,'T')): return True
+        elif (pstr.upper() in (FALSE,'F')): return False
+        else: raise Exception('Ungültiger Wert für Boolean "{}"'.format (pstr))
+    #str2bool
+    @staticmethod
+    def bool2str(bool):
+        return TRUE if bool else False
+#Boolean
+
 class Webanker:
     """enthält die Information um Web-Referenzen (Sprungziele / id) herzustellen.
          Webanker bestehen aus dem Kurznamen (prefix) des Elementes, seinem ID sowie ggf.

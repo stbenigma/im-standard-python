@@ -27,7 +27,7 @@ class Wertebereich(MultilangBaseobject):
     def __init__(self):
         super().__init__(tablename=Wertebereich._tablename,prefix=Wertebereich._prefix
                         ,columnlist = Wertebereich._columnlist
-                        ,multilangcols = {'wrtb_name':'WRTB_NAME'})
+                        ,multilangcols = {'wrtb_name':Sprachtext.WRTB_NAME})
 
     @staticmethod
     def createtable():

@@ -36,17 +36,22 @@ class Schnittstelle(Baseobject):
         return Modellelement.getbyelemid(pschnid=self.schn_id)
 
     @staticmethod
+    def getname(pid):
+        schn = Schnittstelle().getbyid(pid)
+        return schn.schn_name
+
+    @staticmethod
     def delete():
         Baseobject.delete(Schnittstelle._tablename)
 
     @staticmethod
-    def select(pwhere=None, porderby=None):
+    def select(pwhere=None, porderby='schn_name'):
         return Baseobject.select(pclass=Schnittstelle
                                  , pwhere=pwhere, porderby=porderby)
 
     @staticmethod
     def indexlist():
-        schn = Schnittstelle.select(porderby='schn_name')
+        schn = Schnittstelle.select()
         indexlist = [[s.schn_name, s.webanker(), s.schn_id] for s in schn]
         return indexlist
     # indexlist

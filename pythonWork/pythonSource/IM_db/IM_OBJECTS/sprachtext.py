@@ -2,6 +2,15 @@ from IM_DB import dbDML,dbDDL
 from .baseobject import Baseobject
 
 class Sprachtext(Baseobject):
+    ENTI_NAME:str='ENTI_NAME'
+    ENTI_COMMENT:str='ENTI_COMMENT'
+    ATTR_NAME:str='ATTR_NAME'
+    ATTR_COMMENT:str='ATTR_COMMENT'
+    WRTB_NAME:str='WRTB_NAME'
+    RELA_TEXT_FROM:str='RELA_TEXT_FROM'
+    RELA_TEXT_TO:str='RELA_TEXT_TO'
+    SYNO_NAME:str='SYNO_NAME'
+
     _tablename:str ='sprachtexte'
     _prefix:str ='sptx'
     _columnlist:list = ['sptx_id', 'sptx_attrname', 'sptx_text', 'sptx_spra_id'

@@ -1176,7 +1176,7 @@ def loeschmodell():
     Schluessel.delete()
     dbDML.delete("beziehungen")
     dbDML.delete("arcs")
-    dbDML.delete("attributes")
+    Attribut.delete()
     Synonym.delete()
     Entitaet.delete()
     ModelelemDoku.delete()

@@ -1,6 +1,7 @@
 from .baseobject import Baseobject
 from .tabelle import Tabelle
 from  IM_DB import dbDML
+from collections import defaultdict
 
 class TablEntiMap(Baseobject):
     _tablename:str = 'tabl_enti_maps'
@@ -53,7 +54,7 @@ class TablEntiMap(Baseobject):
                             where tema_enti_id = {}
                             group by schn_name
                             order by schn_name
-                            """.format(pentiid))
+                            """.format(pentiid if pentiid is not None else 'tema_enti_id'))
         retval = []
         try:
             for d in data:
@@ -70,6 +71,22 @@ class TablEntiMap(Baseobject):
         # try
         return retval
     # tablelist
+
+    @staticmethod
+    def tabentimap():
+        data = dbDML.select("""select  tema_tabl_id,tema_enti_id,tabl_name,enti_name,schn_name
+                            from tabl_enti_maps
+                            join tabellen on tabl_id = tema_tabl_id
+                            join schnittstellen on schn_id = tabl_schn_id
+                            join entitaeten on enti_id = tema_enti_id 
+                            order by schn_name,tabl_name,enti_name
+                            """)
+        retval = defaultdict(dict)
+        for d in data:
+            retval[d[0]][d[1]] = [d[2],d[3],d[4]]
+        # for
+        return retval
+    # tabentimap
 #TablEntiMap
 
 
