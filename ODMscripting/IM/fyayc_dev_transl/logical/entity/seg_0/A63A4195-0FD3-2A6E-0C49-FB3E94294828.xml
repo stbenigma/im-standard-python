@@ -1,16 +1,38 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="A63A4195-0FD3-2A6E-0C49-FB3E94294828" name="Subentit 1-2">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="A63A4195-0FD3-2A6E-0C49-FB3E94294828" name="*Produkt-Variante">
 <createdBy>stb</createdBy>
 <createdTime>2019-11-06 12:31:36 UTC</createdTime>
-<comment><![CDATA[Subentität, die mit einer 1:1 Verbindung verknüpft ist.]]></comment>
-<notes><![CDATA[[EN_ENTI_COMMENT[
-*DE* Subentität, die mit einer 1:1 Verbindung verknüpft ist.
+<comment><![CDATA[]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
 ]EN_ENTI_COMMENT]
 [DE_ENTI_COMMENT[
 Subentität, die mit einer 1:1 Verbindung verknüpft ist.
 ]DE_ENTI_COMMENT]
 [FR_ENTI_COMMENT[
-*DE* Subentität, die mit einer 1:1 Verbindung verknüpft ist.
+]FR_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+Subentity associated with a 1:1 connection.
+]EN_ENTI_COMMENT]
+[FR_ENTI_COMMENT[
+*Sous-entité associée à une connexion 1:1.
+]FR_ENTI_COMMENT]
+[DE_ENTI_COMMENT[
+*]EN_ENTI_KOMMENTAR]
+[DE_ENTI_KOMMENTAR[
+Subentität, die mit einer 1:1 Verbindung verknüpft ist.
+]DE_ENTI_KOMMENTAR]
+[FR_ENTI_KOMMENTAR[
+]FR_ENTI_KOMMENTAR]
+[EN_ENTI_KOMMENTAR[
+Subentität, die mit einer 1:1-Verbindung verbunden ist.]]></comment>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+Subentität, die mit einer 1:1 Verbindung verknüpft ist.
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+Subentity associated with a 1:1 connection.
+]EN_ENTI_COMMENT]
+[FR_ENTI_COMMENT[
+*Sous-entité associée à une connexion 1:1.
 ]FR_ENTI_COMMENT]
 ]]></notes>
 <ownerDesignName>fyayc_dev_transl</ownerDesignName>
@@ -27,11 +49,9 @@ Subentität, die mit einer 1:1 Verbindung verknüpft ist.
 <normalForm>Third</normalForm>
 <createSurrogateKey>true</createSurrogateKey>
 <propertyMap>
-<property name="DE_ENTI_NAME" value="Subentit 1-2"/>
-<property name="DE_ENTI_SYNONYM" value=""/>
-<property name="EN_ENTI_NAME" value="*DE* Subentit 1-2"/>
-<property name="EN_ENTI_SYNONYM" value=""/>
-<property name="FR_ENTI_NAME" value="*DE* Subentit 1-2"/>
+<property name="DE_ENTI_NAME" value="*Produkt-Variante"/>
+<property name="EN_ENTI_NAME" value="Product variant"/>
+<property name="FR_ENTI_NAME" value="*EN* Product variant"/>
 <property name="FR_ENTI_SYNONYM" value=""/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">

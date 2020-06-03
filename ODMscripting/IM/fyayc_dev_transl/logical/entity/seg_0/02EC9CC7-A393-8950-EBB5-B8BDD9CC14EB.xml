@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="02EC9CC7-A393-8950-EBB5-B8BDD9CC14EB" name="Super Entiät">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="02EC9CC7-A393-8950-EBB5-B8BDD9CC14EB" name="Super Entität">
 <createdBy>stb</createdBy>
 <createdTime>2019-11-06 12:21:42 UTC</createdTime>
 <comment><![CDATA[Eine Entität, die aus 2 Subtypen besteht]]></comment>
@@ -27,7 +27,7 @@ Eine Entität, die aus 2 Subtypen besteht
 <normalForm>Third</normalForm>
 <createSurrogateKey>true</createSurrogateKey>
 <propertyMap>
-<property name="DE_ENTI_NAME" value="Super Entiät"/>
+<property name="DE_ENTI_NAME" value="Super Entität"/>
 <property name="DE_ENTI_SYNONYM" value=""/>
 <property name="EN_ENTI_NAME" value="Super Entity"/>
 <property name="EN_ENTI_SYNONYM" value=""/>
@@ -58,8 +58,8 @@ Kürzel wird im Kommentar geführt
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_NAME" value="Kürzel"/>
-<property name="EN_ATTR_NAME" value="Short Name"/>
-<property name="FR_ATTR_NAME" value="*EN* Short Name"/>
+<property name="EN_ATTR_NAME" value="Abbreviation"/>
+<property name="FR_ATTR_NAME" value="*EN* Abbreviation"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Beschreibung" id="F867E8A4-918F-6080-28A2-29F17C191237">
