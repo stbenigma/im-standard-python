@@ -1,6 +1,5 @@
 from .baseobject import Baseobject
 from datetime import date
-from IM_DB import dbInserts
 
 class Modellelemtyp(Baseobject):
     ENTI:str='ENTI'
@@ -92,6 +91,19 @@ CREATE TABLE modellelem_typ(
     def getidbyshortname (pkurzname):
         return Modellelemtyp.getbyshortname(pkurzname=pkurzname).melt_id
     #getidbyshortname
+    @staticmethod
+    def type2melt(type):
+        trans = {"Entity": Modellelemtyp.ENTI
+                , "Attribute": Modellelemtyp.ATTR
+                , "Relation": Modellelemtyp.BEZI
+                , "Table": Modellelemtyp.TABL
+                , "Column": Modellelemtyp.SCHA
+                , "FKIndexAssociation": ""
+                 }
+        return trans[type]
+    # type2melt
+
+
 #Modellelemtyp
 
 class Modellelement(Baseobject):

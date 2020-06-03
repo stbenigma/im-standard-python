@@ -24,11 +24,6 @@ def arcsID (pguid):
     return doLookup(pguid,'select arcs_id from arcs where arcs_odm_guid ="{}"')
 #arcsId
 
-def attrID (pguid,withnotfound=False):
-    return doLookup(pguid,'select attr_id from attributes where attr_odm_guid ="{}"',withnotfound)
-#attrId
-
-
 def diatid (p_name):
     return doLookup(p_name,'select diat_id from diagrammtypen where upper(diat_bez) =upper("{}")')
 #diatid

@@ -43,6 +43,7 @@ def writeln(*args,**kwargs):
 
 def listtabenti(plang):
     global entities
+    global attributes
     global tables
     global schnittstellen
     global mapping
@@ -69,6 +70,7 @@ def listtabenti(plang):
 
 def listcolattr(plang):
     global entities
+    global attributes
     global tables
     global schnittstellen
     global mapping
@@ -154,8 +156,12 @@ def filllists(plang):
     global tabentimap
     entities = {enti.enti_id:[enti.enti_name
                                 ,{tem[0]: [t for t in tem[1].keys()]
-                                  for tem in TablEntiMap.tablelist(pentiid=enti.enti_id)}]
-                for enti in Entitaet.select()  }
+                                for tem in TablEntiMap.tablelist(pentiid=enti.enti_id)}
+                              ,{attr.attr_id:[attr.attr_anzname,attr.attr_tech_name]
+                                 for attr in enti.getattributes()}
+                              ]
+                for enti in Entitaet.select()}
+    attributes = {attr.attr_id:[attr.attr_anzname,attr.attr_tech_name,attr.attr_enti_id,attr.attr_bezi_id] for attr in Attribut.select()}
     tables = {tabl.tabl_id:[tabl.tabl_name,Schnittstelle.getname(tabl.tabl_schn_id)
                                 ,{c.scha_id:c.scha_column_name for c in tabl.getcolumns()}
                             ]
@@ -164,13 +170,14 @@ def filllists(plang):
     columns = {scha.scha_id:[scha.scha_column_name,scha.scha_tabl_id,scha.scha_fremdsystem_id] for scha in Schnittstelleattr.select()}
     schnittstellen = {schn.schn_name:
                               {tabl.tabl_id:[tabl.tabl_name
-                                             ,{c.scha_id:[c.scha_column_name,scha.scha_fremdsystem_id] for c in tabl.getcolumns()}
+                                             ,{c.scha_id:[c.scha_column_name,c.scha_fremdsystem_id] for c in tabl.getcolumns()}
                                             ] for tabl in Tabelle.selectbyschnid(schn.schn_id)
                                }
                         for schn in Schnittstelle.select() }
     mapping = TablEntiMap.tablelist()
     tabentimap = TablEntiMap.tabentimap()
-#    print (len(entities),entities)
+    print (len(entities),entities)
+    print(len(attributes),attributes)
 #    print (len(tables),tables)
 #    print (len(schnittstellen),schnittstellen)
 #    print (len(mapping),mapping)

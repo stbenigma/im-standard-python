@@ -24,6 +24,7 @@ class Entitaet(MultilangBaseobject):
         self._children = None
         self._synonyms = None
         self._schluessel = None
+        self._attributes = None
 
     @staticmethod
     def createtable():
@@ -107,6 +108,13 @@ create table entitaeten
                                              , porderby='schl_laufnr')
         # fi
         return self._schluessel
+    #getschluessel
+
+    def getattributes(self):
+        if (self.getid() is not None) and (self._attributes is None):
+            self._attributes = Attribut.select(pwhere='attr_enti_id = {}'.format(self.getid()))
+        # fi
+        return self._attributes
     #getschluessel
 
     @staticmethod
@@ -235,13 +243,14 @@ class Attribut(MultilangBaseobject):
                         'attr_verschluesselt',  'attr_odm_guid',  'attr_uc',
                         'attr_dc',  'attr_um',  'attr_dm']
 
-    def __init__(self,pname=None,pentiid=None):
+    def __init__(self,pname=None,pentiid=None,pbeziid=None):
         super().__init__(tablename=Attribut._tablename, prefix=Attribut._prefix
                          , columnlist=Attribut._columnlist
                          ,multilangcols = {'attr_anzname': Sprachtext.ATTR_NAME,
                             'attr_beschr' : Sprachtext.ATTR_COMMENT})
         self.attr_anzname = pname
         self.attr_enti_id = pentiid
+        self.attr_bezi_id = pbeziid
 
     @staticmethod
     def createtable():
@@ -324,7 +333,7 @@ CREATE TABLE attributes(
         Baseobject.delete(Attribut._tablename)
 
     @staticmethod
-    def select(pwhere=None, porderby=None):
+    def select(pwhere=None, porderby="attr_anz_rhflg"):
         attrs = Baseobject.select(pclass=Attribut
                                   ,pwhere=pwhere, porderby=porderby)
         return attrs

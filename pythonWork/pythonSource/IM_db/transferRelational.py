@@ -186,7 +186,7 @@ class Odmmapping:
 def doattrmapping(pcolmappings,ptabenti):
     for colmap in pcolmappings:
         schaid = Schnittstelleattr().getbyguid(transferModel.findField(colmap,'rID')).scha_id
-        attrid = dbLookup.attrID(pguid=transferModel.findField(colmap,'lID'),withnotfound=True)
+        attrid = Attribut().getID (pguid=transferModel.findField(colmap,'lID'))
         attf = Attrtransf()
         attf.attf_laufnr =1
         attf.attf_richtung = Attrtransf.INBOUND

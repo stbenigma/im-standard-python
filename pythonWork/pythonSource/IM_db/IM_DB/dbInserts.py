@@ -11,20 +11,6 @@ def  insertLovWrtb(pName,pherkunft = 'DOM'):
                                 ,date.today(),None,None,None))
 #end insertLovWrtb
 
-def insertAttribute(pattr):
-    lsql="""
-    insert into attributes (attr_enti_id,attr_wrtb_id,attr_tech_name
-    ,attr_anzname,attr_tooltip,attr_beschr
-    ,attr_business_rule,attr_anz_rhflg,attr_deskriptor
-    ,attr_pflichtattr,attr_historisiert,attr_wiederholt
-    ,attr_sprachabhaengig,attr_verschluesselt,attr_uc
-    ,attr_dc,attr_odm_guid,attr_bezi_id) 
-        values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
-    """
-    #print (lsql,pattr)
-    return dbDML.insert(lsql,pattr)
-#end insertAttributes
-
 def insertArc(parc):
     lsql = """
         insert into arcs 
@@ -62,11 +48,11 @@ def insertUDP(pData):
     return dbDML.insert(lsql, pData)
 #insertUDP
 
-def insertModellElemTyp(pData):
+def insertModelltypEigen(pData):
     lsql= """insert into modelltyp_eigensch (mote_melt_id , mote_bdeg_id)
                 values(?,?)"""
     return dbDML.insert(lsql, pData)
-#insertModellElemTyp
+#insertModelltypEigen
 
 
 #insertModebezi

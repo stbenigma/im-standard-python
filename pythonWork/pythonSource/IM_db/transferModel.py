@@ -35,17 +35,6 @@ classcolors = dict()
 defcolors = dict()
 
 
-def type2melt(type):
-    trans = {"Entity": "ENTI"
-              ,"Attribute": "ATTR"
-        , "Relation": "BEZI"
-        , "Table": ""
-            ,"Column": ""
-             ,"FKIndexAssociation": ""
-             }
-    return trans[type]
-#type2melt
-
 def findText(set,name):
     try:
         return set.find(name).text
@@ -237,11 +226,9 @@ def transferentity(penti, pdiagid, puc, pdc):
     hiddenattrs=elemtext.split(' ')
     hiddenattrs2 = []
     for e in hiddenattrs:
-        if e != "": hiddenattrs2.append(dbLookup.attrID(pguid=e,withnotfound=True))
-    attrs = dbDML.select("""select attr_id from attributes 
-                            where attr_enti_id = {}
-                            order by attr_anz_rhflg""".format(enti.enti_id))
-    attrids = [a[0] for a in attrs]
+        if e != "": hiddenattrs2.append(Attribut().getID(pguid=e))
+    attrs = Attribut.select(pwhere="attr_enti_id = {}".format(enti.enti_id),porderby="attr_anz_rhflg")
+    attrids = [a.attr_id for a in attrs]
     attrids = list(set(attrids) - set(hiddenattrs2))
     #print (attrids,hiddenattrs2)
 
@@ -681,48 +668,48 @@ def do1Attribute(plfnr, pattrxml, pentiId=None, pbeziId=None):
     #wegen FK-PK zusätzliche Attribute werden nicht übernommen
     if (findText(pattrxml, 'referedAttribute') is not None):
         return
-
     if pentiId is not None:
-        vatername = dbDML.select("select enti_name from entitaeten where enti_id = {}".format(pentiId))[0][0]
+        vatername = Entitaet().getbyid(pid=pentiId).enti_name
     elif pbeziId is not None:
         vatername = "Beziehung ({})".format(pbeziId)
 
-    ganzName = findField(pattrxml, 'name')
-    abbrevName = findText(pattrxml, 'preferredAbbreviation')
-    attrName=re.search('[^\[]*',ganzName).group().rstrip()
-    creby = findText(pattrxml, 'createdBy')
-    creti = findText(pattrxml, 'createdTime')
-    documents = getdokuref(pelem= pattrxml)
-    techiName = nvl(abbrevName,re.sub('[-,.()\[\]äöüèéàÄ~ÖÜ ]','_',str.upper(attrName)))
-    domId=findeOderErstelleDom(pdomguid=findText(pattrxml, 'domain')
+    xmlname = findField(pattrxml, 'name')
+    #strip [] am Ende des Namens
+    attr = Attribut(pname=re.search('[^\[]*',xmlname).group().rstrip(),pentiid=pentiId,pbeziid=pbeziId)
+    attr.attr_tech_name = findText(pattrxml, 'preferredAbbreviation')
+    if attr.attr_tech_name is None:
+        attr.attr_tech_name = re.sub('[-,.()\[\]äöüèéàÄ~ÖÜ ]','_',str.upper(attr.attr_anzname))
+    attr.attr_uc = findText(pattrxml, 'createdBy')
+    attr.attr_dc = findText(pattrxml, 'createdTime')
+    attr.attr_wrtb_id = findeOderErstelleDom(pdomguid=findText(pattrxml, 'domain')
                                , pstructdomguid=findText(pattrxml, 'structuredType')
                                , ptypeguid=findText(pattrxml, 'logicalDatatype')
-                               , pattrname=attrName
+                               , pattrname=attr.attr_anzname
                                ,pvatername=vatername
                                ,pattrxml=pattrxml)
-    attrcomm = findText(pattrxml, 'comment')
-    attrset=(pentiId, domId, techiName
-        , attrName, findText(pattrxml, ''), attrcomm
-        , findText(pattrxml, ''), plfnr
-        ,'FALSE','FALSE' if (findText(pattrxml, 'nullsAllowed') == 'true') else 'TRUE'
-             ,'TRUE' if (re.search('\[.*T.*\]', ganzName) is not None) else 'FALSE'
-        ,'TRUE' if (re.search('\[.*N.*\]', ganzName) is not None) else 'FALSE'
-             ,'TRUE' if (re.search('\[.*L.*\]', ganzName) is not None) else 'FALSE','FALSE'
-        , creby, creti, findField(pattrxml, 'id'), pbeziId
-             )
+    attr.attr_beschr = findText(pattrxml, 'comment')
+    attr.attr_anz_rhflg = plfnr
+    attr.attr_deskriptor = 'FALSE'
+    attr.attr_pflichtattr = 'FALSE' if (findText(pattrxml, 'nullsAllowed') == 'true') else 'TRUE'
+    attr.attr_historisiert = 'TRUE' if (re.search('\[.*T.*\]', xmlname) is not None) else 'FALSE'
+    attr.attr_wiederholt = 'TRUE' if (re.search('\[.*N.*\]', xmlname) is not None) else 'FALSE'
+    attr.attr_sprachabhaengig = 'TRUE' if (re.search('\[.*L.*\]', xmlname) is not None) else 'FALSE'
+    attr.attr_verschluesselt = 'FALSE'
+    attr.attr_odm_guid = findField(pattrxml, 'id')
     try:
-        attrId = dbInserts.insertAttribute(pattr=attrset)
+        attrId = attr.insert()
     except  sqlite3.Error as e:
         print(str(e))
         print('Entity = {}'.format(vatername))
-        print(attrset)
+        print(attr)
         raise e
     #try
     lmodeId= Modellelement.insertmode(pattrid=attrId)
     dbInserts.insertUdpAttr(attrId)
     updateUDP(pmodeid=lmodeId, pobj=pattrxml)
-    ModelelemDoku.insertdokuref(pdocguidlist=documents, pmodeid=lmodeId)
 
+    documents = getdokuref(pelem= pattrxml)
+    ModelelemDoku.insertdokuref(pdocguidlist=documents, pmodeid=lmodeId)
 #do1Attribute
 
 def fillKeys(p_enti, p_entiid):
@@ -773,7 +760,7 @@ def transferKeys():
             scel.scel_uc = schl.schl_uc
             scel.scel_dc = schl.schl_dc
             try:
-                scel.scel_attr_id = dbLookup.attrID(ke)
+                scel.scel_attr_id = Attribut().getID(ke)
                 scel.scel_bezi_id = None
             except:
                 try:
@@ -1067,11 +1054,12 @@ def do1UDPFile(pudpThema,pfileName):
                 ludpid=dbInserts.insertUDP(pData=(lupdThema, lgroups[findField(prop,'group_id')]
                     , lgroups[group]+'_ENTI_COMMENT', None
                     , None, 'FALSE', None, '--', date.today().__str__()))
-                dbInserts.insertModellElemTyp((Modellelemtyp.getidbyshortname(pkurzname=type2melt('Entity')), ludpid))
+                dbInserts.insertModelltypEigen((Modellelemtyp.getidbyshortname(pkurzname=Modellelemtyp.type2melt('Entity')), ludpid))
                 ludpid=dbInserts.insertUDP(pData=(lupdThema, lgroups[findField(prop,'group_id')]
                     , lgroups[group]+'_ATTR_COMMENT', None
                     , None, 'FALSE', None, '--', date.today().__str__()))
-                dbInserts.insertModellElemTyp((Modellelemtyp.getidbyshortname(pkurzname=type2melt('Attribute')), ludpid))
+
+                dbInserts.insertModelltypEigen((Modellelemtyp.getidbyshortname(pkurzname=Modellelemtyp.type2melt('Attribute')), ludpid))
             #fi
         #fi
 
@@ -1080,9 +1068,9 @@ def do1UDPFile(pudpThema,pfileName):
             lMelt = re.split( "\.",findField(o,'class'))[6]
             #print( type2melt(lMelt))
             #print (lMelt)
-            lmeltid=type2melt(lMelt)
+            lmeltid=Modellelemtyp.type2melt(lMelt)
             if lmeltid != "":
-                try:    dbInserts.insertModellElemTyp((dbLookup.meltLookup(lmeltid),udpId))
+                try:    dbInserts.insertModelltypEigen((dbLookup.meltLookup(lmeltid), udpId))
                 except: pass
             #fi
 
