@@ -5233,8 +5233,7 @@ function getAttrMap(attrID,modName){
 getTranslInfo()
 linemessage(JSON.stringify(gParam))
 setTranslInfo()
-linemessage(JSON.stringify(gParam))
-]]>
+linemessage(JSON.stringify(gParam))]]>
 		</script>
 	</scr>
 
@@ -5252,9 +5251,11 @@ linemessage(JSON.stringify(gParam))
 	var ERRORMESSAGE = 0;
 	var WARNINGMESSAGE = 2;
 	var QUESTIONMESSAGE = 3;
+	var translation = false
 	
-	var DEEPLAuthKey = "9043d070-26fd-f874-6b80-37ddc4b6367c"
+//	var DEEPLAuthKey = "9043d070-26fd-f874-6b80-37ddc4b6367c"
 	var DEEPLURL = "https://api.deepl.com/v2/translate"
+	var DEEPLURL2 = "https://api.deepl.com/v2/usage"
 	
 	function fullmessage(msg,type) {
 		Java.type("javax.swing.JOptionPane").showMessageDialog(null
@@ -5276,6 +5277,10 @@ linemessage(JSON.stringify(gParam))
 		function setLastSync(lastSync) {return gParams["lastSync"] = lastSync;}
 		function getLanguages() {return gParams["languages"];}
 		function getLangArr() {return getLanguages().split(',');}
+		function getDEEPLAuthKey() {
+			 if ('DEEPLAuthKey' in gParams) {return gParams['DEEPLAuthKey']}
+			 else {return null}
+		}
 		
 function linemessage() {
 	str = ''
@@ -5345,9 +5350,22 @@ function getanswer(inputstr){
 	return Utf8ArrayToStr(buf)
 }
 
+function haveDeeplAccess(){
+	var urlu = DEEPLURL2+"?auth_key="+getDEEPLAuthKey()
+	var conu = translconn(urlu)
+
+	try {
+		s = getanswer(conu.getInputStream())
+		json = JSON.parse(s)
+		//message2(urlu,JSON.stringify(json))
+		return true
+	}
+	catch (err){return false}
+}
+
 function translate(fromlang,tolang,text){
 	var url = DEEPLURL
-		+"?auth_key="+DEEPLAuthKey
+		+"?auth_key="+getDEEPLAuthKey()
 		+"&text="+encodeURI(text)
 		+"&target_lang="+tolang
 		+"&source_lang="+fromlang
@@ -5395,10 +5413,14 @@ function translate(fromlang,tolang,text){
 		}    
 	}	
 	function param2comment(){
-	 return "TRANSLATION{\ncurrentLang="+getCurrentLang()
+		retval = "TRANSLATION{\ncurrentLang="+getCurrentLang()
 						+"\nlanguages="+getLanguages()
 						+"\nlastSync="+getLastSync()
-						+"\nversion="+getVersion()+"\n}"
+						+"\nversion="+getVersion()
+		deeplkey = getDEEPLAuthKey()			
+		if (deeplkey != null) {retval += "\nDEEPLAuthKey="+deeplkey}
+		retval += "\n}"
+	 	return retval
 	}
 	function setTranslInfo() {
 		setLastSync(curDateStr())
@@ -5448,7 +5470,6 @@ function translate(fromlang,tolang,text){
 			//message("|"+newentry+"|\n"+"|"+ma[0]+"|")
 			note = note.replace(ma[0] , newentry)
 		}
-
 		obj.setNotes(note)
 	}
 
@@ -5462,6 +5483,10 @@ function translate(fromlang,tolang,text){
 				+"expected " + CODEVERSION + " found "+getVersion()
 				+"\nPlease upgrade.***\n"
 			throw new Error(msg);
+		}
+		translation = false
+		if (getDEEPLAuthKey() != null && getDEEPLAuthKey() != ''){
+			translation = haveDeeplAccess()
 		}
 	}
 
@@ -5493,8 +5518,10 @@ function translate(fromlang,tolang,text){
 				} else if (fprop == "") {
 					// das Ziel ist leer aber aus einem Grund muss ich es überschreiben (siehe vorheriges IF)
 					// übersetze den Text. Falls es schief geht, mach daraus einen *XX* Text
-					try {newvalue = '**'+translate(getCurrentLang(),flang,value)}
-					catch (err) {newvalue = lprefix+value}
+					if (translation){
+						try {newvalue = '**'+translate(getCurrentLang(),flang,value)}
+						catch (err) {newvalue = lprefix+value}
+					}else {newvalue = lprefix+value}
 					if (isNote) textToNote(fpropName,obj,newvalue);  
 						else obj.setProperty(fpropName,newvalue);
 			    } else {
