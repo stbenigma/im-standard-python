@@ -8,8 +8,8 @@
 </engineerTo>
 <useSurrogateKey>true</useSurrogateKey>
 <identifying>false</identifying>
-<nameOnSource>ist neben</nameOnSource>
-<nameOnTarget>steht über</nameOnTarget>
+<nameOnSource>is next to</nameOnSource>
+<nameOnTarget>stands over</nameOnTarget>
 <optionalSource>true</optionalSource>
 <optionalTarget>false</optionalTarget>
 <sourceCardinality>*</sourceCardinality>
@@ -18,11 +18,11 @@
 <targetEntity>A63A4195-0FD3-2A6E-0C49-FB3E94294828</targetEntity>
 <transferable>true</transferable>
 <propertyMap>
-<property name="DE_RELA_TEXT_FROM" value="ist neben"/>
-<property name="DE_RELA_TEXT_TO" value="steht über"/>
-<property name="EN_RELA_TEXT_FROM" value="is next to"/>
-<property name="EN_RELA_TEXT_TO" value="stands over"/>
-<property name="FR_RELA_TEXT_FROM" value="*EN* is next to"/>
-<property name="FR_RELA_TEXT_TO" value="*EN* stands over"/>
+<property name="DE_RELA_TEXT_FROM" value="is next to"/>
+<property name="DE_RELA_TEXT_TO" value="stands over"/>
+<property name="EN_RELA_TEXT_FROM" value="*is next to"/>
+<property name="EN_RELA_TEXT_TO" value="*stands over"/>
+<property name="FR_RELA_TEXT_FROM" value="*EN* *is next to"/>
+<property name="FR_RELA_TEXT_TO" value="*EN* *stands over"/>
 </propertyMap>
 </Relation>
