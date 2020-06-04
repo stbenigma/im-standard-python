@@ -3,15 +3,15 @@
 <custom_libraries>
 	<lib id="8C5E208C-44EF-D2FB-A3AD-61EAE950C916" name="translation" engine="Oracle Nashorn" methods="upgradeTranslation,changeLanguage,initTranslation" >
 		<script>
-			<![CDATA[	//scripts to handle translation of model
+			<![CDATA[//scripts to handle translation of model
 	var CODEVERSION = '1.4';
 	var gLogNote = "LOG";
 	var gCurrentLang = "DE";
 	var gLanguages = "DE,EN";
 	var gTranslInforegexp =/TRANSLATION\{[^}]*\}/;
 	var logInitialized = false;
-	var NOTESSTARTTAG = '[<tag>[\n';
-	var NOTESENDTAG = '\n]<tag>]';
+	var NOTESSTARTTAG = '[<tag>[';
+	var NOTESENDTAG = ']<tag>]';
 	var PLAINMESSAGE = 1;
 	var ERRORMESSAGE = 0;
 	var WARNINGMESSAGE = 2;
@@ -165,6 +165,10 @@ function translate(fromlang,tolang,text){
 		return tag.replace('<tag>',innertag).replace(/\[/g,'\\[').replace(/\]/g,'\\]')
 	}
 
+	function trim(str){
+		return str.replace(/^[\s]+|[\s]+$/g,'');
+	}
+
 	function textFromNote(tag,obj) {
     	note = obj.getNotes()
     	restart =  buildRegExpTag(tag, NOTESSTARTTAG)
@@ -173,8 +177,8 @@ function translate(fromlang,tolang,text){
     	ma = note.match(re)
     	retval = ''
 	   	if (ma != null) {
-			//message("|"+reend+"|\n"+"|"+ma[0]+"|")
-	   		retval = ma[1]
+			//linemessage("|"+reend+"|\n"+"|"+ma[0]+"|")
+	   		retval = trim(ma[1])
 		}
 		return retval
 	}
@@ -185,9 +189,9 @@ function translate(fromlang,tolang,text){
     	reend =  buildRegExpTag (tag, NOTESENDTAG)+"[\n]*"
     	re = new RegExp(restart + '([^]*)' + reend)
     	ma = note.match(re)
-		newentry = NOTESSTARTTAG.replace('<tag>',tag) 
+		newentry = NOTESSTARTTAG.replace('<tag>',tag)+'\n' 
 			+ value 
-			+ NOTESENDTAG.replace('<tag>',tag)
+			+'\n' + NOTESENDTAG.replace('<tag>',tag)
 			+'\n'
 	   	if (ma == null) {
 	   		note = note + newentry
@@ -253,10 +257,10 @@ function translate(fromlang,tolang,text){
 				} else if (fprop == "") {
 					// das Ziel ist leer aber aus einem Grund muss ich es überschreiben (siehe vorheriges IF)
 					// übersetze den Text. Falls es schief geht, mach daraus einen *XX* Text
-					try {newvalue = '*'+translate(gCurrentLang,flang,value)}
+					try {newvalue = '**'+translate(gCurrentLang,flang,value)}
 					catch (err) {newvalue = lprefix+value}
-					if (isNote) textToNote(fpropName,obj,newvalue);
-					  else obj.setProperty(fpropName,newvalue);
+					if (isNote) textToNote(fpropName,obj,newvalue);  
+						else obj.setProperty(fpropName,newvalue);
 			    } else {
 					// das Ziel ist gefüllt, nicht in Bearbeitung und nicht automatisch übersetzt.
 					// d.h. es hat einen gültigen Wert. Markiere es, falls die Quelle wirklich geändert hat
