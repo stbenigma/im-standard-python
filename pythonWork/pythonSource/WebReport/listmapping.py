@@ -85,6 +85,7 @@ def listcolattr(plang):
         maps = [matentry(tkey,e) for e in entities.keys()]
         tval.append(maps)
     #for
+    return
     for skey,sval in schnittstellen.items():
         for tkey,tval in sval.items():
             for ckey,cval in tval[1].items():
@@ -97,8 +98,7 @@ def listentiintf(plang):
     createFile(pfilename=parameters.odmModelName()+'_entiintf.csv')
     write('\ufeff')
     scns = Schnittstelle.select()
-    topheader = CSVSEP.join(scn.schn_name for scn in scns)
-    writeln('Information Model',topheader,sep=CSVSEP)
+    writeln('Information Model',CSVSEP.join(scn.schn_name for scn in scns),sep=CSVSEP)
     entis = Entitaet.select()
     for enti in entis:
         write(enti.getname(plang),CSVSEP)
@@ -122,7 +122,7 @@ def listentitable(plang):
     for scn in scns:
         tabs = Tabelle.selectbyschnid(pschnid=scn.schn_id)
         topheader += scn.schn_name+ CSVSEP+ CSVSEP.join('' for ta in tabs)[:-1]
-        subheader += CSVSEP + CSVSEP.join(ta.tabl_name for ta in tabs)
+        subheader += CSVSEP.join(ta.tabl_name for ta in tabs)
     writeln(topheader)
     writeln(subheader)
     entis = Entitaet.select()
@@ -177,8 +177,8 @@ def filllists(plang):
     mapping = TablEntiMap.tablelist()
     tabentimap = TablEntiMap.tabentimap()
     print (len(entities),entities)
-    print(len(attributes),attributes)
-#    print (len(tables),tables)
+#    print(len(attributes),attributes)
+    print (len(tables),tables)
 #    print (len(schnittstellen),schnittstellen)
 #    print (len(mapping),mapping)
 #    print(len(tabentimap),tabentimap)
