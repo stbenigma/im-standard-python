@@ -1,13 +1,13 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="02EC9CC7-A393-8950-EBB5-B8BDD9CC14EB" name="Super Entiät">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="02EC9CC7-A393-8950-EBB5-B8BDD9CC14EB" name="Super Entity">
 <createdBy>stb</createdBy>
 <createdTime>2019-11-06 12:21:42 UTC</createdTime>
-<comment><![CDATA[Eine Entität, die aus 2 Subtypen besteht]]></comment>
+<comment><![CDATA[*DE* Eine Entität, die aus 2 Subtypen besteht]]></comment>
 <notes><![CDATA[[EN_ENTI_COMMENT[
 *DE* Eine Entität, die aus 2 Subtypen besteht
 ]EN_ENTI_COMMENT]
 [DE_ENTI_COMMENT[
-Eine Entität, die aus 2 Subtypen besteht
+*DE* Eine Entität, die aus 2 Subtypen besteht
 ]DE_ENTI_COMMENT]
 [FR_ENTI_COMMENT[
 *DE* Eine Entität, die aus 2 Subtypen besteht
@@ -27,20 +27,20 @@ Eine Entität, die aus 2 Subtypen besteht
 <normalForm>Third</normalForm>
 <createSurrogateKey>true</createSurrogateKey>
 <propertyMap>
-<property name="DE_ENTI_NAME" value="Super Entiät"/>
+<property name="DE_ENTI_NAME" value="Super Entity"/>
 <property name="DE_ENTI_SYNONYM" value=""/>
-<property name="EN_ENTI_NAME" value="Super Entity"/>
+<property name="EN_ENTI_NAME" value="*Super Entity"/>
 <property name="EN_ENTI_SYNONYM" value=""/>
-<property name="FR_ENTI_NAME" value="*EN* Super Entity"/>
+<property name="FR_ENTI_NAME" value="*DE* Super Entity"/>
 <property name="FR_ENTI_SYNONYM" value=""/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<Attribute name="Kürzel" id="55CABD5F-9462-BF35-239C-E8A1A1D0848C">
+<Attribute name="Abbreviation" id="55CABD5F-9462-BF35-239C-E8A1A1D0848C">
 <createdBy>stb</createdBy>
 <createdTime>2019-11-06 12:21:42 UTC</createdTime>
-<comment><![CDATA[Kürzel wird im Kommentar geführt]]></comment>
+<comment><![CDATA[*DE* Kürzel wird im Kommentar geführt]]></comment>
 <notes><![CDATA[[DE_ATTR_COMMENT[
-Kürzel wird im Kommentar geführt
+*DE* Kürzel wird im Kommentar geführt
 ]DE_ATTR_COMMENT]
 [EN_ATTR_COMMENT[
 *DE* Kürzel wird im Kommentar geführt
@@ -57,12 +57,12 @@ Kürzel wird im Kommentar geführt
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
-<property name="DE_ATTR_NAME" value="Kürzel"/>
-<property name="EN_ATTR_NAME" value="Short Name"/>
-<property name="FR_ATTR_NAME" value="*EN* Short Name"/>
+<property name="DE_ATTR_NAME" value="Abbreviation"/>
+<property name="EN_ATTR_NAME" value="*Abbreviation"/>
+<property name="FR_ATTR_NAME" value="*DE* Abbreviation"/>
 </propertyMap>
 </Attribute>
-<Attribute name="Beschreibung" id="F867E8A4-918F-6080-28A2-29F17C191237">
+<Attribute name="Description" id="F867E8A4-918F-6080-28A2-29F17C191237">
 <createdBy>stb</createdBy>
 <createdTime>2019-11-06 12:21:42 UTC</createdTime>
 <notes><![CDATA[[DE_ATTR_COMMENT[
@@ -85,12 +85,12 @@ Kürzel wird im Kommentar geführt
 <logicalDatatype>LOGDT040</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
-<property name="DE_ATTR_NAME" value="Beschreibung"/>
-<property name="EN_ATTR_NAME" value="Description"/>
-<property name="FR_ATTR_NAME" value="*EN* Description"/>
+<property name="DE_ATTR_NAME" value="Description"/>
+<property name="EN_ATTR_NAME" value="*Description"/>
+<property name="FR_ATTR_NAME" value="*DE* Description"/>
 </propertyMap>
 </Attribute>
-<Attribute name="Gültigperiode" id="BF0C6DE8-EB85-2BA9-957F-24D2906D86AA">
+<Attribute name="Valid period" id="BF0C6DE8-EB85-2BA9-957F-24D2906D86AA">
 <createdBy>stb</createdBy>
 <createdTime>2019-11-06 12:22:14 UTC</createdTime>
 <notes><![CDATA[[DE_ATTR_COMMENT[
@@ -113,12 +113,12 @@ Kürzel wird im Kommentar geführt
 <structuredType>66BFBF95-B0E6-4D93-EB1C-93CEEE4064C6</structuredType>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
-<property name="DE_ATTR_NAME" value="Gültigperiode"/>
-<property name="EN_ATTR_NAME" value="Valid period"/>
-<property name="FR_ATTR_NAME" value="*EN* Valid period"/>
+<property name="DE_ATTR_NAME" value="Valid period"/>
+<property name="EN_ATTR_NAME" value="*Valid period"/>
+<property name="FR_ATTR_NAME" value="*DE* Valid period"/>
 </propertyMap>
 </Attribute>
-<Attribute name="Standort" id="ADC7A453-19E1-879D-D4DF-B9DF8368A828">
+<Attribute name="Location" id="ADC7A453-19E1-879D-D4DF-B9DF8368A828">
 <createdBy>stb</createdBy>
 <createdTime>2019-11-06 12:22:25 UTC</createdTime>
 <notes><![CDATA[[DE_ATTR_COMMENT[
@@ -141,14 +141,14 @@ Kürzel wird im Kommentar geführt
 <structuredType>34FE0B62-C82A-7934-B36E-07AD3210A8E3</structuredType>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
-<property name="DE_ATTR_NAME" value="Standort"/>
-<property name="EN_ATTR_NAME" value="Location"/>
-<property name="FR_ATTR_NAME" value="*EN* Location"/>
+<property name="DE_ATTR_NAME" value="Location"/>
+<property name="EN_ATTR_NAME" value="*Location"/>
+<property name="FR_ATTR_NAME" value="*DE* Location"/>
 </propertyMap>
 </Attribute>
 </attributes>
 <nestedAttributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<nestedAttribute name="Gültigperiode.StartTag" directorySegmentName="seg_0" id="493C64FB-3E0D-3CBC-F792-C5E97F8C0179">
+<nestedAttribute name="Valid period.StartTag" directorySegmentName="seg_0" id="493C64FB-3E0D-3CBC-F792-C5E97F8C0179">
 <createdBy>stb</createdBy>
 <createdTime>2019-11-06 12:27:39 UTC</createdTime>
 <ownerDesignName>fyayc_dev_transl</ownerDesignName>
@@ -165,7 +165,7 @@ Kürzel wird im Kommentar geführt
 <dataTypeScale>0</dataTypeScale>
 <ownDataTypeParameters>,0,0</ownDataTypeParameters>
 </nestedAttribute>
-<nestedAttribute name="Gültigperiode.EndTag" directorySegmentName="seg_0" id="A7D058E2-0D3B-3397-1399-02EEA0F0C51F">
+<nestedAttribute name="Valid period.EndTag" directorySegmentName="seg_0" id="A7D058E2-0D3B-3397-1399-02EEA0F0C51F">
 <createdBy>stb</createdBy>
 <createdTime>2019-11-06 12:27:39 UTC</createdTime>
 <ownerDesignName>fyayc_dev_transl</ownerDesignName>
@@ -182,7 +182,7 @@ Kürzel wird im Kommentar geführt
 <dataTypeScale>0</dataTypeScale>
 <ownDataTypeParameters>,0,0</ownDataTypeParameters>
 </nestedAttribute>
-<nestedAttribute name="Standort.X" directorySegmentName="seg_0" id="16894671-35E0-92A8-8694-A2800F545AD8">
+<nestedAttribute name="Location.X" directorySegmentName="seg_0" id="16894671-35E0-92A8-8694-A2800F545AD8">
 <createdBy>stb</createdBy>
 <createdTime>2019-11-06 12:27:46 UTC</createdTime>
 <ownerDesignName>fyayc_dev_transl</ownerDesignName>
@@ -199,7 +199,7 @@ Kürzel wird im Kommentar geführt
 <dataTypeScale>9</dataTypeScale>
 <ownDataTypeParameters>,12,9</ownDataTypeParameters>
 </nestedAttribute>
-<nestedAttribute name="Standort.Y" directorySegmentName="seg_0" id="5D27944F-A278-212B-A3DD-9C7716B470CF">
+<nestedAttribute name="Location.Y" directorySegmentName="seg_0" id="5D27944F-A278-212B-A3DD-9C7716B470CF">
 <createdBy>stb</createdBy>
 <createdTime>2019-11-06 12:27:46 UTC</createdTime>
 <ownerDesignName>fyayc_dev_transl</ownerDesignName>

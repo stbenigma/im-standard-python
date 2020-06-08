@@ -1,15 +1,19 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="B46B118F-A961-F918-2526-15AFE4FADBCD" name="Subentität_2-1">
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="65D9AFB4-57EF-4C7D-C7DE-C644F39472E5" name="Subentität_2">
 <createdBy>stb</createdBy>
-<createdTime>2019-11-09 17:04:10 UTC</createdTime>
-<generatorID>1CB937E1-43C1-0399-E256-D5E86F7894E6</generatorID>
+<createdTime>2020-05-16 13:21:02 UTC</createdTime>
+<generatorID>2380F648-71FA-C664-934C-5CF4C80397D6</generatorID>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+
+]DE_ENTI_COMMENT]
+]]></notes>
 <ownerDesignName>fyayc_dev_mapping</ownerDesignName>
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
-<Column name="Subentität_2_Super_Entiät_Super_Entiät_ID" id="6C8C5918-0E19-1F80-C1DA-0703BC4C67D4">
+<Column name="Super_Entiät_Super_Entiät_ID" id="B88A6976-4FD5-08B7-641C-0B78BF17484B">
 <createdBy>stb</createdBy>
-<createdTime>2019-11-09 17:04:10 UTC</createdTime>
+<createdTime>2020-05-16 13:21:02 UTC</createdTime>
 <ownerDesignName>fyayc_dev_mapping</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -19,13 +23,17 @@
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 <associations>
-<colAssociation fkAssociation="0F605DC9-7DA6-43B1-B994-65D409A3C5BA" referredColumn="F3F981AF-048A-F811-EA3D-6784C3AD8AB5"/>
+<colAssociation fkAssociation="9A7F06D9-77A1-794E-A336-9E042305EEB3" referredColumn="3A801898-0C55-A3C1-D669-2B9C96594D1C"/>
 </associations>
 </Column>
-<Column name="Zusatzattribut_subenti21" id="B6FB0586-424A-8E42-B771-B4698A35E682">
+<Column name="Zusatzattribut_subenti1" id="FEB5AC32-7E92-2AF6-D5EF-E211E32F5633">
 <createdBy>stb</createdBy>
-<createdTime>2019-11-09 17:04:10 UTC</createdTime>
-<generatorID>5CA43C05-B2D9-57D2-67BA-519E38831E9B</generatorID>
+<createdTime>2020-05-16 13:21:02 UTC</createdTime>
+<generatorID>67F51C8D-63BE-AA45-777B-9ECA1BE05DCA</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>fyayc_dev_mapping</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
@@ -34,9 +42,9 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="Subentität_2-1_ID" id="BFA7AF92-3AAB-DE8F-C37D-A5B7BF78EEC4">
+<Column name="Subentität_2_ID" id="737892D9-3396-5EAB-2DBC-D13E212351D5">
 <createdBy>stb</createdBy>
-<createdTime>2019-11-09 17:04:10 UTC</createdTime>
+<createdTime>2020-05-16 13:21:02 UTC</createdTime>
 <ownerDesignName>fyayc_dev_mapping</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -50,34 +58,34 @@
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
-<ind_PK_UK id="9EFC92CA-E872-9C87-41A8-703FC6A7F35A" name="Subentität_2-1_PK">
+<ind_PK_UK id="974ED0BD-AD68-E387-53AC-F41166C4FC4E" name="Subentität_2_PK">
 <createdBy>stb</createdBy>
-<createdTime>2019-11-09 17:04:10 UTC</createdTime>
+<createdTime>2020-05-16 13:21:02 UTC</createdTime>
 <ownerDesignName>fyayc_dev_mapping</ownerDesignName>
 <pk>true</pk>
 <indexState>Primary Constraint</indexState>
 <indexColumnUsage>
-<colUsage columnID="6C8C5918-0E19-1F80-C1DA-0703BC4C67D4"/>
+<colUsage columnID="B88A6976-4FD5-08B7-641C-0B78BF17484B"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="093994CC-F9A9-ED06-7F04-54A01D7673F8" name="Subentität_2-1_Subentität_2-1_ID_UN">
+<ind_PK_UK id="140F07BB-D2A2-0D40-544E-920FDF50D000" name="Subentität_2_Subentität_2_ID_UN">
 <createdBy>stb</createdBy>
-<createdTime>2019-11-09 17:04:10 UTC</createdTime>
+<createdTime>2020-05-16 13:21:02 UTC</createdTime>
 <ownerDesignName>fyayc_dev_mapping</ownerDesignName>
 <indexState>Unique Constraint</indexState>
 <indexColumnUsage>
-<colUsage columnID="BFA7AF92-3AAB-DE8F-C37D-A5B7BF78EEC4"/>
+<colUsage columnID="737892D9-3396-5EAB-2DBC-D13E212351D5"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="0C30318D-98B4-4639-8FF8-E64F4BF0D6C1" name="Subentität_2-1_Subentität_2_FK">
+<ind_PK_UK id="9FF72870-DA1F-5383-FEE4-059A7FD41EF3" name="Subentität_2_Super_Entiät_FK">
 <createdBy>stb</createdBy>
-<createdTime>2019-11-09 17:04:10 UTC</createdTime>
-<generatorID>F89C6712-587B-04D6-4450-4393387563AC</generatorID>
+<createdTime>2020-05-16 13:21:02 UTC</createdTime>
+<generatorID>27243F6C-8EA1-74A1-84AB-A6CB82A235BF</generatorID>
 <ownerDesignName>fyayc_dev_mapping</ownerDesignName>
 <indexState>Foreign Key</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
-<colUsage columnID="6C8C5918-0E19-1F80-C1DA-0703BC4C67D4"/>
+<colUsage columnID="B88A6976-4FD5-08B7-641C-0B78BF17484B"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>

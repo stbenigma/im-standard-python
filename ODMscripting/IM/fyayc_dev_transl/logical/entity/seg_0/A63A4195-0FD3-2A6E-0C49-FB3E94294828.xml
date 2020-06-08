@@ -1,17 +1,23 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="A63A4195-0FD3-2A6E-0C49-FB3E94294828" name="Subentit 1-2">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="A63A4195-0FD3-2A6E-0C49-FB3E94294828" name="Product variant">
 <createdBy>stb</createdBy>
 <createdTime>2019-11-06 12:31:36 UTC</createdTime>
-<comment><![CDATA[Subentität, die mit einer 1:1 Verbindung verknüpft ist.]]></comment>
-<notes><![CDATA[[EN_ENTI_COMMENT[
-*DE* Subentität, die mit einer 1:1 Verbindung verknüpft ist.
-]EN_ENTI_COMMENT]
-[DE_ENTI_COMMENT[
-Subentität, die mit einer 1:1 Verbindung verknüpft ist.
+<comment><![CDATA[**German commentary with english inline.
+
+Conclusion]]></comment>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+**German commentary with english inline.
+
+Conclusion
 ]DE_ENTI_COMMENT]
 [FR_ENTI_COMMENT[
-*DE* Subentität, die mit einer 1:1 Verbindung verknüpft ist.
+**Sous-unité appartenant à une connexion 1:1.
 ]FR_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+**German commentary with english inline.
+
+Conclusion
+]EN_ENTI_COMMENT]
 ]]></notes>
 <ownerDesignName>fyayc_dev_transl</ownerDesignName>
 <engineerTo>
@@ -27,15 +33,15 @@ Subentität, die mit einer 1:1 Verbindung verknüpft ist.
 <normalForm>Third</normalForm>
 <createSurrogateKey>true</createSurrogateKey>
 <propertyMap>
-<property name="DE_ENTI_NAME" value="Subentit 1-2"/>
+<property name="DE_ENTI_NAME" value="Product variant"/>
 <property name="DE_ENTI_SYNONYM" value=""/>
-<property name="EN_ENTI_NAME" value="*DE* Subentit 1-2"/>
+<property name="EN_ENTI_NAME" value="Product variant"/>
 <property name="EN_ENTI_SYNONYM" value=""/>
-<property name="FR_ENTI_NAME" value="*DE* Subentit 1-2"/>
+<property name="FR_ENTI_NAME" value="*DE* Product variant"/>
 <property name="FR_ENTI_SYNONYM" value=""/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<Attribute name="Zusatzattribut 1-2" id="D7FCD7A6-1ECF-C45B-953D-7BFE943B363A">
+<Attribute name="*DE* Zusatzattribut 1-2" id="D7FCD7A6-1ECF-C45B-953D-7BFE943B363A">
 <createdBy>stb</createdBy>
 <createdTime>2019-11-06 12:31:48 UTC</createdTime>
 <notes><![CDATA[[DE_ATTR_COMMENT[
@@ -56,7 +62,7 @@ Subentität, die mit einer 1:1 Verbindung verknüpft ist.
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
-<property name="DE_ATTR_NAME" value="Zusatzattribut 1-2"/>
+<property name="DE_ATTR_NAME" value="*DE* Zusatzattribut 1-2"/>
 <property name="EN_ATTR_NAME" value="*DE* Zusatzattribut 1-2"/>
 <property name="FR_ATTR_NAME" value="*DE* Zusatzattribut 1-2"/>
 </propertyMap>

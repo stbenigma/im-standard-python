@@ -1,13 +1,13 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="CC9B096B-35D2-4947-4D31-467484FF202F" name="Subentit 1-1">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="CC9B096B-35D2-4947-4D31-467484FF202F" name="*DE* Subentit 1-1">
 <createdBy>stb</createdBy>
 <createdTime>2019-11-06 12:30:45 UTC</createdTime>
-<comment><![CDATA[Subentität, die mit einer 1:1 Verbindung verknüpft ist.]]></comment>
+<comment><![CDATA[*DE* Subentität, die mit einer 1:1 Verbindung verknüpft ist.]]></comment>
 <notes><![CDATA[[EN_ENTI_COMMENT[
 *DE* Subentität, die mit einer 1:1 Verbindung verknüpft ist.
 ]EN_ENTI_COMMENT]
 [DE_ENTI_COMMENT[
-Subentität, die mit einer 1:1 Verbindung verknüpft ist.
+*DE* Subentität, die mit einer 1:1 Verbindung verknüpft ist.
 ]DE_ENTI_COMMENT]
 [FR_ENTI_COMMENT[
 *DE* Subentität, die mit einer 1:1 Verbindung verknüpft ist.
@@ -27,11 +27,101 @@ Subentität, die mit einer 1:1 Verbindung verknüpft ist.
 <normalForm>Third</normalForm>
 <createSurrogateKey>true</createSurrogateKey>
 <propertyMap>
-<property name="DE_ENTI_NAME" value="Subentit 1-1"/>
-<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="DE_ENTI_NAME" value="*DE* Subentit 1-1"/>
 <property name="EN_ENTI_NAME" value="*DE* Subentit 1-1"/>
 <property name="EN_ENTI_SYNONYM" value=""/>
 <property name="FR_ENTI_NAME" value="*DE* Subentit 1-1"/>
 <property name="FR_ENTI_SYNONYM" value=""/>
 </propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Attribute neu" id="689816C7-A6C2-C28E-34CA-70A9F1872538">
+<createdBy>stb</createdBy>
+<createdTime>2020-06-04 15:15:40 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>fyayc_dev_transl</ownerDesignName>
+<engineerTo>
+<item key="5BE1D3DE-1298-62A6-B8A4-2793AE250A49" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Attribute neu"/>
+<property name="EN_ATTR_NAME" value="*DE* Attribute neu"/>
+<property name="FR_ATTR_NAME" value="*DE* Attribute neu"/>
+</propertyMap>
+</Attribute>
+<Attribute name="*EN* Attribute 2 auch neu" id="982F8E10-6FC3-A6CB-05E3-C5F03D893EBF">
+<createdBy>stb</createdBy>
+<createdTime>2020-06-04 15:18:04 UTC</createdTime>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>fyayc_dev_transl</ownerDesignName>
+<engineerTo>
+<item key="5BE1D3DE-1298-62A6-B8A4-2793AE250A49" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="*EN* Attribute 2 auch neu"/>
+<property name="EN_ATTR_NAME" value="Attribute 2 auch neu"/>
+</propertyMap>
+</Attribute>
+<Attribute name="Attribute 3" id="5D18EAAE-796B-F3D6-44DD-4D18CE520B2E">
+<createdBy>stb</createdBy>
+<createdTime>2020-06-04 15:20:30 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>fyayc_dev_transl</ownerDesignName>
+<engineerTo>
+<item key="5BE1D3DE-1298-62A6-B8A4-2793AE250A49" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Attribute 3"/>
+<property name="EN_ATTR_NAME" value="**Attributes 3"/>
+</propertyMap>
+</Attribute>
+<Attribute name="*EN* **A long attribute in Zurich" id="AC50F72C-B2E5-9BB8-54ED-153C142EDC48">
+<createdBy>stb</createdBy>
+<createdTime>2020-06-04 15:20:58 UTC</createdTime>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>fyayc_dev_transl</ownerDesignName>
+<engineerTo>
+<item key="5BE1D3DE-1298-62A6-B8A4-2793AE250A49" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="*EN* **A long attribute in Zurich"/>
+<property name="EN_ATTR_NAME" value="**A long attribute in Zurich"/>
+</propertyMap>
+</Attribute>
+</attributes>
 </Entity>

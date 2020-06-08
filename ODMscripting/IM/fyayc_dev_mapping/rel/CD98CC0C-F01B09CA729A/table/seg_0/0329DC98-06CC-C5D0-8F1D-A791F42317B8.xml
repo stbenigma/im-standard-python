@@ -40,12 +40,9 @@
 <use>1</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
 <dataTypePrecision>10</dataTypePrecision>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
-<associations>
-<colAssociation fkAssociation="9E0A9C9B-2F07-C6EB-EED3-1A9EFE29A5C4" referredColumn="E2C5F94A-C55A-E4DB-0937-A737FA698633"/>
-</associations>
 </Column>
 <Column name="Subentität_1_Subentität_1_ID" id="C5AC1788-3ABE-42B1-1D3A-7F93CF8DBBA5">
 <createdBy>stb</createdBy>
@@ -55,12 +52,9 @@
 <use>1</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
 <dataTypePrecision>10</dataTypePrecision>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
-<associations>
-<colAssociation fkAssociation="9E0A9C9B-2F07-C6EB-EED3-1A9EFE29A5C4" referredColumn="7FB97853-3C59-F9BC-5D18-ABB56580F797"/>
-</associations>
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
@@ -81,18 +75,6 @@
 <indexState>Unique Plain Index</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <relationGeneratorID>7F45205C-13D2-8D8F-AF29-B63527E8B664</relationGeneratorID>
-<indexColumnUsage>
-<colUsage columnID="98F50241-2654-8ED0-ED93-7B6C321BDA9A"/>
-<colUsage columnID="C5AC1788-3ABE-42B1-1D3A-7F93CF8DBBA5"/>
-</indexColumnUsage>
-</ind_PK_UK>
-<ind_PK_UK id="B70C3916-D41B-0D89-F235-504C43EC05BD" name="Subentit_1-2_Subentität_1_FK">
-<createdBy>stb</createdBy>
-<createdTime>2019-11-09 17:04:10 UTC</createdTime>
-<generatorID>7F45205C-13D2-8D8F-AF29-B63527E8B664</generatorID>
-<ownerDesignName>fyayc_dev_mapping</ownerDesignName>
-<indexState>Foreign Key</indexState>
-<isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
 <colUsage columnID="98F50241-2654-8ED0-ED93-7B6C321BDA9A"/>
 <colUsage columnID="C5AC1788-3ABE-42B1-1D3A-7F93CF8DBBA5"/>

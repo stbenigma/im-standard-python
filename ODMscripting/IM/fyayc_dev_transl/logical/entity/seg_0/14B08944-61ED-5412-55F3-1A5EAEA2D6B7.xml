@@ -1,22 +1,23 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="14B08944-61ED-5412-55F3-1A5EAEA2D6B7" name="*Entität 1">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="14B08944-61ED-5412-55F3-1A5EAEA2D6B7" name="Entity two">
 <createdBy>stb</createdBy>
 <createdTime>2019-11-06 09:26:00 UTC</createdTime>
-<comment><![CDATA[Eine Entität die einfach so da steht.]]></comment>
+<comment><![CDATA[*An entity as it is]]></comment>
 <notes><![CDATA[[EN_ENTI_COMMENT[
 *An entity as it is
 ]EN_ENTI_COMMENT]
 [DE_ENTI_COMMENT[
-Eine Entität die einfach so da steht.
+*An entity as it is
 ]DE_ENTI_COMMENT]
 [FR_ENTI_COMMENT[
-*EN* *An entity as it is
+*DE* *An entity as it is
 ]FR_ENTI_COMMENT]
 ]]></notes>
 <ownerDesignName>fyayc_dev_transl</ownerDesignName>
 <engineerTo>
 <item key="5BE1D3DE-1298-62A6-B8A4-2793AE250A49" value="true"/>
 </engineerTo>
+<additionalClassificationTypes>1B18AA50-FE42-0EC2-2009-80DE47DDF109</additionalClassificationTypes>
 <adequatelyNormalized>NO</adequatelyNormalized>
 <expectedVolumes>0</expectedVolumes>
 <fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
@@ -28,7 +29,7 @@ Eine Entität die einfach so da steht.
 <synonym>*EN* synE1</synonym>
 <createSurrogateKey>true</createSurrogateKey>
 <propertyMap>
-<property name="DE_ENTI_NAME" value="*Entität 1"/>
+<property name="DE_ENTI_NAME" value="Entity two"/>
 <property name="DE_ENTI_SYNONYM" value="*EN* synE1"/>
 <property name="EN_ENTI_NAME" value="Entity two"/>
 <property name="EN_ENTI_SYNONYM" value="*EN* synE1"/>
@@ -61,10 +62,10 @@ Eine Entität die einfach so da steht.
 <propertyMap>
 <property name="DE_ATTR_NAME" value="Name"/>
 <property name="EN_ATTR_NAME" value="Name"/>
-<property name="FR_ATTR_NAME" value="*EN* Name"/>
+<property name="FR_ATTR_NAME" value="*DE* Name"/>
 </propertyMap>
 </Attribute>
-<Attribute name="Beschreibung" id="8AF6A732-985B-11AB-14DC-914AD756EFA5">
+<Attribute name="Description" id="8AF6A732-985B-11AB-14DC-914AD756EFA5">
 <createdBy>stb</createdBy>
 <createdTime>2019-11-06 09:26:25 UTC</createdTime>
 <notes><![CDATA[[DE_ATTR_COMMENT[
@@ -87,9 +88,9 @@ Eine Entität die einfach so da steht.
 <logicalDatatype>LOGDT040</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
-<property name="DE_ATTR_NAME" value="Beschreibung"/>
-<property name="EN_ATTR_NAME" value="Description"/>
-<property name="FR_ATTR_NAME" value="*EN* Description"/>
+<property name="DE_ATTR_NAME" value="Description"/>
+<property name="EN_ATTR_NAME" value="*Description"/>
+<property name="FR_ATTR_NAME" value="*DE* Description"/>
 </propertyMap>
 </Attribute>
 </attributes>
