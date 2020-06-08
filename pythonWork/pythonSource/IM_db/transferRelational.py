@@ -127,7 +127,7 @@ def transferschn():
 #transferschn
 
 def loeschmodell():
-    Attrtransf.delete()
+    AttrTransf.delete()
     TablEntiMap.delete()
     Schnittstelleattr().delete()
     Tabelle().delete()
@@ -187,9 +187,9 @@ def doattrmapping(pcolmappings,ptabenti):
     for colmap in pcolmappings:
         schaid = Schnittstelleattr().getbyguid(transferModel.findField(colmap,'rID')).scha_id
         attrid = Attribut().getID (pguid=transferModel.findField(colmap,'lID'))
-        attf = Attrtransf()
+        attf = AttrTransf()
         attf.attf_laufnr =1
-        attf.attf_richtung = Attrtransf.INBOUND
+        attf.attf_richtung = AttrTransf.INBOUND
         #attf.attf_transf_formel
         #attf.attf_ausloeseart
         #attf.attf_ausloeseperiod
@@ -221,7 +221,7 @@ def do1mapping(pfilename):
             tabentimap.tema_enti_id = Entitaet().getID(odmmap.logid) if odmmap.logtype == odmmap.ENTITYPE else None
             tabentimap.tema_bezi_id = dbLookup.beziID(odmmap.logid) if odmmap.logtype == odmmap.RELATYPE else None
             tabentimap.tema_tabl_id = Tabelle().getID(odmmap.relid) if odmmap.reltype == odmmap.TABLETYPE else None
-            #tabentimap.tema_tabl_id = Tabelle().getidbyfk(odmmap.relid) if odmmap.reltype == odmmap.FKTYPE else None
+            #colattrmap.tema_tabl_id = Tabelle().getidbyfk(odmmap.relid) if odmmap.reltype == odmmap.FKTYPE else None
             tabentimap.insert()
         except:
             pass

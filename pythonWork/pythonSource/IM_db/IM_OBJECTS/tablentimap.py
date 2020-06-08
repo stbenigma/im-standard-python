@@ -73,7 +73,7 @@ class TablEntiMap(Baseobject):
     # tablelist
 
     @staticmethod
-    def tabentimap():
+    def extendedtabentimap():
         data = dbDML.select("""select  tema_tabl_id,tema_enti_id,tabl_name,enti_name,schn_name
                             from tabl_enti_maps
                             join tabellen on tabl_id = tema_tabl_id
@@ -86,7 +86,20 @@ class TablEntiMap(Baseobject):
             retval[d[0]][d[1]] = [d[2],d[3],d[4]]
         # for
         return retval
-    # tabentimap
+    #extendedtabentimap
+
+
+    @staticmethod
+    def tabentimap():
+        data = dbDML.select("""select  tema_tabl_id,tema_enti_id
+                        from tabl_enti_maps
+                        """)
+        retval = defaultdict(dict)
+        for d in data:
+            retval[d[0]][d[1]] = True
+        # for
+        return retval
+    #tabentimap
 #TablEntiMap
 
 

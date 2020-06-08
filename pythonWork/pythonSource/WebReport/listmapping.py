@@ -15,8 +15,8 @@ attributes = {}
 tables = {}
 columns = {}
 schnittstellen = {}
-mapping = {}
 tabentimap = {}
+colattrmap = {}
 
 def createFile(pfilename):
     global fileCSV
@@ -46,16 +46,12 @@ def listtabenti(plang):
     global attributes
     global tables
     global schnittstellen
-    global mapping
     global tabentimap
 
     createFile(pfilename=parameters.odmModelName()+'_tabenti.csv')
     write('\ufeff')
     topheader = 'Interface'+CSVSEP +'Table'+ CSVSEP + CSVSEP.join(e[0] for e in entities.values())
     writeln(topheader)
-    #def matrixentry(ptablid,pentiid):
-    #    if (ptablid in tabentimap) and (pentiid in tabentimap[ptablid]): return 'X'
-    #    else: return ''
     for tkey,tval in tables.items():
         matentry = lambda tabid,entiid : 'X' if (tabid in tabentimap) and (entiid in tabentimap[tabid]) else ''
         maps = [matentry(tkey,e) for e in entities.keys()]
@@ -73,23 +69,27 @@ def listcolattr(plang):
     global attributes
     global tables
     global schnittstellen
-    global mapping
     global tabentimap
 
     createFile(pfilename=parameters.odmModelName()+'_colattr.csv')
     write('\ufeff')
-    topheader = 'Interface'+CSVSEP +'Table'+ CSVSEP +'Column'+ CSVSEP + CSVSEP.join(e[0] for e in entities.values())
+    topheader = ';;Entity' + CSVSEP
+    subheader = 'Interface'+CSVSEP +'Table'+ CSVSEP +'Column'+ CSVSEP
+    for enti,attrs in entities.items():
+        print(enti[1],attrs)
+        topheader += enti[0] + CSVSEP+ CSVSEP.join('' for at in attrs)[:-1]
+        subheader += CSVSEP+ CSVSEP.join(at[0] for at in attrs.values())
     writeln(topheader)
-    for tkey,tval in tables.items():
-        matentry = lambda tabid,entiid : 'X' if (tabid in tabentimap) and (entiid in tabentimap[tabid]) else ''
-        maps = [matentry(tkey,e) for e in entities.keys()]
-        tval.append(maps)
+    writeln(subheader)
+    for colid,cval in columns.items():
+        matentry = lambda colid,attrid : 'X' if (colid in colattrmap) and (attrid in colattrmap[colid]) else ''
+        maps = [matentry(colid,attrid) for attrid in attributes.keys()]
+        cval.append(maps)
     #for
-    return
     for skey,sval in schnittstellen.items():
         for tkey,tval in sval.items():
             for ckey,cval in tval[1].items():
-                writeln(skey,tval[0],cval,CSVSEP.join(tables[tkey][3]),sep=CSVSEP)
+                writeln(skey,tval[0],cval[0],CSVSEP.join(columns[ckey][3]),sep=CSVSEP)
     print("Erstellt: {}".format(fileCSV.name))
     closefile()
 #listcolattr
@@ -114,15 +114,16 @@ def listentiintf(plang):
 #listentiintf
 
 def listentitable(plang):
+    global entities
+    global schnittstellen
+
     createFile(pfilename=parameters.odmModelName()+'_entitable.csv')
     write('\ufeff')
     topheader = 'Information Model' + CSVSEP
-    subheader = 'Entity' + CSVSEP
-    scns = Schnittstelle.select()
-    for scn in scns:
-        tabs = Tabelle.selectbyschnid(pschnid=scn.schn_id)
-        topheader += scn.schn_name+ CSVSEP+ CSVSEP.join('' for ta in tabs)[:-1]
-        subheader += CSVSEP.join(ta.tabl_name for ta in tabs)
+    subheader = 'Entity'
+    for schn_name,tabs in schnittstellen.items():
+        topheader += schn_name + CSVSEP+ CSVSEP.join('' for ta in tabs)[:-1]
+        subheader += CSVSEP+ CSVSEP.join(ta[0] for ta in tabs.values())
     writeln(topheader)
     writeln(subheader)
     entis = Entitaet.select()
@@ -132,11 +133,10 @@ def listentitable(plang):
         temdict = {t[0]:t[1] for t in tem}
         """{schnname : {tablename: webanker}}"""
         #print (temdict)
-        for scn in scns:
-            tabs = Tabelle.selectbyschnid(pschnid=scn.schn_id)
-            for t in tabs:
-                if ((scn.schn_name in temdict)\
-                    and (t.tabl_name in temdict[scn.schn_name])):
+        for schn_name,tabs in schnittstellen.items():
+            for t in tabs.values():
+                if ((schn_name in temdict)\
+                    and (t[0] in temdict[schn_name])):
                     write('X')
                 write(CSVSEP)
             #for
@@ -152,8 +152,8 @@ def filllists(plang):
     global tables
     global columns
     global schnittstellen
-    global mapping
     global tabentimap
+    global colattrmap
     entities = {enti.enti_id:[enti.enti_name
                                 ,{tem[0]: [t for t in tem[1].keys()]
                                 for tem in TablEntiMap.tablelist(pentiid=enti.enti_id)}
@@ -174,14 +174,16 @@ def filllists(plang):
                                             ] for tabl in Tabelle.selectbyschnid(schn.schn_id)
                                }
                         for schn in Schnittstelle.select() }
-    mapping = TablEntiMap.tablelist()
     tabentimap = TablEntiMap.tabentimap()
+    colattrmap = AttrTransf.colattrmap()
+
+
     print (len(entities),entities)
 #    print(len(attributes),attributes)
-    print (len(tables),tables)
+#    print (len(tables),tables)
 #    print (len(schnittstellen),schnittstellen)
 #    print (len(mapping),mapping)
-#    print(len(tabentimap),tabentimap)
+#    print(len(colattrmap),colattrmap)
 #filllists
 
 def main(pdirec, plang):
@@ -193,7 +195,7 @@ def main(pdirec, plang):
     deflang = Sprache.liesdeflangiso2()
     if deflang is not None : parameters.dbDefaultLang(deflang)
     filllists(plang=plang)
-    listentiintf(plang=plang)
+#    listentiintf(plang=plang)
     listentitable(plang=plang)
     listcolattr(plang=plang)
     dbConnect.myDbConn.close()

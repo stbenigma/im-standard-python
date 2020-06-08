@@ -400,6 +400,6 @@ CREATE TABLE linie_segment(
     Dokument.createtable()
     ModelelemDoku.createtable()
     TablEntiMap.createtable()
-    Attrtransf.createtable()
+    AttrTransf.createtable()
 
 #end erstelleInfra

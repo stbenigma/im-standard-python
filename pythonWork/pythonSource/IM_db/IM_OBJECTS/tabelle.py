@@ -1,5 +1,6 @@
 from .baseobject import Baseobject
 from IM_DB import dbDML
+from collections import defaultdict
 
 class Tabelle(Baseobject):
     _tablename:str = 'tabellen'
@@ -220,7 +221,7 @@ class Schnittstelleattr(Baseobject):
     # maopingto
 #Schnittstelleattr
 
-class Attrtransf(Baseobject):
+class AttrTransf(Baseobject):
     INBOUND:str = 'INBOUND'
     OUTBOUND:str = 'OUTBOUND'
     MANUELL:str = 'MANUELL'
@@ -235,12 +236,12 @@ class Attrtransf(Baseobject):
                         ,'attf_dc'  ,'attf_um'  ,'attf_dm']
 
     def __init__(self):
-        super().__init__(tablename=Attrtransf._tablename, prefix=Attrtransf._prefix
-                     , columnlist=Attrtransf._columnlist)
+        super().__init__(tablename=AttrTransf._tablename, prefix=AttrTransf._prefix
+                         , columnlist=AttrTransf._columnlist)
 
     @staticmethod
     def createtable():
-        Baseobject.createtable(ptablename=Attrtransf._tablename
+        Baseobject.createtable(ptablename=AttrTransf._tablename
                            , psql="""
                             create table attr_transf 
          (
@@ -266,11 +267,11 @@ class Attrtransf(Baseobject):
 
     @staticmethod
     def delete():
-        Baseobject.delete(Attrtransf._tablename)
+        Baseobject.delete(AttrTransf._tablename)
 
     @staticmethod
     def select(pwhere=None, porderby=None):
-        return Baseobject.select(pclass=Attrtransf
+        return Baseobject.select(pclass=AttrTransf
                                     , pwhere=pwhere, porderby=porderby)
 
     @staticmethod
@@ -302,6 +303,17 @@ class Attrtransf(Baseobject):
         # try
         return retval
     #columnlist
-#Attrtransf
+    @staticmethod
+    def colattrmap():
+        data = dbDML.select("""select attf_scha_id,attf_attr_id
+                                from attr_transf
+                            """)
+        retval = defaultdict(dict)
+        for d in data:
+            retval[d[0]][d[1]] = True
+        # for
+        return retval
+    # colattrmap
+#AttrTransf
 
 
