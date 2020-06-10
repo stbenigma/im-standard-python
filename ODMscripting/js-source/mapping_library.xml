@@ -4,7 +4,7 @@
 	<lib id="B2F713AD-5E48-670F-8A2B-55D1ABD0440C" name="attrmapping" engine="Oracle Nashorn" methods="importMapping,print1Mapping,printXMapping,printNameMapping" >
 		<script>
 			<![CDATA[
-			var CODEVERSION = '2.0'
+			var CODEVERSION = '2.1'
 			var PLAINMESSAGE = 1;
 			var ERRORMESSAGE = 0;
 			var WARNINGMESSAGE = 2;
@@ -115,6 +115,14 @@
 				fullmessage(msg, PLAINMESSAGE);
 			}
 
+			function linemessage() {
+				str = ''
+				for (i=0;i<arguments.length;i++){
+					str = str.concat(arguments[i],'\n')
+				}
+				message(str)
+			}
+
 			function trimapo(s) {
 				return s.replace(/^"|"$/g, '');
 			}
@@ -203,16 +211,11 @@
 				colName = values[1];
 				elemName = values[2];
 				attrName = values[3];
-				//message(entiName+' | '+attrName+' | '+tabName+' | '+colName)
+				//linemessage(elemName,attrName,tabName,colName)
 				relation = null
 				entity = entitySet.getByName(elemName);
 				if (entity != null) {
 					attribute = entity.getElementByName(attrName);
-					//if (attribute = null){
-					//entity.createAttribute(attrName)
-					//attribute = entity.getElementByName(attrName);
-					//attribute.setComment("Created on "+curDateStr() +" during import from "+imppath)		
-					//}
 				} else { // assume Relation 
 					relation = relationSet.getByName(elemName)
 					if (relation != null) {
@@ -234,7 +237,7 @@
 				}
 				// neue Columns werden erzeugt
 				if ((column == null) && (colName != "")) {
-					//message('neue Column')
+					linemessage('neue Column',colName,tabName)
 					table.createColumn(colName)
 					column = table.getElementByName(colName);
 					column.setComment("Created on " + curDateStr() + " during import from " + imppath)
@@ -295,9 +298,11 @@
 						// skip headers
 						//message(lnoif+': '+"headers= "+values);
 					} else {
-						//message(lnoif+': '+values);
-						do1line(values);
-						lineanz++
+						//linemessage(lnoif,values.length,values);
+						if (values.length>=4){
+							do1line(values);
+							lineanz++
+						}
 					}
 				};
 			}
