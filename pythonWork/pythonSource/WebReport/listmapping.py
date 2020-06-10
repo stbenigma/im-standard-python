@@ -1,5 +1,5 @@
 # -*- coding: latin-1 -*-
-import sys,os
+import sys,os,re
 sys.path.append(os.getcwd())
 sys.path.append(os.getcwd()+'/../IM_db')
 from IM_DB import parameters,dbConnect,dbParam
@@ -52,11 +52,6 @@ def listtabenti(plang):
     write('\ufeff')
     topheader = 'Interface'+CSVSEP +'Table'+ CSVSEP + CSVSEP.join(e[0] for e in entities.values())
     writeln(topheader)
-    for tkey,tval in tables.items():
-        matentry = lambda tabid,entiid : 'X' if (tabid in tabentimap) and (entiid in tabentimap[tabid]) else ''
-        maps = [matentry(tkey,e) for e in entities.keys()]
-        tval.append(maps)
-    #for
     for skey,sval in schnittstellen.items():
         for tkey,tval in sval.items():
             writeln(skey,tval[0],CSVSEP.join(tables[tkey][3]),sep=CSVSEP)
@@ -73,19 +68,14 @@ def listcolattr(plang):
 
     createFile(pfilename=parameters.odmModelName()+'_colattr.csv')
     write('\ufeff')
-    topheader = ';;Entity' + CSVSEP
+    topheader = CSVSEP + CSVSEP + 'Entity' + CSVSEP
     subheader = 'Interface'+CSVSEP +'Table'+ CSVSEP +'Column'+ CSVSEP
-    for enti,attrs in entities.items():
-        print(enti[1],attrs)
+    for enti in entities.values():
+        attrs = enti[2]
         topheader += enti[0] + CSVSEP+ CSVSEP.join('' for at in attrs)[:-1]
         subheader += CSVSEP+ CSVSEP.join(at[0] for at in attrs.values())
     writeln(topheader)
     writeln(subheader)
-    for colid,cval in columns.items():
-        matentry = lambda colid,attrid : 'X' if (colid in colattrmap) and (attrid in colattrmap[colid]) else ''
-        maps = [matentry(colid,attrid) for attrid in attributes.keys()]
-        cval.append(maps)
-    #for
     for skey,sval in schnittstellen.items():
         for tkey,tval in sval.items():
             for ckey,cval in tval[1].items():
@@ -93,25 +83,72 @@ def listcolattr(plang):
     print("Erstellt: {}".format(fileCSV.name))
     closefile()
 #listcolattr
+def istintabentimap(tabid,entiid):
+    return (tabid in tabentimap) and (entiid in tabentimap[tabid])
+#istintabentimap
+def istincolattrmap(colid,attrid):
+    return (colid in colattrmap) and (attrid in colattrmap[colid])
+#istincolattrmap
+
+def stripeol(str):
+    retval = re.sub("\n+", "\n", str)
+    retval = retval.strip(EOL)
+    return retval
+#stripeol
 
 def listentiintf(plang):
+    global tabentimap,schnittstellen,entities
     createFile(pfilename=parameters.odmModelName()+'_entiintf.csv')
     write('\ufeff')
-    scns = Schnittstelle.select()
-    writeln('Information Model',CSVSEP.join(scn.schn_name for scn in scns),sep=CSVSEP)
-    entis = Entitaet.select()
-    for enti in entis:
-        write(enti.getname(plang),CSVSEP)
-        tem = TablEntiMap.tablelist(pentiid=enti.enti_id)
-        for scn in scns:
-            for t in tem:
-                if scn.schn_name == t[0]:
-                    write('"'+EOL.join(ta for ta in t[1].keys())+'"')
+    writeln('Information Model',CSVSEP.join(schn_name for schn_name in schnittstellen.keys()),sep=CSVSEP)
+    for entiid,enti in entities.items():
+        write(enti[0],CSVSEP)
+        for schntabs in schnittstellen.values():
+            entry = EOL.join(tab[0] if (istintabentimap(tabid,entiid)) else "" for tabid,tab in schntabs.items())
+            entry = stripeol(entry)
+            if (entry!= ""):
+                write('"'+entry+'"')
             write(CSVSEP)
         writeln()
     print("Erstellt: {}".format(fileCSV.name))
     closefile()
 #listentiintf
+
+def listattrintf(plang):
+    global tabentimap,schnittstellen,entities
+    createFile(pfilename=parameters.odmModelName()+'_attrintf.csv')
+    write('\ufeff')
+    topheader = CSVSEP + CSVSEP
+    subheader = 'Entity' + CSVSEP+ 'Attribute'
+    for schn_name,tabs in schnittstellen.items():
+        topheader += schn_name + CSVSEP + CSVSEP.join('' for ta in tabs)[:-1]
+        subheader += CSVSEP+ CSVSEP.join(ta[0] for ta in tabs.values())
+    writeln(topheader)
+    writeln(subheader)
+    for enti_id,enti in entities.items():
+        for attrid,attr in enti[2].items():
+            write(enti[0],CSVSEP,attr[0],CSVSEP)
+            for schntabs in schnittstellen.values():
+                entry = []
+                for tab in schntabs.values():
+                    colentry = EOL.join((tab[0]+'.'+col[0]) if (istincolattrmap(colid,attrid)) else "" for colid,col in tab[1].items())
+                    colentry = stripeol(colentry)
+                    if (colentry!= ""):
+                        entry.append(colentry)
+                #for
+                entry = EOL.join(entry)
+                entry = stripeol(entry)
+            if (entry != ""):
+                write('"' + entry + '"')
+            write(CSVSEP)
+            #for
+        #for
+        writeln()
+    #for
+
+    print("Erstellt: {}".format(fileCSV.name))
+    closefile()
+#listattrintf
 
 def listentitable(plang):
     global entities
@@ -126,25 +163,26 @@ def listentitable(plang):
         subheader += CSVSEP+ CSVSEP.join(ta[0] for ta in tabs.values())
     writeln(topheader)
     writeln(subheader)
-    entis = Entitaet.select()
-    for enti in entis:
-        write(enti.getname(plang),CSVSEP)
-        tem = TablEntiMap.tablelist(pentiid=enti.enti_id)
-        temdict = {t[0]:t[1] for t in tem}
-        """{schnname : {tablename: webanker}}"""
-        #print (temdict)
-        for schn_name,tabs in schnittstellen.items():
-            for t in tabs.values():
-                if ((schn_name in temdict)\
-                    and (t[0] in temdict[schn_name])):
-                    write('X')
-                write(CSVSEP)
-            #for
-        #for
-        writeln()
+    for enti in entities.values():
+        writeln(enti[0],CSVSEP.join(enti[3]),sep=CSVSEP)
     print("Erstellt: {}".format(fileCSV.name))
     closefile()
 #listentitable
+
+def listtabenti(plang):
+    global entities
+    global schnittstellen
+
+    createFile(pfilename=parameters.odmModelName()+'_tabenti.csv')
+    write('\ufeff')
+    topheader = 'Interface' + CSVSEP + 'Table' + CSVSEP + CSVSEP.join(enti[0] for enti in entities.values())
+    writeln(topheader)
+    for skey,sval in schnittstellen.items():
+        for tkey,tval in sval.items():
+            writeln(skey,tval[0],CSVSEP.join(tables[tkey][3]),sep=CSVSEP)
+    print("Erstellt: {}".format(fileCSV.name))
+    closefile()
+#listtabenti
 
 def filllists(plang):
     global entities
@@ -156,9 +194,9 @@ def filllists(plang):
     global colattrmap
     entities = {enti.enti_id:[enti.enti_name
                                 ,{tem[0]: [t for t in tem[1].keys()]
-                                for tem in TablEntiMap.tablelist(pentiid=enti.enti_id)}
+                                      for tem in TablEntiMap.tablelist(pentiid=enti.enti_id)}
                               ,{attr.attr_id:[attr.attr_anzname,attr.attr_tech_name]
-                                 for attr in enti.getattributes()}
+                                     for attr in enti.getattributes()}
                               ]
                 for enti in Entitaet.select()}
     attributes = {attr.attr_id:[attr.attr_anzname,attr.attr_tech_name,attr.attr_enti_id,attr.attr_bezi_id] for attr in Attribut.select()}
@@ -175,10 +213,23 @@ def filllists(plang):
                                }
                         for schn in Schnittstelle.select() }
     tabentimap = TablEntiMap.tabentimap()
+    for tkey,tval in tables.items():
+        matentry = lambda tabid,entiid : 'X' if (tabid in tabentimap) and (entiid in tabentimap[tabid]) else ''
+        maps = [matentry(tkey,e) for e in entities.keys()]
+        tval.append(maps)
+    #for
+    for ekey,eval in entities.items():
+        matentry = lambda tabid,entiid : 'X' if (tabid in tabentimap) and (entiid in tabentimap[tabid]) else ''
+        maps = [matentry(tkey,ekey) for tkey in tables.keys()]
+        eval.append(maps)
+    #for
     colattrmap = AttrTransf.colattrmap()
-
-
-    print (len(entities),entities)
+    for colid,cval in columns.items():
+        matentry = lambda colid,attrid : 'X' if (colid in colattrmap) and (attrid in colattrmap[colid]) else ''
+        maps = [matentry(colid,attrid) for attrid in attributes.keys()]
+        cval.append(maps)
+    #for
+#    print (len(entities),entities)
 #    print(len(attributes),attributes)
 #    print (len(tables),tables)
 #    print (len(schnittstellen),schnittstellen)
@@ -195,8 +246,10 @@ def main(pdirec, plang):
     deflang = Sprache.liesdeflangiso2()
     if deflang is not None : parameters.dbDefaultLang(deflang)
     filllists(plang=plang)
-#    listentiintf(plang=plang)
+    listentiintf(plang=plang)
+    listattrintf(plang=plang)
     listentitable(plang=plang)
+    listtabenti(plang=plang)
     listcolattr(plang=plang)
     dbConnect.myDbConn.close()
 #main
