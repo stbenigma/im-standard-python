@@ -1,0 +1,111 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="3081F1B0-4762-79EC-E632-60E63F30C56D" name="Test-Entitätv1">
+<createdBy>stb</createdBy>
+<createdTime>2020-06-10 15:31:36 UTC</createdTime>
+<comment><![CDATA[Ein Kommentar für die 1. Übersetzung
+Französische Tags fehlen im Note-Feld]]></comment>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+
+]EN_ENTI_COMMENT]]]></notes>
+<ownerDesignName>fyayc_dev_transl</ownerDesignName>
+<engineerTo>
+<item key="5BE1D3DE-1298-62A6-B8A4-2793AE250A49" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="DE_ENTI_NAME" value="Test-Entitiy"/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Neu" id="3AC970FF-33EA-7D4E-54B5-8D6E72D634EE">
+<createdBy>stb</createdBy>
+<createdTime>2020-06-10 15:31:36 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>fyayc_dev_transl</ownerDesignName>
+<engineerTo>
+<item key="5BE1D3DE-1298-62A6-B8A4-2793AE250A49" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value=""/>
+<property name="EN_ATTR_NAME" value=""/>
+<property name="FR_ATTR_NAME" value=""/>
+</propertyMap>
+</Attribute>
+<Attribute name="darf nicht ändern" id="CAE7041F-5F4C-92B2-CCAE-1F00B64D9886">
+<createdBy>stb</createdBy>
+<createdTime>2020-06-10 15:31:36 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>fyayc_dev_transl</ownerDesignName>
+<engineerTo>
+<item key="5BE1D3DE-1298-62A6-B8A4-2793AE250A49" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="**geändert von * auf nicht *"/>
+<property name="EN_ATTR_NAME" value="darf nicht ändern"/>
+<property name="FR_ATTR_NAME" value="darf nicht ändern"/>
+</propertyMap>
+</Attribute>
+<Attribute name="War schon markiert" id="4FDB9338-E5BE-420D-4F00-02E3AF082758">
+<createdBy>stb</createdBy>
+<createdTime>2020-06-10 15:31:36 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>fyayc_dev_transl</ownerDesignName>
+<engineerTo>
+<item key="5BE1D3DE-1298-62A6-B8A4-2793AE250A49" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="E war schon markiert, F korrekt übersetzt"/>
+<property name="EN_ATTR_NAME" value="*war schon markiert"/>
+<property name="FR_ATTR_NAME" value="war korrekt übersetzt"/>
+</propertyMap>
+</Attribute>
+<Attribute name="Vorübersetzt" id="1D09A499-497C-2EC3-DE44-64933EDC1313">
+<createdBy>stb</createdBy>
+<createdTime>2020-06-10 15:31:36 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>fyayc_dev_transl</ownerDesignName>
+<engineerTo>
+<item key="5BE1D3DE-1298-62A6-B8A4-2793AE250A49" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="vorüberset"/>
+<property name="EN_ATTR_NAME" value="*pretranslated"/>
+<property name="FR_ATTR_NAME" value="*DE* vorübersetzt"/>
+</propertyMap>
+</Attribute>
+</attributes>
+</Entity>

@@ -3,524 +3,547 @@
 <custom_libraries>
 	<lib id="8C5E208C-44EF-D2FB-A3AD-61EAE950C916" name="translation" engine="Oracle Nashorn" methods="upgradeTranslation,changeLanguage,initTranslation" >
 		<script>
-			<![CDATA[//scripts to handle translation of model
-	var CODEVERSION = '1.4';
-	var gLogNote = "LOG";
-	var gParams={}
-	var gTranslInforegexp =/TRANSLATION\{([^}]*)\}/;
-	var logInitialized = false;
-	var NOTESSTARTTAG = '[<tag>[';
-	var NOTESENDTAG = ']<tag>]';
-	var PLAINMESSAGE = 1;
-	var ERRORMESSAGE = 0;
-	var WARNINGMESSAGE = 2;
-	var QUESTIONMESSAGE = 3;
-	var translation = false
-	
-//	var DEEPLAuthKey = "9043d070-26fd-f874-6b80-37ddc4b6367c"
-	var DEEPLURL = "https://api.deepl.com/v2/translate"
-	var DEEPLURL2 = "https://api.deepl.com/v2/usage"
-	
-	function fullmessage(msg,type) {
-		Java.type("javax.swing.JOptionPane").showMessageDialog(null
-		, msg,'ODM-Translation', type);
-	}
+			<![CDATA[
+			//scripts to handle translation of model
+				var CODEVERSION = '1.5'
+				var gLogNote = "LOG";
+				var gParams={}
+			// Translation
+				var gTranslInforegexp =/TRANSLATION\{([^}]*)\}/;
+				var translation = false
+				var NOTESSTARTTAG = '[<tag>[';
+				var NOTESENDTAG = ']<tag>]';
+				var CURRENTLANG = "currentLang"
+				var VERSION = "version"
+				var LASTSYNC = "lastSync"
+				var LANGUAGES = "languages"
+				var DEEPLAUTHKEY = "DEEPLAuthKey"
 
-	function error(msg) {
-		fullmessage(msg,ERRORMESSAGE);
-		}
-	function message(msg) {
-		fullmessage(msg,PLAINMESSAGE);
-		}
+				var logInitialized = false;
 
-		function getCurrentLang() {return gParams["currentLang"];}
-		function setCurrentLang(lang) {gParams["currentLang"] = lang;}
-		function getVersion() {return gParams["version"];}
-		function setVersion(version) {gParams["version"] = version;}
-		function getLastSync() {return gParams["lastSync"];}
-		function setLastSync(lastSync) {return gParams["lastSync"] = lastSync;}
-		function getLanguages() {return gParams["languages"];}
-		function getLangArr() {return getLanguages().split(',');}
-		function getDEEPLAuthKey() {
-			 if ('DEEPLAuthKey' in gParams) {return gParams['DEEPLAuthKey']}
-			 else {return null}
-		}
+			// message
+				var PLAINMESSAGE = 1;
+				var ERRORMESSAGE = 0;
+				var WARNINGMESSAGE = 2;
+				var QUESTIONMESSAGE = 3;
+
+	
+				var DEEPLURL = "https://api.deepl.com/v2/translate"
+				var DEEPLURL_usage = "https://api.deepl.com/v2/usage"
+	
+				function fullmessage(msg,type) {
+					Java.type("javax.swing.JOptionPane").showMessageDialog(null
+					, msg,'ODM-Translation', type);
+				}
+
+				function error(msg) {
+					fullmessage(msg,ERRORMESSAGE);
+					}
+				function message(msg) {
+					fullmessage(msg,PLAINMESSAGE);
+					}
+
+					function getCurrentLang() {return gParams[CURRENTLANG];}
+					function setCurrentLang(lang) {gParams[CURRENTLANG] = lang;}
+					function getVersion() {return gParams[VERSION];}
+					function setVersion(version) {gParams[VERSION] = version;}
+					function getLastSync() {return gParams[LASTSYNC];}
+					function setLastSync(lastSync) {gParams[LASTSYNC] = lastSync;}
+					function getLanguages() {return gParams[LANGUAGES];}
+					function setLanguages(langs) {gParams[LANGUAGES] = langs;}
+					function getLangArr() {return getLanguages().split(',');}
+					function getDEEPLAuthKey() {
+						 if (DEEPLAUTHKEY in gParams) {return gParams[DEEPLAUTHKEY]}
+						 else {return null}
+					}
+					function setDEEPLAuthKey(key) {gParams[DEEPLAUTHKEY] = key;}
 		
-function linemessage() {
-	str = ''
-	for (i=0;i<arguments.length;i++){
-		str = str.concat(arguments[i],'\n')
-	}
-	Java.type("javax.swing.JOptionPane").showMessageDialog(null, str, 'Testjs', 1);
-}
-
-function translconn(purl){
-	URL =  Java.type("java.net.URL")
-	url = new URL(purl)
-	con = url.openConnection();
-	con.setRequestMethod("GET");
-	con.setRequestProperty("Content-Type", "application/json; utf-8");
-	con.setRequestProperty("Accept", "application/json");
-	con.setRequestProperty("Accept-Charset", "utf-8");
-	con.setDoOutput(true);
-	return con
-	//try {os = con.getOutputStream()}
-	//	catch (err){message("os= "+err.toString())}
-	//var mybuffer = [];
-	//try {os.write(mybuffer,0,mybuffer.length)
-	//	}
-	//	catch (err){message('write='+err.toString())}
-}
-
-function Utf8ArrayToStr(array) {
-  var out, i, len, c;
-  var char2, char3;
-
-  out = "";
-  len = array.length;
-  i = 0;
-  while (i < len) {
-    c = array[i++];
-    switch (c >> 4)
-    { 
-      case 0: case 1: case 2: case 3: case 4: case 5: case 6: case 7:
-        // 0xxxxxxx
-        out += String.fromCharCode(c);
-        break;
-      case 12: case 13:
-        // 110x xxxx   10xx xxxx
-        char2 = array[i++];
-        out += String.fromCharCode(((c & 0x1F) << 6) | (char2 & 0x3F));
-        break;
-      case 14:
-        // 1110 xxxx  10xx xxxx  10xx xxxx
-        char2 = array[i++];
-        char3 = array[i++];
-        out += String.fromCharCode(((c & 0x0F) << 12) |
-                                   ((char2 & 0x3F) << 6) |
-                                   ((char3 & 0x3F) << 0));
-        break;
-    }
-  }    
-  return out;
-}
-function getanswer(inputstr){
-	var buf = []
-	var b = inputstr.read()
-	while (b != -1) {
-		buf.push(b)
-		b = inputstr.read()
-	}
-	return Utf8ArrayToStr(buf)
-}
-
-function haveDeeplAccess(){
-	var urlu = DEEPLURL2+"?auth_key="+getDEEPLAuthKey()
-	var conu = translconn(urlu)
-
-	try {
-		s = getanswer(conu.getInputStream())
-		json = JSON.parse(s)
-		//message2(urlu,JSON.stringify(json))
-		return true
-	}
-	catch (err){return false}
-}
-
-function translate(fromlang,tolang,text){
-	var url = DEEPLURL
-		+"?auth_key="+getDEEPLAuthKey()
-		+"&text="+encodeURI(text)
-		+"&target_lang="+tolang
-		+"&source_lang="+fromlang
-	var con = translconn(url)
-
-	try {
-		s = getanswer(con.getInputStream())
-		json = JSON.parse(s)
-		//message2(url,JSON.stringify(json))
-		return json["translations"][0]["text"]
-	}
-	catch (err){message(err.toString())}
-}
-
-	function initLog(){
-		if (! logInitialized){
-			var lNote = model.getNoteSet().getByName(gLogNote);
-	     	if (lNote == null) {
-	    	    		lNote = model.createNote()
-		    		lNote.setName(gLogNote);
-	     	}
-	     	lNote.setComment("");
-	     	logInitialized = true;
-		}
-	}
-	function log(plog){
-		initLog();
-		var lNote = model.getNoteSet().getByName(gLogNote);
-	     lNote.setComment(lNote.getComment()+"\n"+plog);
-	}
-
-	function getTranslInfo(){
-		lDesignComment = model.design.getComment();
-	     lparam= lDesignComment.match(gTranslInforegexp);
-	     if (lparam != null) {
-	     	lparam=trim(lparam[1])
-			lparlines = lparam.split("\n")
-			for (l=0;l<lparlines.length;l++){
-	     		vals=lparlines[l].split("=")
-	     		if (vals[0] != null && vals[0] != "") {  
-	     			gParams[vals[0]] = trim(vals[1])
-	     		}
+			function linemessage() {
+				str = ''
+				for (i=0;i<arguments.length;i++){
+					str = str.concat(arguments[i],'\n')
+				}
+				Java.type("javax.swing.JOptionPane").showMessageDialog(null, str, 'Testjs', 1);
 			}
-			//linemessage(JSON.stringify(gParams))
-		}    
-	}	
-	function param2comment(){
-		retval = "TRANSLATION{\ncurrentLang="+getCurrentLang()
-						+"\nlanguages="+getLanguages()
-						+"\nlastSync="+getLastSync()
-						+"\nversion="+getVersion()
-		deeplkey = getDEEPLAuthKey()			
-		if (deeplkey != null) {retval += "\nDEEPLAuthKey="+deeplkey}
-		retval += "\n}"
-	 	return retval
-	}
-	function setTranslInfo() {
-		setLastSync(curDateStr())
-		curComment = model.design.getComment();
-		lparam= curComment.match(gTranslInforegexp);
-		if (lparam == null) {model.design.setComment(curComment + param2comment())}
-		else {model.design.setComment(
-			curComment.replace(gTranslInforegexp,param2comment()));
-		}
-	}
+
+			function translconn(purl){
+				URL =  Java.type("java.net.URL")
+				url = new URL(purl)
+				con = url.openConnection();
+				con.setRequestMethod("GET");
+				con.setRequestProperty("Content-Type", "application/json; utf-8");
+				con.setRequestProperty("Accept", "application/json");
+				con.setRequestProperty("Accept-Charset", "utf-8");
+				con.setDoOutput(true);
+				return con
+				//try {os = con.getOutputStream()}
+				//	catch (err){message("os= "+err.toString())}
+				//var mybuffer = [];
+				//try {os.write(mybuffer,0,mybuffer.length)
+				//	}
+				//	catch (err){message('write='+err.toString())}
+			}
+
+			function Utf8ArrayToStr(array) {
+			  var out, i, len, c;
+			  var char2, char3;
+
+			  out = "";
+			  len = array.length;
+			  i = 0;
+			  while (i < len) {
+			    c = array[i++];
+			    switch (c >> 4)
+			    { 
+			      case 0: case 1: case 2: case 3: case 4: case 5: case 6: case 7:
+			        // 0xxxxxxx
+			        out += String.fromCharCode(c);
+			        break;
+			      case 12: case 13:
+			        // 110x xxxx   10xx xxxx
+			        char2 = array[i++];
+			        out += String.fromCharCode(((c & 0x1F) << 6) | (char2 & 0x3F));
+			        break;
+			      case 14:
+			        // 1110 xxxx  10xx xxxx  10xx xxxx
+			        char2 = array[i++];
+			        char3 = array[i++];
+			        out += String.fromCharCode(((c & 0x0F) << 12) |
+			                                   ((char2 & 0x3F) << 6) |
+			                                   ((char3 & 0x3F) << 0));
+			        break;
+			    }
+			  }    
+			  return out;
+			}
+			function getanswer(inputstr){
+				var buf = []
+				var b = inputstr.read()
+				while (b != -1) {
+					buf.push(b)
+					b = inputstr.read()
+				}
+				return Utf8ArrayToStr(buf)
+			}
+
+			function haveDeeplAccess(){
+				var urlu = DEEPLURL_usage+"?auth_key="+getDEEPLAuthKey()
+				var conu = translconn(urlu)
+
+				try {
+					s = getanswer(conu.getInputStream())
+					json = JSON.parse(s)
+					//message2(urlu,JSON.stringify(json))
+					return true
+				}
+				catch (err){return false}
+			}
+
+			function translate(fromlang,tolang,text){
+				var url = DEEPLURL
+					+"?auth_key="+getDEEPLAuthKey()
+					+"&text="+encodeURI(text)
+					+"&target_lang="+tolang
+					+"&source_lang="+fromlang
+				var con = translconn(url)
+
+				try {
+					s = getanswer(con.getInputStream())
+					json = JSON.parse(s)
+					//message2(url,JSON.stringify(json))
+					return json["translations"][0]["text"]
+				}
+				catch (err){message(err.toString())}
+			}
+
+				function initLog(){
+					if (! logInitialized){
+						var lNote = model.getNoteSet().getByName(gLogNote);
+				     	if (lNote == null) {
+				    	    		lNote = model.createNote()
+					    		lNote.setName(gLogNote);
+				     	}
+				     	lNote.setComment("");
+				     	logInitialized = true;
+					}
+				}
+				function log(plog){
+					initLog();
+					var lNote = model.getNoteSet().getByName(gLogNote);
+				     lNote.setComment(lNote.getComment()+"\n"+plog);
+				}
+
+				function getTranslInfo(){
+					lDesignComment = model.design.getComment();
+				     lparam= lDesignComment.match(gTranslInforegexp);
+				     if (lparam != null) {
+				     	lparam=trim(lparam[1])
+						lparlines = lparam.split("\n")
+						for (l=0;l<lparlines.length;l++){
+				     		vals=lparlines[l].split("=")
+				     		if (vals[0] != null && vals[0] != "") {  
+				     			gParams[vals[0]] = trim(vals[1])
+				     		}
+						}
+						//linemessage(JSON.stringify(gParams))
+					}    
+				}	
+				function param2comment(){
+					retval = "TRANSLATION{\n"+CURRENTLANG+"="+getCurrentLang()
+									+"\n"+LANGUAGES+"="+getLanguages()
+									+"\n"+LASTSYNC+"="+getLastSync()
+									+"\n"+VERSION+"="+getVersion()
+					deeplkey = getDEEPLAuthKey()			
+					if (deeplkey != null) {retval += "\n"+DEEPLAUTHKEY+"="+deeplkey}
+					retval += "\n}"
+				 	return retval
+				}
+				function setTranslInfo() {
+					setLastSync(curDateStr())
+					curComment = model.design.getComment();
+					lparam= curComment.match(gTranslInforegexp);
+					if (lparam == null) {model.design.setComment(curComment + param2comment())}
+					else {model.design.setComment(
+						curComment.replace(gTranslInforegexp,param2comment()));
+					}
+				}
 	
-	function buildRegExpTag(innertag,tag){
-		return tag.replace('<tag>',innertag).replace(/\[/g,'\\[').replace(/\]/g,'\\]')
-	}
+				function buildRegExpTag(innertag,tag){
+					return tag.replace('<tag>',innertag).replace(/\[/g,'\\[').replace(/\]/g,'\\]')
+				}
 
-	function trim(str){
-		return str.replace(/^[\s]+|[\s]+$/g,'');
-	}
+				function trim(str){
+					return str.replace(/^[\s]+|[\s]+$/g,'');
+				}
 
-	function textFromNote(tag,obj) {
-    	note = obj.getNotes()
-    	restart =  buildRegExpTag(tag, NOTESSTARTTAG)
-    	reend =  buildRegExpTag (tag, NOTESENDTAG)+"[\n]*"
-    	re = new RegExp(restart + '([^]*)' + reend)
-    	ma = note.match(re)
-    	retval = ''
-	   	if (ma != null) {
-			//linemessage("|"+reend+"|\n"+"|"+ma[0]+"|")
-	   		retval = trim(ma[1])
-		}
-		return retval
-	}
+				function textFromNote(tag,obj) {
+			    	note = obj.getNotes()
+			    	restart =  buildRegExpTag(tag, NOTESSTARTTAG)
+			    	reend =  buildRegExpTag (tag, NOTESENDTAG)+"[\n]*"
+			    	re = new RegExp(restart + '([^]*)' + reend)
+			    	ma = note.match(re)
+			    	retval = ''
+				   	if (ma != null) {
+						//linemessage("|"+reend+"|\n"+"|"+ma[0]+"|")
+				   		retval = trim(ma[1])
+					}
+					return retval
+				}
 
-	function textToNote(tag,obj,value) {
-    	note = obj.getNotes()
-    	restart =  buildRegExpTag(tag, NOTESSTARTTAG)
-    	reend =  buildRegExpTag (tag, NOTESENDTAG)+"[\n]*"
-    	re = new RegExp(restart + '([^]*)' + reend)
-    	ma = note.match(re)
-		newentry = NOTESSTARTTAG.replace('<tag>',tag)+'\n' 
-			+ value 
-			+'\n' + NOTESENDTAG.replace('<tag>',tag)
-			+'\n'
-	   	if (ma == null) {
-	   		note = note + newentry
-		} else {
-			//message("|"+newentry+"|\n"+"|"+ma[0]+"|")
-			note = note.replace(ma[0] , newentry)
-		}
-		obj.setNotes(note)
-	}
-
-	function init(istUpgrade){
-		getTranslInfo();
-		if (gParams.length == 0) {
-			throw new Error("\n***TRANSLATION not installed***\n");
-		}
-		if (getVersion() != CODEVERSION && !istUpgrade) {
-			msg = "\n***TRANSLATION version mismatch: "
-				+"expected " + CODEVERSION + " found "+getVersion()
-				+"\nPlease upgrade.***\n"
-			throw new Error(msg);
-		}
-		translation = false
-		if (getDEEPLAuthKey() != null && getDEEPLAuthKey() != ''){
-			translation = haveDeeplAccess()
-		}
-	}
-
-	function doLangValue(propName,obj,value,isNote,notNull){
-		lpropName = getCurrentLang() + propName;
-		oldval = (isNote) ? textFromNote(lpropName,obj) : obj.getProperty(lpropName);
-		langArr = getLangArr()
-		for (il=0;il<langArr.length;il++) {
-			// nur die fremden Sprachen ersetzen
-			flang = langArr[il]
-			if (flang != getCurrentLang()) {
-				// if value contains *xx*, don't add another one
-				if (value.match(/^\*[A-Z]{2}\* /)) {
-						lprefix =  ''
+				function textToNote(tag,obj,value) {
+			    	note = obj.getNotes()
+			    	restart =  buildRegExpTag(tag, NOTESSTARTTAG)
+			    	reend =  buildRegExpTag (tag, NOTESENDTAG)+"[\n]*"
+			    	re = new RegExp(restart + '([^]*)' + reend)
+			    	ma = note.match(re)
+					newentry = NOTESSTARTTAG.replace('<tag>',tag)+'\n' 
+						+ value 
+						+'\n' + NOTESENDTAG.replace('<tag>',tag)
+						+'\n'
+				   	if (ma == null) {
+				   		note = note + newentry
 					} else {
-						lprefix =  '*'+getCurrentLang()+'* '			
+						//message("|"+newentry+"|\n"+"|"+ma[0]+"|")
+						note = note.replace(ma[0] , newentry)
 					}
-				//markiere oder fülle die fremde Properties
-				fpropName = flang + propName;
-				fprop = (isNote) ? textFromNote(fpropName,obj) : obj.getProperty(fpropName);
-				// Falls die Fremdsprache noch automtaisch übersetzt ist ( *XX* vorneweg hat), überschreibe sie
-				if (fprop.match(/^\*[A-Z]{2}\* /)) {
-				   if (isNote) textToNote(fpropName,obj,lprefix+value);
-					  else obj.setProperty(fpropName,lprefix+value);
-				} else if (fprop.startsWith('*')) {
-					// ** und * sind in Bearbeitung nichts ersetzen
-				} else if (fprop == "" && value == "" && ! notNull) {
-					// das Ziel ist leer, der neue Wert auch und es ist kein Mussfeld. lass das Ziel leer
-				} else if (fprop == "") {
-					// das Ziel ist leer aber aus einem Grund muss ich es überschreiben (siehe vorheriges IF)
-					// übersetze den Text. Falls es schief geht, mach daraus einen *XX* Text
-					if (translation){
-						try {newvalue = '**'+translate(getCurrentLang(),flang,value)}
-						catch (err) {newvalue = lprefix+value}
-					}else {newvalue = lprefix+value}
-					if (isNote) textToNote(fpropName,obj,newvalue);  
-						else obj.setProperty(fpropName,newvalue);
-			    } else {
-					// das Ziel ist gefüllt, nicht in Bearbeitung und nicht automatisch übersetzt.
-					// d.h. es hat einen gültigen Wert. Markiere es, falls die Quelle wirklich geändert hat
-					//**if (oldval == 'Entität 1') message("vor IF "+oldval)
-					if ( ! (value == oldval 
-						  || oldval.match(/^\*[A-Z]{2}\* /)
-						  || oldval.startsWith("**")
-						  || oldval.startsWith("*")) ) {
-						  //**if (oldval == 'Entität 1') message("in IF "+oldval)
-						  // die Quelle ist kein Feld, das in Bearbeitung oder autmoatisch übersetzt ist
-						  if (isNote) textToNote(fpropName,obj,"*"+fprop);
-					   		else obj.setProperty(fpropName,"*"+fprop)
+					obj.setNotes(note)
+				}
+
+				function init(istUpgrade){
+					getTranslInfo();
+					if (gParams.length == 0) {
+						throw new Error("\n***TRANSLATION not installed***\n");
+					}
+					if (getVersion() != CODEVERSION && !istUpgrade) {
+						msg = "\n***TRANSLATION version mismatch: "
+							+"expected " + CODEVERSION + " found "+getVersion()
+							+"\nPlease upgrade.***\n"
+						throw new Error(msg);
+					}
+					translation = false
+					if (getDEEPLAuthKey() != null && getDEEPLAuthKey() != ''){
+						translation = haveDeeplAccess()
 					}
 				}
-			}
-		}
-		// die Werte der CurrentLang kommen aus dem Objekt, überschreibe immer
-		if (isNote) textToNote(lpropName,obj,value);
-		   else obj.setProperty(lpropName, value);
-	}
 
-	function doProperty(propName,obj,value,notNull){
-		doLangValue(propName,obj,value,false,notNull);
-	}
+				function doLangValue(propName,obj,value,isNote,notNull){
+					lpropName = getCurrentLang() + propName;
+					oldval = (isNote) ? textFromNote(lpropName,obj) : obj.getProperty(lpropName);
+					langArr = getLangArr()
 
-	function doNote(tag,obj,value) {
-		doLangValue(tag,obj,value,true,false);
-	}
-
-	function fuellUDP(){
-		entities = model.getEntitySet().toArray();
-		for (ie=0;ie<entities.length;ie++) { //
-			ent = entities[ie];
-			doProperty("_ENTI_NAME",ent,ent.getName(),true)
-			doNote("_ENTI_COMMENT",ent,ent.getComment())
-			doProperty("_ENTI_SYNONYM",ent,ent.getSynonym())
-
-			attrs = ent.getAttributes().toArray();
-			//log("Attrs="+attrs.length)
-			for (ia=0;ia<attrs.length;ia++) { //
-				attr = attrs[ia];
-				langArr = getLangArr()
-				for (il=0;il<langArr.length;il++) {
-					doProperty("_ATTR_NAME",attr,attr.getName(),true);
-					doNote("_ATTR_COMMENT",attr,attr.getComment());			
+					//DEBUG
+					if ((obj.getName() == 'Eigentümer' && propName == '_ENTI_COMMENT')
+					    || (obj.getName() == 'Zusatzattribut')) {
+						message('Obj-Name='+obj.getName()+ '  '+propName);
+						display = true;
+					} else display = false;
+		
+					for (il=0;il<langArr.length;il++) {
+						// nur die fremden Sprachen ersetzen
+						flang = langArr[il]
+						if (flang != getCurrentLang()) {
+							// if value contains *xx*, don't add another one
+							if (value.match(/^\*[A-Z]{2}\* /)) {
+									nontranslateprefix =  ''
+								} else {
+									nontranslateprefix =  '*'+getCurrentLang()+'* '			
+								}
+							//markiere oder fülle die fremde Properties
+							fpropName = flang + propName;
+							fprop = (isNote) ? textFromNote(fpropName,obj) : obj.getProperty(fpropName);
+							// Die Reihenfolge der folgenden IF ist wichtig!
+							// Falls die Fremdsprache noch automtaisch übersetzt ist ( *XX* vorneweg hat), überschreibe sie
+							if (fprop.match(/^\*[A-Z]{2}\* /)) {
+								// nicht übersetzter alter Wert. Falls Translation und
+								// der Wert stammt von früherer Nichtübersetung aus der current Lang, 
+								// versuchen ihn zu übersetzen. Sonst markiere ihn wieder als nicht übersetzt *XX*
+								re = new RegExp("^\\*"+getCurrentLang()+"\\* ");
+								if (translation && (fprop.match(re))){
+									try {newvalue = '**'+translate(getCurrentLang(),flang,value)}
+									catch (err) {newvalue = nontranslateprefix+value}
+								} else {newvalue = nontranslateprefix+value}
+								if (isNote) textToNote(fpropName,obj,newvalue);  
+									else obj.setProperty(fpropName,newvalue);
+							} else if (fprop.startsWith('*')) {
+								// ** und * sind in Bearbeitung nichts ersetzen
+							} else if (fprop == "" && value == "" && ! notNull) {
+								// das Ziel ist leer, der neue Wert auch und es ist kein Mussfeld. lass das Ziel leer
+							} else if (fprop == "") {
+								// das Ziel ist leer aber aus einem Grund muss ich es überschreiben (siehe vorheriges IF)
+								// übersetze den Text. Falls es schief geht, mach daraus einen *XX* Text
+								if (translation){
+									try {newvalue = '**'+translate(getCurrentLang(),flang,value)}
+									catch (err) {newvalue = nontranslateprefix+value}
+								}else {newvalue = nontranslateprefix+value}
+								if (isNote) textToNote(fpropName,obj,newvalue);  
+									else obj.setProperty(fpropName,newvalue);
+						    } else {
+								// das Ziel ist gefüllt (haben wir schon abgefragt), 
+								// nicht in Bearbeitung und nicht automatisch übersetzt (* am Anfang haben wir schon abgefragt)
+								// d.h. es hat einen gültigen Wert. 
+								// Markiere es, falls die Quelle wirklich geändert hat (gegenüber dem current-Lang-Property)
+								if ( value != oldval && ! oldval.startsWith('*') && ! fprop.startsWith('*')) {
+									  // die Quelle hat geändert 
+									  // und war selber nicht ein Feld, das vor der Änderung einen * am Anfang hatte
+									  // und der foreign Wert hat noch kein * am Anfang
+									  // Markiere die foreign property
+									  if (isNote) textToNote(fpropName,obj,"*"+fprop);
+								   		else obj.setProperty(fpropName,"*"+fprop)
+								}
+							}
+						}
+					}
+					// die Werte der CurrentLang kommen aus dem Objekt, überschreibe die Übersetzungsproperties immer
+					if (isNote) textToNote(lpropName,obj,value);
+					   else obj.setProperty(lpropName, value);
 				}
-			}
-		ent.setDirty(true);
-		}
-		relationships = model.getRelationSet().toArray();
-		for (ir=0;ir<relationships.length;ir++) { //
-			rel = relationships[ir];
-			sourcename = rel.getNameOnSource()
-			targetname = rel.getNameOnTarget()
-			doProperty("_RELA_TEXT_FROM",rel,sourcename)
-			doProperty("_RELA_TEXT_TO",rel,targetname)	
-			rel.setDirty(true);
-		}
-	}
 
-	function setProperties(lang){
-		entities = model.getEntitySet().toArray();
-		for (ie=0;ie<entities.length;ie++) { //
-			ent = entities[ie];
-			ent.setName(ent.getProperty(lang+"_ENTI_NAME"));
-			ent.setComment(textFromNote(lang+"_ENTI_COMMENT",ent))
-			ent.setSynonym(ent.getProperty(lang+"_ENTI_SYNONYM"));
-
-			attrs = ent.getAttributes().toArray();
-			//log("Attrs="+attrs.length)
-			for (ia=0;ia<attrs.length;ia++) { //
-				attr = attrs[ia];
-				//log(attr.getName(),attr.getComment());
-				attr.setName(attr.getProperty(lang+"_ATTR_NAME"));
-				attr.setComment(textFromNote(lang+"_ATTR_COMMENT",attr))
-			}		
-			ent.setDirty(true);
-		}
-		relationships = model.getRelationSet().toArray();
-		for (ir=0;ir<relationships.length;ir++) { 
-			rel = relationships[ir];
-			rel.setNameOnSource(rel.getProperty(lang+"_RELA_TEXT_FROM"));
-			rel.setNameOnTarget(rel.getProperty(lang+"_RELA_TEXT_TO"));
-			rel.setDirty(true);
-		}
-	}
-
-	function curDateStr(){
-		var currentdate = new Date();
-		return  currentdate.getDate() 
-		+ "/" + (currentdate.getMonth()+1) 
-		+ "/" + currentdate.getFullYear() + "  " 
-		+ currentdate.getHours() + ":" 
-		+ currentdate.getMinutes() + ":" + currentdate.getSeconds();
-	}
-
-	function changeLang(pfromLang,ptoLang){
-		//log("3:"+getLanguages());
-	//	log("change from " + pfromLang + " to " + ptoLang);
-		fuellUDP();
-		setProperties(ptoLang);
-		setCurrentLang(ptoLang);
-		setTranslInfo();	
-		model.design.setDirty(true);
-	}
-
-	function initTranslation() {
-		getTranslInfo()
-		if (gParams.length == 0) {
-			setCurrentLang('DE')
-			setLanguages('DE,EN')
-			setVersion(CODEVERSION)
-		} else {
-			throw new Error("\n***TRANSLATION ("+getVersion()+") already installed***\n");
-		}
-		//hier gibt es einen Eintrag für die Translation
-		init();
-
-		fuellUDP();
-
-		setTranslInfo()
-		model.design.setDirty(true);
-		message ("TRANLSATION installed current-language="+getCurrentLang()
-		         + " languages="+getLanguages()+" version="+getVersion()
-			        ,PLAINMESSAGE);
-	}
-	
-	function changeLanguage() {
-		init();
-		options = [];
-		langchangefrom = getCurrentLang()
-		langArr = getLangArr()
-		for (il=0;il<langArr.length;il++) {
-			if (langArr[il] != langchangefrom) {
-				options.push(getCurrentLang() + '->' + langArr[il])
-			}
-		}
-		if (options.length == 1) {
-			antwort = options[0]
-		} else {
-			antwort = Java.type("javax.swing.JOptionPane").showInputDialog(null, 
-	        	"Choose language change",
-				"Change language",
-				QUESTIONMESSAGE,
-				null, 
-				options, 
-				options[0]);
-		}
-        if (antwort != null){
-			toLang = antwort.substr(-2)
-			//Java.type("javax.swing.JOptionPane").showMessageDialog(null, antwort+'|'+toLang);
-			changeLang(getCurrentLang(),toLang);
-			message ("Model language changed from "+langchangefrom+" to "+toLang
-						+".\n Please hide and re-display labels."
-			        ,PLAINMESSAGE);
-		}
-	}
-	
-	function upgrade09_to_10() {
-		// move comments from properties to comments
-		entities = model.getEntitySet().toArray();
-		for (ie=0;ie<entities.length;ie++) { 
-			ent = entities[ie];
-			langArr = getLangArr()
-			for (il=0;il<langArr.length;il++) {
-				// nur die fremden Sprachen ersetzen
-				lang = langArr[il];
-				textToNote(lang+"_ENTI_COMMENT",ent,ent.getProperty(lang+"_ENTI_COMMENT"));
-
-				attrs = ent.getAttributes().toArray();
-				for (ia=0;ia<attrs.length;ia++) { //
-					attr = attrs[ia];
-					textToNote(lang+"_ATTR_COMMENT",attr,attr.getProperty(lang+"_ATTR_COMMENT"));
+				function doProperty(propName,obj,value,notNull){
+					doLangValue(propName,obj,value,false,notNull);
 				}
-			}
-			ent.setDirty(true);
-		}
-	}
-	function upgrade10_to_11() {
-		// nothing to update so far
-	}
-	function upgrade11_to_12() {
-		// nothing to update so far
-	}
-	function upgrade12_to_13() {
-		// nothing to update so far
-	}
-	function upgrade13_to_14() {
-		// nothing to update so far
-	}
 
-	function upgradeTranslation () {
-		init(true);				
-		//1.0 has no upgrades
-		if (getVersion()  == CODEVERSION) {
-			message("TRANSLATE: latest version ("+getVersion()+") is installed")
-		} else {
-			upgraded = false
-			if (getVersion() == "0.9") {
-				upgrade09_to_10();
-				setVersion("1.0");
-				upgraded = true
-			}
-			if (getVersion() == "1.0") {
-				upgrade10_to_11();
-				setVersion("1.1");
-				upgraded = true
-			}
-			if (getVersion() == "1.1") {
-				upgrade11_to_12();
-				setVersion("1.2");
-				upgraded = true
-			}
-			if (getVersion() == "1.2") {
-				upgrade12_to_13();
-				setVersion("1.3");
-				upgraded = true
-			}
-			if (getVersion() == "1.3") {
-				upgrade13_to_14();
-				setVersion("1.4");
-				upgraded = true
-			}
-			if (upgraded) {
-				setVersion(CODEVERSION)
-				setTranslInfo();	
-				message("TRANSLATE: latest version ("+CODEVERSION+") is now installed")
-			} else {
-			error("\nTRANSLATE: unknown version ("+getVersion()+").\n"
-					+"Please contact support\n");
-			}
-		}			
-	}]]>
+				function doNote(propName,obj,value) {
+					doLangValue(propName,obj,value,true,false);
+				}
+
+				function fuellUDP(tolang){
+					entities = model.getEntitySet().toArray();
+					for (ie=0;ie<entities.length;ie++) { //
+						ent = entities[ie];
+						//DEBUG
+						if (!((ent.getName() == 'Test-Entität') || ent.getName().endsWith('Test Entity') || ent.getName().endsWith('Entité test'))) continue;
+			
+						doProperty("_ENTI_NAME",ent,ent.getName(),true)
+						doNote("_ENTI_COMMENT",ent,ent.getComment())
+						doProperty("_ENTI_SYNONYM",ent,ent.getSynonym(),false)
+			
+						if (tolang != null){
+							ent.setName(ent.getProperty(tolang+"_ENTI_NAME"));
+							ent.setComment(textFromNote(tolang+"_ENTI_COMMENT",ent))
+							ent.setSynonym(ent.getProperty(tolang+"_ENTI_SYNONYM"));
+						}
+			
+
+						attrs = ent.getAttributes().toArray();
+						//log("Attrs="+attrs.length)
+						for (ia=0;ia<attrs.length;ia++) { //
+							attr = attrs[ia];
+							doProperty("_ATTR_NAME",attr,attr.getName(),true);
+							doNote("_ATTR_COMMENT",attr,attr.getComment());			
+					
+							if (tolang != null){
+								attr.setName(attr.getProperty(tolang+"_ATTR_NAME"));
+								attr.setComment(textFromNote(tolang+"_ATTR_COMMENT",attr))
+							}
+						}
+						ent.setDirty(true);
+					}
+					relationships = model.getRelationSet().toArray();
+					for (ir=0;ir<relationships.length;ir++) { //
+						rel = relationships[ir];
+						//DEBUG
+						if (rel.getName() != '') continue;
+			
+						doProperty("_RELA_TEXT_FROM",rel,rel.getNameOnSource(),false)
+						doProperty("_RELA_TEXT_TO",rel,rel.getNameOnTarget(),false)	
+			
+						if (tolang != null){
+							rel.setNameOnSource(rel.getProperty(tolang+"_RELA_TEXT_FROM"));
+							rel.setNameOnTarget(rel.getProperty(tolang+"_RELA_TEXT_TO"));
+						}
+						rel.setDirty(true);
+					}
+				}
+
+				function curDateStr(){
+					var currentdate = new Date();
+					return  currentdate.getDate() 
+					+ "/" + (currentdate.getMonth()+1) 
+					+ "/" + currentdate.getFullYear() + "  " 
+					+ currentdate.getHours() + ":" 
+					+ currentdate.getMinutes() + ":" + currentdate.getSeconds();
+				}
+
+				function changeLang(pfromLang,ptoLang){
+					//log("3:"+getLanguages());
+				//	log("change from " + pfromLang + " to " + ptoLang);
+					fuellUDP(ptoLang);
+					setCurrentLang(ptoLang);
+					setTranslInfo();	
+					model.design.setDirty(true);
+				}
+
+				function initTranslation() {
+					getTranslInfo()
+					if (gParams.length == 0) {
+						setCurrentLang('DE')
+						setLanguages('DE,EN')
+						setVersion(CODEVERSION)
+					} else {
+						throw new Error("\n***TRANSLATION ("+getVersion()+") already installed***\n");
+					}
+					//hier gibt es einen Eintrag für die Translation
+					init();
+
+					fuellUDP(null);
+
+					setTranslInfo()
+					model.design.setDirty(true);
+					message ("TRANLSATION installed current-language="+getCurrentLang()
+					         + " languages="+getLanguages()+" version="+getVersion()
+						        ,PLAINMESSAGE);
+				}
+	
+				function changeLanguage() {
+					init();
+					options = [];
+					langchangefrom = getCurrentLang()
+					langArr = getLangArr()
+					for (il=0;il<langArr.length;il++) {
+						if (langArr[il] != langchangefrom) {
+							options.push(getCurrentLang() + '->' + langArr[il])
+						}
+					}
+					if (options.length == 1) {
+						antwort = options[0]
+					} else {
+						antwort = Java.type("javax.swing.JOptionPane").showInputDialog(null, 
+				        	"Choose language change",
+							"Change language",
+							QUESTIONMESSAGE,
+							null, 
+							options, 
+							options[0]);
+					}
+			        if (antwort != null){
+						toLang = antwort.substr(-2)
+						//Java.type("javax.swing.JOptionPane").showMessageDialog(null, antwort+'|'+toLang);
+						changeLang(getCurrentLang(),toLang);
+						message ("Model language changed from "+langchangefrom+" to "+toLang
+									+".\n Please hide and re-display labels."
+						        ,PLAINMESSAGE);
+					}
+				}
+	
+				function upgrade09_to_10() {
+					// move comments from properties to comments
+					entities = model.getEntitySet().toArray();
+					for (ie=0;ie<entities.length;ie++) { 
+						ent = entities[ie];
+						langArr = getLangArr()
+						for (il=0;il<langArr.length;il++) {
+							// nur die fremden Sprachen ersetzen
+							lang = langArr[il];
+							textToNote(lang+"_ENTI_COMMENT",ent,ent.getProperty(lang+"_ENTI_COMMENT"));
+
+							attrs = ent.getAttributes().toArray();
+							for (ia=0;ia<attrs.length;ia++) { //
+								attr = attrs[ia];
+								textToNote(lang+"_ATTR_COMMENT",attr,attr.getProperty(lang+"_ATTR_COMMENT"));
+							}
+						}
+						ent.setDirty(true);
+					}
+				}
+				function upgrade10_to_11() {
+					// nothing to update so far
+				}
+				function upgrade11_to_12() {
+					// nothing to update so far
+				}
+				function upgrade12_to_13() {
+					// nothing to update so far
+				}
+				function upgrade13_to_14() {
+					// add the empty translation key
+					setDEEPLAuthKey("")
+				}
+				function upgrade14_to_15() {
+					// add the empty translation key
+				}
+
+				function upgradeTranslation () {
+					init(true);				
+					//1.0 has no upgrades
+					if (getVersion()  == CODEVERSION) {
+						message("TRANSLATE: latest version ("+getVersion()+") is installed")
+					} else {
+						upgraded = false
+						if (getVersion() == "0.9") {
+							upgrade09_to_10();
+							upgraded = true
+						}
+						if (getVersion() == "1.0") {
+							upgrade10_to_11();
+							upgraded = true
+						}
+						if (getVersion() == "1.1") {
+							upgrade11_to_12();
+							upgraded = true
+						}
+						if (getVersion() == "1.2") {
+							upgrade12_to_13();
+							upgraded = true
+						}
+						if (getVersion() == "1.3") {
+							upgrade13_to_14();
+							upgraded = true
+						}
+						if (getVersion() == "1.4") {
+							upgrade14_to_15();
+							upgraded = true
+						}
+						if (upgraded) {
+							setVersion(CODEVERSION)
+							setTranslInfo();	
+							message("TRANSLATE: latest version ("+CODEVERSION+") is now installed")
+						} else {
+						error("\nTRANSLATE: unknown version ("+getVersion()+").\n"
+								+"Please contact support\n");
+						}
+					}			
+				}
+]]>
 		</script>
 	</lib>
 </custom_libraries>
