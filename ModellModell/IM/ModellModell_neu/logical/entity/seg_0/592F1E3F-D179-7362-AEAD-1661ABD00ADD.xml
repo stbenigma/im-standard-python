@@ -8,10 +8,14 @@ Sobald ein Wert den Status 'verarbeitet" hat muss Verarbeitungsart und Transform
 Gültige verarbeitete Werte haben einen Transformationszeitpunkt, eine Verarbeitungsart, den Transformationsstatus ="verarbeitet" und Transformation gültig = 'J' .
 Ungültige Werte haben den Transformationsstatus ="verarbeitet", eine Verarbeitungsart, Transformation gültig = "N"  und zusätzlich eine Feherbeschreibung (Fehler-Nr, -Beschrieb, oder (Name der) Regel die verletzt wurde).]]></comment>
 <notes><![CDATA[[DE_ENTI_COMMENT[
-Historie der verarbeiteten Transformationen. Werte werden geladen, je nach Richtung der Transformation aus dem Fremdsystem oder aus dem konzeptionellen Schema. Sobald ein Wert den Status 'verarbeitet" hat muss Verarbeitungsart und Transformationszeitpunkt gesetzt sein. Erst dann darf er weiter verwendet werden. Gültige verarbeitete Werte haben einen Transformationszeitpunkt, eine Verarbeitungsart, den Transformationsstatus ="verarbeitet" und Transformation gültig = 'J' . Ungültige Werte haben den Transformationsstatus ="verarbeitet", eine Verarbeitungsart, Transformation gültig = "N"  und zusätzlich eine Feherbeschreibung (Fehler-Nr, -Beschrieb, oder (Name der) Regel die verletzt wurde).
+Historie der verarbeiteten Transformationen.
+Werte werden geladen, je nach Richtung der Transformation aus dem Fremdsystem oder aus dem konzeptionellen Schema.
+Sobald ein Wert den Status 'verarbeitet" hat muss Verarbeitungsart und Transformationszeitpunkt gesetzt sein. Erst dann darf er weiter verwendet werden.
+Gültige verarbeitete Werte haben einen Transformationszeitpunkt, eine Verarbeitungsart, den Transformationsstatus ="verarbeitet" und Transformation gültig = 'J' .
+Ungültige Werte haben den Transformationsstatus ="verarbeitet", eine Verarbeitungsart, Transformation gültig = "N"  und zusätzlich eine Feherbeschreibung (Fehler-Nr, -Beschrieb, oder (Name der) Regel die verletzt wurde).
 ]DE_ENTI_COMMENT]
 [EN_ENTI_COMMENT[
-History of the processed transformations. Values are loaded, depending on the direction of the transformation, from the foreign system or from the conceptual schema. As soon as a value has the status 'processed', the processing type and transformation time must be set. Only then may it continue to be used. Valid processed values have a transformation time, a processing type, the transformation status ="processed" and transformation valid = 'J'. Invalid values have the transformation status ="processed", a processing type, transformation valid = "N" and additionally an error description (error number, error description, or (name of) rule that was violated).
+*History of the processed transformations. Values are loaded, depending on the direction of the transformation, from the foreign system or from the conceptual schema. As soon as a value has the status 'processed', the processing type and transformation time must be set. Only then may it continue to be used. Valid processed values have a transformation time, a processing type, the transformation status ="processed" and transformation valid = 'J'. Invalid values have the transformation status ="processed", a processing type, transformation valid = "N" and additionally an error description (error number, error description, or (name of) rule that was violated).
 ]EN_ENTI_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -34,8 +38,10 @@ History of the processed transformations. Values are loaded, depending on the di
 <propertyMap>
 <property name="DE_ENTI_COMMENT" value="Historie der verarbeiteten Transformationen. Werte werden geladen, je nach Richtung der Transformation aus dem Fremdsystem oder aus dem konzeptionellen Schema. Sobald ein Wert den Status &apos;verarbeitet&quot; hat muss Verarbeitungsart und Transformationszeitpunkt gesetzt sein. Erst dann darf er weiter verwendet werden. Gültige verarbeitete Werte haben einen Transformationszeitpunkt, eine Verarbeitungsart, den Transformationsstatus =&quot;verarbeitet&quot; und Transformation gültig = &apos;J&apos; . Ungültige Werte haben den Transformationsstatus =&quot;verarbeitet&quot;, eine Verarbeitungsart, Transformation gültig = &quot;N&quot;  und zusätzlich eine Feherbeschreibung (Fehler-Nr, -Beschrieb, oder (Name der) Regel die verletzt wurde)."/>
 <property name="DE_ENTI_NAME" value="Attributwerttransformation"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
 <property name="EN_ENTI_COMMENT" value="*DE* Historie der verarbeiteten Transformationen. Werte werden geladen, je nach Richtung der Transformation aus dem Fremdsystem oder aus dem konzeptionellen Schema. Sobald ein Wert den Status &apos;verarbeitet&quot; hat muss Verarbeitungsart und Transformationszeitpunkt gesetzt sein. Erst dann darf er weiter verwendet werden. Gültige verarbeitete Werte haben einen Transformationszeitpunkt, eine Verarbeitungsart, den Transformationsstatus =&quot;verarbeitet&quot; und Transformation gültig = &apos;J&apos; . Ungültige Werte haben den Transformationsstatus =&quot;verarbeitet&quot;, eine Verarbeitungsart, Transformation gültig = &quot;N&quot;  und zusätzlich eine Feherbeschreibung (Fehler-Nr, -Beschrieb, oder (Name der) Regel die verletzt wurde)."/>
 <property name="EN_ENTI_NAME" value="Attribute value transformation"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Ladezeitpunkt" id="BB754BC7-C96F-C52B-0444-7A757BA287A3">
@@ -211,12 +217,12 @@ Type of execution of a transformation (manual, automatic)
 <Attribute name="ist Transformation gültig" id="443221C7-DDBD-DE04-DEC0-8287486FDE9C">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:06:23 UTC</createdTime>
-<comment><![CDATA[Angabe, ob der transformierte Wert gültig ist. ]]></comment>
+<comment><![CDATA[Angabe, ob der transformierte Wert gültig ist.]]></comment>
 <notes><![CDATA[[DE_ATTR_COMMENT[
-Angabe, ob der transformierte Wert gültig ist. 
+Angabe, ob der transformierte Wert gültig ist.
 ]DE_ATTR_COMMENT]
 [EN_ATTR_COMMENT[
-Specifies whether the transformed value is valid
+*Specifies whether the transformed value is valid
 ]EN_ATTR_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>

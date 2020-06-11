@@ -9,9 +9,13 @@ Kundenreaktion oder Firmen-Ergebnis
 führt typischerweise zu nächster Etappe bzw. Ender der Journey]]></comment>
 <notes><![CDATA[[DE_ENTI_COMMENT[
 Teil der Reise, die ein Kunde mit unserem Unternehmen für bestimmte Produkte / Dienstleistungen geht.
+
+Mögliche Ergebnisse:
+Kundenreaktion oder Firmen-Ergebnis
+führt typischerweise zu nächster Etappe bzw. Ender der Journey
 ]DE_ENTI_COMMENT]
 [EN_ENTI_COMMENT[
-Part of the journey that a customer goes with our company for certain products / services.
+*Part of the journey that a customer goes with our company for certain products / services.
 ]EN_ENTI_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -32,14 +36,23 @@ Part of the journey that a customer goes with our company for certain products /
 <createSurrogateKey>true</createSurrogateKey>
 <propertyMap>
 <property name="DE_ENTI_COMMENT" value="Teil der Reise, die ein Kunde mit unserem Unternehmen für bestimmte Produkte / Dienstleistungen geht."/>
-<property name="DE_ENTI_NAME" value="Kundenreiseetappe"/>
+<property name="DE_ENTI_NAME" value="Absicht"/>
+<property name="DE_ENTI_SYNONYM" value="Kundenreiseetappe"/>
 <property name="EN_ENTI_COMMENT" value="*DE* Teil der Reise, die ein Kunde mit unserem Unternehmen für bestimmte Produkte / Dienstleistungen geht."/>
-<property name="EN_ENTI_NAME" value="Customer travel stage"/>
+<property name="EN_ENTI_NAME" value="*Customer travel stage"/>
+<property name="EN_ENTI_SYNONYM" value="**Customer travel stage"/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Emotion" id="65624D7F-0CB2-C9B6-B241-9B5743525300">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:05:22 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <importedID>0D782CD1-7E2D-9D8C-F080-376D840F4BCC</importedID>
 <engineerTo>
@@ -49,10 +62,21 @@ Part of the journey that a customer goes with our company for certain products /
 <nullsAllowed>true</nullsAllowed>
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Emotion"/>
+<property name="EN_ATTR_NAME" value="**Emotion"/>
+</propertyMap>
 </Attribute>
 <Attribute name="Beschreibung" id="810AAFCD-337D-53D2-A2F4-4917B19934CC">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:05:22 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <importedID>61966892-EBF9-9E6B-C485-D5E774162958</importedID>
 <engineerTo>
@@ -62,10 +86,21 @@ Part of the journey that a customer goes with our company for certain products /
 <nullsAllowed>true</nullsAllowed>
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Beschreibung"/>
+<property name="EN_ATTR_NAME" value="**Description"/>
+</propertyMap>
 </Attribute>
 <Attribute name="Kundenziel" id="DD6D9102-DD32-B87F-D7AD-E40F87276400">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:05:22 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <importedID>15E359E6-1122-CF8B-E081-2FA85340B4C2</importedID>
 <engineerTo>
@@ -75,6 +110,10 @@ Part of the journey that a customer goes with our company for certain products /
 <nullsAllowed>true</nullsAllowed>
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Kundenziel"/>
+<property name="EN_ATTR_NAME" value="**Client target"/>
+</propertyMap>
 </Attribute>
 </attributes>
 </Entity>

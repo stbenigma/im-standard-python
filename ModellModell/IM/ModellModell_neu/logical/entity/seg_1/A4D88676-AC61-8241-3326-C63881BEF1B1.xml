@@ -18,13 +18,28 @@ Beispiele:
   Repairing
   Consulting
   Projektleitung
-  Support
-]]></comment>
+  Support]]></comment>
 <notes><![CDATA[[DE_ENTI_COMMENT[
-Definiert eine Einheit, die für eine sinnvoll zusammenfassbare Gruppe von Informationen, Prozesse und Systemen zuständig ist. Ein Hoheitsbereich kümmert sich um eine bestimmte Art von Aufgaben im Unternehmen. Es ist ein Aufgabenbereich. Häufig entsprechen Hoheitsbereiche den Divisionen, Geschäftsbereichen oder Sparten d.h. der Organisationeinheinheit auf der obersten Stufe.  Dies ist aber nur eine mögliche Lösung.  Hoheitsbereich bestimmt - Wer erstellt Datensätze zu einer Entität. - Wer bestimmt über Änderungen / Qualität etc. - Wer verwendet die Informationen dieser Entität haupstächlich - ??  ACHTUNG: Es sollten KEINE technischen Aufteilungen (Systeme, Technologie, Medien) für die Unterscheidung verwendet werden, da diese  häufiger ändern können. Es geht um die semantische Hoheit über die Informationen.  Beispiele:   Management   Recruting   Accounting   Manufacturing   Repairing   Consulting   Projektleitung   Support 
+Definiert eine Einheit, die eine sinnvoll zusammenfassbare Gruppe von Informationen, Prozesse und Systemen nutzt bzw. dafür zuständig ist.
+
+Geschäftsfähigkeiten können über mehrere Geschäftsbereiche und/oder Abteilungen verteilt sein.
+(Beispiele: Projektleitung kann in vielen Bereichen vorkommen)
+
+ACHTUNG: Es sollten KEINE technischen Aufteilungen (Systeme, Technologie, Medien) für die Unterscheidung verwendet werden, da diese häufiger ändern können.
+Es geht um die semantische Gruppierung der Anwendungen und Geschäftstransaktionen
+
+Beispiele:
+  Management
+  Recruting
+  Accounting
+  Manufacturing
+  Repairing
+  Consulting
+  Projektleitung
+  Support
 ]DE_ENTI_COMMENT]
 [EN_ENTI_COMMENT[
-Defines a unit that is responsible for a group of information, processes and systems that can be summarized in a meaningful way. A government department takes care of a certain type of task in a company. It's a remit. Often sovereign areas correspond to the divisions, business areas or divisions, i.e. the organizational unit at the highest level.  However, this is only one possible solution.  Who creates records for an entity. - Who decides about changes / quality etc.? - Who uses the information of this entity mainly - ??  ATTENTION: NO technical divisions (systems, technology, media) should be used for differentiation, as these can change more frequently. It's about semantic sovereignty over information.  Examples:   Management Recruting Accounting Manufacturing Repairing Consulting Project Management Support
+*Defines a unit that is responsible for a group of information, processes and systems that can be summarized in a meaningful way. A government department takes care of a certain type of task in a company. It's a remit. Often sovereign areas correspond to the divisions, business areas or divisions, i.e. the organizational unit at the highest level.  However, this is only one possible solution.  Who creates records for an entity. - Who decides about changes / quality etc.? - Who uses the information of this entity mainly - ??  ATTENTION: NO technical divisions (systems, technology, media) should be used for differentiation, as these can change more frequently. It's about semantic sovereignty over information.  Examples:   Management Recruting Accounting Manufacturing Repairing Consulting Project Management Support
 ]EN_ENTI_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -46,11 +61,11 @@ Defines a unit that is responsible for a group of information, processes and sys
 <propertyMap>
 <property name="Beispiele" value="Produktion / Vertrieb / Marketing / Finanz"/>
 <property name="DE_ENTI_COMMENT" value="Definiert eine Einheit, die für eine sinnvoll zusammenfassbare Gruppe von Informationen, Prozesse und Systemen zuständig ist. Ein Hoheitsbereich kümmert sich um eine bestimmte Art von Aufgaben im Unternehmen. Es ist ein Aufgabenbereich. Häufig entsprechen Hoheitsbereiche den Divisionen, Geschäftsbereichen oder Sparten d.h. der Organisationeinheinheit auf der obersten Stufe.  Dies ist aber nur eine mögliche Lösung.  Hoheitsbereich bestimmt - Wer erstellt Datensätze zu einer Entität. - Wer bestimmt über Änderungen / Qualität etc. - Wer verwendet die Informationen dieser Entität haupstächlich - ??  ACHTUNG: Es sollten KEINE technischen Aufteilungen (Systeme, Technologie, Medien) für die Unterscheidung verwendet werden, da diese  häufiger ändern können. Es geht um die semantische Hoheit über die Informationen.  Beispiele:   Management   Recruting   Accounting   Manufacturing   Repairing   Consulting   Projektleitung   Support "/>
-<property name="DE_ENTI_NAME" value="Geschäftsfunktion"/>
-<property name="DE_ENTI_SYNONYM" value="Business Function"/>
+<property name="DE_ENTI_NAME" value="Geschäftsfähigkeit"/>
+<property name="DE_ENTI_SYNONYM" value="Business Function, Business Skill"/>
 <property name="EN_ENTI_COMMENT" value="*DE* Definiert eine Einheit, die für eine sinnvoll zusammenfassbare Gruppe von Informationen, Prozesse und Systemen zuständig ist. Ein Hoheitsbereich kümmert sich um eine bestimmte Art von Aufgaben im Unternehmen. Es ist ein Aufgabenbereich. Häufig entsprechen Hoheitsbereiche den Divisionen, Geschäftsbereichen oder Sparten d.h. der Organisationeinheinheit auf der obersten Stufe.  Dies ist aber nur eine mögliche Lösung.  Hoheitsbereich bestimmt - Wer erstellt Datensätze zu einer Entität. - Wer bestimmt über Änderungen / Qualität etc. - Wer verwendet die Informationen dieser Entität haupstächlich - ??  ACHTUNG: Es sollten KEINE technischen Aufteilungen (Systeme, Technologie, Medien) für die Unterscheidung verwendet werden, da diese  häufiger ändern können. Es geht um die semantische Hoheit über die Informationen.  Beispiele:   Management   Recruting   Accounting   Manufacturing   Repairing   Consulting   Projektleitung   Support "/>
-<property name="EN_ENTI_NAME" value="Business function"/>
-<property name="EN_ENTI_SYNONYM" value="Business function"/>
+<property name="EN_ENTI_NAME" value="*Business function"/>
+<property name="EN_ENTI_SYNONYM" value="*Business function"/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Name [L]" id="8A13C6EC-B600-0669-8262-D48EE1400A21">

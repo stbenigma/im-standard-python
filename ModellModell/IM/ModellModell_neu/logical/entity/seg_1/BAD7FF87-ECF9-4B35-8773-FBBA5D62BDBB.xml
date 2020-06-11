@@ -9,13 +9,19 @@ Beispiele:
 - jeden Montag (überprüfung der offenen Bestellungen)
 - Lagerbestand unter Schwellwert
 - Anzahl offene Bestellungen zu gross
-- Anzahl Servicefälle in einer Periode zu hoch
-]]></comment>
+- Anzahl Servicefälle in einer Periode zu hoch]]></comment>
 <notes><![CDATA[[DE_ENTI_COMMENT[
-Ein Datenzustand (z.B. tiefer Lagerbestand, zu viele offene Rechnungen für einen Kunden, tiefer oder hoher Kontostand etc.) löst einen Geschäftsprozess eine -transaktion aus oder ist das vorgesehene Ergebnis eines Prozesses. 
+Ein Datenzustand (z.B. tiefer Lagerbestand, zu viele offene Rechnungen für einen Kunden, tiefer oder hoher Kontostand etc.) löst einen Geschäftsprozess eine -transaktion aus oder ist das vorgesehene Ergebnis eines Prozesses.
+
+Beispiele:
+- Monatsende (Lohnzahlung, Bericht an Mgt, Mahnläufe)
+- jeden Montag (überprüfung der offenen Bestellungen)
+- Lagerbestand unter Schwellwert
+- Anzahl offene Bestellungen zu gross
+- Anzahl Servicefälle in einer Periode zu hoch
 ]DE_ENTI_COMMENT]
 [EN_ENTI_COMMENT[
-A data state (e.g. low inventory, too many open invoices for a customer, low or high account balance, etc.) triggers a business process, a transaction or is the intended result of a process
+*A data state (e.g. low inventory, too many open invoices for a customer, low or high account balance, etc.) triggers a business process, a transaction or is the intended result of a process
 ]EN_ENTI_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -36,7 +42,9 @@ A data state (e.g. low inventory, too many open invoices for a customer, low or 
 <propertyMap>
 <property name="DE_ENTI_COMMENT" value="Ein Datenzustand (z.B. tiefer Lagerbestand, zu viele offene Rechnungen für einen Kunden, tiefer oder hoher Kontostand etc.) löst einen Geschäftsprozess eine -transaktion aus oder ist das vorgesehene Ergebnis eines Prozesses. "/>
 <property name="DE_ENTI_NAME" value="Geschäftszustand"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
 <property name="EN_ENTI_COMMENT" value="*DE* Ein Datenzustand (z.B. tiefer Lagerbestand, zu viele offene Rechnungen für einen Kunden, tiefer oder hoher Kontostand etc.) löst einen Geschäftsprozess eine -transaktion aus oder ist das vorgesehene Ergebnis eines Prozesses. "/>
 <property name="EN_ENTI_NAME" value="Business condition"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
 </propertyMap>
 </Entity>

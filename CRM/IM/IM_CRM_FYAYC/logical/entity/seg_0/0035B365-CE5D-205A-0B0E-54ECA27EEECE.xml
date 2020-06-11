@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="0035B365-CE5D-205A-0B0E-54ECA27EEECE" name="*Ländergruppe">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="0035B365-CE5D-205A-0B0E-54ECA27EEECE" name="Ländergruppe">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 08:36:39 UTC</createdTime>
 <comment><![CDATA[Eine Zusammenfassung mehrerer Länder zu einer Gruppe.
@@ -10,19 +10,17 @@ Typen von Ländergruppen erlauben mehrere Gruppierungen zu führen: Vertriebsorg
 Beispiele:
 EU
 SACU Botsuana; Eswatini; Lesotho; Namibia; Südafrika (Zollunion)
-EMEA (Europe, Middle East, Africa) (Vertriebsorganisation)
-]]></comment>
+EMEA (Europe, Middle East, Africa) (Vertriebsorganisation)]]></comment>
 <notes><![CDATA[[EN_ENTI_COMMENT[
-*DE* Eine Zusammenfassung mehrerer Länder zu einer Gruppe.
-Es soll jeweils ein Kriterium für die Gruppenbildung bzw. einen Begründung (Zweck) für die Nutzung der Gruppe festgelegt/dokumentiert werden.
+**A grouping of several countries into one group.
+In each case, a criterion for group formation or a justification (purpose) for the use of the group should be defined/documented.
 
-Typen von Ländergruppen erlauben mehrere Gruppierungen zu führen: Vertriebsorg., Zoll, Logistik 
+Types of country groups allow you to manage several groupings: distribution company, customs, logistics
 
-Beispiele:
+Examples:
 EU
-SACU Botsuana; Eswatini; Lesotho; Namibia; Südafrika (Zollunion)
-EMEA (Europe, Middle East, Africa) (Vertriebsorganisation)
-
+SACU Botswana; Eswatini; Lesotho; Namibia; South Africa (Customs Union)
+EMEA (Europe, Middle East, Africa) (sales organization)
 ]EN_ENTI_COMMENT]
 [DE_ENTI_COMMENT[
 Eine Zusammenfassung mehrerer Länder zu einer Gruppe.
@@ -34,7 +32,6 @@ Beispiele:
 EU
 SACU Botsuana; Eswatini; Lesotho; Namibia; Südafrika (Zollunion)
 EMEA (Europe, Middle East, Africa) (Vertriebsorganisation)
-
 ]DE_ENTI_COMMENT]
 [FR_ENTI_COMMENT[
 *Regroupement de plusieurs pays en un seul groupe. Dans chaque cas, un critère de formation de groupe ou une justification (but) de l'utilisation du groupe est définie/documentée. Les types de groupes de pays vous permettent de gérer plusieurs regroupements : directeur commercial Douanes, logistique 
@@ -68,9 +65,9 @@ EMEA (Europe, Moyen-Orient, Afrique) (organisation commerciale)
 <property name="DE_ENTI_NAME" value="*Ländergruppe"/>
 <property name="DE_ENTI_SYNONYM" value="ldgrp"/>
 <property name="EN_ENTI_NAME" value="Country Group"/>
-<property name="EN_ENTI_SYNONYM" value="*DE* ldgrp"/>
+<property name="EN_ENTI_SYNONYM" value="**ldgrp"/>
 <property name="FR_ENTI_NAME" value="Groupe de pays"/>
-<property name="FR_ENTI_SYNONYM" value="*DE* ldgrp"/>
+<property name="FR_ENTI_SYNONYM" value="**ldgrp"/>
 <property name="PENTA TabName" value="landgroups"/>
 <property name="PIM TabName" value="ldgroup"/>
 </propertyMap>
@@ -80,7 +77,7 @@ EMEA (Europe, Moyen-Orient, Afrique) (organisation commerciale)
 <createdTime>2019-05-06 09:01:27 UTC</createdTime>
 <comment><![CDATA[Typ der Ländergruppe (Vertrieb, Zoll, Organisation)]]></comment>
 <notes><![CDATA[[EN_ATTR_COMMENT[
-*DE* Typ der Ländergruppe (Vertrieb, Zoll, Organisation)
+**Type of country group (distribution, customs, organization)
 ]EN_ATTR_COMMENT]
 [DE_ATTR_COMMENT[
 Typ der Ländergruppe (Vertrieb, Zoll, Organisation)
@@ -109,7 +106,7 @@ Type de groupe de pays (vente, douane, organisation)
 <property name="PIM datatype" value="number"/>
 </propertyMap>
 </Attribute>
-<Attribute name="Zweck" id="4884CAC4-510A-4F0B-4C72-FC6E2F36D0B3">
+<Attribute name="*Zweck" id="4884CAC4-510A-4F0B-4C72-FC6E2F36D0B3">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 08:58:17 UTC</createdTime>
 <notes><![CDATA[[DE_ATTR_COMMENT[
@@ -133,9 +130,9 @@ Type de groupe de pays (vente, douane, organisation)
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
-<property name="DE_ATTR_NAME" value="Zweck"/>
-<property name="EN_ATTR_NAME" value="Type"/>
-<property name="FR_ATTR_NAME" value="Type"/>
+<property name="DE_ATTR_NAME" value="*Zweck"/>
+<property name="EN_ATTR_NAME" value="*Type"/>
+<property name="FR_ATTR_NAME" value="Type1"/>
 <property name="PENTA AttrName" value="reason"/>
 <property name="PIM AttrName" value="ldreason"/>
 <property name="PIM datatype" value="text"/>

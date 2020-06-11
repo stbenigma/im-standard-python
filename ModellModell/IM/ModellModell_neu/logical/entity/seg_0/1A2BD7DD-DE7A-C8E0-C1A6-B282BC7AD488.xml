@@ -10,10 +10,16 @@ Die in anderen Darstellungsarten gebräuchlichen Beziehungen können aus  Option
 0-many	Optional - many
 1-many	Pflicht - many]]></comment>
 <notes><![CDATA[[DE_ENTI_COMMENT[
-Verbindung zweier Entitäten mit Assoziationstext, Optionalität und Abbildungstyp  Die in anderen Darstellungsarten gebräuchlichen Beziehungen können aus  Optionalität und Abbildungstyp hergeleitet werden 0-1 Optional  - 1 1-1 Pflicht - 1 0-many Optional - many 1-many Pflicht - many
+Verbindung zweier Entitäten mit Assoziationstext, Optionalität und Abbildungstyp
+
+Die in anderen Darstellungsarten gebräuchlichen Beziehungen können aus  Optionalität und Abbildungstyp hergeleitet werden
+0-1	Optional  - 1
+1-1	Pflicht - 1
+0-many	Optional - many
+1-many	Pflicht - many
 ]DE_ENTI_COMMENT]
 [EN_ENTI_COMMENT[
-Connection of two entities with association text, optionality and mapping type The relationships common in other mapping types can be derived from optionality and mapping type 0-1 Optional - 1 1-1 Mandatory - 1 0-many Optional - many 1-many Mandatory - many
+*Connection of two entities with association text, optionality and mapping type The relationships common in other mapping types can be derived from optionality and mapping type 0-1 Optional - 1 1-1 Mandatory - 1 0-many Optional - many 1-many Mandatory - many
 ]EN_ENTI_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -76,10 +82,11 @@ What connects the von-Entity with the zu-Entity?
 <comment><![CDATA[JA -> Beziehung kann über die Zeit ändern. Zu einem Zeitpunkt kann nur 1 Beziehung gelten. System muss Historie der Änderungen führen.
 Über Extratabelle zu lösen.]]></comment>
 <notes><![CDATA[[DE_ATTR_COMMENT[
-JA -> Beziehung kann über die Zeit ändern. Zu einem Zeitpunkt kann nur 1 Beziehung gelten. System muss Historie der Änderungen führen. Über Extratabelle zu lösen.
+JA -> Beziehung kann über die Zeit ändern. Zu einem Zeitpunkt kann nur 1 Beziehung gelten. System muss Historie der Änderungen führen.
+Über Extratabelle zu lösen.
 ]DE_ATTR_COMMENT]
 [EN_ATTR_COMMENT[
-YES -> Relationship can change over time. Only 1 relationship can apply at any one time. System must keep history of changes. To be solved via extra table.
+*YES -> Relationship can change over time. Only 1 relationship can apply at any one time. System must keep history of changes. To be solved via extra table.
 ]EN_ATTR_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -189,10 +196,11 @@ zu entity must have at least 1 connection to the von entity
 <comment><![CDATA[JA -> Beziehung kann über die Zeit ändern. Zu einem Zeitpunkt kann nur 1 Beziehung gelten. System muss Historie der Änderungen führen.
 Über Extratabelle zu lösen.]]></comment>
 <notes><![CDATA[[DE_ATTR_COMMENT[
-JA -> Beziehung kann über die Zeit ändern. Zu einem Zeitpunkt kann nur 1 Beziehung gelten. System muss Historie der Änderungen führen. Über Extratabelle zu lösen.
+JA -> Beziehung kann über die Zeit ändern. Zu einem Zeitpunkt kann nur 1 Beziehung gelten. System muss Historie der Änderungen führen.
+Über Extratabelle zu lösen.
 ]DE_ATTR_COMMENT]
 [EN_ATTR_COMMENT[
-YES -> Relationship can change over time. Only 1 relationship can apply at any one time. System must keep history of changes. To be solved via extra table.
+*YES -> Relationship can change over time. Only 1 relationship can apply at any one time. System must keep history of changes. To be solved via extra table.
 ]EN_ATTR_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>

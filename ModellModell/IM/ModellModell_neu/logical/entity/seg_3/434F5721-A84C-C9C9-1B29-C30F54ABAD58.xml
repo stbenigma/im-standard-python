@@ -2,17 +2,20 @@
 <Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_3" id="434F5721-A84C-C9C9-1B29-C30F54ABAD58" name="Schnittstellenattribut">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:06:23 UTC</createdTime>
-<comment><![CDATA[ Attribut in einem System, das mit anderen Systemen ausgetauscht werden soll.
+<comment><![CDATA[Attribut in einem System, das mit anderen Systemen ausgetauscht werden soll.
+ Datentyp, Format und Constraints können in div. Sprachen und Dialekten geführ werden
+  SQL (mit dialekt)
+  Jason
+  XML]]></comment>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+Attribut in einem System, das mit anderen Systemen ausgetauscht werden soll.
  Datentyp, Format und Constraints können in div. Sprachen und Dialekten geführ werden
   SQL (mit dialekt)
   Jason
   XML
-]]></comment>
-<notes><![CDATA[[DE_ENTI_COMMENT[
- Attribut in einem System, das mit anderen Systemen ausgetauscht werden soll.  Datentyp, Format und Constraints können in div. Sprachen und Dialekten geführ werden   SQL (mit dialekt)   Jason   XML 
 ]DE_ENTI_COMMENT]
 [EN_ENTI_COMMENT[
- Attribute in a system that is to be exchanged with other systems.  Data type, format and constraints can be maintained in various languages and dialects SQL (with dialect) Jason XML
+*Attribute in a system that is to be exchanged with other systems.  Data type, format and constraints can be maintained in various languages and dialects SQL (with dialect) Jason XML
 ]EN_ENTI_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -33,8 +36,10 @@
 <propertyMap>
 <property name="DE_ENTI_COMMENT" value=" Attribut in einem System, das mit anderen Systemen ausgetauscht werden soll.  Datentyp, Format und Constraints können in div. Sprachen und Dialekten geführ werden   SQL (mit dialekt)   Jason   XML "/>
 <property name="DE_ENTI_NAME" value="Schnittstellenattribut"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
 <property name="EN_ENTI_COMMENT" value="*DE*  Attribut in einem System, das mit anderen Systemen ausgetauscht werden soll.  Datentyp, Format und Constraints können in div. Sprachen und Dialekten geführ werden   SQL (mit dialekt)   Jason   XML "/>
 <property name="EN_ENTI_NAME" value="Interface attribute"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Name" id="999B70CA-BCF5-C825-8366-9D78800EA196">
@@ -181,6 +186,13 @@ Text formatting of a numeric or time value
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:06:23 UTC</createdTime>
 <comment><![CDATA[Konstanter Wert der zu verwenden ist, falls keine Quelle oder keine Transformation exisitert.]]></comment>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+**Constant value to be used if no source or transformation exists.
+]EN_ATTR_COMMENT]
+[DE_ATTR_COMMENT[
+Konstanter Wert der zu verwenden ist, falls keine Quelle oder keine Transformation exisitert.
+]DE_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <importedID>B38BFC3F-DB1C-39F5-C596-3F91ED493276</importedID>
 <engineerTo>
@@ -190,11 +202,22 @@ Text formatting of a numeric or time value
 <nullsAllowed>true</nullsAllowed>
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Vorgabewert"/>
+<property name="EN_ATTR_NAME" value="**Default value"/>
+</propertyMap>
 </Attribute>
 <Attribute name="Geschäftsregel" id="638B0E9B-0C02-1293-49B7-EBE2C59731DF">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:06:23 UTC</createdTime>
 <comment><![CDATA[Beschreibung von Qualitätsprüfungen / Business rules für die Eingangsprüfung]]></comment>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+**Description of quality inspections / business rules for the incoming inspection
+]EN_ATTR_COMMENT]
+[DE_ATTR_COMMENT[
+Beschreibung von Qualitätsprüfungen / Business rules für die Eingangsprüfung
+]DE_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <importedID>E9EDC69C-4D49-A485-44EB-4EE0F2B7D406</importedID>
 <engineerTo>
@@ -204,6 +227,10 @@ Text formatting of a numeric or time value
 <nullsAllowed>true</nullsAllowed>
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Geschäftsregel"/>
+<property name="EN_ATTR_NAME" value="**Business Rule"/>
+</propertyMap>
 </Attribute>
 </attributes>
 </Entity>

@@ -9,10 +9,15 @@ Beispiel:
 - Lohnzahlungen durchführen (nachdem sie in einem Anwendungsfall freigegeben wurden)
 - nächtliche Datenübernahme ab einem Fremdsystem]]></comment>
 <notes><![CDATA[[DE_ENTI_COMMENT[
-Geschäftsprozess, der durch ein System durchgeführt ist. Er kann durch einen Akteur ausglöst werden, die Ergebnisse sind aber typischerweise nicht direkt für den Akteur berstimmt.  Beispiel: - (automatisch) Mahnungen versenden - Lohnzahlungen durchführen. - nächtliche Datenübernahme ab einem Fremdsystem
+Geschäftsprozess, der durch ein System durchgeführt ist. Er kann durch einen Akteur ausglöst werden, die Ergebnisse sind aber typischerweise nicht direkt für den Akteur berstimmt.
+
+Beispiel:
+- (automatisch) Mahnungen versenden
+- Lohnzahlungen durchführen (nachdem sie in einem Anwendungsfall freigegeben wurden)
+- nächtliche Datenübernahme ab einem Fremdsystem
 ]DE_ENTI_COMMENT]
 [EN_ENTI_COMMENT[
-Business process performed by a system. It can be triggered by an actor, but the results are typically not directly attuned to the actor.  Example: - Send (automatically) dunning notices - Make wage payments. - nightly data transfer from an external system
+*Business process performed by a system. It can be triggered by an actor, but the results are typically not directly attuned to the actor.  Example: - Send (automatically) dunning notices - Make wage payments. - nightly data transfer from an external system
 ]EN_ENTI_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -33,8 +38,10 @@ Business process performed by a system. It can be triggered by an actor, but the
 <createSurrogateKey>true</createSurrogateKey>
 <propertyMap>
 <property name="DE_ENTI_COMMENT" value="Geschäftsprozess, der durch ein System durchgeführt ist. Er kann durch einen Akteur ausglöst werden, die Ergebnisse sind aber typischerweise nicht direkt für den Akteur berstimmt.  Beispiel: - (automatisch) Mahnungen versenden - Lohnzahlungen durchführen. - nächtliche Datenübernahme ab einem Fremdsystem"/>
-<property name="DE_ENTI_NAME" value="Interner Prozess"/>
+<property name="DE_ENTI_NAME" value="Technischer Prozess"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
 <property name="EN_ENTI_COMMENT" value="*DE* Geschäftsprozess, der durch ein System durchgeführt ist. Er kann durch einen Akteur ausglöst werden, die Ergebnisse sind aber typischerweise nicht direkt für den Akteur berstimmt.  Beispiel: - (automatisch) Mahnungen versenden - Lohnzahlungen durchführen. - nächtliche Datenübernahme ab einem Fremdsystem"/>
-<property name="EN_ENTI_NAME" value="Internal process"/>
+<property name="EN_ENTI_NAME" value="*Internal process"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
 </propertyMap>
 </Entity>

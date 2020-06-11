@@ -10,13 +10,13 @@ CIO
 Sachdienstmitarbeiter
 Verkaufsleiter]]></comment>
 <notes><![CDATA[[EN_ENTI_COMMENT[
-*DE* Beschreibung einer Rolle, die eine Ansprechsperson haben kann.
+**Description of a role that a contact person can have.
 
-Beispiele:
+Examples:
 CEO
 CIO
-Sachdienstmitarbeiter
-Verkaufsleiter
+Case workers
+Sales Manager
 ]EN_ENTI_COMMENT]
 [DE_ENTI_COMMENT[
 Beschreibung einer Rolle, die eine Ansprechsperson haben kann.
@@ -58,6 +58,7 @@ Directeur des ventes
 <property name="EN_ENTI_NAME" value="*Role"/>
 <property name="EN_ENTI_SYNONYM" value=""/>
 <property name="FR_ENTI_NAME" value="Fonction"/>
+<property name="FR_ENTI_SYNONYM" value=""/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Bezeichnung" id="40B36602-4348-FB5F-5BD1-C56AD78107F8">
@@ -70,6 +71,7 @@ Directeur des ventes
 
 ]EN_ATTR_COMMENT]
 [FR_ATTR_COMMENT[
+
 ]FR_ATTR_COMMENT]
 ]]></notes>
 <ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
@@ -83,7 +85,7 @@ Directeur des ventes
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_NAME" value="Bezeichnung"/>
-<property name="EN_ATTR_NAME" value="*DE* Bezeichnung"/>
+<property name="EN_ATTR_NAME" value="**Designation"/>
 <property name="FR_ATTR_NAME" value="Dénomination"/>
 </propertyMap>
 </Attribute>
@@ -97,6 +99,7 @@ Directeur des ventes
 
 ]EN_ATTR_COMMENT]
 [FR_ATTR_COMMENT[
+
 ]FR_ATTR_COMMENT]
 ]]></notes>
 <ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
@@ -111,7 +114,7 @@ Directeur des ventes
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_NAME" value="Beschreibung"/>
-<property name="EN_ATTR_NAME" value="*DE* Beschreibung"/>
+<property name="EN_ATTR_NAME" value="**Description"/>
 <property name="FR_ATTR_NAME" value="Description"/>
 </propertyMap>
 </Attribute>

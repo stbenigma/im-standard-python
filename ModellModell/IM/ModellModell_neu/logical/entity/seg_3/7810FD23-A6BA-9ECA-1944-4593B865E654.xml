@@ -9,10 +9,15 @@ D.h. sie identifiziert genau 1 Eintrag in der Entität.
 Die Laufnummer ist ein Hilfsmittel. Genau genommen ist für einen Schlüssel nur eindeutig
 Entität + Menge aller Schlüsselelemente.]]></comment>
 <notes><![CDATA[[DE_ENTI_COMMENT[
-Gruppe von identifizierenden Beziehungen und oder Attributen einer Entität. Jede Kombination von Werten in einem Schlüssel ist für die Entität einmalig.  D.h. sie identifiziert genau 1 Eintrag in der Entität.  Die Laufnummer ist ein Hilfsmittel. Genau genommen ist für einen Schlüssel nur eindeutig Entität + Menge aller Schlüsselelemente.
+Gruppe von identifizierenden Beziehungen und oder Attributen einer Entität.
+Jede Kombination von Werten in einem Schlüssel ist für die Entität einmalig. 
+D.h. sie identifiziert genau 1 Eintrag in der Entität.
+
+Die Laufnummer ist ein Hilfsmittel. Genau genommen ist für einen Schlüssel nur eindeutig
+Entität + Menge aller Schlüsselelemente.
 ]DE_ENTI_COMMENT]
 [EN_ENTI_COMMENT[
-Group of identifying relationships and/or attributes of an entity. Each combination of values in a key is unique to the entity.  I.e. it identifies exactly 1 entry in the entity.  The sequence number is an aid. Strictly speaking, only the entity + set of all key elements is unique for a key.
+*Group of identifying relationships and/or attributes of an entity. Each combination of values in a key is unique to the entity.  I.e. it identifies exactly 1 entry in the entity.  The sequence number is an aid. Strictly speaking, only the entity + set of all key elements is unique for a key.
 ]EN_ENTI_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -101,6 +106,13 @@ The keys of an entity must be distinguishable by a characteristic.
 <createdTime>2020-02-10 12:41:58 UTC</createdTime>
 <comment><![CDATA[Name der Entität der in der Kommunikation normalerweise gebraucht wird.]]></comment>
 <generatorID>7DFF44B9-D585-A3B7-7342-79EA825C4941</generatorID>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+**Name of the entity that is normally used in communication.
+]EN_ATTR_COMMENT]
+[DE_ATTR_COMMENT[
+Name der Entität der in der Kommunikation normalerweise gebraucht wird.
+]DE_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
@@ -111,6 +123,10 @@ The keys of an entity must be distinguishable by a characteristic.
 <use>1</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Entitätname [L]"/>
+<property name="EN_ATTR_NAME" value="**Entity name [L]"/>
+</propertyMap>
 </Attribute>
 </attributes>
 <identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">

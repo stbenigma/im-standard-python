@@ -5,12 +5,15 @@
 <comment><![CDATA[Geschäftsregel, die Attributwerte auf Regelkonformität prüft.
 Diese Regeln sind passiv. D.h. es wird überprüft, ob der Wert (ggf. im Zusammenhang mit anderen Werten dieser oder anderer Entitäten) aus fachlicher Sicht korrekt ist.
 
-Regelverletzungen können als SQL Selects angegeben werden. Jedes Tupel, das das Select liefert verletzt die Regel.   ]]></comment>
+Regelverletzungen können als SQL Selects angegeben werden. Jedes Tupel, das das Select liefert verletzt die Regel.]]></comment>
 <notes><![CDATA[[DE_ENTI_COMMENT[
-Geschäftsregel, die Attributwerte auf Regelkonformität prüft. Diese Regeln sind passiv. D.h. es wird überprüft, ob der Wert (ggf. im Zusammenhang mit anderen Werten dieser oder anderer Entitäten) aus fachlicher Sicht korrekt ist.  Regelverletzungen können als SQL Selects angegeben werden. Jedes Tupel, das das Select liefert verletzt die Regel.   
+Geschäftsregel, die Attributwerte auf Regelkonformität prüft.
+Diese Regeln sind passiv. D.h. es wird überprüft, ob der Wert (ggf. im Zusammenhang mit anderen Werten dieser oder anderer Entitäten) aus fachlicher Sicht korrekt ist.
+
+Regelverletzungen können als SQL Selects angegeben werden. Jedes Tupel, das das Select liefert verletzt die Regel.
 ]DE_ENTI_COMMENT]
 [EN_ENTI_COMMENT[
-Transaction rule that checks attribute values for rule conformity. These rules are passive. This means that the system checks whether the value (possibly in connection with other values of these or other entities) is correct from a business point of view.  Rule violations can be specified as SQL selects. Any tuple that returns the select violates the rule.   
+*Transaction rule that checks attribute values for rule conformity. These rules are passive. This means that the system checks whether the value (possibly in connection with other values of these or other entities) is correct from a business point of view.  Rule violations can be specified as SQL selects. Any tuple that returns the select violates the rule.
 ]EN_ENTI_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>

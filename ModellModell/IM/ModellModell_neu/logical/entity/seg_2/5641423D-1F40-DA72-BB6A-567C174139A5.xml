@@ -17,13 +17,27 @@ SAP-Hana
 IDE  = Application for IT-People
 Eclipse / Microsoft Studio
 Jenkins
-Oracle-APEX
-]]></comment>
+Oracle-APEX]]></comment>
 <notes><![CDATA[[DE_ENTI_COMMENT[
-IT_System, Betriebssystem, Infrastruktur in oder auf dem Anwendungen laufen können.  Beispiele: Power-DNS JRE java runtime environment Windows Android ubuntu Linux mongo-DB Excel Access SAP-Hana IDE  = Application for IT-People Eclipse / Microsoft Studio Jenkins Oracle-APEX 
+IT_System, Betriebssystem, Infrastruktur in oder auf dem Anwendungen laufen können.
+
+Beispiele:
+Power-DNS
+JRE java runtime environment
+Windows
+Android
+ubuntu Linux
+mongo-DB
+Excel
+Access
+SAP-Hana
+IDE  = Application for IT-People
+Eclipse / Microsoft Studio
+Jenkins
+Oracle-APEX
 ]DE_ENTI_COMMENT]
 [EN_ENTI_COMMENT[
-IT_System, operating system, infrastructure in or on which applications can run.  Examples: Power-DNS JRE java runtime environment Windows Android ubuntu Linux mongo-DB Excel Access SAP-Hana IDE = Application for IT-People Eclipse / Microsoft Studio Jenkins Oracle-APEX
+*IT_System, operating system, infrastructure in or on which applications can run.  Examples: Power-DNS JRE java runtime environment Windows Android ubuntu Linux mongo-DB Excel Access SAP-Hana IDE = Application for IT-People Eclipse / Microsoft Studio Jenkins Oracle-APEX
 ]EN_ENTI_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -45,8 +59,10 @@ IT_System, operating system, infrastructure in or on which applications can run.
 <propertyMap>
 <property name="DE_ENTI_COMMENT" value="IT_System, Betriebssystem, Infrastruktur in oder auf dem Anwendungen laufen können.  Beispiele: Power-DNS JRE java runtime environment Windows Android ubuntu Linux mongo-DB Excel Access SAP-Hana IDE  = Application for IT-People Eclipse / Microsoft Studio Jenkins Oracle-APEX "/>
 <property name="DE_ENTI_NAME" value="IT-System"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
 <property name="EN_ENTI_COMMENT" value="*DE* IT_System, Betriebssystem, Infrastruktur in oder auf dem Anwendungen laufen können.  Beispiele: Power-DNS JRE java runtime environment Windows Android ubuntu Linux mongo-DB Excel Access SAP-Hana IDE  = Application for IT-People Eclipse / Microsoft Studio Jenkins Oracle-APEX "/>
 <property name="EN_ENTI_NAME" value="IT system"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Zeichnsatz" id="9E4F1EF5-A882-1837-570F-7741DEB53954">
@@ -127,9 +143,9 @@ Name of the entity normally used in communication.
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_COMMENT" value=""/>
-<property name="DE_ATTR_NAME" value="Name"/>
+<property name="DE_ATTR_NAME" value="Name_"/>
 <property name="EN_ATTR_COMMENT" value=""/>
-<property name="EN_ATTR_NAME" value="Name"/>
+<property name="EN_ATTR_NAME" value="*Name"/>
 </propertyMap>
 </Attribute>
 </attributes>
