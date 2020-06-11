@@ -15,6 +15,7 @@ Exklusivbeziehungen einer Gruppe sind alle IsA Beziehungen oder alle funktionale
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <typeID>899A6DDC-95E0-4AD5-5F58-B3A2FF5C2D08</typeID>
@@ -53,6 +54,7 @@ arbitrary numbering to distinguish several exclusive relationships in an entity
 <importedID>F8F374B8-F266-21F0-ADA1-DE808B4EF15F</importedID>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
@@ -61,7 +63,7 @@ arbitrary numbering to distinguish several exclusive relationships in an entity
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_COMMENT" value="willkürliche Nummerierung zur Untescheidung mehrere Exklusivbeziehungen in einer Entität"/>
-<property name="DE_ATTR_NAME" value="*Laufnr"/>
+<property name="DE_ATTR_NAME" value="Laufnr"/>
 <property name="EN_ATTR_COMMENT" value="*DE* willkürliche Nummerierung zur Untescheidung mehrere Exklusivbeziehungen in einer Entität"/>
 <property name="EN_ATTR_NAME" value="No"/>
 </propertyMap>
@@ -81,6 +83,7 @@ Name der Entität der in der Kommunikation normalerweise gebraucht wird.
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <referedAttribute>F1D0F128-7361-E0A9-E706-227C158FCD42</referedAttribute>
@@ -99,8 +102,10 @@ Name der Entität der in der Kommunikation normalerweise gebraucht wird.
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:04:00 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="false"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <pk>true</pk>
