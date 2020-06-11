@@ -2,9 +2,17 @@
 <Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="C9EF7918-F5CC-0897-190A-CCD5A71E88D3" name="Systemattribut">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-23 12:57:13 UTC</createdTime>
-<comment><![CDATA[ Attribut in einem System, das mit anderen Systemen ausgetauscht werden soll]]></comment>
+<comment><![CDATA[Attribut in einem System, das mit anderen Systemen ausgetauscht werden soll]]></comment>
+<notes><![CDATA[[EN_ENTI_COMMENT[
+*DE*  Attribut in einem System, das mit anderen Systemen ausgetauscht werden soll
+]EN_ENTI_COMMENT]
+[DE_ENTI_COMMENT[
+ Attribut in einem System, das mit anderen Systemen ausgetauscht werden soll
+]DE_ENTI_COMMENT]
+]]></notes>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 <item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
@@ -17,12 +25,26 @@
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
 <createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="DE_ENTI_NAME" value="Systemattribut"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_NAME" value="*DE* Systemattribut"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+</propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Name" id="B41BF0C7-0AD6-E2FF-307E-0E3AB8A27120">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-23 12:57:13 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 <item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
@@ -36,6 +58,8 @@
 <property name="AP Typ" value="."/>
 <property name="AP usage" value="."/>
 <property name="CRM-Salesforce" value="."/>
+<property name="DE_ATTR_NAME" value="Name"/>
+<property name="EN_ATTR_NAME" value="*DE* Name"/>
 <property name="ERP" value="."/>
 <property name="EXCEL ColumnName" value="."/>
 <property name="Excel" value="."/>
@@ -51,8 +75,16 @@
 <Attribute name="Tabellenname" id="A4F8AE1B-96D5-63B5-DAEA-8A543607CDE9">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-23 12:57:13 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 <item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
@@ -66,6 +98,8 @@
 <property name="AP Typ" value="."/>
 <property name="AP usage" value="."/>
 <property name="CRM-Salesforce" value="."/>
+<property name="DE_ATTR_NAME" value="Tabellenname"/>
+<property name="EN_ATTR_NAME" value="*DE* Tabellenname"/>
 <property name="ERP" value="."/>
 <property name="EXCEL ColumnName" value="."/>
 <property name="Excel" value="."/>
@@ -82,8 +116,16 @@
 <createdBy>stb</createdBy>
 <createdTime>2018-06-23 12:57:13 UTC</createdTime>
 <comment><![CDATA[Technischer Datentyp im Fremdsystem (z.B. String(20), NUMERIC(20,4), integer,date,  etc.)]]></comment>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+*DE* Technischer Datentyp im Fremdsystem (z.B. String(20), NUMERIC(20,4), integer,date,  etc.)
+]EN_ATTR_COMMENT]
+[DE_ATTR_COMMENT[
+Technischer Datentyp im Fremdsystem (z.B. String(20), NUMERIC(20,4), integer,date,  etc.)
+]DE_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 <item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
@@ -96,6 +138,8 @@
 <property name="AP Typ" value="."/>
 <property name="AP usage" value="."/>
 <property name="CRM-Salesforce" value="."/>
+<property name="DE_ATTR_NAME" value="Datentyp"/>
+<property name="EN_ATTR_NAME" value="*DE* Datentyp"/>
 <property name="ERP" value="."/>
 <property name="EXCEL ColumnName" value="."/>
 <property name="Excel" value="."/>
@@ -112,8 +156,16 @@
 <createdBy>stb</createdBy>
 <createdTime>2018-06-23 14:05:06 UTC</createdTime>
 <comment><![CDATA[Textliche Formatierung eines numerischen oder Zeitpunkt-Wertes]]></comment>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+*DE* Textliche Formatierung eines numerischen oder Zeitpunkt-Wertes
+]EN_ATTR_COMMENT]
+[DE_ATTR_COMMENT[
+Textliche Formatierung eines numerischen oder Zeitpunkt-Wertes
+]DE_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 <item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
@@ -127,6 +179,8 @@
 <property name="AP Typ" value="."/>
 <property name="AP usage" value="."/>
 <property name="CRM-Salesforce" value="."/>
+<property name="DE_ATTR_NAME" value="Format"/>
+<property name="EN_ATTR_NAME" value="*DE* Format"/>
 <property name="ERP" value="."/>
 <property name="EXCEL ColumnName" value="."/>
 <property name="Excel" value="."/>
@@ -146,6 +200,7 @@
 <createdTime>2018-06-23 12:57:13 UTC</createdTime>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 <item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>

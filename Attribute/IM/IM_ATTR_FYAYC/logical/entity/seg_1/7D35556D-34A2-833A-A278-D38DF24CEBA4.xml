@@ -2,10 +2,19 @@
 <Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="7D35556D-34A2-833A-A278-D38DF24CEBA4" name="Restinhalt">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-19 15:55:02 UTC</createdTime>
-<comment> </comment>
+<comment><![CDATA[*EN* *DE*]]></comment>
+<notes><![CDATA[[EN_ENTI_COMMENT[
+*DE*
+]EN_ENTI_COMMENT]
+[DE_ENTI_COMMENT[
+*EN* *DE*
+]DE_ENTI_COMMENT]
+]]></notes>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
 <adequatelyNormalized>NO</adequatelyNormalized>
 <expectedVolumes>0</expectedVolumes>
@@ -17,4 +26,10 @@
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
 <createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="DE_ENTI_NAME" value="Restinhalt"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_NAME" value="*DE* Restinhalt"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+</propertyMap>
 </Entity>

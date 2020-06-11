@@ -2,8 +2,16 @@
 <Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="237BC7C8-5906-C8CF-FE2E-A63294F9826D" name="Artikel">
 <createdBy>stb</createdBy>
 <createdTime>2018-08-19 10:45:04 UTC</createdTime>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+
+]EN_ENTI_COMMENT]
+]]></notes>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 <item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
@@ -15,12 +23,26 @@
 <maxVolumes>9999999</maxVolumes>
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
+<propertyMap>
+<property name="DE_ENTI_NAME" value="Artikel"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_NAME" value="*DE* Artikel"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+</propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Name" id="F48BAA0A-737D-F1E6-06A2-073EA2BF48CB">
 <createdBy>stb</createdBy>
 <createdTime>2018-08-19 10:45:04 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 <item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
@@ -32,6 +54,8 @@
 <property name="AP Typ" value="."/>
 <property name="AP usage" value="."/>
 <property name="CRM-Salesforce" value=" S&gt;"/>
+<property name="DE_ATTR_NAME" value="Name"/>
+<property name="EN_ATTR_NAME" value="*DE* Name"/>
 <property name="ERP" value="&lt;A&gt;"/>
 <property name="EXCEL ColumnName" value="."/>
 <property name="Excel" value=" A&gt;"/>
@@ -47,8 +71,16 @@
 <Attribute name="GTIN" id="B66EE19F-7F90-1178-2232-C2C8E1E2F8AC">
 <createdBy>stb</createdBy>
 <createdTime>2019-06-11 06:05:36 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 <item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
@@ -60,6 +92,8 @@
 <property name="AP Typ" value="."/>
 <property name="AP usage" value="."/>
 <property name="CRM-Salesforce" value=" S&gt;"/>
+<property name="DE_ATTR_NAME" value="GTIN"/>
+<property name="EN_ATTR_NAME" value="*DE* GTIN"/>
 <property name="ERP" value="&lt;S"/>
 <property name="EXCEL ColumnName" value="."/>
 <property name="Excel" value=" A&gt;"/>
@@ -75,8 +109,16 @@
 <Attribute name="Herstelldatum" id="B64F464E-2FB6-97A6-4DD2-3A10D0F0192F">
 <createdBy>stb</createdBy>
 <createdTime>2018-08-19 10:45:04 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 <item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
@@ -88,6 +130,8 @@
 <property name="AP Typ" value="."/>
 <property name="AP usage" value="."/>
 <property name="CRM-Salesforce" value="&lt;O&gt;"/>
+<property name="DE_ATTR_NAME" value="Herstelldatum"/>
+<property name="EN_ATTR_NAME" value="*DE* Herstelldatum"/>
 <property name="ERP" value="."/>
 <property name="EXCEL ColumnName" value="."/>
 <property name="Excel" value=" A&gt;"/>
@@ -103,8 +147,16 @@
 <Attribute name="Kurzbeschreibung" id="D058DCCB-2FDF-D37C-53D9-CA2F2DF09CB6">
 <createdBy>stb</createdBy>
 <createdTime>2018-08-19 10:45:04 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 <item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
@@ -116,6 +168,8 @@
 <property name="AP Typ" value="."/>
 <property name="AP usage" value="."/>
 <property name="CRM-Salesforce" value="&lt;S"/>
+<property name="DE_ATTR_NAME" value="Kurzbeschreibung"/>
+<property name="EN_ATTR_NAME" value="*DE* Kurzbeschreibung"/>
 <property name="ERP" value="&lt;A&gt;"/>
 <property name="EXCEL ColumnName" value="."/>
 <property name="Excel" value="."/>
@@ -131,8 +185,16 @@
 <Attribute name="Web-Beschreibung" id="CBECE023-ED8C-3ECA-477B-928FD565D90C">
 <createdBy>stb</createdBy>
 <createdTime>2019-08-12 11:18:46 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 <item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
@@ -141,6 +203,8 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="CRM-Salesforce" value="&lt;O&gt;"/>
+<property name="DE_ATTR_NAME" value="Web-Beschreibung"/>
+<property name="EN_ATTR_NAME" value="*DE* Web-Beschreibung"/>
 <property name="ERP" value=" A&gt;"/>
 <property name="SAP FieldID" value="."/>
 <property name="Web-Shop" value=" A&gt;"/>
@@ -149,8 +213,16 @@
 <Attribute name="Lagerungshinweis" id="91278332-42DD-AD20-B106-9918CFF84AC7">
 <createdBy>stb</createdBy>
 <createdTime>2019-08-16 12:23:22 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 <item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
@@ -158,12 +230,24 @@
 <use>0</use>
 <domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Lagerungshinweis"/>
+<property name="EN_ATTR_NAME" value="*DE* Lagerungshinweis"/>
+</propertyMap>
 </Attribute>
 <Attribute name="Nettogewicht" id="5A60B88B-EA86-5517-7686-8980EF712AF0">
 <createdBy>stb</createdBy>
 <createdTime>2018-08-19 10:45:35 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 <item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
@@ -176,6 +260,8 @@
 <property name="AP Typ" value="."/>
 <property name="AP usage" value="."/>
 <property name="CRM-Salesforce" value=" S&gt;"/>
+<property name="DE_ATTR_NAME" value="Nettogewicht"/>
+<property name="EN_ATTR_NAME" value="*DE* Nettogewicht"/>
 <property name="ERP" value="&lt;O&gt;"/>
 <property name="EXCEL ColumnName" value="."/>
 <property name="Excel" value="."/>
@@ -192,8 +278,16 @@
 <createdBy>stb</createdBy>
 <createdTime>2018-08-19 10:45:40 UTC</createdTime>
 <commentInRDBMS><![CDATA[Masse des minimalen umhüllenden Würfels (primär für Logistikzwecke gebraucht)]]></commentInRDBMS>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 <item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
@@ -207,6 +301,8 @@
 <property name="AP Typ" value="."/>
 <property name="AP usage" value="."/>
 <property name="CRM-Salesforce" value=" S&gt;"/>
+<property name="DE_ATTR_NAME" value="minimale Abmessung (LxHxB)"/>
+<property name="EN_ATTR_NAME" value="*DE* minimale Abmessung (LxHxB)"/>
 <property name="ERP" value="&lt;O&gt;"/>
 <property name="EXCEL ColumnName" value="."/>
 <property name="Excel" value="."/>
@@ -226,6 +322,7 @@
 <createdTime>2019-08-16 12:35:19 UTC</createdTime>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 <item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
@@ -241,6 +338,7 @@
 <createdTime>2019-08-16 12:35:19 UTC</createdTime>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 <item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
@@ -264,6 +362,7 @@
 <createdTime>2019-08-16 12:35:19 UTC</createdTime>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 <item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
@@ -287,6 +386,7 @@
 <createdTime>2019-08-16 12:35:19 UTC</createdTime>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 <item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>

@@ -2,10 +2,19 @@
 <Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="BE878101-2C88-F7D9-6D27-BCCEDADFB0E5" name="ungeschützte Herkunft">
 <createdBy>stb</createdBy>
 <createdTime>2019-06-08 13:06:09 UTC</createdTime>
-<comment>Appellation d&apos;Origine Protégée</comment>
+<comment><![CDATA[Appellation d'Origine Protégée]]></comment>
+<notes><![CDATA[[EN_ENTI_COMMENT[
+*DE* Appellation d'Origine Protégée
+]EN_ENTI_COMMENT]
+[DE_ENTI_COMMENT[
+Appellation d'Origine Protégée
+]DE_ENTI_COMMENT]
+]]></notes>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
 <adequatelyNormalized>NO</adequatelyNormalized>
 <expectedVolumes>0</expectedVolumes>
@@ -17,4 +26,10 @@
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
 <createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="DE_ENTI_NAME" value="ungeschützte Herkunft"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_NAME" value="*DE* ungeschützte Herkunft"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+</propertyMap>
 </Entity>

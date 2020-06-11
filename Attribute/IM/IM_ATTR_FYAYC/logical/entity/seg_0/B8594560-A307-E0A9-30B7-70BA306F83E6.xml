@@ -3,8 +3,16 @@
 <createdBy>stb</createdBy>
 <createdTime>2018-05-30 12:15:53 UTC</createdTime>
 <comment><![CDATA[Die Einschränkungen für ein numerisches Attribut können die Domänenvorgaben weiter einschränken, aber nicht erweitern.]]></comment>
+<notes><![CDATA[[EN_ENTI_COMMENT[
+*DE* Die Einschränkungen für ein numerisches Attribut können die Domänenvorgaben weiter einschränken, aber nicht erweitern.
+]EN_ENTI_COMMENT]
+[DE_ENTI_COMMENT[
+Die Einschränkungen für ein numerisches Attribut können die Domänenvorgaben weiter einschränken, aber nicht erweitern.
+]DE_ENTI_COMMENT]
+]]></notes>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 <item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
@@ -18,14 +26,28 @@
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
 <createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="DE_ENTI_NAME" value="Numerisches Attribut"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_NAME" value="*DE* Numerisches Attribut"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+</propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Min Wert" id="7C19DD31-8189-BDB9-2878-76B9B5E929C0">
 <createdBy>stb</createdBy>
 <createdTime>2018-05-30 12:15:53 UTC</createdTime>
 <comment><![CDATA[Mindeswert, muss grösser als die Domänenvorgabe sein.. Leer -> Wert aus der Domäne gilt]]></comment>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+*DE* Mindeswert, muss grösser als die Domänenvorgabe sein.. Leer -> Wert aus der Domäne gilt
+]EN_ATTR_COMMENT]
+[DE_ATTR_COMMENT[
+Mindeswert, muss grösser als die Domänenvorgabe sein.. Leer -> Wert aus der Domäne gilt
+]DE_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <importedID>5C9E4513-EC5B-A599-4262-245889F0C34E</importedID>
 <engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 <item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
@@ -40,6 +62,8 @@
 <property name="AP Typ" value="."/>
 <property name="AP usage" value="."/>
 <property name="CRM-Salesforce" value="."/>
+<property name="DE_ATTR_NAME" value="Min Wert"/>
+<property name="EN_ATTR_NAME" value="*DE* Min Wert"/>
 <property name="ERP" value="."/>
 <property name="EXCEL ColumnName" value="."/>
 <property name="Excel" value="."/>
@@ -56,9 +80,17 @@
 <createdBy>stb</createdBy>
 <createdTime>2018-05-30 12:15:53 UTC</createdTime>
 <comment><![CDATA[Maximalwert, muss kleiner als die Domänenvorgabe sein.. Leer -> Wert aus der Domäne gilt]]></comment>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+*DE* Maximalwert, muss kleiner als die Domänenvorgabe sein.. Leer -> Wert aus der Domäne gilt
+]EN_ATTR_COMMENT]
+[DE_ATTR_COMMENT[
+Maximalwert, muss kleiner als die Domänenvorgabe sein.. Leer -> Wert aus der Domäne gilt
+]DE_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <importedID>E783D490-8CB7-D9FF-0046-792DC9EF89A3</importedID>
 <engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 <item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
@@ -73,6 +105,8 @@
 <property name="AP Typ" value="."/>
 <property name="AP usage" value="."/>
 <property name="CRM-Salesforce" value="."/>
+<property name="DE_ATTR_NAME" value="Max Wert"/>
+<property name="EN_ATTR_NAME" value="*DE* Max Wert"/>
 <property name="ERP" value="."/>
 <property name="EXCEL ColumnName" value="."/>
 <property name="Excel" value="."/>

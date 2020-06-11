@@ -2,9 +2,17 @@
 <Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="FEC83FD9-548C-0DED-C51C-3872C23B37D4" name="Zeitpunkt Domäne">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-22 14:50:13 UTC</createdTime>
-<comment><![CDATA[ ]]></comment>
+<comment><![CDATA[*EN* *DE*]]></comment>
+<notes><![CDATA[[EN_ENTI_COMMENT[
+*DE*
+]EN_ENTI_COMMENT]
+[DE_ENTI_COMMENT[
+*EN* *DE*
+]DE_ENTI_COMMENT]
+]]></notes>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 <item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
@@ -18,13 +26,27 @@
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
 <createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="DE_ENTI_NAME" value="Zeitpunkt Domäne"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_NAME" value="*DE* Zeitpunkt Domäne"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+</propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Min Zeitpunkt" id="C900DFA0-C133-8F58-C3EA-D4BC024F775B">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-22 14:50:13 UTC</createdTime>
 <comment><![CDATA[frühestes Datum in diesem Attribut. Leer -> es gibt keine Untergrenze]]></comment>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+*DE* frühestes Datum in diesem Attribut. Leer -> es gibt keine Untergrenze
+]EN_ATTR_COMMENT]
+[DE_ATTR_COMMENT[
+frühestes Datum in diesem Attribut. Leer -> es gibt keine Untergrenze
+]DE_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 <item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
@@ -39,6 +61,8 @@
 <property name="AP Typ" value="."/>
 <property name="AP usage" value="."/>
 <property name="CRM-Salesforce" value="."/>
+<property name="DE_ATTR_NAME" value="Min Zeitpunkt"/>
+<property name="EN_ATTR_NAME" value="*DE* Min Zeitpunkt"/>
 <property name="ERP" value="."/>
 <property name="EXCEL ColumnName" value="."/>
 <property name="Excel" value="."/>
@@ -55,8 +79,16 @@
 <createdBy>stb</createdBy>
 <createdTime>2018-06-22 14:50:13 UTC</createdTime>
 <comment><![CDATA[spätestes Datum in diesem Attribut. Leer -> es gibt keine Obergrenze]]></comment>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+*DE* spätestes Datum in diesem Attribut. Leer -> es gibt keine Obergrenze
+]EN_ATTR_COMMENT]
+[DE_ATTR_COMMENT[
+spätestes Datum in diesem Attribut. Leer -> es gibt keine Obergrenze
+]DE_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 <item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
@@ -71,6 +103,8 @@
 <property name="AP Typ" value="."/>
 <property name="AP usage" value="."/>
 <property name="CRM-Salesforce" value="."/>
+<property name="DE_ATTR_NAME" value="Max Zeitpunkt"/>
+<property name="EN_ATTR_NAME" value="*DE* Max Zeitpunkt"/>
 <property name="ERP" value="."/>
 <property name="EXCEL ColumnName" value="."/>
 <property name="Excel" value="."/>
@@ -87,8 +121,16 @@
 <createdBy>stb</createdBy>
 <createdTime>2018-06-23 12:50:48 UTC</createdTime>
 <comment><![CDATA[Auf welche Einheit wird die Datumsangabe gerundet (Tag, Minute, Monat, Jahr)]]></comment>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+*DE* Auf welche Einheit wird die Datumsangabe gerundet (Tag, Minute, Monat, Jahr)
+]EN_ATTR_COMMENT]
+[DE_ATTR_COMMENT[
+Auf welche Einheit wird die Datumsangabe gerundet (Tag, Minute, Monat, Jahr)
+]DE_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 <item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
@@ -100,6 +142,8 @@
 <property name="AP Typ" value="."/>
 <property name="AP usage" value="."/>
 <property name="CRM-Salesforce" value="."/>
+<property name="DE_ATTR_NAME" value="Granularität"/>
+<property name="EN_ATTR_NAME" value="*DE* Granularität"/>
 <property name="ERP" value="."/>
 <property name="EXCEL ColumnName" value="."/>
 <property name="Excel" value="."/>

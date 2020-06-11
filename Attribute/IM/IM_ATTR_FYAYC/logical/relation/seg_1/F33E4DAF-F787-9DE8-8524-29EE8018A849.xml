@@ -5,7 +5,9 @@
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
+<item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
 <sourcePk>1CA93774-5353-E408-265C-A618A89F47D9</sourcePk>
 <identifying>true</identifying>
@@ -19,4 +21,10 @@
 <targetEntity>02201E37-96FC-1BC9-504A-A9397C7B106C</targetEntity>
 <transferable>true</transferable>
 <deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="umfasst"/>
+<property name="DE_RELA_TEXT_TO" value="liegt an"/>
+<property name="EN_RELA_TEXT_FROM" value="*DE* umfasst"/>
+<property name="EN_RELA_TEXT_TO" value="*DE* liegt an"/>
+</propertyMap>
 </Relation>

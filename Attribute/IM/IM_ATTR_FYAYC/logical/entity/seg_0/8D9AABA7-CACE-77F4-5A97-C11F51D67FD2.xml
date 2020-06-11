@@ -7,8 +7,24 @@ Werte werden geladen, je nach Richtung der Transformation aus dem Fremdsystem od
 Sobald ein Wert den Status 'verarbeitet" hat muss Verarbeitungsart und Transformationszeitpunkt gesetzt sein. Erst dann darf er weiter verwendet werden.
 Gültige verarbeitete Werte haben einen Transformationszeitpunkt, eine Verarbeitungsart, den Transformationsstatus ="verarbeitet" und Transformation gültig = 'J' .
 Ungültige Werte haben den Transformationsstatus ="verarbeitet", eine Verarbeitungsart, Transformation gültig = "N"  und zusätzlich eine Feherbeschreibung (Fehler-Nr, -Beschrieb, oder (Name der) Regel die verletzt wurde).]]></comment>
+<notes><![CDATA[[EN_ENTI_COMMENT[
+*DE* Historie der verarbeiteten Transformationen.
+Werte werden geladen, je nach Richtung der Transformation aus dem Fremdsystem oder aus dem konzeptionellen Schema.
+Sobald ein Wert den Status 'verarbeitet" hat muss Verarbeitungsart und Transformationszeitpunkt gesetzt sein. Erst dann darf er weiter verwendet werden.
+Gültige verarbeitete Werte haben einen Transformationszeitpunkt, eine Verarbeitungsart, den Transformationsstatus ="verarbeitet" und Transformation gültig = 'J' .
+Ungültige Werte haben den Transformationsstatus ="verarbeitet", eine Verarbeitungsart, Transformation gültig = "N"  und zusätzlich eine Feherbeschreibung (Fehler-Nr, -Beschrieb, oder (Name der) Regel die verletzt wurde).
+]EN_ENTI_COMMENT]
+[DE_ENTI_COMMENT[
+Historie der verarbeiteten Transformationen.
+Werte werden geladen, je nach Richtung der Transformation aus dem Fremdsystem oder aus dem konzeptionellen Schema.
+Sobald ein Wert den Status 'verarbeitet" hat muss Verarbeitungsart und Transformationszeitpunkt gesetzt sein. Erst dann darf er weiter verwendet werden.
+Gültige verarbeitete Werte haben einen Transformationszeitpunkt, eine Verarbeitungsart, den Transformationsstatus ="verarbeitet" und Transformation gültig = 'J' .
+Ungültige Werte haben den Transformationsstatus ="verarbeitet", eine Verarbeitungsart, Transformation gültig = "N"  und zusätzlich eine Feherbeschreibung (Fehler-Nr, -Beschrieb, oder (Name der) Regel die verletzt wurde).
+]DE_ENTI_COMMENT]
+]]></notes>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 <item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
@@ -21,13 +37,27 @@ Ungültige Werte haben den Transformationsstatus ="verarbeitet", eine Verarbeitu
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
 <createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="DE_ENTI_NAME" value="Attributwerttransformation"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_NAME" value="*DE* Attributwerttransformation"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+</propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Ladezeitpunkt" id="839DB6EF-5D18-06F6-0C8B-C80C0903C057">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-25 07:58:56 UTC</createdTime>
 <comment><![CDATA[Zeitpunkt (in möglichst kleiner Zeiteinheit) zu dem der zu transformierende Wert geladen wurde.]]></comment>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+*DE* Zeitpunkt (in möglichst kleiner Zeiteinheit) zu dem der zu transformierende Wert geladen wurde.
+]EN_ATTR_COMMENT]
+[DE_ATTR_COMMENT[
+Zeitpunkt (in möglichst kleiner Zeiteinheit) zu dem der zu transformierende Wert geladen wurde.
+]DE_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 <item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
@@ -40,6 +70,8 @@ Ungültige Werte haben den Transformationsstatus ="verarbeitet", eine Verarbeitu
 <property name="AP Typ" value="."/>
 <property name="AP usage" value="."/>
 <property name="CRM-Salesforce" value="."/>
+<property name="DE_ATTR_NAME" value="Ladezeitpunkt"/>
+<property name="EN_ATTR_NAME" value="*DE* Ladezeitpunkt"/>
 <property name="ERP" value="."/>
 <property name="EXCEL ColumnName" value="."/>
 <property name="Excel" value="."/>
@@ -56,8 +88,16 @@ Ungültige Werte haben den Transformationsstatus ="verarbeitet", eine Verarbeitu
 <createdBy>stb</createdBy>
 <createdTime>2018-06-25 07:52:52 UTC</createdTime>
 <comment><![CDATA[Wert(e) aus dem bzw. für das  Fremdsystem. Falls die Transformation nach "aussen" geht, genau 1 Wert]]></comment>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+*DE* Wert(e) aus dem bzw. für das  Fremdsystem. Falls die Transformation nach "aussen" geht, genau 1 Wert
+]EN_ATTR_COMMENT]
+[DE_ATTR_COMMENT[
+Wert(e) aus dem bzw. für das  Fremdsystem. Falls die Transformation nach "aussen" geht, genau 1 Wert
+]DE_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 <item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
@@ -72,6 +112,8 @@ Ungültige Werte haben den Transformationsstatus ="verarbeitet", eine Verarbeitu
 <property name="AP Typ" value="."/>
 <property name="AP usage" value="."/>
 <property name="CRM-Salesforce" value="."/>
+<property name="DE_ATTR_NAME" value="Fremdsystemwert [N]"/>
+<property name="EN_ATTR_NAME" value="*DE* Fremdsystemwert [N]"/>
 <property name="ERP" value="."/>
 <property name="EXCEL ColumnName" value="."/>
 <property name="Excel" value="."/>
@@ -88,8 +130,16 @@ Ungültige Werte haben den Transformationsstatus ="verarbeitet", eine Verarbeitu
 <createdBy>stb</createdBy>
 <createdTime>2018-06-25 07:53:23 UTC</createdTime>
 <comment><![CDATA[Wert(e) aus dem bzw. für das  Konzueptionelle System. Falls die Transformation nach "innen" geht, genau 1 Wert]]></comment>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+*DE* Wert(e) aus dem bzw. für das  Konzueptionelle System. Falls die Transformation nach "innen" geht, genau 1 Wert
+]EN_ATTR_COMMENT]
+[DE_ATTR_COMMENT[
+Wert(e) aus dem bzw. für das  Konzueptionelle System. Falls die Transformation nach "innen" geht, genau 1 Wert
+]DE_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 <item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
@@ -104,6 +154,8 @@ Ungültige Werte haben den Transformationsstatus ="verarbeitet", eine Verarbeitu
 <property name="AP Typ" value="."/>
 <property name="AP usage" value="."/>
 <property name="CRM-Salesforce" value="."/>
+<property name="DE_ATTR_NAME" value="SSoT Wert [N]"/>
+<property name="EN_ATTR_NAME" value="*DE* SSoT Wert [N]"/>
 <property name="ERP" value="."/>
 <property name="EXCEL ColumnName" value="."/>
 <property name="Excel" value="."/>
@@ -120,8 +172,16 @@ Ungültige Werte haben den Transformationsstatus ="verarbeitet", eine Verarbeitu
 <createdBy>stb</createdBy>
 <createdTime>2018-06-25 07:54:13 UTC</createdTime>
 <comment><![CDATA[Zeitpunkt (in möglichst kleiner Zeiteinheit) zu dem die Transformation durchgeführt wurde. Leer-> die Transformation wurde noch nicht durchgeführt.]]></comment>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+*DE* Zeitpunkt (in möglichst kleiner Zeiteinheit) zu dem die Transformation durchgeführt wurde. Leer-> die Transformation wurde noch nicht durchgeführt.
+]EN_ATTR_COMMENT]
+[DE_ATTR_COMMENT[
+Zeitpunkt (in möglichst kleiner Zeiteinheit) zu dem die Transformation durchgeführt wurde. Leer-> die Transformation wurde noch nicht durchgeführt.
+]DE_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 <item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
@@ -135,6 +195,8 @@ Ungültige Werte haben den Transformationsstatus ="verarbeitet", eine Verarbeitu
 <property name="AP Typ" value="."/>
 <property name="AP usage" value="."/>
 <property name="CRM-Salesforce" value="."/>
+<property name="DE_ATTR_NAME" value="Transformationszeitpunkt"/>
+<property name="EN_ATTR_NAME" value="*DE* Transformationszeitpunkt"/>
 <property name="ERP" value="."/>
 <property name="EXCEL ColumnName" value="."/>
 <property name="Excel" value="."/>
@@ -151,8 +213,16 @@ Ungültige Werte haben den Transformationsstatus ="verarbeitet", eine Verarbeitu
 <createdBy>stb</createdBy>
 <createdTime>2018-06-25 07:55:35 UTC</createdTime>
 <comment><![CDATA[Status der Transformation (geladen, verarbeitet)]]></comment>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+*DE* Status der Transformation (geladen, verarbeitet)
+]EN_ATTR_COMMENT]
+[DE_ATTR_COMMENT[
+Status der Transformation (geladen, verarbeitet)
+]DE_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 <item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
@@ -165,6 +235,8 @@ Ungültige Werte haben den Transformationsstatus ="verarbeitet", eine Verarbeitu
 <property name="AP Typ" value="."/>
 <property name="AP usage" value="."/>
 <property name="CRM-Salesforce" value="."/>
+<property name="DE_ATTR_NAME" value="Transformationsstatus"/>
+<property name="EN_ATTR_NAME" value="*DE* Transformationsstatus"/>
 <property name="ERP" value="."/>
 <property name="EXCEL ColumnName" value="."/>
 <property name="Excel" value="."/>
@@ -181,8 +253,16 @@ Ungültige Werte haben den Transformationsstatus ="verarbeitet", eine Verarbeitu
 <createdBy>stb</createdBy>
 <createdTime>2018-06-25 08:03:34 UTC</createdTime>
 <comment><![CDATA[Art der Durchführung einer Transformation (manuell, automatisch)]]></comment>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+*DE* Art der Durchführung einer Transformation (manuell, automatisch)
+]EN_ATTR_COMMENT]
+[DE_ATTR_COMMENT[
+Art der Durchführung einer Transformation (manuell, automatisch)
+]DE_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 <item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
@@ -196,6 +276,8 @@ Ungültige Werte haben den Transformationsstatus ="verarbeitet", eine Verarbeitu
 <property name="AP Typ" value="."/>
 <property name="AP usage" value="."/>
 <property name="CRM-Salesforce" value="."/>
+<property name="DE_ATTR_NAME" value="Verarbeitungsart"/>
+<property name="EN_ATTR_NAME" value="*DE* Verarbeitungsart"/>
 <property name="ERP" value="."/>
 <property name="EXCEL ColumnName" value="."/>
 <property name="Excel" value="."/>
@@ -211,9 +293,17 @@ Ungültige Werte haben den Transformationsstatus ="verarbeitet", eine Verarbeitu
 <Attribute name="Transformation gültig (J/N)" id="4DD742E9-1881-D9FD-AD66-0CB10663F0B5">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-25 07:59:42 UTC</createdTime>
-<comment><![CDATA[Angabe, ob der transformierte Wert gültig ist. ]]></comment>
+<comment><![CDATA[Angabe, ob der transformierte Wert gültig ist.]]></comment>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+*DE* Angabe, ob der transformierte Wert gültig ist.
+]EN_ATTR_COMMENT]
+[DE_ATTR_COMMENT[
+Angabe, ob der transformierte Wert gültig ist. 
+]DE_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 <item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
@@ -227,6 +317,8 @@ Ungültige Werte haben den Transformationsstatus ="verarbeitet", eine Verarbeitu
 <property name="AP Typ" value="."/>
 <property name="AP usage" value="."/>
 <property name="CRM-Salesforce" value="."/>
+<property name="DE_ATTR_NAME" value="Transformation gültig (J/N)"/>
+<property name="EN_ATTR_NAME" value="*DE* Transformation gültig (J/N)"/>
 <property name="ERP" value="."/>
 <property name="EXCEL ColumnName" value="."/>
 <property name="Excel" value="."/>
@@ -243,8 +335,16 @@ Ungültige Werte haben den Transformationsstatus ="verarbeitet", eine Verarbeitu
 <createdBy>stb</createdBy>
 <createdTime>2018-06-25 07:55:06 UTC</createdTime>
 <comment><![CDATA[Fehlerbeschrieb, falls der Wert nicht übersetzt werden konnte. Falls Transformation gültig = FALSE und Transformationsstatus = verarbeitet, muss ein Fehlerbeschrieb vorliegen.]]></comment>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+*DE* Fehlerbeschrieb, falls der Wert nicht übersetzt werden konnte. Falls Transformation gültig = FALSE und Transformationsstatus = verarbeitet, muss ein Fehlerbeschrieb vorliegen.
+]EN_ATTR_COMMENT]
+[DE_ATTR_COMMENT[
+Fehlerbeschrieb, falls der Wert nicht übersetzt werden konnte. Falls Transformation gültig = FALSE und Transformationsstatus = verarbeitet, muss ein Fehlerbeschrieb vorliegen.
+]DE_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 <item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
@@ -258,6 +358,8 @@ Ungültige Werte haben den Transformationsstatus ="verarbeitet", eine Verarbeitu
 <property name="AP Typ" value="."/>
 <property name="AP usage" value="."/>
 <property name="CRM-Salesforce" value="."/>
+<property name="DE_ATTR_NAME" value="Transformationsfehler"/>
+<property name="EN_ATTR_NAME" value="*DE* Transformationsfehler"/>
 <property name="ERP" value="."/>
 <property name="EXCEL ColumnName" value="."/>
 <property name="Excel" value="."/>
@@ -277,6 +379,7 @@ Ungültige Werte haben den Transformationsstatus ="verarbeitet", eine Verarbeitu
 <createdTime>2018-06-25 08:15:52 UTC</createdTime>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 <item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
