@@ -7,8 +7,8 @@
 <item key="31F23758-7055-2533-F71A-66322F896678" value="true"/>
 </engineerTo>
 <identifying>false</identifying>
-<nameOnSource>erstellt</nameOnSource>
-<nameOnTarget>erstellt von</nameOnTarget>
+<nameOnSource>**created</nameOnSource>
+<nameOnTarget>**created by</nameOnTarget>
 <optionalSource>true</optionalSource>
 <optionalTarget>false</optionalTarget>
 <sourceCardinality>1</sourceCardinality>
@@ -17,4 +17,10 @@
 <targetEntity>DE9761AB-FF13-66AE-7D57-7D0AAADB45F9</targetEntity>
 <transferable>true</transferable>
 <deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="erstellt"/>
+<property name="DE_RELA_TEXT_TO" value="erstellt von"/>
+<property name="EN_RELA_TEXT_FROM" value="**created"/>
+<property name="EN_RELA_TEXT_TO" value="**created by"/>
+</propertyMap>
 </Relation>

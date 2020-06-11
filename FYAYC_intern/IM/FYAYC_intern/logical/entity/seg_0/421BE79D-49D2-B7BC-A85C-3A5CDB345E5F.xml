@@ -1,8 +1,8 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="421BE79D-49D2-B7BC-A85C-3A5CDB345E5F" name="Trainingsmodul">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="421BE79D-49D2-B7BC-A85C-3A5CDB345E5F" name="**Training module">
 <createdBy>toz</createdBy>
 <createdTime>2020-04-30 09:30:48 UTC</createdTime>
-<comment><![CDATA[Ein Trainingsmodul ist die Instanz eines Trainingsprogrammmoduls mit eindeutig zugeteilten Terminen, Personenrollen und Durchführungsort.]]></comment>
+<comment><![CDATA[**A training module is the instance of a training program module with clearly assigned dates, roles and location.]]></comment>
 <notes><![CDATA[[EN_ENTI_COMMENT[
 **A training module is the instance of a training program module with clearly assigned dates, roles and location.
 ]EN_ENTI_COMMENT]
@@ -25,10 +25,12 @@ Ein Trainingsmodul ist die Instanz eines Trainingsprogrammmoduls mit eindeutig z
 <normalForm>Third</normalForm>
 <propertyMap>
 <property name="DE_ENTI_NAME" value="Trainingsmodul"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
 <property name="EN_ENTI_NAME" value="**Training module"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<Attribute name="Durchführungsort" id="89A1FC9C-1FCA-837F-5F99-9B10E8734BBE">
+<Attribute name="**Place of implementation" id="89A1FC9C-1FCA-837F-5F99-9B10E8734BBE">
 <createdBy>toz</createdBy>
 <createdTime>2020-04-30 09:30:48 UTC</createdTime>
 <notes><![CDATA[[DE_ATTR_COMMENT[
@@ -50,7 +52,7 @@ Ein Trainingsmodul ist die Instanz eines Trainingsprogrammmoduls mit eindeutig z
 <property name="EN_ATTR_NAME" value="**Place of implementation"/>
 </propertyMap>
 </Attribute>
-<Attribute name="Datum" id="F373BD9D-1E07-BCBE-AC12-CCE15A363B4C">
+<Attribute name="**Date" id="F373BD9D-1E07-BCBE-AC12-CCE15A363B4C">
 <createdBy>toz</createdBy>
 <createdTime>2020-04-30 09:30:48 UTC</createdTime>
 <notes><![CDATA[[DE_ATTR_COMMENT[
@@ -72,7 +74,7 @@ Ein Trainingsmodul ist die Instanz eines Trainingsprogrammmoduls mit eindeutig z
 <property name="EN_ATTR_NAME" value="**Date"/>
 </propertyMap>
 </Attribute>
-<Attribute name="Dauer" id="4E639785-650B-CB61-E418-A8FB3C28FE4F">
+<Attribute name="**Duration" id="4E639785-650B-CB61-E418-A8FB3C28FE4F">
 <createdBy>toz</createdBy>
 <createdTime>2020-04-30 09:30:48 UTC</createdTime>
 <notes><![CDATA[[DE_ATTR_COMMENT[
@@ -94,7 +96,7 @@ Ein Trainingsmodul ist die Instanz eines Trainingsprogrammmoduls mit eindeutig z
 <property name="EN_ATTR_NAME" value="**Duration"/>
 </propertyMap>
 </Attribute>
-<Attribute name="Anfangszeit" id="3A852D06-1641-C75B-CA59-8E792E5B66F1">
+<Attribute name="**Initial period" id="3A852D06-1641-C75B-CA59-8E792E5B66F1">
 <createdBy>toz</createdBy>
 <createdTime>2020-04-30 09:30:48 UTC</createdTime>
 <notes><![CDATA[[DE_ATTR_COMMENT[

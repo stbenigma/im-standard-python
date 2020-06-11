@@ -8,8 +8,8 @@
 </engineerTo>
 <useSurrogateKey>true</useSurrogateKey>
 <identifying>false</identifying>
-<nameOnSource>verminderbar durch</nameOnSource>
-<nameOnTarget>vermindert</nameOnTarget>
+<nameOnSource>**diminishable by</nameOnSource>
+<nameOnTarget>**diminished</nameOnTarget>
 <optionalSource>true</optionalSource>
 <optionalTarget>true</optionalTarget>
 <sourceCardinality>*</sourceCardinality>
@@ -18,4 +18,10 @@
 <targetEntity>46D31B78-4F84-4455-BDE4-70DC0D3094BE</targetEntity>
 <transferable>true</transferable>
 <deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="verminderbar durch"/>
+<property name="DE_RELA_TEXT_TO" value="vermindert"/>
+<property name="EN_RELA_TEXT_FROM" value="**diminishable by"/>
+<property name="EN_RELA_TEXT_TO" value="**diminished"/>
+</propertyMap>
 </Relation>

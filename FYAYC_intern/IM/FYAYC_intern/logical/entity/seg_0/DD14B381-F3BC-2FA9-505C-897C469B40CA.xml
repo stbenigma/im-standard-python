@@ -1,13 +1,13 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="DD14B381-F3BC-2FA9-505C-897C469B40CA" name="Audit">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="DD14B381-F3BC-2FA9-505C-897C469B40CA" name="**Audit">
 <createdBy>toz</createdBy>
 <createdTime>2020-05-19 14:50:32 UTC</createdTime>
-<comment><![CDATA[Überprüfung ob Managementsystem Anforderungen erfüllt und ob im Realsystem korrekt gelebt. ]]></comment>
+<comment><![CDATA[**Verification whether the management system fulfils requirements and whether it is correctly lived in the real system.]]></comment>
 <notes><![CDATA[[DE_ENTI_COMMENT[
-Überprüfung ob Managementsystem Anforderungen erfüllt und ob im Realsystem korrekt gelebt. 
+Überprüfung ob Managementsystem Anforderungen erfüllt und ob im Realsystem korrekt gelebt.
 ]DE_ENTI_COMMENT]
 [EN_ENTI_COMMENT[
-*DE* Überprüfung ob Managementsystem Anforderungen erfüllt und ob im Realsystem korrekt gelebt. 
+**Verification whether the management system fulfils requirements and whether it is correctly lived in the real system.
 ]EN_ENTI_COMMENT]
 ]]></notes>
 <ownerDesignName>FYAYC_intern</ownerDesignName>
@@ -25,10 +25,12 @@
 <normalForm>Third</normalForm>
 <propertyMap>
 <property name="DE_ENTI_NAME" value="Audit"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
 <property name="EN_ENTI_NAME" value="**Audit"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<Attribute name="Datum" id="1C06E765-4D8C-CA39-A769-9A8DB145990C">
+<Attribute name="**Date" id="1C06E765-4D8C-CA39-A769-9A8DB145990C">
 <createdBy>toz</createdBy>
 <createdTime>2020-05-19 14:50:32 UTC</createdTime>
 <notes><![CDATA[[DE_ATTR_COMMENT[

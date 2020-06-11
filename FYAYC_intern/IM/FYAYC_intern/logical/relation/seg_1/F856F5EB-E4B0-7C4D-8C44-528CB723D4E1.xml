@@ -8,8 +8,8 @@
 </engineerTo>
 <useSurrogateKey>true</useSurrogateKey>
 <identifying>false</identifying>
-<nameOnSource>bearbeitet</nameOnSource>
-<nameOnTarget>bearbeitet durch</nameOnTarget>
+<nameOnSource>**edited</nameOnSource>
+<nameOnTarget>**edited by</nameOnTarget>
 <optionalSource>true</optionalSource>
 <optionalTarget>false</optionalTarget>
 <sourceCardinality>1</sourceCardinality>
@@ -17,4 +17,10 @@
 <targetCardinalityString>*</targetCardinalityString>
 <targetEntity>DE9761AB-FF13-66AE-7D57-7D0AAADB45F9</targetEntity>
 <transferable>true</transferable>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="bearbeitet"/>
+<property name="DE_RELA_TEXT_TO" value="bearbeitet durch"/>
+<property name="EN_RELA_TEXT_FROM" value="**edited"/>
+<property name="EN_RELA_TEXT_TO" value="**edited by"/>
+</propertyMap>
 </Relation>

@@ -1,8 +1,8 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="AD07DAEC-8B86-A2BC-6899-E410ADD109A3" name="Einsatzteammitglied">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="AD07DAEC-8B86-A2BC-6899-E410ADD109A3" name="**Member of the operational team">
 <createdBy>toz</createdBy>
 <createdTime>2020-04-30 09:30:48 UTC</createdTime>
-<comment><![CDATA[Unterstützer sind für einzelne Aufgaben verantwortlich, welche zur Durchführung eines Moduls benötigt werden.]]></comment>
+<comment><![CDATA[**Supporters are responsible for individual tasks that are needed to carry out a module.]]></comment>
 <notes><![CDATA[[EN_ENTI_COMMENT[
 **Supporters are responsible for individual tasks that are needed to carry out a module.
 ]EN_ENTI_COMMENT]
@@ -25,6 +25,8 @@ Unterstützer sind für einzelne Aufgaben verantwortlich, welche zur Durchführu
 <normalForm>Third</normalForm>
 <propertyMap>
 <property name="DE_ENTI_NAME" value="Einsatzteammitglied"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
 <property name="EN_ENTI_NAME" value="**Member of the operational team"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
 </propertyMap>
 </Entity>

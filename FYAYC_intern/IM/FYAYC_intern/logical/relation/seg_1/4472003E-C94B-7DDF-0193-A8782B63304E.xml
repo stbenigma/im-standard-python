@@ -7,8 +7,8 @@
 <item key="31F23758-7055-2533-F71A-66322F896678" value="true"/>
 </engineerTo>
 <identifying>false</identifying>
-<nameOnSource>fasst zusammen</nameOnSource>
-<nameOnTarget>festgehalten in</nameOnTarget>
+<nameOnSource>**in summary</nameOnSource>
+<nameOnTarget>**grounded in</nameOnTarget>
 <optionalSource>true</optionalSource>
 <optionalTarget>false</optionalTarget>
 <sourceCardinality>1</sourceCardinality>
@@ -17,4 +17,10 @@
 <targetEntity>5D47AF8C-7373-661D-3939-30296D32928E</targetEntity>
 <transferable>true</transferable>
 <deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="fasst zusammen"/>
+<property name="DE_RELA_TEXT_TO" value="festgehalten in"/>
+<property name="EN_RELA_TEXT_FROM" value="**in summary"/>
+<property name="EN_RELA_TEXT_TO" value="**grounded in"/>
+</propertyMap>
 </Relation>

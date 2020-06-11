@@ -8,8 +8,8 @@
 </engineerTo>
 <useSurrogateKey>true</useSurrogateKey>
 <identifying>false</identifying>
-<nameOnSource>muss durchführen</nameOnSource>
-<nameOnTarget>gilt für</nameOnTarget>
+<nameOnSource>**must carry out</nameOnSource>
+<nameOnTarget>**is valid for</nameOnTarget>
 <optionalSource>true</optionalSource>
 <optionalTarget>false</optionalTarget>
 <sourceCardinality>*</sourceCardinality>
@@ -17,4 +17,10 @@
 <targetCardinalityString>*</targetCardinalityString>
 <targetEntity>6B802188-C6ED-174A-F585-BC854D099E1E</targetEntity>
 <transferable>true</transferable>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="muss durchführen"/>
+<property name="DE_RELA_TEXT_TO" value="gilt für"/>
+<property name="EN_RELA_TEXT_FROM" value="**must carry out"/>
+<property name="EN_RELA_TEXT_TO" value="**is valid for"/>
+</propertyMap>
 </Relation>

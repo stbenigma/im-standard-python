@@ -8,8 +8,8 @@
 </engineerTo>
 <useSurrogateKey>true</useSurrogateKey>
 <identifying>false</identifying>
-<nameOnSource>vewrwendet</nameOnSource>
-<nameOnTarget>verwendet in</nameOnTarget>
+<nameOnSource>**used</nameOnSource>
+<nameOnTarget>**used in</nameOnTarget>
 <optionalSource>true</optionalSource>
 <optionalTarget>true</optionalTarget>
 <sourceCardinality>*</sourceCardinality>
@@ -18,4 +18,10 @@
 <targetEntity>FEE0DD3C-7A75-FCE3-7A3B-651753B5493C</targetEntity>
 <transferable>true</transferable>
 <deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="vewrwendet"/>
+<property name="DE_RELA_TEXT_TO" value="verwendet in"/>
+<property name="EN_RELA_TEXT_FROM" value="**used"/>
+<property name="EN_RELA_TEXT_TO" value="**used in"/>
+</propertyMap>
 </Relation>

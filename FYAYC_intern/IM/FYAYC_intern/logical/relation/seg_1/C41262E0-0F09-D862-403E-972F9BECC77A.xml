@@ -7,8 +7,8 @@
 <item key="31F23758-7055-2533-F71A-66322F896678" value="true"/>
 </engineerTo>
 <identifying>false</identifying>
-<nameOnSource>verantwortet durch</nameOnSource>
-<nameOnTarget>verantwortet</nameOnTarget>
+<nameOnSource>**answered for by</nameOnSource>
+<nameOnTarget>**responsible for</nameOnTarget>
 <optionalSource>false</optionalSource>
 <optionalTarget>true</optionalTarget>
 <sourceCardinality>*</sourceCardinality>
@@ -17,4 +17,10 @@
 <targetEntity>0377887A-2035-531C-F814-7BC3E73D0213</targetEntity>
 <transferable>true</transferable>
 <deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="verantwortet durch"/>
+<property name="DE_RELA_TEXT_TO" value="verantwortet"/>
+<property name="EN_RELA_TEXT_FROM" value="**answered for by"/>
+<property name="EN_RELA_TEXT_TO" value="**responsible for"/>
+</propertyMap>
 </Relation>

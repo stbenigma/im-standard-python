@@ -8,8 +8,8 @@
 </engineerTo>
 <useSurrogateKey>true</useSurrogateKey>
 <identifying>false</identifying>
-<nameOnSource>geleitet von</nameOnSource>
-<nameOnTarget>leitet</nameOnTarget>
+<nameOnSource>**conducted by</nameOnSource>
+<nameOnTarget>**manages</nameOnTarget>
 <optionalSource>false</optionalSource>
 <optionalTarget>true</optionalTarget>
 <sourceCardinality>1</sourceCardinality>
@@ -17,4 +17,10 @@
 <targetCardinalityString>1</targetCardinalityString>
 <targetEntity>3D908F8C-0F72-A7D6-3693-CF9DE3316A93</targetEntity>
 <transferable>true</transferable>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="geleitet von"/>
+<property name="DE_RELA_TEXT_TO" value="leitet"/>
+<property name="EN_RELA_TEXT_FROM" value="**conducted by"/>
+<property name="EN_RELA_TEXT_TO" value="**manages"/>
+</propertyMap>
 </Relation>

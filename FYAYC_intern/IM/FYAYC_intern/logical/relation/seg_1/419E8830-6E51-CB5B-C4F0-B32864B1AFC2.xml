@@ -8,8 +8,8 @@
 </engineerTo>
 <useSurrogateKey>true</useSurrogateKey>
 <identifying>false</identifying>
-<nameOnSource>führt zu</nameOnSource>
-<nameOnTarget>enstanden während</nameOnTarget>
+<nameOnSource>**leads to</nameOnSource>
+<nameOnTarget>**arisen during</nameOnTarget>
 <optionalSource>true</optionalSource>
 <optionalTarget>true</optionalTarget>
 <sourceCardinality>1</sourceCardinality>
@@ -17,4 +17,10 @@
 <targetCardinalityString>*</targetCardinalityString>
 <targetEntity>DE9761AB-FF13-66AE-7D57-7D0AAADB45F9</targetEntity>
 <transferable>true</transferable>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="führt zu"/>
+<property name="DE_RELA_TEXT_TO" value="enstanden während"/>
+<property name="EN_RELA_TEXT_FROM" value="**leads to"/>
+<property name="EN_RELA_TEXT_TO" value="**arisen during"/>
+</propertyMap>
 </Relation>

@@ -8,8 +8,8 @@
 </engineerTo>
 <useSurrogateKey>true</useSurrogateKey>
 <identifying>false</identifying>
-<nameOnSource>gerechtfertigt durch</nameOnSource>
-<nameOnTarget>rechtfertigt</nameOnTarget>
+<nameOnSource>**justified by</nameOnSource>
+<nameOnTarget>**justifies</nameOnTarget>
 <optionalSource>true</optionalSource>
 <optionalTarget>false</optionalTarget>
 <sourceCardinality>1</sourceCardinality>
@@ -18,4 +18,10 @@
 <targetEntity>AA6DDD9A-967E-6A16-69C0-1935B2AF4697</targetEntity>
 <transferable>true</transferable>
 <deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="gerechtfertigt durch"/>
+<property name="DE_RELA_TEXT_TO" value="rechtfertigt"/>
+<property name="EN_RELA_TEXT_FROM" value="**justified by"/>
+<property name="EN_RELA_TEXT_TO" value="**justifies"/>
+</propertyMap>
 </Relation>

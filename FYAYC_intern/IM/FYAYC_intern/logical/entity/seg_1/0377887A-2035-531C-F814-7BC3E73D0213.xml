@@ -1,18 +1,15 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="0377887A-2035-531C-F814-7BC3E73D0213" name="Rolle">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="0377887A-2035-531C-F814-7BC3E73D0213" name="**Role">
 <createdBy>toz</createdBy>
 <createdTime>2020-05-19 14:50:32 UTC</createdTime>
-<comment><![CDATA[Rollen können für 1 Person definiert sein (V21, CEO-US)
-oder für viele.
+<comment><![CDATA[**Roles can be defined for 1 person (V21, CEO-US)
+or for many.
 
 
-Beispiele:
-Prozessverantwortlicher
+Examples:
+Process Owner
 BOD
-Qualitätmgt.
-CEO
-TL
-ACFOG]]></comment>
+Quality mgt.]]></comment>
 <notes><![CDATA[[EN_ENTI_COMMENT[
 **Roles can be defined for 1 person (V21, CEO-US)
 or for many.
@@ -52,10 +49,12 @@ ACFOG
 <normalForm>Third</normalForm>
 <propertyMap>
 <property name="DE_ENTI_NAME" value="Rolle"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
 <property name="EN_ENTI_NAME" value="**Role"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<Attribute name="Kürzel" id="AB790D22-BA5B-E5DB-E7FA-2BE014B63FBF">
+<Attribute name="**Shortname" id="AB790D22-BA5B-E5DB-E7FA-2BE014B63FBF">
 <createdBy>toz</createdBy>
 <createdTime>2020-05-19 14:50:32 UTC</createdTime>
 <notes><![CDATA[[DE_ATTR_COMMENT[
@@ -77,7 +76,7 @@ ACFOG
 <property name="EN_ATTR_NAME" value="**Shortname"/>
 </propertyMap>
 </Attribute>
-<Attribute name="Name" id="D0A087AE-05A5-6BCD-9CC0-956728091AFE">
+<Attribute name="**Name" id="D0A087AE-05A5-6BCD-9CC0-956728091AFE">
 <createdBy>toz</createdBy>
 <createdTime>2020-05-19 14:50:32 UTC</createdTime>
 <notes><![CDATA[[DE_ATTR_COMMENT[
@@ -99,7 +98,7 @@ ACFOG
 <property name="EN_ATTR_NAME" value="**Name"/>
 </propertyMap>
 </Attribute>
-<Attribute name="ist TQMIrolle (J/N)" id="9F41AC6B-0502-A8B5-59E6-49722F896C6F">
+<Attribute name="**is cell roll (Y/N)" id="9F41AC6B-0502-A8B5-59E6-49722F896C6F">
 <createdBy>toz</createdBy>
 <createdTime>2020-05-19 14:50:32 UTC</createdTime>
 <notes><![CDATA[[DE_ATTR_COMMENT[
@@ -117,11 +116,11 @@ ACFOG
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
-<property name="DE_ATTR_NAME" value="ist Zellenrolle (J/N)"/>
+<property name="DE_ATTR_NAME" value="ist TQMIrolle (J/N)"/>
 <property name="EN_ATTR_NAME" value="**is cell roll (Y/N)"/>
 </propertyMap>
 </Attribute>
-<Attribute name="ist Gruppenrolle (J/N)" id="EF17DD2B-5334-A51C-A13E-42F64B684725">
+<Attribute name="**is group role (Y/N)" id="EF17DD2B-5334-A51C-A13E-42F64B684725">
 <createdBy>toz</createdBy>
 <createdTime>2020-05-19 14:50:32 UTC</createdTime>
 <notes><![CDATA[[DE_ATTR_COMMENT[
@@ -143,7 +142,7 @@ ACFOG
 <property name="EN_ATTR_NAME" value="**is group role (Y/N)"/>
 </propertyMap>
 </Attribute>
-<Attribute name="ist Zellenrolle (J/N)" id="645591DE-5AFD-BFCD-42CB-31C9BDEDEB4E">
+<Attribute name="**is cell roll (Y/N)1" id="645591DE-5AFD-BFCD-42CB-31C9BDEDEB4E">
 <createdBy>toz</createdBy>
 <createdTime>2020-05-19 14:50:32 UTC</createdTime>
 <notes><![CDATA[[DE_ATTR_COMMENT[
@@ -162,10 +161,10 @@ ACFOG
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_NAME" value="ist Zellenrolle (J/N)"/>
-<property name="EN_ATTR_NAME" value="**is cell roll (Y/N)"/>
+<property name="EN_ATTR_NAME" value="**is cell roll (Y/N)1"/>
 </propertyMap>
 </Attribute>
-<Attribute name="ist Kundenrolle (J/N)" id="262BD9D1-A223-61F0-4B4C-ABFC413F2DDA">
+<Attribute name="**is customer role (Y/N)" id="262BD9D1-A223-61F0-4B4C-ABFC413F2DDA">
 <createdBy>toz</createdBy>
 <createdTime>2020-05-19 14:50:32 UTC</createdTime>
 <notes><![CDATA[[DE_ATTR_COMMENT[
@@ -187,7 +186,7 @@ ACFOG
 <property name="EN_ATTR_NAME" value="**is customer role (Y/N)"/>
 </propertyMap>
 </Attribute>
-<Attribute name="Beschreibung" id="78F839B9-D0B6-92E7-314B-A6107071FE89">
+<Attribute name="**Description" id="78F839B9-D0B6-92E7-314B-A6107071FE89">
 <createdBy>toz</createdBy>
 <createdTime>2020-05-19 14:50:32 UTC</createdTime>
 <notes><![CDATA[[DE_ATTR_COMMENT[
@@ -210,7 +209,7 @@ ACFOG
 <property name="EN_ATTR_NAME" value="**Description"/>
 </propertyMap>
 </Attribute>
-<Attribute name="Kommentare" id="C6015035-A2F7-67C2-C085-23A35F7E41CF">
+<Attribute name="**commernt" id="C6015035-A2F7-67C2-C085-23A35F7E41CF">
 <createdBy>toz</createdBy>
 <createdTime>2020-05-19 14:50:32 UTC</createdTime>
 <notes><![CDATA[[DE_ATTR_COMMENT[

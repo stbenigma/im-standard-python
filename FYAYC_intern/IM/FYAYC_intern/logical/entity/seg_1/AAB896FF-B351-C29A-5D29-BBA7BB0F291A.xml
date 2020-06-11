@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="AAB896FF-B351-C29A-5D29-BBA7BB0F291A" name="Input">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="AAB896FF-B351-C29A-5D29-BBA7BB0F291A" name="**Feed-in">
 <createdBy>toz</createdBy>
 <createdTime>2020-05-19 14:50:32 UTC</createdTime>
 <notes><![CDATA[[DE_ENTI_COMMENT[
@@ -23,7 +23,9 @@
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
 <propertyMap>
-<property name="DE_ENTI_NAME" value="Einspeisung"/>
+<property name="DE_ENTI_NAME" value="Input"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
 <property name="EN_ENTI_NAME" value="**Feed-in"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
 </propertyMap>
 </Entity>

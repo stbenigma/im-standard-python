@@ -8,8 +8,8 @@
 </engineerTo>
 <useSurrogateKey>true</useSurrogateKey>
 <identifying>false</identifying>
-<nameOnSource>unterstützt</nameOnSource>
-<nameOnTarget>unterstützt von</nameOnTarget>
+<nameOnSource>**supports</nameOnSource>
+<nameOnTarget>**assisted by</nameOnTarget>
 <optionalSource>true</optionalSource>
 <optionalTarget>true</optionalTarget>
 <sourceCardinality>*</sourceCardinality>
@@ -18,4 +18,10 @@
 <targetEntity>0377887A-2035-531C-F814-7BC3E73D0213</targetEntity>
 <transferable>true</transferable>
 <deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="unterstützt"/>
+<property name="DE_RELA_TEXT_TO" value="unterstützt von"/>
+<property name="EN_RELA_TEXT_FROM" value="**supports"/>
+<property name="EN_RELA_TEXT_TO" value="**assisted by"/>
+</propertyMap>
 </Relation>
