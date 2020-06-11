@@ -185,8 +185,9 @@
 				     			gParams[vals[0]] = trim(vals[1])
 				     		}
 						}
-						//linemessage(JSON.stringify(gParams))
 					}    
+//DEBUG
+//					linemessage('getTranslInfo',lDesignComment,lparam,JSON.stringify(gParams))
 				}	
 				function param2comment(){
 					retval = "TRANSLATION{\n"+CURRENTLANG+"="+getCurrentLang()
@@ -196,6 +197,8 @@
 					deeplkey = getDEEPLAuthKey()			
 					if (deeplkey != null) {retval += "\n"+DEEPLAUTHKEY+"="+deeplkey}
 					retval += "\n}"
+//DEBUG
+//	linemessage(JSON.stringify(gParams),deeplkey,retval)
 				 	return retval
 				}
 				function setTranslInfo() {
@@ -251,7 +254,7 @@
 
 				function init(istUpgrade){
 					getTranslInfo();
-					if (gParams.length == 0) {
+					if (Object.keys(gParams).length == 0) {
 						throw new Error("\n***TRANSLATION not installed***\n");
 					}
 					if (getVersion() != CODEVERSION && !istUpgrade) {
@@ -435,10 +438,11 @@
 
 				function initTranslation() {
 					getTranslInfo()
-					if (gParams.length == 0) {
+					if (Object.keys(gParams).length == 0) {
 						setCurrentLang('DE')
 						setLanguages('DE,EN')
 						setVersion(CODEVERSION)
+						setDEEPLAuthKey("")
 					} else {
 						throw new Error("\n***TRANSLATION ("+getVersion()+") already installed***\n");
 					}

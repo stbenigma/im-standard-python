@@ -106,7 +106,7 @@ ddlStatementsList.add(new java.lang.String(ddl));
 	</scr>
 	<scr id="33D532DB-8720-433C-E976-B86B038F9DF9" name="initTranslation" object="logical" engine="Oracle Nashorn" type="" var="model" library="translation" method="initTranslation" purpose="transformation" >
 		<script>
-			<![CDATA[			//scripts to handle translation of model
+			<![CDATA[//scripts to handle translation of model
 	var CODEVERSION = '1.4';
 	var gLogNote = "LOG";
 	var gParams={}
@@ -623,8 +623,7 @@ function translate(fromlang,tolang,text){
 					+"Please contact support\n");
 			}
 		}			
-	}
-]]>
+	}]]>
 		</script>
 	</scr>
 	<scr id="250556D5-21DF-2C6B-181B-47754D9FDA23" name="upgradeTranslation" object="logical" engine="Oracle Nashorn" type="" var="model" library="translation" method="upgradeTranslation" purpose="transformation" >
@@ -1273,7 +1272,7 @@ message2('de=>'+vontext,'en=>'+translate('de','en',vontext))]]>
 	</scr>
 	<scr id="851DD409-78EA-145A-FBC1-5DCE7989DDAF" name="changeLanguage" object="logical" engine="Oracle Nashorn" type="" var="model" library="translation" method="changeLanguage" purpose="transformation" >
 		<script>
-			<![CDATA[			//scripts to handle translation of model
+			<![CDATA[//scripts to handle translation of model
 				var CODEVERSION = '1.5'
 				var gLogNote = "LOG";
 				var gParams={}
@@ -5169,7 +5168,7 @@ function getAttrMap(attrID,modName){
 	</scr>
 	<scr id="14F053A0-66BA-6023-35E8-344311DB60B3" name="testJS" object="logical" engine="Oracle Nashorn" type="" var="model" library="" method="" purpose="transformation" >
 		<script>
-			<![CDATA[				function setLabels(what){
+			<![CDATA[function setLabels(what){
 					views =	model.getDesign().getLogicalDesign().getListOfSubviews() 
 					for (vv=0;vv<views.length;vv++){
 						view = views[vv]
@@ -5365,8 +5364,9 @@ setLabels(true)]]>
 				     			gParams[vals[0]] = trim(vals[1])
 				     		}
 						}
-						//linemessage(JSON.stringify(gParams))
 					}    
+//DEBUG
+//					linemessage('getTranslInfo',lDesignComment,lparam,JSON.stringify(gParams))
 				}	
 				function param2comment(){
 					retval = "TRANSLATION{\n"+CURRENTLANG+"="+getCurrentLang()
@@ -5376,6 +5376,8 @@ setLabels(true)]]>
 					deeplkey = getDEEPLAuthKey()			
 					if (deeplkey != null) {retval += "\n"+DEEPLAUTHKEY+"="+deeplkey}
 					retval += "\n}"
+//DEBUG
+//	linemessage(JSON.stringify(gParams),deeplkey,retval)
 				 	return retval
 				}
 				function setTranslInfo() {
@@ -5431,7 +5433,7 @@ setLabels(true)]]>
 
 				function init(istUpgrade){
 					getTranslInfo();
-					if (gParams.length == 0) {
+					if (Object.keys(gParams).length == 0) {
 						throw new Error("\n***TRANSLATION not installed***\n");
 					}
 					if (getVersion() != CODEVERSION && !istUpgrade) {
@@ -5615,10 +5617,11 @@ setLabels(true)]]>
 
 				function initTranslation() {
 					getTranslInfo()
-					if (gParams.length == 0) {
+					if (Object.keys(gParams).length == 0) {
 						setCurrentLang('DE')
 						setLanguages('DE,EN')
 						setVersion(CODEVERSION)
+						setDEEPLAuthKey("")
 					} else {
 						throw new Error("\n***TRANSLATION ("+getVersion()+") already installed***\n");
 					}
