@@ -8,8 +8,8 @@
 </engineerTo>
 <useSurrogateKey>true</useSurrogateKey>
 <identifying>false</identifying>
-<nameOnSource>goes to</nameOnSource>
-<nameOnTarget>comes from</nameOnTarget>
+<nameOnSource>*geht zu</nameOnSource>
+<nameOnTarget>*kommt von</nameOnTarget>
 <optionalSource>true</optionalSource>
 <optionalTarget>false</optionalTarget>
 <sourceCardinality>1</sourceCardinality>
@@ -18,11 +18,11 @@
 <targetEntity>14B08944-61ED-5412-55F3-1A5EAEA2D6B7</targetEntity>
 <transferable>true</transferable>
 <propertyMap>
-<property name="DE_RELA_TEXT_FROM" value="goes to"/>
-<property name="DE_RELA_TEXT_TO" value="comes from"/>
-<property name="EN_RELA_TEXT_FROM" value="*goes to"/>
-<property name="EN_RELA_TEXT_TO" value="*comes from"/>
-<property name="FR_RELA_TEXT_FROM" value="*** va à"/>
-<property name="FR_RELA_TEXT_TO" value="***est issu de"/>
+<property name="DE_RELA_TEXT_FROM" value="*geht zu"/>
+<property name="DE_RELA_TEXT_TO" value="*kommt von"/>
+<property name="EN_RELA_TEXT_FROM" value="goes to"/>
+<property name="EN_RELA_TEXT_TO" value="comes from"/>
+<property name="FR_RELA_TEXT_FROM" value="**va à"/>
+<property name="FR_RELA_TEXT_TO" value="**est issu de"/>
 </propertyMap>
 </Relation>

@@ -5,11 +5,18 @@
 <comment><![CDATA[Ein Kommentar für die 1. Übersetzung
 Französische Tags fehlen im Note-Feld]]></comment>
 <notes><![CDATA[[DE_ENTI_COMMENT[
-
+Ein Kommentar für die 1. Übersetzung
+Französische Tags fehlen im Note-Feld
 ]DE_ENTI_COMMENT]
 [EN_ENTI_COMMENT[
-
-]EN_ENTI_COMMENT]]]></notes>
+**A comment for the 1st translation
+French tags are missing in the note field
+]EN_ENTI_COMMENT]
+[FR_ENTI_COMMENT[
+**Un commentaire pour la 1ère traduction
+Les balises françaises sont manquantes dans le champ de la note
+]FR_ENTI_COMMENT]
+]]></notes>
 <ownerDesignName>fyayc_dev_transl</ownerDesignName>
 <engineerTo>
 <item key="5BE1D3DE-1298-62A6-B8A4-2793AE250A49" value="true"/>
@@ -24,7 +31,12 @@ Französische Tags fehlen im Note-Feld]]></comment>
 <normalForm>Third</normalForm>
 <createSurrogateKey>true</createSurrogateKey>
 <propertyMap>
-<property name="DE_ENTI_NAME" value="Test-Entitiy"/>
+<property name="DE_ENTI_NAME" value="Test-Entitätv1"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_NAME" value="**Test Entityv1"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+<property name="FR_ENTI_NAME" value="**Entité de testv1"/>
+<property name="FR_ENTI_SYNONYM" value=""/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Neu" id="3AC970FF-33EA-7D4E-54B5-8D6E72D634EE">
@@ -33,6 +45,12 @@ Französische Tags fehlen im Note-Feld]]></comment>
 <notes><![CDATA[[DE_ATTR_COMMENT[
 
 ]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+[FR_ATTR_COMMENT[
+
+]FR_ATTR_COMMENT]
 ]]></notes>
 <ownerDesignName>fyayc_dev_transl</ownerDesignName>
 <engineerTo>
@@ -42,9 +60,9 @@ Französische Tags fehlen im Note-Feld]]></comment>
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
-<property name="DE_ATTR_NAME" value=""/>
-<property name="EN_ATTR_NAME" value=""/>
-<property name="FR_ATTR_NAME" value=""/>
+<property name="DE_ATTR_NAME" value="Neu"/>
+<property name="EN_ATTR_NAME" value="**New"/>
+<property name="FR_ATTR_NAME" value="**Nouveau"/>
 </propertyMap>
 </Attribute>
 <Attribute name="darf nicht ändern" id="CAE7041F-5F4C-92B2-CCAE-1F00B64D9886">
@@ -53,6 +71,12 @@ Französische Tags fehlen im Note-Feld]]></comment>
 <notes><![CDATA[[DE_ATTR_COMMENT[
 
 ]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+[FR_ATTR_COMMENT[
+
+]FR_ATTR_COMMENT]
 ]]></notes>
 <ownerDesignName>fyayc_dev_transl</ownerDesignName>
 <engineerTo>
@@ -62,7 +86,7 @@ Französische Tags fehlen im Note-Feld]]></comment>
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
-<property name="DE_ATTR_NAME" value="**geändert von * auf nicht *"/>
+<property name="DE_ATTR_NAME" value="darf nicht ändern"/>
 <property name="EN_ATTR_NAME" value="darf nicht ändern"/>
 <property name="FR_ATTR_NAME" value="darf nicht ändern"/>
 </propertyMap>
@@ -73,6 +97,12 @@ Französische Tags fehlen im Note-Feld]]></comment>
 <notes><![CDATA[[DE_ATTR_COMMENT[
 
 ]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+[FR_ATTR_COMMENT[
+
+]FR_ATTR_COMMENT]
 ]]></notes>
 <ownerDesignName>fyayc_dev_transl</ownerDesignName>
 <engineerTo>
@@ -82,9 +112,9 @@ Französische Tags fehlen im Note-Feld]]></comment>
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
-<property name="DE_ATTR_NAME" value="E war schon markiert, F korrekt übersetzt"/>
+<property name="DE_ATTR_NAME" value="War schon markiert"/>
 <property name="EN_ATTR_NAME" value="*war schon markiert"/>
-<property name="FR_ATTR_NAME" value="war korrekt übersetzt"/>
+<property name="FR_ATTR_NAME" value="*war korrekt übersetzt"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Vorübersetzt" id="1D09A499-497C-2EC3-DE44-64933EDC1313">
@@ -93,6 +123,12 @@ Französische Tags fehlen im Note-Feld]]></comment>
 <notes><![CDATA[[DE_ATTR_COMMENT[
 
 ]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+[FR_ATTR_COMMENT[
+
+]FR_ATTR_COMMENT]
 ]]></notes>
 <ownerDesignName>fyayc_dev_transl</ownerDesignName>
 <engineerTo>
@@ -102,9 +138,9 @@ Französische Tags fehlen im Note-Feld]]></comment>
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
-<property name="DE_ATTR_NAME" value="vorüberset"/>
+<property name="DE_ATTR_NAME" value="Vorübersetzt"/>
 <property name="EN_ATTR_NAME" value="*pretranslated"/>
-<property name="FR_ATTR_NAME" value="*DE* vorübersetzt"/>
+<property name="FR_ATTR_NAME" value="**Prétraduit"/>
 </propertyMap>
 </Attribute>
 </attributes>

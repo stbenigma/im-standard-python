@@ -1,7 +1,7 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="CC6DF31A-88E0-D25C-EB1E-1A1B28F80804" name="Test-Entität">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="26DE1C0B-00A4-656C-34EF-FBE7DB08E6FC" name="Test-Entität">
 <createdBy>stb</createdBy>
-<createdTime>2020-06-10 15:44:46 UTC</createdTime>
+<createdTime>2020-06-11 08:08:39 UTC</createdTime>
 <comment><![CDATA[Ein Kommentar für die 1. Übersetzung
 Französische Tags fehlen im Note-Feld]]></comment>
 <notes><![CDATA[[DE_ENTI_COMMENT[
@@ -9,7 +9,8 @@ Ein Kommentar für die 1. Übersetzung
 Französische Tags fehlen im Note-Feld
 ]DE_ENTI_COMMENT]
 [EN_ENTI_COMMENT[
-*war schon was da
+**A comment for the 1st translation
+French tags are missing in the note field
 ]EN_ENTI_COMMENT]
 [FR_ENTI_COMMENT[
 **Un commentaire pour la 1ère traduction
@@ -31,17 +32,22 @@ Les balises françaises sont manquantes dans le champ de la note
 <createSurrogateKey>true</createSurrogateKey>
 <propertyMap>
 <property name="DE_ENTI_NAME" value="Test-Entität"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
 <property name="EN_ENTI_NAME" value="**Test Entity"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
 <property name="FR_ENTI_NAME" value="**Entité test"/>
 <property name="FR_ENTI_SYNONYM" value=""/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<Attribute name="Neu" id="263CA8E0-B4C2-F1EE-18D7-7EB00C23FED4">
+<Attribute name="Neu" id="25823787-CA55-4883-037D-ACEE4B7A863D">
 <createdBy>stb</createdBy>
-<createdTime>2020-06-10 15:44:46 UTC</createdTime>
+<createdTime>2020-06-11 08:08:39 UTC</createdTime>
 <notes><![CDATA[[DE_ATTR_COMMENT[
 
 ]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
 [FR_ATTR_COMMENT[
 
 ]FR_ATTR_COMMENT]
@@ -59,12 +65,15 @@ Les balises françaises sont manquantes dans le champ de la note
 <property name="FR_ATTR_NAME" value="**Nouveau"/>
 </propertyMap>
 </Attribute>
-<Attribute name="darf nicht ändern" id="90B3E3C2-3B5A-E217-C50F-ED1F2FC6FE5A">
+<Attribute name="darf nicht ändern" id="D5D0C456-48BD-5E96-9649-DEECB2180D35">
 <createdBy>stb</createdBy>
-<createdTime>2020-06-10 15:44:46 UTC</createdTime>
+<createdTime>2020-06-11 08:08:39 UTC</createdTime>
 <notes><![CDATA[[DE_ATTR_COMMENT[
 
 ]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
 [FR_ATTR_COMMENT[
 
 ]FR_ATTR_COMMENT]
@@ -82,12 +91,15 @@ Les balises françaises sont manquantes dans le champ de la note
 <property name="FR_ATTR_NAME" value="darf nicht ändern"/>
 </propertyMap>
 </Attribute>
-<Attribute name="War schon markiert" id="42DD6C06-40A8-37E4-AEAC-FD4BA00DE31C">
+<Attribute name="War schon markiert" id="B74092CB-0C54-750F-27C1-E2A1B94DC68A">
 <createdBy>stb</createdBy>
-<createdTime>2020-06-10 15:44:46 UTC</createdTime>
+<createdTime>2020-06-11 08:08:39 UTC</createdTime>
 <notes><![CDATA[[DE_ATTR_COMMENT[
 
 ]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
 [FR_ATTR_COMMENT[
 
 ]FR_ATTR_COMMENT]
@@ -105,12 +117,15 @@ Les balises françaises sont manquantes dans le champ de la note
 <property name="FR_ATTR_NAME" value="*war korrekt übersetzt"/>
 </propertyMap>
 </Attribute>
-<Attribute name="Vorübersetzt" id="510BD6A1-5D05-9AB6-BBE2-FAC630D683DF">
+<Attribute name="Vorübersetzt" id="FCE2B77A-1963-B568-969F-3F84CC59B782">
 <createdBy>stb</createdBy>
-<createdTime>2020-06-10 15:44:46 UTC</createdTime>
+<createdTime>2020-06-11 08:08:39 UTC</createdTime>
 <notes><![CDATA[[DE_ATTR_COMMENT[
 
 ]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
 [FR_ATTR_COMMENT[
 
 ]FR_ATTR_COMMENT]
@@ -125,7 +140,7 @@ Les balises françaises sont manquantes dans le champ de la note
 <propertyMap>
 <property name="DE_ATTR_NAME" value="Vorübersetzt"/>
 <property name="EN_ATTR_NAME" value="*pretranslated"/>
-<property name="FR_ATTR_NAME" value="Prétraduit"/>
+<property name="FR_ATTR_NAME" value="**Prétraduit"/>
 </propertyMap>
 </Attribute>
 </attributes>

@@ -272,8 +272,8 @@
 					langArr = getLangArr()
 
 					//DEBUG
-					if ((obj.getName() == 'Eigentümer' && propName == '_ENTI_COMMENT')
-					    || (obj.getName() == 'Zusatzattribut')) {
+					if (((obj.getName() == '') && (propName == ''))
+					     || (obj.getName() == '')) {
 						message('Obj-Name='+obj.getName()+ '  '+propName);
 						display = true;
 					} else display = false;
@@ -304,8 +304,18 @@
 								} else {newvalue = nontranslateprefix+value}
 								if (isNote) textToNote(fpropName,obj,newvalue);  
 									else obj.setProperty(fpropName,newvalue);
-							} else if (fprop.startsWith('*')) {
-								// ** und * sind in Bearbeitung nichts ersetzen
+								} else if (fprop.startsWith('**')) {
+									// ** wurde automatisch übersetzt. Falls Originallang geändert hat, übersetze neu
+									if (value != oldval && ! oldval.startsWith('*')) {
+										if (translation){
+											try {newvalue = '**'+translate(getCurrentLang(),flang,value)}
+											catch (err) {newvalue = nontranslateprefix+value}
+											if (isNote) textToNote(fpropName,obj,newvalue);  
+											else obj.setProperty(fpropName,newvalue);
+										}
+									}									
+								} else if (fprop.startsWith('*')) {
+									// * sind in Bearbeitung nichts ersetzen
 							} else if (fprop == "" && value == "" && ! notNull) {
 								// das Ziel ist leer, der neue Wert auch und es ist kein Mussfeld. lass das Ziel leer
 							} else if (fprop == "") {
@@ -322,7 +332,7 @@
 								// nicht in Bearbeitung und nicht automatisch übersetzt (* am Anfang haben wir schon abgefragt)
 								// d.h. es hat einen gültigen Wert. 
 								// Markiere es, falls die Quelle wirklich geändert hat (gegenüber dem current-Lang-Property)
-								if ( value != oldval && ! oldval.startsWith('*') && ! fprop.startsWith('*')) {
+								if (value != oldval && ! oldval.startsWith('*') && ! fprop.startsWith('*')) {
 									  // die Quelle hat geändert 
 									  // und war selber nicht ein Feld, das vor der Änderung einen * am Anfang hatte
 									  // und der foreign Wert hat noch kein * am Anfang
@@ -351,7 +361,7 @@
 					for (ie=0;ie<entities.length;ie++) { //
 						ent = entities[ie];
 						//DEBUG
-						if (!((ent.getName() == 'Test-Entität') || ent.getName().endsWith('Test Entity') || ent.getName().endsWith('Entité test'))) continue;
+//						if (!((ent.getName() == 'Test-Entität') || ent.getName().endsWith('Test Entity') || ent.getName().endsWith('Entité test'))) continue;
 			
 						doProperty("_ENTI_NAME",ent,ent.getName(),true)
 						doNote("_ENTI_COMMENT",ent,ent.getComment())
@@ -382,7 +392,7 @@
 					for (ir=0;ir<relationships.length;ir++) { //
 						rel = relationships[ir];
 						//DEBUG
-						if (rel.getName() != '') continue;
+						if (rel.getName() == '') linemessage(rel.getName(),rel.getNameOnSource());
 			
 						doProperty("_RELA_TEXT_FROM",rel,rel.getNameOnSource(),false)
 						doProperty("_RELA_TEXT_TO",rel,rel.getNameOnTarget(),false)	
@@ -391,6 +401,7 @@
 							rel.setNameOnSource(rel.getProperty(tolang+"_RELA_TEXT_FROM"));
 							rel.setNameOnTarget(rel.getProperty(tolang+"_RELA_TEXT_TO"));
 						}
+						if (rel.getName() == '') linemessage('nachher',rel.getName(),rel.getNameOnSource());
 						rel.setDirty(true);
 					}
 				}
@@ -402,6 +413,15 @@
 					+ "/" + currentdate.getFullYear() + "  " 
 					+ currentdate.getHours() + ":" 
 					+ currentdate.getMinutes() + ":" + currentdate.getSeconds();
+				}
+				
+				function setLabels(what){
+					views =	model.getDesign().getLogicalDesign().getListOfSubviews() 
+					for (vv=0;vv<views.length;vv++){
+						view = views[vv]
+//						linemessage(view.getName(),view.showLabels(),what)
+						view.setShowLabels(what)
+					}
 				}
 
 				function changeLang(pfromLang,ptoLang){
@@ -459,9 +479,10 @@
 						toLang = antwort.substr(-2)
 						//Java.type("javax.swing.JOptionPane").showMessageDialog(null, antwort+'|'+toLang);
 						changeLang(getCurrentLang(),toLang);
-						message ("Model language changed from "+langchangefrom+" to "+toLang
-									+".\n Please hide and re-display labels."
+						message ("Model language changed from "+langchangefrom+" to "+toLang+"."
 						        ,PLAINMESSAGE);
+						setLabels(false)
+						setLabels(true)
 					}
 				}
 	
