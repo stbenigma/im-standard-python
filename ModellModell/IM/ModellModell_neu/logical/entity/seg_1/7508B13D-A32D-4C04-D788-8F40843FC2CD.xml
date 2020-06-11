@@ -61,9 +61,9 @@ arbitrary numbering to distinguish several exclusive relationships in an entity
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_COMMENT" value="willkürliche Nummerierung zur Untescheidung mehrere Exklusivbeziehungen in einer Entität"/>
-<property name="DE_ATTR_NAME" value="Laufnr"/>
+<property name="DE_ATTR_NAME" value="*Laufnr"/>
 <property name="EN_ATTR_COMMENT" value="*DE* willkürliche Nummerierung zur Untescheidung mehrere Exklusivbeziehungen in einer Entität"/>
-<property name="EN_ATTR_NAME" value="Runnr"/>
+<property name="EN_ATTR_NAME" value="No"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Entitätname [L]" id="EF7B6776-A4EC-B0FE-B212-36F8B0CF226C">
@@ -90,7 +90,7 @@ Name der Entität der in der Kommunikation normalerweise gebraucht wird.
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_NAME" value="Entitätname [L]"/>
-<property name="EN_ATTR_NAME" value="**Entity name [L]"/>
+<property name="EN_ATTR_NAME" value="Entity name [L]"/>
 </propertyMap>
 </Attribute>
 </attributes>

@@ -39,13 +39,12 @@ Entität + Menge aller Schlüsselelemente.
 <property name="Beispiele" value="Rechnungsposition: Rechnung (Beziehung),  Position-Nr, Kunde: Kunden-Nr"/>
 <property name="DE_ENTI_COMMENT" value="Gruppe von identifizierenden Beziehungen und oder Attributen einer Entität. Jede Kombination von Werten in einem Schlüssel ist für die Entität einmalig.  D.h. sie identifiziert genau 1 Eintrag in der Entität.  Die Laufnummer ist ein Hilfsmittel. Genau genommen ist für einen Schlüssel nur eindeutig Entität + Menge aller Schlüsselelemente."/>
 <property name="DE_ENTI_NAME" value="Schlüssel"/>
-<property name="DE_ENTI_SYNONYM" value=""/>
 <property name="EN_ENTI_COMMENT" value="*DE* Gruppe von identifizierenden Beziehungen und oder Attributen einer Entität. Jede Kombination von Werten in einem Schlüssel ist für die Entität einmalig.  D.h. sie identifiziert genau 1 Eintrag in der Entität.  Die Laufnummer ist ein Hilfsmittel. Genau genommen ist für einen Schlüssel nur eindeutig Entität + Menge aller Schlüsselelemente."/>
 <property name="EN_ENTI_NAME" value="Key"/>
 <property name="EN_ENTI_SYNONYM" value=""/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<Attribute name="Laufnr" id="93DCD20B-8AC7-6BD0-A147-A7580D8A69E3">
+<Attribute name="*Laufnr" id="93DCD20B-8AC7-6BD0-A147-A7580D8A69E3">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:04:00 UTC</createdTime>
 <comment><![CDATA[Schlüssel einer Entität müssen durch ein Merkmal unterscheidbar werden.]]></comment>
@@ -68,9 +67,9 @@ The keys of an entity must be distinguishable by a characteristic.
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_COMMENT" value="Schlüssel einer Entität müssen durch ein Merkmal unterscheidbar werden."/>
-<property name="DE_ATTR_NAME" value="Laufnr"/>
+<property name="DE_ATTR_NAME" value="*Laufnr"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Schlüssel einer Entität müssen durch ein Merkmal unterscheidbar werden."/>
-<property name="EN_ATTR_NAME" value="Runnr"/>
+<property name="EN_ATTR_NAME" value="No"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Name" id="8869BA4C-0CDF-9DAA-4A99-7746E260039C">
@@ -125,7 +124,7 @@ Name der Entität der in der Kommunikation normalerweise gebraucht wird.
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_NAME" value="Entitätname [L]"/>
-<property name="EN_ATTR_NAME" value="**Entity name [L]"/>
+<property name="EN_ATTR_NAME" value="Entity name [L]"/>
 </propertyMap>
 </Attribute>
 </attributes>
