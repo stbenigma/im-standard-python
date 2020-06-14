@@ -1,11 +1,14 @@
 # -*- coding: latin-1 -*-
 import sys,os
-sys.path.append(os.getcwd())
-sys.path.append(os.getcwd()+'/../IM_db')
+#sys.path.append(os.getcwd())
+#sys.path.append(os.getcwd()+'/../IM_db')
+sys.path.append(os.path.dirname(os.path.realpath(__file__))+'/../IM_db')
+sys.path.append(os.path.dirname(os.path.realpath(__file__))+'/..')
 from datetime import date,datetime
-from IM_DB import parameters,dbConnect,dbLookup,dbParam
+from IM_DB import parameters,dbConnect,dbLookup,dbParam,logging
 from IM_HTML import printHTML,web_sql,printdiagHTML,printRelHTML
 from IM_OBJECTS import *
+
 
 # Main Programm
 def nvl(x,default=''):
@@ -198,9 +201,9 @@ def listwebmain(plang):
 
 def main(pdirec, plang):
     parameters.initparam(p_callarg=pdirec)
-    printHTML.setWebDirec(p_webdirec=None)
+    logging.initlog()
 
-    print ("listWebdoku",parameters.odmBaseDirec(),parameters.odmModelName())
+    printHTML.setWebDirec(p_webdirec=None)
 
     dbConnect.openDB(p_filepath= parameters.dbFilePath());
     deflang = Sprache.liesdeflangiso2()
@@ -208,6 +211,10 @@ def main(pdirec, plang):
     listwebmain(plang=plang)
 
     dbConnect.myDbConn.close()
+
+    print("{}:\n  => web-files from database {} for model {} created"
+          .format(__main__.__file__, parameters.dbFilePath(),parameters.odmModelName()))
+    logging.logmessage()
 #main
 
 if __name__ == '__main__':

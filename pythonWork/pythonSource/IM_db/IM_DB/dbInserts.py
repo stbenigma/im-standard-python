@@ -1,14 +1,17 @@
 from datetime import date
-from IM_DB import dbDML, dbLookup
+from IM_DB import dbDML
+from IM_OBJECTS import *
 
-def  insertLovWrtb(pName,pherkunft = 'DOM'):
-    return insertWrtb(wrtb=(None,pName, 'einfache Werteliste '
-                                ,'LOV',pherkunft,None,None
-                                ,None,None,None
-                                ,None,None,None
-                                ,None,None,None
-                                ,None,None,'--'
-                                ,date.today(),None,None,None))
+
+def  insertLovWrtb(pName,pherkunft = Wertebereich.DOMAIN):
+    wrtb = Wertebereich()
+    wrtb.wrtb_name = pName
+    wrtb.wrtb_beschr = 'einfache Werteliste'
+    wrtb.wrtb_typ = Wertebereich.LOV
+    wrtb.wrtb_herkunft = pherkunft
+    wrtb.wrtb_uc = 'system'
+    wrtb.wrtb_dc = date.today()
+    return wrtb.insert()
 #end insertLovWrtb
 
 def insertArc(parc):

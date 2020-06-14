@@ -2,7 +2,7 @@ from .baseobject import Baseobject,MultilangBaseobject
 from .sprachtext import Sprachtext
 from .datatype import Datatype
 from .modellelement import Modellelement
-from IM_DB import dbDML
+from IM_DB import *
 
 class Wertebereich(MultilangBaseobject):
     DERIVED:str ='DER'
@@ -168,6 +168,7 @@ CREATE TABLE wertebereiche(
         else:  infoheaders,infovalues,typestring = None,None,''
         return [infoheaders,infovalues,typestring]
     #typeinfo
+
     def typestring(self):
         info = self.typeinfo()
         return info[2]
@@ -184,16 +185,16 @@ CREATE TABLE wertebereiche(
     #refattranz
 
     @staticmethod
-    def indexlist(pherkunft,plang):
+    def indexlist(pherkunft,plang : str):
         data = Wertebereich.select(pwhere="wrtb_herkunft = '{}'".format(pherkunft), porderby='wrtb_name')
-        indexlist = [['{} ({})'.format(d.getwrtb_name(plang),d.refattranz())
+        indexlist = [['{} ({})'.format(d.getname(plang),d.refattranz())
                     ,d.webanker(),d.wrtb_id] for d in data]
         return indexlist
 
     #indexlist
 
     @staticmethod
-    def getbyname(pname):
+    def getbyname(pname :str):
         return Wertebereich().getbyuk(pcolname='wrtb_name', pukvalue=pname)
     # getbyname¨
 
@@ -210,7 +211,7 @@ CREATE TABLE wertebereiche(
     #getunknown
 
     @staticmethod
-    def anzdatentyp(dt):
+    def anzdatentyp(dt : str):
         anzDT = {'BIN': Sprachtext.transl('Binär')
             , 'GRP': Sprachtext.transl('Gruppenattribut')
             , 'LOV': Sprachtext.transl('Werteliste')

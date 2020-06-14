@@ -1,5 +1,4 @@
 from IM_DB import dbDML
-
 from .baseobject import Baseobject
 
 
@@ -39,7 +38,7 @@ class Dokument(Baseobject):
         if (self.doku_id is not None) and (self.doku_doku_id is not None)\
                 and (self._parent is None):
             #es hat ID und es hat einen Parentid aber noch nicht gelesen
-            self._parent = Dokument.getbyid(self.doku_doku_id)
+            self._parent = Dokument().getbyid(self.doku_doku_id)
         #fi
         return self._parent
     #getparent

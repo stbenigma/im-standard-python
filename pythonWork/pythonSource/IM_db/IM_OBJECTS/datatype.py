@@ -75,7 +75,6 @@ create table datatypes
         #fi
         return Datatype.__unknowndaty
     #getunknown
-
 #Datatype
 
 

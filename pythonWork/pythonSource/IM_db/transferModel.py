@@ -675,7 +675,7 @@ def do1Attribute(plfnr, pattrxml, pentiId=None, pbeziId=None):
 
     xmlname = findField(pattrxml, 'name')
     #strip [] am Ende des Namens
-    attr = Attribut(pname=re.search('[^\[]*',xmlname).group().rstrip(),pentiid=pentiId,pbeziid=pbeziId)
+    attr = Attribut(pname=re.sub(' ?\[[LNT]+\]','',xmlname),pentiid=pentiId,pbeziid=pbeziId)
     attr.attr_tech_name = findText(pattrxml, 'preferredAbbreviation')
     if attr.attr_tech_name is None:
         attr.attr_tech_name = re.sub('[-,.()\[\]äöüèéàÄ~ÖÜ ]','_',str.upper(attr.attr_anzname))
@@ -701,7 +701,7 @@ def do1Attribute(plfnr, pattrxml, pentiId=None, pbeziId=None):
     except  sqlite3.Error as e:
         print(str(e))
         print('Entity = {}'.format(vatername))
-        print(attr)
+        print(attr.attr_anzname)
         raise e
     #try
     lmodeId= Modellelement.insertmode(pattrid=attrId)
@@ -997,7 +997,11 @@ def do1Relation(fileName):
     row = tuple(lrow)
     #print (row)
 
-    beziId = dbInserts.insertBeziehung(row)
+    try:
+        beziId = dbInserts.insertBeziehung(row)
+    except (sqlite3.IntegrityError):
+        print (row)
+        return
     lmodeId = Modellelement.insertmode(pbeziid=beziId)
     dbInserts.insertUdpBezi(beziId)
 
@@ -1038,12 +1042,13 @@ def do1UDPFile(pudpThema,pfileName):
     propgroups=[]
     for prop in props.findall('property'):
         group = findField(prop,'group_id')
+        propname = findField(prop,'name')
         #print (findField(prop,'name'))
         #print (findField(prop,'name'),findField(prop,'dispalay_name'),lgroups[findField(prop,'group_id')],findField(prop,'default_value'),findText(prop,'description'))
         #bdeg_thema, bdeg_gruppe, bdeg_name, bdeg_default_value
         #bdeg_beschreibung, bdeg_optional, bdeg_wrtb_id,
         #bdeg_uc, bdeg_dc
-        ludp = (lupdThema,lgroups[group],findField(prop,'name'),findField(prop,'default_value')
+        ludp = (lupdThema,lgroups[group],propname,findField(prop,'default_value')
                 ,findText(prop,'description'),'FALSE',None
                 ,'--',date.today().__str__())
         udpId = dbInserts.insertUDP(pData=ludp)
@@ -1078,14 +1083,24 @@ def do1UDPFile(pudpThema,pfileName):
         #print (ludp)
         lov = prop.find('list_of_values')
         if (lov is not None):
-            wrtbId= dbInserts.insertLovWrtb(pName=lupdThema + '_' +findField(prop,'name'))
+            wrtbId= dbInserts.insertLovWrtb(pName=lupdThema + '_' +propname)
 
-            for val in lov:
+            # end insertLovWrtb
+
+            items = lov.findall('item')
+            for val in items:
                 #print (findField(val,'value'),findField(val,'default'))
-                dbInserts.insertVorgabewert(pvgwt=(findField(val,'value'),None,wrtbId,findField(val,'value'),None
-                                                   ,'--',date.today().__str__()))
-                  #vgwt_wert ,    vgwt_sortrhfg,
-                #          vgwt_wrtb_id,   vgwt_anzeige   ,    vgwt_beschr)
+                vgwt = Vorgabewert()
+                vgwt.vgwt_wert = findField(val,'value')
+                vgwt.vgwt_wrtb_id = wrtbId
+                vgwt.vgwt_anzeige = findField(val,'value')
+                vgwt.vgwt_uc = 'system'
+                vgwt.vgwt_dc = date.today().__str__()
+                try:
+                    vgwt.insert()
+                except (sqlite3.IntegrityError):
+                    print ("duplicate entry in Vorgabewerte themae:'{}' property:'{}' value:'{}'".format(pudpThema,propname,vgwt.vgwt_wert))
+
             #rof
             dbDML.exec("""update benudef_eigenschaft  set bdeg_wrtb_id = {}  where bdeg_Id = {} """
                         .format (wrtbId,udpId))

@@ -13,6 +13,10 @@ def createDB(p_filepath):
 def openDB(p_filepath,fks='OFF'):
     """ öffnet die DB pfad/Name """
     global myDbConn
-    myDbConn = sqlite3.connect(p_filepath)
+    try:
+        myDbConn = sqlite3.connect(p_filepath)
+    except Exception as exp:
+        return
+        raise exp
     myDbConn.execute("PRAGMA foreign_keys = {}".format(fks))
 

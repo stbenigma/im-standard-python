@@ -473,7 +473,7 @@ def printcontenthead(pfirma,ptitel):
     #fi
     langs = projekt.projektlangs().split(',')
     try:
-        langs.remove(reportLang().lower())
+        langs.remove(Sprachtext.reportLang().lower())
     except:
         pass
     str = ''
@@ -747,7 +747,7 @@ def printmapping(pentiid=None,pattrid=None):
         titel = Sprachtext.transl('Relational Mapping (Tabellen)')
         ueberschr = (Sprachtext.transl('Relational Model'), Sprachtext.transl('Tabellen'))
     elif pattrid is not None:
-        werte = Attrtransf.columnlist(pattrid = pattrid)
+        werte = AttrTransf.columnlist(pattrid = pattrid)
         titel = Sprachtext.transl('Relational Mapping (Columns)')
         ueberschr = (Sprachtext.transl('Relational Model'), Sprachtext.transl('Columns'))
     else:
@@ -925,14 +925,19 @@ def printcontententi(plist):
                     ,plbc=lbc)
 
         """print entity Info"""
-        infovalues = (nvl(e[8]), nvl(href(ref=web_sql.entiAnker(e[6]),anz=e[5])), nvl(list2href(p_list=e[7],ptype='ENTI'))
-                      ,entidiag(pentiid=enti_id),nvl(e.enti_uc) + ', ' + nvl(e.enti_dc))
+        synonyms = ', '.join (s.getname() for s in e.getsynonyms())
+        parent = e.getparent()
+        if (parent is None): parentstr = ''
+        else: parentstr = href(ref=parent.webanker(),anz=e.getname(Sprachtext.reportLang()))
+        children =  ', '.join (href(ref=c.webanker(),anz=c.getname(Sprachtext.reportLang())) for c in e.getchildren())
+        infovalues = (nvl(synonyms), parentstr, nvl(children)
+                      ,entidiag(pentiid=e.enti_id),nvl(e.enti_uc) + ', ' + nvl(e.enti_dc))
         printcontentinfo(ptitle=Sprachtext.transl('Informationen'),pheaders=infoheaders,pvalues=infovalues)
 
         printattrlist(pentiid=e.enti_id)
         printentikeys(pentiid=e.enti_id)
         printentirela(pentiid=e.enti_id)
-        printreflist(pelemid=e.enti_id,pelemtype='ENTI')
+        printreflist(pelemid=e.enti_id,pelemtype=Modellelemtyp.ENTI)
         printtransl(pentiid=e.enti_id)
         printentiudp(pentiid=e.enti_id)
         printmapping(pentiid=e.enti_id)
@@ -1083,7 +1088,7 @@ def printwertelist(p_wrtbid):
 def printcontentwrtb(plist):
     printcontentstart ('domains')
     for w in plist:
-        wrtb_name = w.getwrtb_name(Sprachtext.reportLang())
+        wrtb_name = w.getname(Sprachtext.reportLang())
 
         lbc = str(newbarcounter())
         printcontent(ptype=Sprachtext.transl('Wertebereich')

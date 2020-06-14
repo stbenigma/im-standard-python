@@ -1,6 +1,6 @@
 from .baseobject import Baseobject
 from .tabelle import Tabelle
-from  IM_DB import dbDML
+from IM_DB import dbDML
 from collections import defaultdict
 
 class TablEntiMap(Baseobject):

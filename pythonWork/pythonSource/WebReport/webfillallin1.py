@@ -10,7 +10,7 @@ from IM_OBJECTS import Sprachtext
 def main(pdirec,plang):
     parameters.initparam(p_callarg=pdirec)
     if plang is None:
-        printHTML.reportLang(parameters.dbDefaultLang())
+        Sprachtext.reportLang(parameters.dbDefaultLang())
     else:
         Sprachtext.reportLang(plang.lower())
 
@@ -18,7 +18,7 @@ def main(pdirec,plang):
     dbErstelleTables.erstelleInfra();
     fillDB.filldbmain()
     printHTML.setWebDirec(p_webdirec=None)
-    listWebdoku.listwebmain(plang=printHTML.reportLang())
+    listWebdoku.listwebmain(plang=Sprachtext.reportLang())
 #main
 
 if __name__ == '__main__':

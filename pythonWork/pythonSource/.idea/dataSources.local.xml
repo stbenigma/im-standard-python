@@ -75,6 +75,22 @@
       <auth-provider>no-auth</auth-provider>
       <schema-mapping>
         <introspection-scope>
+          <node kind="schema">
+            <name qname="@" />
+            <name qname="main" />
+          </node>
+        </introspection-scope>
+      </schema-mapping>
+    </data-source>
+    <data-source name="belimo_crm.db" uuid="86baf126-31aa-4047-9c63-180ea2e952bd">
+      <database-info product="SQLite" version="3.25.1" jdbc-version="2.1" driver-name="SQLite JDBC" driver-version="3.25.1" dbms="SQLITE" exact-version="3.25.1" exact-driver-version="3.25">
+        <identifier-quote-string>&quot;</identifier-quote-string>
+      </database-info>
+      <case-sensitivity plain-identifiers="mixed" quoted-identifiers="mixed" />
+      <secret-storage>master_key</secret-storage>
+      <auth-provider>no-auth</auth-provider>
+      <schema-mapping>
+        <introspection-scope>
           <node kind="schema" qname="@" />
         </introspection-scope>
       </schema-mapping>

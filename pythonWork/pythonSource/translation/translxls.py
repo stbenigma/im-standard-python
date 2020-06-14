@@ -46,9 +46,9 @@ def translateString(pval,pfrom,pto):
 def translateSheet (pfileName, pdestFileName
                     , pfromLang, ptoLang):
     wb = openpyxl.load_workbook(filename = pfileName)
-    #print(wb.sheetnames)
+    #print(pwb.sheetnames)
     ws = wb.active
-    #print(wb.sheetnames,ws)
+    #print(pwb.sheetnames,ws)
 
     x=0
     for row in ws.values:

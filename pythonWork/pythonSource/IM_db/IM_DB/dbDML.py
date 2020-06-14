@@ -1,6 +1,6 @@
 # -*- coding: latin-1 -*-
 
-from IM_DB import dbConnect
+from IM_DB import *
 import sqlite3
 import re
 

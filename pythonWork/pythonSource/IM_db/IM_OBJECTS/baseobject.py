@@ -1,5 +1,5 @@
 
-from IM_DB import dbDDL,dbDML
+from IM_DB import dbDML,dbDDL
 from mystring import nvl
 
 class Boolean:
@@ -141,7 +141,7 @@ class   Baseobject:
             try:
                 """ist in MultilangBaseobject definiert"""
                 obj.getsprachvals()
-            except:
+            except Exception as err:
                 pass
             retval.append(obj)
         return retval
@@ -172,11 +172,12 @@ class MultilangBaseobject(Baseobject):
     def getsprachvals(self):
         modeid = self.getmodeid()
         for col in self._multilangcols.keys():
-            self.__dict__[col + '_L'] = Sprachtext.getsprachtexte(pattrname=self._multilangcols[col],pmodeid=modeid)
+            spt = Sprachtext.getsprachtexte(pattrname=self._multilangcols[col], pmodeid=modeid)
+            self.__dict__[col + '_L'] = spt
         # for
     # getsprachvals
 
-    def _getsprachval(self,colname,plang=None):
+    def _getsprachval(self,colname:str,plang:str =None):
         try:
             retval = self.__dict__[colname+'_L'][plang]
         except:
@@ -193,3 +194,4 @@ class MultilangBaseobject(Baseobject):
 #    o.getbyid(pid)
 #    return o.webanker()
 
+from .sprachtext import Sprachtext

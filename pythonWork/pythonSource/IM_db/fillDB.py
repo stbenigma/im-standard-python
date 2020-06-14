@@ -1,7 +1,9 @@
 # -*- coding: latin-1 -*-
-from IM_DB import dbConnect,parameters
+from IM_DB import dbConnect,parameters,logging
 from IM_OBJECTS import baseobject
 import transferModel
+import __main__
+
 
 
 # Main Programm
@@ -17,13 +19,15 @@ def filldbmain():
 
 def main(p_param1):
     parameters.initparam(p_callarg=p_param1)
-
-
-    print ("fillDB",parameters.odmBaseDirec(),parameters.odmModelName())
+    logging.initlog()
 
     dbConnect.openDB(parameters.dbFilePath(),fks='OFF')
     filldbmain()
     dbConnect.myDbConn.close()
+
+    print("{}:\n  => database {} for model {} filled with modeldata".format(__main__.__file__, parameters.dbFilePath(), parameters.odmModelName()))
+    logging.logmessage()
+
 #end main
 
 if __name__ == '__main__':

@@ -90,14 +90,15 @@ def printcollist(pcollist,pschnid):
         if col.scha_wrtb_id is None:
             wrtbname = ''
             if col.scha_daty_id is not None:
-                wrtbtyp = wrtb.typestring()
+                wrtb = col.getwrtb()
+                wrtbtyp = col.getdaty().daty_name if(wrtb is None) else wrtb.typestring()
                 #printHTML.anzDatentyp(Datatype().getbyid(col.scha_daty_id).daty_grundtyp)
             else:
                 wrtbtyp = ''
             #fi
         else:
             wrtb = Wertebereich().getbyid(nvl(col.scha_wrtb_id,0))
-            wrtbname='' if wrtb.wrtb_herkunft == Wertebereich.DERIVED else wrtb.getwrtb_name(Sprachtext.reportLang())
+            wrtbname='' if wrtb.wrtb_herkunft == Wertebereich.DERIVED else wrtb.getname(Sprachtext.reportLang())
             wrtbtyp = wrtb.typestring()# printHTML.anzDatentyp(wrtb.wrtb_typ)
         #fi
         printcolumninfo(pname=col.scha_column_name, panker=col.webanker(pmodelid=pschnid).anker()
@@ -107,7 +108,6 @@ def printcollist(pcollist,pschnid):
         printcolmapping(pschaid=col.scha_id,pschnid=pschnid)
     #for
     printHTML.fhtml.write(colfooter)
-
 #printcollist
 
 def printcontenttable(plist):
@@ -123,10 +123,10 @@ def printcontenttable(plist):
         infovalues = ('', nvl(t.tabl_um) + ', ' + nvl(t.tabl_dm))
         printHTML.printcontentinfo(ptitle=Sprachtext.transl('Informationen'),pheaders=infoheaders,pvalues=infovalues)
 
-        printHTML.printreflist(pelemid=t.tabl_id,pelemtype='TABL')
+        printHTML.printreflist(pelemid=t.tabl_id,pelemtype=Modellelemtyp.TABL)
         printHTML.printUDP(p_meltname=t.prefix().upper(), p_id=t.tabl_id)
         printmapping(ptablid=t.tabl_id)
-        printcollist(pcollist= Schnittstelleattr.columnlist(ptablid=t.tabl_id),pschnid=t.tabl_schn_id)
+        printcollist(pcollist= t.getcolumns(),pschnid=t.tabl_schn_id)
         printHTML.printcontentend(lbc)
     #for
 #printcontenttable

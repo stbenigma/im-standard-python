@@ -37,5 +37,11 @@
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
       <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/../../../../GEBININF/gitHub/DB/IM_GEBERIT.db</jdbc-url>
     </data-source>
+    <data-source source="LOCAL" name="belimo_crm.db" uuid="86baf126-31aa-4047-9c63-180ea2e952bd">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/../../../../BELIINF/DB/belimo_crm.db</jdbc-url>
+    </data-source>
   </component>
 </project>

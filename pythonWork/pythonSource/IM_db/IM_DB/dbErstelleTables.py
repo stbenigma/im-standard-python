@@ -1,6 +1,6 @@
 # -*- coding: latin-1 -*-
 
-from IM_DB import dbDDL
+from IM_DB import *
 from IM_OBJECTS import *
 
 

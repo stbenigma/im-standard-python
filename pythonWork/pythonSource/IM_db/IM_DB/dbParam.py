@@ -1,5 +1,5 @@
 # -*- coding: latin-1 -*-
-from  IM_OBJECTS import *
+from IM_OBJECTS import Sprache
 """ definiert alle systemparameter für die DB """
 
 
