@@ -11,6 +11,8 @@
 			// Translation
 				var gTranslInforegexp =/TRANSLATION\{([^}]*)\}/;
 				var translation = false
+				var translatedentries = 0
+				var changedentries = 0
 				var NOTESSTARTTAG = '[<tag>[';
 				var NOTESENDTAG = ']<tag>]';
 				var CURRENTLANG = "currentLang"
@@ -302,7 +304,9 @@
 								// versuchen ihn zu übersetzen. Sonst markiere ihn wieder als nicht übersetzt *XX*
 								re = new RegExp("^\\*"+getCurrentLang()+"\\* ");
 								if (translation && (fprop.match(re))){
-									try {newvalue = '**'+translate(getCurrentLang(),flang,value)}
+									try {newvalue = '**'+translate(getCurrentLang(),flang,value)
+										translatedentries++
+										}
 									catch (err) {newvalue = nontranslateprefix+value}
 								} else {newvalue = nontranslateprefix+value}
 								if (isNote) textToNote(fpropName,obj,newvalue);  
@@ -311,7 +315,9 @@
 									// ** wurde automatisch übersetzt. Falls Originallang geändert hat, übersetze neu
 									if (value != oldval && ! oldval.startsWith('*')) {
 										if (translation){
-											try {newvalue = '**'+translate(getCurrentLang(),flang,value)}
+											try {newvalue = '**'+translate(getCurrentLang(),flang,value)
+												translatedentries++
+											}
 											catch (err) {newvalue = nontranslateprefix+value}
 											if (isNote) textToNote(fpropName,obj,newvalue);  
 											else obj.setProperty(fpropName,newvalue);
@@ -325,7 +331,9 @@
 								// das Ziel ist leer aber aus einem Grund muss ich es überschreiben (siehe vorheriges IF)
 								// übersetze den Text. Falls es schief geht, mach daraus einen *XX* Text
 								if (translation){
-									try {newvalue = '**'+translate(getCurrentLang(),flang,value)}
+									try {newvalue = '**'+translate(getCurrentLang(),flang,value)
+										translatedentries++
+										}
 									catch (err) {newvalue = nontranslateprefix+value}
 								}else {newvalue = nontranslateprefix+value}
 								if (isNote) textToNote(fpropName,obj,newvalue);  
@@ -336,12 +344,13 @@
 								// d.h. es hat einen gültigen Wert. 
 								// Markiere es, falls die Quelle wirklich geändert hat (gegenüber dem current-Lang-Property)
 								if (value != oldval && ! oldval.startsWith('*') && ! fprop.startsWith('*')) {
-									  // die Quelle hat geändert 
-									  // und war selber nicht ein Feld, das vor der Änderung einen * am Anfang hatte
-									  // und der foreign Wert hat noch kein * am Anfang
-									  // Markiere die foreign property
-									  if (isNote) textToNote(fpropName,obj,"*"+fprop);
-								   		else obj.setProperty(fpropName,"*"+fprop)
+									// die Quelle hat geändert 
+									// und war selber nicht ein Feld, das vor der Änderung einen * am Anfang hatte
+									// und der foreign Wert hat noch kein * am Anfang
+									// Markiere die foreign property
+									if (isNote) textToNote(fpropName,obj,"*"+fprop);
+								 	else obj.setProperty(fpropName,"*"+fprop);
+									changedentries++
 								}
 							}
 						}
@@ -482,9 +491,13 @@
 			        if (antwort != null){
 						toLang = antwort.substr(-2)
 						//Java.type("javax.swing.JOptionPane").showMessageDialog(null, antwort+'|'+toLang);
+						changedentries = 0
+						translatedentries = 0
 						changeLang(getCurrentLang(),toLang);
-						message ("Model language changed from "+langchangefrom+" to "+toLang+"."
-						        ,PLAINMESSAGE);
+						linemessage ("Model language changed from "+langchangefrom+" to "+toLang+"."
+								,changedentries + " entries marked as changed."
+								,translatedentries + " entries translated."
+						);
 						setLabels(false)
 						setLabels(true)
 					}
