@@ -1,7 +1,7 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="60251648-2CD6-806E-3B21-FB5D07976C14" name="Tab1">
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="1E4D2CA4-10BE-D9EE-BE41-3CBA4583F744" name="Tab1">
 <createdBy>stb</createdBy>
-<createdTime>2019-11-09 16:58:14 UTC</createdTime>
+<createdTime>2020-06-16 14:32:18 UTC</createdTime>
 <comment><![CDATA[Eine Entität die einfach so da steht.]]></comment>
 <generatorID>14B08944-61ED-5412-55F3-1A5EAEA2D6B7</generatorID>
 <ownerDesignName>fyayc_dev_mapping</ownerDesignName>
@@ -9,9 +9,9 @@
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
-<Column name="name" id="7F2D9997-82A1-0F71-7682-C5C54326A60D">
+<Column name="name" id="6233C477-FC46-0FE3-038D-ED3BD906D069">
 <createdBy>stb</createdBy>
-<createdTime>2019-11-09 16:58:14 UTC</createdTime>
+<createdTime>2020-06-16 14:32:18 UTC</createdTime>
 <generatorID>42C69A69-647B-2103-8105-2F55DE2A5A54</generatorID>
 <ownerDesignName>fyayc_dev_mapping</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
@@ -21,9 +21,9 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="Beschreibung" id="26BB77DA-372B-2D15-C40A-B6F63CAB343D">
+<Column name="Beschreibung" id="B3E868A4-BB91-E0AC-6A88-5980EF204549">
 <createdBy>stb</createdBy>
-<createdTime>2019-11-09 16:58:14 UTC</createdTime>
+<createdTime>2020-06-16 14:32:18 UTC</createdTime>
 <generatorID>8AF6A732-985B-11AB-14DC-914AD756EFA5</generatorID>
 <ownerDesignName>fyayc_dev_mapping</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
@@ -33,9 +33,9 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="Entiät1_ID" id="50500D68-5802-F99A-148B-AF85E2DF1A2D">
+<Column name="Tab1v1_ID" id="D11C5135-E10D-B3E6-0E3B-70F003BFD10D">
 <createdBy>stb</createdBy>
-<createdTime>2019-11-09 16:58:14 UTC</createdTime>
+<createdTime>2020-06-16 14:32:18 UTC</createdTime>
 <ownerDesignName>fyayc_dev_mapping</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -47,9 +47,9 @@
 <autoIncrementCycle>false</autoIncrementCycle>
 <isSurrogateColumn>true</isSurrogateColumn>
 </Column>
-<Column name="Super_Entiät_Super_Entiät_ID" id="E32FB763-42A3-7F1B-6019-5578B1CE88F1">
+<Column name="Super_Entiät_Super_Entiät_ID" id="270C3A36-BBCD-FE1C-D728-AD255D6C053C">
 <createdBy>stb</createdBy>
-<createdTime>2019-11-09 16:58:15 UTC</createdTime>
+<createdTime>2020-06-16 14:32:18 UTC</createdTime>
 <ownerDesignName>fyayc_dev_mapping</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -59,9 +59,19 @@
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="unmapped Column" id="699D3D37-1B73-DAAF-BCFE-E13144F7892F">
+<Column name="unmapped Column" id="C7A0896C-C5C5-B80D-0687-487D0F5C268F">
 <createdBy>stb</createdBy>
-<createdTime>2020-02-10 16:13:27 UTC</createdTime>
+<createdTime>2020-06-16 14:32:18 UTC</createdTime>
+<ownerDesignName>fyayc_dev_mapping</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Entiät1_ID" id="DD784F0E-AACA-3771-B26E-FD397DFA0C42">
+<createdBy>stb</createdBy>
+<createdTime>2020-06-16 14:33:01 UTC</createdTime>
+<comment><![CDATA[Created on 16/6/2020  16:33:1 during import from /Users/stb/Downloads/Kanonisches Datenmodell.csv]]></comment>
 <ownerDesignName>fyayc_dev_mapping</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <use>0</use>
@@ -70,14 +80,14 @@
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
-<ind_PK_UK id="E8FA1194-BBB8-3548-2274-E7425EA23C0A" name="Entiät1_PK">
+<ind_PK_UK id="207F6FF3-F8C7-E25C-4EF8-D5A290B8A40C" name="Tab1v1_PK">
 <createdBy>stb</createdBy>
-<createdTime>2019-11-09 16:58:14 UTC</createdTime>
+<createdTime>2020-06-16 14:32:18 UTC</createdTime>
 <ownerDesignName>fyayc_dev_mapping</ownerDesignName>
 <pk>true</pk>
 <indexState>Primary Constraint</indexState>
 <indexColumnUsage>
-<colUsage columnID="50500D68-5802-F99A-148B-AF85E2DF1A2D"/>
+<colUsage columnID="D11C5135-E10D-B3E6-0E3B-70F003BFD10D"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>
