@@ -1,6 +1,6 @@
 # -*- coding: latin-1 -*-
 
-from IM_DB import *
+from IM_DB import logging,dbConnect
 import sqlite3
 import re
 
@@ -47,7 +47,7 @@ def delete(ptableName):
         if re.match("table .* already exists",e.__str__()):
             pass
         else:
-            print ("delete: Unerwarteter SQL-Fehler: \t%s" % e)
+            logging.writelog("delete: unexpected SQL-error: \t%s" % e)
             raise e
 #delete
 
@@ -66,13 +66,17 @@ def insert(psql,rec):
     except sqlite3.IntegrityError as ei:
         #Unique kann für Indexweiterzählen gebraucht werden. darum keine Fehlermeldung
         if not str(ei).startswith('UNIQUE'):
-            print(psql,rec,type(rec))
-            print ("insert: Constraint-Fehler: \t{}" .format (str(ei)))
+            logging.writelog(psql)
+            logging.writelog(rec)
+            logging.writelog(type(rec))
+            logging.writelog("insert: Constraint-error: \t{}" .format (str(ei)))
         #fi
         raise ei
     except sqlite3.Error as e:
-        print(psql, rec,type(rec))
-        print ("insert: Unerwarteter SQL-Fehler: \t{}" .format (str(e)))
+        logging.writelog(psql)
+        logging.writelog(rec)
+        logging.writelog(type(rec))
+        logging.writelog ("insert: unexpected SQL-error: \t{}" .format (str(e)))
         raise e
     id = cursor.lastrowid
     dbConnect.myDbConn.commit()
@@ -91,12 +95,11 @@ def exec(psql,*args):
     try:
         cursor.execute(psql,args)
     except sqlite3.Error as e:
-        print(psql)
         if re.match("xxxxxxx",e.__str__()):
             pass
         else:
-            print (psql)
-            print ("exec: Unerwarteter SQL-Fehler: \t%s" % e)
+            logging.writelog (psql)
+            logging.writelog ("exec: unexpected SQL-error: \t%s" % e)
             raise e
     dbConnect.myDbConn.commit()
 #end exec
@@ -107,12 +110,11 @@ def execmany(psql,recs):
     try:
         cursor.executemany(psql,recs)
     except sqlite3.Error as e:
-        print(psql,recs)
         if re.match("xxxxxxx",e.__str__()):
             pass
         else:
-            print (psql)
-            print ("execmany: Unerwarteter SQL-Fehler: \t%s" % e)
+            logging.writelog (psql)
+            logging.writelog ("execmany: unexpected SQL-error: \t%s" % e)
             raise e
     dbConnect.myDbConn.commit()
 #execmany

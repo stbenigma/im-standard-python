@@ -7,7 +7,7 @@ import xml.etree.ElementTree as ET
 from datetime import date
 
 import transferRelational
-from IM_DB import dbInserts, dbDML, dbLookup, dbConnect, parameters, dbParam
+from IM_DB import dbInserts, dbDML, dbLookup, dbConnect, parameters, dbParam, logging
 from IM_OBJECTS import *
 from mystring import nvl
 
@@ -1000,7 +1000,7 @@ def do1Relation(fileName):
     try:
         beziId = dbInserts.insertBeziehung(row)
     except (sqlite3.IntegrityError):
-        print (row)
+        logging.writelog (row)
         return
     lmodeId = Modellelement.insertmode(pbeziid=beziId)
     dbInserts.insertUdpBezi(beziId)
@@ -1099,14 +1099,15 @@ def do1UDPFile(pudpThema,pfileName):
                 try:
                     vgwt.insert()
                 except (sqlite3.IntegrityError):
-                    print ("duplicate entry in Vorgabewerte themae:'{}' property:'{}' value:'{}'".format(pudpThema,propname,vgwt.vgwt_wert))
+                    logging.writelog("duplicate entry in Vorgabewerte theme:'{}' property:'{}' value:'{}'"
+                                     .format(pudpThema,propname,vgwt.vgwt_wert))
 
-            #rof
+            #for
             dbDML.exec("""update benudef_eigenschaft  set bdeg_wrtb_id = {}  where bdeg_Id = {} """
                         .format (wrtbId,udpId))
 
         # fi
-    # rof
+    # for
 #do1UDPFile
 
 def dofiles(pdirec,pfileregexp,ptransferfunc):

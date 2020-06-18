@@ -1,13 +1,11 @@
 # -*- coding: latin-1 -*-
 import os
-import re
 import sys
 
 sys.path.append(os.path.dirname(os.path.realpath(__file__)) + '/../IM_db')
 sys.path.append(os.path.dirname(os.path.realpath(__file__)) + '/..')
 from IM_DB import *
 from IM_OBJECTS import *
-import __main__
 from openpyxl import Workbook
 from openpyxl.styles import Alignment
 
@@ -29,30 +27,35 @@ def colnum_string(n):
         n, remainder = divmod(n - 1, 26)
         string = chr(65 + remainder) + string
     return string
+
+
 # colum_string
 
-def cell_string(n,m):
+def cell_string(n, m):
     string = ""
     while n > 0:
         n, remainder = divmod(n - 1, 26)
         string = chr(65 + remainder) + string
-    return string+str(m)
-#cell_string
+    return string + str(m)
 
-def setcell(pws,pcolumn, prow, pvalue
-            ,phorizontal = None, pvertical=None
-            ,ptext_rotation=None, pwrap_text = None):
 
+# cell_string
+
+def setcell(pws, pcolumn, prow, pvalue
+            , phorizontal=None, pvertical=None
+            , ptext_rotation=None, pwrap_text=None):
     cell = pws.cell(column=pcolumn, row=prow, value=pvalue)
-    if (phorizontal is not None or pvertical is not None\
-        or ptext_rotation is not None or pwrap_text is not None):
+    if (phorizontal is not None or pvertical is not None \
+            or ptext_rotation is not None or pwrap_text is not None):
         cell.alignment = Alignment(horizontal=phorizontal
-                                       , vertical=pvertical
-                                       , text_rotation=ptext_rotation
-                                        ,wrap_text = pwrap_text
-                                       )
-    #if
-#setcell
+                                   , vertical=pvertical
+                                   , text_rotation=ptext_rotation
+                                   , wrap_text=pwrap_text
+                                   )
+    # if
+    """ Alignement horizontal  ?left?, ?centerContinuous?, ?center?, ?distributed?, ?fill?, ?justify?, ?right?, ?general?"""
+
+# setcell
 
 def writesheettabent(pwb: Workbook):
     ws = pwb.create_sheet("Table to Entity mapping")
@@ -61,35 +64,50 @@ def writesheettabent(pwb: Workbook):
     colidx += 1
     ws.cell(column=colidx, row=rowidx, value='Table')
     colidx += 1
+
+    cntcolidx,cntrowidx = colidx,rowidx+1
+    xcounts = {}
+    setcell(pws=ws,prow=rowidx+1,pcolumn=colidx,pvalue='Count',phorizontal='right')
+    colidx += 1
     for idx, enti in enumerate(entities.values()):
-        setcell(pws=ws,pcolumn=idx + colidx, prow=rowidx, pvalue=enti[0]
-                ,ptext_rotation=90)
+        xcounts[colidx+idx] = 0
+        setcell(pws=ws, pcolumn=idx + colidx, prow=rowidx, pvalue=enti[0]
+                , ptext_rotation=90)
     # for
-    rowidx += 1
+    rowidx += 2
     for skey, sval in schnittstellen.items():
         for tkey, tval in sval.items():
-            colidx = 1
-            setcell(pws=ws,pcolumn=colidx, prow=rowidx, pvalue=skey
-                    )
+            xcount,colidx = 0,1
+            setcell(pws=ws, pcolumn=colidx, prow=rowidx, pvalue=skey)
             colidx += 1
             ws.cell(column=colidx, row=rowidx, value=tval[0])
-            colidx += 1
+            colidx += 2 #platz für counter
             for entiid in entities.keys():
-                #            for idx, tabkey in enumerate(tables[tkey][3]):
-                #                if (tabkey == 'X'):
                 if (istintabentimap(tkey, entiid)):
-                    setcell (pws= ws,pcolumn=colidx, prow=rowidx, pvalue='X'
-                            ,phorizontal="center", pvertical="center")
+                    setcell(pws=ws, pcolumn=colidx, prow=rowidx, pvalue='X'
+                            , phorizontal="center", pvertical="center")
+                    xcount += 1
+                    xcounts[colidx] += 1
                 # fi
                 colidx += 1
             # for
+            if (xcount > 0):
+                setcell(pws=ws, prow=rowidx, pcolumn=cntcolidx
+                        , pvalue=xcount, phorizontal='right')
             rowidx += 1
         # for
     # for
+    for key,value in xcounts.items():
+        if (value > 0):
+            setcell(pws=ws, prow=cntrowidx, pcolumn=key, pvalue=value, phorizontal='right')
+    rowidx += 1
 
     ws.column_dimensions['A'].width = 35
     ws.column_dimensions['B'].width = 35
-    for idx in range(3, colidx): ws.column_dimensions[colnum_string(idx)].width = 3
+    ws.column_dimensions['C'].width = 7
+    for idx in range(4, colidx): ws.column_dimensions[colnum_string(idx)].width = 3
+
+
 # writesheettabent
 
 def writesheetentitab(pwb: Workbook):
@@ -99,34 +117,52 @@ def writesheetentitab(pwb: Workbook):
     ws.cell(column=colidx, row=rowidx, value='Information Model')
     ws.cell(column=colidx, row=rowidx + 1, value='Entity')
     colidx += 1
+
+    cntcolidx,cntrowidx = colidx,rowidx + 2
+    setcell(pws=ws,prow=rowidx + 2,pcolumn=colidx,pvalue='Count',phorizontal='right')
+    xcounts = {}
+    colidx += 1
     for schn_name, tabs in schnittstellen.items():
         ws.cell(column=colidx, row=rowidx, value=schn_name)
         for tabkey in tabs.values():
-            setcell(pws= ws,pcolumn=colidx, prow=rowidx + 1, pvalue=tabkey[0]
+            setcell(pws=ws, pcolumn=colidx, prow=rowidx + 1, pvalue=tabkey[0]
                     , ptext_rotation=90)
+            xcounts[colidx] = 0
             colidx += 1
         # for
     # for
-    rowidx += 2
+    rowidx += 3
 
     for entiid, enti in entities.items():
-        colidx = 1
-        setcell (pws=ws,pcolumn=colidx, prow=rowidx, pvalue=enti[0])
-        colidx += 1
+        xcount,colidx = 0,1
+        setcell(pws=ws, pcolumn=colidx, prow=rowidx, pvalue=enti[0])
+        colidx += 2 #platz für counter
 
         for tabs in schnittstellen.values():
             for tabkey in tabs.keys():
                 if (istintabentimap(tabkey, entiid)):
-                    setcell(pws = ws,pcolumn=colidx, prow=rowidx + 1, pvalue='X')
+                    setcell(pws=ws, pcolumn=colidx, prow=rowidx, pvalue='X')
+                    xcounts[colidx] += 1
+                    xcount +=1
                 # if
                 colidx += 1
             # for
         # for
+        if (xcount > 0):
+            setcell(pws=ws, prow=rowidx, pcolumn=cntcolidx
+                    , pvalue=xcount, phorizontal='right')
         rowidx += 1
     # for
+    for key,value in xcounts.items():
+        if (value > 0):
+            setcell(pws=ws, prow=cntrowidx, pcolumn=key, pvalue=value, phorizontal='right')
+    rowidx += 1
 
     ws.column_dimensions['A'].width = 35
-    for idx in range(2, colidx): ws.column_dimensions[colnum_string(idx)].width = 3
+    ws.column_dimensions['B'].width = 7
+    for idx in range(3, colidx): ws.column_dimensions[colnum_string(idx)].width = 3
+
+
 # writesheetentitab
 
 def writesheetcolattr(pwb: Workbook):
@@ -164,7 +200,7 @@ def writesheetcolattr(pwb: Workbook):
                 colidx += 1
                 for enti in entities.values():
                     for attrid in enti[2].keys():
-                        if (istincolattrmap(ckey,attrid)):
+                        if (istincolattrmap(ckey, attrid)):
                             ws.cell(column=colidx, row=rowidx, value='X')
                         # if
                         colidx += 1
@@ -179,6 +215,8 @@ def writesheetcolattr(pwb: Workbook):
     ws.column_dimensions['B'].width = 35
     ws.column_dimensions['C'].width = 35
     for idx in range(4, colidx): ws.column_dimensions[colnum_string(idx)].width = 3
+
+
 # writesheetcolattr
 
 def writesheetattrcol(pwb: Workbook):
@@ -188,13 +226,13 @@ def writesheetattrcol(pwb: Workbook):
     ws.cell(column=colidx, row=rowidx, value='Information Model')
     ws.cell(column=colidx, row=rowidx + 1, value='Entity')
     colidx += 1
-    ws.cell(column=colidx+1, row=rowidx + 1, value='Attribute')
+    ws.cell(column=colidx + 1, row=rowidx + 1, value='Attribute')
     colidx += 1
     for schn_name, tabs in schnittstellen.items():
         ws.cell(column=colidx, row=rowidx, value=schn_name)
         for tabkey in tabs.values():
-            setcell (pws= ws,pcolumn=colidx, prow=rowidx + 1, pvalue=tabkey[0]
-                    , ptext_rotation=90 )
+            setcell(pws=ws, pcolumn=colidx, prow=rowidx + 1, pvalue=tabkey[0]
+                    , ptext_rotation=90)
             colidx += 1
         # for
     # for
@@ -203,94 +241,98 @@ def writesheetattrcol(pwb: Workbook):
     for enti in entities.values():
         for attrid, attr in enti[2].items():
             colidx = 1
-            setcell (pws= ws,pcolumn=colidx, prow=rowidx, pvalue=enti[0]
-                    ,pwrap_text = True )
+            setcell(pws=ws, pcolumn=colidx, prow=rowidx, pvalue=enti[0]
+                    , pwrap_text=True)
             colidx += 1
-            setcell (pws=ws,pcolumn=colidx, prow=rowidx, pvalue=attr[0]
-                     ,pwrap_text = True )
+            setcell(pws=ws, pcolumn=colidx, prow=rowidx, pvalue=attr[0]
+                    , pwrap_text=True)
             colidx += 1
             for skey, sval in schnittstellen.items():
                 for tkey, tval in sval.items():
                     value = ''
                     for ckey, cval in tval[1].items():
-                        if (istincolattrmap(ckey,attrid)):
-                            value += '' if (value =='')  else EOL
+                        if (istincolattrmap(ckey, attrid)):
+                            value += '' if (value == '') else EOL
                             value += cval[0]
-                        #if
-                    #for
+                        # if
+                    # for
                     if (value != ''):
                         setcell(pws=ws, pcolumn=colidx, prow=rowidx, pvalue=value
-                            , pwrap_text=True)
+                                , pwrap_text=True)
                         headcell = ws.cell(column=colidx, row=2)
                         headcell.alignment = Alignment(text_rotation=0, wrap_text=True)
                     colidx += 1
-                #for
-            #for
+                # for
+            # for
             rowidx += 1
-        #for
-    #for
+        # for
+    # for
 
     ws.column_dimensions['A'].width = 35
     ws.column_dimensions['B'].width = 35
     for idx in range(3, colidx):
-        width = 5 if (ws.cell(column=idx,row=2).alignment.text_rotation == 90) else 25
+        width = 5 if (ws.cell(column=idx, row=2).alignment.text_rotation == 90) else 25
         ws.column_dimensions[colnum_string(idx)].width = width
-    #for
+    # for
+
+
 # writesheetattrcol
 
 def writesheetschnittstelle(pwb, pschnname, pschn):
     ws = pwb.create_sheet(pschnname)
 
     rowidx, colidx = 1, 1
-    ws.cell(column=colidx , row=rowidx, value=pschnname)
-    ws.cell(column=colidx + 2 , row=rowidx, value='Information Model')
-    ws.cell(column=colidx , row=rowidx + 1, value='tableName')
+    ws.cell(column=colidx, row=rowidx, value=pschnname)
+    ws.cell(column=colidx + 2, row=rowidx, value='Information Model')
+    ws.cell(column=colidx, row=rowidx + 1, value='tableName')
     ws.cell(column=colidx + 1, row=rowidx + 1, value='columnName')
     ws.cell(column=colidx + 2, row=rowidx + 1, value='entityName')
     ws.cell(column=colidx + 3, row=rowidx + 1, value='attrName')
     rowidx += 2
 
-    for tabid,tab in pschn.items():
+    for tabid, tab in pschn.items():
         firstrowidx = rowidx
-        for entiid,enti in entities.items():
-            if (istintabentimap(tabid,entiid)):
+        for entiid, enti in entities.items():
+            if (istintabentimap(tabid, entiid)):
                 ws.cell(column=colidx, row=rowidx, value=tab[0])
-                ws.cell(column=colidx+2, row=rowidx, value=enti[0])
+                ws.cell(column=colidx + 2, row=rowidx, value=enti[0])
                 rowidx += 1
-            #if
-        #for
+            # if
+        # for
         if (firstrowidx == rowidx):
             """keinen Eintrag für eine Entity geschrieben, schreibe die Tabelle sowieso"""
             ws.cell(column=colidx, row=rowidx, value=tab[0])
             rowidx += 1
-        #if
+        # if
 
-        for colid,col in tab[1].items():
+        for colid, col in tab[1].items():
             firstrowidx = rowidx
             for enti in entities.values():
-                for attrid,attr in enti[2].items():
-                    if (istincolattrmap(colid,attrid)):
+                for attrid, attr in enti[2].items():
+                    if (istincolattrmap(colid, attrid)):
                         ws.cell(column=colidx, row=rowidx, value=tab[0])
                         ws.cell(column=colidx + 1, row=rowidx, value=col[0])
                         ws.cell(column=colidx + 2, row=rowidx, value=enti[0])
                         ws.cell(column=colidx + 3, row=rowidx, value=attr[0])
                         rowidx += 1
-                    #if
-                #for
-            #for
+                    # if
+                # for
+            # for
 
             if (firstrowidx == rowidx):
                 """keinen Eintrag für eine Entity geschrieben, schreibe die Tabelle sowieso"""
                 ws.cell(column=colidx, row=rowidx, value=tab[0])
                 ws.cell(column=colidx + 1, row=rowidx, value=col[0])
                 rowidx += 1
-            #if
-        #for
-    #for
+            # if
+        # for
+    # for
     ws.column_dimensions['A'].width = 35
     ws.column_dimensions['B'].width = 35
     ws.column_dimensions['C'].width = 35
     ws.column_dimensions['D'].width = 35
+
+
 # writesheetschnittstelle
 
 def writexls(pfilename: str):
@@ -383,20 +425,28 @@ def listcolattr():
                 writeln(skey, tval[0], cval[0], CSVSEP.join(columns[ckey][3]), sep=CSVSEP)
     print("Erstellt: {}".format(fileCSV.name))
     closefile()
+
+
 # listcolattr
 
 def istintabentimap(tabid, entiid):
     return (tabid in tabentimap) and (entiid in tabentimap[tabid])
+
+
 # istintabentimap
 
 def istincolattrmap(colid, attrid):
     return (colid in colattrmap) and (attrid in colattrmap[colid])
+
+
 # istincolattrmap
 
 def stripeol(str):
     retval = re.sub("\n+", "\n", str)
     retval = retval.strip(EOL)
     return retval
+
+
 # stripeol
 
 def listentiintf():
@@ -415,6 +465,8 @@ def listentiintf():
         writeln()
     print("Erstellt: {}".format(fileCSV.name))
     closefile()
+
+
 # listentiintf
 
 def listattrintf():
@@ -453,6 +505,8 @@ def listattrintf():
 
     print("Erstellt: {}".format(fileCSV.name))
     closefile()
+
+
 # listattrintf
 
 def listentitable():
@@ -472,6 +526,8 @@ def listentitable():
         writeln(enti[0], CSVSEP.join(enti[3]), sep=CSVSEP)
     print("Erstellt: {}".format(fileCSV.name))
     closefile()
+
+
 # listentitable
 
 def listtabenti():
@@ -535,7 +591,7 @@ def filllists(plang):
     # for
     colattrmap = AttrTransf.colattrmap()
     for colid, cval in columns.items():
-        matentry = lambda colid, attrid: 'X' if (istincolattrmap(colid,attrid)) else ''
+        matentry = lambda colid, attrid: 'X' if (istincolattrmap(colid, attrid)) else ''
         maps = [matentry(colid, attrid) for attrid in attributes.keys()]
         cval.append(maps)
     # for
@@ -567,8 +623,8 @@ def main(pdirec, plang):
     # listcolattr()
     writexls(pfilename=parameters.webDirec() + 'Mappingtables_' + parameters.odmModelName() + '.xlsx')
     logging.logmessage("Mpdel {}: mappinglist form database {}\n  => created in file {}"
-          .format(parameters.odmModelName(),parameters.dbFilePath()
-                  , parameters.webDirec() + 'Mappingtables_' + parameters.odmModelName() + '.xlsx'))
+                       .format(parameters.odmModelName(), parameters.dbFilePath()
+                               , parameters.webDirec() + 'Mappingtables_' + parameters.odmModelName() + '.xlsx'))
 
 
 # main

@@ -1,33 +1,39 @@
-from IM_DB import parameters
 from datetime import datetime
 
-logcount:int = 0
+from IM_DB import parameters
+
+logcount: int = 0
 logfile = None
 
-def  initlog():
+
+def initlog():
     """initializes the logfile for appending (creating if it does not exist)
         sets the logcounter to 0"""
-    global logcount,logfile
+    global logcount, logfile
     logcount = 0
-    logfile = open(parameters.logfilepath(),'a+')
-    logfile.write("{}\n".format(datetime.now().strftime("%Y-%m-%d %H:%m:%S")))
-#initlog
+    logfile = open(parameters.logfilepath(), 'a+')
+    logfile.write("{}  Model={}  DB={}\n"
+                  .format(datetime.now().strftime("%Y-%m-%d %H:%m:%S")
+                          ,parameters.odmIMDirec() + parameters.odmModelName() + parameters.odmIMExtension()
+                          ,parameters.dbFilePath()))
 
-def  writelog(pline:str):
+# initlog
+
+def writelog(pline: str):
     """writes a line to the logfile and increments the logcounter"""
-    global logcount,logfile
+    global logcount, logfile
     logcount += 1
     logfile.write("\t{}\n".format(pline))
-#writelog
+# writelog
 
-def  logmessage(pmsg:str = None):
-    """if there are any logentries, writes a logmessage to the console"""
-    global logcount,logfile
+def logmessage(pmsg: str = None):
+    """if there are any logentries or a pmsg, writes a logmessage to the console"""
+    global logcount, logfile
     import __main__
     if pmsg is not None: print("{}:\n  => {}".format(__main__.__file__, pmsg))
     if logcount > 0:
         logfile.close()
         if pmsg is None: print("{}:\n".format(__main__.__file__))
         print("  => {} log entr{} written to {}"
-              .format(logcount.__str__(),'y' if logcount==1 else 'ies',logfile.name))
-#logmessage
+              .format(logcount.__str__(), 'y' if logcount == 1 else 'ies', logfile.name))
+# logmessage

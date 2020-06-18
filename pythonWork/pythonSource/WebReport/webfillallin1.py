@@ -4,6 +4,7 @@ from IM_DB import parameters,dbConnect,dbDDL,dbDML,dbErstelleTables
 from IM_HTML import printHTML
 import fillDB
 import listWebdoku
+import listmapping
 from IM_OBJECTS import Sprachtext
 
 
@@ -19,6 +20,7 @@ def main(pdirec,plang):
     fillDB.filldbmain()
     printHTML.setWebDirec(p_webdirec=None)
     listWebdoku.listwebmain(plang=Sprachtext.reportLang())
+    listmapping.main(pdirec=parameters.odmmappingdirec() ,plang=Sprachtext.reportLang())
 #main
 
 if __name__ == '__main__':

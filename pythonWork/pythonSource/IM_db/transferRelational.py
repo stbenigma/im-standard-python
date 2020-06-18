@@ -2,7 +2,7 @@ import os
 import xml.etree.ElementTree as ET
 
 import transferModel
-from IM_DB import dbLookup, parameters, dbInserts
+from IM_DB import dbLookup, parameters, dbInserts,logging
 from IM_OBJECTS import *
 
 globalschnid:int = None
@@ -226,19 +226,19 @@ def do1mapping(pfilename):
         except:
             pass
             if odmmap.logtype == Odmmapping.ENTITYPE:
-                print ( 'Mapping funktioniert nicht Entity vermutlich gelöscht:\n'
-                   ,'Logic: type = {}   guid = {}\n'.format(odmmap.logtype,odmmap.logid)
-                , 'rel: type = {}   guid = {}'.format(odmmap.reltype, odmmap.relid)
+                 logging.writelog( 'Mapping funktioniert nicht Entity vermutlich gelöscht: '
+                   + 'Logic: type = {}   guid = {}'.format(odmmap.logtype,odmmap.logid)
+                   + '     relational: type = {}   guid = {}'.format(odmmap.reltype, odmmap.relid)
                     )
             elif odmmap.logtype == Odmmapping.FKTYPE:
-                print ( 'Mapping funktioniert nicht FK noch nicht behandelt:\n'
-                   ,'Logic: type = {}   guid = {}\n'.format(odmmap.logtype,odmmap.logid)
-                , 'rel: type = {}   guid = {}'.format(odmmap.reltype, odmmap.relid)
+                logging.writelog ( 'Mapping funktioniert nicht FK noch nicht behandelt:  '
+                   + 'Logic: type = {}   guid = {} '.format(odmmap.logtype,odmmap.logid)
+                   + '     relational: type = {}   guid = {}'.format(odmmap.reltype, odmmap.relid)
                     )
             else:
-                print ( 'Mapping funktioniert nicht.:\n'
-                   ,'Logic: type = {}   guid = {}\n'.format(odmmap.logtype,odmmap.logid)
-                , 'rel: type = {}   guid = {}'.format(odmmap.reltype, odmmap.relid)
+                logging.writelog( 'Mapping funktioniert nicht.:   '
+                     + 'Logic: type = {}   guid = {}'.format(odmmap.logtype,odmmap.logid)
+                     + '    relational: type = {}   guid = {}'.format(odmmap.reltype, odmmap.relid)
                     )
 
         #try

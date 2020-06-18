@@ -1,7 +1,6 @@
 from datetime import date
-from IM_DB import dbDML
+from IM_DB import dbDML,logging
 from IM_OBJECTS import *
-
 
 def  insertLovWrtb(pName,pherkunft = Wertebereich.DOMAIN):
     wrtb = Wertebereich()

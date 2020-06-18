@@ -1,36 +1,30 @@
 # -*- coding: latin-1 -*-
-from IM_DB import dbConnect,parameters,logging
-from IM_OBJECTS import baseobject
 import transferModel
-import __main__
-
+from IM_DB import dbConnect, parameters, logging
 
 
 # Main Programm
 
 def filldbmain():
     transferModel.loeschmodell()
-    #    dbConnect.myDbConn.close()
-
-    #    dbConnect.openDB(parameters.dbFilePath(),fks='ON');
     transferModel.insertBaseData()
     transferModel.transferODMModel();
-#filldbmain
+# filldbmain
 
 def main(p_param1):
+    """Main program for fillDB"""
     parameters.initparam(p_callarg=p_param1)
     logging.initlog()
 
-    dbConnect.openDB(parameters.dbFilePath(),fks='OFF')
+    dbConnect.openDB(parameters.dbFilePath(), fks='OFF')
     filldbmain()
     dbConnect.myDbConn.close()
 
-    print("{}:\n  => database {} for model {} filled with modeldata".format(__main__.__file__, parameters.dbFilePath(), parameters.odmModelName()))
-    logging.logmessage()
-
-#end main
+    logging.logmessage("database {} for model {} filled with modeldata"
+                       .format(parameters.dbFilePath(),
+                               parameters.odmModelName()))
+#  main
 
 if __name__ == '__main__':
     import sys
     main(p_param1=sys.argv[1])
-
