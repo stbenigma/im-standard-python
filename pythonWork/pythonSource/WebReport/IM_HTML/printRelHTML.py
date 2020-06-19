@@ -40,12 +40,29 @@ def printcolmapping(pschaid,pschnid):
                }
              ] for entry in werte
             ]
-    #print(werte)
-    printHTML.printmappinthtml(pwerte= werte
-                     ,ptitel=Sprachtext.transl('Mapping')
-                     ,pueberschriften=(Sprachtext.transl('Model'), Sprachtext.transl('Attribute / Columns'))
-                     )
+    print(werte)
+    # printHTML.printmappinthtml(pwerte= werte
+    #                  ,ptitel=Sprachtext.transl('Mapping')
+    #                  ,pueberschriften=(Sprachtext.transl('Model'), Sprachtext.transl('Attribute / Columns'))
+    #                  )
 #printcolmapping
+def getcolmapping(pschaid, pschnid):
+    # name, list of entries mit {'name':webanker}
+    werte = Schnittstelleattr.mappingto(pschaid=pschaid)
+    """[[0, name, [[Attribute]]], [52, name, [[Schnittstelleattr]]]]"""
+    werte = [[entry[1],
+              {'(' + scha.gettablname() + '.' + scha.scha_column_name + ')' if isinstance(scha, Schnittstelleattr)
+               else scha[0] \
+                   : scha.webanker(pmodelid=pschnid) if isinstance(scha, Schnittstelleattr)
+                  else scha[1]
+               for scha in entry[2]
+               }
+              ] for entry in werte
+             ]
+    """[['Logisches Modell', {'attrname':'ATTR1234'}],['Aurea':{'(columnname)':colwebanker}]]"""
+    #print(werte)
+    return werte
+# getcolmapping
 def printcolumninfo(pname,panker,pheaders,pvalues):
     infohead = """
           <!-- The inside div eliminates the 'jumping' animation. -->
@@ -84,30 +101,64 @@ def printcollist(pcollist,pschnid):
     """
     colfooter= """</div>
     """
+    schnname = Schnittstelle.getname(pid=pschnid)
     if (pcollist is None or len(pcollist)==0): return
-    printHTML.fhtml.write(colheader)
+    ueberschr = [Sprachtext.transl('Name'),Sprachtext.transl('Beschreibung')
+                , Sprachtext.transl('Wertebereich'), Sprachtext.transl('Datentyp')
+                ]
+    ueberschr.append('Logical Model')
+    for schn in Schnittstelle.indexlist():
+        if (schn[0] != schnname):
+            ueberschr.append(schn[0])
+    printHTML.fhtml.write(printHTML.starttable(ptitel="Columns", pueberschriften=ueberschr))
+
     for col in pcollist:
+
         if col.scha_wrtb_id is None:
             wrtbname = ''
             if col.scha_daty_id is not None:
                 wrtb = col.getwrtb()
                 wrtbtyp = col.getdaty().daty_name if(wrtb is None) else wrtb.typestring()
-                #printHTML.anzDatentyp(Datatype().getbyid(col.scha_daty_id).daty_grundtyp)
             else:
                 wrtbtyp = ''
             #fi
         else:
             wrtb = Wertebereich().getbyid(nvl(col.scha_wrtb_id,0))
             wrtbname='' if wrtb.wrtb_herkunft == Wertebereich.DERIVED else wrtb.getname(Sprachtext.reportLang())
-            wrtbtyp = wrtb.typestring()# printHTML.anzDatentyp(wrtb.wrtb_typ)
+            wrtbtyp = wrtb.typestring()
         #fi
-        printcolumninfo(pname=col.scha_column_name, panker=col.webanker(pmodelid=pschnid).anker()
-                        ,pheaders= [Sprachtext.transl('Beschreibung')\
-                                            , Sprachtext.transl('Wertebereich'), Sprachtext.transl('Datentyp')]
-                                         ,pvalues= [nvl(col.scha_beschr), wrtbname, wrtbtyp] )
-        printcolmapping(pschaid=col.scha_id,pschnid=pschnid)
+
+        #zuerst das logical Model
+        mappings = getcolmapping(pschaid=col.scha_id, pschnid=pschnid)
+        """[['Logisches Modell', {'attrname':'ATTR1234'}],['Aurea':{'(columnname)':colwebanker}]]"""
+        colwerte = [col.scha_column_name,nvl(col.scha_beschr), wrtbname,wrtbtyp]
+        colwerte.append('') #logisches Modell
+        for maps in mappings:
+            if (maps[0] == 'Logisches Modell'):
+                colwerte[len(colwerte)-1] = ', '.join([printHTML.href(ref=val, anz=key, htmlfile=printHTML.htmlfilelist[0])\
+                                                    for key,val in maps[1].items()])
+        for schn in Schnittstelle.indexlist():
+            if (schn[0] != schnname):
+                colwerte.append('')  # logisches Modell
+                for maps in mappings:
+                    if (maps[0] == schn[0]):
+                        #Aktuell noch keine Columns-Anker in Schnittstellen HTML. Darum nur der Name
+                        #commalist = ', '.join ([printHTML.href(ref=val.anker(), anz=key, htmlfile=printHTML.htmlfilelist[val.modelid()])\
+                        #                        for key,val in maps[1].items()])
+                        commalist = ', '.join (key for key in maps[1].keys())
+                        colwerte[len(colwerte) - 1] = commalist
+
+                    #if
+                #for
+            #if
+        #for
+
+        printHTML.fhtml.write(printHTML.writetableline(pwerte=colwerte))
+
+        #printcolmapping(pschaid=col.scha_id,pschnid=pschnid)
     #for
-    printHTML.fhtml.write(colfooter)
+    printHTML.fhtml.write(printHTML.endtable())
+#    printHTML.fhtml.write(colfooter)
 #printcollist
 
 def printcontenttable(plist):
@@ -138,11 +189,12 @@ def printlistofcontent(pschnid):
                                                      , plang=Sprachtext.reportLang()
                                                     ,pid=pschnid)
                                         )
-    printHTML.printlistofcontentelement(pname='Columns'
-                                        , plist=web_sql.namelist(ptype='SCHA'
-                                                     , plang=Sprachtext.reportLang()
-                                                    ,pid=pschnid)
-                                        )
+    # printHTML.printlistofcontentelement(pname='Columns'
+    #                                     , plist=web_sql.namelist(ptype='SCHA'
+    #                                                  , plang=Sprachtext.reportLang()
+    #                                                 ,pid=pschnid)
+    #                                     )
+
     printHTML.printlistofcontentfoot()
 #printlistofcontent
 

@@ -509,7 +509,6 @@ def printcontent (ptype,pname,panker,plbc,pdescr="",pmaster=""):
             <div class="collapse" id="bar{}">                    
 """
 
-    lbc = str(newbarcounter())
     fhtml.write(contentelementhead.format(panker, ptype, pname
                                           , pmaster
                                           , "" if (pdescr == "") else  "<p1>{}</p1>".format(pdescr)
@@ -575,6 +574,7 @@ def printcontentinfo(ptitle,pheaders,pvalues):
     fhtml.write(trstart)
     for h in pheaders:
         fhtml.write(techheadline.format(h))
+    fhtml.write(trend)
     fhtml.write(trstart)
     for v in pvalues:
         fhtml.write(techlineline.format(v))
@@ -584,55 +584,22 @@ def printcontentinfo(ptitle,pheaders,pvalues):
 
 
 def printattrlist(pentiid):
-    attrhead = """             <h2>{}</h2>
-                        <div id="container1">
-                            <div class="table-responsive">
-                   <table class="table borderless">
-                                            <tbody>
-                                        <tr>
-                                            <th class="attribute">{}</th>
-                                            <th class="attribute">{}</th>
-                                            <th>{}</th>
-                                            <th class="thAlgn">{}</th>
-                                            <th class="thAlgn">{}</th>
-                                            <th class="thAlgn">{}</th>
-                                            <th class="thAlgn">{}</th>
-                                            <th class="thAlgn">{}</th>
-                                            <th class="thAlgn">{}</th>
-                                            <th class="thAlgn">{}</th>
-                                        </tr>"""
-    attrfoot = """              
-                                </tbody>
-                            </table>
-                            </div>
-                                </div>
-    """
 
-    attrline = """                                    <tr>
-                                                <td class="attribute"><a href="#{}">{}</a></td>
-                                                <td class="attribute"><a href="#{}">{}</a></td>
-                                                <td>{}</td>
-                                                <td class="symbol"><img {}></td>
-                                                <td class="symbol"><img {}></td>
-                                                <td class="symbol"><img {}></td>
-                                                <td class="symbol"><img {}></td>
-                                                <td class="symbol"><img {}></td>
-                                                <td class="symbol"><img {}></td>
-                                                <td class="symbol"><img {}></td>
-                                            </tr>
-    """
     alist = web_sql.attrlist(p_lang=Sprachtext.reportLang(), p_entiid=pentiid)
     if (len(alist)==0):
         return
-    fhtml.write(attrhead.format(Sprachtext.transl('Attribute'), Sprachtext.transl('Name'), Sprachtext.transl('Domäne'), Sprachtext.transl('Typ')
+
+    fhtml.write(starttable(ptitel=Sprachtext.transl('Attribute')
+                           , pueberschriften=(Sprachtext.transl('Name'), Sprachtext.transl('Wertebereich'), Sprachtext.transl('Typ')
                             , Sprachtext.transl('Pflichtattribut'),Sprachtext.transl('Schlüssel'), Sprachtext.transl('Deskriptor'), Sprachtext.transl('übersetzt')
-                            , Sprachtext.transl('historisiert'), Sprachtext.transl('wiederholt'), Sprachtext.transl('verschlüsselt')))
+                            , Sprachtext.transl('historisiert'), Sprachtext.transl('wiederholt'), Sprachtext.transl('verschlüsselt'))))
+
     for a in alist:
-        fhtml.write(attrline.format(web_sql.attrAnker(a[0]), a[1], web_sql.wrtbAnker(a[3]), a[2], Wertebereich.anzdatentyp(a[4])
-                                    , bool2icon(a[5]), bool2icon(a[11]), bool2icon(a[6]), bool2icon(a[7])
-                                    , bool2icon(a[8]), bool2icon(a[9]), bool2icon(a[10])))
+        fhtml.write(writetableline(pwerte=(href(ref=a[0], anz=a[1]),href(ref=a[3], anz= a[2]), Wertebereich.anzdatentyp(a[4])
+                                   , bool2icon(a[5]), bool2icon(a[11]), bool2icon(a[6]), bool2icon(a[7])
+                                    , bool2icon(a[8]), bool2icon(a[9]), bool2icon(a[10]))))
     #for
-    fhtml.write(attrfoot)
+    fhtml.write(endtable())
 #printattrlist
 
 def startabschnitt(p_titel):
