@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="43320CA9-C1DC-0B98-1FFE-A8A14FC602D3" name="Inhaber">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="43320CA9-C1DC-0B98-1FFE-A8A14FC602D3" name="**Owner">
 <createdBy>toz</createdBy>
 <createdTime>2020-05-19 14:50:32 UTC</createdTime>
 <notes><![CDATA[[DE_ENTI_COMMENT[
@@ -25,10 +25,12 @@
 <normalForm>Third</normalForm>
 <propertyMap>
 <property name="DE_ENTI_NAME" value="Inhaber"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
 <property name="EN_ENTI_NAME" value="**Owner"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<Attribute name="Stimmrecht (J/N)" id="917664C9-A103-91BF-C45D-DFB27C6C2F50">
+<Attribute name="**Voting rights (Y/N)" id="917664C9-A103-91BF-C45D-DFB27C6C2F50">
 <createdBy>toz</createdBy>
 <createdTime>2020-05-19 14:50:32 UTC</createdTime>
 <notes><![CDATA[[DE_ATTR_COMMENT[
@@ -47,7 +49,7 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_NAME" value="Stimmrecht (J/N)"/>
-<property name="EN_ATTR_NAME" value="*DE* Stimmrecht (J/N)"/>
+<property name="EN_ATTR_NAME" value="**Voting rights (Y/N)"/>
 </propertyMap>
 </Attribute>
 </attributes>

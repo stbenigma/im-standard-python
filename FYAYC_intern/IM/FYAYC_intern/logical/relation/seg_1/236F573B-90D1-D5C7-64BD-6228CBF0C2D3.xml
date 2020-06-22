@@ -8,8 +8,8 @@
 </engineerTo>
 <useSurrogateKey>true</useSurrogateKey>
 <identifying>false</identifying>
-<nameOnSource>interpretiert durch</nameOnSource>
-<nameOnTarget>interpretiert</nameOnTarget>
+<nameOnSource>**interpreted by</nameOnSource>
+<nameOnTarget>**interprets</nameOnTarget>
 <optionalSource>true</optionalSource>
 <optionalTarget>false</optionalTarget>
 <sourceCardinality>1</sourceCardinality>
@@ -18,4 +18,10 @@
 <targetEntity>B7D271E1-B511-6892-616C-65DF93A6805E</targetEntity>
 <transferable>true</transferable>
 <deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="interpretiert durch"/>
+<property name="DE_RELA_TEXT_TO" value="interpretiert"/>
+<property name="EN_RELA_TEXT_FROM" value="**interpreted by"/>
+<property name="EN_RELA_TEXT_TO" value="**interprets"/>
+</propertyMap>
 </Relation>

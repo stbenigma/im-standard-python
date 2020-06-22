@@ -1,10 +1,10 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="F011A69F-4D70-4D60-E12B-FC04C94E1AF0" name="Aufgabenrolle">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="F011A69F-4D70-4D60-E12B-FC04C94E1AF0" name="**Taks Role">
 <createdBy>toz</createdBy>
 <createdTime>2020-05-19 14:50:32 UTC</createdTime>
-<comment><![CDATA[Rolle mit einer Funktion für einen Prozess]]></comment>
+<comment><![CDATA[**Role with a function for a process]]></comment>
 <notes><![CDATA[[EN_ENTI_COMMENT[
-*DE* Rolle mit einer Funktion für einen Prozess
+**Role with a function for a process
 ]EN_ENTI_COMMENT]
 [DE_ENTI_COMMENT[
 Rolle mit einer Funktion für einen Prozess
@@ -25,15 +25,17 @@ Rolle mit einer Funktion für einen Prozess
 <normalForm>Third</normalForm>
 <propertyMap>
 <property name="DE_ENTI_NAME" value="Aufgabenrolle"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
 <property name="EN_ENTI_NAME" value="**Taks Role"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<Attribute name="Funktion (RACI)" id="240204C9-57CB-5437-CB4D-40588C5BB913">
+<Attribute name="**Function (RACI)" id="240204C9-57CB-5437-CB4D-40588C5BB913">
 <createdBy>toz</createdBy>
 <createdTime>2020-05-19 14:50:32 UTC</createdTime>
-<comment><![CDATA[Responsible Accountable Consulted Informed]]></comment>
+<comment><![CDATA[**Responsible Accountable Consulted Informed]]></comment>
 <notes><![CDATA[[EN_ATTR_COMMENT[
-*DE* Responsible Accountable Consulted Informed
+**Responsible Accountable Consulted Informed
 ]EN_ATTR_COMMENT]
 [DE_ATTR_COMMENT[
 Responsible Accountable Consulted Informed

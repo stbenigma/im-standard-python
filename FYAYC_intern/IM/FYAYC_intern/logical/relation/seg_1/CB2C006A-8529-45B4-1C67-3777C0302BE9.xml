@@ -8,8 +8,8 @@
 </engineerTo>
 <useSurrogateKey>true</useSurrogateKey>
 <identifying>false</identifying>
-<nameOnSource>eingesetzt als</nameOnSource>
-<nameOnTarget>ist</nameOnTarget>
+<nameOnSource>**used as</nameOnSource>
+<nameOnTarget>**is</nameOnTarget>
 <optionalSource>true</optionalSource>
 <optionalTarget>false</optionalTarget>
 <sourceCardinality>1</sourceCardinality>
@@ -17,4 +17,10 @@
 <targetCardinalityString>*</targetCardinalityString>
 <targetEntity>F011A69F-4D70-4D60-E12B-FC04C94E1AF0</targetEntity>
 <transferable>true</transferable>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="eingesetzt als"/>
+<property name="DE_RELA_TEXT_TO" value="ist"/>
+<property name="EN_RELA_TEXT_FROM" value="**used as"/>
+<property name="EN_RELA_TEXT_TO" value="**is"/>
+</propertyMap>
 </Relation>

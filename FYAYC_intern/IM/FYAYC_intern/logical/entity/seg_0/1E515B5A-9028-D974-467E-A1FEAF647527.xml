@@ -1,8 +1,8 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="1E515B5A-9028-D974-467E-A1FEAF647527" name="Ansprechspartner">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="1E515B5A-9028-D974-467E-A1FEAF647527" name="**Contact person">
 <createdBy>toz</createdBy>
 <createdTime>2020-04-30 09:30:48 UTC</createdTime>
-<comment><![CDATA[Mitarbeiter, welcher für die Teilnehmer eines Trainings als Ansprechsperson zur Verfügung steht und das Administrative des Trainings leitet. Koordiniert die Aufgaben der Unterstützer.]]></comment>
+<comment><![CDATA[**Employee who is available as a contact person for the participants of a training course and is responsible for the administration of the training course. Coordinates the tasks of the supporters.]]></comment>
 <notes><![CDATA[[EN_ENTI_COMMENT[
 **Employee who is available as a contact person for the participants of a training course and is responsible for the administration of the training course. Coordinates the tasks of the supporters.
 ]EN_ENTI_COMMENT]
@@ -25,6 +25,8 @@ Mitarbeiter, welcher für die Teilnehmer eines Trainings als Ansprechsperson zur
 <normalForm>Third</normalForm>
 <propertyMap>
 <property name="DE_ENTI_NAME" value="Ansprechspartner"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
 <property name="EN_ENTI_NAME" value="**Contact person"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
 </propertyMap>
 </Entity>

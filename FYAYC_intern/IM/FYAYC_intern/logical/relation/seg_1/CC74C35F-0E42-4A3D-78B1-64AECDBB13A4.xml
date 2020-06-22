@@ -8,8 +8,8 @@
 </engineerTo>
 <useSurrogateKey>true</useSurrogateKey>
 <identifying>false</identifying>
-<nameOnSource>gründet auf</nameOnSource>
-<nameOnTarget>ist grundlegend für</nameOnTarget>
+<nameOnSource>**is based on</nameOnSource>
+<nameOnTarget>**is fundamental to</nameOnTarget>
 <optionalSource>true</optionalSource>
 <optionalTarget>false</optionalTarget>
 <sourceCardinality>1</sourceCardinality>
@@ -18,4 +18,10 @@
 <targetEntity>B7D271E1-B511-6892-616C-65DF93A6805E</targetEntity>
 <transferable>true</transferable>
 <deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="gründet auf"/>
+<property name="DE_RELA_TEXT_TO" value="ist grundlegend für"/>
+<property name="EN_RELA_TEXT_FROM" value="**is based on"/>
+<property name="EN_RELA_TEXT_TO" value="**is fundamental to"/>
+</propertyMap>
 </Relation>

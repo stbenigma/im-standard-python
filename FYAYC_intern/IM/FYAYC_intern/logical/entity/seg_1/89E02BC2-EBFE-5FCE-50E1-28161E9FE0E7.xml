@@ -1,7 +1,14 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="89E02BC2-EBFE-5FCE-50E1-28161E9FE0E7" name="Finance">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="89E02BC2-EBFE-5FCE-50E1-28161E9FE0E7" name="**Finance">
 <createdBy>toz</createdBy>
 <createdTime>2020-05-27 12:56:34 UTC</createdTime>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+
+]EN_ENTI_COMMENT]
+]]></notes>
 <ownerDesignName>FYAYC_intern</ownerDesignName>
 <engineerTo>
 <item key="31F23758-7055-2533-F71A-66322F896678" value="true"/>
@@ -15,4 +22,10 @@
 <maxVolumes>9999999</maxVolumes>
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
+<propertyMap>
+<property name="DE_ENTI_NAME" value="Finance"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_NAME" value="**Finance"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+</propertyMap>
 </Entity>

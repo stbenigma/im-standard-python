@@ -8,8 +8,8 @@
 </engineerTo>
 <useSurrogateKey>true</useSurrogateKey>
 <identifying>false</identifying>
-<nameOnSource>gefährdet durch</nameOnSource>
-<nameOnTarget>gefährdeet</nameOnTarget>
+<nameOnSource>**threatened by</nameOnSource>
+<nameOnTarget>**at risk</nameOnTarget>
 <optionalSource>true</optionalSource>
 <optionalTarget>false</optionalTarget>
 <sourceCardinality>1</sourceCardinality>
@@ -17,4 +17,10 @@
 <targetCardinalityString>*</targetCardinalityString>
 <targetEntity>719865A9-B131-B45A-F707-540982325BD4</targetEntity>
 <transferable>true</transferable>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="gefährdet durch"/>
+<property name="DE_RELA_TEXT_TO" value="gefährdeet"/>
+<property name="EN_RELA_TEXT_FROM" value="**threatened by"/>
+<property name="EN_RELA_TEXT_TO" value="**at risk"/>
+</propertyMap>
 </Relation>

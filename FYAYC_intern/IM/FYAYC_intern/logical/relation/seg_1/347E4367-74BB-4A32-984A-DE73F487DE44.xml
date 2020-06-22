@@ -8,8 +8,8 @@
 </engineerTo>
 <useSurrogateKey>true</useSurrogateKey>
 <identifying>false</identifying>
-<nameOnSource>misst</nameOnSource>
-<nameOnTarget>gemessen mit</nameOnTarget>
+<nameOnSource>**measures</nameOnSource>
+<nameOnTarget>**as measured by</nameOnTarget>
 <optionalSource>true</optionalSource>
 <optionalTarget>true</optionalTarget>
 <sourceCardinality>*</sourceCardinality>
@@ -17,4 +17,10 @@
 <targetCardinalityString>*</targetCardinalityString>
 <targetEntity>6C7DC41B-5F62-1C31-FF4F-EE024D3B8D93</targetEntity>
 <transferable>true</transferable>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="misst"/>
+<property name="DE_RELA_TEXT_TO" value="gemessen mit"/>
+<property name="EN_RELA_TEXT_FROM" value="**measures"/>
+<property name="EN_RELA_TEXT_TO" value="**as measured by"/>
+</propertyMap>
 </Relation>

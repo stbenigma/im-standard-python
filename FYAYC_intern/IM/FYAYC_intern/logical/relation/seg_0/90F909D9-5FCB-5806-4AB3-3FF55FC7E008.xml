@@ -8,8 +8,8 @@
 </engineerTo>
 <useSurrogateKey>true</useSurrogateKey>
 <identifying>false</identifying>
-<nameOnSource>ist</nameOnSource>
-<nameOnTarget>ist</nameOnTarget>
+<nameOnSource>**is</nameOnSource>
+<nameOnTarget>**is</nameOnTarget>
 <optionalSource>true</optionalSource>
 <optionalTarget>true</optionalTarget>
 <sourceCardinality>1</sourceCardinality>
@@ -18,4 +18,10 @@
 <targetEntity>FEE0DD3C-7A75-FCE3-7A3B-651753B5493C</targetEntity>
 <transferable>true</transferable>
 <deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="ist"/>
+<property name="DE_RELA_TEXT_TO" value="ist"/>
+<property name="EN_RELA_TEXT_FROM" value="**is"/>
+<property name="EN_RELA_TEXT_TO" value="**is"/>
+</propertyMap>
 </Relation>

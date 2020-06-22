@@ -8,8 +8,8 @@
 </engineerTo>
 <useSurrogateKey>true</useSurrogateKey>
 <identifying>false</identifying>
-<nameOnSource>gruppiert thematisch</nameOnSource>
-<nameOnTarget>thematisch zugeordnmet</nameOnTarget>
+<nameOnSource>**grouped thematically</nameOnSource>
+<nameOnTarget>**thematically assigned</nameOnTarget>
 <optionalSource>true</optionalSource>
 <optionalTarget>false</optionalTarget>
 <sourceCardinality>1</sourceCardinality>
@@ -18,4 +18,10 @@
 <targetEntity>AB509F4E-089C-EB24-255E-B329F8D18C2E</targetEntity>
 <transferable>true</transferable>
 <deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="gruppiert thematisch"/>
+<property name="DE_RELA_TEXT_TO" value="thematisch zugeordnmet"/>
+<property name="EN_RELA_TEXT_FROM" value="**grouped thematically"/>
+<property name="EN_RELA_TEXT_TO" value="**thematically assigned"/>
+</propertyMap>
 </Relation>

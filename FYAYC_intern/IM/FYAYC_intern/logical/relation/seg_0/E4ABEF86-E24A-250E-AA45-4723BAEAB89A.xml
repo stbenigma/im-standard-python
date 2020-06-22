@@ -9,8 +9,8 @@
 <useSurrogateKey>true</useSurrogateKey>
 <arc>1EE7245C-2A8E-1E92-1EF6-8930C4BF59FD</arc>
 <identifying>false</identifying>
-<nameOnSource>gruppiert thematisch</nameOnSource>
-<nameOnTarget>thematisch zugeordnet zu</nameOnTarget>
+<nameOnSource>**grouped thematically</nameOnSource>
+<nameOnTarget>**thematically assigned to</nameOnTarget>
 <optionalSource>true</optionalSource>
 <optionalTarget>false</optionalTarget>
 <sourceCardinality>1</sourceCardinality>
@@ -19,4 +19,10 @@
 <targetEntity>6B802188-C6ED-174A-F585-BC854D099E1E</targetEntity>
 <transferable>true</transferable>
 <deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="gruppiert thematisch"/>
+<property name="DE_RELA_TEXT_TO" value="thematisch zugeordnet zu"/>
+<property name="EN_RELA_TEXT_FROM" value="**grouped thematically"/>
+<property name="EN_RELA_TEXT_TO" value="**thematically assigned to"/>
+</propertyMap>
 </Relation>

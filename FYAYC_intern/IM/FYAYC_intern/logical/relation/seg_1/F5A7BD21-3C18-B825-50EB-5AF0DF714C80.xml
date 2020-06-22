@@ -8,8 +8,8 @@
 </engineerTo>
 <useSurrogateKey>true</useSurrogateKey>
 <identifying>false</identifying>
-<nameOnSource>überwacht</nameOnSource>
-<nameOnTarget>überwacht durch</nameOnTarget>
+<nameOnSource>**monitored</nameOnSource>
+<nameOnTarget>**monitored by</nameOnTarget>
 <optionalSource>true</optionalSource>
 <optionalTarget>false</optionalTarget>
 <sourceCardinality>1</sourceCardinality>
@@ -17,4 +17,10 @@
 <targetCardinalityString>*</targetCardinalityString>
 <targetEntity>719865A9-B131-B45A-F707-540982325BD4</targetEntity>
 <transferable>true</transferable>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="überwacht"/>
+<property name="DE_RELA_TEXT_TO" value="überwacht durch"/>
+<property name="EN_RELA_TEXT_FROM" value="**monitored"/>
+<property name="EN_RELA_TEXT_TO" value="**monitored by"/>
+</propertyMap>
 </Relation>

@@ -8,8 +8,8 @@
 </engineerTo>
 <useSurrogateKey>true</useSurrogateKey>
 <identifying>false</identifying>
-<nameOnSource>gesteuert mit</nameOnSource>
-<nameOnTarget>steuert</nameOnTarget>
+<nameOnSource>**controlled with</nameOnSource>
+<nameOnTarget>**controls</nameOnTarget>
 <optionalSource>true</optionalSource>
 <optionalTarget>true</optionalTarget>
 <sourceCardinality>*</sourceCardinality>
@@ -18,4 +18,10 @@
 <targetEntity>C061C1F9-3DD9-EFA2-808A-F624E8E4A6F1</targetEntity>
 <transferable>true</transferable>
 <deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="gesteuert mit"/>
+<property name="DE_RELA_TEXT_TO" value="steuert"/>
+<property name="EN_RELA_TEXT_FROM" value="**controlled with"/>
+<property name="EN_RELA_TEXT_TO" value="**controls"/>
+</propertyMap>
 </Relation>

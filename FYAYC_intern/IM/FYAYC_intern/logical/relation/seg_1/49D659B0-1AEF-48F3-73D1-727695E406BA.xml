@@ -7,8 +7,8 @@
 <item key="31F23758-7055-2533-F71A-66322F896678" value="true"/>
 </engineerTo>
 <identifying>false</identifying>
-<nameOnSource>besteht aus</nameOnSource>
-<nameOnTarget>zusammengefass in</nameOnTarget>
+<nameOnSource>**is composed of</nameOnSource>
+<nameOnTarget>**summarized in</nameOnTarget>
 <optionalSource>true</optionalSource>
 <optionalTarget>false</optionalTarget>
 <sourceCardinality>1</sourceCardinality>
@@ -17,4 +17,10 @@
 <targetEntity>31ED7BF3-6C9F-3DAC-B0AA-B4BB150D6D11</targetEntity>
 <transferable>true</transferable>
 <deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="besteht aus"/>
+<property name="DE_RELA_TEXT_TO" value="zusammengefass in"/>
+<property name="EN_RELA_TEXT_FROM" value="**is composed of"/>
+<property name="EN_RELA_TEXT_TO" value="**summarized in"/>
+</propertyMap>
 </Relation>

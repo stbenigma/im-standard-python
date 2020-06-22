@@ -1,8 +1,8 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="3594E915-C81E-82A7-1AEE-9A46FB3A6F07" name="Prozessgruppe">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="3594E915-C81E-82A7-1AEE-9A46FB3A6F07" name="**Process Group">
 <createdBy>toz</createdBy>
 <createdTime>2020-05-19 14:50:32 UTC</createdTime>
-<comment><![CDATA[Beispiele:
+<comment><![CDATA[**Examples:
 2 Human Resources]]></comment>
 <notes><![CDATA[[EN_ENTI_COMMENT[
 **Examples:
@@ -28,13 +28,15 @@ Beispiele:
 <normalForm>Third</normalForm>
 <propertyMap>
 <property name="DE_ENTI_NAME" value="Prozessgruppe"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
 <property name="EN_ENTI_NAME" value="**Process Group"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<Attribute name="Nr" id="77AC25D2-9F35-800E-19C6-E90AA39E60E4">
+<Attribute name="**No" id="77AC25D2-9F35-800E-19C6-E90AA39E60E4">
 <createdBy>toz</createdBy>
 <createdTime>2020-05-19 14:50:32 UTC</createdTime>
-<comment><![CDATA[1..5]]></comment>
+<comment><![CDATA[**1..5]]></comment>
 <notes><![CDATA[[EN_ATTR_COMMENT[
 **1..5
 ]EN_ATTR_COMMENT]
@@ -54,7 +56,7 @@ Beispiele:
 <property name="EN_ATTR_NAME" value="**No"/>
 </propertyMap>
 </Attribute>
-<Attribute name="Name" id="299A7BD3-FAFC-BD9E-10A8-C4554BE2EC49">
+<Attribute name="**Name" id="299A7BD3-FAFC-BD9E-10A8-C4554BE2EC49">
 <createdBy>toz</createdBy>
 <createdTime>2020-05-19 14:50:32 UTC</createdTime>
 <notes><![CDATA[[DE_ATTR_COMMENT[

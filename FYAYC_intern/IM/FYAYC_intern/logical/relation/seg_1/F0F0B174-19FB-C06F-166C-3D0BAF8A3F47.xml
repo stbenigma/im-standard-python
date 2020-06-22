@@ -7,8 +7,8 @@
 <item key="31F23758-7055-2533-F71A-66322F896678" value="true"/>
 </engineerTo>
 <identifying>false</identifying>
-<nameOnSource>definiert</nameOnSource>
-<nameOnTarget>definiert von</nameOnTarget>
+<nameOnSource>**defined</nameOnSource>
+<nameOnTarget>**defined by</nameOnTarget>
 <optionalSource>true</optionalSource>
 <optionalTarget>false</optionalTarget>
 <sourceCardinality>1</sourceCardinality>
@@ -17,4 +17,10 @@
 <targetEntity>4C67DD5E-C9F0-61BC-EE83-87EB70E5FB2B</targetEntity>
 <transferable>true</transferable>
 <deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="definiert"/>
+<property name="DE_RELA_TEXT_TO" value="definiert von"/>
+<property name="EN_RELA_TEXT_FROM" value="**defined"/>
+<property name="EN_RELA_TEXT_TO" value="**defined by"/>
+</propertyMap>
 </Relation>

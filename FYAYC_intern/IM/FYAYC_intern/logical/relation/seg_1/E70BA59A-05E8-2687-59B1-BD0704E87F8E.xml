@@ -7,8 +7,8 @@
 <item key="31F23758-7055-2533-F71A-66322F896678" value="true"/>
 </engineerTo>
 <identifying>false</identifying>
-<nameOnSource>beauftragt</nameOnSource>
-<nameOnTarget>beauftragt von</nameOnTarget>
+<nameOnSource>**commissioned</nameOnSource>
+<nameOnTarget>**commissioned by</nameOnTarget>
 <optionalSource>true</optionalSource>
 <optionalTarget>false</optionalTarget>
 <sourceCardinality>1</sourceCardinality>
@@ -17,4 +17,10 @@
 <targetEntity>6A84570C-B4D1-3043-A971-D6EAA787CE0B</targetEntity>
 <transferable>true</transferable>
 <deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="beauftragt"/>
+<property name="DE_RELA_TEXT_TO" value="beauftragt von"/>
+<property name="EN_RELA_TEXT_FROM" value="**commissioned"/>
+<property name="EN_RELA_TEXT_TO" value="**commissioned by"/>
+</propertyMap>
 </Relation>

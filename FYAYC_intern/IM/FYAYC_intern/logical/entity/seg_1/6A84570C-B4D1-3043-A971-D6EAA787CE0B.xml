@@ -1,7 +1,14 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="6A84570C-B4D1-3043-A971-D6EAA787CE0B" name="Kundenprojekt">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="6A84570C-B4D1-3043-A971-D6EAA787CE0B" name="**Customer project">
 <createdBy>toz</createdBy>
 <createdTime>2020-05-27 13:04:51 UTC</createdTime>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+
+]EN_ENTI_COMMENT]
+]]></notes>
 <ownerDesignName>FYAYC_intern</ownerDesignName>
 <engineerTo>
 <item key="31F23758-7055-2533-F71A-66322F896678" value="true"/>
@@ -15,10 +22,23 @@
 <maxVolumes>9999999</maxVolumes>
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
+<propertyMap>
+<property name="DE_ENTI_NAME" value="Kundenprojekt"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_NAME" value="**Customer project"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+</propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<Attribute name="Leistungsbeschreib" id="7D6C8BED-08DB-C663-5EA4-64E6E68E1537">
+<Attribute name="**Description of services" id="7D6C8BED-08DB-C663-5EA4-64E6E68E1537">
 <createdBy>toz</createdBy>
 <createdTime>2020-05-27 13:11:04 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>FYAYC_intern</ownerDesignName>
 <engineerTo>
 <item key="31F23758-7055-2533-F71A-66322F896678" value="true"/>
@@ -26,6 +46,10 @@
 <nullsAllowed>true</nullsAllowed>
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Leistungsbeschreib"/>
+<property name="EN_ATTR_NAME" value="**Description of services"/>
+</propertyMap>
 </Attribute>
 </attributes>
 </Entity>
