@@ -49,15 +49,16 @@ def printcolmapping(pschaid,pschnid):
 def getcolmapping(pschaid, pschnid):
     # name, list of entries mit {'name':webanker}
     werte = Schnittstelleattr.mappingto(pschaid=pschaid)
-    """[[0, name, [[Attribute]]], [52, name, [[Schnittstelleattr]]]]"""
-    werte = [[entry[1],
-              {'(' + scha.gettablname() + '.' + scha.scha_column_name + ')' if isinstance(scha, Schnittstelleattr)
-               else scha[0] \
-                   : scha.webanker(pmodelid=pschnid) if isinstance(scha, Schnittstelleattr)
-                  else scha[1]
-               for scha in entry[2]
+    """[[0, name, [[Attribut]]], [52, name, [[Schnittstelleattr]]]]"""
+    werte = [[entries[1],
+              {'(' + entry.gettablname() + '.' + entry.scha_column_name + ')'
+                    if isinstance(entry, Schnittstelleattr)
+                    else '(' + entry.getentiname() + '.' + entry.attr_anzname + ')' if isinstance(entry, Attribut)
+                    else 'unknown '+type(entry)
+                : entry.webanker(pschnid)
+               for entry in entries[2]
                }
-              ] for entry in werte
+              ] for entries in werte
              ]
     """[['Logisches Modell', {'attrname':'ATTR1234'}],['Aurea':{'(columnname)':colwebanker}]]"""
     #print(werte)

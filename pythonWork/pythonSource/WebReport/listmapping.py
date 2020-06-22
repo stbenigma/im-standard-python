@@ -611,10 +611,13 @@ def main(pdirec, plang):
 
     print("listmapping", parameters.odmBaseDirec(), parameters.odmModelName())
 
+    if plang is not None:
+        Sprachtext.reportLang(plang.lower())
+    else:
+        Sprachtext.reportLang(parameters.dbDefaultLang())
+
     dbConnect.openDB(p_filepath=parameters.dbFilePath());
-    deflang = Sprache.liesdeflangiso2()
-    if deflang is not None: parameters.dbDefaultLang(deflang)
-    filllists(plang=plang)
+    filllists(plang=Sprachtext.reportLang())
     dbConnect.myDbConn.close()
     # listentiintf()
     # listattrintf()

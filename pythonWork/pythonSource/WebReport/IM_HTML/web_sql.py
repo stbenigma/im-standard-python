@@ -101,10 +101,10 @@ def dokureflist (pid, plang):
     order by type,upper(name)
                   """.format(plang,pid))
     datalist = [Referenceentry(pid=e[1], pname=e[0], ptype=e[2], ptypename=e[3]
-                               , panker=entiAnker(e[1]) if e[2] == 'ENTI'
-                            else attrAnker(e[1]) if e[2] == 'ATTR'
-                            else baseobject.webanker(Tabelle, e[1]) if e[2] == Tabelle._prefix.upper()
-                            else baseobject.webanker(Schnittstelle, e[1]) if e[2] == Schnittstelle._prefix.upper()
+                        , panker=Entitaet().getbyid(e[1]).webanker() if e[2] == Entitaet._prefix.upper()
+                            else Attribut().getbyid(e[1]).webanker() if e[2] == Attribut._prefix.upper()
+                            else Tabelle().getbyid(e[1]).webanker() if e[2] == Tabelle._prefix.upper()
+                            else Schnittstelle().getbyid(e[1]).webanker() if e[2] == Schnittstelle._prefix.upper()
                             else ''
                                ) for e in data]
     return datalist

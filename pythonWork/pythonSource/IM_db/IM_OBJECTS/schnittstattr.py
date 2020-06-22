@@ -1,6 +1,8 @@
-from .baseobject import Baseobject
-from IM_DB import dbDML
 from collections import defaultdict
+
+from IM_DB import dbDML
+from .baseobject import Baseobject
+from .attribut import Attribut
 from .tabelle import Tabelle
 from .datatype import Datatype
 
@@ -103,7 +105,7 @@ class Schnittstelleattr(Baseobject):
         	          (select attf1.ATTF_SCHA_ID
     	               from attr_transf attf1
     	                 join attr_transf attf2  on attf2.attf_attr_id = attf1.attf_attr_id
-    	                                and attf2.attf_scha_id != attf1.attf_scha_id
+    	                                 and attf2.attf_scha_id != attf1.attf_scha_id
     	                  where attf2.attf_scha_id = {}
     	            )
     	            /* eigene Schnittstelle wird nicht angezeigt*/
@@ -115,18 +117,25 @@ class Schnittstelleattr(Baseobject):
                 """.format(pschaid, pschaid)
         retval = []
         data = dbDML.select(lsqle)
-        """[(0,'name', [Attribute]'), (54,'name', [Schnittstelleattr])]"""
+        """[(0,'logisches Modell', [Attribute]')]"""
         for d in data:
-            attrs = []
-            for e in d[2].split(','):
-                aname = dbDML.select("select attr_anzname from attributes where attr_id = {}".format(e))
-                attrs.append((aname[0][0], 'ATTR' + str(e)))
-            retval.append([d[0], d[1], attrs])
+            if (d[2] is not None):
+                retval.append([d[0], d[1], [Attribut().getbyid(e) for e in d[2].split(',')]])
+            #attrs = []
+                    #for e in d[2].split(','):
+                    # aname = dbDML.select("select attr_anzname from attributes where attr_id = {}".format(e))
+                    # attrs.append((aname[0][0], 'ATTR' + str(e)))
+                #for
+            #fi
+                #retval.append([d[0], d[1], attrs])
+
         data = dbDML.select(lsqlt)
-        """[(0,'name', [Attribute]'), (54,'name', [Schnittstelleattr])]"""
+        """[ (schnid,schnname, [Schnittstelleattr])]"""
         for d in data:
-            retval.append([d[0], d[1], [Schnittstelleattr().getbyid(e) for e in d[2].split(',')]])
+            if (d[2] is not None):
+                retval.append([d[0], d[1], [Schnittstelleattr().getbyid(e) for e in d[2].split(',')]])
         return retval
+        [[modellid, modellname,[attrid/(colsid)]]]
     # maopingto
 #Schnittstelleattr
 

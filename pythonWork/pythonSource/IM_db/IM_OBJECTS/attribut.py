@@ -84,11 +84,14 @@ CREATE TABLE attributes(
 )
         """)
 
-    def webanker(self):
-        return super().webanker()
+    def webanker(self,pmodelid=None):
+        return super().webanker(pmodelid)
 
     def getname(self, plang=None):
         return self._getsprachval(colname='attr_name', plang=plang)
+
+    def getentiname(self, plang=None):
+        return Entitaet().getbyid(self.attr_enti_id).getname(plang)
 
     def getmodellelement(self):
         return Modellelement.getbyelemid(pattrid=self.attr_id)
@@ -110,6 +113,8 @@ CREATE TABLE attributes(
         return attrs
     # select
 # Attribut
+from .entitaet import Entitaet
+
 
 
 
