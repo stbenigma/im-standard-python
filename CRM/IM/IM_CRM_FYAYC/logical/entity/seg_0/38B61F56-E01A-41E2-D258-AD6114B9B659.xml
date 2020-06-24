@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="38B61F56-E01A-41E2-D258-AD6114B9B659" name="*Sprache">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="38B61F56-E01A-41E2-D258-AD6114B9B659" name="Sprache">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 07:55:51 UTC</createdTime>
 <comment><![CDATA[Sprache nach ISO-639-1]]></comment>
@@ -20,6 +20,7 @@ Langue selon la norme ISO-639-1
 <item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true"/>
 <item key="015DE428-05B6-58DD-323D-ECDC72266F4A" value="true"/>
 </engineerTo>
+<typeID>33675414-33E1-1BE8-99DF-264D33446509</typeID>
 <adequatelyNormalized>NO</adequatelyNormalized>
 <expectedVolumes>0</expectedVolumes>
 <fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
@@ -62,9 +63,8 @@ Langue selon la norme ISO-639-1
 <item key="015DE428-05B6-58DD-323D-ECDC72266F4A" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
-<use>0</use>
+<use>1</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
-<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_NAME" value="Name [L]"/>
@@ -94,9 +94,8 @@ Langue selon la norme ISO-639-1
 <item key="015DE428-05B6-58DD-323D-ECDC72266F4A" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
-<use>0</use>
+<use>1</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
-<domain>FC85688A-BE92-2820-35E2-EB148361AAE1</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_NAME" value="ISO2-Code"/>
@@ -126,9 +125,8 @@ ISO3-Code
 <item key="015DE428-05B6-58DD-323D-ECDC72266F4A" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
-<use>0</use>
+<use>1</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
-<domain>FC85688A-BE92-2820-35E2-EB148361AAE1</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_NAME" value="ISO3-Code"/>
