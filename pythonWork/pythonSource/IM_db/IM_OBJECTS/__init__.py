@@ -10,10 +10,10 @@ from .sprachtext import Sprachtext
 from .tablentimap import TablEntiMap
 from .dokument import Dokument, ModelelemDoku
 from .wertebereich import Wertebereich, Wertebereichgruppe, Vorgabewert
-from .modellelement import Modellelemtyp,Modellelement
+from .modellelement import Modellelemtyp,Modellelement,ExternalRef
 from .diagramme import Diagramm,Diagrammtyp
 from .entitaet import Entitaet,Synonym
 from .attribut import Attribut
 from .schluessel import Schluessel,Schluesselelement
-from .relationship import Arc
-from .externalref import ExternalRef
+from .relationship import Arc,Relation
+

@@ -417,7 +417,7 @@ def transferdiaconnect(pconnectors, pdiagid, puc, pdc):
     ,beda_endtext_hoehe, beda_schriftfarbe, beda_schriftgroesse, beda_uc
     ,beda_dc, beda_um, beda_dm)
 """
-            row = (pdiagid, Modellelement.getidbyelemid(pbeziid=beziid), linewidth, None
+            row = (pdiagid, Modellelement.getidbyelemid(prelaid=beziid), linewidth, None
                    , 1, sttex, sttey, sttew
                    , stteh, entex, entey, entew
                    , enteh, None, 10, puc, pdc, None, None
@@ -495,7 +495,7 @@ def dosegfiles(pdirec, transferfiles):
     try:
         listdir = os.listdir(pdirec)
     except:
-        print('dosSEGfiles: directory "{}" not found.'.format(pdirec))
+        logging.writelog('dosSEGfiles: directory "{}" not found.'.format(pdirec))
         return
     # try
     for el in listdir:
@@ -555,9 +555,9 @@ def do1diagramm(pfilename):
     connectors = dia.findall('connectors/Connector')
     if (len(connectors) > 0):
         transferdiaconnect(pconnectors=connectors, pdiagid=diag.diag_id, puc=diag.diag_uc, pdc=diag.diag_dc)
-    arcs = dia.findall('arcs/Arc')
-    if (len(arcs) > 0):
-        transferdiaarc(parcs=arcs, pdiagid=diag.diag_id, puc=diag.diag_uc, pdc=diag.diag_dc)
+    arcsXML = dia.findall('arcs/Arc')
+    if (len(arcsXML) > 0):
+        transferdiaarc(parcs=arcsXML, pdiagid=diag.diag_id, puc=diag.diag_uc, pdc=diag.diag_dc)
     # print (dianame,len(objects),len(connectors),len(arcs))
 
 
@@ -619,22 +619,19 @@ def do1Arc(fileName):
     # , arcs_uc, arcs_dc)
     arc = Arc(pname=findField(arcXML, "name")
               , pentiid=Entitaet().getID(findText(arcXML, 'entity'))
-              , podmguid=findField(arcXML, "id")
               , puc=findText(arcXML, 'createdBy')
               , pdc=findText(arcXML, 'createdTime'))
-    arcsid = arc.insert()
+    arc.setsourceid(psrc=Modellelemtyp.ARCS,psrcid=findField(arcXML, "id"))
+    arcid = arc.insert()
+
     """map all relations to this arc"""
     relations = arcXML.findall('relations/relationID')
-    relids = ''
-    for idx, r in enumerate(relations):
-        sep = ',' if idx > 0 else ''
-    relids += sep + "'" + r.text + "'"
-    #    relids = ''.join("'{}',".format(r for r in relations))
-    # print (relids)
+    relids = ','.join("'{}'".format(r.text) for r in relations)
     # DEBUG Arc 2x auf Beziehung
-    if findField(arcXML, "name") in ('xxArc_9', 'xxArc_11'):
-        print(findField(arcXML, "id"), findField(arcXML, "name"), findText(arcXML, 'entity'))
-    res = dbDML.select("""select case earc.enti_odm_guid
+#    if findField(arcXML, "name") in ('xxArc_9', 'xxArc_11'):
+#        print(findField(arcXML, "id"), findField(arcXML, "name"), findText(arcXML, 'entity'))
+    if False:
+        res = dbDML.select("""select case earc.enti_odm_guid
                             when evon.enti_odm_guid
                             then arcs_id else null end von_arcs_id
                             ,case earc.enti_odm_guid
@@ -647,32 +644,15 @@ def do1Arc(fileName):
                     left join entitaeten evon on bezi_enti_id_von = evon.enti_id
                     left join entitaeten ezu on bezi_enti_id_zu = ezu.enti_id
                     where arcs_id = {}
-                and bezi_odm_guid in ({})""".format(arcsid, relids))
-    print(res)
-    dbDML.exec("""update beziehungen
-                set (bezi_von_arcs_id,bezi_zu_arcs_id) =
-                    (select case earc.enti_odm_guid
-                            when evon.enti_odm_guid
-                            then arcs_id else bezi_von_arcs_id end von_arcs_id
-                            ,case earc.enti_odm_guid
-                            when ezu.enti_odm_guid
-                            then arcs_id else bezi_zu_arcs_id end zu_arcs_id
-                    from arcs
-                    join entitaeten earc on arcs_enti_id = earc.enti_id
-                    left join entitaeten evon on bezi_enti_id_von = evon.enti_id
-                    left join entitaeten ezu on bezi_enti_id_zu = ezu.enti_id
-                    where arcs_id = {}
-                    )
-                where bezi_odm_guid in ({})
-                """.format(arcs_id, relids))
+                and bezi_odm_guid in ({})""".format(arcid, relids))
+        #print(res)
+    Relation.updaterela(parcid=arcid,prelids=relids)
+
     # print(findField(arc,"name"),rel.text)
-
-    # do1Arc
-
+# do1Arc
 
 def transferArcs():
     dosegfiles(pdirec=parameters.odmArcDirec(), transferfiles=do1Arc)
-
 
 # transferArcs
 
@@ -720,18 +700,18 @@ def updateUDP(pmodeid, pobj):
 
 # updateUDP
 
-def do1Attribute(plfnr, pattrxml, pentiId=None, pbeziId=None):
+def do1Attribute(plfnr, pattrxml, pentiId=None, prelaId=None):
     # wegen FK-PK zusätzliche Attribute werden nicht übernommen
     if (findText(pattrxml, 'referedAttribute') is not None):
         return
     if pentiId is not None:
         vatername = Entitaet().getbyid(pid=pentiId).enti_name
-    elif pbeziId is not None:
-        vatername = "Beziehung ({})".format(pbeziId)
+    elif prelaId is not None:
+        vatername = "Beziehung ({})".format(prelaId)
 
     xmlname = findField(pattrxml, 'name')
     # strip [] am Ende des Namens
-    attr = Attribut(pname=re.sub(' ?\[[LNT]+\]', '', xmlname), pentiid=pentiId, pbeziid=pbeziId)
+    attr = Attribut(pname=re.sub(' ?\[[LNT]+\]', '', xmlname), pentiid=pentiId, prelaid=prelaId)
     attr.attr_tech_name = findText(pattrxml, 'preferredAbbreviation')
     if attr.attr_tech_name is None:
         attr.attr_tech_name = re.sub('[-,.()\[\]äöüèéàÄ~ÖÜ ]', '_', str.upper(attr.attr_anzname))
@@ -923,43 +903,27 @@ def do1Entity(fileName):
 def transferEntitaeten():
     # lösche die Entitäten
     dosegfiles(pdirec=parameters.odmEntityDirec(), transferfiles=do1Entity)
-
-
 # transferEntitaeten
 
 def doSubentities():
-    dbDML.exec("""insert into arcs (arcs_name, arcs_enti_id,arcs_uc,arcs_dc) 
-                       select name || '_subtype', id,uc,um from 
-                                  (select enti_name as name, enti_id as id,enti_uc as uc ,enti_dc as um
-                                          ,(select count(*) from entitaeten as e1 where e2.enti_odm_guid = e1.enti_enti_guid) as subanz
-                                   from entitaeten as e2
-                                   ) where subanz > 0
-                   """)
+    dbDML.exec("update entitaeten as e1 set enti_enti_id = "
+                 +"(select enti_id from entitaeten as e2 where enti_odm_guid = e1.enti_enti_guid)"
+                       + " where enti_enti_guid is NOT NULL and enti_enti_id is NULL"
+                )
 
-    #    dbDML.exec("update entitaeten as e1 set enti_enti_id = "
-    #                 +"(select enti_id from entitaeten as e2 where enti_odm_guid = e1.enti_enti_guid)"
-    #                       + " where enti_enti_guid is NOT NULL and enti_enti_id is NULL"
-    #                )
+    for superenti in Entitaet.select(pwhere="(select count(*) from entitaeten as e1 where e1.enti_enti_id = enti.enti_id) > 0"):
+        Arc(pname=superenti.enti_name+'_subtype',pentiid=superenti.enti_id
+            ,puc=superenti.enti_uc,pdc=superenti.enti_dc).insert()
+    #for
+    # dbDML.exec("""insert into arcs (arcs_name, arcs_enti_id,arcs_uc,arcs_dc)
+    #                    select name || '_subtype', id,uc,um from
+    #                               (select enti_name as name, enti_id as id,enti_uc as uc ,enti_dc as um
+    #                                       ,(select count(*) from entitaeten as e1 where e2.enti_odm_guid = e1.enti_enti_guid) as subanz
+    #                                from entitaeten as e2
+    #                                ) where subanz > 0
+    #                """)
 
-    dbDML.exec("""insert into beziehungen (bezi_type, bezi_enti_id_von, bezi_assoc_von_zu
-                    ,bezi_pflicht_assoc_von_zu, bezi_hist_von_zu
-                    , bezi_enti_id_zu, bezi_assoc_zu_von, BEZI_PFLICHT_ASSOC_ZU_VON, bezi_hist_zu_von
-                    , bezi_von_arcs_id,bezi_uc, bezi_dc,bezi_name)
-                select 'ISA', slave_enti_id,''
-                            , 'TRUE','FALSE'
-                            ,master_enti_id,'','TRUE','FALSE'
-                            ,arcs_id,arcs_uc, arcs_dc
-                            ,arcs_name + '_' + slave_enti_name beziname
-                            from arcs
-                            join (select enti_id as master_enti_id
-                                       , enti_odm_guid as master_guid from entitaeten) on master_enti_id = arcs_enti_id
-                            join  (select enti_id as slave_enti_id
-                                       , enti_enti_guid as slave_master_guid 
-                                       ,enti_name as slave_enti_name from entitaeten) on slave_master_guid = master_guid
-                           where arcs_odm_guid is null
-                """)
-    dbConnect.myDbConn.commit()
-
+    Relation.insertisa()
 
 # doSubentities
 
@@ -975,19 +939,6 @@ def abbildTyp(ptyp):
 
 # abbildTyp
 
-def strNegBool(pbool):
-    if (pbool == None):
-        return None
-    elif (pbool.upper() == 'TRUE'):
-        return 'FALSE'
-    elif (pbool.upper() == 'FALSE'):
-        return 'TRUE'
-    else:
-        return None
-    # fi
-
-
-# strNegBool
 
 def beziType(srcCard, targCard, srcOpt, targOpt, arcId=None):
     # ISA: 1:1 und
@@ -1040,9 +991,9 @@ def do1Relation(fileName):
     try:
         lrow = [lbeziType
             , Entitaet().getID(sourceentiguid), vonText
-            , strNegBool(optSrc), 'FALSE'
+            , Boolean.strnegbool(optSrc), 'FALSE'
             , Entitaet().getID(targetentiguid), zuText
-            , strNegBool(optTarg), 'FALSE'
+            , Boolean.strnegbool(optTarg), 'FALSE'
             , findField(relaxml, 'id'), creby, creti, relname
             , sourceentiguid, targetentiguid
                 ]
@@ -1077,7 +1028,7 @@ def do1Relation(fileName):
     except (sqlite3.IntegrityError):
         logging.writelog(row)
         return
-    lmodeId = Modellelement.insertmode(pbeziid=beziId)
+    lmodeId = Modellelement.insertmode(prelaid=beziId)
     dbInserts.insertUdpBezi(beziId)
 
     updateUDP(pmodeid=lmodeId, pobj=relaxml)
@@ -1088,7 +1039,7 @@ def do1Relation(fileName):
         for idx, attr in enumerate(attrs, start=1):
             # alle Attribute
             # print((findField(attr,'name'),findField(attr,'id')))
-            do1Attribute(plfnr=idx, pattrxml=attr, pbeziId=beziId)
+            do1Attribute(plfnr=idx, pattrxml=attr, prelaId=beziId)
         # endfor
     # fi
 
@@ -1258,9 +1209,9 @@ def insertBaseData():
     diat.insert()
     #    medi_diat_id, medi_melt_id,medi_uc,mdei_dc,medi_um,mdei_dm
     dbInserts.insertmeltdiat(
-        (diat.diat_id, Modellelemtyp.getidbyshortname(pkurzname='ENTI'), 'stb', date.today(), None, None))
+        (diat.diat_id, Modellelemtyp.getidbyshortname(pkurzname=Modellelemtyp.ENTI), 'stb', date.today(), None, None))
     dbInserts.insertmeltdiat(
-        (diat.diat_id, Modellelemtyp.getidbyshortname(pkurzname='BEZI'), 'stb', date.today(), None, None))
+        (diat.diat_id, Modellelemtyp.getidbyshortname(pkurzname=Modellelemtyp.RELA), 'stb', date.today(), None, None))
 
 
 # insertBaseData
@@ -1273,12 +1224,12 @@ def loeschmodell():
     Schluessel.delete()
     dbDML.delete("beziehungen")
     Arc.delete()
-    dbDML.delete("arcs")
     Attribut.delete()
     Synonym.delete()
     Entitaet.delete()
     ModelelemDoku.delete()
     Dokument.delete()
+    ExternalRef.delete()
     Modellelement.delete()
     Diagramm.delete()
     dbDML.delete("benudef_eigenschaft")

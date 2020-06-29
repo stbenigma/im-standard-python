@@ -18,17 +18,17 @@ class Dokument(Baseobject):
     def createtable():
         Baseobject.createtable(ptablename=Dokument._tablename
                                , psql="""
-            CREATE TABLE DOKUMENTE 
+            CREATE TABLE dokumente 
 				      (
-				       DOKU_ID integer primary key autoincrement,
-				       DOKU_NAME VARCHAR (60) NOT NULL , 
-				       DOKU_FORMAT VARCHAR (20) , 
-				       DOKU_REFERENZ VARCHAR (500) , 
-				       DOKU_DOKU_ID NUMERIC (10),	
-					   DOKU_ODM_GUID varchar(36),
-					   DOKU_PARENT_ODM_GUID varchar(36),  
-			   CONSTRAINT DOKU_UK UNIQUE (DOKU_ID),
-			   CONSTRAINT DOKU_DOKU_FK FOREIGN KEY (DOKU_DOKU_ID) 
+				       doku_id integer primary key autoincrement,
+				       doku_name varchar (60) not null , 
+				       doku_format varchar (20) , 
+				       doku_referenz varchar (500) , 
+				       doku_doku_id numeric (10),	
+					   doku_odm_guid varchar(36),
+					   doku_parent_odm_guid varchar(36),  
+			   CONSTRAINT doku_uk UNIQUE (DOKU_ID),
+			   CONSTRAINT doku_doku_fk FOREIGN KEY (DOKU_DOKU_ID) 
 			   				      REFERENCES DOKUMENTE ( DOKU_ID )ON DELETE CASCADE
 				      )
 				"""
@@ -121,7 +121,7 @@ class Dokument(Baseobject):
         return Dokument.select(porderby='doku_name')
     #dokulist
 
-    """def xxdokureferenced(pbeziid=None,pentiid=None,pattrid=None):
+    """def xxdokureferenced(prelaid=None,pentiid=None,pattrid=None):
     data = dbDML.select("
     select child.doku_id, child.DOKU_NAME,child.DOKU_FORMAT,child.DOKU_REFERENZ
        ,parent.DOKU_ID parent_id,parent.DOKU_NAME parent_name
@@ -132,7 +132,7 @@ join modellelement on mode_id = MODO_MODE_ID
 where  (   mode_bezi_id = {}
         or mode_enti_id = {}
         or mode_attr_id = {}
-       ) ".format (pbeziid,pentiid,pattrid))
+       ) ".format (prelaid,pentiid,pattrid))
     return data
 #dokureferenced
 """

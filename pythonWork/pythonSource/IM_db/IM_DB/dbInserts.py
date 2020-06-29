@@ -141,7 +141,7 @@ def insertUdpBezi(beziId):
                 ,bdwe_uc,   bdwe_dc)
                 select NULL,mode_id,bdeg_id,bezi_uc,bezi_dc
                 from beziehungen
-                join modellelement on mode_bezi_id = bezi_id
+                join modellelement on mode_rela_id = bezi_id
                 cross join (select mote_bdeg_id as bdeg_id
                              from modellelem_typ
                              join modelltyp_eigensch on mote_melt_id = melt_id

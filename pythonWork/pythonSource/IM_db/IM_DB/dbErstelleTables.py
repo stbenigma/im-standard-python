@@ -140,6 +140,7 @@ CREATE TABLE benudef_wert(
 
     Modellelemtyp.createtable()
     Modellelement.createtable()
+    ExternalRef.createtable()
 
     dbDDL.dropTable("modelltyp_eigensch")
     dbDDL.createTable("""

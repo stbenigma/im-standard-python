@@ -104,12 +104,12 @@ CREATE TABLE sprachtexte(
                    select 'RELA_TEXT_FROM' attrname, bezi_assoc_von_zu text 
                         ,mode_id,bezi_uc,bezi_dc
                     from modellelement
-                    join beziehungen on bezi_id = mode_bezi_id 
+                    join beziehungen on bezi_id = mode_rela_id 
                     union all                
                    select 'RELA_TEXT_TO' attrname, bezi_assoc_zu_von text 
                         ,mode_id,bezi_uc,bezi_dc
                     from modellelement
-                    join beziehungen on bezi_id = mode_bezi_id
+                    join beziehungen on bezi_id = mode_rela_id
                     union all 
                    select 'WRTB_NAME' attrname, wrtb_name text 
                         ,mode_id,wrtb_uc,wrtb_dc

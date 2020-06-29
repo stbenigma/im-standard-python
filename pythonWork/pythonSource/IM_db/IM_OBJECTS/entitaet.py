@@ -85,7 +85,7 @@ create table entitaeten
         if (self.getid() is not None) and (self.enti_enti_id is not None)\
                 and (self._parent is None):
             #es hat ID und es hat einen Parentid aber noch nicht gelesen
-            self._parent = Entitaet.getbyid(self.enti_enti_id)
+            self._parent = Entitaet().getbyid(self.enti_enti_id)
         #fi
         return self._parent
     #getparent
