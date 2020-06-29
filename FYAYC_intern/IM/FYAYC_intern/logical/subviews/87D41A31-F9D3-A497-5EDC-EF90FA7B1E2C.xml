@@ -18,17 +18,33 @@
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
 <bounds x="30" y="280" width="175" height="39"/>
 </OView>
+<OView class="oracle.dbtools.crest.swingui.logical.TVEntity" oid="14F5C580-955B-39F8-59F4-6A55CB4DC249" otype="Entity" vid="D443FE47-457F-E21C-F046-4702E724919B">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<bounds x="530" y="780" width="131" height="39"/>
+</OView>
+<OView class="oracle.dbtools.crest.swingui.logical.TVEntity" oid="1EB8143F-E655-C0C6-AB53-6F25419761C7" otype="Entity" vid="B03423D5-8507-E61C-377B-1188EE5F425F">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<bounds x="520" y="840" width="131" height="39"/>
+</OView>
 <OView class="oracle.dbtools.crest.swingui.logical.TVEntity" oid="26FCF622-1F66-262B-E31C-CD33D940775D" otype="Entity" vid="530F4638-78A1-18EB-53A9-D1596E1EB0E6">
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
-<bounds x="340" y="180" width="175" height="41"/>
+<bounds x="340" y="160" width="175" height="41"/>
+</OView>
+<OView class="oracle.dbtools.crest.swingui.logical.TVEntity" oid="2B56F067-B4CA-A26D-077E-CBB4CFA335EE" otype="Entity" vid="9D7F328A-1C3D-70FE-6F31-DF6C4B4337A6">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<bounds x="530" y="740" width="131" height="39"/>
 </OView>
 <OView class="oracle.dbtools.crest.swingui.logical.TVEntity" oid="31ED7BF3-6C9F-3DAC-B0AA-B4BB150D6D11" otype="Entity" vid="AB91B96D-8308-0852-E4C7-D49F979CFFB0">
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
 <bounds x="1520" y="250" width="175" height="59"/>
 </OView>
+<OView class="oracle.dbtools.crest.swingui.logical.TVEntity" oid="4116C388-3913-E037-D679-02ABB22B159C" otype="Entity" vid="DE95A0AB-4A42-916A-3C99-65AA80B7671B">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<bounds x="370" y="740" width="131" height="39"/>
+</OView>
 <OView class="oracle.dbtools.crest.swingui.logical.TVEntity" oid="43A2954D-B7C7-EC39-362F-9FDE4317BDD2" otype="Entity" vid="D39252CE-9274-BFE4-0C0C-845D70C91345">
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
-<bounds x="230" y="670" width="175" height="39"/>
+<bounds x="60" y="680" width="175" height="39"/>
 <useCustomFormat>true</useCustomFormat>
 <useDefaultColor>false</useDefaultColor>
 <backgroundColor>-3342337</backgroundColor>
@@ -168,7 +184,7 @@
 </OView>
 <OView class="oracle.dbtools.crest.swingui.logical.TVEntity" oid="93876509-205D-72F1-A0DA-8073C2DCC9B6" otype="Entity" vid="56A8B6E7-8CBD-1350-C64E-498682DD12C0">
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
-<bounds x="520" y="680" width="175" height="39"/>
+<bounds x="350" y="680" width="345" height="211"/>
 <useCustomFormat>true</useCustomFormat>
 <useDefaultColor>false</useDefaultColor>
 <backgroundColor>-3342337</backgroundColor>
@@ -220,11 +236,15 @@
 <foType>Attribut</foType>
 <colorRGB>-16777216</colorRGB>
 </FontObject>
+<FontObject>
+<foType>Nicht null</foType>
+<colorRGB>-65536</colorRGB>
+</FontObject>
 </fonts>
 </OView>
 <OView class="oracle.dbtools.crest.swingui.logical.TVEntity" oid="9C028EFB-96AC-E730-0401-63DE0BD9A368" otype="Entity" vid="200D2B9E-0A5B-5058-2D0B-F0C4E9C4BA95">
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
-<bounds x="340" y="280" width="175" height="39"/>
+<bounds x="350" y="290" width="175" height="39"/>
 </OView>
 <OView class="oracle.dbtools.crest.swingui.logical.TVEntity" oid="9E60932B-E9E4-49BC-001A-098AAC0BAD0C" otype="Entity" vid="6AA22BA0-BC4A-283E-207E-6383FEA7E343">
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
@@ -241,6 +261,10 @@
 <OView class="oracle.dbtools.crest.swingui.logical.TVEntity" oid="C3D0C4FD-1A56-EC51-A3F0-4B8715196BF9" otype="Entity" vid="32366534-9C03-EB3E-81AD-EFB9910549ED">
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
 <bounds x="680" y="350" width="175" height="39"/>
+</OView>
+<OView class="oracle.dbtools.crest.swingui.logical.TVEntity" oid="C7024F8D-C4D8-0722-D015-4A6AA6F0F247" otype="Entity" vid="494BDFD1-9FEA-6F87-3456-D66D96E967F1">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<bounds x="370" y="790" width="131" height="39"/>
 </OView>
 <OView class="oracle.dbtools.crest.swingui.logical.TVEntity" oid="D4BBA98C-0E75-78D1-462C-DD084F75B51B" otype="Entity" vid="62E09FC4-30A3-AD7F-DF04-E57211273745">
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
@@ -347,19 +371,19 @@ Für mich ist die Story: Ein MA nutzt einen Service um eine Aufgabe zu erledigen
 <lineWidth>1</lineWidth>
 <sourceLabel class="oracle.dbtools.crest.model.design.Label">
 <site>0</site>
-<labelBounds x="215" y="169" width="66" height="30"/>
+<labelBounds x="215" y="160" width="66" height="30"/>
 <noBackgroundColor>true</noBackgroundColor>
 <noForegroundColor>true</noForegroundColor>
 </sourceLabel>
 <targetLabel class="oracle.dbtools.crest.model.design.Label">
 <site>2</site>
-<labelBounds x="248" y="202" width="86" height="30"/>
+<labelBounds x="248" y="193" width="86" height="30"/>
 <noBackgroundColor>true</noBackgroundColor>
 <noForegroundColor>true</noForegroundColor>
 </targetLabel>
 <points>
-<point x="205" y="199"/>
-<point x="340" y="199"/>
+<point x="205" y="190"/>
+<point x="340" y="190"/>
 </points>
 </Connector>
 <Connector class="oracle.dbtools.crest.swingui.logical.TVRelation" oid="2D1EE3AB-A92F-FD00-816D-1CE4C3D5E548" otype="Relation" vid_source="1D0CC224-83D2-4C8F-2797-5D1E10A9E1D0" vid_target="62E09FC4-30A3-AD7F-DF04-E57211273745">
@@ -405,16 +429,25 @@ Für mich ist die Story: Ein MA nutzt einen Service um eine Aufgabe zu erledigen
 <point x="387" y="490"/>
 </points>
 </Connector>
-<Connector class="oracle.dbtools.crest.swingui.logical.TVRelation" oid="3E8CAD95-8B23-2B44-B058-9772D6C20733" otype="Relation" vid_source="D39252CE-9274-BFE4-0C0C-845D70C91345" vid_target="32366534-9C03-EB3E-81AD-EFB9910549ED">
+<Connector class="oracle.dbtools.crest.swingui.logical.TVRelation" oid="3E8CAD95-8B23-2B44-B058-9772D6C20733" otype="Relation" vid_source="D39252CE-9274-BFE4-0C0C-845D70C91345" vid_target="991A78D0-6233-E7A3-F305-59D11F941C12">
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
 <backgroundColor>-16777216</backgroundColor>
 <lineWidth>1</lineWidth>
+<sourceLabel class="oracle.dbtools.crest.model.design.Label">
+<site>0</site>
+<labelBounds x="201" y="644" width="68" height="30"/>
+<noBackgroundColor>true</noBackgroundColor>
+<noForegroundColor>true</noForegroundColor>
+</sourceLabel>
+<targetLabel class="oracle.dbtools.crest.model.design.Label">
+<site>2</site>
+<labelBounds x="610" y="492" width="64" height="30"/>
+<noBackgroundColor>true</noBackgroundColor>
+<noForegroundColor>true</noForegroundColor>
+</targetLabel>
 <points>
-<point x="370" y="670"/>
-<point x="370" y="560"/>
-<point x="550" y="560"/>
-<point x="549" y="363"/>
-<point x="680" y="363"/>
+<point x="201" y="680"/>
+<point x="680" y="492"/>
 </points>
 </Connector>
 <Connector class="oracle.dbtools.crest.swingui.logical.TVRelation" oid="409009CB-7F7F-DDA7-8796-7F597A09DE9E" otype="Relation" vid_source="5C523FB9-1E26-C008-C61D-F45604AF5102" vid_target="200D2B9E-0A5B-5058-2D0B-F0C4E9C4BA95">
@@ -423,19 +456,19 @@ Für mich ist die Story: Ein MA nutzt einen Service um eine Aufgabe zu erledigen
 <lineWidth>1</lineWidth>
 <sourceLabel class="oracle.dbtools.crest.model.design.Label">
 <site>0</site>
-<labelBounds x="215" y="269" width="66" height="30"/>
+<labelBounds x="215" y="274" width="66" height="30"/>
 <noBackgroundColor>true</noBackgroundColor>
 <noForegroundColor>true</noForegroundColor>
 </sourceLabel>
 <targetLabel class="oracle.dbtools.crest.model.design.Label">
 <site>2</site>
-<labelBounds x="248" y="302" width="86" height="30"/>
+<labelBounds x="258" y="307" width="86" height="30"/>
 <noBackgroundColor>true</noBackgroundColor>
 <noForegroundColor>true</noForegroundColor>
 </targetLabel>
 <points>
-<point x="205" y="299"/>
-<point x="340" y="299"/>
+<point x="205" y="304"/>
+<point x="350" y="304"/>
 </points>
 </Connector>
 <Connector class="oracle.dbtools.crest.swingui.logical.TVRelation" oid="4740E2A1-8E64-74EE-3C93-159746F80BAD" otype="Relation" vid_source="76CB54C8-B776-12E3-9420-7CFEF1E77C9A" vid_target="62E09FC4-30A3-AD7F-DF04-E57211273745">
@@ -480,6 +513,11 @@ Für mich ist die Story: Ein MA nutzt einen Service um eine Aufgabe zu erledigen
 <point x="1550" y="495"/>
 <point x="1351" y="495"/>
 </points>
+</Connector>
+<Connector class="oracle.dbtools.crest.swingui.logical.TVInheritanceRelation" oid="53586B45-66FB-AE3E-82E3-A710BC240097" otype="Hierarchy relation" vid_source="56A8B6E7-8CBD-1350-C64E-498682DD12C0" vid_target="DE95A0AB-4A42-916A-3C99-65AA80B7671B">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<backgroundColor>-65536</backgroundColor>
+<lineWidth>1</lineWidth>
 </Connector>
 <Connector class="oracle.dbtools.crest.swingui.logical.TVRelation" oid="61422DA8-4463-4D87-215A-B6D1277BAEB1" otype="Relation" vid_source="62E09FC4-30A3-AD7F-DF04-E57211273745" vid_target="6A31E113-5090-9092-43C0-9C3ECF4D12CC">
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
@@ -530,19 +568,19 @@ Für mich ist die Story: Ein MA nutzt einen Service um eine Aufgabe zu erledigen
 <lineWidth>1</lineWidth>
 <sourceLabel class="oracle.dbtools.crest.model.design.Label">
 <site>0</site>
-<labelBounds x="427" y="265" width="44" height="30"/>
+<labelBounds x="432" y="245" width="44" height="30"/>
 <noBackgroundColor>true</noBackgroundColor>
 <noForegroundColor>true</noForegroundColor>
 </sourceLabel>
 <targetLabel class="oracle.dbtools.crest.model.design.Label">
 <site>2</site>
-<labelBounds x="427" y="236" width="64" height="30"/>
+<labelBounds x="432" y="246" width="64" height="30"/>
 <noBackgroundColor>true</noBackgroundColor>
 <noForegroundColor>true</noForegroundColor>
 </targetLabel>
 <points>
-<point x="427" y="221"/>
-<point x="427" y="280"/>
+<point x="432" y="201"/>
+<point x="432" y="290"/>
 </points>
 </Connector>
 <Connector class="oracle.dbtools.crest.swingui.logical.TVRelation" oid="81AAD6EF-34B4-6B0A-A46E-DAC70B29FD75" otype="Relation" vid_source="62E09FC4-30A3-AD7F-DF04-E57211273745" vid_target="9F8E1C87-4FF5-5AE3-EB5F-AD27CC9560C8">
@@ -675,6 +713,28 @@ Für mich ist die Story: Ein MA nutzt einen Service um eine Aufgabe zu erledigen
 <point x="1247" y="770"/>
 </points>
 </Connector>
+<Connector class="oracle.dbtools.crest.swingui.logical.TVRelation" oid="B0E11028-C4EB-76B1-DCAD-11833D8AD069" otype="Relation" vid_source="D39252CE-9274-BFE4-0C0C-845D70C91345" vid_target="9F8E1C87-4FF5-5AE3-EB5F-AD27CC9560C8">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<backgroundColor>-16777216</backgroundColor>
+<lineWidth>1</lineWidth>
+<sourceLabel class="oracle.dbtools.crest.model.design.Label">
+<site>0</site>
+<labelBounds x="245" y="752" width="52" height="27"/>
+<noBackgroundColor>true</noBackgroundColor>
+<noForegroundColor>true</noForegroundColor>
+</sourceLabel>
+<targetLabel class="oracle.dbtools.crest.model.design.Label">
+<site>2</site>
+<labelBounds x="777" y="742" width="37" height="30"/>
+<noBackgroundColor>true</noBackgroundColor>
+<noForegroundColor>true</noForegroundColor>
+</targetLabel>
+<points>
+<point x="235" y="719"/>
+<point x="770" y="880"/>
+<point x="820" y="709"/>
+</points>
+</Connector>
 <Connector class="oracle.dbtools.crest.swingui.logical.TVRelation" oid="BC4A0B15-56D9-F725-F76B-67E16E5958A1" otype="Relation" vid_source="DC9395A7-BF85-A3EE-8281-AB94C74006E2" vid_target="32366534-9C03-EB3E-81AD-EFB9910549ED">
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
 <backgroundColor>-16777216</backgroundColor>
@@ -696,13 +756,18 @@ Für mich ist die Story: Ein MA nutzt einen Service um eine Aufgabe zu erledigen
 <point x="767" y="350"/>
 </points>
 </Connector>
+<Connector class="oracle.dbtools.crest.swingui.logical.TVInheritanceRelation" oid="BC7EAE9D-9A6E-E719-797D-62CB9E8EE1B7" otype="Hierarchy relation" vid_source="56A8B6E7-8CBD-1350-C64E-498682DD12C0" vid_target="494BDFD1-9FEA-6F87-3456-D66D96E967F1">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<backgroundColor>-65536</backgroundColor>
+<lineWidth>1</lineWidth>
+</Connector>
 <Connector class="oracle.dbtools.crest.swingui.logical.TVRelation" oid="C7F4F6AD-B173-38FA-A69D-689734E01A60" otype="Relation" vid_source="32366534-9C03-EB3E-81AD-EFB9910549ED" vid_target="991A78D0-6233-E7A3-F305-59D11F941C12">
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
 <backgroundColor>-16777216</backgroundColor>
 <lineWidth>1</lineWidth>
 <sourceLabel class="oracle.dbtools.crest.model.design.Label">
 <site>0</site>
-<labelBounds x="865" y="381" width="54" height="30"/>
+<labelBounds x="865" y="381" width="54" height="31"/>
 <noBackgroundColor>true</noBackgroundColor>
 <noForegroundColor>true</noForegroundColor>
 <sourceBelowTheLine>true</sourceBelowTheLine>
@@ -721,26 +786,41 @@ Für mich ist die Story: Ein MA nutzt einen Service um eine Aufgabe zu erledigen
 <point x="855" y="458"/>
 </points>
 </Connector>
+<Connector class="oracle.dbtools.crest.swingui.logical.TVInheritanceRelation" oid="C80284CB-109F-9B42-D699-E552800ADAA3" otype="Hierarchy relation" vid_source="56A8B6E7-8CBD-1350-C64E-498682DD12C0" vid_target="9D7F328A-1C3D-70FE-6F31-DF6C4B4337A6">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<backgroundColor>-65536</backgroundColor>
+<lineWidth>1</lineWidth>
+</Connector>
 <Connector class="oracle.dbtools.crest.swingui.logical.TVRelation" oid="CA1EECD8-C68F-AE18-C16E-F8FD9536324E" otype="Relation" vid_source="200D2B9E-0A5B-5058-2D0B-F0C4E9C4BA95" vid_target="79FCEB46-242C-0F8E-AE01-F5E00AAF2388">
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
 <backgroundColor>-16777216</backgroundColor>
 <lineWidth>1</lineWidth>
 <sourceLabel class="oracle.dbtools.crest.model.design.Label">
 <site>0</site>
-<labelBounds x="427" y="371" width="45" height="30"/>
+<labelBounds x="432" y="381" width="45" height="30"/>
 <noBackgroundColor>true</noBackgroundColor>
 <noForegroundColor>true</noForegroundColor>
 </sourceLabel>
 <targetLabel class="oracle.dbtools.crest.model.design.Label">
 <site>2</site>
-<labelBounds x="427" y="346" width="75" height="30"/>
+<labelBounds x="432" y="346" width="75" height="30"/>
 <noBackgroundColor>true</noBackgroundColor>
 <noForegroundColor>true</noForegroundColor>
 </targetLabel>
 <points>
-<point x="427" y="319"/>
-<point x="427" y="390"/>
+<point x="432" y="329"/>
+<point x="432" y="390"/>
 </points>
+</Connector>
+<Connector class="oracle.dbtools.crest.swingui.logical.TVInheritanceRelation" oid="CD46C779-39D0-BD5E-D4CB-16F2801105D1" otype="Hierarchy relation" vid_source="56A8B6E7-8CBD-1350-C64E-498682DD12C0" vid_target="D443FE47-457F-E21C-F046-4702E724919B">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<backgroundColor>-65536</backgroundColor>
+<lineWidth>1</lineWidth>
+</Connector>
+<Connector class="oracle.dbtools.crest.swingui.logical.TVInheritanceRelation" oid="D37B9B94-F2DE-CD06-2F18-8B5EEBED2A42" otype="Hierarchy relation" vid_source="56A8B6E7-8CBD-1350-C64E-498682DD12C0" vid_target="B03423D5-8507-E61C-377B-1188EE5F425F">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<backgroundColor>-65536</backgroundColor>
+<lineWidth>1</lineWidth>
 </Connector>
 <Connector class="oracle.dbtools.crest.swingui.logical.TVRelation" oid="D5BC05AA-AD5D-F652-542F-172EB1288677" otype="Relation" vid_source="62E09FC4-30A3-AD7F-DF04-E57211273745" vid_target="991A78D0-6233-E7A3-F305-59D11F941C12">
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
@@ -769,8 +849,8 @@ Für mich ist die Story: Ein MA nutzt einen Service um eine Aufgabe zu erledigen
 <backgroundColor>-16777216</backgroundColor>
 <lineWidth>1</lineWidth>
 <points>
-<point x="405" y="694"/>
-<point x="520" y="694"/>
+<point x="235" y="699"/>
+<point x="350" y="699"/>
 </points>
 </Connector>
 <Connector class="oracle.dbtools.crest.swingui.logical.TVRelation" oid="D907D5EF-FB20-F3CF-814A-B938A9C60248" otype="Relation" vid_source="9F8E1C87-4FF5-5AE3-EB5F-AD27CC9560C8" vid_target="56A8B6E7-8CBD-1350-C64E-498682DD12C0">

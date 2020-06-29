@@ -25,8 +25,18 @@ Definition wie Gefäss für die Interaktion mit dem Nutzer auszusehen hat.
 <normalForm>Third</normalForm>
 <propertyMap>
 <property name="DE_ENTI_NAME" value="Kanaltyp"/>
-<property name="DE_ENTI_SYNONYM" value=""/>
 <property name="EN_ENTI_NAME" value="**Channel type"/>
-<property name="EN_ENTI_SYNONYM" value=""/>
 </propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Description" id="248486DD-FC17-DA11-D224-5089926499FF">
+<createdBy>toz</createdBy>
+<createdTime>2020-06-26 13:45:55 UTC</createdTime>
+<ownerDesignName>FYAYC_intern</ownerDesignName>
+<engineerTo>
+<item key="31F23758-7055-2533-F71A-66322F896678" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
 </Entity>
