@@ -7,8 +7,8 @@
 <item key="31F23758-7055-2533-F71A-66322F896678" value="true"/>
 </engineerTo>
 <identifying>false</identifying>
-<nameOnSource>is basis for</nameOnSource>
-<nameOnTarget>created in</nameOnTarget>
+<nameOnSource>**ist Grundlage für</nameOnSource>
+<nameOnTarget>**erstellt in</nameOnTarget>
 <optionalSource>true</optionalSource>
 <optionalTarget>false</optionalTarget>
 <sourceCardinality>1</sourceCardinality>
@@ -17,4 +17,10 @@
 <targetEntity>63634619-1A04-6432-F873-8C8C53ED2C70</targetEntity>
 <transferable>true</transferable>
 <deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="**ist Grundlage für"/>
+<property name="DE_RELA_TEXT_TO" value="**erstellt in"/>
+<property name="EN_RELA_TEXT_FROM" value="is basis for"/>
+<property name="EN_RELA_TEXT_TO" value="created in"/>
+</propertyMap>
 </Relation>

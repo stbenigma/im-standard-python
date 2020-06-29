@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="DE9761AB-FF13-66AE-7D57-7D0AAADB45F9" name="**Q-notification">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="DE9761AB-FF13-66AE-7D57-7D0AAADB45F9" name="Q-Meldung">
 <createdBy>toz</createdBy>
 <createdTime>2020-05-19 14:50:32 UTC</createdTime>
 <notes><![CDATA[[DE_ENTI_COMMENT[
@@ -29,7 +29,7 @@
 <property name="EN_ENTI_SYNONYM" value=""/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<Attribute name="**Type" id="413E45A0-5D89-194D-9FA6-65A589BD2C5A">
+<Attribute name="Typ" id="413E45A0-5D89-194D-9FA6-65A589BD2C5A">
 <createdBy>toz</createdBy>
 <createdTime>2020-05-19 14:50:32 UTC</createdTime>
 <commentInRDBMS><![CDATA[Bsp: Beschwerde, Verbesserungsvorschlag]]></commentInRDBMS>
@@ -53,7 +53,7 @@
 <property name="EN_ATTR_NAME" value="**Type"/>
 </propertyMap>
 </Attribute>
-<Attribute name="**Description" id="9B29E5D3-D59A-EFF3-72DA-FBB7FD8994A4">
+<Attribute name="Beschreibung" id="9B29E5D3-D59A-EFF3-72DA-FBB7FD8994A4">
 <createdBy>toz</createdBy>
 <createdTime>2020-05-19 14:50:32 UTC</createdTime>
 <notes><![CDATA[[DE_ATTR_COMMENT[
@@ -76,7 +76,7 @@
 <property name="EN_ATTR_NAME" value="**Description"/>
 </propertyMap>
 </Attribute>
-<Attribute name="**Reasoning" id="B322B454-B9C1-91ED-574C-667D55363A05">
+<Attribute name="Begründung" id="B322B454-B9C1-91ED-574C-667D55363A05">
 <createdBy>toz</createdBy>
 <createdTime>2020-05-19 14:50:32 UTC</createdTime>
 <notes><![CDATA[[DE_ATTR_COMMENT[

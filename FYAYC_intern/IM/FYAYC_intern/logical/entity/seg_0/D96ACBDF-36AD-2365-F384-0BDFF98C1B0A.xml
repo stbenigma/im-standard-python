@@ -2,7 +2,7 @@
 <Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="D96ACBDF-36AD-2365-F384-0BDFF98C1B0A" name="Training">
 <createdBy>toz</createdBy>
 <createdTime>2020-04-30 09:30:48 UTC</createdTime>
-<comment><![CDATA[**A course is an instance of a training program with clearly assigned dates, locations and roles.]]></comment>
+<comment><![CDATA[Ein Training ist die Instanz eines Trainingsprogramms mit eindeutig zugeteilten Terminen, Durchführungsorten und Personenrollen.]]></comment>
 <notes><![CDATA[[EN_ENTI_COMMENT[
 **A course is an instance of a training program with clearly assigned dates, locations and roles.
 ]EN_ENTI_COMMENT]
@@ -23,7 +23,7 @@ Ein Training ist die Instanz eines Trainingsprogramms mit eindeutig zugeteilten 
 <maxVolumes>9999999</maxVolumes>
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
-<synonym>**Training program</synonym>
+<synonym>Trainingsprogramm</synonym>
 <propertyMap>
 <property name="DE_ENTI_NAME" value="Training"/>
 <property name="DE_ENTI_SYNONYM" value="Trainingsprogramm"/>
@@ -31,7 +31,7 @@ Ein Training ist die Instanz eines Trainingsprogramms mit eindeutig zugeteilten 
 <property name="EN_ENTI_SYNONYM" value="**Training program"/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<Attribute name="**ID" id="E17F2621-5F21-1B97-F066-13D653671C16">
+<Attribute name="ID" id="E17F2621-5F21-1B97-F066-13D653671C16">
 <createdBy>toz</createdBy>
 <createdTime>2020-04-30 09:30:48 UTC</createdTime>
 <notes><![CDATA[[DE_ATTR_COMMENT[
@@ -53,7 +53,7 @@ Ein Training ist die Instanz eines Trainingsprogramms mit eindeutig zugeteilten 
 <property name="EN_ATTR_NAME" value="**ID"/>
 </propertyMap>
 </Attribute>
-<Attribute name="**Price" id="33279ED9-E3DB-E5AB-74BB-4B834E19011C">
+<Attribute name="Preis" id="33279ED9-E3DB-E5AB-74BB-4B834E19011C">
 <createdBy>toz</createdBy>
 <createdTime>2020-04-30 09:30:48 UTC</createdTime>
 <notes><![CDATA[[DE_ATTR_COMMENT[
@@ -75,7 +75,7 @@ Ein Training ist die Instanz eines Trainingsprogramms mit eindeutig zugeteilten 
 <property name="EN_ATTR_NAME" value="**Price"/>
 </propertyMap>
 </Attribute>
-<Attribute name="**Language" id="B253FA7F-878E-DF12-7CEA-58FACF3822FF">
+<Attribute name="Sprache" id="B253FA7F-878E-DF12-7CEA-58FACF3822FF">
 <createdBy>toz</createdBy>
 <createdTime>2020-04-30 09:30:48 UTC</createdTime>
 <notes><![CDATA[[DE_ATTR_COMMENT[
@@ -97,7 +97,7 @@ Ein Training ist die Instanz eines Trainingsprogramms mit eindeutig zugeteilten 
 <property name="EN_ATTR_NAME" value="**Language"/>
 </propertyMap>
 </Attribute>
-<Attribute name="**online/offline" id="368F157E-3BE7-2CFC-5DBF-E14BC7A4160E">
+<Attribute name="online/offline" id="368F157E-3BE7-2CFC-5DBF-E14BC7A4160E">
 <createdBy>toz</createdBy>
 <createdTime>2020-04-30 09:30:48 UTC</createdTime>
 <notes><![CDATA[[DE_ATTR_COMMENT[
@@ -119,7 +119,7 @@ Ein Training ist die Instanz eines Trainingsprogramms mit eindeutig zugeteilten 
 <property name="EN_ATTR_NAME" value="**online/offline"/>
 </propertyMap>
 </Attribute>
-<Attribute name="**internal (Y/N)" id="234E3DA4-7E49-A4C1-85ED-6EC7DDCD0137">
+<Attribute name="intern (J/N)" id="234E3DA4-7E49-A4C1-85ED-6EC7DDCD0137">
 <createdBy>toz</createdBy>
 <createdTime>2020-04-30 09:30:48 UTC</createdTime>
 <notes><![CDATA[[DE_ATTR_COMMENT[

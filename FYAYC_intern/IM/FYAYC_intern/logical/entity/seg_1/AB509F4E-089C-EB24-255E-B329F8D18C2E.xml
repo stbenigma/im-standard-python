@@ -1,12 +1,12 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="AB509F4E-089C-EB24-255E-B329F8D18C2E" name="**Process">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="AB509F4E-089C-EB24-255E-B329F8D18C2E" name="Prozess">
 <createdBy>toz</createdBy>
 <createdTime>2020-05-19 14:50:32 UTC</createdTime>
-<comment><![CDATA[**Collection for tasks for specific process groups.
+<comment><![CDATA[Sammlung für Aufgaben für bestimmte Prozessgruppen.
 
-Examples:
+Beispiele:
 14 Finance
-23 Employee management]]></comment>
+23 Employee Management]]></comment>
 <notes><![CDATA[[EN_ENTI_COMMENT[
 **Collection for tasks for specific process groups.
 
@@ -42,7 +42,7 @@ Beispiele:
 <property name="EN_ENTI_SYNONYM" value=""/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<Attribute name="**Name" id="0B046A68-EA37-20EA-D267-99D4A9CB6F61">
+<Attribute name="Name" id="0B046A68-EA37-20EA-D267-99D4A9CB6F61">
 <createdBy>toz</createdBy>
 <createdTime>2020-05-19 14:50:32 UTC</createdTime>
 <notes><![CDATA[[DE_ATTR_COMMENT[
@@ -64,10 +64,10 @@ Beispiele:
 <property name="EN_ATTR_NAME" value="**Name"/>
 </propertyMap>
 </Attribute>
-<Attribute name="**No" id="B9DA29E0-026D-B5A0-71F5-EE8F30150E8E">
+<Attribute name="Nr" id="B9DA29E0-026D-B5A0-71F5-EE8F30150E8E">
 <createdBy>toz</createdBy>
 <createdTime>2020-05-19 14:50:32 UTC</createdTime>
-<comment><![CDATA[**1 .. 9]]></comment>
+<comment><![CDATA[1 .. 9]]></comment>
 <notes><![CDATA[[EN_ATTR_COMMENT[
 **1 .. 9
 ]EN_ATTR_COMMENT]

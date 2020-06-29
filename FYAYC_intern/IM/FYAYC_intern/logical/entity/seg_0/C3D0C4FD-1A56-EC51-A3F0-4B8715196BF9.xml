@@ -1,8 +1,8 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="C3D0C4FD-1A56-EC51-A3F0-4B8715196BF9" name="**Channel type">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="C3D0C4FD-1A56-EC51-A3F0-4B8715196BF9" name="Kanaltyp">
 <createdBy>toz</createdBy>
 <createdTime>2020-04-03 13:58:11 UTC</createdTime>
-<comment><![CDATA[**Definition of how the vessel for interaction with the user should look like]]></comment>
+<comment><![CDATA[Definition wie Gefäss für die Interaktion mit dem Nutzer auszusehen hat.]]></comment>
 <notes><![CDATA[[EN_ENTI_COMMENT[
 **Definition of how the vessel for interaction with the user should look like
 ]EN_ENTI_COMMENT]
@@ -26,17 +26,26 @@ Definition wie Gefäss für die Interaktion mit dem Nutzer auszusehen hat.
 <propertyMap>
 <property name="DE_ENTI_NAME" value="Kanaltyp"/>
 <property name="EN_ENTI_NAME" value="**Channel type"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<Attribute name="Description" id="248486DD-FC17-DA11-D224-5089926499FF">
+<Attribute name="**Beschreibung" id="248486DD-FC17-DA11-D224-5089926499FF">
 <createdBy>toz</createdBy>
 <createdTime>2020-06-26 13:45:55 UTC</createdTime>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>FYAYC_intern</ownerDesignName>
 <engineerTo>
 <item key="31F23758-7055-2533-F71A-66322F896678" value="true"/>
 </engineerTo>
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="**Beschreibung"/>
+<property name="EN_ATTR_NAME" value="Description"/>
+</propertyMap>
 </Attribute>
 </attributes>
 </Entity>

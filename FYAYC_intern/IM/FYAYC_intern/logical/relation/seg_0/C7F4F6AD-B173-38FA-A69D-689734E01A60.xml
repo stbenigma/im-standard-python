@@ -7,8 +7,8 @@
 <item key="31F23758-7055-2533-F71A-66322F896678" value="true"/>
 </engineerTo>
 <identifying>false</identifying>
-<nameOnSource>describes</nameOnSource>
-<nameOnTarget>**is based on</nameOnTarget>
+<nameOnSource>**beschreibt</nameOnSource>
+<nameOnTarget>****basiert auf</nameOnTarget>
 <optionalSource>true</optionalSource>
 <optionalTarget>false</optionalTarget>
 <sourceCardinality>1</sourceCardinality>
@@ -17,4 +17,10 @@
 <targetEntity>63634619-1A04-6432-F873-8C8C53ED2C70</targetEntity>
 <transferable>true</transferable>
 <deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="**beschreibt"/>
+<property name="DE_RELA_TEXT_TO" value="****basiert auf"/>
+<property name="EN_RELA_TEXT_FROM" value="describes"/>
+<property name="EN_RELA_TEXT_TO" value="**is based on"/>
+</propertyMap>
 </Relation>

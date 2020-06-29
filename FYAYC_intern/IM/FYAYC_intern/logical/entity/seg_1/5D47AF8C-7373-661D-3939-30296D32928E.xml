@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="5D47AF8C-7373-661D-3939-30296D32928E" name="**Invoice">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="5D47AF8C-7373-661D-3939-30296D32928E" name="Rechnung">
 <createdBy>toz</createdBy>
 <createdTime>2020-05-27 12:56:59 UTC</createdTime>
 <notes><![CDATA[[DE_ENTI_COMMENT[
@@ -29,7 +29,7 @@
 <property name="EN_ENTI_SYNONYM" value=""/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<Attribute name="**Number" id="CA4C25C2-D7EE-4AF1-1B2E-846193B0E01E">
+<Attribute name="Nummer" id="CA4C25C2-D7EE-4AF1-1B2E-846193B0E01E">
 <createdBy>toz</createdBy>
 <createdTime>2020-05-27 12:57:18 UTC</createdTime>
 <notes><![CDATA[[DE_ATTR_COMMENT[
@@ -50,7 +50,7 @@
 <property name="EN_ATTR_NAME" value="**Number"/>
 </propertyMap>
 </Attribute>
-<Attribute name="**Total" id="77EFF2AB-60F6-312F-A533-D3EF20096DF2">
+<Attribute name="Total " id="77EFF2AB-60F6-312F-A533-D3EF20096DF2">
 <createdBy>toz</createdBy>
 <createdTime>2020-05-27 12:57:46 UTC</createdTime>
 <notes><![CDATA[[DE_ATTR_COMMENT[
@@ -71,7 +71,7 @@
 <property name="EN_ATTR_NAME" value="**Total"/>
 </propertyMap>
 </Attribute>
-<Attribute name="**Performance period" id="372BDD3D-E8DC-755F-4F92-6BBD9B8484D2">
+<Attribute name="Leistungszeitraum" id="372BDD3D-E8DC-755F-4F92-6BBD9B8484D2">
 <createdBy>toz</createdBy>
 <createdTime>2020-05-27 13:02:47 UTC</createdTime>
 <notes><![CDATA[[DE_ATTR_COMMENT[
@@ -93,7 +93,7 @@
 <property name="EN_ATTR_NAME" value="**Performance period"/>
 </propertyMap>
 </Attribute>
-<Attribute name="**Date of invoice" id="BBAD0C6E-6EB5-BA13-100A-471033368045">
+<Attribute name="Rechnungsdatum" id="BBAD0C6E-6EB5-BA13-100A-471033368045">
 <createdBy>toz</createdBy>
 <createdTime>2020-05-27 13:03:03 UTC</createdTime>
 <notes><![CDATA[[DE_ATTR_COMMENT[

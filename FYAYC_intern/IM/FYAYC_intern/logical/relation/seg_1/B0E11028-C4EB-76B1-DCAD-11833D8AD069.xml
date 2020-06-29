@@ -7,8 +7,8 @@
 <item key="31F23758-7055-2533-F71A-66322F896678" value="true"/>
 </engineerTo>
 <identifying>false</identifying>
-<nameOnSource>used by</nameOnSource>
-<nameOnTarget>uses</nameOnTarget>
+<nameOnSource>**verwendet von</nameOnSource>
+<nameOnTarget>**verwendet</nameOnTarget>
 <optionalSource>true</optionalSource>
 <optionalTarget>false</optionalTarget>
 <sourceCardinality>*</sourceCardinality>
@@ -17,4 +17,10 @@
 <targetEntity>E691A12C-9F6E-324E-4486-482ABA819581</targetEntity>
 <transferable>true</transferable>
 <deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="**verwendet von"/>
+<property name="DE_RELA_TEXT_TO" value="**verwendet"/>
+<property name="EN_RELA_TEXT_FROM" value="used by"/>
+<property name="EN_RELA_TEXT_TO" value="uses"/>
+</propertyMap>
 </Relation>

@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="D4BBA98C-0E75-78D1-462C-DD084F75B51B" name="**Employees">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="D4BBA98C-0E75-78D1-462C-DD084F75B51B" name="Mitarbeiter">
 <createdBy>toz</createdBy>
 <createdTime>2020-04-08 11:34:07 UTC</createdTime>
 <notes><![CDATA[[DE_ENTI_COMMENT[
@@ -25,12 +25,10 @@
 <normalForm>Third</normalForm>
 <propertyMap>
 <property name="DE_ENTI_NAME" value="Mitarbeiter"/>
-<property name="DE_ENTI_SYNONYM" value=""/>
-<property name="EN_ENTI_NAME" value="**Employees"/>
-<property name="EN_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_NAME" value="Employee"/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<Attribute name="**Cell Manager (Y/N)" id="E07B326C-1BD9-2D8D-1886-181F45FF17C9">
+<Attribute name="Zellenleiter (J/N)" id="E07B326C-1BD9-2D8D-1886-181F45FF17C9">
 <createdBy>toz</createdBy>
 <createdTime>2020-04-23 09:32:49 UTC</createdTime>
 <notes><![CDATA[[DE_ATTR_COMMENT[
@@ -51,7 +49,7 @@
 <property name="EN_ATTR_NAME" value="**Cell Manager (Y/N)"/>
 </propertyMap>
 </Attribute>
-<Attribute name="**Cell Manager Stv (Y/N)" id="E920438E-4595-D753-C3E8-889869E7F0E3">
+<Attribute name="Zellenleiter Stv (J/N)" id="E920438E-4595-D753-C3E8-889869E7F0E3">
 <createdBy>toz</createdBy>
 <createdTime>2020-04-23 09:33:21 UTC</createdTime>
 <notes><![CDATA[[DE_ATTR_COMMENT[
