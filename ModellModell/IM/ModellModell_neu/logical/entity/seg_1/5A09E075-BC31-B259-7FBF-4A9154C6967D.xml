@@ -43,11 +43,10 @@ Logistik
 Customer Services
 ]DE_ENTI_COMMENT]
 [EN_ENTI_COMMENT[
-*Defines the context in which the model (and thus the terms and their definition) is valid.  ATTENTION: Between 2 models in different business areas there can be no connections of entities, value ranges and dependent elements, since the definitions of the terms only apply in the respective context of the business area.
+Defines the context in which the model (and thus the terms and their definition) is valid.  ATTENTION: Between 2 models in different business areas there can be no connections of entities, value ranges and dependent elements, since the definitions of the terms only apply in the respective context of the business area.
 ]EN_ENTI_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
-<shouldEngineer>false</shouldEngineer>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
 <item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="false"/>
@@ -66,12 +65,10 @@ Customer Services
 <createSurrogateKey>true</createSurrogateKey>
 <propertyMap>
 <property name="Beispiele" value="Geschäftsbereich Automobil /  Human Ressources "/>
-<property name="DE_ENTI_COMMENT" value="Definiert den Kontext in dem das Modell (und damit die Begriffe und ihre Definition) gültig ist.  ACHTUNG: Zwischen 2 Modellen in unterschiedlichen Geschäftsbereichen kann es keine Verbindungen von Entitäten, Wertebereichen und davon abhängigkgen Elementen geben, da die Definitionen der Begriffe nur im jeweiligen Kontext des Geschäftsereichs gelten.    "/>
 <property name="DE_ENTI_NAME" value="Geschäftaufgabe"/>
 <property name="DE_ENTI_SYNONYM" value="Hoheitsbereich, Geschäftsfeld, Aufgabenbereich, Geschäftsbereich"/>
-<property name="EN_ENTI_COMMENT" value="*DE* Definiert den Kontext in dem das Modell (und damit die Begriffe und ihre Definition) gültig ist.  ACHTUNG: Zwischen 2 Modellen in unterschiedlichen Geschäftsbereichen kann es keine Verbindungen von Entitäten, Wertebereichen und davon abhängigkgen Elementen geben, da die Definitionen der Begriffe nur im jeweiligen Kontext des Geschäftsereichs gelten.    "/>
-<property name="EN_ENTI_NAME" value="*Business division"/>
-<property name="EN_ENTI_SYNONYM" value="**Area of sovereignty, business field, area of responsibility, business area"/>
+<property name="EN_ENTI_NAME" value="Business division"/>
+<property name="EN_ENTI_SYNONYM" value="Area of sovereignty, business field, area of responsibility, business area"/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Name" id="C5008C78-3422-F6A1-AF57-B39DC0E800AA">
@@ -86,7 +83,6 @@ Business division name
 ]EN_ATTR_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
-<shouldEngineer>false</shouldEngineer>
 <importedID>9FC8C28A-8074-92B6-C5B5-3378905C15D0</importedID>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
@@ -116,7 +112,6 @@ Significance, delimitation of the business area
 ]EN_ATTR_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
-<shouldEngineer>false</shouldEngineer>
 <importedID>2321BD17-8911-F28D-347B-C763A3C80F98</importedID>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
@@ -147,7 +142,6 @@ Name of the entity normally used in communication.
 ]EN_ATTR_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
-<shouldEngineer>false</shouldEngineer>
 <importedID>0D6D7CC5-02F9-66CF-24BB-AC8AC5003C95</importedID>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
@@ -177,7 +171,6 @@ Application area (ERP, PIM, FiBu etc.)
 ]EN_ATTR_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
-<shouldEngineer>false</shouldEngineer>
 <importedID>A41A5B15-8932-9BFD-B421-F43E2D8BA5CB</importedID>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
@@ -202,7 +195,6 @@ Application area (ERP, PIM, FiBu etc.)
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:04:00 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
-<shouldEngineer>false</shouldEngineer>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
 <item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="false"/>
