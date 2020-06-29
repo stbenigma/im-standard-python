@@ -13,14 +13,6 @@ def  insertLovWrtb(pName,pherkunft = Wertebereich.DOMAIN):
     return wrtb.insert()
 #end insertLovWrtb
 
-def insertArc(parc):
-    lsql = """
-        insert into arcs 
-          (arcs_name, arcs_enti_id, arcs_odm_guid
-          ,arcs_uc   , arcs_dc ) 
-            values (?,?,?,?,?)
-        """
-    return dbDML.insert(lsql, parc)
 
 def insertBeziehung(pdata):
     lsql = """

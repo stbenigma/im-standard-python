@@ -14,7 +14,7 @@ class Boolean:
     #str2bool
     @staticmethod
     def bool2str(bool):
-        return TRUE if bool else False
+        return TRUE if bool else FALSE
 #Boolean
 
 class Webanker:

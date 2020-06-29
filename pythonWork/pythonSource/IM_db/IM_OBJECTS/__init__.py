@@ -15,3 +15,5 @@ from .diagramme import Diagramm,Diagrammtyp
 from .entitaet import Entitaet,Synonym
 from .attribut import Attribut
 from .schluessel import Schluessel,Schluesselelement
+from .relationship import Arc
+from .externalref import ExternalRef
