@@ -690,11 +690,7 @@ def updateUDP(pmodeid, pobj):
 
     if len(udps) > 0:
         # print (udps)
-        dbDML.execmany(psql="""update benudef_wert
-                            set bdwe_wert = ?
-                            where bdwe_mode_id = ?
-                            and bdwe_bdeg_id = ?
-                        """, recs=udps)
+        Userdefpropvalue.updvalues(prows=udps)
     # fi
 
 
@@ -906,10 +902,7 @@ def transferEntitaeten():
 # transferEntitaeten
 
 def doSubentities():
-    dbDML.exec("update entitaeten as e1 set enti_enti_id = "
-                 +"(select enti_id from entitaeten as e2 where enti_odm_guid = e1.enti_enti_guid)"
-                       + " where enti_enti_guid is NOT NULL and enti_enti_id is NULL"
-                )
+    Entitaet.setsuperentityid()
 
     for superenti in Entitaet.select(pwhere="(select count(*) from entitaeten as e1 where e1.enti_enti_id = enti.enti_id) > 0"):
         Arc(pname=superenti.enti_name+'_subtype',pentiid=superenti.enti_id
@@ -1058,7 +1051,7 @@ def do1UDPFile(pudpThema, pfileName):
     tree = ET.parse(pfileName)
     root = tree.getroot()
     lupdThema = pudpThema
-    lgroups = {'': '-'}
+    lgroups = {'': '-'} #für ungruppierte properties
     for groups in root.findall('udp_groups'):
         for child in groups:
             # print(findField(child,'name'))
@@ -1066,49 +1059,48 @@ def do1UDPFile(pudpThema, pfileName):
         # for
     # for
 
-    props = root.find('properties')
-    # print (props)
-    propgroups = []
-    for prop in props.findall('property'):
-        group = findField(prop, 'group_id')
-        propname = findField(prop, 'name')
-        # print (findField(prop,'name'))
-        # print (findField(prop,'name'),findField(prop,'dispalay_name'),lgroups[findField(prop,'group_id')],findField(prop,'default_value'),findText(prop,'description'))
-        # bdeg_thema, bdeg_gruppe, bdeg_name, bdeg_default_value
-        # bdeg_beschreibung, bdeg_optional, bdeg_wrtb_id,
-        # bdeg_uc, bdeg_dc
-        ludp = (lupdThema, lgroups[group], propname, findField(prop, 'default_value')
-                , findText(prop, 'description'), 'FALSE', None
-                , '--', date.today().__str__())
-        udpId = dbInserts.insertUDP(pData=ludp)
-        if (lupdThema == parameters.odmUDPTranslFileName()):
-            # die speziellen Properties manuell
-            if not (group in propgroups):  # nur einmal eintragen je Sprache (Gruppe)
-                propgroups.append(group)
-                ludpid = dbInserts.insertUDP(pData=(lupdThema, lgroups[findField(prop, 'group_id')]
-                                                    , lgroups[group] + '_ENTI_COMMENT', None
+    # die speziellen Properties (translation of comments in notes manuell einfüllen
+    if (lupdThema == parameters.odmUDPTranslFileName()):
+        for lgrpkey,lgrpvalue in lgroups.items():
+            if lgrpkey != '':
+                ludpid = dbInserts.insertUDP(pData=(lupdThema, lgrpvalue, lgrpvalue + '_ENTI_COMMENT', None
                                                     , None, 'FALSE', None, '--', date.today().__str__()))
                 dbInserts.insertModelltypEigen(
                     (Modellelemtyp.getidbyshortname(pkurzname=Modellelemtyp.type2melt('Entity')), ludpid))
-                ludpid = dbInserts.insertUDP(pData=(lupdThema, lgroups[findField(prop, 'group_id')]
-                                                    , lgroups[group] + '_ATTR_COMMENT', None
-                                                    , None, 'FALSE', None, '--', date.today().__str__()))
 
+                ludpid = dbInserts.insertUDP(pData=(lupdThema, lgrpvalue, lgrpvalue + '_ATTR_COMMENT', None
+                                                    , None, 'FALSE', None, '--', date.today().__str__()))
                 dbInserts.insertModelltypEigen(
                     (Modellelemtyp.getidbyshortname(pkurzname=Modellelemtyp.type2melt('Attribute')), ludpid))
             # fi
-        # fi
+        #for
+    # fi
+
+    props = root.find('properties')
+    for prop in props.findall('property'):
+        group = findField(prop, 'group_id')
+        propname = findField(prop, 'name')
+        propdisplayname = findField(prop, 'dispalay_name')
+        proptype = findField(prop, 'type')
+        propdefault = findField(prop, 'default_value')
+        proptext = findText(prop, 'description')
+        ludp = (lupdThema, lgroups[group], propname, propdefault
+                , proptext, 'FALSE', None
+                , '--', date.today().__str__())
+        udpId = dbInserts.insertUDP(pData=ludp)
 
         obj = prop.findall('objects/object')
         for o in obj:
+            """"< object class ="oracle.dbtools.crest.model.design.relational.Column" visible="false" color="-1" / >"""
             lMelt = re.split("\.", findField(o, 'class'))[6]
-            # print( type2melt(lMelt))
-            # print (lMelt)
             lmeltid = Modellelemtyp.type2melt(lMelt)
             if lmeltid != "":
                 try:
-                    dbInserts.insertModelltypEigen((dbLookup.meltLookup(lmeltid), udpId))
-                except:
+                    dbInserts.insertModelltypEigen((Modellelemtyp.getidbyshortname(pkurzname=lmeltid), udpId))
+                except Exception as err:
+                    print(err)
+                    logging.writelog("mapping type '{}' for UDP {}:{}:{} not found".format(lmeltid,lupdThema,group,propname))
+                    logging.writelog(err)
                     pass
             # fi
 
@@ -1135,13 +1127,10 @@ def do1UDPFile(pudpThema, pfileName):
                                      .format(pudpThema, propname, vgwt.vgwt_wert))
 
             # for
-            dbDML.exec("""update benudef_eigenschaft  set bdeg_wrtb_id = {}  where bdeg_Id = {} """
-                       .format(wrtbId, udpId))
+            Userdefprop.setdomid(pdomid,pudpid)
 
         # fi
     # for
-
-
 # do1UDPFile
 
 def dofiles(pdirec, pfileregexp, ptransferfunc):
@@ -1153,8 +1142,6 @@ def dofiles(pdirec, pfileregexp, ptransferfunc):
             ptransferfunc(filepath)
         # fi
     # endfor
-
-
 # dofiles
 
 def transferUPDdef():
@@ -1219,6 +1206,8 @@ def insertBaseData():
 def loeschmodell():
     transferRelational.loeschmodell()
 
+    dbDML.delete("modelltyp_eigensch")
+    dbDML.delete("benudef_wert")
     dbDML.delete("benudef_eigenschaft")
     Schluesselelement.delete()
     Schluessel.delete()
@@ -1358,6 +1347,8 @@ def transferDocuments():
     Dokument.updparents()
     # print(dbDML.select("""select * from Dokumente """))
 
+def removeemptyudp():
+    Userdefpropvalue.removeemptyUDP(('.'))
 
 # transferDocuments
 def transferODMModel():
@@ -1377,5 +1368,6 @@ def transferODMModel():
     transferdiagramme()
     filllanguages()
     transferRelational.transfer()
-
+    removeemptyudp()
+    Schnittstelleattr.fillextid()
 # end transferODMModel

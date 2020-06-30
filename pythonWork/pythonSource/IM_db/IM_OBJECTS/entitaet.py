@@ -176,6 +176,15 @@ create table entitaeten
             retval.append([d[0], d[1],[Entitaet().getbyid(e) for e in d[2].split(',')]])
         return retval
     #maopingto
+
+    @staticmethod
+    def setsuperentityid():
+        dbDML.exec("""update entitaeten as e1 set enti_enti_id = 
+                   (select enti_id from entitaeten as e2 where enti_odm_guid = e1.enti_enti_guid)
+                        where enti_enti_guid is NOT NULL and enti_enti_id is NULL"""
+                )
+    #setsuperentityid
+
 #Entitaet
 
 class Synonym(MultilangBaseobject):

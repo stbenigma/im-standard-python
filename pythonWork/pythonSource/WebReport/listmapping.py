@@ -6,6 +6,7 @@ sys.path.append(os.path.dirname(os.path.realpath(__file__)) + '/../IM_db')
 sys.path.append(os.path.dirname(os.path.realpath(__file__)) + '/..')
 from IM_DB import *
 from IM_OBJECTS import *
+from mystring import nvl
 from openpyxl import Workbook
 from openpyxl.styles import Alignment
 
@@ -219,7 +220,96 @@ def writesheetcolattr(pwb: Workbook):
 
 # writesheetcolattr
 
+def valmiteol(pval,padd):
+    eoladd = '' if (pval == '') else EOL
+    return pval + eoladd + padd
+
+
 def writesheetattrcol(pwb: Workbook):
+    ws = pwb.create_sheet("Attributes to Columns mapping")
+
+    rowidx, colidx = 1, 1
+    ws.cell(column=colidx, row=rowidx, value='Information Model')
+    ws.cell(column=colidx, row=rowidx + 1, value='Entity')
+    ws.cell(column=colidx + 1, row=rowidx + 1, value='Attribute')
+    colidx += 2
+    for schn_name, tabs in schnittstellen.items():
+        ws.cell(column=colidx, row=rowidx, value=schn_name)
+        setcell(pws=ws, pcolumn=colidx, prow=rowidx + 1, pvalue="Table")
+        colidx += 1
+        setcell(pws=ws, pcolumn=colidx, prow=rowidx + 1, pvalue="Column")
+        colidx += 1
+        setcell(pws=ws, pcolumn=colidx, prow=rowidx + 1, pvalue="Ext-ID")
+        colidx += 1
+    # for
+    rowidx += 2
+
+    for entiid, enti in entities.items():
+        colidx = 1
+
+        """Entity Table Mapping """
+        setcell(pws=ws, pcolumn=colidx, prow=rowidx, pvalue=enti[0])
+        colidx += 2  # Attribut überspringen
+
+        for sval in schnittstellen.values():
+            valuetab = ''
+            for tabkey,tabvalue in sval.items():
+                if (istintabentimap(tabkey, entiid)):
+                    valuetab = valmiteol(valuetab ,tabvalue[0])
+                # if
+            # for
+            if valuetab != '':
+                setcell(pws=ws, pcolumn=colidx, prow=rowidx, pvalue=valuetab
+                                , pwrap_text=True)
+            colidx += 3  # skip column and ID col
+        # for
+        rowidx += 1
+
+        for attrid, attr in enti[2].items():
+            colidx = 1
+            setcell(pws=ws, pcolumn=colidx, prow=rowidx, pvalue=enti[0]
+                    , pwrap_text=True)
+            colidx += 1
+            setcell(pws=ws, pcolumn=colidx, prow=rowidx, pvalue=attr[0]
+                    , pwrap_text=True)
+            colidx += 1
+            for skey, sval in schnittstellen.items():
+                valuecol = ''
+                valuetab = ''
+                valueid = ''
+                for tkey, tval in sval.items():
+                    for ckey, cval in tval[1].items():
+                        if (istincolattrmap(ckey, attrid)):
+                            valuetab = valmiteol(pval=valuetab,padd=tval[0])
+                            valuecol = valmiteol(pval=valuecol,padd=cval[0])
+                            valueid = valmiteol(pval=valueid,padd=nvl(cval[1]))
+                        # if
+                    # for
+                    if (valuecol != ''):
+                        setcell(pws=ws, pcolumn=colidx, prow=rowidx, pvalue=valuetab
+                                , pwrap_text=True)
+                        setcell(pws=ws, pcolumn=colidx+1, prow=rowidx, pvalue=valuecol
+                                , pwrap_text=True)
+                        setcell(pws=ws, pcolumn=colidx+2, prow=rowidx, pvalue=valueid
+                                , pwrap_text=True)
+                        headcell = ws.cell(column=colidx, row=2)
+                        headcell.alignment = Alignment(text_rotation=0, wrap_text=True)
+                # for
+                colidx += 3
+            # for
+            rowidx += 1
+        # for
+    # for
+
+    ws.column_dimensions['A'].width = 35
+    ws.column_dimensions['B'].width = 35
+    for idx in range(3, colidx):
+        width = 35
+        ws.column_dimensions[colnum_string(idx)].width = width
+    # for
+# writesheetattrcol
+
+def writesheetattrcolold(pwb: Workbook):
     ws = pwb.create_sheet("Attributes to Columns mapping")
 
     rowidx, colidx = 1, 1
@@ -274,9 +364,7 @@ def writesheetattrcol(pwb: Workbook):
         width = 5 if (ws.cell(column=idx, row=2).alignment.text_rotation == 90) else 25
         ws.column_dimensions[colnum_string(idx)].width = width
     # for
-
-
-# writesheetattrcol
+# writesheetattrcolold
 
 def writesheetschnittstelle(pwb, pschnname, pschn):
     ws = pwb.create_sheet(pschnname)
@@ -332,7 +420,6 @@ def writesheetschnittstelle(pwb, pschnname, pschn):
     ws.column_dimensions['C'].width = 35
     ws.column_dimensions['D'].width = 35
 
-
 # writesheetschnittstelle
 
 def writexls(pfilename: str):
@@ -341,6 +428,7 @@ def writexls(pfilename: str):
 
     writesheettabent(pwb=wb)
     writesheetentitab(pwb=wb)
+#    writesheetattrcolold(pwb=wb)
     writesheetattrcol(pwb=wb)
     #    writesheetcolattr(pwb=wb)
     for schnname, schn in schnittstellen.items():
@@ -352,33 +440,33 @@ def writexls(pfilename: str):
 
 # writexls
 
-def createFile(pfilename):
-    global fileCSV
-    csvfile = parameters.webDirec() + pfilename
-    if os.path.exists(csvfile):
-        os.remove(csvfile)
-    fileCSV = open(csvfile, 'w')
+# def createFile(pfilename):
+#     global fileCSV
+#     csvfile = parameters.webDirec() + pfilename
+#     if os.path.exists(csvfile):
+#         os.remove(csvfile)
+#     fileCSV = open(csvfile, 'w')
+#
+#
+# # createFile
 
+# def closefile():
+#     global fileCSV
+#     fileCSV.close()
+#
+#
+# # closefile
 
-# createFile
-
-def closefile():
-    global fileCSV
-    fileCSV.close()
-
-
-# closefile
-
-def write(*args, **kwargs):
-    global fileCSV
-    sep = kwargs['sep'] if 'sep' in kwargs else ''
-    str = sep.join(arg for arg in args)
-    fileCSV.write(str)
-
-
-def writeln(*args, **kwargs):
-    write(*args, **kwargs)
-    write(EOL)
+# def write(*args, **kwargs):
+#     global fileCSV
+#     sep = kwargs['sep'] if 'sep' in kwargs else ''
+#     str = sep.join(arg for arg in args)
+#     fileCSV.write(str)
+#
+#
+# def writeln(*args, **kwargs):
+#     write(*args, **kwargs)
+#     write(EOL)
 
 
 def listtabenti():
@@ -449,103 +537,103 @@ def stripeol(str):
 
 # stripeol
 
-def listentiintf():
-    global tabentimap, schnittstellen, entities
-    createFile(pfilename=parameters.odmModelName() + '_entiintf.csv')
-    write('\ufeff')
-    writeln('Information Model', CSVSEP.join(schn_name for schn_name in schnittstellen.keys()), sep=CSVSEP)
-    for entiid, enti in entities.items():
-        write(enti[0], CSVSEP)
-        for schntabs in schnittstellen.values():
-            entry = EOL.join(tab[0] if (istintabentimap(tabid, entiid)) else "" for tabid, tab in schntabs.items())
-            entry = stripeol(entry)
-            if (entry != ""):
-                write('"' + entry + '"')
-            write(CSVSEP)
-        writeln()
-    print("Erstellt: {}".format(fileCSV.name))
-    closefile()
+# def listentiintf():
+#     global tabentimap, schnittstellen, entities
+#     createFile(pfilename=parameters.odmModelName() + '_entiintf.csv')
+#     write('\ufeff')
+#     writeln('Information Model', CSVSEP.join(schn_name for schn_name in schnittstellen.keys()), sep=CSVSEP)
+#     for entiid, enti in entities.items():
+#         write(enti[0], CSVSEP)
+#         for schntabs in schnittstellen.values():
+#             entry = EOL.join(tab[0] if (istintabentimap(tabid, entiid)) else "" for tabid, tab in schntabs.items())
+#             entry = stripeol(entry)
+#             if (entry != ""):
+#                 write('"' + entry + '"')
+#             write(CSVSEP)
+#         writeln()
+#     print("Erstellt: {}".format(fileCSV.name))
+#     closefile()
+#
+#
+# # listentiintf
 
+# def listattrintf():
+#     global tabentimap, schnittstellen, entities
+#     createFile(pfilename=parameters.odmModelName() + '_attrintf.csv')
+#     write('\ufeff')
+#     topheader = CSVSEP + CSVSEP
+#     subheader = 'Entity' + CSVSEP + 'Attribute'
+#     for schn_name, tabs in schnittstellen.items():
+#         topheader += schn_name + CSVSEP + CSVSEP.join('' for ta in tabs)[:-1]
+#         subheader += CSVSEP + CSVSEP.join(ta[0] for ta in tabs.values())
+#     writeln(topheader)
+#     writeln(subheader)
+#     for enti_id, enti in entities.items():
+#         for attrid, attr in enti[2].items():
+#             write(enti[0], CSVSEP, attr[0], CSVSEP)
+#             for schntabs in schnittstellen.values():
+#                 entry = []
+#                 for tab in schntabs.values():
+#                     colentry = EOL.join(
+#                         (tab[0] + '.' + col[0]) if (istincolattrmap(colid, attrid)) else "" for colid, col in
+#                         tab[1].items())
+#                     colentry = stripeol(colentry)
+#                     if (colentry != ""):
+#                         entry.append(colentry)
+#                 # for
+#                 entry = EOL.join(entry)
+#                 entry = stripeol(entry)
+#             if (entry != ""):
+#                 write('"' + entry + '"')
+#             write(CSVSEP)
+#             # for
+#         # for
+#         writeln()
+#     # for
+#
+#     print("Erstellt: {}".format(fileCSV.name))
+#     closefile()
+#
+#
+# # listattrintf
 
-# listentiintf
+# def listentitable():
+#     global entities
+#     global schnittstellen
+#
+#     createFile(pfilename=parameters.odmModelName() + '_entitable.csv')
+#     write('\ufeff')
+#     topheader = 'Information Model' + CSVSEP
+#     subheader = 'Entity'
+#     for schn_name, tabs in schnittstellen.items():
+#         topheader += schn_name + CSVSEP + CSVSEP.join('' for ta in tabs)[:-1]
+#         subheader += CSVSEP + CSVSEP.join(ta[0] for ta in tabs.values())
+#     writeln(topheader)
+#     writeln(subheader)
+#     for enti in entities.values():
+#         writeln(enti[0], CSVSEP.join(enti[3]), sep=CSVSEP)
+#     print("Erstellt: {}".format(fileCSV.name))
+#     closefile()
+#
+#
+# # listentitable
 
-def listattrintf():
-    global tabentimap, schnittstellen, entities
-    createFile(pfilename=parameters.odmModelName() + '_attrintf.csv')
-    write('\ufeff')
-    topheader = CSVSEP + CSVSEP
-    subheader = 'Entity' + CSVSEP + 'Attribute'
-    for schn_name, tabs in schnittstellen.items():
-        topheader += schn_name + CSVSEP + CSVSEP.join('' for ta in tabs)[:-1]
-        subheader += CSVSEP + CSVSEP.join(ta[0] for ta in tabs.values())
-    writeln(topheader)
-    writeln(subheader)
-    for enti_id, enti in entities.items():
-        for attrid, attr in enti[2].items():
-            write(enti[0], CSVSEP, attr[0], CSVSEP)
-            for schntabs in schnittstellen.values():
-                entry = []
-                for tab in schntabs.values():
-                    colentry = EOL.join(
-                        (tab[0] + '.' + col[0]) if (istincolattrmap(colid, attrid)) else "" for colid, col in
-                        tab[1].items())
-                    colentry = stripeol(colentry)
-                    if (colentry != ""):
-                        entry.append(colentry)
-                # for
-                entry = EOL.join(entry)
-                entry = stripeol(entry)
-            if (entry != ""):
-                write('"' + entry + '"')
-            write(CSVSEP)
-            # for
-        # for
-        writeln()
-    # for
-
-    print("Erstellt: {}".format(fileCSV.name))
-    closefile()
-
-
-# listattrintf
-
-def listentitable():
-    global entities
-    global schnittstellen
-
-    createFile(pfilename=parameters.odmModelName() + '_entitable.csv')
-    write('\ufeff')
-    topheader = 'Information Model' + CSVSEP
-    subheader = 'Entity'
-    for schn_name, tabs in schnittstellen.items():
-        topheader += schn_name + CSVSEP + CSVSEP.join('' for ta in tabs)[:-1]
-        subheader += CSVSEP + CSVSEP.join(ta[0] for ta in tabs.values())
-    writeln(topheader)
-    writeln(subheader)
-    for enti in entities.values():
-        writeln(enti[0], CSVSEP.join(enti[3]), sep=CSVSEP)
-    print("Erstellt: {}".format(fileCSV.name))
-    closefile()
-
-
-# listentitable
-
-def listtabenti():
-    global entities
-    global schnittstellen
-
-    createFile(pfilename=parameters.odmModelName() + '_tabenti.csv')
-    write('\ufeff')
-    topheader = 'Interface' + CSVSEP + 'Table' + CSVSEP + CSVSEP.join(enti[0] for enti in entities.values())
-    writeln(topheader)
-    for skey, sval in schnittstellen.items():
-        for tkey, tval in sval.items():
-            writeln(skey, tval[0], CSVSEP.join(tables[tkey][3]), sep=CSVSEP)
-    print("Erstellt: {}".format(fileCSV.name))
-    closefile()
-
-
-# listtabenti
+# def listtabenti():
+#     global entities
+#     global schnittstellen
+#
+#     createFile(pfilename=parameters.odmModelName() + '_tabenti.csv')
+#     write('\ufeff')
+#     topheader = 'Interface' + CSVSEP + 'Table' + CSVSEP + CSVSEP.join(enti[0] for enti in entities.values())
+#     writeln(topheader)
+#     for skey, sval in schnittstellen.items():
+#         for tkey, tval in sval.items():
+#             writeln(skey, tval[0], CSVSEP.join(tables[tkey][3]), sep=CSVSEP)
+#     print("Erstellt: {}".format(fileCSV.name))
+#     closefile()
+#
+#
+# # listtabenti
 
 def filllists(plang):
     global entities
@@ -570,12 +658,14 @@ def filllists(plang):
                              ]
               for tabl in Tabelle.select()}
 
-    columns = {scha.scha_id: [scha.scha_column_name, scha.scha_tabl_id, scha.scha_fremdsystem_id] for scha in
-               Schnittstelleattr.select()}
+    columns = {scha.scha_id: [scha.scha_column_name, scha.scha_tabl_id, scha.scha_fremdsystem_id]
+               for scha in Schnittstelleattr.select()}
     schnittstellen = {schn.schn_name:
                           {tabl.tabl_id: [tabl.tabl_name
-                              , {c.scha_id: [c.scha_column_name, c.scha_fremdsystem_id] for c in tabl.getcolumns()}
-                                          ] for tabl in Tabelle.selectbyschnid(schn.schn_id)
+                                        , {c.scha_id: [c.scha_column_name, c.scha_fremdsystem_id]
+                                            for c in tabl.getcolumns()
+                                           }
+                                        ] for tabl in Tabelle.selectbyschnid(schn.schn_id)
                            }
                       for schn in Schnittstelle.select()}
     tabentimap = TablEntiMap.extendedtabentimap()

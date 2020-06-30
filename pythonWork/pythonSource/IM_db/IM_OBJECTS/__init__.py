@@ -16,4 +16,5 @@ from .entitaet import Entitaet,Synonym
 from .attribut import Attribut
 from .schluessel import Schluessel,Schluesselelement
 from .relationship import Arc,Relation
+from .userdefprop import Userdefprop,Userdefpropvalue
 

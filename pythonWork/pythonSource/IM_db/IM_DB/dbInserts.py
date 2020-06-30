@@ -123,6 +123,20 @@ def insertUdpTable(ptablId):
                 where tabl_id = {}
             """ .format(ptablId))
 #insertUdpTable
+def insertUdpColumn(pschaId):
+    dbDML.exec("""insert into benudef_wert(
+                bdwe_wert,  bdwe_mode_id,   bdwe_bdeg_id
+                ,bdwe_uc,   bdwe_dc)
+                select NULL,mode_id,bdeg_id,scha_uc,scha_dc
+                from main.schnittstelle_attrs
+                join modellelement on mode_scha_id = scha_id
+                cross join (select mote_bdeg_id as bdeg_id
+                             from modellelem_typ
+                             join modelltyp_eigensch on mote_melt_id = melt_id
+                             where melt_kurzname = 'SCHA')
+                where scha_id = {}
+            """ .format(pschaId))
+#insertUdpColumn
 
 def insertlinieseg(pdata):
     lsql = """insert into

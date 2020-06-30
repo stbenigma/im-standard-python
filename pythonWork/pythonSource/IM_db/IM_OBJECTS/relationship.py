@@ -1,6 +1,6 @@
 from datetime import datetime
 
-import dbDML
+from IM_DB import dbDML
 from .baseobject import Baseobject
 from .modellelement import Modellelement, Modellelemtyp, ExternalRef
 

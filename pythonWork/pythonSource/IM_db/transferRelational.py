@@ -51,7 +51,9 @@ def do1column(plfnr, pcolxml, ptablid):
         scha.scha_daty_id = Datatype.getunknown().daty_id
     scha.insert()
 
+
     lmodeId= Modellelement.insertmode(pschaid=scha.scha_id)
+    dbInserts.insertUdpColumn(pschaId=scha.scha_id)
     transferModel.updateUDP(pmodeid=lmodeId, pobj=pcolxml)
     documents = transferModel.getdokuref(pelem= pcolxml)
     ModelelemDoku.insertdokuref(pdocguidlist=documents, pmodeid=lmodeId)
