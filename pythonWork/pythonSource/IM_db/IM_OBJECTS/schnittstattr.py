@@ -7,7 +7,7 @@ from .tabelle import Tabelle
 from .datatype import Datatype
 
 class Schnittstelleattr(Baseobject):
-
+    EXTIDUDP:str = 'EXT_ATTR_ID'
     _tablename:str = 'schnittstelle_attrs'
     _prefix:str = 'scha'
     _columnlist:list = ['scha_id', 'scha_column_name', 'scha_format', 'scha_fremdsystem_id'
@@ -137,6 +137,16 @@ class Schnittstelleattr(Baseobject):
         return retval
         [[modellid, modellname,[attrid/(colsid)]]]
     # maopingto
+
+    @staticmethod
+    def fillextid():
+        dbDML.exec("""update {}
+                     set scha_fremdsystem_id = (select bdwe_wert
+                    from modellelement
+                    join benudef_wert on bdwe_mode_id = mode_id
+                    join benudef_eigenschaft on bdeg_id = bdwe_bdeg_id
+                        and bdeg_name = '{}'
+                    where mode_scha_id = scha_id)""".format(Schnittstelleattr._tablename,Schnittstelleattr.EXTIDUDP))
 #Schnittstelleattr
 
 class AttrTransf(Baseobject):

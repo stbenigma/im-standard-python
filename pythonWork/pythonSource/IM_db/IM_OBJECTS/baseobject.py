@@ -8,13 +8,17 @@ class Boolean:
     @staticmethod
     def str2bool(pstr):
         if (pstr is None): return None
-        elif (pstr.upper() in (TRUE,'T')): return True
-        elif (pstr.upper() in (FALSE,'F')): return False
+        elif (pstr.upper() in (Boolean.TRUE,'T')): return True
+        elif (pstr.upper() in (Boolean.FALSE,'F')): return False
         else: raise Exception('Ungültiger Wert für Boolean "{}"'.format (pstr))
     #str2bool
     @staticmethod
     def bool2str(bool):
-        return TRUE if bool else False
+        return Boolean.TRUE if bool else Boolean.FALSE
+    @staticmethod
+    def strnegbool(pstr):
+        return Boolean.bool2str( not Boolean.str2bool(pstr))
+    # strNegBool
 #Boolean
 
 class Webanker:
@@ -123,12 +127,12 @@ class   Baseobject:
 
     def getsprachvals(self):
         raise NotImplementedError("Must override getsprachvals")
-
     @staticmethod
     def select(pclass, pwhere=None, porderby=None):
-        lsql = """select {} from {} {} {} """ \
+        lsql = """select {} from {} as {} {} {} """ \
             .format(Baseobject.columnsliststring(pclass._columnlist)
                     , pclass._tablename
+                    , pclass._prefix
                     , "" if pwhere is None else
                 "where {}".format(pwhere)
                     , "" if porderby is None else

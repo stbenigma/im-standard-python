@@ -13,14 +13,6 @@ def  insertLovWrtb(pName,pherkunft = Wertebereich.DOMAIN):
     return wrtb.insert()
 #end insertLovWrtb
 
-def insertArc(parc):
-    lsql = """
-        insert into arcs 
-          (arcs_name, arcs_enti_id, arcs_odm_guid
-          ,arcs_uc   , arcs_dc ) 
-            values (?,?,?,?,?)
-        """
-    return dbDML.insert(lsql, parc)
 
 def insertBeziehung(pdata):
     lsql = """
@@ -131,6 +123,20 @@ def insertUdpTable(ptablId):
                 where tabl_id = {}
             """ .format(ptablId))
 #insertUdpTable
+def insertUdpColumn(pschaId):
+    dbDML.exec("""insert into benudef_wert(
+                bdwe_wert,  bdwe_mode_id,   bdwe_bdeg_id
+                ,bdwe_uc,   bdwe_dc)
+                select NULL,mode_id,bdeg_id,scha_uc,scha_dc
+                from main.schnittstelle_attrs
+                join modellelement on mode_scha_id = scha_id
+                cross join (select mote_bdeg_id as bdeg_id
+                             from modellelem_typ
+                             join modelltyp_eigensch on mote_melt_id = melt_id
+                             where melt_kurzname = 'SCHA')
+                where scha_id = {}
+            """ .format(pschaId))
+#insertUdpColumn
 
 def insertlinieseg(pdata):
     lsql = """insert into
@@ -149,7 +155,7 @@ def insertUdpBezi(beziId):
                 ,bdwe_uc,   bdwe_dc)
                 select NULL,mode_id,bdeg_id,bezi_uc,bezi_dc
                 from beziehungen
-                join modellelement on mode_bezi_id = bezi_id
+                join modellelement on mode_rela_id = bezi_id
                 cross join (select mote_bdeg_id as bdeg_id
                              from modellelem_typ
                              join modelltyp_eigensch on mote_melt_id = melt_id

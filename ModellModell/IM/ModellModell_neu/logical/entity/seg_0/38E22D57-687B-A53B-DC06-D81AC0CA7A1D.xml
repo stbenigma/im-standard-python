@@ -1,7 +1,9 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_2" id="3BEEBCBD-E738-69A9-4497-2D6D56D2E415" name="Informationselement">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="38E22D57-687B-A53B-DC06-D81AC0CA7A1D" name="Etappe">
 <createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:04:00 UTC</createdTime>
+<createdTime>2020-06-29 06:02:59 UTC</createdTime>
+<comment><![CDATA[Teil eine Kundenreise die normalerweise von einem Berührungspunkt zu einem andern führt.
+]]></comment>
 <notes><![CDATA[[DE_ENTI_COMMENT[
 
 ]DE_ENTI_COMMENT]
@@ -12,10 +14,10 @@
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
-<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="false"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
-<typeID>899A6DDC-95E0-4AD5-5F58-B3A2FF5C2D08</typeID>
+<typeID>258A9BA6-D31F-4A65-3423-F7F66D95E2DD</typeID>
 <adequatelyNormalized>NO</adequatelyNormalized>
 <expectedVolumes>0</expectedVolumes>
 <fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
@@ -27,10 +29,8 @@
 <createSurrogateKey>true</createSurrogateKey>
 <propertyMap>
 <property name="DE_ENTI_COMMENT" value=""/>
-<property name="DE_ENTI_NAME" value="Informationselement"/>
-<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="DE_ENTI_NAME" value="Experience Layer"/>
 <property name="EN_ENTI_COMMENT" value=""/>
-<property name="EN_ENTI_NAME" value="Information item"/>
-<property name="EN_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_NAME" value="*Channels"/>
 </propertyMap>
 </Entity>

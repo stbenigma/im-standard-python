@@ -343,7 +343,7 @@ def diagrelalist(pdiagid, plang):
        ,beda_liniefarbe,beda_linienbreite,beda_liniedeckkraft
 from beziehung_darst
 join modellelement m on beziehung_darst.beda_mode_id = m.mode_id
-join beziehungen b on m.mode_bezi_id = b.bezi_id
+join beziehungen b on m.mode_rela_id = b.bezi_id
 cross join sprachen spra
 join sprachtexte sfrom on  spra.spra_id = sfrom.sptx_spra_id
             and sfrom.sptx_attrname='RELA_TEXT_FROM'
@@ -496,7 +496,7 @@ def relalist (p_entiid,p_lang):
     	                           end         
     	                        end card2
     						,bezi_id,bezi_type,bezi_pflicht_assoc_von_zu,bezi_pflicht_assoc_zu_von
-    						,arcs_name,arcs_odm_guid,bezi_name
+    						,arcs_name,extr_source_id,bezi_name
                             ,case when (select 1 from schluesselelement 
                                          join schluessel on schl_id = scel_schl_id
                                          where scel_bezi_id = bezi_id
@@ -508,7 +508,7 @@ def relalist (p_entiid,p_lang):
                                         and von.spra_id = sp.spra_id
     					join beziehungen on bezi_enti_id_von = von.enti_id
     									 and not (bezi_type = 'ISA' and von.enti_enti_id is not NULL)
-    					join modellelement on mode_bezi_id = bezi_id
+    					join modellelement on mode_rela_id = bezi_id
                         left join spraattr bvon on bvon.sptx_attrname = 'TEXT_FROM'
                                 and bvon.sptx_mode_id = mode_id
                                 and bvon.spra_id = sp.spra_id 
@@ -518,6 +518,7 @@ def relalist (p_entiid,p_lang):
                         join sprenti as zu on zu.enti_id = bezi_enti_id_zu
                                         and zu.spra_id = sp.spra_id
                         left join arcs on arcs_enti_id = von.enti_id
+                        left join externalrefs on extr_mode_id = arcs_id
                         where  sp.spra_iso_code2 = '{}'
                            and (von.enti_id = {} or zu.enti_id = {})     
                         order by arcs_name 
@@ -697,7 +698,7 @@ def liesarcs(pdiagid):
         select arcs_id,beda_id,enti_id,enti_name,eled_position_x,eled_position_y,eled_hoehe,eled_breite
         from arcs
         join beziehungen  on arcs_id = bezi_von_arcs_id or arcs_id = bezi_zu_arcs_id
-        join modellelement  m on bezi_id = m.mode_bezi_id
+        join modellelement  m on bezi_id = m.mode_rela_id
         join beziehung_darst on beda_mode_id = m.mode_id
         join entitaeten on arcs_enti_id = enti_id
         join modellelement m2 on m2.mode_enti_id = enti_id
@@ -718,7 +719,7 @@ def liesarcselem(pdiagid,parcsid):
         from arcs 
         join entitaeten earc on earc.enti_id =arcs_enti_id
         join beziehungen on bezi_von_arcs_id = arcs_id or bezi_zu_arcs_id = arcs_id
-        join modellelement on bezi_id = mode_bezi_id
+        join modellelement on bezi_id = mode_rela_id
         join entitaeten evon on evon.enti_odm_guid = bezi_source_enti_guid
         join entitaeten ezu on ezu.enti_odm_guid = bezi_target_enti_guid
         join beziehung_darst on beda_mode_id = mode_id

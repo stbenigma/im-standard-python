@@ -13,14 +13,14 @@ class Attribut(MultilangBaseobject):
                          'attr_verschluesselt', 'attr_odm_guid', 'attr_uc',
                          'attr_dc', 'attr_um', 'attr_dm']
 
-    def __init__(self, pname=None, pentiid=None, pbeziid=None):
+    def __init__(self, pname=None, pentiid=None, prelaid=None):
         super().__init__(tablename=Attribut._tablename, prefix=Attribut._prefix
                          , columnlist=Attribut._columnlist
                          , multilangcols={'attr_anzname': Sprachtext.ATTR_NAME,
                                           'attr_beschr': Sprachtext.ATTR_COMMENT})
         self.attr_anzname = pname
         self.attr_enti_id = pentiid
-        self.attr_bezi_id = pbeziid
+        self.attr_bezi_id = prelaid
 
     @staticmethod
     def createtable():

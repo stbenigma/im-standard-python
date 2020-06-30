@@ -20,10 +20,6 @@ def beziId (pguid):
     return doLookup(pguid,'select bezi_id from beziehungen where bezi_odm_guid ="{}"')
 #beziId
 
-def arcsID (pguid):
-    return doLookup(pguid,'select arcs_id from arcs where arcs_odm_guid ="{}"')
-#arcsId
-
 def diatid (p_name):
     return doLookup(p_name,'select diat_id from diagrammtypen where upper(diat_bez) =upper("{}")')
 #diatid
