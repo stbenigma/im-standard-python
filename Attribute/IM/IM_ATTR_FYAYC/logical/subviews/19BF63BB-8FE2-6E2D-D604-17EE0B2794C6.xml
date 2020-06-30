@@ -6,7 +6,7 @@
 <autoRoute>false</autoRoute>
 <boxInbox>true</boxInbox>
 <showLegend>false</showLegend>
-<showLabels>false</showLabels>
+<showLabels>true</showLabels>
 <showRelAttributes>false</showRelAttributes>
 <gridEnabled>false</gridEnabled>
 <showGrid>false</showGrid>
@@ -61,6 +61,66 @@
 <colorRGB>-12566464</colorRGB>
 </FontObject>
 </fonts>
+</OView>
+<OView class="oracle.dbtools.crest.swingui.logical.TVEntity" oid="15CE52A2-D08A-E521-E36E-29A76DAE4231" otype="Entity" vid="3D230130-65F0-572E-8164-F184FFE405C9">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<bounds x="644" y="309" width="145" height="123"/>
+<useCustomFormat>true</useCustomFormat>
+<useDefaultColor>false</useDefaultColor>
+<backgroundColor>778501888</backgroundColor>
+<foregroundColor>-1</foregroundColor>
+<fonts itemClass="oracle.dbtools.crest.model.design.FontObjectWr">
+<FontObject>
+<foType>Titel</foType>
+<fontSize>13</fontSize>
+<fontStyle>1</fontStyle>
+<colorRGB>-16776961</colorRGB>
+</FontObject>
+<FontObject>
+<foType>Attribut</foType>
+<colorRGB>-16777216</colorRGB>
+</FontObject>
+<FontObject>
+<foType>Datentyp</foType>
+<colorRGB>-16744448</colorRGB>
+</FontObject>
+<FontObject>
+<foType>PK-Element</foType>
+<colorRGB>-16776961</colorRGB>
+</FontObject>
+<FontObject>
+<foType>FK-Element</foType>
+<colorRGB>-16777216</colorRGB>
+</FontObject>
+<FontObject>
+<foType>UK-Element</foType>
+<colorRGB>-16776961</colorRGB>
+</FontObject>
+<FontObject>
+<foType>Nicht null</foType>
+<colorRGB>-65536</colorRGB>
+</FontObject>
+<FontObject>
+<foType>Schlüssel</foType>
+<colorRGB>-16777216</colorRGB>
+</FontObject>
+<FontObject>
+<foType>Kommentare</foType>
+<colorRGB>-12566464</colorRGB>
+</FontObject>
+</fonts>
+</OView>
+<OView class="oracle.dbtools.crest.swingui.TVNote" oid="8A20F8E7-9091-984D-0F21-03CAE8365550" otype="Note" vid="31E65F77-D83B-CEF9-CE9F-B467DE132756">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<bounds x="977" y="434" width="95" height="68"/>
+<comment>Doppelklicken Sie, um 
+den Text zu bearbeiten.</comment>
+</OView>
+<OView class="oracle.dbtools.crest.swingui.TVNote" oid="A314B5AF-75BB-B9B0-D5C2-DF5ECD359DCC" otype="Note" vid="FF31E866-E2AF-D3FC-BE46-5D2253323A13">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<bounds x="927" y="290" width="68" height="70"/>
+<comment>Doppelklicken Sie, um 
+den Text zu bearbeiten.</comment>
 </OView>
 <OView class="oracle.dbtools.crest.swingui.logical.TVEntity" oid="ACF840AD-55AC-16F3-DCB5-5BCFEC0875A8" otype="Entity" vid="A1D40413-5380-DE51-2068-2C129A48F33D">
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
@@ -206,6 +266,54 @@
 </FontObject>
 </fonts>
 </OView>
+<OView class="oracle.dbtools.crest.swingui.logical.TVEntity" oid="F7B0A273-1CDF-431C-C8E1-80AA2FA46BB2" otype="Entity" vid="C97038DA-0D45-17B3-5CE0-597F9CC44402">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<bounds x="644" y="99" width="145" height="122"/>
+<useCustomFormat>true</useCustomFormat>
+<useDefaultColor>false</useDefaultColor>
+<backgroundColor>778501888</backgroundColor>
+<foregroundColor>-1</foregroundColor>
+<fonts itemClass="oracle.dbtools.crest.model.design.FontObjectWr">
+<FontObject>
+<foType>Titel</foType>
+<fontSize>13</fontSize>
+<fontStyle>1</fontStyle>
+<colorRGB>-16776961</colorRGB>
+</FontObject>
+<FontObject>
+<foType>Attribut</foType>
+<colorRGB>-16777216</colorRGB>
+</FontObject>
+<FontObject>
+<foType>Datentyp</foType>
+<colorRGB>-16744448</colorRGB>
+</FontObject>
+<FontObject>
+<foType>PK-Element</foType>
+<colorRGB>-16776961</colorRGB>
+</FontObject>
+<FontObject>
+<foType>FK-Element</foType>
+<colorRGB>-16777216</colorRGB>
+</FontObject>
+<FontObject>
+<foType>UK-Element</foType>
+<colorRGB>-16776961</colorRGB>
+</FontObject>
+<FontObject>
+<foType>Nicht null</foType>
+<colorRGB>-65536</colorRGB>
+</FontObject>
+<FontObject>
+<foType>Schlüssel</foType>
+<colorRGB>-16777216</colorRGB>
+</FontObject>
+<FontObject>
+<foType>Kommentare</foType>
+<colorRGB>-12566464</colorRGB>
+</FontObject>
+</fonts>
+</OView>
 </objectViews>
 <connectors>
 <Connector class="oracle.dbtools.crest.swingui.logical.TVRelation" oid="1F991B93-1E11-D04B-221E-EBDEEE80C36C" otype="Relation" vid_source="4855787A-E195-92AD-A47F-AC0FD28724CE" vid_target="A1D40413-5380-DE51-2068-2C129A48F33D">
@@ -233,6 +341,28 @@
 <points>
 <point x="461" y="160"/>
 <point x="461" y="211"/>
+</points>
+</Connector>
+<Connector class="oracle.dbtools.crest.swingui.logical.TVRelation" oid="92789167-8CDD-85F7-9869-F6F67C8DDDAE" otype="Relation" vid_source="C97038DA-0D45-17B3-5CE0-597F9CC44402" vid_target="3D230130-65F0-572E-8164-F184FFE405C9">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<backgroundColor>-16777216</backgroundColor>
+<lineWidth>1</lineWidth>
+<sourceLabel class="oracle.dbtools.crest.model.design.Label">
+<site>0</site>
+<labelBounds x="665" y="225" width="75" height="30"/>
+<noBackgroundColor>true</noBackgroundColor>
+<noForegroundColor>true</noForegroundColor>
+</sourceLabel>
+<targetLabel class="oracle.dbtools.crest.model.design.Label">
+<site>2</site>
+<labelBounds x="684" y="278" width="64" height="30"/>
+<noBackgroundColor>true</noBackgroundColor>
+<noForegroundColor>true</noForegroundColor>
+</targetLabel>
+<points>
+<point x="757" y="221"/>
+<point x="757" y="264"/>
+<point x="757" y="309"/>
 </points>
 </Connector>
 </connectors>
