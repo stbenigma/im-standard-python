@@ -159,7 +159,7 @@ def insertUdpBezi(beziId):
                 cross join (select mote_bdeg_id as bdeg_id
                              from modellelem_typ
                              join modelltyp_eigensch on mote_melt_id = melt_id
-                             where melt_kurzname = 'BEZI')
+                             where melt_kurzname = 'RELA')
                 where bezi_id = {}
             """ .format(beziId))
 #insertUdpBezi

@@ -694,7 +694,6 @@ def updateUDP(pmodeid, pobj):
     # fi
 
 
-# updateUDP
 
 def do1Attribute(plfnr, pattrxml, pentiId=None, prelaId=None):
     # wegen FK-PK zusätzliche Attribute werden nicht übernommen
@@ -1044,8 +1043,6 @@ def transferRelations():
     dosegfiles(pdirec=parameters.odmRelationDirec(), transferfiles=do1Relation)
     dbConnect.myDbConn.commit()
 
-
-# transferRelations
 
 def do1UDPFile(pudpThema, pfileName):
     tree = ET.parse(pfileName)

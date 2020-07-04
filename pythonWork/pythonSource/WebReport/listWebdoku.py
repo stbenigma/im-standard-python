@@ -77,7 +77,7 @@ def printAttrUDPMatrix(thema=None):
                                     and ena.spra_id = sp.spra_id            
       join wertebereiche on wrtb_id = attr_wrtb_id
       ) order by enti_name,upper(attr_tech_name)"""
-                           .format(printHTML.__greportLang))
+                           .format(Sprachtext.reportLang()))
     printHTML.starttable(ptitel='Attribute - User Defined Properties: ' + nvl(thema)
                          ,pueberschriften= udpListe
                          , anker=udpAnker(thema))
@@ -116,8 +116,8 @@ def printlistofcontent():
 
 def printcontent(pfirma,ptitel):
     printHTML.printcontenthead(pfirma=pfirma,ptitel=ptitel)
-    printHTML.printcontententi(plist=web_sql.entilist(p_lang=Sprachtext.reportLang()))
-    printHTML.printcontentattr(plist=web_sql.attrlist(p_lang=Sprachtext.reportLang()))
+    printHTML.printcontententi()
+    printHTML.printcontentattr()
     printHTML.printcontentwrtb(plist=web_sql.wrtblist())
     printHTML.printcontentdoku(plist=web_sql.dokulist())
     printHTML.printcontentmapping(plist=web_sql.namelist(ptype='UDP', plang=Sprachtext.reportLang()))
@@ -184,6 +184,9 @@ def listwebmain(plang):
     #backjumps from relational webpage goes to default-lang-model
     printHTML.htmlfilelist[0] = printHTML.webFileName + '_' + parameters.dbDefaultLang() + '.html'
 
+
+    """Schnittstellen werden immer englisch gedruckt"""
+    Sprachtext.reportLang(Sprachtext.EN)
     for s in schnlist:
         schn_name = s[0]
         schn_id = s[2]
@@ -201,7 +204,7 @@ def listwebmain(plang):
 
 def main(pdirec, plang):
     parameters.initparam(p_callarg=pdirec)
-    logging.initlog()
+    logging.initlog('createHTML')
 
     printHTML.setWebDirec(p_webdirec=None)
 

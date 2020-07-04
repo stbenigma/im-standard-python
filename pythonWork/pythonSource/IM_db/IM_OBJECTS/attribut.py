@@ -1,6 +1,8 @@
 from .baseobject import Baseobject, MultilangBaseobject
 from .modellelement import Modellelement
 from .sprachtext import Sprachtext
+from .wertebereich import Wertebereich
+from .schluessel import Schluesselelement
 
 class Attribut(MultilangBaseobject):
     _tablename: str = 'attributes'
@@ -84,11 +86,11 @@ CREATE TABLE attributes(
 )
         """)
 
-    def webanker(self,pmodelid=None):
-        return super().webanker(pmodelid)
+    def webanker(self):
+        return super().webanker()
 
     def getname(self, plang=None):
-        return self._getsprachval(colname='attr_name', plang=plang)
+        return self._getsprachval(colname='attr_anzname', plang=plang)
 
     def getentiname(self, plang=None):
         return Entitaet().getbyid(self.attr_enti_id).getname(plang)
@@ -100,7 +102,16 @@ CREATE TABLE attributes(
         return self.getmodellelement().mode_id
 
     def getparent(self):
-        return Entitaet.getbyid(self.attr_enti_id)
+        if self.attr_enti_id is not None:
+            return Entitaet().getbyid(self.attr_enti_id)
+        if self.attr_bezi_id is not None:
+            return None #Relation().getbyid(self.attr_bezi_id)
+
+    def isinkey(self):
+        return Schluesselelement.isinkey(pattrid=self.attr_id)
+
+    def getdomain(self):
+        return Wertebereich().getbyid(self.attr_wrtb_id)
 
     @staticmethod
     def delete():

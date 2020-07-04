@@ -134,7 +134,7 @@ create table entitaeten
         data = Entitaet.select(porderby='enti_name')
         indexlist = []
         for d in data:
-            indexlist.append([d.getname(),d.webanker(),d.enti_id])
+            indexlist.append([d.getname(plang),d.webanker(),d.enti_id])
         #for
         return indexlist
     #indexlist

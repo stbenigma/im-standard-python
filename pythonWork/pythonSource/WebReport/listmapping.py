@@ -697,7 +697,7 @@ def filllists(plang):
 
 def main(pdirec, plang):
     parameters.initparam(p_callarg=pdirec)
-    logging.initlog()
+    logging.initlog('createMapping')
 
     print("listmapping", parameters.odmBaseDirec(), parameters.odmModelName())
 

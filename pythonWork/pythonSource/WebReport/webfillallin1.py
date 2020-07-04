@@ -16,7 +16,7 @@ def main(pdirec,plang):
         Sprachtext.reportLang(parameters.dbDefaultLang())
     else:
         Sprachtext.reportLang(plang.lower())
-    logging.initlog()
+    logging.initlog('AllIn1')
 
     dbConnect.openDB(p_filepath="file::memory:?cache=shared");
     dbErstelleTables.erstelleInfra();

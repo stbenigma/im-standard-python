@@ -1,8 +1,7 @@
-from .baseobject import Baseobject,MultilangBaseobject
+from IM_DB import *
+from .baseobject import MultilangBaseobject,Baseobject
 from .sprachtext import Sprachtext
 from .datatype import Datatype
-from .modellelement import Modellelement
-from IM_DB import *
 
 class Wertebereich(MultilangBaseobject):
     DERIVED:str ='DER'
@@ -108,19 +107,8 @@ CREATE TABLE wertebereiche(
  CONSTRAINT wrtb_daty_fk FOREIGN KEY (wrtb_daty_id) references datatypes (daty_id)
  )"""
     )
-    @staticmethod
-    def delete():
-        Baseobject.delete(Wertebereich._tablename)
-
     def getmodellelement(self):
         return Modellelement.getbyelemid(pwrtbid=self.wrtb_id)
-
-    @staticmethod
-    def select(pwhere=None,porderby=None):
-        wrtbs = Baseobject.select(pclass=Wertebereich
-                                ,pwhere=pwhere,porderby=porderby)
-        return wrtbs
-    #select
 
     def getname(self,plang):
         return self._getsprachval(colname='wrtb_name', plang=plang)
@@ -129,12 +117,15 @@ CREATE TABLE wertebereiche(
         mode = self.getmodellelement()
         return mode.mode_id if (mode is not None) else None
     #getmodeid
-    
+
+    def isderived(self):
+        return self.wrtb_herkunft == Wertebereich.DERIVED
+
     def typeinfo(self):
         def nvl(x, default=''):
             return x if (x is not None) else default
 
-        daty= Datatype().getbyid(self.wrtb_daty_id)
+        daty = Datatype().getbyid(self.wrtb_daty_id)
         typestring = daty.daty_name
         if (self.wrtb_typ in (Wertebereich.TEXT,Wertebereich.LOV)):
             infoheaders = (Sprachtext.transl('Datentyp'), Sprachtext.transl('Max. Länge'), Sprachtext.transl('Syntaxregel'), Sprachtext.transl('geändert'))
@@ -183,6 +174,22 @@ CREATE TABLE wertebereiche(
                     """.format (self.wrtb_id))
         return data[0][0]
     #refattranz
+
+    def displdatatype(self):
+        return Wertebereich.anzdatentyp(self.wrtb_typ)
+
+    @staticmethod
+    def select(pwhere=None,porderby=None):
+        wrtbs = Baseobject.select(pclass=Wertebereich
+                                ,pwhere=pwhere,porderby=porderby)
+        return wrtbs
+    #select
+
+
+    @staticmethod
+    def delete():
+        Baseobject.delete(Wertebereich._tablename)
+
 
     @staticmethod
     def indexlist(pherkunft,plang : str):
