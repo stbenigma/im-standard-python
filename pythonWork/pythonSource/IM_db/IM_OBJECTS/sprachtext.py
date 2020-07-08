@@ -190,6 +190,7 @@ CREATE TABLE sprachtexte(
         , 'Diagramm': 'Diagram'
         , 'Diagramme': 'Diagrams'
         , 'Dokument': 'Document'
+        , 'Dokumente': 'Documents'
         , 'Domäne': 'Domain'
         , 'Einheit': 'Unit'
         , 'Element': 'Element'
@@ -261,7 +262,7 @@ CREATE TABLE sprachtexte(
         , 'Vorkommast.': 'digits before period'
         , 'Wert': 'Value'
         , 'Wertebereich': 'Domain'
-        , 'Wertebereichs': 'Domains'
+        , 'Wertebereiche': 'Domains'
         , 'Werteliste': 'List of values'
         , 'wiederholt': 'repeated'
         , 'Woche': 'week'
@@ -289,6 +290,7 @@ CREATE TABLE sprachtexte(
         , "Diagramme": "Diagrammes"
         , "Domäne": "Domaine"
         , "Dokument": "Document"
+        , "Dokumente": "Documents"
         , "Einheit": "Unité"
         , "Element": "Élément"
         , "Elemente": "Éléments"

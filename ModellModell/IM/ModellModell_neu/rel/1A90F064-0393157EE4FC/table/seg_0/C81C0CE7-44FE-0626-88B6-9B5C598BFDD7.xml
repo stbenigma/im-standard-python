@@ -18,9 +18,8 @@ Das Attribut "Wert" ist der physikalische (sprachunabhängige) Wert, der als eig
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
-<use>0</use>
+<use>1</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
-<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementColumn>true</autoIncrementColumn>
 <identityColumn>true</identityColumn>
@@ -30,9 +29,9 @@ Das Attribut "Wert" ist der physikalische (sprachunabhängige) Wert, der als eig
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
-<use>0</use>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
-<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
@@ -45,9 +44,9 @@ Das Attribut "Wert" ist der physikalische (sprachunabhängige) Wert, der als eig
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
-<use>0</use>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
-<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
@@ -147,9 +146,9 @@ Das Attribut "Wert" ist der physikalische (sprachunabhängige) Wert, der als eig
 <createdTime>2020-02-04 14:45:04 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
-<use>0</use>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
-<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 <associations>
@@ -161,9 +160,9 @@ Das Attribut "Wert" ist der physikalische (sprachunabhängige) Wert, der als eig
 <createdTime>2020-02-04 14:45:04 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
-<use>0</use>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
-<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 <associations>
@@ -175,9 +174,9 @@ Das Attribut "Wert" ist der physikalische (sprachunabhängige) Wert, der als eig
 <createdTime>2020-03-17 16:50:14 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
-<use>0</use>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
-<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
@@ -242,6 +241,21 @@ Das Attribut "Wert" ist der physikalische (sprachunabhängige) Wert, der als eig
 <propertyMap>
 <property name="ctemplateID" value="B398D247-00C1-F016-3BBB-FE65CFFFF7AA"/>
 </propertyMap>
+</Column>
+<Column name="ARCS_ARCS_ID" id="9B7B34E6-4C4A-C3D0-4788-AB15386F0F3B">
+<createdBy>stb</createdBy>
+<createdTime>2020-07-08 10:07:12 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="9C28BCF1-D943-EFDB-E558-6F7C043467FB" referredColumn="8419DB38-AE17-BE94-73F6-B492485B7E69"/>
+</associations>
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
@@ -368,6 +382,16 @@ Das Attribut "Wert" ist der physikalische (sprachunabhängige) Wert, der als eig
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
 <colUsage columnID="00BBD6CE-652B-D2EB-B096-C142E5358A3C"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="AAD7F57F-AC2E-DEEC-F36E-320F6BAB0D75" name="MODE_ARCS_FK">
+<createdBy>stb</createdBy>
+<createdTime>2020-07-08 10:07:12 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="9B7B34E6-4C4A-C3D0-4788-AB15386F0F3B"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>

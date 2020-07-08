@@ -1,6 +1,6 @@
 import os, sys
 import sys
-
+import html
 sys.path.append(os.getcwd())
 from IM_HTML import web_sql, printHTML
 from IM_OBJECTS import *
@@ -91,13 +91,13 @@ def printcolumninfo(pname, panker, pheaders, pvalues):
                     </table>
                 </div>
             </div>"""
-    printHTML.fhtml.write(infohead.format(pname, panker))
+    printHTML.fhtml.write(infohead.format(html.escape(pname), panker))
     printHTML.fhtml.write(trstart)
     for h in pheaders:
-        printHTML.fhtml.write(techheadline.format(h))
+        printHTML.fhtml.write(techheadline.format(html.escape(h)))
     printHTML.fhtml.write(trstart)
     for v in pvalues:
-        printHTML.fhtml.write(techlineline.format(v))
+        printHTML.fhtml.write(techlineline.format(html.escape(v)))
     printHTML.fhtml.write(trend)
     printHTML.fhtml.write(infofoot)
 
@@ -175,7 +175,7 @@ def printcontenttable(plist):
         infovalues = ('', nvl(t.tabl_um) + ', ' + nvl(t.tabl_dm))
         printHTML.printcontentinfo(ptitle=Sprachtext.transl('Informationen'), pheaders=infoheaders, pvalues=infovalues)
 
-        printHTML.printreflist(pelemid=t.tabl_id, pelemtype=Modellelemtyp.TABL)
+        printHTML.printreflist(pelemid=t.tabl_id, pelemtype=Modellelemtype.TABL)
         printHTML.printUDP(p_meltname=t.prefix().upper(), p_id=t.tabl_id)
         printcollist(pcollist=t.getcolumns(), pschnid=t.tabl_schn_id)
         printmapping(ptablid=t.tabl_id)
@@ -199,7 +199,7 @@ def getwrtbinfo(pcol,plang):
         wrtbname = wrtb.getname(plang=plang)\
                     if wrtb.wrtb_herkunft == Wertebereich.DERIVED \
                     else printHTML.href(ref=wrtb.webanker().anker()
-                                        ,anz=wrtb.getname(plang)
+                                        ,anz=html.escape(wrtb.getname(plang))
                                         ,htmlfile=printHTML.htmlfilelist[wrtb.webanker().modelid()])
         wrtbtyp = wrtb.typestring()
         wrtbgrundtyp = wrtb.displdatatype()
@@ -226,7 +226,7 @@ def printcontentcolumn(pcols):
         infovalues = (wrtbinfo[0], wrtbinfo[1],wrtbinfo[2] ,nvl(col.scha_um) + ', ' + nvl(col.scha_dm),)
         printHTML.printcontentinfo(ptitle=Sprachtext.transl('Information'), pheaders=infoheaders, pvalues=infovalues)
 
-        printHTML.printreflist(pelemid=col.scha_id, pelemtype=Modellelemtyp.SCHA)
+        printHTML.printreflist(pelemid=col.scha_id, pelemtype=Modellelemtype.SCHA)
         printHTML.printUDP(p_meltname=col.prefix().upper(), p_id=col.scha_id)
         printcolmapping(pcolid=col.scha_id)
         printHTML.printcontentend(lbc)

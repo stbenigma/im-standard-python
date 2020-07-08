@@ -1,7 +1,8 @@
 from .baseobject import Baseobject
 from datetime import date
+from IM_DB import dbDML
 
-class Modellelemtyp(Baseobject):
+class Modellelemtype(Baseobject):
     ENTI:str='ENTI'
     BURU:str='BURU'
     SYNO:str='SYNO'
@@ -18,10 +19,11 @@ class Modellelemtyp(Baseobject):
     _columnlist:list = ['melt_id',  'melt_kurzname',    'melt_name',
                         'melt_uc',  'melt_dc',  'melt_um',
                         'melt_dm']
+    __meltids:dict = {}
 
     def __init__(self,pkurzname=None,pname=None):
-        super().__init__(tablename= Modellelemtyp._tablename, prefix= Modellelemtyp._prefix
-                        ,columnlist = Modellelemtyp._columnlist)
+        super().__init__(tablename= Modellelemtype._tablename, prefix= Modellelemtype._prefix
+                         , columnlist = Modellelemtype._columnlist)
         self.melt_kurzname = pkurzname
         self.melt_name = pname
         self.melt_uc = 'SYS'
@@ -29,24 +31,24 @@ class Modellelemtyp(Baseobject):
 
     @staticmethod
     def createtable():
-        Baseobject.createtable(ptablename=Modellelemtyp._tablename
+        Baseobject.createtable(ptablename=Modellelemtype._tablename
                                 ,psql="""
 CREATE TABLE modellelem_typ(
     melt_id                  integer NOT NULL primary key autoincrement,
     melt_kurzname            varchar(4)NOT NULL
         CHECK(melt_kurzname IN(
-   'ATTR',
-   'RELA',
-   'BURU',
-   'ENTI',
-   'WRTB',
-   'TABL',
-   'SCHA',
-   'SCHN',
-   'SYNO',
-   'ORGE',
-   'ARCS'
-        )),
+           'ATTR',
+           'RELA',
+           'BURU',
+           'ENTI',
+           'WRTB',
+           'TABL',
+           'SCHA',
+           'SCHN',
+           'SYNO',
+           'ORGE',
+           'ARCS'
+           )),
     melt_name                varchar(60 )NOT NULL,
     melt_uc                  varchar(30 )NOT NULL,
     melt_dc                  varchar(30)NOT NULL,
@@ -59,71 +61,74 @@ CREATE TABLE modellelem_typ(
 
     @staticmethod
     def delete():
-        Baseobject.delete(Modellelemtyp._tablename)
+        Baseobject.delete(Modellelemtype._tablename)
 
     @staticmethod
     def select(pwhere=None, porderby=None):
-        return Baseobject.select(pclass=Modellelemtyp,pwhere=pwhere, porderby=porderby)
+        return Baseobject.select(pclass=Modellelemtype, pwhere=pwhere, porderby=porderby)
+
+    def insert(self):
+        meltid = super().insert()
+        Modellelemtype.__meltids[self.melt_kurzname] = meltid
 
     @staticmethod
     def fillmelt():
         # melt_kurzname,  melt_name    ,melt_uc,  melt_dc
-        Modellelemtyp(pkurzname=Modellelemtyp.ATTR, pname='Attribut').insert()
-        Modellelemtyp(pkurzname=Modellelemtyp.RELA, pname='Beziehung').insert()
-        Modellelemtyp(pkurzname=Modellelemtyp.BURU, pname='Business Rule').insert()
-        Modellelemtyp(pkurzname=Modellelemtyp.ENTI, pname='Entität').insert()
-        Modellelemtyp(pkurzname=Modellelemtyp.WRTB, pname='Wertebereich').insert()
-        Modellelemtyp(pkurzname=Modellelemtyp.SYNO, pname='Synonym').insert()
-        Modellelemtyp(pkurzname=Modellelemtyp.ORGE, pname='Organisationseinheit').insert()
-        Modellelemtyp(pkurzname=Modellelemtyp.TABL, pname='Tabelle').insert()
-        Modellelemtyp(pkurzname=Modellelemtyp.SCHA, pname='Schnittstellenattribut').insert()
-        Modellelemtyp(pkurzname=Modellelemtyp.SCHN, pname='Schnittstelle').insert()
-        Modellelemtyp(pkurzname=Modellelemtyp.ARCS, pname='Arc').insert()
-    #fillmelt
-
-
-    @staticmethod
-    def getbyshortname (pkurzname):
-        data = Modellelemtyp.select(pwhere="melt_kurzname = '{}'".format(pkurzname))
-        if ((data is None) or (len(data) == 0)):
-            raise Exception("no modellelem_typ found for {}".format(pkurzname))
-        return data[0]
-    #getbyshortname
+        Modellelemtype(pkurzname=Modellelemtype.ATTR, pname='Attribut').insert()
+        Modellelemtype(pkurzname=Modellelemtype.RELA, pname='Beziehung').insert()
+        Modellelemtype(pkurzname=Modellelemtype.BURU, pname='Business Rule').insert()
+        Modellelemtype(pkurzname=Modellelemtype.ENTI, pname='Entität').insert()
+        Modellelemtype(pkurzname=Modellelemtype.WRTB, pname='Wertebereich').insert()
+        Modellelemtype(pkurzname=Modellelemtype.SYNO, pname='Synonym').insert()
+        Modellelemtype(pkurzname=Modellelemtype.ORGE, pname='Organisationseinheit').insert()
+        Modellelemtype(pkurzname=Modellelemtype.TABL, pname='Tabelle').insert()
+        Modellelemtype(pkurzname=Modellelemtype.SCHA, pname='Schnittstellenattribut').insert()
+        Modellelemtype(pkurzname=Modellelemtype.SCHN, pname='Schnittstelle').insert()
+        Modellelemtype(pkurzname=Modellelemtype.ARCS, pname='Arc').insert()
 
     @staticmethod
     def getidbyshortname (pkurzname):
-        return Modellelemtyp.getbyshortname(pkurzname=pkurzname).melt_id
-    #getidbyshortname
+        return Modellelemtype.__meltids[pkurzname]
+
+    @staticmethod
+    def getshortname (pmeltid:int):
+        return Modellelemtype().getbyid(pid).melt_kurzname
+
+    @staticmethod
+    def getbyshortname (pkurzname):
+        return Modellelemtype().getbyid(Modellelemtype.getidbyshortname(pkurzname))
+
     @staticmethod
     def type2melt(type):
-        trans = {"Entity": Modellelemtyp.ENTI
-                , "Attribute": Modellelemtyp.ATTR
-                , "Relation": Modellelemtyp.RELA
-                , "Table": Modellelemtyp.TABL
-                , "Column": Modellelemtyp.SCHA
-                , "Arcs": Modellelemtyp.ARCS
+        trans = {"Entity": Modellelemtype.ENTI
+                , "Attribute": Modellelemtype.ATTR
+                , "Relation": Modellelemtype.RELA
+                , "Table": Modellelemtype.TABL
+                , "Column": Modellelemtype.SCHA
+                , "Arcs": Modellelemtype.ARCS
                 , "FKIndexAssociation": ""
                  }
         return trans[type]
     # type2melt
-#Modellelemtyp
+#Modellelemtype
 
 class Modellelement(Baseobject):
+    """Modellelement is a supertype of a lot of entities. It shares common attributes and relationships
+        It's ID is identical to id's in subtype tables.
+        So Modelelement is created first (with a system generated ID, unique over all subtables). It's ID is then
+        used as ID' of the subtables
+    """
     _tablename:str = 'modellelement'
     _prefix:str = 'mode'
     _columnlist:list = ['mode_id',  'mode_melt_id', 'mode_syno_id',
                         'mode_wrtb_id', 'mode_attr_id', 'mode_buru_id',
                         'mode_rela_id', 'mode_enti_id', 'mode_orge_id',
-                        'mode_tabl_id', 'mode_scha_id',    'mode_schn_id',
-                        'mode_uc',  'mode_dc',  'mode_um',
-                        'mode_dm']
+                        'mode_tabl_id', 'mode_scha_id',    'mode_schn_id']
 
-    def __init__(self,pmeltid=None, puc=None, pdc=None):
+    def __init__(self,pmeltid=None):
         super().__init__(tablename= Modellelement._tablename, prefix= Modellelement._prefix
                         ,columnlist = Modellelement._columnlist)
         self.mode_melt_id = pmeltid
-        self.mode_uc = puc
-        self.mode_dc = pdc
     #__init__
 
     @staticmethod
@@ -132,7 +137,7 @@ class Modellelement(Baseobject):
                                 ,psql="""
 CREATE TABLE modellelement(
     mode_id        integer NOT NULL primary key autoincrement,
-    mode_melt_id   integer NULL,
+    mode_melt_id   integer NULL NOT NULL,
     mode_syno_id   integer NULL,
     mode_wrtb_id   integer NULL,
     mode_attr_id   integer NULL,
@@ -142,11 +147,7 @@ CREATE TABLE modellelement(
     mode_orge_id   integer NULL,    
     mode_tabl_id  integer NULL,
     mode_scha_id  integer NULL,    
-    mode_schn_id  integer NULL,    
-    mode_uc        varchar(30 )NOT NULL,
-    mode_dc        varchar(30)NOT NULL,
-    mode_um        varchar(30 )NULL,
-    mode_dm        varchar(30)NULL,
+    mode_schn_id  integer NULL,
 	CONSTRAINT mode_uk UNIQUE(mode_wrtb_id,
 	       mode_attr_id,
 	       mode_buru_id,
@@ -201,7 +202,7 @@ CREATE TABLE modellelement(
     #getodmguid
 
     @staticmethod
-    def delete():
+    def delete(pwhere=''):
         Baseobject.delete(Modellelement._tablename)
 
     @staticmethod
@@ -213,16 +214,16 @@ CREATE TABLE modellelement(
     def __id2meltid(pentiid=None,pattrid=None,pburuid=None,pwrtbid=None
                     ,prelaid=None,porgeid=None,psynoid=None,ptablid=None
                     ,pschaid=None,pschnid=None):
-        if pentiid is not None: meltid = (Modellelemtyp.ENTI, pentiid)
-        elif pwrtbid is not None: meltid = (Modellelemtyp.WRTB, pwrtbid)
-        elif pattrid is not None: meltid = (Modellelemtyp.ATTR, pattrid)
-        elif psynoid is not None: meltid = (Modellelemtyp.SYNO, psynoid)
-        elif prelaid is not None: meltid = (Modellelemtyp.RELA, prelaid)
-        elif pburuid is not None: meltid = (Modellelemtyp.BURU, pburuid)
-        elif ptablid is not None: meltid = (Modellelemtyp.TABL, ptablid)
-        elif pschaid is not None: meltid = (Modellelemtyp.SCHA, pschaid)
-        elif pschnid is not None: meltid = (Modellelemtyp.SCHN, pschnid)
-        elif porgeid is not None: meltid = (Modellelemtyp.ORGE, porgeid)
+        if pentiid is not None: meltid = (Modellelemtype.ENTI, pentiid)
+        elif pwrtbid is not None: meltid = (Modellelemtype.WRTB, pwrtbid)
+        elif pattrid is not None: meltid = (Modellelemtype.ATTR, pattrid)
+        elif psynoid is not None: meltid = (Modellelemtype.SYNO, psynoid)
+        elif prelaid is not None: meltid = (Modellelemtype.RELA, prelaid)
+        elif pburuid is not None: meltid = (Modellelemtype.BURU, pburuid)
+        elif ptablid is not None: meltid = (Modellelemtype.TABL, ptablid)
+        elif pschaid is not None: meltid = (Modellelemtype.SCHA, pschaid)
+        elif pschnid is not None: meltid = (Modellelemtype.SCHN, pschnid)
+        elif porgeid is not None: meltid = (Modellelemtype.ORGE, porgeid)
         else: meltid = (None,None)
         #fi
         return meltid
@@ -234,12 +235,6 @@ CREATE TABLE modellelement(
         return Modellelement.__id2meltid(pentiid=pentiid,pattrid=pattrid,pburuid=pburuid,pwrtbid=pwrtbid
                     ,prelaid=prelaid,porgeid=porgeid,psynoid=psynoid,ptablid=ptablid
                     ,pschaid=pschaid,pschnid=pschnid)[0]
-    def __id2id(pentiid=None,pattrid=None,pburuid=None,pwrtbid=None
-                    ,prelaid=None,porgeid=None,psynoid=None,ptablid=None
-                    ,pschaid=None,pschnid=None):
-        return Modellelement.__id2meltid(pentiid=pentiid,pattrid=pattrid,pburuid=pburuid,pwrtbid=pwrtbid
-                    ,prelaid=prelaid,porgeid=porgeid,psynoid=psynoid,ptablid=ptablid
-                    ,pschaid=pschaid,pschnid=pschnid)[1]
 
     @staticmethod
     def getbyelemid (pentiid=None,pattrid=None,pburuid=None,pwrtbid=None
@@ -252,42 +247,58 @@ CREATE TABLE modellelement(
         data = Modellelement.select(pwhere="{} = '{}'".format(colname.lower(),id))
         if ((data is None) or (len(data) == 0)): return None
         return data[0]
-    #getbyshortname
+
 
     @staticmethod
     def getidbyelemid (pentiid=None,pattrid=None,pburuid=None,pwrtbid=None
                     ,prelaid=None,porgeid=None,psynoid=None,ptablid=None
                     ,pschaid=None,pschnid=None):
-        mode = Modellelement.getbyelemid(pentiid=pentiid,pattrid=pattrid,pburuid=pburuid,pwrtbid=pwrtbid
-                    ,prelaid=prelaid,porgeid=porgeid,psynoid=psynoid,ptablid=ptablid
-                    ,pschaid=pschaid,pschnid=pschnid)
+        mode = Modellelement.getbyelemid(pentiid=pentiid, pattrid=pattrid, pburuid=pburuid, pwrtbid=pwrtbid
+                                        , prelaid=prelaid, porgeid=porgeid, psynoid=psynoid, ptablid=ptablid
+                                        , pschaid=pschaid, pschnid=pschnid)
         return None if mode is None else mode.mode_id
     #getidbyelemid
     
     @staticmethod
     def getelement(pmodeid):
         mode = Modellelement.getbyid(pmodeid)
-        if mode.mode_syno_id is not None: element = Synonym.getbyid(mode_syno_id)
-        elif mode.mode_wrtb_id is not None: element = Wertebereich.getbyid(mode_wrtb_id)
-        elif mode.mode_attr_id is not None: element = Attribut.getbyid(mode_attr_id)
-        elif mode.mode_buru_id is not None: element = Buseinssrule.getbyid(mode_buru_id)
-        elif mode.mode_rela_id is not None: element = Relation.getbyid(mode_rela_id)
-        elif mode.mode_enti_id is not None: element = Entitaet.getbyid(mode_enti_id)
-        elif mode.mode_orge_id is not None: element = Organisationseinheit.getbyid(mode_orge_id)
-        elif mode.mode_tabl_id is not None: element = Tabelle.getbyid(mode_tabl_id)
-        elif mode.mode_scha_id is not None: element = Schnittstelleattr.getbyid(mode_scha_id)
-        elif mode.mode_schn_id is not None: element = Schnittstelle.getbyid(mode_schn_id)
+        meltkrz = Modellelemtype.getshortname(pmeltid=mode.mode_melt_id)
+        if meltkrz == Modellelemtype.SYNO: element = Synonym.getbyid(mode_ref_id)
+        elif meltkrz == Modellelemtype.WRTB: element = Wertebereich.getbyid(mode_wrtb_id)
+        elif meltkrz == Modellelemtype.ATTR: element = Attribut.getbyid(mode_attr_id)
+        elif meltkrz == Modellelemtype.BURU: element = Buseinssrule.getbyid(mode_buru_id)
+        elif meltkrz == Modellelemtype.RELA: element = Relation.getbyid(mode_rela_id)
+        elif meltkrz == Modellelemtype.ENTI: element = Entitaet.getbyid(mode_enti_id)
+        elif meltkrz == Modellelemtype.ORGE: element = Organisationseinheit.getbyid(mode_orge_id)
+        elif meltkrz == Modellelemtype.TABL: element = Tabelle.getbyid(mode_tabl_id)
+        elif meltkrz == Modellelemtype.SCHA: element = Schnittstelleattr.getbyid(mode_scha_id)
+        elif meltkrz == Modellelemtype.SCHN: element = Schnittstelle.getbyid(mode_schn_id)
+        elif meltkrz == Modellelemtype.ARC: element = Arc.getbyid(mode_id)
+        else: element = None
         return element
+
 
     @staticmethod
     def insertmode(pentiid=None,pattrid=None,pburuid=None,pwrtbid=None
                     ,prelaid=None,porgeid=None,psynoid=None,ptablid=None
                     ,pschaid=None,pschnid=None):
-        mode = Modellelement()
-        mode.mode_melt_id = Modellelemtyp.getidbyshortname\
+        refid=pentiid if pentiid is not None\
+                    else pattrid if pattrid is not None\
+                    else pburuid if pburuid is not None\
+                    else pwrtbid if pwrtbid is not None\
+                    else prelaid if prelaid is not None\
+                    else porgeid if porgeid is not None\
+                    else psynoid if psynoid is not None\
+                    else ptablid if ptablid is not None\
+                    else pschaid if pschaid is not None\
+                    else pschnid if pschnid is not None\
+                    else mode.mode_ref_id
+        meltid=Modellelemtype.getidbyshortname\
                     (pkurzname=Modellelement.__id2melt(pentiid=pentiid,pattrid=pattrid,pburuid=pburuid,pwrtbid=pwrtbid
                     ,prelaid=prelaid,porgeid=porgeid,psynoid=psynoid,ptablid=ptablid
                     ,pschaid=pschaid,pschnid=pschnid))
+        mode = Modellelement(pmeltid=meltid)
+        mode.mode_ref_id = refid
         mode.mode_wrtb_id = pwrtbid
         mode.mode_attr_id = pattrid
         mode.mode_buru_id = pburuid
@@ -298,8 +309,6 @@ CREATE TABLE modellelement(
         mode.mode_tabl_id = ptablid
         mode.mode_scha_id = pschaid
         mode.mode_schn_id = pschnid
-        mode.mode_uc = '--'
-        mode.mode_dc = date.today()
         mode.insert()
         return mode.mode_id
     #insertmodellelement
@@ -372,5 +381,15 @@ CREATE TABLE externalrefs(
     @staticmethod
     def getbymodeid(pmodeid):
         return ExternalRef.select(pwhere="extr_mode_id = {}".format(pmodeid))
+
+    @staticmethod
+    def insertextrefs(pmodeid:int,preflist:dict):
+        """insert list of ext.ref entires for one modeid"""
+        dbDML.insert(psql="insert into {} ({}) values ({})"
+                          .format(ExternalRef._tablename
+                                 ,Baseobject.columnsliststring(pcollist=ExternalRef._columnlist)
+                                ,Baseobject.columnsliststring(pcollist=ExternalRef._columnlist,pplaceholder=True))
+                     ,rec=[(None,pmodeid,key,value) for key, value in preflist.items()])
+
 # ExternalRef
 

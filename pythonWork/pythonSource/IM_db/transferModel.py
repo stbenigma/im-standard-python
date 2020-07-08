@@ -1,6 +1,4 @@
-import math
-import os
-import re
+import math,os,re
 import sqlite3
 import xml.etree.ElementTree as ET
 from datetime import date
@@ -66,9 +64,6 @@ def transferTypes():
     # endfor
 
 
-# transferTypes
-
-
 def do1structtype(filename):
     structdomains = ET.parse(filename)
     structdom = structdomains.getroot()
@@ -102,8 +97,6 @@ def do1structtype(filename):
         wbgr.insert()
     # for
 
-
-# do1structtype
 
 def liesunsfuellwrtb(pwrtb, pxml):
     pwrtb.wrtb_uc = findText(pxml, 'createdBy')
@@ -164,11 +157,7 @@ def liesunsfuellwrtb(pwrtb, pxml):
         pwrtb.wrtb_num_rundng_einh = None
         pwrtb.wrtb_num_pheh = findText(pxml, 'unitOfMeasure')
     # fi
-    try:
-        pwrtb.insert()
-    except Exception as e:
-        print(pwrtb.wrtb_name)
-        print(str(e))
+    pwrtb.insert()
 
     if (lov is not None) & (lov != {}):
         for idx, key in enumerate(lovs.keys(), start=1):
@@ -183,8 +172,6 @@ def liesunsfuellwrtb(pwrtb, pxml):
         # for
     # fi
 
-
-# liesundfuellwrtb
 
 def transferDomains():
     # lösche die Domains
@@ -621,7 +608,7 @@ def do1Arc(fileName):
               , pentiid=Entitaet().getID(findText(arcXML, 'entity'))
               , puc=findText(arcXML, 'createdBy')
               , pdc=findText(arcXML, 'createdTime'))
-    arc.setsourceid(psrc=Modellelemtyp.ARCS,psrcid=findField(arcXML, "id"))
+    arc.setsourceid(psrc=ExternalRef.ODM,psrcid=findField(arcXML, "id"))
     arcid = arc.insert()
 
     """map all relations to this arc"""
@@ -727,14 +714,8 @@ def do1Attribute(plfnr, pattrxml, pentiId=None, prelaId=None):
     attr.attr_sprachabhaengig = 'TRUE' if (re.search('\[.*L.*\]', xmlname) is not None) else 'FALSE'
     attr.attr_verschluesselt = 'FALSE'
     attr.attr_odm_guid = findField(pattrxml, 'id')
-    try:
-        attrId = attr.insert()
-    except  sqlite3.Error as e:
-        print(str(e))
-        print('Entity = {}'.format(vatername))
-        print(attr.attr_anzname)
-        raise e
-    # try
+    attrId = attr.insert()
+
     lmodeId = Modellelement.insertmode(pattrid=attrId)
     dbInserts.insertUdpAttr(attrId)
     updateUDP(pmodeid=lmodeId, pobj=pattrxml)
@@ -779,8 +760,6 @@ def fillKeys(p_enti, p_entiid):
     # fi
 
 
-# fillKeys
-
 def transferKeys():
     global schluessel
     # Schlüssel sind eingefügt es folgen die SchlüsselElemente, die ich jetzt alle haben sollte
@@ -794,10 +773,8 @@ def transferKeys():
             scel.scel_schl_id = schl.schl_id
             scel.scel_uc = schl.schl_uc
             scel.scel_dc = schl.schl_dc
-            try:
-                scel.scel_attr_id = Attribut().getID(ke)
-                scel.scel_bezi_id = None
-            except:
+            scel.scel_attr_id = Attribut().getID(ke)
+            if scel.scel_attr_id is None:
                 try:
                     scel.scel_bezi_id = dbLookup.beziId(ke)
                     scel.scel_attr_id = None
@@ -805,14 +782,15 @@ def transferKeys():
                     print(str(e))
                     print(ke, scel)
                     raise e
-                # try
-            # yrt
+                #try
+            else:
+                scel.scel_bezi_id = None
+            #if
             scel.insert()
-        # rof
-    # rof
+        #for
+    #for
 
 
-# transferKeys
 def getdokuref(pelem, pstruct=False):
     documents = None
     if pstruct:
@@ -917,7 +895,6 @@ def doSubentities():
 
     Relation.insertisa()
 
-# doSubentities
 
 def abbildTyp(ptyp):
     if (ptyp == '1'):
@@ -1063,12 +1040,12 @@ def do1UDPFile(pudpThema, pfileName):
                 ludpid = dbInserts.insertUDP(pData=(lupdThema, lgrpvalue, lgrpvalue + '_ENTI_COMMENT', None
                                                     , None, 'FALSE', None, '--', date.today().__str__()))
                 dbInserts.insertModelltypEigen(
-                    (Modellelemtyp.getidbyshortname(pkurzname=Modellelemtyp.type2melt('Entity')), ludpid))
+                    (Modellelemtype.getidbyshortname(pkurzname=Modellelemtype.type2melt('Entity')), ludpid))
 
                 ludpid = dbInserts.insertUDP(pData=(lupdThema, lgrpvalue, lgrpvalue + '_ATTR_COMMENT', None
                                                     , None, 'FALSE', None, '--', date.today().__str__()))
                 dbInserts.insertModelltypEigen(
-                    (Modellelemtyp.getidbyshortname(pkurzname=Modellelemtyp.type2melt('Attribute')), ludpid))
+                    (Modellelemtype.getidbyshortname(pkurzname=Modellelemtype.type2melt('Attribute')), ludpid))
             # fi
         #for
     # fi
@@ -1090,10 +1067,10 @@ def do1UDPFile(pudpThema, pfileName):
         for o in obj:
             """"< object class ="oracle.dbtools.crest.model.design.relational.Column" visible="false" color="-1" / >"""
             lMelt = re.split("\.", findField(o, 'class'))[6]
-            lmeltid = Modellelemtyp.type2melt(lMelt)
+            lmeltid = Modellelemtype.type2melt(lMelt)
             if lmeltid != "":
                 try:
-                    dbInserts.insertModelltypEigen((Modellelemtyp.getidbyshortname(pkurzname=lmeltid), udpId))
+                    dbInserts.insertModelltypEigen((Modellelemtype.getidbyshortname(pkurzname=lmeltid), udpId))
                 except Exception as err:
                     print(err)
                     logging.writelog("mapping type '{}' for UDP {}:{}:{} not found".format(lmeltid,lupdThema,group,propname))
@@ -1118,13 +1095,13 @@ def do1UDPFile(pudpThema, pfileName):
                 vgwt.vgwt_uc = 'system'
                 vgwt.vgwt_dc = date.today().__str__()
                 try:
-                    vgwt.insert()
+                    vgwt.insert(pdoerrhdlng=False)
                 except (sqlite3.IntegrityError):
                     logging.writelog("duplicate entry in Vorgabewerte theme:'{}' property:'{}' value:'{}'"
                                      .format(pudpThema, propname, vgwt.vgwt_wert))
 
             # for
-            Userdefprop.setdomid(pdomid,pudpid)
+            Userdefprop.setdomid(pdomid=wrtbId,pudpid=udpId)
 
         # fi
     # for
@@ -1181,11 +1158,12 @@ def insertBaseData():
     deflang = parameters.dbDefaultLang()
     for key, value in languages.items():
         Sprache(pname=value[0], piso2=key, piso3=value[1]).insert()
+
     if not deflang in languages: deflang = 'de'
     Sprache.setmodellang(pmodellang=deflang)
     Sprache.setallreplacementlang()
 
-    Modellelemtyp.fillmelt()
+    Modellelemtype.fillmelt()
     diat = Diagrammtyp()
     diat.diat_bez = 'Entity'
     diat.diat_uc = 'stb'
@@ -1193,9 +1171,9 @@ def insertBaseData():
     diat.insert()
     #    medi_diat_id, medi_melt_id,medi_uc,mdei_dc,medi_um,mdei_dm
     dbInserts.insertmeltdiat(
-        (diat.diat_id, Modellelemtyp.getidbyshortname(pkurzname=Modellelemtyp.ENTI), 'stb', date.today(), None, None))
+        (diat.diat_id, Modellelemtype.getidbyshortname(pkurzname=Modellelemtype.ENTI), 'stb', date.today(), None, None))
     dbInserts.insertmeltdiat(
-        (diat.diat_id, Modellelemtyp.getidbyshortname(pkurzname=Modellelemtyp.RELA), 'stb', date.today(), None, None))
+        (diat.diat_id, Modellelemtype.getidbyshortname(pkurzname=Modellelemtype.RELA), 'stb', date.today(), None, None))
 
 
 # insertBaseData
@@ -1230,7 +1208,7 @@ def loeschmodell():
     Datatype.delete()
     dbDML.delete("diagramme")
     dbDML.delete('bereich_elemdarst')
-    Modellelemtyp.delete()
+    Modellelemtype.delete()
     Diagrammtyp.delete()
     Sprache.delete()
     Sprachtext.delete()
@@ -1322,8 +1300,6 @@ def transferprojekt():
     # fi
 
 
-# transferprojekt
-
 def do1Document(fileName):
     tree = ET.parse(fileName)
     root = tree.getroot()
@@ -1336,8 +1312,6 @@ def do1Document(fileName):
     # DOKU_NAME, DOKU_FORMAT, DOKU_REFERENZ, DOKU_ODM_GUID, DOKU_PARENT_ODM_GUID
     doku.insert()
 
-
-# do1Document
 
 def transferDocuments():
     dosegfiles(pdirec=parameters.odmdocumentdirec(), transferfiles=do1Document)

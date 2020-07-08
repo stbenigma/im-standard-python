@@ -567,15 +567,6 @@ def wbgrelements(wrtbid):
     """.format(wrtbid))
     return data
 #wbgrelements
-def wrtbwerte(p_wrtbid):
-    data = dbDML.select("""
-             select vgwt_sortrhfg,vgwt_wert,vgwt_anzeige,vgwt_beschr 
-               from vorgabewerte
-               where vgwt_wrtb_id = {}
-               order by vgwt_sortrhfg
-    """.format(p_wrtbid))
-    return data
-#wrtbwerte
 
 def udplist(ptyp):
     data = dbDML.select("""select distinct bdeg_thema,bdet_gruppe

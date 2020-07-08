@@ -11,7 +11,6 @@ def  insertLovWrtb(pName,pherkunft = Wertebereich.DOMAIN):
     wrtb.wrtb_uc = 'system'
     wrtb.wrtb_dc = date.today()
     return wrtb.insert()
-#end insertLovWrtb
 
 
 def insertBeziehung(pdata):

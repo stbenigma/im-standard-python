@@ -126,7 +126,7 @@ CREATE TABLE wertebereiche(
             return x if (x is not None) else default
 
         daty = Datatype().getbyid(self.wrtb_daty_id)
-        typestring = daty.daty_name
+        typestring = daty.daty_name if daty is not None else ''
         if (self.wrtb_typ in (Wertebereich.TEXT,Wertebereich.LOV)):
             infoheaders = (Sprachtext.transl('Datentyp'), Sprachtext.transl('Max. Länge'), Sprachtext.transl('Syntaxregel'), Sprachtext.transl('geändert'))
             infovalues = (nvl(self.wrtb_typ),nvl(self.wrtb_text_maxlng),nvl(self.wrtb_text_syntaxregel),nvl(self.wrtb_uc)+','+nvl(self.wrtb_dc))
@@ -359,7 +359,7 @@ class Vorgabewert(Baseobject):
         Baseobject.delete(Vorgabewert._tablename)
 
     @staticmethod
-    def select(pwhere=None,porderby=None):
+    def select(pwhere=None,porderby="vgwt_sortrhfg"):
         return Baseobject.select(pclass=Vorgabewert
                                 ,pwhere=pwhere,porderby=porderby)
 

@@ -5,6 +5,7 @@ import shutil
 from IM_DB import parameters
 from IM_HTML import web_sql
 from IM_OBJECTS import *
+import html
 
 outputDirectory: str = None
 webDirectory: str = "";
@@ -49,8 +50,9 @@ def nvl(x, default=''):
 def filehref(ref, anz, plang, pimg=None):
     img = '' if pimg is None else '<img class="icon-check" src="icons/{}">'.format(pimg)
     return """<a href="{}{}" target="_blank" >{}{}</a>""" \
-              .format(webFileName + '_' + plang.lower() + '.html'
-                      , "#" + ref if ref is not None else "", anz, img)
+        .format(webFileName + '_' + plang.lower() + '.html'
+                , "#" + ref if ref is not None else "", anz, img)
+
 
 def href(ref, anz, htmlfile=''):
     if anz is None: return None
@@ -58,7 +60,8 @@ def href(ref, anz, htmlfile=''):
     return """<a href="{}{}" target="{}">{}</a>""".format(htmlfile
                                                           , '{}{}'.format(sep, ref)
                                                           , '_self' if htmlfile == '' else '_blank'
-                                                          , anz)
+                                                          , html.escape(anz))
+
 
 def isIconstr(w):
     if (w is None) or (type(w) != str):
@@ -67,6 +70,7 @@ def isIconstr(w):
         return True
     else:
         return False
+
 
 def bool2icon(b):
     lb = b if (type(b) == bool) else True if (b == 'TRUE') else False
@@ -466,8 +470,6 @@ def printlistofcontentelement(pname, plist, pfileonly=False):
     fhtml.write(listcontentelementfoot)
 
 
-# printlistofcontentelement
-
 def lang2img(plang):
     if plang in (Sprachtext.DE, Sprachtext.FR):
         return plang + ".png"
@@ -631,19 +633,19 @@ def printattrlist(penti):
 
     fhtml.write(starttable(ptitel=Sprachtext.transl('Attribute')
                            , pueberschriften=(
-        Sprachtext.transl('Name'), Sprachtext.transl('Wertebereich'), Sprachtext.transl('Typ')
-        , Sprachtext.transl('Pflichtattribut'), Sprachtext.transl('Schlüssel'), Sprachtext.transl('Deskriptor'),
-        Sprachtext.transl('übersetzt')
-        , Sprachtext.transl('historisiert'), Sprachtext.transl('wiederholt'), Sprachtext.transl('verschlüsselt'))))
+            Sprachtext.transl('Name'), Sprachtext.transl('Wertebereich'), Sprachtext.transl('Typ')
+            , Sprachtext.transl('Pflichtattribut'), Sprachtext.transl('Schlüssel'), Sprachtext.transl('Deskriptor'),
+            Sprachtext.transl('übersetzt')
+            , Sprachtext.transl('historisiert'), Sprachtext.transl('wiederholt'), Sprachtext.transl('verschlüsselt'))))
 
     for attr in alist:
         domain = attr.getdomain()
-        domainref = domain.getname(Sprachtext.reportLang()) \
-            if domain.isderived() \
-            else href(ref=domain.webanker().anker(), anz=domain.getname(Sprachtext.reportLang()))
+        domname = html.escape(domain.getname(Sprachtext.reportLang()))
+        domainref = domname if domain.isderived() \
+                        else href(ref=domain.webanker().anker(), anz=domname)
         fhtml.write(writetableline(pwerte=(href(ref=attr.webanker().anker(), anz=attr.getname(Sprachtext.reportLang()))
                                            , domainref
-                                           , domain.displdatatype()
+                                           , html.escape(domain.displdatatype())
                                            , bool2icon(attr.attr_pflichtattr), bool2icon(attr.isinkey()),
                                            bool2icon(attr.attr_deskriptor)
                                            , bool2icon(attr.attr_sprachabhaengig), bool2icon(attr.attr_historisiert)
@@ -658,7 +660,7 @@ def startabschnitt(p_titel):
     start = """        <h2>{}</h2>
                             <div id="container0">
     """
-    return start.format(p_titel)
+    return start.format(html.escape(p_titel))
 
 
 # startabschnitt
@@ -681,14 +683,14 @@ def starttable(ptitel, pueberschriften, pheadlevel=2, ptabid=None, pselfanker=No
 """
     #    tabheads="""<th class="attribute">{}</th>"""
     retval = []
-    retval.append(tabhead.format(pheadlevel, ptitel, pheadlevel
+    retval.append(tabhead.format(pheadlevel, html.escape(ptitel), pheadlevel
                                  , '' if ptabid is None
                                  else '<a href="#{}" onclick="download_table_as_csv(\'{}\');">download as CSV</a>'.format(
             pselfanker, ptabid)
                                  , '' if ptabid is None
                                  else 'id="{}"'.format(ptabid)))
     for u in pueberschriften:
-        retval.append(tabheads.format(u))
+        retval.append(tabheads.format(html.escape(u)))
     return ''.join(retval)
 
 
@@ -696,8 +698,8 @@ def starttable(ptitel, pueberschriften, pheadlevel=2, ptabid=None, pselfanker=No
 
 def writetableline(pwerte, plineid=None):
     linestart = """            <tr>
-    """ if plineid is None else """            <tr id = "{}">
-    """.format(plineid)
+        """ if plineid is None else """            <tr id = "{}">
+        """.format(plineid)
     line = """             <td>{}</td>
     """
     iconline = """           <td {}></td>
@@ -714,8 +716,6 @@ def writetableline(pwerte, plineid=None):
     retval.append(lineend)
     return ''.join(retval)
 
-
-# writetableline
 
 def endtable():
     return """        
@@ -743,8 +743,8 @@ def printentikeys(pentiid):
         return
     fhtml.write(tablehtml(ptitel=Sprachtext.transl('Schlüssel')
                           , pueberschriften=(
-        Sprachtext.transl('Nr'), Sprachtext.transl('Name'), Sprachtext.transl('Attribut(e)'),
-        Sprachtext.transl('Beziehung(en)'))
+            Sprachtext.transl('Nr'), Sprachtext.transl('Name'), Sprachtext.transl('Attribut(e)'),
+            Sprachtext.transl('Beziehung(en)'))
                           , pwerteliste=keylist
                           )
                 )
@@ -760,7 +760,7 @@ def printmappinthtml(pwerte, ptitel, pueberschriften, pheadlevel=2):
     for t in pwerte:
         name, tabs = t[0], t[1]
         commalist = ', '.join([href(ref=value.anker(), anz=key, htmlfile=htmlfilelist[value.modelid()]) \
-                                   for key,value in tabs.items()])
+                               for key, value in tabs.items()])
         werte.append([name, commalist])
     fhtml.write(tablehtml(ptitel=ptitel
                           , pueberschriften=pueberschriften
@@ -788,28 +788,29 @@ def printmapping(pentiid=None, pattrid=None):
     printmappinthtml(pwerte=werte, ptitel=titel, pueberschriften=ueberschr)
 
 
-
 def printentirela(pentiid):
     relalist = web_sql.relalist(p_entiid=pentiid, p_lang=Sprachtext.reportLang())
     if (len(relalist) == 0):
         return
     fhtml.write(starttable(ptitel=Sprachtext.transl('Beziehungen')
                            , pueberschriften=(
-        Sprachtext.transl('Name'), Sprachtext.transl('Entität') + '-1', '', Sprachtext.transl('Beziehung'), '',
-        Sprachtext.transl('Entität') + '-2'
-        , Sprachtext.transl('Arc'), Sprachtext.transl('Schlüssel'),)))
+            Sprachtext.transl('Name'), Sprachtext.transl('Entität') + '-1', '', Sprachtext.transl('Beziehung'), '',
+            Sprachtext.transl('Entität') + '-2'
+            , Sprachtext.transl('Arc'), Sprachtext.transl('Schlüssel'),)))
     for r in relalist:
         if (pentiid == r[0]):
             # 'Name','Entität1','','Beziehung','', 'Entität2','Arc','Schluessel'
-            fhtml.write(writetableline(pwerte=(nvl(r[16]), r[1], '->', nvl(r[3], '--'), r[4]
+            fhtml.write(writetableline(pwerte=(html.escape(nvl(r[16])), html.escape(r[1]), '->', html.escape(nvl(r[3], '--'))
+                                               , html.escape(nvl(r[4]))
                                                , arrow2icon('down'), nvl(r[14]), bool2icon(r[17]))))
-            fhtml.write(writetableline(pwerte=('', arrow2icon('up'), r[9], nvl(r[8], '--'), '<-'
-                                               , href(ref=web_sql.entiAnker(r[5]), anz=r[6]))))
+            fhtml.write(writetableline(pwerte=('', arrow2icon('up'), r[9], html.escape(nvl(r[8], '--')), '<-'
+                                               , href(ref=web_sql.entiAnker(r[5]), anz=html.escape(r[6])))))
         else:
-            fhtml.write(writetableline(pwerte=(nvl(r[16]), r[6], '->', nvl(r[8], '--'), r[9]
+            fhtml.write(writetableline(pwerte=(html.escape(nvl(r[16])), html.escape(r[6]), '->', html.escape(nvl(r[8], '--'))
+                                               , html.escape(nvl(r[9]))
                                                , arrow2icon('down'), '', bool2icon(r[17]))))
-            fhtml.write(writetableline(pwerte=('', arrow2icon('up'), r[4], nvl(r[3], '--'), '<-'
-                                               , href(ref=web_sql.entiAnker(r[0]), anz=r[1]))))
+            fhtml.write(writetableline(pwerte=('', arrow2icon('up'), r[4], html.escape(nvl(r[3], '--')), '<-'
+                                               , href(ref=web_sql.entiAnker(r[0]), anz=html.escape(r[1])))))
         # if
     # for
     fhtml.write(endtable())
@@ -847,6 +848,7 @@ def printcontentmapping(plist):
         if len(udpnamen) == 0: continue
         udpnamen = udpnamen[0][2].split(',')
         udpnamen.sort()  # SQl kann keine sortierte group_concat liefern
+        udpnamen = [html.escape(u) for u in udpnamen]
 
         # print ('udpnamen=',udpnamen)
         namenliste.extend(udpnamen)
@@ -857,7 +859,7 @@ def printcontentmapping(plist):
             zeile = [href(ref=a[1], anz=a[0])]
             udpwerte = web_sql.udpwerte(pmeltname='ATTR', pthema=lthema, pgruppe=lgruppe, pid=a[2])
             if udpwerte is None: continue
-            zeile.extend(w[0] for w in udpwerte)
+            zeile.extend(html.escape(w[0]) for w in udpwerte)
             werte.append(zeile)
 
         lbc = str(newbarcounter())
@@ -880,9 +882,7 @@ def printcontentmapping(plist):
     # for
 
 
-# printcontentmapping
-
-def printUDP(p_meltname, p_id,pwithref=False):
+def printUDP(p_meltname, p_id, pwithref=False):
     startgeschrieben = False
 
     udpentries = web_sql.udpnamen(pmeltname=p_meltname)
@@ -891,11 +891,11 @@ def printUDP(p_meltname, p_id,pwithref=False):
             continue
         namenliste = udpentry[2].split(',')
         namenliste.sort()  # SQl kann keine sortierte group_concat liefern
-        anzwerte = {udpname : '' for udpname in namenliste}
+        anzwerte = {udpname: '' for udpname in namenliste}
         werte = web_sql.udpwerte(pmeltname=p_meltname, pthema=udpentry[0], pgruppe=udpentry[1], pid=p_id)
         """werte = [(bdeg_name,bdeg_wert),...]"""
         for l in werte:
-            anzwerte[l[0]] = l[1]
+            anzwerte[l[0]] = html.escape(l[1])
 
         if (len(anzwerte) > list(anzwerte.values()).count('')):
             if (not startgeschrieben):
@@ -903,9 +903,9 @@ def printUDP(p_meltname, p_id,pwithref=False):
                 startgeschrieben = True
             # fi
 
-            titel = href(ref=web_sql.udpAnker('{}-{}'.format(udpentry[0], udpentry[1]))\
-                                              , anz=' {} - {} '.format(udpentry[0], udpentry[1]))\
-                    if pwithref else ' {} - {} '.format(udpentry[0], udpentry[1])
+            titel = href(ref=web_sql.udpAnker('{}-{}'.format(udpentry[0], udpentry[1])) \
+                         , anz=' {} - {} '.format(udpentry[0], udpentry[1])) \
+                if pwithref else ' {} - {} '.format(udpentry[0], udpentry[1])
             fhtml.write(tablehtml(ptitel=titel
                                   , pueberschriften=namenliste
                                   , pheadlevel=3
@@ -983,7 +983,7 @@ def printcontententi():
         printattrlist(penti=enti)
         printentikeys(pentiid=enti.enti_id)
         printentirela(pentiid=enti.enti_id)
-        printreflist(pelemid=enti.enti_id, pelemtype=Modellelemtyp.ENTI)
+        printreflist(pelemid=enti.enti_id, pelemtype=Modellelemtype.ENTI)
         printtransl(pentiid=enti.enti_id)
         printentiudp(pentiid=enti.enti_id)
         printmapping(pentiid=enti.enti_id)
@@ -996,13 +996,13 @@ def printcontententi():
 
 def printcontentattr():
     infoheaders = (
-    Sprachtext.transl('Technischer Name'), Sprachtext.transl('Wertebereich'), Sprachtext.transl('Datentyp'),
-    Sprachtext.transl('Tooltip')
-    , Sprachtext.transl('geändert'))
+        Sprachtext.transl('Technischer Name'), Sprachtext.transl('Wertebereich'), Sprachtext.transl('Datentyp'),
+        Sprachtext.transl('Tooltip')
+        , Sprachtext.transl('geändert'))
     flagheaders = (
-    Sprachtext.transl('Pflichtattribut'), Sprachtext.transl('Schlüssel'), Sprachtext.transl('Deskriptor'),
-    Sprachtext.transl('übersetzt')
-    , Sprachtext.transl('historisiert'), Sprachtext.transl('wiederholt'), Sprachtext.transl('verschlüsselt'))
+        Sprachtext.transl('Pflichtattribut'), Sprachtext.transl('Schlüssel'), Sprachtext.transl('Deskriptor'),
+        Sprachtext.transl('übersetzt')
+        , Sprachtext.transl('historisiert'), Sprachtext.transl('wiederholt'), Sprachtext.transl('verschlüsselt'))
 
     for attr in Attribut.select(porderby='attr_anzname'):
         printcontentstart('attributes')
@@ -1112,8 +1112,9 @@ def printwrtbcollist(pwrtbid):
     fhtml.write(tablehtml(ptitel=Sprachtext.transl('Verwendet für Columns')
                           , pueberschriften=[Sprachtext.transl('Column')]
                           , pwerteliste=[[href(ref=col.webanker().anker()
-                                               , anz="{} ({}:{})".format(col.scha_column_name, col.getintfname(), col.gettablname())
-                                                , htmlfile=htmlfilelist[col.getintfid()]
+                                               , anz="{} ({}:{})".format(col.scha_column_name, col.getintfname(),
+                                                                         col.gettablname())
+                                               , htmlfile=htmlfilelist[col.getintfid()]
                                                )
                                           ] for col in clist
                                          ]))
@@ -1138,22 +1139,19 @@ def printwrtbmembers(pwrtbid):
 
 # printwrtbmembers
 
-def printwertelist(p_wrtbid):
-    wlist = web_sql.wrtbwerte(p_wrtbid=p_wrtbid)
+def printwertelist(pwrtb):
+    wlist = Vorgabewert.select(pwhere="vgwt_wrtb_id= {}".format(pwrtb.wrtb_id))
     if (len(wlist) == 0):
         return
+    wlist = [(w.vgwt_sortrhfg,w.vgwt_wert,w.vgwt_anzeige,w.vgwt_beschr) for w in wlist]
     fhtml.write(tablehtml(ptitel=Sprachtext.transl('Werteliste')
                           , pueberschriften=(
-        Sprachtext.transl('Nr'), Sprachtext.transl('Wert'), Sprachtext.transl('Anzeige'),
-        Sprachtext.transl('Beschreibung'))
+                            Sprachtext.transl('Nr'), Sprachtext.transl('Wert')
+                            , Sprachtext.transl('Anzeige'), Sprachtext.transl('Beschreibung')
+                            )
                           , pheadlevel=3
-                          , pwerteliste=wlist))
-    # fhtml.write(starttable(ptitel=Sprachtext.transl('Werteliste')
-    #                       , pueberschriften=(Sprachtext.transl('Nr'), Sprachtext.transl('Wert'), Sprachtext.transl('Anzeige'), Sprachtext.transl('Beschreibung'))
-    #                       , pheadlevel=3))
-    # for w in wlist:
-    #    fhtml.write(writetableline(pwerte=w))
-    # fhtml.write(endtable())
+                          , pwerteliste=wlist)
+                        )
 
 
 # printwertelist
@@ -1172,36 +1170,36 @@ def printcontentwrtb(plist):
 
         if (w.wrtb_typ in (Wertebereich.TEXT, Wertebereich.LOV)):
             infoheaders = (
-            Sprachtext.transl('Datentyp'), Sprachtext.transl('Max. Länge'), Sprachtext.transl('Syntaxregel'),
-            Sprachtext.transl('geändert'))
+                Sprachtext.transl('Datentyp'), Sprachtext.transl('Max. Länge'), Sprachtext.transl('Syntaxregel'),
+                Sprachtext.transl('geändert'))
             infovalues = (
-            nvl(Wertebereich.anzdatentyp(w.wrtb_typ)), nvl(w.wrtb_text_maxlng), nvl(w.wrtb_text_syntaxregel),
-            nvl(w.wrtb_uc) + ',' + nvl(w.wrtb_dc))
+                nvl(Wertebereich.anzdatentyp(w.wrtb_typ)), nvl(w.wrtb_text_maxlng), nvl(w.wrtb_text_syntaxregel),
+                nvl(w.wrtb_uc) + ',' + nvl(w.wrtb_dc))
         elif (w.wrtb_typ == Wertebereich.BIN):
             infoheaders = (Sprachtext.transl('Datentyp'), Sprachtext.transl('Inhaltstyp'), Sprachtext.transl('Format'),
                            Sprachtext.transl('geändert'))
             infovalues = (
-            nvl(Wertebereich.anzdatentyp(w.wrtb_typ)), Wertebereich.anzinhalttyp(nvl(w.wrtb_bin_inhalttyp)),
-            nvl(w.wrtb_bin_spfo_id), nvl(w.wrtb_uc) + ',' + nvl(w.wrtb_dc))
+                nvl(Wertebereich.anzdatentyp(w.wrtb_typ)), Wertebereich.anzinhalttyp(nvl(w.wrtb_bin_inhalttyp)),
+                nvl(w.wrtb_bin_spfo_id), nvl(w.wrtb_uc) + ',' + nvl(w.wrtb_dc))
         elif (w.wrtb_typ == Wertebereich.GRP):
             infoheaders = (Sprachtext.transl('Datentyp'), Sprachtext.transl('geändert'))
             infovalues = (Wertebereich.anzdatentyp(w.wrtb_typ), nvl(w.wrtb_uc) + ',' + nvl(w.wrtb_dc))
         elif (w.wrtb_typ == Wertebereich.NUM):
             infoheaders = (
-            Sprachtext.transl('Datentyp'), Sprachtext.transl('Vorkommast.'), Sprachtext.transl('Nachkommast.')
-            , Sprachtext.transl('Rundungseinh.'), Sprachtext.transl('Einheit'), Sprachtext.transl('Min. Wert'),
-            Sprachtext.transl('Max. Wwert')
-            , Sprachtext.transl('geändert'))
+                Sprachtext.transl('Datentyp'), Sprachtext.transl('Vorkommast.'), Sprachtext.transl('Nachkommast.')
+                , Sprachtext.transl('Rundungseinh.'), Sprachtext.transl('Einheit'), Sprachtext.transl('Min. Wert'),
+                Sprachtext.transl('Max. Wwert')
+                , Sprachtext.transl('geändert'))
             infovalues = (
-            nvl(Wertebereich.anzdatentyp(w.wrtb_typ)), nvl(w.wrtb_num_vorkstellen), nvl(w.wrtb_num_nachkstellen),
-            nvl(w.wrtb_num_rundng_einh), nvl(w.wrtb_num_pheh_id)
-            , nvl(w.wrtb_num_minwert), nvl(w.wrtb_num_maxwert)
-            , nvl(w.wrtb_uc) + ',' + nvl(w.wrtb_dc))
+                nvl(Wertebereich.anzdatentyp(w.wrtb_typ)), nvl(w.wrtb_num_vorkstellen), nvl(w.wrtb_num_nachkstellen),
+                nvl(w.wrtb_num_rundng_einh), nvl(w.wrtb_num_pheh_id)
+                , nvl(w.wrtb_num_minwert), nvl(w.wrtb_num_maxwert)
+                , nvl(w.wrtb_uc) + ',' + nvl(w.wrtb_dc))
         elif (w.wrtb_typ == Wertebereich.ZPKT):
             infoheaders = (
-            Sprachtext.transl('Datentyp'), Sprachtext.transl('Min. Wert'), Sprachtext.transl('Max. Wwert'),
-            Sprachtext.transl('Granularität')
-            , Sprachtext.transl('geändert'))
+                Sprachtext.transl('Datentyp'), Sprachtext.transl('Min. Wert'), Sprachtext.transl('Max. Wwert'),
+                Sprachtext.transl('Granularität')
+                , Sprachtext.transl('geändert'))
             infovalues = (nvl(Wertebereich.anzdatentyp(w.wrtb_typ)), nvl(w.wrtb_zpkt_minwert), nvl(w.wrtb_zpkt_maxwert),
                           Wertebereich.anzgranul(nvl(w.wrtb_zpkt_granularitäet)), nvl(w.wrtb_uc) + ',' + nvl(w.wrtb_dc))
         else:
@@ -1211,7 +1209,7 @@ def printcontentwrtb(plist):
                                                      pvalues=infovalues)
 
         if (w.wrtb_typ == 'LOV'):
-            printwertelist(p_wrtbid=w.wrtb_id)
+            printwertelist(pwrtb=w)
 
         if (w.wrtb_typ == 'GRP'):
             printwrtbmembers(pwrtbid=w.wrtb_id)
@@ -1358,12 +1356,11 @@ def findtransl(pattr, pmodeid, plangs):
         if (pattr in ('ENTI_NAME', 'ATTR_NAME')):
             id = web_sql.elementid(pmodeid=pmodeid, ptyp=pattr[0:4])
             eintrag = filehref(ref=web_sql.entiAnker(id) if pattr == 'ENTI_NAME'
-                                                        else web_sql.attrAnker(id)
+            else web_sql.attrAnker(id)
                                , anz=eintrag, plang=l)
         # fi
         tl.extend([eintrag])
     return tl
-
 
 
 def printtransl(pentiid=None, pattrid=None):

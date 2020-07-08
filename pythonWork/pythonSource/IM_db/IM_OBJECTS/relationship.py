@@ -2,7 +2,7 @@ from datetime import datetime
 
 from IM_DB import dbDML
 from .baseobject import Baseobject
-from .modellelement import Modellelement, Modellelemtyp, ExternalRef
+from .modellelement import Modellelement, Modellelemtype, ExternalRef
 
 
 class Arc(Baseobject):
@@ -10,7 +10,7 @@ class Arc(Baseobject):
     _prefix: str = 'arcs'
     _columnlist: list = ['arcs_id', 'arcs_name', 'arcs_enti_id'
         , 'arcs_uc', 'arcs_dc', 'arcs_um', 'arcs_dm']
-    _extref = {}
+    __extref = {}
 
     def __init__(self, pname, pentiid, puc, pdc=None):
         super().__init__(tablename=Arc._tablename, prefix=Arc._prefix
@@ -20,29 +20,38 @@ class Arc(Baseobject):
         self.arcs_uc = puc
         self.arcs_dc = pdc if (pdc is not None) else str(datetime)
 
-    # __init__
-
     def setsourceid(self, psrc, psrcid):
-        self._extref[psrc] = psrcid
+        self.__extref[psrc] = psrcid
 
     def getsourceid(self, psrc):
         try:
-            return self._extref[psrc]
+            return self.__extref[psrc]
         except:
             return None
 
     def insert(self):
-        self.arcs_id = Modellelement(pmeltid=Modellelemtyp.ARCS, puc=self.arcs_uc, pdc=self.arcs_dc).insert()
-        for key, value in self._extref.items():
-            ExternalRef(pmodeid=self.arcs_id, psrc=key, psrcid=value).insert()
-        return super().insert()
+        self.arcs_id = Modellelement(Modellelemtype.getidbyshortname(Modellelemtype.ARCS)).insert()
+        super().insert()
+
+        ExternalRef.insertextrefs(pmodeid=self.arcs_id, preflist=self.__extref)
+        return self.arcs_id
+
+    def getmodeid(self):
+        return self.arcs_id
+
+    def getrelalist(self):
+        """List of relations in this arc"""
+        return Relation().select(pwhere="arcs_id = {}".format(self.arcs_id))
+
+    def getentity(self):
+        return Entity().getbyid(self.arcs_enti_id)
 
     @staticmethod
     def createtable():
         Baseobject.createtable(ptablename=Arc._tablename
                                , psql="""
 CREATE TABLE arcs(
-    arcs_id        integer  not null primary key autoincrement,
+    arcs_id        integer  not null primary key,
     arcs_name      VARCHAR2(60) NOT NULL,
     arcs_enti_id   integer NOT NULL,
     arcs_uc        VARCHAR2(30) NOT NULL,
@@ -56,9 +65,6 @@ CREATE TABLE arcs(
     """
                                )
 
-    def relalist(self):
-        """List of relations in this arc"""
-        return Relation().select(pwhere="arcs_id = {}".format(self.arcs_id))
 
     @staticmethod
     def delete():
@@ -74,8 +80,6 @@ CREATE TABLE arcs(
 
         return arcs
 
-
-# Arc
 
 class Relation(Baseobject):
     @staticmethod

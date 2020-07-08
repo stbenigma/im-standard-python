@@ -39,7 +39,7 @@ Exklusivbeziehungen einer Gruppe sind alle IsA Beziehungen oder alle funktionale
 <property name="EN_ENTI_SYNONYM" value="Arc"/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<Attribute name="Laufnr" id="C725A402-0ADC-7EBF-B98F-A9FEE6E7B79F">
+<Attribute name="Name" id="C725A402-0ADC-7EBF-B98F-A9FEE6E7B79F">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:04:00 UTC</createdTime>
 <comment><![CDATA[willkürliche Nummerierung zur Untescheidung mehrere Exklusivbeziehungen in einer Entität]]></comment>
@@ -58,8 +58,9 @@ arbitrary numbering to distinguish several exclusive relationships in an entity
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>D54D543B-E914-F013-C8CB-EF073E60F72A</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_COMMENT" value="willkürliche Nummerierung zur Untescheidung mehrere Exklusivbeziehungen in einer Entität"/>
@@ -102,16 +103,14 @@ Name der Entität der in der Kommunikation normalerweise gebraucht wird.
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:04:00 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
-<shouldEngineer>false</shouldEngineer>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
 <item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="false"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
-<pk>true</pk>
+<newElementsIDs>C725A402-0ADC-7EBF-B98F-A9FEE6E7B79F</newElementsIDs>
 <usedAttributes>
 <attributeRef>C725A402-0ADC-7EBF-B98F-A9FEE6E7B79F</attributeRef>
-<attributeRef>EF7B6776-A4EC-B0FE-B212-36F8B0CF226C</attributeRef>
 </usedAttributes>
 </identifier>
 </identifiers>
