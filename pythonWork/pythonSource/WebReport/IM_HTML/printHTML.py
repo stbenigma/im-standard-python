@@ -1201,7 +1201,7 @@ def printcontentwrtb(plist):
                 Sprachtext.transl('Granularität')
                 , Sprachtext.transl('geändert'))
             infovalues = (nvl(Wertebereich.anzdatentyp(w.wrtb_typ)), nvl(w.wrtb_zpkt_minwert), nvl(w.wrtb_zpkt_maxwert),
-                          Wertebereich.anzgranul(nvl(w.wrtb_zpkt_granularitäet)), nvl(w.wrtb_uc) + ',' + nvl(w.wrtb_dc))
+                          Wertebereich.anzgranul(nvl(w.wrtb_zpkt_granularitaet)), nvl(w.wrtb_uc) + ',' + nvl(w.wrtb_dc))
         else:
             infoheaders, infovalues = None, None
         # fi
