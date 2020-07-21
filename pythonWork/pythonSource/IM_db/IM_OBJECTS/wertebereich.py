@@ -203,7 +203,6 @@ CREATE TABLE wertebereiche(
     @staticmethod
     def getbyname(pname :str):
         return Wertebereich().getbyuk(pcolname='wrtb_name', pukvalue=pname)
-    # getbyname¨
 
     @staticmethod
     def getunknown():

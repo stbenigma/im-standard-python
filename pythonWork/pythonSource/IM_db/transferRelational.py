@@ -185,9 +185,10 @@ class Odmmapping:
 
 #Odmmapping
 
-def doattrmapping(pcolmappings,ptabenti):
+def doattrmapping(pcolmappings):
     for colmap in pcolmappings:
-        schaid = Schnittstelleattr().getbyguid(transferModel.findField(colmap,'rID')).scha_id
+        scha = Schnittstelleattr().getbyguid(transferModel.findField(colmap,'rID'))
+        schaid = None if scha is None else scha.scha_id
         attrid = Attribut().getID (pguid=transferModel.findField(colmap,'lID'))
         attf = AttrTransf()
         attf.attf_laufnr =1
@@ -224,7 +225,7 @@ def do1mapping(pfilename):
             tabentimap.tema_bezi_id = dbLookup.beziID(odmmap.logid) if odmmap.logtype == odmmap.RELATYPE else None
             tabentimap.tema_tabl_id = Tabelle().getID(odmmap.relid) if odmmap.reltype == odmmap.TABLETYPE else None
             #colattrmap.tema_tabl_id = Tabelle().getidbyfk(odmmap.relid) if odmmap.reltype == odmmap.FKTYPE else None
-            tabentimap.insert()
+            tabentimap.insert(pdoerrhdlng=False)
         except:
             pass
             if odmmap.logtype == Odmmapping.ENTITYPE:
@@ -244,7 +245,7 @@ def do1mapping(pfilename):
                     )
 
         #try
-        doattrmapping(pcolmappings=odmmap.cntmappings,ptabenti=tabentimap)
+        doattrmapping(pcolmappings=odmmap.cntmappings)
     #for
 
 #do1mapping

@@ -88,11 +88,11 @@ def do1structtype(filename):
         wbgr.wbgr_beschr = findText(el, "comment")
         wbgr.wbgr_uc = findText(el, "createdBy")
         wbgr.wbgr_dc = findText(el, "createdTime")
-        elwrtbid = Wertebereich().getbyguid(wbgr.wbgr_type_ref).wrtb_id
-        if elwrtbid is None:
+        elwrtb = Wertebereich().getbyguid(wbgr.wbgr_type_ref)
+        if elwrtb is None:
             # nimm vorläufig unknown, da mein Typ evtl. noch nicht da ist.
             elwrtbid = Wertebereich().getunknown().wrtb_id
-        # fi
+        else: elwrtbid = elwrtb.wrtb_id
         wbgr.wbgr_wrtb_id_member = elwrtbid
         wbgr.insert()
     # for
@@ -103,8 +103,8 @@ def liesunsfuellwrtb(pwrtb, pxml):
     pwrtb.wrtb_dc = findText(pxml, 'createdTime')
     pwrtb.wrtb_datatype_odm = findText(pxml, 'logicalDatatype')
     daty = Datatype().getbyguid(pwrtb.wrtb_datatype_odm)
-    pwrtb.wrtb_daty_id = daty.daty_id
-    pwrtb.wrtb_typ = daty.daty_grundtyp if daty.daty_grundtyp is not None else 'TEXT'
+    pwrtb.wrtb_daty_id = None if daty is None else daty.daty_id
+    pwrtb.wrtb_typ = 'TEXT' if (daty is None or daty.daty_grundtyp is None) else daty.daty_grundtyp
 
     # print (pwrtb.wrtb_datatype_ref,pwrtb.wrtb_typ )
 
@@ -568,9 +568,13 @@ def transferdiagramme():
 def insertderiveddomain(ptypeguid, pattrname, pvatername, pattrxml):
     wrtb = Wertebereich()
     wrtb.wrtb_name = pattrname
-    if (Wertebereich.getbyname(pname=pattrname).wrtb_name == pattrname):
+    wrtbtest = Wertebereich.getbyname(pname=wrtb.wrtb_name)
+    cnt = 0
+    while (wrtbtest is not None and wrtbtest.wrtb_name == wrtb.wrtb_name):
         # es gibt ihn schon, füge den Vaternamen dazu
-        wrtb.wrtb_name = pattrname + '-' + pvatername
+        cnt += 1
+        wrtb.wrtb_name = pattrname + '-' + pvatername + '-' + str(cnt)
+        wrtbtest = Wertebereich.getbyname(pname=wrtb.wrtb_name)
     wrtb.wrtb_herkunft = Wertebereich.DERIVED
     wrtb.wrtb_datatype_ref = ptypeguid
     wrtb.wrtb_beschr = "generiertes Domain für Datentyp für Attribut {}.{}".format(pvatername, pattrname)

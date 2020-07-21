@@ -106,7 +106,8 @@ class   Baseobject:
         if (len(data) > 1):
             raise Exception('{}: nonunique {}={}'.format(self._tablename, pcolname,pukvalue))
         elif (len(data) == 0):
-            self.__emptyclass()
+            #self.__emptyclass()
+            return None
         else:
             self._fromarray(data[0].toarray())
         # fi
