@@ -20,9 +20,10 @@
 <ownDataTypeParameters>,10,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="EXTR_SOURCE" id="9398BD0C-2747-AFB9-80C1-4BB07BC00704">
+<Column name="EXTR_SOURCE_NAME" id="9398BD0C-2747-AFB9-80C1-4BB07BC00704">
 <createdBy>stb</createdBy>
 <createdTime>2020-07-07 15:49:55 UTC</createdTime>
+<comment><![CDATA[Name of external source of this element]]></comment>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
@@ -33,6 +34,7 @@
 <Column name="EXTR_SOURCE_ID" id="E9F6F7A3-2CBE-B248-2B3D-184F503028BA">
 <createdBy>stb</createdBy>
 <createdTime>2020-07-07 15:49:55 UTC</createdTime>
+<comment><![CDATA[ID in external source for this element]]></comment>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
@@ -45,6 +47,7 @@
 <createdBy>stb</createdBy>
 <createdTime>2020-07-07 15:49:55 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
@@ -66,7 +69,7 @@
 <colUsage columnID="0A2731D6-4571-7BE3-C132-5122661AD1DD"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="40325232-3AD7-C4D6-A1C0-96CD22537579" name="Extr_ref_UN">
+<ind_PK_UK id="40325232-3AD7-C4D6-A1C0-96CD22537579" name="EXTR_UK">
 <createdBy>stb</createdBy>
 <createdTime>2020-07-07 16:04:57 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
