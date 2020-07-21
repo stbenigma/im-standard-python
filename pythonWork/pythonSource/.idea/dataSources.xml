@@ -43,5 +43,11 @@
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
       <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/../../../../BELIINF/DB/belimo_crm.db</jdbc-url>
     </data-source>
+    <data-source source="LOCAL" name="LEISTER_IM.db" uuid="5a5b8656-7352-4159-ac1b-3fdcf57a34cb">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/../../../../LEISTER/DB/LEISTER_IM.db</jdbc-url>
+    </data-source>
   </component>
 </project>

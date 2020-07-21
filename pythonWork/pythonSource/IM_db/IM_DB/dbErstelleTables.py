@@ -138,7 +138,7 @@ CREATE TABLE benudef_wert(
 		)
 """)
 
-    Modellelemtyp.createtable()
+    Modellelemtype.createtable()
     Modellelement.createtable()
     ExternalRef.createtable()
 

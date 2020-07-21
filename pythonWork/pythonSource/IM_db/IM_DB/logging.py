@@ -6,14 +6,15 @@ logcount: int = 0
 logfile = None
 
 
-def initlog():
+def initlog(pfunc):
     """initializes the logfile for appending (creating if it does not exist)
         sets the logcounter to 0"""
     global logcount, logfile
     logcount = 0
     logfile = open(parameters.logfilepath(), 'a+')
-    logfile.write("{}  Model={}  DB={}\n"
+    logfile.write("{}  {}: Model={}  DB={}\n"
                   .format(datetime.now().strftime("%Y-%m-%d %H:%m:%S")
+                          ,pfunc
                           ,parameters.odmIMDirec() + parameters.odmModelName() + parameters.odmIMExtension()
                           ,parameters.dbFilePath()))
 

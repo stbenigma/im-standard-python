@@ -1,6 +1,7 @@
 
 from IM_DB import dbDML,dbDDL
 from mystring import nvl
+import sqlite3
 
 class Boolean:
     TRUE:str='TRUE'
@@ -63,22 +64,33 @@ class   Baseobject:
             self.__dict__[self._columnlist[key]] = val
         return self
 
-    def placehoderstring(self):
-        return ''.join('?,' for col in self._columnlist).rstrip(',')
-
     def getid(self):
         return self.__dict__[self._idcolname]
 
-    def insert(self):
+    def insert(self,pdoerrhdlng=True):
         lsql = """insert into {} ({}) values ({})
-           """.format(self._tablename, Baseobject.columnsliststring(self._columnlist), self.placehoderstring())
-        id = dbDML.insert(lsql, self.totuple())
+           """.format(self._tablename, Baseobject.columnsliststring(self._columnlist)
+                      , Baseobject.columnsliststring(pcollist=self._columnlist,pplaceholder=True))
+        try:
+            id = dbDML.insert(lsql, self.totuple())
+        except sqlite3.Error as e:
+            if pdoerrhdlng:
+                print(str(e))
+                print(self.tostring())
+            #if
+            raise e
+        #try
         self.__dict__[self._idcolname] = id #autocolumns zurücklesen
         return id
-    #insert
 
+
+    def tostring(self):
+        lretval = "Table: {}\n".format(self._tablename)
+        lretval += "\n".join("{} = '{}'".format(col,self.__dict__[col]) for col in self._columnlist)
+        return lretval
 
     def getbyid(self,pid):
+        if pid is None: return None
         data = self.select(pwhere="{}={}".format(self._idcolname, pid))
         if (len(data) > 1):
             raise Exception('{}: nonunique ID={}'.format(self._tablename, pid))
@@ -94,7 +106,8 @@ class   Baseobject:
         if (len(data) > 1):
             raise Exception('{}: nonunique {}={}'.format(self._tablename, pcolname,pukvalue))
         elif (len(data) == 0):
-            self.__emptyclass()
+            #self.__emptyclass()
+            return None
         else:
             self._fromarray(data[0].toarray())
         # fi
@@ -141,8 +154,8 @@ class   Baseobject:
         retval =[]
         for d in data:
             obj = pclass()._fromarray(d)
-            """obj ist vom Typ des Subtypes"""
             try:
+                """obj ist vom Typ des Subtypes"""
                 """ist in MultilangBaseobject definiert"""
                 obj.getsprachvals()
             except Exception as err:
@@ -156,8 +169,9 @@ class   Baseobject:
         dbDML.delete(ptablename)
 
     @staticmethod
-    def columnsliststring(pcollist):
-        return ''.join(col + ',' for col in pcollist).rstrip(',')
+    def columnsliststring(pcollist,pplaceholder=False):
+        return ','.join('?' if pplaceholder else col for col in pcollist)
+
 
 #Baseobject
 

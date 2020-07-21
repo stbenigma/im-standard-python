@@ -1,23 +1,26 @@
 from collections import defaultdict
 
 from IM_DB import dbDML
-from .baseobject import Baseobject
 from .attribut import Attribut
-from .tabelle import Tabelle
+from .baseobject import Baseobject
 from .datatype import Datatype
+from .schnittstelle import Schnittstelle
+from .tabelle import Tabelle
+from .wertebereich import  Wertebereich
+
 
 class Schnittstelleattr(Baseobject):
-    EXTIDUDP:str = 'EXT_ATTR_ID'
-    _tablename:str = 'schnittstelle_attrs'
-    _prefix:str = 'scha'
-    _columnlist:list = ['scha_id', 'scha_column_name', 'scha_format', 'scha_fremdsystem_id'
-                                       ,'scha_beschr', 'scha_type_string', 'scha_tabl_id', 'scha_daty_id'
-                                    , 'scha_wrtb_id','scha_odm_guid'
-                                       ,'scha_uc', 'scha_dc', 'scha_um', 'scha_dm']
+    EXTIDUDP: str = 'EXT_ATTR_ID'
+    _tablename: str = 'schnittstelle_attrs'
+    _prefix: str = 'scha'
+    _columnlist: list = ['scha_id', 'scha_column_name', 'scha_format', 'scha_fremdsystem_id'
+        , 'scha_beschr', 'scha_type_string', 'scha_tabl_id', 'scha_daty_id'
+        , 'scha_wrtb_id', 'scha_odm_guid'
+        , 'scha_uc', 'scha_dc', 'scha_um', 'scha_dm']
 
     def __init__(self):
         super().__init__(tablename=Schnittstelleattr._tablename, prefix=Schnittstelleattr._prefix
-                        ,columnlist = Schnittstelleattr._columnlist)
+                         , columnlist=Schnittstelleattr._columnlist)
 
     @staticmethod
     def createtable():
@@ -47,28 +50,39 @@ class Schnittstelleattr(Baseobject):
         )
         """)
 
-    def webanker(self,pmodelid):
-        return super().webanker(pmodelid)
+    def webanker(self):
+        return super().webanker(pmodelid=self.getintfid())
 
     def getmodellelement(self):
         return Modellelement.getbyelemid(pschaid=self.scha_id)
 
+    def gettable(self):
+        return Tabelle().getbyid(self.scha_tabl_id)
+
     def gettablname(self):
-        tabname = Tabelle().getbyid(self.scha_tabl_id).tabl_name
-        return tabname
-    #gettablname
+        return self.gettable().tabl_name
+
+    def getintf(self):
+        return Schnittstelle().getbyid(self.gettable().tabl_schn_id)
+
+    def getintfname(self):
+        return self.getintf().schn_name
+
+
+    def getintfid(self):
+        return self.getintf().schn_id
 
     def getwrtb(self):
         if (self.scha_wrtb_id is None): return None
         return Wertebereich().getbyid(self.scha_wrtb_id)
 
+
     def getdaty(self):
         return Datatype().getbyid(self.scha_daty_id)
 
-    def getschnid(self):
+    def getintfid(self):
         tab = Tabelle().getbyid(self.scha_tabl_id)
         return tab.tabl_schn_id
-    #getschnid
 
     @staticmethod
     def delete():
@@ -81,14 +95,22 @@ class Schnittstelleattr(Baseobject):
 
     @staticmethod
     def indexlist(pschnid):
-        schas = Schnittstelleattr.select(pwhere= """scha_tabl_id in (select tabl_id from tabellen where tabl_schn_id={})""".format(pschnid)
-                                        ,porderby='scha_column_name')
+        schas = Schnittstelleattr.select(
+            pwhere="""scha_tabl_id in (select tabl_id from tabellen where tabl_schn_id={})""".format(pschnid)
+            , porderby='scha_column_name')
         indexlist = []
         for s in schas:
             t = Tabelle().getbyid(s.scha_tabl_id)
-            indexlist.append(["{} ({})".format(s.scha_column_name,t.tabl_name),  s.webanker(t.tabl_schn_id), s.scha_id])
+            indexlist.append(["{} ({})".format(s.scha_column_name, t.tabl_name), s.webanker(), s.scha_id])
         return indexlist
-    #indexlist
+
+    # indexlist
+
+    @staticmethod
+    def selectbyschnid(pschnid):
+        return Schnittstelleattr.select(pwhere="exists (select 1 from tabellen where"
+                                               + " tabl_schn_id = {} ".format(pschnid)
+                                               + " and tabl_id = scha_tabl_id)")
 
     @staticmethod
     def mappingto(pschaid):
@@ -121,13 +143,6 @@ class Schnittstelleattr(Baseobject):
         for d in data:
             if (d[2] is not None):
                 retval.append([d[0], d[1], [Attribut().getbyid(e) for e in d[2].split(',')]])
-            #attrs = []
-                    #for e in d[2].split(','):
-                    # aname = dbDML.select("select attr_anzname from attributes where attr_id = {}".format(e))
-                    # attrs.append((aname[0][0], 'ATTR' + str(e)))
-                #for
-            #fi
-                #retval.append([d[0], d[1], attrs])
 
         data = dbDML.select(lsqlt)
         """[ (schnid,schnname, [Schnittstelleattr])]"""
@@ -135,7 +150,7 @@ class Schnittstelleattr(Baseobject):
             if (d[2] is not None):
                 retval.append([d[0], d[1], [Schnittstelleattr().getbyid(e) for e in d[2].split(',')]])
         return retval
-        [[modellid, modellname,[attrid/(colsid)]]]
+
     # maopingto
 
     @staticmethod
@@ -146,22 +161,24 @@ class Schnittstelleattr(Baseobject):
                     join benudef_wert on bdwe_mode_id = mode_id
                     join benudef_eigenschaft on bdeg_id = bdwe_bdeg_id
                         and bdeg_name = '{}'
-                    where mode_scha_id = scha_id)""".format(Schnittstelleattr._tablename,Schnittstelleattr.EXTIDUDP))
-#Schnittstelleattr
+                    where mode_scha_id = scha_id)""".format(Schnittstelleattr._tablename, Schnittstelleattr.EXTIDUDP))
+
+
+# Schnittstelleattr
 
 class AttrTransf(Baseobject):
-    INBOUND:str = 'INBOUND'
-    OUTBOUND:str = 'OUTBOUND'
-    MANUELL:str = 'MANUELL'
-    PERIODE:str = 'PERIODE'
-    ZPKT:str = 'ZPKT'
+    INBOUND: str = 'INBOUND'
+    OUTBOUND: str = 'OUTBOUND'
+    MANUELL: str = 'MANUELL'
+    PERIODE: str = 'PERIODE'
+    ZPKT: str = 'ZPKT'
 
     _tablename: str = 'attr_transf'
     _prefix: str = 'attf'
-    _columnlist: list = ['attf_id' ,'attf_laufnr'  ,'attf_richtung'
-                        ,'attf_transf_formel'   ,'attf_ausloeseart' ,'attf_ausloeseperiod'
-                        ,'attf_scha_id' ,'attf_attr_id' ,'attf_uc'
-                        ,'attf_dc'  ,'attf_um'  ,'attf_dm']
+    _columnlist: list = ['attf_id', 'attf_laufnr', 'attf_richtung'
+        , 'attf_transf_formel', 'attf_ausloeseart', 'attf_ausloeseperiod'
+        , 'attf_scha_id', 'attf_attr_id', 'attf_uc'
+        , 'attf_dc', 'attf_um', 'attf_dm']
 
     def __init__(self):
         super().__init__(tablename=AttrTransf._tablename, prefix=AttrTransf._prefix
@@ -170,7 +187,7 @@ class AttrTransf(Baseobject):
     @staticmethod
     def createtable():
         Baseobject.createtable(ptablename=AttrTransf._tablename
-                           , psql="""
+                               , psql="""
                             create table attr_transf 
          (
        attf_id integer primary key autoincrement,
@@ -200,7 +217,7 @@ class AttrTransf(Baseobject):
     @staticmethod
     def select(pwhere=None, porderby=None):
         return Baseobject.select(pclass=AttrTransf
-                                    , pwhere=pwhere, porderby=porderby)
+                                 , pwhere=pwhere, porderby=porderby)
 
     @staticmethod
     def columnlist(pattrid=None):
@@ -216,12 +233,12 @@ class AttrTransf(Baseobject):
         retval = []
         try:
             for d in data:
-                schn_name,schn_id = d[0],d[1]
+                schn_name, schn_id = d[0], d[1]
                 collist = {}
                 for schaid in d[2].split(','):
                     scha = Schnittstelleattr().getbyid(schaid)
                     tabname = Tabelle().getbyid(scha.scha_tabl_id).tabl_name
-                    collist[tabname+'.'+scha.scha_column_name] = scha.webanker(schn_id)
+                    collist[tabname + '.' + scha.scha_column_name] = scha.webanker()
                 # for
                 retval.append([schn_name, collist])
             # for
@@ -230,7 +247,8 @@ class AttrTransf(Baseobject):
             pass
         # try
         return retval
-    #columnlist
+
+    # columnlist
     @staticmethod
     def colattrmap():
         data = dbDML.select("""select attf_scha_id,attf_attr_id
@@ -242,6 +260,4 @@ class AttrTransf(Baseobject):
         # for
         return retval
     # colattrmap
-#AttrTransf
-
-
+# AttrTransf

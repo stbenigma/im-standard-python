@@ -8,7 +8,7 @@ from IM_DB import parameters, dbConnect, dbErstelleTables, logging
 def main(par1):
     """Main program for createDB"""
     parameters.initparam(p_callarg=par1)
-    logging.initlog()
+    logging.initlog('CreateDB')
 
     # falls es das Verzeichnis für die DB nicht gibt erzeuge es
     if not os.path.isdir(parameters.dbDirect()):

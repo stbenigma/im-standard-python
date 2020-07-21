@@ -1,8 +1,7 @@
-from .baseobject import Baseobject,MultilangBaseobject
+from IM_DB import *
+from .baseobject import MultilangBaseobject,Baseobject
 from .sprachtext import Sprachtext
 from .datatype import Datatype
-from .modellelement import Modellelement
-from IM_DB import *
 
 class Wertebereich(MultilangBaseobject):
     DERIVED:str ='DER'
@@ -108,19 +107,8 @@ CREATE TABLE wertebereiche(
  CONSTRAINT wrtb_daty_fk FOREIGN KEY (wrtb_daty_id) references datatypes (daty_id)
  )"""
     )
-    @staticmethod
-    def delete():
-        Baseobject.delete(Wertebereich._tablename)
-
     def getmodellelement(self):
         return Modellelement.getbyelemid(pwrtbid=self.wrtb_id)
-
-    @staticmethod
-    def select(pwhere=None,porderby=None):
-        wrtbs = Baseobject.select(pclass=Wertebereich
-                                ,pwhere=pwhere,porderby=porderby)
-        return wrtbs
-    #select
 
     def getname(self,plang):
         return self._getsprachval(colname='wrtb_name', plang=plang)
@@ -129,13 +117,16 @@ CREATE TABLE wertebereiche(
         mode = self.getmodellelement()
         return mode.mode_id if (mode is not None) else None
     #getmodeid
-    
+
+    def isderived(self):
+        return self.wrtb_herkunft == Wertebereich.DERIVED
+
     def typeinfo(self):
         def nvl(x, default=''):
             return x if (x is not None) else default
 
-        daty= Datatype().getbyid(self.wrtb_daty_id)
-        typestring = daty.daty_name
+        daty = Datatype().getbyid(self.wrtb_daty_id)
+        typestring = daty.daty_name if daty is not None else ''
         if (self.wrtb_typ in (Wertebereich.TEXT,Wertebereich.LOV)):
             infoheaders = (Sprachtext.transl('Datentyp'), Sprachtext.transl('Max. Länge'), Sprachtext.transl('Syntaxregel'), Sprachtext.transl('geändert'))
             infovalues = (nvl(self.wrtb_typ),nvl(self.wrtb_text_maxlng),nvl(self.wrtb_text_syntaxregel),nvl(self.wrtb_uc)+','+nvl(self.wrtb_dc))
@@ -184,6 +175,22 @@ CREATE TABLE wertebereiche(
         return data[0][0]
     #refattranz
 
+    def displdatatype(self):
+        return Wertebereich.anzdatentyp(self.wrtb_typ)
+
+    @staticmethod
+    def select(pwhere=None,porderby=None):
+        wrtbs = Baseobject.select(pclass=Wertebereich
+                                ,pwhere=pwhere,porderby=porderby)
+        return wrtbs
+    #select
+
+
+    @staticmethod
+    def delete():
+        Baseobject.delete(Wertebereich._tablename)
+
+
     @staticmethod
     def indexlist(pherkunft,plang : str):
         data = Wertebereich.select(pwhere="wrtb_herkunft = '{}'".format(pherkunft), porderby='wrtb_name')
@@ -196,7 +203,6 @@ CREATE TABLE wertebereiche(
     @staticmethod
     def getbyname(pname :str):
         return Wertebereich().getbyuk(pcolname='wrtb_name', pukvalue=pname)
-    # getbyname¨
 
     @staticmethod
     def getunknown():
@@ -352,7 +358,7 @@ class Vorgabewert(Baseobject):
         Baseobject.delete(Vorgabewert._tablename)
 
     @staticmethod
-    def select(pwhere=None,porderby=None):
+    def select(pwhere=None,porderby="vgwt_sortrhfg"):
         return Baseobject.select(pclass=Vorgabewert
                                 ,pwhere=pwhere,porderby=porderby)
 

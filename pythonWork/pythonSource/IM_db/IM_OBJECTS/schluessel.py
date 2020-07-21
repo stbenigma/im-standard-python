@@ -87,6 +87,14 @@ CREATE TABLE schluesselelement(
 """)
 
     @staticmethod
+    def isinkey(pattrid=None,prelaid=None)->bool:
+        if pattrid is not None:
+            return len(Schluesselelement.select(pwhere="scel_attr_id = {}".format(pattrid))) > 0
+        if prelaid is not None:
+            return len(Schluesselelement.select(pwhere="scel_rela_id = {}".format(prelaid))) > 0
+        return False
+    #isinkey
+    @staticmethod
     def delete():
         Baseobject.delete(Schluesselelement._tablename)
 

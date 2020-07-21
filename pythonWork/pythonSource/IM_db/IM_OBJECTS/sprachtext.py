@@ -2,6 +2,9 @@ from IM_DB import dbDML,dbDDL
 from .baseobject import Baseobject
 
 class Sprachtext(Baseobject):
+    EN:str='en'
+    DE:str='de'
+    FR:str='fr'
     ENTI_NAME:str='ENTI_NAME'
     ENTI_COMMENT:str='ENTI_COMMENT'
     ATTR_NAME:str='ATTR_NAME'
@@ -10,6 +13,9 @@ class Sprachtext(Baseobject):
     RELA_TEXT_FROM:str='RELA_TEXT_FROM'
     RELA_TEXT_TO:str='RELA_TEXT_TO'
     SYNO_NAME:str='SYNO_NAME'
+
+    __greportLang:str = None
+
 
     _tablename:str ='sprachtexte'
     _prefix:str ='sptx'
@@ -184,6 +190,7 @@ CREATE TABLE sprachtexte(
         , 'Diagramm': 'Diagram'
         , 'Diagramme': 'Diagrams'
         , 'Dokument': 'Document'
+        , 'Dokumente': 'Documents'
         , 'Domäne': 'Domain'
         , 'Einheit': 'Unit'
         , 'Element': 'Element'
@@ -249,12 +256,13 @@ CREATE TABLE sprachtexte(
         , "Vaterdokument": "Parent"
         , 'verschlüsselt': 'encrypted'
         , 'Verwendet für Attribute': 'Used for attributes'
+        , 'Verwendet für Columns': 'Used for columns'
         , 'Verwendet in Attributgruppen': 'Used in attribute groups'
         , 'Verwendet von': 'used by'
         , 'Vorkommast.': 'digits before period'
         , 'Wert': 'Value'
         , 'Wertebereich': 'Domain'
-        , 'Wertebereichs': 'Domains'
+        , 'Wertebereiche': 'Domains'
         , 'Werteliste': 'List of values'
         , 'wiederholt': 'repeated'
         , 'Woche': 'week'
@@ -282,6 +290,7 @@ CREATE TABLE sprachtexte(
         , "Diagramme": "Diagrammes"
         , "Domäne": "Domaine"
         , "Dokument": "Document"
+        , "Dokumente": "Documents"
         , "Einheit": "Unité"
         , "Element": "Élément"
         , "Elemente": "Éléments"
@@ -346,6 +355,7 @@ CREATE TABLE sprachtexte(
         , "Vaterdokument": "Document père"
         , "verschlüsselt": "Chiffré"
         , "Verwendet für Attribute": "Utilisé par les attributs"
+        , 'Verwendet für Columns': 'Utilisé par les columns'
         , "Verwendet in Attributgruppen": "Utilisé dans les groupes d'attributs"
         , "Verwendet von": "Utilisé pour"
         , "Vorkommastellen": "Position avant la décimale"
@@ -359,32 +369,28 @@ CREATE TABLE sprachtexte(
                       }
     @staticmethod
     def transl(pname):
-        if (__greportLang == 'de'):
+        if (Sprachtext.__greportLang == Sprachtext.DE):
             return pname
-        elif (__greportLang == 'en'):
+        elif (Sprachtext.__greportLang == Sprachtext.EN):
             try:
-                return __translNameEN[pname]
+                return Sprachtext.__translNameEN[pname]
             except:
                 return pname
-        elif (__greportLang == 'fr'):
+        elif (Sprachtext.__greportLang == Sprachtext.FR):
             try:
-                return __translNameFR[pname]
+                return Sprachtext.__translNameFR[pname]
             except:
                 return pname
         else:
             return pname
     # transl
 
-
-    __greportLang: str = None
-
     @staticmethod
     def reportLang(newval=None):
-        global __greportLang
         if (newval is None):
-            return __greportLang
+            return Sprachtext.__greportLang
         else:
-            __greportLang = newval
+            Sprachtext.__greportLang = newval
     # reportLang
 
 #Sprachtext

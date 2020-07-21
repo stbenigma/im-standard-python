@@ -14,7 +14,7 @@ def filldbmain():
 def main(p_param1):
     """Main program for fillDB"""
     parameters.initparam(p_callarg=p_param1)
-    logging.initlog()
+    logging.initlog('fillDB')
 
     dbConnect.openDB(parameters.dbFilePath(), fks='OFF')
     filldbmain()

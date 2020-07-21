@@ -35,13 +35,16 @@ class Tabelle(Baseobject):
                             )
 
     def webanker(self):
-        return super().webanker(self.tabl_schn_id)
+        return super().webanker(pmodelid=self.tabl_schn_id)
 
     def getmodellelement(self):
         return Modellelement.getbyelemid(ptablid=self.tabl_id)
 
     def getcolumns(self):
         return Schnittstelleattr.select("scha_tabl_id = {}".format(self.tabl_id))
+
+    def getname(self):
+        return self.tabl_name
 
     @staticmethod
     def delete():
@@ -86,21 +89,18 @@ class Tabelle(Baseobject):
             """.format(ptablid,ptablid)
         retval = []
         data = dbDML.select(lsqle)
-        """[(0,'name', [Entitaet]'), (54,'name', [Tabelle])]"""
+        """[(0,'name', [Entitaet]'), ]"""
         for d in data:
-            entis = []
-            for e in d[2].split(','):
-                ename = dbDML.select("select enti_name from entitaeten where enti_id = {}".format(e))
-                entis.append((ename[0][0],'ENTI'+str(e)))
-            retval.append([d[0], d[1],entis])
+            retval.append([d[0], d[1],[Entitaet().getbyid(e) for e in d[2].split(',')]])
         data = dbDML.select(lsqlt)
-        """[(0,'name', [Entitaet]'), (54,'name', [Tabelle])]"""
+        """[(54,'name', [Tabelle])]"""
         for d in data:
             retval.append([d[0], d[1],[Tabelle().getbyid(e) for e in d[2].split(',')]])
         return retval
     #maopingto
 #Tabelle
 from .schnittstattr import Schnittstelleattr
+from .entitaet import Entitaet
 
 
 

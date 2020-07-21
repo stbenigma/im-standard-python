@@ -42,7 +42,7 @@ def lookup(psql):
 def delete(ptableName):
     cursor = dbConnect.myDbConn.cursor()
     try:
-        cursor.execute("delete from " + ptableName)
+        cursor.execute("delete from {}".format(ptableName))
     except sqlite3.Error as e:
         if re.match("table .* already exists",e.__str__()):
             pass
