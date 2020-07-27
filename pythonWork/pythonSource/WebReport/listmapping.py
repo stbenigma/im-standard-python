@@ -56,6 +56,7 @@ def setcell(pws, pcolumn, prow, pvalue
     # if
     """ Alignement horizontal  ?left?, ?centerContinuous?, ?center?, ?distributed?, ?fill?, ?justify?, ?right?, ?general?"""
 
+
 # setcell
 
 def writesheettabent(pwb: Workbook):
@@ -66,23 +67,23 @@ def writesheettabent(pwb: Workbook):
     ws.cell(column=colidx, row=rowidx, value='Table')
     colidx += 1
 
-    cntcolidx,cntrowidx = colidx,rowidx+1
+    cntcolidx, cntrowidx = colidx, rowidx + 1
     xcounts = {}
-    setcell(pws=ws,prow=rowidx+1,pcolumn=colidx,pvalue='Count',phorizontal='right')
+    setcell(pws=ws, prow=rowidx + 1, pcolumn=colidx, pvalue='Count', phorizontal='right')
     colidx += 1
     for idx, enti in enumerate(entities.values()):
-        xcounts[colidx+idx] = 0
+        xcounts[colidx + idx] = 0
         setcell(pws=ws, pcolumn=idx + colidx, prow=rowidx, pvalue=enti[0]
                 , ptext_rotation=90)
     # for
     rowidx += 2
     for skey, sval in schnittstellen.items():
         for tkey, tval in sval.items():
-            xcount,colidx = 0,1
+            xcount, colidx = 0, 1
             setcell(pws=ws, pcolumn=colidx, prow=rowidx, pvalue=skey)
             colidx += 1
             ws.cell(column=colidx, row=rowidx, value=tval[0])
-            colidx += 2 #platz für counter
+            colidx += 2  # platz für counter
             for entiid in entities.keys():
                 if (istintabentimap(tkey, entiid)):
                     setcell(pws=ws, pcolumn=colidx, prow=rowidx, pvalue='X'
@@ -98,7 +99,7 @@ def writesheettabent(pwb: Workbook):
             rowidx += 1
         # for
     # for
-    for key,value in xcounts.items():
+    for key, value in xcounts.items():
         if (value > 0):
             setcell(pws=ws, prow=cntrowidx, pcolumn=key, pvalue=value, phorizontal='right')
     rowidx += 1
@@ -119,8 +120,8 @@ def writesheetentitab(pwb: Workbook):
     ws.cell(column=colidx, row=rowidx + 1, value='Entity')
     colidx += 1
 
-    cntcolidx,cntrowidx = colidx,rowidx + 2
-    setcell(pws=ws,prow=rowidx + 2,pcolumn=colidx,pvalue='Count',phorizontal='right')
+    cntcolidx, cntrowidx = colidx, rowidx + 2
+    setcell(pws=ws, prow=rowidx + 2, pcolumn=colidx, pvalue='Count', phorizontal='right')
     xcounts = {}
     colidx += 1
     for schn_name, tabs in schnittstellen.items():
@@ -135,16 +136,16 @@ def writesheetentitab(pwb: Workbook):
     rowidx += 3
 
     for entiid, enti in entities.items():
-        xcount,colidx = 0,1
+        xcount, colidx = 0, 1
         setcell(pws=ws, pcolumn=colidx, prow=rowidx, pvalue=enti[0])
-        colidx += 2 #platz für counter
+        colidx += 2  # platz für counter
 
         for tabs in schnittstellen.values():
             for tabkey in tabs.keys():
                 if (istintabentimap(tabkey, entiid)):
                     setcell(pws=ws, pcolumn=colidx, prow=rowidx, pvalue='X')
                     xcounts[colidx] += 1
-                    xcount +=1
+                    xcount += 1
                 # if
                 colidx += 1
             # for
@@ -154,7 +155,7 @@ def writesheetentitab(pwb: Workbook):
                     , pvalue=xcount, phorizontal='right')
         rowidx += 1
     # for
-    for key,value in xcounts.items():
+    for key, value in xcounts.items():
         if (value > 0):
             setcell(pws=ws, prow=cntrowidx, pcolumn=key, pvalue=value, phorizontal='right')
     rowidx += 1
@@ -220,7 +221,7 @@ def writesheetcolattr(pwb: Workbook):
 
 # writesheetcolattr
 
-def valmiteol(pval,padd):
+def valmiteol(pval, padd):
     eoladd = '' if (pval == '') else EOL
     return pval + eoladd + padd
 
@@ -253,14 +254,14 @@ def writesheetattrcol(pwb: Workbook):
 
         for sval in schnittstellen.values():
             valuetab = ''
-            for tabkey,tabvalue in sval.items():
+            for tabkey, tabvalue in sval.items():
                 if (istintabentimap(tabkey, entiid)):
-                    valuetab = valmiteol(valuetab ,tabvalue[0])
+                    valuetab = valmiteol(valuetab, tabvalue[0])
                 # if
             # for
             if valuetab != '':
                 setcell(pws=ws, pcolumn=colidx, prow=rowidx, pvalue=valuetab
-                                , pwrap_text=True)
+                        , pwrap_text=True)
             colidx += 3  # skip column and ID col
         # for
         rowidx += 1
@@ -280,17 +281,17 @@ def writesheetattrcol(pwb: Workbook):
                 for tkey, tval in sval.items():
                     for ckey, cval in tval[1].items():
                         if (istincolattrmap(ckey, attrid)):
-                            valuetab = valmiteol(pval=valuetab,padd=tval[0])
-                            valuecol = valmiteol(pval=valuecol,padd=cval[0])
-                            valueid = valmiteol(pval=valueid,padd=nvl(cval[1]))
+                            valuetab = valmiteol(pval=valuetab, padd=tval[0])
+                            valuecol = valmiteol(pval=valuecol, padd=cval[0])
+                            valueid = valmiteol(pval=valueid, padd=nvl(cval[1]))
                         # if
                     # for
                     if (valuecol != ''):
                         setcell(pws=ws, pcolumn=colidx, prow=rowidx, pvalue=valuetab
                                 , pwrap_text=True)
-                        setcell(pws=ws, pcolumn=colidx+1, prow=rowidx, pvalue=valuecol
+                        setcell(pws=ws, pcolumn=colidx + 1, prow=rowidx, pvalue=valuecol
                                 , pwrap_text=True)
-                        setcell(pws=ws, pcolumn=colidx+2, prow=rowidx, pvalue=valueid
+                        setcell(pws=ws, pcolumn=colidx + 2, prow=rowidx, pvalue=valueid
                                 , pwrap_text=True)
                         headcell = ws.cell(column=colidx, row=2)
                         headcell.alignment = Alignment(text_rotation=0, wrap_text=True)
@@ -307,6 +308,8 @@ def writesheetattrcol(pwb: Workbook):
         width = 35
         ws.column_dimensions[colnum_string(idx)].width = width
     # for
+
+
 # writesheetattrcol
 
 def writesheetattrcolold(pwb: Workbook):
@@ -364,6 +367,8 @@ def writesheetattrcolold(pwb: Workbook):
         width = 5 if (ws.cell(column=idx, row=2).alignment.text_rotation == 90) else 25
         ws.column_dimensions[colnum_string(idx)].width = width
     # for
+
+
 # writesheetattrcolold
 
 def writesheetschnittstelle(pwb, pschnname, pschn):
@@ -420,6 +425,7 @@ def writesheetschnittstelle(pwb, pschnname, pschn):
     ws.column_dimensions['C'].width = 35
     ws.column_dimensions['D'].width = 35
 
+
 # writesheetschnittstelle
 
 def writexls(pfilename: str):
@@ -428,7 +434,7 @@ def writexls(pfilename: str):
 
     writesheettabent(pwb=wb)
     writesheetentitab(pwb=wb)
-#    writesheetattrcolold(pwb=wb)
+    #    writesheetattrcolold(pwb=wb)
     writesheetattrcol(pwb=wb)
     #    writesheetcolattr(pwb=wb)
     for schnname, schn in schnittstellen.items():
@@ -643,46 +649,48 @@ def filllists(plang):
     global schnittstellen
     global tabentimap
     global colattrmap
-    entities = {enti.enti_id: [enti.enti_name
-        , {tem[0]: [t for t in tem[1].keys()]
-           for tem in TablEntiMap.tablelist(pentiid=enti.enti_id)}
-        , {attr.attr_id: [attr.attr_anzname, attr.attr_tech_name]
-           for attr in enti.getattributes()}
-                               ]
+    entities = {enti.enti_id:
+                    [enti.enti_name
+                        , {tem[0]: [t for t in tem[1].keys()]
+                           for tem in TablEntiMap.tablelist(pentiid=enti.enti_id)}
+                        , {attr.attr_id: [attr.attr_anzname, attr.attr_tech_name]
+                           for attr in enti.getattributes()}
+                     ]
                 for enti in Entitaet.select()}
     attributes = {attr.attr_id: [attr.attr_anzname, attr.attr_tech_name, attr.attr_enti_id, attr.attr_bezi_id] for attr
                   in Attribut.select()}
     tables = {tabl.tabl_id: [tabl.tabl_name
-        , Schnittstelle.getname(tabl.tabl_schn_id)
-        , {c.scha_id: c.scha_column_name for c in tabl.getcolumns()}
+                            , Schnittstelle.getname(tabl.tabl_schn_id)
+                            , {c.scha_id: c.scha_column_name for c in tabl.getcolumns()}
                              ]
               for tabl in Tabelle.select()}
 
     columns = {scha.scha_id: [scha.scha_column_name, scha.scha_tabl_id, scha.scha_fremdsystem_id]
-               for scha in Schnittstelleattr.select()}
+                            for scha in Schnittstelleattr.select()}
     schnittstellen = {schn.schn_name:
                           {tabl.tabl_id: [tabl.tabl_name
-                                        , {c.scha_id: [c.scha_column_name, c.scha_fremdsystem_id]
-                                            for c in tabl.getcolumns()
-                                           }
-                                        ] for tabl in Tabelle.selectbyschnid(schn.schn_id)
+                                           , {c.scha_id: [c.scha_column_name, c.scha_fremdsystem_id]
+                                                 for c in tabl.getcolumns()
+                                                }
+                                          ] for tabl in Tabelle.selectbyschnid(schn.schn_id)
                            }
-                      for schn in Schnittstelle.select()}
+                      for schn in Schnittstelle.select()
+                      }
     tabentimap = TablEntiMap.extendedtabentimap()
+
+    matentry = lambda tabid, entiid: 'X' if (tabid in tabentimap) and (entiid in tabentimap[tabid]) else ''
     for tkey, tval in tables.items():
-        matentry = lambda tabid, entiid: 'X' if (tabid in tabentimap) and (entiid in tabentimap[tabid]) else ''
         maps = [matentry(tkey, e) for e in entities.keys()]
         tval.append(maps)
     # for
     for ekey, eval in entities.items():
-        matentry = lambda tabid, entiid: 'X' if (tabid in tabentimap) and (entiid in tabentimap[tabid]) else ''
         maps = [matentry(tkey, ekey) for tkey in tables.keys()]
         eval.append(maps)
     # for
     colattrmap = AttrTransf.colattrmap()
+    colmatentry = lambda colid, attrid: 'X' if (istincolattrmap(colid, attrid)) else ''
     for colid, cval in columns.items():
-        matentry = lambda colid, attrid: 'X' if (istincolattrmap(colid, attrid)) else ''
-        maps = [matentry(colid, attrid) for attrid in attributes.keys()]
+        maps = [colmatentry(colid, attrid) for attrid in attributes.keys()]
         cval.append(maps)
     # for
 
