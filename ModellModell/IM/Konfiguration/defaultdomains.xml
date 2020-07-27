@@ -262,6 +262,20 @@
 <fileName>defaultdomains</fileName>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 </Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="Beziehungsendetyp" id="58A81D94-A2AD-3DA7-4B9E-471B043185E0">
+<createdBy>stb</createdBy>
+<createdTime>2020-07-27 16:15:31 UTC</createdTime>
+<comment><![CDATA[Cardinalität am Ende der Beziehung ]]></comment>
+<ownerDesignName>System</ownerDesignName>
+<avTSortOrder>0</avTSortOrder>
+<dataTypeSize>1 CHAR</dataTypeSize>
+<fileName>defaultdomains</fileName>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<listOfValues>
+<valueDef value="1" description=""/>
+<valueDef value="M" description=""/>
+</listOfValues>
+</Domain>
 <Domain class="oracle.dbtools.crest.model.design.Domain" name="GUID" id="5D3D105A-15CC-2DBC-8E41-2A63484D069D">
 <createdBy>stb</createdBy>
 <createdTime>2019-08-24 10:45:12 UTC</createdTime>

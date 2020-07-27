@@ -34,8 +34,9 @@ Die in anderen Darstellungsarten gebräuchlichen Beziehungen können aus  Option
 <createdTime>2020-02-04 14:57:52 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>474B8F52-5B70-256E-A0FA-DF8164EAFE54</domain>
 <listOfValues>
 <valueDef value="1:1" description=""/>
 <valueDef value="ISA" description=""/>
@@ -107,6 +108,7 @@ Die in anderen Darstellungsarten gebräuchlichen Beziehungen können aus  Option
 <Column name="RELA_ENTI_ID_FROM" id="09AC4CAF-5379-3DBE-06B6-BC8029966843">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 14:57:52 UTC</createdTime>
+<comment><![CDATA[Entitiy at which the relationship starts]]></comment>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -121,6 +123,7 @@ Die in anderen Darstellungsarten gebräuchlichen Beziehungen können aus  Option
 <Column name="RELA_ARC_ID_FROM" id="F35004ED-6F5B-17EB-8713-4F721692F856">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 15:00:03 UTC</createdTime>
+<comment><![CDATA[ARC-ID at FROM-side]]></comment>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -134,7 +137,7 @@ Die in anderen Darstellungsarten gebräuchlichen Beziehungen können aus  Option
 <Column name="RELA_ASSOC_FROM_TO" id="3BF0B389-59E2-BA79-C1E4-FD56E1B80A64">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 14:57:52 UTC</createdTime>
-<comment><![CDATA[Was verbindet die von-Entität mit der zu-Entität]]></comment>
+<comment><![CDATA[What describes the relationship from -> to]]></comment>
 <generatorID>1E4F5AA9-8DAA-B81A-4D48-EDCE07CDC56A</generatorID>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
@@ -144,38 +147,42 @@ Die in anderen Darstellungsarten gebräuchlichen Beziehungen können aus  Option
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="RELA_ABBILDTYP_FROM_TO" id="F9029008-B480-DCC3-1BF6-B46F326C4B9E">
+<Column name="RELA_MAPTYPE_FROM_TO" id="F9029008-B480-DCC3-1BF6-B46F326C4B9E">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 14:57:52 UTC</createdTime>
+<comment><![CDATA[FROM-entity instance goes to 1 or M TO-entity instance(s)]]></comment>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT025</logicalDatatype>
+<domain>58A81D94-A2AD-3DA7-4B9E-471B043185E0</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="RELA_PFLICHT_ASSOC_FROM_TO" id="F4B385C2-F714-5CAE-B3FB-215AB02B6EBF">
+<Column name="RELA_NOTNULL_ASSOC_FROM_TO" id="F4B385C2-F714-5CAE-B3FB-215AB02B6EBF">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 14:57:52 UTC</createdTime>
-<comment><![CDATA[von-Entität muss mind. 1 eine Verbindung zur zu-Entität haben]]></comment>
+<comment><![CDATA[Cardinality > 0]]></comment>
 <generatorID>06AEDDE9-FE7B-7129-3EA6-401A12A010FF</generatorID>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
 <Column name="RELA_HIST_FROM_TO" id="E5B27C8B-7627-46EC-610C-EEEA43B98F55">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 14:57:52 UTC</createdTime>
-<comment><![CDATA[JA -> Beziehung kann über die Zeit ändern. Zu einem Zeitpunkt kann nur 1 Beziehung gelten. System muss Historie der Änderungen führen.
-Über Extratabelle zu lösen.]]></comment>
+<comment><![CDATA[TRUE: Relationship is historized, can change over time. 
+]]></comment>
 <generatorID>075993E1-1E10-7A12-4137-89129E7305FB</generatorID>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
@@ -196,19 +203,21 @@ Die in anderen Darstellungsarten gebräuchlichen Beziehungen können aus  Option
 <Column name="RELA_ASSOC_TO_FROM" id="1F465582-DB7A-1367-97EF-0A6B7EBD66AC">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 14:57:52 UTC</createdTime>
-<comment><![CDATA[Was verbindet die von-Entität mit der zu-Entität]]></comment>
+<comment><![CDATA[What describes the relationship to -> from]]></comment>
 <generatorID>1E4F5AA9-8DAA-B81A-4D48-EDCE07CDC56A</generatorID>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>897B91BA-60B8-3A16-793A-97B535605E5E</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
 <Column name="RELA_ARC_ID_TO" id="4EC3CBCE-8C35-03F3-7F1A-F273C5410764">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 14:57:52 UTC</createdTime>
+<comment><![CDATA[ARC-ID at to side]]></comment>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -220,71 +229,38 @@ Die in anderen Darstellungsarten gebräuchlichen Beziehungen können aus  Option
 <colAssociation fkAssociation="049EA077-A80F-61DA-2370-7535366CB57F" referredColumn="8419DB38-AE17-BE94-73F6-B492485B7E69"/>
 </associations>
 </Column>
-<Column name="RELA_ABBILDTYP_TO_FROM" id="391A15BE-7F14-B84D-187F-41276F7232B5">
+<Column name="RELA_MAPTYPE_TO_FROM" id="391A15BE-7F14-B84D-187F-41276F7232B5">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 14:57:52 UTC</createdTime>
+<comment><![CDATA[TO-entity instance goes to 1 or M FROM-entity instance(s)]]></comment>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT025</logicalDatatype>
+<domain>58A81D94-A2AD-3DA7-4B9E-471B043185E0</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="RELA_PFLICHT_ASSOC_TO_FROM" id="2F61EFAA-E298-25D2-CFB6-219BB3BAD123">
+<Column name="RELA_NOTNULL_ASSOC_TO_FROM" id="2F61EFAA-E298-25D2-CFB6-219BB3BAD123">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 14:57:52 UTC</createdTime>
-<comment><![CDATA[von-Entität muss mind. 1 eine Verbindung zur zu-Entität haben]]></comment>
+<comment><![CDATA[Cardinality > 0]]></comment>
 <generatorID>06AEDDE9-FE7B-7129-3EA6-401A12A010FF</generatorID>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
 <Column name="RELA_HIST_TO_FROM" id="E47949BE-E7EB-8881-5272-EE6E815895A0">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 14:57:52 UTC</createdTime>
-<comment><![CDATA[JA -> Beziehung kann über die Zeit ändern. Zu einem Zeitpunkt kann nur 1 Beziehung gelten. System muss Historie der Änderungen führen.
-Über Extratabelle zu lösen.]]></comment>
+<comment><![CDATA[TRUE:  Relationship is historized, can change over time. 
+]]></comment>
 <generatorID>075993E1-1E10-7A12-4137-89129E7305FB</generatorID>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-</Column>
-<Column name="RELA_ODM_GUID" id="1907FC87-3BDC-244E-71E7-843CC81E9F74">
-<createdBy>stb</createdBy>
-<createdTime>2020-02-04 14:57:52 UTC</createdTime>
-<commentInRDBMS><![CDATA[ID aus dem ODM übernommen]]></commentInRDBMS>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<nullsAllowed>true</nullsAllowed>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-</Column>
-<Column name="RELA_SOURCE_ENTI_GUID" id="07B1A5A0-D904-2670-FFB2-5BC468FC9E81">
-<createdBy>stb</createdBy>
-<createdTime>2020-02-04 14:57:52 UTC</createdTime>
-<comment><![CDATA[GUID der SOURCE-Entity aus der Subview-Beschreibung. VON/ZU können vertauscht sein.]]></comment>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<nullsAllowed>true</nullsAllowed>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-</Column>
-<Column name="RELA_TARGET_ENTI_GUID" id="D7535355-35C2-23C4-2FA7-49C490415D22">
-<createdBy>stb</createdBy>
-<createdTime>2020-02-04 14:57:52 UTC</createdTime>
-<comment><![CDATA[GUID der arget-Entity aus der Subview-Beschreibung. VON/ZU können vertauscht sein.]]></comment>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
@@ -365,7 +341,7 @@ Die in anderen Darstellungsarten gebräuchlichen Beziehungen können aus  Option
 <colUsage columnID="40E9736F-3ABE-3ABD-5FEA-D4131796E800"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="0CC9987A-0DF9-17C7-CF77-F2D8C298EFF6" name="BEZIEHUNG_ARC_FK">
+<ind_PK_UK id="0CC9987A-0DF9-17C7-CF77-F2D8C298EFF6" name="RELA_ARC_TO_FK">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 15:00:03 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -375,7 +351,7 @@ Die in anderen Darstellungsarten gebräuchlichen Beziehungen können aus  Option
 <colUsage columnID="4EC3CBCE-8C35-03F3-7F1A-F273C5410764"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="F71187E9-60FB-5317-60B4-48D4FAD14003" name="BEZIEHUNG_ARC_FKv2">
+<ind_PK_UK id="F71187E9-60FB-5317-60B4-48D4FAD14003" name="RELA_ARC_FROM_FK">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 15:00:29 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -385,7 +361,7 @@ Die in anderen Darstellungsarten gebräuchlichen Beziehungen können aus  Option
 <colUsage columnID="F35004ED-6F5B-17EB-8713-4F721692F856"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="D8DC16AC-D925-4E43-BCEB-B0F311A7FFED" name="BEZIEHUNG_ENTITAET_FK">
+<ind_PK_UK id="D8DC16AC-D925-4E43-BCEB-B0F311A7FFED" name="RELA_ENTI_FROM_FK">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 15:01:12 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -395,7 +371,7 @@ Die in anderen Darstellungsarten gebräuchlichen Beziehungen können aus  Option
 <colUsage columnID="09AC4CAF-5379-3DBE-06B6-BC8029966843"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="FF9B5796-CB8A-EC3F-2F0F-3DB85A33D1B6" name="BEZIEHUNG_ENTITAET_FKv2">
+<ind_PK_UK id="FF9B5796-CB8A-EC3F-2F0F-3DB85A33D1B6" name="RELA_ENTI_TO_FK">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 15:01:29 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>

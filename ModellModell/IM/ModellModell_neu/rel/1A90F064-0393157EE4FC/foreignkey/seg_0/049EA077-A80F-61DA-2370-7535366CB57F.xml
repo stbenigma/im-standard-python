@@ -1,15 +1,15 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="049EA077-A80F-61DA-2370-7535366CB57F" containerWithKeyObject="6261D7D5-B7D0-6A08-A99D-9DD6652D863D" localFKIndex="0CC9987A-0DF9-17C7-CF77-F2D8C298EFF6" name="BEZIEHUNG_ARC_FK">
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="049EA077-A80F-61DA-2370-7535366CB57F" containerWithKeyObject="6261D7D5-B7D0-6A08-A99D-9DD6652D863D" localFKIndex="0CC9987A-0DF9-17C7-CF77-F2D8C298EFF6" name="RELA_ARC_TO_FK">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 15:00:03 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
-<referredTableLongName>ARC</referredTableLongName>
+<referredTableLongName>ARCS</referredTableLongName>
 <deleteRule>NO ACTION</deleteRule>
 <referredTableID>EA2CAFF9-C7D7-CA8C-28A9-28698D0F930B</referredTableID>
 <keyObject>314F3D71-3AF8-EB0E-26F4-C6BE41CAC519</keyObject>
 <referredKeyID>314F3D71-3AF8-EB0E-26F4-C6BE41CAC519</referredKeyID>
 <mandatory>true</mandatory>
-<refColNames>ARC_ID</refColNames>
+<refColNames>ARCS_ID</refColNames>
 <transferable>true</transferable>
 <rely>false</rely>
 <columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
