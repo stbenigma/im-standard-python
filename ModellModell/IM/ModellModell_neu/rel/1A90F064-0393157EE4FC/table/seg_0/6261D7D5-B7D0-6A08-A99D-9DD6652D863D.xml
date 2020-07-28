@@ -1,20 +1,42 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="6261D7D5-B7D0-6A08-A99D-9DD6652D863D" name="RELATION">
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="6261D7D5-B7D0-6A08-A99D-9DD6652D863D" name="RELATIONS">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 14:57:52 UTC</createdTime>
-<comment><![CDATA[Verbindung zweier Entitäten mit Assoziationstext, Optionalität und Abbildungstyp
+<comment><![CDATA[Relationship connecting 2 entities (could be the same one)
+Types are 1:1, M:1 (functional), M:N or ISA
 
-Die in anderen Darstellungsarten gebräuchlichen Beziehungen können aus  Optionalität und Abbildungstyp hergeleitet werden
-0-1	Optional  - 1
-1-1	Pflicht - 1
-0-many	Optional - many
-1-many	Pflicht - many]]></comment>
+ISA is a 1:1 representation representing a subtype be it as real (exclusive) subtype (entity in entity ("a Partner is either a Person or a Company") 
+or as a role (an entity can act in several roles ("a Customer can be (all of) a Tenant, a Owner, a Dealer, a OEM-customer")
+Condition for ISA
+    subtype: 	SuperEntity has 1:1 mandatory relationships to more than 1 SubEntity. The relationships must be in a arc (meaning they are  exlusive).
+    role: 		 SuperEntity has 1:1 optinal relationships with at least one SubEntity. 
+    both types:  	The SubEntities have a mandatory relationship with the SuperEntity (meaning the cannot exists without the SuperEntity)
+
+ASSOC_FROM_TO / ASSOC_TO_FROM
+	can be empty for type ISA but are mandatory for all other types
+
+ARC_ID_FROM / ARC_ID_TO
+	An end of a relationship is in a ARC (meaning exclusiv in respect to all others relationships in the same ARC)
+	
+MAPTYPE_FROM_RO, MANDATORY_FROM_TO (likewise for ...TO_FROM)
+indicate the cardinality and optionality in one direction.
+MAPTYPE	 MANDATORY   Cardinality
+    1	 TRUE	      	 1 .. 1
+    1	 FALSE		 0 .. 1
+    M	 TRUE		 1 .. M
+    M	 FALSE		 0 .. M
+
+HIST_FROM_TO / HIST_TO_FROM
+	TRUE	Relationship is historized (temporal) in this direction, meaning it can change over time.
+	Does only make sense for M:1 (function), 1:1 or ISA relationships. It allows to model a "1" relationship even if it can change over time.
+	(This type has to be implemented in a data model with an intersection table, containing a valid-from/valid-to mechanism
+
+]]></comment>
 <generatorID>4BEC4009-B321-3912-D30B-FADF6F8AF982</generatorID>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <ordsAlias>beziehung</ordsAlias>
 <abbreviation>RELA</abbreviation>
 <allowColumnReorder>false</allowColumnReorder>
-<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <existDependencyConstraintName>BEZI_TYPE_CHJ</existDependencyConstraintName>
 <existDependencyGenerationLevel>Discriminator value</existDependencyGenerationLevel>
 <parsed>true</parsed>
@@ -152,14 +174,13 @@ Die in anderen Darstellungsarten gebräuchlichen Beziehungen können aus  Option
 <createdTime>2020-02-04 14:57:52 UTC</createdTime>
 <comment><![CDATA[FROM-entity instance goes to 1 or M TO-entity instance(s)]]></comment>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
-<useDomainConstraints>false</useDomainConstraints>
 <use>0</use>
 <logicalDatatype>LOGDT025</logicalDatatype>
 <domain>58A81D94-A2AD-3DA7-4B9E-471B043185E0</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="RELA_NOTNULL_ASSOC_FROM_TO" id="F4B385C2-F714-5CAE-B3FB-215AB02B6EBF">
+<Column name="RELA_MANDATORY_FROM_TO" id="F4B385C2-F714-5CAE-B3FB-215AB02B6EBF">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 14:57:52 UTC</createdTime>
 <comment><![CDATA[Cardinality > 0]]></comment>
@@ -234,14 +255,13 @@ Die in anderen Darstellungsarten gebräuchlichen Beziehungen können aus  Option
 <createdTime>2020-02-04 14:57:52 UTC</createdTime>
 <comment><![CDATA[TO-entity instance goes to 1 or M FROM-entity instance(s)]]></comment>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
-<useDomainConstraints>false</useDomainConstraints>
 <use>0</use>
 <logicalDatatype>LOGDT025</logicalDatatype>
 <domain>58A81D94-A2AD-3DA7-4B9E-471B043185E0</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="RELA_NOTNULL_ASSOC_TO_FROM" id="2F61EFAA-E298-25D2-CFB6-219BB3BAD123">
+<Column name="RELA_MANDATORY_TO_FROM" id="2F61EFAA-E298-25D2-CFB6-219BB3BAD123">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 14:57:52 UTC</createdTime>
 <comment><![CDATA[Cardinality > 0]]></comment>
@@ -329,7 +349,7 @@ Die in anderen Darstellungsarten gebräuchlichen Beziehungen können aus  Option
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
-<ind_PK_UK id="8A7D1B42-A61E-C349-56DF-2D05D62CAAED" name="BEZI_PK">
+<ind_PK_UK id="8A7D1B42-A61E-C349-56DF-2D05D62CAAED" name="RELA_PK">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 14:57:52 UTC</createdTime>
 <generatorID>CEB0C7CA-9CEF-89CC-1712-0634D0BB6B99</generatorID>
@@ -383,26 +403,32 @@ Die in anderen Darstellungsarten gebräuchlichen Beziehungen können aus  Option
 </ind_PK_UK>
 </indexes>
 <tableCheckConstraints itemClass="oracle.dbtools.crest.model.design.constraint.TableLevelConstraint">
-<tableCheckConstraint name="BEZI_ISA_CK2" directorySegmentName="seg_1" id="A09ADF51-2E03-4B2E-6C23-9391F080DAFF">
+<tableCheckConstraint name="RELA_MAPTYPE_CHK" directorySegmentName="seg_1" id="A09ADF51-2E03-4B2E-6C23-9391F080DAFF">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 14:57:52 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
-<rule><![CDATA[(BEZI_TYPE = 'ISA' 
-  AND BEZI_ISA_ABBILDTYP_VON_ZU = '1'
-  AND BEZI_ISA_ABBILDTYP_ZU_VON = '1'
-  AND BEZI_PFLICHT_ASSOC_VON_ZU = 'TRUE'
+<rule><![CDATA[(RELA_TYPE = 'ISA' 
+  AND RELA_MAPTYPE_FROM_TO = '1'
+  AND RELA_MAPTYPE_TO_FROM = '1'
+  AND (RELA_MANDATORY_FROM_TO = 'TRUE'
+  	  OR
+  	  RELA_MANDATORY_TO_FROM = 'TRUE'
+  	  )  	  
 ) OR
-(BEZI_TYPE = '1:1' 
-  AND BEZI_ISA_ABBILDTYP_VON_ZU = '1'
-  AND BEZI_ISA_ABBILDTYP_ZU_VON = '1'
+(RELA_TYPE = '1:1' 
+  AND RELA_MAPTYPE_FROM_TO = '1'
+  AND RELA_MAPTYPE_TO_FROM = '1'
 ) OR
-(BEZI_TYPE = 'M:1' 
-  AND BEZI_ISA_ABBILDTYP_VON_ZU = 'M'
-  AND BEZI_ISA_ABBILDTYP_ZU_VON = '1'
-) OR
-(BEZI_TYPE = 'M:N' 
-  AND BEZI_ISA_ABBILDTYP_VON_ZU = 'M'
-  AND BEZI_ISA_ABBILDTYP_ZU_VON = 'M'
+(RELA_TYPE ='M:1'
+  (RELA_MAPTYPE_FROM_TO = '1'
+  AND RELA_MAPTYPE_TO_FROM = 'M'
+  ) OR
+  (RELA_MAPTYPE_FROM_TO = 'M'
+  AND RELA_MAPTYPE_TO_FROM = '1'
+  )) OR
+(RELA_TYPE = 'M:N' 
+  AND RELA_MAPTYPE_TO_FROM = 'M'
+  AND RELA_MAPTYPE_FROM_TO = 'M'
 )
 
 

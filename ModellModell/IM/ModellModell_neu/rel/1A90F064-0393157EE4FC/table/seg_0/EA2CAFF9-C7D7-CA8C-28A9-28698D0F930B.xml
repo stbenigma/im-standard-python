@@ -2,7 +2,9 @@
 <Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="EA2CAFF9-C7D7-CA8C-28A9-28698D0F930B" name="ARCS">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
-<comment><![CDATA[Entität im systemübergreifenden, konsolidierten, konzeptionellen Modell eines Unternehmens
+<comment><![CDATA[Arcs bundle relationships emerging from one entity together. Only one of the relationships set at a given timepoint.
+
+All relationships in a ARC have to be of the same MAPTYPE and have the same MANDATORY-value at the end of the entity the ARC is defined for.
 ]]></comment>
 <generatorID>C579AF88-68C9-5A94-FD4C-E7B9A73BB814</generatorID>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -31,8 +33,9 @@
 <generatorID>C6B30AE3-78A0-9F53-E89F-2F8E68B64092</generatorID>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
