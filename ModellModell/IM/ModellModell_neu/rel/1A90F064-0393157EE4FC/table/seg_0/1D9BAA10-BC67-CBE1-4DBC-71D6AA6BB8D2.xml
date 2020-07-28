@@ -24,7 +24,7 @@
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <commentInRDBMS><![CDATA[Gibt an, ob ein Attribut gelesen und nach aussen verwendet wird (OUTBOUND) bzw. neu gesetzt wird (INBOUND)]]></commentInRDBMS>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
-<constraintName>CK_TFUS_TFUS_RICHTUNG</constraintName>
+<constraintName>ETUS_CK_TFUS_TFUS_RICHTUNG</constraintName>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
@@ -122,7 +122,7 @@
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
-<ind_PK_UK id="F4FDB65D-0D32-F985-E93C-055CBF505700" name="TFUS_PK">
+<ind_PK_UK id="F4FDB65D-0D32-F985-E93C-055CBF505700" name="ETUS_PK">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -133,7 +133,7 @@
 <colUsage columnID="140BCEF9-1CFD-1AA1-C1B0-08A56A29BF89"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="60F50AB8-2B00-B34C-AD63-E14114122FBE" name="TFUS_TFUS_ATTF_ID_TFUS_ATTR_ID_UN">
+<ind_PK_UK id="60F50AB8-2B00-B34C-AD63-E14114122FBE" name="ETUS_TFUS_ATTF_ID_TFUS_ATTR_ID_UN">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>

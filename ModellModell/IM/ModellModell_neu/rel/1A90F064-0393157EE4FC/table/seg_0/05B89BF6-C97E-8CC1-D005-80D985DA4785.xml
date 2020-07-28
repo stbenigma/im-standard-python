@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="05B89BF6-C97E-8CC1-D005-80D985DA4785" name="ENTITAET">
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="05B89BF6-C97E-8CC1-D005-80D985DA4785" name="ENTITY">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <comment><![CDATA[Entität im systemübergreifenden, konsolidierten, konzeptionellen Modell eines Unternehmens
@@ -25,42 +25,16 @@
 <autoIncrementCycle>false</autoIncrementCycle>
 <isSurrogateColumn>true</isSurrogateColumn>
 </Column>
-<Column name="ENTI_AUGB_ID" id="403100C5-2127-EBC6-CF3D-29FA2DB467C9">
-<createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:18:16 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<nullsAllowed>true</nullsAllowed>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<previousColumn>false</previousColumn>
-<autoIncrementCycle>false</autoIncrementCycle>
-<associations>
-<colAssociation fkAssociation="1357B156-0A05-C255-97B9-B158414E2E26" referredColumn="93CABDA3-CDB5-D77E-2E42-60C571A31EAA"/>
-</associations>
-</Column>
-<Column name="ENTI_TECH_NAME" id="518CF935-33DC-88C2-9045-ED700EE3AB34">
+<Column name="ENTI_NAME" id="518CF935-33DC-88C2-9045-ED700EE3AB34">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <comment><![CDATA[Eindeutiger, technischer Name der Entität (z.B. der Tabelle, die die Entität repräsentiert)]]></comment>
 <generatorID>C6B30AE3-78A0-9F53-E89F-2F8E68B64092</generatorID>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-</Column>
-<Column name="ENTI_NAME2" id="95AD969C-A014-A47B-0385-0891F7CDE38A">
-<createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:18:16 UTC</createdTime>
-<comment><![CDATA[Name der Entität der in der Kommunikation normalerweise gebraucht wird.]]></comment>
-<generatorID>0F2758D2-C7D1-07D3-5C35-F1697AF2FBE0</generatorID>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
@@ -284,7 +258,7 @@
 <colUsage columnID="E0C4ED99-82B2-04CB-AC1C-205352DDAFF3"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="0CD7E33E-CD16-C7F3-B4B4-2DFE735DB01F" name="ENTI_TECH_NAME_UK">
+<ind_PK_UK id="0CD7E33E-CD16-C7F3-B4B4-2DFE735DB01F" name="ENTI_NAME_UK">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <generatorID>298E6664-EE9B-35DA-F9A6-566EA31E3066</generatorID>
@@ -292,18 +266,7 @@
 <indexState>Unique Constraint</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
-<colUsage columnID="95AD969C-A014-A47B-0385-0891F7CDE38A"/>
-</indexColumnUsage>
-</ind_PK_UK>
-<ind_PK_UK id="145C3CB8-5A98-E62F-04A3-5AE83769CB80" name="ENTI_AUGB_FK">
-<createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:18:17 UTC</createdTime>
-<generatorID>7F637C63-8542-9D1B-DA7A-880287278EE4</generatorID>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<indexState>Foreign Key</indexState>
-<isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
-<colUsage columnID="403100C5-2127-EBC6-CF3D-29FA2DB467C9"/>
+<colUsage columnID="518CF935-33DC-88C2-9045-ED700EE3AB34"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>
