@@ -2,11 +2,11 @@
 <Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="D4D2AD96-A499-BB27-09AB-FB8DF0B7572E" name="USER_DEFINED_PROPERTIES">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
-<comment><![CDATA[Für projekt- oder umgebungsspezifische Erweiterungen, können für jedes Modellelement eigene Eigenschaften definiert werden.
+<comment><![CDATA[For non standard attributes (extensions) of any model definition.
 
-Beispiel:
-- Qualitätsanspruch-Level
-- Sicherheitsstufe]]></comment>
+Examples:
+- quality requirement for attributes
+- origin (system) of value or entry]]></comment>
 <generatorID>F0C0AE3F-2E30-4AE5-C926-FCA960AF9B45</generatorID>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <ordsAlias>benutzerdefinierte_eigenschaft</ordsAlias>
@@ -31,6 +31,7 @@ Beispiel:
 <Column name="UDPR_GROUP" id="923D9126-1C86-1C66-D01A-6A18D41FCC8B">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
+<comment><![CDATA[Group name allowing a loose grouping of UDP's]]></comment>
 <generatorID>2A1A6E68-D38D-9101-ABF5-633C9DAFCFEC</generatorID>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
@@ -66,25 +67,16 @@ Beispiel:
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="UDPR_OPTIONAL" id="E60797CC-A052-67B3-D3EA-49FF8FBCA9AB">
-<createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:18:16 UTC</createdTime>
-<generatorID>2F4D354A-29AB-80AE-FFB1-C5784584F1CA</generatorID>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<use>0</use>
-<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
-<domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-</Column>
 <Column name="UDPR_DOMA_ID" id="FCC34B68-EBB3-33DF-541A-0119C1C60293">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
+<comment><![CDATA[Reference to Domain, if UDP has a datatype (with or without LOV's)]]></comment>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>

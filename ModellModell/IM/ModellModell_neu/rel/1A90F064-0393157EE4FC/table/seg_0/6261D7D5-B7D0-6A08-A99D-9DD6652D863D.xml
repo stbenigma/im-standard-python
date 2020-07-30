@@ -31,7 +31,7 @@ HIST_FROM_TO / HIST_TO_FROM
 	Does only make sense for M:1 (function), 1:1 or ISA relationships. It allows to model a "1" relationship even if it can change over time.
 	(This type has to be implemented in a data model with an intersection table, containing a valid-from/valid-to mechanism
 
-]]></comment>
+Subtype of MODELELEMENT. RELA_ID is always identical to the corresponding MODE_ID]]></comment>
 <generatorID>4BEC4009-B321-3912-D30B-FADF6F8AF982</generatorID>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <ordsAlias>beziehung</ordsAlias>
@@ -142,7 +142,7 @@ HIST_FROM_TO / HIST_TO_FROM
 <colAssociation fkAssociation="3A31773E-D0DD-7924-CC70-583E7A7381B6" referredColumn="E0C4ED99-82B2-04CB-AC1C-205352DDAFF3"/>
 </associations>
 </Column>
-<Column name="RELA_ARC_ID_FROM" id="F35004ED-6F5B-17EB-8713-4F721692F856">
+<Column name="RELA_ARCS_ID_FROM" id="F35004ED-6F5B-17EB-8713-4F721692F856">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 15:00:03 UTC</createdTime>
 <comment><![CDATA[ARC-ID at FROM-side]]></comment>
@@ -235,7 +235,7 @@ HIST_FROM_TO / HIST_TO_FROM
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="RELA_ARC_ID_TO" id="4EC3CBCE-8C35-03F3-7F1A-F273C5410764">
+<Column name="RELA_ARCS_ID_TO" id="4EC3CBCE-8C35-03F3-7F1A-F273C5410764">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 14:57:52 UTC</createdTime>
 <comment><![CDATA[ARC-ID at to side]]></comment>
@@ -361,7 +361,7 @@ HIST_FROM_TO / HIST_TO_FROM
 <colUsage columnID="40E9736F-3ABE-3ABD-5FEA-D4131796E800"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="0CC9987A-0DF9-17C7-CF77-F2D8C298EFF6" name="RELA_ARC_TO_FK">
+<ind_PK_UK id="0CC9987A-0DF9-17C7-CF77-F2D8C298EFF6" name="RELA_ARCS_TO_FK">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 15:00:03 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -371,7 +371,7 @@ HIST_FROM_TO / HIST_TO_FROM
 <colUsage columnID="4EC3CBCE-8C35-03F3-7F1A-F273C5410764"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="F71187E9-60FB-5317-60B4-48D4FAD14003" name="RELA_ARC_FROM_FK">
+<ind_PK_UK id="F71187E9-60FB-5317-60B4-48D4FAD14003" name="RELA_ARCS_FROM_FK">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 15:00:29 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -407,7 +407,7 @@ HIST_FROM_TO / HIST_TO_FROM
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 14:57:52 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
-<rule><![CDATA[(RELA_TYPE = 'ISA' 
+<rule><![CDATA[(RELA_TYPE = 'ISAR' 
   AND RELA_MAPTYPE_FROM_TO = '1'
   AND RELA_MAPTYPE_TO_FROM = '1'
   AND (RELA_MANDATORY_FROM_TO = 'TRUE'
@@ -415,23 +415,34 @@ HIST_FROM_TO / HIST_TO_FROM
   	  RELA_MANDATORY_TO_FROM = 'TRUE'
   	  )  	  
 ) OR
+(RELA_TYPE = 'ISAS' 
+  AND RELA_MAPTYPE_FROM_TO = '1'
+  AND RELA_MAPTYPE_TO_FROM = '1'
+  AND RELA_MANDATORY_FROM_TO = 'TRUE'
+  AND RELA_MANDATORY_TO_FROM = 'TRUE'
+  AND (RELA_ARC_ID_FROM IS NOT NULL
+  		OR
+	   RELA_ARC_ID_TO IS NOT NULL
+	  )
+) OR
 (RELA_TYPE = '1:1' 
   AND RELA_MAPTYPE_FROM_TO = '1'
   AND RELA_MAPTYPE_TO_FROM = '1'
 ) OR
 (RELA_TYPE ='M:1'
-  (RELA_MAPTYPE_FROM_TO = '1'
-  AND RELA_MAPTYPE_TO_FROM = 'M'
-  ) OR
-  (RELA_MAPTYPE_FROM_TO = 'M'
-  AND RELA_MAPTYPE_TO_FROM = '1'
-  )) OR
+  AND (
+  	(RELA_MAPTYPE_FROM_TO = '1'
+ 	 AND RELA_MAPTYPE_TO_FROM = 'M'
+  	) OR
+  	(RELA_MAPTYPE_FROM_TO = 'M'
+  	 AND RELA_MAPTYPE_TO_FROM = '1'
+	)
+  )
+) OR
 (RELA_TYPE = 'M:N' 
   AND RELA_MAPTYPE_TO_FROM = 'M'
   AND RELA_MAPTYPE_FROM_TO = 'M'
 )
-
-
 ]]></rule>
 </tableCheckConstraint>
 </tableCheckConstraints>

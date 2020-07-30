@@ -2,18 +2,28 @@
 <Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="CBDBE037-EBA0-63C4-2055-4679E23FA608" name="LANG_TEXTS">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
-<comment><![CDATA[Translation of attribute values in all desired language.
+<comment><![CDATA[Translation of attribute values in all desired languages.
 
-Currently used translations:
+Attributes currently under translation:
 ENTITIES
 	ENTI_NAME
 	ENTI_DESCR
+	ENTI_TOOLTIP
+	ENTI_DISPL_NAME
 SYNONYMS
 	SYNO_NAME
 ATTRIBUTES
 	ATTR_DISPL_NAME
 	ATTR_TOOLTIP
-	ATTR_DESCR]]></comment>
+	ATTR_DESCR
+RELATIONS
+	RELA_ASSOC_FROM_TO
+	RELA_ASSOC_TO_FROM
+DOMAIN_VALUES
+	DOVA_DISPL
+	DOVA_DESCR
+USER_DEFINED_PROPERTIES
+	UDPR_DESCR]]></comment>
 <generatorID>7B049F95-4FBA-1D5D-3942-99C0982251F1</generatorID>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <ordsAlias>sprachtext</ordsAlias>
@@ -77,8 +87,9 @@ ATTRIBUTES
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>

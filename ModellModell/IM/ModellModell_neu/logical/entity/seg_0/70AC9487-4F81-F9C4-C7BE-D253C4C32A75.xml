@@ -1,12 +1,16 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_2" id="F5394923-6DFA-8C01-6D38-3997884B3C41" name="IsA Subtype Beziehung">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="70AC9487-4F81-F9C4-C7BE-D253C4C32A75" name="IsA Rollenbeziehung">
 <createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:04:00 UTC</createdTime>
-<comment><![CDATA[1:1 Beziehung, die einen echten, exklusiven Subtyp definiert.
-Die Beziehungen müssen vom Vater aus 1:1 pflicht und in einem Arc sein.
-Bei ODM Entity in Entity gezeichnet.
-Die Superentity ist immer genau eine der Subentities.
-Es gibt immer mindestens 2 Subentities.]]></comment>
+<createdTime>2020-07-30 13:03:21 UTC</createdTime>
+<comment><![CDATA[1:1 Beziehung, die eine Rolle definiert
+Beziehung von Vater zu Kind ist normalerweise optional. Von Kind zu Vater muss sie mandatory sein.
+
+Beispiel:
+Person IsA 
+	Käufer
+	Angestellter
+	Mieter
+	Vereinsmitglied]]></comment>
 <notes><![CDATA[[DE_ENTI_COMMENT[
 1:1 Beziehung, einen Subtyp definiert.
 exklusive  IsA Subtypen (monohierarchisch, optional von Vater zu Kind) können als Subtypen in der Entität gezeichnet werden. 
@@ -33,6 +37,7 @@ Eine IsA Beziehung beginnt immer bei Subtyp (von Kind zu Vater). Diese Beziehung
 <maxVolumes>9999999</maxVolumes>
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
+<shortName>IsA Beziehungv1</shortName>
 <createSurrogateKey>true</createSurrogateKey>
 <propertyMap>
 <property name="DE_ENTI_COMMENT" value="1:1 Beziehung, einen Subtyp definiert. exklusive  IsA Subtypen (monohierarchisch, optional von Vater zu Kind) können als Subtypen in der Entität gezeichnet werden.   Eine IsA Beziehung beginnt immer bei Subtyp (von Kind zu Vater). Diese Beziehung (Kind zu Vater) kann nicht optional sein."/>

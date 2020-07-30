@@ -1,8 +1,10 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="05B89BF6-C97E-8CC1-D005-80D985DA4785" name="ENTITY">
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="05B89BF6-C97E-8CC1-D005-80D985DA4785" name="ENTITIES">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
-<comment><![CDATA[Entität im systemübergreifenden, konsolidierten, konzeptionellen Modell eines Unternehmens
+<comment><![CDATA[Entity (Thing) described with attributes and relationships.
+
+Subtype of MODELELEMENT. ENTI_ID is always identical to the corresponding MODE_ID
 ]]></comment>
 <generatorID>C579AF88-68C9-5A94-FD4C-E7B9A73BB814</generatorID>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -38,94 +40,90 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="ENTI_BESCHR" id="08A21708-4F3E-0F84-E27F-D0CD967DF2E8">
+<Column name="ENTI_DISPL_NAME" id="A1BE7547-9EC3-4E1B-7776-810460C3E817">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
-<comment><![CDATA[Bedeutung, Nutzen, Nutzung der Entität]]></comment>
-<generatorID>78E7CC00-D288-42DD-98DE-293BD4C4788A</generatorID>
+<comment><![CDATA[(probably translated) Name to be displayed for the entity]]></comment>
+<generatorID>627C46BB-D03D-E7DB-D7EE-B726716B01B4</generatorID>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="ENTI_TOOLTIP" id="8B777157-18AD-F117-A3E0-4FE318DBEA92">
+<Column name="ENTI_SHORT_NAME" id="836827DA-B1D1-8D5A-37E4-F7C9EEDE4A1E">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
-<comment><![CDATA[Anzeige der Bedeutung für Bediener auf einer Maske.]]></comment>
-<generatorID>54A2577F-F95D-B646-574D-6693D12215E0</generatorID>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<nullsAllowed>true</nullsAllowed>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-</Column>
-<Column name="ENTI_KURZNAME" id="836827DA-B1D1-8D5A-37E4-F7C9EEDE4A1E">
-<createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:18:16 UTC</createdTime>
-<comment><![CDATA[Kurzbezeichnung der Entität für die Verwendung aus Überschrift, in Referenzen ]]></comment>
+<comment><![CDATA[Standard abbreviation of entity name]]></comment>
 <generatorID>3F71D6FF-01E1-8249-78A0-A7FF4F70650A</generatorID>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
+<dataTypeSize>15 CHAR</dataTypeSize>
+<ownDataTypeParameters>15 CHAR,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
 <Column name="ENTI_PREFIX" id="472FDC25-B6B3-1765-F0FC-AB76D5328F7F">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
-<comment><![CDATA[Kürzestname (3-5 Zeichen, Normalerweise Grossbuchstaben) der als Präfix für  Implementierungsnamen verwendet werden kann.]]></comment>
+<comment><![CDATA[Shortname (3-5 characters) used as prefix for elements regarding this entity (attributes, keys, etc.)]]></comment>
 <generatorID>05044FC2-ACB4-20D7-8B53-8FCF430B32D9</generatorID>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
+<dataTypeSize>5</dataTypeSize>
+<ownDataTypeParameters>5,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="ENTI_BEISPIELE" id="695B8BF9-E532-EA37-BFB1-A78B5398EE8F">
+<Column name="ENTI_TOOLTIP" id="8B777157-18AD-F117-A3E0-4FE318DBEA92">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
-<comment><![CDATA[Typische Beispiele für eine Ausprägung dieser Entität, als Hinweis auf die Bedeutung]]></comment>
-<generatorID>0A3BF2BE-3C66-86F6-C0C4-789EE9EC7833</generatorID>
+<comment><![CDATA[Display of meaning or usage on a display, in a report (probably translated)]]></comment>
+<generatorID>54A2577F-F95D-B646-574D-6693D12215E0</generatorID>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="ENTI_ERW_TUPEL#" id="BE1B59A3-59F1-A5AC-1C0B-9BDA12269866">
+<Column name="ENTI_DESCR" id="08A21708-4F3E-0F84-E27F-D0CD967DF2E8">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
-<comment><![CDATA[Grössenordnung der Tupelanzahl in dieser Entität]]></comment>
+<comment><![CDATA[Definition, meaning, usage of the entity (probably translated)]]></comment>
+<generatorID>78E7CC00-D288-42DD-98DE-293BD4C4788A</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ENTI_EXP_TUPLE#" id="BE1B59A3-59F1-A5AC-1C0B-9BDA12269866">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:18:16 UTC</createdTime>
+<comment><![CDATA[Description of expected number of tuples for this entity.
+Can be approx. or textual description]]></comment>
 <generatorID>5D1A133A-66CD-CCDD-815F-E71B76100EF4</generatorID>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-</Column>
-<Column name="ENTI_ODM_GUID" id="9910058E-1D59-D5FD-A060-B8043E1F2EBD">
-<createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:18:16 UTC</createdTime>
-<commentInRDBMS><![CDATA[ID aus dem ODM übernommen]]></commentInRDBMS>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<nullsAllowed>true</nullsAllowed>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
+<dataTypeSize>500 CHAR</dataTypeSize>
+<ownDataTypeParameters>500 CHAR,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
 <Column name="ENTI_UC" id="01CDC45C-4502-7B70-2913-D5400EDAD65D">
@@ -135,7 +133,8 @@
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
+<dataTypeSize>30</dataTypeSize>
+<ownDataTypeParameters>30,,</ownDataTypeParameters>
 <computed>true</computed>
 <autoIncrementCycle>false</autoIncrementCycle>
 <propertyMap>
@@ -162,9 +161,9 @@
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>LOGDT024</logicalDatatype>
-<dataTypeSize>30 BYTE</dataTypeSize>
-<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<dataTypeSize>30 CHAR</dataTypeSize>
+<ownDataTypeParameters>30 CHAR,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 <propertyMap>
 <property name="ctemplateID" value="B2E17D53-C2F7-74D9-022D-5D63F3931519"/>
@@ -183,68 +182,6 @@
 <propertyMap>
 <property name="ctemplateID" value="B398D247-00C1-F016-3BBB-FE65CFFFF7AA"/>
 </propertyMap>
-</Column>
-<Column name="ENTI_Erstellzpkt" id="DAF40560-7E6F-0D8A-1103-A03558FC2D69">
-<createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:18:16 UTC</createdTime>
-<generatorID>B1CF1AB7-77FE-E32D-AD6E-3C6A42050BA9</generatorID>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT015</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-</Column>
-<Column name="ENTI_Änderungszpkt_[N]" id="DB4066D0-823F-A93E-B732-4C6AEDF6B199">
-<createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:18:16 UTC</createdTime>
-<generatorID>FCC3F095-4611-9BC5-82A2-24FEDCDEEE33</generatorID>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<nullsAllowed>true</nullsAllowed>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT015</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-</Column>
-<Column name="ENTI_Synonym_[LN]" id="69B09B40-5CC9-22E7-09C5-53BEBB9F26FA">
-<createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:18:16 UTC</createdTime>
-<comment><![CDATA[Name, der für diese Entität auch verwendet wird]]></comment>
-<generatorID>86F63762-7E3D-9675-C4EB-5EF70C2112E7</generatorID>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<nullsAllowed>true</nullsAllowed>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-</Column>
-<Column name="ENTI_AnzeigeName_[L]" id="A1BE7547-9EC3-4E1B-7776-810460C3E817">
-<createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:18:16 UTC</createdTime>
-<comment><![CDATA[Name des Hoheitsbereichs]]></comment>
-<generatorID>627C46BB-D03D-E7DB-D7EE-B726716B01B4</generatorID>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<nullsAllowed>true</nullsAllowed>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<previousColumn>false</previousColumn>
-<autoIncrementCycle>false</autoIncrementCycle>
-</Column>
-<Column name="ENTI_CATEGORY_GUID" id="4E4C31A8-57F5-7200-659C-BC8312987F20">
-<createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:18:16 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<nullsAllowed>true</nullsAllowed>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
-<dataTypeSize>36 CHAR</dataTypeSize>
-<ownDataTypeParameters>36 CHAR,,</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">

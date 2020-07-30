@@ -1,16 +1,11 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="4A049229-48DF-87C4-4C97-618573EA45C7" name="MODELLELEM_TYP">
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="4A049229-48DF-87C4-4C97-618573EA45C7" name="MODELELEM_TYPE">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
-<comment><![CDATA[Elemente die im Modell verwendet und in diagrammen dargestellt werden können
+<comment><![CDATA[types of model elements which are subtypes of a model element
 
 Beispiele:
-Entitäten
-Beziehungen
-Akteurrolle
-UseCase
-Betreiber
-Hersteller]]></comment>
+Entities, attributes, relationships, synonsm, etc.]]></comment>
 <generatorID>117C4773-B758-77B4-DFD1-F0A9B2C78B1D</generatorID>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <ordsAlias>modellelementtyp</ordsAlias>
@@ -33,7 +28,7 @@ Hersteller]]></comment>
 <autoIncrementCycle>false</autoIncrementCycle>
 <isSurrogateColumn>true</isSurrogateColumn>
 </Column>
-<Column name="MELT_KURZNAME" id="A773CFF6-E701-102D-33B6-BB674BED3D2B">
+<Column name="MELT_SHORTNAME" id="A773CFF6-E701-102D-33B6-BB674BED3D2B">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <generatorID>55DC9BDD-F539-F988-AC4E-5A990F2763E8</generatorID>
@@ -52,147 +47,6 @@ Hersteller]]></comment>
 <use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-</Column>
-<Column name="MELT_BREITE" id="518D5EA5-54AD-5A1D-CEBC-6A107597E174">
-<createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:18:16 UTC</createdTime>
-<commentInRDBMS><![CDATA[Vorgabewert der Darstellung des Randes um das Element]]></commentInRDBMS>
-<generatorID>8B735900-0D91-B088-FE52-28C12ECB5967</generatorID>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<nullsAllowed>true</nullsAllowed>
-<useDomainConstraints>false</useDomainConstraints>
-<use>0</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
-<domain>9899F774-954D-6AB0-8DC2-BB1FE9F99D28</domain>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-</Column>
-<Column name="MELT_HOEHE" id="FDF9363E-81E3-04FF-C7A1-D32AEE37BD59">
-<createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:18:16 UTC</createdTime>
-<commentInRDBMS><![CDATA[Vorgabewert der Darstellung des Randes um das Element]]></commentInRDBMS>
-<generatorID>8B735900-0D91-B088-FE52-28C12ECB5967</generatorID>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<nullsAllowed>true</nullsAllowed>
-<useDomainConstraints>false</useDomainConstraints>
-<use>0</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
-<domain>9899F774-954D-6AB0-8DC2-BB1FE9F99D28</domain>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-</Column>
-<Column name="MELT_DECKKRAFT" id="7D81099C-DB11-9C55-7606-D0F2909F3D21">
-<createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:18:16 UTC</createdTime>
-<generatorID>81F5FE40-4448-69B3-37C1-E5DE22FC7B0A</generatorID>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<nullsAllowed>true</nullsAllowed>
-<use>0</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
-<domain>3C43C579-B2CF-0898-C553-AF95467F1601</domain>
-<defaultValue>100</defaultValue>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-<listOfRanges>
-<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
-<beginValue>0</beginValue>
-<endValue>100</endValue>
-</rangeDef>
-</listOfRanges>
-</Column>
-<Column name="MELT_FARBE" id="467AA82B-8FCF-1863-4C68-63F7149BE8EE">
-<createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:18:16 UTC</createdTime>
-<generatorID>81F5FE40-4448-69B3-37C1-E5DE22FC7B0A</generatorID>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<nullsAllowed>true</nullsAllowed>
-<use>0</use>
-<logicalDatatype>LOGDT024</logicalDatatype>
-<domain>06269521-C0BC-78CB-FBC8-656101307358</domain>
-<defaultValue>000000</defaultValue>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-</Column>
-<Column name="MELT_RANDBREITE" id="E83161DD-90CE-900C-3634-4877966C22CF">
-<createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:18:16 UTC</createdTime>
-<commentInRDBMS><![CDATA[Vorgabewert der Darstellung des Randes um das Element]]></commentInRDBMS>
-<generatorID>8B735900-0D91-B088-FE52-28C12ECB5967</generatorID>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<nullsAllowed>true</nullsAllowed>
-<useDomainConstraints>false</useDomainConstraints>
-<use>0</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
-<domain>CB54E08F-9CBF-16C7-AB25-64ADCC8C4FFB</domain>
-<defaultValue>1</defaultValue>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-</Column>
-<Column name="MELT_RANDDECKKRAFT" id="0AB17DB0-1934-91BE-542A-7B0C552AC9AA">
-<createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:18:16 UTC</createdTime>
-<generatorID>81F5FE40-4448-69B3-37C1-E5DE22FC7B0A</generatorID>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<nullsAllowed>true</nullsAllowed>
-<use>0</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
-<domain>3C43C579-B2CF-0898-C553-AF95467F1601</domain>
-<defaultValue>100</defaultValue>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-<listOfRanges>
-<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
-<beginValue>0</beginValue>
-<endValue>100</endValue>
-</rangeDef>
-</listOfRanges>
-</Column>
-<Column name="MELT_RANDFARBE" id="BC3EC883-D20B-076F-092C-3E5B7F6800D2">
-<createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:18:16 UTC</createdTime>
-<generatorID>81F5FE40-4448-69B3-37C1-E5DE22FC7B0A</generatorID>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<nullsAllowed>true</nullsAllowed>
-<use>0</use>
-<logicalDatatype>LOGDT024</logicalDatatype>
-<domain>06269521-C0BC-78CB-FBC8-656101307358</domain>
-<defaultValue>000000</defaultValue>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-</Column>
-<Column name="MELT_SCHRIFTGROESSE" id="56568175-4C93-164D-11CC-E4F2F15BFD72">
-<createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:18:16 UTC</createdTime>
-<commentInRDBMS><![CDATA[Vorgabewert der Schriftgrösse des Elementsnamens]]></commentInRDBMS>
-<generatorID>1E09C419-0036-4F2A-CD1F-B9F8EBF0F182</generatorID>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<shouldEngineer>false</shouldEngineer>
-<nullsAllowed>true</nullsAllowed>
-<use>0</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
-<domain>435C11BA-FCF7-BBBA-6AA9-FAB7326273D3</domain>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-<listOfRanges>
-<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
-<beginValue>1</beginValue>
-<endValue>999</endValue>
-</rangeDef>
-</listOfRanges>
-</Column>
-<Column name="MELT_SCHRIFTFARBE" id="6FBB4D50-8057-E8A9-0227-1D1359D21D79">
-<createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:18:16 UTC</createdTime>
-<generatorID>1F173911-54B3-F632-33E4-3E24E25C1797</generatorID>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<shouldEngineer>false</shouldEngineer>
-<nullsAllowed>true</nullsAllowed>
-<use>0</use>
-<logicalDatatype>LOGDT024</logicalDatatype>
-<domain>06269521-C0BC-78CB-FBC8-656101307358</domain>
-<defaultValue>000000</defaultValue>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>

@@ -67,16 +67,17 @@
 <fileName>defaultdomains</fileName>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <listOfValues>
-<valueDef value="ATTR" description="Attribut"/>
-<valueDef value="BEZI" description="Beziehung"/>
+<valueDef value="ARC" description="Arcs"/>
+<valueDef value="ATTR" description="Attribute"/>
 <valueDef value="BURU" description="Business Rule"/>
-<valueDef value="ENTI" description="Entität"/>
-<valueDef value="ORGE" description="Organisationseinheit"/>
-<valueDef value="SCHA" description="Schnittstellen Attribut"/>
-<valueDef value="SCHN" description="Schnittstelle"/>
+<valueDef value="COL" description="Column"/>
+<valueDef value="DOM" description="Domain"/>
+<valueDef value="ENTI" description="Entity"/>
+<valueDef value="INTF" description="Interface"/>
+<valueDef value="ORGU" description="Organisational Unit"/>
+<valueDef value="RELA" description="Relation"/>
 <valueDef value="SYNO" description="Synonym"/>
-<valueDef value="TABL" description="Tabelle"/>
-<valueDef value="WRTB" description="Wertebereich"/>
+<valueDef value="TABL" description="Table"/>
 </listOfValues>
 </Domain>
 <Domain class="oracle.dbtools.crest.model.design.Domain" name="Referenz" id="17A3A5E7-15FD-8979-FF7A-1FAC09CEC963">
@@ -148,6 +149,22 @@
 </rangeDef>
 </listOfRanges>
 </Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="SequenNr" id="39B01BA7-C3D2-D42E-5518-83CB3845A63D">
+<createdBy>stb</createdBy>
+<createdTime>2020-07-30 14:19:34 UTC</createdTime>
+<ownerDesignName>System</ownerDesignName>
+<avTSortOrder>0</avTSortOrder>
+<dataTypePrecision>5</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<fileName>defaultdomains</fileName>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>1</beginValue>
+<endValue>99999</endValue>
+</rangeDef>
+</listOfRanges>
+</Domain>
 <Domain class="oracle.dbtools.crest.model.design.Domain" name="Deckkraft" id="3C43C579-B2CF-0898-C553-AF95467F1601">
 <createdBy>stb</createdBy>
 <createdTime>2019-08-07 14:13:35 UTC</createdTime>
@@ -214,14 +231,15 @@
 <createdTime>2019-08-26 14:31:17 UTC</createdTime>
 <ownerDesignName>System</ownerDesignName>
 <avTSortOrder>0</avTSortOrder>
-<dataTypeSize>3 CHAR</dataTypeSize>
+<dataTypeSize>4 CHAR</dataTypeSize>
 <fileName>defaultdomains</fileName>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <listOfValues>
-<valueDef value="1:1" description=""/>
-<valueDef value="ISA" description=""/>
-<valueDef value="M:1" description=""/>
-<valueDef value="M:N" description=""/>
+<valueDef value="1:1" description="one - one"/>
+<valueDef value="ISAR" description="IsA Role"/>
+<valueDef value="ISAS" description="IsA Subtype"/>
+<valueDef value="M:1" description="many - one"/>
+<valueDef value="M:N" description="many - many"/>
 </listOfValues>
 </Domain>
 <Domain class="oracle.dbtools.crest.model.design.Domain" name="eMail-Adresse" id="4B4F8F40-D3A4-4F39-8CB3-BB6C57534E96">
@@ -322,7 +340,11 @@
 <fileName>defaultdomains</fileName>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <listOfValues>
+<valueDef value="csv" description=""/>
 <valueDef value="doc" description=""/>
+<valueDef value="docx" description=""/>
+<valueDef value="gif" description=""/>
+<valueDef value="html" description=""/>
 <valueDef value="jpeg" description=""/>
 <valueDef value="json" description=""/>
 <valueDef value="key" description=""/>
@@ -331,10 +353,14 @@
 <valueDef value="pdf" description=""/>
 <valueDef value="png" description=""/>
 <valueDef value="ppt" description=""/>
+<valueDef value="pptx" description=""/>
 <valueDef value="text" description=""/>
+<valueDef value="tiff" description=""/>
 <valueDef value="unbestimmt" description=""/>
 <valueDef value="xls" description=""/>
+<valueDef value="xlsx" description=""/>
 <valueDef value="xml" description=""/>
+<valueDef value="xmlx" description=""/>
 </listOfValues>
 </Domain>
 <Domain class="oracle.dbtools.crest.model.design.Domain" name="Transformationsverarbeitung" id="70371CD6-E734-52D3-6D46-C65613C10CE8">

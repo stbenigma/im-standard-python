@@ -1,8 +1,8 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="C19AA97C-E8BA-D43F-375A-D7C6F7A09B9E" name="SYNONYM">
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="C19AA97C-E8BA-D43F-375A-D7C6F7A09B9E" name="SYNONYMS">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
-<comment><![CDATA[Entität im systemübergreifenden, konsolidierten, konzeptionellen Modell eines Unternehmens
+<comment><![CDATA[Synonyms(-name) for entity-names.
 ]]></comment>
 <generatorID>C579AF88-68C9-5A94-FD4C-E7B9A73BB814</generatorID>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -24,28 +24,16 @@
 <identityColumn>true</identityColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="SYNO_TECH_NAME" id="36618D12-22A5-75F1-F888-C7A16298AB1A">
-<createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:18:16 UTC</createdTime>
-<comment><![CDATA[Eindeutiger, technischer Name der Entität (z.B. der Tabelle, die die Entität repräsentiert)]]></comment>
-<generatorID>C6B30AE3-78A0-9F53-E89F-2F8E68B64092</generatorID>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-</Column>
 <Column name="SYNO_NAME" id="FCCE27C6-6026-1D55-1930-D65B398657EA">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
-<comment><![CDATA[Name der Entität der in der Kommunikation normalerweise gebraucht wird.]]></comment>
+<comment><![CDATA[Name of a syonym of the entity (subject to translation)]]></comment>
 <generatorID>0F2758D2-C7D1-07D3-5C35-F1697AF2FBE0</generatorID>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
-<nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
@@ -130,17 +118,6 @@
 <indexState>Primary Constraint</indexState>
 <indexColumnUsage>
 <colUsage columnID="0138F518-C68B-CCFD-18CE-1018F3F836BC"/>
-</indexColumnUsage>
-</ind_PK_UK>
-<ind_PK_UK id="28C989FA-7380-6A17-D32B-9EFEBF874EBE" name="SYNO_TECH_NAME_UK">
-<createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:18:16 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<indexState>Unique Constraint</indexState>
-<isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
-<colUsage columnID="90B6E357-94BC-0D16-8120-68D469FE901E"/>
-<colUsage columnID="36618D12-22A5-75F1-F888-C7A16298AB1A"/>
 </indexColumnUsage>
 </ind_PK_UK>
 <ind_PK_UK id="047CE434-CCB8-D4BA-6023-82B30627A442" name="SYNO_ENTI_FK">

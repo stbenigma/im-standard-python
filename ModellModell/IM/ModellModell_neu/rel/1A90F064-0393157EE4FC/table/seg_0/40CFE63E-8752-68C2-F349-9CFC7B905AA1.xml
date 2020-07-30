@@ -1,15 +1,15 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="40CFE63E-8752-68C2-F349-9CFC7B905AA1" name="ATTR_BUSRULE">
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="40CFE63E-8752-68C2-F349-9CFC7B905AA1" name="BUSINESRULE_ELEMENT">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <ordsAlias>relation_90</ordsAlias>
-<abbreviation>ATBR</abbreviation>
+<abbreviation>BURE</abbreviation>
 <allowColumnReorder>false</allowColumnReorder>
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
-<Column name="ATBR_ID" id="1E7B1FDD-C5DE-C901-B8EE-E7885D9F1797">
+<Column name="BURE_ID" id="1E7B1FDD-C5DE-C901-B8EE-E7885D9F1797">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -20,7 +20,7 @@
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="ATBR_BURU_ID" id="5522466F-18F2-2484-1065-F3B757F91332">
+<Column name="BURE_BURU_ID" id="5522466F-18F2-2484-1065-F3B757F91332">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -34,7 +34,7 @@
 <colAssociation fkAssociation="15EA5A7C-BFC7-38BB-F8E0-BD11681B49A1" referredColumn="C687607B-C74A-BF2F-2C40-5C7F9986230E"/>
 </associations>
 </Column>
-<Column name="ATBR_ATTR_ID" id="9608DFB6-68F4-19A3-33ED-74EC72C333EE">
+<Column name="BURE_ATTR_ID" id="9608DFB6-68F4-19A3-33ED-74EC72C333EE">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -49,9 +49,9 @@
 <colAssociation fkAssociation="DB98D8FF-599B-3482-F18C-5A53CFEE49DD" referredColumn="DBACFE8C-9A7A-410E-49F7-BA4843AEF9EF"/>
 </associations>
 </Column>
-<Column name="ATBR_WRTB_ID" id="C20DB459-D741-3098-DDFB-40786BB81E3C">
+<Column name="BURE_ENTI_ID" id="947AF9CB-7751-0022-4A3C-5BD83F0B7B00">
 <createdBy>stb</createdBy>
-<createdTime>2020-03-19 13:29:46 UTC</createdTime>
+<createdTime>2020-07-30 14:32:14 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
@@ -61,10 +61,25 @@
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 <associations>
-<colAssociation fkAssociation="C9179B0E-E9AA-0663-0AAF-8FC2CF4F7158" referredColumn="E9756F49-315F-1F97-E181-07756840736D"/>
+<colAssociation fkAssociation="6955E770-195A-BBAD-B620-D5ACF6714E8A" referredColumn="E0C4ED99-82B2-04CB-AC1C-205352DDAFF3"/>
 </associations>
 </Column>
-<Column name="ATBR_UC" id="B314F9DC-FAA1-E180-446A-2C8CD3770774">
+<Column name="BURE_RELA_ID" id="07CB7722-5382-846A-3563-290AF90A4A1F">
+<createdBy>stb</createdBy>
+<createdTime>2020-07-30 14:34:15 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="D9E59C53-990A-A824-4A41-756F545E5FDF" referredColumn="40E9736F-3ABE-3ABD-5FEA-D4131796E800"/>
+</associations>
+</Column>
+<Column name="BURE_UC" id="B314F9DC-FAA1-E180-446A-2C8CD3770774">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -79,7 +94,7 @@
 <property name="ctemplateID" value="F7EEFF47-7A42-2A3E-7DFC-D0558D6996B8"/>
 </propertyMap>
 </Column>
-<Column name="ATBR_DC" id="4AA22A48-4AEA-2432-1B18-2F92D36D2EBA">
+<Column name="BURE_DC" id="4AA22A48-4AEA-2432-1B18-2F92D36D2EBA">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -92,7 +107,7 @@
 <property name="ctemplateID" value="74D877A0-4C3B-63EE-06C5-071C7695907C"/>
 </propertyMap>
 </Column>
-<Column name="ATBR_UM" id="BEE7CC27-106F-61F8-8920-303A8C82ED5D">
+<Column name="BURE_UM" id="BEE7CC27-106F-61F8-8920-303A8C82ED5D">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -107,7 +122,7 @@
 <property name="ctemplateID" value="B2E17D53-C2F7-74D9-022D-5D63F3931519"/>
 </propertyMap>
 </Column>
-<Column name="ATBR_DM" id="847962E3-6F87-DE7D-5BC3-011437C3E4AD">
+<Column name="BURE_DM" id="847962E3-6F87-DE7D-5BC3-011437C3E4AD">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -123,7 +138,7 @@
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
-<ind_PK_UK id="2896C57A-A6C2-E3F0-ADD0-A6A3DFADC1A3" name="ATBR_PK">
+<ind_PK_UK id="2896C57A-A6C2-E3F0-ADD0-A6A3DFADC1A3" name="BURE_PK">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -134,7 +149,7 @@
 <colUsage columnID="1E7B1FDD-C5DE-C901-B8EE-E7885D9F1797"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="6E32345B-215C-E923-7A03-7DAE3CBB6581" name="ATBR_BURU_FK">
+<ind_PK_UK id="6E32345B-215C-E923-7A03-7DAE3CBB6581" name="BURE_BURU_FK">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:17 UTC</createdTime>
 <generatorID>8C373B73-F94E-1E97-BDC0-16E01909D343</generatorID>
@@ -145,7 +160,7 @@
 <colUsage columnID="5522466F-18F2-2484-1065-F3B757F91332"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="5906FB9D-D1B8-FF59-DEE6-37D8D3970EBB" name="ATBR_ATTR_FK">
+<ind_PK_UK id="5906FB9D-D1B8-FF59-DEE6-37D8D3970EBB" name="BURE_ATTR_FK">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:17 UTC</createdTime>
 <generatorID>8C373B73-F94E-1E97-BDC0-16E01909D343</generatorID>
@@ -156,19 +171,30 @@
 <colUsage columnID="9608DFB6-68F4-19A3-33ED-74EC72C333EE"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="45D28CF5-DA45-EC8D-346B-C3C696835031" name="ATBR_WRTB_FK">
+<ind_PK_UK id="0AE5B515-5AA2-F1F0-8C72-23005A809A3F" name="BURE_ENTI_FK">
 <createdBy>stb</createdBy>
-<createdTime>2020-03-19 13:30:44 UTC</createdTime>
+<createdTime>2020-07-30 14:32:14 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <indexState>Foreign Key</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
-<colUsage columnID="C20DB459-D741-3098-DDFB-40786BB81E3C"/>
+<colUsage columnID="947AF9CB-7751-0022-4A3C-5BD83F0B7B00"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="E5DD3827-3361-BF19-B7FC-2B37F9581815" name="BURE_RELA_FK">
+<createdBy>stb</createdBy>
+<createdTime>2020-07-30 14:34:15 UTC</createdTime>
+<generatorID>CEB0C7CA-9CEF-89CC-1712-0634D0BB6B99</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="07CB7722-5382-846A-3563-290AF90A4A1F"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>
 <tableCheckConstraints itemClass="oracle.dbtools.crest.model.design.constraint.TableLevelConstraint">
-<tableCheckConstraint name="ATBR_BUSRULE_CK_1" directorySegmentName="seg_1" id="B4F649A4-1800-AFC1-F18B-0F815BA0A6AF">
+<tableCheckConstraint name="BURE_BUSRULE_CK_1" directorySegmentName="seg_1" id="B4F649A4-1800-AFC1-F18B-0F815BA0A6AF">
 <createdBy>stb</createdBy>
 <createdTime>2020-03-19 13:30:44 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
