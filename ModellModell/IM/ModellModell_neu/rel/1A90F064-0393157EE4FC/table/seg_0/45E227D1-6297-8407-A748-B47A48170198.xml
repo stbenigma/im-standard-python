@@ -19,7 +19,7 @@ Flugkennung bestehend aus Fluggesellschaft kürzel und Flugnummer (LX 247)]]></c
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
-<Column name="WBGR_ID" id="22EEC791-54BC-61F8-95AD-3B3CC5D385C6">
+<Column name="DGRM_ID" id="22EEC791-54BC-61F8-95AD-3B3CC5D385C6">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 15:43:05 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -31,7 +31,7 @@ Flugkennung bestehend aus Fluggesellschaft kürzel und Flugnummer (LX 247)]]></c
 <autoIncrementColumn>true</autoIncrementColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="WBGR_NAME" id="3ECC7B0A-015C-631C-4BDC-BA81B7A5B927">
+<Column name="DGRM_NAME" id="3ECC7B0A-015C-631C-4BDC-BA81B7A5B927">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 15:43:05 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -41,7 +41,7 @@ Flugkennung bestehend aus Fluggesellschaft kürzel und Flugnummer (LX 247)]]></c
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="WBGR_DESCR" id="8BF05688-0A1B-6C14-3820-9F8D8746FC10">
+<Column name="DGRM_DESCR" id="8BF05688-0A1B-6C14-3820-9F8D8746FC10">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 15:43:05 UTC</createdTime>
 <comment><![CDATA[Description of domain groupos (subject to be translated)]]></comment>
@@ -53,7 +53,7 @@ Flugkennung bestehend aus Fluggesellschaft kürzel und Flugnummer (LX 247)]]></c
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="WBGR_DOMA_ID_GROUP" id="37B7F7C4-52BF-89F5-A4E9-01DBB024E6FE">
+<Column name="DGRM_DOMA_ID_GROUP" id="37B7F7C4-52BF-89F5-A4E9-01DBB024E6FE">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 15:43:05 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -70,7 +70,7 @@ Flugkennung bestehend aus Fluggesellschaft kürzel und Flugnummer (LX 247)]]></c
 <colAssociation fkAssociation="739B8E12-2F6E-1B4A-C94E-CA2A573C2C6E" referredColumn="E9756F49-315F-1F97-E181-07756840736D"/>
 </associations>
 </Column>
-<Column name="WBGR_DOMA_ID_MEMBER" id="AE736B96-FF28-B6C0-FB17-B1DFE85E93C7">
+<Column name="DGRM_DOMA_ID_MEMBER" id="AE736B96-FF28-B6C0-FB17-B1DFE85E93C7">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 15:43:05 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -85,7 +85,7 @@ Flugkennung bestehend aus Fluggesellschaft kürzel und Flugnummer (LX 247)]]></c
 <colAssociation fkAssociation="FDE226F9-B7CC-D019-45FC-3DF289525EB2" referredColumn="E9756F49-315F-1F97-E181-07756840736D"/>
 </associations>
 </Column>
-<Column name="WBGR_UC" id="AFB37924-17E3-293F-2C23-83F59E76CAE1">
+<Column name="DGRM_UC" id="AFB37924-17E3-293F-2C23-83F59E76CAE1">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 15:43:05 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -100,7 +100,7 @@ Flugkennung bestehend aus Fluggesellschaft kürzel und Flugnummer (LX 247)]]></c
 <property name="ctemplateID" value="F7EEFF47-7A42-2A3E-7DFC-D0558D6996B8"/>
 </propertyMap>
 </Column>
-<Column name="WBGR_DC" id="63CED501-375F-9279-6CF6-B4CA8856BF41">
+<Column name="DGRM_DC" id="63CED501-375F-9279-6CF6-B4CA8856BF41">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 15:43:05 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -113,7 +113,7 @@ Flugkennung bestehend aus Fluggesellschaft kürzel und Flugnummer (LX 247)]]></c
 <property name="ctemplateID" value="74D877A0-4C3B-63EE-06C5-071C7695907C"/>
 </propertyMap>
 </Column>
-<Column name="WBGR_UM" id="BE9548A3-88C8-F2F8-45DD-4BA7619D4BED">
+<Column name="DGRM_UM" id="BE9548A3-88C8-F2F8-45DD-4BA7619D4BED">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 15:43:05 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -128,7 +128,7 @@ Flugkennung bestehend aus Fluggesellschaft kürzel und Flugnummer (LX 247)]]></c
 <property name="ctemplateID" value="B2E17D53-C2F7-74D9-022D-5D63F3931519"/>
 </propertyMap>
 </Column>
-<Column name="WBGR_DM" id="2AC2F03F-41F2-009A-D74F-72114C5D6C23">
+<Column name="DGRM_DM" id="2AC2F03F-41F2-009A-D74F-72114C5D6C23">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 15:43:05 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -144,7 +144,7 @@ Flugkennung bestehend aus Fluggesellschaft kürzel und Flugnummer (LX 247)]]></c
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
-<ind_PK_UK id="AD414B3B-D145-3C98-B618-AED373D70AA7" name="WBGR_PK">
+<ind_PK_UK id="AD414B3B-D145-3C98-B618-AED373D70AA7" name="DGRM_PK">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 15:43:05 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -154,7 +154,7 @@ Flugkennung bestehend aus Fluggesellschaft kürzel und Flugnummer (LX 247)]]></c
 <colUsage columnID="22EEC791-54BC-61F8-95AD-3B3CC5D385C6"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="DA9AF69D-01D6-74C0-2720-1675A362FA44" name="WBGR_WRTB_UK">
+<ind_PK_UK id="DA9AF69D-01D6-74C0-2720-1675A362FA44" name="DGRM_WRTB_UK">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 15:43:05 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -165,7 +165,7 @@ Flugkennung bestehend aus Fluggesellschaft kürzel und Flugnummer (LX 247)]]></c
 <colUsage columnID="3ECC7B0A-015C-631C-4BDC-BA81B7A5B927"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="22B9B6CC-DE72-AA8B-9B47-A1CC22DCC7CD" name="WBGR_DOMA_FK_GROUPT">
+<ind_PK_UK id="22B9B6CC-DE72-AA8B-9B47-A1CC22DCC7CD" name="DGRM_DOMA_FK_GROUPT">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 15:43:05 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -175,7 +175,7 @@ Flugkennung bestehend aus Fluggesellschaft kürzel und Flugnummer (LX 247)]]></c
 <colUsage columnID="37B7F7C4-52BF-89F5-A4E9-01DBB024E6FE"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="C21F0509-E49D-142F-D45D-65485FFA02C0" name="WBGR_DOMA_FK_MEMBER">
+<ind_PK_UK id="C21F0509-E49D-142F-D45D-65485FFA02C0" name="DGRM_DOMA_FK_MEMBER">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 15:43:05 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>

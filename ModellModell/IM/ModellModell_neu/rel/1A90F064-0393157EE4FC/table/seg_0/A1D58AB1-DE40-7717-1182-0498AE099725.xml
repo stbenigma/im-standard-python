@@ -16,7 +16,7 @@ Entität + Menge aller Schlüsselelemente.]]></comment>
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
-<Column name="SCEL_ID" id="1CB2B149-8AEC-ED5F-9421-8C496DF77452">
+<Column name="KELE_ID" id="1CB2B149-8AEC-ED5F-9421-8C496DF77452">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -28,7 +28,7 @@ Entität + Menge aller Schlüsselelemente.]]></comment>
 <identityColumn>true</identityColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="SCEL_KEYS_ID" id="64105FCF-9B47-E26A-B964-FBB0B32B4859">
+<Column name="KELE_KEYS_ID" id="64105FCF-9B47-E26A-B964-FBB0B32B4859">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -41,7 +41,7 @@ Entität + Menge aller Schlüsselelemente.]]></comment>
 <colAssociation fkAssociation="6540F6C2-45D0-6D1C-694C-CF2E847CC7A2" referredColumn="598C075A-9D11-F728-5D84-45527A70CECC"/>
 </associations>
 </Column>
-<Column name="SCEL_ATTR_ID" id="94E3413C-BADC-C901-3267-FCECFE2EEBC8">
+<Column name="KELE_ATTR_ID" id="94E3413C-BADC-C901-3267-FCECFE2EEBC8">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <comment><![CDATA[Schlüssel einer Entität müssen durch ein Merkmal unterscheidbar werden.]]></comment>
@@ -57,7 +57,7 @@ Entität + Menge aller Schlüsselelemente.]]></comment>
 <colAssociation fkAssociation="6DA87382-BCFF-D932-A612-A70B4CBF46D7" referredColumn="DBACFE8C-9A7A-410E-49F7-BA4843AEF9EF"/>
 </associations>
 </Column>
-<Column name="SCEL_RELA_ID" id="7D462A41-2AA4-0BCB-F906-BA38A2F255AC">
+<Column name="KELE_RELA_ID" id="7D462A41-2AA4-0BCB-F906-BA38A2F255AC">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <comment><![CDATA[Schlüssel einer Entität müssen durch ein Merkmal unterscheidbar werden.]]></comment>
@@ -73,7 +73,7 @@ Entität + Menge aller Schlüsselelemente.]]></comment>
 <colAssociation fkAssociation="3A320813-E865-BAD9-E1B0-F23197893EC8" referredColumn="40E9736F-3ABE-3ABD-5FEA-D4131796E800"/>
 </associations>
 </Column>
-<Column name="SCEL_UC" id="BB98D624-DE62-925C-7C4A-8F85BC3BC01E">
+<Column name="KELE_UC" id="BB98D624-DE62-925C-7C4A-8F85BC3BC01E">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -88,7 +88,7 @@ Entität + Menge aller Schlüsselelemente.]]></comment>
 <property name="ctemplateID" value="F7EEFF47-7A42-2A3E-7DFC-D0558D6996B8"/>
 </propertyMap>
 </Column>
-<Column name="SCEL_DC" id="51CC2BB9-AFB5-C20A-9E07-34DAD2625F6D">
+<Column name="KELE_DC" id="51CC2BB9-AFB5-C20A-9E07-34DAD2625F6D">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -101,7 +101,7 @@ Entität + Menge aller Schlüsselelemente.]]></comment>
 <property name="ctemplateID" value="74D877A0-4C3B-63EE-06C5-071C7695907C"/>
 </propertyMap>
 </Column>
-<Column name="SCEL_UM" id="4B7CBE46-5223-07F6-30FC-63C61492C5CE">
+<Column name="KELE_UM" id="4B7CBE46-5223-07F6-30FC-63C61492C5CE">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -116,7 +116,7 @@ Entität + Menge aller Schlüsselelemente.]]></comment>
 <property name="ctemplateID" value="B2E17D53-C2F7-74D9-022D-5D63F3931519"/>
 </propertyMap>
 </Column>
-<Column name="SCEL_DM" id="4411DBBA-191A-4268-399E-9BF051B58361">
+<Column name="KELE_DM" id="4411DBBA-191A-4268-399E-9BF051B58361">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -132,7 +132,7 @@ Entität + Menge aller Schlüsselelemente.]]></comment>
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
-<ind_PK_UK id="F9EEAB94-1B08-F1FF-10AC-C1BB2A82682C" name="SCEL_PK">
+<ind_PK_UK id="F9EEAB94-1B08-F1FF-10AC-C1BB2A82682C" name="KELE_PK">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <generatorID>0B9DBD0B-9D1E-62D8-C348-01E30DD8A3A5</generatorID>
@@ -144,7 +144,7 @@ Entität + Menge aller Schlüsselelemente.]]></comment>
 <colUsage columnID="1CB2B149-8AEC-ED5F-9421-8C496DF77452"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="0297C34C-DFEC-EC64-9C3A-405E20C8D158" name="SCEL_SCHL_ENTI_ID_SCHL_LAUFNR_UN">
+<ind_PK_UK id="0297C34C-DFEC-EC64-9C3A-405E20C8D158" name="KELE_SCHL_ENTI_ID_SCHL_LAUFNR_UN">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -156,7 +156,7 @@ Entität + Menge aller Schlüsselelemente.]]></comment>
 <colUsage columnID="7D462A41-2AA4-0BCB-F906-BA38A2F255AC"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="3B171D20-34E8-C3A6-33C5-3CEAE831DA5F" name="SCEL_KEYS_FK">
+<ind_PK_UK id="3B171D20-34E8-C3A6-33C5-3CEAE831DA5F" name="KELE_KEYS_FK">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:17 UTC</createdTime>
 <generatorID>A3F5C580-9F75-32B1-4F8D-41C2C9715BBB</generatorID>
@@ -167,7 +167,7 @@ Entität + Menge aller Schlüsselelemente.]]></comment>
 <colUsage columnID="64105FCF-9B47-E26A-B964-FBB0B32B4859"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="174D1FB1-D7D8-F22C-B69F-54B90C83F31C" name="SCEL_ATTR_FK">
+<ind_PK_UK id="174D1FB1-D7D8-F22C-B69F-54B90C83F31C" name="KELE_ATTR_FK">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:17 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -190,7 +190,7 @@ Entität + Menge aller Schlüsselelemente.]]></comment>
 </ind_PK_UK>
 </indexes>
 <tableCheckConstraints itemClass="oracle.dbtools.crest.model.design.constraint.TableLevelConstraint">
-<tableCheckConstraint name="SCEL_ELEMENT_CK" directorySegmentName="seg_1" id="6CA99707-C4F5-292C-5A16-F85C16767AD0">
+<tableCheckConstraint name="KELE_ELEMENT_CK" directorySegmentName="seg_1" id="6CA99707-C4F5-292C-5A16-F85C16767AD0">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>

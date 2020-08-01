@@ -1,17 +1,18 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="2DD358C3-73E3-CA54-53DA-A1985A298BB1" name="VORGABEWERT">
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="2DD358C3-73E3-CA54-53DA-A1985A298BB1" name="DEFAULT_VALUES">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
-<comment><![CDATA[Wert, der für eine Aufzählungs-Domäne ein gültiger Wert ist.
-Das Attribut "Wert" ist der physikalische (sprachunabhängige) Wert, der als eigentliche Wert im konzeptionellen Modell gilt. ]]></comment>
+<comment><![CDATA[Values used in a LOV-Domain
+This values can olny reference as domain of type LOV]]></comment>
 <generatorID>EA10CFC2-DB6B-A934-F362-5835CCEBBCA4</generatorID>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
-<abbreviation>VGWT</abbreviation>
+<ordsAlias>vorgabewert</ordsAlias>
+<abbreviation>DEVA</abbreviation>
 <allowColumnReorder>false</allowColumnReorder>
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
-<Column name="VGWT_ID" id="7E0D0401-B467-9FA1-2C52-60AEAF36E1EF">
+<Column name="DEVA_ID" id="7E0D0401-B467-9FA1-2C52-60AEAF36E1EF">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -24,7 +25,7 @@ Das Attribut "Wert" ist der physikalische (sprachunabhängige) Wert, der als eig
 <autoIncrementCycle>false</autoIncrementCycle>
 <isSurrogateColumn>true</isSurrogateColumn>
 </Column>
-<Column name="VGWT_WERT" id="AB149A04-EAAE-62FA-7410-F7C5CC563B93">
+<Column name="DEVA_VALUE" id="AB149A04-EAAE-62FA-7410-F7C5CC563B93">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <comment><![CDATA[Ein Wert den ein Attribut annehmen kann.]]></comment>
@@ -37,10 +38,10 @@ Das Attribut "Wert" ist der physikalische (sprachunabhängige) Wert, der als eig
 <ownDataTypeParameters>100 CHAR,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="VGWT_SORTRHFG" id="EC12ABEB-D5BD-61A6-8AB4-490569A94942">
+<Column name="DEVA_SORT_ORDER" id="EC12ABEB-D5BD-61A6-8AB4-490569A94942">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
-<comment><![CDATA[Zahl nach der die Werte in einer Anzeige aufsteigend sortiert werden. Leer -> Wert kommt an den Schluss der Liste in zufälliger Reihenfolge]]></comment>
+<comment><![CDATA[Number to sort the values in a displayed LOV-selector]]></comment>
 <generatorID>F8539867-48D4-B1CF-9E87-8AB79BF35E84</generatorID>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
@@ -51,7 +52,7 @@ Das Attribut "Wert" ist der physikalische (sprachunabhängige) Wert, der als eig
 <ownDataTypeParameters>,3,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="VGWT_WRTB_ID" id="79314F8F-E177-E354-B916-CEC6394556A7">
+<Column name="DEVA_DOMA_ID" id="79314F8F-E177-E354-B916-CEC6394556A7">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -66,9 +67,10 @@ Das Attribut "Wert" ist der physikalische (sprachunabhängige) Wert, der als eig
 <colAssociation fkAssociation="D7C87344-5F7B-7B15-08DB-63D7CA5BEDD6" referredColumn="E9756F49-315F-1F97-E181-07756840736D"/>
 </associations>
 </Column>
-<Column name="VGWT_ANZEIGE" id="A37F6AC8-9771-AFF9-FAE3-D44989701C8D">
+<Column name="DEVA_DISPL" id="A37F6AC8-9771-AFF9-FAE3-D44989701C8D">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
+<comment><![CDATA[Value to be displayed (subject to translation)]]></comment>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
@@ -77,9 +79,10 @@ Das Attribut "Wert" ist der physikalische (sprachunabhängige) Wert, der als eig
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="VGWT_BESCHR" id="D3135EF9-0D23-9193-FE15-BFF9F254966F">
+<Column name="DEVA_DESCR" id="D3135EF9-0D23-9193-FE15-BFF9F254966F">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
+<comment><![CDATA[Description (tooltip) of this value (subject to translation)]]></comment>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
@@ -88,7 +91,7 @@ Das Attribut "Wert" ist der physikalische (sprachunabhängige) Wert, der als eig
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="VGWT_UC" id="7FA03A26-B89D-2A27-EF8F-8D9345C90235">
+<Column name="DEVA_UC" id="7FA03A26-B89D-2A27-EF8F-8D9345C90235">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -103,7 +106,7 @@ Das Attribut "Wert" ist der physikalische (sprachunabhängige) Wert, der als eig
 <property name="ctemplateID" value="F7EEFF47-7A42-2A3E-7DFC-D0558D6996B8"/>
 </propertyMap>
 </Column>
-<Column name="VGWT_DC" id="AF47ED18-B762-A4C5-387A-C1220A142852">
+<Column name="DEVA_DC" id="AF47ED18-B762-A4C5-387A-C1220A142852">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -116,7 +119,7 @@ Das Attribut "Wert" ist der physikalische (sprachunabhängige) Wert, der als eig
 <property name="ctemplateID" value="74D877A0-4C3B-63EE-06C5-071C7695907C"/>
 </propertyMap>
 </Column>
-<Column name="VGWT_UM" id="757F597B-9AF1-7254-F3DD-8D381EA01CC7">
+<Column name="DEVA_UM" id="757F597B-9AF1-7254-F3DD-8D381EA01CC7">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -131,7 +134,7 @@ Das Attribut "Wert" ist der physikalische (sprachunabhängige) Wert, der als eig
 <property name="ctemplateID" value="B2E17D53-C2F7-74D9-022D-5D63F3931519"/>
 </propertyMap>
 </Column>
-<Column name="VGWT_DM" id="6D1222AC-4095-B48D-DAC3-385FC1147B0F">
+<Column name="DEVA_DM" id="6D1222AC-4095-B48D-DAC3-385FC1147B0F">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -147,7 +150,7 @@ Das Attribut "Wert" ist der physikalische (sprachunabhängige) Wert, der als eig
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
-<ind_PK_UK id="1AF9792B-0B32-156C-F680-60D91AD61477" name="VGWT_PK">
+<ind_PK_UK id="1AF9792B-0B32-156C-F680-60D91AD61477" name="DEVA_PK">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -157,7 +160,7 @@ Das Attribut "Wert" ist der physikalische (sprachunabhängige) Wert, der als eig
 <colUsage columnID="7E0D0401-B467-9FA1-2C52-60AEAF36E1EF"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="7E2705E2-50EB-ADC6-D9BF-389EF9918F6F" name="VGWT_  VGWT_UK">
+<ind_PK_UK id="7E2705E2-50EB-ADC6-D9BF-389EF9918F6F" name="DEVA_  VGWT_UK">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <generatorID>824FA372-7B8A-3105-4784-FC4BC65A3261</generatorID>
@@ -169,7 +172,7 @@ Das Attribut "Wert" ist der physikalische (sprachunabhängige) Wert, der als eig
 <colUsage columnID="AB149A04-EAAE-62FA-7410-F7C5CC563B93"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="E9BECBFA-3A97-6A31-BB76-19D3CE7A92F3" name="VGWT_VORGABEWERT_WERTEBEREICH_FK">
+<ind_PK_UK id="E9BECBFA-3A97-6A31-BB76-19D3CE7A92F3" name="DEVA_DOMA_FK">
 <createdBy>stb</createdBy>
 <createdTime>2020-04-11 15:22:06 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
