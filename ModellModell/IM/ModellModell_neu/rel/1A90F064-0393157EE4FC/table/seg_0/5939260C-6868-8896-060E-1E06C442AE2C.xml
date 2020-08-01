@@ -2,13 +2,17 @@
 <Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="5939260C-6868-8896-060E-1E06C442AE2C" name="DOMAINS">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 15:43:05 UTC</createdTime>
-<comment><![CDATA[Beschreibung des Wertebereichs eines (oder mehrerer) Attributs.
+<comment><![CDATA[Description of a range of values, usable for one or several attributes
 
-Die Typen Numerisch, Text, Zeitpunkt oder Aufzählung sind konzeptionell zu verfstehen. Die echten Datentypen und ggf. Formate (für Zahlen und Zeitpunkte) für die Speicherung werden in der Implementierung festgelegt.
+Types Numeric, Text, Datetime, LOV, Group, Binary are to be understood as conceptional.
+Real datatypes will be defined in the implementation of an information model
 
-Beispiele:
-Netto-Gewicht 
-Beleuchtungsmodell ]]></comment>
+DOMA_ORIGIN:
+DOMain: 	this domain was defined as a named domain in the model
+DERived: this domain was not defined by a modeling person. It was derived from a attributes type-definition.
+Therefore: every attribute as a domain. A default (derived) Domain "Unknown" will always exist.
+
+Subtype of MODELELEMENT. DOMA_ID is always identical to the corresponding MODE_ID]]></comment>
 <generatorID>D2A42970-AC5F-B209-EC1C-8C8F92DF7345</generatorID>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <ordsAlias>domain</ordsAlias>
@@ -31,6 +35,9 @@ Beleuchtungsmodell ]]></comment>
 <identityColumn>true</identityColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 <isSurrogateColumn>true</isSurrogateColumn>
+<associations>
+<colAssociation fkAssociation="5D002061-15D9-E1F9-B143-8B3C7AF696AA" referredColumn="9698F1F3-1EBE-8770-4F8C-4FFC3465A776"/>
+</associations>
 </Column>
 <Column name="DOMA_NAME" id="CA265241-6F23-3093-0776-DCE67EEE3B67">
 <createdBy>stb</createdBy>
@@ -474,6 +481,16 @@ video, sound, picture, etc.]]></comment>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
 <colUsage columnID="1EE129A2-9285-E29F-944A-2F244147E491"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="92F01156-DEFA-7CC4-31F3-AB4D75616DAB" name="DOMA_MODE_FK">
+<createdBy>stb</createdBy>
+<createdTime>2020-08-01 19:10:10 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="E9756F49-315F-1F97-E181-07756840736D"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>

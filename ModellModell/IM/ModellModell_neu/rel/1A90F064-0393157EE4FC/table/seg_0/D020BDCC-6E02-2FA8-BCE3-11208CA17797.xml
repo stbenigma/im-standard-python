@@ -2,12 +2,9 @@
 <Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="D020BDCC-6E02-2FA8-BCE3-11208CA17797" name="ATTRIBUTES">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
-<comment><![CDATA[Beschreibung eines Trägers einers Wertes.
-Dieses Attribut ist die gültige Single Source of Truth des konzeptionellen Modells. Die Definition gilt, nabhängig davon, ob es nur als virtuelle Einheit (z.B. in Form von Schittstellen) oder als eigenes Attribut in einer eigenen DB verwaltet wird.
+<comment><![CDATA[Description of a property, bearer of a value
 
-Beispiele:
-Netto-Gewicht 
-Beleuchtungsmodell ]]></comment>
+Subtype of MODELELEMENT. ATTR_ID is always identical to the corresponding MODE_ID]]></comment>
 <generatorID>3CEC80DC-9AC7-5783-79EC-A5B9D15FE871</generatorID>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <ordsAlias>attribut</ordsAlias>
@@ -63,7 +60,6 @@ Beleuchtungsmodell ]]></comment>
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
-<nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
 <use>0</use>
 <logicalDatatype>LOGDT019</logicalDatatype>

@@ -183,6 +183,20 @@ Can be approx. or textual description]]></comment>
 <property name="ctemplateID" value="B398D247-00C1-F016-3BBB-FE65CFFFF7AA"/>
 </propertyMap>
 </Column>
+<Column name="MODELELEMENT_MODE_ID" id="365AA3F1-7B02-CFAB-BB51-AE721CDEA5F3">
+<createdBy>stb</createdBy>
+<createdTime>2020-08-01 19:12:45 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="AE03C4EA-E596-4569-8314-6E7F9EDCC375" referredColumn="9698F1F3-1EBE-8770-4F8C-4FFC3465A776"/>
+</associations>
+</Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
 <ind_PK_UK id="5E5A02DF-4CA3-AFD8-563D-962D8561CE49" name="ENTI_PK">
@@ -204,6 +218,16 @@ Can be approx. or textual description]]></comment>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
 <colUsage columnID="518CF935-33DC-88C2-9045-ED700EE3AB34"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="D5B2383B-8BDF-8260-2BC5-D4BBF5A8A579" name="ENTI_MODE_FK">
+<createdBy>stb</createdBy>
+<createdTime>2020-08-01 19:12:45 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="365AA3F1-7B02-CFAB-BB51-AE721CDEA5F3"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>

@@ -13,17 +13,19 @@ Subtype of MODELELEMENT. SYNO_ID is always identical to the corresponding MODE_I
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
-<Column name="SYNO_ID" id="0138F518-C68B-CCFD-18CE-1018F3F836BC">
+<Column name="SYNO_ID1" id="8973A8B9-801D-3EB4-6729-43451F475ADA">
 <createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:18:16 UTC</createdTime>
+<createdTime>2020-08-01 19:16:18 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
-<autoIncrementColumn>true</autoIncrementColumn>
-<identityColumn>true</identityColumn>
+<previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="EE49674F-C71F-BCDA-C7E5-CA5D4F06DAA7" referredColumn="9698F1F3-1EBE-8770-4F8C-4FFC3465A776"/>
+</associations>
 </Column>
 <Column name="SYNO_NAME" id="FCCE27C6-6026-1D55-1930-D65B398657EA">
 <createdBy>stb</createdBy>
@@ -118,7 +120,7 @@ Subtype of MODELELEMENT. SYNO_ID is always identical to the corresponding MODE_I
 <pk>true</pk>
 <indexState>Primary Constraint</indexState>
 <indexColumnUsage>
-<colUsage columnID="0138F518-C68B-CCFD-18CE-1018F3F836BC"/>
+<colUsage columnID="8973A8B9-801D-3EB4-6729-43451F475ADA"/>
 </indexColumnUsage>
 </ind_PK_UK>
 <ind_PK_UK id="047CE434-CCB8-D4BA-6023-82B30627A442" name="SYNO_ENTI_FK">
@@ -129,6 +131,16 @@ Subtype of MODELELEMENT. SYNO_ID is always identical to the corresponding MODE_I
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
 <colUsage columnID="90B6E357-94BC-0D16-8120-68D469FE901E"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="C103DB4E-00AF-21AE-9C5E-02E051332175" name="SYNO_MODE_FK">
+<createdBy>stb</createdBy>
+<createdTime>2020-08-01 19:16:18 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="8973A8B9-801D-3EB4-6729-43451F475ADA"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>

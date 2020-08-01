@@ -2,12 +2,7 @@
 <Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="48CFABE5-B687-B9F5-9900-F5D0FC9B09CE" name="KEYS">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
-<comment><![CDATA[Gruppe von identifizierenden Beziehungen und oder Attributen einer Entität.
-Jede Kombination von Werten in einem Schlüssel ist für die Entität einmalig. 
-D.h. sie identifiziert genau 1 Eintrag in der Entität.
-
-Die Laufnummer ist ein Hilfsmittel. Genau genommen ist für einen Schlüssel nur eindeutig
-Entität + Menge aller Schlüsselelemente.]]></comment>
+<comment><![CDATA[Group of attributes and relationships (M:1 and 1:1) building a key for this entity.]]></comment>
 <generatorID>DC7D3A49-7135-87EB-430D-0CDE657C7C6B</generatorID>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <ordsAlias>schl</ordsAlias>

@@ -2,12 +2,8 @@
 <Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="A1D58AB1-DE40-7717-1182-0498AE099725" name="KEY_ELELEMENTS">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
-<comment><![CDATA[Gruppe von identifizierenden Beziehungen und oder Attributen einer Entität.
-Jede Kombination von Werten in einem Schlüssel ist für die Entität einmalig. 
-D.h. sie identifiziert genau 1 Eintrag in der Entität.
-
-Die Laufnummer ist ein Hilfsmittel. Genau genommen ist für einen Schlüssel nur eindeutig
-Entität + Menge aller Schlüsselelemente.]]></comment>
+<comment><![CDATA[Elements (attributes and/or: m:1 or 1:1 relationships) of a key for an entity
+]]></comment>
 <generatorID>DC7D3A49-7135-87EB-430D-0CDE657C7C6B</generatorID>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <ordsAlias>schl</ordsAlias>
@@ -156,7 +152,7 @@ Entität + Menge aller Schlüsselelemente.]]></comment>
 <colUsage columnID="7D462A41-2AA4-0BCB-F906-BA38A2F255AC"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="3B171D20-34E8-C3A6-33C5-3CEAE831DA5F" name="KELE_KEYS_FK">
+<ind_PK_UK id="3B171D20-34E8-C3A6-33C5-3CEAE831DA5F" name="SCEL_KEYS_FK">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:17 UTC</createdTime>
 <generatorID>A3F5C580-9F75-32B1-4F8D-41C2C9715BBB</generatorID>
@@ -167,7 +163,7 @@ Entität + Menge aller Schlüsselelemente.]]></comment>
 <colUsage columnID="64105FCF-9B47-E26A-B964-FBB0B32B4859"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="174D1FB1-D7D8-F22C-B69F-54B90C83F31C" name="KELE_ATTR_FK">
+<ind_PK_UK id="174D1FB1-D7D8-F22C-B69F-54B90C83F31C" name="SCEL_ATTR_FK">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:17 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
