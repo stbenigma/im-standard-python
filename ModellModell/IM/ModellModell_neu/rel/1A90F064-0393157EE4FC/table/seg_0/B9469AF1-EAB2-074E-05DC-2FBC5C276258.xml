@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="B9469AF1-EAB2-074E-05DC-2FBC5C276258" name="SPEICHERFORMAT">
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="B9469AF1-EAB2-074E-05DC-2FBC5C276258" name="STORAGE_FORMATS">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <comment><![CDATA[Format für die Speicherung binär verkodeter Werte.
@@ -14,7 +14,8 @@ SVG
 PDF]]></comment>
 <generatorID>1D611ADA-7704-74DB-9BD7-0BA47E173628</generatorID>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
-<abbreviation>SPFO</abbreviation>
+<ordsAlias>speicherformat</ordsAlias>
+<abbreviation>STFO</abbreviation>
 <allowColumnReorder>false</allowColumnReorder>
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
@@ -43,7 +44,7 @@ PDF]]></comment>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="SPFO_BESCHREIBUNG" id="27D520B7-77F7-15FA-E573-41679B607232">
+<Column name="SPFO_DESCR" id="27D520B7-77F7-15FA-E573-41679B607232">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <generatorID>1AB68D2F-54E8-5174-768F-0F7BBAD5196E</generatorID>

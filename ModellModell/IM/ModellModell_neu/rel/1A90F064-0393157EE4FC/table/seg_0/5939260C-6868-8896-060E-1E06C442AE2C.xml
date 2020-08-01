@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="5939260C-6868-8896-060E-1E06C442AE2C" name="WERTEBEREICH">
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="5939260C-6868-8896-060E-1E06C442AE2C" name="DOMAINS">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 15:43:05 UTC</createdTime>
 <comment><![CDATA[Beschreibung des Wertebereichs eines (oder mehrerer) Attributs.
@@ -12,7 +12,7 @@ Beleuchtungsmodell ]]></comment>
 <generatorID>D2A42970-AC5F-B209-EC1C-8C8F92DF7345</generatorID>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <ordsAlias>domain</ordsAlias>
-<abbreviation>WRTB</abbreviation>
+<abbreviation>DOMA</abbreviation>
 <allowColumnReorder>false</allowColumnReorder>
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <existDependencyGenerationLevel>Discriminator value</existDependencyGenerationLevel>
@@ -32,33 +32,22 @@ Beleuchtungsmodell ]]></comment>
 <autoIncrementCycle>false</autoIncrementCycle>
 <isSurrogateColumn>true</isSurrogateColumn>
 </Column>
-<Column name="WRTB_BUSINESS_RULE" id="31DBB163-9DEF-326B-3522-A933825D96DC">
-<createdBy>stb</createdBy>
-<createdTime>2020-02-04 15:43:05 UTC</createdTime>
-<comment><![CDATA[Regel über die Werte einer Domäne, die nicht mit einfachen min/max o.ä. beschrieben werden können.]]></comment>
-<generatorID>49F12B6E-5C8F-96B2-6ED5-99B496CB5EC4</generatorID>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<nullsAllowed>true</nullsAllowed>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-</Column>
 <Column name="WRTB_NAME" id="CA265241-6F23-3093-0776-DCE67EEE3B67">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 15:43:05 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="WRTB_BESCHR" id="81F7CE2E-8D55-53CA-B3E7-6B99AFD25D2C">
+<Column name="WRTB_DESCR" id="81F7CE2E-8D55-53CA-B3E7-6B99AFD25D2C">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 15:43:05 UTC</createdTime>
+<comment><![CDATA[Description of domain (subject to translation)]]></comment>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
@@ -67,9 +56,16 @@ Beleuchtungsmodell ]]></comment>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="WRTB_TYP" id="9E01C515-1C04-E3B7-97C2-E124D6896E3B">
+<Column name="WRTB_TYPE" id="9E01C515-1C04-E3B7-97C2-E124D6896E3B">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 15:43:05 UTC</createdTime>
+<comment><![CDATA[Type of domain:
+TXT	String
+NUM	Numeric
+GRP	Group of domains
+LOV	List of values
+BIN	Binary
+DAT	Date/Time]]></comment>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -77,11 +73,11 @@ Beleuchtungsmodell ]]></comment>
 <dataTypeSize>4 CHAR</dataTypeSize>
 <listOfValues>
 <valueDef value="BIN" description="Binär"/>
+<valueDef value="DAT" description="Zeitpunkt"/>
 <valueDef value="GRP" description="Gruppe"/>
 <valueDef value="LOV" description="List of Values"/>
 <valueDef value="NUM" description="Numerisch"/>
-<valueDef value="TEXT" description="Text"/>
-<valueDef value="ZPKT" description="Zeitpunkt"/>
+<valueDef value="TXT" description="Text"/>
 </listOfValues>
 <ownDataTypeParameters>4 CHAR,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
@@ -178,14 +174,48 @@ Beleuchtungsmodell ]]></comment>
 <discriminatorValue>ZPKT</discriminatorValue>
 <id>BEA7B8E3-E00D-5D07-94D5-AC1DE50489AD</id>
 </dependentColumn>
+<dependentColumn class="oracle.dbtools.crest.model.design.relational.Column$DependentColumnDescriptor">
+<columnID>E9D8B654-B20F-4FB2-5736-8AA9E67EFF0B</columnID>
+<dependAsMandatory>true</dependAsMandatory>
+<dependOnValue>true</dependOnValue>
+<discriminatorValue>DAT</discriminatorValue>
+<id>889FCA18-27FB-F7F8-B1F3-4F4BFB30E6A7</id>
+</dependentColumn>
+<dependentColumn class="oracle.dbtools.crest.model.design.relational.Column$DependentColumnDescriptor">
+<columnID>69DAE34B-073D-10F2-2590-FEF5CF01582D</columnID>
+<dependAsMandatory>false</dependAsMandatory>
+<dependOnValue>true</dependOnValue>
+<discriminatorValue>DAT</discriminatorValue>
+<id>9D1166FA-50AA-C3CC-A1E9-15CBB3C4AF8F</id>
+</dependentColumn>
+<dependentColumn class="oracle.dbtools.crest.model.design.relational.Column$DependentColumnDescriptor">
+<columnID>29A7F1B6-C1F7-A297-AE25-1FACC54BE946</columnID>
+<dependAsMandatory>false</dependAsMandatory>
+<dependOnValue>true</dependOnValue>
+<discriminatorValue>DAT</discriminatorValue>
+<id>B8A7D4FC-9BA5-E8F5-7A0E-4890FA6DCAF3</id>
+</dependentColumn>
+<dependentColumn class="oracle.dbtools.crest.model.design.relational.Column$DependentColumnDescriptor">
+<columnID>74BC7CB3-A255-100A-EDA2-4BF9AE201E46</columnID>
+<dependAsMandatory>false</dependAsMandatory>
+<dependOnValue>true</dependOnValue>
+<discriminatorValue>TXT</discriminatorValue>
+<id>E282770B-6434-7135-B9CC-02D23C5AF8B8</id>
+</dependentColumn>
+<dependentColumn class="oracle.dbtools.crest.model.design.relational.Column$DependentColumnDescriptor">
+<columnID>D341A36B-8912-BB09-93BF-FAD8A593D306</columnID>
+<dependAsMandatory>false</dependAsMandatory>
+<dependOnValue>true</dependOnValue>
+<discriminatorValue>TXT</discriminatorValue>
+<id>F304F00B-AF88-4145-674F-35F15E7F6BFB</id>
+</dependentColumn>
 </dependentColumns>
 </Column>
-<Column name="WRTB_HERKUNFT" id="4DF0C6E6-B501-EC13-D1D3-0531CABD851C">
+<Column name="WRTB_ORIGIN" id="4DF0C6E6-B501-EC13-D1D3-0531CABD851C">
 <createdBy>stb</createdBy>
 <createdTime>2020-04-11 15:29:18 UTC</createdTime>
-<comment><![CDATA[DOMainds (definiert), DERived aus Attribut, Column]]></comment>
+<comment><![CDATA[DOMainds (defined as domain), DERived from attribut, column, UDP datatype]]></comment>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
-<nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
@@ -197,7 +227,19 @@ Beleuchtungsmodell ]]></comment>
 <ownDataTypeParameters>6 CHAR,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="WRTB_ZPKT_MINWERT" id="29A7F1B6-C1F7-A297-AE25-1FACC54BE946">
+<Column name="WRTB_BUSINESS_RULE" id="31DBB163-9DEF-326B-3522-A933825D96DC">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-04 15:43:05 UTC</createdTime>
+<comment><![CDATA[Formal or textual rule to which all values of a domain must adhere.]]></comment>
+<generatorID>49F12B6E-5C8F-96B2-6ED5-99B496CB5EC4</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="WRTB_DAT_MINVALUE" id="29A7F1B6-C1F7-A297-AE25-1FACC54BE946">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 15:43:05 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -208,7 +250,7 @@ Beleuchtungsmodell ]]></comment>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="WRTB_ZPKT_MAXWERT" id="69DAE34B-073D-10F2-2590-FEF5CF01582D">
+<Column name="WRTB_DAT_MAXVALUE" id="69DAE34B-073D-10F2-2590-FEF5CF01582D">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 15:43:05 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -219,20 +261,21 @@ Beleuchtungsmodell ]]></comment>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="WRTB_ZPKT_GRANULARITAET" id="E9D8B654-B20F-4FB2-5736-8AA9E67EFF0B">
+<Column name="WRTB_DAT_GRANULARITY" id="E9D8B654-B20F-4FB2-5736-8AA9E67EFF0B">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 15:43:05 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
+<domain>802FD5C1-7C5B-0290-1F1C-F8FBB1AD2AA9</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="WRTB_TEXT_MAXLNG" id="D341A36B-8912-BB09-93BF-FAD8A593D306">
+<Column name="WRTB_TXT_MAXLNG" id="D341A36B-8912-BB09-93BF-FAD8A593D306">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 15:43:05 UTC</createdTime>
+<comment><![CDATA[Max number of characters in a textstring]]></comment>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
@@ -241,18 +284,19 @@ Beleuchtungsmodell ]]></comment>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="WRTB_TEXT_SYNTAXREGEL" id="74BC7CB3-A255-100A-EDA2-4BF9AE201E46">
+<Column name="WRTB_TXT_SYNTAXRULE" id="74BC7CB3-A255-100A-EDA2-4BF9AE201E46">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 15:43:05 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>EAB77EBE-9C06-2899-E462-A33684354F43</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="WRTB_NUM_MAXWERT" id="DBDB4B59-C105-2FBD-D8A4-C9252322ACE7">
+<Column name="WRTB_NUM_MAXVALUE" id="DBDB4B59-C105-2FBD-D8A4-C9252322ACE7">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 15:43:05 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -265,7 +309,7 @@ Beleuchtungsmodell ]]></comment>
 <ownDataTypeParameters>,30,10</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="WRTB_NUM_MINWERT" id="1D4293FF-9802-0204-A841-DC79674B3330">
+<Column name="WRTB_NUM_MINVALUE" id="1D4293FF-9802-0204-A841-DC79674B3330">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 15:43:05 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -278,7 +322,7 @@ Beleuchtungsmodell ]]></comment>
 <ownDataTypeParameters>,30,10</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="WRTB_NUM_VORKSTELLEN" id="44683F2B-4B50-9AD5-0194-F3AC71AD4CCD">
+<Column name="WRTB_NUM_TOTAL_DIGITS" id="44683F2B-4B50-9AD5-0194-F3AC71AD4CCD">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 15:43:05 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -286,10 +330,11 @@ Beleuchtungsmodell ]]></comment>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
+<dataTypePrecision>3</dataTypePrecision>
+<ownDataTypeParameters>,3,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="WRTB_NUM_NACHKSTELLEN" id="070CFA16-5D72-5E47-FB2C-581F0DD00D13">
+<Column name="WRTB_NUM_FRACT_DIGITS" id="070CFA16-5D72-5E47-FB2C-581F0DD00D13">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 15:43:05 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -297,84 +342,72 @@ Beleuchtungsmodell ]]></comment>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>3</dataTypePrecision>
 <defaultValue>0</defaultValue>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
+<ownDataTypeParameters>,3,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="WRTB_NUM_RUNDNG_EINH" id="B0C53C69-FC29-4EFE-FC1D-94DF6E2CF822">
+<Column name="WRTB_NUM_ROUND_VALUE" id="B0C53C69-FC29-4EFE-FC1D-94DF6E2CF822">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 15:43:05 UTC</createdTime>
-<comment><![CDATA[Wert, der angibt, auf welche Einheit ein numerischer Wert gerundet wird. (z.B. 0.5, 0.25, 1000)]]></comment>
+<comment><![CDATA[Value to wich a numeric value is to be rounded
+e.g. 0.5, 0.25, 1000]]></comment>
 <generatorID>7B43FC60-8938-1F2F-FFC9-AC52103A91B0</generatorID>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
+<dataTypePrecision>28</dataTypePrecision>
+<domain>9D57C5ED-8336-6617-9BC7-29B138AA6191</domain>
+<ownDataTypeParameters>,28,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="WRTB_NUM_PHEH_ID" id="1EE129A2-9285-E29F-944A-2F244147E491">
+<Column name="WRTB_NUM_PHYU_ID" id="1EE129A2-9285-E29F-944A-2F244147E491">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 15:43:05 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<previousColumn>false</previousColumn>
-<autoIncrementCycle>false</autoIncrementCycle>
-</Column>
-<Column name="WRTB_BIN_INHALTTYP" id="F9BC031B-CEA0-D6AA-E15A-4A99CBCBBC29">
-<createdBy>stb</createdBy>
-<createdTime>2020-02-04 15:43:05 UTC</createdTime>
-<generatorID>9625B729-C7C6-CD5F-2155-3648986FD9F6</generatorID>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<nullsAllowed>true</nullsAllowed>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-</Column>
-<Column name="WRTB_BIN_SPFO_ID" id="860466A3-87F7-DAD5-3D5C-616E159D9F70">
-<createdBy>stb</createdBy>
-<createdTime>2020-02-04 15:43:05 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<nullsAllowed>true</nullsAllowed>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<previousColumn>false</previousColumn>
-<autoIncrementCycle>false</autoIncrementCycle>
-</Column>
-<Column name="WRTB_ODM_GUID" id="5193763E-E991-48CD-5CD8-42848A42C156">
-<createdBy>stb</createdBy>
-<createdTime>2020-02-04 15:43:05 UTC</createdTime>
-<commentInRDBMS><![CDATA[ID aus dem ODM übernommen]]></commentInRDBMS>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<nullsAllowed>true</nullsAllowed>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-</Column>
-<Column name="WRTB_SCHN_ID" id="849D0063-2E18-9CB8-CD9F-EE88B1A81F17">
-<createdBy>stb</createdBy>
-<createdTime>2020-04-11 15:30:33 UTC</createdTime>
-<comment><![CDATA[Verwendung in externer Schnittstelle, NULL -> Informationsmodell]]></comment>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<nullsAllowed>true</nullsAllowed>
 <use>0</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
 <domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 <associations>
-<colAssociation fkAssociation="84B7B7BD-A5CE-BB82-BDC0-53CB54A71205" referredColumn="65C00228-99F0-589A-1661-9C55B64918EA"/>
+<colAssociation fkAssociation="252E4868-898C-6BC8-70B0-F38FBAD3BF89" referredColumn="CB51A393-73C5-47BA-AFB6-59C2FC518EF7"/>
+</associations>
+</Column>
+<Column name="WRTB_BIN_CONTENTTYPE" id="F9BC031B-CEA0-D6AA-E15A-4A99CBCBBC29">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-04 15:43:05 UTC</createdTime>
+<comment><![CDATA[Logical Content type of a binary value:
+video, sound, picture, etc.]]></comment>
+<generatorID>9625B729-C7C6-CD5F-2155-3648986FD9F6</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>23CFFE8F-D989-8ED0-93D0-C4BF59140074</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="WRTB_BIN_STFO_ID" id="860466A3-87F7-DAD5-3D5C-616E159D9F70">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-04 15:43:05 UTC</createdTime>
+<comment><![CDATA[storage format of binary value]]></comment>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="099D4E7D-C4C7-3319-BB8A-400100AA1C8D" referredColumn="7D1BEA00-4DC7-50F9-D083-11C1BEA8F3FE"/>
 </associations>
 </Column>
 <Column name="WRTB_UC" id="E5F11E24-ED85-97E7-08D4-823ADD644EA1">
@@ -456,14 +489,24 @@ Beleuchtungsmodell ]]></comment>
 <colUsage columnID="CA265241-6F23-3093-0776-DCE67EEE3B67"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="2E2EAC42-204A-4056-C2C8-71D885FC3A4E" name="WRTB_SCHN_FK">
+<ind_PK_UK id="D723F7CD-8F48-3980-9EF7-31B645FE9778" name="DOMA_STFO_FK">
 <createdBy>stb</createdBy>
-<createdTime>2020-04-11 15:31:05 UTC</createdTime>
+<createdTime>2020-08-01 16:23:44 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <indexState>Foreign Key</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
-<colUsage columnID="849D0063-2E18-9CB8-CD9F-EE88B1A81F17"/>
+<colUsage columnID="860466A3-87F7-DAD5-3D5C-616E159D9F70"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="EA2F8EA0-978D-A543-CFA6-0ED0BF0DDC66" name="DOMA_PHYU_FK">
+<createdBy>stb</createdBy>
+<createdTime>2020-08-01 16:50:54 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="1EE129A2-9285-E29F-944A-2F244147E491"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>

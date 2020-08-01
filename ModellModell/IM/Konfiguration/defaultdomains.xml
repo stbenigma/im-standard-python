@@ -109,11 +109,12 @@
 <fileName>defaultdomains</fileName>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <listOfValues>
-<valueDef value="BILD" description="Bild"/>
+<valueDef value="DRAWING" description="Graphik"/>
 <valueDef value="FILM" description="Film"/>
-<valueDef value="GRAPH" description="Graphik"/>
+<valueDef value="IMAGE" description="Bild"/>
+<valueDef value="OTHER" description=""/>
+<valueDef value="SOUND" description="Ton"/>
 <valueDef value="TEXT" description="Formatierter Text"/>
-<valueDef value="TON" description="Ton"/>
 </listOfValues>
 </Domain>
 <Domain class="oracle.dbtools.crest.model.design.Domain" name="Linientyp" id="30B34D60-5229-19CC-A3D5-584257D800BD">
@@ -423,16 +424,16 @@
 <fileName>defaultdomains</fileName>
 <logicalDatatype>LOGDT024</logicalDatatype>
 <listOfValues>
-<valueDef value="JAHR" description="Jahr"/>
-<valueDef value="MILLISEKUNDE" description="Millisekunde"/>
+<valueDef value="DAY" description="Tag"/>
+<valueDef value="HOUR" description="Stunde"/>
+<valueDef value="MILlISECOND" description="Millisekunde"/>
 <valueDef value="MINUTE" description="Minute"/>
-<valueDef value="MONAT" description="Monat"/>
-<valueDef value="QUARTAL" description="Quartal"/>
-<valueDef value="SEKUNDE" description="Sekunde"/>
+<valueDef value="MONTH" description="Monat"/>
+<valueDef value="QUARTER" description="Quartal"/>
+<valueDef value="SECOND" description="Sekunde"/>
 <valueDef value="SEMESTER" description="Semester"/>
-<valueDef value="STUNDE" description="Stunde"/>
-<valueDef value="TAG" description="Tag"/>
-<valueDef value="WOCHE" description="Woche"/>
+<valueDef value="WEEK" description="Woche"/>
+<valueDef value="YEAR" description="Jahr"/>
 </listOfValues>
 </Domain>
 <Domain class="oracle.dbtools.crest.model.design.Domain" name="Abbildungstyp" id="8831EDF9-D218-4FB3-5BB6-7B34E8325AF7">

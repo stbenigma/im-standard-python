@@ -91,6 +91,7 @@ Beleuchtungsmodell ]]></comment>
 <Column name="ATTR_DISPL_NAME" id="17E8968E-C667-96D4-91CC-D63ED8D130DD">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
+<comment><![CDATA[Name to name the attribute on reports and forms (subject to be translated)]]></comment>
 <generatorID>42340745-75FE-7894-8994-67BE8A912F7A</generatorID>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
@@ -116,6 +117,7 @@ Beleuchtungsmodell ]]></comment>
 <Column name="ATTR_TOOLTIP" id="EDBA1266-D154-DA46-166A-D18EA8170F2B">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
+<comment><![CDATA[Tooltip to be shown, in screens (subject to translation)]]></comment>
 <generatorID>C4A32F25-630E-965E-C29A-27C4C6F29B16</generatorID>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
@@ -128,7 +130,7 @@ Beleuchtungsmodell ]]></comment>
 <Column name="ATTR_DESCR" id="6EACA77B-AF9B-97E7-6024-8C739C294357">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
-<comment><![CDATA[Anzeige in Masken für die Erläuterung der Nutzung, Bearbeitung, Verwendung des Attributwertes]]></comment>
+<comment><![CDATA[Description of usage, meaning of attribute (subject to be translated)]]></comment>
 <generatorID>18044B2B-E9C9-F62B-A516-84B3A24746F4</generatorID>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
@@ -152,7 +154,7 @@ Rules which can be described in the domain definition are implicitly applied for
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="ATTR_DESCRIPTOR" id="375A6913-9EF8-E4FB-F917-1DB6EAA556FB">
+<Column name="ATTR_IS_DESCRIPTIVE" id="375A6913-9EF8-E4FB-F917-1DB6EAA556FB">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <comment><![CDATA[Attribute is descriptive (meaning it helps understand the meaning of the entity).]]></comment>
@@ -164,7 +166,7 @@ Rules which can be described in the domain definition are implicitly applied for
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="ATTR_MANDATORY" id="85CED8F0-BB38-CCC4-DE20-9554A8B936A4">
+<Column name="ATTR_IS_MANDATORY" id="85CED8F0-BB38-CCC4-DE20-9554A8B936A4">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -175,7 +177,7 @@ Rules which can be described in the domain definition are implicitly applied for
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="ATTR_HISTORICISED" id="28D3DB93-F7F9-5B12-5593-C187A2113218">
+<Column name="ATTR_IS_HISTORICISED" id="28D3DB93-F7F9-5B12-5593-C187A2113218">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <comment><![CDATA[Attribute value can change over time. Has to be resolved with additional table or storage.]]></comment>
@@ -187,7 +189,7 @@ Rules which can be described in the domain definition are implicitly applied for
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="ATTR_REPEATED" id="BC2340E9-D743-72DB-F010-DB43A8F26A21">
+<Column name="ATTR_IS_REPEATED" id="BC2340E9-D743-72DB-F010-DB43A8F26A21">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <comment><![CDATA[Attribute can have several values (of the same domain).
@@ -200,7 +202,7 @@ Has to be resolved with addition table.]]></comment>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="ATTR_TRANSLATED" id="170B272E-0D00-179F-F325-A421C7FE45BD">
+<Column name="ATTR_IS_TRANSLATED" id="170B272E-0D00-179F-F325-A421C7FE45BD">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <comment><![CDATA[Attribute value is subject to translation.
@@ -213,7 +215,7 @@ Has to be implemented with an additional (probably generic) table.]]></comment>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="ATTR_ENCRYPTED" id="03D52F08-4BB4-8BD9-C194-97A1E8086304">
+<Column name="ATTR_IS_ENCRYPTED" id="03D52F08-4BB4-8BD9-C194-97A1E8086304">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <comment><![CDATA[Atttibute values have to be stored encrypted]]></comment>

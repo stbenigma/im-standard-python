@@ -36,11 +36,11 @@ Eine Regel kann 1 oder mehrere Attribute aus beliebigen Tabellen verknüpfen.]]>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="BURU_REGEL" id="E02A381D-CA3E-0DD4-4FC9-E55B10FE0B0D">
+<Column name="BURU_RULE" id="E02A381D-CA3E-0DD4-4FC9-E55B10FE0B0D">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <comment><![CDATA[Regel, die Werte beschränken auf Grund von komplexeren Zusammenhängen]]></comment>
-<commentInRDBMS><![CDATA[Beschreibung der Regel als Funktion, Regexp, SQL-Ausdruck etc.]]></commentInRDBMS>
+<commentInRDBMS><![CDATA[Formal description of the rule to be applied ]]></commentInRDBMS>
 <generatorID>723B41D1-B556-FACB-A890-B8B7F4FD8F6B</generatorID>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
@@ -49,9 +49,10 @@ Eine Regel kann 1 oder mehrere Attribute aus beliebigen Tabellen verknüpfen.]]>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="BURU_BESCHR" id="B095985D-982D-65F4-36E8-17EE06A14307">
+<Column name="BURU_DESCR" id="B095985D-982D-65F4-36E8-17EE06A14307">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
+<comment><![CDATA[Textual description of rule to be applied (subject to translation)]]></comment>
 <generatorID>2B940275-6B40-64A6-6459-46A41243F4EF</generatorID>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
@@ -61,10 +62,10 @@ Eine Regel kann 1 oder mehrere Attribute aus beliebigen Tabellen verknüpfen.]]>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="BURU_FHLMLD" id="CE046933-339A-7ACF-704D-CC3B689565C5">
+<Column name="BURU_ERRMSG" id="CE046933-339A-7ACF-704D-CC3B689565C5">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
-<comment><![CDATA[Meldung, bei Verletzung der Regel.]]></comment>
+<comment><![CDATA[Error message to be issued in case of rule violation (subject to be translated)]]></comment>
 <generatorID>F0D0A02C-116A-DB0F-5438-DED076F0352F</generatorID>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
@@ -143,7 +144,7 @@ Eine Regel kann 1 oder mehrere Attribute aus beliebigen Tabellen verknüpfen.]]>
 <colUsage columnID="C687607B-C74A-BF2F-2C40-5C7F9986230E"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="CEFC7E77-5BC5-E29B-8149-CBE9145F6E38" name="BURU_BUSINESS_RULE_NAME_UN">
+<ind_PK_UK id="CEFC7E77-5BC5-E29B-8149-CBE9145F6E38" name="BURU_NAME_UN">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <generatorID>CD61460D-CC3B-5EE7-EEA7-2807443DEBA7</generatorID>

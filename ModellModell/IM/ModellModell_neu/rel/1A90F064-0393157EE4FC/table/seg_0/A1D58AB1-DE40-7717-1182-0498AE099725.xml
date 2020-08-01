@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="A1D58AB1-DE40-7717-1182-0498AE099725" name="SCHLUESSELELEMENT">
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="A1D58AB1-DE40-7717-1182-0498AE099725" name="KEY_ELELEMENTS">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <comment><![CDATA[Gruppe von identifizierenden Beziehungen und oder Attributen einer Entität.
@@ -11,7 +11,7 @@ Entität + Menge aller Schlüsselelemente.]]></comment>
 <generatorID>DC7D3A49-7135-87EB-430D-0CDE657C7C6B</generatorID>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <ordsAlias>schl</ordsAlias>
-<abbreviation>SCEL</abbreviation>
+<abbreviation>KELE</abbreviation>
 <allowColumnReorder>false</allowColumnReorder>
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
@@ -28,7 +28,7 @@ Entität + Menge aller Schlüsselelemente.]]></comment>
 <identityColumn>true</identityColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="SCEL_SCHL_ID" id="64105FCF-9B47-E26A-B964-FBB0B32B4859">
+<Column name="SCEL_KEYS_ID" id="64105FCF-9B47-E26A-B964-FBB0B32B4859">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -57,7 +57,7 @@ Entität + Menge aller Schlüsselelemente.]]></comment>
 <colAssociation fkAssociation="6DA87382-BCFF-D932-A612-A70B4CBF46D7" referredColumn="DBACFE8C-9A7A-410E-49F7-BA4843AEF9EF"/>
 </associations>
 </Column>
-<Column name="SCEL_BEZI_ID" id="7D462A41-2AA4-0BCB-F906-BA38A2F255AC">
+<Column name="SCEL_RELA_ID" id="7D462A41-2AA4-0BCB-F906-BA38A2F255AC">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <comment><![CDATA[Schlüssel einer Entität müssen durch ein Merkmal unterscheidbar werden.]]></comment>
@@ -69,6 +69,9 @@ Entität + Menge aller Schlüsselelemente.]]></comment>
 <logicalDatatype>LOGDT019</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="3A320813-E865-BAD9-E1B0-F23197893EC8" referredColumn="40E9736F-3ABE-3ABD-5FEA-D4131796E800"/>
+</associations>
 </Column>
 <Column name="SCEL_UC" id="BB98D624-DE62-925C-7C4A-8F85BC3BC01E">
 <createdBy>stb</createdBy>
@@ -153,7 +156,7 @@ Entität + Menge aller Schlüsselelemente.]]></comment>
 <colUsage columnID="7D462A41-2AA4-0BCB-F906-BA38A2F255AC"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="3B171D20-34E8-C3A6-33C5-3CEAE831DA5F" name="SCEL_SCHL_FK">
+<ind_PK_UK id="3B171D20-34E8-C3A6-33C5-3CEAE831DA5F" name="SCEL_KEYS_FK">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:17 UTC</createdTime>
 <generatorID>A3F5C580-9F75-32B1-4F8D-41C2C9715BBB</generatorID>
@@ -172,6 +175,17 @@ Entität + Menge aller Schlüsselelemente.]]></comment>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
 <colUsage columnID="94E3413C-BADC-C901-3267-FCECFE2EEBC8"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="7E67D319-08D2-08A8-30A0-A6482BAC0052" name="KELE_RLEA_FK">
+<createdBy>stb</createdBy>
+<createdTime>2020-08-01 16:13:29 UTC</createdTime>
+<generatorID>CEB0C7CA-9CEF-89CC-1712-0634D0BB6B99</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="7D462A41-2AA4-0BCB-F906-BA38A2F255AC"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>
