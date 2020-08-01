@@ -2,9 +2,15 @@
 <Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="B632191E-032A-9811-50B8-2719D9475AF4" name="BUSINESS_RULE">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
-<comment><![CDATA[Geschäftsregel, die Attributwerte auf Regelkonformität prüft.
-Diese Regeln sind passiv. D.h. es wird überprüft, ob der Wert (ggf. im Zusammenhang mit anderen Werten dieser oder anderer Entitäten) aus fachlicher Sicht korrekt ist.
-Eine Regel kann 1 oder mehrere Attribute aus beliebigen Tabellen verknüpfen.]]></comment>
+<comment><![CDATA[Businessrule checking attributevalues, relationships and rows for consistency
+A rule can apply for a single attribute(-value) (ATTRIBUTE-LEVEL), 
+for several attributes within one entity (ROW-LEVEL)
+for an entity (ENTITY-LEVEL)
+for several entitites (DATABASE-LEVEL)
+
+Standard rules defined in the model elements (keys, relationships (FK), domainvalue-restrictions) are not to be repeated as business rules.
+
+Subtype of MODELELEMENT. BURU_ID is always identical to the corresponding MODE_ID]]></comment>
 <generatorID>1EDA2467-D0C9-4EC3-6BDA-5DC7D5AAA0F9</generatorID>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <abbreviation>BURU</abbreviation>

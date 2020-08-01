@@ -3,32 +3,37 @@
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 14:57:52 UTC</createdTime>
 <comment><![CDATA[Relationship connecting 2 entities (could be the same one)
-Types are 1:1, M:1 (functional), M:N or ISA
 
-ISA is a 1:1 representation representing a subtype be it as real (exclusive) subtype (entity in entity ("a Partner is either a Person or a Company") 
-or as a role (an entity can act in several roles ("a Customer can be (all of) a Tenant, a Owner, a Dealer, a OEM-customer")
-Condition for ISA
-    subtype: 	SuperEntity has 1:1 mandatory relationships to more than 1 SubEntity. The relationships must be in a arc (meaning they are  exlusive).
-    role: 		 SuperEntity has 1:1 optinal relationships with at least one SubEntity. 
-    both types:  	The SubEntities have a mandatory relationship with the SuperEntity (meaning the cannot exists without the SuperEntity)
+Types are 1:1, M:1 (functional), M:N, ISAR or ISAS
+RELA_TYPE is partially redundant with MAPTYPE_FROM_TO/_TO_FROM (see constraints)
+
+ISAS is a 1:1 representation representing a (exclusive) subtype 
+"a Partner is either a Person or a Company")
+
+ISAR is a role-subtype, an entity can take up several roles ("a Customer can be none, one or all of a Tenant, an Owner, a Dealer, an OEM-customer")
+
+Conditions for ISAS/R
+    both:  	The SubEntities have a mandatory relationship with the SuperEntity (meaning the cannot exists without the SuperEntity)
+    ISAS:	SuperEntity has 1:1 mandatory relationships to more than 1 SubEntity. The relationships must be in a arc (meaning they are  exlusive).
+    ISAR:	SuperEntity has 1:1 optinal relationships with at least one SubEntity. 
 
 ASSOC_FROM_TO / ASSOC_TO_FROM
-	can be empty for type ISA but are mandatory for all other types
+	can be empty for type ISAS/R but are mandatory for all other types
 
 ARC_ID_FROM / ARC_ID_TO
-	An end of a relationship is in a ARC (meaning exclusiv in respect to all others relationships in the same ARC)
+	An end of a relationship is in an ARC (meaning exclusiv in respect to all others relationships in the same ARC)
 	
-MAPTYPE_FROM_RO, MANDATORY_FROM_TO (likewise for ...TO_FROM)
+MAPTYPE_FROM_TO, MANDATORY_FROM_TO (likewise for ...TO_FROM)
 indicate the cardinality and optionality in one direction.
 MAPTYPE	 MANDATORY   Cardinality
-    1	 TRUE	      	 1 .. 1
-    1	 FALSE		 0 .. 1
-    M	 TRUE		 1 .. M
-    M	 FALSE		 0 .. M
+    1	 TRUE	      	 exactly 1
+    1	 FALSE		 0 - 1
+    M	 TRUE		 1 - M
+    M	 FALSE		 0 - M
 
 HIST_FROM_TO / HIST_TO_FROM
 	TRUE	Relationship is historized (temporal) in this direction, meaning it can change over time.
-	Does only make sense for M:1 (function), 1:1 or ISA relationships. It allows to model a "1" relationship even if it can change over time.
+	Does only make sense for M:1 (function), 1:1 or ISAS/R relationships. It allows to model a "1" relationship even if it can change over time.
 	(This type has to be implemented in a data model with an intersection table, containing a valid-from/valid-to mechanism
 
 Subtype of MODELELEMENT. RELA_ID is always identical to the corresponding MODE_ID]]></comment>
