@@ -67,23 +67,6 @@ Examples:
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="UDPR_DOMA_ID" id="FCC34B68-EBB3-33DF-541A-0119C1C60293">
-<createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:18:16 UTC</createdTime>
-<comment><![CDATA[Reference to Domain, if UDP has a datatype (with or without LOV's)]]></comment>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<nullsAllowed>true</nullsAllowed>
-<useDomainConstraints>false</useDomainConstraints>
-<use>0</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
-<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<previousColumn>false</previousColumn>
-<autoIncrementCycle>false</autoIncrementCycle>
-<associations>
-<colAssociation fkAssociation="7CD56890-7102-BC15-1FDA-C0407B0CC3BD" referredColumn="E9756F49-315F-1F97-E181-07756840736D"/>
-</associations>
-</Column>
 <Column name="UDPR_UC" id="6F311EA8-1CF4-9786-B601-C3B0E9040044">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
@@ -160,16 +143,6 @@ Examples:
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
 <colUsage columnID="61225615-5126-8AD6-56CF-65FB35938ECB"/>
-</indexColumnUsage>
-</ind_PK_UK>
-<ind_PK_UK id="C5B8DFE0-9C28-D712-A5BE-0AB5F88B154E" name="UDPR_WRTB_FK">
-<createdBy>stb</createdBy>
-<createdTime>2020-07-08 10:04:38 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<indexState>Foreign Key</indexState>
-<isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
-<colUsage columnID="FCC34B68-EBB3-33DF-541A-0119C1C60293"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>

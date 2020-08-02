@@ -50,9 +50,6 @@ Subtype of MODELELEMENT. ARCS_ID is always identical to the corresponding MODE_I
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
-<associations>
-<colAssociation fkAssociation="A8274359-544D-A9C2-5C15-E2F39C7B64DD" referredColumn="E0C4ED99-82B2-04CB-AC1C-205352DDAFF3"/>
-</associations>
 </Column>
 <Column name="ARCS_UC" id="638FE337-CC40-EC52-95FC-02C4F7C847D5">
 <createdBy>stb</createdBy>
@@ -111,6 +108,20 @@ Subtype of MODELELEMENT. ARCS_ID is always identical to the corresponding MODE_I
 <property name="ctemplateID" value="B398D247-00C1-F016-3BBB-FE65CFFFF7AA"/>
 </propertyMap>
 </Column>
+<Column name="ENTITIES_ENTI_ID" id="1C77062D-CAE4-CC3B-B4CB-7705E06199CF">
+<createdBy>stb</createdBy>
+<createdTime>2020-08-02 13:30:59 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="A8274359-544D-A9C2-5C15-E2F39C7B64DD" referredColumn="365AA3F1-7B02-CFAB-BB51-AE721CDEA5F3"/>
+</associations>
+</Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
 <ind_PK_UK id="314F3D71-3AF8-EB0E-26F4-C6BE41CAC519" name="ARCS_PK">
@@ -141,7 +152,7 @@ Subtype of MODELELEMENT. ARCS_ID is always identical to the corresponding MODE_I
 <indexState>Foreign Key</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
-<colUsage columnID="32044959-13C2-8AB9-ADEC-85FADED2C27B"/>
+<colUsage columnID="1C77062D-CAE4-CC3B-B4CB-7705E06199CF"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>

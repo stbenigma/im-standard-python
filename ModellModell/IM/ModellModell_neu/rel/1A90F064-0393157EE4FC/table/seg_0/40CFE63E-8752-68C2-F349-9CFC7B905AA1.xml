@@ -9,29 +9,28 @@
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
-<Column name="BURE_ID" id="1E7B1FDD-C5DE-C901-B8EE-E7885D9F1797">
+<Column name="BURE_ID" id="D29E7B24-33EB-FFC7-03E4-A6A074B99338">
 <createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:18:16 UTC</createdTime>
+<createdTime>2020-08-02 13:26:57 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
-<previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="BURE_BURU_ID" id="5522466F-18F2-2484-1065-F3B757F91332">
+<Column name="BURE_BURU_ID" id="6AB62469-F23A-3C46-7E37-64C6A1EB89E1">
 <createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:18:16 UTC</createdTime>
+<createdTime>2020-08-02 13:36:02 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
-<previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 <associations>
-<colAssociation fkAssociation="15EA5A7C-BFC7-38BB-F8E0-BD11681B49A1" referredColumn="C687607B-C74A-BF2F-2C40-5C7F9986230E"/>
+<colAssociation fkAssociation="15EA5A7C-BFC7-38BB-F8E0-BD11681B49A1" referredColumn="9900FFF3-1E01-A7AD-23E3-3A005133E9A0"/>
 </associations>
 </Column>
 <Column name="BURE_ATTR_ID" id="9608DFB6-68F4-19A3-33ED-74EC72C333EE">
@@ -40,8 +39,9 @@
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
@@ -49,19 +49,19 @@
 <colAssociation fkAssociation="DB98D8FF-599B-3482-F18C-5A53CFEE49DD" referredColumn="DBACFE8C-9A7A-410E-49F7-BA4843AEF9EF"/>
 </associations>
 </Column>
-<Column name="BURE_ENTI_ID" id="947AF9CB-7751-0022-4A3C-5BD83F0B7B00">
+<Column name="BURE_ENTI_ID" id="5615013F-92B3-312D-6743-E523075A5042">
 <createdBy>stb</createdBy>
-<createdTime>2020-07-30 14:32:14 UTC</createdTime>
+<createdTime>2020-08-02 13:30:59 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 <associations>
-<colAssociation fkAssociation="6955E770-195A-BBAD-B620-D5ACF6714E8A" referredColumn="E0C4ED99-82B2-04CB-AC1C-205352DDAFF3"/>
+<colAssociation fkAssociation="6955E770-195A-BBAD-B620-D5ACF6714E8A" referredColumn="365AA3F1-7B02-CFAB-BB51-AE721CDEA5F3"/>
 </associations>
 </Column>
 <Column name="BURE_RELA_ID" id="07CB7722-5382-846A-3563-290AF90A4A1F">
@@ -146,7 +146,7 @@
 <indexState>Primary Constraint</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
-<colUsage columnID="1E7B1FDD-C5DE-C901-B8EE-E7885D9F1797"/>
+<colUsage columnID="D29E7B24-33EB-FFC7-03E4-A6A074B99338"/>
 </indexColumnUsage>
 </ind_PK_UK>
 <ind_PK_UK id="6E32345B-215C-E923-7A03-7DAE3CBB6581" name="BURE_BURU_FK">
@@ -157,7 +157,7 @@
 <indexState>Foreign Key</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
-<colUsage columnID="5522466F-18F2-2484-1065-F3B757F91332"/>
+<colUsage columnID="6AB62469-F23A-3C46-7E37-64C6A1EB89E1"/>
 </indexColumnUsage>
 </ind_PK_UK>
 <ind_PK_UK id="5906FB9D-D1B8-FF59-DEE6-37D8D3970EBB" name="BURE_ATTR_FK">
@@ -178,7 +178,7 @@
 <indexState>Foreign Key</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
-<colUsage columnID="947AF9CB-7751-0022-4A3C-5BD83F0B7B00"/>
+<colUsage columnID="5615013F-92B3-312D-6743-E523075A5042"/>
 </indexColumnUsage>
 </ind_PK_UK>
 <ind_PK_UK id="E5DD3827-3361-BF19-B7FC-2B37F9581815" name="BURE_RELA_FK">

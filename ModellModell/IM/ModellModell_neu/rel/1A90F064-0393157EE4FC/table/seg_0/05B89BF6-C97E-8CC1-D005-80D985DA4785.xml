@@ -14,7 +14,21 @@ Subtype of MODELELEMENT. ENTI_ID is always identical to the corresponding MODE_I
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
-<Column name="ENTI_ID" id="E0C4ED99-82B2-04CB-AC1C-205352DDAFF3">
+<Column name="ENTI_ID" id="365AA3F1-7B02-CFAB-BB51-AE721CDEA5F3">
+<createdBy>stb</createdBy>
+<createdTime>2020-08-01 19:12:45 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="AE03C4EA-E596-4569-8314-6E7F9EDCC375" referredColumn="9698F1F3-1EBE-8770-4F8C-4FFC3465A776"/>
+</associations>
+</Column>
+<Column name="ENTI_ID2" id="E0C4ED99-82B2-04CB-AC1C-205352DDAFF3">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -183,20 +197,6 @@ Can be approx. or textual description]]></comment>
 <property name="ctemplateID" value="B398D247-00C1-F016-3BBB-FE65CFFFF7AA"/>
 </propertyMap>
 </Column>
-<Column name="MODELELEMENT_MODE_ID" id="365AA3F1-7B02-CFAB-BB51-AE721CDEA5F3">
-<createdBy>stb</createdBy>
-<createdTime>2020-08-01 19:12:45 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<use>0</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
-<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<previousColumn>false</previousColumn>
-<autoIncrementCycle>false</autoIncrementCycle>
-<associations>
-<colAssociation fkAssociation="AE03C4EA-E596-4569-8314-6E7F9EDCC375" referredColumn="9698F1F3-1EBE-8770-4F8C-4FFC3465A776"/>
-</associations>
-</Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
 <ind_PK_UK id="5E5A02DF-4CA3-AFD8-563D-962D8561CE49" name="ENTI_PK">
@@ -206,7 +206,7 @@ Can be approx. or textual description]]></comment>
 <pk>true</pk>
 <indexState>Primary Constraint</indexState>
 <indexColumnUsage>
-<colUsage columnID="E0C4ED99-82B2-04CB-AC1C-205352DDAFF3"/>
+<colUsage columnID="365AA3F1-7B02-CFAB-BB51-AE721CDEA5F3"/>
 </indexColumnUsage>
 </ind_PK_UK>
 <ind_PK_UK id="0CD7E33E-CD16-C7F3-B4B4-2DFE735DB01F" name="ENTI_NAME_UK">

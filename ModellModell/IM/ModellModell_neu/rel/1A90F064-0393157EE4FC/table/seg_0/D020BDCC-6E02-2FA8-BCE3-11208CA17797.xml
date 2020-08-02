@@ -18,27 +18,29 @@ Subtype of MODELELEMENT. ATTR_ID is always identical to the corresponding MODE_I
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
-<autoIncrementColumn>true</autoIncrementColumn>
-<identityColumn>true</identityColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 <isSurrogateColumn>true</isSurrogateColumn>
+<associations>
+<colAssociation fkAssociation="EB3BD7A1-A967-2396-1E53-55585BD20741" referredColumn="9698F1F3-1EBE-8770-4F8C-4FFC3465A776"/>
+</associations>
 </Column>
-<Column name="ATTR_ENTI_ID" id="E0ECE235-C9A1-2F68-07AB-E7BD94E52BA1">
+<Column name="ATTR_ENTI_ID" id="74AE61E3-42E6-8AC2-DC15-206B0DBC0945">
 <createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:18:16 UTC</createdTime>
+<createdTime>2020-08-02 13:30:59 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 <associations>
-<colAssociation fkAssociation="BB3790BE-4FED-C574-C053-759172338313" referredColumn="E0C4ED99-82B2-04CB-AC1C-205352DDAFF3"/>
+<colAssociation fkAssociation="BB3790BE-4FED-C574-C053-759172338313" referredColumn="365AA3F1-7B02-CFAB-BB51-AE721CDEA5F3"/>
 </associations>
 </Column>
 <Column name="ATTR_RELA_ID" id="303EC2B5-2E33-64BC-232F-07907FF61F66">
@@ -287,8 +289,8 @@ Has to be implemented with an additional (probably generic) table.]]></comment>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
 <colUsage columnID="894BD113-A714-B6A2-3A68-58F89E73C455"/>
-<colUsage columnID="E0ECE235-C9A1-2F68-07AB-E7BD94E52BA1"/>
 <colUsage columnID="303EC2B5-2E33-64BC-232F-07907FF61F66"/>
+<colUsage columnID="74AE61E3-42E6-8AC2-DC15-206B0DBC0945"/>
 </indexColumnUsage>
 </ind_PK_UK>
 <ind_PK_UK id="BE6E38AF-38D7-3ED4-1F1F-82B98F1C2D15" name="ATTR_UK2">
@@ -300,8 +302,8 @@ Has to be implemented with an additional (probably generic) table.]]></comment>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
 <colUsage columnID="17E8968E-C667-96D4-91CC-D63ED8D130DD"/>
-<colUsage columnID="E0ECE235-C9A1-2F68-07AB-E7BD94E52BA1"/>
 <colUsage columnID="303EC2B5-2E33-64BC-232F-07907FF61F66"/>
+<colUsage columnID="74AE61E3-42E6-8AC2-DC15-206B0DBC0945"/>
 </indexColumnUsage>
 </ind_PK_UK>
 <ind_PK_UK id="C80E962F-51E7-C63C-38D3-9D82CD52B9CA" name="ATTR_ENTI_FK">
@@ -312,7 +314,7 @@ Has to be implemented with an additional (probably generic) table.]]></comment>
 <indexState>Foreign Key</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
-<colUsage columnID="E0ECE235-C9A1-2F68-07AB-E7BD94E52BA1"/>
+<colUsage columnID="74AE61E3-42E6-8AC2-DC15-206B0DBC0945"/>
 </indexColumnUsage>
 </ind_PK_UK>
 <ind_PK_UK id="05EC5A58-A72A-156A-3A24-ED11033B877B" name="ATTR_RELA_FK">
@@ -334,6 +336,16 @@ Has to be implemented with an additional (probably generic) table.]]></comment>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
 <colUsage columnID="3C72106F-F485-4EEC-2CE1-F9365D6B4CBA"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="E0FF82A7-2D56-EB5E-7833-746726614DE9" name="ATTR_MODE_FK">
+<createdBy>stb</createdBy>
+<createdTime>2020-08-02 13:40:31 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="DBACFE8C-9A7A-410E-49F7-BA4843AEF9EF"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>

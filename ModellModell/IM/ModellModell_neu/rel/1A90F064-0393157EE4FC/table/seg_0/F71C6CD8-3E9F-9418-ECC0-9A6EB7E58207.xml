@@ -43,9 +43,6 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
-<associations>
-<colAssociation fkAssociation="D1837A9B-C1F2-93BB-4AAD-E3EE7866EA10" referredColumn="E0C4ED99-82B2-04CB-AC1C-205352DDAFF3"/>
-</associations>
 </Column>
 <Column name="TEMA_BEZI_ID" id="52CCA01F-755A-DB07-6BB9-B49F3126C388">
 <createdBy>stb</createdBy>
@@ -60,6 +57,21 @@
 <autoIncrementCycle>false</autoIncrementCycle>
 <associations>
 <colAssociation fkAssociation="CFC7F490-0366-587E-EC64-352EB1E24F52" referredColumn="40E9736F-3ABE-3ABD-5FEA-D4131796E800"/>
+</associations>
+</Column>
+<Column name="ENTITIES_ENTI_ID" id="7C417468-1A7D-8FFB-2D53-CB1D6168FE93">
+<createdBy>stb</createdBy>
+<createdTime>2020-08-02 13:30:59 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="D1837A9B-C1F2-93BB-4AAD-E3EE7866EA10" referredColumn="365AA3F1-7B02-CFAB-BB51-AE721CDEA5F3"/>
 </associations>
 </Column>
 </columns>
@@ -103,7 +115,7 @@
 <indexState>Foreign Key</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
-<colUsage columnID="AE454388-ED18-B50B-45F4-677B9CE5D48C"/>
+<colUsage columnID="7C417468-1A7D-8FFB-2D53-CB1D6168FE93"/>
 </indexColumnUsage>
 </ind_PK_UK>
 <ind_PK_UK id="40CBAF8C-C817-A37F-96E5-3E38767E04DD" name="TEMA_BEZI_FK">
