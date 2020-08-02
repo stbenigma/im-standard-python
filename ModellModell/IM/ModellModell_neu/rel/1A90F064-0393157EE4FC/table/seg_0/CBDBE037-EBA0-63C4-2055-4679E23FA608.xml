@@ -6,24 +6,27 @@
 
 Attributes currently under translation:
 ENTITIES
-	ENTI_NAME
-	ENTI_DESCR
-	ENTI_TOOLTIP
-	ENTI_DISPL_NAME
+-	ENTI_NAME
+-	ENTI_DESCR
+-	ENTI_TOOLTIP
+-	ENTI_DISPL_NAME
 SYNONYMS
-	SYNO_NAME
+-	SYNO_NAME
 ATTRIBUTES
-	ATTR_DISPL_NAME
-	ATTR_TOOLTIP
-	ATTR_DESCR
+-	ATTR_DISPL_NAME
+-	ATTR_TOOLTIP
+-	ATTR_DESCR
 RELATIONS
-	RELA_ASSOC_FROM_TO
-	RELA_ASSOC_TO_FROM
+-	RELA_ASSOC_FROM_TO
+-	RELA_ASSOC_TO_FROM
 DOMAIN_VALUES
-	DOVA_DISPL
-	DOVA_DESCR
+-	DOVA_DISPL
+-	DOVA_DESCR
 USER_DEFINED_PROPERTIES
-	UDPR_DESCR]]></comment>
+-	UDPR_DESCR
+BUSINESS_RULE
+-	BURU_DESCR
+-	BURU_ERRMSG]]></comment>
 <generatorID>7B049F95-4FBA-1D5D-3942-99C0982251F1</generatorID>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <ordsAlias>sprachtext</ordsAlias>
@@ -179,25 +182,7 @@ USER_DEFINED_PROPERTIES
 <colUsage columnID="8CD76328-083B-70BC-720A-345E1A2F80D7"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="8662A1A5-8E24-451D-65CB-92BD6073E316" name="LGTX__IDX">
-<createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:18:16 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
-<colUsage columnID="5769708B-648C-883F-B14C-0AE2D12B7D75"/>
-</indexColumnUsage>
-</ind_PK_UK>
-<ind_PK_UK id="6D480193-8992-D332-FB6A-15CF747C4F09" name="LGTX__IDXV1">
-<createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:18:16 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
-<colUsage columnID="D372DB38-7EB3-2470-DBDD-16D27A8B21E5"/>
-</indexColumnUsage>
-</ind_PK_UK>
-<ind_PK_UK id="BF752995-47C1-8917-DD42-4CCE819B504E" name="LGTX_MODE_FK">
+<ind_PK_UK id="BF752995-47C1-8917-DD42-4CCE819B504E" name="SPTX_MODE_FK">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:17 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -207,7 +192,7 @@ USER_DEFINED_PROPERTIES
 <colUsage columnID="D372DB38-7EB3-2470-DBDD-16D27A8B21E5"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="7FD91564-21AF-6E5A-6F35-8B5A6874D96A" name="LGTX_SPRA_FK">
+<ind_PK_UK id="7FD91564-21AF-6E5A-6F35-8B5A6874D96A" name="SPTX_LANG_FK">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:17 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>

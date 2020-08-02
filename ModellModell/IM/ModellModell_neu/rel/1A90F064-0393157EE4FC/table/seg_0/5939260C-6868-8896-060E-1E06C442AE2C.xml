@@ -8,8 +8,8 @@ Types Numeric, Text, Datetime, LOV, Group, Binary are to be understood as concep
 Real datatypes will be defined in the implementation of an information model
 
 DOMA_ORIGIN:
-DOMain: 	this domain was defined as a named domain in the model
-DERived: this domain was not defined by a modeling person. It was derived from a attributes type-definition.
+- DOMain: 	this domain was defined as a named domain in the model
+- DERived: this domain was not defined by a modeling person. It was derived from a attributes type-definition.
 Therefore: every attribute as a domain. A default (derived) Domain "Unknown" will always exist.
 
 Subtype of MODELELEMENT. DOMA_ID is always identical to the corresponding MODE_ID]]></comment>
@@ -67,12 +67,12 @@ Subtype of MODELELEMENT. DOMA_ID is always identical to the corresponding MODE_I
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 15:43:05 UTC</createdTime>
 <comment><![CDATA[Type of domain:
-TXT	String
-NUM	Numeric
-GRP	Group of domains
-LOV	List of values
-BIN	Binary
-DAT	Date/Time]]></comment>
+- TXT	String
+- NUM	Numeric
+- GRP	Group of domains
+- LOV	List of values
+- BIN	Binary
+- DAT	Date/Time]]></comment>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>

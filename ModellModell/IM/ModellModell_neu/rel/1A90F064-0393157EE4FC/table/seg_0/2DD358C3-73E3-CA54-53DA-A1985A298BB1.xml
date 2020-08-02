@@ -25,10 +25,25 @@ This values can olny reference as domain of type LOV]]></comment>
 <autoIncrementCycle>false</autoIncrementCycle>
 <isSurrogateColumn>true</isSurrogateColumn>
 </Column>
+<Column name="DEVA_DOMA_ID" id="79314F8F-E177-E354-B916-CEC6394556A7">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:18:16 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="D7C87344-5F7B-7B15-08DB-63D7CA5BEDD6" referredColumn="E9756F49-315F-1F97-E181-07756840736D"/>
+</associations>
+</Column>
 <Column name="DEVA_VALUE" id="AB149A04-EAAE-62FA-7410-F7C5CC563B93">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
-<comment><![CDATA[Ein Wert den ein Attribut annehmen kann.]]></comment>
+<comment><![CDATA[(Database) value, a attribute with a LOV can take]]></comment>
 <generatorID>D058CDFF-28C0-9AF9-2033-31AE4D171C8D</generatorID>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
@@ -51,21 +66,6 @@ This values can olny reference as domain of type LOV]]></comment>
 <dataTypePrecision>3</dataTypePrecision>
 <ownDataTypeParameters>,3,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
-</Column>
-<Column name="DEVA_DOMA_ID" id="79314F8F-E177-E354-B916-CEC6394556A7">
-<createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:18:16 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<useDomainConstraints>false</useDomainConstraints>
-<use>0</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
-<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<previousColumn>false</previousColumn>
-<autoIncrementCycle>false</autoIncrementCycle>
-<associations>
-<colAssociation fkAssociation="D7C87344-5F7B-7B15-08DB-63D7CA5BEDD6" referredColumn="E9756F49-315F-1F97-E181-07756840736D"/>
-</associations>
 </Column>
 <Column name="DEVA_DISPL" id="A37F6AC8-9771-AFF9-FAE3-D44989701C8D">
 <createdBy>stb</createdBy>
