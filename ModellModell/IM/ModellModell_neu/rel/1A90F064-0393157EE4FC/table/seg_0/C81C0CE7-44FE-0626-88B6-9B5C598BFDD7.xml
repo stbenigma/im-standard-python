@@ -1,9 +1,12 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="C81C0CE7-44FE-0626-88B6-9B5C598BFDD7" name="MODELLELEMENT">
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="C81C0CE7-44FE-0626-88B6-9B5C598BFDD7" name="MODELELEMENT">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
-<comment><![CDATA[Wert, der für eine Aufzählungs-Domäne ein gültiger Wert ist.
-Das Attribut "Wert" ist der physikalische (sprachunabhängige) Wert, der als eigentliche Wert im konzeptionellen Modell gilt. ]]></comment>
+<comment><![CDATA[Supertype for severl model element (entites, synonyms, attributes, relationships etc.)
+Combining management-information like (documents, responsible parties, usert defined properties, display information, translations, etc.)
+
+The MODE_ID is identical to the ID of the corresponding model element (ENTI_ID, ATTR_ID, RELA_ID etc.)
+This is a real Supertype implmentation with corresponding PK (but no FK between parent and child)]]></comment>
 <generatorID>EA10CFC2-DB6B-A934-F362-5835CCEBBCA4</generatorID>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <ordsAlias>vorgabewertv1</ordsAlias>
@@ -18,18 +21,30 @@ Das Attribut "Wert" ist der physikalische (sprachunabhängige) Wert, der als eig
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementColumn>true</autoIncrementColumn>
 <identityColumn>true</identityColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="MODE_MELT_ID" id="8E881759-24D0-E373-90B8-72BD99EDFD12">
+<Column name="MODE_TYPE" id="0536A706-C345-77CF-44AA-2B04A96A30BF">
 <createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:18:16 UTC</createdTime>
+<createdTime>2020-07-30 13:39:57 UTC</createdTime>
+<comment><![CDATA[Redundant to modelelem_type.melt_shortname.
+Helps facilitate joins.]]></comment>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
-<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>0D75D1F9-839F-41DA-8464-0FF34C2F4ABB</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="MODE_MELT_ID" id="C9B9090E-ACD2-912C-656D-4F0FF9462048">
+<createdBy>stb</createdBy>
+<createdTime>2020-07-30 13:30:53 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
 <use>0</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
 <domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
@@ -37,228 +52,7 @@ Das Attribut "Wert" ist der physikalische (sprachunabhängige) Wert, der als eig
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 <associations>
-<colAssociation fkAssociation="CC1286FA-809B-6A87-AE1E-AB9700AAD17A" referredColumn="62C7EB27-D88E-E5B4-8507-4DB9AB2AFED0"/>
-</associations>
-</Column>
-<Column name="MODE_ORGE_ID" id="BB78466D-1054-C5CF-1C1E-984DFE5D4B59">
-<createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:18:16 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<nullsAllowed>true</nullsAllowed>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<previousColumn>false</previousColumn>
-<autoIncrementCycle>false</autoIncrementCycle>
-</Column>
-<Column name="MODE_ATTR_ID" id="14E88CBB-585F-0E7E-EBB9-80D70FEF5E2D">
-<createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:18:16 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<nullsAllowed>true</nullsAllowed>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<previousColumn>false</previousColumn>
-<autoIncrementCycle>false</autoIncrementCycle>
-<associations>
-<colAssociation fkAssociation="CB5D84BE-0624-A6D7-8651-8AB4B542231C" referredColumn="DBACFE8C-9A7A-410E-49F7-BA4843AEF9EF"/>
-</associations>
-</Column>
-<Column name="MODE_BEZI_ID" id="A14F11F7-24AD-B48F-2502-AC7F7E9B8D69">
-<createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:18:16 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<nullsAllowed>true</nullsAllowed>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<previousColumn>false</previousColumn>
-<autoIncrementCycle>false</autoIncrementCycle>
-<associations>
-<colAssociation fkAssociation="76353122-C937-18C6-F3E2-94FCF66C802E" referredColumn="40E9736F-3ABE-3ABD-5FEA-D4131796E800"/>
-</associations>
-</Column>
-<Column name="MODE_BURU_ID" id="008BF56C-DD47-344C-C4AC-29C2FD782BB9">
-<createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:18:16 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<nullsAllowed>true</nullsAllowed>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<previousColumn>false</previousColumn>
-<autoIncrementCycle>false</autoIncrementCycle>
-<associations>
-<colAssociation fkAssociation="0FB494A4-DBE5-772A-D191-15E5E279737D" referredColumn="C687607B-C74A-BF2F-2C40-5C7F9986230E"/>
-</associations>
-</Column>
-<Column name="MODE_ENTI_ID" id="F7F7538C-8108-4723-BD1B-9C978C3849CF">
-<createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:18:16 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<nullsAllowed>true</nullsAllowed>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<previousColumn>false</previousColumn>
-<autoIncrementCycle>false</autoIncrementCycle>
-<associations>
-<colAssociation fkAssociation="4BD9A509-D43B-BE25-424C-AA87A8A2DEB1" referredColumn="E0C4ED99-82B2-04CB-AC1C-205352DDAFF3"/>
-</associations>
-</Column>
-<Column name="MODE_WRTB_ID" id="09E7D64B-B0BD-69C5-7BE9-5995B5FBD85B">
-<createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:18:16 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<nullsAllowed>true</nullsAllowed>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<previousColumn>false</previousColumn>
-<autoIncrementCycle>false</autoIncrementCycle>
-<associations>
-<colAssociation fkAssociation="E7473904-1E9E-1276-F778-7E255813FE20" referredColumn="E9756F49-315F-1F97-E181-07756840736D"/>
-</associations>
-</Column>
-<Column name="MODE_SYNO_ID" id="00B9C1AD-6E64-B389-20A6-3A5A723AE3E4">
-<createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:18:16 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<nullsAllowed>true</nullsAllowed>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<previousColumn>false</previousColumn>
-<autoIncrementCycle>false</autoIncrementCycle>
-<associations>
-<colAssociation fkAssociation="A81324A9-378B-69AE-90DA-F8F540FEBC01" referredColumn="0138F518-C68B-CCFD-18CE-1018F3F836BC"/>
-</associations>
-</Column>
-<Column name="MODE_TABL_ID" id="40315E95-A020-D99F-9E8B-A3B55078004C">
-<createdBy>stb</createdBy>
-<createdTime>2020-02-04 14:45:04 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<nullsAllowed>true</nullsAllowed>
-<useDomainConstraints>false</useDomainConstraints>
-<use>0</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
-<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-<associations>
-<colAssociation fkAssociation="020E070E-6BFF-887C-05A4-786534BC93E8" referredColumn="8B0283C8-CA91-343F-0C6B-5DCA79EFB9E1"/>
-</associations>
-</Column>
-<Column name="MODE_SCHA_ID" id="1E9C6892-328B-EBB9-2C32-D4EDE5535A16">
-<createdBy>stb</createdBy>
-<createdTime>2020-02-04 14:45:04 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<nullsAllowed>true</nullsAllowed>
-<useDomainConstraints>false</useDomainConstraints>
-<use>0</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
-<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-<associations>
-<colAssociation fkAssociation="728EBEDB-813D-D6F2-1247-D795A528BC22" referredColumn="1866EBA9-BA3E-EBED-1E4F-3D88AC24A8D4"/>
-</associations>
-</Column>
-<Column name="MODE_SCHN_ID" id="00BBD6CE-652B-D2EB-B096-C142E5358A3C">
-<createdBy>stb</createdBy>
-<createdTime>2020-03-17 16:50:14 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<nullsAllowed>true</nullsAllowed>
-<useDomainConstraints>false</useDomainConstraints>
-<use>0</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
-<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<previousColumn>false</previousColumn>
-<autoIncrementCycle>false</autoIncrementCycle>
-<associations>
-<colAssociation fkAssociation="CD34CD8C-D787-B7F0-5C3C-7BDD52BCE84E" referredColumn="65C00228-99F0-589A-1661-9C55B64918EA"/>
-</associations>
-</Column>
-<Column name="MODE_UC" id="BB04C93B-5F71-6C85-8C51-F9A982B68EBB">
-<createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:18:16 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT024</logicalDatatype>
-<dataTypeSize>30 BYTE</dataTypeSize>
-<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
-<computed>true</computed>
-<autoIncrementCycle>false</autoIncrementCycle>
-<propertyMap>
-<property name="ctemplateID" value="F7EEFF47-7A42-2A3E-7DFC-D0558D6996B8"/>
-</propertyMap>
-</Column>
-<Column name="MODE_DC" id="D6DCA368-0557-4112-F5AE-60966CB3A20B">
-<createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:18:16 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT047</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-<isDiscriminatorColumn>true</isDiscriminatorColumn>
-<propertyMap>
-<property name="ctemplateID" value="74D877A0-4C3B-63EE-06C5-071C7695907C"/>
-</propertyMap>
-</Column>
-<Column name="MODE_UM" id="53280D31-1495-06E6-4FD0-431D0E6C3219">
-<createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:18:16 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<nullsAllowed>true</nullsAllowed>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT024</logicalDatatype>
-<dataTypeSize>30 BYTE</dataTypeSize>
-<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-<propertyMap>
-<property name="ctemplateID" value="B2E17D53-C2F7-74D9-022D-5D63F3931519"/>
-</propertyMap>
-</Column>
-<Column name="MODE_DM" id="B490058A-10CB-2D3C-B20D-FD2269090512">
-<createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:18:16 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<nullsAllowed>true</nullsAllowed>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT047</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-<propertyMap>
-<property name="ctemplateID" value="B398D247-00C1-F016-3BBB-FE65CFFFF7AA"/>
-</propertyMap>
-</Column>
-<Column name="MODE_ARCS_ID" id="9B7B34E6-4C4A-C3D0-4788-AB15386F0F3B">
-<createdBy>stb</createdBy>
-<createdTime>2020-07-08 10:07:12 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<nullsAllowed>true</nullsAllowed>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<previousColumn>false</previousColumn>
-<autoIncrementCycle>false</autoIncrementCycle>
-<associations>
-<colAssociation fkAssociation="9C28BCF1-D943-EFDB-E558-6F7C043467FB" referredColumn="8419DB38-AE17-BE94-73F6-B492485B7E69"/>
+<colAssociation fkAssociation="9EF8BAFB-6835-A096-982F-161CCA2F27A3" referredColumn="62C7EB27-D88E-E5B4-8507-4DB9AB2AFED0"/>
 </associations>
 </Column>
 </columns>
@@ -273,148 +67,15 @@ Das Attribut "Wert" ist der physikalische (sprachunabhängige) Wert, der als eig
 <colUsage columnID="9698F1F3-1EBE-8770-4F8C-4FFC3465A776"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="2D282A4E-5C75-74EC-3C5B-DF87CFDEA139" name="MODE_UK">
+<ind_PK_UK id="85DC1AEF-3FE5-D068-9D4F-6FC08A80EC6C" name="MODE_MELT_FK">
 <createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:18:16 UTC</createdTime>
-<generatorID>824FA372-7B8A-3105-4784-FC4BC65A3261</generatorID>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<indexState>Unique Constraint</indexState>
-<isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
-<colUsage columnID="09E7D64B-B0BD-69C5-7BE9-5995B5FBD85B"/>
-<colUsage columnID="14E88CBB-585F-0E7E-EBB9-80D70FEF5E2D"/>
-<colUsage columnID="008BF56C-DD47-344C-C4AC-29C2FD782BB9"/>
-<colUsage columnID="F7F7538C-8108-4723-BD1B-9C978C3849CF"/>
-<colUsage columnID="A14F11F7-24AD-B48F-2502-AC7F7E9B8D69"/>
-</indexColumnUsage>
-</ind_PK_UK>
-<ind_PK_UK id="99A7FAE8-BD8B-82C7-5D55-C1A2042D3473" name="MODE_BURU_FK_IST">
-<createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:18:17 UTC</createdTime>
+<createdTime>2020-07-30 13:30:53 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <indexState>Foreign Key</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
-<colUsage columnID="008BF56C-DD47-344C-C4AC-29C2FD782BB9"/>
-</indexColumnUsage>
-</ind_PK_UK>
-<ind_PK_UK id="BCCB4607-E25E-3718-0A66-B0D2BF4A11AE" name="MODE_ATTR_FK_IST">
-<createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:18:17 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<indexState>Foreign Key</indexState>
-<isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
-<colUsage columnID="14E88CBB-585F-0E7E-EBB9-80D70FEF5E2D"/>
-</indexColumnUsage>
-</ind_PK_UK>
-<ind_PK_UK id="1E0657A3-AB11-C8F3-500E-299453B91D52" name="MODE_SYNO_FK">
-<createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:18:17 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<indexState>Foreign Key</indexState>
-<isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
-<colUsage columnID="00B9C1AD-6E64-B389-20A6-3A5A723AE3E4"/>
-</indexColumnUsage>
-</ind_PK_UK>
-<ind_PK_UK id="18AA1700-D8F3-6ACB-D63B-4A67563440E0" name="MODE_ENTI_FK_IST">
-<createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:18:17 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<indexState>Foreign Key</indexState>
-<isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
-<colUsage columnID="F7F7538C-8108-4723-BD1B-9C978C3849CF"/>
-</indexColumnUsage>
-</ind_PK_UK>
-<ind_PK_UK id="D96C1251-AEC5-D00D-C515-B6056BCFEAC3" name="MODE_MELT_FK">
-<createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:18:17 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<indexState>Foreign Key</indexState>
-<isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
-<colUsage columnID="8E881759-24D0-E373-90B8-72BD99EDFD12"/>
-</indexColumnUsage>
-</ind_PK_UK>
-<ind_PK_UK id="A790B1AF-754D-7FF0-8822-D83C9E44B10C" name="MODE_TABL_FK">
-<createdBy>stb</createdBy>
-<createdTime>2020-02-04 14:57:14 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<indexState>Foreign Key</indexState>
-<isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
-<colUsage columnID="40315E95-A020-D99F-9E8B-A3B55078004C"/>
-</indexColumnUsage>
-</ind_PK_UK>
-<ind_PK_UK id="D05B4603-C8ED-D91B-EEB3-7D876031DBD1" name="MODE_SCHA_FK">
-<createdBy>stb</createdBy>
-<createdTime>2020-02-04 15:35:43 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<indexState>Foreign Key</indexState>
-<isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
-<colUsage columnID="1E9C6892-328B-EBB9-2C32-D4EDE5535A16"/>
-</indexColumnUsage>
-</ind_PK_UK>
-<ind_PK_UK id="55EF8F7B-F160-5362-D5B9-1E12107EF7BC" name="MODE_BEZI_FK">
-<createdBy>stb</createdBy>
-<createdTime>2020-02-04 15:41:32 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<indexState>Foreign Key</indexState>
-<isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
-<colUsage columnID="A14F11F7-24AD-B48F-2502-AC7F7E9B8D69"/>
-</indexColumnUsage>
-</ind_PK_UK>
-<ind_PK_UK id="56DDD3E7-9586-4B45-9B6F-8E9A90958B17" name="MODE_WRTB_FK">
-<createdBy>stb</createdBy>
-<createdTime>2020-02-04 15:43:38 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<indexState>Foreign Key</indexState>
-<isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
-<colUsage columnID="09E7D64B-B0BD-69C5-7BE9-5995B5FBD85B"/>
-</indexColumnUsage>
-</ind_PK_UK>
-<ind_PK_UK id="FA19ABEA-11F2-3C68-8D75-8840AA42074B" name="MODELLELEMENT_SCHNITTSTELLE_FK">
-<createdBy>stb</createdBy>
-<createdTime>2020-03-17 16:50:14 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<indexState>Foreign Key</indexState>
-<isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
-<colUsage columnID="00BBD6CE-652B-D2EB-B096-C142E5358A3C"/>
-</indexColumnUsage>
-</ind_PK_UK>
-<ind_PK_UK id="AAD7F57F-AC2E-DEEC-F36E-320F6BAB0D75" name="MODE_ARCS_FK">
-<createdBy>stb</createdBy>
-<createdTime>2020-07-08 10:07:12 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<indexState>Foreign Key</indexState>
-<isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
-<colUsage columnID="9B7B34E6-4C4A-C3D0-4788-AB15386F0F3B"/>
+<colUsage columnID="C9B9090E-ACD2-912C-656D-4F0FF9462048"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>
-<tableCheckConstraints itemClass="oracle.dbtools.crest.model.design.constraint.TableLevelConstraint">
-<tableCheckConstraint name="MODE_CK_ARC" directorySegmentName="seg_1" id="CE6C5459-3B2F-9564-DD64-6D85CEE35E17">
-<createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:18:16 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<rule><![CDATA[case WHEN mode_buru_id IS NULL THEN 0 else 1 end
-		   	 						+case WHEN mode_enti_id IS NULL THEN 0 else 1 end	
-		   	 						+case WHEN mode_tabl_id IS NULL THEN 0 else 1 end	
-		   	 						+case WHEN mode_scha_id IS NULL THEN 0 else 1 end	
-		   	 						+case WHEN mode_syno_id IS NULL THEN 0 else 1 end	
-		   	 						+case WHEN mode_bezi_id IS NULL THEN 0 else 1 end	
-		   	 						+case WHEN mode_wrtb_id IS NULL THEN 0 else 1 end	
-		   	 						+case WHEN mode_attr_id IS NULL THEN 0 else 1 end	
-		   	 						+case WHEN mode_orge_id IS NULL THEN 0 else 1 end	
-		   	 						+case WHEN mode_schn_id IS NULL THEN 0 else 1 end	
-									= 1]]></rule>
-</tableCheckConstraint>
-</tableCheckConstraints>
 </Table>

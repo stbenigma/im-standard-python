@@ -1,0 +1,95 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="783AC2A6-E628-8A18-ABD3-5B76481F0C26" name="MODE_DOCU">
+<createdBy>stb</createdBy>
+<createdTime>2020-07-30 13:57:19 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<ordsAlias>table_75</ordsAlias>
+<abbreviation>MODO</abbreviation>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="MODO_ID" id="CC4EAEDF-A8A1-764A-0F69-24E342164E29">
+<createdBy>stb</createdBy>
+<createdTime>2020-07-30 13:58:23 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="MODO_MODE_ID" id="9BA549D7-2F42-CDF8-3893-6C67901EC809">
+<createdBy>stb</createdBy>
+<createdTime>2020-07-30 13:59:26 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="975CE0FB-A822-224E-EC5F-1BBA6FA79E0F" referredColumn="9698F1F3-1EBE-8770-4F8C-4FFC3465A776"/>
+</associations>
+</Column>
+<Column name="MODO_DOCU_ID" id="6592D6CB-4C11-2965-36D0-B05E69F78965">
+<createdBy>stb</createdBy>
+<createdTime>2020-07-30 13:59:38 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="7866C695-E17C-236E-5522-A4349790EB63" referredColumn="E8DF5F81-72CA-AE14-4AB6-B790A55C3490"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="EBE2B77B-D7F5-8506-D8DD-6A733DF5ED5D" name="MODO_PKv2">
+<createdBy>stb</createdBy>
+<createdTime>2020-07-30 13:58:23 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="CC4EAEDF-A8A1-764A-0F69-24E342164E29"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="0584A233-ACFD-6D4F-2DC7-AD82EFAF13B9" name="MODO_UK">
+<createdBy>stb</createdBy>
+<createdTime>2020-07-30 14:01:30 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="9BA549D7-2F42-CDF8-3893-6C67901EC809"/>
+<colUsage columnID="6592D6CB-4C11-2965-36D0-B05E69F78965"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="BD0A2A8A-2CA6-C0FC-61F8-3919F7FB1456" name="MODO_MODE_FKv2">
+<createdBy>stb</createdBy>
+<createdTime>2020-07-30 13:59:26 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="9BA549D7-2F42-CDF8-3893-6C67901EC809"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="AEB22ECE-DE84-9E30-2B29-67F5E1AC0A25" name="MODO_DOCU_FK">
+<createdBy>stb</createdBy>
+<createdTime>2020-07-30 13:59:38 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="6592D6CB-4C11-2965-36D0-B05E69F78965"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

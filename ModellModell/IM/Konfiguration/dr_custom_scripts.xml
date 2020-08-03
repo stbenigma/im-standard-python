@@ -19,26 +19,55 @@
 					fullmessage(msg,PLAINMESSAGE);
 					}
 
+	function handleprefix(name,prefix){
+		if (name == null) return null
+		if (name == '') return ''
+		if ((name.length > 5) && /^[A-Z]{4}_.*/.test(name)) {
+			newname = name.replace(/^[A-Z]{4}_/,abbrev+'_')
+			//message(name+':'+/^[A-Z]{4}_.*/.test(name))
+		} else {
+			newname = abbrev+'_'+name
+		}
+		return newname
+	}
+	
 	function do1table(table){
 		cols = table.getElements();
 		abbrev = table.getAbbreviation();
 		if (abbrev == null) return;
 		if (abbrev == '') return;
-		//if (abbrev != 'CCCC') return;
+		//if (abbrev != 'LANG') return;
 
+		keys = table.getKeys()
+		for (var k = 0; k < keys.length; k++){
+			key = keys[k]
+			//message(abbrev+':'+key.getName())
+			key.setName(handleprefix(key.getName(),abbrev))
+		}
+//		keys = table.getUKeys()
+//		for (var k = 0; k < keys.length; k++){
+//			key = keys[k]
+//			message(abbrev+':'+key.getName())
+//			key.setName(handleprefix(key.getName(),abbrev))
+//		}
+		
+		checks = table.getCheckConstraints()
+		for (var cc = 0; cc < checks.length; cc++){
+			check = checks[cc]
+			//message(abbrev+':'+check.getName())
+			check.setName(handleprefix(check.getName(),abbrev))
+		}
+		
 		//message(table.getName()+'/'+abbrev);
 		for (var c = 0; c < cols.length; c++){
 			col = cols[c]
 			colname = col.getName()
-			//message(colname+':'+/^[A-Z]{4}_.*/.test(colname)+':'+colname.length)
-			if ((colname.length > 5) && /^[A-Z]{4}_.*/.test(colname)) {
-				colname = colname.replace(/^[A-Z]{4}_/,abbrev+'_')
-				//message(colname+':'+/^[A-Z]{4}_.*/.test(colname))
-			} else {
-				colname = abbrev+'_'+colname
-			}
-			//message(colname,colname)			
+			//message(colname+':'+/^[A-Z]{4}_.*/.test(colname)+':'+colname.length+':'+col.getConstraintName())
+			colname = handleprefix(colname,abbrev)
+			constrName = handleprefix(col.getConstraintName(),abbrev)
+			//message(colname+':'+constrName)			
 			col.setName(colname)
+			col.setConstraintName(constrName)
 		}
 		table.setDirty(true)
 	}
@@ -46,10 +75,7 @@ tables = model.getTableSet().toArray();
 //message(model.getName()+':'+tables.length)
 for (var t = 0; t<tables.length;t++){
 	do1table(tables[t]);
-}
-
-    
-]]>
+}]]>
 		</script>
 	</scr>
 	<scr id="0528C35C-F29B-E7BB-57AC-37BA2780A98D" name="Table template - uses column name" object="relational" engine="Oracle Nashorn" type="" var="model" library="" method="" purpose="transformation" >

@@ -1,16 +1,16 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="A8274359-544D-A9C2-5C15-E2F39C7B64DD" containerWithKeyObject="EA2CAFF9-C7D7-CA8C-28A9-28698D0F930B" localFKIndex="1BF0E296-6BC8-E84B-10BA-7E26F809DC9F" name="ARC_ENTI_FK">
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="A8274359-544D-A9C2-5C15-E2F39C7B64DD" containerWithKeyObject="EA2CAFF9-C7D7-CA8C-28A9-28698D0F930B" localFKIndex="1BF0E296-6BC8-E84B-10BA-7E26F809DC9F" name="ARCS_ENTI_FK">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:17 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
-<referredTableLongName>ENTITAET</referredTableLongName>
+<referredTableLongName>ENTITIES</referredTableLongName>
 <deleteRule>CASCADE</deleteRule>
 <referredTableID>05B89BF6-C97E-8CC1-D005-80D985DA4785</referredTableID>
 <keyObject>5E5A02DF-4CA3-AFD8-563D-962D8561CE49</keyObject>
 <referredKeyID>5E5A02DF-4CA3-AFD8-563D-962D8561CE49</referredKeyID>
 <mandatory>true</mandatory>
 <refColNames>ENTI_ID</refColNames>
-<transferable>true</transferable>
+<transferable>false</transferable>
 <rely>false</rely>
 <columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
 </FKIndexAssociation>

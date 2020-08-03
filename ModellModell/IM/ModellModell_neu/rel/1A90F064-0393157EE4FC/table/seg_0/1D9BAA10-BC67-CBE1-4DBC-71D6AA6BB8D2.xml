@@ -24,7 +24,7 @@
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <commentInRDBMS><![CDATA[Gibt an, ob ein Attribut gelesen und nach aussen verwendet wird (OUTBOUND) bzw. neu gesetzt wird (INBOUND)]]></commentInRDBMS>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
-<constraintName>CK_TFUS_TFUS_RICHTUNG</constraintName>
+<constraintName>ETUS_CK_TFUS_TFUS_RICHTUNG</constraintName>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
@@ -59,9 +59,6 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
-<associations>
-<colAssociation fkAssociation="97871845-7617-07B9-B63B-70D9D013903A" referredColumn="E0C4ED99-82B2-04CB-AC1C-205352DDAFF3"/>
-</associations>
 </Column>
 <Column name="ETUS_UC" id="0BD5540E-3F4F-994D-7422-A291EA7C613D">
 <createdBy>stb</createdBy>
@@ -120,9 +117,23 @@
 <property name="ctemplateID" value="B398D247-00C1-F016-3BBB-FE65CFFFF7AA"/>
 </propertyMap>
 </Column>
+<Column name="ENTITIES_ENTI_ID" id="4AA53368-A36A-2511-C874-5B7276FF11DE">
+<createdBy>stb</createdBy>
+<createdTime>2020-08-02 13:30:59 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="97871845-7617-07B9-B63B-70D9D013903A" referredColumn="365AA3F1-7B02-CFAB-BB51-AE721CDEA5F3"/>
+</associations>
+</Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
-<ind_PK_UK id="F4FDB65D-0D32-F985-E93C-055CBF505700" name="TFUS_PK">
+<ind_PK_UK id="F4FDB65D-0D32-F985-E93C-055CBF505700" name="ETUS_PK">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -133,7 +144,7 @@
 <colUsage columnID="140BCEF9-1CFD-1AA1-C1B0-08A56A29BF89"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="60F50AB8-2B00-B34C-AD63-E14114122FBE" name="TFUS_TFUS_ATTF_ID_TFUS_ATTR_ID_UN">
+<ind_PK_UK id="60F50AB8-2B00-B34C-AD63-E14114122FBE" name="ETUS_TFUS_ATTF_ID_TFUS_ATTR_ID_UN">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -151,7 +162,7 @@
 <indexState>Foreign Key</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
-<colUsage columnID="06D40554-BC76-EBE2-7D56-E67A7D3ECD29"/>
+<colUsage columnID="4AA53368-A36A-2511-C874-5B7276FF11DE"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>

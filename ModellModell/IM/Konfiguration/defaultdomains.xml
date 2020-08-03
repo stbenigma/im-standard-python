@@ -67,16 +67,17 @@
 <fileName>defaultdomains</fileName>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <listOfValues>
-<valueDef value="ATTR" description="Attribut"/>
-<valueDef value="BEZI" description="Beziehung"/>
+<valueDef value="ARC" description="Arcs"/>
+<valueDef value="ATTR" description="Attribute"/>
 <valueDef value="BURU" description="Business Rule"/>
-<valueDef value="ENTI" description="Entität"/>
-<valueDef value="ORGE" description="Organisationseinheit"/>
-<valueDef value="SCHA" description="Schnittstellen Attribut"/>
-<valueDef value="SCHN" description="Schnittstelle"/>
+<valueDef value="COL" description="Column"/>
+<valueDef value="DOM" description="Domain"/>
+<valueDef value="ENTI" description="Entity"/>
+<valueDef value="INTF" description="Interface"/>
+<valueDef value="ORGU" description="Organisational Unit"/>
+<valueDef value="RELA" description="Relation"/>
 <valueDef value="SYNO" description="Synonym"/>
-<valueDef value="TABL" description="Tabelle"/>
-<valueDef value="WRTB" description="Wertebereich"/>
+<valueDef value="TABL" description="Table"/>
 </listOfValues>
 </Domain>
 <Domain class="oracle.dbtools.crest.model.design.Domain" name="Referenz" id="17A3A5E7-15FD-8979-FF7A-1FAC09CEC963">
@@ -108,11 +109,12 @@
 <fileName>defaultdomains</fileName>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <listOfValues>
-<valueDef value="BILD" description="Bild"/>
+<valueDef value="DRAWING" description="Graphik"/>
 <valueDef value="FILM" description="Film"/>
-<valueDef value="GRAPH" description="Graphik"/>
+<valueDef value="IMAGE" description="Bild"/>
+<valueDef value="OTHER" description=""/>
+<valueDef value="SOUND" description="Ton"/>
 <valueDef value="TEXT" description="Formatierter Text"/>
-<valueDef value="TON" description="Ton"/>
 </listOfValues>
 </Domain>
 <Domain class="oracle.dbtools.crest.model.design.Domain" name="Linientyp" id="30B34D60-5229-19CC-A3D5-584257D800BD">
@@ -145,6 +147,22 @@
 <rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
 <beginValue>0.0</beginValue>
 <endValue>100.0</endValue>
+</rangeDef>
+</listOfRanges>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="SequenNr" id="39B01BA7-C3D2-D42E-5518-83CB3845A63D">
+<createdBy>stb</createdBy>
+<createdTime>2020-07-30 14:19:34 UTC</createdTime>
+<ownerDesignName>System</ownerDesignName>
+<avTSortOrder>0</avTSortOrder>
+<dataTypePrecision>5</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<fileName>defaultdomains</fileName>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>1</beginValue>
+<endValue>99999</endValue>
 </rangeDef>
 </listOfRanges>
 </Domain>
@@ -214,14 +232,15 @@
 <createdTime>2019-08-26 14:31:17 UTC</createdTime>
 <ownerDesignName>System</ownerDesignName>
 <avTSortOrder>0</avTSortOrder>
-<dataTypeSize>3 CHAR</dataTypeSize>
+<dataTypeSize>4 CHAR</dataTypeSize>
 <fileName>defaultdomains</fileName>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <listOfValues>
-<valueDef value="1:1" description=""/>
-<valueDef value="ISA" description=""/>
-<valueDef value="M:1" description=""/>
-<valueDef value="M:N" description=""/>
+<valueDef value="1:1" description="one - one"/>
+<valueDef value="ISAR" description="IsA Role"/>
+<valueDef value="ISAS" description="IsA Subtype"/>
+<valueDef value="M:1" description="many - one"/>
+<valueDef value="M:N" description="many - many"/>
 </listOfValues>
 </Domain>
 <Domain class="oracle.dbtools.crest.model.design.Domain" name="eMail-Adresse" id="4B4F8F40-D3A4-4F39-8CB3-BB6C57534E96">
@@ -261,6 +280,20 @@
 <dataTypeSize>60 CHAR</dataTypeSize>
 <fileName>defaultdomains</fileName>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="Beziehungsendetyp" id="58A81D94-A2AD-3DA7-4B9E-471B043185E0">
+<createdBy>stb</createdBy>
+<createdTime>2020-07-27 16:15:31 UTC</createdTime>
+<comment><![CDATA[Cardinalität am Ende der Beziehung ]]></comment>
+<ownerDesignName>System</ownerDesignName>
+<avTSortOrder>0</avTSortOrder>
+<dataTypeSize>1 CHAR</dataTypeSize>
+<fileName>defaultdomains</fileName>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<listOfValues>
+<valueDef value="1" description=""/>
+<valueDef value="M" description=""/>
+</listOfValues>
 </Domain>
 <Domain class="oracle.dbtools.crest.model.design.Domain" name="GUID" id="5D3D105A-15CC-2DBC-8E41-2A63484D069D">
 <createdBy>stb</createdBy>
@@ -308,7 +341,11 @@
 <fileName>defaultdomains</fileName>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <listOfValues>
+<valueDef value="csv" description=""/>
 <valueDef value="doc" description=""/>
+<valueDef value="docx" description=""/>
+<valueDef value="gif" description=""/>
+<valueDef value="html" description=""/>
 <valueDef value="jpeg" description=""/>
 <valueDef value="json" description=""/>
 <valueDef value="key" description=""/>
@@ -317,10 +354,14 @@
 <valueDef value="pdf" description=""/>
 <valueDef value="png" description=""/>
 <valueDef value="ppt" description=""/>
+<valueDef value="pptx" description=""/>
 <valueDef value="text" description=""/>
+<valueDef value="tiff" description=""/>
 <valueDef value="unbestimmt" description=""/>
 <valueDef value="xls" description=""/>
+<valueDef value="xlsx" description=""/>
 <valueDef value="xml" description=""/>
+<valueDef value="xmlx" description=""/>
 </listOfValues>
 </Domain>
 <Domain class="oracle.dbtools.crest.model.design.Domain" name="Transformationsverarbeitung" id="70371CD6-E734-52D3-6D46-C65613C10CE8">
@@ -383,16 +424,16 @@
 <fileName>defaultdomains</fileName>
 <logicalDatatype>LOGDT024</logicalDatatype>
 <listOfValues>
-<valueDef value="JAHR" description="Jahr"/>
-<valueDef value="MILLISEKUNDE" description="Millisekunde"/>
+<valueDef value="DAY" description="Tag"/>
+<valueDef value="HOUR" description="Stunde"/>
+<valueDef value="MILlISECOND" description="Millisekunde"/>
 <valueDef value="MINUTE" description="Minute"/>
-<valueDef value="MONAT" description="Monat"/>
-<valueDef value="QUARTAL" description="Quartal"/>
-<valueDef value="SEKUNDE" description="Sekunde"/>
+<valueDef value="MONTH" description="Monat"/>
+<valueDef value="QUARTER" description="Quartal"/>
+<valueDef value="SECOND" description="Sekunde"/>
 <valueDef value="SEMESTER" description="Semester"/>
-<valueDef value="STUNDE" description="Stunde"/>
-<valueDef value="TAG" description="Tag"/>
-<valueDef value="WOCHE" description="Woche"/>
+<valueDef value="WEEK" description="Woche"/>
+<valueDef value="YEAR" description="Jahr"/>
 </listOfValues>
 </Domain>
 <Domain class="oracle.dbtools.crest.model.design.Domain" name="Abbildungstyp" id="8831EDF9-D218-4FB3-5BB6-7B34E8325AF7">

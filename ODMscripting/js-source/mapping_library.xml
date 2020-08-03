@@ -4,26 +4,17 @@
 	<lib id="B2F713AD-5E48-670F-8A2B-55D1ABD0440C" name="attrmapping" engine="Oracle Nashorn" methods="importMapping,print1Mapping,printXMapping,printNameMapping" >
 		<script>
 			<![CDATA[
-			var CODEVERSION = '2.0'
+			var CODEVERSION = '2.2'
+
+			//Messaging
 			var PLAINMESSAGE = 1;
 			var ERRORMESSAGE = 0;
 			var WARNINGMESSAGE = 2;
 			var QUESTIONMESSAGE = 3;
+
+			//Outputformat
 			var FORMATJSON = 'JSON'
 			var FORMATCSV = 'CSV'
-			var tabanz = 0
-			var colanz = 0
-			var colmapanz = 0
-			var tabmapanz = 0
-			var lasttabmapping = ""
-			var lineanz = 0
-			var logicalModel
-			var entitySet
-			var relationSet
-			var inheritanceSet
-			var relModel
-			var rmodels
-			var writtenCols = {}
 			var exportDirec = java.lang.System.getProperty("user.home") + "/Downloads"
 			var importDirec = java.lang.System.getProperty("user.home") + "/Downloads"
 			var EXTIDPROPNAME = "EXT_ATTR_ID"
@@ -32,6 +23,29 @@
 			var EXCELMULTILINESEP = String.fromCharCode(10)
 			var EXCELLINEEND = String.fromCharCode(10)
 			var EXCELBOM = "\ufeff" //String.fromCharCode(0xef,0xbb,0xbf)
+
+			// globale Änderungsvariablen für Schlussmeldung
+			var tabanz = 0
+			var colanz = 0
+			var colmapanz = 0
+			var tabmapanz = 0
+
+			var lasttabmapping = ""
+			var lineanz = 0
+
+			// Kopie der aktuellen Modelsets
+			var logicalModel
+			var entitySet
+			var relationSet
+			var inheritanceSet
+			var relModel
+			var rmodels
+			var containerMappings = {}
+			var attrMappings = {}
+			var tabentimap = {}
+			//var entitabmap = {}
+			var colattrmap = {}
+			//var attrcolmap = {}
 
 			// Types for mapping element
 			ENTITYPE = 0
@@ -43,12 +57,11 @@
 			INHERITTYPE = 9
 			RELARCTYPE = 13
 			LOGARCTYPE = 14
-			var containerMappings = {}
-			var attrMappings = {}
 
 			function getAllMappings(rmodels) {
 				containerMappings = {}
 				attrMappings = {}
+	
 				if (rmodels == null) return
 				for (imod = 0; imod < rmodels.length; imod++) {
 					rmod = rmodels[imod]
@@ -72,7 +85,7 @@
 								default:
 									logName = null
 							}
-
+				
 							containerMappings[logMap.getID()] = {
 								modelName: modname,
 								logID: logMap.getLogID(),
@@ -84,7 +97,7 @@
 								srcEntityID: logMap.getRealSourceEntityID(),
 								trgEntityID: logMap.getRealTargetEntityID()
 							}
-
+									
 							containedMaps = logMap.getContainedMappings()
 							for (icm = 0; icm < containedMaps.length; icm++) {
 								cm = containedMaps[icm]
@@ -100,8 +113,36 @@
 						}
 					}
 				}
-			}
+				tabentimap = {}
+			//	entitabmap = {}
+				colattrmap = {}
+			//	attrcolmap = {}
+				for (imgm = 0; imgm < modelMap.length; imgm++) {
+					logMap = modelMap[imgm]
+					entiid = logMap.getLogID()
+					tabid = logMap.getRelID()
+					logtype = logMap.getLogType()
+					reltype = logMap.getRelType()
+					settabentimap(tabid,entiid,logtype)
+					//if (!entitabmap[entiid]) entitabmap[entiid]={};
+					//entitabmap[entiid][tabid] = reltype
 
+					containedMaps = logMap.getContainedMappings()
+					for (icm = 0; icm < containedMaps.length; icm++) {
+						cm = containedMaps[icm]
+						attrid = cm.getLogID()
+						colid = cm.getRelID()
+						logtype = cm.getLogType()
+						reltype = cm.getRelType()
+			//			if (colid == "185B8BC3-D68D-F932-2E85-7732BA7BE8B0"){
+			//				linemessage("transfercol ",colid,attrid,logtype)
+			//			}
+						setcolattrmap(colid,attrid,logtype)
+						//if (!attrcolmap[attrid]) attrcolmap[attrid]={};
+						//attrcolmap[attrid][colid] = attrtype
+					}
+				}
+			}
 
 			function fullmessage(msg, type) {
 				Java.type("javax.swing.JOptionPane").showMessageDialog(null, msg, 'ODM-Translation', type);
@@ -113,6 +154,14 @@
 
 			function message(msg) {
 				fullmessage(msg, PLAINMESSAGE);
+			}
+
+			function linemessage() {
+				str = ''
+				for (i=0;i<arguments.length;i++){
+					str = str.concat(arguments[i],'\n')
+				}
+				message(str)
 			}
 
 			function trimapo(s) {
@@ -143,6 +192,28 @@
 				return null
 			}
 
+			function existstabentimap(tabid,entiid) {
+				if (tabentimap[tabid]) return entiid in tabentimap[tabid];
+					else return false
+			}
+
+			function settabentimap(tabid,entiid,value) {
+				if (!tabentimap[tabid]) tabentimap[tabid]={};
+				tabentimap[tabid][entiid] = value
+			}
+			function setcolattrmap(colid,attrid,value) {
+				if (!colattrmap[colid]) {
+					colattrmap[colid]={attrid:value};}
+				colattrmap[colid][attrid] = value
+			}
+			function existscolattrmap(colid,attrid) {
+				if (colattrmap[colid]) {
+						return attrid in colattrmap[colid]
+					//attrid in colattrmap[colid]
+				}
+					else return false
+			}
+
 			function getLogMap(logID, modName) {
 				maps = []
 				for (key in containerMappings) {
@@ -156,7 +227,7 @@
 				colsmap = []
 				for (key in attrMappings) {
 					//message(colID+'|'+cmap[icolmap].getRelID())
-					if (colID == attrMappings[key].relID) colsmap.push(attrMappings[key])
+					if (colid == attrMappings[key].relID) colsmap.push(attrMappings[key])
 				}
 				return colsmap
 			}
@@ -198,21 +269,15 @@
 
 
 			function do1line(values) {
-				modelMapping = rmodel.getRMExtendedMap().getContainerMappings().toArray();
 				tabName = values[0];
 				colName = values[1];
 				elemName = values[2];
 				attrName = values[3];
-				//message(entiName+' | '+attrName+' | '+tabName+' | '+colName)
+				//linemessage(elemName,attrName,tabName,colName)
 				relation = null
 				entity = entitySet.getByName(elemName);
 				if (entity != null) {
 					attribute = entity.getElementByName(attrName);
-					//if (attribute = null){
-					//entity.createAttribute(attrName)
-					//attribute = entity.getElementByName(attrName);
-					//attribute.setComment("Created on "+curDateStr() +" during import from "+imppath)		
-					//}
 				} else { // assume Relation 
 					relation = relationSet.getByName(elemName)
 					if (relation != null) {
@@ -234,37 +299,49 @@
 				}
 				// neue Columns werden erzeugt
 				if ((column == null) && (colName != "")) {
-					//message('neue Column')
+					//linemessage('neue Column',colName,tabName)
 					table.createColumn(colName)
 					column = table.getElementByName(colName);
 					column.setComment("Created on " + curDateStr() + " during import from " + imppath)
 					colanz++
 				}
 				if ((entity != null) && (table != null)) {
-					mapped = getContainerMap(entity.getObjectID(), table.getObjectID())
-					if (mapped == null) {
+					//mapped = getContainerMap(entity.getObjectID(), table.getObjectID())
+					//if (mapped == null) {
+					if (! existstabentimap(table.getObjectID(),entity.getObjectID())) { 
 						rmodel.getRMExtendedMap().createMapping(entity, table);
+						//entitabmap[entity.getObjectID()][table.getObjectID()] = ''
+						settabentimap(table.getObjectID(),entity.getObjectID(),'') 
 						tabmapanz++
 					}
 					if ((attribute != null) && (column != null)) {
-						mapped = getColMap(column.getObjectID(), attribute.getObjectID())
-
-						if (mapped == null) {
+						//mapped = getColMap(column.getObjectID(), attribute.getObjectID())
+						//if (mapped == null) {
+						if (! existscolattrmap(column.getObjectID(),attribute.getObjectID())) {
 							rmodel.getRMExtendedMap().createMapping(attribute, column);
+							setcolattrmap(column.getObjectID(),attribute.getObjectID(),1)
 							colmapanz++
+							//linemessage(colmapanz,column.getObjectID(),attribute.getObjectID()
+							//,"inhalt="+colattrmap[column.getObjectID()][attribute.getObjectID()])
 						}
 					}
 				}
 				if ((relation != null) && (table != null)) {
-					mapped = getContainerMap(relation.getObjectID(), table.getObjectID())
-					if (mapped == null) {
+					//mapped = getContainerMap(relation.getObjectID(), table.getObjectID())
+					//if (mapped == null) {
+					if (! existstabentimap(table.getObjectID(),relation.getObjectID())) { 
 						rmodel.getRMExtendedMap().createMapping(relation, table);
+						//entitabmap[relation.getObjectID()][table.getObjectID()] = ''
+						settabentimap(table.getObjectID(),entity.getObjectID(),'') 
 						tabmapanz++
 					}
+
 					if ((attribute != null) && (column != null)) {
-						mapped = getColMap(column.getObjectID(), attribute.getObjectID())
-						if (mapped == null) {
+						//mapped = getColMap(column.getObjectID(), attribute.getObjectID())
+						//if (mapped == null) {
+						if (! existscolattrmap(column.getObjectID(),attribute.getObjectID())) {
 							rmodel.getRMExtendedMap().createMapping(attribute, column);
+							setcolattrmap(column.getObjectID(),attribute.getObjectID(),1)
 							colmapanz++
 						}
 					}
@@ -295,9 +372,11 @@
 						// skip headers
 						//message(lnoif+': '+"headers= "+values);
 					} else {
-						//message(lnoif+': '+values);
-						do1line(values);
-						lineanz++
+						//linemessage(lnoif,values.length,values);
+						if (values.length>=4){
+							do1line(values);
+							lineanz++
+						}
 					}
 				};
 			}
@@ -400,7 +479,7 @@
 										//throw new Error("\n  Column'"+colkey +" unknown logical mapping type: "+parent.logType);
 							}
 							attrentry.push( [tab.getName(),(col == null)?'' : col.getName(),nvl(logElem.getName()),nvl(attrName)])
-				
+	
 							writtenCols[colkey] = true
 						}
 					}
@@ -574,7 +653,7 @@
 							attrmaplist.sort(sortattrmaps);
 							for (amidx=0;amidx<attrmaplist.length;amidx++) {
 								attrmap = attrmaplist[amidx]
-				
+	
 							//SORT
 							//for (key in attrmaps) {
 							//attrmap = attrmaps[key]
@@ -733,7 +812,6 @@
 
 			function printMatrix(fw, nurX, format) {
 				gatherModel()
-
 				getAllMappings(rmodels)
 
 				if (nurX) {
@@ -800,7 +878,7 @@
 				gatherModel()
 				relModel = chooseModel();
 				if (relModel == null) return;
-	
+
 				format = outputformat()
 				if (format == null) {
 					return null
@@ -836,7 +914,6 @@
 			function printNameMapping() {
 				printAllMapping(false)
 			}
-
 ]]>
 		</script>
 	</lib>

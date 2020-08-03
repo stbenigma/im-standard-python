@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="A63A4195-0FD3-2A6E-0C49-FB3E94294828" name="Product variant">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="A63A4195-0FD3-2A6E-0C49-FB3E94294828" name="Produkt-Variante">
 <createdBy>stb</createdBy>
 <createdTime>2019-11-06 12:31:36 UTC</createdTime>
 <comment><![CDATA[**German commentary with english inline.
@@ -14,7 +14,7 @@ Conclusion
 **Sous-unité appartenant à une connexion 1:1.
 ]FR_ENTI_COMMENT]
 [EN_ENTI_COMMENT[
-**German commentary with english inline.
+English commentary with deutschem Anteil
 
 Conclusion
 ]EN_ENTI_COMMENT]
@@ -33,15 +33,15 @@ Conclusion
 <normalForm>Third</normalForm>
 <createSurrogateKey>true</createSurrogateKey>
 <propertyMap>
-<property name="DE_ENTI_NAME" value="Product variant"/>
+<property name="DE_ENTI_NAME" value="Produkt-Variante"/>
 <property name="DE_ENTI_SYNONYM" value=""/>
 <property name="EN_ENTI_NAME" value="Product variant"/>
 <property name="EN_ENTI_SYNONYM" value=""/>
-<property name="FR_ENTI_NAME" value="*DE* Product variant"/>
+<property name="FR_ENTI_NAME" value="**Variante du produit"/>
 <property name="FR_ENTI_SYNONYM" value=""/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<Attribute name="*DE* Zusatzattribut 1-2" id="D7FCD7A6-1ECF-C45B-953D-7BFE943B363A">
+<Attribute name="Zusatzattribut" id="D7FCD7A6-1ECF-C45B-953D-7BFE943B363A">
 <createdBy>stb</createdBy>
 <createdTime>2019-11-06 12:31:48 UTC</createdTime>
 <notes><![CDATA[[DE_ATTR_COMMENT[
@@ -62,9 +62,9 @@ Conclusion
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
-<property name="DE_ATTR_NAME" value="*DE* Zusatzattribut 1-2"/>
-<property name="EN_ATTR_NAME" value="*DE* Zusatzattribut 1-2"/>
-<property name="FR_ATTR_NAME" value="*DE* Zusatzattribut 1-2"/>
+<property name="DE_ATTR_NAME" value="Zusatzattribut"/>
+<property name="EN_ATTR_NAME" value="***EN* Additional attribute 1-2"/>
+<property name="FR_ATTR_NAME" value="***FR* Attribut supplémentaire 1-2"/>
 </propertyMap>
 </Attribute>
 </attributes>

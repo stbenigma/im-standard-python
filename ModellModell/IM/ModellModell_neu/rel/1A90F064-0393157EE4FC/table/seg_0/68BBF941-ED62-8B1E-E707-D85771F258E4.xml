@@ -1,18 +1,19 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="68BBF941-ED62-8B1E-E707-D85771F258E4" name="SPRACHE">
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="68BBF941-ED62-8B1E-E707-D85771F258E4" name="LANGUAGES">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
-<comment><![CDATA[Sprache gemäss ISO 629-1,2,3
+<comment><![CDATA[Language accoriding to ISO 629-1,2,3
 
-Eine alternative Ausgabe, erlaubt es, einen Text zu dem eine Übersetzung fehlt in einer Default-Sprache auszugeben.]]></comment>
+The replacement language (LANG_LANG_ID) gives the default language to be used, if no text is found in the desired language]]></comment>
 <generatorID>3E8032B0-5673-6691-00B9-475546860A3A</generatorID>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
-<abbreviation>SPRA</abbreviation>
+<ordsAlias>sprache</ordsAlias>
+<abbreviation>LANG</abbreviation>
 <allowColumnReorder>false</allowColumnReorder>
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
-<Column name="SPRA_ID" id="EA45665A-1FBD-1480-B9FE-D8E4AD733D95">
+<Column name="LANG_ID" id="EA45665A-1FBD-1480-B9FE-D8E4AD733D95">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -25,7 +26,78 @@ Eine alternative Ausgabe, erlaubt es, einen Text zu dem eine Übersetzung fehlt 
 <autoIncrementCycle>false</autoIncrementCycle>
 <autoIncrementSequenceName>INFRA_SEQ</autoIncrementSequenceName>
 </Column>
-<Column name="SPRA_SPRA_ID" id="A4CF2F09-BD2F-5515-647C-4B551A47AC41">
+<Column name="LANG_ISO_NAME" id="F3EBFCD6-8CFD-E9C4-C42B-D9BADDEADDB4">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:18:16 UTC</createdTime>
+<comment><![CDATA[english ISO Standardname]]></comment>
+<generatorID>269691A8-E995-F39D-38EE-D4B9D25563F4</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="LANG_ISO_CODE2" id="1FDD9002-F15B-CF0A-21C8-407BE7FA89B0">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:18:16 UTC</createdTime>
+<comment><![CDATA[2-letter ISO-Code]]></comment>
+<generatorID>72F01738-8D10-1571-BF1F-54798C2B6A1C</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<constraintName>LANG_ISO2_CHK</constraintName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<domain>3CFAACDE-10D2-A99A-844A-975DA633F49B</domain>
+<checkConstraint>
+<implementationDef dbType="Generic Constraint" definition="SPRA_ISO_CODE2 = lower(SPRA_ISO_CODE2)"/>
+</checkConstraint>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="LANG_ISO_CODE3" id="22B68B84-4015-23BF-1226-4D907E43FC37">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:18:16 UTC</createdTime>
+<comment><![CDATA[3-letter ISO-Code]]></comment>
+<generatorID>95ED45B4-51CC-3B9B-6E4D-7959CD703675</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<constraintName>LANG_ISO3_CHK</constraintName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<domain>7EF070A4-018B-18D6-E996-291F316D16A7</domain>
+<checkConstraint>
+<implementationDef dbType="Oracle Database 12cR2" definition="SPRA_ISO_CODE3 = lower(SPRA_ISO_CODE3)"/>
+</checkConstraint>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="LANG_IS_TEXT_LANG" id="9DBA5D34-AFDC-BBAE-F8A5-84647E94FA53">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:18:16 UTC</createdTime>
+<comment><![CDATA[Language is used for translated model-text-fields]]></comment>
+<generatorID>7946129A-B876-FC35-FA72-27CA9051B460</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="LANG_IS_BASE_LANG" id="A187C292-1B28-2A8E-10D7-39920B0C4C97">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:18:16 UTC</createdTime>
+<comment><![CDATA[Language is the base language for the model]]></comment>
+<generatorID>7946129A-B876-FC35-FA72-27CA9051B460</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="LANG_LANG_ID" id="A4CF2F09-BD2F-5515-647C-4B551A47AC41">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -40,76 +112,7 @@ Eine alternative Ausgabe, erlaubt es, einen Text zu dem eine Übersetzung fehlt 
 <colAssociation fkAssociation="FBFD9774-8D61-F5A0-8447-E575F5239EEE" referredColumn="EA45665A-1FBD-1480-B9FE-D8E4AD733D95"/>
 </associations>
 </Column>
-<Column name="SPRA_ISO_NAME" id="F3EBFCD6-8CFD-E9C4-C42B-D9BADDEADDB4">
-<createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:18:16 UTC</createdTime>
-<comment><![CDATA[englischer ISO Standardname]]></comment>
-<generatorID>269691A8-E995-F39D-38EE-D4B9D25563F4</generatorID>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<nullsAllowed>true</nullsAllowed>
-<use>0</use>
-<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
-<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-</Column>
-<Column name="SPRA_ISO_CODE2" id="1FDD9002-F15B-CF0A-21C8-407BE7FA89B0">
-<createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:18:16 UTC</createdTime>
-<comment><![CDATA[2-Stelliger ISO-Code]]></comment>
-<generatorID>72F01738-8D10-1571-BF1F-54798C2B6A1C</generatorID>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<useDomainConstraints>false</useDomainConstraints>
-<use>0</use>
-<logicalDatatype>LOGDT025</logicalDatatype>
-<domain>3CFAACDE-10D2-A99A-844A-975DA633F49B</domain>
-<checkConstraint>
-<implementationDef dbType="Oracle Database 12cR2" definition="SPRA_ISO_CODE2 = lower(SPRA_ISO_CODE2)"/>
-</checkConstraint>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-</Column>
-<Column name="SPRA_ISO_CODE3" id="22B68B84-4015-23BF-1226-4D907E43FC37">
-<createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:18:16 UTC</createdTime>
-<comment><![CDATA[3-stelliger ISO-Code]]></comment>
-<generatorID>95ED45B4-51CC-3B9B-6E4D-7959CD703675</generatorID>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<useDomainConstraints>false</useDomainConstraints>
-<use>0</use>
-<logicalDatatype>LOGDT025</logicalDatatype>
-<domain>7EF070A4-018B-18D6-E996-291F316D16A7</domain>
-<checkConstraint>
-<implementationDef dbType="Oracle Database 12cR2" definition="SPRA_ISO_CODE3 = lower(SPRA_ISO_CODE3)"/>
-</checkConstraint>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-</Column>
-<Column name="SPRA_IST_TEXTSPRACHE" id="9DBA5D34-AFDC-BBAE-F8A5-84647E94FA53">
-<createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:18:16 UTC</createdTime>
-<comment><![CDATA[Sprache kann für Übersetzung von Texten verwendet werden]]></comment>
-<generatorID>7946129A-B876-FC35-FA72-27CA9051B460</generatorID>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<use>0</use>
-<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
-<domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-</Column>
-<Column name="SPRA_IST_MODELLSPRACHE" id="A187C292-1B28-2A8E-10D7-39920B0C4C97">
-<createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:18:16 UTC</createdTime>
-<comment><![CDATA[Basissprache in dem das Modell beschrieben ist.]]></comment>
-<generatorID>7946129A-B876-FC35-FA72-27CA9051B460</generatorID>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<use>0</use>
-<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
-<domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-</Column>
-<Column name="SPRA_UC" id="8B8325D4-2033-45BE-9F0B-E49C527ECF69">
+<Column name="LANG_UC" id="8B8325D4-2033-45BE-9F0B-E49C527ECF69">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -124,7 +127,7 @@ Eine alternative Ausgabe, erlaubt es, einen Text zu dem eine Übersetzung fehlt 
 <property name="ctemplateID" value="F7EEFF47-7A42-2A3E-7DFC-D0558D6996B8"/>
 </propertyMap>
 </Column>
-<Column name="SPRA_DC" id="D6A0C48D-E61F-8912-E837-AE22D9D7348A">
+<Column name="LANG_DC" id="D6A0C48D-E61F-8912-E837-AE22D9D7348A">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -137,7 +140,7 @@ Eine alternative Ausgabe, erlaubt es, einen Text zu dem eine Übersetzung fehlt 
 <property name="ctemplateID" value="74D877A0-4C3B-63EE-06C5-071C7695907C"/>
 </propertyMap>
 </Column>
-<Column name="SPRA_UM" id="1794A09B-23D8-6ECD-625F-508E41E9B206">
+<Column name="LANG_UM" id="1794A09B-23D8-6ECD-625F-508E41E9B206">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -152,7 +155,7 @@ Eine alternative Ausgabe, erlaubt es, einen Text zu dem eine Übersetzung fehlt 
 <property name="ctemplateID" value="B2E17D53-C2F7-74D9-022D-5D63F3931519"/>
 </propertyMap>
 </Column>
-<Column name="SPRA_DM" id="BAA12FBA-1AE8-1528-CC02-D22EE1064350">
+<Column name="LANG_DM" id="BAA12FBA-1AE8-1528-CC02-D22EE1064350">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -168,7 +171,7 @@ Eine alternative Ausgabe, erlaubt es, einen Text zu dem eine Übersetzung fehlt 
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
-<ind_PK_UK id="A9588AF1-FBEB-BBAA-8FEE-9D958654AFE5" name="SPRA_PK">
+<ind_PK_UK id="A9588AF1-FBEB-BBAA-8FEE-9D958654AFE5" name="LANG_PK">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -178,7 +181,7 @@ Eine alternative Ausgabe, erlaubt es, einen Text zu dem eine Übersetzung fehlt 
 <colUsage columnID="EA45665A-1FBD-1480-B9FE-D8E4AD733D95"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="32F9FF61-C529-34C6-43AE-4D39A35DE9EB" name="SPRA_ISO_NAME_UN">
+<ind_PK_UK id="32F9FF61-C529-34C6-43AE-4D39A35DE9EB" name="LANG_ISO_NAME_UN">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <generatorID>48F60096-94C7-0C06-6F1B-FE84B9B7B8E0</generatorID>
@@ -189,7 +192,7 @@ Eine alternative Ausgabe, erlaubt es, einen Text zu dem eine Übersetzung fehlt 
 <colUsage columnID="F3EBFCD6-8CFD-E9C4-C42B-D9BADDEADDB4"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="D006525D-2B02-D767-E332-30AFB6A45110" name="SPRA_ISO_CODE2_UN">
+<ind_PK_UK id="D006525D-2B02-D767-E332-30AFB6A45110" name="LANG_ISO_CODE2_UN">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <generatorID>ACEDF785-628E-7018-27B9-808F2D207BD9</generatorID>
@@ -200,7 +203,7 @@ Eine alternative Ausgabe, erlaubt es, einen Text zu dem eine Übersetzung fehlt 
 <colUsage columnID="1FDD9002-F15B-CF0A-21C8-407BE7FA89B0"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="EBBAAAED-5D3D-5582-1EB5-8014BA83ABDF" name="SPRA_ISO_CODE3_UN">
+<ind_PK_UK id="EBBAAAED-5D3D-5582-1EB5-8014BA83ABDF" name="LANG_ISO_CODE3_UN">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <generatorID>E6AF3633-86BA-7700-E962-D399006C1AFD</generatorID>
@@ -211,16 +214,7 @@ Eine alternative Ausgabe, erlaubt es, einen Text zu dem eine Übersetzung fehlt 
 <colUsage columnID="22B68B84-4015-23BF-1226-4D907E43FC37"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="53474A1C-C09C-4A69-53FD-F5626BF3EFDD" name="SPRA__IDX">
-<createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:18:16 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
-<colUsage columnID="A4CF2F09-BD2F-5515-647C-4B551A47AC41"/>
-</indexColumnUsage>
-</ind_PK_UK>
-<ind_PK_UK id="231828EA-933C-A1EF-5D7C-FF1DC6E35941" name="SPRA_ERSETZT_FK">
+<ind_PK_UK id="231828EA-933C-A1EF-5D7C-FF1DC6E35941" name="LANG_REPLACE_FK">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:17 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>

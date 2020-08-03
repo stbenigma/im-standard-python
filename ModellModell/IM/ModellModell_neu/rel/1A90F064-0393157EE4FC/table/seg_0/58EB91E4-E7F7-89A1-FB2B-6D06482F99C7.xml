@@ -1,7 +1,10 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="58EB91E4-E7F7-89A1-FB2B-6D06482F99C7" name="DOKUMENTE">
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="58EB91E4-E7F7-89A1-FB2B-6D06482F99C7" name="DOCUMENTS">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
+<comment><![CDATA[Any kind of document helping to understand or describe the model.
+
+Subtype of modelelement. DOCU_ID is always identical to corresponding MODE_ID]]></comment>
 <generatorID>1BB14D99-C9A8-CCD1-054A-4DCDBC196C3E</generatorID>
 <notes><![CDATA[[DE_ENTI_COMMENT[
 
@@ -11,12 +14,13 @@
 ]EN_ENTI_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
-<abbreviation>DOKU</abbreviation>
+<ordsAlias>dokumente</ordsAlias>
+<abbreviation>DOCU</abbreviation>
 <allowColumnReorder>false</allowColumnReorder>
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
-<Column name="DOKU_ID" id="E8DF5F81-72CA-AE14-4AB6-B790A55C3490">
+<Column name="DOCU_ID" id="E8DF5F81-72CA-AE14-4AB6-B790A55C3490">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -30,7 +34,7 @@
 <autoIncrementCycle>false</autoIncrementCycle>
 <isSurrogateColumn>true</isSurrogateColumn>
 </Column>
-<Column name="DOKU_NAME" id="AF6148DE-A271-2F31-C1D9-1AC7D48CEA38">
+<Column name="DOCU_NAME" id="AF6148DE-A271-2F31-C1D9-1AC7D48CEA38">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <generatorID>BBC0A923-461A-62FE-984E-869FB2AB2CA4</generatorID>
@@ -48,7 +52,7 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="DOKU_FORMAT" id="70D9D057-DB1F-8EB2-FFAD-B7CC76E4CEA3">
+<Column name="DOCU_FORMAT" id="70D9D057-DB1F-8EB2-FFAD-B7CC76E4CEA3">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <generatorID>E5D88FE0-E055-DD87-A855-56D053982267</generatorID>
@@ -66,10 +70,10 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="DOKU_REFERENZ" id="8867AFA7-D7DB-C529-26E5-CB59D31835B1">
+<Column name="DOCU_REFERENCE" id="8867AFA7-D7DB-C529-26E5-CB59D31835B1">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
-<comment><![CDATA[Referenz auf ein Datei-System bzw. eine Webseite.]]></comment>
+<comment><![CDATA[Reference (URL, path and filename...) where the original document can be found]]></comment>
 <generatorID>C62EBA8C-3D12-D162-C8F7-1C6C2CBA4FF1</generatorID>
 <notes><![CDATA[[DE_ATTR_COMMENT[
 Referenz auf ein Datei-System bzw. eine Webseite.
@@ -86,9 +90,10 @@ Reference to a file system or a web page.
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="DOKU_INHALT" id="FBB58092-CABF-3106-F5AB-49DAA00F67FD">
+<Column name="DOCU_CONTENT" id="FBB58092-CABF-3106-F5AB-49DAA00F67FD">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
+<comment><![CDATA[Content of document as binary]]></comment>
 <generatorID>773E9C6C-10A5-FD68-B4B7-B7BA46241920</generatorID>
 <notes><![CDATA[[DE_ATTR_COMMENT[
 
@@ -106,7 +111,7 @@ Reference to a file system or a web page.
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="DOKU_DOKU_ID" id="EA2179DE-64D6-A7D8-576B-9C731E182502">
+<Column name="DOCU_DOCU_ID" id="EA2179DE-64D6-A7D8-576B-9C731E182502">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -122,18 +127,6 @@ Reference to a file system or a web page.
 <colAssociation fkAssociation="8E519C06-9C3C-8081-9404-BEA682D7D2FD" referredColumn="E8DF5F81-72CA-AE14-4AB6-B790A55C3490"/>
 </associations>
 </Column>
-<Column name="DOKU_ODM_GUID" id="7064B7D1-B8CC-ECEA-C8C3-55855E9AB182">
-<createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:18:16 UTC</createdTime>
-<commentInRDBMS><![CDATA[ID aus dem ODM übernommen]]></commentInRDBMS>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<nullsAllowed>true</nullsAllowed>
-<use>0</use>
-<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
-<domain>5D3D105A-15CC-2DBC-8E41-2A63484D069D</domain>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-</Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
 <ind_PK_UK id="D5935A7A-B92F-6E41-4D32-FF6BFDBEC70A" name="DOCU_PK">
@@ -146,7 +139,7 @@ Reference to a file system or a web page.
 <colUsage columnID="E8DF5F81-72CA-AE14-4AB6-B790A55C3490"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="EF26F90C-19B8-EB83-D45B-D25CA8412CC2" name="DOKU_DOCU_FK">
+<ind_PK_UK id="EF26F90C-19B8-EB83-D45B-D25CA8412CC2" name="DOCU_DOCU_FK">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:17 UTC</createdTime>
 <generatorID>1838C184-D4B0-E5C6-0AB0-6709651C4693</generatorID>

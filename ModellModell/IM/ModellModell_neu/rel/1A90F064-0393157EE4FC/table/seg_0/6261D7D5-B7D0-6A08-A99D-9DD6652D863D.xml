@@ -1,20 +1,47 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="6261D7D5-B7D0-6A08-A99D-9DD6652D863D" name="RELATION">
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="6261D7D5-B7D0-6A08-A99D-9DD6652D863D" name="RELATIONS">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 14:57:52 UTC</createdTime>
-<comment><![CDATA[Verbindung zweier Entitäten mit Assoziationstext, Optionalität und Abbildungstyp
+<comment><![CDATA[Relationship connecting 2 entities (could be the same one)
 
-Die in anderen Darstellungsarten gebräuchlichen Beziehungen können aus  Optionalität und Abbildungstyp hergeleitet werden
-0-1	Optional  - 1
-1-1	Pflicht - 1
-0-many	Optional - many
-1-many	Pflicht - many]]></comment>
+Types are 1:1, M:1 (functional), M:N, ISAR or ISAS
+RELA_TYPE is partially redundant with MAPTYPE_FROM_TO/_TO_FROM (see constraints)
+
+ISAS is a 1:1 representation representing a (exclusive) subtype 
+"a Partner is either a Person or a Company")
+
+ISAR is a role-subtype, an entity can take up several roles ("a Customer can be none, one or all of a Tenant, an Owner, a Dealer, an OEM-customer")
+
+Conditions for ISAS/R
+    both:  	The SubEntities have a mandatory relationship with the SuperEntity (meaning the cannot exists without the SuperEntity)
+    ISAS:	SuperEntity has 1:1 mandatory relationships to more than 1 SubEntity. The relationships must be in a arc (meaning they are  exlusive).
+    ISAR:	SuperEntity has 1:1 optinal relationships with at least one SubEntity. 
+
+ASSOC_FROM_TO / ASSOC_TO_FROM
+	can be empty for type ISAS/R but are mandatory for all other types
+
+ARC_ID_FROM / ARC_ID_TO
+	An end of a relationship is in an ARC (meaning exclusiv in respect to all others relationships in the same ARC)
+	
+MAPTYPE_FROM_TO, MANDATORY_FROM_TO (likewise for ...TO_FROM)
+indicate the cardinality and optionality in one direction.
+MAPTYPE	 MANDATORY   Cardinality
+    1	 TRUE	      	 exactly 1
+    1	 FALSE		 0 - 1
+    M	 TRUE		 1 - M
+    M	 FALSE		 0 - M
+
+HIST_FROM_TO / HIST_TO_FROM
+	TRUE	Relationship is historized (temporal) in this direction, meaning it can change over time.
+	Does only make sense for M:1 (function), 1:1 or ISAS/R relationships. It allows to model a "1" relationship even if it can change over time.
+	(This type has to be implemented in a data model with an intersection table, containing a valid-from/valid-to mechanism
+
+Subtype of MODELELEMENT. RELA_ID is always identical to the corresponding MODE_ID]]></comment>
 <generatorID>4BEC4009-B321-3912-D30B-FADF6F8AF982</generatorID>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <ordsAlias>beziehung</ordsAlias>
 <abbreviation>RELA</abbreviation>
 <allowColumnReorder>false</allowColumnReorder>
-<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <existDependencyConstraintName>BEZI_TYPE_CHJ</existDependencyConstraintName>
 <existDependencyGenerationLevel>Discriminator value</existDependencyGenerationLevel>
 <parsed>true</parsed>
@@ -34,8 +61,9 @@ Die in anderen Darstellungsarten gebräuchlichen Beziehungen können aus  Option
 <createdTime>2020-02-04 14:57:52 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>474B8F52-5B70-256E-A0FA-DF8164EAFE54</domain>
 <listOfValues>
 <valueDef value="1:1" description=""/>
 <valueDef value="ISA" description=""/>
@@ -107,20 +135,18 @@ Die in anderen Darstellungsarten gebräuchlichen Beziehungen können aus  Option
 <Column name="RELA_ENTI_ID_FROM" id="09AC4CAF-5379-3DBE-06B6-BC8029966843">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 14:57:52 UTC</createdTime>
+<comment><![CDATA[Entitiy at which the relationship starts]]></comment>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
-<previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
-<associations>
-<colAssociation fkAssociation="3A31773E-D0DD-7924-CC70-583E7A7381B6" referredColumn="E0C4ED99-82B2-04CB-AC1C-205352DDAFF3"/>
-</associations>
 </Column>
-<Column name="RELA_ARC_ID_FROM" id="F35004ED-6F5B-17EB-8713-4F721692F856">
+<Column name="RELA_ARCS_ID_FROM" id="F35004ED-6F5B-17EB-8713-4F721692F856">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 15:00:03 UTC</createdTime>
+<comment><![CDATA[ARC-ID at FROM-side]]></comment>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -134,7 +160,7 @@ Die in anderen Darstellungsarten gebräuchlichen Beziehungen können aus  Option
 <Column name="RELA_ASSOC_FROM_TO" id="3BF0B389-59E2-BA79-C1E4-FD56E1B80A64">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 14:57:52 UTC</createdTime>
-<comment><![CDATA[Was verbindet die von-Entität mit der zu-Entität]]></comment>
+<comment><![CDATA[What describes the relationship from -> to]]></comment>
 <generatorID>1E4F5AA9-8DAA-B81A-4D48-EDCE07CDC56A</generatorID>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
@@ -144,38 +170,41 @@ Die in anderen Darstellungsarten gebräuchlichen Beziehungen können aus  Option
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="RELA_ABBILDTYP_FROM_TO" id="F9029008-B480-DCC3-1BF6-B46F326C4B9E">
+<Column name="RELA_MAPTYPE_FROM_TO" id="F9029008-B480-DCC3-1BF6-B46F326C4B9E">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 14:57:52 UTC</createdTime>
+<comment><![CDATA[FROM-entity instance goes to 1 or M TO-entity instance(s)]]></comment>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT025</logicalDatatype>
+<domain>58A81D94-A2AD-3DA7-4B9E-471B043185E0</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="RELA_PFLICHT_ASSOC_FROM_TO" id="F4B385C2-F714-5CAE-B3FB-215AB02B6EBF">
+<Column name="RELA_MANDATORY_FROM_TO" id="F4B385C2-F714-5CAE-B3FB-215AB02B6EBF">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 14:57:52 UTC</createdTime>
-<comment><![CDATA[von-Entität muss mind. 1 eine Verbindung zur zu-Entität haben]]></comment>
+<comment><![CDATA[Cardinality > 0]]></comment>
 <generatorID>06AEDDE9-FE7B-7129-3EA6-401A12A010FF</generatorID>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
 <Column name="RELA_HIST_FROM_TO" id="E5B27C8B-7627-46EC-610C-EEEA43B98F55">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 14:57:52 UTC</createdTime>
-<comment><![CDATA[JA -> Beziehung kann über die Zeit ändern. Zu einem Zeitpunkt kann nur 1 Beziehung gelten. System muss Historie der Änderungen führen.
-Über Extratabelle zu lösen.]]></comment>
+<comment><![CDATA[TRUE: Relationship is historized, can change over time. 
+]]></comment>
 <generatorID>075993E1-1E10-7A12-4137-89129E7305FB</generatorID>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
@@ -187,28 +216,26 @@ Die in anderen Darstellungsarten gebräuchlichen Beziehungen können aus  Option
 <use>1</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
-<previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
-<associations>
-<colAssociation fkAssociation="EBA526DF-6530-1A48-EEDE-4228A2634EA2" referredColumn="E0C4ED99-82B2-04CB-AC1C-205352DDAFF3"/>
-</associations>
 </Column>
 <Column name="RELA_ASSOC_TO_FROM" id="1F465582-DB7A-1367-97EF-0A6B7EBD66AC">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 14:57:52 UTC</createdTime>
-<comment><![CDATA[Was verbindet die von-Entität mit der zu-Entität]]></comment>
+<comment><![CDATA[What describes the relationship to -> from]]></comment>
 <generatorID>1E4F5AA9-8DAA-B81A-4D48-EDCE07CDC56A</generatorID>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>897B91BA-60B8-3A16-793A-97B535605E5E</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="RELA_ARC_ID_TO" id="4EC3CBCE-8C35-03F3-7F1A-F273C5410764">
+<Column name="RELA_ARCS_ID_TO" id="4EC3CBCE-8C35-03F3-7F1A-F273C5410764">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 14:57:52 UTC</createdTime>
+<comment><![CDATA[ARC-ID at to side]]></comment>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -220,71 +247,37 @@ Die in anderen Darstellungsarten gebräuchlichen Beziehungen können aus  Option
 <colAssociation fkAssociation="049EA077-A80F-61DA-2370-7535366CB57F" referredColumn="8419DB38-AE17-BE94-73F6-B492485B7E69"/>
 </associations>
 </Column>
-<Column name="RELA_ABBILDTYP_TO_FROM" id="391A15BE-7F14-B84D-187F-41276F7232B5">
+<Column name="RELA_MAPTYPE_TO_FROM" id="391A15BE-7F14-B84D-187F-41276F7232B5">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 14:57:52 UTC</createdTime>
+<comment><![CDATA[TO-entity instance goes to 1 or M FROM-entity instance(s)]]></comment>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT025</logicalDatatype>
+<domain>58A81D94-A2AD-3DA7-4B9E-471B043185E0</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="RELA_PFLICHT_ASSOC_TO_FROM" id="2F61EFAA-E298-25D2-CFB6-219BB3BAD123">
+<Column name="RELA_MANDATORY_TO_FROM" id="2F61EFAA-E298-25D2-CFB6-219BB3BAD123">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 14:57:52 UTC</createdTime>
-<comment><![CDATA[von-Entität muss mind. 1 eine Verbindung zur zu-Entität haben]]></comment>
+<comment><![CDATA[Cardinality > 0]]></comment>
 <generatorID>06AEDDE9-FE7B-7129-3EA6-401A12A010FF</generatorID>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
 <Column name="RELA_HIST_TO_FROM" id="E47949BE-E7EB-8881-5272-EE6E815895A0">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 14:57:52 UTC</createdTime>
-<comment><![CDATA[JA -> Beziehung kann über die Zeit ändern. Zu einem Zeitpunkt kann nur 1 Beziehung gelten. System muss Historie der Änderungen führen.
-Über Extratabelle zu lösen.]]></comment>
+<comment><![CDATA[TRUE:  Relationship is historized, can change over time. 
+]]></comment>
 <generatorID>075993E1-1E10-7A12-4137-89129E7305FB</generatorID>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-</Column>
-<Column name="RELA_ODM_GUID" id="1907FC87-3BDC-244E-71E7-843CC81E9F74">
-<createdBy>stb</createdBy>
-<createdTime>2020-02-04 14:57:52 UTC</createdTime>
-<commentInRDBMS><![CDATA[ID aus dem ODM übernommen]]></commentInRDBMS>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<nullsAllowed>true</nullsAllowed>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-</Column>
-<Column name="RELA_SOURCE_ENTI_GUID" id="07B1A5A0-D904-2670-FFB2-5BC468FC9E81">
-<createdBy>stb</createdBy>
-<createdTime>2020-02-04 14:57:52 UTC</createdTime>
-<comment><![CDATA[GUID der SOURCE-Entity aus der Subview-Beschreibung. VON/ZU können vertauscht sein.]]></comment>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<nullsAllowed>true</nullsAllowed>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-</Column>
-<Column name="RELA_TARGET_ENTI_GUID" id="D7535355-35C2-23C4-2FA7-49C490415D22">
-<createdBy>stb</createdBy>
-<createdTime>2020-02-04 14:57:52 UTC</createdTime>
-<comment><![CDATA[GUID der arget-Entity aus der Subview-Beschreibung. VON/ZU können vertauscht sein.]]></comment>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
@@ -351,9 +344,51 @@ Die in anderen Darstellungsarten gebräuchlichen Beziehungen können aus  Option
 <property name="ctemplateID" value="B398D247-00C1-F016-3BBB-FE65CFFFF7AA"/>
 </propertyMap>
 </Column>
+<Column name="MODELELEMENT_MODE_ID" id="BABB8742-E321-0EBD-79F0-6E95CF1087B4">
+<createdBy>stb</createdBy>
+<createdTime>2020-08-01 19:19:54 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="A17908BD-C7DC-47E6-FF12-96C5FCE61798" referredColumn="9698F1F3-1EBE-8770-4F8C-4FFC3465A776"/>
+</associations>
+</Column>
+<Column name="ENTITIES_ENTI_ID" id="487BC335-7A0D-DC3E-3551-082D401E197B">
+<createdBy>stb</createdBy>
+<createdTime>2020-08-02 13:30:59 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="EBA526DF-6530-1A48-EEDE-4228A2634EA2" referredColumn="365AA3F1-7B02-CFAB-BB51-AE721CDEA5F3"/>
+</associations>
+</Column>
+<Column name="ENTITIES_ENTI_ID1" id="7C6F8B50-8DF4-D115-180C-077857999703">
+<createdBy>stb</createdBy>
+<createdTime>2020-08-02 13:30:59 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="3A31773E-D0DD-7924-CC70-583E7A7381B6" referredColumn="365AA3F1-7B02-CFAB-BB51-AE721CDEA5F3"/>
+</associations>
+</Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
-<ind_PK_UK id="8A7D1B42-A61E-C349-56DF-2D05D62CAAED" name="BEZI_PK">
+<ind_PK_UK id="8A7D1B42-A61E-C349-56DF-2D05D62CAAED" name="RELA_PK">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 14:57:52 UTC</createdTime>
 <generatorID>CEB0C7CA-9CEF-89CC-1712-0634D0BB6B99</generatorID>
@@ -365,7 +400,7 @@ Die in anderen Darstellungsarten gebräuchlichen Beziehungen können aus  Option
 <colUsage columnID="40E9736F-3ABE-3ABD-5FEA-D4131796E800"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="0CC9987A-0DF9-17C7-CF77-F2D8C298EFF6" name="BEZIEHUNG_ARC_FK">
+<ind_PK_UK id="0CC9987A-0DF9-17C7-CF77-F2D8C298EFF6" name="RELA_ARCS_TO_FK">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 15:00:03 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -375,7 +410,7 @@ Die in anderen Darstellungsarten gebräuchlichen Beziehungen können aus  Option
 <colUsage columnID="4EC3CBCE-8C35-03F3-7F1A-F273C5410764"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="F71187E9-60FB-5317-60B4-48D4FAD14003" name="BEZIEHUNG_ARC_FKv2">
+<ind_PK_UK id="F71187E9-60FB-5317-60B4-48D4FAD14003" name="RELA_ARCS_FROM_FK">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 15:00:29 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -385,51 +420,78 @@ Die in anderen Darstellungsarten gebräuchlichen Beziehungen können aus  Option
 <colUsage columnID="F35004ED-6F5B-17EB-8713-4F721692F856"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="D8DC16AC-D925-4E43-BCEB-B0F311A7FFED" name="BEZIEHUNG_ENTITAET_FK">
+<ind_PK_UK id="D8DC16AC-D925-4E43-BCEB-B0F311A7FFED" name="RELA_ENTI_FROM_FK">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 15:01:12 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <indexState>Foreign Key</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
-<colUsage columnID="09AC4CAF-5379-3DBE-06B6-BC8029966843"/>
+<colUsage columnID="7C6F8B50-8DF4-D115-180C-077857999703"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="FF9B5796-CB8A-EC3F-2F0F-3DB85A33D1B6" name="BEZIEHUNG_ENTITAET_FKv2">
+<ind_PK_UK id="FF9B5796-CB8A-EC3F-2F0F-3DB85A33D1B6" name="RELA_ENTI_TO_FK">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 15:01:29 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <indexState>Foreign Key</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
-<colUsage columnID="D673B910-4664-5F47-603C-CD5B12CD4BDB"/>
+<colUsage columnID="487BC335-7A0D-DC3E-3551-082D401E197B"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="55A96EBF-A78F-6A13-3A33-CB7A45A7FD89" name="RELA_MODE_FK">
+<createdBy>stb</createdBy>
+<createdTime>2020-08-01 19:19:54 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="BABB8742-E321-0EBD-79F0-6E95CF1087B4"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>
 <tableCheckConstraints itemClass="oracle.dbtools.crest.model.design.constraint.TableLevelConstraint">
-<tableCheckConstraint name="BEZI_ISA_CK2" directorySegmentName="seg_1" id="A09ADF51-2E03-4B2E-6C23-9391F080DAFF">
+<tableCheckConstraint name="RELA_MAPTYPE_CHK" directorySegmentName="seg_1" id="A09ADF51-2E03-4B2E-6C23-9391F080DAFF">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 14:57:52 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
-<rule><![CDATA[(BEZI_TYPE = 'ISA' 
-  AND BEZI_ISA_ABBILDTYP_VON_ZU = '1'
-  AND BEZI_ISA_ABBILDTYP_ZU_VON = '1'
-  AND BEZI_PFLICHT_ASSOC_VON_ZU = 'TRUE'
+<rule><![CDATA[(RELA_TYPE = 'ISAR' 
+  AND RELA_MAPTYPE_FROM_TO = '1'
+  AND RELA_MAPTYPE_TO_FROM = '1'
+  AND (RELA_MANDATORY_FROM_TO = 'TRUE'
+  	  OR
+  	  RELA_MANDATORY_TO_FROM = 'TRUE'
+  	  )  	  
 ) OR
-(BEZI_TYPE = '1:1' 
-  AND BEZI_ISA_ABBILDTYP_VON_ZU = '1'
-  AND BEZI_ISA_ABBILDTYP_ZU_VON = '1'
+(RELA_TYPE = 'ISAS' 
+  AND RELA_MAPTYPE_FROM_TO = '1'
+  AND RELA_MAPTYPE_TO_FROM = '1'
+  AND RELA_MANDATORY_FROM_TO = 'TRUE'
+  AND RELA_MANDATORY_TO_FROM = 'TRUE'
+  AND (RELA_ARC_ID_FROM IS NOT NULL
+  		OR
+	   RELA_ARC_ID_TO IS NOT NULL
+	  )
 ) OR
-(BEZI_TYPE = 'M:1' 
-  AND BEZI_ISA_ABBILDTYP_VON_ZU = 'M'
-  AND BEZI_ISA_ABBILDTYP_ZU_VON = '1'
+(RELA_TYPE = '1:1' 
+  AND RELA_MAPTYPE_FROM_TO = '1'
+  AND RELA_MAPTYPE_TO_FROM = '1'
 ) OR
-(BEZI_TYPE = 'M:N' 
-  AND BEZI_ISA_ABBILDTYP_VON_ZU = 'M'
-  AND BEZI_ISA_ABBILDTYP_ZU_VON = 'M'
+(RELA_TYPE ='M:1'
+  AND (
+  	(RELA_MAPTYPE_FROM_TO = '1'
+ 	 AND RELA_MAPTYPE_TO_FROM = 'M'
+  	) OR
+  	(RELA_MAPTYPE_FROM_TO = 'M'
+  	 AND RELA_MAPTYPE_TO_FROM = '1'
+	)
+  )
+) OR
+(RELA_TYPE = 'M:N' 
+  AND RELA_MAPTYPE_TO_FROM = 'M'
+  AND RELA_MAPTYPE_FROM_TO = 'M'
 )
-
-
 ]]></rule>
 </tableCheckConstraint>
 </tableCheckConstraints>
