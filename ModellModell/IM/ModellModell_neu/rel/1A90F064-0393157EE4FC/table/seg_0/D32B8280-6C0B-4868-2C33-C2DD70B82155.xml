@@ -39,10 +39,20 @@
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <dataTypeSize>7 CHAR</dataTypeSize>
 <listOfValues>
-<valueDef value="INBOUND" description=""/>
-<valueDef value="OUTBOUND" description=""/>
+<valueDef value="INBOUND" description="Ext-&gt;IM"/>
+<valueDef value="OUTBOUND" description="IM-&gt;Ext"/>
 </listOfValues>
 <ownDataTypeParameters>7 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ATTF_LAUFNR" id="B26F8388-061A-CE28-5011-8FFECCC4A423">
+<createdBy>stb</createdBy>
+<createdTime>2020-04-22 15:31:05 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>E2DCFC37-5428-9FE8-64FF-368960199E02</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
 <Column name="ATTF_TRANSF_FORMEL" id="DF518FB0-8FFE-4B0F-630F-24C3CC408FBF">
@@ -108,9 +118,8 @@
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
-<use>0</use>
+<use>1</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
-<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
@@ -187,7 +196,7 @@
 <colUsage columnID="4F249764-0617-FAF7-5F42-63058D3E83E3"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="3895EA9C-CB31-FDDD-48EA-807A79C527D7" name="ATTR_UN">
+<ind_PK_UK id="3895EA9C-CB31-FDDD-48EA-807A79C527D7" name="ATTF_UN">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 15:19:38 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>

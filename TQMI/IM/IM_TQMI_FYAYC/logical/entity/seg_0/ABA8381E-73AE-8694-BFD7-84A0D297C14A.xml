@@ -2,7 +2,26 @@
 <Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="ABA8381E-73AE-8694-BFD7-84A0D297C14A" name="Prozess">
 <createdBy>stb</createdBy>
 <createdTime>2018-05-03 08:06:40 UTC</createdTime>
-<comment>Sammlung für Aufgaben für bestimmte Prozessgruppen.&lt;br/&gt;&lt;br/&gt;Beispiele:&lt;br/&gt;Finanzen, fincamce&lt;br/&gt;Rekrutieriung, recruting</comment>
+<comment><![CDATA[Sammlung für Aufgaben für bestimmte Prozessgruppen.
+
+Beispiele:
+14 Finance
+23 Employee Management]]></comment>
+<notes><![CDATA[[EN_ENTI_COMMENT[
+*DE* Sammlung für Aufgaben für bestimmte Prozessgruppen.
+
+Beispiele:
+14 Finance
+23 Employee Management
+]EN_ENTI_COMMENT]
+[DE_ENTI_COMMENT[
+Sammlung für Aufgaben für bestimmte Prozessgruppen.
+
+Beispiele:
+14 Finance
+23 Employee Management
+]DE_ENTI_COMMENT]
+]]></notes>
 <ownerDesignName>IM_TQMI_FYAYC</ownerDesignName>
 <engineerTo>
 <item key="0FBE62B5-EA6E-67EB-52B2-298C9D3D71C1" value="true"/>
@@ -16,27 +35,51 @@
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
 <createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="DE_ENTI_NAME" value="Prozess"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_NAME" value="*DE* Prozess"/>
+</propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Name" id="FCC8B981-7319-D55E-D045-1B9A14DBEF6D">
 <createdBy>stb</createdBy>
 <createdTime>2018-05-03 08:11:47 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>IM_TQMI_FYAYC</ownerDesignName>
 <engineerTo>
 <item key="0FBE62B5-EA6E-67EB-52B2-298C9D3D71C1" value="true"/>
 </engineerTo>
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Name"/>
+<property name="EN_ATTR_NAME" value="*DE* Name"/>
+</propertyMap>
 </Attribute>
 <Attribute name="Nr" id="E22DB17D-ED68-37FF-7225-EEA0B3EDEC3A">
 <createdBy>stb</createdBy>
 <createdTime>2018-05-03 12:02:22 UTC</createdTime>
-<comment>1 .. 9</comment>
+<comment><![CDATA[1 .. 9]]></comment>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+*DE* 1 .. 9
+]EN_ATTR_COMMENT]
+[DE_ATTR_COMMENT[
+1 .. 9
+]DE_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>IM_TQMI_FYAYC</ownerDesignName>
 <engineerTo>
 <item key="0FBE62B5-EA6E-67EB-52B2-298C9D3D71C1" value="true"/>
 </engineerTo>
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Nr"/>
+<property name="EN_ATTR_NAME" value="*DE* Nr"/>
+</propertyMap>
 </Attribute>
 </attributes>
 </Entity>

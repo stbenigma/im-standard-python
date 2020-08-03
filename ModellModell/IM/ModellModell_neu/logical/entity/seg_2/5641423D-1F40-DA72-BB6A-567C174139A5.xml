@@ -17,18 +17,34 @@ SAP-Hana
 IDE  = Application for IT-People
 Eclipse / Microsoft Studio
 Jenkins
-Oracle-APEX
-]]></comment>
+Oracle-APEX]]></comment>
 <notes><![CDATA[[DE_ENTI_COMMENT[
-IT_System, Betriebssystem, Infrastruktur in oder auf dem Anwendungen laufen können.  Beispiele: Power-DNS JRE java runtime environment Windows Android ubuntu Linux mongo-DB Excel Access SAP-Hana IDE  = Application for IT-People Eclipse / Microsoft Studio Jenkins Oracle-APEX 
+IT_System, Betriebssystem, Infrastruktur in oder auf dem Anwendungen laufen können.
+
+Beispiele:
+Power-DNS
+JRE java runtime environment
+Windows
+Android
+ubuntu Linux
+mongo-DB
+Excel
+Access
+SAP-Hana
+IDE  = Application for IT-People
+Eclipse / Microsoft Studio
+Jenkins
+Oracle-APEX
 ]DE_ENTI_COMMENT]
 [EN_ENTI_COMMENT[
-IT_System, operating system, infrastructure in or on which applications can run.  Examples: Power-DNS JRE java runtime environment Windows Android ubuntu Linux mongo-DB Excel Access SAP-Hana IDE = Application for IT-People Eclipse / Microsoft Studio Jenkins Oracle-APEX
+*IT_System, operating system, infrastructure in or on which applications can run.  Examples: Power-DNS JRE java runtime environment Windows Android ubuntu Linux mongo-DB Excel Access SAP-Hana IDE = Application for IT-People Eclipse / Microsoft Studio Jenkins Oracle-APEX
 ]EN_ENTI_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="false"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <typeID>2EDFF465-4CEE-72F2-D2EC-896DB596D191</typeID>
@@ -45,8 +61,10 @@ IT_System, operating system, infrastructure in or on which applications can run.
 <propertyMap>
 <property name="DE_ENTI_COMMENT" value="IT_System, Betriebssystem, Infrastruktur in oder auf dem Anwendungen laufen können.  Beispiele: Power-DNS JRE java runtime environment Windows Android ubuntu Linux mongo-DB Excel Access SAP-Hana IDE  = Application for IT-People Eclipse / Microsoft Studio Jenkins Oracle-APEX "/>
 <property name="DE_ENTI_NAME" value="IT-System"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
 <property name="EN_ENTI_COMMENT" value="*DE* IT_System, Betriebssystem, Infrastruktur in oder auf dem Anwendungen laufen können.  Beispiele: Power-DNS JRE java runtime environment Windows Android ubuntu Linux mongo-DB Excel Access SAP-Hana IDE  = Application for IT-People Eclipse / Microsoft Studio Jenkins Oracle-APEX "/>
 <property name="EN_ENTI_NAME" value="IT system"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Zeichnsatz" id="9E4F1EF5-A882-1837-570F-7741DEB53954">
@@ -60,9 +78,11 @@ IT_System, operating system, infrastructure in or on which applications can run.
 ]EN_ATTR_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <importedID>CEF84331-D1F8-95B8-C3AC-2F58918460FD</importedID>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="false"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
@@ -89,9 +109,11 @@ Name of the entity normally used in communication.
 ]EN_ATTR_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <importedID>6A0BE6EE-FACA-EE1A-B294-1071918E2DA9</importedID>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="false"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
@@ -116,9 +138,11 @@ Name of the entity normally used in communication.
 ]EN_ATTR_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <importedID>F3557BB1-0486-BA65-69E0-90425C9A4AED</importedID>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="false"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
@@ -127,9 +151,9 @@ Name of the entity normally used in communication.
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_COMMENT" value=""/>
-<property name="DE_ATTR_NAME" value="Name"/>
+<property name="DE_ATTR_NAME" value="Name_"/>
 <property name="EN_ATTR_COMMENT" value=""/>
-<property name="EN_ATTR_NAME" value="Name"/>
+<property name="EN_ATTR_NAME" value="*Name"/>
 </propertyMap>
 </Attribute>
 </attributes>
@@ -138,8 +162,10 @@ Name of the entity normally used in communication.
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:04:24 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="false"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <pk>true</pk>

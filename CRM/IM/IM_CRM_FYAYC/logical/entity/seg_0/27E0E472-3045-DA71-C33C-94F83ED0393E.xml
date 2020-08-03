@@ -1,25 +1,22 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="27E0E472-3045-DA71-C33C-94F83ED0393E" name="*Land">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="27E0E472-3045-DA71-C33C-94F83ED0393E" name="Land">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 07:55:51 UTC</createdTime>
 <comment><![CDATA[Land gemäss ISO-Liste ISO-3166-1
 
-Gemäss NUTS (https://de.wikipedia.org/wiki/NUTS) ist das Land die Gebietsstufe NUTS 0
-]]></comment>
+Gemäss NUTS (https://de.wikipedia.org/wiki/NUTS) ist das Land die Gebietsstufe NUTS 0]]></comment>
 <notes><![CDATA[[EN_ENTI_COMMENT[
-*DE* Land gemäss ISO-Liste ISO-3166-1
+**Country according to ISO list ISO-3166-1
 
-Gemäss NUTS (https://de.wikipedia.org/wiki/NUTS) ist das Land die Gebietsstufe NUTS 0
-
+According to NUTS (https://de.wikipedia.org/wiki/NUTS), the country is at NUTS 0
 ]EN_ENTI_COMMENT]
 [DE_ENTI_COMMENT[
 Land gemäss ISO-Liste ISO-3166-1
 
 Gemäss NUTS (https://de.wikipedia.org/wiki/NUTS) ist das Land die Gebietsstufe NUTS 0
-
 ]DE_ENTI_COMMENT]
 [FR_ENTI_COMMENT[
-Pays selon la liste ISO ISO-3166-1 
+*Pays selon la liste ISO ISO-3166-1 
 Selon la NUTS (https://de. wikipedia. org/wiki/NUTS), le pays est au niveau NUTS 0
 ]FR_ENTI_COMMENT]
 ]]></notes>
@@ -58,6 +55,7 @@ Selon la NUTS (https://de. wikipedia. org/wiki/NUTS), le pays est au niveau NUTS
 
 ]EN_ATTR_COMMENT]
 [FR_ATTR_COMMENT[
+
 ]FR_ATTR_COMMENT]
 ]]></notes>
 <ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
@@ -69,9 +67,8 @@ Selon la NUTS (https://de. wikipedia. org/wiki/NUTS), le pays est au niveau NUTS
 <item key="015DE428-05B6-58DD-323D-ECDC72266F4A" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
-<use>0</use>
+<use>1</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
-<domain>FC85688A-BE92-2820-35E2-EB148361AAE1</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_NAME" value="ISO2_Code"/>
@@ -100,9 +97,8 @@ Selon la NUTS (https://de. wikipedia. org/wiki/NUTS), le pays est au niveau NUTS
 <item key="015DE428-05B6-58DD-323D-ECDC72266F4A" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
-<use>0</use>
+<use>1</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
-<domain>FC85688A-BE92-2820-35E2-EB148361AAE1</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_NAME" value="ISO3_Code"/>
@@ -119,6 +115,9 @@ Selon la NUTS (https://de. wikipedia. org/wiki/NUTS), le pays est au niveau NUTS
 [EN_ATTR_COMMENT[
 
 ]EN_ATTR_COMMENT]
+[FR_ATTR_COMMENT[
+
+]FR_ATTR_COMMENT]
 ]]></notes>
 <ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
 <engineerTo>
@@ -132,7 +131,8 @@ Selon la NUTS (https://de. wikipedia. org/wiki/NUTS), le pays est au niveau NUTS
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_NAME" value="NichtAnzeigen1"/>
-<property name="EN_ATTR_NAME" value="*DE* NichtAnzeigen1"/>
+<property name="EN_ATTR_NAME" value="**Do not display1"/>
+<property name="FR_ATTR_NAME" value="**Ne pas afficher1"/>
 </propertyMap>
 </Attribute>
 <Attribute name="ISO_Code_numerisch" id="EAA58C83-A9F6-56BD-3C50-74BF3E45A7F9">
@@ -145,6 +145,7 @@ Selon la NUTS (https://de. wikipedia. org/wiki/NUTS), le pays est au niveau NUTS
 
 ]EN_ATTR_COMMENT]
 [FR_ATTR_COMMENT[
+
 ]FR_ATTR_COMMENT]
 ]]></notes>
 <ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
@@ -155,9 +156,8 @@ Selon la NUTS (https://de. wikipedia. org/wiki/NUTS), le pays est au niveau NUTS
 <item key="015DE428-05B6-58DD-323D-ECDC72266F4A" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
-<use>0</use>
+<use>1</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
-<domain>FC85688A-BE92-2820-35E2-EB148361AAE1</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_NAME" value="ISO_Code_numerisch"/>
@@ -203,6 +203,9 @@ Selon la NUTS (https://de. wikipedia. org/wiki/NUTS), le pays est au niveau NUTS
 [EN_ATTR_COMMENT[
 
 ]EN_ATTR_COMMENT]
+[FR_ATTR_COMMENT[
+
+]FR_ATTR_COMMENT]
 ]]></notes>
 <ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
 <engineerTo>
@@ -216,7 +219,8 @@ Selon la NUTS (https://de. wikipedia. org/wiki/NUTS), le pays est au niveau NUTS
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_NAME" value="NichtAnzeigen2"/>
-<property name="EN_ATTR_NAME" value="*DE* NichtAnzeigen2"/>
+<property name="EN_ATTR_NAME" value="**Do not display2"/>
+<property name="FR_ATTR_NAME" value="**Ne pas afficher2"/>
 </propertyMap>
 </Attribute>
 </attributes>

@@ -19,11 +19,35 @@
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
       <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/../../../../EZV/DB/EZV_Stammdaten.db</jdbc-url>
     </data-source>
-    <data-source source="LOCAL" name="IM_GEBERIT.db" uuid="66e4c117-ed38-4694-9ff8-17e31dfbd9a5">
+    <data-source source="LOCAL" name="ModellModell_neu.db" uuid="e057c294-87fb-4b28-a80b-5d3b189e6453">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/../../ModellModell/DB/ModellModell_neu.db</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="fyayc_dev_mapping.db" uuid="0b63fba0-ce62-43ff-9ec1-85e00f2db589">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/../../../modelexports/DB/fyayc_dev_mapping.db</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="IM_GEBERIT.db" uuid="fe1a10c5-5e86-41a5-9787-33fa4dec004e">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
       <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/../../../../GEBININF/gitHub/DB/IM_GEBERIT.db</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="belimo_crm.db" uuid="86baf126-31aa-4047-9c63-180ea2e952bd">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/../../../../BELIINF/DB/belimo_crm.db</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="LEISTER_IM.db" uuid="5a5b8656-7352-4159-ac1b-3fdcf57a34cb">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/../../../../LEISTER/DB/LEISTER_IM.db</jdbc-url>
     </data-source>
   </component>
 </project>

@@ -36,6 +36,15 @@ Rechte über das Handelsrecht geregelt.
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="PIM AttrID" value="."/>
+<property name="PIM AttrName" value="."/>
+<property name="PIM EnglName" value="."/>
+<property name="PIM datatype" value="."/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
 </Column>
 <Column name="UID_Nr" id="17D1179D-D226-6D81-4AF5-7349AF87632E">
 <createdBy>stb</createdBy>
@@ -57,6 +66,15 @@ Umsatzsteuer-Identifikationsnummer (AT), Ust-IdNr (DE), Unternehmens-Identifikat
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="PIM AttrID" value="."/>
+<property name="PIM AttrName" value="."/>
+<property name="PIM EnglName" value="."/>
+<property name="PIM datatype" value="."/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
 </Column>
 <Column name="Juristische_Person_ID" id="901F99B3-6F26-7DF2-84C8-91A2B02645F3">
 <createdBy>stb</createdBy>
@@ -71,6 +89,15 @@ Umsatzsteuer-Identifikationsnummer (AT), Ust-IdNr (DE), Unternehmens-Identifikat
 <identityColumn>true</identityColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 <isSurrogateColumn>true</isSurrogateColumn>
+<propertyMap>
+<property name="PIM AttrID" value="."/>
+<property name="PIM AttrName" value="."/>
+<property name="PIM EnglName" value="."/>
+<property name="PIM datatype" value="."/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
 </Column>
 <Column name="Geschäftsfähige_Einheit_Geschäftsfähige_Einheit_ID" id="D54A2B1C-B3B5-DA0D-7887-F14BD85B8525">
 <createdBy>stb</createdBy>
@@ -80,9 +107,18 @@ Umsatzsteuer-Identifikationsnummer (AT), Ust-IdNr (DE), Unternehmens-Identifikat
 <use>1</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
 <dataTypePrecision>10</dataTypePrecision>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="PIM AttrID" value="."/>
+<property name="PIM AttrName" value="."/>
+<property name="PIM EnglName" value="."/>
+<property name="PIM datatype" value="."/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
 <associations>
 <colAssociation fkAssociation="6620FA8A-F6AE-5730-FE2F-9557B34C97B4" referredColumn="61CDF818-DC9A-155D-7C86-84A6FF6C1F6E"/>
 </associations>

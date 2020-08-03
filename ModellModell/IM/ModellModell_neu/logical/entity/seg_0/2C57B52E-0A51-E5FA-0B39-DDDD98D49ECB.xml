@@ -4,15 +4,17 @@
 <createdTime>2020-02-03 20:03:22 UTC</createdTime>
 <comment><![CDATA[(Administrative) Organisationseinheit in der Firma]]></comment>
 <notes><![CDATA[[DE_ENTI_COMMENT[
-Organisationseinheit in der Firma (intern oder extern), die für die Definition oder Pflege eines Attributwertes verantwortlich ist.
+(Administrative) Organisationseinheit in der Firma
 ]DE_ENTI_COMMENT]
 [EN_ENTI_COMMENT[
-Organizational unit in the company (internal or external) that is responsible for defining or maintaining an attribute value.
+*Organizational unit in the company (internal or external) that is responsible for defining or maintaining an attribute value.
 ]EN_ENTI_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="false"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <typeID>86837EFF-EE45-AD47-D8D2-5881004F25D3</typeID>
@@ -30,8 +32,10 @@ Organizational unit in the company (internal or external) that is responsible fo
 <propertyMap>
 <property name="DE_ENTI_COMMENT" value="Organisationseinheit in der Firma (intern oder extern), die für die Definition oder Pflege eines Attributwertes verantwortlich ist."/>
 <property name="DE_ENTI_NAME" value="Abteilung"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
 <property name="EN_ENTI_COMMENT" value="*DE* Organisationseinheit in der Firma (intern oder extern), die für die Definition oder Pflege eines Attributwertes verantwortlich ist."/>
 <property name="EN_ENTI_NAME" value="Division"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Name" id="5F65EF23-39D2-4156-0877-0966B0C829E8">
@@ -46,9 +50,11 @@ Business division name
 ]EN_ATTR_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <importedID>5F1855D0-5C50-083E-F00A-56D7A0E3E93F</importedID>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="false"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>

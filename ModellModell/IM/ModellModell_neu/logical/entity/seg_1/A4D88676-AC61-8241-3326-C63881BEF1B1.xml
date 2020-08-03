@@ -4,7 +4,25 @@
 <createdTime>2020-02-03 20:04:24 UTC</createdTime>
 <comment><![CDATA[Definiert eine Einheit, die eine sinnvoll zusammenfassbare Gruppe von Informationen, Prozesse und Systemen nutzt bzw. dafür zuständig ist.
 
-Geschäftsfunktionen können über mehrere Geschäftsbereiche und/oder Abteilungen verteilt sein.
+Geschäftsfähigkeiten können über mehrere Geschäftsbereiche und/oder Abteilungen verteilt sein.
+(Beispiele: Projektleitung kann in vielen Bereichen vorkommen)
+
+ACHTUNG: Es sollten KEINE technischen Aufteilungen (Systeme, Technologie, Medien) für die Unterscheidung verwendet werden, da diese häufiger ändern können.
+Es geht um die semantische Gruppierung der Anwendungen und Geschäftstransaktionen
+
+Beispiele:
+  Management
+  Recruting
+  Accounting
+  Manufacturing
+  Repairing
+  Consulting
+  Projektleitung
+  Support]]></comment>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+Definiert eine Einheit, die eine sinnvoll zusammenfassbare Gruppe von Informationen, Prozesse und Systemen nutzt bzw. dafür zuständig ist.
+
+Geschäftsfähigkeiten können über mehrere Geschäftsbereiche und/oder Abteilungen verteilt sein.
 (Beispiele: Projektleitung kann in vielen Bereichen vorkommen)
 
 ACHTUNG: Es sollten KEINE technischen Aufteilungen (Systeme, Technologie, Medien) für die Unterscheidung verwendet werden, da diese häufiger ändern können.
@@ -19,17 +37,15 @@ Beispiele:
   Consulting
   Projektleitung
   Support
-]]></comment>
-<notes><![CDATA[[DE_ENTI_COMMENT[
-Definiert eine Einheit, die für eine sinnvoll zusammenfassbare Gruppe von Informationen, Prozesse und Systemen zuständig ist. Ein Hoheitsbereich kümmert sich um eine bestimmte Art von Aufgaben im Unternehmen. Es ist ein Aufgabenbereich. Häufig entsprechen Hoheitsbereiche den Divisionen, Geschäftsbereichen oder Sparten d.h. der Organisationeinheinheit auf der obersten Stufe.  Dies ist aber nur eine mögliche Lösung.  Hoheitsbereich bestimmt - Wer erstellt Datensätze zu einer Entität. - Wer bestimmt über Änderungen / Qualität etc. - Wer verwendet die Informationen dieser Entität haupstächlich - ??  ACHTUNG: Es sollten KEINE technischen Aufteilungen (Systeme, Technologie, Medien) für die Unterscheidung verwendet werden, da diese  häufiger ändern können. Es geht um die semantische Hoheit über die Informationen.  Beispiele:   Management   Recruting   Accounting   Manufacturing   Repairing   Consulting   Projektleitung   Support 
 ]DE_ENTI_COMMENT]
 [EN_ENTI_COMMENT[
-Defines a unit that is responsible for a group of information, processes and systems that can be summarized in a meaningful way. A government department takes care of a certain type of task in a company. It's a remit. Often sovereign areas correspond to the divisions, business areas or divisions, i.e. the organizational unit at the highest level.  However, this is only one possible solution.  Who creates records for an entity. - Who decides about changes / quality etc.? - Who uses the information of this entity mainly - ??  ATTENTION: NO technical divisions (systems, technology, media) should be used for differentiation, as these can change more frequently. It's about semantic sovereignty over information.  Examples:   Management Recruting Accounting Manufacturing Repairing Consulting Project Management Support
+*Defines a unit that is responsible for a group of information, processes and systems that can be summarized in a meaningful way. A government department takes care of a certain type of task in a company. It's a remit. Often sovereign areas correspond to the divisions, business areas or divisions, i.e. the organizational unit at the highest level.  However, this is only one possible solution.  Who creates records for an entity. - Who decides about changes / quality etc.? - Who uses the information of this entity mainly - ??  ATTENTION: NO technical divisions (systems, technology, media) should be used for differentiation, as these can change more frequently. It's about semantic sovereignty over information.  Examples:   Management Recruting Accounting Manufacturing Repairing Consulting Project Management Support
 ]EN_ENTI_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="false"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <typeID>049E3124-67AA-37C3-8A6D-286DDE491ECA</typeID>
@@ -46,11 +62,11 @@ Defines a unit that is responsible for a group of information, processes and sys
 <propertyMap>
 <property name="Beispiele" value="Produktion / Vertrieb / Marketing / Finanz"/>
 <property name="DE_ENTI_COMMENT" value="Definiert eine Einheit, die für eine sinnvoll zusammenfassbare Gruppe von Informationen, Prozesse und Systemen zuständig ist. Ein Hoheitsbereich kümmert sich um eine bestimmte Art von Aufgaben im Unternehmen. Es ist ein Aufgabenbereich. Häufig entsprechen Hoheitsbereiche den Divisionen, Geschäftsbereichen oder Sparten d.h. der Organisationeinheinheit auf der obersten Stufe.  Dies ist aber nur eine mögliche Lösung.  Hoheitsbereich bestimmt - Wer erstellt Datensätze zu einer Entität. - Wer bestimmt über Änderungen / Qualität etc. - Wer verwendet die Informationen dieser Entität haupstächlich - ??  ACHTUNG: Es sollten KEINE technischen Aufteilungen (Systeme, Technologie, Medien) für die Unterscheidung verwendet werden, da diese  häufiger ändern können. Es geht um die semantische Hoheit über die Informationen.  Beispiele:   Management   Recruting   Accounting   Manufacturing   Repairing   Consulting   Projektleitung   Support "/>
-<property name="DE_ENTI_NAME" value="Geschäftsfunktion"/>
-<property name="DE_ENTI_SYNONYM" value="Business Function"/>
+<property name="DE_ENTI_NAME" value="Geschäftsfähigkeit"/>
+<property name="DE_ENTI_SYNONYM" value="Business Function, Business Skill"/>
 <property name="EN_ENTI_COMMENT" value="*DE* Definiert eine Einheit, die für eine sinnvoll zusammenfassbare Gruppe von Informationen, Prozesse und Systemen zuständig ist. Ein Hoheitsbereich kümmert sich um eine bestimmte Art von Aufgaben im Unternehmen. Es ist ein Aufgabenbereich. Häufig entsprechen Hoheitsbereiche den Divisionen, Geschäftsbereichen oder Sparten d.h. der Organisationeinheinheit auf der obersten Stufe.  Dies ist aber nur eine mögliche Lösung.  Hoheitsbereich bestimmt - Wer erstellt Datensätze zu einer Entität. - Wer bestimmt über Änderungen / Qualität etc. - Wer verwendet die Informationen dieser Entität haupstächlich - ??  ACHTUNG: Es sollten KEINE technischen Aufteilungen (Systeme, Technologie, Medien) für die Unterscheidung verwendet werden, da diese  häufiger ändern können. Es geht um die semantische Hoheit über die Informationen.  Beispiele:   Management   Recruting   Accounting   Manufacturing   Repairing   Consulting   Projektleitung   Support "/>
-<property name="EN_ENTI_NAME" value="Business function"/>
-<property name="EN_ENTI_SYNONYM" value="Business function"/>
+<property name="EN_ENTI_NAME" value="*Business function"/>
+<property name="EN_ENTI_SYNONYM" value="*Business function"/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Name [L]" id="8A13C6EC-B600-0669-8262-D48EE1400A21">
@@ -68,6 +84,7 @@ Name of the jurisdiction
 <importedID>53DC075C-058F-2C59-D396-901F1B597822</importedID>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="false"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
@@ -96,6 +113,7 @@ Significance, delimitation, use of the sovereign area
 <importedID>A88C2D74-C730-B9C3-DA05-A84BA43E50CC</importedID>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="false"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
@@ -118,6 +136,7 @@ Significance, delimitation, use of the sovereign area
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="false"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <pk>true</pk>

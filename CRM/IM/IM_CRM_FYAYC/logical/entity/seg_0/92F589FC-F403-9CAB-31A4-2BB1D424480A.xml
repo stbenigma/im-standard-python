@@ -2,19 +2,15 @@
 <Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="92F589FC-F403-9CAB-31A4-2BB1D424480A" name="Finanzierungspartner">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 08:04:25 UTC</createdTime>
-<comment><![CDATA[Partner der Leasingverträge vergibt, die Produkte deshalb als Eigentum hat , sie aber selber nie nutzt.
-]]></comment>
+<comment><![CDATA[Partner der Leasingverträge vergibt, die Produkte deshalb als Eigentum hat , sie aber selber nie nutzt.]]></comment>
 <notes><![CDATA[[EN_ENTI_COMMENT[
-*DE* Partner der Leasingverträge vergibt, die Produkte deshalb als Eigentum hat , sie aber selber nie nutzt.
-
+**A partner who issues leasing contracts, who therefore owns the products but never uses them himself.
 ]EN_ENTI_COMMENT]
 [DE_ENTI_COMMENT[
 Partner der Leasingverträge vergibt, die Produkte deshalb als Eigentum hat , sie aber selber nie nutzt.
-
 ]DE_ENTI_COMMENT]
 [FR_ENTI_COMMENT[
-Partenaire qui accorde des contrats de leasing, qui est donc propriétaire des produits, mais ne les utilise jamais lui-même.
-
+*Partenaire qui accorde des contrats de leasing, qui est donc propriétaire des produits, mais ne les utilise jamais lui-même.
 ]FR_ENTI_COMMENT]
 ]]></notes>
 <ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
@@ -24,6 +20,7 @@ Partenaire qui accorde des contrats de leasing, qui est donc propriétaire des p
 <item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="false"/>
 <item key="015DE428-05B6-58DD-323D-ECDC72266F4A" value="true"/>
 </engineerTo>
+<typeID>3153B60C-8013-9183-737B-6F3AD413B048</typeID>
 <adequatelyNormalized>NO</adequatelyNormalized>
 <expectedVolumes>0</expectedVolumes>
 <fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>

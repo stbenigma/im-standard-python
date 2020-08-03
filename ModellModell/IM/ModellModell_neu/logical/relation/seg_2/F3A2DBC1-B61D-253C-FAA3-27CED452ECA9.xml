@@ -5,10 +5,13 @@
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <useSurrogateKey>true</useSurrogateKey>
 <identifying>false</identifying>
+<nameOnSource>resultiert in</nameOnSource>
+<nameOnTarget>ensteht aus</nameOnTarget>
 <optionalSource>true</optionalSource>
 <optionalTarget>false</optionalTarget>
 <sourceCardinality>1</sourceCardinality>
@@ -16,4 +19,10 @@
 <targetCardinalityString>*</targetCardinalityString>
 <targetEntity>A0A035DA-9F3E-194F-A9CC-88F9C973E567</targetEntity>
 <transferable>true</transferable>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="resultiert in"/>
+<property name="DE_RELA_TEXT_TO" value="ensteht aus"/>
+<property name="EN_RELA_TEXT_FROM" value="**results in"/>
+<property name="EN_RELA_TEXT_TO" value="**emerges from"/>
+</propertyMap>
 </Relation>

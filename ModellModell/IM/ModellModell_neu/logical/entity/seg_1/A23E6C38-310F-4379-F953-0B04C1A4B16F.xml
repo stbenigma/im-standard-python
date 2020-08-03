@@ -2,18 +2,19 @@
 <Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="A23E6C38-310F-4379-F953-0B04C1A4B16F" name="Entität">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:03:22 UTC</createdTime>
-<comment><![CDATA[Entität im systemübergreifenden, konsolidierten, konzeptionellen Modell eines Unternehmens
-]]></comment>
+<comment><![CDATA[Entität im systemübergreifenden, konsolidierten, konzeptionellen Modell eines Unternehmens]]></comment>
 <notes><![CDATA[[DE_ENTI_COMMENT[
-Entität im systemübergreifenden, konsolidierten, konzeptionellen Modell eines Unternehmens 
+Entität im systemübergreifenden, konsolidierten, konzeptionellen Modell eines Unternehmens
 ]DE_ENTI_COMMENT]
 [EN_ENTI_COMMENT[
-Entity in the cross-system, consolidated, conceptual model of a company
+*Entity in the cross-system, consolidated, conceptual model of a company
 ]EN_ENTI_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <engineerTo>
-<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="false"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <typeID>899A6DDC-95E0-4AD5-5F58-B3A2FF5C2D08</typeID>
@@ -26,12 +27,15 @@ Entity in the cross-system, consolidated, conceptual model of a company
 <maxVolumes>9999999</maxVolumes>
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
+<shortName>ENTI</shortName>
+<generateDiscrimColumn>true</generateDiscrimColumn>
+<discriminatorColumnName>ENTI_SUBTYPE</discriminatorColumnName>
+<completeSubtypes>true</completeSubtypes>
 <createSurrogateKey>true</createSurrogateKey>
 <propertyMap>
 <property name="Beispiele" value="Kunde / Verkaufs-Artikel / Land"/>
 <property name="DE_ENTI_COMMENT" value="Entität im systemübergreifenden, konsolidierten, konzeptionellen Modell eines Unternehmens "/>
 <property name="DE_ENTI_NAME" value="Entität"/>
-<property name="DE_ENTI_SYNONYM" value=""/>
 <property name="EN_ENTI_COMMENT" value="*DE* Entität im systemübergreifenden, konsolidierten, konzeptionellen Modell eines Unternehmens "/>
 <property name="EN_ENTI_NAME" value="Entity"/>
 <property name="EN_ENTI_SYNONYM" value=""/>
@@ -52,6 +56,7 @@ Name of the entity normally used in communication.
 <importedID>0F2758D2-C7D1-07D3-5C35-F1697AF2FBE0</importedID>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
@@ -80,6 +85,7 @@ Name that is also used for this entity
 <importedID>86F63762-7E3D-9675-C4EB-5EF70C2112E7</importedID>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
@@ -109,6 +115,7 @@ Meaning, Benefits, Use of the Entity
 <importedID>78E7CC00-D288-42DD-98DE-293BD4C4788A</importedID>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
@@ -126,18 +133,19 @@ Meaning, Benefits, Use of the Entity
 <Attribute name="Kurzname [L]" id="5E305761-9FBD-94B3-D12B-A0811406A63D">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:03:22 UTC</createdTime>
-<comment><![CDATA[Kurzbezeichnung der Entität für die Verwendung aus Überschrift, in Referenzen ]]></comment>
+<comment><![CDATA[Kurzbezeichnung der Entität für die Verwendung aus Überschrift, in Referenzen]]></comment>
 <notes><![CDATA[[DE_ATTR_COMMENT[
-Kurzbezeichnung der Entität für die Verwendung aus Überschrift, in Referenzen 
+Kurzbezeichnung der Entität für die Verwendung aus Überschrift, in Referenzen
 ]DE_ATTR_COMMENT]
 [EN_ATTR_COMMENT[
-Entity short name for use from heading, in references
+*Entity short name for use from heading, in references
 ]EN_ATTR_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <importedID>3F71D6FF-01E1-8249-78A0-A7FF4F70650A</importedID>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
@@ -167,6 +175,7 @@ Abbreviated name (3-5 characters, usually capital letters) that can be used as a
 <importedID>05044FC2-ACB4-20D7-8B53-8FCF430B32D9</importedID>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
@@ -196,6 +205,7 @@ Display of the meaning for the operator on a mask.
 <importedID>54A2577F-F95D-B646-574D-6693D12215E0</importedID>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
@@ -225,6 +235,7 @@ Typical examples of a characteristic of this entity, as an indication of its mea
 <importedID>0A3BF2BE-3C66-86F6-C0C4-789EE9EC7833</importedID>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
@@ -254,6 +265,7 @@ Name of the jurisdiction
 <importedID>627C46BB-D03D-E7DB-D7EE-B726716B01B4</importedID>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
@@ -283,6 +295,7 @@ Order of magnitude of the number of tuples in this entity
 <importedID>5D1A133A-66CD-CCDD-815F-E71B76100EF4</importedID>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
@@ -302,9 +315,17 @@ Order of magnitude of the number of tuples in this entity
 <createdTime>2020-02-09 17:39:37 UTC</createdTime>
 <comment><![CDATA[Name des Hoheitsbereichs]]></comment>
 <generatorID>01C1DEBE-7897-5C37-924C-648F9E49B23E</generatorID>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+**Name of the sovereign territory
+]EN_ATTR_COMMENT]
+[DE_ATTR_COMMENT[
+Name des Hoheitsbereichs
+]DE_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
@@ -313,6 +334,10 @@ Order of magnitude of the number of tuples in this entity
 <use>1</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Name [L]1"/>
+<property name="EN_ATTR_NAME" value="**Name [L]1"/>
+</propertyMap>
 </Attribute>
 </attributes>
 <identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
@@ -322,6 +347,7 @@ Order of magnitude of the number of tuples in this entity
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <pk>true</pk>

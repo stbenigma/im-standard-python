@@ -2,9 +2,17 @@
 <Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="F09829C3-9606-634C-988D-F3C81C5D841A" name="Komponente">
 <createdBy>stb</createdBy>
 <createdTime>2018-05-29 11:54:43 UTC</createdTime>
-<comment><![CDATA[Einzelstück, im Liebherrkontext nicht weiter differenziert in Einzelteile. ]]></comment>
+<comment><![CDATA[Einzelstück, im Liebherrkontext nicht weiter differenziert in Einzelteile.]]></comment>
+<notes><![CDATA[[EN_ENTI_COMMENT[
+*DE* Einzelstück, im Liebherrkontext nicht weiter differenziert in Einzelteile.
+]EN_ENTI_COMMENT]
+[DE_ENTI_COMMENT[
+Einzelstück, im Liebherrkontext nicht weiter differenziert in Einzelteile. 
+]DE_ENTI_COMMENT]
+]]></notes>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 <item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
@@ -18,13 +26,27 @@
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
 <createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="DE_ENTI_NAME" value="Komponente"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_NAME" value="*DE* Komponente"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+</propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Werkstoff" id="DEC3F74A-CE30-7F37-6C38-C019CB3A1435">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-19 14:28:43 UTC</createdTime>
-<comment><![CDATA[relevamtes Material dieser Komponente ]]></comment>
+<comment><![CDATA[relevamtes Material dieser Komponente]]></comment>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+*DE* relevamtes Material dieser Komponente
+]EN_ATTR_COMMENT]
+[DE_ATTR_COMMENT[
+relevamtes Material dieser Komponente 
+]DE_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 <item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
@@ -37,6 +59,8 @@
 <property name="AP Typ" value="."/>
 <property name="AP usage" value="."/>
 <property name="CRM-Salesforce" value="."/>
+<property name="DE_ATTR_NAME" value="Werkstoff"/>
+<property name="EN_ATTR_NAME" value="*DE* Werkstoff"/>
 <property name="ERP" value="."/>
 <property name="EXCEL ColumnName" value="."/>
 <property name="Excel" value="."/>

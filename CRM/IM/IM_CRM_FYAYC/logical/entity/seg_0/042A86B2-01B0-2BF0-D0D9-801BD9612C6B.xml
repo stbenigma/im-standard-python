@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="042A86B2-01B0-2BF0-D0D9-801BD9612C6B" name="*PLZ-Gebiet">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="042A86B2-01B0-2BF0-D0D9-801BD9612C6B" name="PLZ-Gebiet">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 08:36:39 UTC</createdTime>
 <comment><![CDATA[Durch die Post vergebene Gebietseinteilung.
@@ -14,23 +14,21 @@ Es kann andere genormte Systeme geben
 P3: Postleitzahl
 P2: Postleitzahluntergebiet
 P1: Postleitzahlgebiet
-P0: Land
-]]></comment>
+P0: Land]]></comment>
 <notes><![CDATA[[EN_ENTI_COMMENT[
-*DE* Durch die Post vergebene Gebietseinteilung.
-Die Postleitzahl ist in vielen Ländern keine Zahl sondern eine Zeichenfolge mit Ziffern und Buchstaben
+**Territory allocated by the Post Office.
+In many countries, the postal code is not a number but a string of letters and numbers
 
-Es gibt hierarchische Systeme beim Aufbau von PLZ:
-Z.B. USA
-221 - 62 -10 -10	 
-Segment - Sektor - Postdienststelle oder Zustellabschnitt - Leitzone oder Bearbeitungs- und Zustellzentrum
+There are hierarchical systems for the structure of postal codes:
+FOR EXAMPLE, USA
+221 - 62 -10 -10
+Segment - Sector - Post office or delivery section - routing zone or processing and delivery centre
 
-Es kann andere genormte Systeme geben
-P3: Postleitzahl
-P2: Postleitzahluntergebiet
-P1: Postleitzahlgebiet
-P0: Land
-
+There may be other standardised systems
+P3: Postcode
+P2: Postal code sub-area
+P1: Postcode area
+P0: Country
 ]EN_ENTI_COMMENT]
 [DE_ENTI_COMMENT[
 Durch die Post vergebene Gebietseinteilung.
@@ -46,10 +44,9 @@ P3: Postleitzahl
 P2: Postleitzahluntergebiet
 P1: Postleitzahlgebiet
 P0: Land
-
 ]DE_ENTI_COMMENT]
 [FR_ENTI_COMMENT[
-Division territoriale attribuée par la Poste. Dans de nombreux pays, le code postal n'est pas un chiffre mais une suite de chiffres et de lettres 
+*Division territoriale attribuée par la Poste. Dans de nombreux pays, le code postal n'est pas un chiffre mais une suite de chiffres et de lettres 
 
 Il existe des systèmes hiérarchiques pour la structure des codes postaux : 
 E. G. USA 
@@ -61,7 +58,6 @@ P3 : Code postal
 P2 : Sous-région du code postal 
 P1 : Zone du code postal 
 P0 : Pays
-
 ]FR_ENTI_COMMENT]
 ]]></notes>
 <ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
@@ -71,6 +67,7 @@ P0 : Pays
 <item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="false"/>
 <item key="015DE428-05B6-58DD-323D-ECDC72266F4A" value="true"/>
 </engineerTo>
+<typeID>33675414-33E1-1BE8-99DF-264D33446509</typeID>
 <adequatelyNormalized>NO</adequatelyNormalized>
 <expectedVolumes>0</expectedVolumes>
 <fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
@@ -84,18 +81,18 @@ P0 : Pays
 <propertyMap>
 <property name="DE_ENTI_NAME" value="*PLZ-Gebiet"/>
 <property name="EN_ENTI_NAME" value="ZIP-Area"/>
-<property name="EN_ENTI_SYNONYM" value=""/>
 <property name="FR_ENTI_NAME" value="Code postal"/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Postleitzahl" id="B5F33891-F2FE-CAF2-EB56-D971EE142581">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 08:36:39 UTC</createdTime>
+<comment><![CDATA[**Postleitzahl]]></comment>
 <notes><![CDATA[[DE_ATTR_COMMENT[
-
+**Postleitzahl
 ]DE_ATTR_COMMENT]
 [EN_ATTR_COMMENT[
-
+**Postal Code
 ]EN_ATTR_COMMENT]
 [FR_ATTR_COMMENT[
 Code postal
@@ -122,7 +119,7 @@ Code postal
 <createdTime>2019-05-06 08:36:39 UTC</createdTime>
 <comment><![CDATA[P1-P3]]></comment>
 <notes><![CDATA[[EN_ATTR_COMMENT[
-*DE* P1-P3
+**P1-P3
 ]EN_ATTR_COMMENT]
 [DE_ATTR_COMMENT[
 P1-P3

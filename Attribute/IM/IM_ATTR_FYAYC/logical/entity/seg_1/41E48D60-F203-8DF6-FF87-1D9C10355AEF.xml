@@ -2,8 +2,16 @@
 <Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="41E48D60-F203-8DF6-FF87-1D9C10355AEF" name="Gleichstrom Versorgung">
 <createdBy>stb</createdBy>
 <createdTime>2019-08-12 07:49:07 UTC</createdTime>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+
+]EN_ENTI_COMMENT]
+]]></notes>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 <item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
@@ -17,4 +25,10 @@
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
 <createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="DE_ENTI_NAME" value="Gleichstrom Versorgung"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_NAME" value="*DE* Gleichstrom Versorgung"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+</propertyMap>
 </Entity>

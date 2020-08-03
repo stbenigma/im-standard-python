@@ -46,9 +46,18 @@ Piloten von Flugzeugen
 <use>1</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
 <dataTypePrecision>10</dataTypePrecision>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="PIM AttrID" value="."/>
+<property name="PIM AttrName" value="."/>
+<property name="PIM EnglName" value="."/>
+<property name="PIM datatype" value="."/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
 <associations>
 <colAssociation fkAssociation="F3D10C3E-C7A3-5F13-BCD2-C0DBDF4B13B6" referredColumn="EB6AF43D-1B32-B824-62A4-AF6DE590CD14"/>
 </associations>
@@ -66,6 +75,15 @@ Piloten von Flugzeugen
 <identityColumn>true</identityColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 <isSurrogateColumn>true</isSurrogateColumn>
+<propertyMap>
+<property name="PIM AttrID" value="."/>
+<property name="PIM AttrName" value="."/>
+<property name="PIM EnglName" value="."/>
+<property name="PIM datatype" value="."/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">

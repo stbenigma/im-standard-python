@@ -2,9 +2,19 @@
 <Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="064C0603-496B-84F1-6876-512995543049" name="Auslöser">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:05:22 UTC</createdTime>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+
+]EN_ENTI_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="false"/>
+<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <adequatelyNormalized>NO</adequatelyNormalized>
 <expectedVolumes>0</expectedVolumes>
@@ -15,4 +25,10 @@
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
 <createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="DE_ENTI_NAME" value="Auslöser"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_NAME" value="**Trigger"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+</propertyMap>
 </Entity>

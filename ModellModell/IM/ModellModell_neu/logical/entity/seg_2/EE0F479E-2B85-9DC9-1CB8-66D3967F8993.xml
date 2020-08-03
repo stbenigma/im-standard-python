@@ -2,17 +2,18 @@
 <Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_2" id="EE0F479E-2B85-9DC9-1CB8-66D3967F8993" name="Numerischer Wertebereich">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:04:00 UTC</createdTime>
-<comment><![CDATA[Kann Zahlenwerte aufnehmen ]]></comment>
+<comment><![CDATA[Kann Zahlenwerte aufnehmen]]></comment>
 <notes><![CDATA[[DE_ENTI_COMMENT[
-Kann Zahlenwerte aufnehmen 
+Kann Zahlenwerte aufnehmen
 ]DE_ENTI_COMMENT]
 [EN_ENTI_COMMENT[
-Can record numerical values
+*Can record numerical values
 ]EN_ENTI_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <typeID>899A6DDC-95E0-4AD5-5F58-B3A2FF5C2D08</typeID>
@@ -50,6 +51,7 @@ Number of digits before the decimal point
 <importedID>6013584E-6DC3-0F87-63DB-782BE75793F2</importedID>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
@@ -78,6 +80,7 @@ Number of digits after the decimal point
 <importedID>1A0F5548-154B-9B85-CAD0-538CA8502229</importedID>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
@@ -107,6 +110,7 @@ Minimum value for a numeric field. Empty -> as small as the system allows
 <importedID>5D6EF497-1C80-55B3-9A08-19906F7E598E</importedID>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
@@ -136,6 +140,7 @@ Maximum value for a numeric field. Empty -> as big as the system allows
 <importedID>A72F2CB8-1949-9C66-ECCA-BF3F2AC681C0</importedID>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
@@ -165,6 +170,7 @@ A value that indicates the unit to which a numeric value is rounded for storage.
 <importedID>7B43FC60-8938-1F2F-FFC9-AC52103A91B0</importedID>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>

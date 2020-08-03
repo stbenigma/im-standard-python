@@ -30,9 +30,18 @@ Handelt in dieser Rolle selber nicht mit den Waren. Hat also weder Lager noch is
 <use>1</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
 <dataTypePrecision>10</dataTypePrecision>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="PIM AttrID" value="."/>
+<property name="PIM AttrName" value="."/>
+<property name="PIM EnglName" value="."/>
+<property name="PIM datatype" value="."/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
 <associations>
 <colAssociation fkAssociation="C8985AE5-964C-0A25-59F4-CF5065D6C98F" referredColumn="B04DD40D-2DED-4051-AA2E-C0D5F71C7A3D"/>
 </associations>
@@ -50,6 +59,15 @@ Handelt in dieser Rolle selber nicht mit den Waren. Hat also weder Lager noch is
 <identityColumn>true</identityColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 <isSurrogateColumn>true</isSurrogateColumn>
+<propertyMap>
+<property name="PIM AttrID" value="."/>
+<property name="PIM AttrName" value="."/>
+<property name="PIM EnglName" value="."/>
+<property name="PIM datatype" value="."/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">

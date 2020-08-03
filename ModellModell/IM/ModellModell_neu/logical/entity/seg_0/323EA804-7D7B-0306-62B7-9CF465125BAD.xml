@@ -10,15 +10,23 @@ interner IT-Support
 Helpdesk
 App-Administrator]]></comment>
 <notes><![CDATA[[DE_ENTI_COMMENT[
-Firma oder Organisation die ein Sysstem betreuen (korrgieren, unterstützen, ausbauen, supporten). Typischerweise Applikationsadministratoren  Beispiele: interner IT-Support Helpdesk App-Administrator
+Firma oder Organisation die ein Sysstem betreuen (korrgieren, unterstützen, ausbauen, supporten).
+Typischerweise Applikationsadministratoren
+
+Beispiele:
+interner IT-Support
+Helpdesk
+App-Administrator
 ]DE_ENTI_COMMENT]
 [EN_ENTI_COMMENT[
-Company or organization that manages a system (corrging, supporting, expanding, supporting). Typical Application Administrators Examples: Internal IT Support Helpdesk App Administrator
+*Company or organization that manages a system (corrging, supporting, expanding, supporting). Typical Application Administrators Examples: Internal IT Support Helpdesk App Administrator
 ]EN_ENTI_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="false"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <typeID>2EDFF465-4CEE-72F2-D2EC-896DB596D191</typeID>
@@ -45,9 +53,17 @@ Company or organization that manages a system (corrging, supporting, expanding, 
 <createdBy>admin</createdBy>
 <createdTime>2020-02-10 12:41:58 UTC</createdTime>
 <generatorID>D55C9F83-5047-5873-28AC-BD8BC6719521</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <referedAttribute>1FC34A8C-E592-091D-9966-53649013D0B4</referedAttribute>
@@ -55,6 +71,10 @@ Company or organization that manages a system (corrging, supporting, expanding, 
 <use>1</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Name"/>
+<property name="EN_ATTR_NAME" value="**Name"/>
+</propertyMap>
 </Attribute>
 </attributes>
 </Entity>

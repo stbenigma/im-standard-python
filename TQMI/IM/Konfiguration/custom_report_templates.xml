@@ -340,19 +340,6 @@
 		</section>
 	</sections>
 	</custom_report_template>
-	<custom_report_template id="3B62549B-0B4B-A8E3-ACFB-01CF0A6293E7" name="Entity simple" description="" class="oracle.dbtools.crest.model.design.logical.Entity" >
-	<sections>
-		<section propertyName="Entity" type="" customName="Entity" level="0" class="oracle.dbtools.crest.model.design.logical.Entity">
-		<columns>
-				<column name="name" customName="Name" width="10.0" order="1" massUpdatable="false" dynamic="false"/>
-				<column name="synonym" customName="Synonyme" width="7.0" order="" massUpdatable="false" dynamic="false"/>
-				<column name="shortName" customName="Kurzname" width="5.0" order="" massUpdatable="true" dynamic="false"/>
-				<column name="parentEntity" customName="Super-Entität" width="10.0" order="" massUpdatable="false" dynamic="false"/>
-				<column name="comment" customName="Beschreibung" width="68.0" order="" massUpdatable="false" dynamic="false"/>
-		</columns>
-		</section>
-	</sections>
-	</custom_report_template>
 	<custom_report_template id="B4BC7C12-C389-BDC8-B0EB-5A0CA1595CFE" name="Entity Details" description="" class="oracle.dbtools.crest.model.design.logical.Entity" >
 	<sections>
 		<section propertyName="Entity" type="" customName="Entity" level="0" class="oracle.dbtools.crest.model.design.logical.Entity">
@@ -383,6 +370,18 @@
 				<column name="attributesAndRelationshipsInKey" customName="attributes/Relationships" width="0.0" order="" massUpdatable="false" dynamic="false"/>
 				<column name="comment" customName="Comment" width="0.0" order="" massUpdatable="false" dynamic="false"/>
 				<column name="notes" customName="Notes" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+		</columns>
+		</section>
+	</sections>
+	</custom_report_template>
+	<custom_report_template id="3B62549B-0B4B-A8E3-ACFB-01CF0A6293E7" name="Entity simple" description="" class="oracle.dbtools.crest.model.design.logical.Entity" >
+	<sections>
+		<section propertyName="Entity" type="" customName="Entity" level="0" class="oracle.dbtools.crest.model.design.logical.Entity">
+		<columns>
+				<column name="name" customName="Name" width="10.0" order="1" massUpdatable="false" dynamic="false"/>
+				<column name="synonym" customName="Synonyme" width="7.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="parentEntity" customName="Super-Entität" width="10.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="comment" customName="Beschreibung" width="68.0" order="" massUpdatable="false" dynamic="false"/>
 		</columns>
 		</section>
 	</sections>

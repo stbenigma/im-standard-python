@@ -10,15 +10,22 @@ Die in anderen Darstellungsarten gebräuchlichen Beziehungen können aus  Option
 0-many	Optional - many
 1-many	Pflicht - many]]></comment>
 <notes><![CDATA[[DE_ENTI_COMMENT[
-Verbindung zweier Entitäten mit Assoziationstext, Optionalität und Abbildungstyp  Die in anderen Darstellungsarten gebräuchlichen Beziehungen können aus  Optionalität und Abbildungstyp hergeleitet werden 0-1 Optional  - 1 1-1 Pflicht - 1 0-many Optional - many 1-many Pflicht - many
+Verbindung zweier Entitäten mit Assoziationstext, Optionalität und Abbildungstyp
+
+Die in anderen Darstellungsarten gebräuchlichen Beziehungen können aus  Optionalität und Abbildungstyp hergeleitet werden
+0-1	Optional  - 1
+1-1	Pflicht - 1
+0-many	Optional - many
+1-many	Pflicht - many
 ]DE_ENTI_COMMENT]
 [EN_ENTI_COMMENT[
-Connection of two entities with association text, optionality and mapping type The relationships common in other mapping types can be derived from optionality and mapping type 0-1 Optional - 1 1-1 Mandatory - 1 0-many Optional - many 1-many Mandatory - many
+*Connection of two entities with association text, optionality and mapping type The relationships common in other mapping types can be derived from optionality and mapping type 0-1 Optional - 1 1-1 Mandatory - 1 0-many Optional - many 1-many Mandatory - many
 ]EN_ENTI_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <typeID>899A6DDC-95E0-4AD5-5F58-B3A2FF5C2D08</typeID>
@@ -36,10 +43,8 @@ Connection of two entities with association text, optionality and mapping type T
 <property name="Beispiele" value="1 (Kunde) kauft mehrere (Artikel), (Organisationseinheit) wird geführt von 1 (Angestellter) "/>
 <property name="DE_ENTI_COMMENT" value="Verbindung zweier Entitäten mit Assoziationstext, Optionalität und Abbildungstyp  Die in anderen Darstellungsarten gebräuchlichen Beziehungen können aus  Optionalität und Abbildungstyp hergeleitet werden 0-1 Optional  - 1 1-1 Pflicht - 1 0-many Optional - many 1-many Pflicht - many"/>
 <property name="DE_ENTI_NAME" value="Beziehung"/>
-<property name="DE_ENTI_SYNONYM" value=""/>
 <property name="EN_ENTI_COMMENT" value="*DE* Verbindung zweier Entitäten mit Assoziationstext, Optionalität und Abbildungstyp  Die in anderen Darstellungsarten gebräuchlichen Beziehungen können aus  Optionalität und Abbildungstyp hergeleitet werden 0-1 Optional  - 1 1-1 Pflicht - 1 0-many Optional - many 1-many Pflicht - many"/>
 <property name="EN_ENTI_NAME" value="Relation"/>
-<property name="EN_ENTI_SYNONYM" value=""/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Assoziation von-zu [L]" id="93E4AEB1-CDE7-BE32-08A9-69005DF6DCE6">
@@ -57,11 +62,13 @@ What connects the von-Entity with the zu-Entity?
 <importedID>1E4F5AA9-8DAA-B81A-4D48-EDCE07CDC56A</importedID>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT024</logicalDatatype>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>897B91BA-60B8-3A16-793A-97B535605E5E</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_COMMENT" value="Was verbindet die von-Entität mit der zu-Entität"/>
@@ -76,21 +83,24 @@ What connects the von-Entity with the zu-Entity?
 <comment><![CDATA[JA -> Beziehung kann über die Zeit ändern. Zu einem Zeitpunkt kann nur 1 Beziehung gelten. System muss Historie der Änderungen führen.
 Über Extratabelle zu lösen.]]></comment>
 <notes><![CDATA[[DE_ATTR_COMMENT[
-JA -> Beziehung kann über die Zeit ändern. Zu einem Zeitpunkt kann nur 1 Beziehung gelten. System muss Historie der Änderungen führen. Über Extratabelle zu lösen.
+JA -> Beziehung kann über die Zeit ändern. Zu einem Zeitpunkt kann nur 1 Beziehung gelten. System muss Historie der Änderungen führen.
+Über Extratabelle zu lösen.
 ]DE_ATTR_COMMENT]
 [EN_ATTR_COMMENT[
-YES -> Relationship can change over time. Only 1 relationship can apply at any one time. System must keep history of changes. To be solved via extra table.
+*YES -> Relationship can change over time. Only 1 relationship can apply at any one time. System must keep history of changes. To be solved via extra table.
 ]EN_ATTR_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <importedID>075993E1-1E10-7A12-4137-89129E7305FB</importedID>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_COMMENT" value="JA -&gt; Beziehung kann über die Zeit ändern. Zu einem Zeitpunkt kann nur 1 Beziehung gelten. System muss Historie der Änderungen führen. Über Extratabelle zu lösen."/>
@@ -114,11 +124,13 @@ What connects the zu-Entity with the von-Entity?
 <importedID>04281DBE-816F-1F3F-8ED9-0CFDF3ADD26F</importedID>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT024</logicalDatatype>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>897B91BA-60B8-3A16-793A-97B535605E5E</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_COMMENT" value="Was verbindet die zu-Entität mit der von-Entität"/>
@@ -142,11 +154,13 @@ from entity must have at least 1 connection to the to entity
 <importedID>06AEDDE9-FE7B-7129-3EA6-401A12A010FF</importedID>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_COMMENT" value="von-Entität muss mind. 1 eine Verbindung zur zu-Entität haben"/>
@@ -170,11 +184,13 @@ zu entity must have at least 1 connection to the von entity
 <importedID>EC3CAC2D-2EF8-5719-D7EA-DE61683E4F7F</importedID>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_COMMENT" value="zu-Entität muss mind. 1 eine Verbindung zur von-Entität haben"/>
@@ -189,21 +205,24 @@ zu entity must have at least 1 connection to the von entity
 <comment><![CDATA[JA -> Beziehung kann über die Zeit ändern. Zu einem Zeitpunkt kann nur 1 Beziehung gelten. System muss Historie der Änderungen führen.
 Über Extratabelle zu lösen.]]></comment>
 <notes><![CDATA[[DE_ATTR_COMMENT[
-JA -> Beziehung kann über die Zeit ändern. Zu einem Zeitpunkt kann nur 1 Beziehung gelten. System muss Historie der Änderungen führen. Über Extratabelle zu lösen.
+JA -> Beziehung kann über die Zeit ändern. Zu einem Zeitpunkt kann nur 1 Beziehung gelten. System muss Historie der Änderungen führen.
+Über Extratabelle zu lösen.
 ]DE_ATTR_COMMENT]
 [EN_ATTR_COMMENT[
-YES -> Relationship can change over time. Only 1 relationship can apply at any one time. System must keep history of changes. To be solved via extra table.
+*YES -> Relationship can change over time. Only 1 relationship can apply at any one time. System must keep history of changes. To be solved via extra table.
 ]EN_ATTR_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <importedID>52497C2F-C07A-31B9-B155-25C63FF74114</importedID>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_COMMENT" value="JA -&gt; Beziehung kann über die Zeit ändern. Zu einem Zeitpunkt kann nur 1 Beziehung gelten. System muss Historie der Änderungen führen. Über Extratabelle zu lösen."/>
@@ -228,6 +247,7 @@ Name of the entity normally used in communication.
 <importedID>F024C5A0-4E7F-73FE-22DF-E11D4DFE5F93</importedID>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <referedAttribute>F1D0F128-7361-E0A9-E706-227C158FCD42</referedAttribute>
@@ -258,6 +278,7 @@ Name of the entity normally used in communication.
 <importedID>BD550A3D-10DD-61F1-8353-8C7215A160B2</importedID>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <referedAttribute>F1D0F128-7361-E0A9-E706-227C158FCD42</referedAttribute>
@@ -280,6 +301,7 @@ Name of the entity normally used in communication.
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <pk>true</pk>

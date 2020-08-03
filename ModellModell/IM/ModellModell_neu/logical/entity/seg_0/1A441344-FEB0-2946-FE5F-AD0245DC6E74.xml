@@ -4,19 +4,21 @@
 <createdTime>2020-02-03 20:03:22 UTC</createdTime>
 <comment><![CDATA[Firma oder Organisation die ein Sysstem betreibt (Betrieb aufrechterhält, System am laufen hält, Backup  und Sicherheit garantiert).
 
-Beispiele:
-
-]]></comment>
+Beispiele:]]></comment>
 <notes><![CDATA[[DE_ENTI_COMMENT[
-Firma oder Organisation die ein Sysstem betreibt (Betrieb aufrechterhält, System am laufen hält, Backup  und Sicherheit garantiert).  Beispiele:  
+Firma oder Organisation die ein Sysstem betreibt (Betrieb aufrechterhält, System am laufen hält, Backup  und Sicherheit garantiert).
+
+Beispiele:
 ]DE_ENTI_COMMENT]
 [EN_ENTI_COMMENT[
-Company or organization that operates a system (maintains operation, keeps the system running, guarantees backup and security).  Examples:  
+*Company or organization that operates a system (maintains operation, keeps the system running, guarantees backup and security).  Examples:
 ]EN_ENTI_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="false"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <typeID>2EDFF465-4CEE-72F2-D2EC-896DB596D191</typeID>
@@ -44,9 +46,18 @@ Company or organization that operates a system (maintains operation, keeps the s
 <createdBy>admin</createdBy>
 <createdTime>2020-02-10 12:41:58 UTC</createdTime>
 <generatorID>95153682-B536-22D8-AEEA-BE55D754A1BF</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="false"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <referedAttribute>1FC34A8C-E592-091D-9966-53649013D0B4</referedAttribute>
@@ -54,6 +65,10 @@ Company or organization that operates a system (maintains operation, keeps the s
 <use>1</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Name"/>
+<property name="EN_ATTR_NAME" value="**Name"/>
+</propertyMap>
 </Attribute>
 </attributes>
 </Entity>

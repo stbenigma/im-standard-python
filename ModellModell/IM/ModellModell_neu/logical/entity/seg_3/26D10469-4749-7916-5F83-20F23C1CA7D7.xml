@@ -2,22 +2,27 @@
 <Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_3" id="26D10469-4749-7916-5F83-20F23C1CA7D7" name="Schnittstellentabelle">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:06:23 UTC</createdTime>
-<comment><![CDATA[ Attribut in einem System, das mit anderen Systemen ausgetauscht werden soll.
+<comment><![CDATA[Attribut in einem System, das mit anderen Systemen ausgetauscht werden soll.
+ Datentyp, Format und Constraints können in div. Sprachen und Dialekten geführ werden
+  SQL (mit dialekt)
+  Jason
+  XML]]></comment>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+Attribut in einem System, das mit anderen Systemen ausgetauscht werden soll.
  Datentyp, Format und Constraints können in div. Sprachen und Dialekten geführ werden
   SQL (mit dialekt)
   Jason
   XML
-]]></comment>
-<notes><![CDATA[[DE_ENTI_COMMENT[
- Attribut in einem System, das mit anderen Systemen ausgetauscht werden soll.  Datentyp, Format und Constraints können in div. Sprachen und Dialekten geführ werden   SQL (mit dialekt)   Jason   XML 
 ]DE_ENTI_COMMENT]
 [EN_ENTI_COMMENT[
- Attribute in a system that is to be exchanged with other systems.  Data type, format and constraints can be maintained in various languages and dialects SQL (with dialect) Jason XML
+*Attribute in a system that is to be exchanged with other systems.  Data type, format and constraints can be maintained in various languages and dialects SQL (with dialect) Jason XML
 ]EN_ENTI_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="false"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <typeID>2EDFF465-4CEE-72F2-D2EC-896DB596D191</typeID>
@@ -32,9 +37,11 @@
 <createSurrogateKey>true</createSurrogateKey>
 <propertyMap>
 <property name="DE_ENTI_COMMENT" value=" Attribut in einem System, das mit anderen Systemen ausgetauscht werden soll.  Datentyp, Format und Constraints können in div. Sprachen und Dialekten geführ werden   SQL (mit dialekt)   Jason   XML "/>
-<property name="DE_ENTI_NAME" value="Schnittstellenattribut"/>
+<property name="DE_ENTI_NAME" value="Schnittstellentabelle"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
 <property name="EN_ENTI_COMMENT" value="*DE*  Attribut in einem System, das mit anderen Systemen ausgetauscht werden soll.  Datentyp, Format und Constraints können in div. Sprachen und Dialekten geführ werden   SQL (mit dialekt)   Jason   XML "/>
-<property name="EN_ENTI_NAME" value="Interface attribute"/>
+<property name="EN_ENTI_NAME" value="*Interface attribute"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Tabellenname" id="D00D2708-0ED0-AC79-8747-5A4FE816B34B">
@@ -48,9 +55,11 @@
 ]EN_ATTR_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <importedID>7B82FCEC-E09C-2A0E-321E-6C68469F1337</importedID>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="false"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
@@ -76,9 +85,11 @@ Description of the attribute in the external system
 ]EN_ATTR_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <importedID>A33D2A43-0519-6C7E-4698-F27DFF71D1F1</importedID>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="false"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
@@ -104,9 +115,11 @@ Type of triggering of transformation (mutation, period, manual)
 ]EN_ATTR_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <importedID>D05F94DF-2D09-8608-8254-2D195A894C6E</importedID>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="false"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
@@ -133,9 +146,11 @@ Daily, every 2 minutes or similar. Mandatory if the trigger type is Time.
 ]EN_ATTR_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <importedID>E8D00E2F-D170-9CD4-2290-C5C2BC28DE4D</importedID>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="false"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>

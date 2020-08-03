@@ -13,11 +13,11 @@ fr-ch
 fr-fr
 fr-ca]]></comment>
 <notes><![CDATA[[EN_ENTI_COMMENT[
-*DE* Lokale Variante einer Sprache
-Code wird zusammengesetzt aus ISO2-Sprachcode - ISO2-Landcode
+**Local variant of a language
+Code is composed of ISO2 language code - ISO2 country code
 
-Beispiele:
-de-de 
+Examples:
+de-en
 de-at
 de-ch
 fr-ch
@@ -56,6 +56,7 @@ fr-ca
 <item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true"/>
 <item key="015DE428-05B6-58DD-323D-ECDC72266F4A" value="true"/>
 </engineerTo>
+<typeID>33675414-33E1-1BE8-99DF-264D33446509</typeID>
 <adequatelyNormalized>NO</adequatelyNormalized>
 <expectedVolumes>0</expectedVolumes>
 <fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
@@ -97,13 +98,12 @@ fr-ca
 <item key="015DE428-05B6-58DD-323D-ECDC72266F4A" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
-<use>0</use>
+<use>1</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
-<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_NAME" value="Name [L]"/>
-<property name="EN_ATTR_NAME" value="*DE* Name [L]"/>
+<property name="EN_ATTR_NAME" value="**Name [L]"/>
 <property name="FR_ATTR_NAME" value="Nom [L]"/>
 </propertyMap>
 </Attribute>
@@ -112,7 +112,7 @@ fr-ca
 <createdTime>2019-05-06 07:55:51 UTC</createdTime>
 <comment><![CDATA[2stellen Sprache Iso, "-", 2 stellen Land-Iso]]></comment>
 <notes><![CDATA[[EN_ATTR_COMMENT[
-*DE* 2stellen Sprache Iso, "-", 2 stellen Land-Iso
+**2 digits language iso, "-", 2 digits country iso
 ]EN_ATTR_COMMENT]
 [DE_ATTR_COMMENT[
 2stellen Sprache Iso, "-", 2 stellen Land-Iso
@@ -136,7 +136,7 @@ Code ISO du pays sur 2 positions
 <ownDataTypeParameters>5,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_NAME" value="ISO-SprachLand_Code"/>
-<property name="EN_ATTR_NAME" value="*DE* ISO-SprachLand_Code"/>
+<property name="EN_ATTR_NAME" value="**ISO language country_code"/>
 <property name="FR_ATTR_NAME" value="Code ISO du pays"/>
 </propertyMap>
 </Attribute>

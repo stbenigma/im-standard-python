@@ -437,6 +437,25 @@
 		</section>
 	</sections>
 	</custom_report_template>
+	<custom_report_template id="DDDEF1FD-87DF-7C54-8816-0F35620E6DE9" name="Translation" description="" class="oracle.dbtools.crest.model.design.logical.Relation" >
+	<sections>
+		<section propertyName="Relation" type="" customName="Relation" level="0" class="oracle.dbtools.crest.model.design.logical.Relation">
+		<columns>
+				<column name="name" customName="Name" width="0.0" order="" massUpdatable="true" dynamic="false"/>
+				<column name="sourceEntity" customName="Source entity" width="0.0" order="" massUpdatable="true" dynamic="false"/>
+				<column name="targetEntity" customName="Target entity" width="0.0" order="" massUpdatable="true" dynamic="false"/>
+				<column name="nameOnSource" customName="Name on source" width="0.0" order="" massUpdatable="true" dynamic="false"/>
+				<column name="nameOnTarget" customName="Name on target" width="0.0" order="" massUpdatable="true" dynamic="false"/>
+				<column name="DE_RELA_TEXT_FROM" customName="DE_RELA_TEXT_FROM" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="DE_RELA_TEXT_TO" customName="DE_RELA_TEXT_TO" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="EN_RELA_TEXT_FROM" customName="EN_RELA_TEXT_FROM" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="EN_RELA_TEXT_TO" customName="EN_RELA_TEXT_TO" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="FR_RELA_TEXT_FROM" customName="FR_RELA_TEXT_FROM" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="FR_RELA_TEXT_TO" customName="FR_RELA_TEXT_TO" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+		</columns>
+		</section>
+	</sections>
+	</custom_report_template>
 </custom_report_templates>
 <boolean_values>
 <str_true>

@@ -2,9 +2,17 @@
 <Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="23D049A4-4E3B-F218-DA7F-B561920AF2ED" name="Weinfach">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-19 15:54:49 UTC</createdTime>
-<comment><![CDATA[ ]]></comment>
+<comment><![CDATA[*EN* *DE*]]></comment>
+<notes><![CDATA[[EN_ENTI_COMMENT[
+*DE*
+]EN_ENTI_COMMENT]
+[DE_ENTI_COMMENT[
+*EN* *DE*
+]DE_ENTI_COMMENT]
+]]></notes>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 <item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
@@ -18,12 +26,26 @@
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
 <createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="DE_ENTI_NAME" value="Weinfach"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_NAME" value="*DE* Weinfach"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+</propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Flaschenkapazität" id="301D100F-B5D0-1A36-F0A8-2EB2103D5E2D">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-19 16:08:57 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 <item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
@@ -37,6 +59,8 @@
 <property name="AP Typ" value="."/>
 <property name="AP usage" value="."/>
 <property name="CRM-Salesforce" value="."/>
+<property name="DE_ATTR_NAME" value="Flaschenkapazität"/>
+<property name="EN_ATTR_NAME" value="*DE* Flaschenkapazität"/>
 <property name="ERP" value="."/>
 <property name="EXCEL ColumnName" value="."/>
 <property name="Excel" value="."/>

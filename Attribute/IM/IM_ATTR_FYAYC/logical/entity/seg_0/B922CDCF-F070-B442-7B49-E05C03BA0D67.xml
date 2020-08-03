@@ -2,8 +2,16 @@
 <Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="B922CDCF-F070-B442-7B49-E05C03BA0D67" name="Fleisch&amp;Fisch">
 <createdBy>stb</createdBy>
 <createdTime>2018-08-19 11:21:13 UTC</createdTime>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+
+]EN_ENTI_COMMENT]
+]]></notes>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 <item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
@@ -15,4 +23,10 @@
 <maxVolumes>9999999</maxVolumes>
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
+<propertyMap>
+<property name="DE_ENTI_NAME" value="Fleisch&amp;Fisch"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_NAME" value="*DE* Fleisch&amp;Fisch"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+</propertyMap>
 </Entity>

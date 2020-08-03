@@ -6,9 +6,25 @@
 
 Beispiel:
 Verpackungsattribute
-Beleuchtung ]]></comment>
+Beleuchtung]]></comment>
+<notes><![CDATA[[EN_ENTI_COMMENT[
+*DE* Gruppierung von Attributen, die gemeinsam angwendet werden.
+
+Beispiel:
+Verpackungsattribute
+Beleuchtung
+]EN_ENTI_COMMENT]
+[DE_ENTI_COMMENT[
+Gruppierung von Attributen, die gemeinsam angwendet werden.
+
+Beispiel:
+Verpackungsattribute
+Beleuchtung 
+]DE_ENTI_COMMENT]
+]]></notes>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 <item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
@@ -22,12 +38,26 @@ Beleuchtung ]]></comment>
 <normalForm>Third</normalForm>
 <synonym>Merkmalsgruppe</synonym>
 <createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="DE_ENTI_NAME" value="Sachmerkmal"/>
+<property name="DE_ENTI_SYNONYM" value="Merkmalsgruppe"/>
+<property name="EN_ENTI_NAME" value="*DE* Sachmerkmal"/>
+<property name="EN_ENTI_SYNONYM" value="*DE* Merkmalsgruppe"/>
+</propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Name [L]" id="53D06354-3593-FEA5-99BC-DFC10D66E3D9">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-19 12:55:30 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 <item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
@@ -39,6 +69,8 @@ Beleuchtung ]]></comment>
 <property name="AP Typ" value="."/>
 <property name="AP usage" value="."/>
 <property name="CRM-Salesforce" value="."/>
+<property name="DE_ATTR_NAME" value="Name [L]"/>
+<property name="EN_ATTR_NAME" value="*DE* Name [L]"/>
 <property name="ERP" value="."/>
 <property name="EXCEL ColumnName" value="."/>
 <property name="Excel" value="."/>

@@ -2,8 +2,16 @@
 <Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="F015F09E-9DFD-465F-91D4-D1C9A82CF1CA" name="Ansprechsperson">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-24 07:31:23 UTC</createdTime>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+
+]EN_ENTI_COMMENT]
+]]></notes>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 <item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
@@ -19,6 +27,10 @@
 <createSurrogateKey>true</createSurrogateKey>
 <propertyMap>
 <property name="AP TabName" value="PERSON"/>
+<property name="DE_ENTI_NAME" value="Ansprechsperson"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_NAME" value="*DE* Ansprechsperson"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
 <property name="SAP TabName" value="account"/>
 </propertyMap>
 <responsibleParties>
@@ -28,8 +40,16 @@
 <Attribute name="Geschäft TelNr" id="A83EAB66-BFD9-FC12-4E6D-EEA130471FBB">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-24 07:31:47 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 <item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
@@ -44,6 +64,8 @@
 <property name="AP Typ" value="."/>
 <property name="AP usage" value="."/>
 <property name="CRM-Salesforce" value="."/>
+<property name="DE_ATTR_NAME" value="Geschäft TelNr"/>
+<property name="EN_ATTR_NAME" value="*DE* Geschäft TelNr"/>
 <property name="ERP" value="."/>
 <property name="EXCEL ColumnName" value="."/>
 <property name="Excel" value="."/>
@@ -59,8 +81,16 @@
 <Attribute name="Geschäft eMail" id="22B4883B-04A2-E0EE-99DC-AAB87F6FEEDA">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-24 07:31:56 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 <item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
@@ -75,6 +105,8 @@
 <property name="AP Typ" value="."/>
 <property name="AP usage" value="."/>
 <property name="CRM-Salesforce" value="."/>
+<property name="DE_ATTR_NAME" value="Geschäft eMail"/>
+<property name="EN_ATTR_NAME" value="*DE* Geschäft eMail"/>
 <property name="ERP" value="."/>
 <property name="EXCEL ColumnName" value="."/>
 <property name="Excel" value="."/>

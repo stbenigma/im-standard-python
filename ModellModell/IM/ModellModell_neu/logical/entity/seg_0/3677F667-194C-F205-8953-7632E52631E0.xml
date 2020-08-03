@@ -1,0 +1,50 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="3677F667-194C-F205-8953-7632E52631E0" name="Kanalset">
+<createdBy>stb</createdBy>
+<createdTime>2020-05-06 13:10:50 UTC</createdTime>
+<comment><![CDATA[Gruppe von Kanaltypen, die gemeinsam für eine bestimmte Aufgabe, ein Kundenerlebnis, eine Kundenreise Sinn machen.
+
+Beispiel:
+Business-Breakfast-Kanäle 
+   enthält (eMail, Webseite, Namenschilder, Rollups, Präsentationen, Flyer, Give-Away)]]></comment>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+Gruppe von Kanaltypen, die gemeinsam für eine bestimmte Aufgabe, ein Kundenerlebnis, eine Kundenreise Sinn machen.
+
+Beispiel:
+Business-Breakfast-Kanäle 
+   enthält (eMail, Webseite, Namenschilder, Rollups, Präsentationen, Flyer, Give-Away)
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+**Group of channel types that together make sense for a specific task, a customer experience, a customer journey.
+
+Example:
+Business Breakfast Channels
+   contains (email, website, name tags, rollups, presentations, flyers, give-aways)
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="false"/>
+<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
+</engineerTo>
+<typeID>574F177F-1FC4-39F0-BE84-7F10807B140B</typeID>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="DE_ENTI_COMMENT" value=""/>
+<property name="DE_ENTI_NAME" value="Kanalset"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_COMMENT" value=""/>
+<property name="EN_ENTI_NAME" value="*Performance layerv1"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+</propertyMap>
+</Entity>

@@ -3,20 +3,17 @@
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 12:33:30 UTC</createdTime>
 <comment><![CDATA[Firmeninterne Organisationeinheit.
-Meist hierarchisch organisiert.
-]]></comment>
+Meist hierarchisch organisiert.]]></comment>
 <notes><![CDATA[[EN_ENTI_COMMENT[
-*DE* Firmeninterne Organisationeinheit.
-Meist hierarchisch organisiert.
-
+**Company internal organizational unit.
+Mostly hierarchically organized.
 ]EN_ENTI_COMMENT]
 [DE_ENTI_COMMENT[
 Firmeninterne Organisationeinheit.
 Meist hierarchisch organisiert.
-
 ]DE_ENTI_COMMENT]
 [FR_ENTI_COMMENT[
-Unité d'organisation interne de l'entreprise. La plupart sont organisés de façon hiérarchique.
+*Unité d'organisation interne de l'entreprise. La plupart sont organisés de façon hiérarchique.
 ]FR_ENTI_COMMENT]
 ]]></notes>
 <ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
@@ -26,6 +23,7 @@ Unité d'organisation interne de l'entreprise. La plupart sont organisés de fa�
 <item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="false"/>
 <item key="015DE428-05B6-58DD-323D-ECDC72266F4A" value="true"/>
 </engineerTo>
+<typeID>6F620B18-E4FD-24BF-543C-3ABB88094EDB</typeID>
 <adequatelyNormalized>NO</adequatelyNormalized>
 <expectedVolumes>0</expectedVolumes>
 <fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
@@ -37,11 +35,8 @@ Unité d'organisation interne de l'entreprise. La plupart sont organisés de fa�
 <createSurrogateKey>true</createSurrogateKey>
 <propertyMap>
 <property name="DE_ENTI_NAME" value="Organisationseinheit"/>
-<property name="DE_ENTI_SYNONYM" value=""/>
 <property name="EN_ENTI_NAME" value="Organisational unit"/>
-<property name="EN_ENTI_SYNONYM" value=""/>
 <property name="FR_ENTI_NAME" value="Unité organisationnelle"/>
-<property name="FR_ENTI_SYNONYM" value=""/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Name" id="F03F4978-F19A-5AD2-722C-FC0E7553F137">
@@ -54,6 +49,7 @@ Unité d'organisation interne de l'entreprise. La plupart sont organisés de fa�
 
 ]EN_ATTR_COMMENT]
 [FR_ATTR_COMMENT[
+
 ]FR_ATTR_COMMENT]
 ]]></notes>
 <ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
@@ -67,7 +63,7 @@ Unité d'organisation interne de l'entreprise. La plupart sont organisés de fa�
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_NAME" value="Name"/>
-<property name="EN_ATTR_NAME" value="*DE* Name"/>
+<property name="EN_ATTR_NAME" value="**Name"/>
 <property name="FR_ATTR_NAME" value="Nom"/>
 </propertyMap>
 </Attribute>

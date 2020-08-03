@@ -6,9 +6,25 @@
 
 Bauteile werden unterschieden in 
 Haus- bzw. Kauf-Teile
-Jedes Bauteil das nur von einem Lieferanten stammen kann ist ein Kauf-Teil ]]></comment>
+Jedes Bauteil das nur von einem Lieferanten stammen kann ist ein Kauf-Teil]]></comment>
+<notes><![CDATA[[EN_ENTI_COMMENT[
+*DE* Mechanisches Teil, das direkt oder indirekt in einem Gerät verbaut werden kann.
+
+Bauteile werden unterschieden in 
+Haus- bzw. Kauf-Teile
+Jedes Bauteil das nur von einem Lieferanten stammen kann ist ein Kauf-Teil
+]EN_ENTI_COMMENT]
+[DE_ENTI_COMMENT[
+Mechanisches Teil, das direkt oder indirekt in einem Gerät verbaut werden kann.
+
+Bauteile werden unterschieden in 
+Haus- bzw. Kauf-Teile
+Jedes Bauteil das nur von einem Lieferanten stammen kann ist ein Kauf-Teil 
+]DE_ENTI_COMMENT]
+]]></notes>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 <item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
@@ -21,12 +37,26 @@ Jedes Bauteil das nur von einem Lieferanten stammen kann ist ein Kauf-Teil ]]></
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
 <createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="DE_ENTI_NAME" value="Bauteil"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_NAME" value="*DE* Bauteil"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+</propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="ist Ersatzteil (J/N)" id="E4C7FFD5-9A8A-A8D5-E91B-596B066D3D93">
 <createdBy>stb</createdBy>
 <createdTime>2018-05-29 12:46:02 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 <item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
@@ -38,6 +68,8 @@ Jedes Bauteil das nur von einem Lieferanten stammen kann ist ein Kauf-Teil ]]></
 <property name="AP Typ" value="."/>
 <property name="AP usage" value="."/>
 <property name="CRM-Salesforce" value="."/>
+<property name="DE_ATTR_NAME" value="ist Ersatzteil (J/N)"/>
+<property name="EN_ATTR_NAME" value="*DE* ist Ersatzteil (J/N)"/>
 <property name="ERP" value="."/>
 <property name="EXCEL ColumnName" value="."/>
 <property name="Excel" value="."/>
@@ -53,8 +85,16 @@ Jedes Bauteil das nur von einem Lieferanten stammen kann ist ein Kauf-Teil ]]></
 <Attribute name="ist Zubehör (J/N)" id="1735AB4E-4ED2-D7B2-E38C-75B9DDEA4A87">
 <createdBy>stb</createdBy>
 <createdTime>2018-05-29 12:46:20 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 <item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
@@ -66,6 +106,8 @@ Jedes Bauteil das nur von einem Lieferanten stammen kann ist ein Kauf-Teil ]]></
 <property name="AP Typ" value="."/>
 <property name="AP usage" value="."/>
 <property name="CRM-Salesforce" value="."/>
+<property name="DE_ATTR_NAME" value="ist Zubehör (J/N)"/>
+<property name="EN_ATTR_NAME" value="*DE* ist Zubehör (J/N)"/>
 <property name="ERP" value="."/>
 <property name="EXCEL ColumnName" value="."/>
 <property name="Excel" value="."/>
@@ -81,8 +123,16 @@ Jedes Bauteil das nur von einem Lieferanten stammen kann ist ein Kauf-Teil ]]></
 <Attribute name="Artikel-Nr" id="BD9DA5F7-5729-F23E-2E40-F4CA5EF61646">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-19 12:57:44 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 <item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
@@ -94,6 +144,8 @@ Jedes Bauteil das nur von einem Lieferanten stammen kann ist ein Kauf-Teil ]]></
 <property name="AP Typ" value="."/>
 <property name="AP usage" value="."/>
 <property name="CRM-Salesforce" value="."/>
+<property name="DE_ATTR_NAME" value="Artikel-Nr"/>
+<property name="EN_ATTR_NAME" value="*DE* Artikel-Nr"/>
 <property name="ERP" value="."/>
 <property name="EXCEL ColumnName" value="."/>
 <property name="Excel" value="."/>
@@ -109,8 +161,16 @@ Jedes Bauteil das nur von einem Lieferanten stammen kann ist ein Kauf-Teil ]]></
 <Attribute name="Zolltarifnummer" id="1FACEF76-6165-1DE7-333B-F7943A19BB46">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-19 14:41:50 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 <item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
@@ -123,6 +183,8 @@ Jedes Bauteil das nur von einem Lieferanten stammen kann ist ein Kauf-Teil ]]></
 <property name="AP Typ" value="."/>
 <property name="AP usage" value="."/>
 <property name="CRM-Salesforce" value="."/>
+<property name="DE_ATTR_NAME" value="Zolltarifnummer"/>
+<property name="EN_ATTR_NAME" value="*DE* Zolltarifnummer"/>
 <property name="ERP" value="."/>
 <property name="EXCEL ColumnName" value="."/>
 <property name="Excel" value="."/>
@@ -139,8 +201,16 @@ Jedes Bauteil das nur von einem Lieferanten stammen kann ist ein Kauf-Teil ]]></
 <createdBy>stb</createdBy>
 <createdTime>2018-06-19 14:59:18 UTC</createdTime>
 <comment><![CDATA[Ableitbar aus Beziehung zu Lieferanten, kein Haus-Teil -> Kaufteil]]></comment>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+*DE* Ableitbar aus Beziehung zu Lieferanten, kein Haus-Teil -> Kaufteil
+]EN_ATTR_COMMENT]
+[DE_ATTR_COMMENT[
+Ableitbar aus Beziehung zu Lieferanten, kein Haus-Teil -> Kaufteil
+]DE_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 <item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
@@ -152,6 +222,8 @@ Jedes Bauteil das nur von einem Lieferanten stammen kann ist ein Kauf-Teil ]]></
 <property name="AP Typ" value="."/>
 <property name="AP usage" value="."/>
 <property name="CRM-Salesforce" value="."/>
+<property name="DE_ATTR_NAME" value="ist Hausteil (J/N)"/>
+<property name="EN_ATTR_NAME" value="*DE* ist Hausteil (J/N)"/>
 <property name="ERP" value="."/>
 <property name="EXCEL ColumnName" value="."/>
 <property name="Excel" value="."/>
@@ -168,8 +240,16 @@ Jedes Bauteil das nur von einem Lieferanten stammen kann ist ein Kauf-Teil ]]></
 <createdBy>stb</createdBy>
 <createdTime>2018-06-19 16:26:31 UTC</createdTime>
 <comment><![CDATA[Gewicht in kg mit Qualitätsangabe]]></comment>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+*DE* Gewicht in kg mit Qualitätsangabe
+]EN_ATTR_COMMENT]
+[DE_ATTR_COMMENT[
+Gewicht in kg mit Qualitätsangabe
+]DE_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 <item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
@@ -183,6 +263,8 @@ Jedes Bauteil das nur von einem Lieferanten stammen kann ist ein Kauf-Teil ]]></
 <property name="AP Typ" value="."/>
 <property name="AP usage" value="."/>
 <property name="CRM-Salesforce" value="."/>
+<property name="DE_ATTR_NAME" value="Gewicht"/>
+<property name="EN_ATTR_NAME" value="*DE* Gewicht"/>
 <property name="ERP" value="."/>
 <property name="EXCEL ColumnName" value="."/>
 <property name="Excel" value="."/>
@@ -199,8 +281,16 @@ Jedes Bauteil das nur von einem Lieferanten stammen kann ist ein Kauf-Teil ]]></
 <createdBy>stb</createdBy>
 <createdTime>2018-06-19 16:26:31 UTC</createdTime>
 <comment><![CDATA[Angabe über Herkunft/Bestimmung des Gewichts]]></comment>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+*DE* Angabe über Herkunft/Bestimmung des Gewichts
+]EN_ATTR_COMMENT]
+[DE_ATTR_COMMENT[
+Angabe über Herkunft/Bestimmung des Gewichts
+]DE_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 <item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
@@ -214,6 +304,8 @@ Jedes Bauteil das nur von einem Lieferanten stammen kann ist ein Kauf-Teil ]]></
 <property name="AP Typ" value="."/>
 <property name="AP usage" value="."/>
 <property name="CRM-Salesforce" value="."/>
+<property name="DE_ATTR_NAME" value="Gewicht Wertequalität"/>
+<property name="EN_ATTR_NAME" value="*DE* Gewicht Wertequalität"/>
 <property name="ERP" value="."/>
 <property name="EXCEL ColumnName" value="."/>
 <property name="Excel" value="."/>

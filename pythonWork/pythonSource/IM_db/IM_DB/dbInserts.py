@@ -1,136 +1,17 @@
-from IM_DB import dbDML,dbLookup,dbParam
-from IM_ODM import odmParam
 from datetime import date
+from IM_DB import dbDML,logging
+from IM_OBJECTS import *
 
-def  insertEnti(enti):
-    lsql="""
-    insert into entitaeten 
-       (enti_odm_guid ,enti_augb_id,enti_tech_name     
-       ,enti_name,enti_beschr     ,enti_tooltip    
-       ,enti_kurzname   ,enti_prefix             ,enti_beispiele          
-       ,enti_erw_tupel         ,enti_uc ,enti_dc
-       ,enti_enti_guid,enti_enti_id,enti_category_guid) 
-        values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) 
-    """
-    return dbDML.insert(lsql,enti)
+def  insertLovWrtb(pName,pherkunft = Wertebereich.DOMAIN):
+    wrtb = Wertebereich()
+    wrtb.wrtb_name = pName
+    wrtb.wrtb_beschr = 'einfache Werteliste'
+    wrtb.wrtb_typ = Wertebereich.LOV
+    wrtb.wrtb_herkunft = pherkunft
+    wrtb.wrtb_uc = 'system'
+    wrtb.wrtb_dc = date.today()
+    return wrtb.insert()
 
-#end insertEnti
-
-def insertDocument(p_data):
-    lsql = """
-        insert into Dokumente (DOKU_NAME, DOKU_FORMAT, DOKU_REFERENZ, DOKU_ODM_GUID, DOKU_PARENT_ODM_GUID) 
-            values (?,?,?,?,?) 
-        """
-    return dbDML.insert(lsql, p_data)
-# end insertDocument
-
-def insertSynonym(p_data):
-    lsql = """
-        insert into synonyme ( syno_name, syno_enti_id) 
-            values (?,?) 
-        """
-    return dbDML.insert(lsql, p_data)
-# end insertSynonym
-
-def  insertdokuref(documents, modeid) :
-    if documents is not None :
-       # pdata = tuple([doc, modeid] for doc in documents)
-       # print(pdata)
-        lsql = """
-                insert into MODELELEM_DOKU (MODO_DOKU_ID, MODO_MODE_ID) 
-                    values (?,?) 
-                """
-        for doc in documents :
-            dbDML.insert(lsql, (dbLookup.dokuID (pguid=doc), modeid))
-    #fi
-#insertdokuref
-
-def  insertWrtb(wrtb):
-    #print ('InsertWrtb',wrtb)
-    lsql="""
-    insert into wertebereiche 
-       (wrtb_business_rule  ,wrtb_name  ,wrtb_beschr    
-       ,wrtb_typ,        wrtb_zpkt_minwert   ,wrtb_zpkt_maxwert          
-       ,wrtb_zpkt_granularitaet,        wrtb_text_maxlng    ,wrtb_text_syntaxregel
-       ,        wrtb_num_maxwert        ,wrtb_num_minwert           ,wrtb_num_vorkstellen       
-        ,wrtb_num_nachkstellen          ,wrtb_num_rundng_einh,        wrtb_num_pheh_id  
-          ,wrtb_bin_inhalttyp,        wrtb_bin_spfo_id    ,wrtb_uc  
-            ,wrtb_dc        ,wrtb_odm_guid ,wrtb_datatype_ref)
-        values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) 
-    """
-    return dbDML.insert(lsql,wrtb)
-
-#end insertWrtb
-def insertwrtbgruppe(wbgr):
-    lsql="""
-    insert into wertebereichgruppen 
-       (wbgr_wrtb_id_gruppe, wbgr_name,wbgr_beschr
-       ,WBGR_WRTB_ID_MEMBER,wbgr_type_ref,WBGR_UC
-       ,WBGR_DC,WBGR_UM, wbgr_dm)
-        values (?,?,?,?,?,?,?,?,?) 
-    """
-    return dbDML.insert(lsql,wbgr)
-
-#insertwrtbgruppe
-
-def  insertLovWrtb(pName):
-    return insertWrtb(wrtb=(None,pName, 'einfache Werteliste '
-                                ,'LOV',None,None
-                                ,None,None,None
-                                ,None,None,None
-                                ,None,None,None
-                                ,None,None,'--'
-                                ,date.today(),None,None))
-#end insertLovWrtb
-
-def insertVorgabewert(pvgwt):
-    lsql="""
-    insert into vorgabewerte (vgwt_wert ,    vgwt_sortrhfg,
-        vgwt_wrtb_id,   vgwt_anzeige   ,    vgwt_beschr
-        ,vgwt_uc, vgwt_dc) 
-        values (?,?,?,?,?,?,?)
-    """
-    return dbDML.insert(lsql,pvgwt)
-#end insertVorgabewert
-def insertdiagrammtyp(p_data):
-    lsql="""
-    insert into diagrammtypen(
-    diat_bez   ,diat_uc ,diat_dc,diat_um ,diat_dm) 
-        values (?,?,?,?,?)
-    """
-    return dbDML.insert(lsql,p_data)
-#end insertVorgabewert
-
-def insertAttribute(pattr):
-    lsql="""
-    insert into attributes (attr_enti_id,attr_wrtb_id,attr_tech_name
-    ,attr_anzname,attr_tooltip,attr_beschr
-    ,attr_business_rule,attr_anz_rhflg,attr_deskriptor
-    ,attr_pflichtattr,attr_historisiert,attr_wiederholt
-    ,attr_sprachabhaengig,attr_verschluesselt,attr_uc
-    ,attr_dc,attr_odm_guid,attr_bezi_id) 
-        values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
-    """
-    #print (lsql,pattr)
-    return dbDML.insert(lsql,pattr)
-#end insertAttributes
-
-#def insertDataTypes(pdaty):
-#    lsql = """
-#        insert into datatypes (daty_name,daty_grundtyp,daty_odm_guid)
-#            values (?,?,?)
-#        """
-#    return dbDML.insert(lsql, pdaty)
-# end insertDataTypes
-
-def insertArc(parc):
-    lsql = """
-        insert into arcs 
-          (arcs_name, arcs_enti_id, arcs_odm_guid
-          ,arcs_uc   , arcs_dc ) 
-            values (?,?,?,?,?)
-        """
-    return dbDML.insert(lsql, parc)
 
 def insertBeziehung(pdata):
     lsql = """
@@ -146,18 +27,6 @@ def insertBeziehung(pdata):
         """
     return dbDML.insert(lsql, pdata)
 
-def insertMelt(pdata):
-    lsql = """
-        insert into modellelem_typ(
-    melt_kurzname,  melt_name
-    ,melt_uc,  melt_dc) 
-            values (?,?,?,?)
-        """
-
-    dbDML.insertmany(lsql, pdata)
-
-# end insertDataTypes
-
 def insertUDP(pData):
 # bdeg_thema, bdeg_gruppe, bdeg_name, bdeg_default_value
 # bdeg_beschreibung, bdeg_optional, bdeg_wrtb_id,
@@ -172,42 +41,13 @@ def insertUDP(pData):
     return dbDML.insert(lsql, pData)
 #insertUDP
 
-def insertModellElemTyp(pData):
+def insertModelltypEigen(pData):
     lsql= """insert into modelltyp_eigensch (mote_melt_id , mote_bdeg_id)
                 values(?,?)"""
     return dbDML.insert(lsql, pData)
-#insertModellElemTyp
+#insertModelltypEigen
 
-def insertmodellelement(pData):
-    #mode_wrtb_id,,  mode_attr_id
-    #mode_buru_id,   mode_bezi_id,   mode_enti_id
-    #mode_orge_id,   mode_melt_id,   mode_uc
-    #mode_dc
-    lsql = """insert into modellelement (mode_wrtb_id,  mode_attr_id
-        ,mode_buru_id,   mode_bezi_id,   mode_enti_id
-        ,mode_orge_id,   mode_syno_id, mode_tabl_id,mode_scha_id,mode_schn_id 
-        ,mode_melt_id,   mode_uc, mode_dc)
-        values(?,?,?,?,?,?,?,?,?,?,?,?,?)"""
-    return dbDML.insert(lsql, pData)
-#insertmodellelement
 
-def insertModeEnti(entiId):
-    return insertmodellelement(pData=(None, None, None, None, entiId, None, None, None, None, None, dbLookup.meltLookup('ENTI'), '--', date.today()))
-#insertModeEnti
-def insertModeAttr(attrId):
-    return insertmodellelement(pData=(None, attrId, None, None, None, None, None, None, None, None, dbLookup.meltLookup('ATTR'), '--', date.today()))
-#insertModeAttr
-def insertmodesyno(p_synid):
-    return insertmodellelement(pData=(None, None, None, None, None, None, p_synid, None, None, None, dbLookup.meltLookup('SYNO'), '--', date.today()))
-#insertModeAttr
-def insertModeBezi(beziId):
-    return insertmodellelement(pData=(None, None, None, beziId, None, None, None, None, None, None, dbLookup.meltLookup('BEZI'), '--', date.today()))
-def insertModeScha(Id):
-    return insertmodellelement(pData=(None, None, None,  None, None, None, None, None, Id, None, dbLookup.meltLookup('SCHA'), '--', date.today()))
-def insertModeSchn(Id):
-    return insertmodellelement(pData=(None, None, None, None, None, None, None, None, None, Id, dbLookup.meltLookup('SCHN'), '--', date.today()))
-def insertModeTabl(Id):
-    return insertmodellelement(pData=(None, None, None, None, None, None, None, Id, None, None, dbLookup.meltLookup('TABL'), '--', date.today()))
 #insertModebezi
 def insertmeltdiat(p_Data):
     lsql= """insert into
@@ -227,31 +67,6 @@ def insertBenudef_wert(pData):
     dbDML.insert(lsql,pData)
 #insertBenudef_wert
 
-def insertSchluessel(pData):
-    lsql = """
-            insert into schluessel (schl_laufnr,    schl_name,  schl_odm_guid
-                ,schl_uc,   schl_dc,    schl_enti_id) 
-                values (?,?,?,?,?,?)
-            """
-    return dbDML.insert(lsql, pData)
-#insertSchluessel
-
-def insertSchlElem(pData):
-    lsql = """
-            insert into schluesselelement (scel_schl_id,   scel_attr_id
-                                            ,scel_bezi_id,  scel_uc, scel_dc) 
-                values (?,?,?,?,?)
-            """
-    return dbDML.insert(lsql, pData)
-#insertSchlElem
-
-def insertSprachtexte(pData):
-    lsql = """insert into sprachtext (sptx_attrname,  sptx_text,  sptx_spra_id
-                                ,sptx_mode_id, sptx_uc,   sptx_dc    ) 
-                            values (?,?,?,?,?,?)
-            """
-    return dbDML.insertmany(lsql, pData)
-#insertSprachtext
 
 def insertelementdarst(pdata):
     lsql = """insert into 
@@ -293,16 +108,34 @@ def insertUdpEntity(entiId):
                 where enti_id = {}
             """ .format(entiId))
 #insertUdpEntity
-def insertdiagramm(p_data):
-    lsql = """insert into
-diagramme(
-    diag_name,diag_diat_id,diag_odm_guid
-    ,diag_legendx,diag_legendy,diag_uc
-    ,diag_dc,diag_um,diag_dm )     
-        values (?,?,?,?,?,?,?,?,?)
-    """
-    return dbDML.insert(lsql, p_data)
-#insertdiagramme
+def insertUdpTable(ptablId):
+    dbDML.exec("""insert into benudef_wert(
+                bdwe_wert,  bdwe_mode_id,   bdwe_bdeg_id
+                ,bdwe_uc,   bdwe_dc)
+                select NULL,mode_id,bdeg_id,tabl_uc,tabl_dc
+                from tabellen
+                join modellelement on mode_tabl_id = tabl_id
+                cross join (select mote_bdeg_id as bdeg_id
+                             from modellelem_typ
+                             join modelltyp_eigensch on mote_melt_id = melt_id
+                             where melt_kurzname = 'TABL')
+                where tabl_id = {}
+            """ .format(ptablId))
+#insertUdpTable
+def insertUdpColumn(pschaId):
+    dbDML.exec("""insert into benudef_wert(
+                bdwe_wert,  bdwe_mode_id,   bdwe_bdeg_id
+                ,bdwe_uc,   bdwe_dc)
+                select NULL,mode_id,bdeg_id,scha_uc,scha_dc
+                from main.schnittstelle_attrs
+                join modellelement on mode_scha_id = scha_id
+                cross join (select mote_bdeg_id as bdeg_id
+                             from modellelem_typ
+                             join modelltyp_eigensch on mote_melt_id = melt_id
+                             where melt_kurzname = 'SCHA')
+                where scha_id = {}
+            """ .format(pschaId))
+#insertUdpColumn
 
 def insertlinieseg(pdata):
     lsql = """insert into
@@ -321,11 +154,11 @@ def insertUdpBezi(beziId):
                 ,bdwe_uc,   bdwe_dc)
                 select NULL,mode_id,bdeg_id,bezi_uc,bezi_dc
                 from beziehungen
-                join modellelement on mode_bezi_id = bezi_id
+                join modellelement on mode_rela_id = bezi_id
                 cross join (select mote_bdeg_id as bdeg_id
                              from modellelem_typ
                              join modelltyp_eigensch on mote_melt_id = melt_id
-                             where melt_kurzname = 'BEZI')
+                             where melt_kurzname = 'RELA')
                 where bezi_id = {}
             """ .format(beziId))
 #insertUdpBezi

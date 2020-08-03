@@ -7,9 +7,27 @@ Dieses Attribut ist die gültige Single Source of Truth des konzeptionellen Mode
 
 Beispiele:
 Netto-Gewicht 
-Beleuchtungsmodell ]]></comment>
+Beleuchtungsmodell]]></comment>
+<notes><![CDATA[[EN_ENTI_COMMENT[
+*DE* Beschreibung eines Trägers einers Wertes.
+Dieses Attribut ist die gültige Single Source of Truth des konzeptionellen Modells. Die Definition gilt, nabhängig davon, ob es nur als virtuelle Einheit (z.B. in Form von Schittstellen) oder als eigenes Attribut in einer eigenen DB verwaltet wird.
+
+Beispiele:
+Netto-Gewicht 
+Beleuchtungsmodell
+]EN_ENTI_COMMENT]
+[DE_ENTI_COMMENT[
+Beschreibung eines Trägers einers Wertes.
+Dieses Attribut ist die gültige Single Source of Truth des konzeptionellen Modells. Die Definition gilt, nabhängig davon, ob es nur als virtuelle Einheit (z.B. in Form von Schittstellen) oder als eigenes Attribut in einer eigenen DB verwaltet wird.
+
+Beispiele:
+Netto-Gewicht 
+Beleuchtungsmodell 
+]DE_ENTI_COMMENT]
+]]></notes>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 <item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
@@ -23,12 +41,26 @@ Beleuchtungsmodell ]]></comment>
 <normalForm>Third</normalForm>
 <synonym>Merkmal</synonym>
 <createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="DE_ENTI_NAME" value="Attribut"/>
+<property name="DE_ENTI_SYNONYM" value="Merkmal"/>
+<property name="EN_ENTI_NAME" value="*DE* Attribut"/>
+<property name="EN_ENTI_SYNONYM" value="*DE* Merkmal"/>
+</propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Technischer Name" id="EDEE919C-7C94-15E9-147C-57317A603D15">
 <createdBy>stb</createdBy>
 <createdTime>2018-05-30 12:09:49 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 <item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
@@ -40,6 +72,8 @@ Beleuchtungsmodell ]]></comment>
 <property name="AP Typ" value="."/>
 <property name="AP usage" value="."/>
 <property name="CRM-Salesforce" value="."/>
+<property name="DE_ATTR_NAME" value="Technischer Name"/>
+<property name="EN_ATTR_NAME" value="*DE* Technischer Name"/>
 <property name="ERP" value="."/>
 <property name="EXCEL ColumnName" value="."/>
 <property name="Excel" value="."/>
@@ -55,8 +89,16 @@ Beleuchtungsmodell ]]></comment>
 <Attribute name="Anzeigename [L]" id="42340745-75FE-7894-8994-67BE8A912F7A">
 <createdBy>stb</createdBy>
 <createdTime>2018-05-30 13:26:33 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 <item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
@@ -69,6 +111,8 @@ Beleuchtungsmodell ]]></comment>
 <property name="AP Typ" value="."/>
 <property name="AP usage" value="."/>
 <property name="CRM-Salesforce" value="."/>
+<property name="DE_ATTR_NAME" value="Anzeigename [L]"/>
+<property name="EN_ATTR_NAME" value="*DE* Anzeigename [L]"/>
 <property name="ERP" value="."/>
 <property name="EXCEL ColumnName" value="."/>
 <property name="Excel" value="."/>
@@ -84,8 +128,16 @@ Beleuchtungsmodell ]]></comment>
 <Attribute name="Beschreibung [L]" id="C4A32F25-630E-965E-C29A-27C4C6F29B16">
 <createdBy>stb</createdBy>
 <createdTime>2018-05-30 12:10:47 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 <item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
@@ -98,6 +150,8 @@ Beleuchtungsmodell ]]></comment>
 <property name="AP Typ" value="."/>
 <property name="AP usage" value="."/>
 <property name="CRM-Salesforce" value="."/>
+<property name="DE_ATTR_NAME" value="Beschreibung [L]"/>
+<property name="EN_ATTR_NAME" value="*DE* Beschreibung [L]"/>
 <property name="ERP" value="."/>
 <property name="EXCEL ColumnName" value="."/>
 <property name="Excel" value="."/>
@@ -113,8 +167,16 @@ Beleuchtungsmodell ]]></comment>
 <Attribute name="Tooltip [L]" id="18044B2B-E9C9-F62B-A516-84B3A24746F4">
 <createdBy>stb</createdBy>
 <createdTime>2018-05-30 12:10:52 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 <item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
@@ -127,6 +189,8 @@ Beleuchtungsmodell ]]></comment>
 <property name="AP Typ" value="."/>
 <property name="AP usage" value="."/>
 <property name="CRM-Salesforce" value="."/>
+<property name="DE_ATTR_NAME" value="Tooltip [L]"/>
+<property name="EN_ATTR_NAME" value="*DE* Tooltip [L]"/>
 <property name="ERP" value="."/>
 <property name="EXCEL ColumnName" value="."/>
 <property name="Excel" value="."/>
@@ -143,8 +207,16 @@ Beleuchtungsmodell ]]></comment>
 <createdBy>stb</createdBy>
 <createdTime>2018-06-23 13:37:22 UTC</createdTime>
 <comment><![CDATA[Regel über die Werte eines Attributs, die über die einfachen Regeln der Domänendefinition hinausgehen.]]></comment>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+*DE* Regel über die Werte eines Attributs, die über die einfachen Regeln der Domänendefinition hinausgehen.
+]EN_ATTR_COMMENT]
+[DE_ATTR_COMMENT[
+Regel über die Werte eines Attributs, die über die einfachen Regeln der Domänendefinition hinausgehen.
+]DE_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 <item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
@@ -158,6 +230,8 @@ Beleuchtungsmodell ]]></comment>
 <property name="AP Typ" value="."/>
 <property name="AP usage" value="."/>
 <property name="CRM-Salesforce" value="."/>
+<property name="DE_ATTR_NAME" value="Business Rule"/>
+<property name="EN_ATTR_NAME" value="*DE* Business Rule"/>
 <property name="ERP" value="."/>
 <property name="EXCEL ColumnName" value="."/>
 <property name="Excel" value="."/>
@@ -177,6 +251,7 @@ Beleuchtungsmodell ]]></comment>
 <createdTime>2018-05-30 12:12:27 UTC</createdTime>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 <item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>

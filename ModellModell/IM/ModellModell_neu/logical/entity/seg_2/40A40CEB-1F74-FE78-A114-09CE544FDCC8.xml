@@ -10,8 +10,10 @@
 ]EN_ENTI_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="false"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <typeID>2EDFF465-4CEE-72F2-D2EC-896DB596D191</typeID>
@@ -27,17 +29,32 @@
 <createSurrogateKey>true</createSurrogateKey>
 <propertyMap>
 <property name="DE_ENTI_COMMENT" value=""/>
-<property name="DE_ENTI_NAME" value="Asset Layer"/>
+<property name="DE_ENTI_NAME" value="Inbound Transformation"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
 <property name="EN_ENTI_COMMENT" value=""/>
-<property name="EN_ENTI_NAME" value="Asset Layer"/>
+<property name="EN_ENTI_NAME" value="*Asset Layerv2"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
 </propertyMap>
 <identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
-<identifier id="349DF70C-EE68-4C8E-9298-F606F8424B68" name="Inbound Transformation_PK">
+<identifier id="C63D6A20-0827-AA8C-917D-58C50BB6C186" name="Inbound Transformation PK">
 <createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:06:23 UTC</createdTime>
+<createdTime>2020-04-22 15:19:43 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="false"/>
+<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
+</engineerTo>
+</identifier>
+<identifier id="79F99273-FBDD-CF28-B620-585E9C021BB6" name="Inbound Transformation PKv1">
+<createdBy>stb</createdBy>
+<createdTime>2020-04-22 15:19:43 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="false"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <pk>true</pk>

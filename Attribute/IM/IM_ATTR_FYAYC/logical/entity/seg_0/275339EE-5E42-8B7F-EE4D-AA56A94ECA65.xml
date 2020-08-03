@@ -3,9 +3,17 @@
 <createdBy>stb</createdBy>
 <createdTime>2018-06-23 13:19:05 UTC</createdTime>
 <comment><![CDATA[Person in einer Organisationseinheit  die für die Definition oder Pflege eines Attributwertes verantwortlich ist.]]></comment>
+<notes><![CDATA[[EN_ENTI_COMMENT[
+*DE* Person in einer Organisationseinheit  die für die Definition oder Pflege eines Attributwertes verantwortlich ist.
+]EN_ENTI_COMMENT]
+[DE_ENTI_COMMENT[
+Person in einer Organisationseinheit  die für die Definition oder Pflege eines Attributwertes verantwortlich ist.
+]DE_ENTI_COMMENT]
+]]></notes>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
 <item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
@@ -19,14 +27,28 @@
 <normalForm>Third</normalForm>
 <shortName>ANSP</shortName>
 <createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="DE_ENTI_NAME" value="Ansprechpartner"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_NAME" value="*DE* Ansprechpartner"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+</propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Geschäfts-EMail" id="74BD582A-25CC-9ADB-E21F-CC8EE5B52A61">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-23 13:19:05 UTC</createdTime>
 <comment><![CDATA[EMail-Adresse der Person in der Rolle dieses Ansprechpartners]]></comment>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+*DE* EMail-Adresse der Person in der Rolle dieses Ansprechpartners
+]EN_ATTR_COMMENT]
+[DE_ATTR_COMMENT[
+EMail-Adresse der Person in der Rolle dieses Ansprechpartners
+]DE_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
 <item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
@@ -41,6 +63,8 @@
 <property name="AP Typ" value="."/>
 <property name="AP usage" value="."/>
 <property name="CRM-Salesforce" value="."/>
+<property name="DE_ATTR_NAME" value="Geschäfts-EMail"/>
+<property name="EN_ATTR_NAME" value="*DE* Geschäfts-EMail"/>
 <property name="ERP" value="."/>
 <property name="EXCEL ColumnName" value="."/>
 <property name="Excel" value="."/>
@@ -56,9 +80,17 @@
 <Attribute name="Geschäftstelefon-Nr" id="7485D82F-1E2F-338B-0AD3-253B9C1237AB">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-23 13:19:50 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
 <item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
@@ -73,6 +105,8 @@
 <property name="AP Typ" value="."/>
 <property name="AP usage" value="."/>
 <property name="CRM-Salesforce" value="."/>
+<property name="DE_ATTR_NAME" value="Geschäftstelefon-Nr"/>
+<property name="EN_ATTR_NAME" value="*DE* Geschäftstelefon-Nr"/>
 <property name="ERP" value="."/>
 <property name="EXCEL ColumnName" value="."/>
 <property name="Excel" value="."/>
@@ -88,9 +122,17 @@
 <Attribute name="GeschäftstelVorwahl" id="AAF0967C-F2A0-82C3-4874-FFBB1AEB0841">
 <createdBy>stb</createdBy>
 <createdTime>2019-01-26 14:25:07 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
 <item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
@@ -105,6 +147,8 @@
 <property name="AP Typ" value="."/>
 <property name="AP usage" value="."/>
 <property name="CRM-Salesforce" value="."/>
+<property name="DE_ATTR_NAME" value="GeschäftstelVorwahl"/>
+<property name="EN_ATTR_NAME" value="*DE* GeschäftstelVorwahl"/>
 <property name="ERP" value="."/>
 <property name="EXCEL ColumnName" value="."/>
 <property name="Excel" value="."/>
@@ -120,9 +164,17 @@
 <Attribute name="Geschäftstel-intl. Vorwahl" id="9EFBB65E-CEFE-029E-EAFE-E8375BAD0BE9">
 <createdBy>stb</createdBy>
 <createdTime>2019-01-26 14:25:07 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
 <item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
@@ -137,6 +189,8 @@
 <property name="AP Typ" value="."/>
 <property name="AP usage" value="."/>
 <property name="CRM-Salesforce" value="."/>
+<property name="DE_ATTR_NAME" value="Geschäftstel-intl. Vorwahl"/>
+<property name="EN_ATTR_NAME" value="*DE* Geschäftstel-intl. Vorwahl"/>
 <property name="ERP" value="."/>
 <property name="EXCEL ColumnName" value="."/>
 <property name="Excel" value="."/>
@@ -156,6 +210,7 @@
 <createdTime>2018-06-23 13:19:05 UTC</createdTime>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 <item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
@@ -170,6 +225,7 @@
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
 <item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>

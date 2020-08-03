@@ -9,10 +9,33 @@ Angebot eines Produktes
 Angebot eines Service, Funktionlität
 Abbruch
 Optimierungsmassnahme]]></comment>
+<notes><![CDATA[[EN_ENTI_COMMENT[
+**Recommendation by the company as a guideline for the customer
+
+Examples:
+Offer of a product
+Offer a service, functionality
+Termination
+Optimization measure
+]EN_ENTI_COMMENT]
+[DE_ENTI_COMMENT[
+Empfehlung seitens der Firma als Handlungsanweisung an den Kunden
+
+Beispiele:
+Angebot eines Produktes
+Angebot eines Service, Funktionlität
+Abbruch
+Optimierungsmassnahme
+]DE_ENTI_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="false"/>
+<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
+<typeID>B74D06C7-78E7-5278-E15B-B5CBFE13CA72</typeID>
 <adequatelyNormalized>NO</adequatelyNormalized>
 <expectedVolumes>0</expectedVolumes>
 <fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
@@ -22,4 +45,10 @@ Optimierungsmassnahme]]></comment>
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
 <createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="DE_ENTI_NAME" value="Kunden Handlungsempfehlung"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_NAME" value="**Recommendation for action to customers"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+</propertyMap>
 </Entity>

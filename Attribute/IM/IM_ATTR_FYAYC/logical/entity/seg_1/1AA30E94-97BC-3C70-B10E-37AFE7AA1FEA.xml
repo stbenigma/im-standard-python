@@ -2,9 +2,17 @@
 <Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="1AA30E94-97BC-3C70-B10E-37AFE7AA1FEA" name="Elektrokomponente">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-19 16:44:35 UTC</createdTime>
-<comment><![CDATA[ ]]></comment>
+<comment><![CDATA[*EN* *DE*]]></comment>
+<notes><![CDATA[[EN_ENTI_COMMENT[
+*DE*
+]EN_ENTI_COMMENT]
+[DE_ENTI_COMMENT[
+*EN* *DE*
+]DE_ENTI_COMMENT]
+]]></notes>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 <item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
@@ -18,13 +26,27 @@
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
 <createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="DE_ENTI_NAME" value="Elektrokomponente"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_NAME" value="*DE* Elektrokomponente"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+</propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Nennspannung" id="1881AF41-557A-FF26-C6DB-0E29F82A1660">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-19 16:44:56 UTC</createdTime>
 <comment><![CDATA[Art der Stroms (DC, AC50, AC60)]]></comment>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+*DE* Art der Stroms (DC, AC50, AC60)
+]EN_ATTR_COMMENT]
+[DE_ATTR_COMMENT[
+Art der Stroms (DC, AC50, AC60)
+]DE_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 <item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
@@ -36,6 +58,8 @@
 <property name="AP Typ" value="."/>
 <property name="AP usage" value="."/>
 <property name="CRM-Salesforce" value="."/>
+<property name="DE_ATTR_NAME" value="Nennspannung"/>
+<property name="EN_ATTR_NAME" value="*DE* Nennspannung"/>
 <property name="ERP" value="."/>
 <property name="EXCEL ColumnName" value="."/>
 <property name="Excel" value="."/>
@@ -51,8 +75,16 @@
 <Attribute name="max. Leistung" id="5F4343F9-05DD-EA46-6F51-97EBF9B86529">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-19 16:45:25 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 <item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
@@ -66,6 +98,8 @@
 <property name="AP Typ" value="."/>
 <property name="AP usage" value="."/>
 <property name="CRM-Salesforce" value="."/>
+<property name="DE_ATTR_NAME" value="max. Leistung"/>
+<property name="EN_ATTR_NAME" value="*DE* max. Leistung"/>
 <property name="ERP" value="."/>
 <property name="EXCEL ColumnName" value="."/>
 <property name="Excel" value="."/>
@@ -87,8 +121,16 @@
 <createdBy>stb</createdBy>
 <createdTime>2018-06-19 16:49:47 UTC</createdTime>
 <comment><![CDATA[durschnittlicher Energieverbrauch pro 24h]]></comment>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+*DE* durschnittlicher Energieverbrauch pro 24h
+]EN_ATTR_COMMENT]
+[DE_ATTR_COMMENT[
+durschnittlicher Energieverbrauch pro 24h
+]DE_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 <item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
@@ -103,6 +145,8 @@
 <property name="AP Typ" value="."/>
 <property name="AP usage" value="."/>
 <property name="CRM-Salesforce" value="."/>
+<property name="DE_ATTR_NAME" value="durschn. Energieverbrauch"/>
+<property name="EN_ATTR_NAME" value="*DE* durschn. Energieverbrauch"/>
 <property name="ERP" value="."/>
 <property name="EXCEL ColumnName" value="."/>
 <property name="Excel" value="."/>
@@ -118,8 +162,16 @@
 <Attribute name="Frequenz" id="A97D8424-735C-504A-8F0B-3C93C979DEFF">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-19 17:00:11 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 <item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
@@ -133,6 +185,8 @@
 <property name="AP Typ" value="."/>
 <property name="AP usage" value="."/>
 <property name="CRM-Salesforce" value="."/>
+<property name="DE_ATTR_NAME" value="Frequenz"/>
+<property name="EN_ATTR_NAME" value="*DE* Frequenz"/>
 <property name="ERP" value="."/>
 <property name="EXCEL ColumnName" value="."/>
 <property name="Excel" value="."/>

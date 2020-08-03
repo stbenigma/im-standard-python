@@ -30,9 +30,18 @@ Egal ob pay per use  oder Zeitmiete.
 <use>1</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
 <dataTypePrecision>10</dataTypePrecision>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="PIM AttrID" value="."/>
+<property name="PIM AttrName" value="."/>
+<property name="PIM EnglName" value="."/>
+<property name="PIM datatype" value="."/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
 <associations>
 <colAssociation fkAssociation="5DA8EBFD-5BBC-E7E1-55D5-38F51392C685" referredColumn="2B31972E-483B-EBE4-E12E-6863BD668D2C"/>
 </associations>
@@ -50,6 +59,15 @@ Egal ob pay per use  oder Zeitmiete.
 <identityColumn>true</identityColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 <isSurrogateColumn>true</isSurrogateColumn>
+<propertyMap>
+<property name="PIM AttrID" value="."/>
+<property name="PIM AttrName" value="."/>
+<property name="PIM EnglName" value="."/>
+<property name="PIM datatype" value="."/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">

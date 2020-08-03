@@ -1,26 +1,38 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_2" id="DE0FB514-D469-B14C-6FED-618EE15722F1" name="Kommunikationskanal">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_2" id="DE0FB514-D469-B14C-6FED-618EE15722F1" name="Kanal">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:05:22 UTC</createdTime>
 <comment><![CDATA[Kanal über den Informationen ausgetauscht werden können.
 Siehe Channel Cards bei foryouandyourcustomers
 
 Beispiele:
- Telefon
- Email
- TV-Spot
- Facebook
- persönliches Gespräch]]></comment>
+ internes Email
+ Endkundenproukdte Katalogonline
+ Postfinance-Arena (Eisstadion-Name)
+ Raiffeisen-League (Fussballligasponsoring)
+ Facebook Kanal "MyCompanyForYou"
+ Business Breakfast Anlass]]></comment>
 <notes><![CDATA[[DE_ENTI_COMMENT[
-Kanal über den Informationen ausgetauscht werden können. Siehe Channel Cards bei foryouandyourcustomers  Beispiele:  Telefon  Email  TV-Spot  Facebook  persönliches Gespräch
+Kanal über den Informationen ausgetauscht werden können.
+Siehe Channel Cards bei foryouandyourcustomers
+
+Beispiele:
+ internes Email
+ Endkundenproukdte Katalogonline
+ Postfinance-Arena (Eisstadion-Name)
+ Raiffeisen-League (Fussballligasponsoring)
+ Facebook Kanal "MyCompanyForYou"
+ Business Breakfast Anlass
 ]DE_ENTI_COMMENT]
 [EN_ENTI_COMMENT[
-Channel through which information can be exchanged. See Channel Cards at foryouandyourcustomers Examples:  Phone Email TV spot Facebook personal conversation
+*Channel through which information can be exchanged. See Channel Cards at foryouandyourcustomers Examples:  Phone Email TV spot Facebook personal conversation
 ]EN_ENTI_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="false"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <typeID>258A9BA6-D31F-4A65-3423-F7F66D95E2DD</typeID>
@@ -36,8 +48,10 @@ Channel through which information can be exchanged. See Channel Cards at foryoua
 <createSurrogateKey>true</createSurrogateKey>
 <propertyMap>
 <property name="DE_ENTI_COMMENT" value="Kanal über den Informationen ausgetauscht werden können. Siehe Channel Cards bei foryouandyourcustomers  Beispiele:  Telefon  Email  TV-Spot  Facebook  persönliches Gespräch"/>
-<property name="DE_ENTI_NAME" value="Kommunikationskanal"/>
+<property name="DE_ENTI_NAME" value="Kanal"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
 <property name="EN_ENTI_COMMENT" value="*DE* Kanal über den Informationen ausgetauscht werden können. Siehe Channel Cards bei foryouandyourcustomers  Beispiele:  Telefon  Email  TV-Spot  Facebook  persönliches Gespräch"/>
-<property name="EN_ENTI_NAME" value="Communication channel"/>
+<property name="EN_ENTI_NAME" value="*Communication channel"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
 </propertyMap>
 </Entity>

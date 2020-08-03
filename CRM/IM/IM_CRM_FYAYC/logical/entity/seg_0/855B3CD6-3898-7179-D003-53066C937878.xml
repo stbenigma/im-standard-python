@@ -8,11 +8,11 @@
 Namen von Kontaktperson nach Ansprechpartner geändert
 Synonym von Ansprechpartner nach Kontaktperson geändert]]></comment>
 <notes><![CDATA[[EN_ENTI_COMMENT[
-*DE* Funktion einer Person für eine juristische Einheit. Im Spezialfall kann eine Person als Einzelfirma ihr eigener Ansprechspartner sein.
+**Function of a person for a legal entity. In special cases, a person as a sole proprietorship can be its own contact person.
 
 26.6.18 - THU:
-Namen von Kontaktperson nach Ansprechpartner geändert
-Synonym von Ansprechpartner nach Kontaktperson geändert
+Name changed from contact person to contact person
+Synonym changed from contact person to contact person
 ]EN_ENTI_COMMENT]
 [DE_ENTI_COMMENT[
 Funktion einer Person für eine juristische Einheit. Im Spezialfall kann eine Person als Einzelfirma ihr eigener Ansprechspartner sein.
@@ -34,6 +34,7 @@ Changement de synonyme de personne de référence à personne de contact
 <item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="false"/>
 <item key="015DE428-05B6-58DD-323D-ECDC72266F4A" value="true"/>
 </engineerTo>
+<typeID>6F620B18-E4FD-24BF-543C-3ABB88094EDB</typeID>
 <adequatelyNormalized>NO</adequatelyNormalized>
 <expectedVolumes>0</expectedVolumes>
 <fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
@@ -48,9 +49,9 @@ Changement de synonyme de personne de référence à personne de contact
 <property name="DE_ENTI_NAME" value="Ansprechpartner"/>
 <property name="DE_ENTI_SYNONYM" value="Kontaktperson"/>
 <property name="EN_ENTI_NAME" value="Contact Person"/>
-<property name="EN_ENTI_SYNONYM" value="*DE* Kontaktperson"/>
+<property name="EN_ENTI_SYNONYM" value="**Contact person"/>
 <property name="FR_ENTI_NAME" value="Contact"/>
-<property name="FR_ENTI_SYNONYM" value=""/>
+<property name="FR_ENTI_SYNONYM" value="**Personne de contact"/>
 </propertyMap>
 <documents usedDucuments="D2A2540D-782C-B4AB-45BE-E542267116D2"/>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
@@ -80,7 +81,7 @@ Changement de synonyme de personne de référence à personne de contact
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_NAME" value="Gültigkeitsperiode"/>
-<property name="EN_ATTR_NAME" value="*DE* Gültigkeitsperiode"/>
+<property name="EN_ATTR_NAME" value="**Period of validity"/>
 <property name="FR_ATTR_NAME" value="Période de validité"/>
 </propertyMap>
 </Attribute>

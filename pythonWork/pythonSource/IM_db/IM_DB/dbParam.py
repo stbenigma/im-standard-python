@@ -1,6 +1,5 @@
 # -*- coding: latin-1 -*-
-from IM_DB import dbLookup
-from  IM_OBJECTS import *
+from IM_OBJECTS import Sprache
 """ definiert alle systemparameter für die DB """
 
 
@@ -10,10 +9,10 @@ dbDefaultLang:str = 'de'
 dbDefaultLangID:int = None
 
 
-def liesDefaultLang():
+def liesdefaultlang():
     global dbDefaultLang
     global dbDefaultLangID
-    dbDefaultLang = sprache.liesDefaultLang()
-    dbDefaultLangID = sprache.spraLookup(dbDefaultLang)
+    dbDefaultLang = Sprache.liesdeflangiso2()
+    dbDefaultLangID = Sprache.liesdeflangid()
     #print("defaultLang=" + dbDefaultLang + " " + str(dbDefaultLangID))
-#liesDefaultLang
+#liesdefaultlang

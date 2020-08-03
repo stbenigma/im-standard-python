@@ -1,68 +1,59 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="EA2CAFF9-C7D7-CA8C-28A9-28698D0F930B" name="ARC">
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="EA2CAFF9-C7D7-CA8C-28A9-28698D0F930B" name="ARCS">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
-<comment><![CDATA[Entität im systemübergreifenden, konsolidierten, konzeptionellen Modell eines Unternehmens
-]]></comment>
+<comment><![CDATA[Arcs bundle relationships emerging from one entity together. Only one of the relationships set at a given timepoint.
+
+All relationships in a ARC have to be of the same MAPTYPE and have the same MANDATORY-value at the end of the entity the ARC is defined for.
+
+Subtype of MODELELEMENT. ARCS_ID is always identical to the corresponding MODE_ID]]></comment>
 <generatorID>C579AF88-68C9-5A94-FD4C-E7B9A73BB814</generatorID>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <ordsAlias>entitaet$</ordsAlias>
-<abbreviation>ARC</abbreviation>
+<abbreviation>ARCS</abbreviation>
 <allowColumnReorder>false</allowColumnReorder>
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
-<Column name="ARC_ID" id="8419DB38-AE17-BE94-73F6-B492485B7E69">
+<Column name="ARCS_ID" id="8419DB38-AE17-BE94-73F6-B492485B7E69">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
-<autoIncrementColumn>true</autoIncrementColumn>
-<identityColumn>true</identityColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="ARC_NAME" id="49D737EA-BC69-2703-2DA4-9B3BE0A5D87E">
+<Column name="ARCS_NAME" id="49D737EA-BC69-2703-2DA4-9B3BE0A5D87E">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <comment><![CDATA[Eindeutiger, technischer Name der Entität (z.B. der Tabelle, die die Entität repräsentiert)]]></comment>
 <generatorID>C6B30AE3-78A0-9F53-E89F-2F8E68B64092</generatorID>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="ARC_ENTI_ID" id="32044959-13C2-8AB9-ADEC-85FADED2C27B">
+<Column name="ARCS_ENTI_ID" id="1C77062D-CAE4-CC3B-B4CB-7705E06199CF">
 <createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:18:16 UTC</createdTime>
+<createdTime>2020-08-02 15:07:41 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 <associations>
-<colAssociation fkAssociation="A8274359-544D-A9C2-5C15-E2F39C7B64DD" referredColumn="E0C4ED99-82B2-04CB-AC1C-205352DDAFF3"/>
+<colAssociation fkAssociation="A8274359-544D-A9C2-5C15-E2F39C7B64DD" referredColumn="365AA3F1-7B02-CFAB-BB51-AE721CDEA5F3"/>
 </associations>
 </Column>
-<Column name="ARC_ODM_GUID" id="151D85D9-4E6B-500B-EB08-38548CF08084">
-<createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:18:16 UTC</createdTime>
-<commentInRDBMS><![CDATA[ID aus dem ODM übernommen]]></commentInRDBMS>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<nullsAllowed>true</nullsAllowed>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-</Column>
-<Column name="ARC_UC" id="638FE337-CC40-EC52-95FC-02C4F7C847D5">
+<Column name="ARCS_UC" id="638FE337-CC40-EC52-95FC-02C4F7C847D5">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -77,7 +68,7 @@
 <property name="ctemplateID" value="F7EEFF47-7A42-2A3E-7DFC-D0558D6996B8"/>
 </propertyMap>
 </Column>
-<Column name="ARC_DC" id="F938B7E6-C247-10DE-C306-47E9E36285A0">
+<Column name="ARCS_DC" id="F938B7E6-C247-10DE-C306-47E9E36285A0">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -90,7 +81,7 @@
 <property name="ctemplateID" value="74D877A0-4C3B-63EE-06C5-071C7695907C"/>
 </propertyMap>
 </Column>
-<Column name="ARC_UM" id="C0C71AA9-D2D5-A6E7-02D2-B32B4D2358C3">
+<Column name="ARCS_UM" id="C0C71AA9-D2D5-A6E7-02D2-B32B4D2358C3">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -105,7 +96,7 @@
 <property name="ctemplateID" value="B2E17D53-C2F7-74D9-022D-5D63F3931519"/>
 </propertyMap>
 </Column>
-<Column name="ARC_DM" id="DF6E030D-46E6-03A1-AA94-1527EDB8F391">
+<Column name="ARCS_DM" id="DF6E030D-46E6-03A1-AA94-1527EDB8F391">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -121,7 +112,7 @@
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
-<ind_PK_UK id="314F3D71-3AF8-EB0E-26F4-C6BE41CAC519" name="ARC_PK">
+<ind_PK_UK id="314F3D71-3AF8-EB0E-26F4-C6BE41CAC519" name="ARCS_PK">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -131,25 +122,25 @@
 <colUsage columnID="8419DB38-AE17-BE94-73F6-B492485B7E69"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="BFA90471-B26E-D7D5-8709-E394DDEF59E9" name="ARC_UK">
+<ind_PK_UK id="BFA90471-B26E-D7D5-8709-E394DDEF59E9" name="ARCS_UK">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <indexState>Unique Constraint</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
-<colUsage columnID="32044959-13C2-8AB9-ADEC-85FADED2C27B"/>
+<colUsage columnID="1C77062D-CAE4-CC3B-B4CB-7705E06199CF"/>
 <colUsage columnID="49D737EA-BC69-2703-2DA4-9B3BE0A5D87E"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="1BF0E296-6BC8-E84B-10BA-7E26F809DC9F" name="ARC_ENTI_FK">
+<ind_PK_UK id="1BF0E296-6BC8-E84B-10BA-7E26F809DC9F" name="ARCS_ENTI_FK">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:17 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <indexState>Foreign Key</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
-<colUsage columnID="32044959-13C2-8AB9-ADEC-85FADED2C27B"/>
+<colUsage columnID="1C77062D-CAE4-CC3B-B4CB-7705E06199CF"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>

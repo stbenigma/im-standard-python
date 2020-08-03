@@ -11,8 +11,8 @@
 </engineerTo>
 <useSurrogateKey>true</useSurrogateKey>
 <identifying>false</identifying>
-<nameOnSource>*DE* installiert</nameOnSource>
-<nameOnTarget>*DE* gugus</nameOnTarget>
+<nameOnSource>installiert</nameOnSource>
+<nameOnTarget>gugus</nameOnTarget>
 <optionalSource>true</optionalSource>
 <optionalTarget>false</optionalTarget>
 <sourceCardinality>1</sourceCardinality>
@@ -23,7 +23,9 @@
 <propertyMap>
 <property name="DE_RELA_TEXT_FROM" value="installiert"/>
 <property name="DE_RELA_TEXT_TO" value="gugus"/>
-<property name="EN_RELA_TEXT_FROM" value="installe"/>
-<property name="EN_RELA_TEXT_TO" value="*DE* gugus"/>
+<property name="EN_RELA_TEXT_FROM" value="**installed"/>
+<property name="EN_RELA_TEXT_TO" value="**gugus"/>
+<property name="FR_RELA_TEXT_FROM" value="**installé"/>
+<property name="FR_RELA_TEXT_TO" value="**gugus"/>
 </propertyMap>
 </Relation>

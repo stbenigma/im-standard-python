@@ -1,4 +1,6 @@
 from .baseobject import Baseobject
+from datetime import date
+from IM_DB import dbDML
 
 class Sprache(Baseobject):
     _tablename:str ='sprachen'
@@ -6,9 +8,17 @@ class Sprache(Baseobject):
     _columnlist:list = ['spra_id', 'spra_iso_name', 'spra_iso_code2', 'spra_iso_code3', 'spra_ist_textsprache'
                     , 'spra_ist_modellsprache', 'spra_spra_id', 'spra_uc', 'spra_dc', 'spra_um', 'spra_dm']
 
-    def __init__(self):
+    def __init__(self,pname=None,piso2=None,piso3=None):
         super().__init__(tablename=Sprache._tablename,prefix=Sprache._prefix
-                        ,columnlist = Sprache._columnlist)
+                        ,columnlist = Sprache._columnlist
+                         ,  )
+        self.spra_iso_name = pname
+        self.spra_iso_code2 = piso2
+        self.spra_iso_code3 =  piso3
+        self.spra_ist_textsprache ='TRUE'
+        self.spra_ist_modellsprache = 'FALSE'
+        self.spra_uc ='stb'
+        self.spra_dc = date.today()
 
     @staticmethod
     def createtable():
@@ -49,30 +59,77 @@ CREATE TABLE sprachen(
     def select(pwhere=None,porderby=None):
         return Baseobject.select(pclass=Sprache
                                 ,pwhere=pwhere,porderby=porderby)
+    @staticmethod
+    def liesdefaultlang():
+        lDefLangs = Sprache.select(pwhere="""spra_ist_modellsprache = 'TRUE'""")
+        if (lDefLangs is None): return None
+        if (len(lDefLangs) == 0): return None
+        return lDefLangs[0]
+    #liesdefaultlang
+
+    def getreplacementlang(self):
+        return Sprache.select(pwhere='spra_id={}'.format(self.spra_spra_id))[0]
+
+    @staticmethod
+    def liesdeflangid():
+        ldeflang = Sprache.liesdefaultlang()
+        if (ldeflang is None): return None
+        else: return ldeflang.spra_id
+    # liesdeflangid
+
+    @staticmethod
+    def liesdeflangiso2():
+        ldeflang = Sprache.liesdefaultlang()
+        if (ldeflang is None): return None
+        else: return ldeflang.spra_iso_code2
+    #liesdeflangiso2
+
+    @staticmethod
+    def deleteunused():
+        dbDML.exec("""delete from sprachen
+                        where not exists(select 1 from sprachtexte
+                                       where sptx_spra_id = spra_id
+                                       )
+                    """)
+    #deleteunsed
+
+    @staticmethod
+    def spraidlookup(piso):
+        if (len(piso) == 2): colname = 'spra_iso_code2'
+        elif (len(piso) == 3): colname = 'spra_iso_code3'
+        else: return None
+        #fi
+        try:
+            sprachen = Sprache.select(pwhere="""{} = lower("{}")""".format(colname,piso))
+            return sprachen[0].spra_id
+        except: return None
+    #spraidlookup
+
+    @staticmethod
+    def setmodellang(pmodellang):
+        dbDML.exec("""update sprachen 
+                        set spra_ist_modellsprache = 
+                            case lower(spra_iso_code2) 
+                            when '{}' then 'TRUE'
+                            else 'FALSE'
+                            end
+                    """.format(pmodellang))
+    #setmodellang
+
+    @ staticmethod
+    def setallreplacementlang():
+        #currently modellang is always replacement lang
+        dbDML.exec("""update sprachen  
+        set spra_spra_id = 
+            case when spra_ist_modellsprache  = 'TRUE'
+            then NULL
+            else (select sp2.spra_id 
+                from sprachen sp2 
+                where sp2.spra_ist_modellsprache = 'TRUE'
+                )
+            end
+        """)
+    #setallreplacementlang
 #Sprache
 
-def liesDefaultLang():
-    lDefLang = Sprache().select(pwhere="""spra_ist_modellsprache = 'TRUE'""")
-    if (lDefLang is None): return None
-    if (len(lDefLang) == 0): return None
-    return lDefLang[0].spra_iso_code2
-#liesDefaultLang
 
-def spraLookup(piso):
-    if (len(piso) == 2):
-        colname = 'spra_iso_code2'
-    elif (len(piso) == 3):
-        colname = 'spra_iso_code3'
-    else:
-        return None
-    #fi
-    try:
-        data = Sprache.select(pwhere="""{} = lower("{}")""".format(colname,piso))
-        return data[0].spra_id
-    except: return None
-#spraLookup
-
-def sprachen(p_id,p_attrname):
-    return doLookup(p_id, """select {} from sprachen 
-                                where spra_id = {}""".format(p_attrname,'{}'))
-#spraLookup

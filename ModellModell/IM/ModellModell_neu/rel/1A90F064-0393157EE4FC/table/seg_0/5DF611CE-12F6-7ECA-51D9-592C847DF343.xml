@@ -1,0 +1,45 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="5DF611CE-12F6-7ECA-51D9-592C847DF343" name="Data_Layer">
+<createdBy>stb</createdBy>
+<createdTime>2020-04-22 15:22:04 UTC</createdTime>
+<generatorID>AA40FB5F-39E8-FB2E-B3F1-B2110EB6FB5E</generatorID>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<typeID>899A6DDC-95E0-4AD5-5F58-B3A2FF5C2D08</typeID>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Data_Layer_ID" id="B1719C66-B929-A413-DA8A-DD0F078A53E1">
+<createdBy>stb</createdBy>
+<createdTime>2020-04-22 15:22:04 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="9CF6150E-09B8-C584-F552-00DAF2C71604" name="Data_Layer_PK">
+<createdBy>stb</createdBy>
+<createdTime>2020-04-22 15:22:04 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="B1719C66-B929-A413-DA8A-DD0F078A53E1"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

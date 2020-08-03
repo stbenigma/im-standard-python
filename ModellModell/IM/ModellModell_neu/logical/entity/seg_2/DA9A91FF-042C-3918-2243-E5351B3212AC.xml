@@ -9,10 +9,33 @@ Formula  ausfüllen
 Antwort geben
 Zuhören
 Kontakt aufnehmen]]></comment>
+<notes><![CDATA[[EN_ENTI_COMMENT[
+**Activity of a customer during a travel stage
+
+Example:
+Fill in the formula
+reply
+Listening
+reach out
+]EN_ENTI_COMMENT]
+[DE_ENTI_COMMENT[
+Tätigkeit eines Kunden im Rahmen einer Reiseetappe
+
+Beispiel:
+Formula  ausfüllen
+Antwort geben
+Zuhören
+Kontakt aufnehmen
+]DE_ENTI_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="false"/>
+<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
+<typeID>B74D06C7-78E7-5278-E15B-B5CBFE13CA72</typeID>
 <adequatelyNormalized>NO</adequatelyNormalized>
 <expectedVolumes>0</expectedVolumes>
 <fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
@@ -22,4 +45,10 @@ Kontakt aufnehmen]]></comment>
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
 <createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="DE_ENTI_NAME" value="Kundenaktion"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_NAME" value="**Customer campaign"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+</propertyMap>
 </Entity>

@@ -5,6 +5,8 @@
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
+<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <useSurrogateKey>true</useSurrogateKey>
 <identifying>false</identifying>
@@ -13,8 +15,14 @@
 <optionalSource>true</optionalSource>
 <optionalTarget>true</optionalTarget>
 <sourceCardinality>*</sourceCardinality>
-<sourceEntity>65AB1100-52CA-B51C-FC80-72D9A95AD501</sourceEntity>
+<sourceEntity>1B33B1DD-2EF3-488D-0701-BA26CE161C6E</sourceEntity>
 <targetCardinalityString>*</targetCardinalityString>
 <targetEntity>C35E4835-EDF5-A402-994E-6D97091BE8DD</targetEntity>
 <transferable>true</transferable>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="kauft möglicherweise"/>
+<property name="DE_RELA_TEXT_TO" value="gekauft von"/>
+<property name="EN_RELA_TEXT_FROM" value="**may buy"/>
+<property name="EN_RELA_TEXT_TO" value="**purchased from"/>
+</propertyMap>
 </Relation>

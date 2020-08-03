@@ -6,19 +6,23 @@
 
 Synchron heisst, dass die Daten immer in kurzer Zeit (ms - einige Sekunden)  nachgeführt und aktuell sind.
 Manuell bedeutet, dass eine Person die Daten von einem Werkzeuge in ein anderes überträgt (copy-paste, abschreiben).
-online bedeutet, dass die Anwendungen direkt auf die Datenbasis (Datei, DB) einer anderen Anwendung zugreift. Z.B. via DB-Link, Service. 
-
-]]></comment>
+online bedeutet, dass die Anwendungen direkt auf die Datenbasis (Datei, DB) einer anderen Anwendung zugreift. Z.B. via DB-Link, Service.]]></comment>
 <notes><![CDATA[[DE_ENTI_COMMENT[
-Eine definierte Schnittstelle zwischen 2 IT-Systemen.  Synchron heisst, dass die Daten immer in kurzer Zeit (ms - einige Sekunden)  nachgeführt und aktuell sind. Manuell bedeutet, dass eine Person die Daten von einem Werkzeuge in ein anderes überträgt (copy-paste, abschreiben). online bedeutet, dass die Anwendungen direkt auf die Datenbasis (Datei, DB) einer anderen Anwendung zugreift. Z.B. via DB-Link, Service.   
+Eine definierte Schnittstelle zwischen 2 IT-Systemen.
+
+Synchron heisst, dass die Daten immer in kurzer Zeit (ms - einige Sekunden)  nachgeführt und aktuell sind.
+Manuell bedeutet, dass eine Person die Daten von einem Werkzeuge in ein anderes überträgt (copy-paste, abschreiben).
+online bedeutet, dass die Anwendungen direkt auf die Datenbasis (Datei, DB) einer anderen Anwendung zugreift. Z.B. via DB-Link, Service.
 ]DE_ENTI_COMMENT]
 [EN_ENTI_COMMENT[
-A defined interface between 2 IT systems.  Synchronous means that the data is always updated in a short time (ms - a few seconds) and is up-to-date. Manual means that a person transfers the data from one tool to another (copy-paste). online means that the applications access the database (file, DB) of another application directly. E.g. via DB-Link, Service.   
+*A defined interface between 2 IT systems.  Synchronous means that the data is always updated in a short time (ms - a few seconds) and is up-to-date. Manual means that a person transfers the data from one tool to another (copy-paste). online means that the applications access the database (file, DB) of another application directly. E.g. via DB-Link, Service.
 ]EN_ENTI_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="false"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <typeID>2EDFF465-4CEE-72F2-D2EC-896DB596D191</typeID>
@@ -35,22 +39,37 @@ A defined interface between 2 IT systems.  Synchronous means that the data is al
 <propertyMap>
 <property name="DE_ENTI_COMMENT" value="Eine definierte Schnittstelle zwischen 2 IT-Systemen.  Synchron heisst, dass die Daten immer in kurzer Zeit (ms - einige Sekunden)  nachgeführt und aktuell sind. Manuell bedeutet, dass eine Person die Daten von einem Werkzeuge in ein anderes überträgt (copy-paste, abschreiben). online bedeutet, dass die Anwendungen direkt auf die Datenbasis (Datei, DB) einer anderen Anwendung zugreift. Z.B. via DB-Link, Service.   "/>
 <property name="DE_ENTI_NAME" value="Schnittstelle"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
 <property name="EN_ENTI_COMMENT" value="*DE* Eine definierte Schnittstelle zwischen 2 IT-Systemen.  Synchron heisst, dass die Daten immer in kurzer Zeit (ms - einige Sekunden)  nachgeführt und aktuell sind. Manuell bedeutet, dass eine Person die Daten von einem Werkzeuge in ein anderes überträgt (copy-paste, abschreiben). online bedeutet, dass die Anwendungen direkt auf die Datenbasis (Datei, DB) einer anderen Anwendung zugreift. Z.B. via DB-Link, Service.   "/>
 <property name="EN_ENTI_NAME" value="Interface"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Name" id="CCB79941-CA9E-353C-0785-EEDDFD5637A3">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 14:32:12 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="false"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Name"/>
+<property name="EN_ATTR_NAME" value="**Name"/>
+</propertyMap>
 </Attribute>
 <Attribute name="Manuell" id="5EED317B-58E0-5B79-1FB5-775FD01F3B5D">
 <createdBy>stb</createdBy>
@@ -64,9 +83,11 @@ Data is transferred manually (copy-paste, file transfer)
 ]EN_ATTR_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <importedID>695153DA-8B28-B727-6415-2240B8831A62</importedID>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="false"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
@@ -92,9 +113,11 @@ Data is transferred immediately or in packets that are eventually transferred.
 ]EN_ATTR_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <importedID>9A8E6DBD-45F2-B058-15CB-0EA9555E5047</importedID>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="false"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
@@ -120,9 +143,11 @@ No means data only goes from "from" to "to"
 ]EN_ATTR_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <importedID>6302FB3C-12B3-8762-30A4-B329D9CFCD82</importedID>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="false"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
@@ -148,9 +173,11 @@ No means data only goes from "from" to "to"
 ]EN_ATTR_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <importedID>98F896FA-EB99-C1A2-3C9B-23F46416102D</importedID>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="false"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
@@ -176,9 +203,11 @@ No means data only goes from "from" to "to"
 ]EN_ATTR_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <importedID>B8EFFE90-915E-2B89-03D4-4591F16986B2</importedID>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="false"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
@@ -202,9 +231,11 @@ No means data only goes from "from" to "to"
 ]EN_ATTR_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <importedID>F4363904-CEEA-1E89-A209-C5B783917961</importedID>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="false"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>

@@ -1,67 +1,132 @@
 
-from IM_DB import dbDDL,dbDML,dbLookup
+from IM_DB import dbDML,dbDDL
 from mystring import nvl
+import sqlite3
 
-class Baseobject:
+class Boolean:
+    TRUE:str='TRUE'
+    FALSE:str='FALSE'
+    @staticmethod
+    def str2bool(pstr):
+        if (pstr is None): return None
+        elif (pstr.upper() in (Boolean.TRUE,'T')): return True
+        elif (pstr.upper() in (Boolean.FALSE,'F')): return False
+        else: raise Exception('Ungültiger Wert für Boolean "{}"'.format (pstr))
+    #str2bool
+    @staticmethod
+    def bool2str(bool):
+        return Boolean.TRUE if bool else Boolean.FALSE
+    @staticmethod
+    def strnegbool(pstr):
+        return Boolean.bool2str( not Boolean.str2bool(pstr))
+    # strNegBool
+#Boolean
+
+class Webanker:
+    """enthält die Information um Web-Referenzen (Sprungziele / id) herzustellen.
+         Webanker bestehen aus dem Kurznamen (prefix) des Elementes, seinem ID sowie ggf.
+         dem Modelid (der dann in einen html-Dateinamen umgesetzt wird.
+         Modelid =0 -> logisches Modell
+    """
+    def __init__(self,pname,pid,pmodelid=0):
+        self._id:int = pid
+        self._name:str = pname.upper()
+        self._modelid:int = pmodelid
+    def anker(self):
+        return nvl(self._name) + str(nvl(self._id))
+    def modelid(self):
+        return self._modelid
+#Webanker
+
+class   Baseobject:
 
     def __init__(self,tablename,prefix,columnlist,idcolname = None,guidcolname = None):
-        self.tablename = tablename
-        self.prefix = prefix
-        self.idcolname = prefix + '_id' if idcolname is None else idcolname
-        self.guidcolname = prefix + '_odm_guid' if guidcolname is None else guidcolname
-        self.columnlist = columnlist
-        for col in columnlist:
+        self._tablename:str = tablename
+        self._prefix:str = prefix
+        self._idcolname:str = prefix + '_id' if idcolname is None else idcolname
+        self._guidcolname:str = prefix + '_odm_guid' if guidcolname is None else guidcolname
+        self._columnlist = columnlist
+        self.__emptyclass()
+
+    def __emptyclass(self):
+        for col in self._columnlist:
             self.__dict__[col] = None
+    #emptyclass
 
     def toarray(self):
-        return [self.__dict__[col] for col in self.columnlist]
+        return [self.__dict__[col] for col in self._columnlist]
 
     def totuple(self):
         return tuple(self.toarray())
 
     def _fromarray(self, parr):
         for key, val in enumerate(parr):
-            self.__dict__[self.columnlist[key]] = val
+            self.__dict__[self._columnlist[key]] = val
         return self
 
-    def placehoderstring(self):
-        return ''.join('?,' for col in self.columnlist).rstrip(',')
+    def getid(self):
+        return self.__dict__[self._idcolname]
 
-
-    def insert(self):
+    def insert(self,pdoerrhdlng=True):
         lsql = """insert into {} ({}) values ({})
-           """.format(self.tablename, Baseobject.columnsliststring(self.columnlist), self.placehoderstring())
-        id = dbDML.insert(lsql, self.totuple())
-        self.__dict__[self.idcolname] = id #autocolumns zurücklesen
-    #insert
+           """.format(self._tablename, Baseobject.columnsliststring(self._columnlist)
+                      , Baseobject.columnsliststring(pcollist=self._columnlist,pplaceholder=True))
+        try:
+            id = dbDML.insert(lsql, self.totuple())
+        except sqlite3.Error as e:
+            if pdoerrhdlng:
+                print(str(e))
+                print(self.tostring())
+            #if
+            raise e
+        #try
+        self.__dict__[self._idcolname] = id #autocolumns zurücklesen
+        return id
+
+
+    def tostring(self):
+        lretval = "Table: {}\n".format(self._tablename)
+        lretval += "\n".join("{} = '{}'".format(col,self.__dict__[col]) for col in self._columnlist)
+        return lretval
 
     def getbyid(self,pid):
-        data = self.select(pwhere="{}={}".format(self.idcolname,pid))
+        if pid is None: return None
+        data = self.select(pwhere="{}={}".format(self._idcolname, pid))
         if (len(data) > 1):
-            raise Exception('{}: nonunique ID={}'.format(self.tablename, pid))
+            raise Exception('{}: nonunique ID={}'.format(self._tablename, pid))
         elif (len(data) == 0):
-            raise Exception('{}: nonexistent ID={}'.format(self.tablename, pid))
+            raise Exception('{}: nonexistent ID={}'.format(self._tablename, pid))
         else:
-            return data[0]
+            self._fromarray(data[0].toarray())
+        return self
     # getbyid
 
-    def getbyguid(self,pguid):
-        data = self.select(pwhere="{}='{}'".format(self.guidcolname,pguid))
+    def getbyuk(self,pcolname,pukvalue):
+        data = self.select(pwhere="{}='{}'".format(pcolname, pukvalue))
         if (len(data) > 1):
-            raise Exception('{}: nonunique GUID={}'.format(self.tablename, pid))
+            raise Exception('{}: nonunique {}={}'.format(self._tablename, pcolname,pukvalue))
         elif (len(data) == 0):
-            record [[None for col in self.columnlist]]
+            #self.__emptyclass()
+            return None
         else:
-            record = data[0]
+            self._fromarray(data[0].toarray())
         # fi
-        return record
+        return self
+    # getbyuk
+
+    def getbyguid(self,pguid):
+        return self.getbyuk(pcolname=self._guidcolname, pukvalue=pguid)
     # getbyguid
 
-    def getID(self,pguid):
-        return self.getbyguid(pguid).__dict__[self.idcolname]
+    def prefix(self):
+        return self._prefix
 
-    def anker(self):
-        return self.prefix.upper() + nvl(str(self.__dict__[self.idcolname] or ''))
+    def getID(self,pguid):
+        self.getbyguid(pguid)
+        return self.__dict__[self._idcolname]
+
+    def webanker(self,pmodelid=0):
+        return Webanker(pname=self._prefix, pid= self.__dict__[self._idcolname],pmodelid=pmodelid)
 
     @staticmethod
     def createtable(ptablename,psql):
@@ -69,17 +134,34 @@ class Baseobject:
         dbDDL.createTable(psql)
     #createtable
 
+#    @staticmethod
+#    def select(pwhere=None, porderby=None):
+#        raise NotImplementedError("Must override select")
+
+    def getsprachvals(self):
+        raise NotImplementedError("Must override getsprachvals")
     @staticmethod
     def select(pclass, pwhere=None, porderby=None):
-        lsql = """select {} from {} {} {} """ \
+        lsql = """select {} from {} as {} {} {} """ \
             .format(Baseobject.columnsliststring(pclass._columnlist)
                     , pclass._tablename
+                    , pclass._prefix
                     , "" if pwhere is None else
                 "where {}".format(pwhere)
                     , "" if porderby is None else
                 "order by {}".format(porderby))
         data = dbDML.select(psql=lsql)
-        return [pclass()._fromarray(d) for d in data]
+        retval =[]
+        for d in data:
+            obj = pclass()._fromarray(d)
+            try:
+                """obj ist vom Typ des Subtypes"""
+                """ist in MultilangBaseobject definiert"""
+                obj.getsprachvals()
+            except Exception as err:
+                pass
+            retval.append(obj)
+        return retval
     #select
 
     @staticmethod
@@ -87,8 +169,47 @@ class Baseobject:
         dbDML.delete(ptablename)
 
     @staticmethod
-    def columnsliststring(pcollist):
-        return ''.join(col + ',' for col in pcollist).rstrip(',')
+    def columnsliststring(pcollist,pplaceholder=False):
+        return ','.join('?' if pplaceholder else col for col in pcollist)
+
 
 #Baseobject
 
+class MultilangBaseobject(Baseobject):
+    def __init__(self, tablename, prefix, columnlist, multilangcols
+                 ,idcolname=None, guidcolname=None):
+        super().__init__(tablename=tablename, prefix=prefix, columnlist=columnlist
+                        ,idcolname=idcolname, guidcolname=guidcolname
+                        )
+        self._multilangcols = multilangcols
+    #__init__
+
+    def getmodeid(self):
+        raise NotImplementedError("'getmodeid' muss implementiert werden")
+
+    def getsprachvals(self):
+        modeid = self.getmodeid()
+        for col in self._multilangcols.keys():
+            spt = Sprachtext.getsprachtexte(pattrname=self._multilangcols[col], pmodeid=modeid)
+            self.__dict__[col + '_L'] = spt
+        # for
+    # getsprachvals
+
+    def _getsprachval(self,colname:str,plang:str =None):
+        try:
+            retval = self.__dict__[colname+'_L'][plang]
+        except:
+            #keine sprache oder keinen Namen für Sprache
+            retval = self.retval = self.__dict__[colname]
+        #try
+        return retval
+    #getbeschr
+
+
+#MultilangBaseobject
+#def webanker(pclass,pid):
+#    o = pclass()
+#    o.getbyid(pid)
+#    return o.webanker()
+
+from .sprachtext import Sprachtext

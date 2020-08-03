@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="05FCEF96-1246-2B63-C700-EFAC7404D272" name="*Adresse">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="05FCEF96-1246-2B63-C700-EFAC7404D272" name="Adresse">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 09:44:32 UTC</createdTime>
 <comment><![CDATA[Postalisch-geographische Lokalisation
@@ -8,11 +8,11 @@ Jede Adresse ist für einen Akteur definiert. D.h. die selbe Adresse kann mehrfa
 Falls ein generelles Adressverzeichnis als Referenz geführt wird (Basisadresse), muss das zusätlich erfasst werden.
 Dann wird diese Entität zur Verknüpfung zwischen Akteur und Basisadresse.]]></comment>
 <notes><![CDATA[[EN_ENTI_COMMENT[
-*DE* Postalisch-geographische Lokalisation
+**Postal-geographical localization
 
-Jede Adresse ist für einen Akteur definiert. D.h. die selbe Adresse kann mehrfach vorkommen.
-Falls ein generelles Adressverzeichnis als Referenz geführt wird (Basisadresse), muss das zusätlich erfasst werden.
-Dann wird diese Entität zur Verknüpfung zwischen Akteur und Basisadresse.
+Each address is defined for one actor. This means that the same address can occur more than once.
+If a general address directory is maintained as a reference (base address), this must be entered additionally.
+Then this entity becomes the link between actor and base address.
 ]EN_ENTI_COMMENT]
 [DE_ENTI_COMMENT[
 Postalisch-geographische Lokalisation
@@ -32,6 +32,7 @@ Chaque adresse est définie pour un acteur. C'est-à-dire la même adresse peut 
 <item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="false"/>
 <item key="015DE428-05B6-58DD-323D-ECDC72266F4A" value="true"/>
 </engineerTo>
+<typeID>6F620B18-E4FD-24BF-543C-3ABB88094EDB</typeID>
 <adequatelyNormalized>NO</adequatelyNormalized>
 <expectedVolumes>0</expectedVolumes>
 <fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
@@ -55,7 +56,7 @@ Chaque adresse est définie pour un acteur. C'est-à-dire la même adresse peut 
 <createdTime>2019-05-06 11:18:19 UTC</createdTime>
 <comment><![CDATA[Zweck der Adresse (Finanz, Post, Lieferung etc.)]]></comment>
 <notes><![CDATA[[EN_ATTR_COMMENT[
-*DE* Zweck der Adresse (Finanz, Post, Lieferung etc.)
+**Purpose of the address (financial, postal, delivery, etc.)
 ]EN_ATTR_COMMENT]
 [DE_ATTR_COMMENT[
 Zweck der Adresse (Finanz, Post, Lieferung etc.)
@@ -168,6 +169,7 @@ Type d'adresse (financière, postale, de lvraison etc.)
 
 ]EN_ATTR_COMMENT]
 [FR_ATTR_COMMENT[
+
 ]FR_ATTR_COMMENT]
 ]]></notes>
 <ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
@@ -199,6 +201,7 @@ Type d'adresse (financière, postale, de lvraison etc.)
 
 ]EN_ATTR_COMMENT]
 [FR_ATTR_COMMENT[
+
 ]FR_ATTR_COMMENT]
 ]]></notes>
 <ownerDesignName>IM_CRM_FYAYC</ownerDesignName>

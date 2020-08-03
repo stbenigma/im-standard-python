@@ -2,19 +2,15 @@
 <Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="32A13181-E1BC-D2E4-6094-2CC4F71CD4F7" name="Kommunikationsmittel">
 <createdBy>stb</createdBy>
 <createdTime>2019-06-01 10:36:20 UTC</createdTime>
-<comment><![CDATA[Kommunikationskanäle und ihre Adresse
-]]></comment>
+<comment><![CDATA[Kommunikationskanäle und ihre Adresse]]></comment>
 <notes><![CDATA[[EN_ENTI_COMMENT[
-*DE* Kommunikationskanäle und ihre Adresse
-
+**Communication channels and their address
 ]EN_ENTI_COMMENT]
 [DE_ENTI_COMMENT[
 Kommunikationskanäle und ihre Adresse
-
 ]DE_ENTI_COMMENT]
 [FR_ENTI_COMMENT[
-Les canaux de communication et leur adresse
-
+*Les canaux de communication et leur adresse
 ]FR_ENTI_COMMENT]
 ]]></notes>
 <ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
@@ -24,6 +20,7 @@ Les canaux de communication et leur adresse
 <item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="false"/>
 <item key="015DE428-05B6-58DD-323D-ECDC72266F4A" value="true"/>
 </engineerTo>
+<typeID>6F620B18-E4FD-24BF-543C-3ABB88094EDB</typeID>
 <adequatelyNormalized>NO</adequatelyNormalized>
 <expectedVolumes>0</expectedVolumes>
 <fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
@@ -36,7 +33,7 @@ Les canaux de communication et leur adresse
 <propertyMap>
 <property name="DE_ENTI_NAME" value="Kommunikationsmittel"/>
 <property name="DE_ENTI_SYNONYM" value=""/>
-<property name="EN_ENTI_NAME" value="*DE* Kommunikationsmittel"/>
+<property name="EN_ENTI_NAME" value="Means of communication"/>
 <property name="EN_ENTI_SYNONYM" value=""/>
 <property name="FR_ENTI_NAME" value="Moyen de communication"/>
 <property name="FR_ENTI_SYNONYM" value=""/>
@@ -81,6 +78,7 @@ Les canaux de communication et leur adresse
 
 ]EN_ATTR_COMMENT]
 [FR_ATTR_COMMENT[
+
 ]FR_ATTR_COMMENT]
 ]]></notes>
 <ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
@@ -125,8 +123,7 @@ Les canaux de communication et leur adresse
 <propertyMap>
 <property name="DE_ATTR_NAME" value="Mobil Tel Nr"/>
 <property name="EN_ATTR_NAME" value="Mobile phone"/>
-<property name="FR_ATTR_NAME" value="Numéro de portable
-"/>
+<property name="FR_ATTR_NAME" value="Numéro de portable "/>
 </propertyMap>
 </Attribute>
 <Attribute name="Webseite" id="18D6C7F4-AF3A-3F20-F568-501776C7B57A">

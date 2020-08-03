@@ -8,9 +8,29 @@ Die Typen Numerisch, Text, Zeitpunkt oder Aufzählung sind konzeptionell zu verf
 
 Beispiele:
 Netto-Gewicht 
-Beleuchtungsmodell ]]></comment>
+Beleuchtungsmodell]]></comment>
+<notes><![CDATA[[EN_ENTI_COMMENT[
+*DE* Beschreibung des Wertebereichs eines (oder mehrerer) Attributs.
+
+Die Typen Numerisch, Text, Zeitpunkt oder Aufzählung sind konzeptionell zu verfstehen. Die echten Datentypen und ggf. Formate (für Zahlen und Zeitpunkte) für die Speicherung werden in der Implementierung festgelegt.
+
+Beispiele:
+Netto-Gewicht 
+Beleuchtungsmodell
+]EN_ENTI_COMMENT]
+[DE_ENTI_COMMENT[
+Beschreibung des Wertebereichs eines (oder mehrerer) Attributs.
+
+Die Typen Numerisch, Text, Zeitpunkt oder Aufzählung sind konzeptionell zu verfstehen. Die echten Datentypen und ggf. Formate (für Zahlen und Zeitpunkte) für die Speicherung werden in der Implementierung festgelegt.
+
+Beispiele:
+Netto-Gewicht 
+Beleuchtungsmodell 
+]DE_ENTI_COMMENT]
+]]></notes>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 <item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
@@ -24,12 +44,26 @@ Beleuchtungsmodell ]]></comment>
 <normalForm>Third</normalForm>
 <synonym>Merkmal</synonym>
 <createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="DE_ENTI_NAME" value="Domäne"/>
+<property name="DE_ENTI_SYNONYM" value="Merkmal"/>
+<property name="EN_ENTI_NAME" value="*DE* Domäne"/>
+<property name="EN_ENTI_SYNONYM" value="*DE* Merkmal"/>
+</propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Name [L]" id="80ECD913-F2CD-DD01-BC96-70FDEC06AB21">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-22 14:50:13 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 <item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
@@ -43,6 +77,8 @@ Beleuchtungsmodell ]]></comment>
 <property name="AP Typ" value="."/>
 <property name="AP usage" value="."/>
 <property name="CRM-Salesforce" value="."/>
+<property name="DE_ATTR_NAME" value="Name [L]"/>
+<property name="EN_ATTR_NAME" value="*DE* Name [L]"/>
 <property name="ERP" value="."/>
 <property name="EXCEL ColumnName" value="."/>
 <property name="Excel" value="."/>
@@ -58,8 +94,16 @@ Beleuchtungsmodell ]]></comment>
 <Attribute name="Beschreibung [L]" id="5475B516-9581-9D04-BF8D-8C8476B28CD4">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-22 14:50:13 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 <item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
@@ -73,6 +117,8 @@ Beleuchtungsmodell ]]></comment>
 <property name="AP Typ" value="."/>
 <property name="AP usage" value="."/>
 <property name="CRM-Salesforce" value="."/>
+<property name="DE_ATTR_NAME" value="Beschreibung [L]"/>
+<property name="EN_ATTR_NAME" value="*DE* Beschreibung [L]"/>
 <property name="ERP" value="."/>
 <property name="EXCEL ColumnName" value="."/>
 <property name="Excel" value="."/>
@@ -89,8 +135,16 @@ Beleuchtungsmodell ]]></comment>
 <createdBy>stb</createdBy>
 <createdTime>2018-06-23 13:38:02 UTC</createdTime>
 <comment><![CDATA[Regel über die Werte einer Domäne, die nicht mit einfachen min/max o.ä. beschrieben werden können.]]></comment>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+*DE* Regel über die Werte einer Domäne, die nicht mit einfachen min/max o.ä. beschrieben werden können.
+]EN_ATTR_COMMENT]
+[DE_ATTR_COMMENT[
+Regel über die Werte einer Domäne, die nicht mit einfachen min/max o.ä. beschrieben werden können.
+]DE_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 <item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
@@ -104,6 +158,8 @@ Beleuchtungsmodell ]]></comment>
 <property name="AP Typ" value="."/>
 <property name="AP usage" value="."/>
 <property name="CRM-Salesforce" value="."/>
+<property name="DE_ATTR_NAME" value="Business Rule"/>
+<property name="EN_ATTR_NAME" value="*DE* Business Rule"/>
 <property name="ERP" value="."/>
 <property name="EXCEL ColumnName" value="."/>
 <property name="Excel" value="."/>
@@ -123,6 +179,7 @@ Beleuchtungsmodell ]]></comment>
 <createdTime>2018-06-22 14:50:13 UTC</createdTime>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 <item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>

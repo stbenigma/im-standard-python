@@ -1,37 +1,42 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="45E227D1-6297-8407-A748-B47A48170198" name="WERTEBEREICHGRUPPEN">
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="45E227D1-6297-8407-A748-B47A48170198" name="DOMAINGROUP_MEMBERS">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 15:43:05 UTC</createdTime>
-<comment><![CDATA[Es gibt Attribute, die aus mehreren Bestandteilen bestehen, aber für eine Entität wie ein Attribut angesehen werden (können).
-Die Bestandteile dieser Attributgruppe treten immer gemeinsam auf.
-Dass ein Attribut Teilwerte enthält, für die man sich separat interessiert, verletzt im Grundsatz die 1. Normalform. Wenn aber die Elemente einer Attributgruppe selber Attribute sind und die Gruppe als Platzhalter von mehreren Attributen verstanden werden kann, ist diese Verletzung auflösbar.
+<comment><![CDATA[There are attributes, consisting of elements, but in the entity they are treated like one attribute.
+Those elements always come together
+Examples:
+   coordinates consisting for X and Y dimension (or longitude and lattitude)
+   houseidentification consisting of streetname and housenumber
+   timeperiod consisting of startdate and enddate (or startdate and duration)
+   
+A group element has a name, an optionality and a domain.
+They can be implemented as columns (like attributes are). In this case they inherit all properties of the attribute associated with the group domain.
+Or they can be implemented as compound (structured) type, it the dbms allows this.
 
-Beispiele:
-Telefon-Nr: bestehend aus Landesvorwahl und Rufnummer
-Koordinaten bestehend aus X und Y-Koordinate (bzw. Westliche länge und nördliche Breite)
-Hotelzimmer-Nr bestehend aus Stockwerk und ZimmerNr (ACHTUNG: nicht 1. Stelle = Stockwerk, sondern 1 Feld Stockwerk und 1 Feld ZimmerNr)
-Flugkennung bestehend aus Fluggesellschaft kürzel und Flugnummer (LX 247)]]></comment>
+]]></comment>
 <generatorID>6D701BFA-96C8-4476-67E2-B0821BCC7224</generatorID>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <ordsAlias>wertebereichgruppe</ordsAlias>
-<abbreviation>WBGR</abbreviation>
+<abbreviation>DGRM</abbreviation>
 <allowColumnReorder>false</allowColumnReorder>
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
-<Column name="WBGR_ID" id="22EEC791-54BC-61F8-95AD-3B3CC5D385C6">
+<Column name="DGRM_ID" id="01ABADCE-7585-17D9-77BC-D465C4FD0082">
 <createdBy>stb</createdBy>
-<createdTime>2020-02-04 15:43:05 UTC</createdTime>
+<createdTime>2020-08-01 19:24:35 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
-<autoIncrementColumn>true</autoIncrementColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="451CB2FB-0790-F331-D23C-9503EAC8714B" referredColumn="9698F1F3-1EBE-8770-4F8C-4FFC3465A776"/>
+</associations>
 </Column>
-<Column name="WBGR_NAME" id="3ECC7B0A-015C-631C-4BDC-BA81B7A5B927">
+<Column name="DGRM_NAME" id="3ECC7B0A-015C-631C-4BDC-BA81B7A5B927">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 15:43:05 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -41,9 +46,10 @@ Flugkennung bestehend aus Fluggesellschaft kürzel und Flugnummer (LX 247)]]></c
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="WBGR_BESCHR" id="8BF05688-0A1B-6C14-3820-9F8D8746FC10">
+<Column name="DGRM_DESCR" id="8BF05688-0A1B-6C14-3820-9F8D8746FC10">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 15:43:05 UTC</createdTime>
+<comment><![CDATA[Description of domain groupos (subject to be translated)]]></comment>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
@@ -52,13 +58,24 @@ Flugkennung bestehend aus Fluggesellschaft kürzel und Flugnummer (LX 247)]]></c
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="WBGR_WRTB_ID_GRUPPE" id="37B7F7C4-52BF-89F5-A4E9-01DBB024E6FE">
+<Column name="DRGM_ID_MANDATORY" id="7833ED45-972A-E4A2-F6FD-3CCDBA5D0C0A">
+<createdBy>stb</createdBy>
+<createdTime>2020-08-02 14:55:15 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DGRM_DOMA_ID_GROUP" id="37B7F7C4-52BF-89F5-A4E9-01DBB024E6FE">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 15:43:05 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementColumn>true</autoIncrementColumn>
 <identityColumn>true</identityColumn>
@@ -68,13 +85,14 @@ Flugkennung bestehend aus Fluggesellschaft kürzel und Flugnummer (LX 247)]]></c
 <colAssociation fkAssociation="739B8E12-2F6E-1B4A-C94E-CA2A573C2C6E" referredColumn="E9756F49-315F-1F97-E181-07756840736D"/>
 </associations>
 </Column>
-<Column name="WBGR_WRTB_ID_MEMBER" id="AE736B96-FF28-B6C0-FB17-B1DFE85E93C7">
+<Column name="DGRM_DOMA_ID_MEMBER" id="AE736B96-FF28-B6C0-FB17-B1DFE85E93C7">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 15:43:05 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
@@ -82,7 +100,7 @@ Flugkennung bestehend aus Fluggesellschaft kürzel und Flugnummer (LX 247)]]></c
 <colAssociation fkAssociation="FDE226F9-B7CC-D019-45FC-3DF289525EB2" referredColumn="E9756F49-315F-1F97-E181-07756840736D"/>
 </associations>
 </Column>
-<Column name="WBGR_UC" id="AFB37924-17E3-293F-2C23-83F59E76CAE1">
+<Column name="DGRM_UC" id="AFB37924-17E3-293F-2C23-83F59E76CAE1">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 15:43:05 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -97,7 +115,7 @@ Flugkennung bestehend aus Fluggesellschaft kürzel und Flugnummer (LX 247)]]></c
 <property name="ctemplateID" value="F7EEFF47-7A42-2A3E-7DFC-D0558D6996B8"/>
 </propertyMap>
 </Column>
-<Column name="WBGR_DC" id="63CED501-375F-9279-6CF6-B4CA8856BF41">
+<Column name="DGRM_DC" id="63CED501-375F-9279-6CF6-B4CA8856BF41">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 15:43:05 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -110,7 +128,7 @@ Flugkennung bestehend aus Fluggesellschaft kürzel und Flugnummer (LX 247)]]></c
 <property name="ctemplateID" value="74D877A0-4C3B-63EE-06C5-071C7695907C"/>
 </propertyMap>
 </Column>
-<Column name="WBGR_UM" id="BE9548A3-88C8-F2F8-45DD-4BA7619D4BED">
+<Column name="DGRM_UM" id="BE9548A3-88C8-F2F8-45DD-4BA7619D4BED">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 15:43:05 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -125,7 +143,7 @@ Flugkennung bestehend aus Fluggesellschaft kürzel und Flugnummer (LX 247)]]></c
 <property name="ctemplateID" value="B2E17D53-C2F7-74D9-022D-5D63F3931519"/>
 </propertyMap>
 </Column>
-<Column name="WBGR_DM" id="2AC2F03F-41F2-009A-D74F-72114C5D6C23">
+<Column name="DGRM_DM" id="2AC2F03F-41F2-009A-D74F-72114C5D6C23">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 15:43:05 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -141,17 +159,17 @@ Flugkennung bestehend aus Fluggesellschaft kürzel und Flugnummer (LX 247)]]></c
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
-<ind_PK_UK id="AD414B3B-D145-3C98-B618-AED373D70AA7" name="WBGR_PK">
+<ind_PK_UK id="AD414B3B-D145-3C98-B618-AED373D70AA7" name="DGRM_PK">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 15:43:05 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <pk>true</pk>
 <indexState>Primary Constraint</indexState>
 <indexColumnUsage>
-<colUsage columnID="22EEC791-54BC-61F8-95AD-3B3CC5D385C6"/>
+<colUsage columnID="01ABADCE-7585-17D9-77BC-D465C4FD0082"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="DA9AF69D-01D6-74C0-2720-1675A362FA44" name="WBGR_WRTB_UK">
+<ind_PK_UK id="DA9AF69D-01D6-74C0-2720-1675A362FA44" name="DGRM_WRTB_UK">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 15:43:05 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -162,7 +180,7 @@ Flugkennung bestehend aus Fluggesellschaft kürzel und Flugnummer (LX 247)]]></c
 <colUsage columnID="3ECC7B0A-015C-631C-4BDC-BA81B7A5B927"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="22B9B6CC-DE72-AA8B-9B47-A1CC22DCC7CD" name="WBGR_WRTB_FK_GRUPPE">
+<ind_PK_UK id="22B9B6CC-DE72-AA8B-9B47-A1CC22DCC7CD" name="WBGR_DOMA_FK_GROUPT">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 15:43:05 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -172,7 +190,7 @@ Flugkennung bestehend aus Fluggesellschaft kürzel und Flugnummer (LX 247)]]></c
 <colUsage columnID="37B7F7C4-52BF-89F5-A4E9-01DBB024E6FE"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="C21F0509-E49D-142F-D45D-65485FFA02C0" name="WBGR_WRTB_FK_MEMBECR">
+<ind_PK_UK id="C21F0509-E49D-142F-D45D-65485FFA02C0" name="WBGR_DOMA_FK_MEMBER">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 15:43:05 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -180,6 +198,16 @@ Flugkennung bestehend aus Fluggesellschaft kürzel und Flugnummer (LX 247)]]></c
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
 <colUsage columnID="AE736B96-FF28-B6C0-FB17-B1DFE85E93C7"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="BD8FDEF1-8AED-6919-856D-144752A05AB0" name="DGRM_MODE_FK">
+<createdBy>stb</createdBy>
+<createdTime>2020-08-01 19:24:35 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="01ABADCE-7585-17D9-77BC-D465C4FD0082"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>

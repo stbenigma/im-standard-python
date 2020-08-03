@@ -1,16 +1,41 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="CBDBE037-EBA0-63C4-2055-4679E23FA608" name="SPRACHTEXT">
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="CBDBE037-EBA0-63C4-2055-4679E23FA608" name="LANG_TEXTS">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
-<comment><![CDATA[Text interpretiert in Sprache, die als Textstprachen markiert ist.]]></comment>
+<comment><![CDATA[Translation of attribute values in all desired languages.
+
+Attributes currently under translation:
+ENTITIES
+-	ENTI_NAME
+-	ENTI_DESCR
+-	ENTI_TOOLTIP
+-	ENTI_DISPL_NAME
+SYNONYMS
+-	SYNO_NAME
+ATTRIBUTES
+-	ATTR_DISPL_NAME
+-	ATTR_TOOLTIP
+-	ATTR_DESCR
+RELATIONS
+-	RELA_ASSOC_FROM_TO
+-	RELA_ASSOC_TO_FROM
+DOMAIN_VALUES
+-	DOVA_DISPL
+-	DOVA_DESCR
+USER_DEFINED_PROPERTIES
+-	UDPR_DESCR
+BUSINESS_RULE
+-	BURU_DESCR
+-	BURU_ERRMSG]]></comment>
 <generatorID>7B049F95-4FBA-1D5D-3942-99C0982251F1</generatorID>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
-<abbreviation>SPTX</abbreviation>
+<ordsAlias>sprachtext</ordsAlias>
+<abbreviation>LGTX</abbreviation>
 <allowColumnReorder>false</allowColumnReorder>
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
-<Column name="SPTX_ID" id="08F8AC69-CDA0-CF94-B88A-6535479538DC">
+<Column name="LGTX_ID" id="08F8AC69-CDA0-CF94-B88A-6535479538DC">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -23,10 +48,10 @@
 <autoIncrementCycle>false</autoIncrementCycle>
 <autoIncrementSequenceName>INFRA_SEQ</autoIncrementSequenceName>
 </Column>
-<Column name="SPTX_ATTRNAME" id="8CD76328-083B-70BC-720A-345E1A2F80D7">
+<Column name="LGTX_ATTRNAME" id="8CD76328-083B-70BC-720A-345E1A2F80D7">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
-<comment><![CDATA[Name des Attributs im Modellelement für das der Text steht]]></comment>
+<comment><![CDATA[Name of attribute translated in this value]]></comment>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
@@ -34,10 +59,10 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="SPTX_TEXT" id="6CC0B2C6-51A0-76D0-C4DB-8A6439203236">
+<Column name="LGTX_TEXT" id="6CC0B2C6-51A0-76D0-C4DB-8A6439203236">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
-<comment><![CDATA[Text interpretierbar in der Sprache, gehorcht den Regeln des Sprachtextwertebereichs]]></comment>
+<comment><![CDATA[Text in language for a attribute of a model-element]]></comment>
 <generatorID>BBF26E99-27D7-208B-5FCE-538468111F80</generatorID>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <use>0</use>
@@ -46,7 +71,7 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="SPTX_SPRA_ID" id="5769708B-648C-883F-B14C-0AE2D12B7D75">
+<Column name="LGTX_LANG_ID" id="5769708B-648C-883F-B14C-0AE2D12B7D75">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -60,10 +85,11 @@
 <colAssociation fkAssociation="95CECC03-DD38-2234-3947-ED0F6B2EDB29" referredColumn="EA45665A-1FBD-1480-B9FE-D8E4AD733D95"/>
 </associations>
 </Column>
-<Column name="SPTX_MODE_ID" id="D372DB38-7EB3-2470-DBDD-16D27A8B21E5">
+<Column name="LGTX_MODE_ID" id="D372DB38-7EB3-2470-DBDD-16D27A8B21E5">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
 <use>0</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
 <domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
@@ -74,7 +100,7 @@
 <colAssociation fkAssociation="87EF3879-37F5-A6B9-0C46-078D62A77773" referredColumn="9698F1F3-1EBE-8770-4F8C-4FFC3465A776"/>
 </associations>
 </Column>
-<Column name="SPTX_UC" id="44AA2BD4-1071-F3BE-64EB-C1C0D04ADB2D">
+<Column name="LGTX_UC" id="44AA2BD4-1071-F3BE-64EB-C1C0D04ADB2D">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -89,7 +115,7 @@
 <property name="ctemplateID" value="F7EEFF47-7A42-2A3E-7DFC-D0558D6996B8"/>
 </propertyMap>
 </Column>
-<Column name="SPTX_DC" id="271C4483-5EAE-E03C-2674-A32E3369DC18">
+<Column name="LGTX_DC" id="271C4483-5EAE-E03C-2674-A32E3369DC18">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -102,7 +128,7 @@
 <property name="ctemplateID" value="74D877A0-4C3B-63EE-06C5-071C7695907C"/>
 </propertyMap>
 </Column>
-<Column name="SPTX_UM" id="A3B18998-10EF-0266-CBCF-EB4282485062">
+<Column name="LGTX_UM" id="A3B18998-10EF-0266-CBCF-EB4282485062">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -117,7 +143,7 @@
 <property name="ctemplateID" value="B2E17D53-C2F7-74D9-022D-5D63F3931519"/>
 </propertyMap>
 </Column>
-<Column name="SPTX_DM" id="1B288681-A376-883A-D7A3-C0FDBA1DD508">
+<Column name="LGTX_DM" id="1B288681-A376-883A-D7A3-C0FDBA1DD508">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -133,7 +159,7 @@
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
-<ind_PK_UK id="27D5B90E-4860-BDD8-DC57-427773177C3A" name="SPTX_PK">
+<ind_PK_UK id="27D5B90E-4860-BDD8-DC57-427773177C3A" name="LGTX_PK">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -143,7 +169,7 @@
 <colUsage columnID="08F8AC69-CDA0-CF94-B88A-6535479538DC"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="61E0DCD4-7C08-DD3A-E520-09493ADAEAD5" name="SPTX_UK">
+<ind_PK_UK id="61E0DCD4-7C08-DD3A-E520-09493ADAEAD5" name="LGTX_UK">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <generatorID>FFA8D864-9FDC-E968-AE27-68EA2F35F87C</generatorID>
@@ -156,24 +182,6 @@
 <colUsage columnID="8CD76328-083B-70BC-720A-345E1A2F80D7"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="8662A1A5-8E24-451D-65CB-92BD6073E316" name="SPTX__IDX">
-<createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:18:16 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
-<colUsage columnID="5769708B-648C-883F-B14C-0AE2D12B7D75"/>
-</indexColumnUsage>
-</ind_PK_UK>
-<ind_PK_UK id="6D480193-8992-D332-FB6A-15CF747C4F09" name="SPTX__IDXV1">
-<createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:18:16 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
-<colUsage columnID="D372DB38-7EB3-2470-DBDD-16D27A8B21E5"/>
-</indexColumnUsage>
-</ind_PK_UK>
 <ind_PK_UK id="BF752995-47C1-8917-DD42-4CCE819B504E" name="SPTX_MODE_FK">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:17 UTC</createdTime>
@@ -184,7 +192,7 @@
 <colUsage columnID="D372DB38-7EB3-2470-DBDD-16D27A8B21E5"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="7FD91564-21AF-6E5A-6F35-8B5A6874D96A" name="SPTX_SPRA_FK">
+<ind_PK_UK id="7FD91564-21AF-6E5A-6F35-8B5A6874D96A" name="SPTX_LANG_FK">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:17 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>

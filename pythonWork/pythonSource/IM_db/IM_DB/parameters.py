@@ -7,6 +7,8 @@ ODMIMDIREC:str = 'odmimdirec'
 ODMBASEDIREC:str = 'odmbasedirec'
 DBDEFAULTLANG:str = 'dbdefaultlang'
 DBLANGUAGES:str = 'dblanguages'
+LOGFILEDIREC:str = 'logfiledirec'
+LOGFILEPATH:str = 'logfilepath'
 
 paramFileExension:str = ".params"
 parameter = {
@@ -47,10 +49,22 @@ parameter = {
             , 'odmtabledirec': 'table/'
             , 'odmsubviewsdirec': 'subviews/'
             , 'odmfkdirec': 'foreignkey/'
+            , LOGFILEDIREC: None
+            , LOGFILEPATH: None
 }
 def nvl(p_val1,p_val2):
     return p_val1 if p_val1 is not None else p_val2
 
+def logfilepath(newval:str=None):
+    if newval is None:
+        return parameter[LOGFILEPATH]
+    else:
+        parameter[LOGFILEPATH] = newval
+def logfiledirec(newval:str=None):
+    if newval is None:
+        return parameter[LOGFILEDIREC]
+    else:
+        parameter[LOGFILEDIREC] = newval
 def dbFilePath(newval=None):
     if newval is None:
         return parameter['dbfilepath']
@@ -317,6 +331,12 @@ def filldefaultparams():
         odmDomainsFilePath(newval=odmIMDirec()+odmKonfDirec()+odmDomainsFile())
     if webDirec() is None:
         webDirec(newval=localbasedirec()+webDefaultDirec())
+    if logfiledirec() is None:
+        logfiledirec(localbasedirec())
+    if logfilepath() is None:
+        logfilepath(logfiledirec()+odmModelName()+'.log')
+
+
 #filldefaultparams
 
 def suche1file(p_direc,p_pattern='.*'):
@@ -377,6 +397,7 @@ def initparam(p_callarg):
         odmModelName(newval=modelname)
         paramfile = p_callarg + modelname + paramFileExension
     else:
+        print (my_file)
         raise Exception("parameter is neither file nor directory")
     if os.path.exists(paramfile):
         liesparamfile(p_filepath = paramfile)

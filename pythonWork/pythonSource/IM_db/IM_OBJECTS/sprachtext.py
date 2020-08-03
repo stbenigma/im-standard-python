@@ -1,8 +1,22 @@
-from IM_DB import dbDML
+from IM_DB import dbDML,dbDDL
 from .baseobject import Baseobject
-from .sprache import spraLookup
 
 class Sprachtext(Baseobject):
+    EN:str='en'
+    DE:str='de'
+    FR:str='fr'
+    ENTI_NAME:str='ENTI_NAME'
+    ENTI_COMMENT:str='ENTI_COMMENT'
+    ATTR_NAME:str='ATTR_NAME'
+    ATTR_COMMENT:str='ATTR_COMMENT'
+    WRTB_NAME:str='WRTB_NAME'
+    RELA_TEXT_FROM:str='RELA_TEXT_FROM'
+    RELA_TEXT_TO:str='RELA_TEXT_TO'
+    SYNO_NAME:str='SYNO_NAME'
+
+    __greportLang:str = None
+
+
     _tablename:str ='sprachtexte'
     _prefix:str ='sptx'
     _columnlist:list = ['sptx_id', 'sptx_attrname', 'sptx_text', 'sptx_spra_id'
@@ -34,6 +48,16 @@ CREATE TABLE sprachtexte(
     									   REFERENCES sprachen(spra_id)	
         )"""
                             )
+
+        dbDDL.dropView("SPRAATTR");
+        dbDDL.createTable("""
+                    create view spraattr as
+        	        select sptx_text,spra_id,spra_iso_code2,sptx_mode_id,sptx_attrname
+        	          from sprachtexte 
+        	          join sprachen on spra_id = sptx_spra_id
+        	          """);
+    #createtable
+
     @staticmethod
     def delete():
         Baseobject.delete(Sprachtext._tablename)
@@ -42,10 +66,17 @@ CREATE TABLE sprachtexte(
     def select(pwhere=None,porderby=None):
         return Baseobject.select(pclass=Sprachtext
                                 ,pwhere=pwhere,porderby=porderby)
-#Sprachtext
+    @staticmethod
+    def sptxistleer():
+        data = dbDML.select("""select count(*) from sprachtexte""")
+        return data[0][0] == 0
 
-def fuelledefaulttexte(plang):
-    dbDML.exec("""insert into sprachtexte 
+    @staticmethod
+    def filldefaulttext(plang):
+        """füllt sämtliche übersetzten Elemente in die Sprachtexte der Defaultsprache ein.
+           D.h. alle übersetzten Attribute haben mind. in der Defaultsprache einen  Eintrag.
+        """
+        dbDML.exec("""insert into sprachtexte 
                     (sptx_attrname,  sptx_text
                    ,sptx_mode_id, sptx_uc, sptx_dc
                    , sptx_spra_id)
@@ -60,12 +91,11 @@ def fuelledefaulttexte(plang):
                     from modellelement
                     join entitaeten on enti_id = mode_enti_id                    
                     union all
-                   select 'ENTI_SYNONYM' attrname, group_concat(syno_name,', ') text 
-                        ,enti_id,enti_uc,enti_dc
+                   select 'ENTI_SYNONYM' attrname, syno_name text 
+                        ,mode_id,enti_uc,enti_dc
                     from modellelement
                     join synonyme on syno_id = mode_syno_id
-                    join entitaeten on enti_id = syno_enti_id
-                    group by enti_id,enti_uc,enti_dc                    
+                    join entitaeten on enti_id  = syno_enti_id
                     union all
                    select 'ATTR_COMMENT' attrname, attr_beschr text 
                         ,mode_id,attr_uc,attr_dc
@@ -80,52 +110,288 @@ def fuelledefaulttexte(plang):
                    select 'RELA_TEXT_FROM' attrname, bezi_assoc_von_zu text 
                         ,mode_id,bezi_uc,bezi_dc
                     from modellelement
-                    join beziehungen on bezi_id = mode_bezi_id 
+                    join beziehungen on bezi_id = mode_rela_id 
                     union all                
                    select 'RELA_TEXT_TO' attrname, bezi_assoc_zu_von text 
                         ,mode_id,bezi_uc,bezi_dc
                     from modellelement
-                    join beziehungen on bezi_id = mode_bezi_id 
+                    join beziehungen on bezi_id = mode_rela_id
+                    union all 
+                   select 'WRTB_NAME' attrname, wrtb_name text 
+                        ,mode_id,wrtb_uc,wrtb_dc
+                    from modellelement
+                    join wertebereiche on wrtb_id = mode_wrtb_id 
                 )
-                cross join (select {})
-                where text is not null
+                cross join (select {} as spra_id)
                    """.format(plang))
-#fuelledefaulttexte
+    #filldefaulttext
 
-def insertSprachtexte(ptexte, pmodeid, plang):
-#    sprachtexte = [[vonText,creby,crety,'TEXT_FROM']
-#                  ,[zuText,creby,crety,'TEXT_TO']]
+    @staticmethod
+    def insertsprachtexte(pudpthema):
+        """übertrage alle Sprachtexte (ausser in der Default Sprache aus UDP in die Sprachtexte
+        """
+        lsql = """insert  into sprachtexte (sptx_attrname, sptx_text, sptx_spra_id, sptx_mode_id, sptx_uc, sptx_dc)
+            select attrname,bdwe_wert,spra_id,bdwe_mode_id,bdwe_uc,bdwe_dc
+            from (select bdwe_wert,
+                      bdwe_mode_id,
+                      lower(substr(bdeg_name, 1, 2)) spracheiso2,
+                      substr(bdeg_name, 4)           attrname
+                ,bdwe_uc,bdwe_dc
+               from benudef_wert
+                join benudef_eigenschaft on bdeg_id = bdwe_bdeg_id
+            where bdeg_thema = '{}'
+            )
+        join sprachen on spra_iso_code2 = spracheiso2
+        where spra_ist_modellsprache = 'FALSE'""".format(pudpthema)
+        dbDML.exec(lsql)
+    # insertsprachTexte
 
-    p_defaultlang = dbParam.dbDefaultLang if p_defaultlang is None else p_defaultlang
-    values = [v for v in p_texte]
-    # (values)
-    lsql= """insert into sprachtexte 
-                    (sptx_attrname,  sptx_text
-                   ,sptx_mode_id, sptx_uc, sptx_dc
-                   , sptx_spra_id)
-                  select  attrname, case  when defaultlang = spra_iso_code2 then '' 
-                                    else '*'|| defaultlang ||'* ' end
-                                    || ? text
-                    ,modeid, ? uc,? dc, spra_id
-                  from sprachen
-                  cross join (select '{}' modeid, '{}' defaultlang,  ? attrname)
-                  where not exists 
-                    (select 1 from sprachtexte
-                        where sptx_spra_id = spra_id
-                         and sptx_mode_id = modeid
-                         and  sptx_attrname = attrname
-                    ) 
-                """.format( p_modeid,p_defaultlang)
-    dbDML.execmany(lsql, values)
+    @staticmethod
+    def getsprachtexte(pattrname,pmodeid):
+        lsql = """with sptx as 
+            (select sptx_spra_id,sptx_text
+             from sprachtexte
+            where sptx_attrname = '{}'
+            and sptx_mode_id = {}
+            )
+        select spra_iso_code2,
+            case when sptx.sptx_text is not NULL
+                then sptx.sptx_text
+                else sptxdef.sptx_text
+                end text
+        from sprachen
+        left join sptx as sptx on sptx.sptx_spra_id = spra_id
+        left join sptx as sptxdef on sptxdef.sptx_spra_id = spra_spra_id""".format(pattrname,pmodeid if pmodeid is not None else 'NULL')
+        data = dbDML.select(lsql)
+        retval = {d[0]:d[1] for d in data}
+        return retval
+    #getsprachtexte
 
-# die Originalnamen werden überschrieben
-    l_sql = """ update sprachtexte
-                set sptx_text = ?
-                   ,sptx_um = ?
-                   ,sptx_dm = ?
-                where sptx_spra_id = {}
-                and sptx_attrname = ?
-                and sptx_mode_id = {}
-                """.format(sprache.spraLookup(p_defaultlang),p_modeid)
-    dbDML.execmany(l_sql, values)
-#insertSprachTexte
+
+    __translNameEN = {'Anzeige': 'Display'
+        , 'Arc': 'Arc'
+        , 'Anzeige': 'Display'
+        , 'Attribut': 'Attribute'
+        , 'Attribut(e)': 'Attribute(s)'
+        , 'Attribute': 'Attributes'
+        , 'Attributgruppe': 'Attribut group'
+        , 'auf Diagramm(en)': 'on diagram(s)'
+        , 'Author': 'Author'
+        , 'Beschreibung': 'Description'
+        , 'Beziehung': 'Relationship'
+        , 'Beziehung(en)': 'relationship(s)'
+        , 'Beziehungen': 'Relationships'
+        , 'Benutzerdefinerte Eigenschaften': 'User defined properties'
+        , 'Bild': 'Picture'
+        , 'Binär': 'Binary'
+        , 'Datentyp': 'Datatype'
+        , 'Deskriptor': 'descriptor'
+        , 'Domänen': 'Domains'
+        , 'Diagramm': 'Diagram'
+        , 'Diagramme': 'Diagrams'
+        , 'Dokument': 'Document'
+        , 'Dokumente': 'Documents'
+        , 'Domäne': 'Domain'
+        , 'Einheit': 'Unit'
+        , 'Element': 'Element'
+        , 'Elemente': 'Elements'
+        , 'Entität': 'Entity'
+        , 'Entität/Tabelle': 'Entity/Table'
+        , 'Entitäten': 'Entities'
+        , 'erstellt': 'created'
+        , 'Film': 'Video'
+        , 'geändert': 'updated'
+        , 'Gruppenattribut': 'Groupattribute'
+        , 'Grafik': 'Graphic'
+        , 'Granularität': 'Granularity'
+        , 'historisiert': 'historicized'
+        , 'in Schlüssel': 'within key'
+        , 'Informationsmodell {} (Stand: {})': 'Informationmodel {} (Status: {})'
+        , 'Informationen': 'Informations'
+        , 'Inhaltstyp': 'Content type'
+        , 'Ja': 'Yes'
+        , 'Jahr': 'year'
+        , 'Max. Länge': 'Max. length'
+        , 'Max. Wert': 'Max. value'
+        , 'Mehr': 'more'
+        , 'Millisekunde': 'millisecond'
+        , 'Minute': 'minute'
+        , 'Min. Wert': 'Min. value'
+        , 'Monat': 'month'
+        , 'Nachkommast.': 'digits after period'
+        , 'Name': 'Name'
+        , 'Nein': 'No'
+        , 'Nr': 'Nr'
+        , 'Numerisch': 'Numerical'
+        , 'Pflichtattribut': 'Attribute of duty'
+        , 'Quartal': 'quarter'
+        , 'Referenziert von': 'Referenced by'
+        , 'Relational Mapping (Tabellen)': 'Relational Mapping (tables)'
+        , 'Rundungseinh.': 'rounding unit'
+        , 'Schlüssel': 'Key'
+        , 'Sekunde': 'second'
+        , 'Semester': 'half-year'
+        , 'Sort': 'Sort'
+        , 'Stunde': 'hour'
+        , 'Subentität': 'Subentity'
+        , 'Subentitäten': 'Subentities'
+        , 'Suchbegriff': 'search key'
+        , 'Superentität': 'Superentity'
+        , 'Synonyme': 'Synonyms'
+        , 'Syntaxregel': 'Syntax rule'
+        , 'Systeme': 'Systems'
+        , 'Tag': 'day'
+        , 'Tabelle': 'Table'
+        , 'Tabellen': 'Tables'
+        , 'Technischer Name': 'Technical Name'
+        , 'Text': 'Text'
+        , 'Ton': 'Sound'
+        , 'Tooltip': 'Tooltip'
+        , 'Treffer': 'Hits'
+        , 'Typ': 'Type'
+        , 'UDP-Matrix': 'UDP-Matrix'
+        , 'übersetzt': 'translated'
+        , 'Übersetzungen': 'Translations'
+        , 'Unterdokumente': 'Children'
+        , "Vaterdokument": "Parent"
+        , 'verschlüsselt': 'encrypted'
+        , 'Verwendet für Attribute': 'Used for attributes'
+        , 'Verwendet für Columns': 'Used for columns'
+        , 'Verwendet in Attributgruppen': 'Used in attribute groups'
+        , 'Verwendet von': 'used by'
+        , 'Vorkommast.': 'digits before period'
+        , 'Wert': 'Value'
+        , 'Wertebereich': 'Domain'
+        , 'Wertebereiche': 'Domains'
+        , 'Werteliste': 'List of values'
+        , 'wiederholt': 'repeated'
+        , 'Woche': 'week'
+        , 'Zeitpunkt': 'Point in Time'
+                      }
+    __translNameFR = {"Anzeige": "Affichage"
+        , "Arc": "Arc"
+        , "Attribut": "Attribut"
+        , "Attribut(e)": "Attribut(s)"
+        , "Attribute": "Attributs"
+        , "Attributgruppe": "Groupe d'attributs"
+        , "auf Diagramm(en)": "sur ce diagramme(s)"
+        , "Autor": "Auteur"
+        , "Beschreibung": "Déscription"
+        , "Beziehung": "Relation"
+        , "Beziehung(en)": "Relation(s)"
+        , "Beziehungen": "Relations"
+        , "Benutzerdefinerte Eigenschaften": "Propriétés définies par l'utilisateur"
+        , "Bild": "Image"
+        , "Binär": "Binaire"
+        , "Datentyp": "Type de données"
+        , "Deskriptor": "Descripteur"
+        , "Domänen": "Domaines"
+        , "Diagramm": "Diagramme"
+        , "Diagramme": "Diagrammes"
+        , "Domäne": "Domaine"
+        , "Dokument": "Document"
+        , "Dokumente": "Documents"
+        , "Einheit": "Unité"
+        , "Element": "Élément"
+        , "Elemente": "Éléments"
+        , "Entität": "Entité"
+        , "Entität/Tabelle": "Entité/Tableau"
+        , "Entitäten": "Entités"
+        , "erstellt": "Élaboré"
+        , "Film": "Film"
+        , "geändert": "changé"
+        , "Gruppenattribut": "Attribut de groupe"
+        , "Grafik": "Graphique"
+        , "Granularität": "Granularité"
+        , "historisiert": "historisé"
+        , "in Schlüssel": "dans une clef"
+        , "Informationsmodell {} (Stand {})": "Modèle d'informations {} (État {})"
+        , "Informationen": "Informations"
+        , "Inhaltstyp": "Type de contenu"
+        , "Ja": "Oui"
+        , "Jahr": "Année"
+        , "Max. Länge": "Longueur max."
+        , "Max. Wert": "Valeur max."
+        , "Mehr": "Plus"
+        , "Millisekunde": "Milliseconde"
+        , "Minute": "Minute"
+        , "Min. Wert": "Valeur min."
+        , "Monat": "Mois"
+        , "Nachkommastellen": "Décimales"
+        , "Name": "Nom"
+        , "Nein": "Non"
+        , "Nr": "N°"
+        , "Numerisch": "Numérique"
+        , "Pflichtattribut": "Attribut obligatoire"
+        , "Quartal": "Trimestre"
+        , 'Referenziert von': 'Référencé par'
+        , "Relational Mapping (Tabellen)": "Relational Mapping (tables)"
+        , "Rundungseinheit": "Unité de l'arrondi"
+        , "Schlüssel": "Clef"
+        , "Sekunde": "Seconde"
+        , "Semester": "Semestre"
+        , "Sort": "Sorte"
+        , "Stunde": "Heure"
+        , "Subentität": "Sous-entité"
+        , "Subentitäten": "Sous-entités"
+        , "Suchbegriff": "Clef de reherche"
+        , "Superentität": "Superentité"
+        , "Synonyme": "Synonyme"
+        , "Syntaxregel": "Règle syntaxique"
+        , "Systeme": "Systèmes"
+        , 'Tabelle': 'Table'
+        , 'Tabellen': 'Tables'
+        , "Tag": "Jour"
+        , "Technischer Name": "Terme technique"
+        , "Text": "Texte"
+        , "Ton": "Ton"
+        , "Tooltip": "Info-bulle"
+        , "Treffer": "Occurrence"
+        , "Typ": "Type"
+        , "UDP-Matrix": "Matrice UDP"
+        , "übersetzt": "traduit"
+        , "Übersetzungen": "Traductions"
+        , 'Unterdokumente': 'Enfants'
+        , "Vaterdokument": "Document père"
+        , "verschlüsselt": "Chiffré"
+        , "Verwendet für Attribute": "Utilisé par les attributs"
+        , 'Verwendet für Columns': 'Utilisé par les columns'
+        , "Verwendet in Attributgruppen": "Utilisé dans les groupes d'attributs"
+        , "Verwendet von": "Utilisé pour"
+        , "Vorkommastellen": "Position avant la décimale"
+        , "Wert": "Valeur"
+        , "Wertebereich": "Domaine des valeurs"
+        , "Wertebereiche": "Domaines des valeurs"
+        , "Werteliste": "Liste des Valeur"
+        , "wiederholt": "répété"
+        , "Woche": "Semaine"
+        , "Zeitpunkt": "Instant"
+                      }
+    @staticmethod
+    def transl(pname):
+        if (Sprachtext.__greportLang == Sprachtext.DE):
+            return pname
+        elif (Sprachtext.__greportLang == Sprachtext.EN):
+            try:
+                return Sprachtext.__translNameEN[pname]
+            except:
+                return pname
+        elif (Sprachtext.__greportLang == Sprachtext.FR):
+            try:
+                return Sprachtext.__translNameFR[pname]
+            except:
+                return pname
+        else:
+            return pname
+    # transl
+
+    @staticmethod
+    def reportLang(newval=None):
+        if (newval is None):
+            return Sprachtext.__greportLang
+        else:
+            Sprachtext.__greportLang = newval
+    # reportLang
+
+#Sprachtext
+

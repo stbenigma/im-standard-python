@@ -4,8 +4,18 @@
 <createdTime>2018-06-23 13:39:01 UTC</createdTime>
 <comment><![CDATA[Geschäftsregel, die Attributwerte auf Regelkonformität prüft.
 Diese Regeln sind passiv. D.h. es wird überprüft, ob der Wert (ggf. im Zusammenhang mit anderen Werten dieser oder anderer Entitäten) aus fachlicher Sicht korrekt ist.]]></comment>
+<notes><![CDATA[[EN_ENTI_COMMENT[
+*DE* Geschäftsregel, die Attributwerte auf Regelkonformität prüft.
+Diese Regeln sind passiv. D.h. es wird überprüft, ob der Wert (ggf. im Zusammenhang mit anderen Werten dieser oder anderer Entitäten) aus fachlicher Sicht korrekt ist.
+]EN_ENTI_COMMENT]
+[DE_ENTI_COMMENT[
+Geschäftsregel, die Attributwerte auf Regelkonformität prüft.
+Diese Regeln sind passiv. D.h. es wird überprüft, ob der Wert (ggf. im Zusammenhang mit anderen Werten dieser oder anderer Entitäten) aus fachlicher Sicht korrekt ist.
+]DE_ENTI_COMMENT]
+]]></notes>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 <item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
@@ -18,12 +28,26 @@ Diese Regeln sind passiv. D.h. es wird überprüft, ob der Wert (ggf. im Zusamme
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
 <createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="DE_ENTI_NAME" value="Business Rule"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_NAME" value="*DE* Business Rule"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+</propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Name" id="D4367DA7-6021-7E29-BEFC-2F6B66AB1763">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-23 13:39:01 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 <item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
@@ -37,6 +61,8 @@ Diese Regeln sind passiv. D.h. es wird überprüft, ob der Wert (ggf. im Zusamme
 <property name="AP Typ" value="."/>
 <property name="AP usage" value="."/>
 <property name="CRM-Salesforce" value="."/>
+<property name="DE_ATTR_NAME" value="Name"/>
+<property name="EN_ATTR_NAME" value="*DE* Name"/>
 <property name="ERP" value="."/>
 <property name="EXCEL ColumnName" value="."/>
 <property name="Excel" value="."/>
@@ -52,8 +78,16 @@ Diese Regeln sind passiv. D.h. es wird überprüft, ob der Wert (ggf. im Zusamme
 <Attribute name="Beschreibung" id="2B940275-6B40-64A6-6459-46A41243F4EF">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-23 13:40:18 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 <item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
@@ -67,6 +101,8 @@ Diese Regeln sind passiv. D.h. es wird überprüft, ob der Wert (ggf. im Zusamme
 <property name="AP Typ" value="."/>
 <property name="AP usage" value="."/>
 <property name="CRM-Salesforce" value="."/>
+<property name="DE_ATTR_NAME" value="Beschreibung"/>
+<property name="EN_ATTR_NAME" value="*DE* Beschreibung"/>
 <property name="ERP" value="."/>
 <property name="EXCEL ColumnName" value="."/>
 <property name="Excel" value="."/>
@@ -83,8 +119,16 @@ Diese Regeln sind passiv. D.h. es wird überprüft, ob der Wert (ggf. im Zusamme
 <createdBy>stb</createdBy>
 <createdTime>2018-06-23 13:40:24 UTC</createdTime>
 <comment><![CDATA[Regel, die Werte beschränken auf Grund von komplexeren Zusammenhängen]]></comment>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+*DE* Regel, die Werte beschränken auf Grund von komplexeren Zusammenhängen
+]EN_ATTR_COMMENT]
+[DE_ATTR_COMMENT[
+Regel, die Werte beschränken auf Grund von komplexeren Zusammenhängen
+]DE_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 <item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
@@ -97,6 +141,8 @@ Diese Regeln sind passiv. D.h. es wird überprüft, ob der Wert (ggf. im Zusamme
 <property name="AP Typ" value="."/>
 <property name="AP usage" value="."/>
 <property name="CRM-Salesforce" value="."/>
+<property name="DE_ATTR_NAME" value="Regel"/>
+<property name="EN_ATTR_NAME" value="*DE* Regel"/>
 <property name="ERP" value="."/>
 <property name="EXCEL ColumnName" value="."/>
 <property name="Excel" value="."/>
@@ -113,8 +159,16 @@ Diese Regeln sind passiv. D.h. es wird überprüft, ob der Wert (ggf. im Zusamme
 <createdBy>stb</createdBy>
 <createdTime>2018-06-23 13:40:55 UTC</createdTime>
 <comment><![CDATA[Meldung, bei Verletzung der Regel.]]></comment>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+*DE* Meldung, bei Verletzung der Regel.
+]EN_ATTR_COMMENT]
+[DE_ATTR_COMMENT[
+Meldung, bei Verletzung der Regel.
+]DE_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 <item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
@@ -128,6 +182,8 @@ Diese Regeln sind passiv. D.h. es wird überprüft, ob der Wert (ggf. im Zusamme
 <property name="AP Typ" value="."/>
 <property name="AP usage" value="."/>
 <property name="CRM-Salesforce" value="."/>
+<property name="DE_ATTR_NAME" value="Fehlermeldung [L]"/>
+<property name="EN_ATTR_NAME" value="*DE* Fehlermeldung [L]"/>
 <property name="ERP" value="."/>
 <property name="EXCEL ColumnName" value="."/>
 <property name="Excel" value="."/>
@@ -147,6 +203,7 @@ Diese Regeln sind passiv. D.h. es wird überprüft, ob der Wert (ggf. im Zusamme
 <createdTime>2018-06-23 13:39:01 UTC</createdTime>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 <item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>

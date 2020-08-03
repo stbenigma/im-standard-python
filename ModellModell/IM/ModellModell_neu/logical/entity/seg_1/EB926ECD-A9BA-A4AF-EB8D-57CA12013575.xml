@@ -11,8 +11,10 @@ Summary of entities in a graphical representation
 ]EN_ENTI_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="false"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <typeID>08251308-6816-56D4-1918-B126D2E844B0</typeID>
@@ -29,8 +31,10 @@ Summary of entities in a graphical representation
 <property name="Beispiele" value="Vertriebssicht / Preisgestaltung / bestehende Systeme"/>
 <property name="DE_ENTI_COMMENT" value="Zusammenfassung von Entitäten in einer grafischen Darstellung"/>
 <property name="DE_ENTI_NAME" value="Diagramm"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
 <property name="EN_ENTI_COMMENT" value="*DE* Zusammenfassung von Entitäten in einer grafischen Darstellung"/>
 <property name="EN_ENTI_NAME" value="Diagram"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Name [L]" id="49509F7F-1C52-6A13-93E0-246E01806DF9">
@@ -44,9 +48,11 @@ Summary of entities in a graphical representation
 ]EN_ATTR_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <importedID>4DA5699D-EE03-51A3-A977-DBA7D07B46CA</importedID>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="false"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
@@ -71,9 +77,11 @@ Summary of entities in a graphical representation
 ]EN_ATTR_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <importedID>CB902A8C-6CA4-DF02-FCA2-B2BAA0A8FDB4</importedID>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="false"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
@@ -99,9 +107,11 @@ Summary of entities in a graphical representation
 ]EN_ATTR_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <importedID>4E262548-1D4A-8445-AC52-645F09FAADE4</importedID>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="false"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
@@ -126,9 +136,11 @@ Summary of entities in a graphical representation
 ]EN_ATTR_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <importedID>16EAC295-7C97-A4E1-A9DF-21A4B2CC267E</importedID>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="false"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
@@ -154,24 +166,38 @@ Summary of entities in a graphical representation
 ]EN_ATTR_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <importedID>2A7BDD42-99F6-F8F9-23A2-191BACE2A48B</importedID>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="false"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
 <use>3</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Legendposition"/>
+<property name="EN_ATTR_NAME" value="**Legendposition"/>
+</propertyMap>
 </Attribute>
 <Attribute name="Name" id="CB809B77-DB90-DC9C-C936-27DECC967935">
 <createdBy>admin</createdBy>
 <createdTime>2020-02-11 09:02:59 UTC</createdTime>
 <comment><![CDATA[Name eines Geschäftsbereichs]]></comment>
 <generatorID>F14EC06F-AE3E-EB09-E7D2-1352F80C367A</generatorID>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+**Name of a business unit
+]EN_ATTR_COMMENT]
+[DE_ATTR_COMMENT[
+Name eines Geschäftsbereichs
+]DE_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <referedAttribute>C5008C78-3422-F6A1-AF57-B39DC0E800AA</referedAttribute>
@@ -179,6 +205,10 @@ Summary of entities in a graphical representation
 <use>1</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Name"/>
+<property name="EN_ATTR_NAME" value="**Name"/>
+</propertyMap>
 </Attribute>
 </attributes>
 <identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
@@ -186,8 +216,10 @@ Summary of entities in a graphical representation
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:05:50 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="false"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <pk>true</pk>

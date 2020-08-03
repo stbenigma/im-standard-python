@@ -2,19 +2,19 @@
 <Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_3" id="18BE34D4-9D08-BD1C-B7BC-F12AD6F0772C" name="Server Hardware">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:04:24 UTC</createdTime>
-<comment><![CDATA[Computer Hardware, auf dem IT-systeme, Anwendungen und Datenbanken installiert sind und laufen.
-
-]]></comment>
+<comment><![CDATA[Computer Hardware, auf dem IT-systeme, Anwendungen und Datenbanken installiert sind und laufen.]]></comment>
 <notes><![CDATA[[DE_ENTI_COMMENT[
-Computer Hardware, auf dem IT-systeme, Anwendungen und Datenbanken installiert sind und laufen.  
+Computer Hardware, auf dem IT-systeme, Anwendungen und Datenbanken installiert sind und laufen.
 ]DE_ENTI_COMMENT]
 [EN_ENTI_COMMENT[
-Computer hardware on which IT systems, applications and databases are installed and running.  
+*Computer hardware on which IT systems, applications and databases are installed and running.
 ]EN_ENTI_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="false"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <typeID>2EDFF465-4CEE-72F2-D2EC-896DB596D191</typeID>
@@ -49,9 +49,11 @@ Is this a physical machine or a virtual one in use?
 ]EN_ATTR_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <importedID>BA7B43A1-CC8C-BEF3-1AE4-ED10488BB11D</importedID>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="false"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>

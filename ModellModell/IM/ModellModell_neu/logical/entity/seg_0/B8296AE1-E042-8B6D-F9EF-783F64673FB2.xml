@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="B8296AE1-E042-8B6D-F9EF-783F64673FB2" name="Channels">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="B8296AE1-E042-8B6D-F9EF-783F64673FB2" name="Experience Layer">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:05:22 UTC</createdTime>
 <notes><![CDATA[[DE_ENTI_COMMENT[
@@ -10,8 +10,10 @@
 ]EN_ENTI_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="false"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <typeID>258A9BA6-D31F-4A65-3423-F7F66D95E2DD</typeID>
@@ -26,10 +28,10 @@
 <createSurrogateKey>true</createSurrogateKey>
 <propertyMap>
 <property name="DE_ENTI_COMMENT" value=""/>
-<property name="DE_ENTI_NAME" value="Channels"/>
+<property name="DE_ENTI_NAME" value="Experience Layer"/>
 <property name="DE_ENTI_SYNONYM" value=""/>
 <property name="EN_ENTI_COMMENT" value=""/>
-<property name="EN_ENTI_NAME" value="Channels"/>
+<property name="EN_ENTI_NAME" value="*Channels"/>
 <property name="EN_ENTI_SYNONYM" value=""/>
 </propertyMap>
 </Entity>

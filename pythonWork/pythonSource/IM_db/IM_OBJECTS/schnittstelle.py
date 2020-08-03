@@ -1,7 +1,7 @@
 from .baseobject import Baseobject
 
 class Schnittstelle(Baseobject):
-    _tablename:str = 'schnittstelle'
+    _tablename:str = 'schnittstellen'
     _prefix:str = 'schn'
     _columnlist:list = ['schn_id',  'schn_name',    'schn_beschr'
                 ,'schn_odm_guid',   'schn_uc',  'schn_dc'
@@ -15,7 +15,7 @@ class Schnittstelle(Baseobject):
     def createtable():
         Baseobject.createtable(ptablename=Schnittstelle._tablename
                                , psql="""
-    CREATE TABLE schnittstelle
+    CREATE TABLE schnittstellen
         (
          SCHN_ID integer primary key autoincrement, 
          SCHN_NAME VARCHAR (60) NOT NULL , 
@@ -29,23 +29,34 @@ class Schnittstelle(Baseobject):
         )
         """)
 
-    def webfilespec(self):
-        return self.schn_name.upper() + '.html'
+    def webanker(self):
+        return super().webanker(self.schn_id)
+
+    def getmodellelement(self):
+        return Modellelement.getbyelemid(pschnid=self.schn_id)
+
+    @staticmethod
+    def getname(pid):
+        schn = Schnittstelle().getbyid(pid)
+        return schn.schn_name
 
     @staticmethod
     def delete():
         Baseobject.delete(Schnittstelle._tablename)
 
     @staticmethod
-    def select(pwhere=None, porderby=None):
+    def select(pwhere=None, porderby='schn_name'):
         return Baseobject.select(pclass=Schnittstelle
                                  , pwhere=pwhere, porderby=porderby)
+
+    @staticmethod
+    def indexlist():
+        schn = Schnittstelle.select()
+        indexlist = [[s.schn_name, s.webanker(), s.schn_id] for s in schn]
+        return indexlist
+    # indexlist
+
 #Schnittstelle
 
-def indexlist():
-    schn = Schnittstelle.select(porderby='schn_name')
-    indexlist = [[s.schn_name, '',s.webfilespec(), s.schn_id] for s in schn]
-    return indexlist
-#indexlist
 
 

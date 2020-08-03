@@ -13,15 +13,26 @@ Beispiel:
  CFO
  Servicetechniker]]></comment>
 <notes><![CDATA[[DE_ENTI_COMMENT[
-Zuammenfassung eines Aufgaben- und Verantwortungsbereichs, den eine Person als Akteur im System ausfüllen kann.  Eine Personenrolle muss immer als mindestens einen der Subtypen (intern, extern) vorkommen.  Beispiel:  Produkt Manager  Leiter Marketing   CEO  CFO  Servicetechniker
+Zuammenfassung eines Aufgaben- und Verantwortungsbereichs, den eine Person als Akteur im System ausfüllen kann.
+
+Eine Personenrolle muss immer als mindestens einen der Subtypen (intern, extern) vorkommen.
+
+Beispiel:
+ Produkt Manager
+ Leiter Marketing 
+ CEO
+ CFO
+ Servicetechniker
 ]DE_ENTI_COMMENT]
 [EN_ENTI_COMMENT[
-The collective entry of a task and responsibility area that a person can fill out as an actor in the system.  A person role must always occur as at least one of the subtypes (internal, external).  Example: Product Manager Head of Marketing CEO CFO Service Technician
+*The collective entry of a task and responsibility area that a person can fill out as an actor in the system.  A person role must always occur as at least one of the subtypes (internal, external).  Example: Product Manager Head of Marketing CEO CFO Service Technician
 ]EN_ENTI_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="false"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <typeID>86837EFF-EE45-AD47-D8D2-5881004F25D3</typeID>
@@ -39,8 +50,10 @@ The collective entry of a task and responsibility area that a person can fill ou
 <propertyMap>
 <property name="DE_ENTI_COMMENT" value="Zuammenfassung eines Aufgaben- und Verantwortungsbereichs, den eine Person als Akteur im System ausfüllen kann.  Eine Personenrolle muss immer als mindestens einen der Subtypen (intern, extern) vorkommen.  Beispiel:  Produkt Manager  Leiter Marketing   CEO  CFO  Servicetechniker"/>
 <property name="DE_ENTI_NAME" value="Akteurrolle"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
 <property name="EN_ENTI_COMMENT" value="*DE* Zuammenfassung eines Aufgaben- und Verantwortungsbereichs, den eine Person als Akteur im System ausfüllen kann.  Eine Personenrolle muss immer als mindestens einen der Subtypen (intern, extern) vorkommen.  Beispiel:  Produkt Manager  Leiter Marketing   CEO  CFO  Servicetechniker"/>
 <property name="EN_ENTI_NAME" value="Actor role"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Bezeichnung" id="CD009924-6684-A71B-8BB9-0B7FAD5B323C">
@@ -54,9 +67,11 @@ The collective entry of a task and responsibility area that a person can fill ou
 ]EN_ATTR_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <importedID>6D5DBE35-6DBC-09ED-8347-C035B31581A7</importedID>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="false"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <use>0</use>

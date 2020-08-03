@@ -5,6 +5,8 @@
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
+<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <sourcePk>52FDDFB5-3D95-F00B-D01A-81317CBBBDAA</sourcePk>
 <identifying>true</identifying>
@@ -18,4 +20,10 @@
 <targetEntity>D718E671-DE1C-59BC-9C74-A352687F07F5</targetEntity>
 <transferable>true</transferable>
 <deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="beschrieben durch"/>
+<property name="DE_RELA_TEXT_TO" value="beschreibt"/>
+<property name="EN_RELA_TEXT_FROM" value="described by"/>
+<property name="EN_RELA_TEXT_TO" value="describes"/>
+</propertyMap>
 </Relation>

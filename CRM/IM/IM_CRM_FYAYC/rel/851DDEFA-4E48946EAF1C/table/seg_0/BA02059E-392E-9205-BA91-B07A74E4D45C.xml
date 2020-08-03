@@ -30,9 +30,18 @@ Damit ist sie Besitzer aber nicht Eigentümer des Produktes
 <use>1</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
 <dataTypePrecision>10</dataTypePrecision>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="PIM AttrID" value="."/>
+<property name="PIM AttrName" value="."/>
+<property name="PIM EnglName" value="."/>
+<property name="PIM datatype" value="."/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
 <associations>
 <colAssociation fkAssociation="C0CBDFF9-C26D-418B-7917-2C270D10ECC5" referredColumn="2B31972E-483B-EBE4-E12E-6863BD668D2C"/>
 </associations>
@@ -50,6 +59,15 @@ Damit ist sie Besitzer aber nicht Eigentümer des Produktes
 <identityColumn>true</identityColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 <isSurrogateColumn>true</isSurrogateColumn>
+<propertyMap>
+<property name="PIM AttrID" value="."/>
+<property name="PIM AttrName" value="."/>
+<property name="PIM EnglName" value="."/>
+<property name="PIM datatype" value="."/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">

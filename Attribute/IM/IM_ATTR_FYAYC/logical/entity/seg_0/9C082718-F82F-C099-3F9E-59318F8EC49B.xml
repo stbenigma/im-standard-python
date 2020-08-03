@@ -2,9 +2,17 @@
 <Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="9C082718-F82F-C099-3F9E-59318F8EC49B" name="Juristische Person">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-24 07:17:57 UTC</createdTime>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+
+]EN_ENTI_COMMENT]
+]]></notes>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
 <item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
@@ -20,7 +28,11 @@
 <createSurrogateKey>true</createSurrogateKey>
 <propertyMap>
 <property name="AP TabName" value="account"/>
+<property name="DE_ENTI_NAME" value="Juristische Person"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
 <property name="DynProp in Juristische Persion" value="irgend ein dynamischer Wert"/>
+<property name="EN_ENTI_NAME" value="*DE* Juristische Person"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
 <property name="SAP TabName" value="firm"/>
 </propertyMap>
 <documents usedDucuments="90D4B681-4349-B790-28A6-1D296402B6AB"/>
@@ -31,9 +43,17 @@
 <Attribute name="Name" id="6CA9B3DE-3D75-DED4-C84A-2296CBA7473D">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-24 07:19:12 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
 <item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
@@ -47,6 +67,8 @@
 <property name="AP Typ" value="."/>
 <property name="AP usage" value="."/>
 <property name="CRM-Salesforce" value="."/>
+<property name="DE_ATTR_NAME" value="Name"/>
+<property name="EN_ATTR_NAME" value="*DE* Name"/>
 <property name="ERP" value="."/>
 <property name="EXCEL ColumnName" value="."/>
 <property name="Excel" value="."/>
@@ -62,9 +84,17 @@
 <Attribute name="UID" id="B3E8A246-C631-79E5-F9BB-86ED5C743DC1">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-24 07:25:00 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
 <item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
@@ -78,6 +108,8 @@
 <property name="AP Typ" value="."/>
 <property name="AP usage" value="."/>
 <property name="CRM-Salesforce" value="."/>
+<property name="DE_ATTR_NAME" value="UID"/>
+<property name="EN_ATTR_NAME" value="*DE* UID"/>
 <property name="ERP" value="."/>
 <property name="EXCEL ColumnName" value="."/>
 <property name="Excel" value="."/>
@@ -93,9 +125,17 @@
 <Attribute name="Website" id="A04A93BA-4630-5D16-B59F-94DACD92AACA">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-24 07:27:50 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
 <item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
@@ -111,6 +151,8 @@
 <property name="AP Typ" value="."/>
 <property name="AP usage" value="."/>
 <property name="CRM-Salesforce" value="."/>
+<property name="DE_ATTR_NAME" value="Website"/>
+<property name="EN_ATTR_NAME" value="*DE* Website"/>
 <property name="ERP" value="."/>
 <property name="EXCEL ColumnName" value="."/>
 <property name="Excel" value="."/>
@@ -126,8 +168,16 @@
 <Attribute name="MWST-Nr" id="62E57B43-9919-3715-6A46-233C9F666FEA">
 <createdBy>stb</createdBy>
 <createdTime>2019-06-09 19:06:59 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 <item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
@@ -142,6 +192,8 @@
 <property name="AP Typ" value="."/>
 <property name="AP usage" value="."/>
 <property name="CRM-Salesforce" value="."/>
+<property name="DE_ATTR_NAME" value="MWST-Nr"/>
+<property name="EN_ATTR_NAME" value="*DE* MWST-Nr"/>
 <property name="ERP" value="."/>
 <property name="EXCEL ColumnName" value="."/>
 <property name="Excel" value="."/>
@@ -162,6 +214,7 @@
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
 <item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>

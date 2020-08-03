@@ -1,6 +1,6 @@
 # -*- coding: latin-1 -*-
 
-from IM_DB import dbDDL,dbDML
+from IM_DB import *
 from IM_OBJECTS import *
 
 
@@ -20,271 +20,19 @@ def erstelleInfra():
 )
     """);
 
-    dbDDL.dropTable("entitaeten");
-    dbDDL.createTable("""
-CREATE TABLE entitaeten(
-    enti_id                 integer NOT NULL primary key autoincrement,
-    enti_odm_guid varchar(36),
-    enti_augb_id            integer ,
-    enti_tech_name          varchar(60) unique,
-    enti_name       varchar(60) NOT NULL unique,
-    enti_beschr     varchar(4000) ,
-    enti_tooltip    varchar(100) ,
-    enti_kurzname   varchar(20) ,
-    enti_prefix             varchar(10),
-    enti_beispiele          varchar(4000),
-    enti_erw_tupel         varchar(10)
-        CHECK(enti_erw_tupel IN(
-            '1 Mio',
-            '100',
-            '10000',
-            '>100 Mio'
-        )),
-    enti_uc varchar(30),
-    enti_dc varchar(30),
-    enti_enti_guid varchar(80),
-    enti_enti_id integer,
-    enti_category_guid varchar(80)
-    )    
-    """);
+    Entitaet.createtable()
+    Synonym.createtable()
 
-    dbDDL.dropTable("synonyme");
-    dbDDL.createTable("""
-CREATE TABLE synonyme(
-    syno_id             integer NOT NULL primary key autoincrement,
-    syno_name   		varchar(200),
-    syno_enti_id        integer NOT NULL,
-	unique(syno_name,syno_enti_id),
-	foreign key (syno_enti_id) references entitaeten(enti_id) ON DELETE CASCADE
-)
-    """);
+    Schluessel.createtable()
+    Schluesselelement.createtable()
 
-    dbDDL.dropTable("schluessel");
-    dbDDL.createTable("""
-CREATE TABLE schluessel(
-    schl_id        integer NOT NULL primary key autoincrement,
-    schl_laufnr    integer NOT NULL,
-	schl_name	varchar(60),
-	schl_odm_guid		varchar(36),
-    schl_uc varchar(30),
-    schl_dc varchar(30),
-    schl_enti_id   integer NOT NULL,
-	unique (schl_enti_id,schl_laufnr),
-	foreign key (schl_enti_id) references entitaeten(enti_id) ON DELETE CASCADE
-)    """);
+    Wertebereich.createtable()
+    Wertebereichgruppe.createtable()
+    Vorgabewert.createtable()
 
-    dbDDL.dropTable("schluesselelement");
-    dbDDL.createTable("""CREATE TABLE schluesselelement(
-    scel_id        integer NOT NULL primary key autoincrement,
-    scel_schl_id   integer NOT NULL,
-    scel_attr_id   integer ,
-    scel_bezi_id   integer ,
-    scel_uc         varchar(30) NOT NULL,
-    scel_dc        varchar(30) NOT NULL,
-    scel_um        varchar(30),
-    scel_dm        varchar(30),
-	UNIQUE(scel_schl_id,scel_attr_id,scel_bezi_id),
-	CONSTRAINT scel_element_ck CHECK((scel_attr_id IS NOT NULL
-                                   AND scel_bezi_id IS NULL)
-                                  OR(scel_attr_id IS NULL
-                                     AND scel_bezi_id IS NOT NULL)),
-	FOREIGN KEY(scel_attr_id)
-        REFERENCES attributes(attr_id)
-            ON DELETE CASCADE,
-	FOREIGN KEY(scel_bezi_id)
-        REFERENCES beziehungen(bezi_id)
-            ON DELETE CASCADE,
-	FOREIGN KEY(scel_schl_id)
-        REFERENCES schluessel(schl_id)
-            ON DELETE CASCADE
-		)""");
-    dbDDL.dropTable("wertebereiche");
-    dbDDL.createTable("""
-CREATE TABLE wertebereiche(
-    wrtb_id                   integer NOT NULL primary key autoincrement,
-    wrtb_business_rule        varchar(4000),
-    wrtb_name         varchar(60) NOT NULL unique,
-    wrtb_beschr       varchar(4000) ,
-    wrtb_typ                  varchar(4)NOT NULL
-        CHECK(wrtb_typ IN(
-            'BIN',
-            'GRP',
-            'LOV',
-            'NUM',
-            'TEXT',
-            'ZPKT'
-        )),
-    wrtb_zpkt_minwert         varchar(30),
-    wrtb_zpkt_maxwert         varchar(30),
-    wrtb_zpkt_granularitaet   varchar(15)
-        CHECK(wrtb_zpkt_granularitaet IN(
-            'JAHR',
-            'MILLISEKUNDE',
-            'MINUTE',
-            'MONAT',
-            'QUARTAL',
-            'SEKUNDE',
-            'SEMESTER',
-            'STUNDE',
-            'TAG',
-            'WOCHE'
-        )),
-    wrtb_text_maxlng          integer ,
-    wrtb_text_syntaxregel     varchar(4000),
-    wrtb_num_maxwert          integer ,
-    wrtb_num_minwert          integer ,
-    wrtb_num_vorkstellen      integer ,
-    wrtb_num_nachkstellen     integer DEFAULT 0,
-    wrtb_num_rundng_einh      integer 
-        CHECK(wrtb_num_rundng_einh IN(
-            0.001,
-            0.01,
-            0.05,
-            0.1,
-            0.25,
-            0.5,
-            1,
-            10,
-            100,
-            1000
-        )),
-    wrtb_num_pheh_id          integer ,
-    wrtb_bin_inhalttyp        varchar(30)
-        CHECK(wrtb_bin_inhalttyp IN(
-            'BILD',
-            'FILM',
-            'GRAPH',
-            'TEXT',
-            'TON'
-        )),
-    wrtb_bin_spfo_id          varchar(100),
-	wrtb_odm_guid		varchar(36),
-    wrtb_uc         varchar(30) NOT NULL,
-    wrtb_dc        varchar(30) NOT NULL,
-    wrtb_um        varchar(30),
-    wrtb_dm        varchar(30),
-    wrtb_datatype_ref varchar(40)
-)
-""");
+    Attribut.createtable()
 
-    dbDDL.dropTable("wertebereichgruppen");
-    dbDDL.createTable("""
-CREATE TABLE wertebereichgruppen
-    (
-    wbgr_id               integer NOT NULL primary key autoincrement,
-    wbgr_name             VARCHAR(60)NOT NULL,
-    wbgr_beschr           VARCHAR(4000)NULL,
-    wbgr_wrtb_id_gruppe   integer NOT NULL ,
-     WBGR_WRTB_ID_MEMBER integer NOT NULL , 
-	 wbgr_type_ref	varchar(40),
-     WBGR_UC VARCHAR (30) NOT NULL , 
-     WBGR_DC VARCHAR (30) NOT NULL , 
-     WBGR_UM VARCHAR (30)    null,
-      wbgr_dm VARCHAR (30) null
-,CONSTRAINT WBGR_WRTB_UK UNIQUE (wbgr_wrtb_id_gruppe ,wbgr_name )
-,FOREIGN KEY(wbgr_wrtb_id_gruppe)
-        REFERENCES wertebereich(wrtb_id) ON DELETE CASCADE
-,FOREIGN KEY(wbgr_wrtb_id_member)
-        REFERENCES wertebereich(wrtb_id) 
-	)
-;
-""");
-
-    dbDDL.dropTable("vorgabewerte");
-    dbDDL.createTable("""
-CREATE TABLE vorgabewerte(
-    vgwt_id               integer NOT NULL primary key autoincrement,
-	vgwt_guid varchar(40),
-    vgwt_wert              VARCHAR(100) NOT NULL,
-    vgwt_sortrhfg          integer NULL,
-    vgwt_wrtb_id           integer NOT NULL,
-    vgwt_anzeige   varchar(200),
-    vgwt_beschr    varchar(4000),
-    vgwt_uc         varchar(30) NOT NULL,
-    vgwt_dc        varchar(30) NOT NULL,
-    vgwt_um        varchar(30),
-    vgwt_dm        varchar(30),
-	unique (vgwt_wrtb_id,vgwt_wert),
-	foreign key (vgwt_wrtb_id) references wertebereiche(wrtb_id) ON DELETE CASCADE
-)
-""");
-
-    dbDDL.dropTable("attributes")
-    dbDDL.createTable("""
-CREATE TABLE attributes(
-    attr_id                integer NOT NULL primary key autoincrement,
-    attr_enti_id           integer ,
-    attr_bezi_id           integer,
-    attr_wrtb_id           integer NOT NULL,
-    attr_tech_name         varchar(60)NOT NULL,
-    attr_anzname   varchar(100) ,
-    attr_tooltip   varchar(100) ,
-    attr_beschr    varchar(2000) ,
-    attr_business_rule     varchar(4000),
-    attr_anz_rhflg         integer ,
-    attr_deskriptor        varchar(5) default 'FALSE' NOT NULL
-        CHECK(attr_deskriptor IN(
-            'FALSE',
-            'TRUE'
-        )),
-    attr_pflichtattr       varchar(5) default 'FALSE' NOT NULL
-        CHECK(attr_pflichtattr IN(
-            'FALSE',
-            'TRUE'
-        )),
-    attr_historisiert      varchar(5) default 'FALSE' NOT NULL
-        CHECK(attr_historisiert IN(
-            'FALSE',
-            'TRUE'
-        )),
-    attr_wiederholt        varchar(5) default 'FALSE' NOT NULL
-        CHECK(attr_wiederholt IN(
-            'FALSE',
-            'TRUE'
-        )),
-    attr_sprachabhaengig   varchar(5) default 'FALSE' NOT NULL
-        CHECK(attr_sprachabhaengig IN(
-            'FALSE',
-            'TRUE'
-        )),
-    attr_verschluesselt    varchar(5) default 'FALSE' NOT NULL
-        CHECK(attr_verschluesselt IN(
-            'FALSE',
-            'TRUE'
-        )),
-    attr_odm_guid		varchar(36),	
-    attr_uc                varchar(30 )NOT NULL,
-    attr_dc                varchar(30 ),
-    attr_um                varchar(30),
-    attr_dm                varchar(30 ),
-    UNIQUE(attr_enti_id, attr_tech_name),
-	CONSTRAINT attr_arc_fk CHECK((attr_enti_id is null and attr_bezi_id is not null) 
-								or (attr_enti_id is not null and attr_bezi_id is null)),
- 	CONSTRAINT attr_enti_fk FOREIGN KEY(attr_enti_id)
-        REFERENCES entitaeten(enti_id),
-	CONSTRAINT attr_wrtb_fk	FOREIGN KEY(attr_wrtb_id)        
-			REFERENCES wertebereiche(wrtb_id),
-	CONSTRAINT attr_bezi_fk FOREIGN KEY(attr_bezi_id)
-		        REFERENCES beziehungen(bezi_id)
-)
-   """);
-
-    dbDDL.dropTable("arcs")
-    dbDDL.createTable("""
-CREATE TABLE arcs(
-    arcs_id        integer  not null primary key autoincrement,
-    arcs_name      VARCHAR2(60) NOT NULL,
-    arcs_enti_id   integer NOT NULL,
-	arcs_odm_guid		varchar(36),
-    arcs_uc        VARCHAR2(30) NOT NULL,
-    arcs_dc        varchar(30) NOT NULL,
-    arcs_um        VARCHAR2(30) NULL,
-    arcs_dm        varchar(30) NULL,
-	UNIQUE(arcs_enti_id,arcs_name),
-	CONSTRAINT arcs_enti_fk FOREIGN KEY(arcs_enti_id)
-	        REFERENCES entitaeten(enti_id) ON DELETE CASCADE
-)
-""");
+    Arc.createtable()
 
     dbDDL.dropTable("beziehungen")
     dbDDL.createTable("""
@@ -390,99 +138,9 @@ CREATE TABLE benudef_wert(
 		)
 """)
 
-    dbDDL.dropTable("modellelem_typ")
-    dbDDL.createTable("""
-CREATE TABLE modellelem_typ(
-    melt_id                  integer NOT NULL primary key autoincrement,
-    melt_kurzname            varchar(4)NOT NULL
-        CHECK(melt_kurzname IN(
-   'ATTR',
-   'BEZI',
-   'BURU',
-   'ENTI',
-   'WRTB',
-   'TABL',
-   'SCHA',
-   'SCHN',
-   'SYNO',
-   'ORGE'
-        )),
-    melt_name                varchar(60 )NOT NULL,
-        melt_uc                  varchar(30 )NOT NULL,
-    melt_dc                  varchar(30)NOT NULL,
-    melt_um                  varchar(30 )NULL,
-    melt_dm                  varchar(30)NULL,
-	CONSTRAINT melt_un UNIQUE(melt_kurzname),
-	CONSTRAINT melt_un2 UNIQUE(melt_name)
-) 
-""")
-
-    dbDDL.dropTable("modellelement")
-    dbDDL.createTable("""
-CREATE TABLE modellelement(
-    mode_id        integer NOT NULL primary key autoincrement,
-    mode_melt_id   integer NULL,
-    mode_syno_id   integer NULL,
-    mode_wrtb_id   integer NULL,
-    mode_attr_id   integer NULL,
-    mode_buru_id   integer NULL,
-    mode_bezi_id   integer NULL,
-    mode_enti_id   integer NULL,
-    mode_orge_id   integer NULL,    
-    mode_tabl_id  integer NULL,
-    mode_scha_id  integer NULL,    
-    mode_schn_id  integer NULL,    
-    mode_uc        varchar(30 )NOT NULL,
-    mode_dc        varchar(30)NOT NULL,
-    mode_um        varchar(30 )NULL,
-    mode_dm        varchar(30)NULL,
-	CONSTRAINT mode_uk UNIQUE(mode_wrtb_id,
-	       mode_attr_id,
-	       mode_buru_id,
-	       mode_enti_id,
-	       mode_bezi_id,mode_scha_id,mode_tabl_id,mode_schn_id),
-		   CONSTRAINT fkarc_4 CHECK (case WHEN mode_buru_id IS NULL THEN 0 else 1 end
-		   	 						+case WHEN mode_enti_id IS NULL THEN 0 else 1 end	
-		   	 						+case WHEN mode_tabl_id IS NULL THEN 0 else 1 end	
-		   	 						+case WHEN mode_scha_id IS NULL THEN 0 else 1 end	
-		   	 						+case WHEN mode_syno_id IS NULL THEN 0 else 1 end	
-		   	 						+case WHEN mode_bezi_id IS NULL THEN 0 else 1 end	
-		   	 						+case WHEN mode_wrtb_id IS NULL THEN 0 else 1 end	
-		   	 						+case WHEN mode_attr_id IS NULL THEN 0 else 1 end	
-		   	 						+case WHEN mode_orge_id IS NULL THEN 0 else 1 end	
-		   	 						+case WHEN mode_schn_id IS NULL THEN 0 else 1 end	
-									= 1
-								),
-		CONSTRAINT mode_syno_fk_ist FOREIGN KEY(mode_syno_id)
-	  REFERENCES synonyme(syno_id)
-	      ON DELETE CASCADE,
-	    CONSTRAINT mode_attr_fk_ist FOREIGN KEY(mode_attr_id)
-	  REFERENCES attributes(attr_id)
-	      ON DELETE CASCADE,
-	    CONSTRAINT mode_bezi_fk FOREIGN KEY(mode_bezi_id)
-	  REFERENCES beziehungen(bezi_id)
-	   	ON DELETE CASCADE,
-	    CONSTRAINT mode_enti_fk_ist FOREIGN KEY(mode_enti_id)
-	  REFERENCES entitaeten(enti_id)
-	      ON DELETE CASCADE,
-	    CONSTRAINT mode_wrtb_fk_ist FOREIGN KEY(mode_wrtb_id)
-	   	  REFERENCES wertebereiche(wrtb_id)
-	   	      ON DELETE CASCADE,
-	CONSTRAINT MODE_SCHA_FK FOREIGN KEY ( MODE_SCHA_ID) 
-	      REFERENCES SCHNITTSTELLE_ATTR (SCHA_ID ) 
-	      ON DELETE CASCADE ,
-	CONSTRAINT MODE_TABL_FK FOREIGN KEY ( MODE_TABL_ID) 
-	  	      REFERENCES TABELLE ( TABL_ID ) 
-	  	      ON DELETE CASCADE ,
-	CONSTRAINT MODE_SCHN_FK FOREIGN KEY ( MODE_SCHN_ID) 
-		  	      REFERENCES schnittstelle ( schn_ID ) 
-		  	      ON DELETE CASCADE ,
-	    CONSTRAINT mode_melt_fk_verantw FOREIGN KEY(mode_melt_id)
-	  REFERENCES modellelem_typ(melt_id)
-	  		ON DELETE CASCADE 
-)
-""")
-#  CONSTRAINT mode_orge_fk_verantw FOREIGN KEY(mode_orge_id) REFERENCES org_einh(orge_id),
+    Modellelemtype.createtable()
+    Modellelement.createtable()
+    ExternalRef.createtable()
 
     dbDDL.dropTable("modelltyp_eigensch")
     dbDDL.createTable("""
@@ -523,43 +181,9 @@ CREATE TABLE modelltyp_eigensch(
       join entitaeten e1 on e1.enti_id = b1.bezi_enti_id_von  
     order by ae.enti_name""")
 
+    Diagrammtyp.createtable()
+    Diagramm.createtable();
 
-    dbDDL.dropView("SPRAATTR");
-    dbDDL.createTable("""
-            create view spraattr as
-	        select sptx_text,spra_id,spra_iso_code2,sptx_mode_id,sptx_attrname
-	          from sprachtexte 
-	          join sprachen on spra_id = sptx_spra_id
-	          """);
-
-    dbDDL.dropTable("diagrammtypen");
-    dbDDL.createTable("""
-CREATE TABLE diagrammtypen(
-    diat_id    integer primary key autoincrement,
-    diat_bez   varchar(100) NOT NULL,
-     diat_uc varchar(30) NOT NULL,
-    diat_dc    varchar(30) NOT NULL,
-    diat_um    varchar(30) ,
-    diat_dm    varchar(30),
-	CONSTRAINT diat_un UNIQUE(diat_bez)
-)	          """);
-    dbDDL.dropTable("diagramme");
-    dbDDL.createTable("""
-CREATE TABLE diagramme(
-    diag_id      integer primary key autoincrement,
-    diag_name      varchar(60) NOT NULL,
-    diag_diat_id   integer NOT NULL,
-    diag_odm_guid       varchar(36),
-    diag_legendx       integer,
-    diag_legendy       integer,
-     diag_uc    varchar(30) NOT NULL,
-    diag_dc        varchar(30) NOT NULL,
-    diag_um        varchar(30) ,
-    diag_dm        varchar(30),
-	CONSTRAINT diag__un UNIQUE(diag_name),
-	CONSTRAINT diag_diat_fk FOREIGN KEY(diag_diat_id)
-									   REFERENCES diagrammtypen(diat_id)
-)	          """);
     dbDDL.dropTable("melt_diat");
     dbDDL.createTable("""
 CREATE TABLE melt_diat(
@@ -640,9 +264,9 @@ CREATE TABLE elementdarst(
 				      beda_starttext_abstand   integer NULL
 				          constraint beda_stab_chk CHECK(beda_starttext_abstand BETWEEN 1 AND 9999),
 				      beda_starttext_x         integer NULL
-				          constraint beda_stx_chk CHECK(beda_starttext_x BETWEEN 0 AND 999999),
+				          constraint beda_stx_chk CHECK(beda_starttext_x BETWEEN -9999 AND 999999),
 				      beda_starttext_y         integer NULL
-				          constraint beda_sty_chk CHECK(beda_starttext_y BETWEEN 0 AND 999999),
+				          constraint beda_sty_chk CHECK(beda_starttext_y BETWEEN -9999 AND 999999),
 				      beda_starttext_breite    integer NULL
 				          constraint beda_stb_chk CHECK(beda_starttext_breite BETWEEN 1 AND 9999),
 				      beda_starttext_hoehe     integer NULL
@@ -661,9 +285,9 @@ CREATE TABLE elementdarst(
 				      beda_endtext_abstand     integer NULL
 				          constraint beda_eab_chk CHECK(beda_endtext_abstand BETWEEN 1 AND 9999),
 				      beda_endtext_x           integer NULL
-				          constraint beda_ex_chk CHECK(beda_endtext_x BETWEEN 0 AND 999999),
+				          constraint beda_ex_chk CHECK(beda_endtext_x BETWEEN -9999 AND 999999),
 				      beda_endtext_y           integer NULL
-				          constraint beda_ey_chk CHECK(beda_endtext_y BETWEEN 0 AND 999999),
+				          constraint beda_ey_chk CHECK(beda_endtext_y BETWEEN -9999 AND 999999),
 				      beda_endtext_breite      integer NULL
 				          constraint beda_eb_chk CHECK(beda_endtext_breite BETWEEN 1 AND 9999),
 				      beda_endtext_hoehe       integer NULL
@@ -758,104 +382,10 @@ CREATE TABLE linie_segment(
 	  				          REFERENCES geschaeftsbereich(gber_id)
 	  				              ON DELETE CASCADE 
 			      )""")
-    dbDDL.dropTable("DOKUMENTE");
-    dbDDL.createTable("""
-				  CREATE TABLE DOKUMENTE 
-				      (
-				       DOKU_ID integer primary key autoincrement,
-				       DOKU_NAME VARCHAR (60) NOT NULL , 
-				       DOKU_FORMAT VARCHAR (20) , 
-				       DOKU_REFERENZ VARCHAR (500) , 
-				       DOKU_DOKU_ID NUMERIC (10),	
-					   DOKU_ODM_GUID varchar(36),
-					   DOKU_PARENT_ODM_GUID varchar(36)  
-				      )
-				""")
 
-    dbDDL.dropTable("MODELELEM_DOKU");
-    dbDDL.createTable("""
-				  CREATE TABLE MODELELEM_DOKU 
-				      (
-				       MODO_ID integer primary key autoincrement,
-				       MODO_DOKU_ID NUMERIC (10) NOT NULL , 
-				       MODO_MODE_ID NUMERIC (10) NOT NULL,
-					   CONSTRAINT MODO_UN UNIQUE (MODO_DOKU_ID , MODO_MODE_ID),
-					   CONSTRAINT DOKU_DOKU_FK FOREIGN KEY (MODO_DOKU_ID) 
-					   				      REFERENCES DOKUMENTE ( DOKU_ID )ON DELETE CASCADE
-				  CONSTRAINT MODO_MODE_FK FOREIGN KEY (MODO_MODE_ID) 
-				      REFERENCES MODELLELEMENT (MODE_ID)   ON DELETE CASCADE
-			      )
-        """)
-    dbDDL.dropTable("TABL_ENTI_MAP");
-    dbDDL.createTable("""
-  CREATE TABLE TABL_ENTI_MAP 
-      (
-       TEMA_ID integer primary key autoincrement , 
-       TEMA_TABL_ID integer NOT NULL , 
-       TEMA_ENTI_ID integer NULL , 
-       TEMA_BEZI_ID integer NULL , 
-       CONSTRAINT TEMA_CK CHECK ((TEMA_ENTI_ID IS NOT NULL AND TEMA_BEZI_ID IS NULL )
-           	        		  OR (TEMA_BEZI_ID IS NULL AND TEMA_BEZI_ID IS NOT NULL)),
-   		   CONSTRAINT TEMA_UN UNIQUE (TEMA_TABL_ID , TEMA_ENTI_ID )
-		   ,CONSTRAINT TEMA_BEZI_FK FOREIGN KEY (TEMA_BEZI_ID) 
-		      REFERENCES BEZIEHUNG (BEZI_ID ) 
-		   ,CONSTRAINT TEMA_ENTI_FK FOREIGN KEY (TEMA_ENTI_ID) 
-		      REFERENCES ENTITAET (ENTI_ID ) 
-		   ,CONSTRAINT TEMA_TABL_FK FOREIGN KEY (TEMA_TABL_ID) 
-		      REFERENCES TABELLE (TABL_ID ) 
-      )    """)
-    dbDDL.dropTable("TRANSF_USAGE");
-    dbDDL.createTable("""
-  CREATE TABLE TRANSF_USAGE 
-      (
-       TFUS_ID integer primary key autoincrement , 
-       TFUS_ATTF_ID integer NOT NULL , 
-       TFUS_ATTR_ID integer NULL , 
-       TFUS_SCHA_ID integer NULL , 
-       TFUS_UC VARCHAR (30) NOT NULL , 
-       TFUS_DC VARCHAR (30) NOT NULL , 
-       TFUS_UM VARCHAR (30) NULL , 
-       TFUS_DM VARCHAR (30) NULL ,
-       CONSTRAINT FKArc_7 CHECK ( 
-          (  (TFUS_SCHA_ID IS NOT NULL) AND   (TFUS_ATTR_ID IS NULL) ) OR 
-          (  (TFUS_ATTR_ID IS NOT NULL) AND   (TFUS_SCHA_ID IS NULL) )  ) ,
-       CONSTRAINT TFUS__UN UNIQUE  (TFUS_ATTF_ID , TFUS_ATTR_ID , TFUS_SCHA_ID )
-	   ,CONSTRAINT TFUS_ATTF_FK FOREIGN KEY (TFUS_ATTF_ID) 
-	      REFERENCES ATTR_TRANSF (ATTF_ID ) 
-	   ,CONSTRAINT TFUS_ATTR_FK FOREIGN KEY (TFUS_ATTR_ID) 
-	      REFERENCES ATTRIBUTES (ATTR_ID ) 
-	      ,CONSTRAINT TFUS_SCHA_FK FOREIGN KEY (TFUS_SCHA_ID) 
-	         REFERENCES SCHNITTSTELLE_ATTR (SCHA_ID ) 
-      )
-    """)
-    dbDDL.dropTable("ATTR_TRANSF");
-    dbDDL.createTable("""
- CREATE TABLE ATTR_TRANSF 
-      (
-       ATTF_ID integer primary key autoincrement,
-       ATTF_RICHTUNG VARCHAR (7) NOT NULL CHECK ( ATTF_RICHTUNG IN ('INBOUND', 'OUTBOUND') ) , 
-       ATTF_TRANSF_FORMEL VARCHAR (4000) NULL , 
-       ATTF_AUSLOESEART VARCHAR (10) NULL CHECK ( ATTF_AUSLOESEART IN ('MANUELL', 'PERIODE', 'ZPKT') ) , 
-       ATTF_AUSLOESEPERIOD integer NULL , 
-       ATTF_SCHA_ID integer NULL , 
-       ATTF_ATTR_ID integer NULL , 
-       ATTF_UC VARCHAR (30)  , 
-       ATTF_DC VARCHAR (30)  , 
-       ATTF_UM VARCHAR (30) NULL , 
-       ATTF_DM VARCHAR (30)  NULL , 
-       CONSTRAINT ATTF_CHK CHECK ((ATTF_SCHA_ID IS NULL AND ATTF_ATTR_ID IS NOT NULL AND ATTF_RICHTUNG = 'INBOUND')
-   						   OR (ATTF_SCHA_ID IS NOT NULL AND ATTF_ATTR_ID IS NULL AND ATTF_RICHTUNG = 'OUTBOUND'))
-		,CONSTRAINT ATTR_UN UNIQUE (ATTF_RICHTUNG , ATTF_SCHA_ID , ATTF_ATTR_ID )
- 	   ,CONSTRAINT ATTF_ATTR_FK FOREIGN KEY (ATTF_ATTR_ID) 
- 	      REFERENCES ATTRIBUTES (ATTR_ID ) 
- 	      ON DELETE CASCADE 
- 	   ,CONSTRAINT ATTF_SCHA_FK FOREIGN KEY (ATTF_SCHA_ID) 
- 	      REFERENCES SCHNITTSTELLE_ATTR (SCHA_ID ) 
- 	      ON DELETE CASCADE 
- 	      )
- 	          """)
-
-#    dbDDL.dropTable("");
-#    dbDDL.createTable("""""")
+    Dokument.createtable()
+    ModelelemDoku.createtable()
+    TablEntiMap.createtable()
+    AttrTransf.createtable()
 
 #end erstelleInfra

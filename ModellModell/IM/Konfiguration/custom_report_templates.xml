@@ -148,73 +148,6 @@
 		</section>
 	</sections>
 	</custom_report_template>
-	<custom_report_template id="15163764-F6F2-9F0C-46B1-F013F30892B0" name="Table_one_level_list_Props" description="show list properties (indexes, foreign keys) appearing as single value" class="oracle.dbtools.crest.model.design.relational.Table" >
-	<sections>
-		<section propertyName="Table" type="" customName="Table" level="0" class="oracle.dbtools.crest.model.design.relational.Table">
-		<columns>
-				<column name="schemaObject" customName="Schema object" width="0.0" order="" massUpdatable="false" dynamic="false"/>
-				<column name="name" customName="Name" width="0.0" order="" massUpdatable="false" dynamic="false"/>
-				<column name="commentInRDBMS" customName="Comment in RDBMS" width="0.0" order="" massUpdatable="false" dynamic="false"/>
-				<column name="additional_Classification_Types" customName="additional_Classification_Types" width="0.0" order="" massUpdatable="false" dynamic="false"/>
-				<column name="allInds_PK_UK_NoFKeys" customName="All inds_PK _uk_no FK keys" width="0.0" order="" massUpdatable="false" dynamic="false"/>
-				<column name="fkAssociationsList" customName="FK associations list" width="0.0" order="" massUpdatable="false" dynamic="false"/>
-		</columns>
-		</section>
-	</sections>
-	</custom_report_template>
-	<custom_report_template id="1DDD1CE3-9B42-0ED1-E0DE-9A537D0C4066" name="Tables_2_Levels" description="" class="oracle.dbtools.crest.model.design.relational.Table" >
-	<sections>
-		<section propertyName="Table" type="" customName="Table" level="0" class="oracle.dbtools.crest.model.design.relational.Table">
-		<columns>
-				<column name="schemaObject" customName="Schema" width="10.0" order="" massUpdatable="false" dynamic="false"/>
-				<column name="name" customName="Name" width="10.0" order="" massUpdatable="false" dynamic="false"/>
-				<column name="allClassificationTypes" customName="Classification Types" width="10.0" order="" massUpdatable="false" dynamic="false"/>
-				<column name="commentInRDBMS" customName="Comment in RDBMS" width="25.0" order="" massUpdatable="false" dynamic="false"/>
-				<column name="comment" customName="Comment" width="25.0" order="" massUpdatable="false" dynamic="false"/>
-				<column name="notes" customName="Notes" width="20.0" order="" massUpdatable="false" dynamic="false"/>
-		</columns>
-		</section>
-		<section propertyName="columns" type="collection" customName="Columns" level="1" class="oracle.dbtools.crest.model.design.relational.Column">
-		<columns>
-				<column name="name" customName="Name" width="15.0" order="" massUpdatable="false" dynamic="false"/>
-				<column name="datatypeString" customName="Datatype" width="10.0" order="" massUpdatable="false" dynamic="false"/>
-				<column name="mandatory" customName="Mandatory" width="6.0" order="" massUpdatable="false" dynamic="false"/>
-				<column name="pkElement" customName="PK element" width="6.0" order="" massUpdatable="false" dynamic="false"/>
-				<column name="fkColumn" customName="FK column" width="4.0" order="" massUpdatable="false" dynamic="false"/>
-				<column name="constraintsText" customName="Constraint" width="10.0" order="" massUpdatable="false" dynamic="false"/>
-				<column name="commentInRDBMS" customName="Comment in RDBMS" width="49.0" order="" massUpdatable="false" dynamic="false"/>
-		</columns>
-		</section>
-		<section propertyName="allInds_PK_UK_NoFKeys" type="roPropertiesList" customName="PK,UKs and Indexes" level="1" class="oracle.dbtools.crest.model.design.relational.Index">
-		<columns>
-				<column name="schemaObject" customName="Schema" width="10.0" order="" massUpdatable="false" dynamic="false"/>
-				<column name="name" customName="Name" width="15.0" order="" massUpdatable="false" dynamic="false"/>
-				<column name="indexState" customName="State" width="10.0" order="" massUpdatable="false" dynamic="false"/>
-				<column name="usedColumns" customName="Columns" width="15.0" order="" massUpdatable="false" dynamic="false"/>
-				<column name="indexExpression" customName="Expression" width="10.0" order="" massUpdatable="false" dynamic="false"/>
-				<column name="commentInRDBMS" customName="Comment in RDBMS" width="40.0" order="" massUpdatable="false" dynamic="false"/>
-		</columns>
-		</section>
-		<section propertyName="fkAssociationsList" type="roPropertiesList" customName="Foreign Keys" level="1" class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation">
-		<columns>
-				<column name="name" customName="Name" width="15.0" order="" massUpdatable="false" dynamic="false"/>
-				<column name="remoteTable" customName="Referred  table" width="15.0" order="" massUpdatable="false" dynamic="false"/>
-				<column name="keyObject" customName="Referred Key" width="15.0" order="" massUpdatable="false" dynamic="false"/>
-				<column name="mandatory" customName="Mandatory" width="6.0" order="" massUpdatable="false" dynamic="false"/>
-				<column name="transferable" customName="Transferable" width="6.0" order="" massUpdatable="false" dynamic="false"/>
-				<column name="inArc" customName="In arc" width="4.0" order="" massUpdatable="false" dynamic="false"/>
-				<column name="commentInRDBMS" customName="Comment in RDBMS" width="25.0" order="" massUpdatable="false" dynamic="false"/>
-		</columns>
-		</section>
-		<section propertyName="tableCheckConstraints" type="collection" customName="Table check constraints" level="1" class="oracle.dbtools.crest.model.design.constraint.TableLevelConstraint">
-		<columns>
-				<column name="name" customName="Name" width="0.0" order="" massUpdatable="false" dynamic="false"/>
-				<column name="rule" customName="Rule" width="0.0" order="" massUpdatable="false" dynamic="false"/>
-				<column name="generateInDDL" customName="Generate in DDL " width="0.0" order="" massUpdatable="false" dynamic="false"/>
-		</columns>
-		</section>
-	</sections>
-	</custom_report_template>
 	<custom_report_template id="AE38DE50-601D-D1EB-B7FA-267AFB51AB95" name="Structured type 2 levels" description="" class="oracle.dbtools.crest.model.design.datatypes.StructuredType" >
 	<sections>
 		<section propertyName="StructuredType" type="" customName="StructuredType" level="0" class="oracle.dbtools.crest.model.design.datatypes.StructuredType">
@@ -395,23 +328,6 @@
 		</section>
 	</sections>
 	</custom_report_template>
-	<custom_report_template id="FB7E1071-BDF7-764E-A9A1-A2D62F5BA143" name="col_non null constraint name" description="" class="oracle.dbtools.crest.model.design.relational.Column" >
-	<sections>
-		<section propertyName="Column" type="" customName="Column" level="0" class="oracle.dbtools.crest.model.design.relational.Column">
-		<columns>
-				<column name="table" customName="Table" width="0.0" order="" massUpdatable="false" dynamic="false"/>
-				<column name="name" customName="Name" width="0.0" order="" massUpdatable="false" dynamic="false"/>
-				<column name="notNullConstraintName" customName="Not null constraint name" width="0.0" order="" massUpdatable="false" dynamic="false"/>
-				<column name="datatypeString" customName="Datatype string" width="0.0" order="" massUpdatable="false" dynamic="false"/>
-				<column name="dataTypeName" customName="Data type name" width="0.0" order="" massUpdatable="false" dynamic="false"/>
-				<column name="dataTypePrecision" customName="Data type precision" width="0.0" order="" massUpdatable="true" dynamic="false"/>
-				<column name="dataTypeScale" customName="Data type scale" width="0.0" order="" massUpdatable="true" dynamic="false"/>
-				<column name="dataTypeSize" customName="Data type size" width="0.0" order="" massUpdatable="true" dynamic="false"/>
-				<column name="domain" customName="Domain" width="0.0" order="" massUpdatable="true" dynamic="false"/>
-		</columns>
-		</section>
-	</sections>
-	</custom_report_template>
 	<custom_report_template id="3B62549B-0B4B-A8E3-ACFB-01CF0A6293E7" name="Entity simple" description="" class="oracle.dbtools.crest.model.design.logical.Entity" >
 	<sections>
 		<section propertyName="Entity" type="" customName="Entity" level="0" class="oracle.dbtools.crest.model.design.logical.Entity">
@@ -425,47 +341,135 @@
 	</sections>
 	</custom_report_template>
 	<custom_report_template id="016B3B27-C5E3-F699-7F45-DC7D9FD582C3" name="Entity Translation" description="" class="oracle.dbtools.crest.model.design.logical.Entity" >
-<sections>
-	<section propertyName="Entity" type="" customName="Entity" level="0" class="oracle.dbtools.crest.model.design.logical.Entity">
-	<columns>
-			<column name="name" customName="Name" width="0.0" order="" massUpdatable="false" dynamic="false"/>
-			<column name="EN_ENTI_NAME" customName="EN_ENTI_NAME" width="0.0" order="" massUpdatable="false" dynamic="false"/>
-			<column name="synonym" customName="Synonym" width="0.0" order="" massUpdatable="false" dynamic="false"/>
-			<column name="EN_ENTI_SYNONYM" customName="EN_ENTI_SYNONYM" width="0.0" order="" massUpdatable="false" dynamic="false"/>
-			<column name="comment" customName="Comment" width="0.0" order="" massUpdatable="false" dynamic="false"/>
-			<column name="notes" customName="Notes" width="0.0" order="" massUpdatable="false" dynamic="false"/>
-	</columns>
-	</section>
-</sections>
-</custom_report_template>
+	<sections>
+		<section propertyName="Entity" type="" customName="Entity" level="0" class="oracle.dbtools.crest.model.design.logical.Entity">
+		<columns>
+				<column name="name" customName="Name" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="EN_ENTI_NAME" customName="EN_ENTI_NAME" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="synonym" customName="Synonym" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="EN_ENTI_SYNONYM" customName="EN_ENTI_SYNONYM" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="comment" customName="Comment" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="notes" customName="Notes" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+		</columns>
+		</section>
+	</sections>
+	</custom_report_template>
 	<custom_report_template id="50CAEDF6-D1FA-0048-0783-12EEB9229075" name="Attriburtes Translation" description="" class="oracle.dbtools.crest.model.design.logical.Attribute" >
-<sections>
-	<section propertyName="Attribute" type="" customName="Attribute" level="0" class="oracle.dbtools.crest.model.design.logical.Attribute">
-	<columns>
-			<column name="entity" customName="Entity" width="0.0" order="" massUpdatable="false" dynamic="false"/>
-			<column name="name" customName="Name" width="0.0" order="" massUpdatable="false" dynamic="false"/>
-			<column name="EN_ATTR_NAME" customName="EN_ATTR_NAME" width="0.0" order="" massUpdatable="false" dynamic="false"/>
-			<column name="comment" customName="Comment" width="0.0" order="" massUpdatable="false" dynamic="false"/>
-			<column name="notes" customName="Notes" width="0.0" order="" massUpdatable="false" dynamic="false"/>
-	</columns>
-	</section>
-</sections>
-</custom_report_template>
+	<sections>
+		<section propertyName="Attribute" type="" customName="Attribute" level="0" class="oracle.dbtools.crest.model.design.logical.Attribute">
+		<columns>
+				<column name="entity" customName="Entity" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="name" customName="Name" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="EN_ATTR_NAME" customName="EN_ATTR_NAME" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="comment" customName="Comment" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="notes" customName="Notes" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+		</columns>
+		</section>
+	</sections>
+	</custom_report_template>
 	<custom_report_template id="0210D7F8-7D5D-E33B-A9FB-107C24B0BDBB" name="Relation Translation" description="" class="oracle.dbtools.crest.model.design.logical.Relation" >
-<sections>
-	<section propertyName="Relation" type="" customName="Relation" level="0" class="oracle.dbtools.crest.model.design.logical.Relation">
-	<columns>
-			<column name="name" customName="Name" width="0.0" order="" massUpdatable="false" dynamic="false"/>
-			<column name="sourceEntity" customName="Source entity" width="0.0" order="" massUpdatable="true" dynamic="false"/>
-			<column name="nameOnSource" customName="Name on source" width="0.0" order="" massUpdatable="true" dynamic="false"/>
-			<column name="EN_RELA_TEXT_FROM" customName="EN_RELA_TEXT_FROM" width="0.0" order="" massUpdatable="false" dynamic="true"/>
-			<column name="targetEntity" customName="Target entity" width="0.0" order="" massUpdatable="true" dynamic="false"/>
-			<column name="nameOnTarget" customName="Name on target" width="0.0" order="" massUpdatable="true" dynamic="false"/>
-			<column name="EN_RELA_TEXT_TO" customName="EN_RELA_TEXT_TO" width="0.0" order="" massUpdatable="false" dynamic="true"/>
-	</columns>
-	</section>
-</sections>
-</custom_report_template>
+	<sections>
+		<section propertyName="Relation" type="" customName="Relation" level="0" class="oracle.dbtools.crest.model.design.logical.Relation">
+		<columns>
+				<column name="name" customName="Name" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="sourceEntity" customName="Source entity" width="0.0" order="" massUpdatable="true" dynamic="false"/>
+				<column name="nameOnSource" customName="Name on source" width="0.0" order="" massUpdatable="true" dynamic="false"/>
+				<column name="EN_RELA_TEXT_FROM" customName="EN_RELA_TEXT_FROM" width="0.0" order="" massUpdatable="false" dynamic="true"/>
+				<column name="targetEntity" customName="Target entity" width="0.0" order="" massUpdatable="true" dynamic="false"/>
+				<column name="nameOnTarget" customName="Name on target" width="0.0" order="" massUpdatable="true" dynamic="false"/>
+				<column name="EN_RELA_TEXT_TO" customName="EN_RELA_TEXT_TO" width="0.0" order="" massUpdatable="false" dynamic="true"/>
+		</columns>
+		</section>
+	</sections>
+	</custom_report_template>
+	<custom_report_template id="FB7E1071-BDF7-764E-A9A1-A2D62F5BA143" name="col_non null constraint name" description="" class="oracle.dbtools.crest.model.design.relational.Column" >
+	<sections>
+		<section propertyName="Column" type="" customName="Column" level="0" class="oracle.dbtools.crest.model.design.relational.Column">
+		<columns>
+				<column name="table" customName="Table" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="name" customName="Name" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="mandatory" customName="Mandatory" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="domain" customName="Domain" width="0.0" order="" massUpdatable="true" dynamic="false"/>
+				<column name="datatypeString" customName="Datatype string" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="comment" customName="Comment" width="0.0" order="" massUpdatable="true" dynamic="false"/>
+				<column name="commentInRDBMS" customName="Comment in RDBMS" width="0.0" order="" massUpdatable="true" dynamic="false"/>
+				<column name="pkElement" customName="PK element" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="tableSchemaName" customName="Table schema name" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="constraintComment" customName="Constraint comment" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="constraintsText" customName="Constraints text" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="defaultValue" customName="Default value" width="0.0" order="" massUpdatable="true" dynamic="false"/>
+				<column name="fkColumn" customName="FK column" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="isDependOnFK_AsMandatory" customName="Is depend on FK _as mandatory" width="0.0" order="" massUpdatable="true" dynamic="false"/>
+		</columns>
+		</section>
+	</sections>
+	</custom_report_template>
+	<custom_report_template id="15163764-F6F2-9F0C-46B1-F013F30892B0" name="Table_one_level" description="show list properties (indexes, foreign keys) appearing as single value" class="oracle.dbtools.crest.model.design.relational.Table" >
+	<sections>
+		<section propertyName="Table" type="" customName="Table" level="0" class="oracle.dbtools.crest.model.design.relational.Table">
+		<columns>
+				<column name="name" customName="Name" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="abbreviation" customName="Abbreviation" width="0.0" order="" massUpdatable="true" dynamic="false"/>
+				<column name="comment" customName="Comment" width="0.0" order="" massUpdatable="true" dynamic="false"/>
+				<column name="allInds_PK_UK_NoFKeys" customName="All inds_PK _uk_no FK keys" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="fkAssociationsList" customName="FK associations list" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+		</columns>
+		</section>
+	</sections>
+	</custom_report_template>
+	<custom_report_template id="1DDD1CE3-9B42-0ED1-E0DE-9A537D0C4066" name="Tables_2_Levels" description="" class="oracle.dbtools.crest.model.design.relational.Table" >
+	<sections>
+		<section propertyName="Table" type="" customName="Table" level="0" class="oracle.dbtools.crest.model.design.relational.Table">
+		<columns>
+				<column name="schemaObject" customName="Schema" width="10.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="name" customName="Name" width="10.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="allClassificationTypes" customName="Classification Types" width="10.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="commentInRDBMS" customName="Comment in RDBMS" width="25.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="comment" customName="Comment" width="25.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="notes" customName="Notes" width="20.0" order="" massUpdatable="false" dynamic="false"/>
+		</columns>
+		</section>
+		<section propertyName="columns" type="collection" customName="Columns" level="1" class="oracle.dbtools.crest.model.design.relational.Column">
+		<columns>
+				<column name="name" customName="Name" width="15.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="mandatory" customName="Mandatory" width="6.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="datatypeString" customName="Datatype" width="10.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="pkElement" customName="PK element" width="6.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="fkColumn" customName="FK column" width="4.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="comment" customName="Comment" width="0.0" order="" massUpdatable="true" dynamic="false"/>
+				<column name="constraintsText" customName="Constraint" width="10.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="constraintComment" customName="Constraint comment" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+		</columns>
+		</section>
+		<section propertyName="allInds_PK_UK_NoFKeys" type="roPropertiesList" customName="PK,UKs and Indexes" level="1" class="oracle.dbtools.crest.model.design.relational.Index">
+		<columns>
+				<column name="schemaObject" customName="Schema" width="10.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="name" customName="Name" width="15.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="indexState" customName="State" width="10.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="usedColumns" customName="Columns" width="15.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="indexExpression" customName="Expression" width="10.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="commentInRDBMS" customName="Comment in RDBMS" width="40.0" order="" massUpdatable="false" dynamic="false"/>
+		</columns>
+		</section>
+		<section propertyName="fkAssociationsList" type="roPropertiesList" customName="Foreign Keys" level="1" class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation">
+		<columns>
+				<column name="name" customName="Name" width="15.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="remoteTable" customName="Referred  table" width="15.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="keyObject" customName="Referred Key" width="15.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="mandatory" customName="Mandatory" width="6.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="transferable" customName="Transferable" width="6.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="inArc" customName="In arc" width="4.0" order="" massUpdatable="false" dynamic="false"/>
+		</columns>
+		</section>
+		<section propertyName="tableCheckConstraints" type="collection" customName="Table check constraints" level="1" class="oracle.dbtools.crest.model.design.constraint.TableLevelConstraint">
+		<columns>
+				<column name="name" customName="Name" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="rule" customName="Rule" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="comment" customName="Comment" width="0.0" order="" massUpdatable="true" dynamic="false"/>
+		</columns>
+		</section>
+	</sections>
+	</custom_report_template>
 </custom_report_templates>
 <boolean_values>
 <str_true>

@@ -90,6 +90,11 @@ CREATE TABLE wertebereiche(
    'TEXT',
    'ZPKT'
         )),
+    wrtb_herkunft            VARCHAR2(6 )
+	        CHECK ( wrtb_herkunft IN (
+	            'DER',
+	            'DOM'
+	        )),
     wrtb_zpkt_minwert         varchar(30),
     wrtb_zpkt_maxwert         varchar(30),
     wrtb_zpkt_granularitaet   varchar(15)
@@ -135,6 +140,7 @@ CREATE TABLE wertebereiche(
         )),
     wrtb_bin_spfo varchar(100),
 	wrtb_odm_guid	varchar(36),
+    wrtb_schn_id    NUMBER(10) NULL,	
     wrtb_uc         varchar(30) NOT NULL,
     wrtb_dc        varchar(30) NOT NULL,
     wrtb_um        varchar(30),
@@ -153,10 +159,11 @@ CREATE TABLE wertebereiche(
  OR ( WRTB_BIN_INHALTTYP IS NULL AND WRTB_BIN_SPFO_ID IS NULL AND WRTB_NUM_NACHKSTELLEN IS NOT NULL AND WRTB_NUM_VORKSTELLEN IS NOT NULL AND WRTB_TEXT_MAXLNG IS NULL AND WRTB_TEXT_SYNTAXREGEL IS NULL AND WRTB_ZPKT_GRANULARITAET IS NULL AND WRTB_ZPKT_MAXWERT IS NULL AND WRTB_ZPKT_MINWERT IS NULL)) 
 ,CONSTRAINT WRTB_ExDep5 
     CHECK ( WRTB_TYP != 'TEXT'
- OR ( WRTB_BIN_INHALTTYP IS NULL AND WRTB_BIN_SPFO_ID IS NULL AND WRTB_NUM_NACHKSTELLEN IS NULL AND WRTB_NUM_MAXWERT IS NULL AND WRTB_NUM_MINWERT IS NULL AND WRTB_NUM_PHEH_ID IS NULL AND WRTB_NUM_RUNDNG_EINH IS NULL AND WRTB_NUM_VORKSTELLEN IS NULL AND WRTB_TEXT_MAXLNG IS NOT NULL AND WRTB_ZPKT_GRANULARITAET IS NULL AND WRTB_ZPKT_MAXWERT IS NULL AND WRTB_ZPKT_MINWERT IS NULL)) 
+ OR ( WRTB_BIN_INHALTTYP IS NULL AND WRTB_BIN_SPFO_ID IS NULL AND WRTB_NUM_NACHKSTELLEN IS NULL AND WRTB_NUM_MAXWERT IS NULL AND WRTB_NUM_MINWERT IS NULL AND WRTB_NUM_PHEH_ID IS NULL AND WRTB_NUM_RUNDNG_EINH IS NULL AND WRTB_NUM_VORKSTELLEN IS NULL AND  WRTB_ZPKT_GRANULARITAET IS NULL AND WRTB_ZPKT_MAXWERT IS NULL AND WRTB_ZPKT_MINWERT IS NULL)) 
 ,CONSTRAINT WRTB_ExDep6 
     CHECK ( WRTB_TYP != 'ZPKT'
- OR ( WRTB_BIN_INHALTTYP IS NULL AND WRTB_BIN_SPFO_ID IS NULL AND WRTB_NUM_NACHKSTELLEN IS NULL AND WRTB_NUM_MAXWERT IS NULL AND WRTB_NUM_MINWERT IS NULL AND WRTB_NUM_PHEH_ID IS NULL AND WRTB_NUM_RUNDNG_EINH IS NULL AND WRTB_NUM_VORKSTELLEN IS NULL AND WRTB_TEXT_MAXLNG IS NULL AND WRTB_TEXT_SYNTAXREGEL IS NULL AND WRTB_ZPKT_GRANULARITAET IS NOT NULL)) 
+ OR ( WRTB_BIN_INHALTTYP IS NULL AND WRTB_BIN_SPFO_ID IS NULL AND WRTB_NUM_NACHKSTELLEN IS NULL AND WRTB_NUM_MAXWERT IS NULL AND WRTB_NUM_MINWERT IS NULL AND WRTB_NUM_PHEH_ID IS NULL AND WRTB_NUM_RUNDNG_EINH IS NULL AND WRTB_NUM_VORKSTELLEN IS NULL AND WRTB_TEXT_MAXLNG IS NULL AND WRTB_TEXT_SYNTAXREGEL IS NULL AND WRTB_ZPKT_GRANULARITAET IS NOT NULL)),
+ CONSTRAINT wrtb_schn_fk FOREIGN KEY (wrtb_schn_id) references schnittstelle (schn_id)
 )
 ;
 CREATE TABLE wertebereichgruppen
@@ -410,7 +417,7 @@ CREATE TABLE SCHNITTSTELLE
  CONSTRAINT SCHN_UN UNIQUE (SCHN_NAME)
     )
 
-CREATE TABLE tabelle 
+CREATE TABLE tabellen 
     (
      tabl_id integer primary key autoincrement , 
      tabl_name varchar (60) not null , 
@@ -514,7 +521,7 @@ CREATE TABLE modellelement(
 	      REFERENCES SCHNITTSTELLE_ATTR (SCHA_ID ) 
 	      ON DELETE CASCADE ,
 	CONSTRAINT MODE_TABL_FK FOREIGN KEY ( MODE_TABL_ID) 
-	  	      REFERENCES TABELLE ( TABL_ID ) 
+	  	      REFERENCES tabellen ( TABL_ID ) 
 	  	      ON DELETE CASCADE ,
 	CONSTRAINT MODE_SCHN_FK FOREIGN KEY ( MODE_SCHN_ID) 
 		  	      REFERENCES schnittstelle ( schn_ID ) 
@@ -728,9 +735,9 @@ create view spraattr as
 	      beda_starttext_abstand   integer NULL
 	 constraint beda_stab_chk CHECK(beda_starttext_abstand BETWEEN 1 AND 9999),
 	      beda_starttext_x         integer NULL
-	 constraint beda_stx_chk CHECK(beda_starttext_x BETWEEN 0 AND 999999),
+	 constraint beda_stx_chk CHECK(beda_starttext_x BETWEEN -9999 AND 999999),
 	      beda_starttext_y         integer NULL
-	 constraint beda_sty_chk CHECK(beda_starttext_y BETWEEN 0 AND 999999),
+	 constraint beda_sty_chk CHECK(beda_starttext_y BETWEEN -9999 AND 999999),
 	      beda_starttext_breite    integer NULL
 	 constraint beda_stb_chk CHECK(beda_starttext_breite BETWEEN 1 AND 9999),
 	      beda_starttext_hoehe     integer NULL
@@ -749,9 +756,9 @@ create view spraattr as
 	      beda_endtext_abstand     integer NULL
 	 constraint beda_eab_chk CHECK(beda_endtext_abstand BETWEEN 1 AND 9999),
 	      beda_endtext_x  integer NULL
-	 constraint beda_ex_chk CHECK(beda_endtext_x BETWEEN 0 AND 999999),
+	 constraint beda_ex_chk CHECK(beda_endtext_x BETWEEN -9999 AND 999999),
 	      beda_endtext_y  integer NULL
-	 constraint beda_ey_chk CHECK(beda_endtext_y BETWEEN 0 AND 999999),
+	 constraint beda_ey_chk CHECK(beda_endtext_y BETWEEN -9999 AND 999999),
 	      beda_endtext_breite      integer NULL
 	 constraint beda_eb_chk CHECK(beda_endtext_breite BETWEEN 1 AND 9999),
 	      beda_endtext_hoehe       integer NULL
@@ -855,45 +862,48 @@ create view spraattr as
 	  	 REFERENCES geschaeftsbereich(gber_id)
 	  	     ON DELETE CASCADE 
 	      )
-	  CREATE TABLE  mente 
-	      (
-	        _id INTEGER PRIMARY KEY AUTOINCREMENT,
-	        _name varchar (60) not null , 
-	        _format varchar (20) , 
-	        _referenz varchar (500) , 
-	        _ _id INTEGER  
-	      )
+		  CREATE TABLE DOKUMENTE 
+		      (
+		       DOKU_ID integer primary key autoincrement,
+		       DOKU_NAME VARCHAR (60) NOT NULL , 
+		       DOKU_FORMAT VARCHAR (20) , 
+		       DOKU_REFERENZ VARCHAR (500) , 
+		       DOKU_DOKU_ID NUMERIC (10),	
+			   DOKU_ODM_GUID varchar(36),
+			   DOKU_PARENT_ODM_GUID varchar(36),  
+			   CONSTRAINT DOKU_UK UNIQUE (DOKU_ID),
+			   CONSTRAINT DOKU_DOKU_FK FOREIGN KEY (DOKU_DOKU_ID) 
+			   				      REFERENCES DOKUMENTE ( DOKU_ID )ON DELETE CASCADE
+		      )
 	 
-	  CREATE TABLE modelelem_  
-	      (
-	       modo_id INTEGER PRIMARY KEY AUTOINCREMENT,
-	       modo_ _id INTEGER not null , 
-	       modo_mode_id INTEGER not null,
-	   constraint modo_un unique (modo_ _id , modo_mode_id),
-	   constraint  _ _fk foreign key (modo_ _id) 
-	   	      references  mente (  _id )on delete cascade
-	   constraint modo_mode_fk foreign key (modo_mode_id) 
-	      references modellelement (mode_id)   on delete cascade
-	      )
-     
-
-  CREATE TABLE TABL_ENTI_MAP 
-      (
-       TEMA_ID integer primary key autoincrement , 
-       TEMA_TABL_ID integer NOT NULL , 
-       TEMA_ENTI_ID integer NULL , 
-       TEMA_BEZI_ID integer NULL , 
-       CONSTRAINT TEMA_CK CHECK ((TEMA_ENTI_ID IS NOT NULL AND TEMA_BEZI_ID IS NULL )
-           	        		  OR (TEMA_BEZI_ID IS NULL AND TEMA_BEZI_ID IS NOT NULL)),
-   		   CONSTRAINT TEMA_UN UNIQUE (TEMA_TABL_ID , TEMA_ENTI_ID )
-		   ,CONSTRAINT TEMA_BEZI_FK FOREIGN KEY (TEMA_BEZI_ID) 
-		      REFERENCES BEZIEHUNG (BEZI_ID ) 
-		   ,CONSTRAINT TEMA_ENTI_FK FOREIGN KEY (TEMA_ENTI_ID) 
-		      REFERENCES ENTITAET (ENTI_ID ) 
-		   ,CONSTRAINT TEMA_TABL_FK FOREIGN KEY (TEMA_TABL_ID) 
-		      REFERENCES TABELLE (TABL_ID ) 
-      )
-  
+		  CREATE TABLE MODELELEM_DOKU 
+		  				      (
+		  				       MODO_ID integer primary key autoincrement,
+		  				       MODO_DOKU_ID NUMERIC (10) NOT NULL , 
+		  				       MODO_MODE_ID NUMERIC (10) NOT NULL,
+		  					   CONSTRAINT MODO_UN UNIQUE (MODO_DOKU_ID , MODO_MODE_ID),
+		  					   CONSTRAINT MODO_DOKU_FK FOREIGN KEY (MODO_DOKU_ID) 
+		  					   				      REFERENCES DOKUMENTE ( DOKU_ID )ON DELETE CASCADE
+		  				  CONSTRAINT MODO_MODE_FK FOREIGN KEY (MODO_MODE_ID) 
+		  				      REFERENCES MODELLELEMENT (MODE_ID)   ON DELETE CASCADE
+		  			      )
+          create table tabl_enti_maps 
+           (
+            tema_id integer primary key autoincrement , 
+            tema_tabl_id integer not null , 
+            tema_enti_id integer null , 
+            tema_bezi_id integer null , 
+            constraint tema_ck check ((tema_enti_id is not null and tema_bezi_id is null )
+                	        		  or (tema_enti_id is null and tema_bezi_id is not null)),
+        		   constraint tema_un unique (tema_tabl_id , tema_enti_id ,tema_bezi_id)
+     		   ,constraint tema_bezi_fk foreign key (tema_bezi_id) 
+     		      references beziehung (bezi_id ) 
+     		   ,constraint tema_enti_fk foreign key (tema_enti_id) 
+     		      references entitaet (enti_id ) 
+     		   ,constraint tema_tabl_fk foreign key (tema_tabl_id) 
+     		      references tabellen (tabl_id ) 
+           )   
+		     
   CREATE TABLE schnittstelle_attr 
       (
        scha_id integer primary key autoincrement, 
@@ -912,7 +922,7 @@ create view spraattr as
    ,constraint scha_daty_fk foreign key (scha_daty_id) 
       references datatypes (daty_id ) 
    ,constraint scha_tabl_fk foreign key (scha_tabl_id) 
-      references tabelle (tabl_id ) 
+      references tabellen (tabl_id ) 
       )
 
   CREATE TABLE transf_usage 

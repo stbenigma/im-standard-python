@@ -2,9 +2,17 @@
 <Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="EF71ECEA-5DD6-73A4-A60E-06DB4ECF8D52" name="Natürliche Person">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-23 19:21:38 UTC</createdTime>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+
+]EN_ENTI_COMMENT]
+]]></notes>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
 <item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
@@ -20,7 +28,11 @@
 <createSurrogateKey>true</createSurrogateKey>
 <propertyMap>
 <property name="AP TabName" value="PERSON"/>
+<property name="DE_ENTI_NAME" value="Natürliche Person"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
 <property name="DynPropName Nat Person" value="und ein Wert"/>
+<property name="EN_ENTI_NAME" value="*DE* Natürliche Person"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
 <property name="SAP TabName" value="NatPers"/>
 </propertyMap>
 <documents usedDucuments="90D4B681-4349-B790-28A6-1D296402B6AB"/>
@@ -31,9 +43,17 @@
 <Attribute name="Name" id="00C86C76-77EA-66CE-417C-4B122E68C67D">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-23 19:21:51 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
 <item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
@@ -51,7 +71,9 @@
 <property name="AP Typ" value="."/>
 <property name="AP usage" value="."/>
 <property name="CRM-Salesforce" value="."/>
+<property name="DE_ATTR_NAME" value="Name"/>
 <property name="DynProp Attr Name in Natürliche Person" value="Wert für diese DynProp"/>
+<property name="EN_ATTR_NAME" value="*DE* Name"/>
 <property name="ERP" value="."/>
 <property name="EXCEL ColumnName" value="."/>
 <property name="Excel" value="."/>
@@ -68,9 +90,17 @@
 <Attribute name="Vorname" id="B36F299F-2D69-4979-DE67-9F45CD03C27C">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-23 19:21:54 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
 <item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
@@ -85,6 +115,8 @@
 <property name="AP Typ" value="."/>
 <property name="AP usage" value="."/>
 <property name="CRM-Salesforce" value="."/>
+<property name="DE_ATTR_NAME" value="Vorname"/>
+<property name="EN_ATTR_NAME" value="*DE* Vorname"/>
 <property name="ERP" value="."/>
 <property name="EXCEL ColumnName" value="."/>
 <property name="Excel" value="."/>
@@ -101,9 +133,17 @@
 <Attribute name="Privat TelNr" id="61725A0E-64CA-5931-DC2C-FD8452AB86C3">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-23 19:21:57 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
 <item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
@@ -119,6 +159,8 @@
 <property name="AP Typ" value="."/>
 <property name="AP usage" value="."/>
 <property name="CRM-Salesforce" value="."/>
+<property name="DE_ATTR_NAME" value="Privat TelNr"/>
+<property name="EN_ATTR_NAME" value="*DE* Privat TelNr"/>
 <property name="ERP" value="."/>
 <property name="EXCEL ColumnName" value="."/>
 <property name="Excel" value="."/>
@@ -134,9 +176,17 @@
 <Attribute name="Mobil TelNr" id="3AD53335-F6F4-5172-693C-FA3B5F6B89AA">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-23 19:22:04 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
 <item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
@@ -152,6 +202,8 @@
 <property name="AP Typ" value="."/>
 <property name="AP usage" value="."/>
 <property name="CRM-Salesforce" value="."/>
+<property name="DE_ATTR_NAME" value="Mobil TelNr"/>
+<property name="EN_ATTR_NAME" value="*DE* Mobil TelNr"/>
 <property name="ERP" value="."/>
 <property name="EXCEL ColumnName" value="."/>
 <property name="Excel" value="."/>
@@ -167,9 +219,17 @@
 <Attribute name="Geburtsdatum" id="B708FB56-7DE8-FA14-07F2-BBBF230CDDE9">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-23 19:22:09 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
 <item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
@@ -184,6 +244,8 @@
 <property name="AP Typ" value="."/>
 <property name="AP usage" value="."/>
 <property name="CRM-Salesforce" value="."/>
+<property name="DE_ATTR_NAME" value="Geburtsdatum"/>
+<property name="EN_ATTR_NAME" value="*DE* Geburtsdatum"/>
 <property name="ERP" value="."/>
 <property name="EXCEL ColumnName" value="."/>
 <property name="Excel" value="."/>
@@ -200,9 +262,17 @@
 <Attribute name="Zivilstand" id="F3EEE55A-0A1C-0725-EAC4-0FAF80CEC86F">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-23 19:22:48 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
 <item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
@@ -217,6 +287,8 @@
 <property name="AP Typ" value="."/>
 <property name="AP usage" value="."/>
 <property name="CRM-Salesforce" value="."/>
+<property name="DE_ATTR_NAME" value="Zivilstand"/>
+<property name="EN_ATTR_NAME" value="*DE* Zivilstand"/>
 <property name="ERP" value="."/>
 <property name="EXCEL ColumnName" value="."/>
 <property name="Excel" value="."/>
@@ -233,9 +305,17 @@
 <Attribute name="Sozialversicherung-Nr" id="5852C1A3-5EEB-FFBB-7972-2DE62E264916">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-23 19:26:14 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
 <item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
@@ -250,6 +330,8 @@
 <property name="AP Typ" value="."/>
 <property name="AP usage" value="."/>
 <property name="CRM-Salesforce" value="."/>
+<property name="DE_ATTR_NAME" value="Sozialversicherung-Nr"/>
+<property name="EN_ATTR_NAME" value="*DE* Sozialversicherung-Nr"/>
 <property name="ERP" value="."/>
 <property name="EXCEL ColumnName" value="."/>
 <property name="Excel" value="."/>
@@ -270,6 +352,7 @@
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
 <item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
@@ -284,6 +367,7 @@
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="false"/>
 <item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
@@ -297,6 +381,7 @@
 <createdTime>2019-09-06 12:20:12 UTC</createdTime>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 <item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>

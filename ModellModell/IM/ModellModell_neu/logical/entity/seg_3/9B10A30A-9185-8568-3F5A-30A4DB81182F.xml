@@ -3,17 +3,19 @@
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:06:23 UTC</createdTime>
 <comment><![CDATA[Wert, der für eine Aufzählungs-Werteliste ein gültiger Wert ist.
-Das Attribut "Wert" ist der physikalische (sprachunabhängige) Wert, der als eigentlicher Wert im konzeptionellen Modell gilt. ]]></comment>
+Das Attribut "Wert" ist der physikalische (sprachunabhängige) Wert, der als eigentlicher Wert im konzeptionellen Modell gilt.]]></comment>
 <notes><![CDATA[[DE_ENTI_COMMENT[
-Wert, der für eine Aufzählungs-Werteliste ein gültiger Wert ist. Das Attribut "Wert" ist der physikalische (sprachunabhängige) Wert, der als eigentlicher Wert im konzeptionellen Modell gilt. 
+Wert, der für eine Aufzählungs-Werteliste ein gültiger Wert ist.
+Das Attribut "Wert" ist der physikalische (sprachunabhängige) Wert, der als eigentlicher Wert im konzeptionellen Modell gilt.
 ]DE_ENTI_COMMENT]
 [EN_ENTI_COMMENT[
-Value that is a valid value for an enumerated value list. The attribute "value" is the physical (language-independent) value, which is the actual value in the conceptual model
+*Value that is a valid value for an enumerated value list. The attribute "value" is the physical (language-independent) value, which is the actual value in the conceptual model
 ]EN_ENTI_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <typeID>899A6DDC-95E0-4AD5-5F58-B3A2FF5C2D08</typeID>
@@ -30,8 +32,10 @@ Value that is a valid value for an enumerated value list. The attribute "value" 
 <property name="Beispiele" value="M / W / TRUE / FALSE / GESCHLOSSEN / OFFEN"/>
 <property name="DE_ENTI_COMMENT" value="Wert, der für eine Aufzählungs-Werteliste ein gültiger Wert ist. Das Attribut &quot;Wert&quot; ist der physikalische (sprachunabhängige) Wert, der als eigentlicher Wert im konzeptionellen Modell gilt. "/>
 <property name="DE_ENTI_NAME" value="Vorgabewert"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
 <property name="EN_ENTI_COMMENT" value="*DE* Wert, der für eine Aufzählungs-Werteliste ein gültiger Wert ist. Das Attribut &quot;Wert&quot; ist der physikalische (sprachunabhängige) Wert, der als eigentlicher Wert im konzeptionellen Modell gilt. "/>
-<property name="EN_ENTI_NAME" value="Default value"/>
+<property name="EN_ENTI_NAME" value="Allowed value"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Wert" id="C64892B8-1474-E5AC-044B-909ED247F4B5">
@@ -49,6 +53,7 @@ A value that an attribute can assume.
 <importedID>59765AA1-8537-2C40-B70F-8535A79BB0B1</importedID>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
@@ -77,6 +82,7 @@ Textual representation of a value in several languages possible.
 <importedID>4E1AEBA5-21DE-AE54-BD76-B067836EB23E</importedID>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
@@ -105,6 +111,7 @@ Long text / description of a value in several languages possible.
 <importedID>B6C16C90-4423-0B66-880F-5462F0519189</importedID>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
@@ -134,6 +141,7 @@ Number by which the values in a display are sorted in ascending order. Empty -> 
 <importedID>AD72172B-C474-F68D-AF1E-7AB2C9E50592</importedID>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
