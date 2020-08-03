@@ -1,0 +1,26 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_120" directorySegmentName="seg_1" id="49D659B0-1AEF-48F3-73D1-727695E406BA">
+<createdBy>toz</createdBy>
+<createdTime>2020-05-20 08:43:54 UTC</createdTime>
+<ownerDesignName>FYAYC_intern</ownerDesignName>
+<engineerTo>
+<item key="31F23758-7055-2533-F71A-66322F896678" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<nameOnSource>besteht aus</nameOnSource>
+<nameOnTarget>zusammengefass in</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>A05F6405-3F97-EB9A-43B8-37DC24C24E1E</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>31ED7BF3-6C9F-3DAC-B0AA-B4BB150D6D11</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="besteht aus"/>
+<property name="DE_RELA_TEXT_TO" value="zusammengefass in"/>
+<property name="EN_RELA_TEXT_FROM" value="**is composed of"/>
+<property name="EN_RELA_TEXT_TO" value="**summarized in"/>
+</propertyMap>
+</Relation>

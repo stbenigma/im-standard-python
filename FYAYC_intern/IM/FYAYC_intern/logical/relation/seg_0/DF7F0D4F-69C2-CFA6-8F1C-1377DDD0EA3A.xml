@@ -1,0 +1,27 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_16" directorySegmentName="seg_0" id="DF7F0D4F-69C2-CFA6-8F1C-1377DDD0EA3A">
+<createdBy>toz</createdBy>
+<createdTime>2020-05-19 14:50:32 UTC</createdTime>
+<ownerDesignName>FYAYC_intern</ownerDesignName>
+<engineerTo>
+<item key="31F23758-7055-2533-F71A-66322F896678" value="true"/>
+</engineerTo>
+<useSurrogateKey>true</useSurrogateKey>
+<identifying>false</identifying>
+<nameOnSource>modifiziert durch</nameOnSource>
+<nameOnTarget>modifiziert</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>FEE0DD3C-7A75-FCE3-7A3B-651753B5493C</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>AB509F4E-089C-EB24-255E-B329F8D18C2E</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="modifiziert durch"/>
+<property name="DE_RELA_TEXT_TO" value="modifiziert"/>
+<property name="EN_RELA_TEXT_FROM" value="**modified by"/>
+<property name="EN_RELA_TEXT_TO" value="**modified"/>
+</propertyMap>
+</Relation>

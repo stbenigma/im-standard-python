@@ -5,11 +5,11 @@
 <notes><![CDATA[[DE_ENTI_COMMENT[
 
 ]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+
+]EN_ENTI_COMMENT]
 ]]></notes>
 <ownerDesignName>IM_TQMI_FYAYC</ownerDesignName>
-<engineerTo>
-<item key="0FBE62B5-EA6E-67EB-52B2-298C9D3D71C1" value="true"/>
-</engineerTo>
 <adequatelyNormalized>NO</adequatelyNormalized>
 <expectedVolumes>0</expectedVolumes>
 <fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
@@ -22,7 +22,8 @@
 <propertyMap>
 <property name="DE_ENTI_NAME" value="Zweck"/>
 <property name="DE_ENTI_SYNONYM" value=""/>
-<property name="EN_ENTI_NAME" value="*DE* Zweck"/>
+<property name="EN_ENTI_NAME" value="**Purpose"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Nr" id="AC89A110-F711-263F-C05E-53621C2E31A1">
@@ -31,16 +32,16 @@
 <notes><![CDATA[[DE_ATTR_COMMENT[
 
 ]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
 ]]></notes>
 <ownerDesignName>IM_TQMI_FYAYC</ownerDesignName>
-<engineerTo>
-<item key="0FBE62B5-EA6E-67EB-52B2-298C9D3D71C1" value="true"/>
-</engineerTo>
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_NAME" value="Nr"/>
-<property name="EN_ATTR_NAME" value="*DE* Nr"/>
+<property name="EN_ATTR_NAME" value="**No"/>
 </propertyMap>
 </Attribute>
 </attributes>

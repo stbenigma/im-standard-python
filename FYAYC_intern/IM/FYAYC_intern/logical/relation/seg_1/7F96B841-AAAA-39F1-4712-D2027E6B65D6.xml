@@ -1,0 +1,26 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_58" directorySegmentName="seg_1" id="7F96B841-AAAA-39F1-4712-D2027E6B65D6">
+<createdBy>toz</createdBy>
+<createdTime>2020-05-19 14:50:32 UTC</createdTime>
+<ownerDesignName>FYAYC_intern</ownerDesignName>
+<engineerTo>
+<item key="31F23758-7055-2533-F71A-66322F896678" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<nameOnSource>erstellt mit</nameOnSource>
+<nameOnTarget>einsetzbar für</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>99EA7D8E-D830-C74B-B28F-C622A2704F84</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>46D31B78-4F84-4455-BDE4-70DC0D3094BE</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="erstellt mit"/>
+<property name="DE_RELA_TEXT_TO" value="einsetzbar für"/>
+<property name="EN_RELA_TEXT_FROM" value="**created with"/>
+<property name="EN_RELA_TEXT_TO" value="**applicable for"/>
+</propertyMap>
+</Relation>

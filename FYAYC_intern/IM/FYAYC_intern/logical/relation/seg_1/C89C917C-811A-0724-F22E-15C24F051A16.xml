@@ -1,0 +1,27 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_8v1" directorySegmentName="seg_1" id="C89C917C-811A-0724-F22E-15C24F051A16">
+<createdBy>toz</createdBy>
+<createdTime>2020-05-19 14:50:32 UTC</createdTime>
+<ownerDesignName>FYAYC_intern</ownerDesignName>
+<engineerTo>
+<item key="31F23758-7055-2533-F71A-66322F896678" value="true"/>
+</engineerTo>
+<useSurrogateKey>true</useSurrogateKey>
+<identifying>false</identifying>
+<nameOnSource>unterstützt</nameOnSource>
+<nameOnTarget>unterstützt von</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>0377887A-2035-531C-F814-7BC3E73D0213</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>0377887A-2035-531C-F814-7BC3E73D0213</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="unterstützt"/>
+<property name="DE_RELA_TEXT_TO" value="unterstützt von"/>
+<property name="EN_RELA_TEXT_FROM" value="**supports"/>
+<property name="EN_RELA_TEXT_TO" value="**assisted by"/>
+</propertyMap>
+</Relation>

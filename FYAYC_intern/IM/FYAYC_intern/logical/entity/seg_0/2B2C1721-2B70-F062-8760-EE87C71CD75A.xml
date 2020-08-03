@@ -1,0 +1,44 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="2B2C1721-2B70-F062-8760-EE87C71CD75A" name="Trainingseinheit">
+<createdBy>toz</createdBy>
+<createdTime>2020-04-30 09:30:48 UTC</createdTime>
+<comment><![CDATA[Ein Trainingsprogrammmodul beschreibt einen Teilbereich des Trainingsprogramms. 
+
+Bsp: 
+Trainingsprogramm: Introduction Days
+Trainingsprogrammmodul: Welcome Session]]></comment>
+<notes><![CDATA[[EN_ENTI_COMMENT[
+**A training program module describes a part of the training program
+
+Ex
+Training program: Introduction days
+Training program module: Welcome session
+]EN_ENTI_COMMENT]
+[DE_ENTI_COMMENT[
+Ein Trainingsprogrammmodul beschreibt einen Teilbereich des Trainingsprogramms. 
+
+Bsp: 
+Trainingsprogramm: Introduction Days
+Trainingsprogrammmodul: Welcome Session
+]DE_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>FYAYC_intern</ownerDesignName>
+<engineerTo>
+<item key="31F23758-7055-2533-F71A-66322F896678" value="true"/>
+</engineerTo>
+<typeID>8C051253-4025-F0B2-6E33-7EFB3E68BCBA</typeID>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<propertyMap>
+<property name="DE_ENTI_NAME" value="Trainingseinheit"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_NAME" value="**Training session"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+</propertyMap>
+</Entity>

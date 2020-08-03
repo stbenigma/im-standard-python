@@ -1,0 +1,26 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_48" directorySegmentName="seg_0" id="30066DA9-ECCC-5829-DD5A-175FE7276E12">
+<createdBy>toz</createdBy>
+<createdTime>2020-04-30 09:30:48 UTC</createdTime>
+<ownerDesignName>FYAYC_intern</ownerDesignName>
+<engineerTo>
+<item key="31F23758-7055-2533-F71A-66322F896678" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<nameOnSource>gefordert für</nameOnSource>
+<nameOnTarget>kostet</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>9E0DE181-E4F0-B3FF-B6B8-288D4E52C716</sourceEntity>
+<targetCardinalityString>1</targetCardinalityString>
+<targetEntity>D96ACBDF-36AD-2365-F384-0BDFF98C1B0A</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="gefordert für"/>
+<property name="DE_RELA_TEXT_TO" value="kostet"/>
+<property name="EN_RELA_TEXT_FROM" value="**required for"/>
+<property name="EN_RELA_TEXT_TO" value="**costs"/>
+</propertyMap>
+</Relation>

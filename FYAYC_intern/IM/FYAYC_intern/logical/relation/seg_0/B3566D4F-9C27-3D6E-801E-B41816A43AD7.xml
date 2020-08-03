@@ -1,0 +1,26 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_26v1" directorySegmentName="seg_0" id="B3566D4F-9C27-3D6E-801E-B41816A43AD7">
+<createdBy>toz</createdBy>
+<createdTime>2020-04-30 09:30:48 UTC</createdTime>
+<ownerDesignName>FYAYC_intern</ownerDesignName>
+<engineerTo>
+<item key="31F23758-7055-2533-F71A-66322F896678" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<nameOnSource>koordiniert</nameOnSource>
+<nameOnTarget>koordiniert durch</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>1E515B5A-9028-D974-467E-A1FEAF647527</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>AD07DAEC-8B86-A2BC-6899-E410ADD109A3</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="koordiniert"/>
+<property name="DE_RELA_TEXT_TO" value="koordiniert durch"/>
+<property name="EN_RELA_TEXT_FROM" value="**coordinated"/>
+<property name="EN_RELA_TEXT_TO" value="**coordinated by"/>
+</propertyMap>
+</Relation>

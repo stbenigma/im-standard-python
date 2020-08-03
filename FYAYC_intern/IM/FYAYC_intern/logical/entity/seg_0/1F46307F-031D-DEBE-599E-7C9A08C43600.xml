@@ -1,0 +1,55 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="1F46307F-031D-DEBE-599E-7C9A08C43600" name="Auditv1">
+<createdBy>toz</createdBy>
+<createdTime>2020-05-19 14:51:40 UTC</createdTime>
+<comment><![CDATA[Überprüfung ob Managementsystem Anforderungen erfüllt und ob im Realsystem korrekt gelebt.]]></comment>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+Überprüfung ob Managementsystem Anforderungen erfüllt und ob im Realsystem korrekt gelebt.
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+**Verification whether the management system fulfils requirements and whether it is correctly lived in the real system.
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>FYAYC_intern</ownerDesignName>
+<engineerTo>
+<item key="31F23758-7055-2533-F71A-66322F896678" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<propertyMap>
+<property name="DE_ENTI_NAME" value="Auditv1"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_NAME" value="**Auditv1"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Datum" id="33E5CA31-C70B-C087-EA02-C1A1C22ABD2C">
+<createdBy>toz</createdBy>
+<createdTime>2020-05-19 14:51:40 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>FYAYC_intern</ownerDesignName>
+<importedID>6B199787-EC7A-F4CF-9AA0-5790497B663D</importedID>
+<engineerTo>
+<item key="31F23758-7055-2533-F71A-66322F896678" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Datum"/>
+<property name="EN_ATTR_NAME" value="**Date"/>
+</propertyMap>
+</Attribute>
+</attributes>
+</Entity>

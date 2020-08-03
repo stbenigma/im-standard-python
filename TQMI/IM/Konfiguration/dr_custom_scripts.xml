@@ -1,183 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <dr_custom_scripts>
-	<scr id="9836D087-881D-2161-19AF-2C6DF49A964A" name="Before Create" object="null" engine="Oracle Nashorn" type="" var="model" library="" method="" purpose="ddl_transformation" >
-		<script>
-			<![CDATA[]]>
-		</script>
-	</scr>
-	<scr id="B50F3C56-0DC4-6376-8CF9-9CB189DC97DD" name="After Create" object="null" engine="Oracle Nashorn" type="" var="model" library="" method="" purpose="ddl_transformation" >
-		<script>
-			<![CDATA[/*
-variable ddlStatementsList should be used to return the list with DDL statements
-that are created by script - as shown below:
-ddlStatementsList.add(new java.lang.String(ddl));
-other available variables:
-- model - relational model instance
-- pModel - physical model instance
-- table - the table in relational model
-- tableProxy - table definition in physical model
-*/
-var ddl;
-var lname;
-//journal table name suffix
-jnTabSuf = "_JN";
-// trigger name suffix
-jnTrgSuf = "_JNtrg";
-prompt = model.getAppView().getSettings().isIncludePromptInDDL();
-useSchema = model.getAppView().getSettings().isIncludeSchemaInDDL();
-if(model.getStorageDesign().isOpen()){
-	if(useSchema){
-	     lname = tableProxy.getLongName();
-	}else{
-		lname = tableProxy.getName();
-	}
-}else{
-	if(useSchema){
-	     lname = table.getLongName();
-	}else{
-		lname = table.getName();
-	}
-}
-if(prompt){
-	ddl= "PROMPT Creating Journal Table for '"+lname+"';\n";
-}else{
-	ddl = "";
-}
-ddl = ddl + "CREATE TABLE "+lname+jnTabSuf+"\n"+
-" (JN_OPERATION CHAR(3) NOT NULL"+"\n"+
-" ,JN_ORACLE_USER VARCHAR2(30) NOT NULL"+"\n"+
-" ,JN_DATETIME DATE NOT NULL"+"\n"+
-" ,JN_NOTES VARCHAR2(240)"+"\n"+
-" ,JN_APPLN VARCHAR2(35)"+"\n"+
-" ,JN_SESSION NUMBER(38)"+"\n";
-cols = table.getElements();
-for(var i=0;i<cols.length;i++){
-	col = cols[i];
-	ddl = ddl +" ,"+col.getName()+" "+col.getDatatypeString();
-	if(col.isMandatory()){
-		ddl = ddl + " NOT NULL\n";
-	}else{
-		ddl = ddl + "\n";
-	}
-}
-ddl = ddl + " );";
-ddlStatementsList.add(new java.lang.String(ddl));
-if(prompt){
-	ddl= "\nPROMPT Creating Journal Trigger for '"+lname+"';\n";
-}else{
-	ddl = "\n";
-}
-ddl = ddl +
-"CREATE OR REPLACE TRIGGER "+lname+jnTrgSuf +"\n"+
-"  AFTER \n" +
-"  INSERT OR \n" +
-"  UPDATE OR \n" +
-"  DELETE ON "+lname+" for each row \n" +
-" Declare \n" +
-"  rec "+lname+"_JN"+"%ROWTYPE; \n" +
-"  blank "+lname+"_JN"+"%ROWTYPE; \n" +
-"  BEGIN \n" +
-"    rec := blank; \n" +
-"    IF INSERTING OR UPDATING THEN \n" ;
-for(var i=0;i<cols.length;i++){
-	col = cols[i];
-	ddl = ddl + "      rec."+col.getName()+" := :NEW."+col.getName()+"; \n";
-}
-ddl = ddl +
-"      rec.JN_DATETIME := SYSDATE; \n" +
-"      rec.JN_ORACLE_USER := SYS_CONTEXT ('USERENV', 'SESSION_USER'); \n" +
-"      rec.JN_APPLN := SYS_CONTEXT ('USERENV', 'MODULE'); \n" +
-"      rec.JN_SESSION := SYS_CONTEXT ('USERENV', 'SESSIONID'); \n" +
-"      IF INSERTING THEN \n" +
-"        rec.JN_OPERATION := 'INS'; \n" +
-"      ELSIF UPDATING THEN \n" +
-"        rec.JN_OPERATION := 'UPD'; \n" +
-"      END IF; \n" +
-"    ELSIF DELETING THEN \n" ;
-for(var i=0;i<cols.length;i++){
-	col = cols[i];
-	ddl = ddl + "      rec."+col.getName()+" := :OLD."+col.getName()+"; \n";
-}
-ddl = ddl +
-"      rec.JN_DATETIME := SYSDATE; \n" +
-"      rec.JN_ORACLE_USER := SYS_CONTEXT ('USERENV', 'SESSION_USER'); \n" +
-"      rec.JN_APPLN := SYS_CONTEXT ('USERENV', 'MODULE'); \n" +
-"      rec.JN_SESSION := SYS_CONTEXT ('USERENV', 'SESSIONID'); \n" +
-"      rec.JN_OPERATION := 'DEL'; \n" +
-"    END IF; \n" +
-"    INSERT into "+lname+"_JN"+" VALUES rec; \n" +
-"  END; \n" +
-"  /"
-ddlStatementsList.add(new java.lang.String(ddl));]]>
-		</script>
-	</scr>
-	<scr id="DC383793-5C2E-F62A-5241-35B8ACE86134" name="End Of Script" object="null" engine="Oracle Nashorn" type="" var="model" library="" method="" purpose="ddl_transformation" >
-		<script>
-			<![CDATA[]]>
-		</script>
-	</scr>
-	<scr id="1C0CDD35-A0D6-47E5-C702-7FB537C8A8C0" name="Instead Of Create" object="null" engine="Oracle Nashorn" type="" var="model" library="" method="" purpose="ddl_transformation" >
-		<script>
-			<![CDATA[]]>
-		</script>
-	</scr>
-	<scr id="0DC38187-8245-8904-7E00-D4B6DF394899" name="Before Create" object="null" engine="Oracle Nashorn" type="" var="model" library="" method="" purpose="ddl_transformation" >
-		<script>
-			<![CDATA[]]>
-		</script>
-	</scr>
-	<scr id="83D0D285-DF95-0BE7-EF4F-AC3F2D9CDE94" name="After Create" object="null" engine="Oracle Nashorn" type="" var="model" library="" method="" purpose="ddl_transformation" >
-		<script>
-			<![CDATA[ddl = "-- After Create script example for table " +table.getLongName();
-ddlStatementsList.add(new java.lang.String(ddl));]]>
-		</script>
-	</scr>
-	<scr id="6FDC20F3-D5B1-9711-C93F-745217AC8664" name="End Of Script" object="null" engine="Oracle Nashorn" type="" var="model" library="" method="" purpose="ddl_transformation" >
-		<script>
-			<![CDATA[]]>
-		</script>
-	</scr>
-	<scr id="27EEAD3F-3367-9D6F-8E02-D44189C855A1" name="Instead Of Create" object="null" engine="Oracle Nashorn" type="" var="model" library="" method="" purpose="ddl_transformation" >
-		<script>
-			<![CDATA[]]>
-		</script>
-	</scr>
-	<scr id="D36CE536-D575-BE5C-625F-23DE23913C6B" name="Complex rule - check comments demo" object="Table" engine="Oracle Nashorn" type="Warning" var="table" library="my first library" method="checkcomments" purpose="validation" >
-		<script>
-			<![CDATA[]]>
-		</script>
-	</scr>
-	<scr id="D72E63EC-9DA2-3537-F8C9-AE8ACEDC73D2" name="Length of Not Null Constraint name" object="Column" engine="Oracle Nashorn" type="Error" var="column" library="my first library" method="NotNullConstr_Name_Length" purpose="validation" >
-		<script>
-			<![CDATA[]]>
-		</script>
-	</scr>
-	<scr id="3F2B77AE-F97F-EF6D-4D6D-C9FE4CC78999" name="Optional FK with mandatory columns" object="Index/Constraint" engine="Oracle Nashorn" type="Warning" var="index" library="" method="" purpose="validation" >
-		<script>
-			<![CDATA[var index;
-// define function - function parameter doesn't need to be named index
-function checkFKColumns(index){
-  //check it's foreign key index, otherwise FK is null
- if(index.isFK()){
- 	if(!index.getFKAssociation().isMandatory()){
-	 cols = index.getElements();
-	 for(var i=0;i<cols.length;i++){
-		if(cols[i].isMandatory()){
-			return false;
-		}
-	 }
- 	}
- }
- return true;
-}
-// invoke the function
-checkFKColumns(index);]]>
-		</script>
-	</scr>
-	<scr id="E255FFD2-F6F9-B2EA-6DB7-5D3C950246B7" name="initTranslation" object="logical" engine="Oracle Nashorn" type="" var="model" library="translation" method="initTranslation" purpose="transformation" >
+	<scr id="ED877A34-3B53-7768-B2BD-97D3DC19D61D" name="upgradeTranslation" object="logical" engine="Oracle Nashorn" type="" var="model" library="translation" method="upgradeTranslation" purpose="transformation" >
 		<script>
 			<![CDATA[//scripts to handle translation of model
-	var CODEVERSION = '1.2';
+	var CODEVERSION = '1.3';
 	var gLogNote = "LOG";
 	var gCurrentLang = "DE";
 	var gLanguages = "DE,EN";
@@ -559,10 +385,10 @@ checkFKColumns(index);]]>
 	}]]>
 		</script>
 	</scr>
-	<scr id="068B7F2D-166C-80FE-19BE-A2B5F51403B7" name="changeLanguage" object="logical" engine="Oracle Nashorn" type="" var="model" library="translation" method="changeLanguage" purpose="transformation" >
+	<scr id="BD918180-CF4F-E63E-11BA-A01064CB780C" name="changeLanguage" object="logical" engine="Oracle Nashorn" type="" var="model" library="translation" method="changeLanguage" purpose="transformation" >
 		<script>
 			<![CDATA[//scripts to handle translation of model
-	var CODEVERSION = '1.2';
+	var CODEVERSION = '1.3';
 	var gLogNote = "LOG";
 	var gCurrentLang = "DE";
 	var gLanguages = "DE,EN";
@@ -944,10 +770,10 @@ checkFKColumns(index);]]>
 	}]]>
 		</script>
 	</scr>
-	<scr id="B8EFFB91-525C-FB2C-3BB3-EB44AC4FEEDB" name="upgradeTranslation" object="logical" engine="Oracle Nashorn" type="" var="model" library="translation" method="upgradeTranslation" purpose="transformation" >
+	<scr id="9455E924-A481-64EA-38A4-5C04F1F04CC7" name="initTranslation" object="logical" engine="Oracle Nashorn" type="" var="model" library="translation" method="initTranslation" purpose="transformation" >
 		<script>
 			<![CDATA[//scripts to handle translation of model
-	var CODEVERSION = '1.2';
+	var CODEVERSION = '1.3';
 	var gLogNote = "LOG";
 	var gCurrentLang = "DE";
 	var gLanguages = "DE,EN";
@@ -1716,17 +1542,4 @@ checkFKColumns(index);]]>
 		</script>
 	</lib>
 
-
-	<ddl_transformation_script_set id="B4E65BCB-CFF5-1302-E0BC-0C329BF9890E" name="Journal tables" description="" active="true">
-			<script id="9836D087-881D-2161-19AF-2C6DF49A964A"/>
-			<script id="1C0CDD35-A0D6-47E5-C702-7FB537C8A8C0"/>
-			<script id="B50F3C56-0DC4-6376-8CF9-9CB189DC97DD"/>
-			<script id="DC383793-5C2E-F62A-5241-35B8ACE86134"/>
-	</ddl_transformation_script_set>
-	<ddl_transformation_script_set id="86649BAE-547E-99D5-8B00-54B3BB9BB6BB" name="Empty script" description="" active="false">
-			<script id="0DC38187-8245-8904-7E00-D4B6DF394899"/>
-			<script id="27EEAD3F-3367-9D6F-8E02-D44189C855A1"/>
-			<script id="83D0D285-DF95-0BE7-EF4F-AC3F2D9CDE94"/>
-			<script id="6FDC20F3-D5B1-9711-C93F-745217AC8664"/>
-	</ddl_transformation_script_set>
 </dr_custom_scripts>

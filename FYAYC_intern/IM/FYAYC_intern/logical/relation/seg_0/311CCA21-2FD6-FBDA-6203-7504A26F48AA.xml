@@ -1,0 +1,26 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_70" directorySegmentName="seg_0" id="311CCA21-2FD6-FBDA-6203-7504A26F48AA">
+<createdBy>toz</createdBy>
+<createdTime>2020-05-04 06:47:47 UTC</createdTime>
+<ownerDesignName>FYAYC_intern</ownerDesignName>
+<engineerTo>
+<item key="31F23758-7055-2533-F71A-66322F896678" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<nameOnSource>kauft</nameOnSource>
+<nameOnTarget>gekauft von</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>178F8F3E-8717-49F0-CD1E-3F56C830BD95</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>954758FD-82FE-CAAA-D9BD-E4A79BB75FBB</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="kauft"/>
+<property name="DE_RELA_TEXT_TO" value="gekauft von"/>
+<property name="EN_RELA_TEXT_FROM" value="**buys"/>
+<property name="EN_RELA_TEXT_TO" value="**purchased from"/>
+</propertyMap>
+</Relation>

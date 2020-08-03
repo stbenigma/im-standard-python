@@ -1,0 +1,27 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_12v2" directorySegmentName="seg_0" id="C9937AC0-3E0F-31D1-B34B-2D0BFBED84E4">
+<createdBy>toz</createdBy>
+<createdTime>2020-05-19 14:50:32 UTC</createdTime>
+<ownerDesignName>FYAYC_intern</ownerDesignName>
+<engineerTo>
+<item key="31F23758-7055-2533-F71A-66322F896678" value="true"/>
+</engineerTo>
+<useSurrogateKey>true</useSurrogateKey>
+<identifying>false</identifying>
+<nameOnSource>gruppiert thematisch </nameOnSource>
+<nameOnTarget>unterteilt thematisch</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>AB509F4E-089C-EB24-255E-B329F8D18C2E</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>6B45AD5B-A6FB-4CBB-44C2-BB0B8AE02CCF</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="gruppiert thematisch "/>
+<property name="DE_RELA_TEXT_TO" value="unterteilt thematisch"/>
+<property name="EN_RELA_TEXT_FROM" value="**grouped thematically"/>
+<property name="EN_RELA_TEXT_TO" value="**subdivided thematically"/>
+</propertyMap>
+</Relation>

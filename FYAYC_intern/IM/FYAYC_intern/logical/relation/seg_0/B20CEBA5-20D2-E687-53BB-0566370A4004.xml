@@ -1,0 +1,26 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_47" directorySegmentName="seg_0" id="B20CEBA5-20D2-E687-53BB-0566370A4004">
+<createdBy>toz</createdBy>
+<createdTime>2020-04-30 09:30:48 UTC</createdTime>
+<ownerDesignName>FYAYC_intern</ownerDesignName>
+<engineerTo>
+<item key="31F23758-7055-2533-F71A-66322F896678" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<nameOnSource>bietet an</nameOnSource>
+<nameOnTarget>angeboten auf</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>5FFCBEF3-203F-DA05-D2F5-483DC6E6542E</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>D96ACBDF-36AD-2365-F384-0BDFF98C1B0A</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="bietet an"/>
+<property name="DE_RELA_TEXT_TO" value="angeboten auf"/>
+<property name="EN_RELA_TEXT_FROM" value="**proffers"/>
+<property name="EN_RELA_TEXT_TO" value="**offered on"/>
+</propertyMap>
+</Relation>

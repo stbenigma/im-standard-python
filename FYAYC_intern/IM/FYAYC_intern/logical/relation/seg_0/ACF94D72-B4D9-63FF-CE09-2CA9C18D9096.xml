@@ -1,0 +1,26 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_11" directorySegmentName="seg_0" id="ACF94D72-B4D9-63FF-CE09-2CA9C18D9096">
+<createdBy>toz</createdBy>
+<createdTime>2020-04-08 11:53:30 UTC</createdTime>
+<ownerDesignName>FYAYC_intern</ownerDesignName>
+<engineerTo>
+<item key="31F23758-7055-2533-F71A-66322F896678" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<nameOnSource>bestimmt</nameOnSource>
+<nameOnTarget>wird bestimmt von</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>D4BBA98C-0E75-78D1-462C-DD084F75B51B</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>FEF82482-6D44-720E-3962-33A8F6EAB45D</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="bestimmt"/>
+<property name="DE_RELA_TEXT_TO" value="wird bestimmt von"/>
+<property name="EN_RELA_TEXT_FROM" value="**determined"/>
+<property name="EN_RELA_TEXT_TO" value="**is determined by"/>
+</propertyMap>
+</Relation>

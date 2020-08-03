@@ -1,0 +1,27 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_22" directorySegmentName="seg_1" id="236F573B-90D1-D5C7-64BD-6228CBF0C2D3">
+<createdBy>toz</createdBy>
+<createdTime>2020-05-19 14:50:32 UTC</createdTime>
+<ownerDesignName>FYAYC_intern</ownerDesignName>
+<engineerTo>
+<item key="31F23758-7055-2533-F71A-66322F896678" value="true"/>
+</engineerTo>
+<useSurrogateKey>true</useSurrogateKey>
+<identifying>false</identifying>
+<nameOnSource>interpretiert durch</nameOnSource>
+<nameOnTarget>interpretiert</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>4C67DD5E-C9F0-61BC-EE83-87EB70E5FB2B</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>B7D271E1-B511-6892-616C-65DF93A6805E</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="interpretiert durch"/>
+<property name="DE_RELA_TEXT_TO" value="interpretiert"/>
+<property name="EN_RELA_TEXT_FROM" value="**interpreted by"/>
+<property name="EN_RELA_TEXT_TO" value="**interprets"/>
+</propertyMap>
+</Relation>

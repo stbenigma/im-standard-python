@@ -1,0 +1,26 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_9" directorySegmentName="seg_0" id="4740E2A1-8E64-74EE-3C93-159746F80BAD">
+<createdBy>toz</createdBy>
+<createdTime>2020-04-08 11:48:13 UTC</createdTime>
+<ownerDesignName>FYAYC_intern</ownerDesignName>
+<engineerTo>
+<item key="31F23758-7055-2533-F71A-66322F896678" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<nameOnSource>wird ausgeführt von</nameOnSource>
+<nameOnTarget>führt aus</nameOnTarget>
+<optionalSource>false</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>8615A395-34A1-2940-9141-FB151C131BE6</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>D4BBA98C-0E75-78D1-462C-DD084F75B51B</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="wird ausgeführt von"/>
+<property name="DE_RELA_TEXT_TO" value="führt aus"/>
+<property name="EN_RELA_TEXT_FROM" value="**is performed by"/>
+<property name="EN_RELA_TEXT_TO" value="**carries out"/>
+</propertyMap>
+</Relation>

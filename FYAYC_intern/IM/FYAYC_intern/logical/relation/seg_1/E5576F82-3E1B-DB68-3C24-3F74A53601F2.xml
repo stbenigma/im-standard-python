@@ -1,0 +1,26 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_126" directorySegmentName="seg_1" id="E5576F82-3E1B-DB68-3C24-3F74A53601F2">
+<createdBy>toz</createdBy>
+<createdTime>2020-05-27 13:09:31 UTC</createdTime>
+<ownerDesignName>FYAYC_intern</ownerDesignName>
+<engineerTo>
+<item key="31F23758-7055-2533-F71A-66322F896678" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<nameOnSource>bearbeitet</nameOnSource>
+<nameOnTarget>wird bearbeitet von</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>1B4B3A71-717E-0806-44CB-3FB053713C1E</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>6A84570C-B4D1-3043-A971-D6EAA787CE0B</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="bearbeitet"/>
+<property name="DE_RELA_TEXT_TO" value="wird bearbeitet von"/>
+<property name="EN_RELA_TEXT_FROM" value="**edited"/>
+<property name="EN_RELA_TEXT_TO" value="**is edited by"/>
+</propertyMap>
+</Relation>

@@ -1,0 +1,27 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_21v2" directorySegmentName="seg_1" id="915ADCAE-7DB9-9A78-A074-A28147977406">
+<createdBy>toz</createdBy>
+<createdTime>2020-05-19 14:50:32 UTC</createdTime>
+<ownerDesignName>FYAYC_intern</ownerDesignName>
+<engineerTo>
+<item key="31F23758-7055-2533-F71A-66322F896678" value="true"/>
+</engineerTo>
+<useSurrogateKey>true</useSurrogateKey>
+<identifying>false</identifying>
+<nameOnSource>bewertet mit</nameOnSource>
+<nameOnTarget>bewertet</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>AB509F4E-089C-EB24-255E-B329F8D18C2E</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>6C7DC41B-5F62-1C31-FF4F-EE024D3B8D93</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="bewertet mit"/>
+<property name="DE_RELA_TEXT_TO" value="bewertet"/>
+<property name="EN_RELA_TEXT_FROM" value="**rated at"/>
+<property name="EN_RELA_TEXT_TO" value="**rated"/>
+</propertyMap>
+</Relation>

@@ -9,9 +9,9 @@ financial results
 recruting requirements
 expense handling]]></comment>
 <notes><![CDATA[[EN_ENTI_COMMENT[
-*DE* 
+**
 
-Beispiele:
+Examples:
 financial results
 recruting requirements
 expense handling
@@ -26,9 +26,6 @@ expense handling
 ]DE_ENTI_COMMENT]
 ]]></notes>
 <ownerDesignName>IM_TQMI_FYAYC</ownerDesignName>
-<engineerTo>
-<item key="0FBE62B5-EA6E-67EB-52B2-298C9D3D71C1" value="true"/>
-</engineerTo>
 <adequatelyNormalized>NO</adequatelyNormalized>
 <expectedVolumes>0</expectedVolumes>
 <fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
@@ -41,7 +38,8 @@ expense handling
 <propertyMap>
 <property name="DE_ENTI_NAME" value="Prozessschnittstelle"/>
 <property name="DE_ENTI_SYNONYM" value=""/>
-<property name="EN_ENTI_NAME" value="*DE* Prozessschnittstelle"/>
+<property name="EN_ENTI_NAME" value="**Process interface"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Name" id="C0496DCD-3356-C0A6-85A2-44A03CEDECBE">
@@ -50,16 +48,16 @@ expense handling
 <notes><![CDATA[[DE_ATTR_COMMENT[
 
 ]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
 ]]></notes>
 <ownerDesignName>IM_TQMI_FYAYC</ownerDesignName>
-<engineerTo>
-<item key="0FBE62B5-EA6E-67EB-52B2-298C9D3D71C1" value="true"/>
-</engineerTo>
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_NAME" value="Name"/>
-<property name="EN_ATTR_NAME" value="*DE* Name"/>
+<property name="EN_ATTR_NAME" value="**Name"/>
 </propertyMap>
 </Attribute>
 </attributes>

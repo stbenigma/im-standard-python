@@ -1,0 +1,23 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_56" directorySegmentName="seg_0" id="1C3C3055-524A-B84B-0580-94DFC5E0D86F">
+<createdBy>toz</createdBy>
+<createdTime>2020-04-29 13:23:29 UTC</createdTime>
+<ownerDesignName>IM_TQMI_FYAYC</ownerDesignName>
+<identifying>false</identifying>
+<nameOnSource>verantwortet durch</nameOnSource>
+<nameOnTarget>verantwortet</nameOnTarget>
+<optionalSource>false</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>D324BF88-CB7B-E8BA-6DCC-B12B48EABF0A</sourceEntity>
+<targetCardinalityString>1</targetCardinalityString>
+<targetEntity>8F38B461-434F-71CA-22FE-E83B4C0C33FA</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="verantwortet durch"/>
+<property name="DE_RELA_TEXT_TO" value="verantwortet"/>
+<property name="EN_RELA_TEXT_FROM" value="accounted for by"/>
+<property name="EN_RELA_TEXT_TO" value="responsible for"/>
+</propertyMap>
+</Relation>

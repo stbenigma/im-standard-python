@@ -1,0 +1,20 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_26" directorySegmentName="seg_0" id="E096B290-8391-B9E4-A1DA-272E1101194C">
+<createdBy>toz</createdBy>
+<createdTime>2020-03-19 13:19:53 UTC</createdTime>
+<ownerDesignName>TrainingServices</ownerDesignName>
+<engineerTo>
+<item key="63A4880A-B3A1-6D5E-59D9-DC68D4A0CDF4" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<nameOnSource>koordiniert</nameOnSource>
+<nameOnTarget>koordiniert durch</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>EE618D05-92FA-4980-4F98-76D634E76BE2</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>CE68BC47-F082-E073-41C5-B9071AF0A373</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

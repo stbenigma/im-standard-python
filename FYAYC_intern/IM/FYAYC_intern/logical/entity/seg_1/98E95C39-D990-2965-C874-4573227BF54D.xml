@@ -1,0 +1,81 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="98E95C39-D990-2965-C874-4573227BF54D" name="Prozessgruppev1">
+<createdBy>toz</createdBy>
+<createdTime>2020-05-19 14:51:39 UTC</createdTime>
+<comment><![CDATA[Beispiele:
+2 Human Resources]]></comment>
+<notes><![CDATA[[EN_ENTI_COMMENT[
+**Examples:
+2 Human Resources
+]EN_ENTI_COMMENT]
+[DE_ENTI_COMMENT[
+Beispiele:
+2 Human Resources
+]DE_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>FYAYC_intern</ownerDesignName>
+<engineerTo>
+<item key="31F23758-7055-2533-F71A-66322F896678" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<propertyMap>
+<property name="DE_ENTI_NAME" value="Prozessgruppev1"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_NAME" value="**Process Groupv1"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Nr" id="9DAEA63E-B158-869A-C8D2-D7B2D3E5A86C">
+<createdBy>toz</createdBy>
+<createdTime>2020-05-19 14:51:39 UTC</createdTime>
+<comment><![CDATA[1..5]]></comment>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+**1..5
+]EN_ATTR_COMMENT]
+[DE_ATTR_COMMENT[
+1..5
+]DE_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>FYAYC_intern</ownerDesignName>
+<importedID>08765973-BC64-E501-7142-2305F7AD1B85</importedID>
+<engineerTo>
+<item key="31F23758-7055-2533-F71A-66322F896678" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Nr"/>
+<property name="EN_ATTR_NAME" value="**No"/>
+</propertyMap>
+</Attribute>
+<Attribute name="Name" id="6CB2B92A-DEAE-0468-C9A3-A3334EA9CDAF">
+<createdBy>toz</createdBy>
+<createdTime>2020-05-19 14:51:39 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>FYAYC_intern</ownerDesignName>
+<importedID>AE5AA09D-E8CE-B0AE-B3C0-C00AE83FBD71</importedID>
+<engineerTo>
+<item key="31F23758-7055-2533-F71A-66322F896678" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Name"/>
+<property name="EN_ATTR_NAME" value="**Name"/>
+</propertyMap>
+</Attribute>
+</attributes>
+</Entity>

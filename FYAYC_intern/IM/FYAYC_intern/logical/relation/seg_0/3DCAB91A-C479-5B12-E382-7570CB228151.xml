@@ -1,0 +1,26 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_25" directorySegmentName="seg_0" id="3DCAB91A-C479-5B12-E382-7570CB228151">
+<createdBy>toz</createdBy>
+<createdTime>2020-04-23 17:50:50 UTC</createdTime>
+<ownerDesignName>FYAYC_intern</ownerDesignName>
+<engineerTo>
+<item key="31F23758-7055-2533-F71A-66322F896678" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<nameOnSource>besteht aus</nameOnSource>
+<nameOnTarget>zusammengefasst in</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>8E1BB880-CEAA-A78E-5932-8E5FED4BA7A7</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>C2F5BEB5-F493-B94B-2A9B-9CF9436089C5</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="besteht aus"/>
+<property name="DE_RELA_TEXT_TO" value="zusammengefasst in"/>
+<property name="EN_RELA_TEXT_FROM" value="**is composed of"/>
+<property name="EN_RELA_TEXT_TO" value="**summed up in"/>
+</propertyMap>
+</Relation>

@@ -1,15 +1,15 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="E66F7905-40EA-49F8-B2E0-1C7AFF2F04BD" name="Wert">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="E66F7905-40EA-49F8-B2E0-1C7AFF2F04BD" name="Firmenwerte">
 <createdBy>stb</createdBy>
 <createdTime>2018-05-03 13:00:54 UTC</createdTime>
 <notes><![CDATA[[DE_ENTI_COMMENT[
 
 ]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+
+]EN_ENTI_COMMENT]
 ]]></notes>
 <ownerDesignName>IM_TQMI_FYAYC</ownerDesignName>
-<engineerTo>
-<item key="0FBE62B5-EA6E-67EB-52B2-298C9D3D71C1" value="true"/>
-</engineerTo>
 <adequatelyNormalized>NO</adequatelyNormalized>
 <expectedVolumes>0</expectedVolumes>
 <fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
@@ -18,12 +18,12 @@
 <maxVolumes>9999999</maxVolumes>
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
-<synonym>Value</synonym>
+<synonym>Company values</synonym>
 <createSurrogateKey>true</createSurrogateKey>
 <propertyMap>
-<property name="DE_ENTI_NAME" value="Wert"/>
-<property name="DE_ENTI_SYNONYM" value="Value"/>
-<property name="EN_ENTI_NAME" value="*DE* Wert"/>
-<property name="EN_ENTI_SYNONYM" value="*DE* Value"/>
+<property name="DE_ENTI_NAME" value="Firmenwerte"/>
+<property name="DE_ENTI_SYNONYM" value="Company values"/>
+<property name="EN_ENTI_NAME" value="**Value"/>
+<property name="EN_ENTI_SYNONYM" value="*DE* Company values"/>
 </propertyMap>
 </Entity>

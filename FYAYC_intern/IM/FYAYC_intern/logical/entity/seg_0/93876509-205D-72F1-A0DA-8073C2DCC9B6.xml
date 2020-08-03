@@ -1,0 +1,83 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="93876509-205D-72F1-A0DA-8073C2DCC9B6" name="Hilfsmittel">
+<createdBy>toz</createdBy>
+<createdTime>2020-04-08 11:27:25 UTC</createdTime>
+<comment><![CDATA[Hilfsmittel Typisierung:
+Beispiel
+Template
+Guideline
+Formular
+Record]]></comment>
+<notes><![CDATA[[EN_ENTI_COMMENT[
+**Auxiliary typing:
+Example
+Template
+Guideline
+Form
+Record
+]EN_ENTI_COMMENT]
+[DE_ENTI_COMMENT[
+Hilfsmittel Typisierung:
+Beispiel
+Template
+Guideline
+Formular
+Record
+]DE_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>FYAYC_intern</ownerDesignName>
+<engineerTo>
+<item key="31F23758-7055-2533-F71A-66322F896678" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<propertyMap>
+<property name="DE_ENTI_NAME" value="Hilfsmittel"/>
+<property name="EN_ENTI_NAME" value="Tool"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="**Kanal-Typ" id="CFEBB516-5C91-9149-85E1-5F6EF0E1B2E5">
+<createdBy>toz</createdBy>
+<createdTime>2020-06-26 13:28:55 UTC</createdTime>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>FYAYC_intern</ownerDesignName>
+<engineerTo>
+<item key="31F23758-7055-2533-F71A-66322F896678" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="**Kanal-Typ"/>
+<property name="EN_ATTR_NAME" value="Channel Type"/>
+</propertyMap>
+</Attribute>
+<Attribute name="**Fassung" id="ECE2C70A-B8B9-06FE-E25F-BF79347B6844">
+<createdBy>toz</createdBy>
+<createdTime>2020-06-26 13:30:12 UTC</createdTime>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>FYAYC_intern</ownerDesignName>
+<engineerTo>
+<item key="31F23758-7055-2533-F71A-66322F896678" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="**Fassung"/>
+<property name="EN_ATTR_NAME" value="Version"/>
+</propertyMap>
+</Attribute>
+</attributes>
+</Entity>

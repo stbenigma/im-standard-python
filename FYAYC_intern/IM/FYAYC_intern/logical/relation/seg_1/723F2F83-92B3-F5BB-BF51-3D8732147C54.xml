@@ -1,0 +1,26 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_52" directorySegmentName="seg_1" id="723F2F83-92B3-F5BB-BF51-3D8732147C54">
+<createdBy>toz</createdBy>
+<createdTime>2020-05-19 14:50:32 UTC</createdTime>
+<ownerDesignName>FYAYC_intern</ownerDesignName>
+<engineerTo>
+<item key="31F23758-7055-2533-F71A-66322F896678" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<nameOnSource>erstellt</nameOnSource>
+<nameOnTarget>erstellt von</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>D4BBA98C-0E75-78D1-462C-DD084F75B51B</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>DE9761AB-FF13-66AE-7D57-7D0AAADB45F9</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="erstellt"/>
+<property name="DE_RELA_TEXT_TO" value="erstellt von"/>
+<property name="EN_RELA_TEXT_FROM" value="**created"/>
+<property name="EN_RELA_TEXT_TO" value="**created by"/>
+</propertyMap>
+</Relation>

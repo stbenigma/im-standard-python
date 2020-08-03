@@ -1,0 +1,26 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_7v1" directorySegmentName="seg_0" id="CDDE6740-2C01-7DC5-3B90-620E20A0D941">
+<createdBy>toz</createdBy>
+<createdTime>2020-04-30 09:30:48 UTC</createdTime>
+<ownerDesignName>FYAYC_intern</ownerDesignName>
+<engineerTo>
+<item key="31F23758-7055-2533-F71A-66322F896678" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<nameOnSource>besteht aus</nameOnSource>
+<nameOnTarget>gruppiert in</nameOnTarget>
+<optionalSource>false</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>D96ACBDF-36AD-2365-F384-0BDFF98C1B0A</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>421BE79D-49D2-B7BC-A85C-3A5CDB345E5F</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="besteht aus"/>
+<property name="DE_RELA_TEXT_TO" value="gruppiert in"/>
+<property name="EN_RELA_TEXT_FROM" value="**is composed of"/>
+<property name="EN_RELA_TEXT_TO" value="**grouped in"/>
+</propertyMap>
+</Relation>

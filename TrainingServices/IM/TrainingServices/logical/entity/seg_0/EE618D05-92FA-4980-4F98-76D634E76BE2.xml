@@ -1,0 +1,18 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="EE618D05-92FA-4980-4F98-76D634E76BE2" name="Ansprechspartner">
+<createdBy>toz</createdBy>
+<createdTime>2020-03-19 12:44:01 UTC</createdTime>
+<comment><![CDATA[Mitarbeiter, welcher für die Teilnehmer eines Trainings als Ansprechsperson zur Verfügung steht und das Administrative des Trainings leitet. Koordiniert die Aufgaben der Unterstützer.]]></comment>
+<ownerDesignName>TrainingServices</ownerDesignName>
+<engineerTo>
+<item key="63A4880A-B3A1-6D5E-59D9-DC68D4A0CDF4" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+</Entity>

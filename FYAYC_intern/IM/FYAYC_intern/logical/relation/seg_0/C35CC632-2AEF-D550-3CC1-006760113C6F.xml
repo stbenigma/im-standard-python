@@ -1,0 +1,26 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_37v1" directorySegmentName="seg_0" id="C35CC632-2AEF-D550-3CC1-006760113C6F">
+<createdBy>toz</createdBy>
+<createdTime>2020-04-30 09:30:48 UTC</createdTime>
+<ownerDesignName>FYAYC_intern</ownerDesignName>
+<engineerTo>
+<item key="31F23758-7055-2533-F71A-66322F896678" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<nameOnSource>hat</nameOnSource>
+<nameOnTarget>verfügbar in</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>D96ACBDF-36AD-2365-F384-0BDFF98C1B0A</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>954758FD-82FE-CAAA-D9BD-E4A79BB75FBB</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="hat"/>
+<property name="DE_RELA_TEXT_TO" value="verfügbar in"/>
+<property name="EN_RELA_TEXT_FROM" value="**has"/>
+<property name="EN_RELA_TEXT_TO" value="**available in"/>
+</propertyMap>
+</Relation>

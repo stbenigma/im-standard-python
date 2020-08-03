@@ -2,18 +2,23 @@
 <Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="DADBEC10-9769-8617-9968-DC4918D04CA1" name="Hilfsmittel">
 <createdBy>stb</createdBy>
 <createdTime>2018-05-03 12:39:57 UTC</createdTime>
-<comment><![CDATA[Dokument, Werkzeug, Vorlage, Softwate, Applikation]]></comment>
+<comment><![CDATA[Dokument, Werkzeug, Vorlage, Software, Applikation
+
+
+Beispiel:
+Financial Overview Group]]></comment>
 <notes><![CDATA[[EN_ENTI_COMMENT[
-*DE* Dokument, Werkzeug, Vorlage, Softwate, Applikation
+**Document, tool, template, software, application
 ]EN_ENTI_COMMENT]
 [DE_ENTI_COMMENT[
-Dokument, Werkzeug, Vorlage, Softwate, Applikation
+Dokument, Werkzeug, Vorlage, Software, Applikation
+
+
+Beispiel:
+Financial Overview Group
 ]DE_ENTI_COMMENT]
 ]]></notes>
 <ownerDesignName>IM_TQMI_FYAYC</ownerDesignName>
-<engineerTo>
-<item key="0FBE62B5-EA6E-67EB-52B2-298C9D3D71C1" value="true"/>
-</engineerTo>
 <adequatelyNormalized>NO</adequatelyNormalized>
 <expectedVolumes>0</expectedVolumes>
 <fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
@@ -26,6 +31,27 @@ Dokument, Werkzeug, Vorlage, Softwate, Applikation
 <propertyMap>
 <property name="DE_ENTI_NAME" value="Hilfsmittel"/>
 <property name="DE_ENTI_SYNONYM" value=""/>
-<property name="EN_ENTI_NAME" value="*DE* Hilfsmittel"/>
+<property name="EN_ENTI_NAME" value="**Resources"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
 </propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Status (global/lokal)" id="E2FD198F-F711-7E51-ECCF-80E8AA30C6A5">
+<createdBy>toz</createdBy>
+<createdTime>2020-04-29 14:34:18 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>IM_TQMI_FYAYC</ownerDesignName>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Status (global/lokal)"/>
+<property name="EN_ATTR_NAME" value="**Status (global/local)"/>
+</propertyMap>
+</Attribute>
+</attributes>
 </Entity>

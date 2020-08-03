@@ -1,0 +1,26 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_54" directorySegmentName="seg_1" id="4FF3FF47-8E63-C9E6-3CAF-21FC408CE376">
+<createdBy>toz</createdBy>
+<createdTime>2020-05-19 14:50:32 UTC</createdTime>
+<ownerDesignName>FYAYC_intern</ownerDesignName>
+<engineerTo>
+<item key="31F23758-7055-2533-F71A-66322F896678" value="true"/>
+</engineerTo>
+<useSurrogateKey>true</useSurrogateKey>
+<identifying>false</identifying>
+<nameOnSource>betroffen von?!</nameOnSource>
+<nameOnTarget>beteiligt an</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>6B802188-C6ED-174A-F585-BC854D099E1E</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>F011A69F-4D70-4D60-E12B-FC04C94E1AF0</targetEntity>
+<transferable>true</transferable>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="betroffen von?!"/>
+<property name="DE_RELA_TEXT_TO" value="beteiligt an"/>
+<property name="EN_RELA_TEXT_FROM" value="**affected by?!"/>
+<property name="EN_RELA_TEXT_TO" value="**involved in"/>
+</propertyMap>
+</Relation>

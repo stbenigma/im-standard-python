@@ -1,0 +1,27 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_15" directorySegmentName="seg_0" id="872ACA5D-962D-E19E-C3D1-785F73094925">
+<createdBy>toz</createdBy>
+<createdTime>2020-05-19 14:50:32 UTC</createdTime>
+<ownerDesignName>FYAYC_intern</ownerDesignName>
+<engineerTo>
+<item key="31F23758-7055-2533-F71A-66322F896678" value="true"/>
+</engineerTo>
+<useSurrogateKey>true</useSurrogateKey>
+<identifying>false</identifying>
+<nameOnSource>entsteht in</nameOnSource>
+<nameOnTarget>führt zu</nameOnTarget>
+<optionalSource>false</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>C061C1F9-3DD9-EFA2-808A-F624E8E4A6F1</sourceEntity>
+<targetCardinalityString>1</targetCardinalityString>
+<targetEntity>AB509F4E-089C-EB24-255E-B329F8D18C2E</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="entsteht in"/>
+<property name="DE_RELA_TEXT_TO" value="führt zu"/>
+<property name="EN_RELA_TEXT_FROM" value="**arises in"/>
+<property name="EN_RELA_TEXT_TO" value="**leads to"/>
+</propertyMap>
+</Relation>
