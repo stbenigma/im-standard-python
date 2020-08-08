@@ -1,0 +1,88 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="D3D17813-7FED-B57C-A284-B590BEADEAA3" name="MODELEMTYPE PROPERTIES">
+<createdBy>stb</createdBy>
+<createdTime>2020-08-08 16:41:54 UTC</createdTime>
+<comment><![CDATA[Connecting User defined properties with model element types:
+
+example:
+   UDP: ERP-COLUMN-ID is an extension for Model element type ATTRIBUTE
+   UDP: HIGH-RISK-DATA is an extension for Model element ypes (ATTRIBUTE, ENTITY)]]></comment>
+<generatorID>09427B17-0EFE-CC8E-2A95-7C0A21195C76</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<engineerTo>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
+<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<shortName>METP</shortName>
+<createSurrogateKey>true</createSurrogateKey>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="ID" id="3BC5447D-A762-D706-B849-1FD8D1ED2594">
+<createdBy>stb</createdBy>
+<createdTime>2020-08-08 16:41:54 UTC</createdTime>
+<generatorID>0AEA64F7-CD9A-D766-C440-B134180DCB50</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<engineerTo>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
+<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="OPTIONAL" id="D862EB7B-B001-2463-8B61-0A3893E1C83A">
+<createdBy>stb</createdBy>
+<createdTime>2020-08-08 16:41:54 UTC</createdTime>
+<comment><![CDATA[Optionality of the UDP for this element type]]></comment>
+<generatorID>7E847A4C-A6B0-98CC-7007-4091B6724DF4</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<engineerTo>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
+<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="43084518-32BF-7BD2-C40C-63ACCB00A86A" name="METP PK">
+<createdBy>stb</createdBy>
+<createdTime>2020-08-08 16:41:54 UTC</createdTime>
+<generatorID>06F0BBB6-255B-5E70-8733-77EA6DD28C7C</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<engineerTo>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
+<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>3BC5447D-A762-D706-B849-1FD8D1ED2594</attributeRef>
+</usedAttributes>
+</identifier>
+<identifier id="5D36801E-1059-109B-5583-5A480EF041EE" name="METP UN">
+<createdBy>stb</createdBy>
+<createdTime>2020-08-08 16:41:54 UTC</createdTime>
+<generatorID>79FD933B-9F94-0730-E189-83791EA5685B</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<engineerTo>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
+<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
+</engineerTo>
+</identifier>
+</identifiers>
+</Entity>

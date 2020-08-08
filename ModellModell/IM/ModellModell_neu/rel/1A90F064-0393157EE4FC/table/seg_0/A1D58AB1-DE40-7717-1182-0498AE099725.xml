@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="A1D58AB1-DE40-7717-1182-0498AE099725" name="KEY_ELELEMENTS">
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="A1D58AB1-DE40-7717-1182-0498AE099725" schemaObject="D76C6297-28A1-045E-8726-4B50ADD673B8" name="KEY_ELELEMENTS">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <comment><![CDATA[Elements (attributes and/or: m:1 or 1:1 relationships) of a key for an entity
@@ -66,9 +66,6 @@
 <logicalDatatype>LOGDT019</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
-<associations>
-<colAssociation fkAssociation="3A320813-E865-BAD9-E1B0-F23197893EC8" referredColumn="40E9736F-3ABE-3ABD-5FEA-D4131796E800"/>
-</associations>
 </Column>
 <Column name="KELE_UC" id="BB98D624-DE62-925C-7C4A-8F85BC3BC01E">
 <createdBy>stb</createdBy>
@@ -127,6 +124,21 @@
 <property name="ctemplateID" value="B398D247-00C1-F016-3BBB-FE65CFFFF7AA"/>
 </propertyMap>
 </Column>
+<Column name="RELATIONS_MODELELEMENT_MODE_ID" id="2536A15E-FC1F-3FA1-A611-F6F74FCA83C4">
+<createdBy>stb</createdBy>
+<createdTime>2020-08-08 16:12:29 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="3A320813-E865-BAD9-E1B0-F23197893EC8" referredColumn="BABB8742-E321-0EBD-79F0-6E95CF1087B4"/>
+</associations>
+</Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
 <ind_PK_UK id="F9EEAB94-1B08-F1FF-10AC-C1BB2A82682C" name="KELE_PK">
@@ -182,7 +194,7 @@
 <indexState>Foreign Key</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
-<colUsage columnID="7D462A41-2AA4-0BCB-F906-BA38A2F255AC"/>
+<colUsage columnID="2536A15E-FC1F-3FA1-A611-F6F74FCA83C4"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>

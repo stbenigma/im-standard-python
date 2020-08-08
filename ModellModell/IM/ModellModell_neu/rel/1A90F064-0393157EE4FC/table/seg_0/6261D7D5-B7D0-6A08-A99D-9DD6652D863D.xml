@@ -1,8 +1,8 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="6261D7D5-B7D0-6A08-A99D-9DD6652D863D" name="RELATIONS">
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="6261D7D5-B7D0-6A08-A99D-9DD6652D863D" schemaObject="D76C6297-28A1-045E-8726-4B50ADD673B8" name="RELATIONS">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 14:57:52 UTC</createdTime>
-<comment><![CDATA[Relationship connecting 2 entities (could be the same one)
+<comment><![CDATA[Relationship connecting 2 entities (of one entity with itself)
 
 Types are 1:1, M:1 (functional), M:N, ISAR or ISAS
 RELA_TYPE is partially redundant with MAPTYPE_FROM_TO/_TO_FROM (see constraints)
@@ -13,9 +13,9 @@ ISAS is a 1:1 representation representing a (exclusive) subtype
 ISAR is a role-subtype, an entity can take up several roles ("a Customer can be none, one or all of a Tenant, an Owner, a Dealer, an OEM-customer")
 
 Conditions for ISAS/R
-    both:  	The SubEntities have a mandatory relationship with the SuperEntity (meaning the cannot exists without the SuperEntity)
-    ISAS:	SuperEntity has 1:1 mandatory relationships to more than 1 SubEntity. The relationships must be in a arc (meaning they are  exlusive).
-    ISAR:	SuperEntity has 1:1 optinal relationships with at least one SubEntity. 
+    both:  	The SubEntities (subtype, role) have a mandatory relationship with the SuperEntity (meaning the cannot exists without the SuperEntity)
+    ISAS:	SuperEntity has 1:1 mandatory relationships to more than 1 SubEntity (subtype). The relationships must be in a arc (meaning they are  exlusive).
+    ISAR:	SuperEntity has 1:1 optinal relationships with at least one SubEntity (role). 
 
 ASSOC_FROM_TO / ASSOC_TO_FROM
 	can be empty for type ISAS/R but are mandatory for all other types
@@ -46,15 +46,19 @@ Subtype of MODELELEMENT. RELA_ID is always identical to the corresponding MODE_I
 <existDependencyGenerationLevel>Discriminator value</existDependencyGenerationLevel>
 <parsed>true</parsed>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
-<Column name="RELA_ID" id="40E9736F-3ABE-3ABD-5FEA-D4131796E800">
+<Column name="RELA_ID" id="BABB8742-E321-0EBD-79F0-6E95CF1087B4">
 <createdBy>stb</createdBy>
-<createdTime>2020-02-04 14:57:52 UTC</createdTime>
+<createdTime>2020-08-01 19:19:54 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="A17908BD-C7DC-47E6-FF12-96C5FCE61798" referredColumn="9698F1F3-1EBE-8770-4F8C-4FFC3465A776"/>
+</associations>
 </Column>
 <Column name="RELA_TYPE" id="71E3C818-D791-C576-BB54-F691A55AD22F">
 <createdBy>stb</createdBy>
@@ -138,10 +142,14 @@ Subtype of MODELELEMENT. RELA_ID is always identical to the corresponding MODE_I
 <comment><![CDATA[Entitiy at which the relationship starts]]></comment>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="3A31773E-D0DD-7924-CC70-583E7A7381B6" referredColumn="365AA3F1-7B02-CFAB-BB51-AE721CDEA5F3"/>
+</associations>
 </Column>
 <Column name="RELA_ARCS_ID_FROM" id="F35004ED-6F5B-17EB-8713-4F721692F856">
 <createdBy>stb</createdBy>
@@ -149,8 +157,9 @@ Subtype of MODELELEMENT. RELA_ID is always identical to the corresponding MODE_I
 <comment><![CDATA[ARC-ID at FROM-side]]></comment>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 <associations>
@@ -213,10 +222,30 @@ Subtype of MODELELEMENT. RELA_ID is always identical to the corresponding MODE_I
 <createdTime>2020-02-04 14:57:52 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="EBA526DF-6530-1A48-EEDE-4228A2634EA2" referredColumn="365AA3F1-7B02-CFAB-BB51-AE721CDEA5F3"/>
+</associations>
+</Column>
+<Column name="RELA_ARCS_ID_TO" id="4EC3CBCE-8C35-03F3-7F1A-F273C5410764">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-04 14:57:52 UTC</createdTime>
+<comment><![CDATA[ARC-ID at to side]]></comment>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="049EA077-A80F-61DA-2370-7535366CB57F" referredColumn="8419DB38-AE17-BE94-73F6-B492485B7E69"/>
+</associations>
 </Column>
 <Column name="RELA_ASSOC_TO_FROM" id="1F465582-DB7A-1367-97EF-0A6B7EBD66AC">
 <createdBy>stb</createdBy>
@@ -231,21 +260,6 @@ Subtype of MODELELEMENT. RELA_ID is always identical to the corresponding MODE_I
 <domain>897B91BA-60B8-3A16-793A-97B535605E5E</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
-</Column>
-<Column name="RELA_ARCS_ID_TO" id="4EC3CBCE-8C35-03F3-7F1A-F273C5410764">
-<createdBy>stb</createdBy>
-<createdTime>2020-02-04 14:57:52 UTC</createdTime>
-<comment><![CDATA[ARC-ID at to side]]></comment>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<previousColumn>false</previousColumn>
-<autoIncrementCycle>false</autoIncrementCycle>
-<associations>
-<colAssociation fkAssociation="049EA077-A80F-61DA-2370-7535366CB57F" referredColumn="8419DB38-AE17-BE94-73F6-B492485B7E69"/>
-</associations>
 </Column>
 <Column name="RELA_MAPTYPE_TO_FROM" id="391A15BE-7F14-B84D-187F-41276F7232B5">
 <createdBy>stb</createdBy>
@@ -344,48 +358,6 @@ Subtype of MODELELEMENT. RELA_ID is always identical to the corresponding MODE_I
 <property name="ctemplateID" value="B398D247-00C1-F016-3BBB-FE65CFFFF7AA"/>
 </propertyMap>
 </Column>
-<Column name="MODELELEMENT_MODE_ID" id="BABB8742-E321-0EBD-79F0-6E95CF1087B4">
-<createdBy>stb</createdBy>
-<createdTime>2020-08-01 19:19:54 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<use>0</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
-<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<previousColumn>false</previousColumn>
-<autoIncrementCycle>false</autoIncrementCycle>
-<associations>
-<colAssociation fkAssociation="A17908BD-C7DC-47E6-FF12-96C5FCE61798" referredColumn="9698F1F3-1EBE-8770-4F8C-4FFC3465A776"/>
-</associations>
-</Column>
-<Column name="ENTITIES_ENTI_ID" id="487BC335-7A0D-DC3E-3551-082D401E197B">
-<createdBy>stb</createdBy>
-<createdTime>2020-08-02 13:30:59 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<use>0</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
-<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<previousColumn>false</previousColumn>
-<autoIncrementCycle>false</autoIncrementCycle>
-<associations>
-<colAssociation fkAssociation="EBA526DF-6530-1A48-EEDE-4228A2634EA2" referredColumn="365AA3F1-7B02-CFAB-BB51-AE721CDEA5F3"/>
-</associations>
-</Column>
-<Column name="ENTITIES_ENTI_ID1" id="7C6F8B50-8DF4-D115-180C-077857999703">
-<createdBy>stb</createdBy>
-<createdTime>2020-08-02 13:30:59 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<use>0</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
-<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<previousColumn>false</previousColumn>
-<autoIncrementCycle>false</autoIncrementCycle>
-<associations>
-<colAssociation fkAssociation="3A31773E-D0DD-7924-CC70-583E7A7381B6" referredColumn="365AA3F1-7B02-CFAB-BB51-AE721CDEA5F3"/>
-</associations>
-</Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
 <ind_PK_UK id="8A7D1B42-A61E-C349-56DF-2D05D62CAAED" name="RELA_PK">
@@ -397,7 +369,21 @@ Subtype of MODELELEMENT. RELA_ID is always identical to the corresponding MODE_I
 <indexState>Primary Constraint</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
-<colUsage columnID="40E9736F-3ABE-3ABD-5FEA-D4131796E800"/>
+<colUsage columnID="BABB8742-E321-0EBD-79F0-6E95CF1087B4"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="D5FBE4E4-95F3-9336-754E-DC9BDFB7A5EA" name="RELA_UN">
+<createdBy>stb</createdBy>
+<createdTime>2020-08-08 16:10:46 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="09AC4CAF-5379-3DBE-06B6-BC8029966843"/>
+<colUsage columnID="D673B910-4664-5F47-603C-CD5B12CD4BDB"/>
+<colUsage columnID="71E3C818-D791-C576-BB54-F691A55AD22F"/>
+<colUsage columnID="3BF0B389-59E2-BA79-C1E4-FD56E1B80A64"/>
+<colUsage columnID="1F465582-DB7A-1367-97EF-0A6B7EBD66AC"/>
 </indexColumnUsage>
 </ind_PK_UK>
 <ind_PK_UK id="0CC9987A-0DF9-17C7-CF77-F2D8C298EFF6" name="RELA_ARCS_TO_FK">
@@ -427,7 +413,7 @@ Subtype of MODELELEMENT. RELA_ID is always identical to the corresponding MODE_I
 <indexState>Foreign Key</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
-<colUsage columnID="7C6F8B50-8DF4-D115-180C-077857999703"/>
+<colUsage columnID="09AC4CAF-5379-3DBE-06B6-BC8029966843"/>
 </indexColumnUsage>
 </ind_PK_UK>
 <ind_PK_UK id="FF9B5796-CB8A-EC3F-2F0F-3DB85A33D1B6" name="RELA_ENTI_TO_FK">
@@ -437,7 +423,7 @@ Subtype of MODELELEMENT. RELA_ID is always identical to the corresponding MODE_I
 <indexState>Foreign Key</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
-<colUsage columnID="487BC335-7A0D-DC3E-3551-082D401E197B"/>
+<colUsage columnID="D673B910-4664-5F47-603C-CD5B12CD4BDB"/>
 </indexColumnUsage>
 </ind_PK_UK>
 <ind_PK_UK id="55A96EBF-A78F-6A13-3A33-CB7A45A7FD89" name="RELA_MODE_FK">

@@ -382,41 +382,6 @@
 		</section>
 	</sections>
 	</custom_report_template>
-	<custom_report_template id="FB7E1071-BDF7-764E-A9A1-A2D62F5BA143" name="col_non null constraint name" description="" class="oracle.dbtools.crest.model.design.relational.Column" >
-	<sections>
-		<section propertyName="Column" type="" customName="Column" level="0" class="oracle.dbtools.crest.model.design.relational.Column">
-		<columns>
-				<column name="table" customName="Table" width="0.0" order="" massUpdatable="false" dynamic="false"/>
-				<column name="name" customName="Name" width="0.0" order="" massUpdatable="false" dynamic="false"/>
-				<column name="mandatory" customName="Mandatory" width="0.0" order="" massUpdatable="false" dynamic="false"/>
-				<column name="domain" customName="Domain" width="0.0" order="" massUpdatable="true" dynamic="false"/>
-				<column name="datatypeString" customName="Datatype string" width="0.0" order="" massUpdatable="false" dynamic="false"/>
-				<column name="comment" customName="Comment" width="0.0" order="" massUpdatable="true" dynamic="false"/>
-				<column name="commentInRDBMS" customName="Comment in RDBMS" width="0.0" order="" massUpdatable="true" dynamic="false"/>
-				<column name="pkElement" customName="PK element" width="0.0" order="" massUpdatable="false" dynamic="false"/>
-				<column name="tableSchemaName" customName="Table schema name" width="0.0" order="" massUpdatable="false" dynamic="false"/>
-				<column name="constraintComment" customName="Constraint comment" width="0.0" order="" massUpdatable="false" dynamic="false"/>
-				<column name="constraintsText" customName="Constraints text" width="0.0" order="" massUpdatable="false" dynamic="false"/>
-				<column name="defaultValue" customName="Default value" width="0.0" order="" massUpdatable="true" dynamic="false"/>
-				<column name="fkColumn" customName="FK column" width="0.0" order="" massUpdatable="false" dynamic="false"/>
-				<column name="isDependOnFK_AsMandatory" customName="Is depend on FK _as mandatory" width="0.0" order="" massUpdatable="true" dynamic="false"/>
-		</columns>
-		</section>
-	</sections>
-	</custom_report_template>
-	<custom_report_template id="15163764-F6F2-9F0C-46B1-F013F30892B0" name="Table_one_level" description="show list properties (indexes, foreign keys) appearing as single value" class="oracle.dbtools.crest.model.design.relational.Table" >
-	<sections>
-		<section propertyName="Table" type="" customName="Table" level="0" class="oracle.dbtools.crest.model.design.relational.Table">
-		<columns>
-				<column name="name" customName="Name" width="0.0" order="" massUpdatable="false" dynamic="false"/>
-				<column name="abbreviation" customName="Abbreviation" width="0.0" order="" massUpdatable="true" dynamic="false"/>
-				<column name="comment" customName="Comment" width="0.0" order="" massUpdatable="true" dynamic="false"/>
-				<column name="allInds_PK_UK_NoFKeys" customName="All inds_PK _uk_no FK keys" width="0.0" order="" massUpdatable="false" dynamic="false"/>
-				<column name="fkAssociationsList" customName="FK associations list" width="0.0" order="" massUpdatable="false" dynamic="false"/>
-		</columns>
-		</section>
-	</sections>
-	</custom_report_template>
 	<custom_report_template id="1DDD1CE3-9B42-0ED1-E0DE-9A537D0C4066" name="Tables_2_Levels" description="" class="oracle.dbtools.crest.model.design.relational.Table" >
 	<sections>
 		<section propertyName="Table" type="" customName="Table" level="0" class="oracle.dbtools.crest.model.design.relational.Table">
@@ -466,6 +431,40 @@
 				<column name="name" customName="Name" width="0.0" order="" massUpdatable="false" dynamic="false"/>
 				<column name="rule" customName="Rule" width="0.0" order="" massUpdatable="false" dynamic="false"/>
 				<column name="comment" customName="Comment" width="0.0" order="" massUpdatable="true" dynamic="false"/>
+		</columns>
+		</section>
+	</sections>
+	</custom_report_template>
+	<custom_report_template id="15163764-F6F2-9F0C-46B1-F013F30892B0" name="Table_one_level" description="show list properties (indexes, foreign keys) appearing as single value" class="oracle.dbtools.crest.model.design.relational.Table" >
+	<sections>
+		<section propertyName="Table" type="" customName="Table" level="0" class="oracle.dbtools.crest.model.design.relational.Table">
+		<columns>
+				<column name="name" customName="Name" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="abbreviation" customName="Abbreviation" width="0.0" order="" massUpdatable="true" dynamic="false"/>
+				<column name="comment" customName="Comment" width="0.0" order="" massUpdatable="true" dynamic="false"/>
+				<column name="allInds_PK_UK_NoFKeys" customName="PK, UK, IDX" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="fkAssociationsList" customName="FKS" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+		</columns>
+		</section>
+	</sections>
+	</custom_report_template>
+	<custom_report_template id="FB7E1071-BDF7-764E-A9A1-A2D62F5BA143" name="col_non null constraint name" description="" class="oracle.dbtools.crest.model.design.relational.Column" >
+	<sections>
+		<section propertyName="Column" type="" customName="Column" level="0" class="oracle.dbtools.crest.model.design.relational.Column">
+		<columns>
+				<column name="table" customName="Table" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="name" customName="Name" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="mandatory" customName="Mandatory" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="domain" customName="Domain" width="0.0" order="" massUpdatable="true" dynamic="false"/>
+				<column name="datatypeString" customName="Datatype string" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="comment" customName="Comment" width="0.0" order="" massUpdatable="true" dynamic="false"/>
+				<column name="commentInRDBMS" customName="Comment in RDBMS" width="0.0" order="" massUpdatable="true" dynamic="false"/>
+				<column name="pkElement" customName="PK element" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="tableSchemaName" customName="Table schema name" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="constraintComment" customName="Constraint comment" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="constraintsText" customName="Constraints text" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="defaultValue" customName="Default value" width="0.0" order="" massUpdatable="true" dynamic="false"/>
+				<column name="fkColumn" customName="FK column" width="0.0" order="" massUpdatable="false" dynamic="false"/>
 		</columns>
 		</section>
 	</sections>

@@ -1,0 +1,22 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="UDPV_UDPR_FK" directorySegmentName="seg_0" id="B0540394-689A-365A-8BAA-DACBF11D481D">
+<createdBy>stb</createdBy>
+<createdTime>2020-08-08 16:49:25 UTC</createdTime>
+<generatorID>BD0B48A8-C856-2EE0-2D42-EFAD28B39211</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<engineerTo>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
+<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
+</engineerTo>
+<useSurrogateKey>true</useSurrogateKey>
+<identifying>true</identifying>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>35148670-1B5B-5AFB-83B1-E01DFC12621A</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>2A9C7750-58E1-A93A-4350-DEED61179EE9</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

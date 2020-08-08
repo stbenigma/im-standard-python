@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="68BBF941-ED62-8B1E-E707-D85771F258E4" name="LANGUAGES">
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="68BBF941-ED62-8B1E-E707-D85771F258E4" schemaObject="D76C6297-28A1-045E-8726-4B50ADD673B8" name="LANGUAGES">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <comment><![CDATA[Language accoriding to ISO 629-1,2,3
@@ -45,13 +45,14 @@ The replacement language (LANG_LANG_ID) gives the default language to be used, i
 <comment><![CDATA[2-letter ISO-Code]]></comment>
 <generatorID>72F01738-8D10-1571-BF1F-54798C2B6A1C</generatorID>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
+<constraintComment><![CDATA[ISO-Code is lowercase]]></constraintComment>
 <constraintName>LANG_ISO2_CHK</constraintName>
 <useDomainConstraints>false</useDomainConstraints>
 <use>0</use>
 <logicalDatatype>LOGDT025</logicalDatatype>
 <domain>3CFAACDE-10D2-A99A-844A-975DA633F49B</domain>
 <checkConstraint>
-<implementationDef dbType="Generic Constraint" definition="SPRA_ISO_CODE2 = lower(SPRA_ISO_CODE2)"/>
+<implementationDef dbType="Generic Constraint" definition="LANG_ISO_CODE2 = lower(LANG_ISO_CODE2)"/>
 </checkConstraint>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
@@ -62,13 +63,14 @@ The replacement language (LANG_LANG_ID) gives the default language to be used, i
 <comment><![CDATA[3-letter ISO-Code]]></comment>
 <generatorID>95ED45B4-51CC-3B9B-6E4D-7959CD703675</generatorID>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
+<constraintComment><![CDATA[ISO Codes are lowercase]]></constraintComment>
 <constraintName>LANG_ISO3_CHK</constraintName>
 <useDomainConstraints>false</useDomainConstraints>
 <use>0</use>
 <logicalDatatype>LOGDT025</logicalDatatype>
 <domain>7EF070A4-018B-18D6-E996-291F316D16A7</domain>
 <checkConstraint>
-<implementationDef dbType="Oracle Database 12cR2" definition="SPRA_ISO_CODE3 = lower(SPRA_ISO_CODE3)"/>
+<implementationDef dbType="Generic Constraint" definition="LANG_ISO_CODE3 = lower(LANG_ISO_CODE3)"/>
 </checkConstraint>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
