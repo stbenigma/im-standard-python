@@ -60,6 +60,17 @@ Subtype of MODELELEMENT. RELA_ID is always identical to the corresponding MODE_I
 <colAssociation fkAssociation="A17908BD-C7DC-47E6-FF12-96C5FCE61798" referredColumn="9698F1F3-1EBE-8770-4F8C-4FFC3465A776"/>
 </associations>
 </Column>
+<Column name="RELA_NAME" id="0711E357-F416-1CF3-C9F3-300D3327C109">
+<createdBy>stb</createdBy>
+<createdTime>2020-08-09 08:34:32 UTC</createdTime>
+<comment><![CDATA[A name (used in UK) and to be able to map intersection tables to a Information model element. If missing, created from (fromentityshortname-toentityshortname-assocfromto)]]></comment>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
 <Column name="RELA_TYPE" id="71E3C818-D791-C576-BB54-F691A55AD22F">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 14:57:52 UTC</createdTime>
@@ -372,7 +383,7 @@ Subtype of MODELELEMENT. RELA_ID is always identical to the corresponding MODE_I
 <colUsage columnID="BABB8742-E321-0EBD-79F0-6E95CF1087B4"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="D5FBE4E4-95F3-9336-754E-DC9BDFB7A5EA" name="RELA_UN">
+<ind_PK_UK id="D5FBE4E4-95F3-9336-754E-DC9BDFB7A5EA" name="RELA_UK1">
 <createdBy>stb</createdBy>
 <createdTime>2020-08-08 16:10:46 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -382,8 +393,18 @@ Subtype of MODELELEMENT. RELA_ID is always identical to the corresponding MODE_I
 <colUsage columnID="09AC4CAF-5379-3DBE-06B6-BC8029966843"/>
 <colUsage columnID="D673B910-4664-5F47-603C-CD5B12CD4BDB"/>
 <colUsage columnID="71E3C818-D791-C576-BB54-F691A55AD22F"/>
-<colUsage columnID="3BF0B389-59E2-BA79-C1E4-FD56E1B80A64"/>
 <colUsage columnID="1F465582-DB7A-1367-97EF-0A6B7EBD66AC"/>
+<colUsage columnID="3BF0B389-59E2-BA79-C1E4-FD56E1B80A64"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="5AD74F24-6069-44E4-0E47-A0D7834BEDDF" name="RELA_UK_NAME">
+<createdBy>stb</createdBy>
+<createdTime>2020-08-09 08:34:32 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="0711E357-F416-1CF3-C9F3-300D3327C109"/>
 </indexColumnUsage>
 </ind_PK_UK>
 <ind_PK_UK id="0CC9987A-0DF9-17C7-CF77-F2D8C298EFF6" name="RELA_ARCS_TO_FK">

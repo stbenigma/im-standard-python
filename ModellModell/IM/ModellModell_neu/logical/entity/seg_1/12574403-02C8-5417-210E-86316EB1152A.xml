@@ -20,7 +20,6 @@
 <fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
 <growthPercent>0</growthPercent>
 <growthType>Year</growthType>
-<hierarchicalParent>8CDBEDF4-5478-6F12-0D46-E7BCD9A40CD3</hierarchicalParent>
 <maxVolumes>9999999</maxVolumes>
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
@@ -28,10 +27,8 @@
 <propertyMap>
 <property name="DE_ENTI_COMMENT" value=""/>
 <property name="DE_ENTI_NAME" value="Dokument"/>
-<property name="DE_ENTI_SYNONYM" value=""/>
 <property name="EN_ENTI_COMMENT" value=""/>
 <property name="EN_ENTI_NAME" value="Document"/>
-<property name="EN_ENTI_SYNONYM" value=""/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Name" id="A5F4F17D-8E4A-5426-B514-36FD9B46CE6F">
@@ -119,7 +116,7 @@
 <property name="EN_ATTR_NAME" value="Content"/>
 </propertyMap>
 </Attribute>
-<Attribute name="externe Referenz" id="0F1C9A37-B559-DC45-3507-CDE2D9A63F98">
+<Attribute name="Inhalteferenz" id="0F1C9A37-B559-DC45-3507-CDE2D9A63F98">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:03:22 UTC</createdTime>
 <comment><![CDATA[Referenz auf ein Datei-System bzw. eine Webseite.]]></comment>

@@ -5,6 +5,8 @@
 <comment><![CDATA[Geschäftsregel, die Attributwerte auf Regelkonformität prüft.
 Diese Regeln sind passiv. D.h. es wird überprüft, ob der Wert (ggf. im Zusammenhang mit anderen Werten dieser oder anderer Entitäten) aus fachlicher Sicht korrekt ist.
 
+Ebene auf der die Regel prüft (row, Tupel, Entität, Datenbank) wird aus den Elementen der Regel abgeleitet.
+
 Regelverletzungen können als SQL Selects angegeben werden. Jedes Tupel, das das Select liefert verletzt die Regel.]]></comment>
 <notes><![CDATA[[DE_ENTI_COMMENT[
 Geschäftsregel, die Attributwerte auf Regelkonformität prüft.
@@ -17,7 +19,6 @@ Regelverletzungen können als SQL Selects angegeben werden. Jedes Tupel, das das
 ]EN_ENTI_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
-<shouldEngineer>false</shouldEngineer>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
 <item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="false"/>
@@ -29,6 +30,7 @@ Regelverletzungen können als SQL Selects angegeben werden. Jedes Tupel, das das
 <fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
 <growthPercent>0</growthPercent>
 <growthType>Year</growthType>
+<hierarchicalParent>8CDBEDF4-5478-6F12-0D46-E7BCD9A40CD3</hierarchicalParent>
 <maxVolumes>9999999</maxVolumes>
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
@@ -55,7 +57,6 @@ Regelverletzungen können als SQL Selects angegeben werden. Jedes Tupel, das das
 ]EN_ATTR_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
-<shouldEngineer>false</shouldEngineer>
 <importedID>D4367DA7-6021-7E29-BEFC-2F6B66AB1763</importedID>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
@@ -85,7 +86,6 @@ Description, explanation of the rule
 ]EN_ATTR_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
-<shouldEngineer>false</shouldEngineer>
 <importedID>2B940275-6B40-64A6-6459-46A41243F4EF</importedID>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
@@ -116,7 +116,6 @@ Rule limiting values to complex relationships (multiple entities, attributes, re
 ]EN_ATTR_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
-<shouldEngineer>false</shouldEngineer>
 <importedID>723B41D1-B556-FACB-A890-B8B7F4FD8F6B</importedID>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
@@ -146,7 +145,6 @@ Message that is displayed when the rule is violated.
 ]EN_ATTR_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
-<shouldEngineer>false</shouldEngineer>
 <importedID>F0D0A02C-116A-DB0F-5438-DED076F0352F</importedID>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
@@ -164,42 +162,12 @@ Message that is displayed when the rule is violated.
 <property name="EN_ATTR_NAME" value="Error message [L]"/>
 </propertyMap>
 </Attribute>
-<Attribute name="Regelebene" id="BA044AD2-C3DB-31FF-FB4C-0EA93C6FA79D">
-<createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:04:00 UTC</createdTime>
-<comment><![CDATA[Ebene auf der die Regel prüft (Tupel, Entität, Datenbank)]]></comment>
-<notes><![CDATA[[DE_ATTR_COMMENT[
-Ebene auf der die Regel prüft (Tupel, Entität, Datenbank)
-]DE_ATTR_COMMENT]
-[EN_ATTR_COMMENT[
-Level at which the rule checks (tuple, entity, database)
-]EN_ATTR_COMMENT]
-]]></notes>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<shouldEngineer>false</shouldEngineer>
-<importedID>B4010BF0-A568-7476-4439-5CB48CB7997D</importedID>
-<engineerTo>
-<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
-<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="false"/>
-<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
-</engineerTo>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<propertyMap>
-<property name="DE_ATTR_COMMENT" value="Ebene auf der die Regel prüft (Tupel, Entität, Datenbank)"/>
-<property name="DE_ATTR_NAME" value="Regelebene"/>
-<property name="EN_ATTR_COMMENT" value="*DE* Ebene auf der die Regel prüft (Tupel, Entität, Datenbank)"/>
-<property name="EN_ATTR_NAME" value="Rule level"/>
-</propertyMap>
-</Attribute>
 </attributes>
 <identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
 <identifier id="B1F60E3A-1081-85A1-2F4B-813E9E8075FA" name="ITSY_NAME_UK">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:04:00 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
-<shouldEngineer>false</shouldEngineer>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
 <item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="false"/>

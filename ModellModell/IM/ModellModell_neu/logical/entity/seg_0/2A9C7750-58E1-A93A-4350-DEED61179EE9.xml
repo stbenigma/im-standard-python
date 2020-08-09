@@ -1,8 +1,8 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="2A9C7750-58E1-A93A-4350-DEED61179EE9" name="UDP VALUES">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="2A9C7750-58E1-A93A-4350-DEED61179EE9" name="Erweiterungsmerkmal Wert">
 <createdBy>stb</createdBy>
 <createdTime>2020-08-08 16:41:54 UTC</createdTime>
-<comment><![CDATA[Value of User defined property for a specific model element.]]></comment>
+<comment><![CDATA[Wert eines Erweiterungsmerkmals eines Elementes]]></comment>
 <generatorID>2377DC02-A654-28AD-0B67-8B867C2BE694</generatorID>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <engineerTo>
@@ -21,7 +21,7 @@
 <shortName>UDPV</shortName>
 <createSurrogateKey>true</createSurrogateKey>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<Attribute name="VALUE" id="F0AFC80F-C811-FBA8-F729-B8DD3F423825">
+<Attribute name="Wert" id="F0AFC80F-C811-FBA8-F729-B8DD3F423825">
 <createdBy>stb</createdBy>
 <createdTime>2020-08-08 16:41:54 UTC</createdTime>
 <generatorID>B816164D-9E92-A344-E89D-63677585A190</generatorID>
@@ -31,73 +31,11 @@
 <item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
+<nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-</Attribute>
-<Attribute name="UC" id="CA683E4C-0BBE-6850-DA2A-CF36680E38FB">
-<createdBy>stb</createdBy>
-<createdTime>2020-08-08 16:41:54 UTC</createdTime>
-<generatorID>6867F9CA-4EB0-6A9A-604E-CC6327B01C12</generatorID>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<engineerTo>
-<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
-<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
-<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
-</engineerTo>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT024</logicalDatatype>
-<dataTypeSize>30 BYTE</dataTypeSize>
-<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
-</Attribute>
-<Attribute name="DC" id="304E23EA-1F8A-FD26-3C8F-868657F4FD26">
-<createdBy>stb</createdBy>
-<createdTime>2020-08-08 16:41:54 UTC</createdTime>
-<generatorID>2913C79A-FF56-F3B0-BBEA-BA629EB6583E</generatorID>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<engineerTo>
-<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
-<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
-<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
-</engineerTo>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT047</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-</Attribute>
-<Attribute name="UM" id="A82C2D79-630A-07EE-6172-4BBC202FD70B">
-<createdBy>stb</createdBy>
-<createdTime>2020-08-08 16:41:54 UTC</createdTime>
-<generatorID>56145DF6-1F95-82A1-12CA-1EB6B26418E6</generatorID>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<engineerTo>
-<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
-<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
-<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
-</engineerTo>
-<nullsAllowed>true</nullsAllowed>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT024</logicalDatatype>
-<dataTypeSize>30 BYTE</dataTypeSize>
-<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
-</Attribute>
-<Attribute name="DM" id="C60E74E9-1D33-3224-76D6-A161A45A31A0">
-<createdBy>stb</createdBy>
-<createdTime>2020-08-08 16:41:54 UTC</createdTime>
-<generatorID>963984D9-E10A-53F8-32F2-83C678A0E3A7</generatorID>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<engineerTo>
-<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
-<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
-<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
-</engineerTo>
-<nullsAllowed>true</nullsAllowed>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT047</logicalDatatype>
+<domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 </attributes>
@@ -112,6 +50,7 @@
 <item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
+<newElementsIDs>B0540394-689A-365A-8BAA-DACBF11D481D,EB8D7E93-E38D-5492-808E-E58AF6F46BC2</newElementsIDs>
 </identifier>
 </identifiers>
 </Entity>

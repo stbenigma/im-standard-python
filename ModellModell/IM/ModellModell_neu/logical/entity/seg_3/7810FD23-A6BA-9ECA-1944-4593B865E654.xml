@@ -40,13 +40,11 @@ Entität + Menge aller Schlüsselelemente.
 <property name="Beispiele" value="Rechnungsposition: Rechnung (Beziehung),  Position-Nr, Kunde: Kunden-Nr"/>
 <property name="DE_ENTI_COMMENT" value="Gruppe von identifizierenden Beziehungen und oder Attributen einer Entität. Jede Kombination von Werten in einem Schlüssel ist für die Entität einmalig.  D.h. sie identifiziert genau 1 Eintrag in der Entität.  Die Laufnummer ist ein Hilfsmittel. Genau genommen ist für einen Schlüssel nur eindeutig Entität + Menge aller Schlüsselelemente."/>
 <property name="DE_ENTI_NAME" value="Schlüssel"/>
-<property name="DE_ENTI_SYNONYM" value=""/>
 <property name="EN_ENTI_COMMENT" value="*DE* Gruppe von identifizierenden Beziehungen und oder Attributen einer Entität. Jede Kombination von Werten in einem Schlüssel ist für die Entität einmalig.  D.h. sie identifiziert genau 1 Eintrag in der Entität.  Die Laufnummer ist ein Hilfsmittel. Genau genommen ist für einen Schlüssel nur eindeutig Entität + Menge aller Schlüsselelemente."/>
 <property name="EN_ENTI_NAME" value="Key"/>
-<property name="EN_ENTI_SYNONYM" value=""/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<Attribute name="*Laufnr" id="93DCD20B-8AC7-6BD0-A147-A7580D8A69E3">
+<Attribute name="Laufnr" id="93DCD20B-8AC7-6BD0-A147-A7580D8A69E3">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:04:00 UTC</createdTime>
 <comment><![CDATA[Schlüssel einer Entität müssen durch ein Merkmal unterscheidbar werden.]]></comment>
@@ -75,78 +73,20 @@ The keys of an entity must be distinguishable by a characteristic.
 <property name="EN_ATTR_NAME" value="No"/>
 </propertyMap>
 </Attribute>
-<Attribute name="Name" id="8869BA4C-0CDF-9DAA-4A99-7746E260039C">
-<createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:04:00 UTC</createdTime>
-<notes><![CDATA[[DE_ATTR_COMMENT[
-
-]DE_ATTR_COMMENT]
-[EN_ATTR_COMMENT[
-
-]EN_ATTR_COMMENT]
-]]></notes>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<importedID>6D04CA98-27CA-B063-D963-6A963B19B9A1</importedID>
-<engineerTo>
-<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
-<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
-<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
-</engineerTo>
-<nullsAllowed>true</nullsAllowed>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<propertyMap>
-<property name="DE_ATTR_COMMENT" value=""/>
-<property name="DE_ATTR_NAME" value="Name"/>
-<property name="EN_ATTR_COMMENT" value=""/>
-<property name="EN_ATTR_NAME" value="Name"/>
-</propertyMap>
-</Attribute>
-<Attribute name="Entitätname [L]" id="B71FC711-247D-DA25-AF29-846C25CA73C7">
-<createdBy>admin</createdBy>
-<createdTime>2020-02-10 12:41:58 UTC</createdTime>
-<comment><![CDATA[Name der Entität der in der Kommunikation normalerweise gebraucht wird.]]></comment>
-<generatorID>7DFF44B9-D585-A3B7-7342-79EA825C4941</generatorID>
-<notes><![CDATA[[EN_ATTR_COMMENT[
-**Name of the entity that is normally used in communication.
-]EN_ATTR_COMMENT]
-[DE_ATTR_COMMENT[
-Name der Entität der in der Kommunikation normalerweise gebraucht wird.
-]DE_ATTR_COMMENT]
-]]></notes>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<engineerTo>
-<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
-<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
-<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
-</engineerTo>
-<referedAttribute>F1D0F128-7361-E0A9-E706-227C158FCD42</referedAttribute>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<propertyMap>
-<property name="DE_ATTR_NAME" value="Entitätname [L]"/>
-<property name="EN_ATTR_NAME" value="Entity name [L]"/>
-</propertyMap>
-</Attribute>
 </attributes>
 <identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
-<identifier id="9D8CB824-E337-DAC0-E95C-EE0B55384F2E" name="Schlüssel PK">
+<identifier id="535AE6A2-9084-B091-55AD-DDEE049BF6F0" name="Key_1">
 <createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:04:00 UTC</createdTime>
+<createdTime>2020-08-09 08:47:01 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
-<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="false"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
-<pk>true</pk>
+<newElementsIDs>93DCD20B-8AC7-6BD0-A147-A7580D8A69E3,7DFF44B9-D585-A3B7-7342-79EA825C4941</newElementsIDs>
 <usedAttributes>
 <attributeRef>93DCD20B-8AC7-6BD0-A147-A7580D8A69E3</attributeRef>
-<attributeRef>B71FC711-247D-DA25-AF29-846C25CA73C7</attributeRef>
 </usedAttributes>
 </identifier>
 </identifiers>

@@ -17,6 +17,7 @@ Es ist nicht zwingend notwendig, dass dieses Attribut in dieser Form in einem de
 ]EN_ENTI_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="false"/>
 <item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
@@ -56,6 +57,7 @@ Name that says something about the role, use of the property in the entity. Freq
 ]EN_ATTR_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <importedID>EDEE919C-7C94-15E9-147C-57317A603D15</importedID>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="false"/>
@@ -85,6 +87,7 @@ Kurzbezeichnung der Entität für die Verwendung aus Überschrift, in Referenzen
 ]EN_ATTR_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <importedID>5786D6AD-9848-D503-A7AE-9758E9D42223</importedID>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="false"/>
@@ -103,6 +106,37 @@ Kurzbezeichnung der Entität für die Verwendung aus Überschrift, in Referenzen
 <property name="EN_ATTR_NAME" value="Display name [L]"/>
 </propertyMap>
 </Attribute>
+<Attribute name="Anzeigereihenfolge" id="C13DFCC3-15A3-5A60-B4D3-774EED4DB6D8">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:03:22 UTC</createdTime>
+<comment><![CDATA[Riehenfolge der Anzeige auf Diagrammen, in Reports. Leer-> Attribut kommt nach Name sortiert an den Schluss einer Liste]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Riehenfolge der Anzeige auf Diagrammen, in Reports. Leer-> Attribut kommt nach Name sortiert an den Schluss einer Liste
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Display sequence on diagrams, in reports. Empty-> attribute is sorted by name at the end of a list
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<importedID>598275C8-6915-4D18-A03A-DDE739950A91</importedID>
+<engineerTo>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="false"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
+<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value="Riehenfolge der Anzeige auf Diagrammen, in Reports. Leer-&gt; Attribut kommt nach Name sortiert an den Schluss einer Liste"/>
+<property name="DE_ATTR_NAME" value="Anzeigereihenfolge"/>
+<property name="EN_ATTR_COMMENT" value="*DE* Riehenfolge der Anzeige auf Diagrammen, in Reports. Leer-&gt; Attribut kommt nach Name sortiert an den Schluss einer Liste"/>
+<property name="EN_ATTR_NAME" value="Display sequence"/>
+</propertyMap>
+</Attribute>
 <Attribute name="Beschreibung [L]" id="99E8BB00-BBEF-744D-71AC-51A096FBA509">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:03:22 UTC</createdTime>
@@ -114,6 +148,7 @@ Kurzbezeichnung der Entität für die Verwendung aus Überschrift, in Referenzen
 ]EN_ATTR_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <importedID>C4A32F25-630E-965E-C29A-27C4C6F29B16</importedID>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="false"/>
@@ -144,6 +179,7 @@ Display in masks to explain the use, editing, and usage of the attribute value
 ]EN_ATTR_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <importedID>18044B2B-E9C9-F62B-A516-84B3A24746F4</importedID>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="false"/>
@@ -174,6 +210,7 @@ YES -> The field must contain a value.
 ]EN_ATTR_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <importedID>F73DAF6B-B2F9-9A75-F80C-24594970D8AA</importedID>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="false"/>
@@ -203,6 +240,7 @@ The attribute characterizes the entity and is important for its understanding
 ]EN_ATTR_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <importedID>472E1B0B-0BBC-8C55-1798-08BC327AB69E</importedID>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="false"/>
@@ -236,6 +274,7 @@ Kann  über Extratabelle gelöst werden.
 ]EN_ATTR_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <importedID>6A9298F2-7C16-0F9A-DF34-457287FFFC4F</importedID>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="false"/>
@@ -267,6 +306,7 @@ JA -> Der Feldwert kann in mehreren Sprachen vorkommen.
 ]EN_ATTR_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <importedID>75E53EA7-9CD9-0AAE-6802-1E239D31EECA</importedID>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="false"/>
@@ -298,6 +338,7 @@ JA -> Der Feldwert kann über die Zeit ändern, Die Historie muss im System verw
 ]EN_ATTR_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <importedID>3AE5995D-55A4-6334-61C4-C0B49DA294EA</importedID>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="false"/>
@@ -329,6 +370,7 @@ NEIN -> Feld wird nicht verschlüsselt
 ]EN_ATTR_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <importedID>743343B0-7B01-8A4C-CDC6-45E8B72B3E2F</importedID>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="false"/>
@@ -346,107 +388,21 @@ NEIN -> Feld wird nicht verschlüsselt
 <property name="EN_ATTR_NAME" value="is encrypted"/>
 </propertyMap>
 </Attribute>
-<Attribute name="Anzeigereihenfolge" id="C13DFCC3-15A3-5A60-B4D3-774EED4DB6D8">
-<createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:03:22 UTC</createdTime>
-<comment><![CDATA[Riehenfolge der Anzeige auf Diagrammen, in Reports. Leer-> Attribut kommt nach Name sortiert an den Schluss einer Liste]]></comment>
-<notes><![CDATA[[DE_ATTR_COMMENT[
-Riehenfolge der Anzeige auf Diagrammen, in Reports. Leer-> Attribut kommt nach Name sortiert an den Schluss einer Liste
-]DE_ATTR_COMMENT]
-[EN_ATTR_COMMENT[
-Display sequence on diagrams, in reports. Empty-> attribute is sorted by name at the end of a list
-]EN_ATTR_COMMENT]
-]]></notes>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<importedID>598275C8-6915-4D18-A03A-DDE739950A91</importedID>
-<engineerTo>
-<item key="BE22189E-C358-530C-6354-65FB4784079F" value="false"/>
-<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
-<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
-</engineerTo>
-<nullsAllowed>true</nullsAllowed>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<propertyMap>
-<property name="DE_ATTR_COMMENT" value="Riehenfolge der Anzeige auf Diagrammen, in Reports. Leer-&gt; Attribut kommt nach Name sortiert an den Schluss einer Liste"/>
-<property name="DE_ATTR_NAME" value="Anzeigereihenfolge"/>
-<property name="EN_ATTR_COMMENT" value="*DE* Riehenfolge der Anzeige auf Diagrammen, in Reports. Leer-&gt; Attribut kommt nach Name sortiert an den Schluss einer Liste"/>
-<property name="EN_ATTR_NAME" value="Display sequence"/>
-</propertyMap>
-</Attribute>
-<Attribute name="Entitätname [L]" id="A4F748E2-7D67-87E2-E8FE-DAE6A022BE35">
-<createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:03:22 UTC</createdTime>
-<comment><![CDATA[Name der Entität der in der Kommunikation normalerweise gebraucht wird.]]></comment>
-<generatorID>F1749DBB-E61F-885C-00D6-38610D00E567</generatorID>
-<notes><![CDATA[[DE_ATTR_COMMENT[
-Name der Entität der in der Kommunikation normalerweise gebraucht wird.
-]DE_ATTR_COMMENT]
-[EN_ATTR_COMMENT[
-Name of the entity normally used in communication.
-]EN_ATTR_COMMENT]
-]]></notes>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<importedID>0C01D9CE-61C5-17EA-B371-14E7D8D04675</importedID>
-<engineerTo>
-<item key="BE22189E-C358-530C-6354-65FB4784079F" value="false"/>
-<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
-<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
-</engineerTo>
-<referedAttribute>F1D0F128-7361-E0A9-E706-227C158FCD42</referedAttribute>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<propertyMap>
-<property name="DE_ATTR_COMMENT" value="Name der Entität der in der Kommunikation normalerweise gebraucht wird."/>
-<property name="DE_ATTR_NAME" value="Entitätname [L]"/>
-<property name="EN_ATTR_COMMENT" value="*DE* Name der Entität der in der Kommunikation normalerweise gebraucht wird."/>
-<property name="EN_ATTR_NAME" value="Entity name [L]"/>
-</propertyMap>
-</Attribute>
 </attributes>
 <identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
 <identifier id="D2B46163-1C70-5D7C-B106-C0D4A2089635" name="ATTR_UK">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:03:22 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="false"/>
 <item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
+<newElementsIDs>FD95360A-BA62-DA9C-BB95-FACB2DAA42D4,F1749DBB-E61F-885C-00D6-38610D00E567</newElementsIDs>
 <usedAttributes>
 <attributeRef>FD95360A-BA62-DA9C-BB95-FACB2DAA42D4</attributeRef>
-</usedAttributes>
-</identifier>
-<identifier id="E548036A-A361-88F8-9389-74D4367924CE" name="Attribut_PK">
-<createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:03:22 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<engineerTo>
-<item key="BE22189E-C358-530C-6354-65FB4784079F" value="false"/>
-<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
-<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
-</engineerTo>
-<usedAttributes>
-<attributeRef>A4F748E2-7D67-87E2-E8FE-DAE6A022BE35</attributeRef>
-</usedAttributes>
-</identifier>
-<identifier id="5727E5F1-FC8E-2B65-B5B4-CDACFC0ABE3B" name="Attribut_PKv1">
-<createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:03:22 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<engineerTo>
-<item key="BE22189E-C358-530C-6354-65FB4784079F" value="false"/>
-<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
-<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
-</engineerTo>
-<pk>true</pk>
-<usedAttributes>
-<attributeRef>A4F748E2-7D67-87E2-E8FE-DAE6A022BE35</attributeRef>
 </usedAttributes>
 </identifier>
 </identifiers>
