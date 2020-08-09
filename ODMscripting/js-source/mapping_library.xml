@@ -783,7 +783,9 @@
 						}
 
 						function escapeexcelchars(s){
-							return s.replace(/"/g, "'")
+							var retval = s.replace(/"/g, "'")
+							if (retval.match(/\n/)) {retval = EXCELESCCHAR + retval + EXCELESCCHAR}
+							return retval
 						}
 						function printline(fw, line) {
 							for (zi = 0; zi < line.length; zi++) {
@@ -792,16 +794,14 @@
 									fw.write(EXCELCSVSEP)
 								}
 								try {if (typeof field == 'string') {
-									fw.write(EXCELESCCHAR +escapeexcelchars(field) + EXCELESCCHAR)
+									fw.write(escapeexcelchars(field) )
 								} else if (field.length == 0) {
 									fw.write('') // empty List
 								} else if (field.length == 1) {
-									fw.write(EXCELESCCHAR +escapeexcelchars(field[0]) + EXCELESCCHAR) // single string in List
+									fw.write(escapeexcelchars(field[0])) // single string in List
 								} else {
 									// list of Strings
-									fw.write(EXCELESCCHAR +
-										escapeexcelchars(field.join(EXCELMULTILINESEP)) +
-										EXCELESCCHAR)
+									fw.write(escapeexcelchars(field.join(EXCELMULTILINESEP)) )
 								}} catch (err) {linemessage(typeof field)}
 							}
 							fw.write(EXCELLINEEND)
