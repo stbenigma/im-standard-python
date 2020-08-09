@@ -6,7 +6,7 @@
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
-<Column name="Netzwerksystem_IT-Komponente_IT-Komponente_ID" id="AFF1E7C6-11C6-B667-F486-0719BC82CCFB">
+<Column name="DOCU_DOKUID" id="AFF1E7C6-11C6-B667-F486-0719BC82CCFB">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -35,6 +35,16 @@
 <associations>
 <colAssociation fkAssociation="D17ECBBD-53B2-CCDF-1B07-5C2182CC480E" referredColumn="E8DF5F81-72CA-AE14-4AB6-B790A55C3490"/>
 </associations>
+</Column>
+<Column name="Netzwerksystem_IT-Komponente_IT-Komponente_ID" id="AA213FC4-ECBA-1161-41CB-5BB024DD4E27">
+<createdBy>stb</createdBy>
+<createdTime>2020-08-09 14:15:09 UTC</createdTime>
+<comment><![CDATA[Created on 9/8/2020  16:15:9 during import from /Users/stb/Downloads/ ModellModell.csv]]></comment>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">

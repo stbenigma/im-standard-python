@@ -19,20 +19,23 @@
 					fullmessage(msg,PLAINMESSAGE);
 					}
 
+	var abbrev
 	function handleprefix(name,prefix){
 		if (name == null) return null
 		if (name == '') return ''
+		var newname
 		if ((name.length > 5) && /^[A-Z]{4}_.*/.test(name)) {
 			newname = name.replace(/^[A-Z]{4}_/,abbrev+'_')
 			//message(name+':'+/^[A-Z]{4}_.*/.test(name))
 		} else {
+			if (!newname.starstWith(abbrev))
 			newname = abbrev+'_'+name
 		}
 		return newname
 	}
 	
 	function do1table(table){
-		cols = table.getElements();
+		var cols = table.getElements();
 		abbrev = table.getAbbreviation();
 		if (abbrev == null) return;
 		if (abbrev == '') return;
@@ -40,7 +43,7 @@
 
 		keys = table.getKeys()
 		for (var k = 0; k < keys.length; k++){
-			key = keys[k]
+			var key = keys[k]
 			//message(abbrev+':'+key.getName())
 			key.setName(handleprefix(key.getName(),abbrev))
 		}
@@ -51,27 +54,27 @@
 //			key.setName(handleprefix(key.getName(),abbrev))
 //		}
 		
-		checks = table.getCheckConstraints()
+		var checks = table.getCheckConstraints()
 		for (var cc = 0; cc < checks.length; cc++){
-			check = checks[cc]
+			var check = checks[cc]
 			//message(abbrev+':'+check.getName())
 			check.setName(handleprefix(check.getName(),abbrev))
 		}
 		
 		//message(table.getName()+'/'+abbrev);
 		for (var c = 0; c < cols.length; c++){
-			col = cols[c]
-			colname = col.getName()
+			var col = cols[c]
+			var colname = col.getName()
 			//message(colname+':'+/^[A-Z]{4}_.*/.test(colname)+':'+colname.length+':'+col.getConstraintName())
 			colname = handleprefix(colname,abbrev)
-			constrName = handleprefix(col.getConstraintName(),abbrev)
+			var constrName = handleprefix(col.getConstraintName(),abbrev)
 			//message(colname+':'+constrName)			
 			col.setName(colname)
 			col.setConstraintName(constrName)
 		}
 		table.setDirty(true)
 	}
-tables = model.getTableSet().toArray();
+var tables = model.getTableSet().toArray();
 //message(model.getName()+':'+tables.length)
 for (var t = 0; t<tables.length;t++){
 	do1table(tables[t]);
@@ -4006,672 +4009,26 @@ function printNameMapping (){
 	</scr>
 	<scr id="FCB9F943-45D0-05F5-B545-C9F09FE0335C" name="printNameMapping" object="logical" engine="Oracle Nashorn" type="" var="model" library="attrmapping" method="printNameMapping" purpose="transformation" >
 		<script>
-			<![CDATA[var version="1.1"
-var PLAINMESSAGE = 1;
-	var ERRORMESSAGE = 0;
-	var WARNINGMESSAGE = 2;
-	var QUESTIONMESSAGE = 3;
-	var tabanz = 0
-	var colanz = 0
-	var colmapanz = 0
-	var tabmapanz = 0
-	var lasttabmapping = ""
-	var lineanz = 0
-	var logicalModel
-	var entitySet 
-	var relationSet 
-	var inheritanceSet 
-	var relModel
-	var writtenCols={}
-	var exportDirec=""
-	var EXTIDPROPNAME = "EXT_ATTR_ID"
-	var EXCELSEPARATOR = String.fromCharCode(12)
-	
-
-	// Types for mapping element
-	ENTITYPE = 0
-	COLTYPE = 5
-	TABLETYPE = 4
-	ATTRTYPE = 1
-	RELATYPE = 3   //(source ent, targ ent)
-	FKTYPE = 8  
-	INHERITTYPE = 9 
-	RELARCTYPE = 13
-	LOGARCTYPE = 14
-	var containerMappings = {}
-	var attrMappings = {}
-
-function getAllMappings(rmodels){
-	containerMappings = {}
-	attrMappings = {}
-	if (rmodels == null) return 
-	for (imod=0;imod<rmodels.length;imod++){
-		rmod=rmodels[imod]
-		modname=rmod.getName()
-		tables = rmod.getTableSet()
-		modelMap= rmod.getRMExtendedMap().getContainerMappings().toArray();
-		if (modelMap != null) {
-			for (imgm=0;imgm<modelMap.length;imgm++){
-				logMap = modelMap[imgm]
-				relName = tables.getObjectByID(logMap.getRelID())
-				switch (logMap.getLogType()) {
-				case ENTITYPE: 
-					logName = entitySet.getObjectByID(logMap.getLogID())
-					break
-				 case RELATYPE:
-					logName=relationSet.getObjectByID(logMap.getLogID())
-					break;
-				 case INHERITTYPE:
-					logName=inheritanceSet.getObjectByID(logMap.getLogID())
-					break;
-				default:
-					logName = null
-				}
-				
-				containerMappings[logMap.getID()] = 
-				   {modelName : modname
-				   ,logID : logMap.getLogID()
-				   ,logName : logName
-				   ,logType : logMap.getLogType()
-					,relID : logMap.getRelID()
-					,tableName : relName
-					,relType : logMap.getRelType()
-					,srcEntityID : logMap.getRealSourceEntityID()
-					,trgEntityID : logMap.getRealTargetEntityID()
-				   }
-
-				containedMaps = logMap.getContainedMappings()
-				for (icm=0;icm<containedMaps.length;icm++) {
-					cm = containedMaps[icm]
-					attrMappings[cm.getID()] = 
-					  {modelName : modname
-					  ,parentID : logMap.getID()
-					  ,logID : cm.getLogID()
-					  ,logType : cm.getLogType()
-					  ,relID : cm.getRelID()
-					  ,relType : cm.getRelType()
-					  }
-				}
-			}
-		}
-	}
-}
-
-
-	function fullmessage(msg,type) {
-		Java.type("javax.swing.JOptionPane").showMessageDialog(null
-		, msg,'ODM-Translation', type);
-	}
-
-	function error(msg) {
-		fullmessage(msg,ERRORMESSAGE);
-		}
-	function message(msg) {
-		fullmessage(msg,PLAINMESSAGE);
-		}
-function trimapo(s){
-	return s.replace(/^"|"$/g, '');
-}
-
-function curDateStr(){
-		var currentdate = new Date();
-		return  currentdate.getDate() 
-		+ "/" + (currentdate.getMonth()+1) 
-		+ "/" + currentdate.getFullYear() + "  " 
-		+ currentdate.getHours() + ":" 
-		+ currentdate.getMinutes() + ":" + currentdate.getSeconds();
-}
-
-function getContainerMaps(tabID){
-	maps=[]
-	for (key in containerMappings) {
-		if (tabID == containerMappings[key].relID) maps.push(containerMappings[key])
-	}
-	return maps
-}
-
-function getContainerMap(entiID,tabID){
-	for (key in containerMappings) {
-		if (tabID == containerMappings[key].relID && entiID == containerMappings[key].logID) return containerMappings[key]
-	}
-	return null
-}
-
-function getLogMap(logID,modName){
-	maps=[]
-	for (key in containerMappings) {
-		if ((logID == containerMappings[key].logID)
-		     && (modName == containerMappings[key].modelName)) maps.push(containerMappings[key])
-	}
-	return maps
-}
-
-function getColMaps(colID){
-	colsmap=[]
-	for (key in attrMappings){
-		//message(colID+'|'+cmap[icolmap].getRelID())
-		if (colID == attrMappings[key].relID) colsmap.push(attrMappings[key])
-	}
-	return colsmap
-}
-function getColMap(colID,attrID){
-	for (key in attrMappings){
-		if (attrMappings[key].modelName == "--debug--"){
-		   message(key+'\n'+colID+'\n'+attrID+'\n'+attrMappings[key].relID+'\n'+attrMappings[key].logID)
-		}
-		if (colID == attrMappings[key].relID && attrID == attrMappings[key].logID) return attrMappings[key]
-	}
-	return null
-}
-function getAttrMap(attrID,modName){
-	attrmaps=[]
-	for (key in attrMappings){
-		//message(colID+'|'+cmap[icolmap].getRelID())
-		if ((attrID == attrMappings[key].logID)
-		&& (modName == attrMappings[key].modelName)) attrmaps.push(attrMappings[key])
-	}
-	return attrmaps
-}
-
-
-function getRelationAttribute(attrCollection,attrName){
-	for (grakey in attrCollection) {
-		if (attrCollection[grakey].getName() == attrName) return attrCollection[grakey]
-	}
-	return null 
-}
-function getRelationAttrByID(attrCollection,attrID){
-	for (grakey in attrCollection) {
-		if (attrCollection[grakey].getObjectID() == attrID) return attrCollection[grakey]
-	}
-	return null 
-}
-
-
-function do1line(values){
-	modelMapping = rmodel.getRMExtendedMap().getContainerMappings().toArray();
-	elemName = values[0];
-	attrName = values[1];
-	tabName = values[2];
-	colName = values[3];
-	//message(entiName+' | '+attrName+' | '+tabName+' | '+colName)
-	relation = null
-	entity = entitySet.getByName(elemName);
-	if (entity != null) {
-		attribute=entity.getElementByName(attrName);
-		//if (attribute = null){
-			//entity.createAttribute(attrName)
-			//attribute = entity.getElementByName(attrName);
-			//attribute.setComment("Created on "+curDateStr() +" during import from "+imppath)		
-		//}
-	} else {// assume Relation 
-		relation = relationSet.getByName(elemName)
-		if (relation != null) {
-			attribute=getRelationAttribute(relation.getAttributesCollection(),attrName);
-		}
-	}
-	table = rmodel.getTableSet().getByName(tabName);	
-	// Neue Tabellen werden erzeugt
-	if ((table == null) && (tabName != "")) {
-		rmodel.createTable(tabName);
-		table = rmodel.getTableSet().getByName(tabName);	
-		table.setComment("Created on "+curDateStr() +" during import from "+imppath)
-		tabanz++
-	}
-	if (table != null){
-		column=table.getElementByName(colName);
-	} else  {
-		column = null
-	}
-	// neue Columns werden erzeugt
-	if ((column == null) && (colName != "")){
-		//message('neue Column')
-		table.createColumn(colName)
-		column=table.getElementByName(colName);
-		column.setComment("Created on "+curDateStr() +" during import from "+imppath)		
-		colanz++
-	}	
-	if ((entity != null) && (table != null)){
-		mapped = getContainerMap(entity.getObjectID(),table.getObjectID())
-		if (mapped == null) {
-			rmodel.getRMExtendedMap().createMapping(entity,table);
-			tabmapanz++
-		}
-		if ((attribute != null) && (column != null)){
-			mapped = getColMap(column.getObjectID(),attribute.getObjectID())
-			
-			if (mapped == null) {
-				rmodel.getRMExtendedMap().createMapping(attribute,column);
-				colmapanz++
-     		}
-     	}
-	}
-	if ((relation != null) && (table != null)){
-		mapped = getContainerMap(relation.getObjectID(),table.getObjectID())
-		if (mapped == null) {
-			rmodel.getRMExtendedMap().createMapping(relation,table);
-			tabmapanz++
-		}
-		if ((attribute != null) && (column != null)){
-			mapped = getColMap(column.getObjectID(),attribute.getObjectID())
-			if (mapped == null) {
-				rmodel.getRMExtendedMap().createMapping(attribute,column);
-				colmapanz++
-     		}
-     	}
-	}
-}
-function importFile(fpath){
-	var Paths = Java.type('java.nio.file.Paths');
-	var Files = Java.type('java.nio.file.Files');
-	var lines = Files.readAllLines(Paths.get(fpath)
-	             , Java.type('java.nio.charset.StandardCharsets').UTF_8);
-	for (lnoif=0;lnoif<lines.length;lnoif++)
- 	{	line=lines[lnoif]
- 		values= line.split(";");
- 		for (iif=0;iif<values.length;iif++)
- 			{values[iif]=trimapo(values[iif]);
- 			}
- 		if (lnoif==0){
- 			relModel=values[0];
- 			// falls 1. Zeichen von Excel stammt, schneide es ab
- 			 if (relModel.match(/^[^A-Za-z]/)) relModel = relModel.substring(1)
- 			//message(lnoif+': '+"RelModel= |"+relModel+"|");
-			rmodel = model.getDesign().getRelationalDesigns().getByName(relModel);
-			if (rmodel == null){
-				throw new Error("\nRelational model '"+relModel+"' does not exist.\n");
-			}
-			getAllMappings([rmodel])
- 		} else 
- 		if (lnoif==1){
- 			// skip headers
- 			//message(lnoif+': '+"headers= "+values);
- 		} else {
-	 		//message(lnoif+': '+values);
- 			do1line(values);
- 			lineanz++
- 		} 		
- 	};
-}
-function importMapping() {
-	var impdirec="~/Documents/DataModeler/Import";
-	//Create a file chooser
-	var Filebrowse = Java.type("javax.swing.JFileChooser");
-	f = new Filebrowse('/Users/stb/Documents/DataModeler/Import');
-	returnVal= f.showOpenDialog(null);
-	if (returnVal == Filebrowse.APPROVE_OPTION) {
-		imppath= f.getSelectedFile();
-		//message(imppath);
-	}
-	tabanz = 0
-	colanz = 0
-	colmapanz = 0
-	lineanz = 0
-	logicalModel = model.getDesign().getLogicalDesign();
-	entitySet = logicalModel.getEntitySet()
-	relationSet = logicalModel.getRelationSet()
-	inheritanceSet = logicalModel.getInheritanceRelationSet()
-	importFile(imppath);
-	message("Parsed "+lineanz+" lines from file "+imppath+".\n"
-			+"Created "+tabanz+" tables, "+colanz+" columns,\n"
-			+ "Mapped "+tabmapanz+" tables to entities and " +colmapanz+" columns to attributes") // +tabmapanz+" table- and " 
-	
-}
-function chooseModel(rmodel){
-	var rmodels = model.getDesign().getRelationalDesigns().toArray();
-	if (rmodels.length == 0) throw new Error("\n***MAPPING: no relational models available ***\n");
-	if (rmodels.length == 1) {
-		antwort = rmodels[0]
-	} else {
-		if (rmodel == null) rmodel = rmodels[0]
-		antwort = Java.type("javax.swing.JOptionPane").showInputDialog(null, 
-        	"Choose relational model",
-			"choose model",
-			QUESTIONMESSAGE,
-			null, 
-			rmodels,rmodel);
-	}
-	return antwort
-}
-function nvl(x){return x==null ? "" : x }
-
-function writeMapLine(fw,tab,enti,col,attr){
-	//message('write'+tab+enti+col+attr)
-	fw.write(nvl(enti)+';'+nvl(attr)+';'+tab+';'+nvl(col)+'\n')
-}
-function printColsMap(fw,tab){
-	cols = tab.getElementsCollection().toArray()
-	writtenCols = {}
-	for (icpcm=0;icpcm < cols.length;icpcm++){
-		col = cols[icpcm]
-		colkey = tab+'.'+col
-		
-//		//FK mapped to Relations
-//		if (col.isFKColumn()) {
-//			fks = col.getAllFKs()
-//			for (ifk=0;ifk<fks.length;ifk++){
-//				fkID=fks[ifk].getObjectID()
-//				fkmaps = getContainerMaps(fkID)
-////		if (colkey=="Subentität_1.Super_Entiät_Super_Entiät_ID") message(colkey+ifk+' :1: '+fkID+' : '+fkmaps.length)
-//				for (ir=0;ir<fkmaps.length;ir++){
-//					rela = relationSet.getObjectByID(fkmaps[ir].logID)
-////		if (colkey=="Subentität_1.Super_Entiät_Super_Entiät_ID") message(colkey+ir+' :2: '+fkmaps[ir].logID+':'+rela)
-//					if (rela == null) rela = inheritanceSet.getObjectByID(fkmaps[ir].logID)	
-////		if (colkey=="Subentität_1.Super_Entiät_Super_Entiät_ID") message(colkey+ir+' :3: '+rela)
-//					writeMapLine(fw,tab,rela,col, null)
-//					writtenCols[colkey]=true
-//				}
-//			}
-//		}
-
-		colmaps=getColMaps(col.getObjectID())
-		if (colmaps.length>0) {
-			// Column ist gemapped
-			for (impcm=0;impcm<colmaps.length;impcm++){
-				curmap = colmaps[impcm]
-				parent = containerMappings[curmap.parentID] 
-				switch (parent.logType){
-				 case ENTITYPE: 
-				 	logElem = entitySet.getObjectByID(parent.logID)
-					attrName=logElem.getElementByID(curmap.logID).getName()
-					break;
-				 case RELATYPE:
-					logElem=relationSet.getObjectByID(parent.logID)
-					attrName = getRelationAttrByID(logElem.getAttributesCollection(),curmap.logID).getName()
-					break;
-				 case INHERITTYPE:
-					logElem=inheritanceSet().getObjectByID(parent.logID)
-					attrName = '???'
-					break;
-				 default:
-					logElem='???'
-					attrName = parent.relType
-					//throw new Error("\n  Column'"+colkey +" unknown logical mapping type: "+parent.logType);
-				}
-				writeMapLine(fw,tab,logElem.getName(),col, attrName)
-				writtenCols[colkey]=true
-			}
-		}
-		//Jede Column wird mind. 1x geschrieben.
-		if (!writtenCols[colkey]) writeMapLine(fw,tab,null,col,null)
-	}
-}
-function printCols(fw,tab){
-	maps = getContainerMaps(tab.getObjectID())
-	if (maps.length==0) {
-		printColsMap(fw,tab)
-	} else {
-		//print entity/relation - Mapping of Table
-		for (impc=0;impc<maps.length;impc++){		
-			switch (maps[impc].logType) {
-			 case ENTITYPE: 
-				enti = entitySet.getObjectByID(maps[impc].logID)
-				if (enti != null) writeMapLine(fw,tab,enti.getName(),null,null)
-				break;
-			 case RELATYPE:
-				rela=relationSet.getObjectByID(maps[impc].logID)
-				if (rela != null) writeMapLine(fw,tab,rela.getName(),null,null)
-				break;
-			 case INHERITTYPE:
-//				inher=inheritanceSet().getObjectByID(maps[impc].logID)
-//				if (inher != null) writeMapLine(fw,tab,inher,null,null)
-				break;
-		  	 default:
-				throw new Error("\n  Table'"+tab
-				   +" unknown logical mapping type: "+maps[impc].logType);
-			}
-		}
-		printColsMap(fw,tab)
-	}
-}
-
-
-function chooseFile(direc,fileName){
-	//Create a file chooser
-	var Filebrowse = Java.type("javax.swing.JFileChooser");
-	var File = Java.type("java.io.File");
-	f = new Filebrowse(direc);
-	f.setSelectedFile(new File(fileName));
-	returnVal= f.showSaveDialog(null);
-	if (returnVal == Filebrowse.APPROVE_OPTION) {
-		return  f.getSelectedFile();
-	} else {
-		return null
-	}
-}
-function createFile(fileName){
-	//Create a file chooser
-	var FileWriter=Java.type('java.io.FileWriter')
-	fw = new FileWriter(fileName);    
-	return fw
-}
-
-function headers(rmodels,nurX){
-	retval = ''
-	for (ih=0;ih<rmodels.length;ih++){
-		retval += ';'+rmodels[ih]
-		// extra header for table | attribute entries
-		if (! nurX) { retval += ';column;ID'}
-	}
-	return retval
-}
-
-function getColName(rmod,tabID,colID){
-	tab=rmod.getTableSet().getObjectByID(tabID)
-	col = tab.getElementByID(colID)
-	return tab+'.'+col
-}
-
-function colProperty(curmodel,tabname,colname,propName){
-	table = curmodel.getTableSet().getByName(tabName);
-	if (table == null) return ""
-	column = table.getElementByName(colName);
-	extID= column.getProperty(propName)
-	return ((extID == null) || (extID == ".")) ? "" : extID
-}
-
-function findFK(fks,fkID){
-	for (iloc in fks) {
-//		if (fkID == "8AEA1CA4-3B90-4F1D-37AE-8A0FD50F8996") {message(fks[iloc].getTable()+fks[iloc].getObjectID()+fks[iloc])}
-		if (fks[iloc].getObjectID() == fkID) return fks[iloc]
-	}
-	return null
-}
-function tabList (maps,elemType,curmodel) {
-	if (maps == null) return ''
-	retval = ''
-	if (elemType != 'Entity') {
-		fks = curmodel.getFKIndexAssociationSet().toArray()
-	}
-	for (i in maps) {
-		retval += (retval == '') ? '' : EXCELSEPARATOR 
-		if (elemType == 'Entity') {
-			tabName = maps[i].tableName 
-		} else {			
-			fk = findFK(fks,maps[i].relID)
-			if (fk != null) {
-				tabName = fk.getTable()
-			} else {
-				tabName = maps[i].tableName // falls es m:n ist ist es eine Table
-			}
-		}
-		retval += tabName
-	}
-	return retval
-}
-
-function elements(rmodels,logID,elemType,nurX){
-	retval = ''
-	for (ih=0;ih<rmodels.length;ih++){
-		curmodel = rmodels[ih]
-		retval += ';'
-		maps = getLogMap(logID,curmodel)
-		if (maps.length > 0) {
-			retval += nurX ? 'X': tabList(maps,elemType,curmodel)
-		}
-		// Extra columns are empty
-		retval += nurX ? '' : ';;'
-	}
-	return retval
-}
-
-function attrElements(rmodels,attrID,nurX) {
-	retval = ''
-	for (irmpm=0;irmpm<rmodels.length;irmpm++){
-		curmodel = rmodels[irmpm]
-		attrmaps = getAttrMap(attrID,curmodel.getName())
-		//message(curmodel.getName()+':'+attrID+':'+attrmaps.length)
-		if (attrmaps.length > 0) {
-			if (nurX) { x = ';X' 
-			} else {
-				x = ''
-				tabNames = ''
-				colNames = ''
-				colIDs = ''
-				for (key in attrmaps){
-					attrmap = attrmaps[key]
-					tabName= containerMappings[attrmap.parentID].tableName
-					colName = curmodel.getTableSet().getByName(tabName).getElementByID(attrmap.relID)
-					tabNames += tabName + EXCELSEPARATOR
-					colNames += colName + EXCELSEPARATOR
-					colIDs += colProperty(curmodel,tabName,colName,EXTIDPROPNAME) + EXCELSEPARATOR
-				}
-				tabNames = tabNames.slice(0,-1)
-				colNames = colNames.slice(0,-1)
-				colIDs = colIDs.slice(0,-1)
-				x +=  ';' + tabNames + ';' + colNames + ';' + colIDs  
-			}
-		} else {x = nurX ? ';' : ';;;'}
-		retval += x
-	}
-	return retval
-}
-
-function logicalElement(rmodels,logElem,nurX){	
-	elemID = logElem.getObjectID()
-	attrs = null
-	if (logElem.getObjectTypeName() == 'Entity'){
-		line= logElem.getName()+';'
-		line += elements(rmodels,logElem.getObjectID(),logElem.getObjectTypeName(),nurX)
-		line += '\n'
-		fw.write(line)
-		attrs=logElem.getElementsCollection().toArray()
-	} else if (logElem.getObjectTypeName() == 'Relation') {
-		if (logElem.isManyToMany()) { // FK-Mapping ist nicht trivial bei seltsamen Modellen
-			line= logElem.getName()+';'
-			line += elements(rmodels,logElem.getObjectID(),logElem.getObjectTypeName(),nurX)
-			line += '\n'
-			fw.write(line)
-			attrs=logElem.getAttributesCollection().toArray()	
-		} 
-	} else { // assume inheritance
-		// Inheritance sind schon entities line += elements(rmodels,logElem.getObjectID(),logElem.getObjectTypeName(),nurX)
-		// Inheritance becomes fk-columns
-	}
- 	if (attrs != null){
-		for (iattrac=0;iattrac<attrs.length;iattrac++){
-			attr = attrs[iattrac]
-			attrID = attr.getObjectID()
-			key=elemID+'.'+attrID
-
-			line= logElem.getName()+';'+attr.getName()
-			line += attrElements(rmodels,attrID,nurX)
-			line += '\n'
-			fw.write(line)
-		}
-	}
-}
-function printElementGroup(rmodels,group,nurX){	
-	if (group != null) {
-		for (ig=0;ig < group.length;ig++) {
-			logicalElement(rmodels,group[ig],nurX)
-		}
-	}
-}
-
-function printMatrix(fw,nurX) {
-	logicalModel = model.getDesign().getLogicalDesign();
-	entitySet = logicalModel.getEntitySet()
-	relationSet = logicalModel.getRelationSet()
-	inheritanceSet = logicalModel.getInheritanceRelationSet()
-	rmodels = model.getDesign().getRelationalDesigns().toArray();
-	getAllMappings(rmodels)
-	fw.write('entity;attr'+headers(rmodels,nurX)+'\n')
-	printElementGroup(rmodels,entitySet.toArray(),nurX)
-	printElementGroup(rmodels,relationSet.toArray(),nurX)
-	// sind schon entities   
-	// printElementGroup(rmodels,inheritanceSet.toArray(),nurX)	
-	fw.write('created by ODM, '+curDateStr()+'\n')
-}
-
-function printCVS (fw){
-	fw.write(relModel+';;;\n')
-	fw.write('entityName;attrName;tableName;columnName\n')
-	tables = relModel.getTableSet().toArray();
-	for (itpc=0;itpc<tables.length;itpc++){
-		printCols(fw,tables[itpc])
-	}
-}
-
-function print1Mapping (){
-	logicalModel = model.getDesign().getLogicalDesign();
-	entitySet = logicalModel.getEntitySet()
-	relationSet = logicalModel.getRelationSet()
-	inheritanceSet = logicalModel.getInheritanceRelationSet()
-	relModel = chooseModel(relModel);
-	if (relModel == null) return;
-	// lies alle Mappings des gewählten Modells
-	getAllMappings([relModel])
-
-	fileName=chooseFile(exportDirec,relModel+'.csv')
-     if (fileName == null) return
-     fw = createFile(fileName)
-	printCVS (fw)
-     fw.close();    
-	message("Mapping file "+fileName+" for model "+relModel+" created.");
-}
-
-function printAllMapping (nurX){
-	fileName=chooseFile(exportDirec,'AllMapping' + (nurX ? 'X' : '') +'.csv')
-     if (fileName == null) return
-     fw = createFile(fileName)
-     printMatrix(fw,nurX)
-     fw.close();    
-	message("Mapping file "+fileName+" created.");
-}
-function printXMapping (){
-     printAllMapping(true)
-}
-function printNameMapping (){
-     printAllMapping(false)
-}]]>
-		</script>
-	</scr>
-
-	<lib id="B2F713AD-5E48-670F-8A2B-55D1ABD0440C" name="attrmapping" engine="Oracle Nashorn" methods="importMapping,print1Mapping,printXMapping,printNameMapping" >
-		<script>
-			<![CDATA[var CODEVERSION = '2.1'
+			<![CDATA[var CODEVERSION = '3.0'
 			var PLAINMESSAGE = 1;
 			var ERRORMESSAGE = 0;
 			var WARNINGMESSAGE = 2;
 			var QUESTIONMESSAGE = 3;
 			var FORMATJSON = 'JSON'
 			var FORMATCSV = 'CSV'
-			var tabanz = 0
-			var colanz = 0
-			var colmapanz = 0
-			var tabmapanz = 0
-			var lasttabmapping = ""
-			var lineanz = 0
-			var logicalModel
-			var entitySet
-			var relationSet
-			var inheritanceSet
-			var relModel
-			var rmodels
-			var writtenCols = {}
-			var exportDirec = java.lang.System.getProperty("user.home") + "/Downloads"
-			var importDirec = java.lang.System.getProperty("user.home") + "/Downloads"
+			var g_tabanz = 0
+			var g_colanz = 0
+			var g_colmapanz = 0
+			var g_tabmapanz = 0
+			var g_lineanz = 0
+			var g_logicalModel
+			var g_entitySet
+			var g_relationSet
+			var g_inheritanceSet
+			var g_rmodels
+			var g_writtenCols = {}
+			var g_exportDirec = java.lang.System.getProperty("user.home") + "/Downloads"
+			var g_importDirec = java.lang.System.getProperty("user.home") + "/Downloads"
 			var EXTIDPROPNAME = "EXT_ATTR_ID"
 			var EXCELCSVSEP = ";"
 			var EXCELESCCHAR = '"'
@@ -4689,12 +4046,12 @@ function printNameMapping (){
 			INHERITTYPE = 9
 			RELARCTYPE = 13
 			LOGARCTYPE = 14
-			var containerMappings = {}
-			var attrMappings = {}
+			var g_containerMappings = {}
+			var g_attrMappings = {}
 
 			function getAllMappings(rmodels) {
-				containerMappings = {}
-				attrMappings = {}
+				g_containerMappings = {}
+				g_attrMappings = {}
 				if (rmodels == null) return
 				for (imod = 0; imod < rmodels.length; imod++) {
 					rmod = rmodels[imod]
@@ -4707,19 +4064,19 @@ function printNameMapping (){
 							relName = tables.getObjectByID(logMap.getRelID())
 							switch (logMap.getLogType()) {
 								case ENTITYPE:
-									logName = entitySet.getObjectByID(logMap.getLogID())
+									logName = g_entitySet.getObjectByID(logMap.getLogID())
 									break
 								case RELATYPE:
-									logName = relationSet.getObjectByID(logMap.getLogID())
+									logName = g_relationSet.getObjectByID(logMap.getLogID())
 									break;
 								case INHERITTYPE:
-									logName = inheritanceSet.getObjectByID(logMap.getLogID())
+									logName = g_inheritanceSet.getObjectByID(logMap.getLogID())
 									break;
 								default:
 									logName = null
 							}
 
-							containerMappings[logMap.getID()] = {
+							g_containerMappings[logMap.getID()] = {
 								modelName: modname,
 								logID: logMap.getLogID(),
 								logName: logName,
@@ -4734,7 +4091,7 @@ function printNameMapping (){
 							containedMaps = logMap.getContainedMappings()
 							for (icm = 0; icm < containedMaps.length; icm++) {
 								cm = containedMaps[icm]
-								attrMappings[cm.getID()] = {
+								g_attrMappings[cm.getID()] = {
 									modelName: modname,
 									parentID: logMap.getID(),
 									logID: cm.getLogID(),
@@ -4784,53 +4141,53 @@ function printNameMapping (){
 
 			function getContainerMaps(tabID) {
 				maps = []
-				for (key in containerMappings) {
-					if (tabID == containerMappings[key].relID) maps.push(containerMappings[key])
+				for (key in g_containerMappings) {
+					if (tabID == g_containerMappings[key].relID) maps.push(g_containerMappings[key])
 				}
 				return maps
 			}
 
 			function getContainerMap(entiID, tabID) {
-				for (key in containerMappings) {
-					if (tabID == containerMappings[key].relID && entiID == containerMappings[key].logID) return containerMappings[key]
+				for (key in g_containerMappings) {
+					if (tabID == g_containerMappings[key].relID && entiID == g_containerMappings[key].logID) return g_containerMappings[key]
 				}
 				return null
 			}
 
 			function getLogMap(logID, modName) {
 				maps = []
-				for (key in containerMappings) {
-					if ((logID == containerMappings[key].logID) &&
-						(modName == containerMappings[key].modelName)) maps.push(containerMappings[key])
+				for (key in g_containerMappings) {
+					if ((logID == g_containerMappings[key].logID) &&
+						(modName == g_containerMappings[key].modelName)) maps.push(g_containerMappings[key])
 				}
 				return maps
 			}
 
 			function getColMaps(colID) {
 				colsmap = []
-				for (key in attrMappings) {
+				for (key in g_attrMappings) {
 					//message(colID+'|'+cmap[icolmap].getRelID())
-					if (colID == attrMappings[key].relID) colsmap.push(attrMappings[key])
+					if (colID == g_attrMappings[key].relID) colsmap.push(g_attrMappings[key])
 				}
 				return colsmap
 			}
 
 			function getColMap(colID, attrID) {
-				for (key in attrMappings) {
-					if (attrMappings[key].modelName == "--debug--") {
-						message(key + '\n' + colID + '\n' + attrID + '\n' + attrMappings[key].relID + '\n' + attrMappings[key].logID)
+				for (key in g_attrMappings) {
+					if (g_attrMappings[key].modelName == "--debug--") {
+						message(key + '\n' + colID + '\n' + attrID + '\n' + g_attrMappings[key].relID + '\n' + g_attrMappings[key].logID)
 					}
-					if (colID == attrMappings[key].relID && attrID == attrMappings[key].logID) return attrMappings[key]
+					if (colID == g_attrMappings[key].relID && attrID == g_attrMappings[key].logID) return g_attrMappings[key]
 				}
 				return null
 			}
 
 			function getAttrMap(attrID, modName) {
 				attrmaps = []
-				for (key in attrMappings) {
+				for (key in g_attrMappings) {
 					//message(colID+'|'+cmap[icolmap].getRelID())
-					if ((attrID == attrMappings[key].logID) &&
-						(modName == attrMappings[key].modelName)) attrmaps.push(attrMappings[key])
+					if ((attrID == g_attrMappings[key].logID) &&
+						(modName == g_attrMappings[key].modelName)) attrmaps.push(g_attrMappings[key])
 				}
 				return attrmaps
 			}
@@ -4859,11 +4216,11 @@ function printNameMapping (){
 				attrName = values[3];
 				//linemessage(elemName,attrName,tabName,colName)
 				relation = null
-				entity = entitySet.getByName(elemName);
+				entity = g_entitySet.getByName(elemName);
 				if (entity != null) {
 					attribute = entity.getElementByName(attrName);
 				} else { // assume Relation 
-					relation = relationSet.getByName(elemName)
+					relation = g_relationSet.getByName(elemName)
 					if (relation != null) {
 						attribute = getRelationAttribute(relation.getAttributesCollection(), attrName);
 					}
@@ -4874,7 +4231,7 @@ function printNameMapping (){
 					rmodel.createTable(tabName);
 					table = rmodel.getTableSet().getByName(tabName);
 					table.setComment("Created on " + curDateStr() + " during import from " + imppath)
-					tabanz++
+					g_tabanz++
 				}
 				if (table != null) {
 					column = table.getElementByName(colName);
@@ -4883,24 +4240,24 @@ function printNameMapping (){
 				}
 				// neue Columns werden erzeugt
 				if ((column == null) && (colName != "")) {
-					linemessage('neue Column',colName,tabName)
+					//linemessage('neue Column',colName,tabName)
 					table.createColumn(colName)
 					column = table.getElementByName(colName);
 					column.setComment("Created on " + curDateStr() + " during import from " + imppath)
-					colanz++
+					g_colanz++
 				}
 				if ((entity != null) && (table != null)) {
 					mapped = getContainerMap(entity.getObjectID(), table.getObjectID())
 					if (mapped == null) {
 						rmodel.getRMExtendedMap().createMapping(entity, table);
-						tabmapanz++
+						g_tabmapanz++
 					}
 					if ((attribute != null) && (column != null)) {
 						mapped = getColMap(column.getObjectID(), attribute.getObjectID())
 
 						if (mapped == null) {
 							rmodel.getRMExtendedMap().createMapping(attribute, column);
-							colmapanz++
+							g_colmapanz++
 						}
 					}
 				}
@@ -4908,13 +4265,13 @@ function printNameMapping (){
 					mapped = getContainerMap(relation.getObjectID(), table.getObjectID())
 					if (mapped == null) {
 						rmodel.getRMExtendedMap().createMapping(relation, table);
-						tabmapanz++
+						g_tabmapanz++
 					}
 					if ((attribute != null) && (column != null)) {
 						mapped = getColMap(column.getObjectID(), attribute.getObjectID())
 						if (mapped == null) {
 							rmodel.getRMExtendedMap().createMapping(attribute, column);
-							colmapanz++
+							g_colmapanz++
 						}
 					}
 				}
@@ -4931,7 +4288,7 @@ function printNameMapping (){
 						values[iif] = trimapo(values[iif]);
 					}
 					if (lnoif == 0) {
-						relModel = values[0];
+						var relModel = values[0];
 						// falls 1. Zeichen von Excel stammt, schneide es ab
 						if (relModel.match(/^[^A-Za-z]/)) {relModel = relModel.substring(1)}
 						rmodel = model.getDesign().getRelationalDesigns().getByName(relModel);
@@ -4947,7 +4304,7 @@ function printNameMapping (){
 						//linemessage(lnoif,values.length,values);
 						if (values.length>=4){
 							do1line(values);
-							lineanz++
+							g_lineanz++
 						}
 					}
 				};
@@ -4956,7 +4313,7 @@ function printNameMapping (){
 			function importMapping() {
 				//Create a file chooser
 				var Filebrowse = Java.type("javax.swing.JFileChooser");
-				f = new Filebrowse(importDirec);
+				f = new Filebrowse(g_importDirec);
 				returnVal = f.showOpenDialog(null);
 				if (returnVal == Filebrowse.APPROVE_OPTION) {
 					imppath = f.getSelectedFile();
@@ -4964,33 +4321,33 @@ function printNameMapping (){
 				} else {
 					return
 				}
-				tabanz = 0
-				colanz = 0
-				colmapanz = 0
-				lineanz = 0
-				logicalModel = model.getDesign().getLogicalDesign();
-				entitySet = logicalModel.getEntitySet()
-				relationSet = logicalModel.getRelationSet()
-				inheritanceSet = logicalModel.getInheritanceRelationSet()
+				g_tabanz = 0
+				g_colanz = 0
+				g_colmapanz = 0
+				g_lineanz = 0
+				g_logicalModel = model.getDesign().getLogicalDesign();
+				g_entitySet = g_logicalModel.getEntitySet()
+				g_relationSet = g_logicalModel.getRelationSet()
+				g_inheritanceSet = g_logicalModel.getInheritanceRelationSet()
 				importFile(imppath);
-				message("Parsed " + lineanz + " lines from file " + imppath + ".\n" +
-						"Created " + tabanz + " tables, " + colanz + " columns,\n" +
-						"Mapped " + tabmapanz + " tables to entities and " + colmapanz + " columns to attributes") // +tabmapanz+" table- and " 
+				message("Parsed " + g_lineanz + " lines from file " + imppath + ".\n" +
+						"Created " + g_tabanz + " tables, " + g_colanz + " columns,\n" +
+						"Mapped " + g_tabmapanz + " tables to entities and " + g_colmapanz + " columns to attributes") // +tabmapanz+" table- and " 
 
 			}
 
 			function chooseModel() {
-				if (rmodels.length == 0) throw new Error("\n***MAPPING: no relational models available ***\n");
-				if (rmodels.length == 1) {
-					antwort = rmodels[0]
+				if (g_rmodels.length == 0) throw new Error("\n***MAPPING: no relational models available ***\n");
+				if (g_rmodels.length == 1) {
+					antwort = g_rmodels[0]
 				} else {
-					rmodel = rmodels[0]
+					rmodel = g_rmodels[0]
 					antwort = Java.type("javax.swing.JOptionPane").showInputDialog(null,
 						"Choose relational model",
 						"choose model",
 						QUESTIONMESSAGE,
 						null,
-						rmodels, rmodel);
+						g_rmodels, rmodel);
 				}
 				return antwort
 			}
@@ -4999,9 +4356,65 @@ function printNameMapping (){
 				return x == null ? "" : x
 			}
 
+			
+			//read the mapping of a col to attributes
+			// return list [['entyname',...],['attrname',[attrObjectId,...]
+			function getcolattrmap(col){
+				var retval = []
+				var enties = []
+				var attrs = []
+				var ids = []
+				colmaps = getColMaps(col.getObjectID())
+				if (colmaps.length > 0) {
+					// Column ist gemapped
+					enties = []
+					attrs = []
+					ids = []
+					for (impcm = 0; impcm < colmaps.length; impcm++) {
+						curmap = colmaps[impcm]
+						parentelem = g_containerMappings[curmap.parentID]
+						var attr = null
+						var attrId = null
+						//DEBUG if (parentelem == null){message(tab.getName()+':'+curmap.logID)} //DEBUG
+						//enties.push('a');attrs.push('b');ids.push('')
+						
+						switch (parentelem.logType) {
+							case ENTITYPE:
+								logElem = g_entitySet.getObjectByID(parentelem.logID)
+								attr = logElem.getElementByID(curmap.logID)
+								enties.push(nvl(logElem.getName()))
+								attrs.push(nvl(attr.getName()))
+								ids.push(nvl(attr.getObjectID()))
+								break;
+							case RELATYPE:
+								logElem = g_relationSet.getObjectByID(parentelem.logID)
+								attr = getRelationAttrByID(logElem.getAttributesCollection(), curmap.logID)
+								enties.push(nvl(logElem.getName()))
+								attrs.push(nvl(attr.getName()))
+								ids.push(nvl(attr.getObjectID()))
+								break;
+							case INHERITTYPE:
+								logElem = g_inheritanceSet().getObjectByID(parentelem.logID)
+								enties.push(nvl(logElem.getName()))
+								attrs.push(nvl( '???'))
+								ids.push('')
+								break;
+							default:
+								logElem = '???'
+								enties.push('???')
+								attrs.push(nvl(parentelem.relType))
+								ids.push('')
+								//throw new Error("\n  Column'"+colkey +" unknown logical mapping type: "+parent.logType);
+						}
+					}
+				}
+				retval.push(enties,attrs,ids)
+				return retval
+			}
+			
 			function printColsMap(tab) {
 				cols = tab.getElementsCollection().toArray()
-				writtenCols = {}
+				g_writtenCols = {}
 				attrentry = []
 				for (icpcm = 0; icpcm < cols.length; icpcm++) {
 					col = cols[icpcm]
@@ -5015,12 +4428,12 @@ function printNameMapping (){
 					//				fkmaps = getContainerMaps(fkID)
 					////		if (colkey=="Subentität_1.Super_Entiät_Super_Entiät_ID") message(colkey+ifk+' :1: '+fkID+' : '+fkmaps.length)
 					//				for (ir=0;ir<fkmaps.length;ir++){
-					//					rela = relationSet.getObjectByID(fkmaps[ir].logID)
+					//					rela = g_relationSet.getObjectByID(fkmaps[ir].logID)
 					////		if (colkey=="Subentität_1.Super_Entiät_Super_Entiät_ID") message(colkey+ir+' :2: '+fkmaps[ir].logID+':'+rela)
-					//					if (rela == null) rela = inheritanceSet.getObjectByID(fkmaps[ir].logID)	
+					//					if (rela == null) rela = g_inheritanceSet.getObjectByID(fkmaps[ir].logID)	
 					////		if (colkey=="Subentität_1.Super_Entiät_Super_Entiät_ID") message(colkey+ir+' :3: '+rela)
 					//					writeMapLine(fw,tab,rela,col, null)
-					//					writtenCols[colkey]=true
+					//					g_writtenCols[colkey]=true
 					//				}
 					//			}
 					//		}
@@ -5030,19 +4443,19 @@ function printNameMapping (){
 						// Column ist gemapped
 						for (impcm = 0; impcm < colmaps.length; impcm++) {
 							curmap = colmaps[impcm]
-							parentelem = containerMappings[curmap.parentID]
+							parentelem = g_containerMappings[curmap.parentID]
 							//DEBUG if (parentelem == null){message(tab.getName()+':'+curmap.logID)} //DEBUG
 							switch (parentelem.logType) {
 								case ENTITYPE:
-									logElem = entitySet.getObjectByID(parentelem.logID)
+									logElem = g_entitySet.getObjectByID(parentelem.logID)
 									attrName = logElem.getElementByID(curmap.logID).getName()
 									break;
 								case RELATYPE:
-									logElem = relationSet.getObjectByID(parentelem.logID)
+									logElem = g_relationSet.getObjectByID(parentelem.logID)
 									attrName = getRelationAttrByID(logElem.getAttributesCollection(), curmap.logID).getName()
 									break;
 								case INHERITTYPE:
-									logElem = inheritanceSet().getObjectByID(parentelem.logID)
+									logElem = g_inheritanceSet().getObjectByID(parentelem.logID)
 									attrName = '???'
 									break;
 								default:
@@ -5052,19 +4465,77 @@ function printNameMapping (){
 							}
 							attrentry.push( [tab.getName(),(col == null)?'' : col.getName(),nvl(logElem.getName()),nvl(attrName)])
 				
-							writtenCols[colkey] = true
+							g_writtenCols[colkey] = true
 						}
 					}
 					//Jede Column wird mind. 1x geschrieben.
-					if (!writtenCols[colkey]) {attrentry.push( [tab.getName(),col.getName(),'',''])}
+					if (!g_writtenCols[colkey]) {attrentry.push( [tab.getName(),col.getName(),'',''])}
 				}
 				return attrentry
 			}
+			function booltoX(b){
+				return b ? 'X' : ''
+			}
+			
+			function gatherDevCols(relModel) {
+				var attrids
+				//print all tables and columns for 1 relational model
+				var tables = relModel.getTableSet().toArray();
+				var attrlist = []
+				for (itpc = 0; itpc < tables.length; itpc++) {
+					var tab = tables[itpc]
 
+					var cols = tab.getElementsCollection().toArray()
+					for (icpcm = 0; icpcm < cols.length; icpcm++) {
+						var col = cols[icpcm]
+						var colkey = tab + '.' + col
+						//linemessage(1,attrlist.length,tab.getName(),col.getName())
+						
+						//start with the entry for the current model table/column
+						var mycolentry = [tab.getName(),col.getName()
+										,col.getDatatypeText(),booltoX(col.isMandatory()),col.getDefaultValue()
+										,col.getComment(),col.getNotes()
+										]
+						//add the Logical model mapping in the format [['enti',...],['attr',...]]
+						var colattrs = getcolattrmap(col)										
+						mycolentry = mycolentry.concat(colattrs[0],colattrs[1])
+						//linemessage(2,attrlist.length,tab.getName(),col.getName(),mycolentry.length)
 
-			function printCols(relModel) {
+						var attrids = colattrs[2]
+						// alle Modelle ausser dem aktuellen 
+						var restrmodels = []
+						var emptycols = []
+						for (r = 0; r < g_rmodels.length; r ++){
+							if (g_rmodels[r] != relModel.getName()) {
+								restrmodels.push(g_rmodels[r])
+								emptycols.push([],[],[])
+							}
+						} 
+						//linemessage('gatherDevCols',restrmodels.length,attrids.length,col.getName(),tab.getName())
+						
+						if (attrids.length == 0) {
+							mycolentry = mycolentry.concat(emptycols)
+						} else {
+							for (i = 0; i < attrids.length; i ++){
+								// add to the line all mappings from all attributes to all columns in the other models
+								var attrid = attrids[i]
+								if (attrid != null) {
+									//linemessage(colattrs[0][i],colattrs[1][i],attrids[i])
+									mycolentry = mycolentry.concat(attrElements(restrmodels, attrid, false))
+								}
+								//linemessage(3,attrlist.length,tab.getName(),col.getName(),attrid,mycolentry.length)
+							}
+						}
+						attrlist.push(mycolentry)
+						//linemessage(5,attrlist.length,tab.getName(),col.getName(),mycolentry.length)
+					}
+				}
+				return attrlist
+			}
+						
+			function gatherCols(relModel) {
 				tables = relModel.getTableSet().toArray();
-				attrlist = []
+				var attrlist = []
 				for (itpc = 0; itpc < tables.length; itpc++) {
 					tab = tables[itpc]
 
@@ -5076,16 +4547,16 @@ function printNameMapping (){
 						for (impc = 0; impc < containermaps.length; impc++) {
 							switch (containermaps[impc].logType) {
 								case ENTITYPE:
-									enti = entitySet.getObjectByID(containermaps[impc].logID)
+									enti = g_entitySet.getObjectByID(containermaps[impc].logID)
 									if (enti != null) attrlist.push([tab.getName(), '', enti.getName(),''])
 									break;
 								case RELATYPE:
-									rela = relationSet.getObjectByID(containermaps[impc].logID)
+									rela = g_relationSet.getObjectByID(containermaps[impc].logID)
 									if (rela != null) attrlist.push([tab.getName(), '',rela.getName(),''])
 									break;
 								case INHERITTYPE:
-									//				inher=inheritanceSet().getObjectByID(containermaps[impc].logID)
-									//				if (inher != null) writeMapLine(fw,tab,inher,null,null)
+									//		inher=g_inheritanceSet().getObjectByID(containermaps[impc].logID)
+									//		if (inher != null) writeMapLine(fw,tab,inher,null,null)
 									break;
 								default:
 									throw new Error("\n  Table'" + tab +
@@ -5097,7 +4568,6 @@ function printNameMapping (){
 				}
 				return attrlist
 			}
-
 
 			function chooseFile(direc, fileName) {
 				//Create a file chooser
@@ -5128,8 +4598,8 @@ function printNameMapping (){
 				return tab + '.' + col
 			}
 
-			function colProperty(curmodel, tabname, colname, propName) {
-				table = curmodel.getTableSet().getByName(tabName);
+			function colProperty(pcurmodel, tabname, colname, propName) {
+				table = pcurmodel.getTableSet().getByName(tabName);
 				if (table == null) return ""
 				column = table.getElementByName(colName);
 				extID = column.getProperty(propName)
@@ -5144,11 +4614,11 @@ function printNameMapping (){
 				return null
 			}
 
-			function tabList(maps, elemType, curmodel) {
+			function tabList(maps, elemType, pcurmodel) {
 				tlretval = []
 				if (maps != null) {
 					if (elemType != 'Entity') {
-						fks = curmodel.getFKIndexAssociationSet().toArray()
+						fks = pcurmodel.getFKIndexAssociationSet().toArray()
 					}
 					for (i in maps) {
 						if (elemType == 'Entity') {
@@ -5171,7 +4641,7 @@ function printNameMapping (){
 			function elements(rmodels, logID, elemType, nurX) {
 				elretval = []
 				for (ih = 0; ih < rmodels.length; ih++) {
-					curmodel = rmodels[ih]
+					var curmodel = rmodels[ih]
 					maps = getLogMap(logID, curmodel)
 					if (maps.length > 0) {
 						if (nurX) {
@@ -5190,23 +4660,32 @@ function printNameMapping (){
 				}
 				return elretval
 			}
+			
+			var g_curmodel = null // for the sortattrmaps function			
 			function sortattrmaps(a,b){
-				atab = containerMappings[a.parentID].tableName
-				acol = curmodel.getTableSet().getByName(atab).getElementByID(a.relID)
-				btab = containerMappings[b.parentID].tableName
-				bcol = curmodel.getTableSet().getByName(btab).getElementByID(b.relID)
+				var atab = g_containerMappings[a.parentID].tableName
+				var acol = g_curmodel.getTableSet().getByName(atab).getElementByID(a.relID)
+				var btab = g_containerMappings[b.parentID].tableName
+				var bcol = g_curmodel.getTableSet().getByName(btab).getElementByID(b.relID)
 				if (atab < btab) {return -1 }
 				if (atab > btab) {return 1}
 				return (acol < bcol) ? -1 : (acol > bcol) ? 1 : 0
 			}
+			
 			function attrElements(rmodels, attrID, nurX) {
-				aeretval = []
+				var aeretval = []
+				var attrlist = []
+				var tabNames = []
+				var colNames = []
+				var colIDs = []
 				for (irmpm = 0; irmpm < rmodels.length; irmpm++) {
-					curmodel = rmodels[irmpm]
-					attrmaps = getAttrMap(attrID, curmodel.getName())
+					g_curmodel = rmodels[irmpm]
+					//linemessage('attrElements 1',rmodels.length,attrID,g_curmodel.getName())
+					var attrmaps = getAttrMap(attrID, g_curmodel.getName())
 						//		if (attrID == '55CABD5F-9462-BF35-239C-E8A1A1D0848C') {
-						//			message(curmodel.getName()+':'+attrID+':'+attrmaps.length)
+						//			message(g_curmodel.getName()+':'+attrID+':'+attrmaps.length)
 						//		}
+					//linemessage('attrElements 2',attrmaps.length,g_curmodel.getName())
 					if (attrmaps.length > 0) {
 						if (nurX) {
 							attrlist = [
@@ -5214,26 +4693,26 @@ function printNameMapping (){
 							]
 						} else {
 							attrlist = [],
-								tabNames = []
+							tabNames = []
 							colNames = []
 							colIDs = []
 							//SORT
 							var attrmaplist = []
-							for (key in attrmaps) {
+							for (var key in attrmaps) {
 							    attrmaplist.push( attrmaps[key] );
 							}
 							attrmaplist.sort(sortattrmaps);
-							for (amidx=0;amidx<attrmaplist.length;amidx++) {
-								attrmap = attrmaplist[amidx]
-				
+							for (var amidx=0;amidx<attrmaplist.length;amidx++) {
+								var attrmap = attrmaplist[amidx]
+								//linemessage('attrElements 3',attrmap.parentID,attrmap.relID,g_curmodel.getName())
 							//SORT
 							//for (key in attrmaps) {
 							//attrmap = attrmaps[key]
-								tabName = containerMappings[attrmap.parentID].tableName
-								colName = curmodel.getTableSet().getByName(tabName).getElementByID(attrmap.relID)
+								tabName = g_containerMappings[attrmap.parentID].tableName
+								colName = g_curmodel.getTableSet().getByName(tabName).getElementByID(attrmap.relID)
 								tabNames.push(tabName.getName())
 								colNames.push(colName.getName())
-								colIDs.push(colProperty(curmodel, tabName, colName, EXTIDPROPNAME))
+								colIDs.push(colProperty(g_curmodel, tabName, colName, EXTIDPROPNAME))
 							}
 							//				if (attrID == '55CABD5F-9462-BF35-239C-E8A1A1D0848C') {
 							//					message('tabName1='+tabNames+'\ncolNames='+colNames+'\ncolIDs='+colIDs)
@@ -5260,9 +4739,10 @@ function printNameMapping (){
 
 
 			function logicalElement(rmodels, logElem, nurX) {
-				leretval = []
-				elemID = logElem.getObjectID()
-				attrs = null
+				var leretval = []
+				var elemID = logElem.getObjectID()
+				var attrs = null
+				var entyentry 
 				if (logElem.getObjectTypeName() == 'Entity') {
 					entyentry = [logElem.getName(), '']
 					entyentry = entyentry.concat(elements(rmodels, logElem.getObjectID(), logElem.getObjectTypeName(), nurX))
@@ -5282,9 +4762,9 @@ function printNameMapping (){
 				//message('logical Elements before attrs= '+logElem.getName()+'|'+leretval)
 				if (attrs != null) {
 					for (iattrac = 0; iattrac < attrs.length; iattrac++) {
-						attr = attrs[iattrac]
-						attrID = attr.getObjectID()
-						key = elemID + '.' + attrID
+						var attr = attrs[iattrac]
+						var attrID = attr.getObjectID()
+						var key = elemID + '.' + attrID
 						attrentry = [logElem.getName(), attr.getName()] //DEBUG  ,attrID]
 						attrentry = attrentry.concat(attrElements(rmodels, attrID, nurX))
 						leretval.push(attrentry)
@@ -5307,24 +4787,27 @@ function printNameMapping (){
 				return m2jretval
 			}
 
+			function escapeexcelchars(s){
+				var retval = s.replace(/"/g, "'")
+				if (retval.match(/\n/)) {retval = EXCELESCCHAR + retval + EXCELESCCHAR}
+				return retval
+			}
 			function printline(fw, line) {
 				for (zi = 0; zi < line.length; zi++) {
 					field = line[zi]
 					if (zi > 0) {
 						fw.write(EXCELCSVSEP)
 					}
-					if (typeof field == 'string') {
-						fw.write(field)
+					try {if (typeof field == 'string') {
+						fw.write(escapeexcelchars(field) )
 					} else if (field.length == 0) {
 						fw.write('') // empty List
 					} else if (field.length == 1) {
-						fw.write(field[0]) // single string in List
+						fw.write(escapeexcelchars(field[0])) // single string in List
 					} else {
 						// list of Strings
-						fw.write(EXCELESCCHAR +
-							field.join(EXCELMULTILINESEP) +
-							EXCELESCCHAR)
-					}
+						fw.write(escapeexcelchars(field.join(EXCELMULTILINESEP)) )
+					}} catch (err) {linemessage(typeof field)}
 				}
 				fw.write(EXCELLINEEND)
 			}
@@ -5362,11 +4845,11 @@ function printNameMapping (){
 			}
 
 			function gatherModel() {
-				logicalModel = model.getDesign().getLogicalDesign();
-				entitySet = logicalModel.getEntitySet()
-				relationSet = logicalModel.getRelationSet()
-				inheritanceSet = logicalModel.getInheritanceRelationSet()
-				rmodels = model.getDesign().getRelationalDesigns().toArray();
+				g_logicalModel = model.getDesign().getLogicalDesign();
+				g_entitySet = g_logicalModel.getEntitySet()
+				g_relationSet = g_logicalModel.getRelationSet()
+				g_inheritanceSet = g_logicalModel.getInheritanceRelationSet()
+				g_rmodels = model.getDesign().getRelationalDesigns().toArray();
 			}
 
 			function printjson(fw, format, allmapping) {
@@ -5385,55 +4868,71 @@ function printNameMapping (){
 			function printMatrix(fw, nurX, format) {
 				gatherModel()
 
-				getAllMappings(rmodels)
+				getAllMappings(g_rmodels)
 
 				if (nurX) {
 					allmapping = {
 						"header": ['entity', 'attr']
 					}
-					for (ih = 0; ih < rmodels.length; ih++) {
-						//throw new Error("\nrmodel: " + rmodels[ih].getName() + '|'+rmodels[ih] + "\n");
-						allmapping["header"].push(rmodels[ih].getName())
+					for (ih = 0; ih < g_rmodels.length; ih++) {
+						//throw new Error("\nrmodel: " + g_rmodels[ih].getName() + '|'+g_rmodels[ih] + "\n");
+						allmapping["header"].push(g_rmodels[ih].getName())
 					}
 				} else {
 					allmapping = {
 						"header": ['Information Model', ''],
 						"subheader": ['entity', 'attr']
 					}
-					for (ih = 0; ih < rmodels.length; ih++) {
-						allmapping["header"].push(rmodels[ih].getName(), '', '')
+					for (ih = 0; ih < g_rmodels.length; ih++) {
+						allmapping["header"].push(g_rmodels[ih].getName(), '', '')
 						allmapping["subheader"].push('table', 'column', 'ID')
 					}
 				}
 
 				//throw new Error("\nheaders: " + allmapping["header"] + "\n");
-				allmapping["attrlist"] = mappings2json(rmodels, entitySet.toArray(), nurX)
-				allmapping["attrlist"] = allmapping["attrlist"].concat(mappings2json(rmodels, relationSet.toArray(), nurX))
+				allmapping["attrlist"] = mappings2json(g_rmodels, g_entitySet.toArray(), nurX)
+				allmapping["attrlist"] = allmapping["attrlist"].concat(mappings2json(g_rmodels, g_relationSet.toArray(), nurX))
 
 				allmapping["footer"] = 'created by ODM, ' + curDateStr();
 				printjson(fw, format, allmapping)
 			}
 
-			function printCVS(fw, format) {
+			function printCVS(fw, format,relModel) {
 
 				// lies alle Mappings des gewählten Modells
 				getAllMappings([relModel])
 				allmapping = {
 					"model": [relModel.getName(), '', 'Information Model', ''],
 					"header": ['tableName', 'columnName','entityName', 'attrName'],
-					"attrlist": printCols(relModel)
+					"attrlist": gatherCols(relModel)
 				}
 				printjson(fw, format, allmapping)
 			}
 
-			function openoutputfile(filename, format) {
-				fileName = chooseFile(exportDirec, filename +
-					((format == FORMATJSON) ? '.js' : ((format == 'CSV') ? '.csv' : 'txt')))
-				if (fileName == null) {
-					return null
+			function printDevCVS(fw, format,relModel) {
+				// lies alle Mappings des gewählten Modells
+				mymodelname = relModel.getName()
+				allmapping = {
+					"model": [mymodelname,'','','','','','', 'Information Model',''],
+					"header": ['tableName', 'columnName','datatype','mand.','def. value','descr','rules','entity','attribute'],
+					"attrlist": gatherDevCols(relModel)
 				}
-				fw = createFile(fileName)
-				return createFile(fileName)
+				// Add all relational models except myself to the header
+				for (ih = 0; ih < g_rmodels.length; ih++) {
+					if (g_rmodels[ih].getName() != mymodelname) {
+						//linemessage(ih,g_rmodels[ih].getName(), mymodelname)
+						allmapping["model"].push(g_rmodels[ih].getName(), '', '')
+						allmapping["header"].push('table', 'column', 'ID')
+					}
+				}
+				
+				printjson(fw, format, allmapping)
+			}
+
+			function chooseoutputfilename(pfilename, pformat) {
+				fileName = chooseFile(g_exportDirec, pfilename +
+					((pformat == FORMATJSON) ? '.js' : ((pformat == 'CSV') ? '.csv' : 'txt')))
+				return fileName
 			}
 
 			function outputformat() {
@@ -5449,21 +4948,45 @@ function printNameMapping (){
 
 			function print1Mapping() {
 				gatherModel()
-				relModel = chooseModel();
+				var relModel = chooseModel();
+				if (relModel == null) return;
+	
+				format = outputformat()
+				if (format == null) {
+					return 
+				}
+				filename = chooseoutputfilename(relModel.getName(), format)
+				if (filename == null) {
+					return 
+				} else {
+					fw = createFile(filename)
+				}
+				printCVS(fw, format,relModel)
+				fw.close();
+				message("Mapping file " + fileName + " for model " + relModel.getName() + " created.");
+			}
+
+			function printDevMapping() {
+				gatherModel()
+				var relModel = chooseModel();
 				if (relModel == null) return;
 	
 				format = outputformat()
 				if (format == null) {
 					return null
 				}
-				fw = openoutputfile(relModel.getName(), format)
-				if (fw == null) {
+				filename = chooseoutputfilename(relModel.getName()+'_dev', format)
+				if (filename == null) {
 					return
+				} else {
+					fw = createFile(filename)
 				}
-				printCVS(fw, format)
+				getAllMappings(g_rmodels)
+				printDevCVS(fw, format,relModel)
 				fw.close();
 				message("Mapping file " + fileName + " for model " + relModel.getName() + " created.");
 			}
+
 
 			function printAllMapping(nurX) {
 				format = outputformat()
@@ -5471,9 +4994,1024 @@ function printNameMapping (){
 					return null
 				}
 				filename = model.getDesign().getName()
-				fw = openoutputfile(filename + (nurX ? 'X' : ''), format)
-				if (fw == null) {
+				filename = chooseoutputfilename(filename + (nurX ? 'X' : ''), format)
+				if (filename == null) {
 					return
+				} else {
+					fw = createFile(filename)
+				}
+				printMatrix(fw, nurX, format)
+				fw.close();
+				message("Mapping file " + fileName + " created.");
+			}
+
+			function printXMapping() {
+				printAllMapping(true)
+			}
+
+			function printNameMapping() {
+				printAllMapping(false)
+			}]]>
+		</script>
+	</scr>
+	<scr id="D9724291-4121-3977-C3C6-8D4D8B657C9D" name="printDevMapping" object="logical" engine="Oracle Nashorn" type="" var="model" library="attrmapping" method="printDevMapping" purpose="transformation" >
+		<script>
+			<![CDATA[]]>
+		</script>
+	</scr>
+
+	<lib id="B2F713AD-5E48-670F-8A2B-55D1ABD0440C" name="attrmapping" engine="Oracle Nashorn" methods="importMapping,print1Mapping,printXMapping,printNameMapping,printDevMapping" >
+		<script>
+			<![CDATA[var CODEVERSION = '3.0'
+			var PLAINMESSAGE = 1;
+			var ERRORMESSAGE = 0;
+			var WARNINGMESSAGE = 2;
+			var QUESTIONMESSAGE = 3;
+			var FORMATJSON = 'JSON'
+			var FORMATCSV = 'CSV'
+			var g_tabanz = 0
+			var g_colanz = 0
+			var g_colmapanz = 0
+			var g_tabmapanz = 0
+			var g_lineanz = 0
+			var g_logicalModel
+			var g_entitySet
+			var g_relationSet
+			var g_inheritanceSet
+			var g_rmodels
+			var g_writtenCols = {}
+			var g_exportDirec = java.lang.System.getProperty("user.home") + "/Downloads"
+			var g_importDirec = java.lang.System.getProperty("user.home") + "/Downloads"
+			var EXTIDPROPNAME = "EXT_ATTR_ID"
+			var EXCELCSVSEP = ";"
+			var EXCELESCCHAR = '"'
+			var EXCELMULTILINESEP = String.fromCharCode(10)
+			var EXCELLINEEND = String.fromCharCode(10)
+			var EXCELBOM = "\ufeff" //String.fromCharCode(0xef,0xbb,0xbf)
+
+			// Types for mapping element
+			ENTITYPE = 0
+			COLTYPE = 5
+			TABLETYPE = 4
+			ATTRTYPE = 1
+			RELATYPE = 3 //(source ent, targ ent)
+			FKTYPE = 8
+			INHERITTYPE = 9
+			RELARCTYPE = 13
+			LOGARCTYPE = 14
+			var g_containerMappings = {}
+			var g_attrMappings = {}
+
+			function getAllMappings(rmodels) {
+				g_containerMappings = {}
+				g_attrMappings = {}
+				if (rmodels == null) return
+				for (imod = 0; imod < rmodels.length; imod++) {
+					rmod = rmodels[imod]
+					modname = rmod.getName()
+					tables = rmod.getTableSet()
+					modelMap = rmod.getRMExtendedMap().getContainerMappings().toArray();
+					if (modelMap != null) {
+						for (imgm = 0; imgm < modelMap.length; imgm++) {
+							logMap = modelMap[imgm]
+							relName = tables.getObjectByID(logMap.getRelID())
+							switch (logMap.getLogType()) {
+								case ENTITYPE:
+									logName = g_entitySet.getObjectByID(logMap.getLogID())
+									break
+								case RELATYPE:
+									logName = g_relationSet.getObjectByID(logMap.getLogID())
+									break;
+								case INHERITTYPE:
+									logName = g_inheritanceSet.getObjectByID(logMap.getLogID())
+									break;
+								default:
+									logName = null
+							}
+
+							g_containerMappings[logMap.getID()] = {
+								modelName: modname,
+								logID: logMap.getLogID(),
+								logName: logName,
+								logType: logMap.getLogType(),
+								relID: logMap.getRelID(),
+								tableName: relName,
+								relType: logMap.getRelType(),
+								srcEntityID: logMap.getRealSourceEntityID(),
+								trgEntityID: logMap.getRealTargetEntityID()
+							}
+
+							containedMaps = logMap.getContainedMappings()
+							for (icm = 0; icm < containedMaps.length; icm++) {
+								cm = containedMaps[icm]
+								g_attrMappings[cm.getID()] = {
+									modelName: modname,
+									parentID: logMap.getID(),
+									logID: cm.getLogID(),
+									logType: cm.getLogType(),
+									relID: cm.getRelID(),
+									relType: cm.getRelType()
+								}
+							}
+						}
+					}
+				}
+			}
+
+
+			function fullmessage(msg, type) {
+				Java.type("javax.swing.JOptionPane").showMessageDialog(null, msg, 'ODM-Translation', type);
+			}
+
+			function error(msg) {
+				fullmessage(msg, ERRORMESSAGE);
+			}
+
+			function message(msg) {
+				fullmessage(msg, PLAINMESSAGE);
+			}
+
+			function linemessage() {
+				str = ''
+				for (i=0;i<arguments.length;i++){
+					str = str.concat(arguments[i],'\n')
+				}
+				message(str)
+			}
+
+			function trimapo(s) {
+				return s.replace(/^"|"$/g, '');
+			}
+
+			function curDateStr() {
+				var currentdate = new Date();
+				return currentdate.getDate() +
+					"/" + (currentdate.getMonth() + 1) +
+					"/" + currentdate.getFullYear() + "  " +
+					currentdate.getHours() + ":" +
+					currentdate.getMinutes() + ":" + currentdate.getSeconds();
+			}
+
+			function getContainerMaps(tabID) {
+				maps = []
+				for (key in g_containerMappings) {
+					if (tabID == g_containerMappings[key].relID) maps.push(g_containerMappings[key])
+				}
+				return maps
+			}
+
+			function getContainerMap(entiID, tabID) {
+				for (key in g_containerMappings) {
+					if (tabID == g_containerMappings[key].relID && entiID == g_containerMappings[key].logID) return g_containerMappings[key]
+				}
+				return null
+			}
+
+			function getLogMap(logID, modName) {
+				maps = []
+				for (key in g_containerMappings) {
+					if ((logID == g_containerMappings[key].logID) &&
+						(modName == g_containerMappings[key].modelName)) maps.push(g_containerMappings[key])
+				}
+				return maps
+			}
+
+			function getColMaps(colID) {
+				colsmap = []
+				for (key in g_attrMappings) {
+					//message(colID+'|'+cmap[icolmap].getRelID())
+					if (colID == g_attrMappings[key].relID) colsmap.push(g_attrMappings[key])
+				}
+				return colsmap
+			}
+
+			function getColMap(colID, attrID) {
+				for (key in g_attrMappings) {
+					if (g_attrMappings[key].modelName == "--debug--") {
+						message(key + '\n' + colID + '\n' + attrID + '\n' + g_attrMappings[key].relID + '\n' + g_attrMappings[key].logID)
+					}
+					if (colID == g_attrMappings[key].relID && attrID == g_attrMappings[key].logID) return g_attrMappings[key]
+				}
+				return null
+			}
+
+			function getAttrMap(attrID, modName) {
+				attrmaps = []
+				for (key in g_attrMappings) {
+					//message(colID+'|'+cmap[icolmap].getRelID())
+					if ((attrID == g_attrMappings[key].logID) &&
+						(modName == g_attrMappings[key].modelName)) attrmaps.push(g_attrMappings[key])
+				}
+				return attrmaps
+			}
+
+
+			function getRelationAttribute(attrCollection, attrName) {
+				for (grakey in attrCollection) {
+					if (attrCollection[grakey].getName() == attrName) return attrCollection[grakey]
+				}
+				return null
+			}
+
+			function getRelationAttrByID(attrCollection, attrID) {
+				for (grakey in attrCollection) {
+					if (attrCollection[grakey].getObjectID() == attrID) return attrCollection[grakey]
+				}
+				return null
+			}
+
+
+			function do1line(values) {
+				modelMapping = rmodel.getRMExtendedMap().getContainerMappings().toArray();
+				tabName = values[0];
+				colName = values[1];
+				elemName = values[2];
+				attrName = values[3];
+				//linemessage(elemName,attrName,tabName,colName)
+				relation = null
+				entity = g_entitySet.getByName(elemName);
+				if (entity != null) {
+					attribute = entity.getElementByName(attrName);
+				} else { // assume Relation 
+					relation = g_relationSet.getByName(elemName)
+					if (relation != null) {
+						attribute = getRelationAttribute(relation.getAttributesCollection(), attrName);
+					}
+				}
+				table = rmodel.getTableSet().getByName(tabName);
+				// Neue Tabellen werden erzeugt
+				if ((table == null) && (tabName != "")) {
+					rmodel.createTable(tabName);
+					table = rmodel.getTableSet().getByName(tabName);
+					table.setComment("Created on " + curDateStr() + " during import from " + imppath)
+					g_tabanz++
+				}
+				if (table != null) {
+					column = table.getElementByName(colName);
+				} else {
+					column = null
+				}
+				// neue Columns werden erzeugt
+				if ((column == null) && (colName != "")) {
+					//linemessage('neue Column',colName,tabName)
+					table.createColumn(colName)
+					column = table.getElementByName(colName);
+					column.setComment("Created on " + curDateStr() + " during import from " + imppath)
+					g_colanz++
+				}
+				if ((entity != null) && (table != null)) {
+					mapped = getContainerMap(entity.getObjectID(), table.getObjectID())
+					if (mapped == null) {
+						rmodel.getRMExtendedMap().createMapping(entity, table);
+						g_tabmapanz++
+					}
+					if ((attribute != null) && (column != null)) {
+						mapped = getColMap(column.getObjectID(), attribute.getObjectID())
+
+						if (mapped == null) {
+							rmodel.getRMExtendedMap().createMapping(attribute, column);
+							g_colmapanz++
+						}
+					}
+				}
+				if ((relation != null) && (table != null)) {
+					mapped = getContainerMap(relation.getObjectID(), table.getObjectID())
+					if (mapped == null) {
+						rmodel.getRMExtendedMap().createMapping(relation, table);
+						g_tabmapanz++
+					}
+					if ((attribute != null) && (column != null)) {
+						mapped = getColMap(column.getObjectID(), attribute.getObjectID())
+						if (mapped == null) {
+							rmodel.getRMExtendedMap().createMapping(attribute, column);
+							g_colmapanz++
+						}
+					}
+				}
+			}
+
+			function importFile(fpath) {
+				var Paths = Java.type('java.nio.file.Paths');
+				var Files = Java.type('java.nio.file.Files');
+				var lines = Files.readAllLines(Paths.get(fpath), Java.type('java.nio.charset.StandardCharsets').UTF_8);
+				for (lnoif = 0; lnoif < lines.length; lnoif++) {
+					line = lines[lnoif]
+					values = line.split(";");
+					for (iif = 0; iif < values.length; iif++) {
+						values[iif] = trimapo(values[iif]);
+					}
+					if (lnoif == 0) {
+						var relModel = values[0];
+						// falls 1. Zeichen von Excel stammt, schneide es ab
+						if (relModel.match(/^[^A-Za-z]/)) {relModel = relModel.substring(1)}
+						rmodel = model.getDesign().getRelationalDesigns().getByName(relModel);
+						if (rmodel == null) {
+							throw new Error("\nRelational model '" + relModel + "' does not exist.\n");
+						}
+						getAllMappings([rmodel])
+					} else
+					if (lnoif == 1) {
+						// skip headers
+						//message(lnoif+': '+"headers= "+values);
+					} else {
+						//linemessage(lnoif,values.length,values);
+						if (values.length>=4){
+							do1line(values);
+							g_lineanz++
+						}
+					}
+				};
+			}
+
+			function importMapping() {
+				//Create a file chooser
+				var Filebrowse = Java.type("javax.swing.JFileChooser");
+				f = new Filebrowse(g_importDirec);
+				returnVal = f.showOpenDialog(null);
+				if (returnVal == Filebrowse.APPROVE_OPTION) {
+					imppath = f.getSelectedFile();
+					//message(imppath);
+				} else {
+					return
+				}
+				g_tabanz = 0
+				g_colanz = 0
+				g_colmapanz = 0
+				g_lineanz = 0
+				g_logicalModel = model.getDesign().getLogicalDesign();
+				g_entitySet = g_logicalModel.getEntitySet()
+				g_relationSet = g_logicalModel.getRelationSet()
+				g_inheritanceSet = g_logicalModel.getInheritanceRelationSet()
+				importFile(imppath);
+				message("Parsed " + g_lineanz + " lines from file " + imppath + ".\n" +
+						"Created " + g_tabanz + " tables, " + g_colanz + " columns,\n" +
+						"Mapped " + g_tabmapanz + " tables to entities and " + g_colmapanz + " columns to attributes") // +tabmapanz+" table- and " 
+
+			}
+
+			function chooseModel() {
+				if (g_rmodels.length == 0) throw new Error("\n***MAPPING: no relational models available ***\n");
+				if (g_rmodels.length == 1) {
+					antwort = g_rmodels[0]
+				} else {
+					rmodel = g_rmodels[0]
+					antwort = Java.type("javax.swing.JOptionPane").showInputDialog(null,
+						"Choose relational model",
+						"choose model",
+						QUESTIONMESSAGE,
+						null,
+						g_rmodels, rmodel);
+				}
+				return antwort
+			}
+
+			function nvl(x) {
+				return x == null ? "" : x
+			}
+
+			
+			//read the mapping of a col to attributes
+			// return list [['entyname',...],['attrname',[attrObjectId,...]
+			function getcolattrmap(col){
+				var retval = []
+				var enties = []
+				var attrs = []
+				var ids = []
+				colmaps = getColMaps(col.getObjectID())
+				if (colmaps.length > 0) {
+					// Column ist gemapped
+					enties = []
+					attrs = []
+					ids = []
+					for (impcm = 0; impcm < colmaps.length; impcm++) {
+						curmap = colmaps[impcm]
+						parentelem = g_containerMappings[curmap.parentID]
+						var attr = null
+						var attrId = null
+						//DEBUG if (parentelem == null){message(tab.getName()+':'+curmap.logID)} //DEBUG
+						//enties.push('a');attrs.push('b');ids.push('')
+						
+						switch (parentelem.logType) {
+							case ENTITYPE:
+								logElem = g_entitySet.getObjectByID(parentelem.logID)
+								attr = logElem.getElementByID(curmap.logID)
+								enties.push(nvl(logElem.getName()))
+								attrs.push(nvl(attr.getName()))
+								ids.push(nvl(attr.getObjectID()))
+								break;
+							case RELATYPE:
+								logElem = g_relationSet.getObjectByID(parentelem.logID)
+								attr = getRelationAttrByID(logElem.getAttributesCollection(), curmap.logID)
+								enties.push(nvl(logElem.getName()))
+								attrs.push(nvl(attr.getName()))
+								ids.push(nvl(attr.getObjectID()))
+								break;
+							case INHERITTYPE:
+								logElem = g_inheritanceSet().getObjectByID(parentelem.logID)
+								enties.push(nvl(logElem.getName()))
+								attrs.push(nvl( '???'))
+								ids.push('')
+								break;
+							default:
+								logElem = '???'
+								enties.push('???')
+								attrs.push(nvl(parentelem.relType))
+								ids.push('')
+								//throw new Error("\n  Column'"+colkey +" unknown logical mapping type: "+parent.logType);
+						}
+					}
+				}
+				retval.push(enties,attrs,ids)
+				return retval
+			}
+			
+			function printColsMap(tab) {
+				cols = tab.getElementsCollection().toArray()
+				g_writtenCols = {}
+				attrentry = []
+				for (icpcm = 0; icpcm < cols.length; icpcm++) {
+					col = cols[icpcm]
+					colkey = tab + '.' + col
+
+					//		//FK mapped to Relations
+					//		if (col.isFKColumn()) {
+					//			fks = col.getAllFKs()
+					//			for (ifk=0;ifk<fks.length;ifk++){
+					//				fkID=fks[ifk].getObjectID()
+					//				fkmaps = getContainerMaps(fkID)
+					////		if (colkey=="Subentität_1.Super_Entiät_Super_Entiät_ID") message(colkey+ifk+' :1: '+fkID+' : '+fkmaps.length)
+					//				for (ir=0;ir<fkmaps.length;ir++){
+					//					rela = g_relationSet.getObjectByID(fkmaps[ir].logID)
+					////		if (colkey=="Subentität_1.Super_Entiät_Super_Entiät_ID") message(colkey+ir+' :2: '+fkmaps[ir].logID+':'+rela)
+					//					if (rela == null) rela = g_inheritanceSet.getObjectByID(fkmaps[ir].logID)	
+					////		if (colkey=="Subentität_1.Super_Entiät_Super_Entiät_ID") message(colkey+ir+' :3: '+rela)
+					//					writeMapLine(fw,tab,rela,col, null)
+					//					g_writtenCols[colkey]=true
+					//				}
+					//			}
+					//		}
+
+					colmaps = getColMaps(col.getObjectID())
+					if (colmaps.length > 0) {
+						// Column ist gemapped
+						for (impcm = 0; impcm < colmaps.length; impcm++) {
+							curmap = colmaps[impcm]
+							parentelem = g_containerMappings[curmap.parentID]
+							//DEBUG if (parentelem == null){message(tab.getName()+':'+curmap.logID)} //DEBUG
+							switch (parentelem.logType) {
+								case ENTITYPE:
+									logElem = g_entitySet.getObjectByID(parentelem.logID)
+									attrName = logElem.getElementByID(curmap.logID).getName()
+									break;
+								case RELATYPE:
+									logElem = g_relationSet.getObjectByID(parentelem.logID)
+									attrName = getRelationAttrByID(logElem.getAttributesCollection(), curmap.logID).getName()
+									break;
+								case INHERITTYPE:
+									logElem = g_inheritanceSet().getObjectByID(parentelem.logID)
+									attrName = '???'
+									break;
+								default:
+									logElem = '???'
+									attrName = parentelem.relType
+										//throw new Error("\n  Column'"+colkey +" unknown logical mapping type: "+parent.logType);
+							}
+							attrentry.push( [tab.getName(),(col == null)?'' : col.getName(),nvl(logElem.getName()),nvl(attrName)])
+				
+							g_writtenCols[colkey] = true
+						}
+					}
+					//Jede Column wird mind. 1x geschrieben.
+					if (!g_writtenCols[colkey]) {attrentry.push( [tab.getName(),col.getName(),'',''])}
+				}
+				return attrentry
+			}
+			function booltoX(b){
+				return b ? 'X' : ''
+			}
+			
+			function gatherDevCols(relModel) {
+				var attrids
+				//print all tables and columns for 1 relational model
+				var tables = relModel.getTableSet().toArray();
+				var attrlist = []
+				for (itpc = 0; itpc < tables.length; itpc++) {
+					var tab = tables[itpc]
+
+					var cols = tab.getElementsCollection().toArray()
+					for (icpcm = 0; icpcm < cols.length; icpcm++) {
+						var col = cols[icpcm]
+						var colkey = tab + '.' + col
+						//linemessage(1,attrlist.length,tab.getName(),col.getName())
+						
+						//start with the entry for the current model table/column
+						var mycolentry = [tab.getName(),col.getName()
+										,col.getDatatypeText(),booltoX(col.isMandatory()),col.getDefaultValue()
+										,col.getComment(),col.getNotes()
+										]
+						//add the Logical model mapping in the format [['enti',...],['attr',...]]
+						var colattrs = getcolattrmap(col)										
+						mycolentry = mycolentry.concat(colattrs[0],colattrs[1])
+						//linemessage(2,attrlist.length,tab.getName(),col.getName(),mycolentry.length)
+
+						var attrids = colattrs[2]
+						// alle Modelle ausser dem aktuellen 
+						var restrmodels = []
+						var emptycols = []
+						for (r = 0; r < g_rmodels.length; r ++){
+							if (g_rmodels[r] != relModel.getName()) {
+								restrmodels.push(g_rmodels[r])
+								emptycols.push([],[],[])
+							}
+						} 
+						//linemessage('gatherDevCols',restrmodels.length,attrids.length,col.getName(),tab.getName())
+						
+						if (attrids.length == 0) {
+							mycolentry = mycolentry.concat(emptycols)
+						} else {
+							for (i = 0; i < attrids.length; i ++){
+								// add to the line all mappings from all attributes to all columns in the other models
+								var attrid = attrids[i]
+								if (attrid != null) {
+									//linemessage(colattrs[0][i],colattrs[1][i],attrids[i])
+									mycolentry = mycolentry.concat(attrElements(restrmodels, attrid, false))
+								}
+								//linemessage(3,attrlist.length,tab.getName(),col.getName(),attrid,mycolentry.length)
+							}
+						}
+						attrlist.push(mycolentry)
+						//linemessage(5,attrlist.length,tab.getName(),col.getName(),mycolentry.length)
+					}
+				}
+				return attrlist
+			}
+						
+			function gatherCols(relModel) {
+				tables = relModel.getTableSet().toArray();
+				var attrlist = []
+				for (itpc = 0; itpc < tables.length; itpc++) {
+					tab = tables[itpc]
+
+					containermaps = getContainerMaps(tab.getObjectID())
+					if (containermaps.length == 0) {
+						attrlist = attrlist.concat(printColsMap(tab))
+					} else {
+						//print entity/relation - Mapping of Table
+						for (impc = 0; impc < containermaps.length; impc++) {
+							switch (containermaps[impc].logType) {
+								case ENTITYPE:
+									enti = g_entitySet.getObjectByID(containermaps[impc].logID)
+									if (enti != null) attrlist.push([tab.getName(), '', enti.getName(),''])
+									break;
+								case RELATYPE:
+									rela = g_relationSet.getObjectByID(containermaps[impc].logID)
+									if (rela != null) attrlist.push([tab.getName(), '',rela.getName(),''])
+									break;
+								case INHERITTYPE:
+									//		inher=g_inheritanceSet().getObjectByID(containermaps[impc].logID)
+									//		if (inher != null) writeMapLine(fw,tab,inher,null,null)
+									break;
+								default:
+									throw new Error("\n  Table'" + tab +
+										" unknown logical mapping type: " + containermaps[impc].logType);
+							}
+						}
+						attrlist = attrlist.concat(printColsMap(tab))
+					}
+				}
+				return attrlist
+			}
+
+			function chooseFile(direc, fileName) {
+				//Create a file chooser
+				//message("direc= "+direc)
+				var Filebrowse = Java.type("javax.swing.JFileChooser");
+				var File = Java.type("java.io.File");
+				f = new Filebrowse(direc);
+				f.setSelectedFile(new File(fileName));
+				returnVal = f.showSaveDialog(null);
+				if (returnVal == Filebrowse.APPROVE_OPTION) {
+					return f.getSelectedFile();
+				} else {
+					return null
+				}
+			}
+
+			function createFile(fileName) {
+				//Create a file chooser
+				var FileWriter = Java.type('java.io.FileWriter')
+				fw = new FileWriter(fileName);
+				return fw
+			}
+
+
+			function getColName(rmod, tabID, colID) {
+				tab = rmod.getTableSet().getObjectByID(tabID)
+				col = tab.getElementByID(colID)
+				return tab + '.' + col
+			}
+
+			function colProperty(pcurmodel, tabname, colname, propName) {
+				table = pcurmodel.getTableSet().getByName(tabName);
+				if (table == null) return ""
+				column = table.getElementByName(colName);
+				extID = column.getProperty(propName)
+				return ((extID == null) || (extID == ".")) ? "" : extID
+			}
+
+			function findFK(fks, fkID) {
+				for (iloc in fks) {
+					//		if (fkID == "8AEA1CA4-3B90-4F1D-37AE-8A0FD50F8996") {message(fks[iloc].getTable()+fks[iloc].getObjectID()+fks[iloc])}
+					if (fks[iloc].getObjectID() == fkID) return fks[iloc]
+				}
+				return null
+			}
+
+			function tabList(maps, elemType, pcurmodel) {
+				tlretval = []
+				if (maps != null) {
+					if (elemType != 'Entity') {
+						fks = pcurmodel.getFKIndexAssociationSet().toArray()
+					}
+					for (i in maps) {
+						if (elemType == 'Entity') {
+							tabName = maps[i].tableName
+						} else {
+							fk = findFK(fks, maps[i].relID)
+							if (fk != null) {
+								tabName = fk.getTable()
+							} else {
+								tabName = maps[i].tableName // falls es m:n ist ist es eine Table
+							}
+						}
+						tlretval.push(tabName.getName())
+					}
+				}
+				//message('tablist= '+tlretval+ '|'+elemType)
+				return tlretval
+			}
+
+			function elements(rmodels, logID, elemType, nurX) {
+				elretval = []
+				for (ih = 0; ih < rmodels.length; ih++) {
+					var curmodel = rmodels[ih]
+					maps = getLogMap(logID, curmodel)
+					if (maps.length > 0) {
+						if (nurX) {
+							elretval.push(['X'])
+						} else {
+							elretval.push(tabList(maps, elemType, curmodel), [], [])
+						}
+					} else {
+						if (nurX) {
+							elretval.push([])
+						} else {
+							elretval.push([], [], [])
+						}
+					}
+					// Extra columns are empty
+				}
+				return elretval
+			}
+			
+			var g_curmodel = null // for the sortattrmaps function			
+			function sortattrmaps(a,b){
+				var atab = g_containerMappings[a.parentID].tableName
+				var acol = g_curmodel.getTableSet().getByName(atab).getElementByID(a.relID)
+				var btab = g_containerMappings[b.parentID].tableName
+				var bcol = g_curmodel.getTableSet().getByName(btab).getElementByID(b.relID)
+				if (atab < btab) {return -1 }
+				if (atab > btab) {return 1}
+				return (acol < bcol) ? -1 : (acol > bcol) ? 1 : 0
+			}
+			
+			function attrElements(rmodels, attrID, nurX) {
+				var aeretval = []
+				var attrlist = []
+				var tabNames = []
+				var colNames = []
+				var colIDs = []
+				for (irmpm = 0; irmpm < rmodels.length; irmpm++) {
+					g_curmodel = rmodels[irmpm]
+					//linemessage('attrElements 1',rmodels.length,attrID,g_curmodel.getName())
+					var attrmaps = getAttrMap(attrID, g_curmodel.getName())
+						//		if (attrID == '55CABD5F-9462-BF35-239C-E8A1A1D0848C') {
+						//			message(g_curmodel.getName()+':'+attrID+':'+attrmaps.length)
+						//		}
+					//linemessage('attrElements 2',attrmaps.length,g_curmodel.getName())
+					if (attrmaps.length > 0) {
+						if (nurX) {
+							attrlist = [
+								['X']
+							]
+						} else {
+							attrlist = [],
+							tabNames = []
+							colNames = []
+							colIDs = []
+							//SORT
+							var attrmaplist = []
+							for (var key in attrmaps) {
+							    attrmaplist.push( attrmaps[key] );
+							}
+							attrmaplist.sort(sortattrmaps);
+							for (var amidx=0;amidx<attrmaplist.length;amidx++) {
+								var attrmap = attrmaplist[amidx]
+								//linemessage('attrElements 3',attrmap.parentID,attrmap.relID,g_curmodel.getName())
+							//SORT
+							//for (key in attrmaps) {
+							//attrmap = attrmaps[key]
+								tabName = g_containerMappings[attrmap.parentID].tableName
+								colName = g_curmodel.getTableSet().getByName(tabName).getElementByID(attrmap.relID)
+								tabNames.push(tabName.getName())
+								colNames.push(colName.getName())
+								colIDs.push(colProperty(g_curmodel, tabName, colName, EXTIDPROPNAME))
+							}
+							//				if (attrID == '55CABD5F-9462-BF35-239C-E8A1A1D0848C') {
+							//					message('tabName1='+tabNames+'\ncolNames='+colNames+'\ncolIDs='+colIDs)
+							//				}
+
+							//tabNames = tabNames.slice(0, -1)
+							//colNames = colNames.slice(0, -1)
+							//colIDs = colIDs.slice(0, -1)
+							attrlist = [tabNames, colNames, colIDs]
+						}
+					} else {
+						attrlist = nurX ? [
+							[]
+						] : [
+							[],
+							[],
+							[]
+						]
+					}
+					aeretval = aeretval.concat(attrlist)
+				}
+				return aeretval
+			}
+
+
+			function logicalElement(rmodels, logElem, nurX) {
+				var leretval = []
+				var elemID = logElem.getObjectID()
+				var attrs = null
+				var entyentry 
+				if (logElem.getObjectTypeName() == 'Entity') {
+					entyentry = [logElem.getName(), '']
+					entyentry = entyentry.concat(elements(rmodels, logElem.getObjectID(), logElem.getObjectTypeName(), nurX))
+					leretval.push(entyentry)
+					attrs = logElem.getElementsCollection().toArray()
+				} else if (logElem.getObjectTypeName() == 'Relation') {
+					if (logElem.isManyToMany()) { // FK-Mapping ist nicht trivial bei seltsamen Modellen
+						entyentry = [logElem.getName(), '']
+						entyentry = entyentry.concat(elements(rmodels, logElem.getObjectID(), logElem.getObjectTypeName(), nurX))
+						leretval.push(entyentry)
+						attrs = logElem.getAttributesCollection().toArray()
+					}
+				} else { // assume inheritance
+					// Inheritance sind schon entities line += elements(rmodels,logElem.getObjectID(),logElem.getObjectTypeName(),nurX)
+					// Inheritance becomes fk-columns
+				}
+				//message('logical Elements before attrs= '+logElem.getName()+'|'+leretval)
+				if (attrs != null) {
+					for (iattrac = 0; iattrac < attrs.length; iattrac++) {
+						var attr = attrs[iattrac]
+						var attrID = attr.getObjectID()
+						var key = elemID + '.' + attrID
+						attrentry = [logElem.getName(), attr.getName()] //DEBUG  ,attrID]
+						attrentry = attrentry.concat(attrElements(rmodels, attrID, nurX))
+						leretval.push(attrentry)
+							//throw new Error("\nattrs: " + leretval + "\n");
+					}
+				}
+				//message('logical Elements= '+logElem.getName()+'|'+leretval)
+				return leretval
+			}
+
+			//	function printElementGroup(rmodels, group, nurX) {
+			function mappings2json(rmodels, group, nurX) {
+				m2jretval = []
+				if (group != null) {
+					for (ig = 0; ig < group.length; ig++) {
+						m2jretval = m2jretval.concat(logicalElement(rmodels, group[ig], nurX))
+					}
+				}
+				//message('mappings2json= '+retval)
+				return m2jretval
+			}
+
+			function escapeexcelchars(s){
+				var retval = s.replace(/"/g, "'")
+				if (retval.match(/\n/)) {retval = EXCELESCCHAR + retval + EXCELESCCHAR}
+				return retval
+			}
+			function printline(fw, line) {
+				for (zi = 0; zi < line.length; zi++) {
+					field = line[zi]
+					if (zi > 0) {
+						fw.write(EXCELCSVSEP)
+					}
+					try {if (typeof field == 'string') {
+						fw.write(escapeexcelchars(field) )
+					} else if (field.length == 0) {
+						fw.write('') // empty List
+					} else if (field.length == 1) {
+						fw.write(escapeexcelchars(field[0])) // single string in List
+					} else {
+						// list of Strings
+						fw.write(escapeexcelchars(field.join(EXCELMULTILINESEP)) )
+					}} catch (err) {linemessage(typeof field)}
+				}
+				fw.write(EXCELLINEEND)
+			}
+
+			function printlines(fw, entry) {
+				for (ie = 0; ie < entry.length; ie++) {
+					line = entry[ie]
+						// es ist eine Liste von Zeilen
+					printline(fw, line)
+				}
+			}
+
+			function json2csv(fw, allMapping) {
+				fw.write(EXCELBOM)
+				for (key in allMapping) {
+					entry = allMapping[key]
+					switch (key) {
+						case "model":
+						case "header":
+						case "subheader":
+							fw.write(entry.join(EXCELCSVSEP))
+							fw.write(EXCELLINEEND)
+							break;
+						case "attrlist":
+							printlines(fw, entry)
+							break;
+						case "footer":
+							fw.write(entry)
+							fw.write(EXCELLINEEND)
+							break;
+						default:
+							fw.write('unbekannter Eintrag ' + key)
+					}
+				}
+			}
+
+			function gatherModel() {
+				g_logicalModel = model.getDesign().getLogicalDesign();
+				g_entitySet = g_logicalModel.getEntitySet()
+				g_relationSet = g_logicalModel.getRelationSet()
+				g_inheritanceSet = g_logicalModel.getInheritanceRelationSet()
+				g_rmodels = model.getDesign().getRelationalDesigns().toArray();
+			}
+
+			function printjson(fw, format, allmapping) {
+				switch (format) {
+					case FORMATJSON:
+						fw.write(JSON.stringify(allmapping, null, 2)); // spacing level = 2)
+						break;
+					case FORMATCSV:
+						json2csv(fw, allmapping)
+						break;
+					default:
+						throw new Error("invalid format " + format)
+				}
+			}
+
+			function printMatrix(fw, nurX, format) {
+				gatherModel()
+
+				getAllMappings(g_rmodels)
+
+				if (nurX) {
+					allmapping = {
+						"header": ['entity', 'attr']
+					}
+					for (ih = 0; ih < g_rmodels.length; ih++) {
+						//throw new Error("\nrmodel: " + g_rmodels[ih].getName() + '|'+g_rmodels[ih] + "\n");
+						allmapping["header"].push(g_rmodels[ih].getName())
+					}
+				} else {
+					allmapping = {
+						"header": ['Information Model', ''],
+						"subheader": ['entity', 'attr']
+					}
+					for (ih = 0; ih < g_rmodels.length; ih++) {
+						allmapping["header"].push(g_rmodels[ih].getName(), '', '')
+						allmapping["subheader"].push('table', 'column', 'ID')
+					}
+				}
+
+				//throw new Error("\nheaders: " + allmapping["header"] + "\n");
+				allmapping["attrlist"] = mappings2json(g_rmodels, g_entitySet.toArray(), nurX)
+				allmapping["attrlist"] = allmapping["attrlist"].concat(mappings2json(g_rmodels, g_relationSet.toArray(), nurX))
+
+				allmapping["footer"] = 'created by ODM, ' + curDateStr();
+				printjson(fw, format, allmapping)
+			}
+
+			function printCVS(fw, format,relModel) {
+
+				// lies alle Mappings des gewählten Modells
+				getAllMappings([relModel])
+				allmapping = {
+					"model": [relModel.getName(), '', 'Information Model', ''],
+					"header": ['tableName', 'columnName','entityName', 'attrName'],
+					"attrlist": gatherCols(relModel)
+				}
+				printjson(fw, format, allmapping)
+			}
+
+			function printDevCVS(fw, format,relModel) {
+				// lies alle Mappings des gewählten Modells
+				mymodelname = relModel.getName()
+				allmapping = {
+					"model": [mymodelname,'','','','','','', 'Information Model',''],
+					"header": ['tableName', 'columnName','datatype','mand.','def. value','descr','rules','entity','attribute'],
+					"attrlist": gatherDevCols(relModel)
+				}
+				// Add all relational models except myself to the header
+				for (ih = 0; ih < g_rmodels.length; ih++) {
+					if (g_rmodels[ih].getName() != mymodelname) {
+						//linemessage(ih,g_rmodels[ih].getName(), mymodelname)
+						allmapping["model"].push(g_rmodels[ih].getName(), '', '')
+						allmapping["header"].push('table', 'column', 'ID')
+					}
+				}
+				
+				printjson(fw, format, allmapping)
+			}
+
+			function chooseoutputfilename(pfilename, pformat) {
+				fileName = chooseFile(g_exportDirec, pfilename +
+					((pformat == FORMATJSON) ? '.js' : ((pformat == 'CSV') ? '.csv' : 'txt')))
+				return fileName
+			}
+
+			function outputformat() {
+				var formatauswahl = [FORMATJSON, FORMATCSV]
+				antwort = Java.type("javax.swing.JOptionPane").showInputDialog(null,
+					"Output format",
+					"choose output format",
+					QUESTIONMESSAGE,
+					null,
+					formatauswahl, FORMATCSV);
+				return antwort
+			}
+
+			function print1Mapping() {
+				gatherModel()
+				var relModel = chooseModel();
+				if (relModel == null) return;
+	
+				format = outputformat()
+				if (format == null) {
+					return 
+				}
+				filename = chooseoutputfilename(relModel.getName(), format)
+				if (filename == null) {
+					return 
+				} else {
+					fw = createFile(filename)
+				}
+				printCVS(fw, format,relModel)
+				fw.close();
+				message("Mapping file " + fileName + " for model " + relModel.getName() + " created.");
+			}
+
+			function printDevMapping() {
+				gatherModel()
+				var relModel = chooseModel();
+				if (relModel == null) return;
+	
+				format = outputformat()
+				if (format == null) {
+					return null
+				}
+				filename = chooseoutputfilename(relModel.getName()+'_dev', format)
+				if (filename == null) {
+					return
+				} else {
+					fw = createFile(filename)
+				}
+				getAllMappings(g_rmodels)
+				printDevCVS(fw, format,relModel)
+				fw.close();
+				message("Mapping file " + fileName + " for model " + relModel.getName() + " created.");
+			}
+
+
+			function printAllMapping(nurX) {
+				format = outputformat()
+				if (format == null) {
+					return null
+				}
+				filename = model.getDesign().getName()
+				filename = chooseoutputfilename(filename + (nurX ? 'X' : ''), format)
+				if (filename == null) {
+					return
+				} else {
+					fw = createFile(filename)
 				}
 				printMatrix(fw, nurX, format)
 				fw.close();
