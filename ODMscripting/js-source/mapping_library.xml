@@ -5,10 +5,6 @@
 		<script>
 			<![CDATA[
 			var CODEVERSION = '3.0'
-						var PLAINMESSAGE = 1;
-						var ERRORMESSAGE = 0;
-						var WARNINGMESSAGE = 2;
-						var QUESTIONMESSAGE = 3;
 						var FORMATJSON = 'JSON'
 						var FORMATCSV = 'CSV'
 						var g_tabanz = 0
@@ -43,6 +39,38 @@
 						LOGARCTYPE = 14
 						var g_containerMappings = {}
 						var g_attrMappings = {}
+
+						var PLAINMESSAGE = 1;
+						var ERRORMESSAGE = 0;
+						var WARNINGMESSAGE = 2;
+						var QUESTIONMESSAGE = 3;
+						function fullmessage(msg, type) {
+							Java.type("javax.swing.JOptionPane").showMessageDialog(null, msg, 'ODM-Translation', type);
+						}
+
+						function error(msg) {
+							fullmessage(msg, ERRORMESSAGE);
+						}
+
+						function message(msg) {
+							fullmessage(msg, PLAINMESSAGE);
+						}
+
+						function linemessage() {
+							str = ''
+							for (i=0;i<arguments.length;i++){
+								str = str.concat(arguments[i],'\n')
+							}
+							message(str)
+						}
+
+						// simulates the not existing array.forEach method
+						// for each element in arr, calls f(elem,idx)
+						function forEach(arr,f){
+							for (var idx = 0;idx < arr.length; idx++) { 
+								f(arr[idx],idx);
+							}
+						}
 
 						function getAllMappings(rmodels) {
 							g_containerMappings = {}
@@ -98,27 +126,6 @@
 									}
 								}
 							}
-						}
-
-
-						function fullmessage(msg, type) {
-							Java.type("javax.swing.JOptionPane").showMessageDialog(null, msg, 'ODM-Translation', type);
-						}
-
-						function error(msg) {
-							fullmessage(msg, ERRORMESSAGE);
-						}
-
-						function message(msg) {
-							fullmessage(msg, PLAINMESSAGE);
-						}
-
-						function linemessage() {
-							str = ''
-							for (i=0;i<arguments.length;i++){
-								str = str.concat(arguments[i],'\n')
-							}
-							message(str)
 						}
 
 						function trimapo(s) {
@@ -783,8 +790,8 @@
 						}
 
 						function escapeexcelchars(s){
-							var retval = s.replace(/"/g, "'")
-							if (retval.match(/\n/)) {retval = EXCELESCCHAR + retval + EXCELESCCHAR}
+							var retval = s.replace(/"/g, "'") //  " sollte EXCELESCCHAR sein ist aber umständlich
+							if (retval.test(/\n/)) {retval = EXCELESCCHAR + retval + EXCELESCCHAR}
 							return retval
 						}
 						function printline(fw, line) {
