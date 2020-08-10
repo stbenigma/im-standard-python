@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="05B89BF6-C97E-8CC1-D005-80D985DA4785" name="ENTITIES">
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="05B89BF6-C97E-8CC1-D005-80D985DA4785" schemaObject="D76C6297-28A1-045E-8726-4B50ADD673B8" name="ENTITIES">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <comment><![CDATA[Entity (Thing) described with attributes and relationships.
@@ -28,39 +28,13 @@ Subtype of MODELELEMENT. ENTI_ID is always identical to the corresponding MODE_I
 <colAssociation fkAssociation="AE03C4EA-E596-4569-8314-6E7F9EDCC375" referredColumn="9698F1F3-1EBE-8770-4F8C-4FFC3465A776"/>
 </associations>
 </Column>
-<Column name="ENTI_ID2" id="E0C4ED99-82B2-04CB-AC1C-205352DDAFF3">
+<Column name="ENTI_NAME" id="A1BE7547-9EC3-4E1B-7776-810460C3E817">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<autoIncrementColumn>true</autoIncrementColumn>
-<identityColumn>true</identityColumn>
-<autoIncrementCycle>false</autoIncrementCycle>
-<isSurrogateColumn>true</isSurrogateColumn>
-</Column>
-<Column name="ENTI_NAME" id="518CF935-33DC-88C2-9045-ED700EE3AB34">
-<createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:18:16 UTC</createdTime>
-<comment><![CDATA[Eindeutiger, technischer Name der Entität (z.B. der Tabelle, die die Entität repräsentiert)]]></comment>
-<generatorID>C6B30AE3-78A0-9F53-E89F-2F8E68B64092</generatorID>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<useDomainConstraints>false</useDomainConstraints>
-<use>0</use>
-<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
-<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-</Column>
-<Column name="ENTI_DISPL_NAME" id="A1BE7547-9EC3-4E1B-7776-810460C3E817">
-<createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:18:16 UTC</createdTime>
-<comment><![CDATA[(probably translated) Name to be displayed for the entity]]></comment>
+<comment><![CDATA[Name to be displayed for the entity (subject to translation).
+If translated, every language-name must be unique as well]]></comment>
 <generatorID>627C46BB-D03D-E7DB-D7EE-B726716B01B4</generatorID>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
-<nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
 <use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
@@ -217,7 +191,7 @@ Can be approx. or textual description]]></comment>
 <indexState>Unique Constraint</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
-<colUsage columnID="518CF935-33DC-88C2-9045-ED700EE3AB34"/>
+<colUsage columnID="A1BE7547-9EC3-4E1B-7776-810460C3E817"/>
 </indexColumnUsage>
 </ind_PK_UK>
 <ind_PK_UK id="D5B2383B-8BDF-8260-2BC5-D4BBF5A8A579" name="ENTI_MODE_FK">

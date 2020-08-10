@@ -55,7 +55,7 @@ def filehref(ref, anz, plang, pimg=None):
 
 
 def href(ref, anz, htmlfile=''):
-    if anz is None: return None
+    if anz is None: return ''
     sep = '' if ((ref is None) or (ref == '')) else '#'
     return """<a href="{}{}" target="{}">{}</a>""".format(htmlfile
                                                           , '{}{}'.format(sep, ref)

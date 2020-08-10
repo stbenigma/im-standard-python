@@ -1,0 +1,56 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="2A9C7750-58E1-A93A-4350-DEED61179EE9" name="Erweiterungsmerkmal Wert">
+<createdBy>stb</createdBy>
+<createdTime>2020-08-08 16:41:54 UTC</createdTime>
+<comment><![CDATA[Wert eines Erweiterungsmerkmals eines Elementes]]></comment>
+<generatorID>2377DC02-A654-28AD-0B67-8B867C2BE694</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<engineerTo>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
+<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<shortName>UDPV</shortName>
+<createSurrogateKey>true</createSurrogateKey>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Wert" id="F0AFC80F-C811-FBA8-F729-B8DD3F423825">
+<createdBy>stb</createdBy>
+<createdTime>2020-08-08 16:41:54 UTC</createdTime>
+<generatorID>B816164D-9E92-A344-E89D-63677585A190</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<engineerTo>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
+<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="A26F2E70-43A8-DD0A-4599-DF73E5ECC997" name="UDPV UN">
+<createdBy>stb</createdBy>
+<createdTime>2020-08-08 16:41:54 UTC</createdTime>
+<generatorID>3F068FCF-859C-3C08-2BAD-F349540C9E19</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<engineerTo>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
+<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
+</engineerTo>
+<newElementsIDs>B0540394-689A-365A-8BAA-DACBF11D481D,EB8D7E93-E38D-5492-808E-E58AF6F46BC2</newElementsIDs>
+</identifier>
+</identifiers>
+</Entity>

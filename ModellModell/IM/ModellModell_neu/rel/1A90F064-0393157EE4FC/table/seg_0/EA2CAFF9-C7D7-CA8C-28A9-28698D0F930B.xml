@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="EA2CAFF9-C7D7-CA8C-28A9-28698D0F930B" name="ARCS">
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="EA2CAFF9-C7D7-CA8C-28A9-28698D0F930B" schemaObject="D76C6297-28A1-045E-8726-4B50ADD673B8" name="ARCS">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <comment><![CDATA[Arcs bundle relationships emerging from one entity together. Only one of the relationships set at a given timepoint.
@@ -25,6 +25,9 @@ Subtype of MODELELEMENT. ARCS_ID is always identical to the corresponding MODE_I
 <domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="BE809306-01E9-CA0D-0906-5F75DABCFFB8" referredColumn="9698F1F3-1EBE-8770-4F8C-4FFC3465A776"/>
+</associations>
 </Column>
 <Column name="ARCS_NAME" id="49D737EA-BC69-2703-2DA4-9B3BE0A5D87E">
 <createdBy>stb</createdBy>
@@ -141,6 +144,16 @@ Subtype of MODELELEMENT. ARCS_ID is always identical to the corresponding MODE_I
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
 <colUsage columnID="1C77062D-CAE4-CC3B-B4CB-7705E06199CF"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="BF00FA14-3875-1E64-0CE5-DFF7174E7C62" name="ARCS_MODE_FK">
+<createdBy>stb</createdBy>
+<createdTime>2020-08-08 15:51:11 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="8419DB38-AE17-BE94-73F6-B492485B7E69"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>

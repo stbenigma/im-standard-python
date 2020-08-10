@@ -38,7 +38,6 @@ Entität im systemübergreifenden, konsolidierten, konzeptionellen Modell eines 
 <property name="DE_ENTI_NAME" value="Entität"/>
 <property name="EN_ENTI_COMMENT" value="*DE* Entität im systemübergreifenden, konsolidierten, konzeptionellen Modell eines Unternehmens "/>
 <property name="EN_ENTI_NAME" value="Entity"/>
-<property name="EN_ENTI_SYNONYM" value=""/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Entitätname [L]" id="F1D0F128-7361-E0A9-E706-227C158FCD42">
@@ -220,66 +219,6 @@ Display of the meaning for the operator on a mask.
 <property name="EN_ATTR_NAME" value="Tooltip [L]"/>
 </propertyMap>
 </Attribute>
-<Attribute name="Beispiele" id="86CAD89A-1C18-C9D8-EF51-72D7420952CA">
-<createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:03:22 UTC</createdTime>
-<comment><![CDATA[Typische Beispiele für eine Ausprägung dieser Entität, als Hinweis auf die Bedeutung]]></comment>
-<notes><![CDATA[[DE_ATTR_COMMENT[
-Typische Beispiele für eine Ausprägung dieser Entität, als Hinweis auf die Bedeutung
-]DE_ATTR_COMMENT]
-[EN_ATTR_COMMENT[
-Typical examples of a characteristic of this entity, as an indication of its meaning
-]EN_ATTR_COMMENT]
-]]></notes>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<importedID>0A3BF2BE-3C66-86F6-C0C4-789EE9EC7833</importedID>
-<engineerTo>
-<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
-<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
-<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
-</engineerTo>
-<nullsAllowed>true</nullsAllowed>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<propertyMap>
-<property name="DE_ATTR_COMMENT" value="Typische Beispiele für eine Ausprägung dieser Entität, als Hinweis auf die Bedeutung"/>
-<property name="DE_ATTR_NAME" value="Beispiele"/>
-<property name="EN_ATTR_COMMENT" value="*DE* Typische Beispiele für eine Ausprägung dieser Entität, als Hinweis auf die Bedeutung"/>
-<property name="EN_ATTR_NAME" value="Examples"/>
-</propertyMap>
-</Attribute>
-<Attribute name="Name [L]" id="9014997D-DC86-0AFE-BE61-7E5AD870F01B">
-<createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:03:22 UTC</createdTime>
-<comment><![CDATA[Name des Hoheitsbereichs]]></comment>
-<notes><![CDATA[[DE_ATTR_COMMENT[
-Name des Hoheitsbereichs
-]DE_ATTR_COMMENT]
-[EN_ATTR_COMMENT[
-Name of the jurisdiction
-]EN_ATTR_COMMENT]
-]]></notes>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<importedID>627C46BB-D03D-E7DB-D7EE-B726716B01B4</importedID>
-<engineerTo>
-<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
-<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
-<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
-</engineerTo>
-<nullsAllowed>true</nullsAllowed>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<propertyMap>
-<property name="DE_ATTR_COMMENT" value="Name des Hoheitsbereichs"/>
-<property name="DE_ATTR_NAME" value="Name [L]"/>
-<property name="EN_ATTR_COMMENT" value="*DE* Name des Hoheitsbereichs"/>
-<property name="EN_ATTR_NAME" value="Name [L]"/>
-</propertyMap>
-</Attribute>
 <Attribute name="erwartete Tupelanzahl" id="799DBB03-3FC8-5BA7-35F1-8D8DA7716A52">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:03:22 UTC</createdTime>
@@ -310,47 +249,18 @@ Order of magnitude of the number of tuples in this entity
 <property name="EN_ATTR_NAME" value="expected number of tuples"/>
 </propertyMap>
 </Attribute>
-<Attribute name="Name [L]1" directorySegmentName="seg_1" id="2C89E78E-17C3-B5D0-4171-1DC12EAB3278">
-<createdBy>admin</createdBy>
-<createdTime>2020-02-09 17:39:37 UTC</createdTime>
-<comment><![CDATA[Name des Hoheitsbereichs]]></comment>
-<generatorID>01C1DEBE-7897-5C37-924C-648F9E49B23E</generatorID>
-<notes><![CDATA[[EN_ATTR_COMMENT[
-**Name of the sovereign territory
-]EN_ATTR_COMMENT]
-[DE_ATTR_COMMENT[
-Name des Hoheitsbereichs
-]DE_ATTR_COMMENT]
-]]></notes>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<engineerTo>
-<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
-<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
-<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
-</engineerTo>
-<nullsAllowed>true</nullsAllowed>
-<referedAttribute>8A13C6EC-B600-0669-8262-D48EE1400A21</referedAttribute>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<propertyMap>
-<property name="DE_ATTR_NAME" value="Name [L]1"/>
-<property name="EN_ATTR_NAME" value="**Name [L]1"/>
-</propertyMap>
-</Attribute>
 </attributes>
 <identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
-<identifier id="52FDDFB5-3D95-F00B-D01A-81317CBBBDAA" name="ENTI_PK">
+<identifier id="0DCB8532-B1E4-BF67-1F61-05895B0E758E" name="Key_1">
 <createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:03:22 UTC</createdTime>
+<createdTime>2020-08-09 08:46:15 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
 <item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
-<pk>true</pk>
+<newElementsIDs>F1D0F128-7361-E0A9-E706-227C158FCD42</newElementsIDs>
 <usedAttributes>
 <attributeRef>F1D0F128-7361-E0A9-E706-227C158FCD42</attributeRef>
 </usedAttributes>

@@ -1,8 +1,8 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="D4D2AD96-A499-BB27-09AB-FB8DF0B7572E" name="USER_DEFINED_PROPERTIES">
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="D4D2AD96-A499-BB27-09AB-FB8DF0B7572E" schemaObject="D76C6297-28A1-045E-8726-4B50ADD673B8" name="USER_DEFINED_PROPERTIES">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
-<comment><![CDATA[For non standard attributes (extensions) of any model definition.
+<comment><![CDATA[For non standard attributes (extensions) of any model element.
 
 Examples:
 - quality requirement for attributes
@@ -20,8 +20,9 @@ Examples:
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementColumn>true</autoIncrementColumn>
 <identityColumn>true</identityColumn>

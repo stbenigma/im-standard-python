@@ -53,11 +53,7 @@
 <use>1</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
-<previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
-<associations>
-<colAssociation fkAssociation="CFC7F490-0366-587E-EC64-352EB1E24F52" referredColumn="40E9736F-3ABE-3ABD-5FEA-D4131796E800"/>
-</associations>
 </Column>
 <Column name="ENTITIES_ENTI_ID" id="7C417468-1A7D-8FFB-2D53-CB1D6168FE93">
 <createdBy>stb</createdBy>
@@ -72,6 +68,21 @@
 <autoIncrementCycle>false</autoIncrementCycle>
 <associations>
 <colAssociation fkAssociation="D1837A9B-C1F2-93BB-4AAD-E3EE7866EA10" referredColumn="365AA3F1-7B02-CFAB-BB51-AE721CDEA5F3"/>
+</associations>
+</Column>
+<Column name="RELATIONS_MODELELEMENT_MODE_ID" id="1622F8C6-A45B-F803-63BA-673167EDF187">
+<createdBy>stb</createdBy>
+<createdTime>2020-08-08 16:12:29 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="CFC7F490-0366-587E-EC64-352EB1E24F52" referredColumn="BABB8742-E321-0EBD-79F0-6E95CF1087B4"/>
 </associations>
 </Column>
 </columns>
@@ -126,7 +137,7 @@
 <indexState>Foreign Key</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
-<colUsage columnID="52CCA01F-755A-DB07-6BB9-B49F3126C388"/>
+<colUsage columnID="1622F8C6-A45B-F803-63BA-673167EDF187"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>

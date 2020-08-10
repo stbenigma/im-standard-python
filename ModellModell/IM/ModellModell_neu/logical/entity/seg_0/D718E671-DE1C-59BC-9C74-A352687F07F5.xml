@@ -106,6 +106,37 @@ Kurzbezeichnung der Entität für die Verwendung aus Überschrift, in Referenzen
 <property name="EN_ATTR_NAME" value="Display name [L]"/>
 </propertyMap>
 </Attribute>
+<Attribute name="Anzeigereihenfolge" id="C13DFCC3-15A3-5A60-B4D3-774EED4DB6D8">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:03:22 UTC</createdTime>
+<comment><![CDATA[Riehenfolge der Anzeige auf Diagrammen, in Reports. Leer-> Attribut kommt nach Name sortiert an den Schluss einer Liste]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Riehenfolge der Anzeige auf Diagrammen, in Reports. Leer-> Attribut kommt nach Name sortiert an den Schluss einer Liste
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Display sequence on diagrams, in reports. Empty-> attribute is sorted by name at the end of a list
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<importedID>598275C8-6915-4D18-A03A-DDE739950A91</importedID>
+<engineerTo>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="false"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
+<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value="Riehenfolge der Anzeige auf Diagrammen, in Reports. Leer-&gt; Attribut kommt nach Name sortiert an den Schluss einer Liste"/>
+<property name="DE_ATTR_NAME" value="Anzeigereihenfolge"/>
+<property name="EN_ATTR_COMMENT" value="*DE* Riehenfolge der Anzeige auf Diagrammen, in Reports. Leer-&gt; Attribut kommt nach Name sortiert an den Schluss einer Liste"/>
+<property name="EN_ATTR_NAME" value="Display sequence"/>
+</propertyMap>
+</Attribute>
 <Attribute name="Beschreibung [L]" id="99E8BB00-BBEF-744D-71AC-51A096FBA509">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:03:22 UTC</createdTime>
@@ -357,69 +388,6 @@ NEIN -> Feld wird nicht verschlüsselt
 <property name="EN_ATTR_NAME" value="is encrypted"/>
 </propertyMap>
 </Attribute>
-<Attribute name="Anzeigereihenfolge" id="C13DFCC3-15A3-5A60-B4D3-774EED4DB6D8">
-<createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:03:22 UTC</createdTime>
-<comment><![CDATA[Riehenfolge der Anzeige auf Diagrammen, in Reports. Leer-> Attribut kommt nach Name sortiert an den Schluss einer Liste]]></comment>
-<notes><![CDATA[[DE_ATTR_COMMENT[
-Riehenfolge der Anzeige auf Diagrammen, in Reports. Leer-> Attribut kommt nach Name sortiert an den Schluss einer Liste
-]DE_ATTR_COMMENT]
-[EN_ATTR_COMMENT[
-Display sequence on diagrams, in reports. Empty-> attribute is sorted by name at the end of a list
-]EN_ATTR_COMMENT]
-]]></notes>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<shouldEngineer>false</shouldEngineer>
-<importedID>598275C8-6915-4D18-A03A-DDE739950A91</importedID>
-<engineerTo>
-<item key="BE22189E-C358-530C-6354-65FB4784079F" value="false"/>
-<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
-<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
-</engineerTo>
-<nullsAllowed>true</nullsAllowed>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<propertyMap>
-<property name="DE_ATTR_COMMENT" value="Riehenfolge der Anzeige auf Diagrammen, in Reports. Leer-&gt; Attribut kommt nach Name sortiert an den Schluss einer Liste"/>
-<property name="DE_ATTR_NAME" value="Anzeigereihenfolge"/>
-<property name="EN_ATTR_COMMENT" value="*DE* Riehenfolge der Anzeige auf Diagrammen, in Reports. Leer-&gt; Attribut kommt nach Name sortiert an den Schluss einer Liste"/>
-<property name="EN_ATTR_NAME" value="Display sequence"/>
-</propertyMap>
-</Attribute>
-<Attribute name="Entitätname [L]" id="A4F748E2-7D67-87E2-E8FE-DAE6A022BE35">
-<createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:03:22 UTC</createdTime>
-<comment><![CDATA[Name der Entität der in der Kommunikation normalerweise gebraucht wird.]]></comment>
-<generatorID>F1749DBB-E61F-885C-00D6-38610D00E567</generatorID>
-<notes><![CDATA[[DE_ATTR_COMMENT[
-Name der Entität der in der Kommunikation normalerweise gebraucht wird.
-]DE_ATTR_COMMENT]
-[EN_ATTR_COMMENT[
-Name of the entity normally used in communication.
-]EN_ATTR_COMMENT]
-]]></notes>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<shouldEngineer>false</shouldEngineer>
-<importedID>0C01D9CE-61C5-17EA-B371-14E7D8D04675</importedID>
-<engineerTo>
-<item key="BE22189E-C358-530C-6354-65FB4784079F" value="false"/>
-<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
-<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
-</engineerTo>
-<referedAttribute>F1D0F128-7361-E0A9-E706-227C158FCD42</referedAttribute>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<propertyMap>
-<property name="DE_ATTR_COMMENT" value="Name der Entität der in der Kommunikation normalerweise gebraucht wird."/>
-<property name="DE_ATTR_NAME" value="Entitätname [L]"/>
-<property name="EN_ATTR_COMMENT" value="*DE* Name der Entität der in der Kommunikation normalerweise gebraucht wird."/>
-<property name="EN_ATTR_NAME" value="Entity name [L]"/>
-</propertyMap>
-</Attribute>
 </attributes>
 <identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
 <identifier id="D2B46163-1C70-5D7C-B106-C0D4A2089635" name="ATTR_UK">
@@ -432,37 +400,9 @@ Name of the entity normally used in communication.
 <item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
+<newElementsIDs>FD95360A-BA62-DA9C-BB95-FACB2DAA42D4,F1749DBB-E61F-885C-00D6-38610D00E567</newElementsIDs>
 <usedAttributes>
 <attributeRef>FD95360A-BA62-DA9C-BB95-FACB2DAA42D4</attributeRef>
-</usedAttributes>
-</identifier>
-<identifier id="E548036A-A361-88F8-9389-74D4367924CE" name="Attribut_PK">
-<createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:03:22 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<shouldEngineer>false</shouldEngineer>
-<engineerTo>
-<item key="BE22189E-C358-530C-6354-65FB4784079F" value="false"/>
-<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
-<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
-</engineerTo>
-<usedAttributes>
-<attributeRef>A4F748E2-7D67-87E2-E8FE-DAE6A022BE35</attributeRef>
-</usedAttributes>
-</identifier>
-<identifier id="5727E5F1-FC8E-2B65-B5B4-CDACFC0ABE3B" name="Attribut_PKv1">
-<createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:03:22 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<shouldEngineer>false</shouldEngineer>
-<engineerTo>
-<item key="BE22189E-C358-530C-6354-65FB4784079F" value="false"/>
-<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
-<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
-</engineerTo>
-<pk>true</pk>
-<usedAttributes>
-<attributeRef>A4F748E2-7D67-87E2-E8FE-DAE6A022BE35</attributeRef>
 </usedAttributes>
 </identifier>
 </identifiers>

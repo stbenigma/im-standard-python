@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="C19AA97C-E8BA-D43F-375A-D7C6F7A09B9E" name="SYNONYMS">
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="C19AA97C-E8BA-D43F-375A-D7C6F7A09B9E" schemaObject="D76C6297-28A1-045E-8726-4B50ADD673B8" name="SYNONYMS">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <comment><![CDATA[Synonyms(-name) for entity-names.
@@ -45,10 +45,14 @@ Subtype of MODELELEMENT. SYNO_ID is always identical to the corresponding MODE_I
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="01630C86-3D8F-3511-67C5-BCF471105494" referredColumn="365AA3F1-7B02-CFAB-BB51-AE721CDEA5F3"/>
+</associations>
 </Column>
 <Column name="SYNO_UC" id="59F4B9A1-3B52-221A-C1D4-0436AEF25037">
 <createdBy>stb</createdBy>
@@ -107,20 +111,6 @@ Subtype of MODELELEMENT. SYNO_ID is always identical to the corresponding MODE_I
 <property name="ctemplateID" value="B398D247-00C1-F016-3BBB-FE65CFFFF7AA"/>
 </propertyMap>
 </Column>
-<Column name="ENTITIES_ENTI_ID" id="3673EFA4-CFD9-6FE6-FA41-0B3629B22421">
-<createdBy>stb</createdBy>
-<createdTime>2020-08-02 13:30:59 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<use>0</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
-<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<previousColumn>false</previousColumn>
-<autoIncrementCycle>false</autoIncrementCycle>
-<associations>
-<colAssociation fkAssociation="01630C86-3D8F-3511-67C5-BCF471105494" referredColumn="365AA3F1-7B02-CFAB-BB51-AE721CDEA5F3"/>
-</associations>
-</Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
 <ind_PK_UK id="DF543F89-1506-7850-0547-AD602350BDE5" name="SYNO_PK">
@@ -140,7 +130,7 @@ Subtype of MODELELEMENT. SYNO_ID is always identical to the corresponding MODE_I
 <indexState>Foreign Key</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
-<colUsage columnID="3673EFA4-CFD9-6FE6-FA41-0B3629B22421"/>
+<colUsage columnID="90B6E357-94BC-0D16-8120-68D469FE901E"/>
 </indexColumnUsage>
 </ind_PK_UK>
 <ind_PK_UK id="C103DB4E-00AF-21AE-9C5E-02E051332175" name="SYNO_MODE_FK">

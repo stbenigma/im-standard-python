@@ -1,7 +1,13 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="40CFE63E-8752-68C2-F349-9CFC7B905AA1" name="BUSINESSRULE_ELEMENT">
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="40CFE63E-8752-68C2-F349-9CFC7B905AA1" schemaObject="D76C6297-28A1-045E-8726-4B50ADD673B8" name="BUSINESSRULE_ELEMENT">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
+<comment><![CDATA[Element a buiness rule references.
+The level of the business rule is derived from the type of elements if references:
+ATTRIBUTE-LEVEL	1 attribute of one entity
+ROW-LEVEL	>1 attributes of one entity (including attributes from FK-connected row)
+ENTITY-LEVEL	1 entity, no attributes
+DATABASE-LEVEL	>1 entity, no attributes or > 1 attributes from more than one entity (not FK-connected)]]></comment>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <ordsAlias>relation_90</ordsAlias>
 <abbreviation>BURE</abbreviation>
@@ -70,13 +76,13 @@
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
-<previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 <associations>
-<colAssociation fkAssociation="D9E59C53-990A-A824-4A41-756F545E5FDF" referredColumn="40E9736F-3ABE-3ABD-5FEA-D4131796E800"/>
+<colAssociation fkAssociation="D9E59C53-990A-A824-4A41-756F545E5FDF" referredColumn="BABB8742-E321-0EBD-79F0-6E95CF1087B4"/>
 </associations>
 </Column>
 <Column name="BURE_UC" id="B314F9DC-FAA1-E180-446A-2C8CD3770774">
