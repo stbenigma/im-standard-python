@@ -189,15 +189,4 @@
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>
-<tableCheckConstraints itemClass="oracle.dbtools.crest.model.design.constraint.TableLevelConstraint">
-<tableCheckConstraint name="KELE_ELEMENT_CK" directorySegmentName="seg_1" id="6CA99707-C4F5-292C-5A16-F85C16767AD0">
-<createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:18:16 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<rule><![CDATA[(SCEL_ATTR_ID IS NOT NULL AND SCEL_BEZI_ID IS NULL)
-OR
-(SCEL_ATTR_ID IS NULL AND SCEL_BEZI_ID IS NOT NULL)
-]]></rule>
-</tableCheckConstraint>
-</tableCheckConstraints>
 </Table>

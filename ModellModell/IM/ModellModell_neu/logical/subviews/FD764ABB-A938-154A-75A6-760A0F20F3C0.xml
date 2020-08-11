@@ -41,29 +41,29 @@
 <OView class="oracle.dbtools.crest.swingui.logical.TVEntity" oid="2A9C7750-58E1-A93A-4350-DEED61179EE9" otype="Entity" vid="0D41D912-3F89-F9DC-AD70-915A1C1A9735">
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
 <bounds x="600" y="1460" width="170" height="110"/>
-<useCustomFormat>true</useCustomFormat>
-<useDefaultColor>false</useDefaultColor>
-<backgroundColor>-76</backgroundColor>
-<foregroundColor>-16776961</foregroundColor>
-<fonts itemClass="oracle.dbtools.crest.model.design.FontObjectWr">
-<FontObject>
-<foType>Titel</foType>
-<fontStyle>1</fontStyle>
-<colorRGB>-16776961</colorRGB>
-</FontObject>
-<FontObject>
-<foType>Attribut</foType>
-<colorRGB>-16777216</colorRGB>
-</FontObject>
-<FontObject>
-<foType>Nicht null</foType>
-<colorRGB>-65536</colorRGB>
-</FontObject>
-</fonts>
 </OView>
 <OView class="oracle.dbtools.crest.swingui.logical.TVEntity" oid="35148670-1B5B-5AFB-83B1-E01DFC12621A" otype="Entity" vid="B404316B-04FC-AAE5-3C44-D783E53D7890">
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
 <bounds x="730" y="1600" width="170" height="91"/>
+</OView>
+<OView class="oracle.dbtools.crest.swingui.logical.TVEntity" oid="3C58AFFA-DF20-230B-8C48-74EC14E8F01C" otype="Entity" vid="8CC32005-CF7D-A496-76B1-B397CDADF8B6">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<bounds x="550" y="10" width="170" height="51"/>
+</OView>
+<OView class="oracle.dbtools.crest.swingui.TVNote" oid="4D3471AB-14B1-7D64-AE49-2C414D9AD2D4" otype="Note" vid="E714B516-1E94-F7B3-41AD-6700125A8B8D">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<bounds x="10" y="140" width="271" height="21"/>
+<useCustomFormat>true</useCustomFormat>
+<useDefaultColor>false</useDefaultColor>
+<backgroundColor>-1</backgroundColor>
+<foregroundColor>-16777216</foregroundColor>
+<comment>© by foryouandyourcustomers Baar, 2020</comment>
+<fonts itemClass="oracle.dbtools.crest.model.design.FontObjectWr">
+<FontObject>
+<foType>Titel</foType>
+<colorRGB>-16777216</colorRGB>
+</FontObject>
+</fonts>
 </OView>
 <OView class="oracle.dbtools.crest.swingui.logical.TVEntity" oid="618BAD74-5087-4EC0-4772-EF3A61760DC8" otype="Entity" vid="1751303A-E17C-09CB-62DA-A1C81B3A9B87">
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
@@ -109,6 +109,25 @@
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
 <bounds x="800" y="1099" width="159" height="112"/>
 </OView>
+<OView class="oracle.dbtools.crest.swingui.logical.TVEntity" oid="AA40FB5F-39E8-FB2E-B3F1-B2110EB6FB5E" otype="Entity" vid="73F5BD22-FDF3-EE8D-3B35-E9E393AAF147">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<bounds x="360" y="10" width="170" height="51"/>
+<useCustomFormat>true</useCustomFormat>
+<useDefaultColor>false</useDefaultColor>
+<backgroundColor>-1061434</backgroundColor>
+<foregroundColor>-1</foregroundColor>
+<fonts itemClass="oracle.dbtools.crest.model.design.FontObjectWr">
+<FontObject>
+<foType>Titel</foType>
+<fontStyle>1</fontStyle>
+<colorRGB>-16776961</colorRGB>
+</FontObject>
+<FontObject>
+<foType>Attribut</foType>
+<colorRGB>-16777216</colorRGB>
+</FontObject>
+</fonts>
+</OView>
 <OView class="oracle.dbtools.crest.swingui.logical.TVEntity" oid="ADD172EB-5BAA-9AE7-15A9-C272CB1E74EE" otype="Entity" vid="8573439F-9AD0-1971-98EB-9CF9AF5E89EE">
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
 <bounds x="1130" y="900" width="161" height="73"/>
@@ -128,29 +147,6 @@
 <OView class="oracle.dbtools.crest.swingui.logical.TVEntity" oid="CB326B3A-C9EE-BB8A-D3B1-574F85F81FD0" otype="Entity" vid="2BA0C7C0-9BDD-D66C-8225-A6A2F48E96DE">
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
 <bounds x="1410" y="1470" width="170" height="110"/>
-<useCustomFormat>true</useCustomFormat>
-<useDefaultColor>false</useDefaultColor>
-<backgroundColor>-76</backgroundColor>
-<foregroundColor>-16776961</foregroundColor>
-<fonts itemClass="oracle.dbtools.crest.model.design.FontObjectWr">
-<FontObject>
-<foType>Titel</foType>
-<fontStyle>1</fontStyle>
-<colorRGB>-16776961</colorRGB>
-</FontObject>
-<FontObject>
-<foType>Attribut</foType>
-<colorRGB>-16777216</colorRGB>
-</FontObject>
-<FontObject>
-<foType>UK-Element</foType>
-<colorRGB>-16776961</colorRGB>
-</FontObject>
-<FontObject>
-<foType>Nicht null</foType>
-<colorRGB>-65536</colorRGB>
-</FontObject>
-</fonts>
 </OView>
 <OView class="oracle.dbtools.crest.swingui.logical.TVEntity" oid="CB8A4F1C-9E60-C19B-9889-65BDE25D890F" otype="Entity" vid="C0C264FE-D0E4-35FB-DDB3-1F965430B8C7">
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
@@ -620,7 +616,7 @@
 </sourceLabel>
 <targetLabel class="oracle.dbtools.crest.model.design.Label">
 <site>2</site>
-<labelBounds x="1293" y="1371" width="75" height="30"/>
+<labelBounds x="1293" y="1371" width="78" height="30"/>
 <noBackgroundColor>true</noBackgroundColor>
 <noForegroundColor>true</noForegroundColor>
 </targetLabel>
@@ -646,13 +642,13 @@
 <lineWidth>1</lineWidth>
 <sourceLabel class="oracle.dbtools.crest.model.design.Label">
 <site>0</site>
-<labelBounds x="1338" y="1434" width="66" height="30"/>
+<labelBounds x="1458" y="1434" width="66" height="30"/>
 <noBackgroundColor>true</noBackgroundColor>
 <noForegroundColor>true</noForegroundColor>
 </sourceLabel>
 <targetLabel class="oracle.dbtools.crest.model.design.Label">
 <site>2</site>
-<labelBounds x="1495" y="1257" width="72" height="30"/>
+<labelBounds x="1458" y="1273" width="72" height="30"/>
 <noBackgroundColor>true</noBackgroundColor>
 <noForegroundColor>true</noForegroundColor>
 </targetLabel>

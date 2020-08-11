@@ -49,5 +49,11 @@
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
       <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/../../../../LEISTER/DB/LEISTER_IM.db</jdbc-url>
     </data-source>
+    <data-source source="LOCAL" name="modelmodel.db" uuid="c7684932-6020-496b-ad9b-ac054d857a67">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:$USER_HOME$/Downloads/modelmodel.db</jdbc-url>
+    </data-source>
   </component>
 </project>

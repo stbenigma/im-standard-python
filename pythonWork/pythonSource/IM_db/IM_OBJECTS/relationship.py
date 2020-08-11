@@ -8,8 +8,8 @@ from .modellelement import Modellelement, Modellelemtype, ExternalRef
 class Arc(Baseobject):
     _tablename: str = 'arcs'
     _prefix: str = 'arcs'
-    _columnlist: list = ['arcs_id', 'arcs_name', 'arcs_enti_id'
-        , 'arcs_uc', 'arcs_dc', 'arcs_um', 'arcs_dm']
+    _columnlist: list = ['arcs_id', 'arcs_name', 'arcs_enti_id', 'arcs_uc', 'arcs_dc', 'arcs_um', 'arcs_dm']
+
     __extref = {}
 
     def __init__(self, pname, pentiid, puc, pdc=None):
@@ -64,7 +64,6 @@ CREATE TABLE arcs(
 )
     """
                                )
-
 
     @staticmethod
     def delete():
