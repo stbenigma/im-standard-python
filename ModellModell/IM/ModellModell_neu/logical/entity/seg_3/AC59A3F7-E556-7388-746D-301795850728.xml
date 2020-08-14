@@ -1,13 +1,8 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_3" id="AC59A3F7-E556-7388-746D-301795850728" name="Technischer Prozess">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_3" id="AC59A3F7-E556-7388-746D-301795850728" name="*Internal process">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:06:05 UTC</createdTime>
-<comment><![CDATA[Geschäftsprozess, der durch ein System durchgeführt ist. Er kann durch einen Akteur ausglöst werden, die Ergebnisse sind aber typischerweise nicht direkt für den Akteur berstimmt.
-
-Beispiel:
-- (automatisch) Mahnungen versenden
-- Lohnzahlungen durchführen (nachdem sie in einem Anwendungsfall freigegeben wurden)
-- nächtliche Datenübernahme ab einem Fremdsystem]]></comment>
+<comment><![CDATA[*Business process performed by a system. It can be triggered by an actor, but the results are typically not directly attuned to the actor.  Example: - Send (automatically) dunning notices - Make wage payments. - nightly data transfer from an external system]]></comment>
 <notes><![CDATA[[DE_ENTI_COMMENT[
 Geschäftsprozess, der durch ein System durchgeführt ist. Er kann durch einen Akteur ausglöst werden, die Ergebnisse sind aber typischerweise nicht direkt für den Akteur berstimmt.
 

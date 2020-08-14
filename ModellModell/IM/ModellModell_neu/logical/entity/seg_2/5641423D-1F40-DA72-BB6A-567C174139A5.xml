@@ -1,23 +1,8 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_2" id="5641423D-1F40-DA72-BB6A-567C174139A5" name="IT-System">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_2" id="5641423D-1F40-DA72-BB6A-567C174139A5" name="IT system">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:04:24 UTC</createdTime>
-<comment><![CDATA[IT_System, Betriebssystem, Infrastruktur in oder auf dem Anwendungen laufen können.
-
-Beispiele:
-Power-DNS
-JRE java runtime environment
-Windows
-Android
-ubuntu Linux
-mongo-DB
-Excel
-Access
-SAP-Hana
-IDE  = Application for IT-People
-Eclipse / Microsoft Studio
-Jenkins
-Oracle-APEX]]></comment>
+<comment><![CDATA[*IT_System, operating system, infrastructure in or on which applications can run.  Examples: Power-DNS JRE java runtime environment Windows Android ubuntu Linux mongo-DB Excel Access SAP-Hana IDE = Application for IT-People Eclipse / Microsoft Studio Jenkins Oracle-APEX]]></comment>
 <notes><![CDATA[[DE_ENTI_COMMENT[
 IT_System, Betriebssystem, Infrastruktur in oder auf dem Anwendungen laufen können.
 
@@ -66,7 +51,7 @@ Oracle-APEX
 <property name="EN_ENTI_SYNONYM" value=""/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<Attribute name="Zeichnsatz" id="9E4F1EF5-A882-1837-570F-7741DEB53954">
+<Attribute name="Character set" id="9E4F1EF5-A882-1837-570F-7741DEB53954">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:04:24 UTC</createdTime>
 <notes><![CDATA[[DE_ATTR_COMMENT[
@@ -98,7 +83,7 @@ Oracle-APEX
 <Attribute name="Name" id="BE8D87DB-7E88-9AC2-5CAE-CCC53742DBE6">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:04:24 UTC</createdTime>
-<comment><![CDATA[Name der Entität der in der Kommunikation normalerweise gebraucht wird.]]></comment>
+<comment><![CDATA[Name of the entity normally used in communication.]]></comment>
 <notes><![CDATA[[DE_ATTR_COMMENT[
 Name der Entität der in der Kommunikation normalerweise gebraucht wird.
 ]DE_ATTR_COMMENT]
@@ -124,7 +109,7 @@ Name of the entity normally used in communication.
 <property name="EN_ATTR_NAME" value="Name"/>
 </propertyMap>
 </Attribute>
-<Attribute name="Name_" id="2F835C75-8726-CA73-843D-B6EE0A0425FE">
+<Attribute name="*Name" id="2F835C75-8726-CA73-843D-B6EE0A0425FE">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:04:24 UTC</createdTime>
 <notes><![CDATA[[DE_ATTR_COMMENT[

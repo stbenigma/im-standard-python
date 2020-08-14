@@ -10,8 +10,8 @@
 </engineerTo>
 <useSurrogateKey>true</useSurrogateKey>
 <identifying>false</identifying>
-<nameOnSource>ergänzt um</nameOnSource>
-<nameOnTarget>erggänzt</nameOnTarget>
+<nameOnSource>*DE* ergänzt um</nameOnSource>
+<nameOnTarget>*DE* erggänzt</nameOnTarget>
 <optionalSource>true</optionalSource>
 <optionalTarget>false</optionalTarget>
 <sourceCardinality>1</sourceCardinality>
@@ -19,4 +19,10 @@
 <targetCardinalityString>*</targetCardinalityString>
 <targetEntity>2A9C7750-58E1-A93A-4350-DEED61179EE9</targetEntity>
 <transferable>true</transferable>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="ergänzt um"/>
+<property name="DE_RELA_TEXT_TO" value="erggänzt"/>
+<property name="EN_RELA_TEXT_FROM" value="*DE* ergänzt um"/>
+<property name="EN_RELA_TEXT_TO" value="*DE* erggänzt"/>
+</propertyMap>
 </Relation>

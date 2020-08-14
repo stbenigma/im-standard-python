@@ -1,13 +1,28 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="D3D17813-7FED-B57C-A284-B590BEADEAA3" name="Modellelementtyp Erweiterung">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="D3D17813-7FED-B57C-A284-B590BEADEAA3" name="*DE* Modellelementtyp Erweiterung">
 <createdBy>stb</createdBy>
 <createdTime>2020-08-08 16:41:54 UTC</createdTime>
-<comment><![CDATA[Verbindet modellelementtypen mit den Erweiterungen
+<comment><![CDATA[*DE* Verbindet modellelementtypen mit den Erweiterungen
 
 example:
    UDP: ERP-COLUMN-ID is an extension for Model element type ATTRIBUTE
    UDP: HIGH-RISK-DATA is an extension for Model element ypes (ATTRIBUTE, ENTITY)]]></comment>
 <generatorID>09427B17-0EFE-CC8E-2A95-7C0A21195C76</generatorID>
+<notes><![CDATA[[EN_ENTI_COMMENT[
+*DE* Verbindet modellelementtypen mit den Erweiterungen
+
+example:
+   UDP: ERP-COLUMN-ID is an extension for Model element type ATTRIBUTE
+   UDP: HIGH-RISK-DATA is an extension for Model element ypes (ATTRIBUTE, ENTITY)
+]EN_ENTI_COMMENT]
+[DE_ENTI_COMMENT[
+Verbindet modellelementtypen mit den Erweiterungen
+
+example:
+   UDP: ERP-COLUMN-ID is an extension for Model element type ATTRIBUTE
+   UDP: HIGH-RISK-DATA is an extension for Model element ypes (ATTRIBUTE, ENTITY)
+]DE_ENTI_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
@@ -25,22 +40,38 @@ example:
 <normalForm>Third</normalForm>
 <shortName>METP</shortName>
 <createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="DE_ENTI_NAME" value="Modellelementtyp Erweiterung"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_NAME" value="*DE* Modellelementtyp Erweiterung"/>
+</propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<Attribute name="ist optional" id="D862EB7B-B001-2463-8B61-0A3893E1C83A">
+<Attribute name="*DE* ist optional" id="D862EB7B-B001-2463-8B61-0A3893E1C83A">
 <createdBy>stb</createdBy>
 <createdTime>2020-08-08 16:41:54 UTC</createdTime>
-<comment><![CDATA[Optionality of the UDP for this element type]]></comment>
+<comment><![CDATA[*DE* Optionality of the UDP for this element type]]></comment>
 <generatorID>7E847A4C-A6B0-98CC-7007-4091B6724DF4</generatorID>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+*DE* Optionality of the UDP for this element type
+]EN_ATTR_COMMENT]
+[DE_ATTR_COMMENT[
+Optionality of the UDP for this element type
+]DE_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
 <item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
-<use>0</use>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
-<domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="ist optional"/>
+<property name="EN_ATTR_NAME" value="*DE* ist optional"/>
+</propertyMap>
 </Attribute>
 </attributes>
 <identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">

@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="E262C6E5-7AC0-2971-AFC2-00DD6C078089" name="Beispielwert">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="E262C6E5-7AC0-2971-AFC2-00DD6C078089" name="*Facttype">
 <createdBy>stb</createdBy>
 <createdTime>2020-07-28 09:44:40 UTC</createdTime>
 <notes><![CDATA[[DE_ENTI_COMMENT[
@@ -24,19 +24,28 @@
 <maxVolumes>9999999</maxVolumes>
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
+<synonym>Propositiontype, Predicatetype</synonym>
 <createSurrogateKey>true</createSurrogateKey>
 <propertyMap>
 <property name="DE_ENTI_COMMENT" value=""/>
-<property name="DE_ENTI_NAME" value="Data Layer"/>
+<property name="DE_ENTI_NAME" value="Beispielwert"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
 <property name="EN_ENTI_COMMENT" value=""/>
-<property name="EN_ENTI_NAME" value="Facttype"/>
+<property name="EN_ENTI_NAME" value="*Facttype"/>
 <property name="EN_ENTI_SYNONYM" value="Propositiontype, Predicatetype"/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<Attribute name="Wert" id="C774F901-8E4F-BEFD-0B62-66BC91E0D37A">
+<Attribute name="*DE* Wert" id="C774F901-8E4F-BEFD-0B62-66BC91E0D37A">
 <createdBy>stb</createdBy>
 <createdTime>2020-07-28 09:44:40 UTC</createdTime>
-<comment><![CDATA[Struktur der Aussage <>..<>..<>]]></comment>
+<comment><![CDATA[*DE* Struktur der Aussage <>..<>..<>]]></comment>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+*DE* Struktur der Aussage <>..<>..<>
+]EN_ATTR_COMMENT]
+[DE_ATTR_COMMENT[
+Struktur der Aussage <>..<>..<>
+]DE_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
@@ -47,6 +56,10 @@
 <use>1</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Wert"/>
+<property name="EN_ATTR_NAME" value="*DE* Wert"/>
+</propertyMap>
 </Attribute>
 </attributes>
 </Entity>

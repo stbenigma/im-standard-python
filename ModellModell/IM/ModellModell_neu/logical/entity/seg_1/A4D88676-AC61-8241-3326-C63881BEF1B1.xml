@@ -1,24 +1,8 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="A4D88676-AC61-8241-3326-C63881BEF1B1" name="Geschäftsfähigkeit">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="A4D88676-AC61-8241-3326-C63881BEF1B1" name="*Business function">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:04:24 UTC</createdTime>
-<comment><![CDATA[Definiert eine Einheit, die eine sinnvoll zusammenfassbare Gruppe von Informationen, Prozesse und Systemen nutzt bzw. dafür zuständig ist.
-
-Geschäftsfähigkeiten können über mehrere Geschäftsbereiche und/oder Abteilungen verteilt sein.
-(Beispiele: Projektleitung kann in vielen Bereichen vorkommen)
-
-ACHTUNG: Es sollten KEINE technischen Aufteilungen (Systeme, Technologie, Medien) für die Unterscheidung verwendet werden, da diese häufiger ändern können.
-Es geht um die semantische Gruppierung der Anwendungen und Geschäftstransaktionen
-
-Beispiele:
-  Management
-  Recruting
-  Accounting
-  Manufacturing
-  Repairing
-  Consulting
-  Projektleitung
-  Support]]></comment>
+<comment><![CDATA[*Defines a unit that is responsible for a group of information, processes and systems that can be summarized in a meaningful way. A government department takes care of a certain type of task in a company. It's a remit. Often sovereign areas correspond to the divisions, business areas or divisions, i.e. the organizational unit at the highest level.  However, this is only one possible solution.  Who creates records for an entity. - Who decides about changes / quality etc.? - Who uses the information of this entity mainly - ??  ATTENTION: NO technical divisions (systems, technology, media) should be used for differentiation, as these can change more frequently. It's about semantic sovereignty over information.  Examples:   Management Recruting Accounting Manufacturing Repairing Consulting Project Management Support]]></comment>
 <notes><![CDATA[[DE_ENTI_COMMENT[
 Definiert eine Einheit, die eine sinnvoll zusammenfassbare Gruppe von Informationen, Prozesse und Systemen nutzt bzw. dafür zuständig ist.
 
@@ -57,7 +41,7 @@ Beispiele:
 <maxVolumes>9999999</maxVolumes>
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
-<synonym>Business Function, Business Skill</synonym>
+<synonym>*Business function</synonym>
 <createSurrogateKey>true</createSurrogateKey>
 <propertyMap>
 <property name="Beispiele" value="Produktion / Vertrieb / Marketing / Finanz"/>
@@ -72,7 +56,7 @@ Beispiele:
 <Attribute name="Name [L]" id="8A13C6EC-B600-0669-8262-D48EE1400A21">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:04:24 UTC</createdTime>
-<comment><![CDATA[Name des Hoheitsbereichs]]></comment>
+<comment><![CDATA[Name of the jurisdiction]]></comment>
 <notes><![CDATA[[DE_ATTR_COMMENT[
 Name des Hoheitsbereichs
 ]DE_ATTR_COMMENT]
@@ -98,10 +82,10 @@ Name of the jurisdiction
 <property name="EN_ATTR_NAME" value="Name [L]"/>
 </propertyMap>
 </Attribute>
-<Attribute name="Beschreibung [L]" id="B514EFDD-A8B0-F3F8-A1AE-BC17D14C67FD">
+<Attribute name="Description [L]" id="B514EFDD-A8B0-F3F8-A1AE-BC17D14C67FD">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:04:24 UTC</createdTime>
-<comment><![CDATA[Bedeutung, Abgrenzunf, Nutzung des Hoheitsbereichs]]></comment>
+<comment><![CDATA[Significance, delimitation, use of the sovereign area]]></comment>
 <notes><![CDATA[[DE_ATTR_COMMENT[
 Bedeutung, Abgrenzunf, Nutzung des Hoheitsbereichs
 ]DE_ATTR_COMMENT]

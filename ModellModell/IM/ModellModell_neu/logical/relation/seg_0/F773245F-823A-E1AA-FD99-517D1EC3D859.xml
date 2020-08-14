@@ -10,8 +10,8 @@
 </engineerTo>
 <useSurrogateKey>true</useSurrogateKey>
 <identifying>false</identifying>
-<nameOnSource>nutzt</nameOnSource>
-<nameOnTarget>benutzt in</nameOnTarget>
+<nameOnSource>*used in</nameOnSource>
+<nameOnTarget>*uses</nameOnTarget>
 <optionalSource>false</optionalSource>
 <optionalTarget>true</optionalTarget>
 <sourceCardinality>*</sourceCardinality>
@@ -20,7 +20,9 @@
 <targetEntity>E262C6E5-7AC0-2971-AFC2-00DD6C078089</targetEntity>
 <transferable>true</transferable>
 <propertyMap>
-<property name="EN_RELA_TEXT_FROM" value="used in"/>
-<property name="EN_RELA_TEXT_TO" value="uses"/>
+<property name="DE_RELA_TEXT_FROM" value="nutzt"/>
+<property name="DE_RELA_TEXT_TO" value="benutzt in"/>
+<property name="EN_RELA_TEXT_FROM" value="*used in"/>
+<property name="EN_RELA_TEXT_TO" value="*uses"/>
 </propertyMap>
 </Relation>

@@ -1,8 +1,8 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="A23E6C38-310F-4379-F953-0B04C1A4B16F" name="Entität">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="A23E6C38-310F-4379-F953-0B04C1A4B16F" name="Entity">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:03:22 UTC</createdTime>
-<comment><![CDATA[Entität im systemübergreifenden, konsolidierten, konzeptionellen Modell eines Unternehmens]]></comment>
+<comment><![CDATA[*Entity in the cross-system, consolidated, conceptual model of a company]]></comment>
 <notes><![CDATA[[DE_ENTI_COMMENT[
 Entität im systemübergreifenden, konsolidierten, konzeptionellen Modell eines Unternehmens
 ]DE_ENTI_COMMENT]
@@ -36,14 +36,15 @@ Entität im systemübergreifenden, konsolidierten, konzeptionellen Modell eines 
 <property name="Beispiele" value="Kunde / Verkaufs-Artikel / Land"/>
 <property name="DE_ENTI_COMMENT" value="Entität im systemübergreifenden, konsolidierten, konzeptionellen Modell eines Unternehmens "/>
 <property name="DE_ENTI_NAME" value="Entität"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
 <property name="EN_ENTI_COMMENT" value="*DE* Entität im systemübergreifenden, konsolidierten, konzeptionellen Modell eines Unternehmens "/>
 <property name="EN_ENTI_NAME" value="Entity"/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<Attribute name="Entitätname [L]" id="F1D0F128-7361-E0A9-E706-227C158FCD42">
+<Attribute name="Entity name [L]" id="F1D0F128-7361-E0A9-E706-227C158FCD42">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:03:22 UTC</createdTime>
-<comment><![CDATA[Name der Entität der in der Kommunikation normalerweise gebraucht wird.]]></comment>
+<comment><![CDATA[Name of the entity normally used in communication.]]></comment>
 <notes><![CDATA[[DE_ATTR_COMMENT[
 Name der Entität der in der Kommunikation normalerweise gebraucht wird.
 ]DE_ATTR_COMMENT]
@@ -72,7 +73,7 @@ Name of the entity normally used in communication.
 <Attribute name="Synonym [LN]" id="A95649D8-C7D7-F752-DF78-460367ECD340">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:03:22 UTC</createdTime>
-<comment><![CDATA[Name, der für diese Entität auch verwendet wird]]></comment>
+<comment><![CDATA[Name that is also used for this entity]]></comment>
 <notes><![CDATA[[DE_ATTR_COMMENT[
 Name, der für diese Entität auch verwendet wird
 ]DE_ATTR_COMMENT]
@@ -99,10 +100,10 @@ Name that is also used for this entity
 <property name="EN_ATTR_NAME" value="Synonym [LN]"/>
 </propertyMap>
 </Attribute>
-<Attribute name="Beschreibung [L]" id="8AE86DAB-876D-4996-6150-123B705AB4AA">
+<Attribute name="Description [L]" id="8AE86DAB-876D-4996-6150-123B705AB4AA">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:03:22 UTC</createdTime>
-<comment><![CDATA[Bedeutung, Nutzen, Nutzung der Entität]]></comment>
+<comment><![CDATA[Meaning, Benefits, Use of the Entity]]></comment>
 <notes><![CDATA[[DE_ATTR_COMMENT[
 Bedeutung, Nutzen, Nutzung der Entität
 ]DE_ATTR_COMMENT]
@@ -129,10 +130,10 @@ Meaning, Benefits, Use of the Entity
 <property name="EN_ATTR_NAME" value="Description [L]"/>
 </propertyMap>
 </Attribute>
-<Attribute name="Kurzname [L]" id="5E305761-9FBD-94B3-D12B-A0811406A63D">
+<Attribute name="Short name [L]" id="5E305761-9FBD-94B3-D12B-A0811406A63D">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:03:22 UTC</createdTime>
-<comment><![CDATA[Kurzbezeichnung der Entität für die Verwendung aus Überschrift, in Referenzen]]></comment>
+<comment><![CDATA[*Entity short name for use from heading, in references]]></comment>
 <notes><![CDATA[[DE_ATTR_COMMENT[
 Kurzbezeichnung der Entität für die Verwendung aus Überschrift, in Referenzen
 ]DE_ATTR_COMMENT]
@@ -159,10 +160,10 @@ Kurzbezeichnung der Entität für die Verwendung aus Überschrift, in Referenzen
 <property name="EN_ATTR_NAME" value="Short name [L]"/>
 </propertyMap>
 </Attribute>
-<Attribute name="Präfixname" id="7EC6D9A7-E9AA-F77D-4FAF-CF5E57BD58E7">
+<Attribute name="Prefix name" id="7EC6D9A7-E9AA-F77D-4FAF-CF5E57BD58E7">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:03:22 UTC</createdTime>
-<comment><![CDATA[Kürzestname (3-5 Zeichen, Normalerweise Grossbuchstaben) der als Präfix für  Implementierungsnamen verwendet werden kann.]]></comment>
+<comment><![CDATA[Abbreviated name (3-5 characters, usually capital letters) that can be used as a prefix for implementation names.]]></comment>
 <notes><![CDATA[[DE_ATTR_COMMENT[
 Kürzestname (3-5 Zeichen, Normalerweise Grossbuchstaben) der als Präfix für  Implementierungsnamen verwendet werden kann.
 ]DE_ATTR_COMMENT]
@@ -192,7 +193,7 @@ Abbreviated name (3-5 characters, usually capital letters) that can be used as a
 <Attribute name="Tooltip [L]" id="09BFD6A9-516C-6EA2-95BC-6189D7482BFC">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:03:22 UTC</createdTime>
-<comment><![CDATA[Anzeige der Bedeutung für Bediener auf einer Maske.]]></comment>
+<comment><![CDATA[Display of the meaning for the operator on a mask.]]></comment>
 <notes><![CDATA[[DE_ATTR_COMMENT[
 Anzeige der Bedeutung für Bediener auf einer Maske.
 ]DE_ATTR_COMMENT]
@@ -219,10 +220,10 @@ Display of the meaning for the operator on a mask.
 <property name="EN_ATTR_NAME" value="Tooltip [L]"/>
 </propertyMap>
 </Attribute>
-<Attribute name="erwartete Tupelanzahl" id="799DBB03-3FC8-5BA7-35F1-8D8DA7716A52">
+<Attribute name="expected number of tuples" id="799DBB03-3FC8-5BA7-35F1-8D8DA7716A52">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:03:22 UTC</createdTime>
-<comment><![CDATA[Grössenordnung der Tupelanzahl in dieser Entität]]></comment>
+<comment><![CDATA[Order of magnitude of the number of tuples in this entity]]></comment>
 <notes><![CDATA[[DE_ATTR_COMMENT[
 Grössenordnung der Tupelanzahl in dieser Entität
 ]DE_ATTR_COMMENT]

@@ -1,8 +1,8 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_2" id="5D97B3E2-8FA2-953C-7032-0B037E7CD2C1" name="Organisationseinheit">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_2" id="5D97B3E2-8FA2-953C-7032-0B037E7CD2C1" name="Organizational unit">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:03:22 UTC</createdTime>
-<comment><![CDATA[Organisationseinheit (Abteilung / Firma (intern oder extern), die für die Definition oder Pflege von Elementen verantwortlich ist.]]></comment>
+<comment><![CDATA[Organizational unit (department / company (internal or external) responsible for defining or maintaining elements).]]></comment>
 <notes><![CDATA[[DE_ENTI_COMMENT[
 Organisationseinheit (Abteilung / Firma (intern oder extern), die für die Definition oder Pflege von Elementen verantwortlich ist.
 ]DE_ENTI_COMMENT]
@@ -30,6 +30,7 @@ Organizational unit (department / company (internal or external) responsible for
 <propertyMap>
 <property name="DE_ENTI_COMMENT" value="Organisationseinheit (Abteilung / Firma (intern oder extern), die für die Definition oder Pflege von Elementen verantwortlich ist."/>
 <property name="DE_ENTI_NAME" value="Organisationseinheit"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
 <property name="EN_ENTI_COMMENT" value="*DE* Organisationseinheit (Abteilung / Firma (intern oder extern), die für die Definition oder Pflege von Elementen verantwortlich ist."/>
 <property name="EN_ENTI_NAME" value="Organizational unit"/>
 <property name="EN_ENTI_SYNONYM" value=""/>
@@ -63,7 +64,7 @@ Organizational unit (department / company (internal or external) responsible for
 <property name="EN_ATTR_NAME" value="Name"/>
 </propertyMap>
 </Attribute>
-<Attribute name="eMail" id="E3B04444-80A4-CDB0-EAC5-395949FFA859">
+<Attribute name="email" id="E3B04444-80A4-CDB0-EAC5-395949FFA859">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:03:22 UTC</createdTime>
 <notes><![CDATA[[DE_ATTR_COMMENT[
@@ -92,7 +93,7 @@ Organizational unit (department / company (internal or external) responsible for
 <property name="EN_ATTR_NAME" value="email"/>
 </propertyMap>
 </Attribute>
-<Attribute name="Telefon-Nr" id="7DD644A8-EFFE-EBDF-86AD-73CC40C93279">
+<Attribute name="Telephone no" id="7DD644A8-EFFE-EBDF-86AD-73CC40C93279">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:03:22 UTC</createdTime>
 <notes><![CDATA[[DE_ATTR_COMMENT[
@@ -121,7 +122,7 @@ Organizational unit (department / company (internal or external) responsible for
 <property name="EN_ATTR_NAME" value="Telephone no"/>
 </propertyMap>
 </Attribute>
-<Attribute name="Adresse" id="5741F54F-7222-BC46-7205-4AA25CF0D87F">
+<Attribute name="Address" id="5741F54F-7222-BC46-7205-4AA25CF0D87F">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:03:22 UTC</createdTime>
 <notes><![CDATA[[DE_ATTR_COMMENT[

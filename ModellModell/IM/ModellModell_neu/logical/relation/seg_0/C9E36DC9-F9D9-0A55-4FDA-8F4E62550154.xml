@@ -11,8 +11,8 @@
 <useSurrogateKey>true</useSurrogateKey>
 <arc>700FFC1B-C12A-7F9F-D852-84C784F42D32</arc>
 <identifying>false</identifying>
-<nameOnSource>angewendet auf</nameOnSource>
-<nameOnTarget>geprüft mit</nameOnTarget>
+<nameOnSource>*DE* angewendet auf</nameOnSource>
+<nameOnTarget>*DE* geprüft mit</nameOnTarget>
 <optionalSource>false</optionalSource>
 <optionalTarget>true</optionalTarget>
 <sourceCardinality>*</sourceCardinality>
@@ -20,4 +20,10 @@
 <targetCardinalityString>*</targetCardinalityString>
 <targetEntity>A23E6C38-310F-4379-F953-0B04C1A4B16F</targetEntity>
 <transferable>true</transferable>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="angewendet auf"/>
+<property name="DE_RELA_TEXT_TO" value="geprüft mit"/>
+<property name="EN_RELA_TEXT_FROM" value="*DE* angewendet auf"/>
+<property name="EN_RELA_TEXT_TO" value="*DE* geprüft mit"/>
+</propertyMap>
 </Relation>

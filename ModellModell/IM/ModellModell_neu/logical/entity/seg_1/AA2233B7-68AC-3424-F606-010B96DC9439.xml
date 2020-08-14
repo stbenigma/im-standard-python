@@ -1,16 +1,13 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="AA2233B7-68AC-3424-F606-010B96DC9439" name="Geschäftsregel">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="AA2233B7-68AC-3424-F606-010B96DC9439" name="Business rule">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:04:00 UTC</createdTime>
-<comment><![CDATA[Geschäftsregel, die Attributwerte auf Regelkonformität prüft.
-Diese Regeln sind passiv. D.h. es wird überprüft, ob der Wert (ggf. im Zusammenhang mit anderen Werten dieser oder anderer Entitäten) aus fachlicher Sicht korrekt ist.
-
-Ebene auf der die Regel prüft (row, Tupel, Entität, Datenbank) wird aus den Elementen der Regel abgeleitet.
-
-Regelverletzungen können als SQL Selects angegeben werden. Jedes Tupel, das das Select liefert verletzt die Regel.]]></comment>
+<comment><![CDATA[*Transaction rule that checks attribute values for rule conformity. These rules are passive. This means that the system checks whether the value (possibly in connection with other values of these or other entities) is correct from a business point of view.  Rule violations can be specified as SQL selects. Any tuple that returns the select violates the rule.]]></comment>
 <notes><![CDATA[[DE_ENTI_COMMENT[
 Geschäftsregel, die Attributwerte auf Regelkonformität prüft.
 Diese Regeln sind passiv. D.h. es wird überprüft, ob der Wert (ggf. im Zusammenhang mit anderen Werten dieser oder anderer Entitäten) aus fachlicher Sicht korrekt ist.
+
+Ebene auf der die Regel prüft (row, Tupel, Entität, Datenbank) wird aus den Elementen der Regel abgeleitet.
 
 Regelverletzungen können als SQL Selects angegeben werden. Jedes Tupel, das das Select liefert verletzt die Regel.
 ]DE_ENTI_COMMENT]
@@ -34,7 +31,7 @@ Regelverletzungen können als SQL Selects angegeben werden. Jedes Tupel, das das
 <maxVolumes>9999999</maxVolumes>
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
-<synonym>Business Rule</synonym>
+<synonym>Business rule</synonym>
 <createSurrogateKey>true</createSurrogateKey>
 <propertyMap>
 <property name="Beispiele" value="Liefermenge &lt;= Bestellmenge, Kunden mit zu vielen offenen Rechnungen können keine Bestellung aufgeben"/>
@@ -74,10 +71,10 @@ Regelverletzungen können als SQL Selects angegeben werden. Jedes Tupel, das das
 <property name="EN_ATTR_NAME" value="Name"/>
 </propertyMap>
 </Attribute>
-<Attribute name="Beschreibung [L]" id="1FEC2481-A807-AFD8-3298-7ACC4E9300CC">
+<Attribute name="*Description of the" id="1FEC2481-A807-AFD8-3298-7ACC4E9300CC">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:04:00 UTC</createdTime>
-<comment><![CDATA[Umschreibung, Erklärung der Regel]]></comment>
+<comment><![CDATA[Description, explanation of the rule]]></comment>
 <notes><![CDATA[[DE_ATTR_COMMENT[
 Umschreibung, Erklärung der Regel
 ]DE_ATTR_COMMENT]
@@ -99,15 +96,15 @@ Description, explanation of the rule
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_COMMENT" value="Umschreibung, Erklärung der Regel"/>
-<property name="DE_ATTR_NAME" value="Beschreibung"/>
+<property name="DE_ATTR_NAME" value="Beschreibung [L]"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Umschreibung, Erklärung der Regel"/>
-<property name="EN_ATTR_NAME" value="Description of the"/>
+<property name="EN_ATTR_NAME" value="*Description of the"/>
 </propertyMap>
 </Attribute>
-<Attribute name="Regel" id="18DDD1CA-270F-D5BB-691E-74C2CBBE8960">
+<Attribute name="Rule" id="18DDD1CA-270F-D5BB-691E-74C2CBBE8960">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:04:00 UTC</createdTime>
-<comment><![CDATA[Regel, die Werte beschränken auf Grund von komplexen Zusammenhängen (mehere Entitäten, Attribute, Beziehungen)]]></comment>
+<comment><![CDATA[Rule limiting values to complex relationships (multiple entities, attributes, relationships)]]></comment>
 <notes><![CDATA[[DE_ATTR_COMMENT[
 Regel, die Werte beschränken auf Grund von komplexen Zusammenhängen (mehere Entitäten, Attribute, Beziehungen)
 ]DE_ATTR_COMMENT]
@@ -133,10 +130,10 @@ Rule limiting values to complex relationships (multiple entities, attributes, re
 <property name="EN_ATTR_NAME" value="Rule"/>
 </propertyMap>
 </Attribute>
-<Attribute name="Fehlermeldung [L]" id="DEA583A1-1362-7675-76D3-F647C1BD80CC">
+<Attribute name="Error message [L]" id="DEA583A1-1362-7675-76D3-F647C1BD80CC">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:04:00 UTC</createdTime>
-<comment><![CDATA[Meldung, die bei Verletzung der Regel angezeigt wird.]]></comment>
+<comment><![CDATA[Message that is displayed when the rule is violated.]]></comment>
 <notes><![CDATA[[DE_ATTR_COMMENT[
 Meldung, die bei Verletzung der Regel angezeigt wird.
 ]DE_ATTR_COMMENT]

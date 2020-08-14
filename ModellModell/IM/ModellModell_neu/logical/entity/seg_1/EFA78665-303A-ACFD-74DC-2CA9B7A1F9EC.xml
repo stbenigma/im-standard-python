@@ -1,9 +1,8 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="EFA78665-303A-ACFD-74DC-2CA9B7A1F9EC" name="Diagrammkommentar">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="EFA78665-303A-ACFD-74DC-2CA9B7A1F9EC" name="Diagram comment">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:03:22 UTC</createdTime>
-<comment><![CDATA[Kommentar als eigenes Symbol auf einem Diagramm.
-"Post It" Zettel.]]></comment>
+<comment><![CDATA[*Comment as a separate symbol on a diagram. "Post It" note.]]></comment>
 <notes><![CDATA[[DE_ENTI_COMMENT[
 Kommentar als eigenes Symbol auf einem Diagramm.
 "Post It" Zettel.
@@ -13,7 +12,6 @@ Kommentar als eigenes Symbol auf einem Diagramm.
 ]EN_ENTI_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
-<shouldEngineer>false</shouldEngineer>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
 <item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="false"/>
@@ -38,7 +36,7 @@ Kommentar als eigenes Symbol auf einem Diagramm.
 <property name="EN_ENTI_SYNONYM" value=""/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<Attribute name="Kommentar" id="5435F33E-1B05-93CE-0A3B-6CF639B52191">
+<Attribute name="Comment" id="5435F33E-1B05-93CE-0A3B-6CF639B52191">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:03:22 UTC</createdTime>
 <notes><![CDATA[[DE_ATTR_COMMENT[
@@ -49,16 +47,15 @@ Kommentar als eigenes Symbol auf einem Diagramm.
 ]EN_ATTR_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
-<shouldEngineer>false</shouldEngineer>
 <importedID>B41AC20C-C450-02D2-F5BD-4BF648EBD29E</importedID>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
 <item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="false"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
-<use>0</use>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
-<domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_COMMENT" value=""/>

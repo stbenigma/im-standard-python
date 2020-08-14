@@ -1,15 +1,8 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="BAD7FF87-ECF9-4B35-8773-FBBA5D62BDBB" name="Geschäftszustand">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="BAD7FF87-ECF9-4B35-8773-FBBA5D62BDBB" name="Business condition">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:06:05 UTC</createdTime>
-<comment><![CDATA[Ein Datenzustand (z.B. tiefer Lagerbestand, zu viele offene Rechnungen für einen Kunden, tiefer oder hoher Kontostand etc.) löst einen Geschäftsprozess eine -transaktion aus oder ist das vorgesehene Ergebnis eines Prozesses.
-
-Beispiele:
-- Monatsende (Lohnzahlung, Bericht an Mgt, Mahnläufe)
-- jeden Montag (überprüfung der offenen Bestellungen)
-- Lagerbestand unter Schwellwert
-- Anzahl offene Bestellungen zu gross
-- Anzahl Servicefälle in einer Periode zu hoch]]></comment>
+<comment><![CDATA[*A data state (e.g. low inventory, too many open invoices for a customer, low or high account balance, etc.) triggers a business process, a transaction or is the intended result of a process]]></comment>
 <notes><![CDATA[[DE_ENTI_COMMENT[
 Ein Datenzustand (z.B. tiefer Lagerbestand, zu viele offene Rechnungen für einen Kunden, tiefer oder hoher Kontostand etc.) löst einen Geschäftsprozess eine -transaktion aus oder ist das vorgesehene Ergebnis eines Prozesses.
 

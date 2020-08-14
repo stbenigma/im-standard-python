@@ -10,8 +10,8 @@
 </engineerTo>
 <useSurrogateKey>true</useSurrogateKey>
 <identifying>false</identifying>
-<nameOnSource>beschreibt</nameOnSource>
-<nameOnTarget>beschrieben in</nameOnTarget>
+<nameOnSource>*describes</nameOnSource>
+<nameOnTarget>*described in</nameOnTarget>
 <optionalSource>true</optionalSource>
 <optionalTarget>true</optionalTarget>
 <sourceCardinality>*</sourceCardinality>
@@ -20,7 +20,9 @@
 <targetEntity>D718E671-DE1C-59BC-9C74-A352687F07F5</targetEntity>
 <transferable>true</transferable>
 <propertyMap>
-<property name="EN_RELA_TEXT_FROM" value="describes"/>
-<property name="EN_RELA_TEXT_TO" value="described in"/>
+<property name="DE_RELA_TEXT_FROM" value="beschreibt"/>
+<property name="DE_RELA_TEXT_TO" value="beschrieben in"/>
+<property name="EN_RELA_TEXT_FROM" value="*describes"/>
+<property name="EN_RELA_TEXT_TO" value="*described in"/>
 </propertyMap>
 </Relation>

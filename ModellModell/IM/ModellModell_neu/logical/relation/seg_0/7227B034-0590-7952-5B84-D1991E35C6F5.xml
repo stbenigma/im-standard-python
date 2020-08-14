@@ -11,8 +11,8 @@
 </engineerTo>
 <useSurrogateKey>true</useSurrogateKey>
 <identifying>false</identifying>
-<nameOnSource>benutzt als</nameOnSource>
-<nameOnTarget>ist</nameOnTarget>
+<nameOnSource>*DE* benutzt als</nameOnSource>
+<nameOnTarget>*DE* ist</nameOnTarget>
 <optionalSource>true</optionalSource>
 <optionalTarget>false</optionalTarget>
 <sourceCardinality>1</sourceCardinality>
@@ -20,4 +20,10 @@
 <targetCardinalityString>*</targetCardinalityString>
 <targetEntity>D3D17813-7FED-B57C-A284-B590BEADEAA3</targetEntity>
 <transferable>true</transferable>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="benutzt als"/>
+<property name="DE_RELA_TEXT_TO" value="ist"/>
+<property name="EN_RELA_TEXT_FROM" value="*DE* benutzt als"/>
+<property name="EN_RELA_TEXT_TO" value="*DE* ist"/>
+</propertyMap>
 </Relation>

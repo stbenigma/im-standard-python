@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="12574403-02C8-5417-210E-86316EB1152A" name="Dokument">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="12574403-02C8-5417-210E-86316EB1152A" name="Document">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:03:22 UTC</createdTime>
 <notes><![CDATA[[DE_ENTI_COMMENT[
@@ -28,6 +28,7 @@
 <propertyMap>
 <property name="DE_ENTI_COMMENT" value=""/>
 <property name="DE_ENTI_NAME" value="Dokument"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
 <property name="EN_ENTI_COMMENT" value=""/>
 <property name="EN_ENTI_NAME" value="Document"/>
 </propertyMap>
@@ -49,9 +50,9 @@
 <item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
-<use>0</use>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
-<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_COMMENT" value=""/>
@@ -60,7 +61,7 @@
 <property name="EN_ATTR_NAME" value="Name"/>
 </propertyMap>
 </Attribute>
-<Attribute name="Format" id="D6628D14-C9F3-A70E-07D9-58031B59CD4C">
+<Attribute name="Size" id="D6628D14-C9F3-A70E-07D9-58031B59CD4C">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:03:22 UTC</createdTime>
 <notes><![CDATA[[DE_ATTR_COMMENT[
@@ -77,9 +78,9 @@
 <item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
-<use>0</use>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
-<domain>6F7CFEB3-F007-D17C-AA67-F209D129C3DE</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_COMMENT" value=""/>
@@ -88,7 +89,7 @@
 <property name="EN_ATTR_NAME" value="Size"/>
 </propertyMap>
 </Attribute>
-<Attribute name="Inhalt" id="C9FC3948-176F-A1E6-C25B-A4982648EF81">
+<Attribute name="Content" id="C9FC3948-176F-A1E6-C25B-A4982648EF81">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:03:22 UTC</createdTime>
 <notes><![CDATA[[DE_ATTR_COMMENT[
@@ -106,9 +107,9 @@
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
-<use>0</use>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
 <logicalDatatype>LOGDT029</logicalDatatype>
-<domain>0BF630F8-9481-C3AD-A066-44A5FEC6E877</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_COMMENT" value=""/>
@@ -117,10 +118,10 @@
 <property name="EN_ATTR_NAME" value="Content"/>
 </propertyMap>
 </Attribute>
-<Attribute name="Inhalteferenz" id="0F1C9A37-B559-DC45-3507-CDE2D9A63F98">
+<Attribute name="*external reference" id="0F1C9A37-B559-DC45-3507-CDE2D9A63F98">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:03:22 UTC</createdTime>
-<comment><![CDATA[Referenz auf ein Datei-System bzw. eine Webseite.]]></comment>
+<comment><![CDATA[Reference to a file system or a web page.]]></comment>
 <notes><![CDATA[[DE_ATTR_COMMENT[
 Referenz auf ein Datei-System bzw. eine Webseite.
 ]DE_ATTR_COMMENT]
@@ -136,15 +137,15 @@ Reference to a file system or a web page.
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
-<use>0</use>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
-<domain>17A3A5E7-15FD-8979-FF7A-1FAC09CEC963</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_COMMENT" value="Referenz auf ein Datei-System bzw. eine Webseite."/>
-<property name="DE_ATTR_NAME" value="externe Referenz"/>
+<property name="DE_ATTR_NAME" value="Inhalteferenz"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Referenz auf ein Datei-System bzw. eine Webseite."/>
-<property name="EN_ATTR_NAME" value="external reference"/>
+<property name="EN_ATTR_NAME" value="*external reference"/>
 </propertyMap>
 </Attribute>
 </attributes>

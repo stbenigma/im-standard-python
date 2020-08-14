@@ -10,8 +10,8 @@
 </engineerTo>
 <useSurrogateKey>true</useSurrogateKey>
 <identifying>false</identifying>
-<nameOnSource>umfasst</nameOnSource>
-<nameOnTarget>trägt bei zu</nameOnTarget>
+<nameOnSource>includes</nameOnSource>
+<nameOnTarget>contributes to</nameOnTarget>
 <optionalSource>false</optionalSource>
 <optionalTarget>true</optionalTarget>
 <sourceCardinality>*</sourceCardinality>
@@ -38,9 +38,9 @@
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
-<use>0</use>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
-<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </attribute>
 <attribute name="AttrBeschreibung" id="651162DE-0996-9971-047A-99255D4DBA0B">
@@ -54,9 +54,9 @@
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
-<use>0</use>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
-<domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </attribute>
 </attributes>

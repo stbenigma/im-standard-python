@@ -1,8 +1,8 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_2" id="EE0F479E-2B85-9DC9-1CB8-66D3967F8993" name="Numerischer Wertebereich">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_2" id="EE0F479E-2B85-9DC9-1CB8-66D3967F8993" name="Numeric value range">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:04:00 UTC</createdTime>
-<comment><![CDATA[Kann Zahlenwerte aufnehmen]]></comment>
+<comment><![CDATA[*Can record numerical values]]></comment>
 <notes><![CDATA[[DE_ENTI_COMMENT[
 Kann Zahlenwerte aufnehmen
 ]DE_ENTI_COMMENT]
@@ -30,14 +30,15 @@ Kann Zahlenwerte aufnehmen
 <propertyMap>
 <property name="DE_ENTI_COMMENT" value="Kann Zahlenwerte aufnehmen "/>
 <property name="DE_ENTI_NAME" value="Numerischer Wertebereich"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
 <property name="EN_ENTI_COMMENT" value="*DE* Kann Zahlenwerte aufnehmen "/>
 <property name="EN_ENTI_NAME" value="Numeric value range"/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<Attribute name="Totalstellen#" id="7E77D48A-823A-2E1C-12FB-94F9A785C501">
+<Attribute name="*Digits before decimal point#" id="7E77D48A-823A-2E1C-12FB-94F9A785C501">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:04:00 UTC</createdTime>
-<comment><![CDATA[Anzahl der Stellen vor dem Komma]]></comment>
+<comment><![CDATA[Number of digits before the decimal point]]></comment>
 <notes><![CDATA[[DE_ATTR_COMMENT[
 Anzahl der Stellen vor dem Komma
 ]DE_ATTR_COMMENT]
@@ -58,15 +59,15 @@ Number of digits before the decimal point
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_COMMENT" value="Anzahl der Stellen vor dem Komma"/>
-<property name="DE_ATTR_NAME" value="Vorkommastellen#"/>
+<property name="DE_ATTR_NAME" value="Totalstellen#"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Anzahl der Stellen vor dem Komma"/>
-<property name="EN_ATTR_NAME" value="Digits before decimal point#"/>
+<property name="EN_ATTR_NAME" value="*Digits before decimal point#"/>
 </propertyMap>
 </Attribute>
-<Attribute name="Nachkommastellen#" id="D2115AAA-10BB-6729-053F-50CD98171F6C">
+<Attribute name="Decimal places#" id="D2115AAA-10BB-6729-053F-50CD98171F6C">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:04:00 UTC</createdTime>
-<comment><![CDATA[Anzahl der Stellen nach dem Komma]]></comment>
+<comment><![CDATA[Number of digits after the decimal point]]></comment>
 <notes><![CDATA[[DE_ATTR_COMMENT[
 Anzahl der Stellen nach dem Komma
 ]DE_ATTR_COMMENT]
@@ -93,10 +94,10 @@ Number of digits after the decimal point
 <property name="EN_ATTR_NAME" value="Decimal places#"/>
 </propertyMap>
 </Attribute>
-<Attribute name="Min Wert" id="E5CC6E75-E08C-C5ED-7AD2-5C644AC557AD">
+<Attribute name="Min value" id="E5CC6E75-E08C-C5ED-7AD2-5C644AC557AD">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:04:00 UTC</createdTime>
-<comment><![CDATA[Minimaler Wert für ein numerisches Feld. Leer -> so klein wie das System zulässt]]></comment>
+<comment><![CDATA[Minimum value for a numeric field. Empty -> as small as the system allows]]></comment>
 <notes><![CDATA[[DE_ATTR_COMMENT[
 Minimaler Wert für ein numerisches Feld. Leer -> so klein wie das System zulässt
 ]DE_ATTR_COMMENT]
@@ -123,10 +124,10 @@ Minimum value for a numeric field. Empty -> as small as the system allows
 <property name="EN_ATTR_NAME" value="Min value"/>
 </propertyMap>
 </Attribute>
-<Attribute name="Max Wert" id="EBB0952C-C757-86BA-30FC-CF6002E22D95">
+<Attribute name="Max value" id="EBB0952C-C757-86BA-30FC-CF6002E22D95">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:04:00 UTC</createdTime>
-<comment><![CDATA[Maximaler Wert für ein numerisches Feld. Leer -> so gross wie das System zulässt]]></comment>
+<comment><![CDATA[Maximum value for a numeric field. Empty -> as big as the system allows]]></comment>
 <notes><![CDATA[[DE_ATTR_COMMENT[
 Maximaler Wert für ein numerisches Feld. Leer -> so gross wie das System zulässt
 ]DE_ATTR_COMMENT]
@@ -153,10 +154,10 @@ Maximum value for a numeric field. Empty -> as big as the system allows
 <property name="EN_ATTR_NAME" value="Max value"/>
 </propertyMap>
 </Attribute>
-<Attribute name="Rundungseinheit" id="EB863265-2766-76A8-568E-EEFEA2D851F2">
+<Attribute name="Rounding unit" id="EB863265-2766-76A8-568E-EEFEA2D851F2">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:04:00 UTC</createdTime>
-<comment><![CDATA[Wert, der angibt, auf welche Einheit ein numerischer Wert für die Speicherung gerundet wird. (z.B. 0.5, 0.25, 1000) leer -> es wird nicht explizit gerundet]]></comment>
+<comment><![CDATA[A value that indicates the unit to which a numeric value is rounded for storage. (e.g. 0.5, 0.25, 1000) empty -> not rounded explicitly]]></comment>
 <notes><![CDATA[[DE_ATTR_COMMENT[
 Wert, der angibt, auf welche Einheit ein numerischer Wert für die Speicherung gerundet wird. (z.B. 0.5, 0.25, 1000) leer -> es wird nicht explizit gerundet
 ]DE_ATTR_COMMENT]

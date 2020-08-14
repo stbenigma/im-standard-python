@@ -10,8 +10,8 @@
 </engineerTo>
 <useSurrogateKey>true</useSurrogateKey>
 <identifying>false</identifying>
-<nameOnSource>umfasst</nameOnSource>
-<nameOnTarget>enthalten in</nameOnTarget>
+<nameOnSource>*DE* umfasst</nameOnSource>
+<nameOnTarget>*DE* enthalten in</nameOnTarget>
 <optionalSource>true</optionalSource>
 <optionalTarget>true</optionalTarget>
 <sourceCardinality>1</sourceCardinality>
@@ -19,4 +19,10 @@
 <targetCardinalityString>*</targetCardinalityString>
 <targetEntity>12574403-02C8-5417-210E-86316EB1152A</targetEntity>
 <transferable>true</transferable>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="umfasst"/>
+<property name="DE_RELA_TEXT_TO" value="enthalten in"/>
+<property name="EN_RELA_TEXT_FROM" value="*DE* umfasst"/>
+<property name="EN_RELA_TEXT_TO" value="*DE* enthalten in"/>
+</propertyMap>
 </Relation>

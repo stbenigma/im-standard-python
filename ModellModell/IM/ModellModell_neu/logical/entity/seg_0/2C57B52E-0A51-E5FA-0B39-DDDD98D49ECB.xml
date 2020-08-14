@@ -1,8 +1,8 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="2C57B52E-0A51-E5FA-0B39-DDDD98D49ECB" name="Abteilung">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="2C57B52E-0A51-E5FA-0B39-DDDD98D49ECB" name="Division">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:03:22 UTC</createdTime>
-<comment><![CDATA[(Administrative) Organisationseinheit in der Firma]]></comment>
+<comment><![CDATA[*Organizational unit in the company (internal or external) that is responsible for defining or maintaining an attribute value.]]></comment>
 <notes><![CDATA[[DE_ENTI_COMMENT[
 (Administrative) Organisationseinheit in der Firma
 ]DE_ENTI_COMMENT]
@@ -40,7 +40,7 @@
 <Attribute name="Name" id="5F65EF23-39D2-4156-0877-0966B0C829E8">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:03:22 UTC</createdTime>
-<comment><![CDATA[Name eines Geschäftsbereichs]]></comment>
+<comment><![CDATA[Business division name]]></comment>
 <notes><![CDATA[[DE_ATTR_COMMENT[
 Name eines Geschäftsbereichs
 ]DE_ATTR_COMMENT]

@@ -1,12 +1,8 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_3" id="86AA7A1C-30FD-8587-A4B8-76443AA620D8" name="Schnittstelle">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_3" id="86AA7A1C-30FD-8587-A4B8-76443AA620D8" name="Interface">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:03:22 UTC</createdTime>
-<comment><![CDATA[Eine definierte Schnittstelle zwischen 2 IT-Systemen.
-
-Synchron heisst, dass die Daten immer in kurzer Zeit (ms - einige Sekunden)  nachgeführt und aktuell sind.
-Manuell bedeutet, dass eine Person die Daten von einem Werkzeuge in ein anderes überträgt (copy-paste, abschreiben).
-online bedeutet, dass die Anwendungen direkt auf die Datenbasis (Datei, DB) einer anderen Anwendung zugreift. Z.B. via DB-Link, Service.]]></comment>
+<comment><![CDATA[*A defined interface between 2 IT systems.  Synchronous means that the data is always updated in a short time (ms - a few seconds) and is up-to-date. Manual means that a person transfers the data from one tool to another (copy-paste). online means that the applications access the database (file, DB) of another application directly. E.g. via DB-Link, Service.]]></comment>
 <notes><![CDATA[[DE_ENTI_COMMENT[
 Eine definierte Schnittstelle zwischen 2 IT-Systemen.
 
@@ -44,7 +40,7 @@ online bedeutet, dass die Anwendungen direkt auf die Datenbasis (Datei, DB) eine
 <property name="EN_ENTI_SYNONYM" value=""/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<Attribute name="Name" id="CCB79941-CA9E-353C-0785-EEDDFD5637A3">
+<Attribute name="**Name" id="CCB79941-CA9E-353C-0785-EEDDFD5637A3">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 14:32:12 UTC</createdTime>
 <notes><![CDATA[[DE_ATTR_COMMENT[
@@ -69,10 +65,10 @@ online bedeutet, dass die Anwendungen direkt auf die Datenbasis (Datei, DB) eine
 <property name="EN_ATTR_NAME" value="**Name"/>
 </propertyMap>
 </Attribute>
-<Attribute name="Manuell" id="5EED317B-58E0-5B79-1FB5-775FD01F3B5D">
+<Attribute name="Manual" id="5EED317B-58E0-5B79-1FB5-775FD01F3B5D">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:03:22 UTC</createdTime>
-<comment><![CDATA[Daten werden manuell übertragen (copy-paste, filetransfer)]]></comment>
+<comment><![CDATA[Data is transferred manually (copy-paste, file transfer)]]></comment>
 <notes><![CDATA[[DE_ATTR_COMMENT[
 Daten werden manuell übertragen (copy-paste, filetransfer)
 ]DE_ATTR_COMMENT]
@@ -101,7 +97,7 @@ Data is transferred manually (copy-paste, file transfer)
 <Attribute name="Synchron" id="B7FB77F4-F497-DDF8-E33A-276CA5490582">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:03:22 UTC</createdTime>
-<comment><![CDATA[Daten werden sofort übertragen oder in Paketen die irgendwann übertragen werden.]]></comment>
+<comment><![CDATA[Data is transferred immediately or in packets that are eventually transferred.]]></comment>
 <notes><![CDATA[[DE_ATTR_COMMENT[
 Daten werden sofort übertragen oder in Paketen die irgendwann übertragen werden.
 ]DE_ATTR_COMMENT]
@@ -127,10 +123,10 @@ Data is transferred immediately or in packets that are eventually transferred.
 <property name="EN_ATTR_NAME" value="Synchron"/>
 </propertyMap>
 </Attribute>
-<Attribute name="Bidirektional" id="F88D2EED-F617-7E62-F84F-436C9046226F">
+<Attribute name="Bidirectional" id="F88D2EED-F617-7E62-F84F-436C9046226F">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:03:22 UTC</createdTime>
-<comment><![CDATA[Nein bedeutet Daten gehen nur von "von" zu "nach"]]></comment>
+<comment><![CDATA[No means data only goes from "from" to "to"]]></comment>
 <notes><![CDATA[[DE_ATTR_COMMENT[
 Nein bedeutet Daten gehen nur von "von" zu "nach"
 ]DE_ATTR_COMMENT]
@@ -156,7 +152,7 @@ No means data only goes from "from" to "to"
 <property name="EN_ATTR_NAME" value="Bidirectional"/>
 </propertyMap>
 </Attribute>
-<Attribute name="Auslöseperiodizität" id="AAE0C88E-61B4-8C0E-5688-0E2712B872D0">
+<Attribute name="Trigger frequency" id="AAE0C88E-61B4-8C0E-5688-0E2712B872D0">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:03:22 UTC</createdTime>
 <commentInRDBMS><![CDATA[Periodizität mit der die Schnittstelle bedient/abgeholt wird. Standardvorgabe für alle Attribute einer Schnittstelle.]]></commentInRDBMS>
@@ -213,7 +209,7 @@ No means data only goes from "from" to "to"
 <property name="EN_ATTR_NAME" value="Scalable"/>
 </propertyMap>
 </Attribute>
-<Attribute name="überwacht (J/N)" id="8342F23C-6D40-1E38-AF3B-BD7D62E461E2">
+<Attribute name="monitored (Y/N)" id="8342F23C-6D40-1E38-AF3B-BD7D62E461E2">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:03:22 UTC</createdTime>
 <notes><![CDATA[[DE_ATTR_COMMENT[

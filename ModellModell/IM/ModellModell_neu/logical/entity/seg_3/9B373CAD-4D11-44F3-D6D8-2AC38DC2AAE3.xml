@@ -1,36 +1,8 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_3" id="9B373CAD-4D11-44F3-D6D8-2AC38DC2AAE3" name="Technologie">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_3" id="9B373CAD-4D11-44F3-D6D8-2AC38DC2AAE3" name="Technology">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:04:58 UTC</createdTime>
-<comment><![CDATA[Beschreibung einer IT-Umgebung (Framework, Programmiersprache, Templates, etc.)
-
-Beispiele:
-DBMS data base mgt system (Oracle MS, Hana)
-DNS  domain name server
-IAM identiy and access mgt
-vcs Version control system
-cdn content delivery network
-vpn virtual private network
-web Protocol (http)
-
-IT-Applications
-
-Sammlung von Technologien
-Microsoft Office
-
-Tools 
-Excel
-Word
-Powerpoint
-Visio
-
-
-Sprachen:
-SQL
-Java
-HTML 
-Jason
-css]]></comment>
+<comment><![CDATA[*Description of an IT environment (framework, programming language, templates, etc.) Examples: DBMS data base mgt system (Oracle MS, Hana) DNS domain name server IAM identiy and access mgt vcs Version control system cdn content delivery network vpn virtual private network web Protocol (http) IT-Applications Collection of technologies Microsoft Office Tools Excel Word Powerpoint Visio Languages: SQL Java HTML Jason css]]></comment>
 <notes><![CDATA[[DE_ENTI_COMMENT[
 Beschreibung einer IT-Umgebung (Framework, Programmiersprache, Templates, etc.)
 
@@ -93,7 +65,7 @@ css
 <property name="EN_ENTI_SYNONYM" value="Technology"/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<Attribute name="Bezeichnung" id="F84BF02F-2B14-2515-966A-6153A32ED72E">
+<Attribute name="Designation" id="F84BF02F-2B14-2515-966A-6153A32ED72E">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:04:58 UTC</createdTime>
 <notes><![CDATA[[DE_ATTR_COMMENT[
@@ -121,7 +93,7 @@ css
 <property name="EN_ATTR_NAME" value="Designation"/>
 </propertyMap>
 </Attribute>
-<Attribute name="Beschreibung" id="AE69032F-F238-24DE-A3A1-E80769EDECC5">
+<Attribute name="Description of the" id="AE69032F-F238-24DE-A3A1-E80769EDECC5">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:04:58 UTC</createdTime>
 <notes><![CDATA[[DE_ATTR_COMMENT[

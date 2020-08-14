@@ -1,11 +1,8 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="D718E671-DE1C-59BC-9C74-A352687F07F5" name="Attribut">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="D718E671-DE1C-59BC-9C74-A352687F07F5" name="Attribute">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:03:22 UTC</createdTime>
-<comment><![CDATA[Beschreibung eines Trägers einers Wertes.
-Dieses Attribut ist die gültige Single Source of Truth des konzeptionellen Modells. 
-
-Es ist nicht zwingend notwendig, dass dieses Attribut in dieser Form in einem der Systeme verwaltet wird. Die Definition gilt als Referenz für alle, die mit dieser Information arbeiten wollen]]></comment>
+<comment><![CDATA[*Description of a carrier of a value. This attribute is the valid Single Source of Truth of the conceptual model.   It is not absolutely necessary for this attribute to be managed in this form in one of the systems. The definition is used as a reference for all those who want to work with this information]]></comment>
 <notes><![CDATA[[DE_ENTI_COMMENT[
 Beschreibung eines Trägers einers Wertes.
 Dieses Attribut ist die gültige Single Source of Truth des konzeptionellen Modells. 
@@ -33,7 +30,7 @@ Es ist nicht zwingend notwendig, dass dieses Attribut in dieser Form in einem de
 <maxVolumes>9999999</maxVolumes>
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
-<synonym>Merkmal, Eigenschaft</synonym>
+<synonym>Characteristic, property</synonym>
 <createSurrogateKey>true</createSurrogateKey>
 <propertyMap>
 <property name="Beispiele" value="Preis, Name, Startdatum"/>
@@ -45,10 +42,10 @@ Es ist nicht zwingend notwendig, dass dieses Attribut in dieser Form in einem de
 <property name="EN_ENTI_SYNONYM" value="Characteristic, property"/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<Attribute name="Attributmame" id="FD95360A-BA62-DA9C-BB95-FACB2DAA42D4">
+<Attribute name="Attribute name" id="FD95360A-BA62-DA9C-BB95-FACB2DAA42D4">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:03:22 UTC</createdTime>
-<comment><![CDATA[Name, der etwas über die Rolle, Verwendung der Eigenschaft in der Entität aussagt. Häufig = Domänenname]]></comment>
+<comment><![CDATA[Name that says something about the role, use of the property in the entity. Frequently = domain name]]></comment>
 <notes><![CDATA[[DE_ATTR_COMMENT[
 Name, der etwas über die Rolle, Verwendung der Eigenschaft in der Entität aussagt. Häufig = Domänenname
 ]DE_ATTR_COMMENT]
@@ -75,10 +72,10 @@ Name that says something about the role, use of the property in the entity. Freq
 <property name="EN_ATTR_NAME" value="Attribute name"/>
 </propertyMap>
 </Attribute>
-<Attribute name="Anzeigename [L]" id="D671B7D6-E0E4-CEA8-D0AC-0176E92E398A">
+<Attribute name="Display name [L]" id="D671B7D6-E0E4-CEA8-D0AC-0176E92E398A">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:03:22 UTC</createdTime>
-<comment><![CDATA[Kurzbezeichnung der Entität für die Verwendung aus Überschrift, in Referenzen]]></comment>
+<comment><![CDATA[*Entity short name for use from heading, in references]]></comment>
 <notes><![CDATA[[DE_ATTR_COMMENT[
 Kurzbezeichnung der Entität für die Verwendung aus Überschrift, in Referenzen
 ]DE_ATTR_COMMENT]
@@ -106,10 +103,10 @@ Kurzbezeichnung der Entität für die Verwendung aus Überschrift, in Referenzen
 <property name="EN_ATTR_NAME" value="Display name [L]"/>
 </propertyMap>
 </Attribute>
-<Attribute name="Anzeigereihenfolge" id="C13DFCC3-15A3-5A60-B4D3-774EED4DB6D8">
+<Attribute name="Display sequence" id="C13DFCC3-15A3-5A60-B4D3-774EED4DB6D8">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:03:22 UTC</createdTime>
-<comment><![CDATA[Riehenfolge der Anzeige auf Diagrammen, in Reports. Leer-> Attribut kommt nach Name sortiert an den Schluss einer Liste]]></comment>
+<comment><![CDATA[Display sequence on diagrams, in reports. Empty-> attribute is sorted by name at the end of a list]]></comment>
 <notes><![CDATA[[DE_ATTR_COMMENT[
 Riehenfolge der Anzeige auf Diagrammen, in Reports. Leer-> Attribut kommt nach Name sortiert an den Schluss einer Liste
 ]DE_ATTR_COMMENT]
@@ -137,7 +134,7 @@ Display sequence on diagrams, in reports. Empty-> attribute is sorted by name at
 <property name="EN_ATTR_NAME" value="Display sequence"/>
 </propertyMap>
 </Attribute>
-<Attribute name="Beschreibung [L]" id="99E8BB00-BBEF-744D-71AC-51A096FBA509">
+<Attribute name="Description [L]" id="99E8BB00-BBEF-744D-71AC-51A096FBA509">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:03:22 UTC</createdTime>
 <notes><![CDATA[[DE_ATTR_COMMENT[
@@ -170,7 +167,7 @@ Display sequence on diagrams, in reports. Empty-> attribute is sorted by name at
 <Attribute name="Tooltip [L]" id="0BBDE4F2-63A6-4791-B481-FD6B43F8832A">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:03:22 UTC</createdTime>
-<comment><![CDATA[Anzeige in Masken für die Erläuterung der Nutzung, Bearbeitung, Verwendung des Attributwertes]]></comment>
+<comment><![CDATA[Display in masks to explain the use, editing, and usage of the attribute value]]></comment>
 <notes><![CDATA[[DE_ATTR_COMMENT[
 Anzeige in Masken für die Erläuterung der Nutzung, Bearbeitung, Verwendung des Attributwertes
 ]DE_ATTR_COMMENT]
@@ -198,10 +195,10 @@ Display in masks to explain the use, editing, and usage of the attribute value
 <property name="EN_ATTR_NAME" value="Tooltip [L]"/>
 </propertyMap>
 </Attribute>
-<Attribute name="ist Pflichtattribut" id="83FD3270-5591-5C02-8C26-FC7D8F8A919C">
+<Attribute name="is a mandatory attribute" id="83FD3270-5591-5C02-8C26-FC7D8F8A919C">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:03:22 UTC</createdTime>
-<comment><![CDATA[JA -> Das Feld muss einen Wert enthalten.]]></comment>
+<comment><![CDATA[YES -> The field must contain a value.]]></comment>
 <notes><![CDATA[[DE_ATTR_COMMENT[
 JA -> Das Feld muss einen Wert enthalten.
 ]DE_ATTR_COMMENT]
@@ -228,10 +225,10 @@ YES -> The field must contain a value.
 <property name="EN_ATTR_NAME" value="is a mandatory attribute"/>
 </propertyMap>
 </Attribute>
-<Attribute name="ist Deskriptorfeld" id="2D6966DD-444B-8888-A156-C26786F6CC55">
+<Attribute name="is descriptor field" id="2D6966DD-444B-8888-A156-C26786F6CC55">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:03:22 UTC</createdTime>
-<comment><![CDATA[Das Attribut charakterisiert die Entität und ist wichtig für ihr Verständnis]]></comment>
+<comment><![CDATA[The attribute characterizes the entity and is important for its understanding]]></comment>
 <notes><![CDATA[[DE_ATTR_COMMENT[
 Das Attribut charakterisiert die Entität und ist wichtig für ihr Verständnis
 ]DE_ATTR_COMMENT]
@@ -258,12 +255,10 @@ The attribute characterizes the entity and is important for its understanding
 <property name="EN_ATTR_NAME" value="is descriptor field"/>
 </propertyMap>
 </Attribute>
-<Attribute name="ist Wiederholattribut" id="83723ADA-A469-11DC-EF3A-669B22D8B209">
+<Attribute name="is repeat attribute" id="83723ADA-A469-11DC-EF3A-669B22D8B209">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:03:22 UTC</createdTime>
-<comment><![CDATA[JA -> Das Feld kann mehere Werte enthalten. 
-NEIN -> Feld enthält maximal einen Wert.
-Kann  über Extratabelle gelöst werden.]]></comment>
+<comment><![CDATA[*YES -> The field can contain several values.  NO -> Field contains a maximum of one value. Can be solved via extra table.]]></comment>
 <notes><![CDATA[[DE_ATTR_COMMENT[
 JA -> Das Feld kann mehere Werte enthalten. 
 NEIN -> Feld enthält maximal einen Wert.
@@ -292,11 +287,10 @@ Kann  über Extratabelle gelöst werden.
 <property name="EN_ATTR_NAME" value="is repeat attribute"/>
 </propertyMap>
 </Attribute>
-<Attribute name="ist sprachabhängig" id="DDCFCDB2-7AB7-412C-B51C-0AC394FB422E">
+<Attribute name="is language-dependent" id="DDCFCDB2-7AB7-412C-B51C-0AC394FB422E">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:03:22 UTC</createdTime>
-<comment><![CDATA[JA -> Der Feldwert kann in mehreren Sprachen vorkommen.
-Über Extratabelle die mit Sprachen verknüpft ist lösen]]></comment>
+<comment><![CDATA[*YES -> The field value can occur in several languages. Solve via extra table linked with languages]]></comment>
 <notes><![CDATA[[DE_ATTR_COMMENT[
 JA -> Der Feldwert kann in mehreren Sprachen vorkommen.
 Über Extratabelle die mit Sprachen verknüpft ist lösen
@@ -324,11 +318,10 @@ JA -> Der Feldwert kann in mehreren Sprachen vorkommen.
 <property name="EN_ATTR_NAME" value="is language-dependent"/>
 </propertyMap>
 </Attribute>
-<Attribute name="ist historisiert" id="F0293A84-FBC9-F2DB-8418-AE96DAC6B881">
+<Attribute name="is historicized" id="F0293A84-FBC9-F2DB-8418-AE96DAC6B881">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:03:22 UTC</createdTime>
-<comment><![CDATA[JA -> Der Feldwert kann über die Zeit ändern, Die Historie muss im System verwaltet werden. Zu einem Zeitpunkt kann nur 1 Wert gültig sein.
-Über Extratabelle verknüpft ist lösen]]></comment>
+<comment><![CDATA[*YES -> The field value can change over time. The history must be managed in the system. Only 1 value can be valid at a time. Solve is linked via extra table]]></comment>
 <notes><![CDATA[[DE_ATTR_COMMENT[
 JA -> Der Feldwert kann über die Zeit ändern, Die Historie muss im System verwaltet werden. Zu einem Zeitpunkt kann nur 1 Wert gültig sein.
 Über Extratabelle verknüpft ist lösen
@@ -356,11 +349,10 @@ JA -> Der Feldwert kann über die Zeit ändern, Die Historie muss im System verw
 <property name="EN_ATTR_NAME" value="is historicized"/>
 </propertyMap>
 </Attribute>
-<Attribute name="ist verschlüsselt" id="819A5993-997C-ECD2-FF4A-5E337B7D9CDB">
+<Attribute name="is encrypted" id="819A5993-997C-ECD2-FF4A-5E337B7D9CDB">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:03:22 UTC</createdTime>
-<comment><![CDATA[JA -> Das Feld muss in Speicherung und Transport verschlüsselt werden
-NEIN -> Feld wird nicht verschlüsselt]]></comment>
+<comment><![CDATA[*YES -> The field must be encrypted in storage and transport NO -> Field is not encrypted]]></comment>
 <notes><![CDATA[[DE_ATTR_COMMENT[
 JA -> Das Feld muss in Speicherung und Transport verschlüsselt werden
 NEIN -> Feld wird nicht verschlüsselt

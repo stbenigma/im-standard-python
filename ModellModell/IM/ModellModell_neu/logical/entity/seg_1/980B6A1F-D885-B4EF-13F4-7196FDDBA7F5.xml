@@ -1,22 +1,8 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="980B6A1F-D885-B4EF-13F4-7196FDDBA7F5" name="Datenbanksystem">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="980B6A1F-D885-B4EF-13F4-7196FDDBA7F5" name="Database system">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:04:24 UTC</createdTime>
-<comment><![CDATA[Alleinstehendes Datenbanksystem zur Verwaltung von Daten, dietypischerweise von mehreren Applikationen im Direktzugriff genutzt werden.
-
-Datenbanken ausschliesslich von einer Applikation direkt genutzt werden können und wenn überhaupt nur über Services der Applikation zugreifbar sind werden nicht als Datenbanksysteme aufgezeichnet. Sie sind integraler Bestandteil der Applikation.
-
-Beispiele:
-MDM-DB
-ERP-DB
-Oracle-DB
-mongo-db for documentstorage
-file-system
-excel for commonly used data
-access
-elastic search
-graph db
-enterprize data warehouse]]></comment>
+<comment><![CDATA[*Stand-alone database system for managing data that is typically used by several applications in direct access.  Databases that can only be used directly by an application and, if at all, can only be accessed via services of the application are not recorded as database systems. They are an integral part of the application.  Examples: MDM-DB ERP-DB Oracle-DB mongo-db for documentstorage file-system excel for commonly used data access elastic search graph db enterprize data warehouse]]></comment>
 <notes><![CDATA[[DE_ENTI_COMMENT[
 Alleinstehendes Datenbanksystem zur Verwaltung von Daten, dietypischerweise von mehreren Applikationen im Direktzugriff genutzt werden.
 

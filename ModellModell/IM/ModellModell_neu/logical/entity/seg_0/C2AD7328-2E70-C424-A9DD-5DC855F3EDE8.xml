@@ -1,12 +1,8 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="C2AD7328-2E70-C424-A9DD-5DC855F3EDE8" name="Benutzerdefinierte Eigenschaft">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="C2AD7328-2E70-C424-A9DD-5DC855F3EDE8" name="User-defined property">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:03:22 UTC</createdTime>
-<comment><![CDATA[Für projekt- oder umgebungsspezifische Erweiterungen, können für jedes Modellelement eigene Eigenschaften definiert werden.
-
-Beispiel:
-- Qualitätsanspruch-Level
-- Sicherheitsstufe]]></comment>
+<comment><![CDATA[*For project- or environment-specific extensions, separate properties can be defined for each model element.  Example: - Quality requirement level - Security level]]></comment>
 <notes><![CDATA[[DE_ENTI_COMMENT[
 Für projekt- oder umgebungsspezifische Erweiterungen, können für jedes Modellelement eigene Eigenschaften definiert werden.
 
@@ -60,9 +56,9 @@ Beispiel:
 <item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
-<use>0</use>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
-<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_COMMENT" value=""/>
@@ -71,7 +67,7 @@ Beispiel:
 <property name="EN_ATTR_NAME" value="Name"/>
 </propertyMap>
 </Attribute>
-<Attribute name="Beschreibung" id="0CB6EB45-CED2-986A-9F57-3B6AD23BEE2F">
+<Attribute name="Description of the" id="0CB6EB45-CED2-986A-9F57-3B6AD23BEE2F">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:03:22 UTC</createdTime>
 <notes><![CDATA[[DE_ATTR_COMMENT[
@@ -89,9 +85,9 @@ Beispiel:
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
-<use>0</use>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
-<domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_COMMENT" value=""/>
@@ -117,9 +113,9 @@ Beispiel:
 <item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
-<use>0</use>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
-<domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_COMMENT" value=""/>

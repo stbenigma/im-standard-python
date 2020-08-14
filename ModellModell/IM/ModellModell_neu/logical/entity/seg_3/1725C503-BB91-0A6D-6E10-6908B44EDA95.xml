@@ -1,11 +1,8 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_3" id="1725C503-BB91-0A6D-6E10-6908B44EDA95" name="Wertebereich">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_3" id="1725C503-BB91-0A6D-6E10-6908B44EDA95" name="Domain">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:03:22 UTC</createdTime>
-<comment><![CDATA[Beschreibung des Wertebereichs eines (oder mehrerer) Attributs/e.
-
-Die Typen Numerisch, Text, Zeitpunkt oder Aufzählung sind konzeptionell zu verstehen. Die echten Datentypen und ggf. Formate (für Zahlen und Zeitpunkte) für die Speicherung werden in der Implementierung festgelegt.
-Wertegruppen sind Attributgruppen, d.h. mehrere Attribute, die mehrfach gemeinsam vorkommen  werden für eine einfachere Handhabung unter einem neuen Namen zusammengefasst. Beispiel Telefon-Nr bestehend auf Landesvorwahl und Rufnummer.]]></comment>
+<comment><![CDATA[*Description of the value range of one (or more) attribute(s).  The types numerical, text, time or enumeration are to be understood conceptually. The real data types and, if applicable, formats (for numbers and times) for storage are defined in the implementation. Value groups are attribute groups, i.e. several attributes that occur more than once together are combined under a new name for easier handling. Example telephone number consisting of country code and telephone number]]></comment>
 <notes><![CDATA[[DE_ENTI_COMMENT[
 Beschreibung des Wertebereichs eines (oder mehrerer) Attributs/e.
 
@@ -33,12 +30,12 @@ Wertegruppen sind Attributgruppen, d.h. mehrere Attribute, die mehrfach gemeinsa
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
 <shortName>DOM</shortName>
-<synonym>Domäne</synonym>
+<synonym>Domain</synonym>
 <createSurrogateKey>true</createSurrogateKey>
 <propertyMap>
 <property name="Beispiele" value="Netto-Gewicht  / Beleuchtungsmodell  / Geo-Koordinate / internationale Telefon-Nr"/>
 <property name="DE_ENTI_COMMENT" value="Beschreibung des Wertebereichs eines (oder mehrerer) Attributs/e.  Die Typen Numerisch, Text, Zeitpunkt oder Aufzählung sind konzeptionell zu verstehen. Die echten Datentypen und ggf. Formate (für Zahlen und Zeitpunkte) für die Speicherung werden in der Implementierung festgelegt. Wertegruppen sind Attributgruppen, d.h. mehrere Attribute, die mehrfach gemeinsam vorkommen  werden für eine einfachere Handhabung unter einem neuen Namen zusammengefasst. Beispiel Telefon-Nr bestehend auf Landesvorwahl und Rufnummer. "/>
-<property name="DE_ENTI_NAME" value="*Wertebereich"/>
+<property name="DE_ENTI_NAME" value="Wertebereich"/>
 <property name="DE_ENTI_SYNONYM" value="Domäne"/>
 <property name="EN_ENTI_COMMENT" value="*DE* Beschreibung des Wertebereichs eines (oder mehrerer) Attributs/e.  Die Typen Numerisch, Text, Zeitpunkt oder Aufzählung sind konzeptionell zu verstehen. Die echten Datentypen und ggf. Formate (für Zahlen und Zeitpunkte) für die Speicherung werden in der Implementierung festgelegt. Wertegruppen sind Attributgruppen, d.h. mehrere Attribute, die mehrfach gemeinsam vorkommen  werden für eine einfachere Handhabung unter einem neuen Namen zusammengefasst. Beispiel Telefon-Nr bestehend auf Landesvorwahl und Rufnummer. "/>
 <property name="EN_ENTI_NAME" value="Domain"/>
@@ -73,7 +70,7 @@ Wertegruppen sind Attributgruppen, d.h. mehrere Attribute, die mehrfach gemeinsa
 <property name="EN_ATTR_NAME" value="Name [L]"/>
 </propertyMap>
 </Attribute>
-<Attribute name="Beschreibung [L]" id="709F8112-9493-4D2A-368C-D0CCE5B2472E">
+<Attribute name="Description [L]" id="709F8112-9493-4D2A-368C-D0CCE5B2472E">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:03:22 UTC</createdTime>
 <notes><![CDATA[[DE_ATTR_COMMENT[

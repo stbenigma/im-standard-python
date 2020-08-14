@@ -1,23 +1,8 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="B3ACCAEA-B3B2-9C13-1893-E1DA0E09D089" name="Geschäftstransaktion">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="B3ACCAEA-B3B2-9C13-1893-E1DA0E09D089" name="Business transaction">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:03:22 UTC</createdTime>
-<comment><![CDATA[Eine Geschäftstransaktion beschreibt eine Folge von Einzeltätigkeiten, die schrittweise ausgeführt werden, um ein geschäftliches oder betriebliches Ziel zu erreichen. 
-Eine Geschäftstransaktion überführt das System "Geschäft" von einem stabilen, definierten Zustand in einen neuen.
-Sie besteht aus Einzelschritten, die alle oder gar nicht ausgeführt werden. 
-Sie kann Medienbrüche enthalten (z.B. wenn der Output reale Produkte und ihre digitalen Zwillinge sind).
-
-Wird auch als Geschäftsprozess (Business Process) (obwohl es häufig nur eine Komponente davon ist) ein oder use case bezeichnet. 
-
-
-
-Beispiele:
-- Erfassen und prüfen Bestellung
-- Mahnung versenden
-- Buchhaltungsjahr abschliessen
-- Produkt ausliefern
-- Steuerschuld verfügen
-- Angestellem/r kündigen]]></comment>
+<comment><![CDATA[*A business transaction is a series of individual activities that are performed step-by-step to achieve a business or operational objective.  A business transaction transfers the "business" system from a stable, defined state to a new one. It consists of individual steps, all of which are executed or not executed at all.  It can contain media breaks (e.g. if the output is real products and their digital twins).  Also referred to as the Business Process.   Wikipedia: A business process (abbreviation: GP) is a set of logically linked individual activities (tasks, workflows) that are performed to achieve a specific business or operational objective. It is triggered by a defined event and transforms 'input' into 'output' through the use of material and immaterial goods and by observing certain rules and internal and external factors.  The process system strives for a value-added process that should be permanently optimized in terms of resource consumption, throughput times and quality. Ideally, the output achieved for the company in question should therefore represent a higher value than the input originally used.  Examples: - Enter and check order - send reminder - close accounting year - deliver product - dispose of tax debt - cancel employee]]></comment>
 <notes><![CDATA[[DE_ENTI_COMMENT[
 Eine Geschäftstransaktion beschreibt eine Folge von Einzeltätigkeiten, die schrittweise ausgeführt werden, um ein geschäftliches oder betriebliches Ziel zu erreichen. 
 Eine Geschäftstransaktion überführt das System "Geschäft" von einem stabilen, definierten Zustand in einen neuen.

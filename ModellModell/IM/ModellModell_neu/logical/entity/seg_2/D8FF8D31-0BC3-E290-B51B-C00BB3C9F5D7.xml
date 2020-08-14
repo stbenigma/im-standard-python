@@ -1,12 +1,8 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_2" id="D8FF8D31-0BC3-E290-B51B-C00BB3C9F5D7" name="Absicht">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_2" id="D8FF8D31-0BC3-E290-B51B-C00BB3C9F5D7" name="*Customer travel stage">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:05:22 UTC</createdTime>
-<comment><![CDATA[Teil der Reise, die ein Kunde mit unserem Unternehmen für bestimmte Produkte / Dienstleistungen geht.
-
-Mögliche Ergebnisse:
-Kundenreaktion oder Firmen-Ergebnis
-führt typischerweise zu nächster Etappe bzw. Ender der Journey]]></comment>
+<comment><![CDATA[*Part of the journey that a customer goes with our company for certain products / services.]]></comment>
 <notes><![CDATA[[DE_ENTI_COMMENT[
 Teil der Reise, die ein Kunde mit unserem Unternehmen für bestimmte Produkte / Dienstleistungen geht.
 
@@ -33,7 +29,7 @@ führt typischerweise zu nächster Etappe bzw. Ender der Journey
 <maxVolumes>9999999</maxVolumes>
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
-<synonym>Kundenreiseetappe</synonym>
+<synonym>**Customer travel stage</synonym>
 <createSurrogateKey>true</createSurrogateKey>
 <propertyMap>
 <property name="DE_ENTI_COMMENT" value="Teil der Reise, die ein Kunde mit unserem Unternehmen für bestimmte Produkte / Dienstleistungen geht."/>
@@ -44,7 +40,7 @@ führt typischerweise zu nächster Etappe bzw. Ender der Journey
 <property name="EN_ENTI_SYNONYM" value="**Customer travel stage"/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<Attribute name="Emotion" id="65624D7F-0CB2-C9B6-B241-9B5743525300">
+<Attribute name="**Emotion" id="65624D7F-0CB2-C9B6-B241-9B5743525300">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:05:22 UTC</createdTime>
 <notes><![CDATA[[DE_ATTR_COMMENT[
@@ -69,7 +65,7 @@ führt typischerweise zu nächster Etappe bzw. Ender der Journey
 <property name="EN_ATTR_NAME" value="**Emotion"/>
 </propertyMap>
 </Attribute>
-<Attribute name="Beschreibung" id="810AAFCD-337D-53D2-A2F4-4917B19934CC">
+<Attribute name="**Description" id="810AAFCD-337D-53D2-A2F4-4917B19934CC">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:05:22 UTC</createdTime>
 <notes><![CDATA[[DE_ATTR_COMMENT[
@@ -94,7 +90,7 @@ führt typischerweise zu nächster Etappe bzw. Ender der Journey
 <property name="EN_ATTR_NAME" value="**Description"/>
 </propertyMap>
 </Attribute>
-<Attribute name="Kundenziel" id="DD6D9102-DD32-B87F-D7AD-E40F87276400">
+<Attribute name="**Client target" id="DD6D9102-DD32-B87F-D7AD-E40F87276400">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:05:22 UTC</createdTime>
 <notes><![CDATA[[DE_ATTR_COMMENT[

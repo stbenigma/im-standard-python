@@ -1,17 +1,8 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_3" id="97697E1A-8F6A-19AC-AF05-F9351CD69864" name="Speicherformat">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_3" id="97697E1A-8F6A-19AC-AF05-F9351CD69864" name="Storage format">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:04:00 UTC</createdTime>
-<comment><![CDATA[Format für die Speicherung binär verkodeter Werte.
-
-Beispiele:
-GIF
-TIFF
-JPEG
-DOC
-DOCX
-SVG
-PDF]]></comment>
+<comment><![CDATA[*Format for storing binary coded values.  Examples: GIF TIFF JPEG DOC DOCX SVG PDF]]></comment>
 <notes><![CDATA[[DE_ENTI_COMMENT[
 Format für die Speicherung binär verkodeter Werte.
 
@@ -48,6 +39,7 @@ PDF
 <propertyMap>
 <property name="DE_ENTI_COMMENT" value="Format für die Speicherung binär verkodeter Werte.  Beispiele: GIF TIFF JPEG DOC DOCX SVG PDF"/>
 <property name="DE_ENTI_NAME" value="Speicherformat"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
 <property name="EN_ENTI_COMMENT" value="*DE* Format für die Speicherung binär verkodeter Werte.  Beispiele: GIF TIFF JPEG DOC DOCX SVG PDF"/>
 <property name="EN_ENTI_NAME" value="Storage format"/>
 </propertyMap>
@@ -80,7 +72,7 @@ PDF
 <property name="EN_ATTR_NAME" value="Name"/>
 </propertyMap>
 </Attribute>
-<Attribute name="Beschreibung" id="102EF215-5D55-196F-A9B2-CC5771D133B7">
+<Attribute name="Description of the" id="102EF215-5D55-196F-A9B2-CC5771D133B7">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:04:00 UTC</createdTime>
 <notes><![CDATA[[DE_ATTR_COMMENT[
