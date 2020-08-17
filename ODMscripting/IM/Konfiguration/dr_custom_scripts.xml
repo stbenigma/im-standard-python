@@ -5336,11 +5336,11 @@ ddlStatementsList.add(new java.lang.String(ddl));
 
 	<lib id="54EF8B1E-3F94-AA1B-C28A-296419849A00" name="mappingLib" engine="Oracle Nashorn" methods="printXMapping,printNameMapping,print1Mapping,importMapping,printDevMapping" >
 		<script>
-			<![CDATA[var CODEVERSION = '3.0'
-			var FORMATJSON = 'JSON'
-			var FORMATCSV = 'CSV'
-			var g_tabanz = 0
-			var g_colanz = 0
+			<![CDATA[var CODEVERSION = "3.0";
+			var FORMATJSON = "JSON";
+			var FORMATCSV = "CSV"
+			var g_tabanz = 0;
+			var g_colanz = 0;
 			var g_colmapanz = 0
 			var g_tabmapanz = 0
 			var g_lineanz = 0
@@ -5350,8 +5350,8 @@ ddlStatementsList.add(new java.lang.String(ddl));
 			var g_inheritanceSet
 			var g_rmodels
 			var g_writtenCols = {}
-			var g_exportDirec = java.lang.System.getProperty("user.home") + "/Downloads"
-			var g_importDirec = java.lang.System.getProperty("user.home") + "/Downloads"
+			var g_exportDirec = java.lang.System.getProperty("user.home") +"/Downloads" 
+			var g_importDirec = java.lang.System.getProperty("user.home") +"/Downloads"
 			var EXTIDPROPNAME = "EXT_ATTR_ID"
 			var EXCELCSVSEP = ";"
 			var EXCELESCCHAR = '"'
@@ -6123,26 +6123,31 @@ ddlStatementsList.add(new java.lang.String(ddl));
 
 			function escapeexcelchars(s){
 				var retval = s.replace(/"/g, "'") //  " sollte EXCELESCCHAR sein ist aber umständlich
-				if (retval.test(/\n/)) {retval = EXCELESCCHAR + retval + EXCELESCCHAR}
+				if (retval.match(/\n/)) {retval = EXCELESCCHAR + retval + EXCELESCCHAR}
 				return retval
 			}
 			function printline(fw, line) {
-				for (zi = 0; zi < line.length; zi++) {
-					field = line[zi]
-					if (zi > 0) {
-						fw.write(EXCELCSVSEP)
+//				for (zi = 0; zi < line.length; zi++) {
+//					field = line[zi]
+				forEach(line,
+					function print1ine(field,idx){
+						if (idx > 0) {
+							fw.write(EXCELCSVSEP)
+						}
+						try {
+							if (typeof field == 'string') {
+								fw.write(escapeexcelchars(field) )
+							} else if (field.length == 0) {
+								fw.write('') // empty List
+							} else if (field.length == 1) {
+								fw.write(escapeexcelchars(field[0])) // single string in List
+							} else {
+								// list of Strings
+								fw.write(escapeexcelchars(field.join(EXCELMULTILINESEP)) )
+							}
+						} catch (err) {linemessage(typeof field, field,line); throw err}
 					}
-					try {if (typeof field == 'string') {
-						fw.write(escapeexcelchars(field) )
-					} else if (field.length == 0) {
-						fw.write('') // empty List
-					} else if (field.length == 1) {
-						fw.write(escapeexcelchars(field[0])) // single string in List
-					} else {
-						// list of Strings
-						fw.write(escapeexcelchars(field.join(EXCELMULTILINESEP)) )
-					}} catch (err) {linemessage(typeof field)}
-				}
+				)				
 				fw.write(EXCELLINEEND)
 			}
 
@@ -6256,7 +6261,7 @@ ddlStatementsList.add(new java.lang.String(ddl));
 					if (g_rmodels[ih].getName() != mymodelname) {
 						//linemessage(ih,g_rmodels[ih].getName(), mymodelname)
 						allmapping["model"].push(g_rmodels[ih].getName(), '', '')
-						allmapping["header"].push('table', 'column', 'ID')
+						allmapping["header"].push('table','column','ID')
 					}
 				}
 				
@@ -6265,7 +6270,7 @@ ddlStatementsList.add(new java.lang.String(ddl));
 
 			function chooseoutputfilename(pfilename, pformat) {
 				fileName = chooseFile(g_exportDirec, pfilename +
-					((pformat == FORMATJSON) ? '.js' : ((pformat == 'CSV') ? '.csv' : 'txt')))
+					((pformat == FORMATJSON) ?'.js' : ((pformat == FORMATCSV) ?'.csv' :'txt')))
 				return fileName
 			}
 
