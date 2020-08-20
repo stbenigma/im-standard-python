@@ -2,10 +2,16 @@
 <Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_3" id="9B10A30A-9185-8568-3F5A-30A4DB81182F" name="Allowed value">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:06:23 UTC</createdTime>
-<comment><![CDATA[*Value that is a valid value for an enumerated value list. The attribute "value" is the physical (language-independent) value, which is the actual value in the conceptual model]]></comment>
+<comment><![CDATA[Value that is a valid value for an enumerated value list. 
+The attribute "value" is the physical (language-independent) value, which is the actual value in the conceptual model
+
+Internal -> Logical value, information model (in the company)
+External -> Value used in an interface / system]]></comment>
 <notes><![CDATA[[DE_ENTI_COMMENT[
 Wert, der für eine Aufzählungs-Werteliste ein gültiger Wert ist.
 Das Attribut "Wert" für "logische Vorgabewerte" ist der physikalische (sprachunabhängige) Wert, der als eigentlicher Wert im konzeptionellen Modell gilt.
+Intern -> Logischer Wert,Informationsmodell (in der Firma)
+Extern -> Wert in eine Schnittstelle / einem System verwendet
 ]DE_ENTI_COMMENT]
 [EN_ENTI_COMMENT[
 *Value that is a valid value for an enumerated value list. The attribute "value" is the physical (language-independent) value, which is the actual value in the conceptual model
@@ -31,7 +37,6 @@ Das Attribut "Wert" für "logische Vorgabewerte" ist der physikalische (sprachun
 <property name="Beispiele" value="M / W / TRUE / FALSE / GESCHLOSSEN / OFFEN"/>
 <property name="DE_ENTI_COMMENT" value="Wert, der für eine Aufzählungs-Werteliste ein gültiger Wert ist. Das Attribut &quot;Wert&quot; ist der physikalische (sprachunabhängige) Wert, der als eigentlicher Wert im konzeptionellen Modell gilt. "/>
 <property name="DE_ENTI_NAME" value="Vorgabewert"/>
-<property name="DE_ENTI_SYNONYM" value=""/>
 <property name="EN_ENTI_COMMENT" value="*DE* Wert, der für eine Aufzählungs-Werteliste ein gültiger Wert ist. Das Attribut &quot;Wert&quot; ist der physikalische (sprachunabhängige) Wert, der als eigentlicher Wert im konzeptionellen Modell gilt. "/>
 <property name="EN_ENTI_NAME" value="Allowed value"/>
 </propertyMap>

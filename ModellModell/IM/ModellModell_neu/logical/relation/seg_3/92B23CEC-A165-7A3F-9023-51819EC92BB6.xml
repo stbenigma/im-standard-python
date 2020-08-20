@@ -10,8 +10,8 @@
 </engineerTo>
 <useSurrogateKey>true</useSurrogateKey>
 <identifying>false</identifying>
-<nameOnSource>**defined</nameOnSource>
-<nameOnTarget>**used</nameOnTarget>
+<nameOnSource>restricts</nameOnSource>
+<nameOnTarget>restricted by</nameOnTarget>
 <optionalSource>true</optionalSource>
 <optionalTarget>false</optionalTarget>
 <sourceCardinality>1</sourceCardinality>
@@ -20,8 +20,8 @@
 <targetEntity>D718E671-DE1C-59BC-9C74-A352687F07F5</targetEntity>
 <transferable>true</transferable>
 <propertyMap>
-<property name="DE_RELA_TEXT_FROM" value="definiert"/>
-<property name="DE_RELA_TEXT_TO" value="verwendet"/>
+<property name="DE_RELA_TEXT_FROM" value="schränkt ein"/>
+<property name="DE_RELA_TEXT_TO" value="eingeschränkt durch"/>
 <property name="EN_RELA_TEXT_FROM" value="**defined"/>
 <property name="EN_RELA_TEXT_TO" value="**used"/>
 </propertyMap>

@@ -2,7 +2,11 @@
 <Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_3" id="7810FD23-A6BA-9ECA-1944-4593B865E654" name="Key">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:04:00 UTC</createdTime>
-<comment><![CDATA[*Group of identifying relationships and/or attributes of an entity. Each combination of values in a key is unique to the entity.  I.e. it identifies exactly 1 entry in the entity.  The sequence number is an aid. Strictly speaking, only the entity + set of all key elements is unique for a key.]]></comment>
+<comment><![CDATA[Group of identifying relationships and/or attributes of an entity. 
+Each combination of values in a key is unique to the entity.  
+I.e. it identifies exactly 1 entry in the entity.  
+The sequence number is an aid. 
+Strictly speaking, only the entity + the set of all key elements is unique for a key.]]></comment>
 <notes><![CDATA[[DE_ENTI_COMMENT[
 Gruppe von identifizierenden Beziehungen und oder Attributen einer Entität.
 Jede Kombination von Werten in einem Schlüssel ist für die Entität einmalig. 
@@ -35,7 +39,6 @@ Entität + Menge aller Schlüsselelemente.
 <property name="Beispiele" value="Rechnungsposition: Rechnung (Beziehung),  Position-Nr, Kunde: Kunden-Nr"/>
 <property name="DE_ENTI_COMMENT" value="Gruppe von identifizierenden Beziehungen und oder Attributen einer Entität. Jede Kombination von Werten in einem Schlüssel ist für die Entität einmalig.  D.h. sie identifiziert genau 1 Eintrag in der Entität.  Die Laufnummer ist ein Hilfsmittel. Genau genommen ist für einen Schlüssel nur eindeutig Entität + Menge aller Schlüsselelemente."/>
 <property name="DE_ENTI_NAME" value="Schlüssel"/>
-<property name="DE_ENTI_SYNONYM" value=""/>
 <property name="EN_ENTI_COMMENT" value="*DE* Gruppe von identifizierenden Beziehungen und oder Attributen einer Entität. Jede Kombination von Werten in einem Schlüssel ist für die Entität einmalig.  D.h. sie identifiziert genau 1 Eintrag in der Entität.  Die Laufnummer ist ein Hilfsmittel. Genau genommen ist für einen Schlüssel nur eindeutig Entität + Menge aller Schlüsselelemente."/>
 <property name="EN_ENTI_NAME" value="Key"/>
 </propertyMap>

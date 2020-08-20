@@ -195,6 +195,21 @@ Relationships with [T] are temporal and have to be resolved in the data model wi
 <useDefaultColor>false</useDefaultColor>
 <backgroundColor>-1061434</backgroundColor>
 <foregroundColor>-1</foregroundColor>
+<fonts itemClass="oracle.dbtools.crest.model.design.FontObjectWr">
+<FontObject>
+<foType>Titel</foType>
+<fontStyle>1</fontStyle>
+<colorRGB>-16776961</colorRGB>
+</FontObject>
+<FontObject>
+<foType>Attribut</foType>
+<colorRGB>-16777216</colorRGB>
+</FontObject>
+<FontObject>
+<foType>Nicht null</foType>
+<colorRGB>-65536</colorRGB>
+</FontObject>
+</fonts>
 </OView>
 <OView class="oracle.dbtools.crest.swingui.logical.TVEntity" oid="EE0F479E-2B85-9DC9-1CB8-66D3967F8993" otype="Entity" vid="C0C16EB6-2CE6-C2F3-E9DD-0A8C689DCF68">
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
@@ -215,6 +230,17 @@ Relationships with [T] are temporal and have to be resolved in the data model wi
 <useDefaultColor>false</useDefaultColor>
 <backgroundColor>-1061434</backgroundColor>
 <foregroundColor>-1</foregroundColor>
+<fonts itemClass="oracle.dbtools.crest.model.design.FontObjectWr">
+<FontObject>
+<foType>Titel</foType>
+<fontStyle>1</fontStyle>
+<colorRGB>-16776961</colorRGB>
+</FontObject>
+<FontObject>
+<foType>Attribut</foType>
+<colorRGB>-16777216</colorRGB>
+</FontObject>
+</fonts>
 </OView>
 </objectViews>
 <connectors>
@@ -371,7 +397,7 @@ Relationships with [T] are temporal and have to be resolved in the data model wi
 <lineWidth>1</lineWidth>
 <sourceLabel class="oracle.dbtools.crest.model.design.Label">
 <site>0</site>
-<labelBounds x="572" y="717" width="104" height="19"/>
+<labelBounds x="572" y="731" width="104" height="33"/>
 <noBackgroundColor>true</noBackgroundColor>
 <noForegroundColor>true</noForegroundColor>
 </sourceLabel>
@@ -392,19 +418,19 @@ Relationships with [T] are temporal and have to be resolved in the data model wi
 <lineWidth>1</lineWidth>
 <sourceLabel class="oracle.dbtools.crest.model.design.Label">
 <site>0</site>
-<labelBounds x="943" y="881" width="54" height="30"/>
+<labelBounds x="943" y="900" width="54" height="16"/>
 <noBackgroundColor>true</noBackgroundColor>
 <noForegroundColor>true</noForegroundColor>
 </sourceLabel>
 <targetLabel class="oracle.dbtools.crest.model.design.Label">
 <site>2</site>
-<labelBounds x="1078" y="1001" width="72" height="30"/>
+<labelBounds x="1078" y="987" width="72" height="30"/>
 <noBackgroundColor>true</noBackgroundColor>
 <noForegroundColor>true</noForegroundColor>
 </targetLabel>
 <points>
-<point x="1003" y="911"/>
-<point x="952" y="911"/>
+<point x="1003" y="916"/>
+<point x="952" y="916"/>
 <point x="952" y="998"/>
 <point x="1078" y="998"/>
 <point x="1078" y="957"/>
@@ -752,6 +778,10 @@ Relationships with [T] are temporal and have to be resolved in the data model wi
 <Arc class="oracle.dbtools.crest.swingui.logical.TVArc" oid="700FFC1B-C12A-7F9F-D852-84C784F42D32" otype="Arc" vid="116B5367-E3A7-2EA0-B0E6-38CB1559B912">
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
 <bounds x="575" y="797" width="199" height="152"/>
+</Arc>
+<Arc class="oracle.dbtools.crest.swingui.logical.TVArc" oid="91B412C1-20E1-FEAB-6472-6E39A5A889BF" otype="Arc" vid="E2038217-F632-5B50-44DA-5061F4229738">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<bounds x="496" y="467" width="247" height="229"/>
 </Arc>
 </arcs>
 </Diagram>

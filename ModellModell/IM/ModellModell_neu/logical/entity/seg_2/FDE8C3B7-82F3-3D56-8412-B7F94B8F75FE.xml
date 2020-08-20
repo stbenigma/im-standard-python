@@ -1,11 +1,16 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_2" id="FDE8C3B7-82F3-3D56-8412-B7F94B8F75FE" name="*internal allowed value">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_2" id="FDE8C3B7-82F3-3D56-8412-B7F94B8F75FE" name="internal allowed value">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:04:00 UTC</createdTime>
-<comment><![CDATA[*Value that is a valid value for an enumerated value list. The attribute "value" is the physical (language-independent) value, which is the actual value in the conceptual model]]></comment>
+<comment><![CDATA[Internal -> Value use in the semantic information model (as opposed to external values in interfaces)
+Value that is a valid value for an enumerated value list. 
+The attribute "value" is the physical (language-independent) value, which is the actual value in the conceptual model.
+]]></comment>
 <notes><![CDATA[[DE_ENTI_COMMENT[
+Intern -> Wert verwendet im semantischen Informatsmodell (im Gegensatz zum externen Wertm in Schnittstellen verwendet)
 logischer Wert, der für eine Aufzählungs-Werteliste im Informationsmodell ein gültiger Wert ist.
 Das Attribut "Wert" ist der physikalische (sprachunabhängige) Wert, der als eigentlicher Wert im konzeptionellen Modell gilt.
+
 ]DE_ENTI_COMMENT]
 [EN_ENTI_COMMENT[
 *Value that is a valid value for an enumerated value list. The attribute "value" is the physical (language-independent) value, which is the actual value in the conceptual model
@@ -31,7 +36,6 @@ Das Attribut "Wert" ist der physikalische (sprachunabhängige) Wert, der als eig
 <property name="Beispiele" value="M / W / TRUE / FALSE / GESCHLOSSEN / OFFEN"/>
 <property name="DE_ENTI_COMMENT" value="Wert, der für eine Aufzählungs-Werteliste ein gültiger Wert ist. Das Attribut &quot;Wert&quot; ist der physikalische (sprachunabhängige) Wert, der als eigentlicher Wert im konzeptionellen Modell gilt. "/>
 <property name="DE_ENTI_NAME" value="logischer Vorgabewert"/>
-<property name="DE_ENTI_SYNONYM" value=""/>
 <property name="EN_ENTI_COMMENT" value="*DE* Wert, der für eine Aufzählungs-Werteliste ein gültiger Wert ist. Das Attribut &quot;Wert&quot; ist der physikalische (sprachunabhängige) Wert, der als eigentlicher Wert im konzeptionellen Modell gilt. "/>
 <property name="EN_ENTI_NAME" value="*internal allowed value"/>
 </propertyMap>

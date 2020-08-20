@@ -2,14 +2,21 @@
 <Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="AA2233B7-68AC-3424-F606-010B96DC9439" name="Business rule">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:04:00 UTC</createdTime>
-<comment><![CDATA[*Transaction rule that checks attribute values for rule conformity. These rules are passive. This means that the system checks whether the value (possibly in connection with other values of these or other entities) is correct from a business point of view.  Rule violations can be specified as SQL selects. Any tuple that returns the select violates the rule.]]></comment>
+<comment><![CDATA[Business rule that checks attribute values for rule conformity. 
+These rules are passive. This means that the system checks whether the value (possibly in connection with other values of these or other entities) is correct for a stable state of the database from a business point of view.  
+
+Rule violations can be specified as formal statements like e.g. SQL selects. 
+Any tuple that returns the select violates the rule.
+
+Level on which the rule checks (row, tuple, entity, database) is derived from the elements of the rule.
+]]></comment>
 <notes><![CDATA[[DE_ENTI_COMMENT[
 Geschäftsregel, die Attributwerte auf Regelkonformität prüft.
-Diese Regeln sind passiv. D.h. es wird überprüft, ob der Wert (ggf. im Zusammenhang mit anderen Werten dieser oder anderer Entitäten) aus fachlicher Sicht korrekt ist.
+Diese Regeln sind passiv. D.h. es wird überprüft, ob der Wert (ggf. im Zusammenhang mit anderen Werten dieser oder anderer Entitäten) für einen stabilen Zustand der Datenbank aus fachlicher Sicht korrekt ist.
 
 Ebene auf der die Regel prüft (row, Tupel, Entität, Datenbank) wird aus den Elementen der Regel abgeleitet.
 
-Regelverletzungen können als SQL Selects angegeben werden. Jedes Tupel, das das Select liefert verletzt die Regel.
+Regelverletzungen können als formale Regeln (z.B. SQL Selects) angegeben werden. Jedes Tupel, das das Select liefert verletzt die Regel.
 ]DE_ENTI_COMMENT]
 [EN_ENTI_COMMENT[
 *Transaction rule that checks attribute values for rule conformity. These rules are passive. This means that the system checks whether the value (possibly in connection with other values of these or other entities) is correct from a business point of view.  Rule violations can be specified as SQL selects. Any tuple that returns the select violates the rule.
@@ -71,7 +78,7 @@ Regelverletzungen können als SQL Selects angegeben werden. Jedes Tupel, das das
 <property name="EN_ATTR_NAME" value="Name"/>
 </propertyMap>
 </Attribute>
-<Attribute name="*Description of the" id="1FEC2481-A807-AFD8-3298-7ACC4E9300CC">
+<Attribute name="Description [L]" id="1FEC2481-A807-AFD8-3298-7ACC4E9300CC">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:04:00 UTC</createdTime>
 <comment><![CDATA[Description, explanation of the rule]]></comment>
