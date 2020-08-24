@@ -1,8 +1,10 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_2" id="894B9609-BAB0-57CD-1A27-20F0E5273BA3" name="IT component">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_2" id="894B9609-BAB0-57CD-1A27-20F0E5273BA3" name="IT-Komponente">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:03:22 UTC</createdTime>
-<comment><![CDATA[*Any component related to information technology that needs to be procured, operated and maintained.  Each IT component has a manufacturer. I.e. they are concrete products.]]></comment>
+<comment><![CDATA[Irgend eine Komponente die mit Informations Technologie zu tun hat und beschafft, betrieben und betreut  werden muss.
+
+Jede IT-Komponente hat einen Hersteller. D.h. es handelt sich um konkrete Produkte.]]></comment>
 <notes><![CDATA[[DE_ENTI_COMMENT[
 Irgend eine Komponente die mit Informations Technologie zu tun hat und beschafft, betrieben und betreut  werden muss.
 
@@ -64,10 +66,10 @@ Jede IT-Komponente hat einen Hersteller. D.h. es handelt sich um konkrete Produk
 <property name="EN_ATTR_NAME" value="Name"/>
 </propertyMap>
 </Attribute>
-<Attribute name="Purpose" id="0F269854-B8A3-F923-CB20-8F92694E250E">
+<Attribute name="Zweck" id="0F269854-B8A3-F923-CB20-8F92694E250E">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:03:22 UTC</createdTime>
-<comment><![CDATA[Application area (ERP, PIM, FiBu etc.)]]></comment>
+<comment><![CDATA[Anwendungsgebiet (ERP, PIM, FiBu etc.)]]></comment>
 <notes><![CDATA[[DE_ATTR_COMMENT[
 Anwendungsgebiet (ERP, PIM, FiBu etc.)
 ]DE_ATTR_COMMENT]
@@ -94,7 +96,7 @@ Application area (ERP, PIM, FiBu etc.)
 <property name="EN_ATTR_NAME" value="Purpose"/>
 </propertyMap>
 </Attribute>
-<Attribute name="Safety requirement" id="B1E65213-E23B-E7A9-29AB-00A4B2143829">
+<Attribute name="Sicherheitsanforderung" id="B1E65213-E23B-E7A9-29AB-00A4B2143829">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:03:22 UTC</createdTime>
 <notes><![CDATA[[DE_ATTR_COMMENT[

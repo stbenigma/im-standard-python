@@ -1,8 +1,15 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="62E7EE1D-AA22-C019-30CA-03017523947B" name="*Business event">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="62E7EE1D-AA22-C019-30CA-03017523947B" name="externes Geschäftsereignis">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:05:22 UTC</createdTime>
-<comment><![CDATA[*Something that triggers something in a business examples: - End of month (wage payment, report to Mgt, reminder runs) - every Monday (check of open orders) - customer complains - customer orders - quarterly figures are bad]]></comment>
+<comment><![CDATA[Eine Ereignis, das von aussen an unsere Firma herangetragen wird. Es kann automatisch (via externe Anwendung) oder manuell durch einen Kunden / Lieferanten geschehen
+
+Beispiele:
+- Kunde beschwert sich
+- Kunde bestellt (mit Brief, Telefon, Fax oder per Webshop)
+- eine Lieferung trifft ein
+- wir erhalten eine Mahnung  / Rechnung
+- eine Bewerbung geht ein]]></comment>
 <notes><![CDATA[[DE_ENTI_COMMENT[
 Eine Ereignis, das von aussen an unsere Firma herangetragen wird. Es kann automatisch (via externe Anwendung) oder manuell durch einen Kunden / Lieferanten geschehen
 

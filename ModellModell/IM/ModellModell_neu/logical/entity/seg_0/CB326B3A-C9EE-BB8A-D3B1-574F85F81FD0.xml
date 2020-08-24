@@ -1,12 +1,11 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="CB326B3A-C9EE-BB8A-D3B1-574F85F81FD0" name="External Reference">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="CB326B3A-C9EE-BB8A-D3B1-574F85F81FD0" name="Externe Referenz">
 <createdBy>stb</createdBy>
 <createdTime>2020-08-08 16:41:54 UTC</createdTime>
-<comment><![CDATA[Reference of the element in an external tool (Modelling tool, Busines-Rules engine, etc.)]]></comment>
+<comment><![CDATA[Referenz (ID) des Elementes in einer externen Quelle (Modellierungstool, DB, etc.)]]></comment>
 <generatorID>09C4FE12-9703-F35C-410F-F92D133D700F</generatorID>
 <notes><![CDATA[[EN_ENTI_COMMENT[
-*DE* Referenz (ID) des Elementes in einer externen Quelle (Modellierungstool, DB, etc.)
-
+Reference of the element in an external tool (Modelling tool, Busines-Rules engine, etc.)
 ]EN_ENTI_COMMENT]
 [DE_ENTI_COMMENT[
 Referenz (ID) des Elementes in einer externen Quelle (Modellierungstool, DB, etc.)
@@ -32,17 +31,18 @@ Referenz (ID) des Elementes in einer externen Quelle (Modellierungstool, DB, etc
 <createSurrogateKey>true</createSurrogateKey>
 <propertyMap>
 <property name="DE_ENTI_NAME" value="Externe Referenz"/>
-<property name="EN_ENTI_NAME" value="*DE* Externe Referenz"/>
+<property name="EN_ENTI_NAME" value="External Reference"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<Attribute name="Source Name" id="AF8EAF2B-54AB-6FEC-4BAE-AC864FF81931">
+<Attribute name="Quellenname" id="AF8EAF2B-54AB-6FEC-4BAE-AC864FF81931">
 <createdBy>stb</createdBy>
 <createdTime>2020-08-08 16:41:54 UTC</createdTime>
-<comment><![CDATA[Name of external source
-(Beispiele:, ODM, CaseTalk, EA, Visual Paradigm...)]]></comment>
+<comment><![CDATA[Name der externen Quelle (Beispiele:, ODM, CaseTalk,...)]]></comment>
 <generatorID>9398BD0C-2747-AFB9-80C1-4BB07BC00704</generatorID>
 <notes><![CDATA[[EN_ATTR_COMMENT[
-*DE* Name der externen Quelle (Beispiele:, ODM, CaseTalk,...)
+Name of external source
+(Beispiele:, ODM, CaseTalk, EA, Visual Paradigm...)
 ]EN_ATTR_COMMENT]
 [DE_ATTR_COMMENT[
 Name der externen Quelle (Beispiele:, ODM, CaseTalk,...)
@@ -61,16 +61,16 @@ Name der externen Quelle (Beispiele:, ODM, CaseTalk,...)
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_NAME" value="Quellenname"/>
-<property name="EN_ATTR_NAME" value="*DE* Quellenname"/>
+<property name="EN_ATTR_NAME" value="Source Name"/>
 </propertyMap>
 </Attribute>
-<Attribute name="Source ID" id="D2A9DF0B-4F81-5C7C-9FEC-C92F4AF20AAD">
+<Attribute name="QuellID" id="D2A9DF0B-4F81-5C7C-9FEC-C92F4AF20AAD">
 <createdBy>stb</createdBy>
 <createdTime>2020-08-08 16:41:54 UTC</createdTime>
-<comment><![CDATA[ID in external source]]></comment>
+<comment><![CDATA[ID in der externen Quelle]]></comment>
 <generatorID>E9F6F7A3-2CBE-B248-2B3D-184F503028BA</generatorID>
 <notes><![CDATA[[EN_ATTR_COMMENT[
-*DE* ID in der externen Quelle
+ID in external source
 ]EN_ATTR_COMMENT]
 [DE_ATTR_COMMENT[
 ID in der externen Quelle
@@ -89,7 +89,7 @@ ID in der externen Quelle
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_NAME" value="QuellID"/>
-<property name="EN_ATTR_NAME" value="*DE* QuellID"/>
+<property name="EN_ATTR_NAME" value="Source ID"/>
 </propertyMap>
 </Attribute>
 </attributes>

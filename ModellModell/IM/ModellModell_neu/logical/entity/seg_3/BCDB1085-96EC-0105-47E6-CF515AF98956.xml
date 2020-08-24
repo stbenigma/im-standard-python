@@ -1,15 +1,17 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_3" id="BCDB1085-96EC-0105-47E6-CF515AF98956" name="Language">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_3" id="BCDB1085-96EC-0105-47E6-CF515AF98956" name="Sprache">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:03:22 UTC</createdTime>
-<comment><![CDATA[Language according to ISO 629-1,2,3 An alternative output allows to output a text to which a translation is missing in a default language.]]></comment>
+<comment><![CDATA[Sprache gemäss ISO 629-1,2,3
+
+Eine alternative Ausgabe, erlaubt es, einen Text zu dem eine Übersetzung fehlt in einer Default-Sprache auszugeben.]]></comment>
 <notes><![CDATA[[DE_ENTI_COMMENT[
 Sprache gemäss ISO 629-1,2,3
 
 Eine alternative Ausgabe, erlaubt es, einen Text zu dem eine Übersetzung fehlt in einer Default-Sprache auszugeben.
 ]DE_ENTI_COMMENT]
 [EN_ENTI_COMMENT[
-*Language according to ISO 629-1,2,3 An alternative output allows to output a text to which a translation is missing in a default language.
+Language according to ISO 629-1,2,3 An alternative output allows to output a text to which a translation is missing in a default language.
 ]EN_ENTI_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -34,12 +36,13 @@ Eine alternative Ausgabe, erlaubt es, einen Text zu dem eine Übersetzung fehlt 
 <property name="DE_ENTI_NAME" value="Sprache"/>
 <property name="EN_ENTI_COMMENT" value="*DE* Sprache gemäss ISO 629-1,2,3  Eine alternative Ausgabe, erlaubt es, einen Text zu dem eine Übersetzung fehlt in einer Default-Sprache auszugeben."/>
 <property name="EN_ENTI_NAME" value="Language"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<Attribute name="ISO name" id="8777DE31-2F15-E42B-98E9-ED740C53EDC0">
+<Attribute name="ISO Name" id="8777DE31-2F15-E42B-98E9-ED740C53EDC0">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:03:22 UTC</createdTime>
-<comment><![CDATA[english ISO standard name]]></comment>
+<comment><![CDATA[englischer ISO Standardname]]></comment>
 <notes><![CDATA[[DE_ATTR_COMMENT[
 englischer ISO Standardname
 ]DE_ATTR_COMMENT]
@@ -68,7 +71,7 @@ english ISO standard name
 <Attribute name="ISO Code2" id="53F2CC5D-BE6A-306B-8C10-78FB4C7A38A3">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:03:22 UTC</createdTime>
-<comment><![CDATA[2-digit ISO code]]></comment>
+<comment><![CDATA[2-Stelliger ISO-Code]]></comment>
 <notes><![CDATA[[DE_ATTR_COMMENT[
 2-Stelliger ISO-Code
 ]DE_ATTR_COMMENT]
@@ -100,7 +103,7 @@ english ISO standard name
 <Attribute name="ISO Code3" id="1882C8B7-E9D6-50B3-C8F6-3126FC156797">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:03:22 UTC</createdTime>
-<comment><![CDATA[3-digit ISO code]]></comment>
+<comment><![CDATA[3-stelliger ISO-Code]]></comment>
 <notes><![CDATA[[DE_ATTR_COMMENT[
 3-stelliger ISO-Code
 ]DE_ATTR_COMMENT]
@@ -129,10 +132,10 @@ english ISO standard name
 <property name="EN_ATTR_NAME" value="ISO Code3"/>
 </propertyMap>
 </Attribute>
-<Attribute name="Text language (Y/N)" id="4675FDBB-AB85-8DCC-3400-29E9167210F7">
+<Attribute name="Textsprache (J/N)" id="4675FDBB-AB85-8DCC-3400-29E9167210F7">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:03:22 UTC</createdTime>
-<comment><![CDATA[Language can be used for translation of texts]]></comment>
+<comment><![CDATA[Sprache kann für Übersetzung von Texten verwendet werden]]></comment>
 <notes><![CDATA[[DE_ATTR_COMMENT[
 Sprache kann für Übersetzung von Texten verwendet werden
 ]DE_ATTR_COMMENT]
@@ -158,10 +161,10 @@ Language can be used for translation of texts
 <property name="EN_ATTR_NAME" value="Text language (Y/N)"/>
 </propertyMap>
 </Attribute>
-<Attribute name="Model language (Y/N)" id="95A45732-1A57-397B-3C90-7CE0438316F5">
+<Attribute name="Modellsprache (J/N)" id="95A45732-1A57-397B-3C90-7CE0438316F5">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:03:22 UTC</createdTime>
-<comment><![CDATA[Basic language in which the model is documented.]]></comment>
+<comment><![CDATA[Basissprache in der das Modell dokumentiert ist.]]></comment>
 <notes><![CDATA[[DE_ATTR_COMMENT[
 Basissprache in der das Modell dokumentiert ist.
 ]DE_ATTR_COMMENT]

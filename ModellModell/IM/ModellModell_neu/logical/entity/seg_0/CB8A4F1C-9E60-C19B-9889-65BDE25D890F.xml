@@ -1,15 +1,17 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="CB8A4F1C-9E60-C19B-9889-65BDE25D890F" name="Binary value range">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="CB8A4F1C-9E60-C19B-9889-65BDE25D890F" name="Binärer Wertebereich">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:04:00 UTC</createdTime>
-<comment><![CDATA[Documents of any kind that cannot be saved in a format called structured (text, number, date).  Managed as documents in the file system (PDF, PNG, TIFF, XLS, DOC, pages, etc.) or as final database objects.]]></comment>
+<comment><![CDATA[Dokumente irgendwelcher Art, die nicht in einem als strukturiert bezeichneten Format (Text, Zahl, Datum) abgespeichert werden kann.
+
+Als Dokumente im Filesystem (PDF, PNG, TIFF, XLS, DOC, pages, etc.) oder als finäre Datenbankobjekte verwaltet.]]></comment>
 <notes><![CDATA[[DE_ENTI_COMMENT[
 Dokumente irgendwelcher Art, die nicht in einem als strukturiert bezeichneten Format (Text, Zahl, Datum) abgespeichert werden kann.
 
 Als Dokumente im Filesystem (PDF, PNG, TIFF, XLS, DOC, pages, etc.) oder als finäre Datenbankobjekte verwaltet.
 ]DE_ENTI_COMMENT]
 [EN_ENTI_COMMENT[
-*Documents of any kind that cannot be saved in a format called structured (text, number, date).  Managed as documents in the file system (PDF, PNG, TIFF, XLS, DOC, pages, etc.) or as final database objects.
+Documents of any kind that cannot be saved in a format called structured (text, number, date).  Managed as documents in the file system (PDF, PNG, TIFF, XLS, DOC, pages, etc.) or as final database objects.
 ]EN_ENTI_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -39,7 +41,7 @@ Als Dokumente im Filesystem (PDF, PNG, TIFF, XLS, DOC, pages, etc.) oder als fin
 <property name="EN_ENTI_SYNONYM" value=""/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<Attribute name="Content type" id="C5CA5BD0-DFBF-51B8-8719-DDA23703721E">
+<Attribute name="Inhaltstyp" id="C5CA5BD0-DFBF-51B8-8719-DDA23703721E">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:04:00 UTC</createdTime>
 <notes><![CDATA[[DE_ATTR_COMMENT[

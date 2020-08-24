@@ -1,8 +1,16 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="9B83A398-864E-B973-221B-195C8CFEDA12" name="Business event">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="9B83A398-864E-B973-221B-195C8CFEDA12" name="Geschäftsereignis">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:05:22 UTC</createdTime>
-<comment><![CDATA[*Something that triggers something in a business examples: - End of month (wage payment, report to Mgt, reminder runs) - every Monday (check of open orders) - customer complains - customer orders - quarterly figures are bad]]></comment>
+<comment><![CDATA[Eine geschäftliche Entscheidung, Vorgabe oder Regel, die dazu führt, dass eine Geschäftsfunktion oder ein -Prozess ausgelöst wird.
+Bei einem Geschäftsereignis ist immer eine Person involviert, die das Ereignis als solches definiert.
+Automatisch ausgelöste Ereignisse sind Geschäftszustände
+
+Beispiele:
+- Eine Kündigung wird ausgesprochen
+- Kunde beschwert sich
+- Kunde bestellt (mit Brief, Telefon, Fax oder per Webshop)
+- Quartalszahlen sind schlecht]]></comment>
 <notes><![CDATA[[DE_ENTI_COMMENT[
 Eine geschäftliche Entscheidung, Vorgabe oder Regel, die dazu führt, dass eine Geschäftsfunktion oder ein -Prozess ausgelöst wird.
 Bei einem Geschäftsereignis ist immer eine Person involviert, die das Ereignis als solches definiert.

@@ -1,14 +1,15 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="CCA84128-2C6E-7BC3-3095-38F352696939" name="Functional relationship">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="CCA84128-2C6E-7BC3-3095-38F352696939" name="Funktionale Beziehung">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:04:00 UTC</createdTime>
-<comment><![CDATA[An M:1 relationship between two entities. ]]></comment>
+<comment><![CDATA[Eine M:1 Beziehung  zwischen 2 Entitäten.
+Die M-Seite ist immer die von-Seite (im ODM nicht so geführt).]]></comment>
 <notes><![CDATA[[DE_ENTI_COMMENT[
 Eine M:1 Beziehung  zwischen 2 Entitäten.
 Die M-Seite ist immer die von-Seite (im ODM nicht so geführt).
 ]DE_ENTI_COMMENT]
 [EN_ENTI_COMMENT[
-*An M:1 relationship between two entities. The M-side is always the from-side (not so guided in the ODM)
+An M:1 relationship between two entities. 
 ]EN_ENTI_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -33,5 +34,6 @@ Die M-Seite ist immer die von-Seite (im ODM nicht so geführt).
 <property name="DE_ENTI_NAME" value="Funktionale Beziehung"/>
 <property name="EN_ENTI_COMMENT" value="*DE* Eine M:1 Beziehung  zwischen 2 Entitäten. Die M-Seite ist immer die von-Seite (im ODM nicht so geführt). "/>
 <property name="EN_ENTI_NAME" value="Functional relationship"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
 </propertyMap>
 </Entity>

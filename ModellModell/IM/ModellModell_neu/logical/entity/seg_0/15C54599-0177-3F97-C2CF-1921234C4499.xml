@@ -1,8 +1,17 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="15C54599-0177-3F97-C2CF-1921234C4499" name="Actor role">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="15C54599-0177-3F97-C2CF-1921234C4499" name="Akteurrolle">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:03:22 UTC</createdTime>
-<comment><![CDATA[*The collective entry of a task and responsibility area that a person can fill out as an actor in the system.  A person role must always occur as at least one of the subtypes (internal, external).  Example: Product Manager Head of Marketing CEO CFO Service Technician]]></comment>
+<comment><![CDATA[Zuammenfassung eines Aufgaben- und Verantwortungsbereichs, den eine Person als Akteur im System ausfüllen kann.
+
+Eine Personenrolle muss immer als mindestens einen der Subtypen (intern, extern) vorkommen.
+
+Beispiel:
+ Produkt Manager
+ Leiter Marketing 
+ CEO
+ CFO
+ Servicetechniker]]></comment>
 <notes><![CDATA[[DE_ENTI_COMMENT[
 Zuammenfassung eines Aufgaben- und Verantwortungsbereichs, den eine Person als Akteur im System ausfüllen kann.
 
@@ -46,7 +55,7 @@ Beispiel:
 <property name="EN_ENTI_SYNONYM" value=""/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<Attribute name="Designation" id="CD009924-6684-A71B-8BB9-0B7FAD5B323C">
+<Attribute name="Bezeichnung" id="CD009924-6684-A71B-8BB9-0B7FAD5B323C">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:03:22 UTC</createdTime>
 <notes><![CDATA[[DE_ATTR_COMMENT[

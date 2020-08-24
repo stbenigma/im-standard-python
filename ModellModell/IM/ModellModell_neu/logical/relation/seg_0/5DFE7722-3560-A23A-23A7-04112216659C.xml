@@ -10,8 +10,8 @@
 </engineerTo>
 <useSurrogateKey>true</useSurrogateKey>
 <identifying>false</identifying>
-<nameOnSource>mentions</nameOnSource>
-<nameOnTarget>mentioned in</nameOnTarget>
+<nameOnSource>erwähnt</nameOnSource>
+<nameOnTarget>erwähnt in</nameOnTarget>
 <optionalSource>true</optionalSource>
 <optionalTarget>true</optionalTarget>
 <sourceCardinality>*</sourceCardinality>
@@ -22,7 +22,7 @@
 <propertyMap>
 <property name="DE_RELA_TEXT_FROM" value="erwähnt"/>
 <property name="DE_RELA_TEXT_TO" value="erwähnt in"/>
-<property name="EN_RELA_TEXT_FROM" value="*describes"/>
-<property name="EN_RELA_TEXT_TO" value="*described in"/>
+<property name="EN_RELA_TEXT_FROM" value="mentions"/>
+<property name="EN_RELA_TEXT_TO" value="mentioned in"/>
 </propertyMap>
 </Relation>

@@ -1,8 +1,10 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="2903ABBE-6F5E-654F-A69D-31C2FE3B891E" name="Attribute transformation">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="2903ABBE-6F5E-654F-A69D-31C2FE3B891E" name="Attributtransformation">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:06:23 UTC</createdTime>
-<comment><![CDATA[*An attribute transformation transforms 1-many source attributes into one attribute value.  Transformations from external systems to the consolidated model fill an attribute and use at least 1 system attribute.  Transformations from the model to external systems fill a system attribute and use at least 1 attribute.]]></comment>
+<comment><![CDATA[Eine Attributtransformation transformiert 1-viele Ausgangsattribute in einen Attributwert.
+ Transformationen von externen Systemen zum konsolidierten Modell befüllen ein Attribut und verwenden min. 1 Systemattribut.
+ Transformationen vom Modell zu externen Systemen befüllen ein Systemattribut und verwenden min. 1 Attribut.]]></comment>
 <notes><![CDATA[[DE_ENTI_COMMENT[
 Eine Attributtransformation transformiert 1-viele Ausgangsattribute in einen Attributwert.
  Transformationen von externen Systemen zum konsolidierten Modell befüllen ein Attribut und verwenden min. 1 Systemattribut.
@@ -39,10 +41,10 @@ Eine Attributtransformation transformiert 1-viele Ausgangsattribute in einen Att
 <property name="EN_ENTI_SYNONYM" value=""/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<Attribute name="Runnr" id="7B64AFBB-D960-739E-1CE3-ED5475E80A7D">
+<Attribute name="Laufnr" id="7B64AFBB-D960-739E-1CE3-ED5475E80A7D">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:06:23 UTC</createdTime>
-<comment><![CDATA[Distinguishing characteristic of several rules for an attribute]]></comment>
+<comment><![CDATA[Unterscheidungsmerkmal mehrerer Regeln für ein Attribut]]></comment>
 <notes><![CDATA[[DE_ATTR_COMMENT[
 Unterscheidungsmerkmal mehrerer Regeln für ein Attribut
 ]DE_ATTR_COMMENT]
@@ -68,10 +70,10 @@ Distinguishing characteristic of several rules for an attribute
 <property name="EN_ATTR_NAME" value="Runnr"/>
 </propertyMap>
 </Attribute>
-<Attribute name="Transformation formula" id="7C5155FA-51CC-2399-90D7-765096C298B4">
+<Attribute name="Transformationformel" id="7C5155FA-51CC-2399-90D7-765096C298B4">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:06:23 UTC</createdTime>
-<comment><![CDATA[Formula that converts 1-n source attributes into a target attribute.]]></comment>
+<comment><![CDATA[Formel, die 1-n Ausgangsattribute in ein Zielattribut umwandelt.]]></comment>
 <commentInRDBMS><![CDATA[Formel für die Umwandlung eines Wertes. Leer -> Wert ohne Transformation kopiert ]]></commentInRDBMS>
 <notes><![CDATA[[DE_ATTR_COMMENT[
 Formel, die 1-n Ausgangsattribute in ein Zielattribut umwandelt.
@@ -99,10 +101,10 @@ Formula that converts 1-n source attributes into a target attribute.
 <property name="EN_ATTR_NAME" value="Transformation formula"/>
 </propertyMap>
 </Attribute>
-<Attribute name="Trigger type" id="F8EC1F97-4C9C-0D6E-8606-6F12A87F0276">
+<Attribute name="Auslöseart" id="F8EC1F97-4C9C-0D6E-8606-6F12A87F0276">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:06:23 UTC</createdTime>
-<comment><![CDATA[Type of triggering of transformation (mutation, period, manual)]]></comment>
+<comment><![CDATA[Art der Auslösung der Transformation (Mutation, Periode, Manuell)]]></comment>
 <commentInRDBMS><![CDATA[Falls leer, wird die Auslöseart der Schnittstelle verwendet.]]></commentInRDBMS>
 <notes><![CDATA[[DE_ATTR_COMMENT[
 Art der Auslösung der Transformation (Mutation, Periode, Manuell)
@@ -130,10 +132,10 @@ Type of triggering of transformation (mutation, period, manual)
 <property name="EN_ATTR_NAME" value="Trigger type"/>
 </propertyMap>
 </Attribute>
-<Attribute name="Trigger frequency" id="5540EBDE-6160-3BEF-B50C-B764A4DC2E19">
+<Attribute name="Auslöseperiodizität" id="5540EBDE-6160-3BEF-B50C-B764A4DC2E19">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:06:23 UTC</createdTime>
-<comment><![CDATA[Daily, every 2 minutes or similar. Mandatory if the trigger type is Time.]]></comment>
+<comment><![CDATA[Täglich, alle 2 Minuten o.ä. Obligatorisch, falls die Auslöseart Zeitpunkt ist.]]></comment>
 <notes><![CDATA[[DE_ATTR_COMMENT[
 Täglich, alle 2 Minuten o.ä. Obligatorisch, falls die Auslöseart Zeitpunkt ist.
 ]DE_ATTR_COMMENT]

@@ -1,14 +1,15 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_3" id="23D800D2-69D7-19A7-A112-599DD4855100" name="Physical unit">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_3" id="23D800D2-69D7-19A7-A112-599DD4855100" name="Physikalische Einheit">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:04:00 UTC</createdTime>
-<comment><![CDATA[Physical measuring unit . See also e.g. https://de.wikipedia.org/wiki/Liste_physikalischer_Größen#SI-Basisgrößen_und_-einheiten]]></comment>
+<comment><![CDATA[Physikalische Messeinheit .
+Siehe dazu z.B. https://de.wikipedia.org/wiki/Liste_physikalischer_Größen#SI-Basisgrößen_und_-einheiten]]></comment>
 <notes><![CDATA[[DE_ENTI_COMMENT[
 Physikalische Messeinheit .
 Siehe dazu z.B. https://de.wikipedia.org/wiki/Liste_physikalischer_Größen#SI-Basisgrößen_und_-einheiten
 ]DE_ENTI_COMMENT]
 [EN_ENTI_COMMENT[
-*Physical measuring unit . See also e.g. https://de.wikipedia.org/wiki/Liste_physikalischer_Größen#SI-Basisgrößen_und_-einheiten
+Physical measuring unit . See also e.g. https://de.wikipedia.org/wiki/Liste_physikalischer_Größen#SI-Basisgrößen_und_-einheiten
 ]EN_ENTI_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -36,10 +37,10 @@ Siehe dazu z.B. https://de.wikipedia.org/wiki/Liste_physikalischer_Größen#SI-B
 <property name="EN_ENTI_SYNONYM" value=""/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<Attribute name="SI unit" id="10B2F6C3-9A2A-78A2-C064-EB3522695570">
+<Attribute name="SI-Einheit" id="10B2F6C3-9A2A-78A2-C064-EB3522695570">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:04:00 UTC</createdTime>
-<comment><![CDATA[Unit according to SI specification]]></comment>
+<comment><![CDATA[Einheit gemäss SI-Vorgabe]]></comment>
 <notes><![CDATA[[DE_ATTR_COMMENT[
 Einheit gemäss SI-Vorgabe
 ]DE_ATTR_COMMENT]
@@ -93,7 +94,7 @@ Unit according to SI specification
 <property name="EN_ATTR_NAME" value="Name [L]"/>
 </propertyMap>
 </Attribute>
-<Attribute name="Description [L]" id="BE51FA69-1EC3-E4EF-DAE1-0C1845EA613C">
+<Attribute name="Beschreibung [L]" id="BE51FA69-1EC3-E4EF-DAE1-0C1845EA613C">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:04:00 UTC</createdTime>
 <notes><![CDATA[[DE_ATTR_COMMENT[

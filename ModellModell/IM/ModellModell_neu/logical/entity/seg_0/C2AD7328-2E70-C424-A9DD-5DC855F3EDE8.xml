@@ -1,8 +1,12 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="C2AD7328-2E70-C424-A9DD-5DC855F3EDE8" name="User-defined property">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="C2AD7328-2E70-C424-A9DD-5DC855F3EDE8" name="Benutzerdefinierte Eigenschaft">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:03:22 UTC</createdTime>
-<comment><![CDATA[For project- or environment-specific extensions, separate properties can be defined for each model element.  Example: - Quality requirement level - Security level]]></comment>
+<comment><![CDATA[Für projekt- oder umgebungsspezifische Erweiterungen, können für jedes Modellelement eigene Eigenschaften definiert werden.
+
+Beispiel:
+- Qualitätsanspruch-Level
+- Sicherheitsstufe]]></comment>
 <notes><![CDATA[[DE_ENTI_COMMENT[
 Für projekt- oder umgebungsspezifische Erweiterungen, können für jedes Modellelement eigene Eigenschaften definiert werden.
 
@@ -11,7 +15,7 @@ Beispiel:
 - Sicherheitsstufe
 ]DE_ENTI_COMMENT]
 [EN_ENTI_COMMENT[
-*For project- or environment-specific extensions, separate properties can be defined for each model element.  Example: - Quality requirement level - Security level
+For project- or environment-specific extensions, separate properties can be defined for each model element.  Example: - Quality requirement level - Security level
 ]EN_ENTI_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -65,15 +69,15 @@ Beispiel:
 <property name="EN_ATTR_NAME" value="Name"/>
 </propertyMap>
 </Attribute>
-<Attribute name="Group Name" id="227E5C4B-1CA9-DFF9-BB54-E9DF4A56A3C5">
+<Attribute name="Gruppenname" id="227E5C4B-1CA9-DFF9-BB54-E9DF4A56A3C5">
 <createdBy>stb</createdBy>
 <createdTime>2020-08-21 06:53:38 UTC</createdTime>
-<comment><![CDATA[Possibility to group UDP together (Quality, Interface-ID, Translation ...)]]></comment>
+<comment><![CDATA[Möglichkeit UDP's thematisch zu gruppieren (Qualität, Interface-ID, Überstezung....)]]></comment>
 <notes><![CDATA[[DE_ATTR_COMMENT[
-Möglichkeit UDP's thematisch zu gruppieren (Qualität, Interface-ID, Überstezung....)
+*Möglichkeit UDP's thematisch zu gruppieren (Qualität, Interface-ID, Überstezung....)
 ]DE_ATTR_COMMENT]
 [EN_ATTR_COMMENT[
-
+Possibility to group UDP together (Quality, Interface-ID, Translation ...)
 ]EN_ATTR_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -90,12 +94,12 @@ Möglichkeit UDP's thematisch zu gruppieren (Qualität, Interface-ID, Überstezu
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_COMMENT" value=""/>
-<property name="DE_ATTR_NAME" value="Name"/>
+<property name="DE_ATTR_NAME" value="*Name"/>
 <property name="EN_ATTR_COMMENT" value=""/>
-<property name="EN_ATTR_NAME" value="Name"/>
+<property name="EN_ATTR_NAME" value="Group Name"/>
 </propertyMap>
 </Attribute>
-<Attribute name="Description [L]" id="0CB6EB45-CED2-986A-9F57-3B6AD23BEE2F">
+<Attribute name="Beschreibung [L]" id="0CB6EB45-CED2-986A-9F57-3B6AD23BEE2F">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:03:22 UTC</createdTime>
 <notes><![CDATA[[DE_ATTR_COMMENT[
@@ -119,9 +123,9 @@ Möglichkeit UDP's thematisch zu gruppieren (Qualität, Interface-ID, Überstezu
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_COMMENT" value=""/>
-<property name="DE_ATTR_NAME" value="Beschreibung"/>
+<property name="DE_ATTR_NAME" value="*Beschreibung"/>
 <property name="EN_ATTR_COMMENT" value=""/>
-<property name="EN_ATTR_NAME" value="Description of the"/>
+<property name="EN_ATTR_NAME" value="Description [L]"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Optional" id="78C0A207-DA89-3B50-73D9-CD2FA1C3FA21">

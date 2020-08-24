@@ -1,8 +1,12 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="592F1E3F-D179-7362-AEAD-1661ABD00ADD" name="Attribute value transformation">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="592F1E3F-D179-7362-AEAD-1661ABD00ADD" name="Attributwerttransformation">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:06:23 UTC</createdTime>
-<comment><![CDATA[*History of the processed transformations. Values are loaded, depending on the direction of the transformation, from the foreign system or from the conceptual schema. As soon as a value has the status 'processed', the processing type and transformation time must be set. Only then may it continue to be used. Valid processed values have a transformation time, a processing type, the transformation status ="processed" and transformation valid = 'J'. Invalid values have the transformation status ="processed", a processing type, transformation valid = "N" and additionally an error description (error number, error description, or (name of) rule that was violated).]]></comment>
+<comment><![CDATA[Historie der verarbeiteten Transformationen.
+Werte werden geladen, je nach Richtung der Transformation aus dem Fremdsystem oder aus dem konzeptionellen Schema.
+Sobald ein Wert den Status 'verarbeitet" hat muss Verarbeitungsart und Transformationszeitpunkt gesetzt sein. Erst dann darf er weiter verwendet werden.
+Gültige verarbeitete Werte haben einen Transformationszeitpunkt, eine Verarbeitungsart, den Transformationsstatus ="verarbeitet" und Transformation gültig = 'J' .
+Ungültige Werte haben den Transformationsstatus ="verarbeitet", eine Verarbeitungsart, Transformation gültig = "N"  und zusätzlich eine Feherbeschreibung (Fehler-Nr, -Beschrieb, oder (Name der) Regel die verletzt wurde).]]></comment>
 <notes><![CDATA[[DE_ENTI_COMMENT[
 Historie der verarbeiteten Transformationen.
 Werte werden geladen, je nach Richtung der Transformation aus dem Fremdsystem oder aus dem konzeptionellen Schema.
@@ -41,10 +45,10 @@ Ungültige Werte haben den Transformationsstatus ="verarbeitet", eine Verarbeitu
 <property name="EN_ENTI_SYNONYM" value=""/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<Attribute name="Loading time" id="BB754BC7-C96F-C52B-0444-7A757BA287A3">
+<Attribute name="Ladezeitpunkt" id="BB754BC7-C96F-C52B-0444-7A757BA287A3">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:06:23 UTC</createdTime>
-<comment><![CDATA[Time (in as small a time unit as possible) at which the value to be transformed was loaded.]]></comment>
+<comment><![CDATA[Zeitpunkt (in möglichst kleiner Zeiteinheit) zu dem der zu transformierende Wert geladen wurde.]]></comment>
 <notes><![CDATA[[DE_ATTR_COMMENT[
 Zeitpunkt (in möglichst kleiner Zeiteinheit) zu dem der zu transformierende Wert geladen wurde.
 ]DE_ATTR_COMMENT]
@@ -70,10 +74,10 @@ Time (in as small a time unit as possible) at which the value to be transformed 
 <property name="EN_ATTR_NAME" value="Loading time"/>
 </propertyMap>
 </Attribute>
-<Attribute name="Source system value [N]" id="F4DA3E4B-8A05-AE47-C349-5333116BB032">
+<Attribute name="Quellsystemwert [N]" id="F4DA3E4B-8A05-AE47-C349-5333116BB032">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:06:23 UTC</createdTime>
-<comment><![CDATA[Value(s) from the source system that were used for the transformation.]]></comment>
+<comment><![CDATA[Wert(e) aus dem Quellsystem, die für die Transformation verwendet wurden.]]></comment>
 <notes><![CDATA[[DE_ATTR_COMMENT[
 Wert(e) aus dem Quellsystem, die für die Transformation verwendet wurden.
 ]DE_ATTR_COMMENT]
@@ -100,10 +104,10 @@ Value(s) from the source system that were used for the transformation.
 <property name="EN_ATTR_NAME" value="Source system value [N]"/>
 </propertyMap>
 </Attribute>
-<Attribute name="Target value" id="E7E6A3DE-B89C-BBAC-812D-01338E3F3B99">
+<Attribute name="Zielwert" id="E7E6A3DE-B89C-BBAC-812D-01338E3F3B99">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:06:23 UTC</createdTime>
-<comment><![CDATA[Value for the target system, result of the transformation]]></comment>
+<comment><![CDATA[Wert für das Zielsystem, Ergebnis der Transformation]]></comment>
 <notes><![CDATA[[DE_ATTR_COMMENT[
 Wert für das Zielsystem, Ergebnis der Transformation
 ]DE_ATTR_COMMENT]
@@ -130,10 +134,10 @@ Value for the target system, result of the transformation
 <property name="EN_ATTR_NAME" value="Target value"/>
 </propertyMap>
 </Attribute>
-<Attribute name="Time of transformation" id="819AE96E-5233-A76E-7EE2-F504BA0776F4">
+<Attribute name="Transformationszeitpunkt" id="819AE96E-5233-A76E-7EE2-F504BA0776F4">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:06:23 UTC</createdTime>
-<comment><![CDATA[Time (in as small a time unit as possible) at which the transformation was performed. Empty-> the transformation has not yet been performed.]]></comment>
+<comment><![CDATA[Zeitpunkt (in möglichst kleiner Zeiteinheit) zu dem die Transformation durchgeführt wurde. Leer-> die Transformation wurde noch nicht durchgeführt.]]></comment>
 <notes><![CDATA[[DE_ATTR_COMMENT[
 Zeitpunkt (in möglichst kleiner Zeiteinheit) zu dem die Transformation durchgeführt wurde. Leer-> die Transformation wurde noch nicht durchgeführt.
 ]DE_ATTR_COMMENT]
@@ -160,10 +164,10 @@ Time (in as small a time unit as possible) at which the transformation was perfo
 <property name="EN_ATTR_NAME" value="Time of transformation"/>
 </propertyMap>
 </Attribute>
-<Attribute name="Transformation status" id="A9E2703D-3339-1546-E68A-5198271E48D4">
+<Attribute name="Transformationsstatus" id="A9E2703D-3339-1546-E68A-5198271E48D4">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:06:23 UTC</createdTime>
-<comment><![CDATA[Status of the transformation (loaded, processed)]]></comment>
+<comment><![CDATA[Status der Transformation (geladen, verarbeitet)]]></comment>
 <notes><![CDATA[[DE_ATTR_COMMENT[
 Status der Transformation (geladen, verarbeitet)
 ]DE_ATTR_COMMENT]
@@ -188,10 +192,10 @@ Status of the transformation (loaded, processed)
 <property name="EN_ATTR_NAME" value="Transformation status"/>
 </propertyMap>
 </Attribute>
-<Attribute name="Processing type" id="0938F689-92CC-D480-BD06-9E018F2001B6">
+<Attribute name="Verarbeitungsart" id="0938F689-92CC-D480-BD06-9E018F2001B6">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:06:23 UTC</createdTime>
-<comment><![CDATA[Type of execution of a transformation (manual, automatic)]]></comment>
+<comment><![CDATA[Art der Durchführung einer Transformation (manuell, automatisch)]]></comment>
 <notes><![CDATA[[DE_ATTR_COMMENT[
 Art der Durchführung einer Transformation (manuell, automatisch)
 ]DE_ATTR_COMMENT]
@@ -217,10 +221,10 @@ Type of execution of a transformation (manual, automatic)
 <property name="EN_ATTR_NAME" value="Processing type"/>
 </propertyMap>
 </Attribute>
-<Attribute name="transformation is valid" id="443221C7-DDBD-DE04-DEC0-8287486FDE9C">
+<Attribute name="ist Transformation gültig" id="443221C7-DDBD-DE04-DEC0-8287486FDE9C">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:06:23 UTC</createdTime>
-<comment><![CDATA[*Specifies whether the transformed value is valid]]></comment>
+<comment><![CDATA[Angabe, ob der transformierte Wert gültig ist.]]></comment>
 <notes><![CDATA[[DE_ATTR_COMMENT[
 Angabe, ob der transformierte Wert gültig ist.
 ]DE_ATTR_COMMENT]
@@ -246,10 +250,10 @@ Angabe, ob der transformierte Wert gültig ist.
 <property name="EN_ATTR_NAME" value="transformation is valid"/>
 </propertyMap>
 </Attribute>
-<Attribute name="Transformation error" id="8C5519F4-83D7-C743-04F8-5EA201AAEFEF">
+<Attribute name="Transformationsfehler" id="8C5519F4-83D7-C743-04F8-5EA201AAEFEF">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:06:23 UTC</createdTime>
-<comment><![CDATA[Error description, if the value could not be translated. If transformation is valid = FALSE and transformation status = processed, an error description must be available.]]></comment>
+<comment><![CDATA[Fehlerbeschrieb, falls der Wert nicht übersetzt werden konnte. Falls Transformation gültig = FALSE und Transformationsstatus = verarbeitet, muss ein Fehlerbeschrieb vorliegen.]]></comment>
 <notes><![CDATA[[DE_ATTR_COMMENT[
 Fehlerbeschrieb, falls der Wert nicht übersetzt werden konnte. Falls Transformation gültig = FALSE und Transformationsstatus = verarbeitet, muss ein Fehlerbeschrieb vorliegen.
 ]DE_ATTR_COMMENT]

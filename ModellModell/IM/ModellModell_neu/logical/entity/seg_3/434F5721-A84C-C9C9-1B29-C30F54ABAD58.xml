@@ -1,8 +1,12 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_3" id="434F5721-A84C-C9C9-1B29-C30F54ABAD58" name="Interface attribute">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_3" id="434F5721-A84C-C9C9-1B29-C30F54ABAD58" name="Schnittstellenattribut">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:06:23 UTC</createdTime>
-<comment><![CDATA[*Attribute in a system that is to be exchanged with other systems.  Data type, format and constraints can be maintained in various languages and dialects SQL (with dialect) Jason XML]]></comment>
+<comment><![CDATA[Attribut in einem System, das mit anderen Systemen ausgetauscht werden soll.
+ Datentyp, Format und Constraints können in div. Sprachen und Dialekten geführ werden
+  SQL (mit dialekt)
+  Jason
+  XML]]></comment>
 <notes><![CDATA[[DE_ENTI_COMMENT[
 Attribut in einem System, das mit anderen Systemen ausgetauscht werden soll.
  Datentyp, Format und Constraints können in div. Sprachen und Dialekten geführ werden
@@ -67,10 +71,10 @@ Attribut in einem System, das mit anderen Systemen ausgetauscht werden soll.
 <property name="EN_ATTR_NAME" value="Name"/>
 </propertyMap>
 </Attribute>
-<Attribute name="Description of the" id="BB93EAC3-E9F7-F7B8-0535-D829F9BA6BE4">
+<Attribute name="Beschreibung" id="BB93EAC3-E9F7-F7B8-0535-D829F9BA6BE4">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:06:23 UTC</createdTime>
-<comment><![CDATA[Description of the attribute in the external system]]></comment>
+<comment><![CDATA[Beschreibung des Attributes im Fremdsystem]]></comment>
 <notes><![CDATA[[DE_ATTR_COMMENT[
 Beschreibung des Attributes im Fremdsystem
 ]DE_ATTR_COMMENT]
@@ -95,10 +99,10 @@ Description of the attribute in the external system
 <property name="EN_ATTR_NAME" value="Description of the"/>
 </propertyMap>
 </Attribute>
-<Attribute name="Data type" id="B7EE146C-4F67-DE0E-BB81-6E7C156A8FDB">
+<Attribute name="Datentyp" id="B7EE146C-4F67-DE0E-BB81-6E7C156A8FDB">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:06:23 UTC</createdTime>
-<comment><![CDATA[Technical data type in external system (e.g. string(20), NUMERIC(20,4), integer,date, etc.)]]></comment>
+<comment><![CDATA[Technischer Datentyp im Fremdsystem (z.B. String(20), NUMERIC(20,4), integer,date,  etc.)]]></comment>
 <notes><![CDATA[[DE_ATTR_COMMENT[
 Technischer Datentyp im Fremdsystem (z.B. String(20), NUMERIC(20,4), integer,date,  etc.)
 ]DE_ATTR_COMMENT]
@@ -123,10 +127,10 @@ Technical data type in external system (e.g. string(20), NUMERIC(20,4), integer,
 <property name="EN_ATTR_NAME" value="Data type"/>
 </propertyMap>
 </Attribute>
-<Attribute name="Size" id="EF7D27A0-950E-6CA1-DBF2-2B2745F1683A">
+<Attribute name="Format" id="EF7D27A0-950E-6CA1-DBF2-2B2745F1683A">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:06:23 UTC</createdTime>
-<comment><![CDATA[Text formatting of a numeric or time value]]></comment>
+<comment><![CDATA[Textliche Formatierung eines numerischen oder Zeitpunkt-Wertes]]></comment>
 <notes><![CDATA[[DE_ATTR_COMMENT[
 Textliche Formatierung eines numerischen oder Zeitpunkt-Wertes
 ]DE_ATTR_COMMENT]
@@ -153,7 +157,7 @@ Text formatting of a numeric or time value
 <property name="EN_ATTR_NAME" value="Size"/>
 </propertyMap>
 </Attribute>
-<Attribute name="Third-Party System ID" id="87F91583-A693-53B0-CCB0-9B8A6DE89CF2">
+<Attribute name="Fremdsystem-ID" id="87F91583-A693-53B0-CCB0-9B8A6DE89CF2">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:06:23 UTC</createdTime>
 <commentInRDBMS><![CDATA[ID / Code der Attributbdefinition in einer Standardsoftware]]></commentInRDBMS>
@@ -184,10 +188,10 @@ Text formatting of a numeric or time value
 <property name="EN_ATTR_NAME" value="Third-Party System ID"/>
 </propertyMap>
 </Attribute>
-<Attribute name="**Default value" id="06E1FF63-76EF-1166-CDF3-7F411F2FBF82">
+<Attribute name="Vorgabewert" id="06E1FF63-76EF-1166-CDF3-7F411F2FBF82">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:06:23 UTC</createdTime>
-<comment><![CDATA[**Constant value to be used if no source or transformation exists.]]></comment>
+<comment><![CDATA[Konstanter Wert der zu verwenden ist, falls keine Quelle oder keine Transformation exisitert.]]></comment>
 <notes><![CDATA[[EN_ATTR_COMMENT[
 **Constant value to be used if no source or transformation exists.
 ]EN_ATTR_COMMENT]
@@ -210,10 +214,10 @@ Konstanter Wert der zu verwenden ist, falls keine Quelle oder keine Transformati
 <property name="EN_ATTR_NAME" value="**Default value"/>
 </propertyMap>
 </Attribute>
-<Attribute name="**Business Rule" id="638B0E9B-0C02-1293-49B7-EBE2C59731DF">
+<Attribute name="Geschäftsregel" id="638B0E9B-0C02-1293-49B7-EBE2C59731DF">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:06:23 UTC</createdTime>
-<comment><![CDATA[**Description of quality inspections / business rules for the incoming inspection]]></comment>
+<comment><![CDATA[Beschreibung von Qualitätsprüfungen / Business rules für die Eingangsprüfung]]></comment>
 <notes><![CDATA[[EN_ATTR_COMMENT[
 **Description of quality inspections / business rules for the incoming inspection
 ]EN_ATTR_COMMENT]

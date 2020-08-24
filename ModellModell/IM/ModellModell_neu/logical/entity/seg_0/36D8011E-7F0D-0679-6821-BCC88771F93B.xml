@@ -1,8 +1,8 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="36D8011E-7F0D-0679-6821-BCC88771F93B" name="*Contact for">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="36D8011E-7F0D-0679-6821-BCC88771F93B" name="Person">
 <createdBy>stb</createdBy>
 <createdTime>2020-05-06 15:52:30 UTC</createdTime>
-<comment><![CDATA[*Person in an organizational unit who is responsible for defining or maintaining an attribute value]]></comment>
+<comment><![CDATA[Person in einer Organisationseinheit  die für die Definition oder Pflege eines Attributwertes verantwortlich ist.]]></comment>
 <notes><![CDATA[[DE_ENTI_COMMENT[
 Person in einer Organisationseinheit  die für die Definition oder Pflege eines Attributwertes verantwortlich ist.
 ]DE_ENTI_COMMENT]
@@ -61,7 +61,7 @@ Person in einer Organisationseinheit  die für die Definition oder Pflege eines 
 <property name="EN_ATTR_NAME" value="Name"/>
 </propertyMap>
 </Attribute>
-<Attribute name="First name" id="F8A14BDB-3A39-CCB0-13FC-A493F0E9B83C">
+<Attribute name="Vorname" id="F8A14BDB-3A39-CCB0-13FC-A493F0E9B83C">
 <createdBy>stb</createdBy>
 <createdTime>2020-05-06 15:52:30 UTC</createdTime>
 <notes><![CDATA[[DE_ATTR_COMMENT[
@@ -87,7 +87,7 @@ Person in einer Organisationseinheit  die für die Definition oder Pflege eines 
 <property name="EN_ATTR_NAME" value="First name"/>
 </propertyMap>
 </Attribute>
-<Attribute name="email" id="E39B881E-DC71-F6BC-D691-E866257879EB">
+<Attribute name="eMail" id="E39B881E-DC71-F6BC-D691-E866257879EB">
 <createdBy>stb</createdBy>
 <createdTime>2020-05-06 15:52:30 UTC</createdTime>
 <notes><![CDATA[[DE_ATTR_COMMENT[
@@ -113,7 +113,7 @@ Person in einer Organisationseinheit  die für die Definition oder Pflege eines 
 <property name="EN_ATTR_NAME" value="email"/>
 </propertyMap>
 </Attribute>
-<Attribute name="**Date of birth" id="31561F53-1D68-81BB-2B57-2709D2C70D8F">
+<Attribute name="Geburtsdatum" id="31561F53-1D68-81BB-2B57-2709D2C70D8F">
 <createdBy>stb</createdBy>
 <createdTime>2020-05-06 15:52:59 UTC</createdTime>
 <notes><![CDATA[[DE_ATTR_COMMENT[
@@ -137,7 +137,7 @@ Person in einer Organisationseinheit  die für die Definition oder Pflege eines 
 <property name="EN_ATTR_NAME" value="**Date of birth"/>
 </propertyMap>
 </Attribute>
-<Attribute name="**Gender" id="168F6A90-9ED6-B749-58AC-09F8A10BD7DB">
+<Attribute name="Geschlecht" id="168F6A90-9ED6-B749-58AC-09F8A10BD7DB">
 <createdBy>stb</createdBy>
 <createdTime>2020-05-06 15:53:13 UTC</createdTime>
 <notes><![CDATA[[DE_ATTR_COMMENT[

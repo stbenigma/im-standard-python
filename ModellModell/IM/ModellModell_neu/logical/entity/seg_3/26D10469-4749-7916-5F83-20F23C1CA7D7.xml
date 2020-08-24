@@ -1,8 +1,12 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_3" id="26D10469-4749-7916-5F83-20F23C1CA7D7" name="*Interface attribute">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_3" id="26D10469-4749-7916-5F83-20F23C1CA7D7" name="Schnittstellentabelle">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:06:23 UTC</createdTime>
-<comment><![CDATA[*Attribute in a system that is to be exchanged with other systems.  Data type, format and constraints can be maintained in various languages and dialects SQL (with dialect) Jason XML]]></comment>
+<comment><![CDATA[Attribut in einem System, das mit anderen Systemen ausgetauscht werden soll.
+ Datentyp, Format und Constraints können in div. Sprachen und Dialekten geführ werden
+  SQL (mit dialekt)
+  Jason
+  XML]]></comment>
 <notes><![CDATA[[DE_ENTI_COMMENT[
 Attribut in einem System, das mit anderen Systemen ausgetauscht werden soll.
  Datentyp, Format und Constraints können in div. Sprachen und Dialekten geführ werden
@@ -39,7 +43,7 @@ Attribut in einem System, das mit anderen Systemen ausgetauscht werden soll.
 <property name="EN_ENTI_SYNONYM" value=""/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<Attribute name="Table name" id="D00D2708-0ED0-AC79-8747-5A4FE816B34B">
+<Attribute name="Tabellenname" id="D00D2708-0ED0-AC79-8747-5A4FE816B34B">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:06:23 UTC</createdTime>
 <notes><![CDATA[[DE_ATTR_COMMENT[
@@ -67,10 +71,10 @@ Attribut in einem System, das mit anderen Systemen ausgetauscht werden soll.
 <property name="EN_ATTR_NAME" value="Table name"/>
 </propertyMap>
 </Attribute>
-<Attribute name="Description of the" id="AD753C72-2D71-EF5C-75E9-A88AB26F7627">
+<Attribute name="Beschreibung" id="AD753C72-2D71-EF5C-75E9-A88AB26F7627">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:06:23 UTC</createdTime>
-<comment><![CDATA[Description of the attribute in the external system]]></comment>
+<comment><![CDATA[Beschreibung des Attributes im Fremdsystem]]></comment>
 <notes><![CDATA[[DE_ATTR_COMMENT[
 Beschreibung des Attributes im Fremdsystem
 ]DE_ATTR_COMMENT]
@@ -95,10 +99,10 @@ Description of the attribute in the external system
 <property name="EN_ATTR_NAME" value="Description of the"/>
 </propertyMap>
 </Attribute>
-<Attribute name="Trigger type" id="BA5F5573-3DDE-F05C-2FC0-5D5ECA6D3FA0">
+<Attribute name="Auslöseart" id="BA5F5573-3DDE-F05C-2FC0-5D5ECA6D3FA0">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:06:23 UTC</createdTime>
-<comment><![CDATA[Type of triggering of transformation (mutation, period, manual)]]></comment>
+<comment><![CDATA[Art der Auslösung der Transformation (Mutation, Periode, Manuell)]]></comment>
 <commentInRDBMS><![CDATA[Falls leer, wird die Auslöseart der Schnittstelle verwendet.]]></commentInRDBMS>
 <notes><![CDATA[[DE_ATTR_COMMENT[
 Art der Auslösung der Transformation (Mutation, Periode, Manuell)
@@ -126,10 +130,10 @@ Type of triggering of transformation (mutation, period, manual)
 <property name="EN_ATTR_NAME" value="Trigger type"/>
 </propertyMap>
 </Attribute>
-<Attribute name="Trigger frequency" id="7FD45920-D307-E1A7-359E-16EBD60B52CA">
+<Attribute name="Auslöseperiodizität" id="7FD45920-D307-E1A7-359E-16EBD60B52CA">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:06:23 UTC</createdTime>
-<comment><![CDATA[Daily, every 2 minutes or similar. Mandatory if the trigger type is Time.]]></comment>
+<comment><![CDATA[Täglich, alle 2 Minuten o.ä. Obligatorisch, falls die Auslöseart Zeitpunkt ist.]]></comment>
 <notes><![CDATA[[DE_ATTR_COMMENT[
 Täglich, alle 2 Minuten o.ä. Obligatorisch, falls die Auslöseart Zeitpunkt ist.
 ]DE_ATTR_COMMENT]

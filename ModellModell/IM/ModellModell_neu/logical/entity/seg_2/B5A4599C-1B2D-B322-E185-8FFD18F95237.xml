@@ -1,15 +1,17 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_2" id="B5A4599C-1B2D-B322-E185-8FFD18F95237" name="many2many Relationship">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_2" id="B5A4599C-1B2D-B322-E185-8FFD18F95237" name="many2many Beziehung">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:04:00 UTC</createdTime>
-<comment><![CDATA[An M:N relationship between two entities.  It can (as possible in ODM) have attributes that move to the intermediate entity in the physical model.]]></comment>
+<comment><![CDATA[Eine M:NBeziehung  zwischen 2 Entitäten.
+
+Sie kann (wie im ODM möglich) Attribute haben, die im physisischen Modell in die Zwischenentität wandern.]]></comment>
 <notes><![CDATA[[DE_ENTI_COMMENT[
 Eine M:NBeziehung  zwischen 2 Entitäten.
 
 Sie kann (wie im ODM möglich) Attribute haben, die im physisischen Modell in die Zwischenentität wandern.
 ]DE_ENTI_COMMENT]
 [EN_ENTI_COMMENT[
-*An M:N relationship between two entities.  It can (as possible in ODM) have attributes that move to the intermediate entity in the physical model.
+An M:N relationship between two entities.  It can (as possible in ODM) have attributes that move to the intermediate entity in the physical model.
 ]EN_ENTI_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -34,5 +36,6 @@ Sie kann (wie im ODM möglich) Attribute haben, die im physisischen Modell in di
 <property name="DE_ENTI_NAME" value="many2many Beziehung"/>
 <property name="EN_ENTI_COMMENT" value="*DE* Eine M:NBeziehung  zwischen 2 Entitäten.  Sie kann (wie im ODM möglich) Attribute haben, die im physisischen Modell in die Zwischenentität wandern."/>
 <property name="EN_ENTI_NAME" value="many2many Relationship"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
 </propertyMap>
 </Entity>

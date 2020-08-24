@@ -1,8 +1,8 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_3" id="067E5859-1B16-FD36-D2DE-49F6A02E4D1D" name="Language text">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_3" id="067E5859-1B16-FD36-D2DE-49F6A02E4D1D" name="Sprachtext">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:03:22 UTC</createdTime>
-<comment><![CDATA[Text interpreted in language that is marked as text language.]]></comment>
+<comment><![CDATA[Text interpretiert in Sprache, die als Textstprachen markiert ist.]]></comment>
 <notes><![CDATA[[DE_ENTI_COMMENT[
 Text interpretiert in Sprache, die als Textstprachen markiert ist.
 ]DE_ENTI_COMMENT]
@@ -29,15 +29,15 @@ Text interpreted in language that is marked as text language.
 <createSurrogateKey>true</createSurrogateKey>
 <propertyMap>
 <property name="DE_ENTI_COMMENT" value="Text interpretiert in Sprache, die als Textstprachen markiert ist."/>
-<property name="DE_ENTI_NAME" value="Sprachtext"/>
+<property name="DE_ENTI_NAME" value="*Sprachtext"/>
 <property name="EN_ENTI_COMMENT" value="*DE* Text interpretiert in Sprache, die als Textstprachen markiert ist."/>
-<property name="EN_ENTI_NAME" value="Speech text"/>
+<property name="EN_ENTI_NAME" value="Language text"/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Text" id="DFE953E0-B60B-B378-6E61-6CDFEA6728DC">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:03:22 UTC</createdTime>
-<comment><![CDATA[Text can be interpreted in the language, obeys the rules of the language text value range]]></comment>
+<comment><![CDATA[Text interpretierbar in der Sprache, gehorcht den Regeln des Sprachtextwertebereichs]]></comment>
 <notes><![CDATA[[DE_ATTR_COMMENT[
 Text interpretierbar in der Sprache, gehorcht den Regeln des Sprachtextwertebereichs
 ]DE_ATTR_COMMENT]
@@ -63,10 +63,10 @@ Text can be interpreted in the language, obeys the rules of the language text va
 <property name="EN_ATTR_NAME" value="Text"/>
 </propertyMap>
 </Attribute>
-<Attribute name="Attribute Name" id="4214A733-0584-8188-1075-33EC670CA691">
+<Attribute name="Attribut Name" id="4214A733-0584-8188-1075-33EC670CA691">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:03:22 UTC</createdTime>
-<comment><![CDATA[Name of the attribute in the model element for which the text makes a statement]]></comment>
+<comment><![CDATA[Name des Attributs im Modellelement, für das der Text eine Aussage macht]]></comment>
 <notes><![CDATA[[DE_ATTR_COMMENT[
 Name des Attributs im Modellelement, für das der Text eine Aussage macht
 ]DE_ATTR_COMMENT]

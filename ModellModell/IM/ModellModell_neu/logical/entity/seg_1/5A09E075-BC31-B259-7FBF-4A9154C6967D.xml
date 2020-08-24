@@ -1,8 +1,26 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="5A09E075-BC31-B259-7FBF-4A9154C6967D" name="Business division">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="5A09E075-BC31-B259-7FBF-4A9154C6967D" name="Geschäftaufgabe">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:04:00 UTC</createdTime>
-<comment><![CDATA[Defines the context in which the model (and thus the terms and their definition) is valid.  ATTENTION: Between 2 models in different business areas there can be no connections of entities, value ranges and dependent elements, since the definitions of the terms only apply in the respective context of the business area.]]></comment>
+<comment><![CDATA[Unternehmerische Aufgabe, Typ, Bereich von Geschäftsfunktionen und Anwendungen, die im Rahmen der Wertschöpfungskette und -prozesse eines Unternehmens ausgeführt werden.
+
+Geschäftsbereiche sind typischerweise für 1 oder mehrere Anwendungen  (Hilfsmittel, Werkzeuge, Applikationen, Tools) sowie für Geschäftstransaktionen und -prozesse verantwortlich. Sie haben die Hoheit über die Informationen / Daten, die in den vom Bereich benutzten Funktionen benötigt / verwaltet werden.
+
+Ein Geschäftsbereich bestimmt
+- Wer erstellt Datensätze zu einer Entität?
+- Wer bestimmt über Änderungen / Qualität etc.?
+
+Sie entsprechen häufig den administrativen Organisationeinheiten (Abteilungen, Busines Units). Sie sind aber nicht aus administrativer oder örtlicher sondern aus Geschäftsaufgabensicht organisiert.
+
+Beispiele:
+Finanz
+R&D
+Produktion
+Sales
+Marketing
+HR
+Logistik
+Customer Services]]></comment>
 <notes><![CDATA[[DE_ENTI_COMMENT[
 Unternehmerische Aufgabe, Typ, Bereich von Geschäftsfunktionen und Anwendungen, die im Rahmen der Wertschöpfungskette und -prozesse eines Unternehmens ausgeführt werden.
 
@@ -43,7 +61,7 @@ Defines the context in which the model (and thus the terms and their definition)
 <maxVolumes>9999999</maxVolumes>
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
-<synonym>Area of sovereignty, business field, area of responsibility, business area</synonym>
+<synonym>Hoheitsbereich, Geschäftsfeld, Aufgabenbereich, Geschäftsbereich</synonym>
 <createSurrogateKey>true</createSurrogateKey>
 <propertyMap>
 <property name="Beispiele" value="Geschäftsbereich Automobil /  Human Ressources "/>
@@ -56,7 +74,7 @@ Defines the context in which the model (and thus the terms and their definition)
 <Attribute name="Name" id="C5008C78-3422-F6A1-AF57-B39DC0E800AA">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:04:00 UTC</createdTime>
-<comment><![CDATA[Business division name]]></comment>
+<comment><![CDATA[Name eines Geschäftsbereichs]]></comment>
 <notes><![CDATA[[DE_ATTR_COMMENT[
 Name eines Geschäftsbereichs
 ]DE_ATTR_COMMENT]
@@ -82,10 +100,10 @@ Business division name
 <property name="EN_ATTR_NAME" value="Name"/>
 </propertyMap>
 </Attribute>
-<Attribute name="Description of the" id="08FB331F-CDDD-76BA-0134-3FF3402C6964">
+<Attribute name="Beschreibung" id="08FB331F-CDDD-76BA-0134-3FF3402C6964">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:04:00 UTC</createdTime>
-<comment><![CDATA[Significance, delimitation of the business area]]></comment>
+<comment><![CDATA[Bedeutung, Abgrenzung des Geschäftsbereichs]]></comment>
 <notes><![CDATA[[DE_ATTR_COMMENT[
 Bedeutung, Abgrenzung des Geschäftsbereichs
 ]DE_ATTR_COMMENT]
@@ -112,10 +130,10 @@ Significance, delimitation of the business area
 <property name="EN_ATTR_NAME" value="Description of the"/>
 </propertyMap>
 </Attribute>
-<Attribute name="*Name [L]" id="D02AC34E-FFE0-B386-6286-928E22CE8C3D">
+<Attribute name="AnzName [L]" id="D02AC34E-FFE0-B386-6286-928E22CE8C3D">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:04:00 UTC</createdTime>
-<comment><![CDATA[Name of the entity normally used in communication.]]></comment>
+<comment><![CDATA[Name der Entität der in der Kommunikation normalerweise gebraucht wird.]]></comment>
 <notes><![CDATA[[DE_ATTR_COMMENT[
 Name der Entität der in der Kommunikation normalerweise gebraucht wird.
 ]DE_ATTR_COMMENT]
@@ -141,10 +159,10 @@ Name of the entity normally used in communication.
 <property name="EN_ATTR_NAME" value="*Name [L]"/>
 </propertyMap>
 </Attribute>
-<Attribute name="Purpose" id="127F9269-A2C4-91BE-65F7-1A829F3B76F2">
+<Attribute name="Zweck" id="127F9269-A2C4-91BE-65F7-1A829F3B76F2">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:04:00 UTC</createdTime>
-<comment><![CDATA[Application area (ERP, PIM, FiBu etc.)]]></comment>
+<comment><![CDATA[Anwendungsgebiet (ERP, PIM, FiBu etc.)]]></comment>
 <notes><![CDATA[[DE_ATTR_COMMENT[
 Anwendungsgebiet (ERP, PIM, FiBu etc.)
 ]DE_ATTR_COMMENT]

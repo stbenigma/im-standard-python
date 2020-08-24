@@ -1,13 +1,13 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_3" id="9A6ABC18-5650-0FB0-E73C-B83E71DE19B1" name="Time Value range">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_3" id="9A6ABC18-5650-0FB0-E73C-B83E71DE19B1" name="Zeitpunkt Wertebereich">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:04:00 UTC</createdTime>
-<comment><![CDATA[Value range for time attributes (granularity decides about level (sec, min, h, d, w,m,y)]]></comment>
+<comment><![CDATA[***DE*]]></comment>
 <notes><![CDATA[[DE_ENTI_COMMENT[
 ***DE*
 ]DE_ENTI_COMMENT]
 [EN_ENTI_COMMENT[
-*DE*
+Value range for time attributes (granularity decides about level (sec, min, h, d, w,m,y)
 ]EN_ENTI_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -33,12 +33,13 @@
 <property name="DE_ENTI_SYNONYM" value=""/>
 <property name="EN_ENTI_COMMENT" value="*DE*  "/>
 <property name="EN_ENTI_NAME" value="Time Value range"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<Attribute name="Min Time" id="F8E42CB1-E43D-0D27-9900-D7A7BD67D0D6">
+<Attribute name="Min Zeitpunkt" id="F8E42CB1-E43D-0D27-9900-D7A7BD67D0D6">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:04:00 UTC</createdTime>
-<comment><![CDATA[earliest time in this attribute. Empty -> there is no lower limit]]></comment>
+<comment><![CDATA[frühestes Zeitpunkt in diesem Attribut. Leer -> es gibt keine Untergrenze]]></comment>
 <notes><![CDATA[[DE_ATTR_COMMENT[
 frühestes Zeitpunkt in diesem Attribut. Leer -> es gibt keine Untergrenze
 ]DE_ATTR_COMMENT]
@@ -65,10 +66,10 @@ earliest time in this attribute. Empty -> there is no lower limit
 <property name="EN_ATTR_NAME" value="Min Time"/>
 </propertyMap>
 </Attribute>
-<Attribute name="Max Time" id="7B927CAB-9C49-8F87-C70C-F980DF438F94">
+<Attribute name="Max Zeitpunkt" id="7B927CAB-9C49-8F87-C70C-F980DF438F94">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:04:00 UTC</createdTime>
-<comment><![CDATA[latest time in this attribute. Empty -> there is no upper limit]]></comment>
+<comment><![CDATA[spätester Zeitpunkt in diesem Attribut. Leer -> es gibt keine Obergrenze]]></comment>
 <notes><![CDATA[[DE_ATTR_COMMENT[
 spätester Zeitpunkt in diesem Attribut. Leer -> es gibt keine Obergrenze
 ]DE_ATTR_COMMENT]
@@ -95,10 +96,10 @@ latest time in this attribute. Empty -> there is no upper limit
 <property name="EN_ATTR_NAME" value="Max Time"/>
 </propertyMap>
 </Attribute>
-<Attribute name="Granularity" id="6E889AC5-72FE-0BF0-A64F-E96B19560FAC">
+<Attribute name="Granularität" id="6E889AC5-72FE-0BF0-A64F-E96B19560FAC">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:04:00 UTC</createdTime>
-<comment><![CDATA[To which unit is the date rounded (day, minute, month, year)?]]></comment>
+<comment><![CDATA[Auf welche Einheit wird die Datumsangabe gerundet (Tag, Minute, Monat, Jahr)]]></comment>
 <notes><![CDATA[[DE_ATTR_COMMENT[
 Auf welche Einheit wird die Datumsangabe gerundet (Tag, Minute, Monat, Jahr)
 ]DE_ATTR_COMMENT]

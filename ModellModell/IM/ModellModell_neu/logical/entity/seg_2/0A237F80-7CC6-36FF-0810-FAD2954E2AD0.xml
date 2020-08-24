@@ -1,8 +1,8 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_2" id="0A237F80-7CC6-36FF-0810-FAD2954E2AD0" name="Source of information">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_2" id="0A237F80-7CC6-36FF-0810-FAD2954E2AD0" name="Informationsquelle">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:03:22 UTC</createdTime>
-<comment><![CDATA[*Reference that contains information that led to the creation of this element or that provides detailed information (rules, representation, use, dependencies, etc.) about the element]]></comment>
+<comment><![CDATA[Referenz die Informationen enthält, die zur Bildung dieses Elementes geführt haben bzw. die detaillierte Angaben (Regeln, Darstellung, Nutzung, Abhängigkeiten etc.) zum Element macht.]]></comment>
 <notes><![CDATA[[DE_ENTI_COMMENT[
 Referenz die Informationen enthält, die zur Bildung dieses Elementes geführt haben bzw. die detaillierte Angaben (Regeln, Darstellung, Nutzung, Abhängigkeiten etc.) zum Element macht.
 ]DE_ENTI_COMMENT]
@@ -40,7 +40,7 @@ Referenz die Informationen enthält, die zur Bildung dieses Elementes geführt h
 <Attribute name="Name" id="FDE3C1F6-C612-76B9-DAB4-D29B03DDE4FB">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:03:22 UTC</createdTime>
-<comment><![CDATA[*Name of the source, of the document,]]></comment>
+<comment><![CDATA[Name der Quelle, des Dokumentes,]]></comment>
 <notes><![CDATA[[DE_ATTR_COMMENT[
 Name der Quelle, des Dokumentes,
 ]DE_ATTR_COMMENT]
@@ -66,10 +66,10 @@ Name der Quelle, des Dokumentes,
 <property name="EN_ATTR_NAME" value="Name"/>
 </propertyMap>
 </Attribute>
-<Attribute name="Description of the" id="0218055A-998D-E17D-FF85-232DBC310217">
+<Attribute name="Beschreibung" id="0218055A-998D-E17D-FF85-232DBC310217">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:03:22 UTC</createdTime>
-<comment><![CDATA[Brief description of the source]]></comment>
+<comment><![CDATA[Kurzbeschreibung über die Quelle]]></comment>
 <notes><![CDATA[[DE_ATTR_COMMENT[
 Kurzbeschreibung über die Quelle
 ]DE_ATTR_COMMENT]
@@ -96,10 +96,10 @@ Brief description of the source
 <property name="EN_ATTR_NAME" value="Description of the"/>
 </propertyMap>
 </Attribute>
-<Attribute name="Reference" id="8E5C53CF-D401-B52C-188A-8E14196D3364">
+<Attribute name="Referenz" id="8E5C53CF-D401-B52C-188A-8E14196D3364">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:03:22 UTC</createdTime>
-<comment><![CDATA[Information for finding the source (book-ISBN, website, digital document etc.)]]></comment>
+<comment><![CDATA[Angabe zum Finden der Quelle (Buch-ISBN, Webseite, digitales Dokument etc.)]]></comment>
 <notes><![CDATA[[DE_ATTR_COMMENT[
 Angabe zum Finden der Quelle (Buch-ISBN, Webseite, digitales Dokument etc.)
 ]DE_ATTR_COMMENT]
@@ -129,7 +129,7 @@ Information for finding the source (book-ISBN, website, digital document etc.)
 <Attribute name="Name3" id="CC50E1AC-7D14-F2B9-ED9E-B20F9F8156E1">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:03:22 UTC</createdTime>
-<comment><![CDATA[Business division name]]></comment>
+<comment><![CDATA[Name eines Geschäftsbereichs]]></comment>
 <notes><![CDATA[[DE_ATTR_COMMENT[
 Name eines Geschäftsbereichs
 ]DE_ATTR_COMMENT]
@@ -158,7 +158,7 @@ Business division name
 <Attribute name="Name1" id="F8E4B6CA-B262-40FA-87F9-3B4566F5BF70">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:03:22 UTC</createdTime>
-<comment><![CDATA[Name of the entity normally used in communication.]]></comment>
+<comment><![CDATA[Name der Entität der in der Kommunikation normalerweise gebraucht wird.]]></comment>
 <notes><![CDATA[[DE_ATTR_COMMENT[
 Name der Entität der in der Kommunikation normalerweise gebraucht wird.
 ]DE_ATTR_COMMENT]
@@ -184,7 +184,7 @@ Name of the entity normally used in communication.
 <property name="EN_ATTR_NAME" value="Name1"/>
 </propertyMap>
 </Attribute>
-<Attribute name="Document" id="70186B72-F3A9-63E7-194D-BFE0E5EA395E">
+<Attribute name="Dokument" id="70186B72-F3A9-63E7-194D-BFE0E5EA395E">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:03:22 UTC</createdTime>
 <notes><![CDATA[[DE_ATTR_COMMENT[

@@ -1,8 +1,8 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="F4419578-EE98-3BAC-50A3-1E4C66917575" name="Element representation">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="F4419578-EE98-3BAC-50A3-1E4C66917575" name="Elemendarstellung">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:05:50 UTC</createdTime>
-<comment><![CDATA[Information about the representation of a graphical element (entity, etc.) on a diagram]]></comment>
+<comment><![CDATA[Information zur Darstellung eines grafischen Elementes (Entität, etc.) auf einem Diagramm]]></comment>
 <notes><![CDATA[[DE_ENTI_COMMENT[
 Information zur Darstellung eines grafischen Elementes (Entität, etc.) auf einem Diagramm
 ]DE_ENTI_COMMENT]
@@ -65,10 +65,10 @@ Information about the representation of a graphical element (entity, etc.) on a 
 <property name="EN_ATTR_NAME" value="Name [L]"/>
 </propertyMap>
 </Attribute>
-<Attribute name="Content display" id="DC6B1EE3-E9ED-7DCD-9067-905046D6E64C">
+<Attribute name="Inhaltdarstellung" id="DC6B1EE3-E9ED-7DCD-9067-905046D6E64C">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:05:50 UTC</createdTime>
-<comment><![CDATA[**Default value of a representation of an element type]]></comment>
+<comment><![CDATA[Vorgabewert einer Darstellung eines Elementtyps]]></comment>
 <notes><![CDATA[[DE_ATTR_COMMENT[
 Vorgabewert einer Darstellung eines Elementtyps
 ]DE_ATTR_COMMENT]
@@ -94,10 +94,10 @@ Vorgabewert einer Darstellung eines Elementtyps
 <property name="EN_ATTR_NAME" value="Content display"/>
 </propertyMap>
 </Attribute>
-<Attribute name="Marginal representation" id="6DFABFEE-20DB-891D-727F-6887AAD4ED11">
+<Attribute name="Randdarstellung" id="6DFABFEE-20DB-891D-727F-6887AAD4ED11">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:05:50 UTC</createdTime>
-<comment><![CDATA[**Default value of the display of the border around the element]]></comment>
+<comment><![CDATA[Vorgabewert der Darstellung des Randes um das Element]]></comment>
 <notes><![CDATA[[DE_ATTR_COMMENT[
 Vorgabewert der Darstellung des Randes um das Element
 ]DE_ATTR_COMMENT]
@@ -123,10 +123,10 @@ Vorgabewert der Darstellung des Randes um das Element
 <property name="EN_ATTR_NAME" value="Marginal representation"/>
 </propertyMap>
 </Attribute>
-<Attribute name="Font size" id="D9E941B0-B564-E990-F941-1107433F04BF">
+<Attribute name="Schriftgrösse" id="D9E941B0-B564-E990-F941-1107433F04BF">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:05:50 UTC</createdTime>
-<comment><![CDATA[**Default value of the font size of the element name]]></comment>
+<comment><![CDATA[Vorgabewert der Schriftgrösse des Elementsnamens]]></comment>
 <notes><![CDATA[[DE_ATTR_COMMENT[
 Vorgabewert der Schriftgrösse des Elementsnamens
 ]DE_ATTR_COMMENT]
@@ -159,7 +159,7 @@ Vorgabewert der Schriftgrösse des Elementsnamens
 </rangeDef>
 </listOfRanges>
 </Attribute>
-<Attribute name="Font color" id="B2FFB781-07FE-C44A-9897-4D1F53C03D84">
+<Attribute name="Schriftfarbe" id="B2FFB781-07FE-C44A-9897-4D1F53C03D84">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:05:50 UTC</createdTime>
 <notes><![CDATA[[DE_ATTR_COMMENT[

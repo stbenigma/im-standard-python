@@ -10,8 +10,8 @@
 </engineerTo>
 <useSurrogateKey>true</useSurrogateKey>
 <identifying>false</identifying>
-<nameOnSource>references</nameOnSource>
-<nameOnTarget>referenced with</nameOnTarget>
+<nameOnSource>beschreibt</nameOnSource>
+<nameOnTarget>kommt von</nameOnTarget>
 <optionalSource>false</optionalSource>
 <optionalTarget>true</optionalTarget>
 <sourceCardinality>*</sourceCardinality>
@@ -22,7 +22,7 @@
 <propertyMap>
 <property name="DE_RELA_TEXT_FROM" value="beschreibt"/>
 <property name="DE_RELA_TEXT_TO" value="kommt von"/>
-<property name="EN_RELA_TEXT_FROM" value="*DE* beschreibt"/>
-<property name="EN_RELA_TEXT_TO" value="*DE* kommt von"/>
+<property name="EN_RELA_TEXT_FROM" value="references"/>
+<property name="EN_RELA_TEXT_TO" value="referenced with"/>
 </propertyMap>
 </Relation>
