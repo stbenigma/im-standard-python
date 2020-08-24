@@ -1,8 +1,8 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="2A9C7750-58E1-A93A-4350-DEED61179EE9" name="*DE* Erweiterungsmerkmal Wert">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="2A9C7750-58E1-A93A-4350-DEED61179EE9" name="User-defined property value">
 <createdBy>stb</createdBy>
 <createdTime>2020-08-08 16:41:54 UTC</createdTime>
-<comment><![CDATA[*DE* Wert eines Erweiterungsmerkmals eines Elementes]]></comment>
+<comment><![CDATA[Value of a UDP. Non standard Property value of a model element]]></comment>
 <generatorID>2377DC02-A654-28AD-0B67-8B867C2BE694</generatorID>
 <notes><![CDATA[[EN_ENTI_COMMENT[
 *DE* Wert eines Erweiterungsmerkmals eines Elementes
@@ -29,12 +29,11 @@ Wert eines Erweiterungsmerkmals eines Elementes
 <shortName>UDPV</shortName>
 <createSurrogateKey>true</createSurrogateKey>
 <propertyMap>
-<property name="DE_ENTI_NAME" value="Erweiterungsmerkmal Wert"/>
-<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="DE_ENTI_NAME" value="Benutzerdefinierter Eigenschaftswert"/>
 <property name="EN_ENTI_NAME" value="*DE* Erweiterungsmerkmal Wert"/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<Attribute name="*DE* Wert" id="F0AFC80F-C811-FBA8-F729-B8DD3F423825">
+<Attribute name="Value" id="F0AFC80F-C811-FBA8-F729-B8DD3F423825">
 <createdBy>stb</createdBy>
 <createdTime>2020-08-08 16:41:54 UTC</createdTime>
 <generatorID>B816164D-9E92-A344-E89D-63677585A190</generatorID>
@@ -48,7 +47,6 @@ Wert eines Erweiterungsmerkmals eines Elementes
 <item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
-<nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
@@ -70,7 +68,7 @@ Wert eines Erweiterungsmerkmals eines Elementes
 <item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
-<newElementsIDs>B0540394-689A-365A-8BAA-DACBF11D481D,EB8D7E93-E38D-5492-808E-E58AF6F46BC2</newElementsIDs>
+<newElementsIDs>EB8D7E93-E38D-5492-808E-E58AF6F46BC2</newElementsIDs>
 </identifier>
 </identifiers>
 </Entity>
