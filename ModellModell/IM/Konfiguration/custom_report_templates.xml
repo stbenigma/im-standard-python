@@ -336,19 +336,6 @@
 		</section>
 	</sections>
 	</custom_report_template>
-	<custom_report_template id="50CAEDF6-D1FA-0048-0783-12EEB9229075" name="Attriburtes Translation" description="" class="oracle.dbtools.crest.model.design.logical.Attribute" >
-	<sections>
-		<section propertyName="Attribute" type="" customName="Attribute" level="0" class="oracle.dbtools.crest.model.design.logical.Attribute">
-		<columns>
-				<column name="entity" customName="Entity" width="0.0" order="" massUpdatable="false" dynamic="false"/>
-				<column name="name" customName="Name" width="0.0" order="" massUpdatable="false" dynamic="false"/>
-				<column name="EN_ATTR_NAME" customName="EN_ATTR_NAME" width="0.0" order="" massUpdatable="false" dynamic="false"/>
-				<column name="comment" customName="Comment" width="0.0" order="" massUpdatable="false" dynamic="false"/>
-				<column name="notes" customName="Notes" width="0.0" order="" massUpdatable="false" dynamic="false"/>
-		</columns>
-		</section>
-	</sections>
-	</custom_report_template>
 	<custom_report_template id="0210D7F8-7D5D-E33B-A9FB-107C24B0BDBB" name="Relation Translation" description="" class="oracle.dbtools.crest.model.design.logical.Relation" >
 	<sections>
 		<section propertyName="Relation" type="" customName="Relation" level="0" class="oracle.dbtools.crest.model.design.logical.Relation">
@@ -479,6 +466,36 @@
 				<column name="DE_ATTR_COMMENT" customName="DE_ATTR_COMMENT" width="0.0" order="" massUpdatable="false" dynamic="true"/>
 				<column name="EN_ATTR_NAME" customName="EN_ATTR_NAME" width="0.0" order="" massUpdatable="false" dynamic="true"/>
 				<column name="EN_ATTR_COMMENT" customName="EN_ATTR_COMMENT" width="0.0" order="" massUpdatable="false" dynamic="true"/>
+		</columns>
+		</section>
+	</sections>
+	</custom_report_template>
+	<custom_report_template id="F0ED9268-5D60-D40F-CBEE-2D0C03D75F66" name="Attributes" description="" class="oracle.dbtools.crest.model.design.logical.Attribute" >
+	<sections>
+		<section propertyName="Attribute" type="" customName="Attribute" level="0" class="oracle.dbtools.crest.model.design.logical.Attribute">
+		<columns>
+				<column name="entity" customName="Entity" width="0.0" order="1" massUpdatable="false" dynamic="false"/>
+				<column name="name" customName="Name" width="0.0" order="2" massUpdatable="true" dynamic="false"/>
+				<column name="nullsAllowed" customName="Nulls allowed" width="0.0" order="" massUpdatable="true" dynamic="false"/>
+				<column name="defaultValue" customName="Default value" width="0.0" order="" massUpdatable="true" dynamic="false"/>
+				<column name="domain" customName="Domain" width="0.0" order="" massUpdatable="true" dynamic="false"/>
+				<column name="logicalDatatype" customName="Logical datatype" width="0.0" order="" massUpdatable="true" dynamic="false"/>
+				<column name="comment" customName="Comment" width="0.0" order="" massUpdatable="true" dynamic="false"/>
+				<column name="constraintsText" customName="Constraints text" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="constraintComment" customName="Constraint comment" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+		</columns>
+		</section>
+	</sections>
+	</custom_report_template>
+	<custom_report_template id="50CAEDF6-D1FA-0048-0783-12EEB9229075" name="Attriburtes Translation" description="" class="oracle.dbtools.crest.model.design.logical.Attribute" >
+	<sections>
+		<section propertyName="Attribute" type="" customName="Attribute" level="0" class="oracle.dbtools.crest.model.design.logical.Attribute">
+		<columns>
+				<column name="entity" customName="Entity" width="0.0" order="1" massUpdatable="false" dynamic="false"/>
+				<column name="name" customName="Name" width="0.0" order="2" massUpdatable="false" dynamic="false"/>
+				<column name="EN_ATTR_NAME" customName="EN_ATTR_NAME" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="comment" customName="Comment" width="0.0" order="" massUpdatable="false" dynamic="false"/>
+				<column name="notes" customName="Notes" width="0.0" order="" massUpdatable="false" dynamic="false"/>
 		</columns>
 		</section>
 	</sections>
