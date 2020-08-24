@@ -28,7 +28,8 @@
 <createSurrogateKey>true</createSurrogateKey>
 <propertyMap>
 <property name="DE_ENTI_COMMENT" value=""/>
-<property name="DE_ENTI_NAME" value="Data Layer"/>
+<property name="DE_ENTI_NAME" value="Tatsache"/>
+<property name="DE_ENTI_SYNONYM" value="Prädikat, Aussage"/>
 <property name="EN_ENTI_COMMENT" value=""/>
 <property name="EN_ENTI_NAME" value="Fact"/>
 <property name="EN_ENTI_SYNONYM" value="Proposition, Predicate"/>
@@ -38,16 +39,27 @@
 <createdBy>stb</createdBy>
 <createdTime>2020-07-28 09:41:35 UTC</createdTime>
 <comment><![CDATA[Struktur der Aussage <>..<>..<>]]></comment>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+*DE* Struktur der Aussage <>..<>..<>
+]EN_ATTR_COMMENT]
+[DE_ATTR_COMMENT[
+Struktur der Aussage <>..<>..<>
+]DE_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
 <item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
-<use>0</use>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
-<domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Aussage"/>
+<property name="EN_ATTR_NAME" value="Statement"/>
+</propertyMap>
 </Attribute>
 </attributes>
 </Entity>

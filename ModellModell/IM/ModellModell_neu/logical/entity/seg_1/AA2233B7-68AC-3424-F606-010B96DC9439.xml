@@ -3,19 +3,28 @@
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:04:00 UTC</createdTime>
 <comment><![CDATA[Geschäftsregel, die Attributwerte auf Regelkonformität prüft.
-Diese Regeln sind passiv. D.h. es wird überprüft, ob der Wert (ggf. im Zusammenhang mit anderen Werten dieser oder anderer Entitäten) aus fachlicher Sicht korrekt ist.
+Diese Regeln sind passiv. D.h. es wird überprüft, ob der Wert (ggf. im Zusammenhang mit anderen Werten dieser oder anderer Entitäten) für einen stabilen Zustand der Datenbank aus fachlicher Sicht korrekt ist.
 
 Ebene auf der die Regel prüft (row, Tupel, Entität, Datenbank) wird aus den Elementen der Regel abgeleitet.
 
-Regelverletzungen können als SQL Selects angegeben werden. Jedes Tupel, das das Select liefert verletzt die Regel.]]></comment>
+Regelverletzungen können als formale Regeln (z.B. SQL Selects) angegeben werden. Jedes Tupel, das das Select liefert verletzt die Regel.]]></comment>
 <notes><![CDATA[[DE_ENTI_COMMENT[
 Geschäftsregel, die Attributwerte auf Regelkonformität prüft.
-Diese Regeln sind passiv. D.h. es wird überprüft, ob der Wert (ggf. im Zusammenhang mit anderen Werten dieser oder anderer Entitäten) aus fachlicher Sicht korrekt ist.
+Diese Regeln sind passiv. D.h. es wird überprüft, ob der Wert (ggf. im Zusammenhang mit anderen Werten dieser oder anderer Entitäten) für einen stabilen Zustand der Datenbank aus fachlicher Sicht korrekt ist.
 
-Regelverletzungen können als SQL Selects angegeben werden. Jedes Tupel, das das Select liefert verletzt die Regel.
+Ebene auf der die Regel prüft (row, Tupel, Entität, Datenbank) wird aus den Elementen der Regel abgeleitet.
+
+Regelverletzungen können als formale Regeln (z.B. SQL Selects) angegeben werden. Jedes Tupel, das das Select liefert verletzt die Regel.
 ]DE_ENTI_COMMENT]
 [EN_ENTI_COMMENT[
-*Transaction rule that checks attribute values for rule conformity. These rules are passive. This means that the system checks whether the value (possibly in connection with other values of these or other entities) is correct from a business point of view.  Rule violations can be specified as SQL selects. Any tuple that returns the select violates the rule.
+Business rule that checks attribute values for rule conformity. 
+These rules are passive. This means that the system checks whether the value (possibly in connection with other values of these or other entities) is correct for a stable state of the database from a business point of view.  
+
+Rule violations can be specified as formal statements like e.g. SQL selects. 
+Any tuple that returns the select violates the rule.
+
+Level on which the rule checks (row, tuple, entity, database) is derived from the elements of the rule.
+
 ]EN_ENTI_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -99,9 +108,9 @@ Description, explanation of the rule
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_COMMENT" value="Umschreibung, Erklärung der Regel"/>
-<property name="DE_ATTR_NAME" value="Beschreibung"/>
+<property name="DE_ATTR_NAME" value="Beschreibung [L]"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Umschreibung, Erklärung der Regel"/>
-<property name="EN_ATTR_NAME" value="Description of the"/>
+<property name="EN_ATTR_NAME" value="Description [L]"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Regel" id="18DDD1CA-270F-D5BB-691E-74C2CBBE8960">

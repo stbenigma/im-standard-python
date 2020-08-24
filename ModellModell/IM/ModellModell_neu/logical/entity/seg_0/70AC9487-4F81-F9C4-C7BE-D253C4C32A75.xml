@@ -12,20 +12,33 @@ Person IsA
 	Mieter
 	Vereinsmitglied]]></comment>
 <notes><![CDATA[[DE_ENTI_COMMENT[
-1:1 Beziehung, einen Subtyp definiert.
-exklusive  IsA Subtypen (monohierarchisch, optional von Vater zu Kind) können als Subtypen in der Entität gezeichnet werden. 
+1:1 Beziehung, die eine Rolle definiert
+Beziehung von Vater zu Kind ist normalerweise optional. Von Kind zu Vater muss sie mandatory sein.
 
-Eine IsA Beziehung beginnt immer bei Subtyp (von Kind zu Vater). Diese Beziehung (Kind zu Vater) kann nicht optional sein.
+Beispiel:
+Person IsA 
+	Käufer
+	Angestellter
+	Mieter
+	Vereinsmitglied
 ]DE_ENTI_COMMENT]
 [EN_ENTI_COMMENT[
-*1:1 relationship, one subtype defined. exclusive IsA subtypes (mono-hierarchical, optional from father to child) can be drawn as subtypes in the entity.   An IsA relationship always starts with subtype (from child to father). This relationship (child to father) cannot be optional.
+1:1 relationship that defines a role
+Relationship from father to child is usually optional. From child to father it must be mandatory.
+
+Example:
+Person IsA 
+	Buyer
+	Employee
+	Tenant
+	Member of the club
 ]EN_ENTI_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <engineerTo>
+<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
 <item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
-<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <typeID>899A6DDC-95E0-4AD5-5F58-B3A2FF5C2D08</typeID>
 <adequatelyNormalized>NO</adequatelyNormalized>
@@ -41,8 +54,9 @@ Eine IsA Beziehung beginnt immer bei Subtyp (von Kind zu Vater). Diese Beziehung
 <createSurrogateKey>true</createSurrogateKey>
 <propertyMap>
 <property name="DE_ENTI_COMMENT" value="1:1 Beziehung, einen Subtyp definiert. exklusive  IsA Subtypen (monohierarchisch, optional von Vater zu Kind) können als Subtypen in der Entität gezeichnet werden.   Eine IsA Beziehung beginnt immer bei Subtyp (von Kind zu Vater). Diese Beziehung (Kind zu Vater) kann nicht optional sein."/>
-<property name="DE_ENTI_NAME" value="IsA Beziehung"/>
+<property name="DE_ENTI_NAME" value="IsA Rollenbeziehung"/>
 <property name="EN_ENTI_COMMENT" value="*DE* 1:1 Beziehung, einen Subtyp definiert. exklusive  IsA Subtypen (monohierarchisch, optional von Vater zu Kind) können als Subtypen in der Entität gezeichnet werden.   Eine IsA Beziehung beginnt immer bei Subtyp (von Kind zu Vater). Diese Beziehung (Kind zu Vater) kann nicht optional sein."/>
-<property name="EN_ENTI_NAME" value="IsA Relationship"/>
+<property name="EN_ENTI_NAME" value="IsA Role Relationship"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
 </propertyMap>
 </Entity>

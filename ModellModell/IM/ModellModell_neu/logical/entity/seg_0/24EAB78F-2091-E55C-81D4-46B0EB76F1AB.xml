@@ -11,9 +11,9 @@
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <engineerTo>
+<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
 <item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
-<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <typeID>899A6DDC-95E0-4AD5-5F58-B3A2FF5C2D08</typeID>
 <adequatelyNormalized>NO</adequatelyNormalized>
@@ -28,7 +28,8 @@
 <createSurrogateKey>true</createSurrogateKey>
 <propertyMap>
 <property name="DE_ENTI_COMMENT" value=""/>
-<property name="DE_ENTI_NAME" value="Data Layer"/>
+<property name="DE_ENTI_NAME" value="Tatsachentyp"/>
+<property name="DE_ENTI_SYNONYM" value="Prädikattyp, Aussagetyp"/>
 <property name="EN_ENTI_COMMENT" value=""/>
 <property name="EN_ENTI_NAME" value="Facttype"/>
 <property name="EN_ENTI_SYNONYM" value="Propositiontype, Predicatetype"/>
@@ -38,16 +39,28 @@
 <createdBy>stb</createdBy>
 <createdTime>2020-07-28 09:40:02 UTC</createdTime>
 <comment><![CDATA[Struktur der Aussage <>..<>..<>]]></comment>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+*DE* Struktur der Aussage <>..<>..<>
+]EN_ATTR_COMMENT]
+[DE_ATTR_COMMENT[
+Struktur der Aussage <>..<>..<>
+]DE_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <engineerTo>
+<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
 <item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
-<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
-<use>0</use>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
-<domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
+<domain></domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Aussage-Struktur"/>
+<property name="EN_ATTR_NAME" value="Statement structure"/>
+</propertyMap>
 </Attribute>
 </attributes>
 </Entity>

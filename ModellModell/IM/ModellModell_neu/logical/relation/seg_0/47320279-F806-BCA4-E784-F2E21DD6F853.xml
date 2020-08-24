@@ -27,7 +27,7 @@
 <property name="EN_RELA_TEXT_TO" value="contributes to"/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<attribute name="AttrName" id="667049A4-A102-C37F-B2C8-0D6A3FF07FF5">
+<attribute name="Attr Name" id="667049A4-A102-C37F-B2C8-0D6A3FF07FF5">
 <createdBy>stb</createdBy>
 <createdTime>2020-08-09 14:38:32 UTC</createdTime>
 <comment><![CDATA[Name des Attributs in einer Gruppe]]></comment>
@@ -37,16 +37,17 @@
 <item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
-<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
 <use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </attribute>
-<attribute name="AttrBeschreibung" id="651162DE-0996-9971-047A-99255D4DBA0B">
+<attribute name="Attr Description" id="651162DE-0996-9971-047A-99255D4DBA0B">
 <createdBy>stb</createdBy>
 <createdTime>2020-08-09 14:38:38 UTC</createdTime>
-<comment><![CDATA[Verwendung, Zweck des Attributs in der Gruppe]]></comment>
+<comment><![CDATA[Use, purpose of the attribute in the group
+Verwendung, Zweck des Attributs in der Gruppe]]></comment>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
@@ -54,6 +55,7 @@
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
 <use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>

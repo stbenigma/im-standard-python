@@ -4,14 +4,14 @@
 <createdTime>2020-07-28 09:47:42 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <engineerTo>
+<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
 <item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
-<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <useSurrogateKey>true</useSurrogateKey>
 <identifying>false</identifying>
-<nameOnSource>beschreibt</nameOnSource>
-<nameOnTarget>beschrieben in</nameOnTarget>
+<nameOnSource>erwähnt</nameOnSource>
+<nameOnTarget>erwänhnt in</nameOnTarget>
 <optionalSource>true</optionalSource>
 <optionalTarget>true</optionalTarget>
 <sourceCardinality>*</sourceCardinality>
@@ -20,7 +20,9 @@
 <targetEntity>D718E671-DE1C-59BC-9C74-A352687F07F5</targetEntity>
 <transferable>true</transferable>
 <propertyMap>
-<property name="EN_RELA_TEXT_FROM" value="describes"/>
-<property name="EN_RELA_TEXT_TO" value="described in"/>
+<property name="DE_RELA_TEXT_FROM" value="erwähnt"/>
+<property name="DE_RELA_TEXT_TO" value="erwänhnt in"/>
+<property name="EN_RELA_TEXT_FROM" value="mentions"/>
+<property name="EN_RELA_TEXT_TO" value="mentioned in"/>
 </propertyMap>
 </Relation>

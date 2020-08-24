@@ -24,19 +24,28 @@
 <maxVolumes>9999999</maxVolumes>
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
+<synonym>**Fakt-Instanz</synonym>
 <createSurrogateKey>true</createSurrogateKey>
 <propertyMap>
 <property name="DE_ENTI_COMMENT" value=""/>
-<property name="DE_ENTI_NAME" value="Data Layer"/>
+<property name="DE_ENTI_NAME" value="Beispielwert"/>
+<property name="DE_ENTI_SYNONYM" value="**Fakt-Instanz"/>
 <property name="EN_ENTI_COMMENT" value=""/>
-<property name="EN_ENTI_NAME" value="Facttype"/>
-<property name="EN_ENTI_SYNONYM" value="Propositiontype, Predicatetype"/>
+<property name="EN_ENTI_NAME" value="Example"/>
+<property name="EN_ENTI_SYNONYM" value="Fact instance"/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Wert" id="C774F901-8E4F-BEFD-0B62-66BC91E0D37A">
 <createdBy>stb</createdBy>
 <createdTime>2020-07-28 09:44:40 UTC</createdTime>
 <comment><![CDATA[Struktur der Aussage <>..<>..<>]]></comment>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+*DE* Struktur der Aussage <>..<>..<>
+]EN_ATTR_COMMENT]
+[DE_ATTR_COMMENT[
+Struktur der Aussage <>..<>..<>
+]DE_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
@@ -47,6 +56,10 @@
 <use>1</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Wert"/>
+<property name="EN_ATTR_NAME" value="Example Value"/>
+</propertyMap>
 </Attribute>
 </attributes>
 </Entity>
