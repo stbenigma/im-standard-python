@@ -52,7 +52,7 @@ def do1column(plfnr, pcolxml, ptablid):
     scha.insert()
 
 
-    lmodeId= Modellelement.insertmode(pschaid=scha.scha_id)
+    lmodeId= Modelelement.insertmode(pschaid=scha.scha_id)
     dbInserts.insertUdpColumn(pschaId=scha.scha_id)
     transferModel.updateUDP(pmodeid=lmodeId, pobj=pcolxml)
     documents = transferModel.getdokuref(pelem= pcolxml)
@@ -72,7 +72,7 @@ def do1table(pfilename):
     tabl.tabl_schn_id = globalschnid
     tabl.tabl_beschr = transferModel.findText(tablexml,"comment")
     tabl.insert()
-    lmodeId = Modellelement.insertmode(ptablid=tabl.tabl_id)
+    lmodeId = Modelelement.insertmode(ptablid=tabl.tabl_id)
 
     dbInserts.insertUdpTable(ptablId=tabl.tabl_id)
 
@@ -106,7 +106,7 @@ def do1schnittstelle(pfilename):
     schn.schn_uc = transferModel.findText(schnxml,'createdBy')
     schn.schn_dc = transferModel.findText(schnxml,'createdTime')
     schn.insert()
-    lmodeId = Modellelement.insertmode(pschnid=schn.schn_id)
+    lmodeId = Modelelement.insertmode(pschnid=schn.schn_id)
 
     #Dokumente an dieser Schnittstelle
     documents = transferModel.getdokuref(pelem=schnxml,pstruct=True)

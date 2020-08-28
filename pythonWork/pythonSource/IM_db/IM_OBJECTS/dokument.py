@@ -104,12 +104,12 @@ class Dokument(Baseobject):
         for d in data:
             if d[0] == 'ENTI': pass #o = Entitaet().getbyid(d[1])
             elif d[0] == 'TABL': o = Tabelle().getbyid(d[2])
-            elif d[0] == 'SCHN': o = Schnittstelle().getbyid(d[3])
-            elif d[0] == 'SCHA': pass #o = SchnittstelleAttribut().getbyid(d[4])
+            elif d[0] == 'INTF': o = Schnittstelle().getbyid(d[3])
+            elif d[0] == 'INTF': pass #o = SchnittstelleAttribut().getbyid(d[4])
             elif d[0] == 'ATTR': pass #o = Attribut().getbyid(d[5])
-            elif d[0] == 'WRTB': pass #o = Wertebereich().getbyid(d[6])
+            elif d[0] == 'DOMA': pass #o = Wertebereich().getbyid(d[6])
             elif d[0] == 'BEZI': pass #o = Beziehung().getbyid(d[7])
-            elif d[0] == 'ORGE': pass #o = Organisationseinheit().getbyid(d[8])
+            elif d[0] == 'ORGU': pass #o = Organisationseinheit().getbyid(d[8])
             elif d[0] == 'BURU': pass #o = BusinessRule().getbyid(d[9])
             retval.append((d[0],o))
         #for

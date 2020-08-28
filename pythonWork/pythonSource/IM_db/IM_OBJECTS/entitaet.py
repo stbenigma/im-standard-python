@@ -1,5 +1,5 @@
 from .baseobject import Baseobject,MultilangBaseobject
-from .modellelement import Modellelement
+from .modelelement import Modelelement
 from .schluessel import Schluessel
 from .sprachtext import Sprachtext
 from IM_DB import dbDML
@@ -69,7 +69,7 @@ create table entitaeten
         return super().webanker()
 
     def getmodellelement(self):
-        return Modellelement.getbyelemid(pentiid=self.enti_id)
+        return Modelelement.getbyelemid(pentiid=self.enti_id)
     def getmodeid(self):
         return self.getmodellelement().mode_id
 
@@ -222,7 +222,7 @@ class Synonym(MultilangBaseobject):
         return self._getsprachval(colname='syno_name',plang=plang)
 
     def getmodellelement(self):
-        return Modellelement.getbyelemid(psynoid=self.syno_id)
+        return Modelelement.getbyelemid(psynoid=self.syno_id)
 
     def getmodeid(self):
         return self.getmodellelement().mode_id

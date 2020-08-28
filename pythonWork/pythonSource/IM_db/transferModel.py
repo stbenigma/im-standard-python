@@ -180,12 +180,13 @@ def transferDomains():
     root = domains.getroot()
     for dom in root.findall('domains/Domain'):
         wrtb = Wertebereich()
+        mode = Modelelement(pmeltshortname=Modelelemtype.DOMA)
+        wrtb.wrtb_id = mode.insert()
         wrtb.wrtb_name = findField(dom, "name")
         wrtb.wrtb_odm_guid = findField(dom, "id")
         wrtb.wrtb_beschr = findText(dom, 'comment')
         wrtb.wrtb_herkunft = Wertebereich.DOMAIN
         liesunsfuellwrtb(pwrtb=wrtb, pxml=dom)
-        lmodeId = Modellelement.insertmode(pwrtbid=wrtb.wrtb_id)
     # for
 
     dosegfiles(pdirec=parameters.odmstructypesdir(), transferfiles=do1structtype)
@@ -284,7 +285,7 @@ def transferentity(penti, pdiagid, puc, pdc):
         row = (entix, entiy, entiwidth, entiheight
                , 100, int2hex(col.backgcolor), None, 100
                , int2hex(col.foregcolor), col.fontsize, int2hex(col.fontcolor),
-               Modellelement.getidbyelemid(pentiid=enti.enti_id)
+               Modelelement.getidbyelemid(pentiid=enti.enti_id)
                , pdiagid, index, puc, pdc
                , None, None)
         # print (row)
@@ -297,7 +298,7 @@ def transferentity(penti, pdiagid, puc, pdc):
             for aid in attrids:
                 attrrow = (attrx, attry, attrwidth, attrheight
                            , 100, int2hex(col.backgcolor), int2hex(col.fontcolor), 100
-                           , None, None, None, Modellelement.getidbyelemid(pattrid=aid)
+                           , None, None, None, Modelelement.getidbyelemid(pattrid=aid)
                            , pdiagid, 0, puc, pdc
                            , None, None)
                 try:
@@ -404,7 +405,7 @@ def transferdiaconnect(pconnectors, pdiagid, puc, pdc):
     ,beda_endtext_hoehe, beda_schriftfarbe, beda_schriftgroesse, beda_uc
     ,beda_dc, beda_um, beda_dm)
 """
-            row = (pdiagid, Modellelement.getidbyelemid(prelaid=beziid), linewidth, None
+            row = (pdiagid, Modelelement.getidbyelemid(prelaid=beziid), linewidth, None
                    , 1, sttex, sttey, sttew
                    , stteh, entex, entey, entew
                    , enteh, None, 10, puc, pdc, None, None
@@ -697,7 +698,10 @@ def do1Attribute(plfnr, pattrxml, pentiId=None, prelaId=None):
 
     xmlname = findField(pattrxml, 'name')
     # strip [] am Ende des Namens
+
+    lmodeId = Modelelement(pmeltshortname=Modelelemtype.ATTR).insert()
     attr = Attribut(pname=re.sub(' ?\[[LNT]+\]', '', xmlname), pentiid=pentiId, prelaid=prelaId)
+    attr.attr_id = lmodeId
     attr.attr_tech_name = findText(pattrxml, 'preferredAbbreviation')
     if attr.attr_tech_name is None:
         attr.attr_tech_name = re.sub('[-,.()\[\]äöüèéàÄ~ÖÜ ]', '_', str.upper(attr.attr_anzname))
@@ -720,7 +724,6 @@ def do1Attribute(plfnr, pattrxml, pentiId=None, prelaId=None):
     attr.attr_odm_guid = findField(pattrxml, 'id')
     attrId = attr.insert()
 
-    lmodeId = Modellelement.insertmode(pattrid=attrId)
     dbInserts.insertUdpAttr(attrId)
     updateUDP(pmodeid=lmodeId, pobj=pattrxml)
 
@@ -837,7 +840,9 @@ def do1Entity(fileName):
     creti = findText(entixml, 'createdTime')
     enti_category_guid = findText(entixml, 'typeID')
     documents = getdokuref(pelem=entixml)
+    lmodeId = Modelelement(pmeltshortname=Modelelemtype.ENTI).insert()
     enti = Entitaet()
+    enti.enti_id = lmodeId
     enti.enti_odm_guid = findField(entixml, 'id')
     enti.enti_name = entname
     enti.enti_beschr = entcomm
@@ -846,15 +851,15 @@ def do1Entity(fileName):
     enti.enti_enti_guid = findText(entixml, 'hierarchicalParent')
     enti.enti_category_guid = enti_category_guid
     entiId = enti.insert()
-    lmodeId = Modellelement.insertmode(pentiid=entiId)
     dbInserts.insertUdpEntity(entiId)
 
     sobj = findText(entixml, 'synonym')
     if (sobj is not None):
         for syn in sobj.split(','):
             synoname = syn.strip()
-            synid = Synonym(pname=synoname, pentiid=entiId).insert()
-            Modellelement.insertmode(psynoid=synid)
+            syno = Synonym(pname=synoname, pentiid=entiId)
+            syno.syno_id = Modelelement(pmeltshortname=Modelelemtype.SYNO).insert()
+            syno.insert()
         # for
     # fi
 
@@ -1001,7 +1006,7 @@ def do1Relation(fileName):
     except (sqlite3.IntegrityError):
         logging.writelog(row)
         return
-    lmodeId = Modellelement.insertmode(prelaid=beziId)
+    lmodeId = Modelelement.insertmode(prelaid=beziId)
     dbInserts.insertUdpBezi(beziId)
 
     updateUDP(pmodeid=lmodeId, pobj=relaxml)
@@ -1044,12 +1049,12 @@ def do1UDPFile(pudpThema, pfileName):
                 ludpid = dbInserts.insertUDP(pData=(lupdThema, lgrpvalue, lgrpvalue + '_ENTI_COMMENT', None
                                                     , None, 'FALSE', None, '--', date.today().__str__()))
                 dbInserts.insertModelltypEigen(
-                    (Modellelemtype.getidbyshortname(pkurzname=Modellelemtype.type2melt('Entity')), ludpid))
+                    (Modelelemtype.getidbyshortname(pshortname=Modelelemtype.type2melt('Entity')), ludpid))
 
                 ludpid = dbInserts.insertUDP(pData=(lupdThema, lgrpvalue, lgrpvalue + '_ATTR_COMMENT', None
                                                     , None, 'FALSE', None, '--', date.today().__str__()))
                 dbInserts.insertModelltypEigen(
-                    (Modellelemtype.getidbyshortname(pkurzname=Modellelemtype.type2melt('Attribute')), ludpid))
+                    (Modelelemtype.getidbyshortname(pshortname=Modelelemtype.type2melt('Attribute')), ludpid))
             # fi
         #for
     # fi
@@ -1071,10 +1076,10 @@ def do1UDPFile(pudpThema, pfileName):
         for o in obj:
             """"< object class ="oracle.dbtools.crest.model.design.relational.Column" visible="false" color="-1" / >"""
             lMelt = re.split("\.", findField(o, 'class'))[6]
-            lmeltid = Modellelemtype.type2melt(lMelt)
+            lmeltid = Modelelemtype.type2melt(lMelt)
             if lmeltid != "":
                 try:
-                    dbInserts.insertModelltypEigen((Modellelemtype.getidbyshortname(pkurzname=lmeltid), udpId))
+                    dbInserts.insertModelltypEigen((Modelelemtype.getidbyshortname(pshortname=lmeltid), udpId))
                 except Exception as err:
                     print(err)
                     logging.writelog("mapping type '{}' for UDP {}:{}:{} not found".format(lmeltid,lupdThema,group,propname))
@@ -1167,7 +1172,7 @@ def insertBaseData():
     Sprache.setmodellang(pmodellang=deflang)
     Sprache.setallreplacementlang()
 
-    Modellelemtype.fillmelt()
+    Modelelemtype.fillmelt()
     diat = Diagrammtyp()
     diat.diat_bez = 'Entity'
     diat.diat_uc = 'stb'
@@ -1175,9 +1180,9 @@ def insertBaseData():
     diat.insert()
     #    medi_diat_id, medi_melt_id,medi_uc,mdei_dc,medi_um,mdei_dm
     dbInserts.insertmeltdiat(
-        (diat.diat_id, Modellelemtype.getidbyshortname(pkurzname=Modellelemtype.ENTI), 'stb', date.today(), None, None))
+        (diat.diat_id, Modelelemtype.getidbyshortname(pshortname=Modelelemtype.ENTI), 'stb', date.today(), None, None))
     dbInserts.insertmeltdiat(
-        (diat.diat_id, Modellelemtype.getidbyshortname(pkurzname=Modellelemtype.RELA), 'stb', date.today(), None, None))
+        (diat.diat_id, Modelelemtype.getidbyshortname(pshortname=Modelelemtype.RELA), 'stb', date.today(), None, None))
 
 
 # insertBaseData
@@ -1198,7 +1203,7 @@ def loeschmodell():
     ModelelemDoku.delete()
     Dokument.delete()
     ExternalRef.delete()
-    Modellelement.delete()
+    Modelelement.delete()
     Diagramm.delete()
     dbDML.delete("benudef_eigenschaft")
     Vorgabewert.delete()
@@ -1212,7 +1217,7 @@ def loeschmodell():
     Datatype.delete()
     dbDML.delete("diagramme")
     dbDML.delete('bereich_elemdarst')
-    Modellelemtype.delete()
+    Modelelemtype.delete()
     Diagrammtyp.delete()
     Sprache.delete()
     Sprachtext.delete()

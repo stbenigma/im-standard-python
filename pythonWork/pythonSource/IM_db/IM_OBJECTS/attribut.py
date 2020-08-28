@@ -1,5 +1,5 @@
 from .baseobject import Baseobject, MultilangBaseobject
-from .modellelement import Modellelement
+from .modelelement import Modelelement
 from .sprachtext import Sprachtext
 from .wertebereich import Wertebereich
 from .schluessel import Schluesselelement
@@ -96,7 +96,7 @@ CREATE TABLE attributes(
         return Entitaet().getbyid(self.attr_enti_id).getname(plang)
 
     def getmodellelement(self):
-        return Modellelement.getbyelemid(pattrid=self.attr_id)
+        return Modelelement.getbyelemid(pattrid=self.attr_id)
 
     def getmodeid(self):
         return self.getmodellelement().mode_id

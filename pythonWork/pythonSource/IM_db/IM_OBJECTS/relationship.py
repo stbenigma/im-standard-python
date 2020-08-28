@@ -2,7 +2,7 @@ from datetime import datetime
 
 from IM_DB import dbDML
 from .baseobject import Baseobject
-from .modellelement import Modellelement, Modellelemtype, ExternalRef
+from .modelelement import Modelelement, Modelelemtype, ExternalRef
 
 
 class Arc(Baseobject):
@@ -30,7 +30,7 @@ class Arc(Baseobject):
             return None
 
     def insert(self):
-        self.arcs_id = Modellelement(Modellelemtype.getidbyshortname(Modellelemtype.ARCS)).insert()
+        self.arcs_id = Modelelement(Modelelemtype.getidbyshortname(Modelelemtype.ARCS)).insert()
         super().insert()
 
         ExternalRef.insertextrefs(pmodeid=self.arcs_id, preflist=self.__extref)
@@ -50,18 +50,20 @@ class Arc(Baseobject):
     def createtable():
         Baseobject.createtable(ptablename=Arc._tablename
                                , psql="""
-CREATE TABLE arcs(
-    arcs_id        integer  not null primary key,
-    arcs_name      VARCHAR2(60) NOT NULL,
-    arcs_enti_id   integer NOT NULL,
-    arcs_uc        VARCHAR2(30) NOT NULL,
-    arcs_dc        varchar(30) NOT NULL,
-    arcs_um        VARCHAR2(30) NULL,
-    arcs_dm        varchar(30) NULL,
-	UNIQUE(arcs_enti_id,arcs_name),
-	CONSTRAINT arcs_enti_fk FOREIGN KEY(arcs_enti_id)
-	        REFERENCES entitaeten(enti_id) ON DELETE CASCADE
-)
+CREATE TABLE ARCS
+    (
+     ARCS_ID INTEGER NOT NULL primary key autoincrement,
+     ARCS_NAME VARCHAR (60) NOT NULL ,
+     ARCS_ENTI_ID NUMERIC (10) NOT NULL ,
+     ARCS_UC VARCHAR(30) NULL  ,
+     ARCS_DC VARCHAR (30) NOT NULL ,
+     ARCS_UM VARCHAR (30) NULL ,
+     ARCS_DM VARCHAR (30) NULL
+    ,CONSTRAINT ARCS_UK UNIQUE  (ARCS_ENTI_ID ASC, ARCS_NAME ASC)
+	,CONSTRAINT ARCS_ENTI_FK FOREIGN KEY    (     ARCS_ENTI_ID) 
+	    REFERENCES ENTITIES (     ENTI_ID ) ON DELETE CASCADE ON UPDATE NO ACTION
+    ,CONSTRAINT ARCS_MODE_FK FOREIGN KEY (     ARCS_ID)
+        REFERENCES MODELELEMENT (MODE_ID ) ON DELETE CASCADE ON UPDATE NO ACTION)
     """
                                )
 

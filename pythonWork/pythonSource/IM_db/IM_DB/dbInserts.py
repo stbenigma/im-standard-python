@@ -100,11 +100,11 @@ def insertUdpEntity(entiId):
                 ,bdwe_uc,   bdwe_dc)
                 select NULL,mode_id,bdeg_id,enti_uc,enti_dc
                 from entitaeten
-                join modellelement on mode_enti_id = enti_id
+                join modelelement on mode_enti_id = enti_id
                 cross join (select mote_bdeg_id as bdeg_id
-                             from modellelem_typ
+                             from modelelem_type
                              join modelltyp_eigensch on mote_melt_id = melt_id
-                             where melt_kurzname = 'ENTI')
+                             where melt_shortname = 'ENTI')
                 where enti_id = {}
             """ .format(entiId))
 #insertUdpEntity
@@ -114,11 +114,11 @@ def insertUdpTable(ptablId):
                 ,bdwe_uc,   bdwe_dc)
                 select NULL,mode_id,bdeg_id,tabl_uc,tabl_dc
                 from tabellen
-                join modellelement on mode_tabl_id = tabl_id
+                join modelelement on mode_tabl_id = tabl_id
                 cross join (select mote_bdeg_id as bdeg_id
-                             from modellelem_typ
+                             from modelelem_type
                              join modelltyp_eigensch on mote_melt_id = melt_id
-                             where melt_kurzname = 'TABL')
+                             where melt_shortname = 'TABL')
                 where tabl_id = {}
             """ .format(ptablId))
 #insertUdpTable
@@ -128,11 +128,11 @@ def insertUdpColumn(pschaId):
                 ,bdwe_uc,   bdwe_dc)
                 select NULL,mode_id,bdeg_id,scha_uc,scha_dc
                 from main.schnittstelle_attrs
-                join modellelement on mode_scha_id = scha_id
+                join modelelement on mode_scha_id = scha_id
                 cross join (select mote_bdeg_id as bdeg_id
-                             from modellelem_typ
+                             from modelelem_type
                              join modelltyp_eigensch on mote_melt_id = melt_id
-                             where melt_kurzname = 'SCHA')
+                             where melt_shortname = 'INTF')
                 where scha_id = {}
             """ .format(pschaId))
 #insertUdpColumn
@@ -154,11 +154,11 @@ def insertUdpBezi(beziId):
                 ,bdwe_uc,   bdwe_dc)
                 select NULL,mode_id,bdeg_id,bezi_uc,bezi_dc
                 from beziehungen
-                join modellelement on mode_rela_id = bezi_id
+                join modelelement on mode_rela_id = bezi_id
                 cross join (select mote_bdeg_id as bdeg_id
-                             from modellelem_typ
+                             from modelelem_type
                              join modelltyp_eigensch on mote_melt_id = melt_id
-                             where melt_kurzname = 'RELA')
+                             where melt_shortname = 'RELA')
                 where bezi_id = {}
             """ .format(beziId))
 #insertUdpBezi
@@ -170,11 +170,11 @@ def insertUdpAttr(attrId):
                 ,bdwe_uc,   bdwe_dc)
                 select NULL,mode_id,bdeg_id,attr_uc,attr_dc
                 from attributes
-                join modellelement on mode_attr_id = attr_id
+                join modelelement on mode_attr_id = attr_id
                 cross join (select mote_bdeg_id as bdeg_id
-                             from modellelem_typ
+                             from modelelem_type
                              join modelltyp_eigensch on mote_melt_id = melt_id
-                             where melt_kurzname = 'ATTR')
+                             where melt_shortname = 'ATTR')
                 where attr_id = {}
             """ .format(attrId))
 #insertUdpAttr

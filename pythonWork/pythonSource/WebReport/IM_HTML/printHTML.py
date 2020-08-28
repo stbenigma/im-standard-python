@@ -983,7 +983,7 @@ def printcontententi():
         printattrlist(penti=enti)
         printentikeys(pentiid=enti.enti_id)
         printentirela(pentiid=enti.enti_id)
-        printreflist(pelemid=enti.enti_id, pelemtype=Modellelemtype.ENTI)
+        printreflist(pelemid=enti.enti_id, pelemtype=Modelelemtype.ENTI)
         printtransl(pentiid=enti.enti_id)
         printentiudp(pentiid=enti.enti_id)
         printmapping(pentiid=enti.enti_id)
@@ -1047,7 +1047,7 @@ def printcontentattr():
 def printreflist(pelemid, pelemtype):
     if (pelemtype == 'DOKU'):
         refentries = web_sql.dokureflist(pid=pelemid, plang=Sprachtext.reportLang())
-    elif (pelemtype in ('TABL', 'SCHA')):
+    elif (pelemtype in ('TABL', 'INTF')):
         # indirekte auch anzeigen.
         refentries = web_sql.refdokulist(pid=pelemid, pelemtype=pelemtype)
     else:
@@ -1063,17 +1063,17 @@ def printreflist(pelemid, pelemtype):
     for refentry in refentries:
         htmlname = ''
         anker = None
-        if (pelemtype in ('DOKU', 'ENTI', 'ATTR', 'WRTB')):
+        if (pelemtype in ('DOKU', 'ENTI', 'ATTR', 'DOMA')):
             if (refentry.elemtype == 'TABL'):
                 # Tabellen sind in schn-file
                 tabl = Tabelle().getbyid(refentry.elemid)
                 htmlname = htmlfilelist[tabl.tabl_schn_id]
-            elif (refentry.elemtype == 'SCHN'):
+            elif (refentry.elemtype == 'INTF'):
                 htmlname = htmlfilelist[refentry.elemid]
                 anker = ''  # Schnittstellen haben keinen Anker ausser dem Namen
             # fi
-        elif (pelemtype in ('TABL', 'SCHN', 'SCHA')):  # aus schn-html zurück ins Main
-            if (refentry.elemtype in ('ENTI', 'ATTR', 'WRTB', 'DOKU')):
+        elif (pelemtype in ('TABL', 'INTF', 'INTF')):  # aus schn-html zurück ins Main
+            if (refentry.elemtype in ('ENTI', 'ATTR', 'DOMA', 'DOKU')):
                 # geh zurück ins Basefile
                 htmlname = htmlfilelist[0]
             # fi
@@ -1373,12 +1373,12 @@ def printtransl(pentiid=None, pattrid=None):
     head = [Sprachtext.transl('Element')]
     head.extend(langs)
     if (pentiid is not None):
-        modeid = Modellelement.getidbyelemid(pentiid=pentiid)
+        modeid = Modelelement.getidbyelemid(pentiid=pentiid)
         transllist = [findtransl(pattr='ENTI_NAME', pmodeid=modeid, plangs=langs)
             , findtransl(pattr='ENTI_SYNONYM', pmodeid=modeid, plangs=langs)
             , findtransl(pattr='ENTI_COMMENT', pmodeid=modeid, plangs=langs)]
     elif (pattrid is not None):
-        modeid = Modellelement.getidbyelemid(pattrid=pattrid)
+        modeid = Modelelement.getidbyelemid(pattrid=pattrid)
         transllist = [findtransl(pattr='ATTR_NAME', pmodeid=modeid, plangs=langs)
             , findtransl(pattr='ATTR_COMMENT', pmodeid=modeid, plangs=langs)]
     # print(transllist)

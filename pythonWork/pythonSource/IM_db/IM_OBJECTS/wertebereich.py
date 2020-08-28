@@ -108,7 +108,7 @@ CREATE TABLE wertebereiche(
  )"""
     )
     def getmodellelement(self):
-        return Modellelement.getbyelemid(pwrtbid=self.wrtb_id)
+        return Modelelement.getbyelemid(pwrtbid=self.wrtb_id)
 
     def getname(self,plang):
         return self._getsprachval(colname='wrtb_name', plang=plang)

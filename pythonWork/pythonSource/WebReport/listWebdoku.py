@@ -105,11 +105,11 @@ def printlistofcontent():
     printHTML.printlistofcontenthead()
     printHTML.printlistofcontentelement(pname='Entitäten', plist=web_sql.namelist(ptype='ENTI', plang=Sprachtext.reportLang()))
     printHTML.printlistofcontentelement(pname='Attribute', plist=web_sql.namelist(ptype='ATTR', plang=Sprachtext.reportLang()))
-    printHTML.printlistofcontentelement(pname='Wertebereiche', plist=web_sql.namelist(ptype='WRTB', plang=Sprachtext.reportLang()))
+    printHTML.printlistofcontentelement(pname='Wertebereiche', plist=web_sql.namelist(ptype='DOMA', plang=Sprachtext.reportLang()))
     printHTML.printlistofcontentelement(pname='Dokumente', plist=web_sql.namelist(ptype='DOKU', plang=Sprachtext.reportLang()))
     printHTML.printlistofcontentelement(pname='Attribut-Mapping', plist=web_sql.namelist(ptype='UDP', plang=Sprachtext.reportLang()))
     printHTML.printlistofcontentelement(pname='Diagramme', plist=web_sql.namelist(ptype='DIAG', plang=Sprachtext.reportLang()))
-    printHTML.printlistofcontentelement(pname='Systeme', plist=web_sql.namelist(ptype='SCHN', plang=Sprachtext.reportLang())
+    printHTML.printlistofcontentelement(pname='Systeme', plist=web_sql.namelist(ptype='INTF', plang=Sprachtext.reportLang())
                                         ,pfileonly = True)
     printHTML.printlistofcontentfoot()
 # printlistofcontent

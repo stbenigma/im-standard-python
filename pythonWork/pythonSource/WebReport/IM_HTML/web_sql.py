@@ -34,7 +34,7 @@ def beziAnker(id):
 def schlAnker(id):
     return 'SCHL'+str(id)
 def wrtbAnker(id):
-    return 'WRTB'+str(id)
+    return 'DOMA'+str(id)
 def udpAnker(id):
     return 'UDP'+str(id)
 def diagAnker(id):
@@ -108,7 +108,7 @@ def refdokulist (pid, pelemtype):
                 , case  melt_kurzname 
                    when 'ENTI' then mode_enti_id 
                    when 'ATTR' then mode_attr_id
-                   when 'SCHN' then mode_schn_id
+                   when 'INTF' then mode_schn_id
                    when 'TABL' then mode_tabl_id
                    else null
                    end ref_id 
@@ -200,7 +200,7 @@ def namelist(ptype, plang=None, pid=None):
               ) order by wrtbname,upper(name)
                   """.format(plang, pid if (pid is not None) else 'wrtb_id'))
         datalist = [(e[0], wrtbAnker(e[3]),'') for e in data]
-    elif (ptype == 'WRTB'):
+    elif (ptype == 'DOMA'):
         datalist = Wertebereich.indexlist(pherkunft = 'DOM',plang=plang)
     elif (ptype == 'UDP'):
         data = dbDML.select("""select  distinct bdeg_gruppe,bdeg_thema||'-'||bdeg_gruppe id
@@ -229,9 +229,9 @@ def namelist(ptype, plang=None, pid=None):
         datalist = [(e[0], diagAnker(e[1]),'') for e in data]
     elif (ptype == 'DOKU') :
         datalist = Dokument.indexlist()
-    elif (ptype == 'SCHN') :
+    elif (ptype == 'INTF') :
         datalist = Schnittstelle.indexlist()
-    elif (ptype == 'SCHA'):
+    elif (ptype == 'INTF'):
         datalist = Schnittstelleattr.indexlist(pschnid=pid)
     elif (ptype == 'TABL') :
         datalist = Tabelle.indexlist(pschnid=pid)

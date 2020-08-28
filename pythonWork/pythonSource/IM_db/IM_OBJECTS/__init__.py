@@ -10,7 +10,7 @@ from .sprachtext import Sprachtext
 from .tablentimap import TablEntiMap
 from .dokument import Dokument, ModelelemDoku
 from .wertebereich import Wertebereich, Wertebereichgruppe, Vorgabewert
-from .modellelement import Modellelemtype,Modellelement,ExternalRef
+from .modelelement import Modelelemtype,Modelelement,ExternalRef
 from .diagramme import Diagramm,Diagrammtyp
 from .entitaet import Entitaet,Synonym
 from .attribut import Attribut
