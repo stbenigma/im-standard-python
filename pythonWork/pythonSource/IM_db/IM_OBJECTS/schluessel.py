@@ -48,7 +48,7 @@ CREATE TABLE schluessel(
 class Schluesselelement(Baseobject):
     _tablename:str = 'schluesselelement'
     _prefix:str = 'scel'
-    _columnlist:list = ['scel_id','scel_schl_id','scel_attr_id','scel_bezi_id'
+    _columnlist:list = ['scel_id','scel_schl_id','scel_attr_id','scel_rela_id'
                         , 'scel_uc', 'scel_dc','scel_um','scel_dm']
 
 
@@ -64,21 +64,21 @@ CREATE TABLE schluesselelement(
     scel_id        integer NOT NULL primary key autoincrement,
     scel_schl_id   integer NOT NULL,
     scel_attr_id   integer ,
-    scel_bezi_id   integer ,
+    scel_rela_id   integer ,
     scel_uc         varchar(30) NOT NULL,
     scel_dc        varchar(30) NOT NULL,
     scel_um        varchar(30),
     scel_dm        varchar(30),
-	UNIQUE(scel_schl_id,scel_attr_id,scel_bezi_id),
+	UNIQUE(scel_schl_id,scel_attr_id,scel_rela_id),
 	CONSTRAINT scel_element_ck CHECK((scel_attr_id IS NOT NULL
-                                   AND scel_bezi_id IS NULL)
+                                   AND scel_rela_id IS NULL)
                                   OR(scel_attr_id IS NULL
-                                     AND scel_bezi_id IS NOT NULL)),
+                                     AND scel_rela_id IS NOT NULL)),
 	FOREIGN KEY(scel_attr_id)
         REFERENCES attributes(attr_id)
             ON DELETE CASCADE,
-	FOREIGN KEY(scel_bezi_id)
-        REFERENCES beziehungen(bezi_id)
+	FOREIGN KEY(scel_rela_id)
+        REFERENCES beziehungen(rela_id)
             ON DELETE CASCADE,
 	FOREIGN KEY(scel_schl_id)
         REFERENCES schluessel(schl_id)

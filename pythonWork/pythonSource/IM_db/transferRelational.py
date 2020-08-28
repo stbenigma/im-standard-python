@@ -222,7 +222,7 @@ def do1mapping(pfilename):
         tabentimap = TablEntiMap()
         try:
             tabentimap.tema_enti_id = Entitaet().getID(odmmap.logid) if odmmap.logtype == odmmap.ENTITYPE else None
-            tabentimap.tema_bezi_id = dbLookup.beziID(odmmap.logid) if odmmap.logtype == odmmap.RELATYPE else None
+            tabentimap.tema_rela_id = dbLookup.beziID(odmmap.logid) if odmmap.logtype == odmmap.RELATYPE else None
             tabentimap.tema_tabl_id = Tabelle().getID(odmmap.relid) if odmmap.reltype == odmmap.TABLETYPE else None
             #colattrmap.tema_tabl_id = Tabelle().getidbyfk(odmmap.relid) if odmmap.reltype == odmmap.FKTYPE else None
             tabentimap.insert(pdoerrhdlng=False)

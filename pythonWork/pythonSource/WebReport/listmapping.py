@@ -650,7 +650,7 @@ def filllists(plang):
            for attr in enti.getattributes()}
                                ]
                 for enti in Entitaet.select()}
-    attributes = {attr.attr_id: [attr.attr_anzname, attr.attr_tech_name, attr.attr_enti_id, attr.attr_bezi_id] for attr
+    attributes = {attr.attr_id: [attr.attr_anzname, attr.attr_tech_name, attr.attr_enti_id, attr.attr_rela_id] for attr
                   in Attribut.select()}
     tables = {tabl.tabl_id: [tabl.tabl_name
         , Schnittstelle.getname(tabl.tabl_schn_id)

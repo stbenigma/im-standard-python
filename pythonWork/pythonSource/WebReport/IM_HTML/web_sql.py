@@ -169,9 +169,9 @@ def namelist(ptype, plang=None, pid=None):
           select case when ana.sptx_text is null then attr_anzname
                                             else ana.sptx_text end  attrname
             ,attr_id
-            ,bezi_name  beziname
+            ,rela_name  beziname
           from attributes
-          join beziehungen on attributes.attr_bezi_id = beziehungen.bezi_id
+          join beziehungen on attributes.attr_rela_id = beziehungen.rela_id
           join sprachen sp on sp.spra_iso_code2 = 'de'
           join modellelement amo on amo.mode_attr_id = attr_id
           left join spraattr ana on ana.sptx_attrname = 'ATTR_NAME'
@@ -292,7 +292,7 @@ def diagrelalist(pdiagid, plang):
        ,beda_liniefarbe,beda_linienbreite,beda_liniedeckkraft
 from beziehung_darst
 join modellelement m on beziehung_darst.beda_mode_id = m.mode_id
-join beziehungen b on m.mode_rela_id = b.bezi_id
+join beziehungen b on m.mode_rela_id = b.rela_id
 cross join sprachen spra
 join sprachtexte sfrom on  spra.spra_id = sfrom.sptx_spra_id
             and sfrom.sptx_attrname='RELA_TEXT_FROM'
@@ -335,7 +335,7 @@ def keylist(p_entiid,p_lang):
     (select  schl_id,schl_laufnr,schl_name
                   ,group_concat(case when ana.sptx_text is null then attr_anzname else ana.sptx_text end 
                                     ,', ') attrs
-                  ,group_concat(bezi_name, ', ') bezis
+                  ,group_concat(rela_name, ', ') bezis
          from schluessel
          join schluesselelement on scel_schl_id = schl_id
             join sprachen sp on sp.spra_iso_code2 = '{}'
@@ -344,7 +344,7 @@ def keylist(p_entiid,p_lang):
          left join spraattr  ana on ana.sptx_attrname = 'ATTR_NAME'
                                     and ana.sptx_mode_id = ma.mode_id
                                     and ana.spra_id = sp.spra_id            
-         left join beziehungen on bezi_id = scel_bezi_id
+         left join beziehungen on rela_id = scel_rela_id
          where schl_enti_id = {}
            group by schl_id,schl_laufnr,schl_name)
                     """.format(p_lang,p_entiid))
@@ -363,64 +363,64 @@ def relalist (p_entiid,p_lang):
                                 and ena.sptx_mode_id = mode_id
            )
             select von.enti_id as von_enti_id,von.enti_name as von_name,von.enti_odm_guid as von_guid
-                        		,case when bvon.sptx_text is null then  bezi_assoc_von_zu else bvon.sptx_text end  bezi_assoc_von_zu
-    							,case bezi_type
+                        		,case when bvon.sptx_text is null then  rela_assoc_from_to else bvon.sptx_text end  rela_assoc_from_to
+    							,case rela_type
                            when '1:1' then 
-                            case bezi_pflicht_assoc_von_zu
+                            case rela_mandatory_from_to
                                  when 'TRUE' THEN '1'
                                  else '0..1'
                                end
                            when 'M:N' then 
-                            case bezi_pflicht_assoc_von_zu
+                            case rela_mandatory_from_to
                                  when 'TRUE' THEN '1..N'
                                  else '0..N'
                                end
                            when 'M:1' then 
-                                case bezi_pflicht_assoc_von_zu
+                                case rela_mandatory_from_to
                                  when 'TRUE' THEN '1'
                                  else '0..1'
                                end         
                             end card1
     						,zu.enti_id as zu_enti_id,zu.enti_name as zu_name,zu.enti_odm_guid as zu_guid
-    						,case when bzu.sptx_text is null then  bezi_assoc_zu_von else bzu.sptx_text end bezi_assoc_zu_von
-    	                    ,case bezi_type
+    						,case when bzu.sptx_text is null then  rela_assoc_to_from else bzu.sptx_text end rela_assoc_to_from
+    	                    ,case rela_type
     	                       when '1:1' then 
-    	                          case bezi_pflicht_assoc_zu_von
+    	                          case rela_mandatory_to_from
     	                             when 'TRUE' THEN '1'
     	                             else '0..1'
     	                           end
     	                       when 'M:N' then 
-    	                        case bezi_pflicht_assoc_zu_von
+    	                        case rela_mandatory_to_from
     	                             when 'TRUE' THEN '1..N'
     	                             else '0..N'
     	                           end
     	                       when 'M:1' then 
-    	                            case bezi_pflicht_assoc_zu_von
+    	                            case rela_mandatory_to_from
     	                             when 'TRUE' THEN '1..N'
     	                             else '0..N'
     	                           end         
     	                        end card2
-    						,bezi_id,bezi_type,bezi_pflicht_assoc_von_zu,bezi_pflicht_assoc_zu_von
-    						,arcs_name,extr_source_id,bezi_name
+    						,rela_id,rela_type,rela_mandatory_from_to,rela_mandatory_to_from
+    						,arcs_name,extr_source_id,rela_name
                             ,case when (select 1 from schluesselelement 
                                          join schluessel on schl_id = scel_schl_id
-                                         where scel_bezi_id = bezi_id
+                                         where scel_rela_id = rela_id
                                          and schl_enti_id = von.enti_id
                                          ) IS NULL 
                             THEN 'FALSE' ELSE 'TRUE' end schluessel
                         from   sprachen sp          
-                        join sprenti as von on von.enti_id = bezi_enti_id_von
+                        join sprenti as von on von.enti_id = rela_enti_id_from
                                         and von.spra_id = sp.spra_id
-    					join beziehungen on bezi_enti_id_von = von.enti_id
-    									 and not (bezi_type = 'ISA' and von.enti_enti_id is not NULL)
-    					join modellelement on mode_rela_id = bezi_id
+    					join beziehungen on rela_enti_id_from = von.enti_id
+    									 and not (rela_type = 'ISA' and von.enti_enti_id is not NULL)
+    					join modellelement on mode_rela_id = rela_id
                         left join spraattr bvon on bvon.sptx_attrname = 'RELA_TEXT_FROM'
                                 and bvon.sptx_mode_id = mode_id
                                 and bvon.spra_id = sp.spra_id 
                         left join spraattr bzu on bzu.sptx_attrname = 'RELA_TEXT_TO'
                                 and bzu.sptx_mode_id = mode_id
                                 and bzu.spra_id = sp.spra_id 
-                        join sprenti as zu on zu.enti_id = bezi_enti_id_zu
+                        join sprenti as zu on zu.enti_id = rela_enti_id_to
                                         and zu.spra_id = sp.spra_id
                         left join arcs on arcs_enti_id = von.enti_id
                         left join externalrefs on extr_mode_id = arcs_id
@@ -593,8 +593,8 @@ def liesarcs(pdiagid):
     data = dbDML.select("""
         select arcs_id,beda_id,enti_id,enti_name,eled_position_x,eled_position_y,eled_hoehe,eled_breite
         from arcs
-        join beziehungen  on arcs_id = bezi_von_arcs_id or arcs_id = bezi_zu_arcs_id
-        join modellelement  m on bezi_id = m.mode_rela_id
+        join beziehungen  on arcs_id = rela_arcs_id_from or arcs_id = rela_arcs_id_to
+        join modellelement  m on rela_id = m.mode_rela_id
         join beziehung_darst on beda_mode_id = m.mode_id
         join entitaeten on arcs_enti_id = enti_id
         join modellelement m2 on m2.mode_enti_id = enti_id
@@ -614,8 +614,8 @@ def liesarcselem(pdiagid,parcsid):
              ,case when lsegstart.up = 1 then lsegstart.lise_winkel else lsegend.lise_winkel  end winkel
         from arcs 
         join entitaeten earc on earc.enti_id =arcs_enti_id
-        join beziehungen on bezi_von_arcs_id = arcs_id or bezi_zu_arcs_id = arcs_id
-        join modellelement on bezi_id = mode_rela_id
+        join beziehungen on rela_arcs_id_from = arcs_id or rela_arcs_id_to = arcs_id
+        join modellelement on rela_id = mode_rela_id
         join entitaeten evon on evon.enti_odm_guid = bezi_source_enti_guid
         join entitaeten ezu on ezu.enti_odm_guid = bezi_target_enti_guid
         join beziehung_darst on beda_mode_id = mode_id

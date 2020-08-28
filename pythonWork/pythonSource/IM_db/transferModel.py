@@ -54,6 +54,19 @@ def findField(set, name):
 # findField
 
 
+def nameflags(pstr:str, pflag:str) -> bool:
+    """checks [NLT] at end of names (my erd-Extension)"""
+    if (pstr is None): return
+    lmatch = "\[.{0,2}"+pflag+".{0,2}\]"
+    return (True if re.match(lmatch, pstr) else False)
+
+def is_historisized(pstr:str) -> bool:
+    return nameflags(pstr=pstr, pflag='T')
+def is_langdept(pstr:str) -> bool:
+    return nameflags(pstr=pstr, pflag='L')
+def is_repeated(pstr:str) -> bool:
+    return nameflags(pstr=pstr, pflag='N')
+
 def transferTypes():
     types = ET.parse(parameters.odmIMDirec() + parameters.odmKonfDirec() + parameters.odmTypesFile())
     root = types.getroot()
@@ -375,20 +388,20 @@ def transferdiaconnect(pconnectors, pdiagid, puc, pdc):
             if sttey is not None and int(sttey) < 0: sttey, entey = 0, int(entey) - int(sttey)
             if sttey is not None and int(sttey) < 0: sttey, entey = 0, int(entey) - int(sttey)
 
-            bezi = dbDML.select("""select bezi_pflicht_assoc_von_zu,bezi_pflicht_assoc_zu_von
-                                        ,bezi_type
+            bezi = dbDML.select("""select rela_mandatory_from_to,rela_mandatory_to_from
+                                        ,rela_type
                                          ,case bezi_source_enti_guid 
                                          when source.enti_odm_guid then 'FALSE' 
                                             else 'TRUE' end switch
                                     from beziehungen
-                                    join entitaeten source on source.enti_id = bezi_enti_id_von
-                                    where bezi_id ={}
+                                    join entitaeten source on source.enti_id = rela_enti_id_from
+                                    where rela_id ={}
                     """.format(beziid))
-            bezitype = bezi[0][2]
+            lbezitype = bezi[0][2]
             sourcelinetype = 'SOLID' if (bezi[0][0] == 'TRUE') else 'DASHED'
             targetlinetype = 'SOLID' if (bezi[0][1] == 'TRUE') else 'DASHED'
-            sourcecard = '1' if (bezitype in ('ISA', '1:1')) else 'M'
-            targetcard = '1' if (bezitype in ('ISA', '1:1', 'M:1')) else 'M'
+            sourcecard = '1' if (lbezitype in ('ISA', '1:1')) else 'M'
+            targetcard = '1' if (lbezitype in ('ISA', '1:1', 'M:1')) else 'M'
             if (bezi[0][3] == 'TRUE'):  # switch source and target
                 sourcecard, targetcard = targetcard, sourcecard
                 sourcelinetype, targetlinetype = targetlinetype, sourcelinetype
@@ -629,12 +642,12 @@ def do1Arc(fileName):
                             ,case earc.enti_odm_guid
                             when ezu.enti_odm_guid
                             then arcs_id else null end zu_arcs_id
-                 ,arcs_id,arcs_name,bezi_id,bezi_name,earc.enti_name,earc.enti_odm_guid,ezu.enti_odm_guid
+                 ,arcs_id,arcs_name,rela_id,rela_name,earc.enti_name,earc.enti_odm_guid,ezu.enti_odm_guid
                     from arcs
                     cross join beziehungen
                     join entitaeten earc on arcs_enti_id = earc.enti_id
-                    left join entitaeten evon on bezi_enti_id_von = evon.enti_id
-                    left join entitaeten ezu on bezi_enti_id_zu = ezu.enti_id
+                    left join entitaeten evon on rela_enti_id_from = evon.enti_id
+                    left join entitaeten ezu on rela_enti_id_to = ezu.enti_id
                     where arcs_id = {}
                 and bezi_odm_guid in ({})""".format(arcid, relids))
         #print(res)
@@ -716,10 +729,10 @@ def do1Attribute(plfnr, pattrxml, pentiId=None, prelaId=None):
     attr.attr_beschr = findText(pattrxml, 'comment')
     attr.attr_anz_rhflg = plfnr
     attr.attr_deskriptor = 'FALSE'
-    attr.attr_pflichtattr = 'FALSE' if (findText(pattrxml, 'nullsAllowed') == 'true') else 'TRUE'
-    attr.attr_historisiert = 'TRUE' if (re.search('\[.*T.*\]', xmlname) is not None) else 'FALSE'
-    attr.attr_wiederholt = 'TRUE' if (re.search('\[.*N.*\]', xmlname) is not None) else 'FALSE'
-    attr.attr_sprachabhaengig = 'TRUE' if (re.search('\[.*L.*\]', xmlname) is not None) else 'FALSE'
+    attr.attr_pflichtattr = Boolean.bool2str(findText(pattrxml, 'nullsAllowed') == 'true')
+    attr.attr_historisiert = Boolean.bool2str(is_historisized( xmlname) )
+    attr.attr_wiederholt = Boolean.bool2str(is_repeated(xmlname))
+    attr.attr_sprachabhaengig = Boolean.bool2str(is_langdept(xmlname))
     attr.attr_verschluesselt = 'FALSE'
     attr.attr_odm_guid = findField(pattrxml, 'id')
     attrId = attr.insert()
@@ -783,7 +796,7 @@ def transferKeys():
             scel.scel_attr_id = Attribut().getID(ke)
             if scel.scel_attr_id is None:
                 try:
-                    scel.scel_bezi_id = dbLookup.beziId(ke)
+                    scel.scel_rela_id = dbLookup.beziId(ke)
                     scel.scel_attr_id = None
                 except sqlite3.Error as e:
                     print(str(e))
@@ -791,7 +804,7 @@ def transferKeys():
                     raise e
                 #try
             else:
-                scel.scel_bezi_id = None
+                scel.scel_rela_id = None
             #if
             scel.insert()
         #for
@@ -918,96 +931,39 @@ def abbildTyp(ptyp):
 # abbildTyp
 
 
-def beziType(srcCard, targCard, srcOpt, targOpt, arcId=None):
-    # ISA: 1:1 und
-    #      zuSeite Pflicht, vonSeite optional
-    #           oder beide sind Pflicht und die zuSeite beziehung ist in einem Arc
-    #    1:1 sonst
-    #
-    if ((srcCard == '1') and (targCard == '1')):
-        # alte lösung        if ((srcOpt == 'false') and (targOpt == 'false') and (arcId is not None)):
-        if ((srcOpt == 'false') or (targOpt == 'false')):
-            return 'ISA'
-        else:
-            return '1:1'
-        # fi
-    elif ((srcCard == 'M') and (targCard == 'M')):
-        return 'M:N'
-    else:
-        return 'M:1'
-    # fi
-
-
-# beziType
-
 def do1Relation(fileName):
     tree = ET.parse(fileName)
     relaxml = tree.getroot()
-    relname = findField(relaxml, 'name')
-    optSrc = findText(relaxml, 'optionalSource')
-    optTarg = findText(relaxml, 'optionalTarget')
-    cardSrc = findText(relaxml, 'sourceCardinality')
-    cardTarg = findText(relaxml, 'targetCardinalityString')
     documents = getdokuref(pelem=relaxml)
 
-    lbeziType = beziType(srcCard=abbildTyp(cardSrc)
-                         , targCard=abbildTyp(cardTarg)
-                         , srcOpt=optSrc
-                         , targOpt=optTarg)
-    # bezi_type, bezi_enti_id_von, bezi_assoc_von_zu
-    #      ,bezi_pflicht_assoc_von_zu, bezi_hist_von_zu
-    #     , bezi_enti_id_zu,bezi_assoc_zu_von
-    #     , BEZI_PFLICHT_ASSOC_ZU_VON,bezi_hist_zu_von
-    #     , bezi_odm_guid,bezi_uc, bezi_dc,bezi_name
-    #     ,bezi_source_enti_guid,  bezi_target_enti_guid
-    vonText = findText(relaxml, 'nameOnSource')
-    zuText = findText(relaxml, 'nameOnTarget')
-    creby = findText(relaxml, 'createdBy')
-    creti = findText(relaxml, 'createdTime')
+    rela = Relation()
+    rela.rela_id = Modelelement(pmeltshortname=Modelelemtype.RELA).insert()
+    rela.rela_name =findField(relaxml, 'name')
+    rela.rela_assoc_from_to = findText(relaxml, 'nameOnSource')
+    rela_rela_hist_from_to = Boolean.bool2str(is_historisized(rela.rela_assoc_from_to))
+    rela.rela_assoc_to_from = findText(relaxml, 'nameOnTarget')
+    rela_rela_hist_to_from = Boolean.bool2str(is_historisized(rela.rela_assoc_to_from))
+    rela.maptype_from_to = findText(relaxml, 'sourceCardinality')
+    rela.maptype_to_from = findText(relaxml, 'targetCardinality')
+    rela.rela_mandatory_from_to = Boolean.strnegbool(findText(relaxml, 'optionalSource'))
+    rela.rela_mandatory_to_from = Boolean.strnegbool(findText(relaxml, 'optionalTarget'))
+    rela.rela_type = rela.simpleType()
+    rela.rela_uc = findText(relaxml, 'createdBy')
+    rela.rela_dc = findText(relaxml, 'createdTime')
+
     sourceentiguid = findText(relaxml, 'sourceEntity')
     targetentiguid = findText(relaxml, 'targetEntity')
-    try:
-        lrow = [lbeziType
-            , Entitaet().getID(sourceentiguid), vonText
-            , Boolean.strnegbool(optSrc), 'FALSE'
-            , Entitaet().getID(targetentiguid), zuText
-            , Boolean.strnegbool(optTarg), 'FALSE'
-            , findField(relaxml, 'id'), creby, creti, relname
-            , sourceentiguid, targetentiguid
-                ]
-        # findField(root,'name')\           ,findText(root,'comment')\
-        #           ,findText(root,'transferable')           ,findText(root,'deleteRule')\
-    except  sqlite3.Error as e:
-        if (e.__str__() == 'No Data Found'):
-            print("Entity Id {} oder {} nicht gefunden. Datenleichen von Bezi mit gelöschten Entities".format(
+    rela.rela_enti_id_from = Entitaet().getID(sourceentiguid)
+    rela.rela_enti_id_to = Entitaet().getID(targetentiguid)
+    if (rela.rela_enti_id_from is None or rela.rela_enti_id_to is None):
+        logging.writelog(
+            "Entity Id {} oder {} nicht gefunden. Datenleichen von Realtion mit gelöschten Entities".format(
                 sourceentiguid, targetentiguid))
-            return
-        else:
-            raise e
-        # fi
-    # yrt
-
-    # isA darf nur von von nach zu gehen. d.h. von Beziehung muss NOT NULL sein.
-    if ((lbeziType == 'ISA' and optSrc == 'true')
-            or (lbeziType == 'ISA' and optSrc == 'false' and optTarg == 'false')  # und der Arc ist auf der VonSeite
-            or (lbeziType == 'M:1' and abbildTyp(cardSrc) == '1')
-    ):
-        # tausche von und zu aus
-        lrow[1], lrow[5] = lrow[5], lrow[1]  # Entity-Id
-        lrow[2], lrow[6] = lrow[6], lrow[2]  # text
-        lrow[3], lrow[7] = lrow[7], lrow[3]  # Optionalität
-        lrow[4], lrow[8] = lrow[8], lrow[4]  # history
-    # fi
-    row = tuple(lrow)
-    # print (row)
-
-    try:
-        beziId = dbInserts.insertBeziehung(row)
-    except (sqlite3.IntegrityError):
-        logging.writelog(row)
         return
-    lmodeId = Modelelement.insertmode(prelaid=beziId)
-    dbInserts.insertUdpBezi(beziId)
+    # fi
+
+    rela.insert()
+    dbInserts.insertUdpBezi(bezi.bezi_id)
 
     updateUDP(pmodeid=lmodeId, pobj=relaxml)
     ModelelemDoku.insertdokuref(pdocguidlist=documents, pmodeid=lmodeId)
@@ -1195,7 +1151,7 @@ def loeschmodell():
     dbDML.delete("benudef_eigenschaft")
     Schluesselelement.delete()
     Schluessel.delete()
-    dbDML.delete("beziehungen")
+    Relation.delete()
     Arc.delete()
     Attribut.delete()
     Synonym.delete()

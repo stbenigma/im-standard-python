@@ -90,7 +90,7 @@ class Dokument(Baseobject):
                 ,mode_scha_id
                 ,mode_attr_id
                 ,mode_wrtb_id
-                ,mode_bezi_id
+                ,mode_rela_id
                 ,mode_orge_id
                 ,mode_buru_id
          from  DOKUMENTE
@@ -129,7 +129,7 @@ class Dokument(Baseobject):
 left join dokumente parent on parent.DOKU_ID = child.DOKU_DOKU_ID  
 join MODELELEM_DOKU on MODO_DOKU_ID = child.DOKU_ID
 join modellelement on mode_id = MODO_MODE_ID
-where  (   mode_bezi_id = {}
+where  (   mode_rela_id = {}
         or mode_enti_id = {}
         or mode_attr_id = {}
        ) ".format (prelaid,pentiid,pattrid))

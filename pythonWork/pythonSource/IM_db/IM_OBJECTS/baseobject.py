@@ -38,8 +38,7 @@ class Webanker:
         return self._modelid
 #Webanker
 
-class   Baseobject:
-
+class Baseobject:
     def __init__(self,tablename,prefix,columnlist,idcolname = None,guidcolname = None):
         self._tablename:str = tablename
         self._prefix:str = prefix

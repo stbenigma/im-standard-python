@@ -34,65 +34,7 @@ def erstelleInfra():
 
     Arc.createtable()
 
-    dbDDL.dropTable("beziehungen")
-    dbDDL.createTable("""
-CREATE TABLE beziehungen(
-    bezi_id                        integer NOT NULL primary key autoincrement,
-    bezi_type                      varchar(3)NOT NULL
-           CHECK(bezi_type IN(
-               '1:1',
-               'ISA',
-               'M:1',
-               'M:N'
-           )),
-	bezi_enti_id_von               integer NOT NULL,
-    bezi_assoc_von_zu      varchar(100) NULL,
-    bezi_pflicht_assoc_von_zu      varchar(5) NOT NULL
-        CHECK(bezi_pflicht_assoc_von_zu IN(
-            'FALSE',
-            'TRUE'
-        )),
-    bezi_hist_von_zu               varchar(5) NOT NULL
-        CHECK(bezi_hist_von_zu IN(
-            'FALSE',
-            'TRUE'
-        )),
-    bezi_enti_id_zu                integer NOT NULL,
-    bezi_assoc_zu_von      varchar(100)  NULL,
-    BEZI_PFLICHT_ASSOC_ZU_VON   varchar(5) NOT NULL
-        CHECK(BEZI_PFLICHT_ASSOC_ZU_VON IN(
-            'FALSE',
-            'TRUE'
-        )),
-    bezi_hist_zu_von               varchar(5) NOT NULL
-        CHECK(bezi_hist_zu_von IN(
-            'FALSE',
-            'TRUE'
-        )),
-    bezi_von_arcs_id                    integer NULL,
-    bezi_zu_arcs_id                    integer NULL,
-	bezi_odm_guid		varchar(36),bezi_name varchar(100),
-        bezi_uc                        varchar(30) NOT NULL,
-    bezi_dc                        varchar(30) NOT NULL,
-    bezi_um                        varchar(30) NULL,
-    bezi_dm                        varchar(30) NULL,
-    bezi_source_enti_guid          VARCHAR2(36) NULL,
-    bezi_target_enti_guid          VARCHAR2(36) NULL,
-	CONSTRAINT bezi_isa_ck2 CHECK((bezi_type = 'ISA' AND bezi_pflicht_assoc_von_zu = 'TRUE')
-                                   OR (bezi_type != 'ISA')),
-	CONSTRAINT bezi_von_arc_fk FOREIGN KEY(bezi_von_arcs_id)
-							REFERENCES arcs(arcs_id),
-	CONSTRAINT bezi_zu_arc_fk FOREIGN KEY(bezi_zu_arcs_id)
-							REFERENCES arcs(arcs_id),
-	CONSTRAINT bezi_enti_fk_von FOREIGN KEY(bezi_enti_id_von)
-											         REFERENCES entitaeten(enti_id)
-											             ON DELETE CASCADE,
-	CONSTRAINT bezi_enti_fk_zu FOREIGN KEY(bezi_enti_id_zu)
-											         REFERENCES entitaeten(enti_id)
-											             ON DELETE CASCADE
-)
-""")
-
+    Relation.createtable()
 
     dbDDL.dropTable("benudef_eigenschaft")
     dbDDL.createTable("""
@@ -167,18 +109,18 @@ CREATE TABLE modelltyp_eigensch(
       join entitaeten as ae on ae.enti_id = arcs_enti_id 
       join (select bezi_arcs_id
                    ,count(*) alleanz
-           , SUM(case bezi_pflicht_assoc_von_zu when 'TRUE' then 1 else 0 end) nnvonanz
-           , SUM(case bezi_pflicht_assoc_zu_von when 'TRUE' then 1 else 0 end) nnzuanz
-            from   (select case when bezi_von_arcs_id is null then bezi_zu_arcs_id else bezi_von_arcs_id end bezi_arcs_id
-                        , bezi_pflicht_assoc_von_zu
-                        , bezi_pflicht_assoc_zu_von
+           , SUM(case rela_mandatory_from_to when 'TRUE' then 1 else 0 end) nnvonanz
+           , SUM(case rela_mandatory_to_from when 'TRUE' then 1 else 0 end) nnzuanz
+            from   (select case when rela_arcs_id_from is null then rela_arcs_id_to else rela_arcs_id_from end bezi_arcs_id
+                        , rela_mandatory_from_to
+                        , rela_mandatory_to_from
                    from beziehungen
-                   where bezi_type in ('ISA', '1:1')
+                   where rela_type in ('ISA', '1:1')
                 )
             group by bezi_arcs_id) as st
             on st.bezi_arcs_id = arcs_id AND  alleanz = nnvonanz and alleanz = nnzuanz
-      join beziehungen b1 on b1.bezi_von_arcs_id = arcs_id or b1.bezi_zu_arcs_id = arcs_id
-      join entitaeten e1 on e1.enti_id = b1.bezi_enti_id_von  
+      join beziehungen b1 on b1.rela_arcs_id_from = arcs_id or b1.rela_arcs_id_to = arcs_id
+      join entitaeten e1 on e1.enti_id = b1.rela_enti_id_from  
     order by ae.enti_name""")
 
     Diagrammtyp.createtable()

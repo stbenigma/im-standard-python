@@ -101,15 +101,15 @@ def main(p_imdirec=None, p_modelname=None):
                     from modellelement
                     join attributes on attr_id = mode_attr_id 
                     union all                
-                   select 'RELA_TEXT_FROM' attrname, bezi_assoc_von_zu text 
+                   select 'RELA_TEXT_FROM' attrname, rela_assoc_from_to text 
                         ,mode_id,bezi_uc,bezi_dc
                     from modellelement
-                    join beziehungen on bezi_id = mode_bezi_id 
+                    join beziehungen on rela_id = mode_rela_id 
                     union all                
-                   select 'RELA_TEXT_TO' attrname, bezi_assoc_zu_von text 
+                   select 'RELA_TEXT_TO' attrname, rela_assoc_to_from text 
                         ,mode_id,bezi_uc,bezi_dc
                     from modellelement
-                    join beziehungen on bezi_id = mode_bezi_id 
+                    join beziehungen on rela_id = mode_rela_id 
                 )
                 cross join (select 123)
                 where text is not null

@@ -1,8 +1,9 @@
 from datetime import datetime
 
 from IM_DB import dbDML
-from .baseobject import Baseobject
+from .baseobject import Baseobject, MultilangBaseobject
 from .modelelement import Modelelement, Modelelemtype, ExternalRef
+from .sprachtext import Sprachtext
 
 
 class Arc(Baseobject):
@@ -65,7 +66,7 @@ CREATE TABLE ARCS
     ,CONSTRAINT ARCS_MODE_FK FOREIGN KEY (     ARCS_ID)
         REFERENCES MODELELEMENT (MODE_ID ) ON DELETE CASCADE ON UPDATE NO ACTION)
     """
-                               )
+        )
 
     @staticmethod
     def delete():
@@ -81,22 +82,152 @@ CREATE TABLE ARCS
 
         return arcs
 
+class Relation(MultilangBaseobject):
+    ONE2ONE: str = '1:1'
+    ISAROLE: str = 'ISAR'
+    ISASUBTYPE: str = 'ISAS'
+    MANY2ONE: str = 'M:1'
+    MANY2MANY: str = 'M:N'
+    ONE:str = '1'
+    MANY:str = 'M'
 
-class Relation(Baseobject):
+    _tablename: str = 'relations'
+    _prefix: str = 'rela'
+    _columnlist: list = ['rela_id', 'rela_name', 'rela_type', 'rela_enti_id_from',
+                            'rela_arcs_id_from', 'rela_assoc_from_to', 'rela_maptype_from_to',
+                         'rela_mandatory_from_to',
+                         'rela_hist_from_to', 'rela_enti_id_to', 'rela_arcs_id_to', 'rela_assoc_to_from',
+                         'rela_maptype_to_from', 'rela_mandatory_to_from', 'rela_hist_to_from',
+                         'rela_uc', 'rela_dc', 'rela_um', 'rela_dm', ]
+
+    """        (rela_type, rela_enti_id_from, rela_assoc_from_to
+         , rela_mandatory_from_to, rela_hist_from_to
+         , rela_enti_id_to, rela_assoc_to_from
+         , rela_mandatory_to_from, bezi_hist_zu_von
+         , bezi_odm_guid, bezi_uc, bezi_dc, rela_name
+         , bezi_source_enti_guid, bezi_target_enti_guid
+         )
+"""
+
+    def __init__(self):
+            super().__init__(tablename=Relation._tablename, prefix=Relation._prefix
+                             , columnlist=Relation._columnlist
+                             , multilangcols={'rela_assoc_from_to': Sprachtext.RELA_TEXT_FROM
+                    , 'rela_assoc_to_from': Sprachtext.RELA_TEXT_TO}
+                             )
+
+    @staticmethod
+    def createtable():
+        Baseobject.createtable(ptablename=Relation._tablename
+                                   , psql="""
+CREATE TABLE RELATIONS
+    (
+     RELA_ID NUMERIC (10) NOT NULL  primary key,
+     RELA_NAME VARCHAR (60) NOT NULL ,
+     RELA_TYPE VARCHAR (4) NOT NULL CHECK ( RELA_TYPE IN ('1:1', 'ISAR', 'ISAS', 'M:1', 'M:N') ) ,
+     RELA_ENTI_ID_FROM NUMERIC (10) NOT NULL ,
+     RELA_ARCS_ID_FROM NUMERIC (10)  ,
+     RELA_ASSOC_FROM_TO VARCHAR (4000) NULL ,
+     RELA_MAPTYPE_FROM_TO CHAR (1) NOT NULL CHECK ( RELA_MAPTYPE_FROM_TO IN ('1', 'M') ) ,
+     RELA_MANDATORY_FROM_TO VARCHAR (5) NOT NULL  CHECK(RELA_MANDATORY_FROM_TO IN('FALSE','TRUE')),
+     RELA_HIST_FROM_TO VARCHAR (5) NOT NULL  CHECK(RELA_HIST_FROM_TO IN('FALSE','TRUE')),
+     RELA_ENTI_ID_TO NUMERIC (10) NOT NULL ,
+     RELA_ARCS_ID_TO NUMERIC (10)  ,
+     RELA_ASSOC_TO_FROM VARCHAR (100) NULL ,
+     RELA_MAPTYPE_TO_FROM CHAR (1) NOT NULL CHECK ( RELA_MAPTYPE_TO_FROM IN ('1', 'M') ) ,
+     RELA_MANDATORY_TO_FROM VARCHAR (5) NOT NULL  CHECK(RELA_MANDATORY_TO_FROM IN('FALSE','TRUE')),
+     RELA_HIST_TO_FROM VARCHAR (4000) NOT NULL    		CHECK(RELA_HIST_TO_FROM IN('FALSE','TRUE')),
+     RELA_UC VARCHAR(30) NULL  ,
+     RELA_DC VARCHAR (30) NOT NULL ,
+     RELA_UM VARCHAR (30) NULL ,
+     RELA_DM VARCHAR (30) NULL ,
+     CONSTRAINT RELA_MAPTYPE_CHK CHECK ((RELA_TYPE = 'ISAR'
+  AND RELA_MAPTYPE_FROM_TO = '1'
+  AND RELA_MAPTYPE_TO_FROM = '1'
+  AND (RELA_MANDATORY_FROM_TO = 'TRUE'
+  	  OR
+  	  RELA_MANDATORY_TO_FROM = 'TRUE'
+  	  )
+) OR
+(RELA_TYPE = 'ISAS'
+  AND RELA_MAPTYPE_FROM_TO = '1'
+  AND RELA_MAPTYPE_TO_FROM = '1'
+  AND RELA_MANDATORY_FROM_TO = 'TRUE'
+  AND RELA_MANDATORY_TO_FROM = 'TRUE'
+  AND (RELA_ARCS_ID_FROM IS NOT NULL
+  		OR
+	   RELA_ARCS_ID_TO IS NOT NULL
+	  )
+) OR
+(RELA_TYPE = '1:1'
+  AND RELA_MAPTYPE_FROM_TO = '1'
+  AND RELA_MAPTYPE_TO_FROM = '1'
+) OR
+(RELA_TYPE ='M:1'
+  AND (
+  	(RELA_MAPTYPE_FROM_TO = '1'
+ 	 AND RELA_MAPTYPE_TO_FROM = 'M'
+  	) OR
+  	(RELA_MAPTYPE_FROM_TO = 'M'
+  	 AND RELA_MAPTYPE_TO_FROM = '1'
+	)
+  )
+) OR
+(RELA_TYPE = 'M:N'
+  AND RELA_MAPTYPE_TO_FROM = 'M'
+  AND RELA_MAPTYPE_FROM_TO = 'M'
+)
+)
+    ,CONSTRAINT RELA_UK1 UNIQUE (RELA_ENTI_ID_FROM ASC, RELA_ENTI_ID_TO ASC, RELA_TYPE ASC, RELA_ASSOC_TO_FROM ASC, RELA_ASSOC_FROM_TO ASC)
+    ,CONSTRAINT RELA_UK_NAME UNIQUE (RELA_NAME ASC)
+    ,CONSTRAINT RELA_ARCS_FROM_FK FOREIGN KEY(     RELA_ARCS_ID_FROM)
+    REFERENCES ARCS    (     ARCS_ID )
+    ,CONSTRAINT RELA_ARCS_TO_FK FOREIGN KEY(     RELA_ARCS_ID_TO)
+    REFERENCES ARCS    (     ARCS_ID )
+    ,CONSTRAINT RELA_ENTI_FROM_FK FOREIGN KEY (     RELA_ENTI_ID_FROM)
+    REFERENCES ENTITIES    (     ENTI_ID )
+    ,CONSTRAINT RELA_ENTI_TO_FK FOREIGN KEY(     RELA_ENTI_ID_TO)
+    REFERENCES ENTITIES(     ENTI_ID )
+    ,CONSTRAINT RELA_MODE_FK FOREIGN KEY(     RELA_ID)
+    REFERENCES MODELELEMENT(     MODE_ID )    ON DELETE CASCADE
+)"""
+                        )
+
+    @staticmethod
+    def delete():
+        Baseobject.delete(Relation._tablename)
+
+    @staticmethod
+    def select(pwhere=None, porderby=None):
+        rela = Baseobject.select(pclass=Relation
+                                 , pwhere=pwhere, porderby=porderby)
+        return rela
+
+    def simpleType(self):
+        """only the first try. Add arcs later to find distinguisch ISAR and ISAS"""
+        if (self.rela_maptype_from_to == Relation.ONE and self.rela_maptype_to_from == Relation.ONE):
+            retval = Relation.ONE2ONE
+        elif (self.rela_maptype_from_to == Relation.MANY and self.rela_maptype_to_from == Relation.MANY):
+            retval = Relation.MANY2MANY
+        else:
+            retval = Relation.MANY2ONE
+        #fi
+        return retval
+
     @staticmethod
     def updaterela(parcid, prelids):
         dbDML.exec("""update beziehungen
-                set (bezi_von_arcs_id,bezi_zu_arcs_id) =
+                set (rela_arcs_id_from,rela_arcs_id_to) =
                     (select case earc.enti_odm_guid
                             when evon.enti_odm_guid
-                            then arcs_id else bezi_von_arcs_id end von_arcs_id
+                            then arcs_id else rela_arcs_id_from end von_arcs_id
                             ,case earc.enti_odm_guid
                             when ezu.enti_odm_guid
-                            then arcs_id else bezi_zu_arcs_id end zu_arcs_id
+                            then arcs_id else rela_arcs_id_to end zu_arcs_id
                     from arcs
                     join entitaeten earc on arcs_enti_id = earc.enti_id
-                    left join entitaeten evon on bezi_enti_id_von = evon.enti_id
-                    left join entitaeten ezu on bezi_enti_id_zu = ezu.enti_id
+                    left join entitaeten evon on rela_enti_id_from = evon.enti_id
+                    left join entitaeten ezu on rela_enti_id_to = ezu.enti_id
                     where arcs_id = {}
                     )
                 where bezi_odm_guid in ({})
@@ -104,10 +235,10 @@ class Relation(Baseobject):
 
     @staticmethod
     def insertisa():
-        dbDML.exec("""insert into beziehungen (bezi_type, bezi_enti_id_von, bezi_assoc_von_zu
-                    ,bezi_pflicht_assoc_von_zu, bezi_hist_von_zu
-                    , bezi_enti_id_zu, bezi_assoc_zu_von, BEZI_PFLICHT_ASSOC_ZU_VON, bezi_hist_zu_von
-                    , bezi_von_arcs_id,bezi_uc, bezi_dc,bezi_name)
+        dbDML.exec("""insert into beziehungen (rela_type, rela_enti_id_from, rela_assoc_from_to
+                    ,rela_mandatory_from_to, rela_hist_from_to
+                    , rela_enti_id_to, rela_assoc_to_from, rela_mandatory_to_from, bezi_hist_zu_von
+                    , rela_arcs_id_from,bezi_uc, bezi_dc,rela_name)
                 select 'ISA', slave_enti_id,''
                             , 'TRUE','FALSE'
                             ,master_enti_id,'','TRUE','FALSE'

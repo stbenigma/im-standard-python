@@ -13,19 +13,6 @@ def  insertLovWrtb(pName,pherkunft = Wertebereich.DOMAIN):
     return wrtb.insert()
 
 
-def insertBeziehung(pdata):
-    lsql = """
-        insert into beziehungen 
-          (bezi_type, bezi_enti_id_von, bezi_assoc_von_zu
-     ,bezi_pflicht_assoc_von_zu, bezi_hist_von_zu
-    , bezi_enti_id_zu,bezi_assoc_zu_von
-    , BEZI_PFLICHT_ASSOC_ZU_VON,bezi_hist_zu_von
-    , bezi_odm_guid,bezi_uc, bezi_dc,bezi_name
-    ,bezi_source_enti_guid,  bezi_target_enti_guid
-    ) 
-            values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
-        """
-    return dbDML.insert(lsql, pdata)
 
 def insertUDP(pData):
 # bdeg_thema, bdeg_gruppe, bdeg_name, bdeg_default_value
@@ -153,13 +140,13 @@ def insertUdpBezi(beziId):
                 bdwe_wert,  bdwe_mode_id,   bdwe_bdeg_id
                 ,bdwe_uc,   bdwe_dc)
                 select NULL,mode_id,bdeg_id,bezi_uc,bezi_dc
-                from beziehungen
-                join modelelement on mode_rela_id = bezi_id
+                from RELATIONS
+                join modelelement on mode_rela_id = rela_id
                 cross join (select mote_bdeg_id as bdeg_id
                              from modelelem_type
                              join modelltyp_eigensch on mote_melt_id = melt_id
                              where melt_shortname = 'RELA')
-                where bezi_id = {}
+                where rela_id = {}
             """ .format(beziId))
 #insertUdpBezi
 
