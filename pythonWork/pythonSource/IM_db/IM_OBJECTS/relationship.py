@@ -2,7 +2,7 @@ from datetime import datetime
 
 from IM_DB import dbDML
 from .baseobject import Baseobject, MultilangBaseobject
-from .modelelement import Modelelement, Modelelemtype, ExternalRef
+from .modelelement import Modelelement, Modelelemtype
 from .sprachtext import Sprachtext
 
 
@@ -11,8 +11,6 @@ class Arc(Baseobject):
     _prefix: str = 'arcs'
     _columnlist: list = ['arcs_id', 'arcs_name', 'arcs_enti_id', 'arcs_uc', 'arcs_dc', 'arcs_um', 'arcs_dm']
 
-    __extref = {}
-
     def __init__(self, pname, pentiid, puc, pdc=None):
         super().__init__(tablename=Arc._tablename, prefix=Arc._prefix
                          , columnlist=Arc._columnlist)
@@ -20,15 +18,6 @@ class Arc(Baseobject):
         self.arcs_enti_id = pentiid
         self.arcs_uc = puc
         self.arcs_dc = pdc if (pdc is not None) else str(datetime)
-
-    def setsourceid(self, psrc, psrcid):
-        self.__extref[psrc] = psrcid
-
-    def getsourceid(self, psrc):
-        try:
-            return self.__extref[psrc]
-        except:
-            return None
 
     def insert(self):
         self.arcs_id = Modelelement(Modelelemtype.getidbyshortname(Modelelemtype.ARCS)).insert()
@@ -76,10 +65,6 @@ CREATE TABLE ARCS
     def select(pwhere=None, porderby=None):
         arcs = Baseobject.select(pclass=Arc
                                  , pwhere=pwhere, porderby=porderby)
-        for value in arcs.values:
-            for extr in ExternalRef.getbymodeid(pmodeid=value.arcs_id):
-                value.setsourceid(psrc=extr.extr_source, psrcid=extr.extr_source_id)
-
         return arcs
 
 class Relation(MultilangBaseobject):
@@ -196,6 +181,10 @@ CREATE TABLE RELATIONS
     @staticmethod
     def delete():
         Baseobject.delete(Relation._tablename)
+
+    def insert(self):
+        self.rela_id = Modelelement(pmeltshortname=Modelelemtype.RELA).insert()
+        super().insert()
 
     @staticmethod
     def select(pwhere=None, porderby=None):

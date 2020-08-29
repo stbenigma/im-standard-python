@@ -2,6 +2,7 @@ from IM_DB import *
 from .baseobject import MultilangBaseobject,Baseobject
 from .sprachtext import Sprachtext
 from .datatype import Datatype
+from .modelelement import Modelelement,Modelelemtype
 
 class Wertebereich(MultilangBaseobject):
     DERIVED:str ='DER'
@@ -164,6 +165,10 @@ CREATE TABLE wertebereiche(
         info = self.typeinfo()
         return info[2]
     #typestring
+
+    def insert(self):
+        self.wrtb_id = Modelelement(Modelelemtype.DOMA).insert()
+        super().insert()
 
     def webanker(self):
         return super().webanker()

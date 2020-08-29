@@ -85,6 +85,9 @@ CREATE TABLE attributes(
 		        REFERENCES beziehungen(rela_id)
 )
         """)
+    def insert(self):
+        self.attr_id = Modelelement(Modelelemtype.ATTR).insert()
+        super().insert()
 
     def webanker(self):
         return super().webanker()

@@ -1,4 +1,6 @@
-import math,os,re
+import math
+import os
+import re
 import sqlite3
 import xml.etree.ElementTree as ET
 from datetime import date
@@ -54,18 +56,24 @@ def findField(set, name):
 # findField
 
 
-def nameflags(pstr:str, pflag:str) -> bool:
+def nameflags(pstr: str, pflag: str) -> bool:
     """checks [NLT] at end of names (my erd-Extension)"""
     if (pstr is None): return
-    lmatch = "\[.{0,2}"+pflag+".{0,2}\]"
+    lmatch = "\[.{0,2}" + pflag + ".{0,2}\]"
     return (True if re.match(lmatch, pstr) else False)
 
-def is_historisized(pstr:str) -> bool:
+
+def is_historisized(pstr: str) -> bool:
     return nameflags(pstr=pstr, pflag='T')
-def is_langdept(pstr:str) -> bool:
+
+
+def is_langdept(pstr: str) -> bool:
     return nameflags(pstr=pstr, pflag='L')
-def is_repeated(pstr:str) -> bool:
+
+
+def is_repeated(pstr: str) -> bool:
     return nameflags(pstr=pstr, pflag='N')
+
 
 def transferTypes():
     types = ET.parse(parameters.odmIMDirec() + parameters.odmKonfDirec() + parameters.odmTypesFile())
@@ -84,12 +92,12 @@ def do1structtype(filename):
     # print (findField(structdom,"name"))
     wrtb = Wertebereich()
     wrtb.wrtb_name = findField(structdom, "name")
-    wrtb.wrtb_odm_guid = findField(structdom, "id")
     wrtb.wrtb_uc = findText(structdom, "createdBy")
     wrtb.wrtb_dc = findText(structdom, "createdTime")
     wrtb.wrtb_typ = 'GRP'
     wrtb.wrtb_herkunft = Wertebereich.DOMAIN
     wrtb.insert()
+    Externalref(psrcname=Externalref.SOURCE_ODM, psrcid=findField(structdom, "id"), pmodeid=wrtb.wrtb_id).insert()
 
     elements = structdom.findall("attributes/Attribute")
     for el in elements:
@@ -105,7 +113,8 @@ def do1structtype(filename):
         if elwrtb is None:
             # nimm vorläufig unknown, da mein Typ evtl. noch nicht da ist.
             elwrtbid = Wertebereich().getunknown().wrtb_id
-        else: elwrtbid = elwrtb.wrtb_id
+        else:
+            elwrtbid = elwrtb.wrtb_id
         wbgr.wbgr_wrtb_id_member = elwrtbid
         wbgr.insert()
     # for
@@ -620,21 +629,19 @@ def do1Arc(fileName):
     arcXML = ET.parse(fileName).getroot()
     if (findField(arcXML, "class") != "oracle.dbtools.crest.model.design.logical.Arc"): return
 
-    # (arcs_name, arcs_enti_id, arcs_odm_guid
-    # , arcs_uc, arcs_dc)
     arc = Arc(pname=findField(arcXML, "name")
               , pentiid=Entitaet().getID(findText(arcXML, 'entity'))
               , puc=findText(arcXML, 'createdBy')
               , pdc=findText(arcXML, 'createdTime'))
-    arc.setsourceid(psrc=ExternalRef.ODM,psrcid=findField(arcXML, "id"))
     arcid = arc.insert()
+    Externalref(psrcname=Externalref.SOURCE_ODM, psrcid=findField(arcXML, "id")).insert()
 
     """map all relations to this arc"""
     relations = arcXML.findall('relations/relationID')
     relids = ','.join("'{}'".format(r.text) for r in relations)
     # DEBUG Arc 2x auf Beziehung
-#    if findField(arcXML, "name") in ('xxArc_9', 'xxArc_11'):
-#        print(findField(arcXML, "id"), findField(arcXML, "name"), findText(arcXML, 'entity'))
+    #    if findField(arcXML, "name") in ('xxArc_9', 'xxArc_11'):
+    #        print(findField(arcXML, "id"), findField(arcXML, "name"), findText(arcXML, 'entity'))
     if False:
         res = dbDML.select("""select case earc.enti_odm_guid
                             when evon.enti_odm_guid
@@ -650,14 +657,17 @@ def do1Arc(fileName):
                     left join entitaeten ezu on rela_enti_id_to = ezu.enti_id
                     where arcs_id = {}
                 and bezi_odm_guid in ({})""".format(arcid, relids))
-        #print(res)
-    Relation.updaterela(parcid=arcid,prelids=relids)
+        # print(res)
+    Relation.updaterela(parcid=arcid, prelids=relids)
 
     # print(findField(arc,"name"),rel.text)
+
+
 # do1Arc
 
 def transferArcs():
     dosegfiles(pdirec=parameters.odmArcDirec(), transferfiles=do1Arc)
+
 
 # transferArcs
 
@@ -699,7 +709,6 @@ def updateUDP(pmodeid, pobj):
     # fi
 
 
-
 def do1Attribute(plfnr, pattrxml, pentiId=None, prelaId=None):
     # wegen FK-PK zusätzliche Attribute werden nicht übernommen
     if (findText(pattrxml, 'referedAttribute') is not None):
@@ -730,7 +739,7 @@ def do1Attribute(plfnr, pattrxml, pentiId=None, prelaId=None):
     attr.attr_anz_rhflg = plfnr
     attr.attr_deskriptor = 'FALSE'
     attr.attr_pflichtattr = Boolean.bool2str(findText(pattrxml, 'nullsAllowed') == 'true')
-    attr.attr_historisiert = Boolean.bool2str(is_historisized( xmlname) )
+    attr.attr_historisiert = Boolean.bool2str(is_historisized(xmlname))
     attr.attr_wiederholt = Boolean.bool2str(is_repeated(xmlname))
     attr.attr_sprachabhaengig = Boolean.bool2str(is_langdept(xmlname))
     attr.attr_verschluesselt = 'FALSE'
@@ -802,13 +811,13 @@ def transferKeys():
                     print(str(e))
                     print(ke, scel)
                     raise e
-                #try
+                # try
             else:
                 scel.scel_rela_id = None
-            #if
+            # if
             scel.insert()
-        #for
-    #for
+        # for
+    # for
 
 
 def getdokuref(pelem, pstruct=False):
@@ -898,15 +907,18 @@ def do1Entity(fileName):
 def transferEntitaeten():
     # lösche die Entitäten
     dosegfiles(pdirec=parameters.odmEntityDirec(), transferfiles=do1Entity)
+
+
 # transferEntitaeten
 
 def doSubentities():
     Entitaet.setsuperentityid()
 
-    for superenti in Entitaet.select(pwhere="(select count(*) from entitaeten as e1 where e1.enti_enti_id = enti.enti_id) > 0"):
-        Arc(pname=superenti.enti_name+'_subtype',pentiid=superenti.enti_id
-            ,puc=superenti.enti_uc,pdc=superenti.enti_dc).insert()
-    #for
+    for superenti in Entitaet.select(
+            pwhere="(select count(*) from entitaeten as e1 where e1.enti_enti_id = enti.enti_id) > 0"):
+        Arc(pname=superenti.enti_name + '_subtype', pentiid=superenti.enti_id
+            , puc=superenti.enti_uc, pdc=superenti.enti_dc).insert()
+    # for
     # dbDML.exec("""insert into arcs (arcs_name, arcs_enti_id,arcs_uc,arcs_dc)
     #                    select name || '_subtype', id,uc,um from
     #                               (select enti_name as name, enti_id as id,enti_uc as uc ,enti_dc as um
@@ -937,14 +949,13 @@ def do1Relation(fileName):
     documents = getdokuref(pelem=relaxml)
 
     rela = Relation()
-    rela.rela_id = Modelelement(pmeltshortname=Modelelemtype.RELA).insert()
-    rela.rela_name =findField(relaxml, 'name')
+    rela.rela_name = findField(relaxml, 'name')
     rela.rela_assoc_from_to = findText(relaxml, 'nameOnSource')
-    rela_rela_hist_from_to = Boolean.bool2str(is_historisized(rela.rela_assoc_from_to))
+    rela.rela_hist_from_to = Boolean.bool2str(is_historisized(rela.rela_assoc_from_to))
     rela.rela_assoc_to_from = findText(relaxml, 'nameOnTarget')
-    rela_rela_hist_to_from = Boolean.bool2str(is_historisized(rela.rela_assoc_to_from))
-    rela.maptype_from_to = findText(relaxml, 'sourceCardinality')
-    rela.maptype_to_from = findText(relaxml, 'targetCardinality')
+    rela.rela_hist_to_from = Boolean.bool2str(is_historisized(rela.rela_assoc_to_from))
+    rela.rela_maptype_from_to = Relation.ONE if (findText(relaxml, 'sourceCardinality') == '1') else Relation.MANY
+    rela.rela_maptype_to_from = Relation.ONE if (findText(relaxml, 'targetCardinalityString') == '1') else Relation.MANY
     rela.rela_mandatory_from_to = Boolean.strnegbool(findText(relaxml, 'optionalSource'))
     rela.rela_mandatory_to_from = Boolean.strnegbool(findText(relaxml, 'optionalTarget'))
     rela.rela_type = rela.simpleType()
@@ -990,7 +1001,7 @@ def do1UDPFile(pudpThema, pfileName):
     tree = ET.parse(pfileName)
     root = tree.getroot()
     lupdThema = pudpThema
-    lgroups = {'': '-'} #für ungruppierte properties
+    lgroups = {'': '-'}  # für ungruppierte properties
     for groups in root.findall('udp_groups'):
         for child in groups:
             # print(findField(child,'name'))
@@ -1000,7 +1011,7 @@ def do1UDPFile(pudpThema, pfileName):
 
     # die speziellen Properties (translation of comments in notes manuell einfüllen
     if (lupdThema == parameters.odmUDPTranslFileName()):
-        for lgrpkey,lgrpvalue in lgroups.items():
+        for lgrpkey, lgrpvalue in lgroups.items():
             if lgrpkey != '':
                 ludpid = dbInserts.insertUDP(pData=(lupdThema, lgrpvalue, lgrpvalue + '_ENTI_COMMENT', None
                                                     , None, 'FALSE', None, '--', date.today().__str__()))
@@ -1012,7 +1023,7 @@ def do1UDPFile(pudpThema, pfileName):
                 dbInserts.insertModelltypEigen(
                     (Modelelemtype.getidbyshortname(pshortname=Modelelemtype.type2melt('Attribute')), ludpid))
             # fi
-        #for
+        # for
     # fi
 
     props = root.find('properties')
@@ -1038,7 +1049,8 @@ def do1UDPFile(pudpThema, pfileName):
                     dbInserts.insertModelltypEigen((Modelelemtype.getidbyshortname(pshortname=lmeltid), udpId))
                 except Exception as err:
                     print(err)
-                    logging.writelog("mapping type '{}' for UDP {}:{}:{} not found".format(lmeltid,lupdThema,group,propname))
+                    logging.writelog(
+                        "mapping type '{}' for UDP {}:{}:{} not found".format(lmeltid, lupdThema, group, propname))
                     logging.writelog(err)
                     pass
             # fi
@@ -1066,10 +1078,11 @@ def do1UDPFile(pudpThema, pfileName):
                                      .format(pudpThema, propname, vgwt.vgwt_wert))
 
             # for
-            Userdefprop.setdomid(pdomid=wrtbId,pudpid=udpId)
-
+            Userdefprop.setdomid(pdomid=wrtbId, pudpid=udpId)
         # fi
     # for
+
+
 # do1UDPFile
 
 def dofiles(pdirec, pfileregexp, ptransferfunc):
@@ -1081,6 +1094,8 @@ def dofiles(pdirec, pfileregexp, ptransferfunc):
             ptransferfunc(filepath)
         # fi
     # endfor
+
+
 # dofiles
 
 def transferUPDdef():
@@ -1158,7 +1173,7 @@ def loeschmodell():
     Entitaet.delete()
     ModelelemDoku.delete()
     Dokument.delete()
-    ExternalRef.delete()
+    Externalref.delete()
     Modelelement.delete()
     Diagramm.delete()
     dbDML.delete("benudef_eigenschaft")
@@ -1252,7 +1267,6 @@ def transferprojekt():
     proj.proj_akt_sprache = defspra
     proj.insert()
 
-    dl, dl2 = dbParam.dbDefaultLang, parameters.dbDefaultLang()
     if defspra is not None:
         defspra = defspra.lower()
         # setze die Defaultsprache aus dem Modell
@@ -1263,7 +1277,7 @@ def transferprojekt():
         dbParam.liesdefaultlang()
         parameters.dbDefaultLang(defspra)
     # fi
-
+# transferprojekt
 
 def do1Document(fileName):
     tree = ET.parse(fileName)
@@ -1274,17 +1288,17 @@ def do1Document(fileName):
     doku.doku_referenz = None
     doku.doku_odm_guid = findField(root, 'id')
     doku.doku_parent_odm_guid = findText(root, 'parentDocument')
-    # DOKU_NAME, DOKU_FORMAT, DOKU_REFERENZ, DOKU_ODM_GUID, DOKU_PARENT_ODM_GUID
     doku.insert()
 
 
 def transferDocuments():
     dosegfiles(pdirec=parameters.odmdocumentdirec(), transferfiles=do1Document)
     Dokument.updparents()
-    # print(dbDML.select("""select * from Dokumente """))
+
 
 def removeemptyudp():
     Userdefpropvalue.removeemptyUDP(('.'))
+
 
 # transferDocuments
 def transferODMModel():

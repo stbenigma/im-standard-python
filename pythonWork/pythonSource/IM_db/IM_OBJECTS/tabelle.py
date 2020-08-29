@@ -46,6 +46,10 @@ class Tabelle(Baseobject):
     def getname(self):
         return self.tabl_name
 
+    def insert(self):
+        self.tabl_id = Modelelement(Modelelemtype.TABL).insert()
+        super().insert()
+
     @staticmethod
     def delete():
         Baseobject.delete(Tabelle._tablename)

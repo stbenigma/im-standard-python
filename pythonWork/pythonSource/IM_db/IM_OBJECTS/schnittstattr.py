@@ -49,6 +49,9 @@ class Schnittstelleattr(Baseobject):
         constraint scha_uk unique (scha_tabl_id,scha_column_name)        
         )
         """)
+    def insert(self):
+        self.scha_id = Modelelement(Modelelemtype.COLU).insert()
+        super().insert()
 
     def webanker(self):
         return super().webanker(pmodelid=self.getintfid())

@@ -65,6 +65,10 @@ create table entitaeten
 )"""
                             )
 
+    def insert(self):
+        self.enti_id = Modelelement(Modelelemtype.ENTI).insert()
+        super().insert()
+
     def webanker(self):
         return super().webanker()
 
