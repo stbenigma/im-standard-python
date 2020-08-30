@@ -18,13 +18,16 @@ Jede IT-Komponente hat einen Hersteller. D.h. es handelt sich um konkrete Produk
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
-<dataTypePrecision>10</dataTypePrecision>
-<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementColumn>true</autoIncrementColumn>
 <identityColumn>true</identityColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="CA7281CA-5160-885D-6675-2EF284E977FB" referredColumn="9698F1F3-1EBE-8770-4F8C-4FFC3465A776"/>
+</associations>
 </Column>
 <Column name="DATY_NAME" id="C543337D-0712-C93E-776F-0D391FC76C85">
 <createdBy>stb</createdBy>
@@ -32,41 +35,26 @@ Jede IT-Komponente hat einen Hersteller. D.h. es handelt sich um konkrete Produk
 <generatorID>E620B7E5-21B9-ADF5-D530-981CC31D9FDB</generatorID>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="DATY_GRUNDTYP" id="6A0AC23E-804C-17D3-1693-76B140B1578D">
+<Column name="DATY_BASETYPE" id="6A0AC23E-804C-17D3-1693-76B140B1578D">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
-<constraintName>DATY_CK_ITKO_ITKO_TYP</constraintName>
+<constraintName>DATY_BASETYPE_CK</constraintName>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
 <listOfValues>
 <valueDef value="BINARY" description=""/>
-<valueDef value="NUMBER" description=""/>
-<valueDef value="TEXT" description=""/>
-<valueDef value="ZEIT" description=""/>
-</listOfValues>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-</Column>
-<Column name="DATY_ODM_GUID" id="692422B6-E0FC-258F-3AAA-0F1D7CAE14CB">
-<createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:18:16 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<constraintName>DATY_CK_ITKO_ITKO_TYP</constraintName>
-<nullsAllowed>true</nullsAllowed>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
-<listOfValues>
-<valueDef value="ANWEN" description="Anwendung"/>
-<valueDef value="DBMS" description="Databasemangamentsystem"/>
-<valueDef value="SERV" description="Server"/>
+<valueDef value="DATETIME" description=""/>
+<valueDef value="NUMERIC" description=""/>
+<valueDef value="STRING" description=""/>
 </listOfValues>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
@@ -130,12 +118,13 @@ Jede IT-Komponente hat einen Hersteller. D.h. es handelt sich um konkrete Produk
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
-<ind_PK_UK id="D09BC347-7A33-1725-414E-E2E6162709C3" name="DATY_PK">
+<ind_PK_UK id="E444F791-1F8A-5EA9-851E-986412B202ED" name="DATY_PK">
 <createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:18:16 UTC</createdTime>
+<createdTime>2020-08-30 10:05:11 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <pk>true</pk>
 <indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
 <colUsage columnID="AA1C8108-16B6-83B3-65DA-F1F697F75488"/>
 </indexColumnUsage>
@@ -148,6 +137,16 @@ Jede IT-Komponente hat einen Hersteller. D.h. es handelt sich um konkrete Produk
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
 <colUsage columnID="C543337D-0712-C93E-776F-0D391FC76C85"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="C5CC59BA-DC40-21FD-CC25-8AD82EC2ED30" name="DATY_MODE_FK">
+<createdBy>stb</createdBy>
+<createdTime>2020-08-30 10:02:00 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="AA1C8108-16B6-83B3-65DA-F1F697F75488"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>

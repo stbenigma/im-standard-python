@@ -113,7 +113,7 @@ def printcollist(pcollist, pschnid):
     schnname = Schnittstelle.getname(pid=pschnid)
     if (pcollist is None or len(pcollist) == 0): return
     ueberschr = [Sprachtext.transl('Name'), Sprachtext.transl('Beschreibung')
-        , Sprachtext.transl('Wertebereich'), Sprachtext.transl('Datentyp')
+        , Sprachtext.transl('Domain'), Sprachtext.transl('Datentyp')
                  ]
 #    ueberschr.append('Logical Model')
 #    for schn in Schnittstelle.indexlist():
@@ -197,7 +197,7 @@ def getwrtbinfo(pcol,plang):
     wrtb = pcol.getwrtb()
     if wrtb is not None:
         wrtbname = wrtb.getname(plang=plang)\
-                    if wrtb.wrtb_herkunft == Wertebereich.DERIVED \
+                    if wrtb.wrtb_herkunft == Domain.DERIVED \
                     else printHTML.href(ref=wrtb.webanker().anker()
                                         ,anz=html.escape(wrtb.getname(plang))
                                         ,htmlfile=printHTML.htmlfilelist[wrtb.webanker().modelid()])

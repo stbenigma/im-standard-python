@@ -39,12 +39,16 @@ class Webanker:
 #Webanker
 
 class Baseobject:
-    def __init__(self,tablename,prefix,columnlist,idcolname = None,guidcolname = None):
+    def __init__(self,tablename,prefix,columnlist,idcolname = None,guidcolname = None
+                 ,psrcname=None,pscrid = None,pmodelemtype=None):
         self._tablename:str = tablename
         self._prefix:str = prefix
         self._idcolname:str = prefix + '_id' if idcolname is None else idcolname
         self._guidcolname:str = prefix + '_odm_guid' if guidcolname is None else guidcolname
         self._columnlist = columnlist
+        self.__srcname=psrcname
+        self.__srcid=pscrid
+        self.__modelemtype=pmodelemtype
         self.__emptyclass()
 
     def __emptyclass(self):
@@ -66,7 +70,13 @@ class Baseobject:
     def getid(self):
         return self.__dict__[self._idcolname]
 
+    def setid(self,pid):
+         self.__dict__[self._idcolname] = pid
+
     def insert(self,pdoerrhdlng=True):
+        if self.__modelemtype is not None:
+            self.setid(Modelelement(self.__modelemtype).insert())
+
         lsql = """insert into {} ({}) values ({})
            """.format(self._tablename, Baseobject.columnsliststring(self._columnlist)
                       , Baseobject.columnsliststring(pcollist=self._columnlist,pplaceholder=True))
@@ -79,9 +89,10 @@ class Baseobject:
             #if
             raise e
         #try
-        self.__dict__[self._idcolname] = id #autocolumns zurücklesen
+        self.setid(id) #autocolumns zurücklesen
+        if self.__srcname is not None:
+            Externalref(psrcname=self.__srcname,psrcid = self.__srcid,pmodeid=id).insert()
         return id
-
 
     def tostring(self):
         lretval = "Table: {}\n".format(self._tablename)
@@ -122,10 +133,10 @@ class Baseobject:
 
     def getID(self,pguid):
         self.getbyguid(pguid)
-        return self.__dict__[self._idcolname]
+        return self.getid()
 
     def webanker(self,pmodelid=0):
-        return Webanker(pname=self._prefix, pid= self.__dict__[self._idcolname],pmodelid=pmodelid)
+        return Webanker(pname=self._prefix, pid= self.getid(),pmodelid=pmodelid)
 
     @staticmethod
     def createtable(ptablename,psql):
@@ -204,11 +215,7 @@ class MultilangBaseobject(Baseobject):
         return retval
     #getbeschr
 
-
-#MultilangBaseobject
-#def webanker(pclass,pid):
-#    o = pclass()
-#    o.getbyid(pid)
-#    return o.webanker()
-
 from .sprachtext import Sprachtext
+from .modelelement import Modelelement
+from .externalref import Externalref
+

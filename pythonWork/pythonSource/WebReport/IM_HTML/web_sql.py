@@ -193,7 +193,7 @@ def namelist(ptype, plang=None, pid=None):
               join wertebereiche w2 on w2.wrtb_id = wbgr_wrtb_id_gruppe
               join sprachen sp on sp.spra_iso_code2 = '{}'         
               left join modellelement amo on amo.mode_attr_id = w2.wrtb_id
-              left join spraattr ana on ana.sptx_attrname = 'WRTB_NAME'
+              left join spraattr ana on ana.sptx_attrname = 'DOMA_NAME'
                                     and ana.sptx_mode_id = amo.mode_id
                                     and ana.spra_id = sp.spra_id
               where wbgr_wrtb_id_member = {}
@@ -201,7 +201,7 @@ def namelist(ptype, plang=None, pid=None):
                   """.format(plang, pid if (pid is not None) else 'wrtb_id'))
         datalist = [(e[0], wrtbAnker(e[3]),'') for e in data]
     elif (ptype == 'DOMA'):
-        datalist = Wertebereich.indexlist(pherkunft = 'DOM',plang=plang)
+        datalist = Domain.indexlist(pherkunft ='DOM', plang=plang)
     elif (ptype == 'UDP'):
         data = dbDML.select("""select  distinct bdeg_gruppe,bdeg_thema||'-'||bdeg_gruppe id
                              ,bdeg_thema
@@ -228,7 +228,7 @@ def namelist(ptype, plang=None, pid=None):
               """)
         datalist = [(e[0], diagAnker(e[1]),'') for e in data]
     elif (ptype == 'DOKU') :
-        datalist = Dokument.indexlist()
+        datalist = Document.indexlist()
     elif (ptype == 'INTF') :
         datalist = Schnittstelle.indexlist()
     elif (ptype == 'INTF'):
@@ -481,11 +481,11 @@ def udpwerte(pmeltname, pthema, pgruppe, pid):
 #udpwerte
 
 def wrtblist():
-    return Wertebereich.select(pwhere="wrtb_herkunft = 'DOM'", porderby='wrtb_name')
+    return Domain.select(pwhere="wrtb_herkunft = 'DOM'", porderby='wrtb_name')
 #wrtblist
 
 def dokulist():
-    return Dokument.dokulist()
+    return Document.dokulist()
 #dokulist
 
 def diaglist(pentiid=None):

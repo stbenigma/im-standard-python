@@ -1,7 +1,7 @@
 from .baseobject import Baseobject, MultilangBaseobject
 from .modelelement import Modelelement
 from .sprachtext import Sprachtext
-from .wertebereich import Wertebereich
+from .domain import Domain
 from .schluessel import Schluesselelement
 
 class Attribut(MultilangBaseobject):
@@ -114,7 +114,7 @@ CREATE TABLE attributes(
         return Schluesselelement.isinkey(pattrid=self.attr_id)
 
     def getdomain(self):
-        return Wertebereich().getbyid(self.attr_wrtb_id)
+        return Domain().getbyid(self.attr_wrtb_id)
 
     @staticmethod
     def delete():

@@ -6,7 +6,7 @@ from .baseobject import Baseobject
 from .datatype import Datatype
 from .schnittstelle import Schnittstelle
 from .tabelle import Tabelle
-from .wertebereich import  Wertebereich
+from .domain import  Domain
 
 
 class Schnittstelleattr(Baseobject):
@@ -77,7 +77,7 @@ class Schnittstelleattr(Baseobject):
 
     def getwrtb(self):
         if (self.scha_wrtb_id is None): return None
-        return Wertebereich().getbyid(self.scha_wrtb_id)
+        return Domain().getbyid(self.scha_wrtb_id)
 
 
     def getdaty(self):

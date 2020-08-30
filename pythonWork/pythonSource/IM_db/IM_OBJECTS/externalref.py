@@ -8,7 +8,7 @@ class Externalref(Baseobject):
     _columnlist:list = ['extr_id','extr_source_name','extr_source_id','extr_mode_id']
 
 
-    def __init__(self,psrcname,psrcid,pmodeid):
+    def __init__(self,psrcname=None,psrcid=None,pmodeid=None):
         super().__init__(tablename= Externalref._tablename, prefix= Externalref._prefix
                          , columnlist = Externalref._columnlist)
         self.extr_source_name = psrcname
@@ -43,14 +43,14 @@ CREATE TABLE EXTERNAL_REFS
 
     @staticmethod
     def getmodeids(psrcname,psrcid):
-        extrs = Externalref().select (pwhere="extr_source_name = '{}' and extr_source_id = '{}'".format(psrcname,psrcid))
+        extrs = Externalref.select (pwhere="extr_source_name = '{}' and extr_source_id = '{}'".format(psrcname,psrcid))
         modeids = [extr.extr_mode_id for extr in extrs]
         return modeids
     # getmodeid
 
     @staticmethod
     def getextref(psrcname,pmodeid):
-        extrs = Externalref().select (pwhere="extr_source_name = '{}' and extr_mode_id = {}".format(psrcname,pmodeid))
+        extrs = Externalref.select (pwhere="extr_source_name = '{}' and extr_mode_id = {}".format(psrcname,pmodeid))
         return extrs[0].extr_source_id if (length(extrs) > 0) else None
     # getextref
 

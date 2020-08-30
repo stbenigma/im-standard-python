@@ -9,7 +9,7 @@ class Sprachtext(Baseobject):
     ENTI_COMMENT:str='ENTI_COMMENT'
     ATTR_NAME:str='ATTR_NAME'
     ATTR_COMMENT:str='ATTR_COMMENT'
-    WRTB_NAME:str='WRTB_NAME'
+    DOMA_NAME:str= 'DOMA_NAME'
     RELA_TEXT_FROM:str='RELA_TEXT_FROM'
     RELA_TEXT_TO:str='RELA_TEXT_TO'
     SYNO_NAME:str='SYNO_NAME'
@@ -117,7 +117,7 @@ CREATE TABLE sprachtexte(
                     from modellelement
                     join beziehungen on rela_id = mode_rela_id
                     union all 
-                   select 'WRTB_NAME' attrname, wrtb_name text 
+                   select 'DOMA_NAME' attrname, wrtb_name text 
                         ,mode_id,wrtb_uc,wrtb_dc
                     from modellelement
                     join wertebereiche on wrtb_id = mode_wrtb_id 
@@ -261,7 +261,7 @@ CREATE TABLE sprachtexte(
         , 'Verwendet von': 'used by'
         , 'Vorkommast.': 'digits before period'
         , 'Wert': 'Value'
-        , 'Wertebereich': 'Domain'
+        , 'Domain': 'Domain'
         , 'Wertebereiche': 'Domains'
         , 'Werteliste': 'List of values'
         , 'wiederholt': 'repeated'
@@ -360,7 +360,7 @@ CREATE TABLE sprachtexte(
         , "Verwendet von": "Utilisé pour"
         , "Vorkommastellen": "Position avant la décimale"
         , "Wert": "Valeur"
-        , "Wertebereich": "Domaine des valeurs"
+        , "Domain": "Domaine des valeurs"
         , "Wertebereiche": "Domaines des valeurs"
         , "Werteliste": "Liste des Valeur"
         , "wiederholt": "répété"

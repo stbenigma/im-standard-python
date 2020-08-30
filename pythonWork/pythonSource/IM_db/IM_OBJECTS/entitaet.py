@@ -67,7 +67,10 @@ create table entitaeten
 
     def insert(self):
         self.enti_id = Modelelement(Modelelemtype.ENTI).insert()
-        super().insert()
+        id = super().insert()
+        if self.__srcname is not None:
+            Externalref(psrcname=self.__srcname,psrcid = self.__srcid,pmodeid=id)
+        return id
 
     def webanker(self):
         return super().webanker()

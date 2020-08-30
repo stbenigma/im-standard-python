@@ -26,7 +26,7 @@ def erstelleInfra():
     Schluessel.createtable()
     Schluesselelement.createtable()
 
-    Wertebereich.createtable()
+    Domain.createtable()
     Wertebereichgruppe.createtable()
     Vorgabewert.createtable()
 
@@ -325,8 +325,8 @@ CREATE TABLE linie_segment(
 	  				              ON DELETE CASCADE 
 			      )""")
 
-    Dokument.createtable()
-    ModelelemDoku.createtable()
+    Document.createtable()
+    ModelelemDocu.createtable()
     TablEntiMap.createtable()
     AttrTransf.createtable()
 

@@ -30,7 +30,6 @@
 <property name="DE_ENTI_NAME" value="Dokument"/>
 <property name="EN_ENTI_COMMENT" value=""/>
 <property name="EN_ENTI_NAME" value="Document"/>
-<property name="EN_ENTI_SYNONYM" value=""/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Name" id="A5F4F17D-8E4A-5426-B514-36FD9B46CE6F">
@@ -64,6 +63,7 @@
 <Attribute name="Format" id="D6628D14-C9F3-A70E-07D9-58031B59CD4C">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:03:22 UTC</createdTime>
+<comment><![CDATA[Beispiele: 'csv', 'doc', 'docx', 'gif', 'html', 'jpeg', 'json', 'key', 'numbers', 'pages', 'pdf', 'png', 'ppt', 'pptx', 'text', 'tiff', 'unbestimmt', 'xls', 'xlsx', 'xml', 'xmlx']]></comment>
 <notes><![CDATA[[DE_ATTR_COMMENT[
 
 ]DE_ATTR_COMMENT]
@@ -78,6 +78,7 @@
 <item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
+<nullsAllowed>true</nullsAllowed>
 <use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <domain>6F7CFEB3-F007-D17C-AA67-F209D129C3DE</domain>

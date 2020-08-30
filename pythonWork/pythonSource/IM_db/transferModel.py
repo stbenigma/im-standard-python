@@ -80,8 +80,9 @@ def transferTypes():
     root = types.getroot()
     for typ in root.findall('logicaltype'):
         Datatype(pname=findField(typ, 'name')
-                 , pgrundtyp=Datatype.basisType(findText(typ, 'mapping'))
-                 , podmguid=findField(typ, 'objectid')).insert()
+                 , pbasetype=Datatype.basisType(findText(typ, 'mapping'))
+                ,psrcname=Externalref.SOURCE_ODM,pscrid=findField(typ, 'objectid')
+                ).insert()
     # endfor
 
 
@@ -90,12 +91,12 @@ def do1structtype(filename):
     structdom = structdomains.getroot()
     if (findField(structdom, "class") != "oracle.dbtools.crest.model.design.datatypes.StructuredType"): return
     # print (findField(structdom,"name"))
-    wrtb = Wertebereich()
+    wrtb = Domain()
     wrtb.wrtb_name = findField(structdom, "name")
     wrtb.wrtb_uc = findText(structdom, "createdBy")
     wrtb.wrtb_dc = findText(structdom, "createdTime")
     wrtb.wrtb_typ = 'GRP'
-    wrtb.wrtb_herkunft = Wertebereich.DOMAIN
+    wrtb.wrtb_herkunft = Domain.DOMAIN
     wrtb.insert()
     Externalref(psrcname=Externalref.SOURCE_ODM, psrcid=findField(structdom, "id"), pmodeid=wrtb.wrtb_id).insert()
 
@@ -109,10 +110,10 @@ def do1structtype(filename):
         wbgr.wbgr_beschr = findText(el, "comment")
         wbgr.wbgr_uc = findText(el, "createdBy")
         wbgr.wbgr_dc = findText(el, "createdTime")
-        elwrtb = Wertebereich().getbyguid(wbgr.wbgr_type_ref)
+        elwrtb = Domain().getbyguid(wbgr.wbgr_type_ref)
         if elwrtb is None:
             # nimm vorläufig unknown, da mein Typ evtl. noch nicht da ist.
-            elwrtbid = Wertebereich().getunknown().wrtb_id
+            elwrtbid = Domain().getunknown().wrtb_id
         else:
             elwrtbid = elwrtb.wrtb_id
         wbgr.wbgr_wrtb_id_member = elwrtbid
@@ -196,18 +197,17 @@ def liesunsfuellwrtb(pwrtb, pxml):
 
 
 def transferDomains():
-    # lösche die Domains
     # print(parameters.odmDomainsFilePath())
     domains = ET.parse(parameters.odmDomainsFilePath())
     root = domains.getroot()
     for dom in root.findall('domains/Domain'):
-        wrtb = Wertebereich()
+        wrtb = Domain()
         mode = Modelelement(pmeltshortname=Modelelemtype.DOMA)
         wrtb.wrtb_id = mode.insert()
         wrtb.wrtb_name = findField(dom, "name")
         wrtb.wrtb_odm_guid = findField(dom, "id")
         wrtb.wrtb_beschr = findText(dom, 'comment')
-        wrtb.wrtb_herkunft = Wertebereich.DOMAIN
+        wrtb.wrtb_herkunft = Domain.DOMAIN
         liesunsfuellwrtb(pwrtb=wrtb, pxml=dom)
     # for
 
@@ -589,16 +589,16 @@ def transferdiagramme():
 # transferdiagramme
 
 def insertderiveddomain(ptypeguid, pattrname, pvatername, pattrxml):
-    wrtb = Wertebereich()
+    wrtb = Domain()
     wrtb.wrtb_name = pattrname
-    wrtbtest = Wertebereich.getbyname(pname=wrtb.wrtb_name)
+    wrtbtest = Domain.getbyname(pname=wrtb.wrtb_name)
     cnt = 0
     while (wrtbtest is not None and wrtbtest.wrtb_name == wrtb.wrtb_name):
         # es gibt ihn schon, füge den Vaternamen dazu
         cnt += 1
         wrtb.wrtb_name = pattrname + '-' + pvatername + '-' + str(cnt)
-        wrtbtest = Wertebereich.getbyname(pname=wrtb.wrtb_name)
-    wrtb.wrtb_herkunft = Wertebereich.DERIVED
+        wrtbtest = Domain.getbyname(pname=wrtb.wrtb_name)
+    wrtb.wrtb_herkunft = Domain.DERIVED
     wrtb.wrtb_datatype_ref = ptypeguid
     wrtb.wrtb_beschr = "generiertes Domain für Datentyp für Attribut {}.{}".format(pvatername, pattrname)
 
@@ -612,14 +612,14 @@ def insertderiveddomain(ptypeguid, pattrname, pvatername, pattrxml):
 def findeOderErstelleDom(pdomguid, pstructdomguid, ptypeguid, pattrname, pvatername, pattrxml):
     dom = None
     if pdomguid is not None:
-        dom = Wertebereich().getbyguid(pdomguid)
+        dom = Domain().getbyguid(pdomguid)
     elif pstructdomguid is not None:
-        dom = Wertebereich().getbyguid(pstructdomguid)
+        dom = Domain().getbyguid(pstructdomguid)
     elif ptypeguid is not None:
         dom = insertderiveddomain(ptypeguid=ptypeguid, pattrname=pattrname, pvatername=pvatername, pattrxml=pattrxml)
     #
     if dom is None:
-        dom = Wertebereich().getbyname('Unknown')
+        dom = Domain().getbyname('Unknown')
     return dom.wrtb_id
 
 
@@ -1171,15 +1171,15 @@ def loeschmodell():
     Attribut.delete()
     Synonym.delete()
     Entitaet.delete()
-    ModelelemDoku.delete()
-    Dokument.delete()
+    ModelelemDocu.delete()
+    Document.delete()
     Externalref.delete()
     Modelelement.delete()
     Diagramm.delete()
     dbDML.delete("benudef_eigenschaft")
     Vorgabewert.delete()
     Wertebereichgruppe.delete()
-    Wertebereich.delete()
+    Domain.delete()
     dbDML.delete("speicherformate")
     dbDML.delete("linie_segment")
     dbDML.delete("beziehung_darst")
@@ -1280,20 +1280,25 @@ def transferprojekt():
 # transferprojekt
 
 def do1Document(fileName):
+    global docuparents
     tree = ET.parse(fileName)
     root = tree.getroot()
-    doku = Dokument()
-    doku.doku_name = findField(root, "name")
-    doku.doku_format = findText(root, 'type')
-    doku.doku_referenz = None
-    doku.doku_odm_guid = findField(root, 'id')
-    doku.doku_parent_odm_guid = findText(root, 'parentDocument')
-    doku.insert()
+    id =findField(root, 'id')
+    docu = Document(psrcname=Externalref.SOURCE_ODM,psrcid=id)
+    docu.docu_name = findField(root, "name")
+    docu.docu_format = findText(root, 'type')
+    docu.docu_reference = findText(root, 'reference')
+    pd = findText(root, 'parentDocument')
+    if (pd is not None and pd != ''):
+        docuparents [id]= findText(root, 'parentDocument')
+    docu.insert()
 
-
+docuparents ={}
 def transferDocuments():
+    global docuparents
+    docuparents = {}
     dosegfiles(pdirec=parameters.odmdocumentdirec(), transferfiles=do1Document)
-    Dokument.updparents()
+    Document.updparents(psrcname=Externalref.SOURCE_ODM,pparents=docuparents)
 
 
 def removeemptyudp():
@@ -1308,6 +1313,7 @@ def transferODMModel():
     transferTypes()
     transferDocuments()
     transferDomains()
+    return
     transferUDP()
     transferEntitaeten()
     transferRelations()

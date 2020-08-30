@@ -13,6 +13,10 @@ class Modelelemtype(Baseobject):
     INTF: str = 'INTF'
     COLU: str = 'COLU'
     ARCS: str = 'ARCS'
+    DOCU: str = 'DOCU'
+    KEYS: str = 'KEYS'
+    DATY: str = 'DATY'
+
     _tablename: str = 'modelelem_type'
     _prefix: str = 'melt'
     _columnlist: list = ['melt_id', 'melt_shortname', 'melt_name',
@@ -35,7 +39,9 @@ class Modelelemtype(Baseobject):
 CREATE TABLE MODELELEM_TYPE
     (
      MELT_ID INTEGER NOT NULL primary key autoincrement,
-     MELT_SHORTNAME VARCHAR (4) NOT NULL CHECK ( MELT_SHORTNAME IN ('ARCS', 'ATTR', 'BURU', 'COLU', 'DOMA', 'ENTI', 'INTF', 'ORGU', 'RELA', 'SYNO', 'TABL') ) ,
+     MELT_SHORTNAME VARCHAR (4) NOT NULL CHECK 
+            ( MELT_SHORTNAME IN ('ARCS', 'ATTR', 'BURU', 'COLU', 'DOMA', 'ENTI'
+                                , 'INTF', 'ORGU', 'RELA', 'SYNO', 'TABL','DOCU','KEYS','DATY') ) ,
      MELT_NAME VARCHAR (60) NOT NULL ,
      MELT_UC VARCHAR(30) NULL  ,
      MELT_DC VARCHAR (30) NOT NULL ,
@@ -65,13 +71,16 @@ CREATE TABLE MODELELEM_TYPE
         Modelelemtype(pshortname=Modelelemtype.ATTR, pname='Attribut').insert()
         Modelelemtype(pshortname=Modelelemtype.BURU, pname='Business Rule').insert()
         Modelelemtype(pshortname=Modelelemtype.COLU, pname='Column').insert()
-        Modelelemtype(pshortname=Modelelemtype.DOMA, pname='Wertebereich').insert()
+        Modelelemtype(pshortname=Modelelemtype.DOMA, pname='Domain').insert()
         Modelelemtype(pshortname=Modelelemtype.ENTI, pname='Entität').insert()
         Modelelemtype(pshortname=Modelelemtype.INTF, pname='Schnittstelle').insert()
         Modelelemtype(pshortname=Modelelemtype.ORGU, pname='Organisationseinheit').insert()
         Modelelemtype(pshortname=Modelelemtype.RELA, pname='Beziehung').insert()
         Modelelemtype(pshortname=Modelelemtype.SYNO, pname='Synonym').insert()
         Modelelemtype(pshortname=Modelelemtype.TABL, pname='Tabelle').insert()
+        Modelelemtype(pshortname=Modelelemtype.DATY, pname='Datentyp').insert()
+        Modelelemtype(pshortname=Modelelemtype.KEYS, pname='Keys').insert()
+        Modelelemtype(pshortname=Modelelemtype.DOCU, pname='Document').insert()
 
     @staticmethod
     def getidbyshortname(pshortname):
@@ -130,7 +139,8 @@ class Modelelement(Baseobject):
 CREATE TABLE MODELELEMENT
     (
      MODE_ID INTEGER NOT NULL primary key autoincrement ,
-     MODE_TYPE VARCHAR (4) NOT NULL CHECK ( MODE_TYPE IN ('ARCS', 'ATTR', 'BURU', 'COLU', 'DOMA', 'ENTI', 'INTF', 'ORGU', 'RELA', 'SYNO', 'TABL') ) ,
+     MODE_TYPE VARCHAR (4) NOT NULL CHECK ( MODE_TYPE IN ('ARCS', 'ATTR', 'BURU', 'COLU', 'DOMA', 'ENTI'
+                            , 'INTF', 'ORGU', 'RELA', 'SYNO', 'TABL','DOCU','KEYS','DATY') ) ,
      MODE_MELT_ID NUMERIC (10) NOT NULL
     ,mode_syno_id   integer NULL,
     mode_wrtb_id   integer NULL,
