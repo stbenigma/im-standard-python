@@ -1179,7 +1179,7 @@ def printcontentwrtb(plist):
             infoheaders = (Sprachtext.transl('Datentyp'), Sprachtext.transl('Inhaltstyp'), Sprachtext.transl('Format'),
                            Sprachtext.transl('geändert'))
             infovalues = (
-                nvl(Domain.anzdatentyp(w.wrtb_typ)), Domain.anzinhalttyp(nvl(w.wrtb_bin_inhalttyp)),
+                nvl(Domain.anzdatentyp(w.wrtb_typ)), Domain.displcontenttype(nvl(w.wrtb_bin_inhalttyp)),
                 nvl(w.wrtb_bin_spfo_id), nvl(w.wrtb_uc) + ',' + nvl(w.wrtb_dc))
         elif (w.wrtb_typ == Domain.GRP):
             infoheaders = (Sprachtext.transl('Datentyp'), Sprachtext.transl('geändert'))
@@ -1201,7 +1201,7 @@ def printcontentwrtb(plist):
                 Sprachtext.transl('Granularität')
                 , Sprachtext.transl('geändert'))
             infovalues = (nvl(Domain.anzdatentyp(w.wrtb_typ)), nvl(w.wrtb_zpkt_minwert), nvl(w.wrtb_zpkt_maxwert),
-                          Domain.anzgranul(nvl(w.wrtb_zpkt_granularitaet)), nvl(w.wrtb_uc) + ',' + nvl(w.wrtb_dc))
+                          Domain.displgranul(nvl(w.wrtb_zpkt_granularitaet)), nvl(w.wrtb_uc) + ',' + nvl(w.wrtb_dc))
         else:
             infoheaders, infovalues = None, None
         # fi

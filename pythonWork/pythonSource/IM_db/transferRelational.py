@@ -39,7 +39,7 @@ def do1column(plfnr, pcolxml, ptablid):
     scha.scha_fremdsystem_id = None
     daty_odm = transferModel.findText(pcolxml, 'logicalDatatype')
     if (daty_odm is not None and daty_odm != ''):
-        scha.scha_daty_id = Datatype().getbyguid(daty_odm).daty_id
+        scha.scha_daty_id = Datatype().getbyextref(daty_odm).daty_id
     daty_wrtb_odm = transferModel.findText(pcolxml, 'domain')
     scha.scha_wrtb_id = transferModel.findeOderErstelleDom(pdomguid=daty_wrtb_odm
                                                            ,pstructdomguid=None
@@ -187,7 +187,7 @@ class Odmmapping:
 
 def doattrmapping(pcolmappings):
     for colmap in pcolmappings:
-        scha = Schnittstelleattr().getbyguid(transferModel.findField(colmap,'rID'))
+        scha = Schnittstelleattr().getbyextref(transferModel.findField(colmap, 'rID'))
         schaid = None if scha is None else scha.scha_id
         attrid = Attribut().getID (pguid=transferModel.findField(colmap,'lID'))
         attf = AttrTransf()

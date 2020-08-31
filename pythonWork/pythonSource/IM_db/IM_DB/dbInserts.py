@@ -2,26 +2,26 @@ from datetime import date
 from IM_DB import dbDML,logging
 from IM_OBJECTS import *
 
-def  insertLovWrtb(pName,pherkunft = Wertebereich.DOMAIN):
-    wrtb = Wertebereich()
-    wrtb.wrtb_name = pName
-    wrtb.wrtb_beschr = 'einfache Werteliste'
-    wrtb.wrtb_typ = Wertebereich.LOV
-    wrtb.wrtb_herkunft = pherkunft
-    wrtb.wrtb_uc = 'system'
-    wrtb.wrtb_dc = date.today()
-    return wrtb.insert()
+def  insertLovWrtb(pName,pherkunft = Domain.DOMAIN):
+    doma = Domain()
+    doma.doma_name = pName
+    doma.doma_beschr = 'einfache Werteliste'
+    doma.doma_typ = Domain.LOV
+    doma.doma_origin= pherkunft
+    doma.doma_uc = 'system'
+    doma.doma_dc = date.today()
+    return doma.insert()
 
 
 
 def insertUDP(pData):
 # bdeg_thema, bdeg_gruppe, bdeg_name, bdeg_default_value
-# bdeg_beschreibung, bdeg_optional, bdeg_wrtb_id,
+# bdeg_beschreibung, bdeg_optional, bdeg_doma_id,
 # bdeg_uc, bdeg_dc
     lsql = """
        insert into benudef_eigenschaft(
         bdeg_thema, bdeg_gruppe, bdeg_name, bdeg_default_value,
-        bdeg_beschreibung, bdeg_optional, bdeg_wrtb_id,
+        bdeg_beschreibung, bdeg_optional, bdeg_doma_id,
          bdeg_uc, bdeg_dc) 
            values (?,?,?,?,?,?,?,?,?)
        """

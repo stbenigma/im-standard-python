@@ -26,6 +26,7 @@ CREATE TABLE EXTERNAL_REFS
      EXTR_SOURCE_ID VARCHAR (100) NOT NULL ,
      EXTR_MODE_ID NUMERIC (10) NOT NULL
     ,CONSTRAINT EXTR_UK UNIQUE (EXTR_SOURCE_NAME ASC, EXTR_MODE_ID ASC)
+     ,CONSTRAINT EXTR_UK_ID UNIQUE (EXTR_SOURCE_NAME ASC, EXTR_SOURCE_ID ASC)
     ,CONSTRAINT EXTR_MODE_FK FOREIGN KEY(     EXTR_MODE_ID) 
         REFERENCES MODELELEMENT(     MODE_ID )
         ON DELETE CASCADE
@@ -42,35 +43,19 @@ CREATE TABLE EXTERNAL_REFS
                                  , pwhere=pwhere, porderby=porderby)
 
     @staticmethod
-    def getmodeids(psrcname,psrcid):
+    def getmodeid(psrcname,psrcid):
         extrs = Externalref.select (pwhere="extr_source_name = '{}' and extr_source_id = '{}'".format(psrcname,psrcid))
-        modeids = [extr.extr_mode_id for extr in extrs]
-        return modeids
+        modeid = None if length(extr) == 0 else extrs[0].extr_mode_id
+        return modeid
     # getmodeid
 
     @staticmethod
-    def getextref(psrcname,pmodeid):
-        extrs = Externalref.select (pwhere="extr_source_name = '{}' and extr_mode_id = {}".format(psrcname,pmodeid))
-        return extrs[0].extr_source_id if (length(extrs) > 0) else None
-    # getextref
+    def getsrcid(psrcname,pmodeid):
+        extrs = Externalref.select (pwhere="extr_source_name = '{}' and extr_mode_id = '{}'".format(psrcname,pmodeid))
+        srcid = None if length(extr) == 0 else extrs[0].extr_source_id
+        return srcid
+    # getsrcid
 
-    @staticmethod
-    def getodmguid(pmodeid):
-        return Externalref.getextref(psrcname=Externalref.SOURCE_ODM,pmodeid=pmodeid)
-
-    @staticmethod
-    def getmodelems(psrcname,psrcid):
-        modeids = Externalref.getmodeids(psrcname=psrcname,psrcid=psrcid)
-        elems = [Modelelement.getbyid(pid=id) for id in modeids]
-        return elems
-    # getmodelems
-
-    @staticmethod
-    def getelements(psrcname,psrcid):
-        modeids = Externalref.getmodeids(psrcname=psrcname,psrcid=psrcid)
-        elems = [Modelelement.getelement(pid=id) for id in modeids]
-        return elems
-    # getelements
 
 #Externalref
 

@@ -1,35 +1,51 @@
 from IM_DB import *
-from .baseobject import MultilangBaseobject,Baseobject
-from .sprachtext import Sprachtext
+from .baseobject import MultilangBaseobject, Baseobject
 from .datatype import Datatype
-from .modelelement import Modelelement,Modelelemtype
+from .modelelement import Modelelement, Modelelemtype
+from .sprachtext import Sprachtext
 
 class Domain(MultilangBaseobject):
-    DERIVED:str ='DER'
-    DOMAIN:str ='DOM'
-    BIN:str='BIN'
-    GRP:str='GRP'
-    LOV:str='LOV'
-    NUM:str='NUM'
-    TEXT:str='TEXT'
-    ZPKT:str='ZPKT'
-    _tablename:str ='domains'
-    _prefix:str ='doma'
-    _columnlist:list = ['doma_id',  'doma_business_rule',   'doma_name',    'doma_beschr',
-                        'doma_typ', 'doma_herkunft',    'doma_zpkt_minwert',    'doma_zpkt_maxwert',
-                        'doma_zpkt_granularitaet',  'doma_text_maxlng', 'doma_text_syntaxregel',    'doma_num_maxwert',
-                        'doma_num_minwert', 'doma_num_vorkstellen', 'doma_num_nachkstellen',    'doma_num_rundng_einh',
-                        'doma_num_pheh_id', 'doma_bin_inhalttyp',   'doma_bin_spfo_id', 'doma_odm_guid',
-                        'doma_schn_id', 'doma_datatype_odm', 'doma_daty_id',    'doma_uc',  'doma_dc',
-                        'doma_um',  'doma_dm']
+    DERIVED: str = 'DER'
+    DOMAIN: str = 'DOM'
+    BIN: str = 'BIN'
+    GRP: str = 'GRP'
+    LOV: str = 'LOV'
+    NUM: str = 'NUM'
+    TXT: str = 'TXT'
+    DAT: str = 'DAT'
+    DAY: str = 'DAY'
+    HOUR: str = 'HOUR'
+    MILlISECOND: str = 'MILlISECOND'
+    MINUTE: str = 'MINUTE'
+    MONTH: str = 'MONTH'
+    QUARTER: str = 'QUARTER'
+    SECOND: str = 'SECOND'
+    SEMESTER: str = 'SEMESTER'
+    WEEK: str = 'WEEK'
+    YEAR: str = 'YEAR'
+    DRAWING: str = 'DRAWING'
+    FILM: str = 'FILM'
+    IMAGE: str = 'IMAGE'
+    OTHER: str = 'OTHER'
+    SOUND: str = 'SOUND'
+    TEXT: str = 'TEXT'
+    _tablename: str = 'domains'
+    _prefix: str = 'doma'
+    _columnlist: list = ['doma_id', 'doma_business_rule', 'doma_name', 'doma_descr',
+                         'doma_type', 'doma_origin', 'doma_dat_minwert', 'doma_dat_maxwert',
+                         'doma_dat_granularity', 'doma_txt_maxlng', 'doma_txt_syntaxrule', 'doma_num_maxwert',
+                         'doma_num_minwert', 'doma_total_digits', 'doma_fract_digits', 'doma_num_round_value',
+                         'doma_num_pheh_id', 'doma_bin_contenttype', 'doma_bin_spfo_id', 'doma_daty_id',
+                         'doma_schn_id', 'doma_daty_id', 'doma_uc', 'doma_dc',
+                         'doma_um', 'doma_dm']
     __unknowndom = None
 
-    def __init__(self,psrcname=None,psrcid=None,pmodeid=None):
+    def __init__(self, psrcname=None, psrcid=None):
         super().__init__(tablename=Domain._tablename, prefix=Domain._prefix
-                         , columnlist = Domain._columnlist
-                         , multilangcols = {'doma_name':Sprachtext.DOMA_NAME}
+                         , columnlist=Domain._columnlist
+                         , multilangcols={'doma_name': Sprachtext.DOMA_NAME}
                          , pmodelemtype=Modelelemtype.DATY
-                         , pscrid=pscrid
+                         , pscrid=psrcid
                          , psrcname=psrcname
                          )
 
@@ -95,20 +111,22 @@ CREATE TABLE DOMAINS
  ,CONSTRAINT DOMA_STFO_FK FOREIGN KEY (     DOMA_BIN_STFO_ID)
 	 REFERENCES STORAGE_FORMATS (     STFO_ID )
 )"""
-    )
+                               )
+
     def getmodellelement(self):
         return Modelelement.getbyelemid(pwrtbid=self.doma_id)
 
-    def getname(self,plang):
+    def getname(self, plang):
         return self._getsprachval(colname='doma_name', plang=plang)
 
     def getmodeid(self):
         mode = self.getmodellelement()
         return mode.mode_id if (mode is not None) else None
-    #getmodeid
+
+    # getmodeid
 
     def isderived(self):
-        return self.doma_herkunft == Domain.DERIVED
+        return self.doma_origin == Domain.DERIVED
 
     def typeinfo(self):
         def nvl(x, default=''):
@@ -116,43 +134,65 @@ CREATE TABLE DOMAINS
 
         daty = Datatype().getbyid(self.doma_daty_id)
         typestring = daty.daty_name if daty is not None else ''
-        if (self.doma_typ in (Domain.TEXT, Domain.LOV)):
-            infoheaders = (Sprachtext.transl('Datentyp'), Sprachtext.transl('Max. Länge'), Sprachtext.transl('Syntaxregel'), Sprachtext.transl('geändert'))
-            infovalues = (nvl(self.doma_typ),nvl(self.doma_text_maxlng),nvl(self.doma_text_syntaxregel),nvl(self.doma_uc)+','+nvl(self.doma_dc))
-            typestring += " ({})".format(nvl(self.doma_text_maxlng))
-        elif (self.doma_typ == Domain.BIN):
-            infoheaders = (Sprachtext.transl('Datentyp'), Sprachtext.transl('Inhaltstyp'), Sprachtext.transl('Format'), Sprachtext.transl('geändert'))
-            infovalues = (nvl(self.doma_typ), Domain.anzinhalttyp(nvl(self.doma_bin_inhalttyp)), nvl(self.doma_bin_spfo_id), nvl(self.doma_uc) + ',' + nvl(self.doma_dc))
-            typestring += " ({}, {})".format(Domain.anzinhalttyp(nvl(self.doma_bin_inhalttyp)), nvl(self.doma_bin_spfo_id))
-        elif (self.doma_typ == Domain.GRP):
+        if (self.doma_type in (Domain.TXT, Domain.LOV)):
+            infoheaders = (
+            Sprachtext.transl('Datentyp'), Sprachtext.transl('Max. Länge'), Sprachtext.transl('Syntaxregel'),
+            Sprachtext.transl('geändert'))
+            infovalues = (nvl(self.doma_type), nvl(self.doma_txt_maxlng), nvl(self.doma_txt_syntaxrule),
+                          nvl(self.doma_uc) + ',' + nvl(self.doma_dc))
+            typestring += " ({})".format(nvl(self.doma_txt_maxlng))
+        elif (self.doma_type == Domain.BIN):
+            infoheaders = (Sprachtext.transl('Datentyp'), Sprachtext.transl('Inhaltstyp'), Sprachtext.transl('Format'),
+                           Sprachtext.transl('geändert'))
+            infovalues = (
+            nvl(self.doma_type), Domain.displcontenttype(nvl(self.doma_bin_contenttype)), nvl(self.doma_bin_spfo_id),
+            nvl(self.doma_uc) + ',' + nvl(self.doma_dc))
+            typestring += " ({}, {})".format(Domain.displcontenttype(nvl(self.doma_bin_contenttype)),
+                                             nvl(self.doma_bin_spfo_id))
+        elif (self.doma_type == Domain.GRP):
             infoheaders = (Sprachtext.transl('Datentyp'), Sprachtext.transl('geändert'))
-            infovalues = (self.doma_typ,nvl(self.doma_uc)+','+nvl(self.doma_dc))
-        elif (self.doma_typ == Domain.NUM):
-            infoheaders = (Sprachtext.transl('Datentyp'), Sprachtext.transl('Vorkommast.'), Sprachtext.transl('Nachkommast.')
-                           , Sprachtext.transl('Rundungseinh.'), Sprachtext.transl('Einheit'), Sprachtext.transl('Min. Wert'), Sprachtext.transl('Max. Wwert')
-                           , Sprachtext.transl('geändert'))
-            infovalues = (nvl(self.doma_typ),nvl(self.doma_num_vorkstellen),nvl(self.doma_num_nachkstellen),nvl(self.doma_num_rundng_einh),nvl(self.doma_num_pheh_id)
-                          ,nvl(self.doma_num_minwert),nvl(self.doma_num_maxwert)
-                          ,nvl(self.doma_uc)+','+nvl(self.doma_dc))
-            typestring += " ({}{}) {} {}".format(nvl(self.doma_num_vorkstellen)
-                                                  , '' if self.doma_num_nachkstellen is None else '.' + str(self.doma_num_nachkstellen)
-                                                  , '' if self.doma_num_minwert is None else '>= ' + str(self.doma_num_minwert)
-                                                  , '' if self.doma_num_maxwert is None else '<= ' + str(self.doma_num_maxwert))
-        elif (self.doma_typ == Domain.ZPKT):
-            infoheaders = (Sprachtext.transl('Datentyp'), Sprachtext.transl('Min. Wert'), Sprachtext.transl('Max. Wwert'), Sprachtext.transl('Granularität')
-                           , Sprachtext.transl('geändert'))
-            infovalues = (nvl(self.doma_typ), nvl(self.doma_zpkt_minwert), nvl(self.doma_zpkt_maxwert), Domain.anzgranul(nvl(self.doma_zpkt_granularitaet)), nvl(self.doma_uc) + ',' + nvl(self.doma_dc))
-            typestring += " {} {} {}".format( '' if self.doma_zpkt_granularitaet is None else Sprachtext.transl('Granularität =') + Domain.anzgranul(self.doma_zpkt_granularitaet)
-                                              , '' if self.doma_zpkt_minwert is None else '>= ' + self.doma_zpkt_minwert
-                                              ,   '' if self.doma_zpkt_maxwert is None else '<= ' + self.doma_zpkt_maxwert)
-        else:  infoheaders,infovalues,typestring = None,None,''
-        return [infoheaders,infovalues,typestring]
-    #typeinfo
+            infovalues = (self.doma_type, nvl(self.doma_uc) + ',' + nvl(self.doma_dc))
+        elif (self.doma_type == Domain.NUM):
+            infoheaders = (
+            Sprachtext.transl('Datentyp'), Sprachtext.transl('Vorkommast.'), Sprachtext.transl('Nachkommast.')
+            , Sprachtext.transl('Rundungseinh.'), Sprachtext.transl('Einheit'), Sprachtext.transl('Min. Wert'),
+            Sprachtext.transl('Max. Wwert')
+            , Sprachtext.transl('geändert'))
+            infovalues = (nvl(self.doma_type), nvl(self.doma_total_digits), nvl(self.doma_fract_digits),
+                          nvl(self.doma_num_round_value), nvl(self.doma_num_pheh_id)
+                          , nvl(self.doma_num_minwert), nvl(self.doma_num_maxwert)
+                          , nvl(self.doma_uc) + ',' + nvl(self.doma_dc))
+            typestring += " ({}{}) {} {}".format(nvl(self.doma_total_digits)
+                                                 , '' if self.doma_fract_digits is None else '.' + str(
+                    self.doma_fract_digits)
+                                                 , '' if self.doma_num_minwert is None else '>= ' + str(
+                    self.doma_num_minwert)
+                                                 , '' if self.doma_num_maxwert is None else '<= ' + str(
+                    self.doma_num_maxwert))
+        elif (self.doma_type == Domain.DAT):
+            infoheaders = (
+            Sprachtext.transl('Datentyp'), Sprachtext.transl('Min. Wert'), Sprachtext.transl('Max. Wwert'),
+            Sprachtext.transl('Granularität')
+            , Sprachtext.transl('geändert'))
+            infovalues = (nvl(self.doma_type), nvl(self.doma_dat_minwert), nvl(self.doma_dat_maxwert),
+                          Domain.displgranul(nvl(self.doma_dat_granularity)),
+                          nvl(self.doma_uc) + ',' + nvl(self.doma_dc))
+            typestring += " {} {} {}".format(
+                '' if self.doma_dat_granularity is None else Sprachtext.transl('Granularität =') + Domain.displgranul(
+                    self.doma_dat_granularity)
+                , '' if self.doma_dat_minwert is None else '>= ' + self.doma_dat_minwert
+                , '' if self.doma_dat_maxwert is None else '<= ' + self.doma_dat_maxwert)
+        else:
+            infoheaders, infovalues, typestring = None, None, ''
+        return [infoheaders, infovalues, typestring]
+
+    # typeinfo
 
     def typestring(self):
         info = self.typeinfo()
         return info[2]
-    #typestring
+
+    # typestring
 
     def insert(self):
         self.doma_id = Modelelement(Modelelemtype.DOMA).insert()
@@ -164,37 +204,46 @@ CREATE TABLE DOMAINS
     def refattranz(self):
         data = dbDML.select("""select count(*) 
                     from attributes where attr_doma_id = {}
-                    """.format (self.doma_id))
+                    """.format(self.doma_id))
         return data[0][0]
-    #refattranz
+
+    # refattranz
 
     def displdatatype(self):
-        return Domain.anzdatentyp(self.doma_typ)
+        return Domain.anzdatentyp(self.doma_type)
 
     @staticmethod
-    def select(pwhere=None,porderby=None):
-        wrtbs = Baseobject.select(pclass=Domain
-                                ,pwhere=pwhere,porderby=porderby)
-        return wrtbs
-    #select
+    def basetype2domatype(pdatybasetype):
+        transl = {Datatype.BINARY: Domain.BIN,
+                  Datatype.DATETIME: Domain.DAT,
+                  Datatype.NUMERIC: Domain.NUM,
+                  Datatype.STRING: Domain.TXT
+                  }
+        return transl[pdatybasetype]
 
+    @staticmethod
+    def select(pwhere=None, porderby=None):
+        wrtbs = Baseobject.select(pclass=Domain
+                                  , pwhere=pwhere, porderby=porderby)
+        return wrtbs
+
+    # select
 
     @staticmethod
     def delete():
         Baseobject.delete(Domain._tablename)
 
-
     @staticmethod
-    def indexlist(pherkunft,plang : str):
-        data = Domain.select(pwhere="doma_herkunft = '{}'".format(pherkunft), porderby='doma_name')
-        indexlist = [['{} ({})'.format(d.getname(plang),d.refattranz())
-                    ,d.webanker(),d.doma_id] for d in data]
+    def indexlist(pherkunft, plang: str):
+        data = Domain.select(pwhere="doma_origin = '{}'".format(pherkunft), porderby='doma_name')
+        indexlist = [['{} ({})'.format(d.getname(plang), d.refattranz())
+                         , d.webanker(), d.doma_id] for d in data]
         return indexlist
 
-    #indexlist
+    # indexlist
 
     @staticmethod
-    def getbyname(pname :str):
+    def getbyname(pname: str):
         return Domain().getbyuk(pcolname='doma_name', pukvalue=pname)
 
     @staticmethod
@@ -203,69 +252,77 @@ CREATE TABLE DOMAINS
             dom = Domain.getbyname(pname='Unknown')
             if dom.doma_id is None:
                 dom = Domain.getbyname(pname='unknown')
-            #fi
+            # fi
             Domain.__unknowndom = dom
-        #fi
+        # fi
         return Domain.__unknowndom
-    #getunknown
+
+    # getunknown
 
     @staticmethod
-    def anzdatentyp(dt : str):
-        anzDT = {'BIN': Sprachtext.transl('Binär')
-            , 'GRP': Sprachtext.transl('Gruppenattribut')
-            , 'LOV': Sprachtext.transl('Werteliste')
-            , 'NUM': Sprachtext.transl('Numerisch')
-            , 'TEXT': Sprachtext.transl('Text')
-            , 'ZPKT': Sprachtext.transl('Zeitpunkt')}
+    def anzdatentyp(dt: str):
+        anzDT = {Domain.BIN: Sprachtext.transl('Binär')
+            , Domain.GRP: Sprachtext.transl('Gruppenattribut')
+            , Domain.LOV: Sprachtext.transl('Werteliste')
+            , Domain.NUM: Sprachtext.transl('Numerisch')
+            , Domain.TXT: Sprachtext.transl('Text')
+            , Domain.DAT: Sprachtext.transl('Zeitpunkt')}
         return anzDT[dt]
+
     # anzDatentyp
 
     @staticmethod
-    def anzinhalttyp(dt):
-        anzDT = {'BILD': Sprachtext.transl('Bild')
-            , 'FILM': Sprachtext.transl('Film')
-            , 'GRAPH': Sprachtext.transl('Grafik')
-            , 'TEXT': Sprachtext.transl('Text')
-            , 'TON': Sprachtext.transl('Ton')}
-        return anzDT[dt]
-    # anzinhalttyp
+    def displcontenttype(dt):
+        anzDT = {Domain.DRAWING: Sprachtext.transl('Bild')
+            , Domain.FILM: Sprachtext.transl('Film')
+            , Domain.IMAGE: Sprachtext.transl('Grafik')
+            , Domain.TEXT: Sprachtext.transl('Text')
+            , Domain.SOUND: Sprachtext.transl('Ton')
+                 }
+        if dt in anzDT.keys():
+            return anzDT[dt]
+        else:
+            return Sprachtext.transl('Andere')
+
+    # displcontenttype
 
     @staticmethod
-    def anzgranul(dt):
+    def displgranul(dt):
         anzDT = {
-            'JAHR': Sprachtext.transl('Jahr'),
-            'MILLISEKUNDE': Sprachtext.transl('Millisekunde'),
-            'MINUTE': Sprachtext.transl('Minute'),
-            'MONAT': Sprachtext.transl('Monat'),
-            'QUARTAL': Sprachtext.transl('Quartal'),
-            'SEKUNDE': Sprachtext.transl('Sekunde'),
-            'SEMESTER': Sprachtext.transl('Semester'),
-            'STUNDE': Sprachtext.transl('Stunde'),
-            'TAG': Sprachtext.transl('Tag'),
-            'WOCHE': Sprachtext.transl('Woche')
+            Domain.YEAR: Sprachtext.transl('Jahr'),
+            Domain.MILlISECOND: Sprachtext.transl('Millisekunde'),
+            Domain.MINUTE: Sprachtext.transl('Minute'),
+            Domain.MONTH: Sprachtext.transl('Monat'),
+            Domain.QUARTER: Sprachtext.transl('Quartal'),
+            Domain.SECOND: Sprachtext.transl('Sekunde'),
+            Domain.SEMESTER: Sprachtext.transl('Semester'),
+            Domain.HOUR: Sprachtext.transl('Stunde'),
+            Domain.DAY: Sprachtext.transl('Tag'),
+            Domain.WEEK: Sprachtext.transl('Woche')
         }
         return anzDT[dt]
-    # anzgranul
+    # displgranul
 
-#Domain
+
+# Domain
 
 class Wertebereichgruppe(Baseobject):
     _tablename: str = 'wertebereichgruppen'
     _prefix: str = 'wbgr'
-    _columnlist: list = ['wbgr_id', 'wbgr_name',    'wbgr_beschr',
-                        'wbgr_doma_id_gruppe',  'wbgr_doma_id_member',  'wbgr_type_ref',
-                        'wbgr_uc',  'wbgr_dc',  'wbgr_um',
-                        'wbgr_dm'
-                        ]
+    _columnlist: list = ['wbgr_id', 'wbgr_name', 'wbgr_beschr',
+                         'wbgr_doma_id_gruppe', 'wbgr_doma_id_member', 'wbgr_type_ref',
+                         'wbgr_uc', 'wbgr_dc', 'wbgr_um',
+                         'wbgr_dm'
+                         ]
 
     def __init__(self):
         super().__init__(tablename=Wertebereichgruppe._tablename, prefix=Wertebereichgruppe._prefix
-                            , columnlist=Wertebereichgruppe._columnlist)
+                         , columnlist=Wertebereichgruppe._columnlist)
 
     @staticmethod
     def createtable():
         Baseobject.createtable(ptablename=Wertebereichgruppe._tablename
-                                   , psql="""
+                               , psql="""
         create table wertebereichgruppen
     (
     wbgr_id               integer not null primary key autoincrement,
@@ -280,56 +337,59 @@ class Wertebereichgruppe(Baseobject):
       wbgr_dm varchar (30) null
 ,constraint wbgr_doma_uk unique (wbgr_doma_id_gruppe ,wbgr_name )
 ,constraint wbgr_doma_fk_gruppe foreign key(wbgr_doma_id_gruppe)
-        references wertebereich(doma_id) on delete cascade
+        references DOMAINS(doma_id) on delete cascade
 ,constraint wbgr_doma_fk_member foreign key(wbgr_doma_id_member)
-        references wertebereich(doma_id) 
+        references DOMAINS(doma_id) 
 	)
     """);
+
     @staticmethod
     def delete():
         Baseobject.delete(Wertebereichgruppe._tablename)
 
     @staticmethod
-    def select(pwhere=None,porderby=None):
+    def select(pwhere=None, porderby=None):
         return Baseobject.select(pclass=Wertebereichgruppe
-                                ,pwhere=pwhere,porderby=porderby)
+                                 , pwhere=pwhere, porderby=porderby)
 
     @staticmethod
     def updmembers():
         ukwnid = Domain().getunknown().doma_id
-        lupd= """update wertebereichgruppen 
+        lupd = """update wertebereichgruppen 
             set wbgr_doma_id_member = 
             case when (select doma_id
-                     from wertebereiche 
+                     from DOMAINS 
                     where doma_odm_guid = wbgr_type_ref) 
                 is null
              then {} 
              else (select doma_id
-             from wertebereiche 
+             from DOMAINS 
              where doma_odm_guid = wbgr_type_ref)
              end
             where wbgr_doma_id_member = {}
-        """.format(ukwnid,ukwnid)
+        """.format(ukwnid, ukwnid)
         dbDML.exec(lupd)
-#Wertebereichgruppe
+
+
+# Wertebereichgruppe
 
 class Vorgabewert(Baseobject):
     _tablename: str = 'vorgabewerte'
     _prefix: str = 'vgwt'
-    _columnlist: list = ['vgwt_id',	'vgwt_guid',	'vgwt_wert',
-                        'vgwt_sortrhfg',	'vgwt_doma_id',	'vgwt_anzeige',
-                        'vgwt_beschr',	'vgwt_uc',	'vgwt_dc',
-                        'vgwt_um',	'vgwt_dm'
-                        ]
+    _columnlist: list = ['vgwt_id', 'vgwt_guid', 'vgwt_wert',
+                         'vgwt_sortrhfg', 'vgwt_doma_id', 'vgwt_anzeige',
+                         'vgwt_beschr', 'vgwt_uc', 'vgwt_dc',
+                         'vgwt_um', 'vgwt_dm'
+                         ]
 
     def __init__(self):
         super().__init__(tablename=Vorgabewert._tablename, prefix=Vorgabewert._prefix
-                            , columnlist=Vorgabewert._columnlist)
+                         , columnlist=Vorgabewert._columnlist)
 
     @staticmethod
     def createtable():
         Baseobject.createtable(ptablename=Vorgabewert._tablename
-                                   , psql="""
+                               , psql="""
         CREATE TABLE vorgabewerte(
     vgwt_id               integer NOT NULL primary key autoincrement,
 	vgwt_guid varchar(40),
@@ -343,17 +403,17 @@ class Vorgabewert(Baseobject):
     vgwt_um        varchar(30),
     vgwt_dm        varchar(30),
 	constraint vgwt_uk unique (vgwt_doma_id,vgwt_wert),
-	constraint vgwt_doma_fk foreign key (vgwt_doma_id) references wertebereiche(doma_id) ON DELETE CASCADE
+	constraint vgwt_doma_fk foreign key (vgwt_doma_id) references DOMAINS(doma_id) ON DELETE CASCADE
     )
-    """);
+    """)
+
     @staticmethod
     def delete():
         Baseobject.delete(Vorgabewert._tablename)
 
     @staticmethod
-    def select(pwhere=None,porderby="vgwt_sortrhfg"):
+    def select(pwhere=None, porderby="vgwt_sortrhfg"):
         return Baseobject.select(pclass=Vorgabewert
-                                ,pwhere=pwhere,porderby=porderby)
+                                 , pwhere=pwhere, porderby=porderby)
 
-#Vorgabewert
-
+# Vorgabewert

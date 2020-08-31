@@ -80,7 +80,7 @@ def transferTypes():
     root = types.getroot()
     for typ in root.findall('logicaltype'):
         Datatype(pname=findField(typ, 'name')
-                 , pbasetype=Datatype.basisType(findText(typ, 'mapping'))
+                 , pbasetype=Datatype.baseType(findText(typ, 'mapping'))
                 ,psrcname=Externalref.SOURCE_ODM,pscrid=findField(typ, 'objectid')
                 ).insert()
     # endfor
@@ -91,49 +91,52 @@ def do1structtype(filename):
     structdom = structdomains.getroot()
     if (findField(structdom, "class") != "oracle.dbtools.crest.model.design.datatypes.StructuredType"): return
     # print (findField(structdom,"name"))
-    wrtb = Domain()
-    wrtb.wrtb_name = findField(structdom, "name")
-    wrtb.wrtb_uc = findText(structdom, "createdBy")
-    wrtb.wrtb_dc = findText(structdom, "createdTime")
-    wrtb.wrtb_typ = 'GRP'
-    wrtb.wrtb_herkunft = Domain.DOMAIN
-    wrtb.insert()
-    Externalref(psrcname=Externalref.SOURCE_ODM, psrcid=findField(structdom, "id"), pmodeid=wrtb.wrtb_id).insert()
+    doma = Domain()
+    doma.doma_name = findField(structdom, "name")
+    doma.doma_uc = findText(structdom, "createdBy")
+    doma.doma_dc = findText(structdom, "createdTime")
+    doma.doma_type = 'GRP'
+    doma.doma_origin = Domain.DOMAIN
+    doma.insert()
+    Externalref(psrcname=Externalref.SOURCE_ODM, psrcid=findField(structdom, "id"), pmodeid=doma.doma_id).insert()
 
     elements = structdom.findall("attributes/Attribute")
     for el in elements:
-        # print (wrtb.wrtb_name,findField(el,"name"),findText(el,'type'))
+        # print (doma.doma_name,findField(el,"name"),findText(el,'type'))
         wbgr = Wertebereichgruppe()
         wbgr.wbgr_type_ref = findText(el, 'type')
-        wbgr.wbgr_wrtb_id_gruppe = wrtb.wrtb_id
+        wbgr.wbgr_doma_id_gruppe = doma.doma_id
         wbgr.wbgr_name = findField(el, "name")
         wbgr.wbgr_beschr = findText(el, "comment")
         wbgr.wbgr_uc = findText(el, "createdBy")
         wbgr.wbgr_dc = findText(el, "createdTime")
-        elwrtb = Domain().getbyguid(wbgr.wbgr_type_ref)
+        elwrtb = Domain().getbyextref(wbgr.wbgr_type_ref)
         if elwrtb is None:
             # nimm vorläufig unknown, da mein Typ evtl. noch nicht da ist.
-            elwrtbid = Domain().getunknown().wrtb_id
+            elwrtbid = Domain().getunknown().doma_id
         else:
-            elwrtbid = elwrtb.wrtb_id
-        wbgr.wbgr_wrtb_id_member = elwrtbid
+            elwrtbid = elwrtb.doma_id
+        wbgr.wbgr_doma_id_member = elwrtbid
         wbgr.insert()
     # for
 
 
-def liesunsfuellwrtb(pwrtb, pxml):
-    pwrtb.wrtb_uc = findText(pxml, 'createdBy')
-    pwrtb.wrtb_dc = findText(pxml, 'createdTime')
-    pwrtb.wrtb_datatype_odm = findText(pxml, 'logicalDatatype')
-    daty = Datatype().getbyguid(pwrtb.wrtb_datatype_odm)
-    pwrtb.wrtb_daty_id = None if daty is None else daty.daty_id
-    pwrtb.wrtb_typ = 'TEXT' if (daty is None or daty.daty_grundtyp is None) else daty.daty_grundtyp
+def liesunsfuelldoma(pdoma, pxml):
+    pdoma.doma_uc = findText(pxml, 'createdBy')
+    pdoma.doma_dc = findText(pxml, 'createdTime')
+    modeids = Externalref.getmodeids(psrcid=findText(pxml, 'logicalDatatype'),psrcname=Externalref.SOURCE_ODM)
+    if length(modeids) == 1:
+        daty_id = modeids[0]
+    else:
+        daty_id = None
+    pdoma.doma_daty_id = daty_id
+    pdoma.doma_type = Domain. if (daty is None or daty.daty_grundtyp is None) else daty.daty_grundtyp
 
-    # print (pwrtb.wrtb_datatype_ref,pwrtb.wrtb_typ )
+    # print (pdoma.doma_datatype_ref,pdoma.doma_typ )
 
     lov = pxml.find('listOfValues')
     if (lov is not None) and (lov != {}):
-        pwrtb.wrtb_typ = 'LOV'
+        pdoma.doma_typ = 'LOV'
         lovs = dict()
         for lovval in lov:
             #                print (findField(lovval,'value'),findField(lovval,'description'),lovval.attrib)
@@ -150,46 +153,46 @@ def liesunsfuellwrtb(pwrtb, pxml):
 
     # noch nicht übernommenm< defaultValue > a @ b.ch < / defaultValue >
 
-    if (pwrtb.wrtb_typ == 'BIN'):
-        pwrtb.wrtb_bin_inhalttyp = 'BILD'  # 'FILM','GRAPH','TEXT','TON'
-        wrtb_bin_spfo_id = None
-    elif (pwrtb.wrtb_typ == 'LOV'):
+    if (pdoma.doma_typ == 'BIN'):
+        pdoma.doma_bin_inhalttyp = 'BILD'  # 'FILM','GRAPH','TEXT','TON'
+        doma_bin_spfo_id = None
+    elif (pdoma.doma_typ == 'LOV'):
         zahl = re.search('\A\d* ', nvl(findText(pxml, 'dataTypeSize')))
-        pwrtb.wrtb_text_maxlng = zahl.group() if not (zahl is None) else None
-    elif (pwrtb.wrtb_typ == 'TEXT'):
+        pdoma.doma_text_maxlng = zahl.group() if not (zahl is None) else None
+    elif (pdoma.doma_typ == 'TEXT'):
         #            print(re.search('\A\d* ','123 ab').group())
         zahl = re.search('\A\d* ', nvl(findText(pxml, 'dataTypeSize')))
-        pwrtb.wrtb_text_maxlng = zahl.group() if not (zahl is None) else None
+        pdoma.doma_text_maxlng = zahl.group() if not (zahl is None) else None
         constr = pxml.find('checkConstraint')
         if not (constr is None):
             # print(constr.findall('*'))
             impl = constr.find('implementationDef')
             if not (impl is None):
-                pwrtb.wrtb_text_syntaxregel = findField(impl, 'definition')
-    elif (pwrtb.wrtb_typ == 'ZPKT'):
-        pwrtb.wrtb_zpkt_minwert = range[0]
-        pwrtb.wrtb_zpkt_maxwert = range[1]
-        pwrtb.wrtb_zpkt_granularitaet = 'MINUTE'
-    elif (pwrtb.wrtb_typ == 'NUM'):
-        pwrtb.wrtb_num_minwert = range[0]
-        pwrtb.wrtb_num_maxwert = range[1]
+                pdoma.doma_text_syntaxregel = findField(impl, 'definition')
+    elif (pdoma.doma_typ == 'ZPKT'):
+        pdoma.doma_zpkt_minwert = range[0]
+        pdoma.doma_zpkt_maxwert = range[1]
+        pdoma.doma_zpkt_granularitaet = 'MINUTE'
+    elif (pdoma.doma_typ == 'NUM'):
+        pdoma.doma_num_minwert = range[0]
+        pdoma.doma_num_maxwert = range[1]
         prec = findText(pxml, 'dataTypePrecision')
         scale = findText(pxml, 'dataTypeScale')
-        pwrtb.wrtb_num_nachkstellen = 0 if scale is None else int(scale)
-        pwrtb.wrtb_num_vorkstellen = 0 if prec is None else int(prec) - pwrtb.wrtb_num_nachkstellen
-        pwrtb.wrtb_num_rundng_einh = None
-        pwrtb.wrtb_num_pheh = findText(pxml, 'unitOfMeasure')
+        pdoma.doma_num_nachkstellen = 0 if scale is None else int(scale)
+        pdoma.doma_num_vorkstellen = 0 if prec is None else int(prec) - pdoma.doma_num_nachkstellen
+        pdoma.doma_num_rundng_einh = None
+        pdoma.doma_num_pheh = findText(pxml, 'unitOfMeasure')
     # fi
-    pwrtb.insert()
+    pdoma.insert()
 
     if (lov is not None) & (lov != {}):
         for idx, key in enumerate(lovs.keys(), start=1):
             vgwt = Vorgabewert()
             vgwt.vgwt_wert = key
-            vgwt.vgwt_wrtb_id = pwrtb.wrtb_id
+            vgwt.vgwt_doma_id = pdoma.doma_id
             vgwt.vgwt_sortrhfg = idx
-            vgwt.vgwt_uc = pwrtb.wrtb_uc
-            vgwt.vgwt_dc = pwrtb.wrtb_dc
+            vgwt.vgwt_uc = pdoma.doma_uc
+            vgwt.vgwt_dc = pdoma.doma_dc
             vgwt.vgwt_anzeige = lovs[key]
             vgwt.insert()
         # for
@@ -201,14 +204,11 @@ def transferDomains():
     domains = ET.parse(parameters.odmDomainsFilePath())
     root = domains.getroot()
     for dom in root.findall('domains/Domain'):
-        wrtb = Domain()
-        mode = Modelelement(pmeltshortname=Modelelemtype.DOMA)
-        wrtb.wrtb_id = mode.insert()
-        wrtb.wrtb_name = findField(dom, "name")
-        wrtb.wrtb_odm_guid = findField(dom, "id")
-        wrtb.wrtb_beschr = findText(dom, 'comment')
-        wrtb.wrtb_herkunft = Domain.DOMAIN
-        liesunsfuellwrtb(pwrtb=wrtb, pxml=dom)
+        doma = Domain(psrcname=Externalref.SOURCE_ODM,pscrid=findField(dom, "id"))
+        doma.doma_name = findField(dom, "name")
+        doma.doma_descr = findText(dom, 'comment')
+        doma.doma_origin = Domain.DOMAIN
+        liesunsfuelldoma(pdoma=doma, pxml=dom)
     # for
 
     dosegfiles(pdirec=parameters.odmstructypesdir(), transferfiles=do1structtype)
@@ -246,7 +246,7 @@ def toString(str, upper=False):
 
 def transferentity(penti, pdiagid, puc, pdc):
     entiodm = findField(penti, 'oid')
-    enti = Entitaet().getbyguid(entiodm)
+    enti = Entitaet().getbyextref(entiodm)
     hiddenelements = penti.find("hiddenElements")
     if hiddenelements is not None:
         elemtext = findField(hiddenelements, "elements")
@@ -589,21 +589,18 @@ def transferdiagramme():
 # transferdiagramme
 
 def insertderiveddomain(ptypeguid, pattrname, pvatername, pattrxml):
-    wrtb = Domain()
-    wrtb.wrtb_name = pattrname
-    wrtbtest = Domain.getbyname(pname=wrtb.wrtb_name)
-    cnt = 0
-    while (wrtbtest is not None and wrtbtest.wrtb_name == wrtb.wrtb_name):
+    doma = Domain()
+    doma.doma_name = pattrname
+    domatest = Domain.getbyname(pname=doma.doma_name)
+    if (domatest is not None):
         # es gibt ihn schon, füge den Vaternamen dazu
-        cnt += 1
-        wrtb.wrtb_name = pattrname + '-' + pvatername + '-' + str(cnt)
-        wrtbtest = Domain.getbyname(pname=wrtb.wrtb_name)
-    wrtb.wrtb_herkunft = Domain.DERIVED
-    wrtb.wrtb_datatype_ref = ptypeguid
-    wrtb.wrtb_beschr = "generiertes Domain für Datentyp für Attribut {}.{}".format(pvatername, pattrname)
+        doma.doma_name = pattrname + '-' + pvatername
+    doma.doma_origin = Domain.DERIVED
+    if nvl(ptypeguid) != '': doma.doma_daty_id = Datatype.getidbyextid(ptypeguid)
+    doma.doma_descr = "generiertes Domain für Datentyp für Attribut {}.{}".format(pvatername, pattrname)
 
-    liesunsfuellwrtb(pwrtb=wrtb, pxml=pattrxml)
-    return wrtb
+    liesunsfuelldoma(pdoma=doma, pxml=pattrxml)
+    return doma
 
 
 # insertderiveddomain
@@ -612,15 +609,15 @@ def insertderiveddomain(ptypeguid, pattrname, pvatername, pattrxml):
 def findeOderErstelleDom(pdomguid, pstructdomguid, ptypeguid, pattrname, pvatername, pattrxml):
     dom = None
     if pdomguid is not None:
-        dom = Domain().getbyguid(pdomguid)
+        dom = Domain().getbyextref(pdomguid)
     elif pstructdomguid is not None:
-        dom = Domain().getbyguid(pstructdomguid)
+        dom = Domain().getbyextref(pstructdomguid)
     elif ptypeguid is not None:
         dom = insertderiveddomain(ptypeguid=ptypeguid, pattrname=pattrname, pvatername=pvatername, pattrxml=pattrxml)
     #
     if dom is None:
         dom = Domain().getbyname('Unknown')
-    return dom.wrtb_id
+    return dom.doma_id
 
 
 # findeOderErstelleDom
@@ -729,7 +726,7 @@ def do1Attribute(plfnr, pattrxml, pentiId=None, prelaId=None):
         attr.attr_tech_name = re.sub('[-,.()\[\]äöüèéàÄ~ÖÜ ]', '_', str.upper(attr.attr_anzname))
     attr.attr_uc = findText(pattrxml, 'createdBy')
     attr.attr_dc = findText(pattrxml, 'createdTime')
-    attr.attr_wrtb_id = findeOderErstelleDom(pdomguid=findText(pattrxml, 'domain')
+    attr.attr_doma_id = findeOderErstelleDom(pdomguid=findText(pattrxml, 'domain')
                                              , pstructdomguid=findText(pattrxml, 'structuredType')
                                              , ptypeguid=findText(pattrxml, 'logicalDatatype')
                                              , pattrname=attr.attr_anzname
@@ -1067,7 +1064,7 @@ def do1UDPFile(pudpThema, pfileName):
                 # print (findField(val,'value'),findField(val,'default'))
                 vgwt = Vorgabewert()
                 vgwt.vgwt_wert = findField(val, 'value')
-                vgwt.vgwt_wrtb_id = wrtbId
+                vgwt.vgwt_doma_id = wrtbId
                 vgwt.vgwt_anzeige = findField(val, 'value')
                 vgwt.vgwt_uc = 'system'
                 vgwt.vgwt_dc = date.today().__str__()

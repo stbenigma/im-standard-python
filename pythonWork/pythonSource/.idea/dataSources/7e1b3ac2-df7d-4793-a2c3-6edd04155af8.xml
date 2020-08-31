@@ -13,514 +13,694 @@
     <table id="6" parent="2" name="ARCS"/>
     <table id="7" parent="2" name="DATATYPES"/>
     <table id="8" parent="2" name="DOCUMENTS"/>
-    <table id="9" parent="2" name="EXTERNAL_REFS"/>
-    <table id="10" parent="2" name="MODELELEMENT"/>
-    <table id="11" parent="2" name="MODELELEM_TYPE"/>
-    <table id="12" parent="2" name="MODE_DOCU"/>
-    <table id="13" parent="2" name="RELATIONS"/>
-    <table id="14" parent="2" name="attr_transf"/>
-    <table id="15" parent="2" name="attributes"/>
-    <table id="16" parent="2" name="benudef_eigenschaft"/>
-    <table id="17" parent="2" name="benudef_wert"/>
-    <table id="18" parent="2" name="bereich_elemdarst"/>
-    <table id="19" parent="2" name="beziehung_darst"/>
-    <table id="20" parent="2" name="beziehungen"/>
-    <table id="21" parent="2" name="diagramme"/>
-    <table id="22" parent="2" name="diagrammtypen"/>
-    <table id="23" parent="2" name="dokumente"/>
-    <table id="24" parent="2" name="elementdarst"/>
-    <table id="25" parent="2" name="entitaeten"/>
-    <table id="26" parent="2" name="externalrefs"/>
+    <table id="9" parent="2" name="DOMAINS"/>
+    <table id="10" parent="2" name="EXTERNAL_REFS"/>
+    <table id="11" parent="2" name="MODELELEMENT"/>
+    <table id="12" parent="2" name="MODELELEM_TYPE"/>
+    <table id="13" parent="2" name="MODE_DOCU"/>
+    <table id="14" parent="2" name="RELATIONS"/>
+    <table id="15" parent="2" name="attr_transf"/>
+    <table id="16" parent="2" name="attributes"/>
+    <table id="17" parent="2" name="benudef_eigenschaft"/>
+    <table id="18" parent="2" name="benudef_wert"/>
+    <table id="19" parent="2" name="bereich_elemdarst"/>
+    <table id="20" parent="2" name="beziehung_darst"/>
+    <table id="21" parent="2" name="beziehungen"/>
+    <table id="22" parent="2" name="diagramme"/>
+    <table id="23" parent="2" name="diagrammtypen"/>
+    <table id="24" parent="2" name="dokumente"/>
+    <table id="25" parent="2" name="elementdarst"/>
+    <table id="26" parent="2" name="entitaeten"/>
     <table id="27" parent="2" name="geschaeftsbereich"/>
     <table id="28" parent="2" name="linie_segment"/>
     <table id="29" parent="2" name="melt_diat"/>
-    <table id="30" parent="2" name="modelelem_doku"/>
-    <table id="31" parent="2" name="modelltyp_eigensch"/>
-    <table id="32" parent="2" name="projekte"/>
-    <table id="33" parent="2" name="schluessel"/>
-    <table id="34" parent="2" name="schluesselelement"/>
-    <table id="35" parent="2" name="schnittstelle_attrs"/>
-    <table id="36" parent="2" name="schnittstellen"/>
-    <table id="37" parent="2" name="speicherformate"/>
-    <table id="38" parent="2" name="sprachen"/>
-    <table id="39" parent="2" name="sprachtexte"/>
-    <table id="40" parent="2" name="sqlite_master">
+    <table id="30" parent="2" name="modelltyp_eigensch"/>
+    <table id="31" parent="2" name="projekte"/>
+    <table id="32" parent="2" name="schluessel"/>
+    <table id="33" parent="2" name="schluesselelement"/>
+    <table id="34" parent="2" name="schnittstelle_attrs"/>
+    <table id="35" parent="2" name="schnittstellen"/>
+    <table id="36" parent="2" name="speicherformate"/>
+    <table id="37" parent="2" name="sprachen"/>
+    <table id="38" parent="2" name="sprachtexte"/>
+    <table id="39" parent="2" name="sqlite_master">
       <System>1</System>
     </table>
-    <table id="41" parent="2" name="sqlite_sequence">
+    <table id="40" parent="2" name="sqlite_sequence">
       <System>1</System>
     </table>
-    <table id="42" parent="2" name="synonyme"/>
-    <table id="43" parent="2" name="tabellen"/>
-    <table id="44" parent="2" name="tabl_enti_maps"/>
-    <table id="45" parent="2" name="vorgabewerte"/>
-    <table id="46" parent="2" name="wertebereiche"/>
-    <table id="47" parent="2" name="wertebereichgruppen"/>
-    <view id="48" parent="2" name="SUPERENTI">
+    <table id="41" parent="2" name="synonyme"/>
+    <table id="42" parent="2" name="tabellen"/>
+    <table id="43" parent="2" name="tabl_enti_maps"/>
+    <table id="44" parent="2" name="vorgabewerte"/>
+    <table id="45" parent="2" name="wertebereiche"/>
+    <table id="46" parent="2" name="wertebereichgruppen"/>
+    <view id="47" parent="2" name="SUPERENTI">
       <SourceTextLength>1107</SourceTextLength>
     </view>
-    <view id="49" parent="2" name="spraattr">
+    <view id="48" parent="2" name="spraattr">
       <SourceTextLength>203</SourceTextLength>
     </view>
-    <column id="50" parent="6" name="ARCS_ID">
+    <column id="49" parent="6" name="ARCS_ID">
       <Position>1</Position>
       <DataType>INTEGER|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="51" parent="6" name="ARCS_NAME">
+    <column id="50" parent="6" name="ARCS_NAME">
       <Position>2</Position>
       <DataType>VARCHAR(60)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="52" parent="6" name="ARCS_ENTI_ID">
+    <column id="51" parent="6" name="ARCS_ENTI_ID">
       <Position>3</Position>
       <DataType>NUMERIC(10)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="53" parent="6" name="ARCS_UC">
+    <column id="52" parent="6" name="ARCS_UC">
       <Position>4</Position>
       <DataType>VARCHAR(30)|0s</DataType>
     </column>
-    <column id="54" parent="6" name="ARCS_DC">
+    <column id="53" parent="6" name="ARCS_DC">
       <Position>5</Position>
       <DataType>VARCHAR(30)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="55" parent="6" name="ARCS_UM">
+    <column id="54" parent="6" name="ARCS_UM">
       <Position>6</Position>
       <DataType>VARCHAR(30)|0s</DataType>
     </column>
-    <column id="56" parent="6" name="ARCS_DM">
+    <column id="55" parent="6" name="ARCS_DM">
       <Position>7</Position>
       <DataType>VARCHAR(30)|0s</DataType>
     </column>
-    <index id="57" parent="6" name="sqlite_autoindex_ARCS_1">
+    <index id="56" parent="6" name="sqlite_autoindex_ARCS_1">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ARCS_ENTI_ID
 ARCS_NAME</ColNames>
       <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
-    <key id="58" parent="6">
+    <key id="57" parent="6">
       <ColNames>ARCS_ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="59" parent="6" name="ARCS_UK">
+    <key id="58" parent="6" name="ARCS_UK">
       <ColNames>ARCS_ENTI_ID
 ARCS_NAME</ColNames>
       <UnderlyingIndexName>sqlite_autoindex_ARCS_1</UnderlyingIndexName>
     </key>
-    <foreign-key id="60" parent="6" name="ARCS_MODE_FK">
+    <foreign-key id="59" parent="6" name="ARCS_MODE_FK">
       <ColNames>ARCS_ID</ColNames>
       <RefTableName>MODELELEMENT</RefTableName>
       <RefColNames>MODE_ID</RefColNames>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <foreign-key id="61" parent="6" name="ARCS_ENTI_FK">
+    <foreign-key id="60" parent="6" name="ARCS_ENTI_FK">
       <ColNames>ARCS_ENTI_ID</ColNames>
       <RefTableName>ENTITIES</RefTableName>
       <RefColNames>ENTI_ID</RefColNames>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <column id="62" parent="7" name="DATY_ID">
+    <column id="61" parent="7" name="DATY_ID">
       <Position>1</Position>
       <DataType>INTEGER|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="63" parent="7" name="DATY_NAME">
+    <column id="62" parent="7" name="DATY_NAME">
       <Position>2</Position>
       <DataType>VARCHAR(60)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="64" parent="7" name="DATY_BASETYPE">
+    <column id="63" parent="7" name="DATY_BASETYPE">
       <Position>3</Position>
       <DataType>VARCHAR(60)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="65" parent="7" name="DATY_UC">
+    <column id="64" parent="7" name="DATY_UC">
       <Position>4</Position>
       <DataType>VARCHAR(30)|0s</DataType>
     </column>
-    <column id="66" parent="7" name="DATY_DC">
+    <column id="65" parent="7" name="DATY_DC">
       <Position>5</Position>
       <DataType>VARCHAR(30)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="67" parent="7" name="DATY_UM">
+    <column id="66" parent="7" name="DATY_UM">
       <Position>6</Position>
       <DataType>VARCHAR(30)|0s</DataType>
     </column>
-    <column id="68" parent="7" name="DATY_DM">
+    <column id="67" parent="7" name="DATY_DM">
       <Position>7</Position>
       <DataType>VARCHAR(30)|0s</DataType>
     </column>
-    <key id="69" parent="7">
+    <key id="68" parent="7">
       <ColNames>DATY_ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="70" parent="7" name="DATY_MODE_FK">
+    <foreign-key id="69" parent="7" name="DATY_MODE_FK">
       <ColNames>DATY_ID</ColNames>
       <RefTableName>MODELELEMENT</RefTableName>
       <RefColNames>MODE_ID</RefColNames>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <check id="71" parent="7" name="DATY_BASETYPE_CK">
+    <check id="70" parent="7" name="DATY_BASETYPE_CK">
       <Predicate>DATY_BASETYPE IN (&apos;BINARY&apos;, &apos;NUMERIC&apos;, &apos;STRING&apos;, &apos;DATETIME&apos;)</Predicate>
     </check>
-    <column id="72" parent="8" name="DOCU_ID">
+    <column id="71" parent="8" name="DOCU_ID">
       <Position>1</Position>
       <DataType>INTEGER|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="73" parent="8" name="DOCU_NAME">
+    <column id="72" parent="8" name="DOCU_NAME">
       <Position>2</Position>
       <DataType>VARCHAR(60)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="74" parent="8" name="DOCU_FORMAT">
+    <column id="73" parent="8" name="DOCU_FORMAT">
       <Position>3</Position>
       <DataType>VARCHAR(20)|0s</DataType>
     </column>
-    <column id="75" parent="8" name="DOCU_REFERENCE">
+    <column id="74" parent="8" name="DOCU_REFERENCE">
       <Position>4</Position>
       <DataType>VARCHAR(500)|0s</DataType>
     </column>
-    <column id="76" parent="8" name="DOCU_CONTENT">
+    <column id="75" parent="8" name="DOCU_CONTENT">
       <Position>5</Position>
       <DataType>IMAGE|0s</DataType>
     </column>
-    <column id="77" parent="8" name="DOCU_DOCU_ID">
+    <column id="76" parent="8" name="DOCU_DOCU_ID">
       <Position>6</Position>
       <DataType>NUMERIC(10)|0s</DataType>
     </column>
-    <key id="78" parent="8">
+    <key id="77" parent="8">
       <ColNames>DOCU_ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="79" parent="8" name="DOCU_DOCU_FK">
+    <foreign-key id="78" parent="8" name="DOCU_DOCU_FK">
       <ColNames>DOCU_DOCU_ID</ColNames>
       <RefTableName>DOCUMENTS</RefTableName>
       <RefColNames>DOCU_ID</RefColNames>
     </foreign-key>
-    <column id="80" parent="9" name="EXTR_ID">
+    <column id="79" parent="9" name="DOMA_ID">
+      <Position>1</Position>
+      <DataType>NUMERIC(10)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="80" parent="9" name="DOMA_NAME">
+      <Position>2</Position>
+      <DataType>VARCHAR(60)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="81" parent="9" name="DOMA_DESCR">
+      <Position>3</Position>
+      <DataType>VARCHAR(4000)|0s</DataType>
+    </column>
+    <column id="82" parent="9" name="DOMA_TYPE">
+      <Position>4</Position>
+      <DataType>VARCHAR(4)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="83" parent="9" name="DOMA_ORIGIN">
+      <Position>5</Position>
+      <DataType>VARCHAR(6)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="84" parent="9" name="DOMA_DATY_ID">
+      <Position>6</Position>
+      <DataType>integer|0s</DataType>
+    </column>
+    <column id="85" parent="9" name="DOMA_DAT_MINVALUE">
+      <Position>7</Position>
+      <DataType>VARCHAR(30)|0s</DataType>
+    </column>
+    <column id="86" parent="9" name="DOMA_DAT_MAXVALUE">
+      <Position>8</Position>
+      <DataType>VARCHAR(30)|0s</DataType>
+    </column>
+    <column id="87" parent="9" name="DOMA_DAT_GRANULARITY">
+      <Position>9</Position>
+      <DataType>VARCHAR(15)|0s</DataType>
+    </column>
+    <column id="88" parent="9" name="DOMA_TXT_MAXLNG">
+      <Position>10</Position>
+      <DataType>NUMERIC(28)|0s</DataType>
+    </column>
+    <column id="89" parent="9" name="DOMA_TXT_SYNTAXRULE">
+      <Position>11</Position>
+      <DataType>VARCHAR(4000)|0s</DataType>
+    </column>
+    <column id="90" parent="9" name="DOMA_NUM_MAXVALUE">
+      <Position>12</Position>
+      <DataType>NUMERIC(30,10 digit)|0s</DataType>
+    </column>
+    <column id="91" parent="9" name="DOMA_NUM_MINVALUE">
+      <Position>13</Position>
+      <DataType>NUMERIC(30,10 digit)|0s</DataType>
+    </column>
+    <column id="92" parent="9" name="DOMA_NUM_TOTAL_DIGITS">
+      <Position>14</Position>
+      <DataType>NUMERIC(3)|0s</DataType>
+    </column>
+    <column id="93" parent="9" name="DOMA_NUM_FRACT_DIGITS">
+      <Position>15</Position>
+      <DataType>NUMERIC(3)|0s</DataType>
+      <DefaultExpression>0</DefaultExpression>
+    </column>
+    <column id="94" parent="9" name="DOMA_NUM_ROUND_VALUE">
+      <Position>16</Position>
+      <DataType>NUMERIC(7,3 digit)|0s</DataType>
+    </column>
+    <column id="95" parent="9" name="DOMA_NUM_PHYU_ID">
+      <Position>17</Position>
+      <DataType>NUMERIC(10)|0s</DataType>
+    </column>
+    <column id="96" parent="9" name="DOMA_BIN_CONTENTTYPE">
+      <Position>18</Position>
+      <DataType>VARCHAR(30)|0s</DataType>
+    </column>
+    <column id="97" parent="9" name="DOMA_BIN_STFO_ID">
+      <Position>19</Position>
+      <DataType>NUMERIC(10)|0s</DataType>
+    </column>
+    <column id="98" parent="9" name="DOMA_UC">
+      <Position>20</Position>
+      <DataType>VARCHAR(30)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="99" parent="9" name="DOMA_DC">
+      <Position>21</Position>
+      <DataType>VARCHAR(30)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="100" parent="9" name="DOMA_UM">
+      <Position>22</Position>
+      <DataType>VARCHAR(30)|0s</DataType>
+    </column>
+    <column id="101" parent="9" name="DOMA_DM">
+      <Position>23</Position>
+      <DataType>VARCHAR(30)|0s</DataType>
+    </column>
+    <index id="102" parent="9" name="sqlite_autoindex_DOMAINS_1">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>DOMA_ID</ColNames>
+      <ColumnCollations></ColumnCollations>
+      <Unique>1</Unique>
+    </index>
+    <index id="103" parent="9" name="sqlite_autoindex_DOMAINS_2">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>DOMA_NAME</ColNames>
+      <ColumnCollations></ColumnCollations>
+      <Unique>1</Unique>
+    </index>
+    <key id="104" parent="9">
+      <ColNames>DOMA_ID</ColNames>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>sqlite_autoindex_DOMAINS_1</UnderlyingIndexName>
+    </key>
+    <key id="105" parent="9" name="DOMA_NAME_UK">
+      <ColNames>DOMA_NAME</ColNames>
+      <UnderlyingIndexName>sqlite_autoindex_DOMAINS_2</UnderlyingIndexName>
+    </key>
+    <foreign-key id="106" parent="9" name="DOMA_MODE_FK">
+      <ColNames>DOMA_ID</ColNames>
+      <RefTableName>MODELELEMENT</RefTableName>
+      <RefColNames>MODE_ID</RefColNames>
+      <OnDelete>cascade</OnDelete>
+    </foreign-key>
+    <foreign-key id="107" parent="9" name="DOMA_daty_FK">
+      <ColNames>DOMA_DATY_ID</ColNames>
+      <RefTableName>DATATYPES</RefTableName>
+      <RefColNames>DATY_ID</RefColNames>
+    </foreign-key>
+    <foreign-key id="108" parent="9" name="DOMA_PHYU_FK">
+      <ColNames>DOMA_NUM_PHYU_ID</ColNames>
+      <RefTableName>PHYSICAL_UNIT</RefTableName>
+      <RefColNames>PHYU_ID</RefColNames>
+    </foreign-key>
+    <foreign-key id="109" parent="9" name="DOMA_STFO_FK">
+      <ColNames>DOMA_BIN_STFO_ID</ColNames>
+      <RefTableName>STORAGE_FORMATS</RefTableName>
+      <RefColNames>STFO_ID</RefColNames>
+    </foreign-key>
+    <check id="110" parent="9">
+      <Predicate>DOMA_BIN_CONTENTTYPE IN (&apos;DRAWING&apos;, &apos;FILM&apos;, &apos;IMAGE&apos;, &apos;OTHER&apos;, &apos;SOUND&apos;, &apos;TEXT&apos;)</Predicate>
+    </check>
+    <check id="111" parent="9">
+      <Predicate>DOMA_DAT_GRANULARITY IN (&apos;DAY&apos;, &apos;HOUR&apos;, &apos;MILlISECOND&apos;, &apos;MINUTE&apos;, &apos;MONTH&apos;, &apos;QUARTER&apos;, &apos;SECOND&apos;, &apos;SEMESTER&apos;, &apos;WEEK&apos;, &apos;YEAR&apos;)</Predicate>
+    </check>
+    <check id="112" parent="9">
+      <Predicate>DOMA_ORIGIN IN (&apos;DER&apos;, &apos;DOM&apos;)</Predicate>
+    </check>
+    <check id="113" parent="9">
+      <Predicate>DOMA_TYPE IN (&apos;BIN&apos;, &apos;DAT&apos;, &apos;GRP&apos;, &apos;LOV&apos;, &apos;NUM&apos;, &apos;TXT&apos;)</Predicate>
+    </check>
+    <check id="114" parent="9" name="DOMA_ExDep1">
+      <Predicate>DOMA_TYPE != &apos;BIN&apos;
+ OR ( DOMA_BIN_CONTENTTYPE IS NOT NULL AND DOMA_NUM_FRACT_DIGITS IS NULL AND DOMA_NUM_MAXVALUE IS NULL AND DOMA_NUM_MINVALUE IS NULL
+	 AND DOMA_NUM_PHYU_ID IS NULL AND DOMA_NUM_ROUND_VALUE IS NULL AND DOMA_NUM_TOTAL_DIGITS IS NULL AND DOMA_DAT_GRANULARITY IS NULL
+	 AND DOMA_DAT_MAXVALUE IS NULL AND DOMA_DAT_MINVALUE IS NULL AND DOMA_TXT_SYNTAXRULE IS NULL AND DOMA_TXT_MAXLNG IS NULL)</Predicate>
+    </check>
+    <check id="115" parent="9" name="DOMA_ExDep2">
+      <Predicate>DOMA_TYPE != &apos;DAT&apos;
+ OR ( DOMA_BIN_CONTENTTYPE IS NULL AND DOMA_BIN_STFO_ID IS NULL AND DOMA_NUM_FRACT_DIGITS IS NULL
+	 AND DOMA_NUM_MAXVALUE IS NULL AND DOMA_NUM_MINVALUE IS NULL AND DOMA_NUM_PHYU_ID IS NULL AND DOMA_NUM_ROUND_VALUE IS NULL
+	 AND DOMA_NUM_TOTAL_DIGITS IS NULL AND DOMA_DAT_GRANULARITY IS NOT NULL AND DOMA_TXT_SYNTAXRULE IS NULL AND DOMA_TXT_MAXLNG IS NULL)</Predicate>
+    </check>
+    <check id="116" parent="9" name="DOMA_ExDep3">
+      <Predicate>DOMA_TYPE != &apos;GRP&apos;
+ OR ( DOMA_BIN_CONTENTTYPE IS NULL AND DOMA_BIN_STFO_ID IS NULL AND DOMA_NUM_FRACT_DIGITS IS NULL AND DOMA_NUM_MAXVALUE IS NULL AND DOMA_NUM_MINVALUE IS NULL AND DOMA_NUM_PHYU_ID IS NULL AND DOMA_NUM_ROUND_VALUE IS NULL AND DOMA_NUM_TOTAL_DIGITS IS NULL AND DOMA_DAT_GRANULARITY IS NULL AND DOMA_DAT_MAXVALUE IS NULL AND DOMA_DAT_MINVALUE IS NULL AND DOMA_TXT_SYNTAXRULE IS NULL AND DOMA_TXT_MAXLNG IS NULL)</Predicate>
+    </check>
+    <check id="117" parent="9" name="DOMA_ExDep4">
+      <Predicate>DOMA_TYPE != &apos;LOV&apos;
+ OR ( DOMA_BIN_CONTENTTYPE IS NULL AND DOMA_BIN_STFO_ID IS NULL AND DOMA_NUM_FRACT_DIGITS IS NULL AND DOMA_NUM_MAXVALUE IS NULL AND DOMA_NUM_MINVALUE IS NULL AND DOMA_NUM_PHYU_ID IS NULL AND DOMA_NUM_ROUND_VALUE IS NULL AND DOMA_NUM_TOTAL_DIGITS IS NULL AND DOMA_DAT_GRANULARITY IS NULL AND DOMA_DAT_MAXVALUE IS NULL AND DOMA_DAT_MINVALUE IS NULL AND DOMA_TXT_SYNTAXRULE IS NULL AND DOMA_TXT_MAXLNG IS NULL)</Predicate>
+    </check>
+    <check id="118" parent="9" name="DOMA_ExDep5">
+      <Predicate>DOMA_TYPE != &apos;NUM&apos;
+ OR ( DOMA_BIN_CONTENTTYPE IS NULL AND DOMA_BIN_STFO_ID IS NULL AND DOMA_NUM_FRACT_DIGITS IS NOT NULL AND DOMA_NUM_TOTAL_DIGITS IS NOT NULL AND DOMA_DAT_GRANULARITY IS NULL AND DOMA_DAT_MAXVALUE IS NULL AND DOMA_DAT_MINVALUE IS NULL AND DOMA_TXT_SYNTAXRULE IS NULL AND DOMA_TXT_MAXLNG IS NULL)</Predicate>
+    </check>
+    <check id="119" parent="9" name="DOMA_ExDep6">
+      <Predicate>DOMA_TYPE != &apos;TXT&apos;
+ OR ( DOMA_BIN_CONTENTTYPE IS NULL AND DOMA_BIN_STFO_ID IS NULL AND DOMA_NUM_FRACT_DIGITS IS NULL AND DOMA_NUM_MAXVALUE IS NULL AND DOMA_NUM_MINVALUE IS NULL AND DOMA_NUM_PHYU_ID IS NULL AND DOMA_NUM_ROUND_VALUE IS NULL AND DOMA_NUM_TOTAL_DIGITS IS NULL AND DOMA_DAT_GRANULARITY IS NULL AND DOMA_DAT_MAXVALUE IS NULL AND DOMA_DAT_MINVALUE IS NULL)</Predicate>
+    </check>
+    <column id="120" parent="10" name="EXTR_ID">
       <Position>1</Position>
       <DataType>INTEGER|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="81" parent="9" name="EXTR_SOURCE_NAME">
+    <column id="121" parent="10" name="EXTR_SOURCE_NAME">
       <Position>2</Position>
       <DataType>VARCHAR(60)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="82" parent="9" name="EXTR_SOURCE_ID">
+    <column id="122" parent="10" name="EXTR_SOURCE_ID">
       <Position>3</Position>
       <DataType>VARCHAR(100)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="83" parent="9" name="EXTR_MODE_ID">
+    <column id="123" parent="10" name="EXTR_MODE_ID">
       <Position>4</Position>
       <DataType>NUMERIC(10)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="84" parent="9" name="sqlite_autoindex_EXTERNAL_REFS_1">
+    <index id="124" parent="10" name="sqlite_autoindex_EXTERNAL_REFS_1">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>EXTR_SOURCE_NAME
 EXTR_MODE_ID</ColNames>
       <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
-    <key id="85" parent="9">
+    <key id="125" parent="10">
       <ColNames>EXTR_ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="86" parent="9" name="EXTR_UK">
+    <key id="126" parent="10" name="EXTR_UK">
       <ColNames>EXTR_SOURCE_NAME
 EXTR_MODE_ID</ColNames>
       <UnderlyingIndexName>sqlite_autoindex_EXTERNAL_REFS_1</UnderlyingIndexName>
     </key>
-    <foreign-key id="87" parent="9" name="EXTR_MODE_FK">
+    <foreign-key id="127" parent="10" name="EXTR_MODE_FK">
       <ColNames>EXTR_MODE_ID</ColNames>
       <RefTableName>MODELELEMENT</RefTableName>
       <RefColNames>MODE_ID</RefColNames>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <column id="88" parent="10" name="MODE_ID">
+    <column id="128" parent="11" name="MODE_ID">
       <Position>1</Position>
       <DataType>INTEGER|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="89" parent="10" name="MODE_TYPE">
+    <column id="129" parent="11" name="MODE_TYPE">
       <Position>2</Position>
       <DataType>VARCHAR(4)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="90" parent="10" name="MODE_MELT_ID">
+    <column id="130" parent="11" name="MODE_MELT_ID">
       <Position>3</Position>
       <DataType>NUMERIC(10)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="91" parent="10" name="mode_syno_id">
+    <column id="131" parent="11" name="mode_syno_id">
       <Position>4</Position>
       <DataType>integer|0s</DataType>
     </column>
-    <column id="92" parent="10" name="mode_wrtb_id">
+    <column id="132" parent="11" name="mode_wrtb_id">
       <Position>5</Position>
       <DataType>integer|0s</DataType>
     </column>
-    <column id="93" parent="10" name="mode_attr_id">
+    <column id="133" parent="11" name="mode_attr_id">
       <Position>6</Position>
       <DataType>integer|0s</DataType>
     </column>
-    <column id="94" parent="10" name="mode_buru_id">
+    <column id="134" parent="11" name="mode_buru_id">
       <Position>7</Position>
       <DataType>integer|0s</DataType>
     </column>
-    <column id="95" parent="10" name="mode_rela_id">
+    <column id="135" parent="11" name="mode_rela_id">
       <Position>8</Position>
       <DataType>integer|0s</DataType>
     </column>
-    <column id="96" parent="10" name="mode_enti_id">
+    <column id="136" parent="11" name="mode_enti_id">
       <Position>9</Position>
       <DataType>integer|0s</DataType>
     </column>
-    <column id="97" parent="10" name="mode_orge_id">
+    <column id="137" parent="11" name="mode_orge_id">
       <Position>10</Position>
       <DataType>integer|0s</DataType>
     </column>
-    <column id="98" parent="10" name="mode_tabl_id">
+    <column id="138" parent="11" name="mode_tabl_id">
       <Position>11</Position>
       <DataType>integer|0s</DataType>
     </column>
-    <column id="99" parent="10" name="mode_scha_id">
+    <column id="139" parent="11" name="mode_scha_id">
       <Position>12</Position>
       <DataType>integer|0s</DataType>
     </column>
-    <column id="100" parent="10" name="mode_schn_id">
+    <column id="140" parent="11" name="mode_schn_id">
       <Position>13</Position>
       <DataType>integer|0s</DataType>
     </column>
-    <key id="101" parent="10">
+    <key id="141" parent="11">
       <ColNames>MODE_ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="102" parent="10" name="MODE_MELT_FK">
+    <foreign-key id="142" parent="11" name="MODE_MELT_FK">
       <ColNames>MODE_MELT_ID</ColNames>
       <RefTableName>MODELELEM_TYPE</RefTableName>
       <RefColNames>MELT_ID</RefColNames>
     </foreign-key>
-    <check id="103" parent="10">
+    <check id="143" parent="11">
       <Predicate>MODE_TYPE IN (&apos;ARCS&apos;, &apos;ATTR&apos;, &apos;BURU&apos;, &apos;COLU&apos;, &apos;DOMA&apos;, &apos;ENTI&apos;
                             , &apos;INTF&apos;, &apos;ORGU&apos;, &apos;RELA&apos;, &apos;SYNO&apos;, &apos;TABL&apos;,&apos;DOCU&apos;,&apos;KEYS&apos;,&apos;DATY&apos;)</Predicate>
     </check>
-    <column id="104" parent="11" name="MELT_ID">
+    <column id="144" parent="12" name="MELT_ID">
       <Position>1</Position>
       <DataType>INTEGER|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="105" parent="11" name="MELT_SHORTNAME">
+    <column id="145" parent="12" name="MELT_SHORTNAME">
       <Position>2</Position>
       <DataType>VARCHAR(4)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="106" parent="11" name="MELT_NAME">
+    <column id="146" parent="12" name="MELT_NAME">
       <Position>3</Position>
       <DataType>VARCHAR(60)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="107" parent="11" name="MELT_UC">
+    <column id="147" parent="12" name="MELT_UC">
       <Position>4</Position>
       <DataType>VARCHAR(30)|0s</DataType>
     </column>
-    <column id="108" parent="11" name="MELT_DC">
+    <column id="148" parent="12" name="MELT_DC">
       <Position>5</Position>
       <DataType>VARCHAR(30)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="109" parent="11" name="MELT_UM">
+    <column id="149" parent="12" name="MELT_UM">
       <Position>6</Position>
       <DataType>VARCHAR(30)|0s</DataType>
     </column>
-    <column id="110" parent="11" name="MELT_DM">
+    <column id="150" parent="12" name="MELT_DM">
       <Position>7</Position>
       <DataType>VARCHAR(30)|0s</DataType>
     </column>
-    <index id="111" parent="11" name="sqlite_autoindex_MODELELEM_TYPE_1">
+    <index id="151" parent="12" name="sqlite_autoindex_MODELELEM_TYPE_1">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>MELT_SHORTNAME</ColNames>
       <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
-    <index id="112" parent="11" name="sqlite_autoindex_MODELELEM_TYPE_2">
+    <index id="152" parent="12" name="sqlite_autoindex_MODELELEM_TYPE_2">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>MELT_NAME</ColNames>
       <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
-    <key id="113" parent="11">
+    <key id="153" parent="12">
       <ColNames>MELT_ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="114" parent="11" name="MELT_UN">
+    <key id="154" parent="12" name="MELT_UN">
       <ColNames>MELT_SHORTNAME</ColNames>
       <UnderlyingIndexName>sqlite_autoindex_MODELELEM_TYPE_1</UnderlyingIndexName>
     </key>
-    <key id="115" parent="11" name="MELT_UN2">
+    <key id="155" parent="12" name="MELT_UN2">
       <ColNames>MELT_NAME</ColNames>
       <UnderlyingIndexName>sqlite_autoindex_MODELELEM_TYPE_2</UnderlyingIndexName>
     </key>
-    <check id="116" parent="11">
+    <check id="156" parent="12">
       <Predicate>MELT_SHORTNAME IN (&apos;ARCS&apos;, &apos;ATTR&apos;, &apos;BURU&apos;, &apos;COLU&apos;, &apos;DOMA&apos;, &apos;ENTI&apos;
                                 , &apos;INTF&apos;, &apos;ORGU&apos;, &apos;RELA&apos;, &apos;SYNO&apos;, &apos;TABL&apos;,&apos;DOCU&apos;,&apos;KEYS&apos;,&apos;DATY&apos;)</Predicate>
     </check>
-    <column id="117" parent="12" name="MODO_ID">
+    <column id="157" parent="13" name="MODO_ID">
       <Position>1</Position>
       <DataType>INTEGER|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="118" parent="12" name="MODO_MODE_ID">
+    <column id="158" parent="13" name="MODO_MODE_ID">
       <Position>2</Position>
       <DataType>NUMERIC(10)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="119" parent="12" name="MODO_DOCU_ID">
+    <column id="159" parent="13" name="MODO_DOCU_ID">
       <Position>3</Position>
       <DataType>NUMERIC(10)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="120" parent="12" name="sqlite_autoindex_MODE_DOCU_1">
+    <index id="160" parent="13" name="sqlite_autoindex_MODE_DOCU_1">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>MODO_MODE_ID
 MODO_DOCU_ID</ColNames>
       <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
-    <key id="121" parent="12">
+    <key id="161" parent="13">
       <ColNames>MODO_ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="122" parent="12" name="MODO_UK">
+    <key id="162" parent="13" name="MODO_UK">
       <ColNames>MODO_MODE_ID
 MODO_DOCU_ID</ColNames>
       <UnderlyingIndexName>sqlite_autoindex_MODE_DOCU_1</UnderlyingIndexName>
     </key>
-    <foreign-key id="123" parent="12" name="MODO_MODE_FKv2">
+    <foreign-key id="163" parent="13" name="MODO_MODE_FKv2">
       <ColNames>MODO_MODE_ID</ColNames>
       <RefTableName>MODELELEMENT</RefTableName>
       <RefColNames>MODE_ID</RefColNames>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <foreign-key id="124" parent="12" name="MODO_DOCU_FK">
+    <foreign-key id="164" parent="13" name="MODO_DOCU_FK">
       <ColNames>MODO_DOCU_ID</ColNames>
       <RefTableName>DOCUMENTS</RefTableName>
       <RefColNames>DOCU_ID</RefColNames>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <column id="125" parent="13" name="RELA_ID">
+    <column id="165" parent="14" name="RELA_ID">
       <Position>1</Position>
       <DataType>NUMERIC(10)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="126" parent="13" name="RELA_NAME">
+    <column id="166" parent="14" name="RELA_NAME">
       <Position>2</Position>
       <DataType>VARCHAR(60)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="127" parent="13" name="RELA_TYPE">
+    <column id="167" parent="14" name="RELA_TYPE">
       <Position>3</Position>
       <DataType>VARCHAR(4)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="128" parent="13" name="RELA_ENTI_ID_FROM">
+    <column id="168" parent="14" name="RELA_ENTI_ID_FROM">
       <Position>4</Position>
       <DataType>NUMERIC(10)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="129" parent="13" name="RELA_ARCS_ID_FROM">
+    <column id="169" parent="14" name="RELA_ARCS_ID_FROM">
       <Position>5</Position>
       <DataType>NUMERIC(10)|0s</DataType>
     </column>
-    <column id="130" parent="13" name="RELA_ASSOC_FROM_TO">
+    <column id="170" parent="14" name="RELA_ASSOC_FROM_TO">
       <Position>6</Position>
       <DataType>VARCHAR(4000)|0s</DataType>
     </column>
-    <column id="131" parent="13" name="RELA_MAPTYPE_FROM_TO">
+    <column id="171" parent="14" name="RELA_MAPTYPE_FROM_TO">
       <Position>7</Position>
       <DataType>CHAR(1)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="132" parent="13" name="RELA_MANDATORY_FROM_TO">
+    <column id="172" parent="14" name="RELA_MANDATORY_FROM_TO">
       <Position>8</Position>
       <DataType>VARCHAR(5)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="133" parent="13" name="RELA_HIST_FROM_TO">
+    <column id="173" parent="14" name="RELA_HIST_FROM_TO">
       <Position>9</Position>
       <DataType>VARCHAR(5)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="134" parent="13" name="RELA_ENTI_ID_TO">
+    <column id="174" parent="14" name="RELA_ENTI_ID_TO">
       <Position>10</Position>
       <DataType>NUMERIC(10)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="135" parent="13" name="RELA_ARCS_ID_TO">
+    <column id="175" parent="14" name="RELA_ARCS_ID_TO">
       <Position>11</Position>
       <DataType>NUMERIC(10)|0s</DataType>
     </column>
-    <column id="136" parent="13" name="RELA_ASSOC_TO_FROM">
+    <column id="176" parent="14" name="RELA_ASSOC_TO_FROM">
       <Position>12</Position>
       <DataType>VARCHAR(100)|0s</DataType>
     </column>
-    <column id="137" parent="13" name="RELA_MAPTYPE_TO_FROM">
+    <column id="177" parent="14" name="RELA_MAPTYPE_TO_FROM">
       <Position>13</Position>
       <DataType>CHAR(1)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="138" parent="13" name="RELA_MANDATORY_TO_FROM">
+    <column id="178" parent="14" name="RELA_MANDATORY_TO_FROM">
       <Position>14</Position>
       <DataType>VARCHAR(5)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="139" parent="13" name="RELA_HIST_TO_FROM">
+    <column id="179" parent="14" name="RELA_HIST_TO_FROM">
       <Position>15</Position>
       <DataType>VARCHAR(4000)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="140" parent="13" name="RELA_UC">
+    <column id="180" parent="14" name="RELA_UC">
       <Position>16</Position>
       <DataType>VARCHAR(30)|0s</DataType>
     </column>
-    <column id="141" parent="13" name="RELA_DC">
+    <column id="181" parent="14" name="RELA_DC">
       <Position>17</Position>
       <DataType>VARCHAR(30)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="142" parent="13" name="RELA_UM">
+    <column id="182" parent="14" name="RELA_UM">
       <Position>18</Position>
       <DataType>VARCHAR(30)|0s</DataType>
     </column>
-    <column id="143" parent="13" name="RELA_DM">
+    <column id="183" parent="14" name="RELA_DM">
       <Position>19</Position>
       <DataType>VARCHAR(30)|0s</DataType>
     </column>
-    <index id="144" parent="13" name="sqlite_autoindex_RELATIONS_1">
+    <index id="184" parent="14" name="sqlite_autoindex_RELATIONS_1">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>RELA_ID</ColNames>
       <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
-    <index id="145" parent="13" name="sqlite_autoindex_RELATIONS_3">
+    <index id="185" parent="14" name="sqlite_autoindex_RELATIONS_3">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>RELA_NAME</ColNames>
       <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
-    <index id="146" parent="13" name="sqlite_autoindex_RELATIONS_2">
+    <index id="186" parent="14" name="sqlite_autoindex_RELATIONS_2">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>RELA_ENTI_ID_FROM
 RELA_ENTI_ID_TO
@@ -530,16 +710,16 @@ RELA_ASSOC_FROM_TO</ColNames>
       <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
-    <key id="147" parent="13">
+    <key id="187" parent="14">
       <ColNames>RELA_ID</ColNames>
       <Primary>1</Primary>
       <UnderlyingIndexName>sqlite_autoindex_RELATIONS_1</UnderlyingIndexName>
     </key>
-    <key id="148" parent="13" name="RELA_UK_NAME">
+    <key id="188" parent="14" name="RELA_UK_NAME">
       <ColNames>RELA_NAME</ColNames>
       <UnderlyingIndexName>sqlite_autoindex_RELATIONS_3</UnderlyingIndexName>
     </key>
-    <key id="149" parent="13" name="RELA_UK1">
+    <key id="189" parent="14" name="RELA_UK1">
       <ColNames>RELA_ENTI_ID_FROM
 RELA_ENTI_ID_TO
 RELA_TYPE
@@ -547,54 +727,54 @@ RELA_ASSOC_TO_FROM
 RELA_ASSOC_FROM_TO</ColNames>
       <UnderlyingIndexName>sqlite_autoindex_RELATIONS_2</UnderlyingIndexName>
     </key>
-    <foreign-key id="150" parent="13" name="RELA_MODE_FK">
+    <foreign-key id="190" parent="14" name="RELA_MODE_FK">
       <ColNames>RELA_ID</ColNames>
       <RefTableName>MODELELEMENT</RefTableName>
       <RefColNames>MODE_ID</RefColNames>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <foreign-key id="151" parent="13" name="RELA_ENTI_FROM_FK">
+    <foreign-key id="191" parent="14" name="RELA_ENTI_FROM_FK">
       <ColNames>RELA_ENTI_ID_FROM</ColNames>
       <RefTableName>ENTITIES</RefTableName>
       <RefColNames>ENTI_ID</RefColNames>
     </foreign-key>
-    <foreign-key id="152" parent="13" name="RELA_ARCS_FROM_FK">
+    <foreign-key id="192" parent="14" name="RELA_ARCS_FROM_FK">
       <ColNames>RELA_ARCS_ID_FROM</ColNames>
       <RefTableName>ARCS</RefTableName>
       <RefColNames>ARCS_ID</RefColNames>
     </foreign-key>
-    <foreign-key id="153" parent="13" name="RELA_ENTI_TO_FK">
+    <foreign-key id="193" parent="14" name="RELA_ENTI_TO_FK">
       <ColNames>RELA_ENTI_ID_TO</ColNames>
       <RefTableName>ENTITIES</RefTableName>
       <RefColNames>ENTI_ID</RefColNames>
     </foreign-key>
-    <foreign-key id="154" parent="13" name="RELA_ARCS_TO_FK">
+    <foreign-key id="194" parent="14" name="RELA_ARCS_TO_FK">
       <ColNames>RELA_ARCS_ID_TO</ColNames>
       <RefTableName>ARCS</RefTableName>
       <RefColNames>ARCS_ID</RefColNames>
     </foreign-key>
-    <check id="155" parent="13">
+    <check id="195" parent="14">
       <Predicate>RELA_HIST_FROM_TO IN(&apos;FALSE&apos;,&apos;TRUE&apos;)</Predicate>
     </check>
-    <check id="156" parent="13">
+    <check id="196" parent="14">
       <Predicate>RELA_HIST_TO_FROM IN(&apos;FALSE&apos;,&apos;TRUE&apos;)</Predicate>
     </check>
-    <check id="157" parent="13">
+    <check id="197" parent="14">
       <Predicate>RELA_MANDATORY_FROM_TO IN(&apos;FALSE&apos;,&apos;TRUE&apos;)</Predicate>
     </check>
-    <check id="158" parent="13">
+    <check id="198" parent="14">
       <Predicate>RELA_MANDATORY_TO_FROM IN(&apos;FALSE&apos;,&apos;TRUE&apos;)</Predicate>
     </check>
-    <check id="159" parent="13">
+    <check id="199" parent="14">
       <Predicate>RELA_MAPTYPE_FROM_TO IN (&apos;1&apos;, &apos;M&apos;)</Predicate>
     </check>
-    <check id="160" parent="13">
+    <check id="200" parent="14">
       <Predicate>RELA_MAPTYPE_TO_FROM IN (&apos;1&apos;, &apos;M&apos;)</Predicate>
     </check>
-    <check id="161" parent="13">
+    <check id="201" parent="14">
       <Predicate>RELA_TYPE IN (&apos;1:1&apos;, &apos;ISAR&apos;, &apos;ISAS&apos;, &apos;M:1&apos;, &apos;M:N&apos;)</Predicate>
     </check>
-    <check id="162" parent="13" name="RELA_MAPTYPE_CHK">
+    <check id="202" parent="14" name="RELA_MAPTYPE_CHK">
       <Predicate>(RELA_TYPE = &apos;ISAR&apos;
   AND RELA_MAPTYPE_FROM_TO = &apos;1&apos;
   AND RELA_MAPTYPE_TO_FROM = &apos;1&apos;
@@ -632,58 +812,58 @@ RELA_ASSOC_FROM_TO</ColNames>
   AND RELA_MAPTYPE_FROM_TO = &apos;M&apos;
 )</Predicate>
     </check>
-    <column id="163" parent="14" name="attf_id">
+    <column id="203" parent="15" name="attf_id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="164" parent="14" name="attf_laufnr">
+    <column id="204" parent="15" name="attf_laufnr">
       <Position>2</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="165" parent="14" name="attf_richtung">
+    <column id="205" parent="15" name="attf_richtung">
       <Position>3</Position>
       <DataType>varchar(7)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="166" parent="14" name="attf_transf_formel">
+    <column id="206" parent="15" name="attf_transf_formel">
       <Position>4</Position>
       <DataType>varchar(4000)|0s</DataType>
     </column>
-    <column id="167" parent="14" name="attf_ausloeseart">
+    <column id="207" parent="15" name="attf_ausloeseart">
       <Position>5</Position>
       <DataType>varchar(10)|0s</DataType>
     </column>
-    <column id="168" parent="14" name="attf_ausloeseperiod">
+    <column id="208" parent="15" name="attf_ausloeseperiod">
       <Position>6</Position>
       <DataType>integer|0s</DataType>
     </column>
-    <column id="169" parent="14" name="attf_scha_id">
+    <column id="209" parent="15" name="attf_scha_id">
       <Position>7</Position>
       <DataType>integer|0s</DataType>
     </column>
-    <column id="170" parent="14" name="attf_attr_id">
+    <column id="210" parent="15" name="attf_attr_id">
       <Position>8</Position>
       <DataType>integer|0s</DataType>
     </column>
-    <column id="171" parent="14" name="attf_uc">
+    <column id="211" parent="15" name="attf_uc">
       <Position>9</Position>
       <DataType>varchar(30)|0s</DataType>
     </column>
-    <column id="172" parent="14" name="attf_dc">
+    <column id="212" parent="15" name="attf_dc">
       <Position>10</Position>
       <DataType>varchar(30)|0s</DataType>
     </column>
-    <column id="173" parent="14" name="attf_um">
+    <column id="213" parent="15" name="attf_um">
       <Position>11</Position>
       <DataType>varchar(30)|0s</DataType>
     </column>
-    <column id="174" parent="14" name="attf_dm">
+    <column id="214" parent="15" name="attf_dm">
       <Position>12</Position>
       <DataType>varchar(30)|0s</DataType>
     </column>
-    <index id="175" parent="14" name="sqlite_autoindex_attr_transf_1">
+    <index id="215" parent="15" name="sqlite_autoindex_attr_transf_1">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>attf_richtung
 attf_scha_id
@@ -692,634 +872,634 @@ attf_laufnr</ColNames>
       <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
-    <key id="176" parent="14">
+    <key id="216" parent="15">
       <ColNames>attf_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="177" parent="14" name="attf_un">
+    <key id="217" parent="15" name="attf_un">
       <ColNames>attf_richtung
 attf_scha_id
 attf_attr_id
 attf_laufnr</ColNames>
       <UnderlyingIndexName>sqlite_autoindex_attr_transf_1</UnderlyingIndexName>
     </key>
-    <foreign-key id="178" parent="14" name="attf_scha_fk">
+    <foreign-key id="218" parent="15" name="attf_scha_fk">
       <ColNames>attf_scha_id</ColNames>
       <RefTableName>schnittstelle_attr</RefTableName>
       <RefColNames>scha_id</RefColNames>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <foreign-key id="179" parent="14" name="attf_attr_fk">
+    <foreign-key id="219" parent="15" name="attf_attr_fk">
       <ColNames>attf_attr_id</ColNames>
       <RefTableName>attributes</RefTableName>
       <RefColNames>attr_id</RefColNames>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <check id="180" parent="14">
+    <check id="220" parent="15">
       <Predicate>attf_ausloeseart in (&apos;MANUELL&apos;, &apos;PERIODE&apos;, &apos;ZPKT&apos;)</Predicate>
     </check>
-    <check id="181" parent="14">
+    <check id="221" parent="15">
       <Predicate>attf_laufnr &gt; 0</Predicate>
     </check>
-    <check id="182" parent="14">
+    <check id="222" parent="15">
       <Predicate>attf_richtung in (&apos;INBOUND&apos;, &apos;OUTBOUND&apos;)</Predicate>
     </check>
-    <column id="183" parent="15" name="attr_id">
+    <column id="223" parent="16" name="attr_id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="184" parent="15" name="attr_enti_id">
+    <column id="224" parent="16" name="attr_enti_id">
       <Position>2</Position>
       <DataType>integer|0s</DataType>
     </column>
-    <column id="185" parent="15" name="attr_rela_id">
+    <column id="225" parent="16" name="attr_rela_id">
       <Position>3</Position>
       <DataType>integer|0s</DataType>
     </column>
-    <column id="186" parent="15" name="attr_wrtb_id">
+    <column id="226" parent="16" name="attr_wrtb_id">
       <Position>4</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="187" parent="15" name="attr_tech_name">
+    <column id="227" parent="16" name="attr_tech_name">
       <Position>5</Position>
       <DataType>varchar(60)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="188" parent="15" name="attr_anzname">
+    <column id="228" parent="16" name="attr_anzname">
       <Position>6</Position>
       <DataType>varchar(100)|0s</DataType>
     </column>
-    <column id="189" parent="15" name="attr_tooltip">
+    <column id="229" parent="16" name="attr_tooltip">
       <Position>7</Position>
       <DataType>varchar(100)|0s</DataType>
     </column>
-    <column id="190" parent="15" name="attr_beschr">
+    <column id="230" parent="16" name="attr_beschr">
       <Position>8</Position>
       <DataType>varchar(2000)|0s</DataType>
     </column>
-    <column id="191" parent="15" name="attr_business_rule">
+    <column id="231" parent="16" name="attr_business_rule">
       <Position>9</Position>
       <DataType>varchar(4000)|0s</DataType>
     </column>
-    <column id="192" parent="15" name="attr_anz_rhflg">
+    <column id="232" parent="16" name="attr_anz_rhflg">
       <Position>10</Position>
       <DataType>integer|0s</DataType>
     </column>
-    <column id="193" parent="15" name="attr_deskriptor">
+    <column id="233" parent="16" name="attr_deskriptor">
       <Position>11</Position>
       <DataType>varchar(5)|0s</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>&apos;FALSE&apos;</DefaultExpression>
     </column>
-    <column id="194" parent="15" name="attr_pflichtattr">
+    <column id="234" parent="16" name="attr_pflichtattr">
       <Position>12</Position>
       <DataType>varchar(5)|0s</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>&apos;FALSE&apos;</DefaultExpression>
     </column>
-    <column id="195" parent="15" name="attr_historisiert">
+    <column id="235" parent="16" name="attr_historisiert">
       <Position>13</Position>
       <DataType>varchar(5)|0s</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>&apos;FALSE&apos;</DefaultExpression>
     </column>
-    <column id="196" parent="15" name="attr_wiederholt">
+    <column id="236" parent="16" name="attr_wiederholt">
       <Position>14</Position>
       <DataType>varchar(5)|0s</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>&apos;FALSE&apos;</DefaultExpression>
     </column>
-    <column id="197" parent="15" name="attr_sprachabhaengig">
+    <column id="237" parent="16" name="attr_sprachabhaengig">
       <Position>15</Position>
       <DataType>varchar(5)|0s</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>&apos;FALSE&apos;</DefaultExpression>
     </column>
-    <column id="198" parent="15" name="attr_verschluesselt">
+    <column id="238" parent="16" name="attr_verschluesselt">
       <Position>16</Position>
       <DataType>varchar(5)|0s</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>&apos;FALSE&apos;</DefaultExpression>
     </column>
-    <column id="199" parent="15" name="attr_odm_guid">
+    <column id="239" parent="16" name="attr_odm_guid">
       <Position>17</Position>
       <DataType>varchar(36)|0s</DataType>
     </column>
-    <column id="200" parent="15" name="attr_uc">
+    <column id="240" parent="16" name="attr_uc">
       <Position>18</Position>
       <DataType>varchar(30)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="201" parent="15" name="attr_dc">
+    <column id="241" parent="16" name="attr_dc">
       <Position>19</Position>
       <DataType>varchar(30)|0s</DataType>
     </column>
-    <column id="202" parent="15" name="attr_um">
+    <column id="242" parent="16" name="attr_um">
       <Position>20</Position>
       <DataType>varchar(30)|0s</DataType>
     </column>
-    <column id="203" parent="15" name="attr_dm">
+    <column id="243" parent="16" name="attr_dm">
       <Position>21</Position>
       <DataType>varchar(30)|0s</DataType>
     </column>
-    <index id="204" parent="15" name="sqlite_autoindex_attributes_1">
+    <index id="244" parent="16" name="sqlite_autoindex_attributes_1">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>attr_enti_id
 attr_tech_name</ColNames>
       <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
-    <key id="205" parent="15">
+    <key id="245" parent="16">
       <ColNames>attr_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="206" parent="15">
+    <key id="246" parent="16">
       <ColNames>attr_enti_id
 attr_tech_name</ColNames>
       <UnderlyingIndexName>sqlite_autoindex_attributes_1</UnderlyingIndexName>
     </key>
-    <foreign-key id="207" parent="15" name="attr_enti_fk">
+    <foreign-key id="247" parent="16" name="attr_enti_fk">
       <ColNames>attr_enti_id</ColNames>
       <RefTableName>entitaeten</RefTableName>
       <RefColNames>enti_id</RefColNames>
     </foreign-key>
-    <foreign-key id="208" parent="15" name="attr_bezi_fk">
+    <foreign-key id="248" parent="16" name="attr_bezi_fk">
       <ColNames>attr_rela_id</ColNames>
       <RefTableName>beziehungen</RefTableName>
       <RefColNames>rela_id</RefColNames>
     </foreign-key>
-    <foreign-key id="209" parent="15" name="attr_wrtb_fk">
+    <foreign-key id="249" parent="16" name="attr_wrtb_fk">
       <ColNames>attr_wrtb_id</ColNames>
       <RefTableName>wertebereiche</RefTableName>
       <RefColNames>wrtb_id</RefColNames>
     </foreign-key>
-    <check id="210" parent="15">
+    <check id="250" parent="16">
       <Predicate>attr_deskriptor IN(
             &apos;FALSE&apos;,
             &apos;TRUE&apos;
         )</Predicate>
     </check>
-    <check id="211" parent="15">
+    <check id="251" parent="16">
       <Predicate>attr_historisiert IN(
             &apos;FALSE&apos;,
             &apos;TRUE&apos;
         )</Predicate>
     </check>
-    <check id="212" parent="15">
+    <check id="252" parent="16">
       <Predicate>attr_pflichtattr IN(
             &apos;FALSE&apos;,
             &apos;TRUE&apos;
         )</Predicate>
     </check>
-    <check id="213" parent="15">
+    <check id="253" parent="16">
       <Predicate>attr_sprachabhaengig IN(
             &apos;FALSE&apos;,
             &apos;TRUE&apos;
         )</Predicate>
     </check>
-    <check id="214" parent="15">
+    <check id="254" parent="16">
       <Predicate>attr_verschluesselt IN(
             &apos;FALSE&apos;,
             &apos;TRUE&apos;
         )</Predicate>
     </check>
-    <check id="215" parent="15">
+    <check id="255" parent="16">
       <Predicate>attr_wiederholt IN(
             &apos;FALSE&apos;,
             &apos;TRUE&apos;
         )</Predicate>
     </check>
-    <check id="216" parent="15" name="attr_arc_fk">
+    <check id="256" parent="16" name="attr_arc_fk">
       <Predicate>(attr_enti_id is null and attr_rela_id is not null) 
 								or (attr_enti_id is not null and attr_rela_id is null)</Predicate>
     </check>
-    <column id="217" parent="16" name="bdeg_id">
+    <column id="257" parent="17" name="bdeg_id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="218" parent="16" name="bdeg_thema">
+    <column id="258" parent="17" name="bdeg_thema">
       <Position>2</Position>
       <DataType>varchar(60)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="219" parent="16" name="bdeg_gruppe">
+    <column id="259" parent="17" name="bdeg_gruppe">
       <Position>3</Position>
       <DataType>varchar(60)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="220" parent="16" name="bdeg_name">
+    <column id="260" parent="17" name="bdeg_name">
       <Position>4</Position>
       <DataType>varchar(60)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="221" parent="16" name="bdeg_default_value">
+    <column id="261" parent="17" name="bdeg_default_value">
       <Position>5</Position>
       <DataType>varchar(60)|0s</DataType>
     </column>
-    <column id="222" parent="16" name="bdeg_beschreibung">
+    <column id="262" parent="17" name="bdeg_beschreibung">
       <Position>6</Position>
       <DataType>varchar(4000)|0s</DataType>
     </column>
-    <column id="223" parent="16" name="bdeg_optional">
+    <column id="263" parent="17" name="bdeg_optional">
       <Position>7</Position>
       <DataType>varchar(5)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="224" parent="16" name="bdeg_wrtb_id">
+    <column id="264" parent="17" name="bdeg_wrtb_id">
       <Position>8</Position>
       <DataType>integer|0s</DataType>
     </column>
-    <column id="225" parent="16" name="bdeg_uc">
+    <column id="265" parent="17" name="bdeg_uc">
       <Position>9</Position>
       <DataType>varchar(30)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="226" parent="16" name="bdeg_dc">
+    <column id="266" parent="17" name="bdeg_dc">
       <Position>10</Position>
       <DataType>varchar(30)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="227" parent="16" name="bdeg_um">
+    <column id="267" parent="17" name="bdeg_um">
       <Position>11</Position>
       <DataType>varchar(30)|0s</DataType>
     </column>
-    <column id="228" parent="16" name="bdeg_dm">
+    <column id="268" parent="17" name="bdeg_dm">
       <Position>12</Position>
       <DataType>varchar(30)|0s</DataType>
     </column>
-    <index id="229" parent="16" name="sqlite_autoindex_benudef_eigenschaft_1">
+    <index id="269" parent="17" name="sqlite_autoindex_benudef_eigenschaft_1">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>bdeg_name</ColNames>
       <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
-    <key id="230" parent="16">
+    <key id="270" parent="17">
       <ColNames>bdeg_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="231" parent="16" name="bdeg_un">
+    <key id="271" parent="17" name="bdeg_un">
       <ColNames>bdeg_name</ColNames>
       <UnderlyingIndexName>sqlite_autoindex_benudef_eigenschaft_1</UnderlyingIndexName>
     </key>
-    <foreign-key id="232" parent="16" name="bdeg_wrtb_fk">
+    <foreign-key id="272" parent="17" name="bdeg_wrtb_fk">
       <ColNames>bdeg_wrtb_id</ColNames>
       <RefTableName>wertebereiche</RefTableName>
       <RefColNames>wrtb_id</RefColNames>
     </foreign-key>
-    <check id="233" parent="16">
+    <check id="273" parent="17">
       <Predicate>bdeg_optional IN(
             &apos;FALSE&apos;,
             &apos;TRUE&apos;
         )</Predicate>
     </check>
-    <column id="234" parent="17" name="bdwe_id">
+    <column id="274" parent="18" name="bdwe_id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="235" parent="17" name="bdwe_wert">
+    <column id="275" parent="18" name="bdwe_wert">
       <Position>2</Position>
       <DataType>varchar(4000)|0s</DataType>
     </column>
-    <column id="236" parent="17" name="bdwe_mode_id">
+    <column id="276" parent="18" name="bdwe_mode_id">
       <Position>3</Position>
       <DataType>varchar(4)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="237" parent="17" name="bdwe_bdeg_id">
+    <column id="277" parent="18" name="bdwe_bdeg_id">
       <Position>4</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="238" parent="17" name="bdwe_uc">
+    <column id="278" parent="18" name="bdwe_uc">
       <Position>5</Position>
       <DataType>varchar(30)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="239" parent="17" name="bdwe_dc">
+    <column id="279" parent="18" name="bdwe_dc">
       <Position>6</Position>
       <DataType>varchar(30)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="240" parent="17" name="bdwe_um">
+    <column id="280" parent="18" name="bdwe_um">
       <Position>7</Position>
       <DataType>varchar(30)|0s</DataType>
     </column>
-    <column id="241" parent="17" name="bdwe_dm">
+    <column id="281" parent="18" name="bdwe_dm">
       <Position>8</Position>
       <DataType>varchar(30)|0s</DataType>
     </column>
-    <index id="242" parent="17" name="sqlite_autoindex_benudef_wert_1">
+    <index id="282" parent="18" name="sqlite_autoindex_benudef_wert_1">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>bdwe_mode_id
 bdwe_bdeg_id</ColNames>
       <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
-    <key id="243" parent="17">
+    <key id="283" parent="18">
       <ColNames>bdwe_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="244" parent="17" name="bdwe_un">
+    <key id="284" parent="18" name="bdwe_un">
       <ColNames>bdwe_mode_id
 bdwe_bdeg_id</ColNames>
       <UnderlyingIndexName>sqlite_autoindex_benudef_wert_1</UnderlyingIndexName>
     </key>
-    <foreign-key id="245" parent="17" name="bdwe_mode_fk">
+    <foreign-key id="285" parent="18" name="bdwe_mode_fk">
       <ColNames>bdwe_mode_id</ColNames>
       <RefTableName>modellelement</RefTableName>
       <RefColNames>mode_id</RefColNames>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <foreign-key id="246" parent="17" name="bdwe_bdeg_fk">
+    <foreign-key id="286" parent="18" name="bdwe_bdeg_fk">
       <ColNames>bdwe_bdeg_id</ColNames>
       <RefTableName>benudef_eigenschaft</RefTableName>
       <RefColNames>bdeg_id</RefColNames>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <column id="247" parent="18" name="beld_id">
+    <column id="287" parent="19" name="beld_id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="248" parent="18" name="BELD_MELT_ID">
+    <column id="288" parent="19" name="BELD_MELT_ID">
       <Position>2</Position>
       <DataType>INTEGER|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="249" parent="18" name="BELD_GBER_ID">
+    <column id="289" parent="19" name="BELD_GBER_ID">
       <Position>3</Position>
       <DataType>INTEGER|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="250" parent="18" name="BELD_BREITE">
+    <column id="290" parent="19" name="BELD_BREITE">
       <Position>4</Position>
       <DataType>INTEGER|0s</DataType>
     </column>
-    <column id="251" parent="18" name="BELD_HOEHE">
+    <column id="291" parent="19" name="BELD_HOEHE">
       <Position>5</Position>
       <DataType>INTEGER|0s</DataType>
     </column>
-    <column id="252" parent="18" name="BELD_DECKKRAFT">
+    <column id="292" parent="19" name="BELD_DECKKRAFT">
       <Position>6</Position>
       <DataType>INTEGER|0s</DataType>
       <DefaultExpression>100</DefaultExpression>
     </column>
-    <column id="253" parent="18" name="BELD_FARBE">
+    <column id="293" parent="19" name="BELD_FARBE">
       <Position>7</Position>
       <DataType>VARCHAR(6)|0s</DataType>
       <DefaultExpression>&apos;000000&apos;</DefaultExpression>
     </column>
-    <column id="254" parent="18" name="BELD_RANDBREITE">
+    <column id="294" parent="19" name="BELD_RANDBREITE">
       <Position>8</Position>
       <DataType>INTEGER|0s</DataType>
       <DefaultExpression>1</DefaultExpression>
     </column>
-    <column id="255" parent="18" name="BELD_RANDDECKKRAFT">
+    <column id="295" parent="19" name="BELD_RANDDECKKRAFT">
       <Position>9</Position>
       <DataType>INTEGER|0s</DataType>
       <DefaultExpression>100</DefaultExpression>
     </column>
-    <column id="256" parent="18" name="BELD_RANDFARBE">
+    <column id="296" parent="19" name="BELD_RANDFARBE">
       <Position>10</Position>
       <DataType>VARCHAR(6)|0s</DataType>
       <DefaultExpression>&apos;000000&apos;</DefaultExpression>
     </column>
-    <column id="257" parent="18" name="BELD_SCHRIFTGROESSE">
+    <column id="297" parent="19" name="BELD_SCHRIFTGROESSE">
       <Position>11</Position>
       <DataType>INTEGER|0s</DataType>
     </column>
-    <column id="258" parent="18" name="BELD_SCHRIFTFARBE">
+    <column id="298" parent="19" name="BELD_SCHRIFTFARBE">
       <Position>12</Position>
       <DataType>VARCHAR(6)|0s</DataType>
       <DefaultExpression>&apos;000000&apos;</DefaultExpression>
     </column>
-    <column id="259" parent="18" name="BELD_UC">
+    <column id="299" parent="19" name="BELD_UC">
       <Position>13</Position>
       <DataType>VARCHAR(30)|0s</DataType>
     </column>
-    <column id="260" parent="18" name="BELD_DC">
+    <column id="300" parent="19" name="BELD_DC">
       <Position>14</Position>
       <DataType>VARCHAR(30)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="261" parent="18" name="BELD_UM">
+    <column id="301" parent="19" name="BELD_UM">
       <Position>15</Position>
       <DataType>VARCHAR(30)|0s</DataType>
     </column>
-    <column id="262" parent="18" name="BELD_DM">
+    <column id="302" parent="19" name="BELD_DM">
       <Position>16</Position>
       <DataType>VARCHAR(30)|0s</DataType>
     </column>
-    <index id="263" parent="18" name="sqlite_autoindex_bereich_elemdarst_1">
+    <index id="303" parent="19" name="sqlite_autoindex_bereich_elemdarst_1">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>BELD_MELT_ID
 BELD_GBER_ID</ColNames>
       <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
-    <key id="264" parent="18">
+    <key id="304" parent="19">
       <ColNames>beld_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="265" parent="18" name="BELD_UN">
+    <key id="305" parent="19" name="BELD_UN">
       <ColNames>BELD_MELT_ID
 BELD_GBER_ID</ColNames>
       <UnderlyingIndexName>sqlite_autoindex_bereich_elemdarst_1</UnderlyingIndexName>
     </key>
-    <foreign-key id="266" parent="18" name="beld_mode_fk">
+    <foreign-key id="306" parent="19" name="beld_mode_fk">
       <ColNames>BELD_MELT_ID</ColNames>
       <RefTableName>modellelem_typ</RefTableName>
       <RefColNames>melt_id</RefColNames>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <foreign-key id="267" parent="18" name="beld_gber_fk">
+    <foreign-key id="307" parent="19" name="beld_gber_fk">
       <ColNames>BELD_GBER_ID</ColNames>
       <RefTableName>geschaeftsbereich</RefTableName>
       <RefColNames>gber_id</RefColNames>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <check id="268" parent="18">
+    <check id="308" parent="19">
       <Predicate>BELD_DECKKRAFT BETWEEN 0 AND 100</Predicate>
     </check>
-    <check id="269" parent="18">
+    <check id="309" parent="19">
       <Predicate>BELD_RANDDECKKRAFT BETWEEN 0 AND 100</Predicate>
     </check>
-    <check id="270" parent="18">
+    <check id="310" parent="19">
       <Predicate>BELD_SCHRIFTGROESSE BETWEEN 1 AND 999</Predicate>
     </check>
-    <check id="271" parent="18">
+    <check id="311" parent="19">
       <Predicate>LENGTH(BELD_FARBE) = 6</Predicate>
     </check>
-    <check id="272" parent="18">
+    <check id="312" parent="19">
       <Predicate>LENGTH(BELD_RANDFARBE) = 6</Predicate>
     </check>
-    <check id="273" parent="18">
+    <check id="313" parent="19">
       <Predicate>LENGTH(BELD_SCHRIFTFARBE) = 6</Predicate>
     </check>
-    <column id="274" parent="19" name="beda_id">
+    <column id="314" parent="20" name="beda_id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="275" parent="19" name="beda_diag_id">
+    <column id="315" parent="20" name="beda_diag_id">
       <Position>2</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="276" parent="19" name="beda_mode_id">
+    <column id="316" parent="20" name="beda_mode_id">
       <Position>3</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="277" parent="19" name="beda_linienbreite">
+    <column id="317" parent="20" name="beda_linienbreite">
       <Position>4</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>1</DefaultExpression>
     </column>
-    <column id="278" parent="19" name="beda_liniefarbe">
+    <column id="318" parent="20" name="beda_liniefarbe">
       <Position>5</Position>
       <DataType>varchar(6)|0s</DataType>
     </column>
-    <column id="279" parent="19" name="beda_liniedeckkraft">
+    <column id="319" parent="20" name="beda_liniedeckkraft">
       <Position>6</Position>
       <DataType>integer|0s</DataType>
     </column>
-    <column id="280" parent="19" name="beda_startkante">
+    <column id="320" parent="20" name="beda_startkante">
       <Position>7</Position>
       <DataType>varchar(1)|0s</DataType>
     </column>
-    <column id="281" parent="19" name="beda_startposition">
+    <column id="321" parent="20" name="beda_startposition">
       <Position>8</Position>
       <DataType>integer|0s</DataType>
     </column>
-    <column id="282" parent="19" name="beda_starttext_winkel">
+    <column id="322" parent="20" name="beda_starttext_winkel">
       <Position>9</Position>
       <DataType>integer|0s</DataType>
     </column>
-    <column id="283" parent="19" name="beda_starttext_abstand">
+    <column id="323" parent="20" name="beda_starttext_abstand">
       <Position>10</Position>
       <DataType>integer|0s</DataType>
     </column>
-    <column id="284" parent="19" name="beda_starttext_x">
+    <column id="324" parent="20" name="beda_starttext_x">
       <Position>11</Position>
       <DataType>integer|0s</DataType>
     </column>
-    <column id="285" parent="19" name="beda_starttext_y">
+    <column id="325" parent="20" name="beda_starttext_y">
       <Position>12</Position>
       <DataType>integer|0s</DataType>
     </column>
-    <column id="286" parent="19" name="beda_starttext_breite">
+    <column id="326" parent="20" name="beda_starttext_breite">
       <Position>13</Position>
       <DataType>integer|0s</DataType>
     </column>
-    <column id="287" parent="19" name="beda_starttext_hoehe">
+    <column id="327" parent="20" name="beda_starttext_hoehe">
       <Position>14</Position>
       <DataType>integer|0s</DataType>
     </column>
-    <column id="288" parent="19" name="beda_endkante">
+    <column id="328" parent="20" name="beda_endkante">
       <Position>15</Position>
       <DataType>varchar(1)|0s</DataType>
     </column>
-    <column id="289" parent="19" name="beda_endposition">
+    <column id="329" parent="20" name="beda_endposition">
       <Position>16</Position>
       <DataType>integer|0s</DataType>
     </column>
-    <column id="290" parent="19" name="beda_endtext_winkel">
+    <column id="330" parent="20" name="beda_endtext_winkel">
       <Position>17</Position>
       <DataType>integer|0s</DataType>
     </column>
-    <column id="291" parent="19" name="beda_endtext_abstand">
+    <column id="331" parent="20" name="beda_endtext_abstand">
       <Position>18</Position>
       <DataType>integer|0s</DataType>
     </column>
-    <column id="292" parent="19" name="beda_endtext_x">
+    <column id="332" parent="20" name="beda_endtext_x">
       <Position>19</Position>
       <DataType>integer|0s</DataType>
     </column>
-    <column id="293" parent="19" name="beda_endtext_y">
+    <column id="333" parent="20" name="beda_endtext_y">
       <Position>20</Position>
       <DataType>integer|0s</DataType>
     </column>
-    <column id="294" parent="19" name="beda_endtext_breite">
+    <column id="334" parent="20" name="beda_endtext_breite">
       <Position>21</Position>
       <DataType>integer|0s</DataType>
     </column>
-    <column id="295" parent="19" name="beda_endtext_hoehe">
+    <column id="335" parent="20" name="beda_endtext_hoehe">
       <Position>22</Position>
       <DataType>integer|0s</DataType>
     </column>
-    <column id="296" parent="19" name="beda_schriftfarbe">
+    <column id="336" parent="20" name="beda_schriftfarbe">
       <Position>23</Position>
       <DataType>varchar(6)|0s</DataType>
       <DefaultExpression>&apos;000000&apos;</DefaultExpression>
     </column>
-    <column id="297" parent="19" name="beda_schriftgroesse">
+    <column id="337" parent="20" name="beda_schriftgroesse">
       <Position>24</Position>
       <DataType>integer|0s</DataType>
     </column>
-    <column id="298" parent="19" name="beda_uc">
+    <column id="338" parent="20" name="beda_uc">
       <Position>25</Position>
       <DataType>varchar(30)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="299" parent="19" name="beda_dc">
+    <column id="339" parent="20" name="beda_dc">
       <Position>26</Position>
       <DataType>varchar(30)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="300" parent="19" name="beda_um">
+    <column id="340" parent="20" name="beda_um">
       <Position>27</Position>
       <DataType>varchar(30)|0s</DataType>
     </column>
-    <column id="301" parent="19" name="beda_dm">
+    <column id="341" parent="20" name="beda_dm">
       <Position>28</Position>
       <DataType>varchar(30)|0s</DataType>
     </column>
-    <index id="302" parent="19" name="sqlite_autoindex_beziehung_darst_1">
+    <index id="342" parent="20" name="sqlite_autoindex_beziehung_darst_1">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>beda_diag_id
 beda_mode_id</ColNames>
       <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
-    <key id="303" parent="19">
+    <key id="343" parent="20">
       <ColNames>beda_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="304" parent="19" name="beda_un">
+    <key id="344" parent="20" name="beda_un">
       <ColNames>beda_diag_id
 beda_mode_id</ColNames>
       <UnderlyingIndexName>sqlite_autoindex_beziehung_darst_1</UnderlyingIndexName>
     </key>
-    <foreign-key id="305" parent="19" name="beda_diag_fk">
+    <foreign-key id="345" parent="20" name="beda_diag_fk">
       <ColNames>beda_diag_id</ColNames>
       <RefTableName>diagramme</RefTableName>
       <RefColNames>diag_id</RefColNames>
     </foreign-key>
-    <foreign-key id="306" parent="19" name="beda_mode_fk">
+    <foreign-key id="346" parent="20" name="beda_mode_fk">
       <ColNames>beda_mode_id</ColNames>
       <RefTableName>modellelement</RefTableName>
       <RefColNames>mode_id</RefColNames>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <check id="307" parent="19" name="beda_eab_chk">
+    <check id="347" parent="20" name="beda_eab_chk">
       <Predicate>beda_endtext_abstand BETWEEN 1 AND 9999</Predicate>
     </check>
-    <check id="308" parent="19" name="beda_eb_chk">
+    <check id="348" parent="20" name="beda_eb_chk">
       <Predicate>beda_endtext_breite BETWEEN 1 AND 9999</Predicate>
     </check>
-    <check id="309" parent="19" name="beda_eh_chk">
+    <check id="349" parent="20" name="beda_eh_chk">
       <Predicate>beda_endtext_hoehe BETWEEN 1 AND 9999</Predicate>
     </check>
-    <check id="310" parent="19" name="beda_ek_chk">
+    <check id="350" parent="20" name="beda_ek_chk">
       <Predicate>beda_endkante IN(
 				              &apos;N&apos;,
 				              &apos;O&apos;,
@@ -1327,40 +1507,40 @@ beda_mode_id</ColNames>
 				              &apos;W&apos;
 				          )</Predicate>
     </check>
-    <check id="311" parent="19" name="beda_ep_chk">
+    <check id="351" parent="20" name="beda_ep_chk">
       <Predicate>beda_endposition BETWEEN 0.0 AND 100.0</Predicate>
     </check>
-    <check id="312" parent="19" name="beda_ewi_chk">
+    <check id="352" parent="20" name="beda_ewi_chk">
       <Predicate>beda_endtext_winkel BETWEEN - 179 AND 180</Predicate>
     </check>
-    <check id="313" parent="19" name="beda_ex_chk">
+    <check id="353" parent="20" name="beda_ex_chk">
       <Predicate>beda_endtext_x BETWEEN -9999 AND 999999</Predicate>
     </check>
-    <check id="314" parent="19" name="beda_ey_chk">
+    <check id="354" parent="20" name="beda_ey_chk">
       <Predicate>beda_endtext_y BETWEEN -9999 AND 999999</Predicate>
     </check>
-    <check id="315" parent="19" name="beda_ldk_chk">
+    <check id="355" parent="20" name="beda_ldk_chk">
       <Predicate>beda_liniedeckkraft BETWEEN 0 AND 100</Predicate>
     </check>
-    <check id="316" parent="19" name="beda_lf_chk">
+    <check id="356" parent="20" name="beda_lf_chk">
       <Predicate>length(beda_liniefarbe)= 6</Predicate>
     </check>
-    <check id="317" parent="19" name="beda_sf_chk">
+    <check id="357" parent="20" name="beda_sf_chk">
       <Predicate>length(beda_schriftfarbe)= 6</Predicate>
     </check>
-    <check id="318" parent="19" name="beda_sg_chk">
+    <check id="358" parent="20" name="beda_sg_chk">
       <Predicate>beda_schriftgroesse BETWEEN 1 AND 999</Predicate>
     </check>
-    <check id="319" parent="19" name="beda_stab_chk">
+    <check id="359" parent="20" name="beda_stab_chk">
       <Predicate>beda_starttext_abstand BETWEEN 1 AND 9999</Predicate>
     </check>
-    <check id="320" parent="19" name="beda_stb_chk">
+    <check id="360" parent="20" name="beda_stb_chk">
       <Predicate>beda_starttext_breite BETWEEN 1 AND 9999</Predicate>
     </check>
-    <check id="321" parent="19" name="beda_sth_chk">
+    <check id="361" parent="20" name="beda_sth_chk">
       <Predicate>beda_starttext_hoehe BETWEEN 1 AND 9999</Predicate>
     </check>
-    <check id="322" parent="19" name="beda_stk_chk">
+    <check id="362" parent="20" name="beda_stk_chk">
       <Predicate>beda_startkante IN(
 				              &apos;N&apos;,
 				              &apos;O&apos;,
@@ -1368,160 +1548,160 @@ beda_mode_id</ColNames>
 				              &apos;W&apos;
 				          )</Predicate>
     </check>
-    <check id="323" parent="19" name="beda_stp_chk">
+    <check id="363" parent="20" name="beda_stp_chk">
       <Predicate>beda_startposition BETWEEN 0.0 AND 100.0</Predicate>
     </check>
-    <check id="324" parent="19" name="beda_stwi_chk">
+    <check id="364" parent="20" name="beda_stwi_chk">
       <Predicate>beda_starttext_winkel BETWEEN - 179 AND 180</Predicate>
     </check>
-    <check id="325" parent="19" name="beda_stx_chk">
+    <check id="365" parent="20" name="beda_stx_chk">
       <Predicate>beda_starttext_x BETWEEN -9999 AND 999999</Predicate>
     </check>
-    <check id="326" parent="19" name="beda_sty_chk">
+    <check id="366" parent="20" name="beda_sty_chk">
       <Predicate>beda_starttext_y BETWEEN -9999 AND 999999</Predicate>
     </check>
-    <column id="327" parent="20" name="bezi_id">
+    <column id="367" parent="21" name="bezi_id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="328" parent="20" name="bezi_type">
+    <column id="368" parent="21" name="bezi_type">
       <Position>2</Position>
       <DataType>varchar(3)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="329" parent="20" name="bezi_enti_id_von">
+    <column id="369" parent="21" name="bezi_enti_id_von">
       <Position>3</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="330" parent="20" name="bezi_assoc_von_zu">
+    <column id="370" parent="21" name="bezi_assoc_von_zu">
       <Position>4</Position>
       <DataType>varchar(100)|0s</DataType>
     </column>
-    <column id="331" parent="20" name="bezi_pflicht_assoc_von_zu">
+    <column id="371" parent="21" name="bezi_pflicht_assoc_von_zu">
       <Position>5</Position>
       <DataType>varchar(5)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="332" parent="20" name="bezi_hist_von_zu">
+    <column id="372" parent="21" name="bezi_hist_von_zu">
       <Position>6</Position>
       <DataType>varchar(5)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="333" parent="20" name="bezi_enti_id_zu">
+    <column id="373" parent="21" name="bezi_enti_id_zu">
       <Position>7</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="334" parent="20" name="bezi_assoc_zu_von">
+    <column id="374" parent="21" name="bezi_assoc_zu_von">
       <Position>8</Position>
       <DataType>varchar(100)|0s</DataType>
     </column>
-    <column id="335" parent="20" name="BEZI_PFLICHT_ASSOC_ZU_VON">
+    <column id="375" parent="21" name="BEZI_PFLICHT_ASSOC_ZU_VON">
       <Position>9</Position>
       <DataType>varchar(5)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="336" parent="20" name="bezi_hist_zu_von">
+    <column id="376" parent="21" name="bezi_hist_zu_von">
       <Position>10</Position>
       <DataType>varchar(5)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="337" parent="20" name="bezi_von_arcs_id">
+    <column id="377" parent="21" name="bezi_von_arcs_id">
       <Position>11</Position>
       <DataType>integer|0s</DataType>
     </column>
-    <column id="338" parent="20" name="bezi_zu_arcs_id">
+    <column id="378" parent="21" name="bezi_zu_arcs_id">
       <Position>12</Position>
       <DataType>integer|0s</DataType>
     </column>
-    <column id="339" parent="20" name="bezi_odm_guid">
+    <column id="379" parent="21" name="bezi_odm_guid">
       <Position>13</Position>
       <DataType>varchar(36)|0s</DataType>
     </column>
-    <column id="340" parent="20" name="bezi_name">
+    <column id="380" parent="21" name="bezi_name">
       <Position>14</Position>
       <DataType>varchar(100)|0s</DataType>
     </column>
-    <column id="341" parent="20" name="bezi_uc">
+    <column id="381" parent="21" name="bezi_uc">
       <Position>15</Position>
       <DataType>varchar(30)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="342" parent="20" name="bezi_dc">
+    <column id="382" parent="21" name="bezi_dc">
       <Position>16</Position>
       <DataType>varchar(30)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="343" parent="20" name="bezi_um">
+    <column id="383" parent="21" name="bezi_um">
       <Position>17</Position>
       <DataType>varchar(30)|0s</DataType>
     </column>
-    <column id="344" parent="20" name="bezi_dm">
+    <column id="384" parent="21" name="bezi_dm">
       <Position>18</Position>
       <DataType>varchar(30)|0s</DataType>
     </column>
-    <column id="345" parent="20" name="bezi_source_enti_guid">
+    <column id="385" parent="21" name="bezi_source_enti_guid">
       <Position>19</Position>
       <DataType>VARCHAR2(36)|0s</DataType>
     </column>
-    <column id="346" parent="20" name="bezi_target_enti_guid">
+    <column id="386" parent="21" name="bezi_target_enti_guid">
       <Position>20</Position>
       <DataType>VARCHAR2(36)|0s</DataType>
     </column>
-    <key id="347" parent="20">
+    <key id="387" parent="21">
       <ColNames>bezi_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="348" parent="20" name="bezi_enti_fk_von">
+    <foreign-key id="388" parent="21" name="bezi_enti_fk_von">
       <ColNames>bezi_enti_id_von</ColNames>
       <RefTableName>entitaeten</RefTableName>
       <RefColNames>enti_id</RefColNames>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <foreign-key id="349" parent="20" name="bezi_enti_fk_zu">
+    <foreign-key id="389" parent="21" name="bezi_enti_fk_zu">
       <ColNames>bezi_enti_id_zu</ColNames>
       <RefTableName>entitaeten</RefTableName>
       <RefColNames>enti_id</RefColNames>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <foreign-key id="350" parent="20" name="bezi_von_arc_fk">
+    <foreign-key id="390" parent="21" name="bezi_von_arc_fk">
       <ColNames>bezi_von_arcs_id</ColNames>
       <RefTableName>arcs</RefTableName>
       <RefColNames>arcs_id</RefColNames>
     </foreign-key>
-    <foreign-key id="351" parent="20" name="bezi_zu_arc_fk">
+    <foreign-key id="391" parent="21" name="bezi_zu_arc_fk">
       <ColNames>bezi_zu_arcs_id</ColNames>
       <RefTableName>arcs</RefTableName>
       <RefColNames>arcs_id</RefColNames>
     </foreign-key>
-    <check id="352" parent="20">
+    <check id="392" parent="21">
       <Predicate>BEZI_PFLICHT_ASSOC_ZU_VON IN(
             &apos;FALSE&apos;,
             &apos;TRUE&apos;
         )</Predicate>
     </check>
-    <check id="353" parent="20">
+    <check id="393" parent="21">
       <Predicate>bezi_hist_von_zu IN(
             &apos;FALSE&apos;,
             &apos;TRUE&apos;
         )</Predicate>
     </check>
-    <check id="354" parent="20">
+    <check id="394" parent="21">
       <Predicate>bezi_hist_zu_von IN(
             &apos;FALSE&apos;,
             &apos;TRUE&apos;
         )</Predicate>
     </check>
-    <check id="355" parent="20">
+    <check id="395" parent="21">
       <Predicate>bezi_pflicht_assoc_von_zu IN(
             &apos;FALSE&apos;,
             &apos;TRUE&apos;
         )</Predicate>
     </check>
-    <check id="356" parent="20">
+    <check id="396" parent="21">
       <Predicate>bezi_type IN(
                &apos;1:1&apos;,
                &apos;ISA&apos;,
@@ -1529,254 +1709,254 @@ beda_mode_id</ColNames>
                &apos;M:N&apos;
            )</Predicate>
     </check>
-    <check id="357" parent="20" name="bezi_isa_ck2">
+    <check id="397" parent="21" name="bezi_isa_ck2">
       <Predicate>(bezi_type = &apos;ISA&apos; AND bezi_pflicht_assoc_von_zu = &apos;TRUE&apos;)
                                    OR (bezi_type != &apos;ISA&apos;)</Predicate>
     </check>
-    <column id="358" parent="21" name="diag_id">
+    <column id="398" parent="22" name="diag_id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="359" parent="21" name="diag_name">
+    <column id="399" parent="22" name="diag_name">
       <Position>2</Position>
       <DataType>varchar(60)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="360" parent="21" name="diag_diat_id">
+    <column id="400" parent="22" name="diag_diat_id">
       <Position>3</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="361" parent="21" name="diag_odm_guid">
+    <column id="401" parent="22" name="diag_odm_guid">
       <Position>4</Position>
       <DataType>varchar(36)|0s</DataType>
     </column>
-    <column id="362" parent="21" name="diag_legendx">
+    <column id="402" parent="22" name="diag_legendx">
       <Position>5</Position>
       <DataType>integer|0s</DataType>
     </column>
-    <column id="363" parent="21" name="diag_legendy">
+    <column id="403" parent="22" name="diag_legendy">
       <Position>6</Position>
       <DataType>integer|0s</DataType>
     </column>
-    <column id="364" parent="21" name="diag_uc">
+    <column id="404" parent="22" name="diag_uc">
       <Position>7</Position>
       <DataType>varchar(30)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="365" parent="21" name="diag_dc">
+    <column id="405" parent="22" name="diag_dc">
       <Position>8</Position>
       <DataType>varchar(30)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="366" parent="21" name="diag_um">
+    <column id="406" parent="22" name="diag_um">
       <Position>9</Position>
       <DataType>varchar(30)|0s</DataType>
     </column>
-    <column id="367" parent="21" name="diag_dm">
+    <column id="407" parent="22" name="diag_dm">
       <Position>10</Position>
       <DataType>varchar(30)|0s</DataType>
     </column>
-    <index id="368" parent="21" name="sqlite_autoindex_diagramme_1">
+    <index id="408" parent="22" name="sqlite_autoindex_diagramme_1">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>diag_name</ColNames>
       <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
-    <key id="369" parent="21">
+    <key id="409" parent="22">
       <ColNames>diag_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="370" parent="21" name="diag__un">
+    <key id="410" parent="22" name="diag__un">
       <ColNames>diag_name</ColNames>
       <UnderlyingIndexName>sqlite_autoindex_diagramme_1</UnderlyingIndexName>
     </key>
-    <foreign-key id="371" parent="21" name="diag_diat_fk">
+    <foreign-key id="411" parent="22" name="diag_diat_fk">
       <ColNames>diag_diat_id</ColNames>
       <RefTableName>diagrammtypen</RefTableName>
       <RefColNames>diat_id</RefColNames>
     </foreign-key>
-    <column id="372" parent="22" name="diat_id">
+    <column id="412" parent="23" name="diat_id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="373" parent="22" name="diat_bez">
+    <column id="413" parent="23" name="diat_bez">
       <Position>2</Position>
       <DataType>varchar(100)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="374" parent="22" name="diat_uc">
+    <column id="414" parent="23" name="diat_uc">
       <Position>3</Position>
       <DataType>varchar(30)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="375" parent="22" name="diat_dc">
+    <column id="415" parent="23" name="diat_dc">
       <Position>4</Position>
       <DataType>varchar(30)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="376" parent="22" name="diat_um">
+    <column id="416" parent="23" name="diat_um">
       <Position>5</Position>
       <DataType>varchar(30)|0s</DataType>
     </column>
-    <column id="377" parent="22" name="diat_dm">
+    <column id="417" parent="23" name="diat_dm">
       <Position>6</Position>
       <DataType>varchar(30)|0s</DataType>
     </column>
-    <index id="378" parent="22" name="sqlite_autoindex_diagrammtypen_1">
+    <index id="418" parent="23" name="sqlite_autoindex_diagrammtypen_1">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>diat_bez</ColNames>
       <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
-    <key id="379" parent="22">
+    <key id="419" parent="23">
       <ColNames>diat_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="380" parent="22" name="diat_un">
+    <key id="420" parent="23" name="diat_un">
       <ColNames>diat_bez</ColNames>
       <UnderlyingIndexName>sqlite_autoindex_diagrammtypen_1</UnderlyingIndexName>
     </key>
-    <column id="381" parent="23" name="doku_id">
+    <column id="421" parent="24" name="doku_id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="382" parent="23" name="doku_name">
+    <column id="422" parent="24" name="doku_name">
       <Position>2</Position>
       <DataType>varchar(60)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="383" parent="23" name="doku_format">
+    <column id="423" parent="24" name="doku_format">
       <Position>3</Position>
       <DataType>varchar(20)|0s</DataType>
     </column>
-    <column id="384" parent="23" name="doku_referenz">
+    <column id="424" parent="24" name="doku_referenz">
       <Position>4</Position>
       <DataType>varchar(500)|0s</DataType>
     </column>
-    <column id="385" parent="23" name="doku_doku_id">
+    <column id="425" parent="24" name="doku_doku_id">
       <Position>5</Position>
       <DataType>numeric(10)|0s</DataType>
     </column>
-    <column id="386" parent="23" name="doku_odm_guid">
+    <column id="426" parent="24" name="doku_odm_guid">
       <Position>6</Position>
       <DataType>varchar(36)|0s</DataType>
     </column>
-    <column id="387" parent="23" name="doku_parent_odm_guid">
+    <column id="427" parent="24" name="doku_parent_odm_guid">
       <Position>7</Position>
       <DataType>varchar(36)|0s</DataType>
     </column>
-    <index id="388" parent="23" name="sqlite_autoindex_dokumente_1">
+    <index id="428" parent="24" name="sqlite_autoindex_dokumente_1">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>doku_id</ColNames>
       <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
-    <key id="389" parent="23">
+    <key id="429" parent="24">
       <ColNames>doku_id</ColNames>
       <Primary>1</Primary>
       <UnderlyingIndexName>sqlite_autoindex_dokumente_1</UnderlyingIndexName>
     </key>
-    <key id="390" parent="23" name="doku_uk">
+    <key id="430" parent="24" name="doku_uk">
       <ColNames>doku_id</ColNames>
       <UnderlyingIndexName>sqlite_autoindex_dokumente_1</UnderlyingIndexName>
     </key>
-    <foreign-key id="391" parent="23" name="doku_doku_fk">
+    <foreign-key id="431" parent="24" name="doku_doku_fk">
       <ColNames>doku_doku_id</ColNames>
       <RefTableName>dokumente</RefTableName>
       <RefColNames>DOKU_ID</RefColNames>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <column id="392" parent="24" name="eled_id">
+    <column id="432" parent="25" name="eled_id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="393" parent="24" name="eled_position_x">
+    <column id="433" parent="25" name="eled_position_x">
       <Position>2</Position>
       <DataType>integer|0s</DataType>
     </column>
-    <column id="394" parent="24" name="eled_position_y">
+    <column id="434" parent="25" name="eled_position_y">
       <Position>3</Position>
       <DataType>integer|0s</DataType>
     </column>
-    <column id="395" parent="24" name="eled_breite">
+    <column id="435" parent="25" name="eled_breite">
       <Position>4</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="396" parent="24" name="eled_hoehe">
+    <column id="436" parent="25" name="eled_hoehe">
       <Position>5</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="397" parent="24" name="eled_deckkraft">
+    <column id="437" parent="25" name="eled_deckkraft">
       <Position>6</Position>
       <DataType>integer|0s</DataType>
     </column>
-    <column id="398" parent="24" name="eled_farbe">
+    <column id="438" parent="25" name="eled_farbe">
       <Position>7</Position>
       <DataType>varchar(6)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="399" parent="24" name="eled_randbreite">
+    <column id="439" parent="25" name="eled_randbreite">
       <Position>8</Position>
       <DataType>integer|0s</DataType>
     </column>
-    <column id="400" parent="24" name="eled_randdeckkraft">
+    <column id="440" parent="25" name="eled_randdeckkraft">
       <Position>9</Position>
       <DataType>integer|0s</DataType>
     </column>
-    <column id="401" parent="24" name="eled_randfarbe">
+    <column id="441" parent="25" name="eled_randfarbe">
       <Position>10</Position>
       <DataType>varchar(6)|0s</DataType>
     </column>
-    <column id="402" parent="24" name="eled_schriftgroesse">
+    <column id="442" parent="25" name="eled_schriftgroesse">
       <Position>11</Position>
       <DataType>integer|0s</DataType>
     </column>
-    <column id="403" parent="24" name="eled_schriftfarbe">
+    <column id="443" parent="25" name="eled_schriftfarbe">
       <Position>12</Position>
       <DataType>varchar(6)|0s</DataType>
     </column>
-    <column id="404" parent="24" name="eled_mode_id">
+    <column id="444" parent="25" name="eled_mode_id">
       <Position>13</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="405" parent="24" name="eled_diag_id">
+    <column id="445" parent="25" name="eled_diag_id">
       <Position>14</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="406" parent="24" name="eled_index">
+    <column id="446" parent="25" name="eled_index">
       <Position>15</Position>
       <DataType>NUMBER(4)|0s</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>0</DefaultExpression>
     </column>
-    <column id="407" parent="24" name="eled_uc">
+    <column id="447" parent="25" name="eled_uc">
       <Position>16</Position>
       <DataType>varchar(30)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="408" parent="24" name="eled_dc">
+    <column id="448" parent="25" name="eled_dc">
       <Position>17</Position>
       <DataType>varchar(30)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="409" parent="24" name="eled_um">
+    <column id="449" parent="25" name="eled_um">
       <Position>18</Position>
       <DataType>varchar(30)|0s</DataType>
     </column>
-    <column id="410" parent="24" name="eled_dm">
+    <column id="450" parent="25" name="eled_dm">
       <Position>19</Position>
       <DataType>varchar(30)|0s</DataType>
     </column>
-    <index id="411" parent="24" name="sqlite_autoindex_elementdarst_1">
+    <index id="451" parent="25" name="sqlite_autoindex_elementdarst_1">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>eled_diag_id
 eled_mode_id
@@ -1784,143 +1964,143 @@ eled_index</ColNames>
       <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
-    <key id="412" parent="24">
+    <key id="452" parent="25">
       <ColNames>eled_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="413" parent="24" name="eled_un">
+    <key id="453" parent="25" name="eled_un">
       <ColNames>eled_diag_id
 eled_mode_id
 eled_index</ColNames>
       <UnderlyingIndexName>sqlite_autoindex_elementdarst_1</UnderlyingIndexName>
     </key>
-    <foreign-key id="414" parent="24" name="eled_mode_fk">
+    <foreign-key id="454" parent="25" name="eled_mode_fk">
       <ColNames>eled_mode_id</ColNames>
       <RefTableName>modellelement</RefTableName>
       <RefColNames>mode_id</RefColNames>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <foreign-key id="415" parent="24" name="eled_diag_fk">
+    <foreign-key id="455" parent="25" name="eled_diag_fk">
       <ColNames>eled_diag_id</ColNames>
       <RefTableName>diagramme</RefTableName>
       <RefColNames>diag_id</RefColNames>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <check id="416" parent="24">
+    <check id="456" parent="25">
       <Predicate>eled_deckkraft BETWEEN 0 AND 100</Predicate>
     </check>
-    <check id="417" parent="24">
+    <check id="457" parent="25">
       <Predicate>eled_randdeckkraft BETWEEN 0 AND 100</Predicate>
     </check>
-    <check id="418" parent="24">
+    <check id="458" parent="25">
       <Predicate>eled_schriftgroesse BETWEEN 1 AND 999</Predicate>
     </check>
-    <check id="419" parent="24">
+    <check id="459" parent="25">
       <Predicate>length(eled_farbe)= 6</Predicate>
     </check>
-    <check id="420" parent="24">
+    <check id="460" parent="25">
       <Predicate>length(eled_randfarbe)= 6</Predicate>
     </check>
-    <check id="421" parent="24">
+    <check id="461" parent="25">
       <Predicate>length(eled_schriftfarbe)= 6</Predicate>
     </check>
-    <column id="422" parent="25" name="enti_id">
+    <column id="462" parent="26" name="enti_id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="423" parent="25" name="enti_odm_guid">
+    <column id="463" parent="26" name="enti_odm_guid">
       <Position>2</Position>
       <DataType>varchar(36)|0s</DataType>
     </column>
-    <column id="424" parent="25" name="enti_augb_id">
+    <column id="464" parent="26" name="enti_augb_id">
       <Position>3</Position>
       <DataType>integer|0s</DataType>
     </column>
-    <column id="425" parent="25" name="enti_tech_name">
+    <column id="465" parent="26" name="enti_tech_name">
       <Position>4</Position>
       <DataType>varchar(60)|0s</DataType>
     </column>
-    <column id="426" parent="25" name="enti_name">
+    <column id="466" parent="26" name="enti_name">
       <Position>5</Position>
       <DataType>varchar(60)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="427" parent="25" name="enti_beschr">
+    <column id="467" parent="26" name="enti_beschr">
       <Position>6</Position>
       <DataType>varchar(4000)|0s</DataType>
     </column>
-    <column id="428" parent="25" name="enti_tooltip">
+    <column id="468" parent="26" name="enti_tooltip">
       <Position>7</Position>
       <DataType>varchar(100)|0s</DataType>
     </column>
-    <column id="429" parent="25" name="enti_kurzname">
+    <column id="469" parent="26" name="enti_kurzname">
       <Position>8</Position>
       <DataType>varchar(20)|0s</DataType>
     </column>
-    <column id="430" parent="25" name="enti_prefix">
+    <column id="470" parent="26" name="enti_prefix">
       <Position>9</Position>
       <DataType>varchar(10)|0s</DataType>
     </column>
-    <column id="431" parent="25" name="enti_beispiele">
+    <column id="471" parent="26" name="enti_beispiele">
       <Position>10</Position>
       <DataType>varchar(4000)|0s</DataType>
     </column>
-    <column id="432" parent="25" name="enti_erw_tupel">
+    <column id="472" parent="26" name="enti_erw_tupel">
       <Position>11</Position>
       <DataType>varchar(10)|0s</DataType>
     </column>
-    <column id="433" parent="25" name="enti_uc">
+    <column id="473" parent="26" name="enti_uc">
       <Position>12</Position>
       <DataType>varchar(30)|0s</DataType>
     </column>
-    <column id="434" parent="25" name="enti_dc">
+    <column id="474" parent="26" name="enti_dc">
       <Position>13</Position>
       <DataType>varchar(30)|0s</DataType>
     </column>
-    <column id="435" parent="25" name="enti_enti_guid">
+    <column id="475" parent="26" name="enti_enti_guid">
       <Position>14</Position>
       <DataType>varchar(80)|0s</DataType>
     </column>
-    <column id="436" parent="25" name="enti_enti_id">
+    <column id="476" parent="26" name="enti_enti_id">
       <Position>15</Position>
       <DataType>integer|0s</DataType>
     </column>
-    <column id="437" parent="25" name="enti_category_guid">
+    <column id="477" parent="26" name="enti_category_guid">
       <Position>16</Position>
       <DataType>varchar(80)|0s</DataType>
     </column>
-    <index id="438" parent="25" name="sqlite_autoindex_entitaeten_1">
+    <index id="478" parent="26" name="sqlite_autoindex_entitaeten_1">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>enti_tech_name</ColNames>
       <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
-    <index id="439" parent="25" name="sqlite_autoindex_entitaeten_2">
+    <index id="479" parent="26" name="sqlite_autoindex_entitaeten_2">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>enti_name</ColNames>
       <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
-    <key id="440" parent="25">
+    <key id="480" parent="26">
       <ColNames>enti_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="441" parent="25">
+    <key id="481" parent="26">
       <ColNames>enti_tech_name</ColNames>
       <UnderlyingIndexName>sqlite_autoindex_entitaeten_1</UnderlyingIndexName>
     </key>
-    <key id="442" parent="25">
+    <key id="482" parent="26">
       <ColNames>enti_name</ColNames>
       <UnderlyingIndexName>sqlite_autoindex_entitaeten_2</UnderlyingIndexName>
     </key>
-    <foreign-key id="443" parent="25" name="enti_enti_FK">
+    <foreign-key id="483" parent="26" name="enti_enti_FK">
       <ColNames>enti_enti_guid</ColNames>
       <RefTableName>entitaeten</RefTableName>
       <RefColNames>enti_id</RefColNames>
     </foreign-key>
-    <check id="444" parent="25">
+    <check id="484" parent="26">
       <Predicate>enti_erw_tupel IN(
             &apos;1 Mio&apos;,
             &apos;100&apos;,
@@ -1928,185 +2108,143 @@ eled_index</ColNames>
             &apos;&gt;100 Mio&apos;
         )</Predicate>
     </check>
-    <column id="445" parent="26" name="extr_id">
+    <column id="485" parent="27" name="gber_id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="446" parent="26" name="extr_source">
-      <Position>2</Position>
-      <DataType>VARCHAR(20)|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="447" parent="26" name="extr_source_id">
-      <Position>3</Position>
-      <DataType>VARCHAR(250)|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="448" parent="26" name="extr_mode_id">
-      <Position>4</Position>
-      <DataType>integer|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <index id="449" parent="26" name="sqlite_autoindex_externalrefs_1">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>extr_source
-extr_mode_id</ColNames>
-      <ColumnCollations></ColumnCollations>
-      <Unique>1</Unique>
-    </index>
-    <key id="450" parent="26">
-      <ColNames>extr_id</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <key id="451" parent="26" name="extr_un">
-      <ColNames>extr_source
-extr_mode_id</ColNames>
-      <UnderlyingIndexName>sqlite_autoindex_externalrefs_1</UnderlyingIndexName>
-    </key>
-    <foreign-key id="452" parent="26" name="extr_mode_fk">
-      <ColNames>extr_mode_id</ColNames>
-      <RefTableName>MODELELEMENT</RefTableName>
-      <RefColNames>mode_id</RefColNames>
-      <OnDelete>cascade</OnDelete>
-    </foreign-key>
-    <column id="453" parent="27" name="gber_id">
-      <Position>1</Position>
-      <DataType>integer|0s</DataType>
-      <SequenceIdentity>null</SequenceIdentity>
-    </column>
-    <column id="454" parent="27" name="gber_name">
+    <column id="486" parent="27" name="gber_name">
       <Position>2</Position>
       <DataType>VARCHAR(60)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="455" parent="27" name="gber_beschreibung">
+    <column id="487" parent="27" name="gber_beschreibung">
       <Position>3</Position>
       <DataType>VARCHAR(4000)|0s</DataType>
     </column>
-    <column id="456" parent="27" name="gber_zweck">
+    <column id="488" parent="27" name="gber_zweck">
       <Position>4</Position>
       <DataType>VARCHAR(2000)|0s</DataType>
     </column>
-    <column id="457" parent="27" name="gber_uc">
+    <column id="489" parent="27" name="gber_uc">
       <Position>5</Position>
       <DataType>VARCHAR(30)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="458" parent="27" name="GBER_DC">
+    <column id="490" parent="27" name="GBER_DC">
       <Position>6</Position>
       <DataType>VARCHAR(30)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="459" parent="27" name="GBER_UM">
+    <column id="491" parent="27" name="GBER_UM">
       <Position>7</Position>
       <DataType>VARCHAR(30)|0s</DataType>
     </column>
-    <column id="460" parent="27" name="gber_dm">
+    <column id="492" parent="27" name="gber_dm">
       <Position>8</Position>
       <DataType>VARCHAR(30)|0s</DataType>
     </column>
-    <index id="461" parent="27" name="sqlite_autoindex_geschaeftsbereich_1">
+    <index id="493" parent="27" name="sqlite_autoindex_geschaeftsbereich_1">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>gber_name</ColNames>
       <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
-    <key id="462" parent="27">
+    <key id="494" parent="27">
       <ColNames>gber_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="463" parent="27" name="Bereich_UN">
+    <key id="495" parent="27" name="Bereich_UN">
       <ColNames>gber_name</ColNames>
       <UnderlyingIndexName>sqlite_autoindex_geschaeftsbereich_1</UnderlyingIndexName>
     </key>
-    <column id="464" parent="28" name="lise_id">
+    <column id="496" parent="28" name="lise_id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="465" parent="28" name="lise_rhfg">
+    <column id="497" parent="28" name="lise_rhfg">
       <Position>2</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="466" parent="28" name="lise_beda_id">
+    <column id="498" parent="28" name="lise_beda_id">
       <Position>3</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="467" parent="28" name="lise_x">
+    <column id="499" parent="28" name="lise_x">
       <Position>4</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="468" parent="28" name="lise_y">
+    <column id="500" parent="28" name="lise_y">
       <Position>5</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="469" parent="28" name="lise_linientyp">
+    <column id="501" parent="28" name="lise_linientyp">
       <Position>6</Position>
       <DataType>VARCHAR2(6)|0s</DataType>
     </column>
-    <column id="470" parent="28" name="lise_konnektor">
+    <column id="502" parent="28" name="lise_konnektor">
       <Position>7</Position>
       <DataType>VARCHAR2(1)|0s</DataType>
     </column>
-    <column id="471" parent="28" name="lise_winkel">
+    <column id="503" parent="28" name="lise_winkel">
       <Position>8</Position>
       <DataType>integer|0s</DataType>
     </column>
-    <column id="472" parent="28" name="lise_uc">
+    <column id="504" parent="28" name="lise_uc">
       <Position>9</Position>
       <DataType>varchar(30)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="473" parent="28" name="lise_dc">
+    <column id="505" parent="28" name="lise_dc">
       <Position>10</Position>
       <DataType>varchar(30)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="474" parent="28" name="lise_um">
+    <column id="506" parent="28" name="lise_um">
       <Position>11</Position>
       <DataType>varchar(30)|0s</DataType>
     </column>
-    <column id="475" parent="28" name="lise_dm">
+    <column id="507" parent="28" name="lise_dm">
       <Position>12</Position>
       <DataType>varchar(30)|0s</DataType>
     </column>
-    <index id="476" parent="28" name="sqlite_autoindex_linie_segment_1">
+    <index id="508" parent="28" name="sqlite_autoindex_linie_segment_1">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>lise_beda_id
 lise_rhfg</ColNames>
       <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
-    <key id="477" parent="28">
+    <key id="509" parent="28">
       <ColNames>lise_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="478" parent="28" name="lise__un">
+    <key id="510" parent="28" name="lise__un">
       <ColNames>lise_beda_id
 lise_rhfg</ColNames>
       <UnderlyingIndexName>sqlite_autoindex_linie_segment_1</UnderlyingIndexName>
     </key>
-    <foreign-key id="479" parent="28" name="lise_beda_fk">
+    <foreign-key id="511" parent="28" name="lise_beda_fk">
       <ColNames>lise_beda_id</ColNames>
       <RefTableName>beziehung_darst</RefTableName>
       <RefColNames>beda_id</RefColNames>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <check id="480" parent="28">
+    <check id="512" parent="28">
       <Predicate>lise_konnektor IN(
 		&apos;1&apos;,
 		&apos;M&apos;
 		)</Predicate>
     </check>
-    <check id="481" parent="28" name="ck_beda_beda_schriftfarbe">
+    <check id="513" parent="28" name="ck_beda_beda_schriftfarbe">
       <Predicate>lise_y BETWEEN 0 AND 999999</Predicate>
     </check>
-    <check id="482" parent="28" name="ck_beda_beda_schriftgroesse">
+    <check id="514" parent="28" name="ck_beda_beda_schriftgroesse">
       <Predicate>lise_linientyp IN(
             &apos;DADO&apos;,
             &apos;DASHED&apos;,
@@ -2114,287 +2252,244 @@ lise_rhfg</ColNames>
             &apos;SOLID&apos;
         )</Predicate>
     </check>
-    <column id="483" parent="29" name="medi_id">
+    <column id="515" parent="29" name="medi_id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="484" parent="29" name="medi_diat_id">
+    <column id="516" parent="29" name="medi_diat_id">
       <Position>2</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="485" parent="29" name="medi_melt_id">
+    <column id="517" parent="29" name="medi_melt_id">
       <Position>3</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="486" parent="29" name="medi_uc">
+    <column id="518" parent="29" name="medi_uc">
       <Position>4</Position>
       <DataType>varchar(30)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="487" parent="29" name="medi_dc">
+    <column id="519" parent="29" name="medi_dc">
       <Position>5</Position>
       <DataType>varchar(30)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="488" parent="29" name="medi_um">
+    <column id="520" parent="29" name="medi_um">
       <Position>6</Position>
       <DataType>varchar(30)|0s</DataType>
     </column>
-    <column id="489" parent="29" name="medi_dm">
+    <column id="521" parent="29" name="medi_dm">
       <Position>7</Position>
       <DataType>varchar(30)|0s</DataType>
     </column>
-    <index id="490" parent="29" name="sqlite_autoindex_melt_diat_1">
+    <index id="522" parent="29" name="sqlite_autoindex_melt_diat_1">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>medi_diat_id
 medi_melt_id</ColNames>
       <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
-    <key id="491" parent="29">
+    <key id="523" parent="29">
       <ColNames>medi_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="492" parent="29" name="medi__un">
+    <key id="524" parent="29" name="medi__un">
       <ColNames>medi_diat_id
 medi_melt_id</ColNames>
       <UnderlyingIndexName>sqlite_autoindex_melt_diat_1</UnderlyingIndexName>
     </key>
-    <foreign-key id="493" parent="29" name="medi_diat_fk">
+    <foreign-key id="525" parent="29" name="medi_diat_fk">
       <ColNames>medi_diat_id</ColNames>
       <RefTableName>diagrammtypen</RefTableName>
       <RefColNames>diat_id</RefColNames>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <foreign-key id="494" parent="29" name="modi_melt_fk">
+    <foreign-key id="526" parent="29" name="modi_melt_fk">
       <ColNames>medi_melt_id</ColNames>
       <RefTableName>modellelem_typ</RefTableName>
       <RefColNames>melt_id</RefColNames>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <column id="495" parent="30" name="modo_id">
-      <Position>1</Position>
-      <DataType>integer|0s</DataType>
-      <SequenceIdentity>null</SequenceIdentity>
-    </column>
-    <column id="496" parent="30" name="modo_doku_id">
-      <Position>2</Position>
-      <DataType>numeric(10)|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="497" parent="30" name="modo_mode_id">
-      <Position>3</Position>
-      <DataType>numeric(10)|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <index id="498" parent="30" name="sqlite_autoindex_modelelem_doku_1">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>modo_doku_id
-modo_mode_id</ColNames>
-      <ColumnCollations></ColumnCollations>
-      <Unique>1</Unique>
-    </index>
-    <key id="499" parent="30">
-      <ColNames>modo_id</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <key id="500" parent="30" name="modo_un">
-      <ColNames>modo_doku_id
-modo_mode_id</ColNames>
-      <UnderlyingIndexName>sqlite_autoindex_modelelem_doku_1</UnderlyingIndexName>
-    </key>
-    <foreign-key id="501" parent="30" name="modo_doku_fk">
-      <ColNames>modo_doku_id</ColNames>
-      <RefTableName>dokumente</RefTableName>
-      <RefColNames>doku_id</RefColNames>
-      <OnDelete>cascade</OnDelete>
-    </foreign-key>
-    <foreign-key id="502" parent="30">
-      <ColNames>modo_mode_id</ColNames>
-      <RefTableName>modellelement</RefTableName>
-      <RefColNames>mode_id</RefColNames>
-      <OnDelete>cascade</OnDelete>
-    </foreign-key>
-    <column id="503" parent="31" name="mote_id">
+    <column id="527" parent="30" name="mote_id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="504" parent="31" name="mote_melt_id">
+    <column id="528" parent="30" name="mote_melt_id">
       <Position>2</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="505" parent="31" name="mote_bdeg_id">
+    <column id="529" parent="30" name="mote_bdeg_id">
       <Position>3</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="506" parent="31" name="sqlite_autoindex_modelltyp_eigensch_1">
+    <index id="530" parent="30" name="sqlite_autoindex_modelltyp_eigensch_1">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>mote_melt_id
 mote_bdeg_id</ColNames>
       <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
-    <key id="507" parent="31">
+    <key id="531" parent="30">
       <ColNames>mote_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="508" parent="31" name="mote_un">
+    <key id="532" parent="30" name="mote_un">
       <ColNames>mote_melt_id
 mote_bdeg_id</ColNames>
       <UnderlyingIndexName>sqlite_autoindex_modelltyp_eigensch_1</UnderlyingIndexName>
     </key>
-    <foreign-key id="509" parent="31" name="mote_melt_fk">
+    <foreign-key id="533" parent="30" name="mote_melt_fk">
       <ColNames>mote_melt_id</ColNames>
       <RefTableName>modellelem_typ</RefTableName>
       <RefColNames>melt_id</RefColNames>
     </foreign-key>
-    <foreign-key id="510" parent="31" name="mote_bdeg_fk">
+    <foreign-key id="534" parent="30" name="mote_bdeg_fk">
       <ColNames>mote_bdeg_id</ColNames>
       <RefTableName>benudef_eigenschaft</RefTableName>
       <RefColNames>bdeg_id</RefColNames>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <column id="511" parent="32" name="proj_id">
+    <column id="535" parent="31" name="proj_id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="512" parent="32" name="proj_name">
+    <column id="536" parent="31" name="proj_name">
       <Position>2</Position>
       <DataType>VARCHAR(60)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="513" parent="32" name="proj_uc">
+    <column id="537" parent="31" name="proj_uc">
       <Position>3</Position>
       <DataType>VARCHAR(30)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="514" parent="32" name="proj_dc">
+    <column id="538" parent="31" name="proj_dc">
       <Position>4</Position>
       <DataType>VARCHAR(30)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="515" parent="32" name="proj_sprachen">
+    <column id="539" parent="31" name="proj_sprachen">
       <Position>5</Position>
       <DataType>VARCHAR(60)|0s</DataType>
     </column>
-    <column id="516" parent="32" name="proj_akt_sprache">
+    <column id="540" parent="31" name="proj_akt_sprache">
       <Position>6</Position>
       <DataType>VARCHAR2(2)|0s</DataType>
     </column>
-    <index id="517" parent="32" name="sqlite_autoindex_projekte_1">
+    <index id="541" parent="31" name="sqlite_autoindex_projekte_1">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>proj_name</ColNames>
       <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
-    <key id="518" parent="32">
+    <key id="542" parent="31">
       <ColNames>proj_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="519" parent="32" name="proj__un">
+    <key id="543" parent="31" name="proj__un">
       <ColNames>proj_name</ColNames>
       <UnderlyingIndexName>sqlite_autoindex_projekte_1</UnderlyingIndexName>
     </key>
-    <column id="520" parent="33" name="schl_id">
+    <column id="544" parent="32" name="schl_id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="521" parent="33" name="schl_laufnr">
+    <column id="545" parent="32" name="schl_laufnr">
       <Position>2</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="522" parent="33" name="schl_name">
+    <column id="546" parent="32" name="schl_name">
       <Position>3</Position>
       <DataType>varchar(60)|0s</DataType>
     </column>
-    <column id="523" parent="33" name="schl_odm_guid">
+    <column id="547" parent="32" name="schl_odm_guid">
       <Position>4</Position>
       <DataType>varchar(36)|0s</DataType>
     </column>
-    <column id="524" parent="33" name="schl_uc">
+    <column id="548" parent="32" name="schl_uc">
       <Position>5</Position>
       <DataType>varchar(30)|0s</DataType>
     </column>
-    <column id="525" parent="33" name="schl_dc">
+    <column id="549" parent="32" name="schl_dc">
       <Position>6</Position>
       <DataType>varchar(30)|0s</DataType>
     </column>
-    <column id="526" parent="33" name="schl_enti_id">
+    <column id="550" parent="32" name="schl_enti_id">
       <Position>7</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="527" parent="33" name="sqlite_autoindex_schluessel_1">
+    <index id="551" parent="32" name="sqlite_autoindex_schluessel_1">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>schl_enti_id
 schl_laufnr</ColNames>
       <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
-    <key id="528" parent="33">
+    <key id="552" parent="32">
       <ColNames>schl_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="529" parent="33">
+    <key id="553" parent="32">
       <ColNames>schl_enti_id
 schl_laufnr</ColNames>
       <UnderlyingIndexName>sqlite_autoindex_schluessel_1</UnderlyingIndexName>
     </key>
-    <foreign-key id="530" parent="33">
+    <foreign-key id="554" parent="32">
       <ColNames>schl_enti_id</ColNames>
       <RefTableName>entitaeten</RefTableName>
       <RefColNames>enti_id</RefColNames>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <column id="531" parent="34" name="scel_id">
+    <column id="555" parent="33" name="scel_id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="532" parent="34" name="scel_schl_id">
+    <column id="556" parent="33" name="scel_schl_id">
       <Position>2</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="533" parent="34" name="scel_attr_id">
+    <column id="557" parent="33" name="scel_attr_id">
       <Position>3</Position>
       <DataType>integer|0s</DataType>
     </column>
-    <column id="534" parent="34" name="scel_rela_id">
+    <column id="558" parent="33" name="scel_rela_id">
       <Position>4</Position>
       <DataType>integer|0s</DataType>
     </column>
-    <column id="535" parent="34" name="scel_uc">
+    <column id="559" parent="33" name="scel_uc">
       <Position>5</Position>
       <DataType>varchar(30)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="536" parent="34" name="scel_dc">
+    <column id="560" parent="33" name="scel_dc">
       <Position>6</Position>
       <DataType>varchar(30)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="537" parent="34" name="scel_um">
+    <column id="561" parent="33" name="scel_um">
       <Position>7</Position>
       <DataType>varchar(30)|0s</DataType>
     </column>
-    <column id="538" parent="34" name="scel_dm">
+    <column id="562" parent="33" name="scel_dm">
       <Position>8</Position>
       <DataType>varchar(30)|0s</DataType>
     </column>
-    <index id="539" parent="34" name="sqlite_autoindex_schluesselelement_1">
+    <index id="563" parent="33" name="sqlite_autoindex_schluesselelement_1">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>scel_schl_id
 scel_attr_id
@@ -2402,357 +2497,357 @@ scel_rela_id</ColNames>
       <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
-    <key id="540" parent="34">
+    <key id="564" parent="33">
       <ColNames>scel_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="541" parent="34">
+    <key id="565" parent="33">
       <ColNames>scel_schl_id
 scel_attr_id
 scel_rela_id</ColNames>
       <UnderlyingIndexName>sqlite_autoindex_schluesselelement_1</UnderlyingIndexName>
     </key>
-    <foreign-key id="542" parent="34">
+    <foreign-key id="566" parent="33">
       <ColNames>scel_schl_id</ColNames>
       <RefTableName>schluessel</RefTableName>
       <RefColNames>schl_id</RefColNames>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <foreign-key id="543" parent="34">
+    <foreign-key id="567" parent="33">
       <ColNames>scel_attr_id</ColNames>
       <RefTableName>attributes</RefTableName>
       <RefColNames>attr_id</RefColNames>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <foreign-key id="544" parent="34">
+    <foreign-key id="568" parent="33">
       <ColNames>scel_rela_id</ColNames>
       <RefTableName>beziehungen</RefTableName>
       <RefColNames>rela_id</RefColNames>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <check id="545" parent="34" name="scel_element_ck">
+    <check id="569" parent="33" name="scel_element_ck">
       <Predicate>(scel_attr_id IS NOT NULL
                                    AND scel_rela_id IS NULL)
                                   OR(scel_attr_id IS NULL
                                      AND scel_rela_id IS NOT NULL)</Predicate>
     </check>
-    <column id="546" parent="35" name="scha_id">
+    <column id="570" parent="34" name="scha_id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="547" parent="35" name="scha_column_name">
+    <column id="571" parent="34" name="scha_column_name">
       <Position>2</Position>
       <DataType>varchar(60)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="548" parent="35" name="scha_format">
+    <column id="572" parent="34" name="scha_format">
       <Position>3</Position>
       <DataType>varchar(200)|0s</DataType>
     </column>
-    <column id="549" parent="35" name="scha_fremdsystem_id">
+    <column id="573" parent="34" name="scha_fremdsystem_id">
       <Position>4</Position>
       <DataType>varchar(100)|0s</DataType>
     </column>
-    <column id="550" parent="35" name="scha_beschr">
+    <column id="574" parent="34" name="scha_beschr">
       <Position>5</Position>
       <DataType>varchar(4000)|0s</DataType>
     </column>
-    <column id="551" parent="35" name="scha_type_string">
+    <column id="575" parent="34" name="scha_type_string">
       <Position>6</Position>
       <DataType>varchar(200)|0s</DataType>
     </column>
-    <column id="552" parent="35" name="scha_tabl_id">
+    <column id="576" parent="34" name="scha_tabl_id">
       <Position>7</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="553" parent="35" name="scha_daty_id">
+    <column id="577" parent="34" name="scha_daty_id">
       <Position>8</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="554" parent="35" name="scha_wrtb_id">
+    <column id="578" parent="34" name="scha_wrtb_id">
       <Position>9</Position>
       <DataType>integer|0s</DataType>
     </column>
-    <column id="555" parent="35" name="scha_odm_guid">
+    <column id="579" parent="34" name="scha_odm_guid">
       <Position>10</Position>
       <DataType>varchar(36)|0s</DataType>
     </column>
-    <column id="556" parent="35" name="scha_uc">
+    <column id="580" parent="34" name="scha_uc">
       <Position>11</Position>
       <DataType>varchar(30)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="557" parent="35" name="scha_dc">
+    <column id="581" parent="34" name="scha_dc">
       <Position>12</Position>
       <DataType>varchar(30)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="558" parent="35" name="scha_um">
+    <column id="582" parent="34" name="scha_um">
       <Position>13</Position>
       <DataType>varchar(30)|0s</DataType>
     </column>
-    <column id="559" parent="35" name="scha_dm">
+    <column id="583" parent="34" name="scha_dm">
       <Position>14</Position>
       <DataType>varchar(30)|0s</DataType>
     </column>
-    <index id="560" parent="35" name="sqlite_autoindex_schnittstelle_attrs_1">
+    <index id="584" parent="34" name="sqlite_autoindex_schnittstelle_attrs_1">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>scha_tabl_id
 scha_column_name</ColNames>
       <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
-    <key id="561" parent="35">
+    <key id="585" parent="34">
       <ColNames>scha_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="562" parent="35" name="scha_uk">
+    <key id="586" parent="34" name="scha_uk">
       <ColNames>scha_tabl_id
 scha_column_name</ColNames>
       <UnderlyingIndexName>sqlite_autoindex_schnittstelle_attrs_1</UnderlyingIndexName>
     </key>
-    <foreign-key id="563" parent="35" name="scha_tabl_fk">
+    <foreign-key id="587" parent="34" name="scha_tabl_fk">
       <ColNames>scha_tabl_id</ColNames>
       <RefTableName>tabellen</RefTableName>
       <RefColNames>tabl_id</RefColNames>
     </foreign-key>
-    <foreign-key id="564" parent="35" name="scha_daty_fk">
+    <foreign-key id="588" parent="34" name="scha_daty_fk">
       <ColNames>scha_daty_id</ColNames>
       <RefTableName>datatypes</RefTableName>
       <RefColNames>daty_id</RefColNames>
     </foreign-key>
-    <foreign-key id="565" parent="35" name="scha_wrtb_fk">
+    <foreign-key id="589" parent="34" name="scha_wrtb_fk">
       <ColNames>scha_wrtb_id</ColNames>
       <RefTableName>wertebereiche</RefTableName>
       <RefColNames>wrtb_id</RefColNames>
     </foreign-key>
-    <column id="566" parent="36" name="SCHN_ID">
+    <column id="590" parent="35" name="SCHN_ID">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="567" parent="36" name="SCHN_NAME">
+    <column id="591" parent="35" name="SCHN_NAME">
       <Position>2</Position>
       <DataType>VARCHAR(60)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="568" parent="36" name="SCHN_BESCHR">
+    <column id="592" parent="35" name="SCHN_BESCHR">
       <Position>3</Position>
       <DataType>VARCHAR(4000)|0s</DataType>
     </column>
-    <column id="569" parent="36" name="SCHN_odm_guid">
+    <column id="593" parent="35" name="SCHN_odm_guid">
       <Position>4</Position>
       <DataType>varchar(36)|0s</DataType>
     </column>
-    <column id="570" parent="36" name="SCHN_UC">
+    <column id="594" parent="35" name="SCHN_UC">
       <Position>5</Position>
       <DataType>VARCHAR(30)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="571" parent="36" name="SCHN_DC">
+    <column id="595" parent="35" name="SCHN_DC">
       <Position>6</Position>
       <DataType>VARCHAR(30)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="572" parent="36" name="SCHN_UM">
+    <column id="596" parent="35" name="SCHN_UM">
       <Position>7</Position>
       <DataType>VARCHAR(30)|0s</DataType>
     </column>
-    <column id="573" parent="36" name="SCHN_DM">
+    <column id="597" parent="35" name="SCHN_DM">
       <Position>8</Position>
       <DataType>VARCHAR(30)|0s</DataType>
     </column>
-    <index id="574" parent="36" name="sqlite_autoindex_schnittstellen_1">
+    <index id="598" parent="35" name="sqlite_autoindex_schnittstellen_1">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>SCHN_NAME</ColNames>
       <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
-    <key id="575" parent="36">
+    <key id="599" parent="35">
       <ColNames>SCHN_ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="576" parent="36" name="SCHN_UN">
+    <key id="600" parent="35" name="SCHN_UN">
       <ColNames>SCHN_NAME</ColNames>
       <UnderlyingIndexName>sqlite_autoindex_schnittstellen_1</UnderlyingIndexName>
     </key>
-    <column id="577" parent="37" name="spfo_id">
+    <column id="601" parent="36" name="spfo_id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="578" parent="37" name="spfo_name">
+    <column id="602" parent="36" name="spfo_name">
       <Position>2</Position>
       <DataType>varchar(60)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="579" parent="37" name="spfo_beschreibung">
+    <column id="603" parent="36" name="spfo_beschreibung">
       <Position>3</Position>
       <DataType>varchar(4000)|0s</DataType>
     </column>
-    <index id="580" parent="37" name="sqlite_autoindex_speicherformate_1">
+    <index id="604" parent="36" name="sqlite_autoindex_speicherformate_1">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>spfo_name</ColNames>
       <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
-    <key id="581" parent="37">
+    <key id="605" parent="36">
       <ColNames>spfo_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="582" parent="37">
+    <key id="606" parent="36">
       <ColNames>spfo_name</ColNames>
       <UnderlyingIndexName>sqlite_autoindex_speicherformate_1</UnderlyingIndexName>
     </key>
-    <column id="583" parent="38" name="spra_id">
+    <column id="607" parent="37" name="spra_id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="584" parent="38" name="spra_iso_name">
+    <column id="608" parent="37" name="spra_iso_name">
       <Position>2</Position>
       <DataType>varchar(60)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="585" parent="38" name="spra_iso_code2">
+    <column id="609" parent="37" name="spra_iso_code2">
       <Position>3</Position>
       <DataType>CHAR(2)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="586" parent="38" name="spra_iso_code3">
+    <column id="610" parent="37" name="spra_iso_code3">
       <Position>4</Position>
       <DataType>CHAR(3)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="587" parent="38" name="spra_ist_textsprache">
+    <column id="611" parent="37" name="spra_ist_textsprache">
       <Position>5</Position>
       <DataType>varchar(5)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="588" parent="38" name="spra_ist_modellsprache">
+    <column id="612" parent="37" name="spra_ist_modellsprache">
       <Position>6</Position>
       <DataType>varchar(5)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="589" parent="38" name="spra_spra_id">
+    <column id="613" parent="37" name="spra_spra_id">
       <Position>7</Position>
       <DataType>integer|0s</DataType>
     </column>
-    <column id="590" parent="38" name="spra_uc">
+    <column id="614" parent="37" name="spra_uc">
       <Position>8</Position>
       <DataType>varchar(30)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="591" parent="38" name="spra_dc">
+    <column id="615" parent="37" name="spra_dc">
       <Position>9</Position>
       <DataType>varchar(30)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="592" parent="38" name="spra_um">
+    <column id="616" parent="37" name="spra_um">
       <Position>10</Position>
       <DataType>varchar(30)|0s</DataType>
     </column>
-    <column id="593" parent="38" name="spra_dm">
+    <column id="617" parent="37" name="spra_dm">
       <Position>11</Position>
       <DataType>varchar(30)|0s</DataType>
     </column>
-    <index id="594" parent="38" name="sqlite_autoindex_sprachen_1">
+    <index id="618" parent="37" name="sqlite_autoindex_sprachen_1">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>spra_iso_name</ColNames>
       <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
-    <index id="595" parent="38" name="sqlite_autoindex_sprachen_2">
+    <index id="619" parent="37" name="sqlite_autoindex_sprachen_2">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>spra_iso_code2</ColNames>
       <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
-    <index id="596" parent="38" name="sqlite_autoindex_sprachen_3">
+    <index id="620" parent="37" name="sqlite_autoindex_sprachen_3">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>spra_iso_code3</ColNames>
       <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
-    <key id="597" parent="38">
+    <key id="621" parent="37">
       <ColNames>spra_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="598" parent="38" name="spra_iso_uk">
+    <key id="622" parent="37" name="spra_iso_uk">
       <ColNames>spra_iso_name</ColNames>
       <UnderlyingIndexName>sqlite_autoindex_sprachen_1</UnderlyingIndexName>
     </key>
-    <key id="599" parent="38" name="spra_iso2_uk">
+    <key id="623" parent="37" name="spra_iso2_uk">
       <ColNames>spra_iso_code2</ColNames>
       <UnderlyingIndexName>sqlite_autoindex_sprachen_2</UnderlyingIndexName>
     </key>
-    <key id="600" parent="38" name="spra_iso3_uk">
+    <key id="624" parent="37" name="spra_iso3_uk">
       <ColNames>spra_iso_code3</ColNames>
       <UnderlyingIndexName>sqlite_autoindex_sprachen_3</UnderlyingIndexName>
     </key>
-    <check id="601" parent="38" name="spra_iso2_low">
+    <check id="625" parent="37" name="spra_iso2_low">
       <Predicate>spra_iso_code2 = lower(spra_iso_code2)</Predicate>
     </check>
-    <check id="602" parent="38" name="spra_iso3_low">
+    <check id="626" parent="37" name="spra_iso3_low">
       <Predicate>spra_iso_code3 = lower(spra_iso_code3)</Predicate>
     </check>
-    <check id="603" parent="38" name="spra_mod_bool">
+    <check id="627" parent="37" name="spra_mod_bool">
       <Predicate>spra_ist_modellsprache IN(
             &apos;FALSE&apos;,
             &apos;TRUE&apos;
         )</Predicate>
     </check>
-    <check id="604" parent="38" name="spra_txt_bool">
+    <check id="628" parent="37" name="spra_txt_bool">
       <Predicate>spra_ist_textsprache IN(
             &apos;FALSE&apos;,
             &apos;TRUE&apos;
         )</Predicate>
     </check>
-    <column id="605" parent="39" name="sptx_id">
+    <column id="629" parent="38" name="sptx_id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="606" parent="39" name="sptx_attrname">
+    <column id="630" parent="38" name="sptx_attrname">
       <Position>2</Position>
       <DataType>varchar(30)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="607" parent="39" name="sptx_text">
+    <column id="631" parent="38" name="sptx_text">
       <Position>3</Position>
       <DataType>varchar(4000)|0s</DataType>
     </column>
-    <column id="608" parent="39" name="sptx_spra_id">
+    <column id="632" parent="38" name="sptx_spra_id">
       <Position>4</Position>
       <DataType>integer|0s</DataType>
     </column>
-    <column id="609" parent="39" name="sptx_mode_id">
+    <column id="633" parent="38" name="sptx_mode_id">
       <Position>5</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="610" parent="39" name="sptx_uc">
+    <column id="634" parent="38" name="sptx_uc">
       <Position>6</Position>
       <DataType>varchar(30)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="611" parent="39" name="sptx_dc">
+    <column id="635" parent="38" name="sptx_dc">
       <Position>7</Position>
       <DataType>varchar(30)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="612" parent="39" name="sptx_um">
+    <column id="636" parent="38" name="sptx_um">
       <Position>8</Position>
       <DataType>varchar(30)|0s</DataType>
     </column>
-    <column id="613" parent="39" name="sptx_dm">
+    <column id="637" parent="38" name="sptx_dm">
       <Position>9</Position>
       <DataType>varchar(30)|0s</DataType>
     </column>
-    <index id="614" parent="39" name="sqlite_autoindex_sprachtexte_1">
+    <index id="638" parent="38" name="sqlite_autoindex_sprachtexte_1">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>sptx_attrname
 sptx_spra_id
@@ -2760,177 +2855,177 @@ sptx_mode_id</ColNames>
       <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
-    <key id="615" parent="39">
+    <key id="639" parent="38">
       <ColNames>sptx_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="616" parent="39" name="sptx_uk">
+    <key id="640" parent="38" name="sptx_uk">
       <ColNames>sptx_attrname
 sptx_spra_id
 sptx_mode_id</ColNames>
       <UnderlyingIndexName>sqlite_autoindex_sprachtexte_1</UnderlyingIndexName>
     </key>
-    <foreign-key id="617" parent="39" name="sptx_spra_fk">
+    <foreign-key id="641" parent="38" name="sptx_spra_fk">
       <ColNames>sptx_spra_id</ColNames>
       <RefTableName>sprachen</RefTableName>
       <RefColNames>spra_id</RefColNames>
     </foreign-key>
-    <foreign-key id="618" parent="39" name="sptx_mode_fk">
+    <foreign-key id="642" parent="38" name="sptx_mode_fk">
       <ColNames>sptx_mode_id</ColNames>
       <RefTableName>modellelement</RefTableName>
       <RefColNames>mode_id</RefColNames>
     </foreign-key>
-    <check id="619" parent="39" name="sptx_attrnameUC">
+    <check id="643" parent="38" name="sptx_attrnameUC">
       <Predicate>sptx_attrname = upper(sptx_attrname)</Predicate>
     </check>
-    <column id="620" parent="40" name="type">
+    <column id="644" parent="39" name="type">
       <Position>1</Position>
       <DataType>text|0s</DataType>
     </column>
-    <column id="621" parent="40" name="name">
+    <column id="645" parent="39" name="name">
       <Position>2</Position>
       <DataType>text|0s</DataType>
     </column>
-    <column id="622" parent="40" name="tbl_name">
+    <column id="646" parent="39" name="tbl_name">
       <Position>3</Position>
       <DataType>text|0s</DataType>
     </column>
-    <column id="623" parent="40" name="rootpage">
+    <column id="647" parent="39" name="rootpage">
       <Position>4</Position>
       <DataType>int|0s</DataType>
     </column>
-    <column id="624" parent="40" name="sql">
+    <column id="648" parent="39" name="sql">
       <Position>5</Position>
       <DataType>text|0s</DataType>
     </column>
-    <column id="625" parent="41" name="name">
+    <column id="649" parent="40" name="name">
       <Position>1</Position>
     </column>
-    <column id="626" parent="41" name="seq">
+    <column id="650" parent="40" name="seq">
       <Position>2</Position>
     </column>
-    <column id="627" parent="42" name="syno_id">
+    <column id="651" parent="41" name="syno_id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="628" parent="42" name="syno_name">
+    <column id="652" parent="41" name="syno_name">
       <Position>2</Position>
       <DataType>varchar(200)|0s</DataType>
     </column>
-    <column id="629" parent="42" name="syno_enti_id">
+    <column id="653" parent="41" name="syno_enti_id">
       <Position>3</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="630" parent="42" name="sqlite_autoindex_synonyme_1">
+    <index id="654" parent="41" name="sqlite_autoindex_synonyme_1">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>syno_name
 syno_enti_id</ColNames>
       <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
-    <key id="631" parent="42">
+    <key id="655" parent="41">
       <ColNames>syno_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="632" parent="42">
+    <key id="656" parent="41">
       <ColNames>syno_name
 syno_enti_id</ColNames>
       <UnderlyingIndexName>sqlite_autoindex_synonyme_1</UnderlyingIndexName>
     </key>
-    <foreign-key id="633" parent="42">
+    <foreign-key id="657" parent="41">
       <ColNames>syno_enti_id</ColNames>
       <RefTableName>entitaeten</RefTableName>
       <RefColNames>enti_id</RefColNames>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <column id="634" parent="43" name="tabl_id">
+    <column id="658" parent="42" name="tabl_id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="635" parent="43" name="tabl_name">
+    <column id="659" parent="42" name="tabl_name">
       <Position>2</Position>
       <DataType>varchar(60)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="636" parent="43" name="tabl_schn_id">
+    <column id="660" parent="42" name="tabl_schn_id">
       <Position>3</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="637" parent="43" name="tabl_prefix">
+    <column id="661" parent="42" name="tabl_prefix">
       <Position>4</Position>
       <DataType>varchar(60)|0s</DataType>
     </column>
-    <column id="638" parent="43" name="tabl_beschr">
+    <column id="662" parent="42" name="tabl_beschr">
       <Position>5</Position>
       <DataType>varchar(4000)|0s</DataType>
     </column>
-    <column id="639" parent="43" name="tabl_odm_guid">
+    <column id="663" parent="42" name="tabl_odm_guid">
       <Position>6</Position>
       <DataType>varchar(36)|0s</DataType>
     </column>
-    <column id="640" parent="43" name="tabl_uc">
+    <column id="664" parent="42" name="tabl_uc">
       <Position>7</Position>
       <DataType>varchar(30)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="641" parent="43" name="tabl_dc">
+    <column id="665" parent="42" name="tabl_dc">
       <Position>8</Position>
       <DataType>varchar(30)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="642" parent="43" name="tabl_um">
+    <column id="666" parent="42" name="tabl_um">
       <Position>9</Position>
       <DataType>varchar(30)|0s</DataType>
     </column>
-    <column id="643" parent="43" name="tabl_dm">
+    <column id="667" parent="42" name="tabl_dm">
       <Position>10</Position>
       <DataType>varchar(30)|0s</DataType>
     </column>
-    <index id="644" parent="43" name="sqlite_autoindex_tabellen_1">
+    <index id="668" parent="42" name="sqlite_autoindex_tabellen_1">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>tabl_schn_id
 tabl_name</ColNames>
       <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
-    <key id="645" parent="43">
+    <key id="669" parent="42">
       <ColNames>tabl_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="646" parent="43" name="TABL_UN">
+    <key id="670" parent="42" name="TABL_UN">
       <ColNames>tabl_schn_id
 tabl_name</ColNames>
       <UnderlyingIndexName>sqlite_autoindex_tabellen_1</UnderlyingIndexName>
     </key>
-    <foreign-key id="647" parent="43" name="TABL_SCHN_FK">
+    <foreign-key id="671" parent="42" name="TABL_SCHN_FK">
       <ColNames>tabl_schn_id</ColNames>
       <RefTableName>SCHNITTSTELLE</RefTableName>
       <RefColNames>SCHN_ID</RefColNames>
     </foreign-key>
-    <column id="648" parent="44" name="tema_id">
+    <column id="672" parent="43" name="tema_id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="649" parent="44" name="tema_tabl_id">
+    <column id="673" parent="43" name="tema_tabl_id">
       <Position>2</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="650" parent="44" name="tema_enti_id">
+    <column id="674" parent="43" name="tema_enti_id">
       <Position>3</Position>
       <DataType>integer|0s</DataType>
     </column>
-    <column id="651" parent="44" name="tema_rela_id">
+    <column id="675" parent="43" name="tema_rela_id">
       <Position>4</Position>
       <DataType>integer|0s</DataType>
     </column>
-    <index id="652" parent="44" name="sqlite_autoindex_tabl_enti_maps_1">
+    <index id="676" parent="43" name="sqlite_autoindex_tabl_enti_maps_1">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>tema_tabl_id
 tema_enti_id
@@ -2938,247 +3033,247 @@ tema_rela_id</ColNames>
       <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
-    <key id="653" parent="44">
+    <key id="677" parent="43">
       <ColNames>tema_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="654" parent="44" name="tema_un">
+    <key id="678" parent="43" name="tema_un">
       <ColNames>tema_tabl_id
 tema_enti_id
 tema_rela_id</ColNames>
       <UnderlyingIndexName>sqlite_autoindex_tabl_enti_maps_1</UnderlyingIndexName>
     </key>
-    <foreign-key id="655" parent="44" name="tema_tabl_fk">
+    <foreign-key id="679" parent="43" name="tema_tabl_fk">
       <ColNames>tema_tabl_id</ColNames>
       <RefTableName>tabellen</RefTableName>
       <RefColNames>tabl_id</RefColNames>
     </foreign-key>
-    <foreign-key id="656" parent="44" name="tema_enti_fk">
+    <foreign-key id="680" parent="43" name="tema_enti_fk">
       <ColNames>tema_enti_id</ColNames>
       <RefTableName>entitaet</RefTableName>
       <RefColNames>enti_id</RefColNames>
     </foreign-key>
-    <foreign-key id="657" parent="44" name="tema_bezi_fk">
+    <foreign-key id="681" parent="43" name="tema_bezi_fk">
       <ColNames>tema_rela_id</ColNames>
       <RefTableName>beziehung</RefTableName>
       <RefColNames>rela_id</RefColNames>
     </foreign-key>
-    <check id="658" parent="44" name="tema_ck">
+    <check id="682" parent="43" name="tema_ck">
       <Predicate>(tema_enti_id is not null and tema_rela_id is null )
                	        		  or (tema_enti_id is null and tema_rela_id is not null)</Predicate>
     </check>
-    <column id="659" parent="45" name="vgwt_id">
+    <column id="683" parent="44" name="vgwt_id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="660" parent="45" name="vgwt_guid">
+    <column id="684" parent="44" name="vgwt_guid">
       <Position>2</Position>
       <DataType>varchar(40)|0s</DataType>
     </column>
-    <column id="661" parent="45" name="vgwt_wert">
+    <column id="685" parent="44" name="vgwt_wert">
       <Position>3</Position>
       <DataType>VARCHAR(100)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="662" parent="45" name="vgwt_sortrhfg">
+    <column id="686" parent="44" name="vgwt_sortrhfg">
       <Position>4</Position>
       <DataType>integer|0s</DataType>
     </column>
-    <column id="663" parent="45" name="vgwt_wrtb_id">
+    <column id="687" parent="44" name="vgwt_doma_id">
       <Position>5</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="664" parent="45" name="vgwt_anzeige">
+    <column id="688" parent="44" name="vgwt_anzeige">
       <Position>6</Position>
       <DataType>varchar(200)|0s</DataType>
     </column>
-    <column id="665" parent="45" name="vgwt_beschr">
+    <column id="689" parent="44" name="vgwt_beschr">
       <Position>7</Position>
       <DataType>varchar(4000)|0s</DataType>
     </column>
-    <column id="666" parent="45" name="vgwt_uc">
+    <column id="690" parent="44" name="vgwt_uc">
       <Position>8</Position>
       <DataType>varchar(30)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="667" parent="45" name="vgwt_dc">
+    <column id="691" parent="44" name="vgwt_dc">
       <Position>9</Position>
       <DataType>varchar(30)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="668" parent="45" name="vgwt_um">
+    <column id="692" parent="44" name="vgwt_um">
       <Position>10</Position>
       <DataType>varchar(30)|0s</DataType>
     </column>
-    <column id="669" parent="45" name="vgwt_dm">
+    <column id="693" parent="44" name="vgwt_dm">
       <Position>11</Position>
       <DataType>varchar(30)|0s</DataType>
     </column>
-    <index id="670" parent="45" name="sqlite_autoindex_vorgabewerte_1">
+    <index id="694" parent="44" name="sqlite_autoindex_vorgabewerte_1">
       <NameSurrogate>1</NameSurrogate>
-      <ColNames>vgwt_wrtb_id
+      <ColNames>vgwt_doma_id
 vgwt_wert</ColNames>
       <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
-    <key id="671" parent="45">
+    <key id="695" parent="44">
       <ColNames>vgwt_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="672" parent="45" name="vgwt_uk">
-      <ColNames>vgwt_wrtb_id
+    <key id="696" parent="44" name="vgwt_uk">
+      <ColNames>vgwt_doma_id
 vgwt_wert</ColNames>
       <UnderlyingIndexName>sqlite_autoindex_vorgabewerte_1</UnderlyingIndexName>
     </key>
-    <foreign-key id="673" parent="45" name="vgwt_wrtb_fk">
-      <ColNames>vgwt_wrtb_id</ColNames>
+    <foreign-key id="697" parent="44" name="vgwt_doma_fk">
+      <ColNames>vgwt_doma_id</ColNames>
       <RefTableName>wertebereiche</RefTableName>
-      <RefColNames>wrtb_id</RefColNames>
+      <RefColNames>doma_id</RefColNames>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <column id="674" parent="46" name="wrtb_id">
+    <column id="698" parent="45" name="wrtb_id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="675" parent="46" name="wrtb_business_rule">
+    <column id="699" parent="45" name="wrtb_business_rule">
       <Position>2</Position>
       <DataType>varchar(4000)|0s</DataType>
     </column>
-    <column id="676" parent="46" name="wrtb_name">
+    <column id="700" parent="45" name="wrtb_name">
       <Position>3</Position>
       <DataType>varchar(60)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="677" parent="46" name="wrtb_beschr">
+    <column id="701" parent="45" name="wrtb_beschr">
       <Position>4</Position>
       <DataType>varchar(4000)|0s</DataType>
     </column>
-    <column id="678" parent="46" name="wrtb_typ">
+    <column id="702" parent="45" name="wrtb_typ">
       <Position>5</Position>
       <DataType>varchar(4)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="679" parent="46" name="wrtb_herkunft">
+    <column id="703" parent="45" name="wrtb_herkunft">
       <Position>6</Position>
       <DataType>VARCHAR2(6)|0s</DataType>
     </column>
-    <column id="680" parent="46" name="wrtb_zpkt_minwert">
+    <column id="704" parent="45" name="wrtb_zpkt_minwert">
       <Position>7</Position>
       <DataType>varchar(30)|0s</DataType>
     </column>
-    <column id="681" parent="46" name="wrtb_zpkt_maxwert">
+    <column id="705" parent="45" name="wrtb_zpkt_maxwert">
       <Position>8</Position>
       <DataType>varchar(30)|0s</DataType>
     </column>
-    <column id="682" parent="46" name="wrtb_zpkt_granularitaet">
+    <column id="706" parent="45" name="wrtb_zpkt_granularitaet">
       <Position>9</Position>
       <DataType>varchar(15)|0s</DataType>
     </column>
-    <column id="683" parent="46" name="wrtb_text_maxlng">
+    <column id="707" parent="45" name="wrtb_text_maxlng">
       <Position>10</Position>
       <DataType>integer|0s</DataType>
     </column>
-    <column id="684" parent="46" name="wrtb_text_syntaxregel">
+    <column id="708" parent="45" name="wrtb_text_syntaxregel">
       <Position>11</Position>
       <DataType>varchar(4000)|0s</DataType>
     </column>
-    <column id="685" parent="46" name="wrtb_num_maxwert">
+    <column id="709" parent="45" name="wrtb_num_maxwert">
       <Position>12</Position>
       <DataType>integer|0s</DataType>
     </column>
-    <column id="686" parent="46" name="wrtb_num_minwert">
+    <column id="710" parent="45" name="wrtb_num_minwert">
       <Position>13</Position>
       <DataType>integer|0s</DataType>
     </column>
-    <column id="687" parent="46" name="wrtb_num_vorkstellen">
+    <column id="711" parent="45" name="wrtb_num_vorkstellen">
       <Position>14</Position>
       <DataType>integer|0s</DataType>
     </column>
-    <column id="688" parent="46" name="wrtb_num_nachkstellen">
+    <column id="712" parent="45" name="wrtb_num_nachkstellen">
       <Position>15</Position>
       <DataType>integer|0s</DataType>
       <DefaultExpression>0</DefaultExpression>
     </column>
-    <column id="689" parent="46" name="wrtb_num_rundng_einh">
+    <column id="713" parent="45" name="wrtb_num_rundng_einh">
       <Position>16</Position>
       <DataType>integer|0s</DataType>
     </column>
-    <column id="690" parent="46" name="wrtb_num_pheh_id">
+    <column id="714" parent="45" name="wrtb_num_pheh_id">
       <Position>17</Position>
       <DataType>integer|0s</DataType>
     </column>
-    <column id="691" parent="46" name="wrtb_bin_inhalttyp">
+    <column id="715" parent="45" name="wrtb_bin_inhalttyp">
       <Position>18</Position>
       <DataType>varchar(30)|0s</DataType>
     </column>
-    <column id="692" parent="46" name="wrtb_bin_spfo_id">
+    <column id="716" parent="45" name="wrtb_bin_spfo_id">
       <Position>19</Position>
       <DataType>varchar(100)|0s</DataType>
     </column>
-    <column id="693" parent="46" name="wrtb_odm_guid">
+    <column id="717" parent="45" name="wrtb_odm_guid">
       <Position>20</Position>
       <DataType>varchar(36)|0s</DataType>
     </column>
-    <column id="694" parent="46" name="wrtb_schn_id">
+    <column id="718" parent="45" name="wrtb_schn_id">
       <Position>21</Position>
       <DataType>NUMBER(10)|0s</DataType>
     </column>
-    <column id="695" parent="46" name="wrtb_datatype_odm">
+    <column id="719" parent="45" name="wrtb_datatype_odm">
       <Position>22</Position>
       <DataType>varchar(40)|0s</DataType>
     </column>
-    <column id="696" parent="46" name="wrtb_daty_id">
+    <column id="720" parent="45" name="wrtb_daty_id">
       <Position>23</Position>
       <DataType>integer|0s</DataType>
     </column>
-    <column id="697" parent="46" name="wrtb_uc">
+    <column id="721" parent="45" name="wrtb_uc">
       <Position>24</Position>
       <DataType>varchar(30)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="698" parent="46" name="wrtb_dc">
+    <column id="722" parent="45" name="wrtb_dc">
       <Position>25</Position>
       <DataType>varchar(30)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="699" parent="46" name="wrtb_um">
+    <column id="723" parent="45" name="wrtb_um">
       <Position>26</Position>
       <DataType>varchar(30)|0s</DataType>
     </column>
-    <column id="700" parent="46" name="wrtb_dm">
+    <column id="724" parent="45" name="wrtb_dm">
       <Position>27</Position>
       <DataType>varchar(30)|0s</DataType>
     </column>
-    <index id="701" parent="46" name="sqlite_autoindex_wertebereiche_1">
+    <index id="725" parent="45" name="sqlite_autoindex_wertebereiche_1">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>wrtb_name</ColNames>
       <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
-    <key id="702" parent="46">
+    <key id="726" parent="45">
       <ColNames>wrtb_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="703" parent="46">
+    <key id="727" parent="45">
       <ColNames>wrtb_name</ColNames>
       <UnderlyingIndexName>sqlite_autoindex_wertebereiche_1</UnderlyingIndexName>
     </key>
-    <foreign-key id="704" parent="46" name="wrtb_schn_fk">
+    <foreign-key id="728" parent="45" name="wrtb_schn_fk">
       <ColNames>wrtb_schn_id</ColNames>
       <RefTableName>schnittstelle</RefTableName>
       <RefColNames>schn_id</RefColNames>
     </foreign-key>
-    <foreign-key id="705" parent="46" name="wrtb_daty_fk">
+    <foreign-key id="729" parent="45" name="wrtb_daty_fk">
       <ColNames>wrtb_daty_id</ColNames>
       <RefTableName>datatypes</RefTableName>
       <RefColNames>daty_id</RefColNames>
     </foreign-key>
-    <check id="706" parent="46">
+    <check id="730" parent="45">
       <Predicate>wrtb_bin_inhalttyp IN(
             &apos;BILD&apos;,
             &apos;FILM&apos;,
@@ -3187,13 +3282,13 @@ vgwt_wert</ColNames>
             &apos;TON&apos;
         )</Predicate>
     </check>
-    <check id="707" parent="46">
+    <check id="731" parent="45">
       <Predicate>wrtb_herkunft IN (
 	            &apos;DER&apos;,
 	            &apos;DOM&apos;
 	        )</Predicate>
     </check>
-    <check id="708" parent="46">
+    <check id="732" parent="45">
       <Predicate>wrtb_num_rundng_einh IN(
             0.001,
             0.01,
@@ -3207,7 +3302,7 @@ vgwt_wert</ColNames>
             1000
         )</Predicate>
     </check>
-    <check id="709" parent="46">
+    <check id="733" parent="45">
       <Predicate>wrtb_typ IN(
             &apos;BIN&apos;,
             &apos;GRP&apos;,
@@ -3217,7 +3312,7 @@ vgwt_wert</ColNames>
             &apos;ZPKT&apos;
         )</Predicate>
     </check>
-    <check id="710" parent="46">
+    <check id="734" parent="45">
       <Predicate>wrtb_zpkt_granularitaet IN(
             &apos;JAHR&apos;,
             &apos;MILLISEKUNDE&apos;,
@@ -3231,97 +3326,97 @@ vgwt_wert</ColNames>
             &apos;WOCHE&apos;
         )</Predicate>
     </check>
-    <column id="711" parent="47" name="wbgr_id">
+    <column id="735" parent="46" name="wbgr_id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="712" parent="47" name="wbgr_name">
+    <column id="736" parent="46" name="wbgr_name">
       <Position>2</Position>
       <DataType>varchar(60)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="713" parent="47" name="wbgr_beschr">
+    <column id="737" parent="46" name="wbgr_beschr">
       <Position>3</Position>
       <DataType>varchar(4000)|0s</DataType>
     </column>
-    <column id="714" parent="47" name="wbgr_wrtb_id_gruppe">
+    <column id="738" parent="46" name="wbgr_doma_id_gruppe">
       <Position>4</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="715" parent="47" name="wbgr_wrtb_id_member">
+    <column id="739" parent="46" name="wbgr_doma_id_member">
       <Position>5</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="716" parent="47" name="wbgr_type_ref">
+    <column id="740" parent="46" name="wbgr_type_ref">
       <Position>6</Position>
       <DataType>varchar(40)|0s</DataType>
     </column>
-    <column id="717" parent="47" name="wbgr_uc">
+    <column id="741" parent="46" name="wbgr_uc">
       <Position>7</Position>
       <DataType>varchar(30)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="718" parent="47" name="wbgr_dc">
+    <column id="742" parent="46" name="wbgr_dc">
       <Position>8</Position>
       <DataType>varchar(30)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="719" parent="47" name="wbgr_um">
+    <column id="743" parent="46" name="wbgr_um">
       <Position>9</Position>
       <DataType>varchar(30)|0s</DataType>
     </column>
-    <column id="720" parent="47" name="wbgr_dm">
+    <column id="744" parent="46" name="wbgr_dm">
       <Position>10</Position>
       <DataType>varchar(30)|0s</DataType>
     </column>
-    <index id="721" parent="47" name="sqlite_autoindex_wertebereichgruppen_1">
+    <index id="745" parent="46" name="sqlite_autoindex_wertebereichgruppen_1">
       <NameSurrogate>1</NameSurrogate>
-      <ColNames>wbgr_wrtb_id_gruppe
+      <ColNames>wbgr_doma_id_gruppe
 wbgr_name</ColNames>
       <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
-    <key id="722" parent="47">
+    <key id="746" parent="46">
       <ColNames>wbgr_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="723" parent="47" name="wbgr_wrtb_uk">
-      <ColNames>wbgr_wrtb_id_gruppe
+    <key id="747" parent="46" name="wbgr_doma_uk">
+      <ColNames>wbgr_doma_id_gruppe
 wbgr_name</ColNames>
       <UnderlyingIndexName>sqlite_autoindex_wertebereichgruppen_1</UnderlyingIndexName>
     </key>
-    <foreign-key id="724" parent="47" name="wbgr_wrtb_fk_member">
-      <ColNames>WBGR_WRTB_ID_MEMBER</ColNames>
+    <foreign-key id="748" parent="46" name="wbgr_doma_fk_gruppe">
+      <ColNames>wbgr_doma_id_gruppe</ColNames>
       <RefTableName>wertebereich</RefTableName>
-      <RefColNames>wrtb_id</RefColNames>
-    </foreign-key>
-    <foreign-key id="725" parent="47" name="wbgr_wrtb_fk_gruppe">
-      <ColNames>wbgr_wrtb_id_gruppe</ColNames>
-      <RefTableName>wertebereich</RefTableName>
-      <RefColNames>wrtb_id</RefColNames>
+      <RefColNames>doma_id</RefColNames>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <column id="726" parent="49" name="sptx_text">
+    <foreign-key id="749" parent="46" name="wbgr_doma_fk_member">
+      <ColNames>wbgr_doma_id_member</ColNames>
+      <RefTableName>wertebereich</RefTableName>
+      <RefColNames>doma_id</RefColNames>
+    </foreign-key>
+    <column id="750" parent="48" name="sptx_text">
       <Position>1</Position>
       <DataType>varchar(4000)|0s</DataType>
     </column>
-    <column id="727" parent="49" name="spra_id">
+    <column id="751" parent="48" name="spra_id">
       <Position>2</Position>
       <DataType>integer|0s</DataType>
     </column>
-    <column id="728" parent="49" name="spra_iso_code2">
+    <column id="752" parent="48" name="spra_iso_code2">
       <Position>3</Position>
       <DataType>CHAR(2)|0s</DataType>
     </column>
-    <column id="729" parent="49" name="sptx_mode_id">
+    <column id="753" parent="48" name="sptx_mode_id">
       <Position>4</Position>
       <DataType>integer|0s</DataType>
     </column>
-    <column id="730" parent="49" name="sptx_attrname">
+    <column id="754" parent="48" name="sptx_attrname">
       <Position>5</Position>
       <DataType>varchar(30)|0s</DataType>
     </column>

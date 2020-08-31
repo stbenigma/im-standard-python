@@ -55,7 +55,7 @@ class Datatype(Baseobject):
         return Baseobject.select(pclass=Datatype
                                  , pwhere=pwhere, porderby=porderby)
     @staticmethod
-    def basisType(dt):
+    def baseType(dt):
         if (dt in ('BLOB', 'RAW, size', 'BFIE', 'BINARY_DOUBLE', 'BINARY_DOUBLE', 'CLOB' \
                            , 'LONG', 'LONG RAW', 'NCLOB', '')):
             return Datatype.BINARY
@@ -66,7 +66,11 @@ class Datatype(Baseobject):
             return Datatype.NUMERIC
         else:
             return Datatype.STRING
-    # basisType
+    # baseType
+
+    @staticmethod
+    def getidbyextid(pguid):
+        return super().getbyextref(pguid=pguid,pmodelemtype=Modelelemtype.DATY)
 
     @staticmethod
     def getbyname(pname):

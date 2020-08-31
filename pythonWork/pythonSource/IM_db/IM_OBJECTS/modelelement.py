@@ -1,5 +1,7 @@
 from datetime import date
 from .baseobject import Baseobject
+from IM_DB import dbDML
+
 
 class Modelelemtype(Baseobject):
     ENTI: str = 'ENTI'
@@ -129,7 +131,6 @@ class Modelelement(Baseobject):
                          , columnlist=Modelelement._columnlist)
         self.mode_type = pmeltshortname
         self.mode_melt_id = Modelelemtype.getidbyshortname(pshortname=pmeltshortname)
-
     # __init__
 
     @staticmethod
@@ -233,6 +234,10 @@ CREATE TABLE MODELELEMENT
         return None if mode is None else mode.mode_id
 
     # getidbyelemid
+
+    @staticmethod
+    def getelementbyextref(psrcname, psrcid):
+        return Modelelement.getelement(pmodeid=Externalref.getmodeid(psrcname=psrcname, psrcid=psrcid))
 
     @staticmethod
     def getelement(pmodeid):

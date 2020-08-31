@@ -124,15 +124,11 @@ class Baseobject:
         return self
     # getbyuk
 
-    def getbyguid(self,pguid):
-        return self.getbyuk(pcolname=self._guidcolname, pukvalue=pguid)
-    # getbyguid
-
     def prefix(self):
         return self._prefix
 
     def getID(self,pguid):
-        self.getbyguid(pguid)
+        self.getbyextref(pguid)
         return self.getid()
 
     def webanker(self,pmodelid=0):
@@ -187,9 +183,10 @@ class Baseobject:
 
 class MultilangBaseobject(Baseobject):
     def __init__(self, tablename, prefix, columnlist, multilangcols
-                 ,idcolname=None, guidcolname=None):
+                 ,idcolname=None, guidcolname=None,psrcname=None,pscrid = None,pmodelemtype=None):
         super().__init__(tablename=tablename, prefix=prefix, columnlist=columnlist
                         ,idcolname=idcolname, guidcolname=guidcolname
+                        ,pmodelemtype=pmodelemtype,psrcname=psrcname,pscrid=pscrid
                         )
         self._multilangcols = multilangcols
     #__init__
