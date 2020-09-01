@@ -1,6 +1,6 @@
 from datetime import date
 from .baseobject import Baseobject
-from IM_DB import dbDML
+
 
 
 class Modelelemtype(Baseobject):
@@ -18,6 +18,7 @@ class Modelelemtype(Baseobject):
     DOCU: str = 'DOCU'
     KEYS: str = 'KEYS'
     DATY: str = 'DATY'
+    DGRM: str = 'DGRM'
 
     _tablename: str = 'modelelem_type'
     _prefix: str = 'melt'
@@ -136,7 +137,7 @@ CREATE TABLE MODELELEMENT
     (
      MODE_ID INTEGER NOT NULL primary key autoincrement ,
      MODE_TYPE VARCHAR (4) NOT NULL CHECK ( MODE_TYPE IN ('ARCS', 'ATTR', 'BURU', 'COLU', 'DOMA', 'ENTI'
-                            , 'INTF', 'ORGU', 'RELA', 'SYNO', 'TABL','DOCU','KEYS','DATY') ) ,
+                            , 'INTF', 'ORGU', 'RELA', 'SYNO', 'TABL','DOCU','KEYS','DATY','DGRM') ) ,
      MODE_MELT_ID NUMERIC (10) NOT NULL
      ,CONSTRAINT MODE_MELT_FK FOREIGN KEY     (     MODE_MELT_ID)
         REFERENCES MODELELEM_TYPE(     MELT_ID )
@@ -181,6 +182,8 @@ CREATE TABLE MODELELEMENT
             element = Schnittstelle.getbyid(mode_id)
         elif mode.mode_type == Modelelemtype.ARCS:
             element = Arc.getbyid(mode_id)
+        elif mode.mode_type == Modelelemtype.DGRM:
+            element = DefaultValue.getbyid(mode_id)
         else:
             element = None
         return element

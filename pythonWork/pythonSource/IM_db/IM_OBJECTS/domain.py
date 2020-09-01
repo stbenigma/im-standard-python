@@ -44,7 +44,7 @@ class Domain(MultilangBaseobject):
         super().__init__(tablename=Domain._tablename, prefix=Domain._prefix
                          , columnlist=Domain._columnlist
                          , multilangcols={'doma_name': Sprachtext.DOMA_NAME}
-                         , pmodelemtype=Modelelemtype.DATY
+                         , pmodelemtype=Modelelemtype.DOMA
                          , pscrid=psrcid
                          , psrcname=psrcname
                          )
@@ -306,114 +306,123 @@ CREATE TABLE DOMAINS
 
 # Domain
 
-class Wertebereichgruppe(Baseobject):
-    _tablename: str = 'wertebereichgruppen'
-    _prefix: str = 'wbgr'
-    _columnlist: list = ['wbgr_id', 'wbgr_name', 'wbgr_beschr',
-                         'wbgr_doma_id_gruppe', 'wbgr_doma_id_member', 'wbgr_type_ref',
-                         'wbgr_uc', 'wbgr_dc', 'wbgr_um',
-                         'wbgr_dm'
+class Domaingroup(Baseobject):
+    _tablename: str = 'domaingroup_members'
+    _prefix: str = 'dgrm'
+    _columnlist: list = ['dgrm_id', 'dgrm_name', 'dgrm_descr','dgrm_is_mandatory'
+                         'dgrm_doma_id_group', 'dgrm_doma_id_member',
+                         'dgrm_uc', 'dgrm_dc', 'dgrm_um',
+                         'dgrm_dm'
                          ]
 
-    def __init__(self):
-        super().__init__(tablename=Wertebereichgruppe._tablename, prefix=Wertebereichgruppe._prefix
-                         , columnlist=Wertebereichgruppe._columnlist)
+    def __init__(self,psrcname=None,psrcid=None ):
+        super().__init__(tablename=Domaingroup._tablename, prefix=Domaingroup._prefix
+                         , columnlist=Domaingroup._columnlist
+                         , pmodelemtype=Modelelemtype.DGRM
+                         , pscrid=psrcid
+                         , psrcname=psrcname
+                         )
 
     @staticmethod
     def createtable():
-        Baseobject.createtable(ptablename=Wertebereichgruppe._tablename
+        Baseobject.createtable(ptablename=Domaingroup._tablename
                                , psql="""
-        create table wertebereichgruppen
+CREATE TABLE DOMAINGROUP_MEMBERS
     (
-    wbgr_id               integer not null primary key autoincrement,
-    wbgr_name             varchar(60)not null,
-    wbgr_beschr           varchar(4000)null,
-    wbgr_doma_id_gruppe   integer not null ,
-     wbgr_doma_id_member integer not null , 
-	 wbgr_type_ref	varchar(40),
-     wbgr_uc varchar (30) not null , 
-     wbgr_dc varchar (30) not null , 
-     wbgr_um varchar (30)    null,
-      wbgr_dm varchar (30) null
-,constraint wbgr_doma_uk unique (wbgr_doma_id_gruppe ,wbgr_name )
-,constraint wbgr_doma_fk_gruppe foreign key(wbgr_doma_id_gruppe)
-        references DOMAINS(doma_id) on delete cascade
-,constraint wbgr_doma_fk_member foreign key(wbgr_doma_id_member)
-        references DOMAINS(doma_id) 
-	)
+     DGRM_ID INTEGER NOT NULL primary key autoincrement,
+     DGRM_NAME VARCHAR (4000) NOT NULL ,
+     DGRM_DESCR VARCHAR (4000) NULL ,
+     DRGM_IS_MANDATORY VARCHAR (5) NOT NULL CHECK ( DRGM_IS_MANDATORY IN ('FALSE', 'TRUE') ) ,
+     DGRM_DOMA_ID_GROUP NUMERIC (10) NOT NULL  ,
+     DGRM_DOMA_ID_MEMBER NUMERIC (10) NOT NULL ,
+     DGRM_UC VARCHAR (30) NOT NULL ,
+     DGRM_DC VARCHAR (30) NOT NULL ,
+     DGRM_UM VARCHAR (30) NULL ,
+     DGRM_DM VARCHAR (30) NULL
+    ,CONSTRAINT DGRM_DOMA_UK UNIQUE (DGRM_DOMA_ID_GROUP ASC, DGRM_NAME ASC)
+    ,CONSTRAINT DGRM_DOMA_FK_GROUP FOREIGN KEY    (     DGRM_DOMA_ID_GROUP)
+		REFERENCES DOMAINS    (     DOMA_ID )
+    ,CONSTRAINT DGRM_DOMA_FK_MEMBER FOREIGN KEY(     DGRM_DOMA_ID_MEMBER)
+		REFERENCES DOMAINS    (     DOMA_ID )
+    ,CONSTRAINT DGRM_MODE_FK FOREIGN KEY    (     DGRM_ID)
+		REFERENCES MODELELEMENT    (     MODE_ID )
+    ON DELETE CASCADE
+)
     """);
 
     @staticmethod
     def delete():
-        Baseobject.delete(Wertebereichgruppe._tablename)
+        Baseobject.delete(Domaingroup._tablename)
 
     @staticmethod
     def select(pwhere=None, porderby=None):
-        return Baseobject.select(pclass=Wertebereichgruppe
+        return Baseobject.select(pclass=Domaingroup
                                  , pwhere=pwhere, porderby=porderby)
 
     @staticmethod
     def updmembers():
         ukwnid = Domain().getunknown().doma_id
-        lupd = """update wertebereichgruppen 
-            set wbgr_doma_id_member = 
+        lupd = """update domaingroup_members 
+            set dgrm_doma_id_member = 
             case when (select doma_id
                      from DOMAINS 
-                    where doma_odm_guid = wbgr_type_ref) 
+                    where doma_odm_guid = dgrm_type_ref) 
                 is null
              then {} 
              else (select doma_id
              from DOMAINS 
-             where doma_odm_guid = wbgr_type_ref)
+             where doma_odm_guid = dgrm_type_ref)
              end
-            where wbgr_doma_id_member = {}
+            where dgrm_doma_id_member = {}
         """.format(ukwnid, ukwnid)
         dbDML.exec(lupd)
 
 
-# Wertebereichgruppe
+# Domaingroup
 
-class Vorgabevalue(Baseobject):
-    _tablename: str = 'vorgabewerte'
-    _prefix: str = 'vgwt'
-    _columnlist: list = ['vgwt_id', 'vgwt_guid', 'vgwt_value',
-                         'vgwt_sortrhfg', 'vgwt_doma_id', 'vgwt_anzeige',
-                         'vgwt_beschr', 'vgwt_uc', 'vgwt_dc',
-                         'vgwt_um', 'vgwt_dm'
+class DefaultValue(Baseobject):
+    _tablename: str = 'default_values'
+    _prefix: str = 'deva'
+    _columnlist: list = ['deva_id', 'deva_value',
+                         'deva_sort_order', 'deva_doma_id', 'deva_displ',
+                         'deva_descr', 'deva_uc', 'deva_dc',
+                         'deva_um', 'deva_dm'
                          ]
 
     def __init__(self):
-        super().__init__(tablename=Vorgabevalue._tablename, prefix=Vorgabevalue._prefix
-                         , columnlist=Vorgabevalue._columnlist)
+        super().__init__(tablename=DefaultValue._tablename, prefix=DefaultValue._prefix
+                         , columnlist=DefaultValue._columnlist)
 
     @staticmethod
     def createtable():
-        Baseobject.createtable(ptablename=Vorgabevalue._tablename
+        Baseobject.createtable(ptablename=DefaultValue._tablename
                                , psql="""
-        CREATE TABLE vorgabewerte(
-    vgwt_id               integer NOT NULL primary key autoincrement,
-	vgwt_guid varchar(40),
-    vgwt_value              VARCHAR(100) NOT NULL,
-    vgwt_sortrhfg          integer NULL,
-    vgwt_doma_id           integer NOT NULL,
-    vgwt_anzeige   varchar(200),
-    vgwt_beschr    varchar(4000),
-    vgwt_uc         varchar(30) NOT NULL,
-    vgwt_dc        varchar(30) NOT NULL,
-    vgwt_um        varchar(30),
-    vgwt_dm        varchar(30),
-	constraint vgwt_uk unique (vgwt_doma_id,vgwt_value),
-	constraint vgwt_doma_fk foreign key (vgwt_doma_id) references DOMAINS(doma_id) ON DELETE CASCADE
-    )
+CREATE TABLE DEFAULT_VALUES
+    (
+     DEVA_ID INTEGER NOT NULL primary key autoincrement,
+     DEVA_DOMA_ID NUMERIC (10) NOT NULL ,
+     DEVA_VALUE VARCHAR (100) NOT NULL ,
+     DEVA_SORT_ORDER NUMERIC (3) NULL ,
+     DEVA_DISPL VARCHAR (4000) NULL ,
+     DEVA_DESCR VARCHAR (4000) NULL ,
+     DEVA_UC VARCHAR(30) NULL  ,
+     DEVA_DC VARCHAR (30) NOT NULL ,
+     DEVA_UM VARCHAR (30) NULL ,
+     DEVA_DM VARCHAR (30) NULL
+    ,CONSTRAINT DEVA_UK UNIQUE (DEVA_DOMA_ID ASC, DEVA_VALUE ASC)
+    ,CONSTRAINT DEVA_DOMA_FK FOREIGN KEY    (     DEVA_DOMA_ID)
+		REFERENCES DOMAINS    (     DOMA_ID )
+    ON DELETE CASCADE
+)
     """)
 
     @staticmethod
     def delete():
-        Baseobject.delete(Vorgabevalue._tablename)
+        Baseobject.delete(DefaultValue._tablename)
 
     @staticmethod
-    def select(pwhere=None, porderby="vgwt_sortrhfg"):
-        return Baseobject.select(pclass=Vorgabevalue
+    def select(pwhere=None, porderby="deva_sort_order"):
+        return Baseobject.select(pclass=DefaultValue
                                  , pwhere=pwhere, porderby=porderby)
 
-# Vorgabewert
+# DefaultValue

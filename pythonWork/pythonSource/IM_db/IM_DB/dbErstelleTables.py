@@ -29,8 +29,8 @@ def erstelleInfra():
     Schluesselelement.createtable()
 
     Domain.createtable()
-    Wertebereichgruppe.createtable()
-    Vorgabevalue.createtable()
+    Domaingroup.createtable()
+    DefaultValue.createtable()
 
     Attribut.createtable()
 

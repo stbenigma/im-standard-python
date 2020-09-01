@@ -9,7 +9,7 @@ from .sprache import Sprache
 from .sprachtext import Sprachtext
 from .tablentimap import TablEntiMap
 from .document import Document, ModelelemDocu
-from .domain import Domain, Wertebereichgruppe, Vorgabevalue
+from .domain import Domain, Domaingroup, DefaultValue
 from .modelelement import Modelelemtype,Modelelement
 from .diagramme import Diagramm,Diagrammtyp
 from .entitaet import Entitaet,Synonym

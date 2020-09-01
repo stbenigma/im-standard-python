@@ -91,33 +91,34 @@ def do1structtype(filename):
     structdom = structdomains.getroot()
     if (findField(structdom, "class") != "oracle.dbtools.crest.model.design.datatypes.StructuredType"): return
     # print (findField(structdom,"name"))
-    doma = Domain()
+    doma = Domain(psrcname=Externalref.SOURCE_ODM,psrcid=findField(structdom, "id"))
     doma.doma_name = findField(structdom, "name")
     doma.doma_uc = findText(structdom, "createdBy")
     doma.doma_dc = findText(structdom, "createdTime")
     doma.doma_type = 'GRP'
     doma.doma_origin = Domain.DOMAIN
     doma.insert()
-    Externalref(psrcname=Externalref.SOURCE_ODM, psrcid=findField(structdom, "id"), pmodeid=doma.doma_id).insert()
 
     elements = structdom.findall("attributes/Attribute")
     for el in elements:
         # print (doma.doma_name,findField(el,"name"),findText(el,'type'))
-        wbgr = Wertebereichgruppe()
-        wbgr.wbgr_type_ref = findText(el, 'type')
-        wbgr.wbgr_doma_id_gruppe = doma.doma_id
-        wbgr.wbgr_name = findField(el, "name")
-        wbgr.wbgr_beschr = findText(el, "comment")
-        wbgr.wbgr_uc = findText(el, "createdBy")
-        wbgr.wbgr_dc = findText(el, "createdTime")
-        elwrtb = Domain().getbyextref(wbgr.wbgr_type_ref)
+        dgrm = Domaingroup(psrcname=Externalref.SOURCE_ODM,pscrid=findText(el,'id'))
+        daty = Modelelement.getelementbyextref(psrcid=findText(pxml, 'type'),
+                                               psrcname=Externalref.SOURCE_ODM)
+        dgrm.dgrm_doma_id_group = doma.doma_id
+        dgrm.dgrm_name = findField(el, "name")
+        dgrm.dgrm_descr = findText(el, "comment")
+        dgrm.dgrm_uc = findText(el, "createdBy")
+        dgrm.dgrm_dc = findText(el, "createdTime")
+        dgrm.dgrm_is_mandatory = Boolean.bool2str(Boolean.str2bool(findText(el, "mandatory")))
+        elwrtb = Domain().getbyextref(type)
         if elwrtb is None:
             # nimm vorläufig unknown, da mein Typ evtl. noch nicht da ist.
             elwrtbid = Domain().getunknown().doma_id
         else:
             elwrtbid = elwrtb.doma_id
-        wbgr.wbgr_doma_id_member = elwrtbid
-        wbgr.insert()
+        dgrm.dgrm_doma_id_member = elwrtbid
+        xxdgrm.insert()
     # for
 
 
@@ -135,10 +136,10 @@ def liesunsfuelldoma(pdoma, pxml):
 
     lov = pxml.find('listOfValues')
     if (lov is not None) and (lov != {}):
-        pdoma.doma_typ = 'LOV'
+        pdoma.doma_type = Domain.LOV
         lovs = dict()
         for lovval in lov:
-            #                print (findField(lovval,'value'),findField(lovval,'description'),lovval.attrib)
+            # print (findField(lovval,'value'),findField(lovval,'description'),lovval.attrib)
             lovs.update({findField(lovval, 'value'): findField(lovval, 'description')})
         # endfor
         # print (len(lovs))
@@ -154,11 +155,11 @@ def liesunsfuelldoma(pdoma, pxml):
 
     if (pdoma.doma_type == 'BIN'):
         pdoma.doma_bin_contenttype = 'BILD'  # 'FILM','GRAPH','TEXT','TON'
-        doma_bin_spfo_id = None
+        pdoma.doma_bin_spfo_id = None
     elif (pdoma.doma_type == 'LOV'):
         zahl = re.search('\A\d* ', nvl(findText(pxml, 'dataTypeSize')))
         pdoma.doma_text_maxlng = zahl.group() if not (zahl is None) else None
-    elif (pdoma.doma_type == 'TEXT'):
+    elif (pdoma.doma_type == Domain.TXT):
         #            print(re.search('\A\d* ','123 ab').group())
         zahl = re.search('\A\d* ', nvl(findText(pxml, 'dataTypeSize')))
         pdoma.doma_text_maxlng = zahl.group() if not (zahl is None) else None
@@ -168,17 +169,17 @@ def liesunsfuelldoma(pdoma, pxml):
             impl = constr.find('implementationDef')
             if not (impl is None):
                 pdoma.doma_text_syntaxrule = findField(impl, 'definition')
-    elif (pdoma.doma_type == 'ZPKT'):
+    elif (pdoma.doma_type == Domain.DAT):
         pdoma.doma_dat_minvalue = range[0]
         pdoma.doma_dat_maxvalue = range[1]
-        pdoma.doma_dat_granularitaet = 'MINUTE'
+        pdoma.doma_dat_granularity = Domain.MINUTE
     elif (pdoma.doma_type == 'NUM'):
         pdoma.doma_num_minvalue = range[0]
         pdoma.doma_num_maxvalue = range[1]
         prec = findText(pxml, 'dataTypePrecision')
         scale = findText(pxml, 'dataTypeScale')
         pdoma.doma_num_fract_digits = 0 if scale is None else int(scale)
-        pdoma.doma_num_total_digits = 0 if prec is None else int(prec) - pdoma.doma_num_fract_digits
+        pdoma.doma_num_total_digits = 0 if prec is None else int(prec)
         pdoma.doma_num_round_value = None
         pdoma.doma_phyu_id = PhysicalUnit.getorcreate(pname=findText(root, 'unitOfMeasure')).phyu_id
     # fi
@@ -186,14 +187,14 @@ def liesunsfuelldoma(pdoma, pxml):
 
     if (lov is not None) & (lov != {}):
         for idx, key in enumerate(lovs.keys(), start=1):
-            vgwt = Vorgabevalue()
-            vgwt.vgwt_value = key
-            vgwt.vgwt_doma_id = pdoma.doma_id
-            vgwt.vgwt_sortrhfg = idx
-            vgwt.vgwt_uc = pdoma.doma_uc
-            vgwt.vgwt_dc = pdoma.doma_dc
-            vgwt.vgwt_anzeige = lovs[key]
-            vgwt.insert()
+            deva = DefaultValue()
+            deva.deva_value = key
+            deva.deva_doma_id = pdoma.doma_id
+            deva.deva_sort_order = idx
+            deva.deva_uc = pdoma.doma_uc
+            deva.deva_dc = pdoma.doma_dc
+            deva.deva_displ = lovs[key]
+            deva.insert()
         # for
     # fi
 
@@ -212,7 +213,7 @@ def transferDomains():
     dosegfiles(pdirec=parameters.odmstructypesdir(), transferfiles=do1structtype)
 
     """update group domains a their types may now be available"""
-    Wertebereichgruppe.updmembers()
+    Domaingroup.updmembers()
 
 
 # end transferDomains
@@ -1060,17 +1061,17 @@ def do1UDPFile(pudpThema, pfileName):
             items = lov.findall('item')
             for val in items:
                 # print (findField(val,'value'),findField(val,'default'))
-                vgwt = Vorgabevalue()
-                vgwt.vgwt_value = findField(val, 'value')
-                vgwt.vgwt_doma_id = wrtbId
-                vgwt.vgwt_anzeige = findField(val, 'value')
-                vgwt.vgwt_uc = 'system'
-                vgwt.vgwt_dc = date.today().__str__()
+                deva = DefaultValue()
+                deva.deva_value = findField(val, 'value')
+                deva.deva_doma_id = wrtbId
+                deva.deva_anzeige = findField(val, 'value')
+                deva.deva_uc = 'system'
+                deva.deva_dc = date.today().__str__()
                 try:
-                    vgwt.insert(pdoerrhdlng=False)
+                    deva.insert(pdoerrhdlng=False)
                 except (sqlite3.IntegrityError):
                     logging.writelog("duplicate entry in Vorgabewerte theme:'{}' property:'{}' value:'{}'"
-                                     .format(pudpThema, propname, vgwt.vgwt_value))
+                                     .format(pudpThema, propname, deva.deva_value))
 
             # for
             Userdefprop.setdomid(pdomid=wrtbId, pudpid=udpId)
@@ -1172,8 +1173,8 @@ def loeschmodell():
     Modelelement.delete()
     Diagramm.delete()
     dbDML.delete("benudef_eigenschaft")
-    Vorgabevalue.delete()
-    Wertebereichgruppe.delete()
+    DefaultValue.delete()
+    Domaingroup.delete()
     Domain.delete()
     dbDML.delete("speicherformate")
     dbDML.delete("linie_segment")
