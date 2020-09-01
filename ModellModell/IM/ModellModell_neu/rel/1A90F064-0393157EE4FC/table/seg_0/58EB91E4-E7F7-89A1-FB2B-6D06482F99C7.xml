@@ -51,24 +51,20 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="DOCU_FORMAT" id="70D9D057-DB1F-8EB2-FFAD-B7CC76E4CEA3">
+<Column name="DOCU_STFO_ID" id="B0D93210-C29A-A74E-314B-7E8AAE9268A2">
 <createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:18:16 UTC</createdTime>
-<generatorID>E5D88FE0-E055-DD87-A855-56D053982267</generatorID>
-<notes><![CDATA[[DE_ATTR_COMMENT[
-
-]DE_ATTR_COMMENT]
-[EN_ATTR_COMMENT[
-
-]EN_ATTR_COMMENT]
-]]></notes>
+<createdTime>2020-09-01 15:22:38 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <use>0</use>
-<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
-<domain>6F7CFEB3-F007-D17C-AA67-F209D129C3DE</domain>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="0F4A39B4-CAA6-A0EE-FF37-49C6EEF86588" referredColumn="7D1BEA00-4DC7-50F9-D083-11C1BEA8F3FE"/>
+</associations>
 </Column>
 <Column name="DOCU_REFERENCE" id="8867AFA7-D7DB-C529-26E5-CB59D31835B1">
 <createdBy>stb</createdBy>
@@ -148,6 +144,16 @@ Reference to a file system or a web page.
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
 <colUsage columnID="EA2179DE-64D6-A7D8-576B-9C731E182502"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="1BD3859D-D08E-E472-85F4-3E6CED336739" name="DOCU_STFO_FK">
+<createdBy>stb</createdBy>
+<createdTime>2020-09-01 15:22:38 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="B0D93210-C29A-A74E-314B-7E8AAE9268A2"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>

@@ -31,12 +31,12 @@ class Domain(MultilangBaseobject):
     TEXT: str = 'TEXT'
     _tablename: str = 'domains'
     _prefix: str = 'doma'
-    _columnlist: list = ['doma_id', 'doma_business_rule', 'doma_name', 'doma_descr',
-                         'doma_type', 'doma_origin', 'doma_dat_minwert', 'doma_dat_maxwert',
-                         'doma_dat_granularity', 'doma_txt_maxlng', 'doma_txt_syntaxrule', 'doma_num_maxwert',
-                         'doma_num_minwert', 'doma_total_digits', 'doma_fract_digits', 'doma_num_round_value',
-                         'doma_num_pheh_id', 'doma_bin_contenttype', 'doma_bin_spfo_id', 'doma_daty_id',
-                         'doma_schn_id', 'doma_daty_id', 'doma_uc', 'doma_dc',
+    _columnlist: list = ['doma_id', 'doma_name', 'doma_descr',
+                         'doma_type', 'doma_origin', 'doma_dat_minvalue', 'doma_dat_maxvalue',
+                         'doma_dat_granularity', 'doma_txt_maxlng', 'doma_txt_syntaxrule', 'doma_num_maxvalue',
+                         'doma_num_minvalue', 'doma_num_total_digits', 'doma_num_fract_digits', 'doma_num_round_value',
+                         'doma_num_phyu_id', 'doma_bin_contenttype', 'doma_bin_stfo_id', 'doma_daty_id',
+                          'doma_daty_id', 'doma_uc', 'doma_dc',
                          'doma_um', 'doma_dm']
     __unknowndom = None
 
@@ -160,28 +160,28 @@ CREATE TABLE DOMAINS
             , Sprachtext.transl('geändert'))
             infovalues = (nvl(self.doma_type), nvl(self.doma_total_digits), nvl(self.doma_fract_digits),
                           nvl(self.doma_num_round_value), nvl(self.doma_num_pheh_id)
-                          , nvl(self.doma_num_minwert), nvl(self.doma_num_maxwert)
+                          , nvl(self.doma_num_minvalue), nvl(self.doma_num_maxvalue)
                           , nvl(self.doma_uc) + ',' + nvl(self.doma_dc))
             typestring += " ({}{}) {} {}".format(nvl(self.doma_total_digits)
                                                  , '' if self.doma_fract_digits is None else '.' + str(
                     self.doma_fract_digits)
-                                                 , '' if self.doma_num_minwert is None else '>= ' + str(
-                    self.doma_num_minwert)
-                                                 , '' if self.doma_num_maxwert is None else '<= ' + str(
-                    self.doma_num_maxwert))
+                                                 , '' if self.doma_num_minvalue is None else '>= ' + str(
+                    self.doma_num_minvalue)
+                                                 , '' if self.doma_num_maxvalue is None else '<= ' + str(
+                    self.doma_num_maxvalue))
         elif (self.doma_type == Domain.DAT):
             infoheaders = (
             Sprachtext.transl('Datentyp'), Sprachtext.transl('Min. Wert'), Sprachtext.transl('Max. Wwert'),
             Sprachtext.transl('Granularität')
             , Sprachtext.transl('geändert'))
-            infovalues = (nvl(self.doma_type), nvl(self.doma_dat_minwert), nvl(self.doma_dat_maxwert),
+            infovalues = (nvl(self.doma_type), nvl(self.doma_dat_minvalue), nvl(self.doma_dat_maxvalue),
                           Domain.displgranul(nvl(self.doma_dat_granularity)),
                           nvl(self.doma_uc) + ',' + nvl(self.doma_dc))
             typestring += " {} {} {}".format(
                 '' if self.doma_dat_granularity is None else Sprachtext.transl('Granularität =') + Domain.displgranul(
                     self.doma_dat_granularity)
-                , '' if self.doma_dat_minwert is None else '>= ' + self.doma_dat_minwert
-                , '' if self.doma_dat_maxwert is None else '<= ' + self.doma_dat_maxwert)
+                , '' if self.doma_dat_minvalue is None else '>= ' + self.doma_dat_minvalue
+                , '' if self.doma_dat_maxvalue is None else '<= ' + self.doma_dat_maxvalue)
         else:
             infoheaders, infovalues, typestring = None, None, ''
         return [infoheaders, infovalues, typestring]
@@ -373,27 +373,27 @@ class Wertebereichgruppe(Baseobject):
 
 # Wertebereichgruppe
 
-class Vorgabewert(Baseobject):
+class Vorgabevalue(Baseobject):
     _tablename: str = 'vorgabewerte'
     _prefix: str = 'vgwt'
-    _columnlist: list = ['vgwt_id', 'vgwt_guid', 'vgwt_wert',
+    _columnlist: list = ['vgwt_id', 'vgwt_guid', 'vgwt_value',
                          'vgwt_sortrhfg', 'vgwt_doma_id', 'vgwt_anzeige',
                          'vgwt_beschr', 'vgwt_uc', 'vgwt_dc',
                          'vgwt_um', 'vgwt_dm'
                          ]
 
     def __init__(self):
-        super().__init__(tablename=Vorgabewert._tablename, prefix=Vorgabewert._prefix
-                         , columnlist=Vorgabewert._columnlist)
+        super().__init__(tablename=Vorgabevalue._tablename, prefix=Vorgabevalue._prefix
+                         , columnlist=Vorgabevalue._columnlist)
 
     @staticmethod
     def createtable():
-        Baseobject.createtable(ptablename=Vorgabewert._tablename
+        Baseobject.createtable(ptablename=Vorgabevalue._tablename
                                , psql="""
         CREATE TABLE vorgabewerte(
     vgwt_id               integer NOT NULL primary key autoincrement,
 	vgwt_guid varchar(40),
-    vgwt_wert              VARCHAR(100) NOT NULL,
+    vgwt_value              VARCHAR(100) NOT NULL,
     vgwt_sortrhfg          integer NULL,
     vgwt_doma_id           integer NOT NULL,
     vgwt_anzeige   varchar(200),
@@ -402,18 +402,18 @@ class Vorgabewert(Baseobject):
     vgwt_dc        varchar(30) NOT NULL,
     vgwt_um        varchar(30),
     vgwt_dm        varchar(30),
-	constraint vgwt_uk unique (vgwt_doma_id,vgwt_wert),
+	constraint vgwt_uk unique (vgwt_doma_id,vgwt_value),
 	constraint vgwt_doma_fk foreign key (vgwt_doma_id) references DOMAINS(doma_id) ON DELETE CASCADE
     )
     """)
 
     @staticmethod
     def delete():
-        Baseobject.delete(Vorgabewert._tablename)
+        Baseobject.delete(Vorgabevalue._tablename)
 
     @staticmethod
     def select(pwhere=None, porderby="vgwt_sortrhfg"):
-        return Baseobject.select(pclass=Vorgabewert
+        return Baseobject.select(pclass=Vorgabevalue
                                  , pwhere=pwhere, porderby=porderby)
 
 # Vorgabewert

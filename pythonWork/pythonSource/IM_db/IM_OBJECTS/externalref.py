@@ -45,14 +45,14 @@ CREATE TABLE EXTERNAL_REFS
     @staticmethod
     def getmodeid(psrcname,psrcid):
         extrs = Externalref.select (pwhere="extr_source_name = '{}' and extr_source_id = '{}'".format(psrcname,psrcid))
-        modeid = None if length(extr) == 0 else extrs[0].extr_mode_id
+        modeid = None if len(extrs) == 0 else extrs[0].extr_mode_id
         return modeid
     # getmodeid
 
     @staticmethod
     def getsrcid(psrcname,pmodeid):
         extrs = Externalref.select (pwhere="extr_source_name = '{}' and extr_mode_id = '{}'".format(psrcname,pmodeid))
-        srcid = None if length(extr) == 0 else extrs[0].extr_source_id
+        srcid = None if len(extr) == 0 else extrs[0].extr_source_id
         return srcid
     # getsrcid
 

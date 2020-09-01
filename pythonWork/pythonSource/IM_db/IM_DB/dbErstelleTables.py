@@ -6,6 +6,8 @@ from IM_OBJECTS import *
 
 def erstelleInfra():
     #erlaube alles droppen
+    PhysicalUnit.createtable()
+    Storageformat.createtable()
     Schnittstelle.createtable()
     Tabelle.createtable()
     Schnittstelleattr.createtable()
@@ -28,7 +30,7 @@ def erstelleInfra():
 
     Domain.createtable()
     Wertebereichgruppe.createtable()
-    Vorgabewert.createtable()
+    Vorgabevalue.createtable()
 
     Attribut.createtable()
 

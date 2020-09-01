@@ -7,7 +7,7 @@ from .externalref import Externalref
 class Document(Baseobject):
     _tablename:str = 'documents'
     _prefix:str = 'docu'
-    _columnlist:list = [ 'docu_id' ,'docu_name', 'docu_format', 'docu_reference', 'docu_docu_id']
+    _columnlist:list = [ 'docu_id' ,'docu_name', 'docu_stfo_id', 'docu_reference', 'docu_docu_id']
 
     def __init__(self,psrcname=None,psrcid=None):
         super().__init__(tablename=self._tablename, prefix=self._prefix
@@ -27,12 +27,15 @@ CREATE TABLE DOCUMENTS
     (
      DOCU_ID INTEGER NOT NULL primary key ,
      DOCU_NAME VARCHAR (60) NOT NULL ,
-     DOCU_FORMAT VARCHAR (20)   ,
+     DOCU_STFO_ID integer NULL ,
      DOCU_REFERENCE VARCHAR (500) NULL ,
      DOCU_CONTENT IMAGE NULL ,
      DOCU_DOCU_ID NUMERIC (10) NULL
-     ,CONSTRAINT DOCU_DOCU_FK FOREIGN KEY(     DOCU_DOCU_ID)
-            REFERENCES DOCUMENTS(     DOCU_ID )
+     ,CONSTRAINT DOCU_DOCU_FK FOREIGN KEY     (     DOCU_DOCU_ID)
+		 REFERENCES DOCUMENTS     (     DOCU_ID )
+	 ,CONSTRAINT DOCU_STFO_FK FOREIGN KEY (     DOCU_STFO_ID)
+		 REFERENCES STORAGE_FORMATS (     STFO_ID )
+	 
     )
 """
         )
@@ -77,8 +80,8 @@ CREATE TABLE DOCUMENTS
     def updparents(psrcname,pparents):
         for key,val in pparents.items():
             # assume, exactly one child and one parent id
-            childid = Externalref.getmodeids(psrcname=psrcname,psrcid=key)[0]
-            parentid = Externalref.getmodeids(psrcname=psrcname,psrcid=val)[0]
+            childid = Externalref.getmodeid(psrcname=psrcname,psrcid=key)
+            parentid = Externalref.getmodeid(psrcname=psrcname,psrcid=val)
             if childid is not None and parentid is not None:
                 dbDML.exec("""
                     update DOCUMENTS as DOK_C
@@ -130,7 +133,7 @@ CREATE TABLE DOCUMENTS
 
     """def xxdocureferenced(prelaid=None,pentiid=None,pattrid=None):
     data = dbDML.select("
-    select child.docu_id, child.docu_NAME,child.docu_FORMAT,child.docu_REFERENZ
+    select child.docu_id, child.docu_NAME,child.docu_stfo_id,child.docu_REFERENZ
        ,parent.docu_ID parent_id,parent.docu_NAME parent_name
  from  docuMENTE child
 left join dokumente parent on parent.docu_ID = child.docu_docu_ID  

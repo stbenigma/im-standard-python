@@ -9,7 +9,7 @@ from .sprache import Sprache
 from .sprachtext import Sprachtext
 from .tablentimap import TablEntiMap
 from .document import Document, ModelelemDocu
-from .domain import Domain, Wertebereichgruppe, Vorgabewert
+from .domain import Domain, Wertebereichgruppe, Vorgabevalue
 from .modelelement import Modelelemtype,Modelelement
 from .diagramme import Diagramm,Diagrammtyp
 from .entitaet import Entitaet,Synonym
@@ -18,4 +18,5 @@ from .schluessel import Schluessel,Schluesselelement
 from .relationship import Arc,Relation
 from .userdefprop import Userdefprop,Userdefpropvalue
 from .externalref import Externalref
+from .physicals import PhysicalUnit, Storageformat
 

@@ -124,15 +124,14 @@ def do1structtype(filename):
 def liesunsfuelldoma(pdoma, pxml):
     pdoma.doma_uc = findText(pxml, 'createdBy')
     pdoma.doma_dc = findText(pxml, 'createdTime')
-    modeids = Externalref.getmodeids(psrcid=findText(pxml, 'logicalDatatype'),psrcname=Externalref.SOURCE_ODM)
-    if length(modeids) == 1:
-        daty_id = modeids[0]
+    daty = Modelelement.getelementbyextref(psrcid=findText(pxml, 'logicalDatatype'),psrcname=Externalref.SOURCE_ODM)
+    if daty is None:
+        pdoma.doma_daty_id = None
+        pdoma.doma_type = Domain.TXT
     else:
-        daty_id = None
-    pdoma.doma_daty_id = daty_id
-    pdoma.doma_type = Domain. if (daty is None or daty.daty_grundtyp is None) else daty.daty_grundtyp
-
-    # print (pdoma.doma_datatype_ref,pdoma.doma_typ )
+        pdoma.doma_daty_id = daty.daty_id
+        pdoma.doma_type = Domain.TXT if (daty.daty_basetype is None) \
+                                    else Domain.basetype2domatype(pdatybasetype=daty.daty_basetype)
 
     lov = pxml.find('listOfValues')
     if (lov is not None) and (lov != {}):
@@ -153,13 +152,13 @@ def liesunsfuelldoma(pdoma, pxml):
 
     # noch nicht übernommenm< defaultValue > a @ b.ch < / defaultValue >
 
-    if (pdoma.doma_typ == 'BIN'):
-        pdoma.doma_bin_inhalttyp = 'BILD'  # 'FILM','GRAPH','TEXT','TON'
+    if (pdoma.doma_type == 'BIN'):
+        pdoma.doma_bin_contenttype = 'BILD'  # 'FILM','GRAPH','TEXT','TON'
         doma_bin_spfo_id = None
-    elif (pdoma.doma_typ == 'LOV'):
+    elif (pdoma.doma_type == 'LOV'):
         zahl = re.search('\A\d* ', nvl(findText(pxml, 'dataTypeSize')))
         pdoma.doma_text_maxlng = zahl.group() if not (zahl is None) else None
-    elif (pdoma.doma_typ == 'TEXT'):
+    elif (pdoma.doma_type == 'TEXT'):
         #            print(re.search('\A\d* ','123 ab').group())
         zahl = re.search('\A\d* ', nvl(findText(pxml, 'dataTypeSize')))
         pdoma.doma_text_maxlng = zahl.group() if not (zahl is None) else None
@@ -168,27 +167,27 @@ def liesunsfuelldoma(pdoma, pxml):
             # print(constr.findall('*'))
             impl = constr.find('implementationDef')
             if not (impl is None):
-                pdoma.doma_text_syntaxregel = findField(impl, 'definition')
-    elif (pdoma.doma_typ == 'ZPKT'):
-        pdoma.doma_zpkt_minwert = range[0]
-        pdoma.doma_zpkt_maxwert = range[1]
-        pdoma.doma_zpkt_granularitaet = 'MINUTE'
-    elif (pdoma.doma_typ == 'NUM'):
-        pdoma.doma_num_minwert = range[0]
-        pdoma.doma_num_maxwert = range[1]
+                pdoma.doma_text_syntaxrule = findField(impl, 'definition')
+    elif (pdoma.doma_type == 'ZPKT'):
+        pdoma.doma_dat_minvalue = range[0]
+        pdoma.doma_dat_maxvalue = range[1]
+        pdoma.doma_dat_granularitaet = 'MINUTE'
+    elif (pdoma.doma_type == 'NUM'):
+        pdoma.doma_num_minvalue = range[0]
+        pdoma.doma_num_maxvalue = range[1]
         prec = findText(pxml, 'dataTypePrecision')
         scale = findText(pxml, 'dataTypeScale')
-        pdoma.doma_num_nachkstellen = 0 if scale is None else int(scale)
-        pdoma.doma_num_vorkstellen = 0 if prec is None else int(prec) - pdoma.doma_num_nachkstellen
-        pdoma.doma_num_rundng_einh = None
-        pdoma.doma_num_pheh = findText(pxml, 'unitOfMeasure')
+        pdoma.doma_num_fract_digits = 0 if scale is None else int(scale)
+        pdoma.doma_num_total_digits = 0 if prec is None else int(prec) - pdoma.doma_num_fract_digits
+        pdoma.doma_num_round_value = None
+        pdoma.doma_phyu_id = PhysicalUnit.getorcreate(pname=findText(root, 'unitOfMeasure')).phyu_id
     # fi
     pdoma.insert()
 
     if (lov is not None) & (lov != {}):
         for idx, key in enumerate(lovs.keys(), start=1):
-            vgwt = Vorgabewert()
-            vgwt.vgwt_wert = key
+            vgwt = Vorgabevalue()
+            vgwt.vgwt_value = key
             vgwt.vgwt_doma_id = pdoma.doma_id
             vgwt.vgwt_sortrhfg = idx
             vgwt.vgwt_uc = pdoma.doma_uc
@@ -200,11 +199,10 @@ def liesunsfuelldoma(pdoma, pxml):
 
 
 def transferDomains():
-    # print(parameters.odmDomainsFilePath())
     domains = ET.parse(parameters.odmDomainsFilePath())
     root = domains.getroot()
     for dom in root.findall('domains/Domain'):
-        doma = Domain(psrcname=Externalref.SOURCE_ODM,pscrid=findField(dom, "id"))
+        doma = Domain(psrcname=Externalref.SOURCE_ODM,psrcid=findField(dom, "id"))
         doma.doma_name = findField(dom, "name")
         doma.doma_descr = findText(dom, 'comment')
         doma.doma_origin = Domain.DOMAIN
@@ -1062,8 +1060,8 @@ def do1UDPFile(pudpThema, pfileName):
             items = lov.findall('item')
             for val in items:
                 # print (findField(val,'value'),findField(val,'default'))
-                vgwt = Vorgabewert()
-                vgwt.vgwt_wert = findField(val, 'value')
+                vgwt = Vorgabevalue()
+                vgwt.vgwt_value = findField(val, 'value')
                 vgwt.vgwt_doma_id = wrtbId
                 vgwt.vgwt_anzeige = findField(val, 'value')
                 vgwt.vgwt_uc = 'system'
@@ -1072,7 +1070,7 @@ def do1UDPFile(pudpThema, pfileName):
                     vgwt.insert(pdoerrhdlng=False)
                 except (sqlite3.IntegrityError):
                     logging.writelog("duplicate entry in Vorgabewerte theme:'{}' property:'{}' value:'{}'"
-                                     .format(pudpThema, propname, vgwt.vgwt_wert))
+                                     .format(pudpThema, propname, vgwt.vgwt_value))
 
             # for
             Userdefprop.setdomid(pdomid=wrtbId, pudpid=udpId)
@@ -1174,7 +1172,7 @@ def loeschmodell():
     Modelelement.delete()
     Diagramm.delete()
     dbDML.delete("benudef_eigenschaft")
-    Vorgabewert.delete()
+    Vorgabevalue.delete()
     Wertebereichgruppe.delete()
     Domain.delete()
     dbDML.delete("speicherformate")
@@ -1190,6 +1188,8 @@ def loeschmodell():
     Sprache.delete()
     Sprachtext.delete()
     dbDML.delete('geschaeftsbereich')
+    PhysicalUnit.delete()
+    Storageformat.delete()
     Projekt.delete()
 
 
@@ -1283,7 +1283,9 @@ def do1Document(fileName):
     id =findField(root, 'id')
     docu = Document(psrcname=Externalref.SOURCE_ODM,psrcid=id)
     docu.docu_name = findField(root, "name")
-    docu.docu_format = findText(root, 'type')
+    type= findText(root, 'type')
+    if type is not None and type != '':
+        docu.docu_stfo_id = Storageformat.getorcreate(pname=type).stfo_id
     docu.docu_reference = findText(root, 'reference')
     pd = findText(root, 'parentDocument')
     if (pd is not None and pd != ''):

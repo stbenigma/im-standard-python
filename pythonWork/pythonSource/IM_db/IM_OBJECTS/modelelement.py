@@ -89,7 +89,7 @@ CREATE TABLE MODELELEM_TYPE
         return Modelelemtype.__meltids[pshortname]
 
     @staticmethod
-    def getshortname(pmeltid: int):
+    def getshortname(pmeltid):
         return Modelelemtype().getbyid(pid).melt_shortname
 
     @staticmethod
@@ -109,7 +109,6 @@ CREATE TABLE MODELELEM_TYPE
         return trans[type]
     # type2melt
 
-
 # Modelelemtype
 
 class Modelelement(Baseobject):
@@ -120,17 +119,13 @@ class Modelelement(Baseobject):
     """
     _tablename: str = 'modelelement'
     _prefix: str = 'mode'
-    _columnlist: list = ['mode_id', 'mode_type', 'mode_melt_id'
-        , 'mode_syno_id',
-                         'mode_wrtb_id', 'mode_attr_id', 'mode_buru_id',
-                         'mode_rela_id', 'mode_enti_id', 'mode_orge_id',
-                         'mode_tabl_id', 'mode_scha_id', 'mode_schn_id']
+    _columnlist: list = ['mode_id', 'mode_type', 'mode_melt_id']
 
-    def __init__(self, pmeltshortname):
+    def __init__(self, pmeltshortname=None):
         super().__init__(tablename=Modelelement._tablename, prefix=Modelelement._prefix
                          , columnlist=Modelelement._columnlist)
         self.mode_type = pmeltshortname
-        self.mode_melt_id = Modelelemtype.getidbyshortname(pshortname=pmeltshortname)
+        if pmeltshortname is not None: self.mode_melt_id = Modelelemtype.getidbyshortname(pshortname=pmeltshortname)
     # __init__
 
     @staticmethod
@@ -143,27 +138,10 @@ CREATE TABLE MODELELEMENT
      MODE_TYPE VARCHAR (4) NOT NULL CHECK ( MODE_TYPE IN ('ARCS', 'ATTR', 'BURU', 'COLU', 'DOMA', 'ENTI'
                             , 'INTF', 'ORGU', 'RELA', 'SYNO', 'TABL','DOCU','KEYS','DATY') ) ,
      MODE_MELT_ID NUMERIC (10) NOT NULL
-    ,mode_syno_id   integer NULL,
-    mode_wrtb_id   integer NULL,
-    mode_attr_id   integer NULL,
-    mode_buru_id   integer NULL,
-    mode_rela_id   integer NULL,
-    mode_enti_id   integer NULL,
-    mode_orge_id   integer NULL,    
-    mode_tabl_id  integer NULL,
-    mode_scha_id  integer NULL,    
-    mode_schn_id  integer NULL
      ,CONSTRAINT MODE_MELT_FK FOREIGN KEY     (     MODE_MELT_ID)
         REFERENCES MODELELEM_TYPE(     MELT_ID )
 )
 """)
-
-    def getodmguid(self):
-        extref = Externalref.getsources(pmodeid=self.mode_id, psource=Externalref.ODM)
-        if len(extref == 0): return None
-        if len(extref == 1): return extref[0].getsrcid()
-        raise Exception("too many rows for source '{}', id '{}'".format(Externalref.ODM, self.mode_id))
-    # getodmguid
 
     @staticmethod
     def delete(pwhere=''):
@@ -175,73 +153,12 @@ CREATE TABLE MODELELEMENT
                                  , pwhere=pwhere, porderby=porderby)
 
     @staticmethod
-    def __id2meltid(pentiid=None, pattrid=None, pburuid=None, pwrtbid=None
-                    , prelaid=None, porgeid=None, psynoid=None, ptablid=None
-                    , pschaid=None, pschnid=None):
-        if pentiid is not None:
-            meltid = (Modelelemtype.ENTI, pentiid)
-        elif pwrtbid is not None:
-            meltid = (Modelelemtype.DOMA, pwrtbid)
-        elif pattrid is not None:
-            meltid = (Modelelemtype.ATTR, pattrid)
-        elif psynoid is not None:
-            meltid = (Modelelemtype.SYNO, psynoid)
-        elif prelaid is not None:
-            meltid = (Modelelemtype.RELA, prelaid)
-        elif pburuid is not None:
-            meltid = (Modelelemtype.BURU, pburuid)
-        elif ptablid is not None:
-            meltid = (Modelelemtype.TABL, ptablid)
-        elif pschaid is not None:
-            meltid = (Modelelemtype.INTF, pschaid)
-        elif pschnid is not None:
-            meltid = (Modelelemtype.INTF, pschnid)
-        elif porgeid is not None:
-            meltid = (Modelelemtype.ORGU, porgeid)
-        else:
-            meltid = (None, None)
-        # fi
-        return meltid
-
-    # id2meltid
-    @staticmethod
-    def __id2melt(pentiid=None, pattrid=None, pburuid=None, pwrtbid=None
-                  , prelaid=None, porgeid=None, psynoid=None, ptablid=None
-                  , pschaid=None, pschnid=None):
-        return Modelelement.__id2meltid(pentiid=pentiid, pattrid=pattrid, pburuid=pburuid, pwrtbid=pwrtbid
-                                        , prelaid=prelaid, porgeid=porgeid, psynoid=psynoid, ptablid=ptablid
-                                        , pschaid=pschaid, pschnid=pschnid)[0]
-
-    @staticmethod
-    def getbyelemid(pentiid=None, pattrid=None, pburuid=None, pwrtbid=None
-                    , prelaid=None, porgeid=None, psynoid=None, ptablid=None
-                    , pschaid=None, pschnid=None):
-        meltid = Modelelement.__id2meltid(pentiid=pentiid, pattrid=pattrid, pburuid=pburuid, pwrtbid=pwrtbid
-                                          , prelaid=prelaid, porgeid=porgeid, psynoid=psynoid, ptablid=ptablid
-                                          , pschaid=pschaid, pschnid=pschnid)
-        colname, id = 'mode_{}_id'.format(meltid[0]), meltid[1]
-        data = Modelelement.select(pwhere="{} = '{}'".format(colname.lower(), id))
-        if ((data is None) or (len(data) == 0)): return None
-        return data[0]
-
-    @staticmethod
-    def getidbyelemid(pentiid=None, pattrid=None, pburuid=None, pwrtbid=None
-                      , prelaid=None, porgeid=None, psynoid=None, ptablid=None
-                      , pschaid=None, pschnid=None):
-        mode = Modelelement.getbyelemid(pentiid=pentiid, pattrid=pattrid, pburuid=pburuid, pwrtbid=pwrtbid
-                                        , prelaid=prelaid, porgeid=porgeid, psynoid=psynoid, ptablid=ptablid
-                                        , pschaid=pschaid, pschnid=pschnid)
-        return None if mode is None else mode.mode_id
-
-    # getidbyelemid
-
-    @staticmethod
     def getelementbyextref(psrcname, psrcid):
         return Modelelement.getelement(pmodeid=Externalref.getmodeid(psrcname=psrcname, psrcid=psrcid))
 
     @staticmethod
     def getelement(pmodeid):
-        mode = Modelelement.getbyid(pmodeid)
+        mode = Modelelement().getbyid(pid=pmodeid)
         if mode.mode_type == Modelelemtype.SYNO:
             element = Synonym.getbyid(mode_id)
         elif mode.mode_type == Modelelemtype.DOMA:
