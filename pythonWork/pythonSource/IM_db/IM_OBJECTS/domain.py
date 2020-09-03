@@ -306,7 +306,7 @@ CREATE TABLE DOMAINS
 
 # Domain
 
-class Domaingroup(Baseobject):
+class DomaingroupMember(Baseobject):
     _tablename: str = 'domaingroup_members'
     _prefix: str = 'dgrm'
     _columnlist: list = ['dgrm_id', 'dgrm_name', 'dgrm_descr','dgrm_is_mandatory'
@@ -316,8 +316,8 @@ class Domaingroup(Baseobject):
                          ]
 
     def __init__(self,psrcname=None,psrcid=None ):
-        super().__init__(tablename=Domaingroup._tablename, prefix=Domaingroup._prefix
-                         , columnlist=Domaingroup._columnlist
+        super().__init__(tablename=DomaingroupMember._tablename, prefix=DomaingroupMember._prefix
+                         , columnlist=DomaingroupMember._columnlist
                          , pmodelemtype=Modelelemtype.DGRM
                          , pscrid=psrcid
                          , psrcname=psrcname
@@ -325,7 +325,7 @@ class Domaingroup(Baseobject):
 
     @staticmethod
     def createtable():
-        Baseobject.createtable(ptablename=Domaingroup._tablename
+        Baseobject.createtable(ptablename=DomaingroupMember._tablename
                                , psql="""
 CREATE TABLE DOMAINGROUP_MEMBERS
     (
@@ -352,11 +352,11 @@ CREATE TABLE DOMAINGROUP_MEMBERS
 
     @staticmethod
     def delete():
-        Baseobject.delete(Domaingroup._tablename)
+        Baseobject.delete(DomaingroupMember._tablename)
 
     @staticmethod
     def select(pwhere=None, porderby=None):
-        return Baseobject.select(pclass=Domaingroup
+        return Baseobject.select(pclass=DomaingroupMember
                                  , pwhere=pwhere, porderby=porderby)
 
     @staticmethod
@@ -378,7 +378,7 @@ CREATE TABLE DOMAINGROUP_MEMBERS
         dbDML.exec(lupd)
 
 
-# Domaingroup
+# DomaingroupMember
 
 class DefaultValue(Baseobject):
     _tablename: str = 'default_values'

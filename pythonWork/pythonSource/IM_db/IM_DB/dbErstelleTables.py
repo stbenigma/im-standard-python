@@ -29,7 +29,7 @@ def erstelleInfra():
     Schluesselelement.createtable()
 
     Domain.createtable()
-    Domaingroup.createtable()
+    DomaingroupMember.createtable()
     DefaultValue.createtable()
 
     Attribut.createtable()

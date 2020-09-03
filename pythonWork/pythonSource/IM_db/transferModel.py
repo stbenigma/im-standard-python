@@ -93,32 +93,54 @@ def do1structtype(filename):
     # print (findField(structdom,"name"))
     doma = Domain(psrcname=Externalref.SOURCE_ODM,psrcid=findField(structdom, "id"))
     doma.doma_name = findField(structdom, "name")
+    doma.doma_descr = findText(structdom, "comment")
     doma.doma_uc = findText(structdom, "createdBy")
     doma.doma_dc = findText(structdom, "createdTime")
     doma.doma_type = 'GRP'
     doma.doma_origin = Domain.DOMAIN
     doma.insert()
+    """    attr.attr_uc = findText(pattrxml, 'createdBy')
+    attr.attr_dc = findText(pattrxml, 'createdTime')
+    attr.attr_doma_id = findorcreateDomain(pdomguid=findText(pattrxml, 'domain')
+                                             , pstructdomguid=findText(pattrxml, 'structuredType')
+                                             , ptypeguid=findText(pattrxml, 'logicalDatatype')
+                                             , pattrname=attr.attr_anzname
+                                             , pvatername=vatername
+                                             , pattrxml=pattrxml)
+    attr.attr_beschr = findText(pattrxml, 'comment')
+"""
 
+
+    """<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:06 UTC</createdTime>
+<generatorID>A6F729CB-93BC-E7BB-4679-2728C137219F</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>A6F729CB-93BC-E7BB-4679-2728C137219F</importedID>
+<mandatory>false</mandatory>
+<precision>4</precision>
+<reference>false</reference>
+<scale>0</scale>
+<type>LOGDT019</type>
+"""
     elements = structdom.findall("attributes/Attribute")
     for el in elements:
         # print (doma.doma_name,findField(el,"name"),findText(el,'type'))
-        dgrm = Domaingroup(psrcname=Externalref.SOURCE_ODM,pscrid=findText(el,'id'))
-        daty = Modelelement.getelementbyextref(psrcid=findText(pxml, 'type'),
-                                               psrcname=Externalref.SOURCE_ODM)
+        dgrm = DomaingroupMember(psrcname=Externalref.SOURCE_ODM, psrcid=findText(el, 'id'))
         dgrm.dgrm_doma_id_group = doma.doma_id
         dgrm.dgrm_name = findField(el, "name")
         dgrm.dgrm_descr = findText(el, "comment")
         dgrm.dgrm_uc = findText(el, "createdBy")
         dgrm.dgrm_dc = findText(el, "createdTime")
+
+        """in struct types the "type" is either datatype or domain """
+        locdom = findorcreateDomain(pdomguid=findText(el, 'type')
+                           , pstructdomguid=findText(pattrxml, 'structuredType')
+                           , ptypeguid=findText(pattrxml, 'logicalDatatype')
+                           , pattrname=dgrm.grrm_name
+                           , pfathername=doma.doma_name
+                           , pattrxml=el)
         dgrm.dgrm_is_mandatory = Boolean.bool2str(Boolean.str2bool(findText(el, "mandatory")))
-        elwrtb = Domain().getbyextref(type)
-        if elwrtb is None:
-            # nimm vorläufig unknown, da mein Typ evtl. noch nicht da ist.
-            elwrtbid = Domain().getunknown().doma_id
-        else:
-            elwrtbid = elwrtb.doma_id
-        dgrm.dgrm_doma_id_member = elwrtbid
-        xxdgrm.insert()
+        dgrm.insert()
     # for
 
 
@@ -181,7 +203,8 @@ def liesunsfuelldoma(pdoma, pxml):
         pdoma.doma_num_fract_digits = 0 if scale is None else int(scale)
         pdoma.doma_num_total_digits = 0 if prec is None else int(prec)
         pdoma.doma_num_round_value = None
-        pdoma.doma_phyu_id = PhysicalUnit.getorcreate(pname=findText(root, 'unitOfMeasure')).phyu_id
+        unitofmeasure = findText(pxml, 'unitOfMeasure')
+        if unitofmeasure is not None: pdoma.doma_phyu_id = PhysicalUnit.getorcreate(pname=unitofmeasure).phyu_id
     # fi
     pdoma.insert()
 
@@ -212,8 +235,8 @@ def transferDomains():
 
     dosegfiles(pdirec=parameters.odmstructypesdir(), transferfiles=do1structtype)
 
-    """update group domains a their types may now be available"""
-    Domaingroup.updmembers()
+    """update group domains as their types may now be available"""
+    DomaingroupMember.updmembers()
 
 
 # end transferDomains
@@ -605,8 +628,24 @@ def insertderiveddomain(ptypeguid, pattrname, pvatername, pattrxml):
 # insertderiveddomain
 
 
-def findeOderErstelleDom(pdomguid, pstructdomguid, ptypeguid, pattrname, pvatername, pattrxml):
-    dom = None
+def findorcreateDomain(pdomguid, pstructdomguid, ptypeguid, pattrname, pvatername, pattrxml):
+    doma_id = None
+    typeelem = Modelelement.getelementbyextref(psrcid=pdomguid,
+                                               psrcname=Externalref.SOURCE_ODM)
+
+    if isinstance(typeelem, Domain):
+        #print(typeelem.doma_name, ' ist ein Domain')
+        doma_id = typeelem.doma_id
+    elif isinstance(typeelem, Datatype):
+        #print(typeelem.daty_name, ' ist ein datatype')
+        drgm.drgm_doma_id_member = typeelem.doma_id
+    elif typeelem is None:
+        print(doma.doma_name, ' ', type_odm, ' ', "typeelem ist None")
+        drgm.drgm_doma_id_member = Domain().getunknown().doma_id
+    else:
+        print(type_odm, ' ist ein ', type(typeelem))
+        continue
+
     if pdomguid is not None:
         dom = Domain().getbyextref(pdomguid)
     elif pstructdomguid is not None:
@@ -619,7 +658,7 @@ def findeOderErstelleDom(pdomguid, pstructdomguid, ptypeguid, pattrname, pvatern
     return dom.doma_id
 
 
-# findeOderErstelleDom
+# findorcreateDomain
 
 def do1Arc(fileName):
     arcXML = ET.parse(fileName).getroot()
@@ -725,12 +764,12 @@ def do1Attribute(plfnr, pattrxml, pentiId=None, prelaId=None):
         attr.attr_tech_name = re.sub('[-,.()\[\]äöüèéàÄ~ÖÜ ]', '_', str.upper(attr.attr_anzname))
     attr.attr_uc = findText(pattrxml, 'createdBy')
     attr.attr_dc = findText(pattrxml, 'createdTime')
-    attr.attr_doma_id = findeOderErstelleDom(pdomguid=findText(pattrxml, 'domain')
-                                             , pstructdomguid=findText(pattrxml, 'structuredType')
-                                             , ptypeguid=findText(pattrxml, 'logicalDatatype')
-                                             , pattrname=attr.attr_anzname
-                                             , pvatername=vatername
-                                             , pattrxml=pattrxml)
+    attr.attr_doma_id = findorcreateDomain(pdomguid=findText(pattrxml, 'domain')
+                                           , pstructdomguid=findText(pattrxml, 'structuredType')
+                                           , ptypeguid=findText(pattrxml, 'logicalDatatype')
+                                           , pattrname=attr.attr_anzname
+                                           , pvatername=vatername
+                                           , pattrxml=pattrxml)
     attr.attr_beschr = findText(pattrxml, 'comment')
     attr.attr_anz_rhflg = plfnr
     attr.attr_deskriptor = 'FALSE'
@@ -1174,7 +1213,7 @@ def loeschmodell():
     Diagramm.delete()
     dbDML.delete("benudef_eigenschaft")
     DefaultValue.delete()
-    Domaingroup.delete()
+    DomaingroupMember.delete()
     Domain.delete()
     dbDML.delete("speicherformate")
     dbDML.delete("linie_segment")

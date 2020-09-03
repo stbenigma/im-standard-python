@@ -1,8 +1,5 @@
 from datetime import date
 from .baseobject import Baseobject
-
-
-
 class Modelelemtype(Baseobject):
     ENTI: str = 'ENTI'
     BURU: str = 'BURU'
@@ -161,31 +158,34 @@ CREATE TABLE MODELELEMENT
     def getelement(pmodeid):
         mode = Modelelement().getbyid(pid=pmodeid)
         if mode.mode_type == Modelelemtype.SYNO:
-            element = Synonym.getbyid(mode_id)
+            element = Synonym().getbyid(mode.mode_id)
         elif mode.mode_type == Modelelemtype.DOMA:
-            element = Wertebereich.getbyid(mode_id)
+            element = Wertebereich().getbyid(mode.mode_id)
         elif mode.mode_type == Modelelemtype.ATTR:
-            element = Attribut.getbyid(mode_id)
+            element = Attribut().getbyid(mode.mode_id)
         elif mode.mode_type == Modelelemtype.BURU:
-            element = Buseinssrule.getbyid(mode_id)
+            element = Buseinssrule().getbyid(mode.mode_id)
         elif mode.mode_type == Modelelemtype.RELA:
-            element = Relation.getbyid(mode_id)
+            element = Relation().getbyid(mode.mode_id)
         elif mode.mode_type == Modelelemtype.ENTI:
-            element = Entitaet.getbyid(mode_id)
+            element = Entitaet().getbyid(mode.mode_id)
         elif mode.mode_type == Modelelemtype.ORGU:
-            element = Organisationseinheit.getbyid(mode_id)
+            element = Organisationseinheit().getbyid(mode.mode_id)
         elif mode.mode_type == Modelelemtype.TABL:
-            element = Tabelle.getbyid(mode_id)
+            element = Tabelle().getbyid(mode.mode_id)
         elif mode.mode_type == Modelelemtype.COLU:
-            element = Schnittstelleattr.getbyid(mode_id)
+            element = Schnittstelleattr().getbyid(mode.mode_id)
         elif mode.mode_type == Modelelemtype.INTF:
-            element = Schnittstelle.getbyid(mode_id)
+            element = Schnittstelle().getbyid(mode.mode_id)
         elif mode.mode_type == Modelelemtype.ARCS:
-            element = Arc.getbyid(mode_id)
+            element = Arc().getbyid(mode.mode_id)
         elif mode.mode_type == Modelelemtype.DGRM:
-            element = DefaultValue.getbyid(mode_id)
+            element = DefaultValue().getbyid(mode.mode_id)
+        elif mode.mode_type == Modelelemtype.DATY:
+            element = Datatype().getbyid(mode.mode_id)
         else:
             element = None
         return element
 # modelelement
 from .externalref import Externalref
+from .datatype import Datatype
