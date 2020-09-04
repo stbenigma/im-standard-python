@@ -193,7 +193,7 @@ CREATE TABLE MODE_DOCU
         if pdocguidlist is None: return
         for docguid in pdocguidlist:
             modo = ModelelemDoku()
-            modo.modo_docu_id = Document().getID(docguid)
+            modo.modo_docu_id = Document().getbyextref(docguid)
             modo.modo_mode_id = pmodeid
             modo.insert()
         #for

@@ -127,10 +127,6 @@ class Baseobject:
     def prefix(self):
         return self._prefix
 
-    def getID(self,pguid):
-        self.getbyextref(pguid)
-        return self.getid()
-
     def webanker(self,pmodelid=0):
         return Webanker(pname=self._prefix, pid= self.getid(),pmodelid=pmodelid)
 
@@ -139,6 +135,19 @@ class Baseobject:
         dbDDL.dropTable(ptablename);
         dbDDL.createTable(psql)
     #createtable
+
+    @staticmethod
+    def getidbyextid(psrcname,psrcid):
+        return Externalref.getmodeid(psrcname=psrcname, psrcid=psrcid)
+
+    @staticmethod
+    def getidbyodmguid(pguid):
+        return Baseobject.getidbyextid(psrcname=Externalref.SOURCE_ODM,psrcid=pguid)
+
+    def getbyextref(self,psrcid):
+        if self.__srcname is None: return None
+        self.getbyid(Externalref.getmodeid(psrcname=self.__srcname,psrcid=psrcid))
+        return self
 
 #    @staticmethod
 #    def select(pwhere=None, porderby=None):
@@ -177,8 +186,6 @@ class Baseobject:
     @staticmethod
     def columnsliststring(pcollist,pplaceholder=False):
         return ','.join('?' if pplaceholder else col for col in pcollist)
-
-
 #Baseobject
 
 class MultilangBaseobject(Baseobject):

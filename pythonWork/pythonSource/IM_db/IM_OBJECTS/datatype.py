@@ -69,10 +69,6 @@ class Datatype(Baseobject):
     # baseType
 
     @staticmethod
-    def getidbyextid(pguid):
-        return super().getbyextref(pguid=pguid,pmodelemtype=Modelelemtype.DATY)
-
-    @staticmethod
     def getbyname(pname):
         return Datatype().getbyuk(pcolname='daty_name', pukvalue=pname)
     # getbyname

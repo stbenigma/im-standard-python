@@ -85,8 +85,11 @@ def transferTypes():
                 ).insert()
     # endfor
 
-
+"""List of not yet finished domain
+    {id of unfinished domain : guid of type it is supposed to be}"""
+unkndomains = {}
 def do1structtype(filename):
+    global unkndomains
     structdomains = ET.parse(filename)
     structdom = structdomains.getroot()
     if (findField(structdom, "class") != "oracle.dbtools.crest.model.design.datatypes.StructuredType"): return
@@ -99,47 +102,34 @@ def do1structtype(filename):
     doma.doma_type = 'GRP'
     doma.doma_origin = Domain.DOMAIN
     doma.insert()
-    """    attr.attr_uc = findText(pattrxml, 'createdBy')
-    attr.attr_dc = findText(pattrxml, 'createdTime')
-    attr.attr_doma_id = findorcreateDomain(pdomguid=findText(pattrxml, 'domain')
-                                             , pstructdomguid=findText(pattrxml, 'structuredType')
-                                             , ptypeguid=findText(pattrxml, 'logicalDatatype')
-                                             , pattrname=attr.attr_anzname
-                                             , pvatername=vatername
-                                             , pattrxml=pattrxml)
-    attr.attr_beschr = findText(pattrxml, 'comment')
-"""
 
-
-    """<createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:16:06 UTC</createdTime>
-<generatorID>A6F729CB-93BC-E7BB-4679-2728C137219F</generatorID>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<importedID>A6F729CB-93BC-E7BB-4679-2728C137219F</importedID>
-<mandatory>false</mandatory>
-<precision>4</precision>
-<reference>false</reference>
-<scale>0</scale>
-<type>LOGDT019</type>
-"""
     elements = structdom.findall("attributes/Attribute")
     for el in elements:
         # print (doma.doma_name,findField(el,"name"),findText(el,'type'))
-        dgrm = DomaingroupMember(psrcname=Externalref.SOURCE_ODM, psrcid=findText(el, 'id'))
+        dgrmid =findText(el, 'id')
+        dgrm = DomaingroupMember(psrcname=Externalref.SOURCE_ODM, psrcid=dgrmid)
         dgrm.dgrm_doma_id_group = doma.doma_id
         dgrm.dgrm_name = findField(el, "name")
         dgrm.dgrm_descr = findText(el, "comment")
         dgrm.dgrm_uc = findText(el, "createdBy")
         dgrm.dgrm_dc = findText(el, "createdTime")
+        dgrm.dgrm_is_mandatory = Boolean.bool2str(Boolean.str2bool(findText(el, "mandatory")))
 
-        """in struct types the "type" is either datatype or domain """
-        locdom = findorcreateDomain(pdomguid=findText(el, 'type')
-                           , pstructdomguid=findText(pattrxml, 'structuredType')
-                           , ptypeguid=findText(pattrxml, 'logicalDatatype')
-                           , pattrname=dgrm.grrm_name
+        """in struct types the "type" is either datatype or structtype or domain """
+        reftypeguid = findText(el, 'type')
+        reftype = Modelelement.getelementbyextref(psrcname=Externalref.SOURCE_ODM,psrcid=reftypeguid)
+        if isinstance(reftype,Domain):
+            dgrm.dgrm_doma_id_member = reftype.doma_id
+        elif isinstance(reftype,Datatype):
+            dgrm.dgrm_doma_id_member = findorcreateDomain(ptypeguid=reftypeguid
+                           , pattrname=dgrm.dgrm_name
                            , pfathername=doma.doma_name
                            , pattrxml=el)
-        dgrm.dgrm_is_mandatory = Boolean.bool2str(Boolean.str2bool(findText(el, "mandatory")))
+        else :
+            """type has not yet been parsed or does not exist at all or is type I haven't considered
+                remember for update"""
+            dgrm.dgrm_doma_id_member = Domain.getunknown().doma_id
+            unkndomains[dgrmid] = reftypeguid
         dgrm.insert()
     # for
 
@@ -221,6 +211,11 @@ def liesunsfuelldoma(pdoma, pxml):
         # for
     # fi
 
+def dostructtypes():
+    global unkndomains
+    dosegfiles(pdirec=parameters.odmstructypesdir(), transferfiles=do1structtype)
+    """update group domains as their types may now be available"""
+    DomaingroupMember.updmembers()
 
 def transferDomains():
     domains = ET.parse(parameters.odmDomainsFilePath())
@@ -233,12 +228,7 @@ def transferDomains():
         liesunsfuelldoma(pdoma=doma, pxml=dom)
     # for
 
-    dosegfiles(pdirec=parameters.odmstructypesdir(), transferfiles=do1structtype)
-
-    """update group domains as their types may now be available"""
-    DomaingroupMember.updmembers()
-
-
+    dostructtypes()
 # end transferDomains
 
 def hex2int(phex):
@@ -277,7 +267,7 @@ def transferentity(penti, pdiagid, puc, pdc):
     hiddenattrs = elemtext.split(' ')
     hiddenattrs2 = []
     for e in hiddenattrs:
-        if e != "": hiddenattrs2.append(Attribut().getID(pguid=e))
+        if e != "": hiddenattrs2.append(Attribut().getbyextref(pguid=e))
     attrs = Attribut.select(pwhere="attr_enti_id = {}".format(enti.enti_id), porderby="attr_anz_rhflg")
     attrids = [a.attr_id for a in attrs]
     attrids = list(set(attrids) - set(hiddenattrs2))
@@ -628,36 +618,44 @@ def insertderiveddomain(ptypeguid, pattrname, pvatername, pattrxml):
 # insertderiveddomain
 
 
-def findorcreateDomain(pdomguid, pstructdomguid, ptypeguid, pattrname, pvatername, pattrxml):
-    doma_id = None
-    typeelem = Modelelement.getelementbyextref(psrcid=pdomguid,
-                                               psrcname=Externalref.SOURCE_ODM)
+def findorcreateDomain(pattrname, pfathername, pattrxml, pdomguid=None, pstructdomguid=None, ptypeguid=None):
+    def handleguid(pguid):
+        if pguid is None: return None
+        typeelem = Modelelement.getelementbyodmguid(psrcid=pdomguid)
 
-    if isinstance(typeelem, Domain):
-        #print(typeelem.doma_name, ' ist ein Domain')
-        doma_id = typeelem.doma_id
-    elif isinstance(typeelem, Datatype):
-        #print(typeelem.daty_name, ' ist ein datatype')
-        drgm.drgm_doma_id_member = typeelem.doma_id
-    elif typeelem is None:
-        print(doma.doma_name, ' ', type_odm, ' ', "typeelem ist None")
-        drgm.drgm_doma_id_member = Domain().getunknown().doma_id
-    else:
-        print(type_odm, ' ist ein ', type(typeelem))
-        continue
+        if typeelem is None:
+            """domain not yet known"""
+            return Domain().getunknown().doma_id
+        elif isinstance(typeelem, Domain):
+            return typeelem.doma_id  # Done, domain found
+        else:
+            logging.writelog("Attr: {}, Father: {}, Domain Guid {} leads to unknown element type {}"
+                             .format(pattrname, pfathername, pdomguid, type(typeelem)))
+            return Domain().getunknown().doma_id
+        # fi
+    #handleguid
 
-    if pdomguid is not None:
-        dom = Domain().getbyextref(pdomguid)
-    elif pstructdomguid is not None:
-        dom = Domain().getbyextref(pstructdomguid)
-    elif ptypeguid is not None:
-        dom = insertderiveddomain(ptypeguid=ptypeguid, pattrname=pattrname, pvatername=pvatername, pattrxml=pattrxml)
-    #
-    if dom is None:
-        dom = Domain().getbyname('Unknown')
-    return dom.doma_id
+    domaid = handleguid(pdomguid)
+    if domaid is not None: return domaid
+    domaid = handleguid(pstructdomguid)
+    if domaid is not None: return domaid
 
-
+    if ptypeguid is not None:
+        typeelem = Modelelement.getelementbyodmguid(pguid=ptypeguid)
+        if typeelem is None:
+            """domain not yet known"""
+            return Domain().getunknown().doma_id
+        elif isinstance(typeelem, Datatype):
+            doma = insertderiveddomain(ptypeguid=ptypeguid, pattrname=pattrname, pvatername=pfathername,
+                                       pattrxml=pattrxml)
+            return doma.doma_id
+        else:
+            logging.writelog("Attr: {}, Father: {}, Domain Guid {} leads to unknown element type {}"
+                             .format(pattrname, pfathername, ptypeguid, type(typeelem)))
+            return Domain().getunknown().doma_id
+        #fi
+    #fi
+    return Domain().getunknown().doma_id
 # findorcreateDomain
 
 def do1Arc(fileName):
@@ -665,7 +663,7 @@ def do1Arc(fileName):
     if (findField(arcXML, "class") != "oracle.dbtools.crest.model.design.logical.Arc"): return
 
     arc = Arc(pname=findField(arcXML, "name")
-              , pentiid=Entitaet().getID(findText(arcXML, 'entity'))
+              , pentiid=Entitaet().getbyextref(findText(arcXML, 'entity'))
               , puc=findText(arcXML, 'createdBy')
               , pdc=findText(arcXML, 'createdTime'))
     arcid = arc.insert()
@@ -768,7 +766,7 @@ def do1Attribute(plfnr, pattrxml, pentiId=None, prelaId=None):
                                            , pstructdomguid=findText(pattrxml, 'structuredType')
                                            , ptypeguid=findText(pattrxml, 'logicalDatatype')
                                            , pattrname=attr.attr_anzname
-                                           , pvatername=vatername
+                                           , pfathername=vatername
                                            , pattrxml=pattrxml)
     attr.attr_beschr = findText(pattrxml, 'comment')
     attr.attr_anz_rhflg = plfnr
@@ -837,7 +835,7 @@ def transferKeys():
             scel.scel_schl_id = schl.schl_id
             scel.scel_uc = schl.schl_uc
             scel.scel_dc = schl.schl_dc
-            scel.scel_attr_id = Attribut().getID(ke)
+            scel.scel_attr_id = Attribut().getbyextref(ke)
             if scel.scel_attr_id is None:
                 try:
                     scel.scel_rela_id = dbLookup.beziId(ke)
@@ -999,8 +997,8 @@ def do1Relation(fileName):
 
     sourceentiguid = findText(relaxml, 'sourceEntity')
     targetentiguid = findText(relaxml, 'targetEntity')
-    rela.rela_enti_id_from = Entitaet().getID(sourceentiguid)
-    rela.rela_enti_id_to = Entitaet().getID(targetentiguid)
+    rela.rela_enti_id_from = Entitaet().getbyextref(sourceentiguid)
+    rela.rela_enti_id_to = Entitaet().getbyextref(targetentiguid)
     if (rela.rela_enti_id_from is None or rela.rela_enti_id_to is None):
         logging.writelog(
             "Entity Id {} oder {} nicht gefunden. Datenleichen von Realtion mit gelöschten Entities".format(

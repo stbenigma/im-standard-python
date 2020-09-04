@@ -155,6 +155,10 @@ CREATE TABLE MODELELEMENT
         return Modelelement.getelement(pmodeid=Externalref.getmodeid(psrcname=psrcname, psrcid=psrcid))
 
     @staticmethod
+    def getelementbyodmguid(pguid):
+        return Modelelement.getelementbyextref(psrcname=Externalref.SOURCE_ODM,psrcid=pguid)
+
+    @staticmethod
     def getelement(pmodeid):
         mode = Modelelement().getbyid(pid=pmodeid)
         if mode.mode_type == Modelelemtype.SYNO:
