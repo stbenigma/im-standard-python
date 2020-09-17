@@ -921,7 +921,7 @@ def do1Entity(fileName):
     # print (entname,translate.translate(p_text=entname,p_fromlang='de',p_tolang='en'),translate.translate(p_text=entname,p_fromlang='de',p_tolang='fr'))
 
     updateUDP(pmodeid=entiId, pobj=entixml)
-    ModelelemDoku.insertdokuref(pdocguidlist=documents, pmodeid=entiId)
+    ModelelemDocu.insertdocuref(pdocguidlist=documents, pmodeid=entiId)
 
     attrs = entixml.find('attributes')
     if attrs is not None:

@@ -145,8 +145,8 @@ class Baseobject:
     #createtable
 
     def getbyextref(self,psrcid):
-        if self.__srcname is None: return None
-        self.getbyid(Externalref.getmodeid(psrcname=self.__srcname,psrcid=psrcid))
+        if self.getscrname() is None: return None
+        self.getbyid(Externalref.getmodeid(psrcname=self.getscrname(),psrcid=psrcid))
         return self
 
     def getbyODMref(self,psrcid):

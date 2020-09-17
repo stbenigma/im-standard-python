@@ -1,5 +1,5 @@
 from .baseobject import Baseobject, MultilangBaseobject
-from .modelelement import Modelelement
+from .modelelement import Modelelement,Modelelemtype
 from .sprachtext import Sprachtext
 from .domain import Domain
 from .schluessel import Schluesselelement

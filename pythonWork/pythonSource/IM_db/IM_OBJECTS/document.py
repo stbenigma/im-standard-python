@@ -186,13 +186,13 @@ CREATE TABLE MODE_DOCU
 
     @staticmethod
     def select(pwhere=None, porderby=None):
-        return Baseobject.select(pclass=ModelelemDoku
+        return Baseobject.select(pclass=ModelelemDocu
                                  , pwhere=pwhere, porderby=porderby)
     @staticmethod
     def insertdocuref(pdocguidlist,pmodeid):
         if pdocguidlist is None: return
         for docguid in pdocguidlist:
-            modo = ModelelemDoku()
+            modo = ModelelemDocu()
             modo.modo_docu_id = Document().getbyextref(docguid)
             modo.modo_mode_id = pmodeid
             modo.insert()

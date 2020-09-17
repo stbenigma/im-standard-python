@@ -122,7 +122,7 @@ ARCS_NAME</ColNames>
     </foreign-key>
     <foreign-key id="64" parent="6" name="ARCS_ENTI_FK">
       <ColNames>ARCS_ENTI_ID</ColNames>
-      <RefTableName>ENTITIES</RefTableName>
+      <RefTableName>entitaeten</RefTableName>
       <RefColNames>ENTI_ID</RefColNames>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
@@ -1282,7 +1282,7 @@ attf_laufnr</ColNames>
     </key>
     <foreign-key id="301" parent="22" name="attf_scha_fk">
       <ColNames>attf_scha_id</ColNames>
-      <RefTableName>schnittstelle_attr</RefTableName>
+      <RefTableName>schnittstelle_attrs</RefTableName>
       <RefColNames>scha_id</RefColNames>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
@@ -2728,7 +2728,7 @@ scel_rela_id</ColNames>
     </foreign-key>
     <foreign-key id="613" parent="37">
       <ColNames>scel_rela_id</ColNames>
-      <RefTableName>beziehungen</RefTableName>
+      <RefTableName>RELATIONS</RefTableName>
       <RefColNames>rela_id</RefColNames>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
@@ -3211,7 +3211,7 @@ tabl_name</ColNames>
     </key>
     <foreign-key id="716" parent="46" name="TABL_SCHN_FK">
       <ColNames>tabl_schn_id</ColNames>
-      <RefTableName>SCHNITTSTELLE</RefTableName>
+      <RefTableName>schnittstellen</RefTableName>
       <RefColNames>SCHN_ID</RefColNames>
     </foreign-key>
     <column id="717" parent="47" name="tema_id">
@@ -3257,12 +3257,12 @@ tema_rela_id</ColNames>
     </foreign-key>
     <foreign-key id="725" parent="47" name="tema_enti_fk">
       <ColNames>tema_enti_id</ColNames>
-      <RefTableName>entitaet</RefTableName>
+      <RefTableName>entitaeten</RefTableName>
       <RefColNames>enti_id</RefColNames>
     </foreign-key>
     <foreign-key id="726" parent="47" name="tema_bezi_fk">
       <ColNames>tema_rela_id</ColNames>
-      <RefTableName>beziehung</RefTableName>
+      <RefTableName>RELATIONS</RefTableName>
       <RefColNames>rela_id</RefColNames>
     </foreign-key>
     <check id="727" parent="47" name="tema_ck">
