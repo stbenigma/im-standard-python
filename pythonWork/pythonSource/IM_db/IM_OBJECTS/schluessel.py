@@ -78,7 +78,7 @@ CREATE TABLE schluesselelement(
         REFERENCES attributes(attr_id)
             ON DELETE CASCADE,
 	FOREIGN KEY(scel_rela_id)
-        REFERENCES beziehungen(rela_id)
+        REFERENCES relations(rela_id)
             ON DELETE CASCADE,
 	FOREIGN KEY(scel_schl_id)
         REFERENCES schluessel(schl_id)

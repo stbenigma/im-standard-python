@@ -26,9 +26,9 @@ class TablEntiMap(Baseobject):
                	        		  or (tema_enti_id is null and tema_rela_id is not null)),
        		   constraint tema_un unique (tema_tabl_id , tema_enti_id ,tema_rela_id)
     		   ,constraint tema_bezi_fk foreign key (tema_rela_id) 
-    		      references beziehung (rela_id ) 
+    		      references relations (rela_id ) 
     		   ,constraint tema_enti_fk foreign key (tema_enti_id) 
-    		      references entitaet (enti_id ) 
+    		      references entitaeten (enti_id ) 
     		   ,constraint tema_tabl_fk foreign key (tema_tabl_id) 
     		      references tabellen (tabl_id ) 
           )    """

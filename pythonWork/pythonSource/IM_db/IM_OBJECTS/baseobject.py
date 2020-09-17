@@ -1,6 +1,7 @@
 
 from IM_DB import dbDML,dbDDL
 from mystring import nvl
+from logging import writelog
 import sqlite3
 
 class Boolean:
@@ -73,6 +74,11 @@ class Baseobject:
     def setid(self,pid):
          self.__dict__[self._idcolname] = pid
 
+    def getscrname(self):
+        return self.__srcname
+    def getscrid(self):
+        return self.__srcid
+
     def insert(self,pdoerrhdlng=True):
         if self.__modelemtype is not None:
             self.setid(Modelelement(self.__modelemtype).insert())
@@ -103,8 +109,10 @@ class Baseobject:
         if pid is None: return None
         data = self.select(pwhere="{}={}".format(self._idcolname, pid))
         if (len(data) > 1):
+            writelog("{}: nonunique ID={}'".format(self._tablename, pid))
             raise Exception('{}: nonunique ID={}'.format(self._tablename, pid))
         elif (len(data) == 0):
+            writelog("{}: nonexistent ID={} '".format(self._tablename, pid))
             raise Exception('{}: nonexistent ID={}'.format(self._tablename, pid))
         else:
             self._fromarray(data[0].toarray())
@@ -136,22 +144,14 @@ class Baseobject:
         dbDDL.createTable(psql)
     #createtable
 
-    @staticmethod
-    def getidbyextid(psrcname,psrcid):
-        return Externalref.getmodeid(psrcname=psrcname, psrcid=psrcid)
-
-    @staticmethod
-    def getidbyodmguid(pguid):
-        return Baseobject.getidbyextid(psrcname=Externalref.SOURCE_ODM,psrcid=pguid)
-
     def getbyextref(self,psrcid):
         if self.__srcname is None: return None
         self.getbyid(Externalref.getmodeid(psrcname=self.__srcname,psrcid=psrcid))
         return self
 
-#    @staticmethod
-#    def select(pwhere=None, porderby=None):
-#        raise NotImplementedError("Must override select")
+    def getbyODMref(self,psrcid):
+        self.getbyid(Externalref.getmodeid(psrcname=Externalref.SOURCE_ODM,psrcid=psrcid))
+        return self
 
     def getsprachvals(self):
         raise NotImplementedError("Must override getsprachvals")

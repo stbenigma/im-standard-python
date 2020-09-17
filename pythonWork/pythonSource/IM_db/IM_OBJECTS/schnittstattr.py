@@ -209,7 +209,7 @@ class AttrTransf(Baseobject):
  	   ,constraint attf_attr_fk foreign key (attf_attr_id) 
  	      references attributes (attr_id )  on delete cascade 
  	   ,constraint attf_scha_fk foreign key (attf_scha_id) 
- 	      references schnittstelle_attr (scha_id ) on delete cascade 
+ 	      references schnittstelle_attrs (scha_id ) on delete cascade 
  	      )
     """)
 

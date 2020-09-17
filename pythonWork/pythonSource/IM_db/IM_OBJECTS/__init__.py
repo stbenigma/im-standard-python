@@ -10,7 +10,7 @@ from .sprachtext import Sprachtext
 from .tablentimap import TablEntiMap
 from .document import Document, ModelelemDocu
 from .domain import Domain, DomaingroupMember, DefaultValue
-from .modelelement import Modelelemtype,Modelelement
+from .modelelement import Modelelemtype,Modelelement,ModelelementProperty
 from .diagramme import Diagramm,Diagrammtyp
 from .entitaet import Entitaet,Synonym
 from .attribut import Attribut

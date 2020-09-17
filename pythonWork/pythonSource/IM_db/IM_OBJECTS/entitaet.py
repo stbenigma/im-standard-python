@@ -2,6 +2,7 @@ from .baseobject import Baseobject,MultilangBaseobject
 from .modelelement import Modelelement
 from .schluessel import Schluessel
 from .sprachtext import Sprachtext
+from .modelelement import Modelelemtype,Modelelement
 from IM_DB import dbDML
 from .attribut import Attribut
 
@@ -17,11 +18,14 @@ class Entitaet(MultilangBaseobject):
 		,'enti_category_guid']
 
 
-    def __init__(self):
+    def __init__(self, psrcname=None, psrcid=None):
         super().__init__(tablename=Entitaet._tablename, prefix=Entitaet._prefix
                         ,columnlist = Entitaet._columnlist
                          ,multilangcols = {'enti_name':Sprachtext.ENTI_NAME
-                                          ,'enti_beschr':Sprachtext.ENTI_COMMENT})
+                                          ,'enti_beschr':Sprachtext.ENTI_COMMENT}
+                         , pscrid=psrcid
+                         , psrcname=psrcname
+                         )
         self._parent = None
         self._children = None
         self._synonyms = None
@@ -68,8 +72,8 @@ create table entitaeten
     def insert(self):
         self.enti_id = Modelelement(Modelelemtype.ENTI).insert()
         id = super().insert()
-        if self.__srcname is not None:
-            Externalref(psrcname=self.__srcname,psrcid = self.__srcid,pmodeid=id)
+        if self.getscrname() is not None:
+            Externalref(psrcname=self.getscrname(),psrcid = self.getscrid(),pmodeid=id)
         return id
 
     def webanker(self):

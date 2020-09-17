@@ -3,6 +3,7 @@ from .baseobject import MultilangBaseobject, Baseobject
 from .datatype import Datatype
 from .modelelement import Modelelement, Modelelemtype
 from .sprachtext import Sprachtext
+import logging
 
 class Domain(MultilangBaseobject):
     DERIVED: str = 'DER'
@@ -196,7 +197,12 @@ CREATE TABLE DOMAINS
 
     def insert(self):
         self.doma_id = Modelelement(Modelelemtype.DOMA).insert()
-        super().insert()
+        try:
+            super().insert()
+        except Exception as e:
+            logging.writelog(e)
+            logging.writelog("Insert in domain {}, {}".format((self.doma_name,self.doma_id)))
+            pass
 
     def webanker(self):
         return super().webanker()
@@ -226,7 +232,6 @@ CREATE TABLE DOMAINS
         wrtbs = Baseobject.select(pclass=Domain
                                   , pwhere=pwhere, porderby=porderby)
         return wrtbs
-
     # select
 
     @staticmethod
@@ -309,7 +314,7 @@ CREATE TABLE DOMAINS
 class DomaingroupMember(Baseobject):
     _tablename: str = 'domaingroup_members'
     _prefix: str = 'dgrm'
-    _columnlist: list = ['dgrm_id', 'dgrm_name', 'dgrm_descr','dgrm_is_mandatory'
+    _columnlist: list = ['dgrm_id', 'dgrm_name', 'dgrm_descr','dgrm_is_mandatory',
                          'dgrm_doma_id_group', 'dgrm_doma_id_member',
                          'dgrm_uc', 'dgrm_dc', 'dgrm_um',
                          'dgrm_dm'
@@ -332,7 +337,7 @@ CREATE TABLE DOMAINGROUP_MEMBERS
      DGRM_ID INTEGER NOT NULL primary key autoincrement,
      DGRM_NAME VARCHAR (4000) NOT NULL ,
      DGRM_DESCR VARCHAR (4000) NULL ,
-     DRGM_IS_MANDATORY VARCHAR (5) NOT NULL CHECK ( DRGM_IS_MANDATORY IN ('FALSE', 'TRUE') ) ,
+     DGRM_IS_MANDATORY VARCHAR (5) NOT NULL CHECK ( DGRM_IS_MANDATORY IN ('FALSE', 'TRUE') ) ,
      DGRM_DOMA_ID_GROUP NUMERIC (10) NOT NULL  ,
      DGRM_DOMA_ID_MEMBER NUMERIC (10) NOT NULL ,
      DGRM_UC VARCHAR (30) NOT NULL ,
@@ -360,21 +365,11 @@ CREATE TABLE DOMAINGROUP_MEMBERS
                                  , pwhere=pwhere, porderby=porderby)
 
     @staticmethod
-    def updmembers():
-        ukwnid = Domain().getunknown().doma_id
+    def updmember(pid,pdomaid):
         lupd = """update domaingroup_members 
-            set dgrm_doma_id_member = 
-            case when (select doma_id
-                     from DOMAINS 
-                    where doma_odm_guid = dgrm_type_ref) 
-                is null
-             then {} 
-             else (select doma_id
-             from DOMAINS 
-             where doma_odm_guid = dgrm_type_ref)
-             end
-            where dgrm_doma_id_member = {}
-        """.format(ukwnid, ukwnid)
+            set dgrm_doma_id_member = {} 
+            where dgrm_id = {}
+        """.format(pdomaid,pid)
         dbDML.exec(lupd)
 
 

@@ -2,7 +2,7 @@ from datetime import date
 from IM_DB import dbDML,logging
 from IM_OBJECTS import *
 
-def  insertLovWrtb(pName,pherkunft = Domain.DOMAIN):
+def  insertLovWrtb(pName,pherkunft = Domain.DERIVED):
     doma = Domain()
     doma.doma_name = pName
     doma.doma_beschr = 'einfache Werteliste'
@@ -11,28 +11,6 @@ def  insertLovWrtb(pName,pherkunft = Domain.DOMAIN):
     doma.doma_uc = 'system'
     doma.doma_dc = date.today()
     return doma.insert()
-
-
-
-def insertUDP(pData):
-# bdeg_thema, bdeg_gruppe, bdeg_name, bdeg_default_value
-# bdeg_beschreibung, bdeg_optional, bdeg_doma_id,
-# bdeg_uc, bdeg_dc
-    lsql = """
-       insert into benudef_eigenschaft(
-        bdeg_thema, bdeg_gruppe, bdeg_name, bdeg_default_value,
-        bdeg_beschreibung, bdeg_optional, bdeg_doma_id,
-         bdeg_uc, bdeg_dc) 
-           values (?,?,?,?,?,?,?,?,?)
-       """
-    return dbDML.insert(lsql, pData)
-#insertUDP
-
-def insertModelltypEigen(pData):
-    lsql= """insert into modelltyp_eigensch (mote_melt_id , mote_bdeg_id)
-                values(?,?)"""
-    return dbDML.insert(lsql, pData)
-#insertModelltypEigen
 
 
 #insertModebezi
@@ -81,20 +59,6 @@ def insertelbezidarst(pdata):
     return dbDML.insert(lsql, pdata)
 #insertbezidarst
 
-def insertUdpEntity(entiId):
-    dbDML.exec("""insert into benudef_wert(
-                bdwe_wert,  bdwe_mode_id,   bdwe_bdeg_id
-                ,bdwe_uc,   bdwe_dc)
-                select NULL,mode_id,bdeg_id,enti_uc,enti_dc
-                from entitaeten
-                join modelelement on mode_enti_id = enti_id
-                cross join (select mote_bdeg_id as bdeg_id
-                             from modelelem_type
-                             join modelltyp_eigensch on mote_melt_id = melt_id
-                             where melt_shortname = 'ENTI')
-                where enti_id = {}
-            """ .format(entiId))
-#insertUdpEntity
 def insertUdpTable(ptablId):
     dbDML.exec("""insert into benudef_wert(
                 bdwe_wert,  bdwe_mode_id,   bdwe_bdeg_id

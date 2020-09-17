@@ -24,8 +24,4 @@ def diatid (p_name):
     return doLookup(p_name,'select diat_id from diagrammtypen where upper(diat_bez) =upper("{}")')
 #diatid
 
-def bdegLookup(pname):
-        return doLookup(pname, 'select bdeg_id from benudef_eigenschaft where bdeg_name = "{}"'
-                        ,withnotfound=True)
-# bdegLookup
 

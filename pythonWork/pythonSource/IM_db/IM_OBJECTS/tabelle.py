@@ -30,7 +30,7 @@ class Tabelle(Baseobject):
          tabl_dm varchar (30) null ,
     	  CONSTRAINT TABL_UN UNIQUE (TABL_SCHN_ID , TABL_NAME)
      	   ,CONSTRAINT TABL_SCHN_FK FOREIGN KEY (TABL_SCHN_ID) 
-     	      REFERENCES SCHNITTSTELLE (SCHN_ID ) 
+     	      REFERENCES SCHNITTSTELLEn (SCHN_ID ) 
         )"""
                             )
 

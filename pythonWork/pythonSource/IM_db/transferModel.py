@@ -11,6 +11,7 @@ from IM_OBJECTS import *
 from mystring import nvl
 
 GUIDPATTERN: str = '[A-Z0-9-]{20,45}'
+UDPEXTENSION: str = 'udposdm'
 
 
 class color:
@@ -101,12 +102,15 @@ def do1structtype(filename):
     doma.doma_dc = findText(structdom, "createdTime")
     doma.doma_type = 'GRP'
     doma.doma_origin = Domain.DOMAIN
+
+    print ("do1structtype: name = {} NOT YET implemented".format(doma.doma_name))
+    return
     doma.insert()
 
     elements = structdom.findall("attributes/Attribute")
     for el in elements:
         # print (doma.doma_name,findField(el,"name"),findText(el,'type'))
-        dgrmid =findText(el, 'id')
+        dgrmid =findField(el, 'id')
         dgrm = DomaingroupMember(psrcname=Externalref.SOURCE_ODM, psrcid=dgrmid)
         dgrm.dgrm_doma_id_group = doma.doma_id
         dgrm.dgrm_name = findField(el, "name")
@@ -133,6 +137,18 @@ def do1structtype(filename):
         dgrm.insert()
     # for
 
+def dostructtypes():
+    global unkndomains
+    dosegfiles(pdirec=parameters.odmstructypesdir(), transferfiles=do1structtype)
+
+    """update group domains as their types may now be available"""
+    for key,val in unkndomains.items():
+        doma = Modelelement.getelementbyodmguid(pguid=val)
+        if isinstance(doma,Domain):
+            DomaingroupMember.updmember(pid=key,pdomaid=doma.doma_id)
+        else:
+            logging.writelog("Illegal domainreference {} (id={}) for structured type member {}".format(type(doma),key,val))
+        #fi
 
 def liesunsfuelldoma(pdoma, pxml):
     pdoma.doma_uc = findText(pxml, 'createdBy')
@@ -211,11 +227,6 @@ def liesunsfuelldoma(pdoma, pxml):
         # for
     # fi
 
-def dostructtypes():
-    global unkndomains
-    dosegfiles(pdirec=parameters.odmstructypesdir(), transferfiles=do1structtype)
-    """update group domains as their types may now be available"""
-    DomaingroupMember.updmembers()
 
 def transferDomains():
     domains = ET.parse(parameters.odmDomainsFilePath())
@@ -509,8 +520,6 @@ def doxmlfiles(pdirec, ptransfer, ppattern=r".*"):
             ptransfer(pdirec + file)
         # fi
     # for
-
-
 # doxmlfiles
 
 def dosegfiles(pdirec, transferfiles):
@@ -591,13 +600,6 @@ def transferdiagramme():
                , ppattern=r'{}.xml'.format(GUIDPATTERN))
 
 
-#    for el in os.listdir(parameters.odmentisubviewdirec()):
-#        #filename = parameters.odmentisubviewdirec() +  el
-#        #do1diagramm(p_filename=filename)
-#        doGUIDfile(pdirec = parameters.odmentisubviewdirec()
-#                   , pfile = el
-#                   , transferfiles = do1diagramm)
-#    #endfor
 # transferdiagramme
 
 def insertderiveddomain(ptypeguid, pattrname, pvatername, pattrxml):
@@ -608,7 +610,7 @@ def insertderiveddomain(ptypeguid, pattrname, pvatername, pattrxml):
         # es gibt ihn schon, füge den Vaternamen dazu
         doma.doma_name = pattrname + '-' + pvatername
     doma.doma_origin = Domain.DERIVED
-    if nvl(ptypeguid) != '': doma.doma_daty_id = Datatype.getidbyextid(ptypeguid)
+    if nvl(ptypeguid) != '': doma.doma_daty_id = Datatype().getbyODMref(psrcid=ptypeguid)
     doma.doma_descr = "generiertes Domain für Datentyp für Attribut {}.{}".format(pvatername, pattrname)
 
     liesunsfuelldoma(pdoma=doma, pxml=pattrxml)
@@ -715,10 +717,10 @@ def updateUDP(pmodeid, pobj):
     if (props is not None):
         for prop in props:
             try:
-                bdegId = dbLookup.bdegLookup(findField(prop, 'name'))
+                udpr  = Userdefprop.getbyname(pname=findField(prop, 'name'))
                 # print('      ', findField(prop,'name'), findField(prop,'value'), bdegId)
-                udps.append((findField(prop, 'value'), pmodeid, bdegId))
-            except:
+                udps.append((findField(prop, 'value'), pmodeid, udpr.udpr_id))
+            except Exception as e:
                 """dynamische Properties lassen wir aus"""
                 pass
         # for
@@ -730,9 +732,9 @@ def updateUDP(pmodeid, pobj):
         # liefert group1 name,group2 sprache, group3 text
         for i, p in enumerate(prop):
             # print (i,p.group(0),'\n1:',p.group(1),'\n2:',p.group(2),'\n3:',p.group(3))
-            bdegId = dbLookup.bdegLookup(p.group(1))
+            udpr = Userdefprop.getbyname(pname=p.group(1))
             # print('      ', findField(prop,'name'), findField(prop,'value'), bdegId)
-            udps.append((p.group(3).rstrip(), pmodeid, bdegId))
+            udps.append((p.group(3).rstrip(), pmodeid, udpr.udpr_id))
         # for
     # fi
 
@@ -895,9 +897,7 @@ def do1Entity(fileName):
     creti = findText(entixml, 'createdTime')
     enti_category_guid = findText(entixml, 'typeID')
     documents = getdokuref(pelem=entixml)
-    lmodeId = Modelelement(pmeltshortname=Modelelemtype.ENTI).insert()
     enti = Entitaet()
-    enti.enti_id = lmodeId
     enti.enti_odm_guid = findField(entixml, 'id')
     enti.enti_name = entname
     enti.enti_beschr = entcomm
@@ -906,7 +906,7 @@ def do1Entity(fileName):
     enti.enti_enti_guid = findText(entixml, 'hierarchicalParent')
     enti.enti_category_guid = enti_category_guid
     entiId = enti.insert()
-    dbInserts.insertUdpEntity(entiId)
+    Userdefpropvalue.fillallvalues(pmodetype=Modelelemtype.ENTI,pentiid=entiId)
 
     sobj = findText(entixml, 'synonym')
     if (sobj is not None):
@@ -920,8 +920,8 @@ def do1Entity(fileName):
 
     # print (entname,translate.translate(p_text=entname,p_fromlang='de',p_tolang='en'),translate.translate(p_text=entname,p_fromlang='de',p_tolang='fr'))
 
-    updateUDP(pmodeid=lmodeId, pobj=entixml)
-    ModelelemDoku.insertdokuref(pdocguidlist=documents, pmodeid=lmodeId)
+    updateUDP(pmodeid=entiId, pobj=entixml)
+    ModelelemDoku.insertdokuref(pdocguidlist=documents, pmodeid=entiId)
 
     attrs = entixml.find('attributes')
     if attrs is not None:
@@ -932,8 +932,6 @@ def do1Entity(fileName):
         # rof
     # fi
     fillKeys(p_enti=entixml, p_entiid=entiId)
-
-
 # do1Entity
 
 
@@ -1030,10 +1028,11 @@ def transferRelations():
     dbConnect.myDbConn.commit()
 
 
-def do1UDPFile(pudpThema, pfileName):
+def do1UDPFile(pfileName):
     tree = ET.parse(pfileName)
     root = tree.getroot()
-    lupdThema = pudpThema
+    filename= re.match("^[^.]*",os.path.split(pfileName)[1])[0]
+    lupdThema = filename
     lgroups = {'': '-'}  # für ungruppierte properties
     for groups in root.findall('udp_groups'):
         for child in groups:
@@ -1046,15 +1045,22 @@ def do1UDPFile(pudpThema, pfileName):
     if (lupdThema == parameters.odmUDPTranslFileName()):
         for lgrpkey, lgrpvalue in lgroups.items():
             if lgrpkey != '':
-                ludpid = dbInserts.insertUDP(pData=(lupdThema, lgrpvalue, lgrpvalue + '_ENTI_COMMENT', None
-                                                    , None, 'FALSE', None, '--', date.today().__str__()))
-                dbInserts.insertModelltypEigen(
-                    (Modelelemtype.getidbyshortname(pshortname=Modelelemtype.type2melt('Entity')), ludpid))
+                udpr = Userdefprop()
+                udpr.udpr_group = lgrpvalue
+                udpr.udpr_name = lgrpvalue + '_ENTI_COMMENT'
+                udprid = udpr.insert()
 
-                ludpid = dbInserts.insertUDP(pData=(lupdThema, lgrpvalue, lgrpvalue + '_ATTR_COMMENT', None
-                                                    , None, 'FALSE', None, '--', date.today().__str__()))
-                dbInserts.insertModelltypEigen(
-                    (Modelelemtype.getidbyshortname(pshortname=Modelelemtype.type2melt('Attribute')), ludpid))
+                metpid = ModelelementProperty(pmeltid=Modelelemtype.getidbyshortname(pshortname=Modelelemtype.ENTI)
+                                            ,pudprid=udprid).insert()
+
+                udpr = Userdefprop()
+                udpr.udpr_group = lgrpvalue
+                udpr.udpr_name = lgrpvalue + '_ATTR_COMMENT'
+                udprid = udpr.insert()
+
+                metpid = ModelelementProperty(pmeltid=Modelelemtype.getidbyshortname(pshortname=Modelelemtype.ATTR)
+                                            ,pudprid=udprid).insert()
+
             # fi
         # for
     # fi
@@ -1067,19 +1073,20 @@ def do1UDPFile(pudpThema, pfileName):
         proptype = findField(prop, 'type')
         propdefault = findField(prop, 'default_value')
         proptext = findText(prop, 'description')
-        ludp = (lupdThema, lgroups[group], propname, propdefault
-                , proptext, 'FALSE', None
-                , '--', date.today().__str__())
-        udpId = dbInserts.insertUDP(pData=ludp)
+        udpr = Userdefprop()
+        udpr.udpr_group = lgroups[group]
+        udpr.udpr_name = propname
+        udpr.udpr_descr = proptext
+        udprid = udpr.insert()
 
         obj = prop.findall('objects/object')
         for o in obj:
             """"< object class ="oracle.dbtools.crest.model.design.relational.Column" visible="false" color="-1" / >"""
-            lMelt = re.split("\.", findField(o, 'class'))[6]
-            lmeltid = Modelelemtype.type2melt(lMelt)
-            if lmeltid != "":
+            lMelt = Modelelemtype.type2melt(re.split("\.", findField(o, 'class'))[6])
+            if lMelt != "":
+                lmeltid = Modelelemtype.getidbyshortname(lMelt)
                 try:
-                    dbInserts.insertModelltypEigen((Modelelemtype.getidbyshortname(pshortname=lmeltid), udpId))
+                    metpid = ModelelementProperty(pmeltid=lmeltid,pudprid=udprid).insert()
                 except Exception as err:
                     print(err)
                     logging.writelog(
@@ -1090,7 +1097,8 @@ def do1UDPFile(pudpThema, pfileName):
 
         # print (ludp)
         lov = prop.find('list_of_values')
-        if (lov is not None):
+        # Currently no Domains and therefore no LOVs in UDPs
+        if False and (lov is not None):
             wrtbId = dbInserts.insertLovWrtb(pName=lupdThema + '_' + propname)
 
             # end insertLovWrtb
@@ -1132,30 +1140,25 @@ def dofiles(pdirec, pfileregexp, ptransferfunc):
 # dofiles
 
 def transferUPDdef():
-    # lösche die UDP
-    #    l_sql = """select count(*) from benudef_wert union select count(*) from benudef_eigenschaft"""
-    #    result = dbDML.select(l_sql)
-    #    for row in result:
-    #        print(row)
-    for file in os.listdir(parameters.odmFilesDirec()):
-        filename, file_extension = os.path.splitext(file)
-        # print(filename, file_extension)
-        if (file_extension == '.udposdm'):
-            filepath = parameters.odmFilesDirec() + file
-            # print (filepath)
-            do1UDPFile(pudpThema=filename, pfileName=filepath)
-        # fi
-    # endfor
+    doxmlfiles(pdirec=parameters.odmFilesDirec()
+               , ptransfer=do1UDPFile
+               , ppattern=r'.*\.{}'.format(UDPEXTENSION))
+
+    # for file in os.listdir(parameters.odmFilesDirec()):
+    #     filename, file_extension = os.path.splitext(file)
+    #     # print(filename, file_extension)
+    #     if (file_extension == '.udposdm'):
+    #         filepath = parameters.odmFilesDirec() + file
+    #         # print (filepath)
+    #         do1UDPFile(pudpThema=filename, pfileName=filepath)
+    #     # fi
+    # # endfor
 
     dbConnect.myDbConn.commit()
-
-
 # transferUDPdef
 
 def transferUDP():
     transferUPDdef()
-
-
 # transferUDP
 
 def insertBaseData():
@@ -1194,9 +1197,9 @@ def insertBaseData():
 def loeschmodell():
     transferRelational.loeschmodell()
 
-    dbDML.delete("modelltyp_eigensch")
-    dbDML.delete("benudef_wert")
-    dbDML.delete("benudef_eigenschaft")
+    ModelelementProperty.delete()
+    Userdefprop.delete()
+    Userdefpropvalue.delete()
     Schluesselelement.delete()
     Schluessel.delete()
     Relation.delete()
@@ -1209,11 +1212,9 @@ def loeschmodell():
     Externalref.delete()
     Modelelement.delete()
     Diagramm.delete()
-    dbDML.delete("benudef_eigenschaft")
     DefaultValue.delete()
     DomaingroupMember.delete()
     Domain.delete()
-    dbDML.delete("speicherformate")
     dbDML.delete("linie_segment")
     dbDML.delete("beziehung_darst")
     dbDML.delete("elementdarst")
@@ -1350,9 +1351,9 @@ def transferODMModel():
     transferTypes()
     transferDocuments()
     transferDomains()
-    return
     transferUDP()
     transferEntitaeten()
+    return
     transferRelations()
     transferArcs()
     doSubentities()

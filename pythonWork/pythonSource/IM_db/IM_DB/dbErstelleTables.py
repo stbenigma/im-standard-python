@@ -38,67 +38,13 @@ def erstelleInfra():
 
     Relation.createtable()
 
-    dbDDL.dropTable("benudef_eigenschaft")
-    dbDDL.createTable("""
-CREATE TABLE benudef_eigenschaft(
-    bdeg_id             integer NOT NULL primary key autoincrement,
-    bdeg_thema          varchar(60 )NOT NULL,
-    bdeg_gruppe         varchar(60 )NOT NULL,
-    bdeg_name           varchar(60 )NOT NULL,
-    bdeg_default_value           varchar(60 ),
-    bdeg_beschreibung   varchar(4000 )NULL,
-    bdeg_optional       varchar(5 )NOT NULL
-        CHECK(bdeg_optional IN(
-            'FALSE',
-            'TRUE'
-        )),
-    bdeg_wrtb_id        integer ,
-        bdeg_uc             varchar(30 )NOT NULL,
-    bdeg_dc             varchar(30)NOT NULL,
-    bdeg_um             varchar(30 )NULL,
-    bdeg_dm             varchar(30)NULL,
-	CONSTRAINT bdeg_un UNIQUE(bdeg_name),
-	CONSTRAINT bdeg_wrtb_fk FOREIGN KEY(bdeg_wrtb_id)
-	        REFERENCES wertebereiche(wrtb_id)	
-)
-""")
-
-    dbDDL.dropTable("benudef_wert")
-    dbDDL.createTable("""
-CREATE TABLE benudef_wert(
-    bdwe_id        integer NOT NULL primary key autoincrement,
-    bdwe_wert      varchar(4000),
-    bdwe_mode_id   varchar(4)NOT NULL,
-    bdwe_bdeg_id   integer NOT NULL,
-        bdwe_uc        varchar(30 )NOT NULL,
-    bdwe_dc        varchar(30)NOT NULL,
-    bdwe_um        varchar(30 )NULL,
-    bdwe_dm        varchar(30)NULL,
-	CONSTRAINT bdwe_un UNIQUE(bdwe_mode_id, bdwe_bdeg_id),
-	CONSTRAINT bdwe_mode_fk FOREIGN KEY(bdwe_mode_id)
-	        REFERENCES modellelement(mode_id) on delete cascade,
-	CONSTRAINT bdwe_bdeg_fk FOREIGN KEY(bdwe_bdeg_id)
-	        REFERENCES benudef_eigenschaft(bdeg_id) on delete cascade
-		)
-""")
+    Userdefprop.createtable()
+    Userdefpropvalue.createtable()
 
     Modelelemtype.createtable()
     Modelelement.createtable()
     Externalref.createtable()
-
-    dbDDL.dropTable("modelltyp_eigensch")
-    dbDDL.createTable("""
-CREATE TABLE modelltyp_eigensch(
-	mote_id        integer NOT NULL primary key autoincrement,
-    mote_melt_id   integer NOT NULL,
-    mote_bdeg_id   integer NOT NULL,
-	CONSTRAINT mote_un UNIQUE(mote_melt_id,mote_bdeg_id),
-	CONSTRAINT mote_bdeg_fk FOREIGN KEY(mote_bdeg_id)
-								        REFERENCES benudef_eigenschaft(bdeg_id) on delete cascade,
-    CONSTRAINT mote_melt_fk FOREIGN KEY(mote_melt_id)
-									   REFERENCES modellelem_typ(melt_id)
-)
-""")
+    ModelelementProperty.createtable()
 
     Sprache.createtable()
     Sprachtext.createtable()

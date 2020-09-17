@@ -1,5 +1,5 @@
 from datetime import date
-from .baseobject import Baseobject
+from .baseobject import Baseobject, Boolean
 class Modelelemtype(Baseobject):
     ENTI: str = 'ENTI'
     BURU: str = 'BURU'
@@ -41,7 +41,8 @@ CREATE TABLE MODELELEM_TYPE
      MELT_ID INTEGER NOT NULL primary key autoincrement,
      MELT_SHORTNAME VARCHAR (4) NOT NULL CHECK 
             ( MELT_SHORTNAME IN ('ARCS', 'ATTR', 'BURU', 'COLU', 'DOMA', 'ENTI'
-                                , 'INTF', 'ORGU', 'RELA', 'SYNO', 'TABL','DOCU','KEYS','DATY') ) ,
+                                , 'INTF', 'ORGU', 'RELA', 'SYNO', 'TABL','DOCU','KEYS','DATY'
+                                ,'DGRM') ) ,
      MELT_NAME VARCHAR (60) NOT NULL ,
      MELT_UC VARCHAR(30) NULL  ,
      MELT_DC VARCHAR (30) NOT NULL ,
@@ -81,6 +82,7 @@ CREATE TABLE MODELELEM_TYPE
         Modelelemtype(pshortname=Modelelemtype.DATY, pname='Datentyp').insert()
         Modelelemtype(pshortname=Modelelemtype.KEYS, pname='Keys').insert()
         Modelelemtype(pshortname=Modelelemtype.DOCU, pname='Document').insert()
+        Modelelemtype(pshortname=Modelelemtype.DGRM, pname='Domaingroupmember').insert()
 
     @staticmethod
     def getidbyshortname(pshortname):
@@ -161,6 +163,7 @@ CREATE TABLE MODELELEMENT
     @staticmethod
     def getelement(pmodeid):
         mode = Modelelement().getbyid(pid=pmodeid)
+        if mode is None: return None
         if mode.mode_type == Modelelemtype.SYNO:
             element = Synonym().getbyid(mode.mode_id)
         elif mode.mode_type == Modelelemtype.DOMA:
@@ -191,5 +194,45 @@ CREATE TABLE MODELELEMENT
             element = None
         return element
 # modelelement
+
+class ModelelementProperty(Baseobject):
+    _tablename: str = 'modelemtype_properties'
+    _prefix: str = 'metp'
+    _columnlist: list = ['metp_id','metp_melt_id','metp_udpr_id','metp_optional']
+
+    def __init__(self, pmeltid,pudprid):
+        super().__init__(tablename=ModelelementProperty._tablename, prefix=ModelelementProperty._prefix
+                         , columnlist=ModelelementProperty._columnlist)
+        self.metp_melt_id = pmeltid
+        self.metp_udpr_id = pudprid
+        self.metp_optional = Boolean.FALSE
+
+    @staticmethod
+    def createtable():
+        Baseobject.createtable(ptablename=ModelelementProperty._tablename
+                               , psql="""
+CREATE TABLE MODELEMTYPE_PROPERTIES
+    (
+     METP_ID INTEGER NOT NULL primary key autoincrement,
+     METP_MELT_ID NUMERIC (10) NOT NULL ,
+     METP_UDPR_ID NUMERIC (10) NOT NULL ,
+     METP_OPTIONAL VARCHAR (5) NOT NULL CHECK ( METP_OPTIONAL IN ('FALSE', 'TRUE') )
+    ,CONSTRAINT METP_UN UNIQUE (METP_MELT_ID ASC, METP_UDPR_ID ASC)
+    ,CONSTRAINT METP_MELT_FK FOREIGN KEY    (     METP_MELT_ID)
+		REFERENCES MODELELEM_TYPE    (     MELT_ID )
+    ,CONSTRAINT METP_UDPR_FK FOREIGN KEY    (     METP_UDPR_ID)
+		REFERENCES USER_DEFINED_PROPERTIES    (     UDPR_ID )
+    )
+""")
+
+    @staticmethod
+    def delete():
+        Baseobject.delete(ModelelementProperty._tablename)
+
+    @staticmethod
+    def select(pwhere=None, porderby=None):
+        return Baseobject.select(pclass=ModelelementProperty, pwhere=pwhere, porderby=porderby)
+
+#ModelelementProperty
 from .externalref import Externalref
 from .datatype import Datatype

@@ -16,11 +16,13 @@ def main(p_param1):
     parameters.initparam(p_callarg=p_param1)
     logging.initlog('fillDB')
 
+    print("filldbmain Domains sollten auf ON stehen")
     dbConnect.openDB(parameters.dbFilePath(), fks='OFF')
-    filldbmain()
-    dbConnect.myDbConn.close()
-
-    logging.logmessage("database {} for model {} filled with modeldata"
+    try:
+        filldbmain()
+        dbConnect.myDbConn.close()
+    finally:
+        logging.logmessage("database {} for model {} filled with modeldata"
                        .format(parameters.dbFilePath(),
                                parameters.odmModelName()))
 #  main
