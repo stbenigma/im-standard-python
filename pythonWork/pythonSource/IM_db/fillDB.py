@@ -22,8 +22,8 @@ def main(p_param1):
         filldbmain()
         dbConnect.myDbConn.close()
     finally:
-        logging.logmessage("database {} for model {} filled with modeldata"
-                       .format(parameters.dbFilePath(),
+        logging.showmessages("database {} for model {} filled with modeldata"
+                             .format(parameters.dbFilePath(),
                                parameters.odmModelName()))
 #  main
 

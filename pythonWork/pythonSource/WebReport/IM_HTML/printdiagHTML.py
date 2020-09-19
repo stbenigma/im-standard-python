@@ -325,7 +325,7 @@ def printelements(pdiagid,plang):
             ,e[11]+('' if (e[13]==0) else':'+str(e[13]))))
 
         attrs=web_sql.diagattrlist(plang=plang,pdiagid=pdiagid)
-        #  attr_id, attr_anzname, attr_pflichtattr ,attr_deskriptor, schluessel, mode_id
+        #  attr_id, attr_displ_name, attr_is_mandatory ,attr_is_descriptive, schluessel, mode_id
         for a in attrs:
             #printtext(px=x1, py=y, ptext='*' if a[5] == 'TRUE' else 'o'
             #, pfillcolor=hex2rbg(e[10]), pfontsize=10  #vorläufig mal fix verdrahtet e[9]

@@ -646,11 +646,11 @@ def filllists(plang):
     entities = {enti.enti_id: [enti.enti_name
         , {tem[0]: [t for t in tem[1].keys()]
            for tem in TablEntiMap.tablelist(pentiid=enti.enti_id)}
-        , {attr.attr_id: [attr.attr_anzname, attr.attr_tech_name]
+        , {attr.attr_id: [attr.attr_displ_name, attr.attr_tech_name]
            for attr in enti.getattributes()}
                                ]
                 for enti in Entitaet.select()}
-    attributes = {attr.attr_id: [attr.attr_anzname, attr.attr_tech_name, attr.attr_enti_id, attr.attr_rela_id] for attr
+    attributes = {attr.attr_id: [attr.attr_displ_name, attr.attr_tech_name, attr.attr_enti_id, attr.attr_rela_id] for attr
                   in Attribut.select()}
     tables = {tabl.tabl_id: [tabl.tabl_name
         , Schnittstelle.getname(tabl.tabl_schn_id)
@@ -715,8 +715,8 @@ def main(pdirec, plang):
     # listtabenti()
     # listcolattr()
     writexls(pfilename=parameters.webDirec() + 'Mappingtables_' + parameters.odmModelName() + '.xlsx')
-    logging.logmessage("Model {}: mappinglist form database {}\n  => created in file {}"
-                       .format(parameters.odmModelName(), parameters.dbFilePath()
+    logging.showmessages("Model {}: mappinglist form database {}\n  => created in file {}"
+                         .format(parameters.odmModelName(), parameters.dbFilePath()
                                , parameters.webDirec() + 'Mappingtables_' + parameters.odmModelName() + '.xlsx'))
 
 

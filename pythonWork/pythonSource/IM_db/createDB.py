@@ -16,10 +16,10 @@ def main(par1):
     dbConnect.openDB(parameters.dbFilePath(), 'OFF');
     dbErstelleTables.erstelleInfra();
     dbConnect.myDbConn.close()
-    logging.logmessage("database {} for model {} created"
-                       .format(parameters.dbFilePath()
+    logging.showmessages("database {} for model {} created"
+                         .format(parameters.dbFilePath()
                                , parameters.odmModelName())
-                       )
+                         )
 # end main
 
 if __name__ == '__main__':

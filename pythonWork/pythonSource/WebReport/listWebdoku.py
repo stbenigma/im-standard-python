@@ -62,7 +62,7 @@ def printAttrUDPMatrix(thema=None):
     allattr = dbDML.select("""select * from 
         (select 
        case when ena.sptx_text is null then enti_name else ena.sptx_text end enti_name
-       ,enti_id,attr_id,case when ana.sptx_text is null then attr_anzname else ana.sptx_text end attr_anzname
+       ,enti_id,attr_id,case when ana.sptx_text is null then attr_displ_name else ana.sptx_text end attr_displ_name
        ,attr_tech_name,wrtb_name,wrtb_typ
       from attributes 
         join sprachen sp on sp.spra_iso_code2 = '{}'
@@ -75,7 +75,7 @@ def printAttrUDPMatrix(thema=None):
         left join spraattr  ena on ena.sptx_attrname = 'ENTI_NAME'
                                     and ena.sptx_mode_id = me.mode_id
                                     and ena.spra_id = sp.spra_id            
-      join wertebereiche on wrtb_id = attr_wrtb_id
+      join wertebereiche on wrtb_id = attr_doma_id
       ) order by enti_name,upper(attr_tech_name)"""
                            .format(Sprachtext.reportLang()))
     printHTML.starttable(ptitel='Attribute - User Defined Properties: ' + nvl(thema)
@@ -215,8 +215,8 @@ def main(pdirec, plang):
 
     dbConnect.myDbConn.close()
 
-    logging.logmessage("web-files from database {} for model {} created"
-          .format(parameters.dbFilePath(),parameters.odmModelName()))
+    logging.showmessages("web-files from database {} for model {} created"
+                         .format(parameters.dbFilePath(),parameters.odmModelName()))
 #main
 
 if __name__ == '__main__':

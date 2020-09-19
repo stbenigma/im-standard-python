@@ -23,19 +23,25 @@ class color:
         self.fontsize = fontsize
         self.fontstyle = fontstyle
     # end __init__
-
-
 # color
 
-# entry of keys found in entites
-# [Schluessel, (listof attr and relationship guids)]
+""" entry of keys found in entites
+ [Schluessel, (listof attr and relationship guids)]
+"""
 schluessel = []
-# Classification type colors
-# classguid : color
+""" Classification type colors
+ classguid : color
+"""
 classcolors = dict()
-# default colors
-# elementtypename : color
+""" default colors
+ {elementtypename : color}
+"""
 defcolors = dict()
+
+"""List of entities die erst bearbeitet werden können, wenn alle entities geladen sind
+   {entityguid: (entity, superentitityguid, [subentity ids], categoryguid)}
+"""
+entities = dict()
 
 
 def findText(set, name):
@@ -269,7 +275,7 @@ def toString(str, upper=False):
 
 def transferentity(penti, pdiagid, puc, pdc):
     entiodm = findField(penti, 'oid')
-    enti = Entitaet().getbyextref(entiodm)
+    enti = Entitaet().getbyODMref(psrcid=entiodm)
     hiddenelements = penti.find("hiddenElements")
     if hiddenelements is not None:
         elemtext = findField(hiddenelements, "elements")
@@ -278,8 +284,8 @@ def transferentity(penti, pdiagid, puc, pdc):
     hiddenattrs = elemtext.split(' ')
     hiddenattrs2 = []
     for e in hiddenattrs:
-        if e != "": hiddenattrs2.append(Attribut().getbyextref(pguid=e))
-    attrs = Attribut.select(pwhere="attr_enti_id = {}".format(enti.enti_id), porderby="attr_anz_rhflg")
+        if e != "": hiddenattrs2.append(Attribut().getbyODMref(psrcid=e))
+    attrs = Attribut.select(pwhere="attr_enti_id = {}".format(enti.enti_id), porderby="attr_displ_seq")
     attrids = [a.attr_id for a in attrs]
     attrids = list(set(attrids) - set(hiddenattrs2))
     # print (attrids,hiddenattrs2)
@@ -610,7 +616,7 @@ def insertderiveddomain(ptypeguid, pattrname, pvatername, pattrxml):
         # es gibt ihn schon, füge den Vaternamen dazu
         doma.doma_name = pattrname + '-' + pvatername
     doma.doma_origin = Domain.DERIVED
-    if nvl(ptypeguid) != '': doma.doma_daty_id = Datatype().getbyODMref(psrcid=ptypeguid)
+    if nvl(ptypeguid) != '': doma.doma_daty_id = Externalref.getODMmodeid(psrcid=ptypeguid)
     doma.doma_descr = "generiertes Domain für Datentyp für Attribut {}.{}".format(pvatername, pattrname)
 
     liesunsfuelldoma(pdoma=doma, pxml=pattrxml)
@@ -643,7 +649,7 @@ def findorcreateDomain(pattrname, pfathername, pattrxml, pdomguid=None, pstructd
     if domaid is not None: return domaid
 
     if ptypeguid is not None:
-        typeelem = Modelelement.getelementbyodmguid(pguid=ptypeguid)
+        typeelem = Modelelement.getelementbyodmguid(psrcid=ptypeguid)
         if typeelem is None:
             """domain not yet known"""
             return Domain().getunknown().doma_id
@@ -665,7 +671,7 @@ def do1Arc(fileName):
     if (findField(arcXML, "class") != "oracle.dbtools.crest.model.design.logical.Arc"): return
 
     arc = Arc(pname=findField(arcXML, "name")
-              , pentiid=Entitaet().getbyextref(findText(arcXML, 'entity'))
+              , pentiid=Externalref.getODMmodeid(psrcid=findText(arcXML, 'entity'))
               , puc=findText(arcXML, 'createdBy')
               , pdc=findText(arcXML, 'createdTime'))
     arcid = arc.insert()
@@ -756,36 +762,34 @@ def do1Attribute(plfnr, pattrxml, pentiId=None, prelaId=None):
     xmlname = findField(pattrxml, 'name')
     # strip [] am Ende des Namens
 
-    lmodeId = Modelelement(pmeltshortname=Modelelemtype.ATTR).insert()
-    attr = Attribut(pname=re.sub(' ?\[[LNT]+\]', '', xmlname), pentiid=pentiId, prelaid=prelaId)
-    attr.attr_id = lmodeId
+    attr = Attribut(pname=re.sub(' ?\[[LNT]+\]', '', xmlname), pentiid=pentiId, prelaid=prelaId
+                    ,psrcname=Externalref.SOURCE_ODM,psrcid=findField(pattrxml, 'id'))
     attr.attr_tech_name = findText(pattrxml, 'preferredAbbreviation')
     if attr.attr_tech_name is None:
-        attr.attr_tech_name = re.sub('[-,.()\[\]äöüèéàÄ~ÖÜ ]', '_', str.upper(attr.attr_anzname))
+        attr.attr_tech_name = re.sub('[-,.()\[\]äöüèéàÄ~ÖÜ ]', '_', str.upper(attr.attr_displ_name))
     attr.attr_uc = findText(pattrxml, 'createdBy')
     attr.attr_dc = findText(pattrxml, 'createdTime')
     attr.attr_doma_id = findorcreateDomain(pdomguid=findText(pattrxml, 'domain')
                                            , pstructdomguid=findText(pattrxml, 'structuredType')
                                            , ptypeguid=findText(pattrxml, 'logicalDatatype')
-                                           , pattrname=attr.attr_anzname
+                                           , pattrname=attr.attr_displ_name
                                            , pfathername=vatername
                                            , pattrxml=pattrxml)
-    attr.attr_beschr = findText(pattrxml, 'comment')
-    attr.attr_anz_rhflg = plfnr
-    attr.attr_deskriptor = 'FALSE'
-    attr.attr_pflichtattr = Boolean.bool2str(findText(pattrxml, 'nullsAllowed') == 'true')
-    attr.attr_historisiert = Boolean.bool2str(is_historisized(xmlname))
-    attr.attr_wiederholt = Boolean.bool2str(is_repeated(xmlname))
-    attr.attr_sprachabhaengig = Boolean.bool2str(is_langdept(xmlname))
-    attr.attr_verschluesselt = 'FALSE'
-    attr.attr_odm_guid = findField(pattrxml, 'id')
+    attr.attr_descr = findText(pattrxml, 'comment')
+    attr.attr_displ_seq = plfnr
+    attr.attr_is_descriptive = 'FALSE'
+    attr.attr_is_mandatory = Boolean.bool2str(findText(pattrxml, 'nullsAllowed') == 'true')
+    attr.attr_is_historicised = Boolean.bool2str(is_historisized(xmlname))
+    attr.attr_is_repeated = Boolean.bool2str(is_repeated(xmlname))
+    attr.attr_is_translated = Boolean.bool2str(is_langdept(xmlname))
+    attr.attr_is_encrypted = 'FALSE'
     attrId = attr.insert()
 
-    dbInserts.insertUdpAttr(attrId)
-    updateUDP(pmodeid=lmodeId, pobj=pattrxml)
+    Userdefpropvalue.fillallvalues(pmodetype=Modelelemtype.ATTR,pattrid=attrId)
+    updateUDP(pmodeid=attrId, pobj=pattrxml)
 
     documents = getdokuref(pelem=pattrxml)
-    ModelelemDoku.insertdokuref(pdocguidlist=documents, pmodeid=lmodeId)
+    ModelelemDocu.insertdocuref(pdocguidlist=documents, pmodeid=attrId)
 
 
 # do1Attribute
@@ -837,7 +841,7 @@ def transferKeys():
             scel.scel_schl_id = schl.schl_id
             scel.scel_uc = schl.schl_uc
             scel.scel_dc = schl.schl_dc
-            scel.scel_attr_id = Attribut().getbyextref(ke)
+            scel.scel_attr_id = Externalref.getODMmodeid(psrcid=ke)
             if scel.scel_attr_id is None:
                 try:
                     scel.scel_rela_id = dbLookup.beziId(ke)
@@ -883,29 +887,28 @@ def getdokuref(pelem, pstruct=False):
     # fi
     # print(documents)
     return documents
-
-
 # getdokuref
 
 def do1Entity(fileName):
+    global entities
     tree = ET.parse(fileName)
     entixml = tree.getroot()
+    #es hat noch fremde XMLS in den Verzeichnissen
     if (findField(entixml, "class") != "oracle.dbtools.crest.model.design.logical.Entity"): return
-    entname = findField(entixml, "name")
-    entcomm = findText(entixml, 'comment')
-    creby = findText(entixml, 'createdBy')
-    creti = findText(entixml, 'createdTime')
-    enti_category_guid = findText(entixml, 'typeID')
+
     documents = getdokuref(pelem=entixml)
-    enti = Entitaet()
-    enti.enti_odm_guid = findField(entixml, 'id')
-    enti.enti_name = entname
-    enti.enti_beschr = entcomm
-    enti.enti_uc = creby
-    enti.enti_dc = creti
-    enti.enti_enti_guid = findText(entixml, 'hierarchicalParent')
-    enti.enti_category_guid = enti_category_guid
+    entiguid = findField(entixml, 'id')
+    enti = Entitaet(psrcname=Externalref.SOURCE_ODM,psrcid=entiguid)
+    enti.enti_name = findField(entixml, "name")
+    enti.enti_descr = findText(entixml, 'comment')
+    enti.enti_uc = findText(entixml, 'createdBy')
+    enti.enti_dc = findText(entixml, 'createdTime')
     entiId = enti.insert()
+
+    entientiguid = findText(entixml, 'hierarchicalParent')
+    enticategoryguid = findText(entixml, 'typeID')
+    entities[entiguid] = (enti,entientiguid,[],enticategoryguid)
+
     Userdefpropvalue.fillallvalues(pmodetype=Modelelemtype.ENTI,pentiid=entiId)
 
     sobj = findText(entixml, 'synonym')
@@ -913,7 +916,6 @@ def do1Entity(fileName):
         for syn in sobj.split(','):
             synoname = syn.strip()
             syno = Synonym(pname=synoname, pentiid=entiId)
-            syno.syno_id = Modelelement(pmeltshortname=Modelelemtype.SYNO).insert()
             syno.insert()
         # for
     # fi
@@ -943,22 +945,29 @@ def transferEntitaeten():
 # transferEntitaeten
 
 def doSubentities():
-    Entitaet.setsuperentityid()
+    global entities
+    #fill all subentity-id-lists
+    for guid in entities:
+        entientiguid = entities[guid][1]
+        enti = entities[guid][0]
+        if entientiguid is not None:
+            # hat eine superentity, fülle in seine idliste
+            entities[entientiguid][2].append(enti.enti_id)
+        #fi
+    #for
 
-    for superenti in Entitaet.select(
-            pwhere="(select count(*) from entitaeten as e1 where e1.enti_enti_id = enti.enti_id) > 0"):
-        Arc(pname=superenti.enti_name + '_subtype', pentiid=superenti.enti_id
-            , puc=superenti.enti_uc, pdc=superenti.enti_dc).insert()
-    # for
-    # dbDML.exec("""insert into arcs (arcs_name, arcs_enti_id,arcs_uc,arcs_dc)
-    #                    select name || '_subtype', id,uc,um from
-    #                               (select enti_name as name, enti_id as id,enti_uc as uc ,enti_dc as um
-    #                                       ,(select count(*) from entitaeten as e1 where e2.enti_odm_guid = e1.enti_enti_guid) as subanz
-    #                                from entitaeten as e2
-    #                                ) where subanz > 0
-    #                """)
+    #get all superentity guids
+    guids = set(val[1] for val in entities.values())
+    guids.discard(None)
 
-    Relation.insertisa()
+    """create an arc for every superentity"""
+    for superentiguid in guids:
+        superenti = entities[superentiguid][0]
+        subentiids = entities[superentiguid][2]
+        arcId = Arc(pname=superenti.enti_name + '_subtype', pentiid=superenti.enti_id
+                     , puc=superenti.enti_uc, pdc=superenti.enti_dc).insert()
+        Relation.insertisa(parcid=arcId,pentiids=subentiids)
+    #for
 
 
 def abbildTyp(ptyp):
@@ -969,8 +978,6 @@ def abbildTyp(ptyp):
     else:
         return None
     # fi
-
-
 # abbildTyp
 
 
@@ -995,8 +1002,8 @@ def do1Relation(fileName):
 
     sourceentiguid = findText(relaxml, 'sourceEntity')
     targetentiguid = findText(relaxml, 'targetEntity')
-    rela.rela_enti_id_from = Entitaet().getbyextref(sourceentiguid)
-    rela.rela_enti_id_to = Entitaet().getbyextref(targetentiguid)
+    rela.rela_enti_id_from = Externalref.getODMmodeid(psrcid=sourceentiguid)
+    rela.rela_enti_id_to = Externalref.getODMmodeid(psrcid=targetentiguid)
     if (rela.rela_enti_id_from is None or rela.rela_enti_id_to is None):
         logging.writelog(
             "Entity Id {} oder {} nicht gefunden. Datenleichen von Realtion mit gelöschten Entities".format(
@@ -1249,6 +1256,7 @@ def loadcolors(coldict, classkey, elem):
 # loadcolors
 
 def loaddefaultcolors():
+    global defcolors,classcolors
     settings = ET.parse(parameters.odmsettingsfile())
     root = settings.getroot()
     classif = root.find('classification_types')
@@ -1271,8 +1279,6 @@ def loaddefaultcolors():
         loadcolors(coldict=defcolors, classkey=classname, elem=de)
         # print(classname,defcolors[classname].fontsize)
     # for
-
-
 # loaddefaultcolors
 
 def filllanguages():
@@ -1352,13 +1358,13 @@ def transferODMModel():
     transferDocuments()
     transferDomains()
     transferUDP()
-    transferEntitaeten()
-    return
-    transferRelations()
-    transferArcs()
-    doSubentities()
-    transferKeys()
     loaddefaultcolors()
+    transferEntitaeten()
+    doSubentities()
+    transferRelations()
+    return
+    transferArcs()
+    transferKeys()
     transferdiagramme()
     filllanguages()
     transferRelational.transfer()

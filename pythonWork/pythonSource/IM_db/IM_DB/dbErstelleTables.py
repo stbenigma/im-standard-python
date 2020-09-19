@@ -49,28 +49,6 @@ def erstelleInfra():
     Sprache.createtable()
     Sprachtext.createtable()
 
-    dbDDL.dropView("SUPERENTI");
-    dbDDL.createTable("""create view SUPERENTI AS 
-    select ae.enti_id super_enti_id,ae.enti_name super_enti_name
-               ,e1.enti_id sub_enti_id,e1.enti_name sub_enti_name
-      from arcs
-      join entitaeten as ae on ae.enti_id = arcs_enti_id 
-      join (select bezi_arcs_id
-                   ,count(*) alleanz
-           , SUM(case rela_mandatory_from_to when 'TRUE' then 1 else 0 end) nnvonanz
-           , SUM(case rela_mandatory_to_from when 'TRUE' then 1 else 0 end) nnzuanz
-            from   (select case when rela_arcs_id_from is null then rela_arcs_id_to else rela_arcs_id_from end bezi_arcs_id
-                        , rela_mandatory_from_to
-                        , rela_mandatory_to_from
-                   from beziehungen
-                   where rela_type in ('ISA', '1:1')
-                )
-            group by bezi_arcs_id) as st
-            on st.bezi_arcs_id = arcs_id AND  alleanz = nnvonanz and alleanz = nnzuanz
-      join beziehungen b1 on b1.rela_arcs_id_from = arcs_id or b1.rela_arcs_id_to = arcs_id
-      join entitaeten e1 on e1.enti_id = b1.rela_enti_id_from  
-    order by ae.enti_name""")
-
     Diagrammtyp.createtable()
     Diagramm.createtable();
 
@@ -277,5 +255,5 @@ CREATE TABLE linie_segment(
     ModelelemDocu.createtable()
     TablEntiMap.createtable()
     AttrTransf.createtable()
-
+    Entitaet.createviews()
 #end erstelleInfra

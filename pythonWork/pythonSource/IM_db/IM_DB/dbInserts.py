@@ -115,21 +115,6 @@ def insertUdpBezi(beziId):
 #insertUdpBezi
 
 
-def insertUdpAttr(attrId):
-    dbDML.exec("""insert into benudef_wert(
-                bdwe_wert,  bdwe_mode_id,   bdwe_bdeg_id
-                ,bdwe_uc,   bdwe_dc)
-                select NULL,mode_id,bdeg_id,attr_uc,attr_dc
-                from attributes
-                join modelelement on mode_attr_id = attr_id
-                cross join (select mote_bdeg_id as bdeg_id
-                             from modelelem_type
-                             join modelltyp_eigensch on mote_melt_id = melt_id
-                             where melt_shortname = 'ATTR')
-                where attr_id = {}
-            """ .format(attrId))
-#insertUdpAttr
-
 def insertgeschaeftsbereich(pdata):
     lsql = """insert into geschaeftsbereich 
             (gber_name, gber_beschreibung, gber_zweck

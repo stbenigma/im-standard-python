@@ -39,7 +39,7 @@ def do1column(plfnr, pcolxml, ptablid):
     scha.scha_fremdsystem_id = None
     daty_odm = transferModel.findText(pcolxml, 'logicalDatatype')
     if (daty_odm is not None and daty_odm != ''):
-        scha.scha_daty_id = Datatype().getbyextref(daty_odm).daty_id
+        scha.scha_daty_id = Externalref.getODMmodeid(psrcid=daty_odm).daty_id
     daty_wrtb_odm = transferModel.findText(pcolxml, 'domain')
     scha.scha_wrtb_id = transferModel.findorcreateDomain(pdomguid=daty_wrtb_odm
                                                          , pstructdomguid=None
@@ -187,9 +187,9 @@ class Odmmapping:
 
 def doattrmapping(pcolmappings):
     for colmap in pcolmappings:
-        scha = Schnittstelleattr().getbyextref(transferModel.findField(colmap, 'rID'))
+        scha = Schnittstelleattr().getbyODMref(psrcid=transferModel.findField(colmap, 'rID'))
         schaid = None if scha is None else scha.scha_id
-        attrid = Attribut().getbyextref (pguid=transferModel.findField(colmap, 'lID'))
+        attrid = Externalref.getODMmodeid (psrcid=transferModel.findField(colmap, 'lID'))
         attf = AttrTransf()
         attf.attf_laufnr =1
         attf.attf_richtung = AttrTransf.INBOUND
@@ -221,9 +221,9 @@ def do1mapping(pfilename):
         #print (odmmap.__dict__)
         tabentimap = TablEntiMap()
         try:
-            tabentimap.tema_enti_id = Entitaet().getbyextref(odmmap.logid) if odmmap.logtype == odmmap.ENTITYPE else None
-            tabentimap.tema_rela_id = dbLookup.beziID(odmmap.logid) if odmmap.logtype == odmmap.RELATYPE else None
-            tabentimap.tema_tabl_id = Tabelle().getbyextref(odmmap.relid) if odmmap.reltype == odmmap.TABLETYPE else None
+            tabentimap.tema_enti_id = Externalref.getODMmodeid(psrcid=odmmap.logid) if odmmap.logtype == odmmap.ENTITYPE else None
+            tabentimap.tema_rela_id = Externalref.getODMmodeid(psrcid=odmmap.logid) if odmmap.logtype == odmmap.RELATYPE else None
+            tabentimap.tema_tabl_id = Externalref.getODMmodeid(psrcid=odmmap.relid) if odmmap.reltype == odmmap.TABLETYPE else None
             #colattrmap.tema_tabl_id = Tabelle().getidbyfk(odmmap.relid) if odmmap.reltype == odmmap.FKTYPE else None
             tabentimap.insert(pdoerrhdlng=False)
         except:

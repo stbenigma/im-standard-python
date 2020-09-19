@@ -3,6 +3,7 @@ from .baseobject import MultilangBaseobject, Baseobject
 from .datatype import Datatype
 from .modelelement import Modelelement, Modelelemtype
 from .sprachtext import Sprachtext
+from .externalref import Externalref
 import logging
 
 class Domain(MultilangBaseobject):
@@ -46,7 +47,7 @@ class Domain(MultilangBaseobject):
                          , columnlist=Domain._columnlist
                          , multilangcols={'doma_name': Sprachtext.DOMA_NAME}
                          , pmodelemtype=Modelelemtype.DOMA
-                         , pscrid=psrcid
+                         , psrcid=psrcid
                          , psrcname=psrcname
                          )
 
@@ -56,7 +57,7 @@ class Domain(MultilangBaseobject):
                                , psql="""
 CREATE TABLE DOMAINS
     (
-     DOMA_ID NUMERIC (10) NOT NULL  primary key,
+     DOMA_ID integer NOT NULL  primary key,
      DOMA_NAME VARCHAR (60) NOT NULL ,
      DOMA_DESCR VARCHAR (4000) NULL ,
      DOMA_TYPE VARCHAR (4) NOT NULL CHECK ( DOMA_TYPE IN ('BIN', 'DAT', 'GRP', 'LOV', 'NUM', 'TXT') ) ,
@@ -72,9 +73,9 @@ CREATE TABLE DOMAINS
      DOMA_NUM_TOTAL_DIGITS NUMERIC (3) NULL ,
      DOMA_NUM_FRACT_DIGITS NUMERIC (3) NULL DEFAULT 0 ,
      DOMA_NUM_ROUND_VALUE NUMERIC (7,3) NULL ,
-     DOMA_NUM_PHYU_ID NUMERIC (10) NULL ,
+     DOMA_NUM_PHYU_ID integer NULL ,
      DOMA_BIN_CONTENTTYPE VARCHAR (30) NULL CHECK ( DOMA_BIN_CONTENTTYPE IN ('DRAWING', 'FILM', 'IMAGE', 'OTHER', 'SOUND', 'TEXT') ) ,
-     DOMA_BIN_STFO_ID NUMERIC (10) NULL ,
+     DOMA_BIN_STFO_ID integer NULL ,
      DOMA_UC VARCHAR (30) NOT NULL ,
      DOMA_DC VARCHAR (30) NOT NULL ,
      DOMA_UM VARCHAR (30) NULL ,
@@ -194,15 +195,6 @@ CREATE TABLE DOMAINS
         return info[2]
 
     # typestring
-
-    def insert(self):
-        self.doma_id = Modelelement(Modelelemtype.DOMA).insert()
-        try:
-            super().insert()
-        except Exception as e:
-            logging.writelog(e)
-            logging.writelog("Insert in domain {}, {}".format((self.doma_name,self.doma_id)))
-            pass
 
     def webanker(self):
         return super().webanker()
@@ -338,8 +330,8 @@ CREATE TABLE DOMAINGROUP_MEMBERS
      DGRM_NAME VARCHAR (4000) NOT NULL ,
      DGRM_DESCR VARCHAR (4000) NULL ,
      DGRM_IS_MANDATORY VARCHAR (5) NOT NULL CHECK ( DGRM_IS_MANDATORY IN ('FALSE', 'TRUE') ) ,
-     DGRM_DOMA_ID_GROUP NUMERIC (10) NOT NULL  ,
-     DGRM_DOMA_ID_MEMBER NUMERIC (10) NOT NULL ,
+     DGRM_DOMA_ID_GROUP integer NOT NULL  ,
+     DGRM_DOMA_ID_MEMBER integer NOT NULL ,
      DGRM_UC VARCHAR (30) NOT NULL ,
      DGRM_DC VARCHAR (30) NOT NULL ,
      DGRM_UM VARCHAR (30) NULL ,
@@ -395,7 +387,7 @@ class DefaultValue(Baseobject):
 CREATE TABLE DEFAULT_VALUES
     (
      DEVA_ID INTEGER NOT NULL primary key autoincrement,
-     DEVA_DOMA_ID NUMERIC (10) NOT NULL ,
+     DEVA_DOMA_ID integer NOT NULL ,
      DEVA_VALUE VARCHAR (100) NOT NULL ,
      DEVA_SORT_ORDER NUMERIC (3) NULL ,
      DEVA_DISPL VARCHAR (4000) NULL ,

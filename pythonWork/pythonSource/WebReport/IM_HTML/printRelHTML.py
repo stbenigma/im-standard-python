@@ -57,7 +57,7 @@ def getcolmapping(pschaid, pschnid):
     werte = [[entries[1],
               {'(' + entry.gettablname() + '.' + entry.scha_column_name + ')'
                if isinstance(entry, Schnittstelleattr)
-               else '(' + entry.getentiname() + '.' + entry.attr_anzname + ')' if isinstance(entry, Attribut)
+               else '(' + entry.getentiname() + '.' + entry.attr_displ_name + ')' if isinstance(entry, Attribut)
               else 'unknown ' + type(entry)
                : entry.webanker().anker()
                for entry in entries[2]

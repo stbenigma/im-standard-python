@@ -70,7 +70,7 @@ def dokureflist (pid, plang):
         left join (select enti_id id ,enti_name name 
                    from entitaeten
                    union all
-                   select attr_id id ,attr_anzname name 
+                   select attr_id id ,attr_displ_name name 
                    from attributes 
                    union all
                    select tabl_id id ,TABL_NAME name 
@@ -147,7 +147,7 @@ def namelist(ptype, plang=None, pid=None):
     elif (ptype == 'ATTR'):
         data = dbDML.select("""select attrname || ' ('||entname||')' name, attr_id 
         from 
-         (select case when ana.sptx_text is null then attr_anzname 
+         (select case when ana.sptx_text is null then attr_displ_name 
                                             else ana.sptx_text end  attrname
             ,attr_id
             ,case when ena.sptx_text is null then enti_name 
@@ -163,10 +163,10 @@ def namelist(ptype, plang=None, pid=None):
           left join spraattr ena on ena.sptx_attrname = 'ENTI_NAME'
                                 and ena.sptx_mode_id = ame.mode_id
                                 and ena.spra_id = sp.spra_id
-          join wertebereiche on wrtb_id = attr_wrtb_id
+          join wertebereiche on wrtb_id = attr_doma_id
                             and wrtb_id = {}
           union all
-          select case when ana.sptx_text is null then attr_anzname
+          select case when ana.sptx_text is null then attr_displ_name
                                             else ana.sptx_text end  attrname
             ,attr_id
             ,rela_name  beziname
@@ -177,7 +177,7 @@ def namelist(ptype, plang=None, pid=None):
           left join spraattr ana on ana.sptx_attrname = 'ATTR_NAME'
                                 and ana.sptx_mode_id = amo.mode_id
                                 and ana.spra_id = sp.spra_id
-          join wertebereiche on wrtb_id = attr_wrtb_id                          
+          join wertebereiche on wrtb_id = attr_doma_id                          
                             and wrtb_id = {}
           ) order by upper(name)
               """.format(plang, pid if (pid is not None) else 'wrtb_id', pid if (pid is not None) else 'wrtb_id'))
@@ -242,7 +242,7 @@ def namelist(ptype, plang=None, pid=None):
 def udpattrlist(plang,pthema,pgruppe):
     data = dbDML.select("""select attrname || ' ('||entname||')' name, attr_id 
         from 
- (select case when ana.sptx_text is null then attr_anzname 
+ (select case when ana.sptx_text is null then attr_displ_name 
                                     else ana.sptx_text end  attrname
     ,attr_id
     ,case when ena.sptx_text is null then enti_name 
@@ -310,9 +310,9 @@ and lower(spra.spra_iso_code2) = lower('{}')
 def diagattrlist(plang,pdiagid):
     data = dbDML.select("""select 
         attr_id
-       ,case when ana.sptx_text is null then attr_anzname else ana.sptx_text end attr_anzname
-       ,attr_pflichtattr
-       ,attr_deskriptor
+       ,case when ana.sptx_text is null then attr_displ_name else ana.sptx_text end attr_displ_name
+       ,attr_is_mandatory
+       ,attr_is_descriptive
        ,case when (select 'TRUE' from schluesselelement 
                     where scel_attr_id = attr_id) IS NULL THEN 'FALSE' ELSE 'TRUE' end schluessel
        ,amo.mode_id
@@ -325,7 +325,7 @@ def diagattrlist(plang,pdiagid):
                                 and ana.sptx_mode_id = amo.mode_id
                                 and ana.spra_id = sp.spra_id            
       where eled_diag_id = {}
-      order by attr_anz_rhflg"""
+      order by attr_displ_seq"""
                         .format(plang, pdiagid))
     return data
 #diagattrlist
@@ -333,7 +333,7 @@ def diagattrlist(plang,pdiagid):
 def keylist(p_entiid,p_lang):
     schl = dbDML.select("""select schl_laufnr,schl_name,attrs,bezis from
     (select  schl_id,schl_laufnr,schl_name
-                  ,group_concat(case when ana.sptx_text is null then attr_anzname else ana.sptx_text end 
+                  ,group_concat(case when ana.sptx_text is null then attr_displ_name else ana.sptx_text end 
                                     ,', ') attrs
                   ,group_concat(rela_name, ', ') bezis
          from schluessel

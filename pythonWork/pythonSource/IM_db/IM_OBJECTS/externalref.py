@@ -24,7 +24,7 @@ CREATE TABLE EXTERNAL_REFS
      EXTR_ID INTEGER NOT NULL primary key autoincrement,
      EXTR_SOURCE_NAME VARCHAR (60) NOT NULL ,
      EXTR_SOURCE_ID VARCHAR (100) NOT NULL ,
-     EXTR_MODE_ID NUMERIC (10) NOT NULL
+     EXTR_MODE_ID integer NOT NULL
     ,CONSTRAINT EXTR_UK UNIQUE (EXTR_SOURCE_NAME ASC, EXTR_MODE_ID ASC)
      ,CONSTRAINT EXTR_UK_ID UNIQUE (EXTR_SOURCE_NAME ASC, EXTR_SOURCE_ID ASC)
     ,CONSTRAINT EXTR_MODE_FK FOREIGN KEY(     EXTR_MODE_ID) 
@@ -56,6 +56,19 @@ CREATE TABLE EXTERNAL_REFS
         return srcid
     # getsrcid
 
+    @staticmethod
+    def getODMmodeid(psrcid):
+        extrs = Externalref.select (pwhere="extr_source_name = '{}' and extr_source_id = '{}'".format(Externalref.SOURCE_ODM,psrcid))
+        modeid = None if len(extrs) == 0 else extrs[0].extr_mode_id
+        return modeid
+    # getODMmodeid
+
+    @staticmethod
+    def getODMsrcid(pmodeid):
+        extrs = Externalref.select (pwhere="extr_source_name = '{}' and extr_mode_id = '{}'".format(Externalref.SOURCE_ODM,pmodeid))
+        srcid = None if len(extr) == 0 else extrs[0].extr_source_id
+        return srcid
+    # getODMsrcid
 
 #Externalref
 

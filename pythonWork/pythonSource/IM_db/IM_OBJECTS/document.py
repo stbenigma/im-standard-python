@@ -30,7 +30,7 @@ CREATE TABLE DOCUMENTS
      DOCU_STFO_ID integer NULL ,
      DOCU_REFERENCE VARCHAR (500) NULL ,
      DOCU_CONTENT IMAGE NULL ,
-     DOCU_DOCU_ID NUMERIC (10) NULL
+     DOCU_DOCU_ID integer NULL
      ,CONSTRAINT DOCU_DOCU_FK FOREIGN KEY     (     DOCU_DOCU_ID)
 		 REFERENCES DOCUMENTS     (     DOCU_ID )
 	 ,CONSTRAINT DOCU_STFO_FK FOREIGN KEY (     DOCU_STFO_ID)
@@ -164,8 +164,8 @@ class ModelelemDocu(Baseobject):
 CREATE TABLE MODE_DOCU
     (
      MODO_ID INTEGER NOT NULL primary key autoincrement,
-     MODO_MODE_ID NUMERIC (10) NOT NULL ,
-     MODO_DOCU_ID NUMERIC (10) NOT NULL
+     MODO_MODE_ID integer NOT NULL ,
+     MODO_DOCU_ID integer NOT NULL
     ,CONSTRAINT MODO_UK UNIQUE (MODO_MODE_ID ASC, MODO_DOCU_ID ASC)
     ,CONSTRAINT MODO_DOCU_FK FOREIGN KEY(     MODO_DOCU_ID)  
         REFERENCES DOCUMENTS(     DOCU_ID )
@@ -193,7 +193,7 @@ CREATE TABLE MODE_DOCU
         if pdocguidlist is None: return
         for docguid in pdocguidlist:
             modo = ModelelemDocu()
-            modo.modo_docu_id = Document().getbyextref(docguid)
+            modo.modo_docu_id = Externalref.getODMmodeid(psrcid=docguid)
             modo.modo_mode_id = pmodeid
             modo.insert()
         #for

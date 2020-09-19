@@ -88,6 +88,7 @@ class Baseobject:
                       , Baseobject.columnsliststring(pcollist=self._columnlist,pplaceholder=True))
         try:
             id = dbDML.insert(lsql, self.totuple())
+            if self.getid() is None: self.setid(id)  # autocolumns zurücklesen
         except sqlite3.Error as e:
             if pdoerrhdlng:
                 print(str(e))
@@ -95,10 +96,9 @@ class Baseobject:
             #if
             raise e
         #try
-        self.setid(id) #autocolumns zurücklesen
-        if self.__srcname is not None:
-            Externalref(psrcname=self.__srcname,psrcid = self.__srcid,pmodeid=id).insert()
-        return id
+        if self.getscrname() is not None:
+            Externalref(psrcname=self.getscrname(),psrcid = self.getscrid(),pmodeid=self.getid()).insert(pdoerrhdlng=pdoerrhdlng)
+        return self.getid()
 
     def tostring(self):
         lretval = "Table: {}\n".format(self._tablename)
@@ -190,10 +190,10 @@ class Baseobject:
 
 class MultilangBaseobject(Baseobject):
     def __init__(self, tablename, prefix, columnlist, multilangcols
-                 ,idcolname=None, guidcolname=None,psrcname=None,pscrid = None,pmodelemtype=None):
+                 ,idcolname=None, guidcolname=None,psrcname=None,psrcid = None,pmodelemtype=None):
         super().__init__(tablename=tablename, prefix=prefix, columnlist=columnlist
                         ,idcolname=idcolname, guidcolname=guidcolname
-                        ,pmodelemtype=pmodelemtype,psrcname=psrcname,pscrid=pscrid
+                        ,pmodelemtype=pmodelemtype,psrcname=psrcname,pscrid=psrcid
                         )
         self._multilangcols = multilangcols
     #__init__

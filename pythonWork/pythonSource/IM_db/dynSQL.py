@@ -79,7 +79,7 @@ def main(p_imdirec=None, p_modelname=None):
                     from modellelement
                     join entitaeten on enti_id = mode_enti_id
                     union all
-                   select 'ENTI_COMMENT' attrname, enti_beschr text 
+                   select 'ENTI_COMMENT' attrname, enti_descr text 
                         ,mode_id,enti_uc,enti_dc
                     from modellelement
                     join entitaeten on enti_id = mode_enti_id                    
@@ -91,12 +91,12 @@ def main(p_imdirec=None, p_modelname=None):
                     join entitaeten on enti_id = syno_enti_id
                     group by enti_id,enti_uc,enti_dc                    
                     union all
-                   select 'ATTR_COMMENT' attrname, attr_beschr text 
+                   select 'ATTR_COMMENT' attrname, attr_descr text 
                         ,mode_id,attr_uc,attr_dc
                     from modellelement
                     join attributes on attr_id = mode_attr_id    
                     union all                
-                   select 'ATTR_NAME' attrname, attr_anzname text 
+                   select 'ATTR_NAME' attrname, attr_displ_name text 
                         ,mode_id,attr_uc,attr_dc
                     from modellelement
                     join attributes on attr_id = mode_attr_id 

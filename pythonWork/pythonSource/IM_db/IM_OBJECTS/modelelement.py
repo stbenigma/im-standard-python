@@ -137,7 +137,7 @@ CREATE TABLE MODELELEMENT
      MODE_ID INTEGER NOT NULL primary key autoincrement ,
      MODE_TYPE VARCHAR (4) NOT NULL CHECK ( MODE_TYPE IN ('ARCS', 'ATTR', 'BURU', 'COLU', 'DOMA', 'ENTI'
                             , 'INTF', 'ORGU', 'RELA', 'SYNO', 'TABL','DOCU','KEYS','DATY','DGRM') ) ,
-     MODE_MELT_ID NUMERIC (10) NOT NULL
+     MODE_MELT_ID integer NOT NULL
      ,CONSTRAINT MODE_MELT_FK FOREIGN KEY     (     MODE_MELT_ID)
         REFERENCES MODELELEM_TYPE(     MELT_ID )
 )
@@ -157,8 +157,8 @@ CREATE TABLE MODELELEMENT
         return Modelelement.getelement(pmodeid=Externalref.getmodeid(psrcname=psrcname, psrcid=psrcid))
 
     @staticmethod
-    def getelementbyodmguid(pguid):
-        return Modelelement.getelementbyextref(psrcname=Externalref.SOURCE_ODM,psrcid=pguid)
+    def getelementbyodmguid(psrcid):
+        return Modelelement.getelementbyextref(psrcname=Externalref.SOURCE_ODM,psrcid=psrcid)
 
     @staticmethod
     def getelement(pmodeid):
@@ -214,8 +214,8 @@ class ModelelementProperty(Baseobject):
 CREATE TABLE MODELEMTYPE_PROPERTIES
     (
      METP_ID INTEGER NOT NULL primary key autoincrement,
-     METP_MELT_ID NUMERIC (10) NOT NULL ,
-     METP_UDPR_ID NUMERIC (10) NOT NULL ,
+     METP_MELT_ID integer NOT NULL ,
+     METP_UDPR_ID integer NOT NULL ,
      METP_OPTIONAL VARCHAR (5) NOT NULL CHECK ( METP_OPTIONAL IN ('FALSE', 'TRUE') )
     ,CONSTRAINT METP_UN UNIQUE (METP_MELT_ID ASC, METP_UDPR_ID ASC)
     ,CONSTRAINT METP_MELT_FK FOREIGN KEY    (     METP_MELT_ID)

@@ -7,8 +7,10 @@ class Sprachtext(Baseobject):
     FR:str='fr'
     ENTI_NAME:str='ENTI_NAME'
     ENTI_COMMENT:str='ENTI_COMMENT'
+    ENTI_TOOLTIP:str='ENTI_TOOLTIP'
     ATTR_NAME:str='ATTR_NAME'
     ATTR_COMMENT:str='ATTR_COMMENT'
+    ATTR_TOOLTIP:str='ATTR_TOOLTIP'
     DOMA_NAME:str= 'DOMA_NAME'
     RELA_TEXT_FROM:str='RELA_TEXT_FROM'
     RELA_TEXT_TO:str='RELA_TEXT_TO'
@@ -82,45 +84,45 @@ CREATE TABLE sprachtexte(
                    , sptx_spra_id)
                   select * from 
                     (select 'ENTI_NAME' attrname, enti_name text 
-                        ,mode_id,enti_uc,enti_dc
-                    from modellelement
-                    join entitaeten on enti_id = mode_enti_id
+                        ,enti_id,enti_uc,enti_dc
+                    from entitaeten 
                     union all
-                   select 'ENTI_COMMENT' attrname, enti_beschr text 
-                        ,mode_id,enti_uc,enti_dc
-                    from modellelement
-                    join entitaeten on enti_id = mode_enti_id                    
+                   select 'ENTI_COMMENT' attrname, enti_descr text 
+                        ,enti_id,enti_uc,enti_dc
+                    from entitaeten                     
+                    union all
+                   select 'ENTI_TOOLTIP' attrname, enti_tooltip text 
+                        ,enti_id,enti_uc,enti_dc
+                    from entitaeten                     
                     union all
                    select 'ENTI_SYNONYM' attrname, syno_name text 
-                        ,mode_id,enti_uc,enti_dc
-                    from modellelement
-                    join synonyme on syno_id = mode_syno_id
+                        ,enti_id,enti_uc,enti_dc
+                    from synonyme 
                     join entitaeten on enti_id  = syno_enti_id
                     union all
-                   select 'ATTR_COMMENT' attrname, attr_beschr text 
-                        ,mode_id,attr_uc,attr_dc
-                    from modellelement
-                    join attributes on attr_id = mode_attr_id    
+                   select 'ATTR_COMMENT' attrname, attr_descr text 
+                        ,attr_id,attr_uc,attr_dc
+                    from attributes     
+                    union all
+                   select 'ATTR_TOOLTIP' attrname, attr_tooltip text 
+                        ,attr_id,attr_uc,attr_dc
+                    from attributes     
                     union all                
-                   select 'ATTR_NAME' attrname, attr_anzname text 
-                        ,mode_id,attr_uc,attr_dc
-                    from modellelement
-                    join attributes on attr_id = mode_attr_id 
+                   select 'ATTR_NAME' attrname, attr_displ_name text 
+                        ,attr_id,attr_uc,attr_dc
+                    from attributes  
                     union all                
                    select 'RELA_TEXT_FROM' attrname, rela_assoc_from_to text 
-                        ,mode_id,bezi_uc,bezi_dc
-                    from modellelement
-                    join beziehungen on rela_id = mode_rela_id 
+                        ,rela_id,rela_uc,rela_dc
+                    from relations  
                     union all                
                    select 'RELA_TEXT_TO' attrname, rela_assoc_to_from text 
-                        ,mode_id,bezi_uc,bezi_dc
-                    from modellelement
-                    join beziehungen on rela_id = mode_rela_id
+                        ,rela_id,rela_uc,rela_dc
+                    from relations
                     union all 
                    select 'DOMA_NAME' attrname, wrtb_name text 
-                        ,mode_id,wrtb_uc,wrtb_dc
-                    from modellelement
-                    join wertebereiche on wrtb_id = mode_wrtb_id 
+                        ,doma_id,doma_uc,doma_dc
+                    from wertebereiche  
                 )
                 cross join (select {} as spra_id)
                    """.format(plang))

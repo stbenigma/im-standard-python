@@ -1,6 +1,7 @@
 from IM_DB import dbDML
 from .baseobject import Baseobject
 from datetime import date
+from mystring import nvl
 
 
 class Userdefprop(Baseobject):
@@ -66,8 +67,8 @@ class Userdefpropvalue(Baseobject):
     (
      UDPV_ID INTEGER NOT NULL primary key autoincrement,
      UDPV_VALUE VARCHAR (4000) NOT NULL ,
-     UDPV_MODE_ID NUMERIC (10) NOT NULL ,
-     UDPV_UDPR_ID NUMERIC (10) NOT NULL ,
+     UDPV_MODE_ID integer NOT NULL ,
+     UDPV_UDPR_ID integer NOT NULL ,
      UDPV_UC VARCHAR (30) NOT NULL ,
      UDPV_DC VARCHAR (30) NOT NULL ,
      UDPV_UM VARCHAR (30) NULL ,
@@ -95,22 +96,27 @@ class Userdefpropvalue(Baseobject):
         Baseobject.delete(Userdefpropvalue._tablename)
 
     @staticmethod
-    def fillallvalues(pmodetype,pentiid):
+    def fillallvalues(pmodetype,pentiid=None,pattrid=None):
         dbDML.exec("""insert into UDP_VALUES (
                 udpv_value,udpv_mode_id,UDPV_UDPR_ID,udpv_uc,udpv_dc)
-                select '.',enti_id,METP_UDPR_ID,enti_uc,enti_dc
-                from entitaeten
+                select '.',mode_id,METP_UDPR_ID,uc,dc
+                from (select enti_id as mode_id,enti_uc as uc, enti_dc as dc
+                    from entities
+                    where enti_id = {}
+                    union all
+                    select attr_id as mode_id, attr_uc as uc,attr_dc as dc
+                    from attributes
+                    where attr_id = {}
+                    )
                 cross join (select METP_UDPR_ID 
                              from modelelem_type
                              join MODELEMTYPE_PROPERTIES on METP_MELT_ID = melt_id
                              where melt_shortname = '{}')
-                where enti_id = {}
-            """.format(pmodetype,pentiid))
+            """.format(nvl(pentiid,-1),nvl(pattrid,-1),pmodetype))
 
     @staticmethod
     def updvalues(prows):
         """[(value,modeid,udpid),...]"""
-        print (prows)
         dbDML.execmany(psql="""update UDP_VALUES
                             set udpv_value = ?
                             where udpv_mode_id = ?

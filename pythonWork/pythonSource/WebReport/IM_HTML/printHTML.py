@@ -646,10 +646,10 @@ def printattrlist(penti):
         fhtml.write(writetableline(pwerte=(href(ref=attr.webanker().anker(), anz=attr.getname(Sprachtext.reportLang()))
                                            , domainref
                                            , html.escape(domain.displdatatype())
-                                           , bool2icon(attr.attr_pflichtattr), bool2icon(attr.isinkey()),
-                                           bool2icon(attr.attr_deskriptor)
-                                           , bool2icon(attr.attr_sprachabhaengig), bool2icon(attr.attr_historisiert)
-                                           , bool2icon(attr.attr_wiederholt), bool2icon(attr.attr_verschluesselt))))
+                                           , bool2icon(attr.attr_is_mandatory), bool2icon(attr.isinkey()),
+                                           bool2icon(attr.attr_is_descriptive)
+                                           , bool2icon(attr.attr_is_translated), bool2icon(attr.attr_is_historicised)
+                                           , bool2icon(attr.attr_is_repeated), bool2icon(attr.attr_is_encrypted))))
     # for
     fhtml.write(endtable())
 
@@ -964,7 +964,7 @@ def printcontententi():
         printcontent(ptype=Sprachtext.transl('Entität')
                      , panker=enti.webanker().anker()
                      , pname=enti.getname(Sprachtext.reportLang())
-                     , pdescr=lf2htmlbr(nvl(enti.enti_beschr))
+                     , pdescr=lf2htmlbr(nvl(enti.enti_descr))
                      , plbc=lbc)
 
         """print entity Info"""
@@ -1004,7 +1004,7 @@ def printcontentattr():
         Sprachtext.transl('übersetzt')
         , Sprachtext.transl('historisiert'), Sprachtext.transl('wiederholt'), Sprachtext.transl('verschlüsselt'))
 
-    for attr in Attribut.select(porderby='attr_anzname'):
+    for attr in Attribut.select(porderby='attr_displ_name'):
         printcontentstart('attributes')
         enti = attr.getparent()
         if enti is not None:
@@ -1016,9 +1016,9 @@ def printcontentattr():
         lbc = str(newbarcounter())
         printcontent(ptype=Sprachtext.transl('Attribut')
                      , panker=attr.webanker().anker()
-                     , pname=attr.attr_anzname
+                     , pname=attr.attr_displ_name
                      , pmaster=master
-                     , pdescr=lf2htmlbr(nvl(attr.attr_beschr))
+                     , pdescr=lf2htmlbr(nvl(attr.attr_descr))
                      , plbc=lbc)
         domain = attr.getdomain()
         domainref = domain.getname(Sprachtext.reportLang()) \
@@ -1028,10 +1028,10 @@ def printcontentattr():
                       , nvl(attr.attr_tooltip, ''), re.sub(r'^, $', '', nvl(attr.attr_uc) + ', ' + nvl(attr.attr_dc)))
         printcontentinfo(ptitle=Sprachtext.transl('Informationen'), pheaders=infoheaders, pvalues=infovalues)
 
-        flagvalues = (bool2icon(attr.attr_pflichtattr), bool2icon(attr.isinkey()), bool2icon(attr.attr_deskriptor)
-                      , bool2icon(attr.attr_sprachabhaengig)
-                      , bool2icon(attr.attr_historisiert), bool2icon(attr.attr_wiederholt),
-                      bool2icon(attr.attr_verschluesselt))
+        flagvalues = (bool2icon(attr.attr_is_mandatory), bool2icon(attr.isinkey()), bool2icon(attr.attr_is_descriptive)
+                      , bool2icon(attr.attr_is_translated)
+                      , bool2icon(attr.attr_is_historicised), bool2icon(attr.attr_is_repeated),
+                      bool2icon(attr.attr_is_encrypted))
         printflagline(pheaders=flagheaders, pvalues=flagvalues)
 
         printreflist(pelemid=attr.attr_id, pelemtype='ATTR')
