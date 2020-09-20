@@ -8,13 +8,15 @@ from .schnittstattr import Schnittstelleattr,AttrTransf
 from .sprache import Sprache
 from .sprachtext import Sprachtext
 from .tablentimap import TablEntiMap
-from .dokument import Dokument, ModelelemDoku
-from .wertebereich import Wertebereich, Wertebereichgruppe, Vorgabewert
-from .modellelement import Modellelemtype,Modellelement,ExternalRef
+from .document import Document, ModelelemDocu
+from .domain import Domain, DomaingroupMember, DefaultValue
+from .modelelement import Modelelemtype,Modelelement,ModelelementProperty
 from .diagramme import Diagramm,Diagrammtyp
 from .entitaet import Entitaet,Synonym
 from .attribut import Attribut
 from .schluessel import Schluessel,Schluesselelement
 from .relationship import Arc,Relation
 from .userdefprop import Userdefprop,Userdefpropvalue
+from .externalref import Externalref
+from .physicals import PhysicalUnit, Storageformat
 

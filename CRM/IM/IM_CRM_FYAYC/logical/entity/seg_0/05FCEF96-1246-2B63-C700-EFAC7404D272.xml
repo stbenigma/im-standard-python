@@ -212,7 +212,9 @@ Type d'adresse (financière, postale, de lvraison etc.)
 <item key="015DE428-05B6-58DD-323D-ECDC72266F4A" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
-<use>0</use>
+<useDomainConstraints>false</useDomainConstraints>
+<use>3</use>
+<structuredType>6D62577B-0F5C-1506-A6C6-5A41BEAAC77D</structuredType>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_NAME" value="Geokoordinate"/>
@@ -223,4 +225,67 @@ Type d'adresse (financière, postale, de lvraison etc.)
 </propertyMap>
 </Attribute>
 </attributes>
+<nestedAttributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<nestedAttribute name="Geokoordinate.X" directorySegmentName="seg_1" id="2FA73EB4-7835-8586-2619-B5770C5EACFF">
+<createdBy>stb</createdBy>
+<createdTime>2020-09-03 15:49:28 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<engineerTo>
+<item key="1AB27667-C11D-3493-68AA-DF92C84041A7" value="true"/>
+<item key="851DDEFA-B048-37E9-7826-4E48946EAF1C" value="true"/>
+<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true"/>
+<item key="015DE428-05B6-58DD-323D-ECDC72266F4A" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<parentObject>2C711332-0D94-0253-5C07-B9271155ADB9</parentObject>
+<structAttributeID>BC8DA749-B81A-3871-151E-85ED65333B3D</structAttributeID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>8</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,8,2</ownDataTypeParameters>
+</nestedAttribute>
+<nestedAttribute name="Geokoordinate.Y" directorySegmentName="seg_1" id="5C89D981-7832-8CCF-694C-4F7EA70DFC4A">
+<createdBy>stb</createdBy>
+<createdTime>2020-09-03 15:49:28 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<engineerTo>
+<item key="1AB27667-C11D-3493-68AA-DF92C84041A7" value="true"/>
+<item key="851DDEFA-B048-37E9-7826-4E48946EAF1C" value="true"/>
+<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true"/>
+<item key="015DE428-05B6-58DD-323D-ECDC72266F4A" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<parentObject>2C711332-0D94-0253-5C07-B9271155ADB9</parentObject>
+<structAttributeID>18E5A958-DEF8-304F-D494-54C86BA8007D</structAttributeID>
+<use>0</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<domain>409047B7-0592-72EC-88E9-B6F55E045084</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>1</beginValue>
+</rangeDef>
+</listOfRanges>
+</nestedAttribute>
+<nestedAttribute name="Geokoordinate.Z" directorySegmentName="seg_1" id="C8CA0809-9714-2367-8E35-1A9E4AAAA34C">
+<createdBy>stb</createdBy>
+<createdTime>2020-09-04 06:45:57 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<engineerTo>
+<item key="1AB27667-C11D-3493-68AA-DF92C84041A7" value="true"/>
+<item key="851DDEFA-B048-37E9-7826-4E48946EAF1C" value="true"/>
+<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true"/>
+<item key="015DE428-05B6-58DD-323D-ECDC72266F4A" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<parentObject>2C711332-0D94-0253-5C07-B9271155ADB9</parentObject>
+<structAttributeID>BBC00D1E-A127-0FA4-C188-AE97C4E2FBE2</structAttributeID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>3</use>
+<structuredType>47E390DE-0671-C4B1-8428-0F45CBEE18F8</structuredType>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</nestedAttribute>
+</nestedAttributes>
 </Entity>

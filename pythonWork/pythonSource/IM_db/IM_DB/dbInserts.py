@@ -2,50 +2,15 @@ from datetime import date
 from IM_DB import dbDML,logging
 from IM_OBJECTS import *
 
-def  insertLovWrtb(pName,pherkunft = Wertebereich.DOMAIN):
-    wrtb = Wertebereich()
-    wrtb.wrtb_name = pName
-    wrtb.wrtb_beschr = 'einfache Werteliste'
-    wrtb.wrtb_typ = Wertebereich.LOV
-    wrtb.wrtb_herkunft = pherkunft
-    wrtb.wrtb_uc = 'system'
-    wrtb.wrtb_dc = date.today()
-    return wrtb.insert()
-
-
-def insertBeziehung(pdata):
-    lsql = """
-        insert into beziehungen 
-          (bezi_type, bezi_enti_id_von, bezi_assoc_von_zu
-     ,bezi_pflicht_assoc_von_zu, bezi_hist_von_zu
-    , bezi_enti_id_zu,bezi_assoc_zu_von
-    , BEZI_PFLICHT_ASSOC_ZU_VON,bezi_hist_zu_von
-    , bezi_odm_guid,bezi_uc, bezi_dc,bezi_name
-    ,bezi_source_enti_guid,  bezi_target_enti_guid
-    ) 
-            values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
-        """
-    return dbDML.insert(lsql, pdata)
-
-def insertUDP(pData):
-# bdeg_thema, bdeg_gruppe, bdeg_name, bdeg_default_value
-# bdeg_beschreibung, bdeg_optional, bdeg_wrtb_id,
-# bdeg_uc, bdeg_dc
-    lsql = """
-       insert into benudef_eigenschaft(
-        bdeg_thema, bdeg_gruppe, bdeg_name, bdeg_default_value,
-        bdeg_beschreibung, bdeg_optional, bdeg_wrtb_id,
-         bdeg_uc, bdeg_dc) 
-           values (?,?,?,?,?,?,?,?,?)
-       """
-    return dbDML.insert(lsql, pData)
-#insertUDP
-
-def insertModelltypEigen(pData):
-    lsql= """insert into modelltyp_eigensch (mote_melt_id , mote_bdeg_id)
-                values(?,?)"""
-    return dbDML.insert(lsql, pData)
-#insertModelltypEigen
+def  insertLovWrtb(pName,pherkunft = Domain.DERIVED):
+    doma = Domain()
+    doma.doma_name = pName
+    doma.doma_beschr = 'einfache Werteliste'
+    doma.doma_typ = Domain.LOV
+    doma.doma_origin= pherkunft
+    doma.doma_uc = 'system'
+    doma.doma_dc = date.today()
+    return doma.insert()
 
 
 #insertModebezi
@@ -94,31 +59,17 @@ def insertelbezidarst(pdata):
     return dbDML.insert(lsql, pdata)
 #insertbezidarst
 
-def insertUdpEntity(entiId):
-    dbDML.exec("""insert into benudef_wert(
-                bdwe_wert,  bdwe_mode_id,   bdwe_bdeg_id
-                ,bdwe_uc,   bdwe_dc)
-                select NULL,mode_id,bdeg_id,enti_uc,enti_dc
-                from entitaeten
-                join modellelement on mode_enti_id = enti_id
-                cross join (select mote_bdeg_id as bdeg_id
-                             from modellelem_typ
-                             join modelltyp_eigensch on mote_melt_id = melt_id
-                             where melt_kurzname = 'ENTI')
-                where enti_id = {}
-            """ .format(entiId))
-#insertUdpEntity
 def insertUdpTable(ptablId):
     dbDML.exec("""insert into benudef_wert(
                 bdwe_wert,  bdwe_mode_id,   bdwe_bdeg_id
                 ,bdwe_uc,   bdwe_dc)
                 select NULL,mode_id,bdeg_id,tabl_uc,tabl_dc
                 from tabellen
-                join modellelement on mode_tabl_id = tabl_id
+                join modelelement on mode_tabl_id = tabl_id
                 cross join (select mote_bdeg_id as bdeg_id
-                             from modellelem_typ
+                             from modelelem_type
                              join modelltyp_eigensch on mote_melt_id = melt_id
-                             where melt_kurzname = 'TABL')
+                             where melt_shortname = 'TABL')
                 where tabl_id = {}
             """ .format(ptablId))
 #insertUdpTable
@@ -128,11 +79,11 @@ def insertUdpColumn(pschaId):
                 ,bdwe_uc,   bdwe_dc)
                 select NULL,mode_id,bdeg_id,scha_uc,scha_dc
                 from main.schnittstelle_attrs
-                join modellelement on mode_scha_id = scha_id
+                join modelelement on mode_scha_id = scha_id
                 cross join (select mote_bdeg_id as bdeg_id
-                             from modellelem_typ
+                             from modelelem_type
                              join modelltyp_eigensch on mote_melt_id = melt_id
-                             where melt_kurzname = 'SCHA')
+                             where melt_shortname = 'INTF')
                 where scha_id = {}
             """ .format(pschaId))
 #insertUdpColumn
@@ -148,36 +99,6 @@ linie_segment(
     return dbDML.insert(lsql, pdata)
 #insertlinieseg
 
-def insertUdpBezi(beziId):
-    dbDML.exec("""insert into benudef_wert(
-                bdwe_wert,  bdwe_mode_id,   bdwe_bdeg_id
-                ,bdwe_uc,   bdwe_dc)
-                select NULL,mode_id,bdeg_id,bezi_uc,bezi_dc
-                from beziehungen
-                join modellelement on mode_rela_id = bezi_id
-                cross join (select mote_bdeg_id as bdeg_id
-                             from modellelem_typ
-                             join modelltyp_eigensch on mote_melt_id = melt_id
-                             where melt_kurzname = 'RELA')
-                where bezi_id = {}
-            """ .format(beziId))
-#insertUdpBezi
-
-
-def insertUdpAttr(attrId):
-    dbDML.exec("""insert into benudef_wert(
-                bdwe_wert,  bdwe_mode_id,   bdwe_bdeg_id
-                ,bdwe_uc,   bdwe_dc)
-                select NULL,mode_id,bdeg_id,attr_uc,attr_dc
-                from attributes
-                join modellelement on mode_attr_id = attr_id
-                cross join (select mote_bdeg_id as bdeg_id
-                             from modellelem_typ
-                             join modelltyp_eigensch on mote_melt_id = melt_id
-                             where melt_kurzname = 'ATTR')
-                where attr_id = {}
-            """ .format(attrId))
-#insertUdpAttr
 
 def insertgeschaeftsbereich(pdata):
     lsql = """insert into geschaeftsbereich 

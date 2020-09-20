@@ -1,44 +1,50 @@
 from .baseobject import Baseobject
 import re
+from datetime import date
+from .modelelement import Modelelemtype
 
 class Datatype(Baseobject):
-    BIN:str='BIN'
-    TEXT:str='TEXT'
-    ZPKT:str='ZPKT'
-    NUM:str='NUM'
+    BINARY:str='BINARY'
+    STRING:str='STRING'
+    DATETIME:str='DATETIME'
+    NUMERIC:str='NUMERIC'
     _tablename:str = 'datatypes'
     _prefix:str = 'daty'
-    _columnlist:list = ['daty_id',  'daty_name', 'daty_grundtyp', 'daty_odm_guid']
-    __unknowndaty = None
+    _columnlist:list = ['daty_id',  'daty_name', 'daty_basetype', 'daty_uc','daty_dc','daty_um','daty_dm']
+    __srcname = None
+    __srcid = None
 
 
-    def __init__(self,pname=None,pgrundtyp=None,podmguid=None):
+    def __init__(self,pname=None,pbasetype=None,psrcname=None,pscrid=None):
         super().__init__(tablename= Datatype._tablename, prefix= Datatype._prefix
-                        ,columnlist = Datatype._columnlist)
+                        ,columnlist = Datatype._columnlist
+                        ,pmodelemtype=Modelelemtype.DATY
+                        ,pscrid=pscrid
+                        ,psrcname=psrcname)
         self.daty_name = pname
-        self.daty_grundtyp = pgrundtyp
-        self.daty_odm_guid = podmguid
+        self.daty_basetype = pbasetype
+        self.daty_uc = 'fillDB'
+        self.daty_dc = date.today()
+
 
     @staticmethod
     def createtable():
         Baseobject.createtable(ptablename=Datatype._tablename
                                 ,psql="""
-create table datatypes
-(
-    daty_id       integer      not null
-        primary key autoincrement,
-    daty_name     VARCHAR2(60) not null
-        unique,
-    daty_grundtyp VARCHAR2(6)  not null,
-    daty_odm_guid VARCHAR2(36),
-    check (daty_grundtyp IN (
-                             'BIN',
-                             'NUM',
-                             'TEXT',
-                             'ZPKT'
-        ))
-)
-""")
+	CREATE TABLE DATATYPES 
+	    (
+	     DATY_ID INTEGER NOT NULL primary key , 
+	     DATY_NAME VARCHAR (60) NOT NULL , 
+	     DATY_BASETYPE VARCHAR (60) NOT NULL 
+	        CONSTRAINT DATY_BASETYPE_CK CHECK ( DATY_BASETYPE IN ('BINARY', 'NUMERIC', 'STRING', 'DATETIME') ) , 
+	     DATY_UC VARCHAR (30) , 
+	     DATY_DC VARCHAR (30) NOT NULL , 
+	     DATY_UM VARCHAR (30) NULL , 
+	     DATY_DM VARCHAR (30) NULL 
+		 ,CONSTRAINT DATY_MODE_FK FOREIGN KEY (DATY_ID) 
+			REFERENCES MODELELEMENT (MODE_ID ) 
+			ON DELETE CASCADE 
+		)""")
 
     @staticmethod
     def delete():
@@ -49,18 +55,18 @@ create table datatypes
         return Baseobject.select(pclass=Datatype
                                  , pwhere=pwhere, porderby=porderby)
     @staticmethod
-    def basisType(dt):
+    def baseType(dt):
         if (dt in ('BLOB', 'RAW, size', 'BFIE', 'BINARY_DOUBLE', 'BINARY_DOUBLE', 'CLOB' \
                            , 'LONG', 'LONG RAW', 'NCLOB', '')):
-            return Datatype.BIN
+            return Datatype.BINARY
         elif (dt in ('DATE', 'TIMESTAMP') or (re.match('INTERVAL.*', dt))):
-            return Datatype.ZPKT
+            return Datatype.DATETIME
         elif (re.match('NUMBER.*', dt) or re.match('.*INT.*', dt) or re.match('FLOAT.*', dt) \
               or re.match('.*REAL.*', dt)):
-            return Datatype.NUM
+            return Datatype.NUMERIC
         else:
-            return Datatype.TEXT
-    # basisType
+            return Datatype.STRING
+    # baseType
 
     @staticmethod
     def getbyname(pname):

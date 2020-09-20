@@ -57,7 +57,7 @@ def getcolmapping(pschaid, pschnid):
     werte = [[entries[1],
               {'(' + entry.gettablname() + '.' + entry.scha_column_name + ')'
                if isinstance(entry, Schnittstelleattr)
-               else '(' + entry.getentiname() + '.' + entry.attr_anzname + ')' if isinstance(entry, Attribut)
+               else '(' + entry.getentiname() + '.' + entry.attr_displ_name + ')' if isinstance(entry, Attribut)
               else 'unknown ' + type(entry)
                : entry.webanker().anker()
                for entry in entries[2]
@@ -113,7 +113,7 @@ def printcollist(pcollist, pschnid):
     schnname = Schnittstelle.getname(pid=pschnid)
     if (pcollist is None or len(pcollist) == 0): return
     ueberschr = [Sprachtext.transl('Name'), Sprachtext.transl('Beschreibung')
-        , Sprachtext.transl('Wertebereich'), Sprachtext.transl('Datentyp')
+        , Sprachtext.transl('Domain'), Sprachtext.transl('Datentyp')
                  ]
 #    ueberschr.append('Logical Model')
 #    for schn in Schnittstelle.indexlist():
@@ -175,7 +175,7 @@ def printcontenttable(plist):
         infovalues = ('', nvl(t.tabl_um) + ', ' + nvl(t.tabl_dm))
         printHTML.printcontentinfo(ptitle=Sprachtext.transl('Informationen'), pheaders=infoheaders, pvalues=infovalues)
 
-        printHTML.printreflist(pelemid=t.tabl_id, pelemtype=Modellelemtype.TABL)
+        printHTML.printreflist(pelemid=t.tabl_id, pelemtype=Modelelemtype.TABL)
         printHTML.printUDP(p_meltname=t.prefix().upper(), p_id=t.tabl_id)
         printcollist(pcollist=t.getcolumns(), pschnid=t.tabl_schn_id)
         printmapping(ptablid=t.tabl_id)
@@ -197,7 +197,7 @@ def getwrtbinfo(pcol,plang):
     wrtb = pcol.getwrtb()
     if wrtb is not None:
         wrtbname = wrtb.getname(plang=plang)\
-                    if wrtb.wrtb_herkunft == Wertebereich.DERIVED \
+                    if wrtb.wrtb_herkunft == Domain.DERIVED \
                     else printHTML.href(ref=wrtb.webanker().anker()
                                         ,anz=html.escape(wrtb.getname(plang))
                                         ,htmlfile=printHTML.htmlfilelist[wrtb.webanker().modelid()])
@@ -226,7 +226,7 @@ def printcontentcolumn(pcols):
         infovalues = (wrtbinfo[0], wrtbinfo[1],wrtbinfo[2] ,nvl(col.scha_um) + ', ' + nvl(col.scha_dm),)
         printHTML.printcontentinfo(ptitle=Sprachtext.transl('Information'), pheaders=infoheaders, pvalues=infovalues)
 
-        printHTML.printreflist(pelemid=col.scha_id, pelemtype=Modellelemtype.SCHA)
+        printHTML.printreflist(pelemid=col.scha_id, pelemtype=Modelelemtype.INTF)
         printHTML.printUDP(p_meltname=col.prefix().upper(), p_id=col.scha_id)
         printcolmapping(pcolid=col.scha_id)
         printHTML.printcontentend(lbc)
@@ -240,7 +240,7 @@ def printlistofcontent(pschnid):
                                                                  , pid=pschnid)
                                         )
     printHTML.printlistofcontentelement(pname='Columns'
-                                        , plist=web_sql.namelist(ptype='SCHA'
+                                        , plist=web_sql.namelist(ptype='INTF'
                                                                  , pid=pschnid)
                                         )
 
@@ -279,7 +279,7 @@ def printcontenthead(pfirma, ptitel, pschnid):
                  (Column reference): Indirect linking of a column to another column via an attribute"""
     # fi
     printHTML.fhtml.write(contenthead.format(f, ref))
-    printHTML.printreflist(pelemid=pschnid, pelemtype='SCHN')
+    printHTML.printreflist(pelemid=pschnid, pelemtype='INTF')
     printHTML.fhtml.write(contentheadend)
 
 

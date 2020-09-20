@@ -39,7 +39,6 @@
 <createdTime>2020-07-07 15:49:55 UTC</createdTime>
 <comment><![CDATA[ID in external source for this element]]></comment>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
-<nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
 <use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
@@ -83,6 +82,17 @@
 <indexColumnUsage>
 <colUsage columnID="9398BD0C-2747-AFB9-80C1-4BB07BC00704"/>
 <colUsage columnID="27444BB5-3927-24AF-B1F1-9C766CD11477"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="4FCC3D90-D0B0-DDC0-D605-8D056B11B906" name="Extr_UK_id">
+<createdBy>stb</createdBy>
+<createdTime>2020-08-31 12:47:51 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="9398BD0C-2747-AFB9-80C1-4BB07BC00704"/>
+<colUsage columnID="E9F6F7A3-2CBE-B248-2B3D-184F503028BA"/>
 </indexColumnUsage>
 </ind_PK_UK>
 <ind_PK_UK id="A3EF47B3-75BF-8D62-CC00-9FB320157311" name="EXTR_MODE_FK">

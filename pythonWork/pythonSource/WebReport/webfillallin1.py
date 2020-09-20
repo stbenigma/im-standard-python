@@ -25,8 +25,8 @@ def main(pdirec, plang):
     listWebdoku.listwebmain(plang=Sprachtext.reportLang())
     listmapping.filllists(plang=Sprachtext.reportLang())
 
-    logging.logmessage("model {}: created and filled database ({})\n   created webdocu and mapping excel"
-                       .format(parameters.odmModelName(), parameters.dbFilePath()))
+    logging.showmessages("model {}: created and filled database ({})\n   created webdocu and mapping excel"
+                         .format(parameters.odmModelName(), parameters.dbFilePath()))
 
 
 

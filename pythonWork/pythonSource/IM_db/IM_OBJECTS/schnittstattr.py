@@ -6,7 +6,7 @@ from .baseobject import Baseobject
 from .datatype import Datatype
 from .schnittstelle import Schnittstelle
 from .tabelle import Tabelle
-from .wertebereich import  Wertebereich
+from .domain import  Domain
 
 
 class Schnittstelleattr(Baseobject):
@@ -49,6 +49,9 @@ class Schnittstelleattr(Baseobject):
         constraint scha_uk unique (scha_tabl_id,scha_column_name)        
         )
         """)
+    def insert(self):
+        self.scha_id = Modelelement(Modelelemtype.COLU).insert()
+        super().insert()
 
     def webanker(self):
         return super().webanker(pmodelid=self.getintfid())
@@ -74,7 +77,7 @@ class Schnittstelleattr(Baseobject):
 
     def getwrtb(self):
         if (self.scha_wrtb_id is None): return None
-        return Wertebereich().getbyid(self.scha_wrtb_id)
+        return Domain().getbyid(self.scha_wrtb_id)
 
 
     def getdaty(self):
@@ -206,7 +209,7 @@ class AttrTransf(Baseobject):
  	   ,constraint attf_attr_fk foreign key (attf_attr_id) 
  	      references attributes (attr_id )  on delete cascade 
  	   ,constraint attf_scha_fk foreign key (attf_scha_id) 
- 	      references schnittstelle_attr (scha_id ) on delete cascade 
+ 	      references schnittstelle_attrs (scha_id ) on delete cascade 
  	      )
     """)
 

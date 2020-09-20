@@ -53,7 +53,6 @@ def delete(ptableName):
 
 def insert(psql,rec):
     #print (psql,rec)
-    #return
     cursor = dbConnect.myDbConn.cursor()
 
     try:

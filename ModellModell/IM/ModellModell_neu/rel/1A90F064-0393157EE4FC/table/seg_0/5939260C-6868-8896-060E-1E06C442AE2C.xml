@@ -31,8 +31,6 @@ Subtype of MODELELEMENT. DOMA_ID is always identical to the corresponding MODE_I
 <logicalDatatype>LOGDT019</logicalDatatype>
 <domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
-<autoIncrementColumn>true</autoIncrementColumn>
-<identityColumn>true</identityColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 <isSurrogateColumn>true</isSurrogateColumn>
 <associations>
@@ -198,6 +196,21 @@ Subtype of MODELELEMENT. DOMA_ID is always identical to the corresponding MODE_I
 </listOfValues>
 <ownDataTypeParameters>6 CHAR,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DOMA_DATY_ID" id="449F6584-2B47-5B20-9B0F-C25D4D2105AF">
+<createdBy>stb</createdBy>
+<createdTime>2020-08-30 15:42:30 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="A063A439-AC28-16F7-9E72-2151677A7787" referredColumn="AA1C8108-16B6-83B3-65DA-F1F697F75488"/>
+</associations>
 </Column>
 <Column name="DOMA_DAT_MINVALUE" id="29A7F1B6-C1F7-A297-AE25-1FACC54BE946">
 <createdBy>stb</createdBy>
@@ -477,6 +490,16 @@ video, sound, picture, etc.]]></comment>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
 <colUsage columnID="E9756F49-315F-1F97-E181-07756840736D"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="3482AC63-CBB1-960F-A812-240C8FECF9FC" name="DOMA_DATY_FK">
+<createdBy>stb</createdBy>
+<createdTime>2020-08-30 15:42:30 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="449F6584-2B47-5B20-9B0F-C25D4D2105AF"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>

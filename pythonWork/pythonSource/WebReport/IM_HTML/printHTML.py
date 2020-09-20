@@ -633,7 +633,7 @@ def printattrlist(penti):
 
     fhtml.write(starttable(ptitel=Sprachtext.transl('Attribute')
                            , pueberschriften=(
-            Sprachtext.transl('Name'), Sprachtext.transl('Wertebereich'), Sprachtext.transl('Typ')
+            Sprachtext.transl('Name'), Sprachtext.transl('Domain'), Sprachtext.transl('Typ')
             , Sprachtext.transl('Pflichtattribut'), Sprachtext.transl('Schlüssel'), Sprachtext.transl('Deskriptor'),
             Sprachtext.transl('übersetzt')
             , Sprachtext.transl('historisiert'), Sprachtext.transl('wiederholt'), Sprachtext.transl('verschlüsselt'))))
@@ -646,10 +646,10 @@ def printattrlist(penti):
         fhtml.write(writetableline(pwerte=(href(ref=attr.webanker().anker(), anz=attr.getname(Sprachtext.reportLang()))
                                            , domainref
                                            , html.escape(domain.displdatatype())
-                                           , bool2icon(attr.attr_pflichtattr), bool2icon(attr.isinkey()),
-                                           bool2icon(attr.attr_deskriptor)
-                                           , bool2icon(attr.attr_sprachabhaengig), bool2icon(attr.attr_historisiert)
-                                           , bool2icon(attr.attr_wiederholt), bool2icon(attr.attr_verschluesselt))))
+                                           , bool2icon(attr.attr_is_mandatory), bool2icon(attr.isinkey()),
+                                           bool2icon(attr.attr_is_descriptive)
+                                           , bool2icon(attr.attr_is_translated), bool2icon(attr.attr_is_historicised)
+                                           , bool2icon(attr.attr_is_repeated), bool2icon(attr.attr_is_encrypted))))
     # for
     fhtml.write(endtable())
 
@@ -964,7 +964,7 @@ def printcontententi():
         printcontent(ptype=Sprachtext.transl('Entität')
                      , panker=enti.webanker().anker()
                      , pname=enti.getname(Sprachtext.reportLang())
-                     , pdescr=lf2htmlbr(nvl(enti.enti_beschr))
+                     , pdescr=lf2htmlbr(nvl(enti.enti_descr))
                      , plbc=lbc)
 
         """print entity Info"""
@@ -983,7 +983,7 @@ def printcontententi():
         printattrlist(penti=enti)
         printentikeys(pentiid=enti.enti_id)
         printentirela(pentiid=enti.enti_id)
-        printreflist(pelemid=enti.enti_id, pelemtype=Modellelemtype.ENTI)
+        printreflist(pelemid=enti.enti_id, pelemtype=Modelelemtype.ENTI)
         printtransl(pentiid=enti.enti_id)
         printentiudp(pentiid=enti.enti_id)
         printmapping(pentiid=enti.enti_id)
@@ -996,7 +996,7 @@ def printcontententi():
 
 def printcontentattr():
     infoheaders = (
-        Sprachtext.transl('Technischer Name'), Sprachtext.transl('Wertebereich'), Sprachtext.transl('Datentyp'),
+        Sprachtext.transl('Technischer Name'), Sprachtext.transl('Domain'), Sprachtext.transl('Datentyp'),
         Sprachtext.transl('Tooltip')
         , Sprachtext.transl('geändert'))
     flagheaders = (
@@ -1004,7 +1004,7 @@ def printcontentattr():
         Sprachtext.transl('übersetzt')
         , Sprachtext.transl('historisiert'), Sprachtext.transl('wiederholt'), Sprachtext.transl('verschlüsselt'))
 
-    for attr in Attribut.select(porderby='attr_anzname'):
+    for attr in Attribut.select(porderby='attr_displ_name'):
         printcontentstart('attributes')
         enti = attr.getparent()
         if enti is not None:
@@ -1016,9 +1016,9 @@ def printcontentattr():
         lbc = str(newbarcounter())
         printcontent(ptype=Sprachtext.transl('Attribut')
                      , panker=attr.webanker().anker()
-                     , pname=attr.attr_anzname
+                     , pname=attr.attr_displ_name
                      , pmaster=master
-                     , pdescr=lf2htmlbr(nvl(attr.attr_beschr))
+                     , pdescr=lf2htmlbr(nvl(attr.attr_descr))
                      , plbc=lbc)
         domain = attr.getdomain()
         domainref = domain.getname(Sprachtext.reportLang()) \
@@ -1028,10 +1028,10 @@ def printcontentattr():
                       , nvl(attr.attr_tooltip, ''), re.sub(r'^, $', '', nvl(attr.attr_uc) + ', ' + nvl(attr.attr_dc)))
         printcontentinfo(ptitle=Sprachtext.transl('Informationen'), pheaders=infoheaders, pvalues=infovalues)
 
-        flagvalues = (bool2icon(attr.attr_pflichtattr), bool2icon(attr.isinkey()), bool2icon(attr.attr_deskriptor)
-                      , bool2icon(attr.attr_sprachabhaengig)
-                      , bool2icon(attr.attr_historisiert), bool2icon(attr.attr_wiederholt),
-                      bool2icon(attr.attr_verschluesselt))
+        flagvalues = (bool2icon(attr.attr_is_mandatory), bool2icon(attr.isinkey()), bool2icon(attr.attr_is_descriptive)
+                      , bool2icon(attr.attr_is_translated)
+                      , bool2icon(attr.attr_is_historicised), bool2icon(attr.attr_is_repeated),
+                      bool2icon(attr.attr_is_encrypted))
         printflagline(pheaders=flagheaders, pvalues=flagvalues)
 
         printreflist(pelemid=attr.attr_id, pelemtype='ATTR')
@@ -1047,7 +1047,7 @@ def printcontentattr():
 def printreflist(pelemid, pelemtype):
     if (pelemtype == 'DOKU'):
         refentries = web_sql.dokureflist(pid=pelemid, plang=Sprachtext.reportLang())
-    elif (pelemtype in ('TABL', 'SCHA')):
+    elif (pelemtype in ('TABL', 'INTF')):
         # indirekte auch anzeigen.
         refentries = web_sql.refdokulist(pid=pelemid, pelemtype=pelemtype)
     else:
@@ -1063,17 +1063,17 @@ def printreflist(pelemid, pelemtype):
     for refentry in refentries:
         htmlname = ''
         anker = None
-        if (pelemtype in ('DOKU', 'ENTI', 'ATTR', 'WRTB')):
+        if (pelemtype in ('DOKU', 'ENTI', 'ATTR', 'DOMA')):
             if (refentry.elemtype == 'TABL'):
                 # Tabellen sind in schn-file
                 tabl = Tabelle().getbyid(refentry.elemid)
                 htmlname = htmlfilelist[tabl.tabl_schn_id]
-            elif (refentry.elemtype == 'SCHN'):
+            elif (refentry.elemtype == 'INTF'):
                 htmlname = htmlfilelist[refentry.elemid]
                 anker = ''  # Schnittstellen haben keinen Anker ausser dem Namen
             # fi
-        elif (pelemtype in ('TABL', 'SCHN', 'SCHA')):  # aus schn-html zurück ins Main
-            if (refentry.elemtype in ('ENTI', 'ATTR', 'WRTB', 'DOKU')):
+        elif (pelemtype in ('TABL', 'INTF', 'INTF')):  # aus schn-html zurück ins Main
+            if (refentry.elemtype in ('ENTI', 'ATTR', 'DOMA', 'DOKU')):
                 # geh zurück ins Basefile
                 htmlname = htmlfilelist[0]
             # fi
@@ -1128,12 +1128,12 @@ def printwrtbmembers(pwrtbid):
                           , pueberschriften=
                           [Sprachtext.transl('Element')
                               , Sprachtext.transl('Beschreibung')
-                              , Sprachtext.transl('Wertebereich')
+                              , Sprachtext.transl('Domain')
                               , Sprachtext.transl('geändert')
                            ]
                           , pwerteliste=[[e[0], e[1]
                                              , href(ref=web_sql.wrtbAnker(e[9])
-                                                    , anz=e[2] + ' (' + Wertebereich.anzdatentyp(e[3]) + ')')
+                                                    , anz=e[2] + ' (' + Domain.anzdatentyp(e[3]) + ')')
                                              , e[5] + ' , ' + e[6]] for e in elems]))
 
 
@@ -1162,46 +1162,46 @@ def printcontentwrtb(plist):
         wrtb_name = w.getname(Sprachtext.reportLang())
 
         lbc = str(newbarcounter())
-        printcontent(ptype=Sprachtext.transl('Wertebereich')
+        printcontent(ptype=Sprachtext.transl('Domain')
                      , panker=w.webanker().anker()
                      , pname=wrtb_name
                      , pdescr=lf2htmlbr(nvl(w.wrtb_beschr))
                      , plbc=lbc)
 
-        if (w.wrtb_typ in (Wertebereich.TEXT, Wertebereich.LOV)):
+        if (w.wrtb_typ in (Domain.TEXT, Domain.LOV)):
             infoheaders = (
                 Sprachtext.transl('Datentyp'), Sprachtext.transl('Max. Länge'), Sprachtext.transl('Syntaxregel'),
                 Sprachtext.transl('geändert'))
             infovalues = (
-                nvl(Wertebereich.anzdatentyp(w.wrtb_typ)), nvl(w.wrtb_text_maxlng), nvl(w.wrtb_text_syntaxregel),
+                nvl(Domain.anzdatentyp(w.wrtb_typ)), nvl(w.wrtb_text_maxlng), nvl(w.wrtb_text_syntaxregel),
                 nvl(w.wrtb_uc) + ',' + nvl(w.wrtb_dc))
-        elif (w.wrtb_typ == Wertebereich.BIN):
+        elif (w.wrtb_typ == Domain.BIN):
             infoheaders = (Sprachtext.transl('Datentyp'), Sprachtext.transl('Inhaltstyp'), Sprachtext.transl('Format'),
                            Sprachtext.transl('geändert'))
             infovalues = (
-                nvl(Wertebereich.anzdatentyp(w.wrtb_typ)), Wertebereich.anzinhalttyp(nvl(w.wrtb_bin_inhalttyp)),
+                nvl(Domain.anzdatentyp(w.wrtb_typ)), Domain.displcontenttype(nvl(w.wrtb_bin_inhalttyp)),
                 nvl(w.wrtb_bin_spfo_id), nvl(w.wrtb_uc) + ',' + nvl(w.wrtb_dc))
-        elif (w.wrtb_typ == Wertebereich.GRP):
+        elif (w.wrtb_typ == Domain.GRP):
             infoheaders = (Sprachtext.transl('Datentyp'), Sprachtext.transl('geändert'))
-            infovalues = (Wertebereich.anzdatentyp(w.wrtb_typ), nvl(w.wrtb_uc) + ',' + nvl(w.wrtb_dc))
-        elif (w.wrtb_typ == Wertebereich.NUM):
+            infovalues = (Domain.anzdatentyp(w.wrtb_typ), nvl(w.wrtb_uc) + ',' + nvl(w.wrtb_dc))
+        elif (w.wrtb_typ == Domain.NUM):
             infoheaders = (
                 Sprachtext.transl('Datentyp'), Sprachtext.transl('Vorkommast.'), Sprachtext.transl('Nachkommast.')
                 , Sprachtext.transl('Rundungseinh.'), Sprachtext.transl('Einheit'), Sprachtext.transl('Min. Wert'),
                 Sprachtext.transl('Max. Wwert')
                 , Sprachtext.transl('geändert'))
             infovalues = (
-                nvl(Wertebereich.anzdatentyp(w.wrtb_typ)), nvl(w.wrtb_num_vorkstellen), nvl(w.wrtb_num_nachkstellen),
+                nvl(Domain.anzdatentyp(w.wrtb_typ)), nvl(w.wrtb_num_vorkstellen), nvl(w.wrtb_num_nachkstellen),
                 nvl(w.wrtb_num_rundng_einh), nvl(w.wrtb_num_pheh_id)
                 , nvl(w.wrtb_num_minwert), nvl(w.wrtb_num_maxwert)
                 , nvl(w.wrtb_uc) + ',' + nvl(w.wrtb_dc))
-        elif (w.wrtb_typ == Wertebereich.ZPKT):
+        elif (w.wrtb_typ == Domain.ZPKT):
             infoheaders = (
                 Sprachtext.transl('Datentyp'), Sprachtext.transl('Min. Wert'), Sprachtext.transl('Max. Wwert'),
                 Sprachtext.transl('Granularität')
                 , Sprachtext.transl('geändert'))
-            infovalues = (nvl(Wertebereich.anzdatentyp(w.wrtb_typ)), nvl(w.wrtb_zpkt_minwert), nvl(w.wrtb_zpkt_maxwert),
-                          Wertebereich.anzgranul(nvl(w.wrtb_zpkt_granularitaet)), nvl(w.wrtb_uc) + ',' + nvl(w.wrtb_dc))
+            infovalues = (nvl(Domain.anzdatentyp(w.wrtb_typ)), nvl(w.wrtb_zpkt_minwert), nvl(w.wrtb_zpkt_maxwert),
+                          Domain.displgranul(nvl(w.wrtb_zpkt_granularitaet)), nvl(w.wrtb_uc) + ',' + nvl(w.wrtb_dc))
         else:
             infoheaders, infovalues = None, None
         # fi
@@ -1242,7 +1242,7 @@ def printcontentdoku(plist):
         doku_id = doc.doku_id
         parent = doc.getparent()
         children = doc.getchildren()
-        printcontent(ptype=Sprachtext.transl('Dokument')
+        printcontent(ptype=Sprachtext.transl('Document')
                      , panker=doc.webanker().anker()
                      , pname=doc.doku_name
                      , pdescr=""
@@ -1373,12 +1373,12 @@ def printtransl(pentiid=None, pattrid=None):
     head = [Sprachtext.transl('Element')]
     head.extend(langs)
     if (pentiid is not None):
-        modeid = Modellelement.getidbyelemid(pentiid=pentiid)
+        modeid = Modelelement.getidbyelemid(pentiid=pentiid)
         transllist = [findtransl(pattr='ENTI_NAME', pmodeid=modeid, plangs=langs)
             , findtransl(pattr='ENTI_SYNONYM', pmodeid=modeid, plangs=langs)
             , findtransl(pattr='ENTI_COMMENT', pmodeid=modeid, plangs=langs)]
     elif (pattrid is not None):
-        modeid = Modellelement.getidbyelemid(pattrid=pattrid)
+        modeid = Modelelement.getidbyelemid(pattrid=pattrid)
         transllist = [findtransl(pattr='ATTR_NAME', pmodeid=modeid, plangs=langs)
             , findtransl(pattr='ATTR_COMMENT', pmodeid=modeid, plangs=langs)]
     # print(transllist)

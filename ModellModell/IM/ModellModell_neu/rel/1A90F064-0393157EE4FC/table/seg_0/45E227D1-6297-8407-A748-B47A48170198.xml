@@ -41,8 +41,9 @@ Or they can be implemented as compound (structured) type, it the dbms allows thi
 <createdTime>2020-02-04 15:43:05 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
@@ -53,12 +54,13 @@ Or they can be implemented as compound (structured) type, it the dbms allows thi
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="DRGM_ID_MANDATORY" id="7833ED45-972A-E4A2-F6FD-3CCDBA5D0C0A">
+<Column name="DGRM_IS_MANDATORY" id="7833ED45-972A-E4A2-F6FD-3CCDBA5D0C0A">
 <createdBy>stb</createdBy>
 <createdTime>2020-08-02 14:55:15 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -180,7 +182,7 @@ Or they can be implemented as compound (structured) type, it the dbms allows thi
 <colUsage columnID="3ECC7B0A-015C-631C-4BDC-BA81B7A5B927"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="22B9B6CC-DE72-AA8B-9B47-A1CC22DCC7CD" name="DGRM_DOMA_FK_GROUPT">
+<ind_PK_UK id="22B9B6CC-DE72-AA8B-9B47-A1CC22DCC7CD" name="DGRM_DOMA_FK_GROUP">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 15:43:05 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>

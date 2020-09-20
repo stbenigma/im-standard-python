@@ -1,6 +1,7 @@
 
 from IM_DB import dbDML,dbDDL
 from mystring import nvl
+from logging import writelog
 import sqlite3
 
 class Boolean:
@@ -38,14 +39,17 @@ class Webanker:
         return self._modelid
 #Webanker
 
-class   Baseobject:
-
-    def __init__(self,tablename,prefix,columnlist,idcolname = None,guidcolname = None):
+class Baseobject:
+    def __init__(self,tablename,prefix,columnlist,idcolname = None,guidcolname = None
+                 ,psrcname=None,pscrid = None,pmodelemtype=None):
         self._tablename:str = tablename
         self._prefix:str = prefix
         self._idcolname:str = prefix + '_id' if idcolname is None else idcolname
         self._guidcolname:str = prefix + '_odm_guid' if guidcolname is None else guidcolname
         self._columnlist = columnlist
+        self.__srcname=psrcname
+        self.__srcid=pscrid
+        self.__modelemtype=pmodelemtype
         self.__emptyclass()
 
     def __emptyclass(self):
@@ -67,12 +71,24 @@ class   Baseobject:
     def getid(self):
         return self.__dict__[self._idcolname]
 
+    def setid(self,pid):
+         self.__dict__[self._idcolname] = pid
+
+    def getscrname(self):
+        return self.__srcname
+    def getscrid(self):
+        return self.__srcid
+
     def insert(self,pdoerrhdlng=True):
+        if self.__modelemtype is not None:
+            self.setid(Modelelement(self.__modelemtype).insert())
+
         lsql = """insert into {} ({}) values ({})
            """.format(self._tablename, Baseobject.columnsliststring(self._columnlist)
                       , Baseobject.columnsliststring(pcollist=self._columnlist,pplaceholder=True))
         try:
             id = dbDML.insert(lsql, self.totuple())
+            if self.getid() is None: self.setid(id)  # autocolumns zurücklesen
         except sqlite3.Error as e:
             if pdoerrhdlng:
                 print(str(e))
@@ -80,9 +96,9 @@ class   Baseobject:
             #if
             raise e
         #try
-        self.__dict__[self._idcolname] = id #autocolumns zurücklesen
-        return id
-
+        if self.getscrname() is not None:
+            Externalref(psrcname=self.getscrname(),psrcid = self.getscrid(),pmodeid=self.getid()).insert(pdoerrhdlng=pdoerrhdlng)
+        return self.getid()
 
     def tostring(self):
         lretval = "Table: {}\n".format(self._tablename)
@@ -93,8 +109,10 @@ class   Baseobject:
         if pid is None: return None
         data = self.select(pwhere="{}={}".format(self._idcolname, pid))
         if (len(data) > 1):
+            writelog("{}: nonunique ID={}'".format(self._tablename, pid))
             raise Exception('{}: nonunique ID={}'.format(self._tablename, pid))
         elif (len(data) == 0):
+            writelog("{}: nonexistent ID={} '".format(self._tablename, pid))
             raise Exception('{}: nonexistent ID={}'.format(self._tablename, pid))
         else:
             self._fromarray(data[0].toarray())
@@ -114,19 +132,11 @@ class   Baseobject:
         return self
     # getbyuk
 
-    def getbyguid(self,pguid):
-        return self.getbyuk(pcolname=self._guidcolname, pukvalue=pguid)
-    # getbyguid
-
     def prefix(self):
         return self._prefix
 
-    def getID(self,pguid):
-        self.getbyguid(pguid)
-        return self.__dict__[self._idcolname]
-
     def webanker(self,pmodelid=0):
-        return Webanker(pname=self._prefix, pid= self.__dict__[self._idcolname],pmodelid=pmodelid)
+        return Webanker(pname=self._prefix, pid= self.getid(),pmodelid=pmodelid)
 
     @staticmethod
     def createtable(ptablename,psql):
@@ -134,9 +144,14 @@ class   Baseobject:
         dbDDL.createTable(psql)
     #createtable
 
-#    @staticmethod
-#    def select(pwhere=None, porderby=None):
-#        raise NotImplementedError("Must override select")
+    def getbyextref(self,psrcid):
+        if self.getscrname() is None: return None
+        self.getbyid(Externalref.getmodeid(psrcname=self.getscrname(),psrcid=psrcid))
+        return self
+
+    def getbyODMref(self,psrcid):
+        self.getbyid(Externalref.getmodeid(psrcname=Externalref.SOURCE_ODM,psrcid=psrcid))
+        return self
 
     def getsprachvals(self):
         raise NotImplementedError("Must override getsprachvals")
@@ -171,15 +186,14 @@ class   Baseobject:
     @staticmethod
     def columnsliststring(pcollist,pplaceholder=False):
         return ','.join('?' if pplaceholder else col for col in pcollist)
-
-
 #Baseobject
 
 class MultilangBaseobject(Baseobject):
     def __init__(self, tablename, prefix, columnlist, multilangcols
-                 ,idcolname=None, guidcolname=None):
+                 ,idcolname=None, guidcolname=None,psrcname=None,psrcid = None,pmodelemtype=None):
         super().__init__(tablename=tablename, prefix=prefix, columnlist=columnlist
                         ,idcolname=idcolname, guidcolname=guidcolname
+                        ,pmodelemtype=pmodelemtype,psrcname=psrcname,pscrid=psrcid
                         )
         self._multilangcols = multilangcols
     #__init__
@@ -205,11 +219,7 @@ class MultilangBaseobject(Baseobject):
         return retval
     #getbeschr
 
-
-#MultilangBaseobject
-#def webanker(pclass,pid):
-#    o = pclass()
-#    o.getbyid(pid)
-#    return o.webanker()
-
 from .sprachtext import Sprachtext
+from .modelelement import Modelelement
+from .externalref import Externalref
+

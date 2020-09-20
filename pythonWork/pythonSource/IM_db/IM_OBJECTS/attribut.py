@@ -1,102 +1,97 @@
 from .baseobject import Baseobject, MultilangBaseobject
-from .modellelement import Modellelement
+from .modelelement import Modelelement,Modelelemtype
 from .sprachtext import Sprachtext
-from .wertebereich import Wertebereich
+from .domain import Domain
 from .schluessel import Schluesselelement
 
 class Attribut(MultilangBaseobject):
     _tablename: str = 'attributes'
     _prefix: str = 'attr'
-    _columnlist: list = ['attr_id', 'attr_enti_id', 'attr_bezi_id',
-                         'attr_wrtb_id', 'attr_tech_name', 'attr_anzname',
-                         'attr_tooltip', 'attr_beschr', 'attr_business_rule',
-                         'attr_anz_rhflg', 'attr_deskriptor', 'attr_pflichtattr',
-                         'attr_historisiert', 'attr_wiederholt', 'attr_sprachabhaengig',
-                         'attr_verschluesselt', 'attr_odm_guid', 'attr_uc',
+    _columnlist: list = ['attr_id', 'attr_enti_id', 'attr_rela_id',
+                         'attr_doma_id', 'attr_tech_name', 'attr_displ_name',
+                         'attr_tooltip', 'attr_descr',
+                         'attr_displ_seq', 'attr_is_descriptive', 'attr_is_mandatory',
+                         'attr_is_historicised', 'attr_is_repeated', 'attr_is_translated',
+                         'attr_is_encrypted', 'attr_uc',
                          'attr_dc', 'attr_um', 'attr_dm']
 
-    def __init__(self, pname=None, pentiid=None, prelaid=None):
+    def __init__(self, pname=None, pentiid=None, prelaid=None
+                    ,psrcname=None, psrcid=None):
         super().__init__(tablename=Attribut._tablename, prefix=Attribut._prefix
                          , columnlist=Attribut._columnlist
-                         , multilangcols={'attr_anzname': Sprachtext.ATTR_NAME,
-                                          'attr_beschr': Sprachtext.ATTR_COMMENT})
-        self.attr_anzname = pname
+                         , multilangcols={'attr_displ_name': Sprachtext.ATTR_NAME,
+                                          'attr_descr': Sprachtext.ATTR_COMMENT,
+                                          'attr_tooltip': Sprachtext.ATTR_TOOLTIP}
+                         ,pmodelemtype=Modelelemtype.ATTR
+                         , psrcid=psrcid
+                         , psrcname=psrcname)
+        self.attr_displ_name = pname
         self.attr_enti_id = pentiid
-        self.attr_bezi_id = prelaid
+        self.attr_rela_id = prelaid
 
     @staticmethod
     def createtable():
         Baseobject.createtable(ptablename=Attribut._tablename
                                , psql="""
-CREATE TABLE attributes(
-    attr_id                integer NOT NULL primary key autoincrement,
-    attr_enti_id           integer ,
-    attr_bezi_id           integer,
-    attr_wrtb_id           integer NOT NULL,
-    attr_tech_name         varchar(60)NOT NULL,
-    attr_anzname   varchar(100) ,
-    attr_tooltip   varchar(100) ,
-    attr_beschr    varchar(2000) ,
-    attr_business_rule     varchar(4000),
-    attr_anz_rhflg         integer ,
-    attr_deskriptor        varchar(5) default 'FALSE' NOT NULL
-        CHECK(attr_deskriptor IN(
-            'FALSE',
-            'TRUE'
-        )),
-    attr_pflichtattr       varchar(5) default 'FALSE' NOT NULL
-        CHECK(attr_pflichtattr IN(
-            'FALSE',
-            'TRUE'
-        )),
-    attr_historisiert      varchar(5) default 'FALSE' NOT NULL
-        CHECK(attr_historisiert IN(
-            'FALSE',
-            'TRUE'
-        )),
-    attr_wiederholt        varchar(5) default 'FALSE' NOT NULL
-        CHECK(attr_wiederholt IN(
-            'FALSE',
-            'TRUE'
-        )),
-    attr_sprachabhaengig   varchar(5) default 'FALSE' NOT NULL
-        CHECK(attr_sprachabhaengig IN(
-            'FALSE',
-            'TRUE'
-        )),
-    attr_verschluesselt    varchar(5) default 'FALSE' NOT NULL
-        CHECK(attr_verschluesselt IN(
-            'FALSE',
-            'TRUE'
-        )),
-    attr_odm_guid		varchar(36),	
-    attr_uc                varchar(30 )NOT NULL,
-    attr_dc                varchar(30 ),
-    attr_um                varchar(30),
-    attr_dm                varchar(30 ),
-    UNIQUE(attr_enti_id, attr_tech_name),
-	CONSTRAINT attr_arc_fk CHECK((attr_enti_id is null and attr_bezi_id is not null) 
-								or (attr_enti_id is not null and attr_bezi_id is null)),
- 	CONSTRAINT attr_enti_fk FOREIGN KEY(attr_enti_id)
-        REFERENCES entitaeten(enti_id),
-	CONSTRAINT attr_wrtb_fk	FOREIGN KEY(attr_wrtb_id)        
-			REFERENCES wertebereiche(wrtb_id),
-	CONSTRAINT attr_bezi_fk FOREIGN KEY(attr_bezi_id)
-		        REFERENCES beziehungen(bezi_id)
-)
+CREATE TABLE ATTRIBUTES
+    (
+     ATTR_ID integer NOT NULL  primary key,
+     ATTR_ENTI_ID integer NULL ,
+     ATTR_RELA_ID integer NULL ,
+     ATTR_DOMA_ID integer NOT NULL ,
+     ATTR_TECH_NAME VARCHAR (60) NOT NULL ,
+     ATTR_DISPL_NAME VARCHAR (4000) NULL ,
+     ATTR_DISPL_SEQ NUMERIC (5) NULL ,
+     ATTR_TOOLTIP VARCHAR (4000) NULL ,
+     ATTR_DESCR VARCHAR (4000) NULL ,
+     ATTR_IS_DESCRIPTIVE VARCHAR (5) NOT NULL 
+   		CHECK(ATTR_IS_DESCRIPTIVE IN('FALSE','TRUE')),
+     ATTR_IS_MANDATORY VARCHAR (5) NOT NULL  
+   		CHECK(ATTR_IS_MANDATORY IN('FALSE','TRUE')),
+     ATTR_IS_HISTORICISED VARCHAR (5) NOT NULL  
+   		CHECK(ATTR_IS_HISTORICISED IN('FALSE','TRUE')),
+     ATTR_IS_REPEATED VARCHAR (5) NOT NULL  
+   		CHECK(ATTR_IS_REPEATED IN('FALSE','TRUE')),
+     ATTR_IS_TRANSLATED VARCHAR (5) NOT NULL  
+   		CHECK(ATTR_IS_TRANSLATED IN('FALSE','TRUE')),
+     ATTR_IS_ENCRYPTED VARCHAR (5) NOT NULL  
+   		CHECK(ATTR_IS_ENCRYPTED IN('FALSE','TRUE')),
+     ATTR_UC VARCHAR(30) NULL  ,
+     ATTR_DC VARCHAR (30) NOT NULL ,
+     ATTR_UM VARCHAR (30) NULL ,
+     ATTR_DM VARCHAR (30) NULL
+    ,CONSTRAINT ENTI_OR_RELA_ARC CHECK (
+        (  (ATTR_ENTI_ID IS NOT NULL) AND
+         (ATTR_RELA_ID IS NULL) ) OR
+        (  (ATTR_RELA_ID IS NOT NULL) AND
+         (ATTR_ENTI_ID IS NULL) )  )
+      ,CONSTRAINT ATTR_UK UNIQUE (ATTR_TECH_NAME ASC, ATTR_RELA_ID ASC, ATTR_ENTI_ID ASC)
+      ,CONSTRAINT ATTR_UK2 UNIQUE (ATTR_DISPL_NAME ASC, ATTR_RELA_ID ASC, ATTR_ENTI_ID ASC)
+      ,CONSTRAINT ATTR_ENTI_FK FOREIGN KEY      (     ATTR_ENTI_ID)
+		  REFERENCES ENTITIES      (     ENTI_ID )
+      ,CONSTRAINT ATTR_MODE_FK FOREIGN KEY      (     ATTR_ID)
+		  REFERENCES MODELELEMENT      (     MODE_ID )
+		  ON DELETE CASCADE
+      ,CONSTRAINT ATTR_RELA_FK FOREIGN KEY      (     ATTR_RELA_ID)
+		  REFERENCES RELATIONS      (     RELA_ID )
+	  ,CONSTRAINT ATTR_DOMA_FK FOREIGN KEY	  (     ATTR_DOMA_ID)
+		  REFERENCES DOMAINS	  (     DOMA_ID )
+		  ON DELETE NO ACTION
+  )
         """)
+
 
     def webanker(self):
         return super().webanker()
 
     def getname(self, plang=None):
-        return self._getsprachval(colname='attr_anzname', plang=plang)
+        return self._getsprachval(colname='attr_displ_name', plang=plang)
 
     def getentiname(self, plang=None):
         return Entitaet().getbyid(self.attr_enti_id).getname(plang)
 
     def getmodellelement(self):
-        return Modellelement.getbyelemid(pattrid=self.attr_id)
+        return Modelelement.getbyelemid(pattrid=self.attr_id)
 
     def getmodeid(self):
         return self.getmodellelement().mode_id
@@ -104,21 +99,21 @@ CREATE TABLE attributes(
     def getparent(self):
         if self.attr_enti_id is not None:
             return Entitaet().getbyid(self.attr_enti_id)
-        if self.attr_bezi_id is not None:
-            return None #Relation().getbyid(self.attr_bezi_id)
+        if self.attr_rela_id is not None:
+            return None #Relation().getbyid(self.attr_rela_id)
 
     def isinkey(self):
         return Schluesselelement.isinkey(pattrid=self.attr_id)
 
     def getdomain(self):
-        return Wertebereich().getbyid(self.attr_wrtb_id)
+        return Domain().getbyid(self.attr_doma_id)
 
     @staticmethod
     def delete():
         Baseobject.delete(Attribut._tablename)
 
     @staticmethod
-    def select(pwhere=None, porderby="attr_anz_rhflg"):
+    def select(pwhere=None, porderby="attr_displ_seq"):
         attrs = Baseobject.select(pclass=Attribut
                                   , pwhere=pwhere, porderby=porderby)
         return attrs

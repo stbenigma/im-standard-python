@@ -17,15 +17,11 @@ def doLookup(pguid,psql,withnotfound=False):
 #doLookup
 
 def beziId (pguid):
-    return doLookup(pguid,'select bezi_id from beziehungen where bezi_odm_guid ="{}"')
+    return doLookup(pguid,'select rela_id from beziehungen where bezi_odm_guid ="{}"')
 #beziId
 
 def diatid (p_name):
     return doLookup(p_name,'select diat_id from diagrammtypen where upper(diat_bez) =upper("{}")')
 #diatid
 
-def bdegLookup(pname):
-        return doLookup(pname, 'select bdeg_id from benudef_eigenschaft where bdeg_name = "{}"'
-                        ,withnotfound=True)
-# bdegLookup
 

@@ -39,20 +39,20 @@ def do1column(plfnr, pcolxml, ptablid):
     scha.scha_fremdsystem_id = None
     daty_odm = transferModel.findText(pcolxml, 'logicalDatatype')
     if (daty_odm is not None and daty_odm != ''):
-        scha.scha_daty_id = Datatype().getbyguid(daty_odm).daty_id
+        scha.scha_daty_id = Externalref.getODMmodeid(psrcid=daty_odm).daty_id
     daty_wrtb_odm = transferModel.findText(pcolxml, 'domain')
-    scha.scha_wrtb_id = transferModel.findeOderErstelleDom(pdomguid=daty_wrtb_odm
-                                                           ,pstructdomguid=None
-                                                               ,ptypeguid=daty_odm
-                                                               , pattrname=scha.scha_column_name
-                                                               , pvatername=Tabelle().getbyid(ptablid).tabl_name
-                                                               , pattrxml=pcolxml)
+    scha.scha_wrtb_id = transferModel.findorcreateDomain(pdomguid=daty_wrtb_odm
+                                                         , pstructdomguid=None
+                                                         , ptypeguid=daty_odm
+                                                         , pattrname=scha.scha_column_name
+                                                         , pfathername=Tabelle().getbyid(ptablid).tabl_name
+                                                         , pattrxml=pcolxml)
     if scha.scha_daty_id is None:
         scha.scha_daty_id = Datatype.getunknown().daty_id
     scha.insert()
 
 
-    lmodeId= Modellelement.insertmode(pschaid=scha.scha_id)
+    lmodeId= Modelelement.insertmode(pschaid=scha.scha_id)
     dbInserts.insertUdpColumn(pschaId=scha.scha_id)
     transferModel.updateUDP(pmodeid=lmodeId, pobj=pcolxml)
     documents = transferModel.getdokuref(pelem= pcolxml)
@@ -72,7 +72,7 @@ def do1table(pfilename):
     tabl.tabl_schn_id = globalschnid
     tabl.tabl_beschr = transferModel.findText(tablexml,"comment")
     tabl.insert()
-    lmodeId = Modellelement.insertmode(ptablid=tabl.tabl_id)
+    lmodeId = Modelelement.insertmode(ptablid=tabl.tabl_id)
 
     dbInserts.insertUdpTable(ptablId=tabl.tabl_id)
 
@@ -106,7 +106,7 @@ def do1schnittstelle(pfilename):
     schn.schn_uc = transferModel.findText(schnxml,'createdBy')
     schn.schn_dc = transferModel.findText(schnxml,'createdTime')
     schn.insert()
-    lmodeId = Modellelement.insertmode(pschnid=schn.schn_id)
+    lmodeId = Modelelement.insertmode(pschnid=schn.schn_id)
 
     #Dokumente an dieser Schnittstelle
     documents = transferModel.getdokuref(pelem=schnxml,pstruct=True)
@@ -187,9 +187,9 @@ class Odmmapping:
 
 def doattrmapping(pcolmappings):
     for colmap in pcolmappings:
-        scha = Schnittstelleattr().getbyguid(transferModel.findField(colmap,'rID'))
+        scha = Schnittstelleattr().getbyODMref(psrcid=transferModel.findField(colmap, 'rID'))
         schaid = None if scha is None else scha.scha_id
-        attrid = Attribut().getID (pguid=transferModel.findField(colmap,'lID'))
+        attrid = Externalref.getODMmodeid (psrcid=transferModel.findField(colmap, 'lID'))
         attf = AttrTransf()
         attf.attf_laufnr =1
         attf.attf_richtung = AttrTransf.INBOUND
@@ -221,9 +221,9 @@ def do1mapping(pfilename):
         #print (odmmap.__dict__)
         tabentimap = TablEntiMap()
         try:
-            tabentimap.tema_enti_id = Entitaet().getID(odmmap.logid) if odmmap.logtype == odmmap.ENTITYPE else None
-            tabentimap.tema_bezi_id = dbLookup.beziID(odmmap.logid) if odmmap.logtype == odmmap.RELATYPE else None
-            tabentimap.tema_tabl_id = Tabelle().getID(odmmap.relid) if odmmap.reltype == odmmap.TABLETYPE else None
+            tabentimap.tema_enti_id = Externalref.getODMmodeid(psrcid=odmmap.logid) if odmmap.logtype == odmmap.ENTITYPE else None
+            tabentimap.tema_rela_id = Externalref.getODMmodeid(psrcid=odmmap.logid) if odmmap.logtype == odmmap.RELATYPE else None
+            tabentimap.tema_tabl_id = Externalref.getODMmodeid(psrcid=odmmap.relid) if odmmap.reltype == odmmap.TABLETYPE else None
             #colattrmap.tema_tabl_id = Tabelle().getidbyfk(odmmap.relid) if odmmap.reltype == odmmap.FKTYPE else None
             tabentimap.insert(pdoerrhdlng=False)
         except:

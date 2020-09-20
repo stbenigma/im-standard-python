@@ -1,4 +1,6 @@
-import math,os,re
+import math
+import os
+import re
 import sqlite3
 import xml.etree.ElementTree as ET
 from datetime import date
@@ -9,6 +11,7 @@ from IM_OBJECTS import *
 from mystring import nvl
 
 GUIDPATTERN: str = '[A-Z0-9-]{20,45}'
+UDPEXTENSION: str = 'udposdm'
 
 
 class color:
@@ -20,19 +23,25 @@ class color:
         self.fontsize = fontsize
         self.fontstyle = fontstyle
     # end __init__
-
-
 # color
 
-# entry of keys found in entites
-# [Schluessel, (listof attr and relationship guids)]
+""" entry of keys found in entites
+ [Schluessel, (listof attr and relationship guids)]
+"""
 schluessel = []
-# Classification type colors
-# classguid : color
+""" Classification type colors
+ classguid : color
+"""
 classcolors = dict()
-# default colors
-# elementtypename : color
+""" default colors
+ {elementtypename : color}
+"""
 defcolors = dict()
+
+"""List of entities die erst bearbeitet werden können, wenn alle entities geladen sind
+   {entityguid: (entity, superentitityguid, [subentity ids], categoryguid)}
+"""
+entities = dict()
 
 
 def findText(set, name):
@@ -54,66 +63,117 @@ def findField(set, name):
 # findField
 
 
+def nameflags(pstr: str, pflag: str) -> bool:
+    """checks [NLT] at end of names (my erd-Extension)"""
+    if (pstr is None): return
+    lmatch = "\[.{0,2}" + pflag + ".{0,2}\]"
+    return (True if re.match(lmatch, pstr) else False)
+
+
+def is_historisized(pstr: str) -> bool:
+    return nameflags(pstr=pstr, pflag='T')
+
+
+def is_langdept(pstr: str) -> bool:
+    return nameflags(pstr=pstr, pflag='L')
+
+
+def is_repeated(pstr: str) -> bool:
+    return nameflags(pstr=pstr, pflag='N')
+
+
 def transferTypes():
     types = ET.parse(parameters.odmIMDirec() + parameters.odmKonfDirec() + parameters.odmTypesFile())
     root = types.getroot()
     for typ in root.findall('logicaltype'):
         Datatype(pname=findField(typ, 'name')
-                 , pgrundtyp=Datatype.basisType(findText(typ, 'mapping'))
-                 , podmguid=findField(typ, 'objectid')).insert()
+                 , pbasetype=Datatype.baseType(findText(typ, 'mapping'))
+                ,psrcname=Externalref.SOURCE_ODM,pscrid=findField(typ, 'objectid')
+                ).insert()
     # endfor
 
-
+"""List of not yet finished domain
+    {id of unfinished domain : guid of type it is supposed to be}"""
+unkndomains = {}
 def do1structtype(filename):
+    global unkndomains
     structdomains = ET.parse(filename)
     structdom = structdomains.getroot()
     if (findField(structdom, "class") != "oracle.dbtools.crest.model.design.datatypes.StructuredType"): return
     # print (findField(structdom,"name"))
-    wrtb = Wertebereich()
-    wrtb.wrtb_name = findField(structdom, "name")
-    wrtb.wrtb_odm_guid = findField(structdom, "id")
-    wrtb.wrtb_uc = findText(structdom, "createdBy")
-    wrtb.wrtb_dc = findText(structdom, "createdTime")
-    wrtb.wrtb_typ = 'GRP'
-    wrtb.wrtb_herkunft = Wertebereich.DOMAIN
-    wrtb.insert()
+    doma = Domain(psrcname=Externalref.SOURCE_ODM,psrcid=findField(structdom, "id"))
+    doma.doma_name = findField(structdom, "name")
+    doma.doma_descr = findText(structdom, "comment")
+    doma.doma_uc = findText(structdom, "createdBy")
+    doma.doma_dc = findText(structdom, "createdTime")
+    doma.doma_type = 'GRP'
+    doma.doma_origin = Domain.DOMAIN
+
+    print ("do1structtype: name = {} NOT YET implemented".format(doma.doma_name))
+    return
+    doma.insert()
 
     elements = structdom.findall("attributes/Attribute")
     for el in elements:
-        # print (wrtb.wrtb_name,findField(el,"name"),findText(el,'type'))
-        wbgr = Wertebereichgruppe()
-        wbgr.wbgr_type_ref = findText(el, 'type')
-        wbgr.wbgr_wrtb_id_gruppe = wrtb.wrtb_id
-        wbgr.wbgr_name = findField(el, "name")
-        wbgr.wbgr_beschr = findText(el, "comment")
-        wbgr.wbgr_uc = findText(el, "createdBy")
-        wbgr.wbgr_dc = findText(el, "createdTime")
-        elwrtb = Wertebereich().getbyguid(wbgr.wbgr_type_ref)
-        if elwrtb is None:
-            # nimm vorläufig unknown, da mein Typ evtl. noch nicht da ist.
-            elwrtbid = Wertebereich().getunknown().wrtb_id
-        else: elwrtbid = elwrtb.wrtb_id
-        wbgr.wbgr_wrtb_id_member = elwrtbid
-        wbgr.insert()
+        # print (doma.doma_name,findField(el,"name"),findText(el,'type'))
+        dgrmid =findField(el, 'id')
+        dgrm = DomaingroupMember(psrcname=Externalref.SOURCE_ODM, psrcid=dgrmid)
+        dgrm.dgrm_doma_id_group = doma.doma_id
+        dgrm.dgrm_name = findField(el, "name")
+        dgrm.dgrm_descr = findText(el, "comment")
+        dgrm.dgrm_uc = findText(el, "createdBy")
+        dgrm.dgrm_dc = findText(el, "createdTime")
+        dgrm.dgrm_is_mandatory = Boolean.bool2str(Boolean.str2bool(findText(el, "mandatory")))
+
+        """in struct types the "type" is either datatype or structtype or domain """
+        reftypeguid = findText(el, 'type')
+        reftype = Modelelement.getelementbyextref(psrcname=Externalref.SOURCE_ODM,psrcid=reftypeguid)
+        if isinstance(reftype,Domain):
+            dgrm.dgrm_doma_id_member = reftype.doma_id
+        elif isinstance(reftype,Datatype):
+            dgrm.dgrm_doma_id_member = findorcreateDomain(ptypeguid=reftypeguid
+                           , pattrname=dgrm.dgrm_name
+                           , pfathername=doma.doma_name
+                           , pattrxml=el)
+        else :
+            """type has not yet been parsed or does not exist at all or is type I haven't considered
+                remember for update"""
+            dgrm.dgrm_doma_id_member = Domain.getunknown().doma_id
+            unkndomains[dgrmid] = reftypeguid
+        dgrm.insert()
     # for
 
+def dostructtypes():
+    global unkndomains
+    dosegfiles(pdirec=parameters.odmstructypesdir(), transferfiles=do1structtype)
 
-def liesunsfuellwrtb(pwrtb, pxml):
-    pwrtb.wrtb_uc = findText(pxml, 'createdBy')
-    pwrtb.wrtb_dc = findText(pxml, 'createdTime')
-    pwrtb.wrtb_datatype_odm = findText(pxml, 'logicalDatatype')
-    daty = Datatype().getbyguid(pwrtb.wrtb_datatype_odm)
-    pwrtb.wrtb_daty_id = None if daty is None else daty.daty_id
-    pwrtb.wrtb_typ = 'TEXT' if (daty is None or daty.daty_grundtyp is None) else daty.daty_grundtyp
+    """update group domains as their types may now be available"""
+    for key,val in unkndomains.items():
+        doma = Modelelement.getelementbyodmguid(pguid=val)
+        if isinstance(doma,Domain):
+            DomaingroupMember.updmember(pid=key,pdomaid=doma.doma_id)
+        else:
+            logging.writelog("Illegal domainreference {} (id={}) for structured type member {}".format(type(doma),key,val))
+        #fi
 
-    # print (pwrtb.wrtb_datatype_ref,pwrtb.wrtb_typ )
+def liesunsfuelldoma(pdoma, pxml):
+    pdoma.doma_uc = findText(pxml, 'createdBy')
+    pdoma.doma_dc = findText(pxml, 'createdTime')
+    daty = Modelelement.getelementbyextref(psrcid=findText(pxml, 'logicalDatatype'),psrcname=Externalref.SOURCE_ODM)
+    if daty is None:
+        pdoma.doma_daty_id = None
+        pdoma.doma_type = Domain.TXT
+    else:
+        pdoma.doma_daty_id = daty.daty_id
+        pdoma.doma_type = Domain.TXT if (daty.daty_basetype is None) \
+                                    else Domain.basetype2domatype(pdatybasetype=daty.daty_basetype)
 
     lov = pxml.find('listOfValues')
     if (lov is not None) and (lov != {}):
-        pwrtb.wrtb_typ = 'LOV'
+        pdoma.doma_type = Domain.LOV
         lovs = dict()
         for lovval in lov:
-            #                print (findField(lovval,'value'),findField(lovval,'description'),lovval.attrib)
+            # print (findField(lovval,'value'),findField(lovval,'description'),lovval.attrib)
             lovs.update({findField(lovval, 'value'): findField(lovval, 'description')})
         # endfor
         # print (len(lovs))
@@ -127,73 +187,65 @@ def liesunsfuellwrtb(pwrtb, pxml):
 
     # noch nicht übernommenm< defaultValue > a @ b.ch < / defaultValue >
 
-    if (pwrtb.wrtb_typ == 'BIN'):
-        pwrtb.wrtb_bin_inhalttyp = 'BILD'  # 'FILM','GRAPH','TEXT','TON'
-        wrtb_bin_spfo_id = None
-    elif (pwrtb.wrtb_typ == 'LOV'):
+    if (pdoma.doma_type == 'BIN'):
+        pdoma.doma_bin_contenttype = 'BILD'  # 'FILM','GRAPH','TEXT','TON'
+        pdoma.doma_bin_spfo_id = None
+    elif (pdoma.doma_type == 'LOV'):
         zahl = re.search('\A\d* ', nvl(findText(pxml, 'dataTypeSize')))
-        pwrtb.wrtb_text_maxlng = zahl.group() if not (zahl is None) else None
-    elif (pwrtb.wrtb_typ == 'TEXT'):
+        pdoma.doma_text_maxlng = zahl.group() if not (zahl is None) else None
+    elif (pdoma.doma_type == Domain.TXT):
         #            print(re.search('\A\d* ','123 ab').group())
         zahl = re.search('\A\d* ', nvl(findText(pxml, 'dataTypeSize')))
-        pwrtb.wrtb_text_maxlng = zahl.group() if not (zahl is None) else None
+        pdoma.doma_text_maxlng = zahl.group() if not (zahl is None) else None
         constr = pxml.find('checkConstraint')
         if not (constr is None):
             # print(constr.findall('*'))
             impl = constr.find('implementationDef')
             if not (impl is None):
-                pwrtb.wrtb_text_syntaxregel = findField(impl, 'definition')
-    elif (pwrtb.wrtb_typ == 'ZPKT'):
-        pwrtb.wrtb_zpkt_minwert = range[0]
-        pwrtb.wrtb_zpkt_maxwert = range[1]
-        pwrtb.wrtb_zpkt_granularitaet = 'MINUTE'
-    elif (pwrtb.wrtb_typ == 'NUM'):
-        pwrtb.wrtb_num_minwert = range[0]
-        pwrtb.wrtb_num_maxwert = range[1]
+                pdoma.doma_text_syntaxrule = findField(impl, 'definition')
+    elif (pdoma.doma_type == Domain.DAT):
+        pdoma.doma_dat_minvalue = range[0]
+        pdoma.doma_dat_maxvalue = range[1]
+        pdoma.doma_dat_granularity = Domain.MINUTE
+    elif (pdoma.doma_type == 'NUM'):
+        pdoma.doma_num_minvalue = range[0]
+        pdoma.doma_num_maxvalue = range[1]
         prec = findText(pxml, 'dataTypePrecision')
         scale = findText(pxml, 'dataTypeScale')
-        pwrtb.wrtb_num_nachkstellen = 0 if scale is None else int(scale)
-        pwrtb.wrtb_num_vorkstellen = 0 if prec is None else int(prec) - pwrtb.wrtb_num_nachkstellen
-        pwrtb.wrtb_num_rundng_einh = None
-        pwrtb.wrtb_num_pheh = findText(pxml, 'unitOfMeasure')
+        pdoma.doma_num_fract_digits = 0 if scale is None else int(scale)
+        pdoma.doma_num_total_digits = 0 if prec is None else int(prec)
+        pdoma.doma_num_round_value = None
+        unitofmeasure = findText(pxml, 'unitOfMeasure')
+        if unitofmeasure is not None: pdoma.doma_phyu_id = PhysicalUnit.getorcreate(pname=unitofmeasure).phyu_id
     # fi
-    pwrtb.insert()
+    pdoma.insert()
 
     if (lov is not None) & (lov != {}):
         for idx, key in enumerate(lovs.keys(), start=1):
-            vgwt = Vorgabewert()
-            vgwt.vgwt_wert = key
-            vgwt.vgwt_wrtb_id = pwrtb.wrtb_id
-            vgwt.vgwt_sortrhfg = idx
-            vgwt.vgwt_uc = pwrtb.wrtb_uc
-            vgwt.vgwt_dc = pwrtb.wrtb_dc
-            vgwt.vgwt_anzeige = lovs[key]
-            vgwt.insert()
+            deva = DefaultValue()
+            deva.deva_value = key
+            deva.deva_doma_id = pdoma.doma_id
+            deva.deva_sort_order = idx
+            deva.deva_uc = pdoma.doma_uc
+            deva.deva_dc = pdoma.doma_dc
+            deva.deva_displ = lovs[key]
+            deva.insert()
         # for
     # fi
 
 
 def transferDomains():
-    # lösche die Domains
-    # print(parameters.odmDomainsFilePath())
     domains = ET.parse(parameters.odmDomainsFilePath())
     root = domains.getroot()
     for dom in root.findall('domains/Domain'):
-        wrtb = Wertebereich()
-        wrtb.wrtb_name = findField(dom, "name")
-        wrtb.wrtb_odm_guid = findField(dom, "id")
-        wrtb.wrtb_beschr = findText(dom, 'comment')
-        wrtb.wrtb_herkunft = Wertebereich.DOMAIN
-        liesunsfuellwrtb(pwrtb=wrtb, pxml=dom)
-        lmodeId = Modellelement.insertmode(pwrtbid=wrtb.wrtb_id)
+        doma = Domain(psrcname=Externalref.SOURCE_ODM,psrcid=findField(dom, "id"))
+        doma.doma_name = findField(dom, "name")
+        doma.doma_descr = findText(dom, 'comment')
+        doma.doma_origin = Domain.DOMAIN
+        liesunsfuelldoma(pdoma=doma, pxml=dom)
     # for
 
-    dosegfiles(pdirec=parameters.odmstructypesdir(), transferfiles=do1structtype)
-
-    """update group domains a their types may now be available"""
-    Wertebereichgruppe.updmembers()
-
-
+    dostructtypes()
 # end transferDomains
 
 def hex2int(phex):
@@ -223,7 +275,7 @@ def toString(str, upper=False):
 
 def transferentity(penti, pdiagid, puc, pdc):
     entiodm = findField(penti, 'oid')
-    enti = Entitaet().getbyguid(entiodm)
+    enti = Entitaet().getbyODMref(psrcid=entiodm)
     hiddenelements = penti.find("hiddenElements")
     if hiddenelements is not None:
         elemtext = findField(hiddenelements, "elements")
@@ -232,8 +284,8 @@ def transferentity(penti, pdiagid, puc, pdc):
     hiddenattrs = elemtext.split(' ')
     hiddenattrs2 = []
     for e in hiddenattrs:
-        if e != "": hiddenattrs2.append(Attribut().getID(pguid=e))
-    attrs = Attribut.select(pwhere="attr_enti_id = {}".format(enti.enti_id), porderby="attr_anz_rhflg")
+        if e != "": hiddenattrs2.append(Attribut().getbyODMref(psrcid=e))
+    attrs = Attribut.select(pwhere="attr_enti_id = {}".format(enti.enti_id), porderby="attr_displ_seq")
     attrids = [a.attr_id for a in attrs]
     attrids = list(set(attrids) - set(hiddenattrs2))
     # print (attrids,hiddenattrs2)
@@ -284,7 +336,7 @@ def transferentity(penti, pdiagid, puc, pdc):
         row = (entix, entiy, entiwidth, entiheight
                , 100, int2hex(col.backgcolor), None, 100
                , int2hex(col.foregcolor), col.fontsize, int2hex(col.fontcolor),
-               Modellelement.getidbyelemid(pentiid=enti.enti_id)
+               Modelelement.getidbyelemid(pentiid=enti.enti_id)
                , pdiagid, index, puc, pdc
                , None, None)
         # print (row)
@@ -297,7 +349,7 @@ def transferentity(penti, pdiagid, puc, pdc):
             for aid in attrids:
                 attrrow = (attrx, attry, attrwidth, attrheight
                            , 100, int2hex(col.backgcolor), int2hex(col.fontcolor), 100
-                           , None, None, None, Modellelement.getidbyelemid(pattrid=aid)
+                           , None, None, None, Modelelement.getidbyelemid(pattrid=aid)
                            , pdiagid, 0, puc, pdc
                            , None, None)
                 try:
@@ -374,20 +426,20 @@ def transferdiaconnect(pconnectors, pdiagid, puc, pdc):
             if sttey is not None and int(sttey) < 0: sttey, entey = 0, int(entey) - int(sttey)
             if sttey is not None and int(sttey) < 0: sttey, entey = 0, int(entey) - int(sttey)
 
-            bezi = dbDML.select("""select bezi_pflicht_assoc_von_zu,bezi_pflicht_assoc_zu_von
-                                        ,bezi_type
+            bezi = dbDML.select("""select rela_mandatory_from_to,rela_mandatory_to_from
+                                        ,rela_type
                                          ,case bezi_source_enti_guid 
                                          when source.enti_odm_guid then 'FALSE' 
                                             else 'TRUE' end switch
                                     from beziehungen
-                                    join entitaeten source on source.enti_id = bezi_enti_id_von
-                                    where bezi_id ={}
+                                    join entitaeten source on source.enti_id = rela_enti_id_from
+                                    where rela_id ={}
                     """.format(beziid))
-            bezitype = bezi[0][2]
+            lbezitype = bezi[0][2]
             sourcelinetype = 'SOLID' if (bezi[0][0] == 'TRUE') else 'DASHED'
             targetlinetype = 'SOLID' if (bezi[0][1] == 'TRUE') else 'DASHED'
-            sourcecard = '1' if (bezitype in ('ISA', '1:1')) else 'M'
-            targetcard = '1' if (bezitype in ('ISA', '1:1', 'M:1')) else 'M'
+            sourcecard = '1' if (lbezitype in ('ISA', '1:1')) else 'M'
+            targetcard = '1' if (lbezitype in ('ISA', '1:1', 'M:1')) else 'M'
             if (bezi[0][3] == 'TRUE'):  # switch source and target
                 sourcecard, targetcard = targetcard, sourcecard
                 sourcelinetype, targetlinetype = targetlinetype, sourcelinetype
@@ -404,7 +456,7 @@ def transferdiaconnect(pconnectors, pdiagid, puc, pdc):
     ,beda_endtext_hoehe, beda_schriftfarbe, beda_schriftgroesse, beda_uc
     ,beda_dc, beda_um, beda_dm)
 """
-            row = (pdiagid, Modellelement.getidbyelemid(prelaid=beziid), linewidth, None
+            row = (pdiagid, Modelelement.getidbyelemid(prelaid=beziid), linewidth, None
                    , 1, sttex, sttey, sttew
                    , stteh, entex, entey, entew
                    , enteh, None, 10, puc, pdc, None, None
@@ -474,8 +526,6 @@ def doxmlfiles(pdirec, ptransfer, ppattern=r".*"):
             ptransfer(pdirec + file)
         # fi
     # for
-
-
 # doxmlfiles
 
 def dosegfiles(pdirec, transferfiles):
@@ -556,71 +606,83 @@ def transferdiagramme():
                , ppattern=r'{}.xml'.format(GUIDPATTERN))
 
 
-#    for el in os.listdir(parameters.odmentisubviewdirec()):
-#        #filename = parameters.odmentisubviewdirec() +  el
-#        #do1diagramm(p_filename=filename)
-#        doGUIDfile(pdirec = parameters.odmentisubviewdirec()
-#                   , pfile = el
-#                   , transferfiles = do1diagramm)
-#    #endfor
 # transferdiagramme
 
 def insertderiveddomain(ptypeguid, pattrname, pvatername, pattrxml):
-    wrtb = Wertebereich()
-    wrtb.wrtb_name = pattrname
-    wrtbtest = Wertebereich.getbyname(pname=wrtb.wrtb_name)
-    cnt = 0
-    while (wrtbtest is not None and wrtbtest.wrtb_name == wrtb.wrtb_name):
+    doma = Domain()
+    doma.doma_name = pattrname
+    domatest = Domain.getbyname(pname=doma.doma_name)
+    if (domatest is not None):
         # es gibt ihn schon, füge den Vaternamen dazu
-        cnt += 1
-        wrtb.wrtb_name = pattrname + '-' + pvatername + '-' + str(cnt)
-        wrtbtest = Wertebereich.getbyname(pname=wrtb.wrtb_name)
-    wrtb.wrtb_herkunft = Wertebereich.DERIVED
-    wrtb.wrtb_datatype_ref = ptypeguid
-    wrtb.wrtb_beschr = "generiertes Domain für Datentyp für Attribut {}.{}".format(pvatername, pattrname)
+        doma.doma_name = pattrname + '-' + pvatername
+    doma.doma_origin = Domain.DERIVED
+    if nvl(ptypeguid) != '': doma.doma_daty_id = Externalref.getODMmodeid(psrcid=ptypeguid)
+    doma.doma_descr = "generiertes Domain für Datentyp für Attribut {}.{}".format(pvatername, pattrname)
 
-    liesunsfuellwrtb(pwrtb=wrtb, pxml=pattrxml)
-    return wrtb
+    liesunsfuelldoma(pdoma=doma, pxml=pattrxml)
+    return doma
 
 
 # insertderiveddomain
 
 
-def findeOderErstelleDom(pdomguid, pstructdomguid, ptypeguid, pattrname, pvatername, pattrxml):
-    dom = None
-    if pdomguid is not None:
-        dom = Wertebereich().getbyguid(pdomguid)
-    elif pstructdomguid is not None:
-        dom = Wertebereich().getbyguid(pstructdomguid)
-    elif ptypeguid is not None:
-        dom = insertderiveddomain(ptypeguid=ptypeguid, pattrname=pattrname, pvatername=pvatername, pattrxml=pattrxml)
-    #
-    if dom is None:
-        dom = Wertebereich().getbyname('Unknown')
-    return dom.wrtb_id
+def findorcreateDomain(pattrname, pfathername, pattrxml, pdomguid=None, pstructdomguid=None, ptypeguid=None):
+    def handleguid(pguid):
+        if pguid is None: return None
+        typeelem = Modelelement.getelementbyodmguid(psrcid=pdomguid)
 
+        if typeelem is None:
+            """domain not yet known"""
+            return Domain().getunknown().doma_id
+        elif isinstance(typeelem, Domain):
+            return typeelem.doma_id  # Done, domain found
+        else:
+            logging.writelog("Attr: {}, Father: {}, Domain Guid {} leads to unknown element type {}"
+                             .format(pattrname, pfathername, pdomguid, type(typeelem)))
+            return Domain().getunknown().doma_id
+        # fi
+    #handleguid
 
-# findeOderErstelleDom
+    domaid = handleguid(pdomguid)
+    if domaid is not None: return domaid
+    domaid = handleguid(pstructdomguid)
+    if domaid is not None: return domaid
+
+    if ptypeguid is not None:
+        typeelem = Modelelement.getelementbyodmguid(psrcid=ptypeguid)
+        if typeelem is None:
+            """domain not yet known"""
+            return Domain().getunknown().doma_id
+        elif isinstance(typeelem, Datatype):
+            doma = insertderiveddomain(ptypeguid=ptypeguid, pattrname=pattrname, pvatername=pfathername,
+                                       pattrxml=pattrxml)
+            return doma.doma_id
+        else:
+            logging.writelog("Attr: {}, Father: {}, Domain Guid {} leads to unknown element type {}"
+                             .format(pattrname, pfathername, ptypeguid, type(typeelem)))
+            return Domain().getunknown().doma_id
+        #fi
+    #fi
+    return Domain().getunknown().doma_id
+# findorcreateDomain
 
 def do1Arc(fileName):
     arcXML = ET.parse(fileName).getroot()
     if (findField(arcXML, "class") != "oracle.dbtools.crest.model.design.logical.Arc"): return
 
-    # (arcs_name, arcs_enti_id, arcs_odm_guid
-    # , arcs_uc, arcs_dc)
     arc = Arc(pname=findField(arcXML, "name")
-              , pentiid=Entitaet().getID(findText(arcXML, 'entity'))
+              , pentiid=Externalref.getODMmodeid(psrcid=findText(arcXML, 'entity'))
               , puc=findText(arcXML, 'createdBy')
-              , pdc=findText(arcXML, 'createdTime'))
-    arc.setsourceid(psrc=ExternalRef.ODM,psrcid=findField(arcXML, "id"))
+              , pdc=findText(arcXML, 'createdTime')
+              ,psrcname=Externalref.SOURCE_ODM,psrcid=findField(arcXML, "id"))
     arcid = arc.insert()
 
     """map all relations to this arc"""
     relations = arcXML.findall('relations/relationID')
     relids = ','.join("'{}'".format(r.text) for r in relations)
     # DEBUG Arc 2x auf Beziehung
-#    if findField(arcXML, "name") in ('xxArc_9', 'xxArc_11'):
-#        print(findField(arcXML, "id"), findField(arcXML, "name"), findText(arcXML, 'entity'))
+    #    if findField(arcXML, "name") in ('xxArc_9', 'xxArc_11'):
+    #        print(findField(arcXML, "id"), findField(arcXML, "name"), findText(arcXML, 'entity'))
     if False:
         res = dbDML.select("""select case earc.enti_odm_guid
                             when evon.enti_odm_guid
@@ -628,23 +690,21 @@ def do1Arc(fileName):
                             ,case earc.enti_odm_guid
                             when ezu.enti_odm_guid
                             then arcs_id else null end zu_arcs_id
-                 ,arcs_id,arcs_name,bezi_id,bezi_name,earc.enti_name,earc.enti_odm_guid,ezu.enti_odm_guid
+                 ,arcs_id,arcs_name,rela_id,rela_name,earc.enti_name,earc.enti_odm_guid,ezu.enti_odm_guid
                     from arcs
                     cross join beziehungen
                     join entitaeten earc on arcs_enti_id = earc.enti_id
-                    left join entitaeten evon on bezi_enti_id_von = evon.enti_id
-                    left join entitaeten ezu on bezi_enti_id_zu = ezu.enti_id
+                    left join entitaeten evon on rela_enti_id_from = evon.enti_id
+                    left join entitaeten ezu on rela_enti_id_to = ezu.enti_id
                     where arcs_id = {}
                 and bezi_odm_guid in ({})""".format(arcid, relids))
-        #print(res)
-    Relation.updaterela(parcid=arcid,prelids=relids)
-
-    # print(findField(arc,"name"),rel.text)
+        # print(res)
+    Relation.setarcinrela(prelids=relids)
 # do1Arc
 
 def transferArcs():
     dosegfiles(pdirec=parameters.odmArcDirec(), transferfiles=do1Arc)
-
+    Relation.setrelatypes()
 # transferArcs
 
 def updateUDP(pmodeid, pobj):
@@ -658,10 +718,10 @@ def updateUDP(pmodeid, pobj):
     if (props is not None):
         for prop in props:
             try:
-                bdegId = dbLookup.bdegLookup(findField(prop, 'name'))
+                udpr  = Userdefprop.getbyname(pname=findField(prop, 'name'))
                 # print('      ', findField(prop,'name'), findField(prop,'value'), bdegId)
-                udps.append((findField(prop, 'value'), pmodeid, bdegId))
-            except:
+                udps.append((findField(prop, 'value'), pmodeid, udpr.udpr_id))
+            except Exception as e:
                 """dynamische Properties lassen wir aus"""
                 pass
         # for
@@ -673,9 +733,9 @@ def updateUDP(pmodeid, pobj):
         # liefert group1 name,group2 sprache, group3 text
         for i, p in enumerate(prop):
             # print (i,p.group(0),'\n1:',p.group(1),'\n2:',p.group(2),'\n3:',p.group(3))
-            bdegId = dbLookup.bdegLookup(p.group(1))
+            udpr = Userdefprop.getbyname(pname=p.group(1))
             # print('      ', findField(prop,'name'), findField(prop,'value'), bdegId)
-            udps.append((p.group(3).rstrip(), pmodeid, bdegId))
+            udps.append((p.group(3).rstrip(), pmodeid, udpr.udpr_id))
         # for
     # fi
 
@@ -683,7 +743,6 @@ def updateUDP(pmodeid, pobj):
         # print (udps)
         Userdefpropvalue.updvalues(prows=udps)
     # fi
-
 
 
 def do1Attribute(plfnr, pattrxml, pentiId=None, prelaId=None):
@@ -697,35 +756,35 @@ def do1Attribute(plfnr, pattrxml, pentiId=None, prelaId=None):
 
     xmlname = findField(pattrxml, 'name')
     # strip [] am Ende des Namens
-    attr = Attribut(pname=re.sub(' ?\[[LNT]+\]', '', xmlname), pentiid=pentiId, prelaid=prelaId)
+
+    attr = Attribut(pname=re.sub(' ?\[[LNT]+\]', '', xmlname), pentiid=pentiId, prelaid=prelaId
+                    ,psrcname=Externalref.SOURCE_ODM,psrcid=findField(pattrxml, 'id'))
     attr.attr_tech_name = findText(pattrxml, 'preferredAbbreviation')
     if attr.attr_tech_name is None:
-        attr.attr_tech_name = re.sub('[-,.()\[\]äöüèéàÄ~ÖÜ ]', '_', str.upper(attr.attr_anzname))
+        attr.attr_tech_name = re.sub('[-,.()\[\]äöüèéàÄ~ÖÜ ]', '_', str.upper(attr.attr_displ_name))
     attr.attr_uc = findText(pattrxml, 'createdBy')
     attr.attr_dc = findText(pattrxml, 'createdTime')
-    attr.attr_wrtb_id = findeOderErstelleDom(pdomguid=findText(pattrxml, 'domain')
-                                             , pstructdomguid=findText(pattrxml, 'structuredType')
-                                             , ptypeguid=findText(pattrxml, 'logicalDatatype')
-                                             , pattrname=attr.attr_anzname
-                                             , pvatername=vatername
-                                             , pattrxml=pattrxml)
-    attr.attr_beschr = findText(pattrxml, 'comment')
-    attr.attr_anz_rhflg = plfnr
-    attr.attr_deskriptor = 'FALSE'
-    attr.attr_pflichtattr = 'FALSE' if (findText(pattrxml, 'nullsAllowed') == 'true') else 'TRUE'
-    attr.attr_historisiert = 'TRUE' if (re.search('\[.*T.*\]', xmlname) is not None) else 'FALSE'
-    attr.attr_wiederholt = 'TRUE' if (re.search('\[.*N.*\]', xmlname) is not None) else 'FALSE'
-    attr.attr_sprachabhaengig = 'TRUE' if (re.search('\[.*L.*\]', xmlname) is not None) else 'FALSE'
-    attr.attr_verschluesselt = 'FALSE'
-    attr.attr_odm_guid = findField(pattrxml, 'id')
+    attr.attr_doma_id = findorcreateDomain(pdomguid=findText(pattrxml, 'domain')
+                                           , pstructdomguid=findText(pattrxml, 'structuredType')
+                                           , ptypeguid=findText(pattrxml, 'logicalDatatype')
+                                           , pattrname=attr.attr_displ_name
+                                           , pfathername=vatername
+                                           , pattrxml=pattrxml)
+    attr.attr_descr = findText(pattrxml, 'comment')
+    attr.attr_displ_seq = plfnr
+    attr.attr_is_descriptive = 'FALSE'
+    attr.attr_is_mandatory = Boolean.bool2str(findText(pattrxml, 'nullsAllowed') == 'true')
+    attr.attr_is_historicised = Boolean.bool2str(is_historisized(xmlname))
+    attr.attr_is_repeated = Boolean.bool2str(is_repeated(xmlname))
+    attr.attr_is_translated = Boolean.bool2str(is_langdept(xmlname))
+    attr.attr_is_encrypted = 'FALSE'
     attrId = attr.insert()
 
-    lmodeId = Modellelement.insertmode(pattrid=attrId)
-    dbInserts.insertUdpAttr(attrId)
-    updateUDP(pmodeid=lmodeId, pobj=pattrxml)
+    Userdefpropvalue.fillallvalues(pmodetype=Modelelemtype.ATTR,pattrid=attrId)
+    updateUDP(pmodeid=attrId, pobj=pattrxml)
 
     documents = getdokuref(pelem=pattrxml)
-    ModelelemDoku.insertdokuref(pdocguidlist=documents, pmodeid=lmodeId)
+    ModelelemDocu.insertdocuref(pdocguidlist=documents, pmodeid=attrId)
 
 
 # do1Attribute
@@ -777,22 +836,22 @@ def transferKeys():
             scel.scel_schl_id = schl.schl_id
             scel.scel_uc = schl.schl_uc
             scel.scel_dc = schl.schl_dc
-            scel.scel_attr_id = Attribut().getID(ke)
+            scel.scel_attr_id = Externalref.getODMmodeid(psrcid=ke)
             if scel.scel_attr_id is None:
                 try:
-                    scel.scel_bezi_id = dbLookup.beziId(ke)
+                    scel.scel_rela_id = dbLookup.beziId(ke)
                     scel.scel_attr_id = None
                 except sqlite3.Error as e:
                     print(str(e))
                     print(ke, scel)
                     raise e
-                #try
+                # try
             else:
-                scel.scel_bezi_id = None
-            #if
+                scel.scel_rela_id = None
+            # if
             scel.insert()
-        #for
-    #for
+        # for
+    # for
 
 
 def getdokuref(pelem, pstruct=False):
@@ -823,45 +882,43 @@ def getdokuref(pelem, pstruct=False):
     # fi
     # print(documents)
     return documents
-
-
 # getdokuref
 
 def do1Entity(fileName):
+    global entities
     tree = ET.parse(fileName)
     entixml = tree.getroot()
+    #es hat noch fremde XMLS in den Verzeichnissen
     if (findField(entixml, "class") != "oracle.dbtools.crest.model.design.logical.Entity"): return
-    entname = findField(entixml, "name")
-    entcomm = findText(entixml, 'comment')
-    creby = findText(entixml, 'createdBy')
-    creti = findText(entixml, 'createdTime')
-    enti_category_guid = findText(entixml, 'typeID')
+
     documents = getdokuref(pelem=entixml)
-    enti = Entitaet()
-    enti.enti_odm_guid = findField(entixml, 'id')
-    enti.enti_name = entname
-    enti.enti_beschr = entcomm
-    enti.enti_uc = creby
-    enti.enti_dc = creti
-    enti.enti_enti_guid = findText(entixml, 'hierarchicalParent')
-    enti.enti_category_guid = enti_category_guid
+    entiguid = findField(entixml, 'id')
+    enti = Entitaet(psrcname=Externalref.SOURCE_ODM,psrcid=entiguid)
+    enti.enti_name = findField(entixml, "name")
+    enti.enti_descr = findText(entixml, 'comment')
+    enti.enti_uc = findText(entixml, 'createdBy')
+    enti.enti_dc = findText(entixml, 'createdTime')
     entiId = enti.insert()
-    lmodeId = Modellelement.insertmode(pentiid=entiId)
-    dbInserts.insertUdpEntity(entiId)
+
+    entientiguid = findText(entixml, 'hierarchicalParent')
+    enticategoryguid = findText(entixml, 'typeID')
+    entities[entiguid] = (enti,entientiguid,[],enticategoryguid)
+
+    Userdefpropvalue.fillallvalues(pmodetype=Modelelemtype.ENTI,pentiid=entiId)
 
     sobj = findText(entixml, 'synonym')
     if (sobj is not None):
         for syn in sobj.split(','):
             synoname = syn.strip()
-            synid = Synonym(pname=synoname, pentiid=entiId).insert()
-            Modellelement.insertmode(psynoid=synid)
+            syno = Synonym(pname=synoname, pentiid=entiId)
+            syno.insert()
         # for
     # fi
 
     # print (entname,translate.translate(p_text=entname,p_fromlang='de',p_tolang='en'),translate.translate(p_text=entname,p_fromlang='de',p_tolang='fr'))
 
-    updateUDP(pmodeid=lmodeId, pobj=entixml)
-    ModelelemDoku.insertdokuref(pdocguidlist=documents, pmodeid=lmodeId)
+    updateUDP(pmodeid=entiId, pobj=entixml)
+    ModelelemDocu.insertdocuref(pdocguidlist=documents, pmodeid=entiId)
 
     attrs = entixml.find('attributes')
     if attrs is not None:
@@ -872,32 +929,40 @@ def do1Entity(fileName):
         # rof
     # fi
     fillKeys(p_enti=entixml, p_entiid=entiId)
-
-
 # do1Entity
 
 
 def transferEntitaeten():
     # lösche die Entitäten
     dosegfiles(pdirec=parameters.odmEntityDirec(), transferfiles=do1Entity)
+
+
 # transferEntitaeten
 
 def doSubentities():
-    Entitaet.setsuperentityid()
-
-    for superenti in Entitaet.select(pwhere="(select count(*) from entitaeten as e1 where e1.enti_enti_id = enti.enti_id) > 0"):
-        Arc(pname=superenti.enti_name+'_subtype',pentiid=superenti.enti_id
-            ,puc=superenti.enti_uc,pdc=superenti.enti_dc).insert()
+    global entities
+    #fill all subentity-id-lists
+    for guid in entities:
+        entientiguid = entities[guid][1]
+        enti = entities[guid][0]
+        if entientiguid is not None:
+            # hat eine superentity, fülle in seine idliste
+            entities[entientiguid][2].append(enti.enti_id)
+        #fi
     #for
-    # dbDML.exec("""insert into arcs (arcs_name, arcs_enti_id,arcs_uc,arcs_dc)
-    #                    select name || '_subtype', id,uc,um from
-    #                               (select enti_name as name, enti_id as id,enti_uc as uc ,enti_dc as um
-    #                                       ,(select count(*) from entitaeten as e1 where e2.enti_odm_guid = e1.enti_enti_guid) as subanz
-    #                                from entitaeten as e2
-    #                                ) where subanz > 0
-    #                """)
 
-    Relation.insertisa()
+    #get all superentity guids
+    guids = set(val[1] for val in entities.values())
+    guids.discard(None)
+
+    """create an arc for every superentity"""
+    for superentiguid in guids:
+        superenti = entities[superentiguid][0]
+        subentiids = entities[superentiguid][2]
+        arcId = Arc(pname=superenti.enti_name + '_subtype', pentiid=superenti.enti_id
+                     , puc=superenti.enti_uc, pdc=superenti.enti_dc).insert()
+        Relation.insertisa(parcid=arcId,pentiids=subentiids)
+    #for
 
 
 def abbildTyp(ptyp):
@@ -908,114 +973,54 @@ def abbildTyp(ptyp):
     else:
         return None
     # fi
-
-
 # abbildTyp
 
-
-def beziType(srcCard, targCard, srcOpt, targOpt, arcId=None):
-    # ISA: 1:1 und
-    #      zuSeite Pflicht, vonSeite optional
-    #           oder beide sind Pflicht und die zuSeite beziehung ist in einem Arc
-    #    1:1 sonst
-    #
-    if ((srcCard == '1') and (targCard == '1')):
-        # alte lösung        if ((srcOpt == 'false') and (targOpt == 'false') and (arcId is not None)):
-        if ((srcOpt == 'false') or (targOpt == 'false')):
-            return 'ISA'
-        else:
-            return '1:1'
-        # fi
-    elif ((srcCard == 'M') and (targCard == 'M')):
-        return 'M:N'
-    else:
-        return 'M:1'
-    # fi
-
-
-# beziType
 
 def do1Relation(fileName):
     tree = ET.parse(fileName)
     relaxml = tree.getroot()
-    relname = findField(relaxml, 'name')
-    optSrc = findText(relaxml, 'optionalSource')
-    optTarg = findText(relaxml, 'optionalTarget')
-    cardSrc = findText(relaxml, 'sourceCardinality')
-    cardTarg = findText(relaxml, 'targetCardinalityString')
     documents = getdokuref(pelem=relaxml)
 
-    lbeziType = beziType(srcCard=abbildTyp(cardSrc)
-                         , targCard=abbildTyp(cardTarg)
-                         , srcOpt=optSrc
-                         , targOpt=optTarg)
-    # bezi_type, bezi_enti_id_von, bezi_assoc_von_zu
-    #      ,bezi_pflicht_assoc_von_zu, bezi_hist_von_zu
-    #     , bezi_enti_id_zu,bezi_assoc_zu_von
-    #     , BEZI_PFLICHT_ASSOC_ZU_VON,bezi_hist_zu_von
-    #     , bezi_odm_guid,bezi_uc, bezi_dc,bezi_name
-    #     ,bezi_source_enti_guid,  bezi_target_enti_guid
-    vonText = findText(relaxml, 'nameOnSource')
-    zuText = findText(relaxml, 'nameOnTarget')
-    creby = findText(relaxml, 'createdBy')
-    creti = findText(relaxml, 'createdTime')
+    relaguid = findField(relaxml, 'id')
+    rela = Relation(psrcname=Externalref.SOURCE_ODM,psrcid=relaguid)
+    rela.rela_name = findField(relaxml, 'name')
+    rela.rela_assoc_from_to = findText(relaxml, 'nameOnSource')
+    rela.rela_hist_from_to = Boolean.bool2str(is_historisized(rela.rela_assoc_from_to))
+    rela.rela_assoc_to_from = findText(relaxml, 'nameOnTarget')
+    rela.rela_hist_to_from = Boolean.bool2str(is_historisized(rela.rela_assoc_to_from))
+    rela.rela_maptype_from_to = Relation.ONE if (findText(relaxml, 'sourceCardinality') == '1') else Relation.MANY
+    rela.rela_maptype_to_from = Relation.ONE if (findText(relaxml, 'targetCardinalityString') == '1') else Relation.MANY
+    rela.rela_mandatory_from_to = Boolean.strnegbool(findText(relaxml, 'optionalSource'))
+    rela.rela_mandatory_to_from = Boolean.strnegbool(findText(relaxml, 'optionalTarget'))
+    rela.rela_type = rela.simpleType()
+    rela.rela_uc = findText(relaxml, 'createdBy')
+    rela.rela_dc = findText(relaxml, 'createdTime')
+
     sourceentiguid = findText(relaxml, 'sourceEntity')
     targetentiguid = findText(relaxml, 'targetEntity')
-    try:
-        lrow = [lbeziType
-            , Entitaet().getID(sourceentiguid), vonText
-            , Boolean.strnegbool(optSrc), 'FALSE'
-            , Entitaet().getID(targetentiguid), zuText
-            , Boolean.strnegbool(optTarg), 'FALSE'
-            , findField(relaxml, 'id'), creby, creti, relname
-            , sourceentiguid, targetentiguid
-                ]
-        # findField(root,'name')\           ,findText(root,'comment')\
-        #           ,findText(root,'transferable')           ,findText(root,'deleteRule')\
-    except  sqlite3.Error as e:
-        if (e.__str__() == 'No Data Found'):
-            print("Entity Id {} oder {} nicht gefunden. Datenleichen von Bezi mit gelöschten Entities".format(
-                sourceentiguid, targetentiguid))
-            return
-        else:
-            raise e
-        # fi
-    # yrt
-
-    # isA darf nur von von nach zu gehen. d.h. von Beziehung muss NOT NULL sein.
-    if ((lbeziType == 'ISA' and optSrc == 'true')
-            or (lbeziType == 'ISA' and optSrc == 'false' and optTarg == 'false')  # und der Arc ist auf der VonSeite
-            or (lbeziType == 'M:1' and abbildTyp(cardSrc) == '1')
-    ):
-        # tausche von und zu aus
-        lrow[1], lrow[5] = lrow[5], lrow[1]  # Entity-Id
-        lrow[2], lrow[6] = lrow[6], lrow[2]  # text
-        lrow[3], lrow[7] = lrow[7], lrow[3]  # Optionalität
-        lrow[4], lrow[8] = lrow[8], lrow[4]  # history
-    # fi
-    row = tuple(lrow)
-    # print (row)
-
-    try:
-        beziId = dbInserts.insertBeziehung(row)
-    except (sqlite3.IntegrityError):
-        logging.writelog(row)
+    rela.rela_enti_id_from = Externalref.getODMmodeid(psrcid=sourceentiguid)
+    rela.rela_enti_id_to = Externalref.getODMmodeid(psrcid=targetentiguid)
+    if (rela.rela_enti_id_from is None or rela.rela_enti_id_to is None):
+        logging.writelog(
+            "in Relation {}: Entity Id {} oder {} nicht gefunden. Datenleichen von Realtion mit gelöschten Entities".
+                format(relaguid,sourceentiguid, targetentiguid))
         return
-    lmodeId = Modellelement.insertmode(prelaid=beziId)
-    dbInserts.insertUdpBezi(beziId)
+    # fi
 
-    updateUDP(pmodeid=lmodeId, pobj=relaxml)
-    ModelelemDoku.insertdokuref(pdocguidlist=documents, pmodeid=lmodeId)
+    rela.insert()
+    Userdefpropvalue.fillallvalues(pmodetype=Modelelemtype.RELA,prelaid=rela.rela_id)
+
+    updateUDP(pmodeid=rela.rela_id, pobj=relaxml)
+    ModelelemDocu.insertdocuref(pdocguidlist=documents, pmodeid=rela.rela_id)
 
     attrs = relaxml.find('attributes')
     if attrs is not None:
         for idx, attr in enumerate(attrs, start=1):
             # alle Attribute
             # print((findField(attr,'name'),findField(attr,'id')))
-            do1Attribute(plfnr=idx, pattrxml=attr, prelaId=beziId)
+            do1Attribute(plfnr=idx, pattrxml=attr, prelaId=rela.rela_id)
         # endfor
     # fi
-
 
 # do1Relation
 
@@ -1025,11 +1030,12 @@ def transferRelations():
     dbConnect.myDbConn.commit()
 
 
-def do1UDPFile(pudpThema, pfileName):
+def do1UDPFile(pfileName):
     tree = ET.parse(pfileName)
     root = tree.getroot()
-    lupdThema = pudpThema
-    lgroups = {'': '-'} #für ungruppierte properties
+    filename= re.match("^[^.]*",os.path.split(pfileName)[1])[0]
+    lupdThema = filename
+    lgroups = {'': '-'}  # für ungruppierte properties
     for groups in root.findall('udp_groups'):
         for child in groups:
             # print(findField(child,'name'))
@@ -1039,19 +1045,26 @@ def do1UDPFile(pudpThema, pfileName):
 
     # die speziellen Properties (translation of comments in notes manuell einfüllen
     if (lupdThema == parameters.odmUDPTranslFileName()):
-        for lgrpkey,lgrpvalue in lgroups.items():
+        for lgrpkey, lgrpvalue in lgroups.items():
             if lgrpkey != '':
-                ludpid = dbInserts.insertUDP(pData=(lupdThema, lgrpvalue, lgrpvalue + '_ENTI_COMMENT', None
-                                                    , None, 'FALSE', None, '--', date.today().__str__()))
-                dbInserts.insertModelltypEigen(
-                    (Modellelemtype.getidbyshortname(pkurzname=Modellelemtype.type2melt('Entity')), ludpid))
+                udpr = Userdefprop()
+                udpr.udpr_group = lgrpvalue
+                udpr.udpr_name = lgrpvalue + '_ENTI_COMMENT'
+                udprid = udpr.insert()
 
-                ludpid = dbInserts.insertUDP(pData=(lupdThema, lgrpvalue, lgrpvalue + '_ATTR_COMMENT', None
-                                                    , None, 'FALSE', None, '--', date.today().__str__()))
-                dbInserts.insertModelltypEigen(
-                    (Modellelemtype.getidbyshortname(pkurzname=Modellelemtype.type2melt('Attribute')), ludpid))
+                metpid = ModelelementProperty(pmeltid=Modelelemtype.getidbyshortname(pshortname=Modelelemtype.ENTI)
+                                            ,pudprid=udprid).insert()
+
+                udpr = Userdefprop()
+                udpr.udpr_group = lgrpvalue
+                udpr.udpr_name = lgrpvalue + '_ATTR_COMMENT'
+                udprid = udpr.insert()
+
+                metpid = ModelelementProperty(pmeltid=Modelelemtype.getidbyshortname(pshortname=Modelelemtype.ATTR)
+                                            ,pudprid=udprid).insert()
+
             # fi
-        #for
+        # for
     # fi
 
     props = root.find('properties')
@@ -1062,29 +1075,32 @@ def do1UDPFile(pudpThema, pfileName):
         proptype = findField(prop, 'type')
         propdefault = findField(prop, 'default_value')
         proptext = findText(prop, 'description')
-        ludp = (lupdThema, lgroups[group], propname, propdefault
-                , proptext, 'FALSE', None
-                , '--', date.today().__str__())
-        udpId = dbInserts.insertUDP(pData=ludp)
+        udpr = Userdefprop()
+        udpr.udpr_group = lgroups[group]
+        udpr.udpr_name = propname
+        udpr.udpr_descr = proptext
+        udprid = udpr.insert()
 
         obj = prop.findall('objects/object')
         for o in obj:
             """"< object class ="oracle.dbtools.crest.model.design.relational.Column" visible="false" color="-1" / >"""
-            lMelt = re.split("\.", findField(o, 'class'))[6]
-            lmeltid = Modellelemtype.type2melt(lMelt)
-            if lmeltid != "":
+            lMelt = Modelelemtype.type2melt(re.split("\.", findField(o, 'class'))[6])
+            if lMelt != "":
+                lmeltid = Modelelemtype.getidbyshortname(lMelt)
                 try:
-                    dbInserts.insertModelltypEigen((Modellelemtype.getidbyshortname(pkurzname=lmeltid), udpId))
+                    metpid = ModelelementProperty(pmeltid=lmeltid,pudprid=udprid).insert()
                 except Exception as err:
                     print(err)
-                    logging.writelog("mapping type '{}' for UDP {}:{}:{} not found".format(lmeltid,lupdThema,group,propname))
+                    logging.writelog(
+                        "mapping type '{}' for UDP {}:{}:{} not found".format(lmeltid, lupdThema, group, propname))
                     logging.writelog(err)
                     pass
             # fi
 
         # print (ludp)
         lov = prop.find('list_of_values')
-        if (lov is not None):
+        # Currently no Domains and therefore no LOVs in UDPs
+        if False and (lov is not None):
             wrtbId = dbInserts.insertLovWrtb(pName=lupdThema + '_' + propname)
 
             # end insertLovWrtb
@@ -1092,23 +1108,24 @@ def do1UDPFile(pudpThema, pfileName):
             items = lov.findall('item')
             for val in items:
                 # print (findField(val,'value'),findField(val,'default'))
-                vgwt = Vorgabewert()
-                vgwt.vgwt_wert = findField(val, 'value')
-                vgwt.vgwt_wrtb_id = wrtbId
-                vgwt.vgwt_anzeige = findField(val, 'value')
-                vgwt.vgwt_uc = 'system'
-                vgwt.vgwt_dc = date.today().__str__()
+                deva = DefaultValue()
+                deva.deva_value = findField(val, 'value')
+                deva.deva_doma_id = wrtbId
+                deva.deva_anzeige = findField(val, 'value')
+                deva.deva_uc = 'system'
+                deva.deva_dc = date.today().__str__()
                 try:
-                    vgwt.insert(pdoerrhdlng=False)
+                    deva.insert(pdoerrhdlng=False)
                 except (sqlite3.IntegrityError):
                     logging.writelog("duplicate entry in Vorgabewerte theme:'{}' property:'{}' value:'{}'"
-                                     .format(pudpThema, propname, vgwt.vgwt_wert))
+                                     .format(pudpThema, propname, deva.deva_value))
 
             # for
-            Userdefprop.setdomid(pdomid=wrtbId,pudpid=udpId)
-
+            Userdefprop.setdomid(pdomid=wrtbId, pudpid=udpId)
         # fi
     # for
+
+
 # do1UDPFile
 
 def dofiles(pdirec, pfileregexp, ptransferfunc):
@@ -1120,33 +1137,30 @@ def dofiles(pdirec, pfileregexp, ptransferfunc):
             ptransferfunc(filepath)
         # fi
     # endfor
+
+
 # dofiles
 
 def transferUPDdef():
-    # lösche die UDP
-    #    l_sql = """select count(*) from benudef_wert union select count(*) from benudef_eigenschaft"""
-    #    result = dbDML.select(l_sql)
-    #    for row in result:
-    #        print(row)
-    for file in os.listdir(parameters.odmFilesDirec()):
-        filename, file_extension = os.path.splitext(file)
-        # print(filename, file_extension)
-        if (file_extension == '.udposdm'):
-            filepath = parameters.odmFilesDirec() + file
-            # print (filepath)
-            do1UDPFile(pudpThema=filename, pfileName=filepath)
-        # fi
-    # endfor
+    doxmlfiles(pdirec=parameters.odmFilesDirec()
+               , ptransfer=do1UDPFile
+               , ppattern=r'.*\.{}'.format(UDPEXTENSION))
+
+    # for file in os.listdir(parameters.odmFilesDirec()):
+    #     filename, file_extension = os.path.splitext(file)
+    #     # print(filename, file_extension)
+    #     if (file_extension == '.udposdm'):
+    #         filepath = parameters.odmFilesDirec() + file
+    #         # print (filepath)
+    #         do1UDPFile(pudpThema=filename, pfileName=filepath)
+    #     # fi
+    # # endfor
 
     dbConnect.myDbConn.commit()
-
-
 # transferUDPdef
 
 def transferUDP():
     transferUPDdef()
-
-
 # transferUDP
 
 def insertBaseData():
@@ -1167,7 +1181,7 @@ def insertBaseData():
     Sprache.setmodellang(pmodellang=deflang)
     Sprache.setallreplacementlang()
 
-    Modellelemtype.fillmelt()
+    Modelelemtype.fillmelt()
     diat = Diagrammtyp()
     diat.diat_bez = 'Entity'
     diat.diat_uc = 'stb'
@@ -1175,9 +1189,9 @@ def insertBaseData():
     diat.insert()
     #    medi_diat_id, medi_melt_id,medi_uc,mdei_dc,medi_um,mdei_dm
     dbInserts.insertmeltdiat(
-        (diat.diat_id, Modellelemtype.getidbyshortname(pkurzname=Modellelemtype.ENTI), 'stb', date.today(), None, None))
+        (diat.diat_id, Modelelemtype.getidbyshortname(pshortname=Modelelemtype.ENTI), 'stb', date.today(), None, None))
     dbInserts.insertmeltdiat(
-        (diat.diat_id, Modellelemtype.getidbyshortname(pkurzname=Modellelemtype.RELA), 'stb', date.today(), None, None))
+        (diat.diat_id, Modelelemtype.getidbyshortname(pshortname=Modelelemtype.RELA), 'stb', date.today(), None, None))
 
 
 # insertBaseData
@@ -1185,26 +1199,24 @@ def insertBaseData():
 def loeschmodell():
     transferRelational.loeschmodell()
 
-    dbDML.delete("modelltyp_eigensch")
-    dbDML.delete("benudef_wert")
-    dbDML.delete("benudef_eigenschaft")
+    ModelelementProperty.delete()
+    Userdefprop.delete()
+    Userdefpropvalue.delete()
     Schluesselelement.delete()
     Schluessel.delete()
-    dbDML.delete("beziehungen")
+    Relation.delete()
     Arc.delete()
     Attribut.delete()
     Synonym.delete()
     Entitaet.delete()
-    ModelelemDoku.delete()
-    Dokument.delete()
-    ExternalRef.delete()
-    Modellelement.delete()
+    ModelelemDocu.delete()
+    Document.delete()
+    Externalref.delete()
+    Modelelement.delete()
     Diagramm.delete()
-    dbDML.delete("benudef_eigenschaft")
-    Vorgabewert.delete()
-    Wertebereichgruppe.delete()
-    Wertebereich.delete()
-    dbDML.delete("speicherformate")
+    DefaultValue.delete()
+    DomaingroupMember.delete()
+    Domain.delete()
     dbDML.delete("linie_segment")
     dbDML.delete("beziehung_darst")
     dbDML.delete("elementdarst")
@@ -1212,11 +1224,13 @@ def loeschmodell():
     Datatype.delete()
     dbDML.delete("diagramme")
     dbDML.delete('bereich_elemdarst')
-    Modellelemtype.delete()
+    Modelelemtype.delete()
     Diagrammtyp.delete()
     Sprache.delete()
     Sprachtext.delete()
     dbDML.delete('geschaeftsbereich')
+    PhysicalUnit.delete()
+    Storageformat.delete()
     Projekt.delete()
 
 
@@ -1237,6 +1251,7 @@ def loadcolors(coldict, classkey, elem):
 # loadcolors
 
 def loaddefaultcolors():
+    global defcolors,classcolors
     settings = ET.parse(parameters.odmsettingsfile())
     root = settings.getroot()
     classif = root.find('classification_types')
@@ -1259,8 +1274,6 @@ def loaddefaultcolors():
         loadcolors(coldict=defcolors, classkey=classname, elem=de)
         # print(classname,defcolors[classname].fontsize)
     # for
-
-
 # loaddefaultcolors
 
 def filllanguages():
@@ -1291,7 +1304,6 @@ def transferprojekt():
     proj.proj_akt_sprache = defspra
     proj.insert()
 
-    dl, dl2 = dbParam.dbDefaultLang, parameters.dbDefaultLang()
     if defspra is not None:
         defspra = defspra.lower()
         # setze die Defaultsprache aus dem Modell
@@ -1302,28 +1314,35 @@ def transferprojekt():
         dbParam.liesdefaultlang()
         parameters.dbDefaultLang(defspra)
     # fi
-
+# transferprojekt
 
 def do1Document(fileName):
+    global docuparents
     tree = ET.parse(fileName)
     root = tree.getroot()
-    doku = Dokument()
-    doku.doku_name = findField(root, "name")
-    doku.doku_format = findText(root, 'type')
-    doku.doku_referenz = None
-    doku.doku_odm_guid = findField(root, 'id')
-    doku.doku_parent_odm_guid = findText(root, 'parentDocument')
-    # DOKU_NAME, DOKU_FORMAT, DOKU_REFERENZ, DOKU_ODM_GUID, DOKU_PARENT_ODM_GUID
-    doku.insert()
+    id =findField(root, 'id')
+    docu = Document(psrcname=Externalref.SOURCE_ODM,psrcid=id)
+    docu.docu_name = findField(root, "name")
+    type= findText(root, 'type')
+    if type is not None and type != '':
+        docu.docu_stfo_id = Storageformat.getorcreate(pname=type).stfo_id
+    docu.docu_reference = findText(root, 'reference')
+    pd = findText(root, 'parentDocument')
+    if (pd is not None and pd != ''):
+        docuparents [id]= findText(root, 'parentDocument')
+    docu.insert()
 
-
+docuparents ={}
 def transferDocuments():
+    global docuparents
+    docuparents = {}
     dosegfiles(pdirec=parameters.odmdocumentdirec(), transferfiles=do1Document)
-    Dokument.updparents()
-    # print(dbDML.select("""select * from Dokumente """))
+    Document.updparents(psrcname=Externalref.SOURCE_ODM,pparents=docuparents)
+
 
 def removeemptyudp():
     Userdefpropvalue.removeemptyUDP(('.'))
+
 
 # transferDocuments
 def transferODMModel():
@@ -1334,12 +1353,13 @@ def transferODMModel():
     transferDocuments()
     transferDomains()
     transferUDP()
+    loaddefaultcolors()
     transferEntitaeten()
+    doSubentities()
     transferRelations()
     transferArcs()
-    doSubentities()
+    return
     transferKeys()
-    loaddefaultcolors()
     transferdiagramme()
     filllanguages()
     transferRelational.transfer()
