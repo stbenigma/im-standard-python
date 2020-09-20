@@ -99,21 +99,6 @@ linie_segment(
     return dbDML.insert(lsql, pdata)
 #insertlinieseg
 
-def insertUdpBezi(beziId):
-    dbDML.exec("""insert into benudef_wert(
-                bdwe_wert,  bdwe_mode_id,   bdwe_bdeg_id
-                ,bdwe_uc,   bdwe_dc)
-                select NULL,mode_id,bdeg_id,bezi_uc,bezi_dc
-                from RELATIONS
-                join modelelement on mode_rela_id = rela_id
-                cross join (select mote_bdeg_id as bdeg_id
-                             from modelelem_type
-                             join modelltyp_eigensch on mote_melt_id = melt_id
-                             where melt_shortname = 'RELA')
-                where rela_id = {}
-            """ .format(beziId))
-#insertUdpBezi
-
 
 def insertgeschaeftsbereich(pdata):
     lsql = """insert into geschaeftsbereich 

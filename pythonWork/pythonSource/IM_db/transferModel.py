@@ -673,9 +673,9 @@ def do1Arc(fileName):
     arc = Arc(pname=findField(arcXML, "name")
               , pentiid=Externalref.getODMmodeid(psrcid=findText(arcXML, 'entity'))
               , puc=findText(arcXML, 'createdBy')
-              , pdc=findText(arcXML, 'createdTime'))
+              , pdc=findText(arcXML, 'createdTime')
+              ,psrcname=Externalref.SOURCE_ODM,psrcid=findField(arcXML, "id"))
     arcid = arc.insert()
-    Externalref(psrcname=Externalref.SOURCE_ODM, psrcid=findField(arcXML, "id")).insert()
 
     """map all relations to this arc"""
     relations = arcXML.findall('relations/relationID')
@@ -699,17 +699,12 @@ def do1Arc(fileName):
                     where arcs_id = {}
                 and bezi_odm_guid in ({})""".format(arcid, relids))
         # print(res)
-    Relation.updaterela(parcid=arcid, prelids=relids)
-
-    # print(findField(arc,"name"),rel.text)
-
-
+    Relation.setarcinrela(prelids=relids)
 # do1Arc
 
 def transferArcs():
     dosegfiles(pdirec=parameters.odmArcDirec(), transferfiles=do1Arc)
-
-
+    Relation.setrelatypes()
 # transferArcs
 
 def updateUDP(pmodeid, pobj):
@@ -986,7 +981,8 @@ def do1Relation(fileName):
     relaxml = tree.getroot()
     documents = getdokuref(pelem=relaxml)
 
-    rela = Relation()
+    relaguid = findField(relaxml, 'id')
+    rela = Relation(psrcname=Externalref.SOURCE_ODM,psrcid=relaguid)
     rela.rela_name = findField(relaxml, 'name')
     rela.rela_assoc_from_to = findText(relaxml, 'nameOnSource')
     rela.rela_hist_from_to = Boolean.bool2str(is_historisized(rela.rela_assoc_from_to))
@@ -1006,26 +1002,25 @@ def do1Relation(fileName):
     rela.rela_enti_id_to = Externalref.getODMmodeid(psrcid=targetentiguid)
     if (rela.rela_enti_id_from is None or rela.rela_enti_id_to is None):
         logging.writelog(
-            "Entity Id {} oder {} nicht gefunden. Datenleichen von Realtion mit gelöschten Entities".format(
-                sourceentiguid, targetentiguid))
+            "in Relation {}: Entity Id {} oder {} nicht gefunden. Datenleichen von Realtion mit gelöschten Entities".
+                format(relaguid,sourceentiguid, targetentiguid))
         return
     # fi
 
     rela.insert()
-    dbInserts.insertUdpBezi(bezi.bezi_id)
+    Userdefpropvalue.fillallvalues(pmodetype=Modelelemtype.RELA,prelaid=rela.rela_id)
 
-    updateUDP(pmodeid=lmodeId, pobj=relaxml)
-    ModelelemDoku.insertdokuref(pdocguidlist=documents, pmodeid=lmodeId)
+    updateUDP(pmodeid=rela.rela_id, pobj=relaxml)
+    ModelelemDocu.insertdocuref(pdocguidlist=documents, pmodeid=rela.rela_id)
 
     attrs = relaxml.find('attributes')
     if attrs is not None:
         for idx, attr in enumerate(attrs, start=1):
             # alle Attribute
             # print((findField(attr,'name'),findField(attr,'id')))
-            do1Attribute(plfnr=idx, pattrxml=attr, prelaId=beziId)
+            do1Attribute(plfnr=idx, pattrxml=attr, prelaId=rela.rela_id)
         # endfor
     # fi
-
 
 # do1Relation
 
@@ -1362,8 +1357,8 @@ def transferODMModel():
     transferEntitaeten()
     doSubentities()
     transferRelations()
-    return
     transferArcs()
+    return
     transferKeys()
     transferdiagramme()
     filllanguages()

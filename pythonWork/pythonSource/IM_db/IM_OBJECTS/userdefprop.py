@@ -96,7 +96,7 @@ class Userdefpropvalue(Baseobject):
         Baseobject.delete(Userdefpropvalue._tablename)
 
     @staticmethod
-    def fillallvalues(pmodetype,pentiid=None,pattrid=None):
+    def fillallvalues(pmodetype,pentiid=None,pattrid=None,prelaid=None):
         dbDML.exec("""insert into UDP_VALUES (
                 udpv_value,udpv_mode_id,UDPV_UDPR_ID,udpv_uc,udpv_dc)
                 select '.',mode_id,METP_UDPR_ID,uc,dc
@@ -107,12 +107,16 @@ class Userdefpropvalue(Baseobject):
                     select attr_id as mode_id, attr_uc as uc,attr_dc as dc
                     from attributes
                     where attr_id = {}
+                    union all
+                    select rela_id as mode_id,rela_uc as uc,rela_dc as dc
+                    from RELATIONS
+                    where rela_id = {}
                     )
                 cross join (select METP_UDPR_ID 
                              from modelelem_type
                              join MODELEMTYPE_PROPERTIES on METP_MELT_ID = melt_id
                              where melt_shortname = '{}')
-            """.format(nvl(pentiid,-1),nvl(pattrid,-1),pmodetype))
+            """.format(nvl(pentiid,-1),nvl(pattrid,-1),nvl(prelaid,-1),pmodetype))
 
     @staticmethod
     def updvalues(prows):

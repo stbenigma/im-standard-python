@@ -1,7 +1,7 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="bildv5" directorySegmentName="seg_0" id="E47F9AFF-BE2B-BC8B-92DD-B1226F1A6FDA">
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_82" directorySegmentName="seg_0" id="728B65D7-D67B-FBD2-6941-26EF74693EC6">
 <createdBy>stb</createdBy>
-<createdTime>2019-05-06 13:01:10 UTC</createdTime>
+<createdTime>2020-09-20 12:52:15 UTC</createdTime>
 <ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
 <engineerTo>
 <item key="1AB27667-C11D-3493-68AA-DF92C84041A7" value="true"/>
@@ -10,20 +10,13 @@
 <item key="015DE428-05B6-58DD-323D-ECDC72266F4A" value="true"/>
 </engineerTo>
 <useSurrogateKey>true</useSurrogateKey>
+<arc>83314AEF-3AB7-7E5D-1CCA-3CDA7EEFEAF5</arc>
 <identifying>false</identifying>
-<optionalSource>true</optionalSource>
+<optionalSource>false</optionalSource>
 <optionalTarget>true</optionalTarget>
-<sourceCardinality>1</sourceCardinality>
+<sourceCardinality>*</sourceCardinality>
 <sourceEntity>F36DA4B9-5637-6234-ABA8-4D2DC391EB38</sourceEntity>
 <targetCardinalityString>1</targetCardinalityString>
-<targetEntity>5D3B418D-F52D-480D-D6BB-64D7AA82E388</targetEntity>
+<targetEntity>FFAF9724-74C2-E2A0-9908-B5EE9AB30C02</targetEntity>
 <transferable>true</transferable>
-<propertyMap>
-<property name="DE_RELA_TEXT_FROM" value=""/>
-<property name="DE_RELA_TEXT_TO" value=""/>
-<property name="EN_RELA_TEXT_FROM" value=""/>
-<property name="EN_RELA_TEXT_TO" value=""/>
-<property name="FR_RELA_TEXT_FROM" value=""/>
-<property name="FR_RELA_TEXT_TO" value=""/>
-</propertyMap>
 </Relation>

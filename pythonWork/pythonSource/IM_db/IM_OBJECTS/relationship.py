@@ -81,20 +81,11 @@ class Relation(MultilangBaseobject):
                          'rela_maptype_to_from', 'rela_mandatory_to_from', 'rela_hist_to_from',
                          'rela_uc', 'rela_dc', 'rela_um', 'rela_dm', ]
 
-    """        (rela_type, rela_enti_id_from, rela_assoc_from_to
-         , rela_mandatory_from_to, rela_hist_from_to
-         , rela_enti_id_to, rela_assoc_to_from
-         , rela_mandatory_to_from, bezi_hist_zu_von
-         , bezi_odm_guid, bezi_uc, bezi_dc, rela_name
-         , bezi_source_enti_guid, bezi_target_enti_guid
-         )
-"""
-
     def __init__(self,psrcname=None,psrcid=None):
             super().__init__(tablename=Relation._tablename, prefix=Relation._prefix
                              , columnlist=Relation._columnlist
                              , multilangcols={'rela_assoc_from_to': Sprachtext.RELA_TEXT_FROM
-                            , 'rela_assoc_to_from': Sprachtext.RELA_TEXT_TO}
+                                            , 'rela_assoc_to_from': Sprachtext.RELA_TEXT_TO}
                              ,pmodelemtype=Modelelemtype.RELA
                              ,psrcname=psrcname
                              ,psrcid=psrcid
@@ -200,23 +191,47 @@ CREATE TABLE RELATIONS
         return retval
 
     @staticmethod
-    def updaterela(parcid, prelids):
-        dbDML.exec("""update beziehungen
-                set (rela_arcs_id_from,rela_arcs_id_to) =
-                    (select case earc.enti_odm_guid
-                            when evon.enti_odm_guid
-                            then arcs_id else rela_arcs_id_from end von_arcs_id
-                            ,case earc.enti_odm_guid
-                            when ezu.enti_odm_guid
-                            then arcs_id else rela_arcs_id_to end zu_arcs_id
-                    from arcs
-                    join entitaeten earc on arcs_enti_id = earc.enti_id
-                    left join entitaeten evon on rela_enti_id_from = evon.enti_id
-                    left join entitaeten ezu on rela_enti_id_to = ezu.enti_id
-                    where arcs_id = {}
-                    )
-                where bezi_odm_guid in ({})
-                """.format(parcid, prelids))
+    def setarcinrela(prelids):
+        """set arc-id for all relations in prelids"""
+        dbDML.exec("""update RELATIONS
+                      set RELA_ARCS_ID_FROM = 
+                            (select arcs_id 
+                                from arcs
+                                join ENTITIES earc on earc.ENTI_ID = ARCS_ENTI_ID
+                                    and earc.ENTI_ID = RELA_ENTI_ID_from)
+                        ,rela_arcs_id_to = 
+                            (select arcs_id 
+                            from arcs
+                            join ENTITIES earc on earc.ENTI_ID = ARCS_ENTI_ID
+                                    and earc.ENTI_ID = RELA_ENTI_ID_to)
+                        where rela_id in (select EXTR_MODE_ID from  external_refs
+                                          where extr_source_id in ({})
+                                        )
+                    """.format(prelids))
+    @staticmethod
+    def setrelatypes():
+        """make all relations to ISAS which are 1:1, both sides mandatory an all elements in arc are also mandatory"""
+        dbDML.exec("""update relations set  rela_type = 'ISAS'
+                    where rela_type = '1:1'
+                    and ( (RELA_ARCS_ID_TO is not null and RELA_MANDATORY_TO_FROM = 'TRUE')
+                            or (RELA_arcs_ID_FROM is not null and RELA_MANDATORY_FROM_TO = 'TRUE')
+                        )
+                        and exists(select arcs_id
+                                from (select arcs_id, count(*) as cnt, sum(case mandatnonarc when 'TRUE' then 1 else 0 end) as cnttrue
+                                        from (select arcs_id,
+                                              case arcs_id
+                                                  when RELA_ARCS_ID_to then RELA_MANDATORY_FROM_TO
+                                                  else RELA_MANDATORY_TO_FROM end as mandatnonarc
+                                            from RELATIONS
+                                            join arcs on ARCS_ID = RELA_ARCS_ID_TO or ARCS_ID = RELA_ARCS_ID_FROM
+                                            where rela_type = '1:1'
+                                            )
+                                    group by arcs_id
+                                    )
+                        where cnt = cnttrue
+                            and (arcs_id = RELA_ARCS_ID_TO or ARCS_ID = RELA_arcs_ID_FROM)
+                    )"""
+                   )
 
     @staticmethod
     def insertisa(parcid,pentiids):
@@ -236,4 +251,4 @@ CREATE TABLE RELATIONS
                             where arcs_id = {} 
                 """.format(Relation.ONE,Relation.ONE,tuple(pentiids),parcid))
     # insertisa
-# updaterela
+# setarcinrela
