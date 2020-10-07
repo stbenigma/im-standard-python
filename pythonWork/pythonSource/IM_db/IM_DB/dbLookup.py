@@ -16,9 +16,6 @@ def doLookup(pguid,psql,withnotfound=False):
     return lretval
 #doLookup
 
-def beziId (pguid):
-    return doLookup(pguid,'select rela_id from beziehungen where bezi_odm_guid ="{}"')
-#beziId
 
 def diatid (p_name):
     return doLookup(p_name,'select diat_id from diagrammtypen where upper(diat_bez) =upper("{}")')

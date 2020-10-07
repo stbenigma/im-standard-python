@@ -799,7 +799,7 @@ def printentirela(pentiid):
             , Sprachtext.transl('Arc'), Sprachtext.transl('Schlüssel'),)))
     for r in relalist:
         if (pentiid == r[0]):
-            # 'Name','Entität1','','Beziehung','', 'Entität2','Arc','Schluessel'
+            # 'Name','Entität1','','Beziehung','', 'Entität2','Arc','Key'
             fhtml.write(writetableline(pwerte=(html.escape(nvl(r[16])), html.escape(r[1]), '->', html.escape(nvl(r[3], '--'))
                                                , html.escape(nvl(r[4]))
                                                , arrow2icon('down'), nvl(r[14]), bool2icon(r[17]))))

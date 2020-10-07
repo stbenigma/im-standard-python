@@ -1,5 +1,5 @@
 from .baseobject import Baseobject,MultilangBaseobject
-from .schluessel import Schluessel
+from .key import Key
 from .sprachtext import Sprachtext
 from .modelelement import Modelelemtype,Modelelement
 from IM_DB import dbDML,dbDDL
@@ -115,8 +115,8 @@ CREATE TABLE ENTITIES
     #getsynonyms
     def getschluessel(self):
         if (self.getid() is not None) and (self._schluessel is None):
-            self._schluessel = Schluessel.select(pwhere='schl_enti_id = {}'.format(self.getid())
-                                             , porderby='schl_laufnr')
+            self._schluessel = Key.select(pwhere='keys_enti_id = {}'.format(self.getid())
+                                          , porderby='keys_laufnr')
         # fi
         return self._schluessel
     #getschluessel

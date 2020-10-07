@@ -14,7 +14,7 @@ from .modelelement import Modelelemtype,Modelelement,ModelelementProperty
 from .diagramme import Diagramm,Diagrammtyp
 from .entitaet import Entitaet,Synonym
 from .attribut import Attribut
-from .schluessel import Schluessel,Schluesselelement
+from .key import Key,Keyelement
 from .relationship import Arc,Relation
 from .userdefprop import Userdefprop,Userdefpropvalue
 from .externalref import Externalref

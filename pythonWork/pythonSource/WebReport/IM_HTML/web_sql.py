@@ -32,7 +32,7 @@ def attgAnker(id):
 def beziAnker(id):
     return 'BEZI'+str(id)
 def schlAnker(id):
-    return 'SCHL'+str(id)
+    return 'keys'+str(id)
 def wrtbAnker(id):
     return 'DOMA'+str(id)
 def udpAnker(id):
@@ -331,13 +331,13 @@ def diagattrlist(plang,pdiagid):
 #diagattrlist
 
 def keylist(p_entiid,p_lang):
-    schl = dbDML.select("""select schl_laufnr,schl_name,attrs,bezis from
-    (select  schl_id,schl_laufnr,schl_name
+    keys = dbDML.select("""select keys_laufnr,keys_name,attrs,bezis from
+    (select  keys_id,keys_laufnr,keys_name
                   ,group_concat(case when ana.sptx_text is null then attr_displ_name else ana.sptx_text end 
                                     ,', ') attrs
                   ,group_concat(rela_name, ', ') bezis
          from schluessel
-         join schluesselelement on scel_schl_id = schl_id
+         join schluesselelement on scel_keys_id = keys_id
             join sprachen sp on sp.spra_iso_code2 = '{}'
          left join attributes on attr_id = scel_attr_id
          left join modellelement ma on ma.mode_attr_id = attr_id
@@ -345,10 +345,10 @@ def keylist(p_entiid,p_lang):
                                     and ana.sptx_mode_id = ma.mode_id
                                     and ana.spra_id = sp.spra_id            
          left join beziehungen on rela_id = scel_rela_id
-         where schl_enti_id = {}
-           group by schl_id,schl_laufnr,schl_name)
+         where keys_enti_id = {}
+           group by keys_id,keys_laufnr,keys_name)
                     """.format(p_lang,p_entiid))
-    return schl
+    return keys
 #keylist
 
 def relalist (p_entiid,p_lang):
@@ -403,9 +403,9 @@ def relalist (p_entiid,p_lang):
     						,rela_id,rela_type,rela_mandatory_from_to,rela_mandatory_to_from
     						,arcs_name,extr_source_id,rela_name
                             ,case when (select 1 from schluesselelement 
-                                         join schluessel on schl_id = scel_schl_id
+                                         join schluessel on keys_id = scel_keys_id
                                          where scel_rela_id = rela_id
-                                         and schl_enti_id = von.enti_id
+                                         and keys_enti_id = von.enti_id
                                          ) IS NULL 
                             THEN 'FALSE' ELSE 'TRUE' end schluessel
                         from   sprachen sp          

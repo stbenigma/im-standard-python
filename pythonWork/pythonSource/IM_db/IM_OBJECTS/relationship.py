@@ -190,6 +190,7 @@ CREATE TABLE RELATIONS
         #fi
         return retval
 
+
     @staticmethod
     def setarcinrela(prelids):
         """set arc-id for all relations in prelids"""
@@ -231,6 +232,12 @@ CREATE TABLE RELATIONS
                         where cnt = cnttrue
                             and (arcs_id = RELA_ARCS_ID_TO or ARCS_ID = RELA_arcs_ID_FROM)
                     )"""
+                   )
+        """Roles are 1:1 with differen relationshipsend mandataory flag (TRUE/FALSE FALSE/TRUE)"""
+        dbDML.exec("""update relations set  rela_type = 'ISAR'
+                    where rela_type = '1:1'
+                        and (RELA_MANDATORY_FROM_TO  !=  RELA_MANDATORY_TO_FROM)
+                        """
                    )
 
     @staticmethod
