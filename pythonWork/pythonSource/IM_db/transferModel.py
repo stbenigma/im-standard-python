@@ -26,7 +26,7 @@ class color:
 # color
 
 """ entry of keys found in entites
- [Schluessel, (listof attr and relationship guids)]
+ [Key, (listof attr and relationship guids)]
 """
 schluessel = []
 """ Classification type colors
@@ -187,10 +187,10 @@ def liesunsfuelldoma(pdoma, pxml):
 
     # noch nicht übernommenm< defaultValue > a @ b.ch < / defaultValue >
 
-    if (pdoma.doma_type == 'BIN'):
-        pdoma.doma_bin_contenttype = 'BILD'  # 'FILM','GRAPH','TEXT','TON'
+    if (pdoma.doma_type == Domain.BIN):
+        pdoma.doma_bin_contenttype = Domain.IMAGE  # 'FILM','GRAPH','TEXT','TON'
         pdoma.doma_bin_spfo_id = None
-    elif (pdoma.doma_type == 'LOV'):
+    elif (pdoma.doma_type == Domain.LOV):
         zahl = re.search('\A\d* ', nvl(findText(pxml, 'dataTypeSize')))
         pdoma.doma_text_maxlng = zahl.group() if not (zahl is None) else None
     elif (pdoma.doma_type == Domain.TXT):
@@ -207,7 +207,7 @@ def liesunsfuelldoma(pdoma, pxml):
         pdoma.doma_dat_minvalue = range[0]
         pdoma.doma_dat_maxvalue = range[1]
         pdoma.doma_dat_granularity = Domain.MINUTE
-    elif (pdoma.doma_type == 'NUM'):
+    elif (pdoma.doma_type == Domain.NUM):
         pdoma.doma_num_minvalue = range[0]
         pdoma.doma_num_maxvalue = range[1]
         prec = findText(pxml, 'dataTypePrecision')
@@ -232,7 +232,6 @@ def liesunsfuelldoma(pdoma, pxml):
             deva.insert()
         # for
     # fi
-
 
 def transferDomains():
     domains = ET.parse(parameters.odmDomainsFilePath())
@@ -621,8 +620,6 @@ def insertderiveddomain(ptypeguid, pattrname, pvatername, pattrxml):
 
     liesunsfuelldoma(pdoma=doma, pxml=pattrxml)
     return doma
-
-
 # insertderiveddomain
 
 
@@ -793,7 +790,6 @@ def fillKeys(p_enti, p_entiid):
     global schluessel
     allkeys = p_enti.find('identifiers')
     if allkeys is not None:
-        idx = 0
         for key in allkeys.findall('identifier'):
             kr = findText(key, 'newElementsIDs')
             #                arefs = key.findall('usedAttributes/attributeRef')
@@ -805,51 +801,48 @@ def fillKeys(p_enti, p_entiid):
             #            else:
             if (kr is not None):
                 keyrefs = kr.split(',')
-                idx += 1
                 # print(idx, findField(enti,'name'), findField(key,'id'), findField(enti,'id'), keyrefs)
-                schl = Schluessel()
-                schl.schl_laufnr = idx
-                schl.schl_name = findField(key, 'name')
-                schl.schl_odm_guid = findField(key, 'id')
-                schl.schl_uc = findText(key, 'createdBy')
-                schl.schl_dc = findText(key, 'createdTime')
-                schl.schl_enti_id = p_entiid
-                schl.insert()
+                keys = Key(psrcid=findField(key, 'id'),psrcname=Externalref.SOURCE_ODM)
+                keys.keys_name = findField(key, 'name')
+                keys.keys_uc = findText(key, 'createdBy')
+                keys.keys_dc = findText(key, 'createdTime')
+                keys.keys_enti_id = p_entiid
+                keys.insert()
 
-                schluessel.append([schl, keyrefs])
+                schluessel.append([keys, keyrefs])
             # fi
         # rof
-        # [Schluessel, (listof attr and relationship guids)]
+        # [Key, (listof attr and relationship guids)]
     # fi
 
 
 def transferKeys():
     global schluessel
     # Schlüssel sind eingefügt es folgen die SchlüsselElemente, die ich jetzt alle haben sollte
-    # schlüssel [[Schluessel, (Liste der Referenzen)]]
+    # schlüssel [[Key, (Liste der Referenzen)]]
     for schlentry in schluessel:
-        schl = schlentry[0]
+        keys = schlentry[0]
         reflist = schlentry[1]
         # nun die Schlüsselelemente
         for ke in reflist:
-            scel = Schluesselelement()
-            scel.scel_schl_id = schl.schl_id
-            scel.scel_uc = schl.schl_uc
-            scel.scel_dc = schl.schl_dc
-            scel.scel_attr_id = Externalref.getODMmodeid(psrcid=ke)
-            if scel.scel_attr_id is None:
+            kele = Keyelement()
+            kele.kele_keys_id = keys.keys_id
+            kele.kele_uc = keys.keys_uc
+            kele.kele_dc = keys.keys_dc
+            kele.kele_attr_id = Attribut().getIDbyODMref(psrcid=ke)
+            if kele.kele_attr_id is None:
                 try:
-                    scel.scel_rela_id = dbLookup.beziId(ke)
-                    scel.scel_attr_id = None
+                    kele.kele_rela_id = Relation().getIDbyODMref(psrcid=ke)
+                    kele.kele_attr_id = None
                 except sqlite3.Error as e:
                     print(str(e))
-                    print(ke, scel)
+                    print(ke, kele)
                     raise e
                 # try
             else:
-                scel.scel_rela_id = None
+                kele.kele_rela_id = None
             # if
-            scel.insert()
+            kele.insert()
         # for
     # for
 
@@ -1202,8 +1195,8 @@ def loeschmodell():
     ModelelementProperty.delete()
     Userdefprop.delete()
     Userdefpropvalue.delete()
-    Schluesselelement.delete()
-    Schluessel.delete()
+    Keyelement.delete()
+    Key.delete()
     Relation.delete()
     Arc.delete()
     Attribut.delete()
@@ -1358,8 +1351,8 @@ def transferODMModel():
     doSubentities()
     transferRelations()
     transferArcs()
-    return
     transferKeys()
+    return
     transferdiagramme()
     filllanguages()
     transferRelational.transfer()

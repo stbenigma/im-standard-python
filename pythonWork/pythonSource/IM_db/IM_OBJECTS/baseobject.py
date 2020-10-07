@@ -149,9 +149,17 @@ class Baseobject:
         self.getbyid(Externalref.getmodeid(psrcname=self.getscrname(),psrcid=psrcid))
         return self
 
+    def getIDbyODMref(self,psrcid):
+        ref = self.getbyODMref(psrcid=psrcid)
+        return None if ref is None else ref.getid()
+
+
     def getbyODMref(self,psrcid):
-        self.getbyid(Externalref.getmodeid(psrcname=Externalref.SOURCE_ODM,psrcid=psrcid))
-        return self
+        ref = Modelelement().getbyid(Externalref.getmodeid(psrcname=Externalref.SOURCE_ODM,psrcid=psrcid))
+        if ref.mode_type == self.__modelemtype:
+            return self.getbyid(ref.mode_id)
+        else:
+            return None
 
     def getsprachvals(self):
         raise NotImplementedError("Must override getsprachvals")

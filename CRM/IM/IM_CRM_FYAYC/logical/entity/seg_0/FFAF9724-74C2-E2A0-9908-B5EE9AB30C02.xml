@@ -32,11 +32,8 @@ Entité légalement définie qui a la capacité juridique.
 <createSurrogateKey>true</createSurrogateKey>
 <propertyMap>
 <property name="DE_ENTI_NAME" value="Geschäftsfähige Einheit"/>
-<property name="DE_ENTI_SYNONYM" value=""/>
 <property name="EN_ENTI_NAME" value="Legal Entity"/>
-<property name="EN_ENTI_SYNONYM" value=""/>
 <property name="FR_ENTI_NAME" value="Entité légale"/>
-<property name="FR_ENTI_SYNONYM" value=""/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Name" id="26F03530-23A5-F307-8675-22F9D0087687">
@@ -68,4 +65,21 @@ Entité légalement définie qui a la capacité juridique.
 </propertyMap>
 </Attribute>
 </attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="7980ED00-A1CC-FE8D-16D5-185EA17A84D4" name="GEEIN_key">
+<createdBy>stb</createdBy>
+<createdTime>2020-10-07 13:29:55 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<engineerTo>
+<item key="1AB27667-C11D-3493-68AA-DF92C84041A7" value="true"/>
+<item key="851DDEFA-B048-37E9-7826-4E48946EAF1C" value="true"/>
+<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true"/>
+<item key="015DE428-05B6-58DD-323D-ECDC72266F4A" value="true"/>
+</engineerTo>
+<newElementsIDs>26F03530-23A5-F307-8675-22F9D0087687</newElementsIDs>
+<usedAttributes>
+<attributeRef>26F03530-23A5-F307-8675-22F9D0087687</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
 </Entity>

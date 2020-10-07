@@ -25,8 +25,8 @@ def erstelleInfra():
     Entitaet.createtable()
     Synonym.createtable()
 
-    Schluessel.createtable()
-    Schluesselelement.createtable()
+    Key.createtable()
+    Keyelement.createtable()
 
     Domain.createtable()
     DomaingroupMember.createtable()

@@ -1,5 +1,4 @@
 from datetime import datetime
-
 from IM_DB import parameters
 
 logcount: int = 0

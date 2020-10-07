@@ -2,7 +2,7 @@ from .baseobject import Baseobject, MultilangBaseobject
 from .modelelement import Modelelement,Modelelemtype
 from .sprachtext import Sprachtext
 from .domain import Domain
-from .schluessel import Schluesselelement
+from .key import Keyelement
 
 class Attribut(MultilangBaseobject):
     _tablename: str = 'attributes'
@@ -103,10 +103,11 @@ CREATE TABLE ATTRIBUTES
             return None #Relation().getbyid(self.attr_rela_id)
 
     def isinkey(self):
-        return Schluesselelement.isinkey(pattrid=self.attr_id)
+        return Keyelement.isinkey(pattrid=self.attr_id)
 
     def getdomain(self):
         return Domain().getbyid(self.attr_doma_id)
+
 
     @staticmethod
     def delete():
