@@ -112,11 +112,11 @@ CREATE TABLE DOCUMENTS
         retval = []
         if data is None or len(data) == 0: return
         for d in data:
-            if d[0] == 'ENTI': pass #o = Entitaet().getbyid(d[1])
+            if d[0] == 'ENTI': pass #o = Entity().getbyid(d[1])
             elif d[0] == 'TABL': o = Tabelle().getbyid(d[2])
             elif d[0] == 'INTF': o = Schnittstelle().getbyid(d[3])
             elif d[0] == 'INTF': pass #o = SchnittstelleAttribut().getbyid(d[4])
-            elif d[0] == 'ATTR': pass #o = Attribut().getbyid(d[5])
+            elif d[0] == 'ATTR': pass #o = Attribute().getbyid(d[5])
             elif d[0] == 'DOMA': pass #o = Domain().getbyid(d[6])
             elif d[0] == 'BEZI': pass #o = Beziehung().getbyid(d[7])
             elif d[0] == 'ORGU': pass #o = Organisationseinheit().getbyid(d[8])

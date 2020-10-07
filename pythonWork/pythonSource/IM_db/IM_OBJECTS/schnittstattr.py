@@ -1,7 +1,7 @@
 from collections import defaultdict
 
 from IM_DB import dbDML
-from .attribut import Attribut
+from .attribute import Attribute
 from .baseobject import Baseobject
 from .datatype import Datatype
 from .schnittstelle import Schnittstelle
@@ -145,7 +145,7 @@ class Schnittstelleattr(Baseobject):
         """[(0,'logisches Modell', [Attribute]')]"""
         for d in data:
             if (d[2] is not None):
-                retval.append([d[0], d[1], [Attribut().getbyid(e) for e in d[2].split(',')]])
+                retval.append([d[0], d[1], [Attribute().getbyid(e) for e in d[2].split(',')]])
 
         data = dbDML.select(lsqlt)
         """[ (schnid,schnname, [Schnittstelleattr])]"""

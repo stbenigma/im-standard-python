@@ -91,8 +91,8 @@ def dokureflist (pid, plang):
     order by type,upper(name)
                   """.format(plang,pid))
     datalist = [Referenceentry(pid=e[1], pname=e[0], ptype=e[2], ptypename=e[3]
-                        , panker=Entitaet().getbyid(e[1]).webanker() if e[2] == Entitaet._prefix.upper()
-                            else Attribut().getbyid(e[1]).webanker() if e[2] == Attribut._prefix.upper()
+                        , panker=Entity().getbyid(e[1]).webanker() if e[2] == Entity._prefix.upper()
+                            else Attribute().getbyid(e[1]).webanker() if e[2] == Attribute._prefix.upper()
                             else Tabelle().getbyid(e[1]).webanker() if e[2] == Tabelle._prefix.upper()
                             else Schnittstelle().getbyid(e[1]).webanker() if e[2] == Schnittstelle._prefix.upper()
                             else ''
@@ -143,7 +143,7 @@ def refdokulist (pid, pelemtype):
 def namelist(ptype, plang=None, pid=None):
     datalist = []
     if ptype == 'ENTI':
-        datalist = Entitaet.indexlist(plang=plang)
+        datalist = Entity.indexlist(plang=plang)
     elif (ptype == 'ATTR'):
         data = dbDML.select("""select attrname || ' ('||entname||')' name, attr_id 
         from 

@@ -22,7 +22,7 @@ def erstelleInfra():
 )
     """);
 
-    Entitaet.createtable()
+    Entity.createtable()
     Synonym.createtable()
 
     Key.createtable()
@@ -32,7 +32,7 @@ def erstelleInfra():
     DomaingroupMember.createtable()
     DefaultValue.createtable()
 
-    Attribut.createtable()
+    Attribute.createtable()
 
     Arc.createtable()
 
@@ -255,5 +255,5 @@ CREATE TABLE linie_segment(
     ModelelemDocu.createtable()
     TablEntiMap.createtable()
     AttrTransf.createtable()
-    Entitaet.createviews()
+    Entity.createviews()
 #end erstelleInfra

@@ -106,11 +106,9 @@ def do1structtype(filename):
     doma.doma_descr = findText(structdom, "comment")
     doma.doma_uc = findText(structdom, "createdBy")
     doma.doma_dc = findText(structdom, "createdTime")
-    doma.doma_type = 'GRP'
+    doma.doma_type = Domain.GRP
     doma.doma_origin = Domain.DOMAIN
 
-    print ("do1structtype: name = {} NOT YET implemented".format(doma.doma_name))
-    return
     doma.insert()
 
     elements = structdom.findall("attributes/Attribute")
@@ -142,7 +140,13 @@ def do1structtype(filename):
             unkndomains[dgrmid] = reftypeguid
         dgrm.insert()
     # for
-
+"""    attr.attr_doma_id = findorcreateDomain(pdomguid=findText(pattrxml, 'domain')
+                                           , pstructdomguid=findText(pattrxml, 'structuredType')
+                                           , ptypeguid=findText(pattrxml, 'logicalDatatype')
+                                           , pattrname=attr.attr_displ_name
+                                           , pfathername=vatername
+                                           , pattrxml=pattrxml)
+"""
 def dostructtypes():
     global unkndomains
     dosegfiles(pdirec=parameters.odmstructypesdir(), transferfiles=do1structtype)
@@ -156,10 +160,13 @@ def dostructtypes():
             logging.writelog("Illegal domainreference {} (id={}) for structured type member {}".format(type(doma),key,val))
         #fi
 
-def liesunsfuelldoma(pdoma, pxml):
+def liesunsfuelldoma(pdoma, pxml,pdatyid=None):
     pdoma.doma_uc = findText(pxml, 'createdBy')
     pdoma.doma_dc = findText(pxml, 'createdTime')
-    daty = Modelelement.getelementbyextref(psrcid=findText(pxml, 'logicalDatatype'),psrcname=Externalref.SOURCE_ODM)
+    if pdatyid is None:
+        daty = Modelelement.getelementbyextref(psrcid=findText(pxml, 'logicalDatatype'),psrcname=Externalref.SOURCE_ODM)
+    else:
+        daty = Datatype().getbyid(pid=pdatyid)
     if daty is None:
         pdoma.doma_daty_id = None
         pdoma.doma_type = Domain.TXT
@@ -191,12 +198,12 @@ def liesunsfuelldoma(pdoma, pxml):
         pdoma.doma_bin_contenttype = Domain.IMAGE  # 'FILM','GRAPH','TEXT','TON'
         pdoma.doma_bin_spfo_id = None
     elif (pdoma.doma_type == Domain.LOV):
-        zahl = re.search('\A\d* ', nvl(findText(pxml, 'dataTypeSize')))
-        pdoma.doma_text_maxlng = zahl.group() if not (zahl is None) else None
+        zahl = re.search('\A\d+', nvl(findText(pxml, 'dataTypeSize')))
+        pdoma.doma_txt_maxlng = None if zahl is None else zahl.group()
     elif (pdoma.doma_type == Domain.TXT):
         #            print(re.search('\A\d* ','123 ab').group())
-        zahl = re.search('\A\d* ', nvl(findText(pxml, 'dataTypeSize')))
-        pdoma.doma_text_maxlng = zahl.group() if not (zahl is None) else None
+        zahl = re.search('\A\d+', nvl(findText(pxml, 'dataTypeSize')))
+        pdoma.doma_txt_maxlng = None if zahl is None else zahl.group()
         constr = pxml.find('checkConstraint')
         if not (constr is None):
             # print(constr.findall('*'))
@@ -211,7 +218,11 @@ def liesunsfuelldoma(pdoma, pxml):
         pdoma.doma_num_minvalue = range[0]
         pdoma.doma_num_maxvalue = range[1]
         prec = findText(pxml, 'dataTypePrecision')
+        if prec is None:
+            prec = findText(pxml, 'precision') # in struct-type attributes
         scale = findText(pxml, 'dataTypeScale')
+        if scale is None:
+            scale = findText(pxml, 'scale') #in struct-type attributes
         pdoma.doma_num_fract_digits = 0 if scale is None else int(scale)
         pdoma.doma_num_total_digits = 0 if prec is None else int(prec)
         pdoma.doma_num_round_value = None
@@ -274,7 +285,7 @@ def toString(str, upper=False):
 
 def transferentity(penti, pdiagid, puc, pdc):
     entiodm = findField(penti, 'oid')
-    enti = Entitaet().getbyODMref(psrcid=entiodm)
+    enti = Entity().getbyODMref(psrcid=entiodm)
     hiddenelements = penti.find("hiddenElements")
     if hiddenelements is not None:
         elemtext = findField(hiddenelements, "elements")
@@ -283,8 +294,8 @@ def transferentity(penti, pdiagid, puc, pdc):
     hiddenattrs = elemtext.split(' ')
     hiddenattrs2 = []
     for e in hiddenattrs:
-        if e != "": hiddenattrs2.append(Attribut().getbyODMref(psrcid=e))
-    attrs = Attribut.select(pwhere="attr_enti_id = {}".format(enti.enti_id), porderby="attr_displ_seq")
+        if e != "": hiddenattrs2.append(Attribute().getbyODMref(psrcid=e))
+    attrs = Attribute.select(pwhere="attr_enti_id = {}".format(enti.enti_id), porderby="attr_displ_seq")
     attrids = [a.attr_id for a in attrs]
     attrids = list(set(attrids) - set(hiddenattrs2))
     # print (attrids,hiddenattrs2)
@@ -615,10 +626,11 @@ def insertderiveddomain(ptypeguid, pattrname, pvatername, pattrxml):
         # es gibt ihn schon, füge den Vaternamen dazu
         doma.doma_name = pattrname + '-' + pvatername
     doma.doma_origin = Domain.DERIVED
-    if nvl(ptypeguid) != '': doma.doma_daty_id = Externalref.getODMmodeid(psrcid=ptypeguid)
-    doma.doma_descr = "generiertes Domain für Datentyp für Attribut {}.{}".format(pvatername, pattrname)
+    if nvl(ptypeguid) != '':
+        doma.doma_daty_id = Modelelement.getmodebyodmguid(psrcid=ptypeguid).mode_id
+    doma.doma_descr = "generiertes Domain für Datentyp für Attribute {}.{}".format(pvatername, pattrname)
 
-    liesunsfuelldoma(pdoma=doma, pxml=pattrxml)
+    liesunsfuelldoma(pdoma=doma, pxml=pattrxml,pdatyid=doma.doma_daty_id)
     return doma
 # insertderiveddomain
 
@@ -747,15 +759,15 @@ def do1Attribute(plfnr, pattrxml, pentiId=None, prelaId=None):
     if (findText(pattrxml, 'referedAttribute') is not None):
         return
     if pentiId is not None:
-        vatername = Entitaet().getbyid(pid=pentiId).enti_name
+        vatername = Entity().getbyid(pid=pentiId).enti_name
     elif prelaId is not None:
         vatername = "Beziehung ({})".format(prelaId)
 
     xmlname = findField(pattrxml, 'name')
     # strip [] am Ende des Namens
 
-    attr = Attribut(pname=re.sub(' ?\[[LNT]+\]', '', xmlname), pentiid=pentiId, prelaid=prelaId
-                    ,psrcname=Externalref.SOURCE_ODM,psrcid=findField(pattrxml, 'id'))
+    attr = Attribute(pname=re.sub(' ?\[[LNT]+\]', '', xmlname), pentiid=pentiId, prelaid=prelaId
+                     , psrcname=Externalref.SOURCE_ODM, psrcid=findField(pattrxml, 'id'))
     attr.attr_tech_name = findText(pattrxml, 'preferredAbbreviation')
     if attr.attr_tech_name is None:
         attr.attr_tech_name = re.sub('[-,.()\[\]äöüèéàÄ~ÖÜ ]', '_', str.upper(attr.attr_displ_name))
@@ -829,7 +841,7 @@ def transferKeys():
             kele.kele_keys_id = keys.keys_id
             kele.kele_uc = keys.keys_uc
             kele.kele_dc = keys.keys_dc
-            kele.kele_attr_id = Attribut().getIDbyODMref(psrcid=ke)
+            kele.kele_attr_id = Attribute().getIDbyODMref(psrcid=ke)
             if kele.kele_attr_id is None:
                 try:
                     kele.kele_rela_id = Relation().getIDbyODMref(psrcid=ke)
@@ -886,7 +898,7 @@ def do1Entity(fileName):
 
     documents = getdokuref(pelem=entixml)
     entiguid = findField(entixml, 'id')
-    enti = Entitaet(psrcname=Externalref.SOURCE_ODM,psrcid=entiguid)
+    enti = Entity(psrcname=Externalref.SOURCE_ODM, psrcid=entiguid)
     enti.enti_name = findField(entixml, "name")
     enti.enti_descr = findText(entixml, 'comment')
     enti.enti_uc = findText(entixml, 'createdBy')
@@ -1199,9 +1211,9 @@ def loeschmodell():
     Key.delete()
     Relation.delete()
     Arc.delete()
-    Attribut.delete()
+    Attribute.delete()
     Synonym.delete()
-    Entitaet.delete()
+    Entity.delete()
     ModelelemDocu.delete()
     Document.delete()
     Externalref.delete()

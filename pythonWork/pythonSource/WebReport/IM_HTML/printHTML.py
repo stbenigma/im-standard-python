@@ -743,7 +743,7 @@ def printentikeys(pentiid):
         return
     fhtml.write(tablehtml(ptitel=Sprachtext.transl('Schlüssel')
                           , pueberschriften=(
-            Sprachtext.transl('Nr'), Sprachtext.transl('Name'), Sprachtext.transl('Attribut(e)'),
+            Sprachtext.transl('Nr'), Sprachtext.transl('Name'), Sprachtext.transl('Attribute(e)'),
             Sprachtext.transl('Beziehung(en)'))
                           , pwerteliste=keylist
                           )
@@ -842,7 +842,7 @@ def printcontentmapping(plist):
         lthema = m[2]
         lgruppe = m[0]
         lanker = m[1]
-        namenliste = [Sprachtext.transl('Attribut')]
+        namenliste = [Sprachtext.transl('Attribute')]
         udpnamen = web_sql.udpnamen(pmeltname='ATTR', pthema=lthema, pgruppe=lgruppe)
         # print ('udpnamen=',udpnamen,m[2],m[0])
         if len(udpnamen) == 0: continue
@@ -959,7 +959,7 @@ def printcontententi():
                    , Sprachtext.transl('Subentitäten'), Sprachtext.transl('auf Diagramm(en)')
                    , Sprachtext.transl('geändert'))
 
-    for enti in Entitaet.select(porderby='enti_name'):
+    for enti in Entity.select(porderby='enti_name'):
         lbc = str(newbarcounter())
         printcontent(ptype=Sprachtext.transl('Entität')
                      , panker=enti.webanker().anker()
@@ -1004,7 +1004,7 @@ def printcontentattr():
         Sprachtext.transl('übersetzt')
         , Sprachtext.transl('historisiert'), Sprachtext.transl('wiederholt'), Sprachtext.transl('verschlüsselt'))
 
-    for attr in Attribut.select(porderby='attr_displ_name'):
+    for attr in Attribute.select(porderby='attr_displ_name'):
         printcontentstart('attributes')
         enti = attr.getparent()
         if enti is not None:
@@ -1014,7 +1014,7 @@ def printcontentattr():
             master = 'Relation tbd'
 
         lbc = str(newbarcounter())
-        printcontent(ptype=Sprachtext.transl('Attribut')
+        printcontent(ptype=Sprachtext.transl('Attribute')
                      , panker=attr.webanker().anker()
                      , pname=attr.attr_displ_name
                      , pmaster=master
@@ -1101,7 +1101,7 @@ def printwrtbattrlist(pwrtbid, wrtgruppe=False):
     fhtml.write(tablehtml(ptitel=Sprachtext.transl('Verwendet in Attributgruppen' if wrtgruppe
                                                    else 'Verwendet für Attribute')
                           , pueberschriften=[Sprachtext.transl('Attributgruppe' if wrtgruppe
-                                                               else 'Attribut')]
+                                                               else 'Attribute')]
                           , pwerteliste=[[href(ref=a[1], anz=a[0])] for a in alist]))
 
 

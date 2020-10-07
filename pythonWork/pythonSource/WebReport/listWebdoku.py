@@ -46,7 +46,7 @@ def bool2JN(b):
 
 
 def printAttrUDPMatrix(thema=None):
-    udpListe = [transl('Entität'),transl('Attribut'),transl('Technischer Name'),transl('Datentyp')]
+    udpListe = [transl('Entität'),transl('Attribute'),transl('Technischer Name'),transl('Datentyp')]
     lsql = """select  bdeg_name,bdeg_thema,bdeg_gruppe
                     from benudef_eigenschaft
                     join modelltyp_eigensch on mote_bdeg_id = bdeg_id
@@ -107,7 +107,7 @@ def printlistofcontent():
     printHTML.printlistofcontentelement(pname='Attribute', plist=web_sql.namelist(ptype='ATTR', plang=Sprachtext.reportLang()))
     printHTML.printlistofcontentelement(pname='Wertebereiche', plist=web_sql.namelist(ptype='DOMA', plang=Sprachtext.reportLang()))
     printHTML.printlistofcontentelement(pname='Dokumente', plist=web_sql.namelist(ptype='DOKU', plang=Sprachtext.reportLang()))
-    printHTML.printlistofcontentelement(pname='Attribut-Mapping', plist=web_sql.namelist(ptype='UDP', plang=Sprachtext.reportLang()))
+    printHTML.printlistofcontentelement(pname='Attribute-Mapping', plist=web_sql.namelist(ptype='UDP', plang=Sprachtext.reportLang()))
     printHTML.printlistofcontentelement(pname='Diagramme', plist=web_sql.namelist(ptype='DIAG', plang=Sprachtext.reportLang()))
     printHTML.printlistofcontentelement(pname='Systeme', plist=web_sql.namelist(ptype='INTF', plang=Sprachtext.reportLang())
                                         ,pfileonly = True)

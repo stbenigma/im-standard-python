@@ -1,5 +1,6 @@
 from datetime import date
 from .baseobject import Baseobject, Boolean
+
 class Modelelemtype(Baseobject):
     ENTI: str = 'ENTI'
     BURU: str = 'BURU'
@@ -69,7 +70,7 @@ CREATE TABLE MODELELEM_TYPE
     def fillmelt():
         # melt_shortname,  melt_name    ,melt_uc,  melt_dc
         Modelelemtype(pshortname=Modelelemtype.ARCS, pname='Arc').insert()
-        Modelelemtype(pshortname=Modelelemtype.ATTR, pname='Attribut').insert()
+        Modelelemtype(pshortname=Modelelemtype.ATTR, pname='Attribute').insert()
         Modelelemtype(pshortname=Modelelemtype.BURU, pname='Business Rule').insert()
         Modelelemtype(pshortname=Modelelemtype.COLU, pname='Column').insert()
         Modelelemtype(pshortname=Modelelemtype.DOMA, pname='Domain').insert()
@@ -153,12 +154,13 @@ CREATE TABLE MODELELEMENT
                                  , pwhere=pwhere, porderby=porderby)
 
     @staticmethod
-    def getelementbyextref(psrcname, psrcid):
-        return Modelelement.getelement(pmodeid=Externalref.getmodeid(psrcname=psrcname, psrcid=psrcid))
+    def getmodebyextref(psrcname, psrcid):
+        modeid = Externalref.getmodeid(psrcname=psrcname, psrcid=psrcid)
+        return None if modeid is None else Modelelement().getbyid(pid=modeid)
 
     @staticmethod
-    def getelementbyodmguid(psrcid):
-        return Modelelement.getelementbyextref(psrcname=Externalref.SOURCE_ODM,psrcid=psrcid)
+    def getmodebyodmguid(psrcid):
+        return Modelelement.getmodebyextref(psrcname=Externalref.SOURCE_ODM,psrcid=psrcid)
 
     @staticmethod
     def getelement(pmodeid):
@@ -167,15 +169,15 @@ CREATE TABLE MODELELEMENT
         if mode.mode_type == Modelelemtype.SYNO:
             element = Synonym().getbyid(mode.mode_id)
         elif mode.mode_type == Modelelemtype.DOMA:
-            element = Wertebereich().getbyid(mode.mode_id)
+            element = Domain().getbyid(mode.mode_id)
         elif mode.mode_type == Modelelemtype.ATTR:
-            element = Attribut().getbyid(mode.mode_id)
+            element = Attribute().getbyid(mode.mode_id)
         elif mode.mode_type == Modelelemtype.BURU:
             element = Buseinssrule().getbyid(mode.mode_id)
         elif mode.mode_type == Modelelemtype.RELA:
             element = Relation().getbyid(mode.mode_id)
         elif mode.mode_type == Modelelemtype.ENTI:
-            element = Entitaet().getbyid(mode.mode_id)
+            element = Entity().getbyid(mode.mode_id)
         elif mode.mode_type == Modelelemtype.ORGU:
             element = Organisationseinheit().getbyid(mode.mode_id)
         elif mode.mode_type == Modelelemtype.TABL:
@@ -187,12 +189,24 @@ CREATE TABLE MODELELEMENT
         elif mode.mode_type == Modelelemtype.ARCS:
             element = Arc().getbyid(mode.mode_id)
         elif mode.mode_type == Modelelemtype.DGRM:
-            element = DefaultValue().getbyid(mode.mode_id)
+            element = DefaultGroupMember().getbyid(mode.mode_id)
         elif mode.mode_type == Modelelemtype.DATY:
             element = Datatype().getbyid(mode.mode_id)
         else:
             element = None
         return element
+
+    @staticmethod
+    def getelementbyextref(psrcname, psrcid):
+        return Modelelement.getelement(pmodeid=Externalref.getmodeid(psrcname=psrcname, psrcid=psrcid))
+
+    @staticmethod
+    def getelementbyodmguid(psrcid):
+        return Modelelement.getelementbyextref(psrcname=Externalref.SOURCE_ODM, psrcid=psrcid)
+
+    @staticmethod
+    def select(pwhere=None, porderby=None):
+        return Baseobject.select(pclass=Modelelement, pwhere=pwhere, porderby=porderby)
 # modelelement
 
 class ModelelementProperty(Baseobject):
@@ -236,3 +250,5 @@ CREATE TABLE MODELEMTYPE_PROPERTIES
 #ModelelementProperty
 from .externalref import Externalref
 from .datatype import Datatype
+from .domain import Domain
+from .entity import Entity

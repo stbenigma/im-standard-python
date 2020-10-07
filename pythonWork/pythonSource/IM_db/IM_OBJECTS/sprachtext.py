@@ -173,10 +173,10 @@ CREATE TABLE sprachtexte(
     __translNameEN = {'Anzeige': 'Display'
         , 'Arc': 'Arc'
         , 'Anzeige': 'Display'
-        , 'Attribut': 'Attribute'
-        , 'Attribut(e)': 'Attribute(s)'
+        , 'Attribute': 'Attribute'
+        , 'Attribute(e)': 'Attribute(s)'
         , 'Attribute': 'Attributes'
-        , 'Attributgruppe': 'Attribut group'
+        , 'Attributgruppe': 'Attribute group'
         , 'auf Diagramm(en)': 'on diagram(s)'
         , 'Author': 'Author'
         , 'Beschreibung': 'Description'
@@ -272,8 +272,8 @@ CREATE TABLE sprachtexte(
                       }
     __translNameFR = {"Anzeige": "Affichage"
         , "Arc": "Arc"
-        , "Attribut": "Attribut"
-        , "Attribut(e)": "Attribut(s)"
+        , "Attribute": "Attribute"
+        , "Attribute(e)": "Attribute(s)"
         , "Attribute": "Attributs"
         , "Attributgruppe": "Groupe d'attributs"
         , "auf Diagramm(en)": "sur ce diagramme(s)"
@@ -302,7 +302,7 @@ CREATE TABLE sprachtexte(
         , "erstellt": "Élaboré"
         , "Film": "Film"
         , "geändert": "changé"
-        , "Gruppenattribut": "Attribut de groupe"
+        , "Gruppenattribut": "Attribute de groupe"
         , "Grafik": "Graphique"
         , "Granularität": "Granularité"
         , "historisiert": "historisé"
@@ -324,7 +324,7 @@ CREATE TABLE sprachtexte(
         , "Nein": "Non"
         , "Nr": "N°"
         , "Numerisch": "Numérique"
-        , "Pflichtattribut": "Attribut obligatoire"
+        , "Pflichtattribut": "Attribute obligatoire"
         , "Quartal": "Trimestre"
         , 'Referenziert von': 'Référencé par'
         , "Relational Mapping (Tabellen)": "Relational Mapping (tables)"

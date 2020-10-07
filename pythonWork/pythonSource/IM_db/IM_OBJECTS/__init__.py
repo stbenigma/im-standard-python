@@ -12,8 +12,8 @@ from .document import Document, ModelelemDocu
 from .domain import Domain, DomaingroupMember, DefaultValue
 from .modelelement import Modelelemtype,Modelelement,ModelelementProperty
 from .diagramme import Diagramm,Diagrammtyp
-from .entitaet import Entitaet,Synonym
-from .attribut import Attribut
+from .entity import Entity,Synonym
+from .attribute import Attribute
 from .key import Key,Keyelement
 from .relationship import Arc,Relation
 from .userdefprop import Userdefprop,Userdefpropvalue

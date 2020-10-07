@@ -13,7 +13,7 @@ def nvl(s, default=''):
 def printmapping(ptablid):
     # name, list of entries mit {'name':webanker}
     werte = Tabelle.mappingto(ptablid=ptablid)
-    """[[0, name, [[Entitaet]]], [52, name, [[Tabelle]]]]"""
+    """[[0, name, [[Entity]]], [52, name, [[Tabelle]]]]"""
     werte = [[entry[1],
               {'(' + tab.getname() + ')' if isinstance(tab, Tabelle)
                   else tab.getname(plang=Sprachtext.reportLang()) \
@@ -53,11 +53,11 @@ def printcolmapping(pcolid):
 def getcolmapping(pschaid, pschnid):
     # name, list of entries mit {'name':webanker}
     werte = Schnittstelleattr.mappingto(pschaid=pschaid)
-    """[[0, name, [[Attribut]]], [52, name, [[Schnittstelleattr]]]]"""
+    """[[0, name, [[Attribute]]], [52, name, [[Schnittstelleattr]]]]"""
     werte = [[entries[1],
               {'(' + entry.gettablname() + '.' + entry.scha_column_name + ')'
                if isinstance(entry, Schnittstelleattr)
-               else '(' + entry.getentiname() + '.' + entry.attr_displ_name + ')' if isinstance(entry, Attribut)
+               else '(' + entry.getentiname() + '.' + entry.attr_displ_name + ')' if isinstance(entry, Attribute)
               else 'unknown ' + type(entry)
                : entry.webanker().anker()
                for entry in entries[2]
@@ -267,7 +267,7 @@ def printcontenthead(pfirma, ptitel, pschnid):
         ref = """Referenzen in Klammern sind indirekte Referenzen:<br>
                  Dokumentenreferenz bei Tabellen: Dokumente, die mit der Schnittstelle (relationales Modell) verknüpft sind<br>
                  Tabellenreferenz bei Tabellen: Indirekte Verknüpfung einer Tabelle über eine Entität zu einer anderen Tabelle<br>
-                 Columnreferenz: Indirekte Verknüpfung einer Column über ein Attribut zu einer anderen Column"""
+                 Columnreferenz: Indirekte Verknüpfung einer Column über ein Attribute zu einer anderen Column"""
     else:
         f = """class="descr">This website contains the complete content 
             of the <p2 class="IM">Relational model {}</p2> from {}. 

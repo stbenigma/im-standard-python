@@ -1,13 +1,11 @@
 from .baseobject import Baseobject,MultilangBaseobject
 from .key import Key
 from .sprachtext import Sprachtext
-from .modelelement import Modelelemtype,Modelelement
 from IM_DB import dbDML,dbDDL
 from datetime import date
-from .attribut import Attribut
 
 
-class Entitaet(MultilangBaseobject):
+class Entity(MultilangBaseobject):
     _tablename:str = 'entities'
     _prefix:str = 'enti'
     _columnlist:list = ['enti_id'
@@ -19,12 +17,12 @@ class Entitaet(MultilangBaseobject):
         ]
 
     def __init__(self, psrcname=None, psrcid=None):
-        super().__init__(tablename=Entitaet._tablename, prefix=Entitaet._prefix
-                        ,columnlist = Entitaet._columnlist
-                         ,multilangcols = {'enti_name':Sprachtext.ENTI_NAME
+        super().__init__(tablename=Entity._tablename, prefix=Entity._prefix
+                         , columnlist = Entity._columnlist
+                         , multilangcols = {'enti_name':Sprachtext.ENTI_NAME
                                           ,'enti_descr':Sprachtext.ENTI_COMMENT
                                           ,'enti_tooltip': Sprachtext.ENTI_TOOLTIP}
-                         ,pmodelemtype=Modelelemtype.ENTI
+                         , pmodelemtype=Modelelemtype.ENTI
                          , psrcid=psrcid
                          , psrcname=psrcname
                          )
@@ -36,7 +34,7 @@ class Entitaet(MultilangBaseobject):
 
     @staticmethod
     def createtable():
-        Baseobject.createtable(ptablename=Entitaet._tablename
+        Baseobject.createtable(ptablename=Entity._tablename
                                , psql="""
 CREATE TABLE ENTITIES
     (
@@ -88,11 +86,11 @@ CREATE TABLE ENTITIES
         return self._getsprachval(colname='enti_descr',plang=plang)
 
     def getcategory(pid):
-        return Entitaet().getbyid(pid).enti_category_guid
+        return Entity().getbyid(pid).enti_category_guid
 
     def getparent(self):
         if (self.getid() is not None) and (self._parent is None):
-            parent = Entitaet.select(pwhere="enti_id = (select superenti_id from SUPERENTI where subenti_id = {})".format(self.getid()))
+            parent = Entity.select(pwhere="enti_id = (select superenti_id from SUPERENTI where subenti_id = {})".format(self.getid()))
             if parent is not None and len(parent) > 0:
                 self._parent = parent[0]
         #fi
@@ -101,8 +99,8 @@ CREATE TABLE ENTITIES
 
     def getchildren(self):
         if (self.getid() is not None) and (self._children is None):
-            self._children =  Entitaet.select(pwhere= 'enti_id in (select subenti_id from SUPERENTI where superenti_id = {})'.format(self.getid())
-                                              ,porderby= 'enti_name')
+            self._children =  Entity.select(pwhere='enti_id in (select subenti_id from SUPERENTI where superenti_id = {})'.format(self.getid())
+                                            , porderby= 'enti_name')
         #fi
         return self._children
     #getchildren
@@ -123,24 +121,24 @@ CREATE TABLE ENTITIES
 
     def getattributes(self):
         if (self.getid() is not None) and (self._attributes is None):
-            self._attributes = Attribut.select(pwhere='attr_enti_id = {}'.format(self.getid()))
+            self._attributes = Attribute.select(pwhere='attr_enti_id = {}'.format(self.getid()))
         # fi
         return self._attributes
     #getschluessel
 
     @staticmethod
     def delete():
-        Baseobject.delete(Entitaet._tablename)
+        Baseobject.delete(Entity._tablename)
 
     @staticmethod
     def select(pwhere=None, porderby="enti_name"):
-        entis =  Baseobject.select(pclass=Entitaet
+        entis =  Baseobject.select(pclass=Entity
                                  , pwhere=pwhere, porderby=porderby)
         return entis
 
     @staticmethod
     def indexlist(plang=None):
-        data = Entitaet.select(porderby='enti_name')
+        data = Entity.select(porderby='enti_name')
         indexlist = []
         for d in data:
             indexlist.append([d.getname(plang),d.webanker(),d.enti_id])
@@ -172,7 +170,7 @@ CREATE TABLE ENTITIES
             """.format(ptablid,ptablid)
         retval = []
         data = dbDML.select(lsqle)
-        """[(0,'name', [Entitaet]'), (54,'name', [Entitaet])]"""
+        """[(0,'name', [Entity]'), (54,'name', [Entity])]"""
         for d in data:
             entis = []
             for e in d[2].split(','):
@@ -180,12 +178,12 @@ CREATE TABLE ENTITIES
                 entis.append((ename[0][0],'ENTI'+str(e)))
             retval.append([d[0], d[1],entis])
         data = dbDML.select(lsqlt)
-        """[(0,'name', [Entitaet]'), (54,'name', [Entitaet])]"""
+        """[(0,'name', [Entity]'), (54,'name', [Entity])]"""
         for d in data:
-            retval.append([d[0], d[1],[Entitaet().getbyid(e) for e in d[2].split(',')]])
+            retval.append([d[0], d[1], [Entity().getbyid(e) for e in d[2].split(',')]])
         return retval
     #maopingto
-#Entitaet
+#Entity
 
 class Synonym(MultilangBaseobject):
     _tablename: str = 'synonyms'
@@ -231,7 +229,7 @@ CREATE TABLE SYNONYMS
         return self._getsprachval(colname='syno_name',plang=plang)
 
     def getparent(self):
-        return Entitaet.getbyid(self.syno_enti_id)
+        return Entity.getbyid(self.syno_enti_id)
     # getparent
 
     @staticmethod
@@ -245,7 +243,8 @@ CREATE TABLE SYNONYMS
         return synos
     #select
 #Synonym
-
+from .attribute import Attribute
+from .modelelement import Modelelemtype,Modelelement
 
 
 

@@ -40,12 +40,11 @@ class Webanker:
 #Webanker
 
 class Baseobject:
-    def __init__(self,tablename,prefix,columnlist,idcolname = None,guidcolname = None
+    def __init__(self,tablename,prefix,columnlist,idcolname = None
                  ,psrcname=None,pscrid = None,pmodelemtype=None):
         self._tablename:str = tablename
         self._prefix:str = prefix
         self._idcolname:str = prefix + '_id' if idcolname is None else idcolname
-        self._guidcolname:str = prefix + '_odm_guid' if guidcolname is None else guidcolname
         self._columnlist = columnlist
         self.__srcname=psrcname
         self.__srcid=pscrid
@@ -144,25 +143,25 @@ class Baseobject:
         dbDDL.createTable(psql)
     #createtable
 
-    def getbyextref(self,psrcid):
-        if self.getscrname() is None: return None
-        self.getbyid(Externalref.getmodeid(psrcname=self.getscrname(),psrcid=psrcid))
-        return self
+    def getbyextref(self,psrcid,psrcname):
+        if self.__modelemtype is None : return None
+        mode = Modelelement.getmodebyextref(psrcname=psrcname,psrcid=psrcid)
+        if mode is None or mode.mode_type != self.__modelemtype: return None
+        return self.getbyid(mode.mode_id)
 
-    def getIDbyODMref(self,psrcid):
-        ref = self.getbyODMref(psrcid=psrcid)
+    def getIDbyextref(self,psrcid,psrcname):
+        ref = self.getbyextref(psrcid=psrcid,psrcname=psrcname)
         return None if ref is None else ref.getid()
 
-
     def getbyODMref(self,psrcid):
-        ref = Modelelement().getbyid(Externalref.getmodeid(psrcname=Externalref.SOURCE_ODM,psrcid=psrcid))
-        if ref.mode_type == self.__modelemtype:
-            return self.getbyid(ref.mode_id)
-        else:
-            return None
+        return self.getbyextref(psrcid=psrcid,psrcname=Externalref.SOURCE_ODM)
+
+    def getIDbyODMref(self,psrcid):
+        return self.getIDbyextref(psrcid=psrcid,psrcname=Externalref.SOURCE_ODM)
 
     def getsprachvals(self):
         raise NotImplementedError("Must override getsprachvals")
+
     @staticmethod
     def select(pclass, pwhere=None, porderby=None):
         lsql = """select {} from {} as {} {} {} """ \
@@ -198,9 +197,9 @@ class Baseobject:
 
 class MultilangBaseobject(Baseobject):
     def __init__(self, tablename, prefix, columnlist, multilangcols
-                 ,idcolname=None, guidcolname=None,psrcname=None,psrcid = None,pmodelemtype=None):
+                 ,idcolname=None,psrcname=None,psrcid = None,pmodelemtype=None):
         super().__init__(tablename=tablename, prefix=prefix, columnlist=columnlist
-                        ,idcolname=idcolname, guidcolname=guidcolname
+                        ,idcolname=idcolname
                         ,pmodelemtype=pmodelemtype,psrcname=psrcname,pscrid=psrcid
                         )
         self._multilangcols = multilangcols

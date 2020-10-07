@@ -1,10 +1,10 @@
 from .baseobject import Baseobject, MultilangBaseobject
-from .modelelement import Modelelement,Modelelemtype
 from .sprachtext import Sprachtext
 from .domain import Domain
 from .key import Keyelement
+from .entity import Entity
 
-class Attribut(MultilangBaseobject):
+class Attribute(MultilangBaseobject):
     _tablename: str = 'attributes'
     _prefix: str = 'attr'
     _columnlist: list = ['attr_id', 'attr_enti_id', 'attr_rela_id',
@@ -17,12 +17,12 @@ class Attribut(MultilangBaseobject):
 
     def __init__(self, pname=None, pentiid=None, prelaid=None
                     ,psrcname=None, psrcid=None):
-        super().__init__(tablename=Attribut._tablename, prefix=Attribut._prefix
-                         , columnlist=Attribut._columnlist
+        super().__init__(tablename=Attribute._tablename, prefix=Attribute._prefix
+                         , columnlist=Attribute._columnlist
                          , multilangcols={'attr_displ_name': Sprachtext.ATTR_NAME,
                                           'attr_descr': Sprachtext.ATTR_COMMENT,
                                           'attr_tooltip': Sprachtext.ATTR_TOOLTIP}
-                         ,pmodelemtype=Modelelemtype.ATTR
+                         , pmodelemtype=Modelelemtype.ATTR
                          , psrcid=psrcid
                          , psrcname=psrcname)
         self.attr_displ_name = pname
@@ -31,7 +31,7 @@ class Attribut(MultilangBaseobject):
 
     @staticmethod
     def createtable():
-        Baseobject.createtable(ptablename=Attribut._tablename
+        Baseobject.createtable(ptablename=Attribute._tablename
                                , psql="""
 CREATE TABLE ATTRIBUTES
     (
@@ -88,7 +88,7 @@ CREATE TABLE ATTRIBUTES
         return self._getsprachval(colname='attr_displ_name', plang=plang)
 
     def getentiname(self, plang=None):
-        return Entitaet().getbyid(self.attr_enti_id).getname(plang)
+        return Entity().getbyid(self.attr_enti_id).getname(plang)
 
     def getmodellelement(self):
         return Modelelement.getbyelemid(pattrid=self.attr_id)
@@ -98,7 +98,7 @@ CREATE TABLE ATTRIBUTES
 
     def getparent(self):
         if self.attr_enti_id is not None:
-            return Entitaet().getbyid(self.attr_enti_id)
+            return Entity().getbyid(self.attr_enti_id)
         if self.attr_rela_id is not None:
             return None #Relation().getbyid(self.attr_rela_id)
 
@@ -111,16 +111,16 @@ CREATE TABLE ATTRIBUTES
 
     @staticmethod
     def delete():
-        Baseobject.delete(Attribut._tablename)
+        Baseobject.delete(Attribute._tablename)
 
     @staticmethod
     def select(pwhere=None, porderby="attr_displ_seq"):
-        attrs = Baseobject.select(pclass=Attribut
+        attrs = Baseobject.select(pclass=Attribute
                                   , pwhere=pwhere, porderby=porderby)
         return attrs
     # select
-# Attribut
-from .entitaet import Entitaet
+# Attribute
+from .modelelement import Modelelement,Modelelemtype
 
 
 

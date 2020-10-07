@@ -93,9 +93,9 @@ class Tabelle(Baseobject):
             """.format(ptablid,ptablid)
         retval = []
         data = dbDML.select(lsqle)
-        """[(0,'name', [Entitaet]'), ]"""
+        """[(0,'name', [Entity]'), ]"""
         for d in data:
-            retval.append([d[0], d[1],[Entitaet().getbyid(e) for e in d[2].split(',')]])
+            retval.append([d[0], d[1], [Entity().getbyid(e) for e in d[2].split(',')]])
         data = dbDML.select(lsqlt)
         """[(54,'name', [Tabelle])]"""
         for d in data:
@@ -104,7 +104,7 @@ class Tabelle(Baseobject):
     #maopingto
 #Tabelle
 from .schnittstattr import Schnittstelleattr
-from .entitaet import Entitaet
+from .entity import Entity
 
 
 
