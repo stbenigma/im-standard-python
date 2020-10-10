@@ -1,10 +1,11 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="7C69B84A-108E-6A6B-65E9-4FA5C241CA16" name="DIAGRAMM">
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="7C69B84A-108E-6A6B-65E9-4FA5C241CA16" name="DIAGRAMS">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <comment><![CDATA[Zusammenfassung von Entitäten in einer grafischen Darstellung]]></comment>
 <generatorID>442B6681-D363-DDBB-CE0E-4A28D0A4EA11</generatorID>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
+<ordsAlias>diagramm</ordsAlias>
 <abbreviation>DIAG</abbreviation>
 <allowColumnReorder>false</allowColumnReorder>
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
@@ -20,6 +21,9 @@
 <domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="EFA51C05-F0A8-1BE7-80C9-8514AF7AA5A9" referredColumn="9698F1F3-1EBE-8770-4F8C-4FFC3465A776"/>
+</associations>
 </Column>
 <Column name="DIAG_NAME" id="00FBDF10-E90D-7A29-3FA3-D3807A40A08C">
 <createdBy>stb</createdBy>
@@ -139,6 +143,15 @@
 <property name="ctemplateID" value="B398D247-00C1-F016-3BBB-FE65CFFFF7AA"/>
 </propertyMap>
 </Column>
+<Column name="Column_10" id="02B9F549-F527-1663-9D87-34B857530364">
+<createdBy>stb</createdBy>
+<createdTime>2020-10-10 11:44:15 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
 <ind_PK_UK id="6776FDB2-BCE2-A06C-905C-F44FB725355C" name="DIAG_PK">
@@ -174,6 +187,16 @@
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
 <colUsage columnID="DADDF1EA-5460-318B-5E1E-EE65B1478DFA"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="85E6733B-65B9-AA01-10D5-B87BF4CCCBBE" name="DIAGRAMS_MODELELEMENT_FK">
+<createdBy>stb</createdBy>
+<createdTime>2020-10-10 11:56:15 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="1A2D0144-5D81-0874-7A01-226CBCB5C067"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>
