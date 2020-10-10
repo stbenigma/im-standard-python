@@ -956,7 +956,7 @@ def entidiag(pentiid):
 def printcontententi():
     printcontentstart('entities')
     infoheaders = (Sprachtext.transl('Synonyme'), Sprachtext.transl('Superentität')
-                   , Sprachtext.transl('Subentitäten'), Sprachtext.transl('auf Diagramm(en)')
+                   , Sprachtext.transl('Subentitäten'), Sprachtext.transl('auf Diagram(en)')
                    , Sprachtext.transl('geändert'))
 
     for enti in Entity.select(porderby='enti_name'):

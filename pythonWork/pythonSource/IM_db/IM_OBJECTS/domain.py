@@ -3,8 +3,6 @@ from .baseobject import MultilangBaseobject, Baseobject
 from .datatype import Datatype
 from .modelelement import Modelelement, Modelelemtype
 from .sprachtext import Sprachtext
-from .externalref import Externalref
-import logging
 
 class Domain(MultilangBaseobject):
     DERIVED: str = 'DER'

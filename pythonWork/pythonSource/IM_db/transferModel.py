@@ -564,10 +564,10 @@ def do1diagramm(pfilename):
     try:
         diagramme = ET.parse(pfilename)
     except:
-        print("Diagramm nicht lesbar: {}".format(pfilename))
+        print("Diagram nicht lesbar: {}".format(pfilename))
         return
     dia = diagramme.getroot()
-    diag = Diagramm()
+    diag = Diagram()
     diag.diag_name = findField(dia, 'name')
     if (diag.diag_name == 'Logical'):
         return
@@ -577,7 +577,7 @@ def do1diagramm(pfilename):
     """'
                     ,'diag_odm_guid', 
                     """
-    diag.diag_diat_id = Diagrammtyp.getbyname(pname='Entity').diat_id
+    diag.diag_diat_id = Diagramtype.getbyname(pname='Entity').diat_id
     # print(findField(dia,'name'), findField(dia,'id'))
     # diag_name,diag_diat_id,diag_uc,diag_dc,diag_um,diag_dm
 
@@ -1187,23 +1187,13 @@ def insertBaseData():
     Sprache.setallreplacementlang()
 
     Modelelemtype.fillmelt()
-    diat = Diagrammtyp()
-    diat.diat_bez = 'Entity'
-    diat.diat_uc = 'stb'
-    diat.diat_dc = date.today()
-    diat.insert()
-    #    medi_diat_id, medi_melt_id,medi_uc,mdei_dc,medi_um,mdei_dm
-    dbInserts.insertmeltdiat(
-        (diat.diat_id, Modelelemtype.getidbyshortname(pshortname=Modelelemtype.ENTI), 'stb', date.today(), None, None))
-    dbInserts.insertmeltdiat(
-        (diat.diat_id, Modelelemtype.getidbyshortname(pshortname=Modelelemtype.RELA), 'stb', date.today(), None, None))
-
-
+    diatid = Diagramtype(pname='Entity').insert()
+    MeltDiat(pdiatid=diatid,pmeltid=Modelelemtype.getidbyshortname(pshortname=Modelelemtype.ENTI)).insert()
+    MeltDiat(pdiatid=diatid, pmeltid=Modelelemtype.getidbyshortname(pshortname=Modelelemtype.RELA)).insert()
 # insertBaseData
 
 def loeschmodell():
     transferRelational.loeschmodell()
-
     ModelelementProperty.delete()
     Userdefprop.delete()
     Userdefpropvalue.delete()
@@ -1218,25 +1208,25 @@ def loeschmodell():
     Document.delete()
     Externalref.delete()
     Modelelement.delete()
-    Diagramm.delete()
+    Diagram.delete()
     DefaultValue.delete()
     DomaingroupMember.delete()
     Domain.delete()
     dbDML.delete("linie_segment")
     dbDML.delete("beziehung_darst")
     dbDML.delete("elementdarst")
-    dbDML.delete("melt_diat")
+    Diagram.delete()
+    MeltDiat.delete()
     Datatype.delete()
-    dbDML.delete("diagramme")
     dbDML.delete('bereich_elemdarst')
     Modelelemtype.delete()
-    Diagrammtyp.delete()
-    Sprache.delete()
-    Sprachtext.delete()
+    Diagramtype.delete()
     dbDML.delete('geschaeftsbereich')
     PhysicalUnit.delete()
     Storageformat.delete()
     Projekt.delete()
+    Sprachtext.delete()
+    Sprache.delete()
 
 
 # loeschmodell
@@ -1364,8 +1354,8 @@ def transferODMModel():
     transferRelations()
     transferArcs()
     transferKeys()
-    return
     transferdiagramme()
+    return
     filllanguages()
     transferRelational.transfer()
     removeemptyudp()

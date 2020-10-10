@@ -164,7 +164,7 @@ def printcollist(pcollist, pschnid):
 
 def printcontenttable(plist):
     printHTML.printcontentstart('tables')
-    infoheaders = (Sprachtext.transl('auf Diagramm(en)'), Sprachtext.transl('geändert'))
+    infoheaders = (Sprachtext.transl('auf Diagram(en)'), Sprachtext.transl('geändert'))
     for t in plist:
         lbc = str(printHTML.newbarcounter())
         printHTML.printcontent(ptype=Sprachtext.transl('Tabelle')

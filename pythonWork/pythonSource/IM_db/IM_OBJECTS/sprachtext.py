@@ -177,7 +177,7 @@ CREATE TABLE sprachtexte(
         , 'Attribute(e)': 'Attribute(s)'
         , 'Attribute': 'Attributes'
         , 'Attributgruppe': 'Attribute group'
-        , 'auf Diagramm(en)': 'on diagram(s)'
+        , 'auf Diagram(en)': 'on diagram(s)'
         , 'Author': 'Author'
         , 'Beschreibung': 'Description'
         , 'Beziehung': 'Relationship'
@@ -189,7 +189,7 @@ CREATE TABLE sprachtexte(
         , 'Datentyp': 'Datatype'
         , 'Deskriptor': 'descriptor'
         , 'Domänen': 'Domains'
-        , 'Diagramm': 'Diagram'
+        , 'Diagram': 'Diagram'
         , 'Diagramme': 'Diagrams'
         , 'Dokument': 'Document'
         , 'Dokumente': 'Documents'
@@ -276,7 +276,7 @@ CREATE TABLE sprachtexte(
         , "Attribute(e)": "Attribute(s)"
         , "Attribute": "Attributs"
         , "Attributgruppe": "Groupe d'attributs"
-        , "auf Diagramm(en)": "sur ce diagramme(s)"
+        , "auf Diagram(en)": "sur ce diagramme(s)"
         , "Autor": "Auteur"
         , "Beschreibung": "Déscription"
         , "Beziehung": "Relation"
@@ -288,7 +288,7 @@ CREATE TABLE sprachtexte(
         , "Datentyp": "Type de données"
         , "Deskriptor": "Descripteur"
         , "Domänen": "Domaines"
-        , "Diagramm": "Diagramme"
+        , "Diagram": "Diagramme"
         , "Diagramme": "Diagrammes"
         , "Domäne": "Domaine"
         , "Dokument": "Document"

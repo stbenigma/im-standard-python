@@ -49,6 +49,7 @@ def delete(ptableName):
         else:
             logging.writelog("delete: unexpected SQL-error: \t%s" % e)
             raise e
+    dbConnect.myDbConn.commit()
 #delete
 
 def insert(psql,rec):

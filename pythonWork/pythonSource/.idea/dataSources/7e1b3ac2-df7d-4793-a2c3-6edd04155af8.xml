@@ -35,13 +35,13 @@
     <table id="28" parent="2" name="bereich_elemdarst"/>
     <table id="29" parent="2" name="beziehung_darst"/>
     <table id="30" parent="2" name="beziehungen"/>
-    <table id="31" parent="2" name="diagramme"/>
-    <table id="32" parent="2" name="diagrammtypen"/>
+    <table id="31" parent="2" name="diagrams"/>
+    <table id="32" parent="2" name="diagramtypes"/>
     <table id="33" parent="2" name="dokumente"/>
     <table id="34" parent="2" name="elementdarst"/>
     <table id="35" parent="2" name="geschaeftsbereich"/>
     <table id="36" parent="2" name="linie_segment"/>
-    <table id="37" parent="2" name="melt_diat"/>
+    <table id="37" parent="2" name="melt_diats"/>
     <table id="38" parent="2" name="projekte"/>
     <table id="39" parent="2" name="schnittstelle_attrs"/>
     <table id="40" parent="2" name="schnittstellen"/>
@@ -122,7 +122,7 @@ ARCS_NAME</ColNames>
     </foreign-key>
     <foreign-key id="64" parent="6" name="ARCS_ENTI_FK">
       <ColNames>ARCS_ENTI_ID</ColNames>
-      <RefTableName>entitaeten</RefTableName>
+      <RefTableName>ENTITIES</RefTableName>
       <RefColNames>ENTI_ID</RefColNames>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
@@ -688,7 +688,7 @@ DGRM_NAME</ColNames>
     </check>
     <check id="187" parent="12" name="DOMA_ExDep4">
       <Predicate>DOMA_TYPE != &apos;LOV&apos;
- OR ( DOMA_BIN_CONTENTTYPE IS NULL AND DOMA_BIN_STFO_ID IS NULL AND DOMA_NUM_FRACT_DIGITS IS NULL AND DOMA_NUM_MAXVALUE IS NULL AND DOMA_NUM_MINVALUE IS NULL AND DOMA_NUM_PHYU_ID IS NULL AND DOMA_NUM_ROUND_VALUE IS NULL AND DOMA_NUM_TOTAL_DIGITS IS NULL AND DOMA_DAT_GRANULARITY IS NULL AND DOMA_DAT_MAXVALUE IS NULL AND DOMA_DAT_MINVALUE IS NULL AND DOMA_TXT_SYNTAXRULE IS NULL AND DOMA_TXT_MAXLNG IS NULL)</Predicate>
+ OR ( DOMA_BIN_CONTENTTYPE IS NULL AND DOMA_BIN_STFO_ID IS NULL AND DOMA_NUM_FRACT_DIGITS IS NULL AND DOMA_NUM_MAXVALUE IS NULL AND DOMA_NUM_MINVALUE IS NULL AND DOMA_NUM_PHYU_ID IS NULL AND DOMA_NUM_ROUND_VALUE IS NULL AND DOMA_NUM_TOTAL_DIGITS IS NULL AND DOMA_DAT_GRANULARITY IS NULL AND DOMA_DAT_MAXVALUE IS NULL AND DOMA_DAT_MINVALUE IS NULL AND DOMA_TXT_SYNTAXRULE IS NULL)</Predicate>
     </check>
     <check id="188" parent="12" name="DOMA_ExDep5">
       <Predicate>DOMA_TYPE != &apos;NUM&apos;
@@ -982,7 +982,7 @@ KELE_RELA_ID</ColNames>
     </foreign-key>
     <check id="246" parent="17">
       <Predicate>MODE_TYPE IN (&apos;ARCS&apos;, &apos;ATTR&apos;, &apos;BURU&apos;, &apos;COLU&apos;, &apos;DOMA&apos;, &apos;ENTI&apos;
-                            , &apos;INTF&apos;, &apos;ORGU&apos;, &apos;RELA&apos;, &apos;SYNO&apos;, &apos;TABL&apos;,&apos;DOCU&apos;,&apos;KEYS&apos;,&apos;DATY&apos;,&apos;DGRM&apos;)</Predicate>
+                            , &apos;INTF&apos;, &apos;ORGU&apos;, &apos;RELA&apos;, &apos;SYNO&apos;, &apos;TABL&apos;,&apos;DOCU&apos;,&apos;KEYS&apos;,&apos;DATY&apos;,&apos;DGRM&apos;,&apos;DIAG&apos;)</Predicate>
     </check>
     <column id="247" parent="18" name="MELT_ID">
       <Position>1</Position>
@@ -1044,7 +1044,7 @@ KELE_RELA_ID</ColNames>
     <check id="259" parent="18">
       <Predicate>MELT_SHORTNAME IN (&apos;ARCS&apos;, &apos;ATTR&apos;, &apos;BURU&apos;, &apos;COLU&apos;, &apos;DOMA&apos;, &apos;ENTI&apos;
                                 , &apos;INTF&apos;, &apos;ORGU&apos;, &apos;RELA&apos;, &apos;SYNO&apos;, &apos;TABL&apos;,&apos;DOCU&apos;,&apos;KEYS&apos;,&apos;DATY&apos;
-                                ,&apos;DGRM&apos;)</Predicate>
+                                ,&apos;DGRM&apos;,&apos;DIAG&apos;)</Predicate>
     </check>
     <column id="260" parent="19" name="METP_ID">
       <Position>1</Position>
@@ -2205,53 +2205,55 @@ beda_mode_id</ColNames>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="504" parent="31" name="diag_odm_guid">
+    <column id="504" parent="31" name="diag_legendx">
       <Position>4</Position>
-      <DataType>varchar(36)|0s</DataType>
+      <DataType>integer|0s</DataType>
     </column>
-    <column id="505" parent="31" name="diag_legendx">
+    <column id="505" parent="31" name="diag_legendy">
       <Position>5</Position>
       <DataType>integer|0s</DataType>
     </column>
-    <column id="506" parent="31" name="diag_legendy">
+    <column id="506" parent="31" name="diag_uc">
       <Position>6</Position>
-      <DataType>integer|0s</DataType>
+      <DataType>varchar(30)|0s</DataType>
+      <NotNull>1</NotNull>
     </column>
-    <column id="507" parent="31" name="diag_uc">
+    <column id="507" parent="31" name="diag_dc">
       <Position>7</Position>
       <DataType>varchar(30)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="508" parent="31" name="diag_dc">
+    <column id="508" parent="31" name="diag_um">
       <Position>8</Position>
       <DataType>varchar(30)|0s</DataType>
-      <NotNull>1</NotNull>
     </column>
-    <column id="509" parent="31" name="diag_um">
+    <column id="509" parent="31" name="diag_dm">
       <Position>9</Position>
       <DataType>varchar(30)|0s</DataType>
     </column>
-    <column id="510" parent="31" name="diag_dm">
-      <Position>10</Position>
-      <DataType>varchar(30)|0s</DataType>
-    </column>
-    <index id="511" parent="31" name="sqlite_autoindex_diagramme_1">
+    <index id="510" parent="31" name="sqlite_autoindex_diagrams_1">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>diag_name</ColNames>
       <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
-    <key id="512" parent="31">
+    <key id="511" parent="31">
       <ColNames>diag_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="513" parent="31" name="diag__un">
+    <key id="512" parent="31" name="diag__un">
       <ColNames>diag_name</ColNames>
-      <UnderlyingIndexName>sqlite_autoindex_diagramme_1</UnderlyingIndexName>
+      <UnderlyingIndexName>sqlite_autoindex_diagrams_1</UnderlyingIndexName>
     </key>
+    <foreign-key id="513" parent="31" name="DIAGRAMS_MODELELEMENT_FK">
+      <ColNames>diag_id</ColNames>
+      <RefTableName>MODELELEMENT</RefTableName>
+      <RefColNames>MODE_ID</RefColNames>
+      <OnDelete>cascade</OnDelete>
+    </foreign-key>
     <foreign-key id="514" parent="31" name="diag_diat_fk">
       <ColNames>diag_diat_id</ColNames>
-      <RefTableName>diagrammtypen</RefTableName>
+      <RefTableName>diagramtypes</RefTableName>
       <RefColNames>diat_id</RefColNames>
     </foreign-key>
     <column id="515" parent="32" name="diat_id">
@@ -2259,7 +2261,7 @@ beda_mode_id</ColNames>
       <DataType>integer|0s</DataType>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="516" parent="32" name="diat_bez">
+    <column id="516" parent="32" name="diat_name">
       <Position>2</Position>
       <DataType>varchar(100)|0s</DataType>
       <NotNull>1</NotNull>
@@ -2282,9 +2284,9 @@ beda_mode_id</ColNames>
       <Position>6</Position>
       <DataType>varchar(30)|0s</DataType>
     </column>
-    <index id="521" parent="32" name="sqlite_autoindex_diagrammtypen_1">
+    <index id="521" parent="32" name="sqlite_autoindex_diagramtypes_1">
       <NameSurrogate>1</NameSurrogate>
-      <ColNames>diat_bez</ColNames>
+      <ColNames>diat_name</ColNames>
       <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
@@ -2293,8 +2295,8 @@ beda_mode_id</ColNames>
       <Primary>1</Primary>
     </key>
     <key id="523" parent="32" name="diat_un">
-      <ColNames>diat_bez</ColNames>
-      <UnderlyingIndexName>sqlite_autoindex_diagrammtypen_1</UnderlyingIndexName>
+      <ColNames>diat_name</ColNames>
+      <UnderlyingIndexName>sqlite_autoindex_diagramtypes_1</UnderlyingIndexName>
     </key>
     <column id="524" parent="33" name="doku_id">
       <Position>1</Position>
@@ -2658,7 +2660,7 @@ lise_rhfg</ColNames>
       <Position>7</Position>
       <DataType>varchar(30)|0s</DataType>
     </column>
-    <index id="602" parent="37" name="sqlite_autoindex_melt_diat_1">
+    <index id="602" parent="37" name="sqlite_autoindex_melt_diats_1">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>medi_diat_id
 medi_melt_id</ColNames>
@@ -2672,7 +2674,7 @@ medi_melt_id</ColNames>
     <key id="604" parent="37" name="medi__un">
       <ColNames>medi_diat_id
 medi_melt_id</ColNames>
-      <UnderlyingIndexName>sqlite_autoindex_melt_diat_1</UnderlyingIndexName>
+      <UnderlyingIndexName>sqlite_autoindex_melt_diats_1</UnderlyingIndexName>
     </key>
     <foreign-key id="605" parent="37" name="medi_diat_fk">
       <ColNames>medi_diat_id</ColNames>

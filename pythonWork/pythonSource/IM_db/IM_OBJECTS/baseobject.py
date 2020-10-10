@@ -188,7 +188,11 @@ class Baseobject:
 
     @staticmethod
     def delete(ptablename):
-        dbDML.delete(ptablename)
+        try:
+            dbDML.delete(ptablename)
+        except Exception as err:
+            if (not err.__str__().startswith("no such table")):
+                raise err
 
     @staticmethod
     def columnsliststring(pcollist,pplaceholder=False):

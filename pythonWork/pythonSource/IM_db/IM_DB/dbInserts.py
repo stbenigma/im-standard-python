@@ -13,17 +13,6 @@ def  insertLovWrtb(pName,pherkunft = Domain.DERIVED):
     return doma.insert()
 
 
-#insertModebezi
-def insertmeltdiat(p_Data):
-    lsql= """insert into
-melt_diat(
-    medi_diat_id, medi_melt_id,medi_uc,medi_dc
-    ,medi_um,medi_dm   )
-     values(?,?,?,?,?,?)
-     """
-    dbDML.insert(lsql,p_Data)
-#insertmeltdiat
-
 def insertBenudef_wert(pData):
     lsql= """insert into benudef_wert(
                 bdwe_wert,  bdwe_mode_id,   bdwe_bdeg_id

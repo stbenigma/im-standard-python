@@ -17,6 +17,7 @@ class Modelelemtype(Baseobject):
     KEYS: str = 'KEYS'
     DATY: str = 'DATY'
     DGRM: str = 'DGRM'
+    DIAG: str = 'DIAG'
 
     _tablename: str = 'modelelem_type'
     _prefix: str = 'melt'
@@ -43,7 +44,7 @@ CREATE TABLE MODELELEM_TYPE
      MELT_SHORTNAME VARCHAR (4) NOT NULL CHECK 
             ( MELT_SHORTNAME IN ('ARCS', 'ATTR', 'BURU', 'COLU', 'DOMA', 'ENTI'
                                 , 'INTF', 'ORGU', 'RELA', 'SYNO', 'TABL','DOCU','KEYS','DATY'
-                                ,'DGRM') ) ,
+                                ,'DGRM','DIAG') ) ,
      MELT_NAME VARCHAR (60) NOT NULL ,
      MELT_UC VARCHAR(30) NULL  ,
      MELT_DC VARCHAR (30) NOT NULL ,
@@ -84,6 +85,7 @@ CREATE TABLE MODELELEM_TYPE
         Modelelemtype(pshortname=Modelelemtype.KEYS, pname='Keys').insert()
         Modelelemtype(pshortname=Modelelemtype.DOCU, pname='Document').insert()
         Modelelemtype(pshortname=Modelelemtype.DGRM, pname='Domaingroupmember').insert()
+        Modelelemtype(pshortname=Modelelemtype.DIAG, pname='Diagram').insert()
 
     @staticmethod
     def getidbyshortname(pshortname):
@@ -137,7 +139,7 @@ CREATE TABLE MODELELEMENT
     (
      MODE_ID INTEGER NOT NULL primary key autoincrement ,
      MODE_TYPE VARCHAR (4) NOT NULL CHECK ( MODE_TYPE IN ('ARCS', 'ATTR', 'BURU', 'COLU', 'DOMA', 'ENTI'
-                            , 'INTF', 'ORGU', 'RELA', 'SYNO', 'TABL','DOCU','KEYS','DATY','DGRM') ) ,
+                            , 'INTF', 'ORGU', 'RELA', 'SYNO', 'TABL','DOCU','KEYS','DATY','DGRM','DIAG') ) ,
      MODE_MELT_ID integer NOT NULL
      ,CONSTRAINT MODE_MELT_FK FOREIGN KEY     (     MODE_MELT_ID)
         REFERENCES MODELELEM_TYPE(     MELT_ID )
@@ -192,6 +194,8 @@ CREATE TABLE MODELELEMENT
             element = DefaultGroupMember().getbyid(mode.mode_id)
         elif mode.mode_type == Modelelemtype.DATY:
             element = Datatype().getbyid(mode.mode_id)
+        elif mode.mode_type == Modelelemtype.DIAG:
+            element = Diagram().getbyid(mode.mode_id)
         else:
             element = None
         return element

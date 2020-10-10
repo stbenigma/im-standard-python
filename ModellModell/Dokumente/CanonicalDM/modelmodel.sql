@@ -14,18 +14,12 @@ CREATE TABLE ARCS
      ARCS_UM VARCHAR (30) NULL ,
      ARCS_DM VARCHAR (30) NULL
     ,CONSTRAINT ARCS_UK UNIQUE  (ARCS_ENTI_ID ASC, ARCS_NAME ASC)
-	,CONSTRAINT ARCS_ENTI_FK FOREIGN KEY
-    (     ARCS_ENTI_ID)
-    REFERENCES ENTITIES
-    (     ENTI_ID )
+	,CONSTRAINT ARCS_ENTI_FK FOREIGN KEY    (     ARCS_ENTI_ID)
+		REFERENCES ENTITIES    (     ENTI_ID )
     ON DELETE CASCADE
-    ON UPDATE NO ACTION
-    ,CONSTRAINT ARCS_MODE_FK FOREIGN KEY
-    (     ARCS_ID)
-    REFERENCES MODELELEMENT
-    (     MODE_ID )
-    ON DELETE CASCADE
-    ON UPDATE NO ACTION
+    ,CONSTRAINT ARCS_MODE_FK FOREIGN KEY    (     ARCS_ID)
+		REFERENCES MODELELEMENT    (     MODE_ID )
+		ON DELETE CASCADE
     );
 CREATE TABLE ATTRIBUTES
     (
@@ -430,7 +424,7 @@ CREATE TABLE MODELELEMENT
     (
      MODE_ID INTEGER NOT NULL primary key autoincrement ,
      MODE_TYPE VARCHAR (4) NOT NULL CHECK ( MODE_TYPE IN ('ARCS', 'ATTR', 'BURU', 'COLU', 'DOMA', 'ENTI'
-                            , 'INTF', 'ORGU', 'RELA', 'SYNO', 'TABL','DOCU','KEYS','DATY','DGRM') ) ,
+                            , 'INTF', 'ORGU', 'RELA', 'SYNO', 'TABL','DOCU','KEYS','DATY','DGRM','DIAG') ) ,
      MODE_MELT_ID integer NOT NULL
      ,CONSTRAINT MODE_MELT_FK FOREIGN KEY
      (     MODE_MELT_ID)
@@ -632,4 +626,47 @@ from ENTITIES superentity
 join ENTITIES subentity on subentity.ENTI_ID = rela_enti_id
 ;
 
+CREATE TABLE diagramtypes(
+    diat_id    integer primary key autoincrement,
+    diat_name   varchar(100) NOT NULL,
+     diat_uc varchar(30) NOT NULL,
+    diat_dc    varchar(30) NOT NULL,
+    diat_um    varchar(30) ,
+    diat_dm    varchar(30),
+	CONSTRAINT diat_un UNIQUE(diat_name)
+)
 
+CREATE TABLE diagrams(
+    diag_id      integer primary key autoincrement,
+    diag_name      varchar(60) NOT NULL,
+    diag_diat_id   integer NOT NULL,
+    diag_legendx       integer,
+    diag_legendy       integer,
+    diag_uc    varchar(30) NOT NULL,
+    diag_dc        varchar(30) NOT NULL,
+    diag_um        varchar(30) ,
+    diag_dm        varchar(30),
+	CONSTRAINT diag__un UNIQUE(diag_name),
+	CONSTRAINT diag_diat_fk FOREIGN KEY(diag_diat_id)
+			REFERENCES diagramtypes(diat_id)
+	,CONSTRAINT DIAGRAMS_MODELELEMENT_FK FOREIGN KEY (DIAG_ID) 
+       REFERENCES MODELELEMENT (MODE_ID )ON DELETE CASCADE
+;
+
+CREATE TABLE melt_diats(
+    medi_id        integer primary key autoincrement,
+    medi_diat_id   integer NOT NULL,
+    medi_melt_id   integer NOT NULL,
+    medi_uc    varchar(30) NOT NULL,
+    medi_dc        varchar(30) NOT NULL,
+    medi_um        varchar(30) ,
+    medi_dm        varchar(30),
+	CONSTRAINT medi__un UNIQUE(medi_diat_id,
+	                                   medi_melt_id),
+    CONSTRAINT medi_diat_fk FOREIGN KEY(medi_diat_id)			           
+		REFERENCES diagramtypes(diat_id)
+		ON DELETE CASCADE,
+	CONSTRAINT modi_melt_fk FOREIGN KEY(medi_melt_id)
+		REFERENCES modelelem_type(melt_id)
+		 ON DELETE CASCADE
+);

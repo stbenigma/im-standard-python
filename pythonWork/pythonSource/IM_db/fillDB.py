@@ -6,9 +6,14 @@ from IM_DB import dbConnect, parameters, logging
 # Main Programm
 
 def filldbmain():
+    dbConnect.openDB(parameters.dbFilePath(), fks='OFF')
     transferModel.loeschmodell()
+    dbConnect.myDbConn.close()
+    #print("filldbmain Constraints sollten auf ON stehen")
+    dbConnect.openDB(parameters.dbFilePath(), fks='ON')
     transferModel.insertBaseData()
     transferModel.transferODMModel();
+    dbConnect.myDbConn.close()
 # filldbmain
 
 def main(p_param1):
@@ -16,11 +21,8 @@ def main(p_param1):
     parameters.initparam(p_callarg=p_param1)
     logging.initlog('fillDB')
 
-    print("filldbmain Domains sollten auf ON stehen")
-    dbConnect.openDB(parameters.dbFilePath(), fks='OFF')
     try:
         filldbmain()
-        dbConnect.myDbConn.close()
     finally:
         logging.showmessages("database {} for model {} filled with modeldata"
                              .format(parameters.dbFilePath(),

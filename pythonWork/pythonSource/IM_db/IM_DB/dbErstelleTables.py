@@ -49,28 +49,11 @@ def erstelleInfra():
     Sprache.createtable()
     Sprachtext.createtable()
 
-    Diagrammtyp.createtable()
-    Diagramm.createtable();
+    Diagramtype.createtable()
+    Diagram.createtable();
 
-    dbDDL.dropTable("melt_diat");
-    dbDDL.createTable("""
-CREATE TABLE melt_diat(
-    medi_id        integer primary key autoincrement,
-    medi_diat_id   integer NOT NULL,
-    medi_melt_id   integer NOT NULL,
-    medi_uc    varchar(30) NOT NULL,
-    medi_dc        varchar(30) NOT NULL,
-    medi_um        varchar(30) ,
-    medi_dm        varchar(30),
-	CONSTRAINT medi__un UNIQUE(medi_diat_id,
-	                                   medi_melt_id),
-    CONSTRAINT medi_diat_fk FOREIGN KEY(medi_diat_id)			           
-					REFERENCES diagrammtypen(diat_id)
-								    ON DELETE CASCADE,
-	CONSTRAINT modi_melt_fk FOREIGN KEY(medi_melt_id)
-		REFERENCES modellelem_typ(melt_id)
-		     ON DELETE CASCADE
-)	          """);
+    MeltDiat.createtable();
+
     dbDDL.dropTable("elementdarst");
     dbDDL.createTable("""
 CREATE TABLE elementdarst(
