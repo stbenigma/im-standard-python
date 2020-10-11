@@ -1,0 +1,35 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_1" id="58A7212E-807E-F3FF-C8D7-8CFFAD60E0CD" name="Operation_Systemv1">
+<createdBy>stb</createdBy>
+<createdTime>2020-10-11 14:59:55 UTC</createdTime>
+<generatorID>CC3D69A4-63D0-083D-DAED-220BC8D1A400</generatorID>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<typeID>FAF70092-F6A9-97FE-9880-A36ECEDBFE26</typeID>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="EBE58B48-FA80-3E1D-D03C-9FB746D3BDAF" name="Operation_Systemv1__UN">
+<createdBy>stb</createdBy>
+<createdTime>2020-10-11 14:59:55 UTC</createdTime>
+<generatorID>7465F71C-6E0A-E3D8-95A6-E74B987A6AA2</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+</ind_PK_UK>
+<ind_PK_UK id="42FD8CCF-DE68-9C1F-69C7-8A8841DB382A" name="Operation_Systemv1_IT-System_FK">
+<createdBy>stb</createdBy>
+<createdTime>2020-10-11 14:59:55 UTC</createdTime>
+<generatorID>910B829E-E4F8-C24A-0250-907F814314C9</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+</ind_PK_UK>
+</indexes>
+</Table>

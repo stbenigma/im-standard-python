@@ -6,7 +6,7 @@ import xml.etree.ElementTree as ET
 from datetime import date
 
 import transferRelational
-from IM_DB import dbInserts, dbDML, dbLookup, dbConnect, parameters, dbParam, logging
+from IM_DB import dbInserts, dbDML, dbLookup, dbConnect, parameters, dbParam, logmessages
 from IM_OBJECTS import *
 from mystring import nvl
 
@@ -29,10 +29,12 @@ class color:
  [Key, (listof attr and relationship guids)]
 """
 schluessel = []
+
 """ Classification type colors
  classguid : color
 """
 classcolors = dict()
+
 """ default colors
  {elementtypename : color}
 """
@@ -157,7 +159,7 @@ def dostructtypes():
         if isinstance(doma,Domain):
             DomaingroupMember.updmember(pid=key,pdomaid=doma.doma_id)
         else:
-            logging.writelog("Illegal domainreference {} (id={}) for structured type member {}".format(type(doma),key,val))
+            logmessages.writelog("Illegal domainreference {} (id={}) for structured type member {}".format(type(doma), key, val))
         #fi
 
 def liesunsfuelldoma(pdoma, pxml,pdatyid=None):
@@ -284,6 +286,8 @@ def toString(str, upper=False):
 # toString
 
 def transferentity(penti, pdiagid, puc, pdc):
+    global entities,defcolors,classcolors
+
     entiodm = findField(penti, 'oid')
     enti = Entity().getbyODMref(psrcid=entiodm)
     hiddenelements = penti.find("hiddenElements")
@@ -319,22 +323,18 @@ def transferentity(penti, pdiagid, puc, pdc):
         col.fontsize = v if v is not None else col.fontsize
     else:
         # check wether entity belongs to category
-        if (enti.enti_category_guid is None):
+        ent,defc,classc = entities,defcolors,classcolors
+        enticatguid = None if entiodm is None else entities[entiodm][3]
+        #print (enti.enti_name,enti.getscrid(),enticatguid)
+        if (enticatguid is None):
             col = defcolors['Entity']
         else:
             try:
-                col = classcolors[enti.enti_category_guid]
+                col = classcolors[enticatguid]
             except Exception as e:
-                # print(e) flls class nicht mehr exisitert
                 col = defcolors['Entity']
         # fi
     # fi
-    # print (col.foregcolor,col.backgcolor)
-    # eled_position_x,eled_position_y,eled_breite,eled_hoehe
-    # ,eled_deckkraft,eled_farbe,eled_randbreite,eled_randdeckkraft
-    # ,eled_randfarbe, eled_schriftgroesse, eled_schriftfarbe, eled_mode_id
-    # ,eled_diag_id, eled_uc, eled_dc, eled_um
-    # , eled_dm
 
     index = 0
     entix = int(findField(layout, 'x'))
@@ -343,29 +343,54 @@ def transferentity(penti, pdiagid, puc, pdc):
     entiheight = int(findField(layout, 'height'))
     # if there are several copies on a diagramm, repeat the insert with new index und insert succeeds
     while True:
-        row = (entix, entiy, entiwidth, entiheight
-               , 100, int2hex(col.backgcolor), None, 100
-               , int2hex(col.foregcolor), col.fontsize, int2hex(col.fontcolor),
-               Modelelement.getidbyelemid(pentiid=enti.enti_id)
-               , pdiagid, index, puc, pdc
-               , None, None)
-        # print (row)
+        eler = Elementrep()
+        eler.eler_mode_id = enti.enti_id
+        eler.eler_diag_id = pdiagid
+        eler.eler_index = index
+        eler.eler_position_x = entix
+        eler.eler_position_y = entiy
+        eler.eler_width = entiwidth
+        eler.eler_height = entiheight
+        eler.eler_opacity = 100
+        eler.eler_color = int2hex(col.backgcolor)
+        eler.eler_marginwidth = None
+        eler.eler_marginopacity = 100
+        eler.eler_margincolor = int2hex(col.foregcolor)
+        eler.eler_fontsize = col.fontsize
+        eler.eler_fontcolor = int2hex(col.fontcolor)
+        eler.eler_uc = puc
+        eler.eler_dc = pdc
         try:
-            dbInserts.insertelementdarst(pdata=row)
+            eler.insert(pdoerrhdlng=False)
             attrx = int(entix) + 26  # x1,x2=16,26 y=30
             attry = int(entiy) + 30
             attrwidth = int(entiwidth) - 36
             attrheight = 13
             for aid in attrids:
-                attrrow = (attrx, attry, attrwidth, attrheight
-                           , 100, int2hex(col.backgcolor), int2hex(col.fontcolor), 100
-                           , None, None, None, Modelelement.getidbyelemid(pattrid=aid)
-                           , pdiagid, 0, puc, pdc
-                           , None, None)
+                atteler = Elementrep()
+                atteler.eler_mode_id = aid
+                atteler.eler_diag_id = pdiagid
+                atteler.eler_index = 0
+                atteler.eler_position_x = attrx
+                atteler.eler_position_y = attry
+                atteler.eler_width = attrwidth
+                atteler.eler_height = attrheight
+                atteler.eler_opacity = 100
+                atteler.eler_color = int2hex(col.backgcolor)
+                atteler.eler_marginwidth = None
+                atteler.eler_marginopacity = 100
+                atteler.eler_margincolor = int2hex(col.foregcolor)
+                atteler.eler_fontsize = col.fontsize
+                atteler.eler_fontcolor = int2hex(col.fontcolor)
+                atteler.eler_uc = puc
+                atteler.eler_dc = pdc
                 try:
-                    dbInserts.insertelementdarst(pdata=attrrow)
+                    atteler.insert()
                 except Exception as e:
-                    print(e)
+                    logmessages.writelog("Attr-representation")
+                    logmessages.writelog(str(e))
+                    logmessages.writelog(atteler)
+                    raise e
                 attry += attrheight
                 # Maximal bis zur Grösse der Entität
                 if ((attry - entiy) > (entiheight - 10)): break
@@ -374,11 +399,11 @@ def transferentity(penti, pdiagid, puc, pdc):
         except sqlite3.IntegrityError:
             index += 1
         except Exception as ex:
-            print(str(ex))
-            print(row)
+            logmessages.writelog("Entity-representation")
+            logmessages.writelog(str(ex))
+            logmessages.writelog(eler)
             raise ex
     # while
-
 
 # transferentity
 
@@ -419,7 +444,7 @@ def transferdiaconnect(pconnectors, pdiagid, puc, pdc):
         type = findField(c, 'otype')
         if (type == 'Relation'):
             relaguid = findField(c, "oid")
-            beziid = dbLookup.beziId(relaguid)
+            rela = Relation().getbyODMref(psrcid=relaguid)
             linewidth = findText(c, 'lineWidth')
             sourcelabel = c.find('sourceLabel/labelBounds')
             sttex = findField(sourcelabel, 'x')
@@ -436,42 +461,49 @@ def transferdiaconnect(pconnectors, pdiagid, puc, pdc):
             if sttey is not None and int(sttey) < 0: sttey, entey = 0, int(entey) - int(sttey)
             if sttey is not None and int(sttey) < 0: sttey, entey = 0, int(entey) - int(sttey)
 
-            bezi = dbDML.select("""select rela_mandatory_from_to,rela_mandatory_to_from
-                                        ,rela_type
-                                         ,case bezi_source_enti_guid 
-                                         when source.enti_odm_guid then 'FALSE' 
-                                            else 'TRUE' end switch
-                                    from beziehungen
-                                    join entitaeten source on source.enti_id = rela_enti_id_from
-                                    where rela_id ={}
-                    """.format(beziid))
-            lbezitype = bezi[0][2]
-            sourcelinetype = 'SOLID' if (bezi[0][0] == 'TRUE') else 'DASHED'
-            targetlinetype = 'SOLID' if (bezi[0][1] == 'TRUE') else 'DASHED'
-            sourcecard = '1' if (lbezitype in ('ISA', '1:1')) else 'M'
-            targetcard = '1' if (lbezitype in ('ISA', '1:1', 'M:1')) else 'M'
-            if (bezi[0][3] == 'TRUE'):  # switch source and target
+            sourcelinetype = Linesegment.SOLID if rela.getmandatoryfromto() else Linesegment.DASHED
+            targetlinetype = Linesegment.SOLID if rela.getmandatorytofrom() else Linesegment.DASHED
+
+            """ sollte ich nicht mehr brauchen, da ich originalrichtung übernehme
+            if (False):
+                #if (rela[0][3] == 'TRUE'):  # switch source and target
                 sourcecard, targetcard = targetcard, sourcecard
                 sourcelinetype, targetlinetype = targetlinetype, sourcelinetype
                 sttex, entex = entex, sttex
                 sttey, entey = entey, sttey
                 sttew, entew = entew, sttew
                 stteh, enteh = enteh, stteh
-            # fi
+            # fi"""
 
-            """
-    beda_diag_id, beda_mode_id, beda_linienbreite, beda_liniefarbe
-    ,beda_liniedeckkraft, beda_starttext_x, beda_starttext_y, beda_starttext_breite
-    ,beda_starttext_hoehe, beda_endtext_x, beda_endtext_y, beda_endtext_breite
-    ,beda_endtext_hoehe, beda_schriftfarbe, beda_schriftgroesse, beda_uc
-    ,beda_dc, beda_um, beda_dm)
-"""
-            row = (pdiagid, Modelelement.getidbyelemid(prelaid=beziid), linewidth, None
-                   , 1, sttex, sttey, sttew
-                   , stteh, entex, entey, entew
-                   , enteh, None, 10, puc, pdc, None, None
-                   )
-            bedaid = dbInserts.insertelbezidarst(row)
+            relr = Relationrep()
+            relr.relr_diag_id = pdiagid
+            relr.relr_mode_id = rela.rela_id
+            relr.relr_linewidth = linewidth
+            relr.relr_linecolor = None
+            relr.relr_lineopacity = 100
+            relr.relr_startedge = None
+            relr.relr_startposition = None
+            relr.relr_start_connector = rela.rela_maptype_to_from
+            relr.relr_starttext_angle = None
+            relr.relr_starttext_distance = None
+            relr.relr_starttext_x = sttex
+            relr.relr_starttext_y = sttey
+            relr.relr_starttext_width = sttew
+            relr.relr_starttext_height = stteh
+            relr.relr_endedge = None
+            relr.relr_endposition = None
+            relr.relr_end_connector = rela.rela_maptype_from_to
+            relr.relr_endtext_angle = None
+            relr.relr_endtext_distance = None
+            relr.relr_endtext_x = entex
+            relr.relr_endtext_y = entey
+            relr.relr_endtext_width = entew
+            relr.relr_endtext_height = enteh
+            relr.relr_fontcolor = None
+            relr.relr_fontsize = 10
+            relr.relr_uc = puc
+            relr.relr_dc = pdc
+            relr.insert()
 
             points = c.findall('points/point')
             points = [{'x': int(findField(p, 'x')), 'y': int(findField(p, 'y'))} for p in points]
@@ -481,31 +513,31 @@ def transferdiaconnect(pconnectors, pdiagid, puc, pdc):
                 points.insert(1, {'x': midpos(points[0]['x'], points[1]['x']),
                                   'y': midpos(points[0]['y'], points[1]['y'])})
             # fi
-            pointsegs = []
+
+            linesegs = []
+            prevlise = None
             for idx, point in enumerate(points):
-                """ lise_rhfg, lise_beda_id, lise_x, lise_y
-    , lise_linientyp,lise_konnektor, lise_uc, lise_dc
-    , lise_um,lise_dm,nkel
-    """
-                x, y = point['x'], point['y']
-                if len(pointsegs) > 0:
-                    """ ab dem 2. Punkt wird im vorherigen Punkte der Winkel zum nächsten hinzugefügt"""
+                lise = Linesegment()
+                lise.lise_x = point['x']
+                lise.lise_y = point['y']
+                lise.lise_seq = idx
+                lise.lise_relr_id = relr.relr_id
+                lise.lise_linetype = linetype(pidx=idx, pmaxidx=len(points)
+                                            , psourcelt=sourcelinetype, ptargetlt=targetlinetype)
+                lise.lise_uc = puc
+                lise.lise_dc = pdc
+                if len(linesegs) > 0:
+                    """ ab dem 2. Punkt wird im vorherigen Punkt der Winkel zum nächsten hinzugefügt"""
                     calcwinkel = lambda ey, sy, ex, sx: math.atan2(ey - sy, ex - sx)
-                    prevpoint = pointsegs[len(pointsegs) - 1]
-                    prevpoint[10] = calcwinkel(y, prevpoint[3], x, prevpoint[2])
-                pointsegs.append([idx, bedaid, x, y
-                                     , linetype(pidx=idx, pmaxidx=len(points)
-                                                , psourcelt=sourcelinetype, ptargetlt=targetlinetype)
-                                     , connector(pidx=idx, pmaxidx=len(points)
-                                                 , psource=sourcecard, ptarget=targetcard)
-                                     , puc, pdc, None, None, None])
+                    prevlise.lise_angle = calcwinkel(lise.lise_y, prevlise.lise_y, lise.lise_x, prevlise.lise_x)
+                prevlise = lise
+                linesegs.append(lise)
             # for
-            dbInserts.insertlinieseg(pointsegs)
+            for lise in linesegs:
+                lise.insert()
         else:
             pass
         # fi
-
-
 # transferdiaconnect
 
 # transferdiaconnect
@@ -542,7 +574,7 @@ def dosegfiles(pdirec, transferfiles):
     try:
         listdir = os.listdir(pdirec)
     except:
-        logging.writelog('dosSEGfiles: directory "{}" not found.'.format(pdirec))
+        logmessages.writelog('dosSEGfiles: directory "{}" not found.'.format(pdirec))
         return
     # try
     for el in listdir:
@@ -567,19 +599,12 @@ def do1diagramm(pfilename):
         print("Diagram nicht lesbar: {}".format(pfilename))
         return
     dia = diagramme.getroot()
-    diag = Diagram()
+    diag = Diagram(psrcname=Externalref.SOURCE_ODM,psrcid=findField(dia, 'id'))
     diag.diag_name = findField(dia, 'name')
     if (diag.diag_name == 'Logical'):
         return
-    # entcomm = findText(root,'comment')
-    # creby = findText(root,'createdBy')
-    # creti = findText(root,'createdTime')
-    """'
-                    ,'diag_odm_guid', 
-                    """
     diag.diag_diat_id = Diagramtype.getbyname(pname='Entity').diat_id
     # print(findField(dia,'name'), findField(dia,'id'))
-    # diag_name,diag_diat_id,diag_uc,diag_dc,diag_um,diag_dm
 
     if (findText(dia, 'showLegend') == 'true'):
         legende = dia.find("objectViews/OView[@otype='Legend']")
@@ -592,9 +617,7 @@ def do1diagramm(pfilename):
     # fi
     diag.diag_uc = findText(dia, 'createdBy')
     diag.diag_dc = findText(dia, 'createdTime')
-    diag.diag_odm_guid = findField(dia, 'id')
     diag.diag_um = findText(dia, 'modifiedBy')
-    # print (row)
     diag.insert()
     objects = dia.findall('objectViews/OView')
     if (len(objects) > 0):
@@ -646,8 +669,8 @@ def findorcreateDomain(pattrname, pfathername, pattrxml, pdomguid=None, pstructd
         elif isinstance(typeelem, Domain):
             return typeelem.doma_id  # Done, domain found
         else:
-            logging.writelog("Attr: {}, Father: {}, Domain Guid {} leads to unknown element type {}"
-                             .format(pattrname, pfathername, pdomguid, type(typeelem)))
+            logmessages.writelog("Attr: {}, Father: {}, Domain Guid {} leads to unknown element type {}"
+                                 .format(pattrname, pfathername, pdomguid, type(typeelem)))
             return Domain().getunknown().doma_id
         # fi
     #handleguid
@@ -667,8 +690,8 @@ def findorcreateDomain(pattrname, pfathername, pattrxml, pdomguid=None, pstructd
                                        pattrxml=pattrxml)
             return doma.doma_id
         else:
-            logging.writelog("Attr: {}, Father: {}, Domain Guid {} leads to unknown element type {}"
-                             .format(pattrname, pfathername, ptypeguid, type(typeelem)))
+            logmessages.writelog("Attr: {}, Father: {}, Domain Guid {} leads to unknown element type {}"
+                                 .format(pattrname, pfathername, ptypeguid, type(typeelem)))
             return Domain().getunknown().doma_id
         #fi
     #fi
@@ -1006,7 +1029,7 @@ def do1Relation(fileName):
     rela.rela_enti_id_from = Externalref.getODMmodeid(psrcid=sourceentiguid)
     rela.rela_enti_id_to = Externalref.getODMmodeid(psrcid=targetentiguid)
     if (rela.rela_enti_id_from is None or rela.rela_enti_id_to is None):
-        logging.writelog(
+        logmessages.writelog(
             "in Relation {}: Entity Id {} oder {} nicht gefunden. Datenleichen von Realtion mit gelöschten Entities".
                 format(relaguid,sourceentiguid, targetentiguid))
         return
@@ -1096,9 +1119,9 @@ def do1UDPFile(pfileName):
                     metpid = ModelelementProperty(pmeltid=lmeltid,pudprid=udprid).insert()
                 except Exception as err:
                     print(err)
-                    logging.writelog(
+                    logmessages.writelog(
                         "mapping type '{}' for UDP {}:{}:{} not found".format(lmeltid, lupdThema, group, propname))
-                    logging.writelog(err)
+                    logmessages.writelog(err)
                     pass
             # fi
 
@@ -1122,8 +1145,8 @@ def do1UDPFile(pfileName):
                 try:
                     deva.insert(pdoerrhdlng=False)
                 except (sqlite3.IntegrityError):
-                    logging.writelog("duplicate entry in Vorgabewerte theme:'{}' property:'{}' value:'{}'"
-                                     .format(pudpThema, propname, deva.deva_value))
+                    logmessages.writelog("duplicate entry in Vorgabewerte theme:'{}' property:'{}' value:'{}'"
+                                         .format(pudpThema, propname, deva.deva_value))
 
             # for
             Userdefprop.setdomid(pdomid=wrtbId, pudpid=udpId)
@@ -1212,9 +1235,9 @@ def loeschmodell():
     DefaultValue.delete()
     DomaingroupMember.delete()
     Domain.delete()
-    dbDML.delete("linie_segment")
-    dbDML.delete("beziehung_darst")
-    dbDML.delete("elementdarst")
+    Linesegment.delete()
+    Relationrep.delete()
+    Elementrep.delete()
     Diagram.delete()
     MeltDiat.delete()
     Datatype.delete()
@@ -1355,8 +1378,8 @@ def transferODMModel():
     transferArcs()
     transferKeys()
     transferdiagramme()
-    return
     filllanguages()
+    return
     transferRelational.transfer()
     removeemptyudp()
     Schnittstelleattr.fillextid()

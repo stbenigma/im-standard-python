@@ -2,7 +2,7 @@ import os
 import sys
 
 sys.path.append(os.path.dirname(os.path.realpath(__file__)) + '/../IM_db')
-from IM_DB import parameters, dbConnect, dbErstelleTables, logging
+from IM_DB import parameters, dbConnect, dbErstelleTables, logmessages
 from IM_HTML import printHTML
 import fillDB
 import listWebdoku
@@ -16,7 +16,7 @@ def main(pdirec, plang):
         Sprachtext.reportLang(parameters.dbDefaultLang())
     else:
         Sprachtext.reportLang(plang.lower())
-    logging.initlog('AllIn1')
+    logmessages.initlog('AllIn1')
 
     dbConnect.openDB(p_filepath="file::memory:?cache=shared");
     dbErstelleTables.erstelleInfra();
@@ -25,8 +25,8 @@ def main(pdirec, plang):
     listWebdoku.listwebmain(plang=Sprachtext.reportLang())
     listmapping.filllists(plang=Sprachtext.reportLang())
 
-    logging.showmessages("model {}: created and filled database ({})\n   created webdocu and mapping excel"
-                         .format(parameters.odmModelName(), parameters.dbFilePath()))
+    logmessages.showmessages("model {}: created and filled database ({})\n   created webdocu and mapping excel"
+                             .format(parameters.odmModelName(), parameters.dbFilePath()))
 
 
 

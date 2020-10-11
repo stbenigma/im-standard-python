@@ -1,5 +1,5 @@
 from datetime import date
-from IM_DB import dbDML,logging
+from IM_DB import dbDML,logmessages
 from IM_OBJECTS import *
 
 def  insertLovWrtb(pName,pherkunft = Domain.DERIVED):
@@ -11,42 +11,6 @@ def  insertLovWrtb(pName,pherkunft = Domain.DERIVED):
     doma.doma_uc = 'system'
     doma.doma_dc = date.today()
     return doma.insert()
-
-
-def insertBenudef_wert(pData):
-    lsql= """insert into benudef_wert(
-                bdwe_wert,  bdwe_mode_id,   bdwe_bdeg_id
-                ,bdwe_uc,   bdwe_dc)
-            values(?,?,?,?,?)"""
-    dbDML.insert(lsql,pData)
-#insertBenudef_wert
-
-
-def insertelementdarst(pdata):
-    lsql = """insert into 
-    elementdarst(     
-    eled_position_x,eled_position_y,eled_breite,eled_hoehe
-    ,eled_deckkraft,eled_farbe,eled_randbreite,eled_randdeckkraft
-    ,eled_randfarbe, eled_schriftgroesse, eled_schriftfarbe, eled_mode_id
-    ,eled_diag_id, eled_index, eled_uc, eled_dc, eled_um
-    , eled_dm)
-    values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)    
-    """
-    return dbDML.insertmany(lsql, pdata)
-#insertelementdarst
-
-def insertelbezidarst(pdata):
-    lsql = """insert into 
-    beziehung_darst(
-    beda_diag_id, beda_mode_id, beda_linienbreite, beda_liniefarbe
-    ,beda_liniedeckkraft, beda_starttext_x, beda_starttext_y, beda_starttext_breite
-    ,beda_starttext_hoehe, beda_endtext_x, beda_endtext_y, beda_endtext_breite
-    ,beda_endtext_hoehe, beda_schriftfarbe, beda_schriftgroesse, beda_uc
-    ,beda_dc, beda_um, beda_dm)
-    values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)    
-    """
-    return dbDML.insert(lsql, pdata)
-#insertbezidarst
 
 def insertUdpTable(ptablId):
     dbDML.exec("""insert into benudef_wert(
@@ -76,18 +40,6 @@ def insertUdpColumn(pschaId):
                 where scha_id = {}
             """ .format(pschaId))
 #insertUdpColumn
-
-def insertlinieseg(pdata):
-    lsql = """insert into
-linie_segment(
-    lise_rhfg, lise_beda_id, lise_x, lise_y
-    , lise_linientyp,lise_konnektor, lise_uc, lise_dc
-    , lise_um,lise_dm,lise_winkel )
-                            values (?,?,?,?,?,?,?,?,?,?,?)
-    """
-    return dbDML.insert(lsql, pdata)
-#insertlinieseg
-
 
 def insertgeschaeftsbereich(pdata):
     lsql = """insert into geschaeftsbereich 

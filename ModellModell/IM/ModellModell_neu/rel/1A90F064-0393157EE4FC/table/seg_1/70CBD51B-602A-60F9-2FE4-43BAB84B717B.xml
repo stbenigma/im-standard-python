@@ -1,0 +1,67 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_1" id="70CBD51B-602A-60F9-2FE4-43BAB84B717B" name="Anwendungsgruppev1">
+<createdBy>stb</createdBy>
+<createdTime>2020-10-11 14:59:55 UTC</createdTime>
+<comment><![CDATA[Zusammenfassung mehrerer Anwednungen zu einer Gruppe. Oft in einer Suite, einem Softwarepaket zusammen angeboten oder realisiert.
+
+Beispiele
+Office 365
+Google Docs
+AWS Amazon web Service
+SAP Commerce Cloud
+Jira (div. Projektaufgabenverwaltungsaufgaben)]]></comment>
+<generatorID>DD48D336-635B-1F8B-475C-BAADDCEEBF05</generatorID>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+Zusammenfassung mehrerer Anwednungen zu einer Gruppe. Oft in einer Suite, einem Softwarepaket zusammen angeboten oder realisiert.
+
+Beispiele
+Office 365
+Google Docs
+AWS Amazon web Service
+SAP Commerce Cloud
+Jira (div. Projektaufgabenverwaltungsaufgaben)
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+*Examples Office 365 Google Docs AWS Amazon web service SAP Commerce Cloud
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<typeID>FAF70092-F6A9-97FE-9880-A36ECEDBFE26</typeID>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Anwendungsgruppev1_ID" id="B6DDEEED-91F8-83C7-98EA-BAA1E931AD21">
+<createdBy>stb</createdBy>
+<createdTime>2020-10-11 14:59:55 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="5716C390-6D71-4956-1C36-33AD65CDE2FE" name="Anwendungsgruppev1_PK">
+<createdBy>stb</createdBy>
+<createdTime>2020-10-11 14:59:55 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="B6DDEEED-91F8-83C7-98EA-BAA1E931AD21"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="68153783-2801-8FF2-634A-B63B9E4613E6" name="Anwendungsgruppev1__UN">
+<createdBy>stb</createdBy>
+<createdTime>2020-10-11 14:59:55 UTC</createdTime>
+<generatorID>7465F71C-6E0A-E3D8-95A6-E74B987A6AA2</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -1,0 +1,74 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_1" id="78AE05C8-7BD6-DD53-9685-388D2F89A79A" name="Anwendung">
+<createdBy>stb</createdBy>
+<createdTime>2020-10-11 14:59:55 UTC</createdTime>
+<comment><![CDATA[Eine Anwendung mit bestimmten Funktion (Features, Use cases)  für die Unterstützung und Durchführung der Geschäftstransaktionen. Die Anwendung oder ihr Ouput wird von Personen aktiv oder passiv genutzt.
+
+Von einem Hersteller geliefert und normalerweise von der IT-Abteilung, 
+einer Person (z.B. ein eine Anwendung mit Standardtools wie Excel gelöst)  oder interner oder externen Supporter betreut.
+
+ACHTUNG: Standardtools (Excel, Word etc.) sind keine Anwendungen. Siehe Lokale Anwendung.
+Anwendungen die mit Standardtools gelöst sind müssen nach ihrer Funktion / ihrem Zweck als eigene Anwendung beschreiben werden.
+Beispiele (in Excel gelöst): Ferienabrechnung, Preiskalkulation , Mahnungkontrolle
+
+Datenbanken ausschliesslich von einer Applikation direkt genutzt werden können und wenn überhaupt nur über Services der Applikation zugreifbar sind werden nicht als Datenbanksysteme aufgezeichnet. Sie sind integraler Bestandteil der Applikation und werden bei derer Beschreibung erwähnt.
+
+Beispiele:
+ERP
+PIM
+FiBu
+CRM
+HR
+MAM
+PLM / PDM
+CMS
+CAT
+WMS Warehouse mgt system
+Lohnbuchhaltung
+Zeitabrechnung]]></comment>
+<generatorID>AA6B21F4-6D34-96C3-D12B-9FD87082FD7A</generatorID>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+Eine Anwendung mit bestimmten Funktion (Features, Use cases)  für die Unterstützung und Durchführung der Geschäftsprozesse. Die Anwendung oder ihr Ouput wird von Personen aktiv oder passiv genutzt.
+
+Von einem Hersteller geliefert und normalerweise von der IT-Abteilung, 
+einer Person (z.B. ein eine Anwendung mit Standardtools wie Excel gelöst)  oder interner oder externen Supporter betreut.
+
+ACHTUNG: Standardtools (Excel, Word etc.) sind keine Anwendungen. Siehe Lokale Anwendung.
+Anwendungen die mit Standardtools gelöst sind müssen nach ihrer Funktion / ihrem Zweck als eigene Anwendung beschreiben werden.
+Beispiele (in Excel gelöst): Ferienabrechnung, Preiskalkulation , Mahnungkontrolle
+
+Datenbanken ausschliesslich von einer Applikation direkt genutzt werden können und wenn überhaupt nur über Services der Applikation zugreifbar sind werden nicht als Datenbanksysteme aufgezeichnet. Sie sind integraler Bestandteil der Applikation und werden bei derer Beschreibung erwähnt.
+
+Beispiele:
+ERP
+PIM
+FiBu
+CRM
+HR
+MAM
+PLM / PDM
+CMS
+CAT
+WMS Warehouse mgt system
+Lohnbuchhaltung
+Zeitabrechnung
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+*An application with specific functions (features, use cases) for the support and execution of business processes. The application or its Ouput is used actively or passively by persons.  Delivered by a manufacturer and usually supported by the IT department, a person (e.g. an application solved with standard tools such as Excel) or internal or external supporters.  ATTENTION: Standard tools (Excel, Word etc.) are not applications. See Local Application. Applications solved with standard tools must be described as separate applications according to their function / purpose. Examples (solved in Excel): Holiday accounting, price calculation, dunning control databases can only be used directly by an application and if at all only accessible via services of the application are not recorded as database systems. They are an integral part of the application and are mentioned in the description.  Examples: ERP PIM FiBu CRM HR MAM PLM / PDM CMS CAT WMS Warehouse mgt system Payroll accounting Time accounting
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<typeID>FAF70092-F6A9-97FE-9880-A36ECEDBFE26</typeID>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="17EA24C4-86F0-AAEC-6BDB-D22A88E863DA" name="Anwendung__UN">
+<createdBy>stb</createdBy>
+<createdTime>2020-10-11 14:59:55 UTC</createdTime>
+<generatorID>7465F71C-6E0A-E3D8-95A6-E74B987A6AA2</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+</ind_PK_UK>
+</indexes>
+</Table>

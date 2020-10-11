@@ -1,6 +1,6 @@
 # -*- coding: latin-1 -*-
 
-from IM_DB import logging,dbConnect
+from IM_DB import logmessages,dbConnect
 import sqlite3
 import re
 
@@ -47,7 +47,7 @@ def delete(ptableName):
         if re.match("table .* already exists",e.__str__()):
             pass
         else:
-            logging.writelog("delete: unexpected SQL-error: \t%s" % e)
+            logmessages.writelog("delete: unexpected SQL-error: \t%s" % e)
             raise e
     dbConnect.myDbConn.commit()
 #delete
@@ -66,17 +66,17 @@ def insert(psql,rec):
     except sqlite3.IntegrityError as ei:
         #Unique kann für Indexweiterzählen gebraucht werden. darum keine Fehlermeldung
         if not str(ei).startswith('UNIQUE'):
-            logging.writelog(psql)
-            logging.writelog(rec)
-            logging.writelog(type(rec))
-            logging.writelog("insert: Constraint-error: \t{}" .format (str(ei)))
+            logmessages.writelog(psql)
+            logmessages.writelog(rec)
+            logmessages.writelog(type(rec))
+            logmessages.writelog("insert: Constraint-error: \t{}" .format (str(ei)))
         #fi
         raise ei
     except sqlite3.Error as e:
-        logging.writelog(psql)
-        logging.writelog(rec)
-        logging.writelog(type(rec))
-        logging.writelog ("insert: unexpected SQL-error: \t{}" .format (str(e)))
+        logmessages.writelog(psql)
+        logmessages.writelog(rec)
+        logmessages.writelog(type(rec))
+        logmessages.writelog ("insert: unexpected SQL-error: \t{}" .format (str(e)))
         raise e
     id = cursor.lastrowid
     dbConnect.myDbConn.commit()
@@ -98,8 +98,8 @@ def exec(psql,*args):
         if re.match("xxxxxxx",e.__str__()):
             pass
         else:
-            logging.writelog (psql)
-            logging.writelog ("exec: unexpected SQL-error: \t%s" % e)
+            logmessages.writelog (psql)
+            logmessages.writelog ("exec: unexpected SQL-error: \t%s" % e)
             raise e
     dbConnect.myDbConn.commit()
 #end exec
@@ -113,8 +113,8 @@ def execmany(psql,recs):
         if re.match("xxxxxxx",e.__str__()):
             pass
         else:
-            logging.writelog (psql)
-            logging.writelog ("execmany: unexpected SQL-error: \t%s" % e)
+            logmessages.writelog (psql)
+            logmessages.writelog ("execmany: unexpected SQL-error: \t%s" % e)
             raise e
     dbConnect.myDbConn.commit()
 #execmany

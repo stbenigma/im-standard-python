@@ -1,0 +1,73 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_1" id="5D9B09E8-4169-B720-5498-2D7A6518665B" name="many2many_Beziehung">
+<createdBy>stb</createdBy>
+<createdTime>2020-10-11 14:59:55 UTC</createdTime>
+<comment><![CDATA[Eine M:NBeziehung  zwischen 2 Entitäten.
+
+Sie kann (wie im ODM möglich) Attribute haben, die im physisischen Modell in die Zwischenentität wandern.]]></comment>
+<generatorID>B5A4599C-1B2D-B322-E185-8FFD18F95237</generatorID>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+Eine M:NBeziehung  zwischen 2 Entitäten.
+
+Sie kann (wie im ODM möglich) Attribute haben, die im physisischen Modell in die Zwischenentität wandern.
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+An M:N relationship between two entities.  It can (as possible in ODM) have attributes that move to the intermediate entity in the physical model.
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<typeID>899A6DDC-95E0-4AD5-5F58-B3A2FF5C2D08</typeID>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="many2many_Beziehung_ID" id="FA985FE3-AE4F-5060-C844-D9A08ECB9449">
+<createdBy>stb</createdBy>
+<createdTime>2020-10-11 14:59:55 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="0E772614-0262-FB87-8429-30A90A61F184" name="many2many_Beziehung_PK">
+<createdBy>stb</createdBy>
+<createdTime>2020-10-11 14:59:55 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="FA985FE3-AE4F-5060-C844-D9A08ECB9449"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="1E00BF93-2BFB-E679-8904-6524047121A8" name="many2many_Beziehung__UN">
+<createdBy>stb</createdBy>
+<createdTime>2020-10-11 14:59:55 UTC</createdTime>
+<generatorID>7465F71C-6E0A-E3D8-95A6-E74B987A6AA2</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+</ind_PK_UK>
+<ind_PK_UK id="05A4D668-7CBC-7989-AF88-B17F92C4F81A" name="many2many_Beziehung__UNv1">
+<createdBy>stb</createdBy>
+<createdTime>2020-10-11 14:59:55 UTC</createdTime>
+<generatorID>01978A28-13C8-5C45-CADD-2BF926266DE9</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+</ind_PK_UK>
+<ind_PK_UK id="DCDFD744-E4B4-3FB2-4AA1-22FC79C80D83" name="many2many_Beziehung__UNv2">
+<createdBy>stb</createdBy>
+<createdTime>2020-10-11 14:59:55 UTC</createdTime>
+<generatorID>CDCC3397-2B8C-C6C9-8C07-5A85ADAC3ABE</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+</ind_PK_UK>
+</indexes>
+</Table>

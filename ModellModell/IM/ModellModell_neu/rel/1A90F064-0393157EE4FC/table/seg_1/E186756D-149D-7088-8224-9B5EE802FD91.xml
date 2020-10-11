@@ -1,0 +1,49 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_1" id="E186756D-149D-7088-8224-9B5EE802FD91" name="Server_Hardware">
+<createdBy>stb</createdBy>
+<createdTime>2020-10-11 14:59:55 UTC</createdTime>
+<comment><![CDATA[Computer Hardware, auf dem IT-systeme, Anwendungen und Datenbanken installiert sind und laufen.]]></comment>
+<generatorID>18BE34D4-9D08-BD1C-B7BC-F12AD6F0772C</generatorID>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+Computer Hardware, auf dem IT-systeme, Anwendungen und Datenbanken installiert sind und laufen.
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+*Computer hardware on which IT systems, applications and databases are installed and running.
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<typeID>FAF70092-F6A9-97FE-9880-A36ECEDBFE26</typeID>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Virtuell_(J/N)" id="44E0E3BB-6BA2-708F-943C-56EFD5D37C72">
+<createdBy>stb</createdBy>
+<createdTime>2020-10-11 14:59:55 UTC</createdTime>
+<comment><![CDATA[Ist dies eine physische Maschine oder ein genutzte virtuelle?]]></comment>
+<generatorID>A1F579E5-ED25-A64B-2506-374C1268F3D8</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Ist dies eine physische Maschine oder ein genutzte virtuelle?
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Is this a physical machine or a virtual one in use?
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="BDE1E595-5980-9004-84E5-8EB35F22184B" name="Server_Hardware__UN">
+<createdBy>stb</createdBy>
+<createdTime>2020-10-11 14:59:55 UTC</createdTime>
+<generatorID>7465F71C-6E0A-E3D8-95A6-E74B987A6AA2</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -2,13 +2,13 @@
 import os
 import sys
 
-from IM_DB import parameters, dbConnect, dbErstelleTables, logging
+from IM_DB import parameters, dbConnect, dbErstelleTables, logmessages
 
 
 def main(par1):
     """Main program for createDB"""
     parameters.initparam(p_callarg=par1)
-    logging.initlog('CreateDB')
+    logmessages.initlog('CreateDB')
 
     # falls es das Verzeichnis für die DB nicht gibt erzeuge es
     if not os.path.isdir(parameters.dbDirect()):
@@ -16,10 +16,10 @@ def main(par1):
     dbConnect.openDB(parameters.dbFilePath(), 'OFF');
     dbErstelleTables.erstelleInfra();
     dbConnect.myDbConn.close()
-    logging.showmessages("database {} for model {} created"
-                         .format(parameters.dbFilePath()
+    logmessages.showmessages("database {} for model {} created"
+                             .format(parameters.dbFilePath()
                                , parameters.odmModelName())
-                         )
+                             )
 # end main
 
 if __name__ == '__main__':

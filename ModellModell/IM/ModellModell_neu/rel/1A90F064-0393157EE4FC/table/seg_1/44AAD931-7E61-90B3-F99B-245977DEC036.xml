@@ -1,0 +1,54 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_1" id="44AAD931-7E61-90B3-F99B-245977DEC036" name="Externes_Systemv1">
+<createdBy>stb</createdBy>
+<createdTime>2020-10-11 14:59:55 UTC</createdTime>
+<comment><![CDATA[Applikation, System das ausserhalb der Verantwortung unseres Unternehmens läuft.
+
+Beispiele:
+Google-docs
+AWS
+Jira Cloud
+gitHub Cloud]]></comment>
+<generatorID>DE7BC130-D3CD-E5BE-DB8C-2C5ABB27FC39</generatorID>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+Applikation, System das ausserhalb der Verantwortung unseres Unternehmens läuft.
+
+Beispiele:
+Google-docs
+AWS
+Jira Cloud
+gitHub Cloud
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+**Application, system that runs outside the responsibility of our company
+
+Examples:
+Google-docs
+AWS
+Jira Cloud
+gitHub Cloud
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<typeID>FAF70092-F6A9-97FE-9880-A36ECEDBFE26</typeID>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="C099F5AD-6E5E-D039-6DBB-104B2C2EEB52" name="Externes_Systemv1__UN">
+<createdBy>stb</createdBy>
+<createdTime>2020-10-11 14:59:55 UTC</createdTime>
+<generatorID>7465F71C-6E0A-E3D8-95A6-E74B987A6AA2</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+</ind_PK_UK>
+<ind_PK_UK id="B459C9DE-582D-8604-AE9D-BDCDF17DCC02" name="Externes_Systemv1_IT-System_FK">
+<createdBy>stb</createdBy>
+<createdTime>2020-10-11 14:59:55 UTC</createdTime>
+<generatorID>EBD08D4D-BE2E-880D-957B-9BC7CA0EB474</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+</ind_PK_UK>
+</indexes>
+</Table>

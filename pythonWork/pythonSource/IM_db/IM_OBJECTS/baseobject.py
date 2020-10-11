@@ -1,7 +1,7 @@
 
 from IM_DB import dbDML,dbDDL
 from mystring import nvl
-from logging import writelog
+from logmessages import writelog
 import sqlite3
 
 class Boolean:
@@ -73,11 +73,6 @@ class Baseobject:
     def setid(self,pid):
          self.__dict__[self._idcolname] = pid
 
-    def getscrname(self):
-        return self.__srcname
-    def getscrid(self):
-        return self.__srcid
-
     def insert(self,pdoerrhdlng=True):
         if self.__modelemtype is not None:
             self.setid(Modelelement(self.__modelemtype).insert())
@@ -90,13 +85,13 @@ class Baseobject:
             if self.getid() is None: self.setid(id)  # autocolumns zurücklesen
         except sqlite3.Error as e:
             if pdoerrhdlng:
-                print(str(e))
-                print(self.tostring())
+                writelog(str(e))
+                writelog(self.tostring())
             #if
             raise e
         #try
-        if self.getscrname() is not None:
-            Externalref(psrcname=self.getscrname(),psrcid = self.getscrid(),pmodeid=self.getid()).insert(pdoerrhdlng=pdoerrhdlng)
+        if self.__srcname is not None:
+            Externalref(psrcname=self.__srcname,psrcid = self.__srcid,pmodeid=self.getid()).insert(pdoerrhdlng=pdoerrhdlng)
         return self.getid()
 
     def tostring(self):

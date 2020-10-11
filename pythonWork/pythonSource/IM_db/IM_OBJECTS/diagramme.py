@@ -14,7 +14,7 @@ class Diagram(Baseobject):
         super().__init__(tablename= Diagram._tablename, prefix= Diagram._prefix
                          , columnlist = Diagram._columnlist
                          , pmodelemtype=Modelelemtype.DIAG
-                         , psrcid=psrcid
+                         , pscrid=psrcid
                          , psrcname=psrcname
                          )
 
@@ -146,5 +146,4 @@ CREATE TABLE melt_diats(
     def select(pwhere=None, porderby=None):
         return Baseobject.select(pclass=MeltDiat
                                  , pwhere=pwhere, porderby=porderby)
-
 #Diagramtype

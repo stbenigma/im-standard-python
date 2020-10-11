@@ -1,8 +1,10 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="0EDB2FDB-1E18-0616-002D-D315BC3AB67B" name="LINIE_SEGMENT">
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="0EDB2FDB-1E18-0616-002D-D315BC3AB67B" name="LINESEGMENTS">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
-<comment><![CDATA[Information zur Darstellung einer Entität auf einem Diagramm]]></comment>
+<comment><![CDATA[Straight line segment with its endpoint, where the line changes its directrion. 
+The first linesegment (seq-Nr = 1) starts at an element. The last segment requires no entry.
+It starts at the end of the last line segment (max seq-nr) and ends at the endpoint at an element.]]></comment>
 <generatorID>8132EFCC-4EC6-BC1A-869F-020BE679EA2F</generatorID>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <ordsAlias>beziehdarst</ordsAlias>
@@ -21,7 +23,7 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="LISE_RHFG" id="E6400E02-38E7-4F8D-403D-E77D7400A449">
+<Column name="LISE_SEQ" id="E6400E02-38E7-4F8D-403D-E77D7400A449">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <comment><![CDATA[Name eines Geschäftsbereichs]]></comment>
@@ -34,7 +36,7 @@
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="LISE_BEDA_ID" id="4ED706A8-0FE4-511F-4C45-391F12F542C6">
+<Column name="LISE_RELR_ID" id="4ED706A8-0FE4-511F-4C45-391F12F542C6">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -84,7 +86,7 @@
 </rangeDef>
 </listOfRanges>
 </Column>
-<Column name="LISE_LINIENTYP" id="EC2AF273-0EF6-FC02-FE1D-FF94E67D4C59">
+<Column name="LISE_LINETYPE" id="EC2AF273-0EF6-FC02-FE1D-FF94E67D4C59">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <generatorID>9DBEA9D5-4E5C-B222-7638-38F298F0FA7B</generatorID>
@@ -98,24 +100,7 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="LISE_KONNEKTOR" id="47B3F132-D181-8309-727A-7700CB7B977A">
-<createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:18:16 UTC</createdTime>
-<generatorID>71A04FCF-541F-6AB1-C8CE-52AEF5226573</generatorID>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<nullsAllowed>true</nullsAllowed>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
-<dataTypeSize>1 CHAR</dataTypeSize>
-<listOfValues>
-<valueDef value="1" description="1"/>
-<valueDef value="M" description="M"/>
-</listOfValues>
-<ownDataTypeParameters>1 CHAR,,</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-</Column>
-<Column name="LISE_WINKEL" id="402900C2-102F-DE58-CDFE-68FB30C819BD">
+<Column name="LISE_ANGEL" id="402900C2-102F-DE58-CDFE-68FB30C819BD">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <comment><![CDATA[Winkel zum nächsten (rhfg + 1) Punkt dieser Linie. (Leer beim letzten Punkt einer Folge). 0 ist nach rechts, 90 nach unten, 180 nach links, -90 nach oben]]></comment>

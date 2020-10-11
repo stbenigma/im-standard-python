@@ -1,9 +1,10 @@
 from datetime import datetime
-
 from IM_DB import dbDML
 from .baseobject import Baseobject, MultilangBaseobject
 from .modelelement import Modelelement, Modelelemtype
 from .sprachtext import Sprachtext
+from .entity import Entity
+from .baseobject import Boolean
 
 
 class Arc(Baseobject):
@@ -168,6 +169,15 @@ CREATE TABLE RELATIONS
 )"""
                         )
 
+    def getmandatorytofrom(self):
+        return Boolean.str2bool(self.rela_mandatory_to_from)
+    def getmandatoryfromto(self):
+        return Boolean.str2bool(self.rela_mandatory_from_to)
+    def gethisttofrom(self):
+        return Boolean.str2bool(self.rela_hist_to_from)
+    def gethistfromto(self):
+        return Boolean.str2bool(self.rela_hist_from_to)
+
     @staticmethod
     def delete():
         Baseobject.delete(Relation._tablename)
@@ -242,20 +252,25 @@ CREATE TABLE RELATIONS
 
     @staticmethod
     def insertisa(parcid,pentiids):
-        dbDML.exec("""insert into relations (rela_type, rela_enti_id_from, rela_assoc_from_to
-                    ,rela_mandatory_from_to, rela_hist_from_to
-                    , rela_enti_id_to, rela_assoc_to_from, rela_mandatory_to_from, rela_hist_to_from
-                    , rela_arcs_id_from,rela_uc, rela_dc,rela_name,RELA_MAPTYPE_TO_FROM,RELA_MAPTYPE_FROM_TO)
-                select 'ISAS', slave_enti_id,''
-                            , 'TRUE','FALSE'
-                            ,arcs_enti_id,'','TRUE','FALSE'
-                            ,arcs_id,arcs_uc, arcs_dc
-                            ,arcs_name || '_' || slave_enti_name relaname,'{}' as maptypetf, '{}' as maptypeft
-                            from arcs
-                            cross join  (select enti_id as slave_enti_id
-                                          ,enti_name as slave_enti_name from main.ENTITIES
-                                          where enti_id in {})
-                            where arcs_id = {} 
-                """.format(Relation.ONE,Relation.ONE,tuple(pentiids),parcid))
+        arc = Arc().getbyid(parcid)
+        for entiid in pentiids:
+            enti = Entity().getbyid(entiid)
+            rela = Relation()
+            rela.rela_type = Relation.ISASUBTYPE
+            rela.rela_enti_id_from = enti.enti_id
+            rela.rela_assoc_from_to = ''
+            rela.rela_mandatory_from_to = 'TRUE'
+            rela.rela_hist_from_to = 'FALSE'
+            rela.rela_enti_id_to = arc.arcs_enti_id
+            rela.rela_assoc_to_from = ''
+            rela.rela_mandatory_to_from = 'TRUE'
+            rela.rela_hist_to_from = 'FALSE'
+            rela.rela_arcs_id_from = arc.arcs_id
+            rela.rela_uc = arc.arcs_uc
+            rela.rela_dc = arc.arcs_dc
+            rela.rela_name = arc.arcs_name + '_' + enti.enti_name
+            rela.rela_maptype_from_to = Relation.ONE
+            rela.rela_maptype_to_from = Relation.ONE
+            rela.insert()
     # insertisa
 # setarcinrela

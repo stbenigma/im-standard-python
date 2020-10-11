@@ -1,6 +1,6 @@
 # -*- coding: latin-1 -*-
 import transferModel
-from IM_DB import dbConnect, parameters, logging
+from IM_DB import dbConnect, parameters, logmessages
 
 
 # Main Programm
@@ -19,13 +19,13 @@ def filldbmain():
 def main(p_param1):
     """Main program for fillDB"""
     parameters.initparam(p_callarg=p_param1)
-    logging.initlog('fillDB')
+    logmessages.initlog('fillDB')
 
     try:
         filldbmain()
     finally:
-        logging.showmessages("database {} for model {} filled with modeldata"
-                             .format(parameters.dbFilePath(),
+        logmessages.showmessages("database {} for model {} filled with modeldata"
+                                 .format(parameters.dbFilePath(),
                                parameters.odmModelName()))
 #  main
 

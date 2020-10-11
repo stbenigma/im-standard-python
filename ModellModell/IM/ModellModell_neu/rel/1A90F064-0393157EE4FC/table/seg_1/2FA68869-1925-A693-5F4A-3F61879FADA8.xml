@@ -1,0 +1,87 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_1" id="2FA68869-1925-A693-5F4A-3F61879FADA8" name="IsA_Subtype_Beziehung">
+<createdBy>stb</createdBy>
+<createdTime>2020-10-11 14:59:55 UTC</createdTime>
+<comment><![CDATA[1:1 Beziehung, die einen echten, exklusiven Subtyp definiert.
+Die Beziehungen müssen vom Vater aus 1:1 pflicht und in einem Arc sein.
+Bei ODM Entity in Entity gezeichnet.
+Die Superentity ist immer genau eine der Subentities.
+Es gibt immer mindestens 2 Subentities.
+Beispiele:
+   Partner ist entweder eine Firma oder eine Person]]></comment>
+<generatorID>F5394923-6DFA-8C01-6D38-3997884B3C41</generatorID>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+1:1 Beziehung, die einen echten, exklusiven Subtyp definiert.
+Die Beziehungen müssen vom Vater aus 1:1 pflicht und in einem Arc sein.
+Bei ODM Entity in Entity gezeichnet.
+Die Superentity ist immer genau eine der Subentities.
+Es gibt immer mindestens 2 Subentities.
+Beispiele:
+   Partner ist entweder eine Firma oder eine Person
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+1:1 relationship that defines a true exclusive subtype
+The relationships must be 1:1 obligatory from the father and must be in an arc.
+For ODM Entity drawn in Entity.
+The superentity is always exactly one of the subentities.
+There are always at least 2 subentities.
+Examples:
+   Partner is either a company or a person
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<typeID>899A6DDC-95E0-4AD5-5F58-B3A2FF5C2D08</typeID>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="IsA_Subtype_Beziehung_ID" id="2657D67F-9BBF-E4D7-BC51-DF99798796CB">
+<createdBy>stb</createdBy>
+<createdTime>2020-10-11 14:59:55 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="9F5FFA10-5E30-21EA-FB5B-4DCFFAFC016B" name="IsA_Subtype_Beziehung_PK">
+<createdBy>stb</createdBy>
+<createdTime>2020-10-11 14:59:55 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="2657D67F-9BBF-E4D7-BC51-DF99798796CB"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="AFEC2497-E335-6395-1E48-1B4B5313F9F8" name="IsA_Subtype_Beziehung__UN">
+<createdBy>stb</createdBy>
+<createdTime>2020-10-11 14:59:55 UTC</createdTime>
+<generatorID>7465F71C-6E0A-E3D8-95A6-E74B987A6AA2</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+</ind_PK_UK>
+<ind_PK_UK id="6CDBE3C0-EA50-C6A9-BEE0-D5786D2D2D90" name="IsA_Subtype_Beziehung__UNv1">
+<createdBy>stb</createdBy>
+<createdTime>2020-10-11 14:59:55 UTC</createdTime>
+<generatorID>01978A28-13C8-5C45-CADD-2BF926266DE9</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+</ind_PK_UK>
+<ind_PK_UK id="4723CC81-FBBA-16C7-80CD-D38CE1570E4B" name="IsA_Subtype_Beziehung__UNv2">
+<createdBy>stb</createdBy>
+<createdTime>2020-10-11 14:59:55 UTC</createdTime>
+<generatorID>CDCC3397-2B8C-C6C9-8C07-5A85ADAC3ABE</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -5,7 +5,7 @@ import sys,os
 sys.path.append(os.path.dirname(os.path.realpath(__file__))+'/../IM_db')
 sys.path.append(os.path.dirname(os.path.realpath(__file__))+'/..')
 from datetime import date,datetime
-from IM_DB import parameters,dbConnect,dbLookup,dbParam,logging
+from IM_DB import parameters,dbConnect,dbLookup,dbParam,logmessages
 from IM_HTML import printHTML,web_sql,printdiagHTML,printRelHTML
 from IM_OBJECTS import *
 
@@ -204,7 +204,7 @@ def listwebmain(plang):
 
 def main(pdirec, plang):
     parameters.initparam(p_callarg=pdirec)
-    logging.initlog('createHTML')
+    logmessages.initlog('createHTML')
 
     printHTML.setWebDirec(p_webdirec=None)
 
@@ -215,8 +215,8 @@ def main(pdirec, plang):
 
     dbConnect.myDbConn.close()
 
-    logging.showmessages("web-files from database {} for model {} created"
-                         .format(parameters.dbFilePath(),parameters.odmModelName()))
+    logmessages.showmessages("web-files from database {} for model {} created"
+                             .format(parameters.dbFilePath(),parameters.odmModelName()))
 #main
 
 if __name__ == '__main__':

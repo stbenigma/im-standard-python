@@ -66,7 +66,7 @@ CREATE TABLE EXTERNAL_REFS
     @staticmethod
     def getODMsrcid(pmodeid):
         extrs = Externalref.select (pwhere="extr_source_name = '{}' and extr_mode_id = '{}'".format(Externalref.SOURCE_ODM,pmodeid))
-        srcid = None if len(extr) == 0 else extrs[0].extr_source_id
+        srcid = None if len(extrs) == 0 else extrs[0].extr_source_id
         return srcid
     # getODMsrcid
 

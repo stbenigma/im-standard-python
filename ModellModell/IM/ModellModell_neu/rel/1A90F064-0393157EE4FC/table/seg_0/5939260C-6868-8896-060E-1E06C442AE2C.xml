@@ -37,22 +37,34 @@ Subtype of MODELELEMENT. DOMA_ID is always identical to the corresponding MODE_I
 <colAssociation fkAssociation="5D002061-15D9-E1F9-B143-8B3C7AF696AA" referredColumn="9698F1F3-1EBE-8770-4F8C-4FFC3465A776"/>
 </associations>
 </Column>
-<Column name="DOMA_NAME" id="CA265241-6F23-3093-0776-DCE67EEE3B67">
+<Column name="Name_[L]" id="CA265241-6F23-3093-0776-DCE67EEE3B67">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 15:43:05 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
-<use>0</use>
+<use>1</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
-<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="DOMA_DESCR" id="81F7CE2E-8D55-53CA-B3E7-6B99AFD25D2C">
+<Column name="Beschreibung_[L]" id="81F7CE2E-8D55-53CA-B3E7-6B99AFD25D2C">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 15:43:05 UTC</createdTime>
-<comment><![CDATA[Description of domain (subject to translation)]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
@@ -60,126 +72,6 @@ Subtype of MODELELEMENT. DOMA_ID is always identical to the corresponding MODE_I
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
-</Column>
-<Column name="DOMA_TYPE" id="9E01C515-1C04-E3B7-97C2-E124D6896E3B">
-<createdBy>stb</createdBy>
-<createdTime>2020-02-04 15:43:05 UTC</createdTime>
-<comment><![CDATA[Type of domain:
-- TXT	String
-- NUM	Numeric
-- GRP	Group of domains
-- LOV	List of values
-- BIN	Binary
-- DAT	Date/Time]]></comment>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT024</logicalDatatype>
-<dataTypeSize>4 CHAR</dataTypeSize>
-<listOfValues>
-<valueDef value="BIN" description="Binär"/>
-<valueDef value="DAT" description="Zeitpunkt"/>
-<valueDef value="GRP" description="Gruppe"/>
-<valueDef value="LOV" description="List of Values"/>
-<valueDef value="NUM" description="Numerisch"/>
-<valueDef value="TXT" description="Text"/>
-</listOfValues>
-<ownDataTypeParameters>4 CHAR,,</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-<isDiscriminatorColumn>true</isDiscriminatorColumn>
-<dependentColumns>
-<dependentColumn class="oracle.dbtools.crest.model.design.relational.Column$DependentColumnDescriptor">
-<columnID>F9BC031B-CEA0-D6AA-E15A-4A99CBCBBC29</columnID>
-<dependAsMandatory>true</dependAsMandatory>
-<dependOnValue>true</dependOnValue>
-<discriminatorValue>BIN</discriminatorValue>
-<id>C0755E71-E106-8A47-1528-0EA2A6D86B66</id>
-</dependentColumn>
-<dependentColumn class="oracle.dbtools.crest.model.design.relational.Column$DependentColumnDescriptor">
-<columnID>860466A3-87F7-DAD5-3D5C-616E159D9F70</columnID>
-<dependAsMandatory>false</dependAsMandatory>
-<dependOnValue>true</dependOnValue>
-<discriminatorValue>BIN</discriminatorValue>
-<id>A5B0C4EB-5898-AD18-9886-1AEBC01ED770</id>
-</dependentColumn>
-<dependentColumn class="oracle.dbtools.crest.model.design.relational.Column$DependentColumnDescriptor">
-<columnID>070CFA16-5D72-5E47-FB2C-581F0DD00D13</columnID>
-<dependAsMandatory>true</dependAsMandatory>
-<dependOnValue>true</dependOnValue>
-<discriminatorValue>NUM</discriminatorValue>
-<id>1FD37EC4-E551-CA14-3A56-48F49332F842</id>
-</dependentColumn>
-<dependentColumn class="oracle.dbtools.crest.model.design.relational.Column$DependentColumnDescriptor">
-<columnID>DBDB4B59-C105-2FBD-D8A4-C9252322ACE7</columnID>
-<dependAsMandatory>false</dependAsMandatory>
-<dependOnValue>true</dependOnValue>
-<discriminatorValue>NUM</discriminatorValue>
-<id>4BA367D8-BE52-12DA-D337-601C9EE36D25</id>
-</dependentColumn>
-<dependentColumn class="oracle.dbtools.crest.model.design.relational.Column$DependentColumnDescriptor">
-<columnID>1D4293FF-9802-0204-A841-DC79674B3330</columnID>
-<dependAsMandatory>false</dependAsMandatory>
-<dependOnValue>true</dependOnValue>
-<discriminatorValue>NUM</discriminatorValue>
-<id>547B2A3C-9310-F886-32DE-2D6B84E7A426</id>
-</dependentColumn>
-<dependentColumn class="oracle.dbtools.crest.model.design.relational.Column$DependentColumnDescriptor">
-<columnID>1EE129A2-9285-E29F-944A-2F244147E491</columnID>
-<dependAsMandatory>false</dependAsMandatory>
-<dependOnValue>true</dependOnValue>
-<discriminatorValue>NUM</discriminatorValue>
-<id>151B0EC0-DC0C-8958-5D11-A1059A984AD7</id>
-</dependentColumn>
-<dependentColumn class="oracle.dbtools.crest.model.design.relational.Column$DependentColumnDescriptor">
-<columnID>B0C53C69-FC29-4EFE-FC1D-94DF6E2CF822</columnID>
-<dependAsMandatory>false</dependAsMandatory>
-<dependOnValue>true</dependOnValue>
-<discriminatorValue>NUM</discriminatorValue>
-<id>0A180C8F-3369-9372-BD17-DADF541AED40</id>
-</dependentColumn>
-<dependentColumn class="oracle.dbtools.crest.model.design.relational.Column$DependentColumnDescriptor">
-<columnID>44683F2B-4B50-9AD5-0194-F3AC71AD4CCD</columnID>
-<dependAsMandatory>true</dependAsMandatory>
-<dependOnValue>true</dependOnValue>
-<discriminatorValue>NUM</discriminatorValue>
-<id>CAFB9428-D6DB-5BB9-A1CF-490FF67D159C</id>
-</dependentColumn>
-<dependentColumn class="oracle.dbtools.crest.model.design.relational.Column$DependentColumnDescriptor">
-<columnID>E9D8B654-B20F-4FB2-5736-8AA9E67EFF0B</columnID>
-<dependAsMandatory>true</dependAsMandatory>
-<dependOnValue>true</dependOnValue>
-<discriminatorValue>DAT</discriminatorValue>
-<id>889FCA18-27FB-F7F8-B1F3-4F4BFB30E6A7</id>
-</dependentColumn>
-<dependentColumn class="oracle.dbtools.crest.model.design.relational.Column$DependentColumnDescriptor">
-<columnID>69DAE34B-073D-10F2-2590-FEF5CF01582D</columnID>
-<dependAsMandatory>false</dependAsMandatory>
-<dependOnValue>true</dependOnValue>
-<discriminatorValue>DAT</discriminatorValue>
-<id>9D1166FA-50AA-C3CC-A1E9-15CBB3C4AF8F</id>
-</dependentColumn>
-<dependentColumn class="oracle.dbtools.crest.model.design.relational.Column$DependentColumnDescriptor">
-<columnID>29A7F1B6-C1F7-A297-AE25-1FACC54BE946</columnID>
-<dependAsMandatory>false</dependAsMandatory>
-<dependOnValue>true</dependOnValue>
-<discriminatorValue>DAT</discriminatorValue>
-<id>B8A7D4FC-9BA5-E8F5-7A0E-4890FA6DCAF3</id>
-</dependentColumn>
-<dependentColumn class="oracle.dbtools.crest.model.design.relational.Column$DependentColumnDescriptor">
-<columnID>74BC7CB3-A255-100A-EDA2-4BF9AE201E46</columnID>
-<dependAsMandatory>false</dependAsMandatory>
-<dependOnValue>true</dependOnValue>
-<discriminatorValue>TXT</discriminatorValue>
-<id>E282770B-6434-7135-B9CC-02D23C5AF8B8</id>
-</dependentColumn>
-<dependentColumn class="oracle.dbtools.crest.model.design.relational.Column$DependentColumnDescriptor">
-<columnID>D341A36B-8912-BB09-93BF-FAD8A593D306</columnID>
-<dependAsMandatory>false</dependAsMandatory>
-<dependOnValue>true</dependOnValue>
-<discriminatorValue>TXT</discriminatorValue>
-<id>F304F00B-AF88-4145-674F-35F15E7F6BFB</id>
-</dependentColumn>
-</dependentColumns>
 </Column>
 <Column name="DOMA_ORIGIN" id="4DF0C6E6-B501-EC13-D1D3-0531CABD851C">
 <createdBy>stb</createdBy>
@@ -215,6 +107,15 @@ Subtype of MODELELEMENT. DOMA_ID is always identical to the corresponding MODE_I
 <Column name="DOMA_DAT_MINVALUE" id="29A7F1B6-C1F7-A297-AE25-1FACC54BE946">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 15:43:05 UTC</createdTime>
+<comment><![CDATA[frühestes Zeitpunkt in diesem Attribut. Leer -> es gibt keine Untergrenze]]></comment>
+<generatorID>F8E42CB1-E43D-0D27-9900-D7A7BD67D0D6</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+frühestes Zeitpunkt in diesem Attribut. Leer -> es gibt keine Untergrenze
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+earliest time in this attribute. Empty -> there is no lower limit
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
@@ -226,6 +127,15 @@ Subtype of MODELELEMENT. DOMA_ID is always identical to the corresponding MODE_I
 <Column name="DOMA_DAT_MAXVALUE" id="69DAE34B-073D-10F2-2590-FEF5CF01582D">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 15:43:05 UTC</createdTime>
+<comment><![CDATA[spätester Zeitpunkt in diesem Attribut. Leer -> es gibt keine Obergrenze]]></comment>
+<generatorID>7B927CAB-9C49-8F87-C70C-F980DF438F94</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+spätester Zeitpunkt in diesem Attribut. Leer -> es gibt keine Obergrenze
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+latest time in this attribute. Empty -> there is no upper limit
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
@@ -237,8 +147,17 @@ Subtype of MODELELEMENT. DOMA_ID is always identical to the corresponding MODE_I
 <Column name="DOMA_DAT_GRANULARITY" id="E9D8B654-B20F-4FB2-5736-8AA9E67EFF0B">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 15:43:05 UTC</createdTime>
+<comment><![CDATA[Auf welche Einheit wird die Datumsangabe gerundet (Tag, Minute, Monat, Jahr)]]></comment>
+<generatorID>6E889AC5-72FE-0BF0-A64F-E96B19560FAC</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Auf welche Einheit wird die Datumsangabe gerundet (Tag, Minute, Monat, Jahr)
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+To which unit is the date rounded (day, minute, month, year)?
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
-<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
 <use>0</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
 <domain>802FD5C1-7C5B-0290-1F1C-F8FBB1AD2AA9</domain>
@@ -248,9 +167,16 @@ Subtype of MODELELEMENT. DOMA_ID is always identical to the corresponding MODE_I
 <Column name="DOMA_TXT_MAXLNG" id="D341A36B-8912-BB09-93BF-FAD8A593D306">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 15:43:05 UTC</createdTime>
-<comment><![CDATA[Max number of characters in a textstring]]></comment>
+<comment><![CDATA[Maximale Länge des Textes in Buchstaben (CHAR)]]></comment>
+<generatorID>E2F20100-F3E8-3E95-BA43-0EEE3EE63B36</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Maximale Länge des Textes in Buchstaben (CHAR)
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Maximum length of text in letters (CHAR)
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
-<nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
@@ -260,12 +186,20 @@ Subtype of MODELELEMENT. DOMA_ID is always identical to the corresponding MODE_I
 <Column name="DOMA_TXT_SYNTAXRULE" id="74BC7CB3-A255-100A-EDA2-4BF9AE201E46">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 15:43:05 UTC</createdTime>
+<comment><![CDATA[Einschränkende Regel für die erlaubten Zeichen eines Textes.]]></comment>
+<generatorID>CC367FCD-01E3-C3AF-28D1-CB4750AD7381</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Einschränkende Regel für die erlaubten Zeichen eines Textes.
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Restrictive rule for the permitted characters of a text.
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
-<use>0</use>
+<use>1</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
-<domain>EAB77EBE-9C06-2899-E462-A33684354F43</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
@@ -285,55 +219,81 @@ Subtype of MODELELEMENT. DOMA_ID is always identical to the corresponding MODE_I
 <Column name="DOMA_NUM_MINVALUE" id="1D4293FF-9802-0204-A841-DC79674B3330">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 15:43:05 UTC</createdTime>
+<comment><![CDATA[Minimaler Wert für ein numerisches Feld. Leer -> so klein wie das System zulässt]]></comment>
+<generatorID>E5CC6E75-E08C-C5ED-7AD2-5C644AC557AD</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Minimaler Wert für ein numerisches Feld. Leer -> so klein wie das System zulässt
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Minimum value for a numeric field. Empty -> as small as the system allows
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
-<dataTypePrecision>30</dataTypePrecision>
-<dataTypeScale>10</dataTypeScale>
-<ownDataTypeParameters>,30,10</ownDataTypeParameters>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
 <Column name="DOMA_NUM_TOTAL_DIGITS" id="44683F2B-4B50-9AD5-0194-F3AC71AD4CCD">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 15:43:05 UTC</createdTime>
+<comment><![CDATA[Anzahl der Stellen vor dem Komma]]></comment>
+<generatorID>7E77D48A-823A-2E1C-12FB-94F9A785C501</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Anzahl der Stellen vor dem Komma
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Number of digits before the decimal point
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
-<nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
-<dataTypePrecision>3</dataTypePrecision>
-<ownDataTypeParameters>,3,</ownDataTypeParameters>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
 <Column name="DOMA_NUM_FRACT_DIGITS" id="070CFA16-5D72-5E47-FB2C-581F0DD00D13">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 15:43:05 UTC</createdTime>
+<comment><![CDATA[Anzahl der Stellen nach dem Komma]]></comment>
+<generatorID>D2115AAA-10BB-6729-053F-50CD98171F6C</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Anzahl der Stellen nach dem Komma
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Number of digits after the decimal point
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
-<nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
-<dataTypePrecision>3</dataTypePrecision>
 <defaultValue>0</defaultValue>
-<ownDataTypeParameters>,3,</ownDataTypeParameters>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
 <Column name="DOMA_NUM_ROUND_VALUE" id="B0C53C69-FC29-4EFE-FC1D-94DF6E2CF822">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 15:43:05 UTC</createdTime>
-<comment><![CDATA[Value to wich a numeric value is to be rounded
-e.g. 0.5, 0.25, 1000]]></comment>
-<generatorID>7B43FC60-8938-1F2F-FFC9-AC52103A91B0</generatorID>
+<comment><![CDATA[Wert, der angibt, auf welche Einheit ein numerischer Wert für die Speicherung gerundet wird. (z.B. 0.5, 0.25, 1000) leer -> es wird nicht explizit gerundet]]></comment>
+<generatorID>EB863265-2766-76A8-568E-EEFEA2D851F2</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Wert, der angibt, auf welche Einheit ein numerischer Wert für die Speicherung gerundet wird. (z.B. 0.5, 0.25, 1000) leer -> es wird nicht explizit gerundet
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+A value that indicates the unit to which a numeric value is rounded for storage. (e.g. 0.5, 0.25, 1000) empty -> not rounded explicitly
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
-<use>0</use>
+<use>1</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
-<dataTypePrecision>28</dataTypePrecision>
-<domain>9D57C5ED-8336-6617-9BC7-29B138AA6191</domain>
-<ownDataTypeParameters>,28,</ownDataTypeParameters>
+<defaultValue>1</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
 <Column name="DOMA_NUM_PHYU_ID" id="1EE129A2-9285-E29F-944A-2F244147E491">
@@ -355,14 +315,18 @@ e.g. 0.5, 0.25, 1000]]></comment>
 <Column name="DOMA_BIN_CONTENTTYPE" id="F9BC031B-CEA0-D6AA-E15A-4A99CBCBBC29">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 15:43:05 UTC</createdTime>
-<comment><![CDATA[Logical Content type of a binary value:
-video, sound, picture, etc.]]></comment>
-<generatorID>9625B729-C7C6-CD5F-2155-3648986FD9F6</generatorID>
+<generatorID>C5CA5BD0-DFBF-51B8-8719-DDA23703721E</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
-<nullsAllowed>true</nullsAllowed>
-<use>0</use>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
-<domain>23CFFE8F-D989-8ED0-93D0-C4BF59140074</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
@@ -439,6 +403,26 @@ video, sound, picture, etc.]]></comment>
 <property name="ctemplateID" value="B398D247-00C1-F016-3BBB-FE65CFFFF7AA"/>
 </propertyMap>
 </Column>
+<Column name="Max_Wert" id="DA7DD2CC-305C-77D6-1E7A-70398A5B0657">
+<createdBy>stb</createdBy>
+<createdTime>2020-10-11 14:59:55 UTC</createdTime>
+<comment><![CDATA[Maximaler Wert für ein numerisches Feld. Leer -> so gross wie das System zulässt]]></comment>
+<generatorID>EBB0952C-C757-86BA-30FC-CF6002E22D95</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Maximaler Wert für ein numerisches Feld. Leer -> so gross wie das System zulässt
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Maximum value for a numeric field. Empty -> as big as the system allows
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
 <ind_PK_UK id="D143312D-0512-8919-DFBA-4D6B6E56F9C5" name="DOMA_PK">
@@ -455,6 +439,25 @@ video, sound, picture, etc.]]></comment>
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 15:43:05 UTC</createdTime>
 <generatorID>C0E5C5AE-DE43-05AD-FB5B-BBE7BDE7440B</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="CA265241-6F23-3093-0776-DCE67EEE3B67"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="A89A234D-4D36-261A-64A3-C9A06D461DBF" name="DOMAINS__UN">
+<createdBy>stb</createdBy>
+<createdTime>2020-10-11 14:59:55 UTC</createdTime>
+<generatorID>7465F71C-6E0A-E3D8-95A6-E74B987A6AA2</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+</ind_PK_UK>
+<ind_PK_UK id="3C73DDAC-B1E9-3D5A-3E1E-E91CF9310A8D" name="DOMAINS_Name_[L]_UN">
+<createdBy>stb</createdBy>
+<createdTime>2020-10-11 14:59:55 UTC</createdTime>
+<generatorID>C1A8A4D1-8B15-8026-055F-024571C59C67</generatorID>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <indexState>Unique Constraint</indexState>
 <isSurrogateKey>false</isSurrogateKey>

@@ -35,7 +35,14 @@ Subtype of MODELELEMENT. BURU_ID is always identical to the corresponding MODE_I
 <Column name="BURU_NAME" id="7EEB35C2-8E0B-105D-7790-149F28E4CD49">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
-<generatorID>D4367DA7-6021-7E29-BEFC-2F6B66AB1763</generatorID>
+<generatorID>2E3D74AD-8468-9CBA-F519-285EBF90304E</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -46,8 +53,15 @@ Subtype of MODELELEMENT. BURU_ID is always identical to the corresponding MODE_I
 <Column name="BURU_RULE" id="E02A381D-CA3E-0DD4-4FC9-E55B10FE0B0D">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
-<comment><![CDATA[Formal description of the rule to be applied ]]></comment>
-<generatorID>723B41D1-B556-FACB-A890-B8B7F4FD8F6B</generatorID>
+<comment><![CDATA[Regel, die Werte beschränken auf Grund von komplexen Zusammenhängen (mehere Entitäten, Attribute, Beziehungen)]]></comment>
+<generatorID>18DDD1CA-270F-D5BB-691E-74C2CBBE8960</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Regel, die Werte beschränken auf Grund von komplexen Zusammenhängen (mehere Entitäten, Attribute, Beziehungen)
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Rule limiting values to complex relationships (multiple entities, attributes, relationships)
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -58,8 +72,15 @@ Subtype of MODELELEMENT. BURU_ID is always identical to the corresponding MODE_I
 <Column name="BURU_DESCR" id="B095985D-982D-65F4-36E8-17EE06A14307">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
-<comment><![CDATA[Textual description of rule to be applied (subject to translation)]]></comment>
-<generatorID>2B940275-6B40-64A6-6459-46A41243F4EF</generatorID>
+<comment><![CDATA[Umschreibung, Erklärung der Regel]]></comment>
+<generatorID>1FEC2481-A807-AFD8-3298-7ACC4E9300CC</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Umschreibung, Erklärung der Regel
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Description, explanation of the rule
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
@@ -71,10 +92,16 @@ Subtype of MODELELEMENT. BURU_ID is always identical to the corresponding MODE_I
 <Column name="BURU_ERRMSG" id="CE046933-339A-7ACF-704D-CC3B689565C5">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
-<comment><![CDATA[Error message to be issued in case of rule violation (subject to be translated)]]></comment>
-<generatorID>F0D0A02C-116A-DB0F-5438-DED076F0352F</generatorID>
+<comment><![CDATA[Meldung, die bei Verletzung der Regel angezeigt wird.]]></comment>
+<generatorID>DEA583A1-1362-7675-76D3-F647C1BD80CC</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Meldung, die bei Verletzung der Regel angezeigt wird.
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Message that is displayed when the rule is violated.
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
-<nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
@@ -154,6 +181,25 @@ Subtype of MODELELEMENT. BURU_ID is always identical to the corresponding MODE_I
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <generatorID>CD61460D-CC3B-5EE7-EEA7-2807443DEBA7</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="7EEB35C2-8E0B-105D-7790-149F28E4CD49"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="7E48E9C7-B8BE-57DE-62E8-5D765CE34CBE" name="BUSINESS_RULE__UN">
+<createdBy>stb</createdBy>
+<createdTime>2020-10-11 14:59:55 UTC</createdTime>
+<generatorID>7465F71C-6E0A-E3D8-95A6-E74B987A6AA2</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+</ind_PK_UK>
+<ind_PK_UK id="DC2BCB2D-7522-3705-B337-2E4A8D17CEBB" name="BUSINESS_RULE_BURU_NAME_UN">
+<createdBy>stb</createdBy>
+<createdTime>2020-10-11 14:59:55 UTC</createdTime>
+<generatorID>B1F60E3A-1081-85A1-2F4B-813E9E8075FA</generatorID>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <indexState>Unique Constraint</indexState>
 <isSurrogateKey>false</isSurrogateKey>

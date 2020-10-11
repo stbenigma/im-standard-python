@@ -18,7 +18,7 @@ def doLookup(pguid,psql,withnotfound=False):
 
 
 def diatid (p_name):
-    return doLookup(p_name,'select diat_id from diagrammtypen where upper(diat_bez) =upper("{}")')
+    return doLookup(p_namex,'select diat_id from diagrammtypen where upper(diat_bez) =upper("{}")')
 #diatid
 
 

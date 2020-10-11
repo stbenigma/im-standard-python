@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="F4419578-EE98-3BAC-50A3-1E4C66917575" name="Elemendarstellung">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="F4419578-EE98-3BAC-50A3-1E4C66917575" name="Elementdarstellung">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:05:50 UTC</createdTime>
 <comment><![CDATA[Information zur Darstellung eines grafischen Elementes (Entität, etc.) auf einem Diagramm]]></comment>
@@ -11,10 +11,11 @@ Information about the representation of a graphical element (entity, etc.) on a 
 ]EN_ENTI_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
 <item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="false"/>
-<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
+<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="false"/>
 </engineerTo>
 <typeID>08251308-6816-56D4-1918-B126D2E844B0</typeID>
 <adequatelyNormalized>NO</adequatelyNormalized>
@@ -29,10 +30,8 @@ Information about the representation of a graphical element (entity, etc.) on a 
 <propertyMap>
 <property name="DE_ENTI_COMMENT" value="Information zur Darstellung eines grafischen Elementes (Entität, etc.) auf einem Diagramm"/>
 <property name="DE_ENTI_NAME" value="Elemendarstellung"/>
-<property name="DE_ENTI_SYNONYM" value=""/>
 <property name="EN_ENTI_COMMENT" value="*DE* Information zur Darstellung eines grafischen Elementes (Entität, etc.) auf einem Diagramm"/>
 <property name="EN_ENTI_NAME" value="Element representation"/>
-<property name="EN_ENTI_SYNONYM" value=""/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Name [L]" id="47B6F299-2C77-A877-C89A-ADC20B9D4E73">
@@ -47,11 +46,12 @@ Information about the representation of a graphical element (entity, etc.) on a 
 ]EN_ATTR_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <importedID>A3C9731C-AB46-3608-8EFC-C040100A45AD</importedID>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
 <item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
-<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
+<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="false"/>
 </engineerTo>
 <referedAttribute>49509F7F-1C52-6A13-93E0-246E01806DF9</referedAttribute>
 <useDomainConstraints>false</useDomainConstraints>
@@ -77,11 +77,12 @@ Vorgabewert einer Darstellung eines Elementtyps
 ]EN_ATTR_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <importedID>4513F410-C3CF-A0F8-0DA3-06A48FCBAC9B</importedID>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
 <item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="false"/>
-<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
+<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="false"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
@@ -106,11 +107,12 @@ Vorgabewert der Darstellung des Randes um das Element
 ]EN_ATTR_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <importedID>8B735900-0D91-B088-FE52-28C12ECB5967</importedID>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
 <item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="false"/>
-<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
+<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="false"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
@@ -123,82 +125,64 @@ Vorgabewert der Darstellung des Randes um das Element
 <property name="EN_ATTR_NAME" value="Marginal representation"/>
 </propertyMap>
 </Attribute>
-<Attribute name="Schriftgrösse" id="D9E941B0-B564-E990-F941-1107433F04BF">
+<Attribute name="Schrift" id="B109C737-D2DA-31C3-CA5C-9A1868E6BAD3">
 <createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:05:50 UTC</createdTime>
-<comment><![CDATA[Vorgabewert der Schriftgrösse des Elementsnamens]]></comment>
-<notes><![CDATA[[DE_ATTR_COMMENT[
-Vorgabewert der Schriftgrösse des Elementsnamens
-]DE_ATTR_COMMENT]
-[EN_ATTR_COMMENT[
-**Default value of the font size of the element name
-]EN_ATTR_COMMENT]
-]]></notes>
+<createdTime>2020-10-11 15:07:37 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
-<importedID>B754768D-EC5E-FD14-B413-CA0EA96AE089</importedID>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
-<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="false"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
+<use>3</use>
+<structuredType>F0D06FAD-E133-3AC0-390D-87A1783A03AD</structuredType>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
-<propertyMap>
-<property name="DE_ATTR_COMMENT" value=""/>
-<property name="DE_ATTR_NAME" value="Schriftgrösse"/>
-<property name="EN_ATTR_COMMENT" value=""/>
-<property name="EN_ATTR_NAME" value="Font size"/>
-</propertyMap>
-<listOfRanges>
-<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
-<beginValue>1</beginValue>
-<endValue>999</endValue>
-</rangeDef>
-</listOfRanges>
-</Attribute>
-<Attribute name="Schriftfarbe" id="B2FFB781-07FE-C44A-9897-4D1F53C03D84">
-<createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:05:50 UTC</createdTime>
-<notes><![CDATA[[DE_ATTR_COMMENT[
-
-]DE_ATTR_COMMENT]
-[EN_ATTR_COMMENT[
-
-]EN_ATTR_COMMENT]
-]]></notes>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<importedID>81F5FE40-4448-69B3-37C1-E5DE22FC7B0A</importedID>
-<engineerTo>
-<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
-<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="false"/>
-<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
-</engineerTo>
-<nullsAllowed>true</nullsAllowed>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT024</logicalDatatype>
-<defaultValue>000000</defaultValue>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<propertyMap>
-<property name="DE_ATTR_COMMENT" value=""/>
-<property name="DE_ATTR_NAME" value="Schriftfarbe"/>
-<property name="EN_ATTR_COMMENT" value=""/>
-<property name="EN_ATTR_NAME" value="Font color"/>
-</propertyMap>
 </Attribute>
 </attributes>
+<nestedAttributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<nestedAttribute name="Schrift.size" directorySegmentName="seg_1" id="A81CEA78-B198-AEB0-0ECA-CD142B65F3C0">
+<createdBy>stb</createdBy>
+<createdTime>2020-10-11 15:07:44 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<engineerTo>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
+<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<parentObject>B109C737-D2DA-31C3-CA5C-9A1868E6BAD3</parentObject>
+<structAttributeID>57AEDC17-A249-5CA2-EB48-72056CA33ECF</structAttributeID>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</nestedAttribute>
+<nestedAttribute name="Schrift.color" directorySegmentName="seg_1" id="B748EE15-4D4B-C21B-6C99-98024A8C2102">
+<createdBy>stb</createdBy>
+<createdTime>2020-10-11 15:07:44 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<engineerTo>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
+<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<parentObject>B109C737-D2DA-31C3-CA5C-9A1868E6BAD3</parentObject>
+<structAttributeID>B77D603C-A607-984B-40AA-09F9A6F6AD12</structAttributeID>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</nestedAttribute>
+</nestedAttributes>
 <identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
 <identifier id="E9AE0E99-93B0-BB7C-80B0-00169CEF09C2" name="Entitätdarstellung PK">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:05:50 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
 <item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="false"/>
-<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
+<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="false"/>
 </engineerTo>
 <pk>true</pk>
 <usedAttributes>

@@ -1,8 +1,6 @@
 # -*- coding: latin-1 -*-
-
 from IM_DB import *
 from IM_OBJECTS import *
-
 
 def erstelleInfra():
     #erlaube alles droppen
@@ -12,15 +10,6 @@ def erstelleInfra():
     Tabelle.createtable()
     Schnittstelleattr.createtable()
     Datatype.createtable()
-
-    dbDDL.dropTable("speicherformate");
-    dbDDL.createTable("""
-    CREATE TABLE speicherformate(
-    spfo_id             integer primary key autoincrement,
-    spfo_name           varchar(60) unique NOT NULL,
-    spfo_beschreibung   varchar(4000)
-)
-    """);
 
     Entity.createtable()
     Synonym.createtable()
@@ -54,144 +43,10 @@ def erstelleInfra():
 
     MeltDiat.createtable();
 
-    dbDDL.dropTable("elementdarst");
-    dbDDL.createTable("""
-CREATE TABLE elementdarst(
-				      eled_id               integer primary key autoincrement,
-				      eled_position_x       integer NULL,
-				      eled_position_y       integer NULL,
-				      eled_breite           integer NOT NULL,
-				      eled_hoehe            integer NOT NULL,
-				      eled_deckkraft        integer NULL
-				          CHECK(eled_deckkraft BETWEEN 0 AND 100),
-				      eled_farbe            varchar(6)  NOT NULL
-				          CHECK(length(eled_farbe)= 6),
-				      eled_randbreite       integer NULL,
-				      eled_randdeckkraft    integer NULL
-				          CHECK(eled_randdeckkraft BETWEEN 0 AND 100),
-				      eled_randfarbe        varchar(6)  NULL
-				          CHECK(length(eled_randfarbe)= 6),
-				      eled_schriftgroesse   integer NULL
-				          CHECK(eled_schriftgroesse BETWEEN 1 AND 999),
-				      eled_schriftfarbe     varchar(6) NULL
-				          CHECK(length(eled_schriftfarbe)= 6),
-				      eled_mode_id          integer NOT NULL,
-				      eled_diag_id          integer NOT NULL,
-				      eled_index            NUMBER(4)DEFAULT 0 NOT NULL,
-				      eled_uc           varchar(30) NOT NULL,
-				      eled_dc               varchar(30) NOT NULL,
-				      eled_um               varchar(30) ,
-				      eled_dm               varchar(30),
-				  	CONSTRAINT eled_un UNIQUE(eled_diag_id,eled_mode_id,eled_index),
-				      CONSTRAINT eled_diag_fk FOREIGN KEY(eled_diag_id)
-				          REFERENCES diagramme(diag_id)
-				              ON DELETE CASCADE,
-				  	CONSTRAINT eled_mode_fk FOREIGN KEY(eled_mode_id)
-				  			        REFERENCES modellelement(mode_id)
-				  			            ON DELETE CASCADE
-				  )""");
-    dbDDL.dropTable("beziehung_darst");
-    dbDDL.createTable("""
-				  CREATE TABLE beziehung_darst(
-				      beda_id                  integer primary key autoincrement,
-				      beda_diag_id             integer NOT NULL,
-				      beda_mode_id             integer NOT NULL,
-				      beda_linienbreite        integer DEFAULT 1 NOT NULL,
-				      beda_liniefarbe          varchar(6) NULL
-				          constraint beda_lf_chk CHECK  (length(beda_liniefarbe)= 6),
-				      beda_liniedeckkraft      integer NULL
-				          constraint beda_ldk_chk CHECK(beda_liniedeckkraft BETWEEN 0 AND 100),
-				      beda_startkante          varchar(1) NULL
-				          constraint beda_stk_chk CHECK(beda_startkante IN(
-				              'N',
-				              'O',
-				              'S',
-				              'W'
-				          )),
-				      beda_startposition       integer NULL
-				          constraint beda_stp_chk CHECK(beda_startposition BETWEEN 0.0 AND 100.0),
-				      beda_starttext_winkel    integer NULL
-				          constraint beda_stwi_chk CHECK(beda_starttext_winkel BETWEEN - 179 AND 180),
-				      beda_starttext_abstand   integer NULL
-				          constraint beda_stab_chk CHECK(beda_starttext_abstand BETWEEN 1 AND 9999),
-				      beda_starttext_x         integer NULL
-				          constraint beda_stx_chk CHECK(beda_starttext_x BETWEEN -9999 AND 999999),
-				      beda_starttext_y         integer NULL
-				          constraint beda_sty_chk CHECK(beda_starttext_y BETWEEN -9999 AND 999999),
-				      beda_starttext_breite    integer NULL
-				          constraint beda_stb_chk CHECK(beda_starttext_breite BETWEEN 1 AND 9999),
-				      beda_starttext_hoehe     integer NULL
-				          constraint beda_sth_chk CHECK(beda_starttext_hoehe BETWEEN 1 AND 9999),
-				      beda_endkante            varchar(1) NULL
-				          constraint beda_ek_chk CHECK(beda_endkante IN(
-				              'N',
-				              'O',
-				              'S',
-				              'W'
-				          )),
-				      beda_endposition         integer NULL
-				          constraint beda_ep_chk CHECK(beda_endposition BETWEEN 0.0 AND 100.0),
-				      beda_endtext_winkel      integer NULL
-				          constraint beda_ewi_chk CHECK(beda_endtext_winkel BETWEEN - 179 AND 180),
-				      beda_endtext_abstand     integer NULL
-				          constraint beda_eab_chk CHECK(beda_endtext_abstand BETWEEN 1 AND 9999),
-				      beda_endtext_x           integer NULL
-				          constraint beda_ex_chk CHECK(beda_endtext_x BETWEEN -9999 AND 999999),
-				      beda_endtext_y           integer NULL
-				          constraint beda_ey_chk CHECK(beda_endtext_y BETWEEN -9999 AND 999999),
-				      beda_endtext_breite      integer NULL
-				          constraint beda_eb_chk CHECK(beda_endtext_breite BETWEEN 1 AND 9999),
-				      beda_endtext_hoehe       integer NULL
-				          constraint beda_eh_chk CHECK(beda_endtext_hoehe BETWEEN 1 AND 9999),
-				      beda_schriftfarbe        varchar(6) DEFAULT '000000' NULL
-				          constraint beda_sf_chk CHECK(length(beda_schriftfarbe)= 6),
-				      beda_schriftgroesse      integer NULL
-				          constraint beda_sg_chk CHECK(beda_schriftgroesse BETWEEN 1 AND 999),
-				          beda_uc              varchar(30) NOT NULL,
-				      beda_dc                  varchar(30) NOT NULL,
-				      beda_um                  varchar(30) ,
-				      beda_dm                  varchar(30),
-				  	CONSTRAINT beda_un UNIQUE(beda_diag_id,beda_mode_id),
-				      CONSTRAINT beda_diag_fk FOREIGN KEY(beda_diag_id)
-				          REFERENCES diagramme(diag_id),
-				  	CONSTRAINT beda_mode_fk FOREIGN KEY(beda_mode_id)
-				          REFERENCES modellelement(mode_id)
-				              ON DELETE CASCADE
-				  )
-        """);
-    dbDDL.dropTable("linie_segment");
-    dbDDL.createTable("""
-CREATE TABLE linie_segment(
-    lise_id          integer primary key autoincrement,
-    lise_rhfg        integer NOT NULL,
-    lise_beda_id     integer NOT NULL,
-    lise_x           integer NOT NULL
-        CONSTRAINT ck_beda_beda_schriftfarbe CHECK(lise_x BETWEEN 0 AND 999999) ,
-    lise_y           integer NOT NULL
-        CONSTRAINT ck_beda_beda_schriftfarbe CHECK(lise_y BETWEEN 0 AND 999999) ,
-    lise_linientyp   VARCHAR2(6)NULL
-        CONSTRAINT ck_beda_beda_schriftgroesse CHECK(lise_linientyp IN(
-            'DADO',
-            'DASHED',
-            'DOTTED',
-            'SOLID'
-        )),
-		  lise_konnektor   VARCHAR2(1) NULL
-		CHECK(lise_konnektor IN(
-		'1',
-		'M'
-		)),
-	lise_winkel 	 integer,
-    lise_uc       varchar(30) NOT NULL,
-    lise_dc           varchar(30) NOT NULL,
-    lise_um           varchar(30) ,
-    lise_dm           varchar(30),
-	CONSTRAINT lise__un UNIQUE(lise_beda_id,lise_rhfg),
-	CONSTRAINT lise_beda_fk FOREIGN KEY(lise_beda_id)
-	        REFERENCES beziehung_darst(beda_id)
-	            ON DELETE CASCADE
-)
-	          """);
+    Elementrep.createtable()
+    Relationrep.createtable()
+    Linesegment.createtable()
+
     Projekt.createtable()
 
     dbDDL.dropTable("geschaeftsbereich");

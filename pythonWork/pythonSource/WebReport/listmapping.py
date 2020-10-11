@@ -697,7 +697,7 @@ def filllists(plang):
 
 def main(pdirec, plang):
     parameters.initparam(p_callarg=pdirec)
-    logging.initlog('createMapping')
+    logmessages.initlog('createMapping')
 
     print("listmapping", parameters.odmBaseDirec(), parameters.odmModelName())
 
@@ -715,8 +715,8 @@ def main(pdirec, plang):
     # listtabenti()
     # listcolattr()
     writexls(pfilename=parameters.webDirec() + 'Mappingtables_' + parameters.odmModelName() + '.xlsx')
-    logging.showmessages("Model {}: mappinglist form database {}\n  => created in file {}"
-                         .format(parameters.odmModelName(), parameters.dbFilePath()
+    logmessages.showmessages("Model {}: mappinglist form database {}\n  => created in file {}"
+                             .format(parameters.odmModelName(), parameters.dbFilePath()
                                , parameters.webDirec() + 'Mappingtables_' + parameters.odmModelName() + '.xlsx'))
 
 

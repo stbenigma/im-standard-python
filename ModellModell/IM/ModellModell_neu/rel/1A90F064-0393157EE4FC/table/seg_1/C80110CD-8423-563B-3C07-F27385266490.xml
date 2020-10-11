@@ -1,0 +1,71 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_1" id="C80110CD-8423-563B-3C07-F27385266490" name="Funktionale_Beziehung">
+<createdBy>stb</createdBy>
+<createdTime>2020-10-11 14:59:55 UTC</createdTime>
+<comment><![CDATA[Eine M:1 Beziehung  zwischen 2 Entitäten.
+Die M-Seite ist immer die von-Seite (im ODM nicht so geführt).]]></comment>
+<generatorID>CCA84128-2C6E-7BC3-3095-38F352696939</generatorID>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+Eine M:1 Beziehung  zwischen 2 Entitäten.
+Die M-Seite ist immer die von-Seite (im ODM nicht so geführt).
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+An M:1 relationship between two entities. 
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<typeID>899A6DDC-95E0-4AD5-5F58-B3A2FF5C2D08</typeID>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Funktionale_Beziehung_ID" id="8D02F328-31BF-51AA-E2EA-E6FFE51A4E89">
+<createdBy>stb</createdBy>
+<createdTime>2020-10-11 14:59:55 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="D8A45167-F039-0A58-22F4-5CF079D8D309" name="Funktionale_Beziehung_PK">
+<createdBy>stb</createdBy>
+<createdTime>2020-10-11 14:59:55 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="8D02F328-31BF-51AA-E2EA-E6FFE51A4E89"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="6CDB787E-515A-46A1-9CA3-301AEE0A9B97" name="Funktionale_Beziehung__UN">
+<createdBy>stb</createdBy>
+<createdTime>2020-10-11 14:59:55 UTC</createdTime>
+<generatorID>7465F71C-6E0A-E3D8-95A6-E74B987A6AA2</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+</ind_PK_UK>
+<ind_PK_UK id="FE476DEA-9D3D-2233-C3B1-F504E081AE08" name="Funktionale_Beziehung__UNv1">
+<createdBy>stb</createdBy>
+<createdTime>2020-10-11 14:59:55 UTC</createdTime>
+<generatorID>01978A28-13C8-5C45-CADD-2BF926266DE9</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+</ind_PK_UK>
+<ind_PK_UK id="2B4FED80-00F2-C640-3C40-C1999A9788D0" name="Funktionale_Beziehung__UNv2">
+<createdBy>stb</createdBy>
+<createdTime>2020-10-11 14:59:55 UTC</createdTime>
+<generatorID>CDCC3397-2B8C-C6C9-8C07-5A85ADAC3ABE</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+</ind_PK_UK>
+</indexes>
+</Table>
