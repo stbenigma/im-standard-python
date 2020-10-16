@@ -1,5 +1,4 @@
 from collections import defaultdict
-
 from IM_DB import dbDML
 from .attribute import Attribute
 from .baseobject import Baseobject
@@ -7,6 +6,7 @@ from .datatype import Datatype
 from .schnittstelle import Schnittstelle
 from .tabelle import Tabelle
 from .domain import  Domain
+from .modelelement import Modelelemtype
 
 
 class Schnittstelleattr(Baseobject):
@@ -15,12 +15,15 @@ class Schnittstelleattr(Baseobject):
     _prefix: str = 'scha'
     _columnlist: list = ['scha_id', 'scha_column_name', 'scha_format', 'scha_fremdsystem_id'
         , 'scha_beschr', 'scha_type_string', 'scha_tabl_id', 'scha_daty_id'
-        , 'scha_wrtb_id', 'scha_odm_guid'
+        , 'scha_doma_id', 'scha_odm_guid'
         , 'scha_uc', 'scha_dc', 'scha_um', 'scha_dm']
 
-    def __init__(self):
+    def __init__(self, psrcname=None, psrcid=None):
         super().__init__(tablename=Schnittstelleattr._tablename, prefix=Schnittstelleattr._prefix
-                         , columnlist=Schnittstelleattr._columnlist)
+                         , columnlist=Schnittstelleattr._columnlist
+                         , pmodelemtype=Modelelemtype.COLU
+                         , pscrid=psrcid
+                         , psrcname=psrcname)
 
     @staticmethod
     def createtable():
@@ -37,21 +40,18 @@ class Schnittstelleattr(Baseobject):
         scha_type_string    varchar(200),
         scha_tabl_id        integer     not null,
         scha_daty_id        integer     not null,
-        scha_wrtb_id        integer ,
+        scha_doma_id        integer ,
         scha_odm_guid       varchar(36),
         scha_uc             varchar(30) not null,
         scha_dc             varchar(30) not null,
         scha_um             varchar(30),
         scha_dm             varchar(30),
         constraint scha_daty_fk FOREIGN KEY (scha_daty_id) references datatypes (daty_id),
-        constraint scha_wrtb_fk FOREIGN KEY (scha_wrtb_id) references wertebereiche (wrtb_id),
+        constraint scha_doma_fk FOREIGN KEY (scha_doma_id) references domains (doma_id),
         constraint scha_tabl_fk FOREIGN KEY (scha_tabl_id) references tabellen(tabl_id),
         constraint scha_uk unique (scha_tabl_id,scha_column_name)        
         )
         """)
-    def insert(self):
-        self.scha_id = Modelelement(Modelelemtype.COLU).insert()
-        super().insert()
 
     def webanker(self):
         return super().webanker(pmodelid=self.getintfid())
@@ -76,8 +76,8 @@ class Schnittstelleattr(Baseobject):
         return self.getintf().schn_id
 
     def getwrtb(self):
-        if (self.scha_wrtb_id is None): return None
-        return Domain().getbyid(self.scha_wrtb_id)
+        if (self.scha_doma_id is None): return None
+        return Domain().getbyid(self.scha_doma_id)
 
 
     def getdaty(self):
@@ -159,12 +159,11 @@ class Schnittstelleattr(Baseobject):
     @staticmethod
     def fillextid():
         dbDML.exec("""update {}
-                     set scha_fremdsystem_id = (select bdwe_wert
-                    from modellelement
-                    join benudef_wert on bdwe_mode_id = mode_id
-                    join benudef_eigenschaft on bdeg_id = bdwe_bdeg_id
-                        and bdeg_name = '{}'
-                    where mode_scha_id = scha_id)""".format(Schnittstelleattr._tablename, Schnittstelleattr.EXTIDUDP))
+                     set scha_fremdsystem_id = (select UDPV_VALUE
+                    from UDP_VALUES 
+                    join USER_DEFINED_PROPERTIES on udpr_id = udpv_udpr_id
+                        and udpr_name = '{}'
+                    where udpv_mode_id = scha_id)""".format(Schnittstelleattr._tablename, Schnittstelleattr.EXTIDUDP))
 
 
 # Schnittstelleattr

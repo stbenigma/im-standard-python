@@ -344,7 +344,7 @@ CREATE TABLE LANG_TEXTS
     (
      LGTX_ID INTEGER NOT NULL primary key autoincrement ,
      LGTX_ATTRNAME VARCHAR (60) NOT NULL ,
-     LGTX_TEXT VARCHAR (4000) NOT NULL ,
+     LGTX_TEXT VARCHAR (4000) NULL ,
      LGTX_LANG_ID integer NOT NULL ,
      LGTX_MODE_ID integer NOT NULL ,
      LGTX_UC VARCHAR(30) NULL  ,
@@ -352,19 +352,11 @@ CREATE TABLE LANG_TEXTS
      LGTX_UM VARCHAR (30) NULL ,
      LGTX_DM VARCHAR (30) NULL
     ,CONSTRAINT LGTX_UK UNIQUE (LGTX_LANG_ID ASC, LGTX_MODE_ID ASC, LGTX_ATTRNAME ASC)
-    ,CONSTRAINT LGTX_LANG_FK FOREIGN KEY
-    (     LGTX_LANG_ID)
-    REFERENCES LANGUAGES
-    (     LANG_ID )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION
-    ,CONSTRAINT LGTX_MODE_FK FOREIGN KEY
-    (     LGTX_MODE_ID)
-    REFERENCES MODELELEMENT
-    (     MODE_ID )
-    ON DELETE CASCADE
-    ON UPDATE NO ACTION
-    );
+	,CONSTRAINT LGTX_LANG_FK FOREIGN KEY    (     LGTX_LANG_ID)
+    	REFERENCES LANGUAGES    (     LANG_ID )
+    ,CONSTRAINT LGTX_MODE_FK FOREIGN KEY    (     LGTX_MODE_ID)
+		REFERENCES MODELELEMENT    (     MODE_ID )    ON DELETE CASCADE
+);
 CREATE TABLE LANGUAGES
     (
      LANG_ID INTEGER NOT NULL primary key autoincrement,
@@ -381,12 +373,8 @@ CREATE TABLE LANGUAGES
     ,CONSTRAINT LANG_ISO_NAME_UN UNIQUE (LANG_ISO_NAME ASC)
       ,CONSTRAINT LANG_ISO_CODE2_UN UNIQUE (LANG_ISO_CODE2 ASC)
       ,CONSTRAINT LANG_ISO_CODE3_UN UNIQUE (LANG_ISO_CODE3 ASC)
-      ,CONSTRAINT LANG_REPLACE_FK FOREIGN KEY
-      (     LANG_LANG_ID)
-      REFERENCES LANGUAGES
-      (     LANG_ID )
-      ON DELETE SET NULL
-      ON UPDATE NO ACTION
+      ,CONSTRAINT LANG_REPLACE_FK FOREIGN KEY      (     LANG_LANG_ID)
+      REFERENCES LANGUAGES      (     LANG_ID )      ON DELETE SET NULL
   );
 CREATE TABLE MODE_DOCU
     (
@@ -586,7 +574,7 @@ CREATE TABLE SYNONYMS
 CREATE TABLE UDP_VALUES
     (
      UDPV_ID INTEGER NOT NULL primary key autoincrement,
-     UDPV_VALUE VARCHAR (4000) NOT NULL ,
+     UDPV_VALUE VARCHAR (4000)  pNULL ,
      UDPV_MODE_ID integer NOT NULL ,
      UDPV_UDPR_ID integer NOT NULL ,
      UDPV_UC VARCHAR (30) NOT NULL ,
@@ -603,6 +591,7 @@ CREATE TABLE UDP_VALUES
 CREATE TABLE USER_DEFINED_PROPERTIES
     (
      UDPR_ID INTEGER NOT NULL primary key autoincrement ,
+     UDPR_THEME VARCHAR (60) NULL ,
      UDPR_GROUP VARCHAR (60) NULL ,
      UDPR_NAME VARCHAR (60) NOT NULL ,
      UDPR_DESCR VARCHAR (4000) NULL ,
@@ -791,4 +780,76 @@ CREATE TABLE linesegments(
 	CONSTRAINT lise_relr_fk FOREIGN KEY(lise_relr_id)
 	      REFERENCES relationreps(relr_id)
 	            ON DELETE CASCADE
-)
+);
+
+CREATE TABLE schnittstellen
+    (
+     SCHN_ID integer primary key autoincrement, 
+     SCHN_NAME VARCHAR (60) NOT NULL , 
+     SCHN_BESCHR VARCHAR (4000)  , 
+ 	 SCHN_odm_guid	varchar(36),
+     SCHN_UC VARCHAR (30) NOT NULL , 
+     SCHN_DC VARCHAR (30) NOT NULL , 
+     SCHN_UM VARCHAR (30) NULL , 
+     SCHN_DM VARCHAR (30) NULL ,
+ CONSTRAINT SCHN_UN UNIQUE (SCHN_NAME)
+    );
+
+CREATE TABLE tabellen
+    (
+     tabl_id integer primary key autoincrement , 
+     tabl_name varchar (60) not null , 
+     tabl_schn_id integer not null , 
+     tabl_prefix varchar (60) null , 
+     tabl_beschr varchar (4000) null , 
+ 	 tabl_odm_guid	varchar(36),
+     tabl_uc varchar (30) not null , 
+     tabl_dc varchar (30) not null , 
+     tabl_um varchar (30) null , 
+     tabl_dm varchar (30) null ,
+	  CONSTRAINT TABL_UN UNIQUE (TABL_SCHN_ID , TABL_NAME)
+ 	   ,CONSTRAINT TABL_SCHN_FK FOREIGN KEY (TABL_SCHN_ID) 
+ 	      REFERENCES SCHNITTSTELLEn (SCHN_ID ) 
+    );
+create table schnittstelle_attrs
+(
+    scha_id             integer primary key ,
+    scha_column_name    varchar(60) not null,
+    scha_format         varchar(200),
+    scha_fremdsystem_id varchar(100),
+    scha_beschr         varchar(4000),
+    scha_type_string    varchar(200),
+    scha_tabl_id        integer     not null,
+    scha_daty_id        integer     not null,
+    scha_doma_id        integer ,
+    scha_uc             varchar(30) not null,
+    scha_dc             varchar(30) not null,
+    scha_um             varchar(30),
+    scha_dm             varchar(30),
+    constraint scha_daty_fk FOREIGN KEY (scha_daty_id) references datatypes (daty_id),
+    constraint scha_doma_fk FOREIGN KEY (scha_doma_id) references domains (doma_id),
+    constraint scha_tabl_fk FOREIGN KEY (scha_tabl_id) references tabellen(tabl_id),
+    constraint scha_uk unique (scha_tabl_id,scha_column_name)        
+    );
+	
+ create table tabl_enti_maps 
+ (
+  tema_id integer primary key autoincrement , 
+  tema_tabl_id integer not null , 
+  tema_enti_id integer null , 
+  tema_rela_id integer null , 
+  constraint tema_ck check ((tema_enti_id is not null and tema_rela_id is null )
+      	        		  or (tema_enti_id is null and tema_rela_id is not null)),
+		   constraint tema_un unique (tema_tabl_id , tema_enti_id ,tema_rela_id)
+	   ,constraint tema_bezi_fk foreign key (tema_rela_id) 
+	      references relations (rela_id ) 
+	   ,constraint tema_enti_fk foreign key (tema_enti_id) 
+	      references entities (enti_id ) 
+	   ,constraint tema_tabl_fk foreign key (tema_tabl_id) 
+	      references tabellen (tabl_id ) 
+ );
+ 
+create view langattr as
+select lgtx_text,lang_id,lang_iso_code2,lgtx_mode_id,lgtx_attrname
+  from lang_texts 
+  join languages on lang_id = lgtx_lang_id

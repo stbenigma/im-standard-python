@@ -236,11 +236,11 @@ def printcontentcolumn(pcols):
 def printlistofcontent(pschnid):
     printHTML.printlistofcontenthead()
     printHTML.printlistofcontentelement(pname='Tables'
-                                        , plist=web_sql.namelist(ptype='TABL'
+                                        , plist=web_sql.namelist(ptype=Modelelemtype.TABL
                                                                  , pid=pschnid)
                                         )
     printHTML.printlistofcontentelement(pname='Columns'
-                                        , plist=web_sql.namelist(ptype='INTF'
+                                        , plist=web_sql.namelist(ptype=Modelelemtype.COLU
                                                                  , pid=pschnid)
                                         )
 
@@ -279,16 +279,14 @@ def printcontenthead(pfirma, ptitel, pschnid):
                  (Column reference): Indirect linking of a column to another column via an attribute"""
     # fi
     printHTML.fhtml.write(contenthead.format(f, ref))
-    printHTML.printreflist(pelemid=pschnid, pelemtype='INTF')
+    printHTML.printreflist(pelemid=pschnid, pelemtype=Modelelemtype.INTF)
     printHTML.fhtml.write(contentheadend)
-
-
 # printcontenthead
 
 def printcontent(pfirma, ptitel, pschnid):
     printcontenthead(pfirma=pfirma, ptitel=ptitel, pschnid=pschnid)
-    printcontenttable(plist=Tabelle.selectbyschnid(pschnid=pschnid))
-    printcontentcolumn(pcols=Schnittstelleattr.selectbyschnid(pschnid=pschnid))
+#    printcontenttable(plist=Tabelle.selectbyschnid(pschnid=pschnid))
+#    printcontentcolumn(pcols=Schnittstelleattr.selectbyschnid(pschnid=pschnid))
     printHTML.printcontentfoot()
 
 # printcontent

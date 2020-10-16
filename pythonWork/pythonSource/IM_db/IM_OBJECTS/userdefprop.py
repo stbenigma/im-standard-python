@@ -1,5 +1,5 @@
 from IM_DB import dbDML
-from .baseobject import Baseobject
+from .baseobject import Baseobject,Webanker
 from datetime import date
 from mystring import nvl
 
@@ -7,12 +7,15 @@ from mystring import nvl
 class Userdefprop(Baseobject):
     _tablename: str = 'user_defined_properties'
     _prefix: str = 'udpr'
-    _columnlist: list = ['udpr_id','udpr_group','udpr_name','udpr_descr' 
+    _columnlist: list = ['udpr_id','udpr_group','udpr_theme','udpr_name','udpr_descr'
                 ,'udpr_uc','udpr_dc','udpr_um','udpr_dm']
 
-    def __init__(self):
+    def __init__(self,ptheme=None,pgroup=None,pname=None):
         super().__init__(tablename=Userdefprop._tablename, prefix=Userdefprop._prefix
                          , columnlist=Userdefprop._columnlist)
+        self.udpr_theme = ptheme
+        self.udpr_group = pgroup
+        self.udpr_name = pname
         self.udpr_uc = 'SYS'
         self.udpr_dc = date.today()
 
@@ -23,6 +26,7 @@ class Userdefprop(Baseobject):
         """CREATE TABLE USER_DEFINED_PROPERTIES
     (
      UDPR_ID INTEGER NOT NULL primary key autoincrement ,
+     UDPR_THEME VARCHAR (60) NULL ,
      UDPR_GROUP VARCHAR (60) NULL ,
      UDPR_NAME VARCHAR (60) NOT NULL ,
      UDPR_DESCR VARCHAR (4000) NULL ,
@@ -45,6 +49,27 @@ class Userdefprop(Baseobject):
     @staticmethod
     def getbyname(pname):
         return Userdefprop().getbyuk(pcolname='UDPR_NAME',pukvalue=pname)
+
+    @staticmethod
+    def udpAnker(id):
+        return Webanker(pname='UDP',pid=id)
+
+    @staticmethod
+    def indexlist(pmapfilename):
+        data = dbDML.select("""select  distinct udpr_group,udpr_theme||'-'||udpr_group id
+                         ,udpr_theme
+                        from user_defined_properties 
+                       where udpr_theme = '{}'
+                       union 
+                       select '*' grp,'datamapping-alle','{}'
+                       where exists (select  1 from
+                                user_defined_properties 
+                                where udpr_theme = '{}')
+                    order by udpr_group""".format(pmapfilename
+                                                  , pmapfilename
+                                                  , pmapfilename))
+        datalist = [(e[0], Userdefprop.udpAnker(e[1]), '', e[2]) for e in data]
+        return datalist
 # Userdefprop
 
 
@@ -66,7 +91,7 @@ class Userdefpropvalue(Baseobject):
                                , psql="""CREATE TABLE UDP_VALUES
     (
      UDPV_ID INTEGER NOT NULL primary key autoincrement,
-     UDPV_VALUE VARCHAR (4000) NOT NULL ,
+     UDPV_VALUE VARCHAR (4000) NULL ,
      UDPV_MODE_ID integer NOT NULL ,
      UDPV_UDPR_ID integer NOT NULL ,
      UDPV_UC VARCHAR (30) NOT NULL ,

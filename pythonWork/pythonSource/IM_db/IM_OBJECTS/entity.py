@@ -23,7 +23,7 @@ class Entity(MultilangBaseobject):
                                           ,'enti_descr':Sprachtext.ENTI_COMMENT
                                           ,'enti_tooltip': Sprachtext.ENTI_TOOLTIP}
                          , pmodelemtype=Modelelemtype.ENTI
-                         , psrcid=psrcid
+                         , pscrid=psrcid
                          , psrcname=psrcname
                          )
         self._parent = None
@@ -141,6 +141,7 @@ CREATE TABLE ENTITIES
         data = Entity.select(porderby='enti_name')
         indexlist = []
         for d in data:
+            d.getsprachvals()
             indexlist.append([d.getname(plang),d.webanker(),d.enti_id])
         #for
         return indexlist

@@ -103,31 +103,32 @@ def printAttrUDPMatrix(thema=None):
 
 def printlistofcontent():
     printHTML.printlistofcontenthead()
-    printHTML.printlistofcontentelement(pname='Entitäten', plist=web_sql.namelist(ptype='ENTI', plang=Sprachtext.reportLang()))
-    printHTML.printlistofcontentelement(pname='Attribute', plist=web_sql.namelist(ptype='ATTR', plang=Sprachtext.reportLang()))
-    printHTML.printlistofcontentelement(pname='Wertebereiche', plist=web_sql.namelist(ptype='DOMA', plang=Sprachtext.reportLang()))
-    printHTML.printlistofcontentelement(pname='Dokumente', plist=web_sql.namelist(ptype='DOKU', plang=Sprachtext.reportLang()))
+    printHTML.printlistofcontentelement(pname='Entitäten', plist=web_sql.namelist(ptype=Modelelemtype.ENTI, plang=Sprachtext.reportLang()))
+    printHTML.printlistofcontentelement(pname='Attribute', plist=web_sql.namelist(ptype=Modelelemtype.ATTR, plang=Sprachtext.reportLang()))
+    printHTML.printlistofcontentelement(pname='Wertebereiche', plist=web_sql.namelist(ptype=Modelelemtype.DOMA, plang=Sprachtext.reportLang()))
+    printHTML.printlistofcontentelement(pname='Dokumente', plist=web_sql.namelist(ptype=Modelelemtype.DOCU, plang=Sprachtext.reportLang()))
     printHTML.printlistofcontentelement(pname='Attribute-Mapping', plist=web_sql.namelist(ptype='UDP', plang=Sprachtext.reportLang()))
-    printHTML.printlistofcontentelement(pname='Diagramme', plist=web_sql.namelist(ptype='DIAG', plang=Sprachtext.reportLang()))
-    printHTML.printlistofcontentelement(pname='Systeme', plist=web_sql.namelist(ptype='INTF', plang=Sprachtext.reportLang())
+    printHTML.printlistofcontentelement(pname='Diagramme', plist=web_sql.namelist(ptype=Modelelemtype.DIAG, plang=Sprachtext.reportLang()))
+    printHTML.printlistofcontentelement(pname='Systeme', plist=web_sql.namelist(ptype=Modelelemtype.INTF, plang=Sprachtext.reportLang())
                                         ,pfileonly = True)
     printHTML.printlistofcontentfoot()
 # printlistofcontent
 
 def printcontent(pfirma,ptitel):
     printHTML.printcontenthead(pfirma=pfirma,ptitel=ptitel)
-    printHTML.printcontententi()
-    printHTML.printcontentattr()
-    printHTML.printcontentwrtb(plist=web_sql.wrtblist())
-    printHTML.printcontentdoku(plist=web_sql.dokulist())
-    printHTML.printcontentmapping(plist=web_sql.namelist(ptype='UDP', plang=Sprachtext.reportLang()))
-    printdiagHTML.printcontentdiag(plist=web_sql.diaglist(), plang=Sprachtext.reportLang(), ptitel=ptitel)
+#    printHTML.printcontententi()
+#    printHTML.printcontentattr()
+#    printHTML.printcontentwrtb(plist=web_sql.wrtblist())
+#    printHTML.printcontentdoku(plist=web_sql.dokulist())
+#    printHTML.printcontentmapping(plist=web_sql.namelist(ptype='UDP', plang=Sprachtext.reportLang()))
+#    printdiagHTML.printcontentdiag(plist=web_sql.diaglist(), plang=Sprachtext.reportLang(), ptitel=ptitel)
     printHTML.printcontentfoot()
 #printcontent
 
 def printhtmlfile(pfirma, ptitel, pinfo, plogofilename,pfilename):
     printHTML.createFile(pfilename=pfilename)
     printHTML.printhead(p_firma=pfirma
+                        ,piconfilename="image/imicon.png"
                         , p_titel=ptitel
                         , p_info=pinfo
                         , p_logofilename=plogofilename);
@@ -135,13 +136,12 @@ def printhtmlfile(pfirma, ptitel, pinfo, plogofilename,pfilename):
     printcontent(pfirma=pfirma, ptitel=ptitel);
     printHTML.printfoot();
     printHTML.closefile ();
-
-
 #printhtmlfile
 
 def printhtmlsysfile(pfirma, pfilename, ptitel, pinfo, plogofilename,pschnid):
     printHTML.createFile (pfilename=pfilename)
     printHTML.printhead(p_firma=pfirma
+                        ,piconfilename="image/imicon.png"
                         , p_titel=ptitel
                         , p_info=pinfo
                         , p_logofilename=plogofilename)
@@ -171,7 +171,7 @@ def listwebmain(plang):
     for lang in langs:
         Sprachtext.reportLang(lang.lower())
         langfilename = printHTML.webFileName + '_' + Sprachtext.reportLang() + '.html'
-        print ("create web-files for language {} in file {}".format(Sprachtext.reportLang(),langfilename))
+        print ("create web-files for language {} in file {}".format(Sprachtext.reportLang(),printHTML.webDirectory + langfilename))
         printHTML.htmlfilelist[0] = langfilename
         printhtmlfile(pfirma="foryouandyourcustomers"
                       , ptitel=parameters.odmModelName() + ' ({})'.format(Sprachtext.reportLang())
@@ -190,7 +190,7 @@ def listwebmain(plang):
     for s in schnlist:
         schn_name = s[0]
         schn_id = s[2]
-        print ("create web-files for system {}".format(schn_name))
+        print ("create web-files for system {} in file {}".format(schn_name,printHTML.webDirectory + langfilename))
         printhtmlsysfile(pfirma="foryouandyourcustomers"
                       ,pfilename= printHTML.htmlfilelist[schn_id]
                       , ptitel= parameters.odmModelName() + ' - {}'.format(schn_name)
@@ -199,7 +199,6 @@ def listwebmain(plang):
                       ,pschnid=schn_id
                       )
     #
-
 #listwebmain
 
 def main(pdirec, plang):

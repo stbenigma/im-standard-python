@@ -119,31 +119,30 @@ contentelementfoot: str = """                 <div class="panel">
     """
 
 
-def printhead(p_firma, p_titel, p_info, p_logofilename):
+def printhead(p_firma, piconfilename, p_titel, p_info, p_logofilename):
     htmlhead: str = """<!DOCTYPE html>
 <html lang="en">
 <head>
     <title>{}</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="{}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
 </head>
 
 <body>
-
     <div class="header" id="TopBar">
         <p4>{}</p4>
         <p4>{}</p4>
         <p5>{}</p5>
         <img src="image/{}" alt="{}" id="LLogo">
     </div>
-    """.format(p_titel, p_firma, p_titel, p_info, p_logofilename, p_firma)
+    """.format(p_titel, piconfilename, p_firma, p_titel, p_info, p_logofilename, p_firma)
     fhtml.write(htmlhead)
 
 
@@ -495,6 +494,11 @@ def printcontenthead(pfirma, ptitel):
             des <p2 class="IM">Informationsmodells {}</p2> von {}. 
             Diese Seite wurde von Software von <p2 class="fyayc">foryouandyourcustomers</p2> 
             erstellt.""".format(ptitel, pfirma)
+    elif Sprachtext.reportLang() == Sprachtext.FR:
+            f = """class="descr">Ce site web contient l'intégralité du contenu 
+                du <p2 class="IM">Modèle d'Information {}</p2> de {}. 
+                Cette page a été créée par le logiciel de <p2 class="fyayc">foryouandyourcustomers</p2>. 
+                """.format(ptitel, pfirma)
     else:
         f = """class="descr">This website contains the complete content 
             of the <p2 class="IM">Information model {}</p2> from {}. 
@@ -748,8 +752,6 @@ def printentikeys(pentiid):
                           , pwerteliste=keylist
                           )
                 )
-
-
 # printentikeys
 
 def printmappinthtml(pwerte, ptitel, pueberschriften, pheadlevel=2):
@@ -1354,9 +1356,8 @@ def findtransl(pattr, pmodeid, plangs):
     for l in plangs:
         eintrag = web_sql.transltext(pattr=pattr, pmodeid=pmodeid, plang=l)
         if (pattr in ('ENTI_NAME', 'ATTR_NAME')):
-            id = web_sql.elementid(pmodeid=pmodeid, ptyp=pattr[0:4])
-            eintrag = filehref(ref=web_sql.entiAnker(id) if pattr == 'ENTI_NAME'
-            else web_sql.attrAnker(id)
+            eintrag = filehref(ref=web_sql.entiAnker(pmodeid) if pattr == 'ENTI_NAME'
+            else web_sql.attrAnker(pmodeid)
                                , anz=eintrag, plang=l)
         # fi
         tl.extend([eintrag])

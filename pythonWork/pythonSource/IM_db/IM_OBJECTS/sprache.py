@@ -3,54 +3,47 @@ from datetime import date
 from IM_DB import dbDML
 
 class Sprache(Baseobject):
-    _tablename:str ='sprachen'
-    _prefix:str ='spra'
-    _columnlist:list = ['spra_id', 'spra_iso_name', 'spra_iso_code2', 'spra_iso_code3', 'spra_ist_textsprache'
-                    , 'spra_ist_modellsprache', 'spra_spra_id', 'spra_uc', 'spra_dc', 'spra_um', 'spra_dm']
+    _tablename:str ='languages'
+    _prefix:str ='lang'
+    _columnlist:list = ['lang_id', 'lang_iso_name', 'lang_iso_code2', 'lang_iso_code3', 'lang_is_text_lang'
+                    , 'lang_is_base_lang', 'lang_lang_id', 'lang_uc', 'lang_dc', 'lang_um', 'lang_dm']
 
     def __init__(self,pname=None,piso2=None,piso3=None):
         super().__init__(tablename=Sprache._tablename,prefix=Sprache._prefix
                         ,columnlist = Sprache._columnlist
-                         ,  )
-        self.spra_iso_name = pname
-        self.spra_iso_code2 = piso2
-        self.spra_iso_code3 =  piso3
-        self.spra_ist_textsprache ='TRUE'
-        self.spra_ist_modellsprache = 'FALSE'
-        self.spra_uc ='stb'
-        self.spra_dc = date.today()
+                         )
+        self.lang_iso_name = pname
+        self.lang_iso_code2 = piso2
+        self.lang_iso_code3 =  piso3
+        self.lang_is_text_lang ='TRUE'
+        self.lang_is_base_lang = 'FALSE'
+        self.lang_uc ='stb'
+        self.lang_dc = date.today()
 
     @staticmethod
     def createtable():
         Baseobject.createtable(ptablename=Sprache._tablename
                                , psql="""
-CREATE TABLE sprachen(
-        spra_id                integer primary key autoincrement,
-        spra_iso_name          varchar(60) NOT NULL,
-        spra_iso_code2         CHAR(2) NOT NULL,
-        spra_iso_code3         CHAR(3) NOT NULL,
-        spra_ist_textsprache   varchar(5) NOT NULL,
-        spra_ist_modellsprache   varchar(5) NOT NULL,
-        spra_spra_id           integer,
-        spra_uc                varchar(30) NOT NULL,
-        spra_dc                varchar(30) NOT NULL,
-        spra_um                varchar(30) ,
-        spra_dm                varchar(30),
-        constraint spra_txt_bool CHECK(spra_ist_textsprache IN(
-            'FALSE',
-            'TRUE'
-        )),
-        constraint spra_mod_bool CHECK(spra_ist_modellsprache IN(
-            'FALSE',
-            'TRUE'
-        )),
-        constraint spra_iso3_low CHECK(spra_iso_code3 = lower(spra_iso_code3)),
-        constraint spra_iso2_low CHECK(spra_iso_code2 = lower(spra_iso_code2)),
-    	constraint spra_iso_uk unique (spra_iso_name),
-    	constraint spra_iso2_uk unique (spra_iso_code2),
-    	constraint spra_iso3_uk unique (spra_iso_code3)
-    )"""
-                            )
+CREATE TABLE LANGUAGES
+    (
+     LANG_ID INTEGER NOT NULL primary key autoincrement,
+     LANG_ISO_NAME VARCHAR (60) NULL ,
+     LANG_ISO_CODE2 CHAR (2) NOT NULL CONSTRAINT LANG_ISO2_CHK CHECK ( LANG_ISO_CODE2 = lower(LANG_ISO_CODE2) ) ,
+     LANG_ISO_CODE3 CHAR (3) NOT NULL CONSTRAINT LANG_ISO3_CHK CHECK ( LANG_ISO_CODE3 = lower(LANG_ISO_CODE3) ) ,
+     LANG_IS_TEXT_LANG VARCHAR (5) NOT NULL CHECK ( LANG_IS_TEXT_LANG IN ('FALSE', 'TRUE') ) ,
+     LANG_IS_BASE_LANG VARCHAR (5) NOT NULL CHECK ( LANG_IS_BASE_LANG IN ('FALSE', 'TRUE') ) ,
+     LANG_LANG_ID integer NULL ,
+     LANG_UC VARCHAR(30) NULL  ,
+     LANG_DC VARCHAR (30) NOT NULL ,
+     LANG_UM VARCHAR (30) NULL ,
+     LANG_DM VARCHAR (30) NULL
+    ,CONSTRAINT LANG_ISO_NAME_UN UNIQUE (LANG_ISO_NAME ASC)
+      ,CONSTRAINT LANG_ISO_CODE2_UN UNIQUE (LANG_ISO_CODE2 ASC)
+      ,CONSTRAINT LANG_ISO_CODE3_UN UNIQUE (LANG_ISO_CODE3 ASC)
+      ,CONSTRAINT LANG_REPLACE_FK FOREIGN KEY      (     LANG_LANG_ID)
+      REFERENCES LANGUAGES      (     LANG_ID )      ON DELETE SET NULL
+  )"""
+           )
     @staticmethod
     def delete():
         Baseobject.delete(Sprache._tablename)
@@ -61,55 +54,55 @@ CREATE TABLE sprachen(
                                 ,pwhere=pwhere,porderby=porderby)
     @staticmethod
     def liesdefaultlang():
-        lDefLangs = Sprache.select(pwhere="""spra_ist_modellsprache = 'TRUE'""")
+        lDefLangs = Sprache.select(pwhere="""lang_is_base_lang = 'TRUE'""")
         if (lDefLangs is None): return None
         if (len(lDefLangs) == 0): return None
         return lDefLangs[0]
     #liesdefaultlang
 
     def getreplacementlang(self):
-        return Sprache.select(pwhere='spra_id={}'.format(self.spra_spra_id))[0]
+        return Sprache.select(pwhere='lang_id={}'.format(self.lang_lang_id))[0]
 
     @staticmethod
     def liesdeflangid():
         ldeflang = Sprache.liesdefaultlang()
         if (ldeflang is None): return None
-        else: return ldeflang.spra_id
+        else: return ldeflang.lang_id
     # liesdeflangid
 
     @staticmethod
     def liesdeflangiso2():
         ldeflang = Sprache.liesdefaultlang()
         if (ldeflang is None): return None
-        else: return ldeflang.spra_iso_code2
+        else: return ldeflang.lang_iso_code2
     #liesdeflangiso2
 
     @staticmethod
     def deleteunused():
-        dbDML.exec("""delete from sprachen
-                        where not exists(select 1 from sprachtexte
-                                       where sptx_spra_id = spra_id
+        dbDML.exec("""delete from languages
+                        where not exists(select 1 from LANG_TEXTS
+                                       where lgtx_lang_id = lang_id
                                        )
                     """)
     #deleteunsed
 
     @staticmethod
     def spraidlookup(piso):
-        if (len(piso) == 2): colname = 'spra_iso_code2'
-        elif (len(piso) == 3): colname = 'spra_iso_code3'
+        if (len(piso) == 2): colname = 'lang_iso_code2'
+        elif (len(piso) == 3): colname = 'lang_iso_code3'
         else: return None
         #fi
         try:
-            sprachen = Sprache.select(pwhere="""{} = lower("{}")""".format(colname,piso))
-            return sprachen[0].spra_id
+            languages = Sprache.select(pwhere="""{} = lower("{}")""".format(colname,piso))
+            return languages[0].lang_id
         except: return None
     #spraidlookup
 
     @staticmethod
     def setmodellang(pmodellang):
-        dbDML.exec("""update sprachen 
-                        set spra_ist_modellsprache = 
-                            case lower(spra_iso_code2) 
+        dbDML.exec("""update languages 
+                        set lang_is_base_lang = 
+                            case lower(lang_iso_code2) 
                             when '{}' then 'TRUE'
                             else 'FALSE'
                             end
@@ -119,13 +112,13 @@ CREATE TABLE sprachen(
     @ staticmethod
     def setallreplacementlang():
         #currently modellang is always replacement lang
-        dbDML.exec("""update sprachen  
-        set spra_spra_id = 
-            case when spra_ist_modellsprache  = 'TRUE'
+        dbDML.exec("""update languages  
+        set lang_lang_id = 
+            case when lang_is_base_lang  = 'TRUE'
             then NULL
-            else (select sp2.spra_id 
-                from sprachen sp2 
-                where sp2.spra_ist_modellsprache = 'TRUE'
+            else (select sp2.lang_id 
+                from languages sp2 
+                where sp2.lang_is_base_lang = 'TRUE'
                 )
             end
         """)

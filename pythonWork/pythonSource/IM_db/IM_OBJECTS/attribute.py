@@ -23,7 +23,7 @@ class Attribute(MultilangBaseobject):
                                           'attr_descr': Sprachtext.ATTR_COMMENT,
                                           'attr_tooltip': Sprachtext.ATTR_TOOLTIP}
                          , pmodelemtype=Modelelemtype.ATTR
-                         , psrcid=psrcid
+                         , pscrid=psrcid
                          , psrcname=psrcname)
         self.attr_displ_name = pname
         self.attr_enti_id = pentiid

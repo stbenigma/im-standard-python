@@ -1,7 +1,6 @@
 
 from IM_DB import dbDML,dbDDL
 from mystring import nvl
-from logmessages import writelog
 import sqlite3
 
 class Boolean:
@@ -196,10 +195,10 @@ class Baseobject:
 
 class MultilangBaseobject(Baseobject):
     def __init__(self, tablename, prefix, columnlist, multilangcols
-                 ,idcolname=None,psrcname=None,psrcid = None,pmodelemtype=None):
+                 ,idcolname=None,psrcname=None,pscrid = None,pmodelemtype=None):
         super().__init__(tablename=tablename, prefix=prefix, columnlist=columnlist
                         ,idcolname=idcolname
-                        ,pmodelemtype=pmodelemtype,psrcname=psrcname,pscrid=psrcid
+                        ,pmodelemtype=pmodelemtype,psrcname=psrcname,pscrid=pscrid
                         )
         self._multilangcols = multilangcols
     #__init__
@@ -208,9 +207,8 @@ class MultilangBaseobject(Baseobject):
         raise NotImplementedError("'getmodeid' muss implementiert werden")
 
     def getsprachvals(self):
-        modeid = self.getmodeid()
         for col in self._multilangcols.keys():
-            spt = Sprachtext.getsprachtexte(pattrname=self._multilangcols[col], pmodeid=modeid)
+            spt = Sprachtext.getlang_texts(pattrname=self._multilangcols[col], pmodeid=self.getid())
             self.__dict__[col + '_L'] = spt
         # for
     # getsprachvals
@@ -224,7 +222,7 @@ class MultilangBaseobject(Baseobject):
         #try
         return retval
     #getbeschr
-
+from logmessages import writelog
 from .sprachtext import Sprachtext
 from .modelelement import Modelelement
 from .externalref import Externalref

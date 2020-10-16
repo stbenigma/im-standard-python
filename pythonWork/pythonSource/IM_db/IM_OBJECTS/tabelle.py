@@ -1,4 +1,5 @@
 from .baseobject import Baseobject
+from .modelelement import Modelelement,Modelelemtype
 from IM_DB import dbDML
 
 class Tabelle(Baseobject):
@@ -8,9 +9,12 @@ class Tabelle(Baseobject):
                 ,  'tabl_prefix', 	'tabl_beschr', 	'tabl_odm_guid'
                 ,'tabl_uc', 	'tabl_dc', 	'tabl_um', 	'tabl_dm']
 
-    def __init__(self):
+    def __init__(self,psrcname=None, psrcid=None):
         super().__init__(tablename=Tabelle._tablename, prefix=Tabelle._prefix
-                        ,columnlist = Tabelle._columnlist)
+                        ,columnlist = Tabelle._columnlist
+                         , pmodelemtype=Modelelemtype.TABL
+                         , pscrid=psrcid
+                         , psrcname=psrcname)
 
     @staticmethod
     def createtable():
@@ -73,7 +77,7 @@ class Tabelle(Baseobject):
     def mappingto(ptablid):
         lsqle = """select 0 schn_id, 'Logisches Modell' schn_name, group_concat(enti_id,',')
         	from  tabl_enti_maps as mastermap
-	        left join entitaeten on enti_id = mastermap.tema_enti_id
+	        left join entites on enti_id = mastermap.tema_enti_id
 	        where  mastermap.tema_tabl_id = {}
 	        GROUP BY mastermap.tema_tabl_id""".format(ptablid)
         lsqlt = """select tabl_schn_id,schn_name,group_concat(tabl_id,',')

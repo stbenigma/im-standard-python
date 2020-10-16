@@ -89,7 +89,7 @@ class Relation(MultilangBaseobject):
                                             , 'rela_assoc_to_from': Sprachtext.RELA_TEXT_TO}
                              ,pmodelemtype=Modelelemtype.RELA
                              ,psrcname=psrcname
-                             ,psrcid=psrcid
+                             ,pscrid=psrcid
                              )
 
     @staticmethod

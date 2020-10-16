@@ -45,7 +45,7 @@ class Domain(MultilangBaseobject):
                          , columnlist=Domain._columnlist
                          , multilangcols={'doma_name': Sprachtext.DOMA_NAME}
                          , pmodelemtype=Modelelemtype.DOMA
-                         , psrcid=psrcid
+                         , pscrid=psrcid
                          , psrcname=psrcname
                          )
 

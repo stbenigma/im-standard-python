@@ -16,22 +16,22 @@ class TablEntiMap(Baseobject):
     def createtable():
         Baseobject.createtable(ptablename=TablEntiMap._tablename
                                , psql="""
-          create table tabl_enti_maps 
-          (
-           tema_id integer primary key autoincrement , 
-           tema_tabl_id integer not null , 
-           tema_enti_id integer null , 
-           tema_rela_id integer null , 
-           constraint tema_ck check ((tema_enti_id is not null and tema_rela_id is null )
-               	        		  or (tema_enti_id is null and tema_rela_id is not null)),
-       		   constraint tema_un unique (tema_tabl_id , tema_enti_id ,tema_rela_id)
-    		   ,constraint tema_bezi_fk foreign key (tema_rela_id) 
-    		      references relations (rela_id ) 
-    		   ,constraint tema_enti_fk foreign key (tema_enti_id) 
-    		      references entitaeten (enti_id ) 
-    		   ,constraint tema_tabl_fk foreign key (tema_tabl_id) 
-    		      references tabellen (tabl_id ) 
-          )    """
+ create table tabl_enti_maps 
+ (
+  tema_id integer primary key autoincrement , 
+  tema_tabl_id integer not null , 
+  tema_enti_id integer null , 
+  tema_rela_id integer null , 
+  constraint tema_ck check ((tema_enti_id is not null and tema_rela_id is null )
+      	        		  or (tema_enti_id is null and tema_rela_id is not null)),
+		   constraint tema_un unique (tema_tabl_id , tema_enti_id ,tema_rela_id)
+	   ,constraint tema_bezi_fk foreign key (tema_rela_id) 
+	      references relations (rela_id ) 
+	   ,constraint tema_enti_fk foreign key (tema_enti_id) 
+	      references entities (enti_id ) 
+	   ,constraint tema_tabl_fk foreign key (tema_tabl_id) 
+	      references tabellen (tabl_id ) 
+ )    """
                             )
     @staticmethod
     def delete():

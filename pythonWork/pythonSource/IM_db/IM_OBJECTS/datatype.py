@@ -15,6 +15,7 @@ class Datatype(Baseobject):
     __srcid = None
 
 
+
     def __init__(self,pname=None,pbasetype=None,psrcname=None,pscrid=None):
         super().__init__(tablename= Datatype._tablename, prefix= Datatype._prefix
                         ,columnlist = Datatype._columnlist
@@ -75,12 +76,7 @@ class Datatype(Baseobject):
 
     @staticmethod
     def getunknown():
-        if Datatype.__unknowndaty is None:
-            daty = Datatype.getbyname(pname='unknown')
-            Datatype.__unknowndaty = daty
-        #fi
-        return Datatype.__unknowndaty
-    #getunknown
+        return Datatype.getbyname(pname='unknown')
 #Datatype
 
 

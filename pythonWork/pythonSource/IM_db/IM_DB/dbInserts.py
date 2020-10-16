@@ -13,32 +13,30 @@ def  insertLovWrtb(pName,pherkunft = Domain.DERIVED):
     return doma.insert()
 
 def insertUdpTable(ptablId):
-    dbDML.exec("""insert into benudef_wert(
-                bdwe_wert,  bdwe_mode_id,   bdwe_bdeg_id
-                ,bdwe_uc,   bdwe_dc)
-                select NULL,mode_id,bdeg_id,tabl_uc,tabl_dc
+    dbDML.exec("""insert into UDP_VALUES(
+                udpv_value,  udpv_mode_id,   udpv_udpr_id
+                ,udpv_uc,   udpv_dc)
+                select NULL,tabl_id,udpr_id,tabl_uc,tabl_dc
                 from tabellen
-                join modelelement on mode_tabl_id = tabl_id
-                cross join (select mote_bdeg_id as bdeg_id
+                cross join (select metp_udpr_id as udpr_id
                              from modelelem_type
-                             join modelltyp_eigensch on mote_melt_id = melt_id
-                             where melt_shortname = 'TABL')
+                             join modelemtype_properties on metp_melt_id = melt_id
+                             where melt_shortname = '{}')
                 where tabl_id = {}
-            """ .format(ptablId))
+            """ .format(Modelelemtype.TABL,ptablId))
 #insertUdpTable
 def insertUdpColumn(pschaId):
-    dbDML.exec("""insert into benudef_wert(
-                bdwe_wert,  bdwe_mode_id,   bdwe_bdeg_id
-                ,bdwe_uc,   bdwe_dc)
-                select NULL,mode_id,bdeg_id,scha_uc,scha_dc
-                from main.schnittstelle_attrs
-                join modelelement on mode_scha_id = scha_id
-                cross join (select mote_bdeg_id as bdeg_id
+    dbDML.exec("""insert into UDP_VALUES(
+                udpv_value,  udpv_mode_id,   udpv_udpr_id
+                ,udpv_uc,   udpv_dc)
+                select NULL,scha_id,udpr_id,scha_uc,scha_dc
+                from schnittstelle_attrs
+                cross join (select metp_udpr_id as udpr_id
                              from modelelem_type
-                             join modelltyp_eigensch on mote_melt_id = melt_id
-                             where melt_shortname = 'INTF')
+                             join modelemtype_properties on metp_melt_id = melt_id
+                             where melt_shortname = '{}')
                 where scha_id = {}
-            """ .format(pschaId))
+            """ .format(Modelelemtype.INTF,pschaId))
 #insertUdpColumn
 
 def insertgeschaeftsbereich(pdata):

@@ -1,6 +1,5 @@
 import os
 import xml.etree.ElementTree as ET
-
 import transferModel
 from IM_DB import dbLookup, parameters, dbInserts,logmessages
 from IM_OBJECTS import *
@@ -28,9 +27,8 @@ def do1column(plfnr, pcolxml, ptablid):
 </propertyMap>
 </Column>
 """
-    scha = Schnittstelleattr()
+    scha = Schnittstelleattr(psrcname=Externalref.SOURCE_ODM,psrcid=transferModel.findField(pcolxml,'id'))
     scha.scha_column_name = transferModel.findField(pcolxml,'name')
-    scha.scha_odm_guid = transferModel.findField(pcolxml,'id')
     scha.scha_format = None
     scha.scha_beschr = transferModel.findText(pcolxml,'comment')
     scha.scha_tabl_id = ptablid
@@ -39,24 +37,27 @@ def do1column(plfnr, pcolxml, ptablid):
     scha.scha_fremdsystem_id = None
     daty_odm = transferModel.findText(pcolxml, 'logicalDatatype')
     if (daty_odm is not None and daty_odm != ''):
-        scha.scha_daty_id = Externalref.getODMmodeid(psrcid=daty_odm).daty_id
+        daty = Datatype().getbyODMref(psrcid=daty_odm)
+        scha.scha_daty_id = None if (daty is None) else daty.daty_id
     daty_wrtb_odm = transferModel.findText(pcolxml, 'domain')
-    scha.scha_wrtb_id = transferModel.findorcreateDomain(pdomguid=daty_wrtb_odm
-                                                         , pstructdomguid=None
-                                                         , ptypeguid=daty_odm
-                                                         , pattrname=scha.scha_column_name
-                                                         , pfathername=Tabelle().getbyid(ptablid).tabl_name
-                                                         , pattrxml=pcolxml)
+    tabl = Tabelle().getbyid(ptablid)
+    scha.scha_doma_id = \
+        transferModel.findorcreateDomain(pdomguid=daty_wrtb_odm
+                         , pstructdomguid=None
+                                         , ptypeguid=daty_odm
+                                         , pattrname=scha.scha_column_name
+                                         , pfathername=Schnittstelle().getbyid(tabl.tabl_schn_id).schn_name
+                                                       +'.'+tabl.tabl_name
+                                        , pattrxml=pcolxml)
     if scha.scha_daty_id is None:
         scha.scha_daty_id = Datatype.getunknown().daty_id
     scha.insert()
 
 
-    lmodeId= Modelelement.insertmode(pschaid=scha.scha_id)
     dbInserts.insertUdpColumn(pschaId=scha.scha_id)
-    transferModel.updateUDP(pmodeid=lmodeId, pobj=pcolxml)
+    transferModel.updateUDP(pmodeid=scha.scha_id, pobj=pcolxml)
     documents = transferModel.getdokuref(pelem= pcolxml)
-    ModelelemDoku.insertdokuref(pdocguidlist=documents, pmodeid=lmodeId)
+    ModelelemDocu.insertdocuref(pdocguidlist=documents, pmodeid=scha.scha_id)
 
 #do1column
 
@@ -64,20 +65,18 @@ def do1table(pfilename):
     global globalschnid
     tablexml = ET.parse(pfilename).getroot()
     #print (tablexml.get('name'),tablexml.get('id'),sep=' | ')
-    tabl = tabelle.Tabelle()
+    tabl = tabelle.Tabelle(psrcname=Externalref.SOURCE_ODM,psrcid=transferModel.findField(tablexml,"id"))
     tabl.tabl_name = transferModel.findField(tablexml,"name")
-    tabl.tabl_odm_guid = transferModel.findField(tablexml,"id")
     tabl.tabl_uc = transferModel.findText(tablexml,'createdBy')
     tabl.tabl_dc = transferModel.findText(tablexml,'createdTime')
     tabl.tabl_schn_id = globalschnid
     tabl.tabl_beschr = transferModel.findText(tablexml,"comment")
     tabl.insert()
-    lmodeId = Modelelement.insertmode(ptablid=tabl.tabl_id)
 
     dbInserts.insertUdpTable(ptablId=tabl.tabl_id)
 
     documents = transferModel.getdokuref(tablexml)
-    ModelelemDoku.insertdokuref(pdocguidlist=documents, pmodeid=lmodeId)
+    ModelelemDocu.insertdocuref(pdocguidlist=documents, pmodeid=tabl.tabl_id)
 
     """<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">"""
     cols= tablexml.find('columns')
@@ -87,7 +86,7 @@ def do1table(pfilename):
         #rof
     #fi
 
-    transferModel.updateUDP(pmodeid=lmodeId, pobj=tablexml)
+    transferModel.updateUDP(pmodeid=tabl.tabl_id, pobj=tablexml)
 
 #do1table
 
@@ -100,17 +99,15 @@ def transfertables(pschndirec):
 def do1schnittstelle(pfilename):
     global globalschnid
     schnxml = ET.parse(pfilename).getroot()
-    schn=schnittstelle.Schnittstelle()
+    schn=schnittstelle.Schnittstelle(psrcname=Externalref.SOURCE_ODM,psrcid=transferModel.findField(schnxml,'id'))
     schn.schn_name = transferModel.findField(schnxml,'name')
-    schn.schn_odm_guid = transferModel.findField(schnxml,'id')
     schn.schn_uc = transferModel.findText(schnxml,'createdBy')
     schn.schn_dc = transferModel.findText(schnxml,'createdTime')
     schn.insert()
-    lmodeId = Modelelement.insertmode(pschnid=schn.schn_id)
 
     #Dokumente an dieser Schnittstelle
     documents = transferModel.getdokuref(pelem=schnxml,pstruct=True)
-    ModelelemDoku.insertdokuref(pdocguidlist= documents, pmodeid= lmodeId)
+    ModelelemDocu.insertdocuref(pdocguidlist= documents, pmodeid    = schn.schn_id)
     #Tabellen
     filename, file_extension = os.path.splitext(pfilename)
     globalschnid = schn.schn_id #hässlich aber geht schlecht über generische Funktionen

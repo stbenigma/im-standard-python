@@ -1,4 +1,5 @@
 from .baseobject import Baseobject
+from .modelelement import Modelelemtype
 
 class Schnittstelle(Baseobject):
     _tablename:str = 'schnittstellen'
@@ -7,9 +8,12 @@ class Schnittstelle(Baseobject):
                 ,'schn_odm_guid',   'schn_uc',  'schn_dc'
                 ,'schn_um', 'schn_dm']
 
-    def __init__(self):
+    def __init__(self, psrcname=None, psrcid=None):
         super().__init__(tablename=Schnittstelle._tablename,prefix=Schnittstelle._prefix
-                         ,columnlist= Schnittstelle._columnlist)
+                         ,columnlist= Schnittstelle._columnlist
+                         , pmodelemtype=Modelelemtype.INTF
+                         , pscrid=psrcid
+                         , psrcname=psrcname)
 
     @staticmethod
     def createtable():

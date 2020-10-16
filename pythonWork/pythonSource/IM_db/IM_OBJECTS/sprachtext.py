@@ -19,10 +19,10 @@ class Sprachtext(Baseobject):
     __greportLang:str = None
 
 
-    _tablename:str ='sprachtexte'
-    _prefix:str ='sptx'
-    _columnlist:list = ['sptx_id', 'sptx_attrname', 'sptx_text', 'sptx_spra_id'
-                        , 'sptx_mode_id', 'sptx_uc', 'sptx_dc', 'sptx_um', 'sptx_dm']
+    _tablename:str ='lang_texts'
+    _prefix:str ='lgtx'
+    _columnlist:list = ['lgtx_id', 'lgtx_attrname', 'lgtx_text', 'lgtx_lang_id'
+                        , 'lgtx_mode_id', 'lgtx_uc', 'lgtx_dc', 'lgtx_um', 'lgtx_dm']
 
     def __init__(self):
         super().__init__(tablename=Sprachtext._tablename,prefix=Sprachtext._prefix
@@ -32,31 +32,31 @@ class Sprachtext(Baseobject):
     def createtable():
         Baseobject.createtable(ptablename=Sprachtext._tablename
                                , psql="""
-CREATE TABLE sprachtexte(
-        sptx_id           integer primary key autoincrement,
-    	sptx_attrname	  varchar(30) NOT NULL,
-        sptx_text         varchar(4000) ,
-        sptx_spra_id      integer,
-        sptx_mode_id      integer NOT NULL,
-        sptx_uc           varchar(30) NOT NULL,
-        sptx_dc           varchar(30) NOT NULL,
-        sptx_um           varchar(30) ,
-        sptx_dm           varchar(30),
-    	constraint sptx_attrnameUC check(sptx_attrname = upper(sptx_attrname)),
-    	constraint sptx_uk unique (sptx_attrname,sptx_spra_id,sptx_mode_id),
-        CONSTRAINT sptx_mode_fk FOREIGN KEY(sptx_mode_id)
-    									   REFERENCES modellelement(mode_id),
-    	CONSTRAINT sptx_spra_fk FOREIGN KEY(sptx_spra_id)
-    									   REFERENCES sprachen(spra_id)	
-        )"""
+CREATE TABLE LANG_TEXTS
+    (
+     LGTX_ID INTEGER NOT NULL primary key autoincrement ,
+     LGTX_ATTRNAME VARCHAR (60) NOT NULL ,
+     LGTX_TEXT VARCHAR (4000) NULL ,
+     LGTX_LANG_ID integer NOT NULL ,
+     LGTX_MODE_ID integer NOT NULL ,
+     LGTX_UC VARCHAR(30) NULL  ,
+     LGTX_DC VARCHAR (30) NOT NULL ,
+     LGTX_UM VARCHAR (30) NULL ,
+     LGTX_DM VARCHAR (30) NULL
+    ,CONSTRAINT LGTX_UK UNIQUE (LGTX_LANG_ID ASC, LGTX_MODE_ID ASC, LGTX_ATTRNAME ASC)
+	,CONSTRAINT LGTX_LANG_FK FOREIGN KEY    (     LGTX_LANG_ID)
+    	REFERENCES LANGUAGES    (     LANG_ID )
+    ,CONSTRAINT LGTX_MODE_FK FOREIGN KEY    (     LGTX_MODE_ID)
+		REFERENCES MODELELEMENT    (     MODE_ID )    ON DELETE CASCADE
+)"""
                             )
 
-        dbDDL.dropView("SPRAATTR");
+        dbDDL.dropView("LANGATTR");
         dbDDL.createTable("""
-                    create view spraattr as
-        	        select sptx_text,spra_id,spra_iso_code2,sptx_mode_id,sptx_attrname
-        	          from sprachtexte 
-        	          join sprachen on spra_id = sptx_spra_id
+                    create view langattr as
+        	        select lgtx_text,lang_id,lang_iso_code2,lgtx_mode_id,lgtx_attrname
+        	          from lang_texts 
+        	          join languages on lang_id = lgtx_lang_id
         	          """);
     #createtable
 
@@ -70,35 +70,35 @@ CREATE TABLE sprachtexte(
                                 ,pwhere=pwhere,porderby=porderby)
     @staticmethod
     def sptxistleer():
-        data = dbDML.select("""select count(*) from sprachtexte""")
+        data = dbDML.select("""select count(*) from lang_texts""")
         return data[0][0] == 0
 
     @staticmethod
     def filldefaulttext(plang):
-        """füllt sämtliche übersetzten Elemente in die Sprachtexte der Defaultsprache ein.
+        """füllt sämtliche übersetzten Elemente in die lang_texts der Defaultsprache ein.
            D.h. alle übersetzten Attribute haben mind. in der Defaultsprache einen  Eintrag.
         """
-        dbDML.exec("""insert into sprachtexte 
-                    (sptx_attrname,  sptx_text
-                   ,sptx_mode_id, sptx_uc, sptx_dc
-                   , sptx_spra_id)
+        dbDML.exec("""insert into lang_texts 
+                    (lgtx_attrname,  lgtx_text
+                   ,lgtx_mode_id, lgtx_uc, lgtx_dc
+                   , lgtx_lang_id)
                   select * from 
                     (select 'ENTI_NAME' attrname, enti_name text 
                         ,enti_id,enti_uc,enti_dc
-                    from entitaeten 
+                    from entities 
                     union all
                    select 'ENTI_COMMENT' attrname, enti_descr text 
                         ,enti_id,enti_uc,enti_dc
-                    from entitaeten                     
+                    from entities                     
                     union all
                    select 'ENTI_TOOLTIP' attrname, enti_tooltip text 
                         ,enti_id,enti_uc,enti_dc
-                    from entitaeten                     
+                    from entities                     
                     union all
                    select 'ENTI_SYNONYM' attrname, syno_name text 
                         ,enti_id,enti_uc,enti_dc
-                    from synonyme 
-                    join entitaeten on enti_id  = syno_enti_id
+                    from synonyms
+                    join entities on enti_id  = syno_enti_id
                     union all
                    select 'ATTR_COMMENT' attrname, attr_descr text 
                         ,attr_id,attr_uc,attr_dc
@@ -120,54 +120,54 @@ CREATE TABLE sprachtexte(
                         ,rela_id,rela_uc,rela_dc
                     from relations
                     union all 
-                   select 'DOMA_NAME' attrname, wrtb_name text 
+                   select 'DOMA_NAME' attrname, doma_name text 
                         ,doma_id,doma_uc,doma_dc
-                    from wertebereiche  
+                    from DOMAINS  
                 )
-                cross join (select {} as spra_id)
+                cross join (select {} as lang_id)
                    """.format(plang))
     #filldefaulttext
 
     @staticmethod
-    def insertsprachtexte(pudpthema):
-        """übertrage alle Sprachtexte (ausser in der Default Sprache aus UDP in die Sprachtexte
+    def insertlang_texts(pudpthema):
+        """übertrage alle lang_texts (ausser in der Default Sprache aus UDP in die lang_texts
         """
-        lsql = """insert  into sprachtexte (sptx_attrname, sptx_text, sptx_spra_id, sptx_mode_id, sptx_uc, sptx_dc)
-            select attrname,bdwe_wert,spra_id,bdwe_mode_id,bdwe_uc,bdwe_dc
-            from (select bdwe_wert,
-                      bdwe_mode_id,
-                      lower(substr(bdeg_name, 1, 2)) spracheiso2,
-                      substr(bdeg_name, 4)           attrname
-                ,bdwe_uc,bdwe_dc
-               from benudef_wert
-                join benudef_eigenschaft on bdeg_id = bdwe_bdeg_id
-            where bdeg_thema = '{}'
+        lsql = """insert  into lang_texts (lgtx_attrname, lgtx_text, lgtx_lang_id, lgtx_mode_id, lgtx_uc, lgtx_dc)
+            select attrname,udpv_value,lang_id,udpv_mode_id,udpv_uc,udpv_dc
+            from (select udpv_value,
+                      udpv_mode_id,
+                      lower(substr(udpr_name, 1, 2)) spracheiso2,
+                      substr(udpr_name, 4)           attrname
+                ,udpv_uc,udpv_dc
+               from UDP_VALUES
+                join USER_DEFINED_PROPERTIES on udpr_id = udpv_udpr_id
+            where udpr_theme = '{}'
             )
-        join sprachen on spra_iso_code2 = spracheiso2
-        where spra_ist_modellsprache = 'FALSE'""".format(pudpthema)
+        join languages on lang_iso_code2 = spracheiso2
+        where lang_is_base_lang = 'FALSE'""".format(pudpthema)
         dbDML.exec(lsql)
-    # insertsprachTexte
+    # insertlang_texts
 
     @staticmethod
-    def getsprachtexte(pattrname,pmodeid):
-        lsql = """with sptx as 
-            (select sptx_spra_id,sptx_text
-             from sprachtexte
-            where sptx_attrname = '{}'
-            and sptx_mode_id = {}
+    def getlang_texts(pattrname,pmodeid):
+        lsql = """with lgtx as 
+            (select lgtx_lang_id,lgtx_text
+             from lang_texts
+            where lgtx_attrname = '{}'
+            and lgtx_mode_id = {}
             )
-        select spra_iso_code2,
-            case when sptx.sptx_text is not NULL
-                then sptx.sptx_text
-                else sptxdef.sptx_text
+        select lang_iso_code2,
+            case when lgtx.lgtx_text is not NULL
+                then lgtx.lgtx_text
+                else lgtxdef.lgtx_text
                 end text
-        from sprachen
-        left join sptx as sptx on sptx.sptx_spra_id = spra_id
-        left join sptx as sptxdef on sptxdef.sptx_spra_id = spra_spra_id""".format(pattrname,pmodeid if pmodeid is not None else 'NULL')
+        from languages
+        left join lgtx as lgtx on lgtx.lgtx_lang_id = lang_id
+        left join lgtx as lgtxdef on lgtxdef.lgtx_lang_id = lang_lang_id""".format(pattrname,pmodeid if pmodeid is not None else 'NULL')
         data = dbDML.select(lsql)
         retval = {d[0]:d[1] for d in data}
         return retval
-    #getsprachtexte
+    #getlang_texts
 
 
     __translNameEN = {'Anzeige': 'Display'
@@ -336,7 +336,7 @@ CREATE TABLE sprachtexte(
         , "Stunde": "Heure"
         , "Subentität": "Sous-entité"
         , "Subentitäten": "Sous-entités"
-        , "Suchbegriff": "Clef de reherche"
+        , "Suchbegriff": "Clef de recherche"
         , "Superentität": "Superentité"
         , "Synonyme": "Synonyme"
         , "Syntaxregel": "Règle syntaxique"

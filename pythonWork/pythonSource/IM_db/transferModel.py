@@ -13,7 +13,6 @@ from mystring import nvl
 GUIDPATTERN: str = '[A-Z0-9-]{20,45}'
 UDPEXTENSION: str = 'udposdm'
 
-
 class color:
     def __init__(self, foregcolor, backgcolor, fontcolor, fontname, fontsize, fontstyle):
         self.backgcolor = backgcolor
@@ -776,7 +775,6 @@ def updateUDP(pmodeid, pobj):
         Userdefpropvalue.updvalues(prows=udps)
     # fi
 
-
 def do1Attribute(plfnr, pattrxml, pentiId=None, prelaId=None):
     # wegen FK-PK zusätzliche Attribute werden nicht übernommen
     if (findText(pattrxml, 'referedAttribute') is not None):
@@ -1062,7 +1060,7 @@ def do1UDPFile(pfileName):
     tree = ET.parse(pfileName)
     root = tree.getroot()
     filename= re.match("^[^.]*",os.path.split(pfileName)[1])[0]
-    lupdThema = filename
+    ludpTheme = filename
     lgroups = {'': '-'}  # für ungruppierte properties
     for groups in root.findall('udp_groups'):
         for child in groups:
@@ -1072,20 +1070,19 @@ def do1UDPFile(pfileName):
     # for
 
     # die speziellen Properties (translation of comments in notes manuell einfüllen
-    if (lupdThema == parameters.odmUDPTranslFileName()):
+    if (ludpTheme == parameters.odmUDPTranslFileName()):
         for lgrpkey, lgrpvalue in lgroups.items():
             if lgrpkey != '':
-                udpr = Userdefprop()
-                udpr.udpr_group = lgrpvalue
-                udpr.udpr_name = lgrpvalue + '_ENTI_COMMENT'
+                udpr = Userdefprop(ptheme=ludpTheme,pgroup=lgrpvalue,pname=lgrpvalue + '_ENTI_COMMENT')
+                udpr.udpr_descr = "created for comments, solved in notes because of multiline strings"
                 udprid = udpr.insert()
 
                 metpid = ModelelementProperty(pmeltid=Modelelemtype.getidbyshortname(pshortname=Modelelemtype.ENTI)
                                             ,pudprid=udprid).insert()
 
-                udpr = Userdefprop()
-                udpr.udpr_group = lgrpvalue
-                udpr.udpr_name = lgrpvalue + '_ATTR_COMMENT'
+                udpr = Userdefprop(ptheme=ludpTheme,pgroup=lgrpvalue,pname=lgrpvalue + '_ATTR_COMMENT')
+                udpr.udpr_descr = "created for comments, solved in notes because of multiline strings"
+
                 udprid = udpr.insert()
 
                 metpid = ModelelementProperty(pmeltid=Modelelemtype.getidbyshortname(pshortname=Modelelemtype.ATTR)
@@ -1103,9 +1100,7 @@ def do1UDPFile(pfileName):
         proptype = findField(prop, 'type')
         propdefault = findField(prop, 'default_value')
         proptext = findText(prop, 'description')
-        udpr = Userdefprop()
-        udpr.udpr_group = lgroups[group]
-        udpr.udpr_name = propname
+        udpr = Userdefprop(ptheme=ludpTheme,pgroup=lgroups[group],pname=propname)
         udpr.udpr_descr = proptext
         udprid = udpr.insert()
 
@@ -1120,7 +1115,7 @@ def do1UDPFile(pfileName):
                 except Exception as err:
                     print(err)
                     logmessages.writelog(
-                        "mapping type '{}' for UDP {}:{}:{} not found".format(lmeltid, lupdThema, group, propname))
+                        "mapping type '{}' for UDP {}:{}:{} not found".format(lmeltid, ludpTheme, group, propname))
                     logmessages.writelog(err)
                     pass
             # fi
@@ -1129,7 +1124,7 @@ def do1UDPFile(pfileName):
         lov = prop.find('list_of_values')
         # Currently no Domains and therefore no LOVs in UDPs
         if False and (lov is not None):
-            wrtbId = dbInserts.insertLovWrtb(pName=lupdThema + '_' + propname)
+            wrtbId = dbInserts.insertLovWrtb(pName=ludpTheme + '_' + propname)
 
             # end insertLovWrtb
 
@@ -1295,7 +1290,7 @@ def loaddefaultcolors():
 # loaddefaultcolors
 
 def filllanguages():
-    Sprachtext.insertsprachtexte(pudpthema=parameters.odmUDPTranslFileName())
+    Sprachtext.insertlang_texts(pudpthema=parameters.odmUDPTranslFileName())
     # fill all elements in default language
     Sprachtext.filldefaulttext(dbParam.dbDefaultLangID)
     Sprache.deleteunused()
@@ -1379,7 +1374,6 @@ def transferODMModel():
     transferKeys()
     transferdiagramme()
     filllanguages()
-    return
     transferRelational.transfer()
     removeemptyudp()
     Schnittstelleattr.fillextid()
