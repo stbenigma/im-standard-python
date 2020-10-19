@@ -194,9 +194,6 @@ CREATE TABLE DOMAINS
 
     # typestring
 
-    def webanker(self):
-        return super().webanker()
-
     def refattranz(self):
         data = dbDML.select("""select count(*) 
                     from attributes where attr_doma_id = {}

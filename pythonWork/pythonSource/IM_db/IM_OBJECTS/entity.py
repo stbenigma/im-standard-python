@@ -72,9 +72,6 @@ CREATE TABLE ENTITIES
         join ENTITIES subentity on subentity.ENTI_ID = rela_enti_id
         """)
 
-    def webanker(self):
-        return super().webanker()
-
     def getmodellelement(self):
         return Modelelement.getbyelemid(pentiid=self.enti_id)
     def getmodeid(self):
@@ -135,17 +132,6 @@ CREATE TABLE ENTITIES
         entis =  Baseobject.select(pclass=Entity
                                  , pwhere=pwhere, porderby=porderby)
         return entis
-
-    @staticmethod
-    def indexlist(plang=None):
-        data = Entity.select(porderby='enti_name')
-        indexlist = []
-        for d in data:
-            d.getsprachvals()
-            indexlist.append([d.getname(plang),d.webanker(),d.enti_id])
-        #for
-        return indexlist
-    #indexlist
 
     @staticmethod
     def mappingto(ptablid):
@@ -223,8 +209,6 @@ CREATE TABLE SYNONYMS
 		 ON DELETE CASCADE
     )
         """)
-    def webanker(self):
-        return super().webanker()
 
     def getname(self,plang:str=None):
         return self._getsprachval(colname='syno_name',plang=plang)

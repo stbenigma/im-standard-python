@@ -10,6 +10,7 @@ DBLANGUAGES:str = 'dblanguages'
 LOGFILEDIREC:str = 'logfiledirec'
 LOGFILEPATH:str = 'logfilepath'
 
+
 paramFileExension:str = ".params"
 parameter = {
               'dbfilepath': None
@@ -32,7 +33,7 @@ parameter = {
             , 'odmtypesfile': 'types.xml'
             , 'odmstructypesdir':  "datatypes/structuredtype/"
             , 'odmfilesdirec': 'files/'
-            , 'odmentitydirec': 'logical/entity/'
+            , 'odmentitydirec': 'logical/dbobject/'
             , 'odmrelationdirec': 'logical/relation/'
             , 'odmentisubviewdirec': 'logical/subviews/'
             , 'odmarcdirec': 'logical/arc/'

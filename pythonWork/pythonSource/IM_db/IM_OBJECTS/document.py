@@ -58,9 +58,6 @@ CREATE TABLE DOCUMENTS
         return self._children
     #getchildren
 
-    def webanker(self):
-        return super().webanker()
-
     @staticmethod
     def delete():
         Baseobject.delete(Document._tablename)
@@ -69,13 +66,6 @@ CREATE TABLE DOCUMENTS
     def select(pwhere=None, porderby=None):
         return Baseobject.select(pclass=Document
                                  , pwhere=pwhere, porderby=porderby)
-    @staticmethod
-    def indexlist():
-        data = Document.select(porderby='docu_name')
-        indexlist = [[d.docu_name,d.webanker(),d.docu_id] for d in data]
-        return indexlist
-    #indexlist
-
     @staticmethod
     def updparents(psrcname,pparents):
         for key,val in pparents.items():
@@ -176,9 +166,6 @@ CREATE TABLE MODE_DOCU
     )
 """
         )
-
-    def webanker(self):
-        return super().webanker()
 
     @staticmethod
     def delete():

@@ -81,9 +81,6 @@ CREATE TABLE ATTRIBUTES
         """)
 
 
-    def webanker(self):
-        return super().webanker()
-
     def getname(self, plang=None):
         return self._getsprachval(colname='attr_displ_name', plang=plang)
 

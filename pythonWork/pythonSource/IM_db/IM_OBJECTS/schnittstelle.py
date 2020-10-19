@@ -53,12 +53,6 @@ class Schnittstelle(Baseobject):
         return Baseobject.select(pclass=Schnittstelle
                                  , pwhere=pwhere, porderby=porderby)
 
-    @staticmethod
-    def indexlist():
-        schn = Schnittstelle.select()
-        indexlist = [[s.schn_name, s.webanker(), s.schn_id] for s in schn]
-        return indexlist
-    # indexlist
 
 #Schnittstelle
 

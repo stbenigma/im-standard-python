@@ -3,6 +3,15 @@ from IM_DB import dbDML,dbDDL
 from mystring import nvl
 import sqlite3
 
+class Webanker:
+    def __init__(self,pname,pid,pmodelid=0):
+        print ("Webanker in Basepbject soll bald verschwinden")
+    def anker(self):
+        return 'FIX'
+    def modelid(self):
+        return 0
+
+
 class Boolean:
     TRUE:str='TRUE'
     FALSE:str='FALSE'
@@ -21,22 +30,6 @@ class Boolean:
         return Boolean.bool2str( not Boolean.str2bool(pstr))
     # strNegBool
 #Boolean
-
-class Webanker:
-    """enthält die Information um Web-Referenzen (Sprungziele / id) herzustellen.
-         Webanker bestehen aus dem Kurznamen (prefix) des Elementes, seinem ID sowie ggf.
-         dem Modelid (der dann in einen html-Dateinamen umgesetzt wird.
-         Modelid =0 -> logisches Modell
-    """
-    def __init__(self,pname,pid,pmodelid=0):
-        self._id:int = pid
-        self._name:str = pname.upper()
-        self._modelid:int = pmodelid
-    def anker(self):
-        return nvl(self._name) + str(nvl(self._id))
-    def modelid(self):
-        return self._modelid
-#Webanker
 
 class Baseobject:
     def __init__(self,tablename,prefix,columnlist,idcolname = None
@@ -108,7 +101,7 @@ class Baseobject:
             writelog("{}: nonexistent ID={} '".format(self._tablename, pid))
             raise Exception('{}: nonexistent ID={}'.format(self._tablename, pid))
         else:
-            self._fromarray(data[0].toarray())
+            self = data[0]
         return self
     # getbyid
 
@@ -120,7 +113,7 @@ class Baseobject:
             #self.__emptyclass()
             return None
         else:
-            self._fromarray(data[0].toarray())
+            self = data[0]
         # fi
         return self
     # getbyuk

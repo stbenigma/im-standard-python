@@ -53,12 +53,6 @@ CREATE TABLE diagrams(
         return Diagram().getbyuk(pcolname='diag_name', pukvalue=pname)
     # getbyname
 
-    @staticmethod
-    def indexlist():
-        data = Diagram.select(porderby='(select diat_name from diagramtypes where diat_id = diag_diat_id),diag_name')
-        indexlist = [[d.diag_name+" ("+Diagramtype().getbyid(pid=d.diag_diat_id).diat_name+")",d.webanker(),d.diag_id] for d in data]
-        return indexlist
-
 #Diagram
 
 class Diagramtype(Baseobject):
