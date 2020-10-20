@@ -33,7 +33,7 @@ parameter = {
             , 'odmtypesfile': 'types.xml'
             , 'odmstructypesdir':  "datatypes/structuredtype/"
             , 'odmfilesdirec': 'files/'
-            , 'odmentitydirec': 'logical/dbobject/'
+            , 'odmentitydirec': 'logical/entity/'
             , 'odmrelationdirec': 'logical/relation/'
             , 'odmentisubviewdirec': 'logical/subviews/'
             , 'odmarcdirec': 'logical/arc/'

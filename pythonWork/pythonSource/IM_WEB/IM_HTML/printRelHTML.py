@@ -275,7 +275,7 @@ def printcontenthead(pfirma, ptitel, pschnid):
             .format(ptitel, pfirma)
         ref = """References in brackets are indirect references:<br>
                  (Document reference) for tables: Documents that are linked to the interface (relational model)<br>
-                 (Table reference) for tables: Indirect linking of a table via an dbobject to another table<br>
+                 (Table reference) for tables: Indirect linking of a table via an entity to another table<br>
                  (Column reference): Indirect linking of a column to another column via an attribute"""
     # fi
     printHTML.fhtml.write(contenthead.format(f, ref))

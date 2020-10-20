@@ -456,12 +456,14 @@ def printlistofcontentelement(pname, plist, pfileonly=False):
     for l in plist:
         inanker = l[1]
         local = False
-        if type(inanker) == Webanker:
+        if type(inanker) == web_sql.Webanker:
             local = re.match(r'/(.+/)*{}'.format(htmlfilelist[inanker.modelid()])
                              , fhtml.name)
             anker = '' if (local) else htmlfilelist[inanker.modelid()]
             if not pfileonly:
                 anker += '#' + inanker.anker()
+        elif type(inanker) == Webanker:
+                anker = '#' + inanker.anker()
         else:
             anker = '#' + l[1]
         anzeige = l[0]
@@ -540,7 +542,7 @@ def printcontentend(plbc):
 # printcontentend
 
 def printcontent(ptype, pname, panker, plbc, pdescr="", pmaster=""):
-    contentelementhead = """        <div class="dbobject" id="{}">
+    contentelementhead = """        <div class="entity" id="{}">
             <div class="describtion">
                 <p>{}</p>
                 <h1>{}</h1>
@@ -824,7 +826,7 @@ def printcontentmapping(plist):
     if len(plist) == 0: return
     contenthead = """        <!--mapping-->"""
 
-    contentelementhead = """        <div class="dbobject" id="{}">
+    contentelementhead = """        <div class="entity" id="{}">
                 <div class="describtion">
                     <p>{}</p>
                     <h1>{}</h1>
@@ -969,7 +971,7 @@ def printcontententi():
                      , pdescr=lf2htmlbr(nvl(enti.enti_descr))
                      , plbc=lbc)
 
-        """print dbobject Info"""
+        """print entity Info"""
         synonyms = ', '.join(s.getname() for s in enti.getsynonyms())
         parent = enti.getparent()
         if (parent is None):

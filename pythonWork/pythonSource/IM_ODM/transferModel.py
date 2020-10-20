@@ -40,7 +40,7 @@ classcolors = dict()
 defcolors = dict()
 
 """List of entities die erst bearbeitet werden können, wenn alle entities geladen sind
-   {entityguid: (dbobject, superentitityguid, [subentity ids], categoryguid)}
+   {entityguid: (entity, superentitityguid, [subentity ids], categoryguid)}
 """
 entities = dict()
 
@@ -321,7 +321,7 @@ def transferentity(penti, pdiagid, puc, pdc):
         v = findText(font, 'fontSize')
         col.fontsize = v if v is not None else col.fontsize
     else:
-        # check wether dbobject belongs to category
+        # check wether entity belongs to category
         ent,defc,classc = entities,defcolors,classcolors
         enticatguid = None if entiodm is None else entities[entiodm][3]
         #print (enti.enti_name,enti.getscrid(),enticatguid)
@@ -702,7 +702,7 @@ def do1Arc(fileName):
     if (findField(arcXML, "class") != "oracle.dbtools.crest.model.design.logical.Arc"): return
 
     arc = Arc(pname=findField(arcXML, "name")
-              , pentiid=Externalref.getODMmodeid(psrcid=findText(arcXML, 'dbobject'))
+              , pentiid=Entity().getIDbyODMref(psrcid=findText(arcXML, 'entity'))
               , puc=findText(arcXML, 'createdBy')
               , pdc=findText(arcXML, 'createdTime')
               ,psrcname=Externalref.SOURCE_ODM,psrcid=findField(arcXML, "id"))
@@ -713,23 +713,7 @@ def do1Arc(fileName):
     relids = ','.join("'{}'".format(r.text) for r in relations)
     # DEBUG Arc 2x auf Beziehung
     #    if findField(arcXML, "name") in ('xxArc_9', 'xxArc_11'):
-    #        print(findField(arcXML, "id"), findField(arcXML, "name"), findText(arcXML, 'dbobject'))
-    if False:
-        res = dbDML.select("""select case earc.enti_odm_guid
-                            when evon.enti_odm_guid
-                            then arcs_id else null end von_arcs_id
-                            ,case earc.enti_odm_guid
-                            when ezu.enti_odm_guid
-                            then arcs_id else null end zu_arcs_id
-                 ,arcs_id,arcs_name,rela_id,rela_name,earc.enti_name,earc.enti_odm_guid,ezu.enti_odm_guid
-                    from arcs
-                    cross join beziehungen
-                    join entitaeten earc on arcs_enti_id = earc.enti_id
-                    left join entitaeten evon on rela_enti_id_from = evon.enti_id
-                    left join entitaeten ezu on rela_enti_id_to = ezu.enti_id
-                    where arcs_id = {}
-                and bezi_odm_guid in ({})""".format(arcid, relids))
-        # print(res)
+    #        print(findField(arcXML, "id"), findField(arcXML, "name"), findText(arcXML, 'entity'))
     Relation.setarcinrela(prelids=relids)
 # do1Arc
 
@@ -985,9 +969,10 @@ def doSubentities():
     for superentiguid in guids:
         superenti = entities[superentiguid][0]
         subentiids = entities[superentiguid][2]
-        arcId = Arc(pname=superenti.enti_name + '_subtype', pentiid=superenti.enti_id
-                     , puc=superenti.enti_uc, pdc=superenti.enti_dc).insert()
-        Relation.insertisa(parcid=arcId,pentiids=subentiids)
+        arc = Arc(pname=superenti.enti_name + '_subtype', pentiid=superenti.enti_id
+                     , puc=superenti.enti_uc, pdc=superenti.enti_dc)
+        arc.insert()
+        Relation.insertisa(parc=arc,pentiids=subentiids)
     #for
 
 
@@ -1368,9 +1353,9 @@ def transferODMModel():
     transferUDP()
     loaddefaultcolors()
     transferEntitaeten()
-    doSubentities()
     transferRelations()
     transferArcs()
+    doSubentities()
     transferKeys()
     transferdiagramme()
     filllanguages()

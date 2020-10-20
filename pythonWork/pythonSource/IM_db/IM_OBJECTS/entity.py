@@ -62,14 +62,13 @@ CREATE TABLE ENTITIES
         dbDDL.createTable("""create view SUPERENTI AS 
             select superentity.enti_id as superenti_id, superentity.enti_name as super_enti_name
             ,subentity.enti_id as subenti_id, subentity.enti_name as sub_enti_name
-        from ENTITIES superentity
-         join ARCS on ARCS_ENTI_ID = superentity.enti_id
-         join (select rela_id
-                    ,case when RELA_ARCS_ID_FROM is NULL then RELA_ARCS_ID_TO else RELA_ARCS_ID_FROM end as rela_arcs_id
-                    ,case when RELA_ARCS_ID_FROM is NULL then  RELA_ENTI_ID_TO else RELA_ENTI_ID_FROM end as rela_enti_id
-                    from relations
-                    where RELA_TYPE = 'ISAS') relas on RELA_ARCS_ID= arcs_id
-        join ENTITIES subentity on subentity.ENTI_ID = rela_enti_id
+ from ENTITIES superentity
+      join arcs on superentity.enti_id = arcs_enti_id
+      join relations relfrom on  (rela_arcs_id_from  = ARCS_ID and RELA_ENTI_ID_from = superentity.ENTI_ID)
+                        or (rela_arcs_id_to  = ARCS_ID and RELA_ENTI_ID_to = superentity.ENTI_ID)
+       left  join ENTITIES subentity on  (subentity.ENTI_ID =  rela_enti_id_to and rela_arcs_id_from = arcs_id )
+ or (subentity.ENTI_ID =  rela_enti_id_from and rela_arcs_id_to = arcs_id )
+      where RELA_TYPE in ('ISAS')
         """)
 
     def getmodellelement(self):

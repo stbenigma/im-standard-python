@@ -31,7 +31,7 @@ class Objlist:
 
     def indexlist(self,plang=None):
         #I sort by the displayed, qualified name in the list, which is the first element in the sublists
-        idxlist = [[member.getqualifiedname(plang), member.webanker().anker(), member.getid()] for member in self.getmembers()]
+        idxlist = [[member.getqualifiedname(plang), member.webanker(), member.getid()] for member in self.getmembers()]
         idxlist.sort()
         return idxlist
 #Objlist
@@ -190,14 +190,17 @@ class WebInterface(BaseWebObj):
     def getname(self, plang=None):
         return self.dbobject().schn_name
 
+    def webanker(self):
+        if self.dbobject() is None: return None
+        return Webanker(ptype=self.dbobject()._prefix, pid=self.getid(),pmodelid=self.dbobject().schn_id)
+
     @staticmethod
     def indexlist(plang=None):
-        ANKER auf neues File
         members = [WebInterface(pdbobj=obj) for obj in Schnittstelle.select()]
-        return Objlist(pmembers=members).indexlist()
+        idxlist = Objlist(pmembers=members).indexlist(plang=plang)
+        return idxlist
     # indexlist
-
-# WebDocument
+# WebInterface
 
 
 

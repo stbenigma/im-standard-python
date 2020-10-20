@@ -117,7 +117,7 @@ def printlistofcontent():
 
 def printcontent(pfirma,ptitel):
     printHTML.printcontenthead(pfirma=pfirma,ptitel=ptitel)
-#    printHTML.printcontententi()
+    printHTML.printcontententi()
 #    printHTML.printcontentattr()
 #    printHTML.printcontentwrtb(plist=web_sql.wrtblist())
 #    printHTML.printcontentdoku(plist=web_sql.dokulist())
