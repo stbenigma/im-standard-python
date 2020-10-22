@@ -26,7 +26,7 @@ class Entity(MultilangBaseobject):
                          , pscrid=psrcid
                          , psrcname=psrcname
                          )
-        self._parent = None
+        self._parents = None
         self._children = None
         self._synonyms = None
         self._schluessel = None
@@ -78,19 +78,19 @@ CREATE TABLE ENTITIES
 
     def getname(self,plang=None):
         return self._getsprachval(colname='enti_name',plang=plang)
-    def getbeschr(self,plang=None):
+    def getdescr(self,plang=None):
         return self._getsprachval(colname='enti_descr',plang=plang)
 
     def getcategory(pid):
         return Entity().getbyid(pid).enti_category_guid
 
-    def getparent(self):
-        if (self.getid() is not None) and (self._parent is None):
-            parent = Entity.select(pwhere="enti_id = (select superenti_id from SUPERENTI where subenti_id = {})".format(self.getid()))
-            if parent is not None and len(parent) > 0:
-                self._parent = parent[0]
+    def getparents(self):
+        if (self.getid() is not None) and (self._parents is None):
+            parents = Entity.select(pwhere="enti_id in (select superenti_id from SUPERENTI where subenti_id = {})".format(self.getid()))
+            if parents is not None and len(parents) > 0:
+                self._parents = parents
         #fi
-        return self._parent
+        return self._parents
     #getparent
 
     def getchildren(self):
@@ -100,6 +100,7 @@ CREATE TABLE ENTITIES
         #fi
         return self._children
     #getchildren
+
     def getsynonyms(self):
         if (self.getid() is not None) and (self._synonyms is None):
             self._synonyms = Synonym.select(pwhere='syno_enti_id = {}'.format(self.getid())
@@ -107,6 +108,7 @@ CREATE TABLE ENTITIES
         # fi
         return self._synonyms
     #getsynonyms
+
     def getschluessel(self):
         if (self.getid() is not None) and (self._schluessel is None):
             self._schluessel = Key.select(pwhere='keys_enti_id = {}'.format(self.getid())
@@ -209,7 +211,7 @@ CREATE TABLE SYNONYMS
     )
         """)
 
-    def getname(self,plang:str=None):
+    def getname(self,plang=None):
         return self._getsprachval(colname='syno_name',plang=plang)
 
     def getparent(self):

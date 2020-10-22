@@ -1,4 +1,5 @@
-from IM_HTML import web_sql, printHTML
+from IM_HTML import printHTML
+import web_sql
 import math
 
 def printlegend(pdata,pwidth,pheigh,px,py):
@@ -307,7 +308,7 @@ def printelements(pdiagid,plang):
     #            ,eled_randbreite,eled_randdeckkraft,eled_randfarbe
     #            ,eled_schriftgroesse, eled_schriftfarbe
     #            ,entiname,enti_id
-    elist = web_sql.diagenti(pdiagid,plang)
+    elist = web_sql.diagenti(pdiagid, plang)
     if elist is None: return
     for e in elist:
         #print(e[11]+('' if (e[13]==0) else':'+str(e[13])) ,e[0],e[1],e[2],e[3])
@@ -316,15 +317,15 @@ def printelements(pdiagid,plang):
         ey=e[2]
         ehoehe=e[3]
         printHTML.fhtml.write(entistart.format(hex2rbg(e[5]), hex2rbg(e[8])
-            ,round(e[4]/100,2),round(e[7]/100,2)
-            ,ex,ey,ebreite,ehoehe
-            ,web_sql.entiAnker(e[12])
-            ,web_sql.diagAnker(pdiagid)+'-'+web_sql.entiAnker(e[12])
-            ,hex2rbg(e[10])
-            ,12 #vorläufig mal fix verdrahtet e[9], font size
-            ,e[11]+('' if (e[13]==0) else':'+str(e[13]))))
+                                               , round(e[4]/100,2), round(e[7]/100,2)
+                                               , ex, ey, ebreite, ehoehe
+                                               , web_sql.entiAnker(e[12])
+                                               , web_sql.diagAnker(pdiagid) + '-' + web_sql.entiAnker(e[12])
+                                               , hex2rbg(e[10])
+                                               , 12  #vorläufig mal fix verdrahtet e[9], font size
+                                               , e[11] + ('' if (e[13]==0) else':'+str(e[13]))))
 
-        attrs=web_sql.diagattrlist(plang=plang,pdiagid=pdiagid)
+        attrs= web_sql.diagattrlist(plang=plang, pdiagid=pdiagid)
         #  attr_id, attr_displ_name, attr_is_mandatory ,attr_is_descriptive, schluessel, mode_id
         for a in attrs:
             #printtext(px=x1, py=y, ptext='*' if a[5] == 'TRUE' else 'o'
@@ -332,13 +333,13 @@ def printelements(pdiagid,plang):
             #)
             ax,ay=a[6],a[7]
             aname = a[1]
-            printtext(px=ax-ex, py=ay-ey, ptext=printHTML.href(ref=web_sql.attrAnker(a[0]),anz=a[1])
+            printtext(px=ax-ex, py=ay-ey, ptext=printHTML.href(ref=web_sql.attrAnker(a[0]), anz=a[1])
                       , pfillcolor=hex2rbg(e[10]), pfontsize=10  #vorläufig mal fix verdrahtet e[9]
                       )
         #for
         printHTML.fhtml.write(entiende)
     #for
-    diagrela = web_sql.diagrelalist(pdiagid=pdiagid,plang=plang)
+    diagrela = web_sql.diagrelalist(pdiagid=pdiagid, plang=plang)
     printrela(plist=diagrela)
     printtexte(plist=diagrela)
     print ("printarcs disabled noch zu überprüfen mit")
@@ -380,8 +381,8 @@ def printcontentdiag(plist, plang, ptitel):
     legendhigh = 128
     for dia in plist:
         #diag_name,diag_id,diag_legendx,diag_legendy,breite,hoehe
-        printHTML.fhtml.write (diagramhead.format(web_sql.diagAnker(dia[1]),dia[0]
-                                ,dia[4],dia[5]))
+        printHTML.fhtml.write (diagramhead.format(web_sql.diagAnker(dia[1]), dia[0]
+                                                  , dia[4], dia[5]))
                                 #wäre clippath,legendwidth,legendhigh))
 
         if (dia[2] is not None):

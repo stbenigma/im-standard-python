@@ -88,7 +88,7 @@ class Relation(MultilangBaseobject):
         super().__init__(tablename=Relation._tablename, prefix=Relation._prefix
                          , columnlist=Relation._columnlist
                          , multilangcols={'rela_assoc_from_to': Sprachtext.RELA_TEXT_FROM
-                , 'rela_assoc_to_from': Sprachtext.RELA_TEXT_TO}
+                                        , 'rela_assoc_to_from': Sprachtext.RELA_TEXT_TO}
                          , pmodelemtype=Modelelemtype.RELA
                          , psrcname=psrcname
                          , pscrid=psrcid
@@ -182,6 +182,15 @@ CREATE TABLE RELATIONS
 
     def gethistfromto(self):
         return Boolean.str2bool(self.rela_hist_from_to)
+
+    def getassocfromto(self,plang=None):
+        return self._getsprachval(colname='rela_assoc_from_to',plang=plang)
+    def getassoctofrom(self,plang=None):
+        return self._getsprachval(colname='rela_assoc_to_from',plang=plang)
+    def getfromentity(self):
+        return Entity().getbyid(pid=self.rela_enti_id_from)
+    def gettoentity(self):
+        return Entity().getbyid(pid=self.rela_enti_id_to)
 
     @staticmethod
     def delete():

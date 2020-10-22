@@ -55,7 +55,7 @@ class Userdefprop(Baseobject):
         return Webanker(pname='UDP',pid=id)
 
     @staticmethod
-    def indexlist(pmapfilename):
+    def indexlist(pudptheme):
         data = dbDML.select("""select  distinct udpr_group,udpr_theme||'-'||udpr_group id
                          ,udpr_theme
                         from user_defined_properties 
@@ -65,9 +65,9 @@ class Userdefprop(Baseobject):
                        where exists (select  1 from
                                 user_defined_properties 
                                 where udpr_theme = '{}')
-                    order by udpr_group""".format(pmapfilename
-                                                  , pmapfilename
-                                                  , pmapfilename))
+                    order by udpr_group""".format(pudptheme
+                                                  , pudptheme
+                                                  , pudptheme))
         datalist = [(e[0], Userdefprop.udpAnker(e[1]), '', e[2]) for e in data]
         return datalist
 # Userdefprop

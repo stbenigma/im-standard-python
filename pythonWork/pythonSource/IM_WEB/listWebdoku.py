@@ -4,9 +4,10 @@ import sys,os
 #sys.path.append(os.getcwd()+'/../IM_db')
 sys.path.append(os.path.dirname(os.path.realpath(__file__))+'/../IM_db')
 sys.path.append(os.path.dirname(os.path.realpath(__file__))+'/..')
-from datetime import date,datetime
-from IM_DB import parameters,dbConnect,dbLookup,dbParam,logmessages
-from IM_HTML import printHTML,web_sql,printdiagHTML,printRelHTML
+from datetime import datetime
+from IM_DB import parameters,dbConnect, dbParam,logmessages
+from IM_HTML import printHTML, printRelHTML
+import web_sql
 from IM_OBJECTS import *
 from IM_WEB import *
 
@@ -108,7 +109,7 @@ def printlistofcontent():
     printHTML.printlistofcontentelement(pname='Attribute', plist=web_sql.namelist(ptype=Modelelemtype.ATTR, plang=Sprachtext.reportLang()))
     printHTML.printlistofcontentelement(pname='Wertebereiche', plist=web_sql.namelist(ptype=Modelelemtype.DOMA, plang=Sprachtext.reportLang()))
     printHTML.printlistofcontentelement(pname='Dokumente', plist=web_sql.namelist(ptype=Modelelemtype.DOCU, plang=Sprachtext.reportLang()))
-    printHTML.printlistofcontentelement(pname='Attribute-Mapping', plist=web_sql.namelist(ptype='UDP', plang=Sprachtext.reportLang()))
+    #printHTML.printlistofcontentelement(pname='Attribute-Mapping', plist=web_sql.namelist(ptype='UDP', plang=Sprachtext.reportLang()))
     printHTML.printlistofcontentelement(pname='Diagramme', plist=web_sql.namelist(ptype=Modelelemtype.DIAG, plang=Sprachtext.reportLang()))
     printHTML.printlistofcontentelement(pname='Systeme', plist=web_sql.namelist(ptype=Modelelemtype.INTF, plang=Sprachtext.reportLang())
                                         ,pfileonly = True)
@@ -118,10 +119,10 @@ def printlistofcontent():
 def printcontent(pfirma,ptitel):
     printHTML.printcontenthead(pfirma=pfirma,ptitel=ptitel)
     printHTML.printcontententi()
-#    printHTML.printcontentattr()
+    printHTML.printcontentattr()
 #    printHTML.printcontentwrtb(plist=web_sql.wrtblist())
 #    printHTML.printcontentdoku(plist=web_sql.dokulist())
-#    printHTML.printcontentmapping(plist=web_sql.namelist(ptype='UDP', plang=Sprachtext.reportLang()))
+     #printHTML.printcontentmapping(plist=web_sql.namelist(ptype='UDP', plang=Sprachtext.reportLang()))
 #    printdiagHTML.printcontentdiag(plist=web_sql.diaglist(), plang=Sprachtext.reportLang(), ptitel=ptitel)
     printHTML.printcontentfoot()
 #printcontent

@@ -3,8 +3,8 @@ import re
 import shutil
 
 from IM_DB import parameters
-from IM_HTML import web_sql
 from IM_OBJECTS import *
+from WEB_OBJECTS import *
 import html
 
 outputDirectory: str = None
@@ -456,7 +456,7 @@ def printlistofcontentelement(pname, plist, pfileonly=False):
     for l in plist:
         inanker = l[1]
         local = False
-        if type(inanker) == web_sql.Webanker:
+        if type(inanker) == Webanker:
             local = re.match(r'/(.+/)*{}'.format(htmlfilelist[inanker.modelid()])
                              , fhtml.name)
             anker = '' if (local) else htmlfilelist[inanker.modelid()]
@@ -793,7 +793,8 @@ def printmapping(pentiid=None, pattrid=None):
 
 
 def printentirela(pentiid):
-    relalist = web_sql.relalist(p_entiid=pentiid, p_lang=Sprachtext.reportLang())
+    lang = Sprachtext.reportLang()
+    relalist = web_sql.WebRelation.relalist(pentiid=pentiid, plang=lang)
     if (len(relalist) == 0):
         return
     fhtml.write(starttable(ptitel=Sprachtext.transl('Beziehungen')
@@ -801,25 +802,23 @@ def printentirela(pentiid):
             Sprachtext.transl('Name'), Sprachtext.transl('Entität') + '-1', '', Sprachtext.transl('Beziehung'), '',
             Sprachtext.transl('Entität') + '-2'
             , Sprachtext.transl('Arc'), Sprachtext.transl('Schlüssel'),)))
-    for r in relalist:
-        if (pentiid == r[0]):
+    for webrela in relalist:
+        if (pentiid == webrela.from_enti.enti_id):
             # 'Name','Entität1','','Beziehung','', 'Entität2','Arc','Key'
-            fhtml.write(writetableline(pwerte=(html.escape(nvl(r[16])), html.escape(r[1]), '->', html.escape(nvl(r[3], '--'))
-                                               , html.escape(nvl(r[4]))
-                                               , arrow2icon('down'), nvl(r[14]), bool2icon(r[17]))))
-            fhtml.write(writetableline(pwerte=('', arrow2icon('up'), r[9], html.escape(nvl(r[8], '--')), '<-'
-                                               , href(ref=web_sql.entiAnker(r[5]), anz=html.escape(r[6])))))
+            fhtml.write(writetableline(pwerte=(html.escape(nvl(webrela.rela_name)), html.escape(webrela.from_enti.getname(plang=lang)), '->', html.escape(nvl(webrela.from_rela_assoc, '--'))
+                                               , html.escape(nvl(webrela.from_card))
+                                               , arrow2icon('down'), nvl(webrela.arcs_name), bool2icon(webrela.isinkey))))
+            fhtml.write(writetableline(pwerte=('', arrow2icon('up'), webrela.to_card, html.escape(nvl(webrela.to_rela_assoc, '--')), '<-'
+                                               , href(ref=webrela.to_enti.webanker(), anz=html.escape(webrela.to_enti.getname(plang=lang))))))
         else:
-            fhtml.write(writetableline(pwerte=(html.escape(nvl(r[16])), html.escape(r[6]), '->', html.escape(nvl(r[8], '--'))
-                                               , html.escape(nvl(r[9]))
-                                               , arrow2icon('down'), '', bool2icon(r[17]))))
-            fhtml.write(writetableline(pwerte=('', arrow2icon('up'), r[4], html.escape(nvl(r[3], '--')), '<-'
-                                               , href(ref=web_sql.entiAnker(r[0]), anz=html.escape(r[1])))))
+            fhtml.write(writetableline(pwerte=(html.escape(nvl(webrela.rela_name)), html.escape(webrela.to_enti.getname(plang=lang)), '->', html.escape(nvl(webrela.to_rela_assoc, '--'))
+                                               , html.escape(nvl(webrela.to_card))
+                                               , arrow2icon('down'), nvl(webrela.arcs_name), bool2icon(webrela.isinkey))))
+            fhtml.write(writetableline(pwerte=('', arrow2icon('up'), webrela.from_card, html.escape(nvl(webrela.from_rela_assoc, '--')), '<-'
+                                               , href(ref=webrela.from_enti.webanker(), anz=html.escape(webrela.from_enti.getname(plang=lang))))))
         # if
     # for
     fhtml.write(endtable())
-
-
 # printentirela
 
 def printcontentmapping(plist):
@@ -891,8 +890,6 @@ def printUDP(p_meltname, p_id, pwithref=False):
 
     udpentries = web_sql.udpnamen(pmeltname=p_meltname)
     for udpentry in udpentries:
-        if udpentry[0] == parameters.odmUDPTranslFileName():
-            continue
         namenliste = udpentry[2].split(',')
         namenliste.sort()  # SQl kann keine sortierte group_concat liefern
         anzwerte = {udpname: '' for udpname in namenliste}
@@ -907,27 +904,18 @@ def printUDP(p_meltname, p_id, pwithref=False):
                 startgeschrieben = True
             # fi
 
-            titel = href(ref=web_sql.udpAnker('{}-{}'.format(udpentry[0], udpentry[1])) \
+            titel = href(ref=web_sql.udpAnker('{}-{}'.format(udpentry[0], udpentry[1]))
                          , anz=' {} - {} '.format(udpentry[0], udpentry[1])) \
-                if pwithref else ' {} - {} '.format(udpentry[0], udpentry[1])
+                    if pwithref else ' {} - {} '.format(udpentry[0], udpentry[1])
             fhtml.write(tablehtml(ptitel=titel
                                   , pueberschriften=namenliste
                                   , pheadlevel=3
                                   , pwerteliste=[list(anzwerte.values())])
                         )
-    #            fhtml.write(starttable(ptitel=href(ref=web_sql.udpAnker('{}-{}'.format(udpname[0],udpname[1]))
-    #                                               ,anz=' {} - {} '.format(udpname[0], udpname[1]))
-    #                                   , pueberschriften=namenliste
-    #                                   , pheadlevel=3))
-    #            fhtml.write(writetableline(pwerte=lw))
-    #            fhtml.write(endtable())
-    # fi
-    # rof
+        #fi
+    #for
     if (startgeschrieben):
         fhtml.write(endabschnitt())
-    # fi
-
-
 # printUDP
 
 def printentiudp(pentiid):
@@ -944,7 +932,7 @@ def printattrudp(pattrid):
 
 def entidiag(pentiid):
     doppelanker = "{}-{}"
-    diaglist = web_sql.diaglist(pentiid=pentiid)
+    diaglist = WebDiagram.diaglist(pentiid=pentiid)
     if (len(diaglist) == 0):
         return
     diagdict = {dl[0]: dl[1] for dl in diaglist}
@@ -958,28 +946,31 @@ def entidiag(pentiid):
 # entidiag
 
 def printcontententi():
+    lang = Sprachtext.reportLang()
     printcontentstart('entities')
-    infoheaders = (Sprachtext.transl('Synonyme'), Sprachtext.transl('Superentität')
+    infoheaders = (Sprachtext.transl('Synonyme'), Sprachtext.transl('Superentitäten')
                    , Sprachtext.transl('Subentitäten'), Sprachtext.transl('auf Diagram(en)')
                    , Sprachtext.transl('geändert'))
 
-    for enti in Entity.select(porderby='enti_name'):
+    for enti in WebEntity.contentlist(plang=lang):
         lbc = str(newbarcounter())
         printcontent(ptype=Sprachtext.transl('Entität')
                      , panker=enti.webanker().anker()
-                     , pname=enti.getname(Sprachtext.reportLang())
-                     , pdescr=lf2htmlbr(nvl(enti.enti_descr))
+                     , pname=enti.getname(plang=lang)
+                     , pdescr=lf2htmlbr(nvl(enti.getdescr(plang=lang)))
                      , plbc=lbc)
 
         """print entity Info"""
-        synonyms = ', '.join(s.getname() for s in enti.getsynonyms())
-        parent = enti.getparent()
-        if (parent is None):
+        synonyms = ', '.join(s.getname(plang=lang) for s in enti.dbobject().getsynonyms())
+        parents = enti.getparents()
+        if (parents is None or len(parents) == 0):
             parentstr = ''
         else:
-            parentstr = href(ref=parent.webanker().anker(), anz=enti.getname(Sprachtext.reportLang()))
+            parentstr = ", ".join(href(ref=p.webanker().anker(), anz=enti.getname(plang=lang)) for p in parents)
+
         children = ', '.join(
-            href(ref=c.webanker().anker(), anz=c.getname(Sprachtext.reportLang())) for c in enti.getchildren())
+            href(ref=c.webanker().anker(), anz=c.getname(plang=lang)) for c in enti.getchildren())
+
         infovalues = (nvl(synonyms), parentstr, nvl(children)
                       , entidiag(pentiid=enti.enti_id), nvl(enti.enti_uc) + ', ' + nvl(enti.enti_dc))
         printcontentinfo(ptitle=Sprachtext.transl('Informationen'), pheaders=infoheaders, pvalues=infovalues)
@@ -1376,14 +1367,12 @@ def printtransl(pentiid=None, pattrid=None):
     head = [Sprachtext.transl('Element')]
     head.extend(langs)
     if (pentiid is not None):
-        modeid = Modelelement.getidbyelemid(pentiid=pentiid)
-        transllist = [findtransl(pattr='ENTI_NAME', pmodeid=modeid, plangs=langs)
-            , findtransl(pattr='ENTI_SYNONYM', pmodeid=modeid, plangs=langs)
-            , findtransl(pattr='ENTI_COMMENT', pmodeid=modeid, plangs=langs)]
+        transllist = [findtransl(pattr='ENTI_NAME', pmodeid=pentiid, plangs=langs)
+            , findtransl(pattr='ENTI_SYNONYM', pmodeid=pentiid, plangs=langs)
+            , findtransl(pattr='ENTI_COMMENT', pmodeid=pentiid, plangs=langs)]
     elif (pattrid is not None):
-        modeid = Modelelement.getidbyelemid(pattrid=pattrid)
-        transllist = [findtransl(pattr='ATTR_NAME', pmodeid=modeid, plangs=langs)
-            , findtransl(pattr='ATTR_COMMENT', pmodeid=modeid, plangs=langs)]
+        transllist = [findtransl(pattr='ATTR_NAME', pmodeid=pattrid, plangs=langs)
+            , findtransl(pattr='ATTR_COMMENT', pmodeid=pattrid, plangs=langs)]
     # print(transllist)
     fhtml.write(tablehtml(ptitel=Sprachtext.transl('Übersetzungen')
                           , pueberschriften=head

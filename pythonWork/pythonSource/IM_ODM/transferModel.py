@@ -1132,8 +1132,6 @@ def do1UDPFile(pfileName):
             Userdefprop.setdomid(pdomid=wrtbId, pudpid=udpId)
         # fi
     # for
-
-
 # do1UDPFile
 
 def dofiles(pdirec, pfileregexp, ptransferfunc):
@@ -1149,27 +1147,14 @@ def dofiles(pdirec, pfileregexp, ptransferfunc):
 
 # dofiles
 
-def transferUPDdef():
+def transferUDP():
     doxmlfiles(pdirec=parameters.odmFilesDirec()
                , ptransfer=do1UDPFile
                , ppattern=r'.*\.{}'.format(UDPEXTENSION))
 
-    # for file in os.listdir(parameters.odmFilesDirec()):
-    #     filename, file_extension = os.path.splitext(file)
-    #     # print(filename, file_extension)
-    #     if (file_extension == '.udposdm'):
-    #         filepath = parameters.odmFilesDirec() + file
-    #         # print (filepath)
-    #         do1UDPFile(pudpThema=filename, pfileName=filepath)
-    #     # fi
-    # # endfor
-
     dbConnect.myDbConn.commit()
-# transferUDPdef
-
-def transferUDP():
-    transferUPDdef()
 # transferUDP
+
 
 def insertBaseData():
     languages = {'de': ['Deutsch', 'deu']

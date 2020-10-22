@@ -1,8 +1,9 @@
-import os, sys
+import os
 import sys
 import html
 sys.path.append(os.getcwd())
-from IM_HTML import web_sql, printHTML
+from IM_HTML import printHTML
+import web_sql
 from IM_OBJECTS import *
 
 
