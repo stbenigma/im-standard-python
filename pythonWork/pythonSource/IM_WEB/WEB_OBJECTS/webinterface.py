@@ -4,7 +4,7 @@ from IM_OBJECTS import  Schnittstelle
 
 class WebInterface(BaseWebObj):
     def __init__(self, pid=None, pdbobj: Schnittstelle = None):
-        super().__init__(pobjtype=WebInterface, pid=pid, pdbobj=pdbobj)
+        super().__init__(pobjtype=Schnittstelle, pid=pid, pdbobj=pdbobj)
 
     def getname(self, plang=None):
         return self.dbobject().schn_name

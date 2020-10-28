@@ -2,24 +2,24 @@ from .baseobject import Baseobject
 from .modelelement import Modelelemtype
 
 class Key(Baseobject):
-    _tablename:str = 'keys'
-    _prefix:str = 'keys'
-    _columnlist:list = ['keys_id', 'keys_name'
-                    , 'keys_uc', 'keys_dc', 'keys_um', 'keys_dm'
-                    ,'keys_enti_id']
+    _tablename: str = 'keys'
+    _prefix: str = 'keys'
+    _columnlist: list = ['keys_id', 'keys_name'
+        , 'keys_uc', 'keys_dc', 'keys_um', 'keys_dm'
+        , 'keys_enti_id']
 
-    def __init__(self,psrcname=None,psrcid=None):
-        super().__init__(tablename= Key._tablename, prefix= Key._prefix
-                         , columnlist = Key._columnlist
-                         ,pmodelemtype=Modelelemtype.KEYS
-                         ,psrcname=psrcname
-                         ,pscrid=psrcid)
-        self._keyelement = None
+    def __init__(self, psrcname=None, psrcid=None):
+        super().__init__(tablename=Key._tablename, prefix=Key._prefix
+                         , columnlist=Key._columnlist
+                         , pmodelemtype=Modelelemtype.KEYS
+                         , psrcname=psrcname
+                         , pscrid=psrcid)
+        self._keyelements = None
 
     @staticmethod
     def createtable():
         Baseobject.createtable(ptablename=Key._tablename
-                                ,psql="""
+                               , psql="""
 CREATE TABLE KEYS
     (
      KEYS_ID INTEGER NOT NULL primary key autoincrement,
@@ -35,12 +35,12 @@ CREATE TABLE KEYS
     )
 """)
 
-    def getkeyelement(self):
-        if (self.getid() is not None) and (self._keyelement is None):
-            self._keyelement = Keyelement.select(pwhere='kele_keys_id = {}'.format(self.getid()))
+    def getkeyelements(self):
+        if (self.getid() is not None) and (self._keyelements is None):
+            self._keyelements = Keyelement.select(pwhere='kele_keys_id = {}'.format(self.getid()))
         # fi
-        return self._keyelement
-    #getkeyelement
+        return self._keyelements
+    # getkeyelements
 
     @staticmethod
     def delete():
@@ -49,23 +49,22 @@ CREATE TABLE KEYS
     @staticmethod
     def select(pwhere=None, porderby=None):
         return Baseobject.select(pclass=Key, pwhere=pwhere, porderby=porderby)
-#Key
-    
-class Keyelement(Baseobject):
-    _tablename:str = 'key_elements'
-    _prefix:str = 'kele'
-    _columnlist:list = ['kele_id','kele_keys_id','kele_attr_id','kele_rela_id'
-                        , 'kele_uc', 'kele_dc','kele_um','kele_dm']
+# Key
 
+class Keyelement(Baseobject):
+    _tablename: str = 'key_elements'
+    _prefix: str = 'kele'
+    _columnlist: list = ['kele_id', 'kele_keys_id', 'kele_attr_id', 'kele_rela_id'
+        , 'kele_uc', 'kele_dc', 'kele_um', 'kele_dm']
 
     def __init__(self):
-        super().__init__(tablename= Keyelement._tablename, prefix= Keyelement._prefix
-                         , columnlist = Keyelement._columnlist)
+        super().__init__(tablename=Keyelement._tablename, prefix=Keyelement._prefix
+                         , columnlist=Keyelement._columnlist)
 
     @staticmethod
     def createtable():
         Baseobject.createtable(ptablename=Keyelement._tablename
-                                ,psql="""
+                               , psql="""
 CREATE TABLE KEY_ELEMENTS
     (
      KELE_ID INTEGER NOT NULL primary key autoincrement,
@@ -96,20 +95,30 @@ CREATE TABLE KEY_ELEMENTS
 """)
 
     @staticmethod
-    def isinkey(pattrid=None,prelaid=None)->bool:
+    def isinkey(pattrid=None, prelaid=None) -> bool:
         if pattrid is not None:
             return len(Keyelement.select(pwhere="kele_attr_id = {}".format(pattrid))) > 0
         if prelaid is not None:
             return len(Keyelement.select(pwhere="kele_rela_id = {}".format(prelaid))) > 0
         return False
-    #isinkey
+
+    # isinkey
+
+    def getkeyelement(self):
+        if self.kele_attr_id is not None:
+            return Attribute().getbyid(self.kele_attr_id)
+        if self.kele_rela_id is not None:
+            return Relation().getbyid(self.kele_rela_id)
+
+    # getkeyelement
+
     @staticmethod
     def delete():
         Baseobject.delete(Keyelement._tablename)
 
     @staticmethod
     def select(pwhere=None, porderby=None):
-        return Baseobject.select(pclass=Keyelement, pwhere=pwhere, porderby=porderby) 
-#Keyelement
-
-
+        return Baseobject.select(pclass=Keyelement, pwhere=pwhere, porderby=porderby)
+    # Keyelement
+from .attribute import Attribute
+from .relationship import Relation

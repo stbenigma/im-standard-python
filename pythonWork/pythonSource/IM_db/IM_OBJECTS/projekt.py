@@ -36,5 +36,5 @@ CREATE TABLE projekte(
 def projektlangs():
     """pwhere='select proj_sprachen from projekt'"""
     data = Projekt().select()
-    return data[0].proj_sprachen
+    return data[0].proj_sprachen.lower()
 #

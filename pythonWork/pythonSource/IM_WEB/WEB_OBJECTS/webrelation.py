@@ -1,11 +1,10 @@
-from IM_OBJECTS import Relation, Entity, Arc, Keyelement
+from IM_OBJECTS import Relation, Arc, Keyelement
 from .webbaseobject import BaseWebObj
-from .webentity import WebEntity
 
 
 class WebRelation(BaseWebObj):
     def __init__(self, pid=None, pdbobj: Relation = None, plang=None):
-        super().__init__(pobjtype=WebRelation, pid=pid, pdbobj=pdbobj)
+        super().__init__(pobjtype=Relation, pid=pid, pdbobj=pdbobj)
         self.from_enti = WebEntity(pdbobj=self.dbobject().getfromentity())
         self.from_rela_assoc = self.dbobject().getassocfromto(plang=plang)
         self.from_card = self.minmaxcardinality(pfromto=True)
@@ -17,9 +16,6 @@ class WebRelation(BaseWebObj):
         self.rela_id = self.dbobject().rela_id
         self.rela_type = self.dbobject().rela_type
         self.rela_name = self.dbobject().rela_name
-        arcids = set((self.dbobject().rela_arcs_id_from, self.dbobject().rela_arcs_id_to))
-        arcids.discard(None)
-        self.arcs_name = ', '.join(Arc().getbyid(arcid).arcs_name for arcid in arcids)
         self.isinkey = Keyelement.isinkey(prelaid=self.dbobject().rela_id)
 
     def minmaxcardinality(self, pfromto):
@@ -32,8 +28,11 @@ class WebRelation(BaseWebObj):
             return '1..N' if mandatory else '0..N'
         else:
             raise Exception("invalid Value for Maptype {}".format(maptype))
-
     # minmaxcartinality
+
+    def arcs_name(self,pentiid):
+        arcid = self.dbobject().rela_arcs_id_from if pentiid == self.dbobject().rela_enti_id_from else self.dbobject().rela_arcs_id_to
+        return '' if arcid is None else Arc().getbyid(arcid).arcs_name
 
     @staticmethod
     def relalist(pentiid, plang):
@@ -112,7 +111,8 @@ class WebRelation(BaseWebObj):
                             where  sp.lang_iso_code2 = '{}'
                                and (von.enti_id = {} or zu.enti_id = {})     
                             order by arcs_name 
-                            """  # .format(plang, pentiid, pentiid))
+                            """  # .format(plang, pwebenti, pwebenti))
         return webrelas
     # relalist
 # WebRelation
+from .webentity import WebEntity

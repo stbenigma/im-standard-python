@@ -488,6 +488,21 @@
 <fileName>defaultdomains</fileName>
 <logicalDatatype>LOGDT019</logicalDatatype>
 </Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="Geschäftsregeltyp" id="96A9C6B2-3074-8688-262C-5F65FC2CE590">
+<createdBy>stb</createdBy>
+<createdTime>2020-10-23 14:13:38 UTC</createdTime>
+<comment><![CDATA[Art von Geschäftsregel]]></comment>
+<ownerDesignName>System</ownerDesignName>
+<avTSortOrder>0</avTSortOrder>
+<dataTypeSize>10</dataTypeSize>
+<fileName>defaultdomains</fileName>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<listOfValues>
+<valueDef value="CALC" description="Berechne einen Wert"/>
+<valueDef value="CHECK" description="Prüfe eine Bedingung (liefert TRUE oder FALSE)"/>
+<valueDef value="TRIGGER" description="Löst etwas aus"/>
+</listOfValues>
+</Domain>
 <Domain class="oracle.dbtools.crest.model.design.Domain" name="Längenmass" id="9899F774-954D-6AB0-8DC2-BB1FE9F99D28">
 <createdBy>stb</createdBy>
 <createdTime>2019-03-10 11:09:09 UTC</createdTime>

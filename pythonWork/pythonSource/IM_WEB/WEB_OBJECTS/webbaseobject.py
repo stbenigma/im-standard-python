@@ -27,7 +27,9 @@ class Objlist:
     def indexlist(self,plang=None):
         #I sort by the displayed, qualified name in the list, which is the first element in the sublists
         idxlist = [[member.getqualifiedname(plang), member.webanker(), member.getid()] for member in self.getmembers()]
-        idxlist.sort()
+        def takeFirst(elem):
+            return elem[0]
+        idxlist.sort(key=takeFirst)
         return idxlist
 #Objlist
 
@@ -35,9 +37,9 @@ class BaseWebObj:
     __dbobject = None
 
     def __init__(self,pobjtype,pid=None,pdbobj=None):
+        self.__objtype = pobjtype
         if (pid is not None or pdbobj is not None):
             self.setdbobject(pdbobj if pdbobj is not None else self.readbobject(pid))
-        self.__objtype = pobjtype
 
     def dbobject(self):
         return self.__dbobject
@@ -46,7 +48,7 @@ class BaseWebObj:
         self.__dbobject = pdbobj
 
     def readbobject(self,pid):
-        self.setdbobject(self.__objtype.getbyid(pid))
+        return self.__objtype().getbyid(pid)
 
     def getid(self):
         return self.dbobject().getid()

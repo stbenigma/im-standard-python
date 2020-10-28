@@ -787,7 +787,7 @@ def do1Attribute(plfnr, pattrxml, pentiId=None, prelaId=None):
     attr.attr_descr = findText(pattrxml, 'comment')
     attr.attr_displ_seq = plfnr
     attr.attr_is_descriptive = 'FALSE'
-    attr.attr_is_mandatory = Boolean.bool2str(findText(pattrxml, 'nullsAllowed') == 'true')
+    attr.attr_is_mandatory = Boolean.bool2str(findText(pattrxml, 'nullsAllowed') != 'true')
     attr.attr_is_historicised = Boolean.bool2str(is_historisized(xmlname))
     attr.attr_is_repeated = Boolean.bool2str(is_repeated(xmlname))
     attr.attr_is_translated = Boolean.bool2str(is_langdept(xmlname))
@@ -838,24 +838,21 @@ def transferKeys():
     # Schlüssel sind eingefügt es folgen die SchlüsselElemente, die ich jetzt alle haben sollte
     # schlüssel [[Key, (Liste der Referenzen)]]
     for schlentry in schluessel:
-        keys = schlentry[0]
+        key = schlentry[0]
         reflist = schlentry[1]
         # nun die Schlüsselelemente
         for ke in reflist:
             kele = Keyelement()
-            kele.kele_keys_id = keys.keys_id
-            kele.kele_uc = keys.keys_uc
-            kele.kele_dc = keys.keys_dc
+            kele.kele_keys_id = key.keys_id
+            kele.kele_uc = key.keys_uc
+            kele.kele_dc = key.keys_dc
             kele.kele_attr_id = Attribute().getIDbyODMref(psrcid=ke)
             if kele.kele_attr_id is None:
-                try:
-                    kele.kele_rela_id = Relation().getIDbyODMref(psrcid=ke)
-                    kele.kele_attr_id = None
-                except sqlite3.Error as e:
-                    print(str(e))
-                    print(ke, kele)
-                    raise e
-                # try
+                kele.kele_rela_id = Relation().getIDbyODMref(psrcid=ke)
+                kele.kele_attr_id = None
+                if kele.kele_rela_id is None:
+                    logmessages.writelog("key-element {} for key {} in entity {} is probably attribute group member and will be ignored ".format(ke,key.keys_name,Entity().getbyid(key.keys_enti_id).getname()))
+                    continue
             else:
                 kele.kele_rela_id = None
             # if
@@ -918,9 +915,10 @@ def do1Entity(fileName):
 
     sobj = findText(entixml, 'synonym')
     if (sobj is not None):
-        for syn in sobj.split(','):
-            synoname = syn.strip()
-            syno = Synonym(pname=synoname, pentiid=entiId)
+        syns = sobj.split(',')
+        for syn in syns:
+            #syn.strip()
+            syno = Synonym(pname=syn, pentiid=entiId)
             syno.insert()
         # for
     # fi
@@ -1072,7 +1070,6 @@ def do1UDPFile(pfileName):
 
                 metpid = ModelelementProperty(pmeltid=Modelelemtype.getidbyshortname(pshortname=Modelelemtype.ATTR)
                                             ,pudprid=udprid).insert()
-
             # fi
         # for
     # fi
@@ -1324,7 +1321,7 @@ def transferDocuments():
 
 
 def removeemptyudp():
-    Userdefpropvalue.removeemptyUDP(('.'))
+    Userdefpropvalue.removeemptyUDP(('.',''))
 
 
 # transferDocuments
@@ -1343,8 +1340,8 @@ def transferODMModel():
     doSubentities()
     transferKeys()
     transferdiagramme()
-    filllanguages()
     transferRelational.transfer()
-    removeemptyudp()
     Schnittstelleattr.fillextid()
+    removeemptyudp()
+    filllanguages()
 # end transferODMModel

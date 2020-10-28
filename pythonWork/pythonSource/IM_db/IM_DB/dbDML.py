@@ -39,10 +39,10 @@ def lookup(psql):
     return result[0][0]
 #lookup
 
-def delete(ptableName):
+def delete(ptableName,pwhere=None):
     cursor = dbConnect.myDbConn.cursor()
     try:
-        cursor.execute("delete from {}".format(ptableName))
+        cursor.execute("delete from {} where {}".format(ptableName,"1=1" if pwhere is None else pwhere))
     except sqlite3.Error as e:
         if re.match("table .* already exists",e.__str__()):
             pass

@@ -40,6 +40,9 @@ CREATE TABLE DOCUMENTS
 """
         )
 
+    def getname(self,plang=None):
+        return self.docu_name
+
     def getparent(self):
         if (self.docu_id is not None) and (self.docu_docu_id is not None)\
                 and (self._parent is None):
@@ -117,11 +120,40 @@ CREATE TABLE DOCUMENTS
     #docureference
 
     @staticmethod
+    def getrefdoculist(pid):
+        """returns list of docu_ids references by an the element pid. (direct = TRUE) . For tables document reference via Interface is selected as well (direkt = FALSE)"""
+        docus = dbDML.select("""
+        select docu_id, direct
+        from (select docu_id,docu_name,direct  
+           from(
+            select docu_id,docu_name 
+                , MODO_MODE_ID as ref_id 
+                ,'TRUE' direct
+            from documents
+            join mode_docu on MODO_docu_ID = docu_ID
+            join modelelement on mode_id = MODO_MODE_ID
+            join modelelem_type on melt_id = mode_melt_id
+            union all 
+            select docu_id, docu_name,tabl_id ref_id,'FALSE' direct
+            from documents
+            join mode_docu on MODO_docu_ID = docu_ID
+            join (select schn_id,tabl_id
+                  from tabellen
+                  join schnittstellen on SCHN_ID = TABL_SCHN_ID
+                 ) on MODO_MODE_ID = SCHN_ID      
+            ) 
+        where ref_id = {}  
+        order by upper(docu_name)
+        )
+        """.format(pid))
+        return docus
+
+    @staticmethod
     def doculist():
         return Document.select(porderby='docu_name')
     #doculist
 
-    """def xxdocureferenced(prelaid=None,pentiid=None,pattrid=None):
+    """def xxdocureferenced(prelaid=None,pwebenti=None,pwebattr=None):
     data = dbDML.select("
     select child.docu_id, child.docu_NAME,child.docu_stfo_id,child.docu_REFERENZ
        ,parent.docu_ID parent_id,parent.docu_NAME parent_name
@@ -132,7 +164,7 @@ join modellelement on mode_id = MODO_MODE_ID
 where  (   mode_rela_id = {}
         or mode_enti_id = {}
         or mode_attr_id = {}
-       ) ".format (prelaid,pentiid,pattrid))
+       ) ".format (prelaid,pwebenti,pwebattr))
     return data
 #docureferenced
 """

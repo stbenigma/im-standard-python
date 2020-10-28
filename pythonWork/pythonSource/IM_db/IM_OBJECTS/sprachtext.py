@@ -12,6 +12,7 @@ class Sprachtext(Baseobject):
     ATTR_COMMENT:str='ATTR_COMMENT'
     ATTR_TOOLTIP:str='ATTR_TOOLTIP'
     DOMA_NAME:str= 'DOMA_NAME'
+    DOMA_DESCR:str= 'DOMA_DESCR'
     RELA_TEXT_FROM:str='RELA_TEXT_FROM'
     RELA_TEXT_TO:str='RELA_TEXT_TO'
     SYNO_NAME:str='SYNO_NAME'
@@ -177,7 +178,7 @@ CREATE TABLE LANG_TEXTS
         , 'Attribute(e)': 'Attribute(s)'
         , 'Attribute': 'Attributes'
         , 'Attributgruppe': 'Attribute group'
-        , 'auf Diagram(en)': 'on diagram(s)'
+        , 'auf Diagramm(en)': 'on diagram(s)'
         , 'Author': 'Author'
         , 'Beschreibung': 'Description'
         , 'Beziehung': 'Relationship'
@@ -229,6 +230,7 @@ CREATE TABLE LANG_TEXTS
         , 'Quartal': 'quarter'
         , 'Referenziert von': 'Referenced by'
         , 'Relational Mapping (Tabellen)': 'Relational Mapping (tables)'
+        , "Rollen": "Roles"
         , 'Rundungseinh.': 'rounding unit'
         , 'Schlüssel': 'Key'
         , 'Sekunde': 'second'
@@ -239,6 +241,7 @@ CREATE TABLE LANG_TEXTS
         , 'Subentitäten': 'Subentities'
         , 'Suchbegriff': 'search key'
         , 'Superentität': 'Superentity'
+        , 'Superentitäten': 'Superentities'
         , 'Synonyme': 'Synonyms'
         , 'Syntaxregel': 'Syntax rule'
         , 'Systeme': 'Systems'
@@ -276,7 +279,7 @@ CREATE TABLE LANG_TEXTS
         , "Attribute(e)": "Attribute(s)"
         , "Attribute": "Attributs"
         , "Attributgruppe": "Groupe d'attributs"
-        , "auf Diagram(en)": "sur ce diagramme(s)"
+        , "auf Diagramm(en)": "sur ce diagramme(s)"
         , "Autor": "Auteur"
         , "Beschreibung": "Déscription"
         , "Beziehung": "Relation"
@@ -329,6 +332,7 @@ CREATE TABLE LANG_TEXTS
         , 'Referenziert von': 'Référencé par'
         , "Relational Mapping (Tabellen)": "Relational Mapping (tables)"
         , "Rundungseinheit": "Unité de l'arrondi"
+        , "Rollen": "Rôles"
         , "Schlüssel": "Clef"
         , "Sekunde": "Seconde"
         , "Semester": "Semestre"
@@ -338,6 +342,7 @@ CREATE TABLE LANG_TEXTS
         , "Subentitäten": "Sous-entités"
         , "Suchbegriff": "Clef de recherche"
         , "Superentität": "Superentité"
+        , 'Superentitäten': 'Superentités'
         , "Synonyme": "Synonyme"
         , "Syntaxregel": "Règle syntaxique"
         , "Systeme": "Systèmes"
@@ -386,6 +391,19 @@ CREATE TABLE LANG_TEXTS
         else:
             return pname
     # transl
+
+    @staticmethod
+    def transltext(pattrname, pmodeid, plang):
+        data = dbDML.select("""
+        select lgtx_text
+        from lang_texts
+        join languages on lang_id = lgtx_lang_id
+        where lgtx_mode_id = {}
+        and lgtx_attrname = '{}'
+        and lower(lang_iso_code2) = lower('{}') 
+        """.format(pmodeid, pattrname, plang))
+        return data[0][0] if (len(data) > 0) else ''
+    # translist
 
     @staticmethod
     def reportLang(newval=None):

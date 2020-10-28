@@ -39,6 +39,17 @@ DATABASE-LEVEL	>1 entity, no attributes or > 1 attributes from more than one ent
 <colAssociation fkAssociation="15EA5A7C-BFC7-38BB-F8E0-BD11681B49A1" referredColumn="9900FFF3-1E01-A7AD-23E3-3A005133E9A0"/>
 </associations>
 </Column>
+<Column name="BURE_WRITEABLE" id="4022E954-9CB2-E826-3EA9-41523CC8B03E">
+<createdBy>stb</createdBy>
+<createdTime>2020-10-23 14:37:21 UTC</createdTime>
+<comment><![CDATA[Element ist aus Regel beschreibbar.]]></comment>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
 <Column name="BURE_ATTR_ID" id="9608DFB6-68F4-19A3-33ED-74EC72C333EE">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
@@ -83,6 +94,21 @@ DATABASE-LEVEL	>1 entity, no attributes or > 1 attributes from more than one ent
 <autoIncrementCycle>false</autoIncrementCycle>
 <associations>
 <colAssociation fkAssociation="D9E59C53-990A-A824-4A41-756F545E5FDF" referredColumn="BABB8742-E321-0EBD-79F0-6E95CF1087B4"/>
+</associations>
+</Column>
+<Column name="BURE_DEVA_ID" id="65B5EF67-429F-8792-6A0B-ECBDDD4FD35C">
+<createdBy>stb</createdBy>
+<createdTime>2020-10-23 14:34:42 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="AF3D00BA-9056-7F7F-03F4-D3155FCAC46D" referredColumn="7E0D0401-B467-9FA1-2C52-60AEAF36E1EF"/>
 </associations>
 </Column>
 <Column name="BURE_UC" id="B314F9DC-FAA1-E180-446A-2C8CD3770774">
@@ -196,6 +222,16 @@ DATABASE-LEVEL	>1 entity, no attributes or > 1 attributes from more than one ent
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
 <colUsage columnID="07CB7722-5382-846A-3563-290AF90A4A1F"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="CEFA5AC7-912D-553A-DB8B-835716BE311A" name="BURE_DEVA_FK">
+<createdBy>stb</createdBy>
+<createdTime>2020-10-23 14:34:42 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="65B5EF67-429F-8792-6A0B-ECBDDD4FD35C"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>

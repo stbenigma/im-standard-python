@@ -6,104 +6,6 @@ from IM_OBJECTS import *
 from WEB_OBJECTS import *
 
 
-
-
-def entiAnker(id):
-    return 'ENTI'+str(id)
-def attrAnker(id):
-    return 'ATTR'+str(id)
-def wrtbAnker(id):
-    return 'DOMA'+str(id)
-def diagAnker(id):
-    return 'DIAG'+str(id)
-def dokuAnker(id):
-    return 'DOKU'+str(id)
-
-class Referenceentry:
-    def __init__(self,pid,pname,ptype,ptypename,pdirect='TRUE',panker=None):
-        self.name = pname
-        self.anker = panker
-        self.elemtype = ptype
-        self.typename = ptypename
-        self.elemid = pid
-        self.direct = pdirect == 'TRUE'
-#Rererenceentry
-
-def dokureflist (pid, plang):
-    data = dbDML.select("""
-    select name,id,type,anztype from (
-        select case when spa.lgtx_text is null then name 
-                                                else spa.lgtx_text end  name
-                ,id,melt_shortname type,melt_name anztype 
-        from mode_docu
-        join modellelement on mode_id = MODO_MODE_ID
-        join modelelem_type on melt_id = mode_melt_id
-        left join (select enti_id id ,enti_name name 
-                   from entities
-                   union all
-                   select attr_id id ,attr_displ_name name 
-                   from attributes 
-                   union all
-                   select tabl_id id ,TABL_NAME name 
-                   from tabellen
-                   union all
-                   select SCHN_ID id ,SCHN_NAME name 
-                   from schnittstellen
-           ) on id = modo_mode_id 
-         join languages sp on sp.lang_iso_code2 = '{}'
-         left join langattr spa on spa.lgtx_attrname = case melt_shortname when 'ENTI' then 'ENTI_NAME'
-                                                            when 'ATTR' then 'ATTR_NAME'
-                                                            else ''
-                                                        end
-                                    and spa.lgtx_mode_id = modo_mode_id
-                                    and spa.lang_id = sp.lang_id
-        where  MODO_docu_ID = {}
-    )
-    order by type,upper(name)
-                  """.format(plang,pid))
-    datalist = [Referenceentry(pid=e[1], pname=e[0], ptype=e[2], ptypename=e[3]
-                        , panker=Entity().getbyid(e[1]).webanker() if e[2] == Modelelemtype.ENTI
-                            else Attribute().getbyid(e[1]).webanker() if e[2] == Modelelemtype.ATTR
-                            else Tabelle().getbyid(e[1]).webanker() if e[2] == Modelelemtype.TABL
-                            else Schnittstelle().getbyid(e[1]).webanker() if e[2] == Modelelemtype.INTF
-                            else ''
-                               ) for e in data]
-    return datalist
-#dokureflist
-
-def refdokulist (pid, pelemtype):
-    data = dbDML.select("""
-        select name,id, 'DOKU' type, 'documents'  anztype ,direct
-        from (
-            select docu_name name,docu_id id
-                , MODO_MODE_ID as ref_id 
-                ,'TRUE' direct
-                ,melt_shortname ref_type
-            from documents
-            join mode_docu on MODO_docu_ID = docu_ID
-            join modelelement on mode_id = MODO_MODE_ID
-            join modelelem_type on melt_id = mode_melt_id
-            union all 
-            select docu_name name,docu_id id,tabl_id ref_id,'FALSE' direct,'TABL' ref_type
-            from documents
-            join mode_docu on MODO_docu_ID = docu_ID
-            join (select schn_id, TABL_ID
-                  from tabellen
-                  join schnittstellen on SCHN_ID = TABL_SCHN_ID
-                 ) on MODO_MODE_ID = SCHN_ID      
-            ) 
-        where ref_type = '{}' and ref_id = {}  
-    order by type,upper(name)
-    """.format(pelemtype,pid))
-    datalist = [Referenceentry(pid=e[1], pname=e[0], ptype=e[2], ptypename=e[3]
-                               , pdirect = e[4]
-                                ,panker=dokuAnker(e[1]) if e[2] == Modelelemtype.DOCU
-                                        else ''
-                               )
-                for e in data]
-    return datalist
-#refdokulist
-
 def namelist(ptype, plang=None, pid=None):
     datalist = []
     if ptype == Modelelemtype.ENTI:
@@ -254,62 +156,6 @@ def keylist(p_entiid,p_lang):
 #keylist
 
 
-def udpnamen(pmeltname, pthema=None, pgruppe=None):
-    if pgruppe is None:
-        lsql = """select  udpr_theme,udpr_group,group_concat(udpr_name,',') attrs
-                           from modelelem_type
-                           join modelemtype_properties on metp_melt_id = melt_id  
-                           join user_defined_properties on udpr_id = metp_udpr_id
-                           where melt_shortname = '{}'
-                        group by udpr_theme,udpr_group
-                        order by udpr_theme,udpr_group""".format(pmeltname)
-    elif pgruppe == '*':
-        lsql="""select  udpr_theme,'*'gr,group_concat(udpr_name,',') attrs
-                           from modelelem_type
-                           join modelemtype_properties on metp_melt_id = melt_id  
-                           join user_defined_properties on udpr_id = metp_udpr_id
-                           where melt_shortname = '{}'
-                           and udpr_theme = {} 
-                        group by udpr_theme
-                        order by udpr_theme""".format(pmeltname
-                         ,'udpr_theme' if pthema is None else "'{}'".format(pthema))
-    else:
-        lsql = """select  udpr_theme,udpr_group,group_concat(udpr_name,',') attrs
-                   from modelelem_type
-                   join modelemtype_properties on metp_melt_id = melt_id  
-                   join user_defined_properties on udpr_id = metp_udpr_id
-                   where melt_shortname = '{}'
-                   and udpr_theme = {} 
-                   and udpr_group = '{}' 
-                group by udpr_theme,udpr_group
-                order by udpr_theme,udpr_group""".format(pmeltname
-        , 'udpr_theme' if pthema is None else "'{}'".format(pthema)
-            ,pgruppe)
-    data = dbDML.select(lsql)
-    return data
-#udpnamen
-def udpwerte(pmeltname, pthema, pgruppe, pid):
-    data = dbDML.select("""select udpr_name,udpv_value
-            from udp_values
-            join user_defined_properties on udpr_id = udpv_udpr_id
-                    and udpr_theme = '{}' and udpr_group = {}
-            where udpv_mode_id = {}
-            order by udpr_theme,udpr_group,udpr_name
-            """.format(pthema, 'udpr_group' if pgruppe =='*'  else  "'{}'".format (pgruppe)
-                       ,pid
-            ))
-    return data
-#udpwerte
-
-def wrtblist():
-    return Domain.select(pwhere="doma_herkunft = 'DOM'", porderby='doma_name')
-#wrtblist
-
-def dokulist():
-    return Document.dokulist()
-#dokulist
-
-
 def diagenti(pdiagid,plang):
     data = dbDML.select("""
             with recursive enti as
@@ -362,18 +208,6 @@ def udplist(ptyp):
             .format(ptyp))
     return data
 #udplist
-def transltext(pattr, pmodeid, plang):
-    data = dbDML.select("""
-    select lgtx_text
-    from lang_texts
-    join languages on lang_id = lgtx_lang_id
-    join modelelement on mode_id = lgtx_mode_id
-    where mode_id ={}
-    and lgtx_attrname = '{}'
-    and lower(lang_iso_code2) = lower('{}') 
-    """.format(pmodeid, pattr, plang))
-    return data[0][0] if (len(data)> 0) else ''
-#translist
 
 def liesarcs(pdiagid):
     data = dbDML.select("""

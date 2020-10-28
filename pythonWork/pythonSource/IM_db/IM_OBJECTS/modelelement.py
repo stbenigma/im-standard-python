@@ -24,7 +24,6 @@ class Modelelemtype(Baseobject):
     _columnlist: list = ['melt_id', 'melt_shortname', 'melt_name',
                          'melt_uc', 'melt_dc', 'melt_um',
                          'melt_dm']
-    __meltids: dict = {}
 
     def __init__(self, pshortname=None, pname=None):
         super().__init__(tablename=Modelelemtype._tablename, prefix=Modelelemtype._prefix
@@ -63,9 +62,8 @@ CREATE TABLE MODELELEM_TYPE
     def select(pwhere=None, porderby=None):
         return Baseobject.select(pclass=Modelelemtype, pwhere=pwhere, porderby=porderby)
 
-    def insert(self):
-        meltid = super().insert()
-        Modelelemtype.__meltids[self.melt_shortname] = meltid
+    def getname(self,plang=None):
+        return self.melt_name
 
     @staticmethod
     def fillmelt():
@@ -89,7 +87,9 @@ CREATE TABLE MODELELEM_TYPE
 
     @staticmethod
     def getidbyshortname(pshortname):
-        return Modelelemtype.__meltids[pshortname]
+        melt = Modelelemtype.select(pwhere="melt_shortname= '{}'".format(pshortname))
+        if melt is None or (len(melt)==0): return None
+        return melt[0].melt_id
 
     @staticmethod
     def getshortname(pmeltid):
@@ -164,41 +164,44 @@ CREATE TABLE MODELELEMENT
     def getmodebyodmguid(psrcid):
         return Modelelement.getmodebyextref(psrcname=Externalref.SOURCE_ODM,psrcid=psrcid)
 
-    @staticmethod
-    def getelement(pmodeid):
-        mode = Modelelement().getbyid(pid=pmodeid)
-        if mode is None: return None
-        if mode.mode_type == Modelelemtype.SYNO:
-            element = Synonym().getbyid(mode.mode_id)
-        elif mode.mode_type == Modelelemtype.DOMA:
-            element = Domain().getbyid(mode.mode_id)
-        elif mode.mode_type == Modelelemtype.ATTR:
-            element = Attribute().getbyid(mode.mode_id)
-        elif mode.mode_type == Modelelemtype.BURU:
-            element = Buseinssrule().getbyid(mode.mode_id)
-        elif mode.mode_type == Modelelemtype.RELA:
-            element = Relation().getbyid(mode.mode_id)
-        elif mode.mode_type == Modelelemtype.ENTI:
-            element = Entity().getbyid(mode.mode_id)
-        elif mode.mode_type == Modelelemtype.ORGU:
-            element = Organisationseinheit().getbyid(mode.mode_id)
-        elif mode.mode_type == Modelelemtype.TABL:
-            element = Tabelle().getbyid(mode.mode_id)
-        elif mode.mode_type == Modelelemtype.COLU:
-            element = Schnittstelleattr().getbyid(mode.mode_id)
-        elif mode.mode_type == Modelelemtype.INTF:
-            element = Schnittstelle().getbyid(mode.mode_id)
-        elif mode.mode_type == Modelelemtype.ARCS:
-            element = Arc().getbyid(mode.mode_id)
-        elif mode.mode_type == Modelelemtype.DGRM:
-            element = DefaultGroupMember().getbyid(mode.mode_id)
-        elif mode.mode_type == Modelelemtype.DATY:
-            element = Datatype().getbyid(mode.mode_id)
-        elif mode.mode_type == Modelelemtype.DIAG:
-            element = Diagram().getbyid(mode.mode_id)
+    def getmyelement(self):
+        if self.mode_type == Modelelemtype.SYNO:
+            element = Synonym().getbyid(self.mode_id)
+        elif self.mode_type == Modelelemtype.DOMA:
+            element = Domain().getbyid(self.mode_id)
+        elif self.mode_type == Modelelemtype.ATTR:
+            element = Attribute().getbyid(self.mode_id)
+        elif self.mode_type == Modelelemtype.BURU:
+            element = Buseinssrule().getbyid(self.mode_id)
+        elif self.mode_type == Modelelemtype.RELA:
+            element = Relation().getbyid(self.mode_id)
+        elif self.mode_type == Modelelemtype.ENTI:
+            element = Entity().getbyid(self.mode_id)
+        elif self.mode_type == Modelelemtype.ORGU:
+            element = Organisationseinheit().getbyid(self.mode_id)
+        elif self.mode_type == Modelelemtype.TABL:
+            element = Tabelle().getbyid(self.mode_id)
+        elif self.mode_type == Modelelemtype.COLU:
+            element = Schnittstelleattr().getbyid(self.mode_id)
+        elif self.mode_type == Modelelemtype.INTF:
+            element = Schnittstelle().getbyid(self.mode_id)
+        elif self.mode_type == Modelelemtype.ARCS:
+            element = Arc().getbyid(self.mode_id)
+        elif self.mode_type == Modelelemtype.DGRM:
+            element = DefaultGroupMember().getbyid(self.mode_id)
+        elif self.mode_type == Modelelemtype.DATY:
+            element = Datatype().getbyid(self.mode_id)
+        elif self.mode_type == Modelelemtype.DIAG:
+            element = Diagram().getbyid(self.mode_id)
         else:
             element = None
         return element
+
+    @staticmethod
+    def getelement(pmodeid):
+        mode = Modelelement().getbyid(pid=pmodeid)
+        return None if mode is None else mode.getmyelement()
+
 
     @staticmethod
     def getelementbyextref(psrcname, psrcid):

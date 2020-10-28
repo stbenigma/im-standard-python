@@ -135,7 +135,7 @@ def printcollist(pcollist, pschnid):
         # for maps in mappings:
         #     if (maps[0] == 'Logisches Modell'):
         #         colwerte[len(colwerte) - 1] = ', '.join(
-        #             [printHTML.href(ref=val, anz=key, htmlfile=printHTML.htmlfilelist[0]) \
+        #             [printHTML.href(pref=val, panz=key, htmlfile=printHTML.htmlfilelist[0]) \
         #              for key, val in maps[1].items()])
         # for schn in Schnittstelle.indexlist():
         #     if (schn[0] != schnname):
@@ -143,7 +143,7 @@ def printcollist(pcollist, pschnid):
         #         for maps in mappings:
         #             if (maps[0] == schn[0]):
         #                 # Aktuell noch keine Columns-Anker in Schnittstellen HTML. Darum nur der Name
-        #                 # commalist = ', '.join ([printHTML.href(ref=val.anker(), anz=key, htmlfile=printHTML.htmlfilelist[val.modelid()])\
+        #                 # commalist = ', '.join ([printHTML.href(pref=val.anker(), panz=key, htmlfile=printHTML.htmlfilelist[val.modelid()])\
         #                 #                        for key,val in maps[1].items()])
         #                 commalist = ', '.join(key for key in maps[1].keys())
         #                 colwerte[len(colwerte) - 1] = commalist
@@ -177,7 +177,7 @@ def printcontenttable(plist):
         printHTML.printcontentinfo(ptitle=Sprachtext.transl('Informationen'), pheaders=infoheaders, pvalues=infovalues)
 
         printHTML.printreflist(pelemid=t.tabl_id, pelemtype=Modelelemtype.TABL)
-        printHTML.printUDP(p_meltname=t.prefix().upper(), p_id=t.tabl_id)
+        printHTML.printUDP(p_meltname=t.prefix().upper(), pid=t.tabl_id)
         printcollist(pcollist=t.getcolumns(), pschnid=t.tabl_schn_id)
         printmapping(ptablid=t.tabl_id)
         printHTML.printcontentend(lbc)
@@ -228,7 +228,7 @@ def printcontentcolumn(pcols):
         printHTML.printcontentinfo(ptitle=Sprachtext.transl('Information'), pheaders=infoheaders, pvalues=infovalues)
 
         printHTML.printreflist(pelemid=col.scha_id, pelemtype=Modelelemtype.INTF)
-        printHTML.printUDP(p_meltname=col.prefix().upper(), p_id=col.scha_id)
+        printHTML.printUDP(p_meltname=col.prefix().upper(), pid=col.scha_id)
         printcolmapping(pcolid=col.scha_id)
         printHTML.printcontentend(lbc)
     # for

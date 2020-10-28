@@ -70,6 +70,43 @@ class Userdefprop(Baseobject):
                                                   , pudptheme))
         datalist = [(e[0], Userdefprop.udpAnker(e[1]), '', e[2]) for e in data]
         return datalist
+
+    @staticmethod
+    def udpnames(pmeltname, ptheme=None, pgroup=None):
+        """returns list of udps ("theme", "group", "names,...")"""
+        if pgroup is None:
+            lsql = """select  udpr_theme,udpr_group,group_concat(udpr_name,',') attrs
+                               from modelelem_type
+                               join modelemtype_properties on metp_melt_id = melt_id  
+                               join user_defined_properties on udpr_id = metp_udpr_id
+                               where melt_shortname = '{}'
+                            group by udpr_theme,udpr_group
+                            order by udpr_theme,udpr_group""".format(pmeltname)
+        elif pgroup == '*':
+            lsql = """select  udpr_theme,'*'gr,group_concat(udpr_name,',') attrs
+                               from modelelem_type
+                               join modelemtype_properties on metp_melt_id = melt_id  
+                               join user_defined_properties on udpr_id = metp_udpr_id
+                               where melt_shortname = '{}'
+                               and udpr_theme = {} 
+                            group by udpr_theme
+                            order by udpr_theme""".format(pmeltname
+                                                          , 'udpr_theme' if ptheme is None else "'{}'".format(ptheme))
+        else:
+            lsql = """select  udpr_theme,udpr_group,group_concat(udpr_name,',') attrs
+                       from modelelem_type
+                       join modelemtype_properties on metp_melt_id = melt_id  
+                       join user_defined_properties on udpr_id = metp_udpr_id
+                       where melt_shortname = '{}'
+                       and udpr_theme = {} 
+                       and udpr_group = '{}' 
+                    group by udpr_theme,udpr_group
+                    order by udpr_theme,udpr_group""".format(pmeltname
+                                                             , 'udpr_theme' if ptheme is None else "'{}'".format(ptheme)
+                                                             , pgroup)
+        data = dbDML.select(lsql)
+        return data
+    # udpnames
 # Userdefprop
 
 
@@ -110,15 +147,17 @@ class Userdefpropvalue(Baseobject):
     @staticmethod
     def removeemptyUDP(pempties):
         emptylist = ','.join("'{}'".format(e) for e in pempties)
-        dbDML.exec("""delete from {} 
-                        where udpv_value is null
-                            or udpv_value  in ({})""".format(Userdefpropvalue._tablename, emptylist)
+        Userdefpropvalue.delete(pwhere="udpv_value is null or udpv_value  in ({})".format(emptylist)
                    )
-
     # removeemptydup
+
     @staticmethod
-    def delete():
-        Baseobject.delete(Userdefpropvalue._tablename)
+    def delete(pwhere=None):
+        Baseobject.delete(Userdefpropvalue._tablename,pwhere=pwhere)
+
+    @staticmethod
+    def select(pwhere=None,porderby=None):
+        return Baseobject.select(Userdefpropvalue,pwhere=pwhere,porderby=porderby)
 
     @staticmethod
     def fillallvalues(pmodetype,pentiid=None,pattrid=None,prelaid=None):
@@ -152,4 +191,16 @@ class Userdefpropvalue(Baseobject):
                             and udpv_udpr_id = ?
                         """, recs=prows)
     # updvalues
+
+    def udpvalues(pmeltname, ptheme, pgroup, pmodeid):
+        data = dbDML.select("""select udpr_name,udpv_value
+                from udp_values
+                join user_defined_properties on udpr_id = udpv_udpr_id
+                        and udpr_theme = '{}' and udpr_group like '{}'
+                where udpv_mode_id = {}
+                order by udpr_theme,udpr_group,udpr_name
+                """.format(ptheme, '%' if pgroup == '*' else pgroup, pmodeid))
+        return data
+    # udpvalues
+
 # Userdefpropvalue

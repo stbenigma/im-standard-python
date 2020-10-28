@@ -45,8 +45,19 @@ Subtype of MODELELEMENT. BURU_ID is always identical to the corresponding MODE_I
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="BURU_TYPE" id="9656DE00-2298-793E-DD17-0CBBDD937AB1">
+<createdBy>stb</createdBy>
+<createdTime>2020-10-23 14:41:20 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>96A9C6B2-3074-8688-262C-5F65FC2CE590</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
@@ -64,8 +75,30 @@ Rule limiting values to complex relationships (multiple entities, attributes, re
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="BURU_EFFECT" id="F1760611-6EBE-F560-6275-10EA79DA2C22">
+<createdBy>stb</createdBy>
+<createdTime>2020-10-23 14:41:20 UTC</createdTime>
+<comment><![CDATA[Meldung, die bei Verletzung der Regel angezeigt wird.]]></comment>
+<generatorID>DEA583A1-1362-7675-76D3-F647C1BD80CC</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Meldung, die bei Verletzung der Regel angezeigt wird.
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Message that is displayed when the rule is violated.
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
@@ -84,8 +117,9 @@ Description, explanation of the rule
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
@@ -102,9 +136,11 @@ Message that is displayed when the rule is violated.
 ]EN_ATTR_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
@@ -181,25 +217,6 @@ Message that is displayed when the rule is violated.
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <generatorID>CD61460D-CC3B-5EE7-EEA7-2807443DEBA7</generatorID>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<indexState>Unique Constraint</indexState>
-<isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
-<colUsage columnID="7EEB35C2-8E0B-105D-7790-149F28E4CD49"/>
-</indexColumnUsage>
-</ind_PK_UK>
-<ind_PK_UK id="7E48E9C7-B8BE-57DE-62E8-5D765CE34CBE" name="BUSINESS_RULE__UN">
-<createdBy>stb</createdBy>
-<createdTime>2020-10-11 14:59:55 UTC</createdTime>
-<generatorID>7465F71C-6E0A-E3D8-95A6-E74B987A6AA2</generatorID>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<indexState>Unique Constraint</indexState>
-<isSurrogateKey>false</isSurrogateKey>
-</ind_PK_UK>
-<ind_PK_UK id="DC2BCB2D-7522-3705-B337-2E4A8D17CEBB" name="BUSINESS_RULE_BURU_NAME_UN">
-<createdBy>stb</createdBy>
-<createdTime>2020-10-11 14:59:55 UTC</createdTime>
-<generatorID>B1F60E3A-1081-85A1-2F4B-813E9E8075FA</generatorID>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <indexState>Unique Constraint</indexState>
 <isSurrogateKey>false</isSurrogateKey>

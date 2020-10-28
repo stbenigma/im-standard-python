@@ -54,7 +54,7 @@
     <table id="43" parent="2" name="tabellen"/>
     <table id="44" parent="2" name="tabl_enti_maps"/>
     <view id="45" parent="2" name="SUPERENTI">
-      <SourceTextLength>749</SourceTextLength>
+      <SourceTextLength>1583</SourceTextLength>
     </view>
     <view id="46" parent="2" name="langattr">
       <SourceTextLength>203</SourceTextLength>
@@ -2979,59 +2979,62 @@ tema_rela_id</ColNames>
       <Predicate>(tema_enti_id is not null and tema_rela_id is null )
       	        		  or (tema_enti_id is null and tema_rela_id is not null)</Predicate>
     </check>
-    <column id="672" parent="45" name="superenti_id">
+    <column id="672" parent="45" name="rela_type">
       <Position>1</Position>
-      <DataType>integer|0s</DataType>
+      <DataType>VARCHAR(4)|0s</DataType>
     </column>
-    <column id="673" parent="45" name="super_enti_name">
+    <column id="673" parent="45" name="superenti_id">
       <Position>2</Position>
+    </column>
+    <column id="674" parent="45" name="super_enti_name">
+      <Position>3</Position>
       <DataType>VARCHAR(60)|0s</DataType>
     </column>
-    <column id="674" parent="45" name="subenti_id">
-      <Position>3</Position>
-      <DataType>integer|0s</DataType>
-    </column>
-    <column id="675" parent="45" name="sub_enti_name">
-      <Position>4</Position>
-      <DataType>VARCHAR(60)|0s</DataType>
-    </column>
-    <column id="676" parent="46" name="LGTX_TEXT">
-      <Position>1</Position>
-      <DataType>VARCHAR(4000)|0s</DataType>
-    </column>
-    <column id="677" parent="46" name="LANG_ID">
-      <Position>2</Position>
-      <DataType>INTEGER|0s</DataType>
-    </column>
-    <column id="678" parent="46" name="LANG_ISO_CODE2">
-      <Position>3</Position>
-      <DataType>CHAR(2)|0s</DataType>
-    </column>
-    <column id="679" parent="46" name="LGTX_MODE_ID">
+    <column id="675" parent="45" name="subenti_id">
       <Position>4</Position>
       <DataType>integer|0s</DataType>
     </column>
-    <column id="680" parent="46" name="LGTX_ATTRNAME">
+    <column id="676" parent="45" name="sub_enti_name">
       <Position>5</Position>
       <DataType>VARCHAR(60)|0s</DataType>
     </column>
-    <column id="681" parent="47" name="LGTX_TEXT">
+    <column id="677" parent="46" name="LGTX_TEXT">
       <Position>1</Position>
       <DataType>VARCHAR(4000)|0s</DataType>
     </column>
-    <column id="682" parent="47" name="LANG_ID">
+    <column id="678" parent="46" name="LANG_ID">
       <Position>2</Position>
       <DataType>INTEGER|0s</DataType>
     </column>
-    <column id="683" parent="47" name="LANG_ISO_CODE2">
+    <column id="679" parent="46" name="LANG_ISO_CODE2">
       <Position>3</Position>
       <DataType>CHAR(2)|0s</DataType>
     </column>
-    <column id="684" parent="47" name="LGTX_MODE_ID">
+    <column id="680" parent="46" name="LGTX_MODE_ID">
       <Position>4</Position>
       <DataType>integer|0s</DataType>
     </column>
-    <column id="685" parent="47" name="LGTX_ATTRNAME">
+    <column id="681" parent="46" name="LGTX_ATTRNAME">
+      <Position>5</Position>
+      <DataType>VARCHAR(60)|0s</DataType>
+    </column>
+    <column id="682" parent="47" name="LGTX_TEXT">
+      <Position>1</Position>
+      <DataType>VARCHAR(4000)|0s</DataType>
+    </column>
+    <column id="683" parent="47" name="LANG_ID">
+      <Position>2</Position>
+      <DataType>INTEGER|0s</DataType>
+    </column>
+    <column id="684" parent="47" name="LANG_ISO_CODE2">
+      <Position>3</Position>
+      <DataType>CHAR(2)|0s</DataType>
+    </column>
+    <column id="685" parent="47" name="LGTX_MODE_ID">
+      <Position>4</Position>
+      <DataType>integer|0s</DataType>
+    </column>
+    <column id="686" parent="47" name="LGTX_ATTRNAME">
       <Position>5</Position>
       <DataType>VARCHAR(60)|0s</DataType>
     </column>

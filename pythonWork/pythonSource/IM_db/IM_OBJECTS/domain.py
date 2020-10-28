@@ -43,7 +43,7 @@ class Domain(MultilangBaseobject):
     def __init__(self, psrcname=None, psrcid=None):
         super().__init__(tablename=Domain._tablename, prefix=Domain._prefix
                          , columnlist=Domain._columnlist
-                         , multilangcols={'doma_name': Sprachtext.DOMA_NAME}
+                         , multilangcols={'doma_name': Sprachtext.DOMA_NAME, 'doma_descr': Sprachtext.DOMA_DESCR}
                          , pmodelemtype=Modelelemtype.DOMA
                          , pscrid=psrcid
                          , psrcname=psrcname
@@ -202,9 +202,6 @@ CREATE TABLE DOMAINS
 
     # refattranz
 
-    def displdatatype(self):
-        return Domain.anzdatentyp(self.doma_type)
-
     @staticmethod
     def basetype2domatype(pdatybasetype):
         transl = {Datatype.BINARY: Domain.BIN,
@@ -225,14 +222,6 @@ CREATE TABLE DOMAINS
     def delete():
         Baseobject.delete(Domain._tablename)
 
-    @staticmethod
-    def indexlist(pherkunft, plang: str):
-        data = Domain.select(pwhere="doma_origin = '{}'".format(pherkunft), porderby='doma_name')
-        indexlist = [['{} ({})'.format(d.getname(plang), d.refattranz())
-                         , d.webanker(), d.doma_id] for d in data]
-        return indexlist
-
-    # indexlist
 
     @staticmethod
     def getbyname(pname: str):
@@ -252,7 +241,7 @@ CREATE TABLE DOMAINS
     # getunknown
 
     @staticmethod
-    def anzdatentyp(dt: str):
+    def _displdatatype(dt):
         anzDT = {Domain.BIN: Sprachtext.transl('Binär')
             , Domain.GRP: Sprachtext.transl('Gruppenattribut')
             , Domain.LOV: Sprachtext.transl('Werteliste')
@@ -260,8 +249,10 @@ CREATE TABLE DOMAINS
             , Domain.TXT: Sprachtext.transl('Text')
             , Domain.DAT: Sprachtext.transl('Zeitpunkt')}
         return anzDT[dt]
-
     # anzDatentyp
+
+    def displdatatype(self):
+        return Domain._displdatatype(self.doma_type)
 
     @staticmethod
     def displcontenttype(dt):

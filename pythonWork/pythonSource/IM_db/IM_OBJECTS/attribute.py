@@ -1,8 +1,7 @@
 from .baseobject import Baseobject, MultilangBaseobject
 from .sprachtext import Sprachtext
 from .domain import Domain
-from .key import Keyelement
-from .entity import Entity
+import IM_OBJECTS
 
 class Attribute(MultilangBaseobject):
     _tablename: str = 'attributes'
@@ -84,8 +83,14 @@ CREATE TABLE ATTRIBUTES
     def getname(self, plang=None):
         return self._getsprachval(colname='attr_displ_name', plang=plang)
 
+    def getdescr(self, plang=None):
+        return self._getsprachval(colname='attr_descr', plang=plang)
+
+    def gettooltip(self, plang=None):
+        return self._getsprachval(colname='attr_tooltip', plang=plang)
+
     def getentiname(self, plang=None):
-        return Entity().getbyid(self.attr_enti_id).getname(plang)
+        return IM_OBJECTS.Entity().getbyid(self.attr_enti_id).getname(plang)
 
     def getmodellelement(self):
         return Modelelement.getbyelemid(pattrid=self.attr_id)
@@ -95,7 +100,7 @@ CREATE TABLE ATTRIBUTES
 
     def getparent(self):
         if self.attr_enti_id is not None:
-            return Entity().getbyid(self.attr_enti_id)
+            return IM_OBJECTS.Entity().getbyid(self.attr_enti_id)
         if self.attr_rela_id is not None:
             return None #Relation().getbyid(self.attr_rela_id)
 
@@ -118,6 +123,8 @@ CREATE TABLE ATTRIBUTES
     # select
 # Attribute
 from .modelelement import Modelelement,Modelelemtype
+from .key import Keyelement
+
 
 
 

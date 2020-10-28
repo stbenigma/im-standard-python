@@ -57,8 +57,11 @@ class Baseobject:
     def __emptyclass(self):
         for col in self._columnlist:
             self.__dict__[col] = None
-
     # emptyclass
+
+    def getname(self,plang=None):
+        """if object has name, it must be overwritten"""
+        return "{} ({}) has no name".format(self._prefix,self.getid())
 
     def toarray(self):
         return [self.__dict__[col] for col in self._columnlist]
@@ -89,8 +92,14 @@ class Baseobject:
             if self.getid() is None: self.setid(id)  # autocolumns zurücklesen
         except sqlite3.Error as e:
             if pdoerrhdlng:
-                writelog(str(e))
-                writelog(self.tostring())
+                try:
+                    writelog(str(e))
+                    writelog(self.tostring())
+                except:
+                    print ("Loggin-Error in Baseobject.insert():")
+                    print(str(e))
+                    print (lsql)
+                    print (self.totuple())
             # if
             raise e
         # try
@@ -187,13 +196,12 @@ class Baseobject:
                 pass
             retval.append(obj)
         return retval
-
     # select
 
     @staticmethod
-    def delete(ptablename):
+    def delete(ptablename,pwhere=None):
         try:
-            dbDML.delete(ptablename)
+            dbDML.delete(ptablename,pwhere=pwhere)
         except Exception as err:
             if (not err.__str__().startswith("no such table")):
                 raise err
@@ -220,14 +228,14 @@ class MultilangBaseobject(Baseobject):
         raise NotImplementedError("'getmodeid' muss implementiert werden")
 
     def getsprachvals(self):
-        for col in self._multilangcols.keys():
+        for col in self._multilangcols:
             spt = Sprachtext.getlang_texts(pattrname=self._multilangcols[col], pmodeid=self.getid())
             self.__dict__[col + '_L'] = spt
         # for
 
     # getsprachvals
 
-    def _getsprachval(self, colname: str, plang: str = None):
+    def _getsprachval(self, colname, plang = None):
         try:
             retval = self.__dict__[colname + '_L'][plang]
         except:
@@ -235,7 +243,7 @@ class MultilangBaseobject(Baseobject):
             retval = self.retval = self.__dict__[colname]
         # try
         return retval
-    # getbeschr
+    #_getsprachval
 
 
 from logmessages import writelog

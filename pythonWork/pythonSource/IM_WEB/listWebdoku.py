@@ -9,7 +9,7 @@ from IM_DB import parameters,dbConnect, dbParam,logmessages
 from IM_HTML import printHTML, printRelHTML
 import web_sql
 from IM_OBJECTS import *
-from IM_WEB import *
+from WEB_OBJECTS import *
 
 
 # Main Programm
@@ -18,8 +18,8 @@ def nvl(x,default=''):
     else: return x
 #nvl
 
-#def makeAnker(ref,anz):
-#    return """<a name = "{}" >{}</a>""".format(ref,anz)
+#def makeAnker(pref,panz):
+#    return """<a name = "{}" >{}</a>""".format(pref,panz)
 #href
 
 def formatDatentyp(w):
@@ -105,13 +105,13 @@ def printAttrUDPMatrix(thema=None):
 
 def printlistofcontent():
     printHTML.printlistofcontenthead()
-    printHTML.printlistofcontentelement(pname='Entitäten', plist=web_sql.namelist(ptype=Modelelemtype.ENTI, plang=Sprachtext.reportLang()))
-    printHTML.printlistofcontentelement(pname='Attribute', plist=web_sql.namelist(ptype=Modelelemtype.ATTR, plang=Sprachtext.reportLang()))
-    printHTML.printlistofcontentelement(pname='Wertebereiche', plist=web_sql.namelist(ptype=Modelelemtype.DOMA, plang=Sprachtext.reportLang()))
-    printHTML.printlistofcontentelement(pname='Dokumente', plist=web_sql.namelist(ptype=Modelelemtype.DOCU, plang=Sprachtext.reportLang()))
+    printHTML.printlistofcontentelement(pname='Entitäten', plist=WebEntity.indexlist(plang=Sprachtext.reportLang()))
+    printHTML.printlistofcontentelement(pname='Attribute', plist=WebAttribute.indexlist(plang=Sprachtext.reportLang()))
+    printHTML.printlistofcontentelement(pname='Wertebereiche', plist=WebDomain.indexlist(porigin=Domain.DOMAIN,plang=Sprachtext.reportLang()))
+    printHTML.printlistofcontentelement(pname='Dokumente', plist=WebDocument.indexlist(plang=Sprachtext.reportLang()))
     #printHTML.printlistofcontentelement(pname='Attribute-Mapping', plist=web_sql.namelist(ptype='UDP', plang=Sprachtext.reportLang()))
-    printHTML.printlistofcontentelement(pname='Diagramme', plist=web_sql.namelist(ptype=Modelelemtype.DIAG, plang=Sprachtext.reportLang()))
-    printHTML.printlistofcontentelement(pname='Systeme', plist=web_sql.namelist(ptype=Modelelemtype.INTF, plang=Sprachtext.reportLang())
+    printHTML.printlistofcontentelement(pname='Diagramme', plist=WebDiagram.indexlist(plang=Sprachtext.reportLang()))
+    printHTML.printlistofcontentelement(pname='Systeme', plist=WebInterface.indexlist(plang=Sprachtext.reportLang())
                                         ,pfileonly = True)
     printHTML.printlistofcontentfoot()
 # printlistofcontent
@@ -120,7 +120,7 @@ def printcontent(pfirma,ptitel):
     printHTML.printcontenthead(pfirma=pfirma,ptitel=ptitel)
     printHTML.printcontententi()
     printHTML.printcontentattr()
-#    printHTML.printcontentwrtb(plist=web_sql.wrtblist())
+    printHTML.printcontentwrtb()
 #    printHTML.printcontentdoku(plist=web_sql.dokulist())
      #printHTML.printcontentmapping(plist=web_sql.namelist(ptype='UDP', plang=Sprachtext.reportLang()))
 #    printdiagHTML.printcontentdiag(plist=web_sql.diaglist(), plang=Sprachtext.reportLang(), ptitel=ptitel)
@@ -185,7 +185,6 @@ def listwebmain(plang):
     Sprachtext.reportLang(parameters.dbDefaultLang())
     #backjumps from relational webpage goes to default-lang-model
     printHTML.htmlfilelist[0] = printHTML.webFileName + '_' + parameters.dbDefaultLang() + '.html'
-
 
     """Schnittstellen werden immer englisch gedruckt"""
     Sprachtext.reportLang(Sprachtext.EN)

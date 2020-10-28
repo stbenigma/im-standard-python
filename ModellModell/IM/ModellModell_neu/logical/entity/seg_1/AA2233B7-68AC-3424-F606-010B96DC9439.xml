@@ -73,8 +73,9 @@ Level on which the rule checks (row, tuple, entity, database) is derived from th
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_COMMENT" value=""/>
@@ -103,8 +104,9 @@ Description, explanation of the rule
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_COMMENT" value="Umschreibung, Erklärung der Regel"/>
@@ -116,7 +118,17 @@ Description, explanation of the rule
 <Attribute name="Regel" id="18DDD1CA-270F-D5BB-691E-74C2CBBE8960">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:04:00 UTC</createdTime>
-<comment><![CDATA[Regel, die Werte beschränken auf Grund von komplexen Zusammenhängen (mehere Entitäten, Attribute, Beziehungen)]]></comment>
+<comment><![CDATA[Regel, die Werte beschränken auf Grund von komplexen Zusammenhängen (mehere Entitäten, Attribute, Beziehungen)
+Die Regel kann Objekte enthalten, mit denen die Regel verknüpft ist:
+
+(ENTI)entitätsname
+(ATTR)entitätsname.attributname
+(DOMA)wertebereichsname
+(DOMV)Wertebereichsname.Wert
+
+Beispiele:
+  Artikel.Volumen := Artikel.Höhe * Artikel.Breite * Artikel.Tiefe
+  berechnePreis(Artikel.Preis,Land.Name)]]></comment>
 <notes><![CDATA[[DE_ATTR_COMMENT[
 Regel, die Werte beschränken auf Grund von komplexen Zusammenhängen (mehere Entitäten, Attribute, Beziehungen)
 ]DE_ATTR_COMMENT]
@@ -132,8 +144,9 @@ Rule limiting values to complex relationships (multiple entities, attributes, re
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_COMMENT" value="Regel, die Werte beschränken auf Grund von komplexen Zusammenhängen (mehere Entitäten, Attribute, Beziehungen)"/>
@@ -145,13 +158,15 @@ Rule limiting values to complex relationships (multiple entities, attributes, re
 <Attribute name="Regelauswirkung" id="86E34E90-2279-A7A0-6169-D3A161D1EF39">
 <createdBy>stb</createdBy>
 <createdTime>2020-10-21 11:09:10 UTC</createdTime>
-<comment><![CDATA[Was bewirkt die Regel
+<comment><![CDATA[Was bewirkt die Regel 
 
 Warnung
 Information
 Log-eintrag
 Aktion Verhindern
 Berechneten Wert speichern
+
+Kann als Formel, Aufruf, Code-snippet direkt erfasst werden.
 
 ]]></comment>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -163,6 +178,9 @@ Berechneten Wert speichern
 <nullsAllowed>true</nullsAllowed>
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="EN_ATTR_NAME" value="ruleeffect"/>
+</propertyMap>
 </Attribute>
 <Attribute name="Regeltyp" id="EA2A5BA9-D64F-D985-9B96-AE02BDDE1A02">
 <createdBy>stb</createdBy>
@@ -178,9 +196,13 @@ ist]]></comment>
 <item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
-<nullsAllowed>true</nullsAllowed>
 <use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>96A9C6B2-3074-8688-262C-5F65FC2CE590</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="EN_ATTR_NAME" value="Ruletype"/>
+</propertyMap>
 </Attribute>
 <Attribute name="Fehlermeldung [L]" id="DEA583A1-1362-7675-76D3-F647C1BD80CC">
 <createdBy>stb</createdBy>
@@ -201,8 +223,9 @@ Message that is displayed when the rule is violated.
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_COMMENT" value="Meldung, die bei Verletzung der Regel angezeigt wird."/>

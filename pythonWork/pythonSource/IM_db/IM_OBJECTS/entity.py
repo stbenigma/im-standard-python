@@ -1,8 +1,9 @@
-from .baseobject import Baseobject,MultilangBaseobject
 from .key import Key
-from .sprachtext import Sprachtext
 from IM_DB import dbDML,dbDDL
 from datetime import date
+from .baseobject import Baseobject,MultilangBaseobject
+from .sprachtext import Sprachtext
+import IM_OBJECTS
 
 
 class Entity(MultilangBaseobject):
@@ -26,8 +27,6 @@ class Entity(MultilangBaseobject):
                          , pscrid=psrcid
                          , psrcname=psrcname
                          )
-        self._parents = None
-        self._children = None
         self._synonyms = None
         self._schluessel = None
         self._attributes = None
@@ -59,16 +58,33 @@ CREATE TABLE ENTITIES
     @staticmethod
     def createviews():
         dbDDL.dropView("SUPERENTI");
-        dbDDL.createTable("""create view SUPERENTI AS 
-            select superentity.enti_id as superenti_id, superentity.enti_name as super_enti_name
-            ,subentity.enti_id as subenti_id, subentity.enti_name as sub_enti_name
- from ENTITIES superentity
-      join arcs on superentity.enti_id = arcs_enti_id
-      join relations relfrom on  (rela_arcs_id_from  = ARCS_ID and RELA_ENTI_ID_from = superentity.ENTI_ID)
-                        or (rela_arcs_id_to  = ARCS_ID and RELA_ENTI_ID_to = superentity.ENTI_ID)
-       left  join ENTITIES subentity on  (subentity.ENTI_ID =  rela_enti_id_to and rela_arcs_id_from = arcs_id )
- or (subentity.ENTI_ID =  rela_enti_id_from and rela_arcs_id_to = arcs_id )
-      where RELA_TYPE in ('ISAS')
+        dbDDL.createTable("""
+        create view SUPERENTI AS
+    select rela_type,superentity.enti_id as superenti_id, superentity.enti_name as super_enti_name
+        ,subentity.enti_id as subenti_id, subentity.enti_name as sub_enti_name
+          from ENTITIES superentity
+            join ARCS on ARCS_ENTI_ID = superentity.enti_id
+            join relations
+                  on  ((rela_arcs_id_from  = ARCS_ID and RELA_ENTI_ID_from = superentity.ENTI_ID)
+                   or (rela_arcs_id_to  = ARCS_ID and RELA_ENTI_ID_to = superentity.ENTI_ID))
+                     and RELA_TYPE =  'ISAS'
+           left  join ENTITIES subentity on  (subentity.ENTI_ID =  rela_enti_id_to and rela_arcs_id_from = arcs_id )
+                or (subentity.ENTI_ID =  rela_enti_id_from and rela_arcs_id_to = arcs_id )
+    union all
+    select rela_type,superentity.enti_id as superenti_id, superentity.enti_name as super_enti_name
+        ,subentity.enti_id as subenti_id, subentity.enti_name as sub_enti_name
+          from ENTITIES superentity
+          join (select rela_type
+               , case
+                     when RELA_MANDATORY_TO_FROM = 'TRUE' then RELA_ENTI_ID_FROM
+                     else RELA_ENTI_ID_TO end as rela_superenti_id
+               , case
+                     when RELA_MANDATORY_FROM_TO = 'TRUE' then RELA_ENTI_ID_FROM
+                     else RELA_ENTI_ID_TO end as rela_subenti_id
+                 from relations
+                where rela_type = 'ISAR'
+                ) on rela_superenti_id = superentity.ENTI_ID
+        join ENTITIES subentity on subentity.ENTI_ID = rela_subenti_id
         """)
 
     def getmodellelement(self):
@@ -85,20 +101,24 @@ CREATE TABLE ENTITIES
         return Entity().getbyid(pid).enti_category_guid
 
     def getparents(self):
-        if (self.getid() is not None) and (self._parents is None):
-            parents = Entity.select(pwhere="enti_id in (select superenti_id from SUPERENTI where subenti_id = {})".format(self.getid()))
-            if parents is not None and len(parents) > 0:
-                self._parents = parents
-        #fi
-        return self._parents
+        parents = Entity.select(pwhere="enti_id in (select superenti_id from SUPERENTI where subenti_id = {})".format(self.getid()))
+        return [] if parents is None else parents
     #getparent
 
-    def getchildren(self):
-        if (self.getid() is not None) and (self._children is None):
-            self._children =  Entity.select(pwhere='enti_id in (select subenti_id from SUPERENTI where superenti_id = {})'.format(self.getid())
-                                            , porderby= 'enti_name')
-        #fi
-        return self._children
+    def getchildren(self,ptype=None):
+        """ptype None-> ALL, ISAS,'ISAR"""
+        if ptype in (IM_OBJECTS.Relation.ISASUBTYPE,IM_OBJECTS.Relation.ISAROLE):
+            relatype = ptype
+        else:
+            relatype = "%"
+        children =  Entity.select(pwhere=
+                                """enti_id in 
+                                    (select subenti_id 
+                                      from SUPERENTI 
+                                      where superenti_id = {} 
+                                      and rela_type like '{}')""".format(self.getid(),relatype)
+                                , porderby= 'enti_name')
+        return []  if children is None else children
     #getchildren
 
     def getsynonyms(self):
@@ -108,6 +128,12 @@ CREATE TABLE ENTITIES
         # fi
         return self._synonyms
     #getsynonyms
+
+
+    def getkeys(self):
+        return Key.select(pwhere='keys_enti_id = {}'.format(self.getid())
+                                  , porderby='keys_name')
+    #getkeys
 
     def getschluessel(self):
         if (self.getid() is not None) and (self._schluessel is None):
@@ -130,7 +156,7 @@ CREATE TABLE ENTITIES
 
     @staticmethod
     def select(pwhere=None, porderby="enti_name"):
-        entis =  Baseobject.select(pclass=Entity
+        entis = Baseobject.select(pclass=Entity
                                  , pwhere=pwhere, porderby=porderby)
         return entis
 
@@ -212,7 +238,8 @@ CREATE TABLE SYNONYMS
         """)
 
     def getname(self,plang=None):
-        return self._getsprachval(colname='syno_name',plang=plang)
+        retval = self._getsprachval(colname='syno_name',plang=plang)
+        return '' if retval is None else retval
 
     def getparent(self):
         return Entity.getbyid(self.syno_enti_id)

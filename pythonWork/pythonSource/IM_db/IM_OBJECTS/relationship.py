@@ -3,9 +3,9 @@ from datetime import datetime
 from IM_DB import dbDML
 from .baseobject import Baseobject, MultilangBaseobject
 from .baseobject import Boolean
-from .entity import Entity
 from .modelelement import Modelelemtype
 from .sprachtext import Sprachtext
+import IM_OBJECTS
 
 
 class Arc(Baseobject):
@@ -32,7 +32,7 @@ class Arc(Baseobject):
         return Relation().select(pwhere="arcs_id = {}".format(self.arcs_id))
 
     def getentity(self):
-        return Entity().getbyid(self.arcs_enti_id)
+        return IM_OBJECTS.Entity().getbyid(self.arcs_enti_id)
 
     @staticmethod
     def createtable():
@@ -183,14 +183,17 @@ CREATE TABLE RELATIONS
     def gethistfromto(self):
         return Boolean.str2bool(self.rela_hist_from_to)
 
+    def getname(self,plang=None):
+        return self.rela_name
+
     def getassocfromto(self,plang=None):
         return self._getsprachval(colname='rela_assoc_from_to',plang=plang)
     def getassoctofrom(self,plang=None):
         return self._getsprachval(colname='rela_assoc_to_from',plang=plang)
     def getfromentity(self):
-        return Entity().getbyid(pid=self.rela_enti_id_from)
+        return IM_OBJECTS.Entity().getbyid(pid=self.rela_enti_id_from)
     def gettoentity(self):
-        return Entity().getbyid(pid=self.rela_enti_id_to)
+        return IM_OBJECTS.Entity().getbyid(pid=self.rela_enti_id_to)
 
     @staticmethod
     def delete():
@@ -266,7 +269,7 @@ where RELA_ARCS_ID_TO in (select arcs_id from arcrela)
     @staticmethod
     def insertisa(parc, pentiids):
         for entiid in pentiids:
-            enti = Entity().getbyid(entiid)
+            enti = IM_OBJECTS.Entity().getbyid(entiid)
             rela = Relation()
             rela.rela_type = Relation.ISASUBTYPE
             rela.rela_enti_id_from = enti.enti_id
@@ -286,3 +289,4 @@ where RELA_ARCS_ID_TO in (select arcs_id from arcrela)
             rela.insert()
     # insertisa
 # setarcinrela
+

@@ -1,14 +1,22 @@
 from .webbaseobject import Webanker,BaseWebObj,Objlist
-from IM_OBJECTS import  Attribute,Entity,Key
+from IM_OBJECTS import  Attribute
+import WEB_OBJECTS
 
 class WebAttribute(BaseWebObj):
 
     def __init__(self, pid=None, pdbobj:Attribute=None):
-        super().__init__(pobjtype=WebAttribute, pid=pid, pdbobj=pdbobj)
+        super().__init__(pobjtype=Attribute, pid=pid, pdbobj=pdbobj)
+        self.attr_id = self.dbobject().attr_id
 
     """Attrname (Entityname) """
     def getqualifiedname(self,plang=None):
         return self.getname(plang=plang) + ' (' +self.dbobject().getentiname(plang=plang) +')'
+
+    def getwebentity(self):
+        return WEB_OBJECTS.WebEntity(pdbobj=self.dbobject().getparent())
+
+    def getwebdomain(self):
+        return WEB_OBJECTS.WebDomain(pdbobj=self.dbobject().getdomain())
 
     @staticmethod
     def indexlist(plang=None):
