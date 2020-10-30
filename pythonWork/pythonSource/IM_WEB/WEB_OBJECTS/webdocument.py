@@ -1,4 +1,4 @@
-from .webbaseobject import Webanker,BaseWebObj,Objlist
+from .webbaseobject import BaseWebObj,Objlist
 from IM_OBJECTS import  *
 
 
@@ -23,27 +23,31 @@ class WebDocument(BaseWebObj):
     def indexlist(plang=None):
         members = [WebDocument(pdbobj=obj) for obj in Document.select()]
         return Objlist(pmembers=members).indexlist()
-    #indexlist
+    #grouplist
 
     @staticmethod
     def docureflist(pdocuid, plang):
         modes = Modelelement.select(pwhere="mode_id in (select modo_mode_id from mode_docu where modo_docu_id = {})".format(pdocuid))
-        reflist = [] if modes is None else [mode.getmyelement() for mode in modes]
-        refentries = [Referenceentry(pid=entry.getid(),pname=entry.getname(plang=plang)
-                                     ,ptype=entry._prefix,ptypename=Modelelemtype.getbyshortname(pshortname=entry._prefix)
+        reflist = [] if modes is None else [[mode.mode_type
+                                            ,Modelelemtype.getbyshortname(pshortname=mode.mode_type).melt_name
+                                            ,WebModelelement(pdbobj=mode.getmyelement()).webobject()]
+                                            for mode in modes]
+        refentries = [Referenceentry(pid=None if entry[2] is None else entry[2].getid()
+                                     ,pname=None if entry[2] is None else entry[2].getname(plang=plang)
+                                     ,ptype=entry[0],ptypename=entry[1]
+                                     ,panker=None if entry[2] is None else entry[2].webanker().anker()
                                      )
                       for entry in reflist]
-        print (refentries)
-        return
-        datalist = [Referenceentry(pid=e[1], pname=e[0], ptype=e[2], ptypename=e[3]
-            , panker=Entity().getbyid(e[1]).webanker()
-            if e[2] == Modelelemtype.ENTI
-            else Attribute().getbyid(e[1]).webanker() if e[2] == Modelelemtype.ATTR
-            else Tabelle().getbyid(e[1]).webanker() if e[2] == Modelelemtype.TABL
-            else Schnittstelle().getbyid(e[1]).webanker() if e[2] == Modelelemtype.INTF
-            else ''
-                                   ) for e in data]
-        return datalist
+        return refentries
+        # datalist = [Referenceentry(pid=e[1], pname=e[0], ptype=e[2], ptypename=e[3]
+        #     , panker=Entity().getbyid(e[1]).webanker()
+        #     if e[2] == Modelelemtype.ENTI
+        #     else Attribute().getbyid(e[1]).webanker() if e[2] == Modelelemtype.ATTR
+        #     else Tabelle().getbyid(e[1]).webanker() if e[2] == Modelelemtype.TABL
+        #     else Schnittstelle().getbyid(e[1]).webanker() if e[2] == Modelelemtype.INTF
+        #     else ''
+        #                            ) for e in data]
+        # return datalist
     # docureflist
 
     @staticmethod
@@ -59,4 +63,11 @@ class WebDocument(BaseWebObj):
 
         return datalist
     # refdokulist
+
+    @staticmethod
+    def doculist(plang=None):
+        webdocus = [WebDocument(pdbobj=docu) for docu in Document.doculist()]
+        return webdocus
+
 #WebDocument
+from .webmodelelement import WebModelelement

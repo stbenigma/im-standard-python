@@ -48,6 +48,7 @@ def do1column(plfnr, pcolxml, ptablid):
                                          , pattrname=scha.scha_column_name
                                          , pfathername=Schnittstelle().getbyid(tabl.tabl_schn_id).schn_name
                                                        +'.'+tabl.tabl_name
+                                         , pdomatype=Domain.DERIVED
                                          , pattrxml=pcolxml)
     if scha.scha_daty_id is None:
         scha.scha_daty_id = Datatype.getunknown().daty_id

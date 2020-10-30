@@ -26,7 +26,7 @@ class Userdefprop(Baseobject):
         """CREATE TABLE USER_DEFINED_PROPERTIES
     (
      UDPR_ID INTEGER NOT NULL primary key autoincrement ,
-     UDPR_THEME VARCHAR (60) NULL ,
+     UDPR_THEME VARCHAR (60) NOT NULL ,
      UDPR_GROUP VARCHAR (60) NULL ,
      UDPR_NAME VARCHAR (60) NOT NULL ,
      UDPR_DESCR VARCHAR (4000) NULL ,
@@ -34,9 +34,17 @@ class Userdefprop(Baseobject):
      UDPR_DC VARCHAR (30) NOT NULL ,
      UDPR_UM VARCHAR (30) NULL ,
      UDPR_DM VARCHAR (30) NULL
-    ,CONSTRAINT UDPR_UN UNIQUE (UDPR_NAME ASC)
+    ,CONSTRAINT UDPR_UN UNIQUE (UDPR_THEME,UDPR_NAME ASC)
     )
     """)
+
+    def getname(self,plang=None):
+        return self.udpr_name
+    def getdescr(self,plang=None):
+        return self.udpr_descr
+
+    def getqualifiedname(self,plang = None):
+        return "{} ({})".format(self.getname(plang=pland),self.udpr_group)
     @staticmethod
     def delete():
         Baseobject.delete(Userdefprop._tablename)
@@ -55,57 +63,59 @@ class Userdefprop(Baseobject):
         return Webanker(pname='UDP',pid=id)
 
     @staticmethod
-    def indexlist(pudptheme):
-        data = dbDML.select("""select  distinct udpr_group,udpr_theme||'-'||udpr_group id
-                         ,udpr_theme
+    def grouplist(pudptheme=None):
+        """[(theme,group)] """
+        data = dbDML.select("""select  distinct udpr_theme,udpr_group
                         from user_defined_properties 
-                       where udpr_theme = '{}'
-                       union 
-                       select '*' grp,'datamapping-alle','{}'
-                       where exists (select  1 from
-                                user_defined_properties 
-                                where udpr_theme = '{}')
-                    order by udpr_group""".format(pudptheme
-                                                  , pudptheme
-                                                  , pudptheme))
-        datalist = [(e[0], Userdefprop.udpAnker(e[1]), '', e[2]) for e in data]
-        return datalist
+                       where udpr_theme like '{}'
+                    order by udpr_theme,udpr_group""".format('%' if pudptheme is None else pudptheme))
+        return data
 
     @staticmethod
-    def udpnames(pmeltname, ptheme=None, pgroup=None):
-        """returns list of udps ("theme", "group", "names,...")"""
-        if pgroup is None:
-            lsql = """select  udpr_theme,udpr_group,group_concat(udpr_name,',') attrs
-                               from modelelem_type
-                               join modelemtype_properties on metp_melt_id = melt_id  
-                               join user_defined_properties on udpr_id = metp_udpr_id
-                               where melt_shortname = '{}'
-                            group by udpr_theme,udpr_group
-                            order by udpr_theme,udpr_group""".format(pmeltname)
-        elif pgroup == '*':
-            lsql = """select  udpr_theme,'*'gr,group_concat(udpr_name,',') attrs
-                               from modelelem_type
-                               join modelemtype_properties on metp_melt_id = melt_id  
-                               join user_defined_properties on udpr_id = metp_udpr_id
-                               where melt_shortname = '{}'
-                               and udpr_theme = {} 
-                            group by udpr_theme
-                            order by udpr_theme""".format(pmeltname
-                                                          , 'udpr_theme' if ptheme is None else "'{}'".format(ptheme))
-        else:
-            lsql = """select  udpr_theme,udpr_group,group_concat(udpr_name,',') attrs
-                       from modelelem_type
-                       join modelemtype_properties on metp_melt_id = melt_id  
-                       join user_defined_properties on udpr_id = metp_udpr_id
-                       where melt_shortname = '{}'
-                       and udpr_theme = {} 
-                       and udpr_group = '{}' 
-                    group by udpr_theme,udpr_group
-                    order by udpr_theme,udpr_group""".format(pmeltname
-                                                             , 'udpr_theme' if ptheme is None else "'{}'".format(ptheme)
-                                                             , pgroup)
-        data = dbDML.select(lsql)
-        return data
+    def getudps(pmeltname=None, ptheme=None, pgroup=None):
+        return Userdefprop.select(pwhere="""udpr_theme like '{}'
+                                        and udpr_group like '{}'
+                                        and udpr_id in (select metp_udpr_id
+                                                        from modelemtype_properties
+                                                        join modelelem_type on melt_id = metp_melt_id
+                                                        where melt_shortname like '{}')
+                                        """.format ('%' if ptheme is None else ptheme
+                                                    ,'%' if pgroup is None else pgroup
+                                                    ,'%' if pmeltname is None else pmeltname)
+                                ,porderby="udpr_theme,udpr_group,udpr_name"
+                                )
+        # if pgroup is None:
+        #     lsql = """select  udpr_theme,udpr_group,group_concat(udpr_name,',') attrs
+        #                        from modelelem_type
+        #                        join modelemtype_properties on metp_melt_id = melt_id
+        #                        join user_defined_properties on udpr_id = metp_udpr_id
+        #                        where melt_shortname = '{}'
+        #                     group by udpr_theme,udpr_group
+        #                     order by udpr_theme,udpr_group""".format(pmeltname)
+        # elif pgroup == '*':
+        #     lsql = """select  udpr_theme,'*'gr,group_concat(udpr_name,',') attrs
+        #                        from modelelem_type
+        #                        join modelemtype_properties on metp_melt_id = melt_id
+        #                        join user_defined_properties on udpr_id = metp_udpr_id
+        #                        where melt_shortname = '{}'
+        #                        and udpr_theme = {}
+        #                     group by udpr_theme
+        #                     order by udpr_theme""".format(pmeltname
+        #                                                   , 'udpr_theme' if ptheme is None else "'{}'".format(ptheme))
+        # else:
+        #     lsql = """select  udpr_theme,udpr_group,group_concat(udpr_name,',') attrs
+        #                from modelelem_type
+        #                join modelemtype_properties on metp_melt_id = melt_id
+        #                join user_defined_properties on udpr_id = metp_udpr_id
+        #                where melt_shortname = '{}'
+        #                and udpr_theme = {}
+        #                and udpr_group = '{}'
+        #             group by udpr_theme,udpr_group
+        #             order by udpr_theme,udpr_group""".format(pmeltname
+        #                                                      , 'udpr_theme' if ptheme is None else "'{}'".format(ptheme)
+        #                                                      , pgroup)
+        # data = dbDML.select(lsql)
+        # return data
     # udpnames
 # Userdefprop
 
@@ -192,14 +202,18 @@ class Userdefpropvalue(Baseobject):
                         """, recs=prows)
     # updvalues
 
-    def udpvalues(pmeltname, ptheme, pgroup, pmodeid):
-        data = dbDML.select("""select udpr_name,udpv_value
-                from udp_values
-                join user_defined_properties on udpr_id = udpv_udpr_id
-                        and udpr_theme = '{}' and udpr_group like '{}'
-                where udpv_mode_id = {}
+    def udpvalues(ptheme, pgroup, pmodeid,pmeltype):
+        """[(udpr_name,udpv_value)]"""
+        data = dbDML.select("""select udpr_name, case when udpv_value is NULL then '' else udpv_value end val 
+                from user_defined_properties 
+                join MODELEMTYPE_PROPERTIES on METP_UDPR_ID = UDPR_ID
+                join modelelem_type on melt_id = metp_melt_id
+                 left join udp_values on udpv_udpr_id = udpr_id 
+                     and udpv_mode_id = {}
+                where udpr_theme = '{}' and udpr_group like '{}'
+                  and MELT_SHORTNAME = '{}'  
                 order by udpr_theme,udpr_group,udpr_name
-                """.format(ptheme, '%' if pgroup == '*' else pgroup, pmodeid))
+                """.format( pmodeid,ptheme, '%' if pgroup == '*' else pgroup,pmeltype))
         return data
     # udpvalues
 

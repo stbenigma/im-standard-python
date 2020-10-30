@@ -89,11 +89,13 @@ CREATE TABLE ENTITIES
 
     def getmodellelement(self):
         return Modelelement.getbyelemid(pentiid=self.enti_id)
+
     def getmodeid(self):
-        return self.getmodellelement().mode_id
+        return self.enti_id
 
     def getname(self,plang=None):
         return self._getsprachval(colname='enti_name',plang=plang)
+
     def getdescr(self,plang=None):
         return self._getsprachval(colname='enti_descr',plang=plang)
 

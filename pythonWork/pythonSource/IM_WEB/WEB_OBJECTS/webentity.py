@@ -57,7 +57,7 @@ class WebEntity(BaseWebObj):
     @staticmethod
     def indexlist(plang=None):
         return Objlist(pmembers=WebEntity.contentlist(plang)).indexlist(plang=plang)
-    # indexlist
+    # grouplist
 #WebEntity
 from .webrelation import WebRelation
 

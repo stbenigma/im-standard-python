@@ -117,7 +117,7 @@ def printcollist(pcollist, pschnid):
         , Sprachtext.transl('Domain'), Sprachtext.transl('Datentyp')
                  ]
 #    ueberschr.append('Logical Model')
-#    for schn in Schnittstelle.indexlist():
+#    for schn in Schnittstelle.grouplist():
 #        if (schn[0] != schnname):
 #            ueberschr.append(schn[0])
     printHTML.fhtml.write(printHTML.starttable(ptitel="Columns", pueberschriften=ueberschr))
@@ -137,7 +137,7 @@ def printcollist(pcollist, pschnid):
         #         colwerte[len(colwerte) - 1] = ', '.join(
         #             [printHTML.href(pref=val, panz=key, htmlfile=printHTML.htmlfilelist[0]) \
         #              for key, val in maps[1].items()])
-        # for schn in Schnittstelle.indexlist():
+        # for schn in Schnittstelle.grouplist():
         #     if (schn[0] != schnname):
         #         colwerte.append('')  # logisches Modell
         #         for maps in mappings:
@@ -267,8 +267,8 @@ def printcontenthead(pfirma, ptitel, pschnid):
             erstellt.""".format(ptitel, pfirma)
         ref = """Referenzen in Klammern sind indirekte Referenzen:<br>
                  Dokumentenreferenz bei Tabellen: Dokumente, die mit der Schnittstelle (relationales Modell) verknüpft sind<br>
-                 Tabellenreferenz bei Tabellen: Indirekte Verknüpfung einer Tabelle über eine Entität zu einer anderen Tabelle<br>
-                 Columnreferenz: Indirekte Verknüpfung einer Column über ein Attribute zu einer anderen Column"""
+                 Tabellenreferenz bei Tabellen: Indirekte Verknüpfung einer Tabelle über eine Entität zu einer Tabelle einer anderen Schnittstelle<br>
+                 Columnreferenz: Indirekte Verknüpfung einer Column über ein Attribute zu einer Column in einer anderen Schnittstelle"""
     else:
         f = """class="descr">This website contains the complete content 
             of the <p2 class="IM">Relational model {}</p2> from {}. 
@@ -276,8 +276,8 @@ def printcontenthead(pfirma, ptitel, pschnid):
             .format(ptitel, pfirma)
         ref = """References in brackets are indirect references:<br>
                  (Document reference) for tables: Documents that are linked to the interface (relational model)<br>
-                 (Table reference) for tables: Indirect linking of a table via an entity to another table<br>
-                 (Column reference): Indirect linking of a column to another column via an attribute"""
+                 (Table reference) for tables: Indirect linking of a table via an entity to a table in another interface<br>
+                 (Column reference): Indirect linking of a column via an attribute to a column  in another interface"""
     # fi
     printHTML.fhtml.write(contenthead.format(f, ref))
     printHTML.printreflist(pelemid=pschnid, pelemtype=Modelelemtype.INTF)

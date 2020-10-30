@@ -111,6 +111,38 @@ DATABASE-LEVEL	>1 entity, no attributes or > 1 attributes from more than one ent
 <colAssociation fkAssociation="AF3D00BA-9056-7F7F-03F4-D3155FCAC46D" referredColumn="7E0D0401-B467-9FA1-2C52-60AEAF36E1EF"/>
 </associations>
 </Column>
+<Column name="BURE_INTF_ID" id="2CF1D0B7-60F0-495E-D158-2E0AA895DAA2">
+<createdBy>stb</createdBy>
+<createdTime>2020-10-30 08:35:34 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="2811D916-0E5A-901A-1F37-F00FEAC1BD9D" referredColumn="99266761-7B17-A312-E341-D71BEAF8D72B"/>
+</associations>
+</Column>
+<Column name="BURE_COLU_ID" id="5F67CE11-8D7F-D7FF-8463-83AB079CBCDC">
+<createdBy>stb</createdBy>
+<createdTime>2020-10-30 08:37:56 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="DCC61284-68E7-D884-9C9B-B9719F215362" referredColumn="426ECCA7-FAC8-D245-2121-EEFA197BAC71"/>
+</associations>
+</Column>
 <Column name="BURE_UC" id="B314F9DC-FAA1-E180-446A-2C8CD3770774">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
@@ -232,6 +264,26 @@ DATABASE-LEVEL	>1 entity, no attributes or > 1 attributes from more than one ent
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
 <colUsage columnID="65B5EF67-429F-8792-6A0B-ECBDDD4FD35C"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="6A7A9866-8C08-CB07-84BA-0410FF916519" name="BURU_INTF_FK">
+<createdBy>stb</createdBy>
+<createdTime>2020-10-30 08:35:34 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="2CF1D0B7-60F0-495E-D158-2E0AA895DAA2"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="ECEE0C99-1013-42B5-B11B-7ED94C6FD244" name="BURU_COLU_FK">
+<createdBy>stb</createdBy>
+<createdTime>2020-10-30 08:37:56 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="5F67CE11-8D7F-D7FF-8463-83AB079CBCDC"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>

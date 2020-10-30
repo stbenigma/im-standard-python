@@ -7,7 +7,7 @@ class WebInterface(BaseWebObj):
         super().__init__(pobjtype=Schnittstelle, pid=pid, pdbobj=pdbobj)
 
     def getname(self, plang=None):
-        return self.dbobject().schn_name
+        return self.dbobject().getname(plang=plang)
 
     def webanker(self):
         if self.dbobject() is None: return None
@@ -18,5 +18,5 @@ class WebInterface(BaseWebObj):
         members = [WebInterface(pdbobj=obj) for obj in Schnittstelle.select()]
         idxlist = Objlist(pmembers=members).indexlist(plang=plang)
         return idxlist
-    # indexlist
+    # grouplist
 # WebInterface

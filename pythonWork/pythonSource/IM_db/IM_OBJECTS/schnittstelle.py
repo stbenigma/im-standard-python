@@ -39,10 +39,11 @@ class Schnittstelle(Baseobject):
     def getmodellelement(self):
         return Modellelement.getbyelemid(pschnid=self.schn_id)
 
-    @staticmethod
-    def getname(pid):
-        schn = Schnittstelle().getbyid(pid)
-        return schn.schn_name
+    def getname(self,plang=None):
+        return self.schn_name
+
+    def getdescr(self, plang=None):
+        return self.schn_beschr
 
     @staticmethod
     def delete():

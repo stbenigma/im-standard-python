@@ -686,7 +686,7 @@ def starttable(ptitel, pueberschriften, pheadlevel=2, ptabid=None, pselfanker=No
 """
     #    tabheads="""<th class="attribute">{}</th>"""
     retval = []
-    retval.append(tabhead.format(pheadlevel, html.escape(ptitel), pheadlevel
+    retval.append(tabhead.format(pheadlevel, ptitel, pheadlevel
                                  , '' if ptabid is None
                                  else '<a href="#{}" onclick="download_table_as_csv(\'{}\');">download as CSV</a>'.format(
             pselfanker, ptabid)
@@ -819,8 +819,9 @@ def printentirela(pwebenti):
     fhtml.write(endtable())
 # printentirela
 
-def printcontentmapping(plist):
-    if len(plist) == 0: return
+def printcontentmapping(ptheme=None):
+    grouplist= WebUdp.indexlist(ptheme=ptheme)
+    if len(grouplist) == 0: return
     contenthead = """        <!--mapping-->"""
 
     contentelementhead = """        <div class="entity" id="{}">
@@ -839,43 +840,40 @@ def printcontentmapping(plist):
     """
 
     fhtml.write(contenthead)
-    for m in plist:
-        lthema = m[2]
-        lgruppe = m[0]
-        lanker = m[1]
-        namenliste = [Sprachtext.transl('Attribute')]
-        udpnamen = web_sql.udpnamen(pmeltname='ATTR', pthema=lthema, pgruppe=lgruppe)
-        # print ('udpnamen=',udpnamen,m[2],m[0])
-        if len(udpnamen) == 0: continue
-        udpnamen = udpnamen[0][2].split(',')
-        udpnamen.sort()  # SQl kann keine sortierte group_concat liefern
-        udpnamen = [html.escape(u) for u in udpnamen]
+    for group in grouplist:
+        """[(theme,group)]"""
+        lgroup = group[0]
+        lanker = group[1]
+        headerlist = [Sprachtext.transl('Attribute')]
+        udps = WebUdp.contentlist(ptheme=ptheme,pgroup=lgroup,pmeltname=Modelelemtype.ATTR)
+        if len(udps) == 0: continue
+        udpnames = [html.escape(u.dbobject().udpr_name) for u in udps]
+        headerlist.extend(udpnames)
 
-        # print ('udpnamen=',udpnamen)
-        namenliste.extend(udpnamen)
-
-        al = web_sql.udpattrlist(pthema=lthema, pgruppe=lgruppe, plang=Sprachtext.reportLang())
-        werte = []
-        for a in al:
-            zeile = [href(ref=a[1], anz=a[0])]
-            udpwerte = web_sql.udpvalues(pmeltname='ATTR', ptheme=lthema, pgroup=lgruppe, pid=a[2])
-            if udpwerte is None: continue
-            zeile.extend(html.escape(w[0]) for w in udpwerte)
-            werte.append(zeile)
+        attrs = WebUdp.getattributes(ptheme=ptheme, pgroup=lgroup )
+        lines = []
+        for attr in attrs:
+            line = [href(ref=attr.webanker().anker(), anz=attr.getqualifiedname(plang=Sprachtext.reportLang()))]
+            udpvalues = WebUdp.getvalues(ptheme=ptheme, pgroup=lgroup, pmodeid=attr.getid(),pmeltype=Modelelemtype.ATTR)
+            """[(udpr_name,udpv_value)]"""
+            if (udpvalues is None or len(udpvalues)==0): continue
+            udpvaldict = {html.escape(v[0]): html.escape(v[1]) for v in udpvalues}
+            line.extend(udpvaldict[udpname] if udpname in udpvaldict else '' for udpname in udpnames)
+            lines.append(line)
 
         lbc = str(newbarcounter())
-        fhtml.write(contentelementhead.format(lanker
+        fhtml.write(contentelementhead.format(lanker.anker()
                                               , Sprachtext.transl('Attribute - Mapping')
-                                              , lgruppe  # anzname
+                                              , lgroup  # anzname
                                               , lbc))
         fhtml.write(detailshead)
 
         fhtml.write(starttable(ptitel='Mapping'
-                               , pueberschriften=namenliste
+                               , pueberschriften=headerlist
                                , pheadlevel=3
-                               , ptabid='TAB-{}'.format(lgruppe if lgruppe != '*' else 'ALL')
-                               , pselfanker=lanker))
-        for w in werte: fhtml.write(writetableline(pwerte=w))
+                               , ptabid='TAB-{}'.format(lgroup if lgroup != '*' else 'ALL')
+                               , pselfanker=lanker.anker()))
+        for line in lines: fhtml.write(writetableline(pwerte=line))
         fhtml.write(endtable())
 
         fhtml.write(detailsfoot)
@@ -883,33 +881,34 @@ def printcontentmapping(plist):
     # for
 
 
-def printUDP(p_meltname, pid, pwithref=False):
+def printUDP(p_meltname, pid):
     startwritten = False
 
-    udpentries = Userdefprop.udpnames(pmeltname=p_meltname)
-    """[(theme,group,namelist (comma separated))]"""
-    for udpentry in udpentries:
+    for udpgroup in Userdefprop.grouplist():
+        """[(theme,group)]"""
+
         """translations are not printed"""
-        if (udpentry[0] == parameters.odmUDPTranslFileName()): continue
-        namenliste = udpentry[2].split(',')
-        namenliste.sort()  # SQl kann keine sortierte group_concat liefern
-        displvalues = {udpname: '' for udpname in namenliste}
-        werte = Userdefpropvalue.udpvalues(pmeltname=p_meltname, ptheme=udpentry[0], pgroup=udpentry[1], pmodeid=pid)
+        if (udpgroup[0] == parameters.odmUDPTranslFileName()): continue
+
+        udpentries = [WebUdp(pdbobj=udp) for udp in Userdefprop.getudps(pmeltname=p_meltname,ptheme=udpgroup[0],pgroup=udpgroup[1])]
+        """[(theme,group,namelist (comma separated))]"""
+        displvalues = {html.escape(udpr.getname()): '' for udpr in udpentries}
+        values = Userdefpropvalue.udpvalues(ptheme=udpgroup[0], pgroup=udpgroup[1], pmodeid=pid,pmeltype=p_meltname)
         """[propname, propvalue]"""
-        for l in werte:
+        for l in values:
             displvalues[l[0]] = html.escape(l[1])
 
+        """write only if there is at least one value not empty"""
         if (len(displvalues) > list(displvalues.values()).count('')):
             if (not startwritten):
                 fhtml.write(startabschnitt(p_titel=Sprachtext.transl('Benutzerdefinerte Eigenschaften')))
                 startwritten = True
             # fi
 
-            titel = href(ref=web_sql.udpAnker('{}-{}'.format(udpentry[0], udpentry[1]))
-                         , anz=' {} - {} '.format(udpentry[0], udpentry[1])) \
-                    if pwithref else ' {} - {} '.format(udpentry[0], udpentry[1])
+            titel = href(ref=WebUdp.groupwebanker(ptheme=udpgroup[0],pgroup=udpgroup[1]).anker()
+                         , anz=html.escape(' {} - {} '.format(udpgroup[0], udpgroup[1])))
             fhtml.write(tablehtml(ptitel=titel
-                                  , pueberschriften=namenliste
+                                  , pueberschriften=list(displvalues.keys())
                                   , pheadlevel=3
                                   , pwerteliste=[list(displvalues.values())])
                         )
@@ -1044,7 +1043,7 @@ def printcontentattr():
 
 def printreflist(pelemid, pelemtype):
     if (pelemtype == Modelelemtype.DOCU):
-        refentries = WebDocument.docureflist(pid=pelemid, plang=Sprachtext.reportLang())
+        refentries = WebDocument.docureflist(pdocuid=pelemid, plang=Sprachtext.reportLang())
     else:
         refentries = WebDocument.refdokulist(pid=pelemid)
     # fi
@@ -1061,8 +1060,9 @@ def printreflist(pelemid, pelemtype):
         if (pelemtype in (Modelelemtype.DOCU, Modelelemtype.ENTI, Modelelemtype.ATTR, Modelelemtype.DOMA)):
             if (refentry.elemtype == Modelelemtype.TABL):
                 # Tabellen sind in schn-file
-                tabl = Tabelle().getbyid(refentry.elemid)
-                htmlname = htmlfilelist[tabl.tabl_schn_id]
+                print ("Table indirect noch zu lösen")
+                #tabl = Tabelle().getbyid(refentry.elemid)
+                htmlname = htmlfilelist[0]
             elif (refentry.elemtype == Modelelemtype.INTF):
                 htmlname = htmlfilelist[refentry.elemid]
                 anker = ''  # Schnittstellen haben keinen Anker ausser dem Namen
@@ -1089,8 +1089,8 @@ def printreflist(pelemid, pelemtype):
 
 
 def printdomaattrlist(pdomaid, pisgroup=False):
-    alist = WebDomain.indexlist(porigin=Domain.DERIVED,pdomaid=pdomaid,plang=Sprachtext.reportLang()) if pisgroup \
-            else WebAttribute.indexlist(plang=Sprachtext.reportLang())
+    alist = WebDomain.indexlist(porigin=Domain.DOMAIN,pdomaid=pdomaid,plang=Sprachtext.reportLang()) \
+        if pisgroup else WebAttribute.indexlist(pdomaid=pdomaid,plang=Sprachtext.reportLang())
     """[(name,anker,id)]"""
     if (len(alist) == 0):
         return
@@ -1099,7 +1099,7 @@ def printdomaattrlist(pdomaid, pisgroup=False):
                                                    else 'Verwendet für Attribute')
                           , pueberschriften=[Sprachtext.transl('Attributgruppe' if pisgroup
                                                                else 'Attribute')]
-                          , pwerteliste=[[href(ref=a[1], anz=a[0])] for a in alist]))
+                          , pwerteliste=[[href(ref=a[1].anker(), anz=a[0])] for a in alist]))
 
 
 def printdomacollist(pdomaid):
@@ -1117,43 +1117,44 @@ def printdomacollist(pdomaid):
                                          ]))
 
 
-def printwrtbmembers(pdomaid):
-    elems = web_sql.wbgrelements(wrtbid=pdomaid)
+def printdomamembers(pdoma):
+    elems = pdoma.dgrmelements()
     if (len(elems) == 0):
         return
+    lang =Sprachtext.reportLang()
     fhtml.write(tablehtml(ptitel=Sprachtext.transl('Elemente')
                           , pueberschriften=
                           [Sprachtext.transl('Element')
                               , Sprachtext.transl('Beschreibung')
                               , Sprachtext.transl('Domain')
+                              , Sprachtext.transl('Pflichtattribut')
                               , Sprachtext.transl('geändert')
                            ]
-                          , pwerteliste=[[e[0], e[1]
-                                             , href(ref=web_sql.wrtbAnker(e[9])
-                                                    , anz=e[2] + ' (' + Domain.anzdatentyp(e[3]) + ')')
-                                             , e[5] + ' , ' + e[6]] for e in elems]))
+                          , pwerteliste=[[e.getname(plang=lang)
+                                        , e.dbobject().getdescr(plang=lang)
+                                        , href(ref=e.webdomain.webanker().anker()
+                                            , anz="{} ({})".format(e.webdomain.getname(plang=lang),e.webdomain.dbobject().displdatatype()))
+                                        , bool2icon(e.dbobject().dgrm_is_mandatory)
+                                     , e.dbobject().dgrm_uc + ' , ' + e.dbobject().dgrm_dc] for e in elems]))
 
-
-# printwrtbmembers
+# printdomamembers
 
 def printwertelist(pdoma):
-    wlist = Vorgabewert.select(pwhere="vgwt_doma_id= {}".format(pdoma.doma_id))
-    if (len(wlist) == 0):
+    vlist = DefaultValue.select(pwhere="deva_doma_id= {}".format(pdoma.doma_id))
+    if (len(vlist) == 0):
         return
-    wlist = [(w.vgwt_sortrhfg,w.vgwt_wert,w.vgwt_anzeige,w.vgwt_beschr) for w in wlist]
+    vlist = [(w.deva_sort_order,w.deva_value,w.deva_displ,w.deva_descr) for w in vlist]
     fhtml.write(tablehtml(ptitel=Sprachtext.transl('Werteliste')
                           , pueberschriften=(
                             Sprachtext.transl('Nr'), Sprachtext.transl('Wert')
                             , Sprachtext.transl('Anzeige'), Sprachtext.transl('Beschreibung')
                             )
                           , pheadlevel=3
-                          , pwerteliste=wlist)
+                          , pwerteliste=vlist)
                         )
-
-
 # printwertelist
 
-def printcontentwrtb():
+def printcontentdoma():
     domas = Domain.select(pwhere="doma_origin = 'DOM'", porderby='doma_name')
     webdomas = [WebDomain(pdbobj=doma) for doma in domas]
     printcontentstart('domains')
@@ -1168,7 +1169,7 @@ def printcontentwrtb():
                      , pdescr=lf2htmlbr(nvl(doma.doma_descr))
                      , plbc=lbc)
 
-        if (doma.doma_type in (Domain.TEXT, Domain.LOV)):
+        if (doma.doma_type in (Domain.TXT, Domain.LOV)):
             infoheaders = (
                 Sprachtext.transl('Datentyp'), Sprachtext.transl('Max. Länge'), Sprachtext.transl('Syntaxregel'),
                 Sprachtext.transl('geändert'))
@@ -1193,7 +1194,7 @@ def printcontentwrtb():
             infovalues = (
                 nvl(doma.displdatatype()), nvl(doma.doma_num_total_digits), nvl(doma.doma_num_fract_digits),
                 nvl(doma.doma_num_round_value), nvl(doma.doma_num_phyu_id)
-                , nvl(doma.doma_num_minvalue), nvl(doma.doma_num_maxvalu)
+                , nvl(doma.doma_num_minvalue), nvl(doma.doma_num_maxvalue)
                 , nvl(doma.doma_uc) + ',' + nvl(doma.doma_dc))
         elif (doma.doma_type == Domain.DAT):
             infoheaders = (
@@ -1212,7 +1213,7 @@ def printcontentwrtb():
             printwertelist(pdoma=webdoma)
 
         if (doma.doma_type == 'GRP'):
-            printwrtbmembers(pdomaid=doma.doma_id)
+            printdomamembers(pdoma=webdoma)
 
         printdomaattrlist(pdomaid=doma.doma_id, pisgroup=False)
         printdomaattrlist(pdomaid=doma.doma_id, pisgroup=True)
@@ -1220,54 +1221,56 @@ def printcontentwrtb():
 
         printcontentend(lbc)  # for
 
-
-# printcontentwrtb
+# printcontentdoma
 
 def printcontentdoku(plist):
     """
-    #            select child.DOKU_ID,child.DOKU_NAME,child.DOKU_FORMAT,child.DOKU_REFERENZ
-    #             ,parent.DOKU_ID parent_id ,parent.doku_name parent_name
-    #             ,(select group_concat(grandchild.doku_id||':'||grandchild.doku_name, '|') kinder
+    #            select child.docu_ID,child.docu_NAME,child.docu_FORMAT,child.docu_REFERENZ
+    #             ,parent.docu_ID parent_id ,parent.docu_name parent_name
+    #             ,(select group_concat(grandchild.docu_id||':'||grandchild.docu_name, '|') kinder
     #                from DOKUMENTE grandchild
-    #                where grandchild.DOKU_DOKU_ID = child.DOKU_ID) kinder
+    #                where grandchild.docu_docu_ID = child.docu_ID) kinder
     #            from DOKUMENTE child
-    #            left join dokumente parent on parent.DOKU_ID = child.DOKU_DOKU_ID
-    #            order by upper(child.doku_name)
+    #            left join dokumente parent on parent.docu_ID = child.docu_docu_ID
+    #            order by upper(child.docu_name)
     #            """
     printcontentstart('documents')
     infoheaders = (Sprachtext.transl('Format'), Sprachtext.transl('Referenz'), Sprachtext.transl('Vaterdokument')
                    , Sprachtext.transl('Unterdokumente'))
-    for doc in plist:
+    for webdoc in plist:
+        doc = webdoc.dbobject()
         lbc = str(newbarcounter())
-        doku_id = doc.doku_id
+        docu_id = doc.docu_id
         parent = doc.getparent()
+        webparent = None if parent is None else WebDocument(pdbobj=parent)
         children = doc.getchildren()
-        printcontent(ptype=Sprachtext.transl('Document')
-                     , panker=doc.webanker().anker()
-                     , pname=doc.doku_name
+        printcontent(ptype=Sprachtext.transl('Dokument')
+                     , panker=webdoc.webanker().anker()
+                     , pname=doc.docu_name
                      , pdescr=""
                      , plbc=lbc)
 
-        """DOKU_ID,DOKU_NAME,DOKU_FORMAT,DOKU_REFERENZ
+        """docu_ID,docu_NAME,docu_FORMAT,docu_REFERENZ
             ,parent_id, parent_name, kinder"""
         #        kinder = ''
         #        if children is not None:
         #            for child in children:
-        #                kinder += href(pref=child.webanker.anker(),panz=child.doku_name) + ', '
+        #                kinder += href(pref=child.webanker.anker(),panz=child.docu_name) + ', '
         #            #for
         #            kinder = kinder.rstrip(', ')
         #        #fi
+        webchildren = [] if children is None else [WebDocument(pdbobj=child) for child in children]
         if children is None:
             kinder = ''
         else:
-            kinder = ', '.join(href(ref=child.webanker().anker(), anz=child.doku_name) for child in children)
+            kinder = ', '.join(href(ref=webchild.webanker().anker(), anz=webchild.getname(plang=Sprachtext.reportLang())) for webchild in webchildren)
         # fi
 
-        infovalues = (nvl(doc.doku_format), nvl(doc.doku_referenz),
-                      '' if parent is None else href(ref=parent.webanker().anker(), anz=nvl(parent.doku_name))
+        infovalues = (nvl(doc.getformat()), nvl(doc.docu_reference),
+                      '' if webparent is None else href(ref=webparent.webanker().anker(), anz=nvl(webparent.getname(plang=Sprachtext.reportLang())))
                       , kinder)
         printcontentinfo(ptitle=Sprachtext.transl('Informationen'), pheaders=infoheaders, pvalues=infovalues)
-        printreflist(pelemid=doku_id, pelemtype='DOKU')
+        printreflist(pelemid=docu_id, pelemtype=Modelelemtype.DOCU)
         printcontentend(lbc)
     # for
 # printcontentdoku

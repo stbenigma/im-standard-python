@@ -31,8 +31,6 @@ def namelist(ptype, plang=None, pid=None):
         datalist = [(e[0], wrtbAnker(e[3]),'') for e in data]
     elif (ptype == Modelelemtype.DOMA):
         datalist = WebDomain.indexlist(porigin =Domain.DOMAIN, plang=plang)
-    elif (ptype == 'UDP'):
-        datalist = Userdefprop.indexlist(pudptheme=parameters.odmUDPMappingFileName())
     elif (ptype == Modelelemtype.DIAG):
         datalist = WebDiagram.indexlist()
     elif (ptype == Modelelemtype.DOCU) :
@@ -46,35 +44,6 @@ def namelist(ptype, plang=None, pid=None):
     #fi
     return datalist
 #namelist
-
-def udpattrlist(plang,pthema,pgruppe):
-    data = dbDML.select("""select attrname || ' ('||entname||')' name, attr_id 
-        from 
- (select case when ana.lgtx_text is null then attr_displ_name 
-                                    else ana.lgtx_text end  attrname
-    ,attr_id
-    ,case when ena.lgtx_text is null then enti_name 
-                                    else ena.lgtx_text end  entname
-  from attributes 
-  join entities on enti_id = attr_enti_id
-  join languages sp on sp.lang_iso_code2 = '{}'         
-  left join langattr ana on ana.lgtx_attrname = 'ATTR_NAME'
-                        and ana.lgtx_mode_id = attr_id
-                        and ana.lang_id = sp.lang_id
-  left join langattr ena on ena.lgtx_attrname = 'ENTI_NAME'
-                        and ena.lgtx_mode_id = enti_id
-                        and ena.lang_id = sp.lang_id
- where exists (select 1 from udp_values
-                    join user_defined_properties on udpr_id = udpv_udpr_id
-                    where udpv_mode_id = amo.mode_id
-                      and udpr_theme = '{}' and udpr_group = {}
-                      and udpv_value != '.')
-  ) order by upper(name)
-      """.format(plang,pthema,'udpr_group' if pgruppe == '*' else "'{}'".format(pgruppe)))
-    datalist = [(e[0], attrAnker(e[1]),e[1]) for e in data]
-    return datalist
-#udpattrlist
-
 
 def pointlist(pliseid):
     data = dbDML.select("""
@@ -187,27 +156,6 @@ def diagenti(pdiagid,plang):
     """.format(plang,pdiagid))
     return data
 #diagenti
-
-def wbgrelements(wrtbid):
-    data = dbDML.select("""select dgrm_name, dgrm_beschr ,  doma_name
-            ,doma_typ, doma_bin_inhalttyp, dgrm_uc
-            ,dgrm_dc, dgrm_um, dgrm_dm
-            , dgrm_doma_id_member, dgrm_id
-            from domaingroup_members
-            join domains on doma_id = dgrm_doma_id_member
-            where dgrm_doma_id_group = {}
-    """.format(wrtbid))
-    return data
-#wbgrelements
-
-def udplist(ptyp):
-    data = dbDML.select("""select distinct udpr_theme,bdet_group
-                    from user_defined_properties
-                    where udpr_theme = '{}'
-                    order by udpr_theme,gruppe"""
-            .format(ptyp))
-    return data
-#udplist
 
 def liesarcs(pdiagid):
     data = dbDML.select("""

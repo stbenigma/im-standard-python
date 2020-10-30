@@ -33,6 +33,12 @@ CREATE TABLE STORAGE_FORMATS
     ,CONSTRAINT STFO_UN UNIQUE (STFO_NAME ASC)
     )""")
 
+    def getname(self,plang=None):
+        return self.stfo_name
+
+    def getdescr(self,plang=None):
+        return self.getdescr()
+
     @staticmethod
     def delete():
         Baseobject.delete(Storageformat._tablename)

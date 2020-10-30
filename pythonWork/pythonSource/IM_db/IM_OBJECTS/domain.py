@@ -113,16 +113,11 @@ CREATE TABLE DOMAINS
 )"""
                                )
 
-    def getmodellelement(self):
-        return Modelelement.getbyelemid(pwrtbid=self.doma_id)
-
     def getname(self, plang):
         return self._getsprachval(colname='doma_name', plang=plang)
 
     def getmodeid(self):
-        mode = self.getmodellelement()
-        return mode.mode_id if (mode is not None) else None
-
+        return self.doma_id
     # getmodeid
 
     def isderived(self):
@@ -286,6 +281,8 @@ CREATE TABLE DOMAINS
         return anzDT[dt]
     # displgranul
 
+    def getgroupmembers(self):
+        members = Domain.select(pwhere="doma_id in (select dgrm_doma_id_member from domaingroup_members where dgrm_doma_id_group = {})".format(self.doma_id))
 
 # Domain
 
@@ -333,6 +330,11 @@ CREATE TABLE DOMAINGROUP_MEMBERS
 )
     """);
 
+    def getname(self,plang=None):
+        return self.dgrm_name
+    def getdescr(self,plang=None):
+        return self.dgrm_descr
+
     @staticmethod
     def delete():
         Baseobject.delete(DomaingroupMember._tablename)
@@ -349,7 +351,6 @@ CREATE TABLE DOMAINGROUP_MEMBERS
             where dgrm_id = {}
         """.format(pdomaid,pid)
         dbDML.exec(lupd)
-
 
 # DomaingroupMember
 

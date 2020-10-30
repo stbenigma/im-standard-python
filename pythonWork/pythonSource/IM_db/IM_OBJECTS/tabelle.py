@@ -37,7 +37,6 @@ class Tabelle(Baseobject):
      	      REFERENCES SCHNITTSTELLEn (SCHN_ID ) 
         )"""
                             )
-
     def webanker(self):
         return super().webanker(pmodelid=self.tabl_schn_id)
 
@@ -47,8 +46,11 @@ class Tabelle(Baseobject):
     def getcolumns(self):
         return Schnittstelleattr.select("scha_tabl_id = {}".format(self.tabl_id))
 
-    def getname(self):
+    def getname(self,plang=None):
         return self.tabl_name
+
+    def getdescr(self,plang=None):
+        return self.tabl_beschr
 
     def insert(self):
         self.tabl_id = Modelelement(Modelelemtype.TABL).insert()
@@ -71,7 +73,7 @@ class Tabelle(Baseobject):
         data = Tabelle.select(pwhere= "tabl_schn_id={}".format('tabl_schn_id' if pschnid is None else pschnid))
         indexlist = [[d.tabl_name,d.webanker(),d.tabl_id] for d in data]
         return indexlist
-    #indexlist
+    #grouplist
 
     @staticmethod
     def mappingto(ptablid):

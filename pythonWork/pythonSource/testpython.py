@@ -34,7 +34,7 @@ if (__name__ == '__main__'):
 
 #    ss = Sprache.select()
 #    s = Sprache()
-#    ss = Tabelle.indexlist()
+#    ss = Tabelle.grouplist()
 #    t = Tabelle().getbyid(302)
 #    print(t.__dict__)
 #    print (Tabelle.mappingto(302))

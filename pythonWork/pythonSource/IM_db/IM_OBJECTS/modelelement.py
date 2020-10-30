@@ -259,3 +259,7 @@ from .externalref import Externalref
 from .datatype import Datatype
 from .domain import Domain
 from .entity import Entity
+from .tabelle import Tabelle
+from .attribute import Attribute
+from .schnittstattr import Schnittstelleattr
+from .schnittstelle import Schnittstelle

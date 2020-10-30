@@ -2,7 +2,10 @@ from .webattribute import WebAttribute
 from .webbaseobject import Webanker,BaseWebObj,Objlist
 from .webdiagram import WebDiagram
 from .webdocument import WebDocument
-from .webdomain import WebDomain
+from .webdomain import WebDomain,WebDomainMember
 from .webentity import WebEntity
 from .webinterface import WebInterface
 from .webrelation import WebRelation
+from .webmodelelement import WebModelelement
+from .webtable import WebTable
+from .webudp import WebUdp

@@ -48,9 +48,9 @@ class WebDiagram(BaseWebObj):
     # diaglist
     @staticmethod
     def indexlist(pentiid=None,plang=None):
-        #order by in indexlist not yet resolved (diagramtype -> diagramnbame)
+        #order by in grouplist not yet resolved (diagramtype -> diagramnbame)
         #    porderby='(select diat_name from diagramtypes where diat_id = diag_diat_id),diag_name'
         members = WebDiagram.contentlist(pentiid=pentiid,plang=plang)
         return Objlist(pmembers=members).indexlist()
-    # indexlist
+    # grouplist
 #WebDiagram

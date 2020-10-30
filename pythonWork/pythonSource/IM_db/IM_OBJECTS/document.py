@@ -2,6 +2,7 @@ from IM_DB import dbDML
 from .baseobject import Baseobject
 from .modelelement import Modelelemtype
 from .externalref import Externalref
+from .physicals import Storageformat
 
 
 class Document(Baseobject):
@@ -16,8 +17,6 @@ class Document(Baseobject):
                          ,pscrid=psrcid
                          ,psrcname=psrcname
                          )
-        self._parent = None
-        self._children = None
 
     @staticmethod
     def createtable():
@@ -44,22 +43,18 @@ CREATE TABLE DOCUMENTS
         return self.docu_name
 
     def getparent(self):
-        if (self.docu_id is not None) and (self.docu_docu_id is not None)\
-                and (self._parent is None):
-            #es hat ID und es hat einen Parentid aber noch nicht gelesen
-            self._parent = Document().getbyid(self.docu_docu_id)
-        #fi
-        return self._parent
+        return Document().getbyid(self.docu_docu_id)
     #getparent
 
     def getchildren(self):
-        if (self.getid() is not None) and (self._children is None):
-            #
-            self._children =  Document.select(pwhere='docu_docu_id = {}'.format(self.docu_id)
+        return Document.select(pwhere='docu_docu_id = {}'.format(self.docu_id)
                                               , porderby= 'docu_name')
-        #fi
-        return self._children
     #getchildren
+
+    def getformat(self):
+        if self.docu_stfo_id is None: return None
+        stfo = Storageformat().getbyid(pid=self.docu_stfo_id)
+        return None if stfo is None else stfo.getname()
 
     @staticmethod
     def delete():

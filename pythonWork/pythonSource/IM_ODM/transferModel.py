@@ -133,6 +133,7 @@ def do1structtype(filename):
             dgrm.dgrm_doma_id_member = findorcreateDomain(ptypeguid=reftypeguid
                            , pattrname=dgrm.dgrm_name
                            , pfathername=doma.doma_name
+                           , pdomatype=Domain.DOMAIN
                            , pattrxml=el)
         else :
             """type has not yet been parsed or does not exist at all or is type I haven't considered
@@ -640,14 +641,14 @@ def transferdiagramme():
 
 # transferdiagramme
 
-def insertderiveddomain(ptypeguid, pattrname, pvatername, pattrxml):
+def insertderiveddomain(ptypeguid, pattrname, pvatername, pdomatype,pattrxml):
     doma = Domain()
     doma.doma_name = pattrname
     domatest = Domain.getbyname(pname=doma.doma_name)
     if (domatest is not None):
         # es gibt ihn schon, füge den Vaternamen dazu
         doma.doma_name = pattrname + '-' + pvatername
-    doma.doma_origin = Domain.DERIVED
+    doma.doma_origin = pdomatype
     if nvl(ptypeguid) != '':
         doma.doma_daty_id = Modelelement.getmodebyodmguid(psrcid=ptypeguid).mode_id
     doma.doma_descr = "generiertes Domain für Datentyp für Attribute {}.{}".format(pvatername, pattrname)
@@ -657,10 +658,10 @@ def insertderiveddomain(ptypeguid, pattrname, pvatername, pattrxml):
 # insertderiveddomain
 
 
-def findorcreateDomain(pattrname, pfathername, pattrxml, pdomguid=None, pstructdomguid=None, ptypeguid=None):
+def findorcreateDomain(pattrname, pfathername, pdomatype,pattrxml, pdomguid=None, pstructdomguid=None, ptypeguid=None):
     def handleguid(pguid):
         if pguid is None: return None
-        typeelem = Modelelement.getelementbyodmguid(psrcid=pdomguid)
+        typeelem = Modelelement.getelementbyodmguid(psrcid=pguid)
 
         if typeelem is None:
             """domain not yet known"""
@@ -669,7 +670,7 @@ def findorcreateDomain(pattrname, pfathername, pattrxml, pdomguid=None, pstructd
             return typeelem.doma_id  # Done, domain found
         else:
             logmessages.writelog("Attr: {}, Father: {}, Domain Guid {} leads to unknown element type {}"
-                                 .format(pattrname, pfathername, pdomguid, type(typeelem)))
+                                 .format(pattrname, pfathername, pguid, type(typeelem)))
             return Domain().getunknown().doma_id
         # fi
     #handleguid
@@ -685,8 +686,8 @@ def findorcreateDomain(pattrname, pfathername, pattrxml, pdomguid=None, pstructd
             """domain not yet known"""
             return Domain().getunknown().doma_id
         elif isinstance(typeelem, Datatype):
-            doma = insertderiveddomain(ptypeguid=ptypeguid, pattrname=pattrname, pvatername=pfathername,
-                                       pattrxml=pattrxml)
+            doma = insertderiveddomain(ptypeguid=ptypeguid, pattrname=pattrname, pvatername=pfathername,pdomatype=pdomatype,
+                                           pattrxml=pattrxml)
             return doma.doma_id
         else:
             logmessages.writelog("Attr: {}, Father: {}, Domain Guid {} leads to unknown element type {}"
@@ -783,6 +784,7 @@ def do1Attribute(plfnr, pattrxml, pentiId=None, prelaId=None):
                                            , ptypeguid=findText(pattrxml, 'logicalDatatype')
                                            , pattrname=attr.attr_displ_name
                                            , pfathername=vatername
+                                            ,pdomatype=Domain.DERIVED
                                            , pattrxml=pattrxml)
     attr.attr_descr = findText(pattrxml, 'comment')
     attr.attr_displ_seq = plfnr

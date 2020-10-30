@@ -18,6 +18,9 @@ class WebRelation(BaseWebObj):
         self.rela_name = self.dbobject().rela_name
         self.isinkey = Keyelement.isinkey(prelaid=self.dbobject().rela_id)
 
+    def getname(self,plang=None):
+        return self.dbobject().getname(plang=plang)
+
     def minmaxcardinality(self, pfromto):
         maptype = self.dbobject().rela_maptype_from_to if pfromto else self.dbobject().rela_maptype_to_from
         mandatory = self.dbobject().getmandatoryfromto() if pfromto else self.dbobject().getmandatorytofrom()

@@ -53,6 +53,12 @@ class Schnittstelleattr(Baseobject):
         )
         """)
 
+    def getname(self, plang=None):
+        return self.scha_column_name
+
+    def getdescr(self, plang=None):
+        return self.scha_beschr
+
     def webanker(self):
         return super().webanker(pmodelid=self.getintfid())
 
@@ -107,7 +113,7 @@ class Schnittstelleattr(Baseobject):
             indexlist.append(["{} ({})".format(s.scha_column_name, t.tabl_name), s.webanker(), s.scha_id])
         return indexlist
 
-    # indexlist
+    # grouplist
 
     @staticmethod
     def selectbyschnid(pschnid):
