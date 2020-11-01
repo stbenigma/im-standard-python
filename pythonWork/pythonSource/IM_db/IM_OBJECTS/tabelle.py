@@ -37,9 +37,6 @@ class Tabelle(Baseobject):
      	      REFERENCES SCHNITTSTELLEn (SCHN_ID ) 
         )"""
                             )
-    def webanker(self):
-        return super().webanker(pmodelid=self.tabl_schn_id)
-
     def getmodellelement(self):
         return Modellelement.getbyelemid(ptablid=self.tabl_id)
 
@@ -71,7 +68,7 @@ class Tabelle(Baseobject):
     @staticmethod
     def indexlist(pschnid=None):
         data = Tabelle.select(pwhere= "tabl_schn_id={}".format('tabl_schn_id' if pschnid is None else pschnid))
-        indexlist = [[d.tabl_name,d.webanker(),d.tabl_id] for d in data]
+        indexlist = [[d.tabl_name,"TAB",d.tabl_id] for d in data]
         return indexlist
     #grouplist
 

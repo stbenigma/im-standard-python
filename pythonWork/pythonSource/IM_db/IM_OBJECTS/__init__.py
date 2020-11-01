@@ -1,5 +1,5 @@
 #__all__ = [""]
-from .baseobject import Baseobject,Webanker,MultilangBaseobject,Boolean
+from .baseobject import Baseobject,MultilangBaseobject,Boolean
 from .datatype import Datatype
 from .projekt import Projekt
 from .schnittstelle import Schnittstelle

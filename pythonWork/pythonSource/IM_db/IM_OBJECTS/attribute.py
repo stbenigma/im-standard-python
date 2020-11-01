@@ -90,7 +90,7 @@ CREATE TABLE ATTRIBUTES
         return self._getsprachval(colname='attr_tooltip', plang=plang)
 
     def getentiname(self, plang=None):
-        return IM_OBJECTS.Entity().getbyid(self.attr_enti_id).getname(plang)
+        return self.getparent().getname(plang)
 
     def getmodellelement(self):
         return Modelelement.getbyelemid(pattrid=self.attr_id)
@@ -102,7 +102,7 @@ CREATE TABLE ATTRIBUTES
         if self.attr_enti_id is not None:
             return IM_OBJECTS.Entity().getbyid(self.attr_enti_id)
         if self.attr_rela_id is not None:
-            return None #Relation().getbyid(self.attr_rela_id)
+            return IM_OBJECTS.Relation().getbyid(self.attr_rela_id)
 
     def isinkey(self):
         return Keyelement.isinkey(pattrid=self.attr_id)

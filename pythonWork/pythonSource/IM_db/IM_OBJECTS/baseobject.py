@@ -3,7 +3,7 @@ import sqlite3
 from IM_DB import dbDML, dbDDL
 
 
-class Webanker:
+class XXWebanker:
     def __init__(self, pname, pid, pmodelid=0):
         print("Webanker in Basepbject soll bald verschwinden und Systeme um Filename ergänzt werden")
 
@@ -144,9 +144,6 @@ class Baseobject:
 
     def prefix(self):
         return self._prefix
-
-    def webanker(self, pmodelid=0):
-        return Webanker(pname=self._prefix, pid=self.getid(), pmodelid=pmodelid)
 
     @staticmethod
     def createtable(ptablename, psql):

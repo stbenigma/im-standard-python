@@ -1,5 +1,5 @@
 from .webbaseobject import Webanker,BaseWebObj,Objlist
-from IM_OBJECTS import  Attribute
+from IM_OBJECTS import  Attribute,Entity
 import WEB_OBJECTS
 
 class WebAttribute(BaseWebObj):
@@ -16,7 +16,8 @@ class WebAttribute(BaseWebObj):
         return self.dbobject().getname(plang=plang)
 
     def getwebentity(self):
-        return WEB_OBJECTS.WebEntity(pdbobj=self.dbobject().getparent())
+        parent = self.dbobject().getparent()
+        return WEB_OBJECTS.WebEntity(pdbobj=parent) if isinstance(parent,Entity) else WEB_OBJECTS.WebRelation(pdbobj=parent)
 
     def getwebdomain(self):
         return WEB_OBJECTS.WebDomain(pdbobj=self.dbobject().getdomain())

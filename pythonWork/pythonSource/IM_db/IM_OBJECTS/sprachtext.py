@@ -266,7 +266,7 @@ CREATE TABLE LANG_TEXTS
         , 'Verwendet von': 'used by'
         , 'Vorkommast.': 'digits before period'
         , 'Wert': 'Value'
-        , 'Domain': 'Domain'
+        , 'Wertebereich': 'Domain'
         , 'Wertebereiche': 'Domains'
         , 'Werteliste': 'List of values'
         , 'wiederholt': 'repeated'
@@ -367,7 +367,7 @@ CREATE TABLE LANG_TEXTS
         , "Verwendet von": "Utilisé pour"
         , "Vorkommastellen": "Position avant la décimale"
         , "Wert": "Valeur"
-        , "Domain": "Domaine des valeurs"
+        , "Wertebereich": "Domaine des valeurs"
         , "Wertebereiche": "Domaines des valeurs"
         , "Werteliste": "Liste des Valeur"
         , "wiederholt": "répété"

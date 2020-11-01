@@ -38,8 +38,10 @@ class WebRelation(BaseWebObj):
         return '' if arcid is None else Arc().getbyid(arcid).arcs_name
 
     @staticmethod
-    def relalist(pentiid, plang):
-        relas = Relation.select(pwhere="rela_enti_id_from = {} or rela_enti_id_to = {}".format(pentiid, pentiid))
+    def relalist(pentiid, plang,pwith1to1):
+        relas = Relation.select(pwhere="(rela_enti_id_from = {} or rela_enti_id_to = {}) {}"
+                                        .format(pentiid, pentiid
+                                            ,"" if pwith1to1 else "and rela_type not in ('ISAR','ISAS')"))
         webrelas = [WebRelation(pdbobj=r, plang=plang) for r in relas]
         """
               with sprenti as 

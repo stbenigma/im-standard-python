@@ -24,10 +24,10 @@ def printmapping(ptablid):
               ] for entry in werte
              ]
     #print('prinrelhtml->printmapping:', werte)
-    printHTML.printmappinthtml(pwerte= werte
-                      ,ptitel=Sprachtext.transl('Mapping')
-                      ,pueberschriften=(Sprachtext.transl('Model'), Sprachtext.transl('Entitäten / Tabellen'))
-                      )
+    printHTML.printmappinghtml(pwerte= werte
+                               , ptitel=Sprachtext.transl('Mapping')
+                               , pueberschriften=(Sprachtext.transl('Model'), Sprachtext.transl('Entitäten / Tabellen'))
+                               )
 
 
 # printmapping
@@ -45,7 +45,7 @@ def printcolmapping(pcolid):
               ] for entry in werte
              ]
     # print(werte)
-    printHTML.printmappinthtml(pwerte=werte
+    printHTML.printmappinghtml(pwerte=werte
                                , ptitel=Sprachtext.transl('Mapping')
                                , pueberschriften=(Sprachtext.transl('Model'), Sprachtext.transl('Attribute / Columns'))
                                )
@@ -114,7 +114,7 @@ def printcollist(pcollist, pschnid):
     schnname = Schnittstelle.getname(pid=pschnid)
     if (pcollist is None or len(pcollist) == 0): return
     ueberschr = [Sprachtext.transl('Name'), Sprachtext.transl('Beschreibung')
-        , Sprachtext.transl('Domain'), Sprachtext.transl('Datentyp')
+        , Sprachtext.transl('Wertebereich'), Sprachtext.transl('Datentyp')
                  ]
 #    ueberschr.append('Logical Model')
 #    for schn in Schnittstelle.grouplist():
@@ -236,14 +236,14 @@ def printcontentcolumn(pcols):
 
 def printlistofcontent(pschnid):
     printHTML.printlistofcontenthead()
-    printHTML.printlistofcontentelement(pname='Tables'
-                                        , plist=web_sql.namelist(ptype=Modelelemtype.TABL
-                                                                 , pid=pschnid)
-                                        )
-    printHTML.printlistofcontentelement(pname='Columns'
-                                        , plist=web_sql.namelist(ptype=Modelelemtype.COLU
-                                                                 , pid=pschnid)
-                                        )
+    # printHTML.printlistofcontentelement(pname='Tables'
+    #                                     , plist=web_sql.namelist(ptype=Modelelemtype.TABL
+    #                                                              , pid=pschnid)
+    #                                     )
+    # printHTML.printlistofcontentelement(pname='Columns'
+    #                                     , plist=web_sql.namelist(ptype=Modelelemtype.COLU
+    #                                                              , pid=pschnid)
+    #                                     )
 
     printHTML.printlistofcontentfoot()
 

@@ -185,16 +185,20 @@ class Odmmapping:
 
 def doattrmapping(pcolmappings):
     for colmap in pcolmappings:
-        scha = Schnittstelleattr().getbyODMref(psrcid=transferModel.findField(colmap, 'rID'))
-        schaid = None if scha is None else scha.scha_id
         attrid = Externalref.getODMmodeid (psrcid=transferModel.findField(colmap, 'lID'))
+        scha = Schnittstelleattr().getbyODMref(psrcid=transferModel.findField(colmap, 'rID'))
+        if ((scha is None) or (attrid is None)):
+            logmessages.writelog("Column-Reference ({}) or Attribute Refernce ({}) not found".format(transferModel.findField(colmap, 'rID'),transferModel.findField(colmap, 'lID')))
+            continue
+        #fi
+
         attf = AttrTransf()
         attf.attf_laufnr =1
         attf.attf_richtung = AttrTransf.INBOUND
         #attf.attf_transf_formel
         #attf.attf_ausloeseart
         #attf.attf_ausloeseperiod
-        attf.attf_scha_id = schaid
+        attf.attf_scha_id = scha.scha_id
         attf.attf_attr_id = attrid
         attf.insert()
 #doattrmapping

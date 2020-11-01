@@ -59,9 +59,6 @@ class Schnittstelleattr(Baseobject):
     def getdescr(self, plang=None):
         return self.scha_beschr
 
-    def webanker(self):
-        return super().webanker(pmodelid=self.getintfid())
-
     def getmodellelement(self):
         return Modellelement.getbyelemid(pschaid=self.scha_id)
 
@@ -110,7 +107,7 @@ class Schnittstelleattr(Baseobject):
         indexlist = []
         for s in schas:
             t = Tabelle().getbyid(s.scha_tabl_id)
-            indexlist.append(["{} ({})".format(s.scha_column_name, t.tabl_name), s.webanker(), s.scha_id])
+            indexlist.append(["{} ({})".format(s.scha_column_name, t.tabl_name), 'COL', s.scha_id])
         return indexlist
 
     # grouplist
@@ -246,7 +243,7 @@ class AttrTransf(Baseobject):
                 for schaid in d[2].split(','):
                     scha = Schnittstelleattr().getbyid(schaid)
                     tabname = Tabelle().getbyid(scha.scha_tabl_id).tabl_name
-                    collist[tabname + '.' + scha.scha_column_name] = scha.webanker()
+                    collist[tabname + '.' + scha.scha_column_name] = 'SCHA'
                 # for
                 retval.append([schn_name, collist])
             # for

@@ -429,7 +429,7 @@ def printlistofcontentfoot():
 
 
 def printlistofcontentelement(pname, plist, pfileonly=False):
-    if len(plist) == 0: return
+    if (plist is None or len(plist) == 0): return
     lbc = str(newbarcounter())
     listcontentelementhead = """
                 <div class="panel-body" id="{}L">
@@ -635,17 +635,18 @@ def printattrlist(pwebenti):
 
     fhtml.write(starttable(ptitel=Sprachtext.transl('Attribute')
                            , pueberschriften=(
-            Sprachtext.transl('Name'), Sprachtext.transl('Domain'), Sprachtext.transl('Typ')
+            Sprachtext.transl('Name'), Sprachtext.transl('Wertebereich'), Sprachtext.transl('Typ')
             , Sprachtext.transl('Pflichtattribut'), Sprachtext.transl('Schlüssel'), Sprachtext.transl('Deskriptor'),
             Sprachtext.transl('übersetzt')
             , Sprachtext.transl('historisiert'), Sprachtext.transl('wiederholt'), Sprachtext.transl('verschlüsselt'))))
 
     for webattr in alist:
         attr = webattr.dbobject()
-        domain = attr.getdomain()
-        domname = html.escape(domain.getname(Sprachtext.reportLang()))
+        webdomain = webattr.getwebdomain()
+        domain = webdomain.dbobject()
+        domname = html.escape(webdomain.getname(Sprachtext.reportLang()))
         domainref = domname if domain.isderived() \
-                        else href(ref=domain.webanker().anker(), anz=domname)
+                        else href(ref=webdomain.webanker().anker(), anz=domname)
         fhtml.write(writetableline(pwerte=(href(ref=webattr.webanker().anker(), anz=webattr.getname(Sprachtext.reportLang()))
                                            , domainref
                                            , html.escape(domain.displdatatype())
@@ -754,14 +755,14 @@ def printentikeys(pwebenti,plang):
                 )
 # printentikeys
 
-def printmappinthtml(pwerte, ptitel, pueberschriften, pheadlevel=2):
+def printmappinghtml(pwerte, ptitel, pueberschriften, pheadlevel=2):
     # pwerte, list of entries mit {'name':webanker}
     if (pwerte is None or len(pwerte) == 0):
         return
     werte = []
     for t in pwerte:
         name, tabs = t[0], t[1]
-        commalist = ', '.join([href(ref=value.anker(), anz=key, htmlfile=htmlfilelist[value.modelid()]) \
+        commalist = ', '.join([href(ref=value.anker() , anz=key, htmlfile=htmlfilelist[value.modelid()]) if isinstance(value,Webanker) else value \
                                for key, value in tabs.items()])
         werte.append([name, commalist])
     fhtml.write(tablehtml(ptitel=ptitel
@@ -787,12 +788,12 @@ def printmapping(pentiid=None, pattrid=None):
     else:
         return
     # fi
-    printmappinthtml(pwerte=werte, ptitel=titel, pueberschriften=ueberschr)
+    printmappinghtml(pwerte=werte, ptitel=titel, pueberschriften=ueberschr)
 
 
 def printentirela(pwebenti):
     lang = Sprachtext.reportLang()
-    relalist = WebRelation.relalist(pentiid=pwebenti.enti_id, plang=lang)
+    relalist = WebRelation.relalist(pentiid=pwebenti.enti_id, plang=lang,pwith1to1=False)
     if (len(relalist) == 0):
         return
     fhtml.write(starttable(ptitel=Sprachtext.transl('Beziehungen')
@@ -821,7 +822,7 @@ def printentirela(pwebenti):
 
 def printcontentmapping(ptheme=None):
     grouplist= WebUdp.indexlist(ptheme=ptheme)
-    if len(grouplist) == 0: return
+    if (grouplist is None or len(grouplist) == 0): return
     contenthead = """        <!--mapping-->"""
 
     contentelementhead = """        <div class="entity" id="{}">
@@ -850,11 +851,11 @@ def printcontentmapping(ptheme=None):
         udpnames = [html.escape(u.dbobject().udpr_name) for u in udps]
         headerlist.extend(udpnames)
 
-        attrs = WebUdp.getattributes(ptheme=ptheme, pgroup=lgroup )
+        webattrs = WebUdp.getattributes(ptheme=ptheme, pgroup=lgroup )
         lines = []
-        for attr in attrs:
-            line = [href(ref=attr.webanker().anker(), anz=attr.getqualifiedname(plang=Sprachtext.reportLang()))]
-            udpvalues = WebUdp.getvalues(ptheme=ptheme, pgroup=lgroup, pmodeid=attr.getid(),pmeltype=Modelelemtype.ATTR)
+        for webattr in webattrs:
+            line = [href(ref=webattr.webanker().anker(), anz=webattr.getqualifiedname(plang=Sprachtext.reportLang()))]
+            udpvalues = WebUdp.getvalues(ptheme=ptheme, pgroup=lgroup, pmodeid=webattr.getid(),pmeltype=Modelelemtype.ATTR)
             """[(udpr_name,udpv_value)]"""
             if (udpvalues is None or len(udpvalues)==0): continue
             udpvaldict = {html.escape(v[0]): html.escape(v[1]) for v in udpvalues}
@@ -992,7 +993,7 @@ def printcontententi():
 
 def printcontentattr():
     infoheaders = (
-        Sprachtext.transl('Technischer Name'), Sprachtext.transl('Domain'), Sprachtext.transl('Datentyp'),
+        Sprachtext.transl('Technischer Name'), Sprachtext.transl('Wertebereich'), Sprachtext.transl('Datentyp'),
         Sprachtext.transl('Tooltip')
         , Sprachtext.transl('geändert'))
     flagheaders = (
@@ -1104,11 +1105,12 @@ def printdomaattrlist(pdomaid, pisgroup=False):
 
 def printdomacollist(pdomaid):
     clist = Schnittstelleattr.select(pwhere='scha_doma_id = {}'.format(pdomaid))
+    webclist = clist
     if (len(clist) == 0):
         return
     fhtml.write(tablehtml(ptitel=Sprachtext.transl('Verwendet für Columns')
                           , pueberschriften=[Sprachtext.transl('Column')]
-                          , pwerteliste=[[href(ref=col.webanker().anker()
+                          , pwerteliste=[[href(ref="COL"+str(col.scha_id) #col.webanker().anker()
                                                , anz="{} ({}:{})".format(col.scha_column_name, col.getintfname(),
                                                                          col.gettablname())
                                                , htmlfile=htmlfilelist[col.getintfid()]
@@ -1126,7 +1128,7 @@ def printdomamembers(pdoma):
                           , pueberschriften=
                           [Sprachtext.transl('Element')
                               , Sprachtext.transl('Beschreibung')
-                              , Sprachtext.transl('Domain')
+                              , Sprachtext.transl('Wertebereich')
                               , Sprachtext.transl('Pflichtattribut')
                               , Sprachtext.transl('geändert')
                            ]
@@ -1163,7 +1165,7 @@ def printcontentdoma():
         doma = webdoma.dbobject()
 
         lbc = str(newbarcounter())
-        printcontent(ptype=Sprachtext.transl('Domain')
+        printcontent(ptype=Sprachtext.transl('Wertebereich')
                      , panker=webdoma.webanker().anker()
                      , pname=webdoma.getname(plang=lang)
                      , pdescr=lf2htmlbr(nvl(doma.doma_descr))
