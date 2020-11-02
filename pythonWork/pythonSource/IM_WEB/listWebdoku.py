@@ -1,12 +1,10 @@
 # -*- coding: latin-1 -*-
 import sys,os
-#sys.path.append(os.getcwd())
-#sys.path.append(os.getcwd()+'/../IM_db')
 sys.path.append(os.path.dirname(os.path.realpath(__file__))+'/../IM_db')
 sys.path.append(os.path.dirname(os.path.realpath(__file__))+'/..')
 from datetime import datetime
 from IM_DB import parameters,dbConnect, dbParam,logmessages
-from IM_HTML import printHTML, printRelHTML
+from IM_HTML import printHTML, printRelHTML,printdiagHTML
 import web_sql
 from IM_OBJECTS import *
 from WEB_OBJECTS import *
@@ -123,7 +121,7 @@ def printcontent(pfirma,ptitel):
     printHTML.printcontentdoma()
     printHTML.printcontentdoku(plist=WebDocument.doculist(plang=Sprachtext.reportLang()))
     printHTML.printcontentmapping(ptheme=parameters.odmUDPMappingFileName())
-#    printdiagHTML.printcontentdiag(plist=web_sql.diaglist(), plang=Sprachtext.reportLang(), ptitel=ptitel)
+    printdiagHTML.printcontentdiag(plist=WebDiagram.contentlist(), plang=Sprachtext.reportLang(), ptitel=ptitel)
     printHTML.printcontentfoot()
 #printcontent
 

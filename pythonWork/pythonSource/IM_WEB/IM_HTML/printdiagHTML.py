@@ -381,8 +381,8 @@ def printcontentdiag(plist, plang, ptitel):
     legendhigh = 128
     for dia in plist:
         #diag_name,diag_id,diag_legendx,diag_legendy,breite,hoehe
-        printHTML.fhtml.write (diagramhead.format(web_sql.diagAnker(dia[1]), dia[0]
-                                                  , dia[4], dia[5]))
+        printHTML.fhtml.write (diagramhead.format((dia.webanker().anker), dia.getname(plang=plang)
+                                                  , dia.dbobject().diag, dia[5]))
                                 #wäre clippath,legendwidth,legendhigh))
 
         if (dia[2] is not None):

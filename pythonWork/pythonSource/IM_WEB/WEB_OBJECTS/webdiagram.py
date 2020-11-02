@@ -46,6 +46,7 @@ class WebDiagram(BaseWebObj):
         # fi
         return [WebDiagram(pdbobj=diag) for diag in diags]
     # diaglist
+
     @staticmethod
     def indexlist(pentiid=None,plang=None):
         #order by in grouplist not yet resolved (diagramtype -> diagramnbame)
