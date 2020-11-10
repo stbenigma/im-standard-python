@@ -3,11 +3,19 @@ from IM_OBJECTS import  Diagram,Diagramtype
 
 
 class WebDiagram(BaseWebObj):
+    LEGENDWIDTH:int = 363
+    LEGENDHEIGHT:int = 128
+    DEFAULT_LINEWIDTH:int = 1
+    ICONSIZE:int=40
+
     def __init__(self, pid=None, pdbobj: Diagram = None):
         super().__init__(pobjtype=Diagram, pid=pid, pdbobj=pdbobj)
 
     def getname(self, plang=None):
         return self.dbobject().diag_name
+
+    def haslegend(self):
+        return self.dbobject().diag_legendx is not None
 
     """Diagramname (entry type) """
     def getqualifiedname(self, plang=None):
@@ -17,32 +25,8 @@ class WebDiagram(BaseWebObj):
     def contentlist(pentiid=None,plang=None):
         if pentiid is None:
             diags = Diagram.select(porderby="upper(diag_name)")
-
-            # lsql = """
-            # select diag_name,diag_id,diag_legendx,diag_legendy,breite,hoehe,diag_uc,diag_dc,diag_um
-            #    from diagrams
-            #    left join  (select diag_id size_diag_id,max(xpos + breite) breite,max(ypos + hoehe) hoehe
-            #         FROM (select eler_diag_id diag_id,eler_position_x xpos,eler_width breite
-            #              ,eler_position_y ypos, eler_height hoehe
-            #              from elementreps
-            #              union all
-            #              select relr_diag_id, relr_endtext_x xpos, relr_endtext_width breite
-            #              ,relr_endtext_y ypos, relr_endtext_height hoehe
-            #              from relationreps
-            #              union all
-            #              select relr_diag_id, lise_x xpos, 3 breite
-            #              ,lise_y ypos, 3 hoehe
-            #              from relationreps
-            #              join linesegments on lise_relr_id = relr_id
-            #             )
-            #             group by size_diag_id
-            #         ) on size_diag_id = diag_id
-            #     order by upper(diag_name)"""
-            #
-            # data = dbDML.select(lsql)
         else:
-            diags = Diagram.select(pwhere="diag_id in (select eler_diag_id from elementreps where eler_mode_id = {})".format(pentiid)
-                                   ,porderby="upper(diag_name)")
+            diags = Diagram.getdiagrams(pmodeid=pentiid)
         # fi
         return [WebDiagram(pdbobj=diag) for diag in diags]
     # diaglist

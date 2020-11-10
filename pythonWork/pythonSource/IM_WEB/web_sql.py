@@ -125,37 +125,37 @@ def keylist(p_entiid,p_lang):
 #keylist
 
 
-def diagenti(pdiagid,plang):
-    data = dbDML.select("""
-            with recursive enti as
-                ( select  0 entilev, enti_id, enti_odm_guid,enti_name from entities
-                where enti_enti_guid is null
-                union all
-                select enti.entilev + 1,entities.enti_id,entities.enti_odm_guid
-                ,entities.enti_name
-                from entities
-                    join enti on entities.enti_enti_guid = enti.enti_odm_guid
-                )
-            select 
-                eler_position_x xpos,eler_width breite
-                ,eler_position_y ypos, eler_height hoehe
-                ,eler_opacity,eler_color
-                ,eler_marginwidth,eler_marginopacity,eler_margincolor
-                ,eler_fontsize, eler_fontcolor
-                ,case when ena.lgtx_text is null then enti_name 
-                                                else ena.lgtx_text end  entiname
-                ,enti_id ,eler_index
-                from elementreps
-                join enti on enti_id = eler_mode_id
-                join languages sp on sp.lang_iso_code2 = '{}'         
-                left join langattr ena on ena.lgtx_attrname = 'ENTI_NAME'
-                                        and ena.lgtx_mode_id = enti_id
-                                        and ena.lang_id = sp.lang_id
-                where eler_diag_id = {}
-                order by entilev
-    """.format(plang,pdiagid))
-    return data
-#diagenti
+# def diagenti(pdiagid,plang):
+#     data = dbDML.select("""
+#             with recursive enti as
+#                 ( select  0 entilev, enti_id, enti_odm_guid,enti_name from entities
+#                 where enti_enti_guid is null
+#                 union all
+#                 select enti.entilev + 1,entities.enti_id,entities.enti_odm_guid
+#                 ,entities.enti_name
+#                 from entities
+#                     join enti on entities.enti_enti_guid = enti.enti_odm_guid
+#                 )
+#             select
+#                 eler_position_x xpos,eler_width breite
+#                 ,eler_position_y ypos, eler_height hoehe
+#                 ,eler_opacity,eler_color
+#                 ,eler_marginwidth,eler_marginopacity,eler_margincolor
+#                 ,eler_fontsize, eler_fontcolor
+#                 ,case when ena.lgtx_text is null then enti_name
+#                                                 else ena.lgtx_text end  entiname
+#                 ,enti_id ,eler_index
+#                 from elementreps
+#                 join enti on enti_id = eler_mode_id
+#                 join languages sp on sp.lang_iso_code2 = '{}'
+#                 left join langattr ena on ena.lgtx_attrname = 'ENTI_NAME'
+#                                         and ena.lgtx_mode_id = enti_id
+#                                         and ena.lang_id = sp.lang_id
+#                 where eler_diag_id = {}
+#                 order by entilev
+#     """.format(plang,pdiagid))
+#     return data
+# #diagenti
 
 def liesarcs(pdiagid):
     data = dbDML.select("""

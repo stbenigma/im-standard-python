@@ -267,23 +267,11 @@ def hex2int(phex):
 def int2hex(pint):
     if (pint is None): return pint
     lint = pint if (type(pint) == int) else int(pint)
-    lint = lint + (hex2int('FFFFFF') if (lint < 0) else 0)
-    if lint == -1:  # -1 wird führt zu -0x1 was die Selektion später erschwert
-        lint = hex2int('FFFFFF')
-    retval = '000000' + hex(lint)[2:]
-    retval = retval[len(retval) - 6:]
+    retval = hex(lint & 0xfffffff)
+    retval = retval[3:]
     return retval
 
 
-def toString(str, upper=False):
-    if str is None:
-        return "''"
-    else:
-        return (str.upper())
-    # fi
-
-
-# toString
 
 def transferentity(penti, pdiagid, puc, pdc):
     global entities,defcolors,classcolors
@@ -305,25 +293,21 @@ def transferentity(penti, pdiagid, puc, pdc):
     # print (attrids,hiddenattrs2)
 
     layout = penti.find('bounds')
-    col = defcolors['Entity']  # defaults können mal geladen werden
+    defcol = defcolors['Entity']  # defaults zum Ergänzen
     if (findText(penti, 'useDefaultColor') == 'false'):
-
-        col.backgcolor = findText(penti, 'backgroundColor')
-        col.foregcolor = findText(penti, 'foregroundColor')
+        backgcolor = findText(penti, 'backgroundColor')
+        foregcolor = findText(penti, 'foregroundColor')
         # print (backgroundc,foregroundc)
         font = penti.find('fonts/FontObject[foType ="Title"]')
-        # deutsche ODMnutzuer schreiben Titel in die Kongig....
+        # deutsche ODMnutzuer schreiben Titel in die Konfig....
         if font is None: font = penti.find('fonts/FontObject[foType ="Titel"]')
         # fontname,fontsize,fontstyle):
-        v = findText(font, 'colorRGB')
-        col.fontcolor = v if v is not None else col.fontcolor
-        v = findText(font, 'fontStyle')
-        col.fontstyle = v if v is not None else col.fontstyle
-        v = findText(font, 'fontSize')
-        col.fontsize = v if v is not None else col.fontsize
+        fontcolor = nvl(findText(font, 'colorRGB'),defcol.fontcolor)
+        fontstyle = nvl(findText(font, 'fontStyle') ,defcol.fontstyle)
+        fontsize = nvl(findText(font, 'fontSize') , defcol.fontsize)
+        col = color(foregcolor=foregcolor, backgcolor=backgcolor, fontname=None,fontcolor=fontcolor, fontsize=fontsize, fontstyle=fontstyle)
     else:
         # check wether entity belongs to category
-        ent,defc,classc = entities,defcolors,classcolors
         enticatguid = None if entiodm is None else entities[entiodm][3]
         #print (enti.enti_name,enti.getscrid(),enticatguid)
         if (enticatguid is None):
@@ -396,8 +380,12 @@ def transferentity(penti, pdiagid, puc, pdc):
                 if ((attry - entiy) > (entiheight - 10)): break
             # for
             break  # no more looping for copies of element on diagramm
-        except sqlite3.IntegrityError:
-            index += 1
+        except sqlite3.IntegrityError as err:
+            if str(err).startswith("UNIQUE constraint failed"):
+                index += 1
+                if index > 100: #emergency stop
+                    raise err
+            else: raise err
         except Exception as ex:
             logmessages.writelog("Entity-representation")
             logmessages.writelog(str(ex))
@@ -427,8 +415,6 @@ def linetype(pidx, pmaxidx, psourcelt, ptargetlt):
     else:
         return ptargetlt
     # fi
-
-
 # linetype
 
 def connector(pidx, pmaxidx, psource, ptarget):
@@ -508,7 +494,7 @@ def transferdiaconnect(pconnectors, pdiagid, puc, pdc):
             points = c.findall('points/point')
             points = [{'x': int(findField(p, 'x')), 'y': int(findField(p, 'y'))} for p in points]
             if len(points) == 2:
-                """1elementige Linien werden um einen Mittelpunkt ergänzt wegen -- oder solid"""
+                """1-elementige Linien werden um einen Mittelpunkt ergänzt wegen -- oder solid"""
                 midpos = lambda x1, x2: round((x1 - x2) / 2 + x2)
                 points.insert(1, {'x': midpos(points[0]['x'], points[1]['x']),
                                   'y': midpos(points[0]['y'], points[1]['y'])})
@@ -603,7 +589,7 @@ def do1diagramm(pfilename):
     diag.diag_name = findField(dia, 'name')
     if (diag.diag_name == 'Logical'):
         return
-    diag.diag_diat_id = Diagramtype.getbyname(pname='Entity').diat_id
+    diag.diag_diat_id = Diagramtype.getbyname(pname=Diagramtype.ENTITY).diat_id
     # print(findField(dia,'name'), findField(dia,'id'))
 
     if (findText(dia, 'showLegend') == 'true'):
@@ -1106,30 +1092,30 @@ def do1UDPFile(pfileName):
 
         # print (ludp)
         lov = prop.find('list_of_values')
-        # Currently no Domains and therefore no LOVs in UDPs
-        if False and (lov is not None):
-            wrtbId = dbInserts.insertLovWrtb(pName=ludpTheme + '_' + propname)
-
-            # end insertLovWrtb
-
-            items = lov.findall('item')
-            for val in items:
-                # print (findField(val,'value'),findField(val,'default'))
-                deva = DefaultValue()
-                deva.deva_value = findField(val, 'value')
-                deva.deva_doma_id = wrtbId
-                deva.deva_anzeige = findField(val, 'value')
-                deva.deva_uc = 'system'
-                deva.deva_dc = date.today().__str__()
-                try:
-                    deva.insert(pdoerrhdlng=False)
-                except (sqlite3.IntegrityError):
-                    logmessages.writelog("duplicate entry in Vorgabewerte theme:'{}' property:'{}' value:'{}'"
-                                         .format(pudpThema, propname, deva.deva_value))
-
-            # for
-            Userdefprop.setdomid(pdomid=wrtbId, pudpid=udpId)
-        # fi
+        # Currently no Domains for UDP's and therefore no LOVs in UDPs
+        # if False and (lov is not None):
+        #     wrtbId = dbInserts.insertLovWrtb(pName=ludpTheme + '_' + propname)
+        #
+        #     # end insertLovWrtb
+        #
+        #     items = lov.findall('item')
+        #     for val in items:
+        #         # print (findField(val,'value'),findField(val,'default'))
+        #         deva = DefaultValue()
+        #         deva.deva_value = findField(val, 'value')
+        #         deva.deva_doma_id = wrtbId
+        #         deva.deva_anzeige = findField(val, 'value')
+        #         deva.deva_uc = 'system'
+        #         deva.deva_dc = date.today().__str__()
+        #         try:
+        #             deva.insert(pdoerrhdlng=False)
+        #         except (sqlite3.IntegrityError):
+        #             logmessages.writelog("duplicate entry in Vorgabewerte theme:'{}' property:'{}' value:'{}'"
+        #                                  .format(ludpTheme, propname, deva.deva_value))
+        #
+        #     # for
+        #     Userdefprop.setdomid(pdomid=wrtbId, pudpid=udprid)
+        # # fi
     # for
 # do1UDPFile
 
@@ -1174,9 +1160,11 @@ def insertBaseData():
     Sprache.setallreplacementlang()
 
     Modelelemtype.fillmelt()
-    diatid = Diagramtype(pname='Entity').insert()
+    diatid = Diagramtype(pname=Diagramtype.ENTITY).insert()
     MeltDiat(pdiatid=diatid,pmeltid=Modelelemtype.getidbyshortname(pshortname=Modelelemtype.ENTI)).insert()
     MeltDiat(pdiatid=diatid, pmeltid=Modelelemtype.getidbyshortname(pshortname=Modelelemtype.RELA)).insert()
+    MeltDiat(pdiatid=diatid, pmeltid=Modelelemtype.getidbyshortname(pshortname=Modelelemtype.ATTR)).insert()
+    diatid = Diagramtype(pname=Diagramtype.RELATIONAL).insert()
 # insertBaseData
 
 def loeschmodell():
@@ -1260,11 +1248,11 @@ def loaddefaultcolors():
 
 def filllanguages():
     Sprachtext.insertlang_texts(pudpthema=parameters.odmUDPTranslFileName())
+    #copy comma-list-synonym into synoyms
+    Synonym.transfersynotransl()
     # fill all elements in default language
     Sprachtext.filldefaulttext(dbParam.dbDefaultLangID)
     Sprache.deleteunused()
-
-
 # filllanguages
 
 def transferprojekt():

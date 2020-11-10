@@ -14,7 +14,6 @@ class Key(Baseobject):
                          , pmodelemtype=Modelelemtype.KEYS
                          , psrcname=psrcname
                          , pscrid=psrcid)
-        self._keyelements = None
 
     @staticmethod
     def createtable():
@@ -36,11 +35,7 @@ CREATE TABLE KEYS
 """)
 
     def getkeyelements(self):
-        if (self.getid() is not None) and (self._keyelements is None):
-            self._keyelements = Keyelement.select(pwhere='kele_keys_id = {}'.format(self.getid()))
-        # fi
-        return self._keyelements
-    # getkeyelements
+        return  Keyelement.select(pwhere='kele_keys_id = {}'.format(self.getid()))
 
     @staticmethod
     def delete():

@@ -1,6 +1,7 @@
 from datetime import date
 from .relationship import Relation
 from .baseobject import Baseobject
+import dbDML
 
 
 class Elementrep(Baseobject):
@@ -65,7 +66,25 @@ CREATE TABLE elementreps(
     def delete():
         Baseobject.delete(Elementrep._tablename)
 
+    def select(self, pwhere=None, porderby=None):
+        return super().select(Elementrep,pwhere=pwhere,porderby=porderby)
 
+
+    @staticmethod
+    def getbydiagmode(pdiagid, pmodeid,pidx=None):
+        elers = Elementrep().select(pwhere="""eler_diag_id = {} 
+                                              and eler_mode_id = {}
+                                              and eler_index = {}"""
+                                    .format(pdiagid, pmodeid,pidx if pidx is not None else 'eler_index'))
+        if elers is None:
+            return []
+        elif (pidx is None):
+            #may be several
+            return elers
+        else:
+            #can only be one
+            return elers[0]
+    #getbydiagmode
 # elementrep
 
 class Relationrep(Baseobject):
@@ -167,6 +186,11 @@ CREATE TABLE relationreps(
     def delete():
         Baseobject.delete(Relationrep._tablename)
 
+
+    @staticmethod
+    def select(pwhere=None,porderby=None):
+        return Baseobject.select(pclass=Relationrep,pwhere=pwhere,porderby=porderby)
+
     def getlinesegments(self):
         return Linesegment.select(pwhere="lise_relr_id={}".format(self.relr_id))
 
@@ -182,7 +206,7 @@ class Linesegment(Baseobject):
     _tablename: str = 'linesegments'
     _prefix: str = 'lise'
     _columnlist: list = ['lise_id', 'lise_seq', 'lise_relr_id'
-        , 'lise_x', 'lise_y', 'lise_linetyp', 'lise_angle'
+        , 'lise_x', 'lise_y', 'lise_linetype', 'lise_angle'
         , 'lise_uc', 'lise_dc', 'lise_um', 'lise_dm']
 
     def __init__(self):
@@ -204,8 +228,8 @@ CREATE TABLE linesegments(
         CONSTRAINT ck_relr_relr_fontcolor CHECK(lise_x BETWEEN 0 AND 999999) ,
     lise_y           integer NOT NULL
         CONSTRAINT ck_relr_relr_fontcolor CHECK(lise_y BETWEEN 0 AND 999999) ,
-    lise_linetyp   VARCHAR2(6)NULL
-        CONSTRAINT ck_lise_linetype CHECK(lise_linetyp IN('DADO','DASHED','DOTTED','SOLID')),
+    lise_linetype   VARCHAR2(6)NULL
+        CONSTRAINT ck_lise_linetype CHECK(lise_linetype IN('DADO','DASHED','DOTTED','SOLID')),
 	lise_angle 	 integer,
     lise_uc       varchar(30) NOT NULL,
     lise_dc           varchar(30) NOT NULL,

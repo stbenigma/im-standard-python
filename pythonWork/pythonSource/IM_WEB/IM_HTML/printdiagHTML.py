@@ -1,6 +1,7 @@
 from IM_HTML import printHTML
 import web_sql
 import math
+from WEB_OBJECTS import WebDiagram,WebEntity
 
 def printlegend(pdata,pwidth,pheigh,px,py):
 
@@ -118,7 +119,7 @@ def printrela(plist):
             endx=points[idx+1][0]
             endy=points[idx+1][1]
             opacity = 1.0
-            linewidth = 1
+            linewidth = WebDiagram.DEFAULT_LINEWIDTH
             startconnector = (point[2] == 'M')
             endconnector = (points[idx+1][2] == 'M')
             dash = "8,8" if point[3]=='DASHED' else 'none'
@@ -294,7 +295,8 @@ def printarcs(pdiagid):
         print1arc(pdiagid=pdiagid,parcid=arc[0],pentipos=[arc[4],arc[5],arc[6],arc[7]])
     #for
 #printarcs
-def printelements(pdiagid,plang):
+
+def printelements(pwebdiag,plang):
     entistart ="""<g  fill="{}" stroke="{}" fill-opacity="{}" stroke-opacity="{}" 
         transform="translate({},{})" >
 <rect x="0" y="0" width="{}" height="{}" rx="10" ry="10" /><a href="#{}" >
@@ -302,43 +304,38 @@ def printelements(pdiagid,plang):
 {} </text></a>
 """
     entiende="""</g>"""
-    #             eled_position_x xpos,eled_breite breite
-    #            ,eled_position_y ypos, eled_hoehe hoehe
-    #            ,eled_deckkraft,eled_farbe
-    #            ,eled_randbreite,eled_randdeckkraft,eled_randfarbe
-    #            ,eled_schriftgroesse, eled_schriftfarbe
-    #            ,entiname,enti_id
-    elist = web_sql.diagenti(pdiagid, plang)
-    if elist is None: return
-    for e in elist:
-        #print(e[11]+('' if (e[13]==0) else':'+str(e[13])) ,e[0],e[1],e[2],e[3])
-        ex=e[0]
-        ebreite=e[1]
-        ey=e[2]
-        ehoehe=e[3]
-        printHTML.fhtml.write(entistart.format(hex2rbg(e[5]), hex2rbg(e[8])
-                                               , round(e[4]/100,2), round(e[7]/100,2)
-                                               , ex, ey, ebreite, ehoehe
-                                               , web_sql.entiAnker(e[12])
-                                               , web_sql.diagAnker(pdiagid) + '-' + web_sql.entiAnker(e[12])
-                                               , hex2rbg(e[10])
-                                               , 12  #vorläufig mal fix verdrahtet e[9], font size
-                                               , e[11] + ('' if (e[13]==0) else':'+str(e[13]))))
+    imagehtml=""""<image href = "image/{}.png" width = "{}px" height = "{}px" class ="entity-image" x="{}px" y="{}px"></image>""".format('{}',WebDiagram.ICONSIZE,WebDiagram.ICONSIZE,'{}','{}')
 
-        attrs= web_sql.diagattrlist(plang=plang, pdiagid=pdiagid)
-        #  attr_id, attr_displ_name, attr_is_mandatory ,attr_is_descriptive, schluessel, mode_id
-        for a in attrs:
-            #printtext(px=x1, py=y, ptext='*' if a[5] == 'TRUE' else 'o'
-            #, pfillcolor=hex2rbg(e[10]), pfontsize=10  #vorläufig mal fix verdrahtet e[9]
-            #)
-            ax,ay=a[6],a[7]
-            aname = a[1]
-            printtext(px=ax-ex, py=ay-ey, ptext=printHTML.href(ref=web_sql.attrAnker(a[0]), anz=a[1])
-                      , pfillcolor=hex2rbg(e[10]), pfontsize=10  #vorläufig mal fix verdrahtet e[9]
-                      )
+    for wenti in WebEntity.diaglist(pdiagid=pwebdiag.getid(),plang=plang):
+        for eler in wenti.diagreps[pwebdiag.getid()]:
+            printHTML.fhtml.write(entistart.format(hex2rbg(eler.eler_color), hex2rbg(eler.eler_margincolor)
+                                               , round(eler.eler_opacity/100,2), round(eler.eler_marginopacity/100,2)
+                                               , eler.eler_position_x, eler.eler_position_y, eler.eler_width, eler.eler_height
+                                               , wenti.webanker().anker()
+                                               , pwebdiag.webanker().anker()+ '-' + wenti.webanker().anker()
+                                               , hex2rbg(eler.eler_fontcolor)
+                                               , 12  #vorläufig mal fix verdrahtet e[9], font size
+                                               , wenti.getname(plang=plang) + ('' if (eler.eler_index==0) else':'+str(eler.eler_index))))
+
+        # attrs= web_sql.diagattrlist(plang=plang, pdiagid=pdiagid)
+        # #  attr_id, attr_displ_name, attr_is_mandatory ,attr_is_descriptive, schluessel, mode_id
+        # for a in attrs:
+        #     #printtext(px=x1, py=y, ptext='*' if a[5] == 'TRUE' else 'o'
+        #     #, pfillcolor=hex2rbg(e[10]), pfontsize=10  #vorläufig mal fix verdrahtet e[9]
+        #     #)
+        #     ax,ay=a[6],a[7]
+        #     aname = a[1]
+        #     printtext(px=ax-ex, py=ay-ey, ptext=printHTML.href(ref=web_sql.attrAnker(a[0]), anz=a[1])
+        #               , pfillcolor=hex2rbg(e[10]), pfontsize=10  #vorläufig mal fix verdrahtet e[9]
+        #               )
+        # #for
+            printHTML.fhtml.write(entiende)
+            printHTML.fhtml.write(imagehtml.format(wenti.dbobject().enti_name.lower(),eler.eler_position_x+eler.eler_width-WebDiagram.ICONSIZE/2,
+                                                   eler.eler_position_y - WebDiagram.ICONSIZE/2))
+
         #for
-        printHTML.fhtml.write(entiende)
     #for
+    return
     diagrela = web_sql.diagrelalist(pdiagid=pdiagid, plang=plang)
     printrela(plist=diagrela)
     printtexte(plist=diagrela)
@@ -350,6 +347,7 @@ def printcontentdiag(plist, plang, ptitel):
     contenthead="""        <!--diagramms-->"""
 
     diagramhead = """        <br><hr><br><br>
+        <div id="{}-container">
        <h3 id="{}">{}</h3>
         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
         version="1.1"  width="{}" height="{}">
@@ -363,6 +361,10 @@ def printcontentdiag(plist, plang, ptitel):
 
     diagramfoot = """
 </svg>
+    <div class="print-button-container">
+        <button class="print-button" onclick="printElem(this)">print</button>
+    </div>
+</div>
 """
     detailshead = """           
                 <!-- The inside div eliminates the 'jumping' animation. -->
@@ -377,23 +379,21 @@ def printcontentdiag(plist, plang, ptitel):
                             <table class="table borderless">
                                 <tbody>
 """
-    legendwidth = 363
-    legendhigh = 128
     for dia in plist:
         #diag_name,diag_id,diag_legendx,diag_legendy,breite,hoehe
-        printHTML.fhtml.write (diagramhead.format((dia.webanker().anker), dia.getname(plang=plang)
-                                                  , dia.dbobject().diag, dia[5]))
+        printHTML.fhtml.write (diagramhead.format(dia.webanker().anker(),dia.webanker().anker(), dia.getname(plang=plang)
+                                                  , dia.dbobject().diagwidth(), dia.dbobject().diagheight()))
                                 #wäre clippath,legendwidth,legendhigh))
 
-        if (dia[2] is not None):
+        if (dia.haslegend()):
             #es hat eine Legende
-            printlegend(pdata=[dia[0], dia[6], dia[7],''
-                , dia[8], ptitel, 'Logical']
-                    ,pwidth=legendwidth,pheigh=legendhigh
-                    ,px=dia[2],py=dia[3])
+            printlegend(pdata=[dia.getname(), dia.dbobject().diag_uc, dia.dbobject().diag_dc,''
+                , dia.dbobject().diag_um, ptitel, 'Logical']
+                    ,pwidth=WebDiagram.LEGENDWIDTH,pheigh=WebDiagram.LEGENDHEIGHT
+                    ,px=dia.dbobject().diag_legendx,py=dia.dbobject().diag_legendy)
         #fi
 
-        printelements(pdiagid=dia[1],plang=plang)
+        printelements(pwebdiag=dia,plang=plang)
         printHTML.fhtml.write(diagramfoot)
     #for
 #printcontendiag

@@ -3,7 +3,9 @@ from IM_DB import dbDML,dbDDL
 from datetime import date
 from .baseobject import Baseobject,MultilangBaseobject
 from .sprachtext import Sprachtext
+from .sprache import Sprache
 import IM_OBJECTS
+from .userdefprop import Userdefpropvalue,Userdefprop
 
 
 class Entity(MultilangBaseobject):
@@ -30,6 +32,7 @@ class Entity(MultilangBaseobject):
         self._synonyms = None
         self._schluessel = None
         self._attributes = None
+        self.subtypelevel = 0
 
     @staticmethod
     def createtable():
@@ -152,9 +155,26 @@ CREATE TABLE ENTITIES
         return self._attributes
     #getschluessel
 
+    def getsubtypelevel(self):
+        subtypelevel = dbDML.select("""
+            with recursive enti as
+            ( select 0 entilev, enti_id
+            from entities
+            where not exists (select 1 from superenti where rela_type = 'ISAS' AND subenti_id = enti_id)
+            union all
+            select enti.entilev + 1, subenti_id
+            from superenti
+            join enti on enti_id = superenti_id
+            )
+            select entilev from enti
+            where enti_id = {}
+            """.format(self.enti_id))
+        return subtypelevel[0][0]
+
     @staticmethod
     def delete():
         Baseobject.delete(Entity._tablename)
+
 
     @staticmethod
     def select(pwhere=None, porderby="enti_name"):
@@ -257,7 +277,33 @@ CREATE TABLE SYNONYMS
                                   ,pwhere=pwhere, porderby=porderby)
         return synos
     #select
-#Synonym
+    @staticmethod
+    def transfersynotransl():
+        """get all udpr translations for synonyms except for the default language
+           if it is comma separated, dispatch an entry per synonym into language texts.
+           If order or number is not the same, ignore it"""
+        for udpr in Userdefprop.select(pwhere="udpr_name like '___ENTI_SYNONYM'"):
+            langiso2 = udpr.udpr_name[0:2].lower()
+            langid=Sprache().getbyuk(pcolname='lang_iso_code2',pukvalue=langiso2).getid()
+            if langid == Sprache.liesdeflangid(): continue
+            for udpv in Userdefpropvalue.select(pwhere="udpv_udpr_id = {}".format(udpr.udpr_id)):
+                langsynos = udpv.udpv_value.split(',')
+                for idx,syno in enumerate(Entity().getbyid(udpv.udpv_mode_id).getsynonyms()):
+                    try:
+                        synotransl = langsynos[idx]
+                    except:
+                        continue
+                    lgtx=Sprachtext()
+                    lgtx.lgtx_attrname='SYNO_NAME'
+                    lgtx.lgtx_text=synotransl
+                    lgtx.lgtx_lang_id=langid
+                    lgtx.lgtx_mode_id=syno.syno_id
+                    lgtx.lgtx_uc=udpv.udpv_uc
+                    lgtx.lgtx_dc=udpv.udpv_dc
+                    lgtx.lgtx_um = udpv.udpv_um
+                    lgtx.lgtx_dm = udpv.udpv_dm
+                    lgtx.insert()
+
 from .attribute import Attribute
 from .modelelement import Modelelemtype,Modelelement
 

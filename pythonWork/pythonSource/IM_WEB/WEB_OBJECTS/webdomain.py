@@ -9,7 +9,7 @@ class WebDomain(BaseWebObj):
     """Domainname (Anzahl Refs) """
     def getqualifiedname(self, plang=None):
             return '{} ({})'.format(
-                self.getname(plang=plang), self.dbobject().refattranz())
+                self.getname(plang=plang), self.dbobject().refattrcnt()+self.dbobject().refcolucnt())
     def getname(self,plang=None):
         return self.dbobject().getname(plang=plang)
 

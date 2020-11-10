@@ -27,7 +27,7 @@ class WebDocument(BaseWebObj):
 
     @staticmethod
     def docureflist(pdocuid, plang):
-        modes = Modelelement.select(pwhere="mode_id in (select modo_mode_id from mode_docu where modo_docu_id = {})".format(pdocuid))
+        modes = Document().getbyid(pdocuid).getrefmodes()
         reflist = [] if modes is None else [[mode.mode_type
                                             ,Modelelemtype.getbyshortname(pshortname=mode.mode_type).melt_name
                                             ,WebModelelement(pdbobj=mode.getmyelement()).webobject()]

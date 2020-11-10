@@ -751,8 +751,8 @@ CREATE TABLE linesegments(
         CONSTRAINT ck_relr_relr_fontcolor CHECK(lise_x BETWEEN 0 AND 999999) ,
     lise_y           integer NOT NULL
         CONSTRAINT ck_relr_relr_fontcolor CHECK(lise_y BETWEEN 0 AND 999999) ,
-    lise_linetyp   VARCHAR2(6)NULL
-        CONSTRAINT ck_lise_linetype CHECK(lise_linetyp IN(
+    lise_linetype   VARCHAR2(6)NULL
+        CONSTRAINT ck_lise_linetype CHECK(lise_linetype IN(
             'DADO',
             'DASHED',
             'DOTTED',

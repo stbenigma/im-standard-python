@@ -1,6 +1,7 @@
 from .baseobject import Baseobject
 
 class Projekt(Baseobject):
+    LOGICALTYPE = "logical"
     _tablename:str ='projekte'
     _prefix:str ='proj'
     _columnlist:list = ['proj_id', 'proj_name', 'proj_uc', 'proj_dc', 'proj_sprachen', 'proj_akt_sprache' ]

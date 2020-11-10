@@ -1,6 +1,7 @@
 from .baseobject import Baseobject, MultilangBaseobject
 from .sprachtext import Sprachtext
 from .domain import Domain
+from .key import Key
 import IM_OBJECTS
 
 class Attribute(MultilangBaseobject):
@@ -111,6 +112,11 @@ CREATE TABLE ATTRIBUTES
         return Domain().getbyid(self.attr_doma_id)
 
 
+    def getkeys(self):
+        return Key.select(pwhere="""keys_id in 
+                                    (select kele_keys_id 
+                                    from key_elements 
+                                    where kele_attr_id = {})""".format(self.attr_id))
     @staticmethod
     def delete():
         Baseobject.delete(Attribute._tablename)

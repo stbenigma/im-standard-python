@@ -1,6 +1,6 @@
 from IM_DB import dbDML
 from .baseobject import Baseobject
-from .modelelement import Modelelemtype
+from .modelelement import Modelelemtype,Modelelement
 from .externalref import Externalref
 from .physicals import Storageformat
 
@@ -8,7 +8,8 @@ from .physicals import Storageformat
 class Document(Baseobject):
     _tablename:str = 'documents'
     _prefix:str = 'docu'
-    _columnlist:list = [ 'docu_id' ,'docu_name', 'docu_stfo_id', 'docu_reference', 'docu_docu_id']
+    _columnlist:list = [ 'docu_id' ,'docu_name', 'docu_stfo_id'
+                        , 'docu_reference','docu_content', 'docu_docu_id']
 
     def __init__(self,psrcname=None,psrcid=None):
         super().__init__(tablename=self._tablename, prefix=self._prefix
@@ -78,41 +79,7 @@ CREATE TABLE DOCUMENTS
                     """.format(parentid,childid))
     #updparents
 
-    @staticmethod
-    def docureference(pdocuid):
-        data = dbDML.select("""
-        select melt_kurzname typ
-                ,mode_enti_id
-                ,mode_tabl_id
-                ,mode_schn_id
-                ,mode_scha_id
-                ,mode_attr_id
-                ,mode_wrtb_id
-                ,mode_rela_id
-                ,mode_orge_id
-                ,mode_buru_id
-         from  DOKUMENTE
-         join MODELELEM_docu on MODO_docu_ID = docu_ID
-         join modellelement on mode_id = MODO_MODE_ID
-         join modellelem_typ on melt_id = mode_melt_id
-        where docu_id = {}
-        """.format(pdocuid))
-        retval = []
-        if data is None or len(data) == 0: return
-        for d in data:
-            if d[0] == 'ENTI': pass #o = Entity().getbyid(d[1])
-            elif d[0] == 'TABL': o = Tabelle().getbyid(d[2])
-            elif d[0] == 'INTF': o = Schnittstelle().getbyid(d[3])
-            elif d[0] == 'INTF': pass #o = SchnittstelleAttribut().getbyid(d[4])
-            elif d[0] == 'ATTR': pass #o = Attribute().getbyid(d[5])
-            elif d[0] == 'DOMA': pass #o = Domain().getbyid(d[6])
-            elif d[0] == 'BEZI': pass #o = Beziehung().getbyid(d[7])
-            elif d[0] == 'ORGU': pass #o = Organisationseinheit().getbyid(d[8])
-            elif d[0] == 'BURU': pass #o = BusinessRule().getbyid(d[9])
-            retval.append((d[0],o))
-        #for
-        return retval
-    #docureference
+
 
     @staticmethod
     def getrefdoculist(pid):
@@ -142,6 +109,16 @@ CREATE TABLE DOCUMENTS
         )
         """.format(pid))
         return docus
+
+    def getrefmodes(self,pmelttype=None):
+        return  Modelelement.select(
+                pwhere="""mode_id in 
+                            (select mode_id 
+                            from mode_docu 
+                            join modelelement on mode_id = modo_mode_id
+                            where modo_docu_id = {}
+                            and mode_type like '{}')"""
+                    .format(self.docu_id,pmelttype if pmelttype is not None else '%'))
 
     @staticmethod
     def doculist():

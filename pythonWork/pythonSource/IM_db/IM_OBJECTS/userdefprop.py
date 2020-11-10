@@ -44,7 +44,8 @@ class Userdefprop(Baseobject):
         return self.udpr_descr
 
     def getqualifiedname(self,plang = None):
-        return "{} ({})".format(self.getname(plang=pland),self.udpr_group)
+        return "{} ({})".format(self.getname(plang=plang),self.udpr_group)
+
     @staticmethod
     def delete():
         Baseobject.delete(Userdefprop._tablename)
@@ -59,16 +60,25 @@ class Userdefprop(Baseobject):
         return Userdefprop().getbyuk(pcolname='UDPR_NAME',pukvalue=pname)
 
     @staticmethod
-    def udpAnker(id):
-        return Webanker(pname='UDP',pid=id)
+    def themelist(pmelttype=None):
+        """[(theme)] """
+        data = dbDML.select("""select  distinct udpr_theme
+                        from user_defined_properties 
+                        join MODELEMTYPE_PROPERTIES on metp_udpr_id = udpr_id
+                        join MODELELEM_TYPE on melt_id = metp_melt_id  
+                       where melt_shortname like '{}'
+                    order by udpr_theme""".format('%' if pmelttype is None else pmelttype))
+        return data
 
     @staticmethod
-    def grouplist(pudptheme=None):
+    def grouplist(pudptheme=None,pmelttype=None):
         """[(theme,group)] """
         data = dbDML.select("""select  distinct udpr_theme,udpr_group
                         from user_defined_properties 
-                       where udpr_theme like '{}'
-                    order by udpr_theme,udpr_group""".format('%' if pudptheme is None else pudptheme))
+                        join MODELEMTYPE_PROPERTIES on metp_udpr_id = udpr_id
+                        join MODELELEM_TYPE on melt_id = metp_melt_id  
+                       where udpr_theme like '{}' and melt_shortname like '{}'
+                    order by udpr_theme,udpr_group""".format('%' if pudptheme is None else pudptheme,'%' if pmelttype is None else pmelttype))
         return data
 
     @staticmethod
@@ -202,6 +212,13 @@ class Userdefpropvalue(Baseobject):
                         """, recs=prows)
     # updvalues
 
+    @staticmethod
+    def udpvalue(pudprid,pmodeid):
+        udpv = Userdefpropvalue.select(pwhere="udpv_udpr_id = {} and udpv_mode_id={}".format(pudprid,pmodeid))
+        if udpv is None or len(udpv) == 0: return None
+        return udpv[0].udpv_value
+
+    @staticmethod
     def udpvalues(ptheme, pgroup, pmodeid,pmeltype):
         """[(udpr_name,udpv_value)]"""
         data = dbDML.select("""select udpr_name, case when udpv_value is NULL then '' else udpv_value end val 

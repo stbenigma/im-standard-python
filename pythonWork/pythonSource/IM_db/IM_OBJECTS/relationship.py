@@ -29,7 +29,7 @@ class Arc(Baseobject):
 
     def getrelalist(self):
         """List of relations in this arc"""
-        return Relation().select(pwhere="arcs_id = {}".format(self.arcs_id))
+        return Relation().select(pwhere="rela_arcs_id_from = {} or rela_arcs_id_to = {}".format(self.arcs_id,self.arcs_id))
 
     def getentity(self):
         return IM_OBJECTS.Entity().getbyid(self.arcs_enti_id)
@@ -194,6 +194,10 @@ CREATE TABLE RELATIONS
         return IM_OBJECTS.Entity().getbyid(pid=self.rela_enti_id_from)
     def gettoentity(self):
         return IM_OBJECTS.Entity().getbyid(pid=self.rela_enti_id_to)
+
+    @staticmethod
+    def getbyentity(pentiid):
+        return Relation.select(pwhere="""rela_enti_id_from = {} or rela_enti_id_to = {}""".format(pentiid,pentiid))
 
     @staticmethod
     def delete():

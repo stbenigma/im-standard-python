@@ -113,7 +113,7 @@ CREATE TABLE DOMAINS
 )"""
                                )
 
-    def getname(self, plang):
+    def getname(self, plang=None):
         return self._getsprachval(colname='doma_name', plang=plang)
 
     def getmodeid(self):
@@ -189,13 +189,19 @@ CREATE TABLE DOMAINS
 
     # typestring
 
-    def refattranz(self):
+    def refattrcnt(self):
         data = dbDML.select("""select count(*) 
                     from attributes where attr_doma_id = {}
                     """.format(self.doma_id))
         return data[0][0]
+    # refattrcnt
 
-    # refattranz
+    def refcolucnt(self):
+        data = dbDML.select("""select count(*) 
+                    from SCHNITTSTELLE_ATTRS where scha_doma_id = {}
+                    """.format(self.doma_id))
+        return data[0][0]
+    # refattrcnt
 
     @staticmethod
     def basetype2domatype(pdatybasetype):

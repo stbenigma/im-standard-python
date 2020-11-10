@@ -1,5 +1,5 @@
 from .webbaseobject import Webanker,BaseWebObj,Objlist
-from IM_OBJECTS import  Entity
+from IM_OBJECTS import  Entity,Elementrep,Diagram
 from .webattribute import WebAttribute
 
 
@@ -12,6 +12,24 @@ class WebEntity(BaseWebObj):
         self.enti_id = self.dbobject().enti_id
         self.enti_uc = self.dbobject().enti_uc
         self.enti_dc = self.dbobject().enti_dc
+        self.diagreps = self._getdiagreps()
+        """{diagid:[elementrep]}"""
+
+    def _getdiagreps (self):
+        diagreps = {}
+        diags = Diagram.select()
+        if (diags is None or len(diags)==0): return {}
+        for diag in diags:
+            elers = Elementrep.getbydiagmode(pdiagid= diag.diag_id, pmodeid =self.enti_id)
+            if len(elers)>0:
+                diagreps [diag.diag_id] = elers
+            #fi
+        #for
+        return diagreps
+    #_getdiagreps
+
+    def isondiag(self,pdiagid):
+        return pdiagid in self.diagreps
 
     def getname(self,plang):
         return self.dbobject().getname(plang=plang)
@@ -53,6 +71,17 @@ class WebEntity(BaseWebObj):
         if WebEntity.__members is None: WebEntity.__members = [WebEntity(pdbobj=obj) for obj in Entity.select()]
         return WebEntity.__members
 
+    @staticmethod
+    def diaglist(pdiagid,plang):
+        if WebEntity.__members is None: WebEntity.__members = [WebEntity(pdbobj=obj) for obj in Entity.select()]
+        diagentis = []
+        for wenti in WebEntity.__members:
+            if wenti.isondiag(pdiagid=pdiagid):
+                diagentis.append((wenti.dbobject().getsubtypelevel(),wenti))
+        def firstelem(elem):
+            return elem[0]
+        diagentis.sort(key=firstelem)
+        return [diag[1] for diag in diagentis]
 
     @staticmethod
     def indexlist(plang=None):

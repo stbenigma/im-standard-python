@@ -1,5 +1,5 @@
 from .baseobject import Baseobject
-from .modelelement import Modelelement
+import  dbDML
 
 class Externalref(Baseobject):
     SOURCE_ODM:str='ODM'
@@ -34,6 +34,11 @@ CREATE TABLE EXTERNAL_REFS
 """)
 
     @staticmethod
+    def getsources():
+        data = dbDML.select("""select distinct extr_source_name from external_refs order by extr_source_name""")
+        return [d[0] for d in data]
+
+    @staticmethod
     def delete():
         Baseobject.delete(Externalref._tablename)
 
@@ -52,7 +57,7 @@ CREATE TABLE EXTERNAL_REFS
     @staticmethod
     def getsrcid(psrcname,pmodeid):
         extrs = Externalref.select (pwhere="extr_source_name = '{}' and extr_mode_id = '{}'".format(psrcname,pmodeid))
-        srcid = None if len(extr) == 0 else extrs[0].extr_source_id
+        srcid = None if len(extrs) == 0 else extrs[0].extr_source_id
         return srcid
     # getsrcid
 

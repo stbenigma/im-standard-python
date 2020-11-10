@@ -234,10 +234,12 @@ class MultilangBaseobject(Baseobject):
 
     def _getsprachval(self, colname, plang = None):
         try:
+            if plang=='fr':
+                l =plang
             retval = self.__dict__[colname + '_L'][plang]
         except:
             # keine sprache oder keinen Namen für Sprache
-            retval = self.retval = self.__dict__[colname]
+            retval = self.__dict__[colname]
         # try
         return retval
     #_getsprachval

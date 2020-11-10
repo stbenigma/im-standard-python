@@ -6,6 +6,7 @@ from IM_DB import parameters
 from IM_OBJECTS import *
 from WEB_OBJECTS import *
 import html
+from parameters import nvl,nvl2
 
 outputDirectory: str = None
 webDirectory: str = "";
@@ -16,6 +17,7 @@ imagedirec: str = "";
 cssdirec: str = "";
 icondirec: str = "";
 htmlfilelist = {}
+model = {}
 
 """zum Zählen der lokalen Ziele für collapse"""
 barcounter: int = 0
@@ -41,22 +43,16 @@ def lf2htmlbr(pstr):
 
 # lf2htmlbr
 
-def nvl(x, default=''):
-    return x if (x is not None) else default
-
-
-# nvl
 
 def filehref(pref, panz, plang, pimg=None):
-    img = '' if pimg is None else '<img class="icon-check" src="icons/{}">'.format(pimg)
+    img = nvl2(pimg,'','<img class="icon-check" src="icons/{}">'.format(pimg))
     return """<a href="{}{}" target="_blank" >{}{}</a>""" \
-        .format(webFileName + '_' + plang.lower() + '.html'
-                , "#" + pref if pref is not None else "", panz, img)
+        .format(webFileName + '_' + plang.lower() + '.html', nvl2(pref,"","#") , panz, img)
 
 
 def href(ref, anz, htmlfile=''):
     if anz is None: return ''
-    sep = '' if ((ref is None) or (ref == '')) else '#'
+    sep = nvl(ref,'#')
     return """<a href="{}{}" target="{}">{}</a>""".format(htmlfile
                                                           , '{}{}'.format(sep, ref)
                                                           , '_self' if htmlfile == '' else '_blank'
@@ -129,6 +125,7 @@ def printhead(p_firma, piconfilename, p_titel, p_info, p_logofilename):
     <link rel="icon" type="image/png" href="{}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
+    <script src="js/IM.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
@@ -167,221 +164,220 @@ def printfoot():
             </div>
         </div>
     </div>
-        
     <script>
-		// Quick and simple export target #table_id into a csv
-		function download_table_as_csv(table_id) {
-		    // Select rows from table_id
-		    var rows = document.querySelectorAll('table#' + table_id + ' tr');
-		    // Construct csv
-		    var csv = [];
-		    for (var i = 0; i < rows.length; i++) {
-		        var row = [], cols = rows[i].querySelectorAll('td, th');
-		        for (var j = 0; j < cols.length; j++) {
-		            // Clean innertext to remove multiple spaces and jumpline (break csv)
-		            var data = cols[j].innerText.replace(/(\\r\\n|\\n|\\r)/gm, '').replace(/(\\s\\s)/gm, ' ')
-		            // Escape double-quote with double-double-quote (see https://stackoverflow.com/questions/17808511/properly-escape-a-double-quote-in-csv)
-		            data = data.replace(/"/g, '""');
-		            // Push escaped string
-		            row.push('"' + data + '"');
-		        }
-		        csv.push(row.join(';'));
-		    }
-		    var csv_string = csv.join('\\n');
-		    // Download it
-		    var filename = 'export_' + table_id + '_' + new Date().toLocaleDateString() + '.csv';
-		    var link = document.createElement('a');
-		    link.style.display = 'none';
-		    link.setAttribute('target', '_blank');
-		    link.setAttribute('href', 'data:text/csv;charset=utf-8,' + encodeURIComponent(csv_string));
-		    link.setAttribute('download', filename);
-		    document.body.appendChild(link);
-		    link.click();
-		    document.body.removeChild(link);
-		}
-        //Code for filtering input
-        function $x(pNd) {
-            var lThis;
-            switch (typeof(pNd)) {
-                case 'string':
-                    lThis = document.getElementById(pNd);
-                    break;
-                case 'object':
-                    lThis = pNd;
-                    break;
-                default:
-                    return false;
-                    break;
-            }
-            return (lThis.nodeType == 1) ? lThis : false;
+      // Quick and simple export target #table_id into a csv
+function download_table_as_csv(table_id) {
+    // Select rows from table_id
+    var rows = document.querySelectorAll('table#' + table_id + ' tr');
+    // Construct csv
+    var csv = [];
+    for (var i = 0; i < rows.length; i++) {
+        var row = [], cols = rows[i].querySelectorAll('td, th');
+        for (var j = 0; j < cols.length; j++) {
+            // Clean innertext to remove multiple spaces and jumpline (break csv)
+            var data = cols[j].innerText.replace(/(\\r\\n|\\n|\\r)/gm, '').replace(/(\\s\\s)/gm, ' ')
+            // Escape double-quote with double-double-quote (see https://stackoverflow.com/questions/17808511/properly-escape-a-double-quote-in-csv)
+            data = data.replace(/"/g, '""');
+            // Push escaped string
+            row.push('"' + data + '"');
         }
+        csv.push(row.join(';'));
+    }
+    var csv_string = csv.join('\\n');
+    // Download it
+    var filename = 'export_' + table_id + '_' + new Date().toLocaleDateString() + '.csv';
+    var link = document.createElement('a');
+    link.style.display = 'none';
+    link.setAttribute('target', '_blank');
+    link.setAttribute('href', 'data:text/csv;charset=utf-8,' + encodeURIComponent(csv_string));
+    link.setAttribute('download', filename);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
+//Code for filtering input
+function $x(pNd) {
+    var lThis;
+    switch (typeof(pNd)) {
+        case 'string':
+            lThis = document.getElementById(pNd);
+            break;
+        case 'object':
+            lThis = pNd;
+            break;
+        default:
+            return false;
+            break;
+    }
+    return (lThis.nodeType == 1) ? lThis : false;
+}
 
-        var gRegex = false;
-        var gHeight = 0;
+var gRegex = false;
+var gHeight = 0;
 
-        function $d_Find(pThis, pString, pTags, pClass) {
-            if (!pTags) {
-                pTags = 'DIV';
-            }
-            pThis = $x(pThis);
-            if (pThis) {
-                var d = pThis.getElementsByTagName(pTags);
-                pThis.style.display = "none";
-                if (!gRegex) {
-                    gRegex = new RegExp("test");
-                }
-                var c = 0; // Counter for results
-                //var e = 0; //
-                var rowCount = 0;
-                gRegex.compile(pString, "i");
-                for (var i = 0, len = d.length; i < len; i++) {
-                    if (gRegex.test(d[i].innerHTML)) {
-                        d[i].style.display = "table-row";
-                        d[i].style.visiblilty = "visible";
-                        d[i].style.height = gHeight;
-                        c++; // 
-                    } else {
-                        if (gHeight == 0) gHeight = d[i].style.height;
-                        d[i].style.height = '0';
-                        d[i].style.display = "none";
-                        d[i].style.visiblilty = "hidden";
-                    }
-
-                }
-                pThis.style.display = "block";
-            }
-
-            // Code for automatic expanding after results < 30 
-            if (c <= 30) {
-                $('#bar1').collapse('show');
-                $('#bar2').collapse('show');
-                $('#bar3').collapse('show');
+function $d_Find(pThis, pString, pTags, pClass) {
+    if (!pTags) {
+        pTags = 'DIV';
+    }
+    pThis = $x(pThis);
+    if (pThis) {
+        var d = pThis.getElementsByTagName(pTags);
+        pThis.style.display = "none";
+        if (!gRegex) {
+            gRegex = new RegExp("test");
+        }
+        var c = 0; // Counter for results
+        //var e = 0; //
+        var rowCount = 0;
+        gRegex.compile(pString, "i");
+        for (var i = 0, len = d.length; i < len; i++) {
+            if (gRegex.test(d[i].innerHTML)) {
+                d[i].style.display = "table-row";
+                d[i].style.visiblilty = "visible";
+                d[i].style.height = gHeight;
+                c++; // 
             } else {
-                $('#bar1').collapse('hide');
-                $('#bar2').collapse('hide');
-                $('#bar3').collapse('hide');
+                if (gHeight == 0) gHeight = d[i].style.height;
+                d[i].style.height = '0';
+                d[i].style.display = "none";
+                d[i].style.visiblilty = "hidden";
             }
 
-            document.getElementById("count").innerHTML = c;
-            return;
         }
+        pThis.style.display = "block";
+    }
 
-        //placeholder animation
-        $('input').focus(function() {
-            $(this).parents('.form-group').addClass('focused');
-        });
+    // Code for automatic expanding after results < 30 
+    if (c <= 30) {
+        $('#bar1').collapse('show');
+        $('#bar2').collapse('show');
+        $('#bar3').collapse('show');
+    } else {
+        $('#bar1').collapse('hide');
+        $('#bar2').collapse('hide');
+        $('#bar3').collapse('hide');
+    }
 
-        $('input').blur(function() {
-            var inputValue = $(this).val();
-            if (inputValue == "") {
-                $("#searcher").show();
-                $(this).removeClass('filled');
-                $(this).parents('.form-group').removeClass('focused');
-            } else {
-                $(this).addClass('filled');
-            }
-        })
+    document.getElementById("count").innerHTML = c;
+    return;
+}
 
-        //serchclearer (clears input in searchbar)
-        $(document).ready(function() {
-            $("#first").keyup(function() {
-                $("#searchclear").toggle(Boolean($(this).val()));
-                $("#searcher").hide();
-            });
-            $("#searchclear").toggle(Boolean($("#first").val()));
-            $("#searchclear").click(function() {
-                $("#searcher").show();
-                $("#first").val('').focus();
-                $(this).hide();
-            });
-        });
+//placeholder animation
+$('input').focus(function() {
+    $(this).parents('.form-group').addClass('focused');
+});
 
-        //content view for sidebar(desktop) and modal (mobile)
-        document.getElementById("btnF").addEventListener("click", function() {
+$('input').blur(function() {
+    var inputValue = $(this).val();
+    if (inputValue == "") {
+        $("#searcher").show();
+        $(this).removeClass('filled');
+        $(this).parents('.form-group').removeClass('focused');
+    } else {
+        $(this).addClass('filled');
+    }
+})
 
-            $("body").css("overflow", "hidden");
+//serchclearer (clears input in searchbar)
+$(document).ready(function() {
+    $("#first").keyup(function() {
+        $("#searchclear").toggle(Boolean($(this).val()));
+        $("#searcher").hide();
+    });
+    $("#searchclear").toggle(Boolean($("#first").val()));
+    $("#searchclear").click(function() {
+        $("#searcher").show();
+        $("#first").val('').focus();
+        $(this).hide();
+    });
+});
 
-            var tree = document.createDocumentFragment();
-            var div = document.getElementById("toc_list");
+//content view for sidebar(desktop) and modal (mobile)
+document.getElementById("btnF").addEventListener("click", function() {
 
-            tree.appendChild(div);
+    $("body").css("overflow", "hidden");
 
-            document.getElementById("modalContent").appendChild(tree);
-        });
+    var tree = document.createDocumentFragment();
+    var div = document.getElementById("toc_list");
 
-        document.getElementById("closeM0").addEventListener("click", function() {
-            $("body").css("overflow", "auto");
+    tree.appendChild(div);
 
-            var tree = document.createDocumentFragment();
-            var div = document.getElementById("toc_list");
+    document.getElementById("modalContent").appendChild(tree);
+});
 
-            tree.appendChild(div);
+document.getElementById("closeM0").addEventListener("click", function() {
+    $("body").css("overflow", "auto");
 
-            document.getElementById("sidebar").appendChild(tree);
-        });
+    var tree = document.createDocumentFragment();
+    var div = document.getElementById("toc_list");
 
-        document.getElementById("closeM1").addEventListener("click", function() {
-            $("body").css("overflow", "auto");
+    tree.appendChild(div);
 
-            var tree = document.createDocumentFragment();
-            var div = document.getElementById("toc_list");
+    document.getElementById("sidebar").appendChild(tree);
+});
 
-            tree.appendChild(div);
+document.getElementById("closeM1").addEventListener("click", function() {
+    $("body").css("overflow", "auto");
 
-            document.getElementById("sidebar").appendChild(tree);
-        });
+    var tree = document.createDocumentFragment();
+    var div = document.getElementById("toc_list");
 
+    tree.appendChild(div);
 
-        $('a[href^="#"]').on('click', function(e) {
-
-            window.location.hash = "-------";
-
-            e.preventDefault();
-            var target = $(this).attr('href');
-            var $target = $(target);
-            $('html, body').stop().animate({
-                'scrollTop': $target.offset().top
-            }, 900, 'swing', function() {
-                $tblshow();
-                window.location.hash = target;
-            });
-        });
-
-        function $tblshow() {
-
-            //locating the clicked table
-            var url = window.location.href;
-            var sID = url.substring(url.indexOf('#') + 1);
-
-            //collapsing table
-            temp = (sID + ' > div > .collapse');
-            $('#' + temp).collapse('show');
+    document.getElementById("sidebar").appendChild(tree);
+});
 
 
-            //checking if its using the right data
-            console.log("URL: " + url + " \\n ");
-            console.log("ID der Tabelle: " + sID + " \\n ");
-            console.log("Suchid: " + temp);
+$('a[href^="#"]').on('click', function(e) {
 
+    window.location.hash = "-------";
+
+    e.preventDefault();
+    var target = $(this).attr('href');
+    var $target = $(target);
+    $('html, body').stop().animate({
+        'scrollTop': $target.offset().top
+    }, 900, 'swing', function() {
+        $tblshow();
+        window.location.hash = target;
+    });
+});
+
+function $tblshow() {
+
+    //locating the clicked table
+    var url = window.location.href;
+    var sID = url.substring(url.indexOf('#') + 1);
+
+    //collapsing table
+    temp = (sID + ' > div > .collapse');
+    $('#' + temp).collapse('show');
+
+
+    //checking if its using the right data
+    console.log("URL: " + url + " \\n ");
+    console.log("ID der Tabelle: " + sID + " \\n ");
+    console.log("Suchid: " + temp);
+
+}
+
+$(document).ready(function() {
+    $(window).scroll(function() {
+        if ($(this).scrollTop() > 700) {
+            $('#btnTop').fadeIn();
+        } else {
+            $('#btnTop').fadeOut();
         }
-
-        $(document).ready(function() {
-            $(window).scroll(function() {
-                if ($(this).scrollTop() > 700) {
-                    $('#btnTop').fadeIn();
-                } else {
-                    $('#btnTop').fadeOut();
-                }
-            });
-            // scroll content to top by clicking on button
-            $('#btnTop').click(function() {
-                $('body,html').animate({
-                    scrollTop: 0
-                }, 400);
-                return false;
-            });
-        });
-    </script>
+    });
+    // scroll content to top by clicking on button
+    $('#btnTop').click(function() {
+        $('body,html').animate({
+            scrollTop: 0
+        }, 400);
+        return false;
+    });
+});
+</script>  
 </body>
 </html>
 """
@@ -428,7 +424,7 @@ def printlistofcontentfoot():
 # printlistofcontentfoot
 
 
-def printlistofcontentelement(pname, plist, pfileonly=False):
+def printlistofcontentelement(pname, plist, pintfid=0,pfileonly=False):
     if (plist is None or len(plist) == 0): return
     lbc = str(newbarcounter())
     listcontentelementhead = """
@@ -453,21 +449,23 @@ def printlistofcontentelement(pname, plist, pfileonly=False):
         </div>
 """
     fhtml.write(listcontentelementhead.format(pname, lbc, Sprachtext.transl(pname), lbc, pname))
+    local = re.match(r'/(.+/)*{}'.format(htmlfilelist[pintfid]), fhtml.name)
+    for entry in plist:
+        anker = '#' + entry['anker']
+        fhtml.write(listcontentline.format(anker, '_self' if local else '_blank', entry['name']))
+    fhtml.write(listcontentelementfoot)
+    return
     for l in plist:
         inanker = l[1]
-        local = False
-        if type(inanker) == Webanker:
-            local = re.match(r'/(.+/)*{}'.format(htmlfilelist[inanker.modelid()])
-                             , fhtml.name)
-            anker = '' if (local) else htmlfilelist[inanker.modelid()]
-            if not pfileonly:
-                anker += '#' + inanker.anker()
-        elif type(inanker) == Webanker:
-                anker = '#' + inanker.anker()
-        else:
-            anker = '#' + l[1].anker()
+        local = re.match(r'/(.+/)*{}'.format(htmlfilelist[inanker.modelid()])
+                         , fhtml.name)
+        anker = '' if (local) else htmlfilelist[inanker.modelid()]
+        if not pfileonly:
+            anker += '#' + inanker.anker()
+        #fi
         anzeige = l[0]
         fhtml.write(listcontentline.format(anker, '_self' if local else '_blank', anzeige))
+    #for
     fhtml.write(listcontentelementfoot)
 
 
@@ -539,21 +537,25 @@ def printcontentend(plbc):
     fhtml.write(contentelementfoot.format(plbc, Sprachtext.transl('Mehr')))
 # printcontentend
 
-def printcontent(ptype, pname, panker, plbc, pdescr="", pmaster=""):
+def printcontent(ptype, pname,panker, plbc, pdescr="", pmaster="", piconstr= ""):
     contentelementhead = """        <div class="entity" id="{}">
             <div class="describtion">
-                <p>{}</p>
-                <h1>{}</h1>
-                {}
-                {}
+				 <span> 
+					 <script>entityheader('{}','{}','{}','{}','{}');</script>
+			     </span>
             </div>
              <div class="panel-body">
             <div class="collapse" id="bar{}">                    
 """
-
-    fhtml.write(contentelementhead.format(panker, ptype, pname
+    """                <p>{}</p>
+                <h1>{}{}</h1>
+                {}
+                {}
+"""
+    fhtml.write(contentelementhead.format(panker, ptype, html.escape(pname )
+                                          ,piconstr
                                           , pmaster
-                                          , "" if (pdescr == "") else "<p1>{}</p1>".format(pdescr)
+                                          , pdescr.replace('\n', '').replace('\r', '').replace("'",'&#39;') #"" if (pdescr == "") else "<p1>{}</p1>".format(pdescr)
                                           , plbc))
 # printcontent
 
@@ -562,7 +564,7 @@ def printflagline(pheaders, pvalues):
       <!-- The inside div eliminates the 'jumping' animation. -->
                         <div id="containerflag">
                         <div class="table-responsive">
-                            <table class="table borderless">
+                            <table class="table borderlessl">
                                 <tbody>"""
     trstart = """
                 <tr>"""
@@ -688,11 +690,10 @@ def starttable(ptitel, pueberschriften, pheadlevel=2, ptabid=None, pselfanker=No
     #    tabheads="""<th class="attribute">{}</th>"""
     retval = []
     retval.append(tabhead.format(pheadlevel, ptitel, pheadlevel
-                                 , '' if ptabid is None
-                                 else '<a href="#{}" onclick="download_table_as_csv(\'{}\');">download as CSV</a>'.format(
-            pselfanker, ptabid)
-                                 , '' if ptabid is None
-                                 else 'id="{}"'.format(ptabid)))
+                                 , nvl2(ptabid,'','<a href="#{}" onclick="download_table_as_csv(\'{}\');">download as CSV</a>'
+                                                    .format(
+            pselfanker, ptabid))
+                                 , nvl2(ptabid,'','id="{}"'.format(ptabid))))
     for u in pueberschriften:
         retval.append(tabheads.format(html.escape(u)))
     return ''.join(retval)
@@ -932,10 +933,20 @@ def entidiag(pwebenti):
     diaglist = WebDiagram.contentlist(pentiid=pwebenti.enti_id)
     if (len(diaglist) == 0):
         return ''
-    diagstring = ', '.join(href(ref=doppelanker.format(diag.webanker().anker, pwebenti.webanker().anker)
+    diagstring = ', '.join(href(ref=doppelanker.format(diag.webanker().anker(), pwebenti.webanker().anker())
                                 , anz=diag.getname()) for diag in diaglist)
     return diagstring
 # entidiag
+
+def icontag(pfilename, psize=WebDiagram.ICONSIZE):
+    fullfilename = "{}/{}.{}".format('image',pfilename,'png').lower()
+    if os.path.isfile(parameters.webDirec()+ fullfilename):
+        return pfilename.lower()
+        retval = '   <img src="{}" height="{}px" width="{}px">'.format(fullfilename, psize,psize)
+    else:
+        retval = ''
+    return retval
+
 
 def printcontententi():
     lang = Sprachtext.reportLang()
@@ -949,12 +960,12 @@ def printcontententi():
         printcontent(ptype=Sprachtext.transl('Entität')
                      , panker=enti.webanker().anker()
                      , pname=enti.getname(plang=lang)
+                     ,piconstr=icontag(pfilename=enti.dbobject().enti_name)
                      , pdescr=lf2htmlbr(nvl(enti.getdescr(plang=lang)))
                      , plbc=lbc)
 
         """print entity Info"""
         synos = enti.dbobject().getsynonyms()
-        for s in synos: print(s.syno_name,s.getname(plang=lang))
         synonyms = '' if (synos is None or len(synos) == 0) else ', '.join(s.getname(plang=lang) for s in synos)
         parents = enti.getparents()
         if (parents is None or len(parents) == 0):
@@ -987,8 +998,6 @@ def printcontententi():
         printmapping(pentiid=enti.enti_id)
         printcontentend(lbc)
     # for
-
-
 # printcontententi
 
 def printcontentattr():
@@ -1244,7 +1253,7 @@ def printcontentdoku(plist):
         lbc = str(newbarcounter())
         docu_id = doc.docu_id
         parent = doc.getparent()
-        webparent = None if parent is None else WebDocument(pdbobj=parent)
+        webparent = nvl2(parent,None, WebDocument(pdbobj=parent))
         children = doc.getchildren()
         printcontent(ptype=Sprachtext.transl('Dokument')
                      , panker=webdoc.webanker().anker()
@@ -1261,7 +1270,7 @@ def printcontentdoku(plist):
         #            #for
         #            kinder = kinder.rstrip(', ')
         #        #fi
-        webchildren = [] if children is None else [WebDocument(pdbobj=child) for child in children]
+        webchildren = nvl2(children,[] , [WebDocument(pdbobj=child) for child in children])
         if children is None:
             kinder = ''
         else:
@@ -1269,7 +1278,7 @@ def printcontentdoku(plist):
         # fi
 
         infovalues = (nvl(doc.getformat()), nvl(doc.docu_reference),
-                      '' if webparent is None else href(ref=webparent.webanker().anker(), anz=nvl(webparent.getname(plang=Sprachtext.reportLang())))
+                      nvl2(webparent,'',href(ref=webparent.webanker().anker(), anz=nvl(webparent.getname(plang=Sprachtext.reportLang()))))
                       , kinder)
         printcontentinfo(ptitle=Sprachtext.transl('Informationen'), pheaders=infoheaders, pvalues=infovalues)
         printreflist(pelemid=docu_id, pelemtype=Modelelemtype.DOCU)
@@ -1291,7 +1300,7 @@ def setWebDirec(p_webdirec):
     global webDirectory, webFileName, webFileNamePath
     global libSourceDirec, imagedirec, cssdirec, icondirec
 
-    webDirectory = p_webdirec if (p_webdirec is not None) else parameters.webDirec();
+    webDirectory = nvl(p_webdirec, parameters.webDirec());
     webFileName = parameters.odmModelName();
     imagedirec = webDirectory + 'image/';
     cssdirec = webDirectory + "css/";
@@ -1343,7 +1352,7 @@ def attname2element(pattrname):
         return Sprachtext.transl('Name')
     elif pattrname in ['ENTI_COMMENT', 'ATTR_COMMENT']:
         return Sprachtext.transl('Beschreibung')
-    elif pattrname in ['ENTI_SYNONYM']:
+    elif pattrname in ['SYNO_NAME']:
         return Sprachtext.transl('Synonym')
     else:
         return pattrname

@@ -97,9 +97,8 @@ CREATE TABLE LANG_TEXTS
                     from entities                     
                     union all
                    select 'ENTI_SYNONYM' attrname, syno_name text 
-                        ,enti_id,enti_uc,enti_dc
+                        ,syno_id,syno_uc,syno_dc
                     from synonyms
-                    join entities on enti_id  = syno_enti_id
                     union all
                    select 'ATTR_COMMENT' attrname, attr_descr text 
                         ,attr_id,attr_uc,attr_dc
@@ -133,6 +132,7 @@ CREATE TABLE LANG_TEXTS
     def insertlang_texts(pudpthema):
         """übertrage alle lang_texts (ausser in der Default Sprache aus UDP in die lang_texts
         """
+
         lsql = """insert  into lang_texts (lgtx_attrname, lgtx_text, lgtx_lang_id, lgtx_mode_id, lgtx_uc, lgtx_dc)
             select attrname,udpv_value,lang_id,udpv_mode_id,udpv_uc,udpv_dc
             from (select udpv_value,
@@ -143,10 +143,19 @@ CREATE TABLE LANG_TEXTS
                from UDP_VALUES
                 join USER_DEFINED_PROPERTIES on udpr_id = udpv_udpr_id
             where udpr_theme = '{}'
+            and udpr_name not like '___ENTI_SYNONYM'
             )
         join languages on lang_iso_code2 = spracheiso2
         where lang_is_base_lang = 'FALSE'""".format(pudpthema)
         dbDML.exec(lsql)
+
+        lsql = """insert  into lang_texts (lgtx_attrname, lgtx_text, lgtx_lang_id, lgtx_mode_id, lgtx_uc, lgtx_dc)
+            select 'SYNO_NAME' attrname,syno_name,lang_id,syno_id,syno_uc,syno_dc
+            from synonyms
+        cross join languages 
+        where lang_is_base_lang = 'TRUE'"""
+        dbDML.exec(lsql)
+
     # insertlang_texts
 
     @staticmethod

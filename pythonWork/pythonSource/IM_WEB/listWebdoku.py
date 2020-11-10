@@ -8,13 +8,9 @@ from IM_HTML import printHTML, printRelHTML,printdiagHTML
 import web_sql
 from IM_OBJECTS import *
 from WEB_OBJECTS import *
+from IM_ODM import createJSON
+from parameters import nvl,nvl2
 
-
-# Main Programm
-def nvl(x,default=''):
-    if x is None: return default
-    else: return x
-#nvl
 
 #def makeAnker(pref,panz):
 #    return """<a name = "{}" >{}</a>""".format(pref,panz)
@@ -24,16 +20,13 @@ def formatDatentyp(w):
     dt = anzDatentyp(w[0])
     #print (w)
     return(
-    "{}   ({}) {} {}" .format(dt, w[3], nvl(w[1])\
-        + ' - ' if w[1] is not None else ''
-            , nvl(w[2]), nvl(w[11]), nvl(w[6])) if w[0] == 'ZPKT'\
+    "{}   ({}) {} {}" .format(dt, w[3], nvl(w[1])+ nvl2(w[1],'',' - ')
+                    , nvl(w[2]), nvl(w[11]), nvl(w[6])) if w[0] == 'ZPKT'\
         else '{}  ({}:{})   {}  {}'\
-                .format(dt, nvl(w[8]), nvl(w[9]), nvl(w[7]).__str__() \
-            + ' - ' if w[7] is not None else ''
+                .format(dt, nvl(w[8]), nvl(w[9]), nvl(w[7]).__str__() + nvl2(w[7],'',' - ')
             , nvl(w[10]))     if w[0] == 'NUM'\
         else '{}  ({}) {}'\
-            .format(dt, nvl(w[4]), 'CHECK: ' + w[5] if (not (w[5] is None))
-                                            else '')   if w[0] == 'TEXT'\
+            .format(dt, nvl(w[4]), 'CHECK: ' + nvl(w[5], ''))   if w[0] == 'TEXT'\
         else '{}  ({})'\
                  .format(dt, nvl(w[4])) if w[0] == 'LOV'\
         else dt
@@ -101,16 +94,37 @@ def printAttrUDPMatrix(thema=None):
 #printAttrUDPMatrix
 
 
-def printlistofcontent():
+def printlistofcontent(plang):
     printHTML.printlistofcontenthead()
-    printHTML.printlistofcontentelement(pname='Entitäten', plist=WebEntity.indexlist(plang=Sprachtext.reportLang()))
-    printHTML.printlistofcontentelement(pname='Attribute', plist=WebAttribute.indexlist(plang=Sprachtext.reportLang()))
-    printHTML.printlistofcontentelement(pname='Wertebereiche', plist=WebDomain.indexlist(porigin=Domain.DOMAIN,plang=Sprachtext.reportLang()))
-    printHTML.printlistofcontentelement(pname='Dokumente', plist=WebDocument.indexlist(plang=Sprachtext.reportLang()))
-    printHTML.printlistofcontentelement(pname='Attribut-Mapping', plist=WebUdp.indexlist(ptheme=parameters.odmUDPMappingFileName()))
-    printHTML.printlistofcontentelement(pname='Diagramme', plist=WebDiagram.indexlist(plang=Sprachtext.reportLang()))
-    printHTML.printlistofcontentelement(pname='Systeme', plist=WebInterface.indexlist(plang=Sprachtext.reportLang())
-                                        ,pfileonly = True)
+    idxlist=sorted([{'anker':key,'name': value['name'][plang]}
+                    for key,value in printHTML.model['entities'].items()],key=lambda val:val['name'])
+    printHTML.printlistofcontentelement(pname='Entitäten'
+                                            , plist= idxlist)
+    idxlist=sorted([{'anker':key
+                      ,'name': "{} ({})".format(value['name'][plang]
+                                        ,printHTML.model['entities'][value['entity']]['name'][plang])
+                       }
+                    for key,value in printHTML.model['attributes'].items()],key=lambda val:val['name'])
+    printHTML.printlistofcontentelement(pname='Attribute', plist=idxlist)
+    origindomains = {key:value for key,value in printHTML.model['domains'].items() if value['origin']== 'DOM'}
+    printHTML.printlistofcontentelement(pname='Wertebereiche', plist=[{'anker':key
+                                                                          ,'name': "{} ({})".format(value['name'][plang]
+                                                                                                ,str(len(value['usedinattrs'])
+                                                                                                     +len(value['usedincols'])))}
+                                                        for key,value in origindomains.items()])
+    #printHTML.printlistofcontentelement(pname='Dokumente', plist=WebDocument.indexlist(plang=plang))
+    #printHTML.printlistofcontentelement(pname='Attribut-Mapping', plist=WebUdp.indexlist(ptheme=parameters.odmUDPMappingFileName()))
+    #printHTML.printlistofcontentelement(pname='Diagramme', plist=WebDiagram.indexlist(plang=plang))
+    #printHTML.printlistofcontentelement(pname='Systeme', plist=WebInterface.indexlist(plang=plang)
+    #                                    ,pfileonly = True)
+    # printHTML.printlistofcontentelement(pname='Entitäten', plist=WebEntity.indexlist(plang=Sprachtext.reportLang()))
+    # printHTML.printlistofcontentelement(pname='Attribute', plist=WebAttribute.indexlist(plang=Sprachtext.reportLang()))
+    # printHTML.printlistofcontentelement(pname='Wertebereiche', plist=WebDomain.indexlist(porigin=Domain.DOMAIN,plang=Sprachtext.reportLang()))
+    # printHTML.printlistofcontentelement(pname='Dokumente', plist=WebDocument.indexlist(plang=Sprachtext.reportLang()))
+    # printHTML.printlistofcontentelement(pname='Attribut-Mapping', plist=WebUdp.indexlist(ptheme=parameters.odmUDPMappingFileName()))
+    # printHTML.printlistofcontentelement(pname='Diagramme', plist=WebDiagram.indexlist(plang=Sprachtext.reportLang()))
+    # printHTML.printlistofcontentelement(pname='Systeme', plist=WebInterface.indexlist(plang=Sprachtext.reportLang())
+    #                                     ,pfileonly = True)
     printHTML.printlistofcontentfoot()
 # printlistofcontent
 
@@ -132,7 +146,7 @@ def printhtmlfile(pfirma, ptitel, pinfo, plogofilename,pfilename):
                         , p_titel=ptitel
                         , p_info=pinfo
                         , p_logofilename=plogofilename);
-    printlistofcontent();
+    printlistofcontent(plang=Sprachtext.reportLang());
     printcontent(pfirma=pfirma, ptitel=ptitel);
     printHTML.printfoot();
     printHTML.closefile ();
@@ -151,7 +165,7 @@ def printhtmlsysfile(pfirma, pfilename, ptitel, pinfo, plogofilename,pschnid):
     printHTML.closefile ();
 #printhtmlsysfile
 
-def listwebmain(plang):
+def listwebmain(pmodel,plang):
     dbParam.liesdefaultlang()
     printHTML.createlib()
     if (plang is None):
@@ -167,14 +181,16 @@ def listwebmain(plang):
     #erstelle die Liste der HTML Files für HREF's
     schnlist = web_sql.WebInterface.indexlist()
     for s in schnlist: printHTML.htmlfilelist[s[2]] = s[0]+ '.html'
+    printHTML.model = pmodel
 
     for lang in langs:
-        Sprachtext.reportLang(lang.lower())
+        lang = lang.lower()
+        Sprachtext.reportLang(lang)
         langfilename = printHTML.webFileName + '_' + Sprachtext.reportLang() + '.html'
-        print ("create web-files for language {} in file {}".format(Sprachtext.reportLang(),printHTML.webDirectory + langfilename))
+        print ("create web-files for language {} in file {}".format(lang,printHTML.webDirectory + langfilename))
         printHTML.htmlfilelist[0] = langfilename
         printhtmlfile(pfirma="foryouandyourcustomers"
-                      , ptitel=parameters.odmModelName() + ' ({})'.format(Sprachtext.reportLang())
+                      , ptitel=parameters.odmModelName() + ' ({})'.format(lang)
                       , pinfo="{}".format(datetime.now().strftime("%Y-%m-%d, %H:%M"))
                       , plogofilename=parameters.logoFileName()
                       , pfilename=  langfilename
@@ -186,6 +202,7 @@ def listwebmain(plang):
 
     """Schnittstellen werden immer englisch gedruckt"""
     Sprachtext.reportLang(Sprachtext.EN)
+    lang = Sprachtext.EN
     for s in schnlist:
         schn_name = s[0]
         schn_id = s[2]
@@ -209,7 +226,7 @@ def main(pdirec, plang):
     dbConnect.openDB(p_filepath= parameters.dbFilePath());
     deflang = Sprache.liesdeflangiso2()
     if deflang is not None : parameters.dbDefaultLang(deflang)
-    listwebmain(plang=plang)
+    listwebmain(pmodel=createJSON.sql2json(),plang=plang)
 
     dbConnect.myDbConn.close()
 

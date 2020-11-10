@@ -216,6 +216,25 @@ class AttrTransf(Baseobject):
     """)
 
     @staticmethod
+    def getcolulist(pattrid=None,pintfid=None):
+        return Schnittstelleattr.select(pwhere="""scha_id in (select attf_scha_id 
+                                                    from attr_transf
+                                                    join schnittstelle_attrs on scha_id = attf_scha_id
+                                                    join tabellen on tabl_id = scha_tabl_id 
+                                                    where attf_attr_id = {}
+                                                    and tabl_schn_id = {})"""
+                                        .format(pattrid if pattrid is not None else 'attf_attr_id'
+                                                ,pintfid if pintfid is not None else 'tabl_schn_id'))
+    @staticmethod
+    def getattrlist(pcoluid=None):
+        return Attribute.select(pwhere="""attr_id in (select attf_attr_id 
+                                                    from attr_transf
+                                                    where attf_scha_id = {}
+                                                    )"""
+                                        .format(pcoluid))
+
+
+    @staticmethod
     def delete():
         Baseobject.delete(AttrTransf._tablename)
 
@@ -223,6 +242,7 @@ class AttrTransf(Baseobject):
     def select(pwhere=None, porderby=None):
         return Baseobject.select(pclass=AttrTransf
                                  , pwhere=pwhere, porderby=porderby)
+
 
     @staticmethod
     def columnlist(pattrid=None):
@@ -252,8 +272,8 @@ class AttrTransf(Baseobject):
             pass
         # try
         return retval
-
     # columnlist
+
     @staticmethod
     def colattrmap():
         data = dbDML.select("""select attf_scha_id,attf_attr_id

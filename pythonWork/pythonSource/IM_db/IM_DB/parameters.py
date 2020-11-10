@@ -53,8 +53,11 @@ parameter = {
             , LOGFILEDIREC: None
             , LOGFILEPATH: None
 }
-def nvl(p_val1,p_val2):
+def nvl(p_val1,p_val2=''):
     return p_val1 if p_val1 is not None else p_val2
+
+def nvl2(pval,pvalnull,pvalnnull):
+    return pvalnull if pval is None else pvalnnull
 
 def logfilepath(newval:str=None):
     if newval is None:

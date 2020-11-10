@@ -534,6 +534,32 @@ li {
     color: #ccc;
 }
 
+.print-button{
+    box-sizing: border-box;
+    border-color: var(--cyan);
+    border-style: solid;
+    background: var(--cyan);
+    color:white;
+    padding:2px 3px 1px 4px;
+    font-weight: 700;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+
+    cursor: pointer;
+}  
+
+.print-button:hover{
+    background: transparent;
+    color:var(--cyan);
+    border-color: var(--cyan);
+}
+
+.print-button-container{
+    width: 100%;
+    padding:40px 0px 40px 0px;
+}
+
 /*---------------------------*/
 
 /*----Customized Scrollbar---*/

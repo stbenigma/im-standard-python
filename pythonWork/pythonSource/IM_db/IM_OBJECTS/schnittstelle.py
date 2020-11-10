@@ -33,10 +33,9 @@ class Schnittstelle(Baseobject):
         )
         """)
 
-    def getmodellelement(self):
-        return Modellelement.getbyelemid(pschnid=self.schn_id)
-
     def getname(self,plang=None):
+        return self.schn_name
+    def getqualifiedname(self,plang=None):
         return self.schn_name
 
     def getdescr(self, plang=None):
@@ -51,6 +50,22 @@ class Schnittstelle(Baseobject):
         return Baseobject.select(pclass=Schnittstelle
                                  , pwhere=pwhere, porderby=porderby)
 
+    @staticmethod
+    def getmapped(pentiid=None,pattrid=None):
+        if pentiid is not None:
+            return Schnittstelle.select(pwhere="""schn_id in (select tabl_schn_id 
+                                                        from tabellen
+                                                        join tabl_enti_maps on tema_tabl_id = tabl_id
+                                                        where tema_enti_id = {}
+                                                        )""".format(pentiid))
+        if pattrid is not None:
+            return Schnittstelle.select(pwhere="""schn_id in (select tabl_schn_id 
+                                                        from tabellen
+                                                        join schnittstelle_attrs on scha_tabl_id = tabl_id
+                                                        join attr_transf on attf_scha_id = scha_id
+                                                        where attf_attr_id = {}
+                                                        )""".format(pattrid))
+        return []
 
 #Schnittstelle
 
