@@ -34,8 +34,15 @@ CREATE TABLE KEYS
     )
 """)
 
-    def getkeyelements(self):
-        return  Keyelement.select(pwhere='kele_keys_id = {}'.format(self.getid()))
+    def getkeyelements(self,ptype=None):
+        if ptype == Modelelemtype.RELA:
+            which = ' and kele_rela_id is not null'
+        elif ptype == Modelelemtype.ATTR:
+            which = ' and kele_attr_id is not null'
+        else:
+            which = ''
+        #fi
+        return  Keyelement.select(pwhere='kele_keys_id = {}{}'.format(self.getid(),which))
 
     @staticmethod
     def delete():

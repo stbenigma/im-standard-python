@@ -96,35 +96,65 @@ def printAttrUDPMatrix(thema=None):
 
 def printlistofcontent(plang):
     printHTML.printlistofcontenthead()
-    idxlist=sorted([{'anker':key,'name': value['name'][plang]}
-                    for key,value in printHTML.model['entities'].items()],key=lambda val:val['name'])
+    idxlist = sorted([{'anker':key,'name': value['name'][plang]}
+                     for key,value in printHTML.model['entities'].items()]
+                     ,key=lambda val:val['name'])
     printHTML.printlistofcontentelement(pname='Entitäten'
                                             , plist= idxlist)
-    idxlist=sorted([{'anker':key
+
+    idxlist = sorted([{'anker':key
                       ,'name': "{} ({})".format(value['name'][plang]
                                         ,printHTML.model['entities'][value['entity']]['name'][plang])
                        }
-                    for key,value in printHTML.model['attributes'].items()],key=lambda val:val['name'])
+                     for key,value in printHTML.model['attributes'].items()]
+                     ,key=lambda val:val['name'])
     printHTML.printlistofcontentelement(pname='Attribute', plist=idxlist)
-    origindomains = {key:value for key,value in printHTML.model['domains'].items() if value['origin']== 'DOM'}
-    printHTML.printlistofcontentelement(pname='Wertebereiche', plist=[{'anker':key
-                                                                          ,'name': "{} ({})".format(value['name'][plang]
-                                                                                                ,str(len(value['usedinattrs'])
-                                                                                                     +len(value['usedincols'])))}
-                                                        for key,value in origindomains.items()])
-    #printHTML.printlistofcontentelement(pname='Dokumente', plist=WebDocument.indexlist(plang=plang))
-    #printHTML.printlistofcontentelement(pname='Attribut-Mapping', plist=WebUdp.indexlist(ptheme=parameters.odmUDPMappingFileName()))
-    #printHTML.printlistofcontentelement(pname='Diagramme', plist=WebDiagram.indexlist(plang=plang))
-    #printHTML.printlistofcontentelement(pname='Systeme', plist=WebInterface.indexlist(plang=plang)
-    #                                    ,pfileonly = True)
-    # printHTML.printlistofcontentelement(pname='Entitäten', plist=WebEntity.indexlist(plang=Sprachtext.reportLang()))
-    # printHTML.printlistofcontentelement(pname='Attribute', plist=WebAttribute.indexlist(plang=Sprachtext.reportLang()))
-    # printHTML.printlistofcontentelement(pname='Wertebereiche', plist=WebDomain.indexlist(porigin=Domain.DOMAIN,plang=Sprachtext.reportLang()))
-    # printHTML.printlistofcontentelement(pname='Dokumente', plist=WebDocument.indexlist(plang=Sprachtext.reportLang()))
-    # printHTML.printlistofcontentelement(pname='Attribut-Mapping', plist=WebUdp.indexlist(ptheme=parameters.odmUDPMappingFileName()))
-    # printHTML.printlistofcontentelement(pname='Diagramme', plist=WebDiagram.indexlist(plang=Sprachtext.reportLang()))
-    # printHTML.printlistofcontentelement(pname='Systeme', plist=WebInterface.indexlist(plang=Sprachtext.reportLang())
-    #                                     ,pfileonly = True)
+
+#    origindomains = {key:value for key,value in printHTML.model['domains'].items() if value['origin'] == Domain.DOMAIN}
+    idxlist=sorted([{'anker':key
+                    ,'name': "{} ({})".format(value['name'][plang]
+                                    ,str(len(value['usedinattrs'])
+                                         +len(value['usedincols'])))}
+                    for key,value in printHTML.origindomains().items()]
+                ,key=lambda val:val['name'])
+    printHTML.printlistofcontentelement(pname='Wertebereiche', plist=idxlist)
+
+    idxlist=sorted([{'anker':key
+                    ,'name': "{} ({})".format(value['name']
+                                             ,str(len(value['references']))
+                                            )
+                     }
+                    for key,value in printHTML.model['documents'].items()
+                    ]
+                ,key=lambda val:val['name'])
+    printHTML.printlistofcontentelement(pname='Dokumente', plist=idxlist)
+
+    # idxlist=sorted([{'anker':key
+    #                 ,'name': "{} ({})".format(value['name']
+    #                                          ,str(len(value['referencedfrom']))
+    #                                         )
+    #                  }
+    #                 for key,value in printHTML.model['documents'].items()
+    #                 ]
+    #             ,key=lambda val:val['name'])
+    # printHTML.printlistofcontentelement(pname='Attribut-Mapping', plist=idxlist)
+
+    idxlist=sorted([{'anker':key
+                    ,'name': "{}".format(value['name'])
+                    }
+                    for key,value in printHTML.model['diagrams'].items()
+                    ]
+                ,key=lambda val:val['name'])
+
+    printHTML.printlistofcontentelement(pname='Diagramme', plist=idxlist)
+
+    idxlist=sorted([{'anker':key
+                    ,'name': "{}".format(value['name'])
+                     }
+                    for key,value in printHTML.model['systems'].items()
+                    ]
+                ,key=lambda val:val['name'])
+    printHTML.printlistofcontentelement(pname='Systeme', plist=idxlist,pfileonly = True)
     printHTML.printlistofcontentfoot()
 # printlistofcontent
 
@@ -133,7 +163,7 @@ def printcontent(pfirma,ptitel):
     printHTML.printcontententi()
     printHTML.printcontentattr()
     printHTML.printcontentdoma()
-    printHTML.printcontentdoku(plist=WebDocument.doculist(plang=Sprachtext.reportLang()))
+    printHTML.printcontentdoku()
     printHTML.printcontentmapping(ptheme=parameters.odmUDPMappingFileName())
     printdiagHTML.printcontentdiag(plist=WebDiagram.contentlist(), plang=Sprachtext.reportLang(), ptitel=ptitel)
     printHTML.printcontentfoot()
@@ -179,8 +209,9 @@ def listwebmain(pmodel,plang):
     #fi
 
     #erstelle die Liste der HTML Files für HREF's
-    schnlist = web_sql.WebInterface.indexlist()
-    for s in schnlist: printHTML.htmlfilelist[s[2]] = s[0]+ '.html'
+    schnlist = pmodel['systems']
+    for key,value in schnlist.items():
+        printHTML.htmlfilelist[key] = value['name']+ '.html'
     printHTML.model = pmodel
 
     for lang in langs:

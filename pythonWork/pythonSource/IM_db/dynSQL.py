@@ -7,7 +7,7 @@ def main(p_imdirec=None, p_modelname=None):
     parameters.initparam(p_imdirec)
     print ("dynsql",parameters.dbFilePath())
     dbConnect.openDB(parameters.dbFilePath());
-#    dbParam.liesdefaultlang()
+#    dbParam.getdefaultlang()
 
 #, e1.enti_name , e2.enti_name
     l_sql ="""select * FROM DIAGRAMME join diagrammtypen on diat_id = diag_diat_id """

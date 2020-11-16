@@ -53,26 +53,26 @@ CREATE TABLE LANGUAGES
         return Baseobject.select(pclass=Sprache
                                 ,pwhere=pwhere,porderby=porderby)
     @staticmethod
-    def liesdefaultlang():
+    def getdefaultlang():
         lDefLangs = Sprache.select(pwhere="""lang_is_base_lang = 'TRUE'""")
         if (lDefLangs is None): return None
         if (len(lDefLangs) == 0): return None
         return lDefLangs[0]
-    #liesdefaultlang
+    #getdefaultlang
 
     def getreplacementlang(self):
         return Sprache.select(pwhere='lang_id={}'.format(self.lang_lang_id))[0]
 
     @staticmethod
     def liesdeflangid():
-        ldeflang = Sprache.liesdefaultlang()
+        ldeflang = Sprache.getdefaultlang()
         if (ldeflang is None): return None
         else: return ldeflang.lang_id
     # liesdeflangid
 
     @staticmethod
     def liesdeflangiso2():
-        ldeflang = Sprache.liesdefaultlang()
+        ldeflang = Sprache.getdefaultlang()
         if (ldeflang is None): return None
         else: return ldeflang.lang_iso_code2
     #liesdeflangiso2

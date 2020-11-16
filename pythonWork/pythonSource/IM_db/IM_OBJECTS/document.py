@@ -125,7 +125,7 @@ CREATE TABLE DOCUMENTS
         return Document.select(porderby='docu_name')
     #doculist
 
-    """def xxdocureferenced(prelaid=None,pwebenti=None,pwebattr=None):
+    """def xxdocureferenced(prelaid=None,penti=None,pwebattr=None):
     data = dbDML.select("
     select child.docu_id, child.docu_NAME,child.docu_stfo_id,child.docu_REFERENZ
        ,parent.docu_ID parent_id,parent.docu_NAME parent_name
@@ -136,7 +136,7 @@ join modellelement on mode_id = MODO_MODE_ID
 where  (   mode_rela_id = {}
         or mode_enti_id = {}
         or mode_attr_id = {}
-       ) ".format (prelaid,pwebenti,pwebattr))
+       ) ".format (prelaid,penti,pwebattr))
     return data
 #docureferenced
 """

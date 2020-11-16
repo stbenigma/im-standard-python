@@ -15,4 +15,4 @@ def liesdefaultlang():
     dbDefaultLang = Sprache.liesdeflangiso2()
     dbDefaultLangID = Sprache.liesdeflangid()
     #print("defaultLang=" + dbDefaultLang + " " + str(dbDefaultLangID))
-#liesdefaultlang
+#getdefaultlang

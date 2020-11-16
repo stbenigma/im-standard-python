@@ -237,7 +237,9 @@ CREATE TABLE LANG_TEXTS
         , 'Numerisch': 'Numerical'
         , 'Pflichtattribut': 'Attribute of duty'
         , 'Quartal': 'quarter'
+        , 'Referenziert in': 'Referenced in'
         , 'Referenziert von': 'Referenced by'
+        , 'Referenziert': 'References'
         , 'Relational Mapping (Tabellen)': 'Relational Mapping (tables)'
         , "Rollen": "Roles"
         , 'Rundungseinh.': 'rounding unit'
@@ -338,7 +340,9 @@ CREATE TABLE LANG_TEXTS
         , "Numerisch": "Numérique"
         , "Pflichtattribut": "Attribute obligatoire"
         , "Quartal": "Trimestre"
+        , 'Referenziert in': 'Référencé dans'
         , 'Referenziert von': 'Référencé par'
+        , 'Referenziert': 'Références'
         , "Relational Mapping (Tabellen)": "Relational Mapping (tables)"
         , "Rundungseinheit": "Unité de l'arrondi"
         , "Rollen": "Rôles"
@@ -384,15 +388,16 @@ CREATE TABLE LANG_TEXTS
         , "Zeitpunkt": "Instant"
                       }
     @staticmethod
-    def transl(pname):
-        if (Sprachtext.__greportLang == Sprachtext.DE):
+    def transl(pname,plang=None):
+        lang = Sprachtext.__greportLang if plang is None else plang
+        if (lang == Sprachtext.DE):
             return pname
-        elif (Sprachtext.__greportLang == Sprachtext.EN):
+        elif (lang == Sprachtext.EN):
             try:
                 return Sprachtext.__translNameEN[pname]
             except:
                 return pname
-        elif (Sprachtext.__greportLang == Sprachtext.FR):
+        elif (lang == Sprachtext.FR):
             try:
                 return Sprachtext.__translNameFR[pname]
             except:

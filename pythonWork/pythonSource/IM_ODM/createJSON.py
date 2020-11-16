@@ -55,20 +55,18 @@ def entities():
                      , 'roles': [anker(Modelelemtype.ENTI, es.enti_id) for es in e.getchildren(ptype=Relation.ISAROLE)]
                      ,
                   'subtypes': [anker(Modelelemtype.ENTI, es.enti_id) for es in e.getchildren(ptype=Relation.ISASUBTYPE)]
-                     , 'attributes': [anker(Modelelemtype.ATTR, a.attr_id) for a in e.getattributes()]
-                     ,
-                  'relations': [anker(Modelelemtype.RELA, r.rela_id) for r in Relation.getbyentity(pentiid=e.enti_id)]
-                     ,
-                  'inarcs': [anker(Modelelemtype.ARCS, a.arcs_id) for a in Arc.select(pwhere="arcs_enti_id = {}".format(e.enti_id))]
-                     ,
-                  'refindocuments': [anker(Modelelemtype.DOCU, d[0]) for d in Document.getrefdoculist(pid=e.enti_id)]
+                    , 'attributes': [anker(Modelelemtype.ATTR, a.attr_id) for a in e.getattributes()]
+                     ,'relations': [anker(Modelelemtype.RELA, r.rela_id) for r in Relation.getbyentity(pentiid=e.enti_id)]
+                     ,'keys': [anker(Modelelemtype.KEYS, k.keys_id) for k in Key.select(pwhere="keys_enti_id = {}".format(e.enti_id))]
+                     ,'inarcs': [anker(Modelelemtype.ARCS, a.arcs_id) for a in Arc.select(pwhere="arcs_enti_id = {}".format(e.enti_id))]
+                     ,'refindocuments': [anker(Modelelemtype.DOCU, d[0]) for d in Document.getrefdoculist(pid=e.enti_id)]
                      , 'userdefprop': {
                      t[0]: {g[1]: {u.udpr_name: Userdefpropvalue.udpvalue(pudprid=u.udpr_id, pmodeid=e.enti_id)
                                    for u in Userdefprop.getudps(ptheme=t[0], pgroup=g[1], pmeltname=Modelelemtype.ENTI)}
                             for g in Userdefprop.grouplist(pudptheme=t[0], pmelttype=Modelelemtype.ENTI)}
                      for t in Userdefprop.themelist(pmelttype=Modelelemtype.ENTI)}
 
-                     , 'tablesmapped': {s.getname(): [anker(Modelelemtype.TABL, t.tabl_id) for t in
+                     , 'tablesmapped': {anker(Modelelemtype.INTF,s.getid()): [anker(Modelelemtype.TABL, t.tabl_id) for t in
                                                       TablEntiMap.gettabllist(pentiid=e.enti_id, pintfid=s.getid())]
                                         for s in Schnittstelle.getmapped(pentiid=e.enti_id)}
                      ,
@@ -89,6 +87,7 @@ def defattr(attr):
         , 'repeated': Boolean.str2bool(attr.attr_is_repeated)
         , 'translated': Boolean.str2bool(attr.attr_is_translated)
         , 'encrypted': Boolean.str2bool(attr.attr_is_encrypted)
+        , 'tooltip': attr.attr_tooltip_L
         , 'descr': attr.attr_descr_L
         , 'uc': attr.attr_uc
         , 'dc': attr.attr_dc
@@ -103,7 +102,7 @@ def defattr(attr):
                                  for g in Userdefprop.grouplist(pudptheme=t[0], pmelttype=Modelelemtype.ATTR)}
                           for t in Userdefprop.themelist(pmelttype=Modelelemtype.ATTR)}
         , 'columnsmapped': {
-            s.getname(): [anker(Modelelemtype.COLU, c.scha_id) for c in
+            anker(Modelelemtype.INTF,s.getid()): [anker(Modelelemtype.COLU, c.scha_id) for c in
                           AttrTransf.getcolulist(pattrid=attr.attr_id, pintfid=s.getid())]
             for s in Schnittstelle.getmapped(pattrid=attr.attr_id)}
         , 'diagrams': [anker(Modelelemtype.DIAG, d.diag_id) for d in Diagram.getdiagrams(pmodeid=attr.attr_id)]
@@ -123,12 +122,12 @@ def attributes():
 
 
 def domaingroupmembers(pdomaid):
-    return {dg.dgrm_name: {'mandatory': dg.dgrm_is_mandatory
-        , 'domain': anker(Modelelemtype.DOMA, dg.dgrm_doma_id_member)
-        , 'descr': dg.dgrm_descr
-                           }
+    return [{'name': dg.dgrm_name
+            ,'mandatory': dg.dgrm_is_mandatory
+            , 'domain': anker(Modelelemtype.DOMA, dg.dgrm_doma_id_member)
+            , 'descr': dg.dgrm_descr}
             for dg in DomaingroupMember.select(pwhere="dgrm_doma_id_group={}".format(pdomaid))
-            }
+            ]
 
 
 def defdomain(doma):
@@ -137,6 +136,8 @@ def defdomain(doma):
         , 'origin': doma.doma_origin
         , 'basedatatype': None if doma.doma_daty_id is None else Datatype().getbyid(doma.doma_daty_id).daty_name
         , 'type': doma.doma_type
+        , 'displdatatype': {l.lang_iso_code2:doma.displdatatype(l.lang_iso_code2) for l in Sprache.select()}
+        , 'datatypestr': doma.typestring()
         , 'uc': doma.doma_uc
         , 'um': doma.doma_um
         , 'dc': doma.doma_dc
@@ -148,7 +149,9 @@ def defdomain(doma):
         retval['totaldigits'] = doma.doma_num_total_digits
         retval['fractdigits'] = doma.doma_num_fract_digits
         retval['roundvalue'] = doma.doma_num_round_value
-        if doma.doma_num_phyu_id is not None:
+        if doma.doma_num_phyu_id is None:
+            retval['unit'] = None
+        else:
             retval['unit'] = PhysicalUnit().getbyid(doma.doma_num_phyu_id).phyu_name
     elif doma.doma_type == Domain.TXT:
         retval['maxlng'] = doma.doma_txt_maxlng
@@ -157,14 +160,17 @@ def defdomain(doma):
         retval['minvalue'] = doma.doma_dat_minvalue
         retval['maxvalue'] = doma.doma_dat_maxvalue
         retval['granularity'] = doma.doma_dat_granularity
+        retval['granularitytext'] = {l.lang_iso_code2: doma.displgranul(l.lang_iso_code2) for l in Sprache.select()}
     elif doma.doma_type == Domain.BIN:
         retval['contenttype'] = doma.doma_bin_contenttype
+        retval['contenttypename'] = doma.displcontenttype()
         if doma.doma_bin_stfo_id is not None:
             retval['format'] = Storageformat().getbyid(doma.doma_bin_stfo_id).stfo_name
     elif doma.doma_type == Domain.GRP:
         retval['elements'] = domaingroupmembers(doma.doma_id)
     elif doma.doma_type == Domain.LOV:
-        retval['values'] = [{d.deva_value: {'sort': d.deva_sort_order, 'displ': d.deva_displ, 'descr': d.deva_descr}}
+        retval['maxlng'] = doma.doma_txt_maxlng
+        retval['values'] = [{'value':d.deva_value,'sort': d.deva_sort_order, 'displ': d.deva_displ, 'descr': d.deva_descr}
                             for d in DefaultValue.select(pwhere="deva_doma_id = {}".format(doma.doma_id),
                                                          porderby="deva_sort_order")]
     retval['usedinattrs'] = [anker(Modelelemtype.ATTR, a.attr_id) for a in
@@ -198,24 +204,27 @@ def doamains():
 
 def keys():
     keys = {anker(Modelelemtype.KEYS, k.keys_id):
-                {'key': {'name': k.keys_name
+                {'name': k.keys_name
                     , 'entity': anker(Modelelemtype.ENTI, k.keys_enti_id)
                     , 'uc': k.keys_uc
                     , 'dc': k.keys_dc
                     , 'um': k.keys_um
                     , 'dm': k.keys_dm
-                         }
-                    ,
-                 'sourceref': {s: Externalref.getsrcid(psrcname=s, pmodeid=k.keys_id) for s in Externalref.getsources()}
-                , 'key-elements': [anker(Modelelemtype.RELA , ke.kele_rela_id) if ke.kele_rela_id is not None
-                                   else anker(Modelelemtype.ATTR , ke.kele_attr_id)
-                                   for ke in k.getkeyelements()]
+                    ,'sourceref': {s: Externalref.getsrcid(psrcname=s, pmodeid=k.keys_id) for s in Externalref.getsources()}
+                    , 'key-elements': {'attributes':[anker(Modelelemtype.ATTR , ke.kele_attr_id)
+                                                    for ke in k.getkeyelements(Modelelemtype.ATTR)]
+                  ,'relations': [anker(Modelelemtype.RELA , ke.kele_rela_id)
+                                                    for ke in k.getkeyelements(Modelelemtype.RELA)]
+                                   }
                  } for k in Key.select()}
     return keys
 
 
 def relation(prela):
     if prela is None: return {}
+    keys = [k for k in Key.select(pwhere="""keys_id in (select kele_keys_id 
+                                                from key_elements 
+                                                where kele_rela_id = {})""".format(prela.rela_id))]
     return {
                'name': prela.rela_name
                , 'type': prela.rela_type
@@ -226,15 +235,18 @@ def relation(prela):
                    , 'maptype': prela.rela_maptype_from_to
                    , 'hist': Boolean.str2bool(prela.rela_hist_from_to)
                    , 'mandatory': Boolean.str2bool(prela.rela_mandatory_from_to)
+                    ,'cardstr': prela.to_cardstr()
                 }
-                , 'to-from-':{
+                , 'to-from':{
                     'enti': anker(Modelelemtype.ENTI, prela.rela_enti_id_to)
                     , 'arc': None if prela.rela_arcs_id_to is None else anker(Modelelemtype.ARCS, prela.rela_arcs_id_to)
                     , 'assoc': prela.rela_assoc_to_from_L
                     , 'maptype': prela.rela_maptype_to_from
                     , 'hist': Boolean.str2bool(prela.rela_hist_to_from)
                     , 'mandatory': Boolean.str2bool(prela.rela_mandatory_to_from)
+                  , 'cardstr': prela.from_cardstr()
                 }
+                ,'isinkeys': [anker(Modelelemtype.KEYS,k.keys_id) for k in keys]
                 ,'uc': prela.rela_uc
                 ,'dc': prela.rela_dc
                 ,'um': prela.rela_um
@@ -253,8 +265,15 @@ def documents():
             , 'reference': d.docu_reference
             , 'content': d.docu_content
             , 'format': None if d.docu_stfo_id is None else Storageformat().getbyid(d.docu_stfo_id).stfo_name
-            , 'parent': anker(Modelelemtype.DOCU, d.docu_docu_id)
-            ,'referencedfrom':[anker(m.mode_type,m.mode_id) for m in d.getrefmodes()]
+            , 'parent': None if d.docu_docu_id is None else anker(Modelelemtype.DOCU, d.docu_docu_id)
+            ,'references': {'entities': [anker(m.mode_type, m.mode_id) for m in d.getrefmodes(pmelttype=Modelelemtype.ENTI)]
+                                ,'attributes': [anker(m.mode_type, m.mode_id) for m in d.getrefmodes(pmelttype=Modelelemtype.ATTR)]
+                                ,'domains': [anker(m.mode_type, m.mode_id) for m in d.getrefmodes(pmelttype=Modelelemtype.DOMA)]
+                                ,'systems': [anker(m.mode_type, m.mode_id) for m in d.getrefmodes(pmelttype=Modelelemtype.INTF)]
+                                ,'tables': [anker(m.mode_type, m.mode_id) for m in d.getrefmodes(pmelttype=Modelelemtype.TABL)]
+                                ,'columns': [anker(m.mode_type, m.mode_id) for m in d.getrefmodes(pmelttype=Modelelemtype.COLU)]
+                                ,'diagrams': [anker(m.mode_type, m.mode_id) for m in d.getrefmodes(pmelttype=Modelelemtype.DIAG)]
+                                }
         }
         for d in Document.select()}
     return docus
@@ -337,6 +356,7 @@ def diagrams():
 
 def systems():
     intfs = {anker(Modelelemtype.INTF,i.schn_id) : {'name':i.schn_name
+                                                    ,'interface-id':anker(Modelelemtype.INTF,i.schn_id)
                                                     ,'descr':i.schn_beschr
                                                 , 'sourceref': {s: Externalref.getsrcid(psrcname=s, pmodeid=i.schn_id)
                                                             for s in Externalref.getsources()}
@@ -419,7 +439,7 @@ def lastupd(pmodel):
     dm = lambda  objs: max('0' if val['dm'] is None else val['dm'] for val in pmodel[objs].values())
     return max(dm( 'attributes'), dm( 'domains'), dm( 'entities'))
 
-def sql2json():
+def sql2json(pwithdata=True):
     model = {}
     model['model'] = project()
     model['languages'] = languages()

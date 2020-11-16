@@ -176,7 +176,7 @@ def printcontenttable(plist):
         infovalues = ('', nvl(t.tabl_um) + ', ' + nvl(t.tabl_dm))
         printHTML.printcontentinfo(ptitle=Sprachtext.transl('Informationen'), pheaders=infoheaders, pvalues=infovalues)
 
-        printHTML.printreflist(pelemid=t.tabl_id, pelemtype=Modelelemtype.TABL)
+        printHTML.printdocureflist(pelemid=t.tabl_id, pelemtype=Modelelemtype.TABL)
         printHTML.printUDP(p_meltname=t.prefix().upper(), pid=t.tabl_id)
         printcollist(pcollist=t.getcolumns(), pschnid=t.tabl_schn_id)
         printmapping(ptablid=t.tabl_id)
@@ -227,7 +227,7 @@ def printcontentcolumn(pcols):
         infovalues = (wrtbinfo[0], wrtbinfo[1],wrtbinfo[2] ,nvl(col.scha_um) + ', ' + nvl(col.scha_dm),)
         printHTML.printcontentinfo(ptitle=Sprachtext.transl('Information'), pheaders=infoheaders, pvalues=infovalues)
 
-        printHTML.printreflist(pelemid=col.scha_id, pelemtype=Modelelemtype.INTF)
+        printHTML.printdocureflist(pelemid=col.scha_id, pelemtype=Modelelemtype.INTF)
         printHTML.printUDP(p_meltname=col.prefix().upper(), pid=col.scha_id)
         printcolmapping(pcolid=col.scha_id)
         printHTML.printcontentend(lbc)
@@ -280,7 +280,7 @@ def printcontenthead(pfirma, ptitel, pschnid):
                  (Column reference): Indirect linking of a column via an attribute to a column  in another interface"""
     # fi
     printHTML.fhtml.write(contenthead.format(f, ref))
-    printHTML.printreflist(pelemid=pschnid, pelemtype=Modelelemtype.INTF)
+    printHTML.printdocureflist(pelemid=pschnid, pelemtype=Modelelemtype.INTF)
     printHTML.fhtml.write(contentheadend)
 # printcontenthead
 

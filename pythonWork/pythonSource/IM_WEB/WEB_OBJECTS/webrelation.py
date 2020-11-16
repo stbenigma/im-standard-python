@@ -7,11 +7,11 @@ class WebRelation(BaseWebObj):
         super().__init__(pobjtype=Relation, pid=pid, pdbobj=pdbobj)
         self.from_enti = WebEntity(pdbobj=self.dbobject().getfromentity())
         self.from_rela_assoc = self.dbobject().getassocfromto(plang=plang)
-        self.from_card = self.minmaxcardinality(pfromto=True)
+        self.from_card = self.dbobject().from_cardstr()
         self.from_mandatory = self.dbobject().getmandatoryfromto()
         self.to_enti = WebEntity(pdbobj=self.dbobject().gettoentity())
         self.to_rela_assoc = self.dbobject().getassoctofrom(plang=plang)
-        self.to_card = self.minmaxcardinality(pfromto=False)
+        self.to_card = self.dbobject().to_cardstr()
         self.to_mandatory = self.dbobject().getmandatorytofrom()
         self.rela_id = self.dbobject().rela_id
         self.rela_type = self.dbobject().rela_type
@@ -21,17 +21,6 @@ class WebRelation(BaseWebObj):
     def getname(self,plang=None):
         return self.dbobject().getname(plang=plang)
 
-    def minmaxcardinality(self, pfromto):
-        maptype = self.dbobject().rela_maptype_from_to if pfromto else self.dbobject().rela_maptype_to_from
-        mandatory = self.dbobject().getmandatoryfromto() if pfromto else self.dbobject().getmandatorytofrom()
-
-        if maptype == Relation.ONE:
-            return '1' if mandatory else '0..1'
-        elif maptype == Relation.MANY:
-            return '1..N' if mandatory else '0..N'
-        else:
-            raise Exception("invalid Value for Maptype {}".format(maptype))
-    # minmaxcartinality
 
     def arcs_name(self,pentiid):
         arcid = self.dbobject().rela_arcs_id_from if pentiid == self.dbobject().rela_enti_id_from else self.dbobject().rela_arcs_id_to
@@ -116,7 +105,7 @@ class WebRelation(BaseWebObj):
                             where  sp.lang_iso_code2 = '{}'
                                and (von.enti_id = {} or zu.enti_id = {})     
                             order by arcs_name 
-                            """  # .format(plang, pwebenti, pwebenti))
+                            """  # .format(plang, penti, penti))
         return webrelas
     # relalist
 # WebRelation

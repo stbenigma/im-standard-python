@@ -220,6 +220,23 @@ CREATE TABLE RELATIONS
         # fi
         return retval
 
+    def to_cardstr(self):
+        return self._minmaxcardinality(pfromto=False)
+    def from_cardstr(self):
+        return self._minmaxcardinality(pfromto=True)
+
+    def _minmaxcardinality(self, pfromto):
+        maptype = self.rela_maptype_from_to if pfromto else self.rela_maptype_to_from
+        mandatory = self.getmandatoryfromto() if pfromto else self.getmandatorytofrom()
+
+        if maptype == Relation.ONE:
+            return '1' if mandatory else '0..1'
+        elif maptype == Relation.MANY:
+            return '1..N' if mandatory else '0..N'
+        else:
+            raise Exception("invalid Value for Maptype {}".format(maptype))
+    # minmaxcartinality
+
     @staticmethod
     def setarcinrela(prelids):
         """set arc-id for all relations in prelids"""
