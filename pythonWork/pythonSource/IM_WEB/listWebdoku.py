@@ -121,8 +121,7 @@ def printlistofcontent(plang):
 
     idxlist=sorted([{'anker':key
                     ,'name': "{} ({})".format(value['name']
-                                             ,str(len(value['references']))
-                                            )
+                                             ,str(value['referencecnt']))
                      }
                     for key,value in printHTML.model['documents'].items()
                     ]
@@ -182,15 +181,15 @@ def printhtmlfile(pfirma, ptitel, pinfo, plogofilename,pfilename):
     printHTML.closefile ();
 #printhtmlfile
 
-def printhtmlsysfile(pfirma, pfilename, ptitel, pinfo, plogofilename,pschnid):
+def printhtmlsysfile(pfirma, pfilename, ptitel, pinfo, plogofilename,pelement):
     printHTML.createFile (pfilename=pfilename)
     printHTML.printhead(p_firma=pfirma
                         ,piconfilename="image/imicon.png"
                         , p_titel=ptitel
                         , p_info=pinfo
                         , p_logofilename=plogofilename)
-    printRelHTML.printlistofcontent(pschnid)
-    printRelHTML.printcontent(pfirma=pfirma, ptitel=ptitel,pschnid=pschnid)
+    printRelHTML.printlistofcontent(pintf=pelement)
+    printRelHTML.printcontent(pfirma=pfirma, ptitel=ptitel,pintf=pelement)
     printHTML.printfoot();
     printHTML.closefile ();
 #printhtmlsysfile
@@ -234,16 +233,14 @@ def listwebmain(pmodel,plang):
     """Schnittstellen werden immer englisch gedruckt"""
     Sprachtext.reportLang(Sprachtext.EN)
     lang = Sprachtext.EN
-    for s in schnlist:
-        schn_name = s[0]
-        schn_id = s[2]
-        print ("create web-files for system {} in file {}".format(schn_name,printHTML.webDirectory + langfilename))
+    for anker,element in schnlist.items():
+        print ("create web-files for system {} in file {}".format(element['name'],printHTML.webDirectory + langfilename))
         printhtmlsysfile(pfirma="foryouandyourcustomers"
-                      ,pfilename= printHTML.htmlfilelist[schn_id]
-                      , ptitel= parameters.odmModelName() + ' - {}'.format(schn_name)
+                      ,pfilename= printHTML.htmlfilelist[anker]
+                      , ptitel= parameters.odmModelName() + ' - {}'.format(element['name'])
                       , pinfo="{}".format(datetime.now().strftime("%Y-%m-%d, %H:%M"))
                       , plogofilename=parameters.logoFileName()
-                      ,pschnid=schn_id
+                      ,pelement=element
                       )
     #
 #listwebmain

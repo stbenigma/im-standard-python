@@ -44,18 +44,18 @@ def lf2htmlbr(pstr):
 # lf2htmlbr
 
 
-def filehref(pref, panz, plang, pimg=None):
+def filehref(pref, panz, plang, pself=False,pimg=None):
     img = nvl2(pimg,'','<img class="icon-check" src="icons/{}">'.format(pimg))
-    return """<a href="{}{}" target="_blank" >{}{}</a>""" \
-        .format(webFileName + '_' + plang.lower() + '.html', nvl2(pref,"","#") , panz, img)
+    return """<a href="{}{}" target="_{}" >{}{}</a>""" \
+        .format(webFileName + '_' + plang.lower() + '.html', nvl2(pref,"","#") , 'self' if pself else 'blank',panz, img)
 
 
-def href(ref, anz, htmlfile=''):
+def href(ref, anz, htmlfile='',pself=False):
     if anz is None: return ''
     sep = '#' if nvl(ref) !='' else ''
     return """<a href="{}{}{}" target="{}">{}</a>""".format(htmlfile
                                                           , sep, ref
-                                                          , '_self' if htmlfile == '' else '_blank'
+                                                          , '_self' if ((htmlfile == '') or pself) else  '_blank'
                                                           , html.escape(anz))
 
 
@@ -502,10 +502,8 @@ def printcontenthead(pfirma, ptitel):
         pass
     str = ''
     for l in langs:
-        str += filehref(pref=None, panz=l + '   ', plang=l, pimg=lang2img(l.lower()))
+        str += filehref(pref=None, panz=l + '   ', pself=True,plang=l, pimg=lang2img(l.lower()))
     fhtml.write(contenthead.format(f, str))
-
-
 # printcontenthead
 
 def printcontentfoot():
@@ -756,13 +754,14 @@ def printkeys(pelem,plang):
 # printkeys
 
 def printmappinghtml(pwerte, ptitel, pueberschriften, pheadlevel=2):
-    # pwerte, list of entries mit {intf:[(tabid,tabname)]}
+    # pwerte, list of entries mit {intf:[(tabanker,tabname)]}
     if (pwerte is None or len(pwerte) == 0):
         return
     werte = []
     for intf,tabs in pwerte.items():
-        commalist = ', '.join([href(ref=tab[0] , anz=tab[1], htmlfile=htmlfilelist[intf])  for tab in tabs])
-        werte.append([model['systems'][intf]['name'], commalist])
+        commalist = ', '.join([href(ref=tab[0] , anz=tab[1], htmlfile=htmlfilelist[intf]) for tab in tabs])
+        name = model['systems'][intf]['name'] if intf != 0 else 'Information Model'
+        werte.append([name, commalist])
     fhtml.write(tablehtml(ptitel=ptitel
                           , pueberschriften=pueberschriften
                           , pheadlevel=pheadlevel
@@ -1045,83 +1044,50 @@ def printdocureflist(pelem, pelemtype):
         fhtml.write(writetableline(pwerte=[docuentry]))
     # for
     fhtml.write(endtable())
-#printdocureflist
-# def printdocureflist(pelem, pelemtype):
-# #    if (pelemtype == Modelelemtype.DOCU):
-# #        refentries = WebDocument.docureflist(pdocuid=pelemid, plang=Sprachtext.reportLang())
-# #    else:
-# #        refentries = WebDocument.refdokulist(pid=pelemid)
-# #    # fi
-#     refentries = [{d:model['documents'][d]} for d in pelem['refindocuments']]
-#     if (len(refentries) == 0): return
-#     fhtml.write(starttable(ptitel=Sprachtext.transl('Referenziert von')
-#                            , pueberschriften=[Sprachtext.transl('Typ'), Sprachtext.transl('Elemente')]))
-#
-#     curtype = ''  # Annahme: Dokumentenliste ist sortiert nach typ und Name
-#     kinder = ''
-#     for refentry in refentries:
-#         htmlname = ''
-#         anker = None
-#         if (pelemtype in (Modelelemtype.DOCU, Modelelemtype.ENTI, Modelelemtype.ATTR, Modelelemtype.DOMA)):
-#             if (refentry.elemtype == Modelelemtype.TABL):
-#                 # Tabellen sind in schn-file
-#                 print ("Table indirect noch zu lösen")
-#                 #tabl = Tabelle().getbyid(refentry.elemid)
-#                 htmlname = htmlfilelist[0]
-#             elif (refentry.elemtype == Modelelemtype.INTF):
-#                 htmlname = htmlfilelist[refentry.elemid]
-#                 anker = ''  # Schnittstellen haben keinen Anker ausser dem Namen
-#             # fi
-#         elif (pelemtype in (Modelelemtype.TABL, Modelelemtype.INTF, Modelelemtype.COLU)):  # aus schn-html zurück ins Main
-#             if (refentry.elemtype in (Modelelemtype.DOCU, Modelelemtype.ENTI, Modelelemtype.ATTR, Modelelemtype.DOMA)):
-#                 # geh zurück ins Basefile
-#                 htmlname = htmlfilelist[0]
-#             # fi
-#         # fi
-#         if curtype != refentry.typename:
-#             if curtype != '':
-#                 fhtml.write(writetableline(pwerte=[Sprachtext.transl(curtype), kinder.rstrip(', ')]))
-#                 kinder = ''
-#             # fi
-#             curtype = refentry.typename
-#         # fi
-#         anker = nvl(anker, refentry.anker.anker() if type(refentry.anker) == Webanker else refentry.anker)
-#         kinder += href(ref=anker, anz=refentry.name if refentry.direct else '(' + refentry.name + ')'
-#                        , htmlfile=htmlname) + ', '
-#     # for
-#     fhtml.write(writetableline(pwerte=[Sprachtext.transl(curtype), kinder.rstrip(', ')]))
-#     fhtml.write(endtable())
-# #printdocureflist
 
-def printdomaattrlist(pdomaid, pisgroup=False):
-    alist = WebDomain.indexlist(porigin=Domain.DOMAIN,pdomaid=pdomaid,plang=Sprachtext.reportLang()) \
-        if pisgroup else WebAttribute.indexlist(pdomaid=pdomaid,plang=Sprachtext.reportLang())
-    """[(name,anker,id)]"""
-    if (len(alist) == 0):
-        return
+
+def printdomaattrlist(pdoma, plang,pisgroup=False):
+    if pisgroup:
+        """all domains of type group containing parameter domain in elements of its group"""
+        alist = [[href(ref=domaanker
+                       ,anz=model['domains'][domaanker]['name'][plang])]
+                 for domaanker in pdoma['element']['usedingrps']
+                ]
+    else:
+        alist = [[href(ref=attranker
+                       ,anz="{} ({})".format(model['attributes'][attranker]['name'][plang]
+                                            ,model['entities'][model['attributes'][attranker]['entity']]['name'][plang]))]
+                for attranker in pdoma['element']['usedinattrs']
+                ]
+    if (pisgroup and len(alist)==0):return
 
     fhtml.write(tablehtml(ptitel=Sprachtext.transl('Verwendet in Attributgruppen' if pisgroup
                                                    else 'Verwendet für Attribute')
-                          , pueberschriften=[Sprachtext.transl('Attributgruppe' if pisgroup
-                                                               else 'Attribute')]
-                          , pwerteliste=[[href(ref=a[1].anker(), anz=a[0])] for a in alist]))
+                          , pueberschriften=['']#[Sprachtext.transl('Attributgruppe' if pisgroup
+                                                #               else 'Attribute')]
+                          , pwerteliste=alist))
+#printdomaattrlist
 
+def printdomacollist(pdoma):
+    clist = [[href(ref=colanker
+                       ,anz=model['columns'][colanker]['name']
+                   ,htmlfile=htmlfilelist[model['columns'][colanker]['interface-id']])
+              ,href(ref=model['columns'][colanker]['table-id']
+                   , anz=model['columns'][colanker]['table-name']
+                   , htmlfile=htmlfilelist[model['columns'][colanker]['interface-id']])
+              ,href(ref=''
+                   , anz=model['columns'][colanker]['interface-name']
+                   , htmlfile=htmlfilelist[model['columns'][colanker]['interface-id']])
 
-def printdomacollist(pdomaid):
-    clist = Schnittstelleattr.select(pwhere='scha_doma_id = {}'.format(pdomaid))
-    webclist = clist
-    if (len(clist) == 0):
-        return
+              ]
+                for colanker in pdoma['element']['usedincols']
+                ]
+
+    if (len(clist) == 0): return
     fhtml.write(tablehtml(ptitel=Sprachtext.transl('Verwendet für Columns')
-                          , pueberschriften=[Sprachtext.transl('Column')]
-                          , pwerteliste=[[href(ref="COL"+str(col.scha_id) #col.webanker().anker()
-                                               , anz="{} ({}:{})".format(col.scha_column_name, col.getintfname(),
-                                                                         col.gettablname())
-                                               , htmlfile=htmlfilelist[col.getintfid()]
-                                               )
-                                          ] for col in clist
-                                         ]))
-
+                          , pueberschriften=[Sprachtext.transl('Column'),Sprachtext.transl('Tabelle'),Sprachtext.transl('System')]
+                          , pwerteliste=clist))
+#printdomacollist
 
 def printdomamembers(pelem):
     elems = pelem['elements']
@@ -1225,10 +1191,10 @@ def printcontentdoma():
 
         if (elem['type'] == Domain.GRP):
             printdomamembers(pelem=elem)
-        #
-        # printdomaattrlist(pdomaid=doma.doma_id, pisgroup=False)
-        # printdomaattrlist(pdomaid=doma.doma_id, pisgroup=True)
-        # printdomacollist(pdomaid=doma.doma_id)
+
+        printdomaattrlist(pdoma=doma, plang=lang,pisgroup=False)
+        printdomaattrlist(pdoma=doma, plang=lang,pisgroup=True)
+        printdomacollist(pdoma=doma)
 
         printcontentend(lbc)  # for
 
@@ -1257,9 +1223,10 @@ def type2name(ptyp,plang):
 #type2name
 
 def printreflist(pelem,plang):
-    refentries = {}
-
-    refentries = {typ: [{'anker': e, 'name': model[typ][e]['name']} for e in ref] for typ,ref in pelem['references'].items()}
+    refentries = {typ: [{'anker': e
+                        , 'name': model[typ][e]['name']
+                        ,'interface-id': model[typ][e]['interface-id'] if (typ in ('tables','columns','systems')) else 0
+                         } for e in ref] for typ,ref in pelem['references'].items()}
     if (len(refentries) == 0): return
     fhtml.write(starttable(ptitel=Sprachtext.transl('Referenziert')
                            , pueberschriften=[Sprachtext.transl('Typ'),Sprachtext.transl('Element')]))
@@ -1267,25 +1234,17 @@ def printreflist(pelem,plang):
     for typ,ref in refentries.items():
         if len(ref)==0: continue
         # aus schn-html zurück ins Main
-        htmlname = htmlfilelist[0] if (typ in ('tables','columns','systems')) else ''
-        docuentry = ', '.join (href(ref=elem['anker']
+        docuentry = ', '.join (href(ref='' if (typ in ('systems')) else elem['anker']
                                     ,anz=elem['name'] if (typ in ('tables','columns','systems'))\
                                                 else elem['name'][plang]
-                                    ,htmlfile=htmlname) for elem in ref)
+                                    ,htmlfile=htmlfilelist[elem['interface-id']]
+                                    ) for elem in ref)
         fhtml.write(writetableline(pwerte=[type2name(ptyp=typ,plang=plang),docuentry]))
     # for
     fhtml.write(endtable())
+#printreflist
+
 def printcontentdoku():
-    """
-    #            select child.docu_ID,child.docu_NAME,child.docu_FORMAT,child.docu_REFERENZ
-    #             ,parent.docu_ID parent_id ,parent.docu_name parent_name
-    #             ,(select group_concat(grandchild.docu_id||':'||grandchild.docu_name, '|') kinder
-    #                from DOKUMENTE grandchild
-    #                where grandchild.docu_docu_ID = child.docu_ID) kinder
-    #            from DOKUMENTE child
-    #            left join dokumente parent on parent.docu_ID = child.docu_docu_ID
-    #            order by upper(child.docu_name)
-    #            """
     docus = sorted([{'anker': key, 'element': value}
             for key, value in model['documents'].items()]
             ,key=lambda val : val['element']['name'])
@@ -1303,15 +1262,6 @@ def printcontentdoku():
                      , pdescr=""
                      , plbc=lbc)
 
-        """docu_ID,docu_NAME,docu_FORMAT,docu_REFERENZ
-            ,parent_id, parent_name, kinder"""
-        #        kinder = ''
-        #        if children is not None:
-        #            for child in children:
-        #                kinder += href(pref=child.webanker.anker(),panz=child.docu_name) + ', '
-        #            #for
-        #            kinder = kinder.rstrip(', ')
-        #        #fi
         children = [href(ref=key,anz=val['name']) for key,val in model['documents'].items() if val['parent'] == doc['anker']]
         kinder = ', '.join(c for c in children)
 
@@ -1409,6 +1359,8 @@ def findtransl(pattrname, pmodeid, plangs, panker = None):
 
 
 def printtransl(penti=None, pattr=None):
+    global webFileName
+    langfilename = "{}_{}.html".format(webFileName,'{}')
     langs = [k for k in model['languages'].keys()]
     try:
         langs.remove(Sprachtext.reportLang())
@@ -1421,12 +1373,14 @@ def printtransl(penti=None, pattr=None):
     descr = [Sprachtext.transl('Beschreibung')]
     synonym = [Sprachtext.transl('Synonym')]
     if (penti is not None):
-        name +=[href(ref=penti['anker'], anz=penti['element']['name'][lang]) for lang in langs]
+        name +=[href(ref=penti['anker'], anz=penti['element']['name'][lang]
+                     ,htmlfile=langfilename.format(lang),pself=True) for lang in langs]
         synonym += [','.join(s[lang] for s in penti['element']['synonyms']) for lang in langs]
         descr += [penti['element']['descr'][lang] for lang in langs]
         transllist = [name,synonym,descr]
     elif (pattr is not None):
-        name +=[href(ref=pattr['anker'], anz=pattr['element']['name'][lang]) for lang in langs]
+        name +=[href(ref=pattr['anker'], anz=pattr['element']['name'][lang]
+                     ,htmlfile=langfilename.format(lang),pself=True) for lang in langs]
         descr += [pattr['element']['descr'][lang] for lang in langs]
         transllist = [name,descr]
     #fi

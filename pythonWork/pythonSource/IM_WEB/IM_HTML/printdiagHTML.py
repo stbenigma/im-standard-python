@@ -176,11 +176,8 @@ def printtexte(plist):
     #for
 #printtexte
 
-def forthelem(elem):
-    """sortfunction returning 4 elemt in list"""
-    return elem[3]
-#forthelem
 def print1arc(pdiagid,parcid,pentipos):
+
     startarcstr = """
         <g fill="none" stroke="rgb(0,0,0)" transform="translate({},{})" >
     """
@@ -191,20 +188,20 @@ def print1arc(pdiagid,parcid,pentipos):
         <path d=" {}"/>
         </g>
     """
-    punktabstand = 20
-    bogenlng = 10
-    vorhalt = 10
-    arcstartx,arcstarty = pentipos[0]-punktabstand, pentipos[1]-punktabstand
-    entihoehe,entibreite = pentipos[2],pentipos[3]
-    enticenterx,enticentery = pentipos[0] + (entibreite / 2),pentipos[1] + (entihoehe / 2)
-    arcbreite,archoehe = entibreite + (2 * (punktabstand - bogenlng)),  entihoehe + (2 * (punktabstand - bogenlng))
-    print ("entiinfo",arcstartx,arcstarty,enticenterx,enticentery,arcbreite,archoehe)
+    pointdistance = 20
+    arclng = 10
+    predistance = 10
+    arcstartx,arcstarty = pentipos[0]-pointdistance, pentipos[1]-pointdistance
+    entiheight,entiwidth = pentipos[2],pentipos[3]
+    enticenterx,enticentery = pentipos[0] + (entiwidth / 2),pentipos[1] + (entiheight / 2)
+    arcwidth,archeight = entiwidth + (2 * (pointdistance - arclng)),  entiheight + (2 * (pointdistance - arclng))
+    #print ("entiinfo",arcstartx,arcstarty,enticenterx,enticentery,arcwidth,archeight)
     printHTML.fhtml.write(startarcstr.format(arcstartx,arcstarty))
     """select beda_id,arcstartx,arcstarty, endx,endy"""
     arcselem = web_sql.liesarcselem(pdiagid=pdiagid, parcsid=parcid)
     circles=[]
     for ae in arcselem:
-        print (ae[6], ae[8],(ae[1],ae[2]),(ae[3],ae[4]),sep=', ')
+        #print (ae[6], ae[8],(ae[1],ae[2]),(ae[3],ae[4]),sep=', ')
         winkel = calcwinkel(ae[4], ae[2],ae[3], ae[1])
         p4 = math.pi / 4
         if winkel >= -p4 and winkel < p4: q,qwinkel=1,0
@@ -218,14 +215,14 @@ def print1arc(pdiagid,parcid,pentipos):
               ,ae[1] - arcstartx + round(punktabstand * math.sin(winkel),1),round(punktabstand * math.sin(winkel),1)
               ,ae[2] - arcstarty + round(punktabstand * math.cos(winkel),1),round(punktabstand * math.cos(winkel),1)
               ,ae[2],ae[4],ae[1],ae[3])"""
-        circles.append([ae[1] - arcstartx + round(punktabstand * math.cos(winkel),1)
-                        ,ae[2] - arcstarty  + round(punktabstand * math.sin(winkel),1)
+        circles.append([ae[1] - arcstartx + round(pointdistance * math.cos(winkel),1)
+                        ,ae[2] - arcstarty  + round(pointdistance * math.sin(winkel),1)
                         ,winkel,sortwinkel,q
                         ])
     #for
     # circles sortieren, damit Pfad des arc
     #    minimal wird und nicht springt: Winkel zum Start von der Mitte der Entität aus
-    circles.sort(key=forthelem)
+    circles.sort(key=lambda elem: elem[3])
     for c in circles:
         printHTML.fhtml.write(circle.format(c[0],c[1]))
     # for
@@ -237,16 +234,16 @@ def print1arc(pdiagid,parcid,pentipos):
         if currentq is None:
             """1. arc beziehung"""
             currentq = c[4]
-            mx = c[0] + (vorhalt * xfactor[currentq][0]) + (bogenlng * xfactor[currentq][1])
-            my = c[1] + (vorhalt * yfactor[currentq][0]) + (bogenlng * yfactor[currentq][1])
+            mx = c[0] + (predistance * xfactor[currentq][0]) + (arclng * xfactor[currentq][1])
+            my = c[1] + (predistance * yfactor[currentq][0]) + (arclng * yfactor[currentq][1])
             arcline += "M{} {}".format(mx,my)
-            arcline += ' q{} {} {} {}'.format(bogenlng * -yfactor[currentq][0],bogenlng * xfactor[currentq][0]
-                                                   ,bogenlng * -xfactor[currentq][1],bogenlng * -yfactor[currentq][1])
+            arcline += ' q{} {} {} {}'.format(arclng * -yfactor[currentq][0],arclng * xfactor[currentq][0]
+                                                   ,arclng * -xfactor[currentq][1],arclng * -yfactor[currentq][1])
         else:
             qanz = (c[4] - currentq + 5) % 5-1
             for q in range(currentq,currentq + qanz ):
                 qm = q if q < 5 else  q % 5 + 1
-                print (c[4],currentq,qanz,q,qm)
+                #print (c[4],currentq,qanz,q,qm)
 
                 currentq = qm
                 """ neuer Quadrant, zeichne arc um ecke q4->q1, 4->2, 4->3, 1->2, 1->3 1->4, 2->3 2->4 2->1"""
@@ -254,40 +251,30 @@ def print1arc(pdiagid,parcid,pentipos):
                 x2factor = {1: [1,2,1,1], 2: [0,1,1,2], 3: [0,0,0,1], 4: [1,1,0,0]}
                 if parcid == 10:
                     print(parcid)
-                arcline += ' L{} {} '.format(x2factor[currentq][0]*arcbreite + x2factor[currentq][1]*bogenlng
-                                        ,x2factor[currentq][2]*archoehe + x2factor[currentq][3]*bogenlng)
+                arcline += ' L{} {} '.format(x2factor[currentq][0]*arcwidth + x2factor[currentq][1]*arclng
+                                        ,x2factor[currentq][2]*archeight + x2factor[currentq][3]*arclng)
 
                 """Bogen um die Ecke"""
-                arcline += ' q{} {} {} {}'.format(bogenlng * -xfactor[currentq][0], bogenlng * -yfactor[currentq][0]
-                                          , bogenlng * yfactor[currentq][1], bogenlng * -xfactor[currentq][1])
+                arcline += ' q{} {} {} {}'.format(arclng * -xfactor[currentq][0], arclng * -yfactor[currentq][0]
+                                          , arclng * yfactor[currentq][1], arclng * -xfactor[currentq][1])
             #for
         #fi Beziehungen im gleichen Quadranten kann ich vergessen, ausser es ist die letzte (siehe nächsten Abschnitt)
         if idx == len(circles) - 1:
             currentq = c[4]
-            print('last',currentq,c[4], c[0] , -xfactor[currentq][0], c[1] , -yfactor[currentq][0])
             """letzte Beziehung des Arc 
                Linie vom aktuellen arc-Ende bis zum Punkt + vorhalt der letzten Beziehung"""
-            arcline += ' L{} {}'.format(round(c[0] + (vorhalt * -xfactor[currentq][0]),1)
-                                        ,round(c[1] + (vorhalt * -yfactor[currentq][0])),1)
+            arcline += ' L{} {}'.format(round(c[0] + (predistance * -xfactor[currentq][0]),1)
+                                        ,round(c[1] + (predistance * -yfactor[currentq][0])),1)
             """ Abschlussbogen"""
-            arcline += ' q{} {} {} {}'.format(bogenlng * -xfactor[currentq][0],bogenlng * -yfactor[currentq][0]
-                                            ,bogenlng * yfactor[currentq][1],bogenlng * -xfactor[currentq][1])
+            arcline += ' q{} {} {} {}'.format(arclng * -xfactor[currentq][0],arclng * -yfactor[currentq][0]
+                                            ,arclng * yfactor[currentq][1],arclng * -xfactor[currentq][1])
         #fi
     #for
-    print(currentq, arcline)
     printHTML.fhtml.write(endarcstr.format(arcline))
-#    printHTML.fhtml.write(endarcstr.format(""))
-#    printHTML.fhtml.write(startarcstr.format(120,930))
-#    printHTML.fhtml.write(circle.format(0,0))
-#    printHTML.fhtml.write(circle.format(30,50))
-#    printHTML.fhtml.write(circle.format(186,89))
-#    printHTML.fhtml.write(endarcstr.format(
-#        "M177.0 40.0 C 177.0 40.0 187.0 40.0 187.0 50.0 L187.0 100.0 C 187.0 100.0 187.0 110.0 177.0 110.0"))
-
 #print1arc
 
 def printarcs(pdiagid):
-
+    return
     """select arcs_id,beda_id"""
     arcs = web_sql.liesarcs(pdiagid=pdiagid)
     for arc in arcs:

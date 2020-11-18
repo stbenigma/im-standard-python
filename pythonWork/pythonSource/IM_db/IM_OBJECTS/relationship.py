@@ -34,6 +34,29 @@ class Arc(Baseobject):
     def getentity(self):
         return IM_OBJECTS.Entity().getbyid(self.arcs_enti_id)
 
+    def getarcselem(self,pdiagid):
+        data = dbDML.select("""with lseg as (select linesegments.*
+                   ,row_number() over (PARTITION BY lise_relr_id ORDER BY lise_seq ASC) up
+                   ,row_number() over (PARTITION BY lise_relr_id ORDER BY lise_seq desc) down
+               from linesegments)
+            select relr_id,lsegstart.lise_x startx,lsegstart.lise_y starty
+                 ,lsegend.lise_x endx,lsegend.lise_y endy
+                 ,earc.enti_id,earc.enti_name
+                 ,case when lsegstart.up = 1 then lsegstart.lise_angle else lsegend.lise_angle  end angle
+            from arcs 
+            join entities earc on earc.enti_id =arcs_enti_id
+            join relations on rela_arcs_id_from = arcs_id or rela_arcs_id_to = arcs_id
+            join relationreps on relr_mode_id = rela_id
+            join lseg lsegstart        on relr_id = lsegstart.lise_relr_id
+                                and lsegstart.up = 1 
+            join lseg lsegend on relr_id = lsegend.lise_relr_id
+                                and lsegend.up = 2   
+        where relr_diag_id = {}
+        and arcs_id = {}
+        """.format(pdiagid, self.arcs_id))
+        return data
+    # liesarcselem
+
     @staticmethod
     def createtable():
         Baseobject.createtable(ptablename=Arc._tablename
@@ -64,6 +87,25 @@ CREATE TABLE ARCS
         arcs = Baseobject.select(pclass=Arc
                                  , pwhere=pwhere, porderby=porderby)
         return arcs
+
+    @staticmethod
+    def getrelaarcs(pdiagid):
+        return Arc.select(pwhere="""arcs_id in (select case when rela_arcs_id_from is NULL 
+                                                then rela_arcs_id_to
+                                                else rela_arcs_id_from end rela_arcs_id 
+                                            from relations 
+                                            where rela_id = {})""".format(prelaid))
+
+        #getrelaarcs
+    @staticmethod
+    def getdiagarcs(pdiagid):
+        return Arc.select(pwhere="""arcs_id in (select case when rela_arcs_id_from is NULL 
+                                                then rela_arcs_id_to
+                                                else rela_arcs_id_from end rela_arcs_id 
+                                            from relations 
+                                            join relationreps on relr_mode_id = rela_id
+                                            where relr_diag_id = {})""".format(pdiagid))
+        #getrelaarcs
 
 
 class Relation(MultilangBaseobject):
@@ -194,6 +236,8 @@ CREATE TABLE RELATIONS
         return IM_OBJECTS.Entity().getbyid(pid=self.rela_enti_id_from)
     def gettoentity(self):
         return IM_OBJECTS.Entity().getbyid(pid=self.rela_enti_id_to)
+    def getanyarcid(self):
+        return self.rela_arcs_id_from if self.rela_arcs_id_to is None else self.rela_arcs_id_to
 
     @staticmethod
     def getbyentity(pentiid):

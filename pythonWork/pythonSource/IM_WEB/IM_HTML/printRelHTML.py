@@ -3,74 +3,62 @@ import sys
 import html
 sys.path.append(os.getcwd())
 from IM_HTML import printHTML
-import web_sql
-from IM_OBJECTS import *
+from IM_DB import parameters
+from IM_OBJECTS import Domain,Sprachtext,Modelelemtype
 
 
 def nvl(s, default=''):
     return printHTML.nvl(s, default)
 
 
-def printmapping(ptablid):
-    # name, list of entries mit {'name':webanker}
-    werte = Tabelle.mappingto(ptablid=ptablid)
-    """[[0, name, [[Entity]]], [52, name, [[Tabelle]]]]"""
-    werte = [[entry[1],
-              {'(' + tab.getname() + ')' if isinstance(tab, Tabelle)
-                  else tab.getname(plang=Sprachtext.reportLang()) \
-               : tab.webanker()
-               for tab in entry[2]
-               }
-              ] for entry in werte
-             ]
-    #print('prinrelhtml->printmapping:', werte)
-    printHTML.printmappinghtml(pwerte= werte
-                               , ptitel=Sprachtext.transl('Mapping')
+def printmapping(pelem):
+    # name, list of entries mit {webanker:'name'}
+    entities = {e:printHTML.model['entities'][e]['name'][parameters.dbDefaultLang()] for e in pelem['entitiesmapped']}
+    werte = {0: [[anker, name] for anker,name in entities.items()]}
+
+    for intfanker,intfelem in printHTML.model['systems'].items():
+        if intfanker == pelem['interface-id']: continue
+        tablist=[]
+        for enti in pelem['entitiesmapped']:
+            try:
+                tablist += printHTML.model['entities'][enti]['tablesmapped'][intfanker]
+            except:
+                pass
+        if len(tablist) == 0: continue
+        werte[intfanker] = [[tabanker,"({})".format(printHTML.model['tables'][tabanker]['name'])] for tabanker in tablist]
+    #for
+    printHTML.printmappinghtml(ptitel=Sprachtext.transl('Mapping')
                                , pueberschriften=(Sprachtext.transl('Model'), Sprachtext.transl('Entitäten / Tabellen'))
-                               )
-
-
+                               ,pwerte = werte)
 # printmapping
 
-def printcolmapping(pcolid):
-    # name, list of entries mit {'name':webanker}
-    werte = Schnittstelleattr.mappingto(pschaid=pcolid)
-    """[[0, name, [[Attribute]]], [52, name, [[Schnittstelleattr]]]]"""
-    werte = [[entry[1],
-              {'(' + ref.gettablname() + '.' + ref.scha_column_name + ')' if isinstance(ref, Schnittstelleattr)\
-                  else ref.getname(plang=Sprachtext.reportLang()) \
-               : ref.webanker()
-               for ref in entry[2]
-               }
-              ] for entry in werte
-             ]
-    # print(werte)
-    printHTML.printmappinghtml(pwerte=werte
-                               , ptitel=Sprachtext.transl('Mapping')
+def printcolmapping(pcol):
+    lang=parameters.dbDefaultLang()
+    attrs = {a:printHTML.model['attributes'][a] for a in pcol['attributes-mapped']}
+    werte = {0: [[anker, "{}.{}".format(printHTML.model['entities'][attr['entity']]['name'][lang]
+                                        ,attr['name'][lang])] for anker,attr in attrs.items()]
+            }
+
+    for intfanker,intfelem in printHTML.model['systems'].items():
+        if intfanker == pcol['interface-id']: continue
+        collist=[]
+        for attr in pcol['attributes-mapped']:
+            try:
+                collist += printHTML.model['attributes'][attr]['columnsmapped'][intfanker]
+            except:
+                pass
+        if len(collist) == 0: continue
+        col = lambda c:printHTML.model['columns'][c]
+        werte[intfanker] = [[colanker,"({}.{})".format(col(colanker)['table-name']
+                                             ,col(colanker)['name'])]
+                            for colanker in collist
+                            ]
+    #for
+    printHTML.printmappinghtml(ptitel=Sprachtext.transl('Mapping')
                                , pueberschriften=(Sprachtext.transl('Model'), Sprachtext.transl('Attribute / Columns'))
+                               ,pwerte=werte
                                )
 
-
-def getcolmapping(pschaid, pschnid):
-    # name, list of entries mit {'name':webanker}
-    werte = Schnittstelleattr.mappingto(pschaid=pschaid)
-    """[[0, name, [[Attribute]]], [52, name, [[Schnittstelleattr]]]]"""
-    werte = [[entries[1],
-              {'(' + entry.gettablname() + '.' + entry.scha_column_name + ')'
-               if isinstance(entry, Schnittstelleattr)
-               else '(' + entry.getentiname() + '.' + entry.attr_displ_name + ')' if isinstance(entry, Attribute)
-              else 'unknown ' + type(entry)
-               : entry.webanker().anker()
-               for entry in entries[2]
-               }
-              ] for entries in werte
-             ]
-    """[['Logisches Modell', {'attrname':'ATTR1234'}],['Aurea':{'(columnname)':colwebanker}]]"""
-    # print(werte)
-    return werte
-
-
-# getcolmapping
 def printcolumninfo(pname, panker, pheaders, pvalues):
     infohead = """
           <!-- The inside div eliminates the 'jumping' animation. -->
@@ -101,156 +89,109 @@ def printcolumninfo(pname, panker, pheaders, pvalues):
         printHTML.fhtml.write(techlineline.format(html.escape(v)))
     printHTML.fhtml.write(trend)
     printHTML.fhtml.write(infofoot)
-
-
 # printcolumninfo
 
-def printcollist(pcollist, pschnid):
+def printcollist(pcollist):
     colheader = """            <h2>Columns</h2>
                             <div>
     """
     colfooter = """</div>
     """
-    schnname = Schnittstelle.getname(pid=pschnid)
+    lang = parameters.dbDefaultLang()
     if (pcollist is None or len(pcollist) == 0): return
     ueberschr = [Sprachtext.transl('Name'), Sprachtext.transl('Beschreibung')
         , Sprachtext.transl('Wertebereich'), Sprachtext.transl('Datentyp')
                  ]
-#    ueberschr.append('Logical Model')
-#    for schn in Schnittstelle.grouplist():
-#        if (schn[0] != schnname):
-#            ueberschr.append(schn[0])
     printHTML.fhtml.write(printHTML.starttable(ptitel="Columns", pueberschriften=ueberschr))
 
     for col in pcollist:
-
-        wrtbinfo = getwrtbinfo(pcol=col,plang=Sprachtext.reportLang())
-
-        colwerte = [printHTML.href(ref=col.webanker().anker(),anz=col.scha_column_name)
-                        , nvl(col.scha_beschr), wrtbinfo[0], wrtbinfo[1]]
-        # zuerst das logical Model
-        # mappings = getcolmapping(pschaid=col.scha_id, pschnid=pschnid)
-        # """[['Logisches Modell', {'attrname':'ATTR1234'}],['Aurea':{'(columnname)':colwebanker}]]"""
-        # colwerte.append('')  # logisches Modell
-        # for maps in mappings:
-        #     if (maps[0] == 'Logisches Modell'):
-        #         colwerte[len(colwerte) - 1] = ', '.join(
-        #             [printHTML.href(pref=val, panz=key, htmlfile=printHTML.htmlfilelist[0]) \
-        #              for key, val in maps[1].items()])
-        # for schn in Schnittstelle.grouplist():
-        #     if (schn[0] != schnname):
-        #         colwerte.append('')  # logisches Modell
-        #         for maps in mappings:
-        #             if (maps[0] == schn[0]):
-        #                 # Aktuell noch keine Columns-Anker in Schnittstellen HTML. Darum nur der Name
-        #                 # commalist = ', '.join ([printHTML.href(pref=val.anker(), panz=key, htmlfile=printHTML.htmlfilelist[val.modelid()])\
-        #                 #                        for key,val in maps[1].items()])
-        #                 commalist = ', '.join(key for key in maps[1].keys())
-        #                 colwerte[len(colwerte) - 1] = commalist
-        #
-        #             # if
-        #         # for
-        #     # if
-        # # for
-
+        column = printHTML.model['columns'][col]
+        domain = printHTML.model['domains'][column['domain']]
+        colwerte = [printHTML.href(ref=col,anz=column['name'])
+                        , nvl(column['descr']), domain['name'][lang], nvl(column['datatype'])]
         printHTML.fhtml.write(printHTML.writetableline(pwerte=colwerte))
-
-        # printcolmapping(pschaid=col.scha_id,pschnid=pschnid)
     # for
     printHTML.fhtml.write(printHTML.endtable())
-
-
-#    printHTML.fhtml.write(colfooter)
 # printcollist
 
-def printcontenttable(plist):
+def printcontenttable(pintf):
+    tablist = sorted([[anker,printHTML.model['tables'][anker]] for anker in pintf['tables']]
+                     ,key=lambda val:val[1]['name'].upper()
+                     )
     printHTML.printcontentstart('tables')
     infoheaders = (Sprachtext.transl('auf Diagram(en)'), Sprachtext.transl('geändert'))
-    for t in plist:
+    for t in tablist:
+        anker = t[0]
+        elem = t[1]
         lbc = str(printHTML.newbarcounter())
         printHTML.printcontent(ptype=Sprachtext.transl('Tabelle')
-                               , panker=t.webanker().anker()
-                               , pname=t.tabl_name
-                               , pdescr=printHTML.lf2htmlbr(nvl(t.tabl_beschr))
+                               , panker=anker
+                               , pname=elem['name']
+                               , pdescr=printHTML.lf2htmlbr(nvl(elem['descr']))
                                , plbc=lbc)
-        infovalues = ('', nvl(t.tabl_um) + ', ' + nvl(t.tabl_dm))
+        infovalues = ('', nvl(elem['um']) + ', ' + nvl(elem['dm']))
         printHTML.printcontentinfo(ptitle=Sprachtext.transl('Informationen'), pheaders=infoheaders, pvalues=infovalues)
 
-        printHTML.printdocureflist(pelemid=t.tabl_id, pelemtype=Modelelemtype.TABL)
-        printHTML.printUDP(p_meltname=t.prefix().upper(), pid=t.tabl_id)
-        printcollist(pcollist=t.getcolumns(), pschnid=t.tabl_schn_id)
-        printmapping(ptablid=t.tabl_id)
+        printHTML.printdocureflist(pelem=elem, pelemtype=Modelelemtype.TABL)
+        printHTML.printUDP(pelem=elem)
+        printcollist(pcollist=elem['columns'])
+        printmapping(pelem=elem)
         printHTML.printcontentend(lbc)
     # for
-
-
 # printcontenttable
 
-def getwrtbinfo(pcol,plang):
-    daty = pcol.getdaty()
-    wrtbname = ''
-    wrtbtyp = ''
-    wrtbgrundtyp = ''
-    if daty is None is not None:
-        wrtbtyp = daty.daty_name
-        wrtbgrundtyp = daty.daty_grundtyp
-    # fi
-    wrtb = pcol.getwrtb()
-    if wrtb is not None:
-        wrtbname = wrtb.getname(plang=plang)\
-                    if wrtb.wrtb_herkunft == Domain.DERIVED \
-                    else printHTML.href(ref=wrtb.webanker().anker()
-                                        ,anz=html.escape(wrtb.getname(plang))
-                                        ,htmlfile=printHTML.htmlfilelist[wrtb.webanker().modelid()])
-        wrtbtyp = wrtb.typestring()
-        wrtbgrundtyp = wrtb.displdatatype()
-    # fi
-    return (wrtbname,wrtbtyp,wrtbgrundtyp)
-
-
-def printcontentcolumn(pcols):
+def printcontentcolumn(pintf):
+    lang = parameters.dbDefaultLang()
     infoheaders = ('Domain','Datatype','Base Type','changed')
-    for col in pcols:
+    collist = sorted([[anker,elem] for anker,elem in printHTML.model['columns'].items() if elem['interface-id'] == pintf['interface-id'] ]
+                    ,key=lambda val:val[1]['name'].upper()
+                     )
+    for col in collist:
+        colanker,colelem = col[0],col[1]
         lbc = str(printHTML.newbarcounter())
-        tabl = col.gettable()
-        wrtbinfo = getwrtbinfo(pcol=col,plang=Sprachtext.reportLang())
-
-        master = "<p1>{}: {}</p1><br>" \
-            .format(Sprachtext.transl('Table'), printHTML.href(ref=tabl.webanker().anker(), anz=tabl.getname()))
+        domain = printHTML.model['domains'][colelem['domain']]
+        master = "<p1>{}: {}</p1><br>".format(colelem['name'],colelem['table-name'])
         printHTML.printcontentstart('columns')
         printHTML.printcontent(ptype=Sprachtext.transl('Column')
-                               , panker=col.webanker().anker()
-                               , pname=col.scha_column_name
-                               ,pmaster= master
-                               , pdescr=printHTML.lf2htmlbr(nvl(col.scha_beschr))
+                               , panker=colanker
+                               , pname=colelem['name']
+                               ,pmaster= printHTML.href(ref=colelem['table-id'],anz=colelem['table-name'])
+                               , pdescr=printHTML.lf2htmlbr(nvl(colelem['descr']))
                                , plbc=lbc)
-        infovalues = (wrtbinfo[0], wrtbinfo[1],wrtbinfo[2] ,nvl(col.scha_um) + ', ' + nvl(col.scha_dm),)
+        infovalues = (domain['name'][lang] if domain['origin']== Domain.DERIVED \
+                        else printHTML.href(ref=colelem['domain'],anz=domain['name'][lang]
+                                     ,htmlfile=printHTML.htmlfilelist[0])
+                        ,domain['displdatatype'][lang],domain['basedatatype']
+                        ,nvl(colelem['um']) + ', ' + nvl(colelem['dm']))
         printHTML.printcontentinfo(ptitle=Sprachtext.transl('Information'), pheaders=infoheaders, pvalues=infovalues)
 
-        printHTML.printdocureflist(pelemid=col.scha_id, pelemtype=Modelelemtype.INTF)
-        printHTML.printUDP(p_meltname=col.prefix().upper(), pid=col.scha_id)
-        printcolmapping(pcolid=col.scha_id)
+        printHTML.printdocureflist(pelem=colelem, pelemtype=Modelelemtype.COLU)
+        printHTML.printUDP(pelem=colelem)
+        printcolmapping(pcol=colelem)
         printHTML.printcontentend(lbc)
     # for
 
 
-def printlistofcontent(pschnid):
+def printlistofcontent(pintf):
     printHTML.printlistofcontenthead()
-    # printHTML.printlistofcontentelement(pname='Tables'
-    #                                     , plist=web_sql.namelist(ptype=Modelelemtype.TABL
-    #                                                              , pid=pschnid)
-    #                                     )
-    # printHTML.printlistofcontentelement(pname='Columns'
-    #                                     , plist=web_sql.namelist(ptype=Modelelemtype.COLU
-    #                                                              , pid=pschnid)
-    #                                     )
+    idxlist = sorted([{'anker':key,'name': value['name']}
+                     for key,value in printHTML.model['tables'].items() if key in pintf['tables']]
+                     ,key=lambda val:val['name'].upper())
+    printHTML.printlistofcontentelement(pname='Tables'
+                                         , plist=idxlist)
+    idxlist = sorted([{'anker':key,'name': "{} ({})".format(value['name'],value['table-name'])}
+                     for key,value in printHTML.model['columns'].items() if value['interface-id'] == pintf['interface-id']]
+                     ,key=lambda val:val['name'].upper())
+    printHTML.printlistofcontentelement(pname='Columns'
+                                         , plist=idxlist
+                                         )
 
     printHTML.printlistofcontentfoot()
 
 
 # printlistofcontent
 
-def printcontenthead(pfirma, ptitel, pschnid):
+def printcontenthead(pfirma, ptitel, pintf):
     contenthead = """    <div class="wrapper">
         <div class="top-container">
             <p3 {} 
@@ -266,7 +207,6 @@ def printcontenthead(pfirma, ptitel, pschnid):
             Diese Seite wurde von Software von <p2 class="fyayc">foryouandyourcustomers</p2> 
             erstellt.""".format(ptitel, pfirma)
         ref = """Referenzen in Klammern sind indirekte Referenzen:<br>
-                 Dokumentenreferenz bei Tabellen: Dokumente, die mit der Schnittstelle (relationales Modell) verknüpft sind<br>
                  Tabellenreferenz bei Tabellen: Indirekte Verknüpfung einer Tabelle über eine Entität zu einer Tabelle einer anderen Schnittstelle<br>
                  Columnreferenz: Indirekte Verknüpfung einer Column über ein Attribute zu einer Column in einer anderen Schnittstelle"""
     else:
@@ -275,19 +215,18 @@ def printcontenthead(pfirma, ptitel, pschnid):
             This page was created with software from <p2 class="fyayc">foryouandyourcustomers</p2>.""" \
             .format(ptitel, pfirma)
         ref = """References in brackets are indirect references:<br>
-                 (Document reference) for tables: Documents that are linked to the interface (relational model)<br>
                  (Table reference) for tables: Indirect linking of a table via an entity to a table in another interface<br>
                  (Column reference): Indirect linking of a column via an attribute to a column  in another interface"""
     # fi
     printHTML.fhtml.write(contenthead.format(f, ref))
-    printHTML.printdocureflist(pelemid=pschnid, pelemtype=Modelelemtype.INTF)
+    printHTML.printdocureflist(pelem=pintf, pelemtype=Modelelemtype.INTF)
     printHTML.fhtml.write(contentheadend)
 # printcontenthead
 
-def printcontent(pfirma, ptitel, pschnid):
-    printcontenthead(pfirma=pfirma, ptitel=ptitel, pschnid=pschnid)
-#    printcontenttable(plist=Tabelle.selectbyschnid(pschnid=pschnid))
-#    printcontentcolumn(pcols=Schnittstelleattr.selectbyschnid(pschnid=pschnid))
+def printcontent(pfirma, ptitel, pintf):
+    printcontenthead(pfirma=pfirma, ptitel=ptitel, pintf=pintf)
+    printcontenttable(pintf=pintf)
+    printcontentcolumn(pintf=pintf)
     printHTML.printcontentfoot()
 
 # printcontent

@@ -1,5 +1,6 @@
 # -*- coding: latin-1 -*-
 import json
+import math
 
 from IM_DB import dbConnect, parameters, logmessages
 from IM_OBJECTS import *
@@ -177,6 +178,9 @@ def defdomain(doma):
                                 Attribute.select(pwhere="attr_doma_id = {}".format(doma.doma_id))]
     retval['usedincols']= [anker(Modelelemtype.COLU, c.scha_id) for c in
                      Schnittstelleattr.select(pwhere="scha_doma_id = {}".format(doma.doma_id))]
+    retval['usedingrps']= [anker(Modelelemtype.DOMA, d.doma_id) for d in
+                     Domain.select(pwhere="doma_id in (select dgrm_doma_id_group from domaingroup_members where dgrm_doma_id_member = {})"
+                                            .format(doma.doma_id))]
     retval['sourceref']= {s : Externalref.getsrcid(psrcname=s, pmodeid=doma.doma_id) for s in Externalref.getsources()}
     retval['refindocuments'] = [anker(Modelelemtype.DOCU, d[0]) for d in Document.getrefdoculist(pid=doma.doma_id)]
 
@@ -266,8 +270,10 @@ def documents():
             , 'content': d.docu_content
             , 'format': None if d.docu_stfo_id is None else Storageformat().getbyid(d.docu_stfo_id).stfo_name
             , 'parent': None if d.docu_docu_id is None else anker(Modelelemtype.DOCU, d.docu_docu_id)
-            ,'references': {'entities': [anker(m.mode_type, m.mode_id) for m in d.getrefmodes(pmelttype=Modelelemtype.ENTI)]
-                                ,'attributes': [anker(m.mode_type, m.mode_id) for m in d.getrefmodes(pmelttype=Modelelemtype.ATTR)]
+            ,'referencecnt': len(d.getrefmodes())
+            , 'references': {
+                            'entities': [anker(m.mode_type, m.mode_id) for m in d.getrefmodes(pmelttype=Modelelemtype.ENTI)]
+                            ,'attributes': [anker(m.mode_type, m.mode_id) for m in d.getrefmodes(pmelttype=Modelelemtype.ATTR)]
                                 ,'domains': [anker(m.mode_type, m.mode_id) for m in d.getrefmodes(pmelttype=Modelelemtype.DOMA)]
                                 ,'systems': [anker(m.mode_type, m.mode_id) for m in d.getrefmodes(pmelttype=Modelelemtype.INTF)]
                                 ,'tables': [anker(m.mode_type, m.mode_id) for m in d.getrefmodes(pmelttype=Modelelemtype.TABL)]
@@ -315,6 +321,90 @@ def relarep(prelarep):
                            for l in prelarep.getlinesegments()}
             }
 
+def defarcs(parc,pdiagid):
+    arc = {}
+    arcselem = parc.getarcselem(pdiagid=pdiagid)
+    enti=Elementrep().select(pwhere="""eler_mode_id={} and eler_diag_id = {} and eler_index = 0""".format(parc.arcs_enti_id,pdiagid))
+    enti = enti[0]
+
+    pointdistance = 20
+    arclng = 10
+    predistance = 10
+    entiheight,entiwidth = enti.eler_height, enti.eler_width
+    enticenterx,enticentery = enti.eler_position_x + (entiwidth / 2),enti.eler_position_y + (entiheight / 2)
+    arcstartx,arcstarty = enti.eler_position_x-pointdistance, enti.eler_position_y-pointdistance
+    arcwidth,archeight = entiwidth + (2 * (pointdistance - arclng)),  entiheight + (2 * (pointdistance - arclng))
+
+    circles=[]
+    calcwinkel = lambda ey, sy, ex, sx: math.atan2(ey - sy, ex - sx)
+    for ae in arcselem:
+        relr_id, startx, starty, endx, endy, enti_id, enti_name, angle = ae
+        winkel = calcwinkel(endy, starty,endy, startx)
+        p4 = math.pi / 4
+        if winkel >= -p4 and winkel < p4: q,qwinkel=1,0
+        elif winkel >= p4 and winkel < 3*p4: q,qwinkel=2,p4
+        elif winkel >= 3*p4 and winkel < 5*p4: q,qwinkel=3,2*p4
+        else: q,qwinkel=4,-p4
+        #fi
+        sortwinkel = calcwinkel(starty, enticentery, startx, enticenterx)
+        """print(ae, winkel / math.pi * 180
+              ,ae[1] - arcstartx + round(punktabstand * math.sin(winkel),1),round(punktabstand * math.sin(winkel),1)
+              ,ae[2] - arcstarty + round(punktabstand * math.cos(winkel),1),round(punktabstand * math.cos(winkel),1)
+              ,ae[2],ae[4],ae[1],ae[3])"""
+        circles.append([startx - arcstartx + round(pointdistance * math.cos(winkel),1)
+                        ,starty - arcstarty  + round(pointdistance * math.sin(winkel),1)
+                        ,winkel,sortwinkel,q
+                        ])
+    #for
+    # circles sortieren, damit Pfad des arc
+    #    minimal wird und nicht springt: Winkel zum Start von der Mitte der Entität aus
+    circles.sort(key=lambda elem: elem[3])
+    arc['circles']= [(c[0],c[1]) for c in circles]
+    ############
+    xfactor = {1:[0,-1],2:[1,1],3:[0,1],4:[-1,-1]}
+    yfactor = {1:[-1,-1],2:[0,-1],3:[1,1],4:[0,1]}
+    currentq = None
+    arcline = {}
+    for idx,c in enumerate(circles):
+        if currentq is None:
+            """1. arc beziehung"""
+            currentq = c[4]
+            mx = c[0] + (predistance * xfactor[currentq][0]) + (arclng * xfactor[currentq][1])
+            my = c[1] + (predistance * yfactor[currentq][0]) + (arclng * yfactor[currentq][1])
+            arcline['start'] = (mx,my)
+            arcline ['startcurve'] = (arclng * -yfactor[currentq][0],arclng * xfactor[currentq][0]
+                                    ,arclng * -xfactor[currentq][1],arclng * -yfactor[currentq][1])
+        else:
+            qanz = (c[4] - currentq + 5) % 5-1
+            for q in range(currentq,currentq + qanz ):
+                qm = q if q < 5 else  q % 5 + 1
+
+                currentq = qm
+                """ neuer Quadrant, zeichne arc um ecke q4->q1, 4->2, 4->3, 1->2, 1->3 1->4, 2->3 2->4 2->1"""
+                """Linie ab aktuellem Punkt bis ans Ende der Entität"""
+                x2factor = {1: [1,2,1,1], 2: [0,1,1,2], 3: [0,0,0,1], 4: [1,1,0,0]}
+                arcline['goto']= (x2factor[currentq][0]*arcwidth + x2factor[currentq][1]*arclng
+                                        ,x2factor[currentq][2]*archeight + x2factor[currentq][3]*arclng)
+
+                """Bogen um die Ecke"""
+                arcline['cornercurve']  =(arclng * -xfactor[currentq][0], arclng * -yfactor[currentq][0]
+                                          , arclng * yfactor[currentq][1], arclng * -xfactor[currentq][1])
+            #for
+        #fi Beziehungen im gleichen Quadranten kann ich vergessen, ausser es ist die letzte (siehe nächsten Abschnitt)
+        if idx == len(circles) - 1:
+            currentq = c[4]
+            """letzte Beziehung des Arc 
+               Linie vom aktuellen arc-Ende bis zum Punkt + vorhalt der letzten Beziehung"""
+            arcline['endpoint'] = (round(c[0] + (predistance * -xfactor[currentq][0]),1)
+                                        ,round(c[1] + (predistance * -yfactor[currentq][0])),1)
+            """ Abschlussbogen"""
+            arcline['closingcurve'] = (arclng * -xfactor[currentq][0],arclng * -yfactor[currentq][0]
+                                            ,arclng * yfactor[currentq][1],arclng * -xfactor[currentq][1])
+        #fi
+    #for
+    arc['line'] = arcline
+    return arc
+
 def diagrams():
     diags = {anker(Modelelemtype.DIAG, d.diag_id):
         {
@@ -348,6 +438,9 @@ def diagrams():
                            }
             , 'relationships': {anker(Modelelemtype.RELA, rr.relr_mode_id): relarep(rr)
                                 for rr in Relationrep.select(pwhere="relr_diag_id = {}".format(d.diag_id))
+                                }
+            , 'arcs': {anker(Modelelemtype.ARCS, ar.arcs_id): defarcs(parc=ar,pdiagid=d.diag_id)
+                                        for ar in Arc.getdiagarcs(pdiagid=d.diag_id)
                                 }
             , 'refindocuments': [anker(Modelelemtype.DOCU, d[0]) for d in Document.getrefdoculist(pid=d.diag_id)]
         }
@@ -385,8 +478,13 @@ def columns():
             , 'dm': c.scha_dm
         , 'attributes-mapped': [anker(Modelelemtype.ATTR, a.attr_id) for a in
                              AttrTransf.getattrlist(pcoluid=c.scha_id)]
-
-        , 'sourceref': {s: Externalref.getsrcid(psrcname=s, pmodeid=c.scha_id)
+        , 'userdefprop': {
+            th[0]: {gr[1]: {u.udpr_name: Userdefpropvalue.udpvalue(pudprid=u.udpr_id, pmodeid=c.scha_id)
+                            for u in Userdefprop.getudps(ptheme=th[0], pgroup=gr[1], pmeltname=Modelelemtype.COLU)}
+                    for gr in Userdefprop.grouplist(pudptheme=th[0], pmelttype=Modelelemtype.COLU)}
+            for th in Userdefprop.themelist(pmelttype=Modelelemtype.COLU)
+        }
+            , 'sourceref': {s: Externalref.getsrcid(psrcname=s, pmodeid=c.scha_id)
                         for s in Externalref.getsources()}
         , 'refindocuments': [anker(Modelelemtype.DOCU, d[0]) for d in Document.getrefdoculist(pid=c.scha_id)]
             }
@@ -405,7 +503,14 @@ def tables():
                 , 'dc': t.tabl_dc
                 , 'um': t.tabl_um
                 , 'dm': t.tabl_dm
-                ,'entitiesmapped': [anker(Modelelemtype.ENTI, e.enti_id) for e in
+                 ,'columns':[anker(Modelelemtype.COLU, c.scha_id) for c in t.getcolumns()]
+                , 'userdefprop': {
+                    th[0]: {gr[1]: {u.udpr_name: Userdefpropvalue.udpvalue(pudprid=u.udpr_id, pmodeid=t.tabl_id)
+                                  for u in Userdefprop.getudps(ptheme=th[0], pgroup=gr[1], pmeltname=Modelelemtype.TABL)}
+                           for gr in Userdefprop.grouplist(pudptheme=th[0], pmelttype=Modelelemtype.TABL)}
+                    for th in Userdefprop.themelist(pmelttype=Modelelemtype.TABL)
+                }
+                    ,'entitiesmapped': [anker(Modelelemtype.ENTI, e.enti_id) for e in
                              TablEntiMap.getentilist(ptablid=t.tabl_id)]
               , 'sourceref': {s: Externalref.getsrcid(psrcname=s, pmodeid=t.tabl_id)
                             for s in Externalref.getsources()}

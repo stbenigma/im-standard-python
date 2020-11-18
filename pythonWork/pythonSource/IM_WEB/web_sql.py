@@ -169,25 +169,3 @@ def liesarcs(pdiagid):
     """.format(pdiagid))
     return data
 #liesarcs
-def liesarcselem(pdiagid,parcsid):
-    data = dbDML.select("""with lseg as (select linesegments.*
-               ,row_number() over (PARTITION BY lise_relr_id ORDER BY lise_seq ASC) up
-               ,row_number() over (PARTITION BY lise_relr_id ORDER BY lise_seq desc) down
-           from linesegments)
-        select relr_id,lsegstart.lise_x startx,lsegstart.lise_y starty
-             ,lsegend.lise_x endx,lsegend.lise_y endy
-             ,evon.enti_id,evon.enti_name,ezu.enti_id,ezu.enti_name
-             ,case when lsegstart.up = 1 then lsegstart.lise_angel else lsegend.lise_angel  end winkel
-        from arcs 
-        join entities earc on earc.enti_id =arcs_enti_id
-        join relations on rela_arcs_id_from = arcs_id or rela_arcs_id_to = arcs_id
-        join relationreps on relr_mode_id = rela_id
-        join lseg lsegstart        on relr_id = lsegstart.lise_relr_id
-                            and lsegstart.up = 1 
-        join lseg lsegend on relr_id = lsegend.lise_relr_id
-                            and lsegend.up = 2   
-    where relr_diag_id = {}
-    and arcs_id = {}
-    """.format(pdiagid,parcsid))
-    return data
-#liesarcselem
