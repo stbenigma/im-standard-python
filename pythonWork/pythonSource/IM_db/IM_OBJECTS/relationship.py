@@ -43,14 +43,18 @@ class Arc(Baseobject):
                  ,lsegend.lise_x endx,lsegend.lise_y endy
                  ,earc.enti_id,earc.enti_name
                  ,case when lsegstart.up = 1 then lsegstart.lise_angle else lsegend.lise_angle  end angle
-            from arcs 
+            from arcs
             join entities earc on earc.enti_id =arcs_enti_id
             join relations on rela_arcs_id_from = arcs_id or rela_arcs_id_to = arcs_id
             join relationreps on relr_mode_id = rela_id
             join lseg lsegstart        on relr_id = lsegstart.lise_relr_id
-                                and lsegstart.up = 1 
-            join lseg lsegend on relr_id = lsegend.lise_relr_id
-                                and lsegend.up = 2   
+                                and ((lsegstart.up = 1 and RELA_ARCS_ID_from = arcs_id)
+                                    or (lsegstart.down = 1 and RELA_ARCS_ID_to = arcs_id)
+                                    )
+            left join lseg lsegend on relr_id = lsegend.lise_relr_id
+                                and ((lsegend.up = lsegstart.up + 1 and RELA_ARCS_ID_from = arcs_id)
+                                    or (lsegend.down = lsegstart.down + 1 and RELA_ARCS_ID_to = arcs_id)
+                                    )
         where relr_diag_id = {}
         and arcs_id = {}
         """.format(pdiagid, self.arcs_id))

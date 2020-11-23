@@ -1,7 +1,16 @@
 from IM_HTML import printHTML
 import web_sql
 import math
-from WEB_OBJECTS import WebDiagram,WebEntity
+from parameters import nvl
+from WEB_OBJECTS import WebDiagram
+from IM_OBJECTS import Sprache
+
+LEGENDWIDTH: int = 363
+LEGENDHEIGHT: int = 128
+DEFAULT_LINEWIDTH: int = 1
+ICONSIZE: int = 40
+FONTPIXEL: int = 5
+
 
 def printlegend(pdata,pwidth,pheigh,px,py):
 
@@ -79,11 +88,12 @@ def printtext(px, py, ptext, pfillcolor, pfontsize, pstandalone=False):
     </text>
     """
     if pstandalone: printHTML.fhtml.write("<g >")
-    printHTML.fhtml.write(showtext.format(px, py,pfillcolor, pfontsize, ptext))
+    printHTML.fhtml.write(showtext.format(px, py,pfillcolor,pfontsize, ptext))
     if pstandalone: printHTML.fhtml.write("</g>\n")
 #printtext
 
 calcwinkel = lambda ey,sy,ex,sx : math.atan2(ey - sy, ex - sx)
+
 def calccrowfoot(pstartx, pstarty, pendx, pendy):
     fusslaenge = 9
     fussseite = math.sqrt((fusslaenge ** 2) / 2)
@@ -108,23 +118,22 @@ def printrela(plist):
             """
     relaend = """</g>
                """
-    for line in plist:
+    for line in plist.values():
         """lise_x,lise_y,lise_konnektor,lise_linientyp"""
-        points = web_sql.pointlist(line[12])
+        points = line['linesegments']
         printHTML.fhtml.write(relastart)
-        for idx,point in enumerate(points):
+        for idx,point in points.items():
             if idx == len(points)-1: break #letzter Punkt ist endx/y
-            startx=point[0]
-            starty=point[1]
-            endx=points[idx+1][0]
-            endy=points[idx+1][1]
+            startx=point['x']
+            starty=point['y']
+            endx=points[idx+1]['x']
+            endy=points[idx+1]['y']
             opacity = 1.0
-            linewidth = WebDiagram.DEFAULT_LINEWIDTH
-            startconnector = (point[2] == 'M')
-            endconnector = (points[idx+1][2] == 'M')
-            dash = "8,8" if point[3]=='DASHED' else 'none'
+            linewidth = DEFAULT_LINEWIDTH
+            startconnector = ((line['start_connector'] == 'M') and (idx == 0))
+            endconnector = ((line['end_connector'] == 'M') and (idx == len(points)-2))
+            dash = "8,8" if point['linetype']=='DASHED' else 'none'
             printHTML.fhtml.write(relaline.format(opacity,linewidth,dash,startx,starty,endx,endy))
-
             if startconnector or endconnector:
                 """zeichne die Krähenfüsse"""
                 xoffset, yoffset, xl, yl = calccrowfoot(pstartx=startx, pstarty=starty, pendx=endx, pendy=endy)
@@ -149,7 +158,27 @@ def printrela(plist):
     #for
 #printrela
 
-def printtexte(plist):
+def textpos(pangle,px,py,ptextlen,pstart):
+    if ((pstart and (pangle >= 0) and (pangle < math.pi / 2)) 
+       or (not pstart and (pangle >= math.pi / 2))):
+        x = px + 5
+        y = py - 5
+    elif ((pstart and (pangle >= math.pi / 2) and (pangle < math.pi))
+         or(not pstart and (pangle < 0))):
+        x = px + 5
+        y = py + 10
+    elif (pstart and (pangle >= math.pi)
+         or (not pstart and (pangle >= 0) and (pangle < math.pi / 2))):
+        x = px - 5 - ptextlen
+        y = py + 10
+    else:
+        x = px + 5
+        y = py - 5
+    # fi
+    return (x,y)
+#textpos
+
+def printtexte(plist,plang):
     """beda_starttext_x,beda_starttext_y
        ,beda_starttext_breite,beda_starttext_hoehe
         ,beda_endtext_x,beda_endtext_y
@@ -159,27 +188,61 @@ def printtexte(plist):
        ,sto.sptx_text toname
         ,beda_id
        ,beda_liniefarbe,beda_linienbreite,beda_liniedeckkraft"""
-    for t in plist:
-        startx = t[0]
-        starty=t[1]
-        starttext=t[10]
-        fontcolor = t[8]
-        endx=t[4]
-        endy=t[5]
-        endtext=t[11]
-        printtext(px=startx, py=starty, ptext=starttext
-                  , pfillcolor=hex2rbg(fontcolor), pfontsize=10  #vorläufig mal fix verdrahtet e[9]
+    for relaanker,relaelem in plist.items():
+        startx, starty = relaelem['starttext_x'],relaelem['starttext_y']
+        starttextw,starttexth=nvl(relaelem['starttext_width'],0),nvl(relaelem['starttext_height'],0)
+        starttext=getrelation(relaanker)['from-to']['assoc'][plang]
+        fontcolor = relaelem['fontcolor']
+        fontsize = relaelem['fontsize']
+        endx,endy =relaelem['endtext_x'],relaelem['endtext_y']
+        endtextw,endtexth=nvl(relaelem['endtext_width'],0),nvl(relaelem['endtext_height'],0)
+        endtext=getrelation(relaanker)['to-from']['assoc'][plang]
+
+        linesegs = relaelem['linesegments']
+        if len(linesegs)> 0:
+            linestartx,linestarty,linestartangle = linesegs[0]['x'],linesegs[0]['y'],linesegs[0]['angle']
+            lineendx,lineendy,lineendangle = linesegs[len(linesegs)-1]['x'],linesegs[len(linesegs)-1]['y'],linesegs[len(linesegs)-2]['angle']
+
+        textlength = lambda s: len(nvl(s)) * FONTPIXEL
+        if starttext is not None:
+            if ((((linestartangle >= math.pi / 2) and (linestartangle < math.pi )) or (linestartangle < 0))):
+                s = starttext.split(' ')
+            else:
+                s =[starttext]
+            posx, posy = textpos(pangle=linestartangle, px=linestartx, py=linestarty, ptextlen=textlength(starttext),
+                                 pstart=True)
+            for t in s:
+                printtext(px=posx, py=posy, ptext=t
+                  , pfillcolor=hex2rbg(fontcolor), pfontsize=fontsize
                   ,pstandalone=True)
-        printtext(px=endx, py=endy, ptext=endtext
-                  , pfillcolor=hex2rbg(fontcolor), pfontsize=10  #vorläufig mal fix verdrahtet e[9]
-                  ,pstandalone=True)
+                posy += 12 
+                
+        if endtext is not None:
+            if ((((lineendangle >= math.pi / 2) and (lineendangle < math.pi )) or (lineendangle < 0))):
+                s = endtext.split(' ')
+            else:
+                s =[endtext]
+            posx,posy = textpos(pangle=lineendangle,px=lineendx,py=lineendy,ptextlen=textlength(endtext),pstart=False)
+            if lineendangle > 0:
+                posy -= 12 *(len(s)-1)
+            for t in s:
+                printtext(px=posx, py=posy, ptext=t
+                          , pfillcolor=hex2rbg(fontcolor), pfontsize=fontsize
+                          , pstandalone=True)
+                posy += 12 
     #for
 #printtexte
 
-def print1arc(pdiagid,parcid,pentipos):
+def print1arc(parc):
 
     startarcstr = """
         <g fill="none" stroke="rgb(0,0,0)" transform="translate({},{})" >
+    """
+    circledraw = """
+        <g fill="none" stroke="rgb(0,0,0)" transform="translate({},{})" >
+        <circle stroke-dasharray="none" cx="{}" cy="{}"
+            stroke="rgb(0,0,0)" r="2" fill="rgb(0,0,0)" stroke-width="1" />
+        </g>
     """
     circle = """<circle stroke-dasharray="none" cx="{}" cy="{}"
             stroke="rgb(0,0,0)" r="2" fill="rgb(0,0,0)" stroke-width="1" />
@@ -188,6 +251,21 @@ def print1arc(pdiagid,parcid,pentipos):
         <path d=" {}"/>
         </g>
     """
+    printHTML.fhtml.write(startarcstr.format(0,0))
+    for c in parc['circles']:
+        #print(circledraw.format(c[0],c[1],c[0],c[1]))
+        printHTML.fhtml.write(circle.format(c[0],c[1]))
+    # for
+    arcline = ''
+    for idx,line in enumerate(parc['line']):
+        if idx == 0:
+            arcline = "M{} {}".format(line['x'],line['y'])
+        else:
+            arcline += ' L{} {} '.format(line['x'],line['y'])
+        #fi
+    #for
+    printHTML.fhtml.write(endarcstr.format(arcline))
+    return
     pointdistance = 20
     arclng = 10
     predistance = 10
@@ -195,37 +273,8 @@ def print1arc(pdiagid,parcid,pentipos):
     entiheight,entiwidth = pentipos[2],pentipos[3]
     enticenterx,enticentery = pentipos[0] + (entiwidth / 2),pentipos[1] + (entiheight / 2)
     arcwidth,archeight = entiwidth + (2 * (pointdistance - arclng)),  entiheight + (2 * (pointdistance - arclng))
-    #print ("entiinfo",arcstartx,arcstarty,enticenterx,enticentery,arcwidth,archeight)
     printHTML.fhtml.write(startarcstr.format(arcstartx,arcstarty))
-    """select beda_id,arcstartx,arcstarty, endx,endy"""
-    arcselem = web_sql.liesarcselem(pdiagid=pdiagid, parcsid=parcid)
-    circles=[]
-    for ae in arcselem:
-        #print (ae[6], ae[8],(ae[1],ae[2]),(ae[3],ae[4]),sep=', ')
-        winkel = calcwinkel(ae[4], ae[2],ae[3], ae[1])
-        p4 = math.pi / 4
-        if winkel >= -p4 and winkel < p4: q,qwinkel=1,0
-        elif winkel >= p4 and winkel < 3*p4: q,qwinkel=2,p4
-        elif winkel >= 3*p4 and winkel < 5*p4: q,qwinkel=3,2*p4
-        else: q,qwinkel=4,-p4
-        #fi
-        sortwinkel = calcwinkel(ae[2], enticentery, ae[1], enticenterx)
-        #print('gelesen {}  gerechnet {}'.format(ae[9],winkel),ae[1],ae[2], sortwinkel,sep=', ')
-        """print(ae, winkel / math.pi * 180
-              ,ae[1] - arcstartx + round(punktabstand * math.sin(winkel),1),round(punktabstand * math.sin(winkel),1)
-              ,ae[2] - arcstarty + round(punktabstand * math.cos(winkel),1),round(punktabstand * math.cos(winkel),1)
-              ,ae[2],ae[4],ae[1],ae[3])"""
-        circles.append([ae[1] - arcstartx + round(pointdistance * math.cos(winkel),1)
-                        ,ae[2] - arcstarty  + round(pointdistance * math.sin(winkel),1)
-                        ,winkel,sortwinkel,q
-                        ])
-    #for
-    # circles sortieren, damit Pfad des arc
-    #    minimal wird und nicht springt: Winkel zum Start von der Mitte der Entität aus
-    circles.sort(key=lambda elem: elem[3])
-    for c in circles:
-        printHTML.fhtml.write(circle.format(c[0],c[1]))
-    # for
+
     xfactor = {1:[0,-1],2:[1,1],3:[0,1],4:[-1,-1]}
     yfactor = {1:[-1,-1],2:[0,-1],3:[1,1],4:[0,1]}
     currentq = None
@@ -249,8 +298,6 @@ def print1arc(pdiagid,parcid,pentipos):
                 """ neuer Quadrant, zeichne arc um ecke q4->q1, 4->2, 4->3, 1->2, 1->3 1->4, 2->3 2->4 2->1"""
                 """Linie ab aktuellem Punkt bis ans Ende der Entität"""
                 x2factor = {1: [1,2,1,1], 2: [0,1,1,2], 3: [0,0,0,1], 4: [1,1,0,0]}
-                if parcid == 10:
-                    print(parcid)
                 arcline += ' L{} {} '.format(x2factor[currentq][0]*arcwidth + x2factor[currentq][1]*arclng
                                         ,x2factor[currentq][2]*archeight + x2factor[currentq][3]*arclng)
 
@@ -273,17 +320,18 @@ def print1arc(pdiagid,parcid,pentipos):
     printHTML.fhtml.write(endarcstr.format(arcline))
 #print1arc
 
-def printarcs(pdiagid):
-    return
+def printarcs(plist):
     """select arcs_id,beda_id"""
-    arcs = web_sql.liesarcs(pdiagid=pdiagid)
-    for arc in arcs:
-        #print (arc)
-        print1arc(pdiagid=pdiagid,parcid=arc[0],pentipos=[arc[4],arc[5],arc[6],arc[7]])
+    for arc in plist.values():
+        print1arc(parc=arc)
     #for
 #printarcs
 
-def printelements(pwebdiag,plang):
+getentity = lambda e:printHTML.model['entities'][e]
+getattribute = lambda a:printHTML.model['attributes'][a]
+getrelation = lambda r:printHTML.model['relations'][r]
+
+def printelements(pdiag, pdiaganker,plang):
     entistart ="""<g  fill="{}" stroke="{}" fill-opacity="{}" stroke-opacity="{}" 
         transform="translate({},{})" >
 <rect x="0" y="0" width="{}" height="{}" rx="10" ry="10" /><a href="#{}" >
@@ -293,41 +341,36 @@ def printelements(pwebdiag,plang):
     entiende="""</g>"""
     imagehtml=""""<image href = "image/{}.png" width = "{}px" height = "{}px" class ="entity-image" x="{}px" y="{}px"></image>""".format('{}',WebDiagram.ICONSIZE,WebDiagram.ICONSIZE,'{}','{}')
 
-    for wenti in WebEntity.diaglist(pdiagid=pwebdiag.getid(),plang=plang):
-        for eler in wenti.diagreps[pwebdiag.getid()]:
-            printHTML.fhtml.write(entistart.format(hex2rbg(eler.eler_color), hex2rbg(eler.eler_margincolor)
-                                               , round(eler.eler_opacity/100,2), round(eler.eler_marginopacity/100,2)
-                                               , eler.eler_position_x, eler.eler_position_y, eler.eler_width, eler.eler_height
-                                               , wenti.webanker().anker()
-                                               , pwebdiag.webanker().anker()+ '-' + wenti.webanker().anker()
-                                               , hex2rbg(eler.eler_fontcolor)
-                                               , 12  #vorläufig mal fix verdrahtet e[9], font size
-                                               , wenti.getname(plang=plang) + ('' if (eler.eler_index==0) else':'+str(eler.eler_index))))
+    for eler in pdiag['elements']['entity']:
+        printHTML.fhtml.write(entistart.format(hex2rbg(eler['color']), hex2rbg(eler['margincolor'])
+                                                   , round(eler['opacity']/100,2), round(eler['marginopacity']/100,2)
+                                                   , eler['pos_x'], eler['pos_y'], eler['width'], eler['height']
+                                                   , eler['element']
+                                                   , pdiaganker + '-' + eler['element']
+                                                   , hex2rbg(eler['fontcolor'])
+                                                   , 12  #vorläufig mal fix verdrahtet e[9], font size
+                                                   ,getentity(eler['element'])['name'][plang] + ('' if (eler['index']==0) else':'+str(eler['index']))))
 
-        # attrs= web_sql.diagattrlist(plang=plang, pdiagid=pdiagid)
-        # #  attr_id, attr_displ_name, attr_is_mandatory ,attr_is_descriptive, schluessel, mode_id
-        # for a in attrs:
-        #     #printtext(px=x1, py=y, ptext='*' if a[5] == 'TRUE' else 'o'
-        #     #, pfillcolor=hex2rbg(e[10]), pfontsize=10  #vorläufig mal fix verdrahtet e[9]
-        #     #)
-        #     ax,ay=a[6],a[7]
-        #     aname = a[1]
-        #     printtext(px=ax-ex, py=ay-ey, ptext=printHTML.href(ref=web_sql.attrAnker(a[0]), anz=a[1])
-        #               , pfillcolor=hex2rbg(e[10]), pfontsize=10  #vorläufig mal fix verdrahtet e[9]
-        #               )
-        # #for
-            printHTML.fhtml.write(entiende)
-            printHTML.fhtml.write(imagehtml.format(wenti.dbobject().enti_name.lower(),eler.eler_position_x+eler.eler_width-WebDiagram.ICONSIZE/2,
-                                                   eler.eler_position_y - WebDiagram.ICONSIZE/2))
-
+        #  attr_id, attr_displ_name, attr_is_mandatory ,attr_is_descriptive, schluessel, mode_id
+        for attr in pdiag['elements']['attribute']:
+            #printtext(px=x1, py=y, ptext='*' if a[5] == 'TRUE' else 'o'
+            #, pfillcolor=hex2rbg(e[10]), pfontsize=10  #vorläufig mal fix verdrahtet e[9]
+            #)
+            x = attr['pos_x'] - eler['pos_x']
+            y = attr['pos_y'] - eler['pos_y']
+            aelem = getattribute(attr['element'])
+            printtext(px=x, py=y, ptext=printHTML.href(ref=attr['element'], anz=aelem['name'][plang])
+                      , pfillcolor=hex2rbg(attr['fontcolor']), pfontsize=attr['fontsize']
+                      )
         #for
+        printHTML.fhtml.write(entiende)
+        printHTML.fhtml.write(imagehtml.format(getentity(eler['element'])['name'][Sprache.getdefaultlang().lang_iso_code2].lower(),eler['pos_x'] +eler['width']-ICONSIZE/2,
+                                                   eler['pos_y'] - ICONSIZE/2))
+
     #for
-    return
-    diagrela = web_sql.diagrelalist(pdiagid=pdiagid, plang=plang)
-    printrela(plist=diagrela)
-    printtexte(plist=diagrela)
-    print ("printarcs disabled noch zu überprüfen mit")
-    #printarcs(pdiagid=pdiagid)
+    printrela(plist=pdiag['relationships'])
+    printtexte(plist=pdiag['relationships'],plang=plang)
+    printarcs(plist=pdiag['arcs'])
 #printelements
 
 def printcontentdiag(plist, plang, ptitel):
@@ -366,21 +409,21 @@ def printcontentdiag(plist, plang, ptitel):
                             <table class="table borderless">
                                 <tbody>
 """
-    for dia in plist:
+    for diaanker,diaelem in plist.items():
         #diag_name,diag_id,diag_legendx,diag_legendy,breite,hoehe
-        printHTML.fhtml.write (diagramhead.format(dia.webanker().anker(),dia.webanker().anker(), dia.getname(plang=plang)
-                                                  , dia.dbobject().diagwidth(), dia.dbobject().diagheight()))
+        printHTML.fhtml.write (diagramhead.format(diaanker,diaanker, diaelem['name']
+                                                  , diaelem['width'], diaelem['height']))
                                 #wäre clippath,legendwidth,legendhigh))
 
-        if (dia.haslegend()):
+        if ('legend' in diaelem.keys()):
             #es hat eine Legende
-            printlegend(pdata=[dia.getname(), dia.dbobject().diag_uc, dia.dbobject().diag_dc,''
-                , dia.dbobject().diag_um, ptitel, 'Logical']
-                    ,pwidth=WebDiagram.LEGENDWIDTH,pheigh=WebDiagram.LEGENDHEIGHT
-                    ,px=dia.dbobject().diag_legendx,py=dia.dbobject().diag_legendy)
+            printlegend(pdata=[diaelem['name'], nvl(diaelem['uc']), nvl(diaelem['dc']),nvl(diaelem['dm'])
+                , nvl(diaelem['um']), ptitel, 'Logical']
+                    ,pwidth=LEGENDWIDTH,pheigh=LEGENDHEIGHT
+                    ,px=diaelem['legend']['x'],py=diaelem['legend']['y'])
         #fi
 
-        printelements(pwebdiag=dia,plang=plang)
+        printelements(pdiag=diaelem, pdiaganker=diaanker,plang=plang)
         printHTML.fhtml.write(diagramfoot)
     #for
 #printcontendiag

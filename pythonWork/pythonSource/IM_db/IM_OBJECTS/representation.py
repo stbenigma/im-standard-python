@@ -1,7 +1,9 @@
 from datetime import date
 from .relationship import Relation
 from .baseobject import Baseobject
-import dbDML
+from .modelelement import Modelelement,Modelelemtype
+from .entity import Entity
+from .attribute import Attribute
 
 
 class Elementrep(Baseobject):
@@ -61,6 +63,17 @@ CREATE TABLE elementreps(
               ON DELETE CASCADE
 )
         """)
+
+    """what is displayed on bottom (0) and what in higer positions"""
+    def displorder(self):
+        elem = Modelelement.getelement(self.eler_mode_id)
+        if isinstance(elem,Entity):
+            return elem.getsubtypelevel()
+        elif isinstance(elem,Attribute):
+            return elem.attr_displ_seq
+        else: return 0
+    #displorder
+
 
     @staticmethod
     def delete():

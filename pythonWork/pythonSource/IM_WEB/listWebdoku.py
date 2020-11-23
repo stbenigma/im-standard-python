@@ -164,7 +164,7 @@ def printcontent(pfirma,ptitel):
     printHTML.printcontentdoma()
     printHTML.printcontentdoku()
     printHTML.printcontentmapping(ptheme=parameters.odmUDPMappingFileName())
-    printdiagHTML.printcontentdiag(plist=WebDiagram.contentlist(), plang=Sprachtext.reportLang(), ptitel=ptitel)
+    printdiagHTML.printcontentdiag(plist=printHTML.model['diagrams'], plang=Sprachtext.reportLang(), ptitel=ptitel)
     printHTML.printcontentfoot()
 #printcontent
 

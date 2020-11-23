@@ -16,20 +16,21 @@ def getJSONfile(pfilename):
     return model
 
 
-def elemrep(elers):
-    if elers is None: return {}
-    return {'index': elers.eler_index
-        , 'pos_x': elers.eler_position_x
-        , 'pos_y': elers.eler_position_y
-        , 'width': elers.eler_width
-        , 'height': elers.eler_height
-        , 'opacity': elers.eler_opacity
-        , 'color': elers.eler_color
-        , 'marginwidth': elers.eler_marginwidth
-        , 'marginopacity': elers.eler_marginopacity
-        , 'margincolor': elers.eler_margincolor
-        , 'fontsize': elers.eler_fontsize
-        , 'fontcolor': elers.eler_fontcolor
+def elemrep(peler,panker):
+    if peler is None: return {}
+    return {'element':panker
+        , 'index': peler.eler_index
+        , 'pos_x': peler.eler_position_x
+        , 'pos_y': peler.eler_position_y
+        , 'width': peler.eler_width
+        , 'height': peler.eler_height
+        , 'opacity': peler.eler_opacity
+        , 'color': peler.eler_color
+        , 'marginwidth': peler.eler_marginwidth
+        , 'marginopacity': peler.eler_marginopacity
+        , 'margincolor': peler.eler_margincolor
+        , 'fontsize': peler.eler_fontsize
+        , 'fontcolor': peler.eler_fontcolor
             }
 
 
@@ -307,7 +308,7 @@ def relarep(prelarep):
         , 'endtext_y': prelarep.relr_endtext_y
         , 'endtext_width': prelarep.relr_endtext_width
         , 'endtext_height': prelarep.relr_endtext_height
-        , 'fontcolor': prelarep.relr_fontsize
+        , 'fontcolor': nvl(prelarep.relr_fontcolor,'000000')
         , 'fontsize': prelarep.relr_fontsize
         , 'uc': prelarep.relr_uc
         , 'dc': prelarep.relr_dc
@@ -315,7 +316,7 @@ def relarep(prelarep):
         , 'dm': prelarep.relr_dm
         , 'linesegments': {l.lise_seq: {'x': l.lise_x
             , 'y': l.lise_y
-            , 'linetpye': l.lise_linetype
+            , 'linetype': l.lise_linetype
             , 'angle': l.lise_angle
                                         }
                            for l in prelarep.getlinesegments()}
@@ -326,84 +327,93 @@ def defarcs(parc,pdiagid):
     arcselem = parc.getarcselem(pdiagid=pdiagid)
     enti=Elementrep().select(pwhere="""eler_mode_id={} and eler_diag_id = {} and eler_index = 0""".format(parc.arcs_enti_id,pdiagid))
     enti = enti[0]
-
-    pointdistance = 20
-    arclng = 10
-    predistance = 10
+    PONTDISTANCE = 20
+    ARCLNG = 10
+    PREDISTANCE = 10
     entiheight,entiwidth = enti.eler_height, enti.eler_width
     enticenterx,enticentery = enti.eler_position_x + (entiwidth / 2),enti.eler_position_y + (entiheight / 2)
-    arcstartx,arcstarty = enti.eler_position_x-pointdistance, enti.eler_position_y-pointdistance
-    arcwidth,archeight = entiwidth + (2 * (pointdistance - arclng)),  entiheight + (2 * (pointdistance - arclng))
+    entistartx,entistarty = enti.eler_position_x ,enti.eler_position_y
 
     circles=[]
     calcwinkel = lambda ey, sy, ex, sx: math.atan2(ey - sy, ex - sx)
     for ae in arcselem:
         relr_id, startx, starty, endx, endy, enti_id, enti_name, angle = ae
-        winkel = calcwinkel(endy, starty,endy, startx)
+        #print(startx,endx,starty,endy,endy - starty, endx - startx,math.atan2(endy - starty, endx - startx))
+        winkel = calcwinkel(endy, starty,endx, startx)
         p4 = math.pi / 4
-        if winkel >= -p4 and winkel < p4: q,qwinkel=1,0
-        elif winkel >= p4 and winkel < 3*p4: q,qwinkel=2,p4
-        elif winkel >= 3*p4 and winkel < 5*p4: q,qwinkel=3,2*p4
-        else: q,qwinkel=4,-p4
-        #fi
+        """side is left,up,right,down side of rectangle
+           Angle shows directrion of line passing through pint in thiw q"""
+        if (startx >= enticenterx + (entiwidth/2)): side,qwinkel='right',2*p4
+        elif (startx <= enticenterx - (entiwidth/2)): side,qwinkel='left',2*p4
+        elif (starty >= enticentery + (entiheight/2)): side,qwinkel='lower',0
+        elif (starty <= enticentery - (entiheight/2)): side,qwinkel='upper',0
         sortwinkel = calcwinkel(starty, enticentery, startx, enticenterx)
         """print(ae, winkel / math.pi * 180
               ,ae[1] - arcstartx + round(punktabstand * math.sin(winkel),1),round(punktabstand * math.sin(winkel),1)
               ,ae[2] - arcstarty + round(punktabstand * math.cos(winkel),1),round(punktabstand * math.cos(winkel),1)
               ,ae[2],ae[4],ae[1],ae[3])"""
-        circles.append([startx - arcstartx + round(pointdistance * math.cos(winkel),1)
-                        ,starty - arcstarty  + round(pointdistance * math.sin(winkel),1)
-                        ,winkel,sortwinkel,q
+        circles.append([startx + round(PONTDISTANCE * math.cos(winkel),1) #- arcstartx
+                        ,starty + round(PONTDISTANCE * math.sin(winkel),1) #- arcstarty
+                        ,qwinkel,sortwinkel,side
                         ])
     #for
-    # circles sortieren, damit Pfad des arc
-    #    minimal wird und nicht springt: Winkel zum Start von der Mitte der Entität aus
     circles.sort(key=lambda elem: elem[3])
-    arc['circles']= [(c[0],c[1]) for c in circles]
     ############
-    xfactor = {1:[0,-1],2:[1,1],3:[0,1],4:[-1,-1]}
-    yfactor = {1:[-1,-1],2:[0,-1],3:[1,1],4:[0,1]}
-    currentq = None
-    arcline = {}
+    arc['circles'] = [(c[0],c[1]) for c in circles]
+    xfactor = {'right':[0,-1],'upper':[-1,1],'left':[0,1],'lower':[1,-1]}
+    yfactor = {'right':[-1,-1],'upper':[0,-1],'left':[1,1],'lower':[0,1]}
+    currentside = None
+    arcline = []
+    arcpoint =lambda x,y,s :{'x':x,'y':y,'side':s}
+    prevside =lambda s:'lower' if s=='left' else 'left' if s =='upper'\
+                                else 'upper' if s == 'right' else 'left'
+    nextside =lambda s:'lower' if s=='right' else 'right' if s =='upper'\
+                                else 'upper' if s == 'left' else 'left'
     for idx,c in enumerate(circles):
-        if currentq is None:
-            """1. arc beziehung"""
-            currentq = c[4]
-            mx = c[0] + (predistance * xfactor[currentq][0]) + (arclng * xfactor[currentq][1])
-            my = c[1] + (predistance * yfactor[currentq][0]) + (arclng * yfactor[currentq][1])
-            arcline['start'] = (mx,my)
-            arcline ['startcurve'] = (arclng * -yfactor[currentq][0],arclng * xfactor[currentq][0]
-                                    ,arclng * -xfactor[currentq][1],arclng * -yfactor[currentq][1])
+        if currentside is None:
+            """1. arc point """
+            currentside = c[4]
+            lastx = c[0] + (PREDISTANCE * xfactor[currentside][0])
+            lasty = c[1] + (PREDISTANCE * yfactor[currentside][0])
+            if lastx == 980.2:
+                print(lastx,lasty)
+            arcline.append(arcpoint(lastx,lasty,currentside))
         else:
-            qanz = (c[4] - currentq + 5) % 5-1
-            for q in range(currentq,currentq + qanz ):
-                qm = q if q < 5 else  q % 5 + 1
+            #same side is skipped
+            while (currentside != c[4]):
+                """new side meaning corner point(s)"""
+                """line from current point to the other axis of new point"""
+                if currentside == 'left':
+                    newx = lastx
+                    newy = entistarty - PONTDISTANCE
+                elif currentside == 'upper':
+                    newx = entistartx + entiwidth + PONTDISTANCE
+                    newy = lasty
+                elif currentside == 'right':
+                    newx = lastx
+                    newy = entistarty + entiheight + PONTDISTANCE
+                else:
+                    newx = entistartx - PONTDISTANCE
+                    newy = lasty
+                #fi
+                arcline.append(arcpoint(newx,newy,currentside))
+                currentside = nextside(currentside)
+                lastx,lasty = newx,newy
 
-                currentq = qm
-                """ neuer Quadrant, zeichne arc um ecke q4->q1, 4->2, 4->3, 1->2, 1->3 1->4, 2->3 2->4 2->1"""
-                """Linie ab aktuellem Punkt bis ans Ende der Entität"""
-                x2factor = {1: [1,2,1,1], 2: [0,1,1,2], 3: [0,0,0,1], 4: [1,1,0,0]}
-                arcline['goto']= (x2factor[currentq][0]*arcwidth + x2factor[currentq][1]*arclng
-                                        ,x2factor[currentq][2]*archeight + x2factor[currentq][3]*arclng)
-
-                """Bogen um die Ecke"""
-                arcline['cornercurve']  =(arclng * -xfactor[currentq][0], arclng * -yfactor[currentq][0]
-                                          , arclng * yfactor[currentq][1], arclng * -xfactor[currentq][1])
-            #for
-        #fi Beziehungen im gleichen Quadranten kann ich vergessen, ausser es ist die letzte (siehe nächsten Abschnitt)
+        #fi
         if idx == len(circles) - 1:
-            currentq = c[4]
-            """letzte Beziehung des Arc 
+            currentside = c[4]
+            """lasat point of Arc 
                Linie vom aktuellen arc-Ende bis zum Punkt + vorhalt der letzten Beziehung"""
-            arcline['endpoint'] = (round(c[0] + (predistance * -xfactor[currentq][0]),1)
-                                        ,round(c[1] + (predistance * -yfactor[currentq][0])),1)
-            """ Abschlussbogen"""
-            arcline['closingcurve'] = (arclng * -xfactor[currentq][0],arclng * -yfactor[currentq][0]
-                                            ,arclng * yfactor[currentq][1],arclng * -xfactor[currentq][1])
+            arcline.append(arcpoint(round(c[0] + (PREDISTANCE * -xfactor[currentside][0]), 1)
+                                          ,round(c[1] + (PREDISTANCE * -yfactor[currentside][0]), 1)
+                                          ,currentside))
+
         #fi
     #for
     arc['line'] = arcline
     return arc
+#defarcs
 
 def diagrams():
     diags = {anker(Modelelemtype.DIAG, d.diag_id):
@@ -421,15 +431,14 @@ def diagrams():
             , 'um': d.diag_um
             , 'dm': d.diag_dm
             , 'elements': {mt.melt_name.lower():
-                               {anker(mt.melt_shortname, eler.eler_mode_id):
-                                    elemrep(Elementrep().getbydiagmode(pdiagid=d.diag_id, pmodeid=eler.eler_mode_id,
-                                                                       pidx=eler.eler_index))
-                                for eler in Elementrep().select(pwhere="""eler_diag_id = {} and eler_mode_id in
+                               [elemrep(peler=eler, panker=anker(mt.melt_shortname, eler.eler_mode_id))
+                                for eler in sorted(Elementrep().select(pwhere="""eler_diag_id = {} and eler_mode_id in
                                                                 (select mode_id
                                                                 from modelelement
                                                                 where mode_type ='{}')""".format(d.diag_id,
                                                                                                  mt.melt_shortname))
-                                }
+                                                   ,key=lambda e : e.displorder())
+                                ]
                            for mt in Modelelemtype.select(pwhere="""melt_id in (select medi_melt_id
                                                                     from melt_diats
                                                                     where melt_shortname != '{}'

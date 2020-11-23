@@ -286,11 +286,10 @@ def transferentity(penti, pdiagid, puc, pdc):
     hiddenattrs = elemtext.split(' ')
     hiddenattrs2 = []
     for e in hiddenattrs:
-        if e != "": hiddenattrs2.append(Attribute().getbyODMref(psrcid=e))
+        if e != "": hiddenattrs2.append(Attribute().getbyODMref(psrcid=e).attr_id)
     attrs = Attribute.select(pwhere="attr_enti_id = {}".format(enti.enti_id), porderby="attr_displ_seq")
     attrids = [a.attr_id for a in attrs]
     attrids = list(set(attrids) - set(hiddenattrs2))
-    # print (attrids,hiddenattrs2)
 
     layout = penti.find('bounds')
     defcol = defcolors['Entity']  # defaults zum Ergänzen

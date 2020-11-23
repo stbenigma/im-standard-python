@@ -32,7 +32,6 @@ class Entity(MultilangBaseobject):
         self._synonyms = None
         self._schluessel = None
         self._attributes = None
-        self.subtypelevel = 0
 
     @staticmethod
     def createtable():
