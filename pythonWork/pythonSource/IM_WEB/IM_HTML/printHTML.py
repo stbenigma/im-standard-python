@@ -1,6 +1,7 @@
 import os
 import re
 import shutil
+from distutils.dir_util import copy_tree
 
 from IM_DB import parameters
 from IM_OBJECTS import *
@@ -16,12 +17,17 @@ libSourceDirec: str = "";
 imagedirec: str = "";
 cssdirec: str = "";
 icondirec: str = "";
+jsdirec: str = "";
 htmlfilelist = {}
 model = {}
 
 """zum Zählen der lokalen Ziele für collapse"""
 barcounter: int = 0
 
+
+getentity = lambda e:model['entities'][e]
+getattribute = lambda a:model['attributes'][a]
+getrelation = lambda r:model['relations'][r]
 
 def newbarcounter():
     global barcounter
@@ -525,7 +531,7 @@ def printcontentend(plbc):
     fhtml.write(contentelementfoot.format(plbc, Sprachtext.transl('Mehr')))
 # printcontentend
 
-def printcontent(ptype, pname,panker, plbc, pdescr="", pmaster="", piconstr= ""):
+def printcontent(ptype, pname, panker, plbc, pdescr="", pmaster="", piconfilename=""):
     contentelementhead = """        <div class="entity" id="{}">
             <div class="describtion">
 				 <span> 
@@ -541,9 +547,9 @@ def printcontent(ptype, pname,panker, plbc, pdescr="", pmaster="", piconstr= "")
 #                 {}
 # """
     fhtml.write(contentelementhead.format(panker, ptype, html.escape(pname )
-                                          ,piconstr
+                                          , piconfilename
                                           , pmaster
-                                          , pdescr.replace('\n', '').replace('\r', '').replace("'",'&#39;') #"" if (pdescr == "") else "<p1>{}</p1>".format(pdescr)
+                                          , pdescr.replace('\n', '').replace('\r', '').replace("'",'&#39;')  #"" if (pdescr == "") else "<p1>{}</p1>".format(pdescr)
                                           , plbc))
 # printcontent
 
@@ -927,16 +933,15 @@ def entidiag(pwebenti):
     return diagstring
 # entidiag
 
-def icontag(pfilename, psize=WebDiagram.ICONSIZE):
-    fullfilename = "{}/{}.{}".format('image',pfilename,'png').lower()
+def iconfilename(pfilename):
+    lfilename = re.sub(r'[^a-zäöüñéàè_-]+', '', pfilename.lower())
+    fullfilename = "{}/{}.{}".format('image',lfilename,'png').lower()
     if os.path.isfile(parameters.webDirec()+ fullfilename):
-        return pfilename.lower()
-        retval = '   <img src="{}" height="{}px" width="{}px">'.format(fullfilename, psize,psize)
+        retval =  lfilename
     else:
         retval = ''
     return retval
 
-entity = lambda id : model['entities'][id]
 def printcontententi():
     global model
     lang = Sprachtext.reportLang()
@@ -954,14 +959,14 @@ def printcontententi():
         printcontent(ptype=Sprachtext.transl('Entität')
                      , panker=enti['anker']
                      , pname=elem['name'][lang]
-                     ,piconstr=icontag(pfilename=elem['name'][deflang])
+                     , piconfilename=iconfilename(pfilename=elem['name'][deflang])
                      , pdescr=lf2htmlbr(nvl(elem['descr'][lang]))
                      , plbc=lbc)
         """print entity Info"""
         synostr =  ', '.join(s[lang] for s in elem['synonyms'])
-        parentstr = ", ".join(href(ref=p, anz=entity(p)['name'][lang]) for p in elem['supertypes'])
-        subtypestr = ', '.join(href(ref=st, anz=entity(st)['name'][lang]) for st in elem['subtypes'])
-        rolesstr = ', '.join(href(ref=r, anz=entity(r)['name'][lang]) for r in elem['roles'])
+        parentstr = ", ".join(href(ref=p, anz=getentity(p)['name'][lang]) for p in elem['supertypes'])
+        subtypestr = ', '.join(href(ref=st, anz=getentity(st)['name'][lang]) for st in elem['subtypes'])
+        rolesstr = ', '.join(href(ref=r, anz=getentity(r)['name'][lang]) for r in elem['roles'])
         diagstr = ', '.join(href(ref="{}-{}".format(d, enti['anker'])
                                     , anz=model['diagrams'][d]['name']) for d in elem['diagrams'])
         infovalues = (nvl(synostr), parentstr, subtypestr,rolesstr
@@ -994,12 +999,13 @@ def printcontentattr():
                      ,key=lambda val:val['element']['name'][lang]):
         elem = attr['element']
         printcontentstart('attributes')
-        enti = model['entities'][elem['entity']]
-        if enti is not None:
+        if elem['entity'] is None:
+            master = 'Relation tbd'
+        else:
+            enti = model['entities'][elem['entity']]
             master = "<p1>{}: {}</p1><br>" \
                 .format(Sprachtext.transl('Entität'), href(ref=elem['entity'], anz=enti['name'][lang]))
-        else:
-            master = 'Relation tbd'
+        #fi
 
         lbc = str(newbarcounter())
         printcontent(ptype=Sprachtext.transl('Attribute')
@@ -1055,8 +1061,10 @@ def printdomaattrlist(pdoma, plang,pisgroup=False):
                 ]
     else:
         alist = [[href(ref=attranker
-                       ,anz="{} ({})".format(model['attributes'][attranker]['name'][plang]
-                                            ,model['entities'][model['attributes'][attranker]['entity']]['name'][plang]))]
+                       ,anz="{} ({})".format(getattribute(attranker)['name'][plang]
+                                            ,'' if getattribute(attranker)['entity'] is     None\
+                                               else getentity(getattribute(attranker)['entity'])['name'][plang]
+                                             ))]
                 for attranker in pdoma['element']['usedinattrs']
                 ]
     if (pisgroup and len(alist)==0):return
@@ -1191,13 +1199,11 @@ def printcontentdoma():
 
         if (elem['type'] == Domain.GRP):
             printdomamembers(pelem=elem)
-
         printdomaattrlist(pdoma=doma, plang=lang,pisgroup=False)
         printdomaattrlist(pdoma=doma, plang=lang,pisgroup=True)
         printdomacollist(pdoma=doma)
 
         printcontentend(lbc)  # for
-
 # printcontentdoma
 
 def type2name(ptyp,plang):
@@ -1285,38 +1291,36 @@ def searchlogo(p_imagedirec):
 
 def setWebDirec(p_webdirec):
     global webDirectory, webFileName, webFileNamePath
-    global libSourceDirec, imagedirec, cssdirec, icondirec
+    global libSourceDirec, imagedirec, cssdirec, icondirec,jsdirec
 
     webDirectory = nvl(p_webdirec, parameters.webDirec());
     webFileName = parameters.odmModelName();
     imagedirec = webDirectory + 'image/';
     cssdirec = webDirectory + "css/";
     icondirec = webDirectory + "icons/";
+    jsdirec = webDirectory + "js/";
     libSourceDirec = os.path.dirname(os.path.abspath(__file__))
     libSourceDirec += '/../html-lib/';
     if (parameters.logoFileName() is None): parameters.logoFileName(searchlogo(imagedirec));
 
 
 def createlib():
-    if os.path.exists(cssdirec):
-        pass
-        # shutil.rmtree(cssdirec)
-    else:
+    global cssdirec,icondirec,imagedirec,jsdirec
+    if not os.path.exists(cssdirec):
         shutil.copytree(libSourceDirec + 'css', cssdirec)
-
-    if os.path.exists(icondirec):
-        pass
-        # shutil.rmtree(icondirec)
-    else:
+    if not os.path.exists(jsdirec):
+        shutil.copytree(libSourceDirec + 'js', jsdirec)
+    if not os.path.exists(icondirec):
         shutil.copytree(libSourceDirec + 'icons', icondirec)
-    if os.path.exists(imagedirec):
-        pass
-        # shutil.rmtree(imagedirec)
-    else:
+    if not os.path.exists(imagedirec):
         shutil.copytree(libSourceDirec + 'image', imagedirec)
-
-
 # createlib
+
+def copyimages():
+    global imagedirec
+    """copy all file from the modeler-image directory into the web-image directory"""
+    copy_tree(parameters.odmFilesDirec()+'images', imagedirec)
+# copyimages
 
 def createFile(pfilename):
     global fhtml

@@ -243,8 +243,6 @@ class MultilangBaseobject(Baseobject):
         # try
         return retval
     #_getsprachval
-
-
 from logmessages import writelog
 from .sprachtext import Sprachtext
 from .modelelement import Modelelement

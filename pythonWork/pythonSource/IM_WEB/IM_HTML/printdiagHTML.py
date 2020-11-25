@@ -351,23 +351,23 @@ def printelements(pdiag, pdiaganker,plang):
                                                    , 12  #vorläufig mal fix verdrahtet e[9], font size
                                                    ,getentity(eler['element'])['name'][plang] + ('' if (eler['index']==0) else':'+str(eler['index']))))
 
-        #  attr_id, attr_displ_name, attr_is_mandatory ,attr_is_descriptive, schluessel, mode_id
-        for attr in pdiag['elements']['attribute']:
-            #printtext(px=x1, py=y, ptext='*' if a[5] == 'TRUE' else 'o'
-            #, pfillcolor=hex2rbg(e[10]), pfontsize=10  #vorläufig mal fix verdrahtet e[9]
-            #)
-            x = attr['pos_x'] - eler['pos_x']
-            y = attr['pos_y'] - eler['pos_y']
-            aelem = getattribute(attr['element'])
-            printtext(px=x, py=y, ptext=printHTML.href(ref=attr['element'], anz=aelem['name'][plang])
-                      , pfillcolor=hex2rbg(attr['fontcolor']), pfontsize=attr['fontsize']
-                      )
-        #for
         printHTML.fhtml.write(entiende)
-        printHTML.fhtml.write(imagehtml.format(getentity(eler['element'])['name'][Sprache.getdefaultlang().lang_iso_code2].lower(),eler['pos_x'] +eler['width']-ICONSIZE/2,
-                                                   eler['pos_y'] - ICONSIZE/2))
+        filename = printHTML.iconfilename(getentity(eler['element'])['name'][Sprache.getdefaultlang().lang_iso_code2])
+        if filename != "":
+            printHTML.fhtml.write(imagehtml.format(filename
+                                               ,eler['pos_x']+eler['width']-ICONSIZE/2,
+                                                eler['pos_y'] - ICONSIZE/2))
 
     #for
+    #  attr_id, attr_displ_name, attr_is_mandatory ,attr_is_descriptive, schluessel, mode_id
+    for attr in pdiag['elements']['attribute']:
+        x = attr['pos_x']
+        y = attr['pos_y']
+        aelem = ge  tattribute(attr['element'])
+        printtext(px=x, py=y, ptext=printHTML.href(ref=attr['element'], anz=aelem['name'][plang])
+                  , pfillcolor=hex2rbg(attr['fontcolor']), pfontsize=attr['fontsize']
+                  )
+    # for
     printrela(plist=pdiag['relationships'])
     printtexte(plist=pdiag['relationships'],plang=plang)
     printarcs(plist=pdiag['arcs'])

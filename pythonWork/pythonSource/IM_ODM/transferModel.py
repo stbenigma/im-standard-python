@@ -369,6 +369,12 @@ def transferentity(penti, pdiagid, puc, pdc):
                 atteler.eler_dc = pdc
                 try:
                     atteler.insert()
+                except sqlite3.IntegrityError as err:
+                    if str(err).startswith("UNIQUE constraint failed"):
+                        logmessages.writelog("Attr-representation")
+                        logmessages.writelog(str(e))
+                        logmessages.writelog(atteler)
+                    else: raise err
                 except Exception as e:
                     logmessages.writelog("Attr-representation")
                     logmessages.writelog(str(e))
@@ -927,12 +933,10 @@ def do1Entity(fileName):
 # do1Entity
 
 
-def transferEntitaeten():
+def transferEntities():
     # lösche die Entitäten
     dosegfiles(pdirec=parameters.odmEntityDirec(), transferfiles=do1Entity)
-
-
-# transferEntitaeten
+# transferEntities
 
 def doSubentities():
     global entities
@@ -1323,7 +1327,7 @@ def transferODMModel():
     transferDomains()
     transferUDP()
     loaddefaultcolors()
-    transferEntitaeten()
+    transferEntities()
     transferRelations()
     transferArcs()
     doSubentities()

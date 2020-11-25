@@ -34,7 +34,7 @@ def elemrep(peler,panker):
             }
 
 
-anker = lambda n, i: n + str(i)
+anker = lambda n, i: None if i is None else n + str(i)
 
 
 def entities():
@@ -82,6 +82,7 @@ def defattr(attr):
         , 'name': attr.attr_displ_name_L
         , 'seq': attr.attr_displ_seq
         , 'entity': anker(Modelelemtype.ENTI, attr.attr_enti_id)
+        , 'relation': anker(Modelelemtype.RELA, attr.attr_rela_id)
         , 'domain': anker(Modelelemtype.DOMA, attr.attr_doma_id)
         , 'descriptive': Boolean.str2bool(attr.attr_is_descriptive)
         , 'mandatory': Boolean.str2bool(attr.attr_is_mandatory)

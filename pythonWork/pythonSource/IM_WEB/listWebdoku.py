@@ -5,16 +5,10 @@ sys.path.append(os.path.dirname(os.path.realpath(__file__))+'/..')
 from datetime import datetime
 from IM_DB import parameters,dbConnect, dbParam,logmessages
 from IM_HTML import printHTML, printRelHTML,printdiagHTML
-import web_sql
 from IM_OBJECTS import *
-from WEB_OBJECTS import *
 from IM_ODM import createJSON
 from parameters import nvl,nvl2
 
-
-#def makeAnker(pref,panz):
-#    return """<a name = "{}" >{}</a>""".format(pref,panz)
-#href
 
 def formatDatentyp(w):
     dt = anzDatentyp(w[0])
@@ -104,7 +98,9 @@ def printlistofcontent(plang):
 
     idxlist = sorted([{'anker':key
                       ,'name': "{} ({})".format(value['name'][plang]
-                                        ,printHTML.model['entities'][value['entity']]['name'][plang])
+                                        ,printHTML.model['entities'][value['entity']]['name'][plang]
+                                                if value['entity'] is not None
+                                        else printHTML.model['relations'][value['relation']]['name'])
                        }
                      for key,value in printHTML.model['attributes'].items()]
                      ,key=lambda val:val['name'])
@@ -197,6 +193,7 @@ def printhtmlsysfile(pfirma, pfilename, ptitel, pinfo, plogofilename,pelement):
 def listwebmain(pmodel,plang):
     dbParam.liesdefaultlang()
     printHTML.createlib()
+    printHTML.copyimages()
     if (plang is None):
         langs = projekt.projektlangs().split(',')
         if (len(langs) == 0):
