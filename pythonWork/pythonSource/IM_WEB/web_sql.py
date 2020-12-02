@@ -38,9 +38,9 @@ from WEB_OBJECTS import *
 #     elif (ptype == Modelelemtype.INTF) :
 #         datalist = WebInterface.indexlist()
 #     elif (ptype == Modelelemtype.COLU):
-#         datalist = Schnittstelleattr.indexlist(pschnid=pid)
+#         datalist = Column.indexlist(pschnid=pid)
 #     elif (ptype == Modelelemtype.TABL) :
-#         datalist = Tabelle.indexlist(pschnid=pid)
+#         datalist = Table.indexlist(pschnid=pid)
 #     #fi
 #     return datalist
 # #namelist

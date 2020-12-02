@@ -4,6 +4,7 @@
 <createdTime>2020-02-04 14:53:45 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <ordsAlias>table_56</ordsAlias>
+<typeID>FAF70092-F6A9-97FE-9880-A36ECEDBFE26</typeID>
 <abbreviation>TEMA</abbreviation>
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
@@ -29,7 +30,7 @@
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 <associations>
-<colAssociation fkAssociation="4A031059-4898-192A-5BF1-769708997256" referredColumn="8B0283C8-CA91-343F-0C6B-5DCA79EFB9E1"/>
+<colAssociation fkAssociation="824C0B45-DB28-54AD-7730-FC4CA96DA316" referredColumn="A2F5343E-BDFF-9FF3-0FE3-F47D462C52EB"/>
 </associations>
 </Column>
 <Column name="TEMA_ENTI_ID" id="AE454388-ED18-B50B-45F4-677B9CE5D48C">
@@ -38,28 +39,6 @@
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<previousColumn>false</previousColumn>
-<autoIncrementCycle>false</autoIncrementCycle>
-</Column>
-<Column name="TEMA_BEZI_ID" id="52CCA01F-755A-DB07-6BB9-B49F3126C388">
-<createdBy>stb</createdBy>
-<createdTime>2020-02-04 15:12:13 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<nullsAllowed>true</nullsAllowed>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-</Column>
-<Column name="ENTITIES_ENTI_ID" id="7C417468-1A7D-8FFB-2D53-CB1D6168FE93">
-<createdBy>stb</createdBy>
-<createdTime>2020-08-02 13:30:59 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<nullsAllowed>true</nullsAllowed>
 <use>0</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
 <domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
@@ -70,16 +49,16 @@
 <colAssociation fkAssociation="D1837A9B-C1F2-93BB-4AAD-E3EE7866EA10" referredColumn="365AA3F1-7B02-CFAB-BB51-AE721CDEA5F3"/>
 </associations>
 </Column>
-<Column name="RELATIONS_MODELELEMENT_MODE_ID" id="1622F8C6-A45B-F803-63BA-673167EDF187">
+<Column name="TEMA_RELA_ID" id="52CCA01F-755A-DB07-6BB9-B49F3126C388">
 <createdBy>stb</createdBy>
-<createdTime>2020-08-08 16:12:29 UTC</createdTime>
+<createdTime>2020-02-04 15:12:13 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
 <use>0</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
 <domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
-<previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 <associations>
 <colAssociation fkAssociation="CFC7F490-0366-587E-EC64-352EB1E24F52" referredColumn="BABB8742-E321-0EBD-79F0-6E95CF1087B4"/>
@@ -109,16 +88,6 @@
 <colUsage columnID="AE454388-ED18-B50B-45F4-677B9CE5D48C"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="8C3A983C-2938-98C8-85D5-0FB750B6176A" name="TEMA_TABL_FK">
-<createdBy>stb</createdBy>
-<createdTime>2020-02-04 14:54:33 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<indexState>Foreign Key</indexState>
-<isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
-<colUsage columnID="9759C755-90F9-F68E-5927-31AEB9554889"/>
-</indexColumnUsage>
-</ind_PK_UK>
 <ind_PK_UK id="E3AF84F4-AA77-D094-1222-02A688E1EF0A" name="TEMA_ENTI_FK">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 14:55:32 UTC</createdTime>
@@ -126,10 +95,10 @@
 <indexState>Foreign Key</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
-<colUsage columnID="7C417468-1A7D-8FFB-2D53-CB1D6168FE93"/>
+<colUsage columnID="AE454388-ED18-B50B-45F4-677B9CE5D48C"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="40CBAF8C-C817-A37F-96E5-3E38767E04DD" name="TEMA_BEZI_FK">
+<ind_PK_UK id="40CBAF8C-C817-A37F-96E5-3E38767E04DD" name="TEMA_RELA_FK">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 15:12:13 UTC</createdTime>
 <generatorID>CEB0C7CA-9CEF-89CC-1712-0634D0BB6B99</generatorID>
@@ -137,7 +106,17 @@
 <indexState>Foreign Key</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
-<colUsage columnID="1622F8C6-A45B-F803-63BA-673167EDF187"/>
+<colUsage columnID="52CCA01F-755A-DB07-6BB9-B49F3126C388"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="D12F945E-DD97-EE66-945D-01EFEB0E138B" name="tema_tabl_FK">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-02 22:16:00 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="9759C755-90F9-F68E-5927-31AEB9554889"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>

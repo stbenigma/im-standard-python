@@ -1,16 +1,16 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_1" id="2811D916-0E5A-901A-1F37-F00FEAC1BD9D" containerWithKeyObject="40CFE63E-8752-68C2-F349-9CFC7B905AA1" localFKIndex="6A7A9866-8C08-CB07-84BA-0410FF916519" name="BURU_INTF_FK">
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_1" id="2811D916-0E5A-901A-1F37-F00FEAC1BD9D" containerWithKeyObject="40CFE63E-8752-68C2-F349-9CFC7B905AA1" localFKIndex="6A7A9866-8C08-CB07-84BA-0410FF916519" name="BURU_TABL_FK">
 <createdBy>stb</createdBy>
 <createdTime>2020-10-30 08:35:34 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
-<referredTableLongName>Schnittstellentabelle</referredTableLongName>
+<referredTableLongName>TABLES</referredTableLongName>
 <arc>DE743051-D044-7B3F-5941-77C1E99F7693</arc>
 <deleteRule>CASCADE</deleteRule>
 <referredTableID>022FD4A5-CBEC-87DC-CEB8-310B17836D20</referredTableID>
 <keyObject>30923EB8-CDBE-D433-9586-E31413CF9B4A</keyObject>
 <referredKeyID>30923EB8-CDBE-D433-9586-E31413CF9B4A</referredKeyID>
 <mandatory>false</mandatory>
-<refColNames>Schnittstellentabelle_ID</refColNames>
+<refColNames>TABL_ID</refColNames>
 <transferable>true</transferable>
 <rely>false</rely>
 <columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>

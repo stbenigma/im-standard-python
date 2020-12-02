@@ -56,7 +56,7 @@ class BaseWebObj:
     def getname(self,plang=None):
         return self.dbobject().getname(plang=plang)
 
-    """mit Präfix (Tabelle) oder in Klammern (Entität)
+    """mit Präfix (Table) oder in Klammern (Entität)
        falls Typ nicht überschreibt nimm einfach den Namen"""
     def getqualifiedname(self,plang=None):
         return self.getname(plang=plang)

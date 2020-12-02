@@ -1,0 +1,39 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev12c class="oracle.dbtools.crest.model.design.storage.oracle.v12c.TableProxyOraclev12c" name="Interner_Prozess" directorySegmentName="seg_0" id="127ABE5C-55C7-7F93-4C07-8073C4134E74">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-02 22:11:08 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<temporaryChanged>false</temporaryChanged>
+<accessDriverType>oracle_loader</accessDriverType>
+<rejectLimit></rejectLimit>
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="GETRANS_GETRANS_ID" id="B5759138-4D51-D7B6-383D-98F3AC0E84B8">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-02 22:11:08 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="Interner_Prozess_ID" id="CA4675CE-FFE7-000F-2F20-8F9422B8FFF7">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-02 22:11:08 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="Interner_Prozess_PK" id="2EA5F0EF-E2FA-C186-73A4-7E161736203F">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-02 22:11:08 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexSort>SORTED</indexSort>
+</PrimaryKey>
+</primaryKeys>
+<uniqueKeys>
+<UniqueKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.UniqueOraclev10g" name="Interner_Prozess_Interner_Prozess_ID_UN" id="674A3A15-8C00-D57F-D782-12090A01A047">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-02 22:11:08 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexSort>SORTED</indexSort>
+</UniqueKey>
+</uniqueKeys>
+</TableProxyOraclev12c>

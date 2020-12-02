@@ -1,0 +1,81 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev12c class="oracle.dbtools.crest.model.design.storage.oracle.v12c.TableProxyOraclev12c" name="ENTITY_USAGE" directorySegmentName="seg_0" id="1D9BAA10-BC67-CBE1-4DBC-71D6AA6BB8D2">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-02 22:11:08 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<temporaryChanged>false</temporaryChanged>
+<accessDriverType>oracle_loader</accessDriverType>
+<rejectLimit></rejectLimit>
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="ETUS_ENTI_ID" id="06D40554-BC76-EBE2-7D56-E67A7D3ECD29">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-02 22:11:08 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="ETUS_UC" id="0BD5540E-3F4F-994D-7422-A291EA7C613D">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-02 22:11:08 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="ETUS_DC" id="0FD9C036-89D5-0B92-DB99-90787365F29A">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-02 22:11:08 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="ETUS_ID" id="140BCEF9-1CFD-1AA1-C1B0-08A56A29BF89">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-02 22:11:08 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="ETUS_UM" id="2246DF09-E487-D56A-20FD-85F5F937BFD3">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-02 22:11:08 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="ENTITIES_ENTI_ID" id="4AA53368-A36A-2511-C874-5B7276FF11DE">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-02 22:11:08 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="ETUS_DM" id="5011B09A-0FA9-52EE-C566-ACCC2B87BB7D">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-02 22:11:08 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="ETUS_SCHN_ID" id="57848A35-F149-9930-B4EB-8E8B0BE56913">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-02 22:11:08 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="ETUS_RICHTUNG" id="E3BA3ADE-EB03-BB0A-F574-91A1E6EB71D0">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-02 22:11:08 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+<foreignKeys>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="ETUS_ENTI_FK" id="30D942DA-B58E-751A-73F1-39A936CD3BDE">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-02 22:11:08 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+</ForeignKey>
+</foreignKeys>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="ETUS_PK" id="F4FDB65D-0D32-F985-E93C-055CBF505700">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-02 22:11:08 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexSort>SORTED</indexSort>
+</PrimaryKey>
+</primaryKeys>
+<uniqueKeys>
+<UniqueKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.UniqueOraclev10g" name="ETUS_TFUS_ATTF_ID_TFUS_ATTR_ID_UN" id="60F50AB8-2B00-B34C-AD63-E14114122FBE">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-02 22:11:08 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexSort>SORTED</indexSort>
+</UniqueKey>
+</uniqueKeys>
+</TableProxyOraclev12c>

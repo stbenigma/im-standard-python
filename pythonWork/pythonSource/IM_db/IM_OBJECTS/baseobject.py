@@ -82,7 +82,8 @@ class Baseobject:
 
     def insert(self, pdoerrhdlng=True):
         if self.__modelemtype is not None:
-            self.setid(Modelelement(self.__modelemtype).insert())
+            locid = Modelelement(self.__modelemtype).insert()
+            self.setid(locid)
 
         lsql = """insert into {} ({}) values ({})
            """.format(self._tablename, Baseobject.columnsliststring(self._columnlist)
@@ -226,7 +227,7 @@ class MultilangBaseobject(Baseobject):
 
     def getsprachvals(self):
         for col in self._multilangcols:
-            spt = Sprachtext.getlang_texts(pattrname=self._multilangcols[col], pmodeid=self.getid())
+            spt = Languagetext.getlang_texts(pattrname=self._multilangcols[col], pmodeid=self.getid())
             self.__dict__[col + '_L'] = spt
         # for
 
@@ -238,12 +239,12 @@ class MultilangBaseobject(Baseobject):
                 l =plang
             retval = self.__dict__[colname + '_L'][plang]
         except:
-            # keine sprache oder keinen Namen für Sprache
+            # keine sprache oder keinen Namen für Language
             retval = self.__dict__[colname]
         # try
         return retval
     #_getsprachval
 from logmessages import writelog
-from .sprachtext import Sprachtext
+from .languagetext import Languagetext
 from .modelelement import Modelelement
 from .externalref import Externalref

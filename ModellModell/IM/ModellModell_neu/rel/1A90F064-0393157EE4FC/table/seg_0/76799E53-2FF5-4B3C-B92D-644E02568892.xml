@@ -29,9 +29,6 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
-<associations>
-<colAssociation fkAssociation="3CD2C50E-BA71-D88C-F1C6-DC356FB06B56" referredColumn="1866EBA9-BA3E-EBED-1E4F-3D88AC24A8D4"/>
-</associations>
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
@@ -44,17 +41,6 @@
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
 <colUsage columnID="1F9B0176-F737-7C68-BA54-9658BDABB44F"/>
-<colUsage columnID="9510DC8A-8F25-8B13-927D-01A86ADDEB57"/>
-</indexColumnUsage>
-</ind_PK_UK>
-<ind_PK_UK id="733EC8BB-C1F6-53D3-A9B2-0892068AF3CE" name="RELATION_87_SYSTEMATTRIBUT_FK">
-<createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:18:17 UTC</createdTime>
-<generatorID>5F1A1E49-754A-B3F9-3159-D65060936ED4</generatorID>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<indexState>Foreign Key</indexState>
-<isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
 <colUsage columnID="9510DC8A-8F25-8B13-927D-01A86ADDEB57"/>
 </indexColumnUsage>
 </ind_PK_UK>

@@ -64,9 +64,9 @@ def printAttrUDPMatrix(thema=None):
                                     and ena.spra_id = sp.spra_id            
       join wertebereiche on wrtb_id = attr_doma_id
       ) order by enti_name,upper(attr_tech_name)"""
-                           .format(Sprachtext.reportLang()))
-    printHTML.starttable(ptitel='Attribute - User Defined Properties: ' + nvl(thema)
-                         ,pueberschriften= udpListe
+                           .format(Languagetext.reportLang()))
+    printHTML.starttable(ptitle='Attribute - User Defined Properties: ' + nvl(thema)
+                         , pheaders= udpListe
                          , anker=udpAnker(thema))
     for at in allattr:
         values = [href(ref=entiAnker(at[1]), anz=at[0]), href(ref=attrAnker(at[2]), anz=at[3])
@@ -90,9 +90,14 @@ def printAttrUDPMatrix(thema=None):
 
 def printlistofcontent(plang):
     printHTML.printlistofcontenthead()
-    idxlist = sorted([{'anker':key,'name': value['name'][plang]}
+    try:
+        idxlist = sorted([{'anker':key,'name': value['name'][plang]}
                      for key,value in printHTML.model['entities'].items()]
                      ,key=lambda val:val['name'])
+    except:
+        mode=printHTML.model
+        mod = printHTML.model['entities'].values()
+        print (mod)
     printHTML.printlistofcontentelement(pname='Entitäten'
                                             , plist= idxlist)
 
@@ -160,7 +165,7 @@ def printcontent(pfirma,ptitel):
     printHTML.printcontentdoma()
     printHTML.printcontentdoku()
     printHTML.printcontentmapping(ptheme=parameters.odmUDPMappingFileName())
-    printdiagHTML.printcontentdiag(plist=printHTML.model['diagrams'], plang=Sprachtext.reportLang(), ptitel=ptitel)
+    printdiagHTML.printcontentdiag(plist=printHTML.model['diagrams'], plang=Languagetext.reportLang(), ptitel=ptitel)
     printHTML.printcontentfoot()
 #printcontent
 
@@ -171,7 +176,7 @@ def printhtmlfile(pfirma, ptitel, pinfo, plogofilename,pfilename):
                         , p_titel=ptitel
                         , p_info=pinfo
                         , p_logofilename=plogofilename);
-    printlistofcontent(plang=Sprachtext.reportLang());
+    printlistofcontent(plang=Languagetext.reportLang());
     printcontent(pfirma=pfirma, ptitel=ptitel);
     printHTML.printfoot();
     printHTML.closefile ();
@@ -195,13 +200,13 @@ def listwebmain(pmodel,plang):
     printHTML.createlib()
     printHTML.copyimages()
     if (plang is None):
-        langs = projekt.projektlangs().split(',')
+        langs = project.projektlangs().split(',')
         if (len(langs) == 0):
-            Sprachtext.reportLang(parameters.dbDefaultLang())
-            langs = [Sprachtext.reportLang()]
+            Languagetext.reportLang(parameters.dbDefaultLang())
+            langs = [Languagetext.reportLang()]
     else:
-        Sprachtext.reportLang(plang.lower())
-        langs = [Sprachtext.reportLang()]
+        Languagetext.reportLang(plang.lower())
+        langs = [Languagetext.reportLang()]
     #fi
 
     #erstelle die Liste der HTML Files für HREF's
@@ -212,8 +217,8 @@ def listwebmain(pmodel,plang):
 
     for lang in langs:
         lang = lang.lower()
-        Sprachtext.reportLang(lang)
-        langfilename = printHTML.webFileName + '_' + Sprachtext.reportLang() + '.html'
+        Languagetext.reportLang(lang)
+        langfilename = printHTML.webFileName + '_' + Languagetext.reportLang() + '.html'
         print ("create web-files for language {} in file {}".format(lang,printHTML.webDirectory + langfilename))
         printHTML.htmlfilelist[0] = langfilename
         printhtmlfile(pfirma="foryouandyourcustomers"
@@ -223,13 +228,13 @@ def listwebmain(pmodel,plang):
                       , pfilename=  langfilename
                       )
     # for
-    Sprachtext.reportLang(parameters.dbDefaultLang())
+    Languagetext.reportLang(parameters.dbDefaultLang())
     #backjumps from relational webpage goes to default-lang-model
     printHTML.htmlfilelist[0] = printHTML.webFileName + '_' + parameters.dbDefaultLang() + '.html'
 
     """Schnittstellen werden immer englisch gedruckt"""
-    Sprachtext.reportLang(Sprachtext.EN)
-    lang = Sprachtext.EN
+    Languagetext.reportLang(Languagetext.EN)
+    lang = Languagetext.EN
     for anker,element in schnlist.items():
         print ("create web-files for system {} in file {}".format(element['name'],printHTML.webDirectory + langfilename))
         printhtmlsysfile(pfirma="foryouandyourcustomers"
@@ -249,7 +254,7 @@ def main(pdirec, plang):
     printHTML.setWebDirec(p_webdirec=None)
 
     dbConnect.openDB(p_filepath= parameters.dbFilePath());
-    deflang = Sprache.liesdeflangiso2()
+    deflang = Language.liesdeflangiso2()
     if deflang is not None : parameters.dbDefaultLang(deflang)
     listwebmain(pmodel=createJSON.sql2json(),plang=plang)
 

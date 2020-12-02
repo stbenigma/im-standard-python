@@ -1,0 +1,46 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev12c class="oracle.dbtools.crest.model.design.storage.oracle.v12c.TableProxyOraclev12c" name="IsA_Rollenbeziehung" directorySegmentName="seg_0" id="7F352C67-5082-8964-FFB7-7D3B1A24EA3B">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-02 22:11:08 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<temporaryChanged>false</temporaryChanged>
+<accessDriverType>oracle_loader</accessDriverType>
+<rejectLimit></rejectLimit>
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="IsA Beziehungv1_ID" id="0683DE7E-5EC3-9162-3336-FF970F5B8689">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-02 22:11:08 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="IsA Beziehungv1_PK" id="BD0C6F3B-529E-0FDB-2BD1-BE8D104D9962">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-02 22:11:08 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexSort>SORTED</indexSort>
+</PrimaryKey>
+</primaryKeys>
+<uniqueKeys>
+<UniqueKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.UniqueOraclev10g" name="IsA_Rollenbeziehung__UNv1" id="24390142-A29F-546D-A35D-646BD7F9FD11">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-02 22:11:08 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexSort>SORTED</indexSort>
+</UniqueKey>
+<UniqueKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.UniqueOraclev10g" name="IsA_Rollenbeziehung__UNv2" id="E0D257BB-6E7C-269D-4FA7-5D6FFDF24CB0">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-02 22:11:08 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexSort>SORTED</indexSort>
+</UniqueKey>
+<UniqueKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.UniqueOraclev10g" name="IsA_Rollenbeziehung__UN" id="F61AF24C-AC45-B62F-0E9A-13124DF10FA2">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-02 22:11:08 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexSort>SORTED</indexSort>
+</UniqueKey>
+</uniqueKeys>
+</TableProxyOraclev12c>

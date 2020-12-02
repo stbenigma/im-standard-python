@@ -3,7 +3,7 @@ import web_sql
 import math
 from parameters import nvl
 from WEB_OBJECTS import WebDiagram
-from IM_OBJECTS import Sprache
+from IM_OBJECTS import Language
 
 LEGENDWIDTH: int = 363
 LEGENDHEIGHT: int = 128
@@ -39,7 +39,7 @@ def printlegend(pdata,pwidth,pheigh,px,py):
     legendfoot= """</g>
 """
     starty=14
-    printHTML.fhtml.write(legenhead.format(px+2,py+1))
+    printHTML.fhtml.write(legenhead.format(nvl(px,0)+2,nvl(py,0)+1))
     printHTML.fhtml.write(legendentry1.format(pwidth-100,pheigh-2
                                     ,starty,'Diagram'
                                     ,starty,pdata[0]))
@@ -352,7 +352,7 @@ def printelements(pdiag, pdiaganker,plang):
                                                    ,getentity(eler['element'])['name'][plang] + ('' if (eler['index']==0) else':'+str(eler['index']))))
 
         printHTML.fhtml.write(entiende)
-        filename = printHTML.iconfilename(getentity(eler['element'])['name'][Sprache.getdefaultlang().lang_iso_code2])
+        filename = printHTML.iconfilename(getentity(eler['element'])['name'][Language.getdefaultlang().lang_iso_code2])
         if filename != "":
             printHTML.fhtml.write(imagehtml.format(filename
                                                ,eler['pos_x']+eler['width']-ICONSIZE/2,
@@ -363,7 +363,7 @@ def printelements(pdiag, pdiaganker,plang):
     for attr in pdiag['elements']['attribute']:
         x = attr['pos_x']
         y = attr['pos_y']
-        aelem = ge  tattribute(attr['element'])
+        aelem = getattribute(attr['element'])
         printtext(px=x, py=y, ptext=printHTML.href(ref=attr['element'], anz=aelem['name'][plang])
                   , pfillcolor=hex2rbg(attr['fontcolor']), pfontsize=attr['fontsize']
                   )

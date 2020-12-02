@@ -7,23 +7,23 @@ from IM_HTML import printHTML
 from IM_ODM import fillDB
 import listWebdoku
 import listmapping
-from IM_OBJECTS import Sprachtext
+from IM_OBJECTS import Languagetext
 
 
 def main(pdirec, plang):
     parameters.initparam(p_callarg=pdirec)
     if plang is None:
-        Sprachtext.reportLang(parameters.dbDefaultLang())
+        Languagetext.reportLang(parameters.dbDefaultLang())
     else:
-        Sprachtext.reportLang(plang.lower())
+        Languagetext.reportLang(plang.lower())
     logmessages.initlog('AllIn1')
 
     dbConnect.openDB(p_filepath="file::memory:?cache=shared");
     dbErstelleTables.erstelleInfra();
     fillDB.filldbmain()
     printHTML.setWebDirec(p_webdirec=None)
-    listWebdoku.listwebmain(plang=Sprachtext.reportLang())
-    listmapping.filllists(plang=Sprachtext.reportLang())
+    listWebdoku.listwebmain(plang=Languagetext.reportLang())
+    listmapping.filllists(plang=Languagetext.reportLang())
 
     logmessages.showmessages("model {}: created and filled database ({})\n   created webdocu and mapping excel"
                              .format(parameters.odmModelName(), parameters.dbFilePath()))

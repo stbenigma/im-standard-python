@@ -2,8 +2,8 @@ from .key import Key
 from IM_DB import dbDML,dbDDL
 from datetime import date
 from .baseobject import Baseobject,MultilangBaseobject
-from .sprachtext import Sprachtext
-from .sprache import Sprache
+from .languagetext import Languagetext
+from .language import Language
 import IM_OBJECTS
 from .userdefprop import Userdefpropvalue,Userdefprop
 
@@ -22,9 +22,9 @@ class Entity(MultilangBaseobject):
     def __init__(self, psrcname=None, psrcid=None):
         super().__init__(tablename=Entity._tablename, prefix=Entity._prefix
                          , columnlist = Entity._columnlist
-                         , multilangcols = {'enti_name':Sprachtext.ENTI_NAME
-                                          ,'enti_descr':Sprachtext.ENTI_COMMENT
-                                          ,'enti_tooltip': Sprachtext.ENTI_TOOLTIP}
+                         , multilangcols = {'enti_name':Languagetext.ENTI_NAME
+                                          ,'enti_descr':Languagetext.ENTI_COMMENT
+                                          ,'enti_tooltip': Languagetext.ENTI_TOOLTIP}
                          , pmodelemtype=Modelelemtype.ENTI
                          , pscrid=psrcid
                          , psrcname=psrcname
@@ -183,14 +183,14 @@ CREATE TABLE ENTITIES
 
     @staticmethod
     def mappingto(ptablid):
-        lsqle = """select 0 schn_id, 'Logisches Modell' schn_name, group_concat(enti_id,',')
+        lsqle = """select 0 intf_id, 'Logisches Modell' intf_name, group_concat(enti_id,',')
         	from  tabl_enti_maps as mastermap
 	        left join entitaeten on enti_id = mastermap.tema_enti_id
 	        where  mastermap.tema_tabl_id = {}
 	        GROUP BY mastermap.tema_tabl_id""".format(ptablid)
-        lsqlt = """select tabl_schn_id,schn_name,group_concat(tabl_id,',')
-	        from tabellen subtab
-	        join schnittstellen on schn_id = TABL_SCHN_ID
+        lsqlt = """select tabl_intf_id,intf_name,group_concat(tabl_id,',')
+	        from tables subtab
+	        join interfaces on intf_id = TABL_intf_ID
 	        where tabl_id in
     	          (select tema1.tema_tabl_id
 	               from tabl_enti_maps tema1
@@ -198,10 +198,10 @@ CREATE TABLE ENTITIES
 	                                and tema2.tema_tabl_id != tema1.tema_tabl_id
 	                  where tema2.tema_tabl_id = {}
 	            )
-	            /* eigene Schnittstelle wird nicht angezeigt*/
-	           and schn_id != (select tabl_schn_id 
-	                            from tabellen where tabl_id = {})
-            group by tabl_schn_id,schn_name
+	            /* eigene Interface wird nicht angezeigt*/
+	           and intf_id != (select tabl_intf_id 
+	                            from tables where tabl_id = {})
+            group by tabl_intf_id,intf_name
             """.format(ptablid,ptablid)
         retval = []
         data = dbDML.select(lsqle)
@@ -229,7 +229,7 @@ class Synonym(MultilangBaseobject):
     def __init__(self,pname=None,pentiid=None):
         super().__init__(tablename=Synonym._tablename, prefix=Synonym._prefix
                          , columnlist=Synonym._columnlist
-                         ,multilangcols = {'syno_name': Sprachtext.SYNO_NAME}
+                         ,multilangcols = {'syno_name': Languagetext.SYNO_NAME}
                          ,pmodelemtype=Modelelemtype.SYNO)
         self.syno_name = pname
         self.syno_enti_id = pentiid
@@ -283,8 +283,8 @@ CREATE TABLE SYNONYMS
            If order or number is not the same, ignore it"""
         for udpr in Userdefprop.select(pwhere="udpr_name like '___ENTI_SYNONYM'"):
             langiso2 = udpr.udpr_name[0:2].lower()
-            langid=Sprache().getbyuk(pcolname='lang_iso_code2',pukvalue=langiso2).getid()
-            if langid == Sprache.liesdeflangid(): continue
+            langid=Language().getbyuk(pcolname='lang_iso_code2', pukvalue=langiso2).getid()
+            if langid == Language.liesdeflangid(): continue
             for udpv in Userdefpropvalue.select(pwhere="udpv_udpr_id = {}".format(udpr.udpr_id)):
                 langsynos = udpv.udpv_value.split(',')
                 for idx,syno in enumerate(Entity().getbyid(udpv.udpv_mode_id).getsynonyms()):
@@ -292,7 +292,7 @@ CREATE TABLE SYNONYMS
                         synotransl = langsynos[idx]
                     except:
                         continue
-                    lgtx=Sprachtext()
+                    lgtx=Languagetext()
                     lgtx.lgtx_attrname='SYNO_NAME'
                     lgtx.lgtx_text=synotransl
                     lgtx.lgtx_lang_id=langid

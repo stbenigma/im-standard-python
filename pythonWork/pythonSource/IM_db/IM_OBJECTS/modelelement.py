@@ -180,11 +180,11 @@ CREATE TABLE MODELELEMENT
         elif self.mode_type == Modelelemtype.ORGU:
             element = Organisationseinheit().getbyid(self.mode_id)
         elif self.mode_type == Modelelemtype.TABL:
-            element = Tabelle().getbyid(self.mode_id)
+            element = Table().getbyid(self.mode_id)
         elif self.mode_type == Modelelemtype.COLU:
-            element = Schnittstelleattr().getbyid(self.mode_id)
+            element = Column().getbyid(self.mode_id)
         elif self.mode_type == Modelelemtype.INTF:
-            element = Schnittstelle().getbyid(self.mode_id)
+            element = Interface().getbyid(self.mode_id)
         elif self.mode_type == Modelelemtype.ARCS:
             element = Arc().getbyid(self.mode_id)
         elif self.mode_type == Modelelemtype.DGRM:
@@ -259,7 +259,7 @@ from .externalref import Externalref
 from .datatype import Datatype
 from .domain import Domain
 from .entity import Entity
-from .tabelle import Tabelle
+from .table import Table
 from .attribute import Attribute
-from .schnittstattr import Schnittstelleattr
-from .schnittstelle import Schnittstelle
+from .column import Column
+from .interface import Interface

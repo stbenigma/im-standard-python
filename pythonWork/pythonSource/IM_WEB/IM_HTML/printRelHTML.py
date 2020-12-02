@@ -4,7 +4,7 @@ import html
 sys.path.append(os.getcwd())
 from IM_HTML import printHTML
 from IM_DB import parameters
-from IM_OBJECTS import Domain,Sprachtext,Modelelemtype
+from IM_OBJECTS import Domain,Languagetext,Modelelemtype
 
 
 def nvl(s, default=''):
@@ -27,8 +27,8 @@ def printmapping(pelem):
         if len(tablist) == 0: continue
         werte[intfanker] = [[tabanker,"({})".format(printHTML.model['tables'][tabanker]['name'])] for tabanker in tablist]
     #for
-    printHTML.printmappinghtml(ptitel=Sprachtext.transl('Mapping')
-                               , pueberschriften=(Sprachtext.transl('Model'), Sprachtext.transl('Entitäten / Tabellen'))
+    printHTML.printmappinghtml(ptitel=Languagetext.transl('Mapping')
+                               , pueberschriften=(Languagetext.transl('Model'), Languagetext.transl('Entitäten / Tabellen'))
                                ,pwerte = werte)
 # printmapping
 
@@ -54,8 +54,8 @@ def printcolmapping(pcol):
                             for colanker in collist
                             ]
     #for
-    printHTML.printmappinghtml(ptitel=Sprachtext.transl('Mapping')
-                               , pueberschriften=(Sprachtext.transl('Model'), Sprachtext.transl('Attribute / Columns'))
+    printHTML.printmappinghtml(ptitel=Languagetext.transl('Mapping')
+                               , pueberschriften=(Languagetext.transl('Model'), Languagetext.transl('Attribute / Columns'))
                                ,pwerte=werte
                                )
 
@@ -99,10 +99,11 @@ def printcollist(pcollist):
     """
     lang = parameters.dbDefaultLang()
     if (pcollist is None or len(pcollist) == 0): return
-    ueberschr = [Sprachtext.transl('Name'), Sprachtext.transl('Beschreibung')
-        , Sprachtext.transl('Wertebereich'), Sprachtext.transl('Datentyp')
+    ueberschr = [Languagetext.transl('Name'), Languagetext.transl('Beschreibung')
+        , Languagetext.transl('Wertebereich'), Languagetext.transl('Datentyp')
                  ]
-    printHTML.fhtml.write(printHTML.starttable(ptitel="Columns", pueberschriften=ueberschr))
+    lbc = str(printHTML.newbarcounter())
+    printHTML.fhtml.write(printHTML.starttable(ptitle="Columns", pheaders=ueberschr, plbc=lbc))
 
     for col in pcollist:
         column = printHTML.model['columns'][col]
@@ -111,7 +112,7 @@ def printcollist(pcollist):
                         , nvl(column['descr']), domain['name'][lang], nvl(column['datatype'])]
         printHTML.fhtml.write(printHTML.writetableline(pwerte=colwerte))
     # for
-    printHTML.fhtml.write(printHTML.endtable())
+    printHTML.fhtml.write(printHTML.endtable(plabel='Columns',plbc=lbc))
 # printcollist
 
 def printcontenttable(pintf):
@@ -119,18 +120,18 @@ def printcontenttable(pintf):
                      ,key=lambda val:val[1]['name'].upper()
                      )
     printHTML.printcontentstart('tables')
-    infoheaders = (Sprachtext.transl('auf Diagram(en)'), Sprachtext.transl('geändert'))
+    infoheaders = (Languagetext.transl('auf Diagram(en)'), Languagetext.transl('geändert'))
     for t in tablist:
         anker = t[0]
         elem = t[1]
         lbc = str(printHTML.newbarcounter())
-        printHTML.printcontent(ptype=Sprachtext.transl('Tabelle')
+        printHTML.printcontent(ptype=Languagetext.transl('Table')
                                , panker=anker
                                , pname=elem['name']
                                , pdescr=printHTML.lf2htmlbr(nvl(elem['descr']))
                                , plbc=lbc)
         infovalues = ('', nvl(elem['um']) + ', ' + nvl(elem['dm']))
-        printHTML.printcontentinfo(ptitle=Sprachtext.transl('Informationen'), pheaders=infoheaders, pvalues=infovalues)
+        printHTML.printcontentinfo(ptitle=Languagetext.transl('Informationen'), pheaders=infoheaders, pvalues=infovalues)
 
         printHTML.printdocureflist(pelem=elem, pelemtype=Modelelemtype.TABL)
         printHTML.printUDP(pelem=elem)
@@ -152,7 +153,7 @@ def printcontentcolumn(pintf):
         domain = printHTML.model['domains'][colelem['domain']]
         master = "<p1>{}: {}</p1><br>".format(colelem['name'],colelem['table-name'])
         printHTML.printcontentstart('columns')
-        printHTML.printcontent(ptype=Sprachtext.transl('Column')
+        printHTML.printcontent(ptype=Languagetext.transl('Column')
                                , panker=colanker
                                , pname=colelem['name']
                                ,pmaster= printHTML.href(ref=colelem['table-id'],anz=colelem['table-name'])
@@ -163,7 +164,7 @@ def printcontentcolumn(pintf):
                                      ,htmlfile=printHTML.htmlfilelist[0])
                         ,domain['displdatatype'][lang],domain['basedatatype']
                         ,nvl(colelem['um']) + ', ' + nvl(colelem['dm']))
-        printHTML.printcontentinfo(ptitle=Sprachtext.transl('Information'), pheaders=infoheaders, pvalues=infovalues)
+        printHTML.printcontentinfo(ptitle=Languagetext.transl('Information'), pheaders=infoheaders, pvalues=infovalues)
 
         printHTML.printdocureflist(pelem=colelem, pelemtype=Modelelemtype.COLU)
         printHTML.printUDP(pelem=colelem)
@@ -201,14 +202,14 @@ def printcontenthead(pfirma, ptitel, pintf):
     contentheadend = """          
         </div>
         """
-    if Sprachtext.reportLang() == Sprachtext.DE:
+    if Languagetext.reportLang() == Languagetext.DE:
         f = """class="descr">Diese Webseite enthält den ganzen Inhalt 
             des <p2 class="IM">Relationalen Modells {}</p2> von {}. 
             Diese Seite wurde von Software von <p2 class="fyayc">foryouandyourcustomers</p2> 
             erstellt.""".format(ptitel, pfirma)
         ref = """Referenzen in Klammern sind indirekte Referenzen:<br>
-                 Tabellenreferenz bei Tabellen: Indirekte Verknüpfung einer Tabelle über eine Entität zu einer Tabelle einer anderen Schnittstelle<br>
-                 Columnreferenz: Indirekte Verknüpfung einer Column über ein Attribute zu einer Column in einer anderen Schnittstelle"""
+                 Tabellenreferenz bei Tabellen: Indirekte Verknüpfung einer Table über eine Entität zu einer Table einer anderen Interface<br>
+                 Columnreferenz: Indirekte Verknüpfung einer Column über ein Attribute zu einer Column in einer anderen Interface"""
     else:
         f = """class="descr">This website contains the complete content 
             of the <p2 class="IM">Relational model {}</p2> from {}. 

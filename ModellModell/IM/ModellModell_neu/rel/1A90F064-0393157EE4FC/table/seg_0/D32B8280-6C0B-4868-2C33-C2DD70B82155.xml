@@ -108,9 +108,6 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
-<associations>
-<colAssociation fkAssociation="6CE72125-E023-564A-1185-DB269C600EB9" referredColumn="1866EBA9-BA3E-EBED-1E4F-3D88AC24A8D4"/>
-</associations>
 </Column>
 <Column name="ATTF_ATTR_ID" id="531F2E53-4D0E-702B-B344-C94B6B5377BC">
 <createdBy>stb</createdBy>
@@ -207,17 +204,6 @@
 <colUsage columnID="8052E02E-3250-8A36-696F-3EEC702D4BFB"/>
 <colUsage columnID="9D95475B-6325-7F21-67E2-8D9307EC79F4"/>
 <colUsage columnID="531F2E53-4D0E-702B-B344-C94B6B5377BC"/>
-</indexColumnUsage>
-</ind_PK_UK>
-<ind_PK_UK id="45516242-379D-1080-158E-E84758AFCEAC" name="ATTF_SCHA_FK">
-<createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:18:17 UTC</createdTime>
-<generatorID>9B4EC0A2-559A-2F76-9BEA-09D015826CAC</generatorID>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<indexState>Foreign Key</indexState>
-<isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
-<colUsage columnID="9D95475B-6325-7F21-67E2-8D9307EC79F4"/>
 </indexColumnUsage>
 </ind_PK_UK>
 <ind_PK_UK id="F5043151-39BA-C556-D85E-9CC4B80A2D10" name="ATTF_ATTR_FK">

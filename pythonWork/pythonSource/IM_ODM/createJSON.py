@@ -70,7 +70,7 @@ def entities():
 
                      , 'tablesmapped': {anker(Modelelemtype.INTF,s.getid()): [anker(Modelelemtype.TABL, t.tabl_id) for t in
                                                       TablEntiMap.gettabllist(pentiid=e.enti_id, pintfid=s.getid())]
-                                        for s in Schnittstelle.getmapped(pentiid=e.enti_id)}
+                                        for s in Interface.getmapped(pentiid=e.enti_id)}
                      ,
                   'diagrams': [anker(Modelelemtype.DIAG, d.diag_id) for d in Diagram.getdiagrams(pmodeid=e.enti_id)]
                   } for e in Entity.select()}
@@ -105,9 +105,9 @@ def defattr(attr):
                                  for g in Userdefprop.grouplist(pudptheme=t[0], pmelttype=Modelelemtype.ATTR)}
                           for t in Userdefprop.themelist(pmelttype=Modelelemtype.ATTR)}
         , 'columnsmapped': {
-            anker(Modelelemtype.INTF,s.getid()): [anker(Modelelemtype.COLU, c.scha_id) for c in
+            anker(Modelelemtype.INTF,s.getid()): [anker(Modelelemtype.COLU, c.colu_id) for c in
                           AttrTransf.getcolulist(pattrid=attr.attr_id, pintfid=s.getid())]
-            for s in Schnittstelle.getmapped(pattrid=attr.attr_id)}
+            for s in Interface.getmapped(pattrid=attr.attr_id)}
         , 'diagrams': [anker(Modelelemtype.DIAG, d.diag_id) for d in Diagram.getdiagrams(pmodeid=attr.attr_id)]
               }
     doma = Domain().getbyid(attr.attr_doma_id)
@@ -139,7 +139,7 @@ def defdomain(doma):
         , 'origin': doma.doma_origin
         , 'basedatatype': None if doma.doma_daty_id is None else Datatype().getbyid(doma.doma_daty_id).daty_name
         , 'type': doma.doma_type
-        , 'displdatatype': {l.lang_iso_code2:doma.displdatatype(l.lang_iso_code2) for l in Sprache.select()}
+        , 'displdatatype': {l.lang_iso_code2:doma.displdatatype(l.lang_iso_code2) for l in Language.select()}
         , 'datatypestr': doma.typestring()
         , 'uc': doma.doma_uc
         , 'um': doma.doma_um
@@ -163,7 +163,7 @@ def defdomain(doma):
         retval['minvalue'] = doma.doma_dat_minvalue
         retval['maxvalue'] = doma.doma_dat_maxvalue
         retval['granularity'] = doma.doma_dat_granularity
-        retval['granularitytext'] = {l.lang_iso_code2: doma.displgranul(l.lang_iso_code2) for l in Sprache.select()}
+        retval['granularitytext'] = {l.lang_iso_code2: doma.displgranul(l.lang_iso_code2) for l in Language.select()}
     elif doma.doma_type == Domain.BIN:
         retval['contenttype'] = doma.doma_bin_contenttype
         retval['contenttypename'] = doma.displcontenttype()
@@ -178,8 +178,8 @@ def defdomain(doma):
                                                          porderby="deva_sort_order")]
     retval['usedinattrs'] = [anker(Modelelemtype.ATTR, a.attr_id) for a in
                                 Attribute.select(pwhere="attr_doma_id = {}".format(doma.doma_id))]
-    retval['usedincols']= [anker(Modelelemtype.COLU, c.scha_id) for c in
-                     Schnittstelleattr.select(pwhere="scha_doma_id = {}".format(doma.doma_id))]
+    retval['usedincols']= [anker(Modelelemtype.COLU, c.colu_id) for c in
+                           Column.select(pwhere="colu_doma_id = {}".format(doma.doma_id))]
     retval['usedingrps']= [anker(Modelelemtype.DOMA, d.doma_id) for d in
                      Domain.select(pwhere="doma_id in (select dgrm_doma_id_group from domaingroup_members where dgrm_doma_id_member = {})"
                                             .format(doma.doma_id))]
@@ -336,30 +336,41 @@ def defarcs(parc,pdiagid):
     entistartx,entistarty = enti.eler_position_x ,enti.eler_position_y
 
     circles=[]
-    calcwinkel = lambda ey, sy, ex, sx: math.atan2(ey - sy, ex - sx)
+    calcwinkel = lambda ey, sy, ex, sx:math.atan2(ey - sy, ex - sx)
+    poswinkel = lambda x: (x if x > 0 else x + (2 * math.pi)) % (2 * math.pi)
     for ae in arcselem:
         relr_id, startx, starty, endx, endy, enti_id, enti_name, angle = ae
         #print(startx,endx,starty,endy,endy - starty, endx - startx,math.atan2(endy - starty, endx - startx))
         winkel = calcwinkel(endy, starty,endx, startx)
         p4 = math.pi / 4
         """side is left,up,right,down side of rectangle
-           Angle shows directrion of line passing through pint in thiw q"""
+           Angle shows direction of line passing through pint in thiw q"""
         if (startx >= enticenterx + (entiwidth/2)): side,qwinkel='right',2*p4
         elif (startx <= enticenterx - (entiwidth/2)): side,qwinkel='left',2*p4
         elif (starty >= enticentery + (entiheight/2)): side,qwinkel='lower',0
         elif (starty <= enticentery - (entiheight/2)): side,qwinkel='upper',0
-        sortwinkel = calcwinkel(starty, enticentery, startx, enticenterx)
-        """print(ae, winkel / math.pi * 180
-              ,ae[1] - arcstartx + round(punktabstand * math.sin(winkel),1),round(punktabstand * math.sin(winkel),1)
-              ,ae[2] - arcstarty + round(punktabstand * math.cos(winkel),1),round(punktabstand * math.cos(winkel),1)
-              ,ae[2],ae[4],ae[1],ae[3])"""
+        """Angle of line towards center of entity. Sort the order of connecting points in an arc"""
+        sortwinkel = poswinkel(calcwinkel(starty, enticentery, startx, enticenterx))
         circles.append([startx + round(PONTDISTANCE * math.cos(winkel),1) #- arcstartx
                         ,starty + round(PONTDISTANCE * math.sin(winkel),1) #- arcstarty
                         ,qwinkel,sortwinkel,side
                         ])
     #for
     circles.sort(key=lambda elem: elem[3])
-    ############
+    """Append angle to last point in ARC-order"""
+    for idx in range(len(circles)):
+        circles[idx].append(poswinkel(poswinkel(poswinkel(circles[idx][3]) - circles[((idx-1) if idx > 0 else len(circles) - 1)][3])))
+
+    """deduce shortest path, starting with every point in acr as starting point"""
+    shortestangle=99999
+    for idx in range(len(circles)):
+        angle = sum([circles[i][5] for i in range(len(circles))])-circles[idx][5]
+        shortestangle = min(shortestangle,angle)
+        circles[idx].append(angle)
+    """switch to beginning with shortest path"""
+    while circles[0][6] != shortestangle:
+        rotate = lambda l: l if len(l)== 0 else l[1:]+l[:1]
+        circles = rotate(circles)
     arc['circles'] = [(c[0],c[1]) for c in circles]
     xfactor = {'right':[0,-1],'upper':[-1,1],'left':[0,1],'lower':[1,-1]}
     yfactor = {'right':[-1,-1],'upper':[0,-1],'left':[1,1],'lower':[0,1]}
@@ -458,62 +469,62 @@ def diagrams():
     return diags
 
 def systems():
-    intfs = {anker(Modelelemtype.INTF,i.schn_id) : {'name':i.schn_name
-                                                    ,'interface-id':anker(Modelelemtype.INTF,i.schn_id)
-                                                    ,'descr':i.schn_beschr
-                                                , 'sourceref': {s: Externalref.getsrcid(psrcname=s, pmodeid=i.schn_id)
+    intfs = {anker(Modelelemtype.INTF,i.intf_id) : {'name':i.intf_name
+                                                    ,'interface-id':anker(Modelelemtype.INTF,i.intf_id)
+                                                    ,'descr':i.intf_descr
+                                                , 'sourceref': {s: Externalref.getsrcid(psrcname=s, pmodeid=i.intf_id)
                                                             for s in Externalref.getsources()}
-                                        ,'refindocuments': [anker(Modelelemtype.DOCU, d[0]) for d in Document.getrefdoculist(pid=i.schn_id)]
-                                                    ,'tables' : [anker(Modelelemtype.TABL,t.tabl_id) for t in Tabelle.selectbyschnid(pschnid=i.schn_id)]
+                                        ,'refindocuments': [anker(Modelelemtype.DOCU, d[0]) for d in Document.getrefdoculist(pid=i.intf_id)]
+                                                    ,'tables' : [anker(Modelelemtype.TABL,t.tabl_id) for t in Table.selectbyschnid(pschnid=i.intf_id)]
                                                     }
-             for i in Schnittstelle.select()}
+             for i in Interface.select()}
     return intfs
 
 def columns():
-    cols = {anker(Modelelemtype.COLU,c.scha_id) :
-        {'name':c.scha_column_name
-         ,'table-name':Tabelle().getbyid(c.scha_tabl_id).getname()
-         ,'table-id':anker(Modelelemtype.TABL,Tabelle().getbyid(c.scha_tabl_id).getid())
-        , 'interface-name': Schnittstelle().getbyid(Tabelle().getbyid(c.scha_tabl_id).tabl_schn_id).getname()
-        , 'interface-id': anker(Modelelemtype.INTF, Schnittstelle().getbyid(Tabelle().getbyid(c.scha_tabl_id).tabl_schn_id).getid())
-            ,'basedatatype' : None if c.scha_daty_id is None else Datatype().getbyid(c.scha_daty_id).daty_name
-        ,'datatype':c.scha_type_string
-        ,'format':c.scha_format
-        ,'domain':anker(Modelelemtype.DOMA,c.scha_doma_id)
-        ,'descr':c.scha_beschr
-       ,'interface_col_id':c.scha_fremdsystem_id
-            , 'uc': c.scha_uc
-            , 'dc': c.scha_dc
-            , 'um': c.scha_um
-            , 'dm': c.scha_dm
+    cols = {anker(Modelelemtype.COLU,c.colu_id) :
+        {'name':c.colu_column_name
+         ,'table-name':Table().getbyid(c.colu_tabl_id).getname()
+         ,'table-id':anker(Modelelemtype.TABL, Table().getbyid(c.colu_tabl_id).getid())
+        , 'interface-name': Interface().getbyid(Table().getbyid(c.colu_tabl_id).tabl_intf_id).getname()
+        , 'interface-id': anker(Modelelemtype.INTF, Interface().getbyid(Table().getbyid(c.colu_tabl_id).tabl_intf_id).getid())
+            ,'basedatatype' : None if c.colu_daty_id is None else Datatype().getbyid(c.colu_daty_id).daty_name
+        ,'datatype':c.colu_type_string
+        ,'format':c.colu_format
+        ,'domain':anker(Modelelemtype.DOMA,c.colu_doma_id)
+        ,'descr':c.colu_descr
+       ,'interface_col_id':c.colu_ext_system_id
+            , 'uc': c.colu_uc
+            , 'dc': c.colu_dc
+            , 'um': c.colu_um
+            , 'dm': c.colu_dm
         , 'attributes-mapped': [anker(Modelelemtype.ATTR, a.attr_id) for a in
-                             AttrTransf.getattrlist(pcoluid=c.scha_id)]
+                             AttrTransf.getattrlist(pcoluid=c.colu_id)]
         , 'userdefprop': {
-            th[0]: {gr[1]: {u.udpr_name: Userdefpropvalue.udpvalue(pudprid=u.udpr_id, pmodeid=c.scha_id)
+            th[0]: {gr[1]: {u.udpr_name: Userdefpropvalue.udpvalue(pudprid=u.udpr_id, pmodeid=c.colu_id)
                             for u in Userdefprop.getudps(ptheme=th[0], pgroup=gr[1], pmeltname=Modelelemtype.COLU)}
                     for gr in Userdefprop.grouplist(pudptheme=th[0], pmelttype=Modelelemtype.COLU)}
             for th in Userdefprop.themelist(pmelttype=Modelelemtype.COLU)
         }
-            , 'sourceref': {s: Externalref.getsrcid(psrcname=s, pmodeid=c.scha_id)
+            , 'sourceref': {s: Externalref.getsrcid(psrcname=s, pmodeid=c.colu_id)
                         for s in Externalref.getsources()}
-        , 'refindocuments': [anker(Modelelemtype.DOCU, d[0]) for d in Document.getrefdoculist(pid=c.scha_id)]
+        , 'refindocuments': [anker(Modelelemtype.DOCU, d[0]) for d in Document.getrefdoculist(pid=c.colu_id)]
             }
-        for c in Schnittstelleattr.select()
-    }
+            for c in Column.select()
+            }
     return cols
 
 def tables():
     tabs = {anker(Modelelemtype.TABL,t.tabl_id) :
                 {'name':t.tabl_name
-                   ,'interface-name':Schnittstelle().getbyid(t.tabl_schn_id).getname()
-                   ,'interface-id':anker(Modelelemtype.INTF,Schnittstelle().getbyid(t.tabl_schn_id).getid())
+                   ,'interface-name':Interface().getbyid(t.tabl_intf_id).getname()
+                   ,'interface-id':anker(Modelelemtype.INTF, Interface().getbyid(t.tabl_intf_id).getid())
                    ,'prefix':t.tabl_prefix
-                   ,'descr':t.tabl_beschr
+                   ,'descr':t.tabl_descr
                 , 'uc': t.tabl_uc
                 , 'dc': t.tabl_dc
                 , 'um': t.tabl_um
                 , 'dm': t.tabl_dm
-                 ,'columns':[anker(Modelelemtype.COLU, c.scha_id) for c in t.getcolumns()]
+                 ,'columns':[anker(Modelelemtype.COLU, c.colu_id) for c in t.getcolumns()]
                 , 'userdefprop': {
                     th[0]: {gr[1]: {u.udpr_name: Userdefpropvalue.udpvalue(pudprid=u.udpr_id, pmodeid=t.tabl_id)
                                   for u in Userdefprop.getudps(ptheme=th[0], pgroup=gr[1], pmeltname=Modelelemtype.TABL)}
@@ -525,15 +536,15 @@ def tables():
               , 'sourceref': {s: Externalref.getsrcid(psrcname=s, pmodeid=t.tabl_id)
                             for s in Externalref.getsources()}
                , 'refindocuments': [anker(Modelelemtype.DOCU, d[0]) for d in Document.getrefdoculist(pid=t.tabl_id)]
-                } for t in Tabelle.select()
+                } for t in Table.select()
             }
     return tabs
 
 def project():
-    proj = Projekt.select()[0]
+    proj = Project.select()[0]
     model = {'name': proj.proj_name
-        , 'type': Projekt.LOGICALTYPE
-        , 'language': proj.proj_akt_sprache.lower()
+        , 'type': Project.LOGICALTYPE
+        , 'language': proj.proj_curr_lang.lower()
         , 'uc': proj.proj_uc
         , 'dc': proj.proj_dc
              # , 'dm': None
@@ -544,9 +555,9 @@ def languages():
     langs = {l.lang_iso_code2: {'name': l.lang_iso_name
         , 'iso3': l.lang_iso_code3
         , 'modellanguage': Boolean.str2bool(l.lang_is_base_lang)
-        , 'replacementlang': None if l.lang_lang_id is None else Sprache().getbyid(l.lang_lang_id).lang_iso_code2
+        , 'replacementlang': None if l.lang_lang_id is None else Language().getbyid(l.lang_lang_id).lang_iso_code2
                                 }
-             for l in Sprache.select()
+             for l in Language.select()
              }
     return langs
 

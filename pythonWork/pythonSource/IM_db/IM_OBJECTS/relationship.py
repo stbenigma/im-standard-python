@@ -4,7 +4,7 @@ from IM_DB import dbDML
 from .baseobject import Baseobject, MultilangBaseobject
 from .baseobject import Boolean
 from .modelelement import Modelelemtype
-from .sprachtext import Sprachtext
+from .languagetext import Languagetext
 import IM_OBJECTS
 
 
@@ -133,8 +133,8 @@ class Relation(MultilangBaseobject):
     def __init__(self, psrcname=None, psrcid=None):
         super().__init__(tablename=Relation._tablename, prefix=Relation._prefix
                          , columnlist=Relation._columnlist
-                         , multilangcols={'rela_assoc_from_to': Sprachtext.RELA_TEXT_FROM
-                                        , 'rela_assoc_to_from': Sprachtext.RELA_TEXT_TO}
+                         , multilangcols={'rela_assoc_from_to': Languagetext.RELA_TEXT_FROM
+                                        , 'rela_assoc_to_from': Languagetext.RELA_TEXT_TO}
                          , pmodelemtype=Modelelemtype.RELA
                          , psrcname=psrcname
                          , pscrid=psrcid
@@ -202,7 +202,6 @@ CREATE TABLE RELATIONS
   AND RELA_MAPTYPE_FROM_TO = 'M'
 )
 )
-    ,CONSTRAINT RELA_UK1 UNIQUE (RELA_ENTI_ID_FROM ASC, RELA_ENTI_ID_TO ASC, RELA_TYPE ASC, RELA_ASSOC_TO_FROM ASC, RELA_ASSOC_FROM_TO ASC)
     ,CONSTRAINT RELA_UK_NAME UNIQUE (RELA_NAME ASC)
     ,CONSTRAINT RELA_ARCS_FROM_FK FOREIGN KEY(     RELA_ARCS_ID_FROM)
     REFERENCES ARCS    (     ARCS_ID )
@@ -292,13 +291,11 @@ CREATE TABLE RELATIONS
                       set RELA_ARCS_ID_FROM = 
                             (select arcs_id 
                                 from arcs
-                                join ENTITIES earc on earc.ENTI_ID = ARCS_ENTI_ID
-                                    and earc.ENTI_ID = RELA_ENTI_ID_from)
+                                where ARCS_ENTI_ID = RELA_ENTI_ID_FROM) 
                         ,rela_arcs_id_to = 
                             (select arcs_id 
                             from arcs
-                            join ENTITIES earc on earc.ENTI_ID = ARCS_ENTI_ID
-                                    and earc.ENTI_ID = RELA_ENTI_ID_to)
+                            where ARCS_ENTI_ID = RELA_ENTI_ID_TO)
                         where rela_id in (select EXTR_MODE_ID from  external_refs
                                           where extr_source_id in ({})
                                         )

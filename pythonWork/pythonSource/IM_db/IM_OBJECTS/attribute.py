@@ -1,5 +1,5 @@
 from .baseobject import Baseobject, MultilangBaseobject
-from .sprachtext import Sprachtext
+from .languagetext import Languagetext
 from .domain import Domain
 from .key import Key
 import IM_OBJECTS
@@ -19,9 +19,9 @@ class Attribute(MultilangBaseobject):
                     ,psrcname=None, psrcid=None):
         super().__init__(tablename=Attribute._tablename, prefix=Attribute._prefix
                          , columnlist=Attribute._columnlist
-                         , multilangcols={'attr_displ_name': Sprachtext.ATTR_NAME,
-                                          'attr_descr': Sprachtext.ATTR_COMMENT,
-                                          'attr_tooltip': Sprachtext.ATTR_TOOLTIP}
+                         , multilangcols={'attr_displ_name': Languagetext.ATTR_NAME,
+                                          'attr_descr': Languagetext.ATTR_COMMENT,
+                                          'attr_tooltip': Languagetext.ATTR_TOOLTIP}
                          , pmodelemtype=Modelelemtype.ATTR
                          , pscrid=psrcid
                          , psrcname=psrcname)

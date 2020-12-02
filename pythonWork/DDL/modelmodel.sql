@@ -4,6 +4,18 @@
 --   Typ:      SQL Server 2012
 
 
+CREATE TABLE projects(
+    proj_id            integer primary key autoincrement,
+    proj_name          VARCHAR(60) NOT NULL,
+    proj_languages      VARCHAR(60),
+    proj_curr_lang   VARCHAR2(2),
+    proj_uc            VARCHAR(30) NOT NULL,
+    proj_dc            VARCHAR(30) NOT NULL,
+    proj_um            VARCHAR(30) ,
+    proj_dm            VARCHAR(30) ,
+	CONSTRAINT proj__un UNIQUE(proj_name)
+    );
+
 CREATE TABLE ARCS
     (
      ARCS_ID INTEGER NOT NULL primary key autoincrement,
@@ -55,30 +67,15 @@ CREATE TABLE ATTRIBUTES
          (ATTR_ENTI_ID IS NULL) )  )
       ,CONSTRAINT ATTR_UK UNIQUE (ATTR_TECH_NAME ASC, ATTR_RELA_ID ASC, ATTR_ENTI_ID ASC)
       ,CONSTRAINT ATTR_UK2 UNIQUE (ATTR_DISPL_NAME ASC, ATTR_RELA_ID ASC, ATTR_ENTI_ID ASC)
-      ,CONSTRAINT ATTR_ENTI_FK FOREIGN KEY
-      (     ATTR_ENTI_ID)
-      REFERENCES ENTITIES
-      (     ENTI_ID )
-      ON DELETE NO ACTION
-      ON UPDATE NO ACTION
-      ,CONSTRAINT ATTR_MODE_FK FOREIGN KEY
-      (     ATTR_ID)
-      REFERENCES MODELELEMENT
-      (     MODE_ID )
+      ,CONSTRAINT ATTR_ENTI_FK FOREIGN KEY      (     ATTR_ENTI_ID)
+		  REFERENCES ENTITIES      (     ENTI_ID )
+      ,CONSTRAINT ATTR_MODE_FK FOREIGN KEY      (     ATTR_ID)
+		  REFERENCES MODELELEMENT      (     MODE_ID )
       ON DELETE CASCADE
-      ON UPDATE NO ACTION
-      ,CONSTRAINT ATTR_RELA_FK FOREIGN KEY
-      (     ATTR_RELA_ID)
-      REFERENCES RELATIONS
-      (     RELA_ID )
-      ON DELETE NO ACTION
-      ON UPDATE NO ACTION
-	  ,CONSTRAINT ATTR_DOMA_FK FOREIGN KEY
-	  (     ATTR_DOMA_ID)
-	  REFERENCES DOMAINS
-	  (     DOMA_ID )
-	  ON DELETE NO ACTION
-	  ON UPDATE NO ACTION
+      ,CONSTRAINT ATTR_RELA_FK FOREIGN KEY(     ATTR_RELA_ID)      
+		  REFERENCES RELATIONS      (     RELA_ID )
+	  ,CONSTRAINT ATTR_DOMA_FK FOREIGN KEY		  (     ATTR_DOMA_ID
+	  	)	  REFERENCES DOMAINS	  (     DOMA_ID )
   );
 CREATE TABLE BUSINESS_RULE
     (
@@ -561,7 +558,6 @@ CREATE TABLE RELATIONS
   AND RELA_MAPTYPE_FROM_TO = 'M'
 )
 )
-    ,CONSTRAINT RELA_UK1 UNIQUE (RELA_ENTI_ID_FROM ASC, RELA_ENTI_ID_TO ASC, RELA_TYPE ASC, RELA_ASSOC_TO_FROM ASC, RELA_ASSOC_FROM_TO ASC)
     ,CONSTRAINT RELA_UK_NAME UNIQUE (RELA_NAME ASC)
     ,CONSTRAINT RELA_ARCS_FROM_FK FOREIGN KEY
     (     RELA_ARCS_ID_FROM)
@@ -665,6 +661,90 @@ CREATE TABLE USER_DEFINED_PROPERTIES
      UDPR_DM DATETIME NULL
     ,CONSTRAINT UDPR_UN UNIQUE (UDPR_NAME ASC)
     );
+	
+CREATE TABLE interfaces
+    (
+     intf_ID integer primary key autoincrement, 
+     intf_NAME VARCHAR (60) NOT NULL , 
+     intf_DESCR VARCHAR (4000)  , 
+     intf_UC VARCHAR (30) NOT NULL , 
+     intf_DC VARCHAR (30) NOT NULL , 
+     intf_UM VARCHAR (30) NULL , 
+     intf_DM VARCHAR (30) NULL ,
+ CONSTRAINT intf_UN UNIQUE (intf_NAME)
+  ,CONSTRAINT INFT_MODE_FK FOREIGN KEY (INTF_ID) 
+    REFERENCES MODELELEMENT (MODE_ID) 
+    );
 
+CREATE TABLE tables
+        (
+         tabl_id integer primary key autoincrement , 
+         tabl_name varchar (60) not null , 
+         tabl_intf_id integer not null , 
+         tabl_prefix varchar (60) null , 
+         tabl_descr varchar (4000) null , 
+         tabl_uc varchar (30) not null , 
+         tabl_dc varchar (30) not null , 
+         tabl_um varchar (30) null , 
+         tabl_dm varchar (30) null ,
+    	  CONSTRAINT TABL_UN UNIQUE (TABL_intf_ID , TABL_NAME)
+     	   ,CONSTRAINT TABL_intf_FK FOREIGN KEY (TABL_intf_ID) 
+     	      REFERENCES interfaces (intf_ID ) 
+     	   ,CONSTRAINT TABL_MODE_FK FOREIGN KEY (TABL_ID) 
+     	      REFERENCES modelelement (mode_ID ) ;
 
+create table columns
+(
+    colu_id             integer primary key ,
+    colu_column_name    varchar(60) not null,
+    colu_format         varchar(200),
+    colu_ext_system_id varchar(100),
+    colu_descr         varchar(4000),
+    colu_type_string    varchar(200),
+    colu_tabl_id        integer     not null,
+    colu_daty_id        integer     not null,
+    colu_doma_id        integer ,
+    colu_uc             varchar(30) not null,
+    colu_dc             varchar(30) not null,
+    colu_um             varchar(30),
+    colu_dm             varchar(30),
+    constraint colu_mode_fk FOREIGN KEY (colu_id) references modelelement (mode_id),
+    constraint colu_daty_fk FOREIGN KEY (colu_daty_id) references datatypes (daty_id),
+    constraint colu_doma_fk FOREIGN KEY (colu_doma_id) references domains (doma_id),
+    constraint colu_tabl_fk FOREIGN KEY (colu_tabl_id) references tables(tabl_id),
+    constraint colu_uk unique (colu_tabl_id,colu_column_name)        
+    );
 
+create table tabl_enti_map
+(
+ tema_id integer primary key autoincrement , 
+ tema_tabl_id integer not null , 
+ tema_enti_id integer null , 
+ tema_rela_id integer null , 
+ constraint tema_ck check ((tema_enti_id is not null and tema_rela_id is null )
+     	        		  or (tema_enti_id is null and tema_rela_id is not null)),
+	   constraint tema_un unique (tema_tabl_id , tema_enti_id ,tema_rela_id)
+   ,constraint tema_rela_fk foreign key (tema_rela_id) 
+      references relations (rela_id ) 
+   ,constraint tema_enti_fk foreign key (tema_enti_id) 
+      references entities (enti_id ) 
+   ,constraint tema_tabl_fk foreign key (tema_tabl_id) 
+      references tables (tabl_id )
+);
+
+create table colu_attr_map 
+  (
+coam_id integer primary key autoincrement,
+coam_seq integer  not null check ( coam_seq > 0) , 
+coam_direction varchar (7) not null check ( coam_direction in ('INBOUND', 'OUTBOUND') ) , 
+coam_transf_rule varchar (4000) null , 
+coam_triggertype varchar (10) null check ( coam_triggertype in ('MANUELL', 'PERIODE', 'ZPKT') ) , 
+coam_triggerperiod integer null , 
+coam_colu_id integer null , 
+coam_attr_id integer null 
+,constraint coam_un unique (coam_direction , coam_colu_id , coam_attr_id, coam_seq )
+,constraint coam_attr_fk foreign key (coam_attr_id) 
+   references attributes (attr_id )  on delete cascade 
+,constraint coam_colu_fk foreign key (coam_colu_id) 
+   references columns (colu_id ) on delete cascade 
+   ); 

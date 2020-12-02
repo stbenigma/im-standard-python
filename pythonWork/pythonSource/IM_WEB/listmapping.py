@@ -123,8 +123,8 @@ def writesheetentitab(pwb: Workbook):
     setcell(pws=ws,prow=rowidx + 2,pcolumn=colidx,pvalue='Count',phorizontal='right')
     xcounts = {}
     colidx += 1
-    for schn_name, tabs in schnittstellen.items():
-        ws.cell(column=colidx, row=rowidx, value=schn_name)
+    for intf_name, tabs in schnittstellen.items():
+        ws.cell(column=colidx, row=rowidx, value=intf_name)
         for tabkey in tabs.values():
             setcell(pws=ws, pcolumn=colidx, prow=rowidx + 1, pvalue=tabkey[0]
                     , ptext_rotation=90)
@@ -233,8 +233,8 @@ def writesheetattrcol(pwb: Workbook):
     ws.cell(column=colidx, row=rowidx + 1, value='Entity')
     ws.cell(column=colidx + 1, row=rowidx + 1, value='Attribute')
     colidx += 2
-    for schn_name, tabs in schnittstellen.items():
-        ws.cell(column=colidx, row=rowidx, value=schn_name)
+    for intf_name, tabs in schnittstellen.items():
+        ws.cell(column=colidx, row=rowidx, value=intf_name)
         setcell(pws=ws, pcolumn=colidx, prow=rowidx + 1, pvalue="Table")
         colidx += 1
         setcell(pws=ws, pcolumn=colidx, prow=rowidx + 1, pvalue="Column")
@@ -318,8 +318,8 @@ def writesheetattrcolold(pwb: Workbook):
     colidx += 1
     ws.cell(column=colidx + 1, row=rowidx + 1, value='Attribute')
     colidx += 1
-    for schn_name, tabs in schnittstellen.items():
-        ws.cell(column=colidx, row=rowidx, value=schn_name)
+    for intf_name, tabs in schnittstellen.items():
+        ws.cell(column=colidx, row=rowidx, value=intf_name)
         for tabkey in tabs.values():
             setcell(pws=ws, pcolumn=colidx, prow=rowidx + 1, pvalue=tabkey[0]
                     , ptext_rotation=90)
@@ -388,7 +388,7 @@ def writesheetschnittstelle(pwb, pschnname, pschn):
             # if
         # for
         if (firstrowidx == rowidx):
-            """keinen Eintrag für eine Entity geschrieben, schreibe die Tabelle sowieso"""
+            """keinen Eintrag für eine Entity geschrieben, schreibe die Table sowieso"""
             ws.cell(column=colidx, row=rowidx, value=tab[0])
             rowidx += 1
         # if
@@ -408,7 +408,7 @@ def writesheetschnittstelle(pwb, pschnname, pschn):
             # for
 
             if (firstrowidx == rowidx):
-                """keinen Eintrag für eine Entity geschrieben, schreibe die Tabelle sowieso"""
+                """keinen Eintrag für eine Entity geschrieben, schreibe die Table sowieso"""
                 ws.cell(column=colidx, row=rowidx, value=tab[0])
                 ws.cell(column=colidx + 1, row=rowidx, value=col[0])
                 rowidx += 1
@@ -541,7 +541,7 @@ def stripeol(str):
 #     global tabentimap, schnittstellen, entities
 #     createFile(pfilename=parameters.odmModelName() + '_entiintf.csv')
 #     write('\ufeff')
-#     writeln('Information Model', CSVSEP.join(schn_name for schn_name in schnittstellen.keys()), sep=CSVSEP)
+#     writeln('Information Model', CSVSEP.join(intf_name for intf_name in schnittstellen.keys()), sep=CSVSEP)
 #     for entiid, enti in entities.items():
 #         write(enti[0], CSVSEP)
 #         for schntabs in schnittstellen.values():
@@ -563,8 +563,8 @@ def stripeol(str):
 #     write('\ufeff')
 #     topheader = CSVSEP + CSVSEP
 #     subheader = 'Entity' + CSVSEP + 'Attribute'
-#     for schn_name, tabs in schnittstellen.items():
-#         topheader += schn_name + CSVSEP + CSVSEP.join('' for ta in tabs)[:-1]
+#     for intf_name, tabs in schnittstellen.items():
+#         topheader += intf_name + CSVSEP + CSVSEP.join('' for ta in tabs)[:-1]
 #         subheader += CSVSEP + CSVSEP.join(ta[0] for ta in tabs.values())
 #     writeln(topheader)
 #     writeln(subheader)
@@ -605,8 +605,8 @@ def stripeol(str):
 #     write('\ufeff')
 #     topheader = 'Information Model' + CSVSEP
 #     subheader = 'Entity'
-#     for schn_name, tabs in schnittstellen.items():
-#         topheader += schn_name + CSVSEP + CSVSEP.join('' for ta in tabs)[:-1]
+#     for intf_name, tabs in schnittstellen.items():
+#         topheader += intf_name + CSVSEP + CSVSEP.join('' for ta in tabs)[:-1]
 #         subheader += CSVSEP + CSVSEP.join(ta[0] for ta in tabs.values())
 #     writeln(topheader)
 #     writeln(subheader)
@@ -653,21 +653,21 @@ def filllists(plang):
     attributes = {attr.attr_id: [attr.attr_displ_name, attr.attr_tech_name, attr.attr_enti_id, attr.attr_rela_id] for attr
                   in Attribute.select()}
     tables = {tabl.tabl_id: [tabl.tabl_name
-        , Schnittstelle.getname(tabl.tabl_schn_id)
-        , {c.scha_id: c.scha_column_name for c in tabl.getcolumns()}
+        , Interface.getname(tabl.tabl_intf_id)
+        , {c.colu_id: c.colu_column_name for c in tabl.getcolumns()}
                              ]
-              for tabl in Tabelle.select()}
+              for tabl in Table.select()}
 
-    columns = {scha.scha_id: [scha.scha_column_name, scha.scha_tabl_id, scha.scha_fremdsystem_id]
-               for scha in Schnittstelleattr.select()}
-    schnittstellen = {schn.schn_name:
+    columns = {scha.colu_id: [scha.colu_column_name, scha.colu_tabl_id, scha.colu_ext_system_id]
+               for scha in Column.select()}
+    schnittstellen = {schn.intf_name:
                           {tabl.tabl_id: [tabl.tabl_name
-                                        , {c.scha_id: [c.scha_column_name, c.scha_fremdsystem_id]
+                                        , {c.colu_id: [c.colu_column_name, c.colu_ext_system_id]
                                             for c in tabl.getcolumns()
                                            }
-                                        ] for tabl in Tabelle.selectbyschnid(schn.schn_id)
+                                        ] for tabl in Table.selectbyschnid(schn.intf_id)
                            }
-                      for schn in Schnittstelle.select()}
+                      for schn in Interface.select()}
     tabentimap = TablEntiMap.extendedtabentimap()
     for tkey, tval in tables.items():
         matentry = lambda tabid, entiid: 'X' if (tabid in tabentimap) and (entiid in tabentimap[tabid]) else ''
@@ -702,12 +702,12 @@ def main(pdirec, plang):
     print("listmapping", parameters.odmBaseDirec(), parameters.odmModelName())
 
     if plang is not None:
-        Sprachtext.reportLang(plang.lower())
+        Languagetext.reportLang(plang.lower())
     else:
-        Sprachtext.reportLang(parameters.dbDefaultLang())
+        Languagetext.reportLang(parameters.dbDefaultLang())
 
     dbConnect.openDB(p_filepath=parameters.dbFilePath());
-    filllists(plang=Sprachtext.reportLang())
+    filllists(plang=Languagetext.reportLang())
     dbConnect.myDbConn.close()
     # listentiintf()
     # listattrintf()

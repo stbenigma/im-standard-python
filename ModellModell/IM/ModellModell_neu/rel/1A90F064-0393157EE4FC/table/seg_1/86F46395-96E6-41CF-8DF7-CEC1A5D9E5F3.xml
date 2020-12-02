@@ -14,12 +14,9 @@
 <use>1</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
 <dataTypePrecision>10</dataTypePrecision>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
-<associations>
-<colAssociation fkAssociation="266CAA37-39F8-FDDB-A836-923A5F269A2B" referredColumn="426ECCA7-FAC8-D245-2121-EEFA197BAC71"/>
-</associations>
 </Column>
 <Column name="Inbound_Transformation_Attributtransformation_Attributtransformation_ID" id="528D7B78-C06B-3442-0C86-EDC36C47C375">
 <createdBy>stb</createdBy>
@@ -29,11 +26,25 @@
 <use>1</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
 <dataTypePrecision>10</dataTypePrecision>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 <associations>
 <colAssociation fkAssociation="BA90D76A-CB1E-9530-B750-32043912D8B8" referredColumn="90206F51-5011-F054-E460-00CD6037A15A"/>
+</associations>
+</Column>
+<Column name="COLUMNS_COLU_ID" id="46AC79DB-1454-CBB1-2DD6-1DCC9D518D1E">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-01 15:46:02 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="266CAA37-39F8-FDDB-A836-923A5F269A2B" referredColumn="41CDCD81-D6BA-D9D7-A6E8-3BE94A5B09A3"/>
 </associations>
 </Column>
 </columns>
@@ -58,7 +69,7 @@
 <indexState>Foreign Key</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
-<colUsage columnID="DF8EA1B8-B8B7-E3CC-F930-66EF6644E562"/>
+<colUsage columnID="46AC79DB-1454-CBB1-2DD6-1DCC9D518D1E"/>
 </indexColumnUsage>
 </ind_PK_UK>
 <ind_PK_UK id="701971A9-99ED-C9B0-3BF5-8EDEFE9C795E" name="Relation_81_Inbound_Transformation_FK">

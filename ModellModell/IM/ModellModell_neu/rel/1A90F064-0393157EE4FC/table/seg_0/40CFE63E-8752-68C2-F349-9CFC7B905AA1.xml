@@ -111,36 +111,19 @@ DATABASE-LEVEL	>1 entity, no attributes or > 1 attributes from more than one ent
 <colAssociation fkAssociation="AF3D00BA-9056-7F7F-03F4-D3155FCAC46D" referredColumn="7E0D0401-B467-9FA1-2C52-60AEAF36E1EF"/>
 </associations>
 </Column>
-<Column name="BURE_INTF_ID" id="2CF1D0B7-60F0-495E-D158-2E0AA895DAA2">
+<Column name="BURE_TABL_ID" id="20F50658-3062-3F92-02F6-9231E0824FA7">
 <createdBy>stb</createdBy>
-<createdTime>2020-10-30 08:35:34 UTC</createdTime>
+<createdTime>2020-12-01 15:21:12 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
-<dataTypePrecision>10</dataTypePrecision>
-<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 <associations>
-<colAssociation fkAssociation="2811D916-0E5A-901A-1F37-F00FEAC1BD9D" referredColumn="99266761-7B17-A312-E341-D71BEAF8D72B"/>
-</associations>
-</Column>
-<Column name="BURE_COLU_ID" id="5F67CE11-8D7F-D7FF-8463-83AB079CBCDC">
-<createdBy>stb</createdBy>
-<createdTime>2020-10-30 08:37:56 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<nullsAllowed>true</nullsAllowed>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
-<dataTypePrecision>10</dataTypePrecision>
-<ownDataTypeParameters>,10,</ownDataTypeParameters>
-<previousColumn>false</previousColumn>
-<autoIncrementCycle>false</autoIncrementCycle>
-<associations>
-<colAssociation fkAssociation="DCC61284-68E7-D884-9C9B-B9719F215362" referredColumn="426ECCA7-FAC8-D245-2121-EEFA197BAC71"/>
+<colAssociation fkAssociation="2811D916-0E5A-901A-1F37-F00FEAC1BD9D" referredColumn="A2F5343E-BDFF-9FF3-0FE3-F47D462C52EB"/>
 </associations>
 </Column>
 <Column name="BURE_UC" id="B314F9DC-FAA1-E180-446A-2C8CD3770774">
@@ -199,6 +182,21 @@ DATABASE-LEVEL	>1 entity, no attributes or > 1 attributes from more than one ent
 <propertyMap>
 <property name="ctemplateID" value="B398D247-00C1-F016-3BBB-FE65CFFFF7AA"/>
 </propertyMap>
+</Column>
+<Column name="BURE_COLU_ID1" id="BEFA3DE8-9637-4004-DA13-9CBB12E9182B">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-01 15:46:02 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="DCC61284-68E7-D884-9C9B-B9719F215362" referredColumn="41CDCD81-D6BA-D9D7-A6E8-3BE94A5B09A3"/>
+</associations>
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
@@ -266,14 +264,14 @@ DATABASE-LEVEL	>1 entity, no attributes or > 1 attributes from more than one ent
 <colUsage columnID="65B5EF67-429F-8792-6A0B-ECBDDD4FD35C"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="6A7A9866-8C08-CB07-84BA-0410FF916519" name="BURU_INTF_FK">
+<ind_PK_UK id="6A7A9866-8C08-CB07-84BA-0410FF916519" name="BURU_TABL_FK">
 <createdBy>stb</createdBy>
 <createdTime>2020-10-30 08:35:34 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <indexState>Foreign Key</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
-<colUsage columnID="2CF1D0B7-60F0-495E-D158-2E0AA895DAA2"/>
+<colUsage columnID="20F50658-3062-3F92-02F6-9231E0824FA7"/>
 </indexColumnUsage>
 </ind_PK_UK>
 <ind_PK_UK id="ECEE0C99-1013-42B5-B11B-7ED94C6FD244" name="BURU_COLU_FK">
@@ -283,7 +281,7 @@ DATABASE-LEVEL	>1 entity, no attributes or > 1 attributes from more than one ent
 <indexState>Foreign Key</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
-<colUsage columnID="5F67CE11-8D7F-D7FF-8463-83AB079CBCDC"/>
+<colUsage columnID="BEFA3DE8-9637-4004-DA13-9CBB12E9182B"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>

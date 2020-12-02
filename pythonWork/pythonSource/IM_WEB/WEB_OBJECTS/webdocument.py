@@ -43,8 +43,8 @@ class WebDocument(BaseWebObj):
         #     , panker=Entity().getbyid(e[1]).webanker()
         #     if e[2] == Modelelemtype.ENTI
         #     else Attribute().getbyid(e[1]).webanker() if e[2] == Modelelemtype.ATTR
-        #     else Tabelle().getbyid(e[1]).webanker() if e[2] == Modelelemtype.TABL
-        #     else Schnittstelle().getbyid(e[1]).webanker() if e[2] == Modelelemtype.INTF
+        #     else Table().getbyid(e[1]).webanker() if e[2] == Modelelemtype.TABL
+        #     else Interface().getbyid(e[1]).webanker() if e[2] == Modelelemtype.INTF
         #     else ''
         #                            ) for e in data]
         # return datalist

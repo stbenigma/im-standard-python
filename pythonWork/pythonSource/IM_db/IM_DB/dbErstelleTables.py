@@ -6,9 +6,9 @@ def erstelleInfra():
     #erlaube alles droppen
     PhysicalUnit.createtable()
     Storageformat.createtable()
-    Schnittstelle.createtable()
-    Tabelle.createtable()
-    Schnittstelleattr.createtable()
+    Interface.createtable()
+    Table.createtable()
+    Column.createtable()
     Datatype.createtable()
 
     Entity.createtable()
@@ -35,8 +35,8 @@ def erstelleInfra():
     Externalref.createtable()
     ModelelementProperty.createtable()
 
-    Sprache.createtable()
-    Sprachtext.createtable()
+    Language.createtable()
+    Languagetext.createtable()
 
     Diagramtype.createtable()
     Diagram.createtable();
@@ -47,7 +47,7 @@ def erstelleInfra():
     Relationrep.createtable()
     Linesegment.createtable()
 
-    Projekt.createtable()
+    Project.createtable()
 
     dbDDL.dropTable("geschaeftsbereich");
     dbDDL.createTable("""CREATE TABLE geschaeftsbereich 

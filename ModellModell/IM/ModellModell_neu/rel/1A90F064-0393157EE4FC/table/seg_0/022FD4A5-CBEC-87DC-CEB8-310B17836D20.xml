@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="022FD4A5-CBEC-87DC-CEB8-310B17836D20" name="Schnittstellentabelle">
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="022FD4A5-CBEC-87DC-CEB8-310B17836D20" name="TABLES">
 <createdBy>stb</createdBy>
 <createdTime>2020-04-22 15:22:04 UTC</createdTime>
 <comment><![CDATA[ Attribut in einem System, das mit anderen Systemen ausgetauscht werden soll.
@@ -17,11 +17,27 @@
 ]EN_ENTI_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
-<typeID>2EDFF465-4CEE-72F2-D2EC-896DB596D191</typeID>
+<ordsAlias>schnittstellentabelle</ordsAlias>
+<typeID>FAF70092-F6A9-97FE-9880-A36ECEDBFE26</typeID>
+<abbreviation>TABL</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
-<Column name="Tabellenname" id="A52AF213-D20B-C4F0-C60F-B08A0C1CB451">
+<Column name="TABL_ID" id="A2F5343E-BDFF-9FF3-0FE3-F47D462C52EB">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-01 15:20:47 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="75F4992C-FF36-9B80-E76B-AD4A5EB35F55" referredColumn="9698F1F3-1EBE-8770-4F8C-4FFC3465A776"/>
+</associations>
+</Column>
+<Column name="TABL_NAME" id="A52AF213-D20B-C4F0-C60F-B08A0C1CB451">
 <createdBy>stb</createdBy>
 <createdTime>2020-04-22 15:22:04 UTC</createdTime>
 <generatorID>D00D2708-0ED0-AC79-8747-5A4FE816B34B</generatorID>
@@ -39,7 +55,7 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="Beschreibung" id="A8D03A1E-5899-5260-AFEB-F5447DBA978B">
+<Column name="TABL_DESCR" id="A8D03A1E-5899-5260-AFEB-F5447DBA978B">
 <createdBy>stb</createdBy>
 <createdTime>2020-04-22 15:22:04 UTC</createdTime>
 <comment><![CDATA[Beschreibung des Attributes im Fremdsystem]]></comment>
@@ -57,71 +73,120 @@ Description of the attribute in the external system
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="Auslöseart" id="583A3509-C192-351F-119F-D0E0DE7BD6DC">
+<Column name="TABL_INTF_ID" id="980F3002-9EDB-C514-53EC-AD43ABFAD0E7">
 <createdBy>stb</createdBy>
-<createdTime>2020-04-22 15:22:04 UTC</createdTime>
-<comment><![CDATA[Art der Auslösung der Transformation (Mutation, Periode, Manuell)]]></comment>
-<commentInRDBMS><![CDATA[Falls leer, wird die Auslöseart der Schnittstelle verwendet.]]></commentInRDBMS>
-<generatorID>BA5F5573-3DDE-F05C-2FC0-5D5ECA6D3FA0</generatorID>
-<notes><![CDATA[[DE_ATTR_COMMENT[
-Art der Auslösung der Transformation (Mutation, Periode, Manuell)
-]DE_ATTR_COMMENT]
-[EN_ATTR_COMMENT[
-Type of triggering of transformation (mutation, period, manual)
-]EN_ATTR_COMMENT]
-]]></notes>
+<createdTime>2020-12-01 15:24:24 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="2902454B-AD75-68E7-7F38-D8148031902A" referredColumn="65C00228-99F0-589A-1661-9C55B64918EA"/>
+</associations>
+</Column>
+<Column name="TABL_UC" id="456FDE52-DBDA-A89D-C72F-AB8E82EE50DE">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-01 15:19:27 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<formulaDesc>USER</formulaDesc>
+<sourceType>System</sourceType>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<computed>true</computed>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="F7EEFF47-7A42-2A3E-7DFC-D0558D6996B8"/>
+</propertyMap>
+</Column>
+<Column name="TABL_DC" id="5E326532-FC66-5322-0A5D-BDB0A2DE8EAF">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-01 15:19:27 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT047</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="74D877A0-4C3B-63EE-06C5-071C7695907C"/>
+</propertyMap>
+</Column>
+<Column name="TABL_UM" id="F9B32DE4-D990-D1E6-7E60-9F5FDD2A34B2">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-01 15:19:27 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="B2E17D53-C2F7-74D9-022D-5D63F3931519"/>
+</propertyMap>
 </Column>
-<Column name="Auslöseperiodizität" id="71F1A8DA-094F-7AE7-15C5-D9D9FFA033ED">
+<Column name="TABL_DM" id="BD1FD8EA-B071-2562-476E-F9D04E01634A">
 <createdBy>stb</createdBy>
-<createdTime>2020-04-22 15:22:04 UTC</createdTime>
-<comment><![CDATA[Täglich, alle 2 Minuten o.ä. Obligatorisch, falls die Auslöseart Zeitpunkt ist.]]></comment>
-<generatorID>7FD45920-D307-E1A7-359E-16EBD60B52CA</generatorID>
-<notes><![CDATA[[DE_ATTR_COMMENT[
-Täglich, alle 2 Minuten o.ä. Obligatorisch, falls die Auslöseart Zeitpunkt ist.
-]DE_ATTR_COMMENT]
-[EN_ATTR_COMMENT[
-Daily, every 2 minutes or similar. Mandatory if the trigger type is Time.
-]EN_ATTR_COMMENT]
-]]></notes>
+<createdTime>2020-12-01 15:19:27 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
+<logicalDatatype>LOGDT047</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
-</Column>
-<Column name="Schnittstellentabelle_ID" id="99266761-7B17-A312-E341-D71BEAF8D72B">
-<createdBy>stb</createdBy>
-<createdTime>2020-04-22 15:22:04 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
-<dataTypePrecision>10</dataTypePrecision>
-<ownDataTypeParameters>,10,</ownDataTypeParameters>
-<autoIncrementColumn>true</autoIncrementColumn>
-<identityColumn>true</identityColumn>
-<autoIncrementCycle>false</autoIncrementCycle>
-<isSurrogateColumn>true</isSurrogateColumn>
+<propertyMap>
+<property name="ctemplateID" value="B398D247-00C1-F016-3BBB-FE65CFFFF7AA"/>
+</propertyMap>
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
-<ind_PK_UK id="30923EB8-CDBE-D433-9586-E31413CF9B4A" name="Schnittstellentabelle_PK">
+<ind_PK_UK id="30923EB8-CDBE-D433-9586-E31413CF9B4A" name="TABL_PKv2">
 <createdBy>stb</createdBy>
 <createdTime>2020-04-22 15:22:04 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <pk>true</pk>
 <indexState>Primary Constraint</indexState>
 <indexColumnUsage>
-<colUsage columnID="99266761-7B17-A312-E341-D71BEAF8D72B"/>
+<colUsage columnID="A2F5343E-BDFF-9FF3-0FE3-F47D462C52EB"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="A5598C23-E164-14CA-59FC-833645D10A2A" name="TABL__UN">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-01 15:21:12 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="A52AF213-D20B-C4F0-C60F-B08A0C1CB451"/>
+<colUsage columnID="980F3002-9EDB-C514-53EC-AD43ABFAD0E7"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="6F7CF272-1503-72BC-E207-778A0A9FE430" name="TABL_MODE_FK">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-01 15:19:36 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="A2F5343E-BDFF-9FF3-0FE3-F47D462C52EB"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="21BDC51A-97C5-863F-743C-1016C00FCF75" name="TABL_INTF_FK">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-01 15:24:24 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="980F3002-9EDB-C514-53EC-AD43ABFAD0E7"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>

@@ -362,7 +362,7 @@ function $tblshow() {
 
     //checking if its using the right data
     console.log("URL: " + url + " \\n ");
-    console.log("ID der Tabelle: " + sID + " \\n ");
+    console.log("ID der Table: " + sID + " \\n ");
     console.log("Suchid: " + temp);
 
 }
@@ -412,7 +412,7 @@ def printlistofcontenthead():
             <p6>{}:</p6>
                 <output id="count"></output>
                 <div class="contentView">
-""".format(Sprachtext.transl("Suchbegriff"), Sprachtext.transl("Treffer"))
+""".format(Languagetext.transl("Suchbegriff"), Languagetext.transl("Treffer"))
     fhtml.write(contenhead)
 
 
@@ -452,7 +452,7 @@ def printlistofcontentelement(pname, plist, pfileonly=False):
             </div>
         </div>
 """
-    fhtml.write(listcontentelementhead.format(pname, lbc, Sprachtext.transl(pname), lbc, pname))
+    fhtml.write(listcontentelementhead.format(pname, lbc, Languagetext.transl(pname), lbc, pname))
     #local = re.match(r'/(.+/)*{}'.format(htmlfilelist[pintfid]), fhtml.name)
     for entry in plist:
         if pfileonly:
@@ -466,9 +466,9 @@ def printlistofcontentelement(pname, plist, pfileonly=False):
 
 
 def lang2img(plang):
-    if plang in (Sprachtext.DE, Sprachtext.FR):
+    if plang in (Languagetext.DE, Languagetext.FR):
         return plang + ".png"
-    elif plang == Sprachtext.EN:
+    elif plang == Languagetext.EN:
         return "gb.png"
     else:
         return None
@@ -485,12 +485,12 @@ def printcontenthead(pfirma, ptitel):
         </div>          
         </div>
 """
-    if Sprachtext.reportLang() == Sprachtext.DE:
+    if Languagetext.reportLang() == Languagetext.DE:
         f = """class="descr">Diese Webseite enthält den ganzen Inhalt 
             des <p2 class="IM">Informationsmodells {}</p2> von {}. 
             Diese Seite wurde von Software von <p2 class="fyayc">foryouandyourcustomers</p2> 
             erstellt.""".format(ptitel, pfirma)
-    elif Sprachtext.reportLang() == Sprachtext.FR:
+    elif Languagetext.reportLang() == Languagetext.FR:
             f = """class="descr">Ce site web contient l'intégralité du contenu 
                 du <p2 class="IM">Modèle d'Information {}</p2> de {}. 
                 Cette page a été créée par le logiciel de <p2 class="fyayc">foryouandyourcustomers</p2>. 
@@ -501,9 +501,9 @@ def printcontenthead(pfirma, ptitel):
             This page was created with software from <p2 class="fyayc">foryouandyourcustomers</p2>.""" \
             .format(ptitel, pfirma)
     # fi
-    langs = projekt.projektlangs().split(',')
+    langs = project.projektlangs().split(',')
     try:
-        langs.remove(Sprachtext.reportLang().lower())
+        langs.remove(Languagetext.reportLang().lower())
     except:
         pass
     str = ''
@@ -528,7 +528,7 @@ def printcontentstart(pname):
 def printcontentend(plbc):
     fhtml.write("""            
                             </div>""")
-    fhtml.write(contentelementfoot.format(plbc, Sprachtext.transl('Mehr')))
+    fhtml.write(contentelementfoot.format(plbc, Languagetext.transl('Mehr')))
 # printcontentend
 
 def printcontent(ptype, pname, panker, plbc, pdescr="", pmaster="", piconfilename=""):
@@ -578,6 +578,7 @@ def printflagline(pheaders, pvalues):
     fhtml.write(trstart)
     for h in pheaders:
         fhtml.write(flaghead.format(h))
+    fhtml.write(trend)
     fhtml.write(trstart)
     for v in pvalues:
         fhtml.write(flagline.format(v))
@@ -626,16 +627,16 @@ def printcontentinfo(ptitle, pheaders, pvalues):
 
 def printattrlist(penti):
     global model
-    lang = Sprachtext.reportLang()
+    lang = Languagetext.reportLang()
     alist = [{'anker':a,'element':model['attributes'][a]} for a in penti['attributes']]
     if (len(alist) == 0):
         return
-    fhtml.write(starttable(ptitel=Sprachtext.transl('Attribute')
-                           , pueberschriften=(
-            Sprachtext.transl('Name'), Sprachtext.transl('Wertebereich'), Sprachtext.transl('Typ')
-            , Sprachtext.transl('Pflichtattribut'), Sprachtext.transl('Schlüssel'), Sprachtext.transl('Deskriptor'),
-            Sprachtext.transl('übersetzt')
-            , Sprachtext.transl('historisiert'), Sprachtext.transl('wiederholt'), Sprachtext.transl('verschlüsselt'))))
+    fhtml.write(starttable(ptitle=Languagetext.transl('Attribute')
+                           , pheaders=(
+            Languagetext.transl('Name'), Languagetext.transl('Wertebereich'), Languagetext.transl('Typ')
+            , Languagetext.transl('Pflichtattribut'), Languagetext.transl('Schlüssel'), Languagetext.transl('Deskriptor'),
+            Languagetext.transl('übersetzt')
+            , Languagetext.transl('historisiert'), Languagetext.transl('wiederholt'), Languagetext.transl('verschlüsselt'))))
 
     for attr in alist:
         elem = attr['element']
@@ -659,49 +660,67 @@ def printattrlist(penti):
     fhtml.write(endtable())
 # printattrlist
 
-def startabschnitt(p_titel):
-    start = """        <h2>{}</h2>
-                            <div id="container0">
+def startabschnitt(ptitle, pheadlevel=2, ptabid=None, pselfanker=None, plbc=None):
+    head = """<h{}>{}</h{}>{}"""
+    start = """{}        
+        <div id="container1">
     """
-    return start.format(html.escape(p_titel))
-
-
-# startabschnitt
-def endabschnitt():
-    end = """        </div>
+    collapsestart = """
+        <div class="panel">
+            <div class="panel-heading collapsed" data-toggle="collapse"  data-target="#bar{}">
+                <img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
+                <img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
+                <label class="label1">{}</label>				
+            </div>
+        </div>
+        <div class="collapse" id="bar{}">
     """
-    return end
-
-
+    if plbc is None:
+        retval = start.format(head.format(pheadlevel, html.escape(ptitle), pheadlevel
+                                      , nvl2(ptabid,'','<a href="#{}" onclick="download_table_as_csv(\'{}\');">download as CSV</a>'
+                                                    .format(pselfanker, ptabid)
+                                           ))
+                              )
+    else:
+        retval = collapsestart.format(plbc
+                                      ,head.format(pheadlevel+1, html.escape(ptitle), pheadlevel+1
+                                                    , nvl2(ptabid,'','<a href="#{}" onclick="download_table_as_csv(\'{}\');">download as CSV</a>'
+                                                                    .format(pselfanker, ptabid)
+                                           ))
+                                      , plbc)
+    return retval
 # startabschnitt
-def starttable(ptitel, pueberschriften, pheadlevel=2, ptabid=None, pselfanker=None):
-    tabhead = """        <h{}>{}</h{}>{}
-                        <div id="container1">
-                            <div class="table-responsive">
-                   <table class="table borderless" {}>
-                                            <tbody>
-                                        <tr>
+def endabschnitt(plbc=None,plabel=None):
+    retval = """ 
+    </div>
+    """
+    return retval
+# startabschnitt
+
+def starttable(ptitle, pheaders, pheadlevel=2, ptabid=None, pselfanker=None, plbc=None):
+    tabhead = """
+        <div class="table-responsive">
+            <table class="table borderless" {}>
+                <tbody>
+                    <tr>
 """
     tabheads = """             <th>{}</th>
-"""
-    #    tabheads="""<th class="attribute">{}</th>"""
-    retval = []
-    retval.append(tabhead.format(pheadlevel, ptitel, pheadlevel
-                                 , nvl2(ptabid,'','<a href="#{}" onclick="download_table_as_csv(\'{}\');">download as CSV</a>'
-                                                    .format(
-            pselfanker, ptabid))
-                                 , nvl2(ptabid,'','id="{}"'.format(ptabid))))
-    for u in pueberschriften:
+    """
+    lineend = """               </tr>
+    """
+
+    retval = [startabschnitt(ptitle=ptitle, plbc=plbc, ptabid=ptabid, pheadlevel=pheadlevel, pselfanker=pselfanker)]
+    retval.append(tabhead.format(nvl2(ptabid,'','id="{}"'.format(ptabid))))
+    for u in pheaders:
         retval.append(tabheads.format(html.escape(u)))
+    retval.append(lineend)
     return ''.join(retval)
-
-
 # starttable
 
 def writetableline(pwerte, plineid=None):
-    linestart = """            <tr>
-        """ if plineid is None else """            <tr id = "{}">
-        """.format(plineid)
+    linestart = """<tr>
+        """ if plineid is None else """<tr id = "{}">
+                                    """.format(plineid)
     line = """             <td>{}</td>
     """
     iconline = """           <td {}></td>
@@ -719,23 +738,22 @@ def writetableline(pwerte, plineid=None):
     return ''.join(retval)
 
 
-def endtable():
-    return """        
-                     </tbody>
-                            </table>
-                            </div>
-                                </div>
-    """
-
+def endtable(plbc=None,plabel="Details"):
+    closetable = """
+        </tbody>
+      </table>
+    </div>"""
+    retval = closetable + endabschnitt(plbc=plbc,plabel=plabel)
+    return retval
 
 # endtable
 
-def tablehtml(ptitel, pueberschriften, pwerteliste, plineid=None, pheadlevel=2, ptabid=None, pselfanker=None):
-    retval = starttable(ptitel=ptitel, pueberschriften=pueberschriften, pheadlevel=pheadlevel, ptabid=ptabid,
-                        pselfanker=pselfanker)
+def tablehtml(ptitel, pueberschriften, pwerteliste, plineid=None, pheadlevel=2, ptabid=None, pselfanker=None,plbc=None):
+    retval = starttable(ptitle=ptitel, pheaders=pueberschriften, pheadlevel=pheadlevel, ptabid=ptabid,
+                        pselfanker=pselfanker, plbc=plbc)
     for lw in pwerteliste:
         retval += writetableline(pwerte=lw, plineid=plineid)
-    retval += endtable()
+    retval += endtable(plbc=plbc,plabel=ptitel)
     return retval
 
 
@@ -745,16 +763,17 @@ def printkeys(pelem,plang):
         return
     keyprint = []
     for k in keylist:
-        attrs = ', '.join(href(ref=a,anz=model['attributes'][a]['name'][plang]) for a in k['element']['key-elements']['attributes'])
-        relas = ', '.join(model['relations'][r]['name'] for r in k['element']['key-elements']['relations'])
+        attrs = ', '.join(href(ref=a,anz=getattribute(a)['name'][plang]) for a in k['element']['key-elements']['attributes'])
+        relas = ', '.join(getrelation(r)['name'] for r in k['element']['key-elements']['relations'])
         key = (k['anker'],attrs,relas)
         keyprint.append(key)
     #for
-    fhtml.write(tablehtml(ptitel=Sprachtext.transl('Schlüssel')
+    fhtml.write(tablehtml(ptitel=Languagetext.transl('Schlüssel')
                           , pueberschriften=(
-                Sprachtext.transl('Name'), Sprachtext.transl('Attribute(e)'),
-                Sprachtext.transl('Beziehung(en)'))
+            Languagetext.transl('Name'), Languagetext.transl('Attribute(e)'),
+            Languagetext.transl('Beziehung(en)'))
                         , pwerteliste=keyprint
+                          ,plbc=str(newbarcounter())
                   )
                 )
 # printkeys
@@ -772,6 +791,7 @@ def printmappinghtml(pwerte, ptitel, pueberschriften, pheadlevel=2):
                           , pueberschriften=pueberschriften
                           , pheadlevel=pheadlevel
                           , pwerteliste=werte
+                          ,plbc=str(newbarcounter())
                           )
                 )
 # printmappinghtml
@@ -779,12 +799,12 @@ def printmappinghtml(pwerte, ptitel, pueberschriften, pheadlevel=2):
 def printmapping(penti=None, pattr=None):
     if penti is not None:
         werte = {intf:[(tid, model['tables'][tid]['name']) for tid in tables] for intf,tables in penti['tablesmapped'].items()}
-        titel = Sprachtext.transl('Relational Mapping (Tabellen)')
-        ueberschr = (Sprachtext.transl('Relational Model'), Sprachtext.transl('Tabellen'))
+        titel = Languagetext.transl('Relational Mapping (Tabellen)')
+        ueberschr = (Languagetext.transl('Relational Model'), Languagetext.transl('Tabellen'))
     elif pattr is not None:
         werte = {intf:[(cid, model['columns'][cid]['name']) for cid in columns] for intf,columns in pattr['columnsmapped'].items()}
-        titel = Sprachtext.transl('Relational Mapping (Columns)')
-        ueberschr = (Sprachtext.transl('Relational Model'), Sprachtext.transl('Columns'))
+        titel = Languagetext.transl('Relational Mapping (Columns)')
+        ueberschr = (Languagetext.transl('Relational Model'), Languagetext.transl('Columns'))
     else:
         return
     # fi
@@ -794,14 +814,17 @@ def printmapping(penti=None, pattr=None):
 
 
 def printentirela(penti,plang):
-    relalist = [{'anker': r, 'element': model['relations'][r]} for r in penti['element']['relations']]
+
+    relalist = [{'anker': r, 'element': getrelation(r)}
+                  for r in penti['element']['relations'] if not getrelation(r)['type'] in (Relation.ISAROLE,Relation.ISASUBTYPE)]
     if (len(relalist) == 0):
         return
-    fhtml.write(starttable(ptitel=Sprachtext.transl('Beziehungen')
-                           , pueberschriften=(
-            Sprachtext.transl('Name'), Sprachtext.transl('Entität') + '-1', '', Sprachtext.transl('Beziehung'), '',
-            Sprachtext.transl('Entität') + '-2'
-            , Sprachtext.transl('Arc'), Sprachtext.transl('Schlüssel'),)))
+    lbc = str(newbarcounter())
+    fhtml.write(starttable(ptitle=Languagetext.transl('Beziehungen'), plbc=lbc
+                           , pheaders=(
+            Languagetext.transl('Name'), Languagetext.transl('Entität') + '-1', '', Languagetext.transl('Beziehung'), '',
+            Languagetext.transl('Entität') + '-2'
+            , Languagetext.transl('Arc'), Languagetext.transl('Schlüssel'),)))
     for rela in relalist:
         elem = rela['element']
         if elem['type'] in (Relation.ISAROLE,Relation.ISASUBTYPE): continue
@@ -827,7 +850,7 @@ def printentirela(penti,plang):
                                                , href(ref=elem['from-to']['enti'], anz=html.escape(otherentiname)))))
         # if
     # for
-    fhtml.write(endtable())
+    fhtml.write(endtable(plabel=Languagetext.transl('Beziehungen'), plbc=lbc))
 # printentirela
 
 def printcontentmapping(ptheme=None):
@@ -855,7 +878,7 @@ def printcontentmapping(ptheme=None):
         """[(theme,group)]"""
         lgroup = group[0]
         lanker = group[1]
-        headerlist = [Sprachtext.transl('Attribute')]
+        headerlist = [Languagetext.transl('Attribute')]
         udps = WebUdp.contentlist(ptheme=ptheme,pgroup=lgroup,pmeltname=Modelelemtype.ATTR)
         if len(udps) == 0: continue
         udpnames = [html.escape(u.dbobject().udpr_name) for u in udps]
@@ -864,7 +887,7 @@ def printcontentmapping(ptheme=None):
         webattrs = WebUdp.getattributes(ptheme=ptheme, pgroup=lgroup )
         lines = []
         for webattr in webattrs:
-            line = [href(ref=webattr.webanker().anker(), anz=webattr.getqualifiedname(plang=Sprachtext.reportLang()))]
+            line = [href(ref=webattr.webanker().anker(), anz=webattr.getqualifiedname(plang=Languagetext.reportLang()))]
             udpvalues = WebUdp.getvalues(ptheme=ptheme, pgroup=lgroup, pmodeid=webattr.getid(),pmeltype=Modelelemtype.ATTR)
             """[(udpr_name,udpv_value)]"""
             if (udpvalues is None or len(udpvalues)==0): continue
@@ -874,13 +897,13 @@ def printcontentmapping(ptheme=None):
 
         lbc = str(newbarcounter())
         fhtml.write(contentelementhead.format(lanker.anker()
-                                              , Sprachtext.transl('Attribute - Mapping')
+                                              , Languagetext.transl('Attribute - Mapping')
                                               , lgroup  # anzname
                                               , lbc))
         fhtml.write(detailshead)
 
-        fhtml.write(starttable(ptitel='Mapping'
-                               , pueberschriften=headerlist
+        fhtml.write(starttable(ptitle='Mapping'
+                               , pheaders=headerlist
                                , pheadlevel=3
                                , ptabid='TAB-{}'.format(lgroup if lgroup != '*' else 'ALL')
                                , pselfanker=lanker.anker()))
@@ -888,7 +911,7 @@ def printcontentmapping(ptheme=None):
         fhtml.write(endtable())
 
         fhtml.write(detailsfoot)
-        fhtml.write(contentelementfoot.format(lbc, Sprachtext.transl('Mehr')))
+        fhtml.write(contentelementfoot.format(lbc, Languagetext.transl('Mehr')))
     # for
 
 
@@ -907,20 +930,22 @@ def printUDP(pelem):
             """write only if there is at least one value not empty"""
             if (len(displvalues) > list(displvalues.values()).count('')):
                 if (not startwritten):
-                    fhtml.write(startabschnitt(p_titel=Sprachtext.transl('Benutzerdefinerte Eigenschaften')))
+                    lbc = str(newbarcounter())
+                    fhtml.write(startabschnitt(ptitle=Languagetext.transl('Benutzerdefinerte Eigenschaften'), plbc=lbc))
                     startwritten = True
                 # fi
 
                 fhtml.write(tablehtml(ptitel=html.escape(' {} - {} '.format(udptheme,grp))
                                   , pueberschriften=list(displvalues.keys())
                                   , pheadlevel=3
-                                  , pwerteliste=[list(displvalues.values())])
-                        )
+                                  , pwerteliste=[list(displvalues.values())]
+                                )
+                           )
             #fi
         #for
     #for
     if (startwritten):
-        fhtml.write(endabschnitt())
+        fhtml.write(endabschnitt(plabel=Languagetext.transl('Benutzerdefinerte Eigenschaften'), plbc=lbc))
 # printUDP
 
 def entidiag(pwebenti):
@@ -944,19 +969,19 @@ def iconfilename(pfilename):
 
 def printcontententi():
     global model
-    lang = Sprachtext.reportLang()
-    deflang = Sprache.getdefaultlang().lang_iso_code2
+    lang = Languagetext.reportLang()
+    deflang = Language.getdefaultlang().lang_iso_code2
     printcontentstart('entities')
-    infoheaders = (Sprachtext.transl('Synonyme'), Sprachtext.transl('Superentitäten')
-                   , Sprachtext.transl('Subentitäten'), Sprachtext.transl('Rollen'), Sprachtext.transl('auf Diagramm(en)')
-                   , Sprachtext.transl('geändert'))
+    infoheaders = (Languagetext.transl('Synonyme'), Languagetext.transl('Superentitäten')
+                   , Languagetext.transl('Subentitäten'), Languagetext.transl('Rollen'), Languagetext.transl('auf Diagramm(en)')
+                   , Languagetext.transl('geändert'))
 
     for enti in sorted([{'anker':key,'element': value}
                      for key,value in model['entities'].items()]
                      ,key=lambda val:val['element']['name'][lang]):
         elem = enti['element']
         lbc = str(newbarcounter())
-        printcontent(ptype=Sprachtext.transl('Entität')
+        printcontent(ptype=Languagetext.transl('Entität')
                      , panker=enti['anker']
                      , pname=elem['name'][lang]
                      , piconfilename=iconfilename(pfilename=elem['name'][deflang])
@@ -971,7 +996,7 @@ def printcontententi():
                                     , anz=model['diagrams'][d]['name']) for d in elem['diagrams'])
         infovalues = (nvl(synostr), parentstr, subtypestr,rolesstr
                       , diagstr, nvl(elem['uc']) + ', ' + nvl(elem['dc']))
-        printcontentinfo(ptitle=Sprachtext.transl('Informationen'), pheaders=infoheaders, pvalues=infovalues)
+        printcontentinfo(ptitle=Languagetext.transl('Informationen'), pheaders=infoheaders, pvalues=infovalues)
         printattrlist(penti=elem)
         printkeys(pelem=elem,plang=lang)
         printentirela(penti=enti,plang=lang)
@@ -985,14 +1010,14 @@ def printcontententi():
 
 def printcontentattr():
     infoheaders = (
-        Sprachtext.transl('Technischer Name'), Sprachtext.transl('Wertebereich'), Sprachtext.transl('Datentyp'),
-        Sprachtext.transl('Tooltip')
-        , Sprachtext.transl('geändert'))
+        Languagetext.transl('Technischer Name'), Languagetext.transl('Wertebereich'), Languagetext.transl('Datentyp'),
+        Languagetext.transl('Tooltip')
+        , Languagetext.transl('geändert'))
     flagheaders = (
-        Sprachtext.transl('Pflichtattribut'), Sprachtext.transl('Schlüssel'), Sprachtext.transl('Deskriptor'),
-        Sprachtext.transl('übersetzt')
-        , Sprachtext.transl('historisiert'), Sprachtext.transl('wiederholt'), Sprachtext.transl('verschlüsselt'))
-    lang = Sprachtext.reportLang()
+        Languagetext.transl('Pflichtattribut'), Languagetext.transl('Schlüssel'), Languagetext.transl('Deskriptor'),
+        Languagetext.transl('übersetzt')
+        , Languagetext.transl('historisiert'), Languagetext.transl('wiederholt'), Languagetext.transl('verschlüsselt'))
+    lang = Languagetext.reportLang()
 
     for attr in sorted([{'anker':key,'element': value}
                      for key,value in model['attributes'].items()]
@@ -1004,11 +1029,11 @@ def printcontentattr():
         else:
             enti = model['entities'][elem['entity']]
             master = "<p1>{}: {}</p1><br>" \
-                .format(Sprachtext.transl('Entität'), href(ref=elem['entity'], anz=enti['name'][lang]))
+                .format(Languagetext.transl('Entität'), href(ref=elem['entity'], anz=enti['name'][lang]))
         #fi
 
         lbc = str(newbarcounter())
-        printcontent(ptype=Sprachtext.transl('Attribute')
+        printcontent(ptype=Languagetext.transl('Attribute')
                      , panker=attr['anker']
                      , pname=elem['name'][lang]
                      , pmaster=master
@@ -1020,7 +1045,7 @@ def printcontentattr():
                      else href(ref=elem['domain'], anz=domainname)
         infovalues = (nvl(elem['techname'], ''), domainref, domain['displdatatype'][lang]
                       , nvl(elem['tooltip'][lang]), re.sub(r'^, $', '', nvl(elem['uc']) + ', ' + nvl(elem['dc'])))
-        printcontentinfo(ptitle=Sprachtext.transl('Informationen'), pheaders=infoheaders, pvalues=infovalues)
+        printcontentinfo(ptitle=Languagetext.transl('Informationen'), pheaders=infoheaders, pvalues=infovalues)
 
         flagvalues = (bool2icon(elem['mandatory']), bool2icon(len(elem['keys'])>0), bool2icon(elem['descriptive'])
                       , bool2icon(elem['translated'])
@@ -1039,8 +1064,9 @@ def printcontentattr():
 def printdocureflist(pelem, pelemtype):
     refentries = [[d,model['documents'][d]] for d in pelem['refindocuments']]
     if (len(refentries) == 0): return
-    fhtml.write(starttable(ptitel=Sprachtext.transl('Referenziert in')
-                           , pueberschriften=[Sprachtext.transl('Dokument')]))
+    lbc = str(newbarcounter())
+    fhtml.write(starttable(ptitle=Languagetext.transl('Referenziert in'), plbc=lbc
+                           , pheaders=[Languagetext.transl('Dokument')]))
 
     for refentry in refentries:
         # aus schn-html zurück ins Main
@@ -1049,7 +1075,7 @@ def printdocureflist(pelem, pelemtype):
         docuentry = href(ref=refentry[0],anz=refentry[1]['name'],htmlfile=htmlname)
         fhtml.write(writetableline(pwerte=[docuentry]))
     # for
-    fhtml.write(endtable())
+    fhtml.write(endtable(plabel=Languagetext.transl('Referenziert in'), plbc=lbc))
 
 
 def printdomaattrlist(pdoma, plang,pisgroup=False):
@@ -1069,11 +1095,12 @@ def printdomaattrlist(pdoma, plang,pisgroup=False):
                 ]
     if (pisgroup and len(alist)==0):return
 
-    fhtml.write(tablehtml(ptitel=Sprachtext.transl('Verwendet in Attributgruppen' if pisgroup
+    fhtml.write(tablehtml(ptitel=Languagetext.transl('Verwendet in Attributgruppen' if pisgroup
                                                    else 'Verwendet für Attribute')
-                          , pueberschriften=['']#[Sprachtext.transl('Attributgruppe' if pisgroup
+                          , pueberschriften=['']#[Languagetext.transl('Attributgruppe' if pisgroup
                                                 #               else 'Attribute')]
-                          , pwerteliste=alist))
+                          , pwerteliste=alist
+                          ,plbc=str(newbarcounter())))
 #printdomaattrlist
 
 def printdomacollist(pdoma):
@@ -1092,22 +1119,24 @@ def printdomacollist(pdoma):
                 ]
 
     if (len(clist) == 0): return
-    fhtml.write(tablehtml(ptitel=Sprachtext.transl('Verwendet für Columns')
-                          , pueberschriften=[Sprachtext.transl('Column'),Sprachtext.transl('Tabelle'),Sprachtext.transl('System')]
-                          , pwerteliste=clist))
+    fhtml.write(tablehtml(ptitel=Languagetext.transl('Verwendet für Columns')
+                          , pueberschriften=[Languagetext.transl('Column'), Languagetext.transl('Table'), Languagetext.transl('System')]
+                          , pwerteliste=clist
+                          ,plbc=str(newbarcounter())
+                          ))
 #printdomacollist
 
 def printdomamembers(pelem):
     elems = pelem['elements']
     if (len(elems) == 0):
         return
-    lang =Sprachtext.reportLang()
-    fhtml.write(tablehtml(ptitel=Sprachtext.transl('Elemente')
+    lang =Languagetext.reportLang()
+    fhtml.write(tablehtml(ptitel=Languagetext.transl('Elemente')
                           , pueberschriften=
-                          [Sprachtext.transl('Element')
-                              , Sprachtext.transl('Beschreibung')
-                              , Sprachtext.transl('Wertebereich')
-                              , Sprachtext.transl('Pflichtattribut')
+                          [Languagetext.transl('Element')
+                              , Languagetext.transl('Beschreibung')
+                              , Languagetext.transl('Wertebereich')
+                              , Languagetext.transl('Pflichtattribut')
                            ]
                           , pwerteliste=[[e['name']
                                          , e['descr']
@@ -1125,10 +1154,10 @@ def printwertelist(pelem):
             , key=lambda val: val[0])
     if (len(vlist) == 0):
         return
-    fhtml.write(tablehtml(ptitel=Sprachtext.transl('Werteliste')
+    fhtml.write(tablehtml(ptitel=Languagetext.transl('Werteliste')
                           , pueberschriften=(
-                            Sprachtext.transl('Nr'), Sprachtext.transl('Wert')
-                            , Sprachtext.transl('Anzeige'), Sprachtext.transl('Beschreibung')
+            Languagetext.transl('Nr'), Languagetext.transl('Wert')
+                            , Languagetext.transl('Anzeige'), Languagetext.transl('Beschreibung')
                             )
                           , pheadlevel=3
                           , pwerteliste=vlist)
@@ -1141,14 +1170,14 @@ def origindomains():
 
 def printcontentdoma():
 
-    lang = Sprachtext.reportLang()
+    lang = Languagetext.reportLang()
     for doma in sorted([{'anker': key, 'element': value}
                         for key, value in origindomains().items()]
             , key=lambda val: val['element']['name'][lang]):
         elem = doma['element']
         printcontentstart('domains')
         lbc = str(newbarcounter())
-        printcontent(ptype=Sprachtext.transl('Wertebereich')
+        printcontent(ptype=Languagetext.transl('Wertebereich')
                      , panker=doma['anker']
                      , pname=elem['name'][lang]
                      , pdescr=lf2htmlbr(nvl(elem['descr'][lang]))
@@ -1156,26 +1185,26 @@ def printcontentdoma():
 
         if (elem['type'] in (Domain.TXT, Domain.LOV)):
             infoheaders = (
-                Sprachtext.transl('Datentyp'), Sprachtext.transl('Max. Länge'), Sprachtext.transl('Syntaxregel'),
-                Sprachtext.transl('geändert'))
+                Languagetext.transl('Datentyp'), Languagetext.transl('Max. Länge'), Languagetext.transl('Syntaxregel'),
+                Languagetext.transl('geändert'))
             infovalues = (
                 nvl(elem['displdatatype'][lang]), nvl(elem['maxlng']), nvl(elem['syntaxrule'] if elem['type'] == Domain.TXT else ''),
                 nvl(elem['uc']) + ',' + nvl(elem['dc']))
         elif (elem['type'] == Domain.BIN):
-            infoheaders = (Sprachtext.transl('Datentyp'), Sprachtext.transl('Inhaltstyp'), Sprachtext.transl('Format'),
-                           Sprachtext.transl('geändert'))
+            infoheaders = (Languagetext.transl('Datentyp'), Languagetext.transl('Inhaltstyp'), Languagetext.transl('Format'),
+                           Languagetext.transl('geändert'))
             infovalues = (
             nvl(elem['displdatatype'][lang]), nvl(elem['contenttype']),
                 nvl(elem['contenttypename']), nvl(elem['uc']) + ',' + nvl(elem['dc']))
         elif (elem['type'] == Domain.GRP):
-            infoheaders = (Sprachtext.transl('Datentyp'), Sprachtext.transl('geändert'))
+            infoheaders = (Languagetext.transl('Datentyp'), Languagetext.transl('geändert'))
             infovalues = (elem['displdatatype'][lang], nvl(elem['uc']) + ',' + nvl(elem['dc']))
         elif (elem['type'] == Domain.NUM):
             infoheaders = (
-                Sprachtext.transl('Datentyp'), Sprachtext.transl('Vorkommast.'), Sprachtext.transl('Nachkommast.')
-                , Sprachtext.transl('Rundungseinh.'), Sprachtext.transl('Einheit'), Sprachtext.transl('Min. Wert'),
-                Sprachtext.transl('Max. Wwert')
-                , Sprachtext.transl('geändert'))
+                Languagetext.transl('Datentyp'), Languagetext.transl('Vorkommast.'), Languagetext.transl('Nachkommast.')
+                , Languagetext.transl('Rundungseinh.'), Languagetext.transl('Einheit'), Languagetext.transl('Min. Wert'),
+                Languagetext.transl('Max. Wwert')
+                , Languagetext.transl('geändert'))
             infovalues = (
                 nvl(elem['displdatatype'][lang]), nvl(elem['totaldigits']), nvl(elem['fractdigits']),
                 nvl(elem['roundvalue']), nvl(elem['unit'])
@@ -1183,15 +1212,15 @@ def printcontentdoma():
                 , nvl(elem['uc']) + ',' + nvl(elem['dc']))
         elif (elem['type'] == Domain.DAT):
             infoheaders = (
-                Sprachtext.transl('Datentyp'), Sprachtext.transl('Min. Wert'), Sprachtext.transl('Max. Wwert'),
-                Sprachtext.transl('Granularität')
-                , Sprachtext.transl('geändert'))
+                Languagetext.transl('Datentyp'), Languagetext.transl('Min. Wert'), Languagetext.transl('Max. Wwert'),
+                Languagetext.transl('Granularität')
+                , Languagetext.transl('geändert'))
             infovalues = (elem['displdatatype'][lang], nvl(elem['minvalue']), nvl(elem['maxvalue']),
                           nvl(elem['granularitytext'][lang]), nvl(elem['uc']) + ',' + nvl(elem['dc']))
         else:
             infoheaders, infovalues = None, None
         # fi
-        if infoheaders is not None: printcontentinfo(ptitle=Sprachtext.transl('Informationen'), pheaders=infoheaders,
+        if infoheaders is not None: printcontentinfo(ptitle=Languagetext.transl('Informationen'), pheaders=infoheaders,
                                                      pvalues=infovalues)
 
         if (elem['type'] == Domain.LOV):
@@ -1208,19 +1237,19 @@ def printcontentdoma():
 
 def type2name(ptyp,plang):
     if ptyp == 'entities':
-        return Sprachtext.transl('Entitäten',plang)
+        return Languagetext.transl('Entitäten', plang)
     elif ptyp == 'attributes':
-        return Sprachtext.transl('Attribute', plang)
+        return Languagetext.transl('Attribute', plang)
     elif ptyp == 'attributes':
-        return Sprachtext.transl('Attribute', plang)
+        return Languagetext.transl('Attribute', plang)
     elif ptyp == 'domains':
-        return Sprachtext.transl('Wertebereiche', plang)
+        return Languagetext.transl('Wertebereiche', plang)
     elif ptyp == 'diagrams':
-        return Sprachtext.transl('Diagramme', plang)
+        return Languagetext.transl('Diagramme', plang)
     elif ptyp == 'tables':
-        return Sprachtext.transl('Tabellen', plang)
+        return Languagetext.transl('Tabellen', plang)
     elif ptyp == 'systems':
-        return Sprachtext.transl('Systeme', plang)
+        return Languagetext.transl('Systeme', plang)
     elif ptyp == 'columns':
         return 'Columns'
     else:
@@ -1231,11 +1260,11 @@ def type2name(ptyp,plang):
 def printreflist(pelem,plang):
     refentries = {typ: [{'anker': e
                         , 'name': model[typ][e]['name']
-                        ,'interface-id': model[typ][e]['interface-id'] if (typ in ('tables','columns','systems')) else 0
+                        ,'htmlfile': htmlfilelist[model[typ][e]['interface-id']] if (typ in ('tables','columns','systems')) else ''
                          } for e in ref] for typ,ref in pelem['references'].items()}
     if (len(refentries) == 0): return
-    fhtml.write(starttable(ptitel=Sprachtext.transl('Referenziert')
-                           , pueberschriften=[Sprachtext.transl('Typ'),Sprachtext.transl('Element')]))
+    fhtml.write(starttable(ptitle=Languagetext.transl('Referenziert')
+                           , pheaders=[Languagetext.transl('Typ'), Languagetext.transl('Element')]))
 
     for typ,ref in refentries.items():
         if len(ref)==0: continue
@@ -1243,7 +1272,7 @@ def printreflist(pelem,plang):
         docuentry = ', '.join (href(ref='' if (typ in ('systems')) else elem['anker']
                                     ,anz=elem['name'] if (typ in ('tables','columns','systems'))\
                                                 else elem['name'][plang]
-                                    ,htmlfile=htmlfilelist[elem['interface-id']]
+                                    ,htmlfile=elem['htmlfile']
                                     ) for elem in ref)
         fhtml.write(writetableline(pwerte=[type2name(ptyp=typ,plang=plang),docuentry]))
     # for
@@ -1255,14 +1284,14 @@ def printcontentdoku():
             for key, value in model['documents'].items()]
             ,key=lambda val : val['element']['name'])
     printcontentstart('documents')
-    infoheaders = (Sprachtext.transl('Format'), Sprachtext.transl('Referenz'), Sprachtext.transl('Vaterdokument')
-                   , Sprachtext.transl('Unterdokumente'))
+    infoheaders = (Languagetext.transl('Format'), Languagetext.transl('Referenz'), Languagetext.transl('Vaterdokument')
+                   , Languagetext.transl('Unterdokumente'))
     for doc in docus:
         elem = doc['element']
         lbc = str(newbarcounter())
         parentanker=elem['parent']
         parentname = None if parentanker is None else model['documents'][parentanker]['name']
-        printcontent(ptype=Sprachtext.transl('Dokument')
+        printcontent(ptype=Languagetext.transl('Dokument')
                      , panker=doc['anker']
                      , pname=elem['name']
                      , pdescr=""
@@ -1273,8 +1302,8 @@ def printcontentdoku():
 
         infovalues = (nvl(elem['format']), nvl(elem['reference']),
                       nvl2(parentanker,'',href(ref=parentanker,anz=parentname)), kinder)
-        printcontentinfo(ptitle=Sprachtext.transl('Informationen'), pheaders=infoheaders, pvalues=infovalues)
-        printreflist(pelem=elem,plang=Sprachtext.reportLang())
+        printcontentinfo(ptitle=Languagetext.transl('Informationen'), pheaders=infoheaders, pvalues=infovalues)
+        printreflist(pelem=elem, plang=Languagetext.reportLang())
         printcontentend(lbc)
     # for
 # printcontentdoku
@@ -1340,11 +1369,11 @@ def closefile():
 
 def attname2element(pattrname):
     if pattrname in ['ENTI_NAME', 'ATTR_NAME']:
-        return Sprachtext.transl('Name')
+        return Languagetext.transl('Name')
     elif pattrname in ['ENTI_COMMENT', 'ATTR_COMMENT']:
-        return Sprachtext.transl('Beschreibung')
+        return Languagetext.transl('Beschreibung')
     elif pattrname in ['SYNO_NAME']:
-        return Sprachtext.transl('Synonym')
+        return Languagetext.transl('Synonym')
     else:
         return pattrname
     # fi
@@ -1353,7 +1382,7 @@ def attname2element(pattrname):
 def findtransl(pattrname, pmodeid, plangs, panker = None):
     tl = [attname2element(pattrname)]
     for l in plangs:
-        name = Sprachtext.transltext(pattrname=pattrname, pmodeid=pmodeid, plang=l)
+        name = Languagetext.transltext(pattrname=pattrname, pmodeid=pmodeid, plang=l)
         if panker is None:
             eintrag = name
         else:
@@ -1367,15 +1396,15 @@ def printtransl(penti=None, pattr=None):
     langfilename = "{}_{}.html".format(webFileName,'{}')
     langs = [k for k in model['languages'].keys()]
     try:
-        langs.remove(Sprachtext.reportLang())
+        langs.remove(Languagetext.reportLang())
     except:
         pass
     if len(langs) == 0: return
-    head = [Sprachtext.transl('Element')]
+    head = [Languagetext.transl('Element')]
     head.extend(langs)
-    name = [Sprachtext.transl('Name')]
-    descr = [Sprachtext.transl('Beschreibung')]
-    synonym = [Sprachtext.transl('Synonym')]
+    name = [Languagetext.transl('Name')]
+    descr = [Languagetext.transl('Beschreibung')]
+    synonym = [Languagetext.transl('Synonym')]
     if (penti is not None):
         name +=[href(ref=penti['anker'], anz=penti['element']['name'][lang]
                      ,htmlfile=langfilename.format(lang),pself=True) for lang in langs]
@@ -1388,8 +1417,10 @@ def printtransl(penti=None, pattr=None):
         descr += [pattr['element']['descr'][lang] for lang in langs]
         transllist = [name,descr]
     #fi
-    fhtml.write(tablehtml(ptitel=Sprachtext.transl('Übersetzungen')
+    fhtml.write(tablehtml(ptitel=Languagetext.transl('Übersetzungen')
                           , pueberschriften=head
                           , pheadlevel=2
-                          , pwerteliste=transllist))
+                          , pwerteliste=transllist
+                          ,plbc=str(newbarcounter()))
+                            )
 # printtransl

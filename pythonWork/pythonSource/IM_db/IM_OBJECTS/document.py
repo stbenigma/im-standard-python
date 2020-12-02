@@ -99,10 +99,10 @@ CREATE TABLE DOCUMENTS
             select docu_id, docu_name,tabl_id ref_id,'FALSE' direct
             from documents
             join mode_docu on MODO_docu_ID = docu_ID
-            join (select schn_id,tabl_id
-                  from tabellen
-                  join schnittstellen on SCHN_ID = TABL_SCHN_ID
-                 ) on MODO_MODE_ID = SCHN_ID      
+            join (select intf_id,tabl_id
+                  from tables
+                  join interfaces on intf_ID = TABL_intf_ID
+                 ) on MODO_MODE_ID = intf_ID      
             ) 
         where ref_id = {}  
         order by upper(docu_name)

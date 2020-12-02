@@ -1,11 +1,11 @@
 from .baseobject import Baseobject
-from .tabelle import Tabelle
+from .table import Table
 from IM_DB import dbDML
 from collections import defaultdict
 from .entity import Entity
 
 class TablEntiMap(Baseobject):
-    _tablename:str = 'tabl_enti_maps'
+    _tablename:str = 'tabl_enti_map'
     _prefix:str = 'tema'
     _columnlist:list = ['tema_id', 'tema_tabl_id', 'tema_enti_id', 'tema_rela_id']
 
@@ -26,12 +26,12 @@ class TablEntiMap(Baseobject):
   constraint tema_ck check ((tema_enti_id is not null and tema_rela_id is null )
       	        		  or (tema_enti_id is null and tema_rela_id is not null)),
 		   constraint tema_un unique (tema_tabl_id , tema_enti_id ,tema_rela_id)
-	   ,constraint tema_bezi_fk foreign key (tema_rela_id) 
+	   ,constraint tema_rela_fk foreign key (tema_rela_id) 
 	      references relations (rela_id ) 
 	   ,constraint tema_enti_fk foreign key (tema_enti_id) 
 	      references entities (enti_id ) 
 	   ,constraint tema_tabl_fk foreign key (tema_tabl_id) 
-	      references tabellen (tabl_id ) 
+	      references tables (tabl_id ) 
  )    """
                             )
     @staticmethod
@@ -48,11 +48,11 @@ class TablEntiMap(Baseobject):
 
     @staticmethod
     def gettabllist(pentiid=None,pintfid=None):
-        return Tabelle.select(pwhere="""tabl_id in (select tema_tabl_id 
+        return Table.select(pwhere="""tabl_id in (select tema_tabl_id 
                                                     from tabl_enti_maps
-                                                    join tabellen on tabl_id = tema_tabl_id 
+                                                    join tables on tabl_id = tema_tabl_id 
                                                     where tema_enti_id = {}
-                                                    and tabl_schn_id = {})""".format(pentiid if pentiid is not None else 'tema_enti_id',pintfid if pintfid is not None else 'tabl_schn_id'))
+                                                    and tabl_intf_id = {})""".format(pentiid if pentiid is not None else 'tema_enti_id',pintfid if pintfid is not None else 'tabl_intf_id'))
     @staticmethod
     def getentilist(ptablid):
         return Entity.select(pwhere="""enti_id in (select tema_enti_id 
@@ -62,24 +62,24 @@ class TablEntiMap(Baseobject):
 
     @staticmethod
     def tablelist(pentiid=None):
-        data = dbDML.select("""select  schn_name,group_concat(tabl_id,',') tabids
+        data = dbDML.select("""select  intf_name,group_concat(tabl_id,',') tabids
                             from tabl_enti_maps
-                            join tabellen on tabl_id = tema_tabl_id
-                            join schnittstellen on schn_id = tabl_schn_id 
+                            join tables on tabl_id = tema_tabl_id
+                            join interfaces on intf_id = tabl_intf_id 
                             where tema_enti_id = {}
-                            group by schn_name
-                            order by schn_name
+                            group by intf_name
+                            order by intf_name
                             """.format(pentiid if pentiid is not None else 'tema_enti_id'))
         retval = []
         try:
             for d in data:
-                schn_name = d[0]
+                intf_name = d[0]
                 tablist = {}
                 for tabid in d[1].split(','):
-                    tab = Tabelle().getbyid(tabid)
+                    tab = Table().getbyid(tabid)
                     tablist[tab.tabl_name] = tab.webanker()
                 # for
-                retval.append([schn_name, tablist])
+                retval.append([intf_name, tablist])
             # for
         except:
             pass
@@ -89,12 +89,12 @@ class TablEntiMap(Baseobject):
 
     @staticmethod
     def extendedtabentimap():
-        data = dbDML.select("""select  tema_tabl_id,tema_enti_id,tabl_name,enti_name,schn_name
+        data = dbDML.select("""select  tema_tabl_id,tema_enti_id,tabl_name,enti_name,intf_name
                             from tabl_enti_maps
-                            join tabellen on tabl_id = tema_tabl_id
-                            join schnittstellen on schn_id = tabl_schn_id
+                            join tables on tabl_id = tema_tabl_id
+                            join interfaces on intf_id = tabl_intf_id
                             join entitaeten on enti_id = tema_enti_id 
-                            order by schn_name,tabl_name,enti_name
+                            order by intf_name,tabl_name,enti_name
                             """)
         retval = defaultdict(dict)
         for d in data:

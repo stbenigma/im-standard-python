@@ -1,12 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="IM_CRM_FYAYC.db" uuid="7e1b3ac2-df7d-4793-a2c3-6edd04155af8">
-      <driver-ref>sqlite.xerial</driver-ref>
-      <synchronize>true</synchronize>
-      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/../../../CRM/DB/IM_CRM_FYAYC.db</jdbc-url>
-    </data-source>
     <data-source source="LOCAL" name="TestCaseTalk.db" uuid="750cb84f-2833-4906-8f86-eed5659bf79f">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
@@ -54,6 +48,18 @@
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
       <jdbc-url>jdbc:sqlite:$USER_HOME$/Downloads/modelmodel.db</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="Komax_IM_gesamt.db" uuid="e6589e7c-bcbf-4cbc-a24d-dd7b5f4edf66">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/../../../../KOMADSC/DB/Komax_IM_gesamt.db</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="IM_CRM_FYAYC.db" uuid="5559e372-5a1d-4975-b067-d29c7bf5ad0f">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/../../../CRM/DB/IM_CRM_FYAYC.db</jdbc-url>
     </data-source>
   </component>
 </project>

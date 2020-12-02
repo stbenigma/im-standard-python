@@ -27,38 +27,38 @@ def do1column(plfnr, pcolxml, ptablid):
 </propertyMap>
 </Column>
 """
-    scha = Schnittstelleattr(psrcname=Externalref.SOURCE_ODM, psrcid=transferModel.findField(pcolxml, 'id'))
-    scha.scha_column_name = transferModel.findField(pcolxml, 'name')
-    scha.scha_format = None
-    scha.scha_beschr = transferModel.findText(pcolxml, 'comment')
-    scha.scha_tabl_id = ptablid
-    scha.scha_uc = transferModel.findText(pcolxml, 'createdBy')
-    scha.scha_dc = transferModel.findText(pcolxml, 'createdTime')
-    scha.scha_fremdsystem_id = None
+    colu = Column(psrcname=Externalref.SOURCE_ODM, psrcid=transferModel.findField(pcolxml, 'id'))
+    colu.colu_column_name = transferModel.findField(pcolxml, 'name')
+    colu.colu_format = None
+    colu.colu_descr = transferModel.findText(pcolxml, 'comment')
+    colu.colu_tabl_id = ptablid
+    colu.colu_uc = transferModel.findText(pcolxml, 'createdBy')
+    colu.colu_dc = transferModel.findText(pcolxml, 'createdTime')
+    colu.colu_ext_system_id = None
     daty_odm = transferModel.findText(pcolxml, 'logicalDatatype')
     if (daty_odm is not None and daty_odm != ''):
         daty = Datatype().getbyODMref(psrcid=daty_odm)
-        scha.scha_daty_id = None if (daty is None) else daty.daty_id
+        colu.colu_daty_id = None if (daty is None) else daty.daty_id
     daty_wrtb_odm = transferModel.findText(pcolxml, 'domain')
-    tabl = Tabelle().getbyid(ptablid)
-    scha.scha_doma_id = \
+    tabl = Table().getbyid(ptablid)
+    colu.colu_doma_id = \
         transferModel.findorcreateDomain(pdomguid=daty_wrtb_odm
                                          , pstructdomguid=None
                                          , ptypeguid=daty_odm
-                                         , pattrname=scha.scha_column_name
-                                         , pfathername=Schnittstelle().getbyid(tabl.tabl_schn_id).schn_name
-                                                       +'.'+tabl.tabl_name
+                                         , pattrname=colu.colu_column_name
+                                         , pfathername=Interface().getbyid(tabl.tabl_intf_id).intf_name
+                                                       +'.' + tabl.tabl_name
                                          , pdomatype=Domain.DERIVED
                                          , pattrxml=pcolxml)
-    if scha.scha_daty_id is None:
-        scha.scha_daty_id = Datatype.getunknown().daty_id
-    scha.insert()
+    if colu.colu_daty_id is None:
+        colu.colu_daty_id = Datatype.getunknown().daty_id
+    colu.insert()
 
 
-    dbInserts.insertUdpColumn(pschaId=scha.scha_id)
-    transferModel.updateUDP(pmodeid=scha.scha_id, pobj=pcolxml)
+    dbInserts.insertUdpColumn(pcoluId=colu.colu_id)
+    transferModel.updateUDP(pmodeid=colu.colu_id, pobj=pcolxml)
     documents = transferModel.getdokuref(pelem= pcolxml)
-    ModelelemDocu.insertdocuref(pdocguidlist=documents, pmodeid=scha.scha_id)
+    ModelelemDocu.insertdocuref(pdocguidlist=documents, pmodeid=colu.colu_id)
 
 #do1column
 
@@ -66,12 +66,12 @@ def do1table(pfilename):
     global globalschnid
     tablexml = ET.parse(pfilename).getroot()
     #print (tablexml.get('name'),tablexml.get('id'),sep=' | ')
-    tabl = tabelle.Tabelle(psrcname=Externalref.SOURCE_ODM, psrcid=transferModel.findField(tablexml, "id"))
+    tabl = table.Table(psrcname=Externalref.SOURCE_ODM, psrcid=transferModel.findField(tablexml, "id"))
     tabl.tabl_name = transferModel.findField(tablexml, "name")
     tabl.tabl_uc = transferModel.findText(tablexml, 'createdBy')
     tabl.tabl_dc = transferModel.findText(tablexml, 'createdTime')
-    tabl.tabl_schn_id = globalschnid
-    tabl.tabl_beschr = transferModel.findText(tablexml, "comment")
+    tabl.tabl_intf_id = globalschnid
+    tabl.tabl_descr = transferModel.findText(tablexml, "comment")
     tabl.insert()
 
     dbInserts.insertUdpTable(ptablId=tabl.tabl_id)
@@ -99,19 +99,19 @@ def transfertables(pschndirec):
 
 def do1schnittstelle(pfilename):
     global globalschnid
-    schnxml = ET.parse(pfilename).getroot()
-    schn=schnittstelle.Schnittstelle(psrcname=Externalref.SOURCE_ODM, psrcid=transferModel.findField(schnxml, 'id'))
-    schn.schn_name = transferModel.findField(schnxml, 'name')
-    schn.schn_uc = transferModel.findText(schnxml, 'createdBy')
-    schn.schn_dc = transferModel.findText(schnxml, 'createdTime')
-    schn.insert()
+    intfxml = ET.parse(pfilename).getroot()
+    intf=interface.Interface(psrcname=Externalref.SOURCE_ODM, psrcid=transferModel.findField(intfxml, 'id'))
+    intf.intf_name = transferModel.findField(intfxml, 'name')
+    intf.intf_uc = transferModel.findText(intfxml, 'createdBy')
+    intf.intf_dc = transferModel.findText(intfxml, 'createdTime')
+    intf.insert()
 
-    #Dokumente an dieser Schnittstelle
-    documents = transferModel.getdokuref(pelem=schnxml, pstruct=True)
-    ModelelemDocu.insertdocuref(pdocguidlist= documents, pmodeid    = schn.schn_id)
+    #Dokumente an dieser Interface
+    documents = transferModel.getdokuref(pelem=intfxml, pstruct=True)
+    ModelelemDocu.insertdocuref(pdocguidlist= documents, pmodeid    = intf.intf_id)
     #Tabellen
     filename, file_extension = os.path.splitext(pfilename)
-    globalschnid = schn.schn_id #hässlich aber geht schlecht über generische Funktionen
+    globalschnid = intf.intf_id #hässlich aber geht schlecht über generische Funktionen
     transfertables(pschndirec=filename)
 #do1schnittstelle
 
@@ -129,9 +129,9 @@ def transferschn():
 def loeschmodell():
     AttrTransf.delete()
     TablEntiMap.delete()
-    Schnittstelleattr().delete()
-    Tabelle().delete()
-    Schnittstelle().delete()
+    Column().delete()
+    Table().delete()
+    Interface().delete()
 #loeschmodell
 
 class Odmmapping:
@@ -186,21 +186,19 @@ class Odmmapping:
 def doattrmapping(pcolmappings):
     for colmap in pcolmappings:
         attrid = Externalref.getODMmodeid (psrcid=transferModel.findField(colmap, 'lID'))
-        scha = Schnittstelleattr().getbyODMref(psrcid=transferModel.findField(colmap, 'rID'))
-        if ((scha is None) or (attrid is None)):
+        colu = Column().getbyODMref(psrcid=transferModel.findField(colmap, 'rID'))
+        if ((colu is None) or (attrid is None)):
             logmessages.writelog("Column-Reference ({}) or Attribute Refernce ({}) not found".format(transferModel.findField(colmap, 'rID'),transferModel.findField(colmap, 'lID')))
+
             continue
         #fi
 
-        attf = AttrTransf()
-        attf.attf_laufnr =1
-        attf.attf_richtung = AttrTransf.INBOUND
-        #attf.attf_transf_formel
-        #attf.attf_ausloeseart
-        #attf.attf_ausloeseperiod
-        attf.attf_scha_id = scha.scha_id
-        attf.attf_attr_id = attrid
-        attf.insert()
+        colmap = AttrTransf()
+        colmap.coam_seq =1
+        colmap.coam_direction = AttrTransf.INBOUND
+        colmap.coam_colu_id = colu.colu_id
+        colmap.coam_attr_id = attrid
+        colmap.insert()
 #doattrmapping
 
 def do1mapping(pfilename):
@@ -226,7 +224,7 @@ def do1mapping(pfilename):
             tabentimap.tema_enti_id = Externalref.getODMmodeid(psrcid=odmmap.logid) if odmmap.logtype == odmmap.ENTITYPE else None
             tabentimap.tema_rela_id = Externalref.getODMmodeid(psrcid=odmmap.logid) if odmmap.logtype == odmmap.RELATYPE else None
             tabentimap.tema_tabl_id = Externalref.getODMmodeid(psrcid=odmmap.relid) if odmmap.reltype == odmmap.TABLETYPE else None
-            #colattrmap.tema_tabl_id = Tabelle().getidbyfk(odmmap.relid) if odmmap.reltype == odmmap.FKTYPE else None
+            #colattrmap.tema_tabl_id = Table().getidbyfk(odmmap.relid) if odmmap.reltype == odmmap.FKTYPE else None
             tabentimap.insert(pdoerrhdlng=False)
         except:
             pass

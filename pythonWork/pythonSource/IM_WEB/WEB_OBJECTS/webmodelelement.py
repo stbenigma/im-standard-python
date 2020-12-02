@@ -11,13 +11,13 @@ class WebModelelement(WEB_OBJECTS.BaseWebObj):
             self.__webobject = WEB_OBJECTS.WebDocument(pdbobj=pdbobj)
         elif isinstance(pdbobj,Attribute):
             self.__webobject = WEB_OBJECTS.WebAttribute(pdbobj=pdbobj)
-        elif isinstance(pdbobj,Tabelle):
+        elif isinstance(pdbobj, Table):
             self.__webobject = WEB_OBJECTS.WebTable(pdbobj=pdbobj)
         elif isinstance(pdbobj,Domain):
             self.__webobject = WEB_OBJECTS.WebDomain(pdbobj=pdbobj)
-        elif isinstance(pdbobj,Schnittstelle):
+        elif isinstance(pdbobj, Interface):
             self.__webobject = WEB_OBJECTS.WebInterface(pdbobj=pdbobj)
-        elif isinstance(pdbobj,Schnittstelleattr):
+        elif isinstance(pdbobj, Column):
             self.__webobject = None
         else:
             self.__webobject = None

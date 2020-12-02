@@ -1156,11 +1156,11 @@ def insertBaseData():
     # , spra_dc
     deflang = parameters.dbDefaultLang()
     for key, value in languages.items():
-        Sprache(pname=value[0], piso2=key, piso3=value[1]).insert()
+        Language(pname=value[0], piso2=key, piso3=value[1]).insert()
 
     if not deflang in languages: deflang = 'de'
-    Sprache.setmodellang(pmodellang=deflang)
-    Sprache.setallreplacementlang()
+    Language.setmodellang(pmodellang=deflang)
+    Language.setallreplacementlang()
 
     Modelelemtype.fillmelt()
     diatid = Diagramtype(pname=Diagramtype.ENTITY).insert()
@@ -1202,9 +1202,9 @@ def loeschmodell():
     dbDML.delete('geschaeftsbereich')
     PhysicalUnit.delete()
     Storageformat.delete()
-    Projekt.delete()
-    Sprachtext.delete()
-    Sprache.delete()
+    Project.delete()
+    Languagetext.delete()
+    Language.delete()
 
 
 # loeschmodell
@@ -1250,12 +1250,12 @@ def loaddefaultcolors():
 # loaddefaultcolors
 
 def filllanguages():
-    Sprachtext.insertlang_texts(pudpthema=parameters.odmUDPTranslFileName())
+    Languagetext.insertlang_texts(pudpthema=parameters.odmUDPTranslFileName())
     #copy comma-list-synonym into synoyms
     Synonym.transfersynotransl()
     # fill all elements in default language
-    Sprachtext.filldefaulttext(dbParam.dbDefaultLangID)
-    Sprache.deleteunused()
+    Languagetext.filldefaulttext(dbParam.dbDefaultLangID)
+    Language.deleteunused()
 # filllanguages
 
 def transferprojekt():
@@ -1269,21 +1269,21 @@ def transferprojekt():
         defspra = re.search(r'currentLang=([A-Z]{2})', comm).group(1)
         sprachen = re.search(r'languages=([A-Z,]*)', comm).group(1)
     # print (findField(root,'name'),comm,sprachen,defspra)
-    proj = Projekt()
+    proj = Project()
     proj.proj_name = findField(root, 'name')
     proj.proj_uc = findText(root, 'createdBy')
     proj.proj_dc = findText(root, 'createdTime')
-    proj.proj_sprachen = sprachen
-    proj.proj_akt_sprache = defspra
+    proj.proj_languages = sprachen
+    proj.proj_curr_lang = defspra
     proj.insert()
 
     if defspra is not None:
         defspra = defspra.lower()
         # setze die Defaultsprache aus dem Modell
-        if Sprache.spraidlookup(piso=defspra) is None:
+        if Language.spraidlookup(piso=defspra) is None:
             raise Exception("Language '{}' does not exist".format(defspra))
-        Sprache.setmodellang(pmodellang=defspra)
-        Sprache.setallreplacementlang()
+        Language.setmodellang(pmodellang=defspra)
+        Language.setallreplacementlang()
         dbParam.liesdefaultlang()
         parameters.dbDefaultLang(defspra)
     # fi
@@ -1334,7 +1334,7 @@ def transferODMModel():
     transferKeys()
     transferdiagramme()
     transferRelational.transfer()
-    Schnittstelleattr.fillextid()
+    Column.fillextid()
     removeemptyudp()
     filllanguages()
 # end transferODMModel

@@ -130,7 +130,7 @@ class ParameterTest(unittest.TestCase):
             self.assertEqual(parameters.odmBaseDirec(),basedirec +'/',msg="falsches base Direc")
             self.assertEqual(parameters.odmIMDirec(),basedirec +'/' +parameters.odmIMDefaultDirec()
                         ,msg="falsches IM Direc")
-            self.assertEqual(parameters.dbDefaultLang(),'de',msg="falsche Sprache {} {}")
+            self.assertEqual(parameters.dbDefaultLang(),'de',msg="falsche Language {} {}")
             os.remove(paramfile)
 
             paramfile = basedirec +'/' + 'TEST_DMD' + parameters.paramFileExension

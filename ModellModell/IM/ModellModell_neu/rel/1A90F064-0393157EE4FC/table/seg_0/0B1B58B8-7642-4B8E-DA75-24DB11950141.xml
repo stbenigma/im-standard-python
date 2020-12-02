@@ -11,7 +11,7 @@
 ]EN_ENTI_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
-<typeID>2EDFF465-4CEE-72F2-D2EC-896DB596D191</typeID>
+<typeID>FAF70092-F6A9-97FE-9880-A36ECEDBFE26</typeID>
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
@@ -49,11 +49,22 @@
 <use>1</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
 <dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="COLUMNS_COLU_ID" id="F7530592-54D8-8031-E090-09BE21809A69">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-01 15:46:02 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 <associations>
-<colAssociation fkAssociation="BFCCC17B-041D-2CEC-83A9-F051F7ABE34D" referredColumn="426ECCA7-FAC8-D245-2121-EEFA197BAC71"/>
+<colAssociation fkAssociation="BFCCC17B-041D-2CEC-83A9-F051F7ABE34D" referredColumn="41CDCD81-D6BA-D9D7-A6E8-3BE94A5B09A3"/>
 </associations>
 </Column>
 </columns>
@@ -107,7 +118,7 @@
 <indexState>Foreign Key</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
-<colUsage columnID="588622CF-5A9A-A642-BBC2-85FA0D0B982B"/>
+<colUsage columnID="F7530592-54D8-8031-E090-09BE21809A69"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>

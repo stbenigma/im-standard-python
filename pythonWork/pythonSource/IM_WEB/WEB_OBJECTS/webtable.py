@@ -1,10 +1,10 @@
 from .webbaseobject import Webanker,BaseWebObj,Objlist
-from IM_OBJECTS import  Tabelle
+from IM_OBJECTS import  Table
 
 
 class WebTable(BaseWebObj):
-    def __init__(self, pid=None, pdbobj: Tabelle = None):
-        super().__init__(pobjtype=Tabelle, pid=pid, pdbobj=pdbobj)
+    def __init__(self, pid=None, pdbobj: Table = None):
+        super().__init__(pobjtype=Table, pid=pid, pdbobj=pdbobj)
 
     def getname(self, plang=None):
         return self.dbobject().getname(plang=plang)
@@ -15,7 +15,7 @@ class WebTable(BaseWebObj):
 
     @staticmethod
     def indexlist(plang=None):
-        members = [WebTable(pdbobj=obj) for obj in Tabelle.select()]
+        members = [WebTable(pdbobj=obj) for obj in Table.select()]
         idxlist = Objlist(pmembers=members).indexlist(plang=plang)
         return idxlist
     # grouplist
