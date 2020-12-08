@@ -38,6 +38,7 @@ parameter = {
             , 'odmentisubviewdirec': 'logical/subviews/'
             , 'odmarcdirec': 'logical/arc/'
             , 'odmdocumentdirec': 'businessinfo/document/'
+            , 'odmorgunitdirec': 'businessinfo/party/'
             , 'odmudptranslfilename': 'translation'
             , 'odmudpmappingfilename': 'datamapping'
             , 'odmmappingdirec': 'mapping/'
@@ -168,6 +169,11 @@ def odmdocumentdirec(newval=None):
         return odmIMDirec()+odmModelName()+'/'+parameter['odmdocumentdirec']
     else:
         parameter['odmdocumentdirec'] = newval
+def odmorgunitdirec(newval=None):
+    if newval is None:
+        return odmIMDirec()+odmModelName()+'/'+parameter['odmorgunitdirec']
+    else:
+        parameter['odmorgunitdirec'] = newval
 def odmDomainsFilePath(newval=None):
     if newval is None:
         return parameter['odmdomainsfilepath']

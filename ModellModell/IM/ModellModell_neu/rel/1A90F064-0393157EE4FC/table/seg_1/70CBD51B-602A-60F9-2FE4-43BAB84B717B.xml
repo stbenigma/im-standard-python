@@ -29,38 +29,21 @@ Jira (div. Projektaufgabenverwaltungsaufgaben)
 <typeID>FAF70092-F6A9-97FE-9880-A36ECEDBFE26</typeID>
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
-<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
-<Column name="Anwendungsgruppev1_ID" id="B6DDEEED-91F8-83C7-98EA-BAA1E931AD21">
-<createdBy>stb</createdBy>
-<createdTime>2020-10-11 14:59:55 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<use>0</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
-<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<autoIncrementColumn>true</autoIncrementColumn>
-<identityColumn>true</identityColumn>
-<autoIncrementCycle>false</autoIncrementCycle>
-<isSurrogateColumn>true</isSurrogateColumn>
-</Column>
-</columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
-<ind_PK_UK id="5716C390-6D71-4956-1C36-33AD65CDE2FE" name="Anwendungsgruppev1_PK">
-<createdBy>stb</createdBy>
-<createdTime>2020-10-11 14:59:55 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<pk>true</pk>
-<indexState>Primary Constraint</indexState>
-<indexColumnUsage>
-<colUsage columnID="B6DDEEED-91F8-83C7-98EA-BAA1E931AD21"/>
-</indexColumnUsage>
-</ind_PK_UK>
 <ind_PK_UK id="68153783-2801-8FF2-634A-B63B9E4613E6" name="Anwendungsgruppev1__UN">
 <createdBy>stb</createdBy>
 <createdTime>2020-10-11 14:59:55 UTC</createdTime>
 <generatorID>7465F71C-6E0A-E3D8-95A6-E74B987A6AA2</generatorID>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+</ind_PK_UK>
+<ind_PK_UK id="A3D805CB-8D18-8E84-9942-347D2D52305E" name="Anwendungsgruppev1_IT-Komponente_FK">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-07 12:44:58 UTC</createdTime>
+<generatorID>F3FFF1CD-5B7B-5162-3A22-DE6D608AE547</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 </ind_PK_UK>
 </indexes>

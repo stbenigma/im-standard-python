@@ -1,0 +1,88 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="F0AAF886-6EED-7A6A-E9A6-23154C506C57" name="Akteurrolle">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-07 12:44:58 UTC</createdTime>
+<comment><![CDATA[Zuammenfassung eines Aufgaben- und Verantwortungsbereichs, den eine Person als Akteur im System ausfüllen kann.
+
+Eine Personenrolle muss immer als mindestens einen der Subtypen (intern, extern) vorkommen.
+
+Beispiel:
+ Produkt Manager
+ Leiter Marketing 
+ CEO
+ CFO
+ Servicetechniker]]></comment>
+<generatorID>15C54599-0177-3F97-C2CF-1921234C4499</generatorID>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+Zuammenfassung eines Aufgaben- und Verantwortungsbereichs, den eine Person als Akteur im System ausfüllen kann.
+
+Eine Personenrolle muss immer als mindestens einen der Subtypen (intern, extern) vorkommen.
+
+Beispiel:
+ Produkt Manager
+ Leiter Marketing 
+ CEO
+ CFO
+ Servicetechniker
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+*The collective entry of a task and responsibility area that a person can fill out as an actor in the system.  A person role must always occur as at least one of the subtypes (internal, external).  Example: Product Manager Head of Marketing CEO CFO Service Technician
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<typeID>EC66DFE5-32A6-31DC-EC38-0906F34F58E0</typeID>
+<abbreviation>AKTRO</abbreviation>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="AKTRO_ID" id="EE57D114-303F-666A-27F2-5284105A663B">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-07 12:44:58 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+<Column name="Bezeichnung" id="6EC2CF75-9DA2-5A65-3A95-2ADDCEE3DF42">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-07 12:44:58 UTC</createdTime>
+<generatorID>CD009924-6684-A71B-8BB9-0B7FAD5B323C</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="3769566B-CEA5-54BE-90FF-31202E1A2924" name="AKTRO_PK">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-07 12:44:58 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="EE57D114-303F-666A-27F2-5284105A663B"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="8A4ABE39-1042-FBA5-ABA8-39754ABC6512" name="Akteurrolle__UN">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-07 12:44:58 UTC</createdTime>
+<generatorID>7465F71C-6E0A-E3D8-95A6-E74B987A6AA2</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+</ind_PK_UK>
+</indexes>
+</Table>

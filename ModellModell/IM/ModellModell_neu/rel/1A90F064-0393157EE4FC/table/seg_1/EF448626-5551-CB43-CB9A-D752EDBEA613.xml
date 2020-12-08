@@ -52,19 +52,6 @@ Beispiele:
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
-<Column name="Anwendungsfallv1_ID" id="378AC004-2039-08C9-3947-80EF39AF8FF2">
-<createdBy>stb</createdBy>
-<createdTime>2020-10-11 14:59:55 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<use>0</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
-<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<autoIncrementColumn>true</autoIncrementColumn>
-<identityColumn>true</identityColumn>
-<autoIncrementCycle>false</autoIncrementCycle>
-<isSurrogateColumn>true</isSurrogateColumn>
-</Column>
 <Column name="Bezeichnung" id="6DD68B51-883B-547F-ABFA-2F76000EAAD1">
 <createdBy>stb</createdBy>
 <createdTime>2020-10-11 14:59:55 UTC</createdTime>
@@ -85,22 +72,20 @@ Beispiele:
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
-<ind_PK_UK id="4AD6169B-A4B2-C63E-7410-F50FF814877D" name="Anwendungsfallv1_PK">
-<createdBy>stb</createdBy>
-<createdTime>2020-10-11 14:59:55 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<pk>true</pk>
-<indexState>Primary Constraint</indexState>
-<indexColumnUsage>
-<colUsage columnID="378AC004-2039-08C9-3947-80EF39AF8FF2"/>
-</indexColumnUsage>
-</ind_PK_UK>
 <ind_PK_UK id="97F5C591-BB1C-002D-A882-86AF35953038" name="Anwendungsfallv1__UN">
 <createdBy>stb</createdBy>
 <createdTime>2020-10-11 14:59:55 UTC</createdTime>
 <generatorID>7465F71C-6E0A-E3D8-95A6-E74B987A6AA2</generatorID>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+</ind_PK_UK>
+<ind_PK_UK id="F8C23251-EA01-6B02-004A-1607F5B8084D" name="Anwendungsfallv1_Geschäftstransaktion_FK">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-07 12:44:58 UTC</createdTime>
+<generatorID>74022CD5-5D13-BE30-43B3-9960EE280658</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 </ind_PK_UK>
 </indexes>

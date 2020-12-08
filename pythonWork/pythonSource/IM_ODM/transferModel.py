@@ -573,13 +573,6 @@ def dosegfiles(pdirec, transferfiles):
             doxmlfiles(pdirec=pdirec + el + '/'
                        , ptransfer=transferfiles
                        , ppattern=r'{}.xml'.format(GUIDPATTERN))
-
-
-#            for file in os.listdir(pdirec + el):
-#                doGUIDfile(pdirec=pdirec + el + '/',pfile=file,transferfiles=transferfiles)
-#            #for
-# fi
-# for
 # dosegfiles
 
 def do1diagramm(pfilename):
@@ -884,6 +877,26 @@ def getdokuref(pelem, pstruct=False):
     return documents
 # getdokuref
 
+def getpartyref(pelem):
+    parties = None
+    """
+    <responsibleParties>
+    <party>7EBDC037-8728-C627-4B33-CEDF979E7C13</party>
+    </responsibleParties>
+    """
+    elemparties = pelem.findall('responsibleParties/party')
+    if elemparties is not None:
+        parties = []
+        for party in elemparties:
+            # alle referenzierten Dokumente
+            parties.append(party.text)
+        # for
+        parties = tuple(parties)
+    # fi
+    return parties
+# getpartyref
+
+
 def do1Entity(fileName):
     global entities
     tree = ET.parse(fileName)
@@ -891,7 +904,7 @@ def do1Entity(fileName):
     #es hat noch fremde XMLS in den Verzeichnissen
     if (findField(entixml, "class") != "oracle.dbtools.crest.model.design.logical.Entity"): return
 
-    documents = getdokuref(pelem=entixml)
+    "natürliche Person"
     entiguid = findField(entixml, 'id')
     enti = Entity(psrcname=Externalref.SOURCE_ODM, psrcid=entiguid)
     enti.enti_name = findField(entixml, "name")
@@ -919,7 +932,8 @@ def do1Entity(fileName):
     # print (entname,translate.translate(p_text=entname,p_fromlang='de',p_tolang='en'),translate.translate(p_text=entname,p_fromlang='de',p_tolang='fr'))
 
     updateUDP(pmodeid=entiId, pobj=entixml)
-    ModelelemDocu.insertdocuref(pdocguidlist=documents, pmodeid=entiId)
+    ModelelemDocu.insertdocuref(pdocguidlist=getdokuref(pelem=entixml), pmodeid=entiId)
+    ModelelemOrgu.insertorguref(porguguidlist=getpartyref(pelem=entixml),pmodeid=entiId)
 
     attrs = entixml.find('attributes')
     if attrs is not None:
@@ -1182,6 +1196,8 @@ def loeschmodell():
     Attribute.delete()
     Synonym.delete()
     Entity.delete()
+    ModelelemOrgu.delete()
+    OragnisationalUnit.delete()
     ModelelemDocu.delete()
     Document.delete()
     Externalref.delete()
@@ -1305,6 +1321,27 @@ def do1Document(fileName):
         docuparents [id]= findText(root, 'parentDocument')
     docu.insert()
 
+def do1Orgunit(fileName):
+    global orguparents,contacts
+
+    tree = ET.parse(fileName)
+    root = tree.getroot()
+    id =findField(root, 'id')
+    orgu = OragnisationalUnit(psrcname=Externalref.SOURCE_ODM,psrcid=id)
+    orgu.orgu_name = findField(root, "name")
+    orgu.orgu_uc = findText(root, "createdBy")
+    orgu.orgu_dc = findText(root, "createdTime")
+    orgu.orgu_descr = findText(root, "comment")
+    pd = findText(root, 'parentParty')
+    if (pd is not None and pd != ''):
+        orguparents [id] = pd
+    conts = root.findall('contacts/contact')
+    for cont in conts:
+        orgu.orgu_mail = contacts[cont.text]['email']
+        orgu.orgu_telefon = contacts[cont.text]['phone']
+        break #currently only 1 contact per orgunit
+    orgu.insert()
+
 docuparents ={}
 def transferDocuments():
     global docuparents
@@ -1312,18 +1349,80 @@ def transferDocuments():
     dosegfiles(pdirec=parameters.odmdocumentdirec(), transferfiles=do1Document)
     Document.updparents(psrcname=Externalref.SOURCE_ODM,pparents=docuparents)
 
+orguparents ={}
+def transferorgunits():
+    global orguparents
+    orguparents = {}
+    dosegfiles(pdirec=parameters.odmorgunitdirec(), transferfiles=do1Orgunit)
+    OragnisationalUnit.updparents(psrcname=Externalref.SOURCE_ODM,pparents=orguparents)
+
 
 def removeemptyudp():
     Userdefpropvalue.removeemptyUDP(('.',''))
 
+emails = {}
+def do1email(fileName):
+    global emails
+    tree = ET.parse(fileName)
+    root = tree.getroot()
+    emails [findField(root, 'id')] = {'name' : findField(root, "name")
+                                       ,'descr': findText(root, "comment")
+                                       ,'uc' : findText(root, "createdBy")
+                                        ,'dc' : findText(root, "createdTime")
+                                        ,'email' : findText(root, "emailAddress")
+                                      }
+#do1email
+phones = {}
+def do1phone(fileName):
+    global phones
+    tree = ET.parse(fileName)
+    root = tree.getroot()
+    phones[findField(root, 'id')] = {'name' : findField(root, "name")
+                                       ,'descr': findText(root, "comment")
+                                       ,'uc' : findText(root, "createdBy")
+                                        ,'dc' : findText(root, "createdTime")
+                                        ,'phoneno' : findText(root, "phoneNumber")
+                                        , 'phnetype': findText(root, "phoneType")
+                                       }
+#do1phone
+contacts = {}
+def do1contact(fileName):
+    global contacts,emails,phones
+    tree = ET.parse(fileName)
+    root = tree.getroot()
 
-# transferDocuments
+    ems = root.findall("emails/email")
+    for em in ems:
+        e = emails
+        mail = emails[em.text]['email']
+        break #currently we take only the first
+    phs = root.findall("phones/phone")
+    for ph in phs:
+        phone = phones[ph.text]['phoneno']
+        break    #currently we take only the first
+    id = findField(root, 'id')
+    contacts[id] = {'name' : findField(root, "name")
+                                       ,'descr': findField(root, "comment")
+                                        ,'email' : mail
+                                        ,'phone': phone
+                                       ,'uc' : findField(root, "createdBy")
+                                        ,'dc' : findField(root, "createdTime")
+                                       }
+#do1contact
+
 def transferODMModel():
+    """provisional Element internal buffers"""
+    businfodirec = parameters.odmIMDirec() + parameters.odmModelName() + '/businessinfo/'
+    dosegfiles(pdirec=businfodirec+'email/',transferfiles=do1email)
+    dosegfiles(pdirec=businfodirec+'phone/',transferfiles=do1phone)
+    dosegfiles(pdirec=businfodirec+'contact/',transferfiles=do1contact)
+
     """überträgt das ganze ODM Modell in die DB"""
     transferprojekt()
     dbParam.liesdefaultlang()
     transferTypes()
     transferDocuments()
+    transferorgunits()
     transferDomains()
     transferUDP()
     loaddefaultcolors()

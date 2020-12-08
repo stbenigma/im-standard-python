@@ -286,6 +286,32 @@ def documents():
         for d in Document.select()}
     return docus
 
+def orgUnits():
+    orgus = {anker(Modelelemtype.ORGU, o.orgu_id):
+        {
+            'name': o.orgu_name
+            , 'descr': o.orgu_descr
+            , 'uc': o.orgu_uc
+            , 'dc': o.orgu_dc
+            , 'um': o.orgu_um
+            , 'dm': o.orgu_dm
+            , 'mail': o.orgu_mail
+            , 'telefon': o.orgu_telefon
+            , 'address': o.orgu_address
+            , 'parent': None if o.orgu_orgu_id is None else anker(Modelelemtype.ORGU, o.orgu_orgu_id)
+            ,'referencecnt': len(o.getrefmodes())
+            , 'references': {
+                            'entities': [anker(m.mode_type, m.mode_id) for m in o.getrefmodes(pmelttype=Modelelemtype.ENTI)]
+                            ,'attributes': [anker(m.mode_type, m.mode_id) for m in o.getrefmodes(pmelttype=Modelelemtype.ATTR)]
+                            ,'domains': [anker(m.mode_type, m.mode_id) for m in o.getrefmodes(pmelttype=Modelelemtype.DOMA)]
+                            ,'systems': [anker(m.mode_type, m.mode_id) for m in o.getrefmodes(pmelttype=Modelelemtype.INTF)]
+                            ,'tables': [anker(m.mode_type, m.mode_id) for m in o.getrefmodes(pmelttype=Modelelemtype.TABL)]
+                            ,'columns': [anker(m.mode_type, m.mode_id) for m in o.getrefmodes(pmelttype=Modelelemtype.COLU)]
+                            }
+        }
+        for o in OragnisationalUnit.select()}
+    return orgus
+
 def relarep(prelarep):
     if prelarep is None: return {}
     return {'linewidth': prelarep.relr_linewidth
@@ -345,10 +371,13 @@ def defarcs(parc,pdiagid):
         p4 = math.pi / 4
         """side is left,up,right,down side of rectangle
            Angle shows direction of line passing through pint in thiw q"""
+
         if (startx >= enticenterx + (entiwidth/2)): side,qwinkel='right',2*p4
-        elif (startx <= enticenterx - (entiwidth/2)): side,qwinkel='left',2*p4
+        elif (startx <= enticenterx + (entiwidth/2)): side,qwinkel='left',2*p4
         elif (starty >= enticentery + (entiheight/2)): side,qwinkel='lower',0
         elif (starty <= enticentery - (entiheight/2)): side,qwinkel='upper',0
+        else:
+            side,qwinkel = 'upper',0
         """Angle of line towards center of entity. Sort the order of connecting points in an arc"""
         sortwinkel = poswinkel(calcwinkel(starty, enticentery, startx, enticenterx))
         circles.append([startx + round(PONTDISTANCE * math.cos(winkel),1) #- arcstartx
@@ -576,6 +605,7 @@ def sql2json(pwithdata=True):
     model['domains'] = doamains()
     model['keys'] = keys()
     model['documents'] = documents()
+    model['orgunits'] = orgUnits()
     model['diagrams'] = diagrams()
     model['systems'] = systems()
     model['tables'] = tables()

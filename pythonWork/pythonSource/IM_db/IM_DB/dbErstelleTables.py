@@ -91,6 +91,8 @@ def erstelleInfra():
 
     Document.createtable()
     ModelelemDocu.createtable()
+    OragnisationalUnit.createtable()
+    ModelelemOrgu.createtable()
     TablEntiMap.createtable()
     AttrTransf.createtable()
     Entity.createviews()

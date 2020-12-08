@@ -35,9 +35,6 @@ DATABASE-LEVEL	>1 entity, no attributes or > 1 attributes from more than one ent
 <domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
-<associations>
-<colAssociation fkAssociation="15EA5A7C-BFC7-38BB-F8E0-BD11681B49A1" referredColumn="9900FFF3-1E01-A7AD-23E3-3A005133E9A0"/>
-</associations>
 </Column>
 <Column name="BURE_WRITEABLE" id="4022E954-9CB2-E826-3EA9-41523CC8B03E">
 <createdBy>stb</createdBy>
@@ -209,17 +206,6 @@ DATABASE-LEVEL	>1 entity, no attributes or > 1 attributes from more than one ent
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
 <colUsage columnID="D29E7B24-33EB-FFC7-03E4-A6A074B99338"/>
-</indexColumnUsage>
-</ind_PK_UK>
-<ind_PK_UK id="6E32345B-215C-E923-7A03-7DAE3CBB6581" name="BURE_BURU_FK">
-<createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:18:17 UTC</createdTime>
-<generatorID>8C373B73-F94E-1E97-BDC0-16E01909D343</generatorID>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<indexState>Foreign Key</indexState>
-<isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
-<colUsage columnID="6AB62469-F23A-3C46-7E37-64C6A1EB89E1"/>
 </indexColumnUsage>
 </ind_PK_UK>
 <ind_PK_UK id="5906FB9D-D1B8-FF59-DEE6-37D8D3970EBB" name="BURE_ATTR_FK">

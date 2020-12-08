@@ -35,9 +35,6 @@
 <domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
-<associations>
-<colAssociation fkAssociation="6540F6C2-45D0-6D1C-694C-CF2E847CC7A2" referredColumn="598C075A-9D11-F728-5D84-45527A70CECC"/>
-</associations>
 </Column>
 <Column name="KELE_ATTR_ID" id="94E3413C-BADC-C901-3267-FCECFE2EEBC8">
 <createdBy>stb</createdBy>
@@ -152,17 +149,6 @@
 <colUsage columnID="64105FCF-9B47-E26A-B964-FBB0B32B4859"/>
 <colUsage columnID="94E3413C-BADC-C901-3267-FCECFE2EEBC8"/>
 <colUsage columnID="7D462A41-2AA4-0BCB-F906-BA38A2F255AC"/>
-</indexColumnUsage>
-</ind_PK_UK>
-<ind_PK_UK id="3B171D20-34E8-C3A6-33C5-3CEAE831DA5F" name="KELE_KEYS_FK">
-<createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:18:17 UTC</createdTime>
-<generatorID>A3F5C580-9F75-32B1-4F8D-41C2C9715BBB</generatorID>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<indexState>Foreign Key</indexState>
-<isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
-<colUsage columnID="64105FCF-9B47-E26A-B964-FBB0B32B4859"/>
 </indexColumnUsage>
 </ind_PK_UK>
 <ind_PK_UK id="174D1FB1-D7D8-F22C-B69F-54B90C83F31C" name="KELE_ATTR_FK">

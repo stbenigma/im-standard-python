@@ -37,9 +37,6 @@ This values can olny reference as domain of type LOV]]></comment>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
-<associations>
-<colAssociation fkAssociation="D7C87344-5F7B-7B15-08DB-63D7CA5BEDD6" referredColumn="E9756F49-315F-1F97-E181-07756840736D"/>
-</associations>
 </Column>
 <Column name="DEVA_VALUE" id="AB149A04-EAAE-62FA-7410-F7C5CC563B93">
 <createdBy>stb</createdBy>
@@ -171,16 +168,6 @@ This values can olny reference as domain of type LOV]]></comment>
 <indexColumnUsage>
 <colUsage columnID="79314F8F-E177-E354-B916-CEC6394556A7"/>
 <colUsage columnID="AB149A04-EAAE-62FA-7410-F7C5CC563B93"/>
-</indexColumnUsage>
-</ind_PK_UK>
-<ind_PK_UK id="E9BECBFA-3A97-6A31-BB76-19D3CE7A92F3" name="DEVA_DOMA_FK">
-<createdBy>stb</createdBy>
-<createdTime>2020-04-11 15:22:06 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<indexState>Foreign Key</indexState>
-<isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
-<colUsage columnID="79314F8F-E177-E354-B916-CEC6394556A7"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>

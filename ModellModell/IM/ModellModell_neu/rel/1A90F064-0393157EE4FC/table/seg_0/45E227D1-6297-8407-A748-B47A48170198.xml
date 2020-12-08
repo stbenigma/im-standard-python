@@ -83,9 +83,6 @@ Or they can be implemented as compound (structured) type, it the dbms allows thi
 <identityColumn>true</identityColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 <isSurrogateColumn>true</isSurrogateColumn>
-<associations>
-<colAssociation fkAssociation="739B8E12-2F6E-1B4A-C94E-CA2A573C2C6E" referredColumn="E9756F49-315F-1F97-E181-07756840736D"/>
-</associations>
 </Column>
 <Column name="DGRM_DOMA_ID_MEMBER" id="AE736B96-FF28-B6C0-FB17-B1DFE85E93C7">
 <createdBy>stb</createdBy>
@@ -98,9 +95,6 @@ Or they can be implemented as compound (structured) type, it the dbms allows thi
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
-<associations>
-<colAssociation fkAssociation="FDE226F9-B7CC-D019-45FC-3DF289525EB2" referredColumn="E9756F49-315F-1F97-E181-07756840736D"/>
-</associations>
 </Column>
 <Column name="DGRM_UC" id="AFB37924-17E3-293F-2C23-83F59E76CAE1">
 <createdBy>stb</createdBy>
@@ -180,26 +174,6 @@ Or they can be implemented as compound (structured) type, it the dbms allows thi
 <indexColumnUsage>
 <colUsage columnID="37B7F7C4-52BF-89F5-A4E9-01DBB024E6FE"/>
 <colUsage columnID="3ECC7B0A-015C-631C-4BDC-BA81B7A5B927"/>
-</indexColumnUsage>
-</ind_PK_UK>
-<ind_PK_UK id="22B9B6CC-DE72-AA8B-9B47-A1CC22DCC7CD" name="DGRM_DOMA_FK_GROUP">
-<createdBy>stb</createdBy>
-<createdTime>2020-02-04 15:43:05 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<indexState>Foreign Key</indexState>
-<isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
-<colUsage columnID="37B7F7C4-52BF-89F5-A4E9-01DBB024E6FE"/>
-</indexColumnUsage>
-</ind_PK_UK>
-<ind_PK_UK id="C21F0509-E49D-142F-D45D-65485FFA02C0" name="DGRM_DOMA_FK_MEMBER">
-<createdBy>stb</createdBy>
-<createdTime>2020-02-04 15:43:05 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<indexState>Foreign Key</indexState>
-<isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
-<colUsage columnID="AE736B96-FF28-B6C0-FB17-B1DFE85E93C7"/>
 </indexColumnUsage>
 </ind_PK_UK>
 <ind_PK_UK id="BD8FDEF1-8AED-6919-856D-144752A05AB0" name="DGRM_MODE_FK">

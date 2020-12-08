@@ -1,0 +1,75 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_1" id="A92429CB-1711-CEF9-09B4-C54198414EE3" name="Betreiber">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-07 12:44:58 UTC</createdTime>
+<comment><![CDATA[Firma oder Organisation die ein Sysstem betreibt (Betrieb aufrechterhält, System am laufen hält, Backup  und Sicherheit garantiert).
+
+Beispiele:]]></comment>
+<generatorID>1A441344-FEB0-2946-FE5F-AD0245DC6E74</generatorID>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+Firma oder Organisation die ein Sysstem betreibt (Betrieb aufrechterhält, System am laufen hält, Backup  und Sicherheit garantiert).
+
+Beispiele:
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+*Company or organization that operates a system (maintains operation, keeps the system running, guarantees backup and security).  Examples:
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<typeID>FAF70092-F6A9-97FE-9880-A36ECEDBFE26</typeID>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Betreiber_ID" id="A089CA50-3E93-844E-48F1-EADDD6488BBF">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-07 12:44:58 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+<Column name="Name" id="670BF920-8F01-B0EE-73E2-A05600472C99">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-07 12:44:58 UTC</createdTime>
+<generatorID>AEDDB373-F73F-43F8-6F56-E95FBF8357EF</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="56425F67-DCC9-B620-3195-93F154F1C173" name="Betreiber_PK">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-07 12:44:58 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="A089CA50-3E93-844E-48F1-EADDD6488BBF"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="849ED5E5-F222-1D8B-34F2-84EA97F1A261" name="Betreiber__UN">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-07 12:44:58 UTC</createdTime>
+<generatorID>7465F71C-6E0A-E3D8-95A6-E74B987A6AA2</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -24,14 +24,17 @@
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
-<dataTypePrecision>10</dataTypePrecision>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
 <ownDataTypeParameters>,10,</ownDataTypeParameters>
 <autoIncrementColumn>true</autoIncrementColumn>
 <identityColumn>true</identityColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 <isSurrogateColumn>true</isSurrogateColumn>
+<associations>
+<colAssociation fkAssociation="56F467E1-B8D3-BEB0-FACD-CB7E0425EAA9" referredColumn="9698F1F3-1EBE-8770-4F8C-4FFC3465A776"/>
+</associations>
 </Column>
 <Column name="DOCU_NAME" id="AF6148DE-A271-2F31-C1D9-1AC7D48CEA38">
 <createdBy>stb</createdBy>
@@ -113,9 +116,9 @@ Reference to a file system or a web page.
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
-<dataTypePrecision>10</dataTypePrecision>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
 <ownDataTypeParameters>,10,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
@@ -154,6 +157,16 @@ Reference to a file system or a web page.
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
 <colUsage columnID="B0D93210-C29A-A74E-314B-7E8AAE9268A2"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="CD2989FE-3A6B-2270-7AEE-E173370B73DD" name="DOCU_MODE_FK">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-07 13:36:49 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="E8DF5F81-72CA-AE14-4AB6-B790A55C3490"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>

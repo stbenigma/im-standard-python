@@ -162,9 +162,7 @@ CREATE TABLE DEFAULT_VALUES
      DEVA_DM DATETIME NULL
     ,CONSTRAINT DEVA_VGWT_UK UNIQUE (DEVA_DOMA_ID ASC, DEVA_VALUE ASC)
     ,CONSTRAINT DEVA_DOMA_FK FOREIGN KEY
-    (     DEVA_DOMA_ID)
-    REFERENCES DOMAINS
-    (     DOMA_ID )
+    (     DEVA_DOMA_ID)    REFERENCES DOMAINS    (     DOMA_ID )
     ON DELETE CASCADE
     ON UPDATE NO ACTION
     );
@@ -177,9 +175,7 @@ CREATE TABLE DOCUMENTS
      DOCU_CONTENT IMAGE NULL ,
      DOCU_DOCU_ID NUMERIC (10) NULL
      ,CONSTRAINT DOCU_DOCU_FK FOREIGN KEY
-     (     DOCU_DOCU_ID)
-     REFERENCES DOCUMENTS
-     (     DOCU_ID )
+     (     DOCU_DOCU_ID)     REFERENCES DOCUMENTS     (     DOCU_ID )
      ON DELETE NO ACTION
      ON UPDATE NO ACTION
     );
@@ -264,22 +260,14 @@ CREATE TABLE DOMAINS
     CHECK ( DOMA_TYPE != 'TXT'
  OR ( DOMA_BIN_CONTENTTYPE IS NULL AND DOMA_BIN_STFO_ID IS NULL AND DOMA_NUM_FRACT_DIGITS IS NULL AND DOMA_NUM_MAXVALUE IS NULL AND DOMA_NUM_MINVALUE IS NULL AND DOMA_NUM_PHYU_ID IS NULL AND DOMA_NUM_ROUND_VALUE IS NULL AND DOMA_NUM_TOTAL_DIGITS IS NULL AND DOMA_DAT_GRANULARITY IS NULL AND DOMA_DAT_MAXVALUE IS NULL AND DOMA_DAT_MINVALUE IS NULL))
  ,CONSTRAINT DOMA_NAME_UK UNIQUE (DOMA_NAME ASC)
- ,CONSTRAINT DOMA_MODE_FK FOREIGN KEY
- (     DOMA_ID)
- REFERENCES MODELELEMENT
- (     MODE_ID )
+ ,CONSTRAINT DOMA_MODE_FK FOREIGN KEY (     DOMA_ID) REFERENCES MODELELEMENT (     MODE_ID )
  ON DELETE CASCADE
  ON UPDATE NO ACTION
- ,CONSTRAINT DOMA_PHYU_FK FOREIGN KEY
- (     DOMA_NUM_PHYU_ID)
- REFERENCES PHYSICAL_UNIT
- (     PHYU_ID )
+ ,CONSTRAINT DOMA_PHYU_FK FOREIGN KEY (     DOMA_NUM_PHYU_ID) REFERENCES PHYSICAL_UNIT (     PHYU_ID )
  ON DELETE NO ACTION
  ON UPDATE NO ACTION
  ,CONSTRAINT DOMA_STFO_FK FOREIGN KEY
- (     DOMA_BIN_STFO_ID)
- REFERENCES STORAGE_FORMATS
- (     STFO_ID )
+ (     DOMA_BIN_STFO_ID) REFERENCES STORAGE_FORMATS (     STFO_ID )
  ON DELETE NO ACTION
  ON UPDATE NO ACTION
 );
@@ -748,3 +736,35 @@ coam_attr_id integer null
 ,constraint coam_colu_fk foreign key (coam_colu_id) 
    references columns (colu_id ) on delete cascade 
    ); 
+
+CREATE TABLE organisationalunits(
+   orgu_id       integer primary key,
+   orgu_name     VARCHAR(60)NOT NULL,
+   orgu_mail     VARCHAR(200)NULL,
+   orgu_telefon  VARCHAR(30)NULL,
+   orgu_address  VARCHAR(4000)NULL,
+   orgu_orgu_id  NUMBER(10)NULL,
+   orgu_uc             varchar(30) not null,
+   orgu_dc             varchar(30) not null,
+   orgu_um             varchar(30),
+   orgu_dm             varchar(30)
+   ,CONSTRAINT orgu_email_un UNIQUE(orgu_mail)
+   ,CONSTRAINT orgu_name_un UNIQUE(orgu_name)
+   ,CONSTRAINT orgu_mode_fk FOREIGN KEY(orgu_id)
+              REFERENCES modelelement(mode_id)
+                  ON DELETE CASCADE
+	,CONSTRAINT orgu_orgu_fk FOREIGN KEY(orgu_orgu_id)
+       REFERENCES organisationalunits(orgu_id)
+   );
+
+CREATE TABLE mode_orgu(
+    moou_id       integer primary key,
+    moou_mode_id  integer NOT NULL,
+    moou_orgu_id  integer NOT NULL
+	,CONSTRAINT moou_orgu_fk FOREIGN KEY(moou_orgu_id)
+           REFERENCES organisationalunit(orgu_id)
+               ON DELETE CASCADE
+	,CONSTRAINT moou_mode_fk FOREIGN KEY(moou_mode_id)
+           REFERENCES modelelement(mode_id)
+			  ON DELETE CASCADE
+);

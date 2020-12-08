@@ -70,9 +70,6 @@ Subtype of MODELELEMENT. ATTR_ID is always identical to the corresponding MODE_I
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
-<associations>
-<colAssociation fkAssociation="0977CCCB-2F74-DE57-C0FC-55C87B3745C3" referredColumn="E9756F49-315F-1F97-E181-07756840736D"/>
-</associations>
 </Column>
 <Column name="ATTR_TECH_NAME" id="894BD113-A714-B6A2-3A68-58F89E73C455">
 <createdBy>stb</createdBy>
@@ -321,16 +318,6 @@ Has to be implemented with an additional (probably generic) table.]]></comment>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
 <colUsage columnID="303EC2B5-2E33-64BC-232F-07907FF61F66"/>
-</indexColumnUsage>
-</ind_PK_UK>
-<ind_PK_UK id="8BDE67A0-9494-0E4D-07E6-D79FD8C0FCA1" name="ATTR_DOMA_FK">
-<createdBy>stb</createdBy>
-<createdTime>2020-04-22 15:07:01 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<indexState>Foreign Key</indexState>
-<isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
-<colUsage columnID="3C72106F-F485-4EEC-2CE1-F9365D6B4CBA"/>
 </indexColumnUsage>
 </ind_PK_UK>
 <ind_PK_UK id="E0FF82A7-2D56-EB5E-7833-746726614DE9" name="ATTR_MODE_FK">

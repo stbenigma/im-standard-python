@@ -25,38 +25,21 @@ Beispiel:
 <typeID>049E3124-67AA-37C3-8A6D-286DDE491ECA</typeID>
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
-<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
-<Column name="Technischer_Prozess_ID" id="C5F8BC4C-0D39-4141-FE1F-9AC9CCF550F8">
-<createdBy>stb</createdBy>
-<createdTime>2020-10-11 14:59:55 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<use>0</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
-<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<autoIncrementColumn>true</autoIncrementColumn>
-<identityColumn>true</identityColumn>
-<autoIncrementCycle>false</autoIncrementCycle>
-<isSurrogateColumn>true</isSurrogateColumn>
-</Column>
-</columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
-<ind_PK_UK id="756A1C4A-8173-508C-7C70-C8062C926F8F" name="Technischer_Prozess_PK">
-<createdBy>stb</createdBy>
-<createdTime>2020-10-11 14:59:55 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<pk>true</pk>
-<indexState>Primary Constraint</indexState>
-<indexColumnUsage>
-<colUsage columnID="C5F8BC4C-0D39-4141-FE1F-9AC9CCF550F8"/>
-</indexColumnUsage>
-</ind_PK_UK>
 <ind_PK_UK id="1D18F54F-D435-C66C-F1AB-514D2BBDEC01" name="Technischer_Prozess__UN">
 <createdBy>stb</createdBy>
 <createdTime>2020-10-11 14:59:55 UTC</createdTime>
 <generatorID>7465F71C-6E0A-E3D8-95A6-E74B987A6AA2</generatorID>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+</ind_PK_UK>
+<ind_PK_UK id="469FA5BF-64A2-0604-8482-8E6A3AB02B0D" name="Technischer_Prozess_Geschäftstransaktion_FK">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-07 12:44:58 UTC</createdTime>
+<generatorID>AD0234BF-F159-D5B3-8A0A-5EC7B3D80E02</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 </ind_PK_UK>
 </indexes>

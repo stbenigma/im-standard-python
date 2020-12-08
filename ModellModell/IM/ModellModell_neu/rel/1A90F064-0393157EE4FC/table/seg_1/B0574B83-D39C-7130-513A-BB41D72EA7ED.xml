@@ -1,0 +1,251 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_1" id="B0574B83-D39C-7130-513A-BB41D72EA7ED" name="ORGANISATIONALUNITS">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-07 12:44:58 UTC</createdTime>
+<comment><![CDATA[Organisationseinheit (Abteilung / Firma (intern oder extern), die für die Definition oder Pflege von Elementen verantwortlich ist.]]></comment>
+<generatorID>5D97B3E2-8FA2-953C-7032-0B037E7CD2C1</generatorID>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+Organisationseinheit (Abteilung / Firma (intern oder extern), die für die Definition oder Pflege von Elementen verantwortlich ist.
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+Organizational unit (department / company (internal or external) responsible for defining or maintaining elements).
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<ordsAlias>organisationseinheit</ordsAlias>
+<typeID>EC66DFE5-32A6-31DC-EC38-0906F34F58E0</typeID>
+<abbreviation>ORGU</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ORGU_ID" id="A73FD0EC-3C0B-8A65-5520-329572C4F127">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-07 12:44:58 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+<associations>
+<colAssociation fkAssociation="0613F1FF-0396-1B4D-8135-888F639B95EB" referredColumn="9698F1F3-1EBE-8770-4F8C-4FFC3465A776"/>
+</associations>
+</Column>
+<Column name="ORGU_NAME" id="77784C6A-E158-118D-F6A8-6590A4749C9A">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-07 12:44:58 UTC</createdTime>
+<generatorID>1FC34A8C-E592-091D-9966-53649013D0B4</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ORGU_DESCR" id="44F9EB33-87C4-C0CE-A49E-655558F41073">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-07 15:49:56 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ORGU_MAIL" id="357BBB27-6316-0793-BC6B-861C9AE9030D">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-07 12:44:58 UTC</createdTime>
+<generatorID>E3B04444-80A4-CDB0-EAC5-395949FFA859</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>4B4F8F40-D3A4-4F39-8CB3-BB6C57534E96</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ORGU_TELEFON" id="AA196A6A-4432-B97C-A8E6-D6CA8F021F71">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-07 12:44:58 UTC</createdTime>
+<generatorID>7DD644A8-EFFE-EBDF-86AD-73CC40C93279</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>7F98E20B-63A1-C3F1-F7AE-0E2F6BC2C8D5</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ORGU_ADDRESS" id="CFB4B9BD-6F15-2841-3437-AC5735DB28B6">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-07 12:44:58 UTC</createdTime>
+<generatorID>5741F54F-7222-BC46-7205-4AA25CF0D87F</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ORGU_ORGU_ID" id="D3E2E3A8-F180-A703-F998-D5C1837A2CE4">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-07 12:50:51 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="9B7FAA67-FCC3-2A4B-49C8-746315FC8AF2" referredColumn="A73FD0EC-3C0B-8A65-5520-329572C4F127"/>
+</associations>
+</Column>
+<Column name="ORGU_UC" id="69B6AB50-C137-E4A2-2377-F358B516E6DF">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-07 13:35:46 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="F7EEFF47-7A42-2A3E-7DFC-D0558D6996B8"/>
+</propertyMap>
+</Column>
+<Column name="ORGU_DC" id="EB2E1768-C43D-2A4F-BDF0-97E9BDB2B1A7">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-07 13:35:46 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT047</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="74D877A0-4C3B-63EE-06C5-071C7695907C"/>
+</propertyMap>
+</Column>
+<Column name="ORGU_UM" id="FB57E44E-D40F-EFBB-F30E-8BBC777B02C7">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-07 13:35:46 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="B2E17D53-C2F7-74D9-022D-5D63F3931519"/>
+</propertyMap>
+</Column>
+<Column name="ORGU_DM" id="5F58323E-BCF7-E1DC-7015-959E13AB117B">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-07 13:35:46 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT047</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="B398D247-00C1-F016-3BBB-FE65CFFFF7AA"/>
+</propertyMap>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="7BF6A24E-242B-AF53-5E7C-0D42D3A6AFFC" name="ORGU_PK">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-07 12:44:58 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="A73FD0EC-3C0B-8A65-5520-329572C4F127"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="A0F13FE6-FD52-1B68-2CBE-124F08EF918D" name="ORGU_NAME_UN">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-07 12:44:58 UTC</createdTime>
+<generatorID>C92C2AE7-AACA-EA22-EEA4-F9ACE2CFE7ED</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="77784C6A-E158-118D-F6A8-6590A4749C9A"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="DB389F05-C9A3-57F4-843A-37F86BB52831" name="ORGU_EMAIL_UN">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-07 12:44:58 UTC</createdTime>
+<generatorID>3F149F4B-FF46-D33E-2653-59B2B27A9B27</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="357BBB27-6316-0793-BC6B-861C9AE9030D"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="2F9D62F0-3F8C-D687-4706-FA661391E593" name="ORGU_ORGU_FK">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-07 12:50:51 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="D3E2E3A8-F180-A703-F998-D5C1837A2CE4"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="1FFB7318-E4D3-BBE1-5BB5-E08DE9F531FB" name="ORGU_MODE_FK">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-07 13:38:58 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="A73FD0EC-3C0B-8A65-5520-329572C4F127"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

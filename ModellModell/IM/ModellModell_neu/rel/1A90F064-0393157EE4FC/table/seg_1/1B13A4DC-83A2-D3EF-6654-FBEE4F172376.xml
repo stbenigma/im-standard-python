@@ -26,9 +26,6 @@
 <ownDataTypeParameters>,10,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
-<associations>
-<colAssociation fkAssociation="A9D3CD33-0867-F835-575D-B075BD2284FD" referredColumn="6184E859-2B0C-2487-C1FA-11739D43ABC4"/>
-</associations>
 </Column>
 <Column name="Extern_Vorgabewert_ID" id="3A372CBB-0890-C1FA-37ED-49A547BDA896">
 <createdBy>stb</createdBy>
@@ -71,9 +68,6 @@
 <ownDataTypeParameters>,10,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
-<associations>
-<colAssociation fkAssociation="2B5087BF-2229-D302-963A-53E66CE65F16" referredColumn="B1F0E91D-96EB-F29B-12DC-5E7F1AC0EC96"/>
-</associations>
 </Column>
 <Column name="intern_Vorgabewert_intern_Vorgabewert_ID" id="E13524C6-7FE0-2B23-8D97-13CB3E073D6F">
 <createdBy>stb</createdBy>
@@ -87,9 +81,6 @@
 <ownDataTypeParameters>,10,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
-<associations>
-<colAssociation fkAssociation="2B5087BF-2229-D302-963A-53E66CE65F16" referredColumn="EEAF5E5E-657C-134F-4AA8-EB1B14173BBE"/>
-</associations>
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
@@ -112,17 +103,6 @@
 <colUsage columnID="3A372CBB-0890-C1FA-37ED-49A547BDA896"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="1EAF9965-451F-03D2-CA12-1B25664FA250" name="Extern_Vorgabewert_Vorgabewertv1_FK">
-<createdBy>stb</createdBy>
-<createdTime>2020-04-22 15:22:04 UTC</createdTime>
-<generatorID>0C414B8F-589B-5284-F70D-428DA775E148</generatorID>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<indexState>Foreign Key</indexState>
-<isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
-<colUsage columnID="CAD50EBA-FA21-58C4-D853-247E380FA22F"/>
-</indexColumnUsage>
-</ind_PK_UK>
 <ind_PK_UK id="E87E1D34-756D-3E65-1F63-B464A1BA71CE" name="Extern_Vorgabewert_Extern_Wertebereich_FK">
 <createdBy>stb</createdBy>
 <createdTime>2020-04-22 15:22:04 UTC</createdTime>
@@ -132,18 +112,6 @@
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
 <colUsage columnID="341591AF-DC0E-FAAC-5891-ED511A01793C"/>
-</indexColumnUsage>
-</ind_PK_UK>
-<ind_PK_UK id="9F87309B-AB1D-6773-7740-E275A0145865" name="Extern_Vorgabewert_intern_Vorgabewert_FK">
-<createdBy>stb</createdBy>
-<createdTime>2020-04-22 15:22:04 UTC</createdTime>
-<generatorID>E05CDDF5-FED8-1C38-914A-1A6E65A342A6</generatorID>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<indexState>Foreign Key</indexState>
-<isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
-<colUsage columnID="03489AC0-0266-69E6-96AE-BB73472D5613"/>
-<colUsage columnID="E13524C6-7FE0-2B23-8D97-13CB3E073D6F"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>
