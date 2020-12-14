@@ -1,7 +1,6 @@
 from IM_HTML import printHTML
-import web_sql
 import math
-from parameters import nvl
+from IM_DB import parameters 
 from WEB_OBJECTS import WebDiagram
 from IM_OBJECTS import Language
 
@@ -39,7 +38,7 @@ def printlegend(pdata,pwidth,pheigh,px,py):
     legendfoot= """</g>
 """
     starty=14
-    printHTML.fhtml.write(legenhead.format(nvl(px,0)+2,nvl(py,0)+1))
+    printHTML.fhtml.write(legenhead.format(parameters.nvl(px,0)+2,parameters.nvl(py,0)+1))
     printHTML.fhtml.write(legendentry1.format(pwidth-100,pheigh-2
                                     ,starty,'Diagram'
                                     ,starty,pdata[0]))
@@ -190,12 +189,12 @@ def printtexte(plist,plang):
        ,beda_liniefarbe,beda_linienbreite,beda_liniedeckkraft"""
     for relaanker,relaelem in plist.items():
         startx, starty = relaelem['starttext_x'],relaelem['starttext_y']
-        starttextw,starttexth=nvl(relaelem['starttext_width'],0),nvl(relaelem['starttext_height'],0)
+        starttextw,starttexth=parameters.nvl(relaelem['starttext_width'],0),parameters.nvl(relaelem['starttext_height'],0)
         starttext=getrelation(relaanker)['from-to']['assoc'][plang]
         fontcolor = relaelem['fontcolor']
         fontsize = relaelem['fontsize']
         endx,endy =relaelem['endtext_x'],relaelem['endtext_y']
-        endtextw,endtexth=nvl(relaelem['endtext_width'],0),nvl(relaelem['endtext_height'],0)
+        endtextw,endtexth=parameters.nvl(relaelem['endtext_width'],0),parameters.nvl(relaelem['endtext_height'],0)
         endtext=getrelation(relaanker)['to-from']['assoc'][plang]
 
         linesegs = relaelem['linesegments']
@@ -203,7 +202,7 @@ def printtexte(plist,plang):
             linestartx,linestarty,linestartangle = linesegs[0]['x'],linesegs[0]['y'],linesegs[0]['angle']
             lineendx,lineendy,lineendangle = linesegs[len(linesegs)-1]['x'],linesegs[len(linesegs)-1]['y'],linesegs[len(linesegs)-2]['angle']
 
-        textlength = lambda s: len(nvl(s)) * FONTPIXEL
+        textlength = lambda s: len(parameters.nvl(s)) * FONTPIXEL
         if starttext is not None:
             if ((((linestartangle >= math.pi / 2) and (linestartangle < math.pi )) or (linestartangle < 0))):
                 s = starttext.split(' ')
@@ -417,8 +416,8 @@ def printcontentdiag(plist, plang, ptitel):
 
         if ('legend' in diaelem.keys()):
             #es hat eine Legende
-            printlegend(pdata=[diaelem['name'], nvl(diaelem['uc']), nvl(diaelem['dc']),nvl(diaelem['dm'])
-                , nvl(diaelem['um']), ptitel, 'Logical']
+            printlegend(pdata=[diaelem['name'], parameters.nvl(diaelem['uc']), parameters.nvl(diaelem['dc']),parameters.nvl(diaelem['dm'])
+                , parameters.nvl(diaelem['um']), ptitel, 'Logical']
                     ,pwidth=LEGENDWIDTH,pheigh=LEGENDHEIGHT
                     ,px=diaelem['legend']['x'],py=diaelem['legend']['y'])
         #fi

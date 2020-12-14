@@ -115,8 +115,8 @@ def do1structtype(filename):
     elements = structdom.findall("attributes/Attribute")
     for el in elements:
         # print (doma.doma_name,findField(el,"name"),findText(el,'type'))
-        dgrmid =findField(el, 'id')
-        dgrm = DomaingroupMember(psrcname=Externalref.SOURCE_ODM, psrcid=dgrmid)
+        dgrmsrcid =findField(el, 'id')
+        dgrm = DomaingroupMember(psrcname=Externalref.SOURCE_ODM, psrcid=dgrmsrcid)
         dgrm.dgrm_doma_id_group = doma.doma_id
         dgrm.dgrm_name = findField(el, "name")
         dgrm.dgrm_descr = findText(el, "comment")
@@ -127,20 +127,24 @@ def do1structtype(filename):
         """in struct types the "type" is either datatype or structtype or domain """
         reftypeguid = findText(el, 'type')
         reftype = Modelelement.getelementbyextref(psrcname=Externalref.SOURCE_ODM,psrcid=reftypeguid)
+        unknowndoma = True
         if isinstance(reftype,Domain):
             dgrm.dgrm_doma_id_member = reftype.doma_id
+            unknowndoma = False
         elif isinstance(reftype,Datatype):
             dgrm.dgrm_doma_id_member = findorcreateDomain(ptypeguid=reftypeguid
                            , pattrname=dgrm.dgrm_name
                            , pfathername=doma.doma_name
                            , pdomatype=Domain.DOMAIN
                            , pattrxml=el)
+            unknowndoma = False
         else :
             """type has not yet been parsed or does not exist at all or is type I haven't considered
                 remember for update"""
             dgrm.dgrm_doma_id_member = Domain.getunknown().doma_id
-            unkndomains[dgrmid] = reftypeguid
+            unknowndoma = True
         dgrm.insert()
+        if unknowndoma: unkndomains[dgrm.dgrm_id] = reftypeguid
     # for
 """    attr.attr_doma_id = findorcreateDomain(pdomguid=findText(pattrxml, 'domain')
                                            , pstructdomguid=findText(pattrxml, 'structuredType')
@@ -151,11 +155,11 @@ def do1structtype(filename):
 """
 def dostructtypes():
     global unkndomains
-    dosegfiles(pdirec=parameters.odmstructypesdir(), transferfiles=do1structtype)
+    dosegfiles(pdirec=parameters.odmstructypesdir(), transferfiles=do1structtype,pmandatoryfile=False)
 
     """update group domains as their types may now be available"""
     for key,val in unkndomains.items():
-        doma = Modelelement.getelementbyodmguid(pguid=val)
+        doma = Modelelement.getelementbyodmguid(psrcid=val)
         if isinstance(doma,Domain):
             DomaingroupMember.updmember(pid=key,pdomaid=doma.doma_id)
         else:
@@ -286,7 +290,9 @@ def transferentity(penti, pdiagid, puc, pdc):
     hiddenattrs = elemtext.split(' ')
     hiddenattrs2 = []
     for e in hiddenattrs:
-        if e != "": hiddenattrs2.append(Attribute().getbyODMref(psrcid=e).attr_id)
+        if e != "":
+            attr = Attribute().getbyODMref(psrcid=e)
+            if attr is not None: hiddenattrs2.append(attr.attr_id)
     attrs = Attribute.select(pwhere="attr_enti_id = {}".format(enti.enti_id), porderby="attr_displ_seq")
     attrids = [a.attr_id for a in attrs]
     attrids = list(set(attrids) - set(hiddenattrs2))
@@ -561,11 +567,11 @@ def doxmlfiles(pdirec, ptransfer, ppattern=r".*"):
     # for
 # doxmlfiles
 
-def dosegfiles(pdirec, transferfiles):
+def dosegfiles(pdirec, transferfiles,pmandatoryfile=True):
     try:
         listdir = os.listdir(pdirec)
     except:
-        logmessages.writelog('dosSEGfiles: directory "{}" not found.'.format(pdirec))
+        if pmandatoryfile: logmessages.writelog('dosSEGfiles: directory "{}" not found.'.format(pdirec))
         return
     # try
     for el in listdir:
@@ -785,6 +791,7 @@ def do1Attribute(plfnr, pattrxml, pentiId=None, prelaId=None):
 
     documents = getdokuref(pelem=pattrxml)
     ModelelemDocu.insertdocuref(pdocguidlist=documents, pmodeid=attrId)
+    ModelelemOrgu.insertorguref(porguidlist=getpartyref(pelem=pattrxml), pmodeid=attrId)
 
 
 # do1Attribute
@@ -884,6 +891,12 @@ def getpartyref(pelem):
     <party>7EBDC037-8728-C627-4B33-CEDF979E7C13</party>
     </responsibleParties>
     """
+    """ in relational_models
+    <responsibleParties>
+    <Party id="B7591938-640A-FC73-0F8D-22E92BFFB269"/>
+    <Party id="ACDA33C9-C352-DEC9-2424-A8B256602462"/>
+    </responsibleParties>
+    """
     elemparties = pelem.findall('responsibleParties/party')
     if elemparties is not None:
         parties = []
@@ -892,6 +905,16 @@ def getpartyref(pelem):
             parties.append(party.text)
         # for
         parties = tuple(parties)
+    else:
+        elemparties = pelem.findall('responsibleParties/Party')
+        if elemparties is not None:
+            parties = []
+            for party in elemparties:
+                # alle referenzierten Dokumente
+                parties.append(findField(party,"id"))
+            # for
+            parties = tuple(parties)
+        #fi
     # fi
     return parties
 # getpartyref
@@ -933,7 +956,7 @@ def do1Entity(fileName):
 
     updateUDP(pmodeid=entiId, pobj=entixml)
     ModelelemDocu.insertdocuref(pdocguidlist=getdokuref(pelem=entixml), pmodeid=entiId)
-    ModelelemOrgu.insertorguref(porguguidlist=getpartyref(pelem=entixml),pmodeid=entiId)
+    ModelelemOrgu.insertorguref(porguidlist=getpartyref(pelem=entixml), pmodeid=entiId)
 
     attrs = entixml.find('attributes')
     if attrs is not None:
@@ -1026,6 +1049,7 @@ def do1Relation(fileName):
 
     updateUDP(pmodeid=rela.rela_id, pobj=relaxml)
     ModelelemDocu.insertdocuref(pdocguidlist=documents, pmodeid=rela.rela_id)
+    ModelelemOrgu.insertorguref(porguidlist=getpartyref(pelem=relaxml), pmodeid=rela.rela_id)
 
     attrs = relaxml.find('attributes')
     if attrs is not None:
@@ -1274,7 +1298,7 @@ def filllanguages():
     Language.deleteunused()
 # filllanguages
 
-def transferprojekt():
+def transferproject():
     proj = ET.parse(parameters.odmIMDirec() + parameters.odmModelName() + parameters.odmIMExtension())
     root = proj.getroot()
     comm = findText(root, 'comment')
@@ -1303,7 +1327,7 @@ def transferprojekt():
         dbParam.liesdefaultlang()
         parameters.dbDefaultLang(defspra)
     # fi
-# transferprojekt
+# transferproject
 
 def do1Document(fileName):
     global docuparents
@@ -1346,14 +1370,14 @@ docuparents ={}
 def transferDocuments():
     global docuparents
     docuparents = {}
-    dosegfiles(pdirec=parameters.odmdocumentdirec(), transferfiles=do1Document)
+    dosegfiles(pdirec=parameters.odmdocumentdirec(), transferfiles=do1Document,pmandatoryfile=False)
     Document.updparents(psrcname=Externalref.SOURCE_ODM,pparents=docuparents)
 
 orguparents ={}
 def transferorgunits():
     global orguparents
     orguparents = {}
-    dosegfiles(pdirec=parameters.odmorgunitdirec(), transferfiles=do1Orgunit)
+    dosegfiles(pdirec=parameters.odmorgunitdirec(), transferfiles=do1Orgunit,pmandatoryfile=False)
     OragnisationalUnit.updparents(psrcname=Externalref.SOURCE_ODM,pparents=orguparents)
 
 
@@ -1413,12 +1437,12 @@ def do1contact(fileName):
 def transferODMModel():
     """provisional Element internal buffers"""
     businfodirec = parameters.odmIMDirec() + parameters.odmModelName() + '/businessinfo/'
-    dosegfiles(pdirec=businfodirec+'email/',transferfiles=do1email)
-    dosegfiles(pdirec=businfodirec+'phone/',transferfiles=do1phone)
-    dosegfiles(pdirec=businfodirec+'contact/',transferfiles=do1contact)
+    dosegfiles(pdirec=businfodirec+'email/',transferfiles=do1email,pmandatoryfile=False)
+    dosegfiles(pdirec=businfodirec+'phone/',transferfiles=do1phone,pmandatoryfile=False)
+    dosegfiles(pdirec=businfodirec+'contact/',transferfiles=do1contact,pmandatoryfile=False)
 
     """überträgt das ganze ODM Modell in die DB"""
-    transferprojekt()
+    transferproject()
     dbParam.liesdefaultlang()
     transferTypes()
     transferDocuments()

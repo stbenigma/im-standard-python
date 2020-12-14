@@ -7,7 +7,6 @@ from IM_DB import parameters
 from IM_OBJECTS import *
 from WEB_OBJECTS import *
 import html
-from parameters import nvl,nvl2
 
 outputDirectory: str = None
 webDirectory: str = "";
@@ -51,14 +50,14 @@ def lf2htmlbr(pstr):
 
 
 def filehref(pref, panz, plang, pself=False,pimg=None):
-    img = nvl2(pimg,'','<img class="icon-check" src="icons/{}">'.format(pimg))
+    img =  parameters.nvl2(pimg,'','<img class="icon-check" src="icons/{}">'.format(pimg))
     return """<a href="{}{}" target="_{}" >{}{}</a>""" \
-        .format(webFileName + '_' + plang.lower() + '.html', nvl2(pref,"","#") , 'self' if pself else 'blank',panz, img)
+        .format(webFileName + '_' + plang.lower() + '.html',  parameters.nvl2(pref,"","#") , 'self' if pself else 'blank',panz, img)
 
 
 def href(ref, anz, htmlfile='',pself=False):
     if anz is None: return ''
-    sep = '#' if nvl(ref) !='' else ''
+    sep = '#' if parameters.nvl(ref) !='' else ''
     return """<a href="{}{}{}" target="{}">{}</a>""".format(htmlfile
                                                           , sep, ref
                                                           , '_self' if ((htmlfile == '') or pself) else  '_blank'
@@ -641,7 +640,7 @@ def printattrlist(penti):
     for attr in alist:
         elem = attr['element']
         domanker = elem['domain']
-        if nvl(domanker) == '':
+        if parameters.nvl(domanker) == '':
             domelem = None
         else:
             domelem= model['domains'][domanker]
@@ -651,7 +650,7 @@ def printattrlist(penti):
                         else href(ref=domanker, anz=domname)
         fhtml.write(writetableline(pwerte=(href(ref=attr['anker'], anz=elem['name'][lang])
                                            , domref
-                                           , html.escape(nvl(domelem['datatypestr']))
+                                           , html.escape(parameters.nvl(domelem['datatypestr']))
                                            , bool2icon(elem['mandatory']), bool2icon(len(elem['keys']) > 0),
                                            bool2icon(elem['descriptive'])
                                            , bool2icon(elem['translated']), bool2icon(elem['historicised'])
@@ -677,14 +676,14 @@ def startabschnitt(ptitle, pheadlevel=2, ptabid=None, pselfanker=None, plbc=None
     """
     if plbc is None:
         retval = start.format(head.format(pheadlevel, html.escape(ptitle), pheadlevel
-                                      , nvl2(ptabid,'','<a href="#{}" onclick="download_table_as_csv(\'{}\');">download as CSV</a>'
+                                      , parameters.nvl2(ptabid,'','<a href="#{}" onclick="download_table_as_csv(\'{}\');">download as CSV</a>'
                                                     .format(pselfanker, ptabid)
                                            ))
                               )
     else:
         retval = collapsestart.format(plbc
                                       ,head.format(pheadlevel+1, html.escape(ptitle), pheadlevel+1
-                                                    , nvl2(ptabid,'','<a href="#{}" onclick="download_table_as_csv(\'{}\');">download as CSV</a>'
+                                                    , parameters.nvl2(ptabid,'','<a href="#{}" onclick="download_table_as_csv(\'{}\');">download as CSV</a>'
                                                                     .format(pselfanker, ptabid)
                                            ))
                                       , plbc)
@@ -710,7 +709,7 @@ def starttable(ptitle, pheaders, pheadlevel=2, ptabid=None, pselfanker=None, plb
     """
 
     retval = [startabschnitt(ptitle=ptitle, plbc=plbc, ptabid=ptabid, pheadlevel=pheadlevel, pselfanker=pselfanker)]
-    retval.append(tabhead.format(nvl2(ptabid,'','id="{}"'.format(ptabid))))
+    retval.append(tabhead.format(parameters.nvl2(ptabid,'','id="{}"'.format(ptabid))))
     for u in pheaders:
         retval.append(tabheads.format(html.escape(u)))
     retval.append(lineend)
@@ -731,9 +730,9 @@ def writetableline(pwerte, plineid=None):
     retval.append(linestart)
     for w in pwerte:
         if (isIconstr(w)):
-            retval.append(iconline.format(lf2htmlbr(nvl(w))))
+            retval.append(iconline.format(lf2htmlbr(parameters.nvl(w))))
         else:
-            retval.append(line.format(nvl(lf2htmlbr(nvl(w)))))
+            retval.append(line.format(parameters.nvl(lf2htmlbr(parameters.nvl(w)))))
     retval.append(lineend)
     return ''.join(retval)
 
@@ -834,19 +833,19 @@ def printentirela(penti,plang):
             otherentiname = model['entities'][elem['to-from']['enti']]['name'][plang]
 
             # 'Name','Entität1','','Beziehung','', 'Entität2','Arc','Key'
-            fhtml.write(writetableline(pwerte=(html.escape(nvl(elem['name'])), html.escape(penti['element']['name'][plang])
-                                                        , '->', html.escape(nvl(elem['from-to']['assoc'][plang], '--'))
+            fhtml.write(writetableline(pwerte=(html.escape(parameters.nvl(elem['name'])), html.escape(penti['element']['name'][plang])
+                                                        , '->', html.escape(parameters.nvl(elem['from-to']['assoc'][plang], '--'))
                                                , elem['from-to']['cardstr']
                                                , arrow2icon('down'), fromarc, bool2icon(len(elem['isinkeys']) > 0))))
-            fhtml.write(writetableline(pwerte=('', arrow2icon('up'), elem['to-from']['cardstr'], html.escape(nvl(elem['to-from']['assoc'][plang], '--')), '<-'
+            fhtml.write(writetableline(pwerte=('', arrow2icon('up'), elem['to-from']['cardstr'], html.escape(parameters.nvl(elem['to-from']['assoc'][plang], '--')), '<-'
                                                , href(ref=elem['to-from']['enti'], anz=html.escape(otherentiname)))))
         else:
             otherentiname = model['entities'][elem['from-to']['enti']]['name'][plang]
-            fhtml.write(writetableline(pwerte=(html.escape(nvl(elem['name'])), html.escape(penti['element']['name'][plang])
-                                               , '->', html.escape(nvl(elem['to-from']['assoc'][plang], '--'))
+            fhtml.write(writetableline(pwerte=(html.escape(parameters.nvl(elem['name'])), html.escape(penti['element']['name'][plang])
+                                               , '->', html.escape(parameters.nvl(elem['to-from']['assoc'][plang], '--'))
                                                , elem['to-from']['cardstr']
                                                , arrow2icon('down'), toarc, bool2icon(len(elem['isinkeys']) > 0))))
-            fhtml.write(writetableline(pwerte=('', arrow2icon('up'), elem['from-to']['cardstr'], html.escape(nvl(elem['from-to']['assoc'][plang], '--')), '<-'
+            fhtml.write(writetableline(pwerte=('', arrow2icon('up'), elem['from-to']['cardstr'], html.escape(parameters.nvl(elem['from-to']['assoc'][plang], '--')), '<-'
                                                , href(ref=elem['from-to']['enti'], anz=html.escape(otherentiname)))))
         # if
     # for
@@ -925,7 +924,7 @@ def printUDP(pelem):
         if (udptheme == parameters.odmUDPTranslFileName()): continue
 
         for grp,props in udpval.items():
-            displvalues = {html.escape(name): html.escape(nvl(value)) for name,value in props.items()}
+            displvalues = {html.escape(name): html.escape(parameters.nvl(value)) for name,value in props.items()}
 
             """write only if there is at least one value not empty"""
             if (len(displvalues) > list(displvalues.values()).count('')):
@@ -985,7 +984,7 @@ def printcontententi():
                      , panker=enti['anker']
                      , pname=elem['name'][lang]
                      , piconfilename=iconfilename(pfilename=elem['name'][deflang])
-                     , pdescr=lf2htmlbr(nvl(elem['descr'][lang]))
+                     , pdescr=lf2htmlbr(parameters.nvl(elem['descr'][lang]))
                      , plbc=lbc)
         """print entity Info"""
         synostr =  ', '.join(s[lang] for s in elem['synonyms'])
@@ -994,13 +993,13 @@ def printcontententi():
         rolesstr = ', '.join(href(ref=r, anz=getentity(r)['name'][lang]) for r in elem['roles'])
         diagstr = ', '.join(href(ref="{}-{}".format(d, enti['anker'])
                                     , anz=model['diagrams'][d]['name']) for d in elem['diagrams'])
-        infovalues = (nvl(synostr), parentstr, subtypestr,rolesstr
-                      , diagstr, nvl(elem['uc']) + ', ' + nvl(elem['dc']))
+        infovalues = (parameters.nvl(synostr), parentstr, subtypestr,rolesstr
+                      , diagstr, parameters.nvl(elem['uc']) + ', ' + parameters.nvl(elem['dc']))
         printcontentinfo(ptitle=Languagetext.transl('Informationen'), pheaders=infoheaders, pvalues=infovalues)
         printattrlist(penti=elem)
         printkeys(pelem=elem,plang=lang)
         printentirela(penti=enti,plang=lang)
-        printdocureflist(pelem=elem, pelemtype=Modelelemtype.ENTI)
+        printelemreflists(pelem=elem, pelemtype=Modelelemtype.ENTI)
         printtransl(penti=enti)
         printUDP(pelem=elem)
         printmapping(penti=elem)
@@ -1037,14 +1036,14 @@ def printcontentattr():
                      , panker=attr['anker']
                      , pname=elem['name'][lang]
                      , pmaster=master
-                     , pdescr=lf2htmlbr(nvl(elem['descr'][lang]))
+                     , pdescr=lf2htmlbr(parameters.nvl(elem['descr'][lang]))
                      , plbc=lbc)
         domain = model['domains'][elem['domain']]
         domainname=domain['name'][lang]
         domainref =  domainname if  domain['origin'] == Domain.DERIVED\
                      else href(ref=elem['domain'], anz=domainname)
-        infovalues = (nvl(elem['techname'], ''), domainref, domain['displdatatype'][lang]
-                      , nvl(elem['tooltip'][lang]), re.sub(r'^, $', '', nvl(elem['uc']) + ', ' + nvl(elem['dc'])))
+        infovalues = (parameters.nvl(elem['techname'], ''), domainref, domain['displdatatype'][lang]
+                      , parameters.nvl(elem['tooltip'][lang]), re.sub(r'^, $', '', parameters.nvl(elem['uc']) + ', ' + parameters.nvl(elem['dc'])))
         printcontentinfo(ptitle=Languagetext.transl('Informationen'), pheaders=infoheaders, pvalues=infovalues)
 
         flagvalues = (bool2icon(elem['mandatory']), bool2icon(len(elem['keys'])>0), bool2icon(elem['descriptive'])
@@ -1053,7 +1052,7 @@ def printcontentattr():
                       bool2icon(elem['encrypted']))
         printflagline(pheaders=flagheaders, pvalues=flagvalues)
         printkeys(pelem=elem,plang=lang)
-        printdocureflist(pelem=elem, pelemtype=Modelelemtype.ATTR)
+        printelemreflists(pelem=elem, pelemtype=Modelelemtype.ATTR)
         printtransl(pattr=attr)
         printUDP(pelem=elem)
         printmapping(pattr=elem)
@@ -1061,22 +1060,32 @@ def printcontentattr():
     # for
 # printcontentattr
 
-def printdocureflist(pelem, pelemtype):
-    refentries = [[d,model['documents'][d]] for d in pelem['refindocuments']]
-    if (len(refentries) == 0): return
-    lbc = str(newbarcounter())
-    fhtml.write(starttable(ptitle=Languagetext.transl('Referenziert in'), plbc=lbc
-                           , pheaders=[Languagetext.transl('Dokument')]))
 
-    for refentry in refentries:
-        # aus schn-html zurück ins Main
-        htmlname = htmlfilelist[0] if (pelemtype in (Modelelemtype.TABL, Modelelemtype.INTF, Modelelemtype.COLU))\
-                                    else ''
-        docuentry = href(ref=refentry[0],anz=refentry[1]['name'],htmlfile=htmlname)
-        fhtml.write(writetableline(pwerte=[docuentry]))
-    # for
-    fhtml.write(endtable(plabel=Languagetext.transl('Referenziert in'), plbc=lbc))
+def printelemreflists(pelem, pelemtype):
+    def refelements(pentries):
+        elementries = []
+        for refentry in pentries:
+            # aus schn-html zurück ins Main
+            htmlname = htmlfilelist[0] if (pelemtype in (Modelelemtype.TABL, Modelelemtype.INTF, Modelelemtype.COLU)) \
+                else ''
+            elementries.append(href(ref=refentry[0], anz=refentry[1]['name'], htmlfile=htmlname))
+        # for
+        return elementries
+    #dorefelements
 
+    docentries = [] if not 'refindocuments' in pelem else refelements(pentries=[[d, model['documents'][d]] for d in pelem['refindocuments']])
+    orguentries = [] if not 'refbyorgunits' in pelem else refelements(pentries=[[d, model['orgunits'][d]] for d in pelem['refbyorgunits']])
+    if (len(docentries) > 0 or len(orguentries)>0) :
+        lbc = str(newbarcounter())
+        fhtml.write(starttable(ptitle=Languagetext.transl('Referenziert in'), plbc=lbc
+                                   , pheaders=[Languagetext.transl('Typ'), Languagetext.transl('Elemente')]))
+
+        if len(docentries) > 0: fhtml.write(writetableline(pwerte=[Languagetext.transl('Dokumente'), ', '.join(docentries)]))
+        if len(orguentries) > 0: fhtml.write(writetableline(pwerte=[Languagetext.transl('Org. Einheiten'), ', '.join(orguentries)]))
+
+        fhtml.write(endtable(plabel=Languagetext.transl('Referenziert in'), plbc=lbc))
+    # if
+#printelemreflists
 
 def printdomaattrlist(pdoma, plang,pisgroup=False):
     if pisgroup:
@@ -1180,7 +1189,7 @@ def printcontentdoma():
         printcontent(ptype=Languagetext.transl('Wertebereich')
                      , panker=doma['anker']
                      , pname=elem['name'][lang]
-                     , pdescr=lf2htmlbr(nvl(elem['descr'][lang]))
+                     , pdescr=lf2htmlbr(parameters.nvl(elem['descr'][lang]))
                      , plbc=lbc)
 
         if (elem['type'] in (Domain.TXT, Domain.LOV)):
@@ -1188,17 +1197,17 @@ def printcontentdoma():
                 Languagetext.transl('Datentyp'), Languagetext.transl('Max. Länge'), Languagetext.transl('Syntaxregel'),
                 Languagetext.transl('geändert'))
             infovalues = (
-                nvl(elem['displdatatype'][lang]), nvl(elem['maxlng']), nvl(elem['syntaxrule'] if elem['type'] == Domain.TXT else ''),
-                nvl(elem['uc']) + ',' + nvl(elem['dc']))
+                parameters.nvl(elem['displdatatype'][lang]), parameters.nvl(elem['maxlng']), parameters.nvl(elem['syntaxrule'] if elem['type'] == Domain.TXT else ''),
+                parameters.nvl(elem['uc']) + ',' + parameters.nvl(elem['dc']))
         elif (elem['type'] == Domain.BIN):
             infoheaders = (Languagetext.transl('Datentyp'), Languagetext.transl('Inhaltstyp'), Languagetext.transl('Format'),
                            Languagetext.transl('geändert'))
             infovalues = (
-            nvl(elem['displdatatype'][lang]), nvl(elem['contenttype']),
-                nvl(elem['contenttypename']), nvl(elem['uc']) + ',' + nvl(elem['dc']))
+            parameters.nvl(elem['displdatatype'][lang]), parameters.nvl(elem['contenttype']),
+                parameters.nvl(elem['contenttypename']), parameters.nvl(elem['uc']) + ',' + parameters.nvl(elem['dc']))
         elif (elem['type'] == Domain.GRP):
             infoheaders = (Languagetext.transl('Datentyp'), Languagetext.transl('geändert'))
-            infovalues = (elem['displdatatype'][lang], nvl(elem['uc']) + ',' + nvl(elem['dc']))
+            infovalues = (elem['displdatatype'][lang], parameters.nvl(elem['uc']) + ',' + parameters.nvl(elem['dc']))
         elif (elem['type'] == Domain.NUM):
             infoheaders = (
                 Languagetext.transl('Datentyp'), Languagetext.transl('Vorkommast.'), Languagetext.transl('Nachkommast.')
@@ -1206,17 +1215,17 @@ def printcontentdoma():
                 Languagetext.transl('Max. Wwert')
                 , Languagetext.transl('geändert'))
             infovalues = (
-                nvl(elem['displdatatype'][lang]), nvl(elem['totaldigits']), nvl(elem['fractdigits']),
-                nvl(elem['roundvalue']), nvl(elem['unit'])
-                , nvl(elem['minvalue']), nvl(elem['maxvalue'])
-                , nvl(elem['uc']) + ',' + nvl(elem['dc']))
+                parameters.nvl(elem['displdatatype'][lang]), parameters.nvl(elem['totaldigits']), parameters.nvl(elem['fractdigits']),
+                parameters.nvl(elem['roundvalue']), parameters.nvl(elem['unit'])
+                , parameters.nvl(elem['minvalue']), parameters.nvl(elem['maxvalue'])
+                , parameters.nvl(elem['uc']) + ',' + parameters.nvl(elem['dc']))
         elif (elem['type'] == Domain.DAT):
             infoheaders = (
                 Languagetext.transl('Datentyp'), Languagetext.transl('Min. Wert'), Languagetext.transl('Max. Wwert'),
                 Languagetext.transl('Granularität')
                 , Languagetext.transl('geändert'))
-            infovalues = (elem['displdatatype'][lang], nvl(elem['minvalue']), nvl(elem['maxvalue']),
-                          nvl(elem['granularitytext'][lang]), nvl(elem['uc']) + ',' + nvl(elem['dc']))
+            infovalues = (elem['displdatatype'][lang], parameters.nvl(elem['minvalue']), parameters.nvl(elem['maxvalue']),
+                          parameters.nvl(elem['granularitytext'][lang]), parameters.nvl(elem['uc']) + ',' + parameters.nvl(elem['dc']))
         else:
             infoheaders, infovalues = None, None
         # fi
@@ -1258,14 +1267,14 @@ def type2name(ptyp,plang):
 #type2name
 
 def printreflist(pelem,plang):
+    fhtml.write(starttable(ptitle=Languagetext.transl('Referenziert')
+                           , pheaders=[Languagetext.transl('Typ'), Languagetext.transl('Elemente')]))
+
     refentries = {typ: [{'anker': e
                         , 'name': model[typ][e]['name']
                         ,'htmlfile': htmlfilelist[model[typ][e]['interface-id']] if (typ in ('tables','columns','systems')) else ''
                          } for e in ref] for typ,ref in pelem['references'].items()}
     if (len(refentries) == 0): return
-    fhtml.write(starttable(ptitle=Languagetext.transl('Referenziert')
-                           , pheaders=[Languagetext.transl('Typ'), Languagetext.transl('Element')]))
-
     for typ,ref in refentries.items():
         if len(ref)==0: continue
         # aus schn-html zurück ins Main
@@ -1300,14 +1309,42 @@ def printcontentdoku():
         children = [href(ref=key,anz=val['name']) for key,val in model['documents'].items() if val['parent'] == doc['anker']]
         kinder = ', '.join(c for c in children)
 
-        infovalues = (nvl(elem['format']), nvl(elem['reference']),
-                      nvl2(parentanker,'',href(ref=parentanker,anz=parentname)), kinder)
+        infovalues = (parameters.nvl(elem['format']), parameters.nvl(elem['reference']),
+                      parameters.nvl2(parentanker,'',href(ref=parentanker,anz=parentname)), kinder)
         printcontentinfo(ptitle=Languagetext.transl('Informationen'), pheaders=infoheaders, pvalues=infovalues)
         printreflist(pelem=elem, plang=Languagetext.reportLang())
         printcontentend(lbc)
     # for
 # printcontentdoku
 
+def printcontentorgu():
+    orgus = sorted([{'anker': key, 'element': value}
+            for key, value in model['orgunits'].items()]
+            ,key=lambda val : val['element']['name'])
+    printcontentstart('orgunits')
+    infoheaders = (Languagetext.transl('descr'), Languagetext.transl('Mail'),Languagetext.transl('Telefon') , Languagetext.transl('Adresse')
+                    ,Languagetext.transl('übergeordnet'), Languagetext.transl('untergeordnet'))
+    for orgu in orgus:
+        elem = orgu['element']
+        lbc = str(newbarcounter())
+        parentanker=elem['parent']
+        parentname = None if parentanker is None else model['orgunits'][parentanker]['name']
+        printcontent(ptype=Languagetext.transl('Organisationseinheit')
+                     , panker=orgu['anker']
+                     , pname=elem['name']
+                     , pdescr=""
+                     , plbc=lbc)
+
+        children = [href(ref=key,anz=val['name']) for key,val in model['orgunits'].items() if val['parent'] == orgu['anker']]
+        kinder = ', '.join(c for c in children)
+
+        infovalues = (parameters.nvl(elem['descr']), parameters.nvl(elem['mail']),parameters.nvl(elem['telefon']),parameters.nvl(elem['address']),
+                      parameters.nvl2(parentanker,'',href(ref=parentanker,anz=parentname)), kinder)
+        printcontentinfo(ptitle=Languagetext.transl('Informationen'), pheaders=infoheaders, pvalues=infovalues)
+        printreflist(pelem=elem, plang=Languagetext.reportLang())
+        printcontentend(lbc)
+    # for
+# printcontentdoku
 
 def searchlogo(p_imagedirec):
     retval = ''
@@ -1322,7 +1359,7 @@ def setWebDirec(p_webdirec):
     global webDirectory, webFileName, webFileNamePath
     global libSourceDirec, imagedirec, cssdirec, icondirec,jsdirec
 
-    webDirectory = nvl(p_webdirec, parameters.webDirec());
+    webDirectory = parameters.nvl(p_webdirec, parameters.webDirec());
     webFileName = parameters.odmModelName();
     imagedirec = webDirectory + 'image/';
     cssdirec = webDirectory + "css/";

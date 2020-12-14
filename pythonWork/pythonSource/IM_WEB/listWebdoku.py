@@ -3,26 +3,25 @@ import sys,os
 sys.path.append(os.path.dirname(os.path.realpath(__file__))+'/../IM_db')
 sys.path.append(os.path.dirname(os.path.realpath(__file__))+'/..')
 from datetime import datetime
-from IM_DB import parameters,dbConnect, dbParam,logmessages
+from IM_DB import parameters,dbConnect, dbParam,logmessages,parameters
 from IM_HTML import printHTML, printRelHTML,printdiagHTML
 from IM_OBJECTS import *
 from IM_ODM import createJSON
-from parameters import nvl,nvl2
 
 
 def formatDatentyp(w):
     dt = anzDatentyp(w[0])
     #print (w)
     return(
-    "{}   ({}) {} {}" .format(dt, w[3], nvl(w[1])+ nvl2(w[1],'',' - ')
-                    , nvl(w[2]), nvl(w[11]), nvl(w[6])) if w[0] == 'ZPKT'\
+    "{}   ({}) {} {}" .format(dt, w[3], parameters.nvl(w[1])+ parameters.nvl2(w[1],'',' - ')
+                    , parameters.nvl(w[2]), parameters.nvl(w[11]), parameters.nvl(w[6])) if w[0] == 'ZPKT'\
         else '{}  ({}:{})   {}  {}'\
-                .format(dt, nvl(w[8]), nvl(w[9]), nvl(w[7]).__str__() + nvl2(w[7],'',' - ')
-            , nvl(w[10]))     if w[0] == 'NUM'\
+                .format(dt, parameters.nvl(w[8]), parameters.nvl(w[9]), parameters.nvl(w[7]).__str__() + parameters.nvl2(w[7],'',' - ')
+            , parameters.nvl(w[10]))     if w[0] == 'NUM'\
         else '{}  ({}) {}'\
-            .format(dt, nvl(w[4]), 'CHECK: ' + nvl(w[5], ''))   if w[0] == 'TEXT'\
+            .format(dt, parameters.nvl(w[4]), 'CHECK: ' + parameters.nvl(w[5], ''))   if w[0] == 'TEXT'\
         else '{}  ({})'\
-                 .format(dt, nvl(w[4])) if w[0] == 'LOV'\
+                 .format(dt, parameters.nvl(w[4])) if w[0] == 'LOV'\
         else dt
     )
 #formatDatentyp
@@ -41,7 +40,7 @@ def printAttrUDPMatrix(thema=None):
                                     and melt_kurzname = 'ATTR'
                     where bdeg_thema like '{}'
                     order by bdeg_thema,bdeg_gruppe,bdeg_name
-                        """ .format(nvl(thema,'%'))
+                        """ .format(parameters.nvl(thema,'%'))
     udpWerte = dbDML.select(lsql)
     for udpWert in udpWerte:
         udpListe.append(udpWert[0])
@@ -65,12 +64,12 @@ def printAttrUDPMatrix(thema=None):
       join wertebereiche on wrtb_id = attr_doma_id
       ) order by enti_name,upper(attr_tech_name)"""
                            .format(Languagetext.reportLang()))
-    printHTML.starttable(ptitle='Attribute - User Defined Properties: ' + nvl(thema)
+    printHTML.starttable(ptitle='Attribute - User Defined Properties: ' + parameters.nvl(thema)
                          , pheaders= udpListe
                          , anker=udpAnker(thema))
     for at in allattr:
         values = [href(ref=entiAnker(at[1]), anz=at[0]), href(ref=attrAnker(at[2]), anz=at[3])
-                              ,nvl(at[4]),nvl(at[6])]
+                              ,parameters.nvl(at[4]),parameters.nvl(at[6])]
         lsql = """select  bdwe_wert
                     from benudef_wert
                     join modellelement on mode_id = bdwe_mode_id
@@ -78,10 +77,10 @@ def printAttrUDPMatrix(thema=None):
                     join benudef_eigenschaft on bdeg_id = bdwe_bdeg_id
                     where bdeg_thema like '{}'
                     order by bdeg_thema,bdeg_gruppe,bdeg_name
-                    """.format(at[2],nvl(thema,'%'))
+                    """.format(at[2],parameters.nvl(thema,'%'))
         udpWerte = dbDML.select(lsql)
         for udpWert in udpWerte:
-            values.append(nvl(udpWert[0]))
+            values.append(parameters.nvl(udpWert[0]))
         printHTML.writeTable(values)
     # endFor
     printHTML.endTable('')
@@ -97,7 +96,6 @@ def printlistofcontent(plang):
     except:
         mode=printHTML.model
         mod = printHTML.model['entities'].values()
-        print (mod)
     printHTML.printlistofcontentelement(pname='Entitäten'
                                             , plist= idxlist)
 
@@ -128,6 +126,15 @@ def printlistofcontent(plang):
                     ]
                 ,key=lambda val:val['name'])
     printHTML.printlistofcontentelement(pname='Dokumente', plist=idxlist)
+
+    idxlist=sorted([{'anker':key
+                    ,'name': "{}".format(value['name']
+                                             ,str(value['referencecnt']))
+                     }
+                    for key,value in printHTML.model['orgunits'].items()
+                    ]
+                ,key=lambda val:val['name'])
+    printHTML.printlistofcontentelement(pname='Org. Einheiten', plist=idxlist)
 
     # idxlist=sorted([{'anker':key
     #                 ,'name': "{} ({})".format(value['name']
@@ -164,6 +171,7 @@ def printcontent(pfirma,ptitel):
     printHTML.printcontentattr()
     printHTML.printcontentdoma()
     printHTML.printcontentdoku()
+    printHTML.printcontentorgu()
     printHTML.printcontentmapping(ptheme=parameters.odmUDPMappingFileName())
     printdiagHTML.printcontentdiag(plist=printHTML.model['diagrams'], plang=Languagetext.reportLang(), ptitel=ptitel)
     printHTML.printcontentfoot()

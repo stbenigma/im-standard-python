@@ -4,13 +4,12 @@ from datetime import date
 class Storageformat(Baseobject):
     _tablename:str = 'storage_formats'
     _prefix:str = 'stfo'
-    _columnlist:list = ['stfo_id','stfo_name','stfo_descr','stfo_uc','stfo_dc','stfo_um','stfo_dm']
+    _columnlist:list = []
 
 
     def __init__(self,pname=None,pdescr=None):
-        super().__init__(tablename= Storageformat._tablename, prefix= Storageformat._prefix
-                         , columnlist = Storageformat._columnlist
-)
+        if (len(Storageformat._columnlist) == 0): Storageformat._columnlist = Baseobject.gettablecolumns(Storageformat._tablename)
+        super().__init__(tablename= Storageformat._tablename, prefix= Storageformat._prefix)
         self.stfo_name = pname
         self.stfo_descr = pdescr
         self.stfo_uc = 'fillDB'
@@ -66,13 +65,12 @@ CREATE TABLE STORAGE_FORMATS
 class PhysicalUnit(Baseobject):
     _tablename:str = 'physical_unit'
     _prefix:str = 'phyu'
-    _columnlist:list = ['phyu_id','phyu_si_unit','phyu_name','phyu_descr','phyu_uc','phyu_dc','phyu_um','phyu_dm']
+    _columnlist:list = []
 
 
     def __init__(self,):
-        super().__init__(tablename= PhysicalUnit._tablename, prefix= PhysicalUnit._prefix
-                         , columnlist = PhysicalUnit._columnlist
-)
+        if (len(PhysicalUnit._columnlist) == 0): PhysicalUnit._columnlist = Baseobject.gettablecolumns(PhysicalUnit._tablename)
+        super().__init__(tablename= PhysicalUnit._tablename, prefix= PhysicalUnit._prefix)
         self.phyu_uc = 'fillDB'
         self.phyu_dc = date.today()
 

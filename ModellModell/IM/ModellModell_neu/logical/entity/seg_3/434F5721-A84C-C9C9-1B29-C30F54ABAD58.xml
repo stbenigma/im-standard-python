@@ -98,6 +98,32 @@ Description of the attribute in the external system
 <property name="EN_ATTR_NAME" value="Description of the"/>
 </propertyMap>
 </Attribute>
+<Attribute name="Pflichtfeld" id="77DC6B22-7748-FF66-B8F9-B67AB8FD2242">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-14 07:54:24 UTC</createdTime>
+<comment><![CDATA[Konstanter Wert der zu verwenden ist, falls keine Quelle oder keine Transformation exisitert.]]></comment>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+**Constant value to be used if no source or transformation exists.
+]EN_ATTR_COMMENT]
+[DE_ATTR_COMMENT[
+Konstanter Wert der zu verwenden ist, falls keine Quelle oder keine Transformation exisitert.
+]DE_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<engineerTo>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
+<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Vorgabewert"/>
+<property name="EN_ATTR_NAME" value="**Default value"/>
+</propertyMap>
+</Attribute>
 <Attribute name="Datentyp" id="B7EE146C-4F67-DE0E-BB81-6E7C156A8FDB">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:06:23 UTC</createdTime>

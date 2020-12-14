@@ -5,13 +5,11 @@ from IM_DB import dbDML
 class Language(Baseobject):
     _tablename:str ='languages'
     _prefix:str ='lang'
-    _columnlist:list = ['lang_id', 'lang_iso_name', 'lang_iso_code2', 'lang_iso_code3', 'lang_is_text_lang'
-                    , 'lang_is_base_lang', 'lang_lang_id', 'lang_uc', 'lang_dc', 'lang_um', 'lang_dm']
+    _columnlist = []
 
     def __init__(self,pname=None,piso2=None,piso3=None):
-        super().__init__(tablename=Language._tablename, prefix=Language._prefix
-                         , columnlist = Language._columnlist
-                         )
+        if (len(Language._columnlist) == 0): Language._columnlist = Baseobject.gettablecolumns(Language._tablename)
+        super().__init__(tablename=Language._tablename, prefix=Language._prefix)
         self.lang_iso_name = pname
         self.lang_iso_code2 = piso2
         self.lang_iso_code3 =  piso3

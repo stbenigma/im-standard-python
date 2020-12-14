@@ -7,18 +7,13 @@ import IM_OBJECTS
 class Attribute(MultilangBaseobject):
     _tablename: str = 'attributes'
     _prefix: str = 'attr'
-    _columnlist: list = ['attr_id', 'attr_enti_id', 'attr_rela_id',
-                         'attr_doma_id', 'attr_tech_name', 'attr_displ_name',
-                         'attr_tooltip', 'attr_descr',
-                         'attr_displ_seq', 'attr_is_descriptive', 'attr_is_mandatory',
-                         'attr_is_historicised', 'attr_is_repeated', 'attr_is_translated',
-                         'attr_is_encrypted', 'attr_uc',
-                         'attr_dc', 'attr_um', 'attr_dm']
+    _columnlist: list = []
 
     def __init__(self, pname=None, pentiid=None, prelaid=None
                     ,psrcname=None, psrcid=None):
+
+        if (len(Attribute._columnlist) == 0): Attribute._columnlist = Baseobject.gettablecolumns(Attribute._tablename)
         super().__init__(tablename=Attribute._tablename, prefix=Attribute._prefix
-                         , columnlist=Attribute._columnlist
                          , multilangcols={'attr_displ_name': Languagetext.ATTR_NAME,
                                           'attr_descr': Languagetext.ATTR_COMMENT,
                                           'attr_tooltip': Languagetext.ATTR_TOOLTIP}

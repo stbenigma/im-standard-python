@@ -10,15 +10,15 @@ class Datatype(Baseobject):
     NUMERIC:str='NUMERIC'
     _tablename:str = 'datatypes'
     _prefix:str = 'daty'
-    _columnlist:list = ['daty_id',  'daty_name', 'daty_basetype', 'daty_uc','daty_dc','daty_um','daty_dm']
+    _columnlist:list = []
     __srcname = None
     __srcid = None
 
 
 
     def __init__(self,pname=None,pbasetype=None,psrcname=None,pscrid=None):
+        if (len(Datatype._columnlist) == 0): Datatype._columnlist = Baseobject.gettablecolumns(Datatype._tablename)
         super().__init__(tablename= Datatype._tablename, prefix= Datatype._prefix
-                        ,columnlist = Datatype._columnlist
                         ,pmodelemtype=Modelelemtype.DATY
                         ,pscrid=pscrid
                         ,psrcname=psrcname)

@@ -5,13 +5,13 @@ from collections import defaultdict
 from .entity import Entity
 
 class TablEntiMap(Baseobject):
-    _tablename:str = 'tabl_enti_map'
+    _tablename:str = 'tabl_enti_maps'
     _prefix:str = 'tema'
-    _columnlist:list = ['tema_id', 'tema_tabl_id', 'tema_enti_id', 'tema_rela_id']
+    _columnlist:list = []
 
     def __init__(self):
-        super().__init__(tablename=TablEntiMap._tablename, prefix=TablEntiMap._prefix
-                        ,columnlist = TablEntiMap._columnlist)
+        if (len(TablEntiMap._columnlist) == 0): TablEntiMap._columnlist = Baseobject.gettablecolumns(TablEntiMap._tablename)
+        super().__init__(tablename=TablEntiMap._tablename, prefix=TablEntiMap._prefix)
 
     @staticmethod
     def createtable():

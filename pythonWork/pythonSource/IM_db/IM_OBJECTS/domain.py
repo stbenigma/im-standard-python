@@ -4,7 +4,8 @@ from .datatype import Datatype
 from .modelelement import Modelelement, Modelelemtype
 from .languagetext import Languagetext
 from .physicals import Storageformat
-from parameters import nvl2,nvl
+
+
 
 class Domain(MultilangBaseobject):
     DERIVED: str = 'DER'
@@ -33,18 +34,12 @@ class Domain(MultilangBaseobject):
     TEXT: str = 'TEXT'
     _tablename: str = 'domains'
     _prefix: str = 'doma'
-    _columnlist: list = ['doma_id', 'doma_name', 'doma_descr',
-                         'doma_type', 'doma_origin', 'doma_dat_minvalue', 'doma_dat_maxvalue',
-                         'doma_dat_granularity', 'doma_txt_maxlng', 'doma_txt_syntaxrule', 'doma_num_maxvalue',
-                         'doma_num_minvalue', 'doma_num_total_digits', 'doma_num_fract_digits', 'doma_num_round_value',
-                         'doma_num_phyu_id', 'doma_bin_contenttype', 'doma_bin_stfo_id', 'doma_daty_id',
-                          'doma_daty_id', 'doma_uc', 'doma_dc',
-                         'doma_um', 'doma_dm']
+    _columnlist: list = []
     __unknowndom = None
 
     def __init__(self, psrcname=None, psrcid=None):
+        if (len(Domain._columnlist) == 0): Domain._columnlist = Baseobject.gettablecolumns(Domain._tablename)
         super().__init__(tablename=Domain._tablename, prefix=Domain._prefix
-                         , columnlist=Domain._columnlist
                          , multilangcols={'doma_name': Languagetext.DOMA_NAME, 'doma_descr': Languagetext.DOMA_DESCR}
                          , pmodelemtype=Modelelemtype.DOMA
                          , pscrid=psrcid
@@ -132,44 +127,44 @@ CREATE TABLE DOMAINS
             infoheaders = (
                 Languagetext.transl('Datentyp'), Languagetext.transl('Max. Länge'), Languagetext.transl('Syntaxregel'),
                 Languagetext.transl('geändert'))
-            infovalues = (nvl(self.doma_type), nvl(self.doma_txt_maxlng), nvl(self.doma_txt_syntaxrule),
-                          nvl(self.doma_uc) + ',' + nvl(self.doma_dc))
-            typestring += nvl2(self.doma_txt_maxlng,''," ({})".format(self.doma_txt_maxlng))
+            infovalues = (parameters.nvl(self.doma_type), parameters.nvl(self.doma_txt_maxlng), parameters.nvl(self.doma_txt_syntaxrule),
+                          parameters.nvl(self.doma_uc) + ',' + parameters.nvl(self.doma_dc))
+            typestring += parameters.nvl2(self.doma_txt_maxlng,''," ({})".format(self.doma_txt_maxlng))
         elif (self.doma_type == Domain.BIN):
             stf = Storageformat().getbyid(self.doma_bin_stfo_id)
             stfname = stf.getname() if stf is not None else ''
             infoheaders = (Languagetext.transl('Datentyp'), Languagetext.transl('Inhaltstyp'), Languagetext.transl('Format'),
                            Languagetext.transl('geändert'))
             infovalues = (
-                nvl(self.doma_type), self.displcontenttype(), stfname,
-                nvl(self.doma_uc) + ',' + nvl(self.doma_dc)
+                parameters.nvl(self.doma_type), self.displcontenttype(), stfname,
+                parameters.nvl(self.doma_uc) + ',' + parameters.nvl(self.doma_dc)
             )
             typestring += " ({}, {})".format(self.displcontenttype(),stfname)
         elif (self.doma_type == Domain.GRP):
             infoheaders = (Languagetext.transl('Datentyp'), Languagetext.transl('geändert'))
-            infovalues = (self.doma_type, nvl(self.doma_uc) + ',' + nvl(self.doma_dc))
+            infovalues = (self.doma_type, parameters.nvl(self.doma_uc) + ',' + parameters.nvl(self.doma_dc))
         elif (self.doma_type == Domain.NUM):
             infoheaders = (
                 Languagetext.transl('Datentyp'), Languagetext.transl('Vorkommast.'), Languagetext.transl('Nachkommast.')
             , Languagetext.transl('Rundungseinh.'), Languagetext.transl('Einheit'), Languagetext.transl('Min. Wert'),
                 Languagetext.transl('Max. Wwert')
             , Languagetext.transl('geändert'))
-            infovalues = (nvl(self.doma_type), nvl(self.doma_num_total_digits), nvl(self.doma_num_fract_digits),
-                          nvl(self.doma_num_round_value), nvl(self.doma_num_phyu_id)
-                          , nvl(self.doma_num_minvalue), nvl(self.doma_num_maxvalue)
-                          , nvl(self.doma_uc) + ',' + nvl(self.doma_dc))
-            typestring += " ({}{}{}{})".format(nvl(self.doma_num_total_digits)
-                                                 , nvl2(self.doma_num_fract_digits,'', ',{}'.format(self.doma_num_fract_digits))
-                                                 , nvl2(self.doma_num_minvalue,'', '  >= {}'.format(self.doma_num_minvalue))
-                                                 , nvl2(self.doma_num_maxvalue,'', '  <= {}'.format(self.doma_num_maxvalue)))
+            infovalues = (parameters.nvl(self.doma_type), parameters.nvl(self.doma_num_total_digits), parameters.nvl(self.doma_num_fract_digits),
+                          parameters.nvl(self.doma_num_round_value), parameters.nvl(self.doma_num_phyu_id)
+                          , parameters.nvl(self.doma_num_minvalue), parameters.nvl(self.doma_num_maxvalue)
+                          , parameters.nvl(self.doma_uc) + ',' + parameters.nvl(self.doma_dc))
+            typestring += " ({}{}{}{})".format(parameters.nvl(self.doma_num_total_digits)
+                                                 , parameters.nvl2(self.doma_num_fract_digits,'', ',{}'.format(self.doma_num_fract_digits))
+                                                 , parameters.nvl2(self.doma_num_minvalue,'', '  >= {}'.format(self.doma_num_minvalue))
+                                                 , parameters.nvl2(self.doma_num_maxvalue,'', '  <= {}'.format(self.doma_num_maxvalue)))
         elif (self.doma_type == Domain.DAT):
             infoheaders = (
                 Languagetext.transl('Datentyp'), Languagetext.transl('Min. Wert'), Languagetext.transl('Max. Wwert'),
                 Languagetext.transl('Granularität')
             , Languagetext.transl('geändert'))
-            infovalues = (nvl(self.doma_type), nvl(self.doma_dat_minvalue), nvl(self.doma_dat_maxvalue),
-                          nvl(self.displgranul()),
-                          nvl(self.doma_uc) + ',' + nvl(self.doma_dc))
+            infovalues = (parameters.nvl(self.doma_type), parameters.nvl(self.doma_dat_minvalue), parameters.nvl(self.doma_dat_maxvalue),
+                          parameters.nvl(self.displgranul()),
+                          parameters.nvl(self.doma_uc) + ',' + parameters.nvl(self.doma_dc))
             typestring += " ({}{}{})".format(
                 '' if self.doma_dat_granularity is None else ('  Granularity = {}'.format(self.doma_dat_granularity))
                 , '' if self.doma_dat_minvalue is None else '  >= {}'.format(self.doma_dat_minvalue)
@@ -296,15 +291,11 @@ CREATE TABLE DOMAINS
 class DomaingroupMember(Baseobject):
     _tablename: str = 'domaingroup_members'
     _prefix: str = 'dgrm'
-    _columnlist: list = ['dgrm_id', 'dgrm_name', 'dgrm_descr','dgrm_is_mandatory',
-                         'dgrm_doma_id_group', 'dgrm_doma_id_member',
-                         'dgrm_uc', 'dgrm_dc', 'dgrm_um',
-                         'dgrm_dm'
-                         ]
+    _columnlist: list = []
 
     def __init__(self,psrcname=None,psrcid=None ):
+        if (len(DomaingroupMember._columnlist) == 0): DomaingroupMember._columnlist = Baseobject.gettablecolumns(DomaingroupMember._tablename)
         super().__init__(tablename=DomaingroupMember._tablename, prefix=DomaingroupMember._prefix
-                         , columnlist=DomaingroupMember._columnlist
                          , pmodelemtype=Modelelemtype.DGRM
                          , pscrid=psrcid
                          , psrcname=psrcname
@@ -364,15 +355,11 @@ CREATE TABLE DOMAINGROUP_MEMBERS
 class DefaultValue(Baseobject):
     _tablename: str = 'default_values'
     _prefix: str = 'deva'
-    _columnlist: list = ['deva_id', 'deva_value',
-                         'deva_sort_order', 'deva_doma_id', 'deva_displ',
-                         'deva_descr', 'deva_uc', 'deva_dc',
-                         'deva_um', 'deva_dm'
-                         ]
+    _columnlist: list = []
 
     def __init__(self):
-        super().__init__(tablename=DefaultValue._tablename, prefix=DefaultValue._prefix
-                         , columnlist=DefaultValue._columnlist)
+        if (len(DefaultValue._columnlist) == 0): DefaultValue._columnlist = Baseobject.gettablecolumns(DefaultValue._tablename)
+        super().__init__(tablename=DefaultValue._tablename, prefix=DefaultValue._prefix)
 
     @staticmethod
     def createtable():

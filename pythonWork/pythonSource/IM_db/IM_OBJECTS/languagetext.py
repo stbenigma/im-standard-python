@@ -22,12 +22,11 @@ class Languagetext(Baseobject):
 
     _tablename:str ='lang_texts'
     _prefix:str ='lgtx'
-    _columnlist:list = ['lgtx_id', 'lgtx_attrname', 'lgtx_text', 'lgtx_lang_id'
-                        , 'lgtx_mode_id', 'lgtx_uc', 'lgtx_dc', 'lgtx_um', 'lgtx_dm']
+    _columnlist:list = []
 
     def __init__(self):
-        super().__init__(tablename=Languagetext._tablename, prefix=Languagetext._prefix
-                         , columnlist = Languagetext._columnlist)
+        if (len(Languagetext._columnlist) == 0): Languagetext._columnlist = Baseobject.gettablecolumns(Languagetext._tablename)
+        super().__init__(tablename=Languagetext._tablename, prefix=Languagetext._prefix)
 
     @staticmethod
     def createtable():
@@ -182,6 +181,7 @@ CREATE TABLE LANG_TEXTS
 
     __translNameEN = {'Anzeige': 'Display'
         , 'Arc': 'Arc'
+        , "Adresse": "Address"
         , 'Anzeige': 'Display'
         , 'Attribute': 'Attribute'
         , 'Attribute(e)': 'Attribute(s)'
@@ -235,6 +235,8 @@ CREATE TABLE LANG_TEXTS
         , 'Nein': 'No'
         , 'Nr': 'Nr'
         , 'Numerisch': 'Numerical'
+        , "Org. Einheiten": "Org. units"
+        , "Organisationseinheit": "Organisational unit"
         , 'Pflichtattribut': 'Attribute of duty'
         , 'Quartal': 'quarter'
         , 'Referenziert in': 'Referenced in'
@@ -267,6 +269,8 @@ CREATE TABLE LANG_TEXTS
         , 'Typ': 'Type'
         , 'UDP-Matrix': 'UDP-Matrix'
         , 'übersetzt': 'translated'
+        , 'untergeordnet': 'subordinated'
+        , 'übergeordnet': 'superordinated'
         , 'Übersetzungen': 'Translations'
         , 'Unterdokumente': 'Children'
         , "Vaterdokument": "Parent"
@@ -286,6 +290,7 @@ CREATE TABLE LANG_TEXTS
                       }
     __translNameFR = {"Anzeige": "Affichage"
         , "Arc": "Arc"
+        , "Adresse": "Adresse"
         , "Attribute": "Attribute"
         , "Attribute(e)": "Attribute(s)"
         , "Attribute": "Attributs"
@@ -338,6 +343,8 @@ CREATE TABLE LANG_TEXTS
         , "Nein": "Non"
         , "Nr": "N°"
         , "Numerisch": "Numérique"
+        , "Org. Einheiten": "Unités org."
+        , "Organisationseinheit": "Unités organisationelles"
         , "Pflichtattribut": "Attribute obligatoire"
         , "Quartal": "Trimestre"
         , 'Referenziert in': 'Référencé dans'
@@ -370,6 +377,8 @@ CREATE TABLE LANG_TEXTS
         , "Typ": "Type"
         , "UDP-Matrix": "Matrice UDP"
         , "übersetzt": "traduit"
+        , 'untergeordnet': 'subordonné'
+        , 'übergeordnet': 'superordonné'
         , "Übersetzungen": "Traductions"
         , 'Unterdokumente': 'Enfants'
         , "Vaterdokument": "Document père"

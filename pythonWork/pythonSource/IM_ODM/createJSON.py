@@ -62,6 +62,7 @@ def entities():
                      ,'keys': [anker(Modelelemtype.KEYS, k.keys_id) for k in Key.select(pwhere="keys_enti_id = {}".format(e.enti_id))]
                      ,'inarcs': [anker(Modelelemtype.ARCS, a.arcs_id) for a in Arc.select(pwhere="arcs_enti_id = {}".format(e.enti_id))]
                      ,'refindocuments': [anker(Modelelemtype.DOCU, d[0]) for d in Document.getrefdoculist(pid=e.enti_id)]
+                     ,'refbyorgunits': [anker(Modelelemtype.ORGU, d[0]) for d in OragnisationalUnit.getreforgulist(pid=e.enti_id)]
                      , 'userdefprop': {
                      t[0]: {g[1]: {u.udpr_name: Userdefpropvalue.udpvalue(pudprid=u.udpr_id, pmodeid=e.enti_id)
                                    for u in Userdefprop.getudps(ptheme=t[0], pgroup=g[1], pmeltname=Modelelemtype.ENTI)}
@@ -99,6 +100,7 @@ def defattr(attr):
         , 'sourceref': {s: Externalref.getsrcid(psrcname=s, pmodeid=attr.attr_id) for s in Externalref.getsources()}
         , 'keys': [anker(Modelelemtype.KEYS, k.keys_id) for k in attr.getkeys()]
         , 'refindocuments': [anker(Modelelemtype.DOCU, d[0]) for d in Document.getrefdoculist(pid=attr.attr_id)]
+        , 'refbyorgunits': [anker(Modelelemtype.ORGU, d[0]) for d in OragnisationalUnit.getreforgulist(pid=attr.attr_id)]
         , 'userdefprop': {t[0]: {g[1]: {u.udpr_name: Userdefpropvalue.udpvalue(pudprid=u.udpr_id, pmodeid=attr.attr_id)
                                         for u in
                                         Userdefprop.getudps(ptheme=t[0], pgroup=g[1], pmeltname=Modelelemtype.ATTR)}
@@ -185,6 +187,7 @@ def defdomain(doma):
                                             .format(doma.doma_id))]
     retval['sourceref']= {s : Externalref.getsrcid(psrcname=s, pmodeid=doma.doma_id) for s in Externalref.getsources()}
     retval['refindocuments'] = [anker(Modelelemtype.DOCU, d[0]) for d in Document.getrefdoculist(pid=doma.doma_id)]
+    retval['refbyorgunits'] = [anker(Modelelemtype.ORGU, d[0]) for d in OragnisationalUnit.getreforgulist(pid=doma.doma_id)]
 
     return retval
 
@@ -493,6 +496,7 @@ def diagrams():
                                         for ar in Arc.getdiagarcs(pdiagid=d.diag_id)
                                 }
             , 'refindocuments': [anker(Modelelemtype.DOCU, d[0]) for d in Document.getrefdoculist(pid=d.diag_id)]
+            ,'refbyorgunits': [anker(Modelelemtype.ORGU, d[0]) for d in OragnisationalUnit.getreforgulist(pid=d.diag_id)]
         }
         for d in Diagram.select()}
     return diags
@@ -503,8 +507,9 @@ def systems():
                                                     ,'descr':i.intf_descr
                                                 , 'sourceref': {s: Externalref.getsrcid(psrcname=s, pmodeid=i.intf_id)
                                                             for s in Externalref.getsources()}
-                                        ,'refindocuments': [anker(Modelelemtype.DOCU, d[0]) for d in Document.getrefdoculist(pid=i.intf_id)]
-                                                    ,'tables' : [anker(Modelelemtype.TABL,t.tabl_id) for t in Table.selectbyschnid(pschnid=i.intf_id)]
+                                                ,'refindocuments': [anker(Modelelemtype.DOCU, d[0]) for d in Document.getrefdoculist(pid=i.intf_id)]
+                                        , 'refbyorgunits': [anker(Modelelemtype.ORGU, d[0]) for d in OragnisationalUnit.getreforgulist(pid=i.intf_id)]
+                                        ,'tables' : [anker(Modelelemtype.TABL,t.tabl_id) for t in Table.selectbyschnid(pschnid=i.intf_id)]
                                                     }
              for i in Interface.select()}
     return intfs
@@ -516,7 +521,8 @@ def columns():
          ,'table-id':anker(Modelelemtype.TABL, Table().getbyid(c.colu_tabl_id).getid())
         , 'interface-name': Interface().getbyid(Table().getbyid(c.colu_tabl_id).tabl_intf_id).getname()
         , 'interface-id': anker(Modelelemtype.INTF, Interface().getbyid(Table().getbyid(c.colu_tabl_id).tabl_intf_id).getid())
-            ,'basedatatype' : None if c.colu_daty_id is None else Datatype().getbyid(c.colu_daty_id).daty_name
+        ,'mandatory' : Boolean.str2bool(c.colu_mandatory)
+        ,'basedatatype' : None if c.colu_daty_id is None else Datatype().getbyid(c.colu_daty_id).daty_name
         ,'datatype':c.colu_type_string
         ,'format':c.colu_format
         ,'domain':anker(Modelelemtype.DOMA,c.colu_doma_id)
@@ -537,7 +543,8 @@ def columns():
             , 'sourceref': {s: Externalref.getsrcid(psrcname=s, pmodeid=c.colu_id)
                         for s in Externalref.getsources()}
         , 'refindocuments': [anker(Modelelemtype.DOCU, d[0]) for d in Document.getrefdoculist(pid=c.colu_id)]
-            }
+            ,'refbyorgunits': [anker(Modelelemtype.ORGU, d[0]) for d in OragnisationalUnit.getreforgulist(pid=c.colu_id)]
+         }
             for c in Column.select()
             }
     return cols
@@ -618,14 +625,17 @@ def jsonfilename(pfilename):
 
 emptystruct = lambda x: x == EMPTYJSONFILE
 
+def printJSON(pmodel, pfilepath, pfilename):
+    jsonfile = open(pfilepath + jsonfilename(pfilename), 'w')
+    jsonfile.write(json.dumps(pmodel, indent=3, sort_keys=False))
+    jsonfile.close()
+
 def createJSON(pfilepath, pfilename):
     if pfilename is not None:
         dbConnect.openDB(parameters.dbFilePath(), fks='ON')
 
     model = sql2json(pwithdata=not emptystruct(EMPTYJSONFILE))
-    jsonfile = open(pfilepath + jsonfilename(pfilename), 'w')
-    jsonfile.write(json.dumps(model, indent=3, sort_keys=False))
-    jsonfile.close()
+    printJSON(pmodel=model, pfilename=pfilename, pfilepath=pfilepath)
     if (not emptystruct(EMPTYJSONFILE)):
         dbConnect.myDbConn.close()
 

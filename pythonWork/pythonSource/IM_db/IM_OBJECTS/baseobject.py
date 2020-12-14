@@ -1,6 +1,6 @@
 import sqlite3
 
-from IM_DB import dbDML, dbDDL
+from IM_DB import dbDML, dbDDL,logmessages
 
 
 class XXWebanker:
@@ -43,12 +43,12 @@ class Boolean:
 # Boolean
 
 class Baseobject:
-    def __init__(self, tablename, prefix, columnlist, idcolname=None
+
+    def __init__(self, tablename, prefix, idcolname=None
                  , psrcname=None, pscrid=None, pmodelemtype=None):
         self._tablename: str = tablename
         self._prefix: str = prefix
         self._idcolname: str = prefix + '_id' if idcolname is None else idcolname
-        self._columnlist = columnlist
         self.__srcname = psrcname
         self.__srcid = pscrid
         self.__modelemtype = pmodelemtype
@@ -94,8 +94,8 @@ class Baseobject:
         except sqlite3.Error as e:
             if pdoerrhdlng:
                 try:
-                    writelog(str(e))
-                    writelog(self.tostring())
+                    logmessages.writelog(str(e))
+                    logmessages.writelog(self.tostring())
                 except:
                     print ("Loggin-Error in Baseobject.insert():")
                     print(str(e))
@@ -109,6 +109,15 @@ class Baseobject:
                 pdoerrhdlng=pdoerrhdlng)
         return self.getid()
 
+    def gettablecolumns(ptablename):
+        sql = "PRAGMA table_info({})".format(ptablename)
+        try:
+            cols = dbDML.select(sql)
+            retval = [c[1].lower() for c in cols]
+        except:
+            retval = []
+        return retval
+
     def tostring(self):
         lretval = "Table: {}\n".format(self._tablename)
         lretval += "\n".join("{} = '{}'".format(col, self.__dict__[col]) for col in self._columnlist)
@@ -118,10 +127,10 @@ class Baseobject:
         if pid is None: return None
         data = self.select(pwhere="{}={}".format(self._idcolname, pid))
         if (len(data) > 1):
-            writelog("{}: nonunique ID={}'".format(self._tablename, pid))
+            logmessages.writelog("{}: nonunique ID={}'".format(self._tablename, pid))
             raise Exception('{}: nonunique ID={}'.format(self._tablename, pid))
         elif (len(data) == 0):
-            writelog("{}: nonexistent ID={} '".format(self._tablename, pid))
+            logmessages.writelog("{}: nonexistent ID={} '".format(self._tablename, pid))
             raise Exception('{}: nonexistent ID={}'.format(self._tablename, pid))
         else:
             self = data[0]
@@ -150,7 +159,6 @@ class Baseobject:
     def createtable(ptablename, psql):
         dbDDL.dropTable(ptablename);
         dbDDL.createTable(psql)
-
     # createtable
 
     def getbyextref(self, psrcid, psrcname):
@@ -174,6 +182,7 @@ class Baseobject:
 
     @staticmethod
     def select(pclass, pwhere=None, porderby=None):
+        if (len(pclass._columnlist) == 0): pclass._columnlist = Baseobject.gettablecolumns(pclass._tablename)
         lsql = """select {} from {} as {} {} {} """ \
             .format(Baseobject.columnsliststring(pclass._columnlist)
                     , pclass._tablename
@@ -212,9 +221,9 @@ class Baseobject:
 # Baseobject
 
 class MultilangBaseobject(Baseobject):
-    def __init__(self, tablename, prefix, columnlist, multilangcols
+    def __init__(self, tablename, prefix, multilangcols
                  , idcolname=None, psrcname=None, pscrid=None, pmodelemtype=None):
-        super().__init__(tablename=tablename, prefix=prefix, columnlist=columnlist
+        super().__init__(tablename=tablename, prefix=prefix
                          , idcolname=idcolname
                          , pmodelemtype=pmodelemtype, psrcname=psrcname, pscrid=pscrid
                          )
@@ -244,7 +253,6 @@ class MultilangBaseobject(Baseobject):
         # try
         return retval
     #_getsprachval
-from logmessages import writelog
 from .languagetext import Languagetext
 from .modelelement import Modelelement
 from .externalref import Externalref

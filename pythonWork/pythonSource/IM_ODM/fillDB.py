@@ -5,15 +5,17 @@ from IM_DB import dbConnect, parameters, logmessages
 
 # Main Programm
 
-def filldbmain():
-    dbConnect.openDB(parameters.dbFilePath(), fks='OFF')
-    transferModel.loeschmodell()
-    dbConnect.myDbConn.close()
-    #print("filldbmain Constraints sollten auf ON stehen")
-    dbConnect.openDB(parameters.dbFilePath(), fks='ON')
+def filldbmain(pinmemory=False):
+    if not pinmemory:
+        dbConnect.openDB(parameters.dbFilePath(), fks='OFF')
+        transferModel.loeschmodell()
+        dbConnect.myDbConn.close()
+        #print("filldbmain Constraints sollten auf ON stehen")
+        dbConnect.openDB(parameters.dbFilePath(), fks='ON')
+    #fi
     transferModel.insertBaseData()
     transferModel.transferODMModel();
-    dbConnect.myDbConn.close()
+    if not pinmemory: dbConnect.myDbConn.close()
 # filldbmain
 
 def main(p_param1):

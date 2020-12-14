@@ -11,17 +11,11 @@ from .userdefprop import Userdefpropvalue,Userdefprop
 class Entity(MultilangBaseobject):
     _tablename:str = 'entities'
     _prefix:str = 'enti'
-    _columnlist:list = ['enti_id'
-		,'enti_name'		,'enti_descr'
-		,'enti_tooltip'	,'enti_short_name'	,'enti_prefix'
-		,'enti_exp_tuplecnt'
-        ,'enti_uc'
-		,'enti_dc','enti_um','enti_dm'
-        ]
+    _columnlist:list = []
 
     def __init__(self, psrcname=None, psrcid=None):
+        if (len(Entity._columnlist) == 0): Entity._columnlist = Baseobject.gettablecolumns(Entity._tablename)
         super().__init__(tablename=Entity._tablename, prefix=Entity._prefix
-                         , columnlist = Entity._columnlist
                          , multilangcols = {'enti_name':Languagetext.ENTI_NAME
                                           ,'enti_descr':Languagetext.ENTI_COMMENT
                                           ,'enti_tooltip': Languagetext.ENTI_TOOLTIP}
@@ -223,12 +217,12 @@ CREATE TABLE ENTITIES
 class Synonym(MultilangBaseobject):
     _tablename: str = 'synonyms'
     _prefix: str = 'syno'
-    _columnlist: list = ['syno_id','syno_name','syno_enti_id','syno_uc','syno_dc','syno_um','syno_dm']
+    _columnlist: list = []
 ##    _multilangcols: list = {'syno_name': 'SYNO_NAME'}
 
     def __init__(self,pname=None,pentiid=None):
+        if (len(Synonym._columnlist) == 0): Synonym._columnlist = Baseobject.gettablecolumns(Synonym._tablename)
         super().__init__(tablename=Synonym._tablename, prefix=Synonym._prefix
-                         , columnlist=Synonym._columnlist
                          ,multilangcols = {'syno_name': Languagetext.SYNO_NAME}
                          ,pmodelemtype=Modelelemtype.SYNO)
         self.syno_name = pname

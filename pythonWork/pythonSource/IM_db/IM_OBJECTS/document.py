@@ -8,12 +8,11 @@ from .physicals import Storageformat
 class Document(Baseobject):
     _tablename:str = 'documents'
     _prefix:str = 'docu'
-    _columnlist:list = [ 'docu_id' ,'docu_name', 'docu_stfo_id'
-                        , 'docu_reference','docu_content', 'docu_docu_id']
+    _columnlist:list = []
 
     def __init__(self,psrcname=None,psrcid=None):
+        if (len(Document._columnlist) == 0): Document._columnlist = Baseobject.gettablecolumns(Document._tablename)
         super().__init__(tablename=self._tablename, prefix=self._prefix
-                        ,columnlist = self._columnlist
                          ,pmodelemtype=Modelelemtype.DOCU
                          ,pscrid=psrcid
                          ,psrcname=psrcname
@@ -145,11 +144,11 @@ where  (   mode_rela_id = {}
 class ModelelemDocu(Baseobject):
     _tablename:str = 'mode_docu'
     _prefix:str = 'modo'
-    _columnlist:list = [ 'modo_id' ,'modo_docu_id', 'modo_mode_id']
+    _columnlist:list = []
 
     def __init__(self):
-        super().__init__(tablename=self._tablename, prefix=self._prefix
-                        ,columnlist = self._columnlist)
+        if (len(ModelelemDocu._columnlist) == 0): ModelelemDocu._columnlist = Baseobject.gettablecolumns(ModelelemDocu._tablename)
+        super().__init__(tablename=self._tablename, prefix=self._prefix)
 
     @staticmethod
     def createtable():

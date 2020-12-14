@@ -4,13 +4,11 @@ from .modelelement import Modelelemtype
 class Key(Baseobject):
     _tablename: str = 'keys'
     _prefix: str = 'keys'
-    _columnlist: list = ['keys_id', 'keys_name'
-        , 'keys_uc', 'keys_dc', 'keys_um', 'keys_dm'
-        , 'keys_enti_id']
+    _columnlist: list = []
 
     def __init__(self, psrcname=None, psrcid=None):
+        if (len(Key._columnlist) == 0): Key._columnlist = Baseobject.gettablecolumns(Key._tablename)
         super().__init__(tablename=Key._tablename, prefix=Key._prefix
-                         , columnlist=Key._columnlist
                          , pmodelemtype=Modelelemtype.KEYS
                          , psrcname=psrcname
                          , pscrid=psrcid)
@@ -56,12 +54,11 @@ CREATE TABLE KEYS
 class Keyelement(Baseobject):
     _tablename: str = 'key_elements'
     _prefix: str = 'kele'
-    _columnlist: list = ['kele_id', 'kele_keys_id', 'kele_attr_id', 'kele_rela_id'
-        , 'kele_uc', 'kele_dc', 'kele_um', 'kele_dm']
+    _columnlist: list = []
 
     def __init__(self):
-        super().__init__(tablename=Keyelement._tablename, prefix=Keyelement._prefix
-                         , columnlist=Keyelement._columnlist)
+        if (len(Keyelement._columnlist) == 0): Keyelement._columnlist = Baseobject.gettablecolumns(Keyelement._tablename)
+        super().__init__(tablename=Keyelement._tablename, prefix=Keyelement._prefix)
 
     @staticmethod
     def createtable():

@@ -21,13 +21,11 @@ class Modelelemtype(Baseobject):
 
     _tablename: str = 'modelelem_type'
     _prefix: str = 'melt'
-    _columnlist: list = ['melt_id', 'melt_shortname', 'melt_name',
-                         'melt_uc', 'melt_dc', 'melt_um',
-                         'melt_dm']
+    _columnlist = []
 
     def __init__(self, pshortname=None, pname=None):
-        super().__init__(tablename=Modelelemtype._tablename, prefix=Modelelemtype._prefix
-                         , columnlist=Modelelemtype._columnlist)
+        if (len(Modelelemtype._columnlist) == 0): Modelelemtype._columnlist = Baseobject.gettablecolumns(Modelelemtype._tablename)
+        super().__init__(tablename=Modelelemtype._tablename, prefix=Modelelemtype._prefix)
         self.melt_shortname = pshortname
         self.melt_name = pname
         self.melt_uc = 'SYS'
@@ -122,11 +120,11 @@ class Modelelement(Baseobject):
     """
     _tablename: str = 'modelelement'
     _prefix: str = 'mode'
-    _columnlist: list = ['mode_id', 'mode_type', 'mode_melt_id']
+    _columnlist: list = []
 
     def __init__(self, pmeltshortname=None):
-        super().__init__(tablename=Modelelement._tablename, prefix=Modelelement._prefix
-                         , columnlist=Modelelement._columnlist)
+        if (len(Modelelement._columnlist) == 0): Modelelement._columnlist = Baseobject.gettablecolumns(Modelelement._tablename)
+        super().__init__(tablename=Modelelement._tablename, prefix=Modelelement._prefix)
         self.mode_type = pmeltshortname
         if pmeltshortname is not None: self.mode_melt_id = Modelelemtype.getidbyshortname(pshortname=pmeltshortname)
     # __init__
@@ -219,11 +217,11 @@ CREATE TABLE MODELELEMENT
 class ModelelementProperty(Baseobject):
     _tablename: str = 'modelemtype_properties'
     _prefix: str = 'metp'
-    _columnlist: list = ['metp_id','metp_melt_id','metp_udpr_id','metp_optional']
+    _columnlist: list = []
 
     def __init__(self, pmeltid,pudprid):
-        super().__init__(tablename=ModelelementProperty._tablename, prefix=ModelelementProperty._prefix
-                         , columnlist=ModelelementProperty._columnlist)
+        if (len(ModelelementProperty._columnlist) == 0): ModelelementProperty._columnlist = Baseobject.gettablecolumns(ModelelementProperty._tablename)
+        super().__init__(tablename=ModelelementProperty._tablename, prefix=ModelelementProperty._prefix)
         self.metp_melt_id = pmeltid
         self.metp_udpr_id = pudprid
         self.metp_optional = Boolean.FALSE

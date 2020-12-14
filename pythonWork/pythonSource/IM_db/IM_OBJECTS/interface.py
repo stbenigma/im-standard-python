@@ -4,12 +4,11 @@ from .modelelement import Modelelemtype
 class Interface(Baseobject):
     _tablename:str = 'interfaces'
     _prefix:str = 'intf'
-    _columnlist:list = ['intf_id',  'intf_name',    'intf_descr'
-                ,   'intf_uc',  'intf_dc' ,'intf_um', 'intf_dm']
+    _columnlist =  []
 
     def __init__(self, psrcname=None, psrcid=None):
+        if (len(Interface._columnlist) == 0): Interface._columnlist = Baseobject.gettablecolumns(Interface._tablename)
         super().__init__(tablename=Interface._tablename, prefix=Interface._prefix
-                         , columnlist= Interface._columnlist
                          , pmodelemtype=Modelelemtype.INTF
                          , pscrid=psrcid
                          , psrcname=psrcname)
@@ -35,6 +34,7 @@ class Interface(Baseobject):
 
     def getname(self,plang=None):
         return self.intf_name
+
     def getqualifiedname(self,plang=None):
         return self.intf_name
 

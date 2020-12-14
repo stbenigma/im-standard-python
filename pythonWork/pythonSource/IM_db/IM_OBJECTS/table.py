@@ -5,13 +5,11 @@ from IM_DB import dbDML
 class Table(Baseobject):
     _tablename:str = 'tables'
     _prefix:str = 'tabl'
-    _columnlist:list = ['tabl_id', 	'tabl_name', 	'tabl_intf_id'
-                ,  'tabl_prefix', 	'tabl_descr'
-                ,'tabl_uc', 	'tabl_dc', 	'tabl_um', 	'tabl_dm']
+    _columnlist =  []
 
     def __init__(self,psrcname=None, psrcid=None):
+        if (len(Table._columnlist) == 0): Table._columnlist = Baseobject.gettablecolumns(Table._tablename)
         super().__init__(tablename=Table._tablename, prefix=Table._prefix
-                         , columnlist = Table._columnlist
                          , pmodelemtype=Modelelemtype.TABL
                          , pscrid=psrcid
                          , psrcname=psrcname)

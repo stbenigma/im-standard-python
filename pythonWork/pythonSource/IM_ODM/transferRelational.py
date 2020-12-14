@@ -30,6 +30,7 @@ def do1column(plfnr, pcolxml, ptablid):
     colu = Column(psrcname=Externalref.SOURCE_ODM, psrcid=transferModel.findField(pcolxml, 'id'))
     colu.colu_column_name = transferModel.findField(pcolxml, 'name')
     colu.colu_format = None
+    colu.colu_mandatory = Boolean.bool2str(not Boolean.str2bool(parameters.nvl(transferModel.findText(pcolxml,'nullsAllowed'),'true')))
     colu.colu_descr = transferModel.findText(pcolxml, 'comment')
     colu.colu_tabl_id = ptablid
     colu.colu_uc = transferModel.findText(pcolxml, 'createdBy')
@@ -52,14 +53,16 @@ def do1column(plfnr, pcolxml, ptablid):
                                          , pattrxml=pcolxml)
     if colu.colu_daty_id is None:
         colu.colu_daty_id = Datatype.getunknown().daty_id
+    if colu.colu_doma_id is not None:
+        colu.colu_type_string = Domain().getbyid(colu.colu_doma_id).typestring()
     colu.insert()
-
 
     dbInserts.insertUdpColumn(pcoluId=colu.colu_id)
     transferModel.updateUDP(pmodeid=colu.colu_id, pobj=pcolxml)
+    colu.fillextid()
     documents = transferModel.getdokuref(pelem= pcolxml)
     ModelelemDocu.insertdocuref(pdocguidlist=documents, pmodeid=colu.colu_id)
-
+    ModelelemOrgu.insertorguref(porguidlist=transferModel.getpartyref(pelem=pcolxml), pmodeid=colu.colu_id)
 #do1column
 
 def do1table(pfilename):
@@ -78,6 +81,7 @@ def do1table(pfilename):
 
     documents = transferModel.getdokuref(tablexml)
     ModelelemDocu.insertdocuref(pdocguidlist=documents, pmodeid=tabl.tabl_id)
+    ModelelemOrgu.insertorguref(porguidlist=transferModel.getpartyref(pelem=tablexml), pmodeid=tabl.tabl_id)
 
     """<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">"""
     cols= tablexml.find('columns')
@@ -109,6 +113,7 @@ def do1schnittstelle(pfilename):
     #Dokumente an dieser Interface
     documents = transferModel.getdokuref(pelem=intfxml, pstruct=True)
     ModelelemDocu.insertdocuref(pdocguidlist= documents, pmodeid    = intf.intf_id)
+    ModelelemOrgu.insertorguref(porguidlist=transferModel.getpartyref(pelem=intfxml), pmodeid=intf.intf_id)
     #Tabellen
     filename, file_extension = os.path.splitext(pfilename)
     globalschnid = intf.intf_id #hässlich aber geht schlecht über generische Funktionen
@@ -188,8 +193,8 @@ def doattrmapping(pcolmappings):
         attrid = Externalref.getODMmodeid (psrcid=transferModel.findField(colmap, 'lID'))
         colu = Column().getbyODMref(psrcid=transferModel.findField(colmap, 'rID'))
         if ((colu is None) or (attrid is None)):
-            logmessages.writelog("Column-Reference ({}) or Attribute Refernce ({}) not found".format(transferModel.findField(colmap, 'rID'),transferModel.findField(colmap, 'lID')))
-
+            logmessages.writelog("Column-Reference ({}) or Attribute Refernce ({}) not found".format(transferModel.findField(colmap, 'rID')
+                                                                                                     ,transferModel.findField(colmap, 'lID')))
             continue
         #fi
 
@@ -247,7 +252,6 @@ def do1mapping(pfilename):
         #try
         doattrmapping(pcolmappings=odmmap.cntmappings)
     #for
-
 #do1mapping
 
 def transfermappings():

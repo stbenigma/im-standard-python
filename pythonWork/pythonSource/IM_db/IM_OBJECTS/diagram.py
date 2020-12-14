@@ -6,14 +6,11 @@ from IM_DB import dbDML
 class Diagram(Baseobject):
     _tablename:str = 'diagrams'
     _prefix:str = 'diag'
-    _columnlist:list = ['diag_id', 'diag_name', 'diag_diat_id'
-                    , 'diag_legendx', 'diag_legendy'
-                    ,'diag_uc', 'diag_dc', 'diag_um'
-                    ,'diag_dm']
+    _columnlist:list = []
 
     def __init__(self, psrcname=None, psrcid=None):
+        if (len(Diagram._columnlist) == 0): Diagram._columnlist = Baseobject.gettablecolumns(Diagram._tablename)
         super().__init__(tablename= Diagram._tablename, prefix= Diagram._prefix
-                         , columnlist = Diagram._columnlist
                          , pmodelemtype=Modelelemtype.DIAG
                          , pscrid=psrcid
                          , psrcname=psrcname
@@ -106,15 +103,12 @@ class Diagramtype(Baseobject):
 
     _tablename:str = 'diagramtypes'
     _prefix:str = 'diat'
-    _columnlist:list = ['diat_id', 'diat_name'
-                    ,'diat_uc', 'diat_dc', 'diat_um'
-                    ,'diat_dm']
+    _columnlist:list = []
 
 
     def __init__(self,pname=None):
-        super().__init__(tablename= Diagramtype._tablename, prefix= Diagramtype._prefix
-                         , columnlist = Diagramtype._columnlist
-                         )
+        if (len(Diagramtype._columnlist) == 0): Diagramtype._columnlist = Baseobject.gettablecolumns(Diagramtype._tablename)
+        super().__init__(tablename= Diagramtype._tablename, prefix= Diagramtype._prefix)
         self.diat_name = pname
         self.diat_uc = 'system'
         self.diat_dc = date.today()
@@ -154,14 +148,12 @@ CREATE TABLE diagramtypes(
 class MeltDiat(Baseobject):
     _tablename:str = 'melt_diats'
     _prefix:str = 'medi'
-    _columnlist:list = ['medi_id', 'medi_diat_id','medi_melt_id'
-                    ,'medi_uc', 'medi_dc', 'medi_um'
-                    ,'medi_dm']
+    _columnlist:list = []
 
     def __init__(self,pmeltid=None,pdiatid=None):
-        super().__init__(tablename= MeltDiat._tablename, prefix= MeltDiat._prefix
-                         , columnlist = MeltDiat._columnlist
-                         )
+        _columnlist = []
+        if (len(MeltDiat._columnlist) == 0): MeltDiat._columnlist = Baseobject.gettablecolumns(MeltDiat._tablename)
+        super().__init__(tablename= MeltDiat._tablename, prefix= MeltDiat._prefix)
         self.medi_melt_id = pmeltid
         self.medi_diat_id = pdiatid
         self.medi_uc = 'system'

@@ -1,16 +1,16 @@
 from .baseobject import Baseobject
-import  dbDML
+from IM_DB import  dbDML
 
 class Externalref(Baseobject):
     SOURCE_ODM:str='ODM'
     _tablename:str = 'external_refs'
     _prefix:str = 'extr'
-    _columnlist:list = ['extr_id','extr_source_name','extr_source_id','extr_mode_id']
+    _columnlist:list = []
 
 
     def __init__(self,psrcname=None,psrcid=None,pmodeid=None):
-        super().__init__(tablename= Externalref._tablename, prefix= Externalref._prefix
-                         , columnlist = Externalref._columnlist)
+        if (len(Externalref._columnlist) == 0): Externalref._columnlist = Baseobject.gettablecolumns(Externalref._tablename)
+        super().__init__(tablename= Externalref._tablename, prefix= Externalref._prefix)
         self.extr_source_name = psrcname
         self.extr_source_id = psrcid
         self.extr_mode_id = pmodeid

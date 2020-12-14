@@ -25,12 +25,6 @@
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
       <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/../../../modelexports/DB/fyayc_dev_mapping.db</jdbc-url>
     </data-source>
-    <data-source source="LOCAL" name="IM_GEBERIT.db" uuid="fe1a10c5-5e86-41a5-9787-33fa4dec004e">
-      <driver-ref>sqlite.xerial</driver-ref>
-      <synchronize>true</synchronize>
-      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/../../../../GEBININF/gitHub/DB/IM_GEBERIT.db</jdbc-url>
-    </data-source>
     <data-source source="LOCAL" name="belimo_crm.db" uuid="86baf126-31aa-4047-9c63-180ea2e952bd">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
@@ -60,6 +54,12 @@
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
       <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/../../../CRM/DB/IM_CRM_FYAYC.db</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="IM_GEBERIT.db" uuid="f96e5057-bf1c-4067-9760-0ec6e17a8714">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/../../../../GEBININF/gitHub/DB/IM_GEBERIT.db</jdbc-url>
     </data-source>
   </component>
 </project>

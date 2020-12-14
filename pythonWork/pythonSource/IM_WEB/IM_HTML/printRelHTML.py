@@ -8,7 +8,7 @@ from IM_OBJECTS import Domain,Languagetext,Modelelemtype
 
 
 def nvl(s, default=''):
-    return printHTML.nvl(s, default)
+    return parameters.nvl(s, default)
 
 
 def printmapping(pelem):
@@ -133,7 +133,7 @@ def printcontenttable(pintf):
         infovalues = ('', nvl(elem['um']) + ', ' + nvl(elem['dm']))
         printHTML.printcontentinfo(ptitle=Languagetext.transl('Informationen'), pheaders=infoheaders, pvalues=infovalues)
 
-        printHTML.printdocureflist(pelem=elem, pelemtype=Modelelemtype.TABL)
+        printHTML.printelemreflists(pelem=elem, pelemtype=Modelelemtype.TABL)
         printHTML.printUDP(pelem=elem)
         printcollist(pcollist=elem['columns'])
         printmapping(pelem=elem)
@@ -166,7 +166,7 @@ def printcontentcolumn(pintf):
                         ,nvl(colelem['um']) + ', ' + nvl(colelem['dm']))
         printHTML.printcontentinfo(ptitle=Languagetext.transl('Information'), pheaders=infoheaders, pvalues=infovalues)
 
-        printHTML.printdocureflist(pelem=colelem, pelemtype=Modelelemtype.COLU)
+        printHTML.printelemreflists(pelem=colelem, pelemtype=Modelelemtype.COLU)
         printHTML.printUDP(pelem=colelem)
         printcolmapping(pcol=colelem)
         printHTML.printcontentend(lbc)
@@ -220,7 +220,7 @@ def printcontenthead(pfirma, ptitel, pintf):
                  (Column reference): Indirect linking of a column via an attribute to a column  in another interface"""
     # fi
     printHTML.fhtml.write(contenthead.format(f, ref))
-    printHTML.printdocureflist(pelem=pintf, pelemtype=Modelelemtype.INTF)
+    printHTML.printelemreflists(pelem=pintf, pelemtype=Modelelemtype.INTF)
     printHTML.fhtml.write(contentheadend)
 # printcontenthead
 

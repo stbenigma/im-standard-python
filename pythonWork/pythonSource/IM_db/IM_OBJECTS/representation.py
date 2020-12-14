@@ -9,17 +9,11 @@ from .attribute import Attribute
 class Elementrep(Baseobject):
     _tablename: str = 'elementreps'
     _prefix: str = 'eler'
-    _columnlist: list = ['eler_id', 'eler_position_x', 'eler_position_y'
-        , 'eler_mode_id', 'eler_diag_id', 'eler_index'
-        , 'eler_width', 'eler_height', 'eler_opacity', 'eler_color'
-        , 'eler_marginwidth', 'eler_marginopacity', 'eler_margincolor'
-        , 'eler_fontsize', 'eler_fontcolor'
-        , 'eler_uc', 'eler_dc', 'eler_um', 'eler_dm'
-                         ]
+    _columnlist: list = []
 
     def __init__(self):
-        super().__init__(tablename=Elementrep._tablename, prefix=Elementrep._prefix
-                         , columnlist=Elementrep._columnlist)
+        if (len(Elementrep._columnlist) == 0): Elementrep._columnlist = Baseobject.gettablecolumns(Elementrep._tablename)
+        super().__init__(tablename=Elementrep._tablename, prefix=Elementrep._prefix)
         eler_index = 0
         eler_uc = 'system'
         eler_dc = date.today()
@@ -110,22 +104,11 @@ class Relationrep(Baseobject):
 
     _tablename: str = 'relationreps'
     _prefix: str = 'relr'
-    _columnlist: list = ['relr_id', 'relr_diag_id', 'relr_mode_id'
-        , 'relr_linewidth', 'relr_linecolor', 'relr_lineopacity'
-        , 'relr_startedge', 'relr_startposition', 'relr_start_connector'
-        , 'relr_starttext_angle', 'relr_starttext_distance', 'relr_starttext_x', 'relr_starttext_y'
-        , 'relr_starttext_width', 'relr_starttext_height'
-        , 'relr_endedge', 'relr_endposition', 'relr_end_connector'
-        , 'relr_endtext_angle'
-        , 'relr_endtext_distance', 'relr_endtext_x', 'relr_endtext_y'
-        , 'relr_endtext_width', 'relr_endtext_height'
-        , 'relr_fontcolor', 'relr_fontsize'
-        , 'relr_uc', 'relr_dc', 'relr_um', 'relr_dm'
-                         ]
+    _columnlist: list = []
 
     def __init__(self):
-        super().__init__(tablename=Relationrep._tablename, prefix=Relationrep._prefix
-                         , columnlist=Relationrep._columnlist)
+        if (len(Relationrep._columnlist) == 0): Relationrep._columnlist = Baseobject.gettablecolumns(Relationrep._tablename)
+        super().__init__(tablename=Relationrep._tablename, prefix=Relationrep._prefix)
         relr_uc = 'system'
         relr_dc = date.today()
 
@@ -218,14 +201,11 @@ class Linesegment(Baseobject):
 
     _tablename: str = 'linesegments'
     _prefix: str = 'lise'
-    _columnlist: list = ['lise_id', 'lise_seq', 'lise_relr_id'
-        , 'lise_x', 'lise_y', 'lise_linetype', 'lise_angle'
-        , 'lise_uc', 'lise_dc', 'lise_um', 'lise_dm']
+    _columnlist: list = []
 
     def __init__(self):
-        super().__init__(tablename=Linesegment._tablename, prefix=Linesegment._prefix
-                         , columnlist=Linesegment._columnlist
-                         )
+        if (len(Linesegment._columnlist) == 0): Linesegment._columnlist = Baseobject.gettablecolumns(Linesegment._tablename)
+        super().__init__(tablename=Linesegment._tablename, prefix=Linesegment._prefix)
         lise_uc = 'system'
         lise_dc = date.today()
 

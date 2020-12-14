@@ -7,12 +7,11 @@ from mystring import nvl
 class Userdefprop(Baseobject):
     _tablename: str = 'user_defined_properties'
     _prefix: str = 'udpr'
-    _columnlist: list = ['udpr_id','udpr_group','udpr_theme','udpr_name','udpr_descr'
-                ,'udpr_uc','udpr_dc','udpr_um','udpr_dm']
+    _columnlist: list = []
 
     def __init__(self,ptheme=None,pgroup=None,pname=None):
-        super().__init__(tablename=Userdefprop._tablename, prefix=Userdefprop._prefix
-                         , columnlist=Userdefprop._columnlist)
+        if (len(Userdefprop._columnlist) == 0): Userdefprop._columnlist = Baseobject.gettablecolumns(Userdefprop._tablename)
+        super().__init__(tablename=Userdefprop._tablename, prefix=Userdefprop._prefix)
         self.udpr_theme = ptheme
         self.udpr_group = pgroup
         self.udpr_name = pname
@@ -133,12 +132,11 @@ class Userdefprop(Baseobject):
 class Userdefpropvalue(Baseobject):
     _tablename: str = 'udp_values'
     _prefix: str = 'udpv'
-    _columnlist: list = ['udpv_id', 'udpv_value', 'udpv_mode_id', 'udpv_udpr_id',
-                        'udpv_uc', 'udpv_dc', 'udpv_um', 'udpv_dm']
+    _columnlist: list = []
 
     def __init__(self):
-        super().__init__(tablename=Userdefpropvalue._tablename, prefix=Userdefpropvalue._prefix
-                         , columnlist=Userdefpropvalue._columnlist)
+        if (len(Userdefpropvalue._columnlist) == 0): Userdefpropvalue._columnlist = Baseobject.gettablecolumns(Userdefpropvalue._tablename)
+        super().__init__(tablename=Userdefpropvalue._tablename, prefix=Userdefpropvalue._prefix)
         self.udpv_uc = 'SYS'
         self.udpv_dc = date.today()
 

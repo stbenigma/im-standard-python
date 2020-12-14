@@ -8,13 +8,11 @@ from .physicals import Storageformat
 class OragnisationalUnit(Baseobject):
     _tablename:str = 'organisationalunits'
     _prefix:str = 'orgu'
-    _columnlist:list = [ 'orgu_id' ,'orgu_name', 'orgu_descr', 'orgu_mail'
-                        , 'orgu_telefon','orgu_address', 'orgu_orgu_id'
-                         ,'orgu_uc','orgu_dc','orgu_um','orgu_dm']
+    _columnlist:list = []
 
     def __init__(self,psrcname=None,psrcid=None):
+        if (len(OragnisationalUnit._columnlist) == 0): OragnisationalUnit._columnlist = Baseobject.gettablecolumns(OragnisationalUnit._tablename)
         super().__init__(tablename=self._tablename, prefix=self._prefix
-                        ,columnlist = self._columnlist
                          ,pmodelemtype=Modelelemtype.ORGU
                          ,pscrid=psrcid
                          ,psrcname=psrcname
@@ -80,8 +78,6 @@ CREATE TABLE organisationalunits(
                     """.format(parentid,childid))
     #updparents
 
-
-
     def getrefmodes(self,pmelttype=None):
         return  Modelelement.select(
                 pwhere="""mode_id in 
@@ -93,7 +89,26 @@ CREATE TABLE organisationalunits(
                     .format(self.orgu_id,pmelttype if pmelttype is not None else '%'))
 
     @staticmethod
+    def getreforgulist(pid):
+        """returns list of orgu_ids references by an the element pid. """
+        orgus = dbDML.select("""
+         select orgu_id
+         from (select orgu_id,orgu_name  
+            from(
+             select orgu_id,orgu_name 
+                 , MOOU_MODE_ID as ref_id 
+             from organisationalunits
+             join mode_orgu on MOOU_orgu_ID = orgu_ID
+             join modelelement on mode_id = MOou_MODE_ID
+             join modelelem_type on melt_id = mode_melt_id
+             ) 
+         where ref_id = {}  
+         order by upper(orgu_name)
+         )
+         """.format(pid))
+        return orgus
 
+    @staticmethod
     def orgulist():
         return OrganisationalUnit.select(porderby='orgu_name')
     #orgulist
@@ -102,11 +117,11 @@ CREATE TABLE organisationalunits(
 class ModelelemOrgu(Baseobject):
     _tablename:str = 'mode_orgu'
     _prefix:str = 'moou'
-    _columnlist:list = [ 'moou_id' ,'moou_orgu_id', 'moou_mode_id']
+    _columnlist:list = []
 
     def __init__(self):
-        super().__init__(tablename=self._tablename, prefix=self._prefix
-                        ,columnlist = self._columnlist)
+        if (len(ModelelemOrgu._columnlist) == 0): ModelelemOrgu._columnlist = Baseobject.gettablecolumns(ModelelemOrgu._tablename)
+        super().__init__(tablename=self._tablename, prefix=self._prefix)
 
     @staticmethod
     def createtable():
@@ -135,9 +150,9 @@ CREATE TABLE mode_orgu(
         return Baseobject.select(pclass=ModelelemOrgu
                                  , pwhere=pwhere, porderby=porderby)
     @staticmethod
-    def insertorguref(porguguidlist,pmodeid):
-        if porguguidlist is None: return
-        for orguguid in porguguidlist:
+    def insertorguref(porguidlist, pmodeid):
+        if porguidlist is None: return
+        for orguguid in porguidlist:
             moou = ModelelemOrgu()
             moou.moou_orgu_id = Externalref.getODMmodeid(psrcid=orguguid)
             moou.moou_mode_id = pmodeid

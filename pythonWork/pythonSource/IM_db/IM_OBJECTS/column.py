@@ -13,14 +13,11 @@ class Column(Baseobject):
     EXTIDUDP: str = 'EXT_ATTR_ID'
     _tablename: str = 'columns'
     _prefix: str = 'colu'
-    _columnlist: list = ['colu_id', 'colu_column_name', 'colu_format', 'colu_ext_system_id'
-        , 'colu_descr', 'colu_type_string', 'colu_tabl_id', 'colu_daty_id'
-        , 'colu_doma_id'
-        , 'colu_uc', 'colu_dc', 'colu_um', 'colu_dm']
+    _columnlist = []
 
     def __init__(self, psrcname=None, psrcid=None):
+        if (len(Column._columnlist) == 0): Column._columnlist = Baseobject.gettablecolumns(Column._tablename)
         super().__init__(tablename=Column._tablename, prefix=Column._prefix
-                         , columnlist=Column._columnlist
                          , pmodelemtype=Modelelemtype.COLU
                          , pscrid=psrcid
                          , psrcname=psrcname)
@@ -33,6 +30,7 @@ class Column(Baseobject):
     (
         colu_id             integer primary key ,
         colu_column_name    varchar(60) not null,
+        colu_mandatory         varchar(5) not null CHECK (colu_mandatory in ('TRUE', 'FALSE') ),
         colu_format         varchar(200),
         colu_ext_system_id varchar(100),
         colu_descr         varchar(4000),
@@ -179,13 +177,11 @@ class AttrTransf(Baseobject):
 
     _tablename: str = 'colu_attr_map'
     _prefix: str = 'coam'
-    _columnlist: list = ['coam_id', 'coam_seq', 'coam_direction'
-        , 'coam_transf_rule', 'coam_triggertype', 'coam_triggerperiod'
-        , 'coam_colu_id', 'coam_attr_id']
+    _columnlist: list = []
 
     def __init__(self):
-        super().__init__(tablename=AttrTransf._tablename, prefix=AttrTransf._prefix
-                         , columnlist=AttrTransf._columnlist)
+        if (len(AttrTransf._columnlist) == 0): AttrTransf._columnlist = Baseobject.gettablecolumns(AttrTransf._tablename)
+        super().__init__(tablename=AttrTransf._tablename, prefix=AttrTransf._prefix)
 
     @staticmethod
     def createtable():

@@ -11,11 +11,11 @@ import IM_OBJECTS
 class Arc(Baseobject):
     _tablename: str = 'arcs'
     _prefix: str = 'arcs'
-    _columnlist: list = ['arcs_id', 'arcs_name', 'arcs_enti_id', 'arcs_uc', 'arcs_dc', 'arcs_um', 'arcs_dm']
+    _columnlist: list = []
 
     def __init__(self, pname=None, pentiid=None, puc=None, pdc=None, psrcname=None, psrcid=None):
+        if (len(Arc._columnlist) == 0): Arc._columnlist = Baseobject.gettablecolumns(Arc._tablename)
         super().__init__(tablename=Arc._tablename, prefix=Arc._prefix
-                         , columnlist=Arc._columnlist
                          , pmodelemtype=Modelelemtype.ARCS
                          , psrcname=psrcname
                          , pscrid=psrcid)
@@ -123,16 +123,11 @@ class Relation(MultilangBaseobject):
 
     _tablename: str = 'relations'
     _prefix: str = 'rela'
-    _columnlist: list = ['rela_id', 'rela_name', 'rela_type', 'rela_enti_id_from',
-                         'rela_arcs_id_from', 'rela_assoc_from_to', 'rela_maptype_from_to',
-                         'rela_mandatory_from_to',
-                         'rela_hist_from_to', 'rela_enti_id_to', 'rela_arcs_id_to', 'rela_assoc_to_from',
-                         'rela_maptype_to_from', 'rela_mandatory_to_from', 'rela_hist_to_from',
-                         'rela_uc', 'rela_dc', 'rela_um', 'rela_dm', ]
+    _columnlist: list = []
 
     def __init__(self, psrcname=None, psrcid=None):
+        if (len(Relation._columnlist) == 0): Relation._columnlist = Baseobject.gettablecolumns(Relation._tablename)
         super().__init__(tablename=Relation._tablename, prefix=Relation._prefix
-                         , columnlist=Relation._columnlist
                          , multilangcols={'rela_assoc_from_to': Languagetext.RELA_TEXT_FROM
                                         , 'rela_assoc_to_from': Languagetext.RELA_TEXT_TO}
                          , pmodelemtype=Modelelemtype.RELA

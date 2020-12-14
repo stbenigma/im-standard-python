@@ -4,12 +4,11 @@ class Project(Baseobject):
     LOGICALTYPE = "logical"
     _tablename:str ='projects'
     _prefix:str ='proj'
-    _columnlist:list = ['proj_id', 'proj_name', 'proj_languages', 'proj_curr_lang'
-                        , 'proj_uc', 'proj_dc', 'proj_um', 'proj_dm']
+    _columnlist:list = []
 
     def __init__(self):
-        super().__init__(tablename=Project._tablename, prefix=Project._prefix
-                         , columnlist = Project._columnlist)
+        if (len(Project._columnlist) == 0): Project._columnlist = Baseobject.gettablecolumns(Project._tablename)
+        super().__init__(tablename=Project._tablename, prefix=Project._prefix)
 
     @staticmethod
     def createtable():

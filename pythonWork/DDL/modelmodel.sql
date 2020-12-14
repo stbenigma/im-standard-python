@@ -685,6 +685,7 @@ create table columns
 (
     colu_id             integer primary key ,
     colu_column_name    varchar(60) not null,
+    colu_mandatory         varchar(5) not null CHECK (colu_mandatory in ('TRUE', 'FALSE') ),
     colu_format         varchar(200),
     colu_ext_system_id varchar(100),
     colu_descr         varchar(4000),
@@ -740,6 +741,7 @@ coam_attr_id integer null
 CREATE TABLE organisationalunits(
    orgu_id       integer primary key,
    orgu_name     VARCHAR(60)NOT NULL,
+   orgu_descr     VARCHAR(4000),
    orgu_mail     VARCHAR(200)NULL,
    orgu_telefon  VARCHAR(30)NULL,
    orgu_address  VARCHAR(4000)NULL,
