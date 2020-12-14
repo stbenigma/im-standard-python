@@ -705,7 +705,7 @@ def do1Arc(fileName):
     # DEBUG Arc 2x auf Beziehung
     #    if findField(arcXML, "name") in ('xxArc_9', 'xxArc_11'):
     #        print(findField(arcXML, "id"), findField(arcXML, "name"), findText(arcXML, 'entity'))
-    Relation.setarcinrela(prelids=relids)
+    Relation.setarcinrela(prelids=relids,parcid=arcid)
 # do1Arc
 
 def transferArcs():
@@ -1059,7 +1059,6 @@ def do1Relation(fileName):
             do1Attribute(plfnr=idx, pattrxml=attr, prelaId=rela.rela_id)
         # endfor
     # fi
-
 # do1Relation
 
 def transferRelations():

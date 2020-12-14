@@ -1,7 +1,6 @@
 from IM_HTML import printHTML
 import math
 from IM_DB import parameters 
-from WEB_OBJECTS import WebDiagram
 from IM_OBJECTS import Language
 
 LEGENDWIDTH: int = 363
@@ -338,7 +337,8 @@ def printelements(pdiag, pdiaganker,plang):
 {} </text></a>
 """
     entiende="""</g>"""
-    imagehtml=""""<image href = "image/{}.png" width = "{}px" height = "{}px" class ="entity-image" x="{}px" y="{}px"></image>""".format('{}',WebDiagram.ICONSIZE,WebDiagram.ICONSIZE,'{}','{}')
+    imagehtml=""""<image href = "image/{}.png" width = "{}px" height = "{}px" class ="entity-image" x="{}px" y="{}px"></image>"""\
+        .format('{}',ICONSIZE,ICONSIZE,'{}','{}')
 
     for eler in pdiag['elements']['entity']:
         printHTML.fhtml.write(entistart.format(hex2rbg(eler['color']), hex2rbg(eler['margincolor'])

@@ -35,10 +35,17 @@ def printmapping(pelem):
 def printcolmapping(pcol):
     lang=parameters.dbDefaultLang()
     attrs = {a:printHTML.model['attributes'][a] for a in pcol['attributes-mapped']}
-    werte = {0: [[anker, "{}.{}".format(printHTML.model['entities'][attr['entity']]['name'][lang]
-                                        ,attr['name'][lang])] for anker,attr in attrs.items()]
-            }
-
+    attrlist = []
+    for anker,attr in attrs.items():
+        if attr['entity'] is None:
+            attrlist.append([anker, "{}.{}".format(printHTML.model['relations'][attr['relation']]['name']
+                                        ,attr['name'][lang])])
+        else :
+            attrlist.append([anker, "{}.{}".format(printHTML.model['entities'][attr['entity']]['name'][lang]
+                                               , attr['name'][lang])])
+        #fi
+    #for
+    werte = {0 : attrlist}
     for intfanker,intfelem in printHTML.model['systems'].items():
         if intfanker == pcol['interface-id']: continue
         collist=[]

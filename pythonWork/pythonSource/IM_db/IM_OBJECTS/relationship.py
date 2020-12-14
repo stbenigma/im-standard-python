@@ -280,21 +280,23 @@ CREATE TABLE RELATIONS
     # minmaxcartinality
 
     @staticmethod
-    def setarcinrela(prelids):
+    def setarcinrela(prelids,parcid):
         """set arc-id for all relations in prelids"""
         dbDML.exec("""update RELATIONS
                       set RELA_ARCS_ID_FROM = 
                             (select arcs_id 
                                 from arcs
-                                where ARCS_ENTI_ID = RELA_ENTI_ID_FROM) 
+                                where arcs_id = {} 
+                                and ARCS_ENTI_ID = RELA_ENTI_ID_FROM) 
                         ,rela_arcs_id_to = 
                             (select arcs_id 
                             from arcs
-                            where ARCS_ENTI_ID = RELA_ENTI_ID_TO)
+                            where arcs_id = {} 
+                                and ARCS_ENTI_ID = RELA_ENTI_ID_TO)
                         where rela_id in (select EXTR_MODE_ID from  external_refs
                                           where extr_source_id in ({})
                                         )
-                    """.format(prelids))
+                    """.format(parcid,parcid,prelids))
 
     @staticmethod
     def setrelatypes():

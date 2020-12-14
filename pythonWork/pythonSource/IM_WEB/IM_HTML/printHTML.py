@@ -5,7 +5,6 @@ from distutils.dir_util import copy_tree
 
 from IM_DB import parameters
 from IM_OBJECTS import *
-from WEB_OBJECTS import *
 import html
 
 outputDirectory: str = None
@@ -853,7 +852,7 @@ def printentirela(penti,plang):
 # printentirela
 
 def printcontentmapping(ptheme=None):
-    grouplist= WebUdp.indexlist(ptheme=ptheme)
+    grouplist=   WebUdp.indexlist(ptheme=ptheme)
     if (grouplist is None or len(grouplist) == 0): return
     contenthead = """        <!--mapping-->"""
 
@@ -1371,7 +1370,7 @@ def setWebDirec(p_webdirec):
 
 
 def createlib():
-    global cssdirec,icondirec,imagedirec,jsdirec
+    global cssdirec,icondirec,imagedirec,jsdirec,libSourceDirec
     if not os.path.exists(cssdirec):
         shutil.copytree(libSourceDirec + 'css', cssdirec)
     if not os.path.exists(jsdirec):
@@ -1385,7 +1384,8 @@ def createlib():
 def copyimages():
     global imagedirec
     """copy all file from the modeler-image directory into the web-image directory"""
-    copy_tree(parameters.odmFilesDirec()+'images', imagedirec)
+    if os.path.exists(parameters.odmFilesDirec()+'images'):
+        copy_tree(parameters.odmFilesDirec()+'images', imagedirec)
 # copyimages
 
 def createFile(pfilename):

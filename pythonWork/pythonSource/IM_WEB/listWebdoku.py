@@ -172,7 +172,7 @@ def printcontent(pfirma,ptitel):
     printHTML.printcontentdoma()
     printHTML.printcontentdoku()
     printHTML.printcontentorgu()
-    printHTML.printcontentmapping(ptheme=parameters.odmUDPMappingFileName())
+    #printHTML.printcontentmapping(ptheme=parameters.odmUDPMappingFileName())
     printdiagHTML.printcontentdiag(plist=printHTML.model['diagrams'], plang=Languagetext.reportLang(), ptitel=ptitel)
     printHTML.printcontentfoot()
 #printcontent
