@@ -92,7 +92,7 @@ class Column(Baseobject):
         Baseobject.delete(Column._tablename)
 
     @staticmethod
-    def select(pwhere=None, porderby="colu_column_name"):
+    def select(pwhere=None, porderby=None):
         return Baseobject.select(pclass=Column
                                  , pwhere=pwhere, porderby=porderby)
 

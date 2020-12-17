@@ -657,7 +657,7 @@ function entityheader (typ,name,filename,master,text){
  }
  document.write('<h1>' +titel + '</h1>');
  if (master != '') {
- 	document.write(master);
+ 	document.write(master+'<br>');
  }
  if (text != '') {
  	document.write('<p1>'+text+'</p1>');

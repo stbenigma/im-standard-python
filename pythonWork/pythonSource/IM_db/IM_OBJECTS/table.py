@@ -40,7 +40,7 @@ class Table(Baseobject):
         return Modellelement.getbyelemid(ptablid=self.tabl_id)
 
     def getcolumns(self):
-        return Column.select("colu_tabl_id = {}".format(self.tabl_id))
+        return Column.select(pwhere="colu_tabl_id = {}".format(self.tabl_id))
 
     def getname(self,plang=None):
         return self.tabl_name
