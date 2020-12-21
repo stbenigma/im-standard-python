@@ -1,6 +1,6 @@
 from IM_OBJECTS import *
 from mystring import nvl
-from IM_JSON import jsguid
+from IM_JSON import jsguid,jsguid2id,inslgtx,inssourceref
 
 """ builds a dictionary of all entities
     jsguid: {<entity>}

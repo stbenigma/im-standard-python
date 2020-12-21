@@ -6,7 +6,7 @@ def lastupd(pmodel):
     dm = lambda  objs: max('0' if val['dm'] is None else val['dm'] for val in pmodel[objs].values())
     return max(dm( 'attributes'), dm( 'domains'), dm( 'entities'))
 
-def sql2json(pmodelname,pwithdata=True):
+def sql2json(pmodelname):
     jsmodel = {}
     jsmodel['model'] = proj2js()
     jsmodel['languages'] = langs2js()
@@ -38,3 +38,17 @@ def proj2js():
              }
     return model
 #proj2js
+
+def proj2sql(pelem):
+    try:
+        proj = Project()
+        proj.proj_name = pelem["name"]
+        proj.proj_languages = pelem["type"]
+        proj.proj_curr_lang = pelem["language"]
+        proj.proj_uc = pelem["uc"]
+        proj.proj_dc = pelem["dc"]
+        proj.proj_um = None
+        proj.proj_dm = pelem["dm"]
+        proj.insert()
+    except Exception as err:
+        error(pmsg=err, pelem=pelem)

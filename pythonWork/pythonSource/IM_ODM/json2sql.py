@@ -62,27 +62,6 @@ def insudp(pmodeid,pudps):
         #for
     #for
 
-def fillmodel(pelem):
-    """  "model": {
-      "name": "IM_CRM_FYAYC",
-      "type": "logical",
-      "language": "de",
-      "uc": "stb",
-      "dc": "2019-05-06 07:48:12 UTC",
-      "dm": "0"
-   }"""
-    try:
-        proj = Project()
-        proj.proj_name = pelem["name"]
-        proj.proj_languages = pelem["type"]
-        proj.proj_curr_lang = pelem["language"]
-        proj.proj_uc = pelem["uc"]
-        proj.proj_dc = pelem["dc"]
-        proj.proj_um = None
-        proj.proj_dm = pelem["dm"]
-        proj.insert()
-    except Exception as err:
-        error(pmsg=err, pelem=pelem)
 
 
 def filllangs(pelem):
@@ -145,140 +124,6 @@ def filludps(pelem):
     #for
 
 
-
-def fillattrs(pelem):
-    """      "ATTR11890": {
-         "techname": "EMAIL",
-         "name": {
-            "de": "eMail",
-            "en": "eMail",
-            "fr": "Courriel"
-         },
-         "seq": 1,
-         "entity": "ENTI11889",
-         "relation": null,
-         "domain": "DOMA11877",
-         "descriptive": false,
-         "mandatory": false,
-         "historicised": false,
-         "repeated": false,
-         "translated": false,
-         "encrypted": false,
-         "tooltip": {
-            "de": null,
-            "en": null,
-            "fr": null
-         },
-         "descr": {
-            "de": null,
-            "en": null,
-            "fr": null
-         },
-         "uc": "stb",
-         "dc": "2019-06-01 10:36:20 UTC",
-         "um": null,
-         "dm": null,
-
-      },"""
-    for janker, jattr in pelem.items():
-        attr = Attribute()
-        attr.attr_id = ankerid(janker)
-        attr.attr_enti_id = ankerid(jattr['entity'])
-        attr.attr_rela_id = ankerid(jattr['relation'])
-        attr.attr_doma_id  = ankerid(jattr['domain'])
-        attr.attr_tech_name = jattr['techname']
-        attr.attr_displ_name = jattr['name'][modellang]
-        attr.attr_displ_seq = jattr['seq']
-        attr.attr_tooltip = jattr['tooltip'][modellang]
-        attr.attr_descr = jattr['descr'][modellang]
-        attr.attr_is_descriptive = Boolean.bool2str(jattr['descriptive'])
-        attr.attr_is_mandatory = Boolean.bool2str(jattr['mandatory'])
-        attr.attr_is_historicised = Boolean.bool2str(jattr['historicised'])
-        attr.attr_is_repeated = Boolean.bool2str(jattr['repeated'])
-        attr.attr_is_translated = Boolean.bool2str(jattr['translated'])
-        attr.attr_is_encrypted = Boolean.bool2str(jattr['encrypted'])
-        attr.attr_uc = jattr['uc']
-        attr.attr_dc = jattr['dc']
-        attr.attr_um = jattr['um']
-        attr.attr_dm = jattr['dm']
-        try:
-            attrid = attr.insert()
-        except Exception as err:
-            error(pmsg=err, pelem=[janker] + list(jattr))
-            continue
-
-    inslgtx(pmodel = pmodel,pmodeid=attrid, pattr=Languagetext.ATTR_COMMENT, ptexts=jattr['descr'])
-    inslgtx(pmodel = pmodel,pmodeid=attrid, pattr=Languagetext.ATTR_TOOLTIP, ptexts=jattr['tooltip'])
-    inslgtx(pmodel = pmodel,pmodeid=attrid, pattr=Languagetext.ATTR_NAME, ptexts=jattr['name'])
-    inssourceref(pmodel = model,pmodeid=attrid, psources=jattr["sourceref"])
-
-    """      "ATTR11890": {
-
-         "keys": [],
-         "refindocuments": [],
-         "refbyorgunits": [],
-         "userdefprop": {
-            "datamapping": {
-               "DHL": {
-                  "DHL AttrName": null,
-                  "DHL AttrName Receiver": null,
-                  "DHL AttrName Shipper": null
-               },
-               "PENTA": {
-                  "PENTA AttrID": null,
-                  "PENTA AttrName": null,
-                  "PENTA datatype": null,
-                  "PENTA usage": null
-               },
-               "PIM": {
-                  "PIM AttrID": null,
-                  "PIM AttrName": null,
-                  "PIM EnglName": null,
-                  "PIM datatype": null,
-                  "PIM usage": null
-               },
-               "SAPByD": {
-                  "SAPByD AttrName": null,
-                  "SAPByD AttrName Receiver": null,
-                  "SAPByD AttrName Shipper": null
-               }
-            },
-            "translation": {
-               "DE": {
-                  "DE_ATTR_COMMENT": null,
-                  "DE_ATTR_NAME": "eMail"
-               },
-               "EN": {
-                  "EN_ATTR_COMMENT": null,
-                  "EN_ATTR_NAME": "eMail"
-               },
-               "FR": {
-                  "FR_ATTR_COMMENT": null,
-                  "FR_ATTR_NAME": "Courriel"
-               }
-            }
-         },
-         "columnsmapped": {
-            "INTF12068": [
-               "COLU12375"
-            ],
-            "INTF12850": [
-               "COLU12966"
-            ],
-            "INTF12440": [
-               "COLU12613"
-            ],
-            "INTF12633": [
-               "COLU12786"
-            ]
-         },
-         "diagrams": [
-            "DIAG12066",
-            "DIAG12067"
-         ],
-         "basedatatype": "unknown",
-         "type": "TXT"
-      },"""
 
 def fillrelas(pelem):
     """      "RELA11990": {
@@ -343,7 +188,7 @@ def fillsql(pmodel):
     global errcnt, warncnt
     for eletyp, elem in pmodel.jsmodel.items():
         if eletyp == 'model':
-            fillmodel(elem)
+            proj2sql(elem)
         elif eletyp == 'entities':
             entities2sql(pmodel=pmodel)
         elif eletyp == 'languages':
@@ -351,7 +196,7 @@ def fillsql(pmodel):
         elif eletyp == 'userdefprop':
             filludps(elem)
         elif eletyp == 'attributes':
-            fillattrs(elem)
+            attributes2sql(pmodel=pmodel)
         elif eletyp == 'relations':
             fillrelas(elem)
         elif eletyp == 'languages':
