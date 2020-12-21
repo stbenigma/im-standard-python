@@ -1,4 +1,3 @@
-import sys
 import json
 import sqlite3
 
@@ -8,7 +7,6 @@ jsguid = lambda type, id: None if id is None else type + str(id)
 
 """returns the id part of a jsguid by removing the 4 leading characters (type) from a jsguid"""
 jsguid2id = lambda guid: None if guid is None else int(guid[4:])
-
 
 
 class JSModel:

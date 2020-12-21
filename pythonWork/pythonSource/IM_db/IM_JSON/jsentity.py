@@ -1,9 +1,6 @@
 from IM_OBJECTS import *
-from .jsbase import jsguid,jsguid2id
-from .jslangtext import inslgtx
-from .jssrcref import inssourceref
 from mystring import nvl
-
+from IM_JSON import jsguid
 
 """ builds a dictionary of all entities
     jsguid: {<entity>}
