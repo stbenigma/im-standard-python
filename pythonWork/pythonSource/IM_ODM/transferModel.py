@@ -1181,7 +1181,7 @@ def transferUDP():
 # transferUDP
 
 
-def insertBaseData():
+def insertlanguages():
     languages = {'de': ['Deutsch', 'deu']
         , 'en': ['English', 'eng']
         , 'fr': ['Français', 'fra']
@@ -1199,12 +1199,20 @@ def insertBaseData():
     Language.setmodellang(pmodellang=deflang)
     Language.setallreplacementlang()
 
+def insertmelts():
     Modelelemtype.fillmelt()
+
+def insertdiagtypes():
     diatid = Diagramtype(pname=Diagramtype.ENTITY).insert()
     MeltDiat(pdiatid=diatid,pmeltid=Modelelemtype.getidbyshortname(pshortname=Modelelemtype.ENTI)).insert()
     MeltDiat(pdiatid=diatid, pmeltid=Modelelemtype.getidbyshortname(pshortname=Modelelemtype.RELA)).insert()
     MeltDiat(pdiatid=diatid, pmeltid=Modelelemtype.getidbyshortname(pshortname=Modelelemtype.ATTR)).insert()
     diatid = Diagramtype(pname=Diagramtype.RELATIONAL).insert()
+
+def insertBaseData(pwithlangs = True):
+    if pwithlangs: insertlanguages()
+    insertmelts()
+    insertdiagtypes()
 # insertBaseData
 
 def loeschmodell():

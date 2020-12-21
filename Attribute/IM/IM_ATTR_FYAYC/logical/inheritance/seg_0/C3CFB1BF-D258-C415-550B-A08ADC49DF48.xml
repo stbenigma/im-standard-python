@@ -1,7 +1,7 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_189" directorySegmentName="seg_2" id="586AAB80-12FB-B753-6A54-04F517E5D92E">
+<InheritanceRelation class="oracle.dbtools.crest.model.design.logical.InheritanceRelation" name="Hierarchy_61" directorySegmentName="seg_0" id="C3CFB1BF-D258-C415-550B-A08ADC49DF48">
 <createdBy>stb</createdBy>
-<createdTime>2019-08-12 07:53:12 UTC</createdTime>
+<createdTime>2020-12-20 10:28:54 UTC</createdTime>
 <ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
 <engineerTo>
 <item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
@@ -10,17 +10,11 @@
 </engineerTo>
 <useSurrogateKey>true</useSurrogateKey>
 <identifying>false</identifying>
+<nameOnSource>Super Type</nameOnSource>
+<nameOnTarget>Sub Type</nameOnTarget>
 <optionalSource>true</optionalSource>
 <optionalTarget>true</optionalTarget>
-<sourceCardinality>1</sourceCardinality>
 <sourceEntity>1DBF5BEA-2C33-E161-C43F-E7F45A7795EB</sourceEntity>
-<targetCardinalityString>1</targetCardinalityString>
 <targetEntity>E4A08854-7BF0-1D4C-B446-645EF86B763A</targetEntity>
 <transferable>true</transferable>
-<propertyMap>
-<property name="DE_RELA_TEXT_FROM" value=""/>
-<property name="DE_RELA_TEXT_TO" value=""/>
-<property name="EN_RELA_TEXT_FROM" value=""/>
-<property name="EN_RELA_TEXT_TO" value=""/>
-</propertyMap>
-</Relation>
+</InheritanceRelation>

@@ -15,6 +15,7 @@
 <item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
 <item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
 </engineerTo>
+<typeID>8E68C862-5EB9-FEBD-54B8-E2E35FCEDB24</typeID>
 <adequatelyNormalized>NO</adequatelyNormalized>
 <expectedVolumes>0</expectedVolumes>
 <fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
@@ -25,9 +26,7 @@
 <normalForm>Third</normalForm>
 <propertyMap>
 <property name="DE_ENTI_NAME" value="Milchprodukt"/>
-<property name="DE_ENTI_SYNONYM" value=""/>
 <property name="EN_ENTI_NAME" value="*DE* Milchprodukt"/>
-<property name="EN_ENTI_SYNONYM" value=""/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Fettanteil" id="3EAEA30B-3C12-7DD8-8760-00539BA2D867">
@@ -68,6 +67,18 @@
 <property name="SAP usage" value="."/>
 <property name="Web-Shop" value="."/>
 </propertyMap>
+</Attribute>
+<Attribute name="Laktosefrei (J/N)" id="1F47F078-527B-E843-4FCB-D892E7DEAA63">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-20 10:08:37 UTC</createdTime>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 </attributes>
 </Entity>

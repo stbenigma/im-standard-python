@@ -5,11 +5,10 @@ import math
 from IM_DB import dbConnect, parameters, logmessages
 from IM_OBJECTS import *
 from mystring import nvl
+from IM_JSON import *
 
 EMPTYJSONFILE = 'emptyjsonmodel'
 
-
-# Main Programm
 def getJSONfile(pfilename):
     with open(pfilename, 'r') as handle:
         model = json.load(handle)
@@ -35,48 +34,6 @@ def elemrep(peler,panker):
 
 
 anker = lambda n, i: None if i is None else n + str(i)
-
-
-def entities():
-    entis = {anker(Modelelemtype.ENTI, e.enti_id):
-                 {'name': e.enti_name_L
-                     , 'shortname': nvl(e.enti_short_name)
-                     , 'descr': e.enti_descr_L
-                     , 'tooltip': e.enti_tooltip_L
-                     , 'exptuple#': e.enti_exp_tuplecnt
-                     , 'prefix': e.enti_prefix
-                     , 'subtypellevel': e.getsubtypelevel()
-                     , 'uc': e.enti_uc
-                     , 'dc': e.enti_dc
-                     , 'um': e.enti_um
-                     , 'dm': e.enti_dm
-                     , 'synonyms': [s.syno_name_L for s in e.getsynonyms()]
-                     , 'sourceref': {s: Externalref.getsrcid(psrcname=s, pmodeid=e.enti_id) for s in
-                                     Externalref.getsources()}
-                     , 'supertypes': [anker(Modelelemtype.ENTI, es.enti_id) for es in e.getparents()]
-                     , 'roles': [anker(Modelelemtype.ENTI, es.enti_id) for es in e.getchildren(ptype=Relation.ISAROLE)]
-                     ,
-                  'subtypes': [anker(Modelelemtype.ENTI, es.enti_id) for es in e.getchildren(ptype=Relation.ISASUBTYPE)]
-                    , 'attributes': [anker(Modelelemtype.ATTR, a.attr_id) for a in e.getattributes()]
-                     ,'relations': [anker(Modelelemtype.RELA, r.rela_id) for r in Relation.getbyentity(pentiid=e.enti_id)]
-                     ,'keys': [anker(Modelelemtype.KEYS, k.keys_id) for k in Key.select(pwhere="keys_enti_id = {}".format(e.enti_id))]
-                     ,'inarcs': [anker(Modelelemtype.ARCS, a.arcs_id) for a in Arc.select(pwhere="arcs_enti_id = {}".format(e.enti_id))]
-                     ,'refindocuments': [anker(Modelelemtype.DOCU, d[0]) for d in Document.getrefdoculist(pid=e.enti_id)]
-                     ,'refbyorgunits': [anker(Modelelemtype.ORGU, d[0]) for d in OragnisationalUnit.getreforgulist(pid=e.enti_id)]
-                     , 'userdefprop': {
-                     t[0]: {g[1]: {u.udpr_name: Userdefpropvalue.udpvalue(pudprid=u.udpr_id, pmodeid=e.enti_id)
-                                   for u in Userdefprop.getudps(ptheme=t[0], pgroup=g[1], pmeltname=Modelelemtype.ENTI)}
-                            for g in Userdefprop.grouplist(pudptheme=t[0], pmelttype=Modelelemtype.ENTI)}
-                     for t in Userdefprop.themelist(pmelttype=Modelelemtype.ENTI)}
-
-                     , 'tablesmapped': {anker(Modelelemtype.INTF,s.getid()): [anker(Modelelemtype.TABL, t.tabl_id) for t in
-                                                      TablEntiMap.gettabllist(pentiid=e.enti_id, pintfid=s.getid())]
-                                        for s in Interface.getmapped(pentiid=e.enti_id)}
-                     ,
-                  'diagrams': [anker(Modelelemtype.DIAG, d.diag_id) for d in Diagram.getdiagrams(pmodeid=e.enti_id)]
-                  } for e in Entity.select()}
-    return entis
-
 
 def defattr(attr):
     retval = {'techname': attr.attr_tech_name
@@ -419,8 +376,6 @@ def defarcs(parc,pdiagid):
             currentside = c[4]
             lastx = c[0] + (PREDISTANCE * xfactor[currentside][0])
             lasty = c[1] + (PREDISTANCE * yfactor[currentside][0])
-            if lastx == 980.2:
-                print(lastx,lasty)
             arcline.append(arcpoint(lastx,lasty,currentside))
         else:
             #same side is skipped
@@ -597,6 +552,16 @@ def languages():
              }
     return langs
 
+def udps():
+    udp = {anker ('UDPR',u.udpr_id) : {'theme': u.udpr_theme
+                                       ,'group': u.udpr_group
+                                       ,'name':u.udpr_name
+                                       ,'usedfor' : [Modelelemtype.getshortname(metp.metp_melt_id) for metp in ModelelementProperty().select(pwhere="METP_UDPR_ID = {}".format(u.udpr_id))]
+                                       }
+                 for u in Userdefprop().select()
+            }
+    return udp
+
 def lastupd(pmodel):
     dm = lambda  objs: max('0' if val['dm'] is None else val['dm'] for val in pmodel[objs].values())
     return max(dm( 'attributes'), dm( 'domains'), dm( 'entities'))
@@ -605,7 +570,7 @@ def sql2json(pwithdata=True):
     model = {}
     model['model'] = project()
     model['languages'] = languages()
-    model['entities'] = entities()
+    model['entities'] = entities2js()
     model['attributes'] = attributes()
     model['relations'] = relations()
     model['arcs'] = arcs()
@@ -617,6 +582,7 @@ def sql2json(pwithdata=True):
     model['systems'] = systems()
     model['tables'] = tables()
     model['columns'] = columns()
+    model['userdefprop'] = udps()
     model['model']['dm'] = lastupd(model)
     return model
 

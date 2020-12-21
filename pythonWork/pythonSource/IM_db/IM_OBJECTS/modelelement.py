@@ -91,7 +91,7 @@ CREATE TABLE MODELELEM_TYPE
 
     @staticmethod
     def getshortname(pmeltid):
-        return Modelelemtype().getbyid(pid).melt_shortname
+        return Modelelemtype().getbyid(pmeltid).melt_shortname
 
     @staticmethod
     def getbyshortname(pshortname):
@@ -219,7 +219,7 @@ class ModelelementProperty(Baseobject):
     _prefix: str = 'metp'
     _columnlist: list = []
 
-    def __init__(self, pmeltid,pudprid):
+    def __init__(self, pmeltid=None,pudprid=None):
         if (len(ModelelementProperty._columnlist) == 0): ModelelementProperty._columnlist = Baseobject.gettablecolumns(ModelelementProperty._tablename)
         super().__init__(tablename=ModelelementProperty._tablename, prefix=ModelelementProperty._prefix)
         self.metp_melt_id = pmeltid

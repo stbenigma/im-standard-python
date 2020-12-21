@@ -251,8 +251,11 @@ class MultilangBaseobject(Baseobject):
             # keine sprache oder keinen Namen für Language
             retval = self.__dict__[colname]
         # try
+
         return retval
     #_getsprachval
+
+
 from .languagetext import Languagetext
 from .modelelement import Modelelement
 from .externalref import Externalref

@@ -134,9 +134,12 @@ class Userdefpropvalue(Baseobject):
     _prefix: str = 'udpv'
     _columnlist: list = []
 
-    def __init__(self):
+    def __init__(self,pmodeid=None,pudprid =None,pvalue=None):
         if (len(Userdefpropvalue._columnlist) == 0): Userdefpropvalue._columnlist = Baseobject.gettablecolumns(Userdefpropvalue._tablename)
         super().__init__(tablename=Userdefpropvalue._tablename, prefix=Userdefpropvalue._prefix)
+        self.udpv_value = pvalue
+        self.udpv_mode_id = pmodeid
+        self.udpv_udpr_id = pudprid
         self.udpv_uc = 'SYS'
         self.udpv_dc = date.today()
 
