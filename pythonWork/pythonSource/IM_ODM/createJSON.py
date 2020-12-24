@@ -1,21 +1,13 @@
 # -*- coding: latin-1 -*-
 import json
 from IM_DB import dbConnect, parameters, logmessages
-from IM_JSON import sql2json
+from IM_JSON import sql2json,printJSON,jsonfilename
 
 def getJSONfile(pfilename):
     with open(pfilename, 'r') as handle:
         model = json.load(handle)
     return model
 
-
-def jsonfilename(pfilename):
-    return pfilename + '.json'
-
-def printJSON(pmodel, pfilepath, pfilename):
-    jsonfile = open(pfilepath + jsonfilename(pfilename), 'w')
-    jsonfile.write(json.dumps(pmodel, indent=3, sort_keys=False))
-    jsonfile.close()
 
 def createJSON(pfilepath, pfilename):
     dbConnect.openDB(parameters.dbFilePath(), fks='ON')

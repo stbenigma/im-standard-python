@@ -20,3 +20,6 @@ def openDB(p_filepath,fks='OFF'):
         raise exp
     myDbConn.execute("PRAGMA foreign_keys = {}".format(fks))
 
+def closeDB():
+    myDbConn.close()
+

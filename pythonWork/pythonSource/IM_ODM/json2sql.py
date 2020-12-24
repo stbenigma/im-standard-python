@@ -12,7 +12,6 @@ from IM_JSON import *
 errcnt: int = 0
 warncnt: int = 0
 modellang: str = None
-languages = {}  # langid:idso2
 
 anker = lambda n, i: None if i is None else n + str(i)
 ankerid = lambda a: None if a is None else a[4:]
@@ -62,161 +61,54 @@ def insudp(pmodeid,pudps):
         #for
     #for
 
-
-
-def filllangs(pelem):
-    global modellang, languages
-    """   "languages": {
-      "de": {
-         "name": "Deutsch",
-         "iso3": "deu",
-         "modellanguage": true,
-         "replacementlang": null
-      }"""
-    for iso2, jlang in pelem.items():
-        lang = Language()
-        lang.lang_iso_code2 = iso2
-        lang.lang_iso_code3 = jlang['iso3']
-        lang.lang_iso_name = jlang['name']
-        lang.lang_uc = None
-        lang.lang_dc = date.today()
-        lang.lang_is_base_lang = Boolean.bool2str(jlang['modellanguage'])
-        if jlang['modellanguage']:
-            if modellang is not None:
-                error(pmsg="more than one model language defined", pelem=jlang)
-            else:
-                modellang = lang.lang_iso_code2
-            # fi
-        # fi
-        lang.lang_is_text_lang = Boolean.FALSE
-        try:
-            langid = lang.insert()
-        except Exception as err:
-            error(pmsg=err, pelem=lang.tostring())
-            continue
-        languages[langid] = iso2
-    # for
-    try:
-        Language.setallreplacementlang()
-    except Exception as err:
-        error(pmsg=err, pelem=pelem)
-
-    if modellang is None:
-        error(pmsg="No model language defined", pelem=None)
-    # print([l.tostring() for l in Language.select()])
-
-def filludps(pelem):
-    for udpranker,judp in pelem.items():
-        udpr = Userdefprop(ptheme=judp['theme'],pgroup=judp['group'],pname=judp['name'])
-        udpr.udpr_id = ankerid(udpranker)
-        try:
-            udpr.insert()
-        except Exception as err:
-            error(pmsg=err, pelem=list(judp))
-            continue
-
-        for melttype in judp['usedfor']:
-            try:
-                ModelelementProperty(pmeltid=Modelelemtype.getbyshortname(melttype).getid(),pudprid=udpr.udpr_id).insert()
-            except Exception as err:
-                error(pmsg=err, pelem=list(judp))
-        #for
-    #for
-
-
-
-def fillrelas(pelem):
-    """      "RELA11990": {
-         "name": "Relation_76",
-         "type": "M:1",
-         "from-to": {
-            "enti": "ENTI11889",
-            "arc": null,
-            "assoc": {
-               "de": "ist",
-               "en": "is",
-               "fr": "est"
-            },
-            "maptype": "1",
-            "hist": false,
-            "mandatory": false,
-            "cardstr": "1..N"
-         },
-         "to-from": {
-            "enti": "ENTI11909",
-            "arc": "ARCS12031",
-            "assoc": {
-               "de": "definiert",
-               "en": "defines",
-               "fr": "d\u00e9finit"
-            },
-            "maptype": "M",
-            "hist": false,
-            "mandatory": true,
-            "cardstr": "0..1"
-         },
-         "isinkeys": [],
-         "uc": "stb",
-         "dc": "2019-05-07 12:07:04 UTC",
-         "um": null,
-         "dm": null
-      },"""
-    for janker, jrela in pelem.items():
-        rela = Relation()
-        rela.rela_id = ankerid(janker)
-        rela.rela_name = jrela['name']
-        rela.rela_type = jrela['type']
-        rela.rela_enti_id_from = ankerid(jrela['from-to']['enti'])
-        rela.rela_arcs_id_from = ankerid(jrela['from-to']['arc'])
-        rela.rela_assoc_from_to = jrela['from-to']['assoc'][modellang]
-        rela.rela_maptype_from_to = jrela['from-to']['maptype']
-        rela.rela_mandatory_from_to = Boolean.bool2str(jrela['from-to']['mandatory'])
-        rela.rela_hist_from_to = Boolean.bool2str(jrela['from-to']['hist'])
-        rela.rela_enti_id_to = ankerid(jrela['to-from']['enti'])
-        rela.rela_arcs_id_to = ankerid(jrela['to-from']['arc'])
-        rela.rela_assoc_to_from = jrela['to-from']['assoc'][modellang]
-        rela.rela_maptype_to_from = jrela['to-from']['maptype']
-        rela.rela_mandatory_to_from = Boolean.bool2str(jrela['to-from']['mandatory'])
-        rela.rela_hist_to_from = Boolean.bool2str(jrela['to-from']['hist'])
-        rela.rela_uc = jrela['uc']
-        rela.rela_dc = jrela['dc']
-        rela.rela_um = jrela['um']
-        rela.rela_dm = jrela['dm']
-
+nofunc = lambda p : None
+#json-key: (baseobjectload, referencesload)
+transferprocs = {
+ 'model': (1,proj2sql,nofunc)
+,'languages': (2,langs2sql,nofunc)
+,'physicalunits' : (3,physicalunits2sql,phyurefs2sql)
+,'datatypes' : (4,datatypes2sql,dtayrefs2sql)
+,'storageformats' : (5,storageformats2sql,stforefs2sql)
+,'documents': (6,documents2sql, docurefs2sql)
+,'orgunits': (7,orgunits2sql, orgurefs2sql)
+,'userdefprop': (8,udps2sql, udprefs2sql)
+,'entities': (10,entities2sql,entirefs2sql)
+,'domains': (11,domains2sql, domarefs2sql)
+,'attributes': (12,attributes2sql, attrrefs2sql)
+,'arcs': (13,arcs2sql, arcsref2sql)
+,'relations': (14,relations2sql, relarefs2sql)
+,'keys': (15,keys2sql, keysrefs2sql)
+,'systems': (20,systems2sql, systrefs2sql)
+,'tables': (21,tables2sql, tablrefs2sql)
+,'columns': (22,columns2sql, colurefs2sql)
+,'diagrams': (30,diagrams2sql, diagrefs2sql)
+}
 
 def fillsql(pmodel):
-    global errcnt, warncnt
-    for eletyp, elem in pmodel.jsmodel.items():
-        if eletyp == 'model':
-            proj2sql(elem)
-        elif eletyp == 'entities':
-            entities2sql(pmodel=pmodel)
-        elif eletyp == 'languages':
-            filllangs(elem)
-        elif eletyp == 'userdefprop':
-            filludps(elem)
-        elif eletyp == 'attributes':
-            attributes2sql(pmodel=pmodel)
-        elif eletyp == 'relations':
-            fillrelas(elem)
-        elif eletyp == 'languages':
-            filllangs(elem)
-        else:
+    for eletyp in pmodel.jsmodel.keys():
+        if not (eletyp in transferprocs.keys()):
             warning('Unknown elementtype "{}" ignored'.format(eletyp))
-    # for
-    if errcnt > 0:
-        print("==== {} error(s) found ====".format(str(errcnt)))
-    if warncnt > 0:
-        print("==== {} warning(s) found ====".format(str(warncnt)))
+
+    for eletyp in sorted(transferprocs.keys(),key=lambda val:transferprocs[val][0]):
+        transferprocs[eletyp][1](pmodel)
+
+    """now that all base objects are installed, transfer relationships"""
+    for eletyp in sorted(transferprocs.keys(),key=lambda val:transferprocs[val][0]):
+        transferprocs[eletyp][2](pmodel)
+
+    for err in pmodel.errors(): print (err)
+    print("==== {} error(s) found ====".format(str(pmodel.errcnt())))
+    for warn in pmodel.warnings(): print (warn)
+    print("==== {} warning(s) found ====".format(str(pmodel.wrncnt())))
 # fillsql
 
 
 # Main Programm
 def main(pjsonin, pdbout):
-    model = JSModel.readfromfile(pfilename=pjsonin)
+    jsmodel = JSModel.readfromfile(pfilename=pjsonin)
 
     if pdbout is None:
-        dbConnect.openDB(p_filepath="file::memory:?cache=shared");
+        dbConnect.openDB(p_filepath=":memory:",fks='ON');
     else:
         dbConnect.openDB(pdbout, 'ON');
 
@@ -224,10 +116,17 @@ def main(pjsonin, pdbout):
     transferModel.insertBaseData(pwithlangs=False)
 
     try:
-        fillsql(pmodel=model)
+        fillsql(pmodel=jsmodel)
     finally:
         print("JSON file {} filled into db {}"
               .format(pjsonin, "in-memory" if pdbout is None else pdbout))
+
+    #Test output
+    if True:
+        controljson = sql2json(pmodelname=jsmodel.jsmodel['model']['name'])
+        printJSON(pmodel=controljson, pfilename='checkjson', pfilepath='/Users/stb/Downloads/')
+
+    dbConnect.closeDB()
 # main
 
 

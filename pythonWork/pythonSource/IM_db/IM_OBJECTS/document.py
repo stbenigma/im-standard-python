@@ -65,17 +65,29 @@ CREATE TABLE DOCUMENTS
         return Baseobject.select(pclass=Document
                                  , pwhere=pwhere, porderby=porderby)
     @staticmethod
+    def updparent(pchildid,pparentid):
+        if pchildid is not None and pparentid is not None:
+            dbDML.exec("""
+                update DOCUMENTS as DOK
+                set docu_docu_ID = {}
+                where docu_id = {}
+                """.format(pparentid, pchildid))
+        #if
+
+    @staticmethod
+    def updparentpairs(pparents):
+        for val in pparents:
+            # assume, exactly one child and one parent id
+            childid, parentid = val[0], val[1]
+            Document.updparent(pchildid=childid,pparentid=parentid)
+
+    @staticmethod
     def updparents(psrcname,pparents):
         for key,val in pparents.items():
             # assume, exactly one child and one parent id
             childid = Externalref.getmodeid(psrcname=psrcname,psrcid=key)
             parentid = Externalref.getmodeid(psrcname=psrcname,psrcid=val)
-            if childid is not None and parentid is not None:
-                dbDML.exec("""
-                    update DOCUMENTS as DOK_C
-                    set docu_docu_ID = {}
-                    where docu_id = {}
-                    """.format(parentid,childid))
+            Document.updparent(pchildid=childid,pparentid=parentid)
     #updparents
 
 
@@ -146,14 +158,15 @@ class ModelelemDocu(Baseobject):
     _prefix:str = 'modo'
     _columnlist:list = []
 
-    def __init__(self):
+    def __init__(self,pmodeid = None,pdocuid=None):
         if (len(ModelelemDocu._columnlist) == 0): ModelelemDocu._columnlist = Baseobject.gettablecolumns(ModelelemDocu._tablename)
         super().__init__(tablename=self._tablename, prefix=self._prefix)
+        self.modo_mode_id = pmodeid
+        self.modo_docu_id = pdocuid
 
     @staticmethod
     def createtable():
-        Baseobject.createtable(ptablename=ModelelemDocu._tablename
-                               , psql="""
+        sql ="""
 CREATE TABLE MODE_DOCU
     (
      MODO_ID INTEGER NOT NULL primary key autoincrement,
@@ -168,6 +181,8 @@ CREATE TABLE MODE_DOCU
          ON DELETE CASCADE
     )
 """
+        Baseobject.createtable(ptablename=ModelelemDocu._tablename
+                               , psql=sql
         )
 
     @staticmethod

@@ -6,7 +6,6 @@ class Storageformat(Baseobject):
     _prefix:str = 'stfo'
     _columnlist:list = []
 
-
     def __init__(self,pname=None,pdescr=None):
         if (len(Storageformat._columnlist) == 0): Storageformat._columnlist = Baseobject.gettablecolumns(Storageformat._tablename)
         super().__init__(tablename= Storageformat._tablename, prefix= Storageformat._prefix)
@@ -14,7 +13,6 @@ class Storageformat(Baseobject):
         self.stfo_descr = pdescr
         self.stfo_uc = 'fillDB'
         self.stfo_dc = date.today()
-
 
     @staticmethod
     def createtable():

@@ -1,7 +1,7 @@
 from IM_DB import *
 from .baseobject import MultilangBaseobject, Baseobject
 from .datatype import Datatype
-from .modelelement import Modelelement, Modelelemtype
+from .modelelement import Modelelemtype
 from .languagetext import Languagetext
 from .physicals import Storageformat
 

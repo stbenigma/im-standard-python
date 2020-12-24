@@ -48,10 +48,6 @@ class Table(Baseobject):
     def getdescr(self,plang=None):
         return self.tabl_descr
 
-    def insert(self):
-        self.tabl_id = Modelelement(Modelelemtype.TABL).insert()
-        super().insert()
-
     @staticmethod
     def delete():
         Baseobject.delete(Table._tablename)

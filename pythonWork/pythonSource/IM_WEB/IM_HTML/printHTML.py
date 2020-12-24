@@ -986,7 +986,7 @@ def printcontententi():
                      , pdescr=lf2htmlbr(parameters.nvl(elem['descr'][lang]))
                      , plbc=lbc)
         """print entity Info"""
-        synostr =  ', '.join(s[lang] for s in elem['synonyms'])
+        synostr = ', '.join(s[lang] for s in elem['synonyms'].values())
         parentstr = ", ".join(href(ref=p, anz=getentity(p)['name'][lang]) for p in elem['supertypes'])
         subtypestr = ', '.join(href(ref=st, anz=getentity(st)['name'][lang]) for st in elem['subtypes'])
         rolesstr = ', '.join(href(ref=r, anz=getentity(r)['name'][lang]) for r in elem['roles'])
@@ -1445,7 +1445,7 @@ def printtransl(penti=None, pattr=None):
     if (penti is not None):
         name +=[href(ref=penti['anker'], anz=penti['element']['name'][lang]
                      ,htmlfile=langfilename.format(lang),pself=True) for lang in langs]
-        synonym += [','.join(s[lang] for s in penti['element']['synonyms']) for lang in langs]
+        synonym += [','.join(s[lang] for s in penti['element']['synonyms'].values()) for lang in langs]
         descr += [penti['element']['descr'][lang] for lang in langs]
         transllist = [name,synonym,descr]
     elif (pattr is not None):

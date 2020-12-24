@@ -1,6 +1,6 @@
 from IM_OBJECTS import *
 from mystring import nvl
-from IM_JSON import jsguid,jsguid2id,inslgtx,inssourceref
+from IM_JSON import jsguid,jsguid2id,inslgtx,inssourceref,JSModel
 
 """ builds a dictionary of all entities
     jsguid: {<entity>}
@@ -18,9 +18,8 @@ def entities2js():
                      , 'dc': e.enti_dc
                      , 'um': e.enti_um
                      , 'dm': e.enti_dm
-                     , 'synonyms': [s.syno_name_L for s in e.getsynonyms()]
-                     , 'sourceref': {s: Externalref.getsrcid(psrcname=s, pmodeid=e.enti_id) for s in
-                                     Externalref.getsources()}
+                     , 'synonyms': {jsguid(Modelelemtype.SYNO,s.syno_id): s.syno_name_L for s in e.getsynonyms()}
+                     , 'sourceref': Externalref.getsrcinfo(pmodeid=e.enti_id)
                      , 'supertypes': [jsguid(Modelelemtype.ENTI, es.enti_id) for es in e.getparents()]
                      , 'roles': [jsguid(Modelelemtype.ENTI, es.enti_id) for es in e.getchildren(ptype=Relation.ISAROLE)]
                      ,
@@ -48,7 +47,7 @@ def entities2js():
 
 """inserts all entities from json structure (like the one in entities2js to the sql database
   prints out all error and ends with exception if there was an error"""
-def entities2sql(pmodel):
+def entities2sql(pmodel:JSModel):
     """      "ENTI109": {
          "name": {
             "de": "Administrativgebiet",
@@ -72,23 +71,23 @@ def entities2sql(pmodel):
          "dm": null,
     ..
       },"""
-    for anker, jenti in pmodel.jsmodel['entities'].items():
+    for jid, jelem in pmodel.jsmodel['entities'].items():
         enti = Entity()
-        enti.enti_id = jsguid2id(anker)
-        enti.enti_name = jenti['name'][pmodel.language()]
-        enti.enti_short_name = jenti['name'][pmodel.language()]
-        enti.enti_prefix = jenti['prefix']
-        enti.enti_tooltip = jenti['tooltip'][pmodel.language()]
-        enti.enti_descr = jenti['descr'][pmodel.language()]
-        enti.enti_exp_tuplecnt = jenti['exptuple#']
-        enti.enti_uc = jenti['uc']
-        enti.enti_dc = jenti['dc']
-        enti.enti_um = jenti['um']
-        enti.enti_dm = jenti['dm']
+        enti.enti_id = jsguid2id(jid)
+        enti.enti_name = jelem['name'][pmodel.modellanguage()]
+        enti.enti_short_name = jelem['name'][pmodel.modellanguage()]
+        enti.enti_prefix = jelem['prefix']
+        enti.enti_tooltip = jelem['tooltip'][pmodel.modellanguage()]
+        enti.enti_descr = jelem['descr'][pmodel.modellanguage()]
+        enti.enti_exp_tuplecnt = jelem['exptuple#']
+        enti.enti_uc = jelem['uc']
+        enti.enti_dc = jelem['dc']
+        enti.enti_um = jelem['um']
+        enti.enti_dm = jelem['dm']
         try:
             entiid = enti.insert()
         except Exception as err:
-            pmodel.markerror(pmsg=err, pelem=[anker] + list(jenti))
+            pmodel.markerror(pmsg=err, pelemstr=[jid] + list(jelem))
             continue
 
         """      "ENTI109": {
@@ -105,10 +104,10 @@ def entities2sql(pmodel):
             "en": null,
          },
         """
-        inslgtx(pmodel=pmodel,pmodeid=entiid, pattr=Languagetext.ENTI_NAME, ptexts=jenti['name'])
-        inslgtx(pmodel=pmodel,pmodeid=entiid, pattr=Languagetext.ENTI_COMMENT, ptexts=jenti['descr'])
-        inslgtx(pmodel=pmodel,pmodeid=entiid, pattr=Languagetext.ENTI_TOOLTIP, ptexts=jenti['tooltip'])
-        inssourceref(pmodel=pmodel,pmodeid=entiid, psources=jenti["sourceref"])
+        inslgtx(pmodel=pmodel,pmodeid=entiid, pattr=Languagetext.ENTI_NAME, ptexts=jelem['name'])
+        inslgtx(pmodel=pmodel,pmodeid=entiid, pattr=Languagetext.ENTI_COMMENT, ptexts=jelem['descr'])
+        inslgtx(pmodel=pmodel,pmodeid=entiid, pattr=Languagetext.ENTI_TOOLTIP, ptexts=jelem['tooltip'])
+        inssourceref(pmodel=pmodel,pmodeid=entiid, psources=jelem["sourceref"])
 
         """      "ENTI109": {
          "synonyms":
@@ -117,14 +116,15 @@ def entities2sql(pmodel):
                "en": "Contact person",
             },..
         """
-        for jsyno in jenti["synonyms"]:
-            syno = Synonym(pname=jsyno[pmodel.language()], pentiid=entiid)
+        for synoid,jsyno in jelem["synonyms"].items():
+            syno = Synonym(pname=jsyno[pmodel.modellanguage()], pentiid=entiid)
+            syno.syno_id = jsguid2id(synoid)
             try:
-                synoid = syno.insert()
+                syno.insert()
             except Exception as err:
-                model.markerror(pmsg=err, pelem=jsyno)
+                pmodel.markerror(pmsg=err, pelemstr=jsyno)
                 continue
-            inslgtx(pmodel = pmodel,pmodeid=synoid, pattr=Languagetext.SYNO_NAME, ptexts=jsyno)
+            inslgtx(pmodel = pmodel,pmodeid=syno.syno_id, pattr=Languagetext.SYNO_NAME, ptexts=jsyno)
         # for
 
     # for
@@ -160,3 +160,4 @@ def entirefs2sql(pmodel):
         "DIAG282"
      ]
   },"""
+    return

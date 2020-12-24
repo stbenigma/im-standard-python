@@ -1,5 +1,5 @@
 
-from IM_OBJECTS import Project
+from IM_OBJECTS import Project,Entity
 from IM_JSON import *
 
 def lastupd(pmodel):
@@ -11,10 +11,10 @@ def sql2json(pmodelname):
     jsmodel['model'] = proj2js()
     jsmodel['languages'] = langs2js()
     jsmodel['entities'] = entities2js()
+    jsmodel['domains'] = domains2js()
     jsmodel['attributes'] = attributes2js()
     jsmodel['relations'] = relations2js()
     jsmodel['arcs'] = arcs2js()
-    jsmodel['domains'] = domains2js()
     jsmodel['keys'] = keys2js()
     jsmodel['documents'] = documents2js()
     jsmodel['orgunits'] = orgUnits2js()
@@ -23,6 +23,9 @@ def sql2json(pmodelname):
     jsmodel['tables'] = tables2js()
     jsmodel['columns'] = columns2js()
     jsmodel['userdefprop'] = udps2js()
+    jsmodel['physicalunits'] = physicalunits2js()
+    jsmodel['datatypes'] = datatypes2js()
+    jsmodel['storageformats'] = storageformats2js()
     jsmodel['model']['dm'] = lastupd(jsmodel)
     return jsmodel
 #sql2json
@@ -39,16 +42,17 @@ def proj2js():
     return model
 #proj2js
 
-def proj2sql(pelem):
+def proj2sql(pmodel):
+    elem = pmodel.jsmodel['model']
     try:
         proj = Project()
-        proj.proj_name = pelem["name"]
-        proj.proj_languages = pelem["type"]
-        proj.proj_curr_lang = pelem["language"]
-        proj.proj_uc = pelem["uc"]
-        proj.proj_dc = pelem["dc"]
+        proj.proj_name = elem["name"]
+        proj.proj_languages = elem["type"]
+        proj.proj_curr_lang = elem["language"]
+        proj.proj_uc = elem["uc"]
+        proj.proj_dc = elem["dc"]
         proj.proj_um = None
-        proj.proj_dm = pelem["dm"]
+        proj.proj_dm = elem["dm"]
         proj.insert()
     except Exception as err:
-        error(pmsg=err, pelem=pelem)
+        error(pmsg=err, pelem=elem)
