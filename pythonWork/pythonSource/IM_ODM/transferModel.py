@@ -885,7 +885,7 @@ def getdokuref(pelem, pstruct=False):
 # getdokuref
 
 def getpartyref(pelem):
-    parties = None
+    parties = []
     """
     <responsibleParties>
     <party>7EBDC037-8728-C627-4B33-CEDF979E7C13</party>
@@ -898,7 +898,7 @@ def getpartyref(pelem):
     </responsibleParties>
     """
     elemparties = pelem.findall('responsibleParties/party')
-    if elemparties is not None:
+    if len(elemparties) > 0:
         parties = []
         for party in elemparties:
             # alle referenzierten Dokumente
@@ -907,7 +907,7 @@ def getpartyref(pelem):
         parties = tuple(parties)
     else:
         elemparties = pelem.findall('responsibleParties/Party')
-        if elemparties is not None:
+        if len(elemparties) > 0 :
             parties = []
             for party in elemparties:
                 # alle referenzierten Dokumente

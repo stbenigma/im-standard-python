@@ -1,18 +1,18 @@
 from IM_JSON import jsguid,jsguid2id,inssourceref
-from IM_OBJECTS import Table,Userdefpropvalue,Userdefprop,Modelelemtype,Document,Interface,TablEntiMap,Externalref
+from IM_OBJECTS import Table,Userdefpropvalue,Userdefprop,Modelelemtype,Document,Interface,TablEntiMap,Externalref,OragnisationalUnit
 
 def tables2js():
     tabs = {jsguid(Modelelemtype.TABL,t.tabl_id) :
                 {'name':t.tabl_name
-                   ,'interface-name':Interface().getbyid(t.tabl_intf_id).getname()
-                   ,'interface-id':jsguid(Modelelemtype.INTF, Interface().getbyid(t.tabl_intf_id).getid())
+                   ,'interface-name+':Interface().getbyid(t.tabl_intf_id).getname()
+                   ,'interface-id+':jsguid(Modelelemtype.INTF, Interface().getbyid(t.tabl_intf_id).getid())
                    ,'prefix':t.tabl_prefix
                    ,'descr':t.tabl_descr
                 , 'uc': t.tabl_uc
                 , 'dc': t.tabl_dc
                 , 'um': t.tabl_um
                 , 'dm': t.tabl_dm
-                 ,'columns':[jsguid(Modelelemtype.COLU, c.colu_id) for c in t.getcolumns()]
+                 ,'columns+':[jsguid(Modelelemtype.COLU, c.colu_id) for c in t.getcolumns()]
                 , 'userdefprops': {
                     th[0]: {gr[1]: {u.udpr_name: Userdefpropvalue.udpvalue(pudprid=u.udpr_id, pmodeid=t.tabl_id)
                                   for u in Userdefprop.getudps(ptheme=th[0], pgroup=gr[1], pmeltname=Modelelemtype.TABL)}
@@ -22,8 +22,10 @@ def tables2js():
                     ,'entitiesmapped': [jsguid(Modelelemtype.ENTI, e.enti_id) for e in
                              TablEntiMap.getentilist(ptablid=t.tabl_id)]
               , 'sourceref': Externalref.getsrcinfo(pmodeid=t.tabl_id)
-               , 'refindocuments': [jsguid(Modelelemtype.DOCU, d[0]) for d in Document.getrefdoculist(pid=t.tabl_id)]
-                } for t in Table.select()
+               , 'refindocuments+': [jsguid(Modelelemtype.DOCU, d[0]) for d in Document.getrefdoculist(pid=t.tabl_id)]
+                    , 'refbyorgunits+': [jsguid(Modelelemtype.ORGU, d[0]) for d in
+                                         OragnisationalUnit.getreforgulist(pid=t.tabl_id)]
+                 } for t in Table.select()
             }
     return tabs
 

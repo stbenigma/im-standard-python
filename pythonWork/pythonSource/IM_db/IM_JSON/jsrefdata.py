@@ -10,7 +10,7 @@ def physicalunits2js():
                                         , 'dc': p.phyu_dc
                                         , 'um': p.phyu_um
                                         , 'dm': p.phyu_dm
-                                        ,'refindomains': [jsguid(Modelelemtype.DOMA, d.doma_id)
+                                        ,'refindomains+': [jsguid(Modelelemtype.DOMA, d.doma_id)
                                                             for d in Domains.select(pwhere="doma_num_phyu_id ={}".format(p.phyu_id))]
                                          }
                 for p in PhysicalUnit.select()
@@ -48,9 +48,9 @@ def storageformats2js():
                                         , 'dc': s.stfo_dc
                                         , 'um': s.stfo_um
                                         , 'dm': s.stfo_dm
-                                        ,'refindocuments': [jsguid(Modelelemtype.DOCU, d.docu_id)
+                                        ,'refindocuments+': [jsguid(Modelelemtype.DOCU, d.docu_id)
                                                             for d in Document.select(pwhere="docu_stfo_id ={}".format(s.stfo_id))]
-                                        , 'refindomains': [jsguid(Modelelemtype.DOMA, d.doma_id)
+                                        , 'refindomains+': [jsguid(Modelelemtype.DOMA, d.doma_id)
                                                 for d in Domain.select(pwhere="doma_bin_stfo_id ={}".format(s.stfo_id))]
                                          }
                 for s in Storageformat.select()

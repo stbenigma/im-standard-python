@@ -22,7 +22,7 @@ def udps2js():
     udp = {jsguid ('UDPR',u.udpr_id) : {'theme': u.udpr_theme
                                        ,'group': u.udpr_group
                                        ,'name':u.udpr_name
-                                       ,'usedfor' : [Modelelemtype.getshortname(metp.metp_melt_id)
+                                       ,'usedfor+' : [Modelelemtype.getshortname(metp.metp_melt_id)
                                                      for metp in ModelelementProperty().select(pwhere="METP_UDPR_ID = {}".format(u.udpr_id))]
                                        }
                  for u in Userdefprop().select()
@@ -59,10 +59,10 @@ def documents2js():
             'name': d.docu_name
             , 'reference': d.docu_reference
             , 'content': d.docu_content
-            , 'format': None if d.docu_stfo_id is None else Storageformat().getbyid(d.docu_stfo_id).stfo_name
+            , 'format+': None if d.docu_stfo_id is None else Storageformat().getbyid(d.docu_stfo_id).stfo_name
             , 'formatid': None if d.docu_stfo_id is None else jsguid(Modelelemtype.STFO,d.docu_stfo_id)
             , 'parent': None if d.docu_docu_id is None else jsguid(Modelelemtype.DOCU, d.docu_docu_id)
-            ,'referencecnt': len(d.getrefmodes())
+            ,'referencecnt+': len(d.getrefmodes())
             , 'references': {
                             'entities': [jsguid(m.mode_type, m.mode_id) for m in d.getrefmodes(pmelttype=Modelelemtype.ENTI)]
                             ,'attributes': [jsguid(m.mode_type, m.mode_id) for m in d.getrefmodes(pmelttype=Modelelemtype.ATTR)]
@@ -125,7 +125,7 @@ def orgUnits2js():
             , 'telefon': o.orgu_telefon
             , 'address': o.orgu_address
             , 'parent': None if o.orgu_orgu_id is None else jsguid(Modelelemtype.ORGU, o.orgu_orgu_id)
-            ,'referencecnt': len(o.getrefmodes())
+            ,'referencecnt+': len(o.getrefmodes())
             , 'references': {
                             'entities': [jsguid(m.mode_type, m.mode_id) for m in o.getrefmodes(pmelttype=Modelelemtype.ENTI)]
                             ,'attributes': [jsguid(m.mode_type, m.mode_id) for m in o.getrefmodes(pmelttype=Modelelemtype.ATTR)]

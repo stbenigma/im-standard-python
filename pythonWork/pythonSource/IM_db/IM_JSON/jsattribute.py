@@ -21,26 +21,26 @@ def defattr(attr):
         , 'um': attr.attr_um
         , 'dm': attr.attr_dm
         , 'sourceref': Externalref.getsrcinfo(pmodeid=attr.attr_id)
-        , 'keys': [jsguid(Modelelemtype.KEYS, k.keys_id) for k in attr.getkeys()]
-        , 'refindocuments': [jsguid(Modelelemtype.DOCU, d[0]) for d in Document.getrefdoculist(pid=attr.attr_id)]
-        , 'refbyorgunits': [jsguid(Modelelemtype.ORGU, d[0]) for d in OragnisationalUnit.getreforgulist(pid=attr.attr_id)]
+        , 'keys+': [jsguid(Modelelemtype.KEYS, k.keys_id) for k in attr.getkeys()]
+        , 'refindocuments+': [jsguid(Modelelemtype.DOCU, d[0]) for d in Document.getrefdoculist(pid=attr.attr_id)]
+        , 'refbyorgunits+': [jsguid(Modelelemtype.ORGU, d[0]) for d in OragnisationalUnit.getreforgulist(pid=attr.attr_id)]
         , 'userdefprops': {t[0]: {g[1]: {u.udpr_name: Userdefpropvalue.udpvalue(pudprid=u.udpr_id, pmodeid=attr.attr_id)
                                         for u in
                                         Userdefprop.getudps(ptheme=t[0], pgroup=g[1], pmeltname=Modelelemtype.ATTR)}
                                  for g in Userdefprop.grouplist(pudptheme=t[0], pmelttype=Modelelemtype.ATTR)}
                           for t in Userdefprop.themelist(pmelttype=Modelelemtype.ATTR)}
-        , 'columnsmapped': {
+        , 'columnsmapped+': {
             jsguid(Modelelemtype.INTF,s.getid()): [jsguid(Modelelemtype.COLU, c.colu_id) for c in
                           AttrTransf.getcolulist(pattrid=attr.attr_id, pintfid=s.getid())]
             for s in Interface.getmapped(pattrid=attr.attr_id)}
-        , 'diagrams': [jsguid(Modelelemtype.DIAG, d.diag_id) for d in Diagram.getdiagrams(pmodeid=attr.attr_id)]
+        , 'diagrams+': [jsguid(Modelelemtype.DIAG, d.diag_id) for d in Diagram.getdiagrams(pmodeid=attr.attr_id)]
               }
     doma = Domain().getbyid(attr.attr_doma_id)
-    retval['basedatatype'] = None if doma.doma_daty_id is None else Datatype().getbyid(
+    retval['basedatatype+'] = None if doma.doma_daty_id is None else Datatype().getbyid(
         doma.doma_daty_id).daty_name
-    retval['type'] = doma.doma_type
+    retval['type+'] = doma.doma_type
     if (Domain().getbyid(attr.attr_doma_id).doma_type == Domain.GRP):
-        retval['memberattrs'] = domaingroupmembers(pdomaid=attr.attr_doma_id)
+        retval['memberattrs+'] = domaingroupmembers(pdomaid=attr.attr_doma_id)
     return retval
 
 

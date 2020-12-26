@@ -104,15 +104,15 @@ def transfertables(pschndirec):
 def do1schnittstelle(pfilename):
     global globalschnid
     intfxml = ET.parse(pfilename).getroot()
-    intf=interface.Interface(psrcname=Externalref.SOURCE_ODM, psrcid=transferModel.findField(intfxml, 'id'))
+    intf = interface.Interface(psrcname=Externalref.SOURCE_ODM, psrcid=transferModel.findField(intfxml, 'id'))
     intf.intf_name = transferModel.findField(intfxml, 'name')
+    intf.intf_descr = transferModel.findText(intfxml, 'comment')
     intf.intf_uc = transferModel.findText(intfxml, 'createdBy')
     intf.intf_dc = transferModel.findText(intfxml, 'createdTime')
     intf.insert()
 
     #Dokumente an dieser Interface
-    documents = transferModel.getdokuref(pelem=intfxml, pstruct=True)
-    ModelelemDocu.insertdocuref(pdocguidlist= documents, pmodeid    = intf.intf_id)
+    ModelelemDocu.insertdocuref(pdocguidlist= transferModel.getdokuref(pelem=intfxml, pstruct=True), pmodeid    = intf.intf_id)
     ModelelemOrgu.insertorguref(porguidlist=transferModel.getpartyref(pelem=intfxml), pmodeid=intf.intf_id)
     #Tabellen
     filename, file_extension = os.path.splitext(pfilename)

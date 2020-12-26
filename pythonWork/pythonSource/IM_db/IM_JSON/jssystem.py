@@ -4,16 +4,16 @@ from IM_OBJECTS import Interface,Modelelemtype,Table,OragnisationalUnit,Document
 
 def systems2js():
     intfs = {jsguid(Modelelemtype.INTF,i.intf_id) : {'name':i.intf_name
-                                                    ,'interface-id':jsguid(Modelelemtype.INTF,i.intf_id)
+                                                    ,'interface-id+':jsguid(Modelelemtype.INTF,i.intf_id)
                                                     ,'descr':i.intf_descr
                                                      ,'uc' : i.intf_uc
                                                     , 'dc': i.intf_dc
                                                     , 'um': i.intf_um
                                                     , 'dm': i.intf_dm
                                                     , 'sourceref': Externalref.getsrcinfo(pmodeid=i.intf_id)
-                                                ,'refindocuments': [jsguid(Modelelemtype.DOCU, d[0]) for d in Document.getrefdoculist(pid=i.intf_id)]
-                                        , 'refbyorgunits': [jsguid(Modelelemtype.ORGU, d[0]) for d in OragnisationalUnit.getreforgulist(pid=i.intf_id)]
-                                        ,'tables' : [jsguid(Modelelemtype.TABL,t.tabl_id) for t in Table.selectbyschnid(pschnid=i.intf_id)]
+                                                ,'refindocuments+': [jsguid(Modelelemtype.DOCU, d[0]) for d in Document.getrefdoculist(pid=i.intf_id)]
+                                        , 'refbyorgunits+': [jsguid(Modelelemtype.ORGU, d[0]) for d in OragnisationalUnit.getreforgulist(pid=i.intf_id)]
+                                        ,'tables+' : [jsguid(Modelelemtype.TABL,t.tabl_id) for t in Table.selectbyschnid(pschnid=i.intf_id)]
                                                     }
              for i in Interface.select()}
     return intfs

@@ -17,7 +17,7 @@ def relation(prela):
             , 'maptype': prela.rela_maptype_from_to
             , 'hist': Boolean.str2bool(prela.rela_hist_from_to)
             , 'mandatory': Boolean.str2bool(prela.rela_mandatory_from_to)
-            , 'cardstr': prela.to_cardstr()
+            , 'cardstr+': prela.to_cardstr()
         }
         , 'to-from': {
             'enti': jsguid(Modelelemtype.ENTI, prela.rela_enti_id_to)
@@ -26,9 +26,9 @@ def relation(prela):
             , 'maptype': prela.rela_maptype_to_from
             , 'hist': Boolean.str2bool(prela.rela_hist_to_from)
             , 'mandatory': Boolean.str2bool(prela.rela_mandatory_to_from)
-            , 'cardstr': prela.from_cardstr()
+            , 'cardstr+': prela.from_cardstr()
         }
-        , 'isinkeys': [jsguid(Modelelemtype.KEYS, k.keys_id) for k in keys]
+        , 'isinkeys+': [jsguid(Modelelemtype.KEYS, k.keys_id) for k in keys]
         , 'sourceref': Externalref.getsrcinfo(pmodeid=prela.rela_id)
         , 'uc': prela.rela_uc
         , 'dc': prela.rela_dc
