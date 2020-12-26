@@ -27,9 +27,6 @@ def erstelleInfra():
 
     Relation.createtable()
 
-    Userdefprop.createtable()
-    Userdefpropvalue.createtable()
-
     Modelelemtype.createtable()
     Modelelement.createtable()
     Externalref.createtable()
@@ -46,6 +43,10 @@ def erstelleInfra():
     Elementrep.createtable()
     Relationrep.createtable()
     Linesegment.createtable()
+
+    Userdefprop.createtable()
+    Userdefpropvalue.createtable()
+
 
     Project.createtable()
 

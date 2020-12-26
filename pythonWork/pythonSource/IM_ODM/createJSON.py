@@ -1,13 +1,8 @@
 # -*- coding: latin-1 -*-
 import json
-import math
-
+from datetime import datetime
 from IM_DB import dbConnect, parameters, logmessages
-from IM_OBJECTS import *
-from mystring import nvl
-from IM_JSON import sql2json
-
-EMPTYJSONFILE = 'emptyjsonmodel'
+from IM_JSON import sql2json,printJSON,jsonfilename,make_hash
 
 def getJSONfile(pfilename):
     with open(pfilename, 'r') as handle:
@@ -15,30 +10,20 @@ def getJSONfile(pfilename):
     return model
 
 
-
-
-anker = lambda n, i: None if i is None else n + str(i)
-
-def jsonfilename(pfilename):
-    return pfilename + '.json'
-
-emptystruct = lambda x: x == EMPTYJSONFILE
-
-def printJSON(pmodel, pfilepath, pfilename):
-    jsonfile = open(pfilepath + jsonfilename(pfilename), 'w')
-    jsonfile.write(json.dumps(pmodel, indent=3, sort_keys=False))
-    jsonfile.close()
-
 def createJSON(pfilepath, pfilename):
-    if pfilename is not None:
-        dbConnect.openDB(parameters.dbFilePath(), fks='ON')
+    dbConnect.openDB(parameters.dbFilePath(), fks='ON')
 
-    jsmodel = sql2json(pmodelname=parameters.odmModelName(),pwithdata=not emptystruct(EMPTYJSONFILE))
+    jsmodel = sql2json(pmodelname=parameters.odmModelName())
+
+    modelhash = make_hash(jsmodel)
+    jsmodel['_imprint_'] = {"database" : dbConnect.getDBname()
+                        , "datetime": str(datetime.today())
+                        ,"hashvalue": modelhash
+                        ,"comment": "Entries ending with + represent denormalized data and are not checked for consistency while reading back"}
+
     printJSON(pmodel=jsmodel, pfilename=pfilename, pfilepath=pfilepath)
-    if (not emptystruct(EMPTYJSONFILE)):
-        dbConnect.myDbConn.close()
+    dbConnect.myDbConn.close()
 
-# createJSON
 def json2xml(json_obj, line_padding=""):
     result_list = list()
 
@@ -64,29 +49,17 @@ def json2xml(json_obj, line_padding=""):
 #json2xml
 
 def main(param1):
-    if emptystruct(param1):
-        filename = param1
-        filepath = '~/Downloads/'
-    else:
-        parameters.initparam(p_callarg=param1)
-        logmessages.initlog('createJSON')
-        filename = parameters.odmModelName()
-        filepath = parameters.dbDirect()
-    # fi
+    parameters.initparam(p_callarg=param1)
+    logmessages.initlog('createJSON')
+    filename = parameters.odmModelName()
+    filepath = parameters.dbDirect()
     try:
         createJSON(pfilepath=filepath, pfilename=filename)
     finally:
-        if emptystruct:
-            print("JSON file {} for model {} created"
-                  .format(filepath + jsonfilename(filename), EMPTYJSONFILE))
-        else:
-            logmessages.showmessages("JSON file {} for model {} created"
-                                     .format(filepath + jsonfilename(filename), parameters.odmModelName()))
-
-    #model = getJSONfile(filepath + jsonfilename(filename))
-    #print (json2xml(model))
+        logmessages.showmessages("JSON file {} for model {} created"
+                                    .format(filepath + jsonfilename(filename), parameters.odmModelName()))
 #  main
 
 if __name__ == '__main__':
     import sys
-    main(param1=EMPTYJSONFILE if len(sys.argv) <= 1 else sys.argv[1])
+    main(param1=sys.argv[1])

@@ -18,6 +18,8 @@ class Modelelemtype(Baseobject):
     DATY: str = 'DATY'
     DGRM: str = 'DGRM'
     DIAG: str = 'DIAG'
+    PHYU: str = 'PHYU'
+    STFO: str = 'STFO'
 
     _tablename: str = 'modelelem_type'
     _prefix: str = 'melt'
@@ -122,10 +124,11 @@ class Modelelement(Baseobject):
     _prefix: str = 'mode'
     _columnlist: list = []
 
-    def __init__(self, pmeltshortname=None):
+    def __init__(self, pid=None,pmeltshortname=None):
         if (len(Modelelement._columnlist) == 0): Modelelement._columnlist = Baseobject.gettablecolumns(Modelelement._tablename)
         super().__init__(tablename=Modelelement._tablename, prefix=Modelelement._prefix)
         self.mode_type = pmeltshortname
+        self.mode_id = pid
         if pmeltshortname is not None: self.mode_melt_id = Modelelemtype.getidbyshortname(pshortname=pmeltshortname)
     # __init__
 

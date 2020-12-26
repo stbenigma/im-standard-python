@@ -82,7 +82,7 @@ class Baseobject:
 
     def insert(self, pdoerrhdlng=True):
         if self.__modelemtype is not None:
-            locid = Modelelement(self.__modelemtype).insert()
+            locid = Modelelement(pid=self.getid(),pmeltshortname=self.__modelemtype).insert()
             self.setid(locid)
 
         lsql = """insert into {} ({}) values ({})
@@ -157,7 +157,6 @@ class Baseobject:
 
     @staticmethod
     def createtable(ptablename, psql):
-        dbDDL.dropTable(ptablename);
         dbDDL.createTable(psql)
     # createtable
 

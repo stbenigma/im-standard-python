@@ -1357,15 +1357,15 @@ def do1Orgunit(fileName):
 
     tree = ET.parse(fileName)
     root = tree.getroot()
-    id =findField(root, 'id')
-    orgu = OragnisationalUnit(psrcname=Externalref.SOURCE_ODM,psrcid=id)
+    srcid =findField(root, 'id')
+    orgu = OragnisationalUnit(psrcname=Externalref.SOURCE_ODM,psrcid=srcid)
     orgu.orgu_name = findField(root, "name")
     orgu.orgu_uc = findText(root, "createdBy")
     orgu.orgu_dc = findText(root, "createdTime")
     orgu.orgu_descr = findText(root, "comment")
     pd = findText(root, 'parentParty')
     if (pd is not None and pd != ''):
-        orguparents [id] = pd
+        orguparents [srcid] = pd
     conts = root.findall('contacts/contact')
     for cont in conts:
         orgu.orgu_mail = contacts[cont.text]['email']
@@ -1464,6 +1464,7 @@ def transferODMModel():
     transferKeys()
     transferdiagramme()
     transferRelational.transfer()
+    Datatype.deleteunused()
     Column.fillextid()
     removeemptyudp()
     filllanguages()

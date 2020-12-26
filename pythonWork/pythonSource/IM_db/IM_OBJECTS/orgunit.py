@@ -65,17 +65,31 @@ CREATE TABLE organisationalunits(
         return Baseobject.select(pclass=OragnisationalUnit
                                  , pwhere=pwhere, porderby=porderby)
     @staticmethod
+    def updparent(pchildid, pparentid):
+        if pchildid is not None and pparentid is not None:
+           dbDML.exec("""
+            update organisationalunits as ou_C
+            set orgu_orgu_ID = {}
+            where orgu_id = {}
+            """.format(pparentid, pchildid))
+
+    @staticmethod
+    def updparentpairs(pparents):
+        """pparentpairs = [(orgu_id, parent_id),]"""
+        for val in pparents:
+            # assume, exactly one child and one parent id
+            childid,parentid = val[0],val[1]
+            OragnisationalUnit.updparent(pchildid=childid,pparentid=parentid)
+    #updparents
+
+    @staticmethod
     def updparents(psrcname,pparents):
+        """pparents = [(orgu_id, parent_id),]"""
         for key,val in pparents.items():
             # assume, exactly one child and one parent id
             childid = Externalref.getmodeid(psrcname=psrcname,psrcid=key)
             parentid = Externalref.getmodeid(psrcname=psrcname,psrcid=val)
-            if childid is not None and parentid is not None:
-                dbDML.exec("""
-                    update organisationalunits as ou_C
-                    set orgu_orgu_ID = {}
-                    where orgu_id = {}
-                    """.format(parentid,childid))
+            OragnisationalUnit.updparent(pchildid=childid,pparentid=parentid)
     #updparents
 
     def getrefmodes(self,pmelttype=None):
@@ -119,14 +133,15 @@ class ModelelemOrgu(Baseobject):
     _prefix:str = 'moou'
     _columnlist:list = []
 
-    def __init__(self):
+    def __init__(self,pmodeid=None,porguid = None):
         if (len(ModelelemOrgu._columnlist) == 0): ModelelemOrgu._columnlist = Baseobject.gettablecolumns(ModelelemOrgu._tablename)
         super().__init__(tablename=self._tablename, prefix=self._prefix)
+        self.moou_mode_id = pmodeid
+        self.moou_orgu_id = porguid
 
     @staticmethod
     def createtable():
-        Baseobject.createtable(ptablename=ModelelemOrgu._tablename
-                               , psql="""
+        sql = """
 CREATE TABLE mode_orgu(
     moou_id       integer primary key,
     moou_mode_id  integer NOT NULL,
@@ -139,6 +154,8 @@ CREATE TABLE mode_orgu(
 			  ON DELETE CASCADE
 )
 """
+        Baseobject.createtable(ptablename=ModelelemOrgu._tablename
+                               , psql=sql
         )
 
     @staticmethod

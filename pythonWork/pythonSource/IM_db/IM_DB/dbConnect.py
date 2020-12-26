@@ -20,3 +20,13 @@ def openDB(p_filepath,fks='OFF'):
         raise exp
     myDbConn.execute("PRAGMA foreign_keys = {}".format(fks))
 
+def closeDB():
+    myDbConn.close()
+
+def getDBname():
+    global myDbConn
+    cursor = myDbConn.cursor()
+    cursor.execute("PRAGMA database_list;")
+    curr_table = cursor.fetchall()
+    return curr_table[0][2]
+

@@ -101,6 +101,7 @@ def diagrams2js(pmodelname):
         }
         for d in Diagram.select()}
     return diags
+
 def defarcs(parc,pdiagid):
     arc = {}
     arcselem = parc.getarcselem(pdiagid=pdiagid)
@@ -205,3 +206,14 @@ def defarcs(parc,pdiagid):
     arc['line'] = arcline
     return arc
 #defarcs
+
+def diagrams2sql(pmodel):
+    for jid,jelem in pmodel.jsmodel['diagrams'].items():
+        pass
+        #inssourceref(pmodel = pmodel,pmodeid=jsguid2id(jid), psources=jelem["sourceref"])
+    return
+
+"""transfer references and subtypes"""
+def diagrefs2sql(pmodel):
+    #    insudp(pmodeid=entiid, pudps=jenti["userdefprop"])
+    return

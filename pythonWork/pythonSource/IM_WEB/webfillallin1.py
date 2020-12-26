@@ -19,7 +19,7 @@ def main(pdirec, plang):
         Languagetext.reportLang(plang.lower())
     logmessages.initlog('AllIn1')
 
-    dbConnect.openDB(p_filepath="file::memory:?cache=shared");
+    dbConnect.openDB(p_filepath=":memory:",fks='ON');
     dbErstelleTables.erstelleInfra();
     fillDB.filldbmain(pinmemory=True)
     printHTML.setWebDirec(p_webdirec=None)
