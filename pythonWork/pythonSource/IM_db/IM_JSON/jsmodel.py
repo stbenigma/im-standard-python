@@ -4,7 +4,34 @@ from IM_JSON import *
 
 def lastupd(pmodel):
     dm = lambda  objs: max('0' if val['dm'] is None else val['dm'] for val in pmodel[objs].values())
-    return max(dm( 'attributes'), dm( 'domains'), dm( 'entities'))
+    return max(dm( 'attributes'), dm( 'domains'), dm( 'entities') , dm('relations')
+    , dm('arcs')
+    , dm('keys')
+    , dm('orgunits')
+    , dm('diagrams')
+    , dm('systems')
+    , dm('tables')
+    , dm('columns'),dm('datatypes'),dm('storageformats')
+)
+
+import copy
+def make_hash(pmodel):
+
+  """
+  Makes a hash from a dictionary, list, tuple or set to any level, that contains
+  only other hashable types (including any lists, tuples, sets, and
+  dictionaries).
+  """
+
+  if isinstance(pmodel, (set, tuple, list)):
+    return tuple([make_hash(e) for e in pmodel])
+  elif not isinstance(pmodel, dict):
+    return hash(pmodel)
+
+  new_model = copy.deepcopy(pmodel)
+  for k, v in new_model.items():
+    new_model[k] = make_hash(v)
+  return hash(tuple(frozenset(sorted(new_model.items()))))
 
 def sql2json(pmodelname):
     jsmodel = {}
@@ -22,7 +49,7 @@ def sql2json(pmodelname):
     jsmodel['systems'] = systems2js()
     jsmodel['tables'] = tables2js()
     jsmodel['columns'] = columns2js()
-    jsmodel['userdefprop'] = udps2js()
+    jsmodel['userdefprops'] = udps2js()
     jsmodel['physicalunits'] = physicalunits2js()
     jsmodel['datatypes'] = datatypes2js()
     jsmodel['storageformats'] = storageformats2js()

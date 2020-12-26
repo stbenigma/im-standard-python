@@ -916,7 +916,7 @@ def printcontentmapping(ptheme=None):
 def printUDP(pelem):
     startwritten = False
 
-    for udptheme,udpval in pelem['userdefprop'].items():
+    for udptheme,udpval in pelem['userdefprops'].items():
         """theme,group"""
 
         """translations are not printed"""

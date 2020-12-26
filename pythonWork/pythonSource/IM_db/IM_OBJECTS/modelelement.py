@@ -18,6 +18,8 @@ class Modelelemtype(Baseobject):
     DATY: str = 'DATY'
     DGRM: str = 'DGRM'
     DIAG: str = 'DIAG'
+    PHYU: str = 'PHYU'
+    STFO: str = 'STFO'
 
     _tablename: str = 'modelelem_type'
     _prefix: str = 'melt'

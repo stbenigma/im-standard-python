@@ -82,7 +82,7 @@ def domain2js(doma):
             retval['unitid'] = None
         else:
             retval['unit'] = PhysicalUnit().getbyid(doma.doma_num_phyu_id).phyu_name
-            retval['unitid'] = jsguid('PHYU',doma.doma_num_phyu_id)
+            retval['unitid'] = jsguid(Modelelemtype.PHYU,doma.doma_num_phyu_id)
     elif doma.doma_type == Domain.TXT:
         retval['maxlng'] = doma.doma_txt_maxlng
         retval['syntaxrule'] = doma.doma_txt_syntaxrule
@@ -98,7 +98,7 @@ def domain2js(doma):
         retval['formatid'] = None
         if doma.doma_bin_stfo_id is not None:
             retval['format'] = Storageformat().getbyid(doma.doma_bin_stfo_id).stfo_name
-            retval['formatid'] = jsguid('STFO',doma.doma_bin_stfo_id)
+            retval['formatid'] = jsguid(Modelelemtype.STFO,doma.doma_bin_stfo_id)
     elif doma.doma_type == Domain.GRP:
         retval['elements'] = domaingroupmembers(doma.doma_id)
     elif doma.doma_type == Domain.LOV:

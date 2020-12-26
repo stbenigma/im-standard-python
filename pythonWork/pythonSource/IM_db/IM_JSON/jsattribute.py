@@ -24,7 +24,7 @@ def defattr(attr):
         , 'keys': [jsguid(Modelelemtype.KEYS, k.keys_id) for k in attr.getkeys()]
         , 'refindocuments': [jsguid(Modelelemtype.DOCU, d[0]) for d in Document.getrefdoculist(pid=attr.attr_id)]
         , 'refbyorgunits': [jsguid(Modelelemtype.ORGU, d[0]) for d in OragnisationalUnit.getreforgulist(pid=attr.attr_id)]
-        , 'userdefprop': {t[0]: {g[1]: {u.udpr_name: Userdefpropvalue.udpvalue(pudprid=u.udpr_id, pmodeid=attr.attr_id)
+        , 'userdefprops': {t[0]: {g[1]: {u.udpr_name: Userdefpropvalue.udpvalue(pudprid=u.udpr_id, pmodeid=attr.attr_id)
                                         for u in
                                         Userdefprop.getudps(ptheme=t[0], pgroup=g[1], pmeltname=Modelelemtype.ATTR)}
                                  for g in Userdefprop.grouplist(pudptheme=t[0], pmelttype=Modelelemtype.ATTR)}
@@ -126,7 +126,7 @@ def attrrefs2sql(pmodel):
          "keys": [],
          "refindocuments": [],
          "refbyorgunits": [],
-         "userdefprop": {
+         "userdefprops": {
             "datamapping": {
                "DHL": {
                   "DHL AttrName": null,

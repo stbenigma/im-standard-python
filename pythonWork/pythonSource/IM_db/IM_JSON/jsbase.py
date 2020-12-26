@@ -1,5 +1,8 @@
 import json
 import sqlite3
+from IM_OBJECTS import Userdefpropvalue,Userdefprop
+from mystring import nvl
+
 
 """creates a unique ID as reference in the json file
    <telemtype><elemid> """
@@ -84,4 +87,28 @@ class JSModel:
         self.incwrncnt()
     # markwarning
 
-
+def insudps(pmodel:JSModel,pmodeid,pudps):
+    if pudps is None: return
+    """ "userdefprop": {
+            "-theme-": {
+                "-group-": {
+                    "PENTA TabName": null
+                },
+            },
+        },
+    """
+    for theme,jtheme in pudps.items():
+        for group,jgroup in jtheme.items():
+            for udpname,udpval in jgroup.items():
+                udpr = Userdefprop.getbyname(udpname)
+                if ((nvl(udpr.udpr_theme) != nvl(theme)) or (nvl(udpr.udpr_group) != nvl(group))):
+                    pmodel.markerror(pmsg="User defined property has unknown theme or group",pelemstr="Theme '{}', group '{}'".format(theme,group))
+                    continue
+                udpv = Userdefpropvalue(pmodeid=pmodeid,pudprid=udpr,pvalue=udpval)
+                try:
+                    udpv.insert()
+                except Exception as err:
+                    pmodel.markerror(pmsg=err, pelemstr=udpv.tostring())
+            #for
+        #for
+    #for

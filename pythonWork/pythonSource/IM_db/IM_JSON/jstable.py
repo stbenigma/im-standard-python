@@ -13,7 +13,7 @@ def tables2js():
                 , 'um': t.tabl_um
                 , 'dm': t.tabl_dm
                  ,'columns':[jsguid(Modelelemtype.COLU, c.colu_id) for c in t.getcolumns()]
-                , 'userdefprop': {
+                , 'userdefprops': {
                     th[0]: {gr[1]: {u.udpr_name: Userdefpropvalue.udpvalue(pudprid=u.udpr_id, pmodeid=t.tabl_id)
                                   for u in Userdefprop.getudps(ptheme=th[0], pgroup=gr[1], pmeltname=Modelelemtype.TABL)}
                            for gr in Userdefprop.grouplist(pudptheme=th[0], pmelttype=Modelelemtype.TABL)}

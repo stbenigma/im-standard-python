@@ -39,27 +39,6 @@ def warning(pmsg):
     print("WARNING: {}".format(pmsg))
     warncnt += 1
 
-def insudp(pmodeid,pudps):
-    if pudps is None: return
-    """ "userdefprop": {
-            "-file-": {
-                "-group-": {
-                    "PENTA TabName": null
-                },
-            },
-        },
-    """
-    for file,jtheme in pudps.items():
-        for group,judps in jtheme.items():
-            for udpname,udpval in judps.items():
-                udpv = Userdefpropvalue(pmodeid=pmodeid,pudprid=Userdefprop.getbyname(udpname),pvalue=udpval)
-                try:
-                    udpv.insert()
-                except Exception as err:
-                    error(pmsg=err, pelem=udpv.tostring())
-            #for
-        #for
-    #for
 
 nofunc = lambda p : None
 #json-key: (baseobjectload, referencesload)
@@ -71,7 +50,7 @@ transferprocs = {
 ,'storageformats' : (5,storageformats2sql,stforefs2sql)
 ,'documents': (6,documents2sql, docurefs2sql)
 ,'orgunits': (7,orgunits2sql, orgurefs2sql)
-,'userdefprop': (8,udps2sql, udprefs2sql)
+,'userdefprops': (8,udps2sql, udprefs2sql)
 ,'entities': (10,entities2sql,entirefs2sql)
 ,'domains': (11,domains2sql, domarefs2sql)
 ,'attributes': (12,attributes2sql, attrrefs2sql)
@@ -125,6 +104,7 @@ def main(pjsonin, pdbout):
     if True:
         controljson = sql2json(pmodelname=jsmodel.jsmodel['model']['name'])
         printJSON(pmodel=controljson, pfilename='checkjson', pfilepath='/Users/stb/Downloads/')
+        print ('/Users/stb/Downloads/checkjson.json created')
 
     dbConnect.closeDB()
 # main

@@ -3,7 +3,7 @@ from IM_JSON import jsguid,inssourceref,jsguid2id,JSModel
 from IM_OBJECTS import Modelelemtype,PhysicalUnit,Document,Storageformat,Datatype,Domain,Externalref
 
 def physicalunits2js():
-    phyus = {jsguid('PHYU',p.phyu_id) : {'name':p.phyu_name
+    phyus = {jsguid(Modelelemtype.PHYU,p.phyu_id) : {'name':p.phyu_name
                                         ,'si-unit': p.phyu_si_unit
                                         ,'descr' : p.phyu_descr
                                         , 'uc': p.phyu_uc
@@ -42,7 +42,7 @@ def phyurefs2sql(pmodel:JSModel):
     return
 
 def storageformats2js():
-    stfos = {jsguid('STFO',s.stfo_id) : {'name':s.stfo_name
+    stfos = {jsguid(Modelelemtype.STFO,s.stfo_id) : {'name':s.stfo_name
                                         ,'descr' : s.stfo_descr
                                         , 'uc': s.stfo_uc
                                         , 'dc': s.stfo_dc

@@ -30,7 +30,7 @@ def udps2js():
     return udp
 
 def udps2sql(pmodel:JSModel):
-    for udpranker,judp in pmodel.jsmodel['userdefprop'].items():
+    for udpranker,judp in pmodel.jsmodel['userdefprops'].items():
         udpr = Userdefprop(ptheme=judp['theme'],pgroup=judp['group'],pname=judp['name'])
         udpr.udpr_id = jsguid2id(udpranker)
         try:
@@ -49,7 +49,7 @@ def udps2sql(pmodel:JSModel):
 
 """transfer references and subtypes"""
 def udprefs2sql(pmodel):
-    #    insudp(pmodeid=entiid, pudps=jenti["userdefprop"])
+    #    insudp(pmodeid=entiid, pudps=jenti["userdefprops"])
     return
 
 
@@ -60,7 +60,7 @@ def documents2js():
             , 'reference': d.docu_reference
             , 'content': d.docu_content
             , 'format': None if d.docu_stfo_id is None else Storageformat().getbyid(d.docu_stfo_id).stfo_name
-            , 'formatid': None if d.docu_stfo_id is None else jsguid('STFO',d.docu_stfo_id)
+            , 'formatid': None if d.docu_stfo_id is None else jsguid(Modelelemtype.STFO,d.docu_stfo_id)
             , 'parent': None if d.docu_docu_id is None else jsguid(Modelelemtype.DOCU, d.docu_docu_id)
             ,'referencecnt': len(d.getrefmodes())
             , 'references': {

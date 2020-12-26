@@ -1,7 +1,8 @@
 # -*- coding: latin-1 -*-
 import json
+from datetime import datetime
 from IM_DB import dbConnect, parameters, logmessages
-from IM_JSON import sql2json,printJSON,jsonfilename
+from IM_JSON import sql2json,printJSON,jsonfilename,make_hash
 
 def getJSONfile(pfilename):
     with open(pfilename, 'r') as handle:
@@ -13,6 +14,13 @@ def createJSON(pfilepath, pfilename):
     dbConnect.openDB(parameters.dbFilePath(), fks='ON')
 
     jsmodel = sql2json(pmodelname=parameters.odmModelName())
+
+    modelhash = make_hash(jsmodel)
+    jsmodel['_imprint_'] = {"database" : dbConnect.getDBname()
+                        , "datetime": str(datetime.today())
+                        ,"hashvalue": modelhash
+                        ,"comment": "Entries ending with + represent denormalized data and are not checked for consistency while reading back"}
+
     printJSON(pmodel=jsmodel, pfilename=pfilename, pfilepath=pfilepath)
     dbConnect.myDbConn.close()
 

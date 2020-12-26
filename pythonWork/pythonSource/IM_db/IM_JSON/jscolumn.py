@@ -22,7 +22,7 @@ def columns2js():
         , 'dm': c.colu_dm
         , 'attributes-mapped': [jsguid(Modelelemtype.ATTR, a.attr_id) for a in
                              AttrTransf.getattrlist(pcoluid=c.colu_id)]
-        , 'userdefprop': {
+        , 'userdefprops': {
             th[0]: {gr[1]: {u.udpr_name: Userdefpropvalue.udpvalue(pudprid=u.udpr_id, pmodeid=c.colu_id)
                             for u in Userdefprop.getudps(ptheme=th[0], pgroup=gr[1], pmeltname=Modelelemtype.COLU)}
                     for gr in Userdefprop.grouplist(pudptheme=th[0], pmelttype=Modelelemtype.COLU)}
