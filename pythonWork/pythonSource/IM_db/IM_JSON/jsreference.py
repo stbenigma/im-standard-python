@@ -1,6 +1,7 @@
 
-from IM_OBJECTS import Externalref, Document, Modelelemtype, OragnisationalUnit, Storageformat,ModelelementProperty,Userdefprop,ModelelemOrgu,ModelelemDocu
+from IM_OBJECTS import Externalref, Document, Modelelemtype, OragnisationalUnit, Storageformat,ModelelementProperty,Userdefprop,ModelelemOrgu,ModelelemDocu,Userdefpropvalue
 from IM_JSON import jsguid,JSModel,jsguid2id
+from mystring import nvl
 
 def inssourceref(pmodel,pmodeid, psources):
     """   "sourceref": {
@@ -14,15 +15,14 @@ def inssourceref(pmodel,pmodeid, psources):
         except Exception as err:
             pmodel.markerror(pmsg=err, pelemstr=extr.tostring())
     # for
-
-# inssourceref
+    return
 
 
 def udps2js():
-    udp = {jsguid ('UDPR',u.udpr_id) : {'theme': u.udpr_theme
+    udp = {jsguid (Modelelemtype.UDPR,u.udpr_id) : {'theme': u.udpr_theme
                                        ,'group': u.udpr_group
                                        ,'name':u.udpr_name
-                                       ,'usedfor+' : [Modelelemtype.getshortname(metp.metp_melt_id)
+                                       ,'usedfor' : [Modelelemtype.getshortname(metp.metp_melt_id)
                                                      for metp in ModelelementProperty().select(pwhere="METP_UDPR_ID = {}".format(u.udpr_id))]
                                        }
                  for u in Userdefprop().select()
@@ -46,12 +46,49 @@ def udps2sql(pmodel:JSModel):
                 error(pmsg=err, pelem=list(judp))
         #for
     #for
+    return
 
 """transfer references and subtypes"""
 def udprefs2sql(pmodel):
     #    insudp(pmodeid=entiid, pudps=jenti["userdefprops"])
     return
 
+def udpv2js(pmodeid,pmodelemtype):
+    return {
+        th[0]: {gr[1]: {jsguid(type=Modelelemtype.UDPR,id=u.udpr_id): {'name': u.udpr_name
+                                    ,'value': Userdefpropvalue.udpvalue(pudprid=u.udpr_id, pmodeid=pmodeid)}
+                        for u in Userdefprop.getudps(ptheme=th[0], pgroup=gr[1], pmeltname=pmodelemtype)}
+                for gr in Userdefprop.grouplist(pudptheme=th[0], pmelttype=pmodelemtype)}
+        for th in Userdefprop.themelist(pmelttype=pmodelemtype)
+    }
+
+def updvs2sql(pmodel:JSModel, pmodeid, pudps):
+    if pudps is None: return
+    """ "userdefprop": {
+            "-theme-": {
+                "-group-": {
+                   UDPR1234:  {'name':"PENTA TabName", 'value': null}
+                },
+            },
+        },
+    """
+    for theme,jtheme in pudps.items():
+        for group,jgroup in jtheme.items():
+            for jid,jelem in jgroup.items():
+                udpr = Userdefprop().getbyid(jsguid2id(jid))
+                if ((nvl(udpr.udpr_theme) != nvl(theme)) or (nvl(udpr.udpr_group) != nvl(group))
+                        or (nvl(udpr.udpr_name) != nvl(jelem['name']))):
+                    pmodel.markerror(pmsg="User defined property has unknown theme or group",pelemstr="Theme '{}', group '{}'".format(theme,group))
+                    continue
+                udpv = Userdefpropvalue(pmodeid=pmodeid,pudprid=udpr.udpr_id,pvalue=jelem['value'])
+                try:
+                    udpv.insert()
+                except Exception as err:
+                    pmodel.markerror(pmsg=err, pelemstr=udpv.tostring())
+            #for
+        #for
+    #for
+    return
 
 def documents2js():
     docus = {jsguid(Modelelemtype.DOCU, d.docu_id):

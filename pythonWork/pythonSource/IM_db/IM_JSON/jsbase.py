@@ -1,6 +1,6 @@
 import json
 import sqlite3
-from IM_OBJECTS import Userdefpropvalue,Userdefprop
+from IM_OBJECTS import Userdefpropvalue,Userdefprop,Modelelemtype
 from mystring import nvl
 
 
@@ -30,6 +30,26 @@ def printJSON(pmodel, pfilepath, pfilename):
     jsonfile.close()
 
 class JSModel:
+    _elemtype2label = {
+        Modelelemtype.ENTI: 'entities'
+      ,Modelelemtype.BURU: 'businesrules'
+      ,Modelelemtype.RELA: 'relations'
+      ,Modelelemtype.ATTR: 'attributes'
+      ,Modelelemtype.DOMA: 'domains'
+      ,Modelelemtype.ORGU: 'orgunits'
+      ,Modelelemtype.TABL: 'tables'
+      ,Modelelemtype.INTF: 'systems'
+      ,Modelelemtype.COLU: 'columns'
+      ,Modelelemtype.ARCS: 'arcs'
+      ,Modelelemtype.DOCU: 'documents'
+      ,Modelelemtype.KEYS: 'keys'
+      ,Modelelemtype.DATY: 'datatypes'
+      ,Modelelemtype.DIAG: 'diagrams'
+      ,Modelelemtype.PHYU: 'physicalunits'
+      ,Modelelemtype.STFO: 'storageformats'
+      , Modelelemtype.UDPR: 'userdefprops'
+    }
+
     def __init__(self,pmodel={}):
         self.jsmodel = pmodel
         self._checked = False
@@ -40,11 +60,25 @@ class JSModel:
         self._modellanguage = None
         self.languages = {}  # langid:iso2
 
-    staticmethod
+    @staticmethod
     def readfromfile(pfilename):
         with open(pfilename, 'r') as handle:
             model = json.load(handle)
-        return JSModel(pmodel=model)
+        return JSModel(pmodel=model)\
+
+    @staticmethod
+    def elemtype2label(pelemtype):
+        try:
+            return JSModel._elemtype2label[pelemtype]
+        except:
+            return None
+
+    """return the element identified by the jsid (<type><id>) from the current jsmodel"""
+    def getbyid(self,pjsid):
+        try:
+            return self.jsmodel[JSModel.elemtype2label(jsguid2type(pjsid))][pjsid]
+        except:
+            return None
 
     def checked(self):
         return self._checked
@@ -87,28 +121,3 @@ class JSModel:
         self.incwrncnt()
     # markwarning
 
-def insudps(pmodel:JSModel,pmodeid,pudps):
-    if pudps is None: return
-    """ "userdefprop": {
-            "-theme-": {
-                "-group-": {
-                    "PENTA TabName": null
-                },
-            },
-        },
-    """
-    for theme,jtheme in pudps.items():
-        for group,jgroup in jtheme.items():
-            for udpname,udpval in jgroup.items():
-                udpr = Userdefprop.getbyname(udpname)
-                if ((nvl(udpr.udpr_theme) != nvl(theme)) or (nvl(udpr.udpr_group) != nvl(group))):
-                    pmodel.markerror(pmsg="User defined property has unknown theme or group",pelemstr="Theme '{}', group '{}'".format(theme,group))
-                    continue
-                udpv = Userdefpropvalue(pmodeid=pmodeid,pudprid=udpr,pvalue=udpval)
-                try:
-                    udpv.insert()
-                except Exception as err:
-                    pmodel.markerror(pmsg=err, pelemstr=udpv.tostring())
-            #for
-        #for
-    #for

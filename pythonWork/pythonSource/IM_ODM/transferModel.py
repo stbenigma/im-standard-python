@@ -907,7 +907,7 @@ def getpartyref(pelem):
         parties = tuple(parties)
     else:
         elemparties = pelem.findall('responsibleParties/Party')
-        if len(elemparties) > 0 :
+        if elemparties is not None:
             parties = []
             for party in elemparties:
                 # alle referenzierten Dokumente

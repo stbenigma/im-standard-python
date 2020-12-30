@@ -1,5 +1,5 @@
-from IM_JSON import jsguid,jsguid2id,inssourceref
-from IM_OBJECTS import Table,Userdefpropvalue,Userdefprop,Modelelemtype,Document,Interface,TablEntiMap,Externalref,OragnisationalUnit
+from IM_OBJECTS import Table,Modelelemtype,Document,Interface,TablEntiMap,Externalref,OragnisationalUnit
+from IM_JSON import jsguid,jsguid2id,inssourceref,udpv2js,JSModel,updvs2sql
 
 def tables2js():
     tabs = {jsguid(Modelelemtype.TABL,t.tabl_id) :
@@ -13,12 +13,7 @@ def tables2js():
                 , 'um': t.tabl_um
                 , 'dm': t.tabl_dm
                  ,'columns+':[jsguid(Modelelemtype.COLU, c.colu_id) for c in t.getcolumns()]
-                , 'userdefprops': {
-                    th[0]: {gr[1]: {u.udpr_name: Userdefpropvalue.udpvalue(pudprid=u.udpr_id, pmodeid=t.tabl_id)
-                                  for u in Userdefprop.getudps(ptheme=th[0], pgroup=gr[1], pmeltname=Modelelemtype.TABL)}
-                           for gr in Userdefprop.grouplist(pudptheme=th[0], pmelttype=Modelelemtype.TABL)}
-                    for th in Userdefprop.themelist(pmelttype=Modelelemtype.TABL)
-                }
+                , 'userdefprops': udpv2js(pmodeid=t.tabl_id,pmodelemtype=Modelelemtype.TABL)
                     ,'entitiesmapped': [jsguid(Modelelemtype.ENTI, e.enti_id) for e in
                              TablEntiMap.getentilist(ptablid=t.tabl_id)]
               , 'sourceref': Externalref.getsrcinfo(pmodeid=t.tabl_id)
@@ -29,12 +24,12 @@ def tables2js():
             }
     return tabs
 
-def tables2sql(pmodel):
+def tables2sql(pmodel:JSModel):
     for jid,jelem in pmodel.jsmodel['tables'].items():
         tabl = Table()
         tabl.tabl_name = jelem['name']
         tabl.tabl_id = jsguid2id(jid)
-        tabl.tabl_intf_id = jsguid2id(jelem['interface-id'])
+        tabl.tabl_intf_id = jsguid2id(jelem['interface-id+'])
         tabl.tabl_prefix = jelem['prefix']
         tabl.tabl_descr = jelem['descr']
         tabl.tabl_uc = jelem['uc']
@@ -50,7 +45,24 @@ def tables2sql(pmodel):
         inssourceref(pmodel = pmodel,pmodeid=jsguid2id(jid), psources=jelem["sourceref"])
     return
 
+
+def instablemapping(pmodel, ptablid=None,prelaid=None, pentities=None):
+    for jentiid in pentities:
+        tema = TablEntiMap()
+        tema.tema_tabl_id = ptablid
+        tema.tema_rela_id = prelaid
+        tema.tema_enti_id = jsguid2id(jentiid)
+        try:
+            tema.insert()
+        except Exception as err:
+            pmodel.markerror(pmsg=err, pelemstr="tablid={}, entiid={}".format(ptablid,jsguid2id(jentiid)))
+            continue
+    #for
+    return
+
 """transfer references and subtypes"""
-def tablrefs2sql(pmodel):
-    #    insudp(pmodeid=entiid, pudps=jenti["userdefprop"])
+def tablrefs2sql(pmodel:JSModel):
+    for jid,jelem in pmodel.jsmodel['tables'].items():
+        instablemapping(pmodel=pmodel, ptablid=jsguid2id(jid), pentities=jelem['entitiesmapped'])
+        updvs2sql(pmodel=pmodel,pmodeid=jsguid2id(jid), pudps=jelem["userdefprops"])
     return

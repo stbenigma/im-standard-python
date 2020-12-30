@@ -6,7 +6,7 @@ from datetime import datetime
 from IM_DB import parameters,dbConnect, dbParam,logmessages,parameters
 from IM_HTML import printHTML, printRelHTML,printdiagHTML
 from IM_OBJECTS import *
-from IM_ODM import createJSON
+from IM_JSON import JSModel,sql2json
 
 
 def formatDatentyp(w):
@@ -91,47 +91,47 @@ def printlistofcontent(plang):
     printHTML.printlistofcontenthead()
     try:
         idxlist = sorted([{'anker':key,'name': value['name'][plang]}
-                     for key,value in printHTML.model['entities'].items()]
+                     for key,value in printHTML.model.jsmodel['entities'].items()]
                      ,key=lambda val:val['name'])
     except:
-        mode=printHTML.model
-        mod = printHTML.model['entities'].values()
+        mod = printHTML.model.jsmodel['entities'].values()
+
     printHTML.printlistofcontentelement(pname='Entitäten'
                                             , plist= idxlist)
 
     idxlist = sorted([{'anker':key
                       ,'name': "{} ({})".format(value['name'][plang]
-                                        ,printHTML.model['entities'][value['entity']]['name'][plang]
+                                        ,printHTML.model.getbyid(value['entity'])['name'][plang]
                                                 if value['entity'] is not None
-                                        else printHTML.model['relations'][value['relation']]['name'])
+                                        else printHTML.model.getbyid(value['relation'])['name'])
                        }
-                     for key,value in printHTML.model['attributes'].items()]
+                     for key,value in printHTML.model.jsmodel['attributes'].items()]
                      ,key=lambda val:val['name'])
     printHTML.printlistofcontentelement(pname='Attribute', plist=idxlist)
 
-#    origindomains = {key:value for key,value in printHTML.model['domains'].items() if value['origin'] == Domain.DOMAIN}
+#    origindomains = {key:value for key,value in printHTML.model.jsmodel['domains'].items() if value['origin'] == Domain.DOMAIN}
     idxlist=sorted([{'anker':key
                     ,'name': "{} ({})".format(value['name'][plang]
-                                    ,str(len(value['usedinattrs'])
-                                         +len(value['usedincols'])))}
+                                    ,str(len(value['usedinattrs+'])
+                                         +len(value['usedincols+'])))}
                     for key,value in printHTML.origindomains().items()]
                 ,key=lambda val:val['name'])
     printHTML.printlistofcontentelement(pname='Wertebereiche', plist=idxlist)
 
     idxlist=sorted([{'anker':key
                     ,'name': "{} ({})".format(value['name']
-                                             ,str(value['referencecnt']))
+                                             ,str(value['referencecnt+']))
                      }
-                    for key,value in printHTML.model['documents'].items()
+                    for key,value in printHTML.model.jsmodel['documents'].items()
                     ]
                 ,key=lambda val:val['name'])
     printHTML.printlistofcontentelement(pname='Dokumente', plist=idxlist)
 
     idxlist=sorted([{'anker':key
                     ,'name': "{}".format(value['name']
-                                             ,str(value['referencecnt']))
+                                             ,str(value['referencecnt+']))
                      }
-                    for key,value in printHTML.model['orgunits'].items()
+                    for key,value in printHTML.model.jsmodel['orgunits'].items()
                     ]
                 ,key=lambda val:val['name'])
     printHTML.printlistofcontentelement(pname='Org. Einheiten', plist=idxlist)
@@ -141,7 +141,7 @@ def printlistofcontent(plang):
     #                                          ,str(len(value['referencedfrom']))
     #                                         )
     #                  }
-    #                 for key,value in printHTML.model['documents'].items()
+    #                 for key,value in printHTML.model.jsmodel['documents'].items()
     #                 ]
     #             ,key=lambda val:val['name'])
     # printHTML.printlistofcontentelement(pname='Attribut-Mapping', plist=idxlist)
@@ -149,7 +149,7 @@ def printlistofcontent(plang):
     idxlist=sorted([{'anker':key
                     ,'name': "{}".format(value['name'])
                     }
-                    for key,value in printHTML.model['diagrams'].items()
+                    for key,value in printHTML.model.jsmodel['diagrams'].items()
                     ]
                 ,key=lambda val:val['name'])
 
@@ -158,7 +158,7 @@ def printlistofcontent(plang):
     idxlist=sorted([{'anker':key
                     ,'name': "{}".format(value['name'])
                      }
-                    for key,value in printHTML.model['systems'].items()
+                    for key,value in printHTML.model.jsmodel['systems'].items()
                     ]
                 ,key=lambda val:val['name'])
     printHTML.printlistofcontentelement(pname='Systeme', plist=idxlist,pfileonly = True)
@@ -173,7 +173,7 @@ def printcontent(pfirma,ptitel):
     printHTML.printcontentdoku()
     printHTML.printcontentorgu()
     #printHTML.printcontentmapping(ptheme=parameters.odmUDPMappingFileName())
-    printdiagHTML.printcontentdiag(plist=printHTML.model['diagrams'], plang=Languagetext.reportLang(), ptitel=ptitel)
+    printdiagHTML.printcontentdiag(plist=printHTML.model.jsmodel['diagrams'], plang=Languagetext.reportLang(), ptitel=ptitel)
     printHTML.printcontentfoot()
 #printcontent
 
@@ -203,7 +203,7 @@ def printhtmlsysfile(pfirma, pfilename, ptitel, pinfo, plogofilename,pelement):
     printHTML.closefile ();
 #printhtmlsysfile
 
-def listwebmain(pmodel,plang):
+def listwebmain(pmodel:JSModel,plang):
     dbParam.liesdefaultlang()
     printHTML.createlib()
     printHTML.copyimages()
@@ -218,7 +218,7 @@ def listwebmain(pmodel,plang):
     #fi
 
     #erstelle die Liste der HTML Files für HREF's
-    schnlist = pmodel['systems']
+    schnlist = pmodel.jsmodel['systems']
     for key,value in schnlist.items():
         printHTML.htmlfilelist[key] = value['name']+ '.html'
     printHTML.model = pmodel
@@ -264,7 +264,7 @@ def main(pdirec, plang):
     dbConnect.openDB(p_filepath= parameters.dbFilePath());
     deflang = Language.liesdeflangiso2()
     if deflang is not None : parameters.dbDefaultLang(deflang)
-    listwebmain(pmodel=createJSON.sql2json(pmodelname=parameters.odmModelName()), plang=plang)
+    listwebmain(pmodel=JSModel(sql2json(pmodelname=parameters.odmModelName(),pdbname=parameters.dbFilePath())), plang=plang)
 
     dbConnect.myDbConn.close()
 

@@ -61,6 +61,7 @@ transferprocs = {
 ,'tables': (21,tables2sql, tablrefs2sql)
 ,'columns': (22,columns2sql, colurefs2sql)
 ,'diagrams': (30,diagrams2sql, diagrefs2sql)
+,'_imprint_':(99,nofunc,nofunc)
 }
 
 def fillsql(pmodel):
@@ -101,8 +102,8 @@ def main(pjsonin, pdbout):
               .format(pjsonin, "in-memory" if pdbout is None else pdbout))
 
     #Test output
-    if True:
-        controljson = sql2json(pmodelname=jsmodel.jsmodel['model']['name'])
+    if False:
+        controljson = sql2json(pmodelname=jsmodel.jsmodel['model']['name'],pdbname=dbConnect.getDBname())
         printJSON(pmodel=controljson, pfilename='checkjson', pfilepath='/Users/stb/Downloads/')
         print ('/Users/stb/Downloads/checkjson.json created')
 

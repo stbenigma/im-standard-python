@@ -132,7 +132,7 @@ def transferschn():
 #transferschn
 
 def loeschmodell():
-    AttrTransf.delete()
+    ColAttrMap.delete()
     TablEntiMap.delete()
     Column().delete()
     Table().delete()
@@ -198,9 +198,9 @@ def doattrmapping(pcolmappings):
             continue
         #fi
 
-        colmap = AttrTransf()
+        colmap = ColAttrMap()
         colmap.coam_seq =1
-        colmap.coam_direction = AttrTransf.INBOUND
+        colmap.coam_direction = ColAttrMap.INBOUND
         colmap.coam_colu_id = colu.colu_id
         colmap.coam_attr_id = attrid
         colmap.insert()

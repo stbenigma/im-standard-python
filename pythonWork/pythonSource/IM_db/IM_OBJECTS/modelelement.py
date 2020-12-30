@@ -20,6 +20,7 @@ class Modelelemtype(Baseobject):
     DIAG: str = 'DIAG'
     PHYU: str = 'PHYU'
     STFO: str = 'STFO'
+    UDPR: str = 'UDPR'
 
     _tablename: str = 'modelelem_type'
     _prefix: str = 'melt'

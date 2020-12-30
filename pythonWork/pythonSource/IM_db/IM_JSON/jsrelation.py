@@ -1,5 +1,5 @@
-from IM_JSON import jsguid, jsguid2id, JSModel, inssourceref
-from IM_OBJECTS import Key, Relation, Modelelemtype, Boolean, Arc,Externalref
+from IM_OBJECTS import Key, Relation, Modelelemtype, Boolean, Arc,Externalref,Languagetext
+from IM_JSON import jsguid, jsguid2id, JSModel, inssourceref,inslgtx
 
 
 def relation(prela):
@@ -44,99 +44,43 @@ def relations2js():
 
 
 def relations2sql(pmodel: JSModel):
-    """      "RELA11990": {
-         "name": "Relation_76",
-         "type": "M:1",
-         "from-to": {
-            "enti": "ENTI11889",
-            "arc": null,
-            "assoc": {
-               "de": "ist",
-               "en": "is",
-               "fr": "est"
-            },
-            "maptype": "1",
-            "hist": false,
-            "mandatory": false,
-            "cardstr": "1..N"
-         },
-         "to-from": {
-            "enti": "ENTI11909",
-            "arc": "ARCS12031",
-            "assoc": {
-               "de": "definiert",
-               "en": "defines",
-               "fr": "d\u00e9finit"
-            },
-            "maptype": "M",
-            "hist": false,
-            "mandatory": true,
-            "cardstr": "0..1"
-         },
-         "isinkeys": [],
-         "sourceref": {
-            "ODM": "22F83753-485E-0A8B-38A2-6C89F1ACCD4E"
-         },
-         "uc": "stb",
-         "dc": "2019-05-07 12:07:04 UTC",
-         "um": null,
-         "dm": null
-      },"""
-    for janker, jrela in pmodel.jsmodel['relations'].items():
+    for jid, jelem in pmodel.jsmodel['relations'].items():
         rela = Relation()
-        rela.rela_id = jsguid2id(janker)
-        rela.rela_name = jrela['name']
-        rela.rela_type = jrela['type']
-        rela.rela_enti_id_from = jsguid2id(jrela['from-to']['enti'])
-        rela.rela_arcs_id_from = jsguid2id(jrela['from-to']['arc'])
-        rela.rela_assoc_from_to = jrela['from-to']['assoc'][pmodel.modellanguage()]
-        rela.rela_maptype_from_to = jrela['from-to']['maptype']
-        rela.rela_mandatory_from_to = Boolean.bool2str(jrela['from-to']['mandatory'])
-        rela.rela_hist_from_to = Boolean.bool2str(jrela['from-to']['hist'])
-        rela.rela_enti_id_to = jsguid2id(jrela['to-from']['enti'])
-        rela.rela_arcs_id_to = jsguid2id(jrela['to-from']['arc'])
-        rela.rela_assoc_to_from = jrela['to-from']['assoc'][pmodel.modellanguage()]
-        rela.rela_maptype_to_from = jrela['to-from']['maptype']
-        rela.rela_mandatory_to_from = Boolean.bool2str(jrela['to-from']['mandatory'])
-        rela.rela_hist_to_from = Boolean.bool2str(jrela['to-from']['hist'])
-        rela.rela_uc = jrela['uc']
-        rela.rela_dc = jrela['dc']
-        rela.rela_um = jrela['um']
-        rela.rela_dm = jrela['dm']
+        rela.rela_id = jsguid2id(jid)
+        rela.rela_name = jelem['name']
+        rela.rela_type = jelem['type']
+        rela.rela_enti_id_from = jsguid2id(jelem['from-to']['enti'])
+        rela.rela_arcs_id_from = jsguid2id(jelem['from-to']['arc'])
+        rela.rela_assoc_from_to = jelem['from-to']['assoc'][pmodel.modellanguage()]
+        rela.rela_maptype_from_to = jelem['from-to']['maptype']
+        rela.rela_mandatory_from_to = Boolean.bool2str(jelem['from-to']['mandatory'])
+        rela.rela_hist_from_to = Boolean.bool2str(jelem['from-to']['hist'])
+        rela.rela_enti_id_to = jsguid2id(jelem['to-from']['enti'])
+        rela.rela_arcs_id_to = jsguid2id(jelem['to-from']['arc'])
+        rela.rela_assoc_to_from = jelem['to-from']['assoc'][pmodel.modellanguage()]
+        rela.rela_maptype_to_from = jelem['to-from']['maptype']
+        rela.rela_mandatory_to_from = Boolean.bool2str(jelem['to-from']['mandatory'])
+        rela.rela_hist_to_from = Boolean.bool2str(jelem['to-from']['hist'])
+        rela.rela_uc = jelem['uc']
+        rela.rela_dc = jelem['dc']
+        rela.rela_um = jelem['um']
+        rela.rela_dm = jelem['dm']
         try:
             relaid = rela.insert()
         except Exception as err:
             pmodel.markerror(pmsg=err, pelemstr=rela.tostring())
             continue
-        inssourceref(pmodel=pmodel,pmodeid=relaid, psources=jrela["sourceref"])
+        inslgtx(pmodel=pmodel,pmodeid=rela.rela_id,pattr=Languagetext.RELA_TEXT_TO,ptexts=jelem['to-from']['assoc'])
+        inslgtx(pmodel=pmodel,pmodeid=rela.rela_id,pattr=Languagetext.RELA_TEXT_FROM,ptexts=jelem['from-to']['assoc'])
+        inssourceref(pmodel=pmodel,pmodeid=relaid, psources=jelem["sourceref"])
     # for
     return
 
-
 """transfer references and subtypes"""
-
-
 def relarefs2sql(pmodel):
-    #    insudp(pmodeid=entiid, pudps=jenti["userdefprop"])
+    #for jid, jelem in pmodel.jsmodel['relations'].items():
+        #updvs2sql(pmodel=pmodel,pmodeid=jsguid2id(jid), pudps=jelem["userdefprops"])
     return
-
-
-"""      "ARCS12030": {
-         "name": "Arc_7",
-         "entity": "ENTI11926",
-         "relations": [
-            "RELA12010",
-            "RELA12025",
-            "RELA12026"
-         ],
-          "sourceref": {
-            "ODM": "22F83753-485E-0A8B-38A2-6C89F1ACCD4E"
-         },
-        "uc": "stb",
-         "dc": "2019-06-01 10:52:11 UTC",
-         "um": null,
-         "dm": null
-      },"""
 
 
 def arcs2js():
@@ -149,7 +93,7 @@ def arcs2js():
         , 'dc': a.arcs_dc
         , 'um': a.arcs_um
         , 'dm': a.arcs_dm
-    }
+        }
         for a in Arc.select()
     }
     return arcs
@@ -173,7 +117,6 @@ def arcs2sql(pmodel):
         inssourceref(pmodel = pmodel,pmodeid=arcid, psources=jelem["sourceref"])
     # for
     return
-
 
 def arcsref2sql(pmodel):
     return

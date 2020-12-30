@@ -615,7 +615,7 @@ def stripeol(str):
 #         maps = [matentry(tkey, ekey) for tkey in tables.keys()]
 #         eval.append(maps)
 #     # for
-#     colattrmap = AttrTransf.colattrmap()
+#     colattrmap = ColAttrMap.colattrmap()
 #     for colid, cval in columns.items():
 #         matentry = lambda colid, attrid: 'X' if (istincolattrmap(colid, attrid)) else ''
 #         maps = [matentry(colid, attrid) for attrid in attributes.keys()]

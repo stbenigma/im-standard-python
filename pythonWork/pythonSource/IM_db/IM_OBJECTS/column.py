@@ -168,7 +168,7 @@ class Column(Baseobject):
 
 # Column
 
-class AttrTransf(Baseobject):
+class ColAttrMap(Baseobject):
     INBOUND: str = 'INBOUND'
     OUTBOUND: str = 'OUTBOUND'
     MANUELL: str = 'MANUELL'
@@ -180,12 +180,12 @@ class AttrTransf(Baseobject):
     _columnlist: list = []
 
     def __init__(self):
-        if (len(AttrTransf._columnlist) == 0): AttrTransf._columnlist = Baseobject.gettablecolumns(AttrTransf._tablename)
-        super().__init__(tablename=AttrTransf._tablename, prefix=AttrTransf._prefix)
+        if (len(ColAttrMap._columnlist) == 0): ColAttrMap._columnlist = Baseobject.gettablecolumns(ColAttrMap._tablename)
+        super().__init__(tablename=ColAttrMap._tablename, prefix=ColAttrMap._prefix)
 
     @staticmethod
     def createtable():
-        Baseobject.createtable(ptablename=AttrTransf._tablename
+        Baseobject.createtable(ptablename=ColAttrMap._tablename
                                , psql="""
         create table colu_attr_map 
          (
@@ -226,11 +226,11 @@ class AttrTransf(Baseobject):
 
     @staticmethod
     def delete():
-        Baseobject.delete(AttrTransf._tablename)
+        Baseobject.delete(ColAttrMap._tablename)
 
     @staticmethod
     def select(pwhere=None, porderby=None):
-        return Baseobject.select(pclass=AttrTransf
+        return Baseobject.select(pclass=ColAttrMap
                                  , pwhere=pwhere, porderby=porderby)
 
 
@@ -275,4 +275,4 @@ class AttrTransf(Baseobject):
         # for
         return retval
     # colattrmap
-# AttrTransf
+# ColAttrMap
