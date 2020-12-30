@@ -1,5 +1,5 @@
-from IM_OBJECTS import Column,Table,OragnisationalUnit,Modelelemtype,Boolean,Userdefpropvalue,Userdefprop,Externalref,Datatype,Document,Interface,AttrTransf
-from IM_JSON import jsguid,jsguid2id,inssourceref
+from IM_OBJECTS import Column,Table,OragnisationalUnit,Modelelemtype,Boolean,Externalref,Datatype,Document,Interface,ColAttrMap
+from IM_JSON import jsguid,jsguid2id,inssourceref,udpv2js,updvs2sql,JSModel
 
 def columns2js():
     cols = {jsguid(Modelelemtype.COLU,c.colu_id) :
@@ -21,13 +21,8 @@ def columns2js():
         ,'um': c.colu_um
         , 'dm': c.colu_dm
         , 'attributes-mapped': [jsguid(Modelelemtype.ATTR, a.attr_id) for a in
-                             AttrTransf.getattrlist(pcoluid=c.colu_id)]
-        , 'userdefprops': {
-            th[0]: {gr[1]: {u.udpr_name: Userdefpropvalue.udpvalue(pudprid=u.udpr_id, pmodeid=c.colu_id)
-                            for u in Userdefprop.getudps(ptheme=th[0], pgroup=gr[1], pmeltname=Modelelemtype.COLU)}
-                    for gr in Userdefprop.grouplist(pudptheme=th[0], pmelttype=Modelelemtype.COLU)}
-            for th in Userdefprop.themelist(pmelttype=Modelelemtype.COLU)
-        }
+                                ColAttrMap.getattrlist(pcoluid=c.colu_id)]
+        , 'userdefprops': udpv2js(pmodeid=c.colu_id,pmodelemtype=Modelelemtype.COLU)
             , 'sourceref': Externalref.getsrcinfo(pmodeid=c.colu_id)
         , 'refindocuments+': [jsguid(Modelelemtype.DOCU, d[0]) for d in Document.getrefdoculist(pid=c.colu_id)]
             ,'refbyorgunits+': [jsguid(Modelelemtype.ORGU, d[0]) for d in OragnisationalUnit.getreforgulist(pid=c.colu_id)]
@@ -36,14 +31,14 @@ def columns2js():
             }
     return cols
 
-def columns2sql(pmodel):
+def columns2sql(pmodel:JSModel):
     for jid,jelem in pmodel.jsmodel['columns'].items():
         colu = Column()
         colu.colu_id = jsguid2id(jid)
         colu.colu_column_name = jelem['name']
         colu.colu_tabl_id = jsguid2id(jelem['table-id'])
         colu.colu_mandatory = Boolean.bool2str(jelem['mandatory'])
-        colu.colu_type_string = jelem['datatype']
+        colu.colu_type_string = jelem['datatype+']
         colu.colu_daty_id = jelem['datatypeid']
         colu.colu_format = jelem['format']
         colu.colu_doma_id = jsguid2id(jelem['domain'])
@@ -63,7 +58,25 @@ def columns2sql(pmodel):
     #for
     return
 
+
+def colattrmaps2sql(pmodel:JSModel, pcoluid, pattrs):
+    for jattrid in pattrs:
+        coam = ColAttrMap()
+        coam.coam_seq = 1
+        coam.coam_direction = ColAttrMap.INBOUND
+        coam.coam_colu_id = pcoluid
+        coam.coam_attr_id = jsguid2id(jattrid)
+        try:
+            coam.insert()
+        except Exception as err:
+            pmodel.markerror(pmsg=err, pelemstr=coam.tostring())
+            continue
+    #for
+    return
+
 """transfer references and subtypes"""
-def colurefs2sql(pmodel):
-    #    insudp(pmodeid=entiid, pudps=jenti["userdefprop"])
+def colurefs2sql(pmodel:JSModel):
+    for jid,jelem in pmodel.jsmodel['columns'].items():
+        colattrmaps2sql(pmodel=pmodel,pcoluid=jsguid2id(jid),pattrs=jelem['attributes-mapped'])
+        updvs2sql(pmodel=pmodel,pmodeid=jid, pudps=jelem["userdefprops"])
     return

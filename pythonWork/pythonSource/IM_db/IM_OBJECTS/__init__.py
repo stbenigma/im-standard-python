@@ -4,7 +4,7 @@ from .datatype import Datatype
 from .project import Project
 from .interface import Interface
 from .table import Table
-from .column import Column,AttrTransf
+from .column import Column,ColAttrMap
 from .language import Language
 from .languagetext import Languagetext
 from .tablentimap import TablEntiMap

@@ -10,22 +10,23 @@ from IM_OBJECTS import Domain,Languagetext,Modelelemtype
 def nvl(s, default=''):
     return parameters.nvl(s, default)
 
+getelement = lambda e:printHTML.model.getbyid(e)
 
 def printmapping(pelem):
     # name, list of entries mit {webanker:'name'}
-    entities = {e:printHTML.model['entities'][e]['name'][parameters.dbDefaultLang()] for e in pelem['entitiesmapped']}
+    entities = {e:getelement(e)['name'][parameters.dbDefaultLang()] for e in pelem['entitiesmapped']}
     werte = {0: [[anker, name] for anker,name in entities.items()]}
 
-    for intfanker,intfelem in printHTML.model['systems'].items():
-        if intfanker == pelem['interface-id']: continue
+    for intfanker,intfelem in printHTML.model.jsmodel['systems'].items():
+        if intfanker == pelem['interface-id+']: continue
         tablist=[]
         for enti in pelem['entitiesmapped']:
             try:
-                tablist += printHTML.model['entities'][enti]['tablesmapped'][intfanker]
+                tablist += getelement(enti)['tablesmapped+'][intfanker]
             except:
                 pass
         if len(tablist) == 0: continue
-        werte[intfanker] = [[tabanker,"({})".format(printHTML.model['tables'][tabanker]['name'])] for tabanker in tablist]
+        werte[intfanker] = [[tabanker,"({})".format(getelement(tabanker)['name'])] for tabanker in tablist]
     #for
     printHTML.printmappinghtml(ptitel=Languagetext.transl('Mapping')
                                , pueberschriften=(Languagetext.transl('Model'), Languagetext.transl('Entitäten / Tabellen'))
@@ -34,29 +35,29 @@ def printmapping(pelem):
 
 def printcolmapping(pcol):
     lang=parameters.dbDefaultLang()
-    attrs = {a:printHTML.model['attributes'][a] for a in pcol['attributes-mapped']}
+    attrs = {a:getelement(a) for a in pcol['attributes-mapped']}
     attrlist = []
     for anker,attr in attrs.items():
         if attr['entity'] is None:
-            attrlist.append([anker, "{}.{}".format(printHTML.model['relations'][attr['relation']]['name']
+            attrlist.append([anker, "{}.{}".format(getelement(attr['relation'])['name']
                                         ,attr['name'][lang])])
         else :
-            attrlist.append([anker, "{}.{}".format(printHTML.model['entities'][attr['entity']]['name'][lang]
+            attrlist.append([anker, "{}.{}".format(getelement(attr['entity'])['name'][lang]
                                                , attr['name'][lang])])
         #fi
     #for
     werte = {0 : attrlist}
-    for intfanker,intfelem in printHTML.model['systems'].items():
-        if intfanker == pcol['interface-id']: continue
+    for intfanker,intfelem in printHTML.model.jsmodel['systems'].items():
+        if intfanker == pcol['interface-id+']: continue
         collist=[]
         for attr in pcol['attributes-mapped']:
             try:
-                collist += printHTML.model['attributes'][attr]['columnsmapped'][intfanker]
+                collist += getelement(attr)['columnsmapped+'][intfanker]
             except:
                 pass
         if len(collist) == 0: continue
-        col = lambda c:printHTML.model['columns'][c]
-        werte[intfanker] = [[colanker,"({}.{})".format(col(colanker)['table-name']
+        col = lambda c:getelement(c)
+        werte[intfanker] = [[colanker,"({}.{})".format(col(colanker)['table-name+']
                                              ,col(colanker)['name'])]
                             for colanker in collist
                             ]
@@ -113,17 +114,17 @@ def printcollist(pcollist):
     printHTML.fhtml.write(printHTML.starttable(ptitle="Columns", pheaders=ueberschr, plbc=lbc))
 
     for col in pcollist:
-        column = printHTML.model['columns'][col]
-        domain = printHTML.model['domains'][column['domain']]
+        column = getelement(col)
+        domain = getelement(column['domain'])
         colwerte = [printHTML.href(ref=col,anz=column['name'])
-                        , nvl(column['descr']), domain['name'][lang], nvl(column['datatype'])]
+                        , nvl(column['descr']), domain['name'][lang], nvl(column['datatype+'])]
         printHTML.fhtml.write(printHTML.writetableline(pwerte=colwerte))
     # for
     printHTML.fhtml.write(printHTML.endtable(plabel='Columns',plbc=lbc))
 # printcollist
 
 def printcontenttable(pintf):
-    tablist = sorted([[anker,printHTML.model['tables'][anker]] for anker in pintf['tables']]
+    tablist = sorted([[anker,getelement(anker)] for anker in pintf['tables+']]
                      ,key=lambda val:val[1]['name'].upper()
                      )
     printHTML.printcontentstart('tables')
@@ -142,7 +143,7 @@ def printcontenttable(pintf):
 
         printHTML.printelemreflists(pelem=elem, pelemtype=Modelelemtype.TABL)
         printHTML.printUDP(pelem=elem)
-        printcollist(pcollist=elem['columns'])
+        printcollist(pcollist=elem['columns+'])
         printmapping(pelem=elem)
         printHTML.printcontentend(lbc)
     # for
@@ -151,25 +152,25 @@ def printcontenttable(pintf):
 def printcontentcolumn(pintf):
     lang = parameters.dbDefaultLang()
     infoheaders = ('Domain','Datatype','Base Type','changed')
-    collist = sorted([[anker,elem] for anker,elem in printHTML.model['columns'].items() if elem['interface-id'] == pintf['interface-id'] ]
+    collist = sorted([[anker,elem] for anker,elem in printHTML.model.jsmodel['columns'].items() if elem['interface-id+'] == pintf['interface-id+'] ]
                     ,key=lambda val:val[1]['name'].upper()
                      )
     for col in collist:
         colanker,colelem = col[0],col[1]
         lbc = str(printHTML.newbarcounter())
-        domain = printHTML.model['domains'][colelem['domain']]
-        master = "<p1>{}: {}</p1><br>".format(colelem['name'],colelem['table-name'])
+        domain = getelement(colelem['domain'])
+        master = "<p1>{}: {}</p1><br>".format(colelem['name'],colelem['table-name+'])
         printHTML.printcontentstart('columns')
         printHTML.printcontent(ptype=Languagetext.transl('Column')
                                , panker=colanker
                                , pname=colelem['name']
-                               ,pmaster= printHTML.href(ref=colelem['table-id'],anz=colelem['table-name'])
+                               ,pmaster= printHTML.href(ref=colelem['table-id'],anz=colelem['table-name+'])
                                , pdescr=printHTML.lf2htmlbr(nvl(colelem['descr']))
                                , plbc=lbc)
         infovalues = (domain['name'][lang] if domain['origin']== Domain.DERIVED \
                         else printHTML.href(ref=colelem['domain'],anz=domain['name'][lang]
                                      ,htmlfile=printHTML.htmlfilelist[0])
-                        ,domain['displdatatype'][lang],domain['basedatatype']
+                        ,domain['displdatatype+'][lang],domain['basedatatype+']
                         ,nvl(colelem['um']) + ', ' + nvl(colelem['dm']))
         printHTML.printcontentinfo(ptitle=Languagetext.transl('Information'), pheaders=infoheaders, pvalues=infovalues)
 
@@ -183,12 +184,12 @@ def printcontentcolumn(pintf):
 def printlistofcontent(pintf):
     printHTML.printlistofcontenthead()
     idxlist = sorted([{'anker':key,'name': value['name']}
-                     for key,value in printHTML.model['tables'].items() if key in pintf['tables']]
+                     for key,value in printHTML.model.jsmodel['tables'].items() if key in pintf['tables+']]
                      ,key=lambda val:val['name'].upper())
     printHTML.printlistofcontentelement(pname='Tables'
                                          , plist=idxlist)
-    idxlist = sorted([{'anker':key,'name': "{} ({})".format(value['name'],value['table-name'])}
-                     for key,value in printHTML.model['columns'].items() if value['interface-id'] == pintf['interface-id']]
+    idxlist = sorted([{'anker':key,'name': "{} ({})".format(value['name'],value['table-name+'])}
+                     for key,value in printHTML.model.jsmodel['columns'].items() if value['interface-id+'] == pintf['interface-id+']]
                      ,key=lambda val:val['name'].upper())
     printHTML.printlistofcontentelement(pname='Columns'
                                          , plist=idxlist

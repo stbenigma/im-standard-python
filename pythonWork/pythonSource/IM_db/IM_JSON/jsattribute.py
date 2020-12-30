@@ -1,5 +1,5 @@
 from IM_OBJECTS import *
-from IM_JSON import jsguid,domaingroupmembers,jsguid2id,inslgtx,inssourceref,JSModel,jsguid2type
+from IM_JSON import jsguid,domaingroupmembers,jsguid2id,inslgtx,inssourceref,JSModel,jsguid2type,udpv2js,updvs2sql
 
 def defattr(attr):
     retval = {'techname': attr.attr_tech_name
@@ -24,14 +24,10 @@ def defattr(attr):
         , 'keys+': [jsguid(Modelelemtype.KEYS, k.keys_id) for k in attr.getkeys()]
         , 'refindocuments+': [jsguid(Modelelemtype.DOCU, d[0]) for d in Document.getrefdoculist(pid=attr.attr_id)]
         , 'refbyorgunits+': [jsguid(Modelelemtype.ORGU, d[0]) for d in OragnisationalUnit.getreforgulist(pid=attr.attr_id)]
-        , 'userdefprops': {t[0]: {g[1]: {u.udpr_name: Userdefpropvalue.udpvalue(pudprid=u.udpr_id, pmodeid=attr.attr_id)
-                                        for u in
-                                        Userdefprop.getudps(ptheme=t[0], pgroup=g[1], pmeltname=Modelelemtype.ATTR)}
-                                 for g in Userdefprop.grouplist(pudptheme=t[0], pmelttype=Modelelemtype.ATTR)}
-                          for t in Userdefprop.themelist(pmelttype=Modelelemtype.ATTR)}
+        , 'userdefprops': udpv2js(pmodeid=attr.attr_id,pmodelemtype=Modelelemtype.ATTR)
         , 'columnsmapped+': {
             jsguid(Modelelemtype.INTF,s.getid()): [jsguid(Modelelemtype.COLU, c.colu_id) for c in
-                          AttrTransf.getcolulist(pattrid=attr.attr_id, pintfid=s.getid())]
+                                                   ColAttrMap.getcolulist(pattrid=attr.attr_id, pintfid=s.getid())]
             for s in Interface.getmapped(pattrid=attr.attr_id)}
         , 'diagrams+': [jsguid(Modelelemtype.DIAG, d.diag_id) for d in Diagram.getdiagrams(pmodeid=attr.attr_id)]
               }
@@ -84,110 +80,43 @@ def attributes2sql(pmodel:JSModel):
          "dm": null,
 
       },"""
-    for janker, jattr in pmodel.jsmodel['attributes'].items():
+    for jid, jelem in pmodel.jsmodel['attributes'].items():
         attr = Attribute()
-        attr.attr_id = jsguid2id(janker)
-        attr.attr_enti_id = jsguid2id(jattr['entity'])
-        attr.attr_rela_id = jsguid2id(jattr['relation'])
-        attr.attr_doma_id  = jsguid2id(jattr['domain'])
-        attr.attr_tech_name = jattr['techname']
-        attr.attr_displ_name = jattr['name'][pmodel.modellanguage()]
-        attr.attr_displ_seq = jattr['seq']
-        attr.attr_tooltip = jattr['tooltip'][pmodel.modellanguage()]
-        attr.attr_descr = jattr['descr'][pmodel.modellanguage()]
-        attr.attr_is_descriptive = Boolean.bool2str(jattr['descriptive'])
-        attr.attr_is_mandatory = Boolean.bool2str(jattr['mandatory'])
-        attr.attr_is_historicised = Boolean.bool2str(jattr['historicised'])
-        attr.attr_is_repeated = Boolean.bool2str(jattr['repeated'])
-        attr.attr_is_translated = Boolean.bool2str(jattr['translated'])
-        attr.attr_is_encrypted = Boolean.bool2str(jattr['encrypted'])
-        attr.attr_uc = jattr['uc']
-        attr.attr_dc = jattr['dc']
-        attr.attr_um = jattr['um']
-        attr.attr_dm = jattr['dm']
+        attr.attr_id = jsguid2id(jid)
+        attr.attr_enti_id = jsguid2id(jelem['entity'])
+        attr.attr_rela_id = jsguid2id(jelem['relation'])
+        attr.attr_doma_id  = jsguid2id(jelem['domain'])
+        attr.attr_tech_name = jelem['techname']
+        attr.attr_displ_name = jelem['name'][pmodel.modellanguage()]
+        attr.attr_displ_seq = jelem['seq']
+        attr.attr_tooltip = jelem['tooltip'][pmodel.modellanguage()]
+        attr.attr_descr = jelem['descr'][pmodel.modellanguage()]
+        attr.attr_is_descriptive = Boolean.bool2str(jelem['descriptive'])
+        attr.attr_is_mandatory = Boolean.bool2str(jelem['mandatory'])
+        attr.attr_is_historicised = Boolean.bool2str(jelem['historicised'])
+        attr.attr_is_repeated = Boolean.bool2str(jelem['repeated'])
+        attr.attr_is_translated = Boolean.bool2str(jelem['translated'])
+        attr.attr_is_encrypted = Boolean.bool2str(jelem['encrypted'])
+        attr.attr_uc = jelem['uc']
+        attr.attr_dc = jelem['dc']
+        attr.attr_um = jelem['um']
+        attr.attr_dm = jelem['dm']
         try:
             attrid = attr.insert()
         except Exception as err:
-            pmodel.markerror(pmsg=err, pelemstr=[janker] + list(jattr))
+            pmodel.markerror(pmsg=err, pelemstr=[jid] + list(jelem))
             continue
-        inslgtx(pmodel = pmodel,pmodeid=attrid, pattr=Languagetext.ATTR_COMMENT, ptexts=jattr['descr'])
-        inslgtx(pmodel = pmodel,pmodeid=attrid, pattr=Languagetext.ATTR_TOOLTIP, ptexts=jattr['tooltip'])
-        inslgtx(pmodel = pmodel,pmodeid=attrid, pattr=Languagetext.ATTR_NAME, ptexts=jattr['name'])
-        inssourceref(pmodel = pmodel,pmodeid=attrid, psources=jattr["sourceref"])
+        inslgtx(pmodel = pmodel,pmodeid=attrid, pattr=Languagetext.ATTR_COMMENT, ptexts=jelem['descr'])
+        inslgtx(pmodel = pmodel,pmodeid=attrid, pattr=Languagetext.ATTR_TOOLTIP, ptexts=jelem['tooltip'])
+        inslgtx(pmodel = pmodel,pmodeid=attrid, pattr=Languagetext.ATTR_NAME, ptexts=jelem['name'])
+        inssourceref(pmodel = pmodel,pmodeid=attrid, psources=jelem["sourceref"])
     #for
 
     """transfer references and subtypes"""
 
 def attrrefs2sql(pmodel):
-    # insudp(pmodeid=entiid, pudps=jenti["userdefprop"])
-
-    """      "ATTR11890": {
-
-         "keys": [],
-         "refindocuments": [],
-         "refbyorgunits": [],
-         "userdefprops": {
-            "datamapping": {
-               "DHL": {
-                  "DHL AttrName": null,
-                  "DHL AttrName Receiver": null,
-                  "DHL AttrName Shipper": null
-               },
-               "PENTA": {
-                  "PENTA AttrID": null,
-                  "PENTA AttrName": null,
-                  "PENTA datatype": null,
-                  "PENTA usage": null
-               },
-               "PIM": {
-                  "PIM AttrID": null,
-                  "PIM AttrName": null,
-                  "PIM EnglName": null,
-                  "PIM datatype": null,
-                  "PIM usage": null
-               },
-               "SAPByD": {
-                  "SAPByD AttrName": null,
-                  "SAPByD AttrName Receiver": null,
-                  "SAPByD AttrName Shipper": null
-               }
-            },
-            "translation": {
-               "DE": {
-                  "DE_ATTR_COMMENT": null,
-                  "DE_ATTR_NAME": "eMail"
-               },
-               "EN": {
-                  "EN_ATTR_COMMENT": null,
-                  "EN_ATTR_NAME": "eMail"
-               },
-               "FR": {
-                  "FR_ATTR_COMMENT": null,
-                  "FR_ATTR_NAME": "Courriel"
-               }
-            }
-         },
-         "columnsmapped": {
-            "INTF12068": [
-               "COLU12375"
-            ],
-            "INTF12850": [
-               "COLU12966"
-            ],
-            "INTF12440": [
-               "COLU12613"
-            ],
-            "INTF12633": [
-               "COLU12786"
-            ]
-         },
-         "diagrams": [
-            "DIAG12066",
-            "DIAG12067"
-         ],
-         "basedatatype": "unknown",
-         "type": "TXT"
-      },"""
+    for jid, jelem in pmodel.jsmodel['attributes'].items():
+        updvs2sql(pmodel=pmodel,pmodeid=jsguid2id(jid), pudps=jelem["userdefprops"])
     return
 
 def keys2js():

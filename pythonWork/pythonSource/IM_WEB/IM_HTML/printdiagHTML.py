@@ -189,12 +189,12 @@ def printtexte(plist,plang):
     for relaanker,relaelem in plist.items():
         startx, starty = relaelem['starttext_x'],relaelem['starttext_y']
         starttextw,starttexth=parameters.nvl(relaelem['starttext_width'],0),parameters.nvl(relaelem['starttext_height'],0)
-        starttext=getrelation(relaanker)['from-to']['assoc'][plang]
+        starttext=getelement(relaanker)['from-to']['assoc'][plang]
         fontcolor = relaelem['fontcolor']
         fontsize = relaelem['fontsize']
         endx,endy =relaelem['endtext_x'],relaelem['endtext_y']
         endtextw,endtexth=parameters.nvl(relaelem['endtext_width'],0),parameters.nvl(relaelem['endtext_height'],0)
-        endtext=getrelation(relaanker)['to-from']['assoc'][plang]
+        endtext=getelement(relaanker)['to-from']['assoc'][plang]
 
         linesegs = relaelem['linesegments']
         if len(linesegs)> 0:
@@ -325,9 +325,7 @@ def printarcs(plist):
     #for
 #printarcs
 
-getentity = lambda e:printHTML.model['entities'][e]
-getattribute = lambda a:printHTML.model['attributes'][a]
-getrelation = lambda r:printHTML.model['relations'][r]
+getelement = lambda e:printHTML.model.getbyid(e)
 
 def printelements(pdiag, pdiaganker,plang):
     entistart ="""<g  fill="{}" stroke="{}" fill-opacity="{}" stroke-opacity="{}" 
@@ -342,16 +340,16 @@ def printelements(pdiag, pdiaganker,plang):
 
     for eler in pdiag['elements']['entity']:
         printHTML.fhtml.write(entistart.format(hex2rbg(eler['color']), hex2rbg(eler['margincolor'])
-                                                   , round(eler['opacity']/100,2), round(eler['marginopacity']/100,2)
-                                                   , eler['pos_x'], eler['pos_y'], eler['width'], eler['height']
-                                                   , eler['element']
-                                                   , pdiaganker + '-' + eler['element']
-                                                   , hex2rbg(eler['fontcolor'])
-                                                   , 12  #vorläufig mal fix verdrahtet e[9], font size
-                                                   ,getentity(eler['element'])['name'][plang] + ('' if (eler['index']==0) else':'+str(eler['index']))))
+                                               , round(eler['opacity']/100,2), round(eler['marginopacity']/100,2)
+                                               , eler['pos_x'], eler['pos_y'], eler['width'], eler['height']
+                                               , eler['element']
+                                               , pdiaganker + '-' + eler['element']
+                                               , hex2rbg(eler['fontcolor'])
+                                               , 12  #vorläufig mal fix verdrahtet e[9], font size
+                                               , getelement(eler['element'])['name'][plang] + ('' if (eler['index'] == 0) else ':' + str(eler['index']))))
 
         printHTML.fhtml.write(entiende)
-        filename = printHTML.iconfilename(getentity(eler['element'])['name'][Language.getdefaultlang().lang_iso_code2])
+        filename = printHTML.iconfilename(getelement(eler['element'])['name'][Language.getdefaultlang().lang_iso_code2])
         if filename != "":
             printHTML.fhtml.write(imagehtml.format(filename
                                                ,eler['pos_x']+eler['width']-ICONSIZE/2,
@@ -362,7 +360,7 @@ def printelements(pdiag, pdiaganker,plang):
     for attr in pdiag['elements']['attribute']:
         x = attr['pos_x']
         y = attr['pos_y']
-        aelem = getattribute(attr['element'])
+        aelem = getelement(attr['element'])
         printtext(px=x, py=y, ptext=printHTML.href(ref=attr['element'], anz=aelem['name'][plang])
                   , pfillcolor=hex2rbg(attr['fontcolor']), pfontsize=attr['fontsize']
                   )

@@ -1,18 +1,10 @@
 
 from IM_OBJECTS import Project,Entity
 from IM_JSON import *
+from datetime import datetime
 
-def lastupd(pmodel):
-    dm = lambda  objs: max('0' if val['dm'] is None else val['dm'] for val in pmodel[objs].values())
-    return max(dm( 'attributes'), dm( 'domains'), dm( 'entities') , dm('relations')
-    , dm('arcs')
-    , dm('keys')
-    , dm('orgunits')
-    , dm('diagrams')
-    , dm('systems')
-    , dm('tables')
-    , dm('columns'),dm('datatypes'),dm('storageformats')
-)
+def lastupd():
+    return datetime.today().__str__()
 
 import copy
 def make_hash(pmodel):
@@ -33,7 +25,7 @@ def make_hash(pmodel):
     new_model[k] = make_hash(v)
   return hash(tuple(frozenset(sorted(new_model.items()))))
 
-def sql2json(pmodelname):
+def sql2json(pmodelname,pdbname):
     jsmodel = {}
     jsmodel['model'] = proj2js()
     jsmodel['languages'] = langs2js()
@@ -45,15 +37,22 @@ def sql2json(pmodelname):
     jsmodel['keys'] = keys2js()
     jsmodel['documents'] = documents2js()
     jsmodel['orgunits'] = orgUnits2js()
-    jsmodel['diagrams'] = diagrams2js(pmodelname=pmodelname)
     jsmodel['systems'] = systems2js()
     jsmodel['tables'] = tables2js()
     jsmodel['columns'] = columns2js()
+    jsmodel['diagrams'] = diagrams2js(pmodelname=pmodelname)
     jsmodel['userdefprops'] = udps2js()
     jsmodel['physicalunits'] = physicalunits2js()
     jsmodel['datatypes'] = datatypes2js()
     jsmodel['storageformats'] = storageformats2js()
-    jsmodel['model']['dm'] = lastupd(jsmodel)
+
+    if jsmodel['model']['dm'] is None: jsmodel['model']['dm'] = lastupd()
+
+    modelhash = make_hash(jsmodel)
+    jsmodel['_imprint_'] = {"database" : pdbname if pdbname != "" else ":in-memory:"
+                        , "created": str(datetime.today())
+                        ,"hashvalue": modelhash
+                        ,"comment": "Entries ending with + represent denormalized data and are not checked for consistency while reading back"}
     return jsmodel
 #sql2json
 
@@ -64,7 +63,8 @@ def proj2js():
         , 'language': proj.proj_curr_lang.lower()
         , 'uc': proj.proj_uc
         , 'dc': proj.proj_dc
-             # , 'dm': None
+        , 'um': proj.proj_um
+        , 'dm': proj.proj_dm
              }
     return model
 #proj2js
@@ -78,7 +78,7 @@ def proj2sql(pmodel):
         proj.proj_curr_lang = elem["language"]
         proj.proj_uc = elem["uc"]
         proj.proj_dc = elem["dc"]
-        proj.proj_um = None
+        proj.proj_um = elem["um"]
         proj.proj_dm = elem["dm"]
         proj.insert()
     except Exception as err:

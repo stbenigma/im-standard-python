@@ -1,6 +1,6 @@
 from IM_OBJECTS import *
 from mystring import nvl
-from IM_JSON import jsguid,jsguid2id,inslgtx,inssourceref,JSModel,insudps
+from IM_JSON import jsguid,jsguid2id,inslgtx,inssourceref,JSModel,updvs2sql,udpv2js
 
 """ builds a dictionary of all entities
     jsguid: {<entity>}
@@ -29,12 +29,7 @@ def entities2js():
                      ,'inarcs+': [jsguid(Modelelemtype.ARCS, a.arcs_id) for a in Arc.select(pwhere="arcs_enti_id = {}".format(e.enti_id))]
                      ,'refindocuments+': [jsguid(Modelelemtype.DOCU, d[0]) for d in Document.getrefdoculist(pid=e.enti_id)]
                      ,'refbyorgunits+': [jsguid(Modelelemtype.ORGU, d[0]) for d in OragnisationalUnit.getreforgulist(pid=e.enti_id)]
-                     , 'userdefprops': {
-                     t[0]: {g[1]: {u.udpr_name: Userdefpropvalue.udpvalue(pudprid=u.udpr_id, pmodeid=e.enti_id)
-                                   for u in Userdefprop.getudps(ptheme=t[0], pgroup=g[1], pmeltname=Modelelemtype.ENTI)}
-                            for g in Userdefprop.grouplist(pudptheme=t[0], pmelttype=Modelelemtype.ENTI)}
-                     for t in Userdefprop.themelist(pmelttype=Modelelemtype.ENTI)}
-
+                     , 'userdefprops': udpv2js(pmodeid=e.enti_id,pmodelemtype=Modelelemtype.ENTI)
                      , 'tablesmapped+': {jsguid(Modelelemtype.INTF,s.getid()): [jsguid(Modelelemtype.TABL, t.tabl_id) for t in
                                                       TablEntiMap.gettabllist(pentiid=e.enti_id, pintfid=s.getid())]
                                         for s in Interface.getmapped(pentiid=e.enti_id)}
@@ -51,7 +46,7 @@ def entities2sql(pmodel:JSModel):
         enti = Entity()
         enti.enti_id = jsguid2id(jid)
         enti.enti_name = jelem['name'][pmodel.modellanguage()]
-        enti.enti_short_name = jelem['name'][pmodel.modellanguage()]
+        enti.enti_short_name = jelem['shortname']
         enti.enti_prefix = jelem['prefix']
         enti.enti_tooltip = jelem['tooltip'][pmodel.modellanguage()]
         enti.enti_descr = jelem['descr'][pmodel.modellanguage()]
@@ -70,6 +65,7 @@ def entities2sql(pmodel:JSModel):
         inslgtx(pmodel=pmodel,pmodeid=entiid, pattr=Languagetext.ENTI_COMMENT, ptexts=jelem['descr'])
         inslgtx(pmodel=pmodel,pmodeid=entiid, pattr=Languagetext.ENTI_TOOLTIP, ptexts=jelem['tooltip'])
         inssourceref(pmodel=pmodel,pmodeid=entiid, psources=jelem["sourceref"])
+        updvs2sql(pmodel=pmodel, pmodeid=jsguid2id(jid), pudps=jelem["userdefprops"])
 
         """      "ENTI109": {
          "synonyms":
@@ -94,6 +90,4 @@ def entities2sql(pmodel:JSModel):
 
 """transfer references and subtypes"""
 def entirefs2sql(pmodel:JSModel):
-    for jid, jelem in pmodel.jsmodel['entities'].items():
-        insudps(pmodel=pmodel,pmodeid=jsguid2id(jid), pudps=jelem["userdefprops"])
     return

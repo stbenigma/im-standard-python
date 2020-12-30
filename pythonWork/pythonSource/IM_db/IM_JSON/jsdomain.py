@@ -2,60 +2,60 @@ from IM_OBJECTS import *
 from IM_JSON import jsguid,inssourceref,jsguid2id,inslgtx,JSModel,optionalvalue
 from datetime import date
 
-"""      "DOMA11860": {
-     "name": {
-        "de": "Zeitpunkt",
-     },
-     "descr": {
-        "de": null,
-        "en": null,
-     },
-     "origin": "DOM",
-     "basedatatype": "Timestamp",
-     "type": "TXT",
-     "displdatatype": {
-        "de": "Text",
-     },
-     "datatypestr": "Timestamp",
-     "uc": "stb",
-     "um": null,
-     "dc": "2018-05-17 16:19:03 UTC",
-     "dm": null,
-     "maxlng": null,
-     "syntaxrule": null,
-     "usedinattrs": [],
-     "usedincols": [],
-     "usedingrps": [],
-     "sourceref": {
-        "ODM": "0AD80E26-0F5C-D068-29EA-4740A04582AE"
-     },
-     "refindocuments": [],
-     "refbyorgunits": []"""
-
 def domaingroupmembers(pdomaid):
     return [{'name': dg.dgrm_name
-            ,'mandatory': dg.dgrm_is_mandatory
+            ,'mandatory': Boolean.str2bool(dg.dgrm_is_mandatory)
             , 'domain': jsguid(Modelelemtype.DOMA, dg.dgrm_doma_id_member)
-            , 'descr': dg.dgrm_descr}
+            , 'descr': dg.dgrm_descr
+            ,'uc': dg.dgrm_uc
+             ,'dc': dg.dgrm_dc
+            ,'um': dg.dgrm_um
+            ,'dm': dg.dgrm_dm}
             for dg in DomaingroupMember.select(pwhere="dgrm_doma_id_group={}".format(pdomaid))
             ]
 
-def domaingroupmembers2sql(pdomaid,pelements):
+def domaingroupmembers2sql(pmodel:JSModel,pdomaid,pelements):
     for jelem in pelements:
         dgrm =DomaingroupMember()
         dgrm.dgrm_uc = 'sys'
         dgrm.dgrm_dc = date.today()
         dgrm.dgrm_name = jelem['name']
         dgrm.dgrm_descr = jelem['descr']
-        dgrm.dgrm_is_mandatory = Boolean.str2bool(jelem['mandatory'])
+        dgrm.dgrm_is_mandatory = Boolean.bool2str(jelem['mandatory'])
         dgrm.dgrm_doma_id_group = pdomaid
         dgrm.dgrm_doma_id_member = jsguid2id(jelem['domain'])
+        dgrm.dgrm_uc = jelem['uc']
+        dgrm.dgrm_dc = jelem['dc']
+        dgrm.dgrm_um = jelem['um']
+        dgrm.dgrm_dm = jelem['dm']
         try:
             dgrm.insert()
         except Exception as err:
             pmodel.markerror(pmsg=err, pelemstr=list(jelem))
     #for
+    return
 
+
+def defaultvalues2sql(pmodel:JSModel, pdomaid, pvalues):
+    """'value':d.deva_value,'sort': d.deva_sort_order
+                            , 'displ': d.deva_displ, 'descr': d.deva_descr
+                             ,'uc': d.deva_uc, 'dc': d.deva_dc
+                             ,'um' : d.deva_um, 'dm': d.deva_dm"""
+    for val in pvalues:
+        deva = DefaultValue()
+        deva.deva_doma_id = pdomaid
+        deva.deva_sort_order = val['sort']
+        deva.deva_value = val['value']
+        deva.deva_displ = val['displ']
+        deva.deva_descr = val['descr']
+        deva.deva_uc = val['uc']
+        deva.deva_dc = val['dc']
+        deva.deva_um = val['um']
+        deva.deva_dm = val['dm']
+        try:
+            deva.insert()
+        except Exception as err:
+            pmodel.markerror(pmsg=err, pelemstr=val)
 
 def domain2js(doma):
     retval = {'name': doma.doma_name_L
@@ -103,7 +103,10 @@ def domain2js(doma):
         retval['elements'] = domaingroupmembers(doma.doma_id)
     elif doma.doma_type == Domain.LOV:
         retval['maxlng'] = doma.doma_txt_maxlng
-        retval['values'] = [{'value':d.deva_value,'sort': d.deva_sort_order, 'displ': d.deva_displ, 'descr': d.deva_descr}
+        retval['values'] = [{'value':d.deva_value,'sort': d.deva_sort_order
+                            , 'displ': d.deva_displ, 'descr': d.deva_descr
+                             ,'uc': d.deva_uc, 'dc': d.deva_dc
+                             ,'um' : d.deva_um, 'dm': d.deva_dm}
                             for d in DefaultValue.select(pwhere="deva_doma_id = {}".format(doma.doma_id),
                                                          porderby="deva_sort_order")]
     retval['usedinattrs+'] = [jsguid(Modelelemtype.ATTR, a.attr_id) for a in
@@ -151,7 +154,6 @@ def domains2sql(pmodel:JSModel):
         doma.doma_bin_contenttype = optionalvalue(jelem,'contenttype')
         doma.doma_bin_stfo_id = jsguid2id(optionalvalue(jelem,'formatid'))
         doma.doma_txt_maxlng = optionalvalue(jelem,'maxlng')
-        jelem['elements'] = domaingroupmembers(doma.doma_id)
         try:
             domaid = doma.insert()
         except Exception as err:
@@ -159,13 +161,18 @@ def domains2sql(pmodel:JSModel):
             continue
 
         if doma.doma_type == Domain.LOV:
-            domaingroupmembers2sql(pdomaid=domaid, pelements=jelem["elements"])
+            defaultvalues2sql(pmodel=pmodel,pdomaid=domaid, pvalues=jelem["values"])
+
         inslgtx(pmodeid=domaid,pmodel=pmodel,pattr=Languagetext.DOMA_NAME,ptexts=jelem['name'])
         inslgtx(pmodeid=domaid,pmodel=pmodel,pattr=Languagetext.DOMA_DESCR,ptexts=jelem['descr'])
         inssourceref(pmodel = pmodel,pmodeid=domaid, psources=jelem["sourceref"])
     return
 
 """transfer references and subtypes"""
-def domarefs2sql(pmodel):
-    #    insudp(pmodeid=entiid, pudps=jenti["userdefprop"])
+def domarefs2sql(pmodel:JSModel):
+    for jid,jelem in pmodel.jsmodel['domains'].items():
+        if jelem['type'] == Domain.GRP:
+            domaingroupmembers2sql(pmodel=pmodel, pdomaid=jsguid2id(jid), pelements=jelem["elements"])
+        #fi
+    #for
     return

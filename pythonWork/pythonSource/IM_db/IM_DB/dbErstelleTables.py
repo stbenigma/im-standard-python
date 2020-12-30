@@ -95,6 +95,6 @@ def erstelleInfra():
     OragnisationalUnit.createtable()
     ModelelemOrgu.createtable()
     TablEntiMap.createtable()
-    AttrTransf.createtable()
+    ColAttrMap.createtable()
     Entity.createviews()
 #end erstelleInfra

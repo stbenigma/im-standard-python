@@ -80,10 +80,10 @@ function cleanUpAttributes(){
 			if (recsList[i].parentNode.children[j].tagName === "text"){
 				let attribute = recsList[i].parentNode.children[j];
 
-				let translate = pathValues(recsList[i].parentNode.getAttribute("transform"));
+				let translate = pathValues(recsList[i].parentNode.getattribute("transform"));
 				for (k in translate) translate[k] = parseInt(translate[k]);
-				let x = parseInt(attribute.getAttribute("x"));
-				let y = parseInt(attribute.getAttribute("y"));
+				let x = parseInt(attribute.getattribute("x"));
+				let y = parseInt(attribute.getattribute("y"));
 				let id = pathValues(attribute.parentNode.parentNode.id);
 		
 				x += translate[0];
@@ -134,10 +134,10 @@ function addIdsToLines(){
 
 function getRecDimensions(){
 	for (let i = 0; i < recsList.length; i++){
-		let t = colorValues(boxList[i].getAttribute("transform"));
+		let t = colorValues(boxList[i].getattribute("transform"));
 		let x = parseInt(t[0]);
 		let y = parseInt(t[1]);
-		let w = parseInt(recsList[i].getAttribute("width"));
+		let w = parseInt(recsList[i].getattribute("width"));
 		let h = parseInt(recsList[i].getAttribute("height"));
 		let dict = {"x":x, "y":y, "w":w, "h": h};
 		recDimensions.push(dict);
