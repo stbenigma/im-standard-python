@@ -11,7 +11,6 @@ from IM_JSON import JSModel,sql2json
 
 def formatDatentyp(w):
     dt = anzDatentyp(w[0])
-    #print (w)
     return(
     "{}   ({}) {} {}" .format(dt, w[3], parameters.nvl(w[1])+ parameters.nvl2(w[1],'',' - ')
                     , parameters.nvl(w[2]), parameters.nvl(w[11]), parameters.nvl(w[6])) if w[0] == 'ZPKT'\
@@ -25,10 +24,6 @@ def formatDatentyp(w):
         else dt
     )
 #formatDatentyp
-
-def bool2JN(b):
-    return 'Ja' if (b == 'TRUE') else 'Nein'
-#bool2JN
 
 
 def printAttrUDPMatrix(thema=None):
