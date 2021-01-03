@@ -2,7 +2,27 @@
 <Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="7A311256-F4EE-02DF-BF39-2F6F7A7BDB8A" name="Attribut Warengruppierung">
 <createdBy>stb</createdBy>
 <createdTime>2018-05-17 16:00:10 UTC</createdTime>
-<comment>Hierarchische Gruppe von Attribut Artikel.&lt;br/&gt;Jede Gruppe fasst Artikel mit gleichen Attributen zusammen.&lt;br/&gt;&lt;br/&gt;Jede Hierarchiestufe erbt alle Attribute, die einer übergeordneten Stufe zugewiesen sind.&lt;br/&gt;Sie vererbt ihre Attribute an alle Untergeordneten Gruppen oder Hierarchistufen.&lt;br/&gt;Falls ein Attribut über mehrer Väter definiert ist, wird es nur ein Mal vererbt.&lt;br/&gt;&lt;br/&gt;Beispiele:&lt;br/&gt; -Gerät (Gewicht, Länge, Breite, Höhe)&lt;br/&gt;  -- Elektrische Geräte (Nennspannung, Max. Leistungsaufnahme...)  &lt;br/&gt;     --- Gleichstrom    (...)&lt;br/&gt;       ---- Batterie (min. Leistung) &lt;br/&gt;       ---- Akku   (min. Ladezeit)&lt;br/&gt;     --- Wechselstrom (Scheinleistung)  &lt;br/&gt;  -- Fräsmaschinen (max. Umdrehungsgeschw.,  typischer Vorschub, max. Vorschub ...)&lt;br/&gt; -Sicherheit    (Zertifikat)&lt;br/&gt;   -- Spannungsschutz  (...)&lt;br/&gt;   -- Explositionsschutz (...)&lt;br/&gt;   -- Mechanischer Schutz (min. Abstand, ...)&lt;br/&gt; &lt;br/&gt; Ein Artikel &quot;Elektrische Fräsmaschine mit Stromkabel&quot; wird dem Wechselstrom, den Fräsmaschinen und dem Mechanischen Schutz zugeordnet und hat demnach alle Attribute  die diesen Gruppen zugeordnet sind (direkt ober über Vererbung).</comment>
+<comment><![CDATA[Hierarchische Gruppe von Attribut Artikel.
+Jede Gruppe fasst Artikel mit gleichen Attributen zusammen.
+
+Jede Hierarchiestufe erbt alle Attribute, die einer übergeordneten Stufe zugewiesen sind.
+Sie vererbt ihre Attribute an alle Untergeordneten Gruppen oder Hierarchistufen.
+Falls ein Attribut über mehrer Väter definiert ist, wird es nur ein Mal vererbt.
+
+Beispiele:
+ -Gerät (Gewicht, Länge, Breite, Höhe)
+  -- Elektrische Geräte (Nennspannung, Max. Leistungsaufnahme...)  
+     --- Gleichstrom    (...)
+       ---- Batterie (min. Leistung) 
+       ---- Akku   (min. Ladezeit)
+     --- Wechselstrom (Scheinleistung)  
+  -- Fräsmaschinen (max. Umdrehungsgeschw.,  typischer Vorschub, max. Vorschub ...)
+ -Sicherheit    (Zertifikat)
+   -- Spannungsschutz  (...)
+   -- Explositionsschutz (...)
+   -- Mechanischer Schutz (min. Abstand, ...)
+ 
+ Ein Artikel "Elektrische Fräsmaschine mit Stromkabel" wird dem Wechselstrom, den Fräsmaschinen und dem Mechanischen Schutz zugeordnet und hat demnach alle Attribute  die diesen Gruppen zugeordnet sind (direkt ober über Vererbung).]]></comment>
 <ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
 <engineerTo>
 <item key="D08CBA22-8AB1-A78D-26DE-4DF989F17231" value="true"/>
@@ -36,15 +56,16 @@
 <Attribute name="Sortierreihenfolge" id="8A0B7F28-5473-5AC7-25A5-8A27E690D11E">
 <createdBy>stb</createdBy>
 <createdTime>2018-05-17 16:00:33 UTC</createdTime>
-<comment>Reihenfolge innerhalb einer Stufe. Leer -&gt; wird am Schluss zufällgi angeordnet.</comment>
+<comment><![CDATA[Reihenfolge innerhalb einer Stufe. Leer -> wird am Schluss zufällgi angeordnet.]]></comment>
 <ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
 <engineerTo>
 <item key="D08CBA22-8AB1-A78D-26DE-4DF989F17231" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT011</logicalDatatype>
+<domain>AF5E1D05-661F-8A64-E8AC-C569F2FAD411</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 </attributes>

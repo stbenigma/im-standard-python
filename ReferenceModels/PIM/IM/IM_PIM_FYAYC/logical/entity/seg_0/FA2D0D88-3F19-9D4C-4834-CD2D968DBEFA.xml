@@ -2,7 +2,7 @@
 <Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="FA2D0D88-3F19-9D4C-4834-CD2D968DBEFA" name="Numerisch Attribut">
 <createdBy>stb</createdBy>
 <createdTime>2018-05-17 14:54:09 UTC</createdTime>
-<comment>Kann Zahlenwerte aufnehmen</comment>
+<comment><![CDATA[Kann Zahlenwerte aufnehmen]]></comment>
 <ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
@@ -23,29 +23,31 @@
 <Attribute name="Min Wert" id="5C9E4513-EC5B-A599-4262-245889F0C34E">
 <createdBy>stb</createdBy>
 <createdTime>2018-05-17 14:54:59 UTC</createdTime>
-<comment>Minimaler Wert für ein numerisches Feld. Leer -&gt; so klein wie das System zulässt</comment>
+<comment><![CDATA[Minimaler Wert für ein numerisches Feld. Leer -> so klein wie das System zulässt]]></comment>
 <ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
 <engineerTo>
 <item key="D08CBA22-8AB1-A78D-26DE-4DF989F17231" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
+<domain>041E8A3B-AE2E-7199-E3EB-8AD874F657F2</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 <Attribute name="Max Wert" id="E783D490-8CB7-D9FF-0046-792DC9EF89A3">
 <createdBy>stb</createdBy>
 <createdTime>2018-05-17 14:55:08 UTC</createdTime>
-<comment>Maximaler Wert für ein numerisches Feld. Leer -&gt; so gross wie das System zulässt</comment>
+<comment><![CDATA[Maximaler Wert für ein numerisches Feld. Leer -> so gross wie das System zulässt]]></comment>
 <ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
 <engineerTo>
 <item key="D08CBA22-8AB1-A78D-26DE-4DF989F17231" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
+<domain>041E8A3B-AE2E-7199-E3EB-8AD874F657F2</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 <Attribute name="Vorkommastellen#" id="62D4FE33-1BD6-5103-F0E6-9A59CDCDAE69">
@@ -86,7 +88,7 @@
 <Attribute name="Rundung" id="A2E215BF-6FDC-88AF-CFB9-1C718F624482">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-02 08:47:53 UTC</createdTime>
-<comment>Auf welche Granularität wird eine Zahl gerundet (1000 -&gt; auf 1000er, 0.25 -&gt; auf 1/4, 0.001 -&gt; auf 1/100)</comment>
+<comment><![CDATA[Auf welche Granularität wird eine Zahl gerundet (1000 -> auf 1000er, 0.25 -> auf 1/4, 0.001 -> auf 1/100)]]></comment>
 <ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
 <engineerTo>
 <item key="D08CBA22-8AB1-A78D-26DE-4DF989F17231" value="true"/>

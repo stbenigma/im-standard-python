@@ -2,7 +2,7 @@
 <Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="827E89F1-8304-DAE6-605E-621D62FC6071" name="Freier Wert">
 <createdBy>stb</createdBy>
 <createdTime>2018-05-17 15:39:39 UTC</createdTime>
-<comment>Der Wert aus einer Auswahlliste </comment>
+<comment><![CDATA[Der Wert aus einer Auswahlliste ]]></comment>
 <ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
@@ -22,14 +22,15 @@
 <Attribute name="Wert" id="867EFBE5-2FDC-56D1-DC86-A1C106E7A9AE">
 <createdBy>stb</createdBy>
 <createdTime>2018-05-17 15:40:14 UTC</createdTime>
-<comment>Der Datentyp des Wertes wird durch den Attributtyp-Subtyp bestimmt.</comment>
+<comment><![CDATA[Der Datentyp des Wertes wird durch den Attributtyp-Subtyp bestimmt.]]></comment>
 <ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
 <engineerTo>
 <item key="D08CBA22-8AB1-A78D-26DE-4DF989F17231" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
+<domain>3FEA6C94-1CCF-1E45-A44E-09B49FC0035C</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 </attributes>
