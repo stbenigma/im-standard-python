@@ -2,7 +2,7 @@
 <Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="80DE2E5C-C16F-5548-C237-7A67C38B01D8" name="ATTRIBUT">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-02 12:34:39 UTC</createdTime>
-<comment>Beschreibt die grundlegenden Eigenschaften eines Attributes, das dynamisch (d.h. zur Laufzeit des Systems) verwaltet wird.</comment>
+<comment><![CDATA[Beschreibt die grundlegenden Eigenschaften eines Attributes, das dynamisch (d.h. zur Laufzeit des Systems) verwaltet wird.]]></comment>
 <generatorID>E928F51D-B4DB-A8B5-4033-A5DE2900FEBF</generatorID>
 <ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
 <abbreviation>ATTR</abbreviation>
@@ -26,7 +26,7 @@
 <Column name="ATTR_NAME" id="2D98CE95-0636-B7F1-A826-64CDA7443117">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-02 12:34:39 UTC</createdTime>
-<comment>Eindeutiger Name des Attributes</comment>
+<comment><![CDATA[Eindeutiger Name des Attributes]]></comment>
 <generatorID>D962ED6D-53F5-DC30-56ED-3BA6B6075F65</generatorID>
 <ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
 <use>0</use>
@@ -39,7 +39,7 @@
 <Column name="ATTR_BESCHR" id="532B93E2-DDBC-F2C8-1985-3663CA062997">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-02 12:34:39 UTC</createdTime>
-<comment>Beschreibung des Bedeutung des Attributes</comment>
+<comment><![CDATA[Beschreibung des Bedeutung des Attributes]]></comment>
 <generatorID>A39FC613-E496-FA23-69FA-B15A527FB6E8</generatorID>
 <ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
@@ -52,7 +52,7 @@
 <Column name="ATTR_ANZGNAME" id="CC28406C-4A75-E0EC-1C3B-61A936384644">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-02 12:34:39 UTC</createdTime>
-<comment>Beschreibung des Bedeutung des Attributes</comment>
+<comment><![CDATA[Beschreibung des Bedeutung des Attributes]]></comment>
 <generatorID>1E207D25-69D1-92E7-B941-A36053CDDD47</generatorID>
 <ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
@@ -77,7 +77,7 @@
 <Column name="ATTR_MIN_ZPKT" id="F48DE788-D2AF-4235-3D64-95B8A1B63C3B">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-02 12:37:27 UTC</createdTime>
-<comment>frühestes Datum in diesem Attribut. Leer -&gt; es gibt keine Untergrenze</comment>
+<comment><![CDATA[frühestes Datum in diesem Attribut. Leer -> es gibt keine Untergrenze]]></comment>
 <generatorID>1FFD0A61-CE64-69AE-9532-F9961AB2DEE3</generatorID>
 <ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
 <constraintName>CK_ATTR_ATTR_MIN_ZPKT</constraintName>
@@ -91,7 +91,7 @@
 <Column name="ATTR_MAX_MAXZPKT" id="5D2426F2-B1AA-2841-7728-D4C30230B223">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-02 12:37:27 UTC</createdTime>
-<comment>spätestes Datum in diesem Attribut. Leer -&gt; es gibt keine Obergrenze</comment>
+<comment><![CDATA[spätestes Datum in diesem Attribut. Leer -> es gibt keine Obergrenze]]></comment>
 <generatorID>3E7198FC-CBDE-5208-A803-05EFAC3B2114</generatorID>
 <ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
@@ -122,14 +122,15 @@
 <Column name="ATTR_MIN_TXTLNG" id="FE57C3A1-918B-F675-A063-B81F9778017F">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-02 12:37:27 UTC</createdTime>
-<comment>Minimale Anzahl Zeichen die ein Text haben muss. Leer -&gt; Keine Einschränkung der Inhalte</comment>
+<comment><![CDATA[Minimale Anzahl Zeichen die ein Text haben muss. Leer -> Keine Einschränkung der Inhalte]]></comment>
 <generatorID>E5926E24-3C68-36D3-6A1F-BC15CBEFB04B</generatorID>
 <ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
 <constraintName>CK_ATTR_ATTR_MIN_TXTLNG</constraintName>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT011</logicalDatatype>
+<domain>AF5E1D05-661F-8A64-E8AC-C569F2FAD411</domain>
 <defaultValue>1</defaultValue>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
@@ -143,14 +144,15 @@
 <Column name="ATTR_MAX_TXTLNG" id="C24D75BE-DB65-7F9F-E28B-C782550C20BD">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-02 12:37:27 UTC</createdTime>
-<comment>Maximale Anzahl Zeichen die ein Text haben darf. Leer -&gt; so viele, wie das System zulässt</comment>
+<comment><![CDATA[Maximale Anzahl Zeichen die ein Text haben darf. Leer -> so viele, wie das System zulässt]]></comment>
 <generatorID>2F469051-F929-13B0-9131-21586013FBCA</generatorID>
 <ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
 <constraintName>CK_ATTR_ATTR_MAX_TXTLNG</constraintName>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT011</logicalDatatype>
+<domain>AF5E1D05-661F-8A64-E8AC-C569F2FAD411</domain>
 <defaultValue>1</defaultValue>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
@@ -164,7 +166,7 @@
 <Column name="ATTR_ZEICHENREGEL" id="717F8B4E-E7BB-0DD7-F0A0-8A00A2FE76FD">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-02 12:37:27 UTC</createdTime>
-<comment>Regulärer Ausdruck, der die gültigen Zeich(folgen) eines Textfeldes festlegt.</comment>
+<comment><![CDATA[Regulärer Ausdruck, der die gültigen Zeich(folgen) eines Textfeldes festlegt.]]></comment>
 <generatorID>232B6E7A-88E7-1298-F452-B47D780BB05D</generatorID>
 <ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
@@ -177,26 +179,28 @@
 <Column name="ATTR_MIN_WERT" id="8B4352F7-CF20-9765-78B2-DA6EFC1AF35B">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-02 12:37:27 UTC</createdTime>
-<comment>Minimaler Wert für ein numerisches Feld. Leer -&gt; so klein wie das System zulässt</comment>
+<comment><![CDATA[Minimaler Wert für ein numerisches Feld. Leer -> so klein wie das System zulässt]]></comment>
 <generatorID>5C9E4513-EC5B-A599-4262-245889F0C34E</generatorID>
 <ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
+<domain>041E8A3B-AE2E-7199-E3EB-8AD874F657F2</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
 <Column name="ATTR_MAX_WERT" id="3811B219-731B-1AFA-7264-089579D9C141">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-02 12:37:27 UTC</createdTime>
-<comment>Maximaler Wert für ein numerisches Feld. Leer -&gt; so gross wie das System zulässt</comment>
+<comment><![CDATA[Maximaler Wert für ein numerisches Feld. Leer -> so gross wie das System zulässt]]></comment>
 <generatorID>E783D490-8CB7-D9FF-0046-792DC9EF89A3</generatorID>
 <ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
+<domain>041E8A3B-AE2E-7199-E3EB-8AD874F657F2</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
@@ -240,7 +244,7 @@
 <Column name="ATTR_RNDG" id="03D76975-3F7E-8C2E-C07D-FB7DCBAB3943">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-02 12:37:27 UTC</createdTime>
-<comment>Auf welche Granularität wird eine Zahl gerundet (1000 -&gt; auf 1000er, 0.25 -&gt; auf 1/4, 0.001 -&gt; auf 1/100)</comment>
+<comment><![CDATA[Auf welche Granularität wird eine Zahl gerundet (1000 -> auf 1000er, 0.25 -> auf 1/4, 0.001 -> auf 1/100)]]></comment>
 <generatorID>A2E215BF-6FDC-88AF-CFB9-1C718F624482</generatorID>
 <ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
 <constraintName>CK_ATTR_ATTR_RNDG</constraintName>
@@ -262,16 +266,10 @@
 <createdTime>2018-06-02 12:34:39 UTC</createdTime>
 <ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
 <constraintName>CK_ATTR_ATTR_TYP</constraintName>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
 <dataTypeSize>4</dataTypeSize>
-<listOfValues>
-<valueDef value="LATT" description="entity Listeattribut"/>
-<valueDef value="NATT" description="entity Numerisch Attribut"/>
-<valueDef value="TATT" description="entity Textattribut"/>
-<valueDef value="ZATT" description="entity Zeitpunktattribut"/>
-</listOfValues>
+<domain>74910DBD-CB7C-D08E-42D7-EE854A7C5EBD</domain>
 <ownDataTypeParameters>4,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 <notNullConstraintName>NNC_ATTR_ATTR_TYP</notNullConstraintName>
@@ -359,12 +357,13 @@
 <Column name="ATTR_UCRE" id="AF2D345A-8AE1-D826-C1DE-E69133CF1B1C">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-02 12:34:39 UTC</createdTime>
-<commentInRDBMS>User der diesen Eintrag erstellt hat</commentInRDBMS>
+<commentInRDBMS><![CDATA[User der diesen Eintrag erstellt hat]]></commentInRDBMS>
 <ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
 <dataTypeSize>30 CHAR</dataTypeSize>
+<domain>DAB77899-7C48-0699-ABCB-523FDF1087F1</domain>
 <defaultValue>USER</defaultValue>
 <ownDataTypeParameters>30 CHAR,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
@@ -376,11 +375,12 @@
 <Column name="ATTR_TCRE" id="DD46CFE4-280F-0CF4-9005-ED21DDF14698">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-02 12:34:39 UTC</createdTime>
-<commentInRDBMS>Zeitpunkt (Time) zu dem dieser Eintrag erstellt wurde.</commentInRDBMS>
+<commentInRDBMS><![CDATA[Zeitpunkt (Time) zu dem dieser Eintrag erstellt wurde.]]></commentInRDBMS>
 <ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT047</logicalDatatype>
+<domain>C316C50C-7DB2-C4AD-E5C2-E3E2AE2A4A48</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 <notNullConstraintName>NNC_ATTR_ATTR_TCRE</notNullConstraintName>
@@ -394,9 +394,10 @@
 <ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
 <dataTypeSize>30 CHAR</dataTypeSize>
+<domain>B39C0970-89F7-89DB-A6CF-212C65DF0E4C</domain>
 <ownDataTypeParameters>30 CHAR,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 <propertyMap>
@@ -406,12 +407,13 @@
 <Column name="ATTR_TMOD" id="55E3701D-44A1-7A13-9762-EC6A886BF810">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-02 12:34:39 UTC</createdTime>
-<commentInRDBMS>Zeitpunkt (Time) zu dem dieser Eintrag modifiziert wurde.</commentInRDBMS>
+<commentInRDBMS><![CDATA[Zeitpunkt (Time) zu dem dieser Eintrag modifiziert wurde.]]></commentInRDBMS>
 <ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT047</logicalDatatype>
+<domain>C316C50C-7DB2-C4AD-E5C2-E3E2AE2A4A48</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 <propertyMap>

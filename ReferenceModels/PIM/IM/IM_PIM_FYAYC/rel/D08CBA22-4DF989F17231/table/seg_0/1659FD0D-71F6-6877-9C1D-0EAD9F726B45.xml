@@ -66,12 +66,13 @@
 <Column name="LAND_TPLT_UCRE" id="93F141E6-8251-E647-E29E-FC69DEE0F24A">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-02 12:17:22 UTC</createdTime>
-<commentInRDBMS>User der diesen Eintrag erstellt hat</commentInRDBMS>
+<commentInRDBMS><![CDATA[User der diesen Eintrag erstellt hat]]></commentInRDBMS>
 <ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
 <dataTypeSize>30 CHAR</dataTypeSize>
+<domain>DAB77899-7C48-0699-ABCB-523FDF1087F1</domain>
 <defaultValue>USER</defaultValue>
 <ownDataTypeParameters>30 CHAR,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
@@ -83,11 +84,12 @@
 <Column name="LAND_TPLT_TCRE" id="AD6A01B5-2752-2CD0-E155-3D10FF819E79">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-02 12:17:22 UTC</createdTime>
-<commentInRDBMS>Zeitpunkt (Time) zu dem dieser Eintrag erstellt wurde.</commentInRDBMS>
+<commentInRDBMS><![CDATA[Zeitpunkt (Time) zu dem dieser Eintrag erstellt wurde.]]></commentInRDBMS>
 <ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT047</logicalDatatype>
+<domain>C316C50C-7DB2-C4AD-E5C2-E3E2AE2A4A48</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 <notNullConstraintName>NNC_LAND_LAND_TPLT_TCRE</notNullConstraintName>
@@ -101,9 +103,10 @@
 <ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
 <dataTypeSize>30 CHAR</dataTypeSize>
+<domain>B39C0970-89F7-89DB-A6CF-212C65DF0E4C</domain>
 <ownDataTypeParameters>30 CHAR,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 <propertyMap>
@@ -113,12 +116,13 @@
 <Column name="LAND_TPLT_TMOD" id="2EB58A2B-5F87-B0BE-AAA2-82C82B4D9F83">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-02 12:17:22 UTC</createdTime>
-<commentInRDBMS>Zeitpunkt (Time) zu dem dieser Eintrag modifiziert wurde.</commentInRDBMS>
+<commentInRDBMS><![CDATA[Zeitpunkt (Time) zu dem dieser Eintrag modifiziert wurde.]]></commentInRDBMS>
 <ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT047</logicalDatatype>
+<domain>C316C50C-7DB2-C4AD-E5C2-E3E2AE2A4A48</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 <propertyMap>

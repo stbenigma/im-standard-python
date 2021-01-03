@@ -52,12 +52,13 @@
 <Column name="BUAV_UCRE" id="725EE201-B042-F107-F26D-495781D685D3">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-02 13:09:09 UTC</createdTime>
-<commentInRDBMS>User der diesen Eintrag erstellt hat</commentInRDBMS>
+<commentInRDBMS><![CDATA[User der diesen Eintrag erstellt hat]]></commentInRDBMS>
 <ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
 <dataTypeSize>30 CHAR</dataTypeSize>
+<domain>DAB77899-7C48-0699-ABCB-523FDF1087F1</domain>
 <defaultValue>USER</defaultValue>
 <ownDataTypeParameters>30 CHAR,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
@@ -66,11 +67,12 @@
 <Column name="BUAV_TCRE" id="DC974885-4E10-05EE-13BD-41DEF32F4FFC">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-02 13:09:09 UTC</createdTime>
-<commentInRDBMS>Zeitpunkt (Time) zu dem dieser Eintrag erstellt wurde.</commentInRDBMS>
+<commentInRDBMS><![CDATA[Zeitpunkt (Time) zu dem dieser Eintrag erstellt wurde.]]></commentInRDBMS>
 <ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT047</logicalDatatype>
+<domain>C316C50C-7DB2-C4AD-E5C2-E3E2AE2A4A48</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 <notNullConstraintName>NNC_BUAV_BUAV_TCRE</notNullConstraintName>
@@ -81,21 +83,23 @@
 <ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
 <dataTypeSize>30 CHAR</dataTypeSize>
+<domain>B39C0970-89F7-89DB-A6CF-212C65DF0E4C</domain>
 <ownDataTypeParameters>30 CHAR,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
 <Column name="BUAV_TMOD" id="1CB7EDA7-FC89-1819-5089-85EC51883276">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-02 13:09:09 UTC</createdTime>
-<commentInRDBMS>Zeitpunkt (Time) zu dem dieser Eintrag modifiziert wurde.</commentInRDBMS>
+<commentInRDBMS><![CDATA[Zeitpunkt (Time) zu dem dieser Eintrag modifiziert wurde.]]></commentInRDBMS>
 <ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT047</logicalDatatype>
+<domain>C316C50C-7DB2-C4AD-E5C2-E3E2AE2A4A48</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>

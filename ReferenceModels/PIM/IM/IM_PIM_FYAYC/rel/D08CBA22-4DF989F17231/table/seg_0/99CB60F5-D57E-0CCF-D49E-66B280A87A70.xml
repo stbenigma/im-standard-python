@@ -26,13 +26,14 @@
 <Column name="GSPR_ISO_SPRACHLAND_CODE" id="CB595D6A-CF35-B988-6133-E600C669946E">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-02 12:17:22 UTC</createdTime>
-<comment>2stellen Sprache Iso, &quot;-&quot;, 2 stellen Land-Iso</comment>
+<comment><![CDATA[2stellen Sprache Iso, "-", 2 stellen Land-Iso]]></comment>
 <generatorID>CF0C212A-6465-E9CB-39F5-50E63FCCDD61</generatorID>
 <ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
 <dataTypeSize>5</dataTypeSize>
+<domain>C6158AE1-7FF7-C7BF-152C-F36CC50BD177</domain>
 <ownDataTypeParameters>5,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 <notNullConstraintName>NNC_GSPR_GSPR_ISO_SPRACHLAND_CODE</notNullConstraintName>
@@ -82,12 +83,13 @@
 <Column name="GSPR_TPLT_UCRE" id="4E05028C-4003-266A-7B97-209C0B952CD1">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-02 12:17:22 UTC</createdTime>
-<commentInRDBMS>User der diesen Eintrag erstellt hat</commentInRDBMS>
+<commentInRDBMS><![CDATA[User der diesen Eintrag erstellt hat]]></commentInRDBMS>
 <ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
 <dataTypeSize>30 CHAR</dataTypeSize>
+<domain>DAB77899-7C48-0699-ABCB-523FDF1087F1</domain>
 <defaultValue>USER</defaultValue>
 <ownDataTypeParameters>30 CHAR,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
@@ -99,11 +101,12 @@
 <Column name="GSPR_TPLT_TCRE" id="60CBEA3C-A959-8A59-BA04-F7838A7EA912">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-02 12:17:22 UTC</createdTime>
-<commentInRDBMS>Zeitpunkt (Time) zu dem dieser Eintrag erstellt wurde.</commentInRDBMS>
+<commentInRDBMS><![CDATA[Zeitpunkt (Time) zu dem dieser Eintrag erstellt wurde.]]></commentInRDBMS>
 <ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT047</logicalDatatype>
+<domain>C316C50C-7DB2-C4AD-E5C2-E3E2AE2A4A48</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 <notNullConstraintName>NNC_GSPR_GSPR_TPLT_TCRE</notNullConstraintName>
@@ -117,9 +120,10 @@
 <ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
 <dataTypeSize>30 CHAR</dataTypeSize>
+<domain>B39C0970-89F7-89DB-A6CF-212C65DF0E4C</domain>
 <ownDataTypeParameters>30 CHAR,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 <propertyMap>
@@ -129,12 +133,13 @@
 <Column name="GSPR_TPLT_TMOD" id="CB2A3A1A-A220-444B-066F-2B433ECFF9ED">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-02 12:17:22 UTC</createdTime>
-<commentInRDBMS>Zeitpunkt (Time) zu dem dieser Eintrag modifiziert wurde.</commentInRDBMS>
+<commentInRDBMS><![CDATA[Zeitpunkt (Time) zu dem dieser Eintrag modifiziert wurde.]]></commentInRDBMS>
 <ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT047</logicalDatatype>
+<domain>C316C50C-7DB2-C4AD-E5C2-E3E2AE2A4A48</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 <propertyMap>

@@ -2,7 +2,8 @@
 <Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="907A778A-4536-2882-FB80-CDC3EC16A205" name="EINHEITUMRECHNUNG">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-02 12:26:22 UTC</createdTime>
-<comment>Faktor, der eine Einheit (rechnet von) in ein eine andere umrechnet.&lt;br/&gt;Formel: rechnet von-Einheit * Faktor = rechnet  zu-Einheit</comment>
+<comment><![CDATA[Faktor, der eine Einheit (rechnet von) in ein eine andere umrechnet.
+Formel: rechnet von-Einheit * Faktor = rechnet  zu-Einheit]]></comment>
 <generatorID>8D3423A8-D897-B843-6E7A-1B727D8E0F91</generatorID>
 <ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
 <abbreviation>EUMR</abbreviation>
@@ -15,10 +16,11 @@
 <generatorID>C7B1639F-352A-BAD7-153C-1CE6BFF22315</generatorID>
 <ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
 <dataTypePrecision>20</dataTypePrecision>
 <dataTypeScale>10</dataTypeScale>
+<domain>A9FA508F-2460-1FAF-4E2A-E7F679F355FA</domain>
 <ownDataTypeParameters>,20,10</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 <notNullConstraintName>NNC_EUMR_EUMR_FAKTOR</notNullConstraintName>
@@ -70,12 +72,13 @@
 <Column name="EUMR_UCRE" id="4DEDA6A6-7D58-16EC-99D4-C121C5EF15F0">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-02 12:26:22 UTC</createdTime>
-<commentInRDBMS>User der diesen Eintrag erstellt hat</commentInRDBMS>
+<commentInRDBMS><![CDATA[User der diesen Eintrag erstellt hat]]></commentInRDBMS>
 <ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
 <dataTypeSize>30 CHAR</dataTypeSize>
+<domain>DAB77899-7C48-0699-ABCB-523FDF1087F1</domain>
 <defaultValue>USER</defaultValue>
 <ownDataTypeParameters>30 CHAR,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
@@ -87,11 +90,12 @@
 <Column name="EUMR_TCRE" id="BA0F6937-9735-EB15-6F8D-3C9CE30CF6FE">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-02 12:26:22 UTC</createdTime>
-<commentInRDBMS>Zeitpunkt (Time) zu dem dieser Eintrag erstellt wurde.</commentInRDBMS>
+<commentInRDBMS><![CDATA[Zeitpunkt (Time) zu dem dieser Eintrag erstellt wurde.]]></commentInRDBMS>
 <ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT047</logicalDatatype>
+<domain>C316C50C-7DB2-C4AD-E5C2-E3E2AE2A4A48</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 <notNullConstraintName>NNC_EUMR_EUMR_TCRE</notNullConstraintName>
@@ -105,9 +109,10 @@
 <ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
 <dataTypeSize>30 CHAR</dataTypeSize>
+<domain>B39C0970-89F7-89DB-A6CF-212C65DF0E4C</domain>
 <ownDataTypeParameters>30 CHAR,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 <propertyMap>
@@ -117,12 +122,13 @@
 <Column name="EUMR_TMOD" id="17F2A7F8-1F04-57C3-F434-E6F4928092C5">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-02 12:26:22 UTC</createdTime>
-<commentInRDBMS>Zeitpunkt (Time) zu dem dieser Eintrag modifiziert wurde.</commentInRDBMS>
+<commentInRDBMS><![CDATA[Zeitpunkt (Time) zu dem dieser Eintrag modifiziert wurde.]]></commentInRDBMS>
 <ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT047</logicalDatatype>
+<domain>C316C50C-7DB2-C4AD-E5C2-E3E2AE2A4A48</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 <propertyMap>

@@ -2,7 +2,10 @@
 <Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="E4DB1CF0-2CE8-8FE7-C313-9E4F2A73E9E3" name="ATTR_AUSPRAEGUNG">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-02 12:34:39 UTC</createdTime>
-<comment>Ein Wert für ein generische erstelltes Attribut.&lt;br/&gt;Der Wert der gespeichert wird, hält alle Einschränkungen aus dem zugehörigen Attributtyp ein.&lt;br/&gt;&lt;br/&gt;</comment>
+<comment><![CDATA[Ein Wert für ein generische erstelltes Attribut.
+Der Wert der gespeichert wird, hält alle Einschränkungen aus dem zugehörigen Attributtyp ein.
+
+]]></comment>
 <generatorID>54D3A553-8617-D1C1-0D3C-12AA5D499DE1</generatorID>
 <ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
 <ordsAlias>attribut_auspraegung</ordsAlias>
@@ -29,40 +32,43 @@
 <Column name="ATAU_WERT_C" id="13226EAB-C808-B55C-A33C-21D8AEB637A2">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-02 12:37:27 UTC</createdTime>
-<comment>Der Datentyp des Wertes wird durch den Attributtyp-Subtyp bestimmt.</comment>
+<comment><![CDATA[Der Datentyp des Wertes wird durch den Attributtyp-Subtyp bestimmt.]]></comment>
 <generatorID>867EFBE5-2FDC-56D1-DC86-A1C106E7A9AE</generatorID>
 <ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
 <dataTypeSize>4000 CHAR</dataTypeSize>
+<domain>7EA6DA26-F21D-B053-2D0E-CA84861ECAAB</domain>
 <ownDataTypeParameters>4000 CHAR,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
 <Column name="ATAU_WERT_N" id="1408FD5B-0CE5-5E11-92A3-D816D98C611F">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-02 13:17:40 UTC</createdTime>
-<comment>Der Datentyp des Wertes wird durch den Attributtyp-Subtyp bestimmt.</comment>
+<comment><![CDATA[Der Datentyp des Wertes wird durch den Attributtyp-Subtyp bestimmt.]]></comment>
 <generatorID>867EFBE5-2FDC-56D1-DC86-A1C106E7A9AE</generatorID>
 <ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
+<domain>041E8A3B-AE2E-7199-E3EB-8AD874F657F2</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
 <Column name="ATAU_WERT_T" id="3A09D347-A5D3-8C9D-B2EA-7FE7D830087E">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-02 13:17:40 UTC</createdTime>
-<comment>Der Datentyp des Wertes wird durch den Attributtyp-Subtyp bestimmt.</comment>
+<comment><![CDATA[Der Datentyp des Wertes wird durch den Attributtyp-Subtyp bestimmt.]]></comment>
 <generatorID>867EFBE5-2FDC-56D1-DC86-A1C106E7A9AE</generatorID>
 <ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT047</logicalDatatype>
+<domain>C316C50C-7DB2-C4AD-E5C2-E3E2AE2A4A48</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
@@ -71,14 +77,10 @@
 <createdTime>2018-06-02 12:34:39 UTC</createdTime>
 <ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
 <constraintName>CK_ATAU_ATAU_TYP</constraintName>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
 <dataTypeSize>40 CHAR</dataTypeSize>
-<listOfValues>
-<valueDef value="FREIER_WERT" description="entity Freier Wert"/>
-<valueDef value="LISTENWERT" description="entity Listenwert"/>
-</listOfValues>
+<domain>A3BEA235-3154-0914-9CF1-E8E388A2D3C3</domain>
 <ownDataTypeParameters>40 CHAR,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 <notNullConstraintName>NNC_ATAU_ATAU_TYP</notNullConstraintName>
@@ -162,12 +164,13 @@
 <Column name="ATAU_UCRE" id="FEADF8C0-3E17-A03C-1D33-C20EA5E53C8D">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-02 12:34:39 UTC</createdTime>
-<commentInRDBMS>User der diesen Eintrag erstellt hat</commentInRDBMS>
+<commentInRDBMS><![CDATA[User der diesen Eintrag erstellt hat]]></commentInRDBMS>
 <ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
 <dataTypeSize>30 CHAR</dataTypeSize>
+<domain>DAB77899-7C48-0699-ABCB-523FDF1087F1</domain>
 <defaultValue>USER</defaultValue>
 <ownDataTypeParameters>30 CHAR,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
@@ -179,11 +182,12 @@
 <Column name="ATAU_TCRE" id="29F0D3B5-97F0-53CE-C6B0-A13F91996C00">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-02 12:34:39 UTC</createdTime>
-<commentInRDBMS>Zeitpunkt (Time) zu dem dieser Eintrag erstellt wurde.</commentInRDBMS>
+<commentInRDBMS><![CDATA[Zeitpunkt (Time) zu dem dieser Eintrag erstellt wurde.]]></commentInRDBMS>
 <ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT047</logicalDatatype>
+<domain>C316C50C-7DB2-C4AD-E5C2-E3E2AE2A4A48</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 <notNullConstraintName>NNC_ATAU_ATAU_TCRE</notNullConstraintName>
@@ -197,9 +201,10 @@
 <ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
 <dataTypeSize>30 CHAR</dataTypeSize>
+<domain>B39C0970-89F7-89DB-A6CF-212C65DF0E4C</domain>
 <ownDataTypeParameters>30 CHAR,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 <propertyMap>
@@ -209,12 +214,13 @@
 <Column name="ATAU_TMOD" id="4B904097-D162-55A6-4C14-27C680B4785C">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-02 12:34:39 UTC</createdTime>
-<commentInRDBMS>Zeitpunkt (Time) zu dem dieser Eintrag modifiziert wurde.</commentInRDBMS>
+<commentInRDBMS><![CDATA[Zeitpunkt (Time) zu dem dieser Eintrag modifiziert wurde.]]></commentInRDBMS>
 <ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT047</logicalDatatype>
+<domain>C316C50C-7DB2-C4AD-E5C2-E3E2AE2A4A48</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 <propertyMap>

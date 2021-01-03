@@ -27,7 +27,7 @@
 <Column name="ATVG_WERT" id="291D15C6-3DA8-105A-61CC-4BCCA5D82608">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-02 12:26:22 UTC</createdTime>
-<comment>Ein Wert den ein Attribut annehmen kann.</comment>
+<comment><![CDATA[Ein Wert den ein Attribut annehmen kann.]]></comment>
 <generatorID>455A9AF6-A15D-EEBA-DC70-9AA7AA004B58</generatorID>
 <ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
 <use>0</use>
@@ -40,7 +40,7 @@
 <Column name="ATVG_KRZTXT" id="534A4A01-AB3D-ABF6-C092-1C4812B9C547">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-02 12:26:22 UTC</createdTime>
-<comment>Kurzer Text eines Wertes in mehreren Sprachen möglich.</comment>
+<comment><![CDATA[Kurzer Text eines Wertes in mehreren Sprachen möglich.]]></comment>
 <generatorID>01AB129E-EF1A-794F-08C3-FB6C5E7A1713</generatorID>
 <ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
@@ -53,7 +53,7 @@
 <Column name="ATVG_LNGTXT" id="13FE9056-BFF9-F913-79D7-DA8271D48830">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-02 12:26:22 UTC</createdTime>
-<comment>Langer Text eines Wertes in mehreren Sprachen möglich.</comment>
+<comment><![CDATA[Langer Text eines Wertes in mehreren Sprachen möglich.]]></comment>
 <generatorID>2E286809-1E35-DB7C-E2CC-CC181ADF5190</generatorID>
 <ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
@@ -66,13 +66,14 @@
 <Column name="ATVG_SORTRHFG" id="A6B42AB0-4A92-383A-6BD2-DD3A7CB82915">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-02 12:26:22 UTC</createdTime>
-<comment>Zahl nach der die Werte in einer Anzeige aufsteigend sortiert werden. Leer -&gt; Wert kommt an den Schluss der Liste in zufälliger Reihenfolge</comment>
+<comment><![CDATA[Zahl nach der die Werte in einer Anzeige aufsteigend sortiert werden. Leer -> Wert kommt an den Schluss der Liste in zufälliger Reihenfolge]]></comment>
 <generatorID>F1ECFE5B-5FA3-91EE-8ADD-60791EEA214A</generatorID>
 <ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT011</logicalDatatype>
+<domain>AF5E1D05-661F-8A64-E8AC-C569F2FAD411</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
@@ -94,12 +95,13 @@
 <Column name="ATVG_UCRE" id="E21DC97B-BB43-11EB-4360-9490B0DB7493">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-02 12:26:22 UTC</createdTime>
-<commentInRDBMS>User der diesen Eintrag erstellt hat</commentInRDBMS>
+<commentInRDBMS><![CDATA[User der diesen Eintrag erstellt hat]]></commentInRDBMS>
 <ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
 <dataTypeSize>30 CHAR</dataTypeSize>
+<domain>DAB77899-7C48-0699-ABCB-523FDF1087F1</domain>
 <defaultValue>USER</defaultValue>
 <ownDataTypeParameters>30 CHAR,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
@@ -111,11 +113,12 @@
 <Column name="ATVG_TCRE" id="E6AC3705-3177-C393-6563-FC3F1A917DA1">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-02 12:26:22 UTC</createdTime>
-<commentInRDBMS>Zeitpunkt (Time) zu dem dieser Eintrag erstellt wurde.</commentInRDBMS>
+<commentInRDBMS><![CDATA[Zeitpunkt (Time) zu dem dieser Eintrag erstellt wurde.]]></commentInRDBMS>
 <ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT047</logicalDatatype>
+<domain>C316C50C-7DB2-C4AD-E5C2-E3E2AE2A4A48</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 <notNullConstraintName>NNC_ATVG_ATVG_TCRE</notNullConstraintName>
@@ -129,9 +132,10 @@
 <ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
 <dataTypeSize>30 CHAR</dataTypeSize>
+<domain>B39C0970-89F7-89DB-A6CF-212C65DF0E4C</domain>
 <ownDataTypeParameters>30 CHAR,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 <propertyMap>
@@ -141,12 +145,13 @@
 <Column name="ATVG_TMOD" id="E21D8EAD-435B-F117-CF45-218F4D5DEE0F">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-02 12:26:22 UTC</createdTime>
-<commentInRDBMS>Zeitpunkt (Time) zu dem dieser Eintrag modifiziert wurde.</commentInRDBMS>
+<commentInRDBMS><![CDATA[Zeitpunkt (Time) zu dem dieser Eintrag modifiziert wurde.]]></commentInRDBMS>
 <ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT047</logicalDatatype>
+<domain>C316C50C-7DB2-C4AD-E5C2-E3E2AE2A4A48</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 <propertyMap>

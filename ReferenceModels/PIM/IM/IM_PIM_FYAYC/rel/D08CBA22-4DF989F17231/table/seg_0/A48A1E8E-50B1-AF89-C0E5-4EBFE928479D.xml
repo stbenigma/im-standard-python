@@ -2,7 +2,7 @@
 <Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="A48A1E8E-50B1-AF89-C0E5-4EBFE928479D" name="ATTR_VERWENDUNG">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-02 12:26:22 UTC</createdTime>
-<comment>Gruppierung von allen Entitäten, die zur Beschreibung und Verwaltung von Artikel-Attributen benötigt werden.</comment>
+<comment><![CDATA[Gruppierung von allen Entitäten, die zur Beschreibung und Verwaltung von Artikel-Attributen benötigt werden.]]></comment>
 <generatorID>A8435A7A-CDCC-3040-1442-D0936F45ABE2</generatorID>
 <ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
 <ordsAlias>attributverwendung</ordsAlias>
@@ -28,7 +28,7 @@
 <Column name="ATVW_IST_PFLICHT" id="4B7424AF-D5BA-E09D-3E80-FAA8586578C0">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-02 12:26:22 UTC</createdTime>
-<comment>Ist das Attribut in dieser Verwendung ein Pflichtattribut, d.h. es darf nicht leer sein.</comment>
+<comment><![CDATA[Ist das Attribut in dieser Verwendung ein Pflichtattribut, d.h. es darf nicht leer sein.]]></comment>
 <generatorID>77660323-65FF-44E5-9D93-BC4C6D93884E</generatorID>
 <ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
 <constraintName>CK_ATVW_ATVW_IST_PFLICHT</constraintName>
@@ -74,12 +74,13 @@
 <Column name="ATVW_UCRE" id="0FE73E19-7BBA-0B3B-CA67-3125A9F6EA10">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-02 12:26:22 UTC</createdTime>
-<commentInRDBMS>User der diesen Eintrag erstellt hat</commentInRDBMS>
+<commentInRDBMS><![CDATA[User der diesen Eintrag erstellt hat]]></commentInRDBMS>
 <ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
 <dataTypeSize>30 CHAR</dataTypeSize>
+<domain>DAB77899-7C48-0699-ABCB-523FDF1087F1</domain>
 <defaultValue>USER</defaultValue>
 <ownDataTypeParameters>30 CHAR,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
@@ -91,11 +92,12 @@
 <Column name="ATVW_TCRE" id="F9EEBFC8-D517-3D0E-0E2E-0346293D2E40">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-02 12:26:22 UTC</createdTime>
-<commentInRDBMS>Zeitpunkt (Time) zu dem dieser Eintrag erstellt wurde.</commentInRDBMS>
+<commentInRDBMS><![CDATA[Zeitpunkt (Time) zu dem dieser Eintrag erstellt wurde.]]></commentInRDBMS>
 <ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT047</logicalDatatype>
+<domain>C316C50C-7DB2-C4AD-E5C2-E3E2AE2A4A48</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 <notNullConstraintName>NNC_ATVW_ATVW_TCRE</notNullConstraintName>
@@ -109,9 +111,10 @@
 <ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
 <dataTypeSize>30 CHAR</dataTypeSize>
+<domain>B39C0970-89F7-89DB-A6CF-212C65DF0E4C</domain>
 <ownDataTypeParameters>30 CHAR,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 <propertyMap>
@@ -121,12 +124,13 @@
 <Column name="ATVW_TMOD" id="FCE7F616-FCAD-48EC-0D3F-D0D9FB350487">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-02 12:26:22 UTC</createdTime>
-<commentInRDBMS>Zeitpunkt (Time) zu dem dieser Eintrag modifiziert wurde.</commentInRDBMS>
+<commentInRDBMS><![CDATA[Zeitpunkt (Time) zu dem dieser Eintrag modifiziert wurde.]]></commentInRDBMS>
 <ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT047</logicalDatatype>
+<domain>C316C50C-7DB2-C4AD-E5C2-E3E2AE2A4A48</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 <propertyMap>

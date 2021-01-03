@@ -2,7 +2,8 @@
 <Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="4462DCCE-D4B6-6951-BDC8-93915C43AA4C" name="PHYS_EINH_TEXT">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-02 12:54:19 UTC</createdTime>
-<comment>Physikalische Messeinheit.&lt;br/&gt;Siehe dazu z.B. https://de.wikipedia.org/wiki/Liste_physikalischer_Größen#SI-Basisgrößen_und_-einheiten</comment>
+<comment><![CDATA[Physikalische Messeinheit.
+Siehe dazu z.B. https://de.wikipedia.org/wiki/Liste_physikalischer_Größen#SI-Basisgrößen_und_-einheiten]]></comment>
 <generatorID>07BDF8BC-95D9-2C86-6F4E-BE8D0881F9D4</generatorID>
 <ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
 <ordsAlias>physikalische_einheitv1</ordsAlias>
@@ -27,7 +28,7 @@
 <Column name="PHET_SI_EINHEIT" id="43B42F4A-BA3C-0FB1-61EC-74B60A145BCC">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-02 12:54:19 UTC</createdTime>
-<comment>Einheit gemäss SI-Vorgabe</comment>
+<comment><![CDATA[Einheit gemäss SI-Vorgabe]]></comment>
 <generatorID>267C695D-4C75-7A68-12A6-A86F9E2E847F</generatorID>
 <ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
 <use>0</use>
@@ -94,12 +95,13 @@
 <Column name="PHET_UCRE" id="52197F29-3B7E-16F7-1601-AFA2AF4763B7">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-02 12:54:19 UTC</createdTime>
-<commentInRDBMS>User der diesen Eintrag erstellt hat</commentInRDBMS>
+<commentInRDBMS><![CDATA[User der diesen Eintrag erstellt hat]]></commentInRDBMS>
 <ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
 <dataTypeSize>30 CHAR</dataTypeSize>
+<domain>DAB77899-7C48-0699-ABCB-523FDF1087F1</domain>
 <defaultValue>USER</defaultValue>
 <ownDataTypeParameters>30 CHAR,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
@@ -111,11 +113,12 @@
 <Column name="PHET_TCRE" id="30C54187-DE1D-092A-5590-45CBC3F35A4B">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-02 12:54:19 UTC</createdTime>
-<commentInRDBMS>Zeitpunkt (Time) zu dem dieser Eintrag erstellt wurde.</commentInRDBMS>
+<commentInRDBMS><![CDATA[Zeitpunkt (Time) zu dem dieser Eintrag erstellt wurde.]]></commentInRDBMS>
 <ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT047</logicalDatatype>
+<domain>C316C50C-7DB2-C4AD-E5C2-E3E2AE2A4A48</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 <notNullConstraintName>NNC_PHET_PHET_TCRE</notNullConstraintName>
@@ -129,9 +132,10 @@
 <ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
 <dataTypeSize>30 CHAR</dataTypeSize>
+<domain>B39C0970-89F7-89DB-A6CF-212C65DF0E4C</domain>
 <ownDataTypeParameters>30 CHAR,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 <propertyMap>
@@ -141,12 +145,13 @@
 <Column name="PHET_TMOD" id="32C1ACD7-F5B0-6949-15C8-299621D9C45B">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-02 12:54:19 UTC</createdTime>
-<commentInRDBMS>Zeitpunkt (Time) zu dem dieser Eintrag modifiziert wurde.</commentInRDBMS>
+<commentInRDBMS><![CDATA[Zeitpunkt (Time) zu dem dieser Eintrag modifiziert wurde.]]></commentInRDBMS>
 <ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT047</logicalDatatype>
+<domain>C316C50C-7DB2-C4AD-E5C2-E3E2AE2A4A48</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 <propertyMap>

@@ -2,7 +2,8 @@
 <Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="8FCFE9A9-27B9-410A-2FB1-378971F10248" name="BUSINESS_RULE">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-02 12:26:22 UTC</createdTime>
-<comment>Regel, die für diese Verwendung des Attributs gelten muss (über die Regeln in der Attributdefinition hinaus.&lt;br/&gt;Die Regel kann weitere Attributverwendeungen referenzieren, wenn die Attributwerte voneinander abhängig sind.</comment>
+<comment><![CDATA[Regel, die für diese Verwendung des Attributs gelten muss (über die Regeln in der Attributdefinition hinaus.
+Die Regel kann weitere Attributverwendeungen referenzieren, wenn die Attributwerte voneinander abhängig sind.]]></comment>
 <generatorID>EFE5CA98-7B0E-D5DF-5CC5-655821EFDCA3</generatorID>
 <ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
 <abbreviation>BUSR</abbreviation>
@@ -27,7 +28,7 @@
 <Column name="BUSR_NAME" id="F12387CA-1E4B-911C-FA82-81AE0705CC60">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-02 12:26:22 UTC</createdTime>
-<comment>Bezeichnung der Regel</comment>
+<comment><![CDATA[Bezeichnung der Regel]]></comment>
 <generatorID>5CC12D61-A406-697F-320E-1C2BC9C27D51</generatorID>
 <ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
@@ -40,7 +41,7 @@
 <Column name="BUSR_BESCHR" id="77D57BB4-3976-CC51-48CE-C7D40CB92207">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-02 12:26:22 UTC</createdTime>
-<comment>Umschreibung der Prüfregel</comment>
+<comment><![CDATA[Umschreibung der Prüfregel]]></comment>
 <generatorID>39F301B2-7180-AD29-8A1D-29EF588921D3</generatorID>
 <ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
@@ -53,7 +54,7 @@
 <Column name="BUSR_REGEL" id="F56B582C-B134-F145-19F7-A58CE0990B6F">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-02 12:26:22 UTC</createdTime>
-<comment>(möglichst formale) Beschreibung der Regel, die für dieses Attribut gelten muss</comment>
+<comment><![CDATA[(möglichst formale) Beschreibung der Regel, die für dieses Attribut gelten muss]]></comment>
 <generatorID>FC25CF04-FE84-04CC-A6E5-7F2C9941FF55</generatorID>
 <ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
 <use>0</use>
@@ -66,7 +67,7 @@
 <Column name="BUSR_FHLMLD" id="8C87D026-2EF6-BCAA-5765-4875F0A32C3D">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-02 12:26:22 UTC</createdTime>
-<comment>Fehlermeldung die ausgegeben wird, wenn die Regel verletzt ist.</comment>
+<comment><![CDATA[Fehlermeldung die ausgegeben wird, wenn die Regel verletzt ist.]]></comment>
 <generatorID>4E7DD1EE-E75E-22E6-8848-AB70CE0DB272</generatorID>
 <ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
@@ -94,12 +95,13 @@
 <Column name="BUSR_UCRE" id="2494A783-EF12-FEAD-91CA-AADD05CEC705">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-02 12:26:22 UTC</createdTime>
-<commentInRDBMS>User der diesen Eintrag erstellt hat</commentInRDBMS>
+<commentInRDBMS><![CDATA[User der diesen Eintrag erstellt hat]]></commentInRDBMS>
 <ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
 <dataTypeSize>30 CHAR</dataTypeSize>
+<domain>DAB77899-7C48-0699-ABCB-523FDF1087F1</domain>
 <defaultValue>USER</defaultValue>
 <ownDataTypeParameters>30 CHAR,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
@@ -111,11 +113,12 @@
 <Column name="BUSR_TCRE" id="E5C5D02F-CB36-F686-4B69-70C1883815C4">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-02 12:26:22 UTC</createdTime>
-<commentInRDBMS>Zeitpunkt (Time) zu dem dieser Eintrag erstellt wurde.</commentInRDBMS>
+<commentInRDBMS><![CDATA[Zeitpunkt (Time) zu dem dieser Eintrag erstellt wurde.]]></commentInRDBMS>
 <ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT047</logicalDatatype>
+<domain>C316C50C-7DB2-C4AD-E5C2-E3E2AE2A4A48</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 <notNullConstraintName>NNC_BUSR_BUSR_TCRE</notNullConstraintName>
@@ -129,9 +132,10 @@
 <ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
 <dataTypeSize>30 CHAR</dataTypeSize>
+<domain>B39C0970-89F7-89DB-A6CF-212C65DF0E4C</domain>
 <ownDataTypeParameters>30 CHAR,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 <propertyMap>
@@ -141,12 +145,13 @@
 <Column name="BUSR_TMOD" id="AF6BC4C9-2CD6-94F0-634B-7DE05FB573E2">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-02 12:26:22 UTC</createdTime>
-<commentInRDBMS>Zeitpunkt (Time) zu dem dieser Eintrag modifiziert wurde.</commentInRDBMS>
+<commentInRDBMS><![CDATA[Zeitpunkt (Time) zu dem dieser Eintrag modifiziert wurde.]]></commentInRDBMS>
 <ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT047</logicalDatatype>
+<domain>C316C50C-7DB2-C4AD-E5C2-E3E2AE2A4A48</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 <propertyMap>

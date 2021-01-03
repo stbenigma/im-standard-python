@@ -2,7 +2,8 @@
 <Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="1A091924-2FE3-A867-C63E-D734AD585A05" name="BU_TEXT">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-02 12:59:33 UTC</createdTime>
-<comment>Regel, die für diese Verwendung des Attributs gelten muss (über die Regeln in der Attributdefinition hinaus.&lt;br/&gt;Die Regel kann weitere Attributverwendeungen referenzieren, wenn die Attributwerte voneinander abhängig sind.</comment>
+<comment><![CDATA[Regel, die für diese Verwendung des Attributs gelten muss (über die Regeln in der Attributdefinition hinaus.
+Die Regel kann weitere Attributverwendeungen referenzieren, wenn die Attributwerte voneinander abhängig sind.]]></comment>
 <generatorID>EFE5CA98-7B0E-D5DF-5CC5-655821EFDCA3</generatorID>
 <ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
 <ordsAlias>business_rulev1</ordsAlias>
@@ -27,7 +28,7 @@
 <Column name="BURT_BESCHR" id="9C1C0504-15C7-7E25-0F18-1C67B80B0955">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-02 12:59:33 UTC</createdTime>
-<comment>Umschreibung der Prüfregel</comment>
+<comment><![CDATA[Umschreibung der Prüfregel]]></comment>
 <generatorID>39F301B2-7180-AD29-8A1D-29EF588921D3</generatorID>
 <ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
@@ -40,7 +41,7 @@
 <Column name="BURT_FHLMLD" id="A558C44D-0F91-2F91-2F09-B484F7793542">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-02 12:59:33 UTC</createdTime>
-<comment>Fehlermeldung die ausgegeben wird, wenn die Regel verletzt ist.</comment>
+<comment><![CDATA[Fehlermeldung die ausgegeben wird, wenn die Regel verletzt ist.]]></comment>
 <generatorID>4E7DD1EE-E75E-22E6-8848-AB70CE0DB272</generatorID>
 <ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
@@ -83,12 +84,13 @@
 <Column name="BURT_UCRE" id="3924CEF4-3CD2-4B70-6E81-B078C346EBEB">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-02 12:59:33 UTC</createdTime>
-<commentInRDBMS>User der diesen Eintrag erstellt hat</commentInRDBMS>
+<commentInRDBMS><![CDATA[User der diesen Eintrag erstellt hat]]></commentInRDBMS>
 <ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
 <dataTypeSize>30 CHAR</dataTypeSize>
+<domain>DAB77899-7C48-0699-ABCB-523FDF1087F1</domain>
 <defaultValue>USER</defaultValue>
 <ownDataTypeParameters>30 CHAR,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
@@ -100,11 +102,12 @@
 <Column name="BURT_TCRE" id="D3CE7C9D-49AB-083A-E088-A103B2ED9DEB">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-02 12:59:33 UTC</createdTime>
-<commentInRDBMS>Zeitpunkt (Time) zu dem dieser Eintrag erstellt wurde.</commentInRDBMS>
+<commentInRDBMS><![CDATA[Zeitpunkt (Time) zu dem dieser Eintrag erstellt wurde.]]></commentInRDBMS>
 <ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT047</logicalDatatype>
+<domain>C316C50C-7DB2-C4AD-E5C2-E3E2AE2A4A48</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 <notNullConstraintName>NNC_BURT_BURT_TCRE</notNullConstraintName>
@@ -118,9 +121,10 @@
 <ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
 <dataTypeSize>30 CHAR</dataTypeSize>
+<domain>B39C0970-89F7-89DB-A6CF-212C65DF0E4C</domain>
 <ownDataTypeParameters>30 CHAR,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 <propertyMap>
@@ -130,12 +134,13 @@
 <Column name="BURT_TMOD" id="04A36F90-9C7B-2774-60E8-6C8A4FF043DD">
 <createdBy>stb</createdBy>
 <createdTime>2018-06-02 12:59:33 UTC</createdTime>
-<commentInRDBMS>Zeitpunkt (Time) zu dem dieser Eintrag modifiziert wurde.</commentInRDBMS>
+<commentInRDBMS><![CDATA[Zeitpunkt (Time) zu dem dieser Eintrag modifiziert wurde.]]></commentInRDBMS>
 <ownerDesignName>IM_PIM_FYAYC</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT047</logicalDatatype>
+<domain>C316C50C-7DB2-C4AD-E5C2-E3E2AE2A4A48</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 <propertyMap>
