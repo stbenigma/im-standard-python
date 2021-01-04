@@ -296,6 +296,15 @@ CREATE TABLE DOMAINS
     def getgroupmembers(self):
         members = Domain.select(pwhere="doma_id in (select dgrm_doma_id_member from domaingroup_members where dgrm_doma_id_group = {})".format(self.doma_id))
 
+
+    @staticmethod
+    def fixdomaininterfaces(pinterfacedomains):
+        """{doma_id: <filename>}
+            domains in non-default file are IM or interface (relationale model) dependent.
+           filename = IM_Domains or <relname>_Domains
+         """
+        interfaces = set(() )
+        dbDML.execmany(psql="update domains set doma_intf_id = {} where doma_id = {}",recs=)
 # Domain
 
 class DomaingroupMember(Baseobject):

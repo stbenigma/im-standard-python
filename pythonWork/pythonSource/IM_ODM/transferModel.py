@@ -3,7 +3,6 @@ import os
 import re
 import sqlite3
 import xml.etree.ElementTree as ET
-from datetime import date
 
 from IM_ODM import transferRelational
 from IM_DB import dbInserts, dbDML, dbConnect, parameters, dbParam, logmessages
@@ -43,6 +42,11 @@ defcolors = dict()
    {entityguid: (entity, superentitityguid, [subentity ids], categoryguid)}
 """
 entities = dict()
+
+"""domains in non-default file are IM or interface (relationale model) dependent.
+    fix interface-id of Domains at end of transfer
+ """
+interfacedomains = dict()
 
 
 def findText(set, name):
@@ -166,7 +170,7 @@ def dostructtypes():
             logmessages.writelog("Illegal domainreference {} (id={}) for structured type member {}".format(type(doma), key, val))
         #fi
 
-def liesunsfuelldoma(pdoma, pxml,pdatyid=None):
+def liesunsfuelldoma(pdoma, pxml,pintfname=None,pdatyid=None):
     pdoma.doma_uc = findText(pxml, 'createdBy')
     pdoma.doma_dc = findText(pxml, 'createdTime')
     if pdatyid is None:
@@ -250,16 +254,30 @@ def liesunsfuelldoma(pdoma, pxml,pdatyid=None):
         # for
     # fi
 
-def transferDomains():
-    domains = ET.parse(parameters.odmDomainsFilePath())
+
+def do1domainfile(pfilename):
+    global interfacedomains
+    interfacename = lambda name: None if (name  == parameters.odmdefdomainsfile()[:-4]) else name
+    domains = ET.parse(pfilename)
     root = domains.getroot()
+
     for dom in root.findall('domains/Domain'):
         doma = Domain(psrcname=Externalref.SOURCE_ODM,psrcid=findField(dom, "id"))
         doma.doma_name = findField(dom, "name")
         doma.doma_descr = findText(dom, 'comment')
         doma.doma_origin = Domain.DOMAIN
         liesunsfuelldoma(pdoma=doma, pxml=dom)
+        interfacedomains[doma.doma_id] = interfacename(findField(root, 'fileName'))
     # for
+    return
+
+def transferDomains():
+    do1domainfile(pfilename=parameters.odmDefDomainsfilePath())
+
+    doxmlfiles(pdirec=parameters.odmdomainsdirec()
+               , ptransfer=do1domainfile
+               , ppattern=r'.*\.{}'.format('xml')
+               ,pmandatorydirec=False)
 
     dostructtypes()
 # end transferDomains
@@ -553,11 +571,11 @@ def transferdiaarc(parcs, pdiagid, puc, pdc):
 #    #fi
 ##doGUIDfile
 
-def doxmlfiles(pdirec, ptransfer, ppattern=r".*"):
+def doxmlfiles(pdirec, ptransfer, ppattern=r".*",pmandatorydirec = True):
     try:
         listdir = os.listdir(pdirec)
     except:
-        print('doXMLfiles: directory "{}" not found.'.format(pdirec))
+        if pmandatorydirec: logmessages.writelog('dosxmlfiles: directory "{}" not found.'.format(pdirec))
         return
     # try
     for file in listdir:
@@ -1444,6 +1462,7 @@ def do1contact(fileName):
 #do1contact
 
 def transferODMModel():
+    global interfacedomains
     """provisional Element internal buffers"""
     businfodirec = parameters.odmIMDirec() + parameters.odmModelName() + '/businessinfo/'
     dosegfiles(pdirec=businfodirec+'email/',transferfiles=do1email,pmandatoryfile=False)
@@ -1468,6 +1487,7 @@ def transferODMModel():
     transferRelational.transfer()
     Datatype.deleteunused()
     Column.fillextid()
+    Domain.fixdomaininterfaces(interfacedomains)
     removeemptyudp()
     filllanguages()
 # end transferODMModel
