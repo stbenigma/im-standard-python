@@ -37,9 +37,6 @@ def do1column(plfnr, pcolxml, ptablid):
     colu.colu_dc = transferModel.findText(pcolxml, 'createdTime')
     colu.colu_ext_system_id = None
     daty_odm = transferModel.findText(pcolxml, 'logicalDatatype')
-    if (daty_odm is not None and daty_odm != ''):
-        daty = Datatype().getbyODMref(psrcid=daty_odm)
-        colu.colu_daty_id = None if (daty is None) else daty.daty_id
     daty_wrtb_odm = transferModel.findText(pcolxml, 'domain')
     tabl = Table().getbyid(ptablid)
     colu.colu_doma_id = \
@@ -50,9 +47,8 @@ def do1column(plfnr, pcolxml, ptablid):
                                          , pfathername=Interface().getbyid(tabl.tabl_intf_id).intf_name
                                                        +'.' + tabl.tabl_name
                                          , pdomatype=Domain.DERIVED
+                                         ,pintfid = tabl.tabl_intf_id
                                          , pattrxml=pcolxml)
-    if colu.colu_daty_id is None:
-        colu.colu_daty_id = Datatype.getunknown().daty_id
     if colu.colu_doma_id is not None:
         colu.colu_type_string = Domain().getbyid(colu.colu_doma_id).typestring()
     colu.insert()

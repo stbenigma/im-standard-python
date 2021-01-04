@@ -125,23 +125,11 @@
 <colAssociation fkAssociation="8E11C223-8696-86F4-0810-12FA3ABFF340" referredColumn="A2F5343E-BDFF-9FF3-0FE3-F47D462C52EB"/>
 </associations>
 </Column>
-<Column name="COLU_DATY_ID" id="4CF0014D-94EA-5FA6-5073-2DBBBD1D55AB">
-<createdBy>stb</createdBy>
-<createdTime>2020-12-01 15:46:02 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
-<dataTypePrecision>10</dataTypePrecision>
-<ownDataTypeParameters>,10,</ownDataTypeParameters>
-<previousColumn>false</previousColumn>
-<autoIncrementCycle>false</autoIncrementCycle>
-</Column>
 <Column name="COLU_DOMA_ID" id="DA4D9A93-067E-1F81-19E8-46347A12094F">
+<sourceDDLFile>domains.sql</sourceDDLFile>
 <createdBy>stb</createdBy>
 <createdTime>2020-12-01 15:46:02 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
-<nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
 <use>0</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
@@ -149,6 +137,9 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="12BC8C50-F138-3A7F-6D44-24BEF382AC6C" referredColumn="2E2DC8C2-F80A-D2DF-69E8-A2D10C6A341C"/>
+</associations>
 </Column>
 <Column name="COLU_UC" id="AA190FF6-EBE8-BF95-CF8B-A559935BED18">
 <createdBy>stb</createdBy>
@@ -238,6 +229,16 @@
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
 <colUsage columnID="B22D12A8-661E-7807-4E88-702D2BFDBD74"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="830AFA40-0056-0BF4-1EC1-F6431455F6AE" name="COLU_DOMA_FK">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-04 09:23:16 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="DA4D9A93-067E-1F81-19E8-46347A12094F"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>
