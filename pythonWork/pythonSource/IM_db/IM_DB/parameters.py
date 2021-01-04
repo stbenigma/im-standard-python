@@ -27,9 +27,9 @@ parameter = {
             , 'odmimextension': '.dmd'
             , MODELNAME: None
             , 'odmkonfdirec': 'Konfiguration/'
-            , 'odmdomainsfile': 'defaultdomains.xml'
+            , 'odmdefdomainsfile': 'defaultdomains.xml'
             , 'odmsettingsfile': 'dl_settings.xml'
-            , 'odmdomainsfilepath': None
+            , 'odmdefdomainsfilepath': None
             , 'odmtypesfile': 'types.xml'
             , 'odmstructypesdir':  "datatypes/structuredtype/"
             , 'odmfilesdirec': 'files/'
@@ -49,6 +49,7 @@ parameter = {
             , 'logofilename': None
             , 'odmreldirec': 'rel/'
             , 'odmtabledirec': 'table/'
+            , 'odmdomainsdirec': 'domains/'
             , 'odmsubviewsdirec': 'subviews/'
             , 'odmfkdirec': 'foreignkey/'
             , LOGFILEDIREC: None
@@ -154,11 +155,11 @@ def odmVCSDirec(newval=None):
         return parameter['odmvcsdirec']
     else:
         parameter['odmvcsdirec'] = newval
-def odmDomainsFile(newval=None):
+def odmdefdomainsfile(newval=None):
     if newval is None:
-        return parameter['odmdomainsfile']
+        return parameter['odmdefdomainsfile']
     else:
-        parameter['odmdomainsfile'] = newval
+        parameter['odmdefdomainsfile'] = newval
 def localbasedirec(newval=None):
     if newval is None:
         return parameter['localbasedirec']
@@ -174,11 +175,11 @@ def odmorgunitdirec(newval=None):
         return odmIMDirec()+odmModelName()+'/'+parameter['odmorgunitdirec']
     else:
         parameter['odmorgunitdirec'] = newval
-def odmDomainsFilePath(newval=None):
+def odmDefDomainsfilePath(newval=None):
     if newval is None:
-        return parameter['odmdomainsfilepath']
+        return parameter['odmdefdomainsfilepath']
     else:
-        parameter['odmdomainsfilepath'] = newval
+        parameter['odmdefdomainsfilepath'] = newval
 def odmTypesFile(newval=None):
     if newval is None:
         return parameter['odmtypesfile']
@@ -252,6 +253,11 @@ def odmtabledirec(newval=None):
         return parameter['odmtabledirec']
     else:
         parameter['odmtabledirec'] = newval
+def odmdomainsdirec(newval=None):
+    if newval is None:
+        return parameter['odmdomainsdirec']
+    else:
+        parameter['odmdomainsdirec'] = newval
 def odmsubviewsdirec(newval=None):
     if newval is None:
         return parameter['odmsubviewsdirec']
@@ -337,8 +343,8 @@ def filldefaultparams():
         dbDirect(newval=localbasedirec()+dbDefaultDirect())
     if dbFilePath() is None:
         dbFilePath(newval=dbDirect()+odmModelName()+dbFileExtension())
-    if odmDomainsFilePath() is None:
-        odmDomainsFilePath(newval=odmIMDirec()+odmKonfDirec()+odmDomainsFile())
+    if odmDefDomainsfilePath() is None:
+        odmDefDomainsfilePath(newval=odmIMDirec() + odmKonfDirec() + odmdefdomainsfile())
     if webDirec() is None:
         webDirec(newval=localbasedirec()+webDefaultDirec())
     if logfiledirec() is None:

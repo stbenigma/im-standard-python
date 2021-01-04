@@ -74,8 +74,6 @@ class Datatype(Baseobject):
     def deleteunused():
         sql = """delete from datatypes 
                 where daty_id not in (select doma_daty_id from DOMAINs where doma_daty_id is not null
-                                        union
-                                        select colu_daty_id from columns where colu_daty_id is not null
                                       )"""
         dbDML.exec(psql=sql)
 

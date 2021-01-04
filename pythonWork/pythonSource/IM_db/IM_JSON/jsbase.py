@@ -24,11 +24,6 @@ def optionalvalue(pelem,pkey):
 def jsonfilename(pfilename):
     return pfilename + '.json'
 
-def printJSON(pmodel, pfilepath, pfilename):
-    jsonfile = open(pfilepath + jsonfilename(pfilename), 'w')
-    jsonfile.write(json.dumps(pmodel, indent=3, sort_keys=False))
-    jsonfile.close()
-
 class JSModel:
     _elemtype2label = {
         Modelelemtype.ENTI: 'entities'
@@ -120,4 +115,14 @@ class JSModel:
         self._warnings.append("WARNING: {}".format(pmsg))
         self.incwrncnt()
     # markwarning
+
+    def printmodel(self,pfilepath, pfilename):
+        printJSON(pmodel=self.jsmodel,pfilepath=pfilepath,pfilename=pfilename)
+#JSModel
+
+
+def printJSON(pmodel, pfilepath, pfilename):
+    jsonfile = open(pfilepath + jsonfilename(pfilename), 'w')
+    jsonfile.write(json.dumps(pmodel, indent=3, sort_keys=False))
+    jsonfile.close()
 

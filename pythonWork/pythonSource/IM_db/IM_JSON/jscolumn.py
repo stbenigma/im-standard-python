@@ -1,4 +1,4 @@
-from IM_OBJECTS import Column,Table,OragnisationalUnit,Modelelemtype,Boolean,Externalref,Datatype,Document,Interface,ColAttrMap
+from IM_OBJECTS import *
 from IM_JSON import jsguid,jsguid2id,inssourceref,udpv2js,updvs2sql,JSModel
 
 def columns2js():
@@ -9,9 +9,9 @@ def columns2js():
         , 'interface-name+': Interface().getbyid(Table().getbyid(c.colu_tabl_id).tabl_intf_id).getname()
         , 'interface-id+': jsguid(Modelelemtype.INTF, Interface().getbyid(Table().getbyid(c.colu_tabl_id).tabl_intf_id).getid())
         ,'mandatory' : Boolean.str2bool(c.colu_mandatory)
-        ,'basedatatype+' : None if c.colu_daty_id is None else Datatype().getbyid(c.colu_daty_id).daty_name
-        ,'datatype+':c.colu_type_string
-        ,'datatypeid':c.colu_daty_id
+        ,'basedatatype+' : Domain().getbyid(c.colu_doma_id).basedatatype()
+        ,'datatype':c.colu_type_string
+        ,'datatypeid+':jsguid(Modelelemtype.DATY,Domain().getbyid(c.colu_doma_id).doma_daty_id)
         ,'format':c.colu_format
         ,'domain':jsguid(Modelelemtype.DOMA,c.colu_doma_id)
         ,'descr':c.colu_descr
@@ -38,8 +38,7 @@ def columns2sql(pmodel:JSModel):
         colu.colu_column_name = jelem['name']
         colu.colu_tabl_id = jsguid2id(jelem['table-id'])
         colu.colu_mandatory = Boolean.bool2str(jelem['mandatory'])
-        colu.colu_type_string = jelem['datatype+']
-        colu.colu_daty_id = jelem['datatypeid']
+        colu.colu_type_string = jelem['datatype']
         colu.colu_format = jelem['format']
         colu.colu_doma_id = jsguid2id(jelem['domain'])
         colu.colu_descr = jelem['descr']
