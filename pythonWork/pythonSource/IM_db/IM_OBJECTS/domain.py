@@ -304,7 +304,7 @@ CREATE TABLE DOMAINS
            filename = IM_Domains or <relname>_Domains
          """
         interfaces = set(() )
-        dbDML.execmany(psql="update domains set doma_intf_id = {} where doma_id = {}",recs=)
+        dbDML.execmany(psql="update domains set doma_intf_id = ? where doma_id = ?",recs=interfaces)
 # Domain
 
 class DomaingroupMember(Baseobject):
