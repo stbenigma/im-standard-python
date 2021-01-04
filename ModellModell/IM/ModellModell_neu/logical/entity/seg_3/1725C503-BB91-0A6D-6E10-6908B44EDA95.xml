@@ -2,7 +2,9 @@
 <Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_3" id="1725C503-BB91-0A6D-6E10-6908B44EDA95" name="Wertebereich">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:03:22 UTC</createdTime>
-<comment><![CDATA[Beschreibung des Wertebereichs eines (oder mehrerer) Attributs/e.
+<comment><![CDATA[Beschreibung des Wertebereichs eines (oder mehrerer) Attributs/e oder Columns
+
+Ein Wertebereich der nicht in einer bestimmten Schnittstelle definiert wurde, ist im allgemein (im IM) defniniert und damit für alle (IM und Schnittstellen) verwendbar
 
 Die Typen Numerisch, Text, Zeitpunkt oder Aufzählung sind konzeptionell zu verstehen. Die echten Datentypen und ggf. Formate (für Zahlen und Zeitpunkte) für die Speicherung werden in der Implementierung festgelegt.
 Wertegruppen sind Attributgruppen, d.h. mehrere Attribute, die mehrfach gemeinsam vorkommen  werden für eine einfachere Handhabung unter einem neuen Namen zusammengefasst. Beispiel Telefon-Nr bestehend auf Landesvorwahl und Rufnummer.]]></comment>

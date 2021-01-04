@@ -117,7 +117,7 @@ def printcollist(pcollist):
         column = getelement(col)
         domain = getelement(column['domain'])
         colwerte = [printHTML.href(ref=col,anz=column['name'])
-                        , nvl(column['descr']), domain['name'][lang], nvl(column['datatype+'])]
+                        , nvl(column['descr']), domain['name'][lang], nvl(column['datatype'])]
         printHTML.fhtml.write(printHTML.writetableline(pwerte=colwerte))
     # for
     printHTML.fhtml.write(printHTML.endtable(plabel='Columns',plbc=lbc))

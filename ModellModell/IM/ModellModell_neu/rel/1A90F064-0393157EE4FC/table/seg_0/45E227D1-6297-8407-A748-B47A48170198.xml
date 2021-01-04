@@ -83,6 +83,9 @@ Or they can be implemented as compound (structured) type, it the dbms allows thi
 <identityColumn>true</identityColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 <isSurrogateColumn>true</isSurrogateColumn>
+<associations>
+<colAssociation fkAssociation="C99482AB-3E1E-B4BB-39DF-91026CEE69FC" referredColumn="2E2DC8C2-F80A-D2DF-69E8-A2D10C6A341C"/>
+</associations>
 </Column>
 <Column name="DGRM_DOMA_ID_MEMBER" id="AE736B96-FF28-B6C0-FB17-B1DFE85E93C7">
 <createdBy>stb</createdBy>
@@ -95,6 +98,9 @@ Or they can be implemented as compound (structured) type, it the dbms allows thi
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="ABA8FC9B-25EC-768C-2AD6-24CD07637AC4" referredColumn="2E2DC8C2-F80A-D2DF-69E8-A2D10C6A341C"/>
+</associations>
 </Column>
 <Column name="DGRM_UC" id="AFB37924-17E3-293F-2C23-83F59E76CAE1">
 <createdBy>stb</createdBy>
@@ -184,6 +190,26 @@ Or they can be implemented as compound (structured) type, it the dbms allows thi
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
 <colUsage columnID="01ABADCE-7585-17D9-77BC-D465C4FD0082"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="A37C1E44-EEEB-476D-BA08-05811F3ADDD7" name="dgrm_fk_doma_group">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-04 09:15:55 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="37B7F7C4-52BF-89F5-A4E9-01DBB024E6FE"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="24337108-F6FB-E881-F7EE-45749FBB20A8" name="DGRM_FK_DOMA_MEMBER">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-04 09:16:36 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="AE736B96-FF28-B6C0-FB17-B1DFE85E93C7"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>

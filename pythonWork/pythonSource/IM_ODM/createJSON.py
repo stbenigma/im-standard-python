@@ -1,7 +1,7 @@
 # -*- coding: latin-1 -*-
 import json
 from IM_DB import dbConnect, parameters, logmessages
-from IM_JSON import sql2json,printJSON,jsonfilename
+from IM_JSON import sql2json,printJSON,jsonfilename,JSModel
 
 def getJSONfile(pfilename):
     with open(pfilename, 'r') as handle:
@@ -12,9 +12,9 @@ def getJSONfile(pfilename):
 def createJSON(pfilepath, pfilename):
     dbConnect.openDB(parameters.dbFilePath(), fks='ON')
 
-    jsmodel = sql2json(pmodelname=parameters.odmModelName(),pdbname=dbConnect.getDBname())
+    jsmodel = JSModel(pmodel=sql2json(pmodelname=parameters.odmModelName(),pdbname=dbConnect.getDBname()))
 
-    printJSON(pmodel=jsmodel, pfilename=pfilename, pfilepath=pfilepath)
+    jsmodel.printmodel(pfilepath=pfilepath,pfilename=pfilename)
     dbConnect.myDbConn.close()
     return
 

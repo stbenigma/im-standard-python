@@ -8,6 +8,7 @@ from IM_HTML import printHTML
 from IM_ODM import fillDB
 import listWebdoku
 import listmapping
+from IM_JSON import sql2json,printJSON,JSModel
 from IM_OBJECTS import Languagetext
 
 
@@ -19,20 +20,20 @@ def main(pdirec, plang):
         Languagetext.reportLang(plang.lower())
     logmessages.initlog('AllIn1')
 
+
     dbConnect.openDB(p_filepath=":memory:",fks='ON');
     dbErstelleTables.erstelleInfra();
     fillDB.filldbmain(pinmemory=True)
     printHTML.setWebDirec(p_webdirec=None)
-    model = listWebdoku.createJSON.sql2json()
-    listWebdoku.listwebmain(plang=Languagetext.reportLang(),pmodel=model)
-    listWebdoku.createJSON.printJSON(pmodel=model, pfilepath=parameters.dbDirect(), pfilename=parameters.odmModelName())
+    jsmodel = JSModel(pmodel=sql2json(pmodelname=parameters.odmModelName(),pdbname=parameters.dbFilePath()))
+    listWebdoku.listwebmain(plang=Languagetext.reportLang(),pmodel=jsmodel)
+    jsmodel.printmodel(pfilepath=parameters.dbDirect(), pfilename=parameters.odmModelName())
     listmapping.writexls(pfilename=parameters.webDirec() + 'Mappingtables_' + parameters.odmModelName() + '.xlsx',pmodel=model,plang=Languagetext.reportLang())
     listmapping.writeintfxls(pfilepath=parameters.webDirec(),pmodel=model,plang=Languagetext.reportLang())
 
 
-    logmessages.showmessages("model {}: created and filled database ({})\n   created webdocu and mapping excel"
+    logmessages.showmessages("model {}: created and filled database ({})\n   created json, webdocu and mapping excel"
                              .format(parameters.odmModelName(), parameters.dbFilePath()))
-
 
 
 if __name__ == '__main__':

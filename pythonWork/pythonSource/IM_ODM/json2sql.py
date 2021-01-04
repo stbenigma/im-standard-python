@@ -103,8 +103,8 @@ def main(pjsonin, pdbout):
 
     #Test output
     if False:
-        controljson = sql2json(pmodelname=jsmodel.jsmodel['model']['name'],pdbname=dbConnect.getDBname())
-        printJSON(pmodel=controljson, pfilename='checkjson', pfilepath='/Users/stb/Downloads/')
+        controljson = JSModel(pmodel=sql2json(pmodelname=jsmodel.jsmodel['model']['name'],pdbname=dbConnect.getDBname()))
+        controljson.printmodel(pfilename='checkjson', pfilepath='/Users/stb/Downloads/')
         print ('/Users/stb/Downloads/checkjson.json created')
 
     dbConnect.closeDB()
