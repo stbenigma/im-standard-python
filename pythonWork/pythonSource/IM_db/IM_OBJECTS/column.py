@@ -36,14 +36,12 @@ class Column(Baseobject):
         colu_descr         varchar(4000),
         colu_type_string    varchar(200),
         colu_tabl_id        integer     not null,
-        colu_daty_id        integer     not null,
-        colu_doma_id        integer ,
+        colu_doma_id        integer  not null,
         colu_uc             varchar(30) not null,
         colu_dc             varchar(30) not null,
         colu_um             varchar(30),
         colu_dm             varchar(30),
         constraint colu_mode_fk FOREIGN KEY (colu_id) references modelelement (mode_id),
-        constraint colu_daty_fk FOREIGN KEY (colu_daty_id) references datatypes (daty_id),
         constraint colu_doma_fk FOREIGN KEY (colu_doma_id) references domains (doma_id),
         constraint colu_tabl_fk FOREIGN KEY (colu_tabl_id) references tables(tabl_id),
         constraint colu_uk unique (colu_tabl_id,colu_column_name)        
@@ -79,9 +77,6 @@ class Column(Baseobject):
         if (self.colu_doma_id is None): return None
         return Domain().getbyid(self.colu_doma_id)
 
-
-    def getdaty(self):
-        return Datatype().getbyid(self.colu_daty_id)
 
     def getintfid(self):
         tab = Table().getbyid(self.colu_tabl_id)
