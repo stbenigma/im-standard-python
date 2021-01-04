@@ -5,6 +5,7 @@
 <createdTime>2021-01-04 09:14:03 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <importedID>1AB4133A-F068-68F5-294E-98DEA69E9B82</importedID>
+<allowColumnReorder>false</allowColumnReorder>
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
@@ -18,7 +19,7 @@
 <use>0</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
 <domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
-<ownDataTypeParameters>0,10,0</ownDataTypeParameters>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 <associations>
 <colAssociation fkAssociation="A06B49AD-D2D5-BBC5-A7AF-E818A067C39A" referredColumn="9698F1F3-1EBE-8770-4F8C-4FFC3465A776"/>
@@ -87,15 +88,43 @@
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
-<dataTypePrecision>0</dataTypePrecision>
-<dataTypeScale>0</dataTypeScale>
 <dataTypeSize>6</dataTypeSize>
 <listOfValues>
 <valueDef value="DER" description=""/>
 <valueDef value="DOM" description=""/>
 </listOfValues>
-<ownDataTypeParameters>6,0,0</ownDataTypeParameters>
+<ownDataTypeParameters>6,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DOMA_INTF_ID" id="FF4BD71C-DA53-B132-901A-D5C82491AB2E">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-04 11:00:55 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="4A2476F2-E6B6-1AD0-8C73-E32F840E7A92" referredColumn="65C00228-99F0-589A-1661-9C55B64918EA"/>
+</associations>
+</Column>
+<Column name="DOMA_DATY_ID" id="F1A62009-F494-A4DC-C395-E7559041B4C8">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-04 10:21:48 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="4CE5AF94-DC38-5F80-1FBB-6A25EEC202B6" referredColumn="AA1C8108-16B6-83B3-65DA-F1F697F75488"/>
+</associations>
 </Column>
 <Column name="DOMA_DAT_MINVALUE" id="73CC95A0-6452-8E7A-FB71-61C9D8FBFA67">
 <sourceDDLFile>domains.sql</sourceDDLFile>
@@ -271,7 +300,7 @@
 <use>0</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
 <domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
-<ownDataTypeParameters>0,10,0</ownDataTypeParameters>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 <associations>
 <colAssociation fkAssociation="EC7BCB4E-F5A4-0F84-83EB-8563E74D9890" referredColumn="CB51A393-73C5-47BA-AFB6-59C2FC518EF7"/>
@@ -312,7 +341,7 @@
 <use>0</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
 <domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
-<ownDataTypeParameters>0,10,0</ownDataTypeParameters>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 <associations>
 <colAssociation fkAssociation="65A584E6-05F3-58CC-D1A3-92DCE2F1B222" referredColumn="7D1BEA00-4DC7-50F9-D083-11C1BEA8F3FE"/>
@@ -385,12 +414,15 @@
 <colUsage columnID="2E2DC8C2-F80A-D2DF-69E8-A2D10C6A341C"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="8A7ACFBB-D341-E718-A696-0367A3FE2BAD" name="DOMA_NAME_UK">
+<ind_PK_UK id="D0432B09-2C49-6A40-6304-DF016FCEEA52" name="DOMA_UK">
 <createdBy>stb</createdBy>
-<createdTime>2021-01-04 09:14:03 UTC</createdTime>
+<createdTime>2021-01-04 10:24:02 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
-<importedID>FA470F81-53C8-D837-E425-B31272DF62B8</importedID>
+<indexState>Unique Constraint</indexState>
 <isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="FE103E43-E275-1A5B-2F8E-095D3136CEB9"/>
+</indexColumnUsage>
 </ind_PK_UK>
 <ind_PK_UK id="161E5019-9FE6-E5AE-911B-F32AB56F61BE" name="DOMA_PHYU_FK">
 <createdBy>stb</createdBy>
@@ -420,6 +452,26 @@
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
 <colUsage columnID="2E2DC8C2-F80A-D2DF-69E8-A2D10C6A341C"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="CD77A75A-F715-A7BE-95C8-99BAFBB0F01D" name="DOMA_DATY_ID">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-04 10:21:48 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="F1A62009-F494-A4DC-C395-E7559041B4C8"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="90D7CCAD-6333-836E-2B5E-7F713AE5ED1D" name="DOMA_INTF_FK">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-04 11:00:55 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="FF4BD71C-DA53-B132-901A-D5C82491AB2E"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>

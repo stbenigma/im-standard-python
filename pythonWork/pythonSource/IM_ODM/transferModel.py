@@ -631,7 +631,7 @@ def transferdiagramme():
 
 # transferdiagramme
 
-def insertderiveddomain(ptypeguid, pattrname, pvatername, pdomatype,pattrxml):
+def insertderiveddomain(ptypeguid, pattrname, pvatername, pdomatype,pattrxml,pintfid=None):
     doma = Domain()
     doma.doma_name = pattrname
     domatest = Domain.getbyname(pname=doma.doma_name)
@@ -639,6 +639,7 @@ def insertderiveddomain(ptypeguid, pattrname, pvatername, pdomatype,pattrxml):
         # es gibt ihn schon, füge den Vaternamen dazu
         doma.doma_name = pattrname + '-' + pvatername
     doma.doma_origin = pdomatype
+    doma.doma_intf_id = pintfid
     if nvl(ptypeguid) != '':
         doma.doma_daty_id = Modelelement.getmodebyodmguid(psrcid=ptypeguid).mode_id
     doma.doma_descr = "generiertes Domain für Datentyp für Attribute {}.{}".format(pvatername, pattrname)
@@ -648,7 +649,8 @@ def insertderiveddomain(ptypeguid, pattrname, pvatername, pdomatype,pattrxml):
 # insertderiveddomain
 
 
-def findorcreateDomain(pattrname, pfathername, pdomatype,pattrxml, pdomguid=None, pstructdomguid=None, ptypeguid=None):
+def findorcreateDomain(pattrname, pfathername, pdomatype,pattrxml,pintfid = None
+                       , pdomguid=None, pstructdomguid=None, ptypeguid=None):
     def handleguid(pguid):
         if pguid is None: return None
         typeelem = Modelelement.getelementbyodmguid(psrcid=pguid)
@@ -677,7 +679,7 @@ def findorcreateDomain(pattrname, pfathername, pdomatype,pattrxml, pdomguid=None
             return Domain().getunknown().doma_id
         elif isinstance(typeelem, Datatype):
             doma = insertderiveddomain(ptypeguid=ptypeguid, pattrname=pattrname, pvatername=pfathername,pdomatype=pdomatype,
-                                           pattrxml=pattrxml)
+                                           pattrxml=pattrxml,pintfid = pintfid)
             return doma.doma_id
         else:
             logmessages.writelog("Attr: {}, Father: {}, Domain Guid {} leads to unknown element type {}"

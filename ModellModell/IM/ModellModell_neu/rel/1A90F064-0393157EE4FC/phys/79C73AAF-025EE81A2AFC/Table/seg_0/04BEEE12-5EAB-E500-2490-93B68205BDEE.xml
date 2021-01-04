@@ -105,6 +105,11 @@
 <createdTime>2021-01-04 09:14:03 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 </ColumnProxy>
+<ColumnProxy name="DOMA_DATY_ID" id="F1A62009-F494-A4DC-C395-E7559041B4C8">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-04 10:21:48 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+</ColumnProxy>
 <ColumnProxy name="DOMA_UM" id="F7CFA035-9842-C9C9-634B-439910351E63">
 <createdBy>stb</createdBy>
 <createdTime>2021-01-04 09:14:03 UTC</createdTime>
@@ -121,13 +126,6 @@
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 </ColumnProxy>
 </columnProxies>
-<indexProxies>
-<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="DOMA_NAME_UK" id="8A7ACFBB-D341-E718-A696-0367A3FE2BAD">
-<createdBy>stb</createdBy>
-<createdTime>2021-01-04 09:14:03 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-</IndexProxy>
-</indexProxies>
 <foreignKeys>
 <ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="DOMA_PHYU_FK" id="161E5019-9FE6-E5AE-911B-F32AB56F61BE">
 <createdBy>stb</createdBy>
@@ -137,6 +135,11 @@
 <ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="DOMA_STFO_FK" id="2CFC631B-A90F-A200-DDD6-B9C8A6D195AB">
 <createdBy>stb</createdBy>
 <createdTime>2021-01-04 09:17:53 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+</ForeignKey>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="DOMA_DATY_ID" id="CD77A75A-F715-A7BE-95C8-99BAFBB0F01D">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-04 10:21:48 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 </ForeignKey>
 <ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="DOMA_MODE_FK" id="E0C87340-67F1-D7F1-F7E4-83B553FAB1FE">
@@ -185,4 +188,12 @@
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 </TableCheckConstraint>
 </tableCheckConstraints>
+<uniqueKeys>
+<UniqueKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.UniqueOraclev10g" name="DOMA_UK" id="D0432B09-2C49-6A40-6304-DF016FCEEA52">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-04 10:24:02 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexSort>SORTED</indexSort>
+</UniqueKey>
+</uniqueKeys>
 </TableProxyOraclev12c>

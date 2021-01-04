@@ -57,6 +57,7 @@ CREATE TABLE DOMAINS
      DOMA_DESCR VARCHAR (4000) NULL ,
      DOMA_TYPE VARCHAR (4) NOT NULL CHECK ( DOMA_TYPE IN ('BIN', 'DAT', 'GRP', 'LOV', 'NUM', 'TXT') ) ,
      DOMA_ORIGIN VARCHAR (6) NOT NULL CHECK ( DOMA_ORIGIN IN ('DER', 'DOM') ) ,
+     DOMA_INTF_ID integer NULL ,
 	 DOMA_DATY_ID integer,
      DOMA_DAT_MINVALUE VARCHAR (30) NULL ,
      DOMA_DAT_MAXVALUE VARCHAR (30) NULL ,
@@ -107,6 +108,7 @@ CREATE TABLE DOMAINS
 		 REFERENCES DATATYPES (DATY_ID )
  ,CONSTRAINT DOMA_STFO_FK FOREIGN KEY (     DOMA_BIN_STFO_ID)
 	 REFERENCES STORAGE_FORMATS (     STFO_ID )
+ ,CONSTRAINT DOMA_INTF_FK FOREIGN KEY (     DOMA_INTF_ID) REFERENCES INTERFACES (     INTF_ID )
 )"""
                                )
 
@@ -179,6 +181,14 @@ CREATE TABLE DOMAINS
         return info[2]
 
     # typestring
+
+    def basedatatype(self):
+        if self.doma_daty_id is None:
+            retval =  ''
+        else:
+            retval = Datatype().getbyid(self.doma_daty_id).daty_name
+        #fi
+        return retval
 
     def refattrcnt(self):
         data = dbDML.select("""select count(*) 
