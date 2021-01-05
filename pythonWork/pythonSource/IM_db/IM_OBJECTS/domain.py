@@ -1,10 +1,10 @@
 from IM_DB import *
 from .baseobject import MultilangBaseobject, Baseobject
 from .datatype import Datatype
-from .modelelement import Modelelemtype
+from .interface import Interface
 from .languagetext import Languagetext
+from .modelelement import Modelelemtype
 from .physicals import Storageformat
-
 
 
 class Domain(MultilangBaseobject):
@@ -303,8 +303,18 @@ CREATE TABLE DOMAINS
             domains in non-default file are IM or interface (relationale model) dependent.
            filename = IM_Domains or <relname>_Domains
          """
-        interfaces = set(() )
-        dbDML.execmany(psql="update domains set doma_intf_id = ? where doma_id = ?",recs=interfaces)
+        interfacename = lambda filename : filename[:-8]
+        interfaces = set((pinterfacedomains.values()))
+        intf2id = {}
+        for filename in interfaces:
+            if filename is None: continue
+            intf = Interface().getbyuk(pcolname='intf_name',pukvalue=interfacename(filename))
+            intfid = None if intf is None else intf.intf_id
+            intf2id[filename] = intfid
+        #for
+        domainterferaces = [(intf2id[filename],domaid) for domaid,filename in pinterfacedomains.items()]
+        if len(domainterferaces) > 0:
+            dbDML.execmany(psql="update domains set doma_intf_id = ? where doma_id = ?",recs=domainterferaces)
 # Domain
 
 class DomaingroupMember(Baseobject):

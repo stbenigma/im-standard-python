@@ -1,6 +1,8 @@
-from IM_OBJECTS import *
-from IM_JSON import jsguid,inssourceref,jsguid2id,inslgtx,JSModel,optionalvalue
 from datetime import date
+
+from IM_JSON import jsguid, inssourceref, jsguid2id, inslgtx, JSModel, optionalvalue
+from IM_OBJECTS import *
+
 
 def domaingroupmembers(pdomaid):
     return [{'name': dg.dgrm_name
@@ -61,6 +63,7 @@ def domain2js(doma):
     retval = {'name': doma.doma_name_L
         , 'descr': doma.doma_descr_L
         , 'origin': doma.doma_origin
+        ,'interfaceid' : jsguid(Modelelemtype.INTF,doma.doma_intf_id)
         , 'basedatatype+': None if doma.doma_daty_id is None else Datatype().getbyid(doma.doma_daty_id).daty_name
         , 'type': doma.doma_type
         , 'displdatatype+': {l.lang_iso_code2:doma.displdatatype(l.lang_iso_code2) for l in Language.select()}
@@ -139,6 +142,7 @@ def domains2sql(pmodel:JSModel):
         doma.doma_name = jelem['name'][pmodel.modellanguage()]
         doma.doma_descr = jelem['descr'][pmodel.modellanguage()]
         doma.doma_origin = jelem['origin']
+        doma.doma_intf_id = jsguid2id(optionalvalue(jelem,'interfaceid'))
         doma.doma_daty_id = jsguid2id(optionalvalue(jelem,'datatypeid'))
         doma.doma_num_minvalue = None if doma.doma_type != Domain.NUM else optionalvalue(jelem,'minvalue')
         doma.doma_num_maxvalue = None if doma.doma_type != Domain.NUM else optionalvalue(jelem,'maxvalue')
