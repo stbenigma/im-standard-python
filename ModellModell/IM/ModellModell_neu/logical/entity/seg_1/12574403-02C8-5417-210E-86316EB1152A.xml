@@ -28,8 +28,10 @@
 <propertyMap>
 <property name="DE_ENTI_COMMENT" value=""/>
 <property name="DE_ENTI_NAME" value="Dokument"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
 <property name="EN_ENTI_COMMENT" value=""/>
 <property name="EN_ENTI_NAME" value="Document"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Name" id="A5F4F17D-8E4A-5426-B514-36FD9B46CE6F">
@@ -65,10 +67,10 @@
 <createdTime>2020-02-03 20:03:22 UTC</createdTime>
 <comment><![CDATA[Beispiele: 'csv', 'doc', 'docx', 'gif', 'html', 'jpeg', 'json', 'key', 'numbers', 'pages', 'pdf', 'png', 'ppt', 'pptx', 'text', 'tiff', 'unbestimmt', 'xls', 'xlsx', 'xml', 'xmlx']]></comment>
 <notes><![CDATA[[DE_ATTR_COMMENT[
-
+Beispiele: 'csv', 'doc', 'docx', 'gif', 'html', 'jpeg', 'json', 'key', 'numbers', 'pages', 'pdf', 'png', 'ppt', 'pptx', 'text', 'tiff', 'unbestimmt', 'xls', 'xlsx', 'xml', 'xmlx'
 ]DE_ATTR_COMMENT]
 [EN_ATTR_COMMENT[
-
+*DE* Beispiele: 'csv', 'doc', 'docx', 'gif', 'html', 'jpeg', 'json', 'key', 'numbers', 'pages', 'pdf', 'png', 'ppt', 'pptx', 'text', 'tiff', 'unbestimmt', 'xls', 'xlsx', 'xml', 'xmlx'
 ]EN_ATTR_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -144,9 +146,9 @@ Reference to a file system or a web page.
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_COMMENT" value="Referenz auf ein Datei-System bzw. eine Webseite."/>
-<property name="DE_ATTR_NAME" value="externe Referenz"/>
+<property name="DE_ATTR_NAME" value="Inhalteferenz"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Referenz auf ein Datei-System bzw. eine Webseite."/>
-<property name="EN_ATTR_NAME" value="external reference"/>
+<property name="EN_ATTR_NAME" value="*external reference"/>
 </propertyMap>
 </Attribute>
 </attributes>
