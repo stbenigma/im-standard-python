@@ -4,10 +4,10 @@
 <createdTime>2020-02-03 20:05:50 UTC</createdTime>
 <comment><![CDATA[Information zur Darstellung einer Beziehung auf einem Diagramm]]></comment>
 <notes><![CDATA[[DE_ENTI_COMMENT[
-Information zur Darstellung einer Entität auf einem Diagramm
+Information zur Darstellung einer Beziehung auf einem Diagramm
 ]DE_ENTI_COMMENT]
 [EN_ENTI_COMMENT[
-Information for representing an entity on a diagram
+*Information for representing an entity on a diagram
 ]EN_ENTI_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -29,8 +29,10 @@ Information for representing an entity on a diagram
 <propertyMap>
 <property name="DE_ENTI_COMMENT" value="Information zur Darstellung einer Entität auf einem Diagramm"/>
 <property name="DE_ENTI_NAME" value="Beziehungs-darstellung"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
 <property name="EN_ENTI_COMMENT" value="*DE* Information zur Darstellung einer Entität auf einem Diagramm"/>
 <property name="EN_ENTI_NAME" value="Relationship representation"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Linie" id="60B614A1-B81F-164D-5816-270C237294E2">
@@ -241,6 +243,13 @@ Position of the association at the end of the path (e.g. to entity). Can be rela
 <Attribute name="Schrift" id="534EB3AC-54E4-7868-F640-181EE0ED81BD">
 <createdBy>stb</createdBy>
 <createdTime>2020-10-11 14:58:58 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
@@ -252,6 +261,10 @@ Position of the association at the end of the path (e.g. to entity). Can be rela
 <use>3</use>
 <structuredType>F0D06FAD-E133-3AC0-390D-87A1783A03AD</structuredType>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Schrift"/>
+<property name="EN_ATTR_NAME" value="Font"/>
+</propertyMap>
 </Attribute>
 </attributes>
 <nestedAttributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">

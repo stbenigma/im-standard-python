@@ -38,8 +38,10 @@ online bedeutet, dass die Anwendungen direkt auf die Datenbasis (Datei, DB) eine
 <propertyMap>
 <property name="DE_ENTI_COMMENT" value="Eine definierte Schnittstelle zwischen 2 IT-Systemen.  Synchron heisst, dass die Daten immer in kurzer Zeit (ms - einige Sekunden)  nachgeführt und aktuell sind. Manuell bedeutet, dass eine Person die Daten von einem Werkzeuge in ein anderes überträgt (copy-paste, abschreiben). online bedeutet, dass die Anwendungen direkt auf die Datenbasis (Datei, DB) einer anderen Anwendung zugreift. Z.B. via DB-Link, Service.   "/>
 <property name="DE_ENTI_NAME" value="Schnittstelle"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
 <property name="EN_ENTI_COMMENT" value="*DE* Eine definierte Schnittstelle zwischen 2 IT-Systemen.  Synchron heisst, dass die Daten immer in kurzer Zeit (ms - einige Sekunden)  nachgeführt und aktuell sind. Manuell bedeutet, dass eine Person die Daten von einem Werkzeuge in ein anderes überträgt (copy-paste, abschreiben). online bedeutet, dass die Anwendungen direkt auf die Datenbasis (Datei, DB) einer anderen Anwendung zugreift. Z.B. via DB-Link, Service.   "/>
 <property name="EN_ENTI_NAME" value="Interface"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Name" id="CCB79941-CA9E-353C-0785-EEDDFD5637A3">
@@ -64,12 +66,19 @@ online bedeutet, dass die Anwendungen direkt auf die Datenbasis (Datei, DB) eine
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_NAME" value="Name"/>
-<property name="EN_ATTR_NAME" value="**Name"/>
+<property name="EN_ATTR_NAME" value="Name"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Beschreibung" id="F2DEE0A8-6D07-90EE-E1CA-CA8C13AEBE6F">
 <createdBy>stb</createdBy>
 <createdTime>2020-12-01 14:57:00 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
@@ -81,6 +90,10 @@ online bedeutet, dass die Anwendungen direkt auf die Datenbasis (Datei, DB) eine
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Beschreibung"/>
+<property name="EN_ATTR_NAME" value="Description"/>
+</propertyMap>
 </Attribute>
 <Attribute name="Manuell" id="5EED317B-58E0-5B79-1FB5-775FD01F3B5D">
 <createdBy>stb</createdBy>

@@ -38,8 +38,10 @@ Attribut in einem System, das mit anderen Systemen ausgetauscht werden soll.
 <propertyMap>
 <property name="DE_ENTI_COMMENT" value=" Attribut in einem System, das mit anderen Systemen ausgetauscht werden soll.  Datentyp, Format und Constraints können in div. Sprachen und Dialekten geführ werden   SQL (mit dialekt)   Jason   XML "/>
 <property name="DE_ENTI_NAME" value="Schnittstellenattribut"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
 <property name="EN_ENTI_COMMENT" value="*DE*  Attribut in einem System, das mit anderen Systemen ausgetauscht werden soll.  Datentyp, Format und Constraints können in div. Sprachen und Dialekten geführ werden   SQL (mit dialekt)   Jason   XML "/>
 <property name="EN_ENTI_NAME" value="Interface attribute"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Name" id="999B70CA-BCF5-C825-8366-9D78800EA196">
@@ -103,7 +105,7 @@ Description of the attribute in the external system
 <createdTime>2020-12-14 07:54:24 UTC</createdTime>
 <comment><![CDATA[Konstanter Wert der zu verwenden ist, falls keine Quelle oder keine Transformation exisitert.]]></comment>
 <notes><![CDATA[[EN_ATTR_COMMENT[
-**Constant value to be used if no source or transformation exists.
+Constant value to be used if no source or transformation exists.
 ]EN_ATTR_COMMENT]
 [DE_ATTR_COMMENT[
 Konstanter Wert der zu verwenden ist, falls keine Quelle oder keine Transformation exisitert.
@@ -120,8 +122,8 @@ Konstanter Wert der zu verwenden ist, falls keine Quelle oder keine Transformati
 <domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
-<property name="DE_ATTR_NAME" value="Vorgabewert"/>
-<property name="EN_ATTR_NAME" value="**Default value"/>
+<property name="DE_ATTR_NAME" value="Pflichtfeld"/>
+<property name="EN_ATTR_NAME" value="Default value"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Datentyp" id="B7EE146C-4F67-DE0E-BB81-6E7C156A8FDB">
@@ -218,7 +220,7 @@ Text formatting of a numeric or time value
 <createdTime>2020-02-03 20:06:23 UTC</createdTime>
 <comment><![CDATA[Konstanter Wert der zu verwenden ist, falls keine Quelle oder keine Transformation exisitert.]]></comment>
 <notes><![CDATA[[EN_ATTR_COMMENT[
-**Constant value to be used if no source or transformation exists.
+Constant value to be used if no source or transformation exists.
 ]EN_ATTR_COMMENT]
 [DE_ATTR_COMMENT[
 Konstanter Wert der zu verwenden ist, falls keine Quelle oder keine Transformation exisitert.
@@ -236,7 +238,7 @@ Konstanter Wert der zu verwenden ist, falls keine Quelle oder keine Transformati
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_NAME" value="Vorgabewert"/>
-<property name="EN_ATTR_NAME" value="**Default value"/>
+<property name="EN_ATTR_NAME" value="Default value1"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Geschäftsregel" id="638B0E9B-0C02-1293-49B7-EBE2C59731DF">
@@ -244,7 +246,7 @@ Konstanter Wert der zu verwenden ist, falls keine Quelle oder keine Transformati
 <createdTime>2020-02-03 20:06:23 UTC</createdTime>
 <comment><![CDATA[Beschreibung von Qualitätsprüfungen / Business rules für die Eingangsprüfung]]></comment>
 <notes><![CDATA[[EN_ATTR_COMMENT[
-**Description of quality inspections / business rules for the incoming inspection
+Description of quality inspections / business rules for the incoming inspection
 ]EN_ATTR_COMMENT]
 [DE_ATTR_COMMENT[
 Beschreibung von Qualitätsprüfungen / Business rules für die Eingangsprüfung
@@ -262,7 +264,7 @@ Beschreibung von Qualitätsprüfungen / Business rules für die Eingangsprüfung
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_NAME" value="Geschäftsregel"/>
-<property name="EN_ATTR_NAME" value="**Business Rule"/>
+<property name="EN_ATTR_NAME" value="Business Rule"/>
 </propertyMap>
 </Attribute>
 </attributes>

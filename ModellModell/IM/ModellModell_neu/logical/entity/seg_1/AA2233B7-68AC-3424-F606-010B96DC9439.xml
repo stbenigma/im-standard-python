@@ -24,7 +24,6 @@ Rule violations can be specified as formal statements like e.g. SQL selects.
 Any tuple that returns the select violates the rule.
 
 Level on which the rule checks (row, tuple, entity, database) is derived from the elements of the rule.
-
 ]EN_ENTI_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -131,9 +130,19 @@ Beispiele:
   berechnePreis(Artikel.Preis,Land.Name)]]></comment>
 <notes><![CDATA[[DE_ATTR_COMMENT[
 Regel, die Werte beschränken auf Grund von komplexen Zusammenhängen (mehere Entitäten, Attribute, Beziehungen)
+Die Regel kann Objekte enthalten, mit denen die Regel verknüpft ist:
+
+(ENTI)entitätsname
+(ATTR)entitätsname.attributname
+(DOMA)wertebereichsname
+(DOMV)Wertebereichsname.Wert
+
+Beispiele:
+  Artikel.Volumen := Artikel.Höhe * Artikel.Breite * Artikel.Tiefe
+  berechnePreis(Artikel.Preis,Land.Name)
 ]DE_ATTR_COMMENT]
 [EN_ATTR_COMMENT[
-Rule limiting values to complex relationships (multiple entities, attributes, relationships)
+*Rule limiting values to complex relationships (multiple entities, attributes, relationships)
 ]EN_ATTR_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -166,9 +175,30 @@ Log-eintrag
 Aktion Verhindern
 Berechneten Wert speichern
 
-Kann als Formel, Aufruf, Code-snippet direkt erfasst werden.
+Kann als Formel, Aufruf, Code-snippet direkt erfasst werden.]]></comment>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+*DE* Was bewirkt die Regel 
 
-]]></comment>
+Warnung
+Information
+Log-eintrag
+Aktion Verhindern
+Berechneten Wert speichern
+
+Kann als Formel, Aufruf, Code-snippet direkt erfasst werden.
+]EN_ATTR_COMMENT]
+[DE_ATTR_COMMENT[
+Was bewirkt die Regel 
+
+Warnung
+Information
+Log-eintrag
+Aktion Verhindern
+Berechneten Wert speichern
+
+Kann als Formel, Aufruf, Code-snippet direkt erfasst werden.
+]DE_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
@@ -179,7 +209,8 @@ Kann als Formel, Aufruf, Code-snippet direkt erfasst werden.
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
-<property name="EN_ATTR_NAME" value="ruleeffect"/>
+<property name="DE_ATTR_NAME" value="Regelauswirkung"/>
+<property name="EN_ATTR_NAME" value="*ruleeffect"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Regeltyp" id="EA2A5BA9-D64F-D985-9B96-AE02BDDE1A02">
@@ -190,6 +221,21 @@ CHECK
 CALCUALTE
 PROCESS-Trigger
 ist]]></comment>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+*DE* gibt an, ob es 
+CHECK
+CALCUALTE
+PROCESS-Trigger
+ist
+]EN_ATTR_COMMENT]
+[DE_ATTR_COMMENT[
+gibt an, ob es 
+CHECK
+CALCUALTE
+PROCESS-Trigger
+ist
+]DE_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
@@ -201,7 +247,8 @@ ist]]></comment>
 <domain>96A9C6B2-3074-8688-262C-5F65FC2CE590</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
-<property name="EN_ATTR_NAME" value="Ruletype"/>
+<property name="DE_ATTR_NAME" value="Regeltyp"/>
+<property name="EN_ATTR_NAME" value="*Ruletype"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Fehlermeldung [L]" id="DEA583A1-1362-7675-76D3-F647C1BD80CC">

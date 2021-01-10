@@ -9,13 +9,15 @@ Ein Wertebereich der nicht in einer bestimmten Schnittstelle definiert wurde, is
 Die Typen Numerisch, Text, Zeitpunkt oder Aufzählung sind konzeptionell zu verstehen. Die echten Datentypen und ggf. Formate (für Zahlen und Zeitpunkte) für die Speicherung werden in der Implementierung festgelegt.
 Wertegruppen sind Attributgruppen, d.h. mehrere Attribute, die mehrfach gemeinsam vorkommen  werden für eine einfachere Handhabung unter einem neuen Namen zusammengefasst. Beispiel Telefon-Nr bestehend auf Landesvorwahl und Rufnummer.]]></comment>
 <notes><![CDATA[[DE_ENTI_COMMENT[
-Beschreibung des Wertebereichs eines (oder mehrerer) Attributs/e.
+Beschreibung des Wertebereichs eines (oder mehrerer) Attributs/e oder Columns
+
+Ein Wertebereich der nicht in einer bestimmten Schnittstelle definiert wurde, ist im allgemein (im IM) defniniert und damit für alle (IM und Schnittstellen) verwendbar
 
 Die Typen Numerisch, Text, Zeitpunkt oder Aufzählung sind konzeptionell zu verstehen. Die echten Datentypen und ggf. Formate (für Zahlen und Zeitpunkte) für die Speicherung werden in der Implementierung festgelegt.
 Wertegruppen sind Attributgruppen, d.h. mehrere Attribute, die mehrfach gemeinsam vorkommen  werden für eine einfachere Handhabung unter einem neuen Namen zusammengefasst. Beispiel Telefon-Nr bestehend auf Landesvorwahl und Rufnummer.
 ]DE_ENTI_COMMENT]
 [EN_ENTI_COMMENT[
-Description of the value range of one (or more) attribute(s).  The types numerical, text, time or enumeration are to be understood conceptually. The real data types and, if applicable, formats (for numbers and times) for storage are defined in the implementation. Value groups are attribute groups, i.e. several attributes that occur more than once together are combined under a new name for easier handling. Example telephone number consisting of country code and telephone number
+*Description of the value range of one (or more) attribute(s).  The types numerical, text, time or enumeration are to be understood conceptually. The real data types and, if applicable, formats (for numbers and times) for storage are defined in the implementation. Value groups are attribute groups, i.e. several attributes that occur more than once together are combined under a new name for easier handling. Example telephone number consisting of country code and telephone number
 ]EN_ENTI_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -40,7 +42,7 @@ Description of the value range of one (or more) attribute(s).  The types numeric
 <propertyMap>
 <property name="Beispiele" value="Netto-Gewicht  / Beleuchtungsmodell  / Geo-Koordinate / internationale Telefon-Nr"/>
 <property name="DE_ENTI_COMMENT" value="Beschreibung des Wertebereichs eines (oder mehrerer) Attributs/e.  Die Typen Numerisch, Text, Zeitpunkt oder Aufzählung sind konzeptionell zu verstehen. Die echten Datentypen und ggf. Formate (für Zahlen und Zeitpunkte) für die Speicherung werden in der Implementierung festgelegt. Wertegruppen sind Attributgruppen, d.h. mehrere Attribute, die mehrfach gemeinsam vorkommen  werden für eine einfachere Handhabung unter einem neuen Namen zusammengefasst. Beispiel Telefon-Nr bestehend auf Landesvorwahl und Rufnummer. "/>
-<property name="DE_ENTI_NAME" value="*Wertebereich"/>
+<property name="DE_ENTI_NAME" value="Wertebereich"/>
 <property name="DE_ENTI_SYNONYM" value="Domäne"/>
 <property name="EN_ENTI_COMMENT" value="*DE* Beschreibung des Wertebereichs eines (oder mehrerer) Attributs/e.  Die Typen Numerisch, Text, Zeitpunkt oder Aufzählung sind konzeptionell zu verstehen. Die echten Datentypen und ggf. Formate (für Zahlen und Zeitpunkte) für die Speicherung werden in der Implementierung festgelegt. Wertegruppen sind Attributgruppen, d.h. mehrere Attribute, die mehrfach gemeinsam vorkommen  werden für eine einfachere Handhabung unter einem neuen Namen zusammengefasst. Beispiel Telefon-Nr bestehend auf Landesvorwahl und Rufnummer. "/>
 <property name="EN_ENTI_NAME" value="Domain"/>
