@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_2" id="F5394923-6DFA-8C01-6D38-3997884B3C41" name="IsA Subtype Beziehung">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_2" id="F5394923-6DFA-8C01-6D38-3997884B3C41" name="IsA Subtyp Beziehung">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:04:00 UTC</createdTime>
 <comment><![CDATA[1:1 Beziehung, die einen echten, exklusiven Subtyp definiert.
@@ -50,6 +50,5 @@ Examples:
 <property name="DE_ENTI_NAME" value="IsA Subtype Beziehung"/>
 <property name="EN_ENTI_COMMENT" value="*DE* 1:1 Beziehung, einen Subtyp definiert. exklusive  IsA Subtypen (monohierarchisch, optional von Vater zu Kind) können als Subtypen in der Entität gezeichnet werden.   Eine IsA Beziehung beginnt immer bei Subtyp (von Kind zu Vater). Diese Beziehung (Kind zu Vater) kann nicht optional sein."/>
 <property name="EN_ENTI_NAME" value="IsA Subtype Relationship"/>
-<property name="EN_ENTI_SYNONYM" value=""/>
 </propertyMap>
 </Entity>

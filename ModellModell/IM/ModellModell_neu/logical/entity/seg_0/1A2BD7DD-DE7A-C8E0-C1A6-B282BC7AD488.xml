@@ -2,13 +2,23 @@
 <Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="1A2BD7DD-DE7A-C8E0-C1A6-B282BC7AD488" name="Beziehung">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:03:22 UTC</createdTime>
-<comment><![CDATA[Verbindung zweier Entitäten mit Assoziationstext, Optionalität und Abbildungstyp
+<comment><![CDATA[[DE_ENTI_COMMENT[
+Verbindung zweier Entitäten mit Assoziationstext, Optionalität und Abbildungstyp
 
 Die in anderen Darstellungsarten gebräuchlichen Beziehungen können aus  Optionalität und Abbildungstyp hergeleitet werden
 0-1	Optional  - 1
 1-1	Pflicht - 1
 0-many	Optional - many
-1-many	Pflicht - many]]></comment>
+1-many	Pflicht - many
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+*Connection of two entities with association text, optionality and mapping type The relationships common in other mapping types can be derived from optionality and mapping type 
+0-1 Optional - 1 
+1-1 Mandatory - 1
+0-many Optional - many 
+1-many Mandatory - many
+]EN_ENTI_COMMENT]
+]]></comment>
 <notes><![CDATA[[DE_ENTI_COMMENT[
 Verbindung zweier Entitäten mit Assoziationstext, Optionalität und Abbildungstyp
 
@@ -19,7 +29,11 @@ Die in anderen Darstellungsarten gebräuchlichen Beziehungen können aus  Option
 1-many	Pflicht - many
 ]DE_ENTI_COMMENT]
 [EN_ENTI_COMMENT[
-*Connection of two entities with association text, optionality and mapping type The relationships common in other mapping types can be derived from optionality and mapping type 0-1 Optional - 1 1-1 Mandatory - 1 0-many Optional - many 1-many Mandatory - many
+*Connection of two entities with association text, optionality and mapping type The relationships common in other mapping types can be derived from optionality and mapping type 
+0-1 Optional - 1 
+1-1 Mandatory - 1
+0-many Optional - many 
+1-many Mandatory - many
 ]EN_ENTI_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
