@@ -53,6 +53,9 @@ open source community
 <property name="EN_ENTI_COMMENT" value="*DE* Herstellerfirma einer Applikation, einer SW-Lösung, einer IT-Komponente. Kann eine externe Firma sein, die eigene Organisationseinheit (IT-Abteilung für Applikationen, alle Abteilungen für Excel, Templates etc.)  Beispiele: SAP Oracle IBM HR-Abteilung (die ein Excel entwickelt hat) eigene IT-Abteilung (die einen Konfigurator geschrieben hat) open source community"/>
 <property name="EN_ENTI_NAME" value="Manufacturer"/>
 <property name="EN_ENTI_SYNONYM" value="Manufacturer"/>
+<property name="maxzoollevel" value="5"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Name" id="B8BFEFCC-A380-833E-670C-8E84932C273D">
@@ -80,6 +83,9 @@ open source community
 <propertyMap>
 <property name="DE_ATTR_NAME" value="Name"/>
 <property name="EN_ATTR_NAME" value="Name"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 </attributes>

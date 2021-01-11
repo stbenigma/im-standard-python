@@ -64,6 +64,9 @@ Oracle-APEX
 <property name="EN_ENTI_COMMENT" value="*DE* IT_System, Betriebssystem, Infrastruktur in oder auf dem Anwendungen laufen können.  Beispiele: Power-DNS JRE java runtime environment Windows Android ubuntu Linux mongo-DB Excel Access SAP-Hana IDE  = Application for IT-People Eclipse / Microsoft Studio Jenkins Oracle-APEX "/>
 <property name="EN_ENTI_NAME" value="IT system"/>
 <property name="EN_ENTI_SYNONYM" value=""/>
+<property name="maxzoollevel" value="5"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Zeichnsatz" id="9E4F1EF5-A882-1837-570F-7741DEB53954">
@@ -93,6 +96,9 @@ Oracle-APEX
 <property name="DE_ATTR_NAME" value="Zeichnsatz"/>
 <property name="EN_ATTR_COMMENT" value=""/>
 <property name="EN_ATTR_NAME" value="Character set"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Name" id="BE8D87DB-7E88-9AC2-5CAE-CCC53742DBE6">
@@ -122,6 +128,9 @@ Name of the entity normally used in communication.
 <property name="DE_ATTR_NAME" value="Name"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Name der Entität der in der Kommunikation normalerweise gebraucht wird."/>
 <property name="EN_ATTR_NAME" value="Name"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Name_" id="2F835C75-8726-CA73-843D-B6EE0A0425FE">
@@ -150,6 +159,9 @@ Name of the entity normally used in communication.
 <property name="DE_ATTR_NAME" value="Name_"/>
 <property name="EN_ATTR_COMMENT" value=""/>
 <property name="EN_ATTR_NAME" value="*Name"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 </attributes>

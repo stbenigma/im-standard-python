@@ -30,10 +30,11 @@ Value range for time attributes (granularity decides about level (sec, min, h, d
 <propertyMap>
 <property name="DE_ENTI_COMMENT" value=" "/>
 <property name="DE_ENTI_NAME" value="Zeitpunkt Wertebereich"/>
-<property name="DE_ENTI_SYNONYM" value=""/>
 <property name="EN_ENTI_COMMENT" value="*DE*  "/>
 <property name="EN_ENTI_NAME" value="Time Value range"/>
-<property name="EN_ENTI_SYNONYM" value=""/>
+<property name="maxzoollevel" value="5"/>
+<property name="maxzoomlevel" value="1"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Min Zeitpunkt" id="F8E42CB1-E43D-0D27-9900-D7A7BD67D0D6">
@@ -64,6 +65,9 @@ earliest time in this attribute. Empty -> there is no lower limit
 <property name="DE_ATTR_NAME" value="Min Zeitpunkt"/>
 <property name="EN_ATTR_COMMENT" value="*DE* frühestes Zeitpunkt in diesem Attribut. Leer -&gt; es gibt keine Untergrenze"/>
 <property name="EN_ATTR_NAME" value="Min Time"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Max Zeitpunkt" id="7B927CAB-9C49-8F87-C70C-F980DF438F94">
@@ -94,6 +98,9 @@ latest time in this attribute. Empty -> there is no upper limit
 <property name="DE_ATTR_NAME" value="Max Zeitpunkt"/>
 <property name="EN_ATTR_COMMENT" value="*DE* spätester Zeitpunkt in diesem Attribut. Leer -&gt; es gibt keine Obergrenze"/>
 <property name="EN_ATTR_NAME" value="Max Time"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Granularität" id="6E889AC5-72FE-0BF0-A64F-E96B19560FAC">
@@ -124,6 +131,9 @@ To which unit is the date rounded (day, minute, month, year)?
 <property name="DE_ATTR_NAME" value="Granularität"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Auf welche Einheit wird die Datumsangabe gerundet (Tag, Minute, Monat, Jahr)"/>
 <property name="EN_ATTR_NAME" value="Granularity"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 </attributes>

@@ -30,10 +30,11 @@ Can record numerical values
 <propertyMap>
 <property name="DE_ENTI_COMMENT" value="Kann Zahlenwerte aufnehmen "/>
 <property name="DE_ENTI_NAME" value="Numerischer Wertebereich"/>
-<property name="DE_ENTI_SYNONYM" value=""/>
 <property name="EN_ENTI_COMMENT" value="*DE* Kann Zahlenwerte aufnehmen "/>
 <property name="EN_ENTI_NAME" value="Numeric value range"/>
-<property name="EN_ENTI_SYNONYM" value=""/>
+<property name="maxzoollevel" value="5"/>
+<property name="maxzoomlevel" value="1"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Totalstellen#" id="7E77D48A-823A-2E1C-12FB-94F9A785C501">
@@ -63,6 +64,9 @@ Number of digits before the decimal point
 <property name="DE_ATTR_NAME" value="Totalstellen#"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Anzahl der Stellen vor dem Komma"/>
 <property name="EN_ATTR_NAME" value="*Digits before decimal point#"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Nachkommastellen#" id="D2115AAA-10BB-6729-053F-50CD98171F6C">
@@ -93,6 +97,9 @@ Number of digits after the decimal point
 <property name="DE_ATTR_NAME" value="Nachkommastellen#"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Anzahl der Stellen nach dem Komma"/>
 <property name="EN_ATTR_NAME" value="Decimal places#"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Min Wert" id="E5CC6E75-E08C-C5ED-7AD2-5C644AC557AD">
@@ -123,6 +130,9 @@ Minimum value for a numeric field. Empty -> as small as the system allows
 <property name="DE_ATTR_NAME" value="Min Wert"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Minimaler Wert für ein numerisches Feld. Leer -&gt; so klein wie das System zulässt"/>
 <property name="EN_ATTR_NAME" value="Min value"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Max Wert" id="EBB0952C-C757-86BA-30FC-CF6002E22D95">
@@ -153,6 +163,9 @@ Maximum value for a numeric field. Empty -> as big as the system allows
 <property name="DE_ATTR_NAME" value="Max Wert"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Maximaler Wert für ein numerisches Feld. Leer -&gt; so gross wie das System zulässt"/>
 <property name="EN_ATTR_NAME" value="Max value"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Rundungseinheit" id="EB863265-2766-76A8-568E-EEFEA2D851F2">
@@ -184,6 +197,9 @@ A value that indicates the unit to which a numeric value is rounded for storage.
 <property name="DE_ATTR_NAME" value="Rundungseinheit"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Wert, der angibt, auf welche Einheit ein numerischer Wert für die Speicherung gerundet wird. (z.B. 0.5, 0.25, 1000) leer -&gt; es wird nicht explizit gerundet"/>
 <property name="EN_ATTR_NAME" value="Rounding unit"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 </attributes>

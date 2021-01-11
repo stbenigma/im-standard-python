@@ -33,6 +33,9 @@ Wert eines Erweiterungsmerkmals eines Elementes
 <property name="DE_ENTI_SYNONYM" value=""/>
 <property name="EN_ENTI_NAME" value="User-defined property value"/>
 <property name="EN_ENTI_SYNONYM" value=""/>
+<property name="maxzoollevel" value="5"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Wert" id="F0AFC80F-C811-FBA8-F729-B8DD3F423825">
@@ -60,6 +63,9 @@ Wert eines Erweiterungsmerkmals eines Elementes
 <propertyMap>
 <property name="DE_ATTR_NAME" value="Wert"/>
 <property name="EN_ATTR_NAME" value="Value"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 </attributes>

@@ -46,6 +46,9 @@ App-Administrator
 <property name="EN_ENTI_COMMENT" value="*DE* Firma oder Organisation die ein Sysstem betreuen (korrgieren, unterstützen, ausbauen, supporten). Typischerweise Applikationsadministratoren  Beispiele: interner IT-Support Helpdesk App-Administrator"/>
 <property name="EN_ENTI_NAME" value="Chaperon"/>
 <property name="EN_ENTI_SYNONYM" value="Supporters"/>
+<property name="maxzoollevel" value="5"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Name" id="E99B928C-B9EC-3761-8A47-3BC5A41042D1">
@@ -73,6 +76,9 @@ App-Administrator
 <propertyMap>
 <property name="DE_ATTR_NAME" value="Name"/>
 <property name="EN_ATTR_NAME" value="Name"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 </attributes>

@@ -32,6 +32,9 @@
 <property name="EN_ENTI_COMMENT" value=""/>
 <property name="EN_ENTI_NAME" value="Unit conversion"/>
 <property name="EN_ENTI_SYNONYM" value=""/>
+<property name="maxzoollevel" value="5"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Faktor" id="F39DFE6B-C605-5A09-9A0D-8DFDDDB06A8D">
@@ -62,6 +65,9 @@
 <property name="DE_ATTR_NAME" value="Faktor"/>
 <property name="EN_ATTR_COMMENT" value=""/>
 <property name="EN_ATTR_NAME" value="Factor"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 </attributes>

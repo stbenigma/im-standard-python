@@ -47,6 +47,9 @@ Wertegruppen sind Attributgruppen, d.h. mehrere Attribute, die mehrfach gemeinsa
 <property name="EN_ENTI_COMMENT" value="*DE* Beschreibung des Wertebereichs eines (oder mehrerer) Attributs/e.  Die Typen Numerisch, Text, Zeitpunkt oder Aufzählung sind konzeptionell zu verstehen. Die echten Datentypen und ggf. Formate (für Zahlen und Zeitpunkte) für die Speicherung werden in der Implementierung festgelegt. Wertegruppen sind Attributgruppen, d.h. mehrere Attribute, die mehrfach gemeinsam vorkommen  werden für eine einfachere Handhabung unter einem neuen Namen zusammengefasst. Beispiel Telefon-Nr bestehend auf Landesvorwahl und Rufnummer. "/>
 <property name="EN_ENTI_NAME" value="Domain"/>
 <property name="EN_ENTI_SYNONYM" value="Domain"/>
+<property name="maxzoollevel" value="5"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Name [L]" id="59DD8C2A-74AA-122C-8E66-8E203419DBF9">
@@ -75,6 +78,9 @@ Wertegruppen sind Attributgruppen, d.h. mehrere Attribute, die mehrfach gemeinsa
 <property name="DE_ATTR_NAME" value="Name [L]"/>
 <property name="EN_ATTR_COMMENT" value=""/>
 <property name="EN_ATTR_NAME" value="Name [L]"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Beschreibung [L]" id="709F8112-9493-4D2A-368C-D0CCE5B2472E">
@@ -104,6 +110,9 @@ Wertegruppen sind Attributgruppen, d.h. mehrere Attribute, die mehrfach gemeinsa
 <property name="DE_ATTR_NAME" value="Beschreibung [L]"/>
 <property name="EN_ATTR_COMMENT" value=""/>
 <property name="EN_ATTR_NAME" value="Description [L]"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 </attributes>

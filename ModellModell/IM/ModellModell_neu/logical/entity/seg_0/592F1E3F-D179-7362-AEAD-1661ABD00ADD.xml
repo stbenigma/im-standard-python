@@ -43,6 +43,9 @@ Ungültige Werte haben den Transformationsstatus ="verarbeitet", eine Verarbeitu
 <property name="EN_ENTI_COMMENT" value="*DE* Historie der verarbeiteten Transformationen. Werte werden geladen, je nach Richtung der Transformation aus dem Fremdsystem oder aus dem konzeptionellen Schema. Sobald ein Wert den Status &apos;verarbeitet&quot; hat muss Verarbeitungsart und Transformationszeitpunkt gesetzt sein. Erst dann darf er weiter verwendet werden. Gültige verarbeitete Werte haben einen Transformationszeitpunkt, eine Verarbeitungsart, den Transformationsstatus =&quot;verarbeitet&quot; und Transformation gültig = &apos;J&apos; . Ungültige Werte haben den Transformationsstatus =&quot;verarbeitet&quot;, eine Verarbeitungsart, Transformation gültig = &quot;N&quot;  und zusätzlich eine Feherbeschreibung (Fehler-Nr, -Beschrieb, oder (Name der) Regel die verletzt wurde)."/>
 <property name="EN_ENTI_NAME" value="Attribute value transformation"/>
 <property name="EN_ENTI_SYNONYM" value=""/>
+<property name="maxzoollevel" value="5"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Ladezeitpunkt" id="BB754BC7-C96F-C52B-0444-7A757BA287A3">
@@ -72,6 +75,9 @@ Time (in as small a time unit as possible) at which the value to be transformed 
 <property name="DE_ATTR_NAME" value="Ladezeitpunkt"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Zeitpunkt (in möglichst kleiner Zeiteinheit) zu dem der zu transformierende Wert geladen wurde."/>
 <property name="EN_ATTR_NAME" value="Loading time"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Quellsystemwert [N]" id="F4DA3E4B-8A05-AE47-C349-5333116BB032">
@@ -102,6 +108,9 @@ Value(s) from the source system that were used for the transformation.
 <property name="DE_ATTR_NAME" value="Quellsystemwert [N]"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Wert(e) aus dem Quellsystem, die für die Transformation verwendet wurden."/>
 <property name="EN_ATTR_NAME" value="Source system value [N]"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Zielwert" id="E7E6A3DE-B89C-BBAC-812D-01338E3F3B99">
@@ -132,6 +141,9 @@ Value for the target system, result of the transformation
 <property name="DE_ATTR_NAME" value="Zielwert"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Wert für das Zielsystem, Ergebnis der Transformation"/>
 <property name="EN_ATTR_NAME" value="Target value"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Transformationszeitpunkt" id="819AE96E-5233-A76E-7EE2-F504BA0776F4">
@@ -162,6 +174,9 @@ Time (in as small a time unit as possible) at which the transformation was perfo
 <property name="DE_ATTR_NAME" value="Transformationszeitpunkt"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Zeitpunkt (in möglichst kleiner Zeiteinheit) zu dem die Transformation durchgeführt wurde. Leer-&gt; die Transformation wurde noch nicht durchgeführt."/>
 <property name="EN_ATTR_NAME" value="Time of transformation"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Transformationsstatus" id="A9E2703D-3339-1546-E68A-5198271E48D4">
@@ -190,6 +205,9 @@ Status of the transformation (loaded, processed)
 <property name="DE_ATTR_NAME" value="Transformationsstatus"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Status der Transformation (geladen, verarbeitet)"/>
 <property name="EN_ATTR_NAME" value="Transformation status"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Verarbeitungsart" id="0938F689-92CC-D480-BD06-9E018F2001B6">
@@ -219,6 +237,9 @@ Type of execution of a transformation (manual, automatic)
 <property name="DE_ATTR_NAME" value="Verarbeitungsart"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Art der Durchführung einer Transformation (manuell, automatisch)"/>
 <property name="EN_ATTR_NAME" value="Processing type"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 <Attribute name="ist Transformation gültig" id="443221C7-DDBD-DE04-DEC0-8287486FDE9C">
@@ -248,6 +269,9 @@ Specifies whether the transformed value is valid
 <property name="DE_ATTR_NAME" value="ist Transformation gültig"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Angabe, ob der transformierte Wert gültig ist. "/>
 <property name="EN_ATTR_NAME" value="transformation is valid"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Transformationsfehler" id="8C5519F4-83D7-C743-04F8-5EA201AAEFEF">
@@ -278,6 +302,9 @@ Error description, if the value could not be translated. If transformation is va
 <property name="DE_ATTR_NAME" value="Transformationsfehler"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Fehlerbeschrieb, falls der Wert nicht übersetzt werden konnte. Falls Transformation gültig = FALSE und Transformationsstatus = verarbeitet, muss ein Fehlerbeschrieb vorliegen."/>
 <property name="EN_ATTR_NAME" value="Transformation error"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 </attributes>

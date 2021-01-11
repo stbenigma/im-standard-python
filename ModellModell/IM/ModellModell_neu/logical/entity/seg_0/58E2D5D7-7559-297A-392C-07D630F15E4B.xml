@@ -33,6 +33,9 @@ Information zur Darstellung einer Beziehung auf einem Diagramm
 <property name="EN_ENTI_COMMENT" value="*DE* Information zur Darstellung einer Entität auf einem Diagramm"/>
 <property name="EN_ENTI_NAME" value="Relationship representation"/>
 <property name="EN_ENTI_SYNONYM" value=""/>
+<property name="maxzoollevel" value="5"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Linie" id="60B614A1-B81F-164D-5816-270C237294E2">
@@ -60,6 +63,9 @@ Information zur Darstellung einer Beziehung auf einem Diagramm
 <property name="DE_ATTR_NAME" value="Linie"/>
 <property name="EN_ATTR_COMMENT" value=""/>
 <property name="EN_ATTR_NAME" value="Line"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Liniendarstellung" id="069CEB04-EC94-B003-AFCF-5B08DC17DCBB">
@@ -88,6 +94,9 @@ Information zur Darstellung einer Beziehung auf einem Diagramm
 <property name="DE_ATTR_NAME" value="Liniendarstellung"/>
 <property name="EN_ATTR_COMMENT" value=""/>
 <property name="EN_ATTR_NAME" value="Line display"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Andockposition (start)" id="9955B4BD-42A3-95A8-A793-AFA9FC6E9912">
@@ -117,6 +126,9 @@ Information zur Darstellung einer Beziehung auf einem Diagramm
 <property name="DE_ATTR_NAME" value="Andockposition (start)"/>
 <property name="EN_ATTR_COMMENT" value=""/>
 <property name="EN_ATTR_NAME" value="Docking position (start)"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Textdarstellung (start)" id="C452A251-53B6-F5D1-F79B-E4B9D3108928">
@@ -148,6 +160,9 @@ Position of the text at the start of the path (e.g. from entity). Can be relativ
 <property name="DE_ATTR_NAME" value="Textdarstellung (start)"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Position des Textes am Start des Pfades (z.B. von-Entität). Kann relativ sein  umd Verschiebungen zu ermöglichen."/>
 <property name="EN_ATTR_NAME" value="Text display (start)"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Andockposition (ende)" id="79A6F73A-1420-9DA4-D320-996A8A401AFA">
@@ -177,6 +192,9 @@ Position of the text at the start of the path (e.g. from entity). Can be relativ
 <property name="DE_ATTR_NAME" value="Andockposition (ende)"/>
 <property name="EN_ATTR_COMMENT" value=""/>
 <property name="EN_ATTR_NAME" value="Docking position (end)"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Textdarstellung (ende)" id="CA8665E1-CD91-B7D6-4139-92EFDE3E28BB">
@@ -208,6 +226,9 @@ Position of the association at the end of the path (e.g. to entity). Can be rela
 <property name="DE_ATTR_NAME" value="Textdarstellung (ende)"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Position der Assoziation am Ende des Pfades (z.B: zu-Entität). Kann relativ sein  umd Verschiebungen zu ermöglichen."/>
 <property name="EN_ATTR_NAME" value="Text display (end)"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Name [L]" id="EDE2DC53-9155-95EF-5436-3884C28210FA">
@@ -238,6 +259,9 @@ Position of the association at the end of the path (e.g. to entity). Can be rela
 <property name="DE_ATTR_NAME" value="Name [L]"/>
 <property name="EN_ATTR_COMMENT" value=""/>
 <property name="EN_ATTR_NAME" value="Name [L]"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Schrift" id="534EB3AC-54E4-7868-F640-181EE0ED81BD">
@@ -264,6 +288,9 @@ Position of the association at the end of the path (e.g. to entity). Can be rela
 <propertyMap>
 <property name="DE_ATTR_NAME" value="Schrift"/>
 <property name="EN_ATTR_NAME" value="Font"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 </attributes>
@@ -286,6 +313,11 @@ Position of the association at the end of the path (e.g. to entity). Can be rela
 <dataTypePrecision>3</dataTypePrecision>
 <dataTypeScale>1</dataTypeScale>
 <ownDataTypeParameters>,3,1</ownDataTypeParameters>
+<propertyMap>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
+</propertyMap>
 </nestedAttribute>
 <nestedAttribute name="Liniendarstellung.type" directorySegmentName="seg_1" id="5C7BBF13-C6EB-74B4-C232-A86B44196423">
 <createdBy>stb</createdBy>
@@ -306,6 +338,11 @@ Position of the association at the end of the path (e.g. to entity). Can be rela
 <dataTypeScale>0</dataTypeScale>
 <dataTypeSize>6</dataTypeSize>
 <ownDataTypeParameters>6,0,0</ownDataTypeParameters>
+<propertyMap>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
+</propertyMap>
 </nestedAttribute>
 <nestedAttribute name="Liniendarstellung.color" directorySegmentName="seg_1" id="C792591E-9AFC-F977-63E5-EDD3D6F5A18B">
 <createdBy>stb</createdBy>
@@ -326,6 +363,11 @@ Position of the association at the end of the path (e.g. to entity). Can be rela
 <dataTypeScale>0</dataTypeScale>
 <dataTypeSize>6</dataTypeSize>
 <ownDataTypeParameters>6,0,0</ownDataTypeParameters>
+<propertyMap>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
+</propertyMap>
 </nestedAttribute>
 <nestedAttribute name="Liniendarstellung.opacity" directorySegmentName="seg_1" id="61A80D09-1306-F958-5297-4F61825F0061">
 <createdBy>stb</createdBy>
@@ -345,6 +387,11 @@ Position of the association at the end of the path (e.g. to entity). Can be rela
 <dataTypePrecision>3</dataTypePrecision>
 <dataTypeScale>0</dataTypeScale>
 <ownDataTypeParameters>,3,0</ownDataTypeParameters>
+<propertyMap>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
+</propertyMap>
 </nestedAttribute>
 <nestedAttribute name="Andockposition (start).edge" directorySegmentName="seg_1" id="16F43967-B453-B1E9-2466-A443C872BDE9">
 <createdBy>stb</createdBy>
@@ -365,6 +412,11 @@ Position of the association at the end of the path (e.g. to entity). Can be rela
 <dataTypeScale>0</dataTypeScale>
 <dataTypeSize>1</dataTypeSize>
 <ownDataTypeParameters>1,0,0</ownDataTypeParameters>
+<propertyMap>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
+</propertyMap>
 </nestedAttribute>
 <nestedAttribute name="Andockposition (start).position" directorySegmentName="seg_1" id="6E6BAE73-CE45-22C1-4384-645E1A6E40EF">
 <createdBy>stb</createdBy>
@@ -384,6 +436,11 @@ Position of the association at the end of the path (e.g. to entity). Can be rela
 <dataTypeScale>1</dataTypeScale>
 <domain>348830AA-2613-5D59-292A-41AAB32EB3D3</domain>
 <ownDataTypeParameters>,4,1</ownDataTypeParameters>
+<propertyMap>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
+</propertyMap>
 <listOfRanges>
 <rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
 <beginValue>0.0</beginValue>
@@ -410,6 +467,11 @@ Position of the association at the end of the path (e.g. to entity). Can be rela
 <dataTypeScale>0</dataTypeScale>
 <dataTypeSize>1</dataTypeSize>
 <ownDataTypeParameters>1,0,0</ownDataTypeParameters>
+<propertyMap>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
+</propertyMap>
 </nestedAttribute>
 <nestedAttribute name="Andockposition (ende).position" directorySegmentName="seg_1" id="70598FB1-4A96-A844-61A3-FD9274D46170">
 <createdBy>stb</createdBy>
@@ -429,6 +491,11 @@ Position of the association at the end of the path (e.g. to entity). Can be rela
 <dataTypeScale>1</dataTypeScale>
 <domain>348830AA-2613-5D59-292A-41AAB32EB3D3</domain>
 <ownDataTypeParameters>,4,1</ownDataTypeParameters>
+<propertyMap>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
+</propertyMap>
 <listOfRanges>
 <rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
 <beginValue>0.0</beginValue>
@@ -454,6 +521,11 @@ Position of the association at the end of the path (e.g. to entity). Can be rela
 <dataTypePrecision>4</dataTypePrecision>
 <dataTypeScale>0</dataTypeScale>
 <ownDataTypeParameters>,4,0</ownDataTypeParameters>
+<propertyMap>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
+</propertyMap>
 </nestedAttribute>
 <nestedAttribute name="Textdarstellung (ende).height" directorySegmentName="seg_1" id="5EF841AC-75EE-ECE8-BE41-7D842C7E6A71">
 <createdBy>stb</createdBy>
@@ -473,6 +545,11 @@ Position of the association at the end of the path (e.g. to entity). Can be rela
 <dataTypePrecision>4</dataTypePrecision>
 <dataTypeScale>0</dataTypeScale>
 <ownDataTypeParameters>,4,0</ownDataTypeParameters>
+<propertyMap>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
+</propertyMap>
 </nestedAttribute>
 <nestedAttribute name="Textdarstellung (ende).relative position" directorySegmentName="seg_1" id="13C4EDD1-4924-3EF4-5719-9355A53D5F23">
 <createdBy>stb</createdBy>
@@ -490,6 +567,11 @@ Position of the association at the end of the path (e.g. to entity). Can be rela
 <use>3</use>
 <structuredType>9B0F3CA2-7FE3-F418-FEEC-D502FD96C346</structuredType>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
+</propertyMap>
 </nestedAttribute>
 <nestedAttribute name="Textdarstellung (ende).relative position.angel" directorySegmentName="seg_1" id="DC6EE701-F047-81D6-B716-3A782818D61F">
 <createdBy>stb</createdBy>
@@ -509,6 +591,11 @@ Position of the association at the end of the path (e.g. to entity). Can be rela
 <dataTypePrecision>3</dataTypePrecision>
 <dataTypeScale>0</dataTypeScale>
 <ownDataTypeParameters>,3,0</ownDataTypeParameters>
+<propertyMap>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
+</propertyMap>
 </nestedAttribute>
 <nestedAttribute name="Textdarstellung (ende).relative position.distance" directorySegmentName="seg_1" id="1DCFF698-AC80-96C9-3498-86ADBBE6B794">
 <createdBy>stb</createdBy>
@@ -528,6 +615,11 @@ Position of the association at the end of the path (e.g. to entity). Can be rela
 <dataTypePrecision>4</dataTypePrecision>
 <dataTypeScale>0</dataTypeScale>
 <ownDataTypeParameters>,4,0</ownDataTypeParameters>
+<propertyMap>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
+</propertyMap>
 </nestedAttribute>
 <nestedAttribute name="Textdarstellung (start).width" directorySegmentName="seg_1" id="5094D7CB-0139-429F-E60F-C428789308CE">
 <createdBy>stb</createdBy>
@@ -547,6 +639,11 @@ Position of the association at the end of the path (e.g. to entity). Can be rela
 <dataTypePrecision>4</dataTypePrecision>
 <dataTypeScale>0</dataTypeScale>
 <ownDataTypeParameters>,4,0</ownDataTypeParameters>
+<propertyMap>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
+</propertyMap>
 </nestedAttribute>
 <nestedAttribute name="Textdarstellung (start).height" directorySegmentName="seg_1" id="31A3FC24-2F69-02F1-8DD4-3E6F1EC0A1DC">
 <createdBy>stb</createdBy>
@@ -566,6 +663,11 @@ Position of the association at the end of the path (e.g. to entity). Can be rela
 <dataTypePrecision>4</dataTypePrecision>
 <dataTypeScale>0</dataTypeScale>
 <ownDataTypeParameters>,4,0</ownDataTypeParameters>
+<propertyMap>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
+</propertyMap>
 </nestedAttribute>
 <nestedAttribute name="Textdarstellung (start).relative position" directorySegmentName="seg_1" id="D0802968-1C65-6664-B4A9-96127CA192D8">
 <createdBy>stb</createdBy>
@@ -583,6 +685,11 @@ Position of the association at the end of the path (e.g. to entity). Can be rela
 <use>3</use>
 <structuredType>9B0F3CA2-7FE3-F418-FEEC-D502FD96C346</structuredType>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
+</propertyMap>
 </nestedAttribute>
 <nestedAttribute name="Textdarstellung (start).relative position.angel" directorySegmentName="seg_1" id="4A2617A2-623F-CDE8-0102-DC7431F786E7">
 <createdBy>stb</createdBy>
@@ -602,6 +709,11 @@ Position of the association at the end of the path (e.g. to entity). Can be rela
 <dataTypePrecision>3</dataTypePrecision>
 <dataTypeScale>0</dataTypeScale>
 <ownDataTypeParameters>,3,0</ownDataTypeParameters>
+<propertyMap>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
+</propertyMap>
 </nestedAttribute>
 <nestedAttribute name="Textdarstellung (start).relative position.distance" directorySegmentName="seg_1" id="D7DCD2EB-2630-D65E-C6EC-4BDA6258090E">
 <createdBy>stb</createdBy>
@@ -621,6 +733,11 @@ Position of the association at the end of the path (e.g. to entity). Can be rela
 <dataTypePrecision>4</dataTypePrecision>
 <dataTypeScale>0</dataTypeScale>
 <ownDataTypeParameters>,4,0</ownDataTypeParameters>
+<propertyMap>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
+</propertyMap>
 </nestedAttribute>
 <nestedAttribute name="Textdarstellung (ende).font" directorySegmentName="seg_1" id="25DBFFB0-F664-A7DD-8584-808F730E6706">
 <createdBy>stb</createdBy>
@@ -638,6 +755,11 @@ Position of the association at the end of the path (e.g. to entity). Can be rela
 <use>3</use>
 <structuredType>F0D06FAD-E133-3AC0-390D-87A1783A03AD</structuredType>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
+</propertyMap>
 </nestedAttribute>
 <nestedAttribute name="Textdarstellung (ende).font.size" directorySegmentName="seg_1" id="B38D2FD0-4BFB-FB31-3CC6-A606A3506F07">
 <createdBy>stb</createdBy>
@@ -653,6 +775,11 @@ Position of the association at the end of the path (e.g. to entity). Can be rela
 <structAttributeID>57AEDC17-A249-5CA2-EB48-72056CA33ECF</structAttributeID>
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
+</propertyMap>
 </nestedAttribute>
 <nestedAttribute name="Textdarstellung (ende).font.color" directorySegmentName="seg_1" id="4F40AA32-A371-13E8-78D8-018573416E23">
 <createdBy>stb</createdBy>
@@ -668,6 +795,11 @@ Position of the association at the end of the path (e.g. to entity). Can be rela
 <structAttributeID>B77D603C-A607-984B-40AA-09F9A6F6AD12</structAttributeID>
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
+</propertyMap>
 </nestedAttribute>
 <nestedAttribute name="Textdarstellung (start).font" directorySegmentName="seg_1" id="F73D183B-FD90-84EC-14EF-621E08882F4E">
 <createdBy>stb</createdBy>
@@ -685,6 +817,11 @@ Position of the association at the end of the path (e.g. to entity). Can be rela
 <use>3</use>
 <structuredType>F0D06FAD-E133-3AC0-390D-87A1783A03AD</structuredType>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
+</propertyMap>
 </nestedAttribute>
 <nestedAttribute name="Textdarstellung (start).font.size" directorySegmentName="seg_1" id="DBD1062C-8B06-F45C-C013-32BFFF2E43BC">
 <createdBy>stb</createdBy>
@@ -700,6 +837,11 @@ Position of the association at the end of the path (e.g. to entity). Can be rela
 <structAttributeID>57AEDC17-A249-5CA2-EB48-72056CA33ECF</structAttributeID>
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
+</propertyMap>
 </nestedAttribute>
 <nestedAttribute name="Textdarstellung (start).font.color" directorySegmentName="seg_1" id="B944C949-65CD-CBD5-0B96-F81F2D423EB0">
 <createdBy>stb</createdBy>
@@ -715,6 +857,11 @@ Position of the association at the end of the path (e.g. to entity). Can be rela
 <structAttributeID>B77D603C-A607-984B-40AA-09F9A6F6AD12</structAttributeID>
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
+</propertyMap>
 </nestedAttribute>
 <nestedAttribute name="Textdarstellung (ende).absolut position" directorySegmentName="seg_1" id="CD49FD27-1388-E8AF-60D3-3F2EED848A4E">
 <createdBy>stb</createdBy>
@@ -732,6 +879,11 @@ Position of the association at the end of the path (e.g. to entity). Can be rela
 <use>3</use>
 <structuredType>2ECB4A4E-1695-94D8-DC85-30D8F4DC72A2</structuredType>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
+</propertyMap>
 </nestedAttribute>
 <nestedAttribute name="Textdarstellung (ende).absolut position.x" directorySegmentName="seg_1" id="98750FE1-E720-ECE9-B93C-AFBD544D256F">
 <createdBy>stb</createdBy>
@@ -751,6 +903,11 @@ Position of the association at the end of the path (e.g. to entity). Can be rela
 <dataTypePrecision>4</dataTypePrecision>
 <dataTypeScale>0</dataTypeScale>
 <ownDataTypeParameters>,4,0</ownDataTypeParameters>
+<propertyMap>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
+</propertyMap>
 </nestedAttribute>
 <nestedAttribute name="Textdarstellung (ende).absolut position.y" directorySegmentName="seg_1" id="0D553258-F261-D9EA-76C4-B39A0B6BFBF9">
 <createdBy>stb</createdBy>
@@ -770,6 +927,11 @@ Position of the association at the end of the path (e.g. to entity). Can be rela
 <dataTypePrecision>4</dataTypePrecision>
 <dataTypeScale>0</dataTypeScale>
 <ownDataTypeParameters>,4,0</ownDataTypeParameters>
+<propertyMap>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
+</propertyMap>
 </nestedAttribute>
 <nestedAttribute name="Textdarstellung (start).absolut position" directorySegmentName="seg_1" id="6FE336E1-B194-C94E-D97C-99BA03A4C80F">
 <createdBy>stb</createdBy>
@@ -787,6 +949,11 @@ Position of the association at the end of the path (e.g. to entity). Can be rela
 <use>3</use>
 <structuredType>2ECB4A4E-1695-94D8-DC85-30D8F4DC72A2</structuredType>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
+</propertyMap>
 </nestedAttribute>
 <nestedAttribute name="Textdarstellung (start).absolut position.x" directorySegmentName="seg_1" id="F7F91BDA-B87B-F30F-1B14-77F1E9B43A96">
 <createdBy>stb</createdBy>
@@ -806,6 +973,11 @@ Position of the association at the end of the path (e.g. to entity). Can be rela
 <dataTypePrecision>4</dataTypePrecision>
 <dataTypeScale>0</dataTypeScale>
 <ownDataTypeParameters>,4,0</ownDataTypeParameters>
+<propertyMap>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
+</propertyMap>
 </nestedAttribute>
 <nestedAttribute name="Textdarstellung (start).absolut position.y" directorySegmentName="seg_1" id="13801AEA-9CD9-AB47-0165-DA81EE9830DD">
 <createdBy>stb</createdBy>
@@ -825,6 +997,11 @@ Position of the association at the end of the path (e.g. to entity). Can be rela
 <dataTypePrecision>4</dataTypePrecision>
 <dataTypeScale>0</dataTypeScale>
 <ownDataTypeParameters>,4,0</ownDataTypeParameters>
+<propertyMap>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
+</propertyMap>
 </nestedAttribute>
 <nestedAttribute name="Schrift.size" directorySegmentName="seg_1" id="52A4297D-4D28-790F-9E70-2349338BDAAD">
 <createdBy>stb</createdBy>
@@ -840,6 +1017,11 @@ Position of the association at the end of the path (e.g. to entity). Can be rela
 <structAttributeID>57AEDC17-A249-5CA2-EB48-72056CA33ECF</structAttributeID>
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
+</propertyMap>
 </nestedAttribute>
 <nestedAttribute name="Schrift.color" directorySegmentName="seg_1" id="E3D47C01-72C7-BE7A-059D-CA1FD9675681">
 <createdBy>stb</createdBy>
@@ -855,6 +1037,11 @@ Position of the association at the end of the path (e.g. to entity). Can be rela
 <structAttributeID>B77D603C-A607-984B-40AA-09F9A6F6AD12</structAttributeID>
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
+</propertyMap>
 </nestedAttribute>
 </nestedAttributes>
 <identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
