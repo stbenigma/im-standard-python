@@ -32,6 +32,9 @@
 <property name="EN_ENTI_COMMENT" value=""/>
 <property name="EN_ENTI_NAME" value="Document"/>
 <property name="EN_ENTI_SYNONYM" value=""/>
+<property name="maxzoollevel" value="5"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Name" id="A5F4F17D-8E4A-5426-B514-36FD9B46CE6F">
@@ -60,6 +63,9 @@
 <property name="DE_ATTR_NAME" value="Name"/>
 <property name="EN_ATTR_COMMENT" value=""/>
 <property name="EN_ATTR_NAME" value="Name"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Format" id="D6628D14-C9F3-A70E-07D9-58031B59CD4C">
@@ -90,6 +96,9 @@ Beispiele: 'csv', 'doc', 'docx', 'gif', 'html', 'jpeg', 'json', 'key', 'numbers'
 <property name="DE_ATTR_NAME" value="Format"/>
 <property name="EN_ATTR_COMMENT" value=""/>
 <property name="EN_ATTR_NAME" value="Size"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Inhalt" id="C9FC3948-176F-A1E6-C25B-A4982648EF81">
@@ -119,6 +128,9 @@ Beispiele: 'csv', 'doc', 'docx', 'gif', 'html', 'jpeg', 'json', 'key', 'numbers'
 <property name="DE_ATTR_NAME" value="Inhalt"/>
 <property name="EN_ATTR_COMMENT" value=""/>
 <property name="EN_ATTR_NAME" value="Content"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Inhalteferenz" id="0F1C9A37-B559-DC45-3507-CDE2D9A63F98">
@@ -149,6 +161,9 @@ Reference to a file system or a web page.
 <property name="DE_ATTR_NAME" value="Inhalteferenz"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Referenz auf ein Datei-System bzw. eine Webseite."/>
 <property name="EN_ATTR_NAME" value="*external reference"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 </attributes>

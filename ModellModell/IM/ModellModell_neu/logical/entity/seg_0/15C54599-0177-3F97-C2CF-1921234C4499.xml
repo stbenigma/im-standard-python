@@ -53,6 +53,9 @@ Beispiel:
 <property name="EN_ENTI_COMMENT" value="*DE* Zuammenfassung eines Aufgaben- und Verantwortungsbereichs, den eine Person als Akteur im System ausfüllen kann.  Eine Personenrolle muss immer als mindestens einen der Subtypen (intern, extern) vorkommen.  Beispiel:  Produkt Manager  Leiter Marketing   CEO  CFO  Servicetechniker"/>
 <property name="EN_ENTI_NAME" value="Actor role"/>
 <property name="EN_ENTI_SYNONYM" value=""/>
+<property name="maxzoollevel" value="5"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Bezeichnung" id="CD009924-6684-A71B-8BB9-0B7FAD5B323C">
@@ -79,6 +82,9 @@ Beispiel:
 <property name="DE_ATTR_NAME" value="Bezeichnung"/>
 <property name="EN_ATTR_COMMENT" value=""/>
 <property name="EN_ATTR_NAME" value="Designation"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 </attributes>

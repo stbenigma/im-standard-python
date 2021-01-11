@@ -52,6 +52,9 @@ Level on which the rule checks (row, tuple, entity, database) is derived from th
 <property name="EN_ENTI_COMMENT" value="*DE* Geschäftsregel, die Attributwerte auf Regelkonformität prüft. Diese Regeln sind passiv. D.h. es wird überprüft, ob der Wert (ggf. im Zusammenhang mit anderen Werten dieser oder anderer Entitäten) aus fachlicher Sicht korrekt ist.  Regelverletzungen können als SQL Selects angegeben werden. Jedes Tupel, das das Select liefert verletzt die Regel.   "/>
 <property name="EN_ENTI_NAME" value="Business rule"/>
 <property name="EN_ENTI_SYNONYM" value="Business rule"/>
+<property name="maxzoollevel" value="5"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Name" id="2E3D74AD-8468-9CBA-F519-285EBF90304E">
@@ -81,6 +84,9 @@ Level on which the rule checks (row, tuple, entity, database) is derived from th
 <property name="DE_ATTR_NAME" value="Name"/>
 <property name="EN_ATTR_COMMENT" value=""/>
 <property name="EN_ATTR_NAME" value="Name"/>
+<property name="isdescriptive" value="TRUE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Beschreibung [L]" id="1FEC2481-A807-AFD8-3298-7ACC4E9300CC">
@@ -112,6 +118,9 @@ Description, explanation of the rule
 <property name="DE_ATTR_NAME" value="Beschreibung [L]"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Umschreibung, Erklärung der Regel"/>
 <property name="EN_ATTR_NAME" value="Description [L]"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Regel" id="18DDD1CA-270F-D5BB-691E-74C2CBBE8960">
@@ -162,6 +171,9 @@ Beispiele:
 <property name="DE_ATTR_NAME" value="Regel"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Regel, die Werte beschränken auf Grund von komplexen Zusammenhängen (mehere Entitäten, Attribute, Beziehungen)"/>
 <property name="EN_ATTR_NAME" value="Rule"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Regelauswirkung" id="86E34E90-2279-A7A0-6169-D3A161D1EF39">
@@ -211,6 +223,9 @@ Kann als Formel, Aufruf, Code-snippet direkt erfasst werden.
 <propertyMap>
 <property name="DE_ATTR_NAME" value="Regelauswirkung"/>
 <property name="EN_ATTR_NAME" value="*ruleeffect"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Regeltyp" id="EA2A5BA9-D64F-D985-9B96-AE02BDDE1A02">
@@ -249,6 +264,9 @@ ist
 <propertyMap>
 <property name="DE_ATTR_NAME" value="Regeltyp"/>
 <property name="EN_ATTR_NAME" value="*Ruletype"/>
+<property name="isdescriptive" value="TRUE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Fehlermeldung [L]" id="DEA583A1-1362-7675-76D3-F647C1BD80CC">
@@ -279,6 +297,9 @@ Message that is displayed when the rule is violated.
 <property name="DE_ATTR_NAME" value="Fehlermeldung [L]"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Meldung, die bei Verletzung der Regel angezeigt wird."/>
 <property name="EN_ATTR_NAME" value="Error message [L]"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 </attributes>

@@ -42,6 +42,9 @@ Attribut in einem System, das mit anderen Systemen ausgetauscht werden soll.
 <property name="EN_ENTI_COMMENT" value="*DE*  Attribut in einem System, das mit anderen Systemen ausgetauscht werden soll.  Datentyp, Format und Constraints können in div. Sprachen und Dialekten geführ werden   SQL (mit dialekt)   Jason   XML "/>
 <property name="EN_ENTI_NAME" value="Interface attribute"/>
 <property name="EN_ENTI_SYNONYM" value=""/>
+<property name="maxzoollevel" value="5"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Name" id="999B70CA-BCF5-C825-8366-9D78800EA196">
@@ -70,6 +73,9 @@ Attribut in einem System, das mit anderen Systemen ausgetauscht werden soll.
 <property name="DE_ATTR_NAME" value="Name"/>
 <property name="EN_ATTR_COMMENT" value=""/>
 <property name="EN_ATTR_NAME" value="Name"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Beschreibung" id="BB93EAC3-E9F7-F7B8-0535-D829F9BA6BE4">
@@ -98,6 +104,9 @@ Description of the attribute in the external system
 <property name="DE_ATTR_NAME" value="Beschreibung"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Beschreibung des Attributes im Fremdsystem"/>
 <property name="EN_ATTR_NAME" value="Description of the"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Pflichtfeld" id="77DC6B22-7748-FF66-B8F9-B67AB8FD2242">
@@ -124,6 +133,9 @@ Konstanter Wert der zu verwenden ist, falls keine Quelle oder keine Transformati
 <propertyMap>
 <property name="DE_ATTR_NAME" value="Pflichtfeld"/>
 <property name="EN_ATTR_NAME" value="Default value"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Datentyp" id="B7EE146C-4F67-DE0E-BB81-6E7C156A8FDB">
@@ -152,6 +164,9 @@ Technical data type in external system (e.g. string(20), NUMERIC(20,4), integer,
 <property name="DE_ATTR_NAME" value="Datentyp"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Technischer Datentyp im Fremdsystem (z.B. String(20), NUMERIC(20,4), integer,date,  etc.)"/>
 <property name="EN_ATTR_NAME" value="Data type"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Format" id="EF7D27A0-950E-6CA1-DBF2-2B2745F1683A">
@@ -182,6 +197,9 @@ Text formatting of a numeric or time value
 <property name="DE_ATTR_NAME" value="Format"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Textliche Formatierung eines numerischen oder Zeitpunkt-Wertes"/>
 <property name="EN_ATTR_NAME" value="Size"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Fremdsystem-ID" id="87F91583-A693-53B0-CCB0-9B8A6DE89CF2">
@@ -213,6 +231,9 @@ Text formatting of a numeric or time value
 <property name="DE_ATTR_NAME" value="Fremdsystem-ID"/>
 <property name="EN_ATTR_COMMENT" value=""/>
 <property name="EN_ATTR_NAME" value="Third-Party System ID"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Vorgabewert" id="06E1FF63-76EF-1166-CDF3-7F411F2FBF82">
@@ -239,6 +260,9 @@ Konstanter Wert der zu verwenden ist, falls keine Quelle oder keine Transformati
 <propertyMap>
 <property name="DE_ATTR_NAME" value="Vorgabewert"/>
 <property name="EN_ATTR_NAME" value="Default value1"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Geschäftsregel" id="638B0E9B-0C02-1293-49B7-EBE2C59731DF">
@@ -265,6 +289,9 @@ Beschreibung von Qualitätsprüfungen / Business rules für die Eingangsprüfung
 <propertyMap>
 <property name="DE_ATTR_NAME" value="Geschäftsregel"/>
 <property name="EN_ATTR_NAME" value="Business Rule"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 </attributes>

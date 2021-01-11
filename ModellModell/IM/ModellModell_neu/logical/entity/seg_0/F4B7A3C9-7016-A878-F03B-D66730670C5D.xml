@@ -32,9 +32,10 @@ Subtypen (ISA) gibt es nur, wenn eine Seite NULL und die andere NOT NULL ist.
 <propertyMap>
 <property name="DE_ENTI_COMMENT" value="1:1 Beziehung, die keinen Subtyp definiert. Subtypen (ISA) gibt es nur, wenn eine Seite NULL und die andere NOT NULL ist."/>
 <property name="DE_ENTI_NAME" value="1zu1 Beziehung"/>
-<property name="DE_ENTI_SYNONYM" value=""/>
 <property name="EN_ENTI_COMMENT" value="*DE* 1:1 Beziehung, die keinen Subtyp definiert. Subtypen (ISA) gibt es nur, wenn eine Seite NULL und die andere NOT NULL ist."/>
 <property name="EN_ENTI_NAME" value="1to1 relationship"/>
-<property name="EN_ENTI_SYNONYM" value=""/>
+<property name="maxzoollevel" value="5"/>
+<property name="maxzoomlevel" value="1"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Entity>

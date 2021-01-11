@@ -39,6 +39,9 @@ Beispiele:
 <property name="EN_ENTI_COMMENT" value="*DE* Firma oder Organisation die ein Sysstem betreibt (Betrieb aufrechterhält, System am laufen hält, Backup  und Sicherheit garantiert).  Beispiele:  "/>
 <property name="EN_ENTI_NAME" value="Operator"/>
 <property name="EN_ENTI_SYNONYM" value="Operator"/>
+<property name="maxzoollevel" value="5"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Name" id="AEDDB373-F73F-43F8-6F56-E95FBF8357EF">
@@ -66,6 +69,9 @@ Beispiele:
 <propertyMap>
 <property name="DE_ATTR_NAME" value="Name"/>
 <property name="EN_ATTR_NAME" value="Name"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 </attributes>

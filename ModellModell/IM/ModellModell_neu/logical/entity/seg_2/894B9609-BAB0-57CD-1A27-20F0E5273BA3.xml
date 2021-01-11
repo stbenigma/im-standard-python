@@ -38,6 +38,9 @@ Jede IT-Komponente hat einen Hersteller. D.h. es handelt sich um konkrete Produk
 <property name="EN_ENTI_COMMENT" value="*DE* Irgend eine Komponente die mit Informations Technologie zu tun hat und beschafft, betrieben und betreut  werden muss.  Jede IT-Komponente hat einen Hersteller. D.h. es handelt sich um konkrete Produkte."/>
 <property name="EN_ENTI_NAME" value="IT component"/>
 <property name="EN_ENTI_SYNONYM" value=""/>
+<property name="maxzoollevel" value="5"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Name" id="984F374A-3059-B807-5DE9-138ADC041428">
@@ -64,6 +67,9 @@ Jede IT-Komponente hat einen Hersteller. D.h. es handelt sich um konkrete Produk
 <property name="DE_ATTR_NAME" value="Name"/>
 <property name="EN_ATTR_COMMENT" value=""/>
 <property name="EN_ATTR_NAME" value="Name"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Zweck" id="0F269854-B8A3-F923-CB20-8F92694E250E">
@@ -94,6 +100,9 @@ Application area (ERP, PIM, FiBu etc.)
 <property name="DE_ATTR_NAME" value="Zweck"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Anwendungsgebiet (ERP, PIM, FiBu etc.)"/>
 <property name="EN_ATTR_NAME" value="Purpose"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Sicherheitsanforderung" id="B1E65213-E23B-E7A9-29AB-00A4B2143829">
@@ -121,6 +130,9 @@ Application area (ERP, PIM, FiBu etc.)
 <property name="DE_ATTR_NAME" value="Sicherheitsanforderung"/>
 <property name="EN_ATTR_COMMENT" value=""/>
 <property name="EN_ATTR_NAME" value="Safety requirement"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 </attributes>

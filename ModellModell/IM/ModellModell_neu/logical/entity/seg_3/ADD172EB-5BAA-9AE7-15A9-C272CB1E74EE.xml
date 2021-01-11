@@ -31,10 +31,11 @@ Value range (domain) for a user-defined text attribute
 <propertyMap>
 <property name="DE_ENTI_COMMENT" value="Wertebereich (Domäne) für ein Freitextattribut"/>
 <property name="DE_ENTI_NAME" value="Textlicher Wertebereich"/>
-<property name="DE_ENTI_SYNONYM" value=""/>
 <property name="EN_ENTI_COMMENT" value="*DE* Wertebereich (Domäne) für ein Freitextattribut"/>
 <property name="EN_ENTI_NAME" value="Text value range"/>
-<property name="EN_ENTI_SYNONYM" value=""/>
+<property name="maxzoollevel" value="5"/>
+<property name="maxzoomlevel" value="1"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Max Länge" id="E2F20100-F3E8-3E95-BA43-0EEE3EE63B36">
@@ -64,6 +65,9 @@ Maximum length of text in letters (CHAR)
 <property name="DE_ATTR_NAME" value="Max Länge"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Maximale Länge des Textes in Buchstaben (CHAR)"/>
 <property name="EN_ATTR_NAME" value="Max length"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Werteregel" id="CC367FCD-01E3-C3AF-28D1-CB4750AD7381">
@@ -94,6 +98,9 @@ Restrictive rule for the permitted characters of a text.
 <property name="DE_ATTR_NAME" value="Werteregel"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Einschränkende Regel für die erlaubten Zeichen eines Textes."/>
 <property name="EN_ATTR_NAME" value="Value rule"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 </attributes>

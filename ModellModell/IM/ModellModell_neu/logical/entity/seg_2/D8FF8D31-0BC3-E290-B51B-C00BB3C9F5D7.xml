@@ -42,6 +42,9 @@ führt typischerweise zu nächster Etappe bzw. Ender der Journey
 <property name="EN_ENTI_COMMENT" value="*DE* Teil der Reise, die ein Kunde mit unserem Unternehmen für bestimmte Produkte / Dienstleistungen geht."/>
 <property name="EN_ENTI_NAME" value="*Customer travel stage"/>
 <property name="EN_ENTI_SYNONYM" value="**Customer travel stage"/>
+<property name="maxzoollevel" value="5"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Emotion" id="65624D7F-0CB2-C9B6-B241-9B5743525300">
@@ -67,6 +70,9 @@ führt typischerweise zu nächster Etappe bzw. Ender der Journey
 <propertyMap>
 <property name="DE_ATTR_NAME" value="Emotion"/>
 <property name="EN_ATTR_NAME" value="Emotion"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Beschreibung" id="810AAFCD-337D-53D2-A2F4-4917B19934CC">
@@ -92,6 +98,9 @@ führt typischerweise zu nächster Etappe bzw. Ender der Journey
 <propertyMap>
 <property name="DE_ATTR_NAME" value="Beschreibung"/>
 <property name="EN_ATTR_NAME" value="Description"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Kundenziel" id="DD6D9102-DD32-B87F-D7AD-E40F87276400">
@@ -117,6 +126,9 @@ führt typischerweise zu nächster Etappe bzw. Ender der Journey
 <propertyMap>
 <property name="DE_ATTR_NAME" value="Kundenziel"/>
 <property name="EN_ATTR_NAME" value="Client target"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 </attributes>

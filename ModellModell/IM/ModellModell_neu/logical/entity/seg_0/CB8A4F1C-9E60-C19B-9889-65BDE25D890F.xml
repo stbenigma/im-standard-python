@@ -35,10 +35,11 @@ Documents of any kind that cannot be saved in a format called structured (text, 
 <property name="Beispiele" value="Geschlecht (M/W) / Bestellstatus (offen, in Arbeit, geschlossen)"/>
 <property name="DE_ENTI_COMMENT" value="Dokumente irgendwelcher Art, die nicht in einem als strukturiert bezeichneten Format (Text, Zahl, Datum) abgespeichert werden kann.  Als Dokumente im Filesystem (PDF, PNG, TIFF, XLS, DOC, pages, etc.) oder als finäre Datenbankobjekte verwaltet.  "/>
 <property name="DE_ENTI_NAME" value="Binärer Wertebereich"/>
-<property name="DE_ENTI_SYNONYM" value=""/>
 <property name="EN_ENTI_COMMENT" value="*DE* Dokumente irgendwelcher Art, die nicht in einem als strukturiert bezeichneten Format (Text, Zahl, Datum) abgespeichert werden kann.  Als Dokumente im Filesystem (PDF, PNG, TIFF, XLS, DOC, pages, etc.) oder als finäre Datenbankobjekte verwaltet.  "/>
 <property name="EN_ENTI_NAME" value="Binary value range"/>
-<property name="EN_ENTI_SYNONYM" value=""/>
+<property name="maxzoollevel" value="5"/>
+<property name="maxzoomlevel" value="1"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Inhaltstyp" id="C5CA5BD0-DFBF-51B8-8719-DDA23703721E">
@@ -67,6 +68,9 @@ Documents of any kind that cannot be saved in a format called structured (text, 
 <property name="DE_ATTR_NAME" value="Inhaltstyp"/>
 <property name="EN_ATTR_COMMENT" value=""/>
 <property name="EN_ATTR_NAME" value="Content type"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 </attributes>

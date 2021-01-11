@@ -34,6 +34,9 @@ Computer Hardware, auf dem IT-systeme, Anwendungen und Datenbanken installiert s
 <property name="EN_ENTI_COMMENT" value="*DE* Computer Hardware, auf dem IT-systeme, Anwendungen und Datenbanken installiert sind und laufen.  "/>
 <property name="EN_ENTI_NAME" value="Server Hardware"/>
 <property name="EN_ENTI_SYNONYM" value=""/>
+<property name="maxzoollevel" value="5"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Virtuell (J/N)" id="A1F579E5-ED25-A64B-2506-374C1268F3D8">
@@ -63,6 +66,9 @@ Is this a physical machine or a virtual one in use?
 <property name="DE_ATTR_NAME" value="Virtuell (J/N)"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Ist dies eine physische Maschine oder ein genutzte virtuelle?"/>
 <property name="EN_ATTR_NAME" value="Virtual (Y/N)"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 </attributes>

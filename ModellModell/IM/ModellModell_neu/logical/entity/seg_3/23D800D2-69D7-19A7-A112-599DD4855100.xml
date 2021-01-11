@@ -31,10 +31,11 @@ Physical measuring unit . See also e.g. https://de.wikipedia.org/wiki/Liste_phys
 <propertyMap>
 <property name="DE_ENTI_COMMENT" value="Physikalische Messeinheit . Siehe dazu z.B. https://de.wikipedia.org/wiki/Liste_physikalischer_Größen#SI-Basisgrößen_und_-einheiten"/>
 <property name="DE_ENTI_NAME" value="Physikalische Einheit"/>
-<property name="DE_ENTI_SYNONYM" value=""/>
 <property name="EN_ENTI_COMMENT" value="*DE* Physikalische Messeinheit . Siehe dazu z.B. https://de.wikipedia.org/wiki/Liste_physikalischer_Größen#SI-Basisgrößen_und_-einheiten"/>
 <property name="EN_ENTI_NAME" value="Physical unit"/>
-<property name="EN_ENTI_SYNONYM" value=""/>
+<property name="maxzoollevel" value="5"/>
+<property name="maxzoomlevel" value="1"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="SI-Einheit" id="10B2F6C3-9A2A-78A2-C064-EB3522695570">
@@ -65,6 +66,9 @@ Unit according to SI specification
 <property name="DE_ATTR_NAME" value="SI-Einheit"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Einheit gemäss SI-Vorgabe"/>
 <property name="EN_ATTR_NAME" value="SI unit"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Name [L]" id="D110C56D-0639-36A9-856A-F50A0DB6F0FE">
@@ -93,6 +97,9 @@ Unit according to SI specification
 <property name="DE_ATTR_NAME" value="Name [L]"/>
 <property name="EN_ATTR_COMMENT" value=""/>
 <property name="EN_ATTR_NAME" value="Name [L]"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Beschreibung [L]" id="BE51FA69-1EC3-E4EF-DAE1-0C1845EA613C">
@@ -122,6 +129,9 @@ Unit according to SI specification
 <property name="DE_ATTR_NAME" value="Beschreibung [L]"/>
 <property name="EN_ATTR_COMMENT" value=""/>
 <property name="EN_ATTR_NAME" value="Description [L]"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 </attributes>
