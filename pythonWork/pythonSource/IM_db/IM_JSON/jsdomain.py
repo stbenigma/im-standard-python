@@ -64,6 +64,7 @@ def domain2js(doma):
         , 'descr': doma.doma_descr_L
         , 'origin': doma.doma_origin
         ,'interfaceid' : jsguid(Modelelemtype.INTF,doma.doma_intf_id)
+        ,'interface+' : None if doma.doma_intf_id is None else Interface().getbyid(doma.doma_intf_id).getname()
         , 'basedatatype+': None if doma.doma_daty_id is None else Datatype().getbyid(doma.doma_daty_id).daty_name
         , 'type': doma.doma_type
         , 'displdatatype+': {l.lang_iso_code2:doma.displdatatype(l.lang_iso_code2) for l in Language.select()}

@@ -312,9 +312,9 @@ CREATE TABLE DOMAINS
             intfid = None if intf is None else intf.intf_id
             intf2id[filename] = intfid
         #for
-        domainterferaces = [(intf2id[filename],domaid) for domaid,filename in pinterfacedomains.items()]
-        if len(domainterferaces) > 0:
-            dbDML.execmany(psql="update domains set doma_intf_id = ? where doma_id = ?",recs=domainterferaces)
+        domainterfaces = [(intf2id[filename],domaid) for domaid,filename in pinterfacedomains.items()]
+        if len(domainterfaces) > 0:
+            dbDML.execmany(psql="update domains set doma_intf_id = ? where doma_id = ?",recs=domainterfaces)
 # Domain
 
 class DomaingroupMember(Baseobject):
