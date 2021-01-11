@@ -195,6 +195,14 @@ def printlistofcontent(pintf):
                                          , plist=idxlist
                                          )
 
+    idxlist = sorted([{'anker':key,'name': "{}".format(value['name'])}
+                     for key,value in printHTML.model.jsmodel['domains'].items() if (value['interfaceid'] == pintf['interface-id+']
+                                                                                     and value['origin'] == 'DOM')]
+                     ,key=lambda val:val['name'].upper())
+    printHTML.printlistofcontentelement(pname='Domains'
+                                         , plist=idxlist
+                                         )
+
     printHTML.printlistofcontentfoot()
 
 

@@ -1,8 +1,9 @@
 import os
 import xml.etree.ElementTree as ET
-from IM_ODM import transferModel
-from IM_DB import parameters, dbInserts,logmessages
+
+from IM_DB import parameters, dbInserts, logmessages
 from IM_OBJECTS import *
+from IM_ODM import transferModel
 
 globalschnid:int = None
 
@@ -97,7 +98,7 @@ def transfertables(pschndirec):
                              , transferfiles=do1table)
 #transfertables
 
-def do1schnittstelle(pfilename):
+def do1interface(pfilename):
     global globalschnid
     intfxml = ET.parse(pfilename).getroot()
     intf = interface.Interface(psrcname=Externalref.SOURCE_ODM, psrcid=transferModel.findField(intfxml, 'id'))
@@ -114,18 +115,13 @@ def do1schnittstelle(pfilename):
     filename, file_extension = os.path.splitext(pfilename)
     globalschnid = intf.intf_id #hässlich aber geht schlecht über generische Funktionen
     transfertables(pschndirec=filename)
-#do1schnittstelle
+#do1interface
 
-def transferschn():
+def transferinterface():
     transferModel.doxmlfiles(pdirec=parameters.odmreldirec()
-                             , ptransfer=do1schnittstelle
+                             , ptransfer=do1interface
                              , ppattern=r'{}.xml'.format(transferModel.GUIDPATTERN))
-#    for el in os.listdir(parameters.odmreldirec()):
-#        transferModel.doGUIDfile(pdirec=parameters.odmreldirec()
-#                   , pfile=el
-#                   , transferfiles=do1schnittstelle)
-#    # endfor
-#transferschn
+#transferinterface
 
 def loeschmodell():
     ColAttrMap.delete()
@@ -258,6 +254,6 @@ def transfermappings():
 
 
 def transfer():
-    transferschn()
+    transferinterface()
     transfermappings()
 #transfer

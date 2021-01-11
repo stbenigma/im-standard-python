@@ -1172,7 +1172,8 @@ def printwertelist(pelem):
 
 def origindomains():
     #dict of domain with origin DOMAIN
-    return {key: value for key, value in model.jsmodel['domains'].items() if value['origin'] == Domain.DOMAIN}
+    return {key: value for key, value in model.jsmodel['domains'].items() if (value['origin'] == Domain.DOMAIN
+                                                                              and value['interfaceid'] is None)}
 
 def printcontentdoma():
 
