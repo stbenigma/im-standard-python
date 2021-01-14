@@ -1,0 +1,285 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="19A42FD9-044F-92C2-347A-A35FEA9696F3" schemaObject="833E4DE4-2E61-95B8-D681-1740D7FACB7C" name="COLUMNS">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>COLUMNS</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:40:59 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="COLU_ID" id="A172B6CD-6EC8-BD59-5619-495B8B676F25">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>COLUMNS</sourceObjSchema>
+<sourceObjName>COLU_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:40:59 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>9</dataTypeSize>
+<ownDataTypeParameters>9,10,0</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="COLU_COLUMN_NAME" id="CFDACD68-496C-E1BD-4692-7051CED0F720">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>COLUMNS</sourceObjSchema>
+<sourceObjName>COLU_COLUMN_NAME</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:40:59 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypePrecision>60</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>60</dataTypeSize>
+<ownDataTypeParameters>60,60,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="COLU_MANDATORY" id="2F0DD193-A99E-3BAE-832B-EECB2255AB31">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>COLUMNS</sourceObjSchema>
+<sourceObjName>COLU_MANDATORY</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:40:59 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypePrecision>5</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>5</dataTypeSize>
+<ownDataTypeParameters>5,5,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="COLU_FORMAT" id="B5966ECC-B3FD-CCC7-1D81-28FF8A538A87">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>COLUMNS</sourceObjSchema>
+<sourceObjName>COLU_FORMAT</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:40:59 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypePrecision>200</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>200</dataTypeSize>
+<ownDataTypeParameters>200,200,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="COLU_DESCR" id="43B6A8F5-454D-C635-9C19-B5CAF51D0D82">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>COLUMNS</sourceObjSchema>
+<sourceObjName>COLU_DESCR</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:40:59 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypePrecision>4000</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>4000</dataTypeSize>
+<ownDataTypeParameters>4000,4000,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="COLU_EXT_SYSTEM_ID" id="5F07B4F3-4E3C-71EA-ACD3-FD2BC70BB7B8">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>COLUMNS</sourceObjSchema>
+<sourceObjName>COLU_EXT_SYSTEM_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:40:59 UTC</createdTime>
+<commentInRDBMS><![CDATA[ID / Code der Attributbdefinition in einer Standardsoftware]]></commentInRDBMS>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypePrecision>100</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>100</dataTypeSize>
+<ownDataTypeParameters>100,100,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="COLU_TYPE_STRING" id="B6DA17F1-9C1B-140F-AD79-5F1C2BBC84AC">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>COLUMNS</sourceObjSchema>
+<sourceObjName>COLU_TYPE_STRING</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:40:59 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypePrecision>100</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>100</dataTypeSize>
+<ownDataTypeParameters>100,100,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="COLU_TABL_ID" id="2549D71A-D2FB-6A00-A414-51B7B53DA524">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>COLUMNS</sourceObjSchema>
+<sourceObjName>COLU_TABL_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:40:59 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>9</dataTypeSize>
+<ownDataTypeParameters>9,10,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="9D111FD2-BFCB-D596-6EA3-B4D2BCA5EB1D" referredColumn="66B10E65-5485-7D22-391E-A2BA4C2A4106"/>
+</associations>
+</Column>
+<Column name="COLU_DOMA_ID" id="9FD40B21-02A4-6A58-52CF-B2F5754FEA6F">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>COLUMNS</sourceObjSchema>
+<sourceObjName>COLU_DOMA_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:40:59 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>9</dataTypeSize>
+<ownDataTypeParameters>9,10,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="534E8229-D571-ACB8-9FD1-E5E3E33AE74E" referredColumn="1E5AF82A-E320-4109-07BC-155F78733238"/>
+</associations>
+</Column>
+<Column name="COLU_UC" id="46C83DAE-3B45-DE06-C3DE-A66CECCE70E2">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>COLUMNS</sourceObjSchema>
+<sourceObjName>COLU_UC</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:40:59 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypePrecision>30</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>30</dataTypeSize>
+<ownDataTypeParameters>30,30,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="COLU_DC" id="8916DB68-33AD-2220-2919-79E2391C292D">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>COLUMNS</sourceObjSchema>
+<sourceObjName>COLU_DC</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:40:59 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT008</logicalDatatype>
+<dataTypePrecision>23</dataTypePrecision>
+<dataTypeScale>3</dataTypeScale>
+<dataTypeSize>8</dataTypeSize>
+<ownDataTypeParameters>8,23,3</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="COLU_UM" id="20F7F14F-EB4A-F29C-BFFB-356F18DF776C">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>COLUMNS</sourceObjSchema>
+<sourceObjName>COLU_UM</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:40:59 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypePrecision>30</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>30</dataTypeSize>
+<ownDataTypeParameters>30,30,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="COLU_DM" id="7752971D-0F5B-12A3-BC13-3A1ECA753F31">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>COLUMNS</sourceObjSchema>
+<sourceObjName>COLU_DM</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:40:59 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT008</logicalDatatype>
+<dataTypePrecision>23</dataTypePrecision>
+<dataTypeScale>3</dataTypeScale>
+<dataTypeSize>8</dataTypeSize>
+<ownDataTypeParameters>8,23,3</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="6025C7CA-AE58-F459-9942-86C054754876" name="COLU_PK">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>COLU_PK</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:40:59 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="A172B6CD-6EC8-BD59-5619-495B8B676F25"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="06A2C18C-7E1E-34C6-255F-2EC9C2BA60C8" name="COLU_UK">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>COLU_UK</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:40:59 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="2549D71A-D2FB-6A00-A414-51B7B53DA524"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="E8472FCB-D3D2-7061-1771-06E37CBE6DE5" name="COLU_DOMA_FK">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:13 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="9FD40B21-02A4-6A58-52CF-B2F5754FEA6F"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="726140EA-B8FE-7AA5-2BCD-99D87C580F74" name="COLU_TABL_FK">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:13 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="2549D71A-D2FB-6A00-A414-51B7B53DA524"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

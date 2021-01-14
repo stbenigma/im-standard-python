@@ -1,0 +1,58 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxySqlServerv2k5 class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k5.TableProxySqlServerv2k5" name="MODE_DOCU" directorySegmentName="seg_0" id="42AA027E-D953-A409-2D11-F4BFDC9105C8">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:06 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<schemaObject>833E4DE4-2E61-95B8-D681-1740D7FACB7C</schemaObject>
+<database>F882837E-36FB-2009-38C2-1F82ED2F7BB1</database>
+<filegroup>B5085ECB-8936-7A63-9779-77515397EA4F</filegroup>
+<schema>1</schema>
+<columnProxies>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k12.ColumnProxySqlServerv2k12" name="MODO_MODE_ID" id="5AF6241E-0989-3647-5570-83B90829F223">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:06 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k12.ColumnProxySqlServerv2k12" name="MODO_ID" id="80AE92C0-1D95-8B56-90BE-7536655C2074">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:06 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k12.ColumnProxySqlServerv2k12" name="MODO_DOCU_ID" id="958485DD-7306-F969-2C97-232082386F3C">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:06 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+<foreignKeys>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k5.FKProxySqlServerv2k5" name="MODO_MODE_FKv2" id="25CF6E43-FF5A-718A-70BA-E89C31E1F8F2">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:15 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+</ForeignKey>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k5.FKProxySqlServerv2k5" name="MODO_DOCU_FK" id="3857B379-2CBF-AD3A-2F8D-3386C0753CA2">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:15 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+</ForeignKey>
+</foreignKeys>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k5.PKProxySqlServerv2k5" name="MODO_PKv2" id="1B55BA7E-16CF-625E-9A01-966685CF93E4">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:06 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<clustered>true</clustered>
+<fileGroup>B5085ECB-8936-7A63-9779-77515397EA4F</fileGroup>
+<recomputeStatistics>NO</recomputeStatistics>
+</PrimaryKey>
+</primaryKeys>
+<uniqueKeys>
+<UniqueKey class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k5.UniqueProxySqlServerv2k5" name="MODO_UK" id="385C4C7C-F516-1C05-6A8E-CBFE0C832327">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:06 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<fileGroup>B5085ECB-8936-7A63-9779-77515397EA4F</fileGroup>
+<recomputeStatistics>NO</recomputeStatistics>
+</UniqueKey>
+</uniqueKeys>
+</TableProxySqlServerv2k5>

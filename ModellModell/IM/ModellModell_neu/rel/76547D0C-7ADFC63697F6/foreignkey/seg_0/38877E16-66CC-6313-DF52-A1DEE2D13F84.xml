@@ -1,0 +1,19 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="38877E16-66CC-6313-DF52-A1DEE2D13F84" containerWithKeyObject="CF7B1BE5-F803-FFF1-4D8C-FEC5288B633E" localFKIndex="F54C4636-95B3-92D3-D206-00364590C47D" name="METP_UDPR_FK">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>METP_UDPR_FK</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:15 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<referredTableLongName>modelmodel_dbo.USER_DEFINED_PROPERTIES</referredTableLongName>
+<deleteRule>RESTRICT</deleteRule>
+<referredTableID>8592EC53-895A-83B8-ECCC-FF64B84B2EC8</referredTableID>
+<keyObject>BF3D8EE7-14A1-F8EB-6680-C8856B28CAD6</keyObject>
+<referredKeyID>BF3D8EE7-14A1-F8EB-6680-C8856B28CAD6</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>UDPR_ID</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

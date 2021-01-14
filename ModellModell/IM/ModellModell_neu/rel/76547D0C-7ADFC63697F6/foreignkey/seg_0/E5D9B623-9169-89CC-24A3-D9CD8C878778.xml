@@ -1,0 +1,19 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="E5D9B623-9169-89CC-24A3-D9CD8C878778" containerWithKeyObject="EE1A8DE5-3E36-99ED-313B-82D8B71C21F7" localFKIndex="73D25015-6061-55C2-2BE7-0C400F7B6949" name="DOMA_INTF_FK">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>DOMA_INTF_FK</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:14 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<referredTableLongName>modelmodel_dbo.INTERFACES</referredTableLongName>
+<deleteRule>RESTRICT</deleteRule>
+<referredTableID>DECCDF45-04DC-FD4F-B653-9F7C818F4721</referredTableID>
+<keyObject>FB39FC94-6E32-4328-56D1-B929275D80D1</keyObject>
+<referredKeyID>FB39FC94-6E32-4328-56D1-B929275D80D1</referredKeyID>
+<mandatory>false</mandatory>
+<refColNames>INTF_ID</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

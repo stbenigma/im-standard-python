@@ -1,0 +1,19 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="76D5F9CB-8D3E-E5E4-74BD-6AF4D52B4A39" containerWithKeyObject="7D02633E-E4DE-9848-575C-191E133B2FB7" localFKIndex="3E7B4DC6-C9C1-06A0-2E6E-3F1CF2C314E0" name="DGRM_MODE_FK">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>DGRM_MODE_FK</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:14 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<referredTableLongName>modelmodel_dbo.MODELELEMENT</referredTableLongName>
+<deleteRule>CASCADE</deleteRule>
+<referredTableID>1A96C2EC-F488-31B6-569C-787BA9B6F5D6</referredTableID>
+<keyObject>51E6FDA0-D6E1-B245-684E-64A9B6CE71CB</keyObject>
+<referredKeyID>51E6FDA0-D6E1-B245-684E-64A9B6CE71CB</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>MODE_ID</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

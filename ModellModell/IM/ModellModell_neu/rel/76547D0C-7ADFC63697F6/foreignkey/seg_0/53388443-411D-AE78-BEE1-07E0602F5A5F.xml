@@ -1,0 +1,19 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="53388443-411D-AE78-BEE1-07E0602F5A5F" containerWithKeyObject="4A08F16A-5FF0-4FDB-A16C-8F9BCF96672F" localFKIndex="5467DF9F-54B2-3DC4-441B-F671284C9988" name="TEMA_ENTI_FK">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>TEMA_ENTI_FK</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:12 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<referredTableLongName>modelmodel_dbo.ENTITIES</referredTableLongName>
+<deleteRule>CASCADE</deleteRule>
+<referredTableID>45766C87-5A6E-52DE-B819-8DC554BF48BB</referredTableID>
+<keyObject>92B279B9-B3CA-24DE-19D6-2D114A3D38D7</keyObject>
+<referredKeyID>92B279B9-B3CA-24DE-19D6-2D114A3D38D7</referredKeyID>
+<mandatory>false</mandatory>
+<refColNames>ENTI_ID</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>
