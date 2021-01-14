@@ -1,5 +1,8 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
 <Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="0EDB2FDB-1E18-0616-002D-D315BC3AB67B" name="LINESEGMENTS">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>LINESEGMENTS</sourceObjName>
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <comment><![CDATA[Straight line segment with its endpoint, where the line changes its directrion. 
@@ -40,14 +43,16 @@ It starts at the end of the last line segment (max seq-nr) and ends at the endpo
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
-<use>0</use>
+<use>1</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
-<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>9</dataTypeSize>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 <associations>
-<colAssociation fkAssociation="4CB25908-6D6B-8B08-BB4B-A740E88DDF59" referredColumn="3C82064A-EAA4-D15A-989A-2CC8B6307D96"/>
+<colAssociation fkAssociation="48C08EE2-7F04-F44E-5F96-A432DB47F8A6" referredColumn="0C4866C5-E54F-EEDA-C449-7664F9EAB220"/>
 </associations>
 </Column>
 <Column name="LISE_X" id="B2BF2F67-7D82-D532-5BD8-1E8602C3C798">
@@ -55,36 +60,32 @@ It starts at the end of the last line segment (max seq-nr) and ends at the endpo
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <generatorID>5C1D0DD7-C753-1C85-38D4-2F6B7A840CF5</generatorID>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
-<constraintName>LISE_CK_BEDA_BEDA_SCHRIFTFARBE</constraintName>
+<constraintName>LISE_CK_X</constraintName>
+<useDomainConstraints>false</useDomainConstraints>
 <use>0</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
 <domain>ACC90DC4-5B08-1F67-561C-C9389709269B</domain>
+<checkConstraint>
+<implementationDef dbType="SQL Server 2012" definition="[LISE_X]&gt;=(0) AND [LISE_X]&lt;=(999999)"/>
+</checkConstraint>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
-<listOfRanges>
-<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
-<beginValue>0</beginValue>
-<endValue>999999</endValue>
-</rangeDef>
-</listOfRanges>
 </Column>
 <Column name="LISE_Y" id="4472622F-BC2A-94B7-1866-78DBAC239D49">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <generatorID>5C1D0DD7-C753-1C85-38D4-2F6B7A840CF5</generatorID>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
-<constraintName>LISE_CK_BEDA_BEDA_SCHRIFTFARBE</constraintName>
+<constraintName>LISE_CK_Y</constraintName>
+<useDomainConstraints>false</useDomainConstraints>
 <use>0</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
 <domain>ACC90DC4-5B08-1F67-561C-C9389709269B</domain>
+<checkConstraint>
+<implementationDef dbType="SQL Server 2012" definition="[LISE_Y]&gt;=(0) AND [LISE_Y]&lt;=(999999)"/>
+</checkConstraint>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
-<listOfRanges>
-<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
-<beginValue>0</beginValue>
-<endValue>999999</endValue>
-</rangeDef>
-</listOfRanges>
 </Column>
 <Column name="LISE_LINETYPE" id="EC2AF273-0EF6-FC02-FE1D-FF94E67D4C59">
 <createdBy>stb</createdBy>
@@ -93,9 +94,13 @@ It starts at the end of the last line segment (max seq-nr) and ends at the endpo
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <constraintName>LISE_CK_BEDA_BEDA_SCHRIFTGROESSE</constraintName>
 <nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
 <use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <domain>30B34D60-5229-19CC-A3D5-584257D800BD</domain>
+<checkConstraint>
+<implementationDef dbType="SQL Server 2012" definition="[LISE_LINETYPE]=&apos;SOLID&apos; OR [LISE_LINETYPE]=&apos;DOTTED&apos; OR [LISE_LINETYPE]=&apos;DASHED&apos; OR [LISE_LINETYPE]=&apos;DADO&apos;"/>
+</checkConstraint>
 <defaultValue>SOLID</defaultValue>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
@@ -119,14 +124,12 @@ It starts at the end of the last line segment (max seq-nr) and ends at the endpo
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
-<formulaDesc>USER</formulaDesc>
 <sourceType>System</sourceType>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
 <dataTypeSize>30 BYTE</dataTypeSize>
 <ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
-<computed>true</computed>
 <autoIncrementCycle>false</autoIncrementCycle>
 <propertyMap>
 <property name="ctemplateID" value="F7EEFF47-7A42-2A3E-7DFC-D0558D6996B8"/>
@@ -199,10 +202,9 @@ It starts at the end of the last line segment (max seq-nr) and ends at the endpo
 <colUsage columnID="E6400E02-38E7-4F8D-403D-E77D7400A449"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="5DED0A85-1A7D-0C07-37F7-B72D46B0F82F" name="LISE_BEDA_FK">
+<ind_PK_UK id="2DC3FEE4-A147-80C2-2849-15445C58183A" name="LISE_BEDA_FK">
 <createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:18:17 UTC</createdTime>
-<generatorID>98D9C7D0-61D3-5D32-0317-3BA4C7A9B196</generatorID>
+<createdTime>2021-01-14 10:54:13 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <indexState>Foreign Key</indexState>
 <isSurrogateKey>false</isSurrogateKey>

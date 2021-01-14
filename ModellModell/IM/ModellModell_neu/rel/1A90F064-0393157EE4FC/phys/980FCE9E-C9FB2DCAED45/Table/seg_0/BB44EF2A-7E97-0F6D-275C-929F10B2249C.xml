@@ -1,0 +1,50 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxySqlServerv2k5 class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k5.TableProxySqlServerv2k5" name="RELATIONS" directorySegmentName="seg_0" id="BB44EF2A-7E97-0F6D-275C-929F10B2249C">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 11:17:48 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<schemaObject>9FE9A69D-CD33-9A61-E432-C27F2DF62432</schemaObject>
+<database>DB_NULLELEMENT</database>
+<foreignKeys>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k5.FKProxySqlServerv2k5" name="RELA_ENTI_TO_FK" id="33C3410A-A0BE-9343-5FA8-E59DE63DF4EE">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 11:17:48 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+</ForeignKey>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k5.FKProxySqlServerv2k5" name="RELA_ARCS_FROM_FK" id="407C65E8-87E0-387C-EEF7-102EC0755CD9">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 11:17:48 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+</ForeignKey>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k5.FKProxySqlServerv2k5" name="RELA_MODE_FK" id="5877C63E-243C-C641-185F-13D2C6F15BD9">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 11:17:48 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+</ForeignKey>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k5.FKProxySqlServerv2k5" name="RELA_ENTI_FROM_FK" id="CF9A5307-1C92-2178-6664-E65BB9FC9C58">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 11:17:48 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+</ForeignKey>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k5.FKProxySqlServerv2k5" name="RELA_ARCS_TO_FK" id="E4F741B9-BE21-EABC-B6F2-0518A894EF74">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 11:17:48 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+</ForeignKey>
+</foreignKeys>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k5.PKProxySqlServerv2k5" name="RELA_PK" id="C17D6B4C-A540-0044-352F-7196BD64BB99">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 11:17:48 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<clustered>true</clustered>
+</PrimaryKey>
+</primaryKeys>
+<uniqueKeys>
+<UniqueKey class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k5.UniqueProxySqlServerv2k5" name="RELA_UK_NAME" id="D21560FE-0194-0443-400B-D1F1828BBCDD">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 11:17:48 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+</UniqueKey>
+</uniqueKeys>
+</TableProxySqlServerv2k5>

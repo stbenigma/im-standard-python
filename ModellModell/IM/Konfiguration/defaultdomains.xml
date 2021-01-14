@@ -1,19 +1,16 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
 <DomainFile class="oracle.dbtools.crest.model.design.DomainFileWrapper" fileName="defaultdomains">
 <domains>
-<Domain class="oracle.dbtools.crest.model.design.Domain" name="Zeitpunkt" id="0AD80E26-0F5C-D068-29EA-4740A04582AE">
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="Zeitpunkt (Sekunde)" id="0AD80E26-0F5C-D068-29EA-4740A04582AE">
 <createdBy>stb</createdBy>
 <createdTime>2019-03-10 11:09:09 UTC</createdTime>
-<comment><![CDATA[Zeitpunkt (Tag, Zeit auf eine Milisekunde genau)]]></comment>
+<comment><![CDATA[Zeitpunkt (Tag, Zeit auf eine Sekunde genau)]]></comment>
 <ownerDesignName>System</ownerDesignName>
 <importedID>0AD80E26-0F5C-D068-29EA-4740A04582AE</importedID>
 <avTSortOrder>0</avTSortOrder>
 <fileName>defaultdomains</fileName>
 <logicalDatatype>LOGDT015</logicalDatatype>
-<unitOfMeasure>MILLISEKUNDE</unitOfMeasure>
-<checkConstraint>
-<implementationDef dbType="Generic Constraint" definition="Zeitpunkt = trunc(Zeitpunkt, &apos;MILISECOND&apos;)"/>
-</checkConstraint>
+<unitOfMeasure>SECOND</unitOfMeasure>
 </Domain>
 <Domain class="oracle.dbtools.crest.model.design.Domain" name="Prozent" id="348830AA-2613-5D59-292A-41AAB32EB3D3">
 <createdBy>stb</createdBy>
@@ -131,6 +128,16 @@
 <checkConstraint>
 <implementationDef dbType="Generic Constraint" definition="match(Telefon-Nr,&quot;^\+(?:[0-9]⋅?){6,14}[0-9]$&quot;)"/>
 </checkConstraint>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="Zeitpunkt (Minute)" id="9B8A68A2-A178-0753-FDD9-7D59F6159FFF">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 08:17:14 UTC</createdTime>
+<comment><![CDATA[Zeitpunkt (Tag, Zeit, auf Minute genau)]]></comment>
+<ownerDesignName>System</ownerDesignName>
+<avTSortOrder>0</avTSortOrder>
+<fileName>defaultdomains</fileName>
+<logicalDatatype>LOGDT047</logicalDatatype>
+<unitOfMeasure>MINUTE</unitOfMeasure>
 </Domain>
 <Domain class="oracle.dbtools.crest.model.design.Domain" name="ISO Landcode 2" id="A7FEF26D-E676-B32E-E09E-E7C3CBBD53BA">
 <createdBy>stb</createdBy>

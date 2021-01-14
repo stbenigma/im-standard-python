@@ -1,0 +1,74 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="E8DCE3EF-AE11-B2B4-BD54-BDDE74DEA04F" name="Relation_228">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 15:00:10 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Geschäftszustand_Geschäftszustand_ID" id="4B8A5E81-DDF1-4CDF-65EC-583A5ACC7001">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 15:00:10 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="118E88B1-E90F-56B6-9B34-922CEC73C54B" referredColumn="F0317780-09AA-5B7D-2F77-4CAF38C85BAE"/>
+</associations>
+</Column>
+<Column name="Informationselement_Informationselement_ID" id="E9F4048E-364F-42FB-039D-C4ECD388DC90">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 15:00:10 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="065F5F99-9BCB-BCAF-705B-EF496E4D5EAE" referredColumn="3395B92C-ADE2-269E-8365-9F0B02CE234B"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="E031A6D6-5781-8D17-A57C-7EA3595B6E71" name="Relation_228_PK">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 15:00:10 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="4B8A5E81-DDF1-4CDF-65EC-583A5ACC7001"/>
+<colUsage columnID="E9F4048E-364F-42FB-039D-C4ECD388DC90"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="D6839A9B-A9AB-0A2A-ED0E-19A1704DB803" name="Relation_228_Geschäftszustand_FK">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 15:00:10 UTC</createdTime>
+<generatorID>5779FB1E-D6AC-2824-D25C-BF28ACBF56C7</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="4B8A5E81-DDF1-4CDF-65EC-583A5ACC7001"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="AEE385DB-6124-2D15-3930-136102736CA7" name="Relation_228_Informationselement_FK">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 15:00:10 UTC</createdTime>
+<generatorID>5779FB1E-D6AC-2824-D25C-BF28ACBF56C7</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="E9F4048E-364F-42FB-039D-C4ECD388DC90"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

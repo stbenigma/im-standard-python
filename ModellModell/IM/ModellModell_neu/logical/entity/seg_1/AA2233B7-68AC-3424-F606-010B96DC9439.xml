@@ -28,8 +28,9 @@ Level on which the rule checks (row, tuple, entity, database) is derived from th
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <engineerTo>
+<item key="17F5F16D-4CB1-2968-618E-D369CD8C5B93" value="true"/>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
-<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="false"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <typeID>899A6DDC-95E0-4AD5-5F58-B3A2FF5C2D08</typeID>
@@ -70,8 +71,9 @@ Level on which the rule checks (row, tuple, entity, database) is derived from th
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <importedID>D4367DA7-6021-7E29-BEFC-2F6B66AB1763</importedID>
 <engineerTo>
+<item key="17F5F16D-4CB1-2968-618E-D369CD8C5B93" value="true"/>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
-<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="false"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
@@ -103,8 +105,9 @@ Description, explanation of the rule
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <importedID>2B940275-6B40-64A6-6459-46A41243F4EF</importedID>
 <engineerTo>
+<item key="17F5F16D-4CB1-2968-618E-D369CD8C5B93" value="true"/>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
-<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="false"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
@@ -132,11 +135,11 @@ Die Regel kann Objekte enthalten, mit denen die Regel verknüpft ist:
 (ENTI)entitätsname
 (ATTR)entitätsname.attributname
 (DOMA)wertebereichsname
-(DOMV)Wertebereichsname.Wert
+(DEVA)Wertebereichsname.Default_Value
 
 Beispiele:
-  Artikel.Volumen := Artikel.Höhe * Artikel.Breite * Artikel.Tiefe
-  berechnePreis(Artikel.Preis,Land.Name)]]></comment>
+  berechnePreis(Artikel.Preis,Land.Name)
+  Artikel.Volumen := Artikel.Höhe * Artikel.Breite * Artikel.Tiefe]]></comment>
 <notes><![CDATA[[DE_ATTR_COMMENT[
 Regel, die Werte beschränken auf Grund von komplexen Zusammenhängen (mehere Entitäten, Attribute, Beziehungen)
 Die Regel kann Objekte enthalten, mit denen die Regel verknüpft ist:
@@ -157,8 +160,9 @@ Beispiele:
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <importedID>723B41D1-B556-FACB-A890-B8B7F4FD8F6B</importedID>
 <engineerTo>
+<item key="17F5F16D-4CB1-2968-618E-D369CD8C5B93" value="true"/>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
-<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="false"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
@@ -213,12 +217,15 @@ Kann als Formel, Aufruf, Code-snippet direkt erfasst werden.
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <engineerTo>
+<item key="17F5F16D-4CB1-2968-618E-D369CD8C5B93" value="true"/>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
 <item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_NAME" value="Regelauswirkung"/>
@@ -253,6 +260,7 @@ ist
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <engineerTo>
+<item key="17F5F16D-4CB1-2968-618E-D369CD8C5B93" value="true"/>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
 <item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
@@ -283,8 +291,9 @@ Message that is displayed when the rule is violated.
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <importedID>F0D0A02C-116A-DB0F-5438-DED076F0352F</importedID>
 <engineerTo>
+<item key="17F5F16D-4CB1-2968-618E-D369CD8C5B93" value="true"/>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
-<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="false"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
@@ -309,8 +318,9 @@ Message that is displayed when the rule is violated.
 <createdTime>2020-02-03 20:04:00 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <engineerTo>
+<item key="17F5F16D-4CB1-2968-618E-D369CD8C5B93" value="true"/>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
-<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="false"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <usedAttributes>

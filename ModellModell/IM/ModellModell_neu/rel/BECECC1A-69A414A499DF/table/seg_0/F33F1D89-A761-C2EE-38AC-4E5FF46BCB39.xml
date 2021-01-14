@@ -1,0 +1,93 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="F33F1D89-A761-C2EE-38AC-4E5FF46BCB39" name="Ansprechpartner">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 15:00:10 UTC</createdTime>
+<comment><![CDATA[Person in einer Organisationseinheit  die für die Definition oder Pflege eines Attributwertes verantwortlich ist.]]></comment>
+<generatorID>8C8B454F-0035-EE61-FC2C-E0393A043C42</generatorID>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+Person in einer Organisationseinheit  die für die Definition oder Pflege eines Attributwertes verantwortlich ist.
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+Person in an organizational unit who is responsible for defining or maintaining an attribute value
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<typeID>EC66DFE5-32A6-31DC-EC38-0906F34F58E0</typeID>
+<abbreviation>ANSP</abbreviation>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Geschäfts_eMail" id="CF50CD64-D8F4-0A63-E414-CA043B6A6735">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 15:00:10 UTC</createdTime>
+<generatorID>51B112E6-26D1-65E3-2E17-3750B85C2BE6</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>4655A975-6C53-BBE1-01B9-D658AD7C5FC5</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Geschäftstelefon-Nr" id="64ECD4DB-5187-F546-A450-4E94620DF0DA">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 15:00:10 UTC</createdTime>
+<generatorID>16FC1AE4-9AE7-AA14-3029-1693B3B9ED25</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>4655A975-6C53-BBE1-01B9-D658AD7C5FC5</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ANSP_ID" id="C5C7880A-9501-BFB5-6AE3-E7D03A8E5EBD">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 15:00:10 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="53288401-18FD-0CB9-A8FE-88DA8D764B72" name="ANSP_PK">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 15:00:10 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="C5C7880A-9501-BFB5-6AE3-E7D03A8E5EBD"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="FBE0F1F0-9222-E1A3-C723-964A33FD7205" name="Ansprechpartner_Organisationseinheit_FK">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 15:00:10 UTC</createdTime>
+<generatorID>E9110093-1665-73D5-6B2D-76BFC0D89F63</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+</ind_PK_UK>
+</indexes>
+</Table>

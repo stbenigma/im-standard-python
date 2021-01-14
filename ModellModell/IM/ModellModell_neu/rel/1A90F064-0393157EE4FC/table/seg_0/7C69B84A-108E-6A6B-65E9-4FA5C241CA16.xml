@@ -1,5 +1,8 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
 <Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="7C69B84A-108E-6A6B-65E9-4FA5C241CA16" name="DIAGRAMS">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>DIAGRAMS</sourceObjName>
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <comment><![CDATA[Zusammenfassung von Entitäten in einer grafischen Darstellung]]></comment>
@@ -85,14 +88,12 @@
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
-<formulaDesc>USER</formulaDesc>
 <sourceType>System</sourceType>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
 <dataTypeSize>30 BYTE</dataTypeSize>
 <ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
-<computed>true</computed>
 <autoIncrementCycle>false</autoIncrementCycle>
 <propertyMap>
 <property name="ctemplateID" value="F7EEFF47-7A42-2A3E-7DFC-D0558D6996B8"/>
@@ -142,15 +143,6 @@
 <propertyMap>
 <property name="ctemplateID" value="B398D247-00C1-F016-3BBB-FE65CFFFF7AA"/>
 </propertyMap>
-</Column>
-<Column name="Column_10" id="02B9F549-F527-1663-9D87-34B857530364">
-<createdBy>stb</createdBy>
-<createdTime>2020-10-10 11:44:15 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<nullsAllowed>true</nullsAllowed>
-<use>0</use>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">

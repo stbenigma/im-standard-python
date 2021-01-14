@@ -1,0 +1,77 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="49CCCB72-1403-8978-7D5D-243E2B51C3D6" schemaObject="BA9AB875-9DE2-0270-F892-66DA7F318378" name="t_complexitytypes">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>t_complexitytypes</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:01 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Complexity" id="7051C9F7-C11E-3410-9593-44827F49C5FC">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_complexitytypes</sourceObjSchema>
+<sourceObjName>Complexity</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:01 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypePrecision>50</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,50,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="NumericWeight" id="DD1DC149-B93D-B0A4-9BCC-B3D3DA0AB56B">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_complexitytypes</sourceObjSchema>
+<sourceObjName>NumericWeight</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:01 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>4</dataTypeSize>
+<usesDefaultValue>true</usesDefaultValue>
+<defaultValue>(0)</defaultValue>
+<ownDataTypeParameters>4,10,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="38BA4FF4-F608-DDC3-03F7-1D480263348B" name="pk_complexitytypes">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>pk_complexitytypes</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:01 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="7051C9F7-C11E-3410-9593-44827F49C5FC"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="8C00981E-1DBF-95BD-5340-DAA4B6A34119" name="ix_complexitytypes_numweight">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>ix_complexitytypes_numweight</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:01 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="DD1DC149-B93D-B0A4-9BCC-B3D3DA0AB56B"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

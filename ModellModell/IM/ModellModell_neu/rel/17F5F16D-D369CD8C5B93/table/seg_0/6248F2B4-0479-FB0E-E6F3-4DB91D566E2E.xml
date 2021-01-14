@@ -1,0 +1,46 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="6248F2B4-0479-FB0E-E6F3-4DB91D566E2E" schemaObject="BA9AB875-9DE2-0270-F892-66DA7F318378" name="t_cardinality">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>t_cardinality</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:00 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Cardinality" id="93826CC8-FE28-EA7F-B9D7-5539760A1B5B">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_cardinality</sourceObjSchema>
+<sourceObjName>Cardinality</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:00 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypePrecision>50</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,50,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="57F2B4C5-BE80-0E65-CEA8-16A17E2D5C59" name="pk_cardinality">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>pk_cardinality</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:00 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="93826CC8-FE28-EA7F-B9D7-5539760A1B5B"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

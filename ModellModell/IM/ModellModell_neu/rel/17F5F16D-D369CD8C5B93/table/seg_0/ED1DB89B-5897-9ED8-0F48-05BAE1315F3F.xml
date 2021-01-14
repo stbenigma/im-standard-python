@@ -1,0 +1,194 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="ED1DB89B-5897-9ED8-0F48-05BAE1315F3F" schemaObject="BA9AB875-9DE2-0270-F892-66DA7F318378" name="t_operationtag">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>t_operationtag</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:34 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="PropertyID" id="073ED20C-41C8-49E1-977B-D7361A109C01">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_operationtag</sourceObjSchema>
+<sourceObjName>PropertyID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:35 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>4</dataTypeSize>
+<ownDataTypeParameters>4,10,0</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ElementID" id="ED96565A-ACCF-8B9C-9651-60A7556B3727">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_operationtag</sourceObjSchema>
+<sourceObjName>ElementID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:35 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>4</dataTypeSize>
+<ownDataTypeParameters>4,10,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Property" id="AA7B0A05-B2EA-1B6E-E165-25797729D618">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_operationtag</sourceObjSchema>
+<sourceObjName>Property</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:35 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypePrecision>255</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>255</dataTypeSize>
+<ownDataTypeParameters>255,255,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="VALUE" id="2F51125F-F343-8F31-750C-57D99490EAB1">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_operationtag</sourceObjSchema>
+<sourceObjName>VALUE</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:35 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypePrecision>255</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>255</dataTypeSize>
+<ownDataTypeParameters>255,255,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="NOTES" id="8BC59CF1-B70D-15A0-0F71-519F975C6E82">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_operationtag</sourceObjSchema>
+<sourceObjName>NOTES</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:35 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypePrecision>-1</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>max</dataTypeSize>
+<ownDataTypeParameters>max,-1,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ea_guid" id="7967D57E-89C4-C5DB-057B-0ECC36570572">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_operationtag</sourceObjSchema>
+<sourceObjName>ea_guid</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:35 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypePrecision>40</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>40</dataTypeSize>
+<ownDataTypeParameters>40,40,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="6F60DF7A-F280-310D-DCDE-B9977EE43CCF" name="pk_operationtag">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>pk_operationtag</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:39 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="073ED20C-41C8-49E1-977B-D7361A109C01"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="9883F353-8844-4C1F-8968-CA2A4E868F4D" name="ix_operationtag_eaguid">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>ix_operationtag_eaguid</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:36 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="7967D57E-89C4-C5DB-057B-0ECC36570572"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="6C0D24B6-310C-4D7B-F48B-25A324105510" name="ix_operationtag_elementid">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>ix_operationtag_elementid</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:36 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="ED96565A-ACCF-8B9C-9651-60A7556B3727"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="9568C3BB-A701-9D35-5C2A-B94E453ED24F" name="ix_operationtag_elementidprop">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>ix_operationtag_elementidprop</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:37 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="ED96565A-ACCF-8B9C-9651-60A7556B3727"/>
+<colUsage columnID="AA7B0A05-B2EA-1B6E-E165-25797729D618"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="252F2906-CAC9-9FA6-B8F6-DB62E3A17991" name="ix_operationtag_property">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>ix_operationtag_property</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:37 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="AA7B0A05-B2EA-1B6E-E165-25797729D618"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="1088734F-186B-A809-B648-1908396497F6" name="ix_operationtag_value">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>ix_operationtag_value</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:38 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="2F51125F-F343-8F31-750C-57D99490EAB1"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

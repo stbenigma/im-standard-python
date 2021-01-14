@@ -1,0 +1,80 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="8E623A5F-DE52-F8B7-2F0D-34FC22ACEAFE" name="Abteilung">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 15:00:10 UTC</createdTime>
+<comment><![CDATA[(Administrative) Organisationseinheit in der Firma]]></comment>
+<generatorID>2C57B52E-0A51-E5FA-0B39-DDDD98D49ECB</generatorID>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+(Administrative) Organisationseinheit in der Firma
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+Organizational unit in the company (internal or external) that is responsible for defining or maintaining an attribute value.
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<typeID>EC66DFE5-32A6-31DC-EC38-0906F34F58E0</typeID>
+<abbreviation>ABTE</abbreviation>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Organisationseinheit_ORGU_ID" id="C1524877-F77A-9E9C-EAD6-4C11C80158CF">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 15:00:10 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="A3FEBDC0-9CC7-F659-7E4A-D93FE174DAB3" referredColumn="63AFC951-9DB2-6929-0FFF-4C3494A897F4"/>
+</associations>
+</Column>
+<Column name="ABTE_ID" id="C703A928-27F4-41F4-9761-2F8752FB7304">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 15:00:10 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="7A3128D0-9390-D354-0B39-57781F73B15E" name="ABTE_PK">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 15:00:10 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="C1524877-F77A-9E9C-EAD6-4C11C80158CF"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="7F6C6BAA-55A3-0437-7B52-A62C46251667" name="Abteilung_ABTE_ID_UN">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 15:00:10 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="C703A928-27F4-41F4-9761-2F8752FB7304"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="86CC78BF-1520-31E6-E71A-4BD70AE077B7" name="Abteilung_Organisationseinheit_FK">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 15:00:10 UTC</createdTime>
+<generatorID>EDE035C0-9A1E-1987-BF50-B04B025E9A6E</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="C1524877-F77A-9E9C-EAD6-4C11C80158CF"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -1,0 +1,74 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="BCADC438-1BCE-F8B5-7ABD-B08DA04D5D26" name="Relation_279">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 15:00:10 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Berührungspunkt_Berührungspunkt_ID" id="6407FD5F-D0DC-396F-00F6-0B8D5483C6CF">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 15:00:10 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="A84CE509-EC6B-E16F-C350-B01EC8A54DBB" referredColumn="7DE6906E-19B4-2729-8FFF-A24E6B179851"/>
+</associations>
+</Column>
+<Column name="Informationselement_Informationselement_ID" id="2465B8F4-7E31-AFD2-63E0-EF0F8657E317">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 15:00:10 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="23774C18-EFA4-D38D-D697-484B827B01CF" referredColumn="3395B92C-ADE2-269E-8365-9F0B02CE234B"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="058A2D34-E786-F6E6-1613-56F39D5E36C0" name="Relation_279_PK">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 15:00:10 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="6407FD5F-D0DC-396F-00F6-0B8D5483C6CF"/>
+<colUsage columnID="2465B8F4-7E31-AFD2-63E0-EF0F8657E317"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="B0A99770-74AA-9975-F9D9-309C48BEA693" name="Relation_279_Berührungspunkt_FK">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 15:00:10 UTC</createdTime>
+<generatorID>09B7879A-3E3C-5E82-B624-3DA9E8C66C2B</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="6407FD5F-D0DC-396F-00F6-0B8D5483C6CF"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="125371D2-179E-D68B-0352-C2A0E524771C" name="Relation_279_Informationselement_FK">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 15:00:10 UTC</createdTime>
+<generatorID>09B7879A-3E3C-5E82-B624-3DA9E8C66C2B</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="2465B8F4-7E31-AFD2-63E0-EF0F8657E317"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

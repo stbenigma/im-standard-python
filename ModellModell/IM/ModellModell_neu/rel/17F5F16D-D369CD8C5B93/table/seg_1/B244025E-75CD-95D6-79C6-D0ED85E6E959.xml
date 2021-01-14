@@ -1,0 +1,286 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_1" id="B244025E-75CD-95D6-79C6-D0ED85E6E959" schemaObject="BA9AB875-9DE2-0270-F892-66DA7F318378" name="t_tasks">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>t_tasks</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:56:40 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="TaskID" id="C5FC4C4B-5DE4-ED52-4110-E96F3CD2ECFA">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_tasks</sourceObjSchema>
+<sourceObjName>TaskID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:56:41 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>4</dataTypeSize>
+<ownDataTypeParameters>4,10,0</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Name" id="68C03827-0634-8505-3921-3D0B30800EA2">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_tasks</sourceObjSchema>
+<sourceObjName>Name</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:56:41 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypePrecision>255</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>255</dataTypeSize>
+<ownDataTypeParameters>255,255,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="TaskType" id="FD9EA9EA-36F9-316B-ABBB-E28D47CB7C66">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_tasks</sourceObjSchema>
+<sourceObjName>TaskType</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:56:41 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypePrecision>255</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>255</dataTypeSize>
+<ownDataTypeParameters>255,255,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="NOTES" id="88CFEB81-BDBA-7714-A218-F7A03AF9F720">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_tasks</sourceObjSchema>
+<sourceObjName>NOTES</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:56:41 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypePrecision>-1</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>max</dataTypeSize>
+<ownDataTypeParameters>max,-1,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Priority" id="F9727FC8-F2BA-52F6-7410-C59049DD6D77">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_tasks</sourceObjSchema>
+<sourceObjName>Priority</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:56:41 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypePrecision>255</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>255</dataTypeSize>
+<ownDataTypeParameters>255,255,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Status" id="FB9FB1BF-959C-31C1-0BEF-98FDED06A583">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_tasks</sourceObjSchema>
+<sourceObjName>Status</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:56:41 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypePrecision>255</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>255</dataTypeSize>
+<ownDataTypeParameters>255,255,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Owner" id="B0AA0371-15F0-36BB-5A9A-B8BF6D78400D">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_tasks</sourceObjSchema>
+<sourceObjName>Owner</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:56:41 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypePrecision>255</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>255</dataTypeSize>
+<ownDataTypeParameters>255,255,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="StartDate" id="22208A9D-1F6E-CF62-D9F4-42E6DCC1DA99">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_tasks</sourceObjSchema>
+<sourceObjName>StartDate</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:56:41 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT008</logicalDatatype>
+<dataTypePrecision>23</dataTypePrecision>
+<dataTypeScale>3</dataTypeScale>
+<dataTypeSize>8</dataTypeSize>
+<ownDataTypeParameters>8,23,3</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="EndDate" id="E197B678-B80B-E0B2-FFF1-3D6EB9CA7F71">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_tasks</sourceObjSchema>
+<sourceObjName>EndDate</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:56:41 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT008</logicalDatatype>
+<dataTypePrecision>23</dataTypePrecision>
+<dataTypeScale>3</dataTypeScale>
+<dataTypeSize>8</dataTypeSize>
+<ownDataTypeParameters>8,23,3</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Phase" id="67B069B3-E4C9-F9DB-834A-F1CF4C0A0788">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_tasks</sourceObjSchema>
+<sourceObjName>Phase</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:56:41 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypePrecision>50</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,50,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="History" id="8BDD8C27-74D8-CCC2-EC94-398DF6EEE471">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_tasks</sourceObjSchema>
+<sourceObjName>History</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:56:41 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypePrecision>-1</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>max</dataTypeSize>
+<ownDataTypeParameters>max,-1,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Percent" id="90B338C7-4BCC-83AA-7C6A-921763B95652">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_tasks</sourceObjSchema>
+<sourceObjName>Percent</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:56:41 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>4</dataTypeSize>
+<ownDataTypeParameters>4,10,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="TotalTime" id="14E0327E-9741-0DD9-0390-4DF275507AC0">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_tasks</sourceObjSchema>
+<sourceObjName>TotalTime</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:56:41 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>4</dataTypeSize>
+<ownDataTypeParameters>4,10,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ActualTime" id="CE9199D8-BC9A-D778-80B6-FB04764DFE67">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_tasks</sourceObjSchema>
+<sourceObjName>ActualTime</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:56:41 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>4</dataTypeSize>
+<ownDataTypeParameters>4,10,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="AssignedTo" id="7F2D223F-3406-D538-AFDA-6290795D14FB">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_tasks</sourceObjSchema>
+<sourceObjName>AssignedTo</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:56:41 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypePrecision>100</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>100</dataTypeSize>
+<ownDataTypeParameters>100,100,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="A696CC7A-4C27-B14B-A449-C17888C2F35C" name="pk_tasks">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>pk_tasks</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:56:42 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="C5FC4C4B-5DE4-ED52-4110-E96F3CD2ECFA"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

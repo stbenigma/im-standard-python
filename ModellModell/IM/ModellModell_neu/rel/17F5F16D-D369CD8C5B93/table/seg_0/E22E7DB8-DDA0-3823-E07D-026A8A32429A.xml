@@ -1,0 +1,111 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="E22E7DB8-DDA0-3823-E07D-026A8A32429A" schemaObject="BA9AB875-9DE2-0270-F892-66DA7F318378" name="t_metrictypes">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>t_metrictypes</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:14 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Metric" id="5C9F02C8-3A81-40D2-05E6-C71F1284B6E0">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_metrictypes</sourceObjSchema>
+<sourceObjName>Metric</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:14 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypePrecision>12</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>12</dataTypeSize>
+<ownDataTypeParameters>12,12,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Description" id="03C79343-E17F-B156-F409-C0812D13B34B">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_metrictypes</sourceObjSchema>
+<sourceObjName>Description</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:14 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypePrecision>50</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,50,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="NumericWeight" id="AAA3A250-2F2D-0194-21E7-596F0DCB5E53">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_metrictypes</sourceObjSchema>
+<sourceObjName>NumericWeight</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:14 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT021</logicalDatatype>
+<dataTypePrecision>53</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>8</dataTypeSize>
+<usesDefaultValue>true</usesDefaultValue>
+<defaultValue>(1)</defaultValue>
+<ownDataTypeParameters>8,53,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Notes" id="2AB0B2D9-3544-B716-3689-C144BAEB72B7">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_metrictypes</sourceObjSchema>
+<sourceObjName>Notes</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:14 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypePrecision>255</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>255</dataTypeSize>
+<ownDataTypeParameters>255,255,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="9F2A426D-EE4E-1047-7A05-423353EC3679" name="pk_metrictypes">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>pk_metrictypes</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:14 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="5C9F02C8-3A81-40D2-05E6-C71F1284B6E0"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="F309C137-106F-203F-E52A-4B4D001A7C60" name="ix_metrictypes_numericweight">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>ix_metrictypes_numericweight</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:14 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="AAA3A250-2F2D-0194-21E7-596F0DCB5E53"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -1,0 +1,78 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="D15087F3-9F7C-E758-3E52-ED52BCF6626A" name="Extern_Vorgabewert">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 14:59:41 UTC</createdTime>
+<generatorID>A698026B-4E4A-1A3E-8E46-F379986F84F0</generatorID>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<typeID>899A6DDC-95E0-4AD5-5F58-B3A2FF5C2D08</typeID>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Vorgabewert_Vorgabewert_ID" id="AE48349A-A87B-0532-3F91-7756792C1412">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 14:59:41 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="B090758F-EC07-09A4-223D-A75083012FC3" referredColumn="21C71D17-23BF-99C7-6A67-F58BB3D8F5E7"/>
+</associations>
+</Column>
+<Column name="Extern_Vorgabewert_ID" id="F84699BC-A741-D8BF-5291-F8C1BE4FC367">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 14:59:41 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="F2A4F063-6C98-0E6B-3F10-E1130989689C" name="Extern_Vorgabewert_PK">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 14:59:41 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="AE48349A-A87B-0532-3F91-7756792C1412"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="404AB192-C71A-5614-D03A-2AE9BED2A3B9" name="Extern_Vorgabewert_Extern_Vorgabewert_ID_UN">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 14:59:41 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="F84699BC-A741-D8BF-5291-F8C1BE4FC367"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="A803122A-E4A2-7B98-FBB9-B906958F9006" name="Extern_Vorgabewert_Vorgabewert_FK">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 14:59:41 UTC</createdTime>
+<generatorID>0C414B8F-589B-5284-F70D-428DA775E148</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="AE48349A-A87B-0532-3F91-7756792C1412"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

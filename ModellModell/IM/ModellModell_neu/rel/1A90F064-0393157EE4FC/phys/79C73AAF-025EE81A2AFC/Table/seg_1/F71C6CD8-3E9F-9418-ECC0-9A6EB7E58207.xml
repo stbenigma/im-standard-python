@@ -31,11 +31,6 @@
 </ColumnProxy>
 </columnProxies>
 <foreignKeys>
-<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="TEMA_RELA_FK" id="40CBAF8C-C817-A37F-96E5-3E38767E04DD">
-<createdBy>stb</createdBy>
-<createdTime>2020-12-02 22:11:08 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-</ForeignKey>
 <ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="tema_tabl_FK" id="D12F945E-DD97-EE66-945D-01EFEB0E138B">
 <createdBy>stb</createdBy>
 <createdTime>2020-12-02 22:16:00 UTC</createdTime>
@@ -55,13 +50,6 @@
 <indexSort>SORTED</indexSort>
 </PrimaryKey>
 </primaryKeys>
-<tableCheckConstraints itemClass="oracle.dbtools.crest.model.design.storage.oracle.TableCheckConstraintOracle">
-<TableCheckConstraint name="TEMA_ENTI_MAP_CK_1" id="60517B22-1EAD-6419-50E0-A8C9CC56E7AE">
-<createdBy>stb</createdBy>
-<createdTime>2020-12-02 22:11:08 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-</TableCheckConstraint>
-</tableCheckConstraints>
 <uniqueKeys>
 <UniqueKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.UniqueOraclev10g" name="TEMA_UN" id="2DB98C96-2970-CF4E-FAE5-1C06EC716240">
 <createdBy>stb</createdBy>

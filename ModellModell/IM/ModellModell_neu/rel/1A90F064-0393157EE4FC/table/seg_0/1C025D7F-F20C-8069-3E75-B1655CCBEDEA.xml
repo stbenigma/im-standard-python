@@ -1,5 +1,8 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
 <Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="1C025D7F-F20C-8069-3E75-B1655CCBEDEA" name="COLU_ATTR_MAP">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>COLU_ATTR_MAP</sourceObjName>
 <sourceDDLFile>map.sql</sourceDDLFile>
 <createdBy>stb</createdBy>
 <createdTime>2020-12-02 22:11:17 UTC</createdTime>
@@ -44,16 +47,16 @@
 <createdTime>2020-12-02 22:11:17 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <importedID>217AE426-28A0-5449-133A-AD7298343834</importedID>
+<constraintName>CK__COLU_ATTR__coam___13F1F5EB</constraintName>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
 <dataTypePrecision>0</dataTypePrecision>
 <dataTypeScale>0</dataTypeScale>
 <dataTypeSize>7</dataTypeSize>
-<listOfValues>
-<valueDef value="INBOUND" description=""/>
-<valueDef value="OUTBOUND" description=""/>
-</listOfValues>
+<checkConstraint>
+<implementationDef dbType="SQL Server 2012" definition="[coam_direction]=&apos;OUTBOUND&apos; OR [coam_direction]=&apos;INBOUND&apos;"/>
+</checkConstraint>
 <ownDataTypeParameters>7,0,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
@@ -111,6 +114,7 @@
 <createdTime>2020-12-02 22:11:17 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <importedID>BECE6FFC-24B9-EA83-65BC-9C0E6F59FA46</importedID>
+<constraintName>CK__COLU_ATTR__coam___14E61A24</constraintName>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -118,11 +122,9 @@
 <dataTypePrecision>0</dataTypePrecision>
 <dataTypeScale>0</dataTypeScale>
 <dataTypeSize>10</dataTypeSize>
-<listOfValues>
-<valueDef value="MANUELL" description=""/>
-<valueDef value="PERIODE" description=""/>
-<valueDef value="ZPKT" description=""/>
-</listOfValues>
+<checkConstraint>
+<implementationDef dbType="SQL Server 2012" definition="[coam_triggertype]=&apos;ZPKT&apos; OR [coam_triggertype]=&apos;PERIODE&apos; OR [coam_triggertype]=&apos;MANUELL&apos;"/>
+</checkConstraint>
 <ownDataTypeParameters>10,0,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>

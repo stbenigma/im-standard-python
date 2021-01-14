@@ -1,0 +1,62 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="F61DBE00-6CC6-05F3-FAFC-B3BF09599D51" schemaObject="BA9AB875-9DE2-0270-F892-66DA7F318378" name="t_genopt">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>t_genopt</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:10 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="AppliesTo" id="3E7DE9FA-457D-25F0-D36E-A2E5B44E1DEC">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_genopt</sourceObjSchema>
+<sourceObjName>AppliesTo</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:10 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypePrecision>12</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>12</dataTypeSize>
+<ownDataTypeParameters>12,12,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Option" id="F0775EA5-A0A2-7935-C7D7-A3FD1829B653">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_genopt</sourceObjSchema>
+<sourceObjName>Option</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:10 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypePrecision>-1</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>max</dataTypeSize>
+<ownDataTypeParameters>max,-1,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="7F99E19E-F52E-AD0D-8F72-D25B49344A72" name="ix_genopt_appliesto">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>ix_genopt_appliesto</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:10 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="3E7DE9FA-457D-25F0-D36E-A2E5B44E1DEC"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

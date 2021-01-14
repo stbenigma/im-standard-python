@@ -1,0 +1,94 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="E3A00F74-C9BD-CD19-F5A7-040B44BEED12" schemaObject="BA9AB875-9DE2-0270-F892-66DA7F318378" name="t_diagramtypes">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>t_diagramtypes</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:07 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Diagram_Type" id="43C2E314-B87A-90F4-10DC-27CB6CC841EE">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_diagramtypes</sourceObjSchema>
+<sourceObjName>Diagram_Type</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:07 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypePrecision>50</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,50,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Name" id="7F066E9E-A3BC-02F3-C865-586A8BDA802D">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_diagramtypes</sourceObjSchema>
+<sourceObjName>Name</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:07 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypePrecision>255</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>255</dataTypeSize>
+<ownDataTypeParameters>255,255,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Package_ID" id="91E4E4F3-8D94-2102-0C57-FE9051E25D21">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_diagramtypes</sourceObjSchema>
+<sourceObjName>Package_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:07 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>4</dataTypeSize>
+<usesDefaultValue>true</usesDefaultValue>
+<defaultValue>(0)</defaultValue>
+<ownDataTypeParameters>4,10,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="0E515143-76D9-DD1A-77FC-B0EC0446EE0F" name="pk_diagramtypes">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>pk_diagramtypes</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:08 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="43C2E314-B87A-90F4-10DC-27CB6CC841EE"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="38380003-6503-8718-E44D-560A198D805B" name="ix_diagramtypes_packageid">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>ix_diagramtypes_packageid</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:07 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="91E4E4F3-8D94-2102-0C57-FE9051E25D21"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

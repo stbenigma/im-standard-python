@@ -1,5 +1,8 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="CBDBE037-EBA0-63C4-2055-4679E23FA608" schemaObject="D76C6297-28A1-045E-8726-4B50ADD673B8" name="LANG_TEXTS">
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="CBDBE037-EBA0-63C4-2055-4679E23FA608" name="LANG_TEXTS">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>LANG_TEXTS</sourceObjName>
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <comment><![CDATA[Translation of attribute values in all desired languages.
@@ -45,7 +48,6 @@ BUSINESS_RULE
 <autoIncrementColumn>true</autoIncrementColumn>
 <identityColumn>true</identityColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
-<autoIncrementSequenceName>INFRA_SEQ</autoIncrementSequenceName>
 </Column>
 <Column name="LGTX_ATTRNAME" id="8CD76328-083B-70BC-720A-345E1A2F80D7">
 <createdBy>stb</createdBy>
@@ -109,7 +111,6 @@ BUSINESS_RULE
 <logicalDatatype>LOGDT024</logicalDatatype>
 <dataTypeSize>30 BYTE</dataTypeSize>
 <ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
-<computed>true</computed>
 <autoIncrementCycle>false</autoIncrementCycle>
 <propertyMap>
 <property name="ctemplateID" value="F7EEFF47-7A42-2A3E-7DFC-D0558D6996B8"/>

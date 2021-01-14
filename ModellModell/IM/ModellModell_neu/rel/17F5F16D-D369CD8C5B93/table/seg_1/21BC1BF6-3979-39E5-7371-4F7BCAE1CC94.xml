@@ -1,0 +1,130 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_1" id="21BC1BF6-3979-39E5-7371-4F7BCAE1CC94" schemaObject="BA9AB875-9DE2-0270-F892-66DA7F318378" name="t_tcf">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>t_tcf</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:56:44 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="TCFID" id="B096540C-FB60-DBCF-AA56-4F1ABBE5A30D">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_tcf</sourceObjSchema>
+<sourceObjName>TCFID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:56:45 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypePrecision>12</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>12</dataTypeSize>
+<ownDataTypeParameters>12,12,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Description" id="031F6DD7-3820-43AC-71D7-537840F3EC89">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_tcf</sourceObjSchema>
+<sourceObjName>Description</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:56:45 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypePrecision>50</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,50,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Weight" id="6E14B82D-6593-4B38-CB7D-E45025009E4F">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_tcf</sourceObjSchema>
+<sourceObjName>Weight</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:56:45 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT021</logicalDatatype>
+<dataTypePrecision>53</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>8</dataTypeSize>
+<usesDefaultValue>true</usesDefaultValue>
+<defaultValue>(1)</defaultValue>
+<ownDataTypeParameters>8,53,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Value" id="5C0553B9-8D8C-4149-1EE8-0D8E99933598">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_tcf</sourceObjSchema>
+<sourceObjName>Value</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:56:45 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT021</logicalDatatype>
+<dataTypePrecision>53</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>8</dataTypeSize>
+<usesDefaultValue>true</usesDefaultValue>
+<defaultValue>(0)</defaultValue>
+<ownDataTypeParameters>8,53,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Notes" id="B5CBD005-570F-CA3E-1375-FCD663F44E5D">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_tcf</sourceObjSchema>
+<sourceObjName>Notes</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:56:45 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypePrecision>255</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>255</dataTypeSize>
+<ownDataTypeParameters>255,255,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="002D08D1-ACED-BA69-69CF-9DE4FEED77A3" name="pk_tcf">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>pk_tcf</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:56:46 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="B096540C-FB60-DBCF-AA56-4F1ABBE5A30D"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="15CEF269-24FE-032F-98E8-E0B3B372526E" name="ix_tcf_weight">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>ix_tcf_weight</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:56:45 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="6E14B82D-6593-4B38-CB7D-E45025009E4F"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

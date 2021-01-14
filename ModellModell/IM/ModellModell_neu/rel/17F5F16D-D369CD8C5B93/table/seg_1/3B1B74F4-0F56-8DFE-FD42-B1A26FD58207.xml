@@ -1,0 +1,237 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_1" id="3B1B74F4-0F56-8DFE-FD42-B1A26FD58207" schemaObject="BA9AB875-9DE2-0270-F892-66DA7F318378" name="t_snapshot">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>t_snapshot</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:56:22 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="SnapshotID" id="C7103E86-CDC6-8F66-7F9B-6F3CE14B290F">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_snapshot</sourceObjSchema>
+<sourceObjName>SnapshotID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:56:23 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypePrecision>40</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>40</dataTypeSize>
+<ownDataTypeParameters>40,40,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="SeriesID" id="F60EF82E-B6D7-05A7-3FB8-AC9C96EA3A12">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_snapshot</sourceObjSchema>
+<sourceObjName>SeriesID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:56:23 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypePrecision>40</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>40</dataTypeSize>
+<ownDataTypeParameters>40,40,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Position" id="273415DB-06AA-E07F-CEF9-715BDC60B76E">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_snapshot</sourceObjSchema>
+<sourceObjName>Position</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:56:23 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>4</dataTypeSize>
+<ownDataTypeParameters>4,10,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="SnapshotName" id="B89AC834-4E4C-77D3-55F3-776C1E6F06B9">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_snapshot</sourceObjSchema>
+<sourceObjName>SnapshotName</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:56:23 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypePrecision>100</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>100</dataTypeSize>
+<ownDataTypeParameters>100,100,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Notes" id="D634FB24-965A-FC76-DE6D-0148A236E8C6">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_snapshot</sourceObjSchema>
+<sourceObjName>Notes</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:56:23 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypePrecision>-1</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>max</dataTypeSize>
+<ownDataTypeParameters>max,-1,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Style" id="EBC4504B-67B0-50AD-39FA-DEF3BB81EC22">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_snapshot</sourceObjSchema>
+<sourceObjName>Style</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:56:23 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypePrecision>255</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>255</dataTypeSize>
+<ownDataTypeParameters>255,255,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ElementID" id="2B0C9090-103B-05E0-FDFF-49B6D22C7E1B">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_snapshot</sourceObjSchema>
+<sourceObjName>ElementID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:56:23 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypePrecision>40</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>40</dataTypeSize>
+<ownDataTypeParameters>40,40,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ElementType" id="4F6FBA99-B90D-AC41-834A-2AF41FF363C7">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_snapshot</sourceObjSchema>
+<sourceObjName>ElementType</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:56:23 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypePrecision>50</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,50,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="StrContent" id="F94F07A9-FB0C-32D6-37E0-CE672E31B822">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_snapshot</sourceObjSchema>
+<sourceObjName>StrContent</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:56:23 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypePrecision>-1</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>max</dataTypeSize>
+<ownDataTypeParameters>max,-1,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="BinContent1" id="94DCE63F-925D-C6DA-42C2-5B7A69B98F32">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_snapshot</sourceObjSchema>
+<sourceObjName>BinContent1</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:56:23 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT010</logicalDatatype>
+<dataTypePrecision>0</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>16</dataTypeSize>
+<ownDataTypeParameters>16,0,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="BinContent2" id="C35D7DC1-E105-CCFE-445C-7961D789AA7F">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_snapshot</sourceObjSchema>
+<sourceObjName>BinContent2</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:56:23 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT010</logicalDatatype>
+<dataTypePrecision>0</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>16</dataTypeSize>
+<ownDataTypeParameters>16,0,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="D3462A49-9EC9-1012-006D-B2D665387B44" name="pk_snapshot">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>pk_snapshot</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:56:25 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="C7103E86-CDC6-8F66-7F9B-6F3CE14B290F"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="DCBCF09D-798D-3972-E273-4866D97A0433" name="ix_snapshot_position">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>ix_snapshot_position</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:56:23 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="273415DB-06AA-E07F-CEF9-715BDC60B76E"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="EB07B950-A66B-0C23-D118-AD71E6D05DAC" name="ix_snapshot_seriesid">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>ix_snapshot_seriesid</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:56:24 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="F60EF82E-B6D7-05A7-3FB8-AC9C96EA3A12"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -1,0 +1,46 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxySqlServerv2k5 class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k5.TableProxySqlServerv2k5" name="usysOldTables" directorySegmentName="seg_0" id="A8F49BAA-E527-9494-1769-8E0E9AF795C7">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:57:38 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<schemaObject>BA9AB875-9DE2-0270-F892-66DA7F318378</schemaObject>
+<database>759CFA14-360B-D41C-B437-EA3166EBFDA9</database>
+<filegroup>E334DD31-BD37-EB4F-E1F6-F4F77A1CCDEF</filegroup>
+<schema>1</schema>
+<columnProxies>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k12.ColumnProxySqlServerv2k12" name="FixCode" id="1A3F214A-59E0-C685-EF2D-16E37B1F1B59">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:57:39 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<defaultValue>(0)</defaultValue>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k12.ColumnProxySqlServerv2k12" name="TableName" id="52E20AFE-A775-4917-4847-7E28B45936D8">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:57:39 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<collation>SQL_Latin1_General_CP1_CI_AS</collation>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k12.ColumnProxySqlServerv2k12" name="NewName" id="B889044E-FDCC-0F24-0814-20104AE28B14">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:57:39 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<collation>SQL_Latin1_General_CP1_CI_AS</collation>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k12.ColumnProxySqlServerv2k12" name="RelOrder" id="D79C7AC0-73F4-B9C1-1589-012C65163203">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:57:39 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<defaultValue>(0)</defaultValue>
+</ColumnProxy>
+</columnProxies>
+<indexProxies>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k12.IndexProxySqlServerv2k12" name="ix_usysoldtables_tablename" id="1F219F4A-15B8-58AA-C609-4BF3C23D86B9">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:57:40 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<clustered>true</clustered>
+<fileGroup>E334DD31-BD37-EB4F-E1F6-F4F77A1CCDEF</fileGroup>
+<recomputeStatistics>OFF</recomputeStatistics>
+</IndexProxy>
+</indexProxies>
+</TableProxySqlServerv2k5>

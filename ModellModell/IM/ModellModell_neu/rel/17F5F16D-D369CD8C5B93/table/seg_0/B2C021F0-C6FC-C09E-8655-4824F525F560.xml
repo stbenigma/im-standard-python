@@ -1,0 +1,123 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="B2C021F0-C6FC-C09E-8655-4824F525F560" schemaObject="BA9AB875-9DE2-0270-F892-66DA7F318378" name="t_connectorconstraint">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>t_connectorconstraint</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:03 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ConnectorID" id="94859A4C-E396-802E-C49F-9BA1174F1318">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_connectorconstraint</sourceObjSchema>
+<sourceObjName>ConnectorID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:03 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>4</dataTypeSize>
+<usesDefaultValue>true</usesDefaultValue>
+<defaultValue>(0)</defaultValue>
+<ownDataTypeParameters>4,10,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Constraint" id="E973ADB2-BD64-1FA3-98CB-097B19C6601D">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_connectorconstraint</sourceObjSchema>
+<sourceObjName>Constraint</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:03 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypePrecision>255</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>255</dataTypeSize>
+<ownDataTypeParameters>255,255,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ConstraintType" id="D4ED6D64-FA87-EEE3-0768-79351BCCC513">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_connectorconstraint</sourceObjSchema>
+<sourceObjName>ConstraintType</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:03 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypePrecision>50</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,50,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Notes" id="BF1CEFB4-4BB9-6B31-2393-9801A8C47AD5">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_connectorconstraint</sourceObjSchema>
+<sourceObjName>Notes</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:03 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypePrecision>-1</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>max</dataTypeSize>
+<ownDataTypeParameters>max,-1,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="B28313FB-F040-6882-E354-904FA10352A0" name="pk_connectorconstraint">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>pk_connectorconstraint</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:03 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="94859A4C-E396-802E-C49F-9BA1174F1318"/>
+<colUsage columnID="E973ADB2-BD64-1FA3-98CB-097B19C6601D"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="86B4307B-70E5-709D-9D8E-6A38E72A3713" name="ix_connectorconstraint_connid">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>ix_connectorconstraint_connid</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:03 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="94859A4C-E396-802E-C49F-9BA1174F1318"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="77183D4F-D07A-458B-8151-378AA794810C" name="ix_connectorconstraint_constr">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>ix_connectorconstraint_constr</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:03 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="E973ADB2-BD64-1FA3-98CB-097B19C6601D"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

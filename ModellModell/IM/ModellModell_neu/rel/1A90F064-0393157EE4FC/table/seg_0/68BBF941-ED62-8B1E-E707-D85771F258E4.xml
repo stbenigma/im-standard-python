@@ -1,5 +1,8 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="68BBF941-ED62-8B1E-E707-D85771F258E4" schemaObject="D76C6297-28A1-045E-8726-4B50ADD673B8" name="LANGUAGES">
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="68BBF941-ED62-8B1E-E707-D85771F258E4" name="LANGUAGES">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>LANGUAGES</sourceObjName>
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <comment><![CDATA[Language accoriding to ISO 629-1,2,3
@@ -24,7 +27,6 @@ The replacement language (LANG_LANG_ID) gives the default language to be used, i
 <autoIncrementColumn>true</autoIncrementColumn>
 <identityColumn>true</identityColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
-<autoIncrementSequenceName>INFRA_SEQ</autoIncrementSequenceName>
 </Column>
 <Column name="LANG_ISO_NAME" id="F3EBFCD6-8CFD-E9C4-C42B-D9BADDEADDB4">
 <createdBy>stb</createdBy>
@@ -52,7 +54,7 @@ The replacement language (LANG_LANG_ID) gives the default language to be used, i
 <logicalDatatype>LOGDT025</logicalDatatype>
 <domain>3CFAACDE-10D2-A99A-844A-975DA633F49B</domain>
 <checkConstraint>
-<implementationDef dbType="Generic Constraint" definition="LANG_ISO_CODE2 = lower(LANG_ISO_CODE2)"/>
+<implementationDef dbType="SQL Server 2012" definition="[LANG_ISO_CODE2]=lower([LANG_ISO_CODE2])"/>
 </checkConstraint>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
@@ -70,7 +72,7 @@ The replacement language (LANG_LANG_ID) gives the default language to be used, i
 <logicalDatatype>LOGDT025</logicalDatatype>
 <domain>7EF070A4-018B-18D6-E996-291F316D16A7</domain>
 <checkConstraint>
-<implementationDef dbType="Generic Constraint" definition="LANG_ISO_CODE3 = lower(LANG_ISO_CODE3)"/>
+<implementationDef dbType="SQL Server 2012" definition="[LANG_ISO_CODE3]=lower([LANG_ISO_CODE3])"/>
 </checkConstraint>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
@@ -81,9 +83,14 @@ The replacement language (LANG_LANG_ID) gives the default language to be used, i
 <comment><![CDATA[Language is used for translated model-text-fields]]></comment>
 <generatorID>7946129A-B876-FC35-FA72-27CA9051B460</generatorID>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
+<constraintName>CK__LANGUAGES__LANG___5C6CB6D7</constraintName>
+<useDomainConstraints>false</useDomainConstraints>
 <use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
+<checkConstraint>
+<implementationDef dbType="SQL Server 2012" definition="[LANG_IS_TEXT_LANG]=&apos;TRUE&apos; OR [LANG_IS_TEXT_LANG]=&apos;FALSE&apos;"/>
+</checkConstraint>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
@@ -93,9 +100,14 @@ The replacement language (LANG_LANG_ID) gives the default language to be used, i
 <comment><![CDATA[Language is the base language for the model]]></comment>
 <generatorID>7946129A-B876-FC35-FA72-27CA9051B460</generatorID>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
+<constraintName>CK__LANGUAGES__LANG___5D60DB10</constraintName>
+<useDomainConstraints>false</useDomainConstraints>
 <use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
+<checkConstraint>
+<implementationDef dbType="SQL Server 2012" definition="[LANG_IS_BASE_LANG]=&apos;TRUE&apos; OR [LANG_IS_BASE_LANG]=&apos;FALSE&apos;"/>
+</checkConstraint>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
@@ -123,7 +135,6 @@ The replacement language (LANG_LANG_ID) gives the default language to be used, i
 <logicalDatatype>LOGDT024</logicalDatatype>
 <dataTypeSize>30 BYTE</dataTypeSize>
 <ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
-<computed>true</computed>
 <autoIncrementCycle>false</autoIncrementCycle>
 <propertyMap>
 <property name="ctemplateID" value="F7EEFF47-7A42-2A3E-7DFC-D0558D6996B8"/>
