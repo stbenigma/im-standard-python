@@ -1,0 +1,73 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxySqlServerv2k5 class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k5.TableProxySqlServerv2k5" name="DOCUMENTS" directorySegmentName="seg_0" id="3FDEBD75-1ADF-DBD0-9049-1AD28026840C">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:01 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<schemaObject>833E4DE4-2E61-95B8-D681-1740D7FACB7C</schemaObject>
+<database>F882837E-36FB-2009-38C2-1F82ED2F7BB1</database>
+<filegroup>B5085ECB-8936-7A63-9779-77515397EA4F</filegroup>
+<schema>1</schema>
+<textImageFG>B5085ECB-8936-7A63-9779-77515397EA4F</textImageFG>
+<columnProxies>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k12.ColumnProxySqlServerv2k12" name="DOCU_CONTENT" id="25F416AB-0D06-502D-A5E1-180D2F7DD2CA">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:01 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k12.ColumnProxySqlServerv2k12" name="DOCU_NAME" id="2656EF1F-56DE-5050-11E5-2843B1F69FF2">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:01 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<collation>SQL_Latin1_General_CP1_CI_AS</collation>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k12.ColumnProxySqlServerv2k12" name="DOCU_REFERENCE" id="572BFE38-E5EE-CE35-7C8A-895B0497C4A7">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:01 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<collation>SQL_Latin1_General_CP1_CI_AS</collation>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k12.ColumnProxySqlServerv2k12" name="DOCU_DOCU_ID" id="955F758D-F11E-574A-B0EB-3D336A79BD17">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:01 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k12.ColumnProxySqlServerv2k12" name="DOCU_ID" id="C912AEB0-40F6-95A5-62A2-4440B9DD7BAD">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:01 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<asIdentity>true</asIdentity>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k12.ColumnProxySqlServerv2k12" name="DOCU_STFO_ID" id="E09DE57E-9833-0585-8241-854BEDA4C5AF">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:01 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+<foreignKeys>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k5.FKProxySqlServerv2k5" name="DOCU_MODE_FK" id="127FD2FE-8FE1-C02D-1B78-9410D61FC592">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:14 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+</ForeignKey>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k5.FKProxySqlServerv2k5" name="DOCU_DOCU_FK" id="8A6B925C-D25E-ADB9-9F43-76B237EBFF0C">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:14 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+</ForeignKey>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k5.FKProxySqlServerv2k5" name="DOCU_STFO_FK" id="DE84CBD0-006A-158E-B0B4-8553D27C1FFF">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:14 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+</ForeignKey>
+</foreignKeys>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k5.PKProxySqlServerv2k5" name="DOCU_PK" id="4402451A-E70E-D228-2187-E38006750697">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:01 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<clustered>true</clustered>
+<fileGroup>B5085ECB-8936-7A63-9779-77515397EA4F</fileGroup>
+<recomputeStatistics>NO</recomputeStatistics>
+</PrimaryKey>
+</primaryKeys>
+</TableProxySqlServerv2k5>

@@ -1,0 +1,19 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="E2B2E979-5F1B-5CBD-850A-C4792822B58E" containerWithKeyObject="3FDEBD75-1ADF-DBD0-9049-1AD28026840C" localFKIndex="DE84CBD0-006A-158E-B0B4-8553D27C1FFF" name="DOCU_STFO_FK">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>DOCU_STFO_FK</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:14 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<referredTableLongName>modelmodel_dbo.STORAGE_FORMATS</referredTableLongName>
+<deleteRule>RESTRICT</deleteRule>
+<referredTableID>79C6BC0E-9FEB-E61E-EF04-F5CCFCB8E106</referredTableID>
+<keyObject>99E8CA2A-ED3A-5B4F-28F4-7FFB15D88558</keyObject>
+<referredKeyID>99E8CA2A-ED3A-5B4F-28F4-7FFB15D88558</referredKeyID>
+<mandatory>false</mandatory>
+<refColNames>STFO_ID</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

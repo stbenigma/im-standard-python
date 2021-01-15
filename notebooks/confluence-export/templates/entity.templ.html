@@ -1,0 +1,41 @@
+<!-- this is a Confluence page content template to be rendered using jinja2 -->
+<!-- <h1>{{ util.translate(entity['name']) }}</h1> -->
+<ac:layout>
+  <ac:layout-section ac:type="two_equal">
+    <ac:layout-cell>
+      <p>{{ util.translate(entity['descr']) }}</p>
+      <h2>Synonyms</h2>
+      <p>{% for syno in entity['synonyms'] %}{{ syno[util.language] }}{% if not loop.last %}, {% endif %}{% endfor %}</p>
+    </ac:layout-cell>
+    <ac:layout-cell>
+      <img src="https://res.cloudinary.com/fyayc-test/image/upload/c_thumb,w_200,g_face/v1610138348/icons/f-icon_object_0765_spare-part.png" align="right"/>
+    </ac:layout-cell>
+  </ac:layout-section>
+  <ac:layout-section ac:type="single">
+    <ac:layout-cell>
+      <h1>Attributes</h1>
+      <table class="relative-table" style="width: 100%;">
+      <tbody>
+        <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th><br /></th>
+        <th><br /></th></tr>
+        {% for attribute in entity['attributes'] %}
+        <tr>
+          <td>{{ attribute }}</td>
+          <td><br/></td>
+          <td><br/></td>
+          <td><br/></td>
+        </tr>
+        {% endfor %}
+      </tbody></table>
+    </ac:layout-cell>
+  </ac:layout-section>
+  <ac:layout-section ac:type="single">
+    <ac:layout-cell>
+      <h1>Supertypes</h1>
+      <ul>{% for supertype in entity['supertypes'] %}<li><a href="{{ util.href(supertype) }}">{{ supertype }}</a></li>{% endfor %}</ul>
+    </ac:layout-cell>
+  </ac:layout-section>
+</ac:layout>

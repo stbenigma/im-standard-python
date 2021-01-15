@@ -1,0 +1,159 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="4A08F16A-5FF0-4FDB-A16C-8F9BCF96672F" schemaObject="833E4DE4-2E61-95B8-D681-1740D7FACB7C" name="TABL_ENTI_MAP">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>TABL_ENTI_MAP</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:10 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="TEMA_ID" id="FD94BA48-E585-A643-C2CE-D063976253FA">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>TABL_ENTI_MAP</sourceObjSchema>
+<sourceObjName>TEMA_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:10 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>9</dataTypeSize>
+<ownDataTypeParameters>9,10,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="TEMA_TABL_ID" id="6CE7809F-226C-6F3A-9B8B-58C6DE4CFE71">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>TABL_ENTI_MAP</sourceObjSchema>
+<sourceObjName>TEMA_TABL_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:10 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>9</dataTypeSize>
+<ownDataTypeParameters>9,10,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="846AD257-D306-4E7C-B07C-44FEFC325669" referredColumn="66B10E65-5485-7D22-391E-A2BA4C2A4106"/>
+</associations>
+</Column>
+<Column name="TEMA_ENTI_ID" id="0A0884B5-DB49-91C1-E4CF-40615C432C06">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>TABL_ENTI_MAP</sourceObjSchema>
+<sourceObjName>TEMA_ENTI_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:10 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>9</dataTypeSize>
+<ownDataTypeParameters>9,10,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="53388443-411D-AE78-BEE1-07E0602F5A5F" referredColumn="0F98F311-59A2-BE87-6FC4-2C0F85E511C5"/>
+</associations>
+</Column>
+<Column name="TEMA_RELA_ID" id="21624179-B20C-B48A-ACF7-A5A2AF2D34C2">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>TABL_ENTI_MAP</sourceObjSchema>
+<sourceObjName>TEMA_RELA_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:10 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>9</dataTypeSize>
+<ownDataTypeParameters>9,10,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="08EDDF5F-8AF1-752A-E23C-F33F1B159A0D" referredColumn="AD15119C-6601-8B26-9534-E6EC2BF98821"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="3131698B-6E40-C86C-D9A1-64AC31086BFE" name="TEMA_PK">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>TEMA_PK</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:11 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="FD94BA48-E585-A643-C2CE-D063976253FA"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="8AC0B817-4D39-5F59-35CD-72506301FF4A" name="TEMA_UN">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>TEMA_UN</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:11 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="6CE7809F-226C-6F3A-9B8B-58C6DE4CFE71"/>
+<colUsage columnID="0A0884B5-DB49-91C1-E4CF-40615C432C06"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="5467DF9F-54B2-3DC4-441B-F671284C9988" name="TEMA_ENTI_FK">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:12 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="0A0884B5-DB49-91C1-E4CF-40615C432C06"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="28932F6D-EC04-E70D-772E-14DF294ADA47" name="TEMA_RELA_FK">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:12 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="21624179-B20C-B48A-ACF7-A5A2AF2D34C2"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="305AD57A-8C62-129B-E509-8B1F1318209B" name="tema_tabl_FK">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:12 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="6CE7809F-226C-6F3A-9B8B-58C6DE4CFE71"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+<tableCheckConstraints itemClass="oracle.dbtools.crest.model.design.constraint.TableLevelConstraint">
+<tableCheckConstraint name="FKArc_5" directorySegmentName="seg_1" id="86B9D62B-5B97-8A73-E08D-4AEE92327F34">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>FKArc_5</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:11 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<rule><![CDATA[[TEMA_RELA_ID] IS NOT NULL AND [TEMA_ENTI_ID] IS NULL OR [TEMA_ENTI_ID] IS NOT NULL AND [TEMA_RELA_ID] IS NULL OR [TEMA_RELA_ID] IS NULL AND [TEMA_ENTI_ID] IS NULL]]></rule>
+</tableCheckConstraint>
+</tableCheckConstraints>
+</Table>

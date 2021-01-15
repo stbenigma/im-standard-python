@@ -1,0 +1,19 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="01F71C86-53E7-E6C9-C2D8-BC41E93EE565" containerWithKeyObject="37C4E51A-C325-056A-E510-B8AA5473966E" localFKIndex="053435C8-6F24-2E38-928D-0E8DF6A5E8F2" name="ELER_DIAG_FK">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>ELER_DIAG_FK</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:15 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<referredTableLongName>modelmodel_dbo.DIAGRAMS</referredTableLongName>
+<deleteRule>CASCADE</deleteRule>
+<referredTableID>8D0DC331-2462-97EE-F5DD-2337467C712B</referredTableID>
+<keyObject>AC1C56EA-89E3-87AE-D082-6AA2D234243D</keyObject>
+<referredKeyID>AC1C56EA-89E3-87AE-D082-6AA2D234243D</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>DIAG_ID</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

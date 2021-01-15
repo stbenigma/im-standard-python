@@ -1,0 +1,84 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxySqlServerv2k5 class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k5.TableProxySqlServerv2k5" name="PHYSICAL_UNIT" directorySegmentName="seg_0" id="87A44C33-44AF-233A-CD1B-6ED0A4225CD2">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:08 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<schemaObject>833E4DE4-2E61-95B8-D681-1740D7FACB7C</schemaObject>
+<database>F882837E-36FB-2009-38C2-1F82ED2F7BB1</database>
+<filegroup>B5085ECB-8936-7A63-9779-77515397EA4F</filegroup>
+<schema>1</schema>
+<columnProxies>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k12.ColumnProxySqlServerv2k12" name="PHYU_UM" id="2A35540B-DBAB-3AB7-A1DF-76FA42C0E2B1">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:08 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<collation>SQL_Latin1_General_CP1_CI_AS</collation>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k12.ColumnProxySqlServerv2k12" name="PHYU_DM" id="59BBFD38-6C47-99F2-1758-75B7E9A62BC5">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:08 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k12.ColumnProxySqlServerv2k12" name="PHYU_ID" id="6B28FDB3-3419-D838-6DC7-BAD03DB2B9E7">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:08 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<asIdentity>true</asIdentity>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k12.ColumnProxySqlServerv2k12" name="PHYU_UC" id="95AA4184-6BCA-B44F-E933-991D8BD31125">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:08 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<collation>SQL_Latin1_General_CP1_CI_AS</collation>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k12.ColumnProxySqlServerv2k12" name="PHYU_DC" id="9B1C2022-AB54-C2AC-AB2C-9BE1B13F705B">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:08 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k12.ColumnProxySqlServerv2k12" name="PHYU_SI_UNIT" id="A2A15F9C-4E97-641E-C619-BF69C56CA16F">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:08 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<collation>SQL_Latin1_General_CP1_CI_AS</collation>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k12.ColumnProxySqlServerv2k12" name="PHYU_NAME" id="BC5C301D-3CF6-8FED-15B2-0EA28FE4F053">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:08 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<collation>SQL_Latin1_General_CP1_CI_AS</collation>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k12.ColumnProxySqlServerv2k12" name="PHYU_DESCR" id="C7CC553E-D5BB-E21D-6506-0CE2E38E12C4">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:08 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<collation>SQL_Latin1_General_CP1_CI_AS</collation>
+</ColumnProxy>
+</columnProxies>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k5.PKProxySqlServerv2k5" name="PHYU_PK" id="939F680F-6B60-EC53-8476-A5865DF84D54">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:09 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<clustered>true</clustered>
+<fileGroup>B5085ECB-8936-7A63-9779-77515397EA4F</fileGroup>
+<recomputeStatistics>NO</recomputeStatistics>
+</PrimaryKey>
+</primaryKeys>
+<uniqueKeys>
+<UniqueKey class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k5.UniqueProxySqlServerv2k5" name="PHYU_UK_NAME" id="64C4BC56-1A98-21ED-58D1-2C9964604AA7">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:09 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<fileGroup>B5085ECB-8936-7A63-9779-77515397EA4F</fileGroup>
+<recomputeStatistics>NO</recomputeStatistics>
+</UniqueKey>
+<UniqueKey class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k5.UniqueProxySqlServerv2k5" name="PHYU_UK_SI" id="B95DF56E-BAB1-8208-AC27-0F619907AB64">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:09 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<fileGroup>B5085ECB-8936-7A63-9779-77515397EA4F</fileGroup>
+<recomputeStatistics>NO</recomputeStatistics>
+</UniqueKey>
+</uniqueKeys>
+</TableProxySqlServerv2k5>

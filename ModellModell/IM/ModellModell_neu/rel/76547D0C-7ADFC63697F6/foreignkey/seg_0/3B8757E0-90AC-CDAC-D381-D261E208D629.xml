@@ -1,0 +1,19 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="3B8757E0-90AC-CDAC-D381-D261E208D629" containerWithKeyObject="3FDEBD75-1ADF-DBD0-9049-1AD28026840C" localFKIndex="8A6B925C-D25E-ADB9-9F43-76B237EBFF0C" name="DOCU_DOCU_FK">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>DOCU_DOCU_FK</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:14 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<referredTableLongName>modelmodel_dbo.DOCUMENTS</referredTableLongName>
+<deleteRule>RESTRICT</deleteRule>
+<referredTableID>3FDEBD75-1ADF-DBD0-9049-1AD28026840C</referredTableID>
+<keyObject>4402451A-E70E-D228-2187-E38006750697</keyObject>
+<referredKeyID>4402451A-E70E-D228-2187-E38006750697</referredKeyID>
+<mandatory>false</mandatory>
+<refColNames>DOCU_ID</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>
