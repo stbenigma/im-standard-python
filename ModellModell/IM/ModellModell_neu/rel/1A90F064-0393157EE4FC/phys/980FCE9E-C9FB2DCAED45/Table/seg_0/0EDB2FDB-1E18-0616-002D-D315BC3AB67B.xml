@@ -1,0 +1,29 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxySqlServerv2k5 class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k5.TableProxySqlServerv2k5" name="LINESEGMENTS" directorySegmentName="seg_0" id="0EDB2FDB-1E18-0616-002D-D315BC3AB67B">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 09:48:06 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<database>DB_NULLELEMENT</database>
+<foreignKeys>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k5.FKProxySqlServerv2k5" name="LISE_BEDA_FK" id="2DC3FEE4-A147-80C2-2849-15445C58183A">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 10:54:14 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+</ForeignKey>
+</foreignKeys>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k5.PKProxySqlServerv2k5" name="LISE_PK" id="55C422BA-D008-B91C-B068-4618D3CB695A">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 09:48:06 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<clustered>true</clustered>
+</PrimaryKey>
+</primaryKeys>
+<uniqueKeys>
+<UniqueKey class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k5.UniqueProxySqlServerv2k5" name="LISE__UN" id="F446404D-16BB-1695-54EF-7BA1BE2D9861">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 09:48:06 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+</UniqueKey>
+</uniqueKeys>
+</TableProxySqlServerv2k5>

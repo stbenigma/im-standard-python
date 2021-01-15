@@ -2,14 +2,7 @@
 <Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="1A2BD7DD-DE7A-C8E0-C1A6-B282BC7AD488" name="Beziehung">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:03:22 UTC</createdTime>
-<comment><![CDATA[Verbindung zweier Entitäten mit Assoziationstext, Optionalität und Abbildungstyp
-
-Die in anderen Darstellungsarten gebräuchlichen Beziehungen können aus  Optionalität und Abbildungstyp hergeleitet werden
-0-1	Optional  - 1
-1-1	Pflicht - 1
-0-many	Optional - many
-1-many	Pflicht - many]]></comment>
-<notes><![CDATA[[DE_ENTI_COMMENT[
+<comment><![CDATA[[DE_ENTI_COMMENT[
 Verbindung zweier Entitäten mit Assoziationstext, Optionalität und Abbildungstyp
 
 Die in anderen Darstellungsarten gebräuchlichen Beziehungen können aus  Optionalität und Abbildungstyp hergeleitet werden
@@ -19,7 +12,36 @@ Die in anderen Darstellungsarten gebräuchlichen Beziehungen können aus  Option
 1-many	Pflicht - many
 ]DE_ENTI_COMMENT]
 [EN_ENTI_COMMENT[
-*Connection of two entities with association text, optionality and mapping type The relationships common in other mapping types can be derived from optionality and mapping type 0-1 Optional - 1 1-1 Mandatory - 1 0-many Optional - many 1-many Mandatory - many
+*Connection of two entities with association text, optionality and mapping type The relationships common in other mapping types can be derived from optionality and mapping type 
+0-1 Optional - 1 
+1-1 Mandatory - 1
+0-many Optional - many 
+1-many Mandatory - many
+]EN_ENTI_COMMENT]]]></comment>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+[DE_ENTI_COMMENT[
+Verbindung zweier Entitäten mit Assoziationstext, Optionalität und Abbildungstyp
+
+Die in anderen Darstellungsarten gebräuchlichen Beziehungen können aus  Optionalität und Abbildungstyp hergeleitet werden
+0-1	Optional  - 1
+1-1	Pflicht - 1
+0-many	Optional - many
+1-many	Pflicht - many
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+*Connection of two entities with association text, optionality and mapping type The relationships common in other mapping types can be derived from optionality and mapping type 
+0-1 Optional - 1 
+1-1 Mandatory - 1
+0-many Optional - many 
+1-many Mandatory - many
+]EN_ENTI_COMMENT]
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+*Connection of two entities with association text, optionality and mapping type The relationships common in other mapping types can be derived from optionality and mapping type 
+0-1 Optional - 1 
+1-1 Mandatory - 1
+0-many Optional - many 
+1-many Mandatory - many
 ]EN_ENTI_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -45,11 +67,21 @@ Die in anderen Darstellungsarten gebräuchlichen Beziehungen können aus  Option
 <property name="DE_ENTI_NAME" value="Beziehung"/>
 <property name="EN_ENTI_COMMENT" value="*DE* Verbindung zweier Entitäten mit Assoziationstext, Optionalität und Abbildungstyp  Die in anderen Darstellungsarten gebräuchlichen Beziehungen können aus  Optionalität und Abbildungstyp hergeleitet werden 0-1 Optional  - 1 1-1 Pflicht - 1 0-many Optional - many 1-many Pflicht - many"/>
 <property name="EN_ENTI_NAME" value="Relation"/>
+<property name="maxzoollevel" value="5"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Name" id="DC165AED-1B6F-9175-5AFC-DBF4746B44C1">
 <createdBy>stb</createdBy>
 <createdTime>2020-08-09 08:38:53 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
@@ -60,6 +92,13 @@ Die in anderen Darstellungsarten gebräuchlichen Beziehungen können aus  Option
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Name"/>
+<property name="EN_ATTR_NAME" value="Name"/>
+<property name="isdescriptive" value="TRUE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
+</propertyMap>
 </Attribute>
 <Attribute name="Assoziation von-zu [L]" id="93E4AEB1-CDE7-BE32-08A9-69005DF6DCE6">
 <createdBy>stb</createdBy>
@@ -90,6 +129,9 @@ What connects the von-Entity with the zu-Entity?
 <property name="DE_ATTR_NAME" value="Assoziation von-zu [L]"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Was verbindet die von-Entität mit der zu-Entität"/>
 <property name="EN_ATTR_NAME" value="Association from - to [L]"/>
+<property name="isdescriptive" value="TRUE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 <Attribute name="ist Pflichtbeziehung (von-zu)" id="B40FF3B9-9767-0A70-69A7-ACFD691C863F">
@@ -120,11 +162,21 @@ zu entity must have at least 1 connection to the von entity
 <property name="DE_ATTR_NAME" value="ist Pflichtbeziehung (von-zu)"/>
 <property name="EN_ATTR_COMMENT" value="*DE* zu-Entität muss mind. 1 eine Verbindung zur von-Entität haben"/>
 <property name="EN_ATTR_NAME" value="is mandatory relationship (from-to)"/>
+<property name="isdescriptive" value="TRUE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Kardinalität (von-zu)" id="75E9E35B-50BE-E5D5-04D0-42F7FD152CF8">
 <createdBy>stb</createdBy>
 <createdTime>2020-08-09 08:55:11 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
@@ -135,6 +187,13 @@ zu entity must have at least 1 connection to the von entity
 <logicalDatatype>LOGDT025</logicalDatatype>
 <domain>58A81D94-A2AD-3DA7-4B9E-471B043185E0</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Kardinalität (von-zu)"/>
+<property name="EN_ATTR_NAME" value="Cardinality (from-to)"/>
+<property name="isdescriptive" value="TRUE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
+</propertyMap>
 </Attribute>
 <Attribute name="ist historisiert (von-zu)" id="1E36DCA0-76E2-56AD-EF01-89C5018C176A">
 <createdBy>stb</createdBy>
@@ -166,6 +225,9 @@ JA -> Beziehung kann über die Zeit ändern. Zu einem Zeitpunkt kann nur 1 Bezie
 <property name="DE_ATTR_NAME" value="ist historisiert (von-zu)"/>
 <property name="EN_ATTR_COMMENT" value="*DE* JA -&gt; Beziehung kann über die Zeit ändern. Zu einem Zeitpunkt kann nur 1 Beziehung gelten. System muss Historie der Änderungen führen. Über Extratabelle zu lösen."/>
 <property name="EN_ATTR_NAME" value="is historicized (from-to)"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Assoziation zu-von [L]" id="E9CA93D1-2370-608F-1110-DD808A33330A">
@@ -197,6 +259,9 @@ What connects the zu-Entity with the von-Entity?
 <property name="DE_ATTR_NAME" value="Assoziation zu-von [L]"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Was verbindet die zu-Entität mit der von-Entität"/>
 <property name="EN_ATTR_NAME" value="Association to -of [L]"/>
+<property name="isdescriptive" value="TRUE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 <Attribute name="ist Pflichtbeziehung (zu-von)" id="AC6E8F36-4CF3-84E9-BC7D-6087863A5795">
@@ -227,11 +292,21 @@ from entity must have at least 1 connection to the to entity
 <property name="DE_ATTR_NAME" value="ist Pflichtbeziehung (zu-von)"/>
 <property name="EN_ATTR_COMMENT" value="*DE* von-Entität muss mind. 1 eine Verbindung zur zu-Entität haben"/>
 <property name="EN_ATTR_NAME" value="is mandatory relationship (to-from)"/>
+<property name="isdescriptive" value="TRUE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Kardinalität (zu-von)" id="911817A3-45CC-DE97-59DD-885EEDD20093">
 <createdBy>stb</createdBy>
 <createdTime>2020-08-09 08:55:34 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
@@ -242,6 +317,13 @@ from entity must have at least 1 connection to the to entity
 <logicalDatatype>LOGDT025</logicalDatatype>
 <domain>58A81D94-A2AD-3DA7-4B9E-471B043185E0</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Kardinalität (zu-von)"/>
+<property name="EN_ATTR_NAME" value="Cardinality (to-from)"/>
+<property name="isdescriptive" value="TRUE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
+</propertyMap>
 </Attribute>
 <Attribute name="ist historisiert (zu-von)" id="4177015A-E678-ED44-2B5E-3A00ED42B33E">
 <createdBy>stb</createdBy>
@@ -273,6 +355,9 @@ JA -> Beziehung kann über die Zeit ändern. Zu einem Zeitpunkt kann nur 1 Bezie
 <property name="DE_ATTR_NAME" value="ist historisiert (zu-von)"/>
 <property name="EN_ATTR_COMMENT" value="*DE* JA -&gt; Beziehung kann über die Zeit ändern. Zu einem Zeitpunkt kann nur 1 Beziehung gelten. System muss Historie der Änderungen führen. Über Extratabelle zu lösen."/>
 <property name="EN_ATTR_NAME" value="is historicized (to-from)"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 </attributes>

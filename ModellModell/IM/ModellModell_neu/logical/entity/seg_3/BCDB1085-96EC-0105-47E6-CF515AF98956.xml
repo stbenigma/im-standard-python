@@ -34,9 +34,13 @@ Language according to ISO 629-1,2,3 An alternative output allows to output a tex
 <propertyMap>
 <property name="DE_ENTI_COMMENT" value="Sprache gemäss ISO 629-1,2,3  Eine alternative Ausgabe, erlaubt es, einen Text zu dem eine Übersetzung fehlt in einer Default-Sprache auszugeben."/>
 <property name="DE_ENTI_NAME" value="Sprache"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
 <property name="EN_ENTI_COMMENT" value="*DE* Sprache gemäss ISO 629-1,2,3  Eine alternative Ausgabe, erlaubt es, einen Text zu dem eine Übersetzung fehlt in einer Default-Sprache auszugeben."/>
 <property name="EN_ENTI_NAME" value="Language"/>
 <property name="EN_ENTI_SYNONYM" value=""/>
+<property name="maxzoollevel" value="5"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="ISO Name" id="8777DE31-2F15-E42B-98E9-ED740C53EDC0">
@@ -66,6 +70,9 @@ english ISO standard name
 <property name="DE_ATTR_NAME" value="ISO Name"/>
 <property name="EN_ATTR_COMMENT" value="*DE* englischer ISO Standardname"/>
 <property name="EN_ATTR_NAME" value="ISO name"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 <Attribute name="ISO Code2" id="53F2CC5D-BE6A-306B-8C10-78FB4C7A38A3">
@@ -99,6 +106,9 @@ english ISO standard name
 <property name="DE_ATTR_NAME" value="ISO Code2"/>
 <property name="EN_ATTR_COMMENT" value="*DE* 2-Stelliger ISO-Code"/>
 <property name="EN_ATTR_NAME" value="ISO Code2"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 <Attribute name="ISO Code3" id="1882C8B7-E9D6-50B3-C8F6-3126FC156797">
@@ -132,6 +142,9 @@ english ISO standard name
 <property name="DE_ATTR_NAME" value="ISO Code3"/>
 <property name="EN_ATTR_COMMENT" value="*DE* 3-stelliger ISO-Code"/>
 <property name="EN_ATTR_NAME" value="ISO Code3"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Textsprache (J/N)" id="4675FDBB-AB85-8DCC-3400-29E9167210F7">
@@ -161,6 +174,9 @@ Language can be used for translation of texts
 <property name="DE_ATTR_NAME" value="Textsprache (J/N)"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Sprache kann für Übersetzung von Texten verwendet werden"/>
 <property name="EN_ATTR_NAME" value="Text language (Y/N)"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Modellsprache (J/N)" id="95A45732-1A57-397B-3C90-7CE0438316F5">
@@ -190,6 +206,9 @@ Basic language in which the model is documented.
 <property name="DE_ATTR_NAME" value="Modellsprache (J/N)"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Basissprache in der das Modell dokumentiert ist."/>
 <property name="EN_ATTR_NAME" value="Model language (Y/N)"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 </attributes>

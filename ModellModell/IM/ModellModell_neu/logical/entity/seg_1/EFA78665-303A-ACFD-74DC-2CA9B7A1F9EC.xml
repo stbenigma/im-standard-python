@@ -13,7 +13,6 @@ Kommentar als eigenes Symbol auf einem Diagramm.
 ]EN_ENTI_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
-<shouldEngineer>false</shouldEngineer>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
 <item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="false"/>
@@ -36,6 +35,9 @@ Kommentar als eigenes Symbol auf einem Diagramm.
 <property name="EN_ENTI_COMMENT" value="*DE* Kommentar als eigenes Symbol auf einem Diagramm. &quot;Post It&quot; Zettel."/>
 <property name="EN_ENTI_NAME" value="Diagram comment"/>
 <property name="EN_ENTI_SYNONYM" value=""/>
+<property name="maxzoollevel" value="5"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Kommentar" id="5435F33E-1B05-93CE-0A3B-6CF639B52191">
@@ -49,7 +51,6 @@ Kommentar als eigenes Symbol auf einem Diagramm.
 ]EN_ATTR_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
-<shouldEngineer>false</shouldEngineer>
 <importedID>B41AC20C-C450-02D2-F5BD-4BF648EBD29E</importedID>
 <engineerTo>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
@@ -65,6 +66,9 @@ Kommentar als eigenes Symbol auf einem Diagramm.
 <property name="DE_ATTR_NAME" value="Kommentar"/>
 <property name="EN_ATTR_COMMENT" value=""/>
 <property name="EN_ATTR_NAME" value="Comment"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 </attributes>

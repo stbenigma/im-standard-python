@@ -1,5 +1,8 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="4A049229-48DF-87C4-4C97-618573EA45C7" schemaObject="D76C6297-28A1-045E-8726-4B50ADD673B8" name="MODELELEM_TYPE">
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="4A049229-48DF-87C4-4C97-618573EA45C7" name="MODELELEM_TYPE">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>MODELELEM_TYPE</sourceObjName>
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <comment><![CDATA[types of model elements which are subtypes of a model element
@@ -34,9 +37,14 @@ Has to contain all elements having  a subtype-FK to modelelement]]></comment>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <generatorID>55DC9BDD-F539-F988-AC4E-5A990F2763E8</generatorID>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
+<constraintName>CK__MODELELEM__MELT___725BF7F6</constraintName>
+<useDomainConstraints>false</useDomainConstraints>
 <use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <domain>0D75D1F9-839F-41DA-8464-0FF34C2F4ABB</domain>
+<checkConstraint>
+<implementationDef dbType="SQL Server 2012" definition="[MELT_SHORTNAME]=&apos;TABL&apos; OR [MELT_SHORTNAME]=&apos;SYNO&apos; OR [MELT_SHORTNAME]=&apos;RELA&apos; OR [MELT_SHORTNAME]=&apos;ORGU&apos; OR [MELT_SHORTNAME]=&apos;KEYS&apos; OR [MELT_SHORTNAME]=&apos;INTF&apos; OR [MELT_SHORTNAME]=&apos;ENTI&apos; OR [MELT_SHORTNAME]=&apos;DOMA&apos; OR [MELT_SHORTNAME]=&apos;DOCU&apos; OR [MELT_SHORTNAME]=&apos;DIAG&apos; OR [MELT_SHORTNAME]=&apos;DGRM&apos; OR [MELT_SHORTNAME]=&apos;DATY&apos; OR [MELT_SHORTNAME]=&apos;COLU&apos; OR [MELT_SHORTNAME]=&apos;BURU&apos; OR [MELT_SHORTNAME]=&apos;ATTR&apos; OR [MELT_SHORTNAME]=&apos;ARCS&apos;"/>
+</checkConstraint>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
@@ -55,14 +63,12 @@ Has to contain all elements having  a subtype-FK to modelelement]]></comment>
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
-<formulaDesc>USER</formulaDesc>
 <sourceType>System</sourceType>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
 <dataTypeSize>30 BYTE</dataTypeSize>
 <ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
-<computed>true</computed>
 <autoIncrementCycle>false</autoIncrementCycle>
 <propertyMap>
 <property name="ctemplateID" value="F7EEFF47-7A42-2A3E-7DFC-D0558D6996B8"/>

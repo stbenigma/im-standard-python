@@ -1,0 +1,275 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="F749683B-0C2C-B655-4E34-87D75281AE57" name="ORGANISATIONALUNITS">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>ORGANISATIONALUNITS</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 11:17:48 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>90F4CE61-A977-DC60-CA3C-BD6C8AC0A9E5</importedID>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ORGU_ID" id="7A6F904A-B7E7-0A01-6B6A-F3EA1A73CBD5">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>ORGANISATIONALUNITS</sourceObjSchema>
+<sourceObjName>ORGU_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 11:17:48 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>44457ADE-648B-A812-922D-E062365EB0CC</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="4CBD3311-F7CB-8787-A5F9-DAFE007C81A1" referredColumn="9698F1F3-1EBE-8770-4F8C-4FFC3465A776"/>
+</associations>
+</Column>
+<Column name="ORGU_NAME" id="B70AFE78-DD7B-650D-9CA3-5361A0A52C07">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>ORGANISATIONALUNITS</sourceObjSchema>
+<sourceObjName>ORGU_NAME</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 11:17:48 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>4FB49C20-444D-0419-774B-C239E32B8235</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypePrecision>60</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>60</dataTypeSize>
+<ownDataTypeParameters>60,60,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ORGU_DESCR" id="7430DE21-F7A4-8344-8C52-2B7640B449C5">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>ORGANISATIONALUNITS</sourceObjSchema>
+<sourceObjName>ORGU_DESCR</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 11:17:48 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>96C4F6CB-F72B-77F8-73A3-EB4351ECA906</importedID>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypePrecision>4000</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>4000</dataTypeSize>
+<ownDataTypeParameters>4000,4000,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ORGU_MAIL" id="B0A26E05-BA28-D0F2-FCFD-DB1B0BF7FF6F">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>ORGANISATIONALUNITS</sourceObjSchema>
+<sourceObjName>ORGU_MAIL</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 11:17:48 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>7CFE215D-0BA8-3162-B581-6D010C97AA55</importedID>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypePrecision>200</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>200</dataTypeSize>
+<ownDataTypeParameters>200,200,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ORGU_TELEFON" id="E7E00EE9-E546-B3EE-24EA-8E0429B8C172">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>ORGANISATIONALUNITS</sourceObjSchema>
+<sourceObjName>ORGU_TELEFON</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 11:17:48 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>102338B5-D7BD-405E-C9E8-2333DF96354C</importedID>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypePrecision>30</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>30</dataTypeSize>
+<ownDataTypeParameters>30,30,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ORGU_ADDRESS" id="85006515-3701-41EE-3B6B-966544AC2A31">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>ORGANISATIONALUNITS</sourceObjSchema>
+<sourceObjName>ORGU_ADDRESS</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 11:17:48 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>850F2F8B-AF71-590B-B3E1-E083A968ED9B</importedID>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypePrecision>4000</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>4000</dataTypeSize>
+<ownDataTypeParameters>4000,4000,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ORGU_ORGU_ID" id="60211EEC-D5BF-1E28-FD4F-98A482B0F79E">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>ORGANISATIONALUNITS</sourceObjSchema>
+<sourceObjName>ORGU_ORGU_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 11:17:48 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>997DDA8C-9F49-B245-D7A3-1C896C886A92</importedID>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="44761FA2-B5C6-0AA5-FB9D-2C8348A461FA" referredColumn="7A6F904A-B7E7-0A01-6B6A-F3EA1A73CBD5"/>
+</associations>
+</Column>
+<Column name="ORGU_UC" id="909B1283-28D1-8DBE-575E-5DF2ED04F8D2">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>ORGANISATIONALUNITS</sourceObjSchema>
+<sourceObjName>ORGU_UC</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 11:17:48 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>35AEC727-9873-CD96-9D81-5F9197FCF6BE</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypePrecision>30</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>30</dataTypeSize>
+<ownDataTypeParameters>30,30,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ORGU_DC" id="4A6478A3-50EF-79E8-0F73-9E643288F642">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>ORGANISATIONALUNITS</sourceObjSchema>
+<sourceObjName>ORGU_DC</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 11:17:48 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>74DFCAB3-11C1-5EC8-1FF5-0BFDCE65FDE4</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT008</logicalDatatype>
+<dataTypePrecision>23</dataTypePrecision>
+<dataTypeScale>3</dataTypeScale>
+<dataTypeSize>8</dataTypeSize>
+<ownDataTypeParameters>8,23,3</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ORGU_UM" id="6DBA8E3B-575F-7266-A056-646F327FD89F">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>ORGANISATIONALUNITS</sourceObjSchema>
+<sourceObjName>ORGU_UM</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 11:17:48 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>38C474B2-2BEA-6E09-F51B-49AED5982530</importedID>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypePrecision>30</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>30</dataTypeSize>
+<ownDataTypeParameters>30,30,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ORGU_DM" id="9B45F8E5-30B3-1BAA-A5B9-18DF3ACF77EB">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>ORGANISATIONALUNITS</sourceObjSchema>
+<sourceObjName>ORGU_DM</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 11:17:48 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>6AA7E1CA-B06B-0F3E-85A0-AF972D6807CB</importedID>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT008</logicalDatatype>
+<dataTypePrecision>23</dataTypePrecision>
+<dataTypeScale>3</dataTypeScale>
+<dataTypeSize>8</dataTypeSize>
+<ownDataTypeParameters>8,23,3</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="7E2659A3-F033-2834-7E2C-2EF7AC0F6EA0" name="ORGU_PK">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>ORGU_PK</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 11:17:48 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>CB5F7541-7076-641C-DDAE-294939C0FF9F</importedID>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="7A6F904A-B7E7-0A01-6B6A-F3EA1A73CBD5"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="7392E112-7460-60A4-276E-D67F79F2173D" name="ORGU_NAME_UN">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>ORGU_NAME_UN</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 11:17:48 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>C5BA00AF-A9E4-22C3-878F-587CDB5300F7</importedID>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="B70AFE78-DD7B-650D-9CA3-5361A0A52C07"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="4E953049-BF5E-1CEC-F735-08EF3C7629A8" name="ORGU_EMAIL_UN">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>ORGU_EMAIL_UN</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 11:17:48 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>8BF26B72-EA64-B1A9-5BF5-7E0133B01A76</importedID>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="B0A26E05-BA28-D0F2-FCFD-DB1B0BF7FF6F"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="B90BC07F-2CF5-9FF0-B155-19E30C9B4917" name="ORGU_MODE_FK">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 11:17:48 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="7A6F904A-B7E7-0A01-6B6A-F3EA1A73CBD5"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="71A4AB94-0B7D-62BB-FDB9-2689C8CF9F93" name="ORGU_ORGU_FK">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 11:17:48 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="60211EEC-D5BF-1E28-FD4F-98A482B0F79E"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

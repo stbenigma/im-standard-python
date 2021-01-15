@@ -33,6 +33,9 @@ Physical measuring unit . See also e.g. https://de.wikipedia.org/wiki/Liste_phys
 <property name="DE_ENTI_NAME" value="Physikalische Einheit"/>
 <property name="EN_ENTI_COMMENT" value="*DE* Physikalische Messeinheit . Siehe dazu z.B. https://de.wikipedia.org/wiki/Liste_physikalischer_Größen#SI-Basisgrößen_und_-einheiten"/>
 <property name="EN_ENTI_NAME" value="Physical unit"/>
+<property name="maxzoollevel" value="5"/>
+<property name="maxzoomlevel" value="1"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="SI-Einheit" id="10B2F6C3-9A2A-78A2-C064-EB3522695570">
@@ -55,14 +58,18 @@ Unit according to SI specification
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
+<domain>DD765D8A-B6DE-C725-89D4-5A0AE9EEB09A</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_COMMENT" value="Einheit gemäss SI-Vorgabe"/>
 <property name="DE_ATTR_NAME" value="SI-Einheit"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Einheit gemäss SI-Vorgabe"/>
 <property name="EN_ATTR_NAME" value="SI unit"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Name [L]" id="D110C56D-0639-36A9-856A-F50A0DB6F0FE">
@@ -83,14 +90,18 @@ Unit according to SI specification
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_COMMENT" value=""/>
 <property name="DE_ATTR_NAME" value="Name [L]"/>
 <property name="EN_ATTR_COMMENT" value=""/>
 <property name="EN_ATTR_NAME" value="Name [L]"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Beschreibung [L]" id="BE51FA69-1EC3-E4EF-DAE1-0C1845EA613C">
@@ -112,14 +123,18 @@ Unit according to SI specification
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_COMMENT" value=""/>
 <property name="DE_ATTR_NAME" value="Beschreibung [L]"/>
 <property name="EN_ATTR_COMMENT" value=""/>
 <property name="EN_ATTR_NAME" value="Description [L]"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 </attributes>

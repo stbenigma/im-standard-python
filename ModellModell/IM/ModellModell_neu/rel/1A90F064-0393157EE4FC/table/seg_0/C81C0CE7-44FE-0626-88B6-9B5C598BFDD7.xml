@@ -1,5 +1,8 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="C81C0CE7-44FE-0626-88B6-9B5C598BFDD7" schemaObject="D76C6297-28A1-045E-8726-4B50ADD673B8" name="MODELELEMENT">
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="C81C0CE7-44FE-0626-88B6-9B5C598BFDD7" name="MODELELEMENT">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>MODELELEMENT</sourceObjName>
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <comment><![CDATA[Supertype for severl model element (entites, synonyms, attributes, relationships etc.)
@@ -12,8 +15,7 @@ This is a real Supertype implmentation with corresponding PK (but no FK between 
 <ordsAlias>vorgabewertv1</ordsAlias>
 <abbreviation>MODE</abbreviation>
 <allowColumnReorder>false</allowColumnReorder>
-<existDependencyConstraintName>MODE_ARC_FK</existDependencyConstraintName>
-<existDependencyGenerationLevel>Discriminator value</existDependencyGenerationLevel>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
 <Column name="MODE_ID" id="9698F1F3-1EBE-8770-4F8C-4FFC3465A776">
@@ -35,9 +37,14 @@ This is a real Supertype implmentation with corresponding PK (but no FK between 
 <comment><![CDATA[Redundant to modelelem_type.melt_shortname.
 Helps facilitate joins.]]></comment>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
+<constraintName>CK__MODELELEM__MODE___7720AD13</constraintName>
+<useDomainConstraints>false</useDomainConstraints>
 <use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <domain>0D75D1F9-839F-41DA-8464-0FF34C2F4ABB</domain>
+<checkConstraint>
+<implementationDef dbType="SQL Server 2012" definition="[MODE_TYPE]=&apos;TABL&apos; OR [MODE_TYPE]=&apos;SYNO&apos; OR [MODE_TYPE]=&apos;RELA&apos; OR [MODE_TYPE]=&apos;ORGU&apos; OR [MODE_TYPE]=&apos;KEYS&apos; OR [MODE_TYPE]=&apos;INTF&apos; OR [MODE_TYPE]=&apos;ENTI&apos; OR [MODE_TYPE]=&apos;DOMA&apos; OR [MODE_TYPE]=&apos;DOCU&apos; OR [MODE_TYPE]=&apos;DIAG&apos; OR [MODE_TYPE]=&apos;DGRM&apos; OR [MODE_TYPE]=&apos;DATY&apos; OR [MODE_TYPE]=&apos;COLU&apos; OR [MODE_TYPE]=&apos;BURU&apos; OR [MODE_TYPE]=&apos;ATTR&apos; OR [MODE_TYPE]=&apos;ARCS&apos;"/>
+</checkConstraint>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>

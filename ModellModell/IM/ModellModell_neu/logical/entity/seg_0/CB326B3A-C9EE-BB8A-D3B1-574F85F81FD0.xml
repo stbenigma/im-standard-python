@@ -9,7 +9,6 @@ Reference of the element in an external tool (Modelling tool, Busines-Rules engi
 ]EN_ENTI_COMMENT]
 [DE_ENTI_COMMENT[
 Referenz (ID) des Elementes in einer externen Quelle (Modellierungstool, DB, etc.)
-
 ]DE_ENTI_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -31,7 +30,12 @@ Referenz (ID) des Elementes in einer externen Quelle (Modellierungstool, DB, etc
 <createSurrogateKey>true</createSurrogateKey>
 <propertyMap>
 <property name="DE_ENTI_NAME" value="Externe Referenz"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
 <property name="EN_ENTI_NAME" value="External Reference"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+<property name="maxzoollevel" value="5"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Quellenname" id="AF8EAF2B-54AB-6FEC-4BAE-AC864FF81931">
@@ -61,6 +65,9 @@ Name der externen Quelle (Beispiele:, ODM, CaseTalk,...)
 <propertyMap>
 <property name="DE_ATTR_NAME" value="Quellenname"/>
 <property name="EN_ATTR_NAME" value="Source Name"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 <Attribute name="QuellID" id="D2A9DF0B-4F81-5C7C-9FEC-C92F4AF20AAD">
@@ -89,6 +96,9 @@ ID in der externen Quelle
 <propertyMap>
 <property name="DE_ATTR_NAME" value="QuellID"/>
 <property name="EN_ATTR_NAME" value="Source ID"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 </attributes>

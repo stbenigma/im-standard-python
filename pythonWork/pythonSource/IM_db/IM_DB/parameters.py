@@ -1,5 +1,6 @@
-import os,re
-from pathlib  import Path
+import os
+import re
+from pathlib import Path
 
 """ Sammlung aller Parameter für die Verwaltung der Datenbank und aller Tools"""
 MODELNAME:str = 'odmmodelname'
@@ -255,7 +256,7 @@ def odmtabledirec(newval=None):
         parameter['odmtabledirec'] = newval
 def odmdomainsdirec(newval=None):
     if newval is None:
-        return parameter['odmdomainsdirec']
+        return odmIMDirec()+odmModelName()+'/'+parameter['odmdomainsdirec']
     else:
         parameter['odmdomainsdirec'] = newval
 def odmsubviewsdirec(newval=None):

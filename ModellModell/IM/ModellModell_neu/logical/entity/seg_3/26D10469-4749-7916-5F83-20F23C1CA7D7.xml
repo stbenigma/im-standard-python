@@ -38,8 +38,13 @@ Attribut in einem System, das mit anderen Systemen ausgetauscht werden soll.
 <propertyMap>
 <property name="DE_ENTI_COMMENT" value=" Attribut in einem System, das mit anderen Systemen ausgetauscht werden soll.  Datentyp, Format und Constraints können in div. Sprachen und Dialekten geführ werden   SQL (mit dialekt)   Jason   XML "/>
 <property name="DE_ENTI_NAME" value="Schnittstellentabelle"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
 <property name="EN_ENTI_COMMENT" value="*DE*  Attribut in einem System, das mit anderen Systemen ausgetauscht werden soll.  Datentyp, Format und Constraints können in div. Sprachen und Dialekten geführ werden   SQL (mit dialekt)   Jason   XML "/>
 <property name="EN_ENTI_NAME" value="*Interface attribute"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+<property name="maxzoollevel" value="5"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Tabellenname" id="D00D2708-0ED0-AC79-8747-5A4FE816B34B">
@@ -60,14 +65,18 @@ Attribut in einem System, das mit anderen Systemen ausgetauscht werden soll.
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_COMMENT" value=""/>
 <property name="DE_ATTR_NAME" value="Tabellenname"/>
 <property name="EN_ATTR_COMMENT" value=""/>
 <property name="EN_ATTR_NAME" value="Table name"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Beschreibung" id="AD753C72-2D71-EF5C-75E9-A88AB26F7627">
@@ -96,6 +105,9 @@ Description of the attribute in the external system
 <property name="DE_ATTR_NAME" value="Beschreibung"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Beschreibung des Attributes im Fremdsystem"/>
 <property name="EN_ATTR_NAME" value="Description of the"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Auslöseart" id="BA5F5573-3DDE-F05C-2FC0-5D5ECA6D3FA0">
@@ -119,14 +131,18 @@ Type of triggering of transformation (mutation, period, manual)
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>55CB11A1-3EFC-3253-465C-D58D3D8252AD</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_COMMENT" value="Art der Auslösung der Transformation (Mutation, Periode, Manuell)"/>
 <property name="DE_ATTR_NAME" value="Auslöseart"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Art der Auslösung der Transformation (Mutation, Periode, Manuell)"/>
 <property name="EN_ATTR_NAME" value="Trigger type"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Auslöseperiodizität" id="7FD45920-D307-E1A7-359E-16EBD60B52CA">
@@ -149,14 +165,18 @@ Daily, every 2 minutes or similar. Mandatory if the trigger type is Time.
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
+<domain>FEA1A894-BD6D-FEF8-423C-6857A9D694A1</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_COMMENT" value="Täglich, alle 2 Minuten o.ä. Obligatorisch, falls die Auslöseart Zeitpunkt ist."/>
 <property name="DE_ATTR_NAME" value="Auslöseperiodizität"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Täglich, alle 2 Minuten o.ä. Obligatorisch, falls die Auslöseart Zeitpunkt ist."/>
 <property name="EN_ATTR_NAME" value="Trigger frequency"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 </attributes>

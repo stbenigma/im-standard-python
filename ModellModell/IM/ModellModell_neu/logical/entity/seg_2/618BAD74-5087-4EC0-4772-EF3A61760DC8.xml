@@ -45,8 +45,13 @@ Elements that can be used in the model and displayed in diagrams Examples: Entit
 <propertyMap>
 <property name="DE_ENTI_COMMENT" value="Elemente die im Modell verwendet und in diagrammen dargestellt werden können  Beispiele: Entitäten Beziehungen Akteurrolle UseCase Betreiber Hersteller"/>
 <property name="DE_ENTI_NAME" value="Modellelementtyp"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
 <property name="EN_ENTI_COMMENT" value="*DE* Elemente die im Modell verwendet und in diagrammen dargestellt werden können  Beispiele: Entitäten Beziehungen Akteurrolle UseCase Betreiber Hersteller"/>
 <property name="EN_ENTI_NAME" value="Model element type"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+<property name="maxzoollevel" value="5"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Name" id="06DB3BE4-BAF4-5F38-1D72-2496C25302A0">
@@ -76,6 +81,9 @@ Elements that can be used in the model and displayed in diagrams Examples: Entit
 <property name="DE_ATTR_NAME" value="Name"/>
 <property name="EN_ATTR_COMMENT" value=""/>
 <property name="EN_ATTR_NAME" value="Name"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Kurzname" id="904DB764-5D3A-4CCF-D2E7-17D77F12D8BF">
@@ -83,7 +91,7 @@ Elements that can be used in the model and displayed in diagrams Examples: Entit
 <createdTime>2020-08-21 07:15:31 UTC</createdTime>
 <comment><![CDATA[3-5 buchstabiger Kurzname für z.B. LOV's etc.]]></comment>
 <notes><![CDATA[[DE_ATTR_COMMENT[
-*3-5 buchstabiger Kurzname für z.B. LOV's etc.
+3-5 buchstabiger Kurzname für z.B. LOV's etc.
 ]DE_ATTR_COMMENT]
 [EN_ATTR_COMMENT[
 3-5 letter short name to used in LOV's etc.
@@ -102,9 +110,12 @@ Elements that can be used in the model and displayed in diagrams Examples: Entit
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_COMMENT" value=""/>
-<property name="DE_ATTR_NAME" value="*Name"/>
+<property name="DE_ATTR_NAME" value="Kurzname"/>
 <property name="EN_ATTR_COMMENT" value=""/>
 <property name="EN_ATTR_NAME" value="Short Name"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Beschreibung" id="A1D89CB3-B3B6-51AA-D329-7441CBD0C365">
@@ -131,9 +142,12 @@ Elements that can be used in the model and displayed in diagrams Examples: Entit
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_COMMENT" value=""/>
-<property name="DE_ATTR_NAME" value="Kurzname"/>
+<property name="DE_ATTR_NAME" value="Beschreibung"/>
 <property name="EN_ATTR_COMMENT" value=""/>
 <property name="EN_ATTR_NAME" value="Description"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 </attributes>

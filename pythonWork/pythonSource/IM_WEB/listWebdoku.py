@@ -109,7 +109,7 @@ def printlistofcontent(plang):
                     ,'name': "{} ({})".format(value['name'][plang]
                                     ,str(len(value['usedinattrs+'])
                                          +len(value['usedincols+'])))}
-                    for key,value in printHTML.origindomains().items()]
+                    for key,value in printHTML.origindomains(pintfid=None).items()]
                 ,key=lambda val:val['name'])
     printHTML.printlistofcontentelement(pname='Wertebereiche', plist=idxlist)
 
@@ -164,7 +164,7 @@ def printcontent(pfirma,ptitel):
     printHTML.printcontenthead(pfirma=pfirma,ptitel=ptitel)
     printHTML.printcontententi()
     printHTML.printcontentattr()
-    printHTML.printcontentdoma()
+    printHTML.printcontentdoma(pdomains=printHTML.origindomains(pintfid=None))
     printHTML.printcontentdoku()
     printHTML.printcontentorgu()
     #printHTML.printcontentmapping(ptheme=parameters.odmUDPMappingFileName())

@@ -11,7 +11,7 @@
 <useSurrogateKey>true</useSurrogateKey>
 <identifying>false</identifying>
 <nameOnSource>besitzt</nameOnSource>
-<nameOnTarget>besessen von</nameOnTarget>
+<nameOnTarget>im Besitz von</nameOnTarget>
 <optionalSource>true</optionalSource>
 <optionalTarget>true</optionalTarget>
 <sourceCardinality>*</sourceCardinality>
@@ -22,7 +22,9 @@
 <propertyMap>
 <property name="DE_RELA_TEXT_FROM" value="besitzt"/>
 <property name="DE_RELA_TEXT_TO" value="besessen von"/>
-<property name="EN_RELA_TEXT_FROM" value="**owns"/>
-<property name="EN_RELA_TEXT_TO" value="**obsessed with"/>
+<property name="EN_RELA_TEXT_FROM" value="owns"/>
+<property name="EN_RELA_TEXT_TO" value="obsessed with"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Relation>

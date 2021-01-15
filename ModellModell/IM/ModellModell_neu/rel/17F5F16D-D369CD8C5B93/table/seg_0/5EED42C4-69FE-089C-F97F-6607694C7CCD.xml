@@ -1,0 +1,145 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="5EED42C4-69FE-089C-F97F-6607694C7CCD" schemaObject="BA9AB875-9DE2-0270-F892-66DA7F318378" name="t_attributeconstraints">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>t_attributeconstraints</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:53:59 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Object_ID" id="1E799004-1C95-4D3B-0212-17516BC1CCAE">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_attributeconstraints</sourceObjSchema>
+<sourceObjName>Object_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:53:59 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>4</dataTypeSize>
+<usesDefaultValue>true</usesDefaultValue>
+<defaultValue>(0)</defaultValue>
+<ownDataTypeParameters>4,10,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Constraint" id="5B4B31E3-F236-C2CB-4810-8889B43266BE">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_attributeconstraints</sourceObjSchema>
+<sourceObjName>Constraint</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:53:59 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypePrecision>255</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>255</dataTypeSize>
+<ownDataTypeParameters>255,255,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="AttName" id="1F421969-A2F2-8B94-FA75-E4F2E7014466">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_attributeconstraints</sourceObjSchema>
+<sourceObjName>AttName</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:53:59 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypePrecision>255</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>255</dataTypeSize>
+<ownDataTypeParameters>255,255,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Type" id="C7116FCC-EC6C-54E2-393D-B4102D4E1421">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_attributeconstraints</sourceObjSchema>
+<sourceObjName>Type</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:53:59 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypePrecision>255</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>255</dataTypeSize>
+<ownDataTypeParameters>255,255,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Notes" id="89CFBFBA-A780-33A8-BB3C-E8FF6DB3158B">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_attributeconstraints</sourceObjSchema>
+<sourceObjName>Notes</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:53:59 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypePrecision>-1</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>max</dataTypeSize>
+<ownDataTypeParameters>max,-1,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ID" id="75289C10-89F7-5852-78F5-2EE2074D5C5B">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_attributeconstraints</sourceObjSchema>
+<sourceObjName>ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:53:59 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>4</dataTypeSize>
+<ownDataTypeParameters>4,10,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="9C073BCA-E1E2-0119-BA80-50EE621507B4" name="pk_attributeconstraints">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>pk_attributeconstraints</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:53:59 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="75289C10-89F7-5852-78F5-2EE2074D5C5B"/>
+<colUsage columnID="5B4B31E3-F236-C2CB-4810-8889B43266BE"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="A0816E61-F437-57F2-8FE2-4A8FDBEC234F" name="ix_attributeconstraints_objid">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>ix_attributeconstraints_objid</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:53:59 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="1E799004-1C95-4D3B-0212-17516BC1CCAE"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -1,0 +1,140 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="B90DDAB9-D566-7718-7C05-B7D570C6E41A" schemaObject="BA9AB875-9DE2-0270-F892-66DA7F318378" name="t_roleconstraint">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>t_roleconstraint</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:55:25 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ConnectorID" id="4859C9DA-8553-2DD0-22DE-23643FE1A5D4">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_roleconstraint</sourceObjSchema>
+<sourceObjName>ConnectorID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:55:26 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>4</dataTypeSize>
+<usesDefaultValue>true</usesDefaultValue>
+<defaultValue>(0)</defaultValue>
+<ownDataTypeParameters>4,10,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Constraint" id="7C1F332D-F7E4-29A9-8A04-9B3BFF84E16F">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_roleconstraint</sourceObjSchema>
+<sourceObjName>Constraint</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:55:26 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypePrecision>255</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>255</dataTypeSize>
+<ownDataTypeParameters>255,255,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ConnectorEnd" id="B79BAAE8-42B8-E946-B46D-9F5AD5CFFC58">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_roleconstraint</sourceObjSchema>
+<sourceObjName>ConnectorEnd</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:55:26 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypePrecision>50</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,50,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ConstraintType" id="45AC8644-394B-E2DA-B262-7E3796903FDF">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_roleconstraint</sourceObjSchema>
+<sourceObjName>ConstraintType</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:55:26 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypePrecision>12</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>12</dataTypeSize>
+<ownDataTypeParameters>12,12,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Notes" id="B27B4D1A-A8E5-27D0-3905-0FA250C9CA36">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_roleconstraint</sourceObjSchema>
+<sourceObjName>Notes</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:55:26 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypePrecision>-1</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>max</dataTypeSize>
+<ownDataTypeParameters>max,-1,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="6E35DCC6-A0D3-8FCA-90EB-F116DDA0D668" name="pk_roleconstraint">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>pk_roleconstraint</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:55:28 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="4859C9DA-8553-2DD0-22DE-23643FE1A5D4"/>
+<colUsage columnID="7C1F332D-F7E4-29A9-8A04-9B3BFF84E16F"/>
+<colUsage columnID="B79BAAE8-42B8-E946-B46D-9F5AD5CFFC58"/>
+<colUsage columnID="45AC8644-394B-E2DA-B262-7E3796903FDF"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="68172452-F50E-8416-8674-7F2E65D47471" name="ix_roleconstraint_connectorid">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>ix_roleconstraint_connectorid</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:55:26 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="4859C9DA-8553-2DD0-22DE-23643FE1A5D4"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="BD1DF4CA-D5B7-1530-1F5C-775E32379D2B" name="ix_roleconstraint_constraint">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>ix_roleconstraint_constraint</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:55:27 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="7C1F332D-F7E4-29A9-8A04-9B3BFF84E16F"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

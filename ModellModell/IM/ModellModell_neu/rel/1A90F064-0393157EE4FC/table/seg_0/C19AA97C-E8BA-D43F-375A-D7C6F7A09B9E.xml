@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="C19AA97C-E8BA-D43F-375A-D7C6F7A09B9E" schemaObject="D76C6297-28A1-045E-8726-4B50ADD673B8" name="SYNONYMS">
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="C19AA97C-E8BA-D43F-375A-D7C6F7A09B9E" name="SYNONYMS">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <comment><![CDATA[Synonyms(-name) for entity-names.
@@ -63,7 +63,6 @@ Subtype of MODELELEMENT. SYNO_ID is always identical to the corresponding MODE_I
 <logicalDatatype>LOGDT024</logicalDatatype>
 <dataTypeSize>30 BYTE</dataTypeSize>
 <ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
-<computed>true</computed>
 <autoIncrementCycle>false</autoIncrementCycle>
 <propertyMap>
 <property name="ctemplateID" value="F7EEFF47-7A42-2A3E-7DFC-D0558D6996B8"/>

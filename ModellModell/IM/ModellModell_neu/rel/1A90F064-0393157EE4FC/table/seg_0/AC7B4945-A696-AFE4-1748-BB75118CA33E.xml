@@ -1,5 +1,8 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
 <Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="AC7B4945-A696-AFE4-1748-BB75118CA33E" name="DATATYPES">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>DATATYPES</sourceObjName>
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <comment><![CDATA[Irgend eine Komponente die mit Informations Technologie zu tun hat und beschafft, betrieben und betreut  werden muss.
@@ -50,12 +53,9 @@ Jede IT-Komponente hat einen Hersteller. D.h. es handelt sich um konkrete Produk
 <use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
-<listOfValues>
-<valueDef value="BINARY" description=""/>
-<valueDef value="DATETIME" description=""/>
-<valueDef value="NUMERIC" description=""/>
-<valueDef value="STRING" description=""/>
-</listOfValues>
+<checkConstraint>
+<implementationDef dbType="SQL Server 2012" definition="[DATY_BASETYPE]=&apos;STRING&apos; OR [DATY_BASETYPE]=&apos;NUMERIC&apos; OR [DATY_BASETYPE]=&apos;DATETIME&apos; OR [DATY_BASETYPE]=&apos;BINARY&apos;"/>
+</checkConstraint>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
@@ -68,7 +68,6 @@ Jede IT-Komponente hat einen Hersteller. D.h. es handelt sich um konkrete Produk
 <logicalDatatype>LOGDT024</logicalDatatype>
 <dataTypeSize>30 BYTE</dataTypeSize>
 <ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
-<computed>true</computed>
 <autoIncrementCycle>false</autoIncrementCycle>
 <propertyMap>
 <property name="ctemplateID" value="F7EEFF47-7A42-2A3E-7DFC-D0558D6996B8"/>

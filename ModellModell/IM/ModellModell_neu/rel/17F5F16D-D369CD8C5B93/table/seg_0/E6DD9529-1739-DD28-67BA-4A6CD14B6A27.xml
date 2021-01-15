@@ -1,0 +1,473 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="E6DD9529-1739-DD28-67BA-4A6CD14B6A27" schemaObject="BA9AB875-9DE2-0270-F892-66DA7F318378" name="t_rtfreport">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>t_rtfreport</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:55:33 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="TemplateID" id="8688001C-E805-9D94-FC8E-E46C10352843">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_rtfreport</sourceObjSchema>
+<sourceObjName>TemplateID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:55:34 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypePrecision>200</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>200</dataTypeSize>
+<ownDataTypeParameters>200,200,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="RootPackage" id="A0E44A45-D97D-5C43-1775-14423200BD3F">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_rtfreport</sourceObjSchema>
+<sourceObjName>RootPackage</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:55:34 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>4</dataTypeSize>
+<usesDefaultValue>true</usesDefaultValue>
+<defaultValue>(0)</defaultValue>
+<ownDataTypeParameters>4,10,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Filename" id="3F10F287-D279-A121-0803-713812375E55">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_rtfreport</sourceObjSchema>
+<sourceObjName>Filename</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:55:34 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypePrecision>255</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>255</dataTypeSize>
+<ownDataTypeParameters>255,255,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Details" id="E0DF5713-6D14-BF24-A373-F2483481D7C7">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_rtfreport</sourceObjSchema>
+<sourceObjName>Details</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:55:34 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>4</dataTypeSize>
+<usesDefaultValue>true</usesDefaultValue>
+<defaultValue>(0)</defaultValue>
+<ownDataTypeParameters>4,10,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ProcessChildren" id="626B6DD6-4A1A-5903-FB19-7B7B25FCBF43">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_rtfreport</sourceObjSchema>
+<sourceObjName>ProcessChildren</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:55:34 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>4</dataTypeSize>
+<usesDefaultValue>true</usesDefaultValue>
+<defaultValue>(0)</defaultValue>
+<ownDataTypeParameters>4,10,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ShowDiagrams" id="FB3550E2-2927-DB3B-CDB6-B0A5FA2F108E">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_rtfreport</sourceObjSchema>
+<sourceObjName>ShowDiagrams</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:55:34 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>4</dataTypeSize>
+<usesDefaultValue>true</usesDefaultValue>
+<defaultValue>(0)</defaultValue>
+<ownDataTypeParameters>4,10,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Heading" id="740622B8-AC4E-3182-4044-60032936D321">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_rtfreport</sourceObjSchema>
+<sourceObjName>Heading</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:55:34 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypePrecision>255</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>255</dataTypeSize>
+<ownDataTypeParameters>255,255,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Requirements" id="53C340E8-9D8B-DF0A-9B5D-9918073960CC">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_rtfreport</sourceObjSchema>
+<sourceObjName>Requirements</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:55:34 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>4</dataTypeSize>
+<usesDefaultValue>true</usesDefaultValue>
+<defaultValue>(0)</defaultValue>
+<ownDataTypeParameters>4,10,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Associations" id="F16DC438-F38E-97E6-C3CF-E6E93E36ADE7">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_rtfreport</sourceObjSchema>
+<sourceObjName>Associations</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:55:34 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>4</dataTypeSize>
+<usesDefaultValue>true</usesDefaultValue>
+<defaultValue>(0)</defaultValue>
+<ownDataTypeParameters>4,10,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Scenarios" id="55744F3F-49E3-AF99-6FFA-D9C6950DA6D0">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_rtfreport</sourceObjSchema>
+<sourceObjName>Scenarios</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:55:34 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>4</dataTypeSize>
+<usesDefaultValue>true</usesDefaultValue>
+<defaultValue>(0)</defaultValue>
+<ownDataTypeParameters>4,10,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ChildDiagrams" id="82D138A1-3DF2-BA6B-0967-E4999D613386">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_rtfreport</sourceObjSchema>
+<sourceObjName>ChildDiagrams</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:55:34 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>4</dataTypeSize>
+<usesDefaultValue>true</usesDefaultValue>
+<defaultValue>(0)</defaultValue>
+<ownDataTypeParameters>4,10,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Attributes" id="D2BB15C0-D39B-AADD-F079-A8A993587925">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_rtfreport</sourceObjSchema>
+<sourceObjName>Attributes</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:55:34 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>4</dataTypeSize>
+<usesDefaultValue>true</usesDefaultValue>
+<defaultValue>(0)</defaultValue>
+<ownDataTypeParameters>4,10,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Methods" id="704D8B2E-95CF-9A4E-05DE-3EA5AC6B79D6">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_rtfreport</sourceObjSchema>
+<sourceObjName>Methods</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:55:34 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>4</dataTypeSize>
+<usesDefaultValue>true</usesDefaultValue>
+<defaultValue>(0)</defaultValue>
+<ownDataTypeParameters>4,10,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ImageType" id="847B1928-55E0-135F-B03D-EAD6227AC7D4">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_rtfreport</sourceObjSchema>
+<sourceObjName>ImageType</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:55:34 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>4</dataTypeSize>
+<usesDefaultValue>true</usesDefaultValue>
+<defaultValue>(0)</defaultValue>
+<ownDataTypeParameters>4,10,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Paging" id="AF537863-057D-1547-ABCF-1CD09AFEEC39">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_rtfreport</sourceObjSchema>
+<sourceObjName>Paging</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:55:34 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>4</dataTypeSize>
+<usesDefaultValue>true</usesDefaultValue>
+<defaultValue>(0)</defaultValue>
+<ownDataTypeParameters>4,10,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Intro" id="1A0A3452-4105-0AE7-F570-A0E9D827083F">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_rtfreport</sourceObjSchema>
+<sourceObjName>Intro</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:55:34 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypePrecision>-1</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>max</dataTypeSize>
+<ownDataTypeParameters>max,-1,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Resources" id="4A3311DF-7EAC-E519-8EF7-80E0735A11A1">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_rtfreport</sourceObjSchema>
+<sourceObjName>Resources</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:55:34 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>4</dataTypeSize>
+<usesDefaultValue>true</usesDefaultValue>
+<defaultValue>(1)</defaultValue>
+<ownDataTypeParameters>4,10,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Constraints" id="8FE6311F-A403-862B-2EDE-6B8473303263">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_rtfreport</sourceObjSchema>
+<sourceObjName>Constraints</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:55:34 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>4</dataTypeSize>
+<usesDefaultValue>true</usesDefaultValue>
+<defaultValue>(1)</defaultValue>
+<ownDataTypeParameters>4,10,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Tagged" id="54D32C80-E950-64DF-B109-6D79B2C3C514">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_rtfreport</sourceObjSchema>
+<sourceObjName>Tagged</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:55:34 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>4</dataTypeSize>
+<usesDefaultValue>true</usesDefaultValue>
+<defaultValue>(0)</defaultValue>
+<ownDataTypeParameters>4,10,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ShowTag" id="6B2A8605-5BE0-AAA4-1EBA-24C66BC22E98">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_rtfreport</sourceObjSchema>
+<sourceObjName>ShowTag</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:55:34 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>4</dataTypeSize>
+<usesDefaultValue>true</usesDefaultValue>
+<defaultValue>(0)</defaultValue>
+<ownDataTypeParameters>4,10,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ShowAlias" id="E41CEED7-F559-F603-25B8-5612FB191B40">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_rtfreport</sourceObjSchema>
+<sourceObjName>ShowAlias</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:55:34 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>4</dataTypeSize>
+<usesDefaultValue>true</usesDefaultValue>
+<defaultValue>(0)</defaultValue>
+<ownDataTypeParameters>4,10,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="PDATA1" id="23D2C79E-8789-96C2-FCD0-46825494F160">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_rtfreport</sourceObjSchema>
+<sourceObjName>PDATA1</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:55:34 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypePrecision>255</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>255</dataTypeSize>
+<ownDataTypeParameters>255,255,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="PDATA2" id="A91E3EFF-104F-994B-EBD0-DA12705AA5EA">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_rtfreport</sourceObjSchema>
+<sourceObjName>PDATA2</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:55:34 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypePrecision>255</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>255</dataTypeSize>
+<ownDataTypeParameters>255,255,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="PDATA3" id="7265315A-0087-CAA5-0087-2EBCB036EA86">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_rtfreport</sourceObjSchema>
+<sourceObjName>PDATA3</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:55:34 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypePrecision>255</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>255</dataTypeSize>
+<ownDataTypeParameters>255,255,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="PDATA4" id="AB998EA0-B354-070C-6280-8DE635BA8892">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_rtfreport</sourceObjSchema>
+<sourceObjName>PDATA4</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:55:34 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypePrecision>-1</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>max</dataTypeSize>
+<ownDataTypeParameters>max,-1,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="849A9662-0F47-1316-4009-BCAEA2217CAC" name="pk_rtfreport">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>pk_rtfreport</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:55:36 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="8688001C-E805-9D94-FC8E-E46C10352843"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -11,7 +11,9 @@ Person in einer Organisationseinheit  die für die Definition oder Pflege eines 
 ]EN_ENTI_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <engineerTo>
+<item key="17F5F16D-4CB1-2968-618E-D369CD8C5B93" value="true"/>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
 <item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="false"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
@@ -29,10 +31,11 @@ Person in einer Organisationseinheit  die für die Definition oder Pflege eines 
 <propertyMap>
 <property name="DE_ENTI_COMMENT" value="Person in einer Organisationseinheit  die für die Definition oder Pflege eines Attributwertes verantwortlich ist. "/>
 <property name="DE_ENTI_NAME" value="Person"/>
-<property name="DE_ENTI_SYNONYM" value=""/>
 <property name="EN_ENTI_COMMENT" value="*DE* Person in einer Organisationseinheit  die für die Definition oder Pflege eines Attributwertes verantwortlich ist. "/>
 <property name="EN_ENTI_NAME" value="*Contact for"/>
-<property name="EN_ENTI_SYNONYM" value=""/>
+<property name="maxzoollevel" value="5"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Name" id="C765B990-F386-0289-786D-F89B00635DC1">
@@ -46,19 +49,26 @@ Person in einer Organisationseinheit  die für die Definition oder Pflege eines 
 ]EN_ATTR_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <engineerTo>
+<item key="17F5F16D-4CB1-2968-618E-D369CD8C5B93" value="true"/>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
 <item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="false"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>4655A975-6C53-BBE1-01B9-D658AD7C5FC5</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_COMMENT" value=""/>
 <property name="DE_ATTR_NAME" value="Name"/>
 <property name="EN_ATTR_COMMENT" value=""/>
 <property name="EN_ATTR_NAME" value="Name"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Vorname" id="F8A14BDB-3A39-CCB0-13FC-A493F0E9B83C">
@@ -72,22 +82,29 @@ Person in einer Organisationseinheit  die für die Definition oder Pflege eines 
 ]EN_ATTR_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <engineerTo>
+<item key="17F5F16D-4CB1-2968-618E-D369CD8C5B93" value="true"/>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
 <item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="false"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>4655A975-6C53-BBE1-01B9-D658AD7C5FC5</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_COMMENT" value=""/>
 <property name="DE_ATTR_NAME" value="Vorname"/>
 <property name="EN_ATTR_COMMENT" value=""/>
 <property name="EN_ATTR_NAME" value="First name"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
-<Attribute name="eMail" id="E39B881E-DC71-F6BC-D691-E866257879EB">
+<Attribute name="persänliche eMail" id="E39B881E-DC71-F6BC-D691-E866257879EB">
 <createdBy>stb</createdBy>
 <createdTime>2020-05-06 15:52:30 UTC</createdTime>
 <notes><![CDATA[[DE_ATTR_COMMENT[
@@ -98,19 +115,26 @@ Person in einer Organisationseinheit  die für die Definition oder Pflege eines 
 ]EN_ATTR_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <engineerTo>
+<item key="17F5F16D-4CB1-2968-618E-D369CD8C5B93" value="true"/>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
 <item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="false"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>4B4F8F40-D3A4-4F39-8CB3-BB6C57534E96</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_COMMENT" value=""/>
 <property name="DE_ATTR_NAME" value="eMail"/>
 <property name="EN_ATTR_COMMENT" value=""/>
 <property name="EN_ATTR_NAME" value="email"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Geburtsdatum" id="31561F53-1D68-81BB-2B57-2709D2C70D8F">
@@ -124,7 +148,9 @@ Person in einer Organisationseinheit  die für die Definition oder Pflege eines 
 ]EN_ATTR_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <engineerTo>
+<item key="17F5F16D-4CB1-2968-618E-D369CD8C5B93" value="true"/>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
 <item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="false"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
@@ -134,7 +160,10 @@ Person in einer Organisationseinheit  die für die Definition oder Pflege eines 
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_NAME" value="Geburtsdatum"/>
-<property name="EN_ATTR_NAME" value="**Date of birth"/>
+<property name="EN_ATTR_NAME" value="Date of birth"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Geschlecht" id="168F6A90-9ED6-B749-58AC-09F8A10BD7DB">
@@ -148,7 +177,9 @@ Person in einer Organisationseinheit  die für die Definition oder Pflege eines 
 ]EN_ATTR_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <engineerTo>
+<item key="17F5F16D-4CB1-2968-618E-D369CD8C5B93" value="true"/>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
 <item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="false"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
@@ -158,7 +189,10 @@ Person in einer Organisationseinheit  die für die Definition oder Pflege eines 
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_NAME" value="Geschlecht"/>
-<property name="EN_ATTR_NAME" value="**Gender"/>
+<property name="EN_ATTR_NAME" value="Gender"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 </attributes>

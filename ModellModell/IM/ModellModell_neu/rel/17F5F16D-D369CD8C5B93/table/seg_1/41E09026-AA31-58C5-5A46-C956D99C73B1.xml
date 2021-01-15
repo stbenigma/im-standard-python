@@ -1,0 +1,62 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_1" id="41E09026-AA31-58C5-5A46-C956D99C73B1" schemaObject="BA9AB875-9DE2-0270-F892-66DA7F318378" name="t_secpolicies">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>t_secpolicies</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:56:07 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Property" id="06BDB6F1-C666-51B1-DC1D-97F0346DDF90">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_secpolicies</sourceObjSchema>
+<sourceObjName>Property</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:56:07 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypePrecision>100</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>100</dataTypeSize>
+<ownDataTypeParameters>100,100,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Value" id="999EA165-F83C-9112-C445-26C8391AD00D">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_secpolicies</sourceObjSchema>
+<sourceObjName>Value</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:56:07 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypePrecision>255</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>255</dataTypeSize>
+<ownDataTypeParameters>255,255,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="DD07C478-6086-BA46-F85C-2BDA285C8E29" name="pk_secpolicies">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>pk_secpolicies</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:56:09 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="06BDB6F1-C666-51B1-DC1D-97F0346DDF90"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

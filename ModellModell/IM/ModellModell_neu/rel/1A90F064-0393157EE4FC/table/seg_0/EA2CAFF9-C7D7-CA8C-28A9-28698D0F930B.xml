@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="EA2CAFF9-C7D7-CA8C-28A9-28698D0F930B" schemaObject="D76C6297-28A1-045E-8726-4B50ADD673B8" name="ARCS">
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="EA2CAFF9-C7D7-CA8C-28A9-28698D0F930B" name="ARCS">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <comment><![CDATA[Arcs bundle relationships emerging from one entity together. Only one of the relationships set at a given timepoint.
@@ -65,7 +65,6 @@ Subtype of MODELELEMENT. ARCS_ID is always identical to the corresponding MODE_I
 <logicalDatatype>LOGDT024</logicalDatatype>
 <dataTypeSize>30 BYTE</dataTypeSize>
 <ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
-<computed>true</computed>
 <autoIncrementCycle>false</autoIncrementCycle>
 <propertyMap>
 <property name="ctemplateID" value="F7EEFF47-7A42-2A3E-7DFC-D0558D6996B8"/>

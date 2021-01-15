@@ -46,6 +46,9 @@ Beispiele:
 <property name="EN_ENTI_COMMENT" value="*DE* Archetyp einer Person mit einem bestimmten Verhalten in einem bestimmten Umfeld: Bei Firmen ist die Persona z.B. ein Einkäufer, ein Broker, ein Händler  oder ein Managementmitglied.  Beispiele:  Harry Hartmann  Lily AmHerd  Martin Muster"/>
 <property name="EN_ENTI_NAME" value="Persona"/>
 <property name="EN_ENTI_SYNONYM" value=""/>
+<property name="maxzoollevel" value="5"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Name" id="6DC596E4-FD61-7F31-611C-79B8AA549CEA">
@@ -70,7 +73,10 @@ Beispiele:
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_NAME" value="Name"/>
-<property name="EN_ATTR_NAME" value="**Name"/>
+<property name="EN_ATTR_NAME" value="Name"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Alter" id="D171B78B-14E1-D9FE-0355-DDBA4FAD449F">
@@ -95,7 +101,10 @@ Beispiele:
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_NAME" value="Alter"/>
-<property name="EN_ATTR_NAME" value="**Age"/>
+<property name="EN_ATTR_NAME" value="Age"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 <Attribute name=" Familienstand" id="5D7E3488-7E96-B366-DE03-A08C5C8E77C4">
@@ -120,7 +129,10 @@ Beispiele:
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_NAME" value=" Familienstand"/>
-<property name="EN_ATTR_NAME" value="** Marital status"/>
+<property name="EN_ATTR_NAME" value=" Marital status"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Berufsgruppe" id="D8720AFA-1C9F-CB68-11AE-EAE70FFDFA81">
@@ -145,7 +157,10 @@ Beispiele:
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_NAME" value="Berufsgruppe"/>
-<property name="EN_ATTR_NAME" value="**Professional group"/>
+<property name="EN_ATTR_NAME" value="Professional group"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Sprache" id="854EA269-B11C-8067-705B-BB88C28DCF62">
@@ -170,7 +185,10 @@ Beispiele:
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_NAME" value="Sprache"/>
-<property name="EN_ATTR_NAME" value="**Language"/>
+<property name="EN_ATTR_NAME" value="Language"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Religion" id="14F6BC6A-3125-642C-A7C5-112EA740102B">
@@ -195,7 +213,10 @@ Beispiele:
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_NAME" value="Religion"/>
-<property name="EN_ATTR_NAME" value="**Religion"/>
+<property name="EN_ATTR_NAME" value="Religion"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Wohnsituation" id="0EDD099F-CF32-B1C5-E146-9AA4CDF358E1">
@@ -220,7 +241,10 @@ Beispiele:
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_NAME" value="Wohnsituation"/>
-<property name="EN_ATTR_NAME" value="**Housing situation"/>
+<property name="EN_ATTR_NAME" value="Housing situation"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 </attributes>

@@ -1,5 +1,8 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="45E227D1-6297-8407-A748-B47A48170198" schemaObject="D76C6297-28A1-045E-8726-4B50ADD673B8" name="DOMAINGROUP_MEMBERS">
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="45E227D1-6297-8407-A748-B47A48170198" name="DOMAINGROUP_MEMBERS">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>DOMAINGROUP_MEMBERS</sourceObjName>
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 15:43:05 UTC</createdTime>
 <comment><![CDATA[There are attributes, consisting of elements, but in the entity they are treated like one attribute.
@@ -64,13 +67,19 @@ Or they can be implemented as compound (structured) type, it the dbms allows thi
 <createdBy>stb</createdBy>
 <createdTime>2020-08-02 14:55:15 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
+<constraintName>CK__DOMAINGRO__DGRM___29E1370A</constraintName>
+<useDomainConstraints>false</useDomainConstraints>
 <use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
+<checkConstraint>
+<implementationDef dbType="SQL Server 2012" definition="[DGRM_IS_MANDATORY]=&apos;TRUE&apos; OR [DGRM_IS_MANDATORY]=&apos;FALSE&apos;"/>
+</checkConstraint>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
 <Column name="DGRM_DOMA_ID_GROUP" id="37B7F7C4-52BF-89F5-A4E9-01DBB024E6FE">
+<sourceDDLFile>domains.sql</sourceDDLFile>
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 15:43:05 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -88,6 +97,7 @@ Or they can be implemented as compound (structured) type, it the dbms allows thi
 </associations>
 </Column>
 <Column name="DGRM_DOMA_ID_MEMBER" id="AE736B96-FF28-B6C0-FB17-B1DFE85E93C7">
+<sourceDDLFile>domains.sql</sourceDDLFile>
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 15:43:05 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>

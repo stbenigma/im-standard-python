@@ -43,7 +43,25 @@ Logistik
 Customer Services
 ]DE_ENTI_COMMENT]
 [EN_ENTI_COMMENT[
-Defines the context in which the model (and thus the terms and their definition) is valid.  ATTENTION: Between 2 models in different business areas there can be no connections of entities, value ranges and dependent elements, since the definitions of the terms only apply in the respective context of the business area.
+Business task, type, area of business functions and applications carried out as part of a company's value chain and processes.
+
+Business areas are typically responsible for 1 or more applications (utilities, tools, applications, tools) and business transactions and processes. They have sovereignty over the information / data needed / managed in the functions used by the division.
+
+A business unit determines
+- Who creates records for an entity?
+- Who determines changes / quality etc.?
+
+They often correspond to administrative organisational units (departments, business units). However, they are not organised from an administrative or local perspective but from a business task perspective.
+
+Examples:
+Finance
+R&D
+Production
+Sales
+Marketing
+HR
+Logistics
+Customer Services
 ]EN_ENTI_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -69,6 +87,9 @@ Defines the context in which the model (and thus the terms and their definition)
 <property name="DE_ENTI_SYNONYM" value="Hoheitsbereich, Geschäftsfeld, Aufgabenbereich, Geschäftsbereich"/>
 <property name="EN_ENTI_NAME" value="Business division"/>
 <property name="EN_ENTI_SYNONYM" value="Area of sovereignty, business field, area of responsibility, business area"/>
+<property name="maxzoollevel" value="5"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Name" id="C5008C78-3422-F6A1-AF57-B39DC0E800AA">
@@ -90,14 +111,18 @@ Business division name
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_COMMENT" value="Name eines Geschäftsbereichs"/>
 <property name="DE_ATTR_NAME" value="Name"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Name eines Geschäftsbereichs"/>
 <property name="EN_ATTR_NAME" value="Name"/>
+<property name="isdescriptive" value="TRUE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Beschreibung" id="08FB331F-CDDD-76BA-0134-3FF3402C6964">
@@ -120,14 +145,18 @@ Significance, delimitation of the business area
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_COMMENT" value="Bedeutung, Abgrenzung des Geschäftsbereichs"/>
 <property name="DE_ATTR_NAME" value="Beschreibung"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Bedeutung, Abgrenzung des Geschäftsbereichs"/>
 <property name="EN_ATTR_NAME" value="Description of the"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 <Attribute name="AnzName [L]" id="D02AC34E-FFE0-B386-6286-928E22CE8C3D">
@@ -149,14 +178,18 @@ Name of the entity normally used in communication.
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_COMMENT" value="Name der Entität der in der Kommunikation normalerweise gebraucht wird."/>
 <property name="DE_ATTR_NAME" value="AnzName [L]"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Name der Entität der in der Kommunikation normalerweise gebraucht wird."/>
 <property name="EN_ATTR_NAME" value="*Name [L]"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Zweck" id="127F9269-A2C4-91BE-65F7-1A829F3B76F2">
@@ -179,14 +212,18 @@ Application area (ERP, PIM, FiBu etc.)
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_COMMENT" value="Anwendungsgebiet (ERP, PIM, FiBu etc.)"/>
 <property name="DE_ATTR_NAME" value="Zweck"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Anwendungsgebiet (ERP, PIM, FiBu etc.)"/>
 <property name="EN_ATTR_NAME" value="Purpose"/>
+<property name="isdescriptive" value="TRUE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 </attributes>

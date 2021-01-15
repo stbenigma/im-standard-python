@@ -67,6 +67,9 @@ Beispiele:
 <property name="EN_ENTI_COMMENT" value="*DE* Definiert eine Einheit, die für eine sinnvoll zusammenfassbare Gruppe von Informationen, Prozesse und Systemen zuständig ist. Ein Hoheitsbereich kümmert sich um eine bestimmte Art von Aufgaben im Unternehmen. Es ist ein Aufgabenbereich. Häufig entsprechen Hoheitsbereiche den Divisionen, Geschäftsbereichen oder Sparten d.h. der Organisationeinheinheit auf der obersten Stufe.  Dies ist aber nur eine mögliche Lösung.  Hoheitsbereich bestimmt - Wer erstellt Datensätze zu einer Entität. - Wer bestimmt über Änderungen / Qualität etc. - Wer verwendet die Informationen dieser Entität haupstächlich - ??  ACHTUNG: Es sollten KEINE technischen Aufteilungen (Systeme, Technologie, Medien) für die Unterscheidung verwendet werden, da diese  häufiger ändern können. Es geht um die semantische Hoheit über die Informationen.  Beispiele:   Management   Recruting   Accounting   Manufacturing   Repairing   Consulting   Projektleitung   Support "/>
 <property name="EN_ENTI_NAME" value="*Business function"/>
 <property name="EN_ENTI_SYNONYM" value="*Business function"/>
+<property name="maxzoollevel" value="5"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Name [L]" id="8A13C6EC-B600-0669-8262-D48EE1400A21">
@@ -88,14 +91,18 @@ Name of the jurisdiction
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_COMMENT" value="Name des Hoheitsbereichs"/>
 <property name="DE_ATTR_NAME" value="Name [L]"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Name des Hoheitsbereichs"/>
 <property name="EN_ATTR_NAME" value="Name [L]"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Beschreibung [L]" id="B514EFDD-A8B0-F3F8-A1AE-BC17D14C67FD">
@@ -118,14 +125,18 @@ Significance, delimitation, use of the sovereign area
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_COMMENT" value="Bedeutung, Abgrenzunf, Nutzung des Hoheitsbereichs"/>
 <property name="DE_ATTR_NAME" value="Beschreibung [L]"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Bedeutung, Abgrenzunf, Nutzung des Hoheitsbereichs"/>
 <property name="EN_ATTR_NAME" value="Description [L]"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 </attributes>

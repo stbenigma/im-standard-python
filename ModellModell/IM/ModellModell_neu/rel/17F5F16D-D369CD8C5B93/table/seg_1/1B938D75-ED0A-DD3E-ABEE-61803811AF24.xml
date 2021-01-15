@@ -1,0 +1,63 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_1" id="1B938D75-ED0A-DD3E-ABEE-61803811AF24" schemaObject="BA9AB875-9DE2-0270-F892-66DA7F318378" name="t_secgrouppermission">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>t_secgrouppermission</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:55:53 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="GroupID" id="6CA99312-01FC-D240-34DB-21F4602511FE">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_secgrouppermission</sourceObjSchema>
+<sourceObjName>GroupID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:55:54 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypePrecision>40</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>40</dataTypeSize>
+<ownDataTypeParameters>40,40,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="PermissionID" id="C651E7B2-9EC3-EF98-F5E0-D136D8ADFF6A">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_secgrouppermission</sourceObjSchema>
+<sourceObjName>PermissionID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:55:54 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>4</dataTypeSize>
+<ownDataTypeParameters>4,10,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="9FD45C4B-5F5D-D550-B12A-A93E7B65181B" name="pk_secgrouppermission">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>pk_secgrouppermission</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:55:55 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="6CA99312-01FC-D240-34DB-21F4602511FE"/>
+<colUsage columnID="C651E7B2-9EC3-EF98-F5E0-D136D8ADFF6A"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

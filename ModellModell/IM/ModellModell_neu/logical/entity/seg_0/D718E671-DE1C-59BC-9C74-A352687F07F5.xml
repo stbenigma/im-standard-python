@@ -46,6 +46,9 @@ The definition is used as a reference for all those who want to work with this i
 <property name="EN_ENTI_COMMENT" value="*DE* Beschreibung eines Trägers einers Wertes. Dieses Attribut ist die gültige Single Source of Truth des konzeptionellen Modells.   Es ist nicht zwingend notwendig, dass dieses Attribut in dieser Form in einem der Systeme verwaltet wird. Die Definition gilt als Referenz für alle, die mit dieser Information arbeiten wollen  "/>
 <property name="EN_ENTI_NAME" value="Attribute"/>
 <property name="EN_ENTI_SYNONYM" value="Characteristic, property"/>
+<property name="maxzoollevel" value="5"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Attributmame" id="FD95360A-BA62-DA9C-BB95-FACB2DAA42D4">
@@ -68,14 +71,18 @@ Name that says something about the role, use of the property in the entity. Freq
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_COMMENT" value="Name, der etwas über die Rolle, Verwendung der Eigenschaft in der Entität aussagt. Häufig = Domänenname"/>
 <property name="DE_ATTR_NAME" value="Attributmame"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Name, der etwas über die Rolle, Verwendung der Eigenschaft in der Entität aussagt. Häufig = Domänenname"/>
 <property name="EN_ATTR_NAME" value="Attribute name"/>
+<property name="isdescriptive" value="TRUE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Anzeigename [L]" id="D671B7D6-E0E4-CEA8-D0AC-0176E92E398A">
@@ -99,14 +106,18 @@ Entity short name for use from heading, in references
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_COMMENT" value="Kurzbezeichnung der Entität für die Verwendung aus Überschrift, in Referenzen "/>
 <property name="DE_ATTR_NAME" value="Anzeigename [L]"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Kurzbezeichnung der Entität für die Verwendung aus Überschrift, in Referenzen "/>
 <property name="EN_ATTR_NAME" value="Display name [L]"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Anzeigereihenfolge" id="C13DFCC3-15A3-5A60-B4D3-774EED4DB6D8">
@@ -130,14 +141,18 @@ Display sequence on diagrams, in reports. Empty-> attribute is sorted by name at
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
+<domain>39B01BA7-C3D2-D42E-5518-83CB3845A63D</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_COMMENT" value="Riehenfolge der Anzeige auf Diagrammen, in Reports. Leer-&gt; Attribut kommt nach Name sortiert an den Schluss einer Liste"/>
 <property name="DE_ATTR_NAME" value="Anzeigereihenfolge"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Riehenfolge der Anzeige auf Diagrammen, in Reports. Leer-&gt; Attribut kommt nach Name sortiert an den Schluss einer Liste"/>
 <property name="EN_ATTR_NAME" value="Display sequence"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Beschreibung [L]" id="99E8BB00-BBEF-744D-71AC-51A096FBA509">
@@ -160,14 +175,18 @@ Display sequence on diagrams, in reports. Empty-> attribute is sorted by name at
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_COMMENT" value=""/>
 <property name="DE_ATTR_NAME" value="Beschreibung [L]"/>
 <property name="EN_ATTR_COMMENT" value=""/>
 <property name="EN_ATTR_NAME" value="Description [L]"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Tooltip [L]" id="0BBDE4F2-63A6-4791-B481-FD6B43F8832A">
@@ -191,14 +210,18 @@ Display in masks to explain the use, editing, and usage of the attribute value
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_COMMENT" value="Anzeige in Masken für die Erläuterung der Nutzung, Bearbeitung, Verwendung des Attributwertes"/>
 <property name="DE_ATTR_NAME" value="Tooltip [L]"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Anzeige in Masken für die Erläuterung der Nutzung, Bearbeitung, Verwendung des Attributwertes"/>
 <property name="EN_ATTR_NAME" value="Tooltip [L]"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 <Attribute name="ist Pflichtattribut" id="83FD3270-5591-5C02-8C26-FC7D8F8A919C">
@@ -221,14 +244,18 @@ YES -> The field must contain a value.
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_COMMENT" value="JA -&gt; Das Feld muss einen Wert enthalten."/>
 <property name="DE_ATTR_NAME" value="ist Pflichtattribut"/>
 <property name="EN_ATTR_COMMENT" value="*DE* JA -&gt; Das Feld muss einen Wert enthalten."/>
 <property name="EN_ATTR_NAME" value="is a mandatory attribute"/>
+<property name="isdescriptive" value="TRUE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 <Attribute name="ist Deskriptorfeld" id="2D6966DD-444B-8888-A156-C26786F6CC55">
@@ -251,14 +278,18 @@ The attribute characterizes the entity and is important for its understanding
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_COMMENT" value="Das Attribut charakterisiert die Entität und ist wichtig für ihr Verständnis"/>
 <property name="DE_ATTR_NAME" value="ist Deskriptorfeld"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Das Attribut charakterisiert die Entität und ist wichtig für ihr Verständnis"/>
 <property name="EN_ATTR_NAME" value="is descriptor field"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 <Attribute name="ist Wiederholattribut" id="83723ADA-A469-11DC-EF3A-669B22D8B209">
@@ -285,14 +316,18 @@ YES -> The field can contain several values.  NO -> Field contains a maximum of 
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_COMMENT" value="JA -&gt; Das Feld kann mehere Werte enthalten.  NEIN -&gt; Feld enthält maximal einen Wert. Kann  über Extratabelle gelöst werden."/>
 <property name="DE_ATTR_NAME" value="ist Wiederholattribut"/>
 <property name="EN_ATTR_COMMENT" value="*DE* JA -&gt; Das Feld kann mehere Werte enthalten.  NEIN -&gt; Feld enthält maximal einen Wert. Kann  über Extratabelle gelöst werden."/>
 <property name="EN_ATTR_NAME" value="is repeat attribute"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 <Attribute name="ist sprachabhängig" id="DDCFCDB2-7AB7-412C-B51C-0AC394FB422E">
@@ -317,14 +352,18 @@ YES -> The field value can occur in several languages. Solve via extra table lin
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_COMMENT" value="JA -&gt; Der Feldwert kann in mehreren Sprachen vorkommen. Über Extratabelle die mit Sprachen verknüpft ist lösen"/>
 <property name="DE_ATTR_NAME" value="ist sprachabhängig"/>
 <property name="EN_ATTR_COMMENT" value="*DE* JA -&gt; Der Feldwert kann in mehreren Sprachen vorkommen. Über Extratabelle die mit Sprachen verknüpft ist lösen"/>
 <property name="EN_ATTR_NAME" value="is language-dependent"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 <Attribute name="ist historisiert" id="F0293A84-FBC9-F2DB-8418-AE96DAC6B881">
@@ -349,14 +388,18 @@ YES -> The field value can change over time. The history must be managed in the 
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_COMMENT" value="JA -&gt; Der Feldwert kann über die Zeit ändern, Die Historie muss im System verwaltet werden. Zu einem Zeitpunkt kann nur 1 Wert gültig sein. Über Extratabelle verknüpft ist lösen"/>
 <property name="DE_ATTR_NAME" value="ist historisiert"/>
 <property name="EN_ATTR_COMMENT" value="*DE* JA -&gt; Der Feldwert kann über die Zeit ändern, Die Historie muss im System verwaltet werden. Zu einem Zeitpunkt kann nur 1 Wert gültig sein. Über Extratabelle verknüpft ist lösen"/>
 <property name="EN_ATTR_NAME" value="is historicized"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 <Attribute name="ist verschlüsselt" id="819A5993-997C-ECD2-FF4A-5E337B7D9CDB">
@@ -381,14 +424,18 @@ YES -> The field must be encrypted in storage and transport NO -> Field is not e
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_COMMENT" value="JA -&gt; Das Feld muss in Speicherung und Transport verschlüsselt werden NEIN -&gt; Feld wird nicht verschlüsselt "/>
 <property name="DE_ATTR_NAME" value="ist verschlüsselt"/>
 <property name="EN_ATTR_COMMENT" value="*DE* JA -&gt; Das Feld muss in Speicherung und Transport verschlüsselt werden NEIN -&gt; Feld wird nicht verschlüsselt "/>
 <property name="EN_ATTR_NAME" value="is encrypted"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 </attributes>

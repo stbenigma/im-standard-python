@@ -2,12 +2,19 @@
 <Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="A23E6C38-310F-4379-F953-0B04C1A4B16F" name="Entität">
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:03:22 UTC</createdTime>
-<comment><![CDATA[Ding das uns interessiert im systemübergreifenden, konsolidierten, konzeptionellen Modell eines Unternehmens]]></comment>
+<comment><![CDATA[Bezeichnet etwas, das existiert, ein Ding, ein greifbares oder abstraktes Objekt mit Eigenschaften und Beziehungen.
+Ding von Interesse in der betrachteten Umgebung / Miniwelt.
+Sie ist eine IT-System- und Technologie-unabhängige, konsolidierte Beschreibung der Struktur und Bedeutung des interessierenden Dings.
+
+Eine Entität kann wiederum aus einzelnen Teilen (Attributen, Unterentitäten, Beziehungen, etc.) bestehen ; entsprechend dem Begriff Holon oder Ganzes/Teil.]]></comment>
 <notes><![CDATA[[DE_ENTI_COMMENT[
 Ding das uns interessiert im systemübergreifenden, konsolidierten, konzeptionellen Modell eines Unternehmens
 ]DE_ENTI_COMMENT]
 [EN_ENTI_COMMENT[
-Thing of interest  in the IT-system independent, consolidated, conceptual model of a company
+Designates something that exists, a being, a tangible or abstract object with properties and relationships.
+Thing of interest in the considered environment / mini-world.
+It is IT-system- and technology-independent and consolidated description of the structure and meaning of the thing of interest.
+An entity can in turn consist of individual parts (attributes, subentities, relationships, etc.) ; corresponding to the term holon or whole/part.
 ]EN_ENTI_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -38,7 +45,9 @@ Thing of interest  in the IT-system independent, consolidated, conceptual model 
 <property name="DE_ENTI_NAME" value="Entität"/>
 <property name="EN_ENTI_COMMENT" value="*DE* Entität im systemübergreifenden, konsolidierten, konzeptionellen Modell eines Unternehmens "/>
 <property name="EN_ENTI_NAME" value="Entity"/>
-<property name="EN_ENTI_SYNONYM" value=""/>
+<property name="maxzoollevel" value="5"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Entitätname [L]" id="F1D0F128-7361-E0A9-E706-227C158FCD42">
@@ -60,14 +69,18 @@ Name of the entity normally used in communication.
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_COMMENT" value="Name der Entität der in der Kommunikation normalerweise gebraucht wird."/>
 <property name="DE_ATTR_NAME" value="Entitätname [L]"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Name der Entität der in der Kommunikation normalerweise gebraucht wird."/>
 <property name="EN_ATTR_NAME" value="Entity name [L]"/>
+<property name="isdescriptive" value="TRUE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Synonym [LN]" id="A95649D8-C7D7-F752-DF78-460367ECD340">
@@ -90,14 +103,18 @@ Name that is also used for this entity
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_COMMENT" value="Name, der für diese Entität auch verwendet wird"/>
 <property name="DE_ATTR_NAME" value="Synonym [LN]"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Name, der für diese Entität auch verwendet wird"/>
 <property name="EN_ATTR_NAME" value="Synonym [LN]"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Beschreibung [L]" id="8AE86DAB-876D-4996-6150-123B705AB4AA">
@@ -120,14 +137,18 @@ Meaning, Benefits, Use of the Entity
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_COMMENT" value="Bedeutung, Nutzen, Nutzung der Entität"/>
 <property name="DE_ATTR_NAME" value="Beschreibung [L]"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Bedeutung, Nutzen, Nutzung der Entität"/>
 <property name="EN_ATTR_NAME" value="Description [L]"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Kurzname [L]" id="5E305761-9FBD-94B3-D12B-A0811406A63D">
@@ -150,14 +171,18 @@ Kurzbezeichnung der Entität für die Verwendung aus Überschrift, in Referenzen
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_COMMENT" value="Kurzbezeichnung der Entität für die Verwendung aus Überschrift, in Referenzen "/>
 <property name="DE_ATTR_NAME" value="Kurzname [L]"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Kurzbezeichnung der Entität für die Verwendung aus Überschrift, in Referenzen "/>
 <property name="EN_ATTR_NAME" value="Short name [L]"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Präfixname" id="7EC6D9A7-E9AA-F77D-4FAF-CF5E57BD58E7">
@@ -180,14 +205,18 @@ Abbreviated name (3-5 characters, usually capital letters) that can be used as a
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_COMMENT" value="Kürzestname (3-5 Zeichen, Normalerweise Grossbuchstaben) der als Präfix für  Implementierungsnamen verwendet werden kann."/>
 <property name="DE_ATTR_NAME" value="Präfixname"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Kürzestname (3-5 Zeichen, Normalerweise Grossbuchstaben) der als Präfix für  Implementierungsnamen verwendet werden kann."/>
 <property name="EN_ATTR_NAME" value="Prefix name"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Tooltip [L]" id="09BFD6A9-516C-6EA2-95BC-6189D7482BFC">
@@ -210,14 +239,18 @@ Display of the meaning for the operator on a mask.
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_COMMENT" value="Anzeige der Bedeutung für Bediener auf einer Maske."/>
 <property name="DE_ATTR_NAME" value="Tooltip [L]"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Anzeige der Bedeutung für Bediener auf einer Maske."/>
 <property name="EN_ATTR_NAME" value="Tooltip [L]"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 <Attribute name="erwartete Tupelanzahl" id="799DBB03-3FC8-5BA7-35F1-8D8DA7716A52">
@@ -240,14 +273,18 @@ Order of magnitude of the number of tuples in this entity
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT024</logicalDatatype>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>897B91BA-60B8-3A16-793A-97B535605E5E</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_COMMENT" value="Grössenordnung der Tupelanzahl in dieser Entität"/>
 <property name="DE_ATTR_NAME" value="erwartete Tupelanzahl"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Grössenordnung der Tupelanzahl in dieser Entität"/>
 <property name="EN_ATTR_NAME" value="expected number of tuples"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 </attributes>

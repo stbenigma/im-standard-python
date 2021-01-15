@@ -1,5 +1,8 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
 <Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="F71C6CD8-3E9F-9418-ECC0-9A6EB7E58207" name="TABL_ENTI_MAP">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>TABL_ENTI_MAP</sourceObjName>
 <createdBy>stb</createdBy>
 <createdTime>2020-02-04 14:53:45 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -61,7 +64,7 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 <associations>
-<colAssociation fkAssociation="CFC7F490-0366-587E-EC64-352EB1E24F52" referredColumn="BABB8742-E321-0EBD-79F0-6E95CF1087B4"/>
+<colAssociation fkAssociation="1883F708-4C66-A012-AB44-9BFAFC4752E4" referredColumn="D7388798-E399-E297-169C-41CA74A695A9"/>
 </associations>
 </Column>
 </columns>
@@ -98,17 +101,6 @@
 <colUsage columnID="AE454388-ED18-B50B-45F4-677B9CE5D48C"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="40CBAF8C-C817-A37F-96E5-3E38767E04DD" name="TEMA_RELA_FK">
-<createdBy>stb</createdBy>
-<createdTime>2020-02-04 15:12:13 UTC</createdTime>
-<generatorID>CEB0C7CA-9CEF-89CC-1712-0634D0BB6B99</generatorID>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<indexState>Foreign Key</indexState>
-<isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
-<colUsage columnID="52CCA01F-755A-DB07-6BB9-B49F3126C388"/>
-</indexColumnUsage>
-</ind_PK_UK>
 <ind_PK_UK id="D12F945E-DD97-EE66-945D-01EFEB0E138B" name="tema_tabl_FK">
 <createdBy>stb</createdBy>
 <createdTime>2020-12-02 22:16:00 UTC</createdTime>
@@ -119,14 +111,27 @@
 <colUsage columnID="9759C755-90F9-F68E-5927-31AEB9554889"/>
 </indexColumnUsage>
 </ind_PK_UK>
+<ind_PK_UK id="334D7BFC-0FA5-5E7D-5AD7-32A30D8B2334" name="TEMA_RELA_FK">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 11:17:48 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="52CCA01F-755A-DB07-6BB9-B49F3126C388"/>
+</indexColumnUsage>
+</ind_PK_UK>
 </indexes>
 <tableCheckConstraints itemClass="oracle.dbtools.crest.model.design.constraint.TableLevelConstraint">
-<tableCheckConstraint name="TEMA_ENTI_MAP_CK_1" directorySegmentName="seg_1" id="60517B22-1EAD-6419-50E0-A8C9CC56E7AE">
+<tableCheckConstraint name="FKArc_5" directorySegmentName="seg_0" id="01C74757-D008-C2AE-AE3D-65AAB9DC8ACE">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>FKArc_5</sourceObjName>
 <createdBy>stb</createdBy>
-<createdTime>2020-02-04 15:14:32 UTC</createdTime>
+<createdTime>2021-01-14 11:17:48 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
-<rule><![CDATA[(TABL_ENTI_ID IS NOT NULL AND TABL_BEZI_ID IS NULL )
-OR (TABL_BEZI_ID IS NULL AND TABL_BEZI_ID IS NOT NULL)]]></rule>
+<importedID>E177175D-DFE0-CDA7-AAA0-63EECF3C3E78</importedID>
+<rule><![CDATA[[TEMA_RELA_ID] IS NOT NULL AND [TEMA_ENTI_ID] IS NULL OR [TEMA_ENTI_ID] IS NOT NULL AND [TEMA_RELA_ID] IS NULL OR [TEMA_RELA_ID] IS NULL AND [TEMA_ENTI_ID] IS NULL]]></rule>
 </tableCheckConstraint>
 </tableCheckConstraints>
 </Table>

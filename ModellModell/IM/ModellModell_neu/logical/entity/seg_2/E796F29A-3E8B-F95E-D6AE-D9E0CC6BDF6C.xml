@@ -37,6 +37,9 @@ Aus Sicht des Marketing bezeichnet die Kundenreise (Customer Journey) alle Berü
 <property name="DE_ENTI_SYNONYM" value="customer journey"/>
 <property name="EN_ENTI_NAME" value="Customer trip"/>
 <property name="EN_ENTI_SYNONYM" value="customer journey"/>
+<property name="maxzoollevel" value="5"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Name" id="F5EF63B8-0D42-C4B3-568C-BBFA5D074A43">
@@ -61,7 +64,10 @@ Aus Sicht des Marketing bezeichnet die Kundenreise (Customer Journey) alle Berü
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_NAME" value="Name"/>
-<property name="EN_ATTR_NAME" value="**Name"/>
+<property name="EN_ATTR_NAME" value="Name"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Beschreibung" id="E8DA8FEA-19B4-B38F-3EE1-5C3D7C0FBEC6">
@@ -83,10 +89,15 @@ Aus Sicht des Marketing bezeichnet die Kundenreise (Customer Journey) alle Berü
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_NAME" value="Beschreibung"/>
-<property name="EN_ATTR_NAME" value="**Description"/>
+<property name="EN_ATTR_NAME" value="Description"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 <Attribute name="KundenZiel" id="C1903308-3748-23B8-91BF-BF5689B69B97">
@@ -111,7 +122,10 @@ Aus Sicht des Marketing bezeichnet die Kundenreise (Customer Journey) alle Berü
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_NAME" value="KundenZiel"/>
-<property name="EN_ATTR_NAME" value="**CustomerTarget"/>
+<property name="EN_ATTR_NAME" value="CustomerTarget"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Kontext" id="E3176FDC-1750-A096-FD9A-4F0ABF88A521">
@@ -119,7 +133,7 @@ Aus Sicht des Marketing bezeichnet die Kundenreise (Customer Journey) alle Berü
 <createdTime>2020-02-03 20:05:22 UTC</createdTime>
 <comment><![CDATA[Ist bei Mitbewerber kunde und sucht Alternative, Anlass, Motivation]]></comment>
 <notes><![CDATA[[EN_ATTR_COMMENT[
-**Is a customer of a competitor and is looking for alternative, reason, motivation
+Is a customer of a competitor and is looking for alternative, reason, motivation
 ]EN_ATTR_COMMENT]
 [DE_ATTR_COMMENT[
 Ist bei Mitbewerber kunde und sucht Alternative, Anlass, Motivation
@@ -137,7 +151,10 @@ Ist bei Mitbewerber kunde und sucht Alternative, Anlass, Motivation
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_NAME" value="Kontext"/>
-<property name="EN_ATTR_NAME" value="**Context"/>
+<property name="EN_ATTR_NAME" value="Context"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 </attributes>

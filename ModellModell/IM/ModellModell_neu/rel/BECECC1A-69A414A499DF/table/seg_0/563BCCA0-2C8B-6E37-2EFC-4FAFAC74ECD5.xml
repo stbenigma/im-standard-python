@@ -1,0 +1,192 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="563BCCA0-2C8B-6E37-2EFC-4FAFAC74ECD5" name="Geschäftaufgabe">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 15:00:10 UTC</createdTime>
+<comment><![CDATA[Unternehmerische Aufgabe, Typ, Bereich von Geschäftsfunktionen und Anwendungen, die im Rahmen der Wertschöpfungskette und -prozesse eines Unternehmens ausgeführt werden.
+
+Geschäftsbereiche sind typischerweise für 1 oder mehrere Anwendungen  (Hilfsmittel, Werkzeuge, Applikationen, Tools) sowie für Geschäftstransaktionen und -prozesse verantwortlich. Sie haben die Hoheit über die Informationen / Daten, die in den vom Bereich benutzten Funktionen benötigt / verwaltet werden.
+
+Ein Geschäftsbereich bestimmt
+- Wer erstellt Datensätze zu einer Entität?
+- Wer bestimmt über Änderungen / Qualität etc.?
+
+Sie entsprechen häufig den administrativen Organisationeinheiten (Abteilungen, Busines Units). Sie sind aber nicht aus administrativer oder örtlicher sondern aus Geschäftsaufgabensicht organisiert.
+
+Beispiele:
+Finanz
+R&D
+Produktion
+Sales
+Marketing
+HR
+Logistik
+Customer Services]]></comment>
+<generatorID>5A09E075-BC31-B259-7FBF-4A9154C6967D</generatorID>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+Unternehmerische Aufgabe, Typ, Bereich von Geschäftsfunktionen und Anwendungen, die im Rahmen der Wertschöpfungskette und -prozesse eines Unternehmens ausgeführt werden.
+
+Geschäftsbereiche sind typischerweise für 1 oder mehrere Anwendungen  (Hilfsmittel, Werkzeuge, Applikationen, Tools) sowie für Geschäftstransaktionen und -prozesse verantwortlich. Sie haben die Hoheit über die Informationen / Daten, die in den vom Bereich benutzten Funktionen benötigt / verwaltet werden.
+
+Ein Geschäftsbereich bestimmt
+- Wer erstellt Datensätze zu einer Entität?
+- Wer bestimmt über Änderungen / Qualität etc.?
+
+Sie entsprechen häufig den administrativen Organisationeinheiten (Abteilungen, Busines Units). Sie sind aber nicht aus administrativer oder örtlicher sondern aus Geschäftsaufgabensicht organisiert.
+
+Beispiele:
+Finanz
+R&D
+Produktion
+Sales
+Marketing
+HR
+Logistik
+Customer Services
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+Business task, type, area of business functions and applications carried out as part of a company's value chain and processes.
+
+Business areas are typically responsible for 1 or more applications (utilities, tools, applications, tools) and business transactions and processes. They have sovereignty over the information / data needed / managed in the functions used by the division.
+
+A business unit determines
+- Who creates records for an entity?
+- Who determines changes / quality etc.?
+
+They often correspond to administrative organisational units (departments, business units). However, they are not organised from an administrative or local perspective but from a business task perspective.
+
+Examples:
+Finance
+R&D
+Production
+Sales
+Marketing
+HR
+Logistics
+Customer Services
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<typeID>049E3124-67AA-37C3-8A6D-286DDE491ECA</typeID>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Name" id="AE24A8FA-34A2-33AE-6CAC-3C47CF1AE79A">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 15:00:10 UTC</createdTime>
+<comment><![CDATA[Name eines Geschäftsbereichs]]></comment>
+<generatorID>C5008C78-3422-F6A1-AF57-B39DC0E800AA</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Name eines Geschäftsbereichs
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Business division name
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Beschreibung" id="85E887BD-3B26-B587-32E7-82B722829351">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 15:00:10 UTC</createdTime>
+<comment><![CDATA[Bedeutung, Abgrenzung des Geschäftsbereichs]]></comment>
+<generatorID>08FB331F-CDDD-76BA-0134-3FF3402C6964</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Bedeutung, Abgrenzung des Geschäftsbereichs
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Significance, delimitation of the business area
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="AnzName_[L]" id="FEC87BFB-BA07-1CB2-7FA3-53E551A93551">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 15:00:10 UTC</createdTime>
+<comment><![CDATA[Name der Entität der in der Kommunikation normalerweise gebraucht wird.]]></comment>
+<generatorID>D02AC34E-FFE0-B386-6286-928E22CE8C3D</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Name der Entität der in der Kommunikation normalerweise gebraucht wird.
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Name of the entity normally used in communication.
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Zweck" id="4BF87988-662B-323F-7387-E071C3CECDB1">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 15:00:10 UTC</createdTime>
+<comment><![CDATA[Anwendungsgebiet (ERP, PIM, FiBu etc.)]]></comment>
+<generatorID>127F9269-A2C4-91BE-65F7-1A829F3B76F2</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Anwendungsgebiet (ERP, PIM, FiBu etc.)
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Application area (ERP, PIM, FiBu etc.)
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Geschäftaufgabe_ID" id="CD0E4857-68A1-EAAF-3679-F34DE33DD6DF">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 15:00:10 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="B2BA16E9-94FF-E1E8-950E-C42BD21CC897" name="Geschäftaufgabe_PK">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 15:00:10 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="CD0E4857-68A1-EAAF-3679-F34DE33DD6DF"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="BDA8FA81-6E6C-6C5B-975A-75E7F94C3BAA" name="Geschäftaufgabe_Name_UN">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 15:00:10 UTC</createdTime>
+<generatorID>DDDD568D-08B5-A7EE-AC3F-5142F6DFA588</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="AE24A8FA-34A2-33AE-6CAC-3C47CF1AE79A"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

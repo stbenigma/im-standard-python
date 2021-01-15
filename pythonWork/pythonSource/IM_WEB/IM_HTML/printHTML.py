@@ -56,8 +56,7 @@ def filehref(pref, panz, plang, pself=False,pimg=None):
 def href(ref, anz, htmlfile='',pself=False):
     if anz is None: return ''
     sep = '#' if parameters.nvl(ref) !='' else ''
-    return """<a href="{}{}{}" target="{}">{}</a>""".format(htmlfile
-                                                          , sep, ref
+    return """<a href="{}{}{}" target="{}">{}</a>""".format(htmlfile, sep, ref
                                                           , '_self' if ((htmlfile == '') or pself) else  '_blank'
                                                           , html.escape(anz))
 
@@ -1084,6 +1083,13 @@ def printelemreflists(pelem, pelemtype):
     # if
 #printelemreflists
 
+def origindomains(pintfid):
+    #dict of domain with origin DOMAIN and defined in interface intfid (or im if None)
+    return {key: value for key, value in model.jsmodel['domains'].items()
+                                                if (value['origin'] == Domain.DOMAIN
+                                                and value['interfaceid'] == pintfid)}
+
+
 def printdomaattrlist(pdoma, plang,pisgroup=False):
     if pisgroup:
         """all domains of type group containing parameter domain in elements of its group"""
@@ -1099,7 +1105,7 @@ def printdomaattrlist(pdoma, plang,pisgroup=False):
                                              ))]
                 for attranker in pdoma['element']['usedinattrs+']
                 ]
-    if (pisgroup and len(alist)==0):return
+    if (len(alist)==0):return
 
     fhtml.write(tablehtml(ptitel=Languagetext.transl('Verwendet in Attributgruppen' if pisgroup
                                                    else 'Verwendet für Attribute')
@@ -1110,15 +1116,16 @@ def printdomaattrlist(pdoma, plang,pisgroup=False):
 #printdomaattrlist
 
 def printdomacollist(pdoma):
+    domaintfid = pdoma['element']['interfaceid']
     clist = [[href(ref=colanker
                        ,anz=getelement(colanker)['name']
-                   ,htmlfile=htmlfilelist[getelement(colanker)['interface-id+']])
+                   ,htmlfile='' if domaintfid == getelement(colanker)['interface-id+'] else htmlfilelist[getelement(colanker)['interface-id+']])
               ,href(ref=getelement(colanker)['table-id']
                    , anz=getelement(colanker)['table-name+']
-                   , htmlfile=htmlfilelist[getelement(colanker)['interface-id+']])
+                   , htmlfile='' if domaintfid == getelement(colanker)['interface-id+'] else htmlfilelist[getelement(colanker)['interface-id+']])
               ,href(ref=''
                    , anz=getelement(colanker)['interface-name+']
-                   , htmlfile=htmlfilelist[getelement(colanker)['interface-id+']])
+                   , htmlfile='' if domaintfid == getelement(colanker)['interface-id+'] else htmlfilelist[getelement(colanker)['interface-id+']])
 
               ]
                 for colanker in pdoma['element']['usedincols+']
@@ -1170,15 +1177,12 @@ def printwertelist(pelem):
                         )
 # printwertelist
 
-def origindomains():
-    #dict of domain with origin DOMAIN
-    return {key: value for key, value in model.jsmodel['domains'].items() if value['origin'] == Domain.DOMAIN}
 
-def printcontentdoma():
+def printcontentdoma(pdomains):
 
     lang = Languagetext.reportLang()
     for doma in sorted([{'anker': key, 'element': value}
-                        for key, value in origindomains().items()]
+                        for key, value in pdomains.items()]
             , key=lambda val: val['element']['name'][lang]):
         elem = doma['element']
         printcontentstart('domains')

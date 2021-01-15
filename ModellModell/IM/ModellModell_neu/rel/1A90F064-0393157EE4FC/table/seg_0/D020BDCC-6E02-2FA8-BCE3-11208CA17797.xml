@@ -1,5 +1,8 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="D020BDCC-6E02-2FA8-BCE3-11208CA17797" schemaObject="D76C6297-28A1-045E-8726-4B50ADD673B8" name="ATTRIBUTES">
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="D020BDCC-6E02-2FA8-BCE3-11208CA17797" name="ATTRIBUTES">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>ATTRIBUTES</sourceObjName>
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <comment><![CDATA[Description of a property, bearer of a value
@@ -56,10 +59,11 @@ Subtype of MODELELEMENT. ATTR_ID is always identical to the corresponding MODE_I
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 <associations>
-<colAssociation fkAssociation="58575F7F-DCF9-D586-B5B1-1195C66F1CAE" referredColumn="BABB8742-E321-0EBD-79F0-6E95CF1087B4"/>
+<colAssociation fkAssociation="F3B3E6BC-3213-E670-7319-2415C4A2BDB8" referredColumn="D7388798-E399-E297-169C-41CA74A695A9"/>
 </associations>
 </Column>
 <Column name="ATTR_DOMA_ID" id="3C72106F-F485-4EEC-2CE1-F9365D6B4CBA">
+<sourceDDLFile>domains.sql</sourceDDLFile>
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -88,6 +92,9 @@ Subtype of MODELELEMENT. ATTR_ID is always identical to the corresponding MODE_I
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
 <Column name="ATTR_DISPL_NAME" id="17E8968E-C667-96D4-91CC-D63ED8D130DD">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>ATTRIBUTES</sourceObjSchema>
+<sourceObjName>ATTR_DISPL_NAME</sourceObjName>
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <comment><![CDATA[Name to name the attribute on reports and forms (subject to be translated)]]></comment>
@@ -96,8 +103,11 @@ Subtype of MODELELEMENT. ATTR_ID is always identical to the corresponding MODE_I
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypePrecision>4000</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>4000</dataTypeSize>
+<ownDataTypeParameters>4000,4000,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
 <Column name="ATTR_DISPL_SEQ" id="B7F7F3AA-A262-2BD4-4DB7-288CD2C1D386">
@@ -114,6 +124,9 @@ Subtype of MODELELEMENT. ATTR_ID is always identical to the corresponding MODE_I
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
 <Column name="ATTR_TOOLTIP" id="EDBA1266-D154-DA46-166A-D18EA8170F2B">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>ATTRIBUTES</sourceObjSchema>
+<sourceObjName>ATTR_TOOLTIP</sourceObjName>
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <comment><![CDATA[Tooltip to be shown, in screens (subject to translation)]]></comment>
@@ -122,11 +135,17 @@ Subtype of MODELELEMENT. ATTR_ID is always identical to the corresponding MODE_I
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
+<logicalDatatype>LOGDT028</logicalDatatype>
+<dataTypePrecision>-1</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>max</dataTypeSize>
+<ownDataTypeParameters>max,-1,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
 <Column name="ATTR_DESCR" id="6EACA77B-AF9B-97E7-6024-8C739C294357">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>ATTRIBUTES</sourceObjSchema>
+<sourceObjName>ATTR_DESCR</sourceObjName>
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <comment><![CDATA[Description of usage, meaning of attribute (subject to be translated)]]></comment>
@@ -135,8 +154,11 @@ Subtype of MODELELEMENT. ATTR_ID is always identical to the corresponding MODE_I
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
+<logicalDatatype>LOGDT028</logicalDatatype>
+<dataTypePrecision>-1</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>max</dataTypeSize>
+<ownDataTypeParameters>max,-1,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
 <Column name="ATTR_IS_DESCRIPTIVE" id="375A6913-9EF8-E4FB-F917-1DB6EAA556FB">
@@ -144,9 +166,14 @@ Subtype of MODELELEMENT. ATTR_ID is always identical to the corresponding MODE_I
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <comment><![CDATA[Attribute is descriptive (meaning it helps understand the meaning of the entity).]]></comment>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
+<constraintName>CK__ATTRIBUTE__ATTR___05A3D694</constraintName>
+<useDomainConstraints>false</useDomainConstraints>
 <use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
+<checkConstraint>
+<implementationDef dbType="SQL Server 2012" definition="[ATTR_IS_DESCRIPTIVE]=&apos;TRUE&apos; OR [ATTR_IS_DESCRIPTIVE]=&apos;FALSE&apos;"/>
+</checkConstraint>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
@@ -154,9 +181,14 @@ Subtype of MODELELEMENT. ATTR_ID is always identical to the corresponding MODE_I
 <createdBy>stb</createdBy>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
+<constraintName>CK__ATTRIBUTE__ATTR___0697FACD</constraintName>
+<useDomainConstraints>false</useDomainConstraints>
 <use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
+<checkConstraint>
+<implementationDef dbType="SQL Server 2012" definition="[ATTR_IS_MANDATORY]=&apos;TRUE&apos; OR [ATTR_IS_MANDATORY]=&apos;FALSE&apos;"/>
+</checkConstraint>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
@@ -165,9 +197,14 @@ Subtype of MODELELEMENT. ATTR_ID is always identical to the corresponding MODE_I
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <comment><![CDATA[Attribute value can change over time. Has to be resolved with additional table or storage.]]></comment>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
+<constraintName>CK__ATTRIBUTE__ATTR___078C1F06</constraintName>
+<useDomainConstraints>false</useDomainConstraints>
 <use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
+<checkConstraint>
+<implementationDef dbType="SQL Server 2012" definition="[ATTR_IS_HISTORICISED]=&apos;TRUE&apos; OR [ATTR_IS_HISTORICISED]=&apos;FALSE&apos;"/>
+</checkConstraint>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
@@ -177,9 +214,14 @@ Subtype of MODELELEMENT. ATTR_ID is always identical to the corresponding MODE_I
 <comment><![CDATA[Attribute can have several values (of the same domain).
 Has to be resolved with addition table.]]></comment>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
+<constraintName>CK__ATTRIBUTE__ATTR___0880433F</constraintName>
+<useDomainConstraints>false</useDomainConstraints>
 <use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
+<checkConstraint>
+<implementationDef dbType="SQL Server 2012" definition="[ATTR_IS_REPEATED]=&apos;TRUE&apos; OR [ATTR_IS_REPEATED]=&apos;FALSE&apos;"/>
+</checkConstraint>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
@@ -189,9 +231,14 @@ Has to be resolved with addition table.]]></comment>
 <comment><![CDATA[Attribute value is subject to translation.
 Has to be implemented with an additional (probably generic) table.]]></comment>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
+<constraintName>CK__ATTRIBUTE__ATTR___09746778</constraintName>
+<useDomainConstraints>false</useDomainConstraints>
 <use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
+<checkConstraint>
+<implementationDef dbType="SQL Server 2012" definition="[ATTR_IS_TRANSLATED]=&apos;TRUE&apos; OR [ATTR_IS_TRANSLATED]=&apos;FALSE&apos;"/>
+</checkConstraint>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
@@ -200,9 +247,14 @@ Has to be implemented with an additional (probably generic) table.]]></comment>
 <createdTime>2020-02-03 20:18:16 UTC</createdTime>
 <comment><![CDATA[Atttibute values have to be stored encrypted]]></comment>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
+<constraintName>CK__ATTRIBUTE__ATTR___0A688BB1</constraintName>
+<useDomainConstraints>false</useDomainConstraints>
 <use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
+<checkConstraint>
+<implementationDef dbType="SQL Server 2012" definition="[ATTR_IS_ENCRYPTED]=&apos;TRUE&apos; OR [ATTR_IS_ENCRYPTED]=&apos;FALSE&apos;"/>
+</checkConstraint>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
@@ -215,7 +267,6 @@ Has to be implemented with an additional (probably generic) table.]]></comment>
 <logicalDatatype>LOGDT024</logicalDatatype>
 <dataTypeSize>30 BYTE</dataTypeSize>
 <ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
-<computed>true</computed>
 <autoIncrementCycle>false</autoIncrementCycle>
 <propertyMap>
 <property name="ctemplateID" value="F7EEFF47-7A42-2A3E-7DFC-D0558D6996B8"/>
@@ -312,17 +363,6 @@ Has to be implemented with an additional (probably generic) table.]]></comment>
 <colUsage columnID="74AE61E3-42E6-8AC2-DC15-206B0DBC0945"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="05EC5A58-A72A-156A-3A24-ED11033B877B" name="ATTR_RELA_FK">
-<createdBy>stb</createdBy>
-<createdTime>2020-02-04 15:02:56 UTC</createdTime>
-<generatorID>CEB0C7CA-9CEF-89CC-1712-0634D0BB6B99</generatorID>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<indexState>Foreign Key</indexState>
-<isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
-<colUsage columnID="303EC2B5-2E33-64BC-232F-07907FF61F66"/>
-</indexColumnUsage>
-</ind_PK_UK>
 <ind_PK_UK id="E0FF82A7-2D56-EB5E-7833-746726614DE9" name="ATTR_MODE_FK">
 <createdBy>stb</createdBy>
 <createdTime>2020-08-02 13:40:31 UTC</createdTime>
@@ -343,5 +383,27 @@ Has to be implemented with an additional (probably generic) table.]]></comment>
 <colUsage columnID="3C72106F-F485-4EEC-2CE1-F9365D6B4CBA"/>
 </indexColumnUsage>
 </ind_PK_UK>
+<ind_PK_UK id="D180EFBF-3960-151E-8D17-788749B50CF3" name="ATTR_RELA_FK">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 11:17:48 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="303EC2B5-2E33-64BC-232F-07907FF61F66"/>
+</indexColumnUsage>
+</ind_PK_UK>
 </indexes>
+<tableCheckConstraints itemClass="oracle.dbtools.crest.model.design.constraint.TableLevelConstraint">
+<tableCheckConstraint name="ENTI_OR_RELA_ARC" directorySegmentName="seg_0" id="DDB83F68-F18B-6237-3483-A8367F6C628A">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>ENTI_OR_RELA_ARC</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 11:17:48 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>7995A414-A2E8-4E83-0DB0-B1FB3C07FD49</importedID>
+<rule><![CDATA[[ATTR_ENTI_ID] IS NOT NULL AND [ATTR_RELA_ID] IS NULL OR [ATTR_RELA_ID] IS NOT NULL AND [ATTR_ENTI_ID] IS NULL]]></rule>
+</tableCheckConstraint>
+</tableCheckConstraints>
 </Table>

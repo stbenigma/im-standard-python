@@ -4,9 +4,9 @@
 <createdTime>2020-08-21 06:56:00 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <engineerTo>
-<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
 <item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
+<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <useSurrogateKey>true</useSurrogateKey>
 <identifying>false</identifying>
@@ -21,9 +21,11 @@
 <transferable>true</transferable>
 <deleteRule></deleteRule>
 <propertyMap>
-<property name="DE_RELA_TEXT_FROM" value="*instanziiert in"/>
-<property name="DE_RELA_TEXT_TO" value="*instanziiert"/>
+<property name="DE_RELA_TEXT_FROM" value="instanziiert in"/>
+<property name="DE_RELA_TEXT_TO" value="instanziiert"/>
 <property name="EN_RELA_TEXT_FROM" value="instanciated in"/>
 <property name="EN_RELA_TEXT_TO" value="instanciates"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Relation>

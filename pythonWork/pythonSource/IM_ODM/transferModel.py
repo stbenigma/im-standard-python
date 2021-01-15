@@ -4,9 +4,9 @@ import re
 import sqlite3
 import xml.etree.ElementTree as ET
 
-from IM_ODM import transferRelational
-from IM_DB import dbInserts, dbDML, dbConnect, parameters, dbParam, logmessages
+from IM_DB import dbDML, dbConnect, parameters, dbParam, logmessages
 from IM_OBJECTS import *
+from IM_ODM import transferRelational
 from mystring import nvl
 
 GUIDPATTERN: str = '[A-Z0-9-]{20,45}'
@@ -44,7 +44,8 @@ defcolors = dict()
 entities = dict()
 
 """domains in non-default file are IM or interface (relationale model) dependent.
-    fix interface-id of Domains at end of transfer
+    fix interface-id of Domains at end of transfer.
+    {doma_id : filename of domainfile}
  """
 interfacedomains = dict()
 
@@ -267,7 +268,9 @@ def do1domainfile(pfilename):
         doma.doma_descr = findText(dom, 'comment')
         doma.doma_origin = Domain.DOMAIN
         liesunsfuelldoma(pdoma=doma, pxml=dom)
-        interfacedomains[doma.doma_id] = interfacename(findField(root, 'fileName'))
+        intfname = interfacename(findField(root, 'fileName'))
+        if intfname is not None:
+            interfacedomains[doma.doma_id] = intfname
     # for
     return
 

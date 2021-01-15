@@ -2,12 +2,17 @@ from IM_OBJECTS import *
 from IM_JSON import jsguid,domaingroupmembers,jsguid2id,inslgtx,inssourceref,JSModel,jsguid2type,udpv2js,updvs2sql
 
 def defattr(attr):
+    doma = Domain().getbyid(attr.attr_doma_id)
+
     retval = {'techname': attr.attr_tech_name
         , 'name': attr.attr_displ_name_L
         , 'seq': attr.attr_displ_seq
         , 'entity': jsguid(Modelelemtype.ENTI, attr.attr_enti_id)
         , 'relation': jsguid(Modelelemtype.RELA, attr.attr_rela_id)
         , 'domain': jsguid(Modelelemtype.DOMA, attr.attr_doma_id)
+        ,'basedatatype+':  None if doma.doma_daty_id is None else Datatype().getbyid(doma.doma_daty_id).daty_name
+        ,'type+' : doma.doma_type
+        ,'memberattrs+' : domaingroupmembers(pdomaid=attr.attr_doma_id) if (Domain().getbyid(attr.attr_doma_id).doma_type == Domain.GRP) else None
         , 'descriptive': Boolean.str2bool(attr.attr_is_descriptive)
         , 'mandatory': Boolean.str2bool(attr.attr_is_mandatory)
         , 'historicised': Boolean.str2bool(attr.attr_is_historicised)
@@ -31,12 +36,6 @@ def defattr(attr):
             for s in Interface.getmapped(pattrid=attr.attr_id)}
         , 'diagrams+': [jsguid(Modelelemtype.DIAG, d.diag_id) for d in Diagram.getdiagrams(pmodeid=attr.attr_id)]
               }
-    doma = Domain().getbyid(attr.attr_doma_id)
-    retval['basedatatype+'] = None if doma.doma_daty_id is None else Datatype().getbyid(
-        doma.doma_daty_id).daty_name
-    retval['type+'] = doma.doma_type
-    if (Domain().getbyid(attr.attr_doma_id).doma_type == Domain.GRP):
-        retval['memberattrs+'] = domaingroupmembers(pdomaid=attr.attr_doma_id)
     return retval
 
 

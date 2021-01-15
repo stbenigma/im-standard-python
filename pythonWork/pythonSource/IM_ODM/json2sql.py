@@ -1,13 +1,10 @@
 # -*- coding: latin-1 -*-
-import json
 import sqlite3
 import sys
-from datetime import date
 
 from IM_DB import dbConnect, dbErstelleTables
-from IM_OBJECTS import *
-from IM_ODM import transferModel
 from IM_JSON import *
+from IM_ODM import transferModel
 
 errcnt: int = 0
 warncnt: int = 0
@@ -52,12 +49,12 @@ transferprocs = {
 ,'orgunits': (7,orgunits2sql, orgurefs2sql)
 ,'userdefprops': (8,udps2sql, udprefs2sql)
 ,'entities': (10,entities2sql,entirefs2sql)
-,'domains': (11,domains2sql, domarefs2sql)
-,'attributes': (12,attributes2sql, attrrefs2sql)
-,'arcs': (13,arcs2sql, arcsref2sql)
-,'relations': (14,relations2sql, relarefs2sql)
-,'keys': (15,keys2sql, keysrefs2sql)
-,'systems': (20,systems2sql, systrefs2sql)
+,'systems': (11,systems2sql, systrefs2sql)
+,'domains': (12,domains2sql, domarefs2sql)
+,'attributes': (13,attributes2sql, attrrefs2sql)
+,'arcs': (14,arcs2sql, arcsref2sql)
+,'relations': (15,relations2sql, relarefs2sql)
+,'keys': (16,keys2sql, keysrefs2sql)
 ,'tables': (21,tables2sql, tablrefs2sql)
 ,'columns': (22,columns2sql, colurefs2sql)
 ,'diagrams': (30,diagrams2sql, diagrefs2sql)

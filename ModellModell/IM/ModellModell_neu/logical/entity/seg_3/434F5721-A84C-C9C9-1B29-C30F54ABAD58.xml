@@ -19,7 +19,9 @@ Attribut in einem System, das mit anderen Systemen ausgetauscht werden soll.
 ]EN_ENTI_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <engineerTo>
+<item key="17F5F16D-4CB1-2968-618E-D369CD8C5B93" value="true"/>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
 <item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="false"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
@@ -40,6 +42,9 @@ Attribut in einem System, das mit anderen Systemen ausgetauscht werden soll.
 <property name="DE_ENTI_NAME" value="Schnittstellenattribut"/>
 <property name="EN_ENTI_COMMENT" value="*DE*  Attribut in einem System, das mit anderen Systemen ausgetauscht werden soll.  Datentyp, Format und Constraints können in div. Sprachen und Dialekten geführ werden   SQL (mit dialekt)   Jason   XML "/>
 <property name="EN_ENTI_NAME" value="Interface attribute"/>
+<property name="maxzoollevel" value="5"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Name" id="999B70CA-BCF5-C825-8366-9D78800EA196">
@@ -53,21 +58,27 @@ Attribut in einem System, das mit anderen Systemen ausgetauscht werden soll.
 ]EN_ATTR_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <importedID>B41BF0C7-0AD6-E2FF-307E-0E3AB8A27120</importedID>
 <engineerTo>
+<item key="17F5F16D-4CB1-2968-618E-D369CD8C5B93" value="true"/>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
 <item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="false"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_COMMENT" value=""/>
 <property name="DE_ATTR_NAME" value="Name"/>
 <property name="EN_ATTR_COMMENT" value=""/>
 <property name="EN_ATTR_NAME" value="Name"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Beschreibung" id="BB93EAC3-E9F7-F7B8-0535-D829F9BA6BE4">
@@ -82,20 +93,27 @@ Description of the attribute in the external system
 ]EN_ATTR_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <importedID>182949AB-4842-155F-CCBA-717176E0E2E8</importedID>
 <engineerTo>
+<item key="17F5F16D-4CB1-2968-618E-D369CD8C5B93" value="true"/>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
 <item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="false"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_COMMENT" value="Beschreibung des Attributes im Fremdsystem"/>
 <property name="DE_ATTR_NAME" value="Beschreibung"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Beschreibung des Attributes im Fremdsystem"/>
 <property name="EN_ATTR_NAME" value="Description of the"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Pflichtfeld" id="77DC6B22-7748-FF66-B8F9-B67AB8FD2242">
@@ -103,7 +121,7 @@ Description of the attribute in the external system
 <createdTime>2020-12-14 07:54:24 UTC</createdTime>
 <comment><![CDATA[Konstanter Wert der zu verwenden ist, falls keine Quelle oder keine Transformation exisitert.]]></comment>
 <notes><![CDATA[[EN_ATTR_COMMENT[
-**Constant value to be used if no source or transformation exists.
+Constant value to be used if no source or transformation exists.
 ]EN_ATTR_COMMENT]
 [DE_ATTR_COMMENT[
 Konstanter Wert der zu verwenden ist, falls keine Quelle oder keine Transformation exisitert.
@@ -111,6 +129,7 @@ Konstanter Wert der zu verwenden ist, falls keine Quelle oder keine Transformati
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <engineerTo>
+<item key="17F5F16D-4CB1-2968-618E-D369CD8C5B93" value="true"/>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
 <item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
@@ -120,8 +139,11 @@ Konstanter Wert der zu verwenden ist, falls keine Quelle oder keine Transformati
 <domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
-<property name="DE_ATTR_NAME" value="Vorgabewert"/>
-<property name="EN_ATTR_NAME" value="**Default value"/>
+<property name="DE_ATTR_NAME" value="Pflichtfeld"/>
+<property name="EN_ATTR_NAME" value="Default value"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Datentyp" id="B7EE146C-4F67-DE0E-BB81-6E7C156A8FDB">
@@ -136,20 +158,27 @@ Technical data type in external system (e.g. string(20), NUMERIC(20,4), integer,
 ]EN_ATTR_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <importedID>43799535-BB40-2FF9-9A10-9AFA0B987604</importedID>
 <engineerTo>
+<item key="17F5F16D-4CB1-2968-618E-D369CD8C5B93" value="true"/>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
 <item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="false"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>4655A975-6C53-BBE1-01B9-D658AD7C5FC5</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_COMMENT" value="Technischer Datentyp im Fremdsystem (z.B. String(20), NUMERIC(20,4), integer,date,  etc.)"/>
 <property name="DE_ATTR_NAME" value="Datentyp"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Technischer Datentyp im Fremdsystem (z.B. String(20), NUMERIC(20,4), integer,date,  etc.)"/>
 <property name="EN_ATTR_NAME" value="Data type"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Format" id="EF7D27A0-950E-6CA1-DBF2-2B2745F1683A">
@@ -164,22 +193,28 @@ Text formatting of a numeric or time value
 ]EN_ATTR_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <importedID>41BDC830-A46D-219F-EB0F-7B05805D6919</importedID>
 <engineerTo>
+<item key="17F5F16D-4CB1-2968-618E-D369CD8C5B93" value="true"/>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
 <item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="false"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_COMMENT" value="Textliche Formatierung eines numerischen oder Zeitpunkt-Wertes"/>
 <property name="DE_ATTR_NAME" value="Format"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Textliche Formatierung eines numerischen oder Zeitpunkt-Wertes"/>
 <property name="EN_ATTR_NAME" value="Size"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Fremdsystem-ID" id="87F91583-A693-53B0-CCB0-9B8A6DE89CF2">
@@ -194,23 +229,29 @@ Text formatting of a numeric or time value
 ]EN_ATTR_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <importedID>DFC19C82-0428-0E67-1DED-3E7A2FC35B39</importedID>
 <engineerTo>
+<item key="17F5F16D-4CB1-2968-618E-D369CD8C5B93" value="true"/>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
 <item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="false"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <dataTypeSize>100 CHAR</dataTypeSize>
+<domain>897B91BA-60B8-3A16-793A-97B535605E5E</domain>
 <ownDataTypeParameters>100 CHAR,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_COMMENT" value=""/>
 <property name="DE_ATTR_NAME" value="Fremdsystem-ID"/>
 <property name="EN_ATTR_COMMENT" value=""/>
 <property name="EN_ATTR_NAME" value="Third-Party System ID"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Vorgabewert" id="06E1FF63-76EF-1166-CDF3-7F411F2FBF82">
@@ -218,15 +259,17 @@ Text formatting of a numeric or time value
 <createdTime>2020-02-03 20:06:23 UTC</createdTime>
 <comment><![CDATA[Konstanter Wert der zu verwenden ist, falls keine Quelle oder keine Transformation exisitert.]]></comment>
 <notes><![CDATA[[EN_ATTR_COMMENT[
-**Constant value to be used if no source or transformation exists.
+Constant value to be used if no source or transformation exists.
 ]EN_ATTR_COMMENT]
 [DE_ATTR_COMMENT[
 Konstanter Wert der zu verwenden ist, falls keine Quelle oder keine Transformation exisitert.
 ]DE_ATTR_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <importedID>B38BFC3F-DB1C-39F5-C596-3F91ED493276</importedID>
 <engineerTo>
+<item key="17F5F16D-4CB1-2968-618E-D369CD8C5B93" value="true"/>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
 <item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="false"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
@@ -236,7 +279,10 @@ Konstanter Wert der zu verwenden ist, falls keine Quelle oder keine Transformati
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_NAME" value="Vorgabewert"/>
-<property name="EN_ATTR_NAME" value="**Default value"/>
+<property name="EN_ATTR_NAME" value="Default value1"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Geschäftsregel" id="638B0E9B-0C02-1293-49B7-EBE2C59731DF">
@@ -244,15 +290,17 @@ Konstanter Wert der zu verwenden ist, falls keine Quelle oder keine Transformati
 <createdTime>2020-02-03 20:06:23 UTC</createdTime>
 <comment><![CDATA[Beschreibung von Qualitätsprüfungen / Business rules für die Eingangsprüfung]]></comment>
 <notes><![CDATA[[EN_ATTR_COMMENT[
-**Description of quality inspections / business rules for the incoming inspection
+Description of quality inspections / business rules for the incoming inspection
 ]EN_ATTR_COMMENT]
 [DE_ATTR_COMMENT[
 Beschreibung von Qualitätsprüfungen / Business rules für die Eingangsprüfung
 ]DE_ATTR_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <importedID>E9EDC69C-4D49-A485-44EB-4EE0F2B7D406</importedID>
 <engineerTo>
+<item key="17F5F16D-4CB1-2968-618E-D369CD8C5B93" value="true"/>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
 <item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="false"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
@@ -262,7 +310,10 @@ Beschreibung von Qualitätsprüfungen / Business rules für die Eingangsprüfung
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_NAME" value="Geschäftsregel"/>
-<property name="EN_ATTR_NAME" value="**Business Rule"/>
+<property name="EN_ATTR_NAME" value="Business Rule"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 </attributes>

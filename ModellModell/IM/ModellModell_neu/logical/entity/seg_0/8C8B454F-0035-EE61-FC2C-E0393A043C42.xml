@@ -7,14 +7,15 @@
 Person in einer Organisationseinheit  die für die Definition oder Pflege eines Attributwertes verantwortlich ist.
 ]DE_ENTI_COMMENT]
 [EN_ENTI_COMMENT[
-*Person in an organizational unit who is responsible for defining or maintaining an attribute value
+Person in an organizational unit who is responsible for defining or maintaining an attribute value
 ]EN_ENTI_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <engineerTo>
+<item key="17F5F16D-4CB1-2968-618E-D369CD8C5B93" value="true"/>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
-<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="false"/>
-<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
+<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="false"/>
 </engineerTo>
 <typeID>EC66DFE5-32A6-31DC-EC38-0906F34F58E0</typeID>
 <adequatelyNormalized>NO</adequatelyNormalized>
@@ -34,6 +35,9 @@ Person in einer Organisationseinheit  die für die Definition oder Pflege eines 
 <property name="EN_ENTI_COMMENT" value="*DE* Person in einer Organisationseinheit  die für die Definition oder Pflege eines Attributwertes verantwortlich ist. "/>
 <property name="EN_ENTI_NAME" value="Contact for"/>
 <property name="EN_ENTI_SYNONYM" value=""/>
+<property name="maxzoollevel" value="5"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Geschäfts eMail" id="51B112E6-26D1-65E3-2E17-3750B85C2BE6">
@@ -49,18 +53,24 @@ Person in einer Organisationseinheit  die für die Definition oder Pflege eines 
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <importedID>74BD582A-25CC-9ADB-E21F-CC8EE5B52A61</importedID>
 <engineerTo>
+<item key="17F5F16D-4CB1-2968-618E-D369CD8C5B93" value="true"/>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
-<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="false"/>
-<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
+<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="false"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>4655A975-6C53-BBE1-01B9-D658AD7C5FC5</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_COMMENT" value=""/>
 <property name="DE_ATTR_NAME" value="Geschäfts eMail"/>
 <property name="EN_ATTR_COMMENT" value=""/>
 <property name="EN_ATTR_NAME" value="email"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Geschäftstelefon-Nr" id="16FC1AE4-9AE7-AA14-3029-1693B3B9ED25">
@@ -76,19 +86,25 @@ Person in einer Organisationseinheit  die für die Definition oder Pflege eines 
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <importedID>7485D82F-1E2F-338B-0AD3-253B9C1237AB</importedID>
 <engineerTo>
+<item key="17F5F16D-4CB1-2968-618E-D369CD8C5B93" value="true"/>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
-<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="false"/>
-<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
+<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="false"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>4655A975-6C53-BBE1-01B9-D658AD7C5FC5</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="DE_ATTR_COMMENT" value=""/>
 <property name="DE_ATTR_NAME" value="Geschäftstelefon-Nr"/>
 <property name="EN_ATTR_COMMENT" value=""/>
 <property name="EN_ATTR_NAME" value="Business telephone number"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 </attributes>
