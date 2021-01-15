@@ -1,7 +1,7 @@
 # -*- coding: latin-1 -*-
 import json
 from IM_DB import dbConnect, parameters, logmessages
-from IM_JSON import sql2json,printJSON,jsonfilename,JSModel
+from IM_JSON import sql2json,jsonfilename,JSModel
 
 def getJSONfile(pfilename):
     with open(pfilename, 'r') as handle:

@@ -83,5 +83,12 @@
       <jdbc-url>jdbc:sqlserver://fyac-im-test.database.windows.net:1433;database=modelmodel</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name="postgres@34.65.164.219" uuid="3cce99a8-203b-4408-bf10-913223fa0c1b">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://34.65.164.219:5432/postgres</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>
