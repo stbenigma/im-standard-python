@@ -141,6 +141,7 @@ class Odmmapping:
     INHERITTYPE = 9
     RELARCTYPE = 13
     LOGARCTYPE = 14
+    KEYTYPE = '6'
     """
     <CM id="43D673EB-E3DCB674F0CEBE86A026-88057DB0AEEE" lID="43D673EB-E9B4-6636-072A-E3DCB674F0CE" lT="0" rID="BE86A026-2DB5-7C03-0A73-88057DB0AEEE" rT="4">
     <attributesSelection>61138C28-07E5-0E0E-C192-206CA0708A77,7F3CDF26-54F3-142A-4FC1-63D2DBE22319,1FAF93B9-B4A0-C357-3C10-77335807489F</attributesSelection>
@@ -167,8 +168,11 @@ class Odmmapping:
         if cntmapxml is not None:
             for mg in cntmapxml:
                 self.cntmappings.append({'id': transferModel.findField(mg, 'id')
+                                     ,'itype': transferModel.findField(mg, 'iT')
                                      ,'lID' : transferModel.findField(mg, 'lID')
+                                     ,'ltype': transferModel.findField(mg, 'lT')
                                      ,'rID' : transferModel.findField(mg, 'rID')
+                                     ,'rtype': transferModel.findField(mg, 'rT')
                                      })
 
 
@@ -182,18 +186,20 @@ class Odmmapping:
 
 def doattrmapping(pcolmappings):
     for colmap in pcolmappings:
-        attrid = Externalref.getODMmodeid (psrcid=transferModel.findField(colmap, 'lID'))
-        colu = Column().getbyODMref(psrcid=transferModel.findField(colmap, 'rID'))
+        if colmap['rtype'] == Odmmapping.KEYTYPE:
+            continue # key mapping not treated
+        attrid = Externalref.getODMmodeid (psrcid=colmap['lID'])
+        colu = Externalref.getODMmodeid(psrcid=colmap['rID'])
         if ((colu is None) or (attrid is None)):
-            logmessages.writelog("Column-Reference ({}) or Attribute Refernce ({}) not found".format(transferModel.findField(colmap, 'rID')
-                                                                                                     ,transferModel.findField(colmap, 'lID')))
+            logmessages.writelog ("Column-Reference ({}:{}) or Attribute Reference ({}:{}) not found"
+                                 .format(colmap['rtype'],colmap['rID'],colmap['ltype'],colmap['lID']))
             continue
         #fi
 
         colmap = ColAttrMap()
         colmap.coam_seq =1
         colmap.coam_direction = ColAttrMap.INBOUND
-        colmap.coam_colu_id = colu.colu_id
+        colmap.coam_colu_id = colu
         colmap.coam_attr_id = attrid
         colmap.insert()
 #doattrmapping
@@ -217,22 +223,19 @@ def do1mapping(pfilename):
         odmmap = Odmmapping(cmxml)
         #print (odmmap.__dict__)
         tabentimap = TablEntiMap()
+        if (odmmap.logtype in (odmmap.INHERITTYPE, odmmap.LOGARCTYPE)
+                or odmmap.reltype in (odmmap.FKTYPE, odmmap.RELARCTYPE)):
+            continue #these types are not yet handled
+
         try:
             tabentimap.tema_enti_id = Externalref.getODMmodeid(psrcid=odmmap.logid) if odmmap.logtype == odmmap.ENTITYPE else None
             tabentimap.tema_rela_id = Externalref.getODMmodeid(psrcid=odmmap.logid) if odmmap.logtype == odmmap.RELATYPE else None
             tabentimap.tema_tabl_id = Externalref.getODMmodeid(psrcid=odmmap.relid) if odmmap.reltype == odmmap.TABLETYPE else None
-            #colattrmap.tema_tabl_id = Table().getidbyfk(odmmap.relid) if odmmap.reltype == odmmap.FKTYPE else None
             tabentimap.insert(pdoerrhdlng=False)
         except:
-            pass
             if odmmap.logtype == Odmmapping.ENTITYPE:
                  logmessages.writelog('Mapping funktioniert nicht Entity vermutlich gelöscht: '
                                       + 'Logic: type = {}   guid = {}'.format(odmmap.logtype,odmmap.logid)
-                                      + '     relational: type = {}   guid = {}'.format(odmmap.reltype, odmmap.relid)
-                                      )
-            elif odmmap.logtype == Odmmapping.FKTYPE:
-                logmessages.writelog ('Mapping funktioniert nicht FK noch nicht behandelt:  '
-                                      + 'Logic: type = {}   guid = {} '.format(odmmap.logtype,odmmap.logid)
                                       + '     relational: type = {}   guid = {}'.format(odmmap.reltype, odmmap.relid)
                                       )
             else:

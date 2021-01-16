@@ -11,10 +11,15 @@ DBLANGUAGES:str = 'dblanguages'
 LOGFILEDIREC:str = 'logfiledirec'
 LOGFILEPATH:str = 'logfilepath'
 
+SQLITE:str = 'sqlite'
+SQLSERVER:str = 'sql-server'
+POSTGRES:str = 'postgres'
 
 paramFileExension:str = ".params"
-parameter = {
-              'dbfilepath': None
+parameter = {'dbtype': SQLITE
+             ,'sqlpath': os.path.dirname(os.path.abspath(__file__))+"/../sqlfiles/"
+            , 'sqlfilename': 'modelmodel_'+SQLITE
+            ,'dbfilepath': None
             , 'dbdirec' : None
             , 'dbfileextension' : '.db'
             , 'dbdefaultdirec':'DB/'
@@ -274,6 +279,27 @@ def odmreldirec(newval=None):
         return odmIMDirec()+odmModelName()+'/'+parameter['odmreldirec']
     else:
         parameter['odmreldirec'] = newval
+
+def dbtype(newval=None):
+    if newval is None:
+        return parameter['dbtype']
+    else:
+        parameter['dbtype'] = newval
+    return
+def sqlpath(newval=None):
+    if newval is None:
+        return parameter['sqlpath']
+    else:
+        parameter['sqlpath'] = newval
+    return
+def sqlfilename(newval=None):
+    if newval is None:
+        return parameter['sqlfilename']
+    else:
+        parameter['sqlfilename'] = newval
+    return
+def sqlfilepath():
+    return sqlpath()+sqlfilename()+".sql"
 
 def liesparamfile(p_filepath):
     import configparser
