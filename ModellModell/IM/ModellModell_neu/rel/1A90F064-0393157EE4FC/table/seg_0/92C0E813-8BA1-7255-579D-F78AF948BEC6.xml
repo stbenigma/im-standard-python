@@ -7,6 +7,7 @@
 <createdTime>2021-01-14 10:15:35 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <importedID>BC1F0C95-469F-2E08-3FF9-0DED4527510F</importedID>
+<allowColumnReorder>false</allowColumnReorder>
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
@@ -21,10 +22,7 @@
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT011</logicalDatatype>
-<dataTypePrecision>10</dataTypePrecision>
-<dataTypeScale>0</dataTypeScale>
-<dataTypeSize>4</dataTypeSize>
-<ownDataTypeParameters>4,10,0</ownDataTypeParameters>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
 <Column name="proj_name" id="0A1E6CC2-6C6A-EB34-63E7-1689CE823471">
@@ -42,6 +40,18 @@
 <dataTypeScale>0</dataTypeScale>
 <dataTypeSize>60</dataTypeSize>
 <ownDataTypeParameters>60,60,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="proj_languages" id="07FAE3A4-CE56-DD6F-14ED-99A53712FFBD">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-16 16:22:37 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<dataTypeSize>60</dataTypeSize>
+<ownDataTypeParameters>60,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
 <Column name="proj_curr_lang" id="1D8E6B1C-787E-BE6A-9BE5-FAE2FE08C1D1">
