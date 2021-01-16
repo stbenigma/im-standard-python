@@ -773,19 +773,16 @@ def updateUDP(pmodeid, pobj):
         Userdefpropvalue.updvalues(prows=udps)
     # fi
 
-def do1Attribute(plfnr, pattrxml, pentiId=None, prelaId=None):
+def do1Attribute(plfnr, pattrxml,pentiId):
     # wegen FK-PK zusätzliche Attribute werden nicht übernommen
     if (findText(pattrxml, 'referedAttribute') is not None):
         return
-    if pentiId is not None:
-        vatername = Entity().getbyid(pid=pentiId).enti_name
-    elif prelaId is not None:
-        vatername = "Beziehung ({})".format(prelaId)
+    vatername = Entity().getbyid(pid=pentiId).enti_name
 
     xmlname = findField(pattrxml, 'name')
     # strip [] am Ende des Namens
 
-    attr = Attribute(pname=re.sub(' ?\[[LNT]+\]', '', xmlname), pentiid=pentiId, prelaid=prelaId
+    attr = Attribute(pname=re.sub(' ?\[[LNT]+\]', '', xmlname), pentiid=pentiId
                      , psrcname=Externalref.SOURCE_ODM, psrcid=findField(pattrxml, 'id'))
     attr.attr_tech_name = findText(pattrxml, 'preferredAbbreviation')
     if attr.attr_tech_name is None:

@@ -9,7 +9,7 @@ class Attribute(MultilangBaseobject):
     _prefix: str = 'attr'
     _columnlist: list = []
 
-    def __init__(self, pname=None, pentiid=None, prelaid=None
+    def __init__(self, pname=None, pentiid=None
                     ,psrcname=None, psrcid=None):
 
         if (len(Attribute._columnlist) == 0): Attribute._columnlist = Baseobject.gettablecolumns(Attribute._tablename)
@@ -22,7 +22,6 @@ class Attribute(MultilangBaseobject):
                          , psrcname=psrcname)
         self.attr_displ_name = pname
         self.attr_enti_id = pentiid
-        self.attr_rela_id = prelaid
 
     @staticmethod
     def createtable():
@@ -32,7 +31,6 @@ CREATE TABLE ATTRIBUTES
     (
      ATTR_ID integer NOT NULL  primary key,
      ATTR_ENTI_ID integer NULL ,
-     ATTR_RELA_ID integer NULL ,
      ATTR_DOMA_ID integer NOT NULL ,
      ATTR_TECH_NAME VARCHAR (60) NOT NULL ,
      ATTR_DISPL_NAME VARCHAR (4000) NULL ,
@@ -55,20 +53,13 @@ CREATE TABLE ATTRIBUTES
      ATTR_DC VARCHAR (30) NOT NULL ,
      ATTR_UM VARCHAR (30) NULL ,
      ATTR_DM VARCHAR (30) NULL
-    ,CONSTRAINT ENTI_OR_RELA_ARC CHECK (
-        (  (ATTR_ENTI_ID IS NOT NULL) AND
-         (ATTR_RELA_ID IS NULL) ) OR
-        (  (ATTR_RELA_ID IS NOT NULL) AND
-         (ATTR_ENTI_ID IS NULL) )  )
-      ,CONSTRAINT ATTR_UK UNIQUE (ATTR_TECH_NAME ASC, ATTR_RELA_ID ASC, ATTR_ENTI_ID ASC)
-      ,CONSTRAINT ATTR_UK2 UNIQUE (ATTR_DISPL_NAME ASC, ATTR_RELA_ID ASC, ATTR_ENTI_ID ASC)
+      ,CONSTRAINT ATTR_UK UNIQUE (ATTR_TECH_NAME ASC, ATTR_ENTI_ID ASC)
+      ,CONSTRAINT ATTR_UK2 UNIQUE (ATTR_DISPL_NAME ASC, ATTR_ENTI_ID ASC)
       ,CONSTRAINT ATTR_ENTI_FK FOREIGN KEY      (     ATTR_ENTI_ID)
 		  REFERENCES ENTITIES      (     ENTI_ID )
       ,CONSTRAINT ATTR_MODE_FK FOREIGN KEY      (     ATTR_ID)
 		  REFERENCES MODELELEMENT      (     MODE_ID )
 		  ON DELETE CASCADE
-      ,CONSTRAINT ATTR_RELA_FK FOREIGN KEY      (     ATTR_RELA_ID)
-		  REFERENCES RELATIONS      (     RELA_ID )
 	  ,CONSTRAINT ATTR_DOMA_FK FOREIGN KEY	  (     ATTR_DOMA_ID)
 		  REFERENCES DOMAINS	  (     DOMA_ID )
 		  ON DELETE NO ACTION
@@ -95,10 +86,7 @@ CREATE TABLE ATTRIBUTES
         return self.getmodellelement().mode_id
 
     def getparent(self):
-        if self.attr_enti_id is not None:
-            return IM_OBJECTS.Entity().getbyid(self.attr_enti_id)
-        if self.attr_rela_id is not None:
-            return IM_OBJECTS.Relation().getbyid(self.attr_rela_id)
+        return IM_OBJECTS.Entity().getbyid(self.attr_enti_id)
 
     def isinkey(self):
         return Keyelement.isinkey(pattrid=self.attr_id)

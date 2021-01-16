@@ -510,14 +510,9 @@ create table ATTRIBUTES
 (
 	ATTR_ID integer not null
 		primary key
-		references MODELELEMENT
-			on delete cascade,
-	ATTR_ENTI_ID integer
-		references ENTITIES,
-	ATTR_RELA_ID integer
-		references RELATIONS,
-	ATTR_DOMA_ID integer not null
-		references DOMAINS,
+		references MODELELEMENT			on delete cascade,
+	ATTR_ENTI_ID integer not null		references ENTITIES,
+	ATTR_DOMA_ID integer not null		references DOMAINS,
 	ATTR_TECH_NAME VARCHAR(60) not null,
 	ATTR_DISPL_NAME VARCHAR(4000),
 	ATTR_DISPL_SEQ NUMERIC(5),
@@ -533,21 +528,14 @@ create table ATTRIBUTES
 	ATTR_DC VARCHAR(30) not null,
 	ATTR_UM VARCHAR(30),
 	ATTR_DM VARCHAR(30),
-	constraint ATTR_UK
-		unique (ATTR_TECH_NAME, ATTR_RELA_ID, ATTR_ENTI_ID),
-	constraint ATTR_UK2
-		unique (ATTR_DISPL_NAME, ATTR_RELA_ID, ATTR_ENTI_ID),
+	constraint ATTR_UK	unique (ATTR_TECH_NAME, ATTR_ENTI_ID),
+	constraint ATTR_UK2	unique (ATTR_DISPL_NAME, ATTR_ENTI_ID),
 	check (ATTR_IS_DESCRIPTIVE IN('FALSE','TRUE')),
 	check (ATTR_IS_ENCRYPTED IN('FALSE','TRUE')),
 	check (ATTR_IS_HISTORICISED IN('FALSE','TRUE')),
 	check (ATTR_IS_MANDATORY IN('FALSE','TRUE')),
 	check (ATTR_IS_REPEATED IN('FALSE','TRUE')),
-	check (ATTR_IS_TRANSLATED IN('FALSE','TRUE')),
-	constraint ENTI_OR_RELA_ARC
-		check ((  (ATTR_ENTI_ID IS NOT NULL) AND
-         (ATTR_RELA_ID IS NULL) ) OR
-        (  (ATTR_RELA_ID IS NOT NULL) AND
-         (ATTR_ENTI_ID IS NULL) ))
+	check (ATTR_IS_TRANSLATED IN('FALSE','TRUE'))
 );
 
 create table DEFAULT_VALUES
@@ -910,8 +898,7 @@ CREATE VIEW SUPERENTI AS
           join rel on rela_superenti_id = superentity.ENTI_ID
         join ENTITIES subentity on subentity.ENTI_ID = rela_subenti_id;
 
-CREATE VIEW langattr as
-        	        select lgtx_text,lang_id,lang_iso_code2,lgtx_mode_id,lgtx_attrname
-        	          from lang_texts
-        	          join languages on lang_id = lgtx_lang_id;
-
+--drop view dbversion;
+create view dbversion as select '1.0' as version, datetime() as installedtime;
+	-- sql-server: create view  dbversion as select '1.0' as version, current_timestamp as installedtime
+	-- postgres: create view  dbversion as select '1.0' as version, current_timestamp as installedtime

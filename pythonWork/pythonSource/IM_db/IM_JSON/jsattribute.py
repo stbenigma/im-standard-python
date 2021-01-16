@@ -8,7 +8,6 @@ def defattr(attr):
         , 'name': attr.attr_displ_name_L
         , 'seq': attr.attr_displ_seq
         , 'entity': jsguid(Modelelemtype.ENTI, attr.attr_enti_id)
-        , 'relation': jsguid(Modelelemtype.RELA, attr.attr_rela_id)
         , 'domain': jsguid(Modelelemtype.DOMA, attr.attr_doma_id)
         ,'basedatatype+':  None if doma.doma_daty_id is None else Datatype().getbyid(doma.doma_daty_id).daty_name
         ,'type+' : doma.doma_type
@@ -83,7 +82,6 @@ def attributes2sql(pmodel:JSModel):
         attr = Attribute()
         attr.attr_id = jsguid2id(jid)
         attr.attr_enti_id = jsguid2id(jelem['entity'])
-        attr.attr_rela_id = jsguid2id(jelem['relation'])
         attr.attr_doma_id  = jsguid2id(jelem['domain'])
         attr.attr_tech_name = jelem['techname']
         attr.attr_displ_name = jelem['name'][pmodel.modellanguage()]
