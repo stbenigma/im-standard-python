@@ -4,9 +4,10 @@ import os
 import papermill as pm
 
 # the script to be tested
-script = './notebooks/Sandbox/confluence-python-api/API-sandbox.ipynb'
-
-base_path = os.path.dirname(os.path.abspath(script))
+scripts = [
+    './notebooks/confluence-export/contentfactory.ipynb',
+    './notebooks/Sandbox/confluence-python-api/API-sandbox.ipynb'
+]
 
 username = os.environ.get('CONFLUENCE_USERNAME')
 password = os.environ.get('CONFLUENCE_PASSWORD')
@@ -25,9 +26,11 @@ if password is None:
 
 print('Starting papermill with confluence_username: {} and {}'.format(username, '{} character password'.format(len(password)) if password else 'no password'))
 
-pm.execute_notebook(
-   script,
-   'output.ipynb',
-   parameters=dict(confluence_username=username, confluence_password=password),
-   cwd=base_path
-)
+for notebook in scripts:
+    base_path = os.path.dirname(os.path.abspath(notebook))
+    pm.execute_notebook(
+       notebook,
+       os.path.splitext(notebook)[0] + '.test.out.ipynb',
+       parameters=dict(confluence_username=username, confluence_password=password),
+       cwd=base_path
+    )
