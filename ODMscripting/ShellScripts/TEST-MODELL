@@ -1,0 +1,11 @@
+#!/bin/bash
+# author stb
+# script to start an ODM on MAX-OS
+
+# Parameter
+#	1. basedirec: Verzeichnis, in dem sich IM verzeichnis befindet
+#	2. Name des Modells (= DMD-Datei-name ohne .dmd). Falls gleich wie name des aktuellen Shellscripts (case sensitiv!): `basename "$0"` 
+#   3. Sprache DE, EN leer (= Nimm Sprache von OS)
+DMDNAME=`basename "$0"`
+#DMDNAME = "my-modell"
+~/Documents/Projekte/ODM-start "$(dirname "$0")/fyyccim-refmodels/Attribute" $DMDNAME DE

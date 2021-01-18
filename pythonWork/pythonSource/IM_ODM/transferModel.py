@@ -564,16 +564,6 @@ def transferdiaarc(parcs, pdiagid, puc, pdc):
     pass
 
 
-# transferdiaarc
-
-# def doGUIDfile(pdirec,pfile,transferfiles):
-#    #nur GUID als Namen erlaubt.
-##    if re.match(r'{}.xml'.format(GUIDPATTERN),pfile):
-#        fileName = pdirec + pfile
-#        transferfiles(fileName)
-#    #fi
-##doGUIDfile
-
 def doxmlfiles(pdirec, ptransfer, ppattern=r".*",pmandatorydirec = True):
     try:
         listdir = os.listdir(pdirec)
