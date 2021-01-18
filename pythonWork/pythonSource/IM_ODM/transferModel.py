@@ -773,19 +773,16 @@ def updateUDP(pmodeid, pobj):
         Userdefpropvalue.updvalues(prows=udps)
     # fi
 
-def do1Attribute(plfnr, pattrxml, pentiId=None, prelaId=None):
+def do1Attribute(plfnr, pattrxml,pentiId):
     # wegen FK-PK zusätzliche Attribute werden nicht übernommen
     if (findText(pattrxml, 'referedAttribute') is not None):
         return
-    if pentiId is not None:
-        vatername = Entity().getbyid(pid=pentiId).enti_name
-    elif prelaId is not None:
-        vatername = "Beziehung ({})".format(prelaId)
+    vatername = Entity().getbyid(pid=pentiId).enti_name
 
     xmlname = findField(pattrxml, 'name')
     # strip [] am Ende des Namens
 
-    attr = Attribute(pname=re.sub(' ?\[[LNT]+\]', '', xmlname), pentiid=pentiId, prelaid=prelaId
+    attr = Attribute(pname=re.sub(' ?\[[LNT]+\]', '', xmlname), pentiid=pentiId
                      , psrcname=Externalref.SOURCE_ODM, psrcid=findField(pattrxml, 'id'))
     attr.attr_tech_name = findText(pattrxml, 'preferredAbbreviation')
     if attr.attr_tech_name is None:
@@ -1076,11 +1073,13 @@ def do1Relation(fileName):
 
     attrs = relaxml.find('attributes')
     if attrs is not None:
-        for idx, attr in enumerate(attrs, start=1):
-            # alle Attribute
-            # print((findField(attr,'name'),findField(attr,'id')))
-            do1Attribute(plfnr=idx, pattrxml=attr, prelaId=rela.rela_id)
-        # endfor
+        """Relationattributes are not handled"""
+        logmessages.writelog("Relationattributes are not handled (Relation {})".format(rela.rela_name))
+        #for idx, attr in enumerate(attrs, start=1):
+        #    # alle Attribute
+        #    # print((findField(attr,'name'),findField(attr,'id')))
+        #    do1Attribute(plfnr=idx, pattrxml=attr, prelaId=rela.rela_id)
+        ## endfor
     # fi
 # do1Relation
 
@@ -1266,17 +1265,13 @@ def loeschmodell():
     Diagram.delete()
     MeltDiat.delete()
     Datatype.delete()
-    dbDML.delete('bereich_elemdarst')
     Modelelemtype.delete()
     Diagramtype.delete()
-    dbDML.delete('geschaeftsbereich')
     PhysicalUnit.delete()
     Storageformat.delete()
     Project.delete()
     Languagetext.delete()
     Language.delete()
-
-
 # loeschmodell
 
 def loadcolors(coldict, classkey, elem):

@@ -2,7 +2,7 @@
 import sqlite3
 import sys
 
-from IM_DB import dbConnect, dbErstelleTables
+from IM_DB import dbConnect, dbErstelleTables,parameters
 from IM_JSON import *
 from IM_ODM import transferModel
 
@@ -89,7 +89,7 @@ def main(pjsonin, pdbout):
     else:
         dbConnect.openDB(pdbout, 'ON');
 
-    dbErstelleTables.erstelleInfra();
+    dbErstelleTables.erstelleInfra(parameters.sqlfilepath());
     transferModel.insertBaseData(pwithlangs=False)
 
     try:

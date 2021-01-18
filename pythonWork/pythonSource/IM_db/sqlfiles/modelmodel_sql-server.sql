@@ -643,12 +643,9 @@ create table ATTRIBUTES
 		constraint ATTR_MODE_FK
 			references MODELELEMENT
 				on delete cascade,
-	ATTR_ENTI_ID numeric(10)
+	ATTR_ENTI_ID numeric(10) not null
 		constraint ATTR_ENTI_FK
 			references ENTITIES,
-	ATTR_RELA_ID numeric(10)
-		constraint ATTR_RELA_FK
-			references RELATIONS,
 	ATTR_DOMA_ID numeric(10) not null
 		constraint ATTR_DOMA_FK
 			references DOMAINS,
@@ -674,11 +671,9 @@ create table ATTRIBUTES
 	ATTR_UM varchar(30),
 	ATTR_DM datetime,
 	constraint ATTR_UK
-		unique (ATTR_TECH_NAME, ATTR_RELA_ID, ATTR_ENTI_ID),
+		unique (ATTR_TECH_NAME, ATTR_ENTI_ID),
 	constraint ATTR_UK2
-		unique (ATTR_DISPL_NAME, ATTR_RELA_ID, ATTR_ENTI_ID),
-	constraint ENTI_OR_RELA_ARC
-		check ([ATTR_ENTI_ID] IS NOT NULL AND [ATTR_RELA_ID] IS NULL OR [ATTR_RELA_ID] IS NOT NULL AND [ATTR_ENTI_ID] IS NULL)
+		unique (ATTR_DISPL_NAME, ATTR_ENTI_ID)
 )
 go
 
@@ -981,6 +976,7 @@ create table projects
 	proj_name varchar(60) not null
 		constraint proj_uk
 			unique,
+	proj_languages      VARCHAR(60),
 	proj_curr_lang varchar(2),
 	proj_uc varchar(30) not null,
 	proj_dc varchar(30) not null,
@@ -1018,3 +1014,8 @@ CREATE  VIEW SUPERENTI AS
         join ENTITIES subentity on subentity.ENTI_ID = rela_subenti_id
 go
 
+
+drop view dbversion
+create view  dbversion as select '1.0' as version, current_timestamp as installedtime
+-- postgres: create view  dbversion as select '1.0' as version, current_timestamp as installedtime
+-- sqlite: create view dbversion as select '1.0' as version, datetime() as installedtime

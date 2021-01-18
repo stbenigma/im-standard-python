@@ -10,11 +10,18 @@ def main(par1):
     parameters.initparam(p_callarg=par1)
     logmessages.initlog('CreateDB')
 
-    # falls es das Verzeichnis für die DB nicht gibt erzeuge es
-    if not os.path.isdir(parameters.dbDirect()):
-        os.mkdir(parameters.dbDirect())
-    dbConnect.openDB(parameters.dbFilePath(), 'OFF');
-    dbErstelleTables.erstelleInfra();
+    dbtype = 'sqlite'
+    if dbtype == parameters.SQLITE:
+        if os.path.exists(parameters.dbFilePath()):
+            print ("********* {}-DB-File {} alreday exists, cannot create it".format(parameters.SQLITE,parameters.dbFilePath()))
+            return
+        """# falls es das Verzeichnis für die DB nicht gibt erzeuge es"""
+        if not os.path.isdir(parameters.dbDirect()):
+            os.mkdir(parameters.dbDirect())
+        dbConnect.openDB(parameters.dbFilePath(), 'OFF');
+        sqlfile = parameters.sqlfilepath()
+    #fi
+    dbErstelleTables.erstelleInfra(psqlfilename=sqlfile);
     dbConnect.myDbConn.close()
     logmessages.showmessages("database {} for model {} created"
                              .format(parameters.dbFilePath()

@@ -48,3 +48,17 @@ def dropView(ptableName):
             print ("Unerwarteter SQL-Fehler: \t{}" .format(e))
             raise e
 #end dropView
+
+def execscript(psql):
+    cursor = dbConnect.myDbConn.cursor()
+    try:
+        cursor.executescript(psql)
+    except sqlite3.Error as e:
+        if re.match("xxxxxxx",e.__str__()):
+            pass
+        else:
+            print(psql)
+            print ("exec: unexpected SQL-error: \t%s" % e)
+            raise e
+    dbConnect.myDbConn.commit()
+#end executescript
