@@ -1,0 +1,127 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="2787D48C-F5DD-D6CF-4BFA-772D7F9F3294" name="Benutzerdefinierter_Eigenschaftswert">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:43 UTC</createdTime>
+<comment><![CDATA[Wert eines Erweiterungsmerkmals eines Elementes]]></comment>
+<generatorID>2A9C7750-58E1-A93A-4350-DEED61179EE9</generatorID>
+<notes><![CDATA[[EN_ENTI_COMMENT[
+Value of a UDP. Non standard Property value of a model element
+]EN_ENTI_COMMENT]
+[DE_ENTI_COMMENT[
+Wert eines Erweiterungsmerkmals eines Elementes
+]DE_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<typeID>0F21B703-5AD4-9DCA-458B-A19E89BB5BD6</typeID>
+<abbreviation>UDPV</abbreviation>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Wert" id="0FA8D794-4FCC-23C5-7244-39CA68901296">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:43 UTC</createdTime>
+<generatorID>F0AFC80F-C811-FBA8-F729-B8DD3F423825</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="UDPV_ID" id="ACA902CB-9AAA-5288-2B02-5FB587DE2795">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:43 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+<Column name="Benutzerdefinierte_Eigenschaft_Benutzerdefinierte_Eigenschaft_ID" id="8538CBC5-FB43-A683-852B-361B9AB67320">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:44 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="B4F59EE9-F19F-3036-784B-02A4C44D4B10" referredColumn="C6A99347-58BA-ADBB-F438-A6A5AC02B8F4"/>
+</associations>
+</Column>
+<Column name="Modellelement_Modellelement_ID" id="BF0B340D-D20D-1D68-0811-98AFCC270364">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:44 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="DBD1676D-DF22-FB5D-61F5-6EE6430D13DA" referredColumn="28634B1F-69A4-3D1C-E716-4325ECB16FDD"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="AB7B62AA-E775-130E-341D-2D1DC36552CA" name="UDPV_PK">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:43 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="ACA902CB-9AAA-5288-2B02-5FB587DE2795"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="A3EA4898-504A-A2FD-E502-3C9A300179AC" name="Benutzerdefinierter_Eigenschaftswert__UN">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:43 UTC</createdTime>
+<generatorID>A26F2E70-43A8-DD0A-4599-DF73E5ECC997</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="BF0B340D-D20D-1D68-0811-98AFCC270364"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="E44F2FEF-DCC5-5273-AF24-BFBF8C5BFE43" name="Benutzerdefinierter_Eigenschaftswert_Benutzerdefinierte_Eigenschaft_FK">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:44 UTC</createdTime>
+<generatorID>BAC886C1-3895-B1E4-9FD3-6874A8F23130</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="8538CBC5-FB43-A683-852B-361B9AB67320"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="2B6354EF-F3B8-6B8E-0C9E-79012380AE26" name="Benutzerdefinierter_Eigenschaftswert_Modellelement_FK">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:44 UTC</createdTime>
+<generatorID>EB8D7E93-E38D-5492-808E-E58AF6F46BC2</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="BF0B340D-D20D-1D68-0811-98AFCC270364"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -1,0 +1,54 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="CD8EB2F6-5D68-B6CC-BEC4-4B44015C1204" name="IsA_Subtyp_Beziehung">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:43 UTC</createdTime>
+<comment><![CDATA[1:1 Beziehung, die einen echten, exklusiven Subtyp definiert.
+Die Beziehungen müssen vom Vater aus 1:1 pflicht und in einem Arc sein.
+Bei ODM Entity in Entity gezeichnet.
+Die Superentity ist immer genau eine der Subentities.
+Es gibt immer mindestens 2 Subentities.
+Beispiele:
+   Partner ist entweder eine Firma oder eine Person]]></comment>
+<generatorID>F5394923-6DFA-8C01-6D38-3997884B3C41</generatorID>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+1:1 Beziehung, die einen echten, exklusiven Subtyp definiert.
+Die Beziehungen müssen vom Vater aus 1:1 pflicht und in einem Arc sein.
+Bei ODM Entity in Entity gezeichnet.
+Die Superentity ist immer genau eine der Subentities.
+Es gibt immer mindestens 2 Subentities.
+Beispiele:
+   Partner ist entweder eine Firma oder eine Person
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+1:1 relationship that defines a true exclusive subtype
+The relationships must be 1:1 obligatory from the father and must be in an arc.
+For ODM Entity drawn in Entity.
+The superentity is always exactly one of the subentities.
+There are always at least 2 subentities.
+Examples:
+   Partner is either a company or a person
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<typeID>899A6DDC-95E0-4AD5-5F58-B3A2FF5C2D08</typeID>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="BBB995BC-4BF4-1C0D-A5D8-769D46286A8D" name="IsA_Subtyp_Beziehung__UN">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:43 UTC</createdTime>
+<generatorID>7465F71C-6E0A-E3D8-95A6-E74B987A6AA2</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+</ind_PK_UK>
+<ind_PK_UK id="282CA1BA-BE62-FF1C-73AE-B778EEAAC188" name="IsA_Subtyp_Beziehung_Beziehung_FK">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:43 UTC</createdTime>
+<generatorID>A99C3DE2-8B05-818F-B4BD-6BDB2FACD8BA</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+</ind_PK_UK>
+</indexes>
+</Table>

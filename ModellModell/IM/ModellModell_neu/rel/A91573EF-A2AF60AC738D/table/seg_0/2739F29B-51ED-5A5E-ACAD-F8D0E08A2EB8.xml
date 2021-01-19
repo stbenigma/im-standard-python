@@ -1,0 +1,40 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="2739F29B-51ED-5A5E-ACAD-F8D0E08A2EB8" name="Betreiber">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:43 UTC</createdTime>
+<comment><![CDATA[Firma oder Organisation die ein Sysstem betreibt (Betrieb aufrechterhält, System am laufen hält, Backup  und Sicherheit garantiert).
+
+Beispiele:]]></comment>
+<generatorID>1A441344-FEB0-2946-FE5F-AD0245DC6E74</generatorID>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+Firma oder Organisation die ein Sysstem betreibt (Betrieb aufrechterhält, System am laufen hält, Backup  und Sicherheit garantiert).
+
+Beispiele:
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+*Company or organization that operates a system (maintains operation, keeps the system running, guarantees backup and security).  Examples:
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<typeID>FAF70092-F6A9-97FE-9880-A36ECEDBFE26</typeID>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="B0A4C697-955C-346D-382D-7C0F46823564" name="Betreiber__UN">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:43 UTC</createdTime>
+<generatorID>7465F71C-6E0A-E3D8-95A6-E74B987A6AA2</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+</ind_PK_UK>
+<ind_PK_UK id="BF6CAC27-DE04-DFF5-9A98-FA84C3A19AE4" name="Betreiber_Modellelement_FK">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:43 UTC</createdTime>
+<generatorID>A30618D4-E0A9-A5D5-1485-FED0ADC9E483</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+</ind_PK_UK>
+</indexes>
+</Table>

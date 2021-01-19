@@ -24,7 +24,7 @@
 </OView>
 <OView class="oracle.dbtools.crest.swingui.logical.TVEntity" oid="12574403-02C8-5417-210E-86316EB1152A" otype="Entity" vid="AB7A2BB3-C073-D463-2955-F4A470210240">
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
-<bounds x="1760" y="980" width="170" height="91"/>
+<bounds x="1330" y="630" width="170" height="101"/>
 </OView>
 <OView class="oracle.dbtools.crest.swingui.logical.TVEntity" oid="1725C503-BB91-0A6D-6E10-6908B44EDA95" otype="Entity" vid="9BE14403-FD1B-64BA-7250-24018DA43C45">
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
@@ -44,7 +44,7 @@
 </OView>
 <OView class="oracle.dbtools.crest.swingui.logical.TVEntity" oid="2A9C7750-58E1-A93A-4350-DEED61179EE9" otype="Entity" vid="0D41D912-3F89-F9DC-AD70-915A1C1A9735">
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
-<bounds x="600" y="1510" width="181" height="110"/>
+<bounds x="550" y="1510" width="181" height="110"/>
 </OView>
 <OView class="oracle.dbtools.crest.swingui.logical.TVEntity" oid="2C57B52E-0A51-E5FA-0B39-DDDD98D49ECB" otype="Entity" vid="E26807DD-7E00-AD51-6638-F33775204AFE">
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
@@ -110,7 +110,7 @@
 </OView>
 <OView class="oracle.dbtools.crest.swingui.TVNote" oid="6954F4DF-BC76-20B1-0469-511EBF737237" otype="Note" vid="F33C82F3-FB0A-C9A1-9ACD-372E72D9D59F">
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
-<bounds x="10" y="190" width="278" height="256"/>
+<bounds x="1310" y="110" width="278" height="256"/>
 <comment>Attribute- and relationship syntax extension:
 
 Attributes can have postfixes in their name:
@@ -533,7 +533,7 @@ Relationships with [T] are temporal and have to be resolved in the data model wi
 <lineWidth>1</lineWidth>
 <centerLabel class="oracle.dbtools.crest.model.design.Label">
 <site>1</site>
-<labelBounds x="-1297" y="-676" width="96" height="50"/>
+<labelBounds x="-1345" y="-701" width="96" height="50"/>
 <noBackgroundColor>true</noBackgroundColor>
 <noForegroundColor>true</noForegroundColor>
 </centerLabel>
@@ -561,6 +561,11 @@ Relationships with [T] are temporal and have to be resolved in the data model wi
 <backgroundColor>-65536</backgroundColor>
 <lineWidth>1</lineWidth>
 </Connector>
+<Connector class="oracle.dbtools.crest.swingui.logical.TVInheritanceRelation" oid="4FC1991C-4CC5-0ACF-AEE9-1EEACC7B195C" otype="Hierarchy relation" vid_source="EB8502F6-9B72-FB93-B07D-50402F70A153" vid_target="AB7A2BB3-C073-D463-2955-F4A470210240">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<backgroundColor>-65536</backgroundColor>
+<lineWidth>1</lineWidth>
+</Connector>
 <Connector class="oracle.dbtools.crest.swingui.logical.TVInheritanceRelation" oid="553F5CD0-2B8C-3411-9608-9FF3D4415D98" otype="Hierarchy relation" vid_source="A6216DE1-DB83-63B1-FED6-79F51B7D202E" vid_target="69E45ADA-BC56-F4A9-8A94-F05CE0370E6B">
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
 <backgroundColor>-65536</backgroundColor>
@@ -572,22 +577,22 @@ Relationships with [T] are temporal and have to be resolved in the data model wi
 <lineWidth>1</lineWidth>
 <sourceLabel class="oracle.dbtools.crest.model.design.Label">
 <site>0</site>
-<labelBounds x="1946" y="1016" width="79" height="30"/>
+<labelBounds x="1518" y="677" width="79" height="30"/>
 <noBackgroundColor>true</noBackgroundColor>
 <noForegroundColor>true</noForegroundColor>
 </sourceLabel>
 <targetLabel class="oracle.dbtools.crest.model.design.Label">
 <site>2</site>
-<labelBounds x="1851" y="1081" width="99" height="30"/>
+<labelBounds x="1423" y="742" width="99" height="30"/>
 <noBackgroundColor>true</noBackgroundColor>
 <noForegroundColor>true</noForegroundColor>
 </targetLabel>
 <points>
-<point x="1930" y="1031"/>
-<point x="1946" y="1031"/>
-<point x="1946" y="1094"/>
-<point x="1851" y="1094"/>
-<point x="1851" y="1071"/>
+<point x="1500" y="692"/>
+<point x="1518" y="692"/>
+<point x="1518" y="755"/>
+<point x="1423" y="755"/>
+<point x="1423" y="731"/>
 </points>
 </Connector>
 <Connector class="oracle.dbtools.crest.swingui.logical.TVRelation" oid="6CA1C5DF-F6D9-AA8D-F2B4-EB193ED74383" otype="Relation" vid_source="0623B799-7D60-82D2-E368-2F06D3738175" vid_target="F1064676-39F1-22DC-1FE7-FD9AD8279D24">
@@ -972,26 +977,50 @@ Relationships with [T] are temporal and have to be resolved in the data model wi
 <backgroundColor>-65536</backgroundColor>
 <lineWidth>1</lineWidth>
 </Connector>
+<Connector class="oracle.dbtools.crest.swingui.logical.TVRelation" oid="BAC886C1-3895-B1E4-9FD3-6874A8F23130" otype="Relation" vid_source="789A746A-5921-9C22-D130-D258C25E0CB6" vid_target="0D41D912-3F89-F9DC-AD70-915A1C1A9735">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<backgroundColor>-16777216</backgroundColor>
+<lineWidth>1</lineWidth>
+<sourceLabel class="oracle.dbtools.crest.model.design.Label">
+<site>0</site>
+<labelBounds x="810" y="1608" width="83" height="30"/>
+<noBackgroundColor>true</noBackgroundColor>
+<noForegroundColor>true</noForegroundColor>
+</sourceLabel>
+<targetLabel class="oracle.dbtools.crest.model.design.Label">
+<site>2</site>
+<labelBounds x="741" y="1563" width="71" height="30"/>
+<noBackgroundColor>true</noBackgroundColor>
+<noForegroundColor>true</noForegroundColor>
+</targetLabel>
+<points>
+<point x="810" y="1660"/>
+<point x="810" y="1560"/>
+<point x="731" y="1560"/>
+</points>
+</Connector>
 <Connector class="oracle.dbtools.crest.swingui.logical.TVRelation" oid="BCCDB0A2-E388-90C3-62BF-538F15E2D69E" otype="Relation" vid_source="EB8502F6-9B72-FB93-B07D-50402F70A153" vid_target="AB7A2BB3-C073-D463-2955-F4A470210240">
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
 <backgroundColor>-16777216</backgroundColor>
 <lineWidth>1</lineWidth>
 <sourceLabel class="oracle.dbtools.crest.model.design.Label">
 <site>0</site>
-<labelBounds x="1601" y="980" width="86" height="30"/>
+<labelBounds x="1601" y="550" width="86" height="30"/>
 <noBackgroundColor>true</noBackgroundColor>
 <noForegroundColor>true</noForegroundColor>
 </sourceLabel>
 <targetLabel class="oracle.dbtools.crest.model.design.Label">
 <site>2</site>
-<labelBounds x="1676" y="1013" width="78" height="30"/>
+<labelBounds x="1510" y="640" width="78" height="10"/>
 <noBackgroundColor>true</noBackgroundColor>
 <noForegroundColor>true</noForegroundColor>
+<targetAboveTheLine>true</targetAboveTheLine>
 </targetLabel>
 <points>
-<point x="1591" y="1010"/>
-<point x="1650" y="1010"/>
-<point x="1760" y="1010"/>
+<point x="1591" y="580"/>
+<point x="1710" y="580"/>
+<point x="1710" y="650"/>
+<point x="1500" y="650"/>
 </points>
 </Connector>
 <Connector class="oracle.dbtools.crest.swingui.logical.TVInheritanceRelation" oid="BE1943B3-05D1-E91A-9E11-DFC407E8C22F" otype="Hierarchy relation" vid_source="9BE14403-FD1B-64BA-7250-24018DA43C45" vid_target="9E742738-2949-96F5-CD21-78E925F9763D">
@@ -1120,20 +1149,21 @@ Relationships with [T] are temporal and have to be resolved in the data model wi
 <lineWidth>1</lineWidth>
 <sourceLabel class="oracle.dbtools.crest.model.design.Label">
 <site>0</site>
-<labelBounds x="1844" y="890" width="94" height="30"/>
+<labelBounds x="1730" y="836" width="94" height="30"/>
 <noBackgroundColor>true</noBackgroundColor>
 <noForegroundColor>true</noForegroundColor>
 </sourceLabel>
 <targetLabel class="oracle.dbtools.crest.model.design.Label">
 <site>2</site>
-<labelBounds x="1890" y="936" width="78" height="30"/>
+<labelBounds x="1380" y="775" width="78" height="30"/>
 <noBackgroundColor>true</noBackgroundColor>
 <noForegroundColor>true</noForegroundColor>
 </targetLabel>
 <points>
-<point x="1834" y="920"/>
-<point x="1890" y="920"/>
-<point x="1890" y="980"/>
+<point x="1730" y="880"/>
+<point x="1730" y="790"/>
+<point x="1380" y="790"/>
+<point x="1380" y="731"/>
 </points>
 </Connector>
 <Connector class="oracle.dbtools.crest.swingui.logical.TVRelation" oid="EA90BF06-BD12-35F1-0C19-AB8AC73A978C" otype="Relation" vid_source="C484601E-3271-5FB5-9AD7-54127B7C12A6" vid_target="8F635283-C329-836B-C8DF-BDAAC741B6FE">
@@ -1164,19 +1194,19 @@ Relationships with [T] are temporal and have to be resolved in the data model wi
 <lineWidth>1</lineWidth>
 <sourceLabel class="oracle.dbtools.crest.model.design.Label">
 <site>0</site>
-<labelBounds x="690" y="1457" width="96" height="30"/>
+<labelBounds x="640" y="1457" width="96" height="30"/>
 <noBackgroundColor>true</noBackgroundColor>
 <noForegroundColor>true</noForegroundColor>
 </sourceLabel>
 <targetLabel class="oracle.dbtools.crest.model.design.Label">
 <site>2</site>
-<labelBounds x="690" y="1474" width="84" height="30"/>
+<labelBounds x="640" y="1474" width="84" height="30"/>
 <noBackgroundColor>true</noBackgroundColor>
 <noForegroundColor>true</noForegroundColor>
 </targetLabel>
 <points>
-<point x="690" y="1381"/>
-<point x="690" y="1510"/>
+<point x="640" y="1381"/>
+<point x="640" y="1510"/>
 </points>
 </Connector>
 <Connector class="oracle.dbtools.crest.swingui.logical.TVInheritanceRelation" oid="EDDC4885-D96C-6CC5-231A-CF2F57885476" otype="Hierarchy relation" vid_source="999C2E7A-92A1-85FC-96B6-FFB820F1D05F" vid_target="97164070-DA91-1BBF-FFEA-92604CB9157E">

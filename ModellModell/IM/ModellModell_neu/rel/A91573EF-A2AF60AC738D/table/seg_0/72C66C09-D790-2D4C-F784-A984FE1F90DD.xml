@@ -1,0 +1,78 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="72C66C09-D790-2D4C-F784-A984FE1F90DD" name="Modellelement">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:43 UTC</createdTime>
+<comment><![CDATA[Irgend ein Element des Modells, über das wir Metainformationen verwalten sollen / wollen.]]></comment>
+<generatorID>8CDBEDF4-5478-6F12-0D46-E7BCD9A40CD3</generatorID>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+Irgend ein Element des Modells, über das wir Metainformationen verwalten sollen / wollen.
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+Any element of the model about which we should / want to manage metainformation.
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<typeID>0F21B703-5AD4-9DCA-458B-A19E89BB5BD6</typeID>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Modellelement_ID" id="28634B1F-69A4-3D1C-E716-4325ECB16FDD">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:44 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+<Column name="Modellelementtyp_Modellelementtyp_ID" id="948E37A8-4212-4ECE-DB14-D9734C308542">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:44 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="50878BD6-9E96-A90B-EC38-18575C59A526" referredColumn="0382BE4D-C105-CA67-DE7A-4F9E942DA5C7"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="BAEED0A3-3A15-7DEE-D465-C1EA443DBF27" name="Modellelement_PK">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:44 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="28634B1F-69A4-3D1C-E716-4325ECB16FDD"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="B9CE7079-27F8-1CA9-EDC1-D9DDD1A4A40B" name="Modellelement__UN">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:43 UTC</createdTime>
+<generatorID>7465F71C-6E0A-E3D8-95A6-E74B987A6AA2</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+</ind_PK_UK>
+<ind_PK_UK id="B4B95B3D-4518-0FA4-9119-DD160FA9395A" name="Modellelement_Modellelementtyp_FK">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:44 UTC</createdTime>
+<generatorID>85FDD853-36EE-4E5A-D680-AEA1AD4BCF27</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="948E37A8-4212-4ECE-DB14-D9734C308542"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

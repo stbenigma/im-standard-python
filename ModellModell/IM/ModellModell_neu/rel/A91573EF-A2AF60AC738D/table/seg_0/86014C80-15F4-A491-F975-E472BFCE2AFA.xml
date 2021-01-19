@@ -1,0 +1,87 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="86014C80-15F4-A491-F975-E472BFCE2AFA" name="Binärer_Wertebereich">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:43 UTC</createdTime>
+<comment><![CDATA[Dokumente irgendwelcher Art, die nicht in einem als strukturiert bezeichneten Format (Text, Zahl, Datum) abgespeichert werden kann.
+
+Als Dokumente im Filesystem (PDF, PNG, TIFF, XLS, DOC, pages, etc.) oder als finäre Datenbankobjekte verwaltet.]]></comment>
+<generatorID>CB8A4F1C-9E60-C19B-9889-65BDE25D890F</generatorID>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+Dokumente irgendwelcher Art, die nicht in einem als strukturiert bezeichneten Format (Text, Zahl, Datum) abgespeichert werden kann.
+
+Als Dokumente im Filesystem (PDF, PNG, TIFF, XLS, DOC, pages, etc.) oder als finäre Datenbankobjekte verwaltet.
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+Documents of any kind that cannot be saved in a format called structured (text, number, date).  Managed as documents in the file system (PDF, PNG, TIFF, XLS, DOC, pages, etc.) or as final database objects.
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<typeID>899A6DDC-95E0-4AD5-5F58-B3A2FF5C2D08</typeID>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Inhaltstyp" id="DFB2DCCC-9749-32E8-9DD8-483535869199">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:43 UTC</createdTime>
+<generatorID>C5CA5BD0-DFBF-51B8-8719-DDA23703721E</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>23CFFE8F-D989-8ED0-93D0-C4BF59140074</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Speicherformat_SPFO_ID" id="E02E571E-0553-DE1B-ECC6-23530E3E992B">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:44 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="EC3AED68-1C79-5610-6E18-9860235F8349" referredColumn="51038303-DD99-BDB4-D8B6-1DCDB714F6E2"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="7E0BC499-A0D1-8FF2-C78A-6F406FB33A46" name="Binärer_Wertebereich__UN">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:43 UTC</createdTime>
+<generatorID>7465F71C-6E0A-E3D8-95A6-E74B987A6AA2</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+</ind_PK_UK>
+<ind_PK_UK id="627738BC-6742-9606-E940-6A2A4211CDFF" name="Binärer_Wertebereich_Wertebereich_FK">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:43 UTC</createdTime>
+<generatorID>70301006-2739-4D1F-4749-5AE6E4798FA8</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+</ind_PK_UK>
+<ind_PK_UK id="5ED67954-E3D2-F1A5-D267-332399D0166E" name="Binärer_Wertebereich_Speicherformat_FK">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:44 UTC</createdTime>
+<generatorID>9F5D7603-968F-E2B9-5A8F-88D9AA89F042</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="E02E571E-0553-DE1B-ECC6-23530E3E992B"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

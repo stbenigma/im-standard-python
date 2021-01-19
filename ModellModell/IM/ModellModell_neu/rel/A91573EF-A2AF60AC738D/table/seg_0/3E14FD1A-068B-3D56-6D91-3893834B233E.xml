@@ -1,0 +1,141 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="3E14FD1A-068B-3D56-6D91-3893834B233E" name="Informationselement">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:43 UTC</createdTime>
+<generatorID>3BEEBCBD-E738-69A9-4497-2D6D56D2E415</generatorID>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<typeID>899A6DDC-95E0-4AD5-5F58-B3A2FF5C2D08</typeID>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Informationselement_ID" id="05A0F8C7-0B4E-E08C-EC25-F41A9827BF14">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:43 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+<Column name="Attribut_Attribut_ID" id="F6F3BD1D-BADA-D650-2D3B-FB1AB2418185">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:44 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="9034FEBE-A1CA-A69B-C8A8-9B15275A1109" referredColumn="8F3AA725-995D-7EA6-CB70-B227B83FAFC6"/>
+</associations>
+</Column>
+<Column name="Entität_ENTI_ID" id="803399FA-3252-3709-6C4A-251ADFB95759">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:44 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>5D3D105A-15CC-2DBC-8E41-2A63484D069D</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Beziehung_Beziehung_ID" id="4AB7855C-47F4-841C-A190-54CAA1818942">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:44 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="6B38E713-34E3-368C-2709-A629FCAB4A53" referredColumn="FC1F83DA-EE62-DE8A-C515-AA99201D71C8"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="192623FE-E07B-1FF6-80F5-95F081C3C8A3" name="Informationselement_PK">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:43 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="05A0F8C7-0B4E-E08C-EC25-F41A9827BF14"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="2B9E1ABC-EC10-CE0A-AC4D-16F81F20D1F2" name="Informationselement__IDX">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:44 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<relationGeneratorID>FF31AECF-B776-8ACA-327E-184D4389B6F7</relationGeneratorID>
+<indexColumnUsage>
+<colUsage columnID="F6F3BD1D-BADA-D650-2D3B-FB1AB2418185"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="9D7A27ED-05E5-C780-7327-209489035F12" name="Informationselement__IDXv1">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:44 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<relationGeneratorID>36038555-7B2C-8B49-F546-2D8F75395E71</relationGeneratorID>
+<indexColumnUsage>
+<colUsage columnID="803399FA-3252-3709-6C4A-251ADFB95759"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="D918A5B6-86D9-9F2E-E87C-978CD13A81D9" name="Informationselement__IDXv2">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:44 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<relationGeneratorID>F53F7461-DF34-F5B8-34C2-EB448DE3DBEE</relationGeneratorID>
+<indexColumnUsage>
+<colUsage columnID="4AB7855C-47F4-841C-A190-54CAA1818942"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="C00AC94E-7759-832C-AD0B-6ED3E866FE35" name="Informationselement_Attribut_FK">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:44 UTC</createdTime>
+<generatorID>FF31AECF-B776-8ACA-327E-184D4389B6F7</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="F6F3BD1D-BADA-D650-2D3B-FB1AB2418185"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="FFB12487-CA4F-7991-37F0-D2462381E568" name="Informationselement_Beziehung_FK">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:44 UTC</createdTime>
+<generatorID>F53F7461-DF34-F5B8-34C2-EB448DE3DBEE</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="4AB7855C-47F4-841C-A190-54CAA1818942"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

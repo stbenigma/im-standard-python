@@ -13,8 +13,10 @@ Referenz (ID) des Elementes in einer externen Quelle (Modellierungstool, DB, etc
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <engineerTo>
+<item key="76547D0C-003E-6F74-D2FC-7ADFC63697F6" value="true"/>
+<item key="17F5F16D-4CB1-2968-618E-D369CD8C5B93" value="true"/>
+<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
-<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <typeID>0F21B703-5AD4-9DCA-458B-A19E89BB5BD6</typeID>
@@ -30,9 +32,7 @@ Referenz (ID) des Elementes in einer externen Quelle (Modellierungstool, DB, etc
 <createSurrogateKey>true</createSurrogateKey>
 <propertyMap>
 <property name="DE_ENTI_NAME" value="Externe Referenz"/>
-<property name="DE_ENTI_SYNONYM" value=""/>
 <property name="EN_ENTI_NAME" value="External Reference"/>
-<property name="EN_ENTI_SYNONYM" value=""/>
 <property name="maxzoollevel" value="5"/>
 <property name="maxzoomlevel" value="5"/>
 <property name="minzoomlevel" value="0"/>
@@ -53,8 +53,10 @@ Name der externen Quelle (Beispiele:, ODM, CaseTalk,...)
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <engineerTo>
+<item key="76547D0C-003E-6F74-D2FC-7ADFC63697F6" value="true"/>
+<item key="17F5F16D-4CB1-2968-618E-D369CD8C5B93" value="true"/>
+<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
-<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
@@ -65,7 +67,7 @@ Name der externen Quelle (Beispiele:, ODM, CaseTalk,...)
 <propertyMap>
 <property name="DE_ATTR_NAME" value="Quellenname"/>
 <property name="EN_ATTR_NAME" value="Source Name"/>
-<property name="isdescriptive" value="FALSE"/>
+<property name="isdescriptive" value="TRUE"/>
 <property name="maxzoomlevel" value="5"/>
 <property name="minzoomlevel" value="0"/>
 </propertyMap>
@@ -84,8 +86,10 @@ ID in der externen Quelle
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <engineerTo>
+<item key="76547D0C-003E-6F74-D2FC-7ADFC63697F6" value="true"/>
+<item key="17F5F16D-4CB1-2968-618E-D369CD8C5B93" value="true"/>
+<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
-<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
@@ -96,8 +100,56 @@ ID in der externen Quelle
 <propertyMap>
 <property name="DE_ATTR_NAME" value="QuellID"/>
 <property name="EN_ATTR_NAME" value="Source ID"/>
-<property name="isdescriptive" value="FALSE"/>
+<property name="isdescriptive" value="TRUE"/>
 <property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
+</propertyMap>
+</Attribute>
+<Attribute name="Änderungs Zpkt" id="5D4B296F-7747-3FB7-83E7-BDE9236F3C09">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:14:57 UTC</createdTime>
+<comment><![CDATA[Wann wurde dieser Eintrag von dieser Quelle zurletzt geändert.]]></comment>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<engineerTo>
+<item key="76547D0C-003E-6F74-D2FC-7ADFC63697F6" value="true"/>
+<item key="17F5F16D-4CB1-2968-618E-D369CD8C5B93" value="true"/>
+<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>LOGDT015</logicalDatatype>
+<domain>0AD80E26-0F5C-D068-29EA-4740A04582AE</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Änderungs Zpkt"/>
+<property name="EN_ATTR_NAME" value="last update "/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="0"/>
+<property name="minzoomlevel" value="0"/>
+</propertyMap>
+</Attribute>
+<Attribute name="Lösch Hinweis" id="9FB5252E-3E26-4B70-10F9-A1B4E3EC3338">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:18:14 UTC</createdTime>
+<comment><![CDATA[Gibt an, ob dieses Modellelement in dieser Quelle gelöscht werden soll bei nächsten sync.]]></comment>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<engineerTo>
+<item key="76547D0C-003E-6F74-D2FC-7ADFC63697F6" value="true"/>
+<item key="17F5F16D-4CB1-2968-618E-D369CD8C5B93" value="true"/>
+<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Lösch Hinweis"/>
+<property name="EN_ATTR_NAME" value="Delete flag"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="0"/>
 <property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
@@ -109,8 +161,10 @@ ID in der externen Quelle
 <generatorID>40325232-3AD7-C4D6-A1C0-96CD22537579</generatorID>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <engineerTo>
+<item key="76547D0C-003E-6F74-D2FC-7ADFC63697F6" value="true"/>
+<item key="17F5F16D-4CB1-2968-618E-D369CD8C5B93" value="true"/>
+<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
-<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <newElementsIDs>AF8EAF2B-54AB-6FEC-4BAE-AC864FF81931,98122D5B-C0E6-DB4E-D459-034B9AB1B41A</newElementsIDs>

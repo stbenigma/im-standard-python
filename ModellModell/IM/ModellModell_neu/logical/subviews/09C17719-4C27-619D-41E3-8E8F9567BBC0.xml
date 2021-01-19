@@ -13,6 +13,7 @@
 <diagramColor>-1</diagramColor>
 <legendPosX>19</legendPosX>
 <legendPosY>8</legendPosY>
+<comment><![CDATA[zoomlevel=0]]></comment>
 <display>false</display>
 <notation>1</notation>
 <objectViews>
@@ -35,6 +36,20 @@
 <OView class="oracle.dbtools.crest.swingui.logical.TVEntity" oid="3BEEBCBD-E738-69A9-4497-2D6D56D2E415" otype="Entity" vid="60CC5B2A-AAC9-5FFE-4BF5-5637C78E66F5">
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
 <bounds x="373" y="517" width="165" height="298"/>
+</OView>
+<OView class="oracle.dbtools.crest.swingui.TVNote" oid="45C2497E-7044-6D1D-9091-EE474E5F8966" otype="Note" vid="CD067751-9F44-589F-504D-947CE609EB8C">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<bounds x="1488" y="8" width="278" height="256"/>
+<comment>Attribute- and relationship syntax extension:
+
+Attributes can have postfixes in their name:
+  [L]	Language-dependant. 
+  [N]	Multivalued
+  [T]	Temporal (historicised)
+(can appear in any combination)
+These attributes violate strict 1 NF and have to be resolved in the data model with detail tables. (with language, period or sequence-nr)
+
+Relationships with [T] are temporal and have to be resolved in the data model with an period-dependent intersection entity.</comment>
 </OView>
 <OView class="oracle.dbtools.crest.swingui.logical.TVEntity" oid="5A09E075-BC31-B259-7FBF-4A9154C6967D" otype="Entity" vid="1AF6D360-C2AF-7AEE-FF6A-E12FF0464D5B">
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
@@ -253,9 +268,41 @@
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
 <bounds x="19" y="8" width="294" height="128"/>
 </OView>
+<OView class="oracle.dbtools.crest.swingui.TVNote" oid="D49E6CD7-C227-C7A1-C49E-7DC0B8A116DE" otype="Note" vid="0621A6CE-24AC-C104-5BB0-FC90026D478F">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<bounds x="19" y="137" width="271" height="23"/>
+<useCustomFormat>true</useCustomFormat>
+<useDefaultColor>false</useDefaultColor>
+<backgroundColor>-1</backgroundColor>
+<foregroundColor>-16777216</foregroundColor>
+<comment>© by foryouandyourcustomers Baar, 2020</comment>
+<fonts itemClass="oracle.dbtools.crest.model.design.FontObjectWr">
+<FontObject>
+<foType>Titel</foType>
+<colorRGB>-16777216</colorRGB>
+<foTypeID>1</foTypeID>
+</FontObject>
+</fonts>
+</OView>
 <OView class="oracle.dbtools.crest.swingui.logical.TVEntity" oid="D718E671-DE1C-59BC-9C74-A352687F07F5" otype="Entity" vid="68B82B8E-A1B3-4CC0-CC87-3977E7DC9876">
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
 <bounds x="633" y="496" width="207" height="182"/>
+</OView>
+<OView class="oracle.dbtools.crest.swingui.TVNote" oid="E382455F-FD39-8337-E63B-F318293B96E4" otype="Note" vid="A0016474-9F88-9C2F-2957-3D26A791500B">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<bounds x="1498" y="-60" width="271" height="21"/>
+<useCustomFormat>true</useCustomFormat>
+<useDefaultColor>false</useDefaultColor>
+<backgroundColor>-1</backgroundColor>
+<foregroundColor>-16777216</foregroundColor>
+<comment>© by foryouandyourcustomers Baar, 2020</comment>
+<fonts itemClass="oracle.dbtools.crest.model.design.FontObjectWr">
+<FontObject>
+<foType>Titel</foType>
+<colorRGB>-16777216</colorRGB>
+<foTypeID>1</foTypeID>
+</FontObject>
+</fonts>
 </OView>
 <OView class="oracle.dbtools.crest.swingui.logical.TVEntity" oid="EE0F479E-2B85-9DC9-1CB8-66D3967F8993" otype="Entity" vid="AA590C1A-F025-077A-673C-12B4C06C3F73">
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>

@@ -1,0 +1,240 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="E9597D96-9C78-7497-B622-B3246483BEF1" name="Geschäftsregel">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:43 UTC</createdTime>
+<comment><![CDATA[Geschäftsregel, die Attributwerte auf Regelkonformität prüft.
+Diese Regeln sind passiv. D.h. es wird überprüft, ob der Wert (ggf. im Zusammenhang mit anderen Werten dieser oder anderer Entitäten) für einen stabilen Zustand der Datenbank aus fachlicher Sicht korrekt ist.
+
+Ebene auf der die Regel prüft (row, Tupel, Entität, Datenbank) wird aus den Elementen der Regel abgeleitet.
+
+Regelverletzungen können als formale Regeln (z.B. SQL Selects) angegeben werden. Jedes Tupel, das das Select liefert verletzt die Regel.]]></comment>
+<generatorID>AA2233B7-68AC-3424-F606-010B96DC9439</generatorID>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+Geschäftsregel, die Attributwerte auf Regelkonformität prüft.
+Diese Regeln sind passiv. D.h. es wird überprüft, ob der Wert (ggf. im Zusammenhang mit anderen Werten dieser oder anderer Entitäten) für einen stabilen Zustand der Datenbank aus fachlicher Sicht korrekt ist.
+
+Ebene auf der die Regel prüft (row, Tupel, Entität, Datenbank) wird aus den Elementen der Regel abgeleitet.
+
+Regelverletzungen können als formale Regeln (z.B. SQL Selects) angegeben werden. Jedes Tupel, das das Select liefert verletzt die Regel.
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+Business rule that checks attribute values for rule conformity. 
+These rules are passive. This means that the system checks whether the value (possibly in connection with other values of these or other entities) is correct for a stable state of the database from a business point of view.  
+
+Rule violations can be specified as formal statements like e.g. SQL selects. 
+Any tuple that returns the select violates the rule.
+
+Level on which the rule checks (row, tuple, entity, database) is derived from the elements of the rule.
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<typeID>899A6DDC-95E0-4AD5-5F58-B3A2FF5C2D08</typeID>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Name" id="0C95385E-2DDD-C160-7E9D-01A28F16EAC8">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:43 UTC</createdTime>
+<generatorID>2E3D74AD-8468-9CBA-F519-285EBF90304E</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Beschreibung_[L]" id="DE55E6F7-5872-5A97-D400-54E3939FDCC5">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:43 UTC</createdTime>
+<comment><![CDATA[Umschreibung, Erklärung der Regel]]></comment>
+<generatorID>1FEC2481-A807-AFD8-3298-7ACC4E9300CC</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Umschreibung, Erklärung der Regel
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Description, explanation of the rule
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Regel" id="B51FEA6E-8F23-3C79-E00B-9AA74B9C1F61">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:43 UTC</createdTime>
+<comment><![CDATA[Regel, die Werte beschränken auf Grund von komplexen Zusammenhängen (mehere Entitäten, Attribute, Beziehungen)
+Die Regel kann Objekte enthalten, mit denen die Regel verknüpft ist:
+
+(ENTI)entitätsname
+(ATTR)entitätsname.attributname
+(DOMA)wertebereichsname
+(DEVA)Wertebereichsname.Default_Value
+
+Beispiele:
+  berechnePreis(Artikel.Preis,Land.Name)
+  Artikel.Volumen := Artikel.Höhe * Artikel.Breite * Artikel.Tiefe]]></comment>
+<generatorID>18DDD1CA-270F-D5BB-691E-74C2CBBE8960</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Regel, die Werte beschränken auf Grund von komplexen Zusammenhängen (mehere Entitäten, Attribute, Beziehungen)
+Die Regel kann Objekte enthalten, mit denen die Regel verknüpft ist:
+
+(ENTI)entitätsname
+(ATTR)entitätsname.attributname
+(DOMA)wertebereichsname
+(DOMV)Wertebereichsname.Wert
+
+Beispiele:
+  Artikel.Volumen := Artikel.Höhe * Artikel.Breite * Artikel.Tiefe
+  berechnePreis(Artikel.Preis,Land.Name)
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+*Rule limiting values to complex relationships (multiple entities, attributes, relationships)
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Regelauswirkung" id="3C17447E-B81C-2C41-42B4-366A8E03EC36">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:43 UTC</createdTime>
+<comment><![CDATA[Was bewirkt die Regel 
+
+Warnung
+Information
+Log-eintrag
+Aktion Verhindern
+Berechneten Wert speichern
+
+Kann als Formel, Aufruf, Code-snippet direkt erfasst werden.]]></comment>
+<generatorID>86E34E90-2279-A7A0-6169-D3A161D1EF39</generatorID>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+*DE* Was bewirkt die Regel 
+
+Warnung
+Information
+Log-eintrag
+Aktion Verhindern
+Berechneten Wert speichern
+
+Kann als Formel, Aufruf, Code-snippet direkt erfasst werden.
+]EN_ATTR_COMMENT]
+[DE_ATTR_COMMENT[
+Was bewirkt die Regel 
+
+Warnung
+Information
+Log-eintrag
+Aktion Verhindern
+Berechneten Wert speichern
+
+Kann als Formel, Aufruf, Code-snippet direkt erfasst werden.
+]DE_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Regeltyp" id="9035CFF8-416B-A49B-49C0-9104899453AC">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:43 UTC</createdTime>
+<comment><![CDATA[gibt an, ob es 
+CHECK
+CALCUALTE
+PROCESS-Trigger
+ist]]></comment>
+<generatorID>EA2A5BA9-D64F-D985-9B96-AE02BDDE1A02</generatorID>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+*DE* gibt an, ob es 
+CHECK
+CALCUALTE
+PROCESS-Trigger
+ist
+]EN_ATTR_COMMENT]
+[DE_ATTR_COMMENT[
+gibt an, ob es 
+CHECK
+CALCUALTE
+PROCESS-Trigger
+ist
+]DE_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>96A9C6B2-3074-8688-262C-5F65FC2CE590</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Fehlermeldung_[L]" id="0FDAAEBC-924A-3923-4810-7A8406CA9EF6">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:43 UTC</createdTime>
+<comment><![CDATA[Meldung, die bei Verletzung der Regel angezeigt wird.]]></comment>
+<generatorID>DEA583A1-1362-7675-76D3-F647C1BD80CC</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Meldung, die bei Verletzung der Regel angezeigt wird.
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Message that is displayed when the rule is violated.
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="77B69930-4C7D-3D6A-9581-49B32B732A77" name="Geschäftsregel__UN">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:43 UTC</createdTime>
+<generatorID>7465F71C-6E0A-E3D8-95A6-E74B987A6AA2</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+</ind_PK_UK>
+<ind_PK_UK id="6355A2A2-AAF3-51FB-0BEF-BE4ED5F6ACBC" name="Geschäftsregel_Name_UN">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:43 UTC</createdTime>
+<generatorID>B1F60E3A-1081-85A1-2F4B-813E9E8075FA</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="0C95385E-2DDD-C160-7E9D-01A28F16EAC8"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="05379B29-00DE-DABE-A7DA-4F11CDC0599F" name="Geschäftsregel_Modellelement_FK">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:43 UTC</createdTime>
+<generatorID>BA51DA92-1993-9E9B-D92D-C06B0F56E2C9</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+</ind_PK_UK>
+</indexes>
+</Table>
