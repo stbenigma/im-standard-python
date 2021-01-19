@@ -3,7 +3,10 @@
 <createdBy>stb</createdBy>
 <createdTime>2021-01-19 07:27:43 UTC</createdTime>
 <comment><![CDATA[In xml-file
-logical/entity/seg_<n>/<odmguid>.xml]]></comment>
+logical/entity/seg_<n>/<odmguid>.xml
+
+<entity     >
+</entity>]]></comment>
 <generatorID>A23E6C38-310F-4379-F953-0B04C1A4B16F</generatorID>
 <notes><![CDATA[[DE_ENTI_COMMENT[
 Ding das uns interessiert im systemübergreifenden, konsolidierten, konzeptionellen Modell eines Unternehmens
@@ -21,10 +24,10 @@ An entity can in turn consist of individual parts (attributes, subentities, rela
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
-<Column name="ID" id="490D1939-1BEA-343F-61C2-DA24EC9507D8">
+<Column name="id" id="490D1939-1BEA-343F-61C2-DA24EC9507D8">
 <createdBy>stb</createdBy>
 <createdTime>2021-01-19 07:27:44 UTC</createdTime>
-<comment><![CDATA[<entity> ID]]></comment>
+<comment><![CDATA[<entity id=]]></comment>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
@@ -38,7 +41,7 @@ An entity can in turn consist of individual parts (attributes, subentities, rela
 <Column name="name" id="5FF8A543-5B12-7896-BC1E-AECECC77ABE3">
 <createdBy>stb</createdBy>
 <createdTime>2021-01-19 07:27:43 UTC</createdTime>
-<comment><![CDATA[<entity> name
+<comment><![CDATA[<entity> name=
  <propertyMap>
 <property name="DE_ATTR_COMMENT" value
 <property name="xx_ATTR_COMMENT" value
@@ -62,7 +65,7 @@ Name of the entity normally used in communication.
 <Column name="synonym" id="72F0AD03-985A-0F97-1632-C14B99EB9AFA">
 <createdBy>stb</createdBy>
 <createdTime>2021-01-19 07:27:43 UTC</createdTime>
-<comment><![CDATA[<synonym> comma separated list
+<comment><![CDATA[<synonym> comma separated list </synonym>
 <propertyMap>
 <property name="DE_ENTI_SYNONYM" value
 <property name="xx_ENTI_SYNONYM" value
@@ -87,7 +90,7 @@ Name that is also used for this entity
 <Column name="comment" id="2FEE3AF6-EBEC-4B04-EC2E-F331BC7E7ED7">
 <createdBy>stb</createdBy>
 <createdTime>2021-01-19 07:27:43 UTC</createdTime>
-<comment><![CDATA[<comment>
+<comment><![CDATA[<comment>  </comment>
 <notes><[DE_ENTI_COMMENT[
 ...
 ]DE_ENTI_COMMENT]
@@ -116,7 +119,8 @@ Meaning, Benefits, Use of the Entity
 <Column name="shortName" id="FE3EF04F-7D81-0695-9D14-F66B9F6300E1">
 <createdBy>stb</createdBy>
 <createdTime>2021-01-19 07:27:43 UTC</createdTime>
-<comment><![CDATA[Kurzbezeichnung der Entität für die Verwendung aus Überschrift, in Referenzen]]></comment>
+<comment><![CDATA[<shortName>   </shortName>
+]]></comment>
 <commentInRDBMS><![CDATA[<shortName>   </shortName>]]></commentInRDBMS>
 <generatorID>5E305761-9FBD-94B3-D12B-A0811406A63D</generatorID>
 <notes><![CDATA[[DE_ATTR_COMMENT[
@@ -138,7 +142,8 @@ Kurzbezeichnung der Entität für die Verwendung aus Überschrift, in Referenzen
 <Column name="preferredAbbreviation" id="3027A33A-3495-88ED-40F5-B4B289391F89">
 <createdBy>stb</createdBy>
 <createdTime>2021-01-19 07:27:43 UTC</createdTime>
-<comment><![CDATA[Kürzestname (3-5 Zeichen, Normalerweise Grossbuchstaben) der als Präfix für  Implementierungsnamen verwendet werden kann.]]></comment>
+<comment><![CDATA[<preferredAbbreviation>   </preferredAbbreviation>
+]]></comment>
 <commentInRDBMS><![CDATA[<preferredAbbreviation>   </preferredAbbreviation>
 ]]></commentInRDBMS>
 <generatorID>7EC6D9A7-E9AA-F77D-4FAF-CF5E57BD58E7</generatorID>
@@ -158,10 +163,11 @@ Abbreviated name (3-5 characters, usually capital letters) that can be used as a
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="tooltip" id="5CC25A4E-F5E3-DFEA-D4B2-DD783C5FDEF8">
+<Column name="commentInRDBMS" id="5CC25A4E-F5E3-DFEA-D4B2-DD783C5FDEF8">
 <createdBy>stb</createdBy>
 <createdTime>2021-01-19 07:27:43 UTC</createdTime>
-<comment><![CDATA[Anzeige der Bedeutung für Bediener auf einer Maske.]]></comment>
+<comment><![CDATA[<commentInRDBMS></commentInRDBMS>
+]]></comment>
 <generatorID>09BFD6A9-516C-6EA2-95BC-6189D7482BFC</generatorID>
 <notes><![CDATA[[DE_ATTR_COMMENT[
 Anzeige der Bedeutung für Bediener auf einer Maske.
@@ -182,7 +188,7 @@ Display of the meaning for the operator on a mask.
 <Column name="expectedVolumes" id="C50325DE-EC13-4248-D809-3EB95F9F0C19">
 <createdBy>stb</createdBy>
 <createdTime>2021-01-19 07:27:43 UTC</createdTime>
-<comment><![CDATA[<expectedVolumes>]]></comment>
+<comment><![CDATA[<expectedVolumes>  </expectedVolumes>]]></comment>
 <generatorID>799DBB03-3FC8-5BA7-35F1-8D8DA7716A52</generatorID>
 <notes><![CDATA[[DE_ATTR_COMMENT[
 Grössenordnung der Tupelanzahl in dieser Entität
@@ -203,7 +209,7 @@ Order of magnitude of the number of tuples in this entity
 <Column name="createdBy" id="80E1BC0D-C5BB-9F3A-602A-3DAD9F69348F">
 <createdBy>stb</createdBy>
 <createdTime>2021-01-19 07:40:43 UTC</createdTime>
-<comment><![CDATA[<createdBy>
+<comment><![CDATA[<createdBy> </createdBy>
 ]]></comment>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <use>0</use>
@@ -215,7 +221,7 @@ Order of magnitude of the number of tuples in this entity
 <Column name="createdtime" id="F061956D-A1AA-EB99-1320-06A8717FCF37">
 <createdBy>stb</createdBy>
 <createdTime>2021-01-19 07:43:27 UTC</createdTime>
-<comment><![CDATA[<createdTime>]]></comment>
+<comment><![CDATA[<createdTime>  </createdTime>]]></comment>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
@@ -224,4 +230,17 @@ Order of magnitude of the number of tuples in this entity
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
 </columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="72708F3A-AE60-E6F8-6853-3EF44026603E" name="entity_PK">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 12:23:59 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="490D1939-1BEA-343F-61C2-DA24EC9507D8"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
 </Table>

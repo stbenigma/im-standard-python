@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_1" id="D7247CCE-0E4A-1BCD-9C2F-9FD2CBE5197A" name="Wertebereich">
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_1" id="D7247CCE-0E4A-1BCD-9C2F-9FD2CBE5197A" name="domain">
 <createdBy>stb</createdBy>
 <createdTime>2021-01-19 07:27:43 UTC</createdTime>
 <comment><![CDATA[Beschreibung des Wertebereichs eines (oder mehrerer) Attributs/e oder Columns
@@ -22,12 +22,13 @@ Wertegruppen sind Attributgruppen, d.h. mehrere Attribute, die mehrfach gemeinsa
 ]EN_ENTI_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
+<ordsAlias>wertebereich</ordsAlias>
 <typeID>899A6DDC-95E0-4AD5-5F58-B3A2FF5C2D08</typeID>
-<abbreviation>DOM</abbreviation>
+<abbreviation>DOMA</abbreviation>
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
-<Column name="DOM_ID" id="1B04D29E-0B6C-A1A5-B617-AA9D28740F71">
+<Column name="id" id="1B04D29E-0B6C-A1A5-B617-AA9D28740F71">
 <createdBy>stb</createdBy>
 <createdTime>2021-01-19 07:27:44 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
@@ -106,34 +107,7 @@ Wertegruppen sind Attributgruppen, d.h. mehrere Attribute, die mehrfach gemeinsa
 <colUsage columnID="1B04D29E-0B6C-A1A5-B617-AA9D28740F71"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="3D271023-26E8-2E93-66C8-197884717FC4" name="Wertebereich__UN">
-<createdBy>stb</createdBy>
-<createdTime>2021-01-19 07:27:43 UTC</createdTime>
-<generatorID>7465F71C-6E0A-E3D8-95A6-E74B987A6AA2</generatorID>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<indexState>Unique Constraint</indexState>
-<isSurrogateKey>false</isSurrogateKey>
-</ind_PK_UK>
-<ind_PK_UK id="9E6BE56C-6650-BB34-2C37-A67EB3E23B25" name="Wertebereich_Name_[L]_UN">
-<createdBy>stb</createdBy>
-<createdTime>2021-01-19 07:27:43 UTC</createdTime>
-<generatorID>C1A8A4D1-8B15-8026-055F-024571C59C67</generatorID>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<indexState>Unique Constraint</indexState>
-<isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
-<colUsage columnID="8C5F3315-A944-F41E-A7DF-A3CEFE4E4369"/>
-</indexColumnUsage>
-</ind_PK_UK>
-<ind_PK_UK id="FE76BFB3-982E-329B-6FE9-B050B402CDF6" name="Wertebereich_Modellelement_FK">
-<createdBy>stb</createdBy>
-<createdTime>2021-01-19 07:27:43 UTC</createdTime>
-<generatorID>82310DB2-F469-D6FB-BD16-606DF3843808</generatorID>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<indexState>Foreign Key</indexState>
-<isSurrogateKey>false</isSurrogateKey>
-</ind_PK_UK>
-<ind_PK_UK id="E7D22826-ABA5-2A50-3B32-087BEB2672EA" name="Wertebereich_Schnittstelle_FK">
+<ind_PK_UK id="E7D22826-ABA5-2A50-3B32-087BEB2672EA" name="Wertebereich_Modellelement_FKv1">
 <createdBy>stb</createdBy>
 <createdTime>2021-01-19 07:27:44 UTC</createdTime>
 <generatorID>8FBCA7B3-AE1F-8FF7-8067-A746D466F263</generatorID>
