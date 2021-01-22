@@ -1,0 +1,30 @@
+confluence:
+  apiurl: 'https://foryouandyourteam.com'
+  space: '~bue'
+  rootpage : 'Meta Information Information Model (MIIM) Sandbox'
+  username: bue
+  password: ***
+
+# datasource
+json: testdata/IM-sample.json
+
+# translation
+language: 'de'
+
+# output structure
+content:
+  entities:
+    title: Entitäten
+    template: templates/entity.templ.html
+    labels:
+      - entity
+      - IM
+      - generated
+
+  attributes:
+    title: Attribute
+    template: templates/attribute.tmpl.html
+    labels:
+      - attribute
+      - IM
+      - generated
