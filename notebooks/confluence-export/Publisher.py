@@ -20,7 +20,9 @@ class Publisher:
         stamp_now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
     def translate(self, field):
-        return escape(field[self.language])
+        if field and field.get(self.language):
+            return escape(field[self.language])
+        return ''
 
     def href(self, element_key):
         '''Returns the url of an element'''

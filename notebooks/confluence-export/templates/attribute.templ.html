@@ -1,0 +1,39 @@
+<!-- this is the Confluence page content template for IM:entity to be rendered using jinja2 -->
+{% set attribute = item %}
+<ac:layout>
+  <ac:layout-section ac:type="two_right_sidebar">
+    <ac:layout-cell>
+      <p>{{ util.translate(attribute['descr']) }}</p>
+      <table class="relative-table" style="width: 100%;">
+      <tbody>
+        <tr>
+          <th>Eigenschaft</th>
+          <th>Wert</th>
+          <th></th>
+          <th></th>
+        </tr>
+        <tr>
+          <td>Technischer Schlüssel</td>
+          <td>{{ key }}</td>
+          <td><br/></td>
+          <td><br/></td>
+        </tr>
+        <tr>
+          <td>Type</td>
+          <td>{{ attribute['type'] }}</td>
+          <td><br/></td>
+          <td><br/></td>
+        </tr>
+        <tr>
+          <td>Basistyp</td>
+          <td>{{ attribute['basedatatype'] }}</td>
+          <td><br/></td>
+          <td><br/></td>
+        </tr>
+      </tbody></table>
+    </ac:layout-cell>
+    <ac:layout-cell>
+      <img src="https://res.cloudinary.com/fyayc-test/image/upload/c_thumb,w_200,g_face/v1610138348/icons/f-icon_object_0765_spare-part.png" align="right"/>
+    </ac:layout-cell>
+  </ac:layout-section>
+</ac:layout>
