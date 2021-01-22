@@ -23,50 +23,6 @@ class Attribute(MultilangBaseobject):
         self.attr_displ_name = pname
         self.attr_enti_id = pentiid
 
-    @staticmethod
-    def createtable():
-        Baseobject.createtable(ptablename=Attribute._tablename
-                               , psql="""
-CREATE TABLE ATTRIBUTES
-    (
-     ATTR_ID integer NOT NULL  primary key,
-     ATTR_ENTI_ID integer NULL ,
-     ATTR_DOMA_ID integer NOT NULL ,
-     ATTR_TECH_NAME VARCHAR (60) NOT NULL ,
-     ATTR_DISPL_NAME VARCHAR (4000) NULL ,
-     ATTR_DISPL_SEQ NUMERIC (5) NULL ,
-     ATTR_TOOLTIP VARCHAR (4000) NULL ,
-     ATTR_DESCR VARCHAR (4000) NULL ,
-     ATTR_IS_DESCRIPTIVE VARCHAR (5) NOT NULL 
-   		CHECK(ATTR_IS_DESCRIPTIVE IN('FALSE','TRUE')),
-     ATTR_IS_MANDATORY VARCHAR (5) NOT NULL  
-   		CHECK(ATTR_IS_MANDATORY IN('FALSE','TRUE')),
-     ATTR_IS_HISTORICISED VARCHAR (5) NOT NULL  
-   		CHECK(ATTR_IS_HISTORICISED IN('FALSE','TRUE')),
-     ATTR_IS_REPEATED VARCHAR (5) NOT NULL  
-   		CHECK(ATTR_IS_REPEATED IN('FALSE','TRUE')),
-     ATTR_IS_TRANSLATED VARCHAR (5) NOT NULL  
-   		CHECK(ATTR_IS_TRANSLATED IN('FALSE','TRUE')),
-     ATTR_IS_ENCRYPTED VARCHAR (5) NOT NULL  
-   		CHECK(ATTR_IS_ENCRYPTED IN('FALSE','TRUE')),
-     ATTR_UC VARCHAR(30) NULL  ,
-     ATTR_DC VARCHAR (30) NOT NULL ,
-     ATTR_UM VARCHAR (30) NULL ,
-     ATTR_DM VARCHAR (30) NULL
-      ,CONSTRAINT ATTR_UK UNIQUE (ATTR_TECH_NAME ASC, ATTR_ENTI_ID ASC)
-      ,CONSTRAINT ATTR_UK2 UNIQUE (ATTR_DISPL_NAME ASC, ATTR_ENTI_ID ASC)
-      ,CONSTRAINT ATTR_ENTI_FK FOREIGN KEY      (     ATTR_ENTI_ID)
-		  REFERENCES ENTITIES      (     ENTI_ID )
-      ,CONSTRAINT ATTR_MODE_FK FOREIGN KEY      (     ATTR_ID)
-		  REFERENCES MODELELEMENT      (     MODE_ID )
-		  ON DELETE CASCADE
-	  ,CONSTRAINT ATTR_DOMA_FK FOREIGN KEY	  (     ATTR_DOMA_ID)
-		  REFERENCES DOMAINS	  (     DOMA_ID )
-		  ON DELETE NO ACTION
-  )
-        """)
-
-
     def getname(self, plang=None):
         return self._getsprachval(colname='attr_displ_name', plang=plang)
 

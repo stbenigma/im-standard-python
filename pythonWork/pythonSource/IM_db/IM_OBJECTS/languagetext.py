@@ -16,6 +16,8 @@ class Languagetext(Baseobject):
     RELA_TEXT_FROM:str='RELA_TEXT_FROM'
     RELA_TEXT_TO:str='RELA_TEXT_TO'
     SYNO_NAME:str='SYNO_NAME'
+    BURU_NAME:str='BURU_NAME'
+    BURU_ERRORMSG:str='BURU_ERRORMSG'
 
     __greportLang:str = None
 
@@ -121,7 +123,15 @@ CREATE TABLE LANG_TEXTS
                     union all 
                    select 'DOMA_NAME' attrname, doma_name text 
                         ,doma_id,doma_uc,doma_dc
-                    from DOMAINS  
+                    from DOMAINS
+                    union all  
+                   select 'BURU_NAME' attrname, buru_name text 
+                        ,buru_id,buru_uc,buru_dc
+                    from business_rules  
+                    union all  
+                   select 'BURU_ERRORMSG' attrname, buru_errormsg text 
+                        ,buru_id,buru_uc,buru_dc
+                    from business_rules  
                 )
                 cross join (select {} as lang_id)
                    """.format(plang))

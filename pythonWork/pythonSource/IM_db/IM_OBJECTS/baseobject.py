@@ -1,17 +1,7 @@
 import sqlite3
 
 from IM_DB import dbDML, dbDDL,logmessages
-
-
-class XXWebanker:
-    def __init__(self, pname, pid, pmodelid=0):
-        print("Webanker in Basepbject soll bald verschwinden und Systeme um Filename ergänzt werden")
-
-    def anker(self):
-        return 'FIX'
-
-    def modelid(self):
-        return 0
+from datetime import datetime
 
 
 class Boolean:
@@ -43,20 +33,34 @@ class Boolean:
 # Boolean
 
 class Baseobject:
+    defaultCreater:str="sys"
+    def fullcolname(self, col):
+        return self._prefix+'_'+col
+
+    def colvalue(self,pcolname):
+        return self.__dict__[pcolname] if pcolname in self.__dict__ else None
+    def setcolvalue(self,pcolname,value):
+        if pcolname in self.__dict__:
+            self.__dict__[pcolname] = value
+
 
     def __init__(self, tablename, prefix, idcolname=None
                  , psrcname=None, pscrid=None, pmodelemtype=None):
         self._tablename: str = tablename
         self._prefix: str = prefix
-        self._idcolname: str = prefix + '_id' if idcolname is None else idcolname
+        self._idcolname: str = self.fullcolname('id') if idcolname is None else idcolname
         self.__srcname = psrcname
         self.__srcid = pscrid
         self.__modelemtype = pmodelemtype
         self.__emptyclass()
+        if self.colvalue(self.fullcolname('dc')) is None: self.setcolvalue(self.colvalue(self.fullcolname('dc')), datetime.today())
+        if self.colvalue(self.fullcolname('uc')) is None: self.setcolvalue(self.colvalue(self.fullcolname('uc')), Baseobject.defaultCreater)
+        if self.colvalue(self.fullcolname('dm')) is None: self.setcolvalue(self.colvalue(self.fullcolname('dm')), datetime.today())
+        if self.colvalue(self.fullcolname('um')) is None: self.setcolvalue(self.colvalue(self.fullcolname('um')), Baseobject.defaultCreater)
 
     def __emptyclass(self):
         for col in self._columnlist:
-            self.__dict__[col] = None
+            self.setcolvalue(col,None)
     # emptyclass
 
     def getname(self,plang=None):
@@ -71,14 +75,14 @@ class Baseobject:
 
     def _fromarray(self, parr):
         for key, val in enumerate(parr):
-            self.__dict__[self._columnlist[key]] = val
+            self.__dict__[self._columnlist[key]] =val
         return self
 
     def getid(self):
-        return self.__dict__[self._idcolname]
+        return self.colvalue(self._idcolname)
 
     def setid(self, pid):
-        self.__dict__[self._idcolname] = pid
+        self.setcolvalue(self._idcolname,pid)
 
     def insert(self, pdoerrhdlng=True):
         if self.__modelemtype is not None:
@@ -120,7 +124,7 @@ class Baseobject:
 
     def tostring(self):
         lretval = "Table: {}\n".format(self._tablename)
-        lretval += "\n".join("{} = '{}'".format(col, self.__dict__[col]) for col in self._columnlist)
+        lretval += "\n".join("{} = '{}'".format(col, self.colvalue(col)) for col in self._columnlist)
         return lretval
 
     def getbyid(self, pid):
@@ -236,19 +240,17 @@ class MultilangBaseobject(Baseobject):
     def getsprachvals(self):
         for col in self._multilangcols:
             spt = Languagetext.getlang_texts(pattrname=self._multilangcols[col], pmodeid=self.getid())
-            self.__dict__[col + '_L'] = spt
+            self.setcolvalue(col + '_L', spt)
         # for
 
     # getsprachvals
 
     def _getsprachval(self, colname, plang = None):
         try:
-            if plang=='fr':
-                l =plang
-            retval = self.__dict__[colname + '_L'][plang]
+            retval = self.colvalue(colname + '_L')[plang]
         except:
             # keine sprache oder keinen Namen für Language
-            retval = self.__dict__[colname]
+            retval = self.colvalue(colname)
         # try
 
         return retval

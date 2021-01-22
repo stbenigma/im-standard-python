@@ -1,1021 +1,1812 @@
-create table BUSINESS_RULE
-(
-	BURU_ID numeric(10) not null
-		constraint BURU_PK
-			primary key,
-	BURU_NAME varchar(60) not null,
-	BURU_DESCR varchar(4000),
-	BURU_IMPACT varchar(4000),
-	BURU_TYPE varchar(10) not null
-		check ([BURU_TYPE]='TRIGGER' OR [BURU_TYPE]='CHECK' OR [BURU_TYPE]='CALC'),
-	BURU_LEVEL varchar(10) not null
-		check ([BURU_LEVEL]='TUPL' OR [BURU_LEVEL]='ENTI' OR [BURU_LEVEL]='DB' OR [BURU_LEVEL]='ATTR'),
-	BURU_ERRORMSG varchar(100) not null
-)
-go
-
-create table DEFAULT_VALUES
-(
-	DEVA_ID numeric(10) identity
-		constraint DEVA_PK
-			primary key,
-	DEVA_DOMA_ID numeric(10) not null,
-	DEVA_VALUE varchar(100) not null,
-	DEVA_SORT_ORDER numeric(3),
-	DEVA_DISPL varchar(max),
-	DEVA_DESCR varchar(max),
-	DEVA_UC varchar(30) not null,
-	DEVA_DC datetime not null,
-	DEVA_UM varchar(30),
-	DEVA_DM datetime,
-	constraint DEVA_VGWT_UK
-		unique (DEVA_DOMA_ID, DEVA_VALUE)
-)
-go
-
-create table DIAGRAMTYPES
-(
-	DIAT_ID numeric(10) identity
-		constraint DIAT_PK
-			primary key,
-	DIAT_NAME varchar(100) not null
-		constraint DIAT__UN
-			unique,
-	DIAT_UC varchar(30) not null,
-	DIAT_DC datetime not null,
-	DIAT_UM varchar(30),
-	DIAT_DM datetime
-)
-go
-
-create table LANGUAGES
-(
-	LANG_ID numeric(10) identity
-		constraint LANG_PK
-			primary key,
-	LANG_ISO_NAME varchar(60)
-		constraint LANG_ISO_NAME_UN
-			unique,
-	LANG_ISO_CODE2 char(2) not null
-		constraint LANG_ISO_CODE2_UN
-			unique
-		constraint LANG_ISO2_CHK
-			check ([LANG_ISO_CODE2]=lower([LANG_ISO_CODE2])),
-	LANG_ISO_CODE3 char(3) not null
-		constraint LANG_ISO_CODE3_UN
-			unique
-		constraint LANG_ISO3_CHK
-			check ([LANG_ISO_CODE3]=lower([LANG_ISO_CODE3])),
-	LANG_IS_TEXT_LANG varchar(5) not null
-		check ([LANG_IS_TEXT_LANG]='TRUE' OR [LANG_IS_TEXT_LANG]='FALSE'),
-	LANG_IS_BASE_LANG varchar(5) not null
-		check ([LANG_IS_BASE_LANG]='TRUE' OR [LANG_IS_BASE_LANG]='FALSE'),
-	LANG_LANG_ID numeric(10)
-		constraint LANG_REPLACE_FK
-			references LANGUAGES,
-	LANG_UC varchar(30) not null,
-	LANG_DC datetime not null,
-	LANG_UM varchar(30),
-	LANG_DM datetime
-)
-go
-
-create table MODELELEM_TYPE
-(
-	MELT_ID numeric(10) identity
-		constraint MELT_PK
-			primary key,
-	MELT_SHORTNAME varchar(4) not null
-		constraint MELT_UN
-			unique
-		check ([MELT_SHORTNAME]='TABL' OR [MELT_SHORTNAME]='SYNO' OR [MELT_SHORTNAME]='RELA' OR [MELT_SHORTNAME]='ORGU' OR [MELT_SHORTNAME]='KEYS' OR [MELT_SHORTNAME]='INTF' OR [MELT_SHORTNAME]='ENTI' OR [MELT_SHORTNAME]='DOMA' OR [MELT_SHORTNAME]='DOCU' OR [MELT_SHORTNAME]='DIAG' OR [MELT_SHORTNAME]='DGRM' OR [MELT_SHORTNAME]='DATY' OR [MELT_SHORTNAME]='COLU' OR [MELT_SHORTNAME]='BURU' OR [MELT_SHORTNAME]='ATTR' OR [MELT_SHORTNAME]='ARCS'),
-	MELT_NAME varchar(60) not null
-		constraint MELT_UN2
-			unique,
-	MELT_UC varchar(30) not null,
-	MELT_DC datetime not null,
-	MELT_UM varchar(30),
-	MELT_DM datetime
-)
-go
-
-create table MELT_DIATS
-(
-	MEDI_ID numeric(10) not null
-		constraint MEDI_PK
-			primary key,
-	MEDI_DIAT_ID numeric(10) not null
-		constraint MEDI_DIAT_FK
-			references DIAGRAMTYPES
-				on delete cascade,
-	MEDI_MELT_ID numeric(10) not null
-		constraint MODI_MELT_FK
-			references MODELELEM_TYPE
-				on delete cascade,
-	MEDI_UC varchar(30) not null,
-	MEDI_DC datetime not null,
-	MEDI_UM varchar(30),
-	MEDI_DM datetime,
-	constraint MEDI__UN
-		unique (MEDI_DIAT_ID, MEDI_MELT_ID)
-)
-go
-
-create table MODELELEMENT
-(
-	MODE_ID numeric(10) identity
-		constraint MODE_PK
-			primary key,
-	MODE_TYPE varchar(4) not null
-		check ([MODE_TYPE]='TABL' OR [MODE_TYPE]='SYNO' OR [MODE_TYPE]='RELA' OR [MODE_TYPE]='ORGU' OR [MODE_TYPE]='KEYS' OR [MODE_TYPE]='INTF' OR [MODE_TYPE]='ENTI' OR [MODE_TYPE]='DOMA' OR [MODE_TYPE]='DOCU' OR [MODE_TYPE]='DIAG' OR [MODE_TYPE]='DGRM' OR [MODE_TYPE]='DATY' OR [MODE_TYPE]='COLU' OR [MODE_TYPE]='BURU' OR [MODE_TYPE]='ATTR' OR [MODE_TYPE]='ARCS'),
-	MODE_MELT_ID numeric(10) not null
-		constraint MODE_MELT_FK
-			references MODELELEM_TYPE
-)
-go
-
-create table DATATYPES
-(
-	DATY_ID numeric(10) identity
-		constraint DATY_PK
-			primary key
-		constraint DATY_MODE_FK
-			references MODELELEMENT,
-	DATY_NAME varchar(60) not null
-		constraint DATY_UN
-			unique,
-	DATY_BASETYPE varchar(60) not null
-		constraint DATY_BASETYPE_CK
-			check ([DATY_BASETYPE]='STRING' OR [DATY_BASETYPE]='NUMERIC' OR [DATY_BASETYPE]='DATETIME' OR [DATY_BASETYPE]='BINARY'),
-	DATY_UC varchar(30) not null,
-	DATY_DC datetime not null,
-	DATY_UM varchar(30),
-	DATY_DM datetime
-)
-go
-
-create table DIAGRAMS
-(
-	DIAG_ID numeric(10) not null
-		constraint DIAG_PK
-			primary key
-		constraint DIAGRAMS_MODELELEMENT_FK
-			references MODELELEMENT
-				on delete cascade,
-	DIAG_NAME varchar(60) not null
-		constraint DIAG__UN
-			unique,
-	DIAG_DIAT_ID numeric(10) not null
-		constraint DIAG_DIAT_FK
-			references DIAGRAMTYPES,
-	DIAG_LEGENDX numeric(8),
-	DIAG_LEGENDY numeric(8),
-	DIAG_UC varchar(30) not null,
-	DIAG_DC datetime not null,
-	DIAG_UM varchar(30),
-	DIAG_DM datetime
-)
-go
-
-create table ELEMENTREPS
-(
-	ELER_ID numeric(10) not null
-		constraint ELER_Elemendarstellung_PK
-			primary key,
-	ELER_MODE_ID numeric(10) not null
-		constraint ELER_MODE_FK
-			references MODELELEMENT,
-	ELER_DIAG_ID numeric(10) not null
-		constraint ELER_DIAG_FK
-			references DIAGRAMS
-				on delete cascade,
-	ELER_INDEX numeric(4) default 0 not null,
-	ELER_POSITION_X numeric(6),
-	ELER_POSITION_Y numeric(6),
-	ELER_WITDH numeric(4) not null,
-	ELER_HEIGHT numeric(4) not null,
-	ELER_OPACITY numeric(3) default 100
-		check ([ELER_OPACITY]>=0 AND [ELER_OPACITY]<=100),
-	ELER_COLOR varchar(6) default '000000' not null
-		check (datalength([ELER_COLOR])=6),
-	ELER_MARGINWIDTH numeric(3,1) default 1,
-	ELER_MARGINOPACITY numeric(3) default 100
-		check ([ELER_MARGINOPACITY]>=0 AND [ELER_MARGINOPACITY]<=100),
-	ELER_MARGINCOLOR varchar(6) default '000000'
-		check (datalength([ELER_MARGINCOLOR])=6),
-	ELER_FONTSIZE numeric(3)
-		check ([ELER_FONTSIZE]>=1 AND [ELER_FONTSIZE]<=999),
-	ELER_FONTCOLOR varchar(6) default '000000'
-		check (datalength([ELER_FONTCOLOR])=6),
-	ELER_UC varchar(30) not null,
-	ELER_DC datetime not null,
-	ELER_UM varchar(30),
-	ELER_DM datetime,
-	constraint ELER__UN
-		unique (ELER_MODE_ID, ELER_DIAG_ID, ELER_INDEX)
-)
-go
-
-exec sp_addextendedproperty 'MS_Description', 'Vorgabewert einer Darstellung eines Elementtyps', 'SCHEMA', 'dbo', 'TABLE', 'ELEMENTREPS', 'COLUMN', 'ELER_POSITION_X'
-go
-
-exec sp_addextendedproperty 'MS_Description', 'Vorgabewert einer Darstellung eines Elementtyps', 'SCHEMA', 'dbo', 'TABLE', 'ELEMENTREPS', 'COLUMN', 'ELER_POSITION_Y'
-go
-
-exec sp_addextendedproperty 'MS_Description', 'Vorgabewert der Darstellung des Randes um das Element', 'SCHEMA', 'dbo', 'TABLE', 'ELEMENTREPS', 'COLUMN', 'ELER_WITDH'
-go
-
-exec sp_addextendedproperty 'MS_Description', 'Vorgabewert der Darstellung des Randes um das Element', 'SCHEMA', 'dbo', 'TABLE', 'ELEMENTREPS', 'COLUMN', 'ELER_HEIGHT'
-go
-
-exec sp_addextendedproperty 'MS_Description', 'Vorgabewert der Darstellung des Randes um das Element', 'SCHEMA', 'dbo', 'TABLE', 'ELEMENTREPS', 'COLUMN', 'ELER_MARGINWIDTH'
-go
-
-exec sp_addextendedproperty 'MS_Description', 'Vorgabewert der Schriftgrösse des Elementsnamens', 'SCHEMA', 'dbo', 'TABLE', 'ELEMENTREPS', 'COLUMN', 'ELER_FONTSIZE'
-go
-
-create table ENTITIES
-(
-	ENTI_ID numeric(10) not null
-		constraint ENTI_PK
-			primary key
-		constraint ENTI_MODE_FK
-			references MODELELEMENT,
-	ENTI_NAME varchar(60) not null
-		constraint ENTI_NAME_UK
-			unique,
-	ENTI_SHORT_NAME varchar(15),
-	ENTI_PREFIX varchar(5),
-	ENTI_TOOLTIP varchar(4000),
-	ENTI_DESCR varchar(4000),
-	ENTI_EXP_TUPLE# varchar(500),
-	ENTI_UC varchar(30) not null,
-	ENTI_DC datetime not null,
-	ENTI_UM varchar(30),
-	ENTI_DM datetime
-)
-go
-
-create table ARCS
-(
-	ARCS_ID numeric(10) not null
-		constraint ARCS_PK
-			primary key
-		constraint ARCS_MODE_FK
-			references MODELELEMENT
-				on delete cascade,
-	ARCS_NAME varchar(60) not null,
-	ARCS_ENTI_ID numeric(10) not null
-		constraint ARCS_ENTI_FK
-			references ENTITIES
-				on delete cascade,
-	ARCS_UC varchar(30) not null,
-	ARCS_DC datetime not null,
-	ARCS_UM varchar(30),
-	ARCS_DM datetime,
-	constraint ARCS_UK
-		unique (ARCS_ENTI_ID, ARCS_NAME)
-)
-go
-
-create table EXTERNAL_REFS
-(
-	EXTR_ID numeric(10) not null
-		constraint EXTR_PK
-			primary key,
-	EXTR_SOURCE_NAME varchar(60) not null,
-	EXTR_SOURCE_ID varchar(100) not null,
-	EXTR_MODE_ID numeric(10) not null
-		constraint EXTR_MODE_FK
-			references MODELELEMENT
-				on delete cascade,
-	constraint EXTR_UK
-		unique (EXTR_SOURCE_NAME, EXTR_MODE_ID),
-	constraint Extr_UK_id
-		unique (EXTR_SOURCE_NAME, EXTR_SOURCE_ID)
-)
-go
-
-create table INTERFACES
-(
-	INTF_ID numeric(10) not null
-		constraint INTF_PK
-			primary key
-		constraint INFT_MODE_FK
-			references MODELELEMENT,
-	INTF_NAME varchar(60) not null
-		constraint SCHN_UN
-			unique,
-	INTF_DESCR varchar(4000) not null,
-	INTF_UC varchar(30) not null,
-	INTF_DC datetime not null,
-	INTF_UM varchar(30),
-	INTF_DM datetime
-)
-go
-
-create table LANG_TEXTS
-(
-	LGTX_ID numeric(10) identity
-		constraint LGTX_PK
-			primary key,
-	LGTX_ATTRNAME varchar(60) not null,
-	LGTX_TEXT varchar(4000),
-	LGTX_LANG_ID numeric(10) not null
-		constraint SPTX_LANG_FK
-			references LANGUAGES,
-	LGTX_MODE_ID numeric(10) not null
-		constraint SPTX_MODE_FK
-			references MODELELEMENT
-				on delete cascade,
-	LGTX_UC varchar(30) not null,
-	LGTX_DC datetime not null,
-	LGTX_UM varchar(30),
-	LGTX_DM datetime,
-	constraint LGTX_UK
-		unique (LGTX_LANG_ID, LGTX_MODE_ID, LGTX_ATTRNAME)
-)
-go
-
-create table ORGANISATIONALUNITS
-(
-	ORGU_ID numeric(10) not null
-		constraint ORGU_PK
-			primary key
-		constraint ORGU_MODE_FK
-			references MODELELEMENT,
-	ORGU_NAME varchar(60) not null
-		constraint ORGU_NAME_UN
-			unique,
-	ORGU_DESCR varchar(4000),
-	ORGU_MAIL varchar(200)
-		constraint ORGU_EMAIL_UN
-			unique,
-	ORGU_TELEFON varchar(30),
-	ORGU_ADDRESS varchar(4000),
-	ORGU_ORGU_ID numeric(10)
-		constraint ORGU_ORGU_FK
-			references ORGANISATIONALUNITS,
-	ORGU_UC varchar(30) not null,
-	ORGU_DC datetime not null,
-	ORGU_UM varchar(30),
-	ORGU_DM datetime
-)
-go
-
-create table MODE_ORGU
-(
-	MOOU_ID numeric(10) not null
-		constraint MOOU_PK
-			primary key,
-	MOOU_MODE_ID numeric(10) not null
-		constraint MOOU_MODE_FK
-			references MODELELEMENT
-				on delete cascade,
-	MOOU_ORGU_ID numeric(10) not null
-		constraint MOOU_ORGU_FK
-			references ORGANISATIONALUNITS
-				on delete cascade,
-	constraint MOOU_UK
-		unique (MOOU_MODE_ID, MOOU_ORGU_ID)
-)
-go
-
-create table PHYSICAL_UNIT
-(
-	PHYU_ID numeric(10) identity
-		constraint PHYU_PK
-			primary key,
-	PHYU_SI_UNIT varchar(10)
-		constraint PHYU_UK_SI
-			unique,
-	PHYU_NAME varchar(60) not null
-		constraint PHYU_UK_NAME
-			unique,
-	PHYU_DESCR varchar(4000),
-	PHYU_UC varchar(30) not null,
-	PHYU_DC datetime not null,
-	PHYU_UM varchar(30),
-	PHYU_DM datetime
-)
-go
-
-create table RELATIONREPS
-(
-	RELR_ID numeric(10) not null
-		constraint RELR_PK
-			primary key,
-	RELR_DIAG_ID numeric(10) not null
-		constraint RELR_DIAG_FK
-			references DIAGRAMS,
-	RELR_MODE_ID numeric(10) not null
-		constraint RELR_MODE_FK
-			references MODELELEMENT
-				on delete cascade,
-	RELR_LINEWIDTH numeric(3,1) default 1 not null,
-	RELR_LINECOLOR varchar(6) default '000000'
-		check (datalength([RELR_LINECOLOR])=6),
-	RELR_LINEOPACITY numeric(3) default 100
-		check ([RELR_LINEOPACITY]>=0 AND [RELR_LINEOPACITY]<=100),
-	RELR_STARTEDGE varchar
-		check ([RELR_STARTEDGE]='W' OR [RELR_STARTEDGE]='S' OR [RELR_STARTEDGE]='O' OR [RELR_STARTEDGE]='N'),
-	RELR_STARTPOSITION numeric(4,1)
-		check ([RELR_STARTPOSITION]>=0.0 AND [RELR_STARTPOSITION]<=100.0),
-	RELR_START_CONNECTOR varchar
-		check ([RELR_START_CONNECTOR]='M' OR [RELR_START_CONNECTOR]='1'),
-	RELR_STARTTEXT_ANGEL numeric(3)
-		check ([RELR_STARTTEXT_ANGEL]>=(-179) AND [RELR_STARTTEXT_ANGEL]<=180),
-	RELR_STARTTEXT_DISTANCE numeric(4)
-		check ([RELR_STARTTEXT_DISTANCE]>=1 AND [RELR_STARTTEXT_DISTANCE]<=9999),
-	RELR_STARTTEXT_X numeric(6)
-		check ([RELR_STARTTEXT_X]>=0 AND [RELR_STARTTEXT_X]<=999999),
-	RELR_STARTTEXT_Y numeric(6)
-		check ([RELR_STARTTEXT_Y]>=0 AND [RELR_STARTTEXT_Y]<=999999),
-	RELR_STARTTEXT_WIDTH numeric(4)
-		check ([RELR_STARTTEXT_WIDTH]>=1 AND [RELR_STARTTEXT_WIDTH]<=9999),
-	RELR_STARTTEXT_HEIGHT numeric(4)
-		check ([RELR_STARTTEXT_HEIGHT]>=1 AND [RELR_STARTTEXT_HEIGHT]<=9999),
-	RELR_ENDEDGE varchar
-		check ([RELR_ENDEDGE]='W' OR [RELR_ENDEDGE]='S' OR [RELR_ENDEDGE]='O' OR [RELR_ENDEDGE]='N'),
-	RELR_ENDPOSITION numeric(4,1)
-		check ([RELR_ENDPOSITION]>=0.0 AND [RELR_ENDPOSITION]<=100.0),
-	RELR_END_CONNECTOR varchar
-		check ([RELR_END_CONNECTOR]='M' OR [RELR_END_CONNECTOR]='1'),
-	RELR_ENDTEXT_ANGEL numeric(3)
-		check ([RELR_ENDTEXT_ANGEL]>=(-179) AND [RELR_ENDTEXT_ANGEL]<=180),
-	RELR_ENDTEXT_DISTANCE numeric(4)
-		check ([RELR_ENDTEXT_DISTANCE]>=1 AND [RELR_ENDTEXT_DISTANCE]<=9999),
-	RELR_ENDTEXT_X numeric(6)
-		check ([RELR_ENDTEXT_X]>=0 AND [RELR_ENDTEXT_X]<=999999),
-	RELR_ENDTEXT_Y numeric(6)
-		check ([RELR_ENDTEXT_Y]>=0 AND [RELR_ENDTEXT_Y]<=999999),
-	RELR_ENDTEXT_WIDTH numeric(4)
-		check ([RELR_ENDTEXT_WIDTH]>=1 AND [RELR_ENDTEXT_WIDTH]<=9999),
-	RELR_ENDTEXT_HEIGHT numeric(4)
-		check ([RELR_ENDTEXT_HEIGHT]>=1 AND [RELR_ENDTEXT_HEIGHT]<=9999),
-	RELR_FONTCOLOR varchar(6) default '000000'
-		check (datalength([RELR_FONTCOLOR])=6),
-	RELR_FONTSIZE numeric(3)
-		check ([RELR_FONTSIZE]>=1 AND [RELR_FONTSIZE]<=999),
-	RELR_UC varchar(30) not null,
-	RELR_DC datetime not null,
-	RELR_UM varchar(30),
-	BEDA_DM datetime,
-	constraint RELR_UN
-		unique (RELR_DIAG_ID, RELR_MODE_ID)
-)
-go
-
-create table LINESEGMENTS
-(
-	LISE_ID numeric(10) not null
-		constraint LISE_PK
-			primary key,
-	LISE_SEQ numeric(4) not null,
-	LISE_RELR_ID numeric(10) not null
-		constraint LISE_BEDA_FK
-			references RELATIONREPS
-				on delete cascade,
-	LISE_X numeric(6) not null
-		constraint LISE_CK_X
-			check ([LISE_X]>=0 AND [LISE_X]<=999999),
-	LISE_Y numeric(6) not null
-		constraint LISE_CK_Y
-			check ([LISE_Y]>=0 AND [LISE_Y]<=999999),
-	LISE_LINETYPE varchar(6) default 'SOLID'
-		constraint LISE_CK_BEDA_BEDA_SCHRIFTGROESSE
-			check ([LISE_LINETYPE]='SOLID' OR [LISE_LINETYPE]='DOTTED' OR [LISE_LINETYPE]='DASHED' OR [LISE_LINETYPE]='DADO'),
-	LISE_ANGEL int,
-	LISE_UC varchar(30) not null,
-	LISE_DC datetime not null,
-	LISE_UM varchar(30),
-	LISE_DM datetime,
-	constraint LISE__UN
-		unique (LISE_RELR_ID, LISE_SEQ)
-)
-go
-
-create table RELATIONS
-(
-	RELA_ID numeric(10) not null
-		constraint RELA_PK
-			primary key
-		constraint RELA_MODE_FK
-			references MODELELEMENT,
-	RELA_NAME varchar(60) not null
-		constraint RELA_UK_NAME
-			unique,
-	RELA_TYPE varchar(4) not null
-		check ([RELA_TYPE]='M:N' OR [RELA_TYPE]='M:1' OR [RELA_TYPE]='ISA' OR [RELA_TYPE]='1:1'),
-	RELA_ENTI_ID_FROM numeric(10) not null
-		constraint RELA_ENTI_FROM_FK
-			references ENTITIES,
-	RELA_ARCS_ID_FROM numeric(10)
-		constraint RELA_ARCS_FROM_FK
-			references ARCS,
-	RELA_ASSOC_FROM_TO varchar(max),
-	RELA_MAPTYPE_FROM_TO char not null
-		check ([RELA_MAPTYPE_FROM_TO]='M' OR [RELA_MAPTYPE_FROM_TO]='1'),
-	RELA_MANDATORY_FROM_TO varchar(5) not null
-		check ([RELA_MANDATORY_FROM_TO]='TRUE' OR [RELA_MANDATORY_FROM_TO]='FALSE'),
-	RELA_HIST_FROM_TO varchar(5) not null
-		check ([RELA_HIST_FROM_TO]='TRUE' OR [RELA_HIST_FROM_TO]='FALSE'),
-	RELA_ENTI_ID_TO numeric(10) not null
-		constraint RELA_ENTI_TO_FK
-			references ENTITIES,
-	RELA_ARCS_ID_TO numeric(10)
-		constraint RELA_ARCS_TO_FK
-			references ARCS,
-	RELA_ASSOC_TO_FROM varchar(100),
-	RELA_MAPTYPE_TO_FROM char not null
-		check ([RELA_MAPTYPE_TO_FROM]='M' OR [RELA_MAPTYPE_TO_FROM]='1'),
-	RELA_MANDATORY_TO_FROM varchar(5) not null
-		check ([RELA_MANDATORY_TO_FROM]='TRUE' OR [RELA_MANDATORY_TO_FROM]='FALSE'),
-	RELA_HIST_TO_FROM varchar(max) not null,
-	RELA_UC varchar(30) not null,
-	RELA_DC datetime not null,
-	RELA_UM varchar(30),
-	RELA_DM datetime,
-	constraint RELA_MAPTYPE_CHK
-		check ([RELA_TYPE]='ISAR' AND [RELA_MAPTYPE_FROM_TO]='1' AND [RELA_MAPTYPE_TO_FROM]='1' AND ([RELA_MANDATORY_FROM_TO]='TRUE' OR [RELA_MANDATORY_TO_FROM]='TRUE') OR [RELA_TYPE]='ISAS' AND [RELA_MAPTYPE_FROM_TO]='1' AND [RELA_MAPTYPE_TO_FROM]='1' AND [RELA_MANDATORY_FROM_TO]='TRUE' AND [RELA_MANDATORY_TO_FROM]='TRUE' AND ([RELA_ARCS_ID_FROM] IS NOT NULL OR [RELA_ARCS_ID_TO] IS NOT NULL) OR [RELA_TYPE]='1:1' AND [RELA_MAPTYPE_FROM_TO]='1' AND [RELA_MAPTYPE_TO_FROM]='1' OR [RELA_TYPE]='M:1' AND ([RELA_MAPTYPE_FROM_TO]='1' AND [RELA_MAPTYPE_TO_FROM]='M' OR [RELA_MAPTYPE_FROM_TO]='M' AND [RELA_MAPTYPE_TO_FROM]='1') OR [RELA_TYPE]='M:N' AND [RELA_MAPTYPE_TO_FROM]='M' AND [RELA_MAPTYPE_FROM_TO]='M')
-)
-go
-
-create table STORAGE_FORMATS
-(
-	STFO_ID numeric(10) identity
-		constraint STFO_PK
-			primary key,
-	STFO_NAME varchar(60) not null
-		constraint STFO_UN
-			unique,
-	STFO_DESCR varchar(4000),
-	STFO_UC varchar(30) not null,
-	STFO_DC datetime not null,
-	STFO_UM varchar(30),
-	STFO_DM datetime
-)
-go
-
-create table DOCUMENTS
-(
-	DOCU_ID numeric(10) identity
-		constraint DOCU_PK
-			primary key
-		constraint DOCU_MODE_FK
-			references MODELELEMENT,
-	DOCU_NAME varchar(60) not null,
-	DOCU_STFO_ID numeric(10)
-		constraint DOCU_STFO_FK
-			references STORAGE_FORMATS,
-	DOCU_REFERENCE varchar(500),
-	DOCU_CONTENT image,
-	DOCU_DOCU_ID numeric(10)
-		constraint DOCU_DOCU_FK
-			references DOCUMENTS
-)
-go
-
-create table DOMAINS
-(
-	DOMA_ID numeric(10) not null
-		constraint DOMAINS_PK
-			primary key
-		constraint DOMA_MODE_FK
-			references MODELELEMENT,
-	DOMA_NAME varchar(60) not null
-		constraint DOMA_UK
-			unique,
-	DOMA_DESCR varchar(4000),
-	DOMA_TYPE varchar(4) not null
-		check ([DOMA_TYPE]='TXT' OR [DOMA_TYPE]='NUM' OR [DOMA_TYPE]='LOV' OR [DOMA_TYPE]='GRP' OR [DOMA_TYPE]='DAT' OR [DOMA_TYPE]='BIN'),
-	DOMA_ORIGIN varchar(6) not null
-		check ([DOMA_ORIGIN]='DOM' OR [DOMA_ORIGIN]='DER'),
-	DOMA_INTF_ID numeric(10)
-		constraint DOMA_INTF_FK
-			references INTERFACES,
-	DOMA_DATY_ID numeric(10)
-		constraint DOMA_DATY_ID
-			references DATATYPES,
-	DOMA_DAT_MINVALUE numeric(28),
-	DOMA_DAT_MAXVALUE numeric(28),
-	DOMA_DAT_GRANULARITY varchar(15)
-		check ([DOMA_DAT_GRANULARITY]='YEAR' OR [DOMA_DAT_GRANULARITY]='WEEK' OR [DOMA_DAT_GRANULARITY]='SEMESTER' OR [DOMA_DAT_GRANULARITY]='SECOND' OR [DOMA_DAT_GRANULARITY]='QUARTER' OR [DOMA_DAT_GRANULARITY]='MONTH' OR [DOMA_DAT_GRANULARITY]='MINUTE' OR [DOMA_DAT_GRANULARITY]='MILlISECOND' OR [DOMA_DAT_GRANULARITY]='HOUR' OR [DOMA_DAT_GRANULARITY]='DAY'),
-	DOMA_TXT_MAXLNG numeric(28),
-	DOMA_TXT_SYNTAXRULE varchar(4000),
-	DOMA_NUM_MAXVALUE numeric(30,10),
-	DOMA_NUM_MINVALUE numeric(30,10),
-	DOMA_NUM_TOTAL_DIGITS numeric(3),
-	DOMA_NUM_FRACT_DIGITS numeric(3) default 0,
-	DOMA_NUM_ROUND_VALUE numeric(7,3),
-	DOMA_NUM_PHYU_ID numeric(10)
-		constraint DOMA_PHYU_FK
-			references PHYSICAL_UNIT,
-	DOMA_BIN_CONTENTTYPE varchar(30)
-		check ([DOMA_BIN_CONTENTTYPE]='TEXT' OR [DOMA_BIN_CONTENTTYPE]='SOUND' OR [DOMA_BIN_CONTENTTYPE]='OTHER' OR [DOMA_BIN_CONTENTTYPE]='IMAGE' OR [DOMA_BIN_CONTENTTYPE]='FILM' OR [DOMA_BIN_CONTENTTYPE]='DRAWING'),
-	DOMA_BIN_STFO_ID numeric(10)
-		constraint DOMA_STFO_FK
-			references STORAGE_FORMATS,
-	DOMA_UC varchar(30) not null,
-	DOMA_DC datetime not null,
-	DOMA_UM varchar(30),
-	DOMA_DM datetime,
-	constraint DOMA_ExDep1
-		check ([DOMA_TYPE]<>'BIN' OR [DOMA_BIN_CONTENTTYPE] IS NOT NULL AND [DOMA_NUM_FRACT_DIGITS] IS NULL AND [DOMA_NUM_MAXVALUE] IS NULL AND [DOMA_NUM_MINVALUE] IS NULL AND [DOMA_NUM_PHYU_ID] IS NULL AND [DOMA_NUM_ROUND_VALUE] IS NULL AND [DOMA_NUM_TOTAL_DIGITS] IS NULL AND [DOMA_DAT_GRANULARITY] IS NULL AND [DOMA_DAT_MAXVALUE] IS NULL AND [DOMA_DAT_MINVALUE] IS NULL AND [DOMA_TXT_SYNTAXRULE] IS NULL AND [DOMA_TXT_MAXLNG] IS NULL),
-	constraint DOMA_ExDep2
-		check ([DOMA_TYPE]<>'DAT' OR [DOMA_BIN_CONTENTTYPE] IS NULL AND [DOMA_BIN_STFO_ID] IS NULL AND [DOMA_NUM_FRACT_DIGITS] IS NULL AND [DOMA_NUM_MAXVALUE] IS NULL AND [DOMA_NUM_MINVALUE] IS NULL AND [DOMA_NUM_PHYU_ID] IS NULL AND [DOMA_NUM_ROUND_VALUE] IS NULL AND [DOMA_NUM_TOTAL_DIGITS] IS NULL AND [DOMA_DAT_GRANULARITY] IS NOT NULL AND [DOMA_TXT_SYNTAXRULE] IS NULL AND [DOMA_TXT_MAXLNG] IS NULL),
-	constraint DOMA_ExDep3
-		check ([DOMA_TYPE]<>'GRP' OR [DOMA_BIN_CONTENTTYPE] IS NULL AND [DOMA_BIN_STFO_ID] IS NULL AND [DOMA_NUM_FRACT_DIGITS] IS NULL AND [DOMA_NUM_MAXVALUE] IS NULL AND [DOMA_NUM_MINVALUE] IS NULL AND [DOMA_NUM_PHYU_ID] IS NULL AND [DOMA_NUM_ROUND_VALUE] IS NULL AND [DOMA_NUM_TOTAL_DIGITS] IS NULL AND [DOMA_DAT_GRANULARITY] IS NULL AND [DOMA_DAT_MAXVALUE] IS NULL AND [DOMA_DAT_MINVALUE] IS NULL AND [DOMA_TXT_SYNTAXRULE] IS NULL AND [DOMA_TXT_MAXLNG] IS NULL),
-	constraint DOMA_ExDep4
-		check ([DOMA_TYPE]<>'LOV' OR [DOMA_BIN_CONTENTTYPE] IS NULL AND [DOMA_BIN_STFO_ID] IS NULL AND [DOMA_NUM_FRACT_DIGITS] IS NULL AND [DOMA_NUM_MAXVALUE] IS NULL AND [DOMA_NUM_MINVALUE] IS NULL AND [DOMA_NUM_PHYU_ID] IS NULL AND [DOMA_NUM_ROUND_VALUE] IS NULL AND [DOMA_NUM_TOTAL_DIGITS] IS NULL AND [DOMA_DAT_GRANULARITY] IS NULL AND [DOMA_DAT_MAXVALUE] IS NULL AND [DOMA_DAT_MINVALUE] IS NULL AND [DOMA_TXT_SYNTAXRULE] IS NULL AND [DOMA_TXT_MAXLNG] IS NULL),
-	constraint DOMA_ExDep5
-		check ([DOMA_TYPE]<>'NUM' OR [DOMA_BIN_CONTENTTYPE] IS NULL AND [DOMA_BIN_STFO_ID] IS NULL AND [DOMA_NUM_FRACT_DIGITS] IS NOT NULL AND [DOMA_NUM_TOTAL_DIGITS] IS NOT NULL AND [DOMA_DAT_GRANULARITY] IS NULL AND [DOMA_DAT_MAXVALUE] IS NULL AND [DOMA_DAT_MINVALUE] IS NULL AND [DOMA_TXT_SYNTAXRULE] IS NULL AND [DOMA_TXT_MAXLNG] IS NULL),
-	constraint DOMA_ExDep6
-		check ([DOMA_TYPE]<>'TXT' OR [DOMA_BIN_CONTENTTYPE] IS NULL AND [DOMA_BIN_STFO_ID] IS NULL AND [DOMA_NUM_FRACT_DIGITS] IS NULL AND [DOMA_NUM_MAXVALUE] IS NULL AND [DOMA_NUM_MINVALUE] IS NULL AND [DOMA_NUM_PHYU_ID] IS NULL AND [DOMA_NUM_ROUND_VALUE] IS NULL AND [DOMA_NUM_TOTAL_DIGITS] IS NULL AND [DOMA_DAT_GRANULARITY] IS NULL AND [DOMA_DAT_MAXVALUE] IS NULL AND [DOMA_DAT_MINVALUE] IS NULL)
-)
-go
-
-create table ATTRIBUTES
-(
-	ATTR_ID numeric(10) not null
-		constraint ATTR_PK
-			primary key
-		constraint ATTR_MODE_FK
-			references MODELELEMENT
-				on delete cascade,
-	ATTR_ENTI_ID numeric(10) not null
-		constraint ATTR_ENTI_FK
-			references ENTITIES,
-	ATTR_DOMA_ID numeric(10) not null
-		constraint ATTR_DOMA_FK
-			references DOMAINS,
-	ATTR_TECH_NAME varchar(60) not null,
-	ATTR_DISPL_NAME varchar(4000),
-	ATTR_DISPL_SEQ numeric(5),
-	ATTR_TOOLTIP varchar(max),
-	ATTR_DESCR varchar(max),
-	ATTR_IS_DESCRIPTIVE varchar(5) not null
-		check ([ATTR_IS_DESCRIPTIVE]='TRUE' OR [ATTR_IS_DESCRIPTIVE]='FALSE'),
-	ATTR_IS_MANDATORY varchar(5) not null
-		check ([ATTR_IS_MANDATORY]='TRUE' OR [ATTR_IS_MANDATORY]='FALSE'),
-	ATTR_IS_HISTORICISED varchar(5) not null
-		check ([ATTR_IS_HISTORICISED]='TRUE' OR [ATTR_IS_HISTORICISED]='FALSE'),
-	ATTR_IS_REPEATED varchar(5) not null
-		check ([ATTR_IS_REPEATED]='TRUE' OR [ATTR_IS_REPEATED]='FALSE'),
-	ATTR_IS_TRANSLATED varchar(5) not null
-		check ([ATTR_IS_TRANSLATED]='TRUE' OR [ATTR_IS_TRANSLATED]='FALSE'),
-	ATTR_IS_ENCRYPTED varchar(5) not null
-		check ([ATTR_IS_ENCRYPTED]='TRUE' OR [ATTR_IS_ENCRYPTED]='FALSE'),
-	ATTR_UC varchar(30) not null,
-	ATTR_DC datetime not null,
-	ATTR_UM varchar(30),
-	ATTR_DM datetime,
-	constraint ATTR_UK
-		unique (ATTR_TECH_NAME, ATTR_ENTI_ID),
-	constraint ATTR_UK2
-		unique (ATTR_DISPL_NAME, ATTR_ENTI_ID)
-)
-go
-
-create table DOMAINGROUP_MEMBERS
-(
-	DGRM_ID numeric(10) not null
-		constraint DGRM_PK
-			primary key
-		constraint DGRM_MODE_FK
-			references MODELELEMENT
-				on delete cascade,
-	DGRM_NAME varchar(60) not null,
-	DGRM_DESCR varchar(4000),
-	DGRM_IS_MANDATORY varchar(5) not null
-		check ([DGRM_IS_MANDATORY]='TRUE' OR [DGRM_IS_MANDATORY]='FALSE'),
-	DGRM_DOMA_ID_GROUP numeric(10) identity
-		constraint dgrm_fk_doma_group
-			references DOMAINS,
-	DGRM_DOMA_ID_MEMBER numeric(10) not null
-		constraint DGRM_FK_DOMA_MEMBER
-			references DOMAINS
-				on delete cascade,
-	DGRM_UC varchar(30) not null,
-	DGRM_DC datetime not null,
-	DGRM_UM varchar(30),
-	DGRM_DM datetime,
-	constraint DGRM_DOMA_UK
-		unique (DGRM_DOMA_ID_GROUP, DGRM_NAME)
-)
-go
-
-create table KEY_ELEMENTS
-(
-	KELE_ID numeric(10) identity
-		constraint KELE_PK
-			primary key,
-	KELE_KEYS_ID numeric(10) not null,
-	KELE_ATTR_ID numeric(10) not null
-		constraint KELE_ATTR_FK
-			references ATTRIBUTES
-				on delete cascade,
-	KELE_RELA_ID numeric(10) not null
-		constraint KELE_RELA_FK
-			references RELATIONS
-				on delete cascade,
-	KELE_UC varchar(30) not null,
-	KELE_DC datetime not null,
-	KELE_UM varchar(30),
-	KELE_DM datetime,
-	constraint KELE_UN
-		unique (KELE_KEYS_ID, KELE_ATTR_ID, KELE_RELA_ID),
-	constraint FKArc_8
-		check ([KELE_RELA_ID] IS NOT NULL AND [KELE_ATTR_ID] IS NULL OR [KELE_ATTR_ID] IS NOT NULL AND [KELE_RELA_ID] IS NULL)
-)
-go
-
-create table MODE_DOCU
-(
-	MODO_ID numeric(10) not null
-		constraint MODO_PKv2
-			primary key,
-	MODO_MODE_ID numeric(10) not null
-		constraint MODO_MODE_FKv2
-			references MODELELEMENT
-				on delete cascade,
-	MODO_DOCU_ID numeric(10) not null
-		constraint MODO_DOCU_FK
-			references DOCUMENTS
-				on delete cascade,
-	constraint MODO_UK
-		unique (MODO_MODE_ID, MODO_DOCU_ID)
-)
-go
-
-create table SYNONYMS
-(
-	SYNO_ID numeric(10) not null
-		constraint SYNO_PK
-			primary key
-		constraint SYNO_MODE_FK
-			references MODELELEMENT
-				on delete cascade,
-	SYNO_NAME varchar(60) not null,
-	SYNO_ENTI_ID numeric(10) not null
-		constraint SYNO_ENTI_FK
-			references ENTITIES
-				on delete cascade,
-	SYNO_UC varchar(30) not null,
-	SYNO_DC datetime not null,
-	SYNO_UM varchar(30),
-	SYNO_DM datetime
-)
-go
-
-create table TABLES
-(
-	TABL_ID numeric(10) not null
-		constraint TABL_PKv2
-			primary key
-		constraint TABL_MODE_FK
-			references MODELELEMENT,
-	TABL_NAME varchar(60) not null,
-	TABL_DESCR varchar(4000),
-	TABL_INTF_ID numeric(10) not null
-		constraint TABL_INTF_FK
-			references INTERFACES,
-	TABL_UC varchar(30) not null,
-	TABL_DC datetime not null,
-	TABL_UM varchar(30),
-	TABL_DM datetime,
-	constraint TABL__UN
-		unique (TABL_NAME, TABL_INTF_ID)
-)
-go
-
-create table COLUMNS
-(
-	COLU_ID numeric(10) identity
-		constraint COLU_PK
-			primary key,
-	COLU_COLUMN_NAME varchar(60) not null,
-	COLU_MANDATORY varchar(5) not null,
-	COLU_FORMAT varchar(200),
-	COLU_DESCR varchar(4000),
-	COLU_EXT_SYSTEM_ID varchar(100),
-	COLU_TYPE_STRING varchar(100),
-	COLU_TABL_ID numeric(10) not null
-		constraint COLU_UK
-			unique
-		constraint COLU_TABL_FK
-			references TABLES,
-	COLU_DOMA_ID numeric(10) not null
-		constraint COLU_DOMA_FK
-			references DOMAINS,
-	COLU_UC varchar(30) not null,
-	COLU_DC datetime not null,
-	COLU_UM varchar(30),
-	COLU_DM datetime
-)
-go
-
-exec sp_addextendedproperty 'MS_Description', 'ID / Code der Attributbdefinition in einer Standardsoftware', 'SCHEMA', 'dbo', 'TABLE', 'COLUMNS', 'COLUMN', 'COLU_EXT_SYSTEM_ID'
-go
-
-create table BUSINESSRULE_ELEMENT
-(
-	BURE_ID numeric(10) not null
-		constraint BURE_PK
-			primary key,
-	BURE_BURU_ID numeric(10) not null
-		constraint BURE_BURU_FK
-			references BUSINESS_RULE
-				on delete cascade,
-	BURE_WRITEABLE varchar(5) not null
-		check ([BURE_WRITEABLE]='TRUE' OR [BURE_WRITEABLE]='FALSE'),
-	BURE_ATTR_ID numeric(10)
-		constraint BURE_ATTR_FK
-			references ATTRIBUTES
-				on delete cascade,
-	BURE_ENTI_ID numeric(10)
-		constraint BURE_ENTI_FK
-			references ENTITIES
-				on delete cascade,
-	BURE_RELA_ID numeric(10)
-		constraint BURE_RELA_FK
-			references RELATIONS
-				on delete cascade,
-	BURE_DEVA_ID numeric(10)
-		constraint BURE_DEVA_FK
-			references DEFAULT_VALUES
-				on delete cascade,
-	BURE_TABL_ID numeric(10)
-		constraint BURU_TABL_FK
-			references TABLES
-				on delete cascade,
-	BURE_UC varchar(30) not null,
-	BURE_DC datetime not null,
-	BURE_UM varchar(30),
-	BURE_DM datetime,
-	BURE_COLU_ID1 numeric(10)
-		constraint BURU_COLU_FK
-			references COLUMNS
-				on delete cascade,
-	constraint ENTI_OR_ATTR_OR_RELA_ARC
-		check ([BURE_ATTR_ID] IS NOT NULL AND [BURE_ENTI_ID] IS NULL AND [BURE_RELA_ID] IS NULL AND [BURE_DEVA_ID] IS NULL AND [BURE_COLU_ID1] IS NULL AND [BURE_TABL_ID] IS NULL OR [BURE_ENTI_ID] IS NOT NULL AND [BURE_ATTR_ID] IS NULL AND [BURE_RELA_ID] IS NULL AND [BURE_DEVA_ID] IS NULL AND [BURE_COLU_ID1] IS NULL AND [BURE_TABL_ID] IS NULL OR [BURE_RELA_ID] IS NOT NULL AND [BURE_ATTR_ID] IS NULL AND [BURE_ENTI_ID] IS NULL AND [BURE_DEVA_ID] IS NULL AND [BURE_COLU_ID1] IS NULL AND [BURE_TABL_ID] IS NULL OR [BURE_DEVA_ID] IS NOT NULL AND [BURE_ATTR_ID] IS NULL AND [BURE_ENTI_ID] IS NULL AND [BURE_RELA_ID] IS NULL AND [BURE_COLU_ID1] IS NULL AND [BURE_TABL_ID] IS NULL OR [BURE_COLU_ID1] IS NOT NULL AND [BURE_ATTR_ID] IS NULL AND [BURE_ENTI_ID] IS NULL AND [BURE_RELA_ID] IS NULL AND [BURE_DEVA_ID] IS NULL AND [BURE_TABL_ID] IS NULL OR [BURE_TABL_ID] IS NOT NULL AND [BURE_ATTR_ID] IS NULL AND [BURE_ENTI_ID] IS NULL AND [BURE_RELA_ID] IS NULL AND [BURE_DEVA_ID] IS NULL AND [BURE_COLU_ID1] IS NULL OR [BURE_ATTR_ID] IS NULL AND [BURE_ENTI_ID] IS NULL AND [BURE_RELA_ID] IS NULL AND [BURE_DEVA_ID] IS NULL AND [BURE_COLU_ID1] IS NULL AND [BURE_TABL_ID] IS NULL)
-)
-go
-
-create table COLU_ATTR_MAP
-(
-	coam_id int not null
-		constraint colu_attr_map_PK
-			primary key,
-	coam_seq int not null,
-	coam_direction varchar(7) not null
-		check ([coam_direction]='OUTBOUND' OR [coam_direction]='INBOUND'),
-	coam_colu_id numeric(10) not null
-		constraint coma_colu_FK
-			references COLUMNS
-				on delete cascade,
-	coam_attr_id numeric(10) not null
-		constraint coma_attr_FK
-			references ATTRIBUTES
-				on delete cascade,
-	coam_transf_rule varchar(4000),
-	coam_triggertype varchar(10)
-		check ([coam_triggertype]='ZPKT' OR [coam_triggertype]='PERIODE' OR [coam_triggertype]='MANUELL'),
-	coam_triggerperiod int,
-	constraint coam_un
-		unique (coam_direction, coam_colu_id, coam_attr_id, coam_seq)
-)
-go
-
-create table TABL_ENTI_MAP
-(
-	TEMA_ID numeric(10) not null
-		constraint TEMA_PK
-			primary key,
-	TEMA_TABL_ID numeric(10) not null
-		constraint tema_tabl_FK
-			references TABLES,
-	TEMA_ENTI_ID numeric(10)
-		constraint TEMA_ENTI_FK
-			references ENTITIES
-				on delete cascade,
-	TEMA_RELA_ID numeric(10)
-		constraint TEMA_RELA_FK
-			references RELATIONS
-				on delete cascade,
-	constraint TEMA_UN
-		unique (TEMA_TABL_ID, TEMA_ENTI_ID),
-	constraint FKArc_5
-		check ([TEMA_RELA_ID] IS NOT NULL AND [TEMA_ENTI_ID] IS NULL OR [TEMA_ENTI_ID] IS NOT NULL AND [TEMA_RELA_ID] IS NULL OR [TEMA_RELA_ID] IS NULL AND [TEMA_ENTI_ID] IS NULL)
-)
-go
-
-create table USER_DEFINED_PROPERTIES
-(
-	UDPR_ID numeric(10) identity
-		constraint UDPR_PK
-			primary key,
-	UDPR_THEME varchar(60) not null,
-	UDPR_GROUP varchar(60),
-	UDPR_NAME varchar(60) not null,
-	UDPR_DESCR varchar(4000),
-	UDPR_UC varchar(30) not null,
-	UDPR_DC datetime not null,
-	UDPR_UM varchar(30),
-	UDPR_DM datetime,
-	constraint UDPR_UN
-		unique (UDPR_THEME, UDPR_NAME)
-)
-go
-
-create table MODELEMTYPE_PROPERTIES
-(
-	METP_ID numeric(10) not null
-		constraint METP_PK
-			primary key,
-	METP_MELT_ID numeric(10) not null
-		constraint METP_MELT_FK
-			references MODELELEM_TYPE,
-	METP_UDPR_ID numeric(10) not null
-		constraint METP_UDPR_FK
-			references USER_DEFINED_PROPERTIES,
-	METP_OPTIONAL varchar(5) not null
-		check ([METP_OPTIONAL]='TRUE' OR [METP_OPTIONAL]='FALSE'),
-	constraint METP_UN
-		unique (METP_MELT_ID, METP_UDPR_ID)
-)
-go
-
-create table UDP_VALUES
-(
-	UDPV_ID numeric(10) identity
-		constraint UDPV_PK
-			primary key,
-	UDPV_VALUE varchar(max),
-	UDPV_MODE_ID numeric(10) not null
-		constraint UDPV_MODE_FK
-			references MODELELEMENT
-				on delete cascade,
-	UDPV_UDPR_ID numeric(10) not null
-		constraint UDPV_UDPR_FK
-			references USER_DEFINED_PROPERTIES,
-	UDPV_UC varchar(30) not null,
-	UDPV_DC datetime not null,
-	UDPV_UM varchar(30),
-	UDPV_DM datetime,
-	constraint UDPV_UN
-		unique (UDPV_MODE_ID, UDPV_UDPR_ID)
-)
-go
-
-create table projects
-(
-	proj_id int not null
-		constraint proj_pk
-			primary key nonclustered,
-	proj_name varchar(60) not null
-		constraint proj_uk
-			unique,
-	proj_languages      VARCHAR(60),
-	proj_curr_lang varchar(2),
-	proj_uc varchar(30) not null,
-	proj_dc varchar(30) not null,
-	proj_um varchar(30),
-	proj_dm varchar(30)
-)
-go
-
-CREATE  VIEW SUPERENTI AS
-        with rel as (select rela_type
-               , case
-                     when RELA_MANDATORY_TO_FROM = 'TRUE' then RELA_ENTI_ID_FROM
-                     else RELA_ENTI_ID_TO end as rela_superenti_id
-               , case
-                     when RELA_MANDATORY_FROM_TO = 'TRUE' then RELA_ENTI_ID_FROM
-                     else RELA_ENTI_ID_TO end as rela_subenti_id
-                 from relations
-                where rela_type = 'ISAR'
-                )
-    select rela_type,superentity.enti_id as superenti_id, superentity.enti_name as super_enti_name
-        ,subentity.enti_id as subenti_id, subentity.enti_name as sub_enti_name
-          from ENTITIES superentity
-            join ARCS on ARCS_ENTI_ID = superentity.enti_id
-            join relations
-                  on  ((rela_arcs_id_from  = ARCS_ID and RELA_ENTI_ID_from = superentity.ENTI_ID)
-                   or (rela_arcs_id_to  = ARCS_ID and RELA_ENTI_ID_to = superentity.ENTI_ID))
-                     and RELA_TYPE =  'ISAS'
-           left  join ENTITIES subentity on  (subentity.ENTI_ID =  rela_enti_id_to and rela_arcs_id_from = arcs_id )
-                or (subentity.ENTI_ID =  rela_enti_id_from and rela_arcs_id_to = arcs_id )
-    union all
-        select rela_type,superentity.enti_id as superenti_id, superentity.enti_name as super_enti_name
-        ,subentity.enti_id as subenti_id, subentity.enti_name as sub_enti_name
-          from ENTITIES superentity
-          join rel on rela_superenti_id = superentity.ENTI_ID
-        join ENTITIES subentity on subentity.ENTI_ID = rela_subenti_id
-go
 
 
-drop view dbversion
-create view  dbversion as select '1.0' as version, current_timestamp as installedtime
--- postgres: create view  dbversion as select '1.0' as version, current_timestamp as installedtime
--- sqlite: create view dbversion as select '1.0' as version, datetime() as installedtime
+
+CREATE TABLE ARCS 
+    (
+     ARCS_ID NUMERIC (10) NOT NULL , 
+     ARCS_NAME VARCHAR (60) NOT NULL , 
+     ARCS_ENTI_ID NUMERIC (10) NOT NULL , 
+     ARCS_UC VARCHAR (30) NOT NULL , 
+     ARCS_DC DATETIME (8) NOT NULL , 
+     ARCS_UM VARCHAR (30) NULL , 
+     ARCS_DM DATETIME (8) NULL 
+    )
+GO
+
+ALTER TABLE ARCS ADD CONSTRAINT ARCS_PK PRIMARY KEY CLUSTERED (ARCS_ID ASC)
+     
+GO
+ALTER TABLE ARCS ADD CONSTRAINT ARCS_UK UNIQUE NONCLUSTERED (ARCS_ENTI_ID ASC, ARCS_NAME ASC)
+GO
+
+CREATE TABLE ATTRIBUTES 
+    (
+     ATTR_ID NUMERIC (10) NOT NULL , 
+     ATTR_ENTI_ID NUMERIC (10) NULL , 
+     ATTR_RELA_ID NUMERIC (10) NULL , 
+     ATTR_DOMA_ID NUMERIC (10) NOT NULL , 
+     ATTR_TECH_NAME VARCHAR (60) NOT NULL , 
+     ATTR_DISPL_NAME VARCHAR (4000) NULL , 
+     ATTR_DISPL_SEQ NUMERIC (5) NULL , 
+     ATTR_TOOLTIP VARCHAR (max) NULL , 
+     ATTR_DESCR VARCHAR (max) NULL , 
+     ATTR_IS_DESCRIPTIVE VARCHAR (5) NOT NULL CONSTRAINT CK__ATTRIBUTE__ATTR___05A3D694 CHECK ( [ATTR_IS_DESCRIPTIVE]='TRUE' OR [ATTR_IS_DESCRIPTIVE]='FALSE' ) , 
+     ATTR_IS_MANDATORY VARCHAR (5) NOT NULL CONSTRAINT CK__ATTRIBUTE__ATTR___0697FACD CHECK ( [ATTR_IS_MANDATORY]='TRUE' OR [ATTR_IS_MANDATORY]='FALSE' ) , 
+     ATTR_IS_HISTORICISED VARCHAR (5) NOT NULL CONSTRAINT CK__ATTRIBUTE__ATTR___078C1F06 CHECK ( [ATTR_IS_HISTORICISED]='TRUE' OR [ATTR_IS_HISTORICISED]='FALSE' ) , 
+     ATTR_IS_REPEATED VARCHAR (5) NOT NULL CONSTRAINT CK__ATTRIBUTE__ATTR___0880433F CHECK ( [ATTR_IS_REPEATED]='TRUE' OR [ATTR_IS_REPEATED]='FALSE' ) , 
+     ATTR_IS_TRANSLATED VARCHAR (5) NOT NULL CONSTRAINT CK__ATTRIBUTE__ATTR___09746778 CHECK ( [ATTR_IS_TRANSLATED]='TRUE' OR [ATTR_IS_TRANSLATED]='FALSE' ) , 
+     ATTR_IS_ENCRYPTED VARCHAR (5) NOT NULL CONSTRAINT CK__ATTRIBUTE__ATTR___0A688BB1 CHECK ( [ATTR_IS_ENCRYPTED]='TRUE' OR [ATTR_IS_ENCRYPTED]='FALSE' ) , 
+     ATTR_UC VARCHAR (30) NOT NULL , 
+     ATTR_DC DATETIME (8) NOT NULL , 
+     ATTR_UM VARCHAR (30) NULL , 
+     ATTR_DM DATETIME (8) NULL , 
+     CONSTRAINT ENTI_OR_RELA_ARC CHECK ([ATTR_ENTI_ID] IS NOT NULL AND [ATTR_RELA_ID] IS NULL OR [ATTR_RELA_ID] IS NOT NULL AND [ATTR_ENTI_ID] IS NULL)
+    )
+GO
+
+ALTER TABLE ATTRIBUTES ADD CONSTRAINT ATTR_PK PRIMARY KEY CLUSTERED (ATTR_ID ASC)
+     
+GO
+ALTER TABLE ATTRIBUTES ADD CONSTRAINT ATTR_UK UNIQUE NONCLUSTERED (ATTR_TECH_NAME ASC, ATTR_RELA_ID ASC, ATTR_ENTI_ID ASC)
+GO
+ALTER TABLE ATTRIBUTES ADD CONSTRAINT ATTR_UK2 UNIQUE NONCLUSTERED (ATTR_DISPL_NAME ASC, ATTR_RELA_ID ASC, ATTR_ENTI_ID ASC)
+GO
+
+CREATE TABLE BUSINESS_RULES
+    (
+     BURU_ID NUMERIC (10) NOT NULL , 
+     BURU_NAME VARCHAR (60) NOT NULL , 
+     BURU_DESCR VARCHAR (4000) NULL , 
+     BURU_IMPACT VARCHAR (4000) NULL , 
+     BURU_TYPE VARCHAR (10) NOT NULL CONSTRAINT CK__BUSINESS___BURU___1293BD5E CHECK ( [BURU_TYPE]='TRIGGER' OR [BURU_TYPE]='CHECK' OR [BURU_TYPE]='CALC' ) , 
+     BURU_LEVEL VARCHAR (10) NOT NULL CONSTRAINT CK__BUSINESS___BURU___1387E197 CHECK ( [BURU_LEVEL]='TUPL' OR [BURU_LEVEL]='ENTI' OR [BURU_LEVEL]='DB' OR [BURU_LEVEL]='ATTR' ) , 
+     BURU_ERRORMSG VARCHAR (100) NOT NULL,
+     BURU_UC VARCHAR (30) NOT NULL ,
+     BURU_DC DATETIME (8) NOT NULL ,
+     BURU_UM VARCHAR (30) NULL ,
+     BURU_DM DATETIME (8) NULL
+    )
+GO
+
+ALTER TABLE BUSINESS_RULES ADD CONSTRAINT BURU_PK PRIMARY KEY CLUSTERED (BURU_ID ASC)
+     
+GO
+
+CREATE TABLE BUSINESSRULE_ELEMENTS
+    (
+     BURE_ID NUMERIC (10) NOT NULL , 
+     BURE_BURU_ID NUMERIC (10) NOT NULL , 
+     BURE_WRITEABLE VARCHAR (5) NOT NULL CONSTRAINT CK__BUSINESSR__BURE___10216507 CHECK ( [BURE_WRITEABLE]='TRUE' OR [BURE_WRITEABLE]='FALSE' ) , 
+     BURE_ATTR_ID NUMERIC (10) NULL , 
+     BURE_ENTI_ID NUMERIC (10) NULL , 
+     BURE_RELA_ID NUMERIC (10) NULL , 
+     BURE_DEVA_ID NUMERIC (10) NULL , 
+     BURE_TABL_ID NUMERIC (10) NULL , 
+     BURE_COLU_ID NUMERIC (10) NULL , 
+     BURE_UC VARCHAR (30) NOT NULL , 
+     BURE_DC DATETIME (8) NOT NULL , 
+     BURE_UM VARCHAR (30) NULL , 
+     BURE_DM DATETIME (8) NULL 
+    )
+GO 
+ALTER TABLE BUSINESSRULE_ELEMENTS
+    ADD CONSTRAINT FKArc_1 CHECK ( 
+        (  (BURE_ENTI_ID IS NOT NULL) AND 
+         (BURE_TABL_ID IS NULL)  AND 
+         (BURE_RELA_ID IS NULL)  AND 
+         (BURE_ATTR_ID IS NULL)  AND 
+         (BURE_COLU_ID IS NULL)  AND 
+         (BURE_DEVA_ID IS NULL) ) OR 
+        (  (BURE_TABL_ID IS NOT NULL) AND 
+         (BURE_ENTI_ID IS NULL)  AND 
+         (BURE_RELA_ID IS NULL)  AND 
+         (BURE_ATTR_ID IS NULL)  AND 
+         (BURE_COLU_ID IS NULL)  AND 
+         (BURE_DEVA_ID IS NULL) ) OR 
+        (  (BURE_RELA_ID IS NOT NULL) AND 
+         (BURE_ENTI_ID IS NULL)  AND 
+         (BURE_TABL_ID IS NULL)  AND 
+         (BURE_ATTR_ID IS NULL)  AND 
+         (BURE_COLU_ID IS NULL)  AND 
+         (BURE_DEVA_ID IS NULL) ) OR 
+        (  (BURE_ATTR_ID IS NOT NULL) AND 
+         (BURE_ENTI_ID IS NULL)  AND 
+         (BURE_TABL_ID IS NULL)  AND 
+         (BURE_RELA_ID IS NULL)  AND 
+         (BURE_COLU_ID IS NULL)  AND 
+         (BURE_DEVA_ID IS NULL) ) OR 
+        (  (BURE_COLU_ID IS NOT NULL) AND 
+         (BURE_ENTI_ID IS NULL)  AND 
+         (BURE_TABL_ID IS NULL)  AND 
+         (BURE_RELA_ID IS NULL)  AND 
+         (BURE_ATTR_ID IS NULL)  AND 
+         (BURE_DEVA_ID IS NULL) ) OR 
+        (  (BURE_DEVA_ID IS NOT NULL) AND 
+         (BURE_ENTI_ID IS NULL)  AND 
+         (BURE_TABL_ID IS NULL)  AND 
+         (BURE_RELA_ID IS NULL)  AND 
+         (BURE_ATTR_ID IS NULL)  AND 
+         (BURE_COLU_ID IS NULL) ) OR  
+        (  (BURE_ENTI_ID IS NULL)  AND 
+         (BURE_TABL_ID IS NULL)  AND 
+         (BURE_RELA_ID IS NULL)  AND 
+         (BURE_ATTR_ID IS NULL)  AND 
+         (BURE_COLU_ID IS NULL)  AND 
+         (BURE_DEVA_ID IS NULL) )  ) 
+;
+
+ALTER TABLE BUSINESSRULE_ELEMENTS ADD CONSTRAINT BURE_PK PRIMARY KEY CLUSTERED (BURE_ID ASC)
+     
+GO
+
+CREATE TABLE COLU_ATTR_MAP 
+    (
+     coam_id INTEGER NOT NULL , 
+     coam_seq INTEGER NOT NULL , 
+     coam_direction VARCHAR (7) NOT NULL CONSTRAINT CK__COLU_ATTR__coam___13F1F5EB CHECK ( [coam_direction]='OUTBOUND' OR [coam_direction]='INBOUND' ) , 
+     coam_colu_id NUMERIC (10) NOT NULL , 
+     coam_attr_id NUMERIC (10) NOT NULL , 
+     coam_transf_rule VARCHAR (4000) NULL , 
+     coam_triggertype VARCHAR (10) NULL CONSTRAINT CK__COLU_ATTR__coam___14E61A24 CHECK ( [coam_triggertype]='ZPKT' OR [coam_triggertype]='PERIODE' OR [coam_triggertype]='MANUELL' ) , 
+     coam_triggerperiod INTEGER NULL 
+    )
+GO
+
+ALTER TABLE COLU_ATTR_MAP ADD CONSTRAINT colu_attr_map_PK PRIMARY KEY CLUSTERED (coam_id ASC)
+     
+GO
+ALTER TABLE COLU_ATTR_MAP ADD CONSTRAINT coam_un UNIQUE NONCLUSTERED (coam_direction ASC, coam_colu_id ASC, coam_attr_id ASC, coam_seq ASC)
+GO
+
+CREATE TABLE COLUMNS 
+    (
+     COLU_ID NUMERIC (10) NOT NULL , 
+     COLU_COLUMN_NAME VARCHAR (60) NOT NULL , 
+     COLU_MANDATORY VARCHAR (5) NOT NULL , 
+     COLU_FORMAT VARCHAR (200) NULL , 
+     COLU_DESCR VARCHAR (4000) NULL , 
+     COLU_EXT_SYSTEM_ID VARCHAR (100) NULL , 
+     COLU_TYPE_STRING VARCHAR (100) NULL , 
+     COLU_TABL_ID NUMERIC (10) NOT NULL , 
+     COLU_DOMA_ID NUMERIC (10) NOT NULL , 
+     COLU_UC VARCHAR (30) NOT NULL , 
+     COLU_DC DATETIME (8) NOT NULL , 
+     COLU_UM VARCHAR (30) NULL , 
+     COLU_DM DATETIME (8) NULL 
+    )
+GO 
+
+
+
+EXEC sp_addextendedproperty 'MS_Description' , 'ID / Code der Attributbdefinition in einer Standardsoftware' , 'USER' , 'dbo' , 'TABLE' , 'COLUMNS' , 'COLUMN' , 'COLU_EXT_SYSTEM_ID' 
+GO
+
+ALTER TABLE COLUMNS ADD CONSTRAINT COLU_PK PRIMARY KEY CLUSTERED (COLU_ID ASC)
+     
+GO
+ALTER TABLE COLUMNS ADD CONSTRAINT COLU_UK UNIQUE NONCLUSTERED (COLU_TABL_ID ASC)
+GO
+
+CREATE TABLE DATATYPES 
+    (
+     DATY_ID NUMERIC (10) NOT NULL IDENTITY (1 , 1) NOT FOR REPLICATION , 
+     DATY_NAME VARCHAR (60) NOT NULL , 
+     DATY_BASETYPE VARCHAR (60) NOT NULL CONSTRAINT DATY_BASETYPE_CK CHECK ( [DATY_BASETYPE]='STRING' OR [DATY_BASETYPE]='NUMERIC' OR [DATY_BASETYPE]='DATETIME' OR [DATY_BASETYPE]='BINARY' ) , 
+     DATY_UC VARCHAR (30) NOT NULL , 
+     DATY_DC DATETIME (8) NOT NULL , 
+     DATY_UM VARCHAR (30) NULL , 
+     DATY_DM DATETIME (8) NULL 
+    )
+GO
+
+ALTER TABLE DATATYPES ADD CONSTRAINT DATY_PK PRIMARY KEY CLUSTERED (DATY_ID ASC)
+     
+GO
+ALTER TABLE DATATYPES ADD CONSTRAINT DATY_UN UNIQUE NONCLUSTERED (DATY_NAME ASC)
+GO
+
+CREATE TABLE DEFAULT_VALUES 
+    (
+     DEVA_ID NUMERIC (10) NOT NULL IDENTITY (1 , 1) NOT FOR REPLICATION , 
+     DEVA_DOMA_ID NUMERIC (10) NOT NULL , 
+     DEVA_VALUE VARCHAR (100) NOT NULL , 
+     DEVA_SORT_ORDER NUMERIC (3) NULL , 
+     DEVA_DISPL VARCHAR (max) NULL , 
+     DEVA_DESCR VARCHAR (max) NULL , 
+     DEVA_UC VARCHAR (30) NOT NULL , 
+     DEVA_DC DATETIME (8) NOT NULL , 
+     DEVA_UM VARCHAR (30) NULL , 
+     DEVA_DM DATETIME (8) NULL 
+    )
+GO
+
+ALTER TABLE DEFAULT_VALUES ADD CONSTRAINT DEVA_PK PRIMARY KEY CLUSTERED (DEVA_ID ASC)
+     
+GO
+ALTER TABLE DEFAULT_VALUES ADD CONSTRAINT DEVA_VGWT_UK UNIQUE NONCLUSTERED (DEVA_DOMA_ID ASC, DEVA_VALUE ASC)
+GO
+
+CREATE TABLE DIAGRAMS 
+    (
+     DIAG_ID NUMERIC (10) NOT NULL , 
+     DIAG_NAME VARCHAR (60) NOT NULL , 
+     DIAG_DIAT_ID NUMERIC (10) NOT NULL , 
+     DIAG_LEGENDX NUMERIC (8) NULL , 
+     DIAG_LEGENDY NUMERIC (8) NULL , 
+     DIAG_UC VARCHAR (30) NOT NULL , 
+     DIAG_DC DATETIME (8) NOT NULL , 
+     DIAG_UM VARCHAR (30) NULL , 
+     DIAG_DM DATETIME (8) NULL 
+    )
+GO
+
+ALTER TABLE DIAGRAMS ADD CONSTRAINT DIAG_PK PRIMARY KEY CLUSTERED (DIAG_ID ASC)
+     
+GO
+ALTER TABLE DIAGRAMS ADD CONSTRAINT DIAG__UN UNIQUE NONCLUSTERED (DIAG_NAME ASC)
+GO
+
+CREATE TABLE DIAGRAMTYPES 
+    (
+     DIAT_ID NUMERIC (10) NOT NULL IDENTITY (1 , 1) NOT FOR REPLICATION , 
+     DIAT_NAME VARCHAR (100) NOT NULL , 
+     DIAT_UC VARCHAR (30) NOT NULL , 
+     DIAT_DC DATETIME (8) NOT NULL , 
+     DIAT_UM VARCHAR (30) NULL , 
+     DIAT_DM DATETIME (8) NULL 
+    )
+GO
+
+ALTER TABLE DIAGRAMTYPES ADD CONSTRAINT DIAT_PK PRIMARY KEY CLUSTERED (DIAT_ID ASC)
+     
+GO
+ALTER TABLE DIAGRAMTYPES ADD CONSTRAINT DIAT__UN UNIQUE NONCLUSTERED (DIAT_NAME ASC)
+GO
+
+CREATE TABLE DOCUMENTS 
+    (
+     DOCU_ID NUMERIC (10) NOT NULL , 
+     DOCU_NAME VARCHAR (60) NOT NULL , 
+     DOCU_STFO_ID NUMERIC (10) NULL , 
+     DOCU_REFERENCE VARCHAR (500) NULL , 
+     DOCU_CONTENT IMAGE NULL , 
+     DOCU_DOCU_ID NUMERIC (10) NULL 
+    )
+GO
+
+ALTER TABLE DOCUMENTS ADD CONSTRAINT DOCU_PK PRIMARY KEY CLUSTERED (DOCU_ID ASC)
+     
+GO
+
+CREATE TABLE DOMAINGROUP_MEMBERS 
+    (
+     DGRM_ID NUMERIC (10) NOT NULL , 
+     DGRM_NAME VARCHAR (60) NOT NULL , 
+     DGRM_DESCR VARCHAR (4000) NULL , 
+     DGRM_IS_MANDATORY VARCHAR (5) NOT NULL CONSTRAINT CK__DOMAINGRO__DGRM___29E1370A CHECK ( [DGRM_IS_MANDATORY]='TRUE' OR [DGRM_IS_MANDATORY]='FALSE' ) , 
+     DGRM_DOMA_ID_GROUP NUMERIC (10) NOT NULL IDENTITY (1 , 1) NOT FOR REPLICATION , 
+     DGRM_DOMA_ID_MEMBER NUMERIC (10) NOT NULL , 
+     DGRM_UC VARCHAR (30) NOT NULL , 
+     DGRM_DC DATETIME (8) NOT NULL , 
+     DGRM_UM VARCHAR (30) NULL , 
+     DGRM_DM DATETIME (8) NULL 
+    )
+GO
+
+ALTER TABLE DOMAINGROUP_MEMBERS ADD CONSTRAINT DGRM_PK PRIMARY KEY CLUSTERED (DGRM_ID ASC)
+     
+GO
+ALTER TABLE DOMAINGROUP_MEMBERS ADD CONSTRAINT DGRM_DOMA_UK UNIQUE NONCLUSTERED (DGRM_DOMA_ID_GROUP ASC, DGRM_NAME ASC)
+GO
+
+CREATE TABLE DOMAINS 
+    (
+     DOMA_ID NUMERIC (10) NOT NULL , 
+     DOMA_NAME VARCHAR (60) NOT NULL , 
+     DOMA_DESCR VARCHAR (4000) NULL , 
+     DOMA_TYPE VARCHAR (4) NOT NULL CONSTRAINT CK__DOMAINS__DOMA_TY__2DB1C7EE CHECK ( [DOMA_TYPE]='TXT' OR [DOMA_TYPE]='NUM' OR [DOMA_TYPE]='LOV' OR [DOMA_TYPE]='GRP' OR [DOMA_TYPE]='DAT' OR [DOMA_TYPE]='BIN' ) , 
+     DOMA_ORIGIN VARCHAR (6) NOT NULL CONSTRAINT CK__DOMAINS__DOMA_OR__2EA5EC27 CHECK ( [DOMA_ORIGIN]='DOM' OR [DOMA_ORIGIN]='DER' ) , 
+     DOMA_INTF_ID NUMERIC (10) NULL , 
+     DOMA_DATY_ID NUMERIC (10) NULL , 
+     DOMA_DAT_MINVALUE NUMERIC (28) NULL , 
+     DOMA_DAT_MAXVALUE NUMERIC (28) NULL , 
+     DOMA_DAT_GRANULARITY VARCHAR (15) NULL CONSTRAINT CK__DOMAINS__DOMA_DA__2F9A1060 CHECK ( [DOMA_DAT_GRANULARITY]='YEAR' OR [DOMA_DAT_GRANULARITY]='WEEK' OR [DOMA_DAT_GRANULARITY]='SEMESTER' OR [DOMA_DAT_GRANULARITY]='SECOND' OR [DOMA_DAT_GRANULARITY]='QUARTER' OR [DOMA_DAT_GRANULARITY]='MONTH' OR [DOMA_DAT_GRANULARITY]='MINUTE' OR [DOMA_DAT_GRANULARITY]='MILlISECOND' OR [DOMA_DAT_GRANULARITY]='HOUR' OR [DOMA_DAT_GRANULARITY]='DAY' ) , 
+     DOMA_TXT_MAXLNG NUMERIC (28) NULL , 
+     DOMA_TXT_SYNTAXRULE VARCHAR (4000) NULL , 
+     DOMA_NUM_MAXVALUE NUMERIC (30,10) NULL , 
+     DOMA_NUM_MINVALUE NUMERIC (30,10) NULL , 
+     DOMA_NUM_TOTAL_DIGITS NUMERIC (3) NULL , 
+     DOMA_NUM_FRACT_DIGITS NUMERIC (3) NULL DEFAULT (0) , 
+     DOMA_NUM_ROUND_VALUE NUMERIC (7,3) NULL , 
+     DOMA_NUM_PHYU_ID NUMERIC (10) NULL , 
+     DOMA_BIN_CONTENTTYPE VARCHAR (30) NULL CONSTRAINT CK__DOMAINS__DOMA_BI__318258D2 CHECK ( [DOMA_BIN_CONTENTTYPE]='TEXT' OR [DOMA_BIN_CONTENTTYPE]='SOUND' OR [DOMA_BIN_CONTENTTYPE]='OTHER' OR [DOMA_BIN_CONTENTTYPE]='IMAGE' OR [DOMA_BIN_CONTENTTYPE]='FILM' OR [DOMA_BIN_CONTENTTYPE]='DRAWING' ) , 
+     DOMA_BIN_STFO_ID NUMERIC (10) NULL , 
+     DOMA_UC VARCHAR (30) NOT NULL , 
+     DOMA_DC DATETIME (8) NOT NULL , 
+     DOMA_UM VARCHAR (30) NULL , 
+     DOMA_DM DATETIME (8) NULL , 
+     CONSTRAINT DOMA_ExDep1 CHECK ([DOMA_TYPE]<>'BIN' OR [DOMA_BIN_CONTENTTYPE] IS NOT NULL AND [DOMA_NUM_FRACT_DIGITS] IS NULL AND [DOMA_NUM_MAXVALUE] IS NULL AND [DOMA_NUM_MINVALUE] IS NULL AND [DOMA_NUM_PHYU_ID] IS NULL AND [DOMA_NUM_ROUND_VALUE] IS NULL AND [DOMA_NUM_TOTAL_DIGITS] IS NULL AND [DOMA_DAT_GRANULARITY] IS NULL AND [DOMA_DAT_MAXVALUE] IS NULL AND [DOMA_DAT_MINVALUE] IS NULL AND [DOMA_TXT_SYNTAXRULE] IS NULL AND [DOMA_TXT_MAXLNG] IS NULL), 
+     CONSTRAINT DOMA_ExDep2 CHECK ([DOMA_TYPE]<>'DAT' OR [DOMA_BIN_CONTENTTYPE] IS NULL AND [DOMA_BIN_STFO_ID] IS NULL AND [DOMA_NUM_FRACT_DIGITS] IS NULL AND [DOMA_NUM_MAXVALUE] IS NULL AND [DOMA_NUM_MINVALUE] IS NULL AND [DOMA_NUM_PHYU_ID] IS NULL AND [DOMA_NUM_ROUND_VALUE] IS NULL AND [DOMA_NUM_TOTAL_DIGITS] IS NULL AND [DOMA_DAT_GRANULARITY] IS NOT NULL AND [DOMA_TXT_SYNTAXRULE] IS NULL AND [DOMA_TXT_MAXLNG] IS NULL), 
+     CONSTRAINT DOMA_ExDep3 CHECK ([DOMA_TYPE]<>'GRP' OR [DOMA_BIN_CONTENTTYPE] IS NULL AND [DOMA_BIN_STFO_ID] IS NULL AND [DOMA_NUM_FRACT_DIGITS] IS NULL AND [DOMA_NUM_MAXVALUE] IS NULL AND [DOMA_NUM_MINVALUE] IS NULL AND [DOMA_NUM_PHYU_ID] IS NULL AND [DOMA_NUM_ROUND_VALUE] IS NULL AND [DOMA_NUM_TOTAL_DIGITS] IS NULL AND [DOMA_DAT_GRANULARITY] IS NULL AND [DOMA_DAT_MAXVALUE] IS NULL AND [DOMA_DAT_MINVALUE] IS NULL AND [DOMA_TXT_SYNTAXRULE] IS NULL AND [DOMA_TXT_MAXLNG] IS NULL), 
+     CONSTRAINT DOMA_ExDep4 CHECK ([DOMA_TYPE]<>'LOV' OR [DOMA_BIN_CONTENTTYPE] IS NULL AND [DOMA_BIN_STFO_ID] IS NULL AND [DOMA_NUM_FRACT_DIGITS] IS NULL AND [DOMA_NUM_MAXVALUE] IS NULL AND [DOMA_NUM_MINVALUE] IS NULL AND [DOMA_NUM_PHYU_ID] IS NULL AND [DOMA_NUM_ROUND_VALUE] IS NULL AND [DOMA_NUM_TOTAL_DIGITS] IS NULL AND [DOMA_DAT_GRANULARITY] IS NULL AND [DOMA_DAT_MAXVALUE] IS NULL AND [DOMA_DAT_MINVALUE] IS NULL AND [DOMA_TXT_SYNTAXRULE] IS NULL AND [DOMA_TXT_MAXLNG] IS NULL), 
+     CONSTRAINT DOMA_ExDep5 CHECK ([DOMA_TYPE]<>'NUM' OR [DOMA_BIN_CONTENTTYPE] IS NULL AND [DOMA_BIN_STFO_ID] IS NULL AND [DOMA_NUM_FRACT_DIGITS] IS NOT NULL AND [DOMA_NUM_TOTAL_DIGITS] IS NOT NULL AND [DOMA_DAT_GRANULARITY] IS NULL AND [DOMA_DAT_MAXVALUE] IS NULL AND [DOMA_DAT_MINVALUE] IS NULL AND [DOMA_TXT_SYNTAXRULE] IS NULL AND [DOMA_TXT_MAXLNG] IS NULL), 
+     CONSTRAINT DOMA_ExDep6 CHECK ([DOMA_TYPE]<>'TXT' OR [DOMA_BIN_CONTENTTYPE] IS NULL AND [DOMA_BIN_STFO_ID] IS NULL AND [DOMA_NUM_FRACT_DIGITS] IS NULL AND [DOMA_NUM_MAXVALUE] IS NULL AND [DOMA_NUM_MINVALUE] IS NULL AND [DOMA_NUM_PHYU_ID] IS NULL AND [DOMA_NUM_ROUND_VALUE] IS NULL AND [DOMA_NUM_TOTAL_DIGITS] IS NULL AND [DOMA_DAT_GRANULARITY] IS NULL AND [DOMA_DAT_MAXVALUE] IS NULL AND [DOMA_DAT_MINVALUE] IS NULL)
+    )
+GO
+
+ALTER TABLE DOMAINS ADD CONSTRAINT DOMAINS_PK PRIMARY KEY CLUSTERED (DOMA_ID ASC)
+     
+GO
+ALTER TABLE DOMAINS ADD CONSTRAINT DOMA_UK UNIQUE NONCLUSTERED (DOMA_NAME ASC)
+GO
+
+CREATE TABLE ELEMENTREPS 
+    (
+     ELER_ID NUMERIC (10) NOT NULL , 
+     ELER_MODE_ID NUMERIC (10) NOT NULL , 
+     ELER_DIAG_ID NUMERIC (10) NOT NULL , 
+     ELER_INDEX NUMERIC (4) NOT NULL DEFAULT (0) , 
+     ELER_POSITION_X NUMERIC (6) NULL , 
+     ELER_POSITION_Y NUMERIC (6) NULL , 
+     ELER_WITDH NUMERIC (4) NOT NULL , 
+     ELER_HEIGHT NUMERIC (4) NOT NULL , 
+     ELER_OPACITY NUMERIC (3) NULL DEFAULT (100) CONSTRAINT CK__ELEMENTRE__ELER___3CF40B7E CHECK ( [ELER_OPACITY]>=(0) AND [ELER_OPACITY]<=(100) ) , 
+     ELER_COLOR VARCHAR (6) NOT NULL DEFAULT '000000' CONSTRAINT CK__ELEMENTRE__ELER___3EDC53F0 CHECK ( datalength([ELER_COLOR])=(6) ) , 
+     ELER_MARGINWIDTH NUMERIC (3,1) NULL DEFAULT (1) , 
+     ELER_MARGINOPACITY NUMERIC (3) NULL DEFAULT (100) CONSTRAINT CK__ELEMENTRE__ELER___41B8C09B CHECK ( [ELER_MARGINOPACITY]>=(0) AND [ELER_MARGINOPACITY]<=(100) ) , 
+     ELER_MARGINCOLOR VARCHAR (6) NULL DEFAULT '000000' CONSTRAINT CK__ELEMENTRE__ELER___43A1090D CHECK ( datalength([ELER_MARGINCOLOR])=(6) ) , 
+     ELER_FONTSIZE NUMERIC (3) NULL CONSTRAINT CK__ELEMENTRE__ELER___44952D46 CHECK ( [ELER_FONTSIZE]>=(1) AND [ELER_FONTSIZE]<=(999) ) , 
+     ELER_FONTCOLOR VARCHAR (6) NULL DEFAULT '000000' CONSTRAINT CK__ELEMENTRE__ELER___467D75B8 CHECK ( datalength([ELER_FONTCOLOR])=(6) ) , 
+     ELER_UC VARCHAR (30) NOT NULL , 
+     ELER_DC DATETIME (8) NOT NULL , 
+     ELER_UM VARCHAR (30) NULL , 
+     ELER_DM DATETIME (8) NULL 
+    )
+GO 
+
+
+
+EXEC sp_addextendedproperty 'MS_Description' , 'Vorgabewert einer Darstellung eines Elementtyps' , 'USER' , 'dbo' , 'TABLE' , 'ELEMENTREPS' , 'COLUMN' , 'ELER_POSITION_X' 
+GO
+
+
+
+EXEC sp_addextendedproperty 'MS_Description' , 'Vorgabewert einer Darstellung eines Elementtyps' , 'USER' , 'dbo' , 'TABLE' , 'ELEMENTREPS' , 'COLUMN' , 'ELER_POSITION_Y' 
+GO
+
+
+
+EXEC sp_addextendedproperty 'MS_Description' , 'Vorgabewert der Darstellung des Randes um das Element' , 'USER' , 'dbo' , 'TABLE' , 'ELEMENTREPS' , 'COLUMN' , 'ELER_WITDH' 
+GO
+
+
+
+EXEC sp_addextendedproperty 'MS_Description' , 'Vorgabewert der Darstellung des Randes um das Element' , 'USER' , 'dbo' , 'TABLE' , 'ELEMENTREPS' , 'COLUMN' , 'ELER_HEIGHT' 
+GO
+
+
+
+EXEC sp_addextendedproperty 'MS_Description' , 'Vorgabewert der Darstellung des Randes um das Element' , 'USER' , 'dbo' , 'TABLE' , 'ELEMENTREPS' , 'COLUMN' , 'ELER_MARGINWIDTH' 
+GO
+
+
+
+EXEC sp_addextendedproperty 'MS_Description' , 'Vorgabewert der Schriftgrösse des Elementsnamens' , 'USER' , 'dbo' , 'TABLE' , 'ELEMENTREPS' , 'COLUMN' , 'ELER_FONTSIZE' 
+GO
+
+ALTER TABLE ELEMENTREPS ADD CONSTRAINT ELER_Elemendarstellung_PK PRIMARY KEY CLUSTERED (ELER_ID ASC)
+     
+GO
+ALTER TABLE ELEMENTREPS ADD CONSTRAINT ELER__UN UNIQUE NONCLUSTERED (ELER_MODE_ID ASC, ELER_DIAG_ID ASC, ELER_INDEX ASC)
+GO
+
+CREATE TABLE ENTITIES 
+    (
+     ENTI_ID NUMERIC (10) NOT NULL , 
+     ENTI_NAME VARCHAR (60) NOT NULL , 
+     ENTI_SHORT_NAME VARCHAR (15) NULL , 
+     ENTI_PREFIX VARCHAR (5) NULL , 
+     ENTI_TOOLTIP VARCHAR (4000) NULL , 
+     ENTI_DESCR VARCHAR (4000) NULL , 
+     ENTI_EXP_TUPLE# VARCHAR (500) NULL , 
+     ENTI_UC VARCHAR (30) NOT NULL , 
+     ENTI_DC DATETIME (8) NOT NULL , 
+     ENTI_UM VARCHAR (30) NULL , 
+     ENTI_DM DATETIME (8) NULL 
+    )
+GO
+
+ALTER TABLE ENTITIES ADD CONSTRAINT ENTI_PK PRIMARY KEY CLUSTERED (ENTI_ID ASC)
+     
+GO
+ALTER TABLE ENTITIES ADD CONSTRAINT ENTI_NAME_UK UNIQUE NONCLUSTERED (ENTI_NAME ASC)
+GO
+
+CREATE TABLE EXTERNAL_REFS 
+    (
+     EXTR_ID NUMERIC (10) NOT NULL , 
+     EXTR_SOURCE_NAME VARCHAR (60) NOT NULL , 
+     EXTR_SOURCE_ID VARCHAR (100) NOT NULL , 
+     EXTR_MODE_ID NUMERIC (10) NOT NULL 
+    )
+GO
+
+ALTER TABLE EXTERNAL_REFS ADD CONSTRAINT EXTR_PK PRIMARY KEY CLUSTERED (EXTR_ID ASC)
+     
+GO
+ALTER TABLE EXTERNAL_REFS ADD CONSTRAINT EXTR_UK UNIQUE NONCLUSTERED (EXTR_SOURCE_NAME ASC, EXTR_MODE_ID ASC)
+GO
+ALTER TABLE EXTERNAL_REFS ADD CONSTRAINT Extr_UK_id UNIQUE NONCLUSTERED (EXTR_SOURCE_NAME ASC, EXTR_SOURCE_ID ASC)
+GO
+
+CREATE TABLE INTERFACES 
+    (
+     INTF_ID NUMERIC (10) NOT NULL , 
+     INTF_NAME VARCHAR (60) NOT NULL , 
+     INTF_DESCR VARCHAR (4000) NOT NULL , 
+     INTF_UC VARCHAR (30) NOT NULL , 
+     INTF_DC DATETIME (8) NOT NULL , 
+     INTF_UM VARCHAR (30) NULL , 
+     INTF_DM DATETIME (8) NULL 
+    )
+GO
+
+ALTER TABLE INTERFACES ADD CONSTRAINT INTF_PK PRIMARY KEY CLUSTERED (INTF_ID ASC)
+     
+GO
+ALTER TABLE INTERFACES ADD CONSTRAINT SCHN_UN UNIQUE NONCLUSTERED (INTF_NAME ASC)
+GO
+
+CREATE TABLE KEY_ELEMENTS 
+    (
+     KELE_ID NUMERIC (10) NOT NULL IDENTITY (1 , 1) NOT FOR REPLICATION , 
+     KELE_KEYS_ID NUMERIC (10) NOT NULL , 
+     KELE_ATTR_ID NUMERIC (10) NOT NULL , 
+     KELE_RELA_ID NUMERIC (10) NOT NULL , 
+     KELE_UC VARCHAR (30) NOT NULL , 
+     KELE_DC DATETIME (8) NOT NULL , 
+     KELE_UM VARCHAR (30) NULL , 
+     KELE_DM DATETIME (8) NULL , 
+     CONSTRAINT FKArc_8 CHECK ([KELE_RELA_ID] IS NOT NULL AND [KELE_ATTR_ID] IS NULL OR [KELE_ATTR_ID] IS NOT NULL AND [KELE_RELA_ID] IS NULL)
+    )
+GO
+
+ALTER TABLE KEY_ELEMENTS ADD CONSTRAINT KELE_PK PRIMARY KEY CLUSTERED (KELE_ID ASC)
+     
+GO
+ALTER TABLE KEY_ELEMENTS ADD CONSTRAINT KELE_UN UNIQUE NONCLUSTERED (KELE_KEYS_ID ASC, KELE_ATTR_ID ASC, KELE_RELA_ID ASC)
+GO
+
+CREATE TABLE LANG_TEXTS 
+    (
+     LGTX_ID NUMERIC (10) NOT NULL IDENTITY (1 , 1) NOT FOR REPLICATION , 
+     LGTX_ATTRNAME VARCHAR (60) NOT NULL , 
+     LGTX_TEXT VARCHAR (4000) NULL , 
+     LGTX_LANG_ID NUMERIC (10) NOT NULL , 
+     LGTX_MODE_ID NUMERIC (10) NOT NULL , 
+     LGTX_UC VARCHAR (30) NOT NULL , 
+     LGTX_DC DATETIME (8) NOT NULL , 
+     LGTX_UM VARCHAR (30) NULL , 
+     LGTX_DM DATETIME (8) NULL 
+    )
+GO
+
+ALTER TABLE LANG_TEXTS ADD CONSTRAINT LGTX_PK PRIMARY KEY CLUSTERED (LGTX_ID ASC)
+     
+GO
+ALTER TABLE LANG_TEXTS ADD CONSTRAINT LGTX_UK UNIQUE NONCLUSTERED (LGTX_LANG_ID ASC, LGTX_MODE_ID ASC, LGTX_ATTRNAME ASC)
+GO
+
+CREATE TABLE LANGUAGES 
+    (
+     LANG_ID NUMERIC (10) NOT NULL IDENTITY (1 , 1) NOT FOR REPLICATION , 
+     LANG_ISO_NAME VARCHAR (60) NULL , 
+     LANG_ISO_CODE2 CHAR (2) NOT NULL CONSTRAINT LANG_ISO2_CHK CHECK ( [LANG_ISO_CODE2]=lower([LANG_ISO_CODE2]) ) , 
+     LANG_ISO_CODE3 CHAR (3) NOT NULL CONSTRAINT LANG_ISO3_CHK CHECK ( [LANG_ISO_CODE3]=lower([LANG_ISO_CODE3]) ) , 
+     LANG_IS_TEXT_LANG VARCHAR (5) NOT NULL CONSTRAINT CK__LANGUAGES__LANG___5C6CB6D7 CHECK ( [LANG_IS_TEXT_LANG]='TRUE' OR [LANG_IS_TEXT_LANG]='FALSE' ) , 
+     LANG_IS_BASE_LANG VARCHAR (5) NOT NULL CONSTRAINT CK__LANGUAGES__LANG___5D60DB10 CHECK ( [LANG_IS_BASE_LANG]='TRUE' OR [LANG_IS_BASE_LANG]='FALSE' ) , 
+     LANG_LANG_ID NUMERIC (10) NULL , 
+     LANG_UC VARCHAR (30) NOT NULL , 
+     LANG_DC DATETIME (8) NOT NULL , 
+     LANG_UM VARCHAR (30) NULL , 
+     LANG_DM DATETIME (8) NULL 
+    )
+GO
+
+ALTER TABLE LANGUAGES ADD CONSTRAINT LANG_PK PRIMARY KEY CLUSTERED (LANG_ID ASC)
+     
+GO
+ALTER TABLE LANGUAGES ADD CONSTRAINT LANG_ISO_NAME_UN UNIQUE NONCLUSTERED (LANG_ISO_NAME ASC)
+GO
+ALTER TABLE LANGUAGES ADD CONSTRAINT LANG_ISO_CODE2_UN UNIQUE NONCLUSTERED (LANG_ISO_CODE2 ASC)
+GO
+ALTER TABLE LANGUAGES ADD CONSTRAINT LANG_ISO_CODE3_UN UNIQUE NONCLUSTERED (LANG_ISO_CODE3 ASC)
+GO
+
+CREATE TABLE LINESEGMENTS 
+    (
+     LISE_ID NUMERIC (10) NOT NULL , 
+     LISE_SEQ NUMERIC (4) NOT NULL , 
+     LISE_RELR_ID NUMERIC (10) NOT NULL , 
+     LISE_X NUMERIC (6) NOT NULL CONSTRAINT LISE_CK_X CHECK ( [LISE_X]>=(0) AND [LISE_X]<=(999999) ) , 
+     LISE_Y NUMERIC (6) NOT NULL CONSTRAINT LISE_CK_Y CHECK ( [LISE_Y]>=(0) AND [LISE_Y]<=(999999) ) , 
+     LISE_LINETYPE VARCHAR (6) NULL DEFAULT 'SOLID' CONSTRAINT LISE_CK_BEDA_BEDA_SCHRIFTGROESSE CHECK ( [LISE_LINETYPE]='SOLID' OR [LISE_LINETYPE]='DOTTED' OR [LISE_LINETYPE]='DASHED' OR [LISE_LINETYPE]='DADO' ) , 
+     LISE_ANGEL INTEGER NULL , 
+     LISE_UC VARCHAR (30) NOT NULL , 
+     LISE_DC DATETIME (8) NOT NULL , 
+     LISE_UM VARCHAR (30) NULL , 
+     LISE_DM DATETIME (8) NULL 
+    )
+GO
+
+ALTER TABLE LINESEGMENTS ADD CONSTRAINT LISE_PK PRIMARY KEY CLUSTERED (LISE_ID ASC)
+     
+GO
+ALTER TABLE LINESEGMENTS ADD CONSTRAINT LISE__UN UNIQUE NONCLUSTERED (LISE_RELR_ID ASC, LISE_SEQ ASC)
+GO
+
+CREATE TABLE MELT_DIATS 
+    (
+     MEDI_ID NUMERIC (10) NOT NULL , 
+     MEDI_DIAT_ID NUMERIC (10) NOT NULL , 
+     MEDI_MELT_ID NUMERIC (10) NOT NULL , 
+     MEDI_UC VARCHAR (30) NOT NULL , 
+     MEDI_DC DATETIME (8) NOT NULL , 
+     MEDI_UM VARCHAR (30) NULL , 
+     MEDI_DM DATETIME (8) NULL 
+    )
+GO
+
+ALTER TABLE MELT_DIATS ADD CONSTRAINT MEDI_PK PRIMARY KEY CLUSTERED (MEDI_ID ASC)
+     
+GO
+ALTER TABLE MELT_DIATS ADD CONSTRAINT MEDI__UN UNIQUE NONCLUSTERED (MEDI_DIAT_ID ASC, MEDI_MELT_ID ASC)
+GO
+
+CREATE TABLE MODE_DOCU 
+    (
+     MODO_ID NUMERIC (10) NOT NULL , 
+     MODO_MODE_ID NUMERIC (10) NOT NULL , 
+     MODO_DOCU_ID NUMERIC (10) NOT NULL 
+    )
+GO
+
+ALTER TABLE MODE_DOCU ADD CONSTRAINT MODO_PKv2 PRIMARY KEY CLUSTERED (MODO_ID ASC)
+     
+GO
+ALTER TABLE MODE_DOCU ADD CONSTRAINT MODO_UK UNIQUE NONCLUSTERED (MODO_MODE_ID ASC, MODO_DOCU_ID ASC)
+GO
+
+CREATE TABLE MODE_ORGU 
+    (
+     MOOU_ID NUMERIC (10) NOT NULL , 
+     MOOU_MODE_ID NUMERIC (10) NOT NULL , 
+     MOOU_ORGU_ID NUMERIC (10) NOT NULL 
+    )
+GO
+
+ALTER TABLE MODE_ORGU ADD CONSTRAINT MOOU_PK PRIMARY KEY CLUSTERED (MOOU_ID ASC)
+     
+GO
+ALTER TABLE MODE_ORGU ADD CONSTRAINT MOOU_UK UNIQUE NONCLUSTERED (MOOU_MODE_ID ASC, MOOU_ORGU_ID ASC)
+GO
+
+CREATE TABLE MODELELEM_TYPE 
+    (
+     MELT_ID NUMERIC (10) NOT NULL IDENTITY (1 , 1) NOT FOR REPLICATION , 
+     MELT_SHORTNAME VARCHAR (4) NOT NULL CONSTRAINT CK__MODELELEM__MELT___725BF7F6 CHECK ( [MELT_SHORTNAME]='TABL' OR [MELT_SHORTNAME]='SYNO' OR [MELT_SHORTNAME]='RELA' OR [MELT_SHORTNAME]='ORGU' OR [MELT_SHORTNAME]='KEYS' OR [MELT_SHORTNAME]='INTF' OR [MELT_SHORTNAME]='ENTI' OR [MELT_SHORTNAME]='DOMA' OR [MELT_SHORTNAME]='DOCU' OR [MELT_SHORTNAME]='DIAG' OR [MELT_SHORTNAME]='DGRM' OR [MELT_SHORTNAME]='DATY' OR [MELT_SHORTNAME]='COLU' OR [MELT_SHORTNAME]='BURU' OR [MELT_SHORTNAME]='ATTR' OR [MELT_SHORTNAME]='ARCS' ) , 
+     MELT_NAME VARCHAR (60) NOT NULL , 
+     MELT_UC VARCHAR (30) NOT NULL , 
+     MELT_DC DATETIME (8) NOT NULL , 
+     MELT_UM VARCHAR (30) NULL , 
+     MELT_DM DATETIME (8) NULL 
+    )
+GO
+
+ALTER TABLE MODELELEM_TYPE ADD CONSTRAINT MELT_PK PRIMARY KEY CLUSTERED (MELT_ID ASC)
+     
+GO
+ALTER TABLE MODELELEM_TYPE ADD CONSTRAINT MELT_UN UNIQUE NONCLUSTERED (MELT_SHORTNAME ASC)
+GO
+ALTER TABLE MODELELEM_TYPE ADD CONSTRAINT MELT_UN2 UNIQUE NONCLUSTERED (MELT_NAME ASC)
+GO
+
+CREATE TABLE MODELELEMENT 
+    (
+     MODE_ID NUMERIC (10) NOT NULL IDENTITY (1 , 1) NOT FOR REPLICATION , 
+     MODE_TYPE VARCHAR (4) NOT NULL CONSTRAINT CK__MODELELEM__MODE___7720AD13 CHECK ( [MODE_TYPE]='TABL' OR [MODE_TYPE]='SYNO' OR [MODE_TYPE]='RELA' OR [MODE_TYPE]='ORGU' OR [MODE_TYPE]='KEYS' OR [MODE_TYPE]='INTF' OR [MODE_TYPE]='ENTI' OR [MODE_TYPE]='DOMA' OR [MODE_TYPE]='DOCU' OR [MODE_TYPE]='DIAG' OR [MODE_TYPE]='DGRM' OR [MODE_TYPE]='DATY' OR [MODE_TYPE]='COLU' OR [MODE_TYPE]='BURU' OR [MODE_TYPE]='ATTR' OR [MODE_TYPE]='ARCS' ) , 
+     MODE_MELT_ID NUMERIC (10) NOT NULL 
+    )
+GO
+
+ALTER TABLE MODELELEMENT ADD CONSTRAINT MODE_PK PRIMARY KEY CLUSTERED (MODE_ID ASC)
+     
+GO
+
+CREATE TABLE MODELEMTYPE_PROPERTIES 
+    (
+     METP_ID NUMERIC (10) NOT NULL , 
+     METP_MELT_ID NUMERIC (10) NOT NULL , 
+     METP_UDPR_ID NUMERIC (10) NOT NULL , 
+     METP_OPTIONAL VARCHAR (5) NOT NULL CONSTRAINT CK__MODELEMTY__METP___79FD19BE CHECK ( [METP_OPTIONAL]='TRUE' OR [METP_OPTIONAL]='FALSE' ) 
+    )
+GO
+
+ALTER TABLE MODELEMTYPE_PROPERTIES ADD CONSTRAINT METP_PK PRIMARY KEY CLUSTERED (METP_ID ASC)
+     
+GO
+ALTER TABLE MODELEMTYPE_PROPERTIES ADD CONSTRAINT METP_UN UNIQUE NONCLUSTERED (METP_MELT_ID ASC, METP_UDPR_ID ASC)
+GO
+
+CREATE TABLE ORGANISATIONALUNITS 
+    (
+     ORGU_ID NUMERIC (10) NOT NULL , 
+     ORGU_NAME VARCHAR (60) NOT NULL , 
+     ORGU_DESCR VARCHAR (4000) NULL , 
+     ORGU_MAIL VARCHAR (200) NULL , 
+     ORGU_TELEFON VARCHAR (30) NULL , 
+     ORGU_ADDRESS VARCHAR (4000) NULL , 
+     ORGU_ORGU_ID NUMERIC (10) NULL , 
+     ORGU_UC VARCHAR (30) NOT NULL , 
+     ORGU_DC DATETIME (8) NOT NULL , 
+     ORGU_UM VARCHAR (30) NULL , 
+     ORGU_DM DATETIME (8) NULL 
+    )
+GO
+
+ALTER TABLE ORGANISATIONALUNITS ADD CONSTRAINT ORGU_PK PRIMARY KEY CLUSTERED (ORGU_ID ASC)
+     
+GO
+ALTER TABLE ORGANISATIONALUNITS ADD CONSTRAINT ORGU_NAME_UN UNIQUE NONCLUSTERED (ORGU_NAME ASC)
+GO
+ALTER TABLE ORGANISATIONALUNITS ADD CONSTRAINT ORGU_EMAIL_UN UNIQUE NONCLUSTERED (ORGU_MAIL ASC)
+GO
+
+CREATE TABLE PHYSICAL_UNIT 
+    (
+     PHYU_ID NUMERIC (10) NOT NULL IDENTITY (1 , 1) NOT FOR REPLICATION , 
+     PHYU_SI_UNIT VARCHAR (10) NULL , 
+     PHYU_NAME VARCHAR (60) NOT NULL , 
+     PHYU_DESCR VARCHAR (4000) NULL , 
+     PHYU_UC VARCHAR (30) NOT NULL , 
+     PHYU_DC DATETIME (8) NOT NULL , 
+     PHYU_UM VARCHAR (30) NULL , 
+     PHYU_DM DATETIME (8) NULL 
+    )
+GO
+
+ALTER TABLE PHYSICAL_UNIT ADD CONSTRAINT PHYU_PK PRIMARY KEY CLUSTERED (PHYU_ID ASC)
+     
+GO
+ALTER TABLE PHYSICAL_UNIT ADD CONSTRAINT PHYU_UK_SI UNIQUE NONCLUSTERED (PHYU_SI_UNIT ASC)
+GO
+ALTER TABLE PHYSICAL_UNIT ADD CONSTRAINT PHYU_UK_NAME UNIQUE NONCLUSTERED (PHYU_NAME ASC)
+GO
+
+CREATE TABLE projects 
+    (
+     proj_id INTEGER NOT NULL , 
+     proj_name VARCHAR (60) NOT NULL , 
+     proj_curr_lang VARCHAR (2) NULL , 
+     proj_uc VARCHAR (30) NOT NULL , 
+     proj_dc VARCHAR (30) NOT NULL , 
+     proj_um VARCHAR (30) NULL , 
+     proj_dm VARCHAR (30) NULL 
+    )
+GO
+
+ALTER TABLE projects ADD CONSTRAINT proj_pk PRIMARY KEY CLUSTERED (proj_id ASC)
+     
+GO
+ALTER TABLE projects ADD CONSTRAINT proj_uk UNIQUE NONCLUSTERED (proj_name ASC)
+GO
+
+CREATE TABLE RELATIONREPS 
+    (
+     RELR_ID NUMERIC (10) NOT NULL , 
+     RELR_DIAG_ID NUMERIC (10) NOT NULL , 
+     RELR_MODE_ID NUMERIC (10) NOT NULL , 
+     RELR_LINEWIDTH NUMERIC (3,1) NOT NULL DEFAULT (1) , 
+     RELR_LINECOLOR VARCHAR (6) NULL DEFAULT '000000' CONSTRAINT CK__RELATIONR__RELR___075714DC CHECK ( datalength([RELR_LINECOLOR])=(6) ) , 
+     RELR_LINEOPACITY NUMERIC (3) NULL DEFAULT (100) CONSTRAINT CK__RELATIONR__RELR___093F5D4E CHECK ( [RELR_LINEOPACITY]>=(0) AND [RELR_LINEOPACITY]<=(100) ) , 
+     RELR_STARTEDGE VARCHAR (1) NULL CONSTRAINT CK__RELATIONR__RELR___0A338187 CHECK ( [RELR_STARTEDGE]='W' OR [RELR_STARTEDGE]='S' OR [RELR_STARTEDGE]='O' OR [RELR_STARTEDGE]='N' ) , 
+     RELR_STARTPOSITION NUMERIC (4,1) NULL CONSTRAINT CK__RELATIONR__RELR___0B27A5C0 CHECK ( [RELR_STARTPOSITION]>=(0.0) AND [RELR_STARTPOSITION]<=(100.0) ) , 
+     RELR_START_CONNECTOR VARCHAR (1) NULL CONSTRAINT CK__RELATIONR__RELR___0C1BC9F9 CHECK ( [RELR_START_CONNECTOR]='M' OR [RELR_START_CONNECTOR]='1' ) , 
+     RELR_STARTTEXT_ANGEL NUMERIC (3) NULL CONSTRAINT CK__RELATIONR__RELR___0D0FEE32 CHECK ( [RELR_STARTTEXT_ANGEL]>=(-179) AND [RELR_STARTTEXT_ANGEL]<=(180) ) , 
+     RELR_STARTTEXT_DISTANCE NUMERIC (4) NULL CONSTRAINT CK__RELATIONR__RELR___0E04126B CHECK ( [RELR_STARTTEXT_DISTANCE]>=(1) AND [RELR_STARTTEXT_DISTANCE]<=(9999) ) , 
+     RELR_STARTTEXT_X NUMERIC (6) NULL CONSTRAINT CK__RELATIONR__RELR___0EF836A4 CHECK ( [RELR_STARTTEXT_X]>=(0) AND [RELR_STARTTEXT_X]<=(999999) ) , 
+     RELR_STARTTEXT_Y NUMERIC (6) NULL CONSTRAINT CK__RELATIONR__RELR___0FEC5ADD CHECK ( [RELR_STARTTEXT_Y]>=(0) AND [RELR_STARTTEXT_Y]<=(999999) ) , 
+     RELR_STARTTEXT_WIDTH NUMERIC (4) NULL CONSTRAINT CK__RELATIONR__RELR___10E07F16 CHECK ( [RELR_STARTTEXT_WIDTH]>=(1) AND [RELR_STARTTEXT_WIDTH]<=(9999) ) , 
+     RELR_STARTTEXT_HEIGHT NUMERIC (4) NULL CONSTRAINT CK__RELATIONR__RELR___11D4A34F CHECK ( [RELR_STARTTEXT_HEIGHT]>=(1) AND [RELR_STARTTEXT_HEIGHT]<=(9999) ) , 
+     RELR_ENDEDGE VARCHAR (1) NULL CONSTRAINT CK__RELATIONR__RELR___12C8C788 CHECK ( [RELR_ENDEDGE]='W' OR [RELR_ENDEDGE]='S' OR [RELR_ENDEDGE]='O' OR [RELR_ENDEDGE]='N' ) , 
+     RELR_ENDPOSITION NUMERIC (4,1) NULL CONSTRAINT CK__RELATIONR__RELR___13BCEBC1 CHECK ( [RELR_ENDPOSITION]>=(0.0) AND [RELR_ENDPOSITION]<=(100.0) ) , 
+     RELR_END_CONNECTOR VARCHAR (1) NULL CONSTRAINT CK__RELATIONR__RELR___14B10FFA CHECK ( [RELR_END_CONNECTOR]='M' OR [RELR_END_CONNECTOR]='1' ) , 
+     RELR_ENDTEXT_ANGEL NUMERIC (3) NULL CONSTRAINT CK__RELATIONR__RELR___15A53433 CHECK ( [RELR_ENDTEXT_ANGEL]>=(-179) AND [RELR_ENDTEXT_ANGEL]<=(180) ) , 
+     RELR_ENDTEXT_DISTANCE NUMERIC (4) NULL CONSTRAINT CK__RELATIONR__RELR___1699586C CHECK ( [RELR_ENDTEXT_DISTANCE]>=(1) AND [RELR_ENDTEXT_DISTANCE]<=(9999) ) , 
+     RELR_ENDTEXT_X NUMERIC (6) NULL CONSTRAINT CK__RELATIONR__RELR___178D7CA5 CHECK ( [RELR_ENDTEXT_X]>=(0) AND [RELR_ENDTEXT_X]<=(999999) ) , 
+     RELR_ENDTEXT_Y NUMERIC (6) NULL CONSTRAINT CK__RELATIONR__RELR___1881A0DE CHECK ( [RELR_ENDTEXT_Y]>=(0) AND [RELR_ENDTEXT_Y]<=(999999) ) , 
+     RELR_ENDTEXT_WIDTH NUMERIC (4) NULL CONSTRAINT CK__RELATIONR__RELR___1975C517 CHECK ( [RELR_ENDTEXT_WIDTH]>=(1) AND [RELR_ENDTEXT_WIDTH]<=(9999) ) , 
+     RELR_ENDTEXT_HEIGHT NUMERIC (4) NULL CONSTRAINT CK__RELATIONR__RELR___1A69E950 CHECK ( [RELR_ENDTEXT_HEIGHT]>=(1) AND [RELR_ENDTEXT_HEIGHT]<=(9999) ) , 
+     RELR_FONTCOLOR VARCHAR (6) NULL DEFAULT '000000' CONSTRAINT CK__RELATIONR__RELR___1C5231C2 CHECK ( datalength([RELR_FONTCOLOR])=(6) ) , 
+     RELR_FONTSIZE NUMERIC (3) NULL CONSTRAINT CK__RELATIONR__RELR___1D4655FB CHECK ( [RELR_FONTSIZE]>=(1) AND [RELR_FONTSIZE]<=(999) ) , 
+     RELR_UC VARCHAR (30) NOT NULL , 
+     RELR_DC DATETIME (8) NOT NULL , 
+     RELR_UM VARCHAR (30) NULL , 
+     BEDA_DM DATETIME (8) NULL 
+    )
+GO
+
+ALTER TABLE RELATIONREPS ADD CONSTRAINT RELR_PK PRIMARY KEY CLUSTERED (RELR_ID ASC)
+     
+GO
+ALTER TABLE RELATIONREPS ADD CONSTRAINT RELR_UN UNIQUE NONCLUSTERED (RELR_DIAG_ID ASC, RELR_MODE_ID ASC)
+GO
+
+CREATE TABLE RELATIONS 
+    (
+     RELA_ID NUMERIC (10) NOT NULL , 
+     RELA_NAME VARCHAR (60) NOT NULL , 
+     RELA_TYPE VARCHAR (4) NOT NULL CONSTRAINT CK__RELATIONS__RELA___2116E6DF CHECK ( [RELA_TYPE]='M:N' OR [RELA_TYPE]='M:1' OR [RELA_TYPE]='ISA' OR [RELA_TYPE]='1:1' ) , 
+     RELA_ENTI_ID_FROM NUMERIC (10) NOT NULL , 
+     RELA_ARCS_ID_FROM NUMERIC (10) NULL , 
+     RELA_ASSOC_FROM_TO VARCHAR (max) NULL , 
+     RELA_MAPTYPE_FROM_TO CHAR (1) NOT NULL CONSTRAINT CK__RELATIONS__RELA___220B0B18 CHECK ( [RELA_MAPTYPE_FROM_TO]='M' OR [RELA_MAPTYPE_FROM_TO]='1' ) , 
+     RELA_MANDATORY_FROM_TO VARCHAR (5) NOT NULL CONSTRAINT CK__RELATIONS__RELA___22FF2F51 CHECK ( [RELA_MANDATORY_FROM_TO]='TRUE' OR [RELA_MANDATORY_FROM_TO]='FALSE' ) , 
+     RELA_HIST_FROM_TO VARCHAR (5) NOT NULL CONSTRAINT CK__RELATIONS__RELA___23F3538A CHECK ( [RELA_HIST_FROM_TO]='TRUE' OR [RELA_HIST_FROM_TO]='FALSE' ) , 
+     RELA_ENTI_ID_TO NUMERIC (10) NOT NULL , 
+     RELA_ARCS_ID_TO NUMERIC (10) NULL , 
+     RELA_ASSOC_TO_FROM VARCHAR (100) NULL , 
+     RELA_MAPTYPE_TO_FROM CHAR (1) NOT NULL CONSTRAINT CK__RELATIONS__RELA___24E777C3 CHECK ( [RELA_MAPTYPE_TO_FROM]='M' OR [RELA_MAPTYPE_TO_FROM]='1' ) , 
+     RELA_MANDATORY_TO_FROM VARCHAR (5) NOT NULL CONSTRAINT CK__RELATIONS__RELA___25DB9BFC CHECK ( [RELA_MANDATORY_TO_FROM]='TRUE' OR [RELA_MANDATORY_TO_FROM]='FALSE' ) , 
+     RELA_HIST_TO_FROM VARCHAR (max) NOT NULL , 
+     RELA_UC VARCHAR (30) NOT NULL , 
+     RELA_DC DATETIME (8) NOT NULL , 
+     RELA_UM VARCHAR (30) NULL , 
+     RELA_DM DATETIME (8) NULL , 
+     CONSTRAINT RELA_MAPTYPE_CHK CHECK ([RELA_TYPE]='ISAR' AND [RELA_MAPTYPE_FROM_TO]='1' AND [RELA_MAPTYPE_TO_FROM]='1' AND ([RELA_MANDATORY_FROM_TO]='TRUE' OR [RELA_MANDATORY_TO_FROM]='TRUE') OR [RELA_TYPE]='ISAS' AND [RELA_MAPTYPE_FROM_TO]='1' AND [RELA_MAPTYPE_TO_FROM]='1' AND [RELA_MANDATORY_FROM_TO]='TRUE' AND [RELA_MANDATORY_TO_FROM]='TRUE' AND ([RELA_ARCS_ID_FROM] IS NOT NULL OR [RELA_ARCS_ID_TO] IS NOT NULL) OR [RELA_TYPE]='1:1' AND [RELA_MAPTYPE_FROM_TO]='1' AND [RELA_MAPTYPE_TO_FROM]='1' OR [RELA_TYPE]='M:1' AND ([RELA_MAPTYPE_FROM_TO]='1' AND [RELA_MAPTYPE_TO_FROM]='M' OR [RELA_MAPTYPE_FROM_TO]='M' AND [RELA_MAPTYPE_TO_FROM]='1') OR [RELA_TYPE]='M:N' AND [RELA_MAPTYPE_TO_FROM]='M' AND [RELA_MAPTYPE_FROM_TO]='M')
+    )
+GO
+
+ALTER TABLE RELATIONS ADD CONSTRAINT RELA_PK PRIMARY KEY CLUSTERED (RELA_ID ASC)
+     
+GO
+ALTER TABLE RELATIONS ADD CONSTRAINT RELA_UK_NAME UNIQUE NONCLUSTERED (RELA_NAME ASC)
+GO
+
+CREATE TABLE STORAGE_FORMATS 
+    (
+     STFO_ID NUMERIC (10) NOT NULL IDENTITY (1 , 1) NOT FOR REPLICATION , 
+     STFO_NAME VARCHAR (60) NOT NULL , 
+     STFO_DESCR VARCHAR (4000) NULL , 
+     STFO_UC VARCHAR (30) NOT NULL , 
+     STFO_DC DATETIME (8) NOT NULL , 
+     STFO_UM VARCHAR (30) NULL , 
+     STFO_DM DATETIME (8) NULL 
+    )
+GO
+
+ALTER TABLE STORAGE_FORMATS ADD CONSTRAINT STFO_PK PRIMARY KEY CLUSTERED (STFO_ID ASC)
+     
+GO
+ALTER TABLE STORAGE_FORMATS ADD CONSTRAINT STFO_UN UNIQUE NONCLUSTERED (STFO_NAME ASC)
+GO
+
+CREATE TABLE SYNONYMS 
+    (
+     SYNO_ID NUMERIC (10) NOT NULL , 
+     SYNO_NAME VARCHAR (60) NOT NULL , 
+     SYNO_ENTI_ID NUMERIC (10) NOT NULL , 
+     SYNO_UC VARCHAR (30) NOT NULL , 
+     SYNO_DC DATETIME (8) NOT NULL , 
+     SYNO_UM VARCHAR (30) NULL , 
+     SYNO_DM DATETIME (8) NULL 
+    )
+GO
+
+ALTER TABLE SYNONYMS ADD CONSTRAINT SYNO_PK PRIMARY KEY CLUSTERED (SYNO_ID ASC)
+     
+GO
+
+CREATE TABLE TABL_ENTI_MAP 
+    (
+     TEMA_ID NUMERIC (10) NOT NULL , 
+     TEMA_TABL_ID NUMERIC (10) NOT NULL , 
+     TEMA_ENTI_ID NUMERIC (10) NULL , 
+     TEMA_RELA_ID NUMERIC (10) NULL , 
+     CONSTRAINT FKArc_5 CHECK ([TEMA_RELA_ID] IS NOT NULL AND [TEMA_ENTI_ID] IS NULL OR [TEMA_ENTI_ID] IS NOT NULL AND [TEMA_RELA_ID] IS NULL OR [TEMA_RELA_ID] IS NULL AND [TEMA_ENTI_ID] IS NULL)
+    )
+GO
+
+ALTER TABLE TABL_ENTI_MAP ADD CONSTRAINT TEMA_PK PRIMARY KEY CLUSTERED (TEMA_ID ASC)
+     
+GO
+ALTER TABLE TABL_ENTI_MAP ADD CONSTRAINT TEMA_UN UNIQUE NONCLUSTERED (TEMA_TABL_ID ASC, TEMA_ENTI_ID ASC)
+GO
+
+CREATE TABLE TABLES 
+    (
+     TABL_ID NUMERIC (10) NOT NULL , 
+     TABL_NAME VARCHAR (60) NOT NULL , 
+     TABL_DESCR VARCHAR (4000) NULL , 
+     TABL_INTF_ID NUMERIC (10) NOT NULL , 
+     TABL_UC VARCHAR (30) NOT NULL , 
+     TABL_DC DATETIME (8) NOT NULL , 
+     TABL_UM VARCHAR (30) NULL , 
+     TABL_DM DATETIME (8) NULL 
+    )
+GO
+
+ALTER TABLE TABLES ADD CONSTRAINT TABL_PKv2 PRIMARY KEY CLUSTERED (TABL_ID ASC)
+     
+GO
+ALTER TABLE TABLES ADD CONSTRAINT TABL__UN UNIQUE NONCLUSTERED (TABL_NAME ASC, TABL_INTF_ID ASC)
+GO
+
+CREATE TABLE templatetable 
+    (
+     UC VARCHAR (60) NULL , 
+     DC DATETIME NULL , 
+     UM VARCHAR (60) NULL , 
+     DM DATETIME NULL 
+    )
+GO
+
+CREATE TABLE UDP_VALUES 
+    (
+     UDPV_ID NUMERIC (10) NOT NULL IDENTITY (1 , 1) NOT FOR REPLICATION , 
+     UDPV_VALUE VARCHAR (max) NULL , 
+     UDPV_MODE_ID NUMERIC (10) NOT NULL , 
+     UDPV_UDPR_ID NUMERIC (10) NOT NULL , 
+     UDPV_UC VARCHAR (30) NOT NULL , 
+     UDPV_DC DATETIME (8) NOT NULL , 
+     UDPV_UM VARCHAR (30) NULL , 
+     UDPV_DM DATETIME (8) NULL 
+    )
+GO
+
+ALTER TABLE UDP_VALUES ADD CONSTRAINT UDPV_PK PRIMARY KEY CLUSTERED (UDPV_ID ASC)
+     
+GO
+ALTER TABLE UDP_VALUES ADD CONSTRAINT UDPV_UN UNIQUE NONCLUSTERED (UDPV_MODE_ID ASC, UDPV_UDPR_ID ASC)
+GO
+
+CREATE TABLE USER_DEFINED_PROPERTIES 
+    (
+     UDPR_ID NUMERIC (10) NOT NULL IDENTITY (1 , 1) NOT FOR REPLICATION , 
+     UDPR_THEME VARCHAR (60) NOT NULL , 
+     UDPR_GROUP VARCHAR (60) NULL , 
+     UDPR_NAME VARCHAR (60) NOT NULL , 
+     UDPR_DESCR VARCHAR (4000) NULL , 
+     UDPR_UC VARCHAR (30) NOT NULL , 
+     UDPR_DC DATETIME (8) NOT NULL , 
+     UDPR_UM VARCHAR (30) NULL , 
+     UDPR_DM DATETIME (8) NULL 
+    )
+GO
+
+ALTER TABLE USER_DEFINED_PROPERTIES ADD CONSTRAINT UDPR_PK PRIMARY KEY CLUSTERED (UDPR_ID ASC)
+     
+GO
+ALTER TABLE USER_DEFINED_PROPERTIES ADD CONSTRAINT UDPR_UN UNIQUE NONCLUSTERED (UDPR_THEME ASC, UDPR_NAME ASC)
+GO
+
+ALTER TABLE ARCS 
+    ADD CONSTRAINT ARCS_ENTI_FK FOREIGN KEY 
+    ( 
+     ARCS_ENTI_ID
+    ) 
+    REFERENCES modelmodel_dbo.ENTITIES 
+    ( 
+     ENTI_ID 
+    ) 
+    ON DELETE CASCADE 
+    ON UPDATE NO ACTION 
+GO
+
+ALTER TABLE ARCS 
+    ADD CONSTRAINT ARCS_MODE_FK FOREIGN KEY 
+    ( 
+     ARCS_ID
+    ) 
+    REFERENCES modelmodel_dbo.MODELELEMENT 
+    ( 
+     MODE_ID 
+    ) 
+    ON DELETE CASCADE 
+    ON UPDATE NO ACTION 
+GO
+
+ALTER TABLE ATTRIBUTES 
+    ADD CONSTRAINT ATTR_DOMA_FK FOREIGN KEY 
+    ( 
+     ATTR_DOMA_ID
+    ) 
+    REFERENCES modelmodel_dbo.DOMAINS 
+    ( 
+     DOMA_ID 
+    ) 
+    ON DELETE NO ACTION 
+    ON UPDATE NO ACTION 
+GO
+
+ALTER TABLE ATTRIBUTES 
+    ADD CONSTRAINT ATTR_ENTI_FK FOREIGN KEY 
+    ( 
+     ATTR_ENTI_ID
+    ) 
+    REFERENCES modelmodel_dbo.ENTITIES 
+    ( 
+     ENTI_ID 
+    ) 
+    ON DELETE NO ACTION 
+    ON UPDATE NO ACTION 
+GO
+
+ALTER TABLE ATTRIBUTES 
+    ADD CONSTRAINT ATTR_MODE_FK FOREIGN KEY 
+    ( 
+     ATTR_ID
+    ) 
+    REFERENCES modelmodel_dbo.MODELELEMENT 
+    ( 
+     MODE_ID 
+    ) 
+    ON DELETE CASCADE 
+    ON UPDATE NO ACTION 
+GO
+
+ALTER TABLE ATTRIBUTES 
+    ADD CONSTRAINT ATTR_RELA_FK FOREIGN KEY 
+    ( 
+     ATTR_RELA_ID
+    ) 
+    REFERENCES modelmodel_dbo.RELATIONS 
+    ( 
+     RELA_ID 
+    ) 
+    ON DELETE NO ACTION 
+    ON UPDATE NO ACTION 
+GO
+
+ALTER TABLE BUSINESSRULE_ELEMENTS
+    ADD CONSTRAINT BURE_ATTR_FK FOREIGN KEY 
+    ( 
+     BURE_ATTR_ID
+    ) 
+    REFERENCES modelmodel_dbo.ATTRIBUTES 
+    ( 
+     ATTR_ID 
+    ) 
+    ON DELETE CASCADE 
+    ON UPDATE NO ACTION 
+GO
+
+ALTER TABLE BUSINESSRULE_ELEMENTS
+    ADD CONSTRAINT BURE_BURU_FK FOREIGN KEY 
+    ( 
+     BURE_BURU_ID
+    ) 
+    REFERENCES modelmodel_dbo.BUSINESS_RULES
+    ( 
+     BURU_ID 
+    ) 
+    ON DELETE CASCADE 
+    ON UPDATE NO ACTION 
+GO
+
+ALTER TABLE BUSINESSRULE_ELEMENTS
+    ADD CONSTRAINT BURE_DEVA_FK FOREIGN KEY 
+    ( 
+     BURE_DEVA_ID
+    ) 
+    REFERENCES modelmodel_dbo.DEFAULT_VALUES 
+    ( 
+     DEVA_ID 
+    ) 
+    ON DELETE CASCADE 
+    ON UPDATE NO ACTION 
+GO
+
+ALTER TABLE BUSINESSRULE_ELEMENTS
+    ADD CONSTRAINT BURE_ENTI_FK FOREIGN KEY 
+    ( 
+     BURE_ENTI_ID
+    ) 
+    REFERENCES modelmodel_dbo.ENTITIES 
+    ( 
+     ENTI_ID 
+    ) 
+    ON DELETE CASCADE 
+    ON UPDATE NO ACTION 
+GO
+
+ALTER TABLE BUSINESSRULE_ELEMENTS
+    ADD CONSTRAINT BURE_RELA_FK FOREIGN KEY 
+    ( 
+     BURE_RELA_ID
+    ) 
+    REFERENCES modelmodel_dbo.RELATIONS 
+    ( 
+     RELA_ID 
+    ) 
+    ON DELETE CASCADE 
+    ON UPDATE NO ACTION 
+GO
+
+ALTER TABLE BUSINESSRULE_ELEMENTS
+    ADD CONSTRAINT BURU_COLU_FK FOREIGN KEY 
+    ( 
+     BURE_COLU_ID
+    ) 
+    REFERENCES modelmodel_dbo.COLUMNS 
+    ( 
+     COLU_ID 
+    ) 
+    ON DELETE CASCADE 
+    ON UPDATE NO ACTION 
+GO
+
+ALTER TABLE BUSINESSRULE_ELEMENTS
+    ADD CONSTRAINT BURU_TABL_FK FOREIGN KEY 
+    ( 
+     BURE_TABL_ID
+    ) 
+    REFERENCES modelmodel_dbo.TABLES 
+    ( 
+     TABL_ID 
+    ) 
+    ON DELETE CASCADE 
+    ON UPDATE NO ACTION 
+GO
+
+ALTER TABLE COLUMNS 
+    ADD CONSTRAINT COLU_DOMA_FK FOREIGN KEY 
+    ( 
+     COLU_DOMA_ID
+    ) 
+    REFERENCES modelmodel_dbo.DOMAINS 
+    ( 
+     DOMA_ID 
+    ) 
+    ON DELETE NO ACTION 
+    ON UPDATE NO ACTION 
+GO
+
+ALTER TABLE COLUMNS 
+    ADD CONSTRAINT COLU_TABL_FK FOREIGN KEY 
+    ( 
+     COLU_TABL_ID
+    ) 
+    REFERENCES modelmodel_dbo.TABLES 
+    ( 
+     TABL_ID 
+    ) 
+    ON DELETE NO ACTION 
+    ON UPDATE NO ACTION 
+GO
+
+ALTER TABLE COLU_ATTR_MAP 
+    ADD CONSTRAINT coma_attr_FK FOREIGN KEY 
+    ( 
+     coam_attr_id
+    ) 
+    REFERENCES modelmodel_dbo.ATTRIBUTES 
+    ( 
+     ATTR_ID 
+    ) 
+    ON DELETE CASCADE 
+    ON UPDATE NO ACTION 
+GO
+
+ALTER TABLE COLU_ATTR_MAP 
+    ADD CONSTRAINT coma_colu_FK FOREIGN KEY 
+    ( 
+     coam_colu_id
+    ) 
+    REFERENCES modelmodel_dbo.COLUMNS 
+    ( 
+     COLU_ID 
+    ) 
+    ON DELETE CASCADE 
+    ON UPDATE NO ACTION 
+GO
+
+ALTER TABLE DATATYPES 
+    ADD CONSTRAINT DATY_MODE_FK FOREIGN KEY 
+    ( 
+     DATY_ID
+    ) 
+    REFERENCES modelmodel_dbo.MODELELEMENT 
+    ( 
+     MODE_ID 
+    ) 
+    ON DELETE NO ACTION 
+    ON UPDATE NO ACTION 
+GO
+
+ALTER TABLE DEFAULT_VALUES 
+    ADD CONSTRAINT DEVA_DOMA_FK FOREIGN KEY 
+    ( 
+     DEVA_DOMA_ID
+    ) 
+    REFERENCES modelmodel_dbo.DOMAINS 
+    ( 
+     DOMA_ID 
+    ) 
+    ON DELETE NO ACTION 
+    ON UPDATE NO ACTION 
+GO
+
+ALTER TABLE DOMAINGROUP_MEMBERS 
+    ADD CONSTRAINT dgrm_fk_doma_group FOREIGN KEY 
+    ( 
+     DGRM_DOMA_ID_GROUP
+    ) 
+    REFERENCES modelmodel_dbo.DOMAINS 
+    ( 
+     DOMA_ID 
+    ) 
+    ON DELETE NO ACTION 
+    ON UPDATE NO ACTION 
+GO
+
+ALTER TABLE DOMAINGROUP_MEMBERS 
+    ADD CONSTRAINT DGRM_FK_DOMA_MEMBER FOREIGN KEY 
+    ( 
+     DGRM_DOMA_ID_MEMBER
+    ) 
+    REFERENCES modelmodel_dbo.DOMAINS 
+    ( 
+     DOMA_ID 
+    ) 
+    ON DELETE CASCADE 
+    ON UPDATE NO ACTION 
+GO
+
+ALTER TABLE DOMAINGROUP_MEMBERS 
+    ADD CONSTRAINT DGRM_MODE_FK FOREIGN KEY 
+    ( 
+     DGRM_ID
+    ) 
+    REFERENCES modelmodel_dbo.MODELELEMENT 
+    ( 
+     MODE_ID 
+    ) 
+    ON DELETE CASCADE 
+    ON UPDATE NO ACTION 
+GO
+
+ALTER TABLE DIAGRAMS 
+    ADD CONSTRAINT DIAG_DIAT_FK FOREIGN KEY 
+    ( 
+     DIAG_DIAT_ID
+    ) 
+    REFERENCES modelmodel_dbo.DIAGRAMTYPES 
+    ( 
+     DIAT_ID 
+    ) 
+    ON DELETE NO ACTION 
+    ON UPDATE NO ACTION 
+GO
+
+ALTER TABLE DIAGRAMS 
+    ADD CONSTRAINT DIAGRAMS_MODELELEMENT_FK FOREIGN KEY 
+    ( 
+     DIAG_ID
+    ) 
+    REFERENCES modelmodel_dbo.MODELELEMENT 
+    ( 
+     MODE_ID 
+    ) 
+    ON DELETE CASCADE 
+    ON UPDATE NO ACTION 
+GO
+
+ALTER TABLE DOCUMENTS 
+    ADD CONSTRAINT DOCU_DOCU_FK FOREIGN KEY 
+    ( 
+     DOCU_DOCU_ID
+    ) 
+    REFERENCES modelmodel_dbo.DOCUMENTS 
+    ( 
+     DOCU_ID 
+    ) 
+    ON DELETE NO ACTION 
+    ON UPDATE NO ACTION 
+GO
+
+ALTER TABLE DOCUMENTS 
+    ADD CONSTRAINT DOCU_MODE_FK FOREIGN KEY 
+    ( 
+     DOCU_ID
+    ) 
+    REFERENCES modelmodel_dbo.MODELELEMENT 
+    ( 
+     MODE_ID 
+    ) 
+    ON DELETE NO ACTION 
+    ON UPDATE NO ACTION 
+GO
+
+ALTER TABLE DOCUMENTS 
+    ADD CONSTRAINT DOCU_STFO_FK FOREIGN KEY 
+    ( 
+     DOCU_STFO_ID
+    ) 
+    REFERENCES modelmodel_dbo.STORAGE_FORMATS 
+    ( 
+     STFO_ID 
+    ) 
+    ON DELETE NO ACTION 
+    ON UPDATE NO ACTION 
+GO
+
+ALTER TABLE DOMAINS 
+    ADD CONSTRAINT DOMA_DATY_ID FOREIGN KEY 
+    ( 
+     DOMA_DATY_ID
+    ) 
+    REFERENCES modelmodel_dbo.DATATYPES 
+    ( 
+     DATY_ID 
+    ) 
+    ON DELETE NO ACTION 
+    ON UPDATE NO ACTION 
+GO
+
+ALTER TABLE DOMAINS 
+    ADD CONSTRAINT DOMA_INTF_FK FOREIGN KEY 
+    ( 
+     DOMA_INTF_ID
+    ) 
+    REFERENCES modelmodel_dbo.INTERFACES 
+    ( 
+     INTF_ID 
+    ) 
+    ON DELETE NO ACTION 
+    ON UPDATE NO ACTION 
+GO
+
+ALTER TABLE DOMAINS 
+    ADD CONSTRAINT DOMA_MODE_FK FOREIGN KEY 
+    ( 
+     DOMA_ID
+    ) 
+    REFERENCES modelmodel_dbo.MODELELEMENT 
+    ( 
+     MODE_ID 
+    ) 
+    ON DELETE NO ACTION 
+    ON UPDATE NO ACTION 
+GO
+
+ALTER TABLE DOMAINS 
+    ADD CONSTRAINT DOMA_PHYU_FK FOREIGN KEY 
+    ( 
+     DOMA_NUM_PHYU_ID
+    ) 
+    REFERENCES modelmodel_dbo.PHYSICAL_UNIT 
+    ( 
+     PHYU_ID 
+    ) 
+    ON DELETE NO ACTION 
+    ON UPDATE NO ACTION 
+GO
+
+ALTER TABLE DOMAINS 
+    ADD CONSTRAINT DOMA_STFO_FK FOREIGN KEY 
+    ( 
+     DOMA_BIN_STFO_ID
+    ) 
+    REFERENCES modelmodel_dbo.STORAGE_FORMATS 
+    ( 
+     STFO_ID 
+    ) 
+    ON DELETE NO ACTION 
+    ON UPDATE NO ACTION 
+GO
+
+ALTER TABLE ELEMENTREPS 
+    ADD CONSTRAINT ELER_DIAG_FK FOREIGN KEY 
+    ( 
+     ELER_DIAG_ID
+    ) 
+    REFERENCES modelmodel_dbo.DIAGRAMS 
+    ( 
+     DIAG_ID 
+    ) 
+    ON DELETE CASCADE 
+    ON UPDATE NO ACTION 
+GO
+
+ALTER TABLE ELEMENTREPS 
+    ADD CONSTRAINT ELER_MODE_FK FOREIGN KEY 
+    ( 
+     ELER_MODE_ID
+    ) 
+    REFERENCES modelmodel_dbo.MODELELEMENT 
+    ( 
+     MODE_ID 
+    ) 
+    ON DELETE NO ACTION 
+    ON UPDATE NO ACTION 
+GO
+
+ALTER TABLE ENTITIES 
+    ADD CONSTRAINT ENTI_MODE_FK FOREIGN KEY 
+    ( 
+     ENTI_ID
+    ) 
+    REFERENCES modelmodel_dbo.MODELELEMENT 
+    ( 
+     MODE_ID 
+    ) 
+    ON DELETE NO ACTION 
+    ON UPDATE NO ACTION 
+GO
+
+ALTER TABLE EXTERNAL_REFS 
+    ADD CONSTRAINT EXTR_MODE_FK FOREIGN KEY 
+    ( 
+     EXTR_MODE_ID
+    ) 
+    REFERENCES modelmodel_dbo.MODELELEMENT 
+    ( 
+     MODE_ID 
+    ) 
+    ON DELETE CASCADE 
+    ON UPDATE NO ACTION 
+GO
+
+ALTER TABLE INTERFACES 
+    ADD CONSTRAINT INFT_MODE_FK FOREIGN KEY 
+    ( 
+     INTF_ID
+    ) 
+    REFERENCES modelmodel_dbo.MODELELEMENT 
+    ( 
+     MODE_ID 
+    ) 
+    ON DELETE NO ACTION 
+    ON UPDATE NO ACTION 
+GO
+
+ALTER TABLE KEY_ELEMENTS 
+    ADD CONSTRAINT KELE_ATTR_FK FOREIGN KEY 
+    ( 
+     KELE_ATTR_ID
+    ) 
+    REFERENCES modelmodel_dbo.ATTRIBUTES 
+    ( 
+     ATTR_ID 
+    ) 
+    ON DELETE CASCADE 
+    ON UPDATE NO ACTION 
+GO
+
+ALTER TABLE KEY_ELEMENTS 
+    ADD CONSTRAINT KELE_RELA_FK FOREIGN KEY 
+    ( 
+     KELE_RELA_ID
+    ) 
+    REFERENCES modelmodel_dbo.RELATIONS 
+    ( 
+     RELA_ID 
+    ) 
+    ON DELETE CASCADE 
+    ON UPDATE NO ACTION 
+GO
+
+ALTER TABLE LANGUAGES 
+    ADD CONSTRAINT LANG_REPLACE_FK FOREIGN KEY 
+    ( 
+     LANG_LANG_ID
+    ) 
+    REFERENCES modelmodel_dbo.LANGUAGES 
+    ( 
+     LANG_ID 
+    ) 
+    ON DELETE NO ACTION 
+    ON UPDATE NO ACTION 
+GO
+
+ALTER TABLE LINESEGMENTS 
+    ADD CONSTRAINT LISE_BEDA_FK FOREIGN KEY 
+    ( 
+     LISE_RELR_ID
+    ) 
+    REFERENCES modelmodel_dbo.RELATIONREPS 
+    ( 
+     RELR_ID 
+    ) 
+    ON DELETE CASCADE 
+    ON UPDATE NO ACTION 
+GO
+
+ALTER TABLE MELT_DIATS 
+    ADD CONSTRAINT MEDI_DIAT_FK FOREIGN KEY 
+    ( 
+     MEDI_DIAT_ID
+    ) 
+    REFERENCES modelmodel_dbo.DIAGRAMTYPES 
+    ( 
+     DIAT_ID 
+    ) 
+    ON DELETE CASCADE 
+    ON UPDATE NO ACTION 
+GO
+
+ALTER TABLE MODELEMTYPE_PROPERTIES 
+    ADD CONSTRAINT METP_MELT_FK FOREIGN KEY 
+    ( 
+     METP_MELT_ID
+    ) 
+    REFERENCES modelmodel_dbo.MODELELEM_TYPE 
+    ( 
+     MELT_ID 
+    ) 
+    ON DELETE NO ACTION 
+    ON UPDATE NO ACTION 
+GO
+
+ALTER TABLE MODELEMTYPE_PROPERTIES 
+    ADD CONSTRAINT METP_UDPR_FK FOREIGN KEY 
+    ( 
+     METP_UDPR_ID
+    ) 
+    REFERENCES modelmodel_dbo.USER_DEFINED_PROPERTIES 
+    ( 
+     UDPR_ID 
+    ) 
+    ON DELETE NO ACTION 
+    ON UPDATE NO ACTION 
+GO
+
+ALTER TABLE MODELELEMENT 
+    ADD CONSTRAINT MODE_MELT_FK FOREIGN KEY 
+    ( 
+     MODE_MELT_ID
+    ) 
+    REFERENCES modelmodel_dbo.MODELELEM_TYPE 
+    ( 
+     MELT_ID 
+    ) 
+    ON DELETE NO ACTION 
+    ON UPDATE NO ACTION 
+GO
+
+ALTER TABLE MELT_DIATS 
+    ADD CONSTRAINT MODI_MELT_FK FOREIGN KEY 
+    ( 
+     MEDI_MELT_ID
+    ) 
+    REFERENCES modelmodel_dbo.MODELELEM_TYPE 
+    ( 
+     MELT_ID 
+    ) 
+    ON DELETE CASCADE 
+    ON UPDATE NO ACTION 
+GO
+
+ALTER TABLE MODE_DOCU 
+    ADD CONSTRAINT MODO_DOCU_FK FOREIGN KEY 
+    ( 
+     MODO_DOCU_ID
+    ) 
+    REFERENCES modelmodel_dbo.DOCUMENTS 
+    ( 
+     DOCU_ID 
+    ) 
+    ON DELETE CASCADE 
+    ON UPDATE NO ACTION 
+GO
+
+ALTER TABLE MODE_DOCU 
+    ADD CONSTRAINT MODO_MODE_FKv2 FOREIGN KEY 
+    ( 
+     MODO_MODE_ID
+    ) 
+    REFERENCES modelmodel_dbo.MODELELEMENT 
+    ( 
+     MODE_ID 
+    ) 
+    ON DELETE CASCADE 
+    ON UPDATE NO ACTION 
+GO
+
+ALTER TABLE MODE_ORGU 
+    ADD CONSTRAINT MOOU_MODE_FK FOREIGN KEY 
+    ( 
+     MOOU_MODE_ID
+    ) 
+    REFERENCES modelmodel_dbo.MODELELEMENT 
+    ( 
+     MODE_ID 
+    ) 
+    ON DELETE CASCADE 
+    ON UPDATE NO ACTION 
+GO
+
+ALTER TABLE MODE_ORGU 
+    ADD CONSTRAINT MOOU_ORGU_FK FOREIGN KEY 
+    ( 
+     MOOU_ORGU_ID
+    ) 
+    REFERENCES modelmodel_dbo.ORGANISATIONALUNITS 
+    ( 
+     ORGU_ID 
+    ) 
+    ON DELETE CASCADE 
+    ON UPDATE NO ACTION 
+GO
+
+ALTER TABLE ORGANISATIONALUNITS 
+    ADD CONSTRAINT ORGU_MODE_FK FOREIGN KEY 
+    ( 
+     ORGU_ID
+    ) 
+    REFERENCES modelmodel_dbo.MODELELEMENT 
+    ( 
+     MODE_ID 
+    ) 
+    ON DELETE NO ACTION 
+    ON UPDATE NO ACTION 
+GO
+
+ALTER TABLE ORGANISATIONALUNITS 
+    ADD CONSTRAINT ORGU_ORGU_FK FOREIGN KEY 
+    ( 
+     ORGU_ORGU_ID
+    ) 
+    REFERENCES modelmodel_dbo.ORGANISATIONALUNITS 
+    ( 
+     ORGU_ID 
+    ) 
+    ON DELETE NO ACTION 
+    ON UPDATE NO ACTION 
+GO
+
+ALTER TABLE RELATIONS 
+    ADD CONSTRAINT RELA_ARCS_FROM_FK FOREIGN KEY 
+    ( 
+     RELA_ARCS_ID_FROM
+    ) 
+    REFERENCES modelmodel_dbo.ARCS 
+    ( 
+     ARCS_ID 
+    ) 
+    ON DELETE NO ACTION 
+    ON UPDATE NO ACTION 
+GO
+
+ALTER TABLE RELATIONS 
+    ADD CONSTRAINT RELA_ARCS_TO_FK FOREIGN KEY 
+    ( 
+     RELA_ARCS_ID_TO
+    ) 
+    REFERENCES modelmodel_dbo.ARCS 
+    ( 
+     ARCS_ID 
+    ) 
+    ON DELETE NO ACTION 
+    ON UPDATE NO ACTION 
+GO
+
+ALTER TABLE RELATIONS 
+    ADD CONSTRAINT RELA_ENTI_FROM_FK FOREIGN KEY 
+    ( 
+     RELA_ENTI_ID_FROM
+    ) 
+    REFERENCES modelmodel_dbo.ENTITIES 
+    ( 
+     ENTI_ID 
+    ) 
+    ON DELETE NO ACTION 
+    ON UPDATE NO ACTION 
+GO
+
+ALTER TABLE RELATIONS 
+    ADD CONSTRAINT RELA_ENTI_TO_FK FOREIGN KEY 
+    ( 
+     RELA_ENTI_ID_TO
+    ) 
+    REFERENCES modelmodel_dbo.ENTITIES 
+    ( 
+     ENTI_ID 
+    ) 
+    ON DELETE NO ACTION 
+    ON UPDATE NO ACTION 
+GO
+
+ALTER TABLE RELATIONS 
+    ADD CONSTRAINT RELA_MODE_FK FOREIGN KEY 
+    ( 
+     RELA_ID
+    ) 
+    REFERENCES modelmodel_dbo.MODELELEMENT 
+    ( 
+     MODE_ID 
+    ) 
+    ON DELETE NO ACTION 
+    ON UPDATE NO ACTION 
+GO
+
+ALTER TABLE RELATIONREPS 
+    ADD CONSTRAINT RELR_DIAG_FK FOREIGN KEY 
+    ( 
+     RELR_DIAG_ID
+    ) 
+    REFERENCES modelmodel_dbo.DIAGRAMS 
+    ( 
+     DIAG_ID 
+    ) 
+    ON DELETE NO ACTION 
+    ON UPDATE NO ACTION 
+GO
+
+ALTER TABLE RELATIONREPS 
+    ADD CONSTRAINT RELR_MODE_FK FOREIGN KEY 
+    ( 
+     RELR_MODE_ID
+    ) 
+    REFERENCES modelmodel_dbo.MODELELEMENT 
+    ( 
+     MODE_ID 
+    ) 
+    ON DELETE CASCADE 
+    ON UPDATE NO ACTION 
+GO
+
+ALTER TABLE LANG_TEXTS 
+    ADD CONSTRAINT SPTX_LANG_FK FOREIGN KEY 
+    ( 
+     LGTX_LANG_ID
+    ) 
+    REFERENCES modelmodel_dbo.LANGUAGES 
+    ( 
+     LANG_ID 
+    ) 
+    ON DELETE NO ACTION 
+    ON UPDATE NO ACTION 
+GO
+
+ALTER TABLE LANG_TEXTS 
+    ADD CONSTRAINT SPTX_MODE_FK FOREIGN KEY 
+    ( 
+     LGTX_MODE_ID
+    ) 
+    REFERENCES modelmodel_dbo.MODELELEMENT 
+    ( 
+     MODE_ID 
+    ) 
+    ON DELETE CASCADE 
+    ON UPDATE NO ACTION 
+GO
+
+ALTER TABLE SYNONYMS 
+    ADD CONSTRAINT SYNO_ENTI_FK FOREIGN KEY 
+    ( 
+     SYNO_ENTI_ID
+    ) 
+    REFERENCES modelmodel_dbo.ENTITIES 
+    ( 
+     ENTI_ID 
+    ) 
+    ON DELETE CASCADE 
+    ON UPDATE NO ACTION 
+GO
+
+ALTER TABLE SYNONYMS 
+    ADD CONSTRAINT SYNO_MODE_FK FOREIGN KEY 
+    ( 
+     SYNO_ID
+    ) 
+    REFERENCES modelmodel_dbo.MODELELEMENT 
+    ( 
+     MODE_ID 
+    ) 
+    ON DELETE CASCADE 
+    ON UPDATE NO ACTION 
+GO
+
+ALTER TABLE TABLES 
+    ADD CONSTRAINT TABL_INTF_FK FOREIGN KEY 
+    ( 
+     TABL_INTF_ID
+    ) 
+    REFERENCES modelmodel_dbo.INTERFACES 
+    ( 
+     INTF_ID 
+    ) 
+    ON DELETE NO ACTION 
+    ON UPDATE NO ACTION 
+GO
+
+ALTER TABLE TABLES 
+    ADD CONSTRAINT TABL_MODE_FK FOREIGN KEY 
+    ( 
+     TABL_ID
+    ) 
+    REFERENCES modelmodel_dbo.MODELELEMENT 
+    ( 
+     MODE_ID 
+    ) 
+GO
+
+ALTER TABLE COLUMNS
+    ADD CONSTRAINT COLU_MODE_FK FOREIGN KEY
+    (
+     COLU_ID
+    )
+    REFERENCES modelmodel_dbo.MODELELEMENT
+    (
+     MODE_ID
+    )
+GO
+
+ALTER TABLE TABL_ENTI_MAP
+    ADD CONSTRAINT TEMA_ENTI_FK FOREIGN KEY 
+    ( 
+     TEMA_ENTI_ID
+    ) 
+    REFERENCES modelmodel_dbo.ENTITIES 
+    ( 
+     ENTI_ID 
+    ) 
+    ON DELETE CASCADE 
+    ON UPDATE NO ACTION 
+GO
+
+ALTER TABLE TABL_ENTI_MAP 
+    ADD CONSTRAINT TEMA_RELA_FK FOREIGN KEY 
+    ( 
+     TEMA_RELA_ID
+    ) 
+    REFERENCES modelmodel_dbo.RELATIONS 
+    ( 
+     RELA_ID 
+    ) 
+    ON DELETE CASCADE 
+    ON UPDATE NO ACTION 
+GO
+
+ALTER TABLE TABL_ENTI_MAP 
+    ADD CONSTRAINT tema_tabl_FK FOREIGN KEY 
+    ( 
+     TEMA_TABL_ID
+    ) 
+    REFERENCES modelmodel_dbo.TABLES 
+    ( 
+     TABL_ID 
+    ) 
+    ON DELETE NO ACTION 
+    ON UPDATE NO ACTION 
+GO
+
+ALTER TABLE UDP_VALUES 
+    ADD CONSTRAINT UDPV_MODE_FK FOREIGN KEY 
+    ( 
+     UDPV_MODE_ID
+    ) 
+    REFERENCES modelmodel_dbo.MODELELEMENT 
+    ( 
+     MODE_ID 
+    ) 
+    ON DELETE CASCADE 
+    ON UPDATE NO ACTION 
+GO
+
+ALTER TABLE UDP_VALUES 
+    ADD CONSTRAINT UDPV_UDPR_FK FOREIGN KEY 
+    ( 
+     UDPV_UDPR_ID
+    ) 
+    REFERENCES modelmodel_dbo.USER_DEFINED_PROPERTIES 
+    ( 
+     UDPR_ID 
+    ) 
+    ON DELETE NO ACTION 
+    ON UPDATE NO ACTION 
+GO
+
+

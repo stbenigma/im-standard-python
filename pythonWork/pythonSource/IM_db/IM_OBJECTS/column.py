@@ -22,31 +22,6 @@ class Column(Baseobject):
                          , pscrid=psrcid
                          , psrcname=psrcname)
 
-    @staticmethod
-    def createtable():
-        Baseobject.createtable(ptablename=Column._tablename
-                               , psql="""
-    create table columns
-    (
-        colu_id             integer primary key ,
-        colu_column_name    varchar(60) not null,
-        colu_mandatory         varchar(5) not null CHECK (colu_mandatory in ('TRUE', 'FALSE') ),
-        colu_format         varchar(200),
-        colu_ext_system_id varchar(100),
-        colu_descr         varchar(4000),
-        colu_type_string    varchar(200),
-        colu_tabl_id        integer     not null,
-        colu_doma_id        integer  not null,
-        colu_uc             varchar(30) not null,
-        colu_dc             varchar(30) not null,
-        colu_um             varchar(30),
-        colu_dm             varchar(30),
-        constraint colu_mode_fk FOREIGN KEY (colu_id) references modelelement (mode_id),
-        constraint colu_doma_fk FOREIGN KEY (colu_doma_id) references domains (doma_id),
-        constraint colu_tabl_fk FOREIGN KEY (colu_tabl_id) references tables(tabl_id),
-        constraint colu_uk unique (colu_tabl_id,colu_column_name)        
-        )
-        """)
 
     def getname(self, plang=None):
         return self.colu_column_name
