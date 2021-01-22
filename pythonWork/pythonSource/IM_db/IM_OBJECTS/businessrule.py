@@ -60,6 +60,14 @@ class BusinessruleElement(Baseobject):
         self.bure_id = pburuid
         self.bure_writeable = pwriteable
 
+    def getelement(self):
+        return Modelelement.getelement(pmodeid=self.bure_attr_id if self.bure_attr_id is not None else
+                                               self .bure_enti_id if self.bure_enti_id is not None else
+                                               self.bure_rela_id if self.bure_rela_id is not None else
+                                               self.bure_deva_id if self.bure_deva_id is not None else
+                                               self.bure_tabl_id if self.bure_tabl_id is not None else
+                                               self.bure_colu_id if self.bure_colu_id is not None else
+                                              None)
 
     @staticmethod
     def delete():

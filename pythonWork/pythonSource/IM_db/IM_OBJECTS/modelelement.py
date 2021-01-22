@@ -195,6 +195,8 @@ CREATE TABLE MODELELEMENT
             element = Datatype().getbyid(self.mode_id)
         elif self.mode_type == Modelelemtype.DIAG:
             element = Diagram().getbyid(self.mode_id)
+        elif self.mode_type == Modelelemtype.BURU:
+            element = BusinessRule().getbyid(self.mode_id)
         else:
             element = None
         return element

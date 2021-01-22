@@ -33,15 +33,19 @@ class Boolean:
 # Boolean
 
 class Baseobject:
-    defaultCreater:str="sys"
+    defaultCreator:str= "sys"
     def fullcolname(self, col):
         return self._prefix+'_'+col
+
+    def setucdcval(self,pcol,pval):
+        col = self.fullcolname(pcol)
+        if col in self._columnlist: #only for elements wit uc,dc,um,dm
+            if self.colvalue(col) is None: self.setcolvalue(col,pval)
 
     def colvalue(self,pcolname):
         return self.__dict__[pcolname] if pcolname in self.__dict__ else None
     def setcolvalue(self,pcolname,value):
-        if pcolname in self.__dict__:
-            self.__dict__[pcolname] = value
+        self.__dict__[pcolname] = value
 
 
     def __init__(self, tablename, prefix, idcolname=None
@@ -53,11 +57,6 @@ class Baseobject:
         self.__srcid = pscrid
         self.__modelemtype = pmodelemtype
         self.__emptyclass()
-        if self.colvalue(self.fullcolname('dc')) is None: self.setcolvalue(self.colvalue(self.fullcolname('dc')), datetime.today())
-        if self.colvalue(self.fullcolname('uc')) is None: self.setcolvalue(self.colvalue(self.fullcolname('uc')), Baseobject.defaultCreater)
-        if self.colvalue(self.fullcolname('dm')) is None: self.setcolvalue(self.colvalue(self.fullcolname('dm')), datetime.today())
-        if self.colvalue(self.fullcolname('um')) is None: self.setcolvalue(self.colvalue(self.fullcolname('um')), Baseobject.defaultCreater)
-
     def __emptyclass(self):
         for col in self._columnlist:
             self.setcolvalue(col,None)
@@ -85,6 +84,12 @@ class Baseobject:
         self.setcolvalue(self._idcolname,pid)
 
     def insert(self, pdoerrhdlng=True):
+        self.setucdcval(pcol='dc',pval=datetime.today())
+        self.setucdcval(pcol='uc',pval=Baseobject.defaultCreator)
+        """wird erst bei  update gemacht        
+        if self.colvalue(self.fullcolname('dm')) is None: self.setcolvalue(self.colvalue(self.fullcolname('dm')), datetime.today())
+        if self.colvalue(self.fullcolname('um')) is None: self.setcolvalue(self.colvalue(self.fullcolname('um')), Baseobject.defaultCreator)
+        """
         if self.__modelemtype is not None:
             locid = Modelelement(pid=self.getid(),pmeltshortname=self.__modelemtype).insert()
             self.setid(locid)
