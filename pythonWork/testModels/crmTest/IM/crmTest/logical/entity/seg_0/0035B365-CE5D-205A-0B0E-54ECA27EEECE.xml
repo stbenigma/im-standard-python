@@ -1,0 +1,142 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="0035B365-CE5D-205A-0B0E-54ECA27EEECE" name="Ländergruppe">
+<createdBy>stb</createdBy>
+<createdTime>2019-05-06 08:36:39 UTC</createdTime>
+<comment><![CDATA[Eine Zusammenfassung mehrerer Länder zu einer Gruppe.
+Es soll jeweils ein Kriterium für die Gruppenbildung bzw. einen Begründung (Zweck) für die Nutzung der Gruppe festgelegt/dokumentiert werden.
+
+Typen von Ländergruppen erlauben mehrere Gruppierungen zu führen: Vertriebsorg., Zoll, Logistik 
+
+Beispiele:
+EU
+SACU Botsuana; Eswatini; Lesotho; Namibia; Südafrika (Zollunion)
+EMEA (Europe, Middle East, Africa) (Vertriebsorganisation)]]></comment>
+<notes><![CDATA[[EN_ENTI_COMMENT[
+**A grouping of several countries into one group.
+In each case, a criterion for group formation or a justification (purpose) for the use of the group should be defined/documented.
+
+Types of country groups allow you to manage several groupings: distribution company, customs, logistics
+
+Examples:
+EU
+SACU Botswana; Eswatini; Lesotho; Namibia; South Africa (Customs Union)
+EMEA (Europe, Middle East, Africa) (sales organization)
+]EN_ENTI_COMMENT]
+[DE_ENTI_COMMENT[
+Eine Zusammenfassung mehrerer Länder zu einer Gruppe.
+Es soll jeweils ein Kriterium für die Gruppenbildung bzw. einen Begründung (Zweck) für die Nutzung der Gruppe festgelegt/dokumentiert werden.
+
+Typen von Ländergruppen erlauben mehrere Gruppierungen zu führen: Vertriebsorg., Zoll, Logistik 
+
+Beispiele:
+EU
+SACU Botsuana; Eswatini; Lesotho; Namibia; Südafrika (Zollunion)
+EMEA (Europe, Middle East, Africa) (Vertriebsorganisation)
+]DE_ENTI_COMMENT]
+[FR_ENTI_COMMENT[
+*Regroupement de plusieurs pays en un seul groupe. Dans chaque cas, un critère de formation de groupe ou une justification (but) de l'utilisation du groupe est définie/documentée. Les types de groupes de pays vous permettent de gérer plusieurs regroupements : directeur commercial Douanes, logistique 
+
+Exemples : 
+UE 
+SACU Botswana ; Eswatini ; Lesotho ; Namibie ; Afrique du Sud (Union douanière) 
+EMEA (Europe, Moyen-Orient, Afrique) (organisation commerciale)
+]FR_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>crmTest</ownerDesignName>
+<engineerTo>
+<item key="1AB27667-C11D-3493-68AA-DF92C84041A7" value="true"/>
+<item key="851DDEFA-B048-37E9-7826-4E48946EAF1C" value="true"/>
+<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="false"/>
+<item key="015DE428-05B6-58DD-323D-ECDC72266F4A" value="true"/>
+</engineerTo>
+<typeID>33675414-33E1-1BE8-99DF-264D33446509</typeID>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<hierarchicalParent>E6723025-CAD3-E943-1AAB-BE3149D7405E</hierarchicalParent>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<synonym>ldgrp</synonym>
+<createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="DE_ENTI_NAME" value="*Ländergruppe"/>
+<property name="DE_ENTI_SYNONYM" value="ldgrp"/>
+<property name="EN_ENTI_NAME" value="Country Group"/>
+<property name="EN_ENTI_SYNONYM" value="**ldgrp"/>
+<property name="FR_ENTI_NAME" value="Groupe de pays"/>
+<property name="FR_ENTI_SYNONYM" value="**ldgrp"/>
+<property name="PENTA TabName" value="landgroups"/>
+<property name="PIM TabName" value="ldgroup"/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Typ" id="854EF45E-D99B-33BB-CEBA-CCBFD3723223">
+<createdBy>stb</createdBy>
+<createdTime>2019-05-06 09:01:27 UTC</createdTime>
+<comment><![CDATA[Typ der Ländergruppe (Vertrieb, Zoll, Organisation)]]></comment>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+**Type of country group (distribution, customs, organization)
+]EN_ATTR_COMMENT]
+[DE_ATTR_COMMENT[
+Typ der Ländergruppe (Vertrieb, Zoll, Organisation)
+]DE_ATTR_COMMENT]
+[FR_ATTR_COMMENT[
+Type de groupe de pays (vente, douane, organisation)
+]FR_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>crmTest</ownerDesignName>
+<engineerTo>
+<item key="1AB27667-C11D-3493-68AA-DF92C84041A7" value="true"/>
+<item key="851DDEFA-B048-37E9-7826-4E48946EAF1C" value="true"/>
+<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="false"/>
+<item key="015DE428-05B6-58DD-323D-ECDC72266F4A" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Typ"/>
+<property name="EN_ATTR_NAME" value="Purpose"/>
+<property name="FR_ATTR_NAME" value="Type"/>
+<property name="PENTA AttrName" value="type"/>
+<property name="PENTA datatype" value="number"/>
+<property name="PIM AttrName" value="ldtp"/>
+<property name="PIM datatype" value="number"/>
+</propertyMap>
+</Attribute>
+<Attribute name="*Zweck" id="4884CAC4-510A-4F0B-4C72-FC6E2F36D0B3">
+<createdBy>stb</createdBy>
+<createdTime>2019-05-06 08:58:17 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+[FR_ATTR_COMMENT[
+
+]FR_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>crmTest</ownerDesignName>
+<engineerTo>
+<item key="1AB27667-C11D-3493-68AA-DF92C84041A7" value="true"/>
+<item key="851DDEFA-B048-37E9-7826-4E48946EAF1C" value="true"/>
+<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="false"/>
+<item key="015DE428-05B6-58DD-323D-ECDC72266F4A" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="*Zweck"/>
+<property name="EN_ATTR_NAME" value="*Type"/>
+<property name="FR_ATTR_NAME" value="Type1"/>
+<property name="PENTA AttrName" value="reason"/>
+<property name="PIM AttrName" value="ldreason"/>
+<property name="PIM datatype" value="text"/>
+</propertyMap>
+</Attribute>
+</attributes>
+</Entity>

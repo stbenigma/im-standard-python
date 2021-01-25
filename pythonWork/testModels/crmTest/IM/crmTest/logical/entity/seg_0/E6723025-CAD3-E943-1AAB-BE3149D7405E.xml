@@ -1,0 +1,105 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="E6723025-CAD3-E943-1AAB-BE3149D7405E" name="Geografische Einheit">
+<createdBy>stb</createdBy>
+<createdTime>2019-05-06 07:55:51 UTC</createdTime>
+<comment><![CDATA[Ein geographisches Gebilde das nach geographischen, polititischen oder postalischen Kriterien in dieser Form definiert ist.]]></comment>
+<notes><![CDATA[[EN_ENTI_COMMENT[
+**A geographical entity defined in this form according to geographical, political or postal criteria.
+]EN_ENTI_COMMENT]
+[DE_ENTI_COMMENT[
+Ein geographisches Gebilde das nach geographischen, polititischen oder postalischen Kriterien in dieser Form definiert ist.
+]DE_ENTI_COMMENT]
+[FR_ENTI_COMMENT[
+Une entité géographique qui est définie sous cette forme selon des critères géographiques, politiques ou postaux.
+]FR_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>crmTest</ownerDesignName>
+<engineerTo>
+<item key="1AB27667-C11D-3493-68AA-DF92C84041A7" value="true"/>
+<item key="851DDEFA-B048-37E9-7826-4E48946EAF1C" value="true"/>
+<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="false"/>
+<item key="015DE428-05B6-58DD-323D-ECDC72266F4A" value="true"/>
+</engineerTo>
+<typeID>33675414-33E1-1BE8-99DF-264D33446509</typeID>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<shortName>GEIN</shortName>
+<createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="DE_ENTI_NAME" value="Geografische Einheit"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_NAME" value="Geografical Unit"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+<property name="FR_ENTI_NAME" value="Unité géographique"/>
+<property name="FR_ENTI_SYNONYM" value=""/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Name [L]" id="5E75C083-4B08-9B98-D615-C1F359FB7915">
+<createdBy>stb</createdBy>
+<createdTime>2019-05-06 07:55:51 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+[FR_ATTR_COMMENT[
+
+]FR_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>crmTest</ownerDesignName>
+<importedID>A9A6A545-A7E2-B23B-DD56-F34A224DC484</importedID>
+<engineerTo>
+<item key="1AB27667-C11D-3493-68AA-DF92C84041A7" value="true"/>
+<item key="851DDEFA-B048-37E9-7826-4E48946EAF1C" value="true"/>
+<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="false"/>
+<item key="015DE428-05B6-58DD-323D-ECDC72266F4A" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Name [L]"/>
+<property name="EN_ATTR_NAME" value="**Name [L]"/>
+<property name="FR_ATTR_NAME" value="Nom [L]"/>
+</propertyMap>
+</Attribute>
+<Attribute name="GeoInformation" id="FE56DE90-386C-5805-3D69-2C70A1861A61">
+<createdBy>stb</createdBy>
+<createdTime>2019-05-06 09:20:23 UTC</createdTime>
+<comment><![CDATA[Fläche eines Gebiets als geo-Information]]></comment>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+**Area of an area as geo-information
+]EN_ATTR_COMMENT]
+[DE_ATTR_COMMENT[
+Fläche eines Gebiets als geo-Information
+]DE_ATTR_COMMENT]
+[FR_ATTR_COMMENT[
+Superficie d'un territoire comme géo-information
+]FR_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>crmTest</ownerDesignName>
+<engineerTo>
+<item key="1AB27667-C11D-3493-68AA-DF92C84041A7" value="true"/>
+<item key="851DDEFA-B048-37E9-7826-4E48946EAF1C" value="true"/>
+<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="false"/>
+<item key="015DE428-05B6-58DD-323D-ECDC72266F4A" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="GeoInformation"/>
+<property name="EN_ATTR_NAME" value="**GeoInformation"/>
+<property name="FR_ATTR_NAME" value="Géo-informations d&apos;un territoire"/>
+</propertyMap>
+</Attribute>
+</attributes>
+</Entity>

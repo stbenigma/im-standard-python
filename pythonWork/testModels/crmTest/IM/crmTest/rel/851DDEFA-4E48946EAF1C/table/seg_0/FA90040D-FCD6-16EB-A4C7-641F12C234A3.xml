@@ -1,0 +1,243 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="FA90040D-FCD6-16EB-A4C7-641F12C234A3" name="Ansprechpartner">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:56 UTC</createdTime>
+<comment><![CDATA[Funktion einer Person für eine juristische Einheit. Im Spezialfall kann eine Person als Einzelfirma ihr eigener Ansprechspartner sein.
+
+26.6.18 - THU:
+Namen von Kontaktperson nach Ansprechpartner geändert
+Synonym von Ansprechpartner nach Kontaktperson geändert]]></comment>
+<generatorID>855B3CD6-3898-7179-D003-53066C937878</generatorID>
+<notes><![CDATA[[EN_ENTI_COMMENT[
+*DE* Funktion einer Person für eine juristische Einheit. Im Spezialfall kann eine Person als Einzelfirma ihr eigener Ansprechspartner sein.
+
+26.6.18 - THU:
+Namen von Kontaktperson nach Ansprechpartner geändert
+Synonym von Ansprechpartner nach Kontaktperson geändert
+]EN_ENTI_COMMENT]
+[DE_ENTI_COMMENT[
+Funktion einer Person für eine juristische Einheit. Im Spezialfall kann eine Person als Einzelfirma ihr eigener Ansprechspartner sein.
+
+26.6.18 - THU:
+Namen von Kontaktperson nach Ansprechpartner geändert
+Synonym von Ansprechpartner nach Kontaktperson geändert
+]DE_ENTI_COMMENT]
+[FR_ENTI_COMMENT[
+*EN* *DE* Funktion einer Person für eine juristische Einheit. Im Spezialfall kann eine Person als Einzelfirma ihr eigener Ansprechspartner sein.
+
+26.6.18 - THU:
+Namen von Kontaktperson nach Ansprechpartner geändert
+Synonym von Ansprechpartner nach Kontaktperson geändert
+]FR_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>crmTest</ownerDesignName>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Gültigkeitsperiode" id="EC7CE1C1-3D7E-C2F6-52C8-74BB3891F9A0">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:56 UTC</createdTime>
+<generatorID>E86C351D-CBFB-5FA9-0FEE-A23EBCF81766</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+[FR_ATTR_COMMENT[
+
+]FR_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>crmTest</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="PIM AttrID" value="."/>
+<property name="PIM AttrName" value="."/>
+<property name="PIM EnglName" value="."/>
+<property name="PIM datatype" value="."/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+</Column>
+<Column name="Ansprechpartner_ID" id="0DD35B80-367C-1E79-388B-5D0811B611C3">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:56 UTC</createdTime>
+<ownerDesignName>crmTest</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+<propertyMap>
+<property name="PIM AttrID" value="."/>
+<property name="PIM AttrName" value="."/>
+<property name="PIM EnglName" value="."/>
+<property name="PIM datatype" value="."/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+</Column>
+<Column name="Juristische_Person_Geschäftsfähige_Einheit_Geschäftsfähige_Einheit_ID" id="0867412F-9A81-B8F6-A436-BEC1276386AD">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:57 UTC</createdTime>
+<ownerDesignName>crmTest</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="PIM AttrID" value="."/>
+<property name="PIM AttrName" value="."/>
+<property name="PIM EnglName" value="."/>
+<property name="PIM datatype" value="."/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+<associations>
+<colAssociation fkAssociation="5EFB14EE-8CF9-01D9-CEE2-C225472EBE45" referredColumn="D54A2B1C-B3B5-DA0D-7887-F14BD85B8525"/>
+</associations>
+</Column>
+<Column name="natürliche_Person_Geschäftsfähige_Einheit_Geschäftsfähige_Einheit_ID" id="2A6121A0-661E-5292-8EA6-30FDF5C48F96">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:57 UTC</createdTime>
+<ownerDesignName>crmTest</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="PIM AttrID" value="."/>
+<property name="PIM AttrName" value="."/>
+<property name="PIM EnglName" value="."/>
+<property name="PIM datatype" value="."/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+<associations>
+<colAssociation fkAssociation="8037F924-C94A-ABAE-6DD3-4035BAD4ED14" referredColumn="45D2A9FB-84A3-CBEB-C3B6-9BDF783C26C9"/>
+</associations>
+</Column>
+<Column name="natürliche_Person_natürliche_Person_ID" id="686D110B-C5A8-58A6-5290-63708EA9CF14">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:57 UTC</createdTime>
+<ownerDesignName>crmTest</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="PIM AttrID" value="."/>
+<property name="PIM AttrName" value="."/>
+<property name="PIM EnglName" value="."/>
+<property name="PIM datatype" value="."/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+<associations>
+<colAssociation fkAssociation="8037F924-C94A-ABAE-6DD3-4035BAD4ED14" referredColumn="3A67E2E7-FD44-6C54-440C-E620ED7761C6"/>
+</associations>
+</Column>
+<Column name="Kommunikationsmittel_Kommunikationsmittel_ID" id="93FF4D8C-032D-AE4C-8D1A-5C5B4668F16B">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:57 UTC</createdTime>
+<ownerDesignName>crmTest</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="PIM AttrID" value="."/>
+<property name="PIM AttrName" value="."/>
+<property name="PIM EnglName" value="."/>
+<property name="PIM datatype" value="."/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+<associations>
+<colAssociation fkAssociation="0C6CE323-A39F-345C-DFAB-B8DEEAA14C56" referredColumn="523440B8-0A07-007B-B956-AB080FA442C8"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="3D60667F-52A4-1930-1428-096AD2476270" name="Ansprechpartner_PK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:56 UTC</createdTime>
+<ownerDesignName>crmTest</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="0DD35B80-367C-1E79-388B-5D0811B611C3"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="14B3F362-6FCC-961D-52BD-A5518296B99B" name="Ansprechpartner__IDX">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:57 UTC</createdTime>
+<ownerDesignName>crmTest</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<relationGeneratorID>D2536102-340A-51A1-584D-4FDDA6A2272C</relationGeneratorID>
+<indexColumnUsage>
+<colUsage columnID="93FF4D8C-032D-AE4C-8D1A-5C5B4668F16B"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="B266777B-51A7-D4F3-617E-CCFEFE6B140E" name="Ansprechpartner_Juristische_Person_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:57 UTC</createdTime>
+<generatorID>ED0D716E-4FAC-BC35-675F-EC07CD91CABF</generatorID>
+<ownerDesignName>crmTest</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="0867412F-9A81-B8F6-A436-BEC1276386AD"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="77B8505A-3D3D-AA54-C970-9952142733AE" name="Ansprechpartner_natürliche_Person_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:57 UTC</createdTime>
+<generatorID>D3058683-BC1A-77F1-8EEB-E95217738A74</generatorID>
+<ownerDesignName>crmTest</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="2A6121A0-661E-5292-8EA6-30FDF5C48F96"/>
+<colUsage columnID="686D110B-C5A8-58A6-5290-63708EA9CF14"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="68DA3CED-F173-04E4-33BD-BC8447255A44" name="Ansprechpartner_Kommunikationsmittel_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:57 UTC</createdTime>
+<generatorID>D2536102-340A-51A1-584D-4FDDA6A2272C</generatorID>
+<ownerDesignName>crmTest</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="93FF4D8C-032D-AE4C-8D1A-5C5B4668F16B"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

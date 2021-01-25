@@ -1,0 +1,256 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="6EDF4CE0-ACB9-74D2-2C44-9F55165F3FF6" name="Adresse">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:03 UTC</createdTime>
+<comment><![CDATA[Postalisch-geographische Lokalisation
+
+Jede Adresse ist für einen Akteur definiert. D.h. die selbe Adresse kann mehrfach vorkommen.
+Falls ein generelles Adressverzeichnis als Referenz geführt wird (Basisadresse), muss das zusätlich erfasst werden.
+Dann wird diese Entität zur Verknüpfung zwischen Akteur und Basisadresse.]]></comment>
+<generatorID>05FCEF96-1246-2B63-C700-EFAC7404D272</generatorID>
+<notes><![CDATA[[EN_ENTI_COMMENT[
+*DE* Postalisch-geographische Lokalisation
+
+Jede Adresse ist für einen Akteur definiert. D.h. die selbe Adresse kann mehrfach vorkommen.
+Falls ein generelles Adressverzeichnis als Referenz geführt wird (Basisadresse), muss das zusätlich erfasst werden.
+Dann wird diese Entität zur Verknüpfung zwischen Akteur und Basisadresse.
+]EN_ENTI_COMMENT]
+[DE_ENTI_COMMENT[
+Postalisch-geographische Lokalisation
+
+Jede Adresse ist für einen Akteur definiert. D.h. die selbe Adresse kann mehrfach vorkommen.
+Falls ein generelles Adressverzeichnis als Referenz geführt wird (Basisadresse), muss das zusätlich erfasst werden.
+Dann wird diese Entität zur Verknüpfung zwischen Akteur und Basisadresse.
+]DE_ENTI_COMMENT]
+[FR_ENTI_COMMENT[
+*EN* *DE* Postalisch-geographische Lokalisation
+
+Jede Adresse ist für einen Akteur definiert. D.h. die selbe Adresse kann mehrfach vorkommen.
+Falls ein generelles Adressverzeichnis als Referenz geführt wird (Basisadresse), muss das zusätlich erfasst werden.
+Dann wird diese Entität zur Verknüpfung zwischen Akteur und Basisadresse.
+]FR_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>crmTest</ownerDesignName>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Adresstyp" id="9FD4AE8C-A402-D57D-6890-DA61641E4868">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:03 UTC</createdTime>
+<comment><![CDATA[Zweck der Adresse (Finanz, Post, Lieferung etc.)]]></comment>
+<generatorID>FF67251E-70A4-8810-9AAE-8D3085C3FC14</generatorID>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+*DE* Zweck der Adresse (Finanz, Post, Lieferung etc.)
+]EN_ATTR_COMMENT]
+[DE_ATTR_COMMENT[
+Zweck der Adresse (Finanz, Post, Lieferung etc.)
+]DE_ATTR_COMMENT]
+[FR_ATTR_COMMENT[
+*EN* *DE* Zweck der Adresse (Finanz, Post, Lieferung etc.)
+]FR_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>crmTest</ownerDesignName>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Strassenname" id="5F328D73-0FF6-3252-8A53-7D936B418B92">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:03 UTC</createdTime>
+<generatorID>8DCE9DB8-E2C4-BCFC-1622-3B63D4730A07</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+[FR_ATTR_COMMENT[
+
+]FR_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>crmTest</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Hausnr" id="5905B3E1-FC79-5C39-24CD-CC581DDA6AD4">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:03 UTC</createdTime>
+<generatorID>69DE3C96-B9F0-F86E-230B-0AEC8F4067ED</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+[FR_ATTR_COMMENT[
+
+]FR_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>crmTest</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Gebäudename" id="0CEFD92F-91FC-6E9E-411C-A9A31C50C92A">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:03 UTC</createdTime>
+<generatorID>A3F1453C-9777-43FA-2D3F-B9A4917113EA</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+[FR_ATTR_COMMENT[
+
+]FR_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>crmTest</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Geokoordinate" id="41E22BBF-6804-C064-EBA8-40A421CEAD1D">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:03 UTC</createdTime>
+<generatorID>2C711332-0D94-0253-5C07-B9271155ADB9</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+[FR_ATTR_COMMENT[
+
+]FR_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>crmTest</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Adresse_ID" id="C7A1EB1E-DD65-B54B-00C4-3320BDD08FEC">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:03 UTC</createdTime>
+<ownerDesignName>crmTest</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+<Column name="bild1_bild1_ID" id="8C960819-3285-358E-0F3A-00638C18B310">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:03 UTC</createdTime>
+<ownerDesignName>crmTest</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="PLZ-Gebiet_Gebiet_Geografische_Einheit_GEIN_ID" id="11138743-0CDF-0993-AF7C-29B9E3D9FB4E">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:03 UTC</createdTime>
+<ownerDesignName>crmTest</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="5AE07F06-5248-4D5E-B527-86FFFF6045D6" referredColumn="125CAD6E-D6DA-8AA5-B36D-18B1CFFE422A"/>
+</associations>
+</Column>
+<Column name="PLZ-Gebiet_PLZ-Gebiet_ID" id="8AE52BC8-B8DE-93B8-DD0D-6CCD6D9CFF9C">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:03 UTC</createdTime>
+<ownerDesignName>crmTest</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="5AE07F06-5248-4D5E-B527-86FFFF6045D6" referredColumn="88D507B2-0A7D-2645-8B04-72ED547B995C"/>
+</associations>
+</Column>
+<Column name="Kommunikationsmittel_Kommunikationsmittel_ID" id="38032808-140F-EC46-70A6-BA1EA769A93C">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:04 UTC</createdTime>
+<ownerDesignName>crmTest</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="83A313BB-92FA-58A3-7BBD-5A41B595D240" referredColumn="312B9F3D-4BA1-CE5F-8DED-68623DDB2000"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="9EFDD478-595F-247C-7C5D-DC5884A24EDD" name="Adresse_PK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:03 UTC</createdTime>
+<ownerDesignName>crmTest</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="C7A1EB1E-DD65-B54B-00C4-3320BDD08FEC"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="E2272E20-4E42-9924-7E34-261D338F1E33" name="Adresse__IDX">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:03 UTC</createdTime>
+<ownerDesignName>crmTest</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<relationGeneratorID>3EF08F05-37C7-703C-CE63-4C77A5BC62C5</relationGeneratorID>
+<indexColumnUsage>
+<colUsage columnID="8C960819-3285-358E-0F3A-00638C18B310"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="080440FE-BE0C-52BC-390A-FE8F31FC4E8D" name="Adresse_PLZ-Gebiet_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:03 UTC</createdTime>
+<generatorID>DC217FF7-3BA9-27EC-BC44-5470A1B081BC</generatorID>
+<ownerDesignName>crmTest</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="11138743-0CDF-0993-AF7C-29B9E3D9FB4E"/>
+<colUsage columnID="8AE52BC8-B8DE-93B8-DD0D-6CCD6D9CFF9C"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="C79DF39B-4028-C56E-8ED1-7FA07AECC018" name="Adresse_Kommunikationsmittel_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:04 UTC</createdTime>
+<generatorID>564EF916-58F2-A7E3-A8DD-F42629BD5DA5</generatorID>
+<ownerDesignName>crmTest</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="38032808-140F-EC46-70A6-BA1EA769A93C"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

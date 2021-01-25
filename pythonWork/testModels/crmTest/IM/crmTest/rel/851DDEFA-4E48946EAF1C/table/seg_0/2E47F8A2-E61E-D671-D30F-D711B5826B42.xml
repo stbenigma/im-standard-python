@@ -1,0 +1,101 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="2E47F8A2-E61E-D671-D30F-D711B5826B42" name="Servicepartner">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:56 UTC</createdTime>
+<comment><![CDATA[Partner, der die Produkte / Geräte servisiert (pflegt, repariert, ausbaut, betreut)]]></comment>
+<generatorID>26652566-5BBC-8151-E218-6308024DEA7C</generatorID>
+<notes><![CDATA[[EN_ENTI_COMMENT[
+*DE* Partner, der die Produkte / Geräte servisiert (pflegt, repariert, ausbaut, betreut)
+]EN_ENTI_COMMENT]
+[DE_ENTI_COMMENT[
+Partner, der die Produkte / Geräte servisiert (pflegt, repariert, ausbaut, betreut)
+]DE_ENTI_COMMENT]
+[FR_ENTI_COMMENT[
+*EN* *DE* Partner, der die Produkte / Geräte servisiert (pflegt, repariert, ausbaut, betreut)
+]FR_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>crmTest</ownerDesignName>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Handelseinheit_Handelseinheit_ID" id="CBAE92B5-79D0-2D76-AE66-801E92503C26">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:56 UTC</createdTime>
+<ownerDesignName>crmTest</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="PIM AttrID" value="."/>
+<property name="PIM AttrName" value="."/>
+<property name="PIM EnglName" value="."/>
+<property name="PIM datatype" value="."/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+<associations>
+<colAssociation fkAssociation="E812C196-C8D4-4F44-D9FF-A4D5983D2A56" referredColumn="B04DD40D-2DED-4051-AA2E-C0D5F71C7A3D"/>
+</associations>
+</Column>
+<Column name="Servicepartner_ID" id="477D36D5-AB45-19A0-1AC9-2A0A7183BDEE">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:56 UTC</createdTime>
+<ownerDesignName>crmTest</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+<propertyMap>
+<property name="PIM AttrID" value="."/>
+<property name="PIM AttrName" value="."/>
+<property name="PIM EnglName" value="."/>
+<property name="PIM datatype" value="."/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="A33DAE8B-AD5C-12F1-23C0-B7224C5BFDC8" name="Servicepartner_PK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:56 UTC</createdTime>
+<ownerDesignName>crmTest</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="CBAE92B5-79D0-2D76-AE66-801E92503C26"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="0AAD9A56-B54F-BA68-6A7B-E0CD970872AF" name="Servicepartner_Servicepartner_ID_UN">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:56 UTC</createdTime>
+<ownerDesignName>crmTest</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="477D36D5-AB45-19A0-1AC9-2A0A7183BDEE"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="DFB529F4-BF0B-631A-95F3-DAD2951A107A" name="Servicepartner_Handelseinheit_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:56 UTC</createdTime>
+<generatorID>2F6907A5-79F6-D282-C14C-BACFC5F58D45</generatorID>
+<ownerDesignName>crmTest</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="CBAE92B5-79D0-2D76-AE66-801E92503C26"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

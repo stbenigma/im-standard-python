@@ -1,0 +1,94 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="4F452D3C-AA6A-E903-C6D3-CF2EAD28C059" name="Relation_1">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:57 UTC</createdTime>
+<ownerDesignName>crmTest</ownerDesignName>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Juristische_Person_Geschäftsfähige_Einheit_Geschäftsfähige_Einheit_ID" id="5ED93D5D-80E0-2201-2B9A-5F59A850964C">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:57 UTC</createdTime>
+<ownerDesignName>crmTest</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="PIM AttrID" value="."/>
+<property name="PIM AttrName" value="."/>
+<property name="PIM EnglName" value="."/>
+<property name="PIM datatype" value="."/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+<associations>
+<colAssociation fkAssociation="3D8F466A-0D4A-032B-E477-4F7235A84128" referredColumn="D54A2B1C-B3B5-DA0D-7887-F14BD85B8525"/>
+</associations>
+</Column>
+<Column name="Juristische_Person_Geschäftsfähige_Einheit_Geschäftsfähige_Einheit_ID1" id="11F9725A-8884-9A60-0F29-8FE2B8386354">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:57 UTC</createdTime>
+<ownerDesignName>crmTest</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="PIM AttrID" value="."/>
+<property name="PIM AttrName" value="."/>
+<property name="PIM EnglName" value="."/>
+<property name="PIM datatype" value="."/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+<associations>
+<colAssociation fkAssociation="7F091B26-C83B-0561-BCCA-12E80FFD0F20" referredColumn="D54A2B1C-B3B5-DA0D-7887-F14BD85B8525"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="05AA5DDB-16DB-5883-D3FC-8BBED5960EDF" name="Relation_1_PK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:57 UTC</createdTime>
+<ownerDesignName>crmTest</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="5ED93D5D-80E0-2201-2B9A-5F59A850964C"/>
+<colUsage columnID="11F9725A-8884-9A60-0F29-8FE2B8386354"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="5E8AF405-3042-A7A2-1063-E9F8E2F12FAE" name="Relation_1_Juristische_Person_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:57 UTC</createdTime>
+<generatorID>525E3D96-520F-F9FD-0EAE-15FC6469DFD3</generatorID>
+<ownerDesignName>crmTest</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="5ED93D5D-80E0-2201-2B9A-5F59A850964C"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="E5287477-16F7-9D82-2530-FF0796995581" name="Relation_1_Juristische_Person_FKv1">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:57 UTC</createdTime>
+<generatorID>525E3D96-520F-F9FD-0EAE-15FC6469DFD3</generatorID>
+<ownerDesignName>crmTest</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="11F9725A-8884-9A60-0F29-8FE2B8386354"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

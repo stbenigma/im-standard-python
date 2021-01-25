@@ -763,6 +763,36 @@ def updateUDP(pmodeid, pobj):
         Userdefpropvalue.updvalues(prows=udps)
     # fi
 
+def doconstraint(pelemname,pmodetype,pmodeid,pxml):
+    """within attributedefinition
+    <constraintName>My Constr Name</constraintName>
+    <checkConstraint>
+        <implementationDef dbType="Generic Constraint" definition="abcde"/>
+    </checkConstraint>
+    <useDomainConstraints>false</useDomainConstraints>  -- missing = true, if there is a domain
+
+    """
+    constrname = findText(pxml,"constraintName")
+    constrxml = pxml.find("checkConstraint")
+    useDomainConstr = Boolean.str2bool(nvl(findText(pxml,'useDomainConstraints'),'true'))
+    if useDomainConstr or constrxml is None: return
+    rules = [(findField(impldef,'dbType'),findField(impldef,'definition')) for impldef in constrxml]
+    if (len (rules)==0):return
+    descr = '\n'.join("dbtype={}    rule={}".format(r[0],r[1]) for r in rules)
+    buru = BusinessRule()
+    buru.buru_name = nvl(constrname,pelemname)
+    buru.buru_descr = descr
+    buru.buru_rule = rules[0][1]
+    buru.buru_impact = 'REFUSE'
+    buru.buru_type = BusinessRule.BURU_TYPE_CHECK
+    buru.buru_level = BusinessRule.BURU_LEVEL_ATTR
+    buru.buru_errormsg = 'Rule {} violated. {}'.format(constrname,rules[0][1])
+    buruid = buru.insert()
+    if pmodetype==Modelelemtype.ATTR:
+        bure = BusinessruleElement(pburuid=buruid,pattrid=pmodeid)
+        bure.insert()
+
+
 def do1Attribute(plfnr, pattrxml,pentiId):
     # wegen FK-PK zusätzliche Attribute werden nicht übernommen
     if (findText(pattrxml, 'referedAttribute') is not None):
@@ -804,6 +834,7 @@ def do1Attribute(plfnr, pattrxml,pentiId):
     ModelelemDocu.insertdocuref(pdocguidlist=documents, pmodeid=attrId)
     ModelelemOrgu.insertorguref(porguidlist=getpartyref(pelem=pattrxml), pmodeid=attrId)
 
+    doconstraint(pelemname=vatername+'.'+attr.attr_tech_name,pmodetype=Modelelemtype.ATTR,pmodeid=attrId,pxml=pattrxml)
 
 # do1Attribute
 
@@ -1234,6 +1265,8 @@ def loeschmodell():
     ModelelementProperty.delete()
     Userdefprop.delete()
     Userdefpropvalue.delete()
+    BusinessruleElement.delete()
+    BusinessRule.delete()
     Keyelement.delete()
     Key.delete()
     Relation.delete()

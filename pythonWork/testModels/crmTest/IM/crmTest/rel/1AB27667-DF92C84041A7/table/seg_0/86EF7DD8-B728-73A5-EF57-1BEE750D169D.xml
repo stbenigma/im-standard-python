@@ -1,0 +1,94 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="86EF7DD8-B728-73A5-EF57-1BEE750D169D" name="Käufer">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:10 UTC</createdTime>
+<comment><![CDATA[Geschäftsfähige Einheit, die ein Produkt käuflich erworben hat oder erwerben will.
+]]></comment>
+<generatorID>A94730ED-67B5-10D2-D1E5-1EED59B19633</generatorID>
+<notes><![CDATA[[EN_ENTI_COMMENT[
+*DE* Geschäftsfähige Einheit, die ein Produkt käuflich erworben hat oder erwerben will.
+
+]EN_ENTI_COMMENT]
+[DE_ENTI_COMMENT[
+Geschäftsfähige Einheit, die ein Produkt käuflich erworben hat oder erwerben will.
+
+]DE_ENTI_COMMENT]
+[FR_ENTI_COMMENT[
+*EN* *DE* Geschäftsfähige Einheit, die ein Produkt käuflich erworben hat oder erwerben will.
+
+]FR_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>crmTest</ownerDesignName>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Vertriebskunde_Vertriebsteilnehmer_Vertriebsteilnehmer_ID" id="0CC9F86C-735B-2B56-4987-106BFE70D3EE">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:10 UTC</createdTime>
+<ownerDesignName>crmTest</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="98AB13A0-528D-7B8C-F5A4-19C2D2A2E330" referredColumn="A1AEA750-5D61-4D1F-B2A5-BF70F7900163"/>
+</associations>
+</Column>
+<Column name="Käufer_ID" id="67C511BF-D30C-E87E-51F6-E40DAAAACD19">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:10 UTC</createdTime>
+<ownerDesignName>crmTest</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="24038CFD-F847-17B5-AD46-CBF2EE613F34" name="Käufer_PK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:10 UTC</createdTime>
+<ownerDesignName>crmTest</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="0CC9F86C-735B-2B56-4987-106BFE70D3EE"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="0AE18D73-608A-ACF7-3420-547C3B125FD0" name="Käufer_Käufer_ID_UN">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:10 UTC</createdTime>
+<ownerDesignName>crmTest</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="67C511BF-D30C-E87E-51F6-E40DAAAACD19"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="870E712B-07C4-0178-C9BE-8E03DA346DCA" name="Käufer__IDX">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:10 UTC</createdTime>
+<ownerDesignName>crmTest</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<relationGeneratorID>EF5294AA-E9F2-B37C-9984-7551AC04A609</relationGeneratorID>
+</ind_PK_UK>
+<ind_PK_UK id="C6F18314-EDEC-08D9-BC6A-C8D2196779ED" name="Käufer_Vertriebskunde_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:10 UTC</createdTime>
+<generatorID>6488F8D7-F646-3806-B607-D79A2B7678C4</generatorID>
+<ownerDesignName>crmTest</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="0CC9F86C-735B-2B56-4987-106BFE70D3EE"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -1,0 +1,117 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="96CF5C69-BC33-FFFF-FB76-9CA5ECFDD8CD" name="Händler">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:56 UTC</createdTime>
+<comment><![CDATA[B2B Partner
+Verkauft unsere Produkte an andere Geschäfte. Möglicherweise alleiniger Vertreter in einer geographischen Einheit.
+
+A-Händler sind Händler mit hohem Professionalisierungsgrad, verkaufen alles.
+B-Händler sind Händler mit niedrigerem Professionalisierungsgrad; verkaufen deshalb nur gewisse Produkte]]></comment>
+<generatorID>A9F11893-59B8-6E90-C662-8004F4C013B0</generatorID>
+<notes><![CDATA[[EN_ENTI_COMMENT[
+*DE* B2B Partner
+Verkauft unsere Produkte an andere Geschäfte. Möglicherweise alleiniger Vertreter in einer geographischen Einheit.
+
+A-Händler sind Händler mit hohem Professionalisierungsgrad, verkaufen alles.
+B-Händler sind Händler mit niedrigerem Professionalisierungsgrad; verkaufen deshalb nur gewisse Produkte
+]EN_ENTI_COMMENT]
+[DE_ENTI_COMMENT[
+B2B Partner
+Verkauft unsere Produkte an andere Geschäfte. Möglicherweise alleiniger Vertreter in einer geographischen Einheit.
+
+A-Händler sind Händler mit hohem Professionalisierungsgrad, verkaufen alles.
+B-Händler sind Händler mit niedrigerem Professionalisierungsgrad; verkaufen deshalb nur gewisse Produkte
+]DE_ENTI_COMMENT]
+[FR_ENTI_COMMENT[
+*EN* *DE* B2B Partner
+Verkauft unsere Produkte an andere Geschäfte. Möglicherweise alleiniger Vertreter in einer geographischen Einheit.
+
+A-Händler sind Händler mit hohem Professionalisierungsgrad, verkaufen alles.
+B-Händler sind Händler mit niedrigerem Professionalisierungsgrad; verkaufen deshalb nur gewisse Produkte
+]FR_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>crmTest</ownerDesignName>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Handelseinheit_Handelseinheit_ID" id="CE750D54-D89D-019E-DB18-AD64FB4BF397">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:56 UTC</createdTime>
+<ownerDesignName>crmTest</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="PIM AttrID" value="."/>
+<property name="PIM AttrName" value="."/>
+<property name="PIM EnglName" value="."/>
+<property name="PIM datatype" value="."/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+<associations>
+<colAssociation fkAssociation="B2EA4CFF-1348-6E7B-C05A-0B643DD1B1ED" referredColumn="B04DD40D-2DED-4051-AA2E-C0D5F71C7A3D"/>
+</associations>
+</Column>
+<Column name="Händler_ID" id="8F424301-F07D-F58C-671D-8293ADFF02C7">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:56 UTC</createdTime>
+<ownerDesignName>crmTest</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+<propertyMap>
+<property name="PIM AttrID" value="."/>
+<property name="PIM AttrName" value="."/>
+<property name="PIM EnglName" value="."/>
+<property name="PIM datatype" value="."/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="21760C2D-1E41-4B07-EAFE-014E101A837A" name="Händler_PK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:56 UTC</createdTime>
+<ownerDesignName>crmTest</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="CE750D54-D89D-019E-DB18-AD64FB4BF397"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="C9817998-EC52-8945-40A4-34C7404A85C1" name="Händler_Händler_ID_UN">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:56 UTC</createdTime>
+<ownerDesignName>crmTest</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="8F424301-F07D-F58C-671D-8293ADFF02C7"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="4303D5F2-51CA-4951-D30C-E90D7CE498E8" name="Händler_Handelseinheit_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:56 UTC</createdTime>
+<generatorID>1220A6E6-5896-BDD5-25E7-23794394C36F</generatorID>
+<ownerDesignName>crmTest</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="CE750D54-D89D-019E-DB18-AD64FB4BF397"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -1,0 +1,142 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="1E454DE6-3987-3ECD-C87B-4B41C1566E9B" name="Ländergruppe">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:10 UTC</createdTime>
+<comment><![CDATA[Eine Zusammenfassung mehrerer Länder zu einer Gruppe.
+Es soll jeweils ein Kriterium für die Gruppenbildung bzw. einen Begründung (Zweck) für die Nutzung der Gruppe festgelegt/dokumentiert werden.
+
+Typen von Ländergruppen erlauben mehrere Gruppierungen zu führen: Vertriebsorg., Zoll, Logistik 
+
+Beispiele:
+EU
+SACU Botsuana; Eswatini; Lesotho; Namibia; Südafrika (Zollunion)
+EMEA (Europe, Middle East, Africa) (Vertriebsorganisation)]]></comment>
+<generatorID>0035B365-CE5D-205A-0B0E-54ECA27EEECE</generatorID>
+<notes><![CDATA[[EN_ENTI_COMMENT[
+*DE* Eine Zusammenfassung mehrerer Länder zu einer Gruppe.
+Es soll jeweils ein Kriterium für die Gruppenbildung bzw. einen Begründung (Zweck) für die Nutzung der Gruppe festgelegt/dokumentiert werden.
+
+Typen von Ländergruppen erlauben mehrere Gruppierungen zu führen: Vertriebsorg., Zoll, Logistik 
+
+Beispiele:
+EU
+SACU Botsuana; Eswatini; Lesotho; Namibia; Südafrika (Zollunion)
+EMEA (Europe, Middle East, Africa) (Vertriebsorganisation)
+]EN_ENTI_COMMENT]
+[DE_ENTI_COMMENT[
+Eine Zusammenfassung mehrerer Länder zu einer Gruppe.
+Es soll jeweils ein Kriterium für die Gruppenbildung bzw. einen Begründung (Zweck) für die Nutzung der Gruppe festgelegt/dokumentiert werden.
+
+Typen von Ländergruppen erlauben mehrere Gruppierungen zu führen: Vertriebsorg., Zoll, Logistik 
+
+Beispiele:
+EU
+SACU Botsuana; Eswatini; Lesotho; Namibia; Südafrika (Zollunion)
+EMEA (Europe, Middle East, Africa) (Vertriebsorganisation)
+]DE_ENTI_COMMENT]
+[FR_ENTI_COMMENT[
+*EN* *DE* Eine Zusammenfassung mehrerer Länder zu einer Gruppe.
+Es soll jeweils ein Kriterium für die Gruppenbildung bzw. einen Begründung (Zweck) für die Nutzung der Gruppe festgelegt/dokumentiert werden.
+
+Typen von Ländergruppen erlauben mehrere Gruppierungen zu führen: Vertriebsorg., Zoll, Logistik 
+
+Beispiele:
+EU
+SACU Botsuana; Eswatini; Lesotho; Namibia; Südafrika (Zollunion)
+EMEA (Europe, Middle East, Africa) (Vertriebsorganisation)
+]FR_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>crmTest</ownerDesignName>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Typ" id="E8D361C4-FD87-89A7-2458-E66EA0BDD140">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:10 UTC</createdTime>
+<comment><![CDATA[Typ der Ländergruppe (Vertrieb, Zoll, Organisation)]]></comment>
+<generatorID>854EF45E-D99B-33BB-CEBA-CCBFD3723223</generatorID>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+*DE* Typ der Ländergruppe (Vertrieb, Zoll, Organisation)
+]EN_ATTR_COMMENT]
+[DE_ATTR_COMMENT[
+Typ der Ländergruppe (Vertrieb, Zoll, Organisation)
+]DE_ATTR_COMMENT]
+[FR_ATTR_COMMENT[
+*EN* *DE* Typ der Ländergruppe (Vertrieb, Zoll, Organisation)
+]FR_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>crmTest</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Zweck" id="C76CB4DC-2B79-9B52-B293-0042792D41FF">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:10 UTC</createdTime>
+<generatorID>4884CAC4-510A-4F0B-4C72-FC6E2F36D0B3</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+[FR_ATTR_COMMENT[
+
+]FR_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>crmTest</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Ländergruppe_ID" id="A4B0BDBE-264F-6AD4-2869-EED827835439">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:10 UTC</createdTime>
+<ownerDesignName>crmTest</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+<Column name="Geografische_Einheit_GEIN_ID" id="F7E46E87-B702-13DE-A7B9-C9B9C9E77D2D">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:10 UTC</createdTime>
+<ownerDesignName>crmTest</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="D9198899-3E16-858C-F4B8-6383CDCA7A5B" name="Ländergruppe_PK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:10 UTC</createdTime>
+<ownerDesignName>crmTest</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="F7E46E87-B702-13DE-A7B9-C9B9C9E77D2D"/>
+<colUsage columnID="A4B0BDBE-264F-6AD4-2869-EED827835439"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="DB54C988-FD3F-C9BE-BCA8-5434103656F7" name="Ländergruppe_Ländergruppe_ID_UN">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:10 UTC</createdTime>
+<ownerDesignName>crmTest</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="A4B0BDBE-264F-6AD4-2869-EED827835439"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
