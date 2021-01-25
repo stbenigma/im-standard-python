@@ -11,12 +11,12 @@
       </p>
     </ac:layout-cell>
     <ac:layout-cell>
-      <img src="https://res.cloudinary.com/fyayc-test/image/upload/c_thumb,w_200,g_face/v1610138348/icons/f-icon_object_0765_spare-part.png" align="right"/>
+      <img src="https://res.cloudinary.com/fyayc-test/image/private/s--zhEVH_yA--/c_thumb,w_200,g_face/v1/icon_library_bosch/f-icon_channeloverview_0099_product.png" align="right"/>
     </ac:layout-cell>
   </ac:layout-section>
   <ac:layout-section ac:type="single">
     <ac:layout-cell>
-      <h1>Attributes</h1>
+      <h1>Attribute</h1>
       <table class="relative-table" style="width: 100%;">
       <tbody>
         <tr>
@@ -26,8 +26,8 @@
         <th><br /></th></tr>
         {% for attribute in entity['attributes'] %}
         <tr>
-          <td>{{ attribute }}</td>
-          <td><br/></td>
+          <td><p><ac:link><ri:page ri:content-title="{{util.page_title(attribute)}}" /><![CDATA[{{ util.page_title(attribute) }}]]></ac:link></p></td>
+          <td></td>
           <td><br/></td>
           <td><br/></td>
         </tr>
@@ -37,8 +37,49 @@
   </ac:layout-section>
   <ac:layout-section ac:type="single">
     <ac:layout-cell>
+      <h1>Relationen</h1>
+      <table class="relative-table" style="width: 100%;">
+        <colgroup>
+          <col style="width: 10.0%;"/>
+          <col style="width: 20.0%;"/>
+          <col style="width: 5.0%;"/>
+          <col style="width: 20.4773%;"/>
+          <col/>
+        </colgroup>
+        <tbody>
+          <tr>
+            <th>Type</th>
+            <th>Kardinalität</th>
+            <th>Beziehung</th>
+            <th class="highlight-grey" colspan="1" data-highlight-colour="grey" title="Background colour : Grey"></th>
+            <th>Beziehung</th>
+            <th>Kardinalität</th>
+            <th>Verbundene Entität</th>
+          </tr>
+          {% for relation in entity['relations'] %}
+          {% set other_end = util.relation_other(key, relation) %}
+          <tr>
+            <td>{{data['relations'][relation]['type']}}</td>
+            <td>{{util.relation_self(key, relation)['cardstr']}}</td>
+            <td>{{util.translate(util.relation_self(key, relation)['assoc'])}}</td>
+            <td class="highlight-grey" colspan="1" data-highlight-colour="grey" title="Background colour : Grey"></td>
+            <td>{{util.translate(other_end['assoc'])}}</td>
+            <td>{{other_end['cardstr']}}</td>
+            <td><p><ac:link><ri:page ri:content-title="{{util.page_title(other_end['enti'])}}" /><![CDATA[{{util.page_title(other_end['enti'])}}]]></ac:link></p></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </ac:layout-cell>
+  </ac:layout-section>
+
+
+  <ac:layout-section ac:type="single">
+    <ac:layout-cell>
       <h1>Supertypes</h1>
-      <ul>{% for supertype in entity['supertypes'] %}<li><a href="{{ util.href(supertype) }}">{{ supertype }}</a></li>{% endfor %}</ul>
+      <ul>{% for supertype in entity['supertypes'] %}
+        <li><ac:link><ri:page ri:content-title="{{util.page_title(supertype)}}" /><![CDATA[{{ util.page_title(supertype) }}]]></ac:link></li>
+        {% endfor %}</ul>
     </ac:layout-cell>
   </ac:layout-section>
 
@@ -51,13 +92,12 @@
       <table class="relative-table" style="width: 100%;">
       <tbody>
         <tr>
-        <th>Diagram</th>
-        <th>Type</th>
+          <th>Diagram</th>
         </tr>
-        {% for diagram in entity['diagrams+'] %}
+        {% for diagram in entity['diagrams'] %}
         <tr>
           <td>{{ diagram }}</td>
-          <td><p><ac:link><ri:page ri:content-title="{{ toolbox.translate( ) }}" /><![CDATA[{{ diagram }}]]></ac:link></p></td>
+          <!-- td><p><ac:link><ri:page ri:content-title="{{ util.translate( diagram['name'] ) }}" /><![CDATA[{{ diagram }}]]></ac:link></p></td -->
         </tr>
         {% endfor %}
       </tbody></table>

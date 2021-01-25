@@ -2,8 +2,6 @@ from xml.sax.saxutils import escape
 from datetime import datetime
 import logging
 
-
-
 class Publisher:
     '''
     The publisher contains mapping information of IM elements.
@@ -29,22 +27,23 @@ class Publisher:
             return escape(field[self.language])
         return ''
 
-    def href(self, element_key):
-        '''Returns the url of an element'''
-        return str(element_key)
+    def page_title(self, key: str):
+        '''Returns the page title of an element. This will be used to reference elements'''
+        page = self.content_map[key]
+        return page['title']
 
     def scan_current_content(self):
         '''Scan current content below page-root and fills the content_map accordingly'''
         None   # Nothing found
 
     def register_page(self, key: str, page_id: str, title: str):
-        element = self.content_map.get(key)
-        if element:
-            self.log.warning('Element {} will be overwritten'.format(key))
-        element = {}
-        element['pageid'] = page_id
-        element['title'] = title
-        self.content_map[key] = element
+        page = self.content_map.get(key)
+        if page:
+            self.log.warning('Element {} entry {} will be overwritten'.format(key, page))
+        page = {}
+        page['pageid'] = page_id
+        page['title'] = title
+        self.content_map[key] = page
 
     def page_for_key(self, key: str):
         '''Returns the page object of an element or None if there is no page yet
@@ -66,5 +65,18 @@ class Publisher:
         meta = self.page_for_key(key)
         self.confluence.update_page(meta['pageid'], meta['title'], body)
 
-    def publish_attributes(self):
-        None
+    def relation_self(self, entity_key: str, relation_key: str):
+        '''Returns the local end of the relation_key attached to enitity_key'''
+        relation = self.json_data['relations'][relation_key]
+        if relation['from-to']['enti'] == entity_key:
+            return relation['from-to']
+        else:
+            return relation['to-from']
+
+    def relation_other(self, entity_key: str, relation_key: str):
+        '''Returns the remote end of the relation_key'''
+        relation = self.json_data['relations'][relation_key]
+        if relation['from-to']['enti'] == entity_key:
+            return relation['to-from']
+        else:
+            return relation['from-to']
