@@ -16,6 +16,10 @@
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
 <createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="maxzoomlevel" value="1"/>
+<property name="minzoomlevel" value="0"/>
+</propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Zusatzattribut subenti1" id="67F51C8D-63BE-AA45-777B-9ECA1BE05DCA">
 <createdBy>stb</createdBy>
@@ -25,9 +29,9 @@
 <item key="5BE1D3DE-1298-62A6-B8A4-2793AE250A49" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
-<use>0</use>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
-<domain>9DEE9E83-5B47-BAD9-CC36-EC93AB677F7F</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 </attributes>

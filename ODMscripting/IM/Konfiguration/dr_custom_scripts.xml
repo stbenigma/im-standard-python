@@ -6180,75 +6180,9 @@ function getAttrMap(attrID,modName){
 	</scr>
 	<scr id="14F053A0-66BA-6023-35E8-344311DB60B3" name="testJS" object="logical" engine="Oracle Nashorn" type="" var="model" library="" method="" purpose="transformation" >
 		<script>
-			<![CDATA[// message
-				var PLAINMESSAGE = 1;
-				var ERRORMESSAGE = 0;
-				var WARNINGMESSAGE = 2;
-				var QUESTIONMESSAGE = 3;
+			<![CDATA[// Testjsfunktionen
 
-	
-				function fullmessage(msg,type) {
-					Java.type("javax.swing.JOptionPane").showMessageDialog(null
-					, msg,'ODM-Translation', type);
-				}
-
-				function error(msg) {
-					fullmessage(msg,ERRORMESSAGE);
-					}
-				function message(msg) {
-					fullmessage(msg,PLAINMESSAGE);
-					}
-
-				function linemessage() {
-					var str = ''
-					for (var i = 0;i < arguments.length; i++){
-						str = str.concat(arguments[i],'\n')
-					}
-					fullmessage(str, PLAINMESSAGE);
-				}
-				
-			var entities = model.getEntitySet().toArray();
-			function forEach(arr,f){
-				for (var i = 0;i < arr.length; i++) { 
-					f(arr[i],i);
-				}
-			}
-			function subf(enti,idx,s){
-				forEach(s,function sub2(o,i) {message(enti.getName()+idx+o+i)})
-			}
-				
-			//forEach(entities,function listenty(enti,idx){subf(enti,idx,['A','B'])})
-			var lparam = "abc\ndef\nghijklm\n"
-			var g_Params={}
-			var valsfuncvar = function valsfunc(line,idx){
-						     	message(line+':'+idx+pp)
-								 var vals=line.split("=")
-								 	if (vals[0] != null && vals[0] != "") {  
-										l_Params[vals[0]] = vals[1]
-									}
-								pp='xx'
-							 }
-			var lparlines = lparam.split("\n")
-			for (var l = 0;l < lparlines.length; l++){
-			    	//message(lparlines[l]+':'+l)
-				var vals=lparlines[l].split("=")
-				if (vals[0] != null && vals[0] != "") {  
-					g_Params[vals[0]] = vals[1]
-				}
-			}
-			
-			var l_Params={}
-			var pp = 'pp'
-			forEach(lparam.split("\n"), valsfuncvar
-//						     function vals(line,idx){
-//						     	message(line+':'+idx+pp)
-//								 var vals=line.split("=")
-//								 	if (vals[0] != null && vals[0] != "") {  
-//										l_Params[vals[0]] = vals[1]
-//									}
-//							 }
-			 )
-		//	 forEach(g_Params,function pp(p,i){message(i+':'+g_Params[i]+'='+l_Params[i])})]]>
+]]>
 		</script>
 	</scr>
 	<scr id="27151E1F-0678-E8D6-53B9-3003B6DDEB1B" name="printDevMapping" object="logical" engine="Oracle Nashorn" type="" var="model" library="mappingLib" method="printDevMapping" purpose="transformation" >
@@ -7263,6 +7197,79 @@ function getAttrMap(attrID,modName){
 			function printNameMapping() {
 				printAllMapping(false)
 			}]]>
+		</script>
+	</scr>
+	<scr id="44681E48-E007-E0B8-C34D-4639E2790590" name="hidelevels" object="logical" engine="Oracle Nashorn" type="" var="model" library="abstractionlevel" method="hidelevels" purpose="transformation" >
+		<script>
+			<![CDATA[// Autoren: aro, stb
+	// Functions for abstraction-level display in subviews.
+
+					var CODEVERSION = '0.1'
+					var gLogNote = "LOG";
+					var gParams={}
+
+					var logInitialized = false;
+
+				// message
+					var PLAINMESSAGE = 1;
+					var ERRORMESSAGE = 0;
+					var WARNINGMESSAGE = 2;
+					var QUESTIONMESSAGE = 3;
+	
+					function fullmessage(msg,type) {
+						Java.type("javax.swing.JOptionPane").showMessageDialog(null
+						, msg,'ODM-Translation', type);
+					}
+
+					function error(msg) {
+						fullmessage(msg,ERRORMESSAGE);
+						}
+					function message(msg) {
+						fullmessage(msg,PLAINMESSAGE);
+						}
+
+	function getentities(sv){
+       viewobjs = sv.getTVShapes()
+	   message(viewobjs.length)
+	}
+					
+	function hideentities(sv, svlevel){
+		// read all entities on subview
+		entities = getentities(sv)
+		// every entity on subview which does not inlcude this level in its zoomlevelrange (min..max)
+		// is hidden 
+		message("hideentities")
+		}
+
+
+	function getsubview(){
+		svlist = model.getDesign().getLogicalDesign().getListOfSubviews() 
+		retval = null
+		for (var vv=0;vv<svlist.length;vv++){
+			sv = svlist[vv]
+			if (sv.isCurrentDPV()) {retval = sv}
+			//message(sv.getName()+'/'+sv.isCurrentDPV())
+		}
+		return retval
+	}
+	
+	function getzoomlevel(sv){
+		//  	sv.getComment()
+		return 1 //DEBUG
+	}
+	function hideshowattributes(sv,svlevel){}
+	function hideschowrelationships(sv,svlevel){}
+
+	function hidelevels(){
+		//message("hello world")
+		sv = getsubview()
+		svlevel = getzoomlevel(sv)
+		hideentities(sv, svlevel)
+		hideshowattributes(sv,svlevel)
+		hideschowrelationships(sv,svlevel)
+	}
+
+	]]>
 		</script>
 	</scr>
 
@@ -8906,6 +8913,79 @@ ddlStatementsList.add(new java.lang.String(ddl));
 						}
 					}			
 				}]]>
+		</script>
+	</lib>
+	<lib id="01549B4A-FBAA-A168-A09B-CFDA99211B5F" name="abstractionlevel" engine="Oracle Nashorn" methods="hidelevels" >
+		<script>
+			<![CDATA[// Autoren: aro, stb
+	// Functions for abstraction-level display in subviews.
+
+					var CODEVERSION = '0.1'
+					var gLogNote = "LOG";
+					var gParams={}
+
+					var logInitialized = false;
+
+				// message
+					var PLAINMESSAGE = 1;
+					var ERRORMESSAGE = 0;
+					var WARNINGMESSAGE = 2;
+					var QUESTIONMESSAGE = 3;
+	
+					function fullmessage(msg,type) {
+						Java.type("javax.swing.JOptionPane").showMessageDialog(null
+						, msg,'ODM-Translation', type);
+					}
+
+					function error(msg) {
+						fullmessage(msg,ERRORMESSAGE);
+						}
+					function message(msg) {
+						fullmessage(msg,PLAINMESSAGE);
+						}
+
+	function getentities(sv){
+       viewobjs = sv.getTVShapes()
+	   message(viewobjs.length)
+	}
+					
+	function hideentities(sv, svlevel){
+		// read all entities on subview
+		entities = getentities(sv)
+		// every entity on subview which does not inlcude this level in its zoomlevelrange (min..max)
+		// is hidden 
+		message("hideentities")
+		}
+
+
+	function getsubview(){
+		svlist = model.getDesign().getLogicalDesign().getListOfSubviews() 
+		retval = null
+		for (var vv=0;vv<svlist.length;vv++){
+			sv = svlist[vv]
+			if (sv.isCurrentDPV()) {retval = sv}
+			//message(sv.getName()+'/'+sv.isCurrentDPV())
+		}
+		return retval
+	}
+	
+	function getzoomlevel(sv){
+		//  	sv.getComment()
+		return 1 //DEBUG
+	}
+	function hideshowattributes(sv,svlevel){}
+	function hideschowrelationships(sv,svlevel){}
+
+	function hidelevels(){
+		//message("hello world")
+		sv = getsubview()
+		svlevel = getzoomlevel(sv)
+		hideentities(sv, svlevel)
+		hideshowattributes(sv,svlevel)
+		hideschowrelationships(sv,svlevel)
+	}
+
+	]]>
 		</script>
 	</lib>
 

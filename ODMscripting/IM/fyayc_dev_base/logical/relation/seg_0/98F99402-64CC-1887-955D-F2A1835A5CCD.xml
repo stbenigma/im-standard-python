@@ -1,0 +1,24 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_10" directorySegmentName="seg_0" id="98F99402-64CC-1887-955D-F2A1835A5CCD">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-25 12:52:30 UTC</createdTime>
+<ownerDesignName>fyayc_dev_base</ownerDesignName>
+<engineerTo>
+<item key="5BE1D3DE-1298-62A6-B8A4-2793AE250A49" value="true"/>
+</engineerTo>
+<useSurrogateKey>true</useSurrogateKey>
+<identifying>false</identifying>
+<nameOnSource>steht über</nameOnSource>
+<nameOnTarget>ist neben</nameOnTarget>
+<optionalSource>false</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>A63A4195-0FD3-2A6E-0C49-FB3E94294828</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>2380F648-71FA-C664-934C-5CF4C80397D6</targetEntity>
+<transferable>true</transferable>
+<propertyMap>
+<property name="maxzoomlevel" value="2"/>
+<property name="minzoomlevel" value="1"/>
+</propertyMap>
+</Relation>
