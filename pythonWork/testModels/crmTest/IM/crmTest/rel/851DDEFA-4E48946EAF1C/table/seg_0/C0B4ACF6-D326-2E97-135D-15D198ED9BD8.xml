@@ -1,0 +1,211 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="C0B4ACF6-D326-2E97-135D-15D198ED9BD8" name="PLZ-Gebiet">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:56 UTC</createdTime>
+<comment><![CDATA[Durch die Post vergebene Gebietseinteilung.
+Die Postleitzahl ist in vielen Ländern keine Zahl sondern eine Zeichenfolge mit Ziffern und Buchstaben
+
+Es gibt hierarchische Systeme beim Aufbau von PLZ:
+Z.B. USA
+221 - 62 -10 -10	 
+Segment - Sektor - Postdienststelle oder Zustellabschnitt - Leitzone oder Bearbeitungs- und Zustellzentrum
+
+Es kann andere genormte Systeme geben
+P3: Postleitzahl
+P2: Postleitzahluntergebiet
+P1: Postleitzahlgebiet
+P0: Land
+]]></comment>
+<generatorID>042A86B2-01B0-2BF0-D0D9-801BD9612C6B</generatorID>
+<notes><![CDATA[[EN_ENTI_COMMENT[
+*DE* Durch die Post vergebene Gebietseinteilung.
+Die Postleitzahl ist in vielen Ländern keine Zahl sondern eine Zeichenfolge mit Ziffern und Buchstaben
+
+Es gibt hierarchische Systeme beim Aufbau von PLZ:
+Z.B. USA
+221 - 62 -10 -10	 
+Segment - Sektor - Postdienststelle oder Zustellabschnitt - Leitzone oder Bearbeitungs- und Zustellzentrum
+
+Es kann andere genormte Systeme geben
+P3: Postleitzahl
+P2: Postleitzahluntergebiet
+P1: Postleitzahlgebiet
+P0: Land
+
+]EN_ENTI_COMMENT]
+[DE_ENTI_COMMENT[
+Durch die Post vergebene Gebietseinteilung.
+Die Postleitzahl ist in vielen Ländern keine Zahl sondern eine Zeichenfolge mit Ziffern und Buchstaben
+
+Es gibt hierarchische Systeme beim Aufbau von PLZ:
+Z.B. USA
+221 - 62 -10 -10	 
+Segment - Sektor - Postdienststelle oder Zustellabschnitt - Leitzone oder Bearbeitungs- und Zustellzentrum
+
+Es kann andere genormte Systeme geben
+P3: Postleitzahl
+P2: Postleitzahluntergebiet
+P1: Postleitzahlgebiet
+P0: Land
+
+]DE_ENTI_COMMENT]
+[FR_ENTI_COMMENT[
+*EN* *DE* Durch die Post vergebene Gebietseinteilung.
+Die Postleitzahl ist in vielen Ländern keine Zahl sondern eine Zeichenfolge mit Ziffern und Buchstaben
+
+Es gibt hierarchische Systeme beim Aufbau von PLZ:
+Z.B. USA
+221 - 62 -10 -10	 
+Segment - Sektor - Postdienststelle oder Zustellabschnitt - Leitzone oder Bearbeitungs- und Zustellzentrum
+
+Es kann andere genormte Systeme geben
+P3: Postleitzahl
+P2: Postleitzahluntergebiet
+P1: Postleitzahlgebiet
+P0: Land
+
+]FR_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>crmTest</ownerDesignName>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Postleitzahl" id="510636A7-860B-7EBE-CEE7-0BAB461105DB">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:56 UTC</createdTime>
+<generatorID>B5F33891-F2FE-CAF2-EB56-D971EE142581</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+[FR_ATTR_COMMENT[
+
+]FR_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>crmTest</ownerDesignName>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="PIM AttrID" value="."/>
+<property name="PIM AttrName" value="."/>
+<property name="PIM EnglName" value="."/>
+<property name="PIM datatype" value="."/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+</Column>
+<Column name="PLZ-Ebene" id="1E73266C-7A55-3DC1-C1C7-8E2C20A89A50">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:56 UTC</createdTime>
+<comment><![CDATA[P1-P3]]></comment>
+<generatorID>07E07412-DAC0-FD4E-59BF-E4FF52A462BE</generatorID>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+*DE* P1-P3
+]EN_ATTR_COMMENT]
+[DE_ATTR_COMMENT[
+P1-P3
+]DE_ATTR_COMMENT]
+[FR_ATTR_COMMENT[
+*EN* *DE* P1-P3
+]FR_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>crmTest</ownerDesignName>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="PIM AttrID" value="."/>
+<property name="PIM AttrName" value="."/>
+<property name="PIM EnglName" value="."/>
+<property name="PIM datatype" value="."/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+</Column>
+<Column name="PLZ-Gebiet_ID" id="D1F00B2C-8C23-7EF2-56E9-40050FD22F1F">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:56 UTC</createdTime>
+<ownerDesignName>crmTest</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+<propertyMap>
+<property name="PIM AttrID" value="."/>
+<property name="PIM AttrName" value="."/>
+<property name="PIM EnglName" value="."/>
+<property name="PIM datatype" value="."/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+</Column>
+<Column name="Gebiet_Geografische_Einheit_GEIN_ID" id="5A997C5B-3AAE-948F-1A1E-4C65CBBD4145">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:56 UTC</createdTime>
+<ownerDesignName>crmTest</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="PIM AttrID" value="."/>
+<property name="PIM AttrName" value="."/>
+<property name="PIM EnglName" value="."/>
+<property name="PIM datatype" value="."/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+<associations>
+<colAssociation fkAssociation="DB8EE7DF-13B1-64D5-F563-6918D46EBF82" referredColumn="619D9332-9E0B-6412-7E31-1AEFCEFC00BA"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="87EB5D59-FB90-368F-E125-BE87C857392C" name="PLZ-Gebiet_PK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:56 UTC</createdTime>
+<ownerDesignName>crmTest</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="5A997C5B-3AAE-948F-1A1E-4C65CBBD4145"/>
+<colUsage columnID="D1F00B2C-8C23-7EF2-56E9-40050FD22F1F"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="C89D8EA7-03D6-D786-2438-217A4EA61D9E" name="PLZ-Gebiet_PLZ-Gebiet_ID_UN">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:56 UTC</createdTime>
+<ownerDesignName>crmTest</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="D1F00B2C-8C23-7EF2-56E9-40050FD22F1F"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="E6D1ABE0-9B7E-8CC9-8E95-3D22F4E57978" name="PLZ-Gebiet_Gebiet_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:56 UTC</createdTime>
+<generatorID>5E04AA32-8062-6E79-28E9-67301B730F31</generatorID>
+<ownerDesignName>crmTest</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="5A997C5B-3AAE-948F-1A1E-4C65CBBD4145"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

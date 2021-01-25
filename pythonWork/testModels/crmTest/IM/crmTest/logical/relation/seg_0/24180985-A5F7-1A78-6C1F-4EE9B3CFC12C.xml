@@ -1,0 +1,31 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_111" directorySegmentName="seg_0" id="24180985-A5F7-1A78-6C1F-4EE9B3CFC12C">
+<createdBy>stb</createdBy>
+<createdTime>2019-05-06 08:04:25 UTC</createdTime>
+<ownerDesignName>crmTest</ownerDesignName>
+<engineerTo>
+<item key="1AB27667-C11D-3493-68AA-DF92C84041A7" value="true"/>
+<item key="851DDEFA-B048-37E9-7826-4E48946EAF1C" value="true"/>
+<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="false"/>
+<item key="015DE428-05B6-58DD-323D-ECDC72266F4A" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<nameOnSource>bedient</nameOnSource>
+<nameOnTarget>bedient von</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>B7370B42-AB19-CD15-7BA2-87B1C54C7D8C</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>BC64DF08-B6C0-FEB6-5D7B-8E4EE6C75AB9</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="bedient"/>
+<property name="DE_RELA_TEXT_TO" value="bedient von"/>
+<property name="EN_RELA_TEXT_FROM" value="attends to"/>
+<property name="EN_RELA_TEXT_TO" value="attended by"/>
+<property name="FR_RELA_TEXT_FROM" value="fréquente"/>
+<property name="FR_RELA_TEXT_TO" value="est fréquenté par"/>
+</propertyMap>
+</Relation>

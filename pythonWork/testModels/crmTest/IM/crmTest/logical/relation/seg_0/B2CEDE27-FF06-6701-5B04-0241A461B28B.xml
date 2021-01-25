@@ -1,0 +1,31 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_8" directorySegmentName="seg_0" id="B2CEDE27-FF06-6701-5B04-0241A461B28B">
+<createdBy>stb</createdBy>
+<createdTime>2019-05-06 08:04:25 UTC</createdTime>
+<ownerDesignName>crmTest</ownerDesignName>
+<engineerTo>
+<item key="1AB27667-C11D-3493-68AA-DF92C84041A7" value="true"/>
+<item key="851DDEFA-B048-37E9-7826-4E48946EAF1C" value="true"/>
+<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="false"/>
+<item key="015DE428-05B6-58DD-323D-ECDC72266F4A" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<nameOnSource>nimmt wahr</nameOnSource>
+<nameOnTarget>wahrgenommen von</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>FFAF9724-74C2-E2A0-9908-B5EE9AB30C02</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>D7E28BBB-0BD6-42BD-A970-3BF025E221D7</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="nimmt wahr"/>
+<property name="DE_RELA_TEXT_TO" value="wahrgenommen von"/>
+<property name="EN_RELA_TEXT_FROM" value="perceives"/>
+<property name="EN_RELA_TEXT_TO" value="perceived by"/>
+<property name="FR_RELA_TEXT_FROM" value="perçoit"/>
+<property name="FR_RELA_TEXT_TO" value="perçu comme"/>
+</propertyMap>
+</Relation>

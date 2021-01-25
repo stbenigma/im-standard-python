@@ -1,0 +1,96 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="A23A66C0-4267-A46D-DB32-AA46743F4C07" name="Wettbewerber">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:56 UTC</createdTime>
+<comment><![CDATA[Firma die ähnliche Produkte anbietet oder herstellt und oder ähnliche Kundensegmente betreut
+]]></comment>
+<generatorID>B7370B42-AB19-CD15-7BA2-87B1C54C7D8C</generatorID>
+<notes><![CDATA[[EN_ENTI_COMMENT[
+*DE* Firma die ähnliche Produkte anbietet oder herstellt und oder ähnliche Kundensegmente betreut
+
+]EN_ENTI_COMMENT]
+[DE_ENTI_COMMENT[
+Firma die ähnliche Produkte anbietet oder herstellt und oder ähnliche Kundensegmente betreut
+
+]DE_ENTI_COMMENT]
+[FR_ENTI_COMMENT[
+*EN* *DE* Firma die ähnliche Produkte anbietet oder herstellt und oder ähnliche Kundensegmente betreut
+
+]FR_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>crmTest</ownerDesignName>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Wettbewerber_ID" id="5F93FCCD-A320-E27D-0BD0-F00773D396B0">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:56 UTC</createdTime>
+<ownerDesignName>crmTest</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+<propertyMap>
+<property name="PIM AttrID" value="."/>
+<property name="PIM AttrName" value="."/>
+<property name="PIM EnglName" value="."/>
+<property name="PIM datatype" value="."/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+</Column>
+<Column name="Geschäftsfähige_Einheit_Geschäftsfähige_Einheit_ID" id="AECCA7CC-E61D-59D4-0417-9E402A4699CE">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:57 UTC</createdTime>
+<ownerDesignName>crmTest</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="PIM AttrID" value="."/>
+<property name="PIM AttrName" value="."/>
+<property name="PIM EnglName" value="."/>
+<property name="PIM datatype" value="."/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+<associations>
+<colAssociation fkAssociation="F86F32C4-1212-EFB0-3CE0-B982C1600190" referredColumn="61CDF818-DC9A-155D-7C86-84A6FF6C1F6E"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="1EF25446-BDD9-FB2A-3328-4D19D5F885C2" name="Wettbewerber_PK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:56 UTC</createdTime>
+<ownerDesignName>crmTest</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="5F93FCCD-A320-E27D-0BD0-F00773D396B0"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="5BD83316-EA05-7A96-563B-EF48784CF265" name="Wettbewerber_Geschäftsfähige_Einheit_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:57 UTC</createdTime>
+<generatorID>67AF6035-E462-D23F-6552-3710DFD4664D</generatorID>
+<ownerDesignName>crmTest</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="AECCA7CC-E61D-59D4-0417-9E402A4699CE"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

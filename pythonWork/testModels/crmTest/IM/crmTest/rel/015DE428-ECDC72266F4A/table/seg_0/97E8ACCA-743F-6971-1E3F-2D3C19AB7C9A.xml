@@ -1,0 +1,159 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="97E8ACCA-743F-6971-1E3F-2D3C19AB7C9A" name="accounnt">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:03 UTC</createdTime>
+<comment><![CDATA[Kommunikationskanäle und ihre Adresse
+]]></comment>
+<generatorID>32A13181-E1BC-D2E4-6094-2CC4F71CD4F7</generatorID>
+<notes><![CDATA[[EN_ENTI_COMMENT[
+*DE* Kommunikationskanäle und ihre Adresse
+
+]EN_ENTI_COMMENT]
+[DE_ENTI_COMMENT[
+Kommunikationskanäle und ihre Adresse
+
+]DE_ENTI_COMMENT]
+[FR_ENTI_COMMENT[
+*EN* *DE* Kommunikationskanäle und ihre Adresse
+
+]FR_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>crmTest</ownerDesignName>
+<ordsAlias>kommunikationsmittel</ordsAlias>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="eMail" id="EF87D870-3E36-CB5B-2EF5-8ED5BDB2BE35">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:03 UTC</createdTime>
+<generatorID>A3C0981D-19C2-D03B-F0AA-1AA1292CFAB2</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+[FR_ATTR_COMMENT[
+
+]FR_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>crmTest</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Fixnet_Tel_Nr" id="D58FCC5F-48BC-61A5-6356-4BB54A028805">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:03 UTC</createdTime>
+<generatorID>4FE9A3F6-8EAF-4AB4-9F0B-9D0D1D287155</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+[FR_ATTR_COMMENT[
+
+]FR_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>crmTest</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Mobil_Tel_Nr" id="69619308-647D-8386-74DC-B3E55751F6D6">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:03 UTC</createdTime>
+<generatorID>696C9225-7D81-0F76-EE05-E054ACE1AEAF</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+[FR_ATTR_COMMENT[
+
+]FR_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>crmTest</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Webseite" id="EDA631CC-AE59-AAD1-3820-15F5D8A831F7">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:03 UTC</createdTime>
+<generatorID>18D6C7F4-AF3A-3F20-F568-501776C7B57A</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+[FR_ATTR_COMMENT[
+
+]FR_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>crmTest</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Kommunikationsmittel_ID" id="312B9F3D-4BA1-CE5F-8DED-68623DDB2000">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:03 UTC</createdTime>
+<ownerDesignName>crmTest</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+<Column name="Geschäftsfähige_Einheit_Geschäftsfähige_Einheit_ID" id="DB176842-7DE4-D2F3-AC69-F9DFE9C112B2">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:03 UTC</createdTime>
+<ownerDesignName>crmTest</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="98084328-9E49-AED8-D6F2-C78159114ACD" referredColumn="8731F533-C95F-BA0B-2D17-5CF1581BD1B1"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="03272F59-9A3C-8488-2220-6C1ACA4DCA25" name="Kommunikationsmittel_PK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:03 UTC</createdTime>
+<ownerDesignName>crmTest</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="312B9F3D-4BA1-CE5F-8DED-68623DDB2000"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="0711A260-3E4C-B95E-3EBB-0B7DFB223471" name="Kommunikationsmittel_Geschäftsfähige_Einheit_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:03 UTC</createdTime>
+<generatorID>902EAE81-D172-7797-20F6-E331871B72FB</generatorID>
+<ownerDesignName>crmTest</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="DB176842-7DE4-D2F3-AC69-F9DFE9C112B2"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

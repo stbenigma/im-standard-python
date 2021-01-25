@@ -1,0 +1,31 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_61" directorySegmentName="seg_0" id="08AC50D7-D0F5-BDD4-DCA7-38CCDC4CB901">
+<createdBy>stb</createdBy>
+<createdTime>2019-05-06 08:04:25 UTC</createdTime>
+<ownerDesignName>crmTest</ownerDesignName>
+<engineerTo>
+<item key="1AB27667-C11D-3493-68AA-DF92C84041A7" value="true"/>
+<item key="851DDEFA-B048-37E9-7826-4E48946EAF1C" value="true"/>
+<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="false"/>
+<item key="015DE428-05B6-58DD-323D-ECDC72266F4A" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<nameOnSource>betreut direkt</nameOnSource>
+<nameOnTarget>direkt betreut von</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>855B3CD6-3898-7179-D003-53066C937878</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>F57E2391-8CC4-D02B-8308-1E4C8BC123A7</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="betreut direkt"/>
+<property name="DE_RELA_TEXT_TO" value="direkt betreut von"/>
+<property name="EN_RELA_TEXT_FROM" value="attends directly"/>
+<property name="EN_RELA_TEXT_TO" value="directly attended by"/>
+<property name="FR_RELA_TEXT_FROM" value="s&apos;occupe directement de"/>
+<property name="FR_RELA_TEXT_TO" value="pris en charge directement par"/>
+</propertyMap>
+</Relation>

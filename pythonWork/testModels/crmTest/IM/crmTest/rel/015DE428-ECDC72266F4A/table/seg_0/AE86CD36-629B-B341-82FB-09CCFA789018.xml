@@ -1,0 +1,93 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="AE86CD36-629B-B341-82FB-09CCFA789018" name="account">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:03 UTC</createdTime>
+<generatorID>3DD3ACC9-75E8-8370-383F-69FCF5F4983F</generatorID>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>crmTest</ownerDesignName>
+<ordsAlias>natrliche_person</ordsAlias>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Vorname" id="D675DAC1-3297-8C5D-1534-5FC1E8B7331B">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:03 UTC</createdTime>
+<generatorID>34425C84-C83D-CD8C-C3A8-A29A523A971B</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+[FR_ATTR_COMMENT[
+
+]FR_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>crmTest</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="geburtsdatum" id="A47E2B69-82E3-1FF4-E408-3E57772D037D">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:03 UTC</createdTime>
+<generatorID>BAA2C6EF-0C92-9643-BF97-C6828D6F6188</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+[FR_ATTR_COMMENT[
+
+]FR_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>crmTest</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Geschlecht" id="C5C8A603-6881-5BA5-E246-89423DB8BD49">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:03 UTC</createdTime>
+<generatorID>114252E2-787D-F3A4-D874-37086E916F60</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+[FR_ATTR_COMMENT[
+
+]FR_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>crmTest</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="PERSID" id="E64901C4-D22E-B625-DEAF-47C17F1687AE">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:03 UTC</createdTime>
+<ownerDesignName>crmTest</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+</columns>
+</Table>

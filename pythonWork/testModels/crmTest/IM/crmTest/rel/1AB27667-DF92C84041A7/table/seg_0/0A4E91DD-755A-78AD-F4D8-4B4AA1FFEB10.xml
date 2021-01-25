@@ -1,0 +1,92 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="0A4E91DD-755A-78AD-F4D8-4B4AA1FFEB10" name="Geografische_Einheit">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:10 UTC</createdTime>
+<comment><![CDATA[Ein geographisches Gebilde das nach geographischen, polititischen oder postalischen Kriterien in dieser Form definiert ist.]]></comment>
+<generatorID>E6723025-CAD3-E943-1AAB-BE3149D7405E</generatorID>
+<notes><![CDATA[[EN_ENTI_COMMENT[
+*DE* Ein geographisches Gebilde das nach geographischen, polititischen oder postalischen Kriterien in dieser Form definiert ist.
+]EN_ENTI_COMMENT]
+[DE_ENTI_COMMENT[
+Ein geographisches Gebilde das nach geographischen, polititischen oder postalischen Kriterien in dieser Form definiert ist.
+]DE_ENTI_COMMENT]
+[FR_ENTI_COMMENT[
+*EN* *DE* Ein geographisches Gebilde das nach geographischen, polititischen oder postalischen Kriterien in dieser Form definiert ist.
+]FR_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>crmTest</ownerDesignName>
+<abbreviation>GEIN</abbreviation>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="GEIN_ID" id="B89FF6BA-3D6C-443E-9F0A-722A28F5E3BE">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:10 UTC</createdTime>
+<ownerDesignName>crmTest</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+<Column name="Name_[L]" id="650ACEC1-E415-FFCE-5211-E751E4D1A6DB">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:10 UTC</createdTime>
+<generatorID>5E75C083-4B08-9B98-D615-C1F359FB7915</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+[FR_ATTR_COMMENT[
+
+]FR_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>crmTest</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="GeoInformation" id="079B74DF-4349-BA16-9F37-375BFA309268">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:10 UTC</createdTime>
+<comment><![CDATA[Fläche eines Gebiets als geo-Information]]></comment>
+<generatorID>FE56DE90-386C-5805-3D69-2C70A1861A61</generatorID>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+*DE* Fläche eines Gebiets als geo-Information
+]EN_ATTR_COMMENT]
+[DE_ATTR_COMMENT[
+Fläche eines Gebiets als geo-Information
+]DE_ATTR_COMMENT]
+[FR_ATTR_COMMENT[
+*EN* *DE* Fläche eines Gebiets als geo-Information
+]FR_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>crmTest</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="00FFD2DD-7E26-2AA3-DB50-B18F127DB250" name="GEIN_PK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:10 UTC</createdTime>
+<ownerDesignName>crmTest</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="B89FF6BA-3D6C-443E-9F0A-722A28F5E3BE"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -1,0 +1,18 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="C0CBDFF9-C26D-418B-7917-2C270D10ECC5" containerWithKeyObject="BA02059E-392E-9205-BA91-B07A74E4D45C" localFKIndex="E5B03911-3CB6-4BE4-B962-0588DC9FFAF7" name="Leasingnehmer_Vertriebskunde_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:57 UTC</createdTime>
+<generatorID>E71429AD-0D99-E7B3-BE50-A81517191EFB</generatorID>
+<ownerDesignName>crmTest</ownerDesignName>
+<referredTableLongName>Vertriebskunde</referredTableLongName>
+<arc>7191404C-7D02-0757-AA1F-9F2CB56F6847</arc>
+<deleteRule>RESTRICT</deleteRule>
+<referredTableID>E4C6AAFE-2255-93D0-C597-6B5E5EF62F40</referredTableID>
+<keyObject>A96799C5-A684-C8A5-DAC3-68231746E516</keyObject>
+<referredKeyID>A96799C5-A684-C8A5-DAC3-68231746E516</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>Vertriebsteilnehmer_Vertriebsteilnehmer_ID,Vertriebskunde_ID</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

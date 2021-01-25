@@ -1,0 +1,78 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="FEDA2717-1F18-F923-DE08-CF3B300FE584" name="Wettbewerber">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:03 UTC</createdTime>
+<comment><![CDATA[Firma die ähnliche Produkte anbietet oder herstellt und oder ähnliche Kundensegmente betreut
+]]></comment>
+<generatorID>B7370B42-AB19-CD15-7BA2-87B1C54C7D8C</generatorID>
+<notes><![CDATA[[EN_ENTI_COMMENT[
+*DE* Firma die ähnliche Produkte anbietet oder herstellt und oder ähnliche Kundensegmente betreut
+
+]EN_ENTI_COMMENT]
+[DE_ENTI_COMMENT[
+Firma die ähnliche Produkte anbietet oder herstellt und oder ähnliche Kundensegmente betreut
+
+]DE_ENTI_COMMENT]
+[FR_ENTI_COMMENT[
+*EN* *DE* Firma die ähnliche Produkte anbietet oder herstellt und oder ähnliche Kundensegmente betreut
+
+]FR_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>crmTest</ownerDesignName>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Wettbewerber_ID" id="76CE6587-072C-59F5-460A-9305BFC600C6">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:03 UTC</createdTime>
+<ownerDesignName>crmTest</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+<Column name="Geschäftsfähige_Einheit_Geschäftsfähige_Einheit_ID" id="23A14351-506B-469E-D033-0D0D450AEF89">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:04 UTC</createdTime>
+<ownerDesignName>crmTest</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="C8979177-EE24-2F06-18FC-1EBB76A6D0F4" referredColumn="8731F533-C95F-BA0B-2D17-5CF1581BD1B1"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="B90860B0-3786-4FE7-8734-FEA48CFFD513" name="Wettbewerber_PK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:03 UTC</createdTime>
+<ownerDesignName>crmTest</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="76CE6587-072C-59F5-460A-9305BFC600C6"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="FED21252-FFD8-7A65-D7C3-BE6BB257F632" name="Wettbewerber_Geschäftsfähige_Einheit_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:04 UTC</createdTime>
+<generatorID>67AF6035-E462-D23F-6552-3710DFD4664D</generatorID>
+<ownerDesignName>crmTest</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="23A14351-506B-469E-D033-0D0D450AEF89"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

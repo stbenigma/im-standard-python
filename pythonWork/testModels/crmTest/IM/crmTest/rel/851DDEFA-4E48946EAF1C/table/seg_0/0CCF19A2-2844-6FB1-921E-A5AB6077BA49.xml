@@ -1,0 +1,120 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="0CCF19A2-2844-6FB1-921E-A5AB6077BA49" name="Relation_61">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:57 UTC</createdTime>
+<ownerDesignName>crmTest</ownerDesignName>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Ansprechpartner_Ansprechpartner_ID" id="4F2B9F0B-ED0F-BF3D-3708-AFBFB180D327">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:57 UTC</createdTime>
+<ownerDesignName>crmTest</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="PIM AttrID" value="."/>
+<property name="PIM AttrName" value="."/>
+<property name="PIM EnglName" value="."/>
+<property name="PIM datatype" value="."/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+<associations>
+<colAssociation fkAssociation="95CA0FC2-992D-E7A9-1569-B93FEF0A7F76" referredColumn="0DD35B80-367C-1E79-388B-5D0811B611C3"/>
+</associations>
+</Column>
+<Column name="Vertriebskunde_Vertriebsteilnehmer_Vertriebsteilnehmer_ID" id="0A537FA4-C2CD-4CFD-5AB7-1CC88E0FE488">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:57 UTC</createdTime>
+<ownerDesignName>crmTest</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="PIM AttrID" value="."/>
+<property name="PIM AttrName" value="."/>
+<property name="PIM EnglName" value="."/>
+<property name="PIM datatype" value="."/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+<associations>
+<colAssociation fkAssociation="952CEFCE-4F6C-F1AE-6D50-D9C6C9D6662B" referredColumn="2B31972E-483B-EBE4-E12E-6863BD668D2C"/>
+</associations>
+</Column>
+<Column name="Vertriebskunde_Vertriebskunde_ID" id="1C5690EE-4D1A-83FC-E7E8-75E14A02A423">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:57 UTC</createdTime>
+<ownerDesignName>crmTest</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="PIM AttrID" value="."/>
+<property name="PIM AttrName" value="."/>
+<property name="PIM EnglName" value="."/>
+<property name="PIM datatype" value="."/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+<associations>
+<colAssociation fkAssociation="952CEFCE-4F6C-F1AE-6D50-D9C6C9D6662B" referredColumn="92A5BAA1-065C-542B-FFB5-25557EFC66B0"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="63D9E3F9-B3FB-2EC9-E15C-DC945E618F96" name="Relation_61_PK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:57 UTC</createdTime>
+<ownerDesignName>crmTest</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="4F2B9F0B-ED0F-BF3D-3708-AFBFB180D327"/>
+<colUsage columnID="0A537FA4-C2CD-4CFD-5AB7-1CC88E0FE488"/>
+<colUsage columnID="1C5690EE-4D1A-83FC-E7E8-75E14A02A423"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="B31CD842-DC6F-6BBE-6328-E3651CE2C59E" name="Relation_61_Ansprechpartner_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:57 UTC</createdTime>
+<generatorID>08AC50D7-D0F5-BDD4-DCA7-38CCDC4CB901</generatorID>
+<ownerDesignName>crmTest</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="4F2B9F0B-ED0F-BF3D-3708-AFBFB180D327"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="681E596D-C52F-AB61-DAD4-69E86F2E0083" name="Relation_61_Vertriebskunde_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:57 UTC</createdTime>
+<generatorID>08AC50D7-D0F5-BDD4-DCA7-38CCDC4CB901</generatorID>
+<ownerDesignName>crmTest</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="0A537FA4-C2CD-4CFD-5AB7-1CC88E0FE488"/>
+<colUsage columnID="1C5690EE-4D1A-83FC-E7E8-75E14A02A423"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

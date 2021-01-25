@@ -1,0 +1,236 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="7B7197AB-0F53-2714-4584-1D454DFA2CFD" name="Land">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:03 UTC</createdTime>
+<comment><![CDATA[Land gemäss ISO-Liste ISO-3166-1
+
+Gemäss NUTS (https://de.wikipedia.org/wiki/NUTS) ist das Land die Gebietsstufe NUTS 0
+]]></comment>
+<generatorID>27E0E472-3045-DA71-C33C-94F83ED0393E</generatorID>
+<notes><![CDATA[[EN_ENTI_COMMENT[
+*DE* Land gemäss ISO-Liste ISO-3166-1
+
+Gemäss NUTS (https://de.wikipedia.org/wiki/NUTS) ist das Land die Gebietsstufe NUTS 0
+
+]EN_ENTI_COMMENT]
+[DE_ENTI_COMMENT[
+Land gemäss ISO-Liste ISO-3166-1
+
+Gemäss NUTS (https://de.wikipedia.org/wiki/NUTS) ist das Land die Gebietsstufe NUTS 0
+
+]DE_ENTI_COMMENT]
+[FR_ENTI_COMMENT[
+*EN* *DE* Land gemäss ISO-Liste ISO-3166-1
+
+Gemäss NUTS (https://de.wikipedia.org/wiki/NUTS) ist das Land die Gebietsstufe NUTS 0
+
+]FR_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>crmTest</ownerDesignName>
+<abbreviation>LAND</abbreviation>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ISO2_Code" id="D91266DA-6986-FAF0-6EEE-14684F8A409B">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:03 UTC</createdTime>
+<generatorID>2D721C1B-E511-B23D-D93E-C36B3A2D2FEA</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+[FR_ATTR_COMMENT[
+
+]FR_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>crmTest</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>FC85688A-BE92-2820-35E2-EB148361AAE1</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ISO3_Code" id="E7099AB3-1E05-B7FA-A1F3-2C5C725A22C1">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:03 UTC</createdTime>
+<generatorID>080C0666-2AA9-CABB-5493-19258F936D9D</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+[FR_ATTR_COMMENT[
+
+]FR_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>crmTest</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>FC85688A-BE92-2820-35E2-EB148361AAE1</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ISO_Code_numerisch" id="2245FFF7-66BC-8954-BD44-0521DF9981E2">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:03 UTC</createdTime>
+<generatorID>EAA58C83-A9F6-56BD-3C50-74BF3E45A7F9</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+[FR_ATTR_COMMENT[
+
+]FR_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>crmTest</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>FC85688A-BE92-2820-35E2-EB148361AAE1</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="TopLevelDomain" id="BBF5E112-5CB6-A1E1-522A-FE9023B5A307">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:03 UTC</createdTime>
+<generatorID>96777AC2-625D-9AD4-E724-D166F850C775</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+[FR_ATTR_COMMENT[
+
+]FR_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>crmTest</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="LAND_ID" id="AFA4CA1B-28AC-D0BE-BCB2-15844A2FF8F2">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:03 UTC</createdTime>
+<ownerDesignName>crmTest</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+<Column name="Geografische_Einheit_GEIN_ID" id="A9DD893B-C119-01AF-F6AD-A0A0FF803B0C">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:03 UTC</createdTime>
+<ownerDesignName>crmTest</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="6220F5D8-A160-A567-0A66-8AC946AC8056" referredColumn="8BE6E7F6-4056-343B-9453-D6A9B238293B"/>
+</associations>
+</Column>
+<Column name="Ländergruppe_Geografische_Einheit_GEIN_ID" id="4695B4A4-3BD1-427B-4C61-68142633F042">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:03 UTC</createdTime>
+<ownerDesignName>crmTest</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="2AF19EE6-2B3D-1CAC-ABCB-DFE94E2C1C0E" referredColumn="92C8A610-3B9F-A0D4-0EBD-602693BDB234"/>
+</associations>
+</Column>
+<Column name="Ländergruppe_Ländergruppe_ID" id="BEBA9154-C5EF-B663-C19B-64AE16BADF51">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:03 UTC</createdTime>
+<ownerDesignName>crmTest</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="2AF19EE6-2B3D-1CAC-ABCB-DFE94E2C1C0E" referredColumn="7949AC8D-2CC8-AAB8-B0B2-D595329EF46C"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="8C916924-7666-DF40-E069-1BE734D47B92" name="LAND_PK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:03 UTC</createdTime>
+<ownerDesignName>crmTest</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="A9DD893B-C119-01AF-F6AD-A0A0FF803B0C"/>
+<colUsage columnID="AFA4CA1B-28AC-D0BE-BCB2-15844A2FF8F2"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="A54071F7-FEB2-67E4-6433-4994BAE7E5D0" name="Land_ISO2_Code_UN">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:03 UTC</createdTime>
+<generatorID>82689744-B2F4-188E-FBB9-031802373456</generatorID>
+<ownerDesignName>crmTest</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="D91266DA-6986-FAF0-6EEE-14684F8A409B"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="A24F794C-DD8D-C3E6-5FEB-C5A3A6BB792C" name="Land_LAND_ID_UN">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:03 UTC</createdTime>
+<ownerDesignName>crmTest</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="AFA4CA1B-28AC-D0BE-BCB2-15844A2FF8F2"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="5FE19633-E586-757A-32D1-7D8B4E1ACEE0" name="Land_Geografische_Einheit_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:03 UTC</createdTime>
+<generatorID>4B79DC4B-5CE5-64B8-EA9A-07D0EEF9DF32</generatorID>
+<ownerDesignName>crmTest</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="A9DD893B-C119-01AF-F6AD-A0A0FF803B0C"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="E525397A-B0AC-A9A6-1060-75CAA53C906C" name="Land_Ländergruppe_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:03 UTC</createdTime>
+<generatorID>53AEE117-6447-87D7-389F-F40C8BB7DC65</generatorID>
+<ownerDesignName>crmTest</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="4695B4A4-3BD1-427B-4C61-68142633F042"/>
+<colUsage columnID="BEBA9154-C5EF-B663-C19B-64AE16BADF51"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

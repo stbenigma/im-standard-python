@@ -1,0 +1,88 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="6A230C51-7652-10F3-4FC2-23219A856BE9" name="Organisationseinheit">
+<createdBy>stb</createdBy>
+<createdTime>2019-05-06 12:33:30 UTC</createdTime>
+<comment><![CDATA[Firmeninterne Organisationeinheit.
+Meist hierarchisch organisiert.]]></comment>
+<notes><![CDATA[[EN_ENTI_COMMENT[
+**Company internal organizational unit.
+Mostly hierarchically organized.
+]EN_ENTI_COMMENT]
+[DE_ENTI_COMMENT[
+Firmeninterne Organisationeinheit.
+Meist hierarchisch organisiert.
+]DE_ENTI_COMMENT]
+[FR_ENTI_COMMENT[
+*Unité d'organisation interne de l'entreprise. La plupart sont organisés de façon hiérarchique.
+]FR_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>crmTest</ownerDesignName>
+<engineerTo>
+<item key="1AB27667-C11D-3493-68AA-DF92C84041A7" value="true"/>
+<item key="851DDEFA-B048-37E9-7826-4E48946EAF1C" value="true"/>
+<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="false"/>
+<item key="015DE428-05B6-58DD-323D-ECDC72266F4A" value="true"/>
+</engineerTo>
+<typeID>6F620B18-E4FD-24BF-543C-3ABB88094EDB</typeID>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="DE_ENTI_NAME" value="Organisationseinheit"/>
+<property name="EN_ENTI_NAME" value="Organisational unit"/>
+<property name="FR_ENTI_NAME" value="Unité organisationnelle"/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Name" id="F03F4978-F19A-5AD2-722C-FC0E7553F137">
+<createdBy>stb</createdBy>
+<createdTime>2019-05-06 12:33:46 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+[FR_ATTR_COMMENT[
+
+]FR_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>crmTest</ownerDesignName>
+<engineerTo>
+<item key="1AB27667-C11D-3493-68AA-DF92C84041A7" value="true"/>
+<item key="851DDEFA-B048-37E9-7826-4E48946EAF1C" value="true"/>
+<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="false"/>
+<item key="015DE428-05B6-58DD-323D-ECDC72266F4A" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Name"/>
+<property name="EN_ATTR_NAME" value="**Name"/>
+<property name="FR_ATTR_NAME" value="Nom"/>
+</propertyMap>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="9B980E00-1380-E90F-1A26-1AE167030F24" name="Key_1">
+<createdBy>stb</createdBy>
+<createdTime>2020-10-07 13:30:24 UTC</createdTime>
+<ownerDesignName>crmTest</ownerDesignName>
+<engineerTo>
+<item key="1AB27667-C11D-3493-68AA-DF92C84041A7" value="true"/>
+<item key="851DDEFA-B048-37E9-7826-4E48946EAF1C" value="true"/>
+<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true"/>
+<item key="015DE428-05B6-58DD-323D-ECDC72266F4A" value="true"/>
+</engineerTo>
+<newElementsIDs>F03F4978-F19A-5AD2-722C-FC0E7553F137,66214997-4415-70DA-4F9E-F5B1C2A3F0D3</newElementsIDs>
+<usedAttributes>
+<attributeRef>F03F4978-F19A-5AD2-722C-FC0E7553F137</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

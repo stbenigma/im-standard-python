@@ -1,0 +1,168 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="89200610-1123-2A3C-40F1-4D5EFDE77191" name="Besitzer">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:03 UTC</createdTime>
+<comment><![CDATA[Person oder Firma, die eine Maschine in seinem physischen Besitz hat.]]></comment>
+<generatorID>4B525151-B0D5-D2B4-DEC3-BAF23D457B16</generatorID>
+<notes><![CDATA[[EN_ENTI_COMMENT[
+*DE* Person oder Firma, die eine Maschine in seinem physischen Besitz hat.
+]EN_ENTI_COMMENT]
+[DE_ENTI_COMMENT[
+Person oder Firma, die eine Maschine in seinem physischen Besitz hat.
+]DE_ENTI_COMMENT]
+[FR_ENTI_COMMENT[
+*EN* *DE* Person oder Firma, die eine Maschine in seinem physischen Besitz hat.
+]FR_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>crmTest</ownerDesignName>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Besitzer_ID" id="557D3FE8-C35F-B840-BF83-2FAF168D97FA">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:03 UTC</createdTime>
+<ownerDesignName>crmTest</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+<Column name="Vertriebskunde_Vertriebsteilnehmer_Vertriebsteilnehmer_ID" id="804A7219-EA8A-F5B1-BB6E-57AF52541E66">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:03 UTC</createdTime>
+<ownerDesignName>crmTest</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="1612F4D7-C4FB-E693-974D-98F65A141395" referredColumn="8BCC9CAF-DFB7-0CE7-9D6B-8B8B567A1C57"/>
+</associations>
+</Column>
+<Column name="Vertriebskunde_Vertriebskunde_ID" id="AC712B53-AA78-AA94-BEBF-CAB43D0A91D4">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:03 UTC</createdTime>
+<ownerDesignName>crmTest</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="1612F4D7-C4FB-E693-974D-98F65A141395" referredColumn="AA4AFAA3-BAB8-3D17-8946-50FBB7E51D00"/>
+</associations>
+</Column>
+<Column name="Vertriebspartner_Vertriebsteilnehmer_Vertriebsteilnehmer_ID" id="C81174EC-8CDE-DC41-94BA-4E90090E31D2">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:03 UTC</createdTime>
+<ownerDesignName>crmTest</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="921C8468-7AF2-A3DB-373F-835FDFB10B42" referredColumn="BFDDDA87-C6D1-47A0-A10F-24FFE9021669"/>
+</associations>
+</Column>
+<Column name="Vertriebspartner_Vertriebspartner_ID" id="231DB4F1-7B63-D849-DF46-855E2E8E115F">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:03 UTC</createdTime>
+<ownerDesignName>crmTest</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="921C8468-7AF2-A3DB-373F-835FDFB10B42" referredColumn="F21B17DF-976B-CC83-3E1F-5AD4029F6DA2"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="1E0CA183-03C9-009F-2409-13AB961B91B6" name="Besitzer_PK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:03 UTC</createdTime>
+<ownerDesignName>crmTest</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="557D3FE8-C35F-B840-BF83-2FAF168D97FA"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="BB9739A7-6705-AB63-2E71-1E90A0BF1C12" name="Besitzer__UN">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:03 UTC</createdTime>
+<generatorID>B2F5CF33-0A05-F6A0-EE0A-0D2754B783D2</generatorID>
+<ownerDesignName>crmTest</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+</ind_PK_UK>
+<ind_PK_UK id="AD6492A2-6315-203A-1585-E21E6D52BF56" name="Besitzer__IDX">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:03 UTC</createdTime>
+<ownerDesignName>crmTest</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<relationGeneratorID>37E297A1-AD87-C7A1-4802-5DE2F049D760</relationGeneratorID>
+<indexColumnUsage>
+<colUsage columnID="804A7219-EA8A-F5B1-BB6E-57AF52541E66"/>
+<colUsage columnID="AC712B53-AA78-AA94-BEBF-CAB43D0A91D4"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="5D6CE7DC-5DBD-7214-77A3-C4A9C0C3A17C" name="Besitzer__IDXv1">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:03 UTC</createdTime>
+<ownerDesignName>crmTest</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<relationGeneratorID>26E76F21-17AE-E72C-60CB-F19F3D4C018D</relationGeneratorID>
+<indexColumnUsage>
+<colUsage columnID="C81174EC-8CDE-DC41-94BA-4E90090E31D2"/>
+<colUsage columnID="231DB4F1-7B63-D849-DF46-855E2E8E115F"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="ED673B51-B954-236E-329D-BDDC95E15FF3" name="Besitzer_Vertriebskunde_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:03 UTC</createdTime>
+<generatorID>37E297A1-AD87-C7A1-4802-5DE2F049D760</generatorID>
+<ownerDesignName>crmTest</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="804A7219-EA8A-F5B1-BB6E-57AF52541E66"/>
+<colUsage columnID="AC712B53-AA78-AA94-BEBF-CAB43D0A91D4"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="13695EA3-7FEA-AC5E-1D0C-6D445D3A8192" name="Besitzer_Vertriebspartner_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:03 UTC</createdTime>
+<generatorID>26E76F21-17AE-E72C-60CB-F19F3D4C018D</generatorID>
+<ownerDesignName>crmTest</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="C81174EC-8CDE-DC41-94BA-4E90090E31D2"/>
+<colUsage columnID="231DB4F1-7B63-D849-DF46-855E2E8E115F"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

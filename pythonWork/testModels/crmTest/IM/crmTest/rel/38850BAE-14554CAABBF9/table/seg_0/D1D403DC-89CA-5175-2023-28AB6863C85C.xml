@@ -1,0 +1,114 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="D1D403DC-89CA-5175-2023-28AB6863C85C" name="Relation_57">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:48 UTC</createdTime>
+<ownerDesignName>crmTest</ownerDesignName>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="natürliche_Person_Geschäftsfähige_Einheit_Geschäftsfähige_Einheit_ID" id="56AC5CC4-01B2-BA3A-D2C1-0F557CF1753E">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:48 UTC</createdTime>
+<ownerDesignName>crmTest</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<domain>AA61D466-0244-6F73-DC96-D8C3938B39E0</domain>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="F50E55BB-DA42-3620-29BE-FF2E3DA144CA" referredColumn="EF48B7F2-1BB7-F1DA-357A-248854E0DE52"/>
+</associations>
+</Column>
+<Column name="natürliche_Person_natürliche_Person_ID" id="EC6D44D5-5BDF-BC73-6EEF-A19DB6347266">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:48 UTC</createdTime>
+<ownerDesignName>crmTest</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<domain>AA61D466-0244-6F73-DC96-D8C3938B39E0</domain>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="F50E55BB-DA42-3620-29BE-FF2E3DA144CA" referredColumn="0D23FADE-0B6A-D73E-BD57-4FBEEA09720E"/>
+</associations>
+</Column>
+<Column name="natürliche_Person_Geschäftsfähige_Einheit_Geschäftsfähige_Einheit_ID1" id="1CE80721-5DEE-ED8C-3E66-D63D0522A019">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:48 UTC</createdTime>
+<ownerDesignName>crmTest</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<domain>AA61D466-0244-6F73-DC96-D8C3938B39E0</domain>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="3A865687-767B-5B84-D5A8-C251F2552B39" referredColumn="EF48B7F2-1BB7-F1DA-357A-248854E0DE52"/>
+</associations>
+</Column>
+<Column name="natürliche_Person_natürliche_Person_ID1" id="976F6FBC-5BD1-FE03-0686-4BD4B34A8D91">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:48 UTC</createdTime>
+<ownerDesignName>crmTest</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<domain>AA61D466-0244-6F73-DC96-D8C3938B39E0</domain>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="3A865687-767B-5B84-D5A8-C251F2552B39" referredColumn="0D23FADE-0B6A-D73E-BD57-4FBEEA09720E"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="63FDEED8-89E2-D58B-B03D-E56165B9924E" name="Relation_57_PK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:48 UTC</createdTime>
+<ownerDesignName>crmTest</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="56AC5CC4-01B2-BA3A-D2C1-0F557CF1753E"/>
+<colUsage columnID="EC6D44D5-5BDF-BC73-6EEF-A19DB6347266"/>
+<colUsage columnID="1CE80721-5DEE-ED8C-3E66-D63D0522A019"/>
+<colUsage columnID="976F6FBC-5BD1-FE03-0686-4BD4B34A8D91"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="03584A97-D739-C617-4B62-994E7ECC2815" name="Relation_57_natürliche_Person_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:48 UTC</createdTime>
+<generatorID>688D0870-DC81-CDD2-58D5-490E0CE3BE21</generatorID>
+<ownerDesignName>crmTest</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="56AC5CC4-01B2-BA3A-D2C1-0F557CF1753E"/>
+<colUsage columnID="EC6D44D5-5BDF-BC73-6EEF-A19DB6347266"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="1714FBD1-0F20-5614-842D-EBD974DD311A" name="Relation_57_natürliche_Person_FKv1">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:48 UTC</createdTime>
+<generatorID>688D0870-DC81-CDD2-58D5-490E0CE3BE21</generatorID>
+<ownerDesignName>crmTest</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="1CE80721-5DEE-ED8C-3E66-D63D0522A019"/>
+<colUsage columnID="976F6FBC-5BD1-FE03-0686-4BD4B34A8D91"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -1,0 +1,84 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="B9EC3371-29AE-C061-FFE2-2EC655945AE5" name="Vertriebspartner">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:03 UTC</createdTime>
+<comment><![CDATA[B2B Vertriebsteilnehmer, der unsere Produkte weiter verkauft oder vermittelt]]></comment>
+<generatorID>9DD8746C-CB5E-68EC-0C81-BF92AFFC8D25</generatorID>
+<notes><![CDATA[[EN_ENTI_COMMENT[
+*DE* B2B Vertriebsteilnehmer, der unsere Produkte weiter verkauft oder vermittelt
+]EN_ENTI_COMMENT]
+[DE_ENTI_COMMENT[
+B2B Vertriebsteilnehmer, der unsere Produkte weiter verkauft oder vermittelt
+]DE_ENTI_COMMENT]
+[FR_ENTI_COMMENT[
+*EN* *DE* B2B Vertriebsteilnehmer, der unsere Produkte weiter verkauft oder vermittelt
+]FR_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>crmTest</ownerDesignName>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Vertriebspartner_ID" id="F21B17DF-976B-CC83-3E1F-5AD4029F6DA2">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:03 UTC</createdTime>
+<ownerDesignName>crmTest</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+<Column name="Vertriebsteilnehmer_Vertriebsteilnehmer_ID" id="BFDDDA87-C6D1-47A0-A10F-24FFE9021669">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:03 UTC</createdTime>
+<ownerDesignName>crmTest</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="84C86F40-D143-84BA-5C21-73B2152EC3E0" referredColumn="9FE2859F-2F72-2FB6-DE64-40AB2E8668D7"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="AE3DB93F-E87D-8D9D-8C2B-9EC4D460D91A" name="Vertriebspartner_PK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:03 UTC</createdTime>
+<ownerDesignName>crmTest</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="BFDDDA87-C6D1-47A0-A10F-24FFE9021669"/>
+<colUsage columnID="F21B17DF-976B-CC83-3E1F-5AD4029F6DA2"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="F03D0CA8-D655-EC5F-B09B-3FD8F783EA54" name="Vertriebspartner_Vertriebspartner_ID_UN">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:03 UTC</createdTime>
+<ownerDesignName>crmTest</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="F21B17DF-976B-CC83-3E1F-5AD4029F6DA2"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="14293ED1-D2CD-9F1F-3DB9-86B147132EDB" name="Vertriebspartner_Vertriebsteilnehmer_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:03 UTC</createdTime>
+<generatorID>B10B92C5-258E-FF62-A1F0-31BDDF2DD453</generatorID>
+<ownerDesignName>crmTest</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="BFDDDA87-C6D1-47A0-A10F-24FFE9021669"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
