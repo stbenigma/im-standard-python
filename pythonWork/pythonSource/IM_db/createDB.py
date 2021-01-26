@@ -5,7 +5,7 @@ import sys
 from IM_DB import parameters, dbConnect, dbErstelleTables, logmessages
 
 
-def main(par1):
+def createDB(par1,pforcecreate=False):
     """Main program for createDB"""
     parameters.initparam(p_callarg=par1)
     logmessages.initlog('CreateDB')
@@ -13,11 +13,16 @@ def main(par1):
     dbtype = 'sqlite'
     if dbtype == parameters.SQLITE:
         if os.path.exists(parameters.dbFilePath()):
-            print ("********* {}-DB-File {} alreday exists, cannot create it".format(parameters.SQLITE,parameters.dbFilePath()))
-            return
-        """# falls es das Verzeichnis für die DB nicht gibt erzeuge es"""
-        if not os.path.isdir(parameters.dbDirect()):
+            if pforcecreate:
+                os.remove(parameters.dbFilePath())
+            else:
+                print ("********* {}-DB-File {} alreday exists, cannot create it".format(parameters.SQLITE,parameters.dbFilePath()))
+                return
+            #fi
+        elif not os.path.isdir(parameters.dbDirect()):
+            """falls es das Verzeichnis für die DB nicht gibt erzeuge es"""
             os.mkdir(parameters.dbDirect())
+        #fi
         dbConnect.openDB(parameters.dbFilePath(), 'OFF');
         sqlfile = parameters.sqlfilepath()
     #fi
@@ -31,4 +36,5 @@ def main(par1):
 
 if __name__ == '__main__':
     par1 = sys.argv[1]
-    main(par1)
+    force = (len(sys.argv) > 2) and (sys.argv[2]== 'FORCE')
+    createDB(par1,pforcecreate=force)

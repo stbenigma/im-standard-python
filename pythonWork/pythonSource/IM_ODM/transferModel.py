@@ -782,11 +782,17 @@ def doconstraint(pelemname,pmodetype,pmodeid,pxml):
     buru = BusinessRule()
     buru.buru_name = nvl(constrname,pelemname)
     buru.buru_descr = descr
-    buru.buru_rule = rules[0][1]
+    buru.buru_rule = rules[0][1] #first solution, take the first rule in the list
     buru.buru_impact = 'REFUSE'
     buru.buru_type = BusinessRule.BURU_TYPE_CHECK
     buru.buru_level = BusinessRule.BURU_LEVEL_ATTR
     buru.buru_errormsg = 'Rule {} violated. {}'.format(constrname,rules[0][1])
+
+    elem1=re.findall(r'"[\w -]+"',buru.buru_rule)
+    elem=re.findall(r'[^"][^()0-9-!+<>"= .,]+',buru.buru_rule)
+    elem2=re.findall(r'\w+',buru.buru_rule)
+    print (elem1,elem2)
+
     buruid = buru.insert()
     if pmodetype==Modelelemtype.ATTR:
         bure = BusinessruleElement(pburuid=buruid,pattrid=pmodeid)
