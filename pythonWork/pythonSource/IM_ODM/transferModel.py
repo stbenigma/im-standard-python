@@ -171,7 +171,7 @@ def dostructtypes():
             logmessages.writelog("Illegal domainreference {} (id={}) for structured type member {}".format(type(doma), key, val))
         #fi
 
-def liesunsfuelldoma(pdoma, pxml,pintfname=None,pdatyid=None):
+def liesunsfuelldoma(pdoma, pxml,pdatyid=None):
     pdoma.doma_uc = findText(pxml, 'createdBy')
     pdoma.doma_dc = findText(pxml, 'createdTime')
     if pdatyid is None:
@@ -215,12 +215,18 @@ def liesunsfuelldoma(pdoma, pxml,pintfname=None,pdatyid=None):
         #            print(re.search('\A\d* ','123 ab').group())
         zahl = re.search('\A\d+', nvl(findText(pxml, 'dataTypeSize')))
         pdoma.doma_txt_maxlng = None if zahl is None else zahl.group()
-        constr = pxml.find('checkConstraint')
-        if not (constr is None):
-            # print(constr.findall('*'))
-            impl = constr.find('implementationDef')
-            if not (impl is None):
-                pdoma.doma_text_syntaxrule = findField(impl, 'definition')
+        buru = getcheckconstraint(pxml=pxml)
+        if buru:
+            regexpprefix: str = "REGEXP:"
+            if (pdoma.doma_type == Domain.TXT) and buru.buru_rule.startswith(regexpprefix):
+                pdoma.doma_txt_syntaxrule = re.sub(regexpprefix, '', buru.buru_rule)
+            else:
+                buru.buru_name = nvl(buru.buru_name, pdoma.doma_name + '_CHK')
+                buru.buru_impact = 'REFUSE'
+                buru.buru_level = BusinessRule.BURU_LEVEL_ATTR
+                buru.insert()
+            # fi
+        # fi
     elif (pdoma.doma_type == Domain.DAT):
         pdoma.doma_dat_minvalue = range[0]
         pdoma.doma_dat_maxvalue = range[1]
@@ -240,6 +246,7 @@ def liesunsfuelldoma(pdoma, pxml,pintfname=None,pdatyid=None):
         unitofmeasure = findText(pxml, 'unitOfMeasure')
         if unitofmeasure is not None: pdoma.doma_phyu_id = PhysicalUnit.getorcreate(pname=unitofmeasure).phyu_id
     # fi
+
     pdoma.insert()
 
     if (lov is not None) & (lov != {}):
@@ -268,6 +275,7 @@ def do1domainfile(pfilename):
         doma.doma_descr = findText(dom, 'comment')
         doma.doma_origin = Domain.DOMAIN
         liesunsfuelldoma(pdoma=doma, pxml=dom)
+
         intfname = interfacename(findField(root, 'fileName'))
         if intfname is not None:
             interfacedomains[doma.doma_id] = intfname
@@ -762,41 +770,70 @@ def updateUDP(pmodeid, pobj):
         # print (udps)
         Userdefpropvalue.updvalues(prows=udps)
     # fi
+    return
 
-def doconstraint(pelemname,pmodetype,pmodeid,pxml):
+def getcheckconstraint(pxml):
     """within attributedefinition
-    <constraintName>My Constr Name</constraintName>
-    <checkConstraint>
-        <implementationDef dbType="Generic Constraint" definition="abcde"/>
-    </checkConstraint>
-    <useDomainConstraints>false</useDomainConstraints>  -- missing = true, if there is a domain
+        <constraintName>My Constr Name</constraintName>
+        <useDomainConstraints>false</useDomainConstraints>  -- missing = true, if there is a domain
+    in attribute and domains
+        <checkConstraint>
+            <implementationDef dbType="Generic Constraint" definition="abcde"/>
+        </checkConstraint>
 
     """
-    constrname = findText(pxml,"constraintName")
+    constrname = findText(pxml, "constraintName")
     constrxml = pxml.find("checkConstraint")
-    useDomainConstr = Boolean.str2bool(nvl(findText(pxml,'useDomainConstraints'),'true'))
-    if useDomainConstr or constrxml is None: return
-    rules = [(findField(impldef,'dbType'),findField(impldef,'definition')) for impldef in constrxml]
-    if (len (rules)==0):return
-    descr = '\n'.join("dbtype={}    rule={}".format(r[0],r[1]) for r in rules)
+    useDomainConstr = Boolean.str2bool(nvl(findText(pxml, 'useDomainConstraints'), 'true'))
+    if constrxml is None: return
+    rules = [(findField(impldef, 'dbType'), findField(impldef, 'definition')) for impldef in constrxml]
+    if (len(rules) == 0): return
+    descr = '\n'.join("dbtype={}    rule={}".format(r[0], r[1]) for r in rules)
     buru = BusinessRule()
-    buru.buru_name = nvl(constrname,pelemname)
+    buru.buru_name = constrname
     buru.buru_descr = descr
-    buru.buru_rule = rules[0][1] #first solution, take the first rule in the list
-    buru.buru_impact = 'REFUSE'
+    buru.buru_rule = rules[0][1]  # first solution, take the first rule in the list
     buru.buru_type = BusinessRule.BURU_TYPE_CHECK
-    buru.buru_level = BusinessRule.BURU_LEVEL_ATTR
-    buru.buru_errormsg = 'Rule {} violated. {}'.format(constrname,rules[0][1])
+    buru.buru_errormsg = 'Rule {} violated. {}'.format(constrname, buru.buru_rule)
+    return buru
 
-    elem1=re.findall(r'"[\w -]+"',buru.buru_rule)
-    elem=re.findall(r'[^"][^()0-9-!+<>"= .,]+',buru.buru_rule)
-    elem2=re.findall(r'\w+',buru.buru_rule)
-    print (elem1,elem2)
+def getformula(pelemname, pmodetype, pmodeid, pxml):
+    """
+    <formulaDesc>bisdat - vondat</formulaDesc>
+    <sourceType>Aggregate</sourceType>
+    <sourceType>Derived</sourceType>
 
-    buruid = buru.insert()
-    if pmodetype==Modelelemtype.ATTR:
-        bure = BusinessruleElement(pburuid=buruid,pattrid=pmodeid)
+    """
+    formula = findText(pxml,"formulaDesc")
+    sourctype = findText(pxml,"sourceType")
+    if formula is None: return
+    buru = BusinessRule()
+    buru.buru_descr = "Function: {} formula: {}".format(sourctype,formula)
+    buru.buru_rule = formula
+    buru.buru_type = BusinessRule.BURU_TYPE_CALC
+    return buru
+
+def doconstraints(pelemname, pmodetype, pmodeid, pxml):
+    buru = getcheckconstraint(pxml)
+    if buru and pmodetype == Modelelemtype.ATTR:
+        buru.buru_name = nvl(buru.buru_name,pelemname)
+        buru.buru_impact = 'REFUSE'
+        buru.buru_level = BusinessRule.BURU_LEVEL_ATTR
+        buruid = buru.insert()
+        bure = BusinessruleElement(pburuid=buruid, pattrid=pmodeid)
         bure.insert()
+    #fi
+
+    buru = getformula(pelemname, pmodetype, pmodeid, pxml)
+    if buru and pmodetype == Modelelemtype.ATTR:
+        buru.buru_name = nvl(buru.buru_name,pelemname)
+        buru.buru_impact = 'denormalised (calcualated) Value'
+        buru.buru_level = BusinessRule.BURU_LEVEL_ATTR
+        buruid = buru.insert()
+        bure = BusinessruleElement(pburuid=buruid, pattrid=pmodeid,pwriteable=True)
+        bure.insert()
+    #fi
+    return
 
 
 def do1Attribute(plfnr, pattrxml,pentiId):
@@ -840,7 +877,7 @@ def do1Attribute(plfnr, pattrxml,pentiId):
     ModelelemDocu.insertdocuref(pdocguidlist=documents, pmodeid=attrId)
     ModelelemOrgu.insertorguref(porguidlist=getpartyref(pelem=pattrxml), pmodeid=attrId)
 
-    doconstraint(pelemname=vatername+'.'+attr.attr_tech_name,pmodetype=Modelelemtype.ATTR,pmodeid=attrId,pxml=pattrxml)
+    doconstraints(pelemname=vatername + '.' + attr.attr_tech_name, pmodetype=Modelelemtype.ATTR, pmodeid=attrId, pxml=pattrxml)
 
 # do1Attribute
 
@@ -1517,6 +1554,7 @@ def transferODMModel():
     Datatype.deleteunused()
     Column.fillextid()
     Domain.fixdomaininterfaces(interfacedomains)
+    BusinessRule.setburuelements()
     removeemptyudp()
     filllanguages()
 # end transferODMModel

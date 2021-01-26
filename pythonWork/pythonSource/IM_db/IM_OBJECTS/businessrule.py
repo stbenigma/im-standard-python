@@ -47,6 +47,13 @@ class BusinessRule(MultilangBaseobject):
                                   , pwhere=pwhere, porderby=porderby)
         return attrs
     # select
+    @staticmethod
+    def setburuelements():
+        """
+        analyse businesrules and link the buru too the elements mentionend in them.
+        for domains copy buru to all attributes marked as "use domain constraint"
+        """
+        return
 # BusinessRule
 
 class BusinessruleElement(Baseobject):
