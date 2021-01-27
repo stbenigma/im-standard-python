@@ -1,7 +1,7 @@
 #import psycopg2
 
 import pymssql
-conn = pymssql.connect(server="Server=fyac-im-test.database.windows.net",user="fyayc-admin")
+conn = pymssql.connect(server="fyac-im-test.database.windows.net",user="fyayc-admin",)
 #cnxn = psycopg2.connect(host='34.65.164.219',database='postgres',user='postgres',password='8c-W.4_HoXU!aN43xED!Gr')
 
 cursor = cnxn.cursor()

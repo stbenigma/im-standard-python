@@ -467,7 +467,7 @@ function styleStrokes(rec){
 
 function styleTitles(){
 	for (let i = 0; i < titleList.length; i++){
-		titleList[i].setAttribute("style", "font-size:10px; fill:black; color:black; z-index:100;");
+		titleList[i].setAttribute("style", "font-size:10px; fill:black; Color:black; z-index:100;");
 		// x an y attributes have to be treated seperately fsr can't override 🤷‍♀️
 		titleList[i].setAttribute("x", "10px");
 		titleList[i].setAttribute("y", "16px");

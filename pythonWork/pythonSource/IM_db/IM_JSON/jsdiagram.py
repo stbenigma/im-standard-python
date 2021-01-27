@@ -15,7 +15,7 @@ def elemrep2js(peler, panker):
         , 'width': peler.eler_width
         , 'height': peler.eler_height
         , 'opacity': peler.eler_opacity
-        , 'color': peler.eler_color
+        , 'Color': peler.eler_color
         , 'marginwidth': peler.eler_marginwidth
         , 'marginopacity': peler.eler_marginopacity
         , 'margincolor': peler.eler_margincolor
@@ -38,7 +38,7 @@ def elemrep2sql(pmodel:JSModel,pdiagid,pelemreps):
         eler.eler_width = jelem['width']
         eler.eler_height = jelem['height']
         eler.eler_opacity = jelem['opacity']
-        eler.eler_color = jelem['color']
+        eler.eler_color = jelem['Color']
         eler.eler_marginwidth = jelem['marginwidth']
         eler.eler_marginopacity = jelem['marginopacity']
         eler.eler_margincolor = jelem['margincolor']

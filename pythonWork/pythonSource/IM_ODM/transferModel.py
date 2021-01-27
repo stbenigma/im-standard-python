@@ -2,9 +2,9 @@ import math
 import os
 import re
 import sqlite3
-import xml.etree.ElementTree as ET
+import xml.etree.ElementTree as et
 
-from IM_DB import dbDML, dbConnect, parameters, dbParam, logmessages
+from IM_DB import dbConnect, parameters, dbParam, logmessages
 from IM_OBJECTS import *
 from IM_ODM import transferRelational
 from mystring import nvl
@@ -12,7 +12,8 @@ from mystring import nvl
 GUIDPATTERN: str = '[A-Z0-9-]{20,45}'
 UDPEXTENSION: str = 'udposdm'
 
-class color:
+
+class Color:
     def __init__(self, foregcolor, backgcolor, fontcolor, fontname, fontsize, fontstyle):
         self.backgcolor = backgcolor
         self.foregcolor = foregcolor
@@ -21,7 +22,7 @@ class color:
         self.fontsize = fontsize
         self.fontstyle = fontstyle
     # end __init__
-# color
+# Color
 
 """ entry of keys found in entites
  [Key, (listof attr and relationship guids)]
@@ -29,12 +30,12 @@ class color:
 schluessel = []
 
 """ Classification type colors
- classguid : color
+ classguid : Color
 """
 classcolors = dict()
 
 """ default colors
- {elementtypename : color}
+ {elementtypename : Color}
 """
 defcolors = dict()
 
@@ -53,7 +54,7 @@ interfacedomains = dict()
 def findText(set, name):
     try:
         return set.find(name).text
-    except:
+    except Exception as ex:
         return None
 
 
@@ -62,7 +63,7 @@ def findText(set, name):
 def findField(set, name):
     try:
         return set.get(name)
-    except:
+    except Exception as ex:
         return None
 
 
@@ -89,7 +90,7 @@ def is_repeated(pstr: str) -> bool:
 
 
 def transferTypes():
-    types = ET.parse(parameters.odmIMDirec() + parameters.odmKonfDirec() + parameters.odmTypesFile())
+    types = et.parse(parameters.odmIMDirec() + parameters.odmKonfDirec() + parameters.odmTypesFile())
     root = types.getroot()
     for typ in root.findall('logicaltype'):
         Datatype(pname=findField(typ, 'name')
@@ -103,7 +104,7 @@ def transferTypes():
 unkndomains = {}
 def do1structtype(filename):
     global unkndomains
-    structdomains = ET.parse(filename)
+    structdomains = et.parse(filename)
     structdom = structdomains.getroot()
     if (findField(structdom, "class") != "oracle.dbtools.crest.model.design.datatypes.StructuredType"): return
     # print (findField(structdom,"name"))
@@ -266,7 +267,7 @@ def liesunsfuelldoma(pdoma, pxml,pdatyid=None):
 def do1domainfile(pfilename):
     global interfacedomains
     interfacename = lambda name: None if (name  == parameters.odmdefdomainsfile()[:-4]) else name
-    domains = ET.parse(pfilename)
+    domains = et.parse(pfilename)
     root = domains.getroot()
 
     for dom in root.findall('domains/Domain'):
@@ -339,7 +340,7 @@ def transferentity(penti, pdiagid, puc, pdc):
         fontcolor = nvl(findText(font, 'colorRGB'),defcol.fontcolor)
         fontstyle = nvl(findText(font, 'fontStyle') ,defcol.fontstyle)
         fontsize = nvl(findText(font, 'fontSize') , defcol.fontsize)
-        col = color(foregcolor=foregcolor, backgcolor=backgcolor, fontname=None,fontcolor=fontcolor, fontsize=fontsize, fontstyle=fontstyle)
+        col = Color(foregcolor=foregcolor, backgcolor=backgcolor, fontname=None, fontcolor=fontcolor, fontsize=fontsize, fontstyle=fontstyle)
     else:
         # check wether entity belongs to category
         enticatguid = None if entiodm is None else entities[entiodm][3]
@@ -408,12 +409,12 @@ def transferentity(penti, pdiagid, puc, pdc):
                     if str(err).startswith("UNIQUE constraint failed"):
                         logmessages.writelog("Attr-representation")
                         logmessages.writelog(str(e))
-                        logmessages.writelog(atteler)
+                        logmessages.writelog(atteler.tostring())
                     else: raise err
                 except Exception as e:
                     logmessages.writelog("Attr-representation")
                     logmessages.writelog(str(e))
-                    logmessages.writelog(atteler)
+                    logmessages.writelog(atteler.tostring())
                     raise e
                 attry += attrheight
                 # Maximal bis zur Grösse der Entität
@@ -429,7 +430,7 @@ def transferentity(penti, pdiagid, puc, pdc):
         except Exception as ex:
             logmessages.writelog("Entity-representation")
             logmessages.writelog(str(ex))
-            logmessages.writelog(eler)
+            logmessages.writelog(eler.tostring())
             raise ex
     # while
 
@@ -457,10 +458,13 @@ def linetype(pidx, pmaxidx, psourcelt, ptargetlt):
     # fi
 # linetype
 
+
 def connector(pidx, pmaxidx, psource, ptarget):
     # ist kein Segment sondern in Punkt. es macht nur 1 oder M Sinn
-    if (pidx == 0): return psource
-    if (pidx == (pmaxidx - 1)): return ptarget
+    if (pidx == 0):
+        return psource
+    if (pidx == (pmaxidx - 1)):
+        return ptarget
     return None
 
 
@@ -575,8 +579,9 @@ def transferdiaarc(parcs, pdiagid, puc, pdc):
 def doxmlfiles(pdirec, ptransfer, ppattern=r".*",pmandatorydirec = True):
     try:
         listdir = os.listdir(pdirec)
-    except:
-        if pmandatorydirec: logmessages.writelog('dosxmlfiles: directory "{}" not found.'.format(pdirec))
+    except Exception as ex:
+        if pmandatorydirec:
+            logmessages.writelog('dosxmlfiles: directory "{}" not found.'.format(pdirec))
         return
     # try
     for file in listdir:
@@ -586,10 +591,11 @@ def doxmlfiles(pdirec, ptransfer, ppattern=r".*",pmandatorydirec = True):
     # for
 # doxmlfiles
 
+
 def dosegfiles(pdirec, transferfiles,pmandatoryfile=True):
     try:
         listdir = os.listdir(pdirec)
-    except:
+    except Exception as ex:
         if pmandatoryfile: logmessages.writelog('dosSEGfiles: directory "{}" not found.'.format(pdirec))
         return
     # try
@@ -600,15 +606,16 @@ def dosegfiles(pdirec, transferfiles,pmandatoryfile=True):
                        , ppattern=r'{}.xml'.format(GUIDPATTERN))
 # dosegfiles
 
+
 def do1diagramm(pfilename):
     # print (p_filename)
     try:
-        diagramme = ET.parse(pfilename)
-    except:
+        diagramme = et.parse(pfilename)
+    except Exception as ex:
         print("Diagram nicht lesbar: {}".format(pfilename))
         return
     dia = diagramme.getroot()
-    diag = Diagram(psrcname=Externalref.SOURCE_ODM,psrcid=findField(dia, 'id'))
+    diag = Diagram(psrcname=Externalref.SOURCE_ODM, psrcid=findField(dia, 'id'))
     diag.diag_name = findField(dia, 'name')
     if (diag.diag_name == 'Logical'):
         return
@@ -704,13 +711,14 @@ def findorcreateDomain(pattrname, pfathername, pdomatype,pattrxml,pintfid = None
             logmessages.writelog("Attr: {}, Father: {}, Domain Guid {} leads to unknown element type {}"
                                  .format(pattrname, pfathername, ptypeguid, type(typeelem)))
             return Domain().getunknown().doma_id
-        #fi
-    #fi
+        # fi
+    # fi
     return Domain().getunknown().doma_id
 # findorcreateDomain
 
+
 def do1Arc(fileName):
-    arcXML = ET.parse(fileName).getroot()
+    arcXML = et.parse(fileName).getroot()
     if (findField(arcXML, "class") != "oracle.dbtools.crest.model.design.logical.Arc"): return
 
     arc = Arc(pname=findField(arcXML, "name")
@@ -1007,7 +1015,7 @@ def getpartyref(pelem):
 
 def do1Entity(fileName):
     global entities
-    tree = ET.parse(fileName)
+    tree = et.parse(fileName)
     entixml = tree.getroot()
     #es hat noch fremde XMLS in den Verzeichnissen
     if (findField(entixml, "class") != "oracle.dbtools.crest.model.design.logical.Entity"): return
@@ -1100,7 +1108,7 @@ def abbildTyp(ptyp):
 
 
 def do1Relation(fileName):
-    tree = ET.parse(fileName)
+    tree = et.parse(fileName)
     relaxml = tree.getroot()
     documents = getdokuref(pelem=relaxml)
 
@@ -1156,7 +1164,7 @@ def transferRelations():
 
 
 def do1UDPFile(pfileName):
-    tree = ET.parse(pfileName)
+    tree = et.parse(pfileName)
     root = tree.getroot()
     filename= re.match("^[^.]*",os.path.split(pfileName)[1])[0]
     ludpTheme = filename
@@ -1204,7 +1212,7 @@ def do1UDPFile(pfileName):
 
         obj = prop.findall('objects/object')
         for o in obj:
-            """"< object class ="oracle.dbtools.crest.model.design.relational.Column" visible="false" color="-1" / >"""
+            """"< object class ="oracle.dbtools.crest.model.design.relational.Column" visible="false" Color="-1" / >"""
             lMelt = Modelelemtype.type2melt(re.split("\.", findField(o, 'class'))[6])
             if lMelt != "":
                 lmeltid = Modelelemtype.getidbyshortname(lMelt)
@@ -1358,7 +1366,7 @@ def loadcolors(coldict, classkey, elem):
 
 def loaddefaultcolors():
     global defcolors,classcolors
-    settings = ET.parse(parameters.odmsettingsfile())
+    settings = et.parse(parameters.odmsettingsfile())
     root = settings.getroot()
     classif = root.find('classification_types')
 
@@ -1367,14 +1375,14 @@ def loaddefaultcolors():
         classguid = findField(ty, 'id')
         # foregcolor, backgcolor,fontcolor,fontname,fontsize,fontstyle):
         classcolors[classguid] = \
-            color(findField(ty, 'fgcolor'), findField(ty, 'color'), None, None, None, None)
+            Color(findField(ty, 'fgcolor'), findField(ty, 'color'), None, None, None, None)
         loadcolors(coldict=classcolors, classkey=classguid, elem=ty)
         # print(classname,classcolors[classguid].foregcolor,classcolors[classguid].backgcolor)
     # for
     default = root.find('default_fonts_and_colors')
     for de in default:
         classname = findField(de, 'classname')
-        defcolors[classname] = color(findField(de, 'foreground')
+        defcolors[classname] = Color(findField(de, 'foreground')
                                      , findField(de, 'background')
                                      , None, None, None, None)
         loadcolors(coldict=defcolors, classkey=classname, elem=de)
@@ -1392,7 +1400,7 @@ def filllanguages():
 # filllanguages
 
 def transferproject():
-    proj = ET.parse(parameters.odmIMDirec() + parameters.odmModelName() + parameters.odmIMExtension())
+    proj = et.parse(parameters.odmIMDirec() + parameters.odmModelName() + parameters.odmIMExtension())
     root = proj.getroot()
     comm = findText(root, 'comment')
     if comm is None:
@@ -1424,7 +1432,7 @@ def transferproject():
 
 def do1Document(fileName):
     global docuparents
-    tree = ET.parse(fileName)
+    tree = et.parse(fileName)
     root = tree.getroot()
     id =findField(root, 'id')
     docu = Document(psrcname=Externalref.SOURCE_ODM,psrcid=id)
@@ -1441,7 +1449,7 @@ def do1Document(fileName):
 def do1Orgunit(fileName):
     global orguparents,contacts
 
-    tree = ET.parse(fileName)
+    tree = et.parse(fileName)
     root = tree.getroot()
     srcid =findField(root, 'id')
     orgu = OragnisationalUnit(psrcname=Externalref.SOURCE_ODM,psrcid=srcid)
@@ -1480,7 +1488,7 @@ def removeemptyudp():
 emails = {}
 def do1email(fileName):
     global emails
-    tree = ET.parse(fileName)
+    tree = et.parse(fileName)
     root = tree.getroot()
     emails [findField(root, 'id')] = {'name' : findField(root, "name")
                                        ,'descr': findText(root, "comment")
@@ -1492,7 +1500,7 @@ def do1email(fileName):
 phones = {}
 def do1phone(fileName):
     global phones
-    tree = ET.parse(fileName)
+    tree = et.parse(fileName)
     root = tree.getroot()
     phones[findField(root, 'id')] = {'name' : findField(root, "name")
                                        ,'descr': findText(root, "comment")
@@ -1505,7 +1513,7 @@ def do1phone(fileName):
 contacts = {}
 def do1contact(fileName):
     global contacts,emails,phones
-    tree = ET.parse(fileName)
+    tree = et.parse(fileName)
     root = tree.getroot()
 
     ems = root.findall("emails/email")

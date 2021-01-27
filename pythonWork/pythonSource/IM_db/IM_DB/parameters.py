@@ -311,6 +311,7 @@ def liesparamfile(p_filepath):
     except:
         print("parameterfile reading error")
         raise
+    # try
 
     for sect in paramfile.sections():
         #print (sect,paramfile[sect])
@@ -359,6 +360,13 @@ def liesparamfile(p_filepath):
             #fi
         #for
     #for
+    """
+    basedirec is special, default  is the directory of the loaded parameter file 
+    """
+    if odmBaseDirec() is None:
+        odmBaseDirec(newval=os.path.dirname(os.path.realpath(p_filepath))+'/')
+
+
 #liesparamfile
 
 def filldefaultparams():
