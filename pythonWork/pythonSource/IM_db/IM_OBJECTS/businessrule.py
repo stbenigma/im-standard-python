@@ -47,6 +47,14 @@ class BusinessRule(MultilangBaseobject):
                                   , pwhere=pwhere, porderby=porderby)
         return attrs
     # select
+    @staticmethod
+    def setburuelements():
+        """
+        analyse businesrules and link the buru too the elements mentionend in them.
+        for domains copy buru to all attributes marked as "use domain constraint"
+        """
+        return
+
 # BusinessRule
 
 class BusinessruleElement(Baseobject):
@@ -78,16 +86,31 @@ class BusinessruleElement(Baseobject):
                                                self.bure_colu_id if self.bure_colu_id is not None else
                                               None)
 
+    def getparent(self) -> BusinessRule :
+        buru = BusinessRule().getbyid(pid=self.bure_buru_id)
+        return buru
+
     @staticmethod
     def delete():
         Baseobject.delete(BusinessruleElement._tablename)
 
     @staticmethod
-    def select(pwhere=None, porderby="attr_displ_seq"):
+    def select(pwhere=None, porderby=None):
         attrs = Baseobject.select(pclass=BusinessruleElement
                                   , pwhere=pwhere, porderby=porderby)
         return attrs
     # select
+
+    @staticmethod
+    def getburuelements(pmodeid):
+        bures = BusinessruleElement.select(pwhere="""(bure_attr_id = {}
+                                                    or bure_enti_id = {}
+                                                    or bure_rela_id = {}
+                                                    or bure_deva_id = {}
+                                                    or bure_tabl_id = {}
+                                                    or bure_colu_id = {})
+                                                    """.format(pmodeid,pmodeid,pmodeid,pmodeid,pmodeid,pmodeid))
+        return bures
 # BusinessruleELement
 from .modelelement import Modelelement,Modelelemtype
 

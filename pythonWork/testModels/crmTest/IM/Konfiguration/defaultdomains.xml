@@ -26,6 +26,19 @@
 </rangeDef>
 </listOfRanges>
 </Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="email Address" id="392458B0-D8CC-29BB-06F9-5456F4669028">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-26 11:47:26 UTC</createdTime>
+<comment><![CDATA[Email address with regexp check]]></comment>
+<ownerDesignName>System</ownerDesignName>
+<avTSortOrder>0</avTSortOrder>
+<dataTypeSize>500 CHAR</dataTypeSize>
+<fileName>defaultdomains</fileName>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<checkConstraint>
+<implementationDef dbType="Generic Constraint" definition="REGEXP:[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}"/>
+</checkConstraint>
+</Domain>
 <Domain class="oracle.dbtools.crest.model.design.Domain" name="Artikel ID" id="3FEA6C94-1CCF-1E45-A44E-09B49FC0035C">
 <createdBy>stb</createdBy>
 <createdTime>2018-05-17 18:54:07 UTC</createdTime>

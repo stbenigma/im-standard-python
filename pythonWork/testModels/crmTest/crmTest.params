@@ -1,0 +1,66 @@
+[ODM]
+#base directory for all modeler data (with ending /)
+#default directory in which this paramfile is stored
+#odmbasedirec = "/Users/stb/Documents/Projekte/FYAYC_intern/fyyccim-tools/pythonWork/testModels/crmTest/"
+
+#base directory for all local (non versioned) results of model extract (with ending /)
+#default = odmbasedirec
+#localbasedirec 
+
+#model name
+#default: single .dmd file in <odmIMDirec> or <odmIMDirec>/IM or <odmIMDirec>/IM
+odmmodelname = "crmTest"
+
+#directory containing odm-configuration-files (below odmIMDirec)
+#default Konfiguration/
+#odmkonfdirec= 
+
+#base directory for odm-model-files (with ending /)
+#default <odmBaseDirec> + <odmimdefaultdirec>
+#odmimdirec = 
+
+#name of user defined property-File containing translations udp"s
+#odmudptranslfilename = "translation"
+
+#name of user defined property-File containing data mapping udp"s
+#odmudpmappingfilename = "datamapping"
+
+#default directory for odm-model—file (below odmIMDirec)
+#default IM/
+#odmimdefaultdirec=
+
+#default extension of odm-model-base file
+#default .dmd
+#odmimextension=
+
+[DB]
+#default language of model in DB
+#dbdefaultlang = "de"
+
+#comma separated languages to be maintained, choose from de, en, fr, es
+#default entry in comment of ODM-Model
+#dblanguages = "de,en"
+
+#default directory for DB-file (below <localbasedirec>)
+#dbdefaultdirec = "DB/"
+
+#default extension for DB-file
+#default .db
+#dbfileextension = 
+
+#complete pathinformation (path-filename-extension) of DB-file
+#default: <localbasedirec> + <dbdefaultdirec> + <odmmodelname> + <dbfileextension>
+#dbfilepath = 
+
+[WEB]
+#default directory for web-source output
+#default Web/
+#webdefaultdirec = 
+
+#directory for web-source output
+#default <localbasedirec> + <webdefaultdirec>
+#webdirec =
+
+#filename of logo in Webpage (path <webdirec>/image/)
+#default logo.png
+#logofilename = 

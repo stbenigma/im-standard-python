@@ -40,6 +40,7 @@ def lookup(psql):
 #lookup
 
 def delete(ptableName,pwhere=None):
+    mydb=dbConnect.myDbConn
     cursor = dbConnect.myDbConn.cursor()
     try:
         cursor.execute("delete from {} where {}".format(ptableName,"1=1" if pwhere is None else pwhere))

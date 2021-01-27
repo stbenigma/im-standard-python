@@ -339,7 +339,7 @@ def printelements(pdiag, pdiaganker,plang):
         .format('{}',ICONSIZE,ICONSIZE,'{}','{}')
 
     for eler in pdiag['elements']['entity']:
-        printHTML.fhtml.write(entistart.format(hex2rbg(eler['color']), hex2rbg(eler['margincolor'])
+        printHTML.fhtml.write(entistart.format(hex2rbg(eler['Color']), hex2rbg(eler['margincolor'])
                                                , round(eler['opacity']/100,2), round(eler['marginopacity']/100,2)
                                                , eler['pos_x'], eler['pos_y'], eler['width'], eler['height']
                                                , eler['element']
