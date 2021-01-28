@@ -1,3 +1,4 @@
+import sys
 from datetime import datetime
 from IM_DB import parameters
 
@@ -29,12 +30,12 @@ def writelog(pline: str):
 def showmessages(pmsg: str = None):
     """if there are any logentries or a pmsg, writes a showmessages to the console"""
     global logcount, logfile
+    myfilename = sys.argv[0]
     if logfile is not None:
-        import __main__
-        if pmsg is not None: print("{}:\n  => {}".format(__main__.__file__, pmsg))
+        if pmsg is not None: print("{}:\n  => {}".format(myfilename, pmsg))
         if logcount > 0:
             logfile.close()
-            if pmsg is None: print("{}:\n".format(__main__.__file__))
+            if pmsg is None: print("{}:\n".format(myfilename))
             print("  => {} log entr{} written to {}"
                   .format(logcount.__str__(), 'y' if logcount == 1 else 'ies', logfile.name))
 # showmessages
