@@ -1,6 +1,7 @@
 <!-- this is the Confluence page content template for IM:entity to be rendered using jinja2 -->
 {% set entity = item %}
 <ac:layout>
+  {% include 'header.tmpl.html' %}
   <ac:layout-section ac:type="two_right_sidebar">
     <ac:layout-cell>
       <p>{{ util.translate(entity['descr']) }}</p>

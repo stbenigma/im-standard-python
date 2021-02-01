@@ -3,19 +3,23 @@ confluence:
   space: '~bue'
   rootpage : 'Meta Information Information Model (MIIM) Sandbox'
   username: bue
-  password: ***
+  password: '***'
 
 # datasource
 json: testdata/IM-sample.json
 
-# translation
-language: 'de'
+# translations to publish
+# first language listed here is not placed in a language subfolder
+# and titles will not be suffixed
+languages:
+  - 'de'
+  - 'en'
 
 # output structure
 content:
   entities:
     title: Entitäten
-    template: templates/entity.templ.html
+    template: entity.templ.html
     labels:
       - entity
       - IM
@@ -23,7 +27,7 @@ content:
 
   attributes:
     title: Attribute
-    template: templates/attribute.tmpl.html
+    template: attribute.templ.html
     labels:
       - attribute
       - IM
