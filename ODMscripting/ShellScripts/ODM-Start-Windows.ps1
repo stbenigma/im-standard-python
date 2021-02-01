@@ -1,35 +1,8 @@
 #autor aro 
-#**
 
 #Aufruf
 #<instdir> <basedir> <imname> <language>
 param($p1, $p2, $p3, $p4)
-echo `n`n
-
-#Check Instanz und Java Version
-if (-not((get-process "datamodeler64W" -ea SilentlyContinue) -eq $Null)){
-	echo "***********************************************"
-	echo "FEHLER: Oracle Data Modeler läuft bereits!"
-	echo "***********************************************"
-	echo `n`n
-	echo `n`n
-	exit
-}
-$javaver = (Get-Command java | Select-Object -ExpandProperty Version).tostring()
-IF (Compare-Object $javaver.substring(0,1) "8"){
-	echo "***********************************************"
-	echo "FEHLER: Es ist zwingend die Java Version 8 nötig!"
-	echo "Aktuelle Version: $javaver"
-	echo "***********************************************"
-	echo `n`n
-	echo `n`n
-	exit
-}
-
-echo "***********************************************"
-echo "Oracle Data Modeler wird gestartet"
-echo "***********************************************"
-echo `n`n 
 
 # INSTDIR: 	Da in Windows keine Eigentliche "Standard-Installation" des DataModelers stattfindet, muss das Installationsverzeichniss angegeben werden
 $INSTDIR = $p1
@@ -66,6 +39,31 @@ echo "MYDIR:`t`t$MYDIR"
 echo "INSTDIR:`t$INSTDIR"
 echo `n`n 
 
+#Check Instanz und Java Version
+if (-not((get-process "*datamodeler*" -ea SilentlyContinue) -eq $Null)){
+	echo "***********************************************"
+	echo "FEHLER: Oracle Data Modeler läuft bereits!"
+	echo "***********************************************"
+	echo `n`n
+	echo `n`n
+	exit
+}
+$javaver = (Get-Command java | Select-Object -ExpandProperty Version).tostring()
+IF (-not($javaver.substring(0,1) -eq "8")){
+	echo "***********************************************"
+	echo "FEHLER: Es ist zwingend die Java Version 8 nötig!"
+	echo "Aktuelle Version: $javaver"
+	echo "***********************************************"
+	echo `n`n
+	echo `n`n
+	exit
+}
+
+echo "***********************************************"
+echo "Oracle Data Modeler wird gestartet"
+echo "***********************************************"
+echo `n`n 
+
 #copy the appropriate languageconfiguration file into the datamodelers environment
 $ODMBINDIR = "$INSTDIR\datamodeler\bin"
 $ODMCONFIGFILE = "$ODMBINDIR\datamodeler.conf"
@@ -77,33 +75,14 @@ switch ($LANGUAGE)
 }
 
 
-$IMDIRFiles = Get-ChildItem -Path "$IMDIR\Konfiguration\"
-$MYDIRFiles = Get-ChildItem -Path "$MYDIR\Konfiguration\"
-#sync the configuration directory
-#** aktuell kein delete
-$FileDiffs = Compare-Object -ReferenceObject $IMDIRFiles -DifferenceObject $MYDIRFiles
-$FileDiffs | foreach {
-	$copyParams = @{
-		'Path' = $_.InputObject.FullName
-	}
-	if ($_.SideIndicator -eq '<=')
-	{
-		$copyParams.Destination = $MYDIRFiles
-	}	
-}
+echo "Dieses Fenster bitte nicht schliessen!"
+echo `n`n
 
-#start the modeler with the model
-Start-Process -FilePath "$INSTDIR\datamodeler.exe" -ArgumentList "$IMDIR\$IMNAME.dmd"
-
-#sync back the possibly changed configuration files
-#** aktuell kein delete
-$FileDiffs = Compare-Object -ReferenceObject $MYDIRFiles -DifferenceObject $IMDIRFiles
-$FileDiffs | foreach {
-	$copyParams = @{
-		'Path' = $_.InputObject.FullName
-	}
-	if ($_.SideIndicator -eq '<=')
-	{
-		$copyParams.Destination = $IMDIRFiles
-	}	
-}
+Remove-Item -Path "$MYDIR\Konfiguration\*.*" 
+Copy-Item -Path "$IMDIR\Konfiguration\*.*" -Destination "$MYDIR\Konfiguration"
+Start-Process -FilePath "$INSTDIR\datamodeler.exe" -ArgumentList "$IMDIR\$IMNAME.dmd"  -Wait
+echo "...bitte Warten! Fenster wird automatisch geschlossen!"
+Remove-Item -Path "$IMDIR\Konfiguration\*.*" 
+Copy-Item -Path "$MYDIR\Konfiguration\*.*" -Destination "$IMDIR\Konfiguration"
+Start-Sleep -s 5
+stop-process -Id $PID
