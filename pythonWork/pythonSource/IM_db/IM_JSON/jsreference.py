@@ -1,6 +1,6 @@
 
 from IM_OBJECTS import Externalref, Document, Modelelemtype, OragnisationalUnit, Storageformat,ModelelementProperty,Userdefprop,ModelelemOrgu,ModelelemDocu,Userdefpropvalue
-from IM_JSON import jsguid,JSModel,jsguid2id
+from IM_JSON import *
 from mystring import nvl
 
 def inssourceref(pmodel,pmodeid, psources):
@@ -149,31 +149,50 @@ def docurefs2sql(pmodel):
     #    insudp(pmodeid=entiid, pudps=jenti["userdefprop"])
     return
 
-def orgUnits2js():
-    orgus = {jsguid(Modelelemtype.ORGU, o.orgu_id):
-        {
-            'name': o.orgu_name
-            , 'descr': o.orgu_descr
-            , 'uc': o.orgu_uc
-            , 'dc': o.orgu_dc
-            , 'um': o.orgu_um
-            , 'dm': o.orgu_dm
-            , 'mail': o.orgu_mail
-            , 'telefon': o.orgu_telefon
-            , 'address': o.orgu_address
-            , 'parent': None if o.orgu_orgu_id is None else jsguid(Modelelemtype.ORGU, o.orgu_orgu_id)
-            ,'referencecnt+': len(o.getrefmodes())
-            , 'references': {
-                            'entities': [jsguid(m.mode_type, m.mode_id) for m in o.getrefmodes(pmelttype=Modelelemtype.ENTI)]
-                            ,'attributes': [jsguid(m.mode_type, m.mode_id) for m in o.getrefmodes(pmelttype=Modelelemtype.ATTR)]
-                            ,'domains': [jsguid(m.mode_type, m.mode_id) for m in o.getrefmodes(pmelttype=Modelelemtype.DOMA)]
-                            ,'systems': [jsguid(m.mode_type, m.mode_id) for m in o.getrefmodes(pmelttype=Modelelemtype.INTF)]
-                            ,'tables': [jsguid(m.mode_type, m.mode_id) for m in o.getrefmodes(pmelttype=Modelelemtype.TABL)]
-                            ,'columns': [jsguid(m.mode_type, m.mode_id) for m in o.getrefmodes(pmelttype=Modelelemtype.COLU)]
-                            }
-        }
-        for o in OragnisationalUnit.select()}
-    return orgus
+def references(pmode=None):
+    model = [ 'entities', 'attributes'
+            ,'domains','systems'
+            ,'tables','columns'
+            ]
+    if pmode is None:
+        retval = fillmodel(pmodel=model,pentries=[[] for i in range(len(model))])
+    else:
+        retval = fillmodel(pmodel=model,pentries=[
+            [jsguid(m.mode_type, m.mode_id) for m in pmode.getrefmodes(pmelttype=Modelelemtype.ENTI)]
+            ,[jsguid(m.mode_type, m.mode_id) for m in pmode.getrefmodes(pmelttype=Modelelemtype.ATTR)]
+            ,[jsguid(m.mode_type, m.mode_id) for m in pmode.getrefmodes(pmelttype=Modelelemtype.DOMA)]
+            ,[jsguid(m.mode_type, m.mode_id) for m in pmode.getrefmodes(pmelttype=Modelelemtype.INTF)]
+            ,[jsguid(m.mode_type, m.mode_id) for m in pmode.getrefmodes(pmelttype=Modelelemtype.TABL)]
+            ,[jsguid(m.mode_type, m.mode_id) for m in pmode.getrefmodes(pmelttype=Modelelemtype.COLU)]
+        ])
+    # fi
+    return retval
+
+
+def orgUnits2js(pemptymodel):
+    model = ['name', 'descr'
+            , 'uc', 'dc', 'um', 'dm'
+            , 'mail', 'telefon'
+            , 'address', 'parent'
+            ,'referencecnt+', 'references'
+            ]
+    if pemptymodel:
+        retval = fillmodel(pmodel=model
+                           ,pentries=['' for i in range(len(model)-1)]+[references()]
+                           )
+    else:
+        retval = {jsguid(Modelelemtype.ORGU, o.orgu_id):
+              fillmodel(pmodel=model,pentries=[
+                  o.orgu_name,o.orgu_descr
+                ,o.orgu_uc,o.orgu_dc, o.orgu_um,o.orgu_dm
+                ,o.orgu_mail, o.orgu_telefon
+                  , o.orgu_address, None if o.orgu_orgu_id is None else jsguid(Modelelemtype.ORGU, o.orgu_orgu_id)
+                ,str(len(o.getrefmodes()))
+                , references(pmode=o)
+                 ])
+                for o in OragnisationalUnit.select()
+            }
+    return retval
 
 def orgunits2sql(pmodel:JSModel):
     parents = [] #(orgu_id, parent_id)

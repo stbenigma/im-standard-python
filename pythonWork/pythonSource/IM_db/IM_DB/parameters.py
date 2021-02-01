@@ -40,7 +40,7 @@ parameter = {'dbtype': SQLITE
             , 'odmstructypesdir':  "datatypes/structuredtype/"
             , 'odmfilesdirec': 'files/'
             , 'odmentitydirec': 'logical/entity/'
-            , 'odmrelationdirec': 'logical/relation/'
+            , 'odmrelationdirec': 'logical/relation2js/'
             , 'odmentisubviewdirec': 'logical/subviews/'
             , 'odmarcdirec': 'logical/arc/'
             , 'odmdocumentdirec': 'businessinfo/document/'

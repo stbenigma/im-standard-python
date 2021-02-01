@@ -1,7 +1,7 @@
 import json
 import sqlite3
-from IM_OBJECTS import Userdefpropvalue,Userdefprop,Modelelemtype
-from mystring import nvl
+from IM_OBJECTS import Modelelemtype
+
 
 
 """creates a unique ID as reference in the json file
@@ -24,10 +24,11 @@ def optionalvalue(pelem,pkey):
 def jsonfilename(pfilename):
     return pfilename + '.json'
 
+
 class JSModel:
     _elemtype2label = {
         Modelelemtype.ENTI: 'entities'
-      ,Modelelemtype.BURU: 'businesrules'
+      ,Modelelemtype.BURU: 'businessrules2js'
       ,Modelelemtype.RELA: 'relations'
       ,Modelelemtype.ATTR: 'attributes'
       ,Modelelemtype.DOMA: 'domains'
@@ -126,3 +127,73 @@ def printJSON(pmodel, pfilepath, pfilename):
     jsonfile.write(json.dumps(pmodel, indent=3, sort_keys=False))
     jsonfile.close()
 
+
+def fillmodel(pmodel, pentries):
+    """
+    :param pmodel: ["name"...]
+    :param pentries: [value...]
+    :return: dictionary with position in list matching name-value pairs
+    """
+    if not pmodel or not pentries or (len(pmodel)!= len(pentries)):
+        raise Exception("parameter mismatch (model: {}, entries: {})".format(len(pmodel),len(pentries)))
+    retval = {pmodel[idx]: val for idx, val in enumerate(pentries)}
+    return retval
+
+def multilangtext(ptext:list=None):
+    """ None = emptymodel"""
+    if ptext is None:
+        return {'en':''}
+    else:
+        return ptext
+
+def reflist(plist:list=None):
+    """ None = emptymodel"""
+    if plist is None:
+        return []
+    else:
+        return [e for e in plist]
+
+def tabreflist(plist:dict=None):
+    """ None = emptymodel"""
+    """ """
+    if plist is None:
+        return {'INTF000':['TABL000']}
+    else:
+        return plist
+def colureflist(plist:dict=None):
+    """ None = emptymodel"""
+    """ """
+    if plist is None:
+        return {'INTF000':['COLU000']}
+    else:
+        return plist
+
+def sourceref(pvalues:dict=None):
+    """ None = emptymodel"""
+    if pvalues is None:
+        return {"ODM": ''}
+    else:
+        return pvalues
+
+def userdefprops (pprops:dict=None):
+    """ None = emptymodel"""
+    """
+            "datamapping": {
+               "PENTA": {
+                  "UDPR206": {
+                     "name": "PENTA TabName",
+                     "value": null
+                  }
+               },
+               "PIM": {
+                  "UDPR201": {
+                     "name": "PIM TabName",
+                     "value": null
+                  }
+               }
+            },
+        """
+    if pprops is None:
+        return {'Theme': {"Group": {"UDPR000": {"name":'', "value":''}}}}
+    else:
+        return pprops
