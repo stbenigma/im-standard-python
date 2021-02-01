@@ -60,8 +60,9 @@ class Publisher:
             self.log.warning('New element {} '.format(key))
             page = {}
             self.content_map[key] = page
-        previous = page.get('pageid')
-        assert page_id != previous, 'Altering page id from {} to {}'.format(previous, page_id)
+        else:
+            previous = page.get('pageid')
+            assert page_id != previous, 'Altering page id from {} to {} for key {}'.format(previous, page_id, key)
         page['pageid'] = page_id
 
     def page_for_key(self, key: str):

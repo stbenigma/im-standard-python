@@ -6,7 +6,8 @@ import papermill as pm
 # the script to be tested
 scripts = [
     './notebooks/confluence-export/contentfactory.ipynb',
-    './notebooks/Sandbox/confluence-python-api/API-sandbox.ipynb'
+    './notebooks/Sandbox/confluence-python-api/API-sandbox.ipynb',
+    './notebooks/Sandbox/stbtest.ipynb'
 ]
 
 username = os.environ.get('CONFLUENCE_USERNAME')
@@ -28,6 +29,7 @@ print('Starting papermill with confluence_username: {} and {}'.format(username, 
 
 for notebook in scripts:
     base_path = os.path.dirname(os.path.abspath(notebook))
+    print('Executing {}'.format(notebook))
     pm.execute_notebook(
        notebook,
        os.path.splitext(notebook)[0] + '.test.out.ipynb',
