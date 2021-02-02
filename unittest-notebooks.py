@@ -5,7 +5,7 @@ import papermill as pm
 
 # the script to be tested
 scripts = [
-    './notebooks/confluence-export/contentfactory.ipynb',
+    './notebooks/confluence-export/Render and publish.ipynb',
     './notebooks/Sandbox/confluence-python-api/API-sandbox.ipynb',
     './notebooks/Sandbox/stbtest.ipynb'
 ]
