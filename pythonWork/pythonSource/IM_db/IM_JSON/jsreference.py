@@ -90,28 +90,25 @@ def updvs2sql(pmodel:JSModel, pmodeid, pudps):
     #for
     return
 
-def documents2js():
-    docus = {jsguid(Modelelemtype.DOCU, d.docu_id):
-        {
-            'name': d.docu_name
-            , 'reference': d.docu_reference
-            , 'content': d.docu_content
-            , 'format+': None if d.docu_stfo_id is None else Storageformat().getbyid(d.docu_stfo_id).stfo_name
-            , 'formatid': None if d.docu_stfo_id is None else jsguid(Modelelemtype.STFO,d.docu_stfo_id)
-            , 'parent': None if d.docu_docu_id is None else jsguid(Modelelemtype.DOCU, d.docu_docu_id)
-            ,'referencecnt+': len(d.getrefmodes())
-            , 'references': {
-                            'entities': [jsguid(m.mode_type, m.mode_id) for m in d.getrefmodes(pmelttype=Modelelemtype.ENTI)]
-                            ,'attributes': [jsguid(m.mode_type, m.mode_id) for m in d.getrefmodes(pmelttype=Modelelemtype.ATTR)]
-                                ,'domains': [jsguid(m.mode_type, m.mode_id) for m in d.getrefmodes(pmelttype=Modelelemtype.DOMA)]
-                                ,'systems': [jsguid(m.mode_type, m.mode_id) for m in d.getrefmodes(pmelttype=Modelelemtype.INTF)]
-                                ,'tables': [jsguid(m.mode_type, m.mode_id) for m in d.getrefmodes(pmelttype=Modelelemtype.TABL)]
-                                ,'columns': [jsguid(m.mode_type, m.mode_id) for m in d.getrefmodes(pmelttype=Modelelemtype.COLU)]
-                                ,'diagrams': [jsguid(m.mode_type, m.mode_id) for m in d.getrefmodes(pmelttype=Modelelemtype.DIAG)]
-                                }
-        }
+def documents2js(pemtpymodel):
+    model = [ 'name', 'reference'
+            , 'content', 'format+'
+            , 'formatid', 'parent'
+            ,'referencecnt+', 'references']
+    if pemtpymodel:
+        retval = {"DOCU0000": fillmodel(pmodel=model,pentries=['' for i in range(len(model)-1)]+[references()])}
+    else:
+        retval = {jsguid(Modelelemtype.DOCU, d.docu_id):
+                    fillmodel(pmodel=model,pentries=[d.docu_name,d.docu_reference
+                                                  ,d.docu_content, None if d.docu_stfo_id is None else Storageformat().getbyid(d.docu_stfo_id).stfo_name
+                                                  ,None if d.docu_stfo_id is None else jsguid(Modelelemtype.STFO,d.docu_stfo_id)
+                                                    ,None if d.docu_docu_id is None else jsguid(Modelelemtype.DOCU, d.docu_docu_id)
+                                                  ,len(d.getrefmodes()),references(pmode=d)
+
+                                      ]
+                           )
         for d in Document.select()}
-    return docus
+    return retval
 
 def documents2sql(pmodel):
     parents = [] #(docu_id, parent_id)
@@ -152,7 +149,7 @@ def docurefs2sql(pmodel):
 def references(pmode=None):
     model = [ 'entities', 'attributes'
             ,'domains','systems'
-            ,'tables','columns'
+            ,'tables','columns','diagrams'
             ]
     if pmode is None:
         retval = fillmodel(pmodel=model,pentries=[[] for i in range(len(model))])
@@ -164,6 +161,7 @@ def references(pmode=None):
             ,[jsguid(m.mode_type, m.mode_id) for m in pmode.getrefmodes(pmelttype=Modelelemtype.INTF)]
             ,[jsguid(m.mode_type, m.mode_id) for m in pmode.getrefmodes(pmelttype=Modelelemtype.TABL)]
             ,[jsguid(m.mode_type, m.mode_id) for m in pmode.getrefmodes(pmelttype=Modelelemtype.COLU)]
+            , [jsguid(m.mode_type, m.mode_id) for m in pmode.getrefmodes(pmelttype=Modelelemtype.DIAG)]
         ])
     # fi
     return retval
