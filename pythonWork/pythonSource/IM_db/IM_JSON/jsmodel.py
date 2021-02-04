@@ -31,7 +31,7 @@ def make_hash(pmodel):
     return hash(tuple(frozenset(sorted(new_model.items()))))
 
 
-def sql2json(pmodelname, pdbname, pemptymodel=False):
+def sql2json(pmodelname, pdbname, pemptymodel=True):
     jsmodel = {}
     jsmodel['model'] = proj2js(pemptymodel)
     jsmodel['languages'] = langs2js(pemptymodel)

@@ -54,8 +54,9 @@ def relation2js(prela):
                                           ,Boolean.str2bool(prela.rela_hist_to_from)
                                           ,Boolean.str2bool(prela.rela_mandatory_to_from)
                                           ,prela.from_cardstr()
-                                       ]
-                                        ,[jsguid(Modelelemtype.KEYS, k.keys_id) for k in keys], Externalref.getsrcinfo(pmodeid=prela.rela_id)
+                                        ]
+                                        ,reflist(plist=[jsguid(Modelelemtype.KEYS, k.keys_id) for k in keys])
+                                      , sourceref(pvalues=Externalref.getsrcinfo(pmodeid=prela.rela_id))
                                        ,prela.rela_uc, prela.rela_dc, prela.rela_um, prela.rela_dm
                                        ]
                            )

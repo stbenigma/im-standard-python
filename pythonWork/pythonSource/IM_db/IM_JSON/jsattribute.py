@@ -79,14 +79,14 @@ def attr2js(pattr):
             , pattr.attr_uc, pattr.attr_dc,  pattr.attr_um, pattr.attr_dm
             , Externalref.getsrcinfo(pmodeid=pattr.attr_id), [jsguid(Modelelemtype.KEYS, k.keys_id) for k in pattr.getkeys()]
             , businessrules2js(pmodeid=pattr.attr_id), [jsguid(Modelelemtype.DOCU, d[0]) for d in Document.getrefdoculist(pid=pattr.attr_id)]
-            , [jsguid(Modelelemtype.ORGU, d[0]) for d in OragnisationalUnit.getreforgulist(pid=pattr.attr_id)]
+            , reflist(plist=[jsguid(Modelelemtype.ORGU, d[0]) for d in OragnisationalUnit.getreforgulist(pid=pattr.attr_id)])
                 ,  userdefprops(udpv2js(pmodeid=pattr.attr_id, pmodelemtype=Modelelemtype.ATTR))
             ,  colureflist({jsguid(Modelelemtype.INTF, s.getid()): [jsguid(Modelelemtype.COLU, c.colu_id) for c in
                                                         ColAttrMap.getcolulist(pattrid=pattr.attr_id, pintfid=s.getid())]
                             for s in Interface.getmapped(pattrid=pattr.attr_id)
                             }
                            )
-            , [jsguid(Modelelemtype.DIAG, d.diag_id) for d in Diagram.getdiagrams(pmodeid=pattr.attr_id)]
+            , reflist(plist=[jsguid(Modelelemtype.DIAG, d.diag_id) for d in Diagram.getdiagrams(pmodeid=pattr.attr_id)])
                 ])
         if (Domain().getbyid(pattr.attr_doma_id).doma_type != Domain.GRP):
             del retval['memberattrs+']

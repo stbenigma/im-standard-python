@@ -1,6 +1,6 @@
 import math
 from IM_OBJECTS import *
-from IM_JSON import jsguid,jsguid2id,jsguid2type,JSModel
+from IM_JSON import *
 from mystring import nvl
 
 
@@ -162,23 +162,39 @@ def relarep2sql(pmodel:JSModel,pdiagid,prelareps):
     #for
     return
 
+def legend2js(pdiag=None,pmodelname=None):
+    model = ['x'
+            , 'y'
+            , 'model'
+         ]
+    if pdiag is None:
+        retval = fillmodel(pmodel=model,pentries=['','',''])
+    else:
+        retval = fillmodel(pmodel=model,pentries=[pdiag.diag_legendx, pdiag.diag_legendy,pmodelname])
+    # fi
+    return retval
 
-def diagrams2js(pmodelname):
-    diags = {jsguid(Modelelemtype.DIAG, d.diag_id):
-        {
-            'name': d.diag_name
-            , 'legend': {'x': d.diag_legendx
-                , 'y': d.diag_legendy
-                , 'model': pmodelname
-                         }
-            , 'type': Diagramtype().getbyid(d.diag_diat_id).getname()
-            , 'width': d.diagwidth()
-            , 'height': d.diagheight()
-            , 'uc': d.diag_uc
-            , 'dc': d.diag_dc
-            , 'um': d.diag_um
-            , 'dm': d.diag_dm
-            , 'elements': {mt.melt_name.lower():
+
+def diagrams2js(pemptymodel,pmodelname):
+    model = ['name', 'legend'
+            , 'type', 'width', 'height'
+            , 'uc', 'dc', 'um', 'dm'
+            , 'elements', 'relationships'
+            , 'arcs', 'refindocuments+'
+            ,'refbyorgunits+']
+    if pemptymodel:
+        retval = fillmodel(pmodel=model,pentries=['',legend2js(),'','','','','','','',{},{},{},reflist(),reflist()])
+    else:
+        retval = {jsguid(Modelelemtype.DIAG, d.diag_id): fillmodel(pmodel=model,pentries=[
+            d.diag_name, legend2js(pdiag=d,pmodelname=pmodelname)
+            ,Diagramtype().getbyid(d.diag_diat_id).getname()
+            , d.diagwidth()
+            , d.diagheight()
+            , d.diag_uc
+            ,  d.diag_dc
+            ,  d.diag_um
+            ,  d.diag_dm
+            ,{mt.melt_name.lower():
                                [elemrep2js(peler=eler, panker=jsguid(mt.melt_shortname, eler.eler_mode_id))
                                 for eler in sorted(Elementrep().select(pwhere="""eler_diag_id = {} and eler_mode_id in
                                                                 (select mode_id
@@ -193,17 +209,20 @@ def diagrams2js(pmodelname):
                                                                     and medi_diat_id = {})"""
                                                           .format(Modelelemtype.RELA, d.diag_diat_id))
                            }
-            , 'relationships': {jsguid(Modelelemtype.RELA, rr.relr_mode_id): relarep2js(rr)
+            ,{jsguid(Modelelemtype.RELA, rr.relr_mode_id): relarep2js(rr)
                                 for rr in Relationrep.select(pwhere="relr_diag_id = {}".format(d.diag_id))
                                 }
-            , 'arcs': {jsguid(Modelelemtype.ARCS, ar.arcs_id): defarcs(parc=ar,pdiagid=d.diag_id)
+            ,{jsguid(Modelelemtype.ARCS, ar.arcs_id): defarcs(parc=ar,pdiagid=d.diag_id)
                                         for ar in Arc.getdiagarcs(pdiagid=d.diag_id)
                                 }
-            , 'refindocuments+': [jsguid(Modelelemtype.DOCU, d[0]) for d in Document.getrefdoculist(pid=d.diag_id)]
-            ,'refbyorgunits+': [jsguid(Modelelemtype.ORGU, d[0]) for d in OragnisationalUnit.getreforgulist(pid=d.diag_id)]
+            ,reflist(plist=[jsguid(Modelelemtype.DOCU, d[0]) for d in Document.getrefdoculist(pid=d.diag_id)])
+            ,reflist(plist=[jsguid(Modelelemtype.ORGU, d[0]) for d in OragnisationalUnit.getreforgulist(pid=d.diag_id)])
+
+        ])
+        for d in Diagram.select()
         }
-        for d in Diagram.select()}
-    return diags
+    # fi
+    return retval
 
 
 def diagrams2sql(pmodel: JSModel):

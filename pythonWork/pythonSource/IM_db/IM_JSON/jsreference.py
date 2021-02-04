@@ -18,16 +18,20 @@ def inssourceref(pmodel,pmodeid, psources):
     return
 
 
-def udps2js():
-    udp = {jsguid (Modelelemtype.UDPR,u.udpr_id) : {'theme': u.udpr_theme
-                                       ,'group': u.udpr_group
-                                       ,'name':u.udpr_name
-                                       ,'usedfor' : [Modelelemtype.getshortname(metp.metp_melt_id)
-                                                     for metp in ModelelementProperty().select(pwhere="METP_UDPR_ID = {}".format(u.udpr_id))]
-                                       }
+def udps2js(pemptymodel):
+    model = ['theme','group'
+            ,'name','usedfor' ]
+    if pemptymodel:
+        retval = fillmodel(pmodel=model,pentries=['','','',reflist()])
+    else:
+        retval =  {jsguid (Modelelemtype.UDPR,u.udpr_id) : fillmodel(pmodel=model,pentries=
+                                [u.udpr_theme,u.udpr_group,u.udpr_name
+                                       ,reflist(plist= [Modelelemtype.getshortname(metp.metp_melt_id)
+                                                     for metp in ModelelementProperty().select(pwhere="METP_UDPR_ID = {}".format(u.udpr_id))])
+                        ])
                  for u in Userdefprop().select()
             }
-    return udp
+    return retval
 
 def udps2sql(pmodel:JSModel):
     for udpranker,judp in pmodel.jsmodel['userdefprops'].items():
