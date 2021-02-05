@@ -183,7 +183,8 @@ def diagrams2js(pemptymodel,pmodelname):
             , 'arcs', 'refindocuments+'
             ,'refbyorgunits+']
     if pemptymodel:
-        retval = fillmodel(pmodel=model,pentries=['',legend2js(),'','','','','','','',{},{},{},reflist(),reflist()])
+        retval = {jsguid(Modelelemtype.DIAG, '0000') : fillmodel(pmodel=model,
+                            pentries=['', legend2js(), '', '', '', '', '', '', '', {}, {}, {}, reflist(), reflist()])}
     else:
         retval = {jsguid(Modelelemtype.DIAG, d.diag_id): fillmodel(pmodel=model,pentries=[
             d.diag_name, legend2js(pdiag=d,pmodelname=pmodelname)
@@ -242,7 +243,7 @@ def diagrams2sql(pmodel: JSModel):
         except Exception as err:
             pmodel.markerror(pmsg=err, pelemstr=jelem)
             continue
-    # inssourceref(pmodel = pmodel,pmodeid=jsguid2id(jid), psources=jelem["sourceref"])
+    # inssourceref(pmodel = pmodel,pburuid=jsguid2id(jid), psources=jelem["sourceref"])
     return
 
 """transfer references and subtypes"""
@@ -252,7 +253,7 @@ def diagrefs2sql(pmodel:JSModel):
             elemrep2sql(pmodel=pmodel,pdiagid=jsguid2id(jid), pelemreps=jelemreps)
         relarep2sql(pmodel=pmodel,pdiagid=jsguid2id(jid), prelareps=jelem['relationships'])
 
-    #    insudp(pmodeid=entiid, pudps=jenti["userdefprop"])
+    #    insudp(pburuid=entiid, pudps=jenti["userdefprop"])
     return
 
 

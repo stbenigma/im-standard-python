@@ -22,7 +22,7 @@ def udps2js(pemptymodel):
     model = ['theme','group'
             ,'name','usedfor' ]
     if pemptymodel:
-        retval = fillmodel(pmodel=model,pentries=['','','',reflist()])
+        retval = {jsguid (Modelelemtype.UDPR, '0000') : fillmodel(pmodel=model, pentries=['', '', '', reflist()])}
     else:
         retval =  {jsguid (Modelelemtype.UDPR,u.udpr_id) : fillmodel(pmodel=model,pentries=
                                 [u.udpr_theme,u.udpr_group,u.udpr_name
@@ -54,12 +54,12 @@ def udps2sql(pmodel:JSModel):
 
 """transfer references and subtypes"""
 def udprefs2sql(pmodel):
-    #    insudp(pmodeid=entiid, pudps=jenti["userdefprops"])
+    #    insudp(pburuid=entiid, pudps=jenti["userdefprops"])
     return
 
 def udpv2js(pmodeid,pmodelemtype):
     return {
-        th[0]: {gr[1]: {jsguid(type=Modelelemtype.UDPR,id=u.udpr_id): {'name': u.udpr_name
+        th[0]: {gr[1]: {jsguid(mtype=Modelelemtype.UDPR,id=u.udpr_id): {'name': u.udpr_name
                                     ,'value': Userdefpropvalue.udpvalue(pudprid=u.udpr_id, pmodeid=pmodeid)}
                         for u in Userdefprop.getudps(ptheme=th[0], pgroup=gr[1], pmeltname=pmodelemtype)}
                 for gr in Userdefprop.grouplist(pudptheme=th[0], pmelttype=pmodelemtype)}
@@ -100,7 +100,7 @@ def documents2js(pemtpymodel):
             , 'formatid', 'parent'
             ,'referencecnt+', 'references']
     if pemtpymodel:
-        retval = {"DOCU0000": fillmodel(pmodel=model,pentries=['' for i in range(len(model)-1)]+[references()])}
+        retval = {jsguid(Modelelemtype.DOCU, "0000"): fillmodel(pmodel=model,pentries=['' for i in range(len(model)-1)]+[references()])}
     else:
         retval = {jsguid(Modelelemtype.DOCU, d.docu_id):
                     fillmodel(pmodel=model,pentries=[d.docu_name,d.docu_reference
@@ -147,7 +147,7 @@ def docurefs2sql(pmodel):
                 continue
         #for
     #for
-    #    insudp(pmodeid=entiid, pudps=jenti["userdefprop"])
+    #    insudp(pburuid=entiid, pudps=jenti["userdefprop"])
     return
 
 def references(pmode=None):
@@ -179,9 +179,9 @@ def orgUnits2js(pemptymodel):
             ,'referencecnt+', 'references'
             ]
     if pemptymodel:
-        retval = fillmodel(pmodel=model
-                           ,pentries=['' for i in range(len(model)-1)]+[references()]
-                           )
+        retval = {jsguid(Modelelemtype.ORGU, '0000') : fillmodel(pmodel=model
+                            , pentries=['' for i in range(len(model) - 1)] + [references()]
+                            )}
     else:
         retval = {jsguid(Modelelemtype.ORGU, o.orgu_id):
               fillmodel(pmodel=model,pentries=[
@@ -218,7 +218,7 @@ def orgunits2sql(pmodel:JSModel):
         except Exception as err:
             pmodel.markerror(pmsg=err, pelemstr=orgu.tostring())
             continue
-        # inssourceref(pmodel = pmodel,pmodeid=jsguid2id(jid), psources=jelem["sourceref"])
+        # inssourceref(pmodel = pmodel,pburuid=jsguid2id(jid), psources=jelem["sourceref"])
     #for
     OragnisationalUnit.updparentpairs(pparents=parents)
     return
@@ -236,5 +236,5 @@ def orgurefs2sql(pmodel:JSModel):
                 continue
         #for
     #for
-    #    insudp(pmodeid=entiid, pudps=jenti["userdefprop"])
+    #    insudp(pburuid=entiid, pudps=jenti["userdefprop"])
     return

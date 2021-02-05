@@ -35,7 +35,7 @@ def entities2js(pemptymodel):
         , 'tablesmapped+', 'diagrams+'
         ]
     if pemptymodel:
-        entis = {'ENTI0000': fillmodel(pmodel=model,
+        entis = {jsguid(Modelelemtype.ENTI, '0000'): fillmodel(pmodel=model,
                                        pentries=[multilangtext(None), ''
                                        ,multilangtext(None),multilangtext(None)
                                        ,'',''

@@ -2,14 +2,14 @@ from IM_JSON import *
 from IM_OBJECTS import *
 
 
-def businessrules2js(pmodeid=None):
+def businessrule2js(pburuid=None):
     model = ['name','level', 'type'
             , 'readwrite', 'rule', 'errosmsg', 'refelements'
              ]
-    if pmodeid is None:
+    if pburuid is None:
         retval = fillmodel(pmodel=model,pentries=['' for idx in range(len(model))])
     else:
-        bures = BusinessruleElement.getburuelements(pmodeid=pmodeid)
+        bures = BusinessruleElement.getburuelements(pmodeid=pburuid)
         if not bures: return []
         retval = []
         for bure in bures:
@@ -42,7 +42,8 @@ def attr2js(pattr):
             , 'tooltip', 'descr'
             , 'uc', 'dc', 'um', 'dm'
             , 'sourceref', 'keys+'
-            , 'businessrules2js', 'refindocuments+'
+             #, 'businessrules'
+            , 'refindocuments+'
             , 'refbyorgunits+', 'userdefprops'
             , 'columnsmapped+', 'diagrams+'
         ]
@@ -58,7 +59,8 @@ def attr2js(pattr):
                                     , multilangtext(), multilangtext()
                                      ,'','','',''
                                      , sourceref(), reflist()
-                                     , businessrules2js(), reflist()
+                                     #, businessrules2js()
+                                      , reflist()
                                      , reflist(), userdefprops()
                                     , reflist(), reflist()
                                       ]
@@ -78,7 +80,8 @@ def attr2js(pattr):
             , multilangtext(pattr.attr_descr_L)
             , pattr.attr_uc, pattr.attr_dc,  pattr.attr_um, pattr.attr_dm
             , Externalref.getsrcinfo(pmodeid=pattr.attr_id), [jsguid(Modelelemtype.KEYS, k.keys_id) for k in pattr.getkeys()]
-            , businessrules2js(pmodeid=pattr.attr_id), [jsguid(Modelelemtype.DOCU, d[0]) for d in Document.getrefdoculist(pid=pattr.attr_id)]
+            #, businessrules2js(pburuid=pattr.attr_id)
+                , [jsguid(Modelelemtype.DOCU, d[0]) for d in Document.getrefdoculist(pid=pattr.attr_id)]
             , reflist(plist=[jsguid(Modelelemtype.ORGU, d[0]) for d in OragnisationalUnit.getreforgulist(pid=pattr.attr_id)])
                 ,  userdefprops(udpv2js(pmodeid=pattr.attr_id, pmodelemtype=Modelelemtype.ATTR))
             ,  colureflist({jsguid(Modelelemtype.INTF, s.getid()): [jsguid(Modelelemtype.COLU, c.colu_id) for c in
@@ -96,7 +99,7 @@ def attr2js(pattr):
 
 def attributes2js(pemptymodel):
     if pemptymodel:
-        attrs = {'ATTR0000':attr2js(None)}
+        attrs = {jsguid(Modelelemtype.ATTR,'0000') : attr2js(None)}
     else:
         attrs = {jsguid(Modelelemtype.ATTR, a.attr_id): attr2js(a) for a in Attribute.select()}
     return attrs
@@ -198,7 +201,7 @@ def keys2js(pemptymodel):
                     , 'sourceref', 'key-elements'
                  ]
     if pemptymodel:
-        retval = {"KEYS0000": fillmodel(pmodel=model, pentries=['', '', '', '', '', '', sourceref(), keyelems2js(None)])}
+        retval = {jsguid(Modelelemtype.KEYS, "0000") : fillmodel(pmodel=model, pentries=['', '', '', '', '', '', sourceref(), keyelems2js(None)])}
     else:
 
         retval = {jsguid(Modelelemtype.KEYS, k.keys_id):

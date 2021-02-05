@@ -66,7 +66,7 @@ def relation2js(prela):
 
 def relations2js(pemptymodel):
     if pemptymodel:
-        relas = {'RELA0000':relation2js(None)}
+        relas = {jsguid(Modelelemtype.RELA, '0000') : relation2js(None)}
     else:
         relas = {jsguid(Modelelemtype.RELA, r.rela_id): relation2js(r) for r in Relation.select()}
     return relas
@@ -109,7 +109,7 @@ def relations2sql(pmodel: JSModel):
 """transfer references and subtypes"""
 def relarefs2sql(pmodel):
     #for jid, jelem in pmodel.jsmodel['relations'].items():
-        #updvs2sql(pmodel=pmodel,pmodeid=jsguid2id(jid), pudps=jelem["userdefprops"])
+        #updvs2sql(pmodel=pmodel,pburuid=jsguid2id(jid), pudps=jelem["userdefprops"])
     return
 
 
@@ -119,7 +119,7 @@ def arcs2js(pemptymodel):
         , 'uc', 'dc', 'um', 'dm'
              ]
     if pemptymodel:
-        retval= {"ARCS0000":fillmodel(pmodel=model,pentries=['','',reflist(),sourceref(),'','','',''])}
+        retval= {jsguid(Modelelemtype.ARCS, "0000") : fillmodel(pmodel=model,pentries=['','',reflist(),sourceref(),'','','',''])}
     else:
         retval = {jsguid(Modelelemtype.ARCS, a.arcs_id): fillmodel(pmodel=model
                                                                ,pentries=[a.arcs_name

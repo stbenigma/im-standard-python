@@ -4,6 +4,7 @@ from datetime import datetime
 
 from IM_JSON import *
 from IM_OBJECTS import Project, Modelelemtype
+from IM_db import MODELVERSION
 
 
 def lastupd():
@@ -31,7 +32,7 @@ def make_hash(pmodel):
     return hash(tuple(frozenset(sorted(new_model.items()))))
 
 
-def sql2json(pmodelname, pdbname, pemptymodel=True):
+def sql2json(pmodelname, pdbname, pemptymodel=False):
     jsmodel = {}
     jsmodel['model'] = proj2js(pemptymodel)
     jsmodel['languages'] = langs2js(pemptymodel)
@@ -41,6 +42,7 @@ def sql2json(pmodelname, pdbname, pemptymodel=True):
     jsmodel[JSModel.elemtype2label(Modelelemtype.RELA)] = relations2js(pemptymodel)
     jsmodel[JSModel.elemtype2label(Modelelemtype.ARCS)] = arcs2js(pemptymodel)
     jsmodel[JSModel.elemtype2label(Modelelemtype.KEYS)] = keys2js(pemptymodel)
+    #jsmodel[JSModel.elemtype2label(Modelelemtype.KEYS)] = businessrules2js(pemptymodel)
     jsmodel[JSModel.elemtype2label(Modelelemtype.DOCU)] = documents2js(pemptymodel)
     jsmodel[JSModel.elemtype2label(Modelelemtype.ORGU)] = orgUnits2js(pemptymodel)
     jsmodel[JSModel.elemtype2label(Modelelemtype.INTF)] = systems2js(pemptymodel)
@@ -57,6 +59,7 @@ def sql2json(pmodelname, pdbname, pemptymodel=True):
     modelhash = make_hash(jsmodel)
     jsmodel['_imprint_'] = {"database": "None" if pemptymodel else pdbname if pdbname != "" else ":in-memory:"
         , "created": str(datetime.today())
+        ,"Modelversion" : MODELVERSION
         , "hashvalue": modelhash
         ,
                             "comment": "Entries ending with + represent denormalized data and are not checked for consistency while reading back"}

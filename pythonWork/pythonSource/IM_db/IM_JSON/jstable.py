@@ -11,10 +11,10 @@ def tables2js(pemptymodel):
                , 'refindocuments+', 'refbyorgunits+'
              ]
     if pemptymodel:
-        retval = fillmodel(pmodel=model,pentries=['' for i in range (9)]
-                                                 +[reflist(),userdefprops()
-                    ,reflist(),sourceref()
-                    ,reflist(),reflist()])
+        retval = {jsguid(Modelelemtype.TABL,'0000') : fillmodel(pmodel=model, pentries=['' for i in range(9)]
+                                                   + [reflist(), userdefprops()
+                                                       , reflist(), sourceref()
+                                                       , reflist(), reflist()])}
     else: 
         retval={jsguid(Modelelemtype.TABL,t.tabl_id) :
                 fillmodel(pmodel=model,pentries=[t.tabl_name

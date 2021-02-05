@@ -26,7 +26,7 @@ def columns2js(pemptymodel):
             ,'refbyorgunits+'
     ]
     if pemptymodel:
-        retval = fillmodel(pmodel=model,pentries=['' for i in range(17)]+[reflist(),userdefprops(), sourceref(),reflist(),reflist()])
+        retval = {jsguid(Modelelemtype.COLU, '0000') : fillmodel(pmodel=model,pentries=['' for i in range(17)]+[reflist(),userdefprops(), sourceref(),reflist(),reflist()])}
     else:
         retval = {jsguid(Modelelemtype.COLU,c.colu_id) : fillmodel(pmodel=model,pentries=[
         c.colu_column_name

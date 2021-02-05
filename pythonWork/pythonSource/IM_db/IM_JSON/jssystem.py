@@ -11,7 +11,7 @@ def systems2js(pemptymodel):
             ,'tables+' , 'domains+'
              ]
     if pemptymodel:
-        retval = {'INTF0000': fillmodel(pmodel=model, pentries=['', '', '', '', '', '', ''
+        retval = {jsguid(Modelelemtype.INTF, '0000') : fillmodel(pmodel=model, pentries=['', '', '', '', '', '', ''
                                                     ,sourceref(), reflist()
                                                 , reflist()
                                                 , reflist(), reflist()
@@ -54,5 +54,5 @@ def systems2sql(pmodel):
 
 """transfer references and subtypes"""
 def systrefs2sql(pmodel):
-    #    insudp(pmodeid=entiid, pudps=jenti["userdefprop"])
+    #    insudp(pburuid=entiid, pudps=jenti["userdefprop"])
     return

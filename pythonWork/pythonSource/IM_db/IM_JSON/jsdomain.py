@@ -217,7 +217,7 @@ def domain2js(pdoma):
 
 def domains2js(pemptymodel):
     if pemptymodel:
-        domas = {'DOMA0000':domain2js(None)}
+        domas = {jsguid(Modelelemtype.DOMA, '0000'):domain2js(None)}
     else:
         domas = {jsguid(Modelelemtype.DOMA, d.doma_id):domain2js(d)
                  for d in Domain.select()}
