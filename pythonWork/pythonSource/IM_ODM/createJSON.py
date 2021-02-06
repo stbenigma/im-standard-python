@@ -3,6 +3,7 @@ import json
 from IM_DB import dbConnect, parameters, logmessages
 from IM_JSON import sql2json,jsonfilename,JSModel
 
+
 def getJSONfile(pfilename):
     with open(pfilename, 'r') as handle:
         model = json.load(handle)

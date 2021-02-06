@@ -1,6 +1,7 @@
 import os
 import re
 from pathlib import Path
+import json
 
 """ Sammlung aller Parameter für die Verwaltung der Datenbank und aller Tools"""
 MODELNAME:str = 'odmmodelname'
@@ -10,6 +11,15 @@ DBDEFAULTLANG:str = 'dbdefaultlang'
 DBLANGUAGES:str = 'dblanguages'
 LOGFILEDIREC:str = 'logfiledirec'
 LOGFILEPATH:str = 'logfilepath'
+VERSIONFILEPATH:str=os.path.dirname(os.path.abspath(__file__))+"/../../versions.json"
+with open(VERSIONFILEPATH, 'r') as handle:
+    versions = json.load(handle)
+def modelmodelversion():
+    return versions['MODELMODELVERSION']
+def htmlgenerateversion():
+    return versions['HTMLGENERATEVERSION']
+def odmfillversion():
+    return versions['ODMFILLVERSION']
 
 SQLITE:str = 'sqlite'
 SQLSERVER:str = 'sql-server'

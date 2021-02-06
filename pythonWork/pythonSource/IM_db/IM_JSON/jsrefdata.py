@@ -21,7 +21,7 @@ def physicalunits2js(pemptymodel):
                                         ,p.phyu_descr
                                         , p.phyu_uc, p.phyu_dc, p.phyu_um, p.phyu_dm
                                         ,reflist(plist= [jsguid(Modelelemtype.DOMA, d.doma_id)
-                                                            for d in Domains.select(pwhere="doma_num_phyu_id ={}".format(p.phyu_id))])
+                                                            for d in Domain.select(pwhere="doma_num_phyu_id ={}".format(p.phyu_id))])
                     ])
                 for p in PhysicalUnit.select()
              }
