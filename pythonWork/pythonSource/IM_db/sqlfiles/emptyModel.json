@@ -1,0 +1,464 @@
+{
+   "model": {
+      "name": "",
+      "type": "",
+      "language": "",
+      "uc": "",
+      "dc": "",
+      "um": "",
+      "dm": ""
+   },
+   "languages": {
+      "en": {
+         "name": "",
+         "iso3": "",
+         "modellanguage": "",
+         "replacementlang": ""
+      }
+   },
+   "entities": {
+      "ENTI0000": {
+         "name": {
+            "en": ""
+         },
+         "shortname": "",
+         "descr": {
+            "en": ""
+         },
+         "tooltip": {
+            "en": ""
+         },
+         "exptuple#": "",
+         "prefix": "",
+         "subtypellevel+": "",
+         "uc": "",
+         "dc": "",
+         "um": "",
+         "dm": "",
+         "synonyms": {
+            "SYNO000": {
+               "en": ""
+            }
+         },
+         "sourceref": {
+            "ODM": ""
+         },
+         "supertypes+": [],
+         "roles+": [],
+         "subtypes+": [],
+         "attributes+": [],
+         "relations+": [],
+         "keys+": [],
+         "inarcs+": [],
+         "refindocuments+": [],
+         "refbyorgunits+": [],
+         "userdefprops": {
+            "Theme": {
+               "Group": {
+                  "UDPR000": {
+                     "name": "",
+                     "value": ""
+                  }
+               }
+            }
+         },
+         "tablesmapped+": {
+            "INTF000": [
+               "TABL000"
+            ]
+         },
+         "diagrams+": []
+      }
+   },
+   "domains": {
+      "DOMA0000": {
+         "name": {
+            "en": ""
+         },
+         "descr": {
+            "en": ""
+         },
+         "origin": "",
+         "interfaceid": "",
+         "interface+": "",
+         "basedatatype+": "",
+         "type": "",
+         "displdatatype+": {
+            "en": ""
+         },
+         "datatypestr+": "",
+         "datatypeid": "",
+         "uc": "",
+         "um": "",
+         "dc": "",
+         "dm": "",
+         "minvalue": "",
+         "maxvalue": "",
+         "totaldigits": "",
+         "fractdigits": "",
+         "roundvalue": "",
+         "unit": "",
+         "unitid": "",
+         "maxlng": "",
+         "syntaxrule": "",
+         "granularity": "",
+         "granularitytext+": {
+            "en": ""
+         },
+         "contenttype": "",
+         "contenttypename+": "",
+         "format+": "",
+         "formatid": "",
+         "elements": [
+            {
+               "name": "",
+               "mandatory": "",
+               "domain": "",
+               "descr": "",
+               "uc": "",
+               "dc": "",
+               "um": "",
+               "dm": ""
+            }
+         ],
+         "values": [
+            {
+               "value": "",
+               "sort": "",
+               "displ": "",
+               "descr": "",
+               "uc": "",
+               "dc": "",
+               "um": "",
+               "dm": ""
+            }
+         ],
+         "usedinattrs+": [],
+         "usedincols+": [],
+         "usedingrps+": [],
+         "sourceref": {
+            "ODM": ""
+         },
+         "refindocuments+": [],
+         "refbyorgunits+": []
+      }
+   },
+   "attributes": {
+      "ATTR0000": {
+         "techname": "",
+         "name": {
+            "en": ""
+         },
+         "seq": "",
+         "entity": "",
+         "domain": "",
+         "basedatatype+": "",
+         "type+": "",
+         "memberattrs+": [],
+         "descriptive": "",
+         "mandatory": "",
+         "historicised": "",
+         "repeated": "",
+         "translated": "",
+         "encrypted": "",
+         "tooltip": {
+            "en": ""
+         },
+         "descr": {
+            "en": ""
+         },
+         "uc": "",
+         "dc": "",
+         "um": "",
+         "dm": "",
+         "sourceref": {
+            "ODM": ""
+         },
+         "keys+": [],
+         "refindocuments+": [],
+         "refbyorgunits+": [],
+         "userdefprops": {
+            "Theme": {
+               "Group": {
+                  "UDPR000": {
+                     "name": "",
+                     "value": ""
+                  }
+               }
+            }
+         },
+         "columnsmapped+": [],
+         "diagrams+": []
+      }
+   },
+   "relations": {
+      "RELA0000": {
+         "name": "",
+         "type": "",
+         "from-to": {
+            "enti": "",
+            "arc": "",
+            "assoc": {
+               "en": ""
+            },
+            "maptype": "",
+            "hist": "",
+            "mandatory": "",
+            "cardstr+": ""
+         },
+         "to-from": {
+            "enti": "",
+            "arc": "",
+            "assoc": {
+               "en": ""
+            },
+            "maptype": "",
+            "hist": "",
+            "mandatory": "",
+            "cardstr+": ""
+         },
+         "isinkeys+": [],
+         "sourceref": {
+            "ODM": ""
+         },
+         "uc": "",
+         "dc": "",
+         "um": "",
+         "dm": ""
+      }
+   },
+   "arcs": {
+      "ARCS0000": {
+         "name": "",
+         "entity": "",
+         "relations": [],
+         "sourceref": {
+            "ODM": ""
+         },
+         "uc": "",
+         "dc": "",
+         "um": "",
+         "dm": ""
+      }
+   },
+   "keys": {
+      "KEYS0000": {
+         "name": "",
+         "entity": "",
+         "uc": "",
+         "dc": "",
+         "um": "",
+         "dm": "",
+         "sourceref": {
+            "ODM": ""
+         },
+         "key-elements": {
+            "attributes": [],
+            "relations": []
+         }
+      }
+   },
+   "documents": {
+      "DOCU0000": {
+         "name": "",
+         "reference": "",
+         "content": "",
+         "format+": "",
+         "formatid": "",
+         "parent": "",
+         "referencecnt+": "",
+         "references": {
+            "entities": [],
+            "attributes": [],
+            "domains": [],
+            "systems": [],
+            "tables": [],
+            "columns": [],
+            "diagrams": []
+         }
+      }
+   },
+   "orgunits": {
+      "ORGU0000": {
+         "name": "",
+         "descr": "",
+         "uc": "",
+         "dc": "",
+         "um": "",
+         "dm": "",
+         "mail": "",
+         "telefon": "",
+         "address": "",
+         "parent": "",
+         "referencecnt+": "",
+         "references": {
+            "entities": [],
+            "attributes": [],
+            "domains": [],
+            "systems": [],
+            "tables": [],
+            "columns": [],
+            "diagrams": []
+         }
+      }
+   },
+   "systems": {
+      "INTF0000": {
+         "name": "",
+         "interface-id+": "",
+         "descr": "",
+         "uc": "",
+         "dc": "",
+         "um": "",
+         "dm": "",
+         "sourceref": {
+            "ODM": ""
+         },
+         "refindocuments+": [],
+         "refbyorgunits+": [],
+         "tables+": [],
+         "domains+": []
+      }
+   },
+   "tables": {
+      "TABL0000": {
+         "name": "",
+         "interface-name+": "",
+         "interface-id+": "",
+         "prefix": "",
+         "descr": "",
+         "uc": "",
+         "dc": "",
+         "um": "",
+         "dm": "",
+         "columns+": [],
+         "userdefprops": {
+            "Theme": {
+               "Group": {
+                  "UDPR000": {
+                     "name": "",
+                     "value": ""
+                  }
+               }
+            }
+         },
+         "entitiesmapped": [],
+         "sourceref": {
+            "ODM": ""
+         },
+         "refindocuments+": [],
+         "refbyorgunits+": []
+      }
+   },
+   "columns": {
+      "COLU0000": {
+         "name": "",
+         "table-name+": "",
+         "table-id": "",
+         "interface-name+": "",
+         "interface-id+": "",
+         "mandatory": "",
+         "basedatatype+": "",
+         "datatype": "",
+         "datatypeid+": "",
+         "format": "",
+         "domain": "",
+         "descr": "",
+         "interface_col_id": "",
+         "uc": "",
+         "dc": "",
+         "um": "",
+         "dm": "",
+         "attributes-mapped": [],
+         "userdefprops": {
+            "Theme": {
+               "Group": {
+                  "UDPR000": {
+                     "name": "",
+                     "value": ""
+                  }
+               }
+            }
+         },
+         "sourceref": {
+            "ODM": ""
+         },
+         "refindocuments+": [],
+         "refbyorgunits+": []
+      }
+   },
+   "diagrams": {
+      "DIAG0000": {
+         "name": "",
+         "legend": {
+            "x": "",
+            "y": "",
+            "model": ""
+         },
+         "type": "",
+         "width": "",
+         "height": "",
+         "uc": "",
+         "dc": "",
+         "um": "",
+         "dm": "",
+         "elements": {},
+         "relationships": {},
+         "arcs": {},
+         "refindocuments+": [],
+         "refbyorgunits+": []
+      }
+   },
+   "userdefprops": {
+      "UDPR0000": {
+         "theme": "",
+         "group": "",
+         "name": "",
+         "usedfor": []
+      }
+   },
+   "physicalunits": {
+      "PHYU0000": {
+         "name": "",
+         "si-unit": "",
+         "descr": "",
+         "uc": "",
+         "dc": "",
+         "um": "",
+         "dm": "",
+         "refindomains+": []
+      }
+   },
+   "datatypes": {
+      "DATY0000": {
+         "name": "",
+         "basetype": "",
+         "uc": "",
+         "dc": "",
+         "um": "",
+         "dm": "",
+         "sourceref": {
+            "ODM": ""
+         }
+      }
+   },
+   "storageformats": {
+      "STFO0000": {
+         "name": "",
+         "descr": "",
+         "uc": "",
+         "dc": "",
+         "um": "",
+         "dm": "",
+         "refindocuments+": [],
+         "refindomains+": []
+      }
+   },
+   "_imprint_": {
+      "database": "None",
+      "created": "2021-02-06 11:50:07.733092",
+      "Modelversion": "1.1",
+      "hashvalue": -3718097623532120665,
+      "comment": "Entries ending with + represent denormalized data and are not checked for consistency while reading back"
+   }
+}
