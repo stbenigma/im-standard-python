@@ -1,46 +1,76 @@
 from IM_OBJECTS import Key, Relation, Modelelemtype, Boolean, Arc,Externalref,Languagetext
-from IM_JSON import jsguid, jsguid2id, JSModel, inssourceref,inslgtx
+from IM_JSON import *
+
+def relaend2js(prelaend=None):
+    model = ['enti'
+            , 'arc'
+            , 'assoc'
+            , 'maptype'
+            , 'hist'
+            , 'mandatory'
+            , 'cardstr+']
+    if prelaend  is None:
+        retval = fillmodel(pmodel=model,pentries=['','',multilangtext(),
+                                                  '','','','']
+                           )
+    else:
+        retval = fillmodel(pmodel=model, pentries=prelaend
+                           )
+    #fi
+    return retval
+
+def relation2js(prela):
+    model = [ 'name', 'type'
+        , 'from-to', 'to-from'
+        , 'isinkeys+', 'sourceref'
+        , 'uc', 'dc', 'um', 'dm'
+             ]
+    if prela is None:
+        retval = fillmodel(pmodel=model
+                           , pentries=['', ''
+                                    , relaend2js(), relaend2js()
+                                       , reflist(), sourceref()
+                                     , '', '', '', ''
+                                       ]
+                           )
+    else:
+        keys = [k for k in Key.select(pwhere="""keys_id in (select kele_keys_id 
+                                                    from key_elements 
+                                                    where kele_rela_id = {})""".format(prela.rela_id))]
+        retval = fillmodel(pmodel=model
+                           , pentries=[prela.rela_name, prela.rela_type
+                                       ,[jsguid(Modelelemtype.ENTI, prela.rela_enti_id_from)
+                                        ,None if prela.rela_arcs_id_from is None else jsguid(Modelelemtype.ARCS, prela.rela_arcs_id_from)
+                                        ,multilangtext(prela.rela_assoc_from_to_L)
+                                        ,prela.rela_maptype_from_to
+                                        ,Boolean.str2bool(prela.rela_hist_from_to)
+                                        ,Boolean.str2bool(prela.rela_mandatory_from_to)
+                                        ,prela.to_cardstr()
+                                         ]
+                                       ,[ jsguid(Modelelemtype.ENTI, prela.rela_enti_id_to)
+                                          ,None if prela.rela_arcs_id_to is None else jsguid(Modelelemtype.ARCS, prela.rela_arcs_id_to)
+                                          ,multilangtext(prela.rela_assoc_to_from_L)
+                                          ,prela.rela_maptype_to_from
+                                          ,Boolean.str2bool(prela.rela_hist_to_from)
+                                          ,Boolean.str2bool(prela.rela_mandatory_to_from)
+                                          ,prela.from_cardstr()
+                                        ]
+                                        ,reflist(plist=[jsguid(Modelelemtype.KEYS, k.keys_id) for k in keys])
+                                      , sourceref(pvalues=Externalref.getsrcinfo(pmodeid=prela.rela_id))
+                                       ,prela.rela_uc, prela.rela_dc, prela.rela_um, prela.rela_dm
+                                       ]
+                           )
+    # fi
+    return retval
 
 
-def relation(prela):
-    if prela is None: return {}
-    keys = [k for k in Key.select(pwhere="""keys_id in (select kele_keys_id 
-                                                from key_elements 
-                                                where kele_rela_id = {})""".format(prela.rela_id))]
-    return {
-        'name': prela.rela_name
-        , 'type': prela.rela_type
-        , 'from-to': {
-            'enti': jsguid(Modelelemtype.ENTI, prela.rela_enti_id_from)
-            , 'arc': None if prela.rela_arcs_id_from is None else jsguid(Modelelemtype.ARCS, prela.rela_arcs_id_from)
-            , 'assoc': prela.rela_assoc_from_to_L
-            , 'maptype': prela.rela_maptype_from_to
-            , 'hist': Boolean.str2bool(prela.rela_hist_from_to)
-            , 'mandatory': Boolean.str2bool(prela.rela_mandatory_from_to)
-            , 'cardstr+': prela.to_cardstr()
-        }
-        , 'to-from': {
-            'enti': jsguid(Modelelemtype.ENTI, prela.rela_enti_id_to)
-            , 'arc': None if prela.rela_arcs_id_to is None else jsguid(Modelelemtype.ARCS, prela.rela_arcs_id_to)
-            , 'assoc': prela.rela_assoc_to_from_L
-            , 'maptype': prela.rela_maptype_to_from
-            , 'hist': Boolean.str2bool(prela.rela_hist_to_from)
-            , 'mandatory': Boolean.str2bool(prela.rela_mandatory_to_from)
-            , 'cardstr+': prela.from_cardstr()
-        }
-        , 'isinkeys+': [jsguid(Modelelemtype.KEYS, k.keys_id) for k in keys]
-        , 'sourceref': Externalref.getsrcinfo(pmodeid=prela.rela_id)
-        , 'uc': prela.rela_uc
-        , 'dc': prela.rela_dc
-        , 'um': prela.rela_um
-        , 'dm': prela.rela_dm
-    }
-
-
-def relations2js():
-    relas = {jsguid(Modelelemtype.RELA, r.rela_id): relation(r)
-             for r in Relation.select()}
+def relations2js(pemptymodel):
+    if pemptymodel:
+        relas = {jsguid(Modelelemtype.RELA, '0000') : relation2js(None)}
+    else:
+        relas = {jsguid(Modelelemtype.RELA, r.rela_id): relation2js(r) for r in Relation.select()}
     return relas
+
 
 
 def relations2sql(pmodel: JSModel):
@@ -79,24 +109,33 @@ def relations2sql(pmodel: JSModel):
 """transfer references and subtypes"""
 def relarefs2sql(pmodel):
     #for jid, jelem in pmodel.jsmodel['relations'].items():
-        #updvs2sql(pmodel=pmodel,pmodeid=jsguid2id(jid), pudps=jelem["userdefprops"])
+        #updvs2sql(pmodel=pmodel,pburuid=jsguid2id(jid), pudps=jelem["userdefprops"])
     return
 
 
-def arcs2js():
-    arcs = {jsguid(Modelelemtype.ARCS, a.arcs_id): {
-        'name': a.arcs_name
-        , 'entity': jsguid(Modelelemtype.ENTI, a.arcs_enti_id)
-        , 'relations': [jsguid(Modelelemtype.RELA, r.rela_id) for r in a.getrelalist()]
-        , 'sourceref': Externalref.getsrcinfo(pmodeid=a.arcs_id)
-        , 'uc': a.arcs_uc
-        , 'dc': a.arcs_dc
-        , 'um': a.arcs_um
-        , 'dm': a.arcs_dm
-        }
-        for a in Arc.select()
-    }
-    return arcs
+def arcs2js(pemptymodel):
+    model = ['name', 'entity'
+        , 'relations', 'sourceref'
+        , 'uc', 'dc', 'um', 'dm'
+             ]
+    if pemptymodel:
+        retval= {jsguid(Modelelemtype.ARCS, "0000") : fillmodel(pmodel=model,pentries=['','',reflist(),sourceref(),'','','',''])}
+    else:
+        retval = {jsguid(Modelelemtype.ARCS, a.arcs_id): fillmodel(pmodel=model
+                                                               ,pentries=[a.arcs_name
+                        , jsguid(Modelelemtype.ENTI, a.arcs_enti_id)
+                        , [jsguid(Modelelemtype.RELA, r.rela_id) for r in a.getrelalist()]
+                        , Externalref.getsrcinfo(pmodeid=a.arcs_id)
+                        , a.arcs_uc
+                        , a.arcs_dc
+                        , a.arcs_um
+                        , a.arcs_dm
+                                ]
+                                                               )
+                for a in Arc.select()
+                }
+    # fi
+    return retval
 
 
 def arcs2sql(pmodel):

@@ -1,21 +1,32 @@
 
-from IM_JSON import jsguid,inssourceref,jsguid2id,JSModel
+from IM_JSON import *
 from IM_OBJECTS import Modelelemtype,PhysicalUnit,Document,Storageformat,Datatype,Domain,Externalref
 
-def physicalunits2js():
-    phyus = {jsguid(Modelelemtype.PHYU,p.phyu_id) : {'name':p.phyu_name
-                                        ,'si-unit': p.phyu_si_unit
-                                        ,'descr' : p.phyu_descr
-                                        , 'uc': p.phyu_uc
-                                        , 'dc': p.phyu_dc
-                                        , 'um': p.phyu_um
-                                        , 'dm': p.phyu_dm
-                                        ,'refindomains+': [jsguid(Modelelemtype.DOMA, d.doma_id)
-                                                            for d in Domains.select(pwhere="doma_num_phyu_id ={}".format(p.phyu_id))]
-                                         }
+def physicalunits2js(pemptymodel):
+    model = ['name'
+                                        ,'si-unit'
+                                        ,'descr' 
+                                        , 'uc'
+                                        , 'dc'
+                                        , 'um'
+                                        , 'dm'
+                                        ,'refindomains+']
+
+    if pemptymodel:
+        retval = {jsguid(Modelelemtype.PHYU,'0000'): fillmodel(pmodel=model, pentries=['' for i in range(len(model) - 1)] + [reflist()])}
+    else:
+        retval= {jsguid(Modelelemtype.PHYU,p.phyu_id) : fillmodel(pmodel=model,pentries=
+                [p.phyu_name
+                                        ,p.phyu_si_unit
+                                        ,p.phyu_descr
+                                        , p.phyu_uc, p.phyu_dc, p.phyu_um, p.phyu_dm
+                                        ,reflist(plist= [jsguid(Modelelemtype.DOMA, d.doma_id)
+                                                            for d in Domains.select(pwhere="doma_num_phyu_id ={}".format(p.phyu_id))])
+                    ])
                 for p in PhysicalUnit.select()
              }
-    return phyus
+    # fi
+    return retval
 
 def physicalunits2sql(pmodel:JSModel):
     for jid,jelem in pmodel.jsmodel['physicalunits'].items():
@@ -38,24 +49,35 @@ def physicalunits2sql(pmodel:JSModel):
 
 """transfer references and subtypes"""
 def phyurefs2sql(pmodel:JSModel):
-    #    insudp(pmodeid=entiid, pudps=jenti["userdefprop"])
+    #    insudp(pburuid=entiid, pudps=jenti["userdefprop"])
     return
 
-def storageformats2js():
-    stfos = {jsguid(Modelelemtype.STFO,s.stfo_id) : {'name':s.stfo_name
-                                        ,'descr' : s.stfo_descr
-                                        , 'uc': s.stfo_uc
-                                        , 'dc': s.stfo_dc
-                                        , 'um': s.stfo_um
-                                        , 'dm': s.stfo_dm
-                                        ,'refindocuments+': [jsguid(Modelelemtype.DOCU, d.docu_id)
-                                                            for d in Document.select(pwhere="docu_stfo_id ={}".format(s.stfo_id))]
-                                        , 'refindomains+': [jsguid(Modelelemtype.DOMA, d.doma_id)
-                                                for d in Domain.select(pwhere="doma_bin_stfo_id ={}".format(s.stfo_id))]
-                                         }
+def storageformats2js(pemptymodel):
+    model = ['name'
+                                        ,'descr' 
+                                        , 'uc'
+                                        , 'dc'
+                                        , 'um'
+                                        , 'dm'
+                                        ,'refindocuments+'
+                                        , 'refindomains+']
+
+    if pemptymodel:
+        retval = {jsguid(Modelelemtype.STFO,'0000') : fillmodel(pmodel=model, pentries=['' for i in range(len(model) - 2)] + [reflist(),reflist()])}
+    else:
+        retval = {jsguid(Modelelemtype.STFO,s.stfo_id) : fillmodel(pmodel=model,pentries=
+        [s.stfo_name, s.stfo_descr
+                                        ,s.stfo_uc, s.stfo_dc, s.stfo_um, s.stfo_dm
+                                        ,reflist(plist=[jsguid(Modelelemtype.DOCU, d.docu_id)
+                                                            for d in Document.select(pwhere="docu_stfo_id ={}".format(s.stfo_id))])
+                                        , reflist(plist= [jsguid(Modelelemtype.DOMA, d.doma_id)
+                                                for d in Domain.select(pwhere="doma_bin_stfo_id ={}".format(s.stfo_id))])
+
+        ])
                 for s in Storageformat.select()
              }
-    return stfos
+    # fi
+    return retval
 
 def storageformats2sql(pmodel:JSModel):
     for jid,jelem in pmodel.jsmodel['storageformats'].items():
@@ -77,22 +99,31 @@ def storageformats2sql(pmodel:JSModel):
 
 """transfer references and subtypes"""
 def stforefs2sql(pmodel:JSModel):
-    #    insudp(pmodeid=entiid, pudps=jenti["userdefprop"])
+    #    insudp(pburuid=entiid, pudps=jenti["userdefprop"])
     return
 
 
-def datatypes2js():
-    datys = {jsguid(Modelelemtype.DATY,d.daty_id) : {'name':d.daty_name
-                                        ,'basetype' : d.daty_basetype
-                                        , 'uc': d.daty_uc
-                                        , 'dc': d.daty_dc
-                                        , 'um': d.daty_um
-                                        , 'dm': d.daty_dm
-                                        , 'sourceref' : Externalref.getsrcinfo(pmodeid=d.daty_id)
-                                         }
+def datatypes2js(pemptymodel):
+    model = ['name'
+                                        ,'basetype' 
+                                        , 'uc'
+                                        , 'dc'
+                                        , 'um'
+                                        , 'dm'
+                                        , 'sourceref']
+    if pemptymodel:
+        retval = {jsguid(Modelelemtype.DATY,'0000') : fillmodel(pmodel=model,pentries=['' for i in range(len(model)-1)]+[sourceref()])}
+    else:
+        retval = {jsguid(Modelelemtype.DATY,d.daty_id) : fillmodel(pmodel=model,pentries=
+        [d.daty_name
+                                        ,d.daty_basetype
+                                        ,d.daty_uc, d.daty_dc, d.daty_um, d.daty_dm
+                                        ,Externalref.getsrcinfo(pmodeid=d.daty_id)
+        ])
                 for d in Datatype.select()
              }
-    return datys
+    # fi
+    return retval
 
 def datatypes2sql(pmodel:JSModel):
     for jid,jelem in pmodel.jsmodel['datatypes'].items():
@@ -113,7 +144,7 @@ def datatypes2sql(pmodel:JSModel):
 
 """transfer references and subtypes"""
 def dtayrefs2sql(pmodel:JSModel):
-    #    insudp(pmodeid=entiid, pudps=jenti["userdefprop"])
+    #    insudp(pburuid=entiid, pudps=jenti["userdefprop"])
     return
 
 

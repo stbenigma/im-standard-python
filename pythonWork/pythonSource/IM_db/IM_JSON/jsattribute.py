@@ -1,72 +1,107 @@
-from IM_JSON import jsguid, domaingroupmembers, jsguid2id, inslgtx, inssourceref, JSModel, jsguid2type, udpv2js, \
-    updvs2sql
+from IM_JSON import *
 from IM_OBJECTS import *
 
 
-def businessrules(pmodeid):
-    bures = BusinessruleElement.getburuelements(pmodeid=pmodeid)
-    if not bures: return []
-    retval = []
-    for bure in bures:
-        buru: BusinessRule = bure.getparent()
-        refobjs = []
-        if (buru.buru_type == BusinessRule.BURU_TYPE_CALC) or \
-                (buru.buru_type == BusinessRule.BURU_TYPE_CHECK and buru.buru_level != BusinessRule.BURU_LEVEL_ATTR):
-            refobjs = []  # fill jsguids
-        # print (bure.getparent().buru_name)
-        burujs = {'name': buru.buru_name, 'level': buru.buru_level, 'type': buru.buru_type
-            , 'readwrite': "W" if Boolean.str2bool(bure.bure_writeable) else 'R', 'rule': buru.buru_rule
-                  }
-        if buru.buru_type == BusinessRule.BURU_TYPE_CHECK:
-            burujs['errosmsg'] = buru.buru_errormsg
-        if len(refobjs) > 0:
-            burujs['refelements'] = [r for r in refobjs]
-        retval.append(burujs)
+def businessrule2js(pburuid=None):
+    model = ['name','level', 'type'
+            , 'readwrite', 'rule', 'errosmsg', 'refelements'
+             ]
+    if pburuid is None:
+        retval = fillmodel(pmodel=model,pentries=['' for idx in range(len(model))])
+    else:
+        bures = BusinessruleElement.getburuelements(pmodeid=pburuid)
+        if not bures: return []
+        retval = []
+        for bure in bures:
+            buru: BusinessRule = bure.getparent()
+            refobjs = []
+            if (buru.buru_type == BusinessRule.BURU_TYPE_CALC) or \
+                    (buru.buru_type == BusinessRule.BURU_TYPE_CHECK and buru.buru_level != BusinessRule.BURU_LEVEL_ATTR):
+                refobjs = []  # fill jsguids
+            # print (bure.getparent().buru_name)
+            burujs = {'name': buru.buru_name, 'level': buru.buru_level, 'type': buru.buru_type
+                , 'readwrite': "W" if Boolean.str2bool(bure.bure_writeable) else 'R', 'rule': buru.buru_rule
+                      }
+            if buru.buru_type == BusinessRule.BURU_TYPE_CHECK:
+                burujs['errosmsg'] = buru.buru_errormsg
+            if len(refobjs) > 0:
+                burujs['refelements'] = [r for r in refobjs]
+            retval.append(burujs)
+    #fi
     return retval
 
 
-def defattr(attr):
-    doma = Domain().getbyid(attr.attr_doma_id)
+def attr2js(pattr):
+    model = ['techname', 'name'
+            , 'seq', 'entity'
+            , 'domain', 'basedatatype+'
+            , 'type+', 'memberattrs+'
+            , 'descriptive', 'mandatory'
+            , 'historicised', 'repeated'
+            , 'translated', 'encrypted'
+            , 'tooltip', 'descr'
+            , 'uc', 'dc', 'um', 'dm'
+            , 'sourceref', 'keys+'
+             #, 'businessrules'
+            , 'refindocuments+'
+            , 'refbyorgunits+', 'userdefprops'
+            , 'columnsmapped+', 'diagrams+'
+        ]
+    if pattr is None:
+        retval = fillmodel(pmodel=model
+                           ,pentries=['', multilangtext()
+                                     ,'',''
+                                    ,'',''
+                                    ,'', reflist()
+                                     ,'',''
+                                    ,'',''
+                                    ,'',''
+                                    , multilangtext(), multilangtext()
+                                     ,'','','',''
+                                     , sourceref(), reflist()
+                                     #, businessrules2js()
+                                      , reflist()
+                                     , reflist(), userdefprops()
+                                    , reflist(), reflist()
+                                      ]
+                           )
+    else:
+        doma = Domain().getbyid(pattr.attr_doma_id)
 
-    retval = {'techname': attr.attr_tech_name
-        , 'name': attr.attr_displ_name_L
-        , 'seq': attr.attr_displ_seq
-        , 'entity': jsguid(Modelelemtype.ENTI, attr.attr_enti_id)
-        , 'domain': jsguid(Modelelemtype.DOMA, attr.attr_doma_id)
-        , 'basedatatype+': None if doma.doma_daty_id is None else Datatype().getbyid(doma.doma_daty_id).daty_name
-        , 'type+': doma.doma_type
-        , 'memberattrs+': domaingroupmembers(pdomaid=attr.attr_doma_id) if (
-                    Domain().getbyid(attr.attr_doma_id).doma_type == Domain.GRP) else None
-        , 'descriptive': Boolean.str2bool(attr.attr_is_descriptive)
-        , 'mandatory': Boolean.str2bool(attr.attr_is_mandatory)
-        , 'historicised': Boolean.str2bool(attr.attr_is_historicised)
-        , 'repeated': Boolean.str2bool(attr.attr_is_repeated)
-        , 'translated': Boolean.str2bool(attr.attr_is_translated)
-        , 'encrypted': Boolean.str2bool(attr.attr_is_encrypted)
-        , 'tooltip': attr.attr_tooltip_L
-        , 'descr': attr.attr_descr_L
-        , 'uc': attr.attr_uc
-        , 'dc': attr.attr_dc
-        , 'um': attr.attr_um
-        , 'dm': attr.attr_dm
-        , 'sourceref': Externalref.getsrcinfo(pmodeid=attr.attr_id)
-        , 'keys+': [jsguid(Modelelemtype.KEYS, k.keys_id) for k in attr.getkeys()]
-        , 'businessrules': businessrules(pmodeid=attr.attr_id)
-        , 'refindocuments+': [jsguid(Modelelemtype.DOCU, d[0]) for d in Document.getrefdoculist(pid=attr.attr_id)]
-        , 'refbyorgunits+': [jsguid(Modelelemtype.ORGU, d[0]) for d in
-                             OragnisationalUnit.getreforgulist(pid=attr.attr_id)]
-        , 'userdefprops': udpv2js(pmodeid=attr.attr_id, pmodelemtype=Modelelemtype.ATTR)
-        , 'columnsmapped+': {
-            jsguid(Modelelemtype.INTF, s.getid()): [jsguid(Modelelemtype.COLU, c.colu_id) for c in
-                                                    ColAttrMap.getcolulist(pattrid=attr.attr_id, pintfid=s.getid())]
-            for s in Interface.getmapped(pattrid=attr.attr_id)}
-        , 'diagrams+': [jsguid(Modelelemtype.DIAG, d.diag_id) for d in Diagram.getdiagrams(pmodeid=attr.attr_id)]
-              }
+        retval = fillmodel(pmodel=model
+                           ,pentries=[ pattr.attr_tech_name,multilangtext( pattr.attr_displ_name_L)
+            ,  pattr.attr_displ_seq, jsguid(Modelelemtype.ENTI, pattr.attr_enti_id)
+            ,  jsguid(Modelelemtype.DOMA, pattr.attr_doma_id),  None if doma.doma_daty_id is None else Datatype().getbyid(doma.doma_daty_id).daty_name
+            ,  doma.doma_type,  None if (Domain().getbyid(pattr.attr_doma_id).doma_type != Domain.GRP) else domaingroupmembers(pdomaid=pattr.attr_doma_id)
+            , Boolean.str2bool(pattr.attr_is_descriptive),Boolean.str2bool(pattr.attr_is_mandatory)
+            , Boolean.str2bool(pattr.attr_is_historicised), Boolean.str2bool(pattr.attr_is_repeated)
+            , Boolean.str2bool(pattr.attr_is_translated),  Boolean.str2bool(pattr.attr_is_encrypted)
+            , multilangtext(pattr.attr_tooltip_L)
+            , multilangtext(pattr.attr_descr_L)
+            , pattr.attr_uc, pattr.attr_dc,  pattr.attr_um, pattr.attr_dm
+            , Externalref.getsrcinfo(pmodeid=pattr.attr_id), [jsguid(Modelelemtype.KEYS, k.keys_id) for k in pattr.getkeys()]
+            #, businessrules2js(pburuid=pattr.attr_id)
+                , [jsguid(Modelelemtype.DOCU, d[0]) for d in Document.getrefdoculist(pid=pattr.attr_id)]
+            , reflist(plist=[jsguid(Modelelemtype.ORGU, d[0]) for d in OragnisationalUnit.getreforgulist(pid=pattr.attr_id)])
+                ,  userdefprops(udpv2js(pmodeid=pattr.attr_id, pmodelemtype=Modelelemtype.ATTR))
+            ,  colureflist({jsguid(Modelelemtype.INTF, s.getid()): [jsguid(Modelelemtype.COLU, c.colu_id) for c in
+                                                        ColAttrMap.getcolulist(pattrid=pattr.attr_id, pintfid=s.getid())]
+                            for s in Interface.getmapped(pattrid=pattr.attr_id)
+                            }
+                           )
+            , reflist(plist=[jsguid(Modelelemtype.DIAG, d.diag_id) for d in Diagram.getdiagrams(pmodeid=pattr.attr_id)])
+                ])
+        if (Domain().getbyid(pattr.attr_doma_id).doma_type != Domain.GRP):
+            del retval['memberattrs+']
+    # fi
     return retval
 
 
-def attributes2js():
-    attrs = {jsguid(Modelelemtype.ATTR, a.attr_id): defattr(a) for a in Attribute.select()}
+def attributes2js(pemptymodel):
+    if pemptymodel:
+        attrs = {jsguid(Modelelemtype.ATTR,'0000') : attr2js(None)}
+    else:
+        attrs = {jsguid(Modelelemtype.ATTR, a.attr_id): attr2js(a) for a in Attribute.select()}
     return attrs
 
 
@@ -80,7 +115,7 @@ def attributes2sql(pmodel: JSModel):
          },
          "seq": 1,
          "entity": "ENTI11889",
-         "relation": null,
+         "relation2js": null,
          "domain": "DOMA11877",
          "descriptive": false,
          "mandatory": false,
@@ -144,22 +179,42 @@ def attrrefs2sql(pmodel):
     return
 
 
-def keys2js():
-    keys = {jsguid(Modelelemtype.KEYS, k.keys_id):
-                {'name': k.keys_name
-                    , 'entity': jsguid(Modelelemtype.ENTI, k.keys_enti_id)
-                    , 'uc': k.keys_uc
-                    , 'dc': k.keys_dc
-                    , 'um': k.keys_um
-                    , 'dm': k.keys_dm
-                    , 'sourceref': Externalref.getsrcinfo(pmodeid=k.keys_id)
-                    , 'key-elements': {'attributes': [jsguid(Modelelemtype.ATTR, ke.kele_attr_id)
-                                                      for ke in k.getkeyelements(Modelelemtype.ATTR)]
-                    , 'relations': [jsguid(Modelelemtype.RELA, ke.kele_rela_id)
-                                    for ke in k.getkeyelements(Modelelemtype.RELA)]
-                                       }
-                 } for k in Key.select()}
-    return keys
+def keyelems2js(pkey):
+    model = ['attributes', 'relations']
+    if pkey is None:
+        retval = fillmodel(pmodel=model,pentries=[reflist(),reflist()])
+    else:
+        retval = fillmodel(pmodel=model
+                           ,pentries=[[jsguid(Modelelemtype.ATTR, ke.kele_attr_id)
+                                           for ke in pkey.getkeyelements(Modelelemtype.ATTR)]
+                                        ,[jsguid(Modelelemtype.RELA, ke.kele_rela_id)
+                                            for ke in pkey.getkeyelements(Modelelemtype.RELA)]
+                                      ]
+                           )
+    # fi
+    return retval
+
+
+def keys2js(pemptymodel):
+    model =    [ 'name', 'entity'
+                    , 'uc', 'dc', 'um', 'dm'
+                    , 'sourceref', 'key-elements'
+                 ]
+    if pemptymodel:
+        retval = {jsguid(Modelelemtype.KEYS, "0000") : fillmodel(pmodel=model, pentries=['', '', '', '', '', '', sourceref(), keyelems2js(None)])}
+    else:
+
+        retval = {jsguid(Modelelemtype.KEYS, k.keys_id):
+                      fillmodel(pmodel=model
+                               ,pentries=[k.keys_name, jsguid(Modelelemtype.ENTI, k.keys_enti_id)
+                                        , 'uc', 'dc', 'um', 'dm'
+                                    , Externalref.getsrcinfo(pmodeid=k.keys_id)
+                                    ,  keyelems2js(k)
+                                      ]
+                                )
+                 for k in Key.select()}
+
+    return retval
 
 
 def ins1kele(pmodel: JSModel, pkey: Key, pattrid, prelaid):

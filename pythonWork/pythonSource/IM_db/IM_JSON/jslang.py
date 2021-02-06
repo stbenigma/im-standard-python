@@ -1,18 +1,33 @@
-from IM_OBJECTS import Languagetext,Language,Boolean
 from datetime import date
-from IM_JSON import JSModel
+
+from IM_JSON import JSModel, fillmodel
+from IM_OBJECTS import Languagetext, Language, Boolean
 
 
-def langs2js():
-    langs = {l.lang_iso_code2: {'name': l.lang_iso_name
-        , 'iso3': l.lang_iso_code3
-        , 'modellanguage': Boolean.str2bool(l.lang_is_base_lang)
-        , 'replacementlang': None if l.lang_lang_id is None else Language().getbyid(l.lang_lang_id).lang_iso_code2
-                                }
-             for l in Language.select()
-             }
+def langs2js(pemptymodel):
+    model = ['name', 'iso3', 'modellanguage', 'replacementlang']
+    if pemptymodel:
+        langs ={'en': fillmodel(pmodel=model, pentries=['' for idx in range(len(model))])}
+    else:
+        langs = {l.lang_iso_code2: fillmodel(pmodel=model
+                                             , pentries=[l.lang_iso_name, l.lang_iso_code3
+                                                    , Boolean.str2bool(l.lang_is_base_lang)
+                                                     , None if l.lang_lang_id is None else Language().getbyid(l.lang_lang_id).lang_iso_code2]
+                                             )
+                 for l in Language.select()
+                 }
+        # langs = {l.lang_iso_code2: {'name': l.lang_iso_name
+        # , 'iso3': l.lang_iso_code3
+        # , 'modellanguage': Boolean.str2bool(l.lang_is_base_lang)
+        # , 'replacementlang': None if l.lang_lang_id is None else Language().getbyid(l.lang_lang_id).lang_iso_code2
+        #                         }
+        #      for l in Language.select()
+        #      }
+    # fi
     return langs
-#languages
+
+
+# languages
 
 def inslgtx(pmodel, pmodeid, pattr, ptexts):
     for langid, lang in pmodel.languages.items():
@@ -29,9 +44,11 @@ def inslgtx(pmodel, pmodeid, pattr, ptexts):
             pmodel.markerror(pmsg=err, pelemstr=lgtx.tostring())
             continue
     # for
+
+
 # inslgtx
 
-def langs2sql(pmodel:JSModel):
+def langs2sql(pmodel: JSModel):
     """   "languages": {
       "de": {
          "name": "Deutsch",
@@ -51,7 +68,7 @@ def langs2sql(pmodel:JSModel):
             if pmodel.modellanguage() is not None:
                 error(pmsg="more than one model language defined", pelem=jlang)
             else:
-                pmodel.setmodellanguage (lang.lang_iso_code2)
+                pmodel.setmodellanguage(lang.lang_iso_code2)
             # fi
         # fi
         lang.lang_is_text_lang = Boolean.FALSE
@@ -70,6 +87,4 @@ def langs2sql(pmodel:JSModel):
     if pmodel.modellanguage() is None:
         error(pmsg="No model language defined", pelem=None)
     # print([l.tostring() for l in Language.select()])
-#langs2sql
-
-
+# langs2sql

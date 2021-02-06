@@ -1,6 +1,5 @@
 from datetime import date
-
-from IM_JSON import jsguid, inssourceref, jsguid2id, inslgtx, JSModel, optionalvalue
+from IM_JSON import *
 from IM_OBJECTS import *
 
 
@@ -59,76 +58,169 @@ def defaultvalues2sql(pmodel:JSModel, pdomaid, pvalues):
         except Exception as err:
             pmodel.markerror(pmsg=err, pelemstr=val)
 
-def domain2js(doma):
-    retval = {'name': doma.doma_name_L
-        , 'descr': doma.doma_descr_L
-        , 'origin': doma.doma_origin
-        ,'interfaceid' : jsguid(Modelelemtype.INTF,doma.doma_intf_id)
-        ,'interface+' : None if doma.doma_intf_id is None else Interface().getbyid(doma.doma_intf_id).getname()
-        , 'basedatatype+': None if doma.doma_daty_id is None else Datatype().getbyid(doma.doma_daty_id).daty_name
-        , 'type': doma.doma_type
-        , 'displdatatype+': {l.lang_iso_code2:doma.displdatatype(l.lang_iso_code2) for l in Language.select()}
-        , 'datatypestr+': doma.typestring()
-        , 'datatypeid' : jsguid(Modelelemtype.DATY,doma.doma_daty_id)
-        , 'uc': doma.doma_uc
-        , 'um': doma.doma_um
-        , 'dc': doma.doma_dc
-        , 'dm': doma.doma_dm
-              }
-    if doma.doma_type == Domain.NUM:
-        retval['minvalue'] = doma.doma_num_minvalue
-        retval['maxvalue'] = doma.doma_num_maxvalue
-        retval['totaldigits'] = doma.doma_num_total_digits
-        retval['fractdigits'] = doma.doma_num_fract_digits
-        retval['roundvalue'] = doma.doma_num_round_value
-        if doma.doma_num_phyu_id is None:
-            retval['unit'] = None
-            retval['unitid'] = None
+
+def domelements(pelems:list=None):
+    def domelement(pentries: list = None):
+        model = ["name", "mandatory", "domain", "descr"
+            , "uc", "dc", "um", "dm"
+                 ]
+        if pentries is None:
+            return fillmodel(pmodel=model, pentries=['' for idx in range(len(model))])
         else:
-            retval['unit'] = PhysicalUnit().getbyid(doma.doma_num_phyu_id).phyu_name
-            retval['unitid'] = jsguid(Modelelemtype.PHYU,doma.doma_num_phyu_id)
-    elif doma.doma_type == Domain.TXT:
-        retval['maxlng'] = doma.doma_txt_maxlng
-        retval['syntaxrule'] = doma.doma_txt_syntaxrule
-    elif doma.doma_type == Domain.DAT:
-        retval['minvalue'] = doma.doma_dat_minvalue
-        retval['maxvalue'] = doma.doma_dat_maxvalue
-        retval['granularity'] = doma.doma_dat_granularity
-        retval['granularitytext+'] = {l.lang_iso_code2: doma.displgranul(l.lang_iso_code2) for l in Language.select()}
-    elif doma.doma_type == Domain.BIN:
-        retval['contenttype'] = doma.doma_bin_contenttype
-        retval['contenttypename+'] = doma.displcontenttype()
-        retval['format+'] = None
-        retval['formatid'] = None
-        if doma.doma_bin_stfo_id is not None:
-            retval['format+'] = Storageformat().getbyid(doma.doma_bin_stfo_id).stfo_name
-            retval['formatid'] = jsguid(Modelelemtype.STFO,doma.doma_bin_stfo_id)
-    elif doma.doma_type == Domain.GRP:
-        retval['elements'] = domaingroupmembers(doma.doma_id)
-    elif doma.doma_type == Domain.LOV:
-        retval['maxlng'] = doma.doma_txt_maxlng
-        retval['values'] = [{'value':d.deva_value,'sort': d.deva_sort_order
-                            , 'displ': d.deva_displ, 'descr': d.deva_descr
-                             ,'uc': d.deva_uc, 'dc': d.deva_dc
-                             ,'um' : d.deva_um, 'dm': d.deva_dm}
-                            for d in DefaultValue.select(pwhere="deva_doma_id = {}".format(doma.doma_id),
-                                                         porderby="deva_sort_order")]
-    retval['usedinattrs+'] = [jsguid(Modelelemtype.ATTR, a.attr_id) for a in
-                                Attribute.select(pwhere="attr_doma_id = {}".format(doma.doma_id))]
-    retval['usedincols+']= [jsguid(Modelelemtype.COLU, c.colu_id) for c in
-                           Column.select(pwhere="colu_doma_id = {}".format(doma.doma_id))]
-    retval['usedingrps+']= [jsguid(Modelelemtype.DOMA, d.doma_id) for d in
-                     Domain.select(pwhere="doma_id in (select dgrm_doma_id_group from domaingroup_members where dgrm_doma_id_member = {})"
-                                            .format(doma.doma_id))]
-    retval['sourceref']= Externalref.getsrcinfo(pmodeid=doma.doma_id)
-    retval['refindocuments+'] = [jsguid(Modelelemtype.DOCU, d[0]) for d in Document.getrefdoculist(pid=doma.doma_id)]
-    retval['refbyorgunits+'] = [jsguid(Modelelemtype.ORGU, d[0]) for d in OragnisationalUnit.getreforgulist(pid=doma.doma_id)]
+            return fillmodel(pmodel=model, pentries=pentries)
+        # fi
+    #
+
+    if pelems is None:
+        return [domelement()]
+    else:
+        return pelems
+
+def domvalues(pvalues:list=None):
+    def domvalue(pentries: list = None):
+        model = ["value", "sort", "displ", "descr"
+            , "uc", "dc", "um", "dm"
+                 ]
+        if pentries is None:
+            return fillmodel(pmodel=model, pentries=['' for idx in range(len(model))])
+        else:
+            return fillmodel(pmodel=model, pentries=pentries)
+        # fi
+    #
+
+    if pvalues is None:
+        return [domvalue()]
+    else:
+        return [domvalue(pentries=[d.deva_value, d.deva_sort_order, d.deva_displ, d.deva_descr
+                                    , d.deva_uc, d.deva_dc, d.deva_um, d.deva_dm])
+                for d in pvalues
+                ]
+
+def domain2js(pdoma):
+    model = ['name', 'descr'
+        , 'origin','interfaceid' 
+        ,'interface+' , 'basedatatype+'
+        , 'type', 'displdatatype+'
+        , 'datatypestr+', 'datatypeid' 
+        , 'uc', 'um', 'dc', 'dm'
+        ,'minvalue','maxvalue'
+        ,'totaldigits','fractdigits'
+        ,'roundvalue'
+        ,'unit','unitid'
+        ,'maxlng','syntaxrule'
+        ,'granularity','granularitytext+'
+        ,'contenttype','contenttypename+'
+        ,'format+','formatid'
+        ,'elements','values'
+        ,'usedinattrs+', 'usedincols+'
+        ,'usedingrps+','sourceref'
+        ,'refindocuments+','refbyorgunits+'
+        ]
+    if pdoma is None:
+        retval = fillmodel(pmodel=model
+                           ,pentries=[multilangtext(),multilangtext()
+                                     , '','','',''
+                                    ,'',multilangtext(),'',''
+                                     ,'','','',''
+                                     ,'','','',''
+                                    ,''
+                                     ,'','','',''
+                                     ,'',multilangtext(),'',''
+                                     ,'',''
+                                     ,domelements(),domvalues()
+                                     ,reflist(),reflist()
+                                     ,reflist(),sourceref()
+                                     ,reflist(),reflist()
+                                    ]
+                           )
+    else:
+        retval = fillmodel(pmodel=model
+                           ,pentries=[multilangtext(pdoma.doma_name_L),multilangtext(pdoma.doma_descr_L)
+                                     , pdoma.doma_origin,jsguid(Modelelemtype.INTF, pdoma.doma_intf_id)
+                                    ,None if pdoma.doma_intf_id is None else Interface().getbyid(pdoma.doma_intf_id).getname()
+                                        ,None if pdoma.doma_daty_id is None else Datatype().getbyid(pdoma.doma_daty_id).daty_name
+                                    ,pdoma.doma_type
+                                    ,multilangtext({l.lang_iso_code2: pdoma.displdatatype(l.lang_iso_code2) for l in Language.select()})
+                                    ,pdoma.typestring(),jsguid(Modelelemtype.DATY, pdoma.doma_daty_id)
+                                     ,pdoma.doma_uc,pdoma.doma_um,pdoma.doma_dc,pdoma.doma_dm
+                                     ,pdoma.doma_num_minvalue if pdoma.doma_type == Domain.NUM else pdoma.doma_dat_minvalue
+                                        ,pdoma.doma_num_maxvalue if pdoma.doma_type == Domain.NUM else pdoma.doma_dat_maxvalue
+                                    ,pdoma.doma_num_total_digits,pdoma.doma_num_fract_digits
+                                    ,pdoma.doma_num_round_value
+                                     ,None if pdoma.doma_num_phyu_id is None else PhysicalUnit().getbyid(pdoma.doma_num_phyu_id).phyu_name
+                                          ,jsguid(Modelelemtype.PHYU,pdoma.doma_num_phyu_id)
+                                    ,pdoma.doma_txt_maxlng ,pdoma.doma_txt_syntaxrule
+                                     ,pdoma.doma_dat_granularity,multilangtext({l.lang_iso_code2: pdoma.displgranul(l.lang_iso_code2) for l in Language.select()})
+                                      ,pdoma.doma_bin_contenttype,pdoma.displcontenttype()
+                                     ,None if pdoma.doma_bin_stfo_id is None else Storageformat().getbyid(pdoma.doma_bin_stfo_id).stfo_name
+                                        ,jsguid(Modelelemtype.STFO,pdoma.doma_bin_stfo_id)
+                                     ,domelements(domaingroupmembers(pdoma.doma_id))
+                                        ,domvalues(DefaultValue.select(pwhere="deva_doma_id = {}".format(pdoma.doma_id),
+                                                             porderby="deva_sort_order")
+                                                   )
+                                     ,reflist([jsguid(Modelelemtype.ATTR, a.attr_id)
+                                                for a in Attribute.select(pwhere="attr_doma_id = {}".format(pdoma.doma_id))])
+                                        ,reflist([jsguid(Modelelemtype.COLU, c.colu_id) for c in Column.select(pwhere="colu_doma_id = {}".format(pdoma.doma_id))])
+                                     ,reflist([jsguid(Modelelemtype.DOMA, d.doma_id)
+                                                    for d in Domain.select(pwhere="""doma_id in (select dgrm_doma_id_group 
+                                                                                    from domaingroup_members 
+                                                                                    where dgrm_doma_id_member = {})"""
+                                                .format(pdoma.doma_id))])
+                                    ,sourceref(Externalref.getsrcinfo(pmodeid=pdoma.doma_id))
+                                     ,reflist([jsguid(Modelelemtype.DOCU, d[0]) for d in Document.getrefdoculist(pid=pdoma.doma_id)])
+                                    ,reflist([jsguid(Modelelemtype.ORGU, d[0]) for d in OragnisationalUnit.getreforgulist(pid=pdoma.doma_id)])
+                                      ]
+                            )
+        if pdoma.doma_type == Domain.NUM:
+            for rm in ["maxlng","syntaxrule","granularity","granularitytext+","contenttype","contenttypename+"
+                        ,"format+","formatid","elements","values"
+                       ]:
+                del retval[rm]
+        elif pdoma.doma_type == Domain.TXT:
+            for rm in ["minvalue","maxvalue","totaldigits","fractdigits","roundvalue","unit","unitid"
+                        ,"granularity","granularitytext+","contenttype","contenttypename+"
+                        ,"format+","formatid","elements","values"
+                       ]:
+                del retval[rm]
+        elif pdoma.doma_type == Domain.DAT:
+            for rm in ["maxlng","syntaxrule"
+                        ,"totaldigits","fractdigits","roundvalue","unit","unitid"
+                        ,"contenttype","contenttypename+"
+                        ,"elements","values"
+                       ]:
+                del retval[rm]
+        elif pdoma.doma_type == Domain.BIN:
+            for rm in ["maxlng","syntaxrule"
+                        ,"minvalue","maxvalue","totaldigits","fractdigits","roundvalue","unit","unitid"
+                        ,"granularity","granularitytext+"
+                        ,"elements","values"
+                       ]:
+                del retval[rm]
+        elif pdoma.doma_type == Domain.GRP:
+            for rm in ["maxlng","syntaxrule"
+                        ,"minvalue","maxvalue","totaldigits","fractdigits","roundvalue","unit","unitid"
+                        ,"granularity","granularitytext+","contenttype","contenttypename+"
+                        ,"format+","formatid","values"
+                       ]:
+                del retval[rm]
+        elif pdoma.doma_type == Domain.LOV:
+            for rm in ["syntaxrule"
+                        ,"minvalue","maxvalue","totaldigits","fractdigits","roundvalue","unit","unitid"
+                        ,"granularity","granularitytext+","contenttype","contenttypename+"
+                        ,"format+","formatid","elements"
+                       ]:
+                del retval[rm]
+        # fi
+    # fi
 
     return retval
 
-def domains2js():
-    domas = {jsguid(Modelelemtype.DOMA, d.doma_id):domain2js(d)
-             for d in Domain.select()}
+def domains2js(pemptymodel):
+    if pemptymodel:
+        domas = {jsguid(Modelelemtype.DOMA, '0000'):domain2js(None)}
+    else:
+        domas = {jsguid(Modelelemtype.DOMA, d.doma_id):domain2js(d)
+                 for d in Domain.select()}
     return domas
 
 def domains2sql(pmodel:JSModel):

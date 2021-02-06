@@ -18,6 +18,12 @@ def createJSON(pfilepath, pfilename):
     dbConnect.myDbConn.close()
     return
 
+def createemptyJSON(pfilepath,pfilename):
+
+    jsmodel = JSModel(pmodel=sql2json(pmodelname=pfilename,pdbname=None  ,pemptymodel=True))
+    jsmodel.printmodel(pfilepath=pfilepath,pfilename=pfilename)
+    return
+
 def json2xml(json_obj, line_padding=""):
     result_list = list()
 
@@ -43,17 +49,25 @@ def json2xml(json_obj, line_padding=""):
 #json2xml
 
 def main(param1):
-    parameters.initparam(p_callarg=param1)
-    logmessages.initlog('createJSON')
-    filename = parameters.odmModelName()
-    filepath = parameters.dbDirect()
-    try:
-        createJSON(pfilepath=filepath, pfilename=filename)
-    finally:
-        logmessages.showmessages("JSON file {} for model {} created"
-                                    .format(filepath + jsonfilename(filename), parameters.odmModelName()))
+    if param1 is None:
+        filepath ='./sqlfiles/'
+        filename = 'emptyModel'
+        createemptyJSON(pfilepath=filepath,pfilename=filename)
+        print ("empty JSON file {} created"
+                                    .format(filepath + jsonfilename(filename) ))
+    else:
+        parameters.initparam(p_callarg=param1)
+        logmessages.initlog('createJSON')
+        filename = parameters.odmModelName()
+        filepath = parameters.dbDirect()
+        try:
+            createJSON(pfilepath=filepath, pfilename=filename)
+        finally:
+            logmessages.showmessages("JSON file {} for model {} created"
+                                        .format(filepath + jsonfilename(filename), parameters.odmModelName()))
+    # fi
 #  main
 
 if __name__ == '__main__':
     import sys
-    main(param1=sys.argv[1])
+    main(param1=None if len(sys.argv) == 1 else sys.argv[1])
