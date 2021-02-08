@@ -1,5 +1,5 @@
 #__all__ = [""]
-from .jsbase import jsguid,jsguid2id,jsguid2type,JSModel,jsonfilename,printJSON,optionalvalue
+from .jsbase import jsguid,jsguid2id,jsguid2type,JSModel,jsonfilename,printJSON,optionalvalue,fillmodel,reflist,multilangtext,userdefprops,tabreflist,sourceref,colureflist
 from .jsreference import inssourceref, documents2js, orgUnits2js,udps2js,udps2sql\
                         ,udprefs2sql,orgunits2sql,documents2sql,docurefs2sql,orgurefs2sql,updvs2sql,udpv2js
 from .jslang import inslgtx,langs2js,langs2sql

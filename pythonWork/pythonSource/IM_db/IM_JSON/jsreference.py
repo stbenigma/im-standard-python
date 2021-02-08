@@ -1,6 +1,6 @@
 
 from IM_OBJECTS import Externalref, Document, Modelelemtype, OragnisationalUnit, Storageformat,ModelelementProperty,Userdefprop,ModelelemOrgu,ModelelemDocu,Userdefpropvalue
-from IM_JSON import jsguid,JSModel,jsguid2id
+from IM_JSON import *
 from mystring import nvl
 
 def inssourceref(pmodel,pmodeid, psources):
@@ -18,16 +18,20 @@ def inssourceref(pmodel,pmodeid, psources):
     return
 
 
-def udps2js():
-    udp = {jsguid (Modelelemtype.UDPR,u.udpr_id) : {'theme': u.udpr_theme
-                                       ,'group': u.udpr_group
-                                       ,'name':u.udpr_name
-                                       ,'usedfor' : [Modelelemtype.getshortname(metp.metp_melt_id)
-                                                     for metp in ModelelementProperty().select(pwhere="METP_UDPR_ID = {}".format(u.udpr_id))]
-                                       }
+def udps2js(pemptymodel):
+    model = ['theme','group'
+            ,'name','usedfor' ]
+    if pemptymodel:
+        retval = {jsguid (Modelelemtype.UDPR, '0000') : fillmodel(pmodel=model, pentries=['', '', '', reflist()])}
+    else:
+        retval =  {jsguid (Modelelemtype.UDPR,u.udpr_id) : fillmodel(pmodel=model,pentries=
+                                [u.udpr_theme,u.udpr_group,u.udpr_name
+                                       ,reflist(plist= [Modelelemtype.getshortname(metp.metp_melt_id)
+                                                     for metp in ModelelementProperty().select(pwhere="METP_UDPR_ID = {}".format(u.udpr_id))])
+                        ])
                  for u in Userdefprop().select()
             }
-    return udp
+    return retval
 
 def udps2sql(pmodel:JSModel):
     for udpranker,judp in pmodel.jsmodel['userdefprops'].items():
@@ -50,12 +54,12 @@ def udps2sql(pmodel:JSModel):
 
 """transfer references and subtypes"""
 def udprefs2sql(pmodel):
-    #    insudp(pmodeid=entiid, pudps=jenti["userdefprops"])
+    #    insudp(pburuid=entiid, pudps=jenti["userdefprops"])
     return
 
 def udpv2js(pmodeid,pmodelemtype):
     return {
-        th[0]: {gr[1]: {jsguid(type=Modelelemtype.UDPR,id=u.udpr_id): {'name': u.udpr_name
+        th[0]: {gr[1]: {jsguid(mtype=Modelelemtype.UDPR,id=u.udpr_id): {'name': u.udpr_name
                                     ,'value': Userdefpropvalue.udpvalue(pudprid=u.udpr_id, pmodeid=pmodeid)}
                         for u in Userdefprop.getudps(ptheme=th[0], pgroup=gr[1], pmeltname=pmodelemtype)}
                 for gr in Userdefprop.grouplist(pudptheme=th[0], pmelttype=pmodelemtype)}
@@ -90,28 +94,25 @@ def updvs2sql(pmodel:JSModel, pmodeid, pudps):
     #for
     return
 
-def documents2js():
-    docus = {jsguid(Modelelemtype.DOCU, d.docu_id):
-        {
-            'name': d.docu_name
-            , 'reference': d.docu_reference
-            , 'content': d.docu_content
-            , 'format+': None if d.docu_stfo_id is None else Storageformat().getbyid(d.docu_stfo_id).stfo_name
-            , 'formatid': None if d.docu_stfo_id is None else jsguid(Modelelemtype.STFO,d.docu_stfo_id)
-            , 'parent': None if d.docu_docu_id is None else jsguid(Modelelemtype.DOCU, d.docu_docu_id)
-            ,'referencecnt+': len(d.getrefmodes())
-            , 'references': {
-                            'entities': [jsguid(m.mode_type, m.mode_id) for m in d.getrefmodes(pmelttype=Modelelemtype.ENTI)]
-                            ,'attributes': [jsguid(m.mode_type, m.mode_id) for m in d.getrefmodes(pmelttype=Modelelemtype.ATTR)]
-                                ,'domains': [jsguid(m.mode_type, m.mode_id) for m in d.getrefmodes(pmelttype=Modelelemtype.DOMA)]
-                                ,'systems': [jsguid(m.mode_type, m.mode_id) for m in d.getrefmodes(pmelttype=Modelelemtype.INTF)]
-                                ,'tables': [jsguid(m.mode_type, m.mode_id) for m in d.getrefmodes(pmelttype=Modelelemtype.TABL)]
-                                ,'columns': [jsguid(m.mode_type, m.mode_id) for m in d.getrefmodes(pmelttype=Modelelemtype.COLU)]
-                                ,'diagrams': [jsguid(m.mode_type, m.mode_id) for m in d.getrefmodes(pmelttype=Modelelemtype.DIAG)]
-                                }
-        }
+def documents2js(pemtpymodel):
+    model = [ 'name', 'reference'
+            , 'content', 'format+'
+            , 'formatid', 'parent'
+            ,'referencecnt+', 'references']
+    if pemtpymodel:
+        retval = {jsguid(Modelelemtype.DOCU, "0000"): fillmodel(pmodel=model,pentries=['' for i in range(len(model)-1)]+[references()])}
+    else:
+        retval = {jsguid(Modelelemtype.DOCU, d.docu_id):
+                    fillmodel(pmodel=model,pentries=[d.docu_name,d.docu_reference
+                                                  ,d.docu_content, None if d.docu_stfo_id is None else Storageformat().getbyid(d.docu_stfo_id).stfo_name
+                                                  ,None if d.docu_stfo_id is None else jsguid(Modelelemtype.STFO,d.docu_stfo_id)
+                                                    ,None if d.docu_docu_id is None else jsguid(Modelelemtype.DOCU, d.docu_docu_id)
+                                                  ,len(d.getrefmodes()),references(pmode=d)
+
+                                      ]
+                           )
         for d in Document.select()}
-    return docus
+    return retval
 
 def documents2sql(pmodel):
     parents = [] #(docu_id, parent_id)
@@ -146,34 +147,54 @@ def docurefs2sql(pmodel):
                 continue
         #for
     #for
-    #    insudp(pmodeid=entiid, pudps=jenti["userdefprop"])
+    #    insudp(pburuid=entiid, pudps=jenti["userdefprop"])
     return
 
-def orgUnits2js():
-    orgus = {jsguid(Modelelemtype.ORGU, o.orgu_id):
-        {
-            'name': o.orgu_name
-            , 'descr': o.orgu_descr
-            , 'uc': o.orgu_uc
-            , 'dc': o.orgu_dc
-            , 'um': o.orgu_um
-            , 'dm': o.orgu_dm
-            , 'mail': o.orgu_mail
-            , 'telefon': o.orgu_telefon
-            , 'address': o.orgu_address
-            , 'parent': None if o.orgu_orgu_id is None else jsguid(Modelelemtype.ORGU, o.orgu_orgu_id)
-            ,'referencecnt+': len(o.getrefmodes())
-            , 'references': {
-                            'entities': [jsguid(m.mode_type, m.mode_id) for m in o.getrefmodes(pmelttype=Modelelemtype.ENTI)]
-                            ,'attributes': [jsguid(m.mode_type, m.mode_id) for m in o.getrefmodes(pmelttype=Modelelemtype.ATTR)]
-                            ,'domains': [jsguid(m.mode_type, m.mode_id) for m in o.getrefmodes(pmelttype=Modelelemtype.DOMA)]
-                            ,'systems': [jsguid(m.mode_type, m.mode_id) for m in o.getrefmodes(pmelttype=Modelelemtype.INTF)]
-                            ,'tables': [jsguid(m.mode_type, m.mode_id) for m in o.getrefmodes(pmelttype=Modelelemtype.TABL)]
-                            ,'columns': [jsguid(m.mode_type, m.mode_id) for m in o.getrefmodes(pmelttype=Modelelemtype.COLU)]
-                            }
-        }
-        for o in OragnisationalUnit.select()}
-    return orgus
+def references(pmode=None):
+    model = [ 'entities', 'attributes'
+            ,'domains','systems'
+            ,'tables','columns','diagrams'
+            ]
+    if pmode is None:
+        retval = fillmodel(pmodel=model,pentries=[[] for i in range(len(model))])
+    else:
+        retval = fillmodel(pmodel=model,pentries=[
+            [jsguid(m.mode_type, m.mode_id) for m in pmode.getrefmodes(pmelttype=Modelelemtype.ENTI)]
+            ,[jsguid(m.mode_type, m.mode_id) for m in pmode.getrefmodes(pmelttype=Modelelemtype.ATTR)]
+            ,[jsguid(m.mode_type, m.mode_id) for m in pmode.getrefmodes(pmelttype=Modelelemtype.DOMA)]
+            ,[jsguid(m.mode_type, m.mode_id) for m in pmode.getrefmodes(pmelttype=Modelelemtype.INTF)]
+            ,[jsguid(m.mode_type, m.mode_id) for m in pmode.getrefmodes(pmelttype=Modelelemtype.TABL)]
+            ,[jsguid(m.mode_type, m.mode_id) for m in pmode.getrefmodes(pmelttype=Modelelemtype.COLU)]
+            , [jsguid(m.mode_type, m.mode_id) for m in pmode.getrefmodes(pmelttype=Modelelemtype.DIAG)]
+        ])
+    # fi
+    return retval
+
+
+def orgUnits2js(pemptymodel):
+    model = ['name', 'descr'
+            , 'uc', 'dc', 'um', 'dm'
+            , 'mail', 'telefon'
+            , 'address', 'parent'
+            ,'referencecnt+', 'references'
+            ]
+    if pemptymodel:
+        retval = {jsguid(Modelelemtype.ORGU, '0000') : fillmodel(pmodel=model
+                            , pentries=['' for i in range(len(model) - 1)] + [references()]
+                            )}
+    else:
+        retval = {jsguid(Modelelemtype.ORGU, o.orgu_id):
+              fillmodel(pmodel=model,pentries=[
+                  o.orgu_name,o.orgu_descr
+                ,o.orgu_uc,o.orgu_dc, o.orgu_um,o.orgu_dm
+                ,o.orgu_mail, o.orgu_telefon
+                  , o.orgu_address, None if o.orgu_orgu_id is None else jsguid(Modelelemtype.ORGU, o.orgu_orgu_id)
+                ,str(len(o.getrefmodes()))
+                , references(pmode=o)
+                 ])
+                for o in OragnisationalUnit.select()
+            }
+    return retval
 
 def orgunits2sql(pmodel:JSModel):
     parents = [] #(orgu_id, parent_id)
@@ -197,7 +218,7 @@ def orgunits2sql(pmodel:JSModel):
         except Exception as err:
             pmodel.markerror(pmsg=err, pelemstr=orgu.tostring())
             continue
-        # inssourceref(pmodel = pmodel,pmodeid=jsguid2id(jid), psources=jelem["sourceref"])
+        # inssourceref(pmodel = pmodel,pburuid=jsguid2id(jid), psources=jelem["sourceref"])
     #for
     OragnisationalUnit.updparentpairs(pparents=parents)
     return
@@ -215,5 +236,5 @@ def orgurefs2sql(pmodel:JSModel):
                 continue
         #for
     #for
-    #    insudp(pmodeid=entiid, pudps=jenti["userdefprop"])
+    #    insudp(pburuid=entiid, pudps=jenti["userdefprop"])
     return

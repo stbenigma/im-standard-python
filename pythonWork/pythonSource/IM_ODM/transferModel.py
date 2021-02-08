@@ -475,6 +475,9 @@ def transferdiaconnect(pconnectors, pdiagid, puc, pdc):
         if (type == 'Relation'):
             relaguid = findField(c, "oid")
             rela = Relation().getbyODMref(psrcid=relaguid)
+            if rela is None:
+                print ("DEBUG transferdiaconnect: {}".format( relaguid))
+                continue
             linewidth = findText(c, 'lineWidth')
             sourcelabel = c.find('sourceLabel/labelBounds')
             sttex = findField(sourcelabel, 'x')

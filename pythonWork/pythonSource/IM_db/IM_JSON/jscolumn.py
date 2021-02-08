@@ -1,35 +1,62 @@
 from IM_OBJECTS import *
-from IM_JSON import jsguid,jsguid2id,inssourceref,udpv2js,updvs2sql,JSModel
+from IM_JSON import *
 
-def columns2js():
-    cols = {jsguid(Modelelemtype.COLU,c.colu_id) :
-        {'name':c.colu_column_name
-         ,'table-name+':Table().getbyid(c.colu_tabl_id).getname()
-         ,'table-id':jsguid(Modelelemtype.TABL, Table().getbyid(c.colu_tabl_id).getid())
-        , 'interface-name+': Interface().getbyid(Table().getbyid(c.colu_tabl_id).tabl_intf_id).getname()
-        , 'interface-id+': jsguid(Modelelemtype.INTF, Interface().getbyid(Table().getbyid(c.colu_tabl_id).tabl_intf_id).getid())
-        ,'mandatory' : Boolean.str2bool(c.colu_mandatory)
-        ,'basedatatype+' : Domain().getbyid(c.colu_doma_id).basedatatype()
-        ,'datatype':c.colu_type_string
-        ,'datatypeid+':jsguid(Modelelemtype.DATY,Domain().getbyid(c.colu_doma_id).doma_daty_id)
-        ,'format':c.colu_format
-        ,'domain':jsguid(Modelelemtype.DOMA,c.colu_doma_id)
-        ,'descr':c.colu_descr
-       ,'interface_col_id':c.colu_ext_system_id
-        ,'uc' : c.colu_uc
-        ,'dc': c.colu_dc
-        ,'um': c.colu_um
-        , 'dm': c.colu_dm
-        , 'attributes-mapped': [jsguid(Modelelemtype.ATTR, a.attr_id) for a in
-                                ColAttrMap.getattrlist(pcoluid=c.colu_id)]
-        , 'userdefprops': udpv2js(pmodeid=c.colu_id,pmodelemtype=Modelelemtype.COLU)
-            , 'sourceref': Externalref.getsrcinfo(pmodeid=c.colu_id)
-        , 'refindocuments+': [jsguid(Modelelemtype.DOCU, d[0]) for d in Document.getrefdoculist(pid=c.colu_id)]
-            ,'refbyorgunits+': [jsguid(Modelelemtype.ORGU, d[0]) for d in OragnisationalUnit.getreforgulist(pid=c.colu_id)]
-         }
+def columns2js(pemptymodel):
+    model = ['name'
+         ,'table-name+'
+         ,'table-id'
+        , 'interface-name+'
+        , 'interface-id+'
+        ,'mandatory' 
+        ,'basedatatype+' 
+        ,'datatype'
+        ,'datatypeid+'
+        ,'format'
+        ,'domain'
+        ,'descr'
+       ,'interface_col_id'
+        ,'uc' 
+        ,'dc'
+        ,'um'
+        , 'dm'
+        , 'attributes-mapped'
+        , 'userdefprops'
+            , 'sourceref'
+        , 'refindocuments+'
+            ,'refbyorgunits+'
+    ]
+    if pemptymodel:
+        retval = {jsguid(Modelelemtype.COLU, '0000') : fillmodel(pmodel=model,pentries=['' for i in range(17)]+[reflist(),userdefprops(), sourceref(),reflist(),reflist()])}
+    else:
+        retval = {jsguid(Modelelemtype.COLU,c.colu_id) : fillmodel(pmodel=model,pentries=[
+        c.colu_column_name
+         ,Table().getbyid(c.colu_tabl_id).getname()
+         ,jsguid(Modelelemtype.TABL, Table().getbyid(c.colu_tabl_id).getid())
+        ,  Interface().getbyid(Table().getbyid(c.colu_tabl_id).tabl_intf_id).getname()
+        ,  jsguid(Modelelemtype.INTF, Interface().getbyid(Table().getbyid(c.colu_tabl_id).tabl_intf_id).getid())
+        , Boolean.str2bool(c.colu_mandatory)
+        , Domain().getbyid(c.colu_doma_id).basedatatype()
+        ,c.colu_type_string
+        ,jsguid(Modelelemtype.DATY,Domain().getbyid(c.colu_doma_id).doma_daty_id)
+        ,c.colu_format
+        ,jsguid(Modelelemtype.DOMA,c.colu_doma_id)
+        ,c.colu_descr
+       ,c.colu_ext_system_id
+        , c.colu_uc
+        , c.colu_dc
+        , c.colu_um
+        ,  c.colu_dm
+        ,  reflist(plist=[jsguid(Modelelemtype.ATTR, a.attr_id) for a in
+                                ColAttrMap.getattrlist(pcoluid=c.colu_id)])
+        ,  udpv2js(pmodeid=c.colu_id,pmodelemtype=Modelelemtype.COLU)
+            ,  Externalref.getsrcinfo(pmodeid=c.colu_id)
+        ,  reflist(plist=[jsguid(Modelelemtype.DOCU, d[0]) for d in Document.getrefdoculist(pid=c.colu_id)])
+            , reflist(plist=[jsguid(Modelelemtype.ORGU, d[0]) for d in OragnisationalUnit.getreforgulist(pid=c.colu_id)])
+         ])
             for c in Column.select()
             }
-    return cols
+    # fi
+    return retval
 
 def columns2sql(pmodel:JSModel):
     for jid,jelem in pmodel.jsmodel['columns'].items():

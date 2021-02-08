@@ -9,7 +9,7 @@ imDomainsFile:str = 'defaultdomains.xml'
 imTypesFile:str = 'types.xml'
 imFilesDirec:str = imDirectory+imModelName+'/files/'
 imEntityDirec:str = imDirectory+imModelName+'/logical/entity/'
-imRelationDirec:str = imDirectory+imModelName+'/logical/relation/'
+imRelationDirec:str = imDirectory+imModelName+'/logical/relation2js/'
 imArcDirec:str = imDirectory+imModelName+'/logical/arc/'
 imTranslationFileName:str = 'translation'
 
@@ -60,7 +60,7 @@ def initODMParam(pimDirec = None , pmodelName  = None, pDomainsFile = None):
     #fi
     imFilesDirec = imDirectory + imModelName + '/files/'
     imEntityDirec = imDirectory + imModelName + '/logical/entity/'
-    imRelationDirec = imDirectory + imModelName + '/logical/relation/'
+    imRelationDirec = imDirectory + imModelName + '/logical/relation2js/'
     imArcDirec = imDirectory + imModelName + '/logical/arc/'
 
     imDomainsFile  = pDomainsFile if (pDomainsFile  is not None) else imDomainsFile

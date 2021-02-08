@@ -208,7 +208,7 @@ class Domain(MultilangBaseobject):
     # displcontenttype
 
     def displgranul(self,plang=None):
-        return Domain._displgranul(dt=self.doma_dat_granularity,plang=plang)
+        return None if self.doma_dat_granularity is None else Domain._displgranul(dt=self.doma_dat_granularity,plang=plang)
 
     @staticmethod
     def _displgranul(dt,plang=None):
