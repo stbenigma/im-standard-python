@@ -98,7 +98,7 @@ def printlistofcontent(plang):
                       ,'name': "{} ({})".format(value['name'][plang]
                                         ,printHTML.model.getbyid(value['entity'])['name'][plang]
                                                 if value['entity'] is not None
-                                        else printHTML.model.getbyid(value['relation2js'])['name'])
+                                        else printHTML.model.getbyid(value['relation'])['name'])
                        }
                      for key,value in printHTML.model.jsmodel['attributes'].items()]
                      ,key=lambda val:val['name'])

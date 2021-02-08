@@ -115,7 +115,7 @@ def attributes2sql(pmodel: JSModel):
          },
          "seq": 1,
          "entity": "ENTI11889",
-         "relation2js": null,
+         "relation": null,
          "domain": "DOMA11877",
          "descriptive": false,
          "mandatory": false,
