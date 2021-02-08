@@ -132,13 +132,14 @@ def loeschmodell():
     Interface().delete()
 #loeschmodell
 
+noneint = lambda elem : None if elem is None else int(elem)
+
 class Odmmapping:
     ENTITYPE = 0
     COLTYPE = 5
     TABLETYPE = 4
     ATTRTYPE = 1
     RELATYPE = 3 # (source ent, targ ent)
-    WHATTYPE = 3 # used in iT, what is this?
     FKTYPE = 8
     INHERITTYPE = 9
     RELARCTYPE = 13
@@ -157,11 +158,11 @@ class Odmmapping:
 
     def __init__(self,cmxml):
         self.mapid = transferModel.findField(cmxml, 'id')
-        self.itype = transferModel.findField(cmxml, 'iT') #weiss noch nicht, was das ist
+        self.itype = noneint(transferModel.findField(cmxml, 'iT')) #weiss noch nicht, was das ist
         self.logid = transferModel.findField(cmxml, 'lID')
-        self.logtype = int(transferModel.findField(cmxml, 'lT'))
+        self.logtype = noneint(transferModel.findField(cmxml, 'lT'))
         self.relid = transferModel.findField(cmxml, 'rID')
-        self.reltype = int(transferModel.findField(cmxml, 'rT'))
+        self.reltype = noneint(transferModel.findField(cmxml, 'rT'))
         self.columnselection = Odmmapping.selections(cmxml,'columnsSelection')
         self.attrselection = Odmmapping.selections(cmxml, 'attributesSelection')
         self.keyselection = Odmmapping.selections(cmxml, 'keysSelection')
@@ -170,15 +171,15 @@ class Odmmapping:
         cntmapxml = cmxml.find('containedMappings')
         self.cntmappings = []
         if cntmapxml is not None:
-            for mg in cntmapxml:
-                self.cntmappings.append({'id': transferModel.findField(mg, 'id')
-                                     ,'itype': transferModel.findField(mg, 'iT')
-                                     ,'lID' : transferModel.findField(mg, 'lID')
-                                     ,'ltype': transferModel.findField(mg, 'lT')
-                                     ,'rID' : transferModel.findField(mg, 'rID')
-                                     ,'rtype': transferModel.findField(mg, 'rT')
-                                     })
-
+            self.cntmappings = [{'id': transferModel.findField(mg, 'id')
+                                , 'itype': noneint(transferModel.findField(mg, 'iT'))
+                                , 'lID': transferModel.findField(mg, 'lID')
+                                , 'ltype': noneint(transferModel.findField(mg, 'lT'))
+                                , 'rID': transferModel.findField(mg, 'rID')
+                                , 'rtype': noneint (transferModel.findField(mg, 'rT'))
+                                 }
+                                for mg in cntmapxml]
+        # fi
 
     @staticmethod
     def selections(pxml,pname):
@@ -190,9 +191,6 @@ class Odmmapping:
 
 def doattrmapping(pcolmappings):
     for colmap in pcolmappings:
-        if (colmap['rtype'] is None) or (int(colmap['rtype']) == Odmmapping.RELKEYTYPE)\
-                or (colmap['ltype'] is None) or (int(colmap['ltype']) == Odmmapping.LOGKEYTYPE):
-            continue # key mapping not treated
         attrid = Externalref.getODMmodeid (psrcid=colmap['lID'])
         colu = Externalref.getODMmodeid(psrcid=colmap['rID'])
         if ((colu is None) or (attrid is None)):
@@ -227,30 +225,35 @@ def do1mapping(pfilename):
     for cmxml in mapxml:
         odmmap = Odmmapping(cmxml)
         tabentimap = TablEntiMap()
-        if ((odmmap.logtype is None) or (int(odmmap.logtype) in (Odmmapping.INHERITTYPE, Odmmapping.LOGARCTYPE,Odmmapping.LOGKEYTYPE))\
-            or (odmmap.reltype is None) or (int(odmmap.reltype) in (Odmmapping.FKTYPE, Odmmapping.RELARCTYPE,Odmmapping.RELKEYTYPE))\
-            or (int(nvl(odmmap.itype,"-1") == Odmmapping.WHATTYPE))\
-            ): # meaning of ittypenot yet clear
-            continue #these types are not yet handled
+        if not (odmmap.logtype in (Odmmapping.ENTITYPE,Odmmapping.RELATYPE)
+                and odmmap.reltype in (Odmmapping.TABLETYPE,)
+                and odmmap.itype in (None,2,3) # hierachical mappings
+                ):
+            continue #only Entity/Relation to Table mappings are handled
         try:
             tabentimap.tema_enti_id = Externalref.getODMmodeid(psrcid=odmmap.logid) if odmmap.logtype == odmmap.ENTITYPE else None
             tabentimap.tema_rela_id = Externalref.getODMmodeid(psrcid=odmmap.logid) if odmmap.logtype == odmmap.RELATYPE else None
             tabentimap.tema_tabl_id = Externalref.getODMmodeid(psrcid=odmmap.relid) if odmmap.reltype == odmmap.TABLETYPE else None
             tabentimap.insert(pdoerrhdlng=False)
         except:
-            if (odmmap.logtype == Odmmapping.ENTITYPE):
-                 logmessages.writelog('Mapping funktioniert nicht Entity vermutlich gelöscht: '
-                                      + 'Logic: type = {}   guid = {}'.format(odmmap.logtype,odmmap.logid)
-                                      + '     relational: type = {}   guid = {}'.format(odmmap.reltype, odmmap.relid)
-                                      )
+            if (odmmap.reltype == Odmmapping.ENTITYPE and tabentimap.tema_enti_id is None):
+                element = 'Entity fehlt'
+            elif (odmmap.reltype == Odmmapping.TABLETYPE and tabentimap.tema_tabl_id is None):
+                element = 'Table fehlt'
+            elif (odmmap.reltype == Odmmapping.RELATYPE and tabentimap.tema_rela_id is None):
+                element = 'Relation fehlt'
             else:
-                logmessages.writelog('Mapping funktioniert nicht.:   '
+                element = 'unbekannte Situation'
+
+            logmessages.writelog('Mapping funktioniert nicht. ({}) :   '.format(element)
                                      + 'Logic: type = {}   guid = {}'.format(odmmap.logtype,odmmap.logid)
                                      + '    relational: type = {}   guid = {}'.format(odmmap.reltype, odmmap.relid)
                                      )
 
         #try
-        doattrmapping(pcolmappings=odmmap.cntmappings)
+        if odmmap.logtype == Odmmapping.ENTITYPE:
+            """for entites, consider column Mappings"""
+            doattrmapping(pcolmappings=odmmap.cntmappings)
     #for
 #do1mapping
 
