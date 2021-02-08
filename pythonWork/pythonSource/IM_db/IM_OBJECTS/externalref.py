@@ -42,15 +42,37 @@ CREATE TABLE EXTERNAL_REFS
     def getsrcinfo(pmodeid):
         extrs = Externalref.select (pwhere="extr_mode_id = '{}'".format(pmodeid),porderby="extr_source_name")
         list = {e.extr_source_name : e.extr_source_id for e in extrs}
-        return {e.extr_source_name : e.extr_source_id for e in extrs}
+        return list
     # getsrcsinfo
 
     @staticmethod
+    def getextr(psrcname,pmodeid=None,psrcid=None):
+        extr = Externalref.select (pwhere="extr_source_name = '{}' and {}"
+                                   .format(psrcname
+                                           ,"extr_mode_id = '{}'".format(pmodeid) if pmodeid is not None
+                                        else "extr_source_id = '{}'".format(psrcid)
+                                           )
+                                   )
+        return extr
+
+
+    @staticmethod
     def getsrcid(psrcname,pmodeid):
-        extrs = Externalref.select (pwhere="extr_source_name = '{}' and extr_mode_id = '{}'".format(psrcname,pmodeid))
+        extrs = Externalref.getextr(psrcname=psrcname,pmodeid=pmodeid)
         srcid = None if len(extrs) == 0 else extrs[0].extr_source_id
         return srcid
     # getsrcid
+
+    @staticmethod
+    def getmodeid(psrcname,psrcid):
+        extrs = Externalref.getextr(psrcname=psrcname,psrcid=psrcid)
+        modeid = None if len(extrs) == 0 else extrs[0].extr_mode_id
+        return modeid
+
+    @staticmethod
+    def existssrcid(psrcname,psrcid):
+        extrs = Externalref.getextr(psrcname=psrcname,psrcid=psrcid)
+        return (len(extrs) > 0)
 
 
     @staticmethod
@@ -63,25 +85,13 @@ CREATE TABLE EXTERNAL_REFS
                                  , pwhere=pwhere, porderby=porderby)
 
     @staticmethod
-    def getmodeid(psrcname,psrcid):
-        extrs = Externalref.select (pwhere="extr_source_name = '{}' and extr_source_id = '{}'".format(psrcname,psrcid))
-        modeid = None if len(extrs) == 0 else extrs[0].extr_mode_id
-        return modeid
-    # getmodeid
-
-    @staticmethod
     def getODMmodeid(psrcid):
-        extrs = Externalref.select (pwhere="extr_source_name = '{}' and extr_source_id = '{}'".format(Externalref.SOURCE_ODM,psrcid))
-        modeid = None if len(extrs) == 0 else extrs[0].extr_mode_id
-        return modeid
-    # getODMmodeid
+        return Externalref.getmodeid(psrcname=Externalref.SOURCE_ODM,psrcid=psrcid)
+
 
     @staticmethod
     def getODMsrcid(pmodeid):
-        extrs = Externalref.select (pwhere="extr_source_name = '{}' and extr_mode_id = '{}'".format(Externalref.SOURCE_ODM,pmodeid))
-        srcid = None if len(extrs) == 0 else extrs[0].extr_source_id
-        return srcid
-    # getODMsrcid
+        return Externalref.getsrcid(psrcname=Externalref.SOURCE_ODM,pmodeid=pmodeid)
 
 #Externalref
 

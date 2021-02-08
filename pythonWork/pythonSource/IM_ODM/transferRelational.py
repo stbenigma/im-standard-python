@@ -4,6 +4,7 @@ import xml.etree.ElementTree as ET
 from IM_DB import parameters, dbInserts, logmessages
 from IM_OBJECTS import *
 from IM_ODM import transferModel
+from parameters import nvl
 
 globalschnid:int = None
 
@@ -137,11 +138,13 @@ class Odmmapping:
     TABLETYPE = 4
     ATTRTYPE = 1
     RELATYPE = 3 # (source ent, targ ent)
+    WHATTYPE = 3 # used in iT, what is this?
     FKTYPE = 8
     INHERITTYPE = 9
     RELARCTYPE = 13
     LOGARCTYPE = 14
-    KEYTYPE = '6'
+    RELKEYTYPE = 6
+    LOGKEYTYPE = 2
     """
     <CM id="43D673EB-E3DCB674F0CEBE86A026-88057DB0AEEE" lID="43D673EB-E9B4-6636-072A-E3DCB674F0CE" lT="0" rID="BE86A026-2DB5-7C03-0A73-88057DB0AEEE" rT="4">
     <attributesSelection>61138C28-07E5-0E0E-C192-206CA0708A77,7F3CDF26-54F3-142A-4FC1-63D2DBE22319,1FAF93B9-B4A0-C357-3C10-77335807489F</attributesSelection>
@@ -154,6 +157,7 @@ class Odmmapping:
 
     def __init__(self,cmxml):
         self.mapid = transferModel.findField(cmxml, 'id')
+        self.itype = transferModel.findField(cmxml, 'iT') #weiss noch nicht, was das ist
         self.logid = transferModel.findField(cmxml, 'lID')
         self.logtype = int(transferModel.findField(cmxml, 'lT'))
         self.relid = transferModel.findField(cmxml, 'rID')
@@ -186,7 +190,8 @@ class Odmmapping:
 
 def doattrmapping(pcolmappings):
     for colmap in pcolmappings:
-        if colmap['rtype'] == Odmmapping.KEYTYPE:
+        if (colmap['rtype'] is None) or (int(colmap['rtype']) == Odmmapping.RELKEYTYPE)\
+                or (colmap['ltype'] is None) or (int(colmap['ltype']) == Odmmapping.LOGKEYTYPE):
             continue # key mapping not treated
         attrid = Externalref.getODMmodeid (psrcid=colmap['lID'])
         colu = Externalref.getODMmodeid(psrcid=colmap['rID'])
@@ -221,19 +226,19 @@ def do1mapping(pfilename):
     if mapxml is None: return
     for cmxml in mapxml:
         odmmap = Odmmapping(cmxml)
-        #print (odmmap.__dict__)
         tabentimap = TablEntiMap()
-        if (odmmap.logtype in (odmmap.INHERITTYPE, odmmap.LOGARCTYPE)
-                or odmmap.reltype in (odmmap.FKTYPE, odmmap.RELARCTYPE)):
+        if ((odmmap.logtype is None) or (int(odmmap.logtype) in (Odmmapping.INHERITTYPE, Odmmapping.LOGARCTYPE,Odmmapping.LOGKEYTYPE))\
+            or (odmmap.reltype is None) or (int(odmmap.reltype) in (Odmmapping.FKTYPE, Odmmapping.RELARCTYPE,Odmmapping.RELKEYTYPE))\
+            or (int(nvl(odmmap.itype,"-1") == Odmmapping.WHATTYPE))\
+            ): # meaning of ittypenot yet clear
             continue #these types are not yet handled
-
         try:
             tabentimap.tema_enti_id = Externalref.getODMmodeid(psrcid=odmmap.logid) if odmmap.logtype == odmmap.ENTITYPE else None
             tabentimap.tema_rela_id = Externalref.getODMmodeid(psrcid=odmmap.logid) if odmmap.logtype == odmmap.RELATYPE else None
             tabentimap.tema_tabl_id = Externalref.getODMmodeid(psrcid=odmmap.relid) if odmmap.reltype == odmmap.TABLETYPE else None
             tabentimap.insert(pdoerrhdlng=False)
         except:
-            if odmmap.logtype == Odmmapping.ENTITYPE:
+            if (odmmap.logtype == Odmmapping.ENTITYPE):
                  logmessages.writelog('Mapping funktioniert nicht Entity vermutlich gelöscht: '
                                       + 'Logic: type = {}   guid = {}'.format(odmmap.logtype,odmmap.logid)
                                       + '     relational: type = {}   guid = {}'.format(odmmap.reltype, odmmap.relid)
