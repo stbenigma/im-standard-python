@@ -7,7 +7,8 @@ import papermill as pm
 scripts = [
     './notebooks/confluence-export/Render and publish.ipynb',
     './notebooks/Sandbox/confluence-python-api/API-sandbox.ipynb',
-    './notebooks/Sandbox/stbtest.ipynb'
+    './notebooks/Sandbox/stbtest.ipynb',
+    './notebooks/iconlibrary/Confluence producer.ipynb',
 ]
 
 username = os.environ.get('CONFLUENCE_USERNAME')
