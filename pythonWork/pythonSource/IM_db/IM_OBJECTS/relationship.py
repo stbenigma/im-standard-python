@@ -62,27 +62,6 @@ class Arc(Baseobject):
     # liesarcselem
 
     @staticmethod
-    def createtable():
-        Baseobject.createtable(ptablename=Arc._tablename
-                               , psql="""
-CREATE TABLE ARCS
-    (
-     ARCS_ID INTEGER NOT NULL primary key autoincrement,
-     ARCS_NAME VARCHAR (60) NOT NULL ,
-     ARCS_ENTI_ID integer NOT NULL ,
-     ARCS_UC VARCHAR(30) NULL  ,
-     ARCS_DC VARCHAR (30) NOT NULL ,
-     ARCS_UM VARCHAR (30) NULL ,
-     ARCS_DM VARCHAR (30) NULL
-    ,CONSTRAINT ARCS_UK UNIQUE  (ARCS_ENTI_ID ASC, ARCS_NAME ASC)
-	,CONSTRAINT ARCS_ENTI_FK FOREIGN KEY    (     ARCS_ENTI_ID) 
-	    REFERENCES entities (     ENTI_ID ) ON DELETE CASCADE ON UPDATE NO ACTION
-    ,CONSTRAINT ARCS_MODE_FK FOREIGN KEY (     ARCS_ID)
-        REFERENCES MODELELEMENT (MODE_ID ) ON DELETE CASCADE ON UPDATE NO ACTION)
-    """
-                               )
-
-    @staticmethod
     def delete():
         Baseobject.delete(Arc._tablename)
 
@@ -108,7 +87,8 @@ CREATE TABLE ARCS
                                                 else rela_arcs_id_from end rela_arcs_id 
                                             from relations 
                                             join relationreps on relr_mode_id = rela_id
-                                            where relr_diag_id = {})""".format(pdiagid))
+                                            where relr_diag_id = {})""".format(pdiagid)
+                          ,porderby="arcs_id")
         #getrelaarcs
 
 
@@ -135,81 +115,7 @@ class Relation(MultilangBaseobject):
                          , pscrid=psrcid
                          )
 
-    @staticmethod
-    def createtable():
-        Baseobject.createtable(ptablename=Relation._tablename
-                               , psql="""
-CREATE TABLE RELATIONS
-    (
-     RELA_ID integer NOT NULL  primary key,
-     RELA_NAME VARCHAR (60) NOT NULL ,
-     RELA_TYPE VARCHAR (4) NOT NULL CHECK ( RELA_TYPE IN ('1:1', 'ISAR', 'ISAS', 'M:1', 'M:N') ) ,
-     RELA_ENTI_ID_FROM integer NOT NULL ,
-     RELA_ARCS_ID_FROM integer  ,
-     RELA_ASSOC_FROM_TO VARCHAR (4000) NULL ,
-     RELA_MAPTYPE_FROM_TO CHAR (1) NOT NULL CHECK ( RELA_MAPTYPE_FROM_TO IN ('1', 'M') ) ,
-     RELA_MANDATORY_FROM_TO VARCHAR (5) NOT NULL  CHECK(RELA_MANDATORY_FROM_TO IN('FALSE','TRUE')),
-     RELA_HIST_FROM_TO VARCHAR (5) NOT NULL  CHECK(RELA_HIST_FROM_TO IN('FALSE','TRUE')),
-     RELA_ENTI_ID_TO integer NOT NULL ,
-     RELA_ARCS_ID_TO integer  ,
-     RELA_ASSOC_TO_FROM VARCHAR (100) NULL ,
-     RELA_MAPTYPE_TO_FROM CHAR (1) NOT NULL CHECK ( RELA_MAPTYPE_TO_FROM IN ('1', 'M') ) ,
-     RELA_MANDATORY_TO_FROM VARCHAR (5) NOT NULL  CHECK(RELA_MANDATORY_TO_FROM IN('FALSE','TRUE')),
-     RELA_HIST_TO_FROM VARCHAR (4000) NOT NULL    		CHECK(RELA_HIST_TO_FROM IN('FALSE','TRUE')),
-     RELA_UC VARCHAR(30) NULL  ,
-     RELA_DC VARCHAR (30) NOT NULL ,
-     RELA_UM VARCHAR (30) NULL ,
-     RELA_DM VARCHAR (30) NULL ,
-     CONSTRAINT RELA_MAPTYPE_CHK CHECK ((RELA_TYPE = 'ISAR'
-  AND RELA_MAPTYPE_FROM_TO = '1'
-  AND RELA_MAPTYPE_TO_FROM = '1'
-  AND (RELA_MANDATORY_FROM_TO = 'TRUE'
-  	  OR
-  	  RELA_MANDATORY_TO_FROM = 'TRUE'
-  	  )
-) OR
-(RELA_TYPE = 'ISAS'
-  AND RELA_MAPTYPE_FROM_TO = '1'
-  AND RELA_MAPTYPE_TO_FROM = '1'
-  AND RELA_MANDATORY_FROM_TO = 'TRUE'
-  AND RELA_MANDATORY_TO_FROM = 'TRUE'
-  AND (RELA_ARCS_ID_FROM IS NOT NULL
-  		OR
-	   RELA_ARCS_ID_TO IS NOT NULL
-	  )
-) OR
-(RELA_TYPE = '1:1'
-  AND RELA_MAPTYPE_FROM_TO = '1'
-  AND RELA_MAPTYPE_TO_FROM = '1'
-) OR
-(RELA_TYPE ='M:1'
-  AND (
-  	(RELA_MAPTYPE_FROM_TO = '1'
- 	 AND RELA_MAPTYPE_TO_FROM = 'M'
-  	) OR
-  	(RELA_MAPTYPE_FROM_TO = 'M'
-  	 AND RELA_MAPTYPE_TO_FROM = '1'
-	)
-  )
-) OR
-(RELA_TYPE = 'M:N'
-  AND RELA_MAPTYPE_TO_FROM = 'M'
-  AND RELA_MAPTYPE_FROM_TO = 'M'
-)
-)
-    ,CONSTRAINT RELA_UK_NAME UNIQUE (RELA_NAME ASC)
-    ,CONSTRAINT RELA_ARCS_FROM_FK FOREIGN KEY(     RELA_ARCS_ID_FROM)
-    REFERENCES ARCS    (     ARCS_ID )
-    ,CONSTRAINT RELA_ARCS_TO_FK FOREIGN KEY(     RELA_ARCS_ID_TO)
-    REFERENCES ARCS    (     ARCS_ID )
-    ,CONSTRAINT RELA_ENTI_FROM_FK FOREIGN KEY (     RELA_ENTI_ID_FROM)
-    REFERENCES ENTITIES    (     ENTI_ID )
-    ,CONSTRAINT RELA_ENTI_TO_FK FOREIGN KEY(     RELA_ENTI_ID_TO)
-    REFERENCES ENTITIES(     ENTI_ID )
-    ,CONSTRAINT RELA_MODE_FK FOREIGN KEY(     RELA_ID)
-    REFERENCES MODELELEMENT(     MODE_ID )    ON DELETE CASCADE
-)"""
-                               )
+
 
     def getmandatorytofrom(self):
         return Boolean.str2bool(self.rela_mandatory_to_from)

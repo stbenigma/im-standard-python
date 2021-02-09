@@ -31,7 +31,7 @@ def tables2js(pemptymodel):
                     , [jsguid(Modelelemtype.ORGU, d[0]) for d in
                                          OragnisationalUnit.getreforgulist(pid=t.tabl_id)]
                 ])
-         for t in Table.select()
+         for t in Table.select(porderby="tabl_id")
             }
     # fi
     return retval

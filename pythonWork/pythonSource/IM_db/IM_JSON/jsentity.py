@@ -78,7 +78,7 @@ def entities2js(pemptymodel):
                                 for s in Interface.getmapped(pentiid=e.enti_id)})
                         ,reflist(plist=[jsguid(Modelelemtype.DIAG, d.diag_id) for d in Diagram.getdiagrams(pmodeid=e.enti_id)])
                             ]
-                        ) for e in Entity.select()
+                        ) for e in Entity.select(porderby="enti_id")
                  }
 
     return entis

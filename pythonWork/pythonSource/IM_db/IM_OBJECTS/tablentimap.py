@@ -52,13 +52,15 @@ class TablEntiMap(Baseobject):
                                                     from tabl_enti_maps
                                                     join tables on tabl_id = tema_tabl_id 
                                                     where tema_enti_id = {}
-                                                    and tabl_intf_id = {})""".format(pentiid if pentiid is not None else 'tema_enti_id',pintfid if pintfid is not None else 'tabl_intf_id'))
+                                                    and tabl_intf_id = {})""".format(pentiid if pentiid is not None else 'tema_enti_id',pintfid if pintfid is not None else 'tabl_intf_id')
+                            ,porderby="tabl_id")
     @staticmethod
     def getentilist(ptablid):
         return Entity.select(pwhere="""enti_id in (select tema_enti_id 
                                                     from tabl_enti_maps
                                                     where tema_tabl_id = {}
-                                                    )""".format(ptablid))
+                                                    )""".format(ptablid)
+                             ,porderby="enti_id")
 
     @staticmethod
     def tablelist(pentiid=None):
