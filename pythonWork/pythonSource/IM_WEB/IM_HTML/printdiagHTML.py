@@ -231,7 +231,7 @@ def printtexte(plist,plang):
     #for
 #printtexte
 
-def print1arc(parc):
+def print1arc(parc,pcolor):
 
     startarcstr = """
         <g fill="none" stroke="rgb(0,0,0)" transform="translate({},{})" >
@@ -243,26 +243,32 @@ def print1arc(parc):
         </g>
     """
     circle = """<circle stroke-dasharray="none" cx="{}" cy="{}"
-            stroke="rgb(0,0,0)" r="2" fill="rgb(0,0,0)" stroke-width="1" />
+            stroke="rgb(0,0,0)" r="3" fill="{}" stroke-width="0" />
+    """
+    pathstr = """    
+        <path d=" {}"/>
+        </g>
     """
     endarcstr = """    
-        <path d=" {}"/>
         </g>
     """
     printHTML.fhtml.write(startarcstr.format(0,0))
     for c in parc['circles']:
         #print(circledraw.format(c[0],c[1],c[0],c[1]))
-        printHTML.fhtml.write(circle.format(c[0],c[1]))
+        printHTML.fhtml.write(circle.format(c[0],c[1],pcolor))
     # for
-    arcline = ''
-    for idx,line in enumerate(parc['line']):
-        if idx == 0:
-            arcline = "M{} {}".format(line['x'],line['y'])
-        else:
-            arcline += ' L{} {} '.format(line['x'],line['y'])
-        #fi
-    #for
-    printHTML.fhtml.write(endarcstr.format(arcline))
+    if False: # mal probieren ohne Linien. Es hat noch Fehler
+        arcline = ''
+        for idx,line in enumerate(parc['line']):
+            if idx == 0:
+                arcline = "M{} {}".format(line['x'],line['y'])
+            else:
+                arcline += ' L{} {} '.format(line['x'],line['y'])
+            #fi
+        #for
+        printHTML.fhtml.write(pathstr.format(arcline))
+    # fi
+    printHTML.fhtml.write(endarcstr)
     return
     pointdistance = 20
     arclng = 10
@@ -319,9 +325,19 @@ def print1arc(parc):
 #print1arc
 
 def printarcs(plist):
+    colors = ["blue","yellow","purple","green","red","black"]
     """select arcs_id,beda_id"""
-    for arc in plist.values():
-        print1arc(parc=arc)
+    idx = 0
+    lastenti = None
+    arcs = [(getelement(arc)["entity"], arc) for arc in sorted(plist.keys(), key=lambda k: getelement(k)["entity"])]
+    for arc in arcs:
+        if lastenti != arc[0]:
+            lastenti = arc[0]
+            idx = 0
+        else:
+            idx = (idx+1) % len(colors)
+        # fi
+        print1arc(parc=plist[arc[1]],pcolor=colors[idx])
     #for
 #printarcs
 

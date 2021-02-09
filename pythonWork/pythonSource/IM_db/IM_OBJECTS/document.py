@@ -129,7 +129,8 @@ CREATE TABLE DOCUMENTS
                             join modelelement on mode_id = modo_mode_id
                             where modo_docu_id = {}
                             and mode_type like '{}')"""
-                    .format(self.docu_id,pmelttype if pmelttype is not None else '%'))
+                    .format(self.docu_id,pmelttype if pmelttype is not None else '%')
+              ,porderby="mode_id")
 
     @staticmethod
     def doculist():

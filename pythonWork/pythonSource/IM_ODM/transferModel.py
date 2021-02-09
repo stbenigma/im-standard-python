@@ -570,8 +570,6 @@ def transferdiaconnect(pconnectors, pdiagid, puc, pdc):
         # fi
 # transferdiaconnect
 
-# transferdiaconnect
-
 def transferdiaarc(parcs, pdiagid, puc, pdc):
     pass
 
