@@ -89,6 +89,7 @@ def printlistofcontent(plang):
                      for key,value in printHTML.model.jsmodel['entities'].items()]
                      ,key=lambda val:val['name'])
     except:
+        idxlist=[]
         mod = printHTML.model.jsmodel['entities'].values()
 
     printHTML.printlistofcontentelement(pname='Entitäten'

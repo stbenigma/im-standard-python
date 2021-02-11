@@ -10,7 +10,7 @@ def createDB(par1,pforcecreate=False):
     parameters.initparam(p_callarg=par1)
     logmessages.initlog('CreateDB')
 
-    dbtype = 'sqlite'
+    dbtype = parameters.SQLITE #only option for the moment
     if dbtype == parameters.SQLITE:
         if os.path.exists(parameters.dbFilePath()):
             if pforcecreate:

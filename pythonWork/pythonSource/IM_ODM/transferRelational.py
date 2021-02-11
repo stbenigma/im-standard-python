@@ -4,7 +4,8 @@ import xml.etree.ElementTree as ET
 from IM_DB import parameters, dbInserts, logmessages
 from IM_OBJECTS import *
 from IM_ODM import transferModel
-from parameters import nvl
+from IM_DB import  parameters,logmessages
+
 
 globalschnid:int = None
 

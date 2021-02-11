@@ -429,6 +429,7 @@ def suchemodelname(p_direc):
         if immodelname is not None:
             imdirectory = testdirec
         else:
+            """search in the vcs directory"""
             testdirec = p_direc+odmVCSDirec()+odmIMDefaultDirec()
             immodelname = suche1file(p_direc=testdirec)
             if (immodelname is not None):
