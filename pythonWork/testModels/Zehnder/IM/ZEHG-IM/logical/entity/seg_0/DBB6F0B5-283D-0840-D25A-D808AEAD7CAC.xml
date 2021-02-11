@@ -1,0 +1,33 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="DBB6F0B5-283D-0840-D25A-D808AEAD7CAC" name="Special Solution Article">
+<createdBy>cle</createdBy>
+<createdTime>2020-08-12 08:49:33 UTC</createdTime>
+<comment><![CDATA[**Engineered to Order, article according to special customer requirements, not directly derivable from configurator. Small range (approx. 5%) -]]></comment>
+<notes><![CDATA[[EN_ENTI_COMMENT[
+**Engineered to Order, article according to special customer requirements, not directly derivable from configurator. Small range (approx. 5%) -
+]EN_ENTI_COMMENT]
+[DE_ENTI_COMMENT[
+Engineered to Order, Artikel nach besonderer Anforderung des Kunden, nicht direkt aus Konfigurator ableitbar. Kleiner Bereich (ca. 5%) –
+]DE_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>ZEHG-IM</ownerDesignName>
+<engineerTo>
+<item key="E73667C8-D73D-37B9-7BB4-9427B1B6DC71" value="true"/>
+</engineerTo>
+<typeID>382EF552-1766-664E-FA4D-1C3B964D47B2</typeID>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<hierarchicalParent>DA00CE3B-A9E5-16BB-8A28-61DD05F5DF66</hierarchicalParent>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<propertyMap>
+<property name="DE_ENTI_NAME" value="Sonderausführung Artikel"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_NAME" value="Special Solution Article"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+</propertyMap>
+</Entity>

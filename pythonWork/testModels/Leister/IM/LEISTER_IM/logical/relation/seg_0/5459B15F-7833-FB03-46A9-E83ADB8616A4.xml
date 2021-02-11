@@ -1,0 +1,26 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_72" directorySegmentName="seg_0" id="5459B15F-7833-FB03-46A9-E83ADB8616A4">
+<createdBy>ruben.antenen</createdBy>
+<createdTime>2019-11-05 13:25:28 UTC</createdTime>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<nameOnSource>gilt für</nameOnSource>
+<nameOnTarget>verfügt über</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>1C6173C8-CC38-FC4B-2676-D3E45156FED8</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>27A23C8F-5BCD-8DF6-A09A-1A5CA52730B4</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="gilt für"/>
+<property name="DE_RELA_TEXT_TO" value="verfügt über"/>
+<property name="EN_RELA_TEXT_FROM" value="**applies to"/>
+<property name="EN_RELA_TEXT_TO" value="**has"/>
+</propertyMap>
+</Relation>

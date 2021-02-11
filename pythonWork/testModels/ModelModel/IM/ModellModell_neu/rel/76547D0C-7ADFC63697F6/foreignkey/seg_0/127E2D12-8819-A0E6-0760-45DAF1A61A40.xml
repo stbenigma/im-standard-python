@@ -1,0 +1,19 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="127E2D12-8819-A0E6-0760-45DAF1A61A40" containerWithKeyObject="7D02633E-E4DE-9848-575C-191E133B2FB7" localFKIndex="9E834265-1065-42C4-2855-E589F42E5C82" name="dgrm_fk_doma_group">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>dgrm_fk_doma_group</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:14 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<referredTableLongName>modelmodel_dbo.DOMAINS</referredTableLongName>
+<deleteRule>RESTRICT</deleteRule>
+<referredTableID>EE1A8DE5-3E36-99ED-313B-82D8B71C21F7</referredTableID>
+<keyObject>B6F8334F-44AC-BB72-16AD-DBE5ED09FE51</keyObject>
+<referredKeyID>B6F8334F-44AC-BB72-16AD-DBE5ED09FE51</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>DOMA_ID</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

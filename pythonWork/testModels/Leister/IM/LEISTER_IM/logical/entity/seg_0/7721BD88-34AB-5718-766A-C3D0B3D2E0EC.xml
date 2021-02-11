@@ -1,0 +1,180 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="7721BD88-34AB-5718-766A-C3D0B3D2E0EC" name="Transporteinheit">
+<createdBy>ruben.antenen</createdBy>
+<createdTime>2019-10-03 06:41:20 UTC</createdTime>
+<comment><![CDATA[Transporteinheiten sind für den Transport zusammengefasste Einheiten, die es erlauben, eine integrierte Transportkette ohne Umladung der einzelnen Güter herzustellen.
+
+Beispiele: Container, Wechselbrücke, Auflieger, Anhänger, Waggon
+]]></comment>
+<notes><![CDATA[[EN_ENTI_COMMENT[
+**Transport units are units combined for transport that allow an integrated transport chain to be created without reloading the individual goods.
+
+Examples: Container, swap body, semi-trailer, trailer, waggon
+]EN_ENTI_COMMENT]
+[DE_ENTI_COMMENT[
+Transporteinheitn sind für den Transport zusammengefasste Einheiten, die es erlauben, eine integrierte Transportkette ohne Umladung der einzelnen Güter herzustellen.
+
+Beispiele: Container, Wechselbrücke, Auflieger, Anhänger, Waggon
+]DE_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<typeID>EAE76259-2726-6331-F045-11A3187A31D0</typeID>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<propertyMap>
+<property name="DE_ENTI_NAME" value="Transporteinheit"/>
+<property name="EN_ENTI_NAME" value="**Transport unit"/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Länge" id="7EFD7E3D-187F-41C2-2DB7-26048F487B7A">
+<createdBy>ruben.antenen</createdBy>
+<createdTime>2019-10-04 08:32:24 UTC</createdTime>
+<comment><![CDATA[Länge in cm]]></comment>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+**Length in cm
+]EN_ATTR_COMMENT]
+[DE_ATTR_COMMENT[
+Länge in cm
+]DE_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>8E24BBCC-8062-6053-EE8E-21D11677472A</domain>
+<checkConstraint>
+<implementationDef dbType="Generic Constraint" definition="Pflichtfeld für gewisse Transporteure  Beispiel: DHL"/>
+</checkConstraint>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Länge"/>
+<property name="DHL AttrName" value="LengthInCM"/>
+<property name="DHL AttrName Receiver" value="."/>
+<property name="DHL AttrName Shipper" value="."/>
+<property name="EN_ATTR_NAME" value="**Length"/>
+<property name="SAPByD AttrName" value="Length"/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Breite" id="B9A6E48A-88AA-AE24-E44D-98EA00325C0E">
+<createdBy>ruben.antenen</createdBy>
+<createdTime>2019-10-04 08:32:24 UTC</createdTime>
+<comment><![CDATA[Breite in cm]]></comment>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+**Width in cm
+]EN_ATTR_COMMENT]
+[DE_ATTR_COMMENT[
+Breite in cm
+]DE_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>8E24BBCC-8062-6053-EE8E-21D11677472A</domain>
+<checkConstraint>
+<implementationDef dbType="Generic Constraint" definition="Pflichtfeld für gewisse Transporteure  Beispiel: DHL"/>
+</checkConstraint>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Breite"/>
+<property name="DHL AttrName" value="WidthInCM"/>
+<property name="DHL AttrName Receiver" value="."/>
+<property name="DHL AttrName Shipper" value="."/>
+<property name="EN_ATTR_NAME" value="**Width"/>
+<property name="SAPByD AttrName" value="Width"/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Höhe" id="4588BA4B-304B-C687-DC40-B1C1516622DD">
+<createdBy>ruben.antenen</createdBy>
+<createdTime>2019-10-04 08:32:24 UTC</createdTime>
+<comment><![CDATA[Höhe in cm]]></comment>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+**Height in cm
+]EN_ATTR_COMMENT]
+[DE_ATTR_COMMENT[
+Höhe in cm
+]DE_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>8E24BBCC-8062-6053-EE8E-21D11677472A</domain>
+<checkConstraint>
+<implementationDef dbType="Generic Constraint" definition="Pflichtfeld für gewisse Transporteure   Beispiel: DHL"/>
+</checkConstraint>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Höhe"/>
+<property name="DHL AttrName" value="HeightInCM"/>
+<property name="DHL AttrName Receiver" value="."/>
+<property name="DHL AttrName Shipper" value="."/>
+<property name="EN_ATTR_NAME" value="**Height"/>
+<property name="SAPByD AttrName" value="Height"/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Gewicht" id="5695C721-5AA2-ABAB-575D-718055D23B6A">
+<createdBy>ruben.antenen</createdBy>
+<createdTime>2019-10-04 08:32:24 UTC</createdTime>
+<comment><![CDATA[Gewicht in kg]]></comment>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+**Weight in kg
+]EN_ATTR_COMMENT]
+[DE_ATTR_COMMENT[
+Gewicht in kg
+]DE_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>BC80FC3F-D21C-4FB5-C989-0B5D165F3074</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Gewicht"/>
+<property name="DHL AttrName" value="WeightInKG"/>
+<property name="DHL AttrName Receiver" value="."/>
+<property name="DHL AttrName Shipper" value="."/>
+<property name="EN_ATTR_NAME" value="**Weight"/>
+<property name="SAPByD AttrName" value="Weight"/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>0</beginValue>
+<endValue>99999.99</endValue>
+</rangeDef>
+</listOfRanges>
+</Attribute>
+</attributes>
+</Entity>

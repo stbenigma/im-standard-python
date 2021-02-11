@@ -1,0 +1,30 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_253" directorySegmentName="seg_2" id="85FDD853-36EE-4E5A-D680-AEA1AD4BCF27">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:03:22 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<engineerTo>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
+<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
+</engineerTo>
+<useSurrogateKey>true</useSurrogateKey>
+<identifying>false</identifying>
+<nameOnSource>beschreibt</nameOnSource>
+<nameOnTarget>ist von</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>618BAD74-5087-4EC0-4772-EF3A61760DC8</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>8CDBEDF4-5478-6F12-0D46-E7BCD9A40CD3</targetEntity>
+<transferable>true</transferable>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="beschreibt"/>
+<property name="DE_RELA_TEXT_TO" value="ist von"/>
+<property name="EN_RELA_TEXT_FROM" value="describes"/>
+<property name="EN_RELA_TEXT_TO" value="is of"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
+</propertyMap>
+</Relation>

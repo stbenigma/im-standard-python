@@ -1,0 +1,223 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="98506968-E13F-EEC6-1548-C333A82AA628" schemaObject="833E4DE4-2E61-95B8-D681-1740D7FACB7C" name="DEFAULT_VALUES">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>DEFAULT_VALUES</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:00 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="DEVA_ID" id="D2EE7A4A-6EB5-F5AA-C938-544D7F761880">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>DEFAULT_VALUES</sourceObjSchema>
+<sourceObjName>DEVA_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:00 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>9</dataTypeSize>
+<ownDataTypeParameters>9,10,0</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DEVA_DOMA_ID" id="EB2C5353-895F-C386-959C-27CA7F57C642">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>DEFAULT_VALUES</sourceObjSchema>
+<sourceObjName>DEVA_DOMA_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:00 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>9</dataTypeSize>
+<ownDataTypeParameters>9,10,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="413B72CD-8059-158F-BCD2-8A9A72AC7ACD" referredColumn="1E5AF82A-E320-4109-07BC-155F78733238"/>
+</associations>
+</Column>
+<Column name="DEVA_VALUE" id="54058B72-0FF8-4AB8-B2B4-5C0B9CBFA478">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>DEFAULT_VALUES</sourceObjSchema>
+<sourceObjName>DEVA_VALUE</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:00 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypePrecision>100</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>100</dataTypeSize>
+<ownDataTypeParameters>100,100,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DEVA_SORT_ORDER" id="37B41ADE-4B33-CAC9-F2AF-EA3FFAAB890D">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>DEFAULT_VALUES</sourceObjSchema>
+<sourceObjName>DEVA_SORT_ORDER</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:00 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>3</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>5</dataTypeSize>
+<ownDataTypeParameters>5,3,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DEVA_DISPL" id="7398A0BA-280F-B922-A5EF-766493E0DC96">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>DEFAULT_VALUES</sourceObjSchema>
+<sourceObjName>DEVA_DISPL</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:00 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT028</logicalDatatype>
+<dataTypePrecision>-1</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>max</dataTypeSize>
+<ownDataTypeParameters>max,-1,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DEVA_DESCR" id="2DA8E574-114C-2C4A-B1A2-BE575163E2E3">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>DEFAULT_VALUES</sourceObjSchema>
+<sourceObjName>DEVA_DESCR</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:00 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT028</logicalDatatype>
+<dataTypePrecision>-1</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>max</dataTypeSize>
+<ownDataTypeParameters>max,-1,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DEVA_UC" id="888DA718-E640-C8FF-197A-E4284D17F169">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>DEFAULT_VALUES</sourceObjSchema>
+<sourceObjName>DEVA_UC</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:00 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypePrecision>30</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>30</dataTypeSize>
+<ownDataTypeParameters>30,30,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DEVA_DC" id="5AF49EF3-C2A2-CC60-59CB-2B3C92AB64F1">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>DEFAULT_VALUES</sourceObjSchema>
+<sourceObjName>DEVA_DC</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:00 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT008</logicalDatatype>
+<dataTypePrecision>23</dataTypePrecision>
+<dataTypeScale>3</dataTypeScale>
+<dataTypeSize>8</dataTypeSize>
+<ownDataTypeParameters>8,23,3</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DEVA_UM" id="3B22BF6E-CBCD-8C84-29BD-07CE9C8D0D9A">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>DEFAULT_VALUES</sourceObjSchema>
+<sourceObjName>DEVA_UM</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:00 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypePrecision>30</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>30</dataTypeSize>
+<ownDataTypeParameters>30,30,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DEVA_DM" id="7072FB37-80E6-CF87-7C33-11B2A3C21B2A">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>DEFAULT_VALUES</sourceObjSchema>
+<sourceObjName>DEVA_DM</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:00 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT008</logicalDatatype>
+<dataTypePrecision>23</dataTypePrecision>
+<dataTypeScale>3</dataTypeScale>
+<dataTypeSize>8</dataTypeSize>
+<ownDataTypeParameters>8,23,3</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="6E9F353B-CC6C-83C3-E86C-5C882DFC45A6" name="DEVA_PK">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>DEVA_PK</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:00 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="D2EE7A4A-6EB5-F5AA-C938-544D7F761880"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="29E02FC7-B34C-3DBF-A122-013525BA0979" name="DEVA_VGWT_UK">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>DEVA_VGWT_UK</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:00 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="EB2C5353-895F-C386-959C-27CA7F57C642"/>
+<colUsage columnID="54058B72-0FF8-4AB8-B2B4-5C0B9CBFA478"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="B8287D95-8707-A43D-65C4-6C6A42743EEA" name="DEVA_DOMA_FK">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-21 17:29:10 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="EB2C5353-895F-C386-959C-27CA7F57C642"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

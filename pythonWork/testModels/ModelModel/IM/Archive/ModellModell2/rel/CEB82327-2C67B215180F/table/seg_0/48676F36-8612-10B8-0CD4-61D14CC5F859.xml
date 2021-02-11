@@ -1,0 +1,114 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="48676F36-8612-10B8-0CD4-61D14CC5F859" name="Zeitpunkt_Wertebereich">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<comment><![CDATA[ ]]></comment>
+<generatorID>FEC83FD9-548C-0DED-C51C-3872C23B37D4</generatorID>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<typeID>1C6A8769-7651-51C0-9E0A-D0C138DE6193</typeID>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Wertebereich_Modellelement_Modellelement_ID" id="BECD14A2-570E-032B-072C-4AEAF9ACD94F">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="A5262DFB-231D-A4B6-629D-1ADC35677428" referredColumn="9FC5982B-2A47-B59D-A525-415732968AB0"/>
+</associations>
+</Column>
+<Column name="Zeitpunkt_Wertebereich_ID" id="DB361567-4820-635D-F960-F4E19842481F">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+<Column name="Min_Zeitpunkt" id="80B7A641-33DC-3E12-9101-BE6F9B2F516B">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<comment><![CDATA[frühestes Zeitpunkt in diesem Attribut. Leer -> es gibt keine Untergrenze]]></comment>
+<generatorID>C900DFA0-C133-8F58-C3EA-D4BC024F775B</generatorID>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT015</logicalDatatype>
+<domain>0AD80E26-0F5C-D068-29EA-4740A04582AE</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Max_Zeitpunkt" id="E16CEFC8-CB05-EF59-4504-45C4807A45A1">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<comment><![CDATA[spätester Zeitpunkt in diesem Attribut. Leer -> es gibt keine Obergrenze]]></comment>
+<generatorID>53E73B83-83D6-4DF9-14B9-EAA8D6C39A8E</generatorID>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT015</logicalDatatype>
+<domain>0AD80E26-0F5C-D068-29EA-4740A04582AE</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Granularität" id="26042F2B-3044-93F3-E6C9-2DCE93C73464">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<comment><![CDATA[Auf welche Einheit wird die Datumsangabe gerundet (Tag, Minute, Monat, Jahr)]]></comment>
+<generatorID>CB8DB002-CFDF-5208-AAF5-348E49AF3F17</generatorID>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>802FD5C1-7C5B-0290-1F1C-F8FBB1AD2AA9</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="03B0DA4B-97F0-9EC2-EDA2-CFD822FFB63A" name="Zeitpunkt_Wertebereich_PK">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="BECD14A2-570E-032B-072C-4AEAF9ACD94F"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="55710CD2-629D-8160-BBC3-649E85CA59BC" name="Zeitpunkt_Wertebereich_Zeitpunkt_Wertebereich_ID_UN">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="DB361567-4820-635D-F960-F4E19842481F"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="73C10393-0B38-D6C7-DB18-2D82D4A3ABF9" name="Zeitpunkt_Wertebereich_Wertebereich_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<generatorID>897AA7F1-C18D-31F6-CEE2-589309ECD9F2</generatorID>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="BECD14A2-570E-032B-072C-4AEAF9ACD94F"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

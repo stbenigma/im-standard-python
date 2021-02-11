@@ -1,0 +1,83 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev12c class="oracle.dbtools.crest.model.design.storage.oracle.v12c.TableProxyOraclev12c" name="ATTR_TRANSF" directorySegmentName="seg_0" id="CCF12126-A67B-7EDA-879F-5AF0824DA941">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-03 07:58:15 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<temporaryChanged>false</temporaryChanged>
+<accessDriverType>oracle_loader</accessDriverType>
+<rejectLimit></rejectLimit>
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="ATTF_ATTR_ID" id="23CF8070-B748-95DE-286A-151954015B76">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-03 07:58:15 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="ATTF_ID" id="580E8015-1DDF-1BB9-D4EB-C200B7B5A70D">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-03 07:58:15 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="ATTF_DC" id="77891A1D-292D-81A3-D4B8-4D817AED8A92">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-17 11:54:49 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="ATTF_TRANSF_FORMEL" id="8E35BA30-1AC3-C9E1-6713-2C1D647600CC">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-03 07:58:15 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="ATTF_UC" id="AA1870C2-C397-8497-9DB8-33C70AE3CCE4">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-17 11:54:49 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="ATTF_AUSLOESEPERIOD" id="C36706F7-70D1-155F-7105-3DC1CE5103DB">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-03 07:58:15 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="ATTF_UM" id="DEE6CEF7-2322-19BF-EF14-2155A74FFE7C">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-17 11:54:49 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="ATTF_DM" id="E224A82C-46DB-3EC7-5D6C-E203BE62D375">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-17 11:54:49 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="ATTF_SCHA_ID" id="E83469EB-C671-75F4-F7D1-6983AFD77092">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-03 07:58:15 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="ATTF_AUSLOESEART" id="ED2746F2-F1E4-0513-C781-19714A7A3413">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-03 07:58:15 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+<foreignKeys>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="ATTF_SCHA_FK" id="A503D5C9-D773-D54E-66A9-B0C46D37EC40">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-03 07:58:15 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+</ForeignKey>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="ATTF_ATTR_FK" id="CFCF0F45-C6D3-1B99-BDE2-5B3CD892A3A1">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-03 07:58:15 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+</ForeignKey>
+</foreignKeys>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="ATTF_PK" id="66E6E6F0-8646-3FB4-F2C3-8911141C268A">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-03 07:58:15 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<indexSort>SORTED</indexSort>
+</PrimaryKey>
+</primaryKeys>
+</TableProxyOraclev12c>

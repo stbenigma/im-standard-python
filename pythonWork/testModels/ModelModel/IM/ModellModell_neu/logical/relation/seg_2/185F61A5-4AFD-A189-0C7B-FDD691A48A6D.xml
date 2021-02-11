@@ -1,0 +1,30 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_250" directorySegmentName="seg_2" id="185F61A5-4AFD-A189-0C7B-FDD691A48A6D">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:05:22 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<engineerTo>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
+<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
+</engineerTo>
+<useSurrogateKey>true</useSurrogateKey>
+<identifying>false</identifying>
+<nameOnSource>führt zu</nameOnSource>
+<nameOnTarget>enstanden aus</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>D8FF8D31-0BC3-E290-B51B-C00BB3C9F5D7</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>70D2F321-3B2B-682F-2DF0-1580221F8567</targetEntity>
+<transferable>true</transferable>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="führt zu"/>
+<property name="DE_RELA_TEXT_TO" value="enstanden aus"/>
+<property name="EN_RELA_TEXT_FROM" value="leads to"/>
+<property name="EN_RELA_TEXT_TO" value="emerged from"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
+</propertyMap>
+</Relation>

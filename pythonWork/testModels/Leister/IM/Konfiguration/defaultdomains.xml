@@ -1,0 +1,112 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<DomainFile class="oracle.dbtools.crest.model.design.DomainFileWrapper" fileName="defaultdomains">
+<domains>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="Laufnummer100" id="1AA297FE-DA5D-D38D-073E-C5696BE23C6A">
+<createdBy>ruben.antenen</createdBy>
+<createdTime>2019-10-09 12:38:52 UTC</createdTime>
+<comment><![CDATA[Laufnummer von 1 bis 99]]></comment>
+<ownerDesignName>System</ownerDesignName>
+<avTSortOrder>0</avTSortOrder>
+<dataTypePrecision>0</dataTypePrecision>
+<dataTypeSize>2</dataTypeSize>
+<fileName>defaultdomains</fileName>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>1</beginValue>
+<endValue>99</endValue>
+</rangeDef>
+</listOfRanges>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="LandISOCode" id="49680D1E-2701-8B8F-3D9D-5E80DA3E47AE">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-09 15:01:13 UTC</createdTime>
+<comment><![CDATA[ISO-Code (2stellig) eines Landes]]></comment>
+<ownerDesignName>System</ownerDesignName>
+<avTSortOrder>0</avTSortOrder>
+<dataTypeSize>2</dataTypeSize>
+<fileName>defaultdomains</fileName>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="Identifikator" id="4B064A97-7ACB-C3F8-7251-9BA7B335CCBD">
+<createdBy>ruben.antenen</createdBy>
+<createdTime>2019-10-09 12:37:56 UTC</createdTime>
+<comment><![CDATA[Firmenweite eindeutiger ID für eine Entität]]></comment>
+<ownerDesignName>System</ownerDesignName>
+<avTSortOrder>0</avTSortOrder>
+<dataTypeSize>100</dataTypeSize>
+<fileName>defaultdomains</fileName>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="Geographische Koordinate" id="550C7253-858E-F656-5950-67943BD0962C">
+<createdBy>ruben.antenen</createdBy>
+<createdTime>2019-10-16 12:29:04 UTC</createdTime>
+<ownerDesignName>System</ownerDesignName>
+<avTSortOrder>0</avTSortOrder>
+<dataTypePrecision>9</dataTypePrecision>
+<dataTypeScale>6</dataTypeScale>
+<fileName>defaultdomains</fileName>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>-180</beginValue>
+<endValue>+180</endValue>
+</rangeDef>
+</listOfRanges>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="Logistikdimension" id="8E24BBCC-8062-6053-EE8E-21D11677472A">
+<createdBy>ruben.antenen</createdBy>
+<createdTime>2019-10-09 09:54:08 UTC</createdTime>
+<comment><![CDATA[Länge in CM für Logistikzwecke]]></comment>
+<ownerDesignName>System</ownerDesignName>
+<avTSortOrder>0</avTSortOrder>
+<dataTypePrecision>4</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<fileName>defaultdomains</fileName>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<unitOfMeasure>CM</unitOfMeasure>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>0</beginValue>
+<endValue>9999</endValue>
+</rangeDef>
+</listOfRanges>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="IdentifikatorDerived" id="94F6669B-1D2C-180B-0A26-D5176088A8DB">
+<createdBy>ruben.antenen</createdBy>
+<createdTime>2019-10-09 12:49:42 UTC</createdTime>
+<comment><![CDATA[Firmenweite eindeutiger abgeleiteter ID für eine Entität]]></comment>
+<ownerDesignName>System</ownerDesignName>
+<avTSortOrder>0</avTSortOrder>
+<dataTypeSize>150</dataTypeSize>
+<fileName>defaultdomains</fileName>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="Logistikgewicht" id="BC80FC3F-D21C-4FB5-C989-0B5D165F3074">
+<createdBy>ruben.antenen</createdBy>
+<createdTime>2019-10-09 10:01:51 UTC</createdTime>
+<comment><![CDATA[Gewicht in kg relevant für Logistik.]]></comment>
+<ownerDesignName>System</ownerDesignName>
+<avTSortOrder>0</avTSortOrder>
+<dataTypePrecision>7</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<fileName>defaultdomains</fileName>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<unitOfMeasure>kg</unitOfMeasure>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>0</beginValue>
+<endValue>99999.99</endValue>
+</rangeDef>
+</listOfRanges>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="Unknown" id="DOM3000004">
+<createdBy>ruben.antenen</createdBy>
+<createdTime>2019-10-09 12:25:34 UTC</createdTime>
+<ownerDesignName>System</ownerDesignName>
+<avTSortOrder>0</avTSortOrder>
+<fileName>defaultdomains</fileName>
+<logicalDatatype>LOGDT017</logicalDatatype>
+</Domain>
+</domains>
+</DomainFile>

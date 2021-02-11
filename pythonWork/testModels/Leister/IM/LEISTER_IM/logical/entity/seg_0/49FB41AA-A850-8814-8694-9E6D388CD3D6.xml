@@ -1,0 +1,110 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="49FB41AA-A850-8814-8694-9E6D388CD3D6" name="Product Category">
+<createdBy>sbo</createdBy>
+<createdTime>2019-02-06 08:36:44 UTC</createdTime>
+<comment><![CDATA[Gruppe von Verkaufsprodukten mit einem gemeinsamen Anwendungszweck.
+
+Kommentar PAZ und WIM:
+• Ist nicht die Anwendung, sondern der Geräteart (o. Maschinentyp). Diese Arten können unterschiedlich angewendet werden.
+
+• Geräteart: Handgerät (zwei Sorten: mit/ohne Gebläse):
+	○ Wird überall angewandt: Flooring, Roofing, Geo, usw.
+• Extrusion (Extrusionschnecke & Luftheizung):
+	○ Tiefbau Apparatebau
+
+Synonyme: Synonym Profit Center im Kontext Product Group Code (Penta)
+
+Beispiele:
+Handgeräte, Schweissautomaten, Lasersysteme
+]]></comment>
+<notes><![CDATA[[EN_ENTI_COMMENT[
+**Group of sales products with a common application purpose.
+
+Comments PAZ and WIM:
+- Is not the application but the device type (or machine type). These species can be used in different ways.
+
+- Device type: Handheld (two types: with/without fan):
+	○ Used everywhere: Flooring, Roofing, Geo, etc.
+- Extrusion (extrusion screw & air heating):
+	○ civil engineering apparatus engineering
+
+Synonyms: Synonym Profit Center in the Context of Product Group Code (Penta)
+
+Examples:
+Hand tools, automatic welding machines, laser systems
+]EN_ENTI_COMMENT]
+[DE_ENTI_COMMENT[
+Gruppe von Verkaufsprodutken mit einem gemeinsamen Anwendungszweck.
+
+Kommentar PAZ und WIM:
+• Ist nicht die Anwendung sondern der Geräteart (o. Maschinentyp). Diese Arten können unterschiedlich angewendet werden.
+
+• Geräteart: Handgerät (zwei Sorten: mit/ohne Gebläse):
+	○ Wird überall angewandt: Flooring, Roofing, Geo, usw.
+• Extrusion (Extrusionschnecke & Luftheizung):
+	○ Tiefbau Apparatebau
+
+Synonyme: Synonym Profit Center im Kontext Product Group Code (Penta)
+
+Beispiele:
+Handgeräte, Schweissautomaten, Lasersysteme
+]DE_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<typeID>AB7A723E-18E3-723F-6D3A-6AE296FEBDA3</typeID>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<hierarchicalParent>CE164B7E-DDA5-60AE-BBA6-A9ABD42193D4</hierarchicalParent>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<synonym>Produktkategorie</synonym>
+<propertyMap>
+<property name="DE_ENTI_NAME" value="Produkt-Kategorie"/>
+<property name="EN_ENTI_NAME" value="**Product Category"/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Name" id="48A1E357-668C-DCD7-6D86-7310686269FD">
+<createdBy>ruben.antenen</createdBy>
+<createdTime>2019-09-10 11:54:00 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Name"/>
+<property name="DHL AttrName" value="."/>
+<property name="DHL AttrName Receiver" value="."/>
+<property name="DHL AttrName Shipper" value="."/>
+<property name="EN_ATTR_NAME" value="**Name"/>
+<property name="PENTA AttrID" value="."/>
+<property name="PENTA AttrName" value="."/>
+<property name="PENTA datatype" value="."/>
+<property name="PENTA usage" value="."/>
+<property name="PIM AttrID" value="."/>
+<property name="PIM AttrName" value="."/>
+<property name="PIM EnglName" value="."/>
+<property name="PIM datatype" value="."/>
+<property name="PIM usage" value="."/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+</Attribute>
+</attributes>
+</Entity>

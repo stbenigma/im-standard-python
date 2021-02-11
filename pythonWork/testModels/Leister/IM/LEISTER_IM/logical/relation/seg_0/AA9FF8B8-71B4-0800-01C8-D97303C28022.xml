@@ -1,0 +1,26 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_66" directorySegmentName="seg_0" id="AA9FF8B8-71B4-0800-01C8-D97303C28022">
+<createdBy>ruben.antenen</createdBy>
+<createdTime>2019-11-05 12:59:08 UTC</createdTime>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<nameOnSource>verkauft als</nameOnSource>
+<nameOnTarget>beschrieben durch</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>27A23C8F-5BCD-8DF6-A09A-1A5CA52730B4</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>58CF42C1-395D-40D0-7805-940AC694E59F</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="verkauft als"/>
+<property name="DE_RELA_TEXT_TO" value="beschrieben durch"/>
+<property name="EN_RELA_TEXT_FROM" value="**sold as"/>
+<property name="EN_RELA_TEXT_TO" value="**described by"/>
+</propertyMap>
+</Relation>

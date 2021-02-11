@@ -1,0 +1,26 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_3" directorySegmentName="seg_0" id="3802FF51-1A1D-E376-4CEC-9C08DE860317">
+<createdBy>cle</createdBy>
+<createdTime>2020-08-12 07:53:21 UTC</createdTime>
+<ownerDesignName>ZEHG-IM</ownerDesignName>
+<engineerTo>
+<item key="E73667C8-D73D-37B9-7BB4-9427B1B6DC71" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<nameOnSource>generalized</nameOnSource>
+<nameOnTarget>configured from</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>D61F300E-37F2-859E-EE07-1C164D34B251</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>DA00CE3B-A9E5-16BB-8A28-61DD05F5DF66</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="verallgemeinert"/>
+<property name="DE_RELA_TEXT_TO" value="auskonfiguriert aus"/>
+<property name="EN_RELA_TEXT_FROM" value="**generalized"/>
+<property name="EN_RELA_TEXT_TO" value="**Configured from"/>
+</propertyMap>
+</Relation>

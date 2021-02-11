@@ -1,0 +1,30 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_97" directorySegmentName="seg_3" id="E05CDDF5-FED8-1C38-914A-1A6E65A342A6">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:06:24 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<engineerTo>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
+<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
+</engineerTo>
+<useSurrogateKey>true</useSurrogateKey>
+<identifying>false</identifying>
+<nameOnSource>wird zu</nameOnSource>
+<nameOnTarget>entspricht</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>A698026B-4E4A-1A3E-8E46-F379986F84F0</sourceEntity>
+<targetCardinalityString>1</targetCardinalityString>
+<targetEntity>FDE8C3B7-82F3-3D56-8412-B7F94B8F75FE</targetEntity>
+<transferable>true</transferable>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="wird zu"/>
+<property name="DE_RELA_TEXT_TO" value="entspricht"/>
+<property name="EN_RELA_TEXT_FROM" value="will become"/>
+<property name="EN_RELA_TEXT_TO" value="corresponds to"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
+</propertyMap>
+</Relation>

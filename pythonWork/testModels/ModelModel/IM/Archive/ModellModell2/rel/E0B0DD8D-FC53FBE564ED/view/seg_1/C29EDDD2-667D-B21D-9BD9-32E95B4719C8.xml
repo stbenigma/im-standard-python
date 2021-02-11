@@ -1,0 +1,163 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableView class="oracle.dbtools.crest.model.design.relational.TableView" directorySegmentName="seg_1" id="C29EDDD2-667D-B21D-9BD9-32E95B4719C8" schemaObject="19221298-76C4-E323-B35B-7857802DF7E7" name="DMRV_RECORD_STRUCTURES">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>ADMIN</sourceObjSchema>
+<sourceObjName>DMRV_RECORD_STRUCTURES</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:33 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<userDefined>true</userDefined>
+<userDefinedSQL><![CDATA[CREATE OR REPLACE VIEW DMRV_RECORD_STRUCTURES
+AS 
+select  Record_Structure_ID, Record_Structure_OVID, Record_Structure_Name, Model_ID, Model_OVID, Model_Name, Design_OVID from DMRS_RECORD_STRUCTURES]]></userDefinedSQL>
+<parsed>true</parsed>
+<viewElements>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="RECORD_STRUCTURE_ID" id="ACEA1D43-45F6-4A0D-D796-DCA1A7D5442B">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_RECORD_STRUCTURES</sourceObjSchema>
+<sourceObjName>RECORD_STRUCTURE_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:33 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>RECORD_STRUCTURE_ID</alias>
+<dataType>VARCHAR2 (70 BYTE)</dataType>
+<headerAlias>RECORD_STRUCTURE_ID</headerAlias>
+<reference>false</reference>
+<referencedColumn>1CDF57B5-3AD9-76F7-368C-2706BC3DA523</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="RECORD_STRUCTURE_OVID" id="82984C2A-B595-65E5-F552-52FDDA37A215">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_RECORD_STRUCTURES</sourceObjSchema>
+<sourceObjName>RECORD_STRUCTURE_OVID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:33 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>RECORD_STRUCTURE_OVID</alias>
+<dataType>VARCHAR2 (36 BYTE)</dataType>
+<headerAlias>RECORD_STRUCTURE_OVID</headerAlias>
+<reference>false</reference>
+<referencedColumn>5856BC15-A9C4-1AF8-8948-2426BC9F8024</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="RECORD_STRUCTURE_NAME" id="F2A3E84A-C836-C5B9-2D30-3A2D9288DE25">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_RECORD_STRUCTURES</sourceObjSchema>
+<sourceObjName>RECORD_STRUCTURE_NAME</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:33 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>RECORD_STRUCTURE_NAME</alias>
+<dataType>VARCHAR2 (256 BYTE)</dataType>
+<headerAlias>RECORD_STRUCTURE_NAME</headerAlias>
+<reference>false</reference>
+<referencedColumn>C6B2FF69-AB7E-6FBE-FAF4-6228CD95DB44</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="MODEL_ID" id="C8058489-DC6A-C8E8-0D85-C9F86171F41A">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_RECORD_STRUCTURES</sourceObjSchema>
+<sourceObjName>MODEL_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:33 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>MODEL_ID</alias>
+<dataType>VARCHAR2 (70 BYTE)</dataType>
+<headerAlias>MODEL_ID</headerAlias>
+<reference>false</reference>
+<referencedColumn>BBB60B7F-E2D8-4FA0-B970-82546948C9A7</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="MODEL_OVID" id="105C32A4-4BA3-0B27-564F-3CB21ED2980B">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_RECORD_STRUCTURES</sourceObjSchema>
+<sourceObjName>MODEL_OVID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:33 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>MODEL_OVID</alias>
+<dataType>VARCHAR2 (36 BYTE)</dataType>
+<headerAlias>MODEL_OVID</headerAlias>
+<reference>false</reference>
+<referencedColumn>DFE3D37B-D214-54C8-9895-41384830CDE5</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="MODEL_NAME" id="15874F39-8049-70CA-8DDA-CDE670DC41BD">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_RECORD_STRUCTURES</sourceObjSchema>
+<sourceObjName>MODEL_NAME</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:33 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>MODEL_NAME</alias>
+<dataType>VARCHAR2 (256 BYTE)</dataType>
+<headerAlias>MODEL_NAME</headerAlias>
+<reference>false</reference>
+<referencedColumn>0103B1FD-D4EC-2956-2465-B6ABE4888720</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="DESIGN_OVID" id="E35F3F23-5492-A3EB-BB66-6552404DC0CF">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_RECORD_STRUCTURES</sourceObjSchema>
+<sourceObjName>DESIGN_OVID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:33 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>DESIGN_OVID</alias>
+<dataType>VARCHAR2 (36 BYTE)</dataType>
+<headerAlias>DESIGN_OVID</headerAlias>
+<reference>false</reference>
+<referencedColumn>459F4E5E-3B5E-7411-6608-E59DDB4C988F</referencedColumn>
+</viewElement>
+</viewElements>
+<usedObjects>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="1CDF57B5-3AD9-76F7-368C-2706BC3DA523">
+<columnName>RECORD_STRUCTURE_ID</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_RECORD_STRUCTURES</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="5856BC15-A9C4-1AF8-8948-2426BC9F8024">
+<columnName>RECORD_STRUCTURE_OVID</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_RECORD_STRUCTURES</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="C6B2FF69-AB7E-6FBE-FAF4-6228CD95DB44">
+<columnName>RECORD_STRUCTURE_NAME</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_RECORD_STRUCTURES</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="BBB60B7F-E2D8-4FA0-B970-82546948C9A7">
+<columnName>MODEL_ID</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_RECORD_STRUCTURES</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="DFE3D37B-D214-54C8-9895-41384830CDE5">
+<columnName>MODEL_OVID</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_RECORD_STRUCTURES</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="0103B1FD-D4EC-2956-2465-B6ABE4888720">
+<columnName>MODEL_NAME</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_RECORD_STRUCTURES</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="459F4E5E-3B5E-7411-6608-E59DDB4C988F">
+<columnName>DESIGN_OVID</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_RECORD_STRUCTURES</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="DB1660F2-81E0-4E3F-86D4-88980C82AC3B">
+<container>true</container>
+<schema>ADMIN</schema>
+<tableName>DMRS_RECORD_STRUCTURES</tableName>
+</UsedObject>
+</usedObjects>
+</TableView>

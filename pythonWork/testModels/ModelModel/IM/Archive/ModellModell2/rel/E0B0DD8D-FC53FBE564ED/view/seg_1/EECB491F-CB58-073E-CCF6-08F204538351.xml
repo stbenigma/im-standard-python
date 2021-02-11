@@ -1,0 +1,403 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableView class="oracle.dbtools.crest.model.design.relational.TableView" directorySegmentName="seg_1" id="EECB491F-CB58-073E-CCF6-08F204538351" schemaObject="19221298-76C4-E323-B35B-7857802DF7E7" name="DMRV_SLICES">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>ADMIN</sourceObjSchema>
+<sourceObjName>DMRV_SLICES</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:34 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<userDefined>true</userDefined>
+<userDefinedSQL><![CDATA[CREATE OR REPLACE VIEW DMRV_SLICES
+AS 
+select  Slice_ID, Slice_Name, Slice_OVID, Model_ID, Model_Name, Model_OVID, Cube_ID, Cube_Name, Cube_OVID, Entity_ID, Entity_Name, Entity_OVID, Oracle_Long_Name, Oracle_Plural_Name, Oracle_Short_Name, Is_Fully_Realized, Is_Read_Only, Description, Design_OVID from DMRS_SLICES]]></userDefinedSQL>
+<parsed>true</parsed>
+<viewElements>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="SLICE_ID" id="10DEDE7C-2F73-1F4E-6300-75941C4C9DD8">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_SLICES</sourceObjSchema>
+<sourceObjName>SLICE_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:34 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>SLICE_ID</alias>
+<dataType>VARCHAR2 (70 BYTE)</dataType>
+<headerAlias>SLICE_ID</headerAlias>
+<reference>false</reference>
+<referencedColumn>A8451F6B-6C91-A8C9-FE9D-748D5F9F0D88</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="SLICE_NAME" id="010DE22B-DF81-2C45-0BEC-18DBC5EFD605">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_SLICES</sourceObjSchema>
+<sourceObjName>SLICE_NAME</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:34 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>SLICE_NAME</alias>
+<dataType>VARCHAR2 (256 BYTE)</dataType>
+<headerAlias>SLICE_NAME</headerAlias>
+<reference>false</reference>
+<referencedColumn>3FDF87D4-82D8-0E9C-7028-AC8903717F0B</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="SLICE_OVID" id="13AD7091-FD0C-0AF3-8B5D-8A946E0059E4">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_SLICES</sourceObjSchema>
+<sourceObjName>SLICE_OVID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:34 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>SLICE_OVID</alias>
+<dataType>VARCHAR2 (36 BYTE)</dataType>
+<headerAlias>SLICE_OVID</headerAlias>
+<reference>false</reference>
+<referencedColumn>1DFB5214-45EC-5DB9-ADA7-1B618EA8FB65</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="MODEL_ID" id="150E6571-B5E7-1447-766F-64ADFE328E32">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_SLICES</sourceObjSchema>
+<sourceObjName>MODEL_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:34 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>MODEL_ID</alias>
+<dataType>VARCHAR2 (70 BYTE)</dataType>
+<headerAlias>MODEL_ID</headerAlias>
+<reference>false</reference>
+<referencedColumn>31E7B222-41C1-C12C-656C-1C23DF985AA6</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="MODEL_NAME" id="EC70D3D2-E56C-7EE0-1119-49A83FAA51A8">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_SLICES</sourceObjSchema>
+<sourceObjName>MODEL_NAME</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:34 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>MODEL_NAME</alias>
+<dataType>VARCHAR2 (256 BYTE)</dataType>
+<headerAlias>MODEL_NAME</headerAlias>
+<reference>false</reference>
+<referencedColumn>B13E820F-BCD9-1D11-964B-C72305D0A17F</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="MODEL_OVID" id="38B94A87-F42E-9AAE-9803-500A370B8B05">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_SLICES</sourceObjSchema>
+<sourceObjName>MODEL_OVID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:34 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>MODEL_OVID</alias>
+<dataType>VARCHAR2 (36 BYTE)</dataType>
+<headerAlias>MODEL_OVID</headerAlias>
+<reference>false</reference>
+<referencedColumn>398C6760-3A07-AF9E-F479-BE7D8331EB9A</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="CUBE_ID" id="A9FFD8CD-7852-4C0B-F1B8-9BD6946D6680">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_SLICES</sourceObjSchema>
+<sourceObjName>CUBE_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:34 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>CUBE_ID</alias>
+<dataType>VARCHAR2 (70 BYTE)</dataType>
+<headerAlias>CUBE_ID</headerAlias>
+<reference>false</reference>
+<referencedColumn>EE365A0A-BF2F-DB95-6E27-19F7451FD5D4</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="CUBE_NAME" id="2624A60C-B46B-472F-1C59-7B08182E5D78">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_SLICES</sourceObjSchema>
+<sourceObjName>CUBE_NAME</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:34 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>CUBE_NAME</alias>
+<dataType>VARCHAR2 (256 BYTE)</dataType>
+<headerAlias>CUBE_NAME</headerAlias>
+<reference>false</reference>
+<referencedColumn>6DB43549-9CA7-0664-ECE4-8CCD0E68E02A</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="CUBE_OVID" id="5C56CF1F-91B2-AB16-74A5-A36650049A43">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_SLICES</sourceObjSchema>
+<sourceObjName>CUBE_OVID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:34 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>CUBE_OVID</alias>
+<dataType>VARCHAR2 (36 BYTE)</dataType>
+<headerAlias>CUBE_OVID</headerAlias>
+<reference>false</reference>
+<referencedColumn>DBB40400-3D54-25B4-E185-EA9718567302</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="ENTITY_ID" id="A54B8DA8-5FC2-8897-69AA-2608E743E777">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_SLICES</sourceObjSchema>
+<sourceObjName>ENTITY_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:34 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>ENTITY_ID</alias>
+<dataType>VARCHAR2 (70 BYTE)</dataType>
+<headerAlias>ENTITY_ID</headerAlias>
+<reference>false</reference>
+<referencedColumn>272BCD84-8DCD-FA1A-D298-E68D1A8EBB65</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="ENTITY_NAME" id="3B3901F1-3C46-13BD-4C29-90B7170732C1">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_SLICES</sourceObjSchema>
+<sourceObjName>ENTITY_NAME</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:34 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>ENTITY_NAME</alias>
+<dataType>VARCHAR2 (256 BYTE)</dataType>
+<headerAlias>ENTITY_NAME</headerAlias>
+<reference>false</reference>
+<referencedColumn>2DC1C23D-4372-060B-9329-CD24226EA57A</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="ENTITY_OVID" id="2DE30643-5A60-04B3-8B63-D01CE764FD6B">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_SLICES</sourceObjSchema>
+<sourceObjName>ENTITY_OVID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:34 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>ENTITY_OVID</alias>
+<dataType>VARCHAR2 (36 BYTE)</dataType>
+<headerAlias>ENTITY_OVID</headerAlias>
+<reference>false</reference>
+<referencedColumn>58E9F9A7-876A-D1B2-074D-8CC717C7DEBD</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="ORACLE_LONG_NAME" id="08ED62A3-9376-F966-D586-197AB97BD6EF">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_SLICES</sourceObjSchema>
+<sourceObjName>ORACLE_LONG_NAME</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:34 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>ORACLE_LONG_NAME</alias>
+<dataType>VARCHAR2 (2000 BYTE)</dataType>
+<headerAlias>ORACLE_LONG_NAME</headerAlias>
+<reference>false</reference>
+<referencedColumn>571A7E86-2CF6-1051-6012-312A6CF9B583</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="ORACLE_PLURAL_NAME" id="85210733-DC86-859F-8337-E5FA55FA293A">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_SLICES</sourceObjSchema>
+<sourceObjName>ORACLE_PLURAL_NAME</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:34 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>ORACLE_PLURAL_NAME</alias>
+<dataType>VARCHAR2 (2000 BYTE)</dataType>
+<headerAlias>ORACLE_PLURAL_NAME</headerAlias>
+<reference>false</reference>
+<referencedColumn>AF03C708-9421-8821-6813-F9E10425DE43</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="ORACLE_SHORT_NAME" id="5267E288-DD21-D39A-B24C-A7F82314DB15">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_SLICES</sourceObjSchema>
+<sourceObjName>ORACLE_SHORT_NAME</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:34 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>ORACLE_SHORT_NAME</alias>
+<dataType>VARCHAR2 (2000 BYTE)</dataType>
+<headerAlias>ORACLE_SHORT_NAME</headerAlias>
+<reference>false</reference>
+<referencedColumn>535CB648-6E4E-5A2C-AFAC-76F3E509A4E3</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="IS_FULLY_REALIZED" id="30362DC7-34C3-D670-B7EB-D95D40492BFF">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_SLICES</sourceObjSchema>
+<sourceObjName>IS_FULLY_REALIZED</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:34 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>IS_FULLY_REALIZED</alias>
+<dataType>CHAR (1 BYTE)</dataType>
+<headerAlias>IS_FULLY_REALIZED</headerAlias>
+<reference>false</reference>
+<referencedColumn>4A4F72E7-C767-BAB1-DED2-0E01A2A338F2</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="IS_READ_ONLY" id="6E91A626-8B2B-1508-7F96-A9C6926DBA8F">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_SLICES</sourceObjSchema>
+<sourceObjName>IS_READ_ONLY</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:34 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>IS_READ_ONLY</alias>
+<dataType>CHAR (1 BYTE)</dataType>
+<headerAlias>IS_READ_ONLY</headerAlias>
+<reference>false</reference>
+<referencedColumn>6CA849F5-9A29-3211-5092-E6843F1DDC36</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="DESCRIPTION" id="F775E9AA-0A72-A234-9A12-B5D13B6D5ADE">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_SLICES</sourceObjSchema>
+<sourceObjName>DESCRIPTION</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:34 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>DESCRIPTION</alias>
+<dataType>VARCHAR2 (4000 BYTE)</dataType>
+<headerAlias>DESCRIPTION</headerAlias>
+<reference>false</reference>
+<referencedColumn>49AF6DB9-4823-7984-82D4-CA77CF0B9982</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="DESIGN_OVID" id="3D7B9988-C34F-63C2-8E7D-474FA924EA53">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_SLICES</sourceObjSchema>
+<sourceObjName>DESIGN_OVID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:34 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>DESIGN_OVID</alias>
+<dataType>VARCHAR2 (36 BYTE)</dataType>
+<headerAlias>DESIGN_OVID</headerAlias>
+<reference>false</reference>
+<referencedColumn>78F0BF2F-4955-288F-C594-B5364D8AE6E8</referencedColumn>
+</viewElement>
+</viewElements>
+<usedObjects>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="A8451F6B-6C91-A8C9-FE9D-748D5F9F0D88">
+<columnName>SLICE_ID</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_SLICES</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="3FDF87D4-82D8-0E9C-7028-AC8903717F0B">
+<columnName>SLICE_NAME</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_SLICES</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="1DFB5214-45EC-5DB9-ADA7-1B618EA8FB65">
+<columnName>SLICE_OVID</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_SLICES</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="31E7B222-41C1-C12C-656C-1C23DF985AA6">
+<columnName>MODEL_ID</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_SLICES</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="B13E820F-BCD9-1D11-964B-C72305D0A17F">
+<columnName>MODEL_NAME</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_SLICES</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="398C6760-3A07-AF9E-F479-BE7D8331EB9A">
+<columnName>MODEL_OVID</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_SLICES</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="EE365A0A-BF2F-DB95-6E27-19F7451FD5D4">
+<columnName>CUBE_ID</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_SLICES</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="6DB43549-9CA7-0664-ECE4-8CCD0E68E02A">
+<columnName>CUBE_NAME</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_SLICES</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="DBB40400-3D54-25B4-E185-EA9718567302">
+<columnName>CUBE_OVID</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_SLICES</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="272BCD84-8DCD-FA1A-D298-E68D1A8EBB65">
+<columnName>ENTITY_ID</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_SLICES</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="2DC1C23D-4372-060B-9329-CD24226EA57A">
+<columnName>ENTITY_NAME</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_SLICES</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="58E9F9A7-876A-D1B2-074D-8CC717C7DEBD">
+<columnName>ENTITY_OVID</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_SLICES</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="571A7E86-2CF6-1051-6012-312A6CF9B583">
+<columnName>ORACLE_LONG_NAME</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_SLICES</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="AF03C708-9421-8821-6813-F9E10425DE43">
+<columnName>ORACLE_PLURAL_NAME</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_SLICES</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="535CB648-6E4E-5A2C-AFAC-76F3E509A4E3">
+<columnName>ORACLE_SHORT_NAME</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_SLICES</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="4A4F72E7-C767-BAB1-DED2-0E01A2A338F2">
+<columnName>IS_FULLY_REALIZED</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_SLICES</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="6CA849F5-9A29-3211-5092-E6843F1DDC36">
+<columnName>IS_READ_ONLY</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_SLICES</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="49AF6DB9-4823-7984-82D4-CA77CF0B9982">
+<columnName>DESCRIPTION</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_SLICES</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="78F0BF2F-4955-288F-C594-B5364D8AE6E8">
+<columnName>DESIGN_OVID</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_SLICES</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="E7DAFBCD-DF9E-CA50-402F-A1CB49C9F26E">
+<container>true</container>
+<schema>ADMIN</schema>
+<tableName>DMRS_SLICES</tableName>
+</UsedObject>
+</usedObjects>
+</TableView>

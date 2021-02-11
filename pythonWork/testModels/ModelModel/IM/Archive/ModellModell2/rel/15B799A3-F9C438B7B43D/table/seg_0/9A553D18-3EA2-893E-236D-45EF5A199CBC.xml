@@ -1,0 +1,175 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="9A553D18-3EA2-893E-236D-45EF5A199CBC" name="BENUDEF_WERT">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-27 16:33:55 UTC</createdTime>
+<comment><![CDATA[Für projekt- oder umgebungsspezifische Erweiterungen, können für jedes Modellelement eigene Eigenschaften definiert werden.]]></comment>
+<generatorID>593FFFEB-27C6-0227-A8E2-02A0FB9B5A61</generatorID>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<ordsAlias>benutzerdefinierter_eigenschaftswert</ordsAlias>
+<abbreviation>BDWE</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="BDWE_ID" id="FA928E04-4C6B-705D-7F17-EB8D7C00BE82">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-27 16:33:55 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+<Column name="BDWE_WERT" id="045864B8-EEE2-06D9-BA95-DAE4EA10E609">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-27 16:33:55 UTC</createdTime>
+<generatorID>4D65DE4B-D857-1829-A949-8A63338EF7F1</generatorID>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="BDWE_MODE_ID" id="89843F42-3917-3399-C782-99D19AC469FE">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-27 17:10:08 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="9895B942-E638-4337-53A5-B468D65D084F" referredColumn="E7DD4494-59BC-B5B7-F31F-333747453A3D"/>
+</associations>
+</Column>
+<Column name="BDWE_BDEG_ID" id="AE671512-15FB-660C-338F-22C3DEACE7DA">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-27 16:33:55 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="24CE712C-DF64-158B-2289-A66C20FA4C26" referredColumn="98FBAFA1-49E7-0CA0-B5A5-EFD84C400719"/>
+</associations>
+</Column>
+<Column name="BDWE_UC" id="D52E65B5-5A5D-1EDA-8848-85AE0B3C1D9E">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-27 16:33:56 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<formulaDesc>USER</formulaDesc>
+<sourceType>System</sourceType>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<computed>true</computed>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="F7EEFF47-7A42-2A3E-7DFC-D0558D6996B8"/>
+</propertyMap>
+</Column>
+<Column name="BDWE_DC" id="8BB950E7-1ADC-52EE-B8FF-60D0389723EA">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-27 16:33:56 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT047</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="74D877A0-4C3B-63EE-06C5-071C7695907C"/>
+</propertyMap>
+</Column>
+<Column name="BDWE_UM" id="142588B9-510F-678C-B2F9-2595180953AF">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-27 16:33:56 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="B2E17D53-C2F7-74D9-022D-5D63F3931519"/>
+</propertyMap>
+</Column>
+<Column name="BDWE_DM" id="F18863F4-B179-B1E9-E3A4-C95EE91FBCE7">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-27 16:33:56 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT047</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="B398D247-00C1-F016-3BBB-FE65CFFFF7AA"/>
+</propertyMap>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="A0A23ACE-431C-C905-3EB7-09157419D278" name="BDWE_PK">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-27 16:33:55 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="FA928E04-4C6B-705D-7F17-EB8D7C00BE82"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="06C40814-9AB0-A0E1-769F-EC2BBE99A4D1" name="BDWE_UN">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-27 17:10:59 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="89843F42-3917-3399-C782-99D19AC469FE"/>
+<colUsage columnID="AE671512-15FB-660C-338F-22C3DEACE7DA"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="059F1338-8F53-00D2-5FCB-EC6DC9417C95" name="BDWE_BDEG_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-27 16:33:55 UTC</createdTime>
+<generatorID>5F5AAD03-37F7-ADC0-A878-2D2554767B7B</generatorID>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="AE671512-15FB-660C-338F-22C3DEACE7DA"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="3B356DE4-4A0F-2AFE-5283-76DD0FC43DD2" name="BDWE_MODE_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-27 17:10:08 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="89843F42-3917-3399-C782-99D19AC469FE"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

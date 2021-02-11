@@ -1,0 +1,45 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="252AC035-C7C7-750C-6CAA-7454A95C5751" schemaObject="BA9AB875-9DE2-0270-F892-66DA7F318378" name="t_implement">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>t_implement</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:12 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Type" id="6F56D7F9-E232-4759-5C2C-6AEF9B96C2ED">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_implement</sourceObjSchema>
+<sourceObjName>Type</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:12 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypePrecision>50</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,50,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="EF7E5FF1-C41B-63BA-09C1-65BE0CCB0287" name="ix_implement_type">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>ix_implement_type</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:12 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="6F56D7F9-E232-4759-5C2C-6AEF9B96C2ED"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

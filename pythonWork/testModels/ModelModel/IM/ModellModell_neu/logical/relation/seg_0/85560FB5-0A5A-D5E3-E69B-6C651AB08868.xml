@@ -1,0 +1,31 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_152" directorySegmentName="seg_0" id="85560FB5-0A5A-D5E3-E69B-6C651AB08868">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:03:22 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<engineerTo>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
+<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
+</engineerTo>
+<sourcePk>D4E9F530-7460-E1B0-FB32-1D0A4FB4E2DE</sourcePk>
+<identifying>false</identifying>
+<nameOnSource>beschreibt</nameOnSource>
+<nameOnTarget>beschrieben in</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>0A237F80-7CC6-36FF-0810-FAD2954E2AD0</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>2C57B52E-0A51-E5FA-0B39-DDDD98D49ECB</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="beschreibt"/>
+<property name="DE_RELA_TEXT_TO" value="beschrieben in"/>
+<property name="EN_RELA_TEXT_FROM" value="describes"/>
+<property name="EN_RELA_TEXT_TO" value="described in"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
+</propertyMap>
+</Relation>

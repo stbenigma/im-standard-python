@@ -1,0 +1,1230 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="CED91204-432B-36EB-5332-34E5C19C2BD0" name="ERP Artikelreferenzattribute">
+<createdBy>ruben.antenen</createdBy>
+<createdTime>2020-04-28 09:53:15 UTC</createdTime>
+<comment><![CDATA[Attribute die im ERP (Penta) geführt werden und im PIM als Anzeigeattribute angezeigt werden --> Reine Implementierungssicht]]></comment>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<typeID>DFA6FA0E-2BE1-C19D-06D8-8D93E197B247</typeID>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<hierarchicalParent>D23EB529-C129-ED51-9510-1399E66058AF</hierarchicalParent>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="ERP Anlage am" id="076956D3-B826-3631-3591-4EA38F4A215E">
+<createdBy>ruben.antenen</createdBy>
+<createdTime>2020-04-28 09:55:25 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="ERP Anlage am"/>
+<property name="DHL AttrName" value="."/>
+<property name="DHL AttrName Receiver" value="."/>
+<property name="DHL AttrName Shipper" value="."/>
+<property name="EN_ATTR_NAME" value="**ERP system on"/>
+<property name="PENTA AttrID" value="."/>
+<property name="PENTA AttrName" value="."/>
+<property name="PENTA datatype" value="."/>
+<property name="PENTA usage" value="."/>
+<property name="PIM AttrID" value="."/>
+<property name="PIM AttrName" value="."/>
+<property name="PIM EnglName" value="."/>
+<property name="PIM datatype" value="."/>
+<property name="PIM usage" value="."/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="ERP Anlage am (2. Feld)" id="48A89CE2-6EFF-782E-DE93-95CE5C1EE1B6">
+<createdBy>ruben.antenen</createdBy>
+<createdTime>2020-04-28 09:55:25 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="ERP Anlage am (2. Feld)"/>
+<property name="DHL AttrName" value="."/>
+<property name="DHL AttrName Receiver" value="."/>
+<property name="DHL AttrName Shipper" value="."/>
+<property name="EN_ATTR_NAME" value="**ERP asset on (2nd field)"/>
+<property name="PENTA AttrID" value="."/>
+<property name="PENTA AttrName" value="."/>
+<property name="PENTA datatype" value="."/>
+<property name="PENTA usage" value="."/>
+<property name="PIM AttrID" value="."/>
+<property name="PIM AttrName" value="."/>
+<property name="PIM EnglName" value="."/>
+<property name="PIM datatype" value="."/>
+<property name="PIM usage" value="."/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="ERP Artikelart" id="2247A4AF-BDC3-B7F4-B53B-5CFAE14963FC">
+<createdBy>ruben.antenen</createdBy>
+<createdTime>2020-04-28 09:55:25 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="ERP Artikelart"/>
+<property name="DHL AttrName" value="."/>
+<property name="DHL AttrName Receiver" value="."/>
+<property name="DHL AttrName Shipper" value="."/>
+<property name="EN_ATTR_NAME" value="**ERP article type"/>
+<property name="PENTA AttrID" value="."/>
+<property name="PENTA AttrName" value="."/>
+<property name="PENTA datatype" value="."/>
+<property name="PENTA usage" value="."/>
+<property name="PIM AttrID" value="."/>
+<property name="PIM AttrName" value="."/>
+<property name="PIM EnglName" value="."/>
+<property name="PIM datatype" value="."/>
+<property name="PIM usage" value="."/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="ERP Artikelgewicht" id="57479894-C817-E69C-1CA9-8BF620C82141">
+<createdBy>ruben.antenen</createdBy>
+<createdTime>2020-04-28 09:55:25 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="ERP Artikelgewicht"/>
+<property name="DHL AttrName" value="."/>
+<property name="DHL AttrName Receiver" value="."/>
+<property name="DHL AttrName Shipper" value="."/>
+<property name="EN_ATTR_NAME" value="**ERP article weight"/>
+<property name="PENTA AttrID" value="."/>
+<property name="PENTA AttrName" value="."/>
+<property name="PENTA datatype" value="."/>
+<property name="PENTA usage" value="."/>
+<property name="PIM AttrID" value="."/>
+<property name="PIM AttrName" value="."/>
+<property name="PIM EnglName" value="."/>
+<property name="PIM datatype" value="."/>
+<property name="PIM usage" value="."/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="ERP Artikelnummer" id="72D3CA42-DE90-1E08-0A28-FBC5ABBF5A76">
+<createdBy>ruben.antenen</createdBy>
+<createdTime>2020-04-28 09:55:25 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="ERP Artikelnummer"/>
+<property name="DHL AttrName" value="."/>
+<property name="DHL AttrName Receiver" value="."/>
+<property name="DHL AttrName Shipper" value="."/>
+<property name="EN_ATTR_NAME" value="**ERP article number"/>
+<property name="PENTA AttrID" value="."/>
+<property name="PENTA AttrName" value="."/>
+<property name="PENTA datatype" value="."/>
+<property name="PENTA usage" value="."/>
+<property name="PIM AttrID" value="."/>
+<property name="PIM AttrName" value="."/>
+<property name="PIM EnglName" value="."/>
+<property name="PIM datatype" value="."/>
+<property name="PIM usage" value="."/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="ERP Artikelstatus" id="A5F46A32-ABB4-D205-232B-A3072B4BD71E">
+<createdBy>ruben.antenen</createdBy>
+<createdTime>2020-04-28 09:55:25 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="ERP Artikelstatus"/>
+<property name="DHL AttrName" value="."/>
+<property name="DHL AttrName Receiver" value="."/>
+<property name="DHL AttrName Shipper" value="."/>
+<property name="EN_ATTR_NAME" value="**ERP article status"/>
+<property name="PENTA AttrID" value="."/>
+<property name="PENTA AttrName" value="."/>
+<property name="PENTA datatype" value="."/>
+<property name="PENTA usage" value="."/>
+<property name="PIM AttrID" value="."/>
+<property name="PIM AttrName" value="."/>
+<property name="PIM EnglName" value="."/>
+<property name="PIM datatype" value="."/>
+<property name="PIM usage" value="."/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="ERP Bezeichnung 1" id="7256A875-3972-5A16-4586-3750CD130039">
+<createdBy>ruben.antenen</createdBy>
+<createdTime>2020-04-28 09:55:25 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="ERP Bezeichnung 1"/>
+<property name="DHL AttrName" value="."/>
+<property name="DHL AttrName Receiver" value="."/>
+<property name="DHL AttrName Shipper" value="."/>
+<property name="EN_ATTR_NAME" value="**ERP Description 1"/>
+<property name="PENTA AttrID" value="."/>
+<property name="PENTA AttrName" value="."/>
+<property name="PENTA datatype" value="."/>
+<property name="PENTA usage" value="."/>
+<property name="PIM AttrID" value="."/>
+<property name="PIM AttrName" value="."/>
+<property name="PIM EnglName" value="."/>
+<property name="PIM datatype" value="."/>
+<property name="PIM usage" value="."/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="ERP Bezeichnung 2" id="C4A5B434-1B40-DE4B-2B47-02012C6876EF">
+<createdBy>ruben.antenen</createdBy>
+<createdTime>2020-04-28 09:55:25 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="ERP Bezeichnung 2"/>
+<property name="DHL AttrName" value="."/>
+<property name="DHL AttrName Receiver" value="."/>
+<property name="DHL AttrName Shipper" value="."/>
+<property name="EN_ATTR_NAME" value="**ERP Description 2"/>
+<property name="PENTA AttrID" value="."/>
+<property name="PENTA AttrName" value="."/>
+<property name="PENTA datatype" value="."/>
+<property name="PENTA usage" value="."/>
+<property name="PIM AttrID" value="."/>
+<property name="PIM AttrName" value="."/>
+<property name="PIM EnglName" value="."/>
+<property name="PIM datatype" value="."/>
+<property name="PIM usage" value="."/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="ERP Dispositionskenner" id="DFC67054-AD82-3190-C04F-D9530B5AF325">
+<createdBy>ruben.antenen</createdBy>
+<createdTime>2020-04-28 09:55:25 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="ERP Dispositionskenner"/>
+<property name="DHL AttrName" value="."/>
+<property name="DHL AttrName Receiver" value="."/>
+<property name="DHL AttrName Shipper" value="."/>
+<property name="EN_ATTR_NAME" value="**ERP planning expert"/>
+<property name="PENTA AttrID" value="."/>
+<property name="PENTA AttrName" value="."/>
+<property name="PENTA datatype" value="."/>
+<property name="PENTA usage" value="."/>
+<property name="PIM AttrID" value="."/>
+<property name="PIM AttrName" value="."/>
+<property name="PIM EnglName" value="."/>
+<property name="PIM datatype" value="."/>
+<property name="PIM usage" value="."/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="ERP EAN-Nummer" id="AC091269-F46B-5063-383A-686F4630490B">
+<createdBy>ruben.antenen</createdBy>
+<createdTime>2020-04-28 09:55:25 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="ERP EAN-Nummer"/>
+<property name="DHL AttrName" value="."/>
+<property name="DHL AttrName Receiver" value="."/>
+<property name="DHL AttrName Shipper" value="."/>
+<property name="EN_ATTR_NAME" value="**ERP EAN number"/>
+<property name="PENTA AttrID" value="."/>
+<property name="PENTA AttrName" value="."/>
+<property name="PENTA datatype" value="."/>
+<property name="PENTA usage" value="."/>
+<property name="PIM AttrID" value="."/>
+<property name="PIM AttrName" value="."/>
+<property name="PIM EnglName" value="."/>
+<property name="PIM datatype" value="."/>
+<property name="PIM usage" value="."/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="ERP Ersatz-Kn" id="67F789AA-B079-C4C4-4717-291F61A76234">
+<createdBy>ruben.antenen</createdBy>
+<createdTime>2020-04-28 09:55:25 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="ERP Ersatz-Kn"/>
+<property name="DHL AttrName" value="."/>
+<property name="DHL AttrName Receiver" value="."/>
+<property name="DHL AttrName Shipper" value="."/>
+<property name="EN_ATTR_NAME" value="**ERP Replacement Kn"/>
+<property name="PENTA AttrID" value="."/>
+<property name="PENTA AttrName" value="."/>
+<property name="PENTA datatype" value="."/>
+<property name="PENTA usage" value="."/>
+<property name="PIM AttrID" value="."/>
+<property name="PIM AttrName" value="."/>
+<property name="PIM EnglName" value="."/>
+<property name="PIM datatype" value="."/>
+<property name="PIM usage" value="."/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="ERP Gesperrt" id="71A1D7D4-CD68-EE58-E791-C3DF74BB68F2">
+<createdBy>ruben.antenen</createdBy>
+<createdTime>2020-04-28 09:55:25 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="ERP Gesperrt"/>
+<property name="DHL AttrName" value="."/>
+<property name="DHL AttrName Receiver" value="."/>
+<property name="DHL AttrName Shipper" value="."/>
+<property name="EN_ATTR_NAME" value="**ERP Locked"/>
+<property name="PENTA AttrID" value="."/>
+<property name="PENTA AttrName" value="."/>
+<property name="PENTA datatype" value="."/>
+<property name="PENTA usage" value="."/>
+<property name="PIM AttrID" value="."/>
+<property name="PIM AttrName" value="."/>
+<property name="PIM EnglName" value="."/>
+<property name="PIM datatype" value="."/>
+<property name="PIM usage" value="."/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="ERP Geändert am" id="F21EA863-B970-7542-505D-A3D9311AB8C6">
+<createdBy>ruben.antenen</createdBy>
+<createdTime>2020-04-28 09:55:25 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="ERP Geändert am"/>
+<property name="DHL AttrName" value="."/>
+<property name="DHL AttrName Receiver" value="."/>
+<property name="DHL AttrName Shipper" value="."/>
+<property name="EN_ATTR_NAME" value="**ERP Changed on"/>
+<property name="PENTA AttrID" value="."/>
+<property name="PENTA AttrName" value="."/>
+<property name="PENTA datatype" value="."/>
+<property name="PENTA usage" value="."/>
+<property name="PIM AttrID" value="."/>
+<property name="PIM AttrName" value="."/>
+<property name="PIM EnglName" value="."/>
+<property name="PIM datatype" value="."/>
+<property name="PIM usage" value="."/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="ERP Geändert am (2. Feld)" id="09ADBA97-23E2-0C7D-6668-A8823FCDE6FB">
+<createdBy>ruben.antenen</createdBy>
+<createdTime>2020-04-28 09:55:25 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="ERP Geändert am (2. Feld)"/>
+<property name="DHL AttrName" value="."/>
+<property name="DHL AttrName Receiver" value="."/>
+<property name="DHL AttrName Shipper" value="."/>
+<property name="EN_ATTR_NAME" value="**ERP Changed on (2nd field)"/>
+<property name="PENTA AttrID" value="."/>
+<property name="PENTA AttrName" value="."/>
+<property name="PENTA datatype" value="."/>
+<property name="PENTA usage" value="."/>
+<property name="PIM AttrID" value="."/>
+<property name="PIM AttrName" value="."/>
+<property name="PIM EnglName" value="."/>
+<property name="PIM datatype" value="."/>
+<property name="PIM usage" value="."/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="ERP Geändert von" id="5FFC9E88-CF85-9E65-7234-3CD3818E1A63">
+<createdBy>ruben.antenen</createdBy>
+<createdTime>2020-04-28 09:55:25 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="ERP Geändert von"/>
+<property name="DHL AttrName" value="."/>
+<property name="DHL AttrName Receiver" value="."/>
+<property name="DHL AttrName Shipper" value="."/>
+<property name="EN_ATTR_NAME" value="**ERP Changed by"/>
+<property name="PENTA AttrID" value="."/>
+<property name="PENTA AttrName" value="."/>
+<property name="PENTA datatype" value="."/>
+<property name="PENTA usage" value="."/>
+<property name="PIM AttrID" value="."/>
+<property name="PIM AttrName" value="."/>
+<property name="PIM EnglName" value="."/>
+<property name="PIM datatype" value="."/>
+<property name="PIM usage" value="."/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="ERP Geändert von (2. Feld)" id="1A575FFF-A170-2D66-89BF-769D2F06CCFE">
+<createdBy>ruben.antenen</createdBy>
+<createdTime>2020-04-28 09:55:25 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="ERP Geändert von (2. Feld)"/>
+<property name="DHL AttrName" value="."/>
+<property name="DHL AttrName Receiver" value="."/>
+<property name="DHL AttrName Shipper" value="."/>
+<property name="EN_ATTR_NAME" value="**ERP Changed by (2nd field)"/>
+<property name="PENTA AttrID" value="."/>
+<property name="PENTA AttrName" value="."/>
+<property name="PENTA datatype" value="."/>
+<property name="PENTA usage" value="."/>
+<property name="PIM AttrID" value="."/>
+<property name="PIM AttrName" value="."/>
+<property name="PIM EnglName" value="."/>
+<property name="PIM datatype" value="."/>
+<property name="PIM usage" value="."/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="ERP Gült.Datum" id="F728D685-4D65-5A2E-856F-02B00C67301D">
+<createdBy>ruben.antenen</createdBy>
+<createdTime>2020-04-28 09:55:25 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="ERP Gült.Datum"/>
+<property name="DHL AttrName" value="."/>
+<property name="DHL AttrName Receiver" value="."/>
+<property name="DHL AttrName Shipper" value="."/>
+<property name="EN_ATTR_NAME" value="**ERP Validation date"/>
+<property name="PENTA AttrID" value="."/>
+<property name="PENTA AttrName" value="."/>
+<property name="PENTA datatype" value="."/>
+<property name="PENTA usage" value="."/>
+<property name="PIM AttrID" value="."/>
+<property name="PIM AttrName" value="."/>
+<property name="PIM EnglName" value="."/>
+<property name="PIM datatype" value="."/>
+<property name="PIM usage" value="."/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="ERP Industriesektor" id="77B40F48-8330-8317-58C8-663FB1DDD11B">
+<createdBy>ruben.antenen</createdBy>
+<createdTime>2020-04-28 09:55:25 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="ERP Industriesektor"/>
+<property name="DHL AttrName" value="."/>
+<property name="DHL AttrName Receiver" value="."/>
+<property name="DHL AttrName Shipper" value="."/>
+<property name="EN_ATTR_NAME" value="**ERP industry sector"/>
+<property name="PENTA AttrID" value="."/>
+<property name="PENTA AttrName" value="."/>
+<property name="PENTA datatype" value="."/>
+<property name="PENTA usage" value="."/>
+<property name="PIM AttrID" value="."/>
+<property name="PIM AttrName" value="."/>
+<property name="PIM EnglName" value="."/>
+<property name="PIM datatype" value="."/>
+<property name="PIM usage" value="."/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="ERP Klassifikations-Nr" id="8FF3D55B-355A-3A5D-E4F1-D149895F406B">
+<createdBy>ruben.antenen</createdBy>
+<createdTime>2020-04-28 09:55:25 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="ERP Klassifikations-Nr"/>
+<property name="DHL AttrName" value="."/>
+<property name="DHL AttrName Receiver" value="."/>
+<property name="DHL AttrName Shipper" value="."/>
+<property name="EN_ATTR_NAME" value="**ERP Classification No"/>
+<property name="PENTA AttrID" value="."/>
+<property name="PENTA AttrName" value="."/>
+<property name="PENTA datatype" value="."/>
+<property name="PENTA usage" value="."/>
+<property name="PIM AttrID" value="."/>
+<property name="PIM AttrName" value="."/>
+<property name="PIM EnglName" value="."/>
+<property name="PIM datatype" value="."/>
+<property name="PIM usage" value="."/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="ERP Mengeneinheit-Gewicht" id="211E7572-9AA6-CB6C-07BC-DAD834FB390B">
+<createdBy>ruben.antenen</createdBy>
+<createdTime>2020-04-28 09:55:25 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="ERP Mengeneinheit-Gewicht"/>
+<property name="DHL AttrName" value="."/>
+<property name="DHL AttrName Receiver" value="."/>
+<property name="DHL AttrName Shipper" value="."/>
+<property name="EN_ATTR_NAME" value="**ERP unit of measure weight"/>
+<property name="PENTA AttrID" value="."/>
+<property name="PENTA AttrName" value="."/>
+<property name="PENTA datatype" value="."/>
+<property name="PENTA usage" value="."/>
+<property name="PIM AttrID" value="."/>
+<property name="PIM AttrName" value="."/>
+<property name="PIM EnglName" value="."/>
+<property name="PIM datatype" value="."/>
+<property name="PIM usage" value="."/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="ERP Product Manager ID" id="7F336926-D4F0-917E-3787-EC061EDF4D2F">
+<createdBy>ruben.antenen</createdBy>
+<createdTime>2020-04-28 09:55:25 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="ERP Product Manager ID"/>
+<property name="DHL AttrName" value="."/>
+<property name="DHL AttrName Receiver" value="."/>
+<property name="DHL AttrName Shipper" value="."/>
+<property name="EN_ATTR_NAME" value="**ERP Product Manager ID"/>
+<property name="PENTA AttrID" value="."/>
+<property name="PENTA AttrName" value="."/>
+<property name="PENTA datatype" value="."/>
+<property name="PENTA usage" value="."/>
+<property name="PIM AttrID" value="."/>
+<property name="PIM AttrName" value="."/>
+<property name="PIM EnglName" value="."/>
+<property name="PIM datatype" value="."/>
+<property name="PIM usage" value="."/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="ERP Product Manager Name" id="4104B6C1-828A-0C75-9275-5F6DC6BA5882">
+<createdBy>ruben.antenen</createdBy>
+<createdTime>2020-05-04 07:25:05 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Attr_22"/>
+<property name="DHL AttrName" value="."/>
+<property name="DHL AttrName Receiver" value="."/>
+<property name="DHL AttrName Shipper" value="."/>
+<property name="EN_ATTR_NAME" value="ERP Product Manager Name"/>
+<property name="PENTA AttrID" value="."/>
+<property name="PENTA AttrName" value="."/>
+<property name="PENTA datatype" value="."/>
+<property name="PENTA usage" value="."/>
+<property name="PIM AttrID" value="."/>
+<property name="PIM AttrName" value="."/>
+<property name="PIM EnglName" value="."/>
+<property name="PIM datatype" value="."/>
+<property name="PIM usage" value="."/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="ERP Produktgruppe" id="56F8BB50-3344-2885-4A09-577EAEC4E164">
+<createdBy>ruben.antenen</createdBy>
+<createdTime>2020-04-28 09:55:25 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="ERP Produktgruppe"/>
+<property name="DHL AttrName" value="."/>
+<property name="DHL AttrName Receiver" value="."/>
+<property name="DHL AttrName Shipper" value="."/>
+<property name="EN_ATTR_NAME" value="**ERP product group"/>
+<property name="PENTA AttrID" value="."/>
+<property name="PENTA AttrName" value="."/>
+<property name="PENTA datatype" value="."/>
+<property name="PENTA usage" value="."/>
+<property name="PIM AttrID" value="."/>
+<property name="PIM AttrName" value="."/>
+<property name="PIM EnglName" value="."/>
+<property name="PIM datatype" value="."/>
+<property name="PIM usage" value="."/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="ERP Produktmanager ID" id="A2BE8D97-3732-B6BF-8B1C-B09C34440813">
+<createdBy>ruben.antenen</createdBy>
+<createdTime>2020-05-04 07:25:05 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Attr_22"/>
+<property name="DHL AttrName" value="."/>
+<property name="DHL AttrName Receiver" value="."/>
+<property name="DHL AttrName Shipper" value="."/>
+<property name="EN_ATTR_NAME" value="ERP Product Manager ID"/>
+<property name="PENTA AttrID" value="."/>
+<property name="PENTA AttrName" value="."/>
+<property name="PENTA datatype" value="."/>
+<property name="PENTA usage" value="."/>
+<property name="PIM AttrID" value="."/>
+<property name="PIM AttrName" value="."/>
+<property name="PIM EnglName" value="."/>
+<property name="PIM datatype" value="."/>
+<property name="PIM usage" value="."/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="ERP Saleskenner" id="9B8C808D-46A4-10C2-2B79-F4298F6FD719">
+<createdBy>ruben.antenen</createdBy>
+<createdTime>2020-04-28 09:55:25 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="ERP Saleskenner"/>
+<property name="DHL AttrName" value="."/>
+<property name="DHL AttrName Receiver" value="."/>
+<property name="DHL AttrName Shipper" value="."/>
+<property name="EN_ATTR_NAME" value="**ERP Sales expert"/>
+<property name="PENTA AttrID" value="."/>
+<property name="PENTA AttrName" value="."/>
+<property name="PENTA datatype" value="."/>
+<property name="PENTA usage" value="."/>
+<property name="PIM AttrID" value="."/>
+<property name="PIM AttrName" value="."/>
+<property name="PIM EnglName" value="."/>
+<property name="PIM datatype" value="."/>
+<property name="PIM usage" value="."/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="ERP Stücklisten-Mengeneinheit" id="9CA8581A-5553-2EAE-56EA-1512CCA239C6">
+<createdBy>ruben.antenen</createdBy>
+<createdTime>2020-04-28 09:55:25 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="ERP Stücklisten-Mengeneinheit"/>
+<property name="DHL AttrName" value="."/>
+<property name="DHL AttrName Receiver" value="."/>
+<property name="DHL AttrName Shipper" value="."/>
+<property name="EN_ATTR_NAME" value="**ERP BOM Unit of Measure"/>
+<property name="PENTA AttrID" value="."/>
+<property name="PENTA AttrName" value="."/>
+<property name="PENTA datatype" value="."/>
+<property name="PENTA usage" value="."/>
+<property name="PIM AttrID" value="."/>
+<property name="PIM AttrName" value="."/>
+<property name="PIM EnglName" value="."/>
+<property name="PIM datatype" value="."/>
+<property name="PIM usage" value="."/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="ERP Ursprungsland" id="29AA387F-F70E-8F84-E1A9-455A28F964A2">
+<createdBy>ruben.antenen</createdBy>
+<createdTime>2020-04-28 09:55:25 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="ERP Ursprungsland"/>
+<property name="DHL AttrName" value="."/>
+<property name="DHL AttrName Receiver" value="."/>
+<property name="DHL AttrName Shipper" value="."/>
+<property name="EN_ATTR_NAME" value="**ERP Country of origin"/>
+<property name="PENTA AttrID" value="."/>
+<property name="PENTA AttrName" value="."/>
+<property name="PENTA datatype" value="."/>
+<property name="PENTA usage" value="."/>
+<property name="PIM AttrID" value="."/>
+<property name="PIM AttrName" value="."/>
+<property name="PIM EnglName" value="."/>
+<property name="PIM datatype" value="."/>
+<property name="PIM usage" value="."/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="ERP Verkaufs-ME" id="4B4EC9BD-7678-A0E3-5C52-4352C2CE0C00">
+<createdBy>ruben.antenen</createdBy>
+<createdTime>2020-04-28 09:55:25 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="ERP Verkaufs-ME"/>
+<property name="DHL AttrName" value="."/>
+<property name="DHL AttrName Receiver" value="."/>
+<property name="DHL AttrName Shipper" value="."/>
+<property name="EN_ATTR_NAME" value="**ERP Sales-ME"/>
+<property name="PENTA AttrID" value="."/>
+<property name="PENTA AttrName" value="."/>
+<property name="PENTA datatype" value="."/>
+<property name="PENTA usage" value="."/>
+<property name="PIM AttrID" value="."/>
+<property name="PIM AttrName" value="."/>
+<property name="PIM EnglName" value="."/>
+<property name="PIM datatype" value="."/>
+<property name="PIM usage" value="."/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="ERP Verpackungseinheit" id="5165EE14-582A-8126-990D-A585C2D866E6">
+<createdBy>ruben.antenen</createdBy>
+<createdTime>2020-04-28 09:55:25 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="ERP Verpackungseinheit"/>
+<property name="DHL AttrName" value="."/>
+<property name="DHL AttrName Receiver" value="."/>
+<property name="DHL AttrName Shipper" value="."/>
+<property name="EN_ATTR_NAME" value="**ERP packaging unit"/>
+<property name="PENTA AttrID" value="."/>
+<property name="PENTA AttrName" value="."/>
+<property name="PENTA datatype" value="."/>
+<property name="PENTA usage" value="."/>
+<property name="PIM AttrID" value="."/>
+<property name="PIM AttrName" value="."/>
+<property name="PIM EnglName" value="."/>
+<property name="PIM datatype" value="."/>
+<property name="PIM usage" value="."/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="ERP Zolltarif-Nr CH" id="1A8EC414-E162-89D6-7813-3877A21C817D">
+<createdBy>ruben.antenen</createdBy>
+<createdTime>2020-04-28 09:55:25 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="ERP Zolltarif-Nr CH"/>
+<property name="DHL AttrName" value="."/>
+<property name="DHL AttrName Receiver" value="."/>
+<property name="DHL AttrName Shipper" value="."/>
+<property name="EN_ATTR_NAME" value="**ERP Customs tariff no. CH"/>
+<property name="PENTA AttrID" value="."/>
+<property name="PENTA AttrName" value="."/>
+<property name="PENTA datatype" value="."/>
+<property name="PENTA usage" value="."/>
+<property name="PIM AttrID" value="."/>
+<property name="PIM AttrName" value="."/>
+<property name="PIM EnglName" value="."/>
+<property name="PIM datatype" value="."/>
+<property name="PIM usage" value="."/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="ERP Zolltarif-Nr CH Rest" id="0D36CC3D-8674-7B16-21A1-F96053DA3501">
+<createdBy>ruben.antenen</createdBy>
+<createdTime>2020-04-28 09:55:25 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="ERP Zolltarif-Nr CH Rest"/>
+<property name="DHL AttrName" value="."/>
+<property name="DHL AttrName Receiver" value="."/>
+<property name="DHL AttrName Shipper" value="."/>
+<property name="EN_ATTR_NAME" value="**ERP Customs tariff no. CH Rest"/>
+<property name="PENTA AttrID" value="."/>
+<property name="PENTA AttrName" value="."/>
+<property name="PENTA datatype" value="."/>
+<property name="PENTA usage" value="."/>
+<property name="PIM AttrID" value="."/>
+<property name="PIM AttrName" value="."/>
+<property name="PIM EnglName" value="."/>
+<property name="PIM datatype" value="."/>
+<property name="PIM usage" value="."/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+</Attribute>
+</attributes>
+</Entity>

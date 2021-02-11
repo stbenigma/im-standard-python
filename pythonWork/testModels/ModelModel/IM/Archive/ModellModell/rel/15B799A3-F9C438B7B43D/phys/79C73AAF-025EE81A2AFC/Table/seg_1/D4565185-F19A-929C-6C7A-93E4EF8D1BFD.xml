@@ -1,0 +1,56 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev12c class="oracle.dbtools.crest.model.design.storage.oracle.v12c.TableProxyOraclev12c" name="MODELELEM_DOKU" directorySegmentName="seg_1" id="D4565185-F19A-929C-6C7A-93E4EF8D1BFD">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 08:37:17 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<temporaryChanged>false</temporaryChanged>
+<accessDriverType>oracle_loader</accessDriverType>
+<rejectLimit></rejectLimit>
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="MODO_MODE_ID" id="BD53E9E0-8B7E-46D8-BD39-99CBAEF80B99">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 08:37:17 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="MODO_DOKU_ID" id="E273F079-ECD8-0D98-C6D2-44C625C7E1B8">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 08:37:17 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="MODO_ID" id="F2848D36-6EA8-EBCC-0273-E252637208D5">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 08:37:17 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+<foreignKeys>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="MODO_MODE_FK" id="2F139264-2E78-E3E2-D145-667B907C6B5F">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 08:38:34 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ForeignKey>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="MODO_DOKU_FKv1" id="C8D918CA-B1A4-CEBE-7B41-ED5F1D896B53">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 08:37:17 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ForeignKey>
+</foreignKeys>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="MODO_PK" id="57F6B80F-5F27-2177-71C0-2C16F46ED877">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 08:37:17 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexSort>SORTED</indexSort>
+</PrimaryKey>
+</primaryKeys>
+<uniqueKeys>
+<UniqueKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.UniqueOraclev10g" name="MODO__UN" id="0D4A7985-046E-6135-C3FF-0DE380613794">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 08:38:21 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexSort>SORTED</indexSort>
+</UniqueKey>
+</uniqueKeys>
+</TableProxyOraclev12c>

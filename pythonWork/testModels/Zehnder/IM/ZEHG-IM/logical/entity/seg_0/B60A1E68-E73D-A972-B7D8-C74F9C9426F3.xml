@@ -1,0 +1,33 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="B60A1E68-E73D-A972-B7D8-C74F9C9426F3" name="Organisational Unit">
+<createdBy>stb</createdBy>
+<createdTime>2020-08-13 13:48:35 UTC</createdTime>
+<comment><![CDATA[All Entites related to organisation (Company, Department, Employees, Roles,...)]]></comment>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+*EN* All Entites related to organisation (Company, Department, Employees, Roles,...)
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+All Entites related to organisation (Company, Department, Employees, Roles,...)
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>ZEHG-IM</ownerDesignName>
+<engineerTo>
+<item key="E73667C8-D73D-37B9-7BB4-9427B1B6DC71" value="true"/>
+</engineerTo>
+<typeID>2C515545-853A-8094-9BA0-DECCB2476802</typeID>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="DE_ENTI_NAME" value="*EN* Organisational Unit"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_NAME" value="Organisational Unit"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+</propertyMap>
+</Entity>

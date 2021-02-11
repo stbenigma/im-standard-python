@@ -1,0 +1,338 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="696ECDD6-F984-5ED3-2082-7A7268E70C0B" name="ELEMENTDARST">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:28:04 UTC</createdTime>
+<comment><![CDATA[Information zur Darstellung eines grafischen Elementes (Entität, etc.) auf einem Diagramm]]></comment>
+<generatorID>E1E5EC11-0F3D-94EA-701A-BCB16D190026</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<ordsAlias>elemendarstellung</ordsAlias>
+<abbreviation>ELED</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ELED_ID" id="C84E15CB-8C92-964E-21FF-89730AEEDCD6">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:42:08 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ELED_POSITION_X" id="6F1D44EE-EA8F-51DA-3EED-84FBAAE5B71D">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:28:04 UTC</createdTime>
+<commentInRDBMS><![CDATA[Vorgabewert einer Darstellung eines Elementtyps]]></commentInRDBMS>
+<generatorID>4513F410-C3CF-A0F8-0DA3-06A48FCBAC9B</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<structuredType>CE31E327-3E6B-6CEE-7DCC-818659AF196A</structuredType>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>ACC90DC4-5B08-1F67-561C-C9389709269B</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ELED_POSITION_Y" directorySegmentName="seg_0" id="5C7720A8-A94F-D077-2CC3-3FDCFA0E664A">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:48:22 UTC</createdTime>
+<commentInRDBMS><![CDATA[Vorgabewert einer Darstellung eines Elementtyps]]></commentInRDBMS>
+<generatorID>4513F410-C3CF-A0F8-0DA3-06A48FCBAC9B</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>ACC90DC4-5B08-1F67-561C-C9389709269B</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ELED_BREITE" directorySegmentName="seg_0" id="655CFA3F-DEC1-701E-F7E9-F85637DA6FEF">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:46:55 UTC</createdTime>
+<commentInRDBMS><![CDATA[Vorgabewert der Darstellung des Randes um das Element]]></commentInRDBMS>
+<generatorID>8B735900-0D91-B088-FE52-28C12ECB5967</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>9899F774-954D-6AB0-8DC2-BB1FE9F99D28</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ELED_HOEHE" directorySegmentName="seg_0" id="931A6989-04E0-F296-E610-3FD717E24690">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:47:57 UTC</createdTime>
+<commentInRDBMS><![CDATA[Vorgabewert der Darstellung des Randes um das Element]]></commentInRDBMS>
+<generatorID>8B735900-0D91-B088-FE52-28C12ECB5967</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>9899F774-954D-6AB0-8DC2-BB1FE9F99D28</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ELED_DECKKRAFT" directorySegmentName="seg_0" id="B3157263-BD68-7F81-ADB4-30C6C62A72FE">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:46:55 UTC</createdTime>
+<generatorID>81F5FE40-4448-69B3-37C1-E5DE22FC7B0A</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>3C43C579-B2CF-0898-C553-AF95467F1601</domain>
+<defaultValue>100</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>0</beginValue>
+<endValue>100</endValue>
+</rangeDef>
+</listOfRanges>
+</Column>
+<Column name="ELED_FARBE" directorySegmentName="seg_0" id="3ACB7D5D-BFBF-7F24-C059-CFC61ABCD8C6">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:46:55 UTC</createdTime>
+<generatorID>81F5FE40-4448-69B3-37C1-E5DE22FC7B0A</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>06269521-C0BC-78CB-FBC8-656101307358</domain>
+<defaultValue>000000</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ELED_RANDBREITE" id="C4E61A90-300E-5DCC-FF7D-BD24F2880977">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:28:04 UTC</createdTime>
+<commentInRDBMS><![CDATA[Vorgabewert der Darstellung des Randes um das Element]]></commentInRDBMS>
+<generatorID>8B735900-0D91-B088-FE52-28C12ECB5967</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<structuredType>4816C7EE-B5FE-5DB1-A87E-537F82A20453</structuredType>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>CB54E08F-9CBF-16C7-AB25-64ADCC8C4FFB</domain>
+<defaultValue>1</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ELED_RANDDECKKRAFT" directorySegmentName="seg_0" id="34B65D63-A02E-C6DA-E0AC-6488BD5BCEAF">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:45:44 UTC</createdTime>
+<generatorID>81F5FE40-4448-69B3-37C1-E5DE22FC7B0A</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>3C43C579-B2CF-0898-C553-AF95467F1601</domain>
+<defaultValue>100</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>0</beginValue>
+<endValue>100</endValue>
+</rangeDef>
+</listOfRanges>
+</Column>
+<Column name="ELED_RANDFARBE" directorySegmentName="seg_0" id="A92268AA-644F-3E84-0328-102506002B38">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:45:44 UTC</createdTime>
+<generatorID>81F5FE40-4448-69B3-37C1-E5DE22FC7B0A</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>06269521-C0BC-78CB-FBC8-656101307358</domain>
+<defaultValue>000000</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ELED_SCHRIFTGROESSE" id="7FA3A482-4587-FFB8-6D49-8CB10E115261">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:28:04 UTC</createdTime>
+<commentInRDBMS><![CDATA[Vorgabewert der Schriftgrösse des Elementsnamens]]></commentInRDBMS>
+<generatorID>B754768D-EC5E-FD14-B413-CA0EA96AE089</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>435C11BA-FCF7-BBBA-6AA9-FAB7326273D3</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>1</beginValue>
+<endValue>999</endValue>
+</rangeDef>
+</listOfRanges>
+</Column>
+<Column name="ELED_SCHRIFTFARBE" id="F1443DB7-4097-408F-0AF0-BB88A3F08763">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:28:04 UTC</createdTime>
+<generatorID>81F5FE40-4448-69B3-37C1-E5DE22FC7B0A</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>06269521-C0BC-78CB-FBC8-656101307358</domain>
+<defaultValue>000000</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ELED_MODE_ID" id="6BC66B23-42B0-DDBC-88AD-65515A02B7DA">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:28:04 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="A7E27925-DFA1-0D9D-2922-7A0CEB549301" referredColumn="E7DD4494-59BC-B5B7-F31F-333747453A3D"/>
+</associations>
+</Column>
+<Column name="ELED_DIAG_ID" id="A946A598-43E4-6950-FBF3-03948D98A231">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:39:37 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="0B5BA5F7-C10B-C531-13CE-C95A3372F888" referredColumn="FFF8E8C9-39A7-7B00-759E-2D57DEEDE633"/>
+</associations>
+</Column>
+<Column name="ELED_INDEX" id="A9E2DC85-FC60-DF68-3176-09A5E80EE268">
+<createdBy>stb</createdBy>
+<createdTime>2019-12-01 10:18:34 UTC</createdTime>
+<comment><![CDATA[Falls ein Element mehrfach auf einem Diagramm ist, füge einen Index hinzu. Default ist 0]]></comment>
+<ownerDesignName>ModellModell</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>E2DCFC37-5428-9FE8-64FF-368960199E02</domain>
+<defaultValue>0</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ELED_UC" id="A5C91EE2-1D08-D2AE-3074-C9555E103E4B">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:42:08 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<formulaDesc>USER</formulaDesc>
+<sourceType>System</sourceType>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<computed>true</computed>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="F7EEFF47-7A42-2A3E-7DFC-D0558D6996B8"/>
+</propertyMap>
+</Column>
+<Column name="ELED_DC" id="DF9809C9-3E24-AA1F-BDF3-D5B4BFF12875">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:42:08 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT047</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="74D877A0-4C3B-63EE-06C5-071C7695907C"/>
+</propertyMap>
+</Column>
+<Column name="ELED_UM" id="4D956CE7-1FD2-F4D9-9025-E95A84B321A0">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:42:08 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="B2E17D53-C2F7-74D9-022D-5D63F3931519"/>
+</propertyMap>
+</Column>
+<Column name="ELED_DM" id="BC5107EB-07D0-E760-AF5F-9365F842907E">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:42:08 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT047</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="B398D247-00C1-F016-3BBB-FE65CFFFF7AA"/>
+</propertyMap>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="F070FDD7-7AD7-7C2A-7285-2ABCC41AC1CE" name="Elemendarstellung_PK">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:28:04 UTC</createdTime>
+<generatorID>E6A23890-AA61-1F59-7790-A40D4710B196</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="C84E15CB-8C92-964E-21FF-89730AEEDCD6"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="B345FE8C-EC63-5888-A1CA-D3C64B0C58B2" name="ELED__UN">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 11:16:47 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="6BC66B23-42B0-DDBC-88AD-65515A02B7DA"/>
+<colUsage columnID="A946A598-43E4-6950-FBF3-03948D98A231"/>
+<colUsage columnID="A9E2DC85-FC60-DF68-3176-09A5E80EE268"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="BCA91CCE-3970-C4FA-1C13-A24C0A108101" name="ELED_DIAG_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:28:04 UTC</createdTime>
+<generatorID>EA5BE36E-D298-45EB-3BD7-34DB557812CE</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="A946A598-43E4-6950-FBF3-03948D98A231"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="29612100-8FCD-2DF9-2A1B-3E2F95041121" name="ELED_MODE_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:42:18 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="6BC66B23-42B0-DDBC-88AD-65515A02B7DA"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

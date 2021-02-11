@@ -1,0 +1,30 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_223" directorySegmentName="seg_1" id="CF6401C5-D158-89D1-9A6D-EFCBCD934421">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:03:22 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<engineerTo>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
+<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
+</engineerTo>
+<useSurrogateKey>true</useSurrogateKey>
+<identifying>false</identifying>
+<nameOnSource>nimmt wahr</nameOnSource>
+<nameOnTarget>wahrgenommen durch</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>8C8B454F-0035-EE61-FC2C-E0393A043C42</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>15C54599-0177-3F97-C2CF-1921234C4499</targetEntity>
+<transferable>true</transferable>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="nimmt wahr"/>
+<property name="DE_RELA_TEXT_TO" value="wahrgenommen durch"/>
+<property name="EN_RELA_TEXT_FROM" value="perceives"/>
+<property name="EN_RELA_TEXT_TO" value="perceived by"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
+</propertyMap>
+</Relation>

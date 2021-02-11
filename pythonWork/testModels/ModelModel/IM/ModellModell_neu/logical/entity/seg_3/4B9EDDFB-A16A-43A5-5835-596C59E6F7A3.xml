@@ -1,0 +1,57 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_3" id="4B9EDDFB-A16A-43A5-5835-596C59E6F7A3" name="Zentrale Anwendung">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:04:24 UTC</createdTime>
+<comment><![CDATA[Eine Anwendung (Programm, SW-Paket) die als SW-Produkt gekauft oder selber hergestellt wurde.
+Die Anwendung kann zentral (Server, Cloud) oder lokal (Arbeitsplatz) installiert sein. 
+Wichtige Eigenschaft ist, dass die Daten nur einmal vorhanden sind und von allen Nutzenden gemeinsam genutzt werden. Durch welche Technologie ist irrelevant.
+
+Beispiele:
+ERP
+PIM
+FiBu]]></comment>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+Eine Anwendung (Programm, SW-Paket) die als SW-Produkt gekauft oder selber hergestellt wurde.
+Die Anwendung kann zentral (Server, Cloud) oder lokal (Arbeitsplatz) installiert sein. 
+Wichtige Eigenschaft ist, dass die Daten nur einmal vorhanden sind und von allen Nutzenden gemeinsam genutzt werden. Durch welche Technologie ist irrelevant.
+
+Beispiele:
+ERP
+PIM
+FiBu
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+*An application (program, SW package) that was purchased as a SW product or produced by the user. The application can be installed centrally (server, cloud) or locally (workstation).  An important feature is that the data only exists once and is shared by all users. By what technology is irrelevant.  Examples: ERP PIM FiBu
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<engineerTo>
+<item key="76547D0C-003E-6F74-D2FC-7ADFC63697F6" value="true"/>
+<item key="17F5F16D-4CB1-2968-618E-D369CD8C5B93" value="true"/>
+<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="false"/>
+<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
+</engineerTo>
+<typeID>FAF70092-F6A9-97FE-9880-A36ECEDBFE26</typeID>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<hierarchicalParent>AA6B21F4-6D34-96C3-D12B-9FD87082FD7A</hierarchicalParent>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="DE_ENTI_COMMENT" value="Eine Anwendung (Programm, SW-Paket) die als SW-Produkt gekauft oder selber hergestellt wurde. Die Anwendung kann zentral (Server, Cloud) oder lokal (Arbeitsplatz) installiert sein.  Wichtige Eigenschaft ist, dass die Daten nur einmal vorhanden sind und von allen Nutzenden gemeinsam genutzt werden. Durch welche Technologie ist irrelevant.  Beispiele: ERP PIM FiBu "/>
+<property name="DE_ENTI_NAME" value="Zentrale Anwendung"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_COMMENT" value="*DE* Eine Anwendung (Programm, SW-Paket) die als SW-Produkt gekauft oder selber hergestellt wurde. Die Anwendung kann zentral (Server, Cloud) oder lokal (Arbeitsplatz) installiert sein.  Wichtige Eigenschaft ist, dass die Daten nur einmal vorhanden sind und von allen Nutzenden gemeinsam genutzt werden. Durch welche Technologie ist irrelevant.  Beispiele: ERP PIM FiBu "/>
+<property name="EN_ENTI_NAME" value="Central application"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+<property name="maxzoollevel" value="5"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
+</propertyMap>
+</Entity>

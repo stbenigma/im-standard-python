@@ -1,0 +1,74 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="5ABDA310-6471-8CA7-1F06-6FCB660F5ADE" name="Relation_273">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:44 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Schnittstellentabelle_Schnittstellentabelle_ID" id="C3A55009-9FF7-F499-6140-E15A6D8B268B">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:44 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="5A954C3B-0FF9-1F3C-289B-9772D53BD7BD" referredColumn="1F196E22-6BB1-F31B-EFF9-B5EB03F0B996"/>
+</associations>
+</Column>
+<Column name="Beziehung_Beziehung_ID" id="8E8FB655-F75A-702E-293C-EE2C7C14B9F2">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:44 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="FB736A1A-7195-A716-1AA3-3806243158B3" referredColumn="FC1F83DA-EE62-DE8A-C515-AA99201D71C8"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="C07599A1-CBD7-A17D-7498-607B46B0C33A" name="Relation_273_PK">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:44 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="C3A55009-9FF7-F499-6140-E15A6D8B268B"/>
+<colUsage columnID="8E8FB655-F75A-702E-293C-EE2C7C14B9F2"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="E1A65C7E-C5E9-3B17-D4D3-C8E6DD6D899C" name="Relation_273_Schnittstellentabelle_FK">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:44 UTC</createdTime>
+<generatorID>FE6E2715-2A04-C834-20A4-7AEC6702C490</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="C3A55009-9FF7-F499-6140-E15A6D8B268B"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="E62D74FE-0EF8-06F3-3C75-5A57136ADE25" name="Relation_273_Beziehung_FK">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:44 UTC</createdTime>
+<generatorID>FE6E2715-2A04-C834-20A4-7AEC6702C490</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="8E8FB655-F75A-702E-293C-EE2C7C14B9F2"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

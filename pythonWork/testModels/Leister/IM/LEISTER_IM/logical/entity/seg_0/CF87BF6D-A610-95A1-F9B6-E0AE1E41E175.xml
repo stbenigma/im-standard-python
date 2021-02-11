@@ -1,0 +1,49 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="CF87BF6D-A610-95A1-F9B6-E0AE1E41E175" name="Kit">
+<createdBy>sbo</createdBy>
+<createdTime>2019-02-06 09:49:29 UTC</createdTime>
+<comment><![CDATA[Kombination verschiedener Artikel zu einem Verkaufsartikel zur Erweiterung eines bestehenden Produktes. Ein Kit besteht immer aus mehreren Ersatzteilen oder Zubehören. 
+
+Ein Kit wird verwendet, um ein "Gerät" zu erweitern oder zu verändern. (Aufrüst-/ Umrüstsatz)
+Ein Kit hat kein Grundgerät (Maschine) dabei.
+
+Beispiele:
+Wedge Kit Geostar G5]]></comment>
+<notes><![CDATA[[EN_ENTI_COMMENT[
+**Combination of different articles to a sales article for the extension of an existing product. A kit always consists of several spare parts or accessories
+
+A kit is used to extend or modify a "device". (upgrade/conversion kit)
+A kit does not have a basic unit (machine) with it.
+
+Examples:
+Wedge Kit Geostar G5
+]EN_ENTI_COMMENT]
+[DE_ENTI_COMMENT[
+Kombination verschiedener Artikel zu einem Verkaufsartikel zur Erweiterung eines bestehenden Produktes. Ein Kit besteht immer aus mehreren Ersatzteilen oder Zubehören. 
+
+Ein Kit wird verwendet, um ein "Gerät" zu erweitern oder zu verändern. (Aufrüst-/ Umrüstsatz)
+Ein Kit hat kein Grundgerät (Maschine) dabei.
+
+Beispiele:
+Wedge Kit Geostar G5
+]DE_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<typeID>88FD3F2F-7EA2-1287-77DE-38673B902DA9</typeID>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<hierarchicalParent>ADC1A857-7163-FD59-9B2C-94EA92997D63</hierarchicalParent>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<propertyMap>
+<property name="DE_ENTI_NAME" value="Kit"/>
+<property name="EN_ENTI_NAME" value="**Kit"/>
+</propertyMap>
+</Entity>

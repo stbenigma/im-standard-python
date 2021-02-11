@@ -1,0 +1,62 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<DomainFile class="oracle.dbtools.crest.model.design.DomainFileWrapper" fileName="defaultdomains">
+   <domains>
+      <Domain class="oracle.dbtools.crest.model.design.Domain" name="Datum (Tag)" id="12569C1E-ED51-C1FA-258D-DEA28C7F4567">
+         <createdBy>stb</createdBy>
+         <createdTime>2018-02-01 20:16:38 UTC</createdTime>
+         <comment>Datum auf 1 Tag genau</comment>
+         <ownerDesignName>System</ownerDesignName>
+         <avTSortOrder>0</avTSortOrder>
+         <dataTypeScale>0</dataTypeScale>
+         <fileName>defaultdomains</fileName>
+         <logicalDatatype>LOGDT007</logicalDatatype>
+      </Domain>
+      <Domain class="oracle.dbtools.crest.model.design.Domain" name="Name" id="1A3AF1B6-483C-F107-D470-658167423365">
+         <createdBy>stb</createdBy>
+         <createdTime>2018-04-23 15:23:46 UTC</createdTime>
+         <comment>übliche Domäne für alle Arten von Namen</comment>
+         <ownerDesignName>System</ownerDesignName>
+         <avTSortOrder>0</avTSortOrder>
+         <dataTypeSize>120 CHAR</dataTypeSize>
+         <fileName>defaultdomains</fileName>
+         <logicalDatatype>LOGDT024</logicalDatatype>
+      </Domain>
+      <Domain class="oracle.dbtools.crest.model.design.Domain" name="ISO2-Sprache" id="463DA0E2-640A-FFC5-1E68-C70195BA6CB2">
+         <createdBy>stb</createdBy>
+         <createdTime>2018-04-23 15:21:26 UTC</createdTime>
+         <comment>ISO 2 stelliger Code  ISO-639-1</comment>
+         <ownerDesignName>System</ownerDesignName>
+         <avTSortOrder>0</avTSortOrder>
+         <dataTypeSize>2 CHAR</dataTypeSize>
+         <fileName>defaultdomains</fileName>
+         <logicalDatatype>LOGDT024</logicalDatatype>
+      </Domain>
+      <Domain class="oracle.dbtools.crest.model.design.Domain" name="Tag-Periode" id="77B69CF2-470B-BDF6-A5B3-3ED38EAD5CB1">
+         <createdBy>stb</createdBy>
+         <createdTime>2018-02-01 20:17:55 UTC</createdTime>
+         <comment>Periode mit Granularität Tag</comment>
+         <ownerDesignName>System</ownerDesignName>
+         <avTSortOrder>0</avTSortOrder>
+         <fileName>defaultdomains</fileName>
+         <logicalDatatype>LOGDT017</logicalDatatype>
+      </Domain>
+      <Domain class="oracle.dbtools.crest.model.design.Domain" name="Unknown" id="DOM3000004">
+         <createdBy>stb</createdBy>
+         <createdTime>2018-02-01 17:01:20 UTC</createdTime>
+         <ownerDesignName>System</ownerDesignName>
+         <avTSortOrder>0</avTSortOrder>
+         <fileName>defaultdomains</fileName>
+         <logicalDatatype>LOGDT017</logicalDatatype>
+      </Domain>
+      <Domain class="oracle.dbtools.crest.model.design.Domain" name="ISO2_Land" id="E42E99A2-D207-D27A-AD14-3A1E540BEB74">
+         <createdBy>stb</createdBy>
+         <createdTime>2018-04-23 15:17:42 UTC</createdTime>
+         <comment>ISO 3166 2-stelliger Code</comment>
+         <ownerDesignName>System</ownerDesignName>
+         <avTSortOrder>0</avTSortOrder>
+         <dataTypeSize>2 CHAR</dataTypeSize>
+         <fileName>defaultdomains</fileName>
+         <logicalDatatype>LOGDT024</logicalDatatype>
+      </Domain>
+   </domains>
+</DomainFile>

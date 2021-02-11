@@ -1,0 +1,52 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="4CDA6656-980D-5407-58A6-C7A4B53104EF" name="Modellartikel">
+<createdBy>ruben.antenen</createdBy>
+<createdTime>2019-11-25 13:55:17 UTC</createdTime>
+<comment><![CDATA[Stückliste mit allen möglichen Komponenten zu einem Produkt
+
+Heute als "Pseudoartikel" Typ "20" in CIM DB abgebildet.
+
+Beispiel:
+T-Shirt sportive men in vier Grössen und sieben Farben
+Diode mit CH-, EU- oder US-Stecker
+]]></comment>
+<notes><![CDATA[[EN_ENTI_COMMENT[
+**Parts list with all possible components for a product
+
+Today shown as "pseudo article" type "20" in CIM DB.
+
+Example:
+T-Shirt sportive men in four sizes and seven colors
+Diode with CH, EU, US plug
+]EN_ENTI_COMMENT]
+[DE_ENTI_COMMENT[
+Stückliste mit allen möglichen Komponenten zu einem Produkt
+
+Heute als "Pseudoartikel" Typ "20" in CIM DB abgebildet.
+
+Beispiel:
+T-Shirt sportive men in vier Grössen und sieben Farben
+Diode mit CH, EU, US Stecker
+]DE_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<typeID>1DE46C3B-EE5B-06FD-F3F2-3F285393E5B7</typeID>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<synonym>Konfigurationsartikel, Variantenartikel</synonym>
+<propertyMap>
+<property name="DE_ENTI_NAME" value="Modellartikel"/>
+<property name="DE_ENTI_SYNONYM" value="Konfigurationsartikel, Variantenartikel"/>
+<property name="EN_ENTI_NAME" value="**Model articles"/>
+<property name="EN_ENTI_SYNONYM" value="**Configuration articles, variant articles"/>
+</propertyMap>
+</Entity>

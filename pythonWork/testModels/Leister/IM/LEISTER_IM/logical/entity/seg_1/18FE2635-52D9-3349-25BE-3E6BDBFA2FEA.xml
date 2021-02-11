@@ -1,0 +1,303 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="18FE2635-52D9-3349-25BE-3E6BDBFA2FEA" name="Fugenfräsartikel">
+<createdBy>ruben.antenen</createdBy>
+<createdTime>2020-05-04 08:58:55 UTC</createdTime>
+<comment><![CDATA[Ein Artikel der Fugen in Bodenbeläge fräst als Arbeitsvorbereitung zu der Verschweissung von Bodenbelägen.
+
+Beispiele: Groover
+]]></comment>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<typeID>88FD3F2F-7EA2-1287-77DE-38673B902DA9</typeID>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<hierarchicalParent>F691F73F-2C07-2EA6-F99B-33250444791A</hierarchicalParent>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Fräsblattdurchmesser" id="E722DDD2-22C3-3F9A-CEDD-257318B0C0BE">
+<createdBy>ruben.antenen</createdBy>
+<createdTime>2020-05-04 09:04:34 UTC</createdTime>
+<comment><![CDATA[mm]]></comment>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+**mm
+]EN_ATTR_COMMENT]
+[DE_ATTR_COMMENT[
+mm
+]DE_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Fräsblattdurchmesser"/>
+<property name="DHL AttrName" value="."/>
+<property name="DHL AttrName Receiver" value="."/>
+<property name="DHL AttrName Shipper" value="."/>
+<property name="EN_ATTR_NAME" value="**Cutter blade diameter"/>
+<property name="PENTA AttrID" value="."/>
+<property name="PENTA AttrName" value="."/>
+<property name="PENTA datatype" value="."/>
+<property name="PENTA usage" value="."/>
+<property name="PIM AttrID" value="."/>
+<property name="PIM AttrName" value="."/>
+<property name="PIM EnglName" value="."/>
+<property name="PIM datatype" value="."/>
+<property name="PIM usage" value="."/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Fräsblatttyp" id="D182BBD3-9D04-4063-5E41-38E18E64C66F">
+<createdBy>ruben.antenen</createdBy>
+<createdTime>2020-05-04 09:04:34 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Attr_25"/>
+<property name="DHL AttrName" value="."/>
+<property name="DHL AttrName Receiver" value="."/>
+<property name="DHL AttrName Shipper" value="."/>
+<property name="EN_ATTR_NAME" value="Milling blade type"/>
+<property name="PENTA AttrID" value="."/>
+<property name="PENTA AttrName" value="."/>
+<property name="PENTA datatype" value="."/>
+<property name="PENTA usage" value="."/>
+<property name="PIM AttrID" value="."/>
+<property name="PIM AttrName" value="."/>
+<property name="PIM EnglName" value="."/>
+<property name="PIM datatype" value="."/>
+<property name="PIM usage" value="."/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Fräsdrehzahl" id="9AF87861-FA2A-BC2D-7B10-847C8B75E54D">
+<createdBy>ruben.antenen</createdBy>
+<createdTime>2020-05-04 09:04:34 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Fräsdrehzahl"/>
+<property name="DHL AttrName" value="."/>
+<property name="DHL AttrName Receiver" value="."/>
+<property name="DHL AttrName Shipper" value="."/>
+<property name="EN_ATTR_NAME" value="**Milling speed"/>
+<property name="PENTA AttrID" value="."/>
+<property name="PENTA AttrName" value="."/>
+<property name="PENTA datatype" value="."/>
+<property name="PENTA usage" value="."/>
+<property name="PIM AttrID" value="."/>
+<property name="PIM AttrName" value="."/>
+<property name="PIM EnglName" value="."/>
+<property name="PIM datatype" value="."/>
+<property name="PIM usage" value="."/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Frästiefeneinstellung" id="427E5223-C81B-13C1-9B6A-A7404A9C1F6A">
+<createdBy>ruben.antenen</createdBy>
+<createdTime>2020-05-04 09:04:34 UTC</createdTime>
+<comment><![CDATA[mm]]></comment>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+**mm
+]EN_ATTR_COMMENT]
+[DE_ATTR_COMMENT[
+mm
+]DE_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Frästiefeneinstellung"/>
+<property name="DHL AttrName" value="."/>
+<property name="DHL AttrName Receiver" value="."/>
+<property name="DHL AttrName Shipper" value="."/>
+<property name="EN_ATTR_NAME" value="**Milling depth adjustment"/>
+<property name="PENTA AttrID" value="."/>
+<property name="PENTA AttrName" value="."/>
+<property name="PENTA datatype" value="."/>
+<property name="PENTA usage" value="."/>
+<property name="PIM AttrID" value="."/>
+<property name="PIM AttrName" value="."/>
+<property name="PIM EnglName" value="."/>
+<property name="PIM datatype" value="."/>
+<property name="PIM usage" value="."/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Fugenbreite" id="4BE4DE91-49EA-5B7C-6E11-863423EC41AC">
+<createdBy>ruben.antenen</createdBy>
+<createdTime>2020-05-04 09:04:34 UTC</createdTime>
+<comment><![CDATA[mm]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Attr_26"/>
+<property name="DHL AttrName" value="."/>
+<property name="DHL AttrName Receiver" value="."/>
+<property name="DHL AttrName Shipper" value="."/>
+<property name="EN_ATTR_NAME" value="Groove width"/>
+<property name="PENTA AttrID" value="."/>
+<property name="PENTA AttrName" value="."/>
+<property name="PENTA datatype" value="."/>
+<property name="PENTA usage" value="."/>
+<property name="PIM AttrID" value="."/>
+<property name="PIM AttrName" value="."/>
+<property name="PIM EnglName" value="."/>
+<property name="PIM datatype" value="."/>
+<property name="PIM usage" value="."/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Schallleistungspegel" id="CB414FA0-868A-A405-A9EC-783219928B6E">
+<createdBy>ruben.antenen</createdBy>
+<createdTime>2020-05-04 09:04:34 UTC</createdTime>
+<comment><![CDATA[dB]]></comment>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+**dB
+]EN_ATTR_COMMENT]
+[DE_ATTR_COMMENT[
+dB
+]DE_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Schallleistungspegel"/>
+<property name="DHL AttrName" value="."/>
+<property name="DHL AttrName Receiver" value="."/>
+<property name="DHL AttrName Shipper" value="."/>
+<property name="EN_ATTR_NAME" value="**Sound power level"/>
+<property name="PENTA AttrID" value="."/>
+<property name="PENTA AttrName" value="."/>
+<property name="PENTA datatype" value="."/>
+<property name="PENTA usage" value="."/>
+<property name="PIM AttrID" value="."/>
+<property name="PIM AttrName" value="."/>
+<property name="PIM EnglName" value="."/>
+<property name="PIM datatype" value="."/>
+<property name="PIM usage" value="."/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Schallleistungspegel Messungenauigkeit K" id="94753C0B-67E5-FFA4-03AC-1914E048A455">
+<createdBy>ruben.antenen</createdBy>
+<createdTime>2020-05-04 09:04:34 UTC</createdTime>
+<comment><![CDATA[dB]]></comment>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+**dB
+]EN_ATTR_COMMENT]
+[DE_ATTR_COMMENT[
+dB
+]DE_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Schallleistungspegel Messungenauigkeit K"/>
+<property name="DHL AttrName" value="."/>
+<property name="DHL AttrName Receiver" value="."/>
+<property name="DHL AttrName Shipper" value="."/>
+<property name="EN_ATTR_NAME" value="**Sound power level Measurement uncertainty K"/>
+<property name="PENTA AttrID" value="."/>
+<property name="PENTA AttrName" value="."/>
+<property name="PENTA datatype" value="."/>
+<property name="PENTA usage" value="."/>
+<property name="PIM AttrID" value="."/>
+<property name="PIM AttrName" value="."/>
+<property name="PIM EnglName" value="."/>
+<property name="PIM datatype" value="."/>
+<property name="PIM usage" value="."/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+</Attribute>
+</attributes>
+</Entity>

@@ -1,0 +1,26 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_10" directorySegmentName="seg_0" id="3296CF5F-08C4-5A99-3D5F-6D03907DB586">
+<createdBy>sbo</createdBy>
+<createdTime>2019-02-06 12:00:56 UTC</createdTime>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<nameOnSource>fasst zusammen</nameOnSource>
+<nameOnTarget>zusammengefasst als</nameOnTarget>
+<optionalSource>false</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>E0EF3974-1D68-1B79-2034-F66524923296</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>27A23C8F-5BCD-8DF6-A09A-1A5CA52730B4</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="fasst zusammen"/>
+<property name="DE_RELA_TEXT_TO" value="zusammengefasst als"/>
+<property name="EN_RELA_TEXT_FROM" value="**summarizes"/>
+<property name="EN_RELA_TEXT_TO" value="**summarized as"/>
+</propertyMap>
+</Relation>

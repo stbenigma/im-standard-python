@@ -1,0 +1,68 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxySqlServerv2k5 class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k5.TableProxySqlServerv2k5" name="TABL_ENTI_MAP" directorySegmentName="seg_0" id="4A08F16A-5FF0-4FDB-A16C-8F9BCF96672F">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:10 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<schemaObject>833E4DE4-2E61-95B8-D681-1740D7FACB7C</schemaObject>
+<database>F882837E-36FB-2009-38C2-1F82ED2F7BB1</database>
+<filegroup>B5085ECB-8936-7A63-9779-77515397EA4F</filegroup>
+<schema>1</schema>
+<columnProxies>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k12.ColumnProxySqlServerv2k12" name="TEMA_ENTI_ID" id="0A0884B5-DB49-91C1-E4CF-40615C432C06">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:10 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k12.ColumnProxySqlServerv2k12" name="TEMA_RELA_ID" id="21624179-B20C-B48A-ACF7-A5A2AF2D34C2">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:10 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k12.ColumnProxySqlServerv2k12" name="TEMA_TABL_ID" id="6CE7809F-226C-6F3A-9B8B-58C6DE4CFE71">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:10 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k12.ColumnProxySqlServerv2k12" name="TEMA_ID" id="FD94BA48-E585-A643-C2CE-D063976253FA">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:10 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+<foreignKeys>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k5.FKProxySqlServerv2k5" name="TEMA_RELA_FK" id="28932F6D-EC04-E70D-772E-14DF294ADA47">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:12 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+</ForeignKey>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k5.FKProxySqlServerv2k5" name="tema_tabl_FK" id="305AD57A-8C62-129B-E509-8B1F1318209B">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:12 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+</ForeignKey>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k5.FKProxySqlServerv2k5" name="TEMA_ENTI_FK" id="5467DF9F-54B2-3DC4-441B-F671284C9988">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:12 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+</ForeignKey>
+</foreignKeys>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k5.PKProxySqlServerv2k5" name="TEMA_PK" id="3131698B-6E40-C86C-D9A1-64AC31086BFE">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:11 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<clustered>true</clustered>
+<fileGroup>B5085ECB-8936-7A63-9779-77515397EA4F</fileGroup>
+<recomputeStatistics>NO</recomputeStatistics>
+</PrimaryKey>
+</primaryKeys>
+<uniqueKeys>
+<UniqueKey class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k5.UniqueProxySqlServerv2k5" name="TEMA_UN" id="8AC0B817-4D39-5F59-35CD-72506301FF4A">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:11 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<fileGroup>B5085ECB-8936-7A63-9779-77515397EA4F</fileGroup>
+<recomputeStatistics>NO</recomputeStatistics>
+</UniqueKey>
+</uniqueKeys>
+</TableProxySqlServerv2k5>

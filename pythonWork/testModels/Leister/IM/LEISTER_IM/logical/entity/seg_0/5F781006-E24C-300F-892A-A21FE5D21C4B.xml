@@ -1,0 +1,41 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="5F781006-E24C-300F-892A-A21FE5D21C4B" name="Ähnliche Produkte">
+<createdBy>sbo</createdBy>
+<createdTime>2019-02-06 09:32:16 UTC</createdTime>
+<comment><![CDATA[Nutzbar für upselling, crossselling, Ablöseprodukte
+Muss noch detailliert angeschaut werden.
+
+Für Web: Similar Products]]></comment>
+<notes><![CDATA[[EN_ENTI_COMMENT[
+**Usable for upselling, crossselling, replacement products
+Must still be looked at in detail.
+
+For Web: Similar Products
+]EN_ENTI_COMMENT]
+[DE_ENTI_COMMENT[
+Nutzbar für upselling, crossselling, Ablöseprodukte
+Muss noch detailliert angeschaut werden.
+
+Für Web: Similar Products
+]DE_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<typeID>AB7A723E-18E3-723F-6D3A-6AE296FEBDA3</typeID>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<propertyMap>
+<property name="DE_ENTI_NAME" value="Ähnliche Produkte"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_NAME" value="**Related Products"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+</propertyMap>
+</Entity>

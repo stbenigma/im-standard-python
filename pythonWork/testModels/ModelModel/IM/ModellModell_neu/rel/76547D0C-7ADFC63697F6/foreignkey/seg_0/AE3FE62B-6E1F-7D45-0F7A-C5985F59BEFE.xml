@@ -1,0 +1,19 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="AE3FE62B-6E1F-7D45-0F7A-C5985F59BEFE" containerWithKeyObject="5A9645E2-48BD-97E8-BBFE-3BCCCE794B4B" localFKIndex="DD0A1958-137E-ED8A-7088-A95A647520A6" name="coma_attr_FK">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>coma_attr_FK</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:13 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<referredTableLongName>modelmodel_dbo.ATTRIBUTES</referredTableLongName>
+<deleteRule>CASCADE</deleteRule>
+<referredTableID>B2D00C84-4FB1-AF81-A223-4C0B96EEBA54</referredTableID>
+<keyObject>4CF2D636-9AA2-F9E4-8C8E-C3496A559F37</keyObject>
+<referredKeyID>4CF2D636-9AA2-F9E4-8C8E-C3496A559F37</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>ATTR_ID</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

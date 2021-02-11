@@ -1,0 +1,69 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev11g class="oracle.dbtools.crest.model.design.storage.oracle.v11g.TableProxyOraclev11g" name="DMRS_RES_PARTY_CONTACTS" directorySegmentName="seg_1" id="9C3630E0-5B08-B405-254B-5A41E6C8EA1B">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:44 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<schemaObject>19221298-76C4-E323-B35B-7857802DF7E7</schemaObject>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<segment>B0688D42-6B05-0798-F51E-BCDD05283F6C</segment>
+<tableSpace>F75A32E8-BEE4-D5D6-B0D7-FE9E9A500018</tableSpace>
+<temporaryChanged>false</temporaryChanged>
+<accessDriverType>oracle_loader</accessDriverType>
+<rejectLimit></rejectLimit>
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="DESIGN_OVID" id="5E2C9D66-E86F-9F1D-EB42-B926BA80420F">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:51 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="CONTACT_ID" id="60FC4BE8-C6DC-FAF0-06C5-D900EB414163">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:51 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="CONTACT_OVID" id="7EF26E5C-7EBD-ED59-BEE5-01ACED3C5217">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:51 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="CONTACT_NAME" id="84E78EBE-FB29-9377-1CA3-B11373337A59">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:51 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="RESPONSIBLE_PARTY_OVID" id="B7AC6890-7A16-E1E4-3D00-AE0020A95925">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:51 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="RESPONSIBLE_PARTY_ID" id="C93ADF24-8654-B59B-D2BA-2CEF58D0472C">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:51 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="RESPONSIBLE_PARTY_NAME" id="EC8F6320-E8CF-72B0-A3D4-A8CAC22C4399">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:51 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+<indexProxies>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="RES_PARTY_CONTACTS_FK1_IDX" id="76C5E2D4-74D5-8B02-F17F-FBEA3FDC5E9A">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:55 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<schemaObject>19221298-76C4-E323-B35B-7857802DF7E7</schemaObject>
+<segment>16313A9F-ECE7-B6D5-DAE1-8F6D7A0DF97B</segment>
+<tableSpace>F75A32E8-BEE4-D5D6-B0D7-FE9E9A500018</tableSpace>
+</IndexProxy>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="RES_PARTY_CONTACTS_FK2_IDX" id="FCCF7368-1BB7-A636-481D-41967942BA92">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:55 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<schemaObject>19221298-76C4-E323-B35B-7857802DF7E7</schemaObject>
+<segment>16313A9F-ECE7-B6D5-DAE1-8F6D7A0DF97B</segment>
+<tableSpace>F75A32E8-BEE4-D5D6-B0D7-FE9E9A500018</tableSpace>
+</IndexProxy>
+</indexProxies>
+</TableProxyOraclev11g>

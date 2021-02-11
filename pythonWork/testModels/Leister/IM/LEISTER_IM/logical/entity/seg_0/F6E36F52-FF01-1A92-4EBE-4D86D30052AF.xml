@@ -1,0 +1,55 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="F6E36F52-FF01-1A92-4EBE-4D86D30052AF" name="POS-Grossverpackung">
+<createdBy>sbo</createdBy>
+<createdTime>2019-02-06 09:50:14 UTC</createdTime>
+<comment><![CDATA[Schöne Kartonkiste mit Bild drauf. Hat eigene Artikelnummer, aber nur für den Distributor. 
+Der Kunde kann diesen Multipack nicht kaufen und hat nur die Artikelnummer des Produkts. Kann dieses auch bestellen, aber nicht mit der schönen Verpackung, sondern z.B. nur im Plastiksack
+Point of Sale Artikel (verpackt)
+
+Beispiele:
+ Heizelement für ein Gerät hat eine Artikel-Nr 123-123  -> nicht verkauft
+ Heizelement verpackt in schöne Kartonbox hat andere Artikel-nr 321-321 -> kein Einzelverkauft
+ 20 Heizelemente in schöner Kartonbox hat weitere Artikel-Nr 333-444 ->POS- Grosspackung
+]]></comment>
+<notes><![CDATA[[EN_ENTI_COMMENT[
+**Beautiful cardboard box with picture on it. Has its own article number, but only for the distributor
+The customer cannot buy this multipack and only has the article number of the product. Can also order this, but not with the nice packaging, but e.g. only in plastic bag
+Point of Sale article (packed)
+
+Examples:
+ Heating element for a device has an article number 123-123 -> not sold
+ Heating element packed in nice cardboard box has other item no 321-321 -> not sold individually
+ 20 Heating elements in nice cardboard box has further item number 333-444 ->POS- bulk pack
+]EN_ENTI_COMMENT]
+[DE_ENTI_COMMENT[
+Schöne Kartonkiste mit Bild drauf. Hat eigene Artikelnummer, aber nur für den Distributor. 
+Der Kunde kann diesen Multipack nicht kaufen und hat nur die Aktikelnummer des Produkts. Kann dieses auch bestellen, aber nicht mit der schlnen verpackung, sondern z.B. nur im Plastiksack
+Point of Sale Artikel (verpackt)
+
+Beispiele:
+ Heizelement für ein Gerät hat eine Artikel-Nr 123-123  -> nicht verkauft
+ Heizelement verpackt in schöne Kartonbox hat andere Artikel-nr 321-321 -> nicht einzel verkauft
+ 20 Heizelemente in schöner Kartonbox hat weitere Artikel-Nr 333-444 ->POS- Grosspackung
+]DE_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<typeID>88FD3F2F-7EA2-1287-77DE-38673B902DA9</typeID>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<synonym>POS-Artikel</synonym>
+<propertyMap>
+<property name="DE_ENTI_NAME" value="POS-Grossverpackung"/>
+<property name="DE_ENTI_SYNONYM" value="POS-Artikel"/>
+<property name="EN_ENTI_NAME" value="**POS bulk packaging"/>
+<property name="EN_ENTI_SYNONYM" value="**POS items"/>
+</propertyMap>
+</Entity>

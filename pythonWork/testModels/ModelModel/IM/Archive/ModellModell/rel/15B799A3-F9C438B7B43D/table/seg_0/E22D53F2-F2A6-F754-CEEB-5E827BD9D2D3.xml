@@ -1,0 +1,174 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="E22D53F2-F2A6-F754-CEEB-5E827BD9D2D3" name="ORG_EINH">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 13:37:53 UTC</createdTime>
+<comment><![CDATA[Organisationseinheit in der Firma (intern oder extern), die für die Definition oder Pflege eines Attributwertes verantwortlich ist.]]></comment>
+<generatorID>E36EA698-3231-1EAA-1FA8-7DCBF8B404AC</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<ordsAlias>abteilung</ordsAlias>
+<abbreviation>ORGE</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ORGE_ID" id="50E23AA3-FC98-C365-F8CC-526C760D5F3A">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 13:37:54 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ORGE_TYPE" id="6047F807-FAED-E0F1-FE9A-AE31E5224D1C">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 13:37:53 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<constraintName>CH_INH_ABTE</constraintName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>4</dataTypeSize>
+<listOfValues>
+<valueDef value="ABTE" description="entity Abteilung"/>
+<valueDef value="FIRM" description="Firma"/>
+</listOfValues>
+<ownDataTypeParameters>4,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isDiscriminatorColumn>true</isDiscriminatorColumn>
+</Column>
+<Column name="ORGE_NAME" id="5AF7D206-903C-8C4B-2B61-A04671038238">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 13:37:53 UTC</createdTime>
+<comment><![CDATA[Name eines Geschäftsbereichs]]></comment>
+<generatorID>5F1855D0-5C50-083E-F00A-56D7A0E3E93F</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ORGE_EMAIL" id="73590E67-337A-2E98-E0D0-17BB37354E79">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-04 15:19:02 UTC</createdTime>
+<generatorID>C834690D-0AA6-49A5-2296-AEAB32007AF1</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>4B4F8F40-D3A4-4F39-8CB3-BB6C57534E96</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ORGE_TEL_NR" id="3BCC1D5E-CF4C-8A67-7EC5-6CD208EE9A65">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-04 15:19:02 UTC</createdTime>
+<generatorID>204E4D3B-5BC1-9C6B-F4E4-0885AFE1DD70</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>7F98E20B-63A1-C3F1-F7AE-0E2F6BC2C8D5</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ORGE_ADRESSE" id="0A34F93A-28C8-00B2-63A6-6FA370E41EF5">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-04 15:19:02 UTC</createdTime>
+<generatorID>FC854C29-3D28-6DE1-994C-F8B8DA68A419</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>9B99E814-DBEA-128A-C17E-01680EEEDFBC</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ORGE_UC" id="3AA87F35-43D6-2B25-3528-B0EF808B9737">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 13:37:54 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<formulaDesc>USER</formulaDesc>
+<sourceType>System</sourceType>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<computed>true</computed>
+<defaultOntNull>true</defaultOntNull>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="F7EEFF47-7A42-2A3E-7DFC-D0558D6996B8"/>
+</propertyMap>
+</Column>
+<Column name="ORGE_DC" id="B2D97D0E-F9A9-AF2C-3671-B3AF9694CA2F">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 13:37:54 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT047</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="74D877A0-4C3B-63EE-06C5-071C7695907C"/>
+</propertyMap>
+</Column>
+<Column name="ORGE_UM" id="6BE36D7F-0217-1B1F-7B85-3501ED0BAE5D">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 13:37:54 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="B2E17D53-C2F7-74D9-022D-5D63F3931519"/>
+</propertyMap>
+</Column>
+<Column name="ORGE_DM" id="25EF5141-31A0-1ABE-0207-C83685117A01">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 13:37:54 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT047</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="B398D247-00C1-F016-3BBB-FE65CFFFF7AA"/>
+</propertyMap>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="78F7FB54-B8A2-B0FC-D362-7BF9FAAC3590" name="ORGE_PK">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 13:37:54 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="50E23AA3-FC98-C365-F8CC-526C760D5F3A"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="4690CBC6-1779-3150-1068-D4F12EF96368" name="ORGE_UK">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-04 15:19:20 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="5AF7D206-903C-8C4B-2B61-A04671038238"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

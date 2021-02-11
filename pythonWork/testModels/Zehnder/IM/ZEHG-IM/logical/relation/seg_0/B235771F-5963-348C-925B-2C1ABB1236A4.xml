@@ -1,0 +1,26 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_40" directorySegmentName="seg_0" id="B235771F-5963-348C-925B-2C1ABB1236A4">
+<createdBy>stb</createdBy>
+<createdTime>2020-08-13 13:23:17 UTC</createdTime>
+<ownerDesignName>ZEHG-IM</ownerDesignName>
+<engineerTo>
+<item key="E73667C8-D73D-37B9-7BB4-9427B1B6DC71" value="true"/>
+</engineerTo>
+<useSurrogateKey>true</useSurrogateKey>
+<identifying>false</identifying>
+<nameOnSource>succeeds</nameOnSource>
+<nameOnTarget>succeded by</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>DA00CE3B-A9E5-16BB-8A28-61DD05F5DF66</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>DA00CE3B-A9E5-16BB-8A28-61DD05F5DF66</targetEntity>
+<transferable>true</transferable>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="*EN* succeeds"/>
+<property name="DE_RELA_TEXT_TO" value="*EN* succeded by"/>
+<property name="EN_RELA_TEXT_FROM" value="succeeds"/>
+<property name="EN_RELA_TEXT_TO" value="succeded by"/>
+</propertyMap>
+</Relation>

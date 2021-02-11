@@ -1,0 +1,182 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="9149CEEE-1C33-7E6F-01E6-5014CC268AD2" name="DIAGRAMM">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:28:04 UTC</createdTime>
+<comment><![CDATA[Zusammenfassung von Entitäten in einer grafischen Darstellung]]></comment>
+<generatorID>442B6681-D363-DDBB-CE0E-4A28D0A4EA11</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<abbreviation>DIAG</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="DIAG_ID" id="FFF8E8C9-39A7-7B00-759E-2D57DEEDE633">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:39:37 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DIAG_NAME" id="E899214E-1049-B5B9-C50A-A57F306369D3">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:28:04 UTC</createdTime>
+<generatorID>4DA5699D-EE03-51A3-A977-DBA7D07B46CA</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DIAG_DIAT_ID" id="E263F737-7804-368A-6C59-9317F844E865">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:28:04 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="A5850C93-8F4F-44BA-0645-58A99B6282CE" referredColumn="DCC7D86E-9F81-D6AD-07D8-5E679EB61A6D"/>
+</associations>
+</Column>
+<Column name="DIAG_LEGENDX" id="51C2EA5D-0993-B7D2-175A-1E48E2359D65">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-20 17:40:25 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<collectionType>C89AD2E9-29AC-3B36-E59F-F3BF7F41BBA1</collectionType>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>8</dataTypePrecision>
+<ownDataTypeParameters>,8,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DIAG_LEGENDY" id="443F6784-8D7C-775B-8B25-67090BE10A0E">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-20 17:40:25 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>8</dataTypePrecision>
+<ownDataTypeParameters>,8,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DIAG_UC" id="513FFE7E-9AA2-E180-C6FE-EB831D2C5160">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:37:23 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<formulaDesc>USER</formulaDesc>
+<sourceType>System</sourceType>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<computed>true</computed>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="F7EEFF47-7A42-2A3E-7DFC-D0558D6996B8"/>
+</propertyMap>
+</Column>
+<Column name="DIAG_DC" id="78F6FFF3-ADFD-9E5D-07F2-31B4BEC75760">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:37:23 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT047</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="74D877A0-4C3B-63EE-06C5-071C7695907C"/>
+</propertyMap>
+</Column>
+<Column name="DIAG_UM" id="07F00457-CC52-F22C-DDED-99B0F194A1E0">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:37:23 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="B2E17D53-C2F7-74D9-022D-5D63F3931519"/>
+</propertyMap>
+</Column>
+<Column name="DIAG_DM" id="9E99B7FF-5FD1-8BFD-D30E-C5700BC8CAF6">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:37:23 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT047</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="B398D247-00C1-F016-3BBB-FE65CFFFF7AA"/>
+</propertyMap>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="A3306D64-51C2-0E54-3E38-979A6FB736D0" name="DIAG_PK">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:28:04 UTC</createdTime>
+<generatorID>4EE748DF-3DBC-DD0E-CB98-FBAE520A2DB0</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="FFF8E8C9-39A7-7B00-759E-2D57DEEDE633"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="F8C524CA-7AA4-E31E-E3BC-5915E3C1EDF3" name="DIAG__UN">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:39:37 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="E899214E-1049-B5B9-C50A-A57F306369D3"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="BF558979-6337-77E9-D5CB-722F8D9BE518" name="DIAG_DIAT_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:28:04 UTC</createdTime>
+<generatorID>9E1ABFF3-15F8-9EE4-CAB2-90922F783BDC</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="E263F737-7804-368A-6C59-9317F844E865"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

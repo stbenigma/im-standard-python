@@ -1,0 +1,26 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_16" directorySegmentName="seg_0" id="1432863F-2D86-9F92-0788-FE3E0F2DE94F">
+<createdBy>cle</createdBy>
+<createdTime>2020-08-12 09:33:47 UTC</createdTime>
+<ownerDesignName>ZEHG-IM</ownerDesignName>
+<engineerTo>
+<item key="E73667C8-D73D-37B9-7BB4-9427B1B6DC71" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<nameOnSource>contained in</nameOnSource>
+<nameOnTarget>includes</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>D61F300E-37F2-859E-EE07-1C164D34B251</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>2D4AB86D-29DE-BF06-DAD5-2338A4AC4290</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="enthalten in"/>
+<property name="DE_RELA_TEXT_TO" value="beinhaltet"/>
+<property name="EN_RELA_TEXT_FROM" value="**contained in"/>
+<property name="EN_RELA_TEXT_TO" value="**includes"/>
+</propertyMap>
+</Relation>

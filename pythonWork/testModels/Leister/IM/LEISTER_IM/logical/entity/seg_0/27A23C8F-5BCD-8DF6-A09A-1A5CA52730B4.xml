@@ -1,0 +1,223 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="27A23C8F-5BCD-8DF6-A09A-1A5CA52730B4" name="Artikel">
+<createdBy>sbo</createdBy>
+<createdTime>2019-02-06 07:27:01 UTC</createdTime>
+<comment><![CDATA[Artikel sind Verkaufsprodukte in einer bestimmten, vordefinierten Ausführung / Variante. Artikel sind die Dinge, die zum Kunden gehen, im Gegensatz zu Artikeln vom Einkauf und der Produktion.
+
+Hat Artikelnummer und ist durch diese eindeutig identifizierbar
+
+Artikel können sich beispielsweise unterscheiden in (Triac ST): Land, Netz (Industrienetz/Heimnetz), Heizleistung, Heizrohrtyp, Netzkabel...
+Artikel im ERP haben grösstenteils auch ein Foto hinterlegt für die erleichterte Kommunikation innerhalb des Unternehmens
+
+Ein Artikel, der ausschliesslich als Einkaufsartikel existiert, wird als Third Party Artikel/Handelsware bezeichnet.
+
+
+Beispiele:
+141.227
+Triac ST 230V/1600W/Steckdüse/EU-Stecker
+]]></comment>
+<notes><![CDATA[[EN_ENTI_COMMENT[
+**Articles are sales products in a specific, predefined version / variant. Articles are the things that go to the customer, as opposed to articles from purchasing and production.
+
+Has article number and is uniquely identifiable by it
+
+Articles can differ, for example, in (Triac ST): country, network (industrial network/home network), heating capacity, heating pipe type, mains cable...
+Most ERP articles also have a photo stored for easier communication within the company
+
+An item that exists exclusively as a purchase item is referred to as a third party item.
+
+
+Examples:
+141.227
+Triac ST 230V/1600W/socket nozzle/EU plug
+]EN_ENTI_COMMENT]
+[DE_ENTI_COMMENT[
+Artikel sind Verkaufsprodukte in einer bestimmten, vordefinierten Ausführung / Variante. Artikel sind die Dinge, die zum Kunden gehen, im Gegensatz zu Artikeln vom Einkauf und der Produktion.
+
+Hat Artikelnummer und ist durch diese eindeutig identifizierbar
+
+Artikel können sich beispielsweise unterscheiden in (Triac ST): Land, Netz (Industrienetz/Heimnetz), Heizleistung, Heizrohrtyp, Netzkabel...
+Artikel im ERP haben grösstenteils auch ein Foto hinterlegt für die erleichterte Kommunikation innerhalb des Unterenhmens
+
+Ein Artikel, der ausschliesslich als Einkaufsartikel existiert, wird als Third Party Artikel/Handelsware bezeichnet.
+
+
+Beispiele:
+141.227
+Triac ST 230V/1600W/Steckdüse/EU Stecker
+]DE_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<typeID>88FD3F2F-7EA2-1287-77DE-38673B902DA9</typeID>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<propertyMap>
+<property name="DE_ENTI_NAME" value="Artikel"/>
+<property name="EN_ENTI_NAME" value="**Articles"/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Artikelname" id="BFE3A29D-9CC1-BD7F-0644-F919DDBD8325">
+<createdBy>ruben.antenen</createdBy>
+<createdTime>2019-09-10 11:23:03 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Artikelname [L]"/>
+<property name="DHL AttrName" value="."/>
+<property name="DHL AttrName Receiver" value="."/>
+<property name="DHL AttrName Shipper" value="."/>
+<property name="EN_ATTR_NAME" value="**Article name [L]"/>
+<property name="PENTA AttrID" value="."/>
+<property name="PENTA AttrName" value="."/>
+<property name="PENTA datatype" value="."/>
+<property name="PENTA usage" value="."/>
+<property name="PIM AttrID" value="."/>
+<property name="PIM AttrName" value="."/>
+<property name="PIM EnglName" value="."/>
+<property name="PIM datatype" value="."/>
+<property name="PIM usage" value="."/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Artikelnummer" id="EBD1B8D4-EC50-ACF8-BBC3-30E8AB16D7E7">
+<createdBy>ruben.antenen</createdBy>
+<createdTime>2019-09-10 11:48:20 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Artikelnummer"/>
+<property name="DHL AttrName" value="."/>
+<property name="DHL AttrName Receiver" value="."/>
+<property name="DHL AttrName Shipper" value="."/>
+<property name="EN_ATTR_NAME" value="**Item number"/>
+<property name="PENTA AttrID" value="."/>
+<property name="PENTA AttrName" value="."/>
+<property name="PENTA datatype" value="."/>
+<property name="PENTA usage" value="."/>
+<property name="PIM AttrID" value="."/>
+<property name="PIM AttrName" value="."/>
+<property name="PIM EnglName" value="."/>
+<property name="PIM datatype" value="."/>
+<property name="PIM usage" value="."/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="EAN" id="BE86E7C2-237E-5D3B-23F5-E7C2DDDB1FD0">
+<createdBy>ruben.antenen</createdBy>
+<createdTime>2020-05-04 08:35:50 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AP AttrName" value="GTIN"/>
+<property name="AP Typ" value="NUM"/>
+<property name="DE_ATTR_NAME" value="EAN"/>
+<property name="DHL AttrName" value="."/>
+<property name="DHL AttrName Receiver" value="."/>
+<property name="DHL AttrName Shipper" value="."/>
+<property name="EN_ATTR_NAME" value="**EAN"/>
+<property name="PENTA AttrID" value="."/>
+<property name="PENTA AttrName" value="."/>
+<property name="PENTA datatype" value="."/>
+<property name="PENTA usage" value="."/>
+<property name="PIM AttrID" value="."/>
+<property name="PIM AttrName" value="."/>
+<property name="PIM EnglName" value="."/>
+<property name="PIM datatype" value="."/>
+<property name="PIM usage" value="."/>
+<property name="SAP AttrName" value="EA-NUMMER"/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Verkaufstext" id="547C5240-93AF-2F7E-C656-7AC1C2889250">
+<createdBy>ruben.antenen</createdBy>
+<createdTime>2020-05-04 08:51:46 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Attr_75"/>
+<property name="DHL AttrName" value="."/>
+<property name="DHL AttrName Receiver" value="."/>
+<property name="DHL AttrName Shipper" value="."/>
+<property name="EN_ATTR_NAME" value="ERP Sales text"/>
+<property name="PENTA AttrID" value="."/>
+<property name="PENTA AttrName" value="."/>
+<property name="PENTA datatype" value="."/>
+<property name="PENTA usage" value="."/>
+<property name="PIM AttrID" value="."/>
+<property name="PIM AttrName" value="."/>
+<property name="PIM EnglName" value="."/>
+<property name="PIM datatype" value="."/>
+<property name="PIM usage" value="."/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+</Attribute>
+</attributes>
+</Entity>

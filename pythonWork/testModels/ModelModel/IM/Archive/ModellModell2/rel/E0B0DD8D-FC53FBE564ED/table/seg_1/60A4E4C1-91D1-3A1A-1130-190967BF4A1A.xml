@@ -1,0 +1,138 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_1" id="60A4E4C1-91D1-3A1A-1130-190967BF4A1A" schemaObject="19221298-76C4-E323-B35B-7857802DF7E7" name="DMRS_SPATIAL_DIMENSIONS">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>ADMIN</sourceObjSchema>
+<sourceObjName>DMRS_SPATIAL_DIMENSIONS</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:44 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="DEFINITION_ID" id="2C0AF6EE-3C73-6F7C-95D8-446ECE5A1769">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_SPATIAL_DIMENSIONS</sourceObjSchema>
+<sourceObjName>DEFINITION_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:51 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>70 BYTE</dataTypeSize>
+<ownDataTypeParameters>70 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DEFINITION_OVID" id="E452CF87-AFDC-6AFB-AC65-D9A0AD1E136C">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_SPATIAL_DIMENSIONS</sourceObjSchema>
+<sourceObjName>DEFINITION_OVID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:51 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>36 BYTE</dataTypeSize>
+<ownDataTypeParameters>36 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DEFINITION_NAME" id="53D1DE5D-9999-28E6-0DA8-386567067AA9">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_SPATIAL_DIMENSIONS</sourceObjSchema>
+<sourceObjName>DEFINITION_NAME</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:51 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>256 BYTE</dataTypeSize>
+<ownDataTypeParameters>256 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DIMENSION_NAME" id="D4BA9A57-BA0E-DF7D-9479-99C5089BC5F6">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_SPATIAL_DIMENSIONS</sourceObjSchema>
+<sourceObjName>DIMENSION_NAME</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:51 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>256 BYTE</dataTypeSize>
+<ownDataTypeParameters>256 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="LOW_BOUNDARY" id="F5119909-9C40-98D1-F9AE-83C453E7026D">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_SPATIAL_DIMENSIONS</sourceObjSchema>
+<sourceObjName>LOW_BOUNDARY</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:51 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="UPPER_BOUNDARY" id="49E6C053-E479-A3FD-72AD-44529BD0AEBC">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_SPATIAL_DIMENSIONS</sourceObjSchema>
+<sourceObjName>UPPER_BOUNDARY</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:51 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="TOLERANCE" id="6D731BF9-49CE-3094-60AE-5EB5C0251B86">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_SPATIAL_DIMENSIONS</sourceObjSchema>
+<sourceObjName>TOLERANCE</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:51 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DESIGN_OVID" id="5614FAF2-12B8-D328-9FB6-F2F942BD07DC">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_SPATIAL_DIMENSIONS</sourceObjSchema>
+<sourceObjName>DESIGN_OVID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:51 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>36 BYTE</dataTypeSize>
+<ownDataTypeParameters>36 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="A689FF50-2F12-EB7D-27CA-F59832FEA661" schemaObject="19221298-76C4-E323-B35B-7857802DF7E7" name="SPATIAL_DIMENSIONS_FK_IDX">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>ADMIN</sourceObjSchema>
+<sourceObjName>SPATIAL_DIMENSIONS_FK_IDX</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:56 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="E452CF87-AFDC-6AFB-AC65-D9A0AD1E136C"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -1,0 +1,26 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_42" directorySegmentName="seg_0" id="9BA27912-6633-C596-21A3-DF6BA3654DC1">
+<createdBy>stb</createdBy>
+<createdTime>2020-08-13 13:42:09 UTC</createdTime>
+<ownerDesignName>ZEHG-IM</ownerDesignName>
+<engineerTo>
+<item key="E73667C8-D73D-37B9-7BB4-9427B1B6DC71" value="true"/>
+</engineerTo>
+<useSurrogateKey>true</useSurrogateKey>
+<identifying>false</identifying>
+<nameOnSource>described by</nameOnSource>
+<nameOnTarget>describes</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>C1075060-B66A-5EB1-F200-C2F27532933B</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>E08619FE-7A7E-2FF0-8413-40E8CA54D093</targetEntity>
+<transferable>true</transferable>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="*EN* described by"/>
+<property name="DE_RELA_TEXT_TO" value="*EN* describes"/>
+<property name="EN_RELA_TEXT_FROM" value="described by"/>
+<property name="EN_RELA_TEXT_TO" value="describes"/>
+</propertyMap>
+</Relation>

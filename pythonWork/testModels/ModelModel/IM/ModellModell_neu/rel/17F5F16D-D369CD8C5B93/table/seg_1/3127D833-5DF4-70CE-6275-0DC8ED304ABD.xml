@@ -1,0 +1,128 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_1" id="3127D833-5DF4-70CE-6275-0DC8ED304ABD" schemaObject="BA9AB875-9DE2-0270-F892-66DA7F318378" name="t_secuser">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>t_secuser</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:56:10 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="UserID" id="8A316EC9-4B5D-D3A2-BCA1-74BC65D76FB5">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_secuser</sourceObjSchema>
+<sourceObjName>UserID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:56:11 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypePrecision>40</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>40</dataTypeSize>
+<ownDataTypeParameters>40,40,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="UserLogin" id="C4F3A0EE-4327-FCA9-E042-2058FC27E6DA">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_secuser</sourceObjSchema>
+<sourceObjName>UserLogin</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:56:11 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypePrecision>255</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>255</dataTypeSize>
+<ownDataTypeParameters>255,255,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="FirstName" id="D4135F69-0F23-C442-5395-446FCE9E83B3">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_secuser</sourceObjSchema>
+<sourceObjName>FirstName</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:56:11 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypePrecision>50</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,50,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Surname" id="709DD87D-0836-3A09-21F3-8A8498793581">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_secuser</sourceObjSchema>
+<sourceObjName>Surname</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:56:11 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypePrecision>50</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,50,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Department" id="A51C4272-8CAE-6215-5F3F-7C1E2AAA785F">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_secuser</sourceObjSchema>
+<sourceObjName>Department</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:56:11 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypePrecision>50</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,50,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Password" id="70E41DD5-F388-F5E5-6120-4F8FF91F9861">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_secuser</sourceObjSchema>
+<sourceObjName>Password</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:56:11 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypePrecision>12</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>12</dataTypeSize>
+<ownDataTypeParameters>12,12,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="587D8544-79AB-8517-ACD0-77AC8FEC9F83" name="pk_secuser">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>pk_secuser</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:56:13 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="8A316EC9-4B5D-D3A2-BCA1-74BC65D76FB5"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

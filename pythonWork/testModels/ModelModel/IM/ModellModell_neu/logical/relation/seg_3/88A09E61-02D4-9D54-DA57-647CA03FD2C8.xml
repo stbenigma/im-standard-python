@@ -1,0 +1,32 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_45" directorySegmentName="seg_3" id="88A09E61-02D4-9D54-DA57-647CA03FD2C8">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:06:23 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="false"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
+<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
+</engineerTo>
+<useSurrogateKey>true</useSurrogateKey>
+<identifying>true</identifying>
+<nameOnSource>befüllt über</nameOnSource>
+<nameOnTarget>befüllt</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>D718E671-DE1C-59BC-9C74-A352687F07F5</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>40A40CEB-1F74-FE78-A114-09CE544FDCC8</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="befüllt über"/>
+<property name="DE_RELA_TEXT_TO" value="befüllt"/>
+<property name="EN_RELA_TEXT_FROM" value="filled via"/>
+<property name="EN_RELA_TEXT_TO" value="filled"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
+</propertyMap>
+</Relation>

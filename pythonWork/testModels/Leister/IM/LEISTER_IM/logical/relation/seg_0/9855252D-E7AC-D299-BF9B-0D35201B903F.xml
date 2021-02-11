@@ -1,0 +1,26 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_63" directorySegmentName="seg_0" id="9855252D-E7AC-D299-BF9B-0D35201B903F">
+<createdBy>ruben.antenen</createdBy>
+<createdTime>2019-10-09 13:21:08 UTC</createdTime>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<nameOnSource>ergänzt</nameOnSource>
+<nameOnTarget>ergänzt um</nameOnTarget>
+<optionalSource>false</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>FE7A2202-C1AB-2219-FE80-FA8ADE598B63</sourceEntity>
+<targetCardinalityString>1</targetCardinalityString>
+<targetEntity>7721BD88-34AB-5718-766A-C3D0B3D2E0EC</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="ergänzt"/>
+<property name="DE_RELA_TEXT_TO" value="ergänzt um"/>
+<property name="EN_RELA_TEXT_FROM" value="**supplemented"/>
+<property name="EN_RELA_TEXT_TO" value="**supplemented by"/>
+</propertyMap>
+</Relation>

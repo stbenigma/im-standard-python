@@ -1,0 +1,20 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_68" directorySegmentName="seg_0" id="12B19B42-7651-0178-F48C-3CBBDC54254B">
+<createdBy>did01</createdBy>
+<createdTime>2020-12-03 14:09:50 UTC</createdTime>
+<ownerDesignName>ZEHG-IM</ownerDesignName>
+<engineerTo>
+<item key="E73667C8-D73D-37B9-7BB4-9427B1B6DC71" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<nameOnSource>manufactured</nameOnSource>
+<nameOnTarget>orders</nameOnTarget>
+<optionalSource>false</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>DBB6F0B5-283D-0840-D25A-D808AEAD7CAC</sourceEntity>
+<targetCardinalityString>1</targetCardinalityString>
+<targetEntity>0300E64A-4FEE-E18C-97A3-362D808967BA</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

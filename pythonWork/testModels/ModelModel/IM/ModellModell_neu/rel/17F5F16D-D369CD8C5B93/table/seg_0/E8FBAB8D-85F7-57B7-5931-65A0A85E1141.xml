@@ -1,0 +1,600 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="E8FBAB8D-85F7-57B7-5931-65A0A85E1141" schemaObject="BA9AB875-9DE2-0270-F892-66DA7F318378" name="t_diagram">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>t_diagram</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:06 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Diagram_ID" id="5E70EAE9-C182-5E58-4783-EAB60BAA9C1F">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_diagram</sourceObjSchema>
+<sourceObjName>Diagram_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:06 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>4</dataTypeSize>
+<ownDataTypeParameters>4,10,0</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Package_ID" id="5D51D55B-970B-C942-A130-E4B34C308762">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_diagram</sourceObjSchema>
+<sourceObjName>Package_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:06 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>4</dataTypeSize>
+<usesDefaultValue>true</usesDefaultValue>
+<defaultValue>(1)</defaultValue>
+<ownDataTypeParameters>4,10,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ParentID" id="BD897C6E-2D8B-DD8C-6E1B-22B9DA2CA81C">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_diagram</sourceObjSchema>
+<sourceObjName>ParentID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:06 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>4</dataTypeSize>
+<usesDefaultValue>true</usesDefaultValue>
+<defaultValue>(0)</defaultValue>
+<ownDataTypeParameters>4,10,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Diagram_Type" id="350A7F05-0FB5-0109-E0EE-A7DD62F4610A">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_diagram</sourceObjSchema>
+<sourceObjName>Diagram_Type</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:06 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypePrecision>50</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,50,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Name" id="A5094B28-6C7F-B9C5-6BA8-5A824D1B6C95">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_diagram</sourceObjSchema>
+<sourceObjName>Name</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:06 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypePrecision>255</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>255</dataTypeSize>
+<ownDataTypeParameters>255,255,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Version" id="7DCAF5C5-31FD-EFE9-2F7D-AEAC2BFC13A1">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_diagram</sourceObjSchema>
+<sourceObjName>Version</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:06 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypePrecision>50</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>50</dataTypeSize>
+<usesDefaultValue>true</usesDefaultValue>
+<defaultValue>&apos;1.0&apos;</defaultValue>
+<ownDataTypeParameters>50,50,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Author" id="2F76C636-8745-8BA3-3AA5-B7245FBFD11B">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_diagram</sourceObjSchema>
+<sourceObjName>Author</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:06 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypePrecision>255</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>255</dataTypeSize>
+<ownDataTypeParameters>255,255,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ShowDetails" id="E6B6A849-EB6B-FBA5-A7C2-493967A927CD">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_diagram</sourceObjSchema>
+<sourceObjName>ShowDetails</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:06 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>4</dataTypeSize>
+<usesDefaultValue>true</usesDefaultValue>
+<defaultValue>(0)</defaultValue>
+<ownDataTypeParameters>4,10,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Notes" id="12FF200E-7E38-4FA5-288D-8F23CE34D415">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_diagram</sourceObjSchema>
+<sourceObjName>Notes</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:06 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypePrecision>-1</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>max</dataTypeSize>
+<ownDataTypeParameters>max,-1,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Stereotype" id="53CBB406-1568-1250-0993-5748889F36BF">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_diagram</sourceObjSchema>
+<sourceObjName>Stereotype</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:06 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypePrecision>50</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,50,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="AttPub" id="0DC04368-0D36-331D-4DCB-0711372764BA">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_diagram</sourceObjSchema>
+<sourceObjName>AttPub</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:06 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>4</dataTypeSize>
+<usesDefaultValue>true</usesDefaultValue>
+<defaultValue>(1)</defaultValue>
+<ownDataTypeParameters>4,10,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="AttPri" id="70AAD04E-5908-8552-3F4C-141BF35B3A4B">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_diagram</sourceObjSchema>
+<sourceObjName>AttPri</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:06 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>4</dataTypeSize>
+<usesDefaultValue>true</usesDefaultValue>
+<defaultValue>(1)</defaultValue>
+<ownDataTypeParameters>4,10,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="AttPro" id="5464EE47-538C-7379-BC8C-987727FCBD67">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_diagram</sourceObjSchema>
+<sourceObjName>AttPro</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:06 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>4</dataTypeSize>
+<usesDefaultValue>true</usesDefaultValue>
+<defaultValue>(1)</defaultValue>
+<ownDataTypeParameters>4,10,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Orientation" id="3D27C6FC-1418-C46D-82F0-BEF96EF67B60">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_diagram</sourceObjSchema>
+<sourceObjName>Orientation</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:06 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypePrecision>1</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>1</dataTypeSize>
+<usesDefaultValue>true</usesDefaultValue>
+<defaultValue>&apos;P&apos;</defaultValue>
+<ownDataTypeParameters>1,1,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="cx" id="6BC25DC0-DFD9-AEF9-7805-705C04B21BF2">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_diagram</sourceObjSchema>
+<sourceObjName>cx</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:06 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>4</dataTypeSize>
+<usesDefaultValue>true</usesDefaultValue>
+<defaultValue>(0)</defaultValue>
+<ownDataTypeParameters>4,10,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="cy" id="36E9F9A6-BE7E-7E73-6B26-D9FD005298C9">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_diagram</sourceObjSchema>
+<sourceObjName>cy</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:06 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>4</dataTypeSize>
+<usesDefaultValue>true</usesDefaultValue>
+<defaultValue>(0)</defaultValue>
+<ownDataTypeParameters>4,10,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Scale" id="5971DB7C-D435-18CF-5746-67EA7EA3F075">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_diagram</sourceObjSchema>
+<sourceObjName>Scale</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:06 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>4</dataTypeSize>
+<usesDefaultValue>true</usesDefaultValue>
+<defaultValue>(100)</defaultValue>
+<ownDataTypeParameters>4,10,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="CreatedDate" id="0672D0F5-49E0-A2D5-824B-CC133E278074">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_diagram</sourceObjSchema>
+<sourceObjName>CreatedDate</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:06 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT008</logicalDatatype>
+<dataTypePrecision>23</dataTypePrecision>
+<dataTypeScale>3</dataTypeScale>
+<dataTypeSize>8</dataTypeSize>
+<usesDefaultValue>true</usesDefaultValue>
+<defaultValue>CONVERT([datetime],CONVERT([varchar],getdate(),(1)),(1))</defaultValue>
+<ownDataTypeParameters>8,23,3</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ModifiedDate" id="940BFD0F-40F8-4F95-63ED-418BA1E1F643">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_diagram</sourceObjSchema>
+<sourceObjName>ModifiedDate</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:06 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT008</logicalDatatype>
+<dataTypePrecision>23</dataTypePrecision>
+<dataTypeScale>3</dataTypeScale>
+<dataTypeSize>8</dataTypeSize>
+<usesDefaultValue>true</usesDefaultValue>
+<defaultValue>CONVERT([datetime],CONVERT([varchar],getdate(),(1)),(1))</defaultValue>
+<ownDataTypeParameters>8,23,3</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="HTMLPath" id="A47DA14C-4250-B195-9B6D-830308891330">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_diagram</sourceObjSchema>
+<sourceObjName>HTMLPath</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:06 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypePrecision>255</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>255</dataTypeSize>
+<ownDataTypeParameters>255,255,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ShowForeign" id="F1FB4F21-0CA1-4C48-CC06-8DE266F4572D">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_diagram</sourceObjSchema>
+<sourceObjName>ShowForeign</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:06 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>4</dataTypeSize>
+<usesDefaultValue>true</usesDefaultValue>
+<defaultValue>(1)</defaultValue>
+<ownDataTypeParameters>4,10,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ShowBorder" id="D46C3342-B92B-5E90-541C-1E46EE789D59">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_diagram</sourceObjSchema>
+<sourceObjName>ShowBorder</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:06 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>4</dataTypeSize>
+<usesDefaultValue>true</usesDefaultValue>
+<defaultValue>(1)</defaultValue>
+<ownDataTypeParameters>4,10,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ShowPackageContents" id="185A060F-F316-A2C8-DDA2-93A60B8B4333">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_diagram</sourceObjSchema>
+<sourceObjName>ShowPackageContents</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:06 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>4</dataTypeSize>
+<usesDefaultValue>true</usesDefaultValue>
+<defaultValue>(1)</defaultValue>
+<ownDataTypeParameters>4,10,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="PDATA" id="D688EC74-04F2-10B4-23DC-D2392A08B71E">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_diagram</sourceObjSchema>
+<sourceObjName>PDATA</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:06 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypePrecision>255</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>255</dataTypeSize>
+<ownDataTypeParameters>255,255,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Locked" id="1FEE176C-DBAC-3460-86DB-E2B772A2EE7E">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_diagram</sourceObjSchema>
+<sourceObjName>Locked</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:06 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>4</dataTypeSize>
+<usesDefaultValue>true</usesDefaultValue>
+<defaultValue>(0)</defaultValue>
+<ownDataTypeParameters>4,10,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ea_guid" id="64E9C39A-7BA8-F3A9-D367-A8CA2B4B501D">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_diagram</sourceObjSchema>
+<sourceObjName>ea_guid</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:06 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypePrecision>40</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>40</dataTypeSize>
+<ownDataTypeParameters>40,40,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="TPos" id="FBC7D25C-AABC-46D6-A17E-FE618012CCF1">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_diagram</sourceObjSchema>
+<sourceObjName>TPos</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:06 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>4</dataTypeSize>
+<ownDataTypeParameters>4,10,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Swimlanes" id="5B4B439D-EBB6-2899-A821-551717C6BAF4">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_diagram</sourceObjSchema>
+<sourceObjName>Swimlanes</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:06 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypePrecision>255</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>255</dataTypeSize>
+<ownDataTypeParameters>255,255,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="StyleEx" id="8BA0BC0D-0975-3AAF-6066-C9BE863D4471">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_diagram</sourceObjSchema>
+<sourceObjName>StyleEx</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:06 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypePrecision>-1</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>max</dataTypeSize>
+<ownDataTypeParameters>max,-1,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="1283DC45-EE51-96CD-4283-2ED025D8C23D" name="pk_diagram">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>pk_diagram</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:06 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="5E70EAE9-C182-5E58-4783-EAB60BAA9C1F"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="63E3E751-7815-F5A9-B2F8-2C658F4E73A8" name="uq_diagram_eaguid">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>uq_diagram_eaguid</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:06 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="64E9C39A-7BA8-F3A9-D367-A8CA2B4B501D"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="3E2970E5-478B-F31B-6CA9-90290FDDBC82" name="ix_diagram_diagramtype">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>ix_diagram_diagramtype</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:06 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="350A7F05-0FB5-0109-E0EE-A7DD62F4610A"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="402452A5-15ED-2461-F6B0-C400945D7586" name="ix_diagram_packageid">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>ix_diagram_packageid</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:06 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="5D51D55B-970B-C942-A130-E4B34C308762"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="3AB7B2B0-2C97-1709-1F83-4B3BC9054588" name="ix_diagram_parentid">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>ix_diagram_parentid</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:06 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="BD897C6E-2D8B-DD8C-6E1B-22B9DA2CA81C"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

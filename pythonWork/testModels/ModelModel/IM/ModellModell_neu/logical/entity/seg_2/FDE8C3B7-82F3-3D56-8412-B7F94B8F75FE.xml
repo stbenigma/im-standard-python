@@ -1,0 +1,47 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_2" id="FDE8C3B7-82F3-3D56-8412-B7F94B8F75FE" name="logischer Vorgabewert">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:04:00 UTC</createdTime>
+<comment><![CDATA[Intern -> Wert verwendet im semantischen Informatsmodell (im Gegensatz zum externen Wertm in Schnittstellen verwendet)
+logischer Wert, der für eine Aufzählungs-Werteliste im Informationsmodell ein gültiger Wert ist.
+Das Attribut "Wert" ist der physikalische (sprachunabhängige) Wert, der als eigentlicher Wert im konzeptionellen Modell gilt.]]></comment>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+Intern -> Wert verwendet im semantischen Informatsmodell (im Gegensatz zum externen Wertm in Schnittstellen verwendet)
+logischer Wert, der für eine Aufzählungs-Werteliste im Informationsmodell ein gültiger Wert ist.
+Das Attribut "Wert" ist der physikalische (sprachunabhängige) Wert, der als eigentlicher Wert im konzeptionellen Modell gilt.
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+Internal -> Value use in the semantic information model (as opposed to external values in interfaces)
+Value that is a valid value for an enumerated value list. 
+The attribute "value" is the physical (language-independent) value, which is the actual value in the conceptual model.
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<engineerTo>
+<item key="76547D0C-003E-6F74-D2FC-7ADFC63697F6" value="true"/>
+<item key="17F5F16D-4CB1-2968-618E-D369CD8C5B93" value="true"/>
+<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<hierarchicalParent>9B10A30A-9185-8568-3F5A-30A4DB81182F</hierarchicalParent>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="Beispiele" value="M / W / TRUE / FALSE / GESCHLOSSEN / OFFEN"/>
+<property name="DE_ENTI_COMMENT" value="Wert, der für eine Aufzählungs-Werteliste ein gültiger Wert ist. Das Attribut &quot;Wert&quot; ist der physikalische (sprachunabhängige) Wert, der als eigentlicher Wert im konzeptionellen Modell gilt. "/>
+<property name="DE_ENTI_NAME" value="logischer Vorgabewert"/>
+<property name="EN_ENTI_COMMENT" value="*DE* Wert, der für eine Aufzählungs-Werteliste ein gültiger Wert ist. Das Attribut &quot;Wert&quot; ist der physikalische (sprachunabhängige) Wert, der als eigentlicher Wert im konzeptionellen Modell gilt. "/>
+<property name="EN_ENTI_NAME" value="internal allowed value"/>
+<property name="maxzoollevel" value="5"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
+</propertyMap>
+</Entity>

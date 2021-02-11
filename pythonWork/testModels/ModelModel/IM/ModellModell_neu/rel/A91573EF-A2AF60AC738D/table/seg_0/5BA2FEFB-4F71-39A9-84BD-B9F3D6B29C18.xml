@@ -1,0 +1,61 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="5BA2FEFB-4F71-39A9-84BD-B9F3D6B29C18" name="IsA_Rollenbeziehung">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:43 UTC</createdTime>
+<comment><![CDATA[1:1 Beziehung, die eine Rolle definiert
+Beziehung von Vater zu Kind ist normalerweise optional. Von Kind zu Vater muss sie mandatory sein.
+
+Beispiel:
+Person IsA 
+	Käufer
+	Angestellter
+	Mieter
+	Vereinsmitglied]]></comment>
+<generatorID>70AC9487-4F81-F9C4-C7BE-D253C4C32A75</generatorID>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+1:1 Beziehung, die eine Rolle definiert
+Beziehung von Vater zu Kind ist normalerweise optional. Von Kind zu Vater muss sie mandatory sein.
+
+Beispiel:
+Person IsA 
+	Käufer
+	Angestellter
+	Mieter
+	Vereinsmitglied
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+1:1 relationship that defines a role
+Relationship from father to child is usually optional. From child to father it must be mandatory.
+
+Example:
+Person IsA 
+	Buyer
+	Employee
+	Tenant
+	Member of the club
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<typeID>899A6DDC-95E0-4AD5-5F58-B3A2FF5C2D08</typeID>
+<abbreviation>IsA Beziehungv1</abbreviation>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="2505A9E1-A0AC-2B38-01BD-434D91A81536" name="IsA_Rollenbeziehung__UN">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:43 UTC</createdTime>
+<generatorID>7465F71C-6E0A-E3D8-95A6-E74B987A6AA2</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+</ind_PK_UK>
+<ind_PK_UK id="ECE33DE2-91C8-0D34-5F90-0B7016BBAF32" name="IsA_Rollenbeziehung_Beziehung_FK">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:43 UTC</createdTime>
+<generatorID>3AF2D311-40B0-73FE-41DD-643D83AED49F</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+</ind_PK_UK>
+</indexes>
+</Table>

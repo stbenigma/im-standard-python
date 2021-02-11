@@ -1,0 +1,116 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableView class="oracle.dbtools.crest.model.design.relational.TableView" directorySegmentName="seg_1" id="26E8DBB0-A6CC-7151-DA75-EB2315EAB969" name="DMRV_RESOURCE_LOCATORS">
+<sourceDDLFile>dbms-odm.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:09 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>305A2B7A-79B5-3B2F-B34A-F61956FFF56A</importedID>
+<userDefined>true</userDefined>
+<userDefinedSQL><![CDATA[select  Resource_Locator_ID, Resource_Locator_OVID, Resource_Locator_Name, Business_Info_ID, Business_Info_OVID, Business_Info_Name, Url, Design_OVID from DMRS_RESOURCE_LOCATORS]]></userDefinedSQL>
+<viewElements>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="RESOURCE_LOCATOR_ID" id="3ED3C45F-FFC4-23EF-2F4F-B7DC8F434C5A">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:09 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<dataType>VARCHAR2 (70 BYTE)</dataType>
+<headerAlias>Resource_Locator_ID</headerAlias>
+<reference>false</reference>
+<referencedColumn>332E062A-2A85-D16C-A17F-906EDAFDDA64</referencedColumn>
+<table>69E3359E-51C3-9B1F-0E30-295C8D379CFE</table>
+<viewID>26E8DBB0-A6CC-7151-DA75-EB2315EAB969</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="RESOURCE_LOCATOR_OVID" id="3678F0FF-EB5F-846E-E761-4027968EA5C0">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:09 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<dataType>VARCHAR2 (36 BYTE)</dataType>
+<headerAlias>Resource_Locator_OVID</headerAlias>
+<reference>false</reference>
+<referencedColumn>1816E00B-5014-2E6B-17DE-739F37C8FAA1</referencedColumn>
+<table>69E3359E-51C3-9B1F-0E30-295C8D379CFE</table>
+<viewID>26E8DBB0-A6CC-7151-DA75-EB2315EAB969</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="RESOURCE_LOCATOR_NAME" id="71E9ED57-5288-5B8D-07AF-282193BD7F1C">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:09 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<dataType>VARCHAR2 (256 BYTE)</dataType>
+<headerAlias>Resource_Locator_Name</headerAlias>
+<reference>false</reference>
+<referencedColumn>E7B41455-C43F-FC0C-01EB-D68EBA6C413C</referencedColumn>
+<table>69E3359E-51C3-9B1F-0E30-295C8D379CFE</table>
+<viewID>26E8DBB0-A6CC-7151-DA75-EB2315EAB969</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="BUSINESS_INFO_ID" id="88315F8E-3012-38F2-FEA9-E534F84AB7AE">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:09 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<dataType>VARCHAR2 (70 BYTE)</dataType>
+<headerAlias>Business_Info_ID</headerAlias>
+<reference>false</reference>
+<referencedColumn>DDF3F7AD-6380-8484-D2C5-FBC876ECC350</referencedColumn>
+<table>69E3359E-51C3-9B1F-0E30-295C8D379CFE</table>
+<viewID>26E8DBB0-A6CC-7151-DA75-EB2315EAB969</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="BUSINESS_INFO_OVID" id="AEC41BA9-A4CB-BF70-DF36-1D0DBC075F10">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:09 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<dataType>VARCHAR2 (36 BYTE)</dataType>
+<headerAlias>Business_Info_OVID</headerAlias>
+<reference>false</reference>
+<referencedColumn>A5376F5B-1FE2-4487-3673-EDBB032833C6</referencedColumn>
+<table>69E3359E-51C3-9B1F-0E30-295C8D379CFE</table>
+<viewID>26E8DBB0-A6CC-7151-DA75-EB2315EAB969</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="BUSINESS_INFO_NAME" id="9C82B2B0-1708-0E78-9892-B2B258D91573">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:09 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<dataType>VARCHAR2 (256 BYTE)</dataType>
+<headerAlias>Business_Info_Name</headerAlias>
+<reference>false</reference>
+<referencedColumn>C6DF37C6-438F-88D7-D6A4-3E593AC46ABC</referencedColumn>
+<table>69E3359E-51C3-9B1F-0E30-295C8D379CFE</table>
+<viewID>26E8DBB0-A6CC-7151-DA75-EB2315EAB969</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="URL" id="300B8DE7-E18D-CCED-5998-BA7DED69AA37">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:09 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<dataType>VARCHAR2 (2000 BYTE)</dataType>
+<headerAlias>Url</headerAlias>
+<reference>false</reference>
+<referencedColumn>D056BEF0-AEB4-8570-EEAF-792E4199E4B0</referencedColumn>
+<table>69E3359E-51C3-9B1F-0E30-295C8D379CFE</table>
+<viewID>26E8DBB0-A6CC-7151-DA75-EB2315EAB969</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="DESIGN_OVID" id="A3765EFD-9411-AF8C-BC67-EED6104AC457">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:09 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<dataType>VARCHAR2 (36 BYTE)</dataType>
+<headerAlias>Design_OVID</headerAlias>
+<reference>false</reference>
+<referencedColumn>DD2A4FAD-CC42-15FE-6773-BA4481BFEC70</referencedColumn>
+<table>69E3359E-51C3-9B1F-0E30-295C8D379CFE</table>
+<viewID>26E8DBB0-A6CC-7151-DA75-EB2315EAB969</viewID>
+</viewElement>
+</viewElements>
+</TableView>

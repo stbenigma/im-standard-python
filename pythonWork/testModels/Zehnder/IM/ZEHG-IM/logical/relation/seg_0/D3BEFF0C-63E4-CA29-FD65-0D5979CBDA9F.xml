@@ -1,0 +1,26 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_38" directorySegmentName="seg_0" id="D3BEFF0C-63E4-CA29-FD65-0D5979CBDA9F">
+<createdBy>stb</createdBy>
+<createdTime>2020-08-13 13:09:51 UTC</createdTime>
+<ownerDesignName>ZEHG-IM</ownerDesignName>
+<engineerTo>
+<item key="E73667C8-D73D-37B9-7BB4-9427B1B6DC71" value="true"/>
+</engineerTo>
+<useSurrogateKey>true</useSurrogateKey>
+<identifying>false</identifying>
+<nameOnSource>builds</nameOnSource>
+<nameOnTarget>buildable from</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>FF4A01C2-E3B1-9A5D-4FFE-1C8C9EC3486A</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>2D3D1C08-F8C0-6C23-6F03-8C2E3F2E3E2A</targetEntity>
+<transferable>true</transferable>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="*EN* builds"/>
+<property name="DE_RELA_TEXT_TO" value="*EN* buildable from"/>
+<property name="EN_RELA_TEXT_FROM" value="builds"/>
+<property name="EN_RELA_TEXT_TO" value="buildable from"/>
+</propertyMap>
+</Relation>

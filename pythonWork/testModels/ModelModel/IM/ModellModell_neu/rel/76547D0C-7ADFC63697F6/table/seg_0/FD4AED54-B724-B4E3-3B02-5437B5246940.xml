@@ -1,0 +1,202 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="FD4AED54-B724-B4E3-3B02-5437B5246940" schemaObject="833E4DE4-2E61-95B8-D681-1740D7FACB7C" name="BUSINESS_RULES">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>BUSINESS_RULE</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:40:57 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<ordsAlias>business_rule</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="BURU_ID" id="BAA91504-79D6-8DBD-1171-42EDADCDB433">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>BUSINESS_RULE</sourceObjSchema>
+<sourceObjName>BURU_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:40:57 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="BURU_NAME" id="F327985E-C735-D1E4-3AD7-EC8D5A8290E2">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>BUSINESS_RULE</sourceObjSchema>
+<sourceObjName>BURU_NAME</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:40:57 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>60</dataTypeSize>
+<ownDataTypeParameters>60,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="BURU_RULE" id="FBDFECEB-C578-D813-D1EE-C0D4AAD36548">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-23 15:03:00 UTC</createdTime>
+<comment><![CDATA[Rule to check or perform]]></comment>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="BURU_DESCR" id="73C41B82-95BF-2935-2538-39612B82CAEF">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>BUSINESS_RULE</sourceObjSchema>
+<sourceObjName>BURU_DESCR</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:40:57 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>4000</dataTypeSize>
+<ownDataTypeParameters>4000,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="BURU_IMPACT" id="0B78C290-C601-010E-E924-69D9A8E5747E">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>BUSINESS_RULE</sourceObjSchema>
+<sourceObjName>BURU_IMPACT</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:40:57 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypePrecision>4000</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>4000</dataTypeSize>
+<ownDataTypeParameters>4000,4000,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="BURU_TYPE" id="227E0096-2A3F-AC45-9D6A-E63BC7D1F4AA">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>BUSINESS_RULE</sourceObjSchema>
+<sourceObjName>BURU_TYPE</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:40:57 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<constraintName>CK__BUSINESS___BURU___1293BD5E</constraintName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>10</dataTypeSize>
+<checkConstraint>
+<implementationDef dbType="SQL Server 2012" definition="[BURU_TYPE]=&apos;TRIGGER&apos; OR [BURU_TYPE]=&apos;CHECK&apos; OR [BURU_TYPE]=&apos;CALC&apos;"/>
+</checkConstraint>
+<ownDataTypeParameters>10,10,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="BURU_LEVEL" id="23E27539-4D27-90D9-E99A-9C83E16E44EC">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>BUSINESS_RULE</sourceObjSchema>
+<sourceObjName>BURU_LEVEL</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:40:57 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<constraintName>CK__BUSINESS___BURU___1387E197</constraintName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>10</dataTypeSize>
+<checkConstraint>
+<implementationDef dbType="SQL Server 2012" definition="[BURU_LEVEL]=&apos;TUPL&apos; OR [BURU_LEVEL]=&apos;ENTI&apos; OR [BURU_LEVEL]=&apos;DB&apos; OR [BURU_LEVEL]=&apos;ATTR&apos;"/>
+</checkConstraint>
+<ownDataTypeParameters>10,10,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="BURU_ERRORMSG" id="50C3AA4E-357A-916D-289A-D44DA8A9DF2D">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>BUSINESS_RULE</sourceObjSchema>
+<sourceObjName>BURU_ERRORMSG</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:40:57 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100</dataTypeSize>
+<ownDataTypeParameters>100,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="BURU_UC" id="6D18945A-421A-3304-0C3B-466FB6545F5A">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-22 07:02:29 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30</dataTypeSize>
+<ownDataTypeParameters>30,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="BURU_DC" id="18BF7312-2874-4757-C776-C89158B0440E">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-22 07:02:29 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT008</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="BURU_UM" id="190C6736-6F5E-F5B3-4134-AC92D9712FA4">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-22 07:02:29 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30</dataTypeSize>
+<ownDataTypeParameters>30,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="BURU_DM" id="02AB5D44-0374-DC2F-554E-CC145A324897">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-22 07:02:29 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT008</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="2E8ABB99-026D-DF38-C620-C7E23F7541D6" name="BURU_PK">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>BURU_PK</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:40:58 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="BAA91504-79D6-8DBD-1171-42EDADCDB433"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

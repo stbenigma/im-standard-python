@@ -1,0 +1,19 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="91CA2EBC-E42F-BCCB-01C9-EE2097CE1CE9" containerWithKeyObject="1A96C2EC-F488-31B6-569C-787BA9B6F5D6" localFKIndex="665B1351-FF48-5059-D731-C85B5EC8E8C0" name="MODE_MELT_FK">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>MODE_MELT_FK</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:15 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<referredTableLongName>modelmodel_dbo.MODELELEM_TYPE</referredTableLongName>
+<deleteRule>RESTRICT</deleteRule>
+<referredTableID>452C10E1-BB9E-9CF4-0E77-D14F39C35F22</referredTableID>
+<keyObject>0EE1D6CE-E61D-7568-C699-FA8299B844E8</keyObject>
+<referredKeyID>0EE1D6CE-E61D-7568-C699-FA8299B844E8</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>MELT_ID</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

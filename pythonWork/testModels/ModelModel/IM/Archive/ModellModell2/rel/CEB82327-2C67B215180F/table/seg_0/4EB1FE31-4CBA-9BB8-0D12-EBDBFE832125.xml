@@ -1,0 +1,73 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="4EB1FE31-4CBA-9BB8-0D12-EBDBFE832125" name="Netzwerksystem">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<generatorID>21415C86-0907-0BA0-E669-43D1F38A6609</generatorID>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<typeID>57779FAE-171C-9BB2-9F88-9B2ED7060C6F</typeID>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="IT-System_IT-Komponente_Modellelement_Modellelement_ID" id="6EF37E6E-4681-F231-2152-B7E0E8B0DE3E">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="78E81CD5-92E6-9703-6CF5-B0F5E5163304" referredColumn="F5191C5A-745F-0194-51B1-01233C963137"/>
+</associations>
+</Column>
+<Column name="Netzwerksystem_ID" id="2F4AC875-A6BD-13B1-696E-F25FA11DDD0C">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="E3CEF7DC-2571-87B1-BD8E-B1501E923C3A" name="Netzwerksystem_PK">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="6EF37E6E-4681-F231-2152-B7E0E8B0DE3E"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="975117B6-E38E-5383-0C12-0688ADAB75D2" name="Netzwerksystem_Netzwerksystem_ID_UN">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="2F4AC875-A6BD-13B1-696E-F25FA11DDD0C"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="259198EC-A80D-DC59-2BDE-220F81622514" name="Netzwerksystem_IT-System_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<generatorID>54D06976-044D-7306-ECF2-A3DFF5887604</generatorID>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="6EF37E6E-4681-F231-2152-B7E0E8B0DE3E"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

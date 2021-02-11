@@ -1,0 +1,183 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableView class="oracle.dbtools.crest.model.design.relational.TableView" directorySegmentName="seg_0" id="D58F17D1-4D00-596B-ECA4-243E33D801DE" schemaObject="19221298-76C4-E323-B35B-7857802DF7E7" name="DMRV_DOMAIN_VALUE_RANGES">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>ADMIN</sourceObjSchema>
+<sourceObjName>DMRV_DOMAIN_VALUE_RANGES</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:28 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<userDefined>true</userDefined>
+<userDefinedSQL><![CDATA[CREATE OR REPLACE VIEW DMRV_DOMAIN_VALUE_RANGES
+AS 
+select  Domain_ID, Domain_OVID, Sequence, Begin_Value, End_Value, Short_Description, Domain_Name, Design_OVID from DMRS_DOMAIN_VALUE_RANGES]]></userDefinedSQL>
+<parsed>true</parsed>
+<viewElements>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="DOMAIN_ID" id="690B3813-1102-3EA4-DE38-576682033611">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_DOMAIN_VALUE_RANGES</sourceObjSchema>
+<sourceObjName>DOMAIN_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:28 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>DOMAIN_ID</alias>
+<dataType>VARCHAR2 (70 BYTE)</dataType>
+<headerAlias>DOMAIN_ID</headerAlias>
+<reference>false</reference>
+<referencedColumn>16821C36-C683-2D84-3F55-457084AC7153</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="DOMAIN_OVID" id="63B2621C-03FD-153E-D588-CA46E12EF656">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_DOMAIN_VALUE_RANGES</sourceObjSchema>
+<sourceObjName>DOMAIN_OVID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:28 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>DOMAIN_OVID</alias>
+<dataType>VARCHAR2 (36 BYTE)</dataType>
+<headerAlias>DOMAIN_OVID</headerAlias>
+<reference>false</reference>
+<referencedColumn>D46820B4-2DA9-A4F0-96B3-26FE693FC4EF</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="SEQUENCE" id="D6EA0239-7B20-0311-09B1-74682161A3B7">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_DOMAIN_VALUE_RANGES</sourceObjSchema>
+<sourceObjName>SEQUENCE</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:28 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>SEQUENCE</alias>
+<dataType>NUMBER</dataType>
+<headerAlias>SEQUENCE</headerAlias>
+<reference>false</reference>
+<referencedColumn>E347FB9D-AD66-0569-F3B8-5A2B43B76CB5</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="BEGIN_VALUE" id="BB0A63C8-A68A-3575-6E7C-9F79B32CABFB">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_DOMAIN_VALUE_RANGES</sourceObjSchema>
+<sourceObjName>BEGIN_VALUE</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:28 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>BEGIN_VALUE</alias>
+<dataType>VARCHAR2 (256 BYTE)</dataType>
+<headerAlias>BEGIN_VALUE</headerAlias>
+<reference>false</reference>
+<referencedColumn>50520D3F-058F-2B83-40A1-2AF1D41B9A30</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="END_VALUE" id="5787A3D5-AE76-23E2-0EEE-17B87485B54F">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_DOMAIN_VALUE_RANGES</sourceObjSchema>
+<sourceObjName>END_VALUE</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:28 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>END_VALUE</alias>
+<dataType>VARCHAR2 (256 BYTE)</dataType>
+<headerAlias>END_VALUE</headerAlias>
+<reference>false</reference>
+<referencedColumn>E1DD5DA4-B1C4-9E92-A7C0-D838A29C9622</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="SHORT_DESCRIPTION" id="42D6B4EA-1C9F-7E03-2594-C2AA26D824A2">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_DOMAIN_VALUE_RANGES</sourceObjSchema>
+<sourceObjName>SHORT_DESCRIPTION</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:28 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>SHORT_DESCRIPTION</alias>
+<dataType>VARCHAR2 (256 BYTE)</dataType>
+<headerAlias>SHORT_DESCRIPTION</headerAlias>
+<reference>false</reference>
+<referencedColumn>B54309E0-D8FC-9B97-FC5C-78FAE5D4DBE4</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="DOMAIN_NAME" id="1D6D05BD-DBEE-B60D-D3AE-7519CBF5E5A1">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_DOMAIN_VALUE_RANGES</sourceObjSchema>
+<sourceObjName>DOMAIN_NAME</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:28 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>DOMAIN_NAME</alias>
+<dataType>VARCHAR2 (256 BYTE)</dataType>
+<headerAlias>DOMAIN_NAME</headerAlias>
+<reference>false</reference>
+<referencedColumn>106E501D-AAFD-848C-A522-084E548B94FB</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="DESIGN_OVID" id="8AD5634E-A626-443A-086E-E8A4D98C7A28">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_DOMAIN_VALUE_RANGES</sourceObjSchema>
+<sourceObjName>DESIGN_OVID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:28 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>DESIGN_OVID</alias>
+<dataType>VARCHAR2 (36 BYTE)</dataType>
+<headerAlias>DESIGN_OVID</headerAlias>
+<reference>false</reference>
+<referencedColumn>3E4E5173-C90B-07CA-479A-7BE87F056A96</referencedColumn>
+</viewElement>
+</viewElements>
+<usedObjects>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="16821C36-C683-2D84-3F55-457084AC7153">
+<columnName>DOMAIN_ID</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_DOMAIN_VALUE_RANGES</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="D46820B4-2DA9-A4F0-96B3-26FE693FC4EF">
+<columnName>DOMAIN_OVID</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_DOMAIN_VALUE_RANGES</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="E347FB9D-AD66-0569-F3B8-5A2B43B76CB5">
+<columnName>SEQUENCE</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_DOMAIN_VALUE_RANGES</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="50520D3F-058F-2B83-40A1-2AF1D41B9A30">
+<columnName>BEGIN_VALUE</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_DOMAIN_VALUE_RANGES</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="E1DD5DA4-B1C4-9E92-A7C0-D838A29C9622">
+<columnName>END_VALUE</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_DOMAIN_VALUE_RANGES</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="B54309E0-D8FC-9B97-FC5C-78FAE5D4DBE4">
+<columnName>SHORT_DESCRIPTION</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_DOMAIN_VALUE_RANGES</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="106E501D-AAFD-848C-A522-084E548B94FB">
+<columnName>DOMAIN_NAME</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_DOMAIN_VALUE_RANGES</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="3E4E5173-C90B-07CA-479A-7BE87F056A96">
+<columnName>DESIGN_OVID</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_DOMAIN_VALUE_RANGES</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="81BB32CB-27F1-E0B9-E387-2991C2EEC507">
+<container>true</container>
+<schema>ADMIN</schema>
+<tableName>DMRS_DOMAIN_VALUE_RANGES</tableName>
+</UsedObject>
+</usedObjects>
+</TableView>

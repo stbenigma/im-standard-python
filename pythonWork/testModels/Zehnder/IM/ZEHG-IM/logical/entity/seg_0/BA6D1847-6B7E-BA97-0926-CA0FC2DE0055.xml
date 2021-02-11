@@ -1,0 +1,57 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="BA6D1847-6B7E-BA97-0926-CA0FC2DE0055" name="Multipack">
+<createdBy>cle</createdBy>
+<createdTime>2020-08-12 11:54:56 UTC</createdTime>
+<comment><![CDATA[**
+Example: Filter in different quantities (2 pieces, 5 pieces)]]></comment>
+<notes><![CDATA[[EN_ENTI_COMMENT[
+**
+Example: Filter in different quantities (2 pieces, 5 pieces)
+]EN_ENTI_COMMENT]
+[DE_ENTI_COMMENT[
+Beispiel: Filter in verschiedenen Mengen (2 Stück, 5 Stück)
+]DE_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>ZEHG-IM</ownerDesignName>
+<engineerTo>
+<item key="E73667C8-D73D-37B9-7BB4-9427B1B6DC71" value="true"/>
+</engineerTo>
+<typeID>382EF552-1766-664E-FA4D-1C3B964D47B2</typeID>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<propertyMap>
+<property name="DE_ENTI_NAME" value="Multipack"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_NAME" value="Multipack"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Quantity" id="FB7729BE-5BE7-939F-2543-AFC72A8073F7">
+<createdBy>cle</createdBy>
+<createdTime>2020-08-12 11:58:28 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ZEHG-IM</ownerDesignName>
+<engineerTo>
+<item key="E73667C8-D73D-37B9-7BB4-9427B1B6DC71" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Anzahl"/>
+<property name="EN_ATTR_NAME" value="Quantity"/>
+</propertyMap>
+</Attribute>
+</attributes>
+</Entity>

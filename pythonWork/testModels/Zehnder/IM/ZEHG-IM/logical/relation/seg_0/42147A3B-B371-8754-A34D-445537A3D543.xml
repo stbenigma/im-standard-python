@@ -1,0 +1,26 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_19" directorySegmentName="seg_0" id="42147A3B-B371-8754-A34D-445537A3D543">
+<createdBy>cle</createdBy>
+<createdTime>2020-08-12 09:40:37 UTC</createdTime>
+<ownerDesignName>ZEHG-IM</ownerDesignName>
+<engineerTo>
+<item key="E73667C8-D73D-37B9-7BB4-9427B1B6DC71" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<nameOnSource>used in</nameOnSource>
+<nameOnTarget>is composed of</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>C1075060-B66A-5EB1-F200-C2F27532933B</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>5E640A46-20EB-D002-C86C-CF6F4A6E883E</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="verwendet in"/>
+<property name="DE_RELA_TEXT_TO" value="besteht aus"/>
+<property name="EN_RELA_TEXT_FROM" value="**used in"/>
+<property name="EN_RELA_TEXT_TO" value="**is composed of"/>
+</propertyMap>
+</Relation>

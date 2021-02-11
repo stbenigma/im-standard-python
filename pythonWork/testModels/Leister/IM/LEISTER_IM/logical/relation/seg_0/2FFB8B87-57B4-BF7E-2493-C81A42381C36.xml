@@ -1,0 +1,26 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_106" directorySegmentName="seg_0" id="2FFB8B87-57B4-BF7E-2493-C81A42381C36">
+<createdBy>ruben.antenen</createdBy>
+<createdTime>2019-11-26 13:18:52 UTC</createdTime>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<nameOnSource>gruppiert</nameOnSource>
+<nameOnTarget>zugeteilt zu</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>FC33C4CB-F9AC-880E-EB0D-33E06A9F9079</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>27A23C8F-5BCD-8DF6-A09A-1A5CA52730B4</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="gruppiert"/>
+<property name="DE_RELA_TEXT_TO" value="zugeteilt zu"/>
+<property name="EN_RELA_TEXT_FROM" value="**grouped"/>
+<property name="EN_RELA_TEXT_TO" value="**allotted to"/>
+</propertyMap>
+</Relation>

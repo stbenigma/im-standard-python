@@ -1,0 +1,252 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="E13A6F81-4D73-EC7D-A48F-BAC22958DCB2" schemaObject="BA9AB875-9DE2-0270-F892-66DA7F318378" name="t_files">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>t_files</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:09 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="FileID" id="95A958A3-DF80-5320-BAEE-1292EB5BE61A">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_files</sourceObjSchema>
+<sourceObjName>FileID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:09 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypePrecision>50</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,50,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="AppliesTo" id="B67A91DD-1634-9099-0920-33CEB6BF3752">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_files</sourceObjSchema>
+<sourceObjName>AppliesTo</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:09 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypePrecision>50</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,50,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Category" id="D9EFF88B-1D9B-D095-0488-09DD4B62665F">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_files</sourceObjSchema>
+<sourceObjName>Category</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:09 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypePrecision>100</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>100</dataTypeSize>
+<ownDataTypeParameters>100,100,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Name" id="A8310634-58B5-DA28-ED77-8AE3A186CB85">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_files</sourceObjSchema>
+<sourceObjName>Name</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:09 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypePrecision>150</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>150</dataTypeSize>
+<ownDataTypeParameters>150,150,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="File" id="AC28AED2-CADF-003D-A917-185AAA31D27F">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_files</sourceObjSchema>
+<sourceObjName>File</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:09 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypePrecision>255</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>255</dataTypeSize>
+<ownDataTypeParameters>255,255,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Notes" id="AD1841CB-C484-9658-3D4B-8AF552185BED">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_files</sourceObjSchema>
+<sourceObjName>Notes</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:09 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypePrecision>-1</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>max</dataTypeSize>
+<ownDataTypeParameters>max,-1,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="FileDate" id="C0D68731-2324-638F-EF85-7EED41C406B3">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_files</sourceObjSchema>
+<sourceObjName>FileDate</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:09 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT008</logicalDatatype>
+<dataTypePrecision>23</dataTypePrecision>
+<dataTypeScale>3</dataTypeScale>
+<dataTypeSize>8</dataTypeSize>
+<ownDataTypeParameters>8,23,3</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="FileSize" id="5C49C1AC-5208-B70C-FD41-529B4BFF5397">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_files</sourceObjSchema>
+<sourceObjName>FileSize</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:09 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>4</dataTypeSize>
+<ownDataTypeParameters>4,10,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="ED661555-CF5B-ADCB-D949-BF074F396648" name="pk_files">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>pk_files</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:10 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="95A958A3-DF80-5320-BAEE-1292EB5BE61A"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="CF0C4A71-8803-09C4-100D-B09C9274FF34" name="ix_files_appliesto">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>ix_files_appliesto</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:09 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="B67A91DD-1634-9099-0920-33CEB6BF3752"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="A8CCD483-AE23-844F-907D-69C0CEC0C0B1" name="ix_files_appliestoname">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>ix_files_appliestoname</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:09 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="B67A91DD-1634-9099-0920-33CEB6BF3752"/>
+<colUsage columnID="A8310634-58B5-DA28-ED77-8AE3A186CB85"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="67BF5D25-84C8-266E-01D3-A21B3ED55FBC" name="ix_files_appliestonamedatesize">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>ix_files_appliestonamedatesize</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:09 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="B67A91DD-1634-9099-0920-33CEB6BF3752"/>
+<colUsage columnID="A8310634-58B5-DA28-ED77-8AE3A186CB85"/>
+<colUsage columnID="C0D68731-2324-638F-EF85-7EED41C406B3"/>
+<colUsage columnID="5C49C1AC-5208-B70C-FD41-529B4BFF5397"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="39F63CDA-7A0C-74F0-3BCA-FA37BAB8E639" name="ix_files_appliestonamesize">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>ix_files_appliestonamesize</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:10 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="B67A91DD-1634-9099-0920-33CEB6BF3752"/>
+<colUsage columnID="A8310634-58B5-DA28-ED77-8AE3A186CB85"/>
+<colUsage columnID="5C49C1AC-5208-B70C-FD41-529B4BFF5397"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="965837A8-57C8-F5EA-CCAF-14BD2BD4BA1A" name="ix_files_category">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>ix_files_category</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:10 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="D9EFF88B-1D9B-D095-0488-09DD4B62665F"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="6E19CA67-0AE1-8AAD-72EA-9DBACB30073B" name="ix_files_filesize">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>ix_files_filesize</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:10 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="5C49C1AC-5208-B70C-FD41-529B4BFF5397"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="EA4C323A-4742-1DF8-711F-CA414F089CD1" name="ix_files_name">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>ix_files_name</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:10 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="A8310634-58B5-DA28-ED77-8AE3A186CB85"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -1,0 +1,71 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev12c class="oracle.dbtools.crest.model.design.storage.oracle.v12c.TableProxyOraclev12c" name="DATATYPES" directorySegmentName="seg_1" id="AC7B4945-A696-AFE4-1748-BB75118CA33E">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-02 22:11:08 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<temporaryChanged>false</temporaryChanged>
+<accessDriverType>oracle_loader</accessDriverType>
+<rejectLimit></rejectLimit>
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="DATY_UC" id="0DD033E5-D304-3C01-67A5-70B0D28093ED">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-02 22:11:08 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="DATY_DC" id="3054638C-73B4-ED42-157A-FF334D62A345">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-02 22:11:08 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="DATY_UM" id="5C4E9EA8-A6FB-3884-DD11-4A87D834CED3">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-02 22:11:08 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="DATY_BASETYPE" id="6A0AC23E-804C-17D3-1693-76B140B1578D">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-02 22:11:08 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="DATY_ID" id="AA1C8108-16B6-83B3-65DA-F1F697F75488">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-02 22:11:08 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="DATY_NAME" id="C543337D-0712-C93E-776F-0D391FC76C85">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-02 22:11:08 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="DATY_DM" id="F7B201B6-BCCF-3C07-2601-5FB501D57B5D">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-02 22:11:08 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+<foreignKeys>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="DATY_MODE_FK" id="C5CC59BA-DC40-21FD-CC25-8AD82EC2ED30">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-02 22:11:08 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+</ForeignKey>
+</foreignKeys>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="DATY_PK" id="E444F791-1F8A-5EA9-851E-986412B202ED">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-02 22:11:08 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexSort>SORTED</indexSort>
+</PrimaryKey>
+</primaryKeys>
+<uniqueKeys>
+<UniqueKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.UniqueOraclev10g" name="DATY_UN" id="490B311C-CE43-E115-F7BC-6983904A8681">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-02 22:11:08 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexSort>SORTED</indexSort>
+</UniqueKey>
+</uniqueKeys>
+</TableProxyOraclev12c>

@@ -1,0 +1,23 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="1BD5411C-2BCA-7B96-0064-A311DDD41439" name="Service">
+<createdBy>stb</createdBy>
+<createdTime>2019-09-17 11:39:25 UTC</createdTime>
+<comment><![CDATA[Wartungsleistung für Produkte.
+
+Beispiele:
+Reparatur und Wartung eines Motors mit der Seriennummer 1729375]]></comment>
+<ownerDesignName>Rexroth</ownerDesignName>
+<engineerTo>
+<item key="1F21CDC4-54AF-60F3-83B2-C493A0A6017A" value="true"/>
+</engineerTo>
+<typeID>67A91B31-6343-D043-6388-7BAF29C5440E</typeID>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<createSurrogateKey>true</createSurrogateKey>
+</Entity>

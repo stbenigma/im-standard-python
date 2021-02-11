@@ -1,0 +1,5 @@
+#!/bin/bash
+PYTHONPATH=/usr/local/anaconda3/bin
+CURRDIR=$(dirname "$0")
+SOURCEPATH=$CURRDIR/../../pythonSource
+$PYTHONPATH/python $SOURCEPATH/IM_WEB/webfillallin1.py $CURRDIR de FORCE

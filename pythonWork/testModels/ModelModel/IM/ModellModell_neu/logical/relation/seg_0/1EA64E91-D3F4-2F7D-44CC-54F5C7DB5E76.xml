@@ -1,0 +1,30 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_288" directorySegmentName="seg_0" id="1EA64E91-D3F4-2F7D-44CC-54F5C7DB5E76">
+<createdBy>stb</createdBy>
+<createdTime>2020-10-08 15:55:56 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<engineerTo>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
+<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
+</engineerTo>
+<useSurrogateKey>true</useSurrogateKey>
+<identifying>false</identifying>
+<nameOnSource>nutzt</nameOnSource>
+<nameOnTarget>genutzt in</nameOnTarget>
+<optionalSource>false</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>1DBCFA4E-CB67-246B-8C49-2256D0069592</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>F272EFDB-39FD-D70C-B8D9-6873F2B6E56C</targetEntity>
+<transferable>true</transferable>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="nutzt"/>
+<property name="DE_RELA_TEXT_TO" value="genutzt in"/>
+<property name="EN_RELA_TEXT_FROM" value="*DE* nutzt"/>
+<property name="EN_RELA_TEXT_TO" value="*DE* genutzt in"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
+</propertyMap>
+</Relation>

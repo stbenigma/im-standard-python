@@ -1,0 +1,30 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_282" directorySegmentName="seg_0" id="10201C9E-C90B-C179-84EB-F1546603A7F4">
+<createdBy>stb</createdBy>
+<createdTime>2020-07-28 09:42:28 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<engineerTo>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
+<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
+</engineerTo>
+<useSurrogateKey>true</useSurrogateKey>
+<identifying>false</identifying>
+<nameOnSource>strukturiert durch</nameOnSource>
+<nameOnTarget>strukturiert</nameOnTarget>
+<optionalSource>false</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>0FC852DA-07D0-543C-A5E4-6B494E90CE94</sourceEntity>
+<targetCardinalityString>1</targetCardinalityString>
+<targetEntity>24EAB78F-2091-E55C-81D4-46B0EB76F1AB</targetEntity>
+<transferable>true</transferable>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="strukturiert durch"/>
+<property name="DE_RELA_TEXT_TO" value="strukturiert"/>
+<property name="EN_RELA_TEXT_FROM" value="structured by"/>
+<property name="EN_RELA_TEXT_TO" value="structures"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
+</propertyMap>
+</Relation>

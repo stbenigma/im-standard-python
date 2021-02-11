@@ -1,0 +1,19 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="7A9BE64A-EAD1-6098-1E40-00E8F9E57FB7" containerWithKeyObject="5909CE39-7EC2-189F-2174-CAB804500849" localFKIndex="2A6A0A05-FD2A-8916-13AD-B01EC9997F4D" name="LANG_REPLACE_FK">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>LANG_REPLACE_FK</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:15 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<referredTableLongName>modelmodel_dbo.LANGUAGES</referredTableLongName>
+<deleteRule>RESTRICT</deleteRule>
+<referredTableID>5909CE39-7EC2-189F-2174-CAB804500849</referredTableID>
+<keyObject>7AB98ABD-5500-153F-5014-18980E9C8B7C</keyObject>
+<referredKeyID>7AB98ABD-5500-153F-5014-18980E9C8B7C</referredKeyID>
+<mandatory>false</mandatory>
+<refColNames>LANG_ID</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

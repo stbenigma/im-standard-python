@@ -1,0 +1,35 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<StructuredType class="oracle.dbtools.crest.model.design.datatypes.StructuredType" name="Andockposition" directorySegmentName="seg_0" id="15C1AAF0-38D4-D58B-BBB0-7E7AFF4FA9E7">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-07 14:53:40 UTC</createdTime>
+<comment><![CDATA[Position auf einem Element, an der die Linie andockt.
+Relativ: Richtung und %-Längepostion auf der Kurve in diese Richtung]]></comment>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<predefined>false</predefined>
+<final>false</final>
+<instantiable>true</instantiable>
+<attributes itemClass="oracle.dbtools.crest.model.design.datatypes.TypeElement">
+<Attribute name="Seite" id="68ECBE05-FCAB-75A1-B450-EA0861E1506C">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-07 14:53:48 UTC</createdTime>
+<commentInRDBMS><![CDATA[Seite des Rechtecks bzw. Maximalpunkt in der Himmeslrichtung einer Ellipse oder eines Kreises.]]></commentInRDBMS>
+<ownerDesignName>ModellModell</ownerDesignName>
+<mandatory>false</mandatory>
+<precision>0</precision>
+<reference>false</reference>
+<scale>0</scale>
+<type>6278A05A-92AB-F45B-2BB8-31C71ABC2F69</type>
+</Attribute>
+<Attribute name="Position" id="9539E9ED-5742-DF7A-D7B1-99E86BC23F88">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-07 14:53:57 UTC</createdTime>
+<comment><![CDATA[Prozent der Linienlänge von links oder oben gemessen. Bzw. Prozent des Bogens zum nächsten Himmelsrichtungspunktes im Uhrzeigersinn.]]></comment>
+<ownerDesignName>ModellModell</ownerDesignName>
+<mandatory>false</mandatory>
+<precision>0</precision>
+<reference>false</reference>
+<scale>0</scale>
+<type>348830AA-2613-5D59-292A-41AAB32EB3D3</type>
+</Attribute>
+</attributes>
+</StructuredType>

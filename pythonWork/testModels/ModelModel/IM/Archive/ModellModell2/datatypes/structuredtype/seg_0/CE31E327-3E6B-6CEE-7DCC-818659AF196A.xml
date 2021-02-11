@@ -1,0 +1,76 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<StructuredType class="oracle.dbtools.crest.model.design.datatypes.StructuredType" name="Elementdarstellung" directorySegmentName="seg_0" id="CE31E327-3E6B-6CEE-7DCC-818659AF196A">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-08 05:53:54 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<predefined>false</predefined>
+<final>false</final>
+<instantiable>true</instantiable>
+<attributes itemClass="oracle.dbtools.crest.model.design.datatypes.TypeElement">
+<Attribute name="Farbe" id="79B40FB2-0D71-B333-F11A-6BF42CB476F1">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-08 05:54:02 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<mandatory>true</mandatory>
+<precision>0</precision>
+<reference>false</reference>
+<scale>0</scale>
+<type>06269521-C0BC-78CB-FBC8-656101307358</type>
+</Attribute>
+<Attribute name="Deckkraft" id="78EB2EA2-1B31-B620-76C8-F0ACE44FE324">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-08 05:55:39 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<mandatory>true</mandatory>
+<precision>0</precision>
+<reference>false</reference>
+<scale>0</scale>
+<type>3C43C579-B2CF-0898-C553-AF95467F1601</type>
+</Attribute>
+<Attribute name="Breite" id="BF7C675D-F472-D4E0-D0E7-0E519F1C73EC">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-08 05:54:29 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<mandatory>true</mandatory>
+<precision>0</precision>
+<reference>false</reference>
+<scale>0</scale>
+<type>9899F774-954D-6AB0-8DC2-BB1FE9F99D28</type>
+</Attribute>
+<Attribute name="Höhe" id="A212ECBD-508B-BB92-4CA0-A414C275E0BF">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-08 05:54:37 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<mandatory>true</mandatory>
+<precision>0</precision>
+<reference>false</reference>
+<scale>0</scale>
+<type>9899F774-954D-6AB0-8DC2-BB1FE9F99D28</type>
+</Attribute>
+<Attribute name="Position" id="4D8DC9F3-AA7A-E10B-1D50-BAC37BF7F250">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-08 05:54:45 UTC</createdTime>
+<commentInRDBMS><![CDATA[Position gemessen ab dem 0punkt (obere linke Ecke)]]></commentInRDBMS>
+<ownerDesignName>ModellModell</ownerDesignName>
+<mandatory>true</mandatory>
+<precision>0</precision>
+<reference>false</reference>
+<referencerelation>22B37020-088B-8679-5513-5836CDAA483A</referencerelation>
+<scale>0</scale>
+<type>6BF3BAC5-EEB4-DFEB-3305-72CD249CFFF4</type>
+<referenceID>22B37020-088B-8679-5513-5836CDAA483A</referenceID>
+</Attribute>
+<Attribute name="Randdarstellung" id="FF5FAB5B-407C-321C-7FB2-058E86A213CB">
+<createdBy>stb</createdBy>
+<createdTime>2019-12-10 17:45:29 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<mandatory>false</mandatory>
+<precision>0</precision>
+<reference>false</reference>
+<referencerelation>22885BBB-05E1-8FCC-5B21-F23A5E285552</referencerelation>
+<scale>0</scale>
+<type>4816C7EE-B5FE-5DB1-A87E-537F82A20453</type>
+<referenceID>22885BBB-05E1-8FCC-5B21-F23A5E285552</referenceID>
+</Attribute>
+</attributes>
+</StructuredType>

@@ -1,0 +1,257 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="F14CCFBB-AEB4-6018-0394-75855B5D8869" name="Postalische Adresse">
+<createdBy>ruben.antenen</createdBy>
+<createdTime>2019-08-30 12:34:21 UTC</createdTime>
+<comment><![CDATA[Beschreibung einer geografischen und/oder postalischen Lokation.]]></comment>
+<notes><![CDATA[[EN_ENTI_COMMENT[
+**Description of a geographical and/or postal location.
+]EN_ENTI_COMMENT]
+[DE_ENTI_COMMENT[
+Beschreibung einer geografischen und/oder postalischen Lokation.
+]DE_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<typeID>EAE76259-2726-6331-F045-11A3187A31D0</typeID>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<propertyMap>
+<property name="DE_ENTI_NAME" value="Postalische Adresse"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_NAME" value="**Postal address"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Strasse" id="3B3557DE-8345-5C8D-E8BF-9B91DECFD644">
+<createdBy>stb</createdBy>
+<createdTime>2019-09-03 06:58:47 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<dataTypeSize>100</dataTypeSize>
+<ownDataTypeParameters>100,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Strasse"/>
+<property name="DHL AttrName" value="."/>
+<property name="DHL AttrName Receiver" value="Receiver.StreetName"/>
+<property name="DHL AttrName Shipper" value="Shipper.Address.StreetName"/>
+<property name="EN_ATTR_NAME" value="**Street"/>
+<property name="PENTA AttrID" value=""/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="ShipperStreet"/>
+<property name="SAPByD AttrName Shipper" value="CustomerStreet"/>
+</propertyMap>
+</Attribute>
+<Attribute name="Hausnummer" id="6024B01C-4939-5236-7B07-9C211F3CC636">
+<createdBy>ruben.antenen</createdBy>
+<createdTime>2019-09-05 05:57:24 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<dataTypeSize>100</dataTypeSize>
+<ownDataTypeParameters>100,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Hausnummer"/>
+<property name="DHL AttrName" value="."/>
+<property name="DHL AttrName Receiver" value="Receiver.StreetNumber"/>
+<property name="DHL AttrName Shipper" value="Shipper.Address.StreetNumber"/>
+<property name="EN_ATTR_NAME" value="**House number"/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="ShipperHouseID"/>
+<property name="SAPByD AttrName Shipper" value="CustomerHouseID"/>
+</propertyMap>
+</Attribute>
+<Attribute name="PLZ" id="85A6A00C-5349-753B-56D0-E543F9748F9F">
+<createdBy>stb</createdBy>
+<createdTime>2019-09-03 06:58:52 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="PLZ"/>
+<property name="DHL AttrName" value="."/>
+<property name="DHL AttrName Receiver" value="Receiver.Zip"/>
+<property name="DHL AttrName Shipper" value="Shipper.Address.Zip"/>
+<property name="EN_ATTR_NAME" value="**POSTCODE"/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="ShipperPostalCode"/>
+<property name="SAPByD AttrName Shipper" value="CustomerPostalCode"/>
+</propertyMap>
+</Attribute>
+<Attribute name="Ort" id="D4181A50-4417-9084-F552-B065C30F4EBE">
+<createdBy>stb</createdBy>
+<createdTime>2019-09-03 06:58:55 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<dataTypeSize>100</dataTypeSize>
+<ownDataTypeParameters>100,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Ort"/>
+<property name="DHL AttrName" value="."/>
+<property name="DHL AttrName Receiver" value="Receiver.City"/>
+<property name="DHL AttrName Shipper" value="Shipper.Address.City"/>
+<property name="EN_ATTR_NAME" value="**Location"/>
+<property name="PENTA datatype" value=""/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="ShipperCityName"/>
+<property name="SAPByD AttrName Shipper" value="CustomerCityName"/>
+</propertyMap>
+</Attribute>
+<Attribute name="Land" id="48F686D8-8879-52CB-F6DB-53161EBC09AA">
+<createdBy>ruben.antenen</createdBy>
+<createdTime>2019-09-05 05:58:06 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<dataTypeSize>100</dataTypeSize>
+<ownDataTypeParameters>100,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Land"/>
+<property name="DHL AttrName" value="."/>
+<property name="DHL AttrName Receiver" value="Receiver.Origin.Country"/>
+<property name="DHL AttrName Shipper" value="Shipper.Address.Country"/>
+<property name="EN_ATTR_NAME" value="**Country"/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="ShipperCountryName"/>
+<property name="SAPByD AttrName Shipper" value="CustomerCountryName"/>
+</propertyMap>
+</Attribute>
+<Attribute name="Ländercode" id="5A969882-0222-F310-BB8A-A5FCA0465D9C">
+<createdBy>ruben.antenen</createdBy>
+<createdTime>2019-09-05 05:58:10 UTC</createdTime>
+<comment><![CDATA[Zweistelliger Ländercode nach ISO-3166
+
+Beispiele: CH, DE, US]]></comment>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+**Two-digit country code according to ISO-3166
+
+Examples: CH, DE, US
+]EN_ATTR_COMMENT]
+[DE_ATTR_COMMENT[
+Zweistelliger Ländercode nach ISO-3166
+
+Beispiele: CH, DE, US
+]DE_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<dataTypeSize>2</dataTypeSize>
+<domain>49680D1E-2701-8B8F-3D9D-5E80DA3E47AE</domain>
+<ownDataTypeParameters>2,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Ländercode"/>
+<property name="DHL AttrName" value="."/>
+<property name="DHL AttrName Receiver" value="Receiver.Origin.CountryISOCode"/>
+<property name="DHL AttrName Shipper" value="Shipper.Address.CountryISOCode"/>
+<property name="EN_ATTR_NAME" value="**Country code"/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="ShipperCountryCode"/>
+<property name="SAPByD AttrName Shipper" value="CustomerCountryCode"/>
+</propertyMap>
+</Attribute>
+<Attribute name="ZusatzInfo" id="D8C9E7CB-83E8-1046-31AB-DBEA05FD5A7D">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-09 15:28:52 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<dataTypeSize>200</dataTypeSize>
+<ownDataTypeParameters>200,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="ZusatzInfo"/>
+<property name="DHL AttrName" value="CustomerAdditionalAddressAttributes"/>
+<property name="DHL AttrName Receiver" value="."/>
+<property name="DHL AttrName Shipper" value="."/>
+<property name="EN_ATTR_NAME" value="**Additional Info"/>
+<property name="SAPByD AttrName" value="CustomerAdditionalAddressAttributes"/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+</Attribute>
+</attributes>
+</Entity>

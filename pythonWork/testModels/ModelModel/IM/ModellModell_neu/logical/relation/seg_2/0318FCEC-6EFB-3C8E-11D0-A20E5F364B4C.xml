@@ -1,0 +1,30 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_271" directorySegmentName="seg_2" id="0318FCEC-6EFB-3C8E-11D0-A20E5F364B4C">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:06:05 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<engineerTo>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
+<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
+</engineerTo>
+<useSurrogateKey>true</useSurrogateKey>
+<identifying>false</identifying>
+<nameOnSource>braucht</nameOnSource>
+<nameOnTarget>trägt bei zu</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>B9E4DE15-CBBF-644A-E9A4-5FADCCF403A5</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>A4D88676-AC61-8241-3326-C63881BEF1B1</targetEntity>
+<transferable>true</transferable>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="braucht"/>
+<property name="DE_RELA_TEXT_TO" value="trägt bei zu"/>
+<property name="EN_RELA_TEXT_FROM" value="needs"/>
+<property name="EN_RELA_TEXT_TO" value="contributes to"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
+</propertyMap>
+</Relation>

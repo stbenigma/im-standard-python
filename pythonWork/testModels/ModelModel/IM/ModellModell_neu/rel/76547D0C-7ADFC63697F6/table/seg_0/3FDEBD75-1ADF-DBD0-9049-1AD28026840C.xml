@@ -1,0 +1,168 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="3FDEBD75-1ADF-DBD0-9049-1AD28026840C" schemaObject="833E4DE4-2E61-95B8-D681-1740D7FACB7C" name="DOCUMENTS">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>DOCUMENTS</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:01 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="DOCU_ID" id="C912AEB0-40F6-95A5-62A2-4440B9DD7BAD">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>DOCUMENTS</sourceObjSchema>
+<sourceObjName>DOCU_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:01 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>9</dataTypeSize>
+<ownDataTypeParameters>9,10,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="F601D879-1EE9-03C0-3580-EE0D31ED8B89" referredColumn="C12EC17B-0E35-6E0C-D62D-4B5ECC5620EE"/>
+</associations>
+</Column>
+<Column name="DOCU_NAME" id="2656EF1F-56DE-5050-11E5-2843B1F69FF2">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>DOCUMENTS</sourceObjSchema>
+<sourceObjName>DOCU_NAME</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:01 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypePrecision>60</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>60</dataTypeSize>
+<ownDataTypeParameters>60,60,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DOCU_STFO_ID" id="E09DE57E-9833-0585-8241-854BEDA4C5AF">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>DOCUMENTS</sourceObjSchema>
+<sourceObjName>DOCU_STFO_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:01 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>9</dataTypeSize>
+<ownDataTypeParameters>9,10,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="E2B2E979-5F1B-5CBD-850A-C4792822B58E" referredColumn="6AEF6111-009A-CC5D-0848-CE77043BE846"/>
+</associations>
+</Column>
+<Column name="DOCU_REFERENCE" id="572BFE38-E5EE-CE35-7C8A-895B0497C4A7">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>DOCUMENTS</sourceObjSchema>
+<sourceObjName>DOCU_REFERENCE</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:01 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypePrecision>500</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>500</dataTypeSize>
+<ownDataTypeParameters>500,500,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DOCU_CONTENT" id="25F416AB-0D06-502D-A5E1-180D2F7DD2CA">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>DOCUMENTS</sourceObjSchema>
+<sourceObjName>DOCU_CONTENT</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:01 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT010</logicalDatatype>
+<dataTypePrecision>0</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>16</dataTypeSize>
+<ownDataTypeParameters>16,0,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DOCU_DOCU_ID" id="955F758D-F11E-574A-B0EB-3D336A79BD17">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>DOCUMENTS</sourceObjSchema>
+<sourceObjName>DOCU_DOCU_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:01 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>9</dataTypeSize>
+<ownDataTypeParameters>9,10,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="3B8757E0-90AC-CDAC-D381-D261E208D629" referredColumn="C912AEB0-40F6-95A5-62A2-4440B9DD7BAD"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="4402451A-E70E-D228-2187-E38006750697" name="DOCU_PK">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>DOCU_PK</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:01 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="C912AEB0-40F6-95A5-62A2-4440B9DD7BAD"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="8A6B925C-D25E-ADB9-9F43-76B237EBFF0C" name="DOCU_DOCU_FK">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:14 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="955F758D-F11E-574A-B0EB-3D336A79BD17"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="127FD2FE-8FE1-C02D-1B78-9410D61FC592" name="DOCU_MODE_FK">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:14 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="C912AEB0-40F6-95A5-62A2-4440B9DD7BAD"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="DE84CBD0-006A-158E-B0B4-8553D27C1FFF" name="DOCU_STFO_FK">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:14 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="E09DE57E-9833-0585-8241-854BEDA4C5AF"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -1,0 +1,58 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="FC33C4CB-F9AC-880E-EB0D-33E06A9F9079" name="Industriesektor">
+<createdBy>ruben.antenen</createdBy>
+<createdTime>2019-11-26 13:16:54 UTC</createdTime>
+<comment><![CDATA[Ist eine Gruppierung nach Anwendungen.
+
+Many-to-many weil einige Artikel mehreren Sektoren zugeteilt sind (z.B. dem Flooring und Roofing)
+
+Pricing hängt dran.
+
+Attribut/Liste in Penta.
+
+Beispiele: Flooring, Roofing]]></comment>
+<notes><![CDATA[[EN_ENTI_COMMENT[
+**Is a grouping by applications.
+
+Many-to-many because some articles are assigned to several sectors (e.g. flooring and roofing)
+
+Pricing depends on it.
+
+Attribute/List in Penta.
+
+Examples: Flooring, Roofing
+
+
+]EN_ENTI_COMMENT]
+[DE_ENTI_COMMENT[
+Ist eine Gruppierun nach Anwendungen.
+
+Many-to-many weil einige Artikel mehreren Sektoren zugeteilt sind (z.B: dem Flooring und Roofing)
+
+Pricing hängt dran.
+
+Attribut/Liste in Penta.
+
+Beispiele: Flooring, Roofing
+
+
+]DE_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<typeID>88FD3F2F-7EA2-1287-77DE-38673B902DA9</typeID>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<propertyMap>
+<property name="DE_ENTI_NAME" value="Industriesektor"/>
+<property name="EN_ENTI_NAME" value="**Industrial sector"/>
+</propertyMap>
+</Entity>

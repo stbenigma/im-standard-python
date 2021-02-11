@@ -1,0 +1,85 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="776E3289-873B-5C71-5F08-839E07F3E717" name="Product Group">
+<createdBy>sbo</createdBy>
+<createdTime>2019-02-06 08:36:25 UTC</createdTime>
+<comment><![CDATA[Gruppe von Verkaufsprodukten mit einem gemeinsamen Funktionskonzept.
+
+Beachten: China z.B. OEM Kunden (Makita, Taiko…) => technisch gesehen gleiches Produkt, aber anderes Branding
+
+Beispiele:
+Handgeräte mit Gebläse, Heizkeilautomaten, Handextruder mit Wendelheizung, Freistehende Textilschweissmaschine]]></comment>
+<notes><![CDATA[[EN_ENTI_COMMENT[
+**Group of sales products with a common functional concept.
+
+Note: China e.g. OEM customers (Makita, Taiko...) => technically speaking the same product, but different branding
+
+Examples:
+Hand-held units with blower, automatic wedge heaters, hand-held extruder with spiral heating, free-standing textile welding machine
+]EN_ENTI_COMMENT]
+[DE_ENTI_COMMENT[
+Gruppe von Verkaufsprodukten mit einem gemeinsamen Funktionskonzept.
+
+Beachten: China z.B. OEM Kunden (Makita, Taiko…) => technisch gesehen gleiches Produkt, aber anderes Branding
+
+Beispiele:
+Handgeräte mit Gebläse, Heizkeilautomaten, Handextruder mit Wendelheizung, Freistehende Textilschweissmaschine
+]DE_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<typeID>AB7A723E-18E3-723F-6D3A-6AE296FEBDA3</typeID>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<hierarchicalParent>CE164B7E-DDA5-60AE-BBA6-A9ABD42193D4</hierarchicalParent>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<synonym>Produktgruppe</synonym>
+<propertyMap>
+<property name="DE_ENTI_NAME" value="Produkt-Gruppe"/>
+<property name="EN_ENTI_NAME" value="**Product group"/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Name" id="84F67691-0DC6-5CC2-A5EE-3B345BBBA05F">
+<createdBy>ruben.antenen</createdBy>
+<createdTime>2019-09-10 11:53:49 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Name"/>
+<property name="DHL AttrName" value="."/>
+<property name="DHL AttrName Receiver" value="."/>
+<property name="DHL AttrName Shipper" value="."/>
+<property name="EN_ATTR_NAME" value="**Name"/>
+<property name="PENTA AttrID" value="."/>
+<property name="PENTA AttrName" value="."/>
+<property name="PENTA datatype" value="."/>
+<property name="PENTA usage" value="."/>
+<property name="PIM AttrID" value="."/>
+<property name="PIM AttrName" value="."/>
+<property name="PIM EnglName" value="."/>
+<property name="PIM datatype" value="."/>
+<property name="PIM usage" value="."/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+</Attribute>
+</attributes>
+</Entity>

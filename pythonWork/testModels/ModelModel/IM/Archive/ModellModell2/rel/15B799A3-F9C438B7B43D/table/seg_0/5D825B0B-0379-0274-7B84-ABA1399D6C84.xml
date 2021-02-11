@@ -1,0 +1,440 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="5D825B0B-0379-0274-7B84-ABA1399D6C84" name="BEZIEHUNG">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 13:37:53 UTC</createdTime>
+<comment><![CDATA[Verbindung zweier Entitäten mit Assoziationstext, Optionalität und Abbildungstyp
+
+Die in anderen Darstellungsarten gebräuchlichen Beziehungen können aus  Optionalität und Abbildungstyp hergeleitet werden
+0-1	Optional  - 1
+1-1	Pflicht - 1
+0-many	Optional - many
+1-many	Pflicht - many]]></comment>
+<generatorID>4BEC4009-B321-3912-D30B-FADF6F8AF982</generatorID>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<existDependencyConstraintName>BEZI_TYPE_CHJ</existDependencyConstraintName>
+<existDependencyGenerationLevel>Discriminator value</existDependencyGenerationLevel>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="BEZI_ID" id="B6D90C3F-10C6-0BD1-37C5-B8BF8622003D">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-02 14:54:19 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="BEZI_TYPE" id="9D53A349-AB5D-E70D-91A3-92A8244D01B0">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-02 15:01:07 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>474B8F52-5B70-256E-A0FA-DF8164EAFE54</domain>
+<listOfValues>
+<valueDef value="1:1" description=""/>
+<valueDef value="ISA" description=""/>
+<valueDef value="M:1" description=""/>
+<valueDef value="M:N" description=""/>
+</listOfValues>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isDiscriminatorColumn>true</isDiscriminatorColumn>
+<dependentColumns>
+<dependentColumn class="oracle.dbtools.crest.model.design.relational.Column$DependentColumnDescriptor">
+<columnID>D26575BF-AE32-0BBB-75E9-BEED5818324C</columnID>
+<dependAsMandatory>false</dependAsMandatory>
+<dependOnValue>true</dependOnValue>
+<discriminatorValue>ISA</discriminatorValue>
+<id>C0810AB9-D28F-8563-A263-712DF8BFADC9</id>
+</dependentColumn>
+<dependentColumn class="oracle.dbtools.crest.model.design.relational.Column$DependentColumnDescriptor">
+<columnID>92313DAC-23A0-979F-280E-7F4415E1AA2D</columnID>
+<dependAsMandatory>false</dependAsMandatory>
+<dependOnValue>true</dependOnValue>
+<discriminatorValue>ISA</discriminatorValue>
+<id>5381C6E7-A310-4624-CBF5-D2232C394404</id>
+</dependentColumn>
+<dependentColumn class="oracle.dbtools.crest.model.design.relational.Column$DependentColumnDescriptor">
+<columnID>D26575BF-AE32-0BBB-75E9-BEED5818324C</columnID>
+<dependAsMandatory>true</dependAsMandatory>
+<dependOnValue>true</dependOnValue>
+<discriminatorValue>M:1</discriminatorValue>
+<id>FE6611EE-4595-F5D1-842F-381F451AEB94</id>
+</dependentColumn>
+<dependentColumn class="oracle.dbtools.crest.model.design.relational.Column$DependentColumnDescriptor">
+<columnID>92313DAC-23A0-979F-280E-7F4415E1AA2D</columnID>
+<dependAsMandatory>true</dependAsMandatory>
+<dependOnValue>true</dependOnValue>
+<discriminatorValue>M:1</discriminatorValue>
+<id>42F35512-67FF-D7B0-CCA6-23B0DB9652F3</id>
+</dependentColumn>
+<dependentColumn class="oracle.dbtools.crest.model.design.relational.Column$DependentColumnDescriptor">
+<columnID>D26575BF-AE32-0BBB-75E9-BEED5818324C</columnID>
+<dependAsMandatory>true</dependAsMandatory>
+<dependOnValue>true</dependOnValue>
+<discriminatorValue>M:N</discriminatorValue>
+<id>47361F42-000C-9388-A03F-B826A73016F8</id>
+</dependentColumn>
+<dependentColumn class="oracle.dbtools.crest.model.design.relational.Column$DependentColumnDescriptor">
+<columnID>92313DAC-23A0-979F-280E-7F4415E1AA2D</columnID>
+<dependAsMandatory>true</dependAsMandatory>
+<dependOnValue>true</dependOnValue>
+<discriminatorValue>M:N</discriminatorValue>
+<id>78ACBFA7-020C-EEE5-B03E-96D0D3D6A135</id>
+</dependentColumn>
+<dependentColumn class="oracle.dbtools.crest.model.design.relational.Column$DependentColumnDescriptor">
+<columnID>D26575BF-AE32-0BBB-75E9-BEED5818324C</columnID>
+<dependAsMandatory>false</dependAsMandatory>
+<dependOnValue>true</dependOnValue>
+<discriminatorValue>1:1</discriminatorValue>
+<id>23397933-5C73-49DF-821F-B3DE21C8A7EF</id>
+</dependentColumn>
+<dependentColumn class="oracle.dbtools.crest.model.design.relational.Column$DependentColumnDescriptor">
+<columnID>92313DAC-23A0-979F-280E-7F4415E1AA2D</columnID>
+<dependAsMandatory>false</dependAsMandatory>
+<dependOnValue>true</dependOnValue>
+<discriminatorValue>1:1</discriminatorValue>
+<id>6E4FECD8-2C70-B873-9052-E9A2E0D5C965</id>
+</dependentColumn>
+</dependentColumns>
+</Column>
+<Column name="BEZI_ENTI_ID_VON" id="49F518CF-D377-BA54-5294-B02648EE3C34">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-02 15:06:11 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="2C4F6AD7-6DE6-CD11-787A-7247923B4937" referredColumn="B53A54A2-7725-B574-6A72-01964F006A02"/>
+</associations>
+</Column>
+<Column name="BEZI_ASSOC_VON_ZU" id="D26575BF-AE32-0BBB-75E9-BEED5818324C">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 13:37:53 UTC</createdTime>
+<comment><![CDATA[Was verbindet die von-Entität mit der zu-Entität]]></comment>
+<generatorID>1E4F5AA9-8DAA-B81A-4D48-EDCE07CDC56A</generatorID>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="BEZI_ABBILDTYP_VON_ZU" id="29345D0C-C308-7FB4-56EA-D50D709794D8">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-02 15:01:07 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<domain>8831EDF9-D218-4FB3-5BB6-7B34E8325AF7</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="BEZI_PFLICHT_ASSOC_VON_ZU" id="CDE5C9E3-E43A-D3AE-664B-645F47B8605A">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-02 14:56:26 UTC</createdTime>
+<comment><![CDATA[von-Entität muss mind. 1 eine Verbindung zur zu-Entität haben]]></comment>
+<generatorID>06AEDDE9-FE7B-7129-3EA6-401A12A010FF</generatorID>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="BEZI_HIST_VON_ZU" id="AF72746F-5510-615F-7538-CD371E2F0350">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 13:37:53 UTC</createdTime>
+<comment><![CDATA[JA -> Beziehung kann über die Zeit ändern. Zu einem Zeitpunkt kann nur 1 Beziehung gelten. System muss Historie der Änderungen führen.
+Über Extratabelle zu lösen.]]></comment>
+<generatorID>075993E1-1E10-7A12-4137-89129E7305FB</generatorID>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="BEZI_ENTI_ID_ZU" id="6E1AA102-8EDD-9687-9ADD-2FA808FC98F7">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-02 15:06:40 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="A633EC48-E61B-CE35-6557-1326E4B7EC83" referredColumn="B53A54A2-7725-B574-6A72-01964F006A02"/>
+</associations>
+</Column>
+<Column name="BEZI_ASSOC_ZU_VON" id="92313DAC-23A0-979F-280E-7F4415E1AA2D">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-02 14:55:01 UTC</createdTime>
+<comment><![CDATA[Was verbindet die von-Entität mit der zu-Entität]]></comment>
+<generatorID>1E4F5AA9-8DAA-B81A-4D48-EDCE07CDC56A</generatorID>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="BEZI_ABBILDTYP_ZU_VON" id="314AD4C7-92DD-E202-AE5C-67D891963549">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-02 15:02:18 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<domain>8831EDF9-D218-4FB3-5BB6-7B34E8325AF7</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="BEZI_PFLICHT_ASSOC_ZU_VON " id="58FD42A2-E823-3CDC-2761-0E9955550DA4">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 13:37:53 UTC</createdTime>
+<comment><![CDATA[von-Entität muss mind. 1 eine Verbindung zur zu-Entität haben]]></comment>
+<generatorID>06AEDDE9-FE7B-7129-3EA6-401A12A010FF</generatorID>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="BEZI_HIST_ZU_VON" id="E64710BC-8C8D-A324-49F4-B5B31E383D8C">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-02 14:55:37 UTC</createdTime>
+<comment><![CDATA[JA -> Beziehung kann über die Zeit ändern. Zu einem Zeitpunkt kann nur 1 Beziehung gelten. System muss Historie der Änderungen führen.
+Über Extratabelle zu lösen.]]></comment>
+<generatorID>075993E1-1E10-7A12-4137-89129E7305FB</generatorID>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="BEZI_VON_ARC_ID" id="5AC66F6D-67E2-A9E3-F86F-12C1B57A7971">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-02 15:16:51 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="828F14FD-A762-63FA-A10B-BDCE9806FB0F" referredColumn="39EC1658-D2FF-E19F-2DED-D5B4F5BD321F"/>
+</associations>
+</Column>
+<Column name="BEZI_ZU_ARC_ID" id="DCCBF29E-0C4E-E0D0-321E-ADFC880969DC">
+<createdBy>stb</createdBy>
+<createdTime>2020-01-21 10:23:23 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="7052162E-D912-4D15-9858-9540658AC587" referredColumn="39EC1658-D2FF-E19F-2DED-D5B4F5BD321F"/>
+</associations>
+</Column>
+<Column name="BEZI_ODM_GUID" id="5CBB627D-C962-F490-92A9-BD01A81A29C7">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-24 10:49:14 UTC</createdTime>
+<commentInRDBMS><![CDATA[ID aus dem ODM übernommen]]></commentInRDBMS>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>5D3D105A-15CC-2DBC-8E41-2A63484D069D</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="BEZI_SOURCE_ENTI_GUID" id="F1608D72-CA3F-D92D-AAFA-A078908A88A1">
+<createdBy>stb</createdBy>
+<createdTime>2019-12-12 11:57:54 UTC</createdTime>
+<comment><![CDATA[GUID der SOURCE-Entity aus der Subview-Beschreibung. VON/ZU können vertauscht sein.]]></comment>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>5D3D105A-15CC-2DBC-8E41-2A63484D069D</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="BEZI_TARGET_ENTI_GUID" id="913FFD81-464B-A0CD-6F9A-2E011A3D765E">
+<createdBy>stb</createdBy>
+<createdTime>2019-12-12 11:57:54 UTC</createdTime>
+<comment><![CDATA[GUID der arget-Entity aus der Subview-Beschreibung. VON/ZU können vertauscht sein.]]></comment>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>5D3D105A-15CC-2DBC-8E41-2A63484D069D</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="BEZI_UC" id="35879A04-C95B-B669-62D2-A25A8739EE43">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 13:37:54 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<formulaDesc>USER</formulaDesc>
+<sourceType>System</sourceType>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 CHAR</dataTypeSize>
+<ownDataTypeParameters>30 CHAR,,</ownDataTypeParameters>
+<computed>true</computed>
+<defaultOntNull>true</defaultOntNull>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="F7EEFF47-7A42-2A3E-7DFC-D0558D6996B8"/>
+</propertyMap>
+</Column>
+<Column name="BEZI_DC" id="46AF3A0B-E9BD-E2AF-39FE-6B2FD04289CA">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 13:37:54 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT047</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="74D877A0-4C3B-63EE-06C5-071C7695907C"/>
+</propertyMap>
+</Column>
+<Column name="BEZI_UM" id="4ED6E7AA-8BE0-E036-0F59-8531002458FC">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 13:37:54 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="B2E17D53-C2F7-74D9-022D-5D63F3931519"/>
+</propertyMap>
+</Column>
+<Column name="BEZI_DM" id="D53EE64F-63B1-4A47-28BD-BE4EF693E5B6">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 13:37:54 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT047</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="B398D247-00C1-F016-3BBB-FE65CFFFF7AA"/>
+</propertyMap>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="CA6009C5-81AF-2353-23A1-9CCA49A1C40B" name="BEZI_PK">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-01 13:37:53 UTC</createdTime>
+<generatorID>CEB0C7CA-9CEF-89CC-1712-0634D0BB6B99</generatorID>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="B6D90C3F-10C6-0BD1-37C5-B8BF8622003D"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="98F9F592-34F3-163B-9068-50E31B3D6D42" name="BEZI_ENTI_FK_VON">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-02 15:06:11 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="49F518CF-D377-BA54-5294-B02648EE3C34"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="DC7EF425-FCA6-D393-0611-22C933D15856" name="BEZI_ENTI_FK_ZU">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-02 15:06:40 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="6E1AA102-8EDD-9687-9ADD-2FA808FC98F7"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="F3784918-1AF1-9809-9142-3D46ADB8527A" name="BEZI_VON_ARC_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-02 15:16:51 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="5AC66F6D-67E2-A9E3-F86F-12C1B57A7971"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="98C58FC0-449F-C184-271A-72E8F8DADB30" name="BEZI_ZU_ARC_FK">
+<createdBy>stb</createdBy>
+<createdTime>2020-01-21 10:24:15 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="DCCBF29E-0C4E-E0D0-321E-ADFC880969DC"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+<tableCheckConstraints itemClass="oracle.dbtools.crest.model.design.constraint.TableLevelConstraint">
+<tableCheckConstraint name="BEZI_ISA_CK2" directorySegmentName="seg_0" id="7A199B2F-3FA8-94CF-8D7E-9D27DA24A233">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-02 15:04:44 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<rule><![CDATA[(BEZI_TYPE = 'ISA' 
+  AND BEZI_ISA_ABBILDTYP_VON_ZU = '1'
+  AND BEZI_ISA_ABBILDTYP_ZU_VON = '1'
+  AND BEZI_PFLICHT_ASSOC_VON_ZU = 'TRUE'
+) OR
+(BEZI_TYPE = '1:1' 
+  AND BEZI_ISA_ABBILDTYP_VON_ZU = '1'
+  AND BEZI_ISA_ABBILDTYP_ZU_VON = '1'
+) OR
+(BEZI_TYPE = 'M:1' 
+  AND BEZI_ISA_ABBILDTYP_VON_ZU = 'M'
+  AND BEZI_ISA_ABBILDTYP_ZU_VON = '1'
+) OR
+(BEZI_TYPE = 'M:N' 
+  AND BEZI_ISA_ABBILDTYP_VON_ZU = 'M'
+  AND BEZI_ISA_ABBILDTYP_ZU_VON = 'M'
+)
+
+
+]]></rule>
+</tableCheckConstraint>
+</tableCheckConstraints>
+</Table>

@@ -1,0 +1,276 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<EntityView class="oracle.dbtools.crest.model.design.logical.EntityView" directorySegmentName="seg_0" id="E71A5135-2D5A-B05A-2191-6618B27FF338" name="Schnittstelle XY">
+<createdBy>stb</createdBy>
+<createdTime>2019-09-03 06:59:03 UTC</createdTime>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<userDefined>true</userDefined>
+<userDefinedSQL><![CDATA[SELECT
+    transportauftrag.lieferdatum,
+    transportauftrag.etikettenlink,
+    transportauftrag.exportdokumentenlink,
+    transporteur.name,
+    "Postalische Adresse".strasse   AS abhol_str,
+    "Postalische Adresse".ort       AS abhol_ort,
+    "Postalische Adresse".plz       AS abhol_plz,
+    kunde.name                      AS kundenname,
+    "Postalische Adresse".strasse   AS liefer_str,
+    "Postalische Adresse".ort       AS liefer_ort,
+    "Postalische Adresse".plz       AS liefer_plz,
+    artikel.ean
+FROM
+    "Postalische Adresse",
+    transportauftrag,
+    transporteur,
+    artikel,
+    "Sendung / Lieferung?",
+    kunde]]></userDefinedSQL>
+<layoutSQL><![CDATA[<?xml version = '1.0' encoding = 'UTF-8'?>
+<ActiveQueryBuilderLayout><SQL>Select Transportauftrag.Lieferdatum, Transportauftrag.Etikettenlink, Transportauftrag.Exportdokumentenlink, Transporteur.Name, "Postalische Adresse".Strasse As abhol_str, "Postalische Adresse".Ort As abhol_ort, "Postalische Adresse".PLZ As abhol_plz, Kunde.Name As kundenname, "Postalische Adresse".Strasse As liefer_str, "Postalische Adresse".Ort As liefer_ort, "Postalische Adresse".PLZ As liefer_plz, Artikel.EAN From "Postalische Adresse", Transportauftrag, Transporteur, Artikel, "Sendung / Lieferung?", Kunde</SQL><SubQueries><SubQuery SQL="Select Transportauftrag.Lieferdatum, Transportauftrag.Etikettenlink, Transportauftrag.Exportdokumentenlink, Transporteur.Name, &quot;Postalische Adresse&quot;.Strasse As abhol_str, &quot;Postalische Adresse&quot;.Ort As abhol_ort, &quot;Postalische Adresse&quot;.PLZ As abhol_plz, Kunde.Name As kundenname, &quot;Postalische Adresse&quot;.Strasse As liefer_str, &quot;Postalische Adresse&quot;.Ort As liefer_ort, &quot;Postalische Adresse&quot;.PLZ As liefer_plz, Artikel.EAN From &quot;Postalische Adresse&quot;, Transportauftrag, Transporteur, Artikel, &quot;Sendung / Lieferung?&quot;, Kunde"><UnionSubQuery><DataSource SQL="&quot;Postalische Adresse&quot;" X="50" Y="20" Height="155" Width="140"/><DataSource SQL="Transportauftrag" X="240" Y="20" Height="191" Width="140"/><DataSource SQL="Transporteur" X="430" Y="20" Height="65" Width="140"/><DataSource SQL="Artikel" X="430" Y="128" Height="2513" Width="140"/><DataSource SQL="&quot;Sendung / Lieferung?&quot;" X="832" Y="58" Height="47" Width="140"/><DataSource SQL="Kunde" X="661" Y="130" Height="65" Width="140"/></UnionSubQuery></SubQuery></SubQueries></ActiveQueryBuilderLayout>]]></layoutSQL>
+<validSQL>false</validSQL>
+<parsed>true</parsed>
+<viewType>EntityView</viewType>
+<usedContainers>
+<container containerID="DD8AFD8D-0946-C0F3-F1D9-4307FD4551D1"/>
+<container containerID="3F51E574-B0D1-841F-0AC7-2641CA53AA5E"/>
+<container containerID="F14CCFBB-AEB4-6018-0394-75855B5D8869"/>
+<container containerID="409CB133-5176-AA40-B070-925986C1FAA0"/>
+<container containerID="27A23C8F-5BCD-8DF6-A09A-1A5CA52730B4"/>
+</usedContainers>
+<viewElements>
+<viewElement class="oracle.dbtools.crest.model.design.logical.AttributeView" name="Lieferdatum" id="AD7AC23B-D628-3A48-55BF-B09D9250A0C6">
+<createdBy>stb</createdBy>
+<createdTime>2019-09-03 07:02:57 UTC</createdTime>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<dataType>UNKNOWN</dataType>
+<reference>false</reference>
+<table>DD8AFD8D-0946-C0F3-F1D9-4307FD4551D1</table>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.logical.AttributeView" name="Etikettenlink" id="2202DC7A-00FF-A29E-1A1C-28918E580BD9">
+<createdBy>stb</createdBy>
+<createdTime>2019-09-03 07:02:57 UTC</createdTime>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<dataType>UNKNOWN</dataType>
+<reference>false</reference>
+<table>DD8AFD8D-0946-C0F3-F1D9-4307FD4551D1</table>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.logical.AttributeView" name="Exportdokumentenlink" id="F1CE8C01-6171-D4DB-AD2A-610253769A50">
+<createdBy>stb</createdBy>
+<createdTime>2019-09-03 07:02:57 UTC</createdTime>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<dataType>UNKNOWN</dataType>
+<reference>false</reference>
+<table>DD8AFD8D-0946-C0F3-F1D9-4307FD4551D1</table>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.logical.AttributeView" name="Name" id="6A9C3A7A-5F2D-6DA0-7C30-C79CA239B5BE">
+<createdBy>stb</createdBy>
+<createdTime>2019-09-03 07:02:57 UTC</createdTime>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<dataType>UNKNOWN</dataType>
+<reference>false</reference>
+<table>3F51E574-B0D1-841F-0AC7-2641CA53AA5E</table>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.logical.AttributeView" name="**Street" id="39811608-4BDA-EF2C-57B7-7580E71867FF">
+<createdBy>stb</createdBy>
+<createdTime>2019-09-03 07:02:57 UTC</createdTime>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>abhol_str</alias>
+<dataType>VARCHAR2 (100)</dataType>
+<reference>false</reference>
+<referencedColumn>3B3557DE-8345-5C8D-E8BF-9B91DECFD644</referencedColumn>
+<table>F14CCFBB-AEB4-6018-0394-75855B5D8869</table>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.logical.AttributeView" name="Ort" id="7EDD1B29-80BF-FCE6-6EEC-C5AB8D68DC37">
+<createdBy>stb</createdBy>
+<createdTime>2019-09-03 07:02:57 UTC</createdTime>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>abhol_ort</alias>
+<dataType>VARCHAR2 (100)</dataType>
+<reference>false</reference>
+<referencedColumn>D4181A50-4417-9084-F552-B065C30F4EBE</referencedColumn>
+<table>F14CCFBB-AEB4-6018-0394-75855B5D8869</table>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.logical.AttributeView" name="**POSTCODE" id="93132969-9653-0A9F-D365-325D5AC1F30B">
+<createdBy>stb</createdBy>
+<createdTime>2019-09-03 07:02:57 UTC</createdTime>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>abhol_plz</alias>
+<dataType>VARCHAR2 (20)</dataType>
+<reference>false</reference>
+<referencedColumn>85A6A00C-5349-753B-56D0-E543F9748F9F</referencedColumn>
+<table>F14CCFBB-AEB4-6018-0394-75855B5D8869</table>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.logical.AttributeView" name="kundenname" id="49D9F394-A5B5-4DCE-E4E8-88DD28855706">
+<createdBy>ruben.antenen</createdBy>
+<createdTime>2019-09-12 09:01:54 UTC</createdTime>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>kundenname</alias>
+<dataType>UNKNOWN</dataType>
+<reference>false</reference>
+<table>409CB133-5176-AA40-B070-925986C1FAA0</table>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.logical.AttributeView" name="Strasse" id="603818C3-E529-D931-B424-A0FC0B9F9AEA">
+<createdBy>stb</createdBy>
+<createdTime>2019-09-03 07:03:58 UTC</createdTime>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>liefer_str</alias>
+<dataType>VARCHAR2 (100)</dataType>
+<reference>false</reference>
+<referencedColumn>3B3557DE-8345-5C8D-E8BF-9B91DECFD644</referencedColumn>
+<table>F14CCFBB-AEB4-6018-0394-75855B5D8869</table>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.logical.AttributeView" name="*DE* Ort" id="8466017B-6932-B44F-88E6-82F440DB9E1B">
+<createdBy>stb</createdBy>
+<createdTime>2019-09-03 07:03:58 UTC</createdTime>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>liefer_ort</alias>
+<dataType>VARCHAR2 (100)</dataType>
+<reference>false</reference>
+<referencedColumn>D4181A50-4417-9084-F552-B065C30F4EBE</referencedColumn>
+<table>F14CCFBB-AEB4-6018-0394-75855B5D8869</table>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.logical.AttributeView" name="PLZ" id="ABE6FB56-13B1-1738-9A8F-A75E2E73D0C3">
+<createdBy>stb</createdBy>
+<createdTime>2019-09-03 07:03:58 UTC</createdTime>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>liefer_plz</alias>
+<dataType>VARCHAR2 (20)</dataType>
+<reference>false</reference>
+<referencedColumn>85A6A00C-5349-753B-56D0-E543F9748F9F</referencedColumn>
+<table>F14CCFBB-AEB4-6018-0394-75855B5D8869</table>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.logical.AttributeView" name="EAN" id="A80C02B5-6A73-07CA-9B1D-55A7417B16E9">
+<createdBy>stb</createdBy>
+<createdTime>2019-09-03 07:04:41 UTC</createdTime>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<dataType>UNKNOWN</dataType>
+<reference>false</reference>
+<referencedColumn>9538BB5E-023C-F102-018F-C4C57542C058</referencedColumn>
+<table>27A23C8F-5BCD-8DF6-A09A-1A5CA52730B4</table>
+</viewElement>
+</viewElements>
+<usedObjects>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="DD8AFD8D-0946-C0F3-F1D9-4307FD4551D1">
+<container>true</container>
+<tableName>Transportauftrag</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="3F51E574-B0D1-841F-0AC7-2641CA53AA5E">
+<container>true</container>
+<tableName>Transporteur</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="F14CCFBB-AEB4-6018-0394-75855B5D8869">
+<container>true</container>
+<tableName>Postalische Adresse</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="409CB133-5176-AA40-B070-925986C1FAA0">
+<container>true</container>
+<tableName>Kunde</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="27A23C8F-5BCD-8DF6-A09A-1A5CA52730B4">
+<container>true</container>
+<tableName>Artikel</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="48FD6D63-15D3-99B3-B86C-8BE3655C5CBE">
+<container>true</container>
+<tableName>Sendung / Lieferung?</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="9C980C18-5B8A-FE90-014E-2380481099E0">
+<columnName>Lieferdatum</columnName>
+<tableName>Transportauftrag</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="A5C284EE-5E42-C6A0-C35B-3F4697FD38B0">
+<columnName>Etikettenlink</columnName>
+<tableName>Transportauftrag</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="01C16688-A008-A3A0-C45E-FC4697A4E8FF">
+<columnName>Exportdokumentenlink</columnName>
+<tableName>Transportauftrag</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="D15A5972-703D-3117-38FE-2675896A77DE">
+<columnName>Name</columnName>
+<tableName>Transporteur</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="3B3557DE-8345-5C8D-E8BF-9B91DECFD644">
+<columnName>Strasse</columnName>
+<tableName>Postalische Adresse</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="D4181A50-4417-9084-F552-B065C30F4EBE">
+<columnName>Ort</columnName>
+<tableName>Postalische Adresse</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="85A6A00C-5349-753B-56D0-E543F9748F9F">
+<columnName>PLZ</columnName>
+<tableName>Postalische Adresse</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="52EB77C6-371A-967A-BC5C-B0E3235D2111">
+<columnName>Name</columnName>
+<tableName>Kunde</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="9538BB5E-023C-F102-018F-C4C57542C058">
+<columnName>EAN</columnName>
+<tableName>Artikel</tableName>
+</UsedObject>
+</usedObjects>
+</EntityView>

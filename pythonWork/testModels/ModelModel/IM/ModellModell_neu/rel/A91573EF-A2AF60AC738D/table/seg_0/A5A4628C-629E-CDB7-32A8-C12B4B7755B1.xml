@@ -1,0 +1,74 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="A5A4628C-629E-CDB7-32A8-C12B4B7755B1" name="Anwendungkomponente">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:43 UTC</createdTime>
+<comment><![CDATA[Teilapplikation einer Anwendung.
+
+Im Falle von Lösungen mit Standardwerkzeugen (Excel, Word, etc.) können Applikationskomponenten eigene (z.B. referenzierte) Excels oder aber einzelne Tabellen(Reiter) in einem Excel sein.
+
+Beispiele:
+Lagerverwaltung
+Pricing
+Rechnungsstellung
+Einkauf
+Verkauf
+Produkt-Konfigurator
+Bildbearbeitung
+Verrechenbarkeitsanalyse
+Feriensaldo ( als Reiter in einem Zeiterfassungsexcel)
+Lohnabrechung
+Vertragsverwaltung
+Account
+Debits
+Credits
+General Ledger]]></comment>
+<generatorID>FA337EBD-3FAE-C798-C4AA-946EA13EDB02</generatorID>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+Teilapplikation einer Anwendung.
+
+Im Falle von Lösungen mit Standardwerkzeugen (Excel, Word, etc.) können Applikationskomponenten eigene (z.B. referenzierte) Excels oder aber einzelne Tabellen(Reiter) in einem Excel sein.
+
+Beispiele:
+Lagerverwaltung
+Pricing
+Rechnungsstellung
+Einkauf
+Verkauf
+Produkt-Konfigurator
+Bildbearbeitung
+Verrechenbarkeitsanalyse
+Feriensaldo ( als Reiter in einem Zeiterfassungsexcel)
+Lohnabrechung
+Vertragsverwaltung
+Account
+Debits
+Credits
+General Ledger
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+*Partial application of an application.  In the case of solutions with standard tools (Excel, Word, etc.), application components can be their own (e.g. referenced) excels or individual tables (tabs) in an Excel.  Examples: Warehouse Management Pricing Invoicing Purchasing Sales Product Configurator Image Editing Settlement Analysis Holiday Balance (as Tab in a Time Recording Excel) Payroll Payroll Contract Administration Account Debits Credits General Ledger
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<typeID>FAF70092-F6A9-97FE-9880-A36ECEDBFE26</typeID>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="BD42DA0F-A19A-1C4E-6BEE-3E252A3C4AA5" name="Anwendungkomponente__UN">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:43 UTC</createdTime>
+<generatorID>7465F71C-6E0A-E3D8-95A6-E74B987A6AA2</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+</ind_PK_UK>
+<ind_PK_UK id="603FDBF4-641A-E26D-985B-E2B07D5E4684" name="Anwendungkomponente_IT-Komponente_FK">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:43 UTC</createdTime>
+<generatorID>BFECCC73-FB9B-172A-DC7F-894AE56A5CD6</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+</ind_PK_UK>
+</indexes>
+</Table>

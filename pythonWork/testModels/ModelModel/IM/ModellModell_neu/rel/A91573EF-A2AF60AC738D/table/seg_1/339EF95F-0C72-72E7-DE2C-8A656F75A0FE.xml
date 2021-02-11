@@ -1,0 +1,46 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_1" id="339EF95F-0C72-72E7-DE2C-8A656F75A0FE" name="Technischer_Prozess">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:43 UTC</createdTime>
+<comment><![CDATA[Geschäftsprozess, der durch ein System durchgeführt ist. Er kann durch einen Akteur ausglöst werden, die Ergebnisse sind aber typischerweise nicht direkt für den Akteur berstimmt.
+
+Beispiel:
+- (automatisch) Mahnungen versenden
+- Lohnzahlungen durchführen (nachdem sie in einem Anwendungsfall freigegeben wurden)
+- nächtliche Datenübernahme ab einem Fremdsystem]]></comment>
+<generatorID>AC59A3F7-E556-7388-746D-301795850728</generatorID>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+Geschäftsprozess, der durch ein System durchgeführt ist. Er kann durch einen Akteur ausglöst werden, die Ergebnisse sind aber typischerweise nicht direkt für den Akteur berstimmt.
+
+Beispiel:
+- (automatisch) Mahnungen versenden
+- Lohnzahlungen durchführen (nachdem sie in einem Anwendungsfall freigegeben wurden)
+- nächtliche Datenübernahme ab einem Fremdsystem
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+*Business process performed by a system. It can be triggered by an actor, but the results are typically not directly attuned to the actor.  Example: - Send (automatically) dunning notices - Make wage payments. - nightly data transfer from an external system
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<typeID>049E3124-67AA-37C3-8A6D-286DDE491ECA</typeID>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="9D6FD279-B9B4-A7B2-F759-C77DCE37BEFE" name="Technischer_Prozess__UN">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:43 UTC</createdTime>
+<generatorID>7465F71C-6E0A-E3D8-95A6-E74B987A6AA2</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+</ind_PK_UK>
+<ind_PK_UK id="BC08EA15-3DEE-23D9-9874-06EF79780CBF" name="Technischer_Prozess_Geschäftstransaktion_FK">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:43 UTC</createdTime>
+<generatorID>AD0234BF-F159-D5B3-8A0A-5EC7B3D80E02</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+</ind_PK_UK>
+</indexes>
+</Table>

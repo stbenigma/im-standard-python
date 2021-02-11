@@ -1,0 +1,48 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="7561FCDD-3020-13A2-4BF1-9FC301F31E59" name="BURU-DEVA">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:43 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Vorgabewert_Vorgabewert_ID" id="27B26D3D-036A-DF73-2E64-47BE6290DC08">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:43 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="E571228C-9168-6EC6-86C0-32A009ABD095" referredColumn="44EF2CD6-1C00-1FE3-D830-7EC9D08D6858"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="7CEB4C81-4F7A-E34A-D304-ADA4AD88C8F6" name="BURU-DEVA_PK">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:43 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="27B26D3D-036A-DF73-2E64-47BE6290DC08"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="31A5E62C-8375-54CE-5F07-303C94284186" name="BURU-DEVA_Vorgabewert_FK">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:43 UTC</createdTime>
+<generatorID>A0670DF6-CE10-23B9-5683-A9410BDE09C1</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="27B26D3D-036A-DF73-2E64-47BE6290DC08"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

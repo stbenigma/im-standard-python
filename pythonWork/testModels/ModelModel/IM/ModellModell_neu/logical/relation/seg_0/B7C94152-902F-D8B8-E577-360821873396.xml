@@ -1,0 +1,30 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_115" directorySegmentName="seg_0" id="B7C94152-902F-D8B8-E577-360821873396">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:04:24 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<engineerTo>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
+<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<nameOnSource>verantwortet</nameOnSource>
+<nameOnTarget>verantwortet von</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>5A09E075-BC31-B259-7FBF-4A9154C6967D</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>AA6B21F4-6D34-96C3-D12B-9FD87082FD7A</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="verantwortet"/>
+<property name="DE_RELA_TEXT_TO" value="verantwortet von"/>
+<property name="EN_RELA_TEXT_FROM" value="responsible for"/>
+<property name="EN_RELA_TEXT_TO" value="answered for by"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
+</propertyMap>
+</Relation>

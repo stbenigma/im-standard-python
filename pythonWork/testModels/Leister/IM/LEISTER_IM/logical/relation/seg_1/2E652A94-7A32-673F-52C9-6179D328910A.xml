@@ -1,0 +1,20 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_95v1" directorySegmentName="seg_1" id="2E652A94-7A32-673F-52C9-6179D328910A">
+<createdBy>ruben.antenen</createdBy>
+<createdTime>2020-04-21 07:13:07 UTC</createdTime>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<nameOnSource>ist unterteilt in</nameOnSource>
+<nameOnTarget>zusammengefasst zu</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>911CDFE6-531D-75DB-2428-C360588DA11B</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>CF24D89A-B8D8-91C1-0094-F0DE9B31D5B3</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

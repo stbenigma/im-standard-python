@@ -1,0 +1,71 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="E2148050-5234-3913-9025-C7C1693DE6CE" name="Ersatzteil">
+<createdBy>sbo</createdBy>
+<createdTime>2019-02-06 09:46:35 UTC</createdTime>
+<comment><![CDATA[Ein Verkaufsartikel der für die Reparatur oder Wartung eines Verkaufsprodukts benötigt wird. Ein Ersatzteil kann aus der Stückliste eines Verkaufsprodukts sein.
+
+Beispiele:
+Kugellager, Kohlebürsten, Schrauben, Ersatzklinge
+
+Verschleissteil (gibt es weitere Subtypen?)
+
+Jedes Verschleissteil ist ein Ersatzteil.
+
+Ein Artikel das beim Gebrauch abgenutzt wird. Ein Verschleissteil wird in der Garantie gesondert behandelt.
+
+Es gibt Verschleissteile, die vom Kunden gewechselt werden dürfen und andere, bei denen der Kunde das nicht darf. --> eigenes Attribut?
+
+Beispiele: Kohlenbürste, Heizelement (darf der Kunde wechseln), Motor (darf der Kunde nicht wechseln)
+]]></comment>
+<notes><![CDATA[[EN_ENTI_COMMENT[
+**A sales item that is required for the repair or maintenance of a sales product. A spare part can be from the BOM of a sales product.
+
+Examples:
+Ball bearings, carbon brushes, screws, spare blade
+
+Wear part (are there other subtypes?)
+
+Each wear part is a spare part.
+
+An article that is worn out during use. A wear part is treated separately in the warranty.
+
+There are wearing parts that may be replaced by the customer and others where the customer is not allowed to do so. --> Own attribute?
+
+Examples: Carbon brush, heating element (may be changed by the customer), motor (may not be changed by the customer)
+]EN_ENTI_COMMENT]
+[DE_ENTI_COMMENT[
+Ein Verkaufsartikel der für die Reparaturoder Wartung  eines Verkaufsprodukts benötigt wird. Ein Ersatzteil  kann aus der Stückliste eines Verkaufslprodukts sein.
+
+Beispiele:
+Kugellager, Kohlebürsten, Schrauben, Ersatzklinge
+
+Verschleissteil (gibt es weitere Subtypen?)
+
+Jedes Verschleissteil ist ein Ersatzteil.
+
+Ein Artikel das beim Gebrauch abgenutzt wird. Ein Verschleissteil wird in der Garantie gesondert behandelt.
+
+Es gibt Verschleissteile die vom Kunden gewechselt werden dürfen und andere, bei denen der Kunde das nicht darf. --> eigenes Attribut?
+
+Beispiele: Kohlenbürste, Heizelement (darf der Kunde wechseln),  Motor (darf der Kunde nicht wechseln)
+]DE_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<typeID>88FD3F2F-7EA2-1287-77DE-38673B902DA9</typeID>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<hierarchicalParent>ADC1A857-7163-FD59-9B2C-94EA92997D63</hierarchicalParent>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<propertyMap>
+<property name="DE_ENTI_NAME" value="Ersatzteil"/>
+<property name="EN_ENTI_NAME" value="**Replacement"/>
+</propertyMap>
+</Entity>

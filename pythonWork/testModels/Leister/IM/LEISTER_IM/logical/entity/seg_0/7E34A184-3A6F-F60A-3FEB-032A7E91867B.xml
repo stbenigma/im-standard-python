@@ -1,0 +1,94 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="7E34A184-3A6F-F60A-3FEB-032A7E91867B" name="Incoterm">
+<createdBy>ruben.antenen</createdBy>
+<createdTime>2019-10-09 09:37:10 UTC</createdTime>
+<comment><![CDATA[Eine Reihe freiwilliger Klauseln zur Auslegung handelsüblicher Vertragsformeln im internationalen Warenhandel.
+
+Beispiele: EXW, FCA, DAP]]></comment>
+<notes><![CDATA[[EN_ENTI_COMMENT[
+**A set of voluntary clauses for the interpretation of commercial contractual terms in the international trade of goods.
+
+Examples: EXW, FCA, DAP
+]EN_ENTI_COMMENT]
+[DE_ENTI_COMMENT[
+Eine Reihe freiwilliger Klauseln zur Auslegung handelsüblicher Vertragsformeln im internationalen Warenhandel.
+
+Beispiele: EXW, FCA, DAP
+]DE_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<typeID>EAE76259-2726-6331-F045-11A3187A31D0</typeID>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<propertyMap>
+<property name="DE_ENTI_NAME" value="Incoterm"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_NAME" value="**Incoterm"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Code" id="45F395A2-4E0C-4F07-B191-5B322415A621">
+<createdBy>ruben.antenen</createdBy>
+<createdTime>2019-10-09 09:40:25 UTC</createdTime>
+<comment><![CDATA[Incoterms Code gem. ICC]]></comment>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+**Incoterms Code according to ICC
+]EN_ATTR_COMMENT]
+[DE_ATTR_COMMENT[
+Incoterms Code gem. ICC
+]DE_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<dataTypeSize>3</dataTypeSize>
+<ownDataTypeParameters>3,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Code"/>
+<property name="DHL AttrName" value="."/>
+<property name="DHL AttrName Receiver" value="."/>
+<property name="DHL AttrName Shipper" value="."/>
+<property name="EN_ATTR_NAME" value="**Code"/>
+<property name="PENTA AttrID" value="."/>
+<property name="PENTA AttrName" value="."/>
+<property name="PENTA datatype" value="."/>
+<property name="PENTA usage" value="."/>
+<property name="PIM AttrID" value="."/>
+<property name="PIM AttrName" value="."/>
+<property name="PIM EnglName" value="."/>
+<property name="PIM datatype" value="."/>
+<property name="PIM usage" value="."/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="02715AEA-937B-FD46-9DF9-2F283CCA031D" name="Key_1">
+<createdBy>ruben.antenen</createdBy>
+<createdTime>2019-10-09 09:47:11 UTC</createdTime>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<newElementsIDs>45F395A2-4E0C-4F07-B191-5B322415A621</newElementsIDs>
+<usedAttributes>
+<attributeRef>45F395A2-4E0C-4F07-B191-5B322415A621</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

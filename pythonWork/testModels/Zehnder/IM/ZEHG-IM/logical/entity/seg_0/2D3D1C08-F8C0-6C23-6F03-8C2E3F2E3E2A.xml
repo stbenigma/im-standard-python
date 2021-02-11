@@ -1,0 +1,30 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="2D3D1C08-F8C0-6C23-6F03-8C2E3F2E3E2A" name="Orderable Product">
+<createdBy>did01</createdBy>
+<createdTime>2020-12-03 14:39:02 UTC</createdTime>
+<comment><![CDATA[Is an orderable or rentable product]]></comment>
+<notes><![CDATA[[EN_ENTI_COMMENT[
+Placeholder for category of entities
+]EN_ENTI_COMMENT]
+[DE_ENTI_COMMENT[
+Platzhalter für Kategorie der Entitäten
+]DE_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>ZEHG-IM</ownerDesignName>
+<engineerTo>
+<item key="E73667C8-D73D-37B9-7BB4-9427B1B6DC71" value="true"/>
+</engineerTo>
+<typeID>9B55D4C3-17B9-F1CD-9BDE-9104DBBDA862</typeID>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<propertyMap>
+<property name="DE_ENTI_NAME" value="*Produktbereich"/>
+<property name="EN_ENTI_NAME" value="R_and_D"/>
+</propertyMap>
+</Entity>

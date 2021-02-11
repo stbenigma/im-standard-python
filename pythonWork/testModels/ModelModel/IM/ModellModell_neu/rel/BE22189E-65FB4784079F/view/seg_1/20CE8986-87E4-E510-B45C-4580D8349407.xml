@@ -1,0 +1,51 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableView class="oracle.dbtools.crest.model.design.relational.TableView" directorySegmentName="seg_1" id="20CE8986-87E4-E510-B45C-4580D8349407" name="DMRV_REPORTS_VERSION_1_0">
+<sourceDDLFile>dbms-odm.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:08 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>719F4E63-E35F-EBC4-43EA-FC24A262111D</importedID>
+<userDefined>true</userDefined>
+<userDefinedSQL><![CDATA[select 1.6 DMRS_Persistence_Version, 1.0 DMRS_Reports_Version, to_timestamp('2019/03/05 17:41:01','YYYY/MM/DD HH24:MI:SS') Created_On from dual]]></userDefinedSQL>
+<viewElements>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="DMRS_PERSISTENCE_VERSION" id="9942B352-F53E-77A3-55C3-7CBC0FD828D3">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:08 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>DMRS_Persistence_Version</alias>
+<dataType>UNKNOWN</dataType>
+<headerAlias>DMRS_Persistence_Version</headerAlias>
+<expression>1.6</expression>
+<reference>false</reference>
+<viewID>20CE8986-87E4-E510-B45C-4580D8349407</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="DMRS_REPORTS_VERSION" id="36E5BDBC-A0BE-3D75-65BA-033BD83D39A1">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:08 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>DMRS_Reports_Version</alias>
+<dataType>UNKNOWN</dataType>
+<headerAlias>DMRS_Reports_Version</headerAlias>
+<expression>1.0</expression>
+<reference>false</reference>
+<viewID>20CE8986-87E4-E510-B45C-4580D8349407</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="CREATED_ON" id="18BD8E2A-6F9B-9293-24AC-E80CB593F2CC">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:08 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>Created_On</alias>
+<dataType>NUMBER</dataType>
+<headerAlias>Created_On</headerAlias>
+<expression>to_timestamp(&apos;2019/03/05 17:41:01&apos;,&apos;YYYY/MM/DD HH24:MI:SS&apos;)</expression>
+<reference>false</reference>
+<viewID>20CE8986-87E4-E510-B45C-4580D8349407</viewID>
+</viewElement>
+</viewElements>
+</TableView>

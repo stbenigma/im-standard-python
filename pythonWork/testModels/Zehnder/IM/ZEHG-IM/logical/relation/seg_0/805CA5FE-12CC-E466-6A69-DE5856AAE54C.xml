@@ -1,0 +1,26 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_18" directorySegmentName="seg_0" id="805CA5FE-12CC-E466-6A69-DE5856AAE54C">
+<createdBy>cle</createdBy>
+<createdTime>2020-08-12 09:39:19 UTC</createdTime>
+<ownerDesignName>ZEHG-IM</ownerDesignName>
+<engineerTo>
+<item key="E73667C8-D73D-37B9-7BB4-9427B1B6DC71" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<nameOnSource>commissioned</nameOnSource>
+<nameOnTarget>is for</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>0300E64A-4FEE-E18C-97A3-362D808967BA</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>5E640A46-20EB-D002-C86C-CF6F4A6E883E</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="beauftragt"/>
+<property name="DE_RELA_TEXT_TO" value="ist für"/>
+<property name="EN_RELA_TEXT_FROM" value="**commissioned"/>
+<property name="EN_RELA_TEXT_TO" value="**is for"/>
+</propertyMap>
+</Relation>

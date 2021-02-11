@@ -1,0 +1,19 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="93C99F6A-1209-ABA8-8354-A03B59E41ADF" containerWithKeyObject="ED417D08-5B18-44EF-E91B-A0C4297C3A6F" localFKIndex="62316313-3651-12CD-30CF-8C400AE2122F" name="BURU_COLU_FK">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>BURU_COLU_FK</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:13 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<referredTableLongName>modelmodel_dbo.COLUMNS</referredTableLongName>
+<deleteRule>CASCADE</deleteRule>
+<referredTableID>19A42FD9-044F-92C2-347A-A35FEA9696F3</referredTableID>
+<keyObject>6025C7CA-AE58-F459-9942-86C054754876</keyObject>
+<referredKeyID>6025C7CA-AE58-F459-9942-86C054754876</referredKeyID>
+<mandatory>false</mandatory>
+<refColNames>COLU_ID</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

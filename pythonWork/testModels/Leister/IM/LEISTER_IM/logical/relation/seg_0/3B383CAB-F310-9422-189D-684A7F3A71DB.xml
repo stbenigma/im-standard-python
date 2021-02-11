@@ -1,0 +1,26 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_94" directorySegmentName="seg_0" id="3B383CAB-F310-9422-189D-684A7F3A71DB">
+<createdBy>ruben.antenen</createdBy>
+<createdTime>2019-11-25 15:45:42 UTC</createdTime>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<nameOnSource>unterteilt in</nameOnSource>
+<nameOnTarget>zusammengefasst zu</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>C375EF99-3388-6D03-0AF5-B75C5F5F3307</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>FEE79C5F-01E7-4B85-7DE2-2FC8EF2B81D4</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="unterteilt in"/>
+<property name="DE_RELA_TEXT_TO" value="zusammengefasst zu"/>
+<property name="EN_RELA_TEXT_FROM" value="**subdivided into"/>
+<property name="EN_RELA_TEXT_TO" value="**combined to"/>
+</propertyMap>
+</Relation>

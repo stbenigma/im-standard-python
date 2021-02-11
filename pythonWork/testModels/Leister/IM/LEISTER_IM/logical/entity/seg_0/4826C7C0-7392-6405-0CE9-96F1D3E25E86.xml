@@ -1,0 +1,303 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="4826C7C0-7392-6405-0CE9-96F1D3E25E86" name="Ladeeinheit">
+<createdBy>ruben.antenen</createdBy>
+<createdTime>2019-08-30 12:06:15 UTC</createdTime>
+<comment><![CDATA[Transportgut, das in der Regel aus einem oder mehreren Packstücken, einem Ladungsträger und den notwendigen Sicherungsmitteln besteht und in bestehender Form auf ein Transportmittel geladen werden kann.
+
+Sämtliche physikalischen Grössen werden bei der fertigen Ladeeinheit gemessen/gewogen.
+
+Eine Ladeeinheit kann 1:1 eine Verpackungseinheit sein (z.B. Postpaket).
+
+Beispiele: Palette mit unterschiedlichen Produkten, Paket mit einem Triac
+]]></comment>
+<notes><![CDATA[[EN_ENTI_COMMENT[
+**Goods that are generally made up of one or more packages, a load carrier and the necessary securing means and can be loaded onto a means of transport in their existing form.
+
+All physical quantities are measured/weighted on the finished loading unit.
+
+A loading unit can be 1:1 a packaging unit (e.g. postal parcel).
+
+Examples: Pallet with different products, package with a triac
+]EN_ENTI_COMMENT]
+[DE_ENTI_COMMENT[
+Transportgut, das in der Regel aus einem oder mehreren Packstücken, einem Ladungsträger und den notwendigen Sicherungsmitteln besteht und in bestehender Form auf ein Transportmittel geladen werden kann.
+
+Sämtliche physiskalischen Grössen werden bei der fertigen Ladeeinheit gemessen/gewogen.
+
+Eine Ladeeinheit kann 1:1 eine Verpackungseinheit sein (z.B.Postpaket).
+
+Beispiele: Palette mit unterschiedlichen Produkten, Paket mit einem Triac
+]DE_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<typeID>EAE76259-2726-6331-F045-11A3187A31D0</typeID>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<propertyMap>
+<property name="DE_ENTI_NAME" value="Ladeeinheit"/>
+<property name="EN_ENTI_NAME" value="**Loading unit"/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Identifikator" id="C20CEB51-1E9A-B6BD-8D36-0666A1D646C7">
+<createdBy>ruben.antenen</createdBy>
+<createdTime>2019-10-09 12:53:07 UTC</createdTime>
+<comment><![CDATA[Leisterweit eindeutige Identifikation einer Ladeeinheit, zusammengesetzt aus Sendung Identifikator und Laufnummer der Ladeeinheit.]]></comment>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+**Leisterwide unique identification of a loading unit, consisting of shipment identifier and sequence number of the loading unit.
+]EN_ATTR_COMMENT]
+[DE_ATTR_COMMENT[
+Leisterweit eindeutige Identifikation einer Ladeeinheit, zusammengesetzt aus Sendung Identifikator und Laufnummer der Ladeeinheit.
+]DE_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>4B064A97-7ACB-C3F8-7251-9BA7B335CCBD</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Identifikator"/>
+<property name="DHL AttrName" value="."/>
+<property name="DHL AttrName Receiver" value="."/>
+<property name="DHL AttrName Shipper" value="."/>
+<property name="EN_ATTR_NAME" value="**Identifier"/>
+<property name="PENTA AttrID" value="."/>
+<property name="PENTA AttrName" value="."/>
+<property name="PENTA datatype" value="."/>
+<property name="PENTA usage" value="."/>
+<property name="PIM AttrID" value="."/>
+<property name="PIM AttrName" value="."/>
+<property name="PIM EnglName" value="."/>
+<property name="PIM datatype" value="."/>
+<property name="PIM usage" value="."/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Laufnummer" id="495FAB39-AD42-489D-C5D8-492676DDFC1D">
+<createdBy>ruben.antenen</createdBy>
+<createdTime>2019-10-09 12:16:51 UTC</createdTime>
+<comment><![CDATA[Unterscheidung von Ladeeinheiten  innerhalb einer Sendung.]]></comment>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+**Differentiation of loading units within a shipment.
+]EN_ATTR_COMMENT]
+[DE_ATTR_COMMENT[
+Unterscheidung von Ladeeinheiten  innerhalb einer Sendung.
+]DE_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypeSize>100</dataTypeSize>
+<domain>1AA297FE-DA5D-D38D-073E-C5696BE23C6A</domain>
+<ownDataTypeParameters>100,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Laufnummer"/>
+<property name="DHL AttrName" value="."/>
+<property name="DHL AttrName Receiver" value="."/>
+<property name="DHL AttrName Shipper" value="."/>
+<property name="EN_ATTR_NAME" value="**Sequence number"/>
+<property name="PENTA AttrID" value="."/>
+<property name="PENTA AttrName" value="."/>
+<property name="PENTA datatype" value="."/>
+<property name="PENTA usage" value="."/>
+<property name="PIM AttrID" value="."/>
+<property name="PIM AttrName" value="."/>
+<property name="PIM EnglName" value="."/>
+<property name="PIM datatype" value="."/>
+<property name="PIM usage" value="."/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>1</beginValue>
+<endValue>99</endValue>
+</rangeDef>
+</listOfRanges>
+</Attribute>
+<Attribute name="Länge" id="AE29F276-28E9-70E9-065A-FD5CFD2E1528">
+<createdBy>ruben.antenen</createdBy>
+<createdTime>2019-08-30 17:08:00 UTC</createdTime>
+<comment><![CDATA[Länge in cm gemessen bei der fertigen Ladeinheit]]></comment>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+**Length in cm measured with the finished loading unit
+]EN_ATTR_COMMENT]
+[DE_ATTR_COMMENT[
+Länge in cm gemessen bei der fertigen Ladeinheit
+]DE_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>8E24BBCC-8062-6053-EE8E-21D11677472A</domain>
+<checkConstraint>
+<implementationDef dbType="Generic Constraint" definition="Pflichtfeld für gewisse Transporteure  Beispiel: DHL"/>
+</checkConstraint>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Länge"/>
+<property name="DHL AttrName" value="LengthInCM"/>
+<property name="DHL AttrName Receiver" value="."/>
+<property name="DHL AttrName Shipper" value="."/>
+<property name="EN_ATTR_NAME" value="**Length"/>
+<property name="SAPByD AttrName" value="Length"/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Breite" id="72A89B82-4969-4479-BC39-EEDE0FEA46A4">
+<createdBy>ruben.antenen</createdBy>
+<createdTime>2019-08-30 17:06:45 UTC</createdTime>
+<comment><![CDATA[Breite in cm gemessen bei der fertigen Ladeinheit]]></comment>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+**Width in cm measured at the finished loading unit
+]EN_ATTR_COMMENT]
+[DE_ATTR_COMMENT[
+Breite in cm gemessen bei der fertigen Ladeinheit
+]DE_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>8E24BBCC-8062-6053-EE8E-21D11677472A</domain>
+<checkConstraint>
+<implementationDef dbType="Generic Constraint" definition="Pflichtfeld für gewisse Transporteure  Beispiel: DHL"/>
+</checkConstraint>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Breite"/>
+<property name="DHL AttrName" value="WidthInCM"/>
+<property name="DHL AttrName Receiver" value="."/>
+<property name="DHL AttrName Shipper" value="."/>
+<property name="EN_ATTR_NAME" value="**Width"/>
+<property name="SAPByD AttrName" value="Width"/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Höhe" id="9868001F-4A5D-FA5E-2D27-AC3765362205">
+<createdBy>ruben.antenen</createdBy>
+<createdTime>2019-08-30 12:11:55 UTC</createdTime>
+<comment><![CDATA[Höhe in cm gemessen bei der fertigen Ladeinheit]]></comment>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+**Height in cm measured at the finished loading unit
+]EN_ATTR_COMMENT]
+[DE_ATTR_COMMENT[
+Höhe in cm gemessen bei der fertigen Ladeinheit
+]DE_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>8E24BBCC-8062-6053-EE8E-21D11677472A</domain>
+<checkConstraint>
+<implementationDef dbType="Generic Constraint" definition="Pflichtfeld für gewisse Transporteure   Beispiel: DHL"/>
+</checkConstraint>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Höhe"/>
+<property name="DHL AttrName" value="HeightInCM"/>
+<property name="DHL AttrName Receiver" value="."/>
+<property name="DHL AttrName Shipper" value="."/>
+<property name="EN_ATTR_NAME" value="**Height"/>
+<property name="SAPByD AttrName" value="Height"/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Gewicht" id="78398B3F-E199-45A3-3539-0D995DC6507E">
+<createdBy>ruben.antenen</createdBy>
+<createdTime>2019-08-30 12:12:39 UTC</createdTime>
+<comment><![CDATA[Gewicht in kg gewogen bei der fertigen Ladeinheit]]></comment>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+**Weight in kg weighed with the finished loading unit
+]EN_ATTR_COMMENT]
+[DE_ATTR_COMMENT[
+Gewicht in kg gewogen bei der fertigen Ladeinheit
+]DE_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>BC80FC3F-D21C-4FB5-C989-0B5D165F3074</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Gewicht"/>
+<property name="DHL AttrName" value="WeightInKG"/>
+<property name="DHL AttrName Receiver" value="."/>
+<property name="DHL AttrName Shipper" value="."/>
+<property name="EN_ATTR_NAME" value="**Weight"/>
+<property name="SAPByD AttrName" value="Weight"/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>0</beginValue>
+<endValue>99999.99</endValue>
+</rangeDef>
+</listOfRanges>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="EDB0330D-E473-3E46-D4E4-32BC0C8B205F" name="Key_1">
+<createdBy>ruben.antenen</createdBy>
+<createdTime>2019-10-09 12:54:08 UTC</createdTime>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<newElementsIDs>495FAB39-AD42-489D-C5D8-492676DDFC1D,6871DDD5-32DC-E308-3458-F257F4004148</newElementsIDs>
+<usedAttributes>
+<attributeRef>495FAB39-AD42-489D-C5D8-492676DDFC1D</attributeRef>
+</usedAttributes>
+</identifier>
+<identifier id="E69C881C-A779-E6A1-E8D6-EEAE3DE31C49" name="Key_2">
+<createdBy>ruben.antenen</createdBy>
+<createdTime>2019-10-09 12:54:18 UTC</createdTime>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<newElementsIDs>C20CEB51-1E9A-B6BD-8D36-0666A1D646C7</newElementsIDs>
+<usedAttributes>
+<attributeRef>C20CEB51-1E9A-B6BD-8D36-0666A1D646C7</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

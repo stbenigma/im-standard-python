@@ -1,0 +1,30 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_235" directorySegmentName="seg_2" id="EB5CE829-E285-7455-D32A-D9DE69551D8A">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:04:58 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<engineerTo>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="BECECC1A-8EEF-5F5F-6660-69A414A499DF" value="true"/>
+<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
+</engineerTo>
+<useSurrogateKey>true</useSurrogateKey>
+<identifying>false</identifying>
+<nameOnSource>beherbergt</nameOnSource>
+<nameOnTarget>ist in</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>62EB6642-36EF-46BC-5E16-9F083ACB1B70</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>5D97B3E2-8FA2-953C-7032-0B037E7CD2C1</targetEntity>
+<transferable>true</transferable>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="beherbergt"/>
+<property name="DE_RELA_TEXT_TO" value="ist in"/>
+<property name="EN_RELA_TEXT_FROM" value="hosts"/>
+<property name="EN_RELA_TEXT_TO" value="is in"/>
+<property name="maxzoomlevel" value="5"/>
+<property name="minzoomlevel" value="0"/>
+</propertyMap>
+</Relation>

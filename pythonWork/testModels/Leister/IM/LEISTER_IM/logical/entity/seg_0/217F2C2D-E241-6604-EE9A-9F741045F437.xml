@@ -1,0 +1,38 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="217F2C2D-E241-6604-EE9A-9F741045F437" name="Marketing Dokument">
+<createdBy>ruben.antenen</createdBy>
+<createdTime>2019-11-05 13:31:03 UTC</createdTime>
+<comment><![CDATA[Dokument irgendeiner Form primär für Marketing-Zwecke erstellt.
+
+Beispiele: Katalog, Produktbild, Video, Marketing Text, 3D Modelle (AR/VR), Illustrationen
+]]></comment>
+<notes><![CDATA[[EN_ENTI_COMMENT[
+**Document of any form primarily for marketing purposes.
+
+Examples: Catalogue, product image, video, marketing text, 3D models (AR/VR), illustrations
+]EN_ENTI_COMMENT]
+[DE_ENTI_COMMENT[
+Dokument irgendeiner Form primär für Marketing-Zwecke estellt.
+
+Beispiele: Katalog, Produktbild, Video, Marketing Text, 3D Modelle (AR/VR), Illustrationen
+]DE_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<typeID>AB7A723E-18E3-723F-6D3A-6AE296FEBDA3</typeID>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<hierarchicalParent>BAC9BDE9-0569-2577-6890-B5FB2B2F1AC9</hierarchicalParent>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<propertyMap>
+<property name="DE_ENTI_NAME" value="Marketing Dokument"/>
+<property name="EN_ENTI_NAME" value="**Marketing Document"/>
+</propertyMap>
+</Entity>

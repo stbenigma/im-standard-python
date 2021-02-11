@@ -1,0 +1,604 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="DD8AFD8D-0946-C0F3-F1D9-4307FD4551D1" name="Beförderungsauftrag">
+<createdBy>ruben.antenen</createdBy>
+<createdTime>2019-08-30 12:20:39 UTC</createdTime>
+<comment><![CDATA[Auftrag an einen Frachtführer Transportgüter von einem Ort zum anderen zu befördern.
+
+Synonyme: Transportvertrag, Frachtvertrag]]></comment>
+<notes><![CDATA[[EN_ENTI_COMMENT[
+**Order to a carrier to transport goods from one place to another.
+
+Synonyms: transport contract, freight contract
+]EN_ENTI_COMMENT]
+[DE_ENTI_COMMENT[
+Auftrag an einen Frachtführer Transportgüter von einem Ort zum anderen zu befördern.
+
+Synonyme: Transportvertrag, Frachtvertrag
+]DE_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<typeID>EAE76259-2726-6331-F045-11A3187A31D0</typeID>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<propertyMap>
+<property name="DE_ENTI_NAME" value="Beförderungsauftrag"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_NAME" value="**Transport order"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Identifikator" id="E893ECBF-AAA8-0983-5E21-EE5EF278C346">
+<createdBy>ruben.antenen</createdBy>
+<createdTime>2019-10-09 13:01:22 UTC</createdTime>
+<comment><![CDATA[Firmenweiter eindeutiger Identifikator für einen Beförderungsauftrag.]]></comment>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+**Company-wide unique identifier for a transport order.
+]EN_ATTR_COMMENT]
+[DE_ATTR_COMMENT[
+Firmenweiter eindeutiger Identifikator für einen Beförderungsauftrag.
+]DE_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Identifikator"/>
+<property name="DHL AttrName" value="."/>
+<property name="DHL AttrName Receiver" value="."/>
+<property name="DHL AttrName Shipper" value="."/>
+<property name="EN_ATTR_NAME" value="**Identifier"/>
+<property name="PENTA AttrID" value="."/>
+<property name="PENTA AttrName" value="."/>
+<property name="PENTA datatype" value="."/>
+<property name="PENTA usage" value="."/>
+<property name="PIM AttrID" value="."/>
+<property name="PIM AttrName" value="."/>
+<property name="PIM EnglName" value="."/>
+<property name="PIM datatype" value="."/>
+<property name="PIM usage" value="."/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Tracking Nummer" id="F5F362DC-CE08-AF8F-42DC-396796CAA852">
+<createdBy>ruben.antenen</createdBy>
+<createdTime>2019-10-03 07:33:04 UTC</createdTime>
+<comment><![CDATA[Eindeutige Identifikationsnummer des Transporteurs zur Nachverfolgung der Sendung]]></comment>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+**Unique identification number of the carrier for tracking the shipment
+]EN_ATTR_COMMENT]
+[DE_ATTR_COMMENT[
+Eindeutige Identifikationsnummer des Transporteurs zur Nachverfolgung der Sendung
+]DE_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<dataTypeSize>100</dataTypeSize>
+<ownDataTypeParameters>100,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Tracking Nummer"/>
+<property name="DHL AttrName" value="TrackingNumber"/>
+<property name="DHL AttrName Receiver" value="."/>
+<property name="DHL AttrName Shipper" value="."/>
+<property name="EN_ATTR_NAME" value="**Tracking number"/>
+<property name="SAPByD AttrName" value="TrackingNumber"/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Tracking Link" id="467D4968-801F-753F-0992-2DC4D2EC1CA9">
+<createdBy>ruben.antenen</createdBy>
+<createdTime>2019-10-03 07:33:04 UTC</createdTime>
+<comment><![CDATA[Auf Tracking Nummer basierender Link zur Webpage mit dem aktuellen Beförderungsstatus des Transportauftrags]]></comment>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+**Link based on tracking number to the Web page with the current transport status of the transport request
+]EN_ATTR_COMMENT]
+[DE_ATTR_COMMENT[
+Auf Tracking Nummer basierender Link zur Webpage mit dem aktuellen Beförderungsstatus des Transportauftrags
+]DE_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT040</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Tracking Link"/>
+<property name="DHL AttrName" value="."/>
+<property name="DHL AttrName Receiver" value="."/>
+<property name="DHL AttrName Shipper" value="."/>
+<property name="EN_ATTR_NAME" value="**Tracking Link"/>
+<property name="SAPByD AttrName" value="TrackingLink"/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Auftragsstatus" id="A9572F8E-F6C1-750F-5FD9-D2F15C4D8539">
+<createdBy>ruben.antenen</createdBy>
+<createdTime>2019-08-30 17:02:57 UTC</createdTime>
+<comment><![CDATA[Status ob der Transportauftrag vom Transporteur akzeptiert wurde]]></comment>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+**Status whether the transfer order was accepted by the transporter
+]EN_ATTR_COMMENT]
+[DE_ATTR_COMMENT[
+Status ob der Transportauftrag vom Transporteur akzeptiert wurde
+]DE_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<dataTypeSize>100</dataTypeSize>
+<ownDataTypeParameters>100,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Auftragsstatus"/>
+<property name="DHL AttrName" value="StatusCode"/>
+<property name="DHL AttrName Receiver" value="."/>
+<property name="DHL AttrName Shipper" value="."/>
+<property name="EN_ATTR_NAME" value="**Job status"/>
+<property name="SAPByD AttrName" value="StatusCode"/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Auftragsstatusbeschreibung" id="54D00EDD-7296-3EC5-F4C0-06B6320FBA20">
+<createdBy>ruben.antenen</createdBy>
+<createdTime>2019-08-30 17:04:08 UTC</createdTime>
+<comment><![CDATA[Fehlermeldung im Falle einer Ablehnung des Transportauftrags]]></comment>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+**Error message if the transfer order is rejected
+]EN_ATTR_COMMENT]
+[DE_ATTR_COMMENT[
+Fehlermeldung im Falle einer Ablehnung des Transportauftrags
+]DE_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT040</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Auftragsstatusbeschreibung"/>
+<property name="DHL AttrName" value="StatusMessage"/>
+<property name="DHL AttrName Receiver" value="."/>
+<property name="DHL AttrName Shipper" value="."/>
+<property name="EN_ATTR_NAME" value="**Job status description"/>
+<property name="SAPByD AttrName" value="StatusMessage"/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Beförderungsstatus" id="A0FCA0DB-0B5A-9831-F489-6ACCC2A7994D">
+<createdBy>ruben.antenen</createdBy>
+<createdTime>2019-08-30 17:04:49 UTC</createdTime>
+<comment><![CDATA[Beförderungsstatus der Sendung]]></comment>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+**Transport status of the consignment
+]EN_ATTR_COMMENT]
+[DE_ATTR_COMMENT[
+Beförderungsstatus der Sendung
+]DE_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<dataTypeSize>100</dataTypeSize>
+<ownDataTypeParameters>100,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Beförderungsstatus"/>
+<property name="DHL AttrName" value="."/>
+<property name="DHL AttrName Receiver" value="."/>
+<property name="DHL AttrName Shipper" value="."/>
+<property name="EN_ATTR_NAME" value="**Transport status"/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Geographische Länge" id="913A9BE1-022D-CF10-ADD1-C234C66E1BAF">
+<createdBy>ruben.antenen</createdBy>
+<createdTime>2019-10-11 14:55:04 UTC</createdTime>
+<comment><![CDATA[Geographische Länge des Aufenthaltorts der Sendung im Format ±ddd.dddddd°.
+
+Synonym: Längengrad
+
+Beispiel: 46.913705]]></comment>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+**Geographical longitude of the location of the consignment in ±ddd.dddddd° format.
+
+Synonym: Longitude
+
+Example: 46.913705
+]EN_ATTR_COMMENT]
+[DE_ATTR_COMMENT[
+Geographische Länge des Aufenthaltorts der Sendung im Format ±ddd.dddddd°.
+
+Synonym: Längengrad
+
+Beispiel: 46.913705
+]DE_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>550C7253-858E-F656-5950-67943BD0962C</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Geographische Länge"/>
+<property name="DHL AttrName" value="."/>
+<property name="DHL AttrName Receiver" value="."/>
+<property name="DHL AttrName Shipper" value="."/>
+<property name="EN_ATTR_NAME" value="**Geographical longitude"/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>-180</beginValue>
+<endValue>+180</endValue>
+</rangeDef>
+</listOfRanges>
+</Attribute>
+<Attribute name="Geographische Breite" id="DD263D14-5FE4-C3C1-4861-777CEB4717F6">
+<createdBy>ruben.antenen</createdBy>
+<createdTime>2019-10-11 14:56:55 UTC</createdTime>
+<comment><![CDATA[Geographische Breite des Aufenthaltorts der Sendung im Format ±ddd.dddddd°.
+
+Synonyme: Breitengrad
+
+Beispiel: 8.258153]]></comment>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+**Geographical latitude of the location of the consignment in ±ddd.dddddd° format.
+
+Synonyms: Latitude
+
+Example: 8.258153
+]EN_ATTR_COMMENT]
+[DE_ATTR_COMMENT[
+Geographische Breite des Aufenthaltorts der Sendung im Format ±ddd.dddddd°.
+
+Synonyme: Breitengrad
+
+Beispiel: 8.258153
+]DE_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>550C7253-858E-F656-5950-67943BD0962C</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Geographische Breite"/>
+<property name="DHL AttrName" value="."/>
+<property name="DHL AttrName Receiver" value="."/>
+<property name="DHL AttrName Shipper" value="."/>
+<property name="EN_ATTR_NAME" value="**Geographical latitude"/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>-180</beginValue>
+<endValue>+180</endValue>
+</rangeDef>
+</listOfRanges>
+</Attribute>
+<Attribute name="Abholtermin" id="F16E26F0-C233-A9F4-3485-26B6DE779D33">
+<createdBy>ruben.antenen</createdBy>
+<createdTime>2019-10-04 08:14:47 UTC</createdTime>
+<comment><![CDATA[Vom Versender, Absender oder Verlader vorgegebene Termin/Zeit, an dem die Güter abzuholen sind]]></comment>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+**Date/time specified by the consignor, consignor or shipper at which the goods are to be collected
+]EN_ATTR_COMMENT]
+[DE_ATTR_COMMENT[
+Vom Versender, Absender oder Verlader vorgegebene Termin/Zeit, an dem die Güter abzuholen sind
+]DE_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT008</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Abholtermin"/>
+<property name="DHL AttrName" value="DeliveryDate"/>
+<property name="DHL AttrName Receiver" value="."/>
+<property name="DHL AttrName Shipper" value="."/>
+<property name="EN_ATTR_NAME" value="**Pick-up date"/>
+<property name="SAPByD AttrName" value="DeliveryDate"/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Abholdatum" id="BAE9A7DB-BBB4-530C-7114-8BE2A88C0FEB">
+<createdBy>ruben.antenen</createdBy>
+<createdTime>2019-10-04 08:14:47 UTC</createdTime>
+<comment><![CDATA[Datum/Zeit, an dem der Frachtführer die Güter übernommen hat]]></comment>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+**The date/time on which the carrier took over the goods
+]EN_ATTR_COMMENT]
+[DE_ATTR_COMMENT[
+Datum/Zeit, an dem der Frachtführer die Güter übernommen hat
+]DE_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT008</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Abholdatum"/>
+<property name="DHL AttrName" value="."/>
+<property name="DHL AttrName Receiver" value="."/>
+<property name="DHL AttrName Shipper" value="."/>
+<property name="EN_ATTR_NAME" value="**Pick-up date1"/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Anliefertermin" id="0F19A1B7-5F22-D4D1-A031-D55AADF77028">
+<createdBy>ruben.antenen</createdBy>
+<createdTime>2019-10-04 08:14:47 UTC</createdTime>
+<comment><![CDATA[Vom Versender / Absender vorgegebene Termin/Zeit, an dem die Güter anzuliefern sind]]></comment>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+**Date/time specified by the shipper/consignor when the goods are to be delivered
+]EN_ATTR_COMMENT]
+[DE_ATTR_COMMENT[
+Vom Versender / Absender vorgegebene Termin/Zeit, an dem die Güter anzuliefern sind
+]DE_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT008</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Anliefertermin"/>
+<property name="DHL AttrName" value="."/>
+<property name="DHL AttrName Receiver" value="."/>
+<property name="DHL AttrName Shipper" value="."/>
+<property name="EN_ATTR_NAME" value="**Delivery date"/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Anlieferdatum" id="B1D90A77-8427-39DB-9C11-4C629DCEAE28">
+<createdBy>ruben.antenen</createdBy>
+<createdTime>2019-10-04 08:14:47 UTC</createdTime>
+<comment><![CDATA[Datum/Zeit, an dem der Frachtführer die Güter angeliefert hat]]></comment>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+**Date/time when the carrier delivered the goods
+]EN_ATTR_COMMENT]
+[DE_ATTR_COMMENT[
+Datum/Zeit, an dem der Frachtführer die Güter angeliefert hat
+]DE_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT008</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Anlieferdatum"/>
+<property name="DHL AttrName" value="."/>
+<property name="DHL AttrName Receiver" value="."/>
+<property name="DHL AttrName Shipper" value="."/>
+<property name="EN_ATTR_NAME" value="**Delivery date1"/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Erwartetes Eintreffdatum" id="05FD635B-AB81-341E-B297-7D73D2AB0B4C">
+<createdBy>ruben.antenen</createdBy>
+<createdTime>2019-10-04 08:14:47 UTC</createdTime>
+<comment><![CDATA[Geschätzter Eintreffzeitpunkt einer Sendung beim Warenempfänger.]]></comment>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+**Estimated arrival time of a shipment at the ship-to party.
+]EN_ATTR_COMMENT]
+[DE_ATTR_COMMENT[
+Geschätzter Eintreffzeitpunkt einer Sendung beim Warenempfänger.
+]DE_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT008</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Erwartetes Eintreffdatum"/>
+<property name="DHL AttrName" value="."/>
+<property name="DHL AttrName Receiver" value="."/>
+<property name="DHL AttrName Shipper" value="."/>
+<property name="EN_ATTR_NAME" value="**Expected arrival date"/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Versandtermin" id="E65AFB23-494B-F6DA-9F68-5257EA95E8F5">
+<createdBy>ruben.antenen</createdBy>
+<createdTime>2019-10-04 08:14:47 UTC</createdTime>
+<comment><![CDATA[I.d.R. vom Kunden / Warenempfänger vorgegebener Versandtermin, zu dem der Lieferant die Ware zur Abholung durch den Frachtführer in der vereinbarten Transportverpackung zur Verladung bereitzustellen hat.]]></comment>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+**Usually the shipment date specified by the customer / goods recipient, on which the supplier must make the goods available for collection by the carrier in the agreed transport packaging for loading.
+]EN_ATTR_COMMENT]
+[DE_ATTR_COMMENT[
+I.d.R. vom Kunden / Warenempfänger vorgegebener Versandtermin, zu dem der Lieferant die Ware zur Abholung durch den Frachtführer in der vereinbarten Transportverpackung zur Verladung bereitzustellen hat.
+]DE_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT008</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Versandtermin"/>
+<property name="DHL AttrName" value="."/>
+<property name="DHL AttrName Receiver" value="."/>
+<property name="DHL AttrName Shipper" value="."/>
+<property name="EN_ATTR_NAME" value="**Shipping date"/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Versanddatum" id="1A07EEEB-A254-8416-60ED-555EB70E4C67">
+<createdBy>ruben.antenen</createdBy>
+<createdTime>2019-10-04 08:14:47 UTC</createdTime>
+<comment><![CDATA[Tatsächliches Versanddatum/-zeit der Sendung.]]></comment>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+**Actual shipping date/time of the shipment.
+]EN_ATTR_COMMENT]
+[DE_ATTR_COMMENT[
+Tatsächliches Versanddatum/-zeit der Sendung.
+]DE_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT008</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Versanddatum"/>
+<property name="DHL AttrName" value="."/>
+<property name="DHL AttrName Receiver" value="."/>
+<property name="DHL AttrName Shipper" value="."/>
+<property name="EN_ATTR_NAME" value="**Shipping date1"/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Expresslieferung" id="7DD8CD61-6D83-D63E-74EB-8EC389136550">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-09 15:00:01 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT006</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Expresslieferung"/>
+<property name="DHL AttrName" value="."/>
+<property name="DHL AttrName Receiver" value="."/>
+<property name="DHL AttrName Shipper" value="."/>
+<property name="EN_ATTR_NAME" value="**Express delivery"/>
+<property name="PENTA AttrID" value="."/>
+<property name="PENTA AttrName" value="."/>
+<property name="PENTA datatype" value="."/>
+<property name="PENTA usage" value="."/>
+<property name="PIM AttrID" value="."/>
+<property name="PIM AttrName" value="."/>
+<property name="PIM EnglName" value="."/>
+<property name="PIM datatype" value="."/>
+<property name="PIM usage" value="."/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="E7A7113D-4BC8-FD4B-E44B-6EF8388E5EE9" name="Key_1">
+<createdBy>ruben.antenen</createdBy>
+<createdTime>2019-10-11 09:45:48 UTC</createdTime>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<newElementsIDs>E893ECBF-AAA8-0983-5E21-EE5EF278C346</newElementsIDs>
+<usedAttributes>
+<attributeRef>E893ECBF-AAA8-0983-5E21-EE5EF278C346</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

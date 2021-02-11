@@ -1,0 +1,26 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_22" directorySegmentName="seg_0" id="5C8E1F84-2707-F649-517A-65CBD9AAA411">
+<createdBy>sbo</createdBy>
+<createdTime>2019-02-06 13:20:13 UTC</createdTime>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<nameOnSource>verweist auf</nameOnSource>
+<nameOnTarget>???</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>40A7A671-E21C-3729-9203-ACBFA941BB86</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>5F781006-E24C-300F-892A-A21FE5D21C4B</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="verweist auf"/>
+<property name="DE_RELA_TEXT_TO" value="???"/>
+<property name="EN_RELA_TEXT_FROM" value="**refers to"/>
+<property name="EN_RELA_TEXT_TO" value="**???"/>
+</propertyMap>
+</Relation>

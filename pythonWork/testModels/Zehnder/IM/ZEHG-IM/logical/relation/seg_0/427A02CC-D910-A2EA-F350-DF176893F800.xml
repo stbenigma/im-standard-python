@@ -1,0 +1,26 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_14" directorySegmentName="seg_0" id="427A02CC-D910-A2EA-F350-DF176893F800">
+<createdBy>cle</createdBy>
+<createdTime>2020-08-12 09:30:10 UTC</createdTime>
+<ownerDesignName>ZEHG-IM</ownerDesignName>
+<engineerTo>
+<item key="E73667C8-D73D-37B9-7BB4-9427B1B6DC71" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<nameOnSource>filled</nameOnSource>
+<nameOnTarget>imbued with</nameOnTarget>
+<optionalSource>false</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>65E87504-13BD-1972-CD89-E52CDDD7AB7C</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>F6589282-6139-8074-8AF6-FFED724E6F08</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="efüllt"/>
+<property name="DE_RELA_TEXT_TO" value="erfüllt durch"/>
+<property name="EN_RELA_TEXT_FROM" value="**filled"/>
+<property name="EN_RELA_TEXT_TO" value="**imbued with"/>
+</propertyMap>
+</Relation>

@@ -1,0 +1,246 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="585CD368-9E78-3BF7-21EC-07AC33AAADA9" name="COLUMNS">
+<createdBy>stb</createdBy>
+<createdTime>2020-04-22 15:22:04 UTC</createdTime>
+<comment><![CDATA[ Attribut in einem System, das mit anderen Systemen ausgetauscht werden soll.
+ Datentyp, Format und Constraints können in div. Sprachen und Dialekten geführ werden
+  SQL (mit dialekt)
+  Jason
+  XML
+]]></comment>
+<generatorID>434F5721-A84C-C9C9-1B29-C30F54ABAD58</generatorID>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+ Attribut in einem System, das mit anderen Systemen ausgetauscht werden soll.  Datentyp, Format und Constraints können in div. Sprachen und Dialekten geführ werden   SQL (mit dialekt)   Jason   XML 
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+ Attribute in a system that is to be exchanged with other systems.  Data type, format and constraints can be maintained in various languages and dialects SQL (with dialect) Jason XML
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<ordsAlias>schnittstellenattribut</ordsAlias>
+<typeID>FAF70092-F6A9-97FE-9880-A36ECEDBFE26</typeID>
+<abbreviation>COLU</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="COLU_ID" id="41CDCD81-D6BA-D9D7-A6E8-3BE94A5B09A3">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-01 15:46:02 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+<Column name="COLU_COLUMN_NAME" id="048D3651-5332-A4C6-37DF-70EB114C37F5">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-01 15:46:02 UTC</createdTime>
+<generatorID>B41BF0C7-0AD6-E2FF-307E-0E3AB8A27120</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="COLU_MANDATORY" id="86251952-F395-9FE8-3830-AE5B4A4F01F2">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-14 07:53:56 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="B398D247-00C1-F016-3BBB-FE65CFFFF7AA"/>
+</propertyMap>
+</Column>
+<Column name="COLU_FORMAT" id="3DD32C11-B14B-233C-8BC5-BED6479EBCB8">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-01 15:46:02 UTC</createdTime>
+<comment><![CDATA[Textliche Formatierung eines numerischen oder Zeitpunkt-Wertes]]></comment>
+<generatorID>41BDC830-A46D-219F-EB0F-7B05805D6919</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>F8923415-2F34-2023-2112-9B16A52B1FD6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="COLU_DESCR" id="5626C102-E22A-3BA7-FEB1-EA876430D85D">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-01 15:46:02 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="COLU_EXT_SYSTEM_ID" id="59D64634-C652-2BF8-5FDA-57CD1B369B31">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-01 15:46:02 UTC</createdTime>
+<commentInRDBMS><![CDATA[ID / Code der Attributbdefinition in einer Standardsoftware]]></commentInRDBMS>
+<generatorID>DFC19C82-0428-0E67-1DED-3E7A2FC35B39</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<dataTypeSize>100 CHAR</dataTypeSize>
+<ownDataTypeParameters>100 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="COLU_TYPE_STRING" id="0EEE7A29-FA52-2619-B1C2-85C90E421BD4">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-01 15:46:02 UTC</createdTime>
+<comment><![CDATA[Typenbeschreibung als String abgelegt (ggf. auf dem Wertebereich/Datatype)]]></comment>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>897B91BA-60B8-3A16-793A-97B535605E5E</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="COLU_TABL_ID" id="B22D12A8-661E-7807-4E88-702D2BFDBD74">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-01 15:21:12 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="8E11C223-8696-86F4-0810-12FA3ABFF340" referredColumn="A2F5343E-BDFF-9FF3-0FE3-F47D462C52EB"/>
+</associations>
+</Column>
+<Column name="COLU_DOMA_ID" id="DA4D9A93-067E-1F81-19E8-46347A12094F">
+<sourceDDLFile>domains.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2020-12-01 15:46:02 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="12BC8C50-F138-3A7F-6D44-24BEF382AC6C" referredColumn="2E2DC8C2-F80A-D2DF-69E8-A2D10C6A341C"/>
+</associations>
+</Column>
+<Column name="COLU_UC" id="AA190FF6-EBE8-BF95-CF8B-A559935BED18">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-01 15:46:02 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="F7EEFF47-7A42-2A3E-7DFC-D0558D6996B8"/>
+</propertyMap>
+</Column>
+<Column name="COLU_DC" id="5F0E5BC6-C481-07C1-EE0E-14449E3ECD12">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-01 15:46:02 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT047</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="74D877A0-4C3B-63EE-06C5-071C7695907C"/>
+</propertyMap>
+</Column>
+<Column name="COLU_UM" id="FDE45199-58A7-2323-D481-7CBE82F71E27">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-01 15:46:02 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="B2E17D53-C2F7-74D9-022D-5D63F3931519"/>
+</propertyMap>
+</Column>
+<Column name="COLU_DM" id="EF53DF2A-B463-D15B-42A7-7372B4860AF9">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-01 15:46:02 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT047</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="B398D247-00C1-F016-3BBB-FE65CFFFF7AA"/>
+</propertyMap>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="0CEEDC04-C2A3-74D7-D422-F1A5BA46826B" name="COLU_PK">
+<createdBy>stb</createdBy>
+<createdTime>2020-04-22 15:22:04 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="41CDCD81-D6BA-D9D7-A6E8-3BE94A5B09A3"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="9FE94EAB-AC5F-D64F-47DA-4E3B316D17B0" name="COLU_UK">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-01 15:46:02 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="B22D12A8-661E-7807-4E88-702D2BFDBD74"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="8B6CC33C-F0EC-EA85-6C24-8F36339E57AF" name="COLU_TABL_FK">
+<createdBy>stb</createdBy>
+<createdTime>2020-04-22 15:22:04 UTC</createdTime>
+<generatorID>3357B549-5ADB-12A9-11E9-8BC17407E9B0</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="B22D12A8-661E-7807-4E88-702D2BFDBD74"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="830AFA40-0056-0BF4-1EC1-F6431455F6AE" name="COLU_DOMA_FK">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-04 09:23:16 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="DA4D9A93-067E-1F81-19E8-46347A12094F"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

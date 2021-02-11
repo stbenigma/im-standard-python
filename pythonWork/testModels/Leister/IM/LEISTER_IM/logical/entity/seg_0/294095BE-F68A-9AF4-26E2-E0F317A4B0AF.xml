@@ -1,0 +1,37 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="294095BE-F68A-9AF4-26E2-E0F317A4B0AF" name="Rohmaterial">
+<createdBy>ruben.antenen</createdBy>
+<createdTime>2019-11-25 13:33:00 UTC</createdTime>
+<comment><![CDATA[Material aus den Einzelteilen gefertigt werden
+
+Beispiele: Eisen, Holz, Chemikalien, Baustoffe, Kabelrollen, Schlauchrollen, Meterware
+]]></comment>
+<notes><![CDATA[[EN_ENTI_COMMENT[
+**Material from which individual parts are manufactured
+
+Examples: Iron, wood, chemicals, building materials, cable reels, hose reels, yard goods
+]EN_ENTI_COMMENT]
+[DE_ENTI_COMMENT[
+Material aus dem Einzelteile gefertigt werden
+
+Beispiele: Eisen, Holz, Cehmikalien, Baustoffe, Kabelrollen, Schlauchrollen, Meterware
+]DE_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<typeID>1DE46C3B-EE5B-06FD-F3F2-3F285393E5B7</typeID>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<propertyMap>
+<property name="DE_ENTI_NAME" value="Rohmaterial"/>
+<property name="EN_ENTI_NAME" value="**Raw material"/>
+</propertyMap>
+</Entity>

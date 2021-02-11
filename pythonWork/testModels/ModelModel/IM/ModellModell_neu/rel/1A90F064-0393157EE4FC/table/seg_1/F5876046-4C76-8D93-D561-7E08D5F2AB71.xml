@@ -1,0 +1,100 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_1" id="F5876046-4C76-8D93-D561-7E08D5F2AB71" name="MODE_ORGU">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>MODE_ORGU</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2020-12-07 12:57:06 UTC</createdTime>
+<comment><![CDATA[Connecting documents to model elements (which model element is described with the content in the document)]]></comment>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<ordsAlias>table_75</ordsAlias>
+<abbreviation>MOOU</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="MOOU_ID" id="3524B601-E14C-7BDD-E664-EEF85375F852">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-07 12:57:06 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="MOOU_MODE_ID" id="C3DF6D95-0C19-B541-4BB6-CF26FB3DA60A">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-07 12:57:06 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="4863E211-8365-ED54-039A-5FC2D2E57ABD" referredColumn="9698F1F3-1EBE-8770-4F8C-4FFC3465A776"/>
+</associations>
+</Column>
+<Column name="MOOU_ORGU_ID" id="C2A65275-C6E3-67D1-F665-7DC3711A1C89">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-07 12:57:06 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="D74B2EC8-6D8E-A79C-3859-C11DEED79BBB" referredColumn="7A6F904A-B7E7-0A01-6B6A-F3EA1A73CBD5"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="D550AFEE-9069-7293-B802-5B5B16019AF0" name="MOOU_PK">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-07 12:57:06 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="3524B601-E14C-7BDD-E664-EEF85375F852"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="32EDB570-B33F-905D-79D6-22827A5C7A21" name="MOOU_UK">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-07 12:57:06 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="C3DF6D95-0C19-B541-4BB6-CF26FB3DA60A"/>
+<colUsage columnID="C2A65275-C6E3-67D1-F665-7DC3711A1C89"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="426911D4-AC6E-C1DD-E45A-6ADDB5435351" name="MOOU_MODE_FK">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-07 12:57:06 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="C3DF6D95-0C19-B541-4BB6-CF26FB3DA60A"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="C813DB2D-37A4-0976-DE08-EA8F3B01E2A6" name="MOOU_ORGU_FK">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 11:17:48 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="C2A65275-C6E3-67D1-F665-7DC3711A1C89"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -1,0 +1,19 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="EA703A87-D86F-D784-E25C-B62220CF8769" containerWithKeyObject="B2D00C84-4FB1-AF81-A223-4C0B96EEBA54" localFKIndex="6E9349DD-953A-14B8-CE00-8E3184578D25" name="ATTR_ENTI_FK">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>ATTR_ENTI_FK</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:13 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<referredTableLongName>modelmodel_dbo.ENTITIES</referredTableLongName>
+<deleteRule>RESTRICT</deleteRule>
+<referredTableID>45766C87-5A6E-52DE-B819-8DC554BF48BB</referredTableID>
+<keyObject>92B279B9-B3CA-24DE-19D6-2D114A3D38D7</keyObject>
+<referredKeyID>92B279B9-B3CA-24DE-19D6-2D114A3D38D7</referredKeyID>
+<mandatory>false</mandatory>
+<refColNames>ENTI_ID</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

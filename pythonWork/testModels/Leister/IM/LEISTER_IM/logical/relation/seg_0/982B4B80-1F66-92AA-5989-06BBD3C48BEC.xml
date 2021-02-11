@@ -1,0 +1,26 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_55" directorySegmentName="seg_0" id="982B4B80-1F66-92AA-5989-06BBD3C48BEC">
+<createdBy>ruben.antenen</createdBy>
+<createdTime>2019-10-03 06:55:49 UTC</createdTime>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<nameOnSource>bündelt</nameOnSource>
+<nameOnTarget>versandt in</nameOnTarget>
+<optionalSource>false</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>7721BD88-34AB-5718-766A-C3D0B3D2E0EC</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>4826C7C0-7392-6405-0CE9-96F1D3E25E86</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="bündelt"/>
+<property name="DE_RELA_TEXT_TO" value="versandt in"/>
+<property name="EN_RELA_TEXT_FROM" value="**bundled"/>
+<property name="EN_RELA_TEXT_TO" value="**shipped to"/>
+</propertyMap>
+</Relation>

@@ -1,0 +1,75 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="54EA0833-A1EB-8976-88CB-40DF276BC724" name="Schlüssel">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:43 UTC</createdTime>
+<comment><![CDATA[Gruppe von identifizierenden Beziehungen und oder Attributen einer Entität.
+Jede Kombination von Werten in einem Schlüssel ist für die Entität einmalig. 
+D.h. sie identifiziert genau 1 Eintrag in der Entität.
+
+Die Laufnummer ist ein Hilfsmittel. Genau genommen ist für einen Schlüssel nur eindeutig
+Entität + Menge aller Schlüsselelemente.]]></comment>
+<generatorID>7810FD23-A6BA-9ECA-1944-4593B865E654</generatorID>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+Gruppe von identifizierenden Beziehungen und oder Attributen einer Entität.
+Jede Kombination von Werten in einem Schlüssel ist für die Entität einmalig. 
+D.h. sie identifiziert genau 1 Eintrag in der Entität.
+
+Die Laufnummer ist ein Hilfsmittel. Genau genommen ist für einen Schlüssel nur eindeutig
+Entität + Menge aller Schlüsselelemente.
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+Group of identifying relationships and/or attributes of an entity. 
+Each combination of values in a key is unique to the entity.  
+I.e. it identifies exactly 1 entry in the entity.  
+The sequence number is an aid. 
+Strictly speaking, only the entity + the set of all key elements is unique for a key.
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<typeID>899A6DDC-95E0-4AD5-5F58-B3A2FF5C2D08</typeID>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Laufnr" id="BED142A8-E805-AB52-32D7-027D7ABDEBDD">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:43 UTC</createdTime>
+<comment><![CDATA[Schlüssel einer Entität müssen durch ein Merkmal unterscheidbar werden.]]></comment>
+<generatorID>93DCD20B-8AC7-6BD0-A147-A7580D8A69E3</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Schlüssel einer Entität müssen durch ein Merkmal unterscheidbar werden.
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+The keys of an entity must be distinguishable by a characteristic.
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>39B01BA7-C3D2-D42E-5518-83CB3845A63D</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="1332CA8E-3262-64DF-99EB-729AC2349E57" name="Schlüssel__UN">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:43 UTC</createdTime>
+<generatorID>7465F71C-6E0A-E3D8-95A6-E74B987A6AA2</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+</ind_PK_UK>
+<ind_PK_UK id="D22250BA-A27E-427A-6A6D-3B096AAA9D64" name="Schlüssel_Laufnr_UN">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:43 UTC</createdTime>
+<generatorID>535AE6A2-9084-B091-55AD-DDEE049BF6F0</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="BED142A8-E805-AB52-32D7-027D7ABDEBDD"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

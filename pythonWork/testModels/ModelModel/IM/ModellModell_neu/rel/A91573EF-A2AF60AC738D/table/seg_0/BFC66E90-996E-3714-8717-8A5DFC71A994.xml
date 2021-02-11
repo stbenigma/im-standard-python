@@ -1,0 +1,85 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="BFC66E90-996E-3714-8717-8A5DFC71A994" name="Geschäftsprozess">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:43 UTC</createdTime>
+<comment><![CDATA[Ein Geschäftsprozess umfasst eine Folge von Geschäftstransaktion, die in einer bestimmten Abhängigkeit ausgeführt werden, um ein übergeordnetes geschäftliches oder betriebliches Ziel zu erreichen bzw. eine Geschäftsaufgabe zu unterstützen oder erfüllen. 
+Er beginnt immer mit einem Auslöser und kann mehrere Entscheidungen und Geschäfts(Zwischen-)zustände umfassen. Am Schluss gibt es ein oder mehrere definierte Zustände / Ergebnisse.
+
+Aus Sicht des Kunden entspricht der Geschäftsprozess normalerweise der Customer Journey.
+
+Beispiele:
+- Verkaufen eines Neuwagens
+- Kundenbestellung bearbeiten
+- Wartungsfall erledigen
+- Neues Produkt entwickeln.
+- Marketingkampagne planen und durchführen]]></comment>
+<generatorID>B659DA88-B2B9-C6DE-AB1D-414AA3F835A9</generatorID>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+Ein Geschäftsprozess umfasst eine Folge von Geschäftstransaktion, die in einer bestimmten Abhängigkeit ausgeführt werden, um ein übergeordnetes geschäftliches oder betriebliches Ziel zu erreichen bzw. eine Geschäftsaufgabe zu unterstützen oder erfüllen. 
+Er beginnt immer mit einem Auslöser und kann mehrere Entscheidungen und Geschäfts(Zwischen-)zustände umfassen. Am Schluss gibt es ein oder mehrere definierte Zustände / Ergebnisse.
+
+Aus Sicht des Kunden entspricht der Geschäftsprozess normalerweise der Customer Journey.
+
+Beispiele:
+- Verkaufen eines Neuwagens
+- Kundenbestellung bearbeiten
+- Wartungsfall erledigen
+- Neues Produkt entwickeln.
+- Marketingkampagne planen und durchführen
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+*A business process is a series of business transactions that are executed in a specific dependency to achieve an overarching business or operational objective.  It always begins with a trigger and can include several decisions and intermediate states. At the end there are one or more defined states / results.  From the customer's perspective, the business process corresponds to the customer journey.  Examples: - Sell a new car - process customer order - take care of maintenance - develop a new product. - Planning and implementing marketing campaigns
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<typeID>049E3124-67AA-37C3-8A6D-286DDE491ECA</typeID>
+<abbreviation>GEPROC</abbreviation>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Name" id="1DD05831-82AD-C1D6-B71F-5E8D8F8AFCC3">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:43 UTC</createdTime>
+<generatorID>824AEC88-CFC3-8407-7ABF-A7A3834CFB12</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Beschreibung" id="290F0F95-081A-BF19-B0A7-C5A4ECF986CF">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:43 UTC</createdTime>
+<generatorID>CB7E993C-08A3-F784-CE52-28CE8B9E24C0</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="AAD8E822-B81B-D4C0-3BA9-8DCA44770A3E" name="Geschäftsprozess__UN">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:43 UTC</createdTime>
+<generatorID>7465F71C-6E0A-E3D8-95A6-E74B987A6AA2</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+</ind_PK_UK>
+</indexes>
+</Table>

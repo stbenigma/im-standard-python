@@ -1,0 +1,143 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="48FD6D63-15D3-99B3-B86C-8BE3655C5CBE" name="Sendung">
+<createdBy>ruben.antenen</createdBy>
+<createdTime>2019-08-30 12:17:12 UTC</createdTime>
+<comment><![CDATA[Sendung ist die Gütermenge, die bei einem Verlader (Ship-from) an einem Versandort (Beladestelle) gleichzeitig für einen Empfänger an einem Empfangsort (Abladestelle) und für einen Anliefertermin übernommen, befördert und entladen wird.]]></comment>
+<notes><![CDATA[[EN_ENTI_COMMENT[
+**Shipment is the quantity of goods that a shipper (ship-from) at a shipping point (loading point) takes over, transports, and unloads simultaneously for a recipient at a receiving point (unloading point) and for a delivery date.
+]EN_ENTI_COMMENT]
+[DE_ENTI_COMMENT[
+Sendung ist die Gütermenge, die bei einem Verlader (Ship-from) an einem Versandort (Beladestelle) gleichzeitig für einen Empfänger an einem Empfangsort (Abladestelle) und für einen Anliefertermin übernommen, befördert und entladen wird.
+]DE_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<typeID>88FD3F2F-7EA2-1287-77DE-38673B902DA9</typeID>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<propertyMap>
+<property name="DE_ENTI_NAME" value="Sendung"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_NAME" value="**Consignment"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Identifikator" id="DC3271C6-F322-807E-4BEA-4013611DD63A">
+<createdBy>ruben.antenen</createdBy>
+<createdTime>2019-10-09 10:39:46 UTC</createdTime>
+<comment><![CDATA[Leisterweit eindeutige Identifikation einer Sendung, zusammengesetzt aus Bestellung Identifikator und Laufnummer der Sendung.]]></comment>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+**The unique identification of a consignment, consisting of the order identifier and the serial number of the consignment.
+]EN_ATTR_COMMENT]
+[DE_ATTR_COMMENT[
+Leisterweit eindeutige Identifikation einer Sendung, zusammengesetzt aus Bestellung Identifikator und Laufnummer der Sendung.
+]DE_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<sourceType>Derived</sourceType>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<dataTypeSize>100</dataTypeSize>
+<domain>94F6669B-1D2C-180B-0A26-D5176088A8DB</domain>
+<ownDataTypeParameters>100,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Identifikator"/>
+<property name="DHL AttrName" value="."/>
+<property name="DHL AttrName Receiver" value="."/>
+<property name="DHL AttrName Shipper" value="."/>
+<property name="EN_ATTR_NAME" value="**Identifier"/>
+<property name="PENTA AttrID" value="."/>
+<property name="PENTA AttrName" value="."/>
+<property name="PENTA datatype" value="."/>
+<property name="PENTA usage" value="."/>
+<property name="PIM AttrID" value="."/>
+<property name="PIM AttrName" value="."/>
+<property name="PIM EnglName" value="."/>
+<property name="PIM datatype" value="."/>
+<property name="PIM usage" value="."/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Laufnummer" id="6CB0F27C-D5AD-0B36-6BC7-9CEE175181D2">
+<createdBy>ruben.antenen</createdBy>
+<createdTime>2019-10-09 10:37:13 UTC</createdTime>
+<comment><![CDATA[Unterscheidung von Sendungen innerhalb einer Bestellung.]]></comment>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+**Differentiation of shipments within an order.
+]EN_ATTR_COMMENT]
+[DE_ATTR_COMMENT[
+Unterscheidung von Sendungen innerhalb einer Bestellung.
+]DE_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>2</dataTypePrecision>
+<domain>1AA297FE-DA5D-D38D-073E-C5696BE23C6A</domain>
+<ownDataTypeParameters>,2,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Laufnummer"/>
+<property name="DHL AttrName" value="."/>
+<property name="DHL AttrName Receiver" value="."/>
+<property name="DHL AttrName Shipper" value="."/>
+<property name="EN_ATTR_NAME" value="**Sequence number"/>
+<property name="PENTA AttrID" value="."/>
+<property name="PENTA AttrName" value="."/>
+<property name="PENTA datatype" value="."/>
+<property name="PENTA usage" value="."/>
+<property name="PIM AttrID" value="."/>
+<property name="PIM AttrName" value="."/>
+<property name="PIM EnglName" value="."/>
+<property name="PIM datatype" value="."/>
+<property name="PIM usage" value="."/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="38F54665-F96C-815D-9CF0-3BC022FFDF3D" name="Key_1">
+<createdBy>ruben.antenen</createdBy>
+<createdTime>2019-10-09 12:31:55 UTC</createdTime>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<newElementsIDs>6CB0F27C-D5AD-0B36-6BC7-9CEE175181D2,86DA64CA-6798-4665-06FC-FE56A5C04626</newElementsIDs>
+<usedAttributes>
+<attributeRef>6CB0F27C-D5AD-0B36-6BC7-9CEE175181D2</attributeRef>
+</usedAttributes>
+</identifier>
+<identifier id="E6D44D6B-29BF-E6A4-B38E-C10F41531E7F" name="Key_2">
+<createdBy>ruben.antenen</createdBy>
+<createdTime>2019-10-09 12:32:39 UTC</createdTime>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<newElementsIDs>DC3271C6-F322-807E-4BEA-4013611DD63A</newElementsIDs>
+<usedAttributes>
+<attributeRef>DC3271C6-F322-807E-4BEA-4013611DD63A</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

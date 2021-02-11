@@ -1,0 +1,45 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="67C107BC-7DBE-84A5-AFD5-C648E25E6528" name="Eigenfertigungsteil">
+<createdBy>ruben.antenen</createdBy>
+<createdTime>2019-11-25 13:25:29 UTC</createdTime>
+<comment><![CDATA[Von Leister gefertigtes, veredeltes Teil.
+
+Falls es sich um ein Einzelteil handelt, gibt es per Definition keine Stückliste.
+
+Beispiel:
+]]></comment>
+<notes><![CDATA[[EN_ENTI_COMMENT[
+**A refined part made by Leister.
+
+If it is an individual part, there is no BOM by definition.
+
+Example:
+
+]EN_ENTI_COMMENT]
+[DE_ENTI_COMMENT[
+Von Leister gefertigtes, veredeltes Teil.
+
+Falls es sich um ein EInzelteil handelt, gibt es per Definition keine Stückliste.
+
+Beispiel:
+
+]DE_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<typeID>1DE46C3B-EE5B-06FD-F3F2-3F285393E5B7</typeID>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<propertyMap>
+<property name="DE_ENTI_NAME" value="Eigenfertigungsteil"/>
+<property name="EN_ENTI_NAME" value="**In-house production part"/>
+</propertyMap>
+</Entity>

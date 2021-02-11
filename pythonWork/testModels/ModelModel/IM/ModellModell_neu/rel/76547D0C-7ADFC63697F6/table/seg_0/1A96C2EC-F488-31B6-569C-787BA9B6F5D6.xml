@@ -1,0 +1,96 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="1A96C2EC-F488-31B6-569C-787BA9B6F5D6" schemaObject="833E4DE4-2E61-95B8-D681-1740D7FACB7C" name="MODELELEMENT">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>MODELELEMENT</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:07 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="MODE_ID" id="C12EC17B-0E35-6E0C-D62D-4B5ECC5620EE">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>MODELELEMENT</sourceObjSchema>
+<sourceObjName>MODE_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:07 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>9</dataTypeSize>
+<ownDataTypeParameters>9,10,0</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="MODE_TYPE" id="5E5601E6-1E3F-3D41-9AE0-F305B767DF10">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>MODELELEMENT</sourceObjSchema>
+<sourceObjName>MODE_TYPE</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:07 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<constraintName>CK__MODELELEM__MODE___7720AD13</constraintName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypePrecision>4</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>4</dataTypeSize>
+<checkConstraint>
+<implementationDef dbType="SQL Server 2012" definition="[MODE_TYPE]=&apos;TABL&apos; OR [MODE_TYPE]=&apos;SYNO&apos; OR [MODE_TYPE]=&apos;RELA&apos; OR [MODE_TYPE]=&apos;ORGU&apos; OR [MODE_TYPE]=&apos;KEYS&apos; OR [MODE_TYPE]=&apos;INTF&apos; OR [MODE_TYPE]=&apos;ENTI&apos; OR [MODE_TYPE]=&apos;DOMA&apos; OR [MODE_TYPE]=&apos;DOCU&apos; OR [MODE_TYPE]=&apos;DIAG&apos; OR [MODE_TYPE]=&apos;DGRM&apos; OR [MODE_TYPE]=&apos;DATY&apos; OR [MODE_TYPE]=&apos;COLU&apos; OR [MODE_TYPE]=&apos;BURU&apos; OR [MODE_TYPE]=&apos;ATTR&apos; OR [MODE_TYPE]=&apos;ARCS&apos;"/>
+</checkConstraint>
+<ownDataTypeParameters>4,4,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="MODE_MELT_ID" id="4FDEE9D6-E395-2712-A577-B7CB1ED40778">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>MODELELEMENT</sourceObjSchema>
+<sourceObjName>MODE_MELT_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:07 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>9</dataTypeSize>
+<ownDataTypeParameters>9,10,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="91CA2EBC-E42F-BCCB-01C9-EE2097CE1CE9" referredColumn="4EFA2A12-A583-2406-C563-FFACE13B09F0"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="51E6FDA0-D6E1-B245-684E-64A9B6CE71CB" name="MODE_PK">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>MODE_PK</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:07 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="C12EC17B-0E35-6E0C-D62D-4B5ECC5620EE"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="665B1351-FF48-5059-D731-C85B5EC8E8C0" name="MODE_MELT_FK">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:15 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="4FDEE9D6-E395-2712-A577-B7CB1ED40778"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -1,0 +1,26 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_38" directorySegmentName="seg_0" id="40E8D37F-8634-B5B0-C5D1-5390DCBAA91B">
+<createdBy>ruben.antenen</createdBy>
+<createdTime>2019-08-30 12:38:16 UTC</createdTime>
+<ownerDesignName>LEISTER_IM</ownerDesignName>
+<engineerTo>
+<item key="45E78B32-74BE-D919-A6DC-A51B00113403" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<nameOnSource>berücksichtigt von</nameOnSource>
+<nameOnTarget>geht von</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>0424907C-8F22-BC6F-8538-92E04A4F6796</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>DD8AFD8D-0946-C0F3-F1D9-4307FD4551D1</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="berücksichtigt von"/>
+<property name="DE_RELA_TEXT_TO" value="geht von"/>
+<property name="EN_RELA_TEXT_FROM" value="**considered by"/>
+<property name="EN_RELA_TEXT_TO" value="**goes from"/>
+</propertyMap>
+</Relation>

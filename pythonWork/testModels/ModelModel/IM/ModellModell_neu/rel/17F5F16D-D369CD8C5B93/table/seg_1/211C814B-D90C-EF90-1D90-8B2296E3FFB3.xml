@@ -1,0 +1,116 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_1" id="211C814B-D90C-EF90-1D90-8B2296E3FFB3" schemaObject="BA9AB875-9DE2-0270-F892-66DA7F318378" name="usysTables">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>usysTables</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:57:46 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="TableName" id="8AD412CD-75FB-58BD-2517-E96B6C27C437">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>usysTables</sourceObjSchema>
+<sourceObjName>TableName</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:57:47 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypePrecision>50</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,50,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="RelOrder" id="627ACBF4-9853-9CF1-735E-9154738FDEDF">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>usysTables</sourceObjSchema>
+<sourceObjName>RelOrder</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:57:47 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>4</dataTypeSize>
+<usesDefaultValue>true</usesDefaultValue>
+<defaultValue>(0)</defaultValue>
+<ownDataTypeParameters>4,10,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DisplayName" id="E4E1BF05-F8EE-B4AE-5FA2-33CD1E13AAB8">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>usysTables</sourceObjSchema>
+<sourceObjName>DisplayName</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:57:47 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypePrecision>50</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,50,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="FromVer" id="43F059AB-71AC-B83F-9E62-F6F6893A1CE2">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>usysTables</sourceObjSchema>
+<sourceObjName>FromVer</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:57:47 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypePrecision>50</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,50,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ToVer" id="CEF8D1C5-61F5-B7D5-D013-0E9C012A70C2">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>usysTables</sourceObjSchema>
+<sourceObjName>ToVer</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:57:47 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypePrecision>50</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,50,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="9A314097-44BC-D152-A441-C1340D427E71" name="pk_usystables">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>pk_usystables</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:57:48 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="8AD412CD-75FB-58BD-2517-E96B6C27C437"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

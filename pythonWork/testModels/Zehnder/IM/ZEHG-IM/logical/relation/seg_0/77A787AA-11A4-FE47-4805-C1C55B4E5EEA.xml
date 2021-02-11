@@ -1,0 +1,26 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_52" directorySegmentName="seg_0" id="77A787AA-11A4-FE47-4805-C1C55B4E5EEA">
+<createdBy>stb</createdBy>
+<createdTime>2020-08-13 14:02:14 UTC</createdTime>
+<ownerDesignName>ZEHG-IM</ownerDesignName>
+<engineerTo>
+<item key="E73667C8-D73D-37B9-7BB4-9427B1B6DC71" value="true"/>
+</engineerTo>
+<useSurrogateKey>true</useSurrogateKey>
+<identifying>false</identifying>
+<nameOnSource>charaterizes</nameOnSource>
+<nameOnTarget>characterized by</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>46890C0E-2E03-6C81-5768-F47E448F103C</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>35AA755A-CEBD-F3DB-55ED-A3816834428D</targetEntity>
+<transferable>true</transferable>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="*EN* charaterizes"/>
+<property name="DE_RELA_TEXT_TO" value="*EN* characterized by"/>
+<property name="EN_RELA_TEXT_FROM" value="charaterizes"/>
+<property name="EN_RELA_TEXT_TO" value="characterized by"/>
+</propertyMap>
+</Relation>

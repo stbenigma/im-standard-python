@@ -1,0 +1,147 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="E1CADA9B-7DE6-9F35-2E71-91B955242D12" schemaObject="BA9AB875-9DE2-0270-F892-66DA7F318378" name="t_phase">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>t_phase</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:53 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="PhaseID" id="628A4C13-7D81-85E1-BE87-6547F412A9D0">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_phase</sourceObjSchema>
+<sourceObjName>PhaseID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:54 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypePrecision>40</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>40</dataTypeSize>
+<ownDataTypeParameters>40,40,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="PhaseName" id="3DC685A7-A2EB-6232-FEF9-3C8A95283FDD">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_phase</sourceObjSchema>
+<sourceObjName>PhaseName</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:54 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypePrecision>100</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>100</dataTypeSize>
+<ownDataTypeParameters>100,100,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="PhaseNotes" id="2A8F5934-0742-00B5-EA60-8686C6918F09">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_phase</sourceObjSchema>
+<sourceObjName>PhaseNotes</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:54 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypePrecision>-1</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>max</dataTypeSize>
+<ownDataTypeParameters>max,-1,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="PhaseStyle" id="39ADD7C4-8F5C-DF4F-4B79-AC8C602B1CA6">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_phase</sourceObjSchema>
+<sourceObjName>PhaseStyle</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:54 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypePrecision>255</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>255</dataTypeSize>
+<ownDataTypeParameters>255,255,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="StartDate" id="D3B93C33-8F67-3BF7-3603-83507A50D131">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_phase</sourceObjSchema>
+<sourceObjName>StartDate</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:54 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT008</logicalDatatype>
+<dataTypePrecision>23</dataTypePrecision>
+<dataTypeScale>3</dataTypeScale>
+<dataTypeSize>8</dataTypeSize>
+<ownDataTypeParameters>8,23,3</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="EndDate" id="D359041F-14FD-EF6C-16A2-3EE525FDB073">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_phase</sourceObjSchema>
+<sourceObjName>EndDate</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:54 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT008</logicalDatatype>
+<dataTypePrecision>23</dataTypePrecision>
+<dataTypeScale>3</dataTypeScale>
+<dataTypeSize>8</dataTypeSize>
+<ownDataTypeParameters>8,23,3</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="PhaseContent" id="0DEC35B9-451D-82B2-A52D-00A65E12DB71">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_phase</sourceObjSchema>
+<sourceObjName>PhaseContent</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:54 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypePrecision>-1</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>max</dataTypeSize>
+<ownDataTypeParameters>max,-1,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="D5BAB1C9-61D7-F5AC-4A04-7111CA2F6DF4" name="pk_phase">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>pk_phase</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:55 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="628A4C13-7D81-85E1-BE87-6547F412A9D0"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

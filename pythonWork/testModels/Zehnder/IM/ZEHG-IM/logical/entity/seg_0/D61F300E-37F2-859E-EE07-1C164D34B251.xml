@@ -1,0 +1,405 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="D61F300E-37F2-859E-EE07-1C164D34B251" name="Marketing Product">
+<createdBy>stb</createdBy>
+<createdTime>2020-08-10 12:04:24 UTC</createdTime>
+<comment><![CDATA[Includes one or more similar articles for the purpose of marketing, technical grouping, ... ?
+A Product marketed under 1 Brand (including NOBrand)
+
+Possible Synonym: Branded Product
+
+Examples:
+Zehnder Charleston (Multicolumn Radiator)
+Acova Vuelta (Multicolumn Radiator)
+Multicolumn Radiator
+Zehnder ComfoValve Luna S125
+Zehnder ComfoValve Luna E125]]></comment>
+<notes><![CDATA[[EN_ENTI_COMMENT[
+**Includes one or more similar articles for the purpose of marketing, technical grouping, ... ? What do we need it for?
+
+Examples:
+* Charleston
+* Zehnder ComfoValve Luna S125
+* Zehnder ComfoValve Luna E125
+]EN_ENTI_COMMENT]
+[DE_ENTI_COMMENT[
+Umfasst einen oder mehrere ähnliche Artikel zum Zweck Marketing, technische Gruppierung, ... ? Wozu brauchen wir das?
+
+Beispiele:
+* Charleston
+* Zehnder ComfoValve Luna S125
+* Zehnder ComfoValve Luna E125
+]DE_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>ZEHG-IM</ownerDesignName>
+<engineerTo>
+<item key="E73667C8-D73D-37B9-7BB4-9427B1B6DC71" value="true"/>
+</engineerTo>
+<typeID>382EF552-1766-664E-FA4D-1C3B964D47B2</typeID>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="DE_ENTI_NAME" value="Marketingprodukt"/>
+<property name="EN_ENTI_NAME" value="Marketing Product"/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Project name" id="62F16A56-5959-DC5B-8103-1FF5612B5371">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-01 16:27:02 UTC</createdTime>
+<ownerDesignName>ZEHG-IM</ownerDesignName>
+<engineerTo>
+<item key="E73667C8-D73D-37B9-7BB4-9427B1B6DC71" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Product Name" id="1F11B66C-3DF8-204B-00EB-A160E4175848">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-01 16:27:02 UTC</createdTime>
+<ownerDesignName>ZEHG-IM</ownerDesignName>
+<engineerTo>
+<item key="E73667C8-D73D-37B9-7BB4-9427B1B6DC71" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Catalogue number" id="D412D3B0-9D9B-FB35-E472-55531FEB23D0">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-01 16:27:02 UTC</createdTime>
+<ownerDesignName>ZEHG-IM</ownerDesignName>
+<engineerTo>
+<item key="E73667C8-D73D-37B9-7BB4-9427B1B6DC71" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="In country portfolio" id="7571ACCA-3F3A-0C72-3286-2ED71BF1FA20">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-01 16:27:02 UTC</createdTime>
+<ownerDesignName>ZEHG-IM</ownerDesignName>
+<engineerTo>
+<item key="E73667C8-D73D-37B9-7BB4-9427B1B6DC71" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Product text " id="4E9A6925-3B5F-DD61-0B26-4835FC873732">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-01 16:27:02 UTC</createdTime>
+<ownerDesignName>ZEHG-IM</ownerDesignName>
+<engineerTo>
+<item key="E73667C8-D73D-37B9-7BB4-9427B1B6DC71" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Product line" id="BCC301C3-C6FD-B7E0-F408-AD1502921649">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-01 16:27:02 UTC</createdTime>
+<ownerDesignName>ZEHG-IM</ownerDesignName>
+<engineerTo>
+<item key="E73667C8-D73D-37B9-7BB4-9427B1B6DC71" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Product group " id="B3122529-E587-A00B-DD35-0BC92AD14E1E">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-01 16:27:02 UTC</createdTime>
+<ownerDesignName>ZEHG-IM</ownerDesignName>
+<engineerTo>
+<item key="E73667C8-D73D-37B9-7BB4-9427B1B6DC71" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Global Status (product&apos;s lifecycle)" id="80835F4C-7629-900B-7742-02922657CB54">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-01 16:27:02 UTC</createdTime>
+<ownerDesignName>ZEHG-IM</ownerDesignName>
+<engineerTo>
+<item key="E73667C8-D73D-37B9-7BB4-9427B1B6DC71" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Global Status (product&apos;s lifecycle)3" id="29839F9D-791A-50A1-CB4F-7B1984D18C86">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-01 16:27:02 UTC</createdTime>
+<ownerDesignName>ZEHG-IM</ownerDesignName>
+<engineerTo>
+<item key="E73667C8-D73D-37B9-7BB4-9427B1B6DC71" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Global Status (product&apos;s lifecycle)1" id="14D37D50-AFEA-45FD-431D-E138D9D8AF60">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-01 16:27:02 UTC</createdTime>
+<ownerDesignName>ZEHG-IM</ownerDesignName>
+<engineerTo>
+<item key="E73667C8-D73D-37B9-7BB4-9427B1B6DC71" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Local Status (product&apos;s lifecycle)" id="0BA927A3-2A3C-752B-5ADE-A837CB1E75A5">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-01 16:27:02 UTC</createdTime>
+<ownerDesignName>ZEHG-IM</ownerDesignName>
+<engineerTo>
+<item key="E73667C8-D73D-37B9-7BB4-9427B1B6DC71" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Valid from (local status)" id="4411D214-18FA-C3C4-819C-AA9588615D1D">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-01 16:27:02 UTC</createdTime>
+<ownerDesignName>ZEHG-IM</ownerDesignName>
+<engineerTo>
+<item key="E73667C8-D73D-37B9-7BB4-9427B1B6DC71" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Valid to (local status)" id="BB406248-23B7-27D8-829E-883D9D61ECF1">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-01 16:27:02 UTC</createdTime>
+<ownerDesignName>ZEHG-IM</ownerDesignName>
+<engineerTo>
+<item key="E73667C8-D73D-37B9-7BB4-9427B1B6DC71" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Product Category (Main Product, Spare part, Accessory or Consumable)" id="12B75893-010D-8F5C-2215-D3A0B8384029">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-01 16:27:02 UTC</createdTime>
+<ownerDesignName>ZEHG-IM</ownerDesignName>
+<engineerTo>
+<item key="E73667C8-D73D-37B9-7BB4-9427B1B6DC71" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Application area (e.g. residential, commercial etc. )" id="617DD31D-6920-2DF2-7F6F-A8B861032BF5">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-01 16:27:02 UTC</createdTime>
+<ownerDesignName>ZEHG-IM</ownerDesignName>
+<engineerTo>
+<item key="E73667C8-D73D-37B9-7BB4-9427B1B6DC71" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Building type" id="955B2A51-8A06-1E40-062F-AF2895BA0F2A">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-01 16:27:02 UTC</createdTime>
+<ownerDesignName>ZEHG-IM</ownerDesignName>
+<engineerTo>
+<item key="E73667C8-D73D-37B9-7BB4-9427B1B6DC71" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="New/Featured Product" id="FB27F5D1-F40D-0325-EA51-62059817A1BD">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-01 16:27:02 UTC</createdTime>
+<ownerDesignName>ZEHG-IM</ownerDesignName>
+<engineerTo>
+<item key="E73667C8-D73D-37B9-7BB4-9427B1B6DC71" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="System type (centralized, decentralized, heat recovery)" id="0C5EA9F4-9B7C-365C-DC83-FA0B9D513BBB">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-01 16:27:02 UTC</createdTime>
+<ownerDesignName>ZEHG-IM</ownerDesignName>
+<engineerTo>
+<item key="E73667C8-D73D-37B9-7BB4-9427B1B6DC71" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Product Segmentation (e.g. price, design, …)" id="7FE27E0A-9370-43F1-12E2-C921052F3DB3">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-01 16:27:02 UTC</createdTime>
+<ownerDesignName>ZEHG-IM</ownerDesignName>
+<engineerTo>
+<item key="E73667C8-D73D-37B9-7BB4-9427B1B6DC71" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="New Build vs Renovation/Replacement" id="8C3C7982-AC86-2908-DD98-BAEDE54A3AED">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-01 16:27:02 UTC</createdTime>
+<ownerDesignName>ZEHG-IM</ownerDesignName>
+<engineerTo>
+<item key="E73667C8-D73D-37B9-7BB4-9427B1B6DC71" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="DIY/need professional installation" id="AC1B151D-E028-44C2-ED05-871BB992A051">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-01 16:27:02 UTC</createdTime>
+<ownerDesignName>ZEHG-IM</ownerDesignName>
+<engineerTo>
+<item key="E73667C8-D73D-37B9-7BB4-9427B1B6DC71" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Suitable for Passive House" id="C86230F2-14C1-409B-BA41-2C24CCF3E529">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-01 16:27:02 UTC</createdTime>
+<ownerDesignName>ZEHG-IM</ownerDesignName>
+<engineerTo>
+<item key="E73667C8-D73D-37B9-7BB4-9427B1B6DC71" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Target group" id="C907E40C-A62E-B771-98D5-FB7061C2BBDC">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-01 16:27:02 UTC</createdTime>
+<ownerDesignName>ZEHG-IM</ownerDesignName>
+<engineerTo>
+<item key="E73667C8-D73D-37B9-7BB4-9427B1B6DC71" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Habitat (Wohnraum)" id="76338284-F51F-3013-873E-F100F5EAE762">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-01 16:27:02 UTC</createdTime>
+<ownerDesignName>ZEHG-IM</ownerDesignName>
+<engineerTo>
+<item key="E73667C8-D73D-37B9-7BB4-9427B1B6DC71" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Advantage text " id="7C7E10CE-60C3-3765-3F04-3D222A3CD49A">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-01 16:27:02 UTC</createdTime>
+<ownerDesignName>ZEHG-IM</ownerDesignName>
+<engineerTo>
+<item key="E73667C8-D73D-37B9-7BB4-9427B1B6DC71" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Warranty MBU to Customer" id="26F2B5E6-C2D1-223D-00E4-39CA1A8C2247">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-01 16:27:02 UTC</createdTime>
+<ownerDesignName>ZEHG-IM</ownerDesignName>
+<engineerTo>
+<item key="E73667C8-D73D-37B9-7BB4-9427B1B6DC71" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Range dimensions" id="5C4396AE-2FC6-5559-A175-B0B39703619A">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-01 16:27:02 UTC</createdTime>
+<ownerDesignName>ZEHG-IM</ownerDesignName>
+<engineerTo>
+<item key="E73667C8-D73D-37B9-7BB4-9427B1B6DC71" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Operation mode" id="B4C4A166-211D-C2B6-DCE2-3B285524A5EA">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-01 16:27:02 UTC</createdTime>
+<ownerDesignName>ZEHG-IM</ownerDesignName>
+<engineerTo>
+<item key="E73667C8-D73D-37B9-7BB4-9427B1B6DC71" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Product tender description" id="800C97CE-665D-E739-E5CD-458C0A2E7D72">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-01 16:27:02 UTC</createdTime>
+<ownerDesignName>ZEHG-IM</ownerDesignName>
+<engineerTo>
+<item key="E73667C8-D73D-37B9-7BB4-9427B1B6DC71" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="ETIM Class" id="D96D477B-6AAE-6B77-DD3E-EED7112997CA">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-01 16:27:02 UTC</createdTime>
+<ownerDesignName>ZEHG-IM</ownerDesignName>
+<engineerTo>
+<item key="E73667C8-D73D-37B9-7BB4-9427B1B6DC71" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Hygienic assessment" id="42E24592-67E4-F259-2D92-CB38DB857245">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-01 16:27:02 UTC</createdTime>
+<ownerDesignName>ZEHG-IM</ownerDesignName>
+<engineerTo>
+<item key="E73667C8-D73D-37B9-7BB4-9427B1B6DC71" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="CE-declaration" id="D19E5EAA-47E9-4946-1307-FA0A435F9F5D">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-01 16:27:02 UTC</createdTime>
+<ownerDesignName>ZEHG-IM</ownerDesignName>
+<engineerTo>
+<item key="E73667C8-D73D-37B9-7BB4-9427B1B6DC71" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+</Entity>

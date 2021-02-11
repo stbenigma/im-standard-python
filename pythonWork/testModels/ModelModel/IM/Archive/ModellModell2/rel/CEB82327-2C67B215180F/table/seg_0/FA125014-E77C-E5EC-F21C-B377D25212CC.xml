@@ -1,0 +1,106 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="FA125014-E77C-E5EC-F21C-B377D25212CC" name="Geschäftsprozess">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<comment><![CDATA[Ein Geschäftsprozess umfasst eine Folge von Geschäftstransaktion, die in einer bestimmten Abhängigkeit ausgeführt werden, um ein übergeordnetes geschäftliches oder betriebliches Ziel zu erreichen. 
+Er beginnt immer mit einem Auslöser und kann mehrere Entscheidungen und Zwischenzustände umfassen. Am Schluss gibt es ein oder mehrere definierte Zustände / Ergebnisse.
+
+Aus Sicht des Kunden entspricht der Geschäftsprozess der Customer Journey.
+
+Beispiele:
+- Verkaufen eines Neuwagens
+- Kundenbestellung bearbeiten
+- Wartungsfall erledigen
+- Neues Produkt entwickeln.
+- Marketingkampagne planen und durchführen
+]]></comment>
+<generatorID>F47DC79F-8955-9925-285F-E8929891ED39</generatorID>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<typeID>22C80650-70BB-112A-562F-823C3A147D9C</typeID>
+<abbreviation>GEPROC</abbreviation>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Modellelement_Modellelement_ID" id="C8085673-C1D0-280E-02F8-744200A7B7D1">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="0297C2E9-664A-F3C9-E5B5-4C8A3798194B" referredColumn="53372A54-640A-07EE-CBDE-B0E5EB59DBD2"/>
+</associations>
+</Column>
+<Column name="GEPROC_ID" id="9611A518-4E75-0CAB-05D0-FD62DF089C07">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+<Column name="Name" id="C7C16C06-4D76-FB34-91FC-67FAD1C2044B">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<generatorID>D95A1B2F-37AD-D3BC-A588-D0645EFD83E5</generatorID>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Beschreibung" id="029891B9-75A1-189E-2182-E114F13F000F">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<generatorID>1A2C332F-E768-0A4E-4FC9-69B6AED0CCE0</generatorID>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="F17F35B9-050F-1274-ABD0-D97CCB778A82" name="GEPROC_PK">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="C8085673-C1D0-280E-02F8-744200A7B7D1"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="4B76E795-BEE5-9441-8383-AD94D5C57ED7" name="GEPROC_GEPROC_ID_UN">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="9611A518-4E75-0CAB-05D0-FD62DF089C07"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="2CD49FF8-A9BC-8A44-0A5E-92152ADAF86E" name="GEPROC_Modellelement_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<generatorID>E2FC1A0A-D463-0C98-3E18-7A298136B77F</generatorID>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="C8085673-C1D0-280E-02F8-744200A7B7D1"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

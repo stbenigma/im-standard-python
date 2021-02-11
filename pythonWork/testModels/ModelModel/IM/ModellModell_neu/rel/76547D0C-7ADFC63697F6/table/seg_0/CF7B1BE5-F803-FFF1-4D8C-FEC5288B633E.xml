@@ -1,0 +1,137 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="CF7B1BE5-F803-FFF1-4D8C-FEC5288B633E" schemaObject="833E4DE4-2E61-95B8-D681-1740D7FACB7C" name="MODELEMTYPE_PROPERTIES">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>MODELEMTYPE_PROPERTIES</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:07 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="METP_ID" id="C02D3961-884B-E32B-A562-CC1AB5227E60">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>MODELEMTYPE_PROPERTIES</sourceObjSchema>
+<sourceObjName>METP_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:08 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>9</dataTypeSize>
+<ownDataTypeParameters>9,10,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="METP_MELT_ID" id="F7C9A261-635D-3B8A-4765-9270D43478C5">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>MODELEMTYPE_PROPERTIES</sourceObjSchema>
+<sourceObjName>METP_MELT_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:08 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>9</dataTypeSize>
+<ownDataTypeParameters>9,10,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="B85A8827-AB29-8740-19D8-BEDC8E31B7A8" referredColumn="4EFA2A12-A583-2406-C563-FFACE13B09F0"/>
+</associations>
+</Column>
+<Column name="METP_UDPR_ID" id="4854D0BF-D216-05D2-797D-3565B9DC6853">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>MODELEMTYPE_PROPERTIES</sourceObjSchema>
+<sourceObjName>METP_UDPR_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:08 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>9</dataTypeSize>
+<ownDataTypeParameters>9,10,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="38877E16-66CC-6313-DF52-A1DEE2D13F84" referredColumn="B1040B14-69E0-458B-6B71-878CD3F86C25"/>
+</associations>
+</Column>
+<Column name="METP_OPTIONAL" id="B6833622-2DD7-1666-308A-19A4245C707D">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>MODELEMTYPE_PROPERTIES</sourceObjSchema>
+<sourceObjName>METP_OPTIONAL</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:08 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<constraintName>CK__MODELEMTY__METP___79FD19BE</constraintName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypePrecision>5</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>5</dataTypeSize>
+<checkConstraint>
+<implementationDef dbType="SQL Server 2012" definition="[METP_OPTIONAL]=&apos;TRUE&apos; OR [METP_OPTIONAL]=&apos;FALSE&apos;"/>
+</checkConstraint>
+<ownDataTypeParameters>5,5,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="79EB905E-714E-A0EE-F056-75DE8B3D51D4" name="METP_PK">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>METP_PK</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:08 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="C02D3961-884B-E32B-A562-CC1AB5227E60"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="1ED33504-7C12-B320-D22F-68B54C0FEA9F" name="METP_UN">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>METP_UN</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:08 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="F7C9A261-635D-3B8A-4765-9270D43478C5"/>
+<colUsage columnID="4854D0BF-D216-05D2-797D-3565B9DC6853"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="E620BF74-AB77-15AA-49EA-9D58DA74C7A9" name="METP_MELT_FK">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:15 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="F7C9A261-635D-3B8A-4765-9270D43478C5"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="F54C4636-95B3-92D3-D206-00364590C47D" name="METP_UDPR_FK">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:15 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="4854D0BF-D216-05D2-797D-3565B9DC6853"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -1,0 +1,100 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="C58BBF1F-3853-94D6-F17F-7C08BA3BD772" name="Textlicher_Wertebereich">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<comment><![CDATA[Wertebereich (Domäne) für ein Freitextattribut]]></comment>
+<generatorID>E51CA802-FFC4-55BB-37CF-868A890BDE51</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<typeID>1C6A8769-7651-51C0-9E0A-D0C138DE6193</typeID>
+<abbreviation>TXDE</abbreviation>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Wertebereich_Modellelement_Modellelement_ID" id="443C7A7C-BA9F-2D28-ECC8-CBBF9638B359">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="DD22F1EC-C311-C001-4BCE-2282A8113C63" referredColumn="9FC5982B-2A47-B59D-A525-415732968AB0"/>
+</associations>
+</Column>
+<Column name="TXDE_ID" id="780D81A6-1D7B-E1D3-43F9-457108FEFA73">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+<Column name="Max_Länge" id="E2C88F73-5142-B9AC-4157-CDE62DBC9377">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<comment><![CDATA[Maximale Länge des Textes in Buchstaben (CHAR)]]></comment>
+<generatorID>FED80564-8043-573A-E431-31FE2706B7FF</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>C9DBFF99-FC63-E2AC-8EB8-BE5A63AA7B61</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Werteregel" id="93448728-2B53-6AEA-6D1E-AF33830B2F8B">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<comment><![CDATA[Einschränkende Regel für die erlaubten Zeichen eines Textes.]]></comment>
+<generatorID>A60F9702-1D1F-2326-5024-A280EAACBB9B</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>EAB77EBE-9C06-2899-E462-A33684354F43</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="76D24BA0-B1D0-8ECA-6FB8-A2DF7A32B700" name="TXDE_PK">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="443C7A7C-BA9F-2D28-ECC8-CBBF9638B359"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="4B130040-8C9D-C422-49D0-C938723FD9F5" name="TXDE_TXDE_ID_UN">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="780D81A6-1D7B-E1D3-43F9-457108FEFA73"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="FC735084-8662-940E-FBB4-719788166D5C" name="TXDE_Wertebereich_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<generatorID>371574FA-89D4-B288-56F9-B92948247903</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="443C7A7C-BA9F-2D28-ECC8-CBBF9638B359"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
