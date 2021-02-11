@@ -1,0 +1,61 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="57DD7974-090A-1143-BCAC-E8A7F4D1E1B8" name="items">
+<sourceDDLFile>model.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2020-09-03 08:39:50 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<importedID>88D6FE20-4455-1B3F-B13E-9DA7FFBC767B</importedID>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="value" id="0319318A-5108-C0BD-64EB-DCF57F979BBD">
+<sourceDDLFile>model.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2020-09-03 08:39:50 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nameHasQuotes>true</nameHasQuotes>
+<importedID>D6310888-DE31-93C7-75E0-377D82A2A7C3</importedID>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypePrecision>0</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>255</dataTypeSize>
+<ownDataTypeParameters>255,0,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="itemsId" id="3A5CD356-2C91-B04C-EB15-84DEE34E60E7">
+<sourceDDLFile>model.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2020-09-03 08:39:50 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nameHasQuotes>true</nameHasQuotes>
+<importedID>C98E43E7-2DB1-0C37-C3A5-A9ED916FEC25</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypePrecision>0</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>255</dataTypeSize>
+<ownDataTypeParameters>255,0,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="E818F50C-A703-7FD1-5CD5-C6D3B99D2C04" name="items_pk">
+<sourceDDLFile>model.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2020-09-03 08:39:50 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nameHasQuotes>true</nameHasQuotes>
+<importedID>C5486485-DD80-B0A6-B597-7C561A355BA7</importedID>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="3A5CD356-2C91-B04C-EB15-84DEE34E60E7"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

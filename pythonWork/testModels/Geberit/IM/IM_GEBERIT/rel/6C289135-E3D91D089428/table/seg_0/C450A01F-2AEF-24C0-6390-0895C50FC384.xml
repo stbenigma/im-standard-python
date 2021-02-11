@@ -1,0 +1,144 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="C450A01F-2AEF-24C0-6390-0895C50FC384" schemaObject="41F6B39A-6802-F636-A35F-6775EC2673FF" name="PRODUCT_REFERENCE]">
+<sourceDDLFile>ddl.sql</sourceDDLFile>
+<createdBy>toz</createdBy>
+<createdTime>2021-01-21 15:55:54 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<importedID>887F85F9-7F01-03D7-1482-EF242A1FFD20</importedID>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="[PRODUCT_REFERENCEId]" id="DFF2682D-FA68-A6F5-9296-11AA73DFCE0C">
+<sourceDDLFile>ddl.sql</sourceDDLFile>
+<createdBy>toz</createdBy>
+<createdTime>2021-01-21 15:55:54 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<importedID>480864C1-836A-FAC7-32CA-70D3A843A29C</importedID>
+<use>0</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<domain>DA823793-0E7A-C240-0EEF-D92AF7925527</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="[type]" id="8713A5C9-F516-A763-4D1D-D76D143A2CE3">
+<sourceDDLFile>ddl.sql</sourceDDLFile>
+<createdBy>toz</createdBy>
+<createdTime>2021-01-21 15:55:54 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<importedID>DDA8E893-A92E-CC8D-5667-42D7A57ABC69</importedID>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>10878C46-1DF8-C563-A401-78CA99E8EC93</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="[quantity]" id="54CA8137-7015-C1C8-CF31-E9C51E896EC9">
+<sourceDDLFile>ddl.sql</sourceDDLFile>
+<createdBy>toz</createdBy>
+<createdTime>2021-01-21 15:55:54 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<importedID>5A23DB75-9BE7-9712-0C2D-6642A5F2A9DE</importedID>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>10878C46-1DF8-C563-A401-78CA99E8EC93</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="[PROD_ID_TO]" id="A68CE3D5-96B4-4607-5416-6819EE967A05">
+<sourceDDLFile>ddl.sql</sourceDDLFile>
+<createdBy>toz</createdBy>
+<createdTime>2021-01-21 15:55:54 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<importedID>6C49B651-45BC-817C-98FE-F0C00A268B2F</importedID>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>10878C46-1DF8-C563-A401-78CA99E8EC93</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="[CATALOG_ID]" id="61992DC0-8F82-7BF4-5783-8D1AA20108D0">
+<sourceDDLFile>ddl.sql</sourceDDLFile>
+<createdBy>toz</createdBy>
+<createdTime>2021-01-21 15:55:54 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<importedID>371CA0BF-0180-F2B0-CD8C-F9D7D2ABA4FD</importedID>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>10878C46-1DF8-C563-A401-78CA99E8EC93</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="[CATALOG_VERSION]" id="7F7236DA-A181-654E-9137-10FC79B6168F">
+<sourceDDLFile>ddl.sql</sourceDDLFile>
+<createdBy>toz</createdBy>
+<createdTime>2021-01-21 15:55:54 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<importedID>01D1F719-2A9E-2D64-AE74-8522078FF9BD</importedID>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>10878C46-1DF8-C563-A401-78CA99E8EC93</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="[REFERENCE_DESCR]" id="BA8E1CF9-5BF1-9C63-F5A3-A802C297513A">
+<sourceDDLFile>ddl.sql</sourceDDLFile>
+<createdBy>toz</createdBy>
+<createdTime>2021-01-21 15:55:54 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<importedID>86A48226-243D-F175-4743-5852FAB2CBF9</importedID>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>10878C46-1DF8-C563-A401-78CA99E8EC93</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="[PRODUCTId]" id="E48DE2E6-C51D-EC93-95EE-ACDC68B94223">
+<sourceDDLFile>ddl.sql</sourceDDLFile>
+<createdBy>toz</createdBy>
+<createdTime>2021-01-21 15:55:54 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<importedID>BAA7C987-5F32-20EE-29A7-04C7E3DABBAA</importedID>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<domain>DA823793-0E7A-C240-0EEF-D92AF7925527</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="3707452B-5056-53B4-49B0-4758B7D9D99A" referredColumn="6ECE5FEE-7C2C-069B-B9B6-26F080446270"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="179C4544-A9AA-33CD-C379-027DACF1B9AE" name="PRODUCT_REFERENCE]_PK">
+<sourceDDLFile>ddl.sql</sourceDDLFile>
+<createdBy>toz</createdBy>
+<createdTime>2021-01-21 15:55:54 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<importedID>A6F35D4D-D10B-FC39-0BCE-22B1639EDAD2</importedID>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="DFF2682D-FA68-A6F5-9296-11AA73DFCE0C"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="29825CB0-87E6-8268-4806-E8B4D33B9691" name="PRODUCT_REFERENCE]_FK0">
+<createdBy>toz</createdBy>
+<createdTime>2021-01-21 15:55:54 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="E48DE2E6-C51D-EC93-95EE-ACDC68B94223"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

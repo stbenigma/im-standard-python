@@ -1,0 +1,42 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="E18260F4-A278-975E-17BB-8DBCD1DED57F" name="intendedUseOverviews">
+<sourceDDLFile>api.sql</sourceDDLFile>
+<createdBy>toz</createdBy>
+<createdTime>2020-12-09 15:09:50 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nameHasQuotes>true</nameHasQuotes>
+<importedID>19C1BE22-E01E-31C5-58EC-B516A8973612</importedID>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="intendedUseOverviewsId" id="0BDDAF9E-600D-1A15-E767-6CBEB1C8683D">
+<sourceDDLFile>api.sql</sourceDDLFile>
+<createdBy>toz</createdBy>
+<createdTime>2020-12-09 15:09:51 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nameHasQuotes>true</nameHasQuotes>
+<importedID>E8E40978-9E43-71E1-52A3-A5C3F1066F15</importedID>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>10878C46-1DF8-C563-A401-78CA99E8EC93</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="776ACF56-1AFB-9723-7B56-77D815889714" name="intendedUseOverviews_PK">
+<sourceDDLFile>api.sql</sourceDDLFile>
+<createdBy>toz</createdBy>
+<createdTime>2020-12-09 15:09:51 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<importedID>7F93933A-98E9-4E58-35F8-AEF5D6AC1E3B</importedID>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="0BDDAF9E-600D-1A15-E767-6CBEB1C8683D"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

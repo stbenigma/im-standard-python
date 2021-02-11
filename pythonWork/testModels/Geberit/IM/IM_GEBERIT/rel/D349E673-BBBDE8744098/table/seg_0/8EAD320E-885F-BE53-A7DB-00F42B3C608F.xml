@@ -1,0 +1,280 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="8EAD320E-885F-BE53-A7DB-00F42B3C608F" name="Kopfdaten">
+<createdBy>toz</createdBy>
+<createdTime>2021-01-04 08:56:57 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<ordsAlias>table_2</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="DatenlieferantID" id="099AAE50-4AEB-FC8C-106B-580CB8250C47">
+<createdBy>toz</createdBy>
+<createdTime>2021-01-04 09:01:07 UTC</createdTime>
+<notes><![CDATA[Transformations:
+
+1. none
+
+Validation rules:
+
+1. Mandatory
+2. Integer, length max 13 digits
+
+Validation error handling:
+
+1. In case of NULL set default value = 18
+log in summary file: (Issue;kopfdaten.csv;;1;E0000001;[Code text];M0000003;[Code text];DatenlieferantID;NULL;18)
+
+]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DatenlieferantName" id="80D9FF61-883E-ADFB-42A3-42114297C9E5">
+<createdBy>toz</createdBy>
+<createdTime>2021-01-04 09:01:07 UTC</createdTime>
+<notes><![CDATA[Transformations:
+
+1. none
+
+Validation rules:
+
+1. Mandatory
+2. Text, length max 20 characters
+
+Validation error handling:
+
+1. In case of NULL set default value = Geberit
+log in summary file: (Issue;kopfdaten.csv;;1;E0000001;[Code text];M0000003;[Code text];DatenlieferantName;NULL;Geberit)]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20 CHAR</dataTypeSize>
+<ownDataTypeParameters>20 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DatenlieferantKuerzel" id="2ABB3987-E2FA-F44C-A5C3-FA11CFDD55BF">
+<createdBy>toz</createdBy>
+<createdTime>2021-01-04 09:01:07 UTC</createdTime>
+<notes><![CDATA[Transformations:
+
+1. none
+
+Validation rules:
+
+1. Mandatory
+2. Text, length max 2 characters
+
+Validation error handling:
+
+1. In case of NULL set default value = GE
+log in summary file: (Issue;kopfdaten.csv;;1;E0000001;[Code text];M0000003;[Code text];DatenlieferantKuerzel;NULL;GE)]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>2 CHAR</dataTypeSize>
+<ownDataTypeParameters>2 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="KatalogID" id="188C5B5C-651C-B57D-32D2-3FE1EB310D94">
+<createdBy>toz</createdBy>
+<createdTime>2021-01-04 09:01:07 UTC</createdTime>
+<notes><![CDATA[Transformations:
+
+1. Value = Concatenate (DatenlieferantID;“:DE:“;Katalogname)
+
+Validation rules:
+
+1. Text, length max 35 characters
+
+Validation error handling:
+
+1. When value is too long cut texts after 35 characters
+log in summary file: (Issue;kopfdaten.csv;;1;E0000002;[Code text];M0000002;[Code text];KatalogID;[Value];[NewValue])]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>35 CHAR</dataTypeSize>
+<ownDataTypeParameters>35 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Katalogname" id="5A81E0AC-1771-CFFD-73FC-B933E3993580">
+<createdBy>toz</createdBy>
+<createdTime>2021-01-04 09:03:15 UTC</createdTime>
+<notes><![CDATA[Transformations:
+
+1. none
+
+Validation rules:
+
+1. Mandatory
+2. Text, length max 35 characters
+
+Validation error handling:
+
+1. In case of NULL set default value = GE_STANDARD
+log in summary file: (Issue;kopfdaten.csv;;1;E0000001;[Code text];M0000003;[Code text];Katalogname;NULL;GE_STANDARD)]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>35 CHAR</dataTypeSize>
+<ownDataTypeParameters>35 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Gueltigkeitsbeginn" id="C8C64A3B-93BB-1FE3-A54A-8EAB8F58647A">
+<createdBy>toz</createdBy>
+<createdTime>2021-01-04 09:03:15 UTC</createdTime>
+<notes><![CDATA[Transformations:
+
+1. none
+
+Validation rules:
+
+1. Mandatory
+2. Date format = ddmmyyyy
+3. Valid date
+
+Validation error handling:
+
+1. In case of NULL set default value = 31129999
+log in summary file: (Issue;kopfdaten.csv;;1;E0000001;[Code text];M0000003;[Code text];Gueltigkeitsbeginn;31129999;)
+
+]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Gueltigkeitsende" id="2BF55A1C-9D17-B0C1-D295-A11EBA192DB9">
+<createdBy>toz</createdBy>
+<createdTime>2021-01-04 09:08:27 UTC</createdTime>
+<notes><![CDATA[Transformations:
+
+1. none
+
+Validation rules:
+
+1. Mandatory
+2. Date format = ddmmyyyy
+3. Valid date
+
+Validation error handling:
+
+1. In case of NULL set default value = 31129999
+log in summary file: (Issue;kopfdaten.csv;;1;E0000001;[Code text];M0000003;[Code text];Gueltigkeitsende;NULL;31129999)]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Bezeichnung_der_Datenlieferung" id="7D285F97-89C5-77DB-3323-2B54D5C289E7">
+<createdBy>toz</createdBy>
+<createdTime>2021-01-04 09:08:27 UTC</createdTime>
+<notes><![CDATA[Transformations:
+
+1. none
+
+Validation rules:
+
+1. Mandatory
+2. Text, length max 35 characters
+
+Validation error handling:
+
+1. In case of NULL set default value = Geberit Katalog
+log in summary file: (Issue;kopfdaten.csv;;1;E0000001;[Code text];M0000003;[Code text];Bezeichnung_der_Datenlieferung;NULL;Geberit Katalog)
+2. In case of value is too long cut texts after 35 characters
+log in summary file: (Issue;kopfdaten.csv;;1;E0000002;[Code text];M0000002;[Code text];Bezeichnung_der_Datenlieferung;[Value];[NewValue])]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>35 CHAR</dataTypeSize>
+<ownDataTypeParameters>35 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Artikel_mit_systemrelevanter_Verpackung_vorhanden" id="E762E873-C672-6E24-6A93-8DFB2CAABEB1">
+<createdBy>toz</createdBy>
+<createdTime>2021-01-04 09:08:27 UTC</createdTime>
+<notes><![CDATA[Transformations:
+
+1. none
+
+Validation rules:
+
+1. Mandatory
+2. Boolean ( “true“ / “false“)
+
+Validation error handling:
+
+1. In case of NULL set default value = true
+log in summary file: (Issue;kopfdaten.csv;;1;E0000001;[Code text];M0000003;[Code text];Artikel_mit_systemrelevanter_Verpackung_vorhanden;NULL;true)]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>018899C1-1063-572C-AD15-2DF35A7821BE</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="LUCID-Nummer" id="6AB176AF-07D2-63D5-4CDF-CFFD810D5BB2">
+<createdBy>toz</createdBy>
+<createdTime>2021-01-04 09:08:27 UTC</createdTime>
+<notes><![CDATA[Transformations:
+
+1. none
+
+Validation rules:
+
+1. Mandatory (Geberit)
+2. Text, length max 40 characters
+
+Validation error handling:
+
+1. In case of NULL set default value = DE2134824160217
+log in summary file: (Issue;kopfdaten.csv;;1;E0000001;[Code text];M0000003;[Code text];LUCID-Nummer;NULL;DE2134824160217)]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>40 CHAR</dataTypeSize>
+<ownDataTypeParameters>40 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Entsorgungsdienstleister" id="B265D303-87BD-5150-7174-0CB7C4E18500">
+<createdBy>toz</createdBy>
+<createdTime>2021-01-04 09:08:27 UTC</createdTime>
+<notes><![CDATA[Transformations:
+
+1. none
+
+Validation rules:
+
+1. Mandatory
+2. Text, length max 40 characters
+
+Validation error handling:
+
+1. In case of NULL set default value = Interseroh
+log in summary file: (Issue;kopfdaten.csv;;1;E0000001;[Code text];M0000003;[Code text];Entsorgungsdienstleister;NULL;Interseroh)]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>40 CHAR</dataTypeSize>
+<ownDataTypeParameters>40 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+</Table>

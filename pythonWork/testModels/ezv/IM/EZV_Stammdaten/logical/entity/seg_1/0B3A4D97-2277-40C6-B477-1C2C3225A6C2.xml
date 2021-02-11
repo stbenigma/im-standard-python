@@ -1,0 +1,53 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="0B3A4D97-2277-40C6-B477-1C2C3225A6C2" name="Verarbeitungsart">
+<createdBy>stb</createdBy>
+<createdTime>2018-09-10 08:03:28 UTC</createdTime>
+<comment><![CDATA[Mit dem Verarbeitungscode lassen sich bestimmte Verarbeitungen steuern (hauptsächlich für MinöSt- und BLW-pflichtige Waren)
+
+==> Wozu wird er verwendet. kann dieser in einer NZE behandelt werden?
+
+In Verarbeitungscode GSD hat es noch zwei Felder:
+Min /Max. Generaleinfuhrbew.-Nr [T]
+Kleinst-/grösstmögliche Generaleinfuhrbewilligung je Verarbeitungscode
+
+Diese sind eine Referenz auf eine Generaleinfuhrbewilligungsgruppe, die es in GSD nicht gab.
+Wo war diese verwaltet?]]></comment>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<typeID>5D665328-E55A-0C47-AF6D-AB589191EF22</typeID>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Code" id="A82FE220-1780-9561-A4E7-D7229FB5EA5A">
+<createdBy>stb</createdBy>
+<createdTime>2018-09-10 08:03:28 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Beschreibung [L][T]" id="7BC1E792-D3C4-1B7B-761D-8AEBD0BCF397">
+<createdBy>stb</createdBy>
+<createdTime>2018-09-10 08:03:28 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+</Entity>

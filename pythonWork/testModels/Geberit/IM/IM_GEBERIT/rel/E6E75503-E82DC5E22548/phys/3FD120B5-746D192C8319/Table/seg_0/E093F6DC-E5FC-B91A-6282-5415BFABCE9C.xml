@@ -1,0 +1,59 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev12c class="oracle.dbtools.crest.model.design.storage.oracle.v12c.TableProxyOraclev12c" name="articlesListAttributeValues" directorySegmentName="seg_0" id="E093F6DC-E5FC-B91A-6282-5415BFABCE9C">
+<createdBy>stb</createdBy>
+<createdTime>2020-09-03 08:39:50 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<temporaryChanged>false</temporaryChanged>
+<accessDriverType>oracle_loader</accessDriverType>
+<rejectLimit></rejectLimit>
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="articlesListAttributeValuesId" id="1109E2E0-917D-C4D8-FEC7-E9887E3304CC">
+<createdBy>stb</createdBy>
+<createdTime>2020-09-03 08:39:50 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nameHasQuotes>true</nameHasQuotes>
+</ColumnProxy>
+<ColumnProxy name="value" id="8A85E5DE-03B4-234E-C5D4-70045D2928C3">
+<createdBy>stb</createdBy>
+<createdTime>2020-09-03 08:39:50 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nameHasQuotes>true</nameHasQuotes>
+</ColumnProxy>
+<ColumnProxy name="unit" id="9B377BB7-ABF9-BFA9-4B1D-5C5447A438A8">
+<createdBy>stb</createdBy>
+<createdTime>2020-09-03 08:39:50 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nameHasQuotes>true</nameHasQuotes>
+</ColumnProxy>
+<ColumnProxy name="key" id="C5F58EE3-924D-ECCA-640A-1008EE00D5A5">
+<createdBy>stb</createdBy>
+<createdTime>2020-09-03 08:39:50 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nameHasQuotes>true</nameHasQuotes>
+</ColumnProxy>
+<ColumnProxy name="rawValue" id="E9B76367-81E7-83B1-E738-BF2CC3D38D35">
+<createdBy>stb</createdBy>
+<createdTime>2020-09-03 08:39:50 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nameHasQuotes>true</nameHasQuotes>
+</ColumnProxy>
+</columnProxies>
+<foreignKeys>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="unitFK" id="388600FB-6757-8C52-455B-55E810993FB1">
+<createdBy>stb</createdBy>
+<createdTime>2020-09-03 08:39:51 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+</ForeignKey>
+</foreignKeys>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="articlesListAttributeValues_pk" id="BD53E7B2-C6FF-0A2F-829C-188EFAD8E030">
+<createdBy>stb</createdBy>
+<createdTime>2020-09-03 08:39:50 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nameHasQuotes>true</nameHasQuotes>
+<indexSort>SORTED</indexSort>
+</PrimaryKey>
+</primaryKeys>
+</TableProxyOraclev12c>

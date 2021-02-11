@@ -1,0 +1,94 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="48CF8DC4-092C-3A70-3B74-37DF02C6F58E" name="Ländergruppengliederung">
+<createdBy>stb</createdBy>
+<createdTime>2018-08-29 08:47:20 UTC</createdTime>
+<comment><![CDATA[Gliedert Ländergruppen und Länderzuteilungen nach wählbaren Kriterien.
+Unterschieden nach Benutzerarten (Massnahme, Statistik, Tarif, Fracht)
+
+Gibt an, um welche Art Laendergruppe es sich handelt (z. B. Praeferenzgruppen wie EU, GPS etc.; Wirtschaftsgruppen, geographische Gruppen). 
+Was der Zweck, das Thema dieser Ländergruppierung/-hierarchie ist.
+Damit ist es möglich hierarchische Ländergruppierungen zusammenzufassen und sicherzustellen, dass unterschiedliche Typen/Themen nicht vermischt werden
+
+NEU: Die Ländergruppengliederung ist die oberste Stufe einer Hierarchie. Jede begründet eine Hierarchie in einer Benutzergruppe. Ausser in der Benutzergruppe TARIF kann es mehrere Hierarchien geben. Jedes Land kann in einer HIerarchie (d.h. in einer Ländergruppengliederung) nur 1x vorhanden sein.
+
+Tarif-Ländergruppengliederungen werden nicht mehr gebraucht. Es gibt für Tarif nur 1 Hierarchie.
+
+Beispiele
+97  Statistik,   WTO Stahl
+	 SACU
+	SNB
+	OECD
+  Fracht	CITES
+  	Security
+  Massnahmen	GTU
+  		non-GTI	 
+98 Tarif,          Normaltarif  
+99  Tarif,        Abkommen, Präferenzen
+-> diese werden nicht mehr gebraucht. Tarife kennen nur 1 Ländergruppe, wird beibehalten für Rückwärtskompatibilität aber ohne angehängte Ländergruppen.
+]]></comment>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<typeID>5D665328-E55A-0C47-AF6D-AB589191EF22</typeID>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<propertyMap>
+<property name="GSD-Tabellenname" value="LDGRPGLIED"/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Nr" id="86FE4A11-1E05-3AFC-9D98-F1ACA41AAC7F">
+<createdBy>stb</createdBy>
+<createdTime>2018-08-29 12:37:08 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Bezeichnung [L]" id="D02B35EA-ADB6-FD07-200A-38A486365905">
+<createdBy>stb</createdBy>
+<createdTime>2018-08-29 12:33:15 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Benutzerart" id="6DDA8E3F-2DFB-ECC6-31A3-716B141A718C">
+<createdBy>stb</createdBy>
+<createdTime>2018-08-29 12:33:45 UTC</createdTime>
+<comment><![CDATA[Tarif, Massnahme, Statistik, Fracht]]></comment>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Alle Länder (J/N)" id="41A42A87-FB84-1A50-1735-AFB428C9E5E9">
+<createdBy>stb</createdBy>
+<createdTime>2018-11-27 14:13:45 UTC</createdTime>
+<comment><![CDATA[Müssen für diese LGGLD alle Länder einer Gruppe zugewiesen sein]]></comment>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+</Entity>

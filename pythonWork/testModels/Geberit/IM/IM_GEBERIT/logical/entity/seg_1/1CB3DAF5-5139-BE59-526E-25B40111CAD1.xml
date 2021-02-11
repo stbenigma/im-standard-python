@@ -1,0 +1,192 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="1CB3DAF5-5139-BE59-526E-25B40111CAD1" name="Kontakt">
+<createdBy>smiai</createdBy>
+<createdTime>2020-10-28 14:24:50 UTC</createdTime>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<engineerTo>
+<item key="AC362FED-09A7-BA00-8310-29076CD8571C" value="true"/>
+<item key="0F93F29F-E1ED-0300-B3B1-B58C77EE97A7" value="true"/>
+<item key="38668F89-26BC-F63A-555D-54B8056CF413" value="true"/>
+<item key="249E7ABA-8CD0-1978-78A7-F7026DA6A2EB" value="true"/>
+<item key="F8D1D625-33EA-D367-FD1B-8BE01FB72044" value="true"/>
+<item key="D349E673-4EDF-C611-3E51-BBBDE8744098" value="true"/>
+<item key="BFAC4467-8343-0983-11FB-CB866029374C" value="true"/>
+<item key="2DBF4F11-72F7-73ED-22BE-2120810BE40F" value="true"/>
+<item key="E6E75503-6116-388A-72BD-E82DC5E22548" value="true"/>
+</engineerTo>
+<typeID>68A2BF1C-89B9-1497-C044-DEF3D59838B2</typeID>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<propertyMap>
+<property name="DE_ENTI_NAME" value="Kontakt"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_NAME" value="*DE* Kontakt"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Primär Kontakt (J/N)" id="572043CB-1682-9D0F-FF40-8E0DC10C5B0F">
+<createdBy>toz</createdBy>
+<createdTime>2020-11-03 10:23:18 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<engineerTo>
+<item key="AC362FED-09A7-BA00-8310-29076CD8571C" value="true"/>
+<item key="0F93F29F-E1ED-0300-B3B1-B58C77EE97A7" value="true"/>
+<item key="38668F89-26BC-F63A-555D-54B8056CF413" value="true"/>
+<item key="249E7ABA-8CD0-1978-78A7-F7026DA6A2EB" value="true"/>
+<item key="F8D1D625-33EA-D367-FD1B-8BE01FB72044" value="true"/>
+<item key="D349E673-4EDF-C611-3E51-BBBDE8744098" value="true"/>
+<item key="BFAC4467-8343-0983-11FB-CB866029374C" value="true"/>
+<item key="2DBF4F11-72F7-73ED-22BE-2120810BE40F" value="true"/>
+<item key="E6E75503-6116-388A-72BD-E82DC5E22548" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Primär Kontakt (J/N)"/>
+<property name="EN_ATTR_NAME" value="*DE* Primär Kontakt (J/N)"/>
+</propertyMap>
+</Attribute>
+<Attribute name="Vertriebsrelevant (J/N)" id="2F74C8C6-A0E5-E2FD-EBF5-1A9158D1F17A">
+<createdBy>toz</createdBy>
+<createdTime>2020-11-03 10:23:52 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<engineerTo>
+<item key="AC362FED-09A7-BA00-8310-29076CD8571C" value="true"/>
+<item key="0F93F29F-E1ED-0300-B3B1-B58C77EE97A7" value="true"/>
+<item key="38668F89-26BC-F63A-555D-54B8056CF413" value="true"/>
+<item key="249E7ABA-8CD0-1978-78A7-F7026DA6A2EB" value="true"/>
+<item key="F8D1D625-33EA-D367-FD1B-8BE01FB72044" value="true"/>
+<item key="D349E673-4EDF-C611-3E51-BBBDE8744098" value="true"/>
+<item key="BFAC4467-8343-0983-11FB-CB866029374C" value="true"/>
+<item key="2DBF4F11-72F7-73ED-22BE-2120810BE40F" value="true"/>
+<item key="E6E75503-6116-388A-72BD-E82DC5E22548" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Vertriebsrelevant (J/N)"/>
+<property name="EN_ATTR_NAME" value="*DE* Vertriebsrelevant (J/N)"/>
+</propertyMap>
+</Attribute>
+<Attribute name="Status" id="4D9C9846-CB7D-FE01-615D-26F8182D1859">
+<createdBy>toz</createdBy>
+<createdTime>2020-11-03 10:32:09 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<engineerTo>
+<item key="AC362FED-09A7-BA00-8310-29076CD8571C" value="true"/>
+<item key="0F93F29F-E1ED-0300-B3B1-B58C77EE97A7" value="true"/>
+<item key="38668F89-26BC-F63A-555D-54B8056CF413" value="true"/>
+<item key="249E7ABA-8CD0-1978-78A7-F7026DA6A2EB" value="true"/>
+<item key="F8D1D625-33EA-D367-FD1B-8BE01FB72044" value="true"/>
+<item key="D349E673-4EDF-C611-3E51-BBBDE8744098" value="true"/>
+<item key="BFAC4467-8343-0983-11FB-CB866029374C" value="true"/>
+<item key="2DBF4F11-72F7-73ED-22BE-2120810BE40F" value="true"/>
+<item key="E6E75503-6116-388A-72BD-E82DC5E22548" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Status"/>
+<property name="EN_ATTR_NAME" value="*DE* Status"/>
+</propertyMap>
+</Attribute>
+<Attribute name="ISO2-Code" id="0B3CD3CF-83F9-B5FD-F802-BE5FD0AA57E0">
+<createdBy>toz</createdBy>
+<createdTime>2020-11-03 09:34:16 UTC</createdTime>
+<generatorID>91042756-1D64-F246-4597-100E42DEAD87</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<engineerTo>
+<item key="AC362FED-09A7-BA00-8310-29076CD8571C" value="true"/>
+<item key="0F93F29F-E1ED-0300-B3B1-B58C77EE97A7" value="true"/>
+<item key="38668F89-26BC-F63A-555D-54B8056CF413" value="true"/>
+<item key="249E7ABA-8CD0-1978-78A7-F7026DA6A2EB" value="true"/>
+<item key="F8D1D625-33EA-D367-FD1B-8BE01FB72044" value="true"/>
+<item key="D349E673-4EDF-C611-3E51-BBBDE8744098" value="true"/>
+<item key="BFAC4467-8343-0983-11FB-CB866029374C" value="true"/>
+<item key="2DBF4F11-72F7-73ED-22BE-2120810BE40F" value="true"/>
+<item key="E6E75503-6116-388A-72BD-E82DC5E22548" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<referedAttribute>7F3CDF26-54F3-142A-4FC1-63D2DBE22319</referedAttribute>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="ISO2-Code"/>
+<property name="EN_ATTR_NAME" value="*DE* ISO2-Code"/>
+</propertyMap>
+</Attribute>
+<Attribute name="Job Titel" id="E3AE1D3A-2245-AA19-BAAC-790857D89D76">
+<createdBy>smiai</createdBy>
+<createdTime>2020-11-03 13:44:53 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<engineerTo>
+<item key="AC362FED-09A7-BA00-8310-29076CD8571C" value="true"/>
+<item key="0F93F29F-E1ED-0300-B3B1-B58C77EE97A7" value="true"/>
+<item key="38668F89-26BC-F63A-555D-54B8056CF413" value="true"/>
+<item key="249E7ABA-8CD0-1978-78A7-F7026DA6A2EB" value="true"/>
+<item key="F8D1D625-33EA-D367-FD1B-8BE01FB72044" value="true"/>
+<item key="D349E673-4EDF-C611-3E51-BBBDE8744098" value="true"/>
+<item key="BFAC4467-8343-0983-11FB-CB866029374C" value="true"/>
+<item key="2DBF4F11-72F7-73ED-22BE-2120810BE40F" value="true"/>
+<item key="E6E75503-6116-388A-72BD-E82DC5E22548" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Job Titel"/>
+<property name="EN_ATTR_NAME" value="*DE* Job Titel"/>
+</propertyMap>
+</Attribute>
+</attributes>
+</Entity>

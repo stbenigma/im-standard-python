@@ -1,0 +1,212 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="4A2A6CE7-BDA8-DEEF-58E8-04C069508D0D" name="Standort">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:56 UTC</createdTime>
+<comment><![CDATA[Ort an dem die Firma irgendwie vertreten ist
+
+Beispiel:
+Lager
+Produktionsstätte
+Bürogebäude]]></comment>
+<generatorID>AB67FE83-8B25-8A7B-41C9-B0784FC37A83</generatorID>
+<notes><![CDATA[[EN_ENTI_COMMENT[
+*DE* Ort an dem die Firma irgendwie vertreten ist
+
+Beispiel:
+Lager
+Produktionsstätte
+Bürogebäude
+]EN_ENTI_COMMENT]
+[DE_ENTI_COMMENT[
+Ort an dem die Firma irgendwie vertreten ist
+
+Beispiel:
+Lager
+Produktionsstätte
+Bürogebäude
+]DE_ENTI_COMMENT]
+[FR_ENTI_COMMENT[
+*EN* *DE* Ort an dem die Firma irgendwie vertreten ist
+
+Beispiel:
+Lager
+Produktionsstätte
+Bürogebäude
+]FR_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Name" id="A881DACC-439F-ECDB-207B-4F82A2FA160C">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:56 UTC</createdTime>
+<generatorID>024A5411-10A2-5376-08E3-33DBA0FF5D9D</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+[FR_ATTR_COMMENT[
+
+]FR_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="PIM AttrID" value="."/>
+<property name="PIM AttrName" value="."/>
+<property name="PIM EnglName" value="."/>
+<property name="PIM datatype" value="."/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+</Column>
+<Column name="Standort_ID" id="4541FC30-369C-A930-8A33-55DBB44F52E4">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:56 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+<propertyMap>
+<property name="PIM AttrID" value="."/>
+<property name="PIM AttrName" value="."/>
+<property name="PIM EnglName" value="."/>
+<property name="PIM datatype" value="."/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+</Column>
+<Column name="Juristische_Person_Geschäftsfähige_Einheit_Geschäftsfähige_Einheit_ID" id="6F50677A-20F9-934A-05EE-C701D2762083">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:57 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="PIM AttrID" value="."/>
+<property name="PIM AttrName" value="."/>
+<property name="PIM EnglName" value="."/>
+<property name="PIM datatype" value="."/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+<associations>
+<colAssociation fkAssociation="9AB6331A-BDC7-7EFA-0ECA-7429898C4379" referredColumn="D54A2B1C-B3B5-DA0D-7887-F14BD85B8525"/>
+</associations>
+</Column>
+<Column name="Juristische_Person_Juristische_Person_ID" id="388C1317-6583-3CE6-84E5-3F90227BBB7B">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:57 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="PIM AttrID" value="."/>
+<property name="PIM AttrName" value="."/>
+<property name="PIM EnglName" value="."/>
+<property name="PIM datatype" value="."/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+<associations>
+<colAssociation fkAssociation="9AB6331A-BDC7-7EFA-0ECA-7429898C4379" referredColumn="901F99B3-6F26-7DF2-84C8-91A2B02645F3"/>
+</associations>
+</Column>
+<Column name="Kommunikationsmittel_Kommunikationsmittel_ID" id="85B5EF32-BFD3-8F23-25DC-7062BB836EA4">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:57 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="PIM AttrID" value="."/>
+<property name="PIM AttrName" value="."/>
+<property name="PIM EnglName" value="."/>
+<property name="PIM datatype" value="."/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+<associations>
+<colAssociation fkAssociation="7EA2CCD2-5899-9366-24E3-E1CF30847252" referredColumn="523440B8-0A07-007B-B956-AB080FA442C8"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="733AA2C6-0CC8-1FAE-3058-DECA86F556B2" name="Standort_PK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:56 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="4541FC30-369C-A930-8A33-55DBB44F52E4"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="4E6A488E-CA5D-9F50-671A-FAF88AF6ECCE" name="Standort__IDX">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:57 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<relationGeneratorID>ED6C2864-ECB8-2E21-2002-52DF7F8BDDDF</relationGeneratorID>
+<indexColumnUsage>
+<colUsage columnID="85B5EF32-BFD3-8F23-25DC-7062BB836EA4"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="BC885143-DD34-69C7-0513-1FA9EFE525F3" name="Standort_Juristische_Person_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:57 UTC</createdTime>
+<generatorID>EF943815-83EA-C624-33D9-66324182EAC9</generatorID>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="6F50677A-20F9-934A-05EE-C701D2762083"/>
+<colUsage columnID="388C1317-6583-3CE6-84E5-3F90227BBB7B"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="E6E1F25E-3B10-959A-A34A-A7A40F227F2D" name="Standort_Kommunikationsmittel_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:57 UTC</createdTime>
+<generatorID>ED6C2864-ECB8-2E21-2002-52DF7F8BDDDF</generatorID>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="85B5EF32-BFD3-8F23-25DC-7062BB836EA4"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

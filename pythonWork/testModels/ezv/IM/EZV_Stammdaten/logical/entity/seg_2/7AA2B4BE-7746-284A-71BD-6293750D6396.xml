@@ -1,0 +1,110 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_2" id="7AA2B4BE-7746-284A-71BD-6293750D6396" name="Nationale Dienststelle">
+<createdBy>stb</createdBy>
+<createdTime>2020-01-15 15:24:14 UTC</createdTime>
+<comment><![CDATA[Organisatorische Einheit der EZV für festgelegte Aufgaben
+Amtlichte Einrichtung des BAZG
+Büro im Ausland
+Verzollungskasten
+
+Hierarchisch organisiert in Stufen:
+Direktions- oder Operationsbereich (ex Kreis)
+  Inspektorat (übergeordnete Stelle, Hauptzollamt
+    Abteilung (untergeordnete Stelle)
+       Dienst (Fachdienst)
+
+
+Beispiele
+ZI Pratteln
+ZI Zürich-Flughafen
+ZI Campocologno
+ID Chiasso-Strada
+po gfr Chablais
+po gfr Porrentruy
+Gzw Po Brugg
+Gzw Po Rheinfelden-Autobahn
+ZI Rheinfelden-Autobahn
+Genève rive gauche
+po gfr Genève rive gauche
+ZI Aarau
+Gwz Po Basel-Flughafen
+
+-Alte Beispiele
+1639 Aarau
+BWA Basel (mit viel Kompetenzen)
+Oberwallis, Splügen, Kleinlützel (mit wenig Kopetenzen)
+OZD, KD GWK (Bern Bahnhof) (sind nicht an der Grenze)
+
+Hauptzollämter / Inspektorate
+Aarau
+Bern
+Schaffhausen
+  mit Bargen Ramsen, Thayngen
+
+
+
+
+
+
+]]></comment>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<typeID>06A14CAF-CD31-7D91-4C51-88E4B0E99301</typeID>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<hierarchicalParent>9BF68744-509C-A9FC-5D9A-5A43BE9E1DB9</hierarchicalParent>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="GSD-Tabellenname" value="DST"/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="GSD-Nr" id="84823217-808C-BD10-8FDA-E0BB87EB98D0">
+<createdBy>stb</createdBy>
+<createdTime>2020-03-24 09:04:06 UTC</createdTime>
+<comment><![CDATA[4-stellige Nummer in GSD gepflegt]]></comment>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Kurzname" id="21DB11B9-D706-A628-11AB-DC80F8C2D6DA">
+<createdBy>stb</createdBy>
+<createdTime>2020-03-24 15:16:24 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Stufe" id="F682A7FE-8840-C671-AD95-C50E6A2303A9">
+<createdBy>stb</createdBy>
+<createdTime>2020-03-24 15:27:30 UTC</createdTime>
+<comment><![CDATA[Hierarchische Stufe (Direktion , Operationsbereich,  Inspektorat,    Abteilung,      Dienst)
+]]></comment>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+</Entity>

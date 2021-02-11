@@ -1,0 +1,62 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_116" directorySegmentName="seg_1" id="7F8D97E3-2CF4-72CB-20DE-F7BC0E7E2FD0">
+<createdBy>stb</createdBy>
+<createdTime>2020-03-09 12:51:44 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<engineerTo>
+<item key="AC362FED-09A7-BA00-8310-29076CD8571C" value="true"/>
+<item key="0F93F29F-E1ED-0300-B3B1-B58C77EE97A7" value="true"/>
+<item key="38668F89-26BC-F63A-555D-54B8056CF413" value="true"/>
+<item key="249E7ABA-8CD0-1978-78A7-F7026DA6A2EB" value="true"/>
+<item key="F8D1D625-33EA-D367-FD1B-8BE01FB72044" value="true"/>
+<item key="D349E673-4EDF-C611-3E51-BBBDE8744098" value="true"/>
+<item key="BFAC4467-8343-0983-11FB-CB866029374C" value="true"/>
+<item key="2DBF4F11-72F7-73ED-22BE-2120810BE40F" value="true"/>
+<item key="E6E75503-6116-388A-72BD-E82DC5E22548" value="true"/>
+</engineerTo>
+<useSurrogateKey>true</useSurrogateKey>
+<identifying>false</identifying>
+<nameOnSource>verwendet in</nameOnSource>
+<nameOnTarget>verwendet</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>43F4C576-8A6F-9A65-D7DB-7A254800DA1C</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>8A81B9DE-6696-152D-3EB2-5CF30FA4FF12</targetEntity>
+<transferable>true</transferable>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="verwendet in"/>
+<property name="DE_RELA_TEXT_TO" value="verwendet"/>
+<property name="EN_RELA_TEXT_FROM" value="used in"/>
+<property name="EN_RELA_TEXT_TO" value="uses"/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<attribute name="connection no" id="23C49A2C-436F-0E82-676C-094419D231FB">
+<createdBy>stb</createdBy>
+<createdTime>2020-03-09 12:53:11 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<engineerTo>
+<item key="AC362FED-09A7-BA00-8310-29076CD8571C" value="true"/>
+<item key="0F93F29F-E1ED-0300-B3B1-B58C77EE97A7" value="true"/>
+<item key="38668F89-26BC-F63A-555D-54B8056CF413" value="true"/>
+<item key="249E7ABA-8CD0-1978-78A7-F7026DA6A2EB" value="true"/>
+<item key="F8D1D625-33EA-D367-FD1B-8BE01FB72044" value="true"/>
+<item key="D349E673-4EDF-C611-3E51-BBBDE8744098" value="true"/>
+<item key="BFAC4467-8343-0983-11FB-CB866029374C" value="true"/>
+<item key="2DBF4F11-72F7-73ED-22BE-2120810BE40F" value="true"/>
+<item key="E6E75503-6116-388A-72BD-E82DC5E22548" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>6098EF65-3D28-781B-FAD4-B503AB54EEC1</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>1</beginValue>
+</rangeDef>
+</listOfRanges>
+</attribute>
+</attributes>
+</Relation>

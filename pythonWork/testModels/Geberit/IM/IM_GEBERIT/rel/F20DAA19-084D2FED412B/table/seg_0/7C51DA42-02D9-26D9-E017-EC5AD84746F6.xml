@@ -1,0 +1,70 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="7C51DA42-02D9-26D9-E017-EC5AD84746F6" name="articlesItemGallery">
+<sourceDDLFile>api.sql</sourceDDLFile>
+<createdBy>toz</createdBy>
+<createdTime>2020-12-09 15:09:50 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nameHasQuotes>true</nameHasQuotes>
+<importedID>3C1C1D49-40B8-10E9-4A26-668C5591B186</importedID>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="articlesItemGalleryId" id="FCD5AAE7-0FE4-301D-EC9C-1CB2DF060754">
+<sourceDDLFile>api.sql</sourceDDLFile>
+<createdBy>toz</createdBy>
+<createdTime>2020-12-09 15:09:50 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nameHasQuotes>true</nameHasQuotes>
+<importedID>06E1B0FB-484C-D36E-ECEC-010BE199AE1B</importedID>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>10878C46-1DF8-C563-A401-78CA99E8EC93</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="name" id="0FE45B75-54A2-DCB3-06E4-E2C77A7515A1">
+<sourceDDLFile>api.sql</sourceDDLFile>
+<createdBy>toz</createdBy>
+<createdTime>2020-12-09 15:09:50 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nameHasQuotes>true</nameHasQuotes>
+<importedID>A3FED815-A929-A88F-20F3-A921A2CB75A7</importedID>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>10878C46-1DF8-C563-A401-78CA99E8EC93</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="description" id="71FFD4EA-38F0-6F8B-2CE5-D64361B02C5A">
+<sourceDDLFile>api.sql</sourceDDLFile>
+<createdBy>toz</createdBy>
+<createdTime>2020-12-09 15:09:50 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nameHasQuotes>true</nameHasQuotes>
+<importedID>9DF4F11C-8A22-0052-9194-8598E2A7A983</importedID>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>10878C46-1DF8-C563-A401-78CA99E8EC93</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="91FA7CE3-7925-1BB1-93D9-391F7CFFB326" name="articlesItemGallery_PK">
+<sourceDDLFile>api.sql</sourceDDLFile>
+<createdBy>toz</createdBy>
+<createdTime>2020-12-09 15:09:50 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<importedID>34526FE6-601E-0ACB-A69F-43AC5248A1F4</importedID>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="FCD5AAE7-0FE4-301D-EC9C-1CB2DF060754"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

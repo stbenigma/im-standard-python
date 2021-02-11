@@ -1,0 +1,86 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="10A6ACBB-E614-53DE-E6B9-8F635CB0671C" name="HS-Unterposition2">
+<createdBy>stb</createdBy>
+<createdTime>2018-08-14 08:23:06 UTC</createdTime>
+<comment><![CDATA[Internationale Tarifnummer, 6-stellige Nr
+Falls die Nr dieser Stufe 0 ist, kann es keine weitere Unterteilung geben.
+
+Gemäss WZO Vorgabe
+(Gesetz SR.0.632.11)]]></comment>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<typeID>D05C2668-F0C1-EC40-BB98-6B20C01CCB1F</typeID>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<hierarchicalParent>1B396B46-010A-7F87-540B-F21107F7ED9E</hierarchicalParent>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<synonym>HS-Subheading, TN6</synonym>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Nr" id="5A4BF258-F39E-9C8D-72E7-00D2824EE34E">
+<createdBy>stb</createdBy>
+<createdTime>2018-08-14 08:23:06 UTC</createdTime>
+<comment><![CDATA[2-Stellige Nr innerhalb Kapitel-Nr]]></comment>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Tarifnummer 6-stellig" id="B50F6924-2B7B-9F84-8809-C765D0D37402">
+<createdBy>stb</createdBy>
+<createdTime>2018-08-21 07:51:40 UTC</createdTime>
+<comment><![CDATA[berechnete Nr mit Tarifhierarchie]]></comment>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Tariftext [L][T]" id="2200F460-C050-A0CD-7D09-8310BD0DFD63">
+<createdBy>stb</createdBy>
+<createdTime>2018-09-18 13:29:57 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Selbsterklärender Text [L][T]" id="B2A85FFD-3670-5ED4-6414-7C76D36EF645">
+<createdBy>stb</createdBy>
+<createdTime>2018-09-18 13:29:57 UTC</createdTime>
+<comment><![CDATA[Text für die Anzeige im Aussenhandelsindex. Falls leer, gilt der Tariftext]]></comment>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Gültigkeitsperiode" id="DBA99DC8-D96E-DA13-DF5B-2F249BC9B0E3">
+<createdBy>stb</createdBy>
+<createdTime>2018-08-14 08:23:06 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+</Entity>

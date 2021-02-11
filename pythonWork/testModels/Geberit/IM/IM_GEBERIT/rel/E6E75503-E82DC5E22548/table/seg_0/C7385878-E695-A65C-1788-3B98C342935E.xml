@@ -1,0 +1,74 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="C7385878-E695-A65C-1788-3B98C342935E" name="accessoriesOverviews">
+<sourceDDLFile>model.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2020-09-03 08:39:50 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<importedID>E97404CA-8B77-296A-E62E-5106596AA926</importedID>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="accessoriesOverviewsId" id="C62A5B03-5E8A-5D9E-440F-3826EA99CD85">
+<sourceDDLFile>model.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2020-09-03 08:39:50 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nameHasQuotes>true</nameHasQuotes>
+<importedID>684D72A9-A516-7EB8-D76C-234AC65AE4A5</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypePrecision>0</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>255</dataTypeSize>
+<ownDataTypeParameters>255,0,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="accessoriesOverviewsElement" id="B43BDEB8-A1EF-8327-508B-D19733842452">
+<sourceDDLFile>model.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2020-09-03 08:39:50 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nameHasQuotes>true</nameHasQuotes>
+<importedID>C85D612E-8EF9-C6DB-37A6-22E38E982E12</importedID>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypePrecision>0</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>255</dataTypeSize>
+<ownDataTypeParameters>255,0,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="17D74956-D107-E6F1-9FE2-86E325AA0773" referredColumn="BBB34E11-5B59-E132-D907-D5637130B831"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="187E9AA1-3811-4CFF-7D2C-C89C662A8B64" name="accessoriesOverviews_pk">
+<sourceDDLFile>model.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2020-09-03 08:39:50 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nameHasQuotes>true</nameHasQuotes>
+<importedID>67A8BC5E-160B-1753-953F-0AFFF2C681E9</importedID>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="C62A5B03-5E8A-5D9E-440F-3826EA99CD85"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="FED1113E-98E3-C6D9-0A5F-E6CFABC0FAC0" name="accessoriesOverviewsElementFK">
+<createdBy>stb</createdBy>
+<createdTime>2020-09-03 08:39:51 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="B43BDEB8-A1EF-8327-508B-D19733842452"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

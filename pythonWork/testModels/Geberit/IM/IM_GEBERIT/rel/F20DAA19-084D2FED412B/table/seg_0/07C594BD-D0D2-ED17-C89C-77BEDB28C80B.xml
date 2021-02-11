@@ -1,0 +1,69 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="07C594BD-D0D2-ED17-C89C-77BEDB28C80B" name="videosItem">
+<sourceDDLFile>api.sql</sourceDDLFile>
+<createdBy>toz</createdBy>
+<createdTime>2020-12-09 15:09:50 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nameHasQuotes>true</nameHasQuotes>
+<importedID>1EFDBE8B-DF42-83D2-449D-9FCE70FADCE2</importedID>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="videosItemId" id="7AACEC42-9BC2-BB0F-99DB-83AA6C3EC2EB">
+<sourceDDLFile>api.sql</sourceDDLFile>
+<createdBy>toz</createdBy>
+<createdTime>2020-12-09 15:09:51 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nameHasQuotes>true</nameHasQuotes>
+<importedID>D2A25F1D-6B40-4996-51C9-FD1AF39C8C1E</importedID>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>10878C46-1DF8-C563-A401-78CA99E8EC93</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="444FF3AC-F1B7-4AA3-1919-8F6D204BD40E" referredColumn="FDB506B5-7FE9-1745-49C2-321F5019E8C5"/>
+</associations>
+</Column>
+<Column name="youtubeID" id="73DF9342-886E-9B33-4155-61E49897C9E0">
+<sourceDDLFile>api.sql</sourceDDLFile>
+<createdBy>toz</createdBy>
+<createdTime>2020-12-09 15:09:51 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nameHasQuotes>true</nameHasQuotes>
+<importedID>92A342B2-7A57-590B-BC79-81E4B7876FE8</importedID>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>10878C46-1DF8-C563-A401-78CA99E8EC93</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="E6C3C1BC-6DAF-0437-1BFE-B169D4B30601" name="videosItem_PK">
+<sourceDDLFile>api.sql</sourceDDLFile>
+<createdBy>toz</createdBy>
+<createdTime>2020-12-09 15:09:51 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<importedID>762FCB8E-CF89-DA88-7BE5-66A511A42FA0</importedID>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="7AACEC42-9BC2-BB0F-99DB-83AA6C3EC2EB"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="E103898E-6495-5D55-2299-50CBD08D9F98" name="videosItem_FK0">
+<createdBy>toz</createdBy>
+<createdTime>2020-12-09 15:09:52 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="7AACEC42-9BC2-BB0F-99DB-83AA6C3EC2EB"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

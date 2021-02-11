@@ -1,0 +1,393 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="D01F98D4-E107-A282-17FA-B0441B9BD230" name="LAB">
+<createdBy>stb</createdBy>
+<createdTime>2020-11-13 14:10:46 UTC</createdTime>
+<comment><![CDATA[Created on 13/11/2020  15:10:46 during import from /Users/stb/Downloads/SAP-Import-ODM.csv]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Ablaufleistung (l/s)" id="0CFEB2FD-8ABA-BD67-9339-093E936F0F7D">
+<createdBy>stb</createdBy>
+<createdTime>2020-11-13 14:10:46 UTC</createdTime>
+<comment><![CDATA[SAP table ZT9CSTEP4_NEU & GSD 100]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="LAB_MASTER_ABLAUFLEISTUNG"/>
+</propertyMap>
+</Column>
+<Column name="Absenkautomatik" id="562B710F-051D-18D8-2BAE-647D60059BBB">
+<createdBy>stb</createdBy>
+<createdTime>2020-11-13 14:10:46 UTC</createdTime>
+<comment><![CDATA[SAP table ZT9CSTEP4_NEU & GSD 100
+is used to automatically print Pictogram on labels]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="LAB_MASTER_ABSENKAUTOMATIK"/>
+</propertyMap>
+</Column>
+<Column name="Akku-Kapazität (Ah)" id="ACC112E0-9E06-AEE5-01C7-28B9C8AC156A">
+<createdBy>stb</createdBy>
+<createdTime>2020-11-13 14:10:46 UTC</createdTime>
+<comment><![CDATA[SAP table ZT9CSTEP4_NEU & GSD 100]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="LAB_MASTER_AKKU"/>
+</propertyMap>
+</Column>
+<Column name="Anchlussdistanz (cm)" id="2F7E631E-490D-7DA6-A009-2E841BCD469C">
+<createdBy>stb</createdBy>
+<createdTime>2020-11-13 14:10:46 UTC</createdTime>
+<comment><![CDATA[SAP table ZT9CSTEP4_NEU & GSD 100]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="LAB_MASTER_ANSCHLUSSDISTANZ"/>
+</propertyMap>
+</Column>
+<Column name="Anzahl Abgänge" id="7129C73D-41FC-A420-3EA8-7F91B4D5B58E">
+<createdBy>stb</createdBy>
+<createdTime>2020-11-13 14:10:46 UTC</createdTime>
+<comment><![CDATA[SAP table ZT9CSTEP4_NEU & GSD 100]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="LAB_MASTER_ANZAHL_ABGAENGE"/>
+</propertyMap>
+</Column>
+<Column name="Ausladung (cm)" id="45D9B392-4E8C-DED7-9146-059001F82A8A">
+<createdBy>stb</createdBy>
+<createdTime>2020-11-13 14:10:46 UTC</createdTime>
+<comment><![CDATA[SAP table ZT9CSTEP4_NEU & GSD 100]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="LAB_MASTER_AUSLADUNG"/>
+</propertyMap>
+</Column>
+<Column name="Betriebsspannung" id="413140C4-6645-994C-7E4D-DED4281F8EC7">
+<createdBy>stb</createdBy>
+<createdTime>2020-11-13 14:10:46 UTC</createdTime>
+<comment><![CDATA[SAP table ZT9CSTEP4_NEU & GSD 100]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="LAB_MASTER_BETRIEBSSPANNUNG"/>
+</propertyMap>
+</Column>
+<Column name="Durchmesser (Master)" id="02524B24-43E3-6A40-2C4E-9933642E487B">
+<createdBy>stb</createdBy>
+<createdTime>2020-11-13 14:10:46 UTC</createdTime>
+<comment><![CDATA[SAP table ZT9CSTEP4_NEU & GSD 100
+different attributes included]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="LAB_MASTER_DURCHMESSER"/>
+</propertyMap>
+</Column>
+<Column name="Etiketten Template" id="9E370960-7C20-8F04-CD26-691387F84ED7">
+<createdBy>stb</createdBy>
+<createdTime>2020-11-13 14:10:46 UTC</createdTime>
+<comment><![CDATA[SAP table ZT9CSTEP4_NEU & GSD 100
+LAB_MASTER_ID_NEU not relevant for STEP]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="LAB_MASTER_ID &amp; LAB_MASTER_ID_NEU"/>
+</propertyMap>
+</Column>
+<Column name="Kompatibilität" id="5829A860-4063-5BB5-545F-0F0321DBBDB4">
+<createdBy>stb</createdBy>
+<createdTime>2020-11-13 14:10:46 UTC</createdTime>
+<comment><![CDATA[SAP table ZT9CSTEP4_NEU & GSD 100]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="LAB_MASTER_KOMPATIBILITAET"/>
+</propertyMap>
+</Column>
+<Column name="LängexBreitexHöhexTiefe (cm)" id="BDFB11EE-0D25-762C-6C3A-5F95E256F2EB">
+<createdBy>stb</createdBy>
+<createdTime>2020-11-13 14:10:46 UTC</createdTime>
+<comment><![CDATA[SAP table ZT9CSTEP4_NEU & GSD 100
+different attributes included]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="LAB_MASTER_LBHT"/>
+</propertyMap>
+</Column>
+<Column name="Leistungsaufnahme (W)" id="4FB33D22-EE24-40A2-6986-5972B5EF3466">
+<createdBy>stb</createdBy>
+<createdTime>2020-11-13 14:10:46 UTC</createdTime>
+<comment><![CDATA[SAP table ZT9CSTEP4_NEU & GSD 100]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="LAB_MASTER_LEISTUNGSAUFNAHME"/>
+</propertyMap>
+</Column>
+<Column name="Metrisches Gewinde (mm)" id="84749B82-1ECB-8BB9-FE2A-BCBEC7CAEC11">
+<createdBy>stb</createdBy>
+<createdTime>2020-11-13 14:10:46 UTC</createdTime>
+<comment><![CDATA[SAP table ZT9CSTEP4_NEU & GSD 100]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="LAB_MASTER_METGEWINDE"/>
+</propertyMap>
+</Column>
+<Column name="Nennspannung/Netzfrequenz" id="C126FDAB-7236-9177-B62E-C44FA2F18B52">
+<createdBy>stb</createdBy>
+<createdTime>2020-11-13 14:10:46 UTC</createdTime>
+<comment><![CDATA[SAP table ZT9CSTEP4_NEU & GSD 100]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="LAB_MASTER_NENNSPANNUNG"/>
+</propertyMap>
+</Column>
+<Column name="Nennweite DN (Master)" id="C27F7229-6571-4583-3CC9-ABF4D8982B37">
+<createdBy>stb</createdBy>
+<createdTime>2020-11-13 14:10:46 UTC</createdTime>
+<comment><![CDATA[SAP table ZT9CSTEP4_NEU & GSD 100
+different attributes included]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="LAB_MASTER_NENNWEITE_DN"/>
+</propertyMap>
+</Column>
+<Column name="Perspective Drawing (STEP)" id="D720BA63-54EE-5DDF-467D-87008DC46BC8">
+<createdBy>stb</createdBy>
+<createdTime>2020-11-13 14:10:46 UTC</createdTime>
+<comment><![CDATA[SAP table ZT9CSTEP4_NEU & GSD 100]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="LAB_MASTER_PERDRAW_STEP"/>
+</propertyMap>
+</Column>
+<Column name="PN / Nenndruck (bar)" id="734BC91E-4763-94F9-CDA5-65AD686EA7B6">
+<createdBy>stb</createdBy>
+<createdTime>2020-11-13 14:10:46 UTC</createdTime>
+<comment><![CDATA[SAP table ZT9CSTEP4_NEU & GSD 100
+in case 1 Perspective (001) is not filled]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="LAB_MASTER_PERDRAW_STEP"/>
+</propertyMap>
+</Column>
+<Column name="Primary Image (STEP)" id="7BA138FE-BE36-61C8-86C8-DF0FF8F2B8DB">
+<createdBy>stb</createdBy>
+<createdTime>2020-11-13 14:10:46 UTC</createdTime>
+<comment><![CDATA[SAP table ZT9CSTEP4_NEU & GSD 100]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="LAB_MASTER_NENNDRUCK"/>
+</propertyMap>
+</Column>
+<Column name="Quick Release Scharniere" id="5FD89DDA-D13A-6313-A4A9-CEC7CCDAB72E">
+<createdBy>stb</createdBy>
+<createdTime>2020-11-13 14:10:46 UTC</createdTime>
+<comment><![CDATA[SAP table ZT9CSTEP4_NEU & GSD 100]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="LAB_MASTER_IMAGE_STEP"/>
+</propertyMap>
+</Column>
+<Column name="s ISO / Wandstärke (mm)" id="DA6BE3AA-6501-D652-D326-E9B5EB9FF04E">
+<createdBy>stb</createdBy>
+<createdTime>2020-11-13 14:10:46 UTC</createdTime>
+<comment><![CDATA[SAP table ZT9CSTEP4_NEU & GSD 100
+is used to automatically print Pictogram on labels]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="LAB_MASTER_QUICK_RELEASE"/>
+</propertyMap>
+</Column>
+<Column name="Steckertyp" id="98F9ADC4-E878-E160-16D6-18377F281F04">
+<createdBy>stb</createdBy>
+<createdTime>2020-11-13 14:10:46 UTC</createdTime>
+<comment><![CDATA[SAP table ZT9CSTEP4_NEU & GSD 100]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="LAB_MASTER_S_ISO"/>
+</propertyMap>
+</Column>
+<Column name="Überlauf" id="DDA391E5-E62C-68D1-3AB0-5AA4706804F5">
+<createdBy>stb</createdBy>
+<createdTime>2020-11-13 14:10:46 UTC</createdTime>
+<comment><![CDATA[SAP table ZT9CSTEP4_NEU & GSD 100]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="LAB_MASTER_STECKERTYP"/>
+</propertyMap>
+</Column>
+<Column name="Werkstoffnummer EN / AISI" id="75F9FD22-14FE-FF34-AF5B-D6A0B91F9496">
+<createdBy>stb</createdBy>
+<createdTime>2020-11-13 14:10:46 UTC</createdTime>
+<comment><![CDATA[SAP table ZT9CSTEP4_NEU & LAB Klasse
+is used to automatically print Pictogram on labels]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="LAB_MASTER_UEBERLAUF"/>
+</propertyMap>
+</Column>
+<Column name="Winkel (Master)" id="0AA1F9CC-A9C1-C29F-4E8E-178EC5BA0E10">
+<createdBy>stb</createdBy>
+<createdTime>2020-11-13 14:10:46 UTC</createdTime>
+<comment><![CDATA[SAP table ZT9CSTEP4_NEU & GSD 100]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="LAB_MASTER_WERKSTOFFNUM_EN"/>
+</propertyMap>
+</Column>
+<Column name="Z-Mass (cm)" id="9DD60C33-9546-01EF-B4FA-2C4AD3305F22">
+<createdBy>stb</createdBy>
+<createdTime>2020-11-13 14:10:46 UTC</createdTime>
+<comment><![CDATA[SAP table ZT9CSTEP4_NEU & GSD 100]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="LAB_MASTER_WINKEL_PT"/>
+</propertyMap>
+</Column>
+<Column name="Zeichnungsrevision (STEP)" id="7A6F554A-1402-CA4A-BC4F-C84C0FD05423">
+<createdBy>stb</createdBy>
+<createdTime>2020-11-13 14:10:46 UTC</createdTime>
+<comment><![CDATA[SAP table ZT9CSTEP4_NEU & GSD 100
+different Z-dimension attribut included]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="LAB_MASTER_ZMASS"/>
+</propertyMap>
+</Column>
+<Column name="MARA_Material" id="F5EA41FC-037C-AB41-FBC4-160FFF205DA7">
+<createdBy>SMINI</createdBy>
+<createdTime>2020-11-17 15:43:38 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="E81B3504-9439-77B3-A644-A820A8241580" referredColumn="4A76184A-100D-F33E-C565-1C1A77D64BE2"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="85F7CCC8-5A11-8C97-7930-CE1776B71818" name="LAB_PK">
+<createdBy>toz</createdBy>
+<createdTime>2020-11-18 10:34:48 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="F5EA41FC-037C-AB41-FBC4-160FFF205DA7"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="68958312-A800-7C6B-25E2-23540448979C" name="LAB_MARA_FK">
+<createdBy>SMINI</createdBy>
+<createdTime>2020-11-17 15:43:38 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="F5EA41FC-037C-AB41-FBC4-160FFF205DA7"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

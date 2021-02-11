@@ -1,0 +1,142 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="8E182596-9430-9663-307D-F3762A056C3E" name="documentsElement">
+<sourceDDLFile>model.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2020-09-03 08:39:50 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<importedID>64C3C52B-C930-1032-4702-0FE3ACAA2D66</importedID>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="contentType" id="055534C2-64D2-1429-E681-2A1E6E65C1C3">
+<sourceDDLFile>model.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2020-09-03 08:39:50 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nameHasQuotes>true</nameHasQuotes>
+<importedID>6A2A5626-C587-0489-4F44-710A99CC6A3D</importedID>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypePrecision>0</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>255</dataTypeSize>
+<ownDataTypeParameters>255,0,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="value" id="3D88C9A7-CDED-FDC9-0780-6233D9623CFB">
+<sourceDDLFile>model.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2020-09-03 08:39:50 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nameHasQuotes>true</nameHasQuotes>
+<importedID>25A79574-9537-B3A7-9A89-6112AA55FA8F</importedID>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypePrecision>0</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>255</dataTypeSize>
+<ownDataTypeParameters>255,0,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="url" id="7ABD7001-5B57-94EF-E0FA-FEF4540FC719">
+<sourceDDLFile>model.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2020-09-03 08:39:50 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nameHasQuotes>true</nameHasQuotes>
+<importedID>E74680A4-6442-1380-D778-0923EC221883</importedID>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypePrecision>0</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>255</dataTypeSize>
+<ownDataTypeParameters>255,0,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="documentsElementId" id="74F7592F-F5EE-81B2-650E-BC9C45B0E280">
+<sourceDDLFile>model.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2020-09-03 08:39:50 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nameHasQuotes>true</nameHasQuotes>
+<importedID>B4C0DCE9-D08B-AB53-5269-2106DF4548CE</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypePrecision>0</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>255</dataTypeSize>
+<ownDataTypeParameters>255,0,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="description" id="B93FCF33-956E-1AEE-73A7-85F3C8931927">
+<sourceDDLFile>model.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2020-09-03 08:39:50 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nameHasQuotes>true</nameHasQuotes>
+<importedID>2517828B-2B4B-2FAE-C176-51ED22EB26E6</importedID>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypePrecision>0</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>255</dataTypeSize>
+<ownDataTypeParameters>255,0,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="languages" id="97E52E4E-E53F-94E9-CE77-687290E79D26">
+<sourceDDLFile>model.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2020-09-03 08:39:50 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nameHasQuotes>true</nameHasQuotes>
+<importedID>C985E40E-F1D3-184F-E224-A201D0490949</importedID>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypePrecision>0</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>255</dataTypeSize>
+<ownDataTypeParameters>255,0,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="67487384-9D69-507C-4CA9-FEA2D1D5DCC3" referredColumn="7962A574-5831-74BF-69BA-745F23B368F7"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="D2E24087-1746-9E0F-752E-E5C2FC886E41" name="documentsElement_pk">
+<sourceDDLFile>model.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2020-09-03 08:39:50 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nameHasQuotes>true</nameHasQuotes>
+<importedID>4FDCFC6C-097C-9CD4-08C5-BC941D10BBBE</importedID>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="74F7592F-F5EE-81B2-650E-BC9C45B0E280"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="C39CFEAA-5051-06E1-F7D5-BA4985E8F4E1" name="languagesFK">
+<createdBy>stb</createdBy>
+<createdTime>2020-09-03 08:39:51 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="97E52E4E-E53F-94E9-CE77-687290E79D26"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

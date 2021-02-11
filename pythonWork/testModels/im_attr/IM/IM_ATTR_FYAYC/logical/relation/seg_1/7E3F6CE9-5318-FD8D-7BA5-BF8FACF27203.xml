@@ -1,0 +1,28 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_112" directorySegmentName="seg_1" id="7E3F6CE9-5318-FD8D-7BA5-BF8FACF27203">
+<createdBy>stb</createdBy>
+<createdTime>2018-08-19 10:35:57 UTC</createdTime>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<nameOnSource>kommt vor als</nameOnSource>
+<nameOnTarget>unterteilt</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>21F24439-0E8E-5607-91CA-75E44451D7A0</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>588807A6-354A-0AD5-63A8-049723126E6F</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="kommt vor als"/>
+<property name="DE_RELA_TEXT_TO" value="unterteilt"/>
+<property name="EN_RELA_TEXT_FROM" value="*DE* kommt vor als"/>
+<property name="EN_RELA_TEXT_TO" value="*DE* unterteilt"/>
+</propertyMap>
+</Relation>

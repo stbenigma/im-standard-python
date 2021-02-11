@@ -1,0 +1,28 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev12c class="oracle.dbtools.crest.model.design.storage.oracle.v12c.TableProxyOraclev12c" name="technicalDataList" directorySegmentName="seg_0" id="92A29E4A-6F24-4DC4-3B30-F206741A4E92">
+<createdBy>toz</createdBy>
+<createdTime>2020-12-09 15:09:50 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nameHasQuotes>true</nameHasQuotes>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<temporaryChanged>false</temporaryChanged>
+<accessDriverType>oracle_loader</accessDriverType>
+<rejectLimit></rejectLimit>
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="technicalDataListId" id="2C62B82D-AE2C-8677-4503-545061C8482B">
+<createdBy>toz</createdBy>
+<createdTime>2020-12-09 15:09:51 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nameHasQuotes>true</nameHasQuotes>
+</ColumnProxy>
+</columnProxies>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="technicalDataList_PK" id="2DA8EBD0-D450-C53C-A3E4-1E7A4B83BE2A">
+<createdBy>toz</createdBy>
+<createdTime>2020-12-09 15:09:51 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<indexSort>SORTED</indexSort>
+</PrimaryKey>
+</primaryKeys>
+</TableProxyOraclev12c>

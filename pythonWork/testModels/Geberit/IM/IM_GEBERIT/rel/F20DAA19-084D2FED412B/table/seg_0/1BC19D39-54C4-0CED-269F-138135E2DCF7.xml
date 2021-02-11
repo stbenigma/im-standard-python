@@ -1,0 +1,97 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="1BC19D39-54C4-0CED-269F-138135E2DCF7" name="included">
+<sourceDDLFile>api.sql</sourceDDLFile>
+<createdBy>toz</createdBy>
+<createdTime>2020-12-09 15:09:50 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nameHasQuotes>true</nameHasQuotes>
+<importedID>559AB9FA-C093-7991-5D4E-A01CDDC35B43</importedID>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="includedId" id="1B8FADD5-E828-DB14-4322-9C1CAE32E422">
+<sourceDDLFile>api.sql</sourceDDLFile>
+<createdBy>toz</createdBy>
+<createdTime>2020-12-09 15:09:51 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nameHasQuotes>true</nameHasQuotes>
+<importedID>6EC5D779-4CB5-E179-96A0-B2544FE30F68</importedID>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>10878C46-1DF8-C563-A401-78CA99E8EC93</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="3EDDF3FC-273F-28DC-7B50-94FAD4089D38" referredColumn="EDC05984-A0B2-B086-9550-418BDA176FC0"/>
+</associations>
+</Column>
+<Column name="sequence" id="021DCC75-3FF2-7B32-0338-DCC005C04CFD">
+<sourceDDLFile>api.sql</sourceDDLFile>
+<createdBy>toz</createdBy>
+<createdTime>2020-12-09 15:09:51 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nameHasQuotes>true</nameHasQuotes>
+<importedID>334F596F-3099-AF2A-AD71-191AC7F8F3D1</importedID>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>10878C46-1DF8-C563-A401-78CA99E8EC93</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="name" id="E86021C8-77D2-4443-88F5-3EBF3D571D8F">
+<sourceDDLFile>api.sql</sourceDDLFile>
+<createdBy>toz</createdBy>
+<createdTime>2020-12-09 15:09:51 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nameHasQuotes>true</nameHasQuotes>
+<importedID>0BDA0CE1-BB23-F6A7-81B1-0E0EF05C8AD1</importedID>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>10878C46-1DF8-C563-A401-78CA99E8EC93</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="key" id="870E475D-899F-17F9-DB64-FFF0AB0D49CD">
+<sourceDDLFile>api.sql</sourceDDLFile>
+<createdBy>toz</createdBy>
+<createdTime>2020-12-09 15:09:51 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nameHasQuotes>true</nameHasQuotes>
+<importedID>C7AF23C2-6DD7-C9C4-1C31-DA63BFC7E3FD</importedID>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>10878C46-1DF8-C563-A401-78CA99E8EC93</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="4B67EC3F-B55B-3E2C-5B46-327877602BD2" name="included_PK">
+<sourceDDLFile>api.sql</sourceDDLFile>
+<createdBy>toz</createdBy>
+<createdTime>2020-12-09 15:09:51 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<importedID>F5B322FB-0DCD-B796-EE4E-DA876A41CE90</importedID>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="1B8FADD5-E828-DB14-4322-9C1CAE32E422"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="1EC1C97E-2F78-AD4F-7FD0-AAE7ABE58E33" name="included_FK0">
+<createdBy>toz</createdBy>
+<createdTime>2020-12-09 15:09:51 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="1B8FADD5-E828-DB14-4322-9C1CAE32E422"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

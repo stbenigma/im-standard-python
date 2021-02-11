@@ -1,0 +1,617 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="BD77FCC5-87B7-2AF2-B4BC-E22C4ACD58B6" name="GSD">
+<createdBy>stb</createdBy>
+<createdTime>2020-11-13 14:10:46 UTC</createdTime>
+<comment><![CDATA[Created on 13/11/2020  15:10:46 during import from /Users/stb/Downloads/SAP-Import-ODM.csv]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="MARA_Material" id="D7563389-5F8D-7B80-8CAF-51507B668F57">
+<createdBy>SMINI</createdBy>
+<createdTime>2020-11-17 15:43:05 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="BA31CBDD-9221-7BD1-40C8-11454BE1B3D1" referredColumn="4A76184A-100D-F33E-C565-1C1A77D64BE2"/>
+</associations>
+</Column>
+<Column name="Anzahl Keramikteile" id="1A25C880-7AEA-3EA0-A89B-B4C2E5FC9860">
+<createdBy>stb</createdBy>
+<createdTime>2020-11-13 14:10:46 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="GSD_SAN_QTY1"/>
+</propertyMap>
+</Column>
+<Column name="Auszeichnungsart VP1" id="0E8DCA60-3E7C-591F-2401-0A57E9165041">
+<createdBy>stb</createdBy>
+<createdTime>2020-11-13 14:10:46 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="AUSZEICHNUNGSART_VP1"/>
+</propertyMap>
+</Column>
+<Column name="Auszeichnungsart VP2" id="51038A8A-1FA6-4C52-A2B4-78EA01084527">
+<createdBy>stb</createdBy>
+<createdTime>2020-11-13 14:10:46 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="AUSZEICHNUNGSART_VP2"/>
+</propertyMap>
+</Column>
+<Column name="Auszeichnungsart VP3" id="18C3CFE3-0B7E-C44C-EB09-071956D65503">
+<createdBy>stb</createdBy>
+<createdTime>2020-11-13 14:10:46 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="AUSZEICHNUNGSART_VP3"/>
+</propertyMap>
+</Column>
+<Column name="Auszeichnungsart VP4" id="5516F66B-AA6E-436F-1358-753199FC5045">
+<createdBy>stb</createdBy>
+<createdTime>2020-11-13 14:10:46 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="AUSZEICHNUNGSART_VP4"/>
+</propertyMap>
+</Column>
+<Column name="BW Projektmonitoring Nr." id="0E0F931B-8BD6-40E1-791A-861023A19C9F">
+<createdBy>stb</createdBy>
+<createdTime>2020-11-13 14:10:46 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="BW_PROJEKTMONI"/>
+</propertyMap>
+</Column>
+<Column name="CER Herstellwerk" id="628426B8-D635-D514-935B-3CC97ECE1C0C">
+<createdBy>stb</createdBy>
+<createdTime>2020-11-13 14:10:46 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="GSD_SAN_PLANT"/>
+</propertyMap>
+</Column>
+<Column name="div. " id="9CF202BF-1707-2531-C402-80EA16F5ED4A">
+<createdBy>stb</createdBy>
+<createdTime>2020-11-13 14:10:46 UTC</createdTime>
+<comment><![CDATA[more than one > GSD_MAT_NORDIC_DK, GSD_MAT_NORDIC_FI, GSD_MAT_NORDIC_NO, GSD_MAT_NORDIC_SW]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="div."/>
+</propertyMap>
+</Column>
+<Column name="Einführungsdatum (Erstumsatz)" id="2D17C830-1FD6-07EA-5941-DD155A85FE48">
+<createdBy>stb</createdBy>
+<createdTime>2020-11-13 14:10:46 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="EINFUEHRUNGSJAHR1"/>
+</propertyMap>
+</Column>
+<Column name="Engineering-Standort" id="AC0BDF14-8339-7B13-74FB-12F124B30151">
+<createdBy>stb</createdBy>
+<createdTime>2020-11-13 14:10:46 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="PFLEGESTANDORT"/>
+</propertyMap>
+</Column>
+<Column name="Ersatzteile dazu nötig" id="5BE48258-7540-0756-A54E-7E544697E5BB">
+<createdBy>stb</createdBy>
+<createdTime>2020-11-13 14:10:46 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="ET_TAFEL_ZUORD"/>
+</propertyMap>
+</Column>
+<Column name="Farbe" id="590319BA-1B43-05E8-8631-6C5F5E4B8CA3">
+<createdBy>stb</createdBy>
+<createdTime>2020-11-13 14:10:46 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="GSD_FARBE"/>
+</propertyMap>
+</Column>
+<Column name="in Sanitec ersetzt durch" id="5F2FB520-C4C1-61BD-E721-DCCD1C4FA7BE">
+<createdBy>stb</createdBy>
+<createdTime>2020-11-13 14:10:46 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="SAN_ERSETZT_DURCH_1"/>
+</propertyMap>
+</Column>
+<Column name="In Serienstruktur verlinken" id="B1B9E98D-7B38-78B4-BE74-B92C130BD4FE">
+<createdBy>stb</createdBy>
+<createdTime>2020-11-13 14:10:46 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="GSD_STEPSTRUKT"/>
+</propertyMap>
+</Column>
+<Column name="in STEP" id="23FAC1DF-B66A-0D6D-CC71-1BED535DC6AB">
+<createdBy>stb</createdBy>
+<createdTime>2020-11-13 14:10:46 UTC</createdTime>
+<comment><![CDATA[listed in SAP table ZT9CSTEP4_NEU & GSD 100]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="STEP_RELEVANT"/>
+</propertyMap>
+</Column>
+<Column name="Konzernartikelart" id="5CD56453-84EF-9058-DD71-19356C57FCDA">
+<createdBy>stb</createdBy>
+<createdTime>2020-11-13 14:10:46 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="KONZERNARTIKELART"/>
+</propertyMap>
+</Column>
+<Column name="Konzernstatus (KS)" id="C472B447-95EA-2289-81E9-F8476C3A535B">
+<createdBy>stb</createdBy>
+<createdTime>2020-11-13 14:10:46 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="KONZERNSTATUS"/>
+</propertyMap>
+</Column>
+<Column name="Konzernstatus 51 ab" id="4889BAD6-5A03-7CBD-7F2A-6A11F1C4C1B2">
+<createdBy>stb</createdBy>
+<createdTime>2020-11-13 14:10:46 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="PASSIV_AB_51"/>
+</propertyMap>
+</Column>
+<Column name="Konzernstatus 52 ab" id="6E24CC39-2869-1436-D3B6-8420658CAC5A">
+<createdBy>stb</createdBy>
+<createdTime>2020-11-13 14:10:46 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="PASSIV_AB"/>
+</propertyMap>
+</Column>
+<Column name="Konzernvertriebsweg" id="0F1C7D8F-8E5E-62DC-06B8-655E800CFA81">
+<createdBy>stb</createdBy>
+<createdTime>2020-11-13 14:10:46 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="KONZERNVERTRIEBSWEG"/>
+</propertyMap>
+</Column>
+<Column name="Marke" id="C14F93C6-3DC3-015E-BEDF-7ECF1C6A12CF">
+<createdBy>stb</createdBy>
+<createdTime>2020-11-13 14:10:46 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="GSD_SAN_BRAND"/>
+</propertyMap>
+</Column>
+<Column name="Marke bisherige" id="8324132C-421F-E65F-3476-BF2CD65CFBBF">
+<createdBy>stb</createdBy>
+<createdTime>2020-11-13 14:10:46 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="GSD_SAN_BRAND_OLD"/>
+</propertyMap>
+</Column>
+<Column name="Oberfläche" id="8D7C0B1F-50CD-3641-EC33-2FC8419A7313">
+<createdBy>stb</createdBy>
+<createdTime>2020-11-13 14:10:46 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="GSD_OBERFL"/>
+</propertyMap>
+</Column>
+<Column name="Preis-Cluster" id="6B8A4DA9-3388-3BE5-AD2A-647600165E34">
+<createdBy>stb</createdBy>
+<createdTime>2020-11-13 14:10:46 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="GSD_SAN_PRICE"/>
+</propertyMap>
+</Column>
+<Column name="Produktionsmodellnummer" id="B4831391-0003-BDE7-E274-F654F8CA983B">
+<createdBy>stb</createdBy>
+<createdTime>2020-11-13 14:10:46 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="GSD_SAN_MODEL"/>
+</propertyMap>
+</Column>
+<Column name="Produktmarke (STEP)" id="7CE05694-C2F1-B3BC-6331-AD94332F2C4A">
+<createdBy>stb</createdBy>
+<createdTime>2020-11-13 14:10:46 UTC</createdTime>
+<comment><![CDATA[SAP table ZT9CSTEP4_NEU & GSD 100]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="GSD_STEP_PROD_MARKE"/>
+</propertyMap>
+</Column>
+<Column name="Projektname / PIM-Nr" id="AE6A7F6A-BAC1-FDE2-360A-431207E53943">
+<createdBy>stb</createdBy>
+<createdTime>2020-11-13 14:10:46 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="PROJEKT_PFLEGE_NR"/>
+</propertyMap>
+</Column>
+<Column name="Q-Werk" id="29ECD759-3BEF-9565-85DE-A54D1C626DE9">
+<createdBy>stb</createdBy>
+<createdTime>2020-11-13 14:10:46 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="GSD_QPLANT"/>
+</propertyMap>
+</Column>
+<Column name="Serie bisherige" id="4C9BF00A-3F7B-D686-3AA8-97D0733F50C3">
+<createdBy>stb</createdBy>
+<createdTime>2020-11-13 14:10:46 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="GSD_SAN_SERIE_OLD"/>
+</propertyMap>
+</Column>
+<Column name="Serie lokal" id="F5BA483E-52CF-F7DA-9ADA-6574A4459B79">
+<createdBy>stb</createdBy>
+<createdTime>2020-11-13 14:10:46 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="GSD_SAN_SERIE_VERKAUF"/>
+</propertyMap>
+</Column>
+<Column name="Serie/Typ Gruppe" id="D4D9B595-C438-A224-25A8-DD81EFD30DFE">
+<createdBy>stb</createdBy>
+<createdTime>2020-11-13 14:10:46 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="GSD_SAN_PSER"/>
+</propertyMap>
+</Column>
+<Column name="Set" id="A6F1574D-DC2A-465B-FC9B-8AD6DFED527C">
+<createdBy>stb</createdBy>
+<createdTime>2020-11-13 14:10:46 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="GSD_SET"/>
+</propertyMap>
+</Column>
+<Column name="Spülrandlos" id="C76F40EB-2CF8-FD4B-45D0-5FE8846ECAC3">
+<createdBy>stb</createdBy>
+<createdTime>2020-11-13 14:10:46 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="GSD_WC_SPUELRAND"/>
+</propertyMap>
+</Column>
+<Column name="STEPinX" id="E7F49FD5-67B3-CC7C-10EF-2C4851D9F7EB">
+<createdBy>stb</createdBy>
+<createdTime>2020-11-13 14:10:46 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="GSD_STEPIN"/>
+</propertyMap>
+</Column>
+<Column name="Typ bisheriger" id="498C6534-B645-629F-A915-15404AEB3ED7">
+<createdBy>stb</createdBy>
+<createdTime>2020-11-13 14:10:46 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="GSD_TYP_OLD"/>
+</propertyMap>
+</Column>
+<Column name="Typ lokal" id="A3961203-D19B-F81D-C566-8248DA4BB9A7">
+<createdBy>stb</createdBy>
+<createdTime>2020-11-13 14:10:46 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="GSD_TYP_VERKAUF"/>
+</propertyMap>
+</Column>
+<Column name="Ursprungsgesellschaft / OPW" id="62EE68A0-3F03-C76B-6709-AC98035C02C5">
+<createdBy>stb</createdBy>
+<createdTime>2020-11-13 14:10:46 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="URSPRUNGSWERK_1"/>
+</propertyMap>
+</Column>
+<Column name="Verkauf Ersatz für (STEP)" id="292D9625-D97A-B5E5-CAE6-31864F913C48">
+<createdBy>stb</createdBy>
+<createdTime>2020-11-13 14:10:46 UTC</createdTime>
+<comment><![CDATA[SAP table ZT9CSTEP4_NEU & GSD 100]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="GIAG_ERSATZ_FUER_STP"/>
+</propertyMap>
+</Column>
+<Column name="Verkauf ersetzt durch (STEP)" id="8A1CFED8-0D9C-6189-17E9-66C537440AD5">
+<createdBy>stb</createdBy>
+<createdTime>2020-11-13 14:10:46 UTC</createdTime>
+<comment><![CDATA[SAP table ZT9CSTEP4_NEU & GSD 100]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="GIAG_ERSETZT_DURCH_1"/>
+</propertyMap>
+</Column>
+<Column name="Verkauf nicht in" id="14928EF9-E368-7903-718A-638A633067A8">
+<createdBy>stb</createdBy>
+<createdTime>2020-11-13 14:10:46 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="SORTIMENT_EXKL"/>
+</propertyMap>
+</Column>
+<Column name="Verkauf nur in" id="4F3FB8E6-7769-4B9B-62A1-4A6AC39337FB">
+<createdBy>stb</createdBy>
+<createdTime>2020-11-13 14:10:46 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="SORTIMENT_INKL"/>
+</propertyMap>
+</Column>
+<Column name="Verpackungsart     VP1" id="A75838BB-7B29-3F48-F9DB-A20A9B0D7E37">
+<createdBy>stb</createdBy>
+<createdTime>2020-11-13 14:10:46 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="VERPACKUNGSART_VP1"/>
+</propertyMap>
+</Column>
+<Column name="Verpackungsart     VP2" id="68C0EFD9-EE9A-1A8A-A675-E0D14115146B">
+<createdBy>stb</createdBy>
+<createdTime>2020-11-13 14:10:46 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="VERPACKUNGSART_VP2"/>
+</propertyMap>
+</Column>
+<Column name="Verpackungsart     VP3" id="25011CD6-652A-BB1F-8846-D90B7B2D2EEC">
+<createdBy>stb</createdBy>
+<createdTime>2020-11-13 14:10:46 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="VERPACKUNGSART_VP3"/>
+</propertyMap>
+</Column>
+<Column name="Verpackungsart     VP4" id="E69C10AA-10E8-B0F0-1138-B392BAAE2EFD">
+<createdBy>stb</createdBy>
+<createdTime>2020-11-13 14:10:46 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="VERPACKUNGSART_VP4"/>
+</propertyMap>
+</Column>
+<Column name="Werk/Lieferant" id="945DEE30-70BD-BD02-D485-1701737452E1">
+<createdBy>stb</createdBy>
+<createdTime>2020-11-13 14:10:46 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="GSD_SAN_PLAN_SUP"/>
+</propertyMap>
+</Column>
+<Column name="Zulassungsnummer Dänemark" id="7CD6CFB5-9637-DDD2-4DD4-97786F201B7C">
+<createdBy>stb</createdBy>
+<createdTime>2020-11-13 14:10:46 UTC</createdTime>
+<comment><![CDATA[empty in STEP & SAP]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="GSD_MAT_ZUL_DK"/>
+</propertyMap>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="5015FA19-A158-6F02-3960-F013D5FF6D4D" name="GSD_PK">
+<createdBy>toz</createdBy>
+<createdTime>2020-11-18 10:34:40 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="D7563389-5F8D-7B80-8CAF-51507B668F57"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="8E74B454-8A8A-ADD1-D347-7A74956FB8A0" name="GSD_MARA_FK">
+<createdBy>SMINI</createdBy>
+<createdTime>2020-11-17 15:43:05 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="D7563389-5F8D-7B80-8CAF-51507B668F57"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

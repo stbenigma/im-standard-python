@@ -1,0 +1,60 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="7B9367C4-BE04-2931-AF40-CF14E2C95A75" name="Steuerungselement Einschub">
+<createdBy>stb</createdBy>
+<createdTime>2018-08-22 14:32:59 UTC</createdTime>
+<comment><![CDATA[Dokumentstruktur für Lesbarkeit der TN8
+Enthält zusammegefasste, Zusatzinformation für Bewertung der Nachfolger
+(nicht relevant für Tarifnummerstruktur)
+Relevant für Einrückungsstriche]]></comment>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<typeID>5D665328-E55A-0C47-AF6D-AB589191EF22</typeID>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<synonym>VLS</synonym>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Nr" id="8A553472-6E8D-FE38-C8F5-26507E124448">
+<createdBy>stb</createdBy>
+<createdTime>2018-08-22 14:32:59 UTC</createdTime>
+<comment><![CDATA[2-Stellige Nr innerhalb Kapitel-Nr]]></comment>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Bzeiechnung [L][T]" id="CC1FE5FB-54CF-29EB-FD93-E3C1947E6478">
+<createdBy>stb</createdBy>
+<createdTime>2018-08-22 14:32:59 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Gültigkeitsperiode" id="DE2808EE-9F8C-F09B-D2BE-C99D0091D1A1">
+<createdBy>stb</createdBy>
+<createdTime>2018-08-22 14:32:59 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+</Entity>

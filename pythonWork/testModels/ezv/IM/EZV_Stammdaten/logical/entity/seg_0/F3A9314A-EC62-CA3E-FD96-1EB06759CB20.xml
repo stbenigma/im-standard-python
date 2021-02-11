@@ -1,0 +1,77 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="F3A9314A-EC62-CA3E-FD96-1EB06759CB20" name="HS-Abschnitt">
+<createdBy>stb</createdBy>
+<createdTime>2018-08-14 07:37:38 UTC</createdTime>
+<comment><![CDATA[Fasst HS-Kapitel zusammen als eine Art Inhaltsverzeichnis (Reiter), 
+Hauptzwecke ist Lesbarkeit und Dokumentstruktur
+(nicht relevant für Tarifnummer)
+
+Gemäss WZO Vorgabe
+(Gesetz SR.0.632.11)]]></comment>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<typeID>D05C2668-F0C1-EC40-BB98-6B20C01CCB1F</typeID>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<synonym>HS-Section, TAB</synonym>
+<propertyMap>
+<property name="GSD-Tabellenname" value="TAB_ABSCHN, TXT_TCO"/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Nr" id="4C373057-F37A-E90B-0A2D-DB61FE39DCAE">
+<createdBy>stb</createdBy>
+<createdTime>2018-08-14 07:37:38 UTC</createdTime>
+<comment><![CDATA[2-stellige Nr in römischer Zifferndarstellung]]></comment>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="GSD-Attributname" value="TAB_NUMMER"/>
+<property name="GSD-Datentyp" value="NUMBER(1)"/>
+</propertyMap>
+</Attribute>
+<Attribute name="Bezeichnung [L][T]" id="90C761DA-1E9A-2EAA-C715-B7161967932F">
+<createdBy>stb</createdBy>
+<createdTime>2018-08-14 07:37:38 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="GSD-Attributname" value="TTO_COL_ID"/>
+<property name="GSD-Datentyp" value="NUMBER(10)"/>
+</propertyMap>
+</Attribute>
+<Attribute name="Gültigkeitsperiode" id="0282B230-8449-4893-5BF2-95404D8EC92D">
+<createdBy>stb</createdBy>
+<createdTime>2018-08-14 07:47:11 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="GSD-Attributname" value="TAB_VDAT, TAB_BDAT"/>
+<property name="GSD-Datentyp" value="DATE"/>
+</propertyMap>
+</Attribute>
+</attributes>
+</Entity>

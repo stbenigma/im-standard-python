@@ -1,0 +1,94 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="79476DC0-B528-FED2-A1E5-398CC38907C8" name="Relation_53">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:57 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Geografische_Einheit_GEIN_ID" id="7F292219-8E60-28D2-8807-C521225AF0AA">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:57 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="PIM AttrID" value="."/>
+<property name="PIM AttrName" value="."/>
+<property name="PIM EnglName" value="."/>
+<property name="PIM datatype" value="."/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+<associations>
+<colAssociation fkAssociation="B30D1BC7-B94E-2386-F247-7991EB2B1C7D" referredColumn="211EB4FC-54D5-3931-4CD7-F1265C9ECD0A"/>
+</associations>
+</Column>
+<Column name="Handelseinheit_Handelseinheit_ID" id="44F8F559-0BBA-CCF2-9FD2-BC0A3724B459">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:57 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="PIM AttrID" value="."/>
+<property name="PIM AttrName" value="."/>
+<property name="PIM EnglName" value="."/>
+<property name="PIM datatype" value="."/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+<associations>
+<colAssociation fkAssociation="CA7B0528-4F8F-EB57-8377-A33D1198EF10" referredColumn="B04DD40D-2DED-4051-AA2E-C0D5F71C7A3D"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="D9032B19-880C-4CBE-99EF-F5129BA25ADF" name="Relation_53_PK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:57 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="7F292219-8E60-28D2-8807-C521225AF0AA"/>
+<colUsage columnID="44F8F559-0BBA-CCF2-9FD2-BC0A3724B459"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="502DA958-B2A1-5BD2-9DA0-1C87F1DDB7AF" name="Relation_53_Geografische_Einheit_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:57 UTC</createdTime>
+<generatorID>20FB7C47-5421-CD67-F4A9-C1BCF145BE06</generatorID>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="7F292219-8E60-28D2-8807-C521225AF0AA"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="561D0FF6-1B65-FE6C-9459-9A2741B006BC" name="Relation_53_Handelseinheit_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:57 UTC</createdTime>
+<generatorID>20FB7C47-5421-CD67-F4A9-C1BCF145BE06</generatorID>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="44F8F559-0BBA-CCF2-9FD2-BC0A3724B459"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

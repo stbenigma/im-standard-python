@@ -1,0 +1,193 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="DA001BC9-6F8F-11FA-E7AD-C97E68A0C482" name="Ländergruppe">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:56 UTC</createdTime>
+<comment><![CDATA[Eine Zusammenfassung mehrerer Länder zu einer Gruppe.
+Es soll jeweils ein Kriterium für die Gruppenbildung bzw. einen Begründung (Zweck) für die Nutzung der Gruppe festgelegt/dokumentiert werden.
+
+Typen von Ländergruppen erlauben mehrere Gruppierungen zu führen: Vertriebsorg., Zoll, Logistik 
+
+Beispiele:
+EU
+SACU Botsuana; Eswatini; Lesotho; Namibia; Südafrika (Zollunion)
+EMEA (Europe, Middle East, Africa) (Vertriebsorganisation)]]></comment>
+<generatorID>0035B365-CE5D-205A-0B0E-54ECA27EEECE</generatorID>
+<notes><![CDATA[[EN_ENTI_COMMENT[
+*DE* Eine Zusammenfassung mehrerer Länder zu einer Gruppe.
+Es soll jeweils ein Kriterium für die Gruppenbildung bzw. einen Begründung (Zweck) für die Nutzung der Gruppe festgelegt/dokumentiert werden.
+
+Typen von Ländergruppen erlauben mehrere Gruppierungen zu führen: Vertriebsorg., Zoll, Logistik 
+
+Beispiele:
+EU
+SACU Botsuana; Eswatini; Lesotho; Namibia; Südafrika (Zollunion)
+EMEA (Europe, Middle East, Africa) (Vertriebsorganisation)
+]EN_ENTI_COMMENT]
+[DE_ENTI_COMMENT[
+Eine Zusammenfassung mehrerer Länder zu einer Gruppe.
+Es soll jeweils ein Kriterium für die Gruppenbildung bzw. einen Begründung (Zweck) für die Nutzung der Gruppe festgelegt/dokumentiert werden.
+
+Typen von Ländergruppen erlauben mehrere Gruppierungen zu führen: Vertriebsorg., Zoll, Logistik 
+
+Beispiele:
+EU
+SACU Botsuana; Eswatini; Lesotho; Namibia; Südafrika (Zollunion)
+EMEA (Europe, Middle East, Africa) (Vertriebsorganisation)
+]DE_ENTI_COMMENT]
+[FR_ENTI_COMMENT[
+*EN* *DE* Eine Zusammenfassung mehrerer Länder zu einer Gruppe.
+Es soll jeweils ein Kriterium für die Gruppenbildung bzw. einen Begründung (Zweck) für die Nutzung der Gruppe festgelegt/dokumentiert werden.
+
+Typen von Ländergruppen erlauben mehrere Gruppierungen zu führen: Vertriebsorg., Zoll, Logistik 
+
+Beispiele:
+EU
+SACU Botsuana; Eswatini; Lesotho; Namibia; Südafrika (Zollunion)
+EMEA (Europe, Middle East, Africa) (Vertriebsorganisation)
+]FR_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Typ" id="F924EF55-3BC1-B712-456C-A515F60FE49E">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:56 UTC</createdTime>
+<comment><![CDATA[Typ der Ländergruppe (Vertrieb, Zoll, Organisation)]]></comment>
+<generatorID>854EF45E-D99B-33BB-CEBA-CCBFD3723223</generatorID>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+*DE* Typ der Ländergruppe (Vertrieb, Zoll, Organisation)
+]EN_ATTR_COMMENT]
+[DE_ATTR_COMMENT[
+Typ der Ländergruppe (Vertrieb, Zoll, Organisation)
+]DE_ATTR_COMMENT]
+[FR_ATTR_COMMENT[
+*EN* *DE* Typ der Ländergruppe (Vertrieb, Zoll, Organisation)
+]FR_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="PIM AttrID" value="."/>
+<property name="PIM AttrName" value="."/>
+<property name="PIM EnglName" value="."/>
+<property name="PIM datatype" value="."/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+</Column>
+<Column name="Zweck" id="3008C03E-EEB6-EA94-F8D6-3414FA28983B">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:56 UTC</createdTime>
+<generatorID>4884CAC4-510A-4F0B-4C72-FC6E2F36D0B3</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+[FR_ATTR_COMMENT[
+
+]FR_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="PIM AttrID" value="."/>
+<property name="PIM AttrName" value="."/>
+<property name="PIM EnglName" value="."/>
+<property name="PIM datatype" value="."/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+</Column>
+<Column name="Ländergruppe_ID" id="35623F7B-F278-A7D6-D78D-D5D8A5C3D86B">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:56 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+<propertyMap>
+<property name="PIM AttrID" value="."/>
+<property name="PIM AttrName" value="."/>
+<property name="PIM EnglName" value="."/>
+<property name="PIM datatype" value="."/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+</Column>
+<Column name="Geografische_Einheit_GEIN_ID" id="E3144E06-67F2-6704-D9A6-0F67E6E0815F">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:56 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="PIM AttrID" value="."/>
+<property name="PIM AttrName" value="."/>
+<property name="PIM EnglName" value="."/>
+<property name="PIM datatype" value="."/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+<associations>
+<colAssociation fkAssociation="7D214671-2824-D986-4CB8-F69FC629A938" referredColumn="211EB4FC-54D5-3931-4CD7-F1265C9ECD0A"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="A0A5E3A9-DBB4-F69E-66E8-780D722980DF" name="Ländergruppe_PK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:56 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="E3144E06-67F2-6704-D9A6-0F67E6E0815F"/>
+<colUsage columnID="35623F7B-F278-A7D6-D78D-D5D8A5C3D86B"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="B0B7982A-0733-25CD-6BD6-22DED0E7ABD0" name="Ländergruppe_Ländergruppe_ID_UN">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:56 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="35623F7B-F278-A7D6-D78D-D5D8A5C3D86B"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="85642DA8-C9C5-0335-4C15-EB5C61C069DD" name="Ländergruppe_Geografische_Einheit_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:56 UTC</createdTime>
+<generatorID>1F92C2AD-9D6C-3473-864D-28C10F9F77F2</generatorID>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="E3144E06-67F2-6704-D9A6-0F67E6E0815F"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

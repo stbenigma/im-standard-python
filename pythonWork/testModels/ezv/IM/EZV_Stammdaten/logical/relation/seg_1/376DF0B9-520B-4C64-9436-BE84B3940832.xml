@@ -1,0 +1,20 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_180" directorySegmentName="seg_1" id="376DF0B9-520B-4C64-9436-BE84B3940832">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-02 09:13:00 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+</engineerTo>
+<useSurrogateKey>true</useSurrogateKey>
+<identifying>false</identifying>
+<nameOnSource>verwendet für</nameOnSource>
+<nameOnTarget>ist</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>632D8170-A6A4-6551-3665-B981E7E9A4BA</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>A476DD49-094B-E59A-4036-F8388AF7100C</targetEntity>
+<transferable>true</transferable>
+</Relation>

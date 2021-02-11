@@ -1,0 +1,92 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="F22B9EE6-09B2-AFA2-CBB5-3670FB1F3ACD" schemaObject="41F6B39A-6802-F636-A35F-6775EC2673FF" name="SPECIAL_TREATMENT_CLASS]">
+<sourceDDLFile>ddl.sql</sourceDDLFile>
+<createdBy>toz</createdBy>
+<createdTime>2021-01-21 15:55:54 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<importedID>9C2C33EE-8108-FA4A-7D7F-3F7E64FB047A</importedID>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="[SPECIAL_TREATMENT_CLASSId]" id="91D595C4-91C4-BF13-9D85-9B80DFD4DF36">
+<sourceDDLFile>ddl.sql</sourceDDLFile>
+<createdBy>toz</createdBy>
+<createdTime>2021-01-21 15:55:54 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<importedID>6F6D0AF7-25D1-2DDB-B592-1C8DB3557F84</importedID>
+<use>0</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<domain>DA823793-0E7A-C240-0EEF-D92AF7925527</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="[type]" id="A4D4527E-4519-226B-5862-8DBBB1F5FA84">
+<sourceDDLFile>ddl.sql</sourceDDLFile>
+<createdBy>toz</createdBy>
+<createdTime>2021-01-21 15:55:54 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<importedID>D03E44E2-83C7-BAAC-F4F4-DA7502E22820</importedID>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>10878C46-1DF8-C563-A401-78CA99E8EC93</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="[Text]" id="F074C4AF-44C9-6318-8DEE-BA1CF3EC3194">
+<sourceDDLFile>ddl.sql</sourceDDLFile>
+<createdBy>toz</createdBy>
+<createdTime>2021-01-21 15:55:54 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<importedID>2B051E9F-91B2-05D5-BBD4-EDEA32509D5E</importedID>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>10878C46-1DF8-C563-A401-78CA99E8EC93</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="[PRODUCT_DETAILSId]" id="F3E1E357-2715-D5CE-382D-176CCF58F7DA">
+<sourceDDLFile>ddl.sql</sourceDDLFile>
+<createdBy>toz</createdBy>
+<createdTime>2021-01-21 15:55:54 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<importedID>04D61CF4-83D3-120D-E568-82803E8D9BA6</importedID>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<domain>DA823793-0E7A-C240-0EEF-D92AF7925527</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="FF1543EA-B9E3-72E3-AEB9-8864E33F536A" referredColumn="A7A5461E-C485-76A2-5EB9-169817AB6B5E"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="4E30190B-CACF-ECAE-1376-F23FB4671213" name="SPECIAL_TREATMENT_CLASS]_PK">
+<sourceDDLFile>ddl.sql</sourceDDLFile>
+<createdBy>toz</createdBy>
+<createdTime>2021-01-21 15:55:54 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<importedID>CFA8B565-CA00-8EF0-FA52-C86A6A017B90</importedID>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="91D595C4-91C4-BF13-9D85-9B80DFD4DF36"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="6519FB1B-FB54-C284-37EB-09EF3E104489" name="SPECIAL_TREATMENT_CLASS]_FK0">
+<createdBy>toz</createdBy>
+<createdTime>2021-01-21 15:55:54 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="F3E1E357-2715-D5CE-382D-176CCF58F7DA"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

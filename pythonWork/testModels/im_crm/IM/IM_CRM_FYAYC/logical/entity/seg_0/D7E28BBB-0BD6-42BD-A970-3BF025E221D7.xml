@@ -1,0 +1,38 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="D7E28BBB-0BD6-42BD-A970-3BF025E221D7" name="Vertriebsteilnehmer">
+<createdBy>stb</createdBy>
+<createdTime>2019-05-06 08:04:25 UTC</createdTime>
+<comment><![CDATA[Ein Marktteilnehmer, der mit verkaufbaren oder vermietbaren Produkten von uns direkt oder indirekt zu tun hat.]]></comment>
+<notes><![CDATA[[EN_ENTI_COMMENT[
+**A market participant who deals directly or indirectly with products that we sell or rent.
+]EN_ENTI_COMMENT]
+[DE_ENTI_COMMENT[
+Ein Marktteilnehmer, der mit verkaufbaren oder vermietbaren Produkten von uns direkt oder indirekt zu tun hat.
+]DE_ENTI_COMMENT]
+[FR_ENTI_COMMENT[
+*Un acteur du marché qui est directement ou indirectement impliqué dans les produits que nous vendons ou louons.
+]FR_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<engineerTo>
+<item key="1AB27667-C11D-3493-68AA-DF92C84041A7" value="true"/>
+<item key="851DDEFA-B048-37E9-7826-4E48946EAF1C" value="true"/>
+<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="false"/>
+<item key="015DE428-05B6-58DD-323D-ECDC72266F4A" value="true"/>
+</engineerTo>
+<typeID>3153B60C-8013-9183-737B-6F3AD413B048</typeID>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="DE_ENTI_NAME" value="*Vertriebsteilnehmer"/>
+<property name="EN_ENTI_NAME" value="*Sales Participant"/>
+<property name="FR_ENTI_NAME" value="Partenaire commercialv1"/>
+</propertyMap>
+</Entity>

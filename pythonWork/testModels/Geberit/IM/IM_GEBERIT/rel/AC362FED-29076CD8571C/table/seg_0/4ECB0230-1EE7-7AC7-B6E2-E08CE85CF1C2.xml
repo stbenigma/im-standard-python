@@ -1,0 +1,140 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="4ECB0230-1EE7-7AC7-B6E2-E08CE85CF1C2" name="MARM">
+<createdBy>stb</createdBy>
+<createdTime>2020-11-13 14:10:46 UTC</createdTime>
+<comment><![CDATA[Created on 13/11/2020  15:10:46 during import from /Users/stb/Downloads/SAP-Import-ODM.csv]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<ordsAlias>smeinh</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="MARA_Material" id="DB33AC2D-7F16-2772-252D-1D06E9E47041">
+<createdBy>SMINI</createdBy>
+<createdTime>2020-11-17 15:45:26 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="3CE1C34A-8DBC-D169-4AC0-9EDE43DAC489" referredColumn="4A76184A-100D-F33E-C565-1C1A77D64BE2"/>
+</associations>
+</Column>
+<Column name="Breite" id="5135B1A6-0AA2-B3B1-8411-12D2F3D64739">
+<createdBy>stb</createdBy>
+<createdTime>2020-11-13 14:10:46 UTC</createdTime>
+<comment><![CDATA[Value is located in one SAP field but extracted from MEINH for each PU. MEINH (which PU) is only listed in the column title/attribute title]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="BREIT"/>
+</propertyMap>
+</Column>
+<Column name="Bruttogewicht" id="2C36EF2C-FCE6-5C2C-E607-9C49D1967A1D">
+<createdBy>stb</createdBy>
+<createdTime>2020-11-13 14:10:46 UTC</createdTime>
+<comment><![CDATA[Value is located in one SAP field but extracted from MEINH for each PU. MEINH (which PU) is only listed in the column title/attribute title]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="BRGEW"/>
+</propertyMap>
+</Column>
+<Column name="EAN/UPC" id="AED91E76-75E8-68A0-461A-B6B9EB95EC46">
+<createdBy>stb</createdBy>
+<createdTime>2020-11-13 14:10:46 UTC</createdTime>
+<comment><![CDATA[Value is located in one SAP field but extracted from MEINH for each PU. MEINH (which PU) is only listed in the column title/attribute title]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="EAN11"/>
+</propertyMap>
+</Column>
+<Column name="Höhe" id="CFB7A282-A04A-01BF-D6F6-64D7D644F8AC">
+<createdBy>stb</createdBy>
+<createdTime>2020-11-13 14:10:46 UTC</createdTime>
+<comment><![CDATA[Value is located in one SAP field but extracted from MEINH for each PU. MEINH (which PU) is only listed in the column title/attribute title]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="HOEHE"/>
+</propertyMap>
+</Column>
+<Column name="Länge" id="5AC5354A-F625-84D5-1D24-983758A4C808">
+<createdBy>stb</createdBy>
+<createdTime>2020-11-13 14:10:46 UTC</createdTime>
+<comment><![CDATA[Value is located in one SAP field but extracted from MEINH for each PU. MEINH (which PU) is only listed in the column title/attribute title]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="LAENG"/>
+</propertyMap>
+</Column>
+<Column name="Volume" id="93E96928-F456-70A8-1DB8-982823854821">
+<createdBy>stb</createdBy>
+<createdTime>2020-11-13 14:10:46 UTC</createdTime>
+<comment><![CDATA[Value is located in one SAP field but extracted from MEINH for each PU. MEINH (which PU) is only listed in the column title/attribute title]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="VOLUM"/>
+</propertyMap>
+</Column>
+<Column name="Zähler" id="2B38E8E3-863D-C631-4CAA-2DC34938F758">
+<createdBy>stb</createdBy>
+<createdTime>2020-11-13 14:10:46 UTC</createdTime>
+<comment><![CDATA[Value is located in one SAP field but extracted from MEINH for each PU. MEINH (which PU) is only listed in the column title/attribute title]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="UMREZ"/>
+</propertyMap>
+</Column>
+<Column name="Basismengeneinheit" id="7F4E03D8-B43B-3912-12B0-6DAEF15B5328">
+<createdBy>SMINI</createdBy>
+<createdTime>2020-11-17 15:50:31 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="MEINS"/>
+</propertyMap>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="5D5C3E5D-337C-F86D-9295-CDCAEB2F4266" name="MARM_MARA_FK">
+<createdBy>SMINI</createdBy>
+<createdTime>2020-11-17 15:45:26 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="DB33AC2D-7F16-2772-252D-1D06E9E47041"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

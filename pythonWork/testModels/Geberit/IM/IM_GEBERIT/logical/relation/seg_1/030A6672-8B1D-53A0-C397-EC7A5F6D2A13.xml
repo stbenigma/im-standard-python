@@ -1,0 +1,34 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_124" directorySegmentName="seg_1" id="030A6672-8B1D-53A0-C397-EC7A5F6D2A13">
+<createdBy>stb</createdBy>
+<createdTime>2020-03-19 11:49:20 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<engineerTo>
+<item key="AC362FED-09A7-BA00-8310-29076CD8571C" value="true"/>
+<item key="0F93F29F-E1ED-0300-B3B1-B58C77EE97A7" value="true"/>
+<item key="38668F89-26BC-F63A-555D-54B8056CF413" value="true"/>
+<item key="249E7ABA-8CD0-1978-78A7-F7026DA6A2EB" value="true"/>
+<item key="F8D1D625-33EA-D367-FD1B-8BE01FB72044" value="true"/>
+<item key="D349E673-4EDF-C611-3E51-BBBDE8744098" value="true"/>
+<item key="BFAC4467-8343-0983-11FB-CB866029374C" value="true"/>
+<item key="2DBF4F11-72F7-73ED-22BE-2120810BE40F" value="true"/>
+<item key="E6E75503-6116-388A-72BD-E82DC5E22548" value="true"/>
+</engineerTo>
+<useSurrogateKey>true</useSurrogateKey>
+<identifying>false</identifying>
+<nameOnSource>bestimmt</nameOnSource>
+<nameOnTarget>bestimmt von</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>1EDD4774-04AB-5165-D51F-53F8A033CF4B</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>165EC1F2-1344-C278-169F-6E8F0BAED2B5</targetEntity>
+<transferable>true</transferable>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="bestimmt"/>
+<property name="DE_RELA_TEXT_TO" value="bestimmt von"/>
+<property name="EN_RELA_TEXT_FROM" value="governs"/>
+<property name="EN_RELA_TEXT_TO" value="governend by"/>
+</propertyMap>
+</Relation>

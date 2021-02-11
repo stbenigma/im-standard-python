@@ -1,0 +1,165 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="22B3D7EC-85C6-1A67-FD06-8EAD17AE6460" name="Juristische Person">
+<createdBy>smiai</createdBy>
+<createdTime>2020-10-20 11:50:43 UTC</createdTime>
+<comment><![CDATA[Firmen, aber auch Hochschule, Verbände, Institutionen….natürliche und/oder juristische Personen
+Jede juristische Person wird von einem Geberit Mitarbeiter verantwortlich betreut.]]></comment>
+<notes><![CDATA[[EN_ENTI_COMMENT[
+*DE* Firmen, aber auch Hochschule, Verbände, Institutionen….natürliche und/oder juristische Personen
+Jede juristische Person wird von einem Geberit Mitarbeiter verantwortlich betreut.
+]EN_ENTI_COMMENT]
+[DE_ENTI_COMMENT[
+Firmen, aber auch Hochschule, Verbände, Institutionen….natürliche und/oder juristische Personen
+Jede juristische Person wird von einem Geberit Mitarbeiter verantwortlich betreut.
+]DE_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<engineerTo>
+<item key="AC362FED-09A7-BA00-8310-29076CD8571C" value="true"/>
+<item key="0F93F29F-E1ED-0300-B3B1-B58C77EE97A7" value="true"/>
+<item key="38668F89-26BC-F63A-555D-54B8056CF413" value="true"/>
+<item key="249E7ABA-8CD0-1978-78A7-F7026DA6A2EB" value="true"/>
+<item key="F8D1D625-33EA-D367-FD1B-8BE01FB72044" value="true"/>
+<item key="D349E673-4EDF-C611-3E51-BBBDE8744098" value="true"/>
+<item key="BFAC4467-8343-0983-11FB-CB866029374C" value="true"/>
+<item key="2DBF4F11-72F7-73ED-22BE-2120810BE40F" value="true"/>
+<item key="E6E75503-6116-388A-72BD-E82DC5E22548" value="true"/>
+</engineerTo>
+<typeID>285AB19C-0518-5397-27E6-E308C6E3F02B</typeID>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<synonym>Organisation</synonym>
+<propertyMap>
+<property name="DE_ENTI_NAME" value="Juristische Person"/>
+<property name="DE_ENTI_SYNONYM" value="Organisation"/>
+<property name="EN_ENTI_NAME" value="*DE* Juristische Person"/>
+<property name="EN_ENTI_SYNONYM" value="*DE* Organisation"/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Name" id="85785E14-4130-3729-03D3-8CF7CF2CCDEA">
+<createdBy>smiai</createdBy>
+<createdTime>2020-10-20 11:52:39 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<engineerTo>
+<item key="AC362FED-09A7-BA00-8310-29076CD8571C" value="true"/>
+<item key="0F93F29F-E1ED-0300-B3B1-B58C77EE97A7" value="true"/>
+<item key="38668F89-26BC-F63A-555D-54B8056CF413" value="true"/>
+<item key="249E7ABA-8CD0-1978-78A7-F7026DA6A2EB" value="true"/>
+<item key="F8D1D625-33EA-D367-FD1B-8BE01FB72044" value="true"/>
+<item key="D349E673-4EDF-C611-3E51-BBBDE8744098" value="true"/>
+<item key="BFAC4467-8343-0983-11FB-CB866029374C" value="true"/>
+<item key="2DBF4F11-72F7-73ED-22BE-2120810BE40F" value="true"/>
+<item key="E6E75503-6116-388A-72BD-E82DC5E22548" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Name"/>
+<property name="EN_ATTR_NAME" value="*DE* Name"/>
+</propertyMap>
+</Attribute>
+<Attribute name="VAT-Nr." id="B023C3AE-8860-831B-1F1D-397EDB84BD89">
+<createdBy>smiai</createdBy>
+<createdTime>2020-11-03 13:59:58 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<engineerTo>
+<item key="AC362FED-09A7-BA00-8310-29076CD8571C" value="true"/>
+<item key="0F93F29F-E1ED-0300-B3B1-B58C77EE97A7" value="true"/>
+<item key="38668F89-26BC-F63A-555D-54B8056CF413" value="true"/>
+<item key="249E7ABA-8CD0-1978-78A7-F7026DA6A2EB" value="true"/>
+<item key="F8D1D625-33EA-D367-FD1B-8BE01FB72044" value="true"/>
+<item key="D349E673-4EDF-C611-3E51-BBBDE8744098" value="true"/>
+<item key="BFAC4467-8343-0983-11FB-CB866029374C" value="true"/>
+<item key="2DBF4F11-72F7-73ED-22BE-2120810BE40F" value="true"/>
+<item key="E6E75503-6116-388A-72BD-E82DC5E22548" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="VAT-Nr."/>
+<property name="EN_ATTR_NAME" value="*DE* VAT-Nr."/>
+</propertyMap>
+</Attribute>
+<Attribute name="UID-Nr." id="7BB19EB0-0FAB-5DE1-81BD-4AD6C50E1ADA">
+<createdBy>smiai</createdBy>
+<createdTime>2020-11-03 14:00:22 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<engineerTo>
+<item key="AC362FED-09A7-BA00-8310-29076CD8571C" value="true"/>
+<item key="0F93F29F-E1ED-0300-B3B1-B58C77EE97A7" value="true"/>
+<item key="38668F89-26BC-F63A-555D-54B8056CF413" value="true"/>
+<item key="249E7ABA-8CD0-1978-78A7-F7026DA6A2EB" value="true"/>
+<item key="F8D1D625-33EA-D367-FD1B-8BE01FB72044" value="true"/>
+<item key="D349E673-4EDF-C611-3E51-BBBDE8744098" value="true"/>
+<item key="BFAC4467-8343-0983-11FB-CB866029374C" value="true"/>
+<item key="2DBF4F11-72F7-73ED-22BE-2120810BE40F" value="true"/>
+<item key="E6E75503-6116-388A-72BD-E82DC5E22548" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="UID-Nr."/>
+<property name="EN_ATTR_NAME" value="*DE* UID-Nr."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Mitarbeitende Anzahl" id="C03A17BC-955F-8AC8-7A43-B4476234D9E5">
+<createdBy>smiai</createdBy>
+<createdTime>2020-11-03 14:00:49 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<engineerTo>
+<item key="AC362FED-09A7-BA00-8310-29076CD8571C" value="true"/>
+<item key="0F93F29F-E1ED-0300-B3B1-B58C77EE97A7" value="true"/>
+<item key="38668F89-26BC-F63A-555D-54B8056CF413" value="true"/>
+<item key="249E7ABA-8CD0-1978-78A7-F7026DA6A2EB" value="true"/>
+<item key="F8D1D625-33EA-D367-FD1B-8BE01FB72044" value="true"/>
+<item key="D349E673-4EDF-C611-3E51-BBBDE8744098" value="true"/>
+<item key="BFAC4467-8343-0983-11FB-CB866029374C" value="true"/>
+<item key="2DBF4F11-72F7-73ED-22BE-2120810BE40F" value="true"/>
+<item key="E6E75503-6116-388A-72BD-E82DC5E22548" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Mitarbeitende Anzahl"/>
+<property name="EN_ATTR_NAME" value="*DE* Mitarbeitende Anzahl"/>
+</propertyMap>
+</Attribute>
+</attributes>
+</Entity>

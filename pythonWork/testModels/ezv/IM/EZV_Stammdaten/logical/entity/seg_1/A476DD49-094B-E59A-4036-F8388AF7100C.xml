@@ -1,0 +1,58 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="A476DD49-094B-E59A-4036-F8388AF7100C" name="Tarif-Mehrwertsteuer">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-02 09:10:11 UTC</createdTime>
+<comment><![CDATA[Zuweisung eines Mehrwertsteuersatzes zu einer Tarifnummer/Steuerungselement.
+
+Ein reduzierter Satz bzw. 0% kann bei gewissen Tarifnummern / Steuerungselementen von Verfahren (Umzug) oder von weiteren Beschreibungen (Verwendung, Art der Ware) abhängig sein.
+
+Es wurde diskutiert die MWST auch an Steuerungselemente anzuhängen. Da im Moment aber kein Bedarf besteht, wird es nicht umgesetzt.
+
+Beispiele: 
+Übersiedlung
+Druckerzeugnis mit mehr als xx Seiten.
+]]></comment>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<typeID>02969000-CCE3-D244-36A9-7F9B40CCE4D0</typeID>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="GSD-Tabellenname" value="TN8_MWS"/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Gültigkeitsperiode" id="97F70D7B-1B84-8797-F4D7-19E953E4B147">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-02 09:17:00 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Text [L]" id="06D28178-3F27-2D40-BEAF-45790F39365D">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-02 13:45:35 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+</Entity>

@@ -1,0 +1,112 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="9D826824-F566-0290-9887-1CBD4223CC2A" name="Asset References Product Level">
+<createdBy>SMINI</createdBy>
+<createdTime>2020-12-01 15:35:56 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<ordsAlias>table_18</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Asset_ID" id="7258AC73-CAC4-F612-DD6D-F05C20B94E68">
+<createdBy>SMINI</createdBy>
+<createdTime>2020-12-01 15:37:42 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+</propertyMap>
+<associations>
+<colAssociation fkAssociation="41AC2C30-6FC8-6079-2466-E0F0A9E6E326" referredColumn="78E5AEFA-AB94-56B9-3AEC-93D400C4F53E"/>
+</associations>
+</Column>
+<Column name="Product_PRODUCT_ID" id="F5DC4AEA-B7E5-BD43-4F41-0B4F00163881">
+<createdBy>SMINI</createdBy>
+<createdTime>2020-12-01 15:37:47 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+</propertyMap>
+<associations>
+<colAssociation fkAssociation="E1E5E84D-473A-D724-9D39-FEE190D75BE2" referredColumn="0D29D024-F76E-267C-9738-7C21306CC773"/>
+</associations>
+</Column>
+<Column name="Reference Type_ID" id="BEAB5316-7FBD-9DAF-215C-46C743E374DC">
+<createdBy>toz</createdBy>
+<createdTime>2020-12-09 15:00:56 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+</propertyMap>
+<associations>
+<colAssociation fkAssociation="E205C33C-2CA7-012C-A652-AC0C5DE0CEA7" referredColumn="D9EE5E8C-6338-4384-30B0-E5742FD297F4"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="9D756BCF-D1EB-FFF2-4399-C270F2A29976" name="Asset References Product Level_PK">
+<createdBy>SMINI</createdBy>
+<createdTime>2020-12-01 15:37:56 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="7258AC73-CAC4-F612-DD6D-F05C20B94E68"/>
+<colUsage columnID="F5DC4AEA-B7E5-BD43-4F41-0B4F00163881"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="2D1FD5D6-0C4A-7118-841C-D55F014ED394" name="Asset References Product Level__UN">
+<createdBy>toz</createdBy>
+<createdTime>2020-12-09 15:01:08 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="F5DC4AEA-B7E5-BD43-4F41-0B4F00163881"/>
+<colUsage columnID="BEAB5316-7FBD-9DAF-215C-46C743E374DC"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="42AE9E60-BBBB-5D97-7A04-BAC89D64BD9B" name="Asset References Product Level_Asset_FK">
+<createdBy>SMINI</createdBy>
+<createdTime>2020-12-01 15:37:42 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="7258AC73-CAC4-F612-DD6D-F05C20B94E68"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="2BB8B3B1-7CB4-77B1-682A-2B50E6D1377F" name="Asset References Product Level_Product_FK">
+<createdBy>SMINI</createdBy>
+<createdTime>2020-12-01 15:37:47 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="F5DC4AEA-B7E5-BD43-4F41-0B4F00163881"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="A42ED6FE-01C9-BCC1-D644-831E607A1931" name="Asset References Product Level_Reference Type_FK">
+<createdBy>toz</createdBy>
+<createdTime>2020-12-09 15:00:56 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="BEAB5316-7FBD-9DAF-215C-46C743E374DC"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -1,0 +1,34 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_268" directorySegmentName="seg_2" id="C8871B72-55F2-8CE4-DE21-DD7B9C7BC3CD">
+<createdBy>toz</createdBy>
+<createdTime>2020-11-04 12:58:31 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<engineerTo>
+<item key="AC362FED-09A7-BA00-8310-29076CD8571C" value="true"/>
+<item key="0F93F29F-E1ED-0300-B3B1-B58C77EE97A7" value="true"/>
+<item key="38668F89-26BC-F63A-555D-54B8056CF413" value="true"/>
+<item key="249E7ABA-8CD0-1978-78A7-F7026DA6A2EB" value="true"/>
+<item key="F8D1D625-33EA-D367-FD1B-8BE01FB72044" value="true"/>
+<item key="D349E673-4EDF-C611-3E51-BBBDE8744098" value="true"/>
+<item key="BFAC4467-8343-0983-11FB-CB866029374C" value="true"/>
+<item key="2DBF4F11-72F7-73ED-22BE-2120810BE40F" value="true"/>
+<item key="E6E75503-6116-388A-72BD-E82DC5E22548" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<nameOnSource>beschrieben von</nameOnSource>
+<nameOnTarget>beschreibt</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>12ED4016-C477-5714-7636-D1C592C4F3AE</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>C5865DC3-7A91-9821-2DBC-EE897DE455AA</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="beschrieben von"/>
+<property name="DE_RELA_TEXT_TO" value="beschreibt"/>
+<property name="EN_RELA_TEXT_FROM" value="*DE* beschrieben von"/>
+<property name="EN_RELA_TEXT_TO" value="*DE* beschreibt"/>
+</propertyMap>
+</Relation>

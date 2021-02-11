@@ -1,0 +1,170 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="A91A6E79-6209-A983-117A-D3B2E2BC7D26" name="VPE1">
+<createdBy>toz</createdBy>
+<createdTime>2021-01-20 15:14:49 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<ordsAlias>table_11</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Verpackungsart" id="183249F5-6AD4-EF15-D12C-363D8CAA10AF">
+<createdBy>toz</createdBy>
+<createdTime>2021-01-20 15:15:28 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>2200F8CA-90DB-364B-114B-2AE9CB9A3B6F</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Menge" id="E10587D4-02AF-D3E6-0B34-A87409A9EDB6">
+<createdBy>toz</createdBy>
+<createdTime>2021-01-20 15:15:28 UTC</createdTime>
+<notes><![CDATA[Dynamic mapping:
+1. Case Catalogue year configuration is “current year”
+Corresponding attribute fits to 1st value in attribute ATT_1854602 
+Example: ATT_1854602 =”PU1,PU2,PU4” → Mapping with ATT_10732 (PU1 - Package unit)
+
+2. Case Catalogue year configuration is “next year”
+Corresponding attribute fits to 1st value in attribute ATT_1854610 
+Example: ATT_1854610 =”PN2,PN3,PU4” → Mapping with ATT_158557 (PN2 - Package unit, new)
+
+Transformations:
+1. = value from dynamic mapped attribute (without unit)
+
+Validation rules:
+1. mandatory (SAP mandatory, otherwise Package Unit does not exist) 
+2. decimal value 15,3 (decimal points only when available)
+
+Validation error handling:
+1. In case of NULL, skip article (only for VPE_1, at least one Package Unit must exist)
+log in summary file: (Issue;article.csv;[article no];n/a;E0000001;[Code text];M0000001;[Code text];VPE_1_Menge;NULL;n/a)]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="GTIN" id="2772FC9B-BD1E-6384-4BB5-ED35E3CD9C4F">
+<createdBy>toz</createdBy>
+<createdTime>2021-01-20 15:15:28 UTC</createdTime>
+<notes><![CDATA[Dynamic mapping:
+1. Case Catalogue year configuration is“current year”
+Corresponding attribute fits to 1st value in attribute ATT_1854602
+Example: ATT_1854602=”PU1,PU2,PU4” → Mapping with ATT_10732 (PU1 - Package unit)
+
+2. Case Catalogue year configuration is “next year”
+Corresponding attribute fits to 1st value in attribute ATT_1854610 
+Example: ATT_1854610 =”PN2,PN3,PU4” → Mapping with ATT_158557 (PN2 - Package unit, new)
+
+Transformations:
+1. none
+
+Validation rules:
+1. GTIN must be unique in whole file, Value <> Value in GTIN
+2. Text, length =13 characters
+
+Validation error handling:
+1. In case of GTIN already exist, set NULL
+log in summary file: (Issue;article.csv;[article no];[line number];E0000006;[Code text];M0000004;[Code text];VPE_1_GTIN;[Value];NULL)]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>ECFA3AA0-31D7-8BFE-925D-B8D2D79FACB5</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Mass A" id="DE7EE42D-B7DF-A119-B6CF-30A4C8D6908E">
+<createdBy>toz</createdBy>
+<createdTime>2021-01-20 15:15:28 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT026</logicalDatatype>
+<domain>51A9CFA5-F52B-5954-41DB-3360B13B1C95</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Einheit Mass A" id="89B925CE-71E7-AC84-28C7-58867F3E3FFD">
+<createdBy>toz</createdBy>
+<createdTime>2021-01-20 15:26:52 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>FC6D7F4C-49DF-86CF-79BE-8956C1132E4C</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Mass B" id="CFC60837-8DBA-3E5C-2E04-AA3C7A20423D">
+<createdBy>toz</createdBy>
+<createdTime>2021-01-20 15:15:28 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT026</logicalDatatype>
+<domain>51A9CFA5-F52B-5954-41DB-3360B13B1C95</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Einheit Mass B" id="4AC86604-8629-7D9B-84C7-706152D184CC">
+<createdBy>toz</createdBy>
+<createdTime>2021-01-20 15:26:52 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>FC6D7F4C-49DF-86CF-79BE-8956C1132E4C</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Mass C" id="721C692D-8C63-97AC-0DE4-C9D4623499B6">
+<createdBy>toz</createdBy>
+<createdTime>2021-01-20 15:15:28 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT026</logicalDatatype>
+<domain>51A9CFA5-F52B-5954-41DB-3360B13B1C95</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Einheit Mass C" id="9EF7286B-114A-F464-33BD-2E3E7EC20106">
+<createdBy>toz</createdBy>
+<createdTime>2021-01-20 15:26:52 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>FC6D7F4C-49DF-86CF-79BE-8956C1132E4C</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Gewicht" id="091F9BAB-D888-E4A8-CC57-388CA01E6850">
+<createdBy>toz</createdBy>
+<createdTime>2021-01-20 15:15:28 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT026</logicalDatatype>
+<domain>51A9CFA5-F52B-5954-41DB-3360B13B1C95</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Einheit Gewicht" id="F7399859-F6F3-D3BE-234D-284A18A61991">
+<createdBy>toz</createdBy>
+<createdTime>2021-01-20 15:30:21 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>8F2EBD7B-ABAE-9FCA-B0F8-38B156DAFB65</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+</Table>

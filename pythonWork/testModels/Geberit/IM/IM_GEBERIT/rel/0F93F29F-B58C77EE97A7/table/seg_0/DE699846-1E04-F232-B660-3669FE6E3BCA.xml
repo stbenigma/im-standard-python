@@ -1,0 +1,174 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="DE699846-1E04-F232-B660-3669FE6E3BCA" name="26_CORRESPONDANCE">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[System and Correspondence Offer
+Objective: Enhance the value of the offer of the same range, improve the management of compound products
+3 types of correspondence are listed:
+- Correspondence Related references
+Allows to propose to a customer interested in a product, one or a set of complementary products/services: cross-selling - cross selling.
+- Composite/Component Correspondence
+Allows to increase the availability of the offer for the customer or to identify multiple packages of a reference.
+The "compound" is a unique reference of a set of referenced products called "Components".
+The "compound" performs a complete function for the customer.
+- Just Enough/Universal Correspondence
+Allows you to optimize a stock of spare parts or to respond quickly to a breakdown service request.
+The "universal" product has extended electrical characteristics, setting ranges or functions compared to the "just enough" product.
+
+Offre Système et Correspondance
+Objectif : Valoriser l'offre d'une même gamme, améliorer la gestion des produits composés
+3 types de correspondance sont répertoriées :
+- Correspondance Références associées
+Permet de proposer à un client intérressé par un produit, un ou un ensemble de produits/prestations complémentaires : cross-selling - ventes croisées.
+- Correspondance Composé/Composants
+Permet d'augmenter la disponibilité de l'offre pour le client ou d'identifier des colis multiples d'une référence.
+Le "composé" est une référence unique d'un ensemble de produits référencés appelés "Composants".
+Le "composé" réalise une fonction complète pour le client.
+- Correspondance Juste assez/universel
+Permet d'optimiser un stock de pièce de rechange ou de répondre rapidement à une demande de dépannage.
+Le produit "universel" a des caractéristiques électriques, des plages de réglage ou des fonctions élargies par rapport au produit "juste assez".]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<ordsAlias>correspondance</ordsAlias>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<documents usedDucuments="7EBDC037-8728-C627-4B33-CEDF979E7C13"/>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="MARQUE" id="ACC3BD98-0481-30FB-7FFD-8F421D6B26DE">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="."/>
+</propertyMap>
+</Column>
+<Column name="CORT" id="E7CAF770-3418-2419-387F-A9DC820C9C73">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[3 type de correspondance : Références associées ; composé/composant ; juste assez/universel
+]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="."/>
+</propertyMap>
+</Column>
+<Column name="REFCIALECOR" id="298AAC97-C4A4-3F43-B268-3A92573B61FF">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[Référence commerciale "produit de base" ou "composé" ou "juste assez"
+]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<dataTypeSize>30 CHAR</dataTypeSize>
+<ownDataTypeParameters>30 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="."/>
+</propertyMap>
+</Column>
+<Column name="CORQ" id="E4671960-5B2B-D970-DB10-66F1B0D7063D">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[Indicates the amount of REFCIALE required for correspondence.
+]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>5</dataTypeScale>
+<ownDataTypeParameters>,10,5</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="."/>
+</propertyMap>
+</Column>
+<Column name="REFCIALE" id="13AB6E20-CFCE-2C5D-94E9-32FF3D3FF150">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[Created on 13/2/2020  9:38:57 during import from /Users/stb/Documents/DataModeler/Import/DM_FAB-DIS_Standard2.csv]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<dataTypeSize>30</dataTypeSize>
+<ownDataTypeParameters>30,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="."/>
+</propertyMap>
+<associations>
+<colAssociation fkAssociation="E5FA1196-0570-66C1-CAAE-47EE25E0A873" referredColumn="F2E9C92A-951A-E352-A717-B888A485E292"/>
+</associations>
+</Column>
+<Column name="CORCOMM" id="BCD7109C-5076-E449-2634-E84ADFE66787">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[Specific comments or explanations on correspondence. Default blank]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<dataTypeSize>240</dataTypeSize>
+<ownDataTypeParameters>240,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="."/>
+</propertyMap>
+</Column>
+<Column name="CORL" id="F29EFC16-29DE-ECC0-3FD0-504DA6205730">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[Used only for the "Just Enough / Universal" correspondence when several universal products can replace the "Just Enough" product.
+The different "universal" references are identified by a capital letter.
+Example : 1st ref = A, 2nd ref = B, ...
+Empty by default.	]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="."/>
+</propertyMap>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="FCCA3C8D-44F3-9FF7-35EF-139E39D28C81" name="26_CORRESPONDANCE_01_COMMERCE_FK">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="13AB6E20-CFCE-2C5D-94E9-32FF3D3FF150"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

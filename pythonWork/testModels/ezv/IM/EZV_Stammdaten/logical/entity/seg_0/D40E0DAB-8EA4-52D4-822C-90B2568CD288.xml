@@ -1,0 +1,236 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="D40E0DAB-8EA4-52D4-822C-90B2568CD288" name="Nationale Unterposition">
+<createdBy>stb</createdBy>
+<createdTime>2018-08-14 08:38:07 UTC</createdTime>
+<comment><![CDATA[Nationale Tarifnummer
+
+von EZV für Import und Export von (Handels-)Waren zwingend verlangt.]]></comment>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<typeID>5D665328-E55A-0C47-AF6D-AB589191EF22</typeID>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<hierarchicalParent>1B396B46-010A-7F87-540B-F21107F7ED9E</hierarchicalParent>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<synonym>TN8</synonym>
+<propertyMap>
+<property name="GSD-Tabellenname" value="TARIF8ST (TN8_FIKTIV = &apos;J&apos;"/>
+<property name="SAP_Tabellenname" value="TN8 - Tarifnummer Level 8"/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Nr" id="744696A6-247C-894D-00F7-DE16989236DC">
+<createdBy>stb</createdBy>
+<createdTime>2018-09-17 13:01:32 UTC</createdTime>
+<comment><![CDATA[2-Stellige Nr innerhalb Kapitel-Nr]]></comment>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="GSD-Attributname" value="TN8_2STNUMM"/>
+<property name="GSD-Datentyp" value="NUMBER(2)"/>
+</propertyMap>
+</Attribute>
+<Attribute name="Tarifnummer 8-stellig" id="1978F228-6991-2290-9362-05FFFA90AF5A">
+<createdBy>stb</createdBy>
+<createdTime>2018-09-17 13:01:32 UTC</createdTime>
+<comment><![CDATA[berechnete Nr mit Tarifhierarchie]]></comment>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="GSD-Attributname" value="TN8_NUMM"/>
+<property name="GSD-Datentyp" value="VARCHAR(9)"/>
+</propertyMap>
+</Attribute>
+<Attribute name="Tariftext [L][T]" id="EC906E1F-838A-1605-F344-DAE306D12419">
+<createdBy>stb</createdBy>
+<createdTime>2018-09-18 13:30:21 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="GSD-Attributname" value="."/>
+<property name="GSD-Datentyp" value="."/>
+<property name="SAP_Attributname" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Selbsterklärender Text [L][T]" id="CD68CE09-F503-45AE-1B59-3ED19CA546ED">
+<createdBy>stb</createdBy>
+<createdTime>2018-09-18 13:30:21 UTC</createdTime>
+<comment><![CDATA[Text für die Anzeige im Aussenhandelsindex. Falls leer, gilt der Tariftext]]></comment>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="GSD-Attributname" value="."/>
+<property name="GSD-Datentyp" value="."/>
+<property name="SAP_Attributname" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Erweiterter Text [L][T]" id="DBEE7316-0430-45D9-1D0B-1B7B113088FC">
+<createdBy>stb</createdBy>
+<createdTime>2019-01-15 12:40:19 UTC</createdTime>
+<comment><![CDATA[Erweiterung, Ergänzung zum Tariftext]]></comment>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="GSD-Attributname" value="."/>
+<property name="GSD-Datentyp" value="."/>
+<property name="SAP_Attributname" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Gültigkeitsperiode" id="9DAD259C-E77E-1971-5528-5B268B66701D">
+<createdBy>stb</createdBy>
+<createdTime>2018-09-17 13:01:32 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="GSD-Attributname" value="TN8_VDAT, TN8_BDAT"/>
+<property name="GSD-Datentyp" value="DATE"/>
+<property name="SAP_Attributname" value="TN8_VDAT, TN8_VTIME, TN8_BDAT, TN8_BTIME"/>
+</propertyMap>
+</Attribute>
+<Attribute name="ist nur Import (J/N)" id="57C72CF2-7709-9A22-0895-85C2CD583DAB">
+<createdBy>stb</createdBy>
+<createdTime>2018-08-14 11:12:35 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="GSD-Attributname" value="."/>
+<property name="GSD-Datentyp" value="."/>
+<property name="SAP_Attributname" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Anwendbarkeitsperiode" id="1886C01D-CB0C-7457-0978-8754ABB91F88">
+<createdBy>stb</createdBy>
+<createdTime>2018-08-22 14:05:06 UTC</createdTime>
+<comment><![CDATA[Periode im Jahr, während der diese TN angewendet wird.]]></comment>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="GSD-Attributname" value="TN8_GKPV, TN8_GKPB"/>
+<property name="GSD-Datentyp" value="VARCHAR(6)"/>
+<property name="SAP_Attributname" value="TN8_GKPV, TN8_GKPB"/>
+</propertyMap>
+</Attribute>
+<Attribute name="Zollerleichterung Hinweiscode [T]" id="4AC027FC-ECF5-04FC-27D3-489A1A14DA85">
+<createdBy>stb</createdBy>
+<createdTime>2018-08-29 11:29:51 UTC</createdTime>
+<comment><![CDATA[Berechneter Code (für edec) aus Zollerleichterung. 
+Immer ZE, nie ZE, mit oder ohne ZE
+BRAUCHT DEN JEMAND?]]></comment>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="GSD-Attributname" value="."/>
+<property name="GSD-Datentyp" value="."/>
+<property name="SAP_Attributname" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Minöst Steuerbeguenstigung Code [T]" id="7CFC4BC3-DDD9-8FD6-2D9C-ACE5153D47F6">
+<createdBy>stb</createdBy>
+<createdTime>2018-11-23 13:29:51 UTC</createdTime>
+<comment><![CDATA[-- Keine Steuerbeguenstiung 
+(4) immer Steuerbeguenstiung
+(5) Steuerbeguenstiung nur mit Verwendungsverpflichtung möglich
+]]></comment>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="GSD-Attributname" value="."/>
+<property name="GSD-Datentyp" value="."/>
+<property name="SAP_Attributname" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Stat Tarnung IMP (J/N) [T]" id="21E148D2-07A2-446C-9D52-92E5D769A3DF">
+<createdBy>stb</createdBy>
+<createdTime>2018-09-17 12:50:00 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="GSD-Attributname" value="."/>
+<property name="GSD-Datentyp" value="."/>
+<property name="SAP_Attributname" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Stat Tarnung EXP (J/N) [T]" id="A9EACC7B-C8F6-8D29-D676-4D5250954D0B">
+<createdBy>stb</createdBy>
+<createdTime>2018-09-17 12:50:20 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="GSD-Attributname" value="."/>
+<property name="GSD-Datentyp" value="."/>
+<property name="SAP_Attributname" value="."/>
+</propertyMap>
+</Attribute>
+</attributes>
+</Entity>

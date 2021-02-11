@@ -1,0 +1,82 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="832A8061-DE53-2959-DAD0-85E45EF8E2A1" name="Vertriebsteilnehmer">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:03 UTC</createdTime>
+<comment><![CDATA[Ein Marktteilnehmer, der mit verkaufbaren oder vermietbaren Produkten von uns direkt oder indirekt zu tun hat.
+
+]]></comment>
+<generatorID>D7E28BBB-0BD6-42BD-A970-3BF025E221D7</generatorID>
+<notes><![CDATA[[EN_ENTI_COMMENT[
+*DE* Ein Marktteilnehmer, der mit verkaufbaren oder vermietbaren Produkten von uns direkt oder indirekt zu tun hat.
+
+
+]EN_ENTI_COMMENT]
+[DE_ENTI_COMMENT[
+Ein Marktteilnehmer, der mit verkaufbaren oder vermietbaren Produkten von uns direkt oder indirekt zu tun hat.
+
+
+]DE_ENTI_COMMENT]
+[FR_ENTI_COMMENT[
+*EN* *DE* Ein Marktteilnehmer, der mit verkaufbaren oder vermietbaren Produkten von uns direkt oder indirekt zu tun hat.
+
+
+]FR_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Vertriebsteilnehmer_ID" id="9FE2859F-2F72-2FB6-DE64-40AB2E8668D7">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:03 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+<Column name="Geschäftsfähige_Einheit_Geschäftsfähige_Einheit_ID" id="D526EC3D-E045-16E9-3238-42B9C2C062CF">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:04 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="8E2F6916-B6AF-93B1-8734-9EB4881CE117" referredColumn="8731F533-C95F-BA0B-2D17-5CF1581BD1B1"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="22CDE929-A5FA-EC0B-FBD9-370877786C60" name="Vertriebsteilnehmer_PK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:03 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="9FE2859F-2F72-2FB6-DE64-40AB2E8668D7"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="20E91277-9EFD-0C55-59DF-13889977257F" name="Vertriebsteilnehmer_Geschäftsfähige_Einheit_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:04 UTC</createdTime>
+<generatorID>B2CEDE27-FF06-6701-5B04-0241A461B28B</generatorID>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="D526EC3D-E045-16E9-3238-42B9C2C062CF"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

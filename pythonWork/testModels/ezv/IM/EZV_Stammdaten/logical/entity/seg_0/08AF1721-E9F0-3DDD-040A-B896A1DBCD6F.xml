@@ -1,0 +1,30 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="08AF1721-E9F0-3DDD-040A-B896A1DBCD6F" name="Tabakproduktuntergruppe">
+<createdBy>stb</createdBy>
+<createdTime>2018-08-21 09:23:29 UTC</createdTime>
+<comment>Siehe Modell TaBi&lt;br/&gt;&lt;br/&gt;Einzelprodukt untergruppen bezeichnen in Tabi die Art der Tabakprodukte (Zigaretten X, Stumpen gross, Zigarillo)&lt;br/&gt;&lt;br/&gt;Meeting mit Mich Bigler (18.2.19):&lt;br/&gt;Es wäre grundsätzlich möglich, die Tabakproduktuntergruppen als Steuerungselemente zu führen und damit die Unterscheidung für Steuern zu machen.&lt;br/&gt;Da die Tabaksteuer als Zusatzabgabe von den Untergruppen abhängig ist, könnte damit die Tabaksteuer als &quot;normale&quot; Zusatzabgabe (abhängig nur vom Steuerungselement) geführt werden.</comment>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Bezeichnung [L]" id="B55A38AD-0CD0-C4E3-13D4-AF905E7974CA">
+<createdBy>stb</createdBy>
+<createdTime>2018-08-21 09:23:29 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+</Entity>

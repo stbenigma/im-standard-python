@@ -1,0 +1,160 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="3791AFE5-7305-E6F7-95CB-FA89BDDBAB70" name="Juristische_Person">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:56 UTC</createdTime>
+<comment><![CDATA[Rechte über das Handelsrecht geregelt.]]></comment>
+<generatorID>B3DCB769-14C8-45B2-0C49-99D08576F05E</generatorID>
+<notes><![CDATA[[EN_ENTI_COMMENT[
+*DE* Rechte über das Handelsrecht geregelt.
+]EN_ENTI_COMMENT]
+[DE_ENTI_COMMENT[
+Rechte über das Handelsrecht geregelt.
+]DE_ENTI_COMMENT]
+[FR_ENTI_COMMENT[
+*EN* *DE* Rechte über das Handelsrecht geregelt.
+]FR_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Gesellschaftsform" id="A1D0C90A-2B40-59FB-CB6E-A6AD798A99A5">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:56 UTC</createdTime>
+<generatorID>806AD84D-8B56-AFCC-9697-97A65B55EE91</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+[FR_ATTR_COMMENT[
+
+]FR_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="PIM AttrID" value="."/>
+<property name="PIM AttrName" value="."/>
+<property name="PIM EnglName" value="."/>
+<property name="PIM datatype" value="."/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+</Column>
+<Column name="UID_Nr" id="17D1179D-D226-6D81-4AF5-7349AF87632E">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:56 UTC</createdTime>
+<comment><![CDATA[Umsatzsteuer-Identifikationsnummer (AT), Ust-IdNr (DE), Unternehmens-Identifikationsnummer (CH)]]></comment>
+<generatorID>FAA500CB-8DCA-5D0C-FC74-01746823AE95</generatorID>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+*DE* Umsatzsteuer-Identifikationsnummer (AT), Ust-IdNr (DE), Unternehmens-Identifikationsnummer (CH)
+]EN_ATTR_COMMENT]
+[DE_ATTR_COMMENT[
+Umsatzsteuer-Identifikationsnummer (AT), Ust-IdNr (DE), Unternehmens-Identifikationsnummer (CH)
+]DE_ATTR_COMMENT]
+[FR_ATTR_COMMENT[
+*EN* *DE* Umsatzsteuer-Identifikationsnummer (AT), Ust-IdNr (DE), Unternehmens-Identifikationsnummer (CH)
+]FR_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="PIM AttrID" value="."/>
+<property name="PIM AttrName" value="."/>
+<property name="PIM EnglName" value="."/>
+<property name="PIM datatype" value="."/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+</Column>
+<Column name="Juristische_Person_ID" id="901F99B3-6F26-7DF2-84C8-91A2B02645F3">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:56 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+<propertyMap>
+<property name="PIM AttrID" value="."/>
+<property name="PIM AttrName" value="."/>
+<property name="PIM EnglName" value="."/>
+<property name="PIM datatype" value="."/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+</Column>
+<Column name="Geschäftsfähige_Einheit_Geschäftsfähige_Einheit_ID" id="D54A2B1C-B3B5-DA0D-7887-F14BD85B8525">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:56 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="PIM AttrID" value="."/>
+<property name="PIM AttrName" value="."/>
+<property name="PIM EnglName" value="."/>
+<property name="PIM datatype" value="."/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+<associations>
+<colAssociation fkAssociation="6620FA8A-F6AE-5730-FE2F-9557B34C97B4" referredColumn="61CDF818-DC9A-155D-7C86-84A6FF6C1F6E"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="C24DE299-2445-FBCE-AAB8-5B21BDBEA211" name="Juristische_Person_PK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:56 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="D54A2B1C-B3B5-DA0D-7887-F14BD85B8525"/>
+<colUsage columnID="901F99B3-6F26-7DF2-84C8-91A2B02645F3"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="3E48C64D-85EB-26A5-18CB-3D6EB32E9FD6" name="Juristische_Person_Juristische_Person_ID_UN">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:56 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="901F99B3-6F26-7DF2-84C8-91A2B02645F3"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="CB127816-0A97-19E2-6E2D-D9F62CCC7987" name="Juristische_Person_Geschäftsfähige_Einheit_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:56 UTC</createdTime>
+<generatorID>EB53463C-85D6-F1CB-8960-5BF54E59307B</generatorID>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="D54A2B1C-B3B5-DA0D-7887-F14BD85B8525"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

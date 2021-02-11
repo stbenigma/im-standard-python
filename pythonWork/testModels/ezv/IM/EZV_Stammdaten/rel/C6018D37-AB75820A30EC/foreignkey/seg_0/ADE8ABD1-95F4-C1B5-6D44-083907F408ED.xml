@@ -1,0 +1,18 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="ADE8ABD1-95F4-C1B5-6D44-083907F408ED" containerWithKeyObject="3E479DD0-112B-337D-BDB4-560DAD8E9B0D" localFKIndex="08556C18-FBBC-F008-B5C1-3CAF4E397A8D" name="ZAN_ZAG_FK">
+<sourceDDLFile>cr_zusansatz.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2019-10-22 15:15:48 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<importedID>F6369CC6-5D5B-0C19-3616-7439C666629C</importedID>
+<referredTableLongName>GSD.ZUSABG</referredTableLongName>
+<deleteRule>RESTRICT</deleteRule>
+<referredTableID>D38CFDA0-CCE9-4BCD-1437-462D27687A16</referredTableID>
+<keyObject>FD1F9881-8421-5BFB-4E36-822464907048</keyObject>
+<referredKeyID>FD1F9881-8421-5BFB-4E36-822464907048</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>ZAG_ID</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

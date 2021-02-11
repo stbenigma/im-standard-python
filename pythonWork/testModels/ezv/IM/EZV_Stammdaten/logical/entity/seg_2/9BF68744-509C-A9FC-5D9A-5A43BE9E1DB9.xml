@@ -1,0 +1,110 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_2" id="9BF68744-509C-A9FC-5D9A-5A43BE9E1DB9" name="Dienststelle">
+<createdBy>stb</createdBy>
+<createdTime>2020-03-27 10:02:17 UTC</createdTime>
+<comment><![CDATA[Zusammenfassung von Nationaler und internationaler Dienststellen
+
+Als Dienststelle im Sinn der gemeinsamen Stammdaten für IT-Systeme gilt ein Standort der Eidgenössischen Zollverwaltung EZV (in Zukunft: Bundesamt für Zoll und Grenzsicherheit BAZG). Dies umfasst sämtliche geografisch lokalisierten Niederlassungen für alle dienstlichen Aufgaben des BAZG.
+Es sind somit alle Standorte für Belange des Warenverkehrs (Zoll), der Grenzwache wie auch alle weiteren Dienstgebäude oder -gelände in der ganzen Schweiz enthalten.
+Normalerweise kann eine Dienststelle für alle Arten von Diensten verwendet werden. Aufgrund aufgabenbezogener Attribute werden die Dienste zugeordnet.
+Bedingungen:
+Die Dienststelle in Sinne dieser Definition erfüllt alle diese Punkte:
+-       Kann geografisch auf einen festen Punkt verortet werden
+-       Hat eine dienstliche Bedeutung für EZV
+-       Hat für IT-Systeme oder Liegenschaftsdienste eine Bedeutung"
+
+Beispiele: OZD, Zollstelle, Grenzwachtposten, Kontrollstation des fahrenden Verkehrs, Büro im Ausland, Verzollungskasten
+Basel Weil
+Koblenz Zoll
+]]></comment>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<typeID>06A14CAF-CD31-7D91-4C51-88E4B0E99301</typeID>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<synonym>Zollamt, Zollstelle</synonym>
+<createSurrogateKey>true</createSurrogateKey>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Nr" id="DBE39E17-D5FA-0FC6-05B0-0A234DD12397">
+<createdBy>stb</createdBy>
+<createdTime>2020-03-27 10:18:45 UTC</createdTime>
+<comment><![CDATA[8-Stellige bezeichnung CHnnnnnn]]></comment>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Name" id="AC0BF6A8-F107-A5C0-8A65-D4D99C0DBD90">
+<createdBy>stb</createdBy>
+<createdTime>2020-03-27 10:18:45 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Sprache" id="2253DF42-1FB4-B283-9947-890C879ED9E6">
+<createdBy>stb</createdBy>
+<createdTime>2020-03-27 10:18:45 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="GEO-Infocode" id="C97F189B-18A8-006D-2B47-1CC0B64BCD5A">
+<createdBy>stb</createdBy>
+<createdTime>2020-05-04 14:04:41 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="UN location code" id="F82E5969-9B29-1466-3956-9E92741CFB13">
+<createdBy>stb</createdBy>
+<createdTime>2020-05-04 14:05:02 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Regioncode" id="2511B964-BA1A-5DAC-772B-1F33E304517B">
+<createdBy>stb</createdBy>
+<createdTime>2020-05-04 14:05:05 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+</Entity>

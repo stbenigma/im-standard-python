@@ -1,0 +1,71 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="9E32FC61-6054-71DC-924A-CFCB79C687AB" name="Hinweis NZE">
+<createdBy>stb</createdBy>
+<createdTime>2019-02-06 15:18:04 UTC</createdTime>
+<comment><![CDATA[Regeln (Hinweise, Verbote, Embargos), die bei Warentransfer berücksichtigt werden müssen und die nicht über tarifarische NZE (Bewilligung, Meldung, Abgabe) gelöst sind.
+
+Hinweise bei der Einfuhr oder Ausfuhr einer bestimmten Ware oder aller Waren die eine bestimmte Bedingungen erfüllen.
+Dient dazu dem Deklaranten die richtigen Fragen zu stellen, bzw. den kontrollierenden Organen die Liste der möglichen Bedingungen zu liefern.
+Kann Artenschutz, Sicherheit, Gesundheit, Embargos, Waffen, Chemikalien, Schwermetalle, etc. sein.
+
+Beispiele
+nicht Steuerungselement abhängig
+   CITES
+   Elfenbein ist jeglicher Menge und Verarbeitungsform grundsätzlich bewilligungspflichtig. (Anmerkung: wir haben bereits in Tares CITES- Einträge für Elfenbein abgebildet (dort wo es Sinn macht). Generalklausel CITES: den Artenschutzbestimmungen können ebenfalls Waren von Tarifnummern unterstellt sein, bei welchen auf der Seite "Anzeige Details“, "Zusatzabgaben“ kein Hinweis auf CITES besteht, die aber mit Teilen geschützter Tierarten versehen sind oder die solche enthalten (z.B. Kleider mit Pelzbesatz von geschützten Tierarten, Schatulle mit Schnitzereien aus Elfenbein).
+   Kinderpornographie ist in jedem Artikel (auch als Verpackung) verboten
+   dual use Güter unterliegen einer Bewilligungspflicht (dies haben wir überall abgebildet, u.E. nicht erwähnen))
+Steuerungselement-abhängig
+  Schweinfleisch aus der Seuchenregion xy ist verboten (wie will man das implementieren ?)]]></comment>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<typeID>02969000-CCE3-D244-36A9-7F9B40CCE4D0</typeID>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<hierarchicalParent>771EFAE4-A599-CF5A-9D29-EAED384C59AC</hierarchicalParent>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<createSurrogateKey>true</createSurrogateKey>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Gültigkeitsperiode" id="514BD34F-5FE1-3FCD-95F3-5A4FF355711C">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-14 07:37:11 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Beschreibung [L]" id="4976A480-71B1-BFF7-19D5-8D4391F646F8">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-02 13:52:18 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Rechtsgrundlage" id="8942B4FE-A6D0-6FD7-2852-BC6E9C62BF21">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-02 13:52:26 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+</Entity>

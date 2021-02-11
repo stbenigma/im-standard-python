@@ -1,0 +1,29 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_36" directorySegmentName="seg_0" id="8EF20EA6-0F11-DCB7-DFA9-D97C088B185B">
+<createdBy>stb</createdBy>
+<createdTime>2018-05-30 12:18:14 UTC</createdTime>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
+</engineerTo>
+<useSurrogateKey>true</useSurrogateKey>
+<identifying>false</identifying>
+<nameOnSource>definiert</nameOnSource>
+<nameOnTarget>gemessen in</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>DC28FCDB-CC97-5454-BD78-F1021F1567DC</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>B8594560-A307-E0A9-30B7-70BA306F83E6</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="definiert"/>
+<property name="DE_RELA_TEXT_TO" value="gemessen in"/>
+<property name="EN_RELA_TEXT_FROM" value="*DE* definiert"/>
+<property name="EN_RELA_TEXT_TO" value="*DE* gemessen in"/>
+</propertyMap>
+</Relation>

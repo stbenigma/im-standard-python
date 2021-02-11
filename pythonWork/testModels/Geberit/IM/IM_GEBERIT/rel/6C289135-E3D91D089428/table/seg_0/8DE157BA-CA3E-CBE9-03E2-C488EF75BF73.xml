@@ -1,0 +1,66 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="8DE157BA-CA3E-CBE9-03E2-C488EF75BF73" schemaObject="41F6B39A-6802-F636-A35F-6775EC2673FF" name="COUNTRY_BRANCH_NUMBERS]">
+<sourceDDLFile>ddl.sql</sourceDDLFile>
+<createdBy>toz</createdBy>
+<createdTime>2021-01-21 15:55:53 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<importedID>04095457-C784-416E-A042-FDE689E382CD</importedID>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="[UDX.EDXF.COUNTRY_BRANCH_NUMBERSId]" id="124FB23B-46BA-64CB-7E35-8A7704C082BC">
+<sourceDDLFile>ddl.sql</sourceDDLFile>
+<createdBy>toz</createdBy>
+<createdTime>2021-01-21 15:55:54 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<importedID>84AA92CF-C74A-4EB8-788A-100A8431A632</importedID>
+<use>0</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<domain>DA823793-0E7A-C240-0EEF-D92AF7925527</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="[USER_DEFINED_EXTENSIONSId]" id="130EDAAD-D698-708B-F8E9-7FC0270BEECB">
+<sourceDDLFile>ddl.sql</sourceDDLFile>
+<createdBy>toz</createdBy>
+<createdTime>2021-01-21 15:55:54 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<importedID>2B1BF7A1-8B4A-9871-A583-CAE1F96187A4</importedID>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<domain>DA823793-0E7A-C240-0EEF-D92AF7925527</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="1404CB57-3078-4FBC-49D6-9D4E85EB2913" referredColumn="5C82D114-CCEA-6B04-E7E3-BD1338E5F237"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="7294606F-F465-FD71-D083-108FC7D0632C" name="COUNTRY_BRANCH_NUMBERS]_PK">
+<sourceDDLFile>ddl.sql</sourceDDLFile>
+<createdBy>toz</createdBy>
+<createdTime>2021-01-21 15:55:54 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<importedID>4D1EFE5B-CE8A-B2A8-1B17-9ECA4886670F</importedID>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="124FB23B-46BA-64CB-7E35-8A7704C082BC"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="354C3930-7F93-BCAA-6BDD-D6EFD0448A55" name="COUNTRY_BRANCH_NUMBERS]_FK0">
+<createdBy>toz</createdBy>
+<createdTime>2021-01-21 15:55:54 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="130EDAAD-D698-708B-F8E9-7FC0270BEECB"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -1,0 +1,213 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="ED3FC77A-E898-74A9-7AD7-C8FAB0739751" name="Besitzer">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:56 UTC</createdTime>
+<comment><![CDATA[Person oder Firma, die eine Maschine in seinem physischen Besitz hat.]]></comment>
+<generatorID>4B525151-B0D5-D2B4-DEC3-BAF23D457B16</generatorID>
+<notes><![CDATA[[EN_ENTI_COMMENT[
+*DE* Person oder Firma, die eine Maschine in seinem physischen Besitz hat.
+]EN_ENTI_COMMENT]
+[DE_ENTI_COMMENT[
+Person oder Firma, die eine Maschine in seinem physischen Besitz hat.
+]DE_ENTI_COMMENT]
+[FR_ENTI_COMMENT[
+*EN* *DE* Person oder Firma, die eine Maschine in seinem physischen Besitz hat.
+]FR_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Besitzer_ID" id="12508CDD-6B0A-03D1-7501-84FE2FF2CAC8">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:56 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+<propertyMap>
+<property name="PIM AttrID" value="."/>
+<property name="PIM AttrName" value="."/>
+<property name="PIM EnglName" value="."/>
+<property name="PIM datatype" value="."/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+</Column>
+<Column name="Vertriebskunde_Vertriebsteilnehmer_Vertriebsteilnehmer_ID" id="8729077E-CDCD-56E2-D157-CDDC3F983737">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:57 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="PIM AttrID" value="."/>
+<property name="PIM AttrName" value="."/>
+<property name="PIM EnglName" value="."/>
+<property name="PIM datatype" value="."/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+<associations>
+<colAssociation fkAssociation="184B3443-CEC8-F7CD-BE07-27DD58D0D856" referredColumn="2B31972E-483B-EBE4-E12E-6863BD668D2C"/>
+</associations>
+</Column>
+<Column name="Vertriebskunde_Vertriebskunde_ID" id="D2D18E85-D46D-46E8-1865-C4A0F826F0AB">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:57 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="PIM AttrID" value="."/>
+<property name="PIM AttrName" value="."/>
+<property name="PIM EnglName" value="."/>
+<property name="PIM datatype" value="."/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+<associations>
+<colAssociation fkAssociation="184B3443-CEC8-F7CD-BE07-27DD58D0D856" referredColumn="92A5BAA1-065C-542B-FFB5-25557EFC66B0"/>
+</associations>
+</Column>
+<Column name="Vertriebspartner_Vertriebsteilnehmer_Vertriebsteilnehmer_ID" id="8C8483B3-AD87-087B-2367-49E041CEF167">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:57 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="PIM AttrID" value="."/>
+<property name="PIM AttrName" value="."/>
+<property name="PIM EnglName" value="."/>
+<property name="PIM datatype" value="."/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+<associations>
+<colAssociation fkAssociation="C9F424E8-1AD7-DAAA-D1ED-8DEA564F51A7" referredColumn="B12DE0D7-02E5-6A12-F023-F7CCCFDF5358"/>
+</associations>
+</Column>
+<Column name="Vertriebspartner_Vertriebspartner_ID" id="9523F942-E551-F709-B5FD-10BA50D428C0">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:57 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="PIM AttrID" value="."/>
+<property name="PIM AttrName" value="."/>
+<property name="PIM EnglName" value="."/>
+<property name="PIM datatype" value="."/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+<associations>
+<colAssociation fkAssociation="C9F424E8-1AD7-DAAA-D1ED-8DEA564F51A7" referredColumn="5FC5C6FD-621B-18FD-2D29-AE1253B30FA2"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="49DB9F61-67FD-D568-B49A-B96753CBC458" name="Besitzer_PK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:56 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="12508CDD-6B0A-03D1-7501-84FE2FF2CAC8"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="CEDE777C-AF2F-663B-694C-BC9D4B60997A" name="Besitzer__UN">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:56 UTC</createdTime>
+<generatorID>B2F5CF33-0A05-F6A0-EE0A-0D2754B783D2</generatorID>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+</ind_PK_UK>
+<ind_PK_UK id="C7B3B0C2-1929-93D7-3FC5-795580C5DBAF" name="Besitzer__IDX">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:57 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<relationGeneratorID>37E297A1-AD87-C7A1-4802-5DE2F049D760</relationGeneratorID>
+<indexColumnUsage>
+<colUsage columnID="8729077E-CDCD-56E2-D157-CDDC3F983737"/>
+<colUsage columnID="D2D18E85-D46D-46E8-1865-C4A0F826F0AB"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="463ECDF1-BBD8-7A6C-41AB-03FE71B97014" name="Besitzer__IDXv1">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:57 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<relationGeneratorID>26E76F21-17AE-E72C-60CB-F19F3D4C018D</relationGeneratorID>
+<indexColumnUsage>
+<colUsage columnID="8C8483B3-AD87-087B-2367-49E041CEF167"/>
+<colUsage columnID="9523F942-E551-F709-B5FD-10BA50D428C0"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="B21F41AF-5DC5-B14F-9391-5FCC76F1B81C" name="Besitzer_Vertriebskunde_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:57 UTC</createdTime>
+<generatorID>37E297A1-AD87-C7A1-4802-5DE2F049D760</generatorID>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="8729077E-CDCD-56E2-D157-CDDC3F983737"/>
+<colUsage columnID="D2D18E85-D46D-46E8-1865-C4A0F826F0AB"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="5BC93EEC-56B9-9FFF-77A4-3931746CEC54" name="Besitzer_Vertriebspartner_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:57 UTC</createdTime>
+<generatorID>26E76F21-17AE-E72C-60CB-F19F3D4C018D</generatorID>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="8C8483B3-AD87-087B-2367-49E041CEF167"/>
+<colUsage columnID="9523F942-E551-F709-B5FD-10BA50D428C0"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

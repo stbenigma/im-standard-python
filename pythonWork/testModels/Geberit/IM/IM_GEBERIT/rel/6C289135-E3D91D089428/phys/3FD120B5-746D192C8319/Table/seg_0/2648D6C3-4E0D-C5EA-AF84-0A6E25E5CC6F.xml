@@ -1,0 +1,94 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev12c class="oracle.dbtools.crest.model.design.storage.oracle.v12c.TableProxyOraclev12c" name="USER_DEFINED_EXTENSIONS]" directorySegmentName="seg_0" id="2648D6C3-4E0D-C5EA-AF84-0A6E25E5CC6F">
+<createdBy>toz</createdBy>
+<createdTime>2021-01-21 15:55:54 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<schemaObject>41F6B39A-6802-F636-A35F-6775EC2673FF</schemaObject>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<temporaryChanged>false</temporaryChanged>
+<accessDriverType>oracle_loader</accessDriverType>
+<rejectLimit></rejectLimit>
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="[UDX.EDXF.BRAND_NAME]" id="09B4EB34-80FA-97CB-4068-07E5451EDA63">
+<createdBy>toz</createdBy>
+<createdTime>2021-01-21 15:55:54 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="[UDX.EDXF.VALID_FROM]" id="18225651-EECF-98E9-DEE9-080BB7C24F39">
+<createdBy>toz</createdBy>
+<createdTime>2021-01-21 15:55:54 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="[UDX.EDXF.TENDER_TEXT]" id="1C6ABDB7-743E-0B91-E76A-345E5E4B837A">
+<createdBy>toz</createdBy>
+<createdTime>2021-01-21 15:55:54 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="[UDX.EDXF.EXPIRATION_DATE]" id="2F129335-BFF3-B5EA-58BE-BD008FA5F544">
+<createdBy>toz</createdBy>
+<createdTime>2021-01-21 15:55:54 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="[UDX.EDXF.BONUS_GROUP_SUPPLIER]" id="32E9BDFD-A2E2-C013-57CA-461293C5D4FC">
+<createdBy>toz</createdBy>
+<createdTime>2021-01-21 15:55:54 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="[PRODUCTId]" id="340A92F3-9003-DCED-1D42-93ED80626802">
+<createdBy>toz</createdBy>
+<createdTime>2021-01-21 15:55:54 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="[HEADERId]" id="48182BA4-5E5E-153F-EBC3-6EE992B7EBCD">
+<createdBy>toz</createdBy>
+<createdTime>2021-01-21 15:55:54 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="[UDX.EDXF.MANUFACTURER_ACRONYM]" id="5AFB4159-E83E-BCEB-1D62-CF2B68B6E33D">
+<createdBy>toz</createdBy>
+<createdTime>2021-01-21 15:55:54 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="[USER_DEFINED_EXTENSIONSId]" id="5C82D114-CCEA-6B04-E7E3-BD1338E5F237">
+<createdBy>toz</createdBy>
+<createdTime>2021-01-21 15:55:54 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="[UDX.EDXF.PRODUCT_TO_STOCK]" id="8BD1ECFC-36F1-F858-7B06-DFAE68AF074C">
+<createdBy>toz</createdBy>
+<createdTime>2021-01-21 15:55:54 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="[UDX.EDXF.PRODUCT_SERIES]" id="C76F48FB-52AC-3982-3FF5-5112B6AFBF31">
+<createdBy>toz</createdBy>
+<createdTime>2021-01-21 15:55:54 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="[UDX.EDXF.PRODUCT_VARIATION]" id="CD4E5802-041E-A304-267E-2F2E5514B5BE">
+<createdBy>toz</createdBy>
+<createdTime>2021-01-21 15:55:54 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="[UDX.EDXF.VERSION]" id="D8995A7B-170B-9625-AAC7-BD8E76DC3AC1">
+<createdBy>toz</createdBy>
+<createdTime>2021-01-21 15:55:54 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+<foreignKeys>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="USER_DEFINED_EXTENSIONS]_FK0" id="461375CA-AC94-9BBF-96EB-BF3D9C813AFE">
+<createdBy>toz</createdBy>
+<createdTime>2021-01-21 15:55:54 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+</ForeignKey>
+</foreignKeys>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="USER_DEFINED_EXTENSIONS]_PK" id="A51B0889-BF01-302F-CBE5-41FB380607A1">
+<createdBy>toz</createdBy>
+<createdTime>2021-01-21 15:55:54 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<indexSort>SORTED</indexSort>
+</PrimaryKey>
+</primaryKeys>
+</TableProxyOraclev12c>

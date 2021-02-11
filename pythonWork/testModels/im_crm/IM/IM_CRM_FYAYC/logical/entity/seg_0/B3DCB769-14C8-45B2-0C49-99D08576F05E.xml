@@ -1,0 +1,103 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="B3DCB769-14C8-45B2-0C49-99D08576F05E" name="Juristische Person">
+<createdBy>stb</createdBy>
+<createdTime>2019-05-06 08:04:25 UTC</createdTime>
+<comment><![CDATA[Rechte über das Handelsrecht geregelt.]]></comment>
+<notes><![CDATA[[EN_ENTI_COMMENT[
+**rights are regulated by commercial law.
+]EN_ENTI_COMMENT]
+[DE_ENTI_COMMENT[
+Rechte über das Handelsrecht geregelt.
+]DE_ENTI_COMMENT]
+[FR_ENTI_COMMENT[
+Les droits sont régis par le droit commercial.
+]FR_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<engineerTo>
+<item key="1AB27667-C11D-3493-68AA-DF92C84041A7" value="true"/>
+<item key="851DDEFA-B048-37E9-7826-4E48946EAF1C" value="true"/>
+<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="false"/>
+<item key="015DE428-05B6-58DD-323D-ECDC72266F4A" value="true"/>
+</engineerTo>
+<typeID>6F620B18-E4FD-24BF-543C-3ABB88094EDB</typeID>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<hierarchicalParent>FFAF9724-74C2-E2A0-9908-B5EE9AB30C02</hierarchicalParent>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="DE_ENTI_NAME" value="Juristische Person"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_NAME" value="Company"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+<property name="FR_ENTI_NAME" value="Entitté juridique"/>
+<property name="FR_ENTI_SYNONYM" value=""/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Gesellschaftsform" id="806AD84D-8B56-AFCC-9697-97A65B55EE91">
+<createdBy>stb</createdBy>
+<createdTime>2019-05-06 08:04:25 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+[FR_ATTR_COMMENT[
+
+]FR_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<importedID>25F93036-0A7E-D4EC-AB19-5F5F9B31EB44</importedID>
+<engineerTo>
+<item key="1AB27667-C11D-3493-68AA-DF92C84041A7" value="true"/>
+<item key="851DDEFA-B048-37E9-7826-4E48946EAF1C" value="true"/>
+<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="false"/>
+<item key="015DE428-05B6-58DD-323D-ECDC72266F4A" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Gesellschaftsform"/>
+<property name="EN_ATTR_NAME" value="Society type"/>
+<property name="FR_ATTR_NAME" value="Forme juridique"/>
+</propertyMap>
+</Attribute>
+<Attribute name="UID Nr" id="FAA500CB-8DCA-5D0C-FC74-01746823AE95">
+<createdBy>stb</createdBy>
+<createdTime>2019-05-06 08:50:29 UTC</createdTime>
+<comment><![CDATA[Umsatzsteuer-Identifikationsnummer (AT), Ust-IdNr (DE), Unternehmens-Identifikationsnummer (CH)]]></comment>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+**Value added tax identification number (AT), VAT number (DE), company identification number (CH)
+]EN_ATTR_COMMENT]
+[DE_ATTR_COMMENT[
+Umsatzsteuer-Identifikationsnummer (AT), Ust-IdNr (DE), Unternehmens-Identifikationsnummer (CH)
+]DE_ATTR_COMMENT]
+[FR_ATTR_COMMENT[
+Numéro d'identification de la taxe sur le chiffre d'affaires (AT), numéro de TVA (DE), numéro d'identification de la société (CH)
+]FR_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<engineerTo>
+<item key="1AB27667-C11D-3493-68AA-DF92C84041A7" value="true"/>
+<item key="851DDEFA-B048-37E9-7826-4E48946EAF1C" value="true"/>
+<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="false"/>
+<item key="015DE428-05B6-58DD-323D-ECDC72266F4A" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="UID Nr"/>
+<property name="EN_ATTR_NAME" value="UID no"/>
+<property name="FR_ATTR_NAME" value="N° UID"/>
+</propertyMap>
+</Attribute>
+</attributes>
+</Entity>

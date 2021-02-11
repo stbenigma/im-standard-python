@@ -1,0 +1,451 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<DomainFile class="oracle.dbtools.crest.model.design.DomainFileWrapper" fileName="defaultdomains">
+<domains>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="Boolean" id="018899C1-1063-572C-AD15-2DF35A7821BE">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-24 10:46:53 UTC</createdTime>
+<comment><![CDATA[Boolean value (TRUE/FALSE)]]></comment>
+<ownerDesignName>System</ownerDesignName>
+<avTSortOrder>0</avTSortOrder>
+<dataTypeSize>5</dataTypeSize>
+<fileName>defaultdomains</fileName>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<synonym>yesno</synonym>
+<listOfValues>
+<valueDef value="FALSE" description="False"/>
+<valueDef value="TRUE" description="True"/>
+</listOfValues>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="Dateityp" id="0CA72AD7-2CC9-7C6D-9319-432F467C5B43">
+<createdBy>toz</createdBy>
+<createdTime>2021-01-20 13:21:12 UTC</createdTime>
+<ownerDesignName>System</ownerDesignName>
+<avTSortOrder>0</avTSortOrder>
+<dataTypeSize>5 CHAR</dataTypeSize>
+<fileName>defaultdomains</fileName>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="Name" id="12CE3C79-CF52-53C5-525A-B69CAD7EA37B">
+<createdBy>stb</createdBy>
+<createdTime>2020-01-14 16:10:30 UTC</createdTime>
+<comment><![CDATA[Typical name of an element]]></comment>
+<ownerDesignName>System</ownerDesignName>
+<avTSortOrder>0</avTSortOrder>
+<dataTypeSize>60</dataTypeSize>
+<fileName>defaultdomains</fileName>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="Connection type" id="173025D8-F801-494E-9FB1-F3866D9F6DA8">
+<createdBy>stb</createdBy>
+<createdTime>2020-03-09 12:50:34 UTC</createdTime>
+<comment><![CDATA[see LOV - Anschlusstyp]]></comment>
+<ownerDesignName>System</ownerDesignName>
+<avTSortOrder>0</avTSortOrder>
+<fileName>defaultdomains</fileName>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="Length" id="1FD48740-EF5C-6F87-5EEC-E18D1A4EF5E0">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-01-23 09:08:23 UTC</createdTime>
+<comment><![CDATA[One dimensional extension]]></comment>
+<ownerDesignName>System</ownerDesignName>
+<avTSortOrder>0</avTSortOrder>
+<dataTypePrecision>12</dataTypePrecision>
+<dataTypeScale>3</dataTypeScale>
+<fileName>defaultdomains</fileName>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<unitOfMeasure>mm</unitOfMeasure>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>0</beginValue>
+<description>&gt;=0</description>
+</rangeDef>
+</listOfRanges>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="DQR 6.0_Verpackungsart" id="2200F8CA-90DB-364B-114B-2AE9CB9A3B6F">
+<createdBy>toz</createdBy>
+<createdTime>2021-01-20 14:54:24 UTC</createdTime>
+<ownerDesignName>System</ownerDesignName>
+<avTSortOrder>0</avTSortOrder>
+<dataTypeSize>3 CHAR</dataTypeSize>
+<fileName>defaultdomains</fileName>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<listOfValues>
+<valueDef value="BB" description="Rolle"/>
+<valueDef value="BG" description="Sack"/>
+<valueDef value="BH" description="Bund/Bündel"/>
+<valueDef value="BK" description="Korb"/>
+<valueDef value="BTL" description="Beutel"/>
+<valueDef value="BX" description="Box"/>
+<valueDef value="CF" description="Kiste"/>
+<valueDef value="CG" description="Käfig"/>
+<valueDef value="CH" description="Gitterbox"/>
+<valueDef value="CI" description="Kanister"/>
+<valueDef value="CO" description="Container"/>
+<valueDef value="CT" description="Karton"/>
+<valueDef value="DY" description="Display"/>
+<valueDef value="GEB" description="Gebinde"/>
+<valueDef value="HP" description="Halbpalette"/>
+<valueDef value="PA" description="Päckchen"/>
+<valueDef value="PC" description="Paket"/>
+<valueDef value="PG" description="Einwegpalette"/>
+<valueDef value="PK" description="Colli"/>
+<valueDef value="PLA" description="Platte"/>
+<valueDef value="PN" description="Europalette"/>
+<valueDef value="PU" description="Kasten"/>
+<valueDef value="RG" description="Ring"/>
+<valueDef value="SC" description="Mischpalette"/>
+<valueDef value="STG" description="Stange"/>
+<valueDef value="TRO" description="Trommel"/>
+<valueDef value="TU" description="Rohr"/>
+</listOfValues>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="FAB-DIS 2.3 Mesure Dimensions" id="2476098F-D8D4-58FA-5EDC-CC5ED3669678">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-01-22 15:34:48 UTC</createdTime>
+<comment><![CDATA[value list]]></comment>
+<ownerDesignName>System</ownerDesignName>
+<avTSortOrder>0</avTSortOrder>
+<dataTypeSize>3 CHAR</dataTypeSize>
+<fileName>defaultdomains</fileName>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<checkConstraint>
+<implementationDef dbType="Generic Constraint" definition="FABDIS -&gt; IM:  CMT -&gt; CMT   DTM -&gt; DTM   INH  -&gt;  KTM -&gt; KTM   MMT -&gt; MMT   MTR -&gt; MTR  "/>
+</checkConstraint>
+<listOfValues>
+<valueDef value="CMT" description="Centimetre"/>
+<valueDef value="DTM" description="Decialmetre"/>
+<valueDef value="KTM" description="Kilometre"/>
+<valueDef value="MMT" description="Milimetre"/>
+<valueDef value="MTR" description="Metre"/>
+</listOfValues>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="DQR 6.0_Dokumenttyp" id="34B01EDF-DFCA-ABCA-445B-EC392D827099">
+<createdBy>toz</createdBy>
+<createdTime>2021-01-20 10:46:15 UTC</createdTime>
+<ownerDesignName>System</ownerDesignName>
+<avTSortOrder>0</avTSortOrder>
+<dataTypeSize>2 CHAR</dataTypeSize>
+<fileName>defaultdomains</fileName>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<listOfValues>
+<valueDef value="B_" description="Bild"/>
+<valueDef value="DB" description="Datenblätter"/>
+<valueDef value="KB" description="Kein Bild vorhanden"/>
+<valueDef value="PL" description="Lithium"/>
+<valueDef value="U_" description="Masszeichnung (unvermasst); keine Werte, keine Variablen"/>
+<valueDef value="V_" description="Masszeichnung (vermasst); entweder Werte und oder Variablen auf dem Bild"/>
+</listOfValues>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="Volume flow" id="4CE888A2-73FB-EE53-8576-C830DE47E6B2">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-24 15:19:55 UTC</createdTime>
+<comment><![CDATA[Flow rate ]]></comment>
+<ownerDesignName>System</ownerDesignName>
+<avTSortOrder>0</avTSortOrder>
+<dataTypePrecision>5</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<fileName>defaultdomains</fileName>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<unitOfMeasure>l/s</unitOfMeasure>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>0</beginValue>
+</rangeDef>
+</listOfRanges>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="FAB-DIS 2.3 Unité de base" id="4DA71C18-2B30-A807-3D92-E5ECC9F89E52">
+<createdBy>SMINI</createdBy>
+<createdTime>2020-02-19 13:12:40 UTC</createdTime>
+<ownerDesignName>System</ownerDesignName>
+<avTSortOrder>0</avTSortOrder>
+<dataTypeSize>3 CHAR</dataTypeSize>
+<fileName>defaultdomains</fileName>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<listOfValues>
+<valueDef value="CMT" description="Centimetre"/>
+<valueDef value="EA" description="Piece"/>
+<valueDef value="HUR" description="Hour"/>
+<valueDef value="KGM" description="Kilogram"/>
+<valueDef value="LTR" description="Liter"/>
+<valueDef value="MTK" description="Square metre"/>
+<valueDef value="MTQ" description="Cubic metre"/>
+<valueDef value="MTR" description="Metre"/>
+<valueDef value="PAR" description="Pair"/>
+<valueDef value="PK" description="Pack/Set"/>
+<valueDef value="TNE" description="Ton"/>
+</listOfValues>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="GTIN-14" id="4DE7EF5A-EF94-6454-CAB0-A624715D6306">
+<createdBy>stb</createdBy>
+<createdTime>2020-07-28 15:30:39 UTC</createdTime>
+<comment><![CDATA[Global Trade Item Number see https://en.wikipedia.org/wiki/Global_Trade_Item_Number]]></comment>
+<ownerDesignName>System</ownerDesignName>
+<avTSortOrder>0</avTSortOrder>
+<dataTypeSize>14 CHAR</dataTypeSize>
+<fileName>defaultdomains</fileName>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<checkConstraint>
+<implementationDef dbType="Generic Constraint" definition="length(GTIN) = 14"/>
+</checkConstraint>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="DQR 6.0_Mass" id="51A9CFA5-F52B-5954-41DB-3360B13B1C95">
+<createdBy>toz</createdBy>
+<createdTime>2021-01-20 15:27:00 UTC</createdTime>
+<ownerDesignName>System</ownerDesignName>
+<avTSortOrder>0</avTSortOrder>
+<fileName>defaultdomains</fileName>
+<logicalDatatype>LOGDT026</logicalDatatype>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="Counter" id="6098EF65-3D28-781B-FAD4-B503AB54EEC1">
+<createdBy>stb</createdBy>
+<createdTime>2020-03-09 11:11:18 UTC</createdTime>
+<comment><![CDATA[Counter of details starting at 1]]></comment>
+<ownerDesignName>System</ownerDesignName>
+<avTSortOrder>0</avTSortOrder>
+<dataTypePrecision>6</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<fileName>defaultdomains</fileName>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<unitOfMeasure>piece</unitOfMeasure>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>1</beginValue>
+</rangeDef>
+</listOfRanges>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="DQR 6.0 Artikeltyp" id="79FBD12B-2084-1E00-DE29-3A6EE1CE6721">
+<createdBy>stb</createdBy>
+<createdTime>2020-07-28 15:33:44 UTC</createdTime>
+<comment><![CDATA[Konzernartikelart]]></comment>
+<ownerDesignName>System</ownerDesignName>
+<avTSortOrder>0</avTSortOrder>
+<dataTypeSize>3</dataTypeSize>
+<fileName>defaultdomains</fileName>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<listOfValues>
+<valueDef value="DLS" description="Dienstleistung Software"/>
+<valueDef value="ERA" description="Ersatzteil A"/>
+<valueDef value="ERB" description="Ersatzteil B"/>
+<valueDef value="ERC" description="Ersatzteil C"/>
+<valueDef value="KAL" description="Kalkulationsartikel"/>
+<valueDef value="MA" description="Maßanfertigung"/>
+<valueDef value="PAK" description="Paket / Set"/>
+<valueDef value="SON" description="Sonderartikel"/>
+<valueDef value="STD" description="Standardartikel"/>
+<valueDef value="STG" description="Schüttgut"/>
+<valueDef value="VA" description="Variante"/>
+</listOfValues>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="Artikeltyp" id="83431725-BBAB-4389-FE3F-A2C5A1AA4201">
+<createdBy>stb</createdBy>
+<createdTime>2020-07-28 15:50:30 UTC</createdTime>
+<ownerDesignName>System</ownerDesignName>
+<avTSortOrder>0</avTSortOrder>
+<dataTypeSize>1</dataTypeSize>
+<fileName>defaultdomains</fileName>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<listOfValues>
+<valueDef value="1" description="Hauptartikel"/>
+<valueDef value="2" description="Montageteil"/>
+<valueDef value="7" description="Ersatzteil"/>
+<valueDef value="9" description="Werkzeug"/>
+</listOfValues>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="DQR 6.0_EinheitGewicht" id="8F2EBD7B-ABAE-9FCA-B0F8-38B156DAFB65">
+<createdBy>toz</createdBy>
+<createdTime>2021-01-20 15:30:55 UTC</createdTime>
+<ownerDesignName>System</ownerDesignName>
+<avTSortOrder>0</avTSortOrder>
+<dataTypeSize>3 CHAR</dataTypeSize>
+<fileName>defaultdomains</fileName>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<listOfValues>
+<valueDef value="GRM" description="Gramm"/>
+<valueDef value="KGM" description="Kilogramm"/>
+</listOfValues>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="FAB-DIS 2.3 Mesure Temps" id="99E2CC98-CBAA-2C88-E05A-29F03217068B">
+<createdBy>nicolasschweiger</createdBy>
+<createdTime>2020-02-21 11:40:05 UTC</createdTime>
+<comment><![CDATA[value list]]></comment>
+<ownerDesignName>System</ownerDesignName>
+<avTSortOrder>0</avTSortOrder>
+<dataTypeSize>3 CHAR</dataTypeSize>
+<fileName>defaultdomains</fileName>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<listOfValues>
+<valueDef value="DAY" description="Jour"/>
+<valueDef value="MON" description="Mois"/>
+<valueDef value="WEE" description="Semaine"/>
+<valueDef value="YEA" description="Année"/>
+</listOfValues>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="FAB-DIS 2.3 Mesure Poids" id="ACC9E39E-AE87-7695-A803-7AF20C5B4D4A">
+<createdBy>SMINI</createdBy>
+<createdTime>2020-02-19 13:50:18 UTC</createdTime>
+<ownerDesignName>System</ownerDesignName>
+<avTSortOrder>0</avTSortOrder>
+<dataTypeSize>3</dataTypeSize>
+<fileName>defaultdomains</fileName>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="Length Unit" id="B2EF2FFA-F7A2-96FE-C31E-47857A8532B2">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-01-22 15:14:54 UTC</createdTime>
+<comment><![CDATA[value list]]></comment>
+<ownerDesignName>System</ownerDesignName>
+<avTSortOrder>0</avTSortOrder>
+<dataTypeSize>3 CHAR</dataTypeSize>
+<fileName>defaultdomains</fileName>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<listOfValues>
+<valueDef value="CMT" description="Centimetre"/>
+<valueDef value="DTM" description="Decialmetre"/>
+<valueDef value="INH" description="Inch"/>
+<valueDef value="KTM" description="Kilometre"/>
+<valueDef value="MMT" description="Milimetre"/>
+<valueDef value="MTR" description="Metre"/>
+</listOfValues>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="FAB-DIS 2.3 Mesure Surface Section" id="B66B419D-6111-7EA1-ACA7-E092C97D2B3F">
+<createdBy>nicolasschweiger</createdBy>
+<createdTime>2020-02-21 11:37:15 UTC</createdTime>
+<comment><![CDATA[value list]]></comment>
+<ownerDesignName>System</ownerDesignName>
+<avTSortOrder>0</avTSortOrder>
+<dataTypeSize>3 CHAR</dataTypeSize>
+<fileName>defaultdomains</fileName>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<listOfValues>
+<valueDef value="CM2" description="Centimètre carré"/>
+<valueDef value="MM2" description="Millimètre carré"/>
+<valueDef value="MTK" description="Mètre carré"/>
+</listOfValues>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="FAB-DIS 2.3 Mesure Volume" id="BC4E8863-BA30-83EB-3402-E50C160D7321">
+<createdBy>nicolasschweiger</createdBy>
+<createdTime>2020-02-21 11:28:15 UTC</createdTime>
+<comment><![CDATA[value list]]></comment>
+<ownerDesignName>System</ownerDesignName>
+<avTSortOrder>0</avTSortOrder>
+<dataTypeSize>3 CHAR</dataTypeSize>
+<fileName>defaultdomains</fileName>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<listOfValues>
+<valueDef value="CTQ" description="Centimètre cube"/>
+<valueDef value="DMQ" description="Décimetre cube"/>
+<valueDef value="LTR" description="Litre"/>
+<valueDef value="MLT" description="Milllilitre"/>
+<valueDef value="MMQ" description="Millimètre"/>
+<valueDef value="MTQ" description="Métre cube"/>
+</listOfValues>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="FAB-DIS 2.3 Conditionnement" id="D46E39BE-0FED-0967-F1A6-1444FF088F0E">
+<createdBy>SMINI</createdBy>
+<createdTime>2020-02-19 13:15:56 UTC</createdTime>
+<ownerDesignName>System</ownerDesignName>
+<avTSortOrder>0</avTSortOrder>
+<dataTypeSize>3</dataTypeSize>
+<fileName>defaultdomains</fileName>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<listOfValues>
+<valueDef value="AE" description="Aérosol"/>
+<valueDef value="ATP" description="Attache pastique à oeillet"/>
+<valueDef value="BA" description="Tonneau, fût non métallique"/>
+<valueDef value="BC" description="Casier à bouteilles"/>
+<valueDef value="BG" description="Sac"/>
+<valueDef value="BJ" description="Seau"/>
+<valueDef value="BLI" description="Blister"/>
+<valueDef value="BO" description="Bouteille"/>
+<valueDef value="BR" description="Barre"/>
+<valueDef value="BT" description="Botte"/>
+<valueDef value="BX" description="Boite"/>
+<valueDef value="CD" description="Bidon"/>
+<valueDef value="CL" description="Bobine"/>
+<valueDef value="CT" description="Carton"/>
+<valueDef value="DJ" description="Bonbonne non protégée"/>
+<valueDef value="DP" description="Bonbonne protégée"/>
+<valueDef value="DR" description="Fût metallique"/>
+<valueDef value="EA" description="Unité (sans emballage)"/>
+<valueDef value="FP" description="Film plastique"/>
+<valueDef value="GB" description="Cartouche GAZ"/>
+<valueDef value="PA" description="Paquet"/>
+<valueDef value="PF" description="Palette"/>
+<valueDef value="PG" description="Plaque - panneau"/>
+<valueDef value="RG" description="Couronne"/>
+<valueDef value="RL" description="Rouleau, touret"/>
+<valueDef value="SA" description="Sachet"/>
+<valueDef value="SCA" description="Sachet cavalier"/>
+<valueDef value="TU" description="Tube"/>
+<valueDef value="Z2" description="Caisse"/>
+<valueDef value="ZZZ" description="Sans object"/>
+</listOfValues>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="DQR 6.0_Artikelkurzbeschreibung" id="DBF5B3D2-F03F-50F5-CE2B-E04B344BF8E5">
+<createdBy>toz</createdBy>
+<createdTime>2021-01-20 13:26:07 UTC</createdTime>
+<ownerDesignName>System</ownerDesignName>
+<avTSortOrder>0</avTSortOrder>
+<dataTypeSize>256 CHAR</dataTypeSize>
+<fileName>defaultdomains</fileName>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="Unknown" id="DOM3000004">
+<createdBy>fyayc</createdBy>
+<createdTime>2018-04-24 10:58:28 UTC</createdTime>
+<ownerDesignName>System</ownerDesignName>
+<avTSortOrder>0</avTSortOrder>
+<fileName>defaultdomains</fileName>
+<logicalDatatype>LOGDT017</logicalDatatype>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="DQR 6.0_BildVerwendung" id="E996C320-96A3-C4DA-D3C3-ACA4CEC0F607">
+<createdBy>toz</createdBy>
+<createdTime>2021-01-20 10:51:24 UTC</createdTime>
+<ownerDesignName>System</ownerDesignName>
+<avTSortOrder>0</avTSortOrder>
+<dataTypeSize>3 CHAR</dataTypeSize>
+<fileName>defaultdomains</fileName>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<listOfValues>
+<valueDef value="Druck" description="Breite von ca. 1500 Pixel und eine Höhe von ca. 1500 Pixel bei einer Größe von 100 x 100 mm (calculated: 381 dpi)"/>
+<valueDef value="Web" description="  maximale Breite von 640 Pixel und eine maximale Höhe von 480 Pixel bei einer optimalen Auflösung von mindestens 72 dpi. "/>
+</listOfValues>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="URL" id="E9A99BED-13E7-C649-E4A9-8C9E6A244777">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-24 11:06:29 UTC</createdTime>
+<comment><![CDATA[Valid URL string]]></comment>
+<ownerDesignName>System</ownerDesignName>
+<avTSortOrder>0</avTSortOrder>
+<dataTypeSize>500 CHAR</dataTypeSize>
+<fileName>defaultdomains</fileName>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="GTIN-13" id="ECFA3AA0-31D7-8BFE-925D-B8D2D79FACB5">
+<createdBy>stb</createdBy>
+<createdTime>2020-01-22 13:48:21 UTC</createdTime>
+<comment><![CDATA[Global Trade Item Number see https://en.wikipedia.org/wiki/Global_Trade_Item_Number]]></comment>
+<ownerDesignName>System</ownerDesignName>
+<avTSortOrder>0</avTSortOrder>
+<dataTypeSize>13 CHAR</dataTypeSize>
+<fileName>defaultdomains</fileName>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<checkConstraint>
+<implementationDef dbType="Generic Constraint" definition="length(GTIN) = 13"/>
+</checkConstraint>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="DQR 6.0_EinheitMass" id="FC6D7F4C-49DF-86CF-79BE-8956C1132E4C">
+<createdBy>toz</createdBy>
+<createdTime>2021-01-20 15:28:33 UTC</createdTime>
+<ownerDesignName>System</ownerDesignName>
+<avTSortOrder>0</avTSortOrder>
+<dataTypeSize>3 CHAR</dataTypeSize>
+<fileName>defaultdomains</fileName>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<listOfValues>
+<valueDef value="MMT" description="Millimeter"/>
+</listOfValues>
+</Domain>
+</domains>
+</DomainFile>

@@ -1,0 +1,34 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_17" directorySegmentName="seg_0" id="BA824AAE-7818-E8E5-8F10-FFE035A3CDF0">
+<createdBy>cle</createdBy>
+<createdTime>2018-10-15 13:26:36 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<engineerTo>
+<item key="AC362FED-09A7-BA00-8310-29076CD8571C" value="true"/>
+<item key="0F93F29F-E1ED-0300-B3B1-B58C77EE97A7" value="true"/>
+<item key="38668F89-26BC-F63A-555D-54B8056CF413" value="true"/>
+<item key="249E7ABA-8CD0-1978-78A7-F7026DA6A2EB" value="true"/>
+<item key="F8D1D625-33EA-D367-FD1B-8BE01FB72044" value="true"/>
+<item key="D349E673-4EDF-C611-3E51-BBBDE8744098" value="true"/>
+<item key="BFAC4467-8343-0983-11FB-CB866029374C" value="true"/>
+<item key="2DBF4F11-72F7-73ED-22BE-2120810BE40F" value="true"/>
+<item key="E6E75503-6116-388A-72BD-E82DC5E22548" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<nameOnSource>explizit dargestellt in</nameOnSource>
+<nameOnTarget>repräsentiert explizit</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>26825F7C-000B-54D7-3C31-C82DD0624E06</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>815BEEE0-4F72-C141-852B-D291EFC06E7E</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="explizit dargestellt in"/>
+<property name="DE_RELA_TEXT_TO" value="repräsentiert explizit"/>
+<property name="EN_RELA_TEXT_FROM" value="explicitly represented in"/>
+<property name="EN_RELA_TEXT_TO" value="represents explicitly"/>
+</propertyMap>
+</Relation>

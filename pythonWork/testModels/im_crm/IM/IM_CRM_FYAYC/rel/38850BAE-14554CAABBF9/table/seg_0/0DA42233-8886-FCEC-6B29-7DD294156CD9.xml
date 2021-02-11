@@ -1,0 +1,137 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="0DA42233-8886-FCEC-6B29-7DD294156CD9" name="Besitzer">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:47 UTC</createdTime>
+<comment><![CDATA[Person oder Firma, die eine Maschine in seinem physischen Besitz hat.]]></comment>
+<generatorID>4B525151-B0D5-D2B4-DEC3-BAF23D457B16</generatorID>
+<notes><![CDATA[[EN_ENTI_COMMENT[
+*DE* Person oder Firma, die eine Maschine in seinem physischen Besitz hat.
+]EN_ENTI_COMMENT]
+[DE_ENTI_COMMENT[
+Person oder Firma, die eine Maschine in seinem physischen Besitz hat.
+]DE_ENTI_COMMENT]
+[FR_ENTI_COMMENT[
+*EN* *DE* Person oder Firma, die eine Maschine in seinem physischen Besitz hat.
+]FR_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Besitzer_ID" id="ACA296A0-C2CD-7313-6AAB-5DD0FBEE4FF0">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:47 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<domain>AA61D466-0244-6F73-DC96-D8C3938B39E0</domain>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+<Column name="Vertriebskunde_Vertriebsteilnehmer_Vertriebsteilnehmer_ID" id="1FA73475-885C-84EF-E45A-5F93E25C3CC8">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:48 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<domain>AA61D466-0244-6F73-DC96-D8C3938B39E0</domain>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Vertriebskunde_Vertriebskunde_ID" id="FF6533D8-C33E-3389-C007-570B0DC26E14">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:48 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<domain>AA61D466-0244-6F73-DC96-D8C3938B39E0</domain>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Vertriebspartner_Vertriebsteilnehmer_Vertriebsteilnehmer_ID" id="E93D01E4-8123-39E9-65E0-C3C329D6D56E">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:48 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<domain>AA61D466-0244-6F73-DC96-D8C3938B39E0</domain>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Vertriebspartner_Vertriebspartner_ID" id="5070EB6F-5C91-4FBE-838B-B25951C388C4">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:48 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<domain>AA61D466-0244-6F73-DC96-D8C3938B39E0</domain>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="6088CA12-07CE-0A17-3CA4-7490A7100009" name="Besitzer_PK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:47 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="ACA296A0-C2CD-7313-6AAB-5DD0FBEE4FF0"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="1B74DA8C-3FB1-6719-038B-2A867E742DE6" name="Besitzer__UN">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:47 UTC</createdTime>
+<generatorID>B2F5CF33-0A05-F6A0-EE0A-0D2754B783D2</generatorID>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+</ind_PK_UK>
+<ind_PK_UK id="B4604342-E97E-228D-B7E1-D0A478C49FAC" name="Besitzer__IDX">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:48 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<relationGeneratorID>37E297A1-AD87-C7A1-4802-5DE2F049D760</relationGeneratorID>
+<indexColumnUsage>
+<colUsage columnID="1FA73475-885C-84EF-E45A-5F93E25C3CC8"/>
+<colUsage columnID="FF6533D8-C33E-3389-C007-570B0DC26E14"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="586C85FE-1059-5E47-20D9-3D92CDDE1DAB" name="Besitzer__IDXv1">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:48 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<relationGeneratorID>26E76F21-17AE-E72C-60CB-F19F3D4C018D</relationGeneratorID>
+<indexColumnUsage>
+<colUsage columnID="E93D01E4-8123-39E9-65E0-C3C329D6D56E"/>
+<colUsage columnID="5070EB6F-5C91-4FBE-838B-B25951C388C4"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

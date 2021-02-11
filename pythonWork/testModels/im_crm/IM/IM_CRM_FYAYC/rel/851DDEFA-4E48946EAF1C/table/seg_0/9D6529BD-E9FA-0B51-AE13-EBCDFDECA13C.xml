@@ -1,0 +1,101 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="9D6529BD-E9FA-0B51-AE13-EBCDFDECA13C" name="Potenzieller_Interessent">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:56 UTC</createdTime>
+<comment><![CDATA[Person oder Firma, von der wir wissen, dass sie sich evtl. für Produkte von CLAAS interessiert.]]></comment>
+<generatorID>EAD62900-A983-6D4B-BB81-23486E680160</generatorID>
+<notes><![CDATA[[EN_ENTI_COMMENT[
+*DE* Person oder Firma, von der wir wissen, dass sie sich evtl. für Produkte von CLAAS interessiert.
+]EN_ENTI_COMMENT]
+[DE_ENTI_COMMENT[
+Person oder Firma, von der wir wissen, dass sie sich evtl. für Produkte von CLAAS interessiert.
+]DE_ENTI_COMMENT]
+[FR_ENTI_COMMENT[
+*EN* *DE* Person oder Firma, von der wir wissen, dass sie sich evtl. für Produkte von CLAAS interessiert.
+]FR_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Interessent_Interessent_ID" id="DE5D2CEA-6A7C-C43A-8624-C8B08E5B6BD3">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:56 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="PIM AttrID" value="."/>
+<property name="PIM AttrName" value="."/>
+<property name="PIM EnglName" value="."/>
+<property name="PIM datatype" value="."/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+<associations>
+<colAssociation fkAssociation="C679EBBD-712D-F23D-B77E-70CE7DE91B91" referredColumn="A218EFEE-C976-3EB3-79FE-BA4840F66213"/>
+</associations>
+</Column>
+<Column name="Potenzieller_Interessent_ID" id="CFE5A707-D694-0C99-1506-636565C27C7F">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:56 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+<propertyMap>
+<property name="PIM AttrID" value="."/>
+<property name="PIM AttrName" value="."/>
+<property name="PIM EnglName" value="."/>
+<property name="PIM datatype" value="."/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="92D9770C-7B91-856F-530C-9EFCC5962B7B" name="Potenzieller_Interessent_PK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:56 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="DE5D2CEA-6A7C-C43A-8624-C8B08E5B6BD3"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="46A4A7A7-189A-37AF-5103-73C49600178F" name="Potenzieller_Interessent_Potenzieller_Interessent_ID_UN">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:56 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="CFE5A707-D694-0C99-1506-636565C27C7F"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="AFA7485C-EEC5-BD62-4434-E7C42943DE2A" name="Potenzieller_Interessent_Interessent_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:56 UTC</createdTime>
+<generatorID>80A80FCB-5B48-DF13-0AD0-36388857B744</generatorID>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="DE5D2CEA-6A7C-C43A-8624-C8B08E5B6BD3"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

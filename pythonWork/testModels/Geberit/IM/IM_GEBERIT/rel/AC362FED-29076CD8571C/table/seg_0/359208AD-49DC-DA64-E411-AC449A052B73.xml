@@ -1,0 +1,57 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="359208AD-49DC-DA64-E411-AC449A052B73" name="Dokumentart">
+<createdBy>stb</createdBy>
+<createdTime>2020-11-11 15:28:12 UTC</createdTime>
+<comment><![CDATA[
+Beispiel:
+Technische Montageanleitung
+Whitepaper (Marketing)
+]]></comment>
+<generatorID>A20BDDF9-EA33-2CE4-3D31-FCB231D20A3F</generatorID>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+Von Team AquaClean wird für Asset der Begriff Tool verwendet
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+Team AquaClean uses the term tool for Asset
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<ordsAlias>dokumenttyp</ordsAlias>
+<typeID>F20046F0-4CA2-AC46-AB61-C61A3A3E5909</typeID>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Name" id="373300A3-00F1-C804-7669-AA603E18D02E">
+<createdBy>stb</createdBy>
+<createdTime>2020-11-11 15:28:12 UTC</createdTime>
+<generatorID>EA1A3E79-CA0C-8BB3-9B08-C791E26FEA3E</generatorID>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+</propertyMap>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="E4724715-7885-4A49-9D9B-4579A08B74FA" name="Dokumentart_PK">
+<createdBy>toz</createdBy>
+<createdTime>2020-11-18 10:24:33 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="373300A3-00F1-C804-7669-AA603E18D02E"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

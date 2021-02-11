@@ -1,0 +1,83 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="7769AE0D-3835-9E28-509F-2D5327827E4A" name="Artikel-Dokument">
+<createdBy>stb</createdBy>
+<createdTime>2020-11-11 15:35:52 UTC</createdTime>
+<comment><![CDATA[
+Beispiel:
+Technische Montageanleitung
+Whitepaper (Marketing)
+]]></comment>
+<generatorID>A20BDDF9-EA33-2CE4-3D31-FCB231D20A3F</generatorID>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+Von Team AquaClean wird für Asset der Begriff Tool verwendet
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+Team AquaClean uses the term tool for Asset
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<ordsAlias>dokumenttypv1</ordsAlias>
+<typeID>F20046F0-4CA2-AC46-AB61-C61A3A3E5909</typeID>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="MARA_Material" id="16945147-2C16-D817-019B-85CF476BE30A">
+<createdBy>SMINI</createdBy>
+<createdTime>2020-11-17 15:40:45 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="A405D255-ECD3-BF09-0781-419CA515440B" referredColumn="4A76184A-100D-F33E-C565-1C1A77D64BE2"/>
+</associations>
+</Column>
+<Column name="Dokument_Doc.Matno" id="7C4FA2CE-129F-65CF-0FBF-7D2DFDC249D7">
+<createdBy>toz</createdBy>
+<createdTime>2020-11-18 10:07:45 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="AA624A2B-5305-EB51-DFD9-9AABCA277678" referredColumn="50A90D90-0704-1BB8-C236-E6743F41E457"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="74462CB3-86BE-98F2-4536-5B744BDA6995" name="Artikel-Dokument_PK">
+<createdBy>toz</createdBy>
+<createdTime>2020-11-18 10:29:18 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="16945147-2C16-D817-019B-85CF476BE30A"/>
+<colUsage columnID="7C4FA2CE-129F-65CF-0FBF-7D2DFDC249D7"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="E73077FE-6BE0-0F40-428F-DA8BFE3DA5F7" name="Artikel-Dokument_Dokument_FK">
+<createdBy>stb</createdBy>
+<createdTime>2020-11-11 15:36:43 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="7C4FA2CE-129F-65CF-0FBF-7D2DFDC249D7"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="87EDB5E6-B0F0-F253-0631-6E9A6E0DC2A7" name="Artikel-Dokument_MARA_FK">
+<createdBy>SMINI</createdBy>
+<createdTime>2020-11-17 15:40:45 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="16945147-2C16-D817-019B-85CF476BE30A"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

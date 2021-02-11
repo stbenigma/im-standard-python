@@ -1,0 +1,27 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="C254C35F-A5CB-53D1-77D2-C81FA0456D97" name="Inland Steueransatz">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-11 07:54:50 UTC</createdTime>
+<comment><![CDATA[der Betrag einer Steuerabgabe, der im Inland gilt 
+
+Beispiele
+ - 8.80 (Steuer für bio-Treibstoff)
+ - 431.20 (Steuer für nicht-bio-Treibstoff)
+ - 0.0  (für FREI]]></comment>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<typeID>F5ED85EA-4071-9C66-E34B-B22B36986443</typeID>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<hierarchicalParent>FA9C6621-5F35-15D4-8FE7-2DED7AD5ACA5</hierarchicalParent>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<createSurrogateKey>true</createSurrogateKey>
+</Entity>

@@ -1,0 +1,70 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="7184C404-36CE-D4DA-5B4E-1041072D2AB0" name="RLN_82">
+<createdBy>stb</createdBy>
+<createdTime>2018-10-21 13:54:35 UTC</createdTime>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="{REF TABLE  ABBR}_ORGANISATIONSEINHEIT_ID" id="A0D741C0-16D4-5B07-4551-6A6C522D136B">
+<createdBy>stb</createdBy>
+<createdTime>2018-10-21 13:54:35 UTC</createdTime>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="F53962A0-09FB-BE20-51DB-01305B8A616F" referredColumn="C0BC07FE-AF9B-552B-E985-BE6E2BA15DE3"/>
+</associations>
+</Column>
+<Column name="{REF TABLE  ABBR}_ANSPRECHPARTNER_ID" id="6C4F00D9-7357-C2F3-5BB4-BA269C98DFED">
+<createdBy>stb</createdBy>
+<createdTime>2018-10-21 13:54:35 UTC</createdTime>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="8A65DC75-FDB2-BEEA-2F6F-1ACAA0763AF7" name="RLN_82_PK">
+<createdBy>stb</createdBy>
+<createdTime>2018-10-21 13:54:35 UTC</createdTime>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="A0D741C0-16D4-5B07-4551-6A6C522D136B"/>
+<colUsage columnID="6C4F00D9-7357-C2F3-5BB4-BA269C98DFED"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="97DE2B2D-4165-A7CA-91D4-146D17A9EBBB" name="RLN_82__IDX">
+<createdBy>stb</createdBy>
+<createdTime>2019-01-26 15:45:02 UTC</createdTime>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="A0D741C0-16D4-5B07-4551-6A6C522D136B"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="0E57B48F-2A0A-7AAD-ED8D-38F0292C588B" name="RLN_82_ORGANISATIONSEINHEIT_FK">
+<createdBy>stb</createdBy>
+<createdTime>2018-10-21 13:54:35 UTC</createdTime>
+<generatorID>C7A8B653-E55E-0D07-23E4-462FFB26987D</generatorID>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="A0D741C0-16D4-5B07-4551-6A6C522D136B"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

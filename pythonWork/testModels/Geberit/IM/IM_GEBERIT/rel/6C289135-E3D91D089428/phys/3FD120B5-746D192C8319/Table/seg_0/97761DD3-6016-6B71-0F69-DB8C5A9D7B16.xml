@@ -1,0 +1,49 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev12c class="oracle.dbtools.crest.model.design.storage.oracle.v12c.TableProxyOraclev12c" name="ADDITIONAL_FACTORS]" directorySegmentName="seg_0" id="97761DD3-6016-6B71-0F69-DB8C5A9D7B16">
+<createdBy>toz</createdBy>
+<createdTime>2021-01-21 15:55:53 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<schemaObject>41F6B39A-6802-F636-A35F-6775EC2673FF</schemaObject>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<temporaryChanged>false</temporaryChanged>
+<accessDriverType>oracle_loader</accessDriverType>
+<rejectLimit></rejectLimit>
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="[UDX.EDXF.ADDITIONAL_FACTOR_INFO]" id="483AD1EE-0AF8-8588-35ED-C20F627F9AF2">
+<createdBy>toz</createdBy>
+<createdTime>2021-01-21 15:55:54 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="[UDX.EDXF.ADDITIONAL_PRICE_FACTOR]" id="724EE6C1-7C65-EC3C-023B-F6E4C1EA7AA0">
+<createdBy>toz</createdBy>
+<createdTime>2021-01-21 15:55:54 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="[UDX.EDXF.ADDITIONAL_FACTORSId]" id="9BF591A1-517B-6F66-AFF6-480E76ED67D8">
+<createdBy>toz</createdBy>
+<createdTime>2021-01-21 15:55:54 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="[USER_DEFINED_EXTENSIONSId]" id="F2E0572D-E8E0-5F9C-50D8-9239672F0C30">
+<createdBy>toz</createdBy>
+<createdTime>2021-01-21 15:55:54 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+<foreignKeys>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="ADDITIONAL_FACTORS]_FK0" id="CA75867D-79F2-377A-8E6A-0226F3AB1E8A">
+<createdBy>toz</createdBy>
+<createdTime>2021-01-21 15:55:54 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+</ForeignKey>
+</foreignKeys>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="ADDITIONAL_FACTORS]_PK" id="667A9C8C-0276-D749-B981-0F5094FA3D78">
+<createdBy>toz</createdBy>
+<createdTime>2021-01-21 15:55:54 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<indexSort>SORTED</indexSort>
+</PrimaryKey>
+</primaryKeys>
+</TableProxyOraclev12c>

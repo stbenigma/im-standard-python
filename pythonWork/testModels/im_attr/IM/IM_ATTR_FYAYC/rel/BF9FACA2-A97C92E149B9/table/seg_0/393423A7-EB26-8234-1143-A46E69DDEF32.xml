@@ -1,0 +1,57 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="393423A7-EB26-8234-1143-A46E69DDEF32" name="PRODUCT CATETORY">
+<createdBy>stb</createdBy>
+<createdTime>2020-03-30 15:16:18 UTC</createdTime>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<ordsAlias>table_12</ordsAlias>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="PRCA_ID" id="F8545AB4-66BB-D539-AC9B-2E1487B8D7D9">
+<createdBy>stb</createdBy>
+<createdTime>2020-03-30 15:16:41 UTC</createdTime>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<domain>8DC704A0-B677-2702-839F-B278E9EDF3E2</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="PRCA_VALU_ID_NAME" id="456E16C0-F46E-625D-D574-A47776449FC7">
+<createdBy>stb</createdBy>
+<createdTime>2020-03-30 15:17:01 UTC</createdTime>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<domain>8DC704A0-B677-2702-839F-B278E9EDF3E2</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="741D8121-65DB-4D78-A9E9-80819AADFAEB" referredColumn="32274FB1-6182-7E12-F0F7-F4EFE6F2BD04"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="9186368C-82C8-A756-ABF2-C0C948FF6658" name="PRCA_PK">
+<createdBy>stb</createdBy>
+<createdTime>2020-03-30 15:16:41 UTC</createdTime>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="F8545AB4-66BB-D539-AC9B-2E1487B8D7D9"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="99FD1907-1933-EAF3-91AF-2C936F68B279" name="PRCA_VALU_FK">
+<createdBy>stb</createdBy>
+<createdTime>2020-03-30 15:17:28 UTC</createdTime>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="456E16C0-F46E-625D-D574-A47776449FC7"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

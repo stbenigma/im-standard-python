@@ -1,0 +1,202 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="A9178943-F037-3A7B-A42A-A6B967DF23BB" name="Administrativgebiet">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:56 UTC</createdTime>
+<comment><![CDATA[Gebietsunterteilung eines Landes in kleinere Einheiten.
+
+Gemäss NUTS (https://de.wikipedia.org/wiki/NUTS) ist das Land die Gebietsstufe NUTS 0
+NUTS 0	Nationalstaat
+NUTS 1	“major socio-economic regions (grouping basic regions)” … größere Regionen/Landesteile
+NUTS 2 	“basic regions (for the application of regional policies)” … mittelgroße Regionen, Millionenstädte
+NUTS 3	“small regions (for specific diagnoses)” … kleinere Regionen, teils schon Großstädte
+LAU 1	o.A. … kommunale Verwaltungsverbände, teils Gemeinden (nicht in allen Staaten definiert)
+LAU 2	“municipalities or equivalent units” … Gemeinden, teils Gemeindegliederungen
+
+Es kann weitere Hierarchiestufenbezeichnungen geben:
+Deutschland
+A0: Land
+A1: Bundesland
+A2: leer
+A3: Landkreis
+A4: leer
+A5: Gemeinde: Administrative Gemeinde im jeweiligen Land
+Flurnamen, Gemeindegebiete, alte Gemeindenamen (unterteilen Gemeinde) oder weitere Stufen]]></comment>
+<generatorID>80D2A6F4-56D6-88E4-2E84-676699D4EBF2</generatorID>
+<notes><![CDATA[[EN_ENTI_COMMENT[
+*DE* Gebietsunterteilung eines Landes in kleinere Einheiten.
+
+Gemäss NUTS (https://de.wikipedia.org/wiki/NUTS) ist das Land die Gebietsstufe NUTS 0
+NUTS 0	Nationalstaat
+NUTS 1	“major socio-economic regions (grouping basic regions)” … größere Regionen/Landesteile
+NUTS 2 	“basic regions (for the application of regional policies)” … mittelgroße Regionen, Millionenstädte
+NUTS 3	“small regions (for specific diagnoses)” … kleinere Regionen, teils schon Großstädte
+LAU 1	o.A. … kommunale Verwaltungsverbände, teils Gemeinden (nicht in allen Staaten definiert)
+LAU 2	“municipalities or equivalent units” … Gemeinden, teils Gemeindegliederungen
+
+Es kann weitere Hierarchiestufenbezeichnungen geben:
+Deutschland
+A0: Land
+A1: Bundesland
+A2: leer
+A3: Landkreis
+A4: leer
+A5: Gemeinde: Administrative Gemeinde im jeweiligen Land
+Flurnamen, Gemeindegebiete, alte Gemeindenamen (unterteilen Gemeinde) oder weitere Stufen
+]EN_ENTI_COMMENT]
+[DE_ENTI_COMMENT[
+Gebietsunterteilung eines Landes in kleinere Einheiten.
+
+Gemäss NUTS (https://de.wikipedia.org/wiki/NUTS) ist das Land die Gebietsstufe NUTS 0
+NUTS 0	Nationalstaat
+NUTS 1	“major socio-economic regions (grouping basic regions)” … größere Regionen/Landesteile
+NUTS 2 	“basic regions (for the application of regional policies)” … mittelgroße Regionen, Millionenstädte
+NUTS 3	“small regions (for specific diagnoses)” … kleinere Regionen, teils schon Großstädte
+LAU 1	o.A. … kommunale Verwaltungsverbände, teils Gemeinden (nicht in allen Staaten definiert)
+LAU 2	“municipalities or equivalent units” … Gemeinden, teils Gemeindegliederungen
+
+Es kann weitere Hierarchiestufenbezeichnungen geben:
+Deutschland
+A0: Land
+A1: Bundesland
+A2: leer
+A3: Landkreis
+A4: leer
+A5: Gemeinde: Administrative Gemeinde im jeweiligen Land
+Flurnamen, Gemeindegebiete, alte Gemeindenamen (unterteilen Gemeinde) oder weitere Stufen
+]DE_ENTI_COMMENT]
+[FR_ENTI_COMMENT[
+*EN* *DE* Gebietsunterteilung eines Landes in kleinere Einheiten.
+
+Gemäss NUTS (https://de.wikipedia.org/wiki/NUTS) ist das Land die Gebietsstufe NUTS 0
+NUTS 0	Nationalstaat
+NUTS 1	“major socio-economic regions (grouping basic regions)” … größere Regionen/Landesteile
+NUTS 2 	“basic regions (for the application of regional policies)” … mittelgroße Regionen, Millionenstädte
+NUTS 3	“small regions (for specific diagnoses)” … kleinere Regionen, teils schon Großstädte
+LAU 1	o.A. … kommunale Verwaltungsverbände, teils Gemeinden (nicht in allen Staaten definiert)
+LAU 2	“municipalities or equivalent units” … Gemeinden, teils Gemeindegliederungen
+
+Es kann weitere Hierarchiestufenbezeichnungen geben:
+Deutschland
+A0: Land
+A1: Bundesland
+A2: leer
+A3: Landkreis
+A4: leer
+A5: Gemeinde: Administrative Gemeinde im jeweiligen Land
+Flurnamen, Gemeindegebiete, alte Gemeindenamen (unterteilen Gemeinde) oder weitere Stufen
+]FR_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Gebiet_Geografische_Einheit_GEIN_ID" id="237BF8C3-FB49-05F2-0937-E0DA2D8FE87D">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:56 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="PIM AttrID" value="."/>
+<property name="PIM AttrName" value="."/>
+<property name="PIM EnglName" value="."/>
+<property name="PIM datatype" value="."/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+<associations>
+<colAssociation fkAssociation="A42FC47D-CE4C-99BB-577F-F56AE8B109F7" referredColumn="619D9332-9E0B-6412-7E31-1AEFCEFC00BA"/>
+</associations>
+</Column>
+<Column name="Administrativebene" id="2D91E2ED-9A3F-E1E3-7C97-D24D38DC2713">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:56 UTC</createdTime>
+<comment><![CDATA[A1-A4]]></comment>
+<generatorID>E285B361-7F82-B5D1-44DC-064EFA1C70D3</generatorID>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+*DE* A1-A4
+]EN_ATTR_COMMENT]
+[DE_ATTR_COMMENT[
+A1-A4
+]DE_ATTR_COMMENT]
+[FR_ATTR_COMMENT[
+*EN* *DE* A1-A4
+]FR_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="PIM AttrID" value="."/>
+<property name="PIM AttrName" value="."/>
+<property name="PIM EnglName" value="."/>
+<property name="PIM datatype" value="."/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+</Column>
+<Column name="Administrativgebiet_ID" id="4919D4C9-0270-1847-F6A7-F610CF8379FC">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:56 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+<propertyMap>
+<property name="PIM AttrID" value="."/>
+<property name="PIM AttrName" value="."/>
+<property name="PIM EnglName" value="."/>
+<property name="PIM datatype" value="."/>
+<property name="SAPByD AttrName" value="."/>
+<property name="SAPByD AttrName Receiver" value="."/>
+<property name="SAPByD AttrName Shipper" value="."/>
+</propertyMap>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="EC10078A-53F6-CD0F-753F-58027FDF9A46" name="Administrativgebiet_PK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:56 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="237BF8C3-FB49-05F2-0937-E0DA2D8FE87D"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="293CFBF9-9B14-5821-0B13-39E92A568EA0" name="Administrativgebiet_Administrativgebiet_ID_UN">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:56 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="4919D4C9-0270-1847-F6A7-F610CF8379FC"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="D50EF6F9-3C89-4850-E1A6-AE9201B419F6" name="Administrativgebiet_Gebiet_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:26:56 UTC</createdTime>
+<generatorID>63934B90-6311-482D-5DA1-5F22719228D4</generatorID>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="237BF8C3-FB49-05F2-0937-E0DA2D8FE87D"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

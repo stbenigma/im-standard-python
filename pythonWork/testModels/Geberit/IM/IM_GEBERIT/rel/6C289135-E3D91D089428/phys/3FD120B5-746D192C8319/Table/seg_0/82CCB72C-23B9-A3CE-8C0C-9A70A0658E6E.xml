@@ -1,0 +1,44 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev12c class="oracle.dbtools.crest.model.design.storage.oracle.v12c.TableProxyOraclev12c" name="FVALUE]" directorySegmentName="seg_0" id="82CCB72C-23B9-A3CE-8C0C-9A70A0658E6E">
+<createdBy>toz</createdBy>
+<createdTime>2021-01-21 15:55:53 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<schemaObject>41F6B39A-6802-F636-A35F-6775EC2673FF</schemaObject>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<temporaryChanged>false</temporaryChanged>
+<accessDriverType>oracle_loader</accessDriverType>
+<rejectLimit></rejectLimit>
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="[FEATUREId]" id="4FC22633-C512-7989-7551-EF3B0D2BB351">
+<createdBy>toz</createdBy>
+<createdTime>2021-01-21 15:55:54 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="[FVALUE]" id="A966801E-3B51-BCBB-8718-20B976325B68">
+<createdBy>toz</createdBy>
+<createdTime>2021-01-21 15:55:54 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="[FVALUEId]" id="FCD1E0D7-EEA7-4B37-90F8-E4579CFCC79D">
+<createdBy>toz</createdBy>
+<createdTime>2021-01-21 15:55:54 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+<foreignKeys>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="FVALUE]_FK0" id="3BC0637E-0824-5898-63BD-6B895FD57253">
+<createdBy>toz</createdBy>
+<createdTime>2021-01-21 15:55:54 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+</ForeignKey>
+</foreignKeys>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="FVALUE]_PK" id="907BAFB5-D261-DA7F-F91C-443460BE2F89">
+<createdBy>toz</createdBy>
+<createdTime>2021-01-21 15:55:54 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<indexSort>SORTED</indexSort>
+</PrimaryKey>
+</primaryKeys>
+</TableProxyOraclev12c>

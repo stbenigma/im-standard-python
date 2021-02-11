@@ -1,0 +1,50 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="037BCAB5-8F2A-DF18-01DE-B5E82BEC89A7" name="Mengencode">
+<createdBy>stb</createdBy>
+<createdTime>2018-09-10 15:18:53 UTC</createdTime>
+<comment>Codierung nur für Stat. Zwecke (DDB)&lt;br/&gt;Für Aussenhandelsstatistik werden nur VOC und Monopolgebühr (Liter rein Alkohol) übernommen.&lt;br/&gt;&lt;br/&gt;Wird in Tares als stat. Angabe anzeigt und verlangt.&lt;br/&gt;&lt;br/&gt;Siehe auch Zusatzabgabemengencode.&lt;br/&gt;&lt;br/&gt;Es gibt 4 Typen&lt;br/&gt;Zolllmenge  (Rohmasse oder Zusatzmenge oder Eigenmasse)&lt;br/&gt;Eigenmasse &lt;br/&gt;Zusatzmenge&lt;br/&gt;Zusatzabgabemenge &lt;br/&gt;&lt;br/&gt;Es gibt viele Einheiten bei Mengencodes&lt;br/&gt;Beispiele:&lt;br/&gt;Rohmasse&lt;br/&gt;Eigengewicht&lt;br/&gt;Kg, Tonne, gr&lt;br/&gt;Liter, Hektolister&lt;br/&gt;Stück, Paar, Dutzend&lt;br/&gt;Meter, meter^2, meter^3, &lt;br/&gt;Anwendungsheinheit&lt;br/&gt;(Bienen-)Volk&lt;br/&gt;Hülse&lt;br/&gt;Karat&lt;br/&gt;VOC&lt;br/&gt;Sendung&lt;br/&gt;</comment>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Typ" id="383577B5-1712-C252-34F9-3BB000D8D2F1">
+<createdBy>stb</createdBy>
+<createdTime>2018-09-10 15:20:49 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Umrechnungsfaktorpflicht (J/N)" id="21AB49A2-2510-32FF-F404-7C837A622F08">
+<createdBy>stb</createdBy>
+<createdTime>2018-09-10 15:25:08 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Gültigkeitsperiode" id="E3AFDCF6-ADC6-5F90-C488-FE14247D5E3F">
+<createdBy>stb</createdBy>
+<createdTime>2018-09-10 15:34:00 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+</Entity>

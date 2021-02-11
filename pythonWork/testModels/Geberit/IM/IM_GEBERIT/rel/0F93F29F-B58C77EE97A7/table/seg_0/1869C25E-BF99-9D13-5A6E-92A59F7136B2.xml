@@ -1,0 +1,1457 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="1869C25E-BF99-9D13-5A6E-92A59F7136B2" name="01_COMMERCE">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[Marketing and Sales master data (see Tab 01_COMMERCE)
+Objective: To make the business transaction possible by feeding the distributors' ERP with efficiency
+- Includes in particular the data: commercial reference, price, base unit, minimum order quantity, descriptions, discount family, size of the naked product, ...
+- Note: the Distributor Rate (RATE) field must remain confidential between the manufacturer and the distributor, data related to the contract, as well as the REMISSION data (see data block 19_REMISSION below).
+
+
+Données de base Marketing et Commerciales (cf. Onglet 01_COMMERCE)
+Objectif : Rendre possible la transaction commerciale en alimentant l'ERP des distributeurs avec efficacité
+- Comprend notamment les données : référence commerciale, tarif, unité de base, quantité minimum de commande, désignations, famille de remise, dimension du produit nu, ...
+- Nota : le champ Tarif Distributeur (TARIFD) doit rester confidentiel entre le fabricant et le distributeur, donnée liée au contrat, tout comme les données REMISE (voir bloc de données 19_REMISE ci-dessous)]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<ordsAlias>table_2</ordsAlias>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<documents usedDucuments="7EBDC037-8728-C627-4B33-CEDF979E7C13"/>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="FABRICANT" id="5718656B-971B-AE0D-5A11-20AB8B3CF300">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[Name of the manufacturer or entity that markets the reference. Respect the syntax: uppercase, lowercase, accent, space, hyphen, ...
+Hard coded: "Geberit"]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="13.0"/>
+</propertyMap>
+</Column>
+<Column name="MARQUE" id="B4C9208E-DFEA-A0B2-3CBF-F57E8324E294">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[Name of the marketing brand of the reference. Is equal, by default, to MANUFACTURER]]></comment>
+<notes><![CDATA[replace "Brand irrelevant" by NULL]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="14.0"/>
+</propertyMap>
+</Column>
+<Column name="GAMME" id="9B0A5CC1-FA0D-BCDD-0DE9-0E9DD62E9C4D">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[Name 'manufacturer's range' to which the reference belongs. Different from the generic name of the product function. This name is specific to the manufacturer who registered it.
+Example: NEFERTITI and not electric towel rail.]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<dataTypeSize>80</dataTypeSize>
+<ownDataTypeParameters>80,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="15.0"/>
+</propertyMap>
+</Column>
+<Column name="REFCIALE" id="F2E9C92A-951A-E352-A717-B888A485E292">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[Unique commercial reference identifying the product or service offering.
+REFCIALE does not contain spaces, it is a code and not a free text.
+REFCIALE is consistent with the unit expressed in QMVT]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<dataTypeSize>30</dataTypeSize>
+<ownDataTypeParameters>30,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="16.0"/>
+</propertyMap>
+</Column>
+<Column name="REFARTICLE" id="8681498C-398B-5D75-455A-3ACA239BEC8B">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[Unique article code or LIDIC of the reference used in particular for EDI exchanges and sending orders. Is equal, by default, to REFCIALE]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<dataTypeSize>30</dataTypeSize>
+<ownDataTypeParameters>30,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="17.0"/>
+</propertyMap>
+</Column>
+<Column name="REFINFOR" id="5F5131AF-9111-F0DD-90A3-A05D4AC045F5">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[Unique computer code of the reference used for computer exchanges. Is equal, by default, to REFCIALE]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<dataTypeSize>30</dataTypeSize>
+<ownDataTypeParameters>30,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="18.0"/>
+</propertyMap>
+</Column>
+<Column name="GTIN13" id="7C6EA7C7-D410-E7B7-BF4D-617C19F83AB1">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[Global Trade Item Number (GTIN) Code Unique
+Always 14 Numbers]]></comment>
+<notes><![CDATA[Error warning: GTIN needs to be unique
+Error validation handling: log in summary file, do not remove duplicates
+]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="19.0"/>
+</propertyMap>
+</Column>
+<Column name="LIBELLE30" id="A144CDDE-A7EC-C25A-7D4D-329D7C0581AB">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[Short wording of the reference.
+Main use: shelf label
+The text of the labels is structured for a good customer understanding.
+It indicates the function and characteristics - elements that differentiate it from other references in the range.
+It corresponds to the unit expressed in QMVT]]></comment>
+<notes><![CDATA[char 1..30]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<dataTypeSize>30</dataTypeSize>
+<ownDataTypeParameters>30,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="20.0"/>
+</propertyMap>
+</Column>
+<Column name="LIBELLE80" id="E62B107C-3136-B608-6CE7-FDA4A913554C">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[Wording of the reference. The 80-character label is the basic wording of the trade reference.
+Main use : Company's ERP, quotation, order, invoice...
+The text of the labels is structured for a good customer understanding.
+It indicates the function, the main electrical and/or mechanical characteristics, the aesthetic criteria (colour, shape, etc.), the elements that differentiate it from the other references in the range. It often includes the name of the range.
+Usually written in lower case, it respects the French spelling and grammar rules (conjugation, plurals, etc.) and the rules for writing numbers of the International System of Units of Measurement.
+It corresponds to the unit expressed in QMVT.
+
+Translated with www.DeepL.com/Translator (free version)]]></comment>
+<notes><![CDATA[char 1..80]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<dataTypeSize>80</dataTypeSize>
+<ownDataTypeParameters>80,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="21.0"/>
+</propertyMap>
+</Column>
+<Column name="LIBELLE240" id="9D35832D-2111-E1FD-6134-7255237D4334">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[The 240-character label allows a complete description without abbreviations.
+Main use: on the web, merchant site, even on sales invoices...
+The text of the labels is structured for a good customer understanding.
+It indicates the function, the name of the range, the main electrical and/or mechanical characteristics, the aesthetic criteria (colour, shape...), the differentiating elements in relation to the other references of the range, the compliance with key regulations, the multiple warranty period according to the components of a product, ... Written in lower case, it complies with French spelling and grammar rules (conjugation, accents, plurals... without abbreviations or capitals) and the rules for writing numbers of the International System of Units of Measurement.
+It does not contain any special characters, such as "retour chariot" Ascii 10. See list of prohibited characters FAB-DIS.
+It corresponds to the unit expressed in QMVT.
+
+Translated with www.DeepL.com/Translator (free version)]]></comment>
+<notes><![CDATA[char 1..240]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<dataTypeSize>240</dataTypeSize>
+<ownDataTypeParameters>240,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="22.0"/>
+</propertyMap>
+</Column>
+<Column name="DATETARIF" id="4417810A-F2B0-6C91-BB37-8B34C1D96E73">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[Date of application of the tariff]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="23.0"/>
+</propertyMap>
+</Column>
+<Column name="TARIF" id="F0C919FA-889E-CE69-1912-05F07098C12E">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[Manufacturer's public price excluding VAT applicable to the base unit: expression of the recommended public price.
+Tariff excluding eco-contribution
+Price up to 4 digits behind the decimal point. The maximum value is 999999,9999
+The value 0 is prohibited
+This field must always be completed.
+For service references, a fixed price is specified (ex: 10,00 or 20,00 or ... ).
+The price of the service is defined thanks to the quantity (example: Qty x 20,00)
+For references for which the RATE cannot be communicated, indicate NC for "Consult Us". Ex: custom-made item, net price negotiated at the time of purchase with the distributor, free item. No other text than NC is accepted.
+]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>6</dataTypePrecision>
+<dataTypeScale>4</dataTypeScale>
+<ownDataTypeParameters>,6,4</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="24.0"/>
+</propertyMap>
+</Column>
+<Column name="TARIFD" id="5499CD39-07AC-C864-01CF-52563F25A687">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[Fill in this column only if the Distributor's rate is different from the public rate, on one or more REFCIALE.
+Be careful, this is not the net purchase price.
+Is empty by default.
+Distributor's Rate excluding VAT and excluding eco-rate applicable to the base unit. Tariff on which the distributor's net purchase price is calculated. This data must remain confidential between the manufacturer and the distributor.
+Price up to 4 digits behind the decimal point. The maximum value is 999999.9999
+add the symbol  "-"]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>6</dataTypePrecision>
+<dataTypeScale>4</dataTypeScale>
+<ownDataTypeParameters>,6,4</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="25.0"/>
+</propertyMap>
+</Column>
+<Column name="DEV" id="E148707F-DBCE-CE0E-1901-44A609CF787A">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[Currency used for the expression RATE and RATED.
+Currency codified by the ISO 4217:2001 standard: EUR for euro, USD for US dollar, JPY for Japanese yen, GBP for pound sterling, CHF for Swiss franc, etc.
+ https://www.iso.org/iso-4217-currency- codes.html]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<dataTypeSize>3</dataTypeSize>
+<ownDataTypeParameters>3,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="26.0"/>
+</propertyMap>
+</Column>
+<Column name="TVA" id="D4581E14-84C0-AA55-AD1E-DBB9DC29C265">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[Applicable VAT rate.
+Value expressed with 1 digit behind the decimal point. The maximum value is 99.9.]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>2</dataTypePrecision>
+<dataTypeScale>1</dataTypeScale>
+<ownDataTypeParameters>,2,1</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="27.0"/>
+</propertyMap>
+</Column>
+<Column name="QT" id="B80EC96D-D170-66E4-95F7-C5FD38B7063E">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[Tariffed quantity, multiplier applied to express the price :
+Whole number. Is equal, by default, to 1.
+Example of standard values: 1, 100, 1000. Allows to have a better precision of the tariff when the price of the BU is very low.]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>4</dataTypePrecision>
+<ownDataTypeParameters>,4,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="28.0"/>
+</propertyMap>
+</Column>
+<Column name="UB" id="DF197EE2-4E82-3CCA-6495-591CA5CC2A14">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[Base unit of the reference. 8 codes: CMT, EA, HUR, KGM, LTR, MTK, MTQ, MTR, PAR, PK or TNE. See definition in the tab "Units table", field "Base unit".
+The modification of UB on a product requires (except exception) the change of its REFCIALE and GTIN.]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<dataTypeSize>3</dataTypeSize>
+<ownDataTypeParameters>3,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="29.0"/>
+</propertyMap>
+</Column>
+<Column name="QMC" id="5D21AB5A-59A7-20BE-BE61-33A308EC0D39">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[Minimum order quantity from the Distributor to the manufacturer, expressed in base units.
+Is equal, by default, to 1.
+
+Special case: real number with 2 digits behind the decimal point for ordering a quantity that does not correspond to a multiple of the BU (e.g.: underfloor heating with BU per square meter, the batch of slabs QMV = 19.2 m)]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,10,2</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="30.0"/>
+</propertyMap>
+</Column>
+<Column name="MUL" id="85991DB3-8EF9-9C09-FE2A-72987AA455D6">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[The quantity ordered from the distributor to the manufacturer must be a multiple of MUL.
+Is equal to the default MUL, i.e. 1. Example: if MUL is 6, the quantities of products that can be ordered are: 6, 12, 18, 24, ...
+Special case: real number with 2 digits behind the decimal point in coherence with QMC.]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,10,2</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="31.0"/>
+</propertyMap>
+</Column>
+<Column name="QMV" id="FF3C24E9-5011-59F4-3C31-AB05456CA22A">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[Minimum possible sales quantity from the Distributor to the customer in number of base units. This is the smallest sales quantity practicable for this product, recommended by the manufacturer.
+Is equal, by default, to QMC, i.e. 1
+Special case: real number with 2 digits behind the decimal point for the sale of a quantity not corresponding to a multiple of the BU.
+Example: rail with UB per linear metre, unit piece QMV = 2.5 m]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,10,2</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="32.0"/>
+</propertyMap>
+</Column>
+<Column name="QMVT" id="243B1B21-D11B-F857-7796-B7580C84DAD7">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[Type of QMV packaging according to the code proposed in the tab "Units table", field "Packaging".
+QMVT is consistent with the expression REFCIALE, GTIN and LIBELLE(30, 80, 240)
+Note: if UB is equal to a unit of measurement, the linear metre for example, then QMVT is necessarily a conditioning unit (EA for a 3 metre tube, BD canister for a concrete admixture, ...). QMVT cannot be a unit of measurement.]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>D46E39BE-0FED-0967-F1A6-1444FF088F0E</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="33.0"/>
+</propertyMap>
+</Column>
+<Column name="ST" id="CC46D59A-8F49-126B-7B35-76057D44B822">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[ST: product stored at the manufacturer 
+1 = product stored
+0 = product or offer not in stock]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT033</logicalDatatype>
+<dataTypePrecision>1</dataTypePrecision>
+<dataTypeSize>0</dataTypeSize>
+<ownDataTypeParameters>0,1,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="34.0"/>
+</propertyMap>
+</Column>
+<Column name="DELAI" id="02945557-7AD0-785A-8E06-45AA485362CB">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[The period of time within which the ordered item is available. Expressed in working days, it runs from receipt of the order to departure from the manufacturer's warehouse. The transport time depends on the mode of transport: standard, express, ...
+This time is given as an indication and does not constitute, in any case, a contractual commitment of the manufacturer. Whole number.
+Value at 99 if time not defined, to be consulted with the Manufacturer.]]></comment>
+<notes><![CDATA[use only values without unit (days)]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>2</dataTypePrecision>
+<ownDataTypeParameters>,2,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="35.0"/>
+</propertyMap>
+</Column>
+<Column name="EDI" id="D5F56045-AA84-CB26-32AC-F912A740FE6E">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[EDI : Electronic Data Interchange
+1 = reference can be controlled by EDI 
+0 = reference cannot be controlled by EDI]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT033</logicalDatatype>
+<dataTypePrecision>1</dataTypePrecision>
+<dataTypeSize>0</dataTypeSize>
+<ownDataTypeParameters>0,1,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="36.0"/>
+</propertyMap>
+</Column>
+<Column name="DUG" id="36B44182-7F24-A951-2376-95CC4B146E16">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[The duration of the product warranty is expressed in months. Whole number.
+0 = the warranty is not applicable for reference 999 = the product is guaranteed for life
+Note: to express several warranty periods, depending on the components of a product, use the LIBELLE240 and/or ARGU fields in the MEDIA data block.
+Example 1: Tank + water heater parts warranty
+Example 2: Accumulator warranty + warranty of a power tool]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>3</dataTypePrecision>
+<ownDataTypeParameters>,3,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="37.0"/>
+</propertyMap>
+</Column>
+<Column name="STA" id="C3310408-5EC6-A796-6A65-20BD98BC667C">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[Marketing status of the reference
+A = ref active, or open for marketing from DATESTA
+F = end-of-life announcement of the reference. Ref marketed up to DATESTA
+S = deleted or obsolete ref, which can be sold by the Distributor, but can no longer be ordered from the manufacturer.]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="38.0"/>
+</propertyMap>
+</Column>
+<Column name="DATESTA" id="2B737FC1-B35F-EA40-8C02-86C5264E8EBE">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[Field associated with the marketing status ATS if ATS = A: the date indicates the marketing opening of the new reference. Default empty field.
+If STA = F: the date indicates that the reference has been discontinued.
+After this date, the product remains available for sale while stocks last, upon request.]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="39.0"/>
+</propertyMap>
+</Column>
+<Column name="REFANT" id="EEF78FBD-E923-91A3-EEC3-2B9AD32A43A2">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[Commercial reference of the recodifier. Strictly identical product (identical product, packaging, GTIN...) which only changes the REFCIALE code (e.g. in case of a change of ERP).
+This field is completed by the date of application of the recodification below]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<dataTypeSize>30</dataTypeSize>
+<ownDataTypeParameters>30,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="40.0"/>
+</propertyMap>
+</Column>
+<Column name="DATEREC" id="EF8DDD25-1723-3790-D780-6C7E7E91B8B3">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[Date d'application de la recodification]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="41.0"/>
+</propertyMap>
+</Column>
+<Column name="REFE" id="721B6046-DA15-3606-4C6F-76EC6CA744B2">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[Trade reference of the recodified]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<dataTypeSize>30</dataTypeSize>
+<ownDataTypeParameters>30,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="42.0"/>
+</propertyMap>
+</Column>
+<Column name="REFNEW" id="F7C5BC8D-3FB9-B518-E7FF-CDC791667AD2">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[New product with modified characteristics that do not disrupt implementation. REFNEW = the REFCIALE of the new product replacing the old one. Simple 1 for 1 replacement. Status must be at A
+Use the SUBSTITUTION block for a more complex substitution :
+1 to 1 with significant changes requiring a comment as a new dimension or a change in the fixation
+or a 1-for-1 substitution
+or a 1-for-1 substitution of the batches.]]></comment>
+<notes><![CDATA[if length > 30, cut before last comma within those 30 characters]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<dataTypeSize>30</dataTypeSize>
+<ownDataTypeParameters>30,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="43.0"/>
+</propertyMap>
+</Column>
+<Column name="REFOLD" id="62319E67-4EB8-8C99-560F-F420C645C7EE">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[Old trade reference
+Sta must be equal to F or S. Default empty field.]]></comment>
+<notes><![CDATA[Error validation handling: Old product references which do not find their correspondence in REFCIALE cannot appear in REFOLD.
+]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<dataTypeSize>30</dataTypeSize>
+<ownDataTypeParameters>30,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="44.0"/>
+</propertyMap>
+</Column>
+<Column name="D3E" id="5C0B70F8-D7E0-A104-697E-34F1171ED5F1">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[Field D3E in FAB-DIS version 2.1
+WEEE data transferred to the REGULATORY block Column with empty cells, outside the header which keeps its label]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="45.0"/>
+</propertyMap>
+</Column>
+<Column name="D3EC" id="F9DEB5BC-9F85-6EDE-5688-E8AC949E2E7C">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[Field D3EC of FAB-DIS version 2.1
+WEEE data transferred to the REGULATORY block Column with empty cells, outside the header which keeps its label]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<dataTypeSize>6</dataTypeSize>
+<ownDataTypeParameters>6,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="46.0"/>
+</propertyMap>
+</Column>
+<Column name="D3EV" id="5F82276A-C053-26FE-149A-01EEF0F36089">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[D3EV field of FAB-DIS version 2.1
+WEEE data transferred to the REGULATORY block Column with empty cells, outside the header which keeps its label]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>7</dataTypePrecision>
+<ownDataTypeParameters>,7,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="47.0"/>
+</propertyMap>
+</Column>
+<Column name="D3EU" id="415D39EE-41CF-A5E7-4E4F-0F171770BF56">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[Field D3EU of FAB-DIS version 2.1
+WEEE data transferred to the REGULATORY block Column with empty cells, outside the header which keeps its label]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>3</dataTypePrecision>
+<ownDataTypeParameters>,3,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="48.0"/>
+</propertyMap>
+</Column>
+<Column name="DOUANE" id="CB2B801D-9BF3-BC8E-5D97-82210B8A872B">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[Customs nomenclature, TARIC code, provided by the customs administration and used as a basis for declaring imports and exports.
+At a minimum: the first 8 characters of the code
+Maximum: first 10 characters of the code See in "Customs Table" the list of 8-character customs codes.
+More information on the official website of customs nomenclatures: http://ec.europa.eu/taxation_customs/customs/c ustoms_duties/tariff_aspects/customs_tariff/inde x_en.htm]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="49.0"/>
+</propertyMap>
+</Column>
+<Column name="ROHS" id="1A200B96-1F7A-C1F7-4961-6C3D5DC94E38">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[ROHS field in FAB-DIS version 2.1
+WEEE data transferred to the REGULATORY block Column with empty cells, outside the header which keeps its label]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="50.0"/>
+</propertyMap>
+</Column>
+<Column name="HAUTP" id="EEF5FEBE-0996-997E-82AC-EA5CD558D1B4">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[Height of the naked product (excluding packaging).
+The product is represented "in situation" i.e. installed.
+Example: water heater, paint pot, sink, shower tray, carpeting, circuit breaker...
+Note: the height corresponds to the thickness in the case of carpet type products. The dimensions of the carpet roll (or wire mesh or wax cloth, etc.) are indicated in the LOGISTICS block.
+Empty field if UB = PK (lot containing pieces of different dimensions) or if QMVT = ZZZ (packaging not applicable, case of services) Real number with 3 digits behind the decimal point.
+The maximum value is 9999999.999.
+In the case of variable dimensions: for these products, indicate the most valuable dimension. The multiple dimensions are valued in the long description and/or in the argumentation and/or in ETIM.]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>13</dataTypePrecision>
+<dataTypeScale>3</dataTypeScale>
+<ownDataTypeParameters>,13,3</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="51.0"/>
+</propertyMap>
+</Column>
+<Column name="HAUTPU" id="E650505D-4A64-BFB2-E932-BF67248F9AC0">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[Unit of the height of the bare product.
+5 values: CMT, DTM, KTM, MMT or MTR.
+See definition in the tab "Table Units" field "Dimensions".
+Relevance of units: consistency check of density by Easy-Check by FAB-DIS script]]></comment>
+<notes><![CDATA[https://geberit-projects.atlassian.net/l/c/Q6mFsBa6 (value mapping)]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>2476098F-D8D4-58FA-5EDC-CC5ED3669678</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="52.0"/>
+</propertyMap>
+</Column>
+<Column name="LARGP" id="36C46FD4-A762-5124-F02F-740A175B4E89">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[Width of the bare product (excluding packaging)
+The product is shown "in situation", i.e. installed.
+Example: water heater, paint pot, sink, shower tray, carpeting, circuit breaker...
+Note: the dimensions of products in rolls, carpet, wire mesh or wax cloth ..., are indicated in the LOGISTICS block.
+Empty field if UB = PK (lot containing parts of different dimensions) or if QMVT = ZZZ (packaging not applicable, case of services) Real number with 3 digits behind the decimal point.
+The maximum value is 9999999.999.]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>7</dataTypePrecision>
+<dataTypeScale>3</dataTypeScale>
+<ownDataTypeParameters>,7,3</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="53.0"/>
+</propertyMap>
+</Column>
+<Column name="LARGPU" id="CD479133-9005-D7F2-F86C-B52CB45DCE86">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[Unit of the width of the bare product.
+5 values: CMT, DTM, KTM, MMT or MTR.
+See definition in the tab "Table Units" field "Dimensions".
+Relevance of units: consistency check of density by Easy-Check by FAB-DIS script]]></comment>
+<notes><![CDATA[https://geberit-projects.atlassian.net/l/c/Q6mFsBa6 (value mapping)]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>2476098F-D8D4-58FA-5EDC-CC5ED3669678</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="54.0"/>
+</propertyMap>
+</Column>
+<Column name="PROFP" id="DDA7807B-C940-839D-6E21-997AF265722B">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[Depth of the naked product (excluding packaging)
+The product is shown "in situation", i.e. installed.
+Example: water heater, paint pot, sink, shower tray, carpeting, grill, circuit breaker...
+Note: the dimensions of products in rolls, carpet, wire mesh or wax cloth ..., are indicated in the LOGISTICS block.
+The depth corresponds to the thickness for wire netting type products.
+Empty field if UB = PK (lot containing pieces of different dimensions) or if QMVT = ZZZ (packaging not applicable, case of services) Real number with 3 digits behind the decimal point.
+The maximum value is 9999999.999.]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>7</dataTypePrecision>
+<dataTypeScale>3</dataTypeScale>
+<ownDataTypeParameters>,7,3</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="55.0"/>
+</propertyMap>
+</Column>
+<Column name="PROFPU" id="65ED3E4A-CC19-3BCF-10B3-FFD4C4D753E8">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[Unit of the depth of the bare product.
+5 values: CMT, DTM, KTM, MMT or MTR.
+See definition in the tab "Table Units" field "Dimensions".
+Relevance of units: consistency check of density by Easy-Check by FAB-DIS script]]></comment>
+<notes><![CDATA[https://geberit-projects.atlassian.net/l/c/Q6mFsBa6 (value mapping)]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>2476098F-D8D4-58FA-5EDC-CC5ED3669678</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="56.0"/>
+</propertyMap>
+</Column>
+<Column name="POIDSP" id="5E140F4C-98A7-0B52-3F41-64EFD735CE5E">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[Net weight of the product (excluding packaging)
+Empty field if UB = PK (batch containing parts of different dimensions) or if QMVT = ZZZ (packaging not applicable, case of services) Actual number with 3 digits behind the decimal point.
+The maximum value is 9999999.999.]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>7</dataTypePrecision>
+<dataTypeScale>3</dataTypeScale>
+<ownDataTypeParameters>,7,3</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="57.0"/>
+</propertyMap>
+</Column>
+<Column name="POIDSPU" id="FC916D5C-C6C3-EB2B-A1C3-D109B21B520B">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[Unit of net product weight.
+4 values: GRM, MGM, KGM or TNE.
+See definition in the tab "Table Units" field "Weight".
+Relevance of units: consistency check of density by Easy-Check by FAB-DIS script]]></comment>
+<notes><![CDATA[https://geberit-projects.atlassian.net/l/c/Q6mFsBa6 (value mapping)]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>ACC9E39E-AE87-7695-A803-7AF20C5B4D4A</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="58.0"/>
+</propertyMap>
+</Column>
+<Column name="DIAM" id="5B6C502A-1CA2-E622-F2B6-A75740673910">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[Diameter of the bare product (excluding packaging). Example: tube, pipe...
+Empty field if UB = PK, batch containing parts of different dimensions or if QMVT = ZZZ
+Real number with 3 digits behind the decimal point. The maximum value is 9999999.999]]></comment>
+<notes><![CDATA[Empty field if UB = PK, batch containing parts of different dimensions or if QMVT = ZZZ
+Real number with 3 digits behind the decimal point. The maximum value is 9999999.999]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<constraintComment><![CDATA[Empty field if UB = PK, batch containing parts of different dimensions or if QMVT = ZZZ
+Real number with 3 digits behind the decimal point. The maximum value is 9999999.999]]></constraintComment>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>7</dataTypePrecision>
+<dataTypeScale>3</dataTypeScale>
+<checkConstraint>
+<implementationDef dbType="Generic Constraint" definition="Empty field if UB = PK batch containing parts of different dimensions or if QMVT = ZZZ "/>
+</checkConstraint>
+<ownDataTypeParameters>,7,3</ownDataTypeParameters>
+<defaultFormatMask>9999999.999</defaultFormatMask>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="59.0"/>
+</propertyMap>
+</Column>
+<Column name="DIAMU" id="8D445A4E-1003-EBE2-5BE6-4DB1DA80FC84">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[Unit of the diameter of the bare product.
+5 values: CMT, DTM, KTM, MMT or MTR.
+See definition in the tab "Table Units" field "Dimensions".]]></comment>
+<notes><![CDATA[https://geberit-projects.atlassian.net/l/c/Q6mFsBa6 (value mapping)]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>2476098F-D8D4-58FA-5EDC-CC5ED3669678</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="60.0"/>
+</propertyMap>
+</Column>
+<Column name="SECT" id="6C62A1F6-B1B1-2658-66F3-F9B9573C8DD0">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[Section of the product bare (out of the packaging). Example: cable
+Empty field if UB = PK, batch containing parts of different dimensions or if QMVT = ZZZ
+Real number with 3 digits behind the decimal point. The maximum value is 9999999.999]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>7</dataTypePrecision>
+<dataTypeScale>3</dataTypeScale>
+<ownDataTypeParameters>,7,3</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="61.0"/>
+</propertyMap>
+</Column>
+<Column name="SECTU" id="E96C2F5E-0513-6673-0716-EAF25AB22E6C">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[Unit of the naked product section.
+3 values: MM2, CM2, MTK.
+See definition in the tab "Unit tables" field "Dimensions".]]></comment>
+<notes><![CDATA[https://geberit-projects.atlassian.net/l/c/Q6mFsBa6 (value mapping)]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>B66B419D-6111-7EA1-ACA7-E092C97D2B3F</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="62.0"/>
+</propertyMap>
+</Column>
+<Column name="VP" id="F0F59505-5DCE-F22F-B608-DD33D892767D">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[Volume of bare product (excluding packaging)
+Empty field if UB = PK, batch containing parts of different dimensions or if QMVT = ZZZ
+Real number with 3 digits behind the decimal point.
+The maximum value is 9999999.999]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>7</dataTypePrecision>
+<dataTypeScale>3</dataTypeScale>
+<ownDataTypeParameters>,7,3</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="63.0"/>
+</propertyMap>
+</Column>
+<Column name="VPU" id="B19B3E75-8649-D6F0-6500-5A695BFDECA1">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[Unit of product volume. 6 values: CTQ, DMQ, LTR, MLT, MMQ or MTQ.
+See definition in the tab "Table Units" field "Volume".
+Relevance of units: consistency check of density by Easy-Check by FAB-DIS script]]></comment>
+<notes><![CDATA[https://geberit-projects.atlassian.net/l/c/Q6mFsBa6 (value mapping)]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>BC4E8863-BA30-83EB-3402-E50C160D7321</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="64.0"/>
+</propertyMap>
+</Column>
+<Column name="MKT1" id="80EBAB58-41BA-0821-142B-A22A8EF7EC4F">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[BOM code Marketing level 1, highest level
+Corresponds to the marketing segmentation of each manufacturer's offer.
+This data allows the distributor to classify the offers without risk of error in its own nomenclature, thus facilitating their selection by the customers, the exchange of dashboard...
+In the absence of a formalized marketing nomenclature, indicate by default, the family name, the range...]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<dataTypeSize>10</dataTypeSize>
+<ownDataTypeParameters>10,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="65.0"/>
+</propertyMap>
+</Column>
+<Column name="MKT1L" id="F1BBD9FA-005E-3DEA-78AF-FE7C1A4DB7ED">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[Nomenclature wording Level 1 marketing, highest level]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<dataTypeSize>80</dataTypeSize>
+<ownDataTypeParameters>80,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="66.0"/>
+</propertyMap>
+</Column>
+<Column name="MKT2" id="B9B7E32B-A856-7262-C448-597C25CAE07B">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[BOM code Marketing level 2]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<dataTypeSize>10</dataTypeSize>
+<ownDataTypeParameters>10,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="67.0"/>
+</propertyMap>
+</Column>
+<Column name="MKT2L" id="74910BAA-F3A9-BE53-4522-02D4C02E9F0E">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[Nomenclature wording Level 2 marketing]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<dataTypeSize>80</dataTypeSize>
+<ownDataTypeParameters>80,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="68.0"/>
+</propertyMap>
+</Column>
+<Column name="MKT3" id="8B9403D1-E673-4630-F36A-3F9BD06E09F4">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[BOM code Marketing level 3]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<dataTypeSize>10</dataTypeSize>
+<ownDataTypeParameters>10,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="69.0"/>
+</propertyMap>
+</Column>
+<Column name="MKT3L" id="37CE28F5-A6D8-BC50-F756-08634B754CD6">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[Nomenclature wording Level 3 marketing]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<dataTypeSize>80</dataTypeSize>
+<ownDataTypeParameters>80,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="70.0"/>
+</propertyMap>
+</Column>
+<Column name="MKT4" id="9D9A73CF-1923-3B48-54AA-EEB295C7D08A">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[BOM code Marketing level 4]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<dataTypeSize>10</dataTypeSize>
+<ownDataTypeParameters>10,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="71.0"/>
+</propertyMap>
+</Column>
+<Column name="MKT4L" id="BBFF584A-26F0-88A1-EE09-AE5DA308EB52">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[Nomenclature wording Level 4 marketing]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<dataTypeSize>80</dataTypeSize>
+<ownDataTypeParameters>80,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="72.0"/>
+</propertyMap>
+</Column>
+<Column name="MKT5" id="5E812597-C359-780E-655A-CA181E78DCEC">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[BOM code Marketing level 5]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<dataTypeSize>10</dataTypeSize>
+<ownDataTypeParameters>10,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="73.0"/>
+</propertyMap>
+</Column>
+<Column name="MKT5L" id="3680D79B-D2B3-3193-DA12-78C50449E8CD">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[Nomenclature wording Level 5 marketing]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="74.0"/>
+</propertyMap>
+</Column>
+<Column name="FAM1" id="5D1424BF-8091-5ED4-1054-E2EFD4B47339">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[Level 1 Discount Family Code.
+The discount family code to which the manufacturer applies the discount rates.
+The value of the discount, associated to this code is transmitted in a separate file "19_REMISSION" (see tab description of the files).
+If there is no FAM1, enter by default the code of the Marketing BOM (MKT).]]></comment>
+<notes><![CDATA[https://geberit-projects.atlassian.net/l/c/Q6mFsBa6 (value mapping)]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<dataTypeSize>10</dataTypeSize>
+<ownDataTypeParameters>10,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="75.0"/>
+</propertyMap>
+<documents usedDucuments="17CF2D7B-5C86-C9EC-70D5-5474C68C3505"/>
+</Column>
+<Column name="FAM1L" id="367D232A-E60B-EC63-B010-931240F3E78C">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[Level 1 Discount Family Code Wording]]></comment>
+<notes><![CDATA[https://geberit-projects.atlassian.net/l/c/Q6mFsBa6 (value mapping)]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<dataTypeSize>80</dataTypeSize>
+<ownDataTypeParameters>80,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="76.0"/>
+</propertyMap>
+<documents usedDucuments="17CF2D7B-5C86-C9EC-70D5-5474C68C3505"/>
+</Column>
+<Column name="FAM2" id="DB940EB8-9AE5-29F1-B756-D85781FC7FE5">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[Level 2 Discount Family Code]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<dataTypeSize>10</dataTypeSize>
+<ownDataTypeParameters>10,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="77.0"/>
+</propertyMap>
+</Column>
+<Column name="FAM2L" id="FA7BB33C-9099-BC92-D1A7-9CC3AB616884">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[Code Wording Level 2 Discount Family]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<dataTypeSize>80</dataTypeSize>
+<ownDataTypeParameters>80,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="78.0"/>
+</propertyMap>
+</Column>
+<Column name="FAM3" id="C28FED58-C105-5259-BDE6-33E1C4554994">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[Level 3 Discount Family Code]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<dataTypeSize>10</dataTypeSize>
+<ownDataTypeParameters>10,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="79.0"/>
+</propertyMap>
+</Column>
+<Column name="FAM3L" id="85789308-F989-935D-2580-A8615AFB8925">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[Code Wording Level 3 Discount Family]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<dataTypeSize>80</dataTypeSize>
+<ownDataTypeParameters>80,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="80.0"/>
+</propertyMap>
+</Column>
+<Column name="DLSR" id="B361CE73-AB68-1712-F603-9AC3C661DCC0">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[Recommended Storage Life Limit
+Indicate a duration in weeks.
+To be filled in only if the product is concerned (e.g. batteries, sealant, silicone sealant, glue, etc.).
+Default empty field]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>4</dataTypePrecision>
+<ownDataTypeParameters>,4,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="81.0"/>
+</propertyMap>
+</Column>
+<Column name="MADE" id="CABA956F-9E3F-43A2-BAC2-13ED91263166">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[Made in: Marking of the geographical origin of the product
+Applied on a strictly voluntary basis (with the exception of certain food products), this marking must comply with the non-preferential rules of origin of the Union's Customs Code (CDU) and refers to a country's share of production in a product. See circular BOD n°7117 of 13/05/16 on the subject: http://www.douane.gouv.fr/Portals/0/fichiers/pro
+fessional/declaration/circular-marking-of-origin-of-13-May-2016.pdf
+List of country codes on the tab
+"Country Table"
+This list is taken from the ISO standard: http://www.iso.org/iso/fr/french_country_names _and_code_elements
+Default empty field]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<dataTypeSize>2</dataTypeSize>
+<ownDataTypeParameters>2,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="82.0"/>
+</propertyMap>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="AA73B2E3-E41A-BADE-D281-3F74E34E8974" name="01_COMMERCE__UN">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="F2E9C92A-951A-E352-A717-B888A485E292"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="8CB263F9-700F-84E8-9FBD-CD3D2F345C43" name="01_COMMERCE__UN2">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="7C6EA7C7-D410-E7B7-BF4D-617C19F83AB1"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

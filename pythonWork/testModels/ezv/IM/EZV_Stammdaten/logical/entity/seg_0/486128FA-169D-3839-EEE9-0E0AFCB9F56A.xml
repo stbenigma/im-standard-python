@@ -1,0 +1,87 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="486128FA-169D-3839-EEE9-0E0AFCB9F56A" name="Ländergruppe">
+<createdBy>stb</createdBy>
+<createdTime>2018-08-22 13:12:46 UTC</createdTime>
+<comment><![CDATA[Zusammenfassung einer Gruppe von Ländern, die statistisch, tarifarisch oder bezüglich NZE gleich behandelt werden.
+
+Ländergruppen können nur in einer Hierarchie verwendet werden, die aus gleichen Benutzerart ist.
+Spezialfälle
+
+100000 ALLE LÄNDER  für Normalansatz verwendet -> wird nicht mehr benutzt, da Tarif nur 1 Hierarchie kennt.
+(d.h. alle Länder sind dem Normalansatz zugeteilt)
+
+Tarif, statistik, massnahmen fracht]]></comment>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<typeID>A1A7EC8C-6A9E-6802-E900-DFB764897E0D</typeID>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<propertyMap>
+<property name="GSD-Tabellenname" value="LDGRP"/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Bezeichnung [L]" id="A0DB642F-A001-7085-09D3-CD776C16479E">
+<createdBy>stb</createdBy>
+<createdTime>2018-08-22 13:12:46 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="GSD-Attributname" value="LDG_TXD/E/F/I"/>
+</propertyMap>
+</Attribute>
+<Attribute name="Kurzbezeichnung [L]" id="8E269BCD-7C6C-E75A-D8F2-734B686B165F">
+<createdBy>stb</createdBy>
+<createdTime>2019-02-26 10:50:32 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="GSD-Attributname" value="LDB_KTXD/F/I/E"/>
+</propertyMap>
+</Attribute>
+<Attribute name="Gültigkeitsperiode" id="CEF30FE3-248A-39AB-C732-DFDD1337FF4A">
+<createdBy>stb</createdBy>
+<createdTime>2018-08-22 13:12:46 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="GSD-Attributname" value="LDG_VDAT/BDAT"/>
+</propertyMap>
+</Attribute>
+<Attribute name="Alle Länder (J/N)" id="4F47DB19-B4C6-5A05-981E-48C353CF288A">
+<createdBy>stb</createdBy>
+<createdTime>2019-05-28 14:36:22 UTC</createdTime>
+<comment><![CDATA[Müssen für diese Hierarchie alle Länder einer Gruppe zugewiesen sein]]></comment>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+</Entity>

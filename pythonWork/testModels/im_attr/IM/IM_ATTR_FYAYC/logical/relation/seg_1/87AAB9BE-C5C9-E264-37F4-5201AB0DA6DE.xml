@@ -1,0 +1,28 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_84" directorySegmentName="seg_1" id="87AAB9BE-C5C9-E264-37F4-5201AB0DA6DE">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-23 13:22:19 UTC</createdTime>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
+</engineerTo>
+<useSurrogateKey>true</useSurrogateKey>
+<identifying>false</identifying>
+<nameOnSource>verantwortet von</nameOnSource>
+<nameOnTarget>verantwortlich für</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>C579AF88-68C9-5A94-FD4C-E7B9A73BB814</sourceEntity>
+<targetCardinalityString>1</targetCardinalityString>
+<targetEntity>E36EA698-3231-1EAA-1FA8-7DCBF8B404AC</targetEntity>
+<transferable>true</transferable>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="verantwortet von"/>
+<property name="DE_RELA_TEXT_TO" value="verantwortlich für"/>
+<property name="EN_RELA_TEXT_FROM" value="*DE* verantwortet von"/>
+<property name="EN_RELA_TEXT_TO" value="*DE* verantwortlich für"/>
+</propertyMap>
+</Relation>

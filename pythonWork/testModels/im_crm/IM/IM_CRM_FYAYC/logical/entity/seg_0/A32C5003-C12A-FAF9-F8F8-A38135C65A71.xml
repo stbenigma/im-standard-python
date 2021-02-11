@@ -1,0 +1,77 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="A32C5003-C12A-FAF9-F8F8-A38135C65A71" name="Produktinstanz">
+<createdBy>stb</createdBy>
+<createdTime>2019-05-06 12:49:26 UTC</createdTime>
+<comment><![CDATA[einzelnes, weltweit identifizierbares Exemplar eines Produktes.
+
+Mit oder ohne IOT.]]></comment>
+<notes><![CDATA[[EN_ENTI_COMMENT[
+**single, globally identifiable copy of a product.
+
+With or without IOT.
+]EN_ENTI_COMMENT]
+[DE_ENTI_COMMENT[
+einzelnes, weltweit identifizierbares Exemplar eines Produktes.
+
+Mit oder ohne IOT.
+]DE_ENTI_COMMENT]
+[FR_ENTI_COMMENT[
+*une copie unique et identifiable au niveau mondial d'un produit. Avec ou sans IOT.
+]FR_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<engineerTo>
+<item key="1AB27667-C11D-3493-68AA-DF92C84041A7" value="true"/>
+<item key="851DDEFA-B048-37E9-7826-4E48946EAF1C" value="true"/>
+<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="false"/>
+<item key="015DE428-05B6-58DD-323D-ECDC72266F4A" value="true"/>
+</engineerTo>
+<typeID>FEA4369B-55AA-D0BD-A909-9148DA5C11DD</typeID>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="DE_ENTI_NAME" value="Produktinstanz"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_NAME" value="Product instance"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+<property name="FR_ENTI_NAME" value="Produit"/>
+<property name="FR_ENTI_SYNONYM" value=""/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Serie-Nr" id="F3C7BFA1-E8B3-80DC-668D-4EADED553B6B">
+<createdBy>stb</createdBy>
+<createdTime>2019-05-06 12:50:08 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+[FR_ATTR_COMMENT[
+
+]FR_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<engineerTo>
+<item key="1AB27667-C11D-3493-68AA-DF92C84041A7" value="true"/>
+<item key="851DDEFA-B048-37E9-7826-4E48946EAF1C" value="true"/>
+<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="false"/>
+<item key="015DE428-05B6-58DD-323D-ECDC72266F4A" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Serie-Nr"/>
+<property name="EN_ATTR_NAME" value="Serial No"/>
+<property name="FR_ATTR_NAME" value="Numéro de série"/>
+</propertyMap>
+</Attribute>
+</attributes>
+</Entity>

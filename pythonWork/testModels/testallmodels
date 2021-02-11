@@ -1,0 +1,24 @@
+#!/bin/bash
+MYDIR=$(dirname "$0")
+
+echo =========================  test Rexroth ========================= 
+$MYDIR/Rexroth/fillallinone
+echo =========================  test crmTest ========================= 
+$MYDIR/crmTest/fillallinone
+echo =========================  test ezv ========================= 
+$MYDIR/ezv/fillallinone
+echo =========================  test Geberit ========================= 
+$MYDIR/Geberit/fillallinone
+echo =========================  test im_attr ========================= 
+$MYDIR/im_attr/fillallinone
+echo =========================  test im_crm ========================= 
+$MYDIR/im_crm/fillallinone
+echo =========================  test komax ========================= 
+$MYDIR/komax/fillallinone
+echo =========================  test Leister ========================= 
+$MYDIR/Leister/fillallinone
+echo =========================  test Zehnder ========================= 
+$MYDIR/Zehnder/fillallinone
+echo ========================= test ModelModel ========================= 
+$MYDIR/ModelModel/fillallinone
+read -p "press enter to close"

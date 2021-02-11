@@ -1,0 +1,382 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="695C6820-A5D0-7009-BCD5-5F1F82A7D771" schemaObject="BD327076-AC83-52B5-BAD4-632D844000BD" name="ZAG_SCL">
+<sourceDDLFile>cr_zag_scl.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2019-10-22 15:15:48 UTC</createdTime>
+<commentInRDBMS><![CDATA[Zuw. Zusatzabgaben - Schl�ssel]]></commentInRDBMS>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<importedID>DE19096B-A114-F50F-3452-B50DCA6F7132</importedID>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ZUS_ID" id="A8D9B484-B958-35DA-F0B9-9BEF0BF93CEE">
+<sourceDDLFile>cr_zag_scl.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2019-10-22 15:15:48 UTC</createdTime>
+<commentInRDBMS><![CDATA[Id der Zuweisung Zusatzabgaben - Schl�ssel]]></commentInRDBMS>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<importedID>A1530359-165A-EC35-0D7D-77E0209955EF</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="SAP_Attributname" value="ZUS_ID"/>
+<property name="SAP_Tabellenname" value="ZUS - Zuweisungstabelle STX / ZAG"/>
+</propertyMap>
+</Column>
+<Column name="ZUS_ZAG_ID" id="9053F693-E1FC-7739-97A6-DFC46E3FA3B6">
+<sourceDDLFile>cr_zag_scl.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2019-10-22 15:15:48 UTC</createdTime>
+<commentInRDBMS><![CDATA[Id der Zusatzabgaben]]></commentInRDBMS>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<importedID>8CFBF374-82B2-EC15-CDB4-16874A1C44E7</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>0</dataTypeSize>
+<ownDataTypeParameters>0,10,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="SAP_Attributname" value="ZUS_ZAGID"/>
+<property name="SAP_Tabellenname" value="ZUS - Zuweisungstabelle STX / ZAG"/>
+</propertyMap>
+<associations>
+<colAssociation fkAssociation="1C2F8CA4-B2A2-A68E-4163-5901F33B8968" referredColumn="E58B40F8-37C1-F7ED-5720-213FF0043857"/>
+</associations>
+</Column>
+<Column name="ZUS_OPT" id="3B8288EE-12D1-8186-ABF7-8F01A326B683">
+<sourceDDLFile>cr_zag_scl.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2019-10-22 15:15:48 UTC</createdTime>
+<commentInRDBMS><![CDATA[Optionalit�t]]></commentInRDBMS>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<importedID>C220BC68-3570-2629-1789-46E0EE6A65FD</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypePrecision>0</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>1 BYTE</dataTypeSize>
+<ownDataTypeParameters>1 BYTE,0,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="SAP_Attributname" value="ZUS_OPT"/>
+<property name="SAP_Tabellenname" value="ZUS - Zuweisungstabelle STX / ZAG"/>
+</propertyMap>
+</Column>
+<Column name="ZUS_STATUS" id="267A85B7-25E1-5079-4288-192503667F02">
+<sourceDDLFile>cr_zag_scl.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2019-10-22 15:15:48 UTC</createdTime>
+<commentInRDBMS><![CDATA[Status des Datensatzes (f�r Tarif Abt., E/U/F)]]></commentInRDBMS>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<importedID>3BB2CD59-E540-8C14-BF36-2A6C6824E872</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypePrecision>0</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>1 BYTE</dataTypeSize>
+<ownDataTypeParameters>1 BYTE,0,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="SAP_Attributname" value="ZUS_STAT"/>
+<property name="SAP_Tabellenname" value="ZUS - Zuweisungstabelle STX / ZAG"/>
+</propertyMap>
+</Column>
+<Column name="ZUS_VDAT" id="130C0302-5F8D-1C92-025B-F247101B98AB">
+<sourceDDLFile>cr_zag_scl.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2019-10-22 15:15:48 UTC</createdTime>
+<commentInRDBMS><![CDATA[G�ltig von]]></commentInRDBMS>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<importedID>3A9D3F34-2DDB-6C8B-CAAD-AA3AA6583575</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="SAP_Attributname" value="ZUS_VDAT, ZUS_VTIME"/>
+<property name="SAP_Tabellenname" value="ZUS - Zuweisungstabelle STX / ZAG"/>
+</propertyMap>
+</Column>
+<Column name="ZUS_BDAT" id="FCEA24A4-B4EE-F75F-A1FD-8F53F09320AB">
+<sourceDDLFile>cr_zag_scl.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2019-10-22 15:15:48 UTC</createdTime>
+<commentInRDBMS><![CDATA[G�ltig bis]]></commentInRDBMS>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<importedID>B13FE134-15A0-CE0A-6D8D-2575AB272F1E</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="SAP_Attributname" value="ZUS_BDAT, ZUS_BTIME"/>
+<property name="SAP_Tabellenname" value="ZUS - Zuweisungstabelle STX / ZAG"/>
+</propertyMap>
+</Column>
+<Column name="ZUS_UC" id="9783E7FA-2EB7-315B-D1D4-5B448CB15A8A">
+<sourceDDLFile>cr_zag_scl.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2019-10-22 15:15:48 UTC</createdTime>
+<commentInRDBMS><![CDATA[Ersteller des Datensatzes]]></commentInRDBMS>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<importedID>BAB935C5-8440-5AA0-852B-63996BEB0814</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypePrecision>0</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,0,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="SAP_Attributname" value="USMD_ENT_CRTD_BY"/>
+<property name="SAP_Tabellenname" value="ZUS - Zuweisungstabelle STX / ZAG"/>
+</propertyMap>
+</Column>
+<Column name="ZUS_DC" id="96963AC8-CE60-3580-CC2A-C2DABF50B6CA">
+<sourceDDLFile>cr_zag_scl.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2019-10-22 15:15:48 UTC</createdTime>
+<commentInRDBMS><![CDATA[Erstellungsdatum des Datensatzes]]></commentInRDBMS>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<importedID>33C1CF8F-542B-234E-1E39-656606BF11CC</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="SAP_Attributname" value="USMD_ENT_CRTD_AT"/>
+<property name="SAP_Tabellenname" value="ZUS - Zuweisungstabelle STX / ZAG"/>
+</propertyMap>
+</Column>
+<Column name="ZUS_GRPPFLICHT" id="96BFA2C3-3DB0-2453-11B9-4A9DC66054EC">
+<sourceDDLFile>cr_zag_scl.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2019-10-22 15:15:48 UTC</createdTime>
+<commentInRDBMS><![CDATA[Gruppennummer aus der 1 Massnahme obligatorisch ist]]></commentInRDBMS>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<importedID>1B1D55C9-1C3B-D96A-65DA-3EAFE452073D</importedID>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>1</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>0</dataTypeSize>
+<ownDataTypeParameters>0,1,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="SAP_Attributname" value="ZUS_GRPOB"/>
+<property name="SAP_Tabellenname" value="ZUS - Zuweisungstabelle STX / ZAG"/>
+</propertyMap>
+</Column>
+<Column name="ZUS_SCE_ID" id="1A99FB90-4BD6-3718-DF61-7509319F3FC4">
+<sourceDDLFile>cr_zag_scl.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2019-10-22 15:15:48 UTC</createdTime>
+<commentInRDBMS><![CDATA[Id der Schl�ssel Export]]></commentInRDBMS>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<importedID>C5FDE684-DC4E-A57B-724B-4B4B8FFD25D9</importedID>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>0</dataTypeSize>
+<ownDataTypeParameters>0,10,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="SAP_Attributname" value="ZUS_STEID"/>
+<property name="SAP_Tabellenname" value="ZUS - Zuweisungstabelle STX / ZAG"/>
+</propertyMap>
+</Column>
+<Column name="ZUS_SCI_ID" id="05E4B472-0F9A-9E7B-5CDE-F13B2F9300D4">
+<sourceDDLFile>cr_zag_scl.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2019-10-22 15:15:48 UTC</createdTime>
+<commentInRDBMS><![CDATA[Id der Schl�ssel Import]]></commentInRDBMS>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<importedID>EE7E4191-7F4A-9B79-FCE1-AE7E3C60D3E9</importedID>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>0</dataTypeSize>
+<ownDataTypeParameters>0,10,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="SAP_Attributname" value="ZUS_STIID"/>
+<property name="SAP_Tabellenname" value="ZUS - Zuweisungstabelle STX / ZAG"/>
+</propertyMap>
+<associations>
+<colAssociation fkAssociation="B53373C1-7B34-2A4D-EA64-8B4B256EAAD1" referredColumn="10917EA5-CFA8-F9D9-A8DF-B6170FB83835"/>
+</associations>
+</Column>
+<Column name="ZUS_UM" id="CD67DDD2-9E58-0009-9E11-D3582AAE90A4">
+<sourceDDLFile>cr_zag_scl.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2019-10-22 15:15:48 UTC</createdTime>
+<commentInRDBMS><![CDATA[Username letzte Mutation]]></commentInRDBMS>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<importedID>2F4A9579-B68E-7091-CD52-766DDF8910FA</importedID>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypePrecision>0</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,0,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="SAP_Attributname" value="USMD_ENT_CHNG_BY"/>
+<property name="SAP_Tabellenname" value="ZUS - Zuweisungstabelle STX / ZAG"/>
+</propertyMap>
+</Column>
+<Column name="ZUS_DM" id="1255C4E1-C97F-A34D-8EBF-441C5D438726">
+<sourceDDLFile>cr_zag_scl.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2019-10-22 15:15:48 UTC</createdTime>
+<commentInRDBMS><![CDATA[Mutationsdatum]]></commentInRDBMS>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<importedID>E0528A0A-537B-EB69-CF9F-E52B51768A8F</importedID>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="SAP_Attributname" value="USMD_ENT_CHNG_BY"/>
+<property name="SAP_Tabellenname" value="ZUS - Zuweisungstabelle STX / ZAG"/>
+</propertyMap>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="5679F742-B2A0-1227-A465-11359D83400A" name="ZUS_PK">
+<sourceDDLFile>cr_zag_scl.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2019-10-22 15:15:48 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<importedID>AAA7E6A8-B9D3-08EF-1EE9-B4A8F8B25EA4</importedID>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="A8D9B484-B958-35DA-F0B9-9BEF0BF93CEE"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="0BC5BAF8-D091-2FE7-89C7-8AC740023AF9" name="ZUS_ZUS1_UK">
+<sourceDDLFile>cr_zag_scl.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2019-10-22 15:15:48 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<importedID>B6297310-E0A9-7534-34B0-5FB02FB69ED0</importedID>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="9053F693-E1FC-7739-97A6-DFC46E3FA3B6"/>
+<colUsage columnID="3B8288EE-12D1-8186-ABF7-8F01A326B683"/>
+<colUsage columnID="130C0302-5F8D-1C92-025B-F247101B98AB"/>
+<colUsage columnID="1A99FB90-4BD6-3718-DF61-7509319F3FC4"/>
+<colUsage columnID="05E4B472-0F9A-9E7B-5CDE-F13B2F9300D4"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="4F54D488-3505-1397-4107-BBBE89B62687" schemaObject="BD327076-AC83-52B5-BAD4-632D844000BD" name="ZUS_ZAG_FK_I">
+<sourceDDLFile>cr_zag_scl.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2019-10-22 15:15:48 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<importedID>FA951B95-3503-DA3D-A797-3652B37CC3B4</importedID>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="9053F693-E1FC-7739-97A6-DFC46E3FA3B6"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="9EBFE926-C323-E74E-FE5B-5285F78ACA6D" schemaObject="BD327076-AC83-52B5-BAD4-632D844000BD" name="ZUS_SCE_FK_I">
+<sourceDDLFile>cr_zag_scl.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2019-10-22 15:15:48 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<importedID>0E78F286-2D28-AEF1-50D1-6A2AFEAA2AAD</importedID>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="1A99FB90-4BD6-3718-DF61-7509319F3FC4"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="114F7C57-654D-9A87-C766-4061551FD5F2" schemaObject="BD327076-AC83-52B5-BAD4-632D844000BD" name="ZUS_ZUS1_UK">
+<sourceDDLFile>cr_zag_scl.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2019-10-22 15:15:48 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<importedID>2143BB0E-723F-96CC-46A3-C88D4CAF3473</importedID>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="9053F693-E1FC-7739-97A6-DFC46E3FA3B6"/>
+<colUsage columnID="3B8288EE-12D1-8186-ABF7-8F01A326B683"/>
+<colUsage columnID="130C0302-5F8D-1C92-025B-F247101B98AB"/>
+<colUsage columnID="1A99FB90-4BD6-3718-DF61-7509319F3FC4"/>
+<colUsage columnID="05E4B472-0F9A-9E7B-5CDE-F13B2F9300D4"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="378A86CE-C72C-1414-D9DF-3C2867A1D97D" schemaObject="BD327076-AC83-52B5-BAD4-632D844000BD" name="ZUS_PK">
+<sourceDDLFile>cr_zag_scl.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2019-10-22 15:15:48 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<importedID>A7BD7DD6-9258-2465-EDA4-593FF8A6304A</importedID>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="A8D9B484-B958-35DA-F0B9-9BEF0BF93CEE"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="CC4DFA41-037C-02D4-FAF7-E7B66364C3A8" schemaObject="BD327076-AC83-52B5-BAD4-632D844000BD" name="ZUS_SCI_FK_I">
+<sourceDDLFile>cr_zag_scl.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2019-10-22 15:15:48 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<importedID>B52BE492-1135-6F63-83E1-009E18E5B976</importedID>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="05E4B472-0F9A-9E7B-5CDE-F13B2F9300D4"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="34936CFA-4E04-75CD-6AAE-7D9CBD70C882" name="ZUS_SCI_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-22 15:15:48 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="05E4B472-0F9A-9E7B-5CDE-F13B2F9300D4"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="BD483AFF-9A5D-FBC4-15D6-FADE5F5CB978" name="ZUS_ZAG_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-22 15:15:48 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="9053F693-E1FC-7739-97A6-DFC46E3FA3B6"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

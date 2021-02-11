@@ -1,0 +1,69 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="A83DE660-7800-E1EE-0E1B-622D36A69888" name="Reference Type">
+<createdBy>SMINI</createdBy>
+<createdTime>2020-12-01 15:39:23 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<ordsAlias>table_19</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ID" id="D9EE5E8C-6338-4384-30B0-E5742FD297F4">
+<createdBy>toz</createdBy>
+<createdTime>2020-12-09 14:58:25 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+</propertyMap>
+</Column>
+<Column name="Name" id="265AB196-2962-A551-7A8F-85771CB05E97">
+<createdBy>toz</createdBy>
+<createdTime>2020-12-09 14:57:30 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+</propertyMap>
+</Column>
+<Column name="File Format" id="FBFFB602-9407-F953-CB4A-F2785687536A">
+<createdBy>toz</createdBy>
+<createdTime>2020-12-09 14:57:30 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+</propertyMap>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="F4344C0A-9BC7-7125-50FE-C6BB65C90D1A" name="Reference Type_PK">
+<createdBy>toz</createdBy>
+<createdTime>2020-12-09 14:58:25 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="D9EE5E8C-6338-4384-30B0-E5742FD297F4"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="445864FA-9D7C-4C2B-D8BD-C5AF7DC926FE" name="Reference Type__UN">
+<createdBy>toz</createdBy>
+<createdTime>2020-12-09 15:03:40 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="265AB196-2962-A551-7A8F-85771CB05E97"/>
+<colUsage columnID="FBFFB602-9407-F953-CB4A-F2785687536A"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

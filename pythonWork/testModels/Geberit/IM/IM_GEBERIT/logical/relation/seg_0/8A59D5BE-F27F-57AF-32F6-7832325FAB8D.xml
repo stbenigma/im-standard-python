@@ -1,0 +1,35 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_54" directorySegmentName="seg_0" id="8A59D5BE-F27F-57AF-32F6-7832325FAB8D">
+<createdBy>cle</createdBy>
+<createdTime>2018-10-19 14:32:20 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<engineerTo>
+<item key="AC362FED-09A7-BA00-8310-29076CD8571C" value="true"/>
+<item key="0F93F29F-E1ED-0300-B3B1-B58C77EE97A7" value="true"/>
+<item key="38668F89-26BC-F63A-555D-54B8056CF413" value="true"/>
+<item key="249E7ABA-8CD0-1978-78A7-F7026DA6A2EB" value="true"/>
+<item key="F8D1D625-33EA-D367-FD1B-8BE01FB72044" value="true"/>
+<item key="D349E673-4EDF-C611-3E51-BBBDE8744098" value="true"/>
+<item key="BFAC4467-8343-0983-11FB-CB866029374C" value="true"/>
+<item key="2DBF4F11-72F7-73ED-22BE-2120810BE40F" value="true"/>
+<item key="E6E75503-6116-388A-72BD-E82DC5E22548" value="true"/>
+</engineerTo>
+<sourcePk>69ED2946-947B-FF56-5526-76517C8A34B8</sourcePk>
+<identifying>false</identifying>
+<nameOnSource>verwendet für</nameOnSource>
+<nameOnTarget>verwendet</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>43D673EB-E9B4-6636-072A-E3DCB674F0CE</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>F29FB42C-ECFB-202C-5CD0-27AE55FEADDF</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="verwendet für"/>
+<property name="DE_RELA_TEXT_TO" value="verwendet"/>
+<property name="EN_RELA_TEXT_FROM" value="used for"/>
+<property name="EN_RELA_TEXT_TO" value="used"/>
+</propertyMap>
+</Relation>

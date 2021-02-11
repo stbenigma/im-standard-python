@@ -1,0 +1,28 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_82" directorySegmentName="seg_1" id="C7A8B653-E55E-0D07-23E4-462FFB26987D">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-23 13:20:19 UTC</createdTime>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
+</engineerTo>
+<useSurrogateKey>true</useSurrogateKey>
+<identifying>false</identifying>
+<nameOnSource>beschäftigt</nameOnSource>
+<nameOnTarget>tätig für</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>E36EA698-3231-1EAA-1FA8-7DCBF8B404AC</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>275339EE-5E42-8B7F-EE4D-AA56A94ECA65</targetEntity>
+<transferable>true</transferable>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="beschäftigt"/>
+<property name="DE_RELA_TEXT_TO" value="tätig für"/>
+<property name="EN_RELA_TEXT_FROM" value="*DE* beschäftigt"/>
+<property name="EN_RELA_TEXT_TO" value="*DE* tätig für"/>
+</propertyMap>
+</Relation>

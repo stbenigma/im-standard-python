@@ -1,0 +1,89 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="20BAB598-B4FC-1330-AE79-CA2EB60E102E" name="ZE Artencode (??)">
+<createdBy>stb</createdBy>
+<createdTime>2018-08-29 07:20:20 UTC</createdTime>
+<comment><![CDATA[Code, der festlegt, ob der Einführer eine Verwendungsverpflichtung hinterlegen muss oder ob eine Verwendungsbezeichnung in der Einfuhrdeklaration genügt resp. ob es sich um Zollbegünstigungen im Aviatik- oder Stickereibereich handelt.
+
+R Verwendungsverpflichtung
+In diesem Fall muss der Warenimporteur oder der Warenempfänger über eine gültige Ver-
+wendungsverpflichtung für die beantragte Verwendung verfügen.
+Wenn weder der Importeur noch der Empfänger Inhaber einer gültigen Verwendungsverpflich- tung für die beanspruchte Zollbegünstigung ist, muss einer von beiden eine Verwendungsver- pflichtung bei der Oberzolldirektion (OZD), Monbijoustrasse 40, Sektion Wirtschaftsmassnah- men, 3003 Bern beantragen, solange die Ausnahmen der Ziffer 1.4.3 et 1.4.4 nicht in Betracht kommen.
+Der Antrag für eine Verwendungsverpflichtung ist im Internet unter folgender Adresse verfüg- bar: www.ezv.admin.ch > Information Firmen > Befreiungen, Vergünstigungen, Zollpräferenzen und Ausfuhrbeiträge > Einfuhr in die Schweiz > Zollbegünstigungen > Zollerleichterung je nach Verwendungszweck.
+V Verwendungsbezeichnung in der Einfuhrzollanmeldung
+Die verlangte Zollbegünstigung ist im Veranlagungstext zu beantragen. A Bestimmte zollfreie Waren für die Zivilluftfahrt (s. Ziffer 2).
+
+Beispiele:
+R, V, Rkursiv]]></comment>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<typeID>5D665328-E55A-0C47-AF6D-AB589191EF22</typeID>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Code" id="C0BFF264-C5CD-5B90-B9E0-6A143D6335F4">
+<createdBy>stb</createdBy>
+<createdTime>2018-08-29 11:49:24 UTC</createdTime>
+<comment><![CDATA[einzelner Buchstabe]]></comment>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Code-Kursivdruck (J/N)" id="BFB9504D-C748-A14B-2692-35FE2C19F233">
+<createdBy>stb</createdBy>
+<createdTime>2018-08-29 11:49:39 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Text [L]" id="6AD1A245-D830-9FBF-47A3-4A7538550CB1">
+<createdBy>stb</createdBy>
+<createdTime>2018-08-29 11:49:57 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Kurztext [L]" id="7D5B8F39-4E0E-2FC5-9291-4FC171C491AE">
+<createdBy>stb</createdBy>
+<createdTime>2018-08-29 11:50:32 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Gültigkeitsperiode" id="EE4D4509-A4A4-34C2-FC38-2283E97EA34D">
+<createdBy>stb</createdBy>
+<createdTime>2018-08-29 11:50:23 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+</Entity>

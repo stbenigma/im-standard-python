@@ -1,0 +1,304 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_2" id="A3267EB6-5F97-1BA0-3C22-3C76C2D6D5F3" name="SAP Dokument">
+<createdBy>toz</createdBy>
+<createdTime>2020-12-31 15:21:17 UTC</createdTime>
+<comment><![CDATA[Beispiel:
+Technische Montageanleitung
+Whitepaper (Marketing)]]></comment>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+Beispiel:
+Technische Montageanleitung
+Whitepaper (Marketing)
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+*Team AquaClean uses the term tool for Asset
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<engineerTo>
+<item key="E6E75503-6116-388A-72BD-E82DC5E22548" value="true"/>
+<item key="AC362FED-09A7-BA00-8310-29076CD8571C" value="true"/>
+<item key="BFAC4467-8343-0983-11FB-CB866029374C" value="true"/>
+<item key="D349E673-4EDF-C611-3E51-BBBDE8744098" value="true"/>
+<item key="F20DAA19-2167-0B56-9C12-084D2FED412B" value="true"/>
+<item key="2DBF4F11-72F7-73ED-22BE-2120810BE40F" value="true"/>
+<item key="249E7ABA-8CD0-1978-78A7-F7026DA6A2EB" value="true"/>
+<item key="0F93F29F-E1ED-0300-B3B1-B58C77EE97A7" value="true"/>
+</engineerTo>
+<typeID>F20046F0-4CA2-AC46-AB61-C61A3A3E5909</typeID>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<propertyMap>
+<property name="DE_ENTI_NAME" value="Dokumenttyp"/>
+<property name="EN_ENTI_NAME" value="*Content Element"/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="DocMatNo" id="B0F453D4-76E1-F936-B7C3-055446CC6F26">
+<createdBy>toz</createdBy>
+<createdTime>2020-12-31 15:21:17 UTC</createdTime>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<engineerTo>
+<item key="E6E75503-6116-388A-72BD-E82DC5E22548" value="true"/>
+<item key="AC362FED-09A7-BA00-8310-29076CD8571C" value="true"/>
+<item key="BFAC4467-8343-0983-11FB-CB866029374C" value="true"/>
+<item key="D349E673-4EDF-C611-3E51-BBBDE8744098" value="true"/>
+<item key="F20DAA19-2167-0B56-9C12-084D2FED412B" value="true"/>
+<item key="2DBF4F11-72F7-73ED-22BE-2120810BE40F" value="true"/>
+<item key="0F93F29F-E1ED-0300-B3B1-B58C77EE97A7" value="true"/>
+<item key="249E7ABA-8CD0-1978-78A7-F7026DA6A2EB" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Beschreibung"/>
+<property name="EN_ATTR_NAME" value="Description"/>
+</propertyMap>
+</Attribute>
+<Attribute name="Name" id="B1F03241-FC33-A9A6-0939-C3E61A66D3B8">
+<createdBy>toz</createdBy>
+<createdTime>2021-01-07 11:02:52 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<engineerTo>
+<item key="E6E75503-6116-388A-72BD-E82DC5E22548" value="true"/>
+<item key="AC362FED-09A7-BA00-8310-29076CD8571C" value="true"/>
+<item key="BFAC4467-8343-0983-11FB-CB866029374C" value="true"/>
+<item key="D349E673-4EDF-C611-3E51-BBBDE8744098" value="true"/>
+<item key="F20DAA19-2167-0B56-9C12-084D2FED412B" value="true"/>
+<item key="2DBF4F11-72F7-73ED-22BE-2120810BE40F" value="true"/>
+<item key="249E7ABA-8CD0-1978-78A7-F7026DA6A2EB" value="true"/>
+<item key="0F93F29F-E1ED-0300-B3B1-B58C77EE97A7" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Beschreibung [L]" id="56F68C31-D47B-14E2-C44A-8A441DA36348">
+<createdBy>toz</createdBy>
+<createdTime>2021-01-07 11:03:12 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<engineerTo>
+<item key="E6E75503-6116-388A-72BD-E82DC5E22548" value="true"/>
+<item key="AC362FED-09A7-BA00-8310-29076CD8571C" value="true"/>
+<item key="BFAC4467-8343-0983-11FB-CB866029374C" value="true"/>
+<item key="D349E673-4EDF-C611-3E51-BBBDE8744098" value="true"/>
+<item key="F20DAA19-2167-0B56-9C12-084D2FED412B" value="true"/>
+<item key="2DBF4F11-72F7-73ED-22BE-2120810BE40F" value="true"/>
+<item key="249E7ABA-8CD0-1978-78A7-F7026DA6A2EB" value="true"/>
+<item key="0F93F29F-E1ED-0300-B3B1-B58C77EE97A7" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Erstellzeitpunkt" id="189B9F5C-AC20-6143-058F-89250FB39137">
+<createdBy>toz</createdBy>
+<createdTime>2021-01-07 11:03:39 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<engineerTo>
+<item key="E6E75503-6116-388A-72BD-E82DC5E22548" value="true"/>
+<item key="AC362FED-09A7-BA00-8310-29076CD8571C" value="true"/>
+<item key="BFAC4467-8343-0983-11FB-CB866029374C" value="true"/>
+<item key="D349E673-4EDF-C611-3E51-BBBDE8744098" value="true"/>
+<item key="F20DAA19-2167-0B56-9C12-084D2FED412B" value="true"/>
+<item key="2DBF4F11-72F7-73ED-22BE-2120810BE40F" value="true"/>
+<item key="249E7ABA-8CD0-1978-78A7-F7026DA6A2EB" value="true"/>
+<item key="0F93F29F-E1ED-0300-B3B1-B58C77EE97A7" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Version" id="B591B18E-7903-217E-6127-46F5951C2AAD">
+<createdBy>toz</createdBy>
+<createdTime>2021-01-07 11:03:51 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<engineerTo>
+<item key="E6E75503-6116-388A-72BD-E82DC5E22548" value="true"/>
+<item key="AC362FED-09A7-BA00-8310-29076CD8571C" value="true"/>
+<item key="BFAC4467-8343-0983-11FB-CB866029374C" value="true"/>
+<item key="D349E673-4EDF-C611-3E51-BBBDE8744098" value="true"/>
+<item key="F20DAA19-2167-0B56-9C12-084D2FED412B" value="true"/>
+<item key="2DBF4F11-72F7-73ED-22BE-2120810BE40F" value="true"/>
+<item key="249E7ABA-8CD0-1978-78A7-F7026DA6A2EB" value="true"/>
+<item key="0F93F29F-E1ED-0300-B3B1-B58C77EE97A7" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Änderungsnummer" id="F1091678-2D73-DB46-3FDD-746BADA58731">
+<createdBy>toz</createdBy>
+<createdTime>2020-12-31 15:21:57 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<engineerTo>
+<item key="E6E75503-6116-388A-72BD-E82DC5E22548" value="true"/>
+<item key="AC362FED-09A7-BA00-8310-29076CD8571C" value="true"/>
+<item key="BFAC4467-8343-0983-11FB-CB866029374C" value="true"/>
+<item key="D349E673-4EDF-C611-3E51-BBBDE8744098" value="true"/>
+<item key="F20DAA19-2167-0B56-9C12-084D2FED412B" value="true"/>
+<item key="2DBF4F11-72F7-73ED-22BE-2120810BE40F" value="true"/>
+<item key="0F93F29F-E1ED-0300-B3B1-B58C77EE97A7" value="true"/>
+<item key="249E7ABA-8CD0-1978-78A7-F7026DA6A2EB" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Ablagekategorie" id="A71F2039-5F91-A47E-F02C-D7B6BC599502">
+<createdBy>toz</createdBy>
+<createdTime>2020-12-31 15:21:44 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<engineerTo>
+<item key="E6E75503-6116-388A-72BD-E82DC5E22548" value="true"/>
+<item key="AC362FED-09A7-BA00-8310-29076CD8571C" value="true"/>
+<item key="BFAC4467-8343-0983-11FB-CB866029374C" value="true"/>
+<item key="D349E673-4EDF-C611-3E51-BBBDE8744098" value="true"/>
+<item key="F20DAA19-2167-0B56-9C12-084D2FED412B" value="true"/>
+<item key="2DBF4F11-72F7-73ED-22BE-2120810BE40F" value="true"/>
+<item key="0F93F29F-E1ED-0300-B3B1-B58C77EE97A7" value="true"/>
+<item key="249E7ABA-8CD0-1978-78A7-F7026DA6A2EB" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Sprachen" id="42D708FA-094C-764D-D323-3B99673F8C88">
+<createdBy>toz</createdBy>
+<createdTime>2020-12-31 15:21:49 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<engineerTo>
+<item key="E6E75503-6116-388A-72BD-E82DC5E22548" value="true"/>
+<item key="AC362FED-09A7-BA00-8310-29076CD8571C" value="true"/>
+<item key="BFAC4467-8343-0983-11FB-CB866029374C" value="true"/>
+<item key="D349E673-4EDF-C611-3E51-BBBDE8744098" value="true"/>
+<item key="F20DAA19-2167-0B56-9C12-084D2FED412B" value="true"/>
+<item key="2DBF4F11-72F7-73ED-22BE-2120810BE40F" value="true"/>
+<item key="0F93F29F-E1ED-0300-B3B1-B58C77EE97A7" value="true"/>
+<item key="249E7ABA-8CD0-1978-78A7-F7026DA6A2EB" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Stückliste" id="988AEECA-D35A-4FDE-9DE1-FB5ED66E41D4">
+<createdBy>toz</createdBy>
+<createdTime>2020-12-31 15:21:53 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<engineerTo>
+<item key="E6E75503-6116-388A-72BD-E82DC5E22548" value="true"/>
+<item key="AC362FED-09A7-BA00-8310-29076CD8571C" value="true"/>
+<item key="BFAC4467-8343-0983-11FB-CB866029374C" value="true"/>
+<item key="D349E673-4EDF-C611-3E51-BBBDE8744098" value="true"/>
+<item key="F20DAA19-2167-0B56-9C12-084D2FED412B" value="true"/>
+<item key="2DBF4F11-72F7-73ED-22BE-2120810BE40F" value="true"/>
+<item key="0F93F29F-E1ED-0300-B3B1-B58C77EE97A7" value="true"/>
+<item key="249E7ABA-8CD0-1978-78A7-F7026DA6A2EB" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Sachbearbeiter" id="24DD4F09-2E6E-ED19-D521-0C6BB2DD4599">
+<createdBy>toz</createdBy>
+<createdTime>2020-12-31 15:22:00 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<engineerTo>
+<item key="E6E75503-6116-388A-72BD-E82DC5E22548" value="true"/>
+<item key="AC362FED-09A7-BA00-8310-29076CD8571C" value="true"/>
+<item key="BFAC4467-8343-0983-11FB-CB866029374C" value="true"/>
+<item key="D349E673-4EDF-C611-3E51-BBBDE8744098" value="true"/>
+<item key="F20DAA19-2167-0B56-9C12-084D2FED412B" value="true"/>
+<item key="2DBF4F11-72F7-73ED-22BE-2120810BE40F" value="true"/>
+<item key="0F93F29F-E1ED-0300-B3B1-B58C77EE97A7" value="true"/>
+<item key="249E7ABA-8CD0-1978-78A7-F7026DA6A2EB" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Dateytyp" id="F1EFD721-C950-E4BC-E3A9-E6A63450AE43">
+<createdBy>toz</createdBy>
+<createdTime>2021-01-07 11:04:15 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<engineerTo>
+<item key="E6E75503-6116-388A-72BD-E82DC5E22548" value="true"/>
+<item key="AC362FED-09A7-BA00-8310-29076CD8571C" value="true"/>
+<item key="BFAC4467-8343-0983-11FB-CB866029374C" value="true"/>
+<item key="D349E673-4EDF-C611-3E51-BBBDE8744098" value="true"/>
+<item key="F20DAA19-2167-0B56-9C12-084D2FED412B" value="true"/>
+<item key="2DBF4F11-72F7-73ED-22BE-2120810BE40F" value="true"/>
+<item key="249E7ABA-8CD0-1978-78A7-F7026DA6A2EB" value="true"/>
+<item key="0F93F29F-E1ED-0300-B3B1-B58C77EE97A7" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Dateiherkunft" id="AC0DDCA4-7B30-75F1-8155-4E89613C1CF3">
+<createdBy>toz</createdBy>
+<createdTime>2021-01-07 11:04:20 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<engineerTo>
+<item key="E6E75503-6116-388A-72BD-E82DC5E22548" value="true"/>
+<item key="AC362FED-09A7-BA00-8310-29076CD8571C" value="true"/>
+<item key="BFAC4467-8343-0983-11FB-CB866029374C" value="true"/>
+<item key="D349E673-4EDF-C611-3E51-BBBDE8744098" value="true"/>
+<item key="F20DAA19-2167-0B56-9C12-084D2FED412B" value="true"/>
+<item key="2DBF4F11-72F7-73ED-22BE-2120810BE40F" value="true"/>
+<item key="249E7ABA-8CD0-1978-78A7-F7026DA6A2EB" value="true"/>
+<item key="0F93F29F-E1ED-0300-B3B1-B58C77EE97A7" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Status" id="60F8FC1A-26F4-399B-F8E4-E81A51E92C3A">
+<createdBy>toz</createdBy>
+<createdTime>2021-01-07 11:04:25 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<engineerTo>
+<item key="E6E75503-6116-388A-72BD-E82DC5E22548" value="true"/>
+<item key="AC362FED-09A7-BA00-8310-29076CD8571C" value="true"/>
+<item key="BFAC4467-8343-0983-11FB-CB866029374C" value="true"/>
+<item key="D349E673-4EDF-C611-3E51-BBBDE8744098" value="true"/>
+<item key="F20DAA19-2167-0B56-9C12-084D2FED412B" value="true"/>
+<item key="2DBF4F11-72F7-73ED-22BE-2120810BE40F" value="true"/>
+<item key="249E7ABA-8CD0-1978-78A7-F7026DA6A2EB" value="true"/>
+<item key="0F93F29F-E1ED-0300-B3B1-B58C77EE97A7" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="gültig ab" id="1B103C2B-ED9D-D59B-D40D-1DA9A4A6BAFC">
+<createdBy>toz</createdBy>
+<createdTime>2021-01-07 11:04:28 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<engineerTo>
+<item key="E6E75503-6116-388A-72BD-E82DC5E22548" value="true"/>
+<item key="AC362FED-09A7-BA00-8310-29076CD8571C" value="true"/>
+<item key="BFAC4467-8343-0983-11FB-CB866029374C" value="true"/>
+<item key="D349E673-4EDF-C611-3E51-BBBDE8744098" value="true"/>
+<item key="F20DAA19-2167-0B56-9C12-084D2FED412B" value="true"/>
+<item key="2DBF4F11-72F7-73ED-22BE-2120810BE40F" value="true"/>
+<item key="249E7ABA-8CD0-1978-78A7-F7026DA6A2EB" value="true"/>
+<item key="0F93F29F-E1ED-0300-B3B1-B58C77EE97A7" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+</Entity>

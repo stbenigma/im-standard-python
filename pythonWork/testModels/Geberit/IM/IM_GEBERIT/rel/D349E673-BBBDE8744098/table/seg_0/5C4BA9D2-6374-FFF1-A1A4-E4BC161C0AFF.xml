@@ -1,0 +1,140 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="5C4BA9D2-6374-FFF1-A1A4-E4BC161C0AFF" name="Artikelattribute">
+<createdBy>toz</createdBy>
+<createdTime>2021-01-20 08:58:50 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<ordsAlias>table_4</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Artikel_Werksartikelnummer" id="A81FBC15-A63B-45F1-8302-265099DE1104">
+<createdBy>toz</createdBy>
+<createdTime>2021-01-20 08:59:57 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>15 CHAR</dataTypeSize>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="795D7E5A-2A24-06A6-5D8A-C096A0AF0903" referredColumn="2F0F5D60-0763-6AC0-D321-510AA63559B5"/>
+</associations>
+</Column>
+<Column name="Attributsystem" id="7CCA675D-974D-D774-60C3-8441DD0D7DCD">
+<createdBy>toz</createdBy>
+<createdTime>2021-01-20 09:02:30 UTC</createdTime>
+<notes><![CDATA[Transformations:
+1. n/a
+
+Validation rules:
+1. Mandatory
+2. Validate agents the code list
+
+Validation error handling:
+1. In case of NULL, set default value = ETIM 7]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Attributklasse" id="EC8DED4F-EC81-8099-0B80-6F85F51C63B1">
+<createdBy>toz</createdBy>
+<createdTime>2021-01-20 09:04:32 UTC</createdTime>
+<notes><![CDATA[Transformations:
+1. Referenced ETIM class -> meta data -> ETIM ID
+
+Validation rules:
+1. Mandatory
+2. Text, length max 60 characters
+
+Validation error handling:
+1. In case of NULL -> skip row
+2. In case of length > 60 characters -> skip row]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>60 CHAR</dataTypeSize>
+<ownDataTypeParameters>60 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Attributname" id="E3240F6C-A163-BFC5-A1E8-E552074BFB69">
+<createdBy>toz</createdBy>
+<createdTime>2021-01-20 09:11:45 UTC</createdTime>
+<notes><![CDATA[Transformations: 
+1. Referenced ETIM class -> Referenced ETIM Features -> ETIM Feature ID
+
+Validation rules:
+1. Mandatory
+2. Text, length max 60 characters
+
+Validation error handling:
+1. In case of NULL -> skip row
+2. In case of length > 60 characters -> skip row]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>60 CHAR</dataTypeSize>
+<ownDataTypeParameters>60 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Attributwert" id="4AEBA388-943F-07E8-E0F5-2E07DC373236">
+<createdBy>toz</createdBy>
+<createdTime>2021-01-20 09:11:45 UTC</createdTime>
+<notes><![CDATA[Transformations: 
+1. New defintion based on JSON values:
+- Set Attributwert = first value
+- WHEN first value is NULL set Attributwert = “-”
+
+Validation rules:
+1. Mandatory
+2. Text, length max 60 characters
+
+Validation error handling:
+1. none (set “-” if NULL)
+2. In case of length > 60 characters  --> set “-”]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>60</dataTypeSize>
+<ownDataTypeParameters>60,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Attributwert2" id="EC87C6E2-E80F-3DD5-579D-2428EB02233F">
+<createdBy>toz</createdBy>
+<createdTime>2021-01-20 09:11:45 UTC</createdTime>
+<notes><![CDATA[Transformations: 
+1. New defintion based on JSON values:
+- WHEN second value exists  Set Attributwert2 = second value
+
+
+Validation rules:
+1. Text, length max 60 characters
+
+Validation error handling:
+1. In case of length > 60 characters --> set “-”]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="CBAD6318-CC2A-7DA3-D60C-028DE507D7A1" name="Artikelattribute_Artikel_FK">
+<createdBy>toz</createdBy>
+<createdTime>2021-01-20 08:59:57 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="A81FBC15-A63B-45F1-8302-265099DE1104"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

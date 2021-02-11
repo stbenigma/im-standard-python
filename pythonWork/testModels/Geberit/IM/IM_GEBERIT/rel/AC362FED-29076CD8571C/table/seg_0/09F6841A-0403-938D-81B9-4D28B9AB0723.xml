@@ -1,0 +1,210 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="09F6841A-0403-938D-81B9-4D28B9AB0723" name="Dokument">
+<createdBy>stb</createdBy>
+<createdTime>2020-11-11 15:28:13 UTC</createdTime>
+<comment><![CDATA[Dateien, deren Gesamtinhalt ausserhalb dieses Systems gepflegt werden
+
+Beispiele:
+- Richtlinie, Zertifikat, Finanzberichte, PDF von Magazinen, von ausserhalb Geberit übernommene Dokumente]]></comment>
+<generatorID>789C80D0-3FCD-4E98-7CBA-FC2BA79F2D94</generatorID>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+Dateien, deren Gesamtinhalt ausserhalb dieses Systems gepflegt werden
+
+Beispiele:
+- Richtlinie, Zertifikat, Finanzberichte, PDF von Magazinen, von ausserhalb Geberit übernommene Dokumente
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+Files whose entire contents are maintained outside of this system
+
+Examples:
+- Guidelines, certificate, financial reports, PDF from magazines, documents taken over from outside Geberit
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<typeID>F20046F0-4CA2-AC46-AB61-C61A3A3E5909</typeID>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Doc.Matno" id="50A90D90-0704-1BB8-C236-E6743F41E457">
+<createdBy>stb</createdBy>
+<createdTime>2020-11-11 15:32:40 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+</propertyMap>
+</Column>
+<Column name="Inhaltselement_Inhaltselement_ID" id="77416311-3869-4EAC-2213-BD8D1E6D8CE2">
+<createdBy>toz</createdBy>
+<createdTime>2020-11-18 10:08:23 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+</propertyMap>
+</Column>
+<Column name="Dateityp" id="A2E3116A-F413-7FEE-46E8-730456A33539">
+<createdBy>stb</createdBy>
+<createdTime>2020-11-11 15:28:13 UTC</createdTime>
+<generatorID>4DAC9EC4-7694-7DDC-509D-A238990D2465</generatorID>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+</propertyMap>
+</Column>
+<Column name="Ablagekategorie" id="53C75B2C-7E89-3811-4CA1-965BF8B019DA">
+<createdBy>stb</createdBy>
+<createdTime>2020-11-11 15:28:13 UTC</createdTime>
+<generatorID>8678428C-E145-4E81-BF5C-C5FE39B1C6D4</generatorID>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+</propertyMap>
+</Column>
+<Column name="Status" id="A0AC3497-6184-74C7-4657-0DB2E71AF8E5">
+<createdBy>stb</createdBy>
+<createdTime>2020-11-11 15:28:13 UTC</createdTime>
+<generatorID>8593DB98-5E52-02B6-CCF0-0DCE5729D836</generatorID>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+</propertyMap>
+</Column>
+<Column name="gültig_ab" id="B6EE9E49-8389-52DE-DCFA-C46CEBA27741">
+<createdBy>stb</createdBy>
+<createdTime>2020-11-11 15:28:13 UTC</createdTime>
+<generatorID>158212C8-CBEC-7177-8C71-7F4C762BF63F</generatorID>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+</propertyMap>
+</Column>
+<Column name="Sprachen" id="50A849C8-6979-D045-FC5C-35014DFA7449">
+<createdBy>toz</createdBy>
+<createdTime>2020-11-18 09:59:21 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Stückliste" id="65F5A328-3050-FCD9-767A-48E1B9F68B9B">
+<createdBy>toz</createdBy>
+<createdTime>2020-11-18 10:10:47 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Doc.Matno revision number" id="04F222F7-C710-B141-ED4C-20262724F339">
+<createdBy>toz</createdBy>
+<createdTime>2020-11-18 10:10:47 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Änderungsnummer" id="4FAD9E2C-CE01-35E3-8EBC-8C0BF10CC46B">
+<createdBy>toz</createdBy>
+<createdTime>2020-11-18 10:11:16 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Sachbearbeiter" id="41DF7007-D329-B2C9-36A8-507769A09173">
+<createdBy>toz</createdBy>
+<createdTime>2020-11-18 10:11:16 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Dateiname" id="ED44AED5-E6CC-DB6B-78BF-151E4E203E0D">
+<createdBy>toz</createdBy>
+<createdTime>2020-11-18 10:16:23 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Dokumentart" id="6844CC20-EE1A-D81A-A6FC-0F6B4F31B0C3">
+<createdBy>toz</createdBy>
+<createdTime>2020-11-18 10:25:11 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="F69190B6-E5F2-00AE-9C26-870D732487EC" referredColumn="373300A3-00F1-C804-7669-AA603E18D02E"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="67D6725B-8FA9-FAD2-A0B5-49894A804573" name="Dokument_PK">
+<createdBy>stb</createdBy>
+<createdTime>2020-11-11 15:28:13 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="50A90D90-0704-1BB8-C236-E6743F41E457"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="CDBFE7FB-115A-AB63-E97A-40D72A3AC014" name="Dokument_Dokumentart_FK">
+<createdBy>toz</createdBy>
+<createdTime>2020-11-18 10:25:11 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="6844CC20-EE1A-D81A-A6FC-0F6B4F31B0C3"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

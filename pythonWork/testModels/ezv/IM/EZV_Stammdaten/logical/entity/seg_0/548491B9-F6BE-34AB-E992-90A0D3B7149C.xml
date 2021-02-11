@@ -1,0 +1,109 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="548491B9-F6BE-34AB-E992-90A0D3B7149C" name="Zollansatz">
+<createdBy>stb</createdBy>
+<createdTime>2018-08-21 06:59:26 UTC</createdTime>
+<comment><![CDATA[Zollansatz, der für einen Import verrechnet wird.
+
+Falls es für ein Land mehr als einen Ansatz gibt, müssen alle einen einmaligen Text haben
+
+Der Wert ist mit einer Verrechnungseinheit verknüpft. Diese kann Währungen, Fr oder Rp. oder % (des Wertes der Ware) sein.
+
+Der Faktor gibt an, für wie viele Einheiten der Bemessungsgrundlage dieser Ansatz gilt (/1000 Stück)
+
+braucht Generaleinfuhrbewilligungs:
+Dient dazu, in der gleichen Zeitperiode zwei Zollbegünstigungsansätze zu erfassen. Dies geschieht jedoch in Abhängigkeit vom sog. Generaleinfuhrbewilligungs-Code für kontingentierte Waren. Agrar 07,08]]></comment>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<typeID>5D665328-E55A-0C47-AF6D-AB589191EF22</typeID>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<propertyMap>
+<property name="GSD-Tabellenname" value="ANSATZ"/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Ansatztext [T][L]" id="113A99F5-0A41-C068-47B0-A707F27E065D">
+<createdBy>stb</createdBy>
+<createdTime>2018-08-29 07:46:34 UTC</createdTime>
+<comment><![CDATA[Unterscheidungstext bei mehrfachansätzen.]]></comment>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="GSD-Attributname" value="SPRACHTEXYT"/>
+</propertyMap>
+</Attribute>
+<Attribute name="Faktor" id="C52E7B8A-31C7-21B5-756D-1FF2E4B7FFC1">
+<createdBy>stb</createdBy>
+<createdTime>2019-02-18 16:21:06 UTC</createdTime>
+<comment><![CDATA[Angabe pro wie viele Einheiten der Bemessungsgrundlage der Ansatz gilt]]></comment>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="braucht Generaleinfuhrbew (J/N)" id="1845FE5E-A64B-EFB4-866A-B073851A46CF">
+<createdBy>stb</createdBy>
+<createdTime>2018-08-22 13:37:36 UTC</createdTime>
+<comment><![CDATA[
+]]></comment>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="GSD-Attributname" value="ANS_GEBC"/>
+</propertyMap>
+</Attribute>
+<Attribute name="Direktbefoerderung (J/N)" id="FCA9A545-26FE-7F69-C302-374DF086FA96">
+<createdBy>stb</createdBy>
+<createdTime>2018-11-27 10:44:20 UTC</createdTime>
+<comment><![CDATA[Die Direktbeförderungsregel muss eingehalten werden.
+]]></comment>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="GSD-Attributname" value="ANS_DIREKTBEFOERD"/>
+</propertyMap>
+</Attribute>
+<Attribute name="Gültigkeitsperiode" id="81D9CC1D-9E1A-CC65-B1D9-C4FBD6DD404C">
+<createdBy>stb</createdBy>
+<createdTime>2018-09-10 11:33:48 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="GSD-Attributname" value="ANS_VDAT/BDAT"/>
+</propertyMap>
+</Attribute>
+</attributes>
+</Entity>

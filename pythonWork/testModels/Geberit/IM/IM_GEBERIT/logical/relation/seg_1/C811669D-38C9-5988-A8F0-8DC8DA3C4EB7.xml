@@ -1,0 +1,35 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_148" directorySegmentName="seg_1" id="C811669D-38C9-5988-A8F0-8DC8DA3C4EB7">
+<createdBy>smiai</createdBy>
+<createdTime>2020-10-20 12:20:36 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<engineerTo>
+<item key="AC362FED-09A7-BA00-8310-29076CD8571C" value="true"/>
+<item key="0F93F29F-E1ED-0300-B3B1-B58C77EE97A7" value="true"/>
+<item key="38668F89-26BC-F63A-555D-54B8056CF413" value="true"/>
+<item key="249E7ABA-8CD0-1978-78A7-F7026DA6A2EB" value="true"/>
+<item key="F8D1D625-33EA-D367-FD1B-8BE01FB72044" value="true"/>
+<item key="D349E673-4EDF-C611-3E51-BBBDE8744098" value="true"/>
+<item key="BFAC4467-8343-0983-11FB-CB866029374C" value="true"/>
+<item key="2DBF4F11-72F7-73ED-22BE-2120810BE40F" value="true"/>
+<item key="E6E75503-6116-388A-72BD-E82DC5E22548" value="true"/>
+</engineerTo>
+<arc>F1FAA557-3661-CEFB-8921-181B480B37B8</arc>
+<identifying>false</identifying>
+<nameOnSource>erreichbar über</nameOnSource>
+<nameOnTarget>ergänzt</nameOnTarget>
+<optionalSource>false</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>4F72A06A-FEBA-C5DA-47B7-96580A6DFD61</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>B403486E-1B5A-2DA2-01E9-8F0F71307E46</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="erreichbar über"/>
+<property name="DE_RELA_TEXT_TO" value="ergänzt"/>
+<property name="EN_RELA_TEXT_FROM" value="*DE* erreichbar über"/>
+<property name="EN_RELA_TEXT_TO" value="*DE* ergänzt"/>
+</propertyMap>
+</Relation>

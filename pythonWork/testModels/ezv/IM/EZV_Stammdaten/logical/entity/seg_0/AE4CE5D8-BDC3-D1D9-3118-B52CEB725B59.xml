@@ -1,0 +1,104 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="AE4CE5D8-BDC3-D1D9-3118-B52CEB725B59" name="Land">
+<createdBy>stb</createdBy>
+<createdTime>2018-08-22 13:07:16 UTC</createdTime>
+<comment><![CDATA[Land gemäss ISO-Liste.
+Für den Zoll sind auch Regionen Länder. (z.B. kanarische Inseln (XA) bei den Massnahmen)
+Was passiert z.B. wenn Spanien eine Ausnahmereferenz erhält?
+Haben dann die Kanaren auch eine?
+
+Lösung GSD:
+Falls ein PR-Ansatz für ein einzelnes Land definiert ist, wird dieses Land als Ländergruppe definiert. Damit ist der Ansatz immer mit einer LDGRP verknüpft.
+Verknüpfungen von NZE mit Ländern geht über Ländergruppen (d.h. ein einzelnes Land wird zur Ländergruppe, analog Ansatz)
+
+
+Ein Land ist ein Staat oder ein Teilgebiet, welches aus Zollsicht betrachtet wird, u.a. für die Aussenhandelsstatistik.
+Aspekte: Export-, Import-, Transitland (nach EUROSTAT, TAXUD), Sicherheitseinstufung für ein Land
+]]></comment>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<typeID>A1A7EC8C-6A9E-6802-E900-DFB764897E0D</typeID>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<propertyMap>
+<property name="GSD-Tabellenname" value="LAND"/>
+<property name="SAP_Tabellenname" value="."/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Bezeichnung [L][T]" id="C0BBBDD7-6442-F068-32A8-BB66B9A88BB6">
+<createdBy>stb</createdBy>
+<createdTime>2018-08-22 13:07:16 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="ISO Code" id="63E5B4A5-947F-4A48-5E3B-715A389BB963">
+<createdBy>stb</createdBy>
+<createdTime>2018-08-22 13:07:51 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Gültigkeitsperiode" id="3E10E40C-FA25-19DB-4190-930A77F324D2">
+<createdBy>stb</createdBy>
+<createdTime>2018-08-22 13:08:03 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="TAXUD-Land (J/N)" id="E6FAD398-4066-5692-EA0D-DCBE0EB24683">
+<createdBy>stb</createdBy>
+<createdTime>2020-05-04 14:02:38 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Tarif-Land (J/N)" id="7CE1540A-4577-2B24-3A60-DF1ED85F3014">
+<createdBy>stb</createdBy>
+<createdTime>2020-05-04 14:02:52 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="NZE-Land (J/N)" id="01B98EA4-1D98-8D23-C6A2-135283604347">
+<createdBy>stb</createdBy>
+<createdTime>2020-05-04 14:02:52 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+</Entity>

@@ -1,0 +1,650 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="3867F31C-2F35-5668-BBE8-0417E140B21B" name="Verpackungseinheit">
+<createdBy>stb</createdBy>
+<createdTime>2020-01-22 09:51:45 UTC</createdTime>
+<comment><![CDATA[Auch Logistik in Schnittstellen genannt.
+
+Beispiele:	
+10 BG-Tasche
+100 CT-Karton
+3200 PF Europalette]]></comment>
+<generatorID>AF9BE701-37DC-C515-877D-A240D97E9FFF</generatorID>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+Auch Logistik in Schnittstellen genannt.
+
+Beispiele:	
+10 BG-Tasche
+100 CT-Karton
+3200 PF Europalette
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+Also called Logistics in Interfaces.
+
+Examples:	
+10	BG Bag
+100	CT Carton
+3200	PF Europalette
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<engineerTo>
+<item key="AC362FED-09A7-BA00-8310-29076CD8571C" value="true"/>
+<item key="0F93F29F-E1ED-0300-B3B1-B58C77EE97A7" value="true"/>
+<item key="38668F89-26BC-F63A-555D-54B8056CF413" value="true"/>
+<item key="249E7ABA-8CD0-1978-78A7-F7026DA6A2EB" value="true"/>
+<item key="F8D1D625-33EA-D367-FD1B-8BE01FB72044" value="true"/>
+<item key="D349E673-4EDF-C611-3E51-BBBDE8744098" value="true"/>
+<item key="BFAC4467-8343-0983-11FB-CB866029374C" value="true"/>
+<item key="2DBF4F11-72F7-73ED-22BE-2120810BE40F" value="true"/>
+<item key="E6E75503-6116-388A-72BD-E82DC5E22548" value="true"/>
+</engineerTo>
+<typeID>DF49C028-3B17-1BD5-8487-0966D2278D58</typeID>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<shortName>PU, PackUnit</shortName>
+<createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="DE_ENTI_NAME" value="Verpackungseinheit"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_NAME" value="Package Unit"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Menge" id="2FD3C0A6-8B6D-9510-326B-A35E887049A0">
+<createdBy>stb</createdBy>
+<createdTime>2020-01-22 09:51:45 UTC</createdTime>
+<comment><![CDATA[Menge der in der Verpackung enthaltenen Produkte
+
+Anzahl der in der Auflage umstrittenen Produkte]]></comment>
+<generatorID>6E7F9E65-F253-2751-A998-20BE00D85CB6</generatorID>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+Quantity of products contained in the Packaging
+
+Quantité de produits contenu dans le Conditionnement
+]EN_ATTR_COMMENT]
+[DE_ATTR_COMMENT[
+Menge der in der Verpackung enthaltenen Produkte
+
+Anzahl der in der Auflage umstrittenen Produkte
+]DE_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<engineerTo>
+<item key="AC362FED-09A7-BA00-8310-29076CD8571C" value="true"/>
+<item key="0F93F29F-E1ED-0300-B3B1-B58C77EE97A7" value="true"/>
+<item key="38668F89-26BC-F63A-555D-54B8056CF413" value="true"/>
+<item key="249E7ABA-8CD0-1978-78A7-F7026DA6A2EB" value="true"/>
+<item key="F8D1D625-33EA-D367-FD1B-8BE01FB72044" value="true"/>
+<item key="D349E673-4EDF-C611-3E51-BBBDE8744098" value="true"/>
+<item key="BFAC4467-8343-0983-11FB-CB866029374C" value="true"/>
+<item key="2DBF4F11-72F7-73ED-22BE-2120810BE40F" value="true"/>
+<item key="E6E75503-6116-388A-72BD-E82DC5E22548" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Menge"/>
+<property name="EN_ATTR_NAME" value="Quantity"/>
+</propertyMap>
+</Attribute>
+<Attribute name="GTIN" id="B048E8F3-073C-402E-3AC0-3685042988CA">
+<createdBy>stb</createdBy>
+<createdTime>2020-01-22 09:51:45 UTC</createdTime>
+<comment><![CDATA[Global Trade Item Number (GTIN)-Code, 13- oder 14-stelliger Strichcode
+Code "Global Trade Item Number" (GTIN), Code barre à 13 ou 14 chiffres]]></comment>
+<generatorID>8191F6FA-C923-4E42-00B2-83694933795A</generatorID>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+Global Trade Item Number (GTIN) code, 13 or 14 digit barcode
+Code "Global Trade Item Number" (GTIN), code barre à 13 ou 14 chiffres
+]EN_ATTR_COMMENT]
+[DE_ATTR_COMMENT[
+Global Trade Item Number (GTIN)-Code, 13- oder 14-stelliger Strichcode
+Code "Global Trade Item Number" (GTIN), Code barre à 13 ou 14 chiffres
+]DE_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<engineerTo>
+<item key="AC362FED-09A7-BA00-8310-29076CD8571C" value="true"/>
+<item key="0F93F29F-E1ED-0300-B3B1-B58C77EE97A7" value="true"/>
+<item key="38668F89-26BC-F63A-555D-54B8056CF413" value="true"/>
+<item key="249E7ABA-8CD0-1978-78A7-F7026DA6A2EB" value="true"/>
+<item key="F8D1D625-33EA-D367-FD1B-8BE01FB72044" value="true"/>
+<item key="D349E673-4EDF-C611-3E51-BBBDE8744098" value="true"/>
+<item key="BFAC4467-8343-0983-11FB-CB866029374C" value="true"/>
+<item key="2DBF4F11-72F7-73ED-22BE-2120810BE40F" value="true"/>
+<item key="E6E75503-6116-388A-72BD-E82DC5E22548" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="GTIN"/>
+<property name="EN_ATTR_NAME" value="GTIN"/>
+</propertyMap>
+</Attribute>
+<Attribute name="Höhe" id="45F09177-9AFF-DBA7-BDFD-5B91E1DB60D4">
+<createdBy>stb</createdBy>
+<createdTime>2020-01-22 09:51:45 UTC</createdTime>
+<generatorID>776DE83E-7F59-376C-C698-5D9031FD6BC7</generatorID>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<engineerTo>
+<item key="AC362FED-09A7-BA00-8310-29076CD8571C" value="true"/>
+<item key="0F93F29F-E1ED-0300-B3B1-B58C77EE97A7" value="true"/>
+<item key="38668F89-26BC-F63A-555D-54B8056CF413" value="true"/>
+<item key="249E7ABA-8CD0-1978-78A7-F7026DA6A2EB" value="true"/>
+<item key="F8D1D625-33EA-D367-FD1B-8BE01FB72044" value="true"/>
+<item key="D349E673-4EDF-C611-3E51-BBBDE8744098" value="true"/>
+<item key="BFAC4467-8343-0983-11FB-CB866029374C" value="true"/>
+<item key="2DBF4F11-72F7-73ED-22BE-2120810BE40F" value="true"/>
+<item key="E6E75503-6116-388A-72BD-E82DC5E22548" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Höhe"/>
+<property name="EN_ATTR_NAME" value="Height"/>
+</propertyMap>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>0</beginValue>
+<description>&gt;=0</description>
+</rangeDef>
+</listOfRanges>
+</Attribute>
+<Attribute name="Bevorzugte Höheneinheit" id="B7B677EE-9053-BC6E-1A2B-881ECB6A3B2F">
+<createdBy>stb</createdBy>
+<createdTime>2020-01-22 09:51:45 UTC</createdTime>
+<comment><![CDATA[Welche Höheneinheit sollte üblicherweise dargestellt werden]]></comment>
+<generatorID>B3707B12-EA68-4494-9808-B68B2871D2A2</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Welche Höheneinheit sollte üblicherweise dargestellt werden
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Which height unit should be represented usually
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<engineerTo>
+<item key="AC362FED-09A7-BA00-8310-29076CD8571C" value="true"/>
+<item key="0F93F29F-E1ED-0300-B3B1-B58C77EE97A7" value="true"/>
+<item key="38668F89-26BC-F63A-555D-54B8056CF413" value="true"/>
+<item key="249E7ABA-8CD0-1978-78A7-F7026DA6A2EB" value="true"/>
+<item key="F8D1D625-33EA-D367-FD1B-8BE01FB72044" value="true"/>
+<item key="D349E673-4EDF-C611-3E51-BBBDE8744098" value="true"/>
+<item key="BFAC4467-8343-0983-11FB-CB866029374C" value="true"/>
+<item key="2DBF4F11-72F7-73ED-22BE-2120810BE40F" value="true"/>
+<item key="E6E75503-6116-388A-72BD-E82DC5E22548" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Bevorzugte Höheneinheit"/>
+<property name="EN_ATTR_NAME" value="Preferred Height Unit"/>
+</propertyMap>
+</Attribute>
+<Attribute name="Länge" id="EEE2E888-6E81-11F1-1361-973B37310835">
+<createdBy>stb</createdBy>
+<createdTime>2020-01-22 09:51:45 UTC</createdTime>
+<comment><![CDATA[Erstellt am 17/1/2020 15:39:32 während des Imports aus /Users/stb/Documents/DataModeler/Import/testimport3.csv]]></comment>
+<generatorID>76AC1033-B32B-F3F1-D9FF-E207C831F14B</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Erstellt am 17/1/2020 15:39:32 während des Imports aus /Users/stb/Documents/DataModeler/Import/testimport3.csv
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Created on 17/1/2020  15:39:32 during import from /Users/stb/Documents/DataModeler/Import/testimport3.csv
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<engineerTo>
+<item key="AC362FED-09A7-BA00-8310-29076CD8571C" value="true"/>
+<item key="0F93F29F-E1ED-0300-B3B1-B58C77EE97A7" value="true"/>
+<item key="38668F89-26BC-F63A-555D-54B8056CF413" value="true"/>
+<item key="249E7ABA-8CD0-1978-78A7-F7026DA6A2EB" value="true"/>
+<item key="F8D1D625-33EA-D367-FD1B-8BE01FB72044" value="true"/>
+<item key="D349E673-4EDF-C611-3E51-BBBDE8744098" value="true"/>
+<item key="BFAC4467-8343-0983-11FB-CB866029374C" value="true"/>
+<item key="2DBF4F11-72F7-73ED-22BE-2120810BE40F" value="true"/>
+<item key="E6E75503-6116-388A-72BD-E82DC5E22548" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Länge"/>
+<property name="EN_ATTR_NAME" value="Length"/>
+</propertyMap>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>0</beginValue>
+<description>&gt;=0</description>
+</rangeDef>
+</listOfRanges>
+</Attribute>
+<Attribute name="Bevorzugte Längeneinheit" id="01988331-B9E6-3841-4500-B61350A134F3">
+<createdBy>stb</createdBy>
+<createdTime>2020-01-22 09:51:45 UTC</createdTime>
+<comment><![CDATA[Welche Längeneinheit sollte üblicherweise dargestellt werden]]></comment>
+<generatorID>E7BA3992-B71C-1E88-5F9A-FFAA89B8BBFB</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Welche Längeneinheit sollte üblicherweise dargestellt werden
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Which length unit should be represented usually
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<engineerTo>
+<item key="AC362FED-09A7-BA00-8310-29076CD8571C" value="true"/>
+<item key="0F93F29F-E1ED-0300-B3B1-B58C77EE97A7" value="true"/>
+<item key="38668F89-26BC-F63A-555D-54B8056CF413" value="true"/>
+<item key="249E7ABA-8CD0-1978-78A7-F7026DA6A2EB" value="true"/>
+<item key="F8D1D625-33EA-D367-FD1B-8BE01FB72044" value="true"/>
+<item key="D349E673-4EDF-C611-3E51-BBBDE8744098" value="true"/>
+<item key="BFAC4467-8343-0983-11FB-CB866029374C" value="true"/>
+<item key="2DBF4F11-72F7-73ED-22BE-2120810BE40F" value="true"/>
+<item key="E6E75503-6116-388A-72BD-E82DC5E22548" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Bevorzugte Längeneinheit"/>
+<property name="EN_ATTR_NAME" value="Preferred Length Unit"/>
+</propertyMap>
+</Attribute>
+<Attribute name="Breite" id="46245259-67A7-8D75-E1CA-B975239B07BD">
+<createdBy>stb</createdBy>
+<createdTime>2020-01-22 09:51:45 UTC</createdTime>
+<comment><![CDATA[Erstellt am 17/1/2020 15:39:32 während des Imports aus /Users/stb/Documents/DataModeler/Import/testimport3.csv]]></comment>
+<generatorID>01C91827-0878-F86B-7673-0D3D6E745EC1</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Erstellt am 17/1/2020 15:39:32 während des Imports aus /Users/stb/Documents/DataModeler/Import/testimport3.csv
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Created on 17/1/2020  15:39:32 during import from /Users/stb/Documents/DataModeler/Import/testimport3.csv
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<engineerTo>
+<item key="AC362FED-09A7-BA00-8310-29076CD8571C" value="true"/>
+<item key="0F93F29F-E1ED-0300-B3B1-B58C77EE97A7" value="true"/>
+<item key="38668F89-26BC-F63A-555D-54B8056CF413" value="true"/>
+<item key="249E7ABA-8CD0-1978-78A7-F7026DA6A2EB" value="true"/>
+<item key="F8D1D625-33EA-D367-FD1B-8BE01FB72044" value="true"/>
+<item key="D349E673-4EDF-C611-3E51-BBBDE8744098" value="true"/>
+<item key="BFAC4467-8343-0983-11FB-CB866029374C" value="true"/>
+<item key="2DBF4F11-72F7-73ED-22BE-2120810BE40F" value="true"/>
+<item key="E6E75503-6116-388A-72BD-E82DC5E22548" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Breite"/>
+<property name="EN_ATTR_NAME" value="Width"/>
+</propertyMap>
+</Attribute>
+<Attribute name="Bevorzugte Breiteneinheit" id="A9CF0ACF-0AFA-FBAE-5F13-9A22580FA147">
+<createdBy>stb</createdBy>
+<createdTime>2020-01-22 09:51:45 UTC</createdTime>
+<comment><![CDATA[Erstellt am 17/1/2020 15:39:32 während des Imports aus /Users/stb/Documents/DataModeler/Import/testimport3.csv]]></comment>
+<generatorID>B3207891-3386-7467-5D6A-53B55C8788FE</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Erstellt am 17/1/2020 15:39:32 während des Imports aus /Users/stb/Documents/DataModeler/Import/testimport3.csv
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Created on 17/1/2020  15:39:32 during import from /Users/stb/Documents/DataModeler/Import/testimport3.csv
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<engineerTo>
+<item key="AC362FED-09A7-BA00-8310-29076CD8571C" value="true"/>
+<item key="0F93F29F-E1ED-0300-B3B1-B58C77EE97A7" value="true"/>
+<item key="38668F89-26BC-F63A-555D-54B8056CF413" value="true"/>
+<item key="249E7ABA-8CD0-1978-78A7-F7026DA6A2EB" value="true"/>
+<item key="F8D1D625-33EA-D367-FD1B-8BE01FB72044" value="true"/>
+<item key="D349E673-4EDF-C611-3E51-BBBDE8744098" value="true"/>
+<item key="BFAC4467-8343-0983-11FB-CB866029374C" value="true"/>
+<item key="2DBF4F11-72F7-73ED-22BE-2120810BE40F" value="true"/>
+<item key="E6E75503-6116-388A-72BD-E82DC5E22548" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Bevorzugte Breiteneinheit"/>
+<property name="EN_ATTR_NAME" value="Preferred Width Unit"/>
+</propertyMap>
+</Attribute>
+<Attribute name="Bruttogewicht" id="89B6AEB5-B4BA-35C7-4644-4931AF4BC50B">
+<createdBy>stb</createdBy>
+<createdTime>2020-01-22 09:51:45 UTC</createdTime>
+<comment><![CDATA[Erstellt am 17/1/2020 15:39:32 während des Imports aus /Users/stb/Documents/DataModeler/Import/testimport3.csv]]></comment>
+<generatorID>B4F20EDF-6357-A65A-A2D0-937929D4B557</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Erstellt am 17/1/2020 15:39:32 während des Imports aus /Users/stb/Documents/DataModeler/Import/testimport3.csv
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Created on 17/1/2020  15:39:32 during import from /Users/stb/Documents/DataModeler/Import/testimport3.csv
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<engineerTo>
+<item key="AC362FED-09A7-BA00-8310-29076CD8571C" value="true"/>
+<item key="0F93F29F-E1ED-0300-B3B1-B58C77EE97A7" value="true"/>
+<item key="38668F89-26BC-F63A-555D-54B8056CF413" value="true"/>
+<item key="249E7ABA-8CD0-1978-78A7-F7026DA6A2EB" value="true"/>
+<item key="F8D1D625-33EA-D367-FD1B-8BE01FB72044" value="true"/>
+<item key="D349E673-4EDF-C611-3E51-BBBDE8744098" value="true"/>
+<item key="BFAC4467-8343-0983-11FB-CB866029374C" value="true"/>
+<item key="2DBF4F11-72F7-73ED-22BE-2120810BE40F" value="true"/>
+<item key="E6E75503-6116-388A-72BD-E82DC5E22548" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Bruttogewicht"/>
+<property name="EN_ATTR_NAME" value="Gross weight"/>
+</propertyMap>
+</Attribute>
+<Attribute name="Bevorzugte Bruttogewichtseinheit" id="99DABB27-E713-1D69-B4C1-24FA335DF0BE">
+<createdBy>stb</createdBy>
+<createdTime>2020-01-22 09:51:45 UTC</createdTime>
+<comment><![CDATA[Erstellt am 17/1/2020 15:39:32 während des Imports aus /Users/stb/Documents/DataModeler/Import/testimport3.csv]]></comment>
+<generatorID>F25B52AA-A11C-DE7B-741B-820C7601E064</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Erstellt am 17/1/2020 15:39:32 während des Imports aus /Users/stb/Documents/DataModeler/Import/testimport3.csv
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Created on 17/1/2020  15:39:32 during import from /Users/stb/Documents/DataModeler/Import/testimport3.csv
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<engineerTo>
+<item key="AC362FED-09A7-BA00-8310-29076CD8571C" value="true"/>
+<item key="0F93F29F-E1ED-0300-B3B1-B58C77EE97A7" value="true"/>
+<item key="38668F89-26BC-F63A-555D-54B8056CF413" value="true"/>
+<item key="249E7ABA-8CD0-1978-78A7-F7026DA6A2EB" value="true"/>
+<item key="F8D1D625-33EA-D367-FD1B-8BE01FB72044" value="true"/>
+<item key="D349E673-4EDF-C611-3E51-BBBDE8744098" value="true"/>
+<item key="BFAC4467-8343-0983-11FB-CB866029374C" value="true"/>
+<item key="2DBF4F11-72F7-73ED-22BE-2120810BE40F" value="true"/>
+<item key="E6E75503-6116-388A-72BD-E82DC5E22548" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Bevorzugte Bruttogewichtseinheit"/>
+<property name="EN_ATTR_NAME" value="Preferred Gross weight Unit"/>
+</propertyMap>
+</Attribute>
+<Attribute name="Volumen" id="C5394F3D-F9ED-5F08-54EF-92DD782C41E6">
+<createdBy>stb</createdBy>
+<createdTime>2020-01-22 09:51:45 UTC</createdTime>
+<comment><![CDATA[Erstellt am 17/1/2020 15:39:32 während des Imports aus /Users/stb/Documents/DataModeler/Import/testimport3.csv]]></comment>
+<generatorID>ABD0E760-3719-9ED6-8454-7D044319223A</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Erstellt am 17/1/2020 15:39:32 während des Imports aus /Users/stb/Documents/DataModeler/Import/testimport3.csv
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Created on 17/1/2020  15:39:32 during import from /Users/stb/Documents/DataModeler/Import/testimport3.csv
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<engineerTo>
+<item key="AC362FED-09A7-BA00-8310-29076CD8571C" value="true"/>
+<item key="0F93F29F-E1ED-0300-B3B1-B58C77EE97A7" value="true"/>
+<item key="38668F89-26BC-F63A-555D-54B8056CF413" value="true"/>
+<item key="249E7ABA-8CD0-1978-78A7-F7026DA6A2EB" value="true"/>
+<item key="F8D1D625-33EA-D367-FD1B-8BE01FB72044" value="true"/>
+<item key="D349E673-4EDF-C611-3E51-BBBDE8744098" value="true"/>
+<item key="BFAC4467-8343-0983-11FB-CB866029374C" value="true"/>
+<item key="2DBF4F11-72F7-73ED-22BE-2120810BE40F" value="true"/>
+<item key="E6E75503-6116-388A-72BD-E82DC5E22548" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Volumen"/>
+<property name="EN_ATTR_NAME" value="*Volume"/>
+</propertyMap>
+</Attribute>
+<Attribute name="Bevorzugte Volumeneinheit" id="3D008C2F-6556-6E82-6DA5-F30D477E127F">
+<createdBy>stb</createdBy>
+<createdTime>2020-01-22 09:51:45 UTC</createdTime>
+<comment><![CDATA[Erstellt am 17/1/2020 15:39:32 während des Imports aus /Users/stb/Documents/DataModeler/Import/testimport3.csv]]></comment>
+<generatorID>CECCF8AE-C4CF-7FD2-AEAC-CA07CCB7D971</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Erstellt am 17/1/2020 15:39:32 während des Imports aus /Users/stb/Documents/DataModeler/Import/testimport3.csv
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Created on 17/1/2020  15:39:32 during import from /Users/stb/Documents/DataModeler/Import/testimport3.csv
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<engineerTo>
+<item key="AC362FED-09A7-BA00-8310-29076CD8571C" value="true"/>
+<item key="0F93F29F-E1ED-0300-B3B1-B58C77EE97A7" value="true"/>
+<item key="38668F89-26BC-F63A-555D-54B8056CF413" value="true"/>
+<item key="249E7ABA-8CD0-1978-78A7-F7026DA6A2EB" value="true"/>
+<item key="F8D1D625-33EA-D367-FD1B-8BE01FB72044" value="true"/>
+<item key="D349E673-4EDF-C611-3E51-BBBDE8744098" value="true"/>
+<item key="BFAC4467-8343-0983-11FB-CB866029374C" value="true"/>
+<item key="2DBF4F11-72F7-73ED-22BE-2120810BE40F" value="true"/>
+<item key="E6E75503-6116-388A-72BD-E82DC5E22548" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Bevorzugte Volumeneinheit"/>
+<property name="EN_ATTR_NAME" value="Preferred Volume Unit"/>
+</propertyMap>
+</Attribute>
+<Attribute name="Länge x Breite x Höhe" id="F55E1C53-A4EF-2F42-3119-CE010953600E">
+<createdBy>stb</createdBy>
+<createdTime>2020-03-09 10:43:17 UTC</createdTime>
+<comment><![CDATA[Das berechnete Attribut für die kombinierte Ausgabe der Länge, Breite und Höhe der PU]]></comment>
+<generatorID>31041A7C-3091-B273-7D03-3DC462DF0C10</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Das berechnete Attribut für die kombinierte Ausgabe der Länge, Breite und Höhe der PU
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+The calculated attribute for the combined output of the length, width and height of the PU
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<engineerTo>
+<item key="AC362FED-09A7-BA00-8310-29076CD8571C" value="true"/>
+<item key="0F93F29F-E1ED-0300-B3B1-B58C77EE97A7" value="true"/>
+<item key="38668F89-26BC-F63A-555D-54B8056CF413" value="true"/>
+<item key="249E7ABA-8CD0-1978-78A7-F7026DA6A2EB" value="true"/>
+<item key="F8D1D625-33EA-D367-FD1B-8BE01FB72044" value="true"/>
+<item key="D349E673-4EDF-C611-3E51-BBBDE8744098" value="true"/>
+<item key="BFAC4467-8343-0983-11FB-CB866029374C" value="true"/>
+<item key="2DBF4F11-72F7-73ED-22BE-2120810BE40F" value="true"/>
+<item key="E6E75503-6116-388A-72BD-E82DC5E22548" value="true"/>
+</engineerTo>
+<formulaDesc>str(length) || &apos; x &apos; || str(lwidth) || &apos; x &apos; || str(height) </formulaDesc>
+<nullsAllowed>true</nullsAllowed>
+<sourceType>Derived</sourceType>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<source>pu</source>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Länge x Breite x Höhe"/>
+<property name="EN_ATTR_NAME" value="length x width x height"/>
+</propertyMap>
+</Attribute>
+<Attribute name="ausgewählt(???)" id="1D676B42-CD32-962B-F2BB-DA2418271675">
+<createdBy>stb</createdBy>
+<createdTime>2020-03-09 10:43:17 UTC</createdTime>
+<comment><![CDATA[Die Kombination von "unverpackt / lose" (Art der Verpackung) und "nicht etikettiert (ohne GTIN)" (PU1 - Art der Etikettierung), die einen transparenten Hinweis darauf gibt, dass in dieser Kombination die Bestellmenge des Artikels unabhängig davon etikettiert und verpackt beim Großhändler eintrifft.]]></comment>
+<generatorID>8BDB9544-4A00-ACF0-60D0-C081F457D264</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Die Kombination von "unverpackt / lose" (Art der Verpackung) und "nicht etikettiert (ohne GTIN)" (PU1 - Art der Etikettierung), die einen transparenten Hinweis darauf gibt, dass in dieser Kombination die Bestellmenge des Artikels unabhängig davon etikettiert und verpackt beim Großhändler eintrifft.
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+The combination of 'not packed/loose' (type of packaging) and 'not labelled (without GTIN)' (PU1 – type of labelling), providing a transparent indication that, in this combination, the order quantity of the article arrives at the wholesaler labelled and packaged regardless.
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<engineerTo>
+<item key="AC362FED-09A7-BA00-8310-29076CD8571C" value="true"/>
+<item key="0F93F29F-E1ED-0300-B3B1-B58C77EE97A7" value="true"/>
+<item key="38668F89-26BC-F63A-555D-54B8056CF413" value="true"/>
+<item key="249E7ABA-8CD0-1978-78A7-F7026DA6A2EB" value="true"/>
+<item key="F8D1D625-33EA-D367-FD1B-8BE01FB72044" value="true"/>
+<item key="D349E673-4EDF-C611-3E51-BBBDE8744098" value="true"/>
+<item key="BFAC4467-8343-0983-11FB-CB866029374C" value="true"/>
+<item key="2DBF4F11-72F7-73ED-22BE-2120810BE40F" value="true"/>
+<item key="E6E75503-6116-388A-72BD-E82DC5E22548" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="ausgewählt(???)"/>
+<property name="EN_ATTR_NAME" value="picked(??)"/>
+</propertyMap>
+</Attribute>
+<Attribute name="Art der Kennzeichnung" id="DE1604A1-4593-885A-8AB6-EA7ECCA3674F">
+<createdBy>stb</createdBy>
+<createdTime>2020-03-09 10:43:17 UTC</createdTime>
+<comment><![CDATA[Legt fest, ob und wie die PU1 beschriftet bzw. etikettiert wird und welche Dokumente sie gegebenenfalls begleiten sollen. Mit Hilfe dieser Informationen weiß der Großhändler z.B., ob ein GTIN-Code auf dieser PU an der Kasse gescannt werden kann.]]></comment>
+<generatorID>36FBDC71-CDA0-5131-610B-2AAE01D2AF6B</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Legt fest, ob und wie die PU1 beschriftet bzw. etikettiert wird und welche Dokumente sie gegebenenfalls begleiten sollen. Mit Hilfe dieser Informationen weiß der Großhändler z.B., ob ein GTIN-Code auf dieser PU an der Kasse gescannt werden kann.
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Defines whether and how the PU1 is inscribed/labelled, and which documents are to accompany it, if any. With the help of this information, the wholesaler, for example, knows whether a GTIN code on this PU can be scanned at the till.
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<engineerTo>
+<item key="AC362FED-09A7-BA00-8310-29076CD8571C" value="true"/>
+<item key="0F93F29F-E1ED-0300-B3B1-B58C77EE97A7" value="true"/>
+<item key="38668F89-26BC-F63A-555D-54B8056CF413" value="true"/>
+<item key="249E7ABA-8CD0-1978-78A7-F7026DA6A2EB" value="true"/>
+<item key="F8D1D625-33EA-D367-FD1B-8BE01FB72044" value="true"/>
+<item key="D349E673-4EDF-C611-3E51-BBBDE8744098" value="true"/>
+<item key="BFAC4467-8343-0983-11FB-CB866029374C" value="true"/>
+<item key="2DBF4F11-72F7-73ED-22BE-2120810BE40F" value="true"/>
+<item key="E6E75503-6116-388A-72BD-E82DC5E22548" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Art der Kennzeichnung"/>
+<property name="EN_ATTR_NAME" value="Type of labelling"/>
+</propertyMap>
+</Attribute>
+<Attribute name="Verpackung mit Ablagerung " id="834B2D3F-1013-5631-D28E-4E97B4D1504D">
+<createdBy>stb</createdBy>
+<createdTime>2020-01-22 09:51:45 UTC</createdTime>
+<comment><![CDATA[**Identifizieren Sie Produkte mit einem Pfand. Beispiel: Rolle, Gasflasche, ... Geben Sie auf dem Feld 1 an. Standardmäßig leeres Feld
+Identifier les produits disposits d'une consigne. Beispiel : touret, bonbonne de gaz, ... Indiquer 1 dans le champ. Der Champion im Video]]></comment>
+<generatorID>AF186EDA-C54E-6434-1EFF-811CFA4D7493</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+**Identifizieren Sie Produkte mit einem Pfand. Beispiel: Rolle, Gasflasche, ... Geben Sie auf dem Feld 1 an. Standardmäßig leeres Feld
+Identifier les produits disposits d'une consigne. Beispiel : touret, bonbonne de gaz, ... Indiquer 1 dans le champ. Der Champion im Video
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Identify products with a deposit. Example: reel, gas bottle, ... Indicate 1 in the field. Default empty field
+Identifier les produits disposant d'une consigne. Exemple : touret, bonbonne de gaz, ... Indiquer 1 dans le champ. Champ vide par défaut
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<engineerTo>
+<item key="AC362FED-09A7-BA00-8310-29076CD8571C" value="true"/>
+<item key="0F93F29F-E1ED-0300-B3B1-B58C77EE97A7" value="true"/>
+<item key="38668F89-26BC-F63A-555D-54B8056CF413" value="true"/>
+<item key="249E7ABA-8CD0-1978-78A7-F7026DA6A2EB" value="true"/>
+<item key="F8D1D625-33EA-D367-FD1B-8BE01FB72044" value="true"/>
+<item key="D349E673-4EDF-C611-3E51-BBBDE8744098" value="true"/>
+<item key="BFAC4467-8343-0983-11FB-CB866029374C" value="true"/>
+<item key="2DBF4F11-72F7-73ED-22BE-2120810BE40F" value="true"/>
+<item key="E6E75503-6116-388A-72BD-E82DC5E22548" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Verpackung mit Ablagerung "/>
+<property name="EN_ATTR_NAME" value="packaing with deposit "/>
+</propertyMap>
+</Attribute>
+<Attribute name="maximale Anzahl von Stapeln" id="539B38B1-A2D4-4A01-6F3A-44C64DB98780">
+<createdBy>stb</createdBy>
+<createdTime>2020-01-22 09:51:45 UTC</createdTime>
+<comment><![CDATA[**Anzahl der Male, die das Paket gestapelt oder auf sich selbst gestapelt werden kann. Maximalwert: 99. Standardmäßig leer
+
+Nombre de fois ou the conditionnement peut-être empilé ou gerbé sur lui-même. Valeur maximum : 99. video par défaut]]></comment>
+<generatorID>DB621119-B6F6-53C6-6769-FCA74C302EAA</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+**Anzahl der Male, die das Paket gestapelt oder auf sich selbst gestapelt werden kann. Maximalwert: 99. Standardmäßig leer
+
+Nombre de fois ou the conditionnement peut-être empilé ou gerbé sur lui-même. Valeur maximum : 99. video par défaut
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Number of times the package can be stacked or stacked on itself. Maximum value: 99. Default Empty
+
+Nombre de fois ou le conditionnement peut-être empilé ou gerbé sur lui-même. Valeur maximum : 99. Vide par défaut
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<engineerTo>
+<item key="AC362FED-09A7-BA00-8310-29076CD8571C" value="true"/>
+<item key="0F93F29F-E1ED-0300-B3B1-B58C77EE97A7" value="true"/>
+<item key="38668F89-26BC-F63A-555D-54B8056CF413" value="true"/>
+<item key="249E7ABA-8CD0-1978-78A7-F7026DA6A2EB" value="true"/>
+<item key="F8D1D625-33EA-D367-FD1B-8BE01FB72044" value="true"/>
+<item key="D349E673-4EDF-C611-3E51-BBBDE8744098" value="true"/>
+<item key="BFAC4467-8343-0983-11FB-CB866029374C" value="true"/>
+<item key="2DBF4F11-72F7-73ED-22BE-2120810BE40F" value="true"/>
+<item key="E6E75503-6116-388A-72BD-E82DC5E22548" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="maximale Anzahl von Stapeln"/>
+<property name="EN_ATTR_NAME" value="max stacking number"/>
+</propertyMap>
+</Attribute>
+</attributes>
+</Entity>

@@ -1,0 +1,32 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_203" directorySegmentName="seg_1" id="94026CFB-A102-B9E6-2D2C-C3AECF06BC39">
+<createdBy>stb</createdBy>
+<createdTime>2019-05-29 09:20:43 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+</engineerTo>
+<useSurrogateKey>true</useSurrogateKey>
+<identifying>false</identifying>
+<nameOnSource>besteht aus</nameOnSource>
+<nameOnTarget>verwendet in</nameOnTarget>
+<optionalSource>false</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>09A098F5-9B65-05FE-6220-FDFBCBE2C441</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>DA6F9E90-79E1-7DCE-4288-362FF48E06CE</targetEntity>
+<transferable>true</transferable>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<attribute name="% Anteil" id="BDCC61A0-B9E3-0E5A-6E93-A188CAAFC1E3">
+<createdBy>stb</createdBy>
+<createdTime>2019-05-29 09:23:50 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</attribute>
+</attributes>
+</Relation>

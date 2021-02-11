@@ -1,0 +1,90 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="F29FB42C-ECFB-202C-5CD0-27AE55FEADDF" name="Beitrag">
+<createdBy>cle</createdBy>
+<createdTime>2018-10-15 13:34:50 UTC</createdTime>
+<comment><![CDATA[ZU KLÄREN: Mögliche Alternativbegriffe wären Content, Story, Beitrag, Deliverable, Publikation, Post. Begriff Artikel ist schon belegt.
+
+Sammlung mehrerer Assets zur gemeinsamen Veröffentlichung
+
+Beinhaltet Beiträge von CorpCom, AquaClean, Marcom, Digital
+
+Beispiele: Magazinbeitrag bestehend aus mehreren Assets (Text, Foto, Illustration) oder Website-Beitrag (Text, Bild, Video)]]></comment>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+ZU KLÄREN: Mögliche Alternativbegriffe wären Content, Story, Beitrag, Deliverable, Publikation, Post. Begriff Artikel ist schon belegt.
+
+Sammlung mehrerer Assets zur gemeinsamen Veröffentlichung
+
+Beinhaltet Beiträge von CorpCom, AquaClean, Marcom, Digital
+
+Beispiele: Magazinbeitrag bestehend aus mehreren Assets (Text, Foto, Illustration) oder Website-Beitrag (Text, Bild, Video)
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+ZU KLÄREN: Mögliche Alternativbegriffe wären Content, Story, Beitrag, Deliverable, Publikation, Post. Begriff Artikel ist schon belegt.
+
+Sammlung mehrerer Assets zur gemeinsamen Veröffentlichung
+
+Beinhaltet Beiträge von CorpCom, AquaClean, Marcom, Digital
+
+Beispiele: Magazinbeitrag bestehend aus mehreren Assets (Text, Foto, Illustration) oder Website-Beitrag (Text, Bild, Video)
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<engineerTo>
+<item key="AC362FED-09A7-BA00-8310-29076CD8571C" value="true"/>
+<item key="0F93F29F-E1ED-0300-B3B1-B58C77EE97A7" value="true"/>
+<item key="38668F89-26BC-F63A-555D-54B8056CF413" value="true"/>
+<item key="249E7ABA-8CD0-1978-78A7-F7026DA6A2EB" value="true"/>
+<item key="F8D1D625-33EA-D367-FD1B-8BE01FB72044" value="true"/>
+<item key="D349E673-4EDF-C611-3E51-BBBDE8744098" value="true"/>
+<item key="BFAC4467-8343-0983-11FB-CB866029374C" value="true"/>
+<item key="2DBF4F11-72F7-73ED-22BE-2120810BE40F" value="true"/>
+<item key="E6E75503-6116-388A-72BD-E82DC5E22548" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<propertyMap>
+<property name="DE_ENTI_NAME" value="Beitrag"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_NAME" value="Contribution"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="ISO2-Code" id="3D8CA85F-3AC4-0F8C-DB8B-0A7A7525E3B4">
+<createdBy>nicolasschweiger</createdBy>
+<createdTime>2020-03-20 10:50:38 UTC</createdTime>
+<generatorID>8A59D5BE-F27F-57AF-32F6-7832325FAB8D</generatorID>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<engineerTo>
+<item key="AC362FED-09A7-BA00-8310-29076CD8571C" value="true"/>
+<item key="0F93F29F-E1ED-0300-B3B1-B58C77EE97A7" value="true"/>
+<item key="38668F89-26BC-F63A-555D-54B8056CF413" value="true"/>
+<item key="249E7ABA-8CD0-1978-78A7-F7026DA6A2EB" value="true"/>
+<item key="F8D1D625-33EA-D367-FD1B-8BE01FB72044" value="true"/>
+<item key="D349E673-4EDF-C611-3E51-BBBDE8744098" value="true"/>
+<item key="BFAC4467-8343-0983-11FB-CB866029374C" value="true"/>
+<item key="2DBF4F11-72F7-73ED-22BE-2120810BE40F" value="true"/>
+<item key="E6E75503-6116-388A-72BD-E82DC5E22548" value="true"/>
+</engineerTo>
+<referedAttribute>7F3CDF26-54F3-142A-4FC1-63D2DBE22319</referedAttribute>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="ISO2-Code"/>
+<property name="EN_ATTR_NAME" value="ISO2-Code"/>
+</propertyMap>
+</Attribute>
+</attributes>
+</Entity>

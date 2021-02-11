@@ -1,0 +1,49 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="06C4A456-2332-6C37-C6AD-793782A47776" name="MAKT">
+<createdBy>stb</createdBy>
+<createdTime>2020-11-13 14:10:46 UTC</createdTime>
+<comment><![CDATA[Created on 13/11/2020  15:10:46 during import from /Users/stb/Downloads/SAP-Import-ODM.csv]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<ordsAlias>wasistdas</ordsAlias>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Materialkurztext" id="B47B7D21-436C-B89B-112C-1FF13AE3DB48">
+<createdBy>stb</createdBy>
+<createdTime>2020-11-13 14:10:46 UTC</createdTime>
+<comment><![CDATA[only DE and EN are relevant for DQM, all other languages are not being checked. only DE and EN is mandatory.]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="MAKTX"/>
+</propertyMap>
+</Column>
+<Column name="MARA_Material" id="E0672013-E58B-D38C-FE5D-1E2B52C38212">
+<createdBy>SMINI</createdBy>
+<createdTime>2020-11-17 15:52:38 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="16E9E49D-D57C-4748-9822-D6485A24E9CE" referredColumn="4A76184A-100D-F33E-C565-1C1A77D64BE2"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="214F00DD-969A-431E-C952-C25D041B63CC" name="MAKT_MARA_FK">
+<createdBy>SMINI</createdBy>
+<createdTime>2020-11-17 15:52:38 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="E0672013-E58B-D38C-FE5D-1E2B52C38212"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

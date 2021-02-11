@@ -1,0 +1,143 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="43F4C576-8A6F-9A65-D7DB-7A254800DA1C" name="Verbindung (BIM?) Typ">
+<createdBy>stb</createdBy>
+<createdTime>2020-03-09 12:47:41 UTC</createdTime>
+<comment><![CDATA[Definition des Datenaustausch-Standardmodells]]></comment>
+<notes><![CDATA[[EN_ENTI_COMMENT[
+**Definition of the data exchange standard model
+]EN_ENTI_COMMENT]
+[DE_ENTI_COMMENT[
+Definition des Datenaustausch-Standardmodells
+]DE_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<engineerTo>
+<item key="AC362FED-09A7-BA00-8310-29076CD8571C" value="true"/>
+<item key="0F93F29F-E1ED-0300-B3B1-B58C77EE97A7" value="true"/>
+<item key="38668F89-26BC-F63A-555D-54B8056CF413" value="true"/>
+<item key="249E7ABA-8CD0-1978-78A7-F7026DA6A2EB" value="true"/>
+<item key="F8D1D625-33EA-D367-FD1B-8BE01FB72044" value="true"/>
+<item key="D349E673-4EDF-C611-3E51-BBBDE8744098" value="true"/>
+<item key="BFAC4467-8343-0983-11FB-CB866029374C" value="true"/>
+<item key="2DBF4F11-72F7-73ED-22BE-2120810BE40F" value="true"/>
+<item key="E6E75503-6116-388A-72BD-E82DC5E22548" value="true"/>
+</engineerTo>
+<typeID>DF49C028-3B17-1BD5-8487-0966D2278D58</typeID>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<shortName> </shortName>
+<createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="DE_ENTI_NAME" value="Verbindung (BIM?) Typ"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_NAME" value="*Connetion (BIM?) Typ"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Verbindungstyp" id="50C4F586-9690-C5B9-BAAD-9C34CCF35A5E">
+<createdBy>stb</createdBy>
+<createdTime>2020-03-09 12:50:05 UTC</createdTime>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<engineerTo>
+<item key="AC362FED-09A7-BA00-8310-29076CD8571C" value="true"/>
+<item key="0F93F29F-E1ED-0300-B3B1-B58C77EE97A7" value="true"/>
+<item key="38668F89-26BC-F63A-555D-54B8056CF413" value="true"/>
+<item key="249E7ABA-8CD0-1978-78A7-F7026DA6A2EB" value="true"/>
+<item key="F8D1D625-33EA-D367-FD1B-8BE01FB72044" value="true"/>
+<item key="D349E673-4EDF-C611-3E51-BBBDE8744098" value="true"/>
+<item key="BFAC4467-8343-0983-11FB-CB866029374C" value="true"/>
+<item key="2DBF4F11-72F7-73ED-22BE-2120810BE40F" value="true"/>
+<item key="E6E75503-6116-388A-72BD-E82DC5E22548" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Verbindungstyp"/>
+<property name="EN_ATTR_NAME" value="connection type"/>
+</propertyMap>
+</Attribute>
+<Attribute name="Konverter-Abbildung" id="CC7628C9-89F7-0270-5332-BA459CA215E1">
+<createdBy>stb</createdBy>
+<createdTime>2020-03-19 07:53:29 UTC</createdTime>
+<comment><![CDATA["Inhalt definiert das Mapping zwischen technischen Attributen (insbesondere Geometrie-relvante) aus
+'13 - Technische Daten, Produkt' und '14 - Technische Daten, Artikel' zu '14 - Technische Daten - BIM'.
+
+Inhalt wird mit Mappingtabellen 'Lookup table for BIM input (Nachschlagetabelle für BIM-Eingabe)'.
+ 'Nachschlagetabelle für BIM-Ausgabe (Lookup table for BIM output)' verglichen: hinterlegte Kürzel referenzieren zu Attributen,
+deren Inhalte in Folge unter Berücksichtigung der Mengeneinheiten [cm -<gt/> mm, mm -<gt/> mm, " -<gt/> "] vom Input an den
+Ausgabe übertragen werden.
+
+Die Notizen werden ausschliesslich auf Ebene Produkt verlinkt. Diese Stufe ist natürlich prädestiniert, weil sich die
+Notizen mit den technischen Zeichnungen als [n:1] verhalten.
+
+Geschäftsregeln für Konverter - <gt/> BIM-Konverter ist die Geschäftsregel, welche auf Artikelebene ausgeführt werden muss,
+damit die BIM-Attribute befüllt werden".]]></comment>
+<generatorID>C297CB83-CF38-1672-5067-C378034FC005</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+"Inhalt definiert das Mapping zwischen technischen Attributen (insbesondere Geometrie-relvante) aus
+'13 - Technische Daten, Produkt' und '14 - Technische Daten, Artikel' zu '14 - Technische Daten - BIM'.
+
+Inhalt wird mit Mappingtabellen 'Lookup table for BIM input (Nachschlagetabelle für BIM-Eingabe)'.
+ 'Nachschlagetabelle für BIM-Ausgabe (Lookup table for BIM output)' verglichen: hinterlegte Kürzel referenzieren zu Attributen,
+deren Inhalte in Folge unter Berücksichtigung der Mengeneinheiten [cm -<gt/> mm, mm -<gt/> mm, " -<gt/> "] vom Input an den
+Ausgabe übertragen werden.
+
+Die Notizen werden ausschliesslich auf Ebene Produkt verlinkt. Diese Stufe ist natürlich prädestiniert, weil sich die
+Notizen mit den technischen Zeichnungen als [n:1] verhalten.
+
+Geschäftsregeln für Konverter - <gt/> BIM-Konverter ist die Geschäftsregel, welche auf Artikelebene ausgeführt werden muss,
+damit die BIM-Attribute befüllt werden".
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+"Inhalt definiert das Mapping zwischen technischen Attributen (insbesondere Geometrie-relvante) aus
+'13 - Technische Daten, Produkt' und '14 - Technische Daten, Artikel' zu '14 - Technische Daten - BIM'.
+
+Inhalt wird mit Mappingtabellen 'Lookup table for BIM input (Lookup table for BIM input)'
+ 'Lookup table for BIM output (Lookup table for BIM output)' verglichen: hinterlegte Kürzel referenzieren zu Attributen,
+deren Inhalte in Folge unter Berücksichtigung der Mengeneinheiten [cm -<gt/> mm, mm -<gt/> mm, " -<gt/> "] vom Input an den
+Output übertragen werden.
+
+Die Notizen werden ausschliesslich auf Ebene Produkt verlinkt. Diese Stufe ist natürlich prädestiniert, weil sich die
+Notizen mit den technischen Zeichnungen als [n:1] verhalten.
+
+Business Rules for Converter -<gt/> BIM Converter ist die Business Rule, welche auf Artikelebene ausgeführt werden muss,
+damit die BIM Attribute befüllt werden."
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<engineerTo>
+<item key="AC362FED-09A7-BA00-8310-29076CD8571C" value="true"/>
+<item key="0F93F29F-E1ED-0300-B3B1-B58C77EE97A7" value="true"/>
+<item key="38668F89-26BC-F63A-555D-54B8056CF413" value="true"/>
+<item key="249E7ABA-8CD0-1978-78A7-F7026DA6A2EB" value="true"/>
+<item key="F8D1D625-33EA-D367-FD1B-8BE01FB72044" value="true"/>
+<item key="D349E673-4EDF-C611-3E51-BBBDE8744098" value="true"/>
+<item key="BFAC4467-8343-0983-11FB-CB866029374C" value="true"/>
+<item key="2DBF4F11-72F7-73ED-22BE-2120810BE40F" value="true"/>
+<item key="E6E75503-6116-388A-72BD-E82DC5E22548" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Konverter-Abbildung"/>
+<property name="EN_ATTR_NAME" value="Converter Mapping"/>
+</propertyMap>
+</Attribute>
+</attributes>
+</Entity>

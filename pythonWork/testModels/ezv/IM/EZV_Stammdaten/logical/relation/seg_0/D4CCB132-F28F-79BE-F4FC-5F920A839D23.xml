@@ -1,0 +1,21 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_68" directorySegmentName="seg_0" id="D4CCB132-F28F-79BE-F4FC-5F920A839D23">
+<createdBy>stb</createdBy>
+<createdTime>2018-08-29 06:53:45 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+</engineerTo>
+<arc>4C5E03B5-3E79-1727-CB5E-ECDCA13F112E</arc>
+<identifying>false</identifying>
+<nameOnSource>belastet mit [T]</nameOnSource>
+<nameOnTarget>verlangt für</nameOnTarget>
+<optionalSource>false</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>D40E0DAB-8EA4-52D4-822C-90B2568CD288</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>D03662DA-9D61-2D1D-A542-A76F239C6CC1</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

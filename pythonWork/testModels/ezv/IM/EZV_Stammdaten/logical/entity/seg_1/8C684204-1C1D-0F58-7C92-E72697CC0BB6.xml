@@ -1,0 +1,64 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="8C684204-1C1D-0F58-7C92-E72697CC0BB6" name="Bemessungseinheit">
+<createdBy>stb</createdBy>
+<createdTime>2018-09-10 15:08:55 UTC</createdTime>
+<comment><![CDATA[Zolltechnische (teilweise physikalische) Einheit für die Bemessung aller Abgaben und statistischen Angaben. (oder auch bei der Bewilligungspflicht – Toleranz?)
+
+Spezielle Einheiten:
+-Sendung
+  Beispiel CITES Abgabe wird für eine Deklaration (Zollanmeldung) erhoben, egal wie viele Positionen CITES auf der Deklaration sind.
+-Warenwert (CHF, EUR)
+   erfasst in den Eingabefeldern  
+   -- Ware mit Zollabgaben (ohne MWST)
+   -- Kompletter Wert inkl. MWST
+  
+
+Beispiele:
+Kg, Tonne, gr
+Liter, Hektoliter
+Stück, 
+Meter, meter^2, meter^3,
+Volk, CHF, EUR]]></comment>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<typeID>5D665328-E55A-0C47-AF6D-AB589191EF22</typeID>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<propertyMap>
+<property name="GSD-Tabellenname" value="MEGENCODE, BEMCO"/>
+</propertyMap>
+<documents usedDucuments="B69DBF86-C1D6-08B8-9FEA-F1D1021FA31C"/>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Kürzel" id="57D4E213-3792-272F-17D7-B94634029416">
+<createdBy>stb</createdBy>
+<createdTime>2018-09-10 15:08:55 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Text [L]" id="1D3C09F2-5D84-8A15-32D4-5DEED056C64B">
+<createdBy>stb</createdBy>
+<createdTime>2018-09-10 15:08:55 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+</Entity>

@@ -1,0 +1,144 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="6044DCB8-89FA-01D9-BCAE-399E5598AD14" name="Gebietssprache">
+<createdBy>stb</createdBy>
+<createdTime>2019-05-06 07:55:51 UTC</createdTime>
+<comment><![CDATA[Lokale Variante einer Sprache
+Code wird zusammengesetzt aus ISO2-Sprachcode - ISO2-Landcode
+
+Beispiele:
+de-de 
+de-at
+de-ch
+fr-ch
+fr-fr
+fr-ca]]></comment>
+<notes><![CDATA[[EN_ENTI_COMMENT[
+**Local variant of a language
+Code is composed of ISO2 language code - ISO2 country code
+
+Examples:
+de-en
+de-at
+de-ch
+fr-ch
+fr-fr
+fr-ca
+]EN_ENTI_COMMENT]
+[DE_ENTI_COMMENT[
+Lokale Variante einer Sprache
+Code wird zusammengesetzt aus ISO2-Sprachcode - ISO2-Landcode
+
+Beispiele:
+de-de 
+de-at
+de-ch
+fr-ch
+fr-fr
+fr-ca
+]DE_ENTI_COMMENT]
+[FR_ENTI_COMMENT[
+Variante locale d'une langue 
+Le code est composé du code de langue ISO2 et du code pays ISO2 
+
+Exemples : 
+de-en 
+de-at 
+de-ch 
+fr-ch 
+fr-fr 
+fr-ca
+]FR_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<engineerTo>
+<item key="1AB27667-C11D-3493-68AA-DF92C84041A7" value="true"/>
+<item key="851DDEFA-B048-37E9-7826-4E48946EAF1C" value="true"/>
+<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true"/>
+<item key="015DE428-05B6-58DD-323D-ECDC72266F4A" value="true"/>
+</engineerTo>
+<typeID>33675414-33E1-1BE8-99DF-264D33446509</typeID>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<shortName>GSPR</shortName>
+<createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="DE_ENTI_NAME" value="Gebietssprache"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_NAME" value="Area Language"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+<property name="FR_ENTI_NAME" value="Langue"/>
+<property name="FR_ENTI_SYNONYM" value=""/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Name [L]" id="FC993BF2-475D-4815-1D51-2E4BF70D8192">
+<createdBy>stb</createdBy>
+<createdTime>2019-05-06 07:55:51 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+[FR_ATTR_COMMENT[
+
+]FR_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<importedID>3378DFFE-5AFC-C1E8-FF93-B75A26258FD3</importedID>
+<engineerTo>
+<item key="1AB27667-C11D-3493-68AA-DF92C84041A7" value="true"/>
+<item key="851DDEFA-B048-37E9-7826-4E48946EAF1C" value="true"/>
+<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true"/>
+<item key="015DE428-05B6-58DD-323D-ECDC72266F4A" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Name [L]"/>
+<property name="EN_ATTR_NAME" value="**Name [L]"/>
+<property name="FR_ATTR_NAME" value="Nom [L]"/>
+</propertyMap>
+</Attribute>
+<Attribute name="ISO-SprachLand_Code" id="410D6AF2-941E-E1F8-E04B-AA99D4245E6A">
+<createdBy>stb</createdBy>
+<createdTime>2019-05-06 07:55:51 UTC</createdTime>
+<comment><![CDATA[2stellen Sprache Iso, "-", 2 stellen Land-Iso]]></comment>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+**2 digits language iso, "-", 2 digits country iso
+]EN_ATTR_COMMENT]
+[DE_ATTR_COMMENT[
+2stellen Sprache Iso, "-", 2 stellen Land-Iso
+]DE_ATTR_COMMENT]
+[FR_ATTR_COMMENT[
+Code ISO du pays sur 2 positions
+]FR_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<importedID>CF0C212A-6465-E9CB-39F5-50E63FCCDD61</importedID>
+<engineerTo>
+<item key="1AB27667-C11D-3493-68AA-DF92C84041A7" value="true"/>
+<item key="851DDEFA-B048-37E9-7826-4E48946EAF1C" value="true"/>
+<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true"/>
+<item key="015DE428-05B6-58DD-323D-ECDC72266F4A" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>5</dataTypeSize>
+<ownDataTypeParameters>5,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="ISO-SprachLand_Code"/>
+<property name="EN_ATTR_NAME" value="**ISO language country_code"/>
+<property name="FR_ATTR_NAME" value="Code ISO du pays"/>
+</propertyMap>
+</Attribute>
+</attributes>
+</Entity>

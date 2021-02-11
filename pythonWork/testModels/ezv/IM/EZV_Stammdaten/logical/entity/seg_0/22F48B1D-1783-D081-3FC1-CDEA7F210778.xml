@@ -1,0 +1,30 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="22F48B1D-1783-D081-3FC1-CDEA7F210778" name="Tarifnummer ZE">
+<createdBy>stb</createdBy>
+<createdTime>2018-08-22 13:00:55 UTC</createdTime>
+<comment><![CDATA[Zollberleichterung für eine Tarifnummer.
+Es wird eine ZE geführt, weil für diese TN8 ein Verwendungszweck oder -nachweis beigelegt werden muss.
+
+ Die Lösung mit der virtuellen ZE (Nr 00) ist eine technische Lösung, für den Umstand, dass Tarifnummern ohne ZE direkt am Ansatz hängen.
+
+Art. 14 ZG Absatz 1 A
+]]></comment>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<typeID>5D665328-E55A-0C47-AF6D-AB589191EF22</typeID>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<hierarchicalParent>FE24056D-69FE-90AF-E273-4A9BA6B9DE35</hierarchicalParent>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<propertyMap>
+<property name="GSD-Tabellenname" value="ZOLLBEGUENSTIGUNG (ZBG_TARIFLINIE = &apos;J&apos;)"/>
+</propertyMap>
+</Entity>

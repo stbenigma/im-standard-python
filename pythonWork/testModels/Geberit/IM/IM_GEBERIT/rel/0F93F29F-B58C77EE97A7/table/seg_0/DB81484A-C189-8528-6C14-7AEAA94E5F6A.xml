@@ -1,0 +1,116 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="DB81484A-C189-8528-6C14-7AEAA94E5F6A" name="22_PYRAMIDE">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[pyramid structure of the marketing nomenclature
+Objective: Organize the expression of offers and structure sales statistics
+This block can also be used to define discount families.
+
+Structure pyramide de la nomenclature Marketing
+Objectif : Organiser l’expression des offres et structurer les statistiques de vente
+Ce bloc peut également servir à définir les familles de remise]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<ordsAlias>pyramide</ordsAlias>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="NIV" id="9E7D345F-429F-4CF5-FBE8-9A50B8DD2CAE">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[Niveau dans la pyramide de la nomenclature marketing
+]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>1</dataTypePrecision>
+<ownDataTypeParameters>,1,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="."/>
+</propertyMap>
+</Column>
+<Column name="MKTC" id="CE677373-F363-0DA6-4AF9-0D3427EAFC52">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[Manufacturer-specific marketing BOM code or sales segmentation.]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="."/>
+</propertyMap>
+</Column>
+<Column name="MKT" id="3E3BC7E4-1F35-966A-5F29-3AA20777F320">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[BOM code Marketing, level-dependent truncated code
+]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<dataTypeSize>10</dataTypeSize>
+<ownDataTypeParameters>10,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="."/>
+</propertyMap>
+</Column>
+<Column name="MKTL" id="5A9FDCBC-3F01-B338-6D67-12FAC98FD4DE">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[Marketing BOM Code Wording]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<dataTypeSize>80</dataTypeSize>
+<ownDataTypeParameters>80,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="."/>
+</propertyMap>
+</Column>
+<Column name="GAMME" id="BF8407BC-5B1D-43B8-7AFD-AFD5150D25BA">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[Name of the range to which the offer belongs]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<dataTypeSize>80</dataTypeSize>
+<ownDataTypeParameters>80,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="."/>
+</propertyMap>
+</Column>
+<Column name="MARQUE" id="1B5A69E7-918F-CBFE-388D-BA41E51725E9">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[Created on 13/2/2020  9:38:57 during import from /Users/stb/Documents/DataModeler/Import/DM_FAB-DIS_Standard2.csv]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="."/>
+</propertyMap>
+</Column>
+</columns>
+</Table>

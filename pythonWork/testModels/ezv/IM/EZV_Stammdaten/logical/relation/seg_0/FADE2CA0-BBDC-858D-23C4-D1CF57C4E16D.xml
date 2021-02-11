@@ -1,0 +1,21 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_70" directorySegmentName="seg_0" id="FADE2CA0-BBDC-858D-23C4-D1CF57C4E16D">
+<createdBy>stb</createdBy>
+<createdTime>2018-08-29 07:34:41 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+</engineerTo>
+<arc>57C4A626-BB3F-E1EB-E6BC-6C2797F9A345</arc>
+<identifying>false</identifying>
+<nameOnSource>zu verzollen über [T]</nameOnSource>
+<nameOnTarget>schränkt ein</nameOnTarget>
+<optionalSource>false</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>D40E0DAB-8EA4-52D4-822C-90B2568CD288</sourceEntity>
+<targetCardinalityString>1</targetCardinalityString>
+<targetEntity>22F48B1D-1783-D081-3FC1-CDEA7F210778</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

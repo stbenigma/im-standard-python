@@ -1,0 +1,63 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="07F592A0-1C49-A917-7C44-8CC99F7C9896" name="Artikeltext">
+<createdBy>toz</createdBy>
+<createdTime>2021-01-20 13:22:36 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<ordsAlias>table_8</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Artikel_Werksartikelnummer" id="D644E9C1-E981-2D61-B2EB-508E331718E7">
+<createdBy>toz</createdBy>
+<createdTime>2021-01-20 13:22:58 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>15 CHAR</dataTypeSize>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="619B3F77-605E-99F9-4BDA-B9B1B99DCA6C" referredColumn="2F0F5D60-0763-6AC0-D321-510AA63559B5"/>
+</associations>
+</Column>
+<Column name="Artikelkurzbeschreibung" id="70977244-B2EC-4A04-1F01-13F956088021">
+<createdBy>toz</createdBy>
+<createdTime>2021-01-20 13:25:08 UTC</createdTime>
+<notes><![CDATA[Transformations:
+1. Replace special characters in Substrings
+
+Validation rules:
+1. Mandatory
+2. Text, length max 256 characters
+3. Text must be unique in file ! 
+4. Text must be different than concatenated Kurztext_1 & Kurztext_2 (artikel.csv)
+
+Validation error handling:
+1. In case of NULL, use concatenated Kurztext_1 & Kurztext_2 and replace “GE” with “Geberit”
+2. In case of text > 256 characters, cut text
+3. In case of text is not unique in file, add Space & ATT_10670 (Artikelnummer) at the end
+4. none, solved with different prefixes]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>DBF5B3D2-F03F-50F5-CE2B-E04B344BF8E5</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="7A173B78-849D-1F57-D10E-E0AF6252CC8E" name="Artikeltext_Artikel_FK">
+<createdBy>toz</createdBy>
+<createdTime>2021-01-20 13:22:58 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="D644E9C1-E981-2D61-B2EB-508E331718E7"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

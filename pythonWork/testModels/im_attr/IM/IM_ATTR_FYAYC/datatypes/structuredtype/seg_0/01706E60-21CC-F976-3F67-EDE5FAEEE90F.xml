@@ -1,0 +1,34 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<StructuredType class="oracle.dbtools.crest.model.design.datatypes.StructuredType" name="Abmessung 3D" directorySegmentName="seg_0" id="01706E60-21CC-F976-3F67-EDE5FAEEE90F">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-16 12:32:46 UTC</createdTime>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<predefined>false</predefined>
+<final>false</final>
+<instantiable>true</instantiable>
+<attributes itemClass="oracle.dbtools.crest.model.design.datatypes.TypeElement">
+<Attribute name="Abmessung 2D" id="55F88247-F725-769E-904A-DC2344738B90">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-16 12:32:58 UTC</createdTime>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<mandatory>true</mandatory>
+<precision>0</precision>
+<reference>false</reference>
+<referencerelation>99119A0F-7A76-D962-CCCD-36DBE327681A</referencerelation>
+<scale>0</scale>
+<type>BADB593C-133D-AB57-5561-553F7FC86C07</type>
+<referenceID>99119A0F-7A76-D962-CCCD-36DBE327681A</referenceID>
+</Attribute>
+<Attribute name="Höhe" id="DEFBC148-BFE2-53EC-8D15-BBBCE22126B3">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-16 12:33:16 UTC</createdTime>
+<commentInRDBMS><![CDATA[Längenmass in Richtung entgegen der Schwerkraft]]></commentInRDBMS>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<mandatory>true</mandatory>
+<precision>0</precision>
+<reference>false</reference>
+<scale>0</scale>
+<type>DD5CA6D1-82AE-AF75-31F5-988A9DAA29D5</type>
+</Attribute>
+</attributes>
+</StructuredType>

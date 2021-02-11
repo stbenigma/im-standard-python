@@ -1,0 +1,31 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_44" directorySegmentName="seg_0" id="D3058683-BC1A-77F1-8EEB-E95217738A74">
+<createdBy>stb</createdBy>
+<createdTime>2019-05-06 11:12:58 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<engineerTo>
+<item key="1AB27667-C11D-3493-68AA-DF92C84041A7" value="true"/>
+<item key="851DDEFA-B048-37E9-7826-4E48946EAF1C" value="true"/>
+<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="false"/>
+<item key="015DE428-05B6-58DD-323D-ECDC72266F4A" value="true"/>
+</engineerTo>
+<useSurrogateKey>true</useSurrogateKey>
+<identifying>false</identifying>
+<nameOnSource>bekannt als</nameOnSource>
+<nameOnTarget>ist</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>3DD3ACC9-75E8-8370-383F-69FCF5F4983F</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>855B3CD6-3898-7179-D003-53066C937878</targetEntity>
+<transferable>true</transferable>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="bekannt als"/>
+<property name="DE_RELA_TEXT_TO" value="ist"/>
+<property name="EN_RELA_TEXT_FROM" value="known as"/>
+<property name="EN_RELA_TEXT_TO" value="is"/>
+<property name="FR_RELA_TEXT_FROM" value="connu comme"/>
+<property name="FR_RELA_TEXT_TO" value="est"/>
+</propertyMap>
+</Relation>

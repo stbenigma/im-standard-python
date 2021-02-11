@@ -1,0 +1,32 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_19" directorySegmentName="seg_0" id="EF5294AA-E9F2-B37C-9984-7551AC04A609">
+<createdBy>stb</createdBy>
+<createdTime>2019-05-06 08:04:25 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<engineerTo>
+<item key="1AB27667-C11D-3493-68AA-DF92C84041A7" value="true"/>
+<item key="851DDEFA-B048-37E9-7826-4E48946EAF1C" value="true"/>
+<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true"/>
+<item key="015DE428-05B6-58DD-323D-ECDC72266F4A" value="true"/>
+</engineerTo>
+<arc>A98297A6-172A-6497-F30D-9C2D5143297C</arc>
+<identifying>false</identifying>
+<nameOnSource>ist</nameOnSource>
+<nameOnTarget>ist</nameOnTarget>
+<optionalSource>false</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>A94730ED-67B5-10D2-D1E5-1EED59B19633</sourceEntity>
+<targetCardinalityString>1</targetCardinalityString>
+<targetEntity>3C64BE96-608A-988E-E921-E00C2DCF5910</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="ist"/>
+<property name="DE_RELA_TEXT_TO" value="ist"/>
+<property name="EN_RELA_TEXT_FROM" value="is"/>
+<property name="EN_RELA_TEXT_TO" value="is"/>
+<property name="FR_RELA_TEXT_FROM" value="est"/>
+<property name="FR_RELA_TEXT_TO" value="est"/>
+</propertyMap>
+</Relation>

@@ -1,0 +1,1408 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="A4ED7106-EC38-459B-C52B-74C0FD15A96C" name="Artikel">
+<createdBy>stb</createdBy>
+<createdTime>2020-07-28 15:20:51 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<ordsAlias>table_1</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<documents usedDucuments="82F82043-3C2E-F9D1-31D8-D36E10C88894"/>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Werksartikelnummer" id="2F0F5D60-0763-6AC0-D321-510AA63559B5">
+<createdBy>stb</createdBy>
+<createdTime>2020-08-07 08:36:52 UTC</createdTime>
+<comment><![CDATA[Created on 7/8/2020  10:36:52 during import from /Users/stb/Downloads/DM_DQR.csv]]></comment>
+<notes><![CDATA[Transformations:
+
+1. format as text (keep leading 0 like 004049001)
+2. remove dots
+
+Validation rules:
+
+1. Mandatory
+2. Text, length max 15 characters
+
+Validation error handling:
+
+1. In case of NULL, skip article
+log in summary file: (Issue;article.csv;[article no];n/a;E0000001;[Code text];M0000001;[Code text];Werksartikelnummer;NULL;n/a)
+2. In case of length > 15 characters, skip article
+log in summary file: (Issue;article.csv;[article no];n/a;E0000002;[Code text];M0000001;[Code text];Werksartikelnummer;[Value];n/a)]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>15 CHAR</dataTypeSize>
+<ownDataTypeParameters>15 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="ATT_10670"/>
+</propertyMap>
+</Column>
+<Column name="GTIN" id="63861287-1621-A640-E957-223D9D7A8984">
+<createdBy>stb</createdBy>
+<createdTime>2020-07-28 15:27:39 UTC</createdTime>
+<notes><![CDATA[Transformations:
+none
+
+Validation rules:
+
+1. Mandatory
+2. Text, length =13 characters
+
+Validation error handling:
+
+1. In case of NULL, skip article
+log in summary file: (Issue;article.csv;[article no];n/a;E0000001;[Code text];M0000001;[Code text];GTIN;NULL;n/a)
+2. In case of length <> 13 characters, skip article
+log in summary file: (Issue;article.csv;[article no];n/a;E0000004;[Code text];M0000001;[Code text];GTIN;[Value];n/a)
+
+]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<constraintComment><![CDATA[
+Action if failed:
+- SKIP article
+- LOG]]></constraintComment>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>ECFA3AA0-31D7-8BFE-925D-B8D2D79FACB5</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="DQM-CHECK-ID" value="."/>
+<property name="DQM-ID" value="."/>
+<property name="EXT_ATTR_ID" value="ATT_10673"/>
+<property name="EXT_SORT_ORDER" value="."/>
+</propertyMap>
+<documents usedDucuments="82F82043-3C2E-F9D1-31D8-D36E10C88894"/>
+</Column>
+<Column name="Artikeltyp" id="0B05BC06-884B-84E5-DF57-BF61023F8039">
+<createdBy>stb</createdBy>
+<createdTime>2020-07-28 15:33:37 UTC</createdTime>
+<notes><![CDATA[Transformations:
+
+1. map value according to LOV mapping table:
+(Source Value ID / Source Value / Target Value)
+1 / 1 - Hauptartikel / STD
+2 / 2 - Montageteil / SON
+7 / 7 - Ersatzteil / ERA
+9 / 9 - Werkzeug / STD
+
+Conditions:
+When “7-Ersatzteil” and no drawings available* set value=ERC 
+*Info from artikeldokumentenzuordnungen.csv
+
+Validation rules:
+
+1. Mandatory
+2. allowed values according to code list “Articletype (Artikeltyp)”
+
+Validation error handling:
+
+1. In case of NULL, set default value = SON
+log in summary file: (Issue;article.csv;[article no];[line number];E0000001;[Code text];M0000003;[Code text];Artikeltyp_A;NULL;SON)
+2. In case of no match, set default value = SON
+log in summary file: (Issue;article.csv;[article no];[line number];E0000004;[Code text];M0000003;[Code text];Artikeltyp_A;[Value];SON)]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<constraintComment><![CDATA[in case of no match or NULL set default value=SON 
+
+Mapping: 
+STEP		DQR
+1 - Hauptartikel	STD
+2 - Montageteil	SON
+7 - Ersatzteil	ERA  if drawings available
+		ERC  if no drawings available
+9 - Werkzeug	STD
+see artikeldokumentenzuordnungen.csv
+
+Action if failed or default value used
+- LOG
+]]></constraintComment>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>79FBD12B-2084-1E00-DE29-3A6EE1CE6721</domain>
+<defaultValue>SON</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="DQM-CHECK-ID" value="."/>
+<property name="DQM-ID" value="."/>
+<property name="EXT_ATTR_ID" value="ATT_10679"/>
+<property name="EXT_SORT_ORDER" value="."/>
+</propertyMap>
+<documents usedDucuments="82F82043-3C2E-F9D1-31D8-D36E10C88894"/>
+</Column>
+<Column name="Gueltigkeitsbeginn" id="C6C408C6-D826-B2C1-28C9-7409AAEC45A5">
+<createdBy>toz</createdBy>
+<createdTime>2020-12-30 10:38:40 UTC</createdTime>
+<notes><![CDATA[Transformations:
+
+1. format as date (ddmmyyyy)
+2. WHEN ATT_134022 > actualdate() THEN ATT_134022 ELSE Value Setting 
+
+Validation rules:
+
+1. Mandatory
+2. Valid date and date format = ddmmyyyy
+
+Validation error handling:
+
+1. In case of NULL, set default value = 01019999
+log in summary file: (Issue;article.csv;[article no];[line number];E0000001;[Code text];M0000003;[Code text];Gueltigkeitsbeginn;NULL;01019999)
+2. In case of date is not valid or date format <> ddmmyyyy, set default value = 01019999
+log in summary file: (Issue;article.csv;[article no];[line number];E0000004;[Code text];M0000003;[Code text];Gueltigkeitsbeginn;[Value];01019999)]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="ATT_134022"/>
+</propertyMap>
+</Column>
+<Column name="Gueltigkeitsende" id="106CA593-344F-8B82-BE7F-71ED5630F8A6">
+<createdBy>toz</createdBy>
+<createdTime>2020-12-30 10:38:40 UTC</createdTime>
+<notes><![CDATA[Transformations:
+
+1. format as date (ddmmyyyy)
+
+Validation rules:
+
+1. Mandatory
+2. Valid date and date format = ddmmyyyy
+
+Validation error handling:
+
+1. In case of NULL, set default value = 31129999
+log in summary file: (Issue;article.csv;[article no];[line number];E0000001;[Code text];M0000001;[Code text];Gueltigkeitsende;NULL;31129999)
+2. In case of date is not valid or date format <> ddmmyyyy, set default value = 31129999
+log in summary file: (Issue;article.csv;[article no];[line number];E0000004;[Code text];M0000003;[Code text];Gueltigkeitsende;[Value];31129999)]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value=""/>
+</propertyMap>
+</Column>
+<Column name="Kurztext_1" id="4FA99893-18EB-7723-DE69-F30234CD2BF8">
+<createdBy>toz</createdBy>
+<createdTime>2020-12-30 10:38:40 UTC</createdTime>
+<notes><![CDATA[(! Same Information as in Kurztext_2, they have to be handled together !)
+
+Transformations:
+
+1. Kurztext_1 = Concatenate (“GE “;ATT_146075)
+2. Replace special characters in Substrings
+(Input -> Output)
+± -> +/-
+® -> 
+¼ -> 1/4
+½ -> 1/2
+≥ -> min.
+≤ -> max.
+space & space -> space
+
+Validation rules:
+
+1. Kurztext_1 = mandatory 
+2. Kurztext_1 length max 40 character
+3. Kurztext_2 length max 40 character
+4. Concatenated Kurztext_1 and Kurztext_2 must be unique in file !
+
+Validation error handling:
+
+1. In case of Kurztext_1 is NULL, skip article
+log in summary file: (Issue;article.csv;[article no];n/a;E0000001;[Code text];M0000001;[Code text];Kurztext_1;NULL;n/a)
+2. In case of Kurztext_1 > 40 character, cut text
+log in summary file: (Issue;article.csv;[article no];[line number];E0000002;[Code text];M0000002;[Code text];Kurztext_1;[Value];[NewValue])
+3. In case of Kurztext_2 > 40 character, cut text
+log in summary file: (Issue;article.csv;[article no];[line number];E0000002;[Code text];M0000002;[Code text];Kurztext_2 ;[Value];[NewValue])
+4. In case of Concatenated Kurztext_1 and Kurztext_2 is not unique in file, add ATT_10670 (Artikelnummer) to Kurztext_2
+log in summary file: (Issue;article.csv;[article no];[line number];E0000006;[Code text];M0000002;[Code text];Kurztext_2 ;[Value];[NewValue])
+
+]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>40 CHAR</dataTypeSize>
+<ownDataTypeParameters>40 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="ATT_146075"/>
+</propertyMap>
+</Column>
+<Column name="Kurztext_2" id="452D62AA-37A3-1269-E93F-6D5C18D05D31">
+<createdBy>toz</createdBy>
+<createdTime>2020-12-30 10:38:40 UTC</createdTime>
+<notes><![CDATA[(! Same Information as in Kurztext_1, they have to be handled together !)
+
+Transformations:
+
+1. Kurztext_1 = Concatenate (“GE “;ATT_146075)
+2. Replace special characters in Substrings
+(Input -> Output)
+± -> +/-
+® -> 
+¼ -> 1/4
+½ -> 1/2
+≥ -> min.
+≤ -> max.
+space & space -> space
+
+Validation rules:
+
+1. Kurztext_1 = mandatory 
+2. Kurztext_1 length max 40 character
+3. Kurztext_2 length max 40 character
+4. Concatenated Kurztext_1 and Kurztext_2 must be unique in file !
+
+Validation error handling:
+
+1. In case of Kurztext_1 is NULL, skip article
+log in summary file: (Issue;article.csv;[article no];n/a;E0000001;[Code text];M0000001;[Code text];Kurztext_1;NULL;n/a)
+2. In case of Kurztext_1 > 40 character, cut text
+log in summary file: (Issue;article.csv;[article no];[line number];E0000002;[Code text];M0000002;[Code text];Kurztext_1;[Value];[NewValue])
+3. In case of Kurztext_2 > 40 character, cut text
+log in summary file: (Issue;article.csv;[article no];[line number];E0000002;[Code text];M0000002;[Code text];Kurztext_2 ;[Value];[NewValue])
+4. In case of Concatenated Kurztext_1 and Kurztext_2 is not unique in file, add ATT_10670 (Artikelnummer) to Kurztext_2
+log in summary file: (Issue;article.csv;[article no];[line number];E0000006;[Code text];M0000002;[Code text];Kurztext_2 ;[Value];[NewValue])
+
+]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>40 CHAR</dataTypeSize>
+<ownDataTypeParameters>40 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="ATT_146077"/>
+</propertyMap>
+</Column>
+<Column name="Warengruppen_ID" id="623C5049-DAF7-97C5-BE27-CB054C171306">
+<createdBy>toz</createdBy>
+<createdTime>2020-12-30 10:38:40 UTC</createdTime>
+<notes><![CDATA[Transformations:
+
+1. left(ATT_10686;2)
+
+Validation rules:
+
+1. Mandatory
+2. Text, length max 3 characters
+3. Value reference must exist in gruppen.csv 
+
+Validation error handling:
+
+1. In case of NULL, set default value = XX
+log in summary file: (Issue;article.csv;[article no];[line number];E0000001;[Code text];M0000003;[Code text];Warengruppen_ID;NULL;XX)]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>3 CHAR</dataTypeSize>
+<ownDataTypeParameters>3 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="ATT_10686"/>
+</propertyMap>
+</Column>
+<Column name="Produktgruppen_ID" id="3170C0F6-0AD0-668E-86E4-010993F22461">
+<createdBy>toz</createdBy>
+<createdTime>2020-12-30 10:38:40 UTC</createdTime>
+<notes><![CDATA[Transformations:
+
+1. mid(ATT_10686;5;3)
+
+Validation rules:
+
+1. Mandatory
+2. Text, length max 10 characters
+3. Value reference must exist in gruppen.csv 
+
+Validation error handling:
+
+1. In case of NULL, set default value = XXX
+log in summary file: (Issue;article.csv;[article no];[line number];E0000001;[Code text];M0000003;[Code text];Produktgruppen_ID;NULL;XXX)]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>10 CHAR</dataTypeSize>
+<ownDataTypeParameters>10 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="ATT_10686"/>
+</propertyMap>
+</Column>
+<Column name="Rabattgruppen_ID" id="350C02E6-C7A8-B2FA-9EDE-EAB2069713B4">
+<createdBy>toz</createdBy>
+<createdTime>2020-12-30 10:38:40 UTC</createdTime>
+<notes><![CDATA[Transformations:
+none
+
+Validation rules:
+
+1. Mandatory
+2. Text, length max 4 character
+3. Value reference must exist in gruppen.csv 
+
+Validation error handling:
+
+1. In case of NULL, set default value = XXXX
+log in summary file: (Issue;article.csv;[article no];[line number];E0000001;[Code text];M0000003;[Code text];Rabattgruppen_ID;NULL;XXXX)
+2. In case of value > 4 character, set default value = XXXX
+log in summary file: (Issue;article.csv;[article no];[line number];E0000002;[Code text];M0000003;[Code text];Rabattgruppen_ID;NULL;XXXX)]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>4 CHAR</dataTypeSize>
+<ownDataTypeParameters>4 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="ATT_133557"/>
+</propertyMap>
+</Column>
+<Column name="Bonusgruppen_ID" id="ED519F2F-3E5E-F34C-FE0F-F7E08068478C">
+<createdBy>toz</createdBy>
+<createdTime>2020-12-30 10:38:40 UTC</createdTime>
+<notes><![CDATA[Transformations:
+
+1. WHEN Catalogue is Systemkatalog = ATT_133557 (Materialgruppe 5)
+2. WHEN Catalogue is Serienkatalog = ATT_263953 (Materialgruppe)
+
+Validation rules:
+
+1. Text, length max 35 characters
+2. Value reference must exist in gruppen.csv 
+
+Validation error handling:
+
+1. In case of value > 35 character, set NULL
+log in summary file: (Issue;article.csv;[article no];[line number];E0000002;[Code text];M0000004;[Code text];Bonusgruppen_ID;[Value];NULL)
+
+]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>35 CHAR</dataTypeSize>
+<ownDataTypeParameters>35 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="MinBestellmenge" id="68310B10-412D-AC0F-E51C-38FC11A5B896">
+<createdBy>toz</createdBy>
+<createdTime>2020-12-30 10:38:40 UTC</createdTime>
+<notes><![CDATA[Transformations:
+
+1. = Value from ATT_134388
+2. WHEN value = NULL use smalest Value from VP1-4/VN1-4 
+
+Validation rules:
+
+1. Mandatory
+2. Decimal value 15,3
+
+Validation error handling:
+
+1. In case of NULL, set default value = 1
+log in summary file: (Issue;article.csv;[article no];[line number];E0000001;[Code text];M0000003;[Code text];MinBestellmenge;NULL;1)]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT026</logicalDatatype>
+<dataTypePrecision>31</dataTypePrecision>
+<ownDataTypeParameters>,31,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="ATT_134388"/>
+</propertyMap>
+</Column>
+<Column name="MinBestellmengeEinheit" id="D801A7E8-4089-DC73-0EEF-C9F33CFB3872">
+<createdBy>toz</createdBy>
+<createdTime>2020-12-30 10:38:40 UTC</createdTime>
+<notes><![CDATA[Transformations:
+
+1. = unit from ATT_134388
+2. WHEN Unit=NULL use unit from smalest Value from VP1-4/VN1-4 
+3. map value according to LOV mapping table
+(Source Unit / Target Unit)
+St. / PCE
+g / GRM
+kg / KGM
+l / LTR
+m / MTR
+m² / MTK
+
+Validation rules:
+
+1. Mandatory
+2. Allowed values according to code list “Units”
+
+Validation error handling:
+
+1. In case of NULL, set default value = PCE
+log in summary file: (Issue;article.csv;[article no];[line number];E0000001;[Code text];M0000003;[Code text];MinBestellmengeEinheit;NULL;PCE)
+2. In case of no match, set default value = PCE
+log in summary file: (Issue;article.csv;[article no];[line number];E0000004;[Code text];M0000003;[Code text];MinBestellmengeEinheit;[Value];PCE)]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="ATT_134388"/>
+</propertyMap>
+</Column>
+<Column name="Werksartikelnummer_Katalog" id="AE443C37-925D-4717-A011-DEC455E9FB41">
+<createdBy>toz</createdBy>
+<createdTime>2020-12-30 10:38:40 UTC</createdTime>
+<notes><![CDATA[Transformations:
+
+1. format as text (keep leading 0 like 004.049.00.1)
+
+Validation rules:
+
+1. Text, length max 35 characters
+
+Validation error handling:
+
+1. cut value after 35 characters
+2. log in summary file
+3. In case of text > 35 character, set NULL
+log in summary file: (Issue;article.csv;[article no];[line number];E0000002;[Code text];M0000004;[Code text];Werksartikelnummer_Katalog;[Value];NULL)]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>35 CHAR</dataTypeSize>
+<ownDataTypeParameters>35 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="ATT_10670"/>
+</propertyMap>
+</Column>
+<Column name="Nachfolgeartikelnummer_1" id="903CDC62-6E11-9FE0-E6DA-A6E07511CE63">
+<createdBy>toz</createdBy>
+<createdTime>2020-12-30 10:38:40 UTC</createdTime>
+<notes><![CDATA[Transformations:
+
+1. format as text
+2. remove dots
+
+Validation rules:
+
+1. Text, length max 15 characters
+2. Article number must exist in file 
+
+Validation error handling:
+
+1. In case of length > 15 characters, set NULL
+log in summary file: (Issue;article.csv;[article no];n/a;E0000002;[Code text];M0000004;[Code text];Nachfolgeartikelnummer_1;[Value];n/a)
+2. In case of article number does not exist in file, set NULL
+log in summary file: (Issue;article.csv;[article no];n/a;E0000003;[Code text];M0000004;[Code text];Nachfolgeartikelnummer_1;[Value];n/a)]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>15 CHAR</dataTypeSize>
+<ownDataTypeParameters>15 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="ATT_389738"/>
+</propertyMap>
+</Column>
+<Column name="URL" id="2095B76D-DE04-693E-D716-E6E6CC54DA09">
+<createdBy>toz</createdBy>
+<createdTime>2020-12-30 10:38:40 UTC</createdTime>
+<notes><![CDATA[Transformations:
+
+1. https://catalog.geberit.de/de-DE/[Article number]
+example: https://catalog.geberit.de/de-DE/30305.html
+
+Validation rules:
+
+1. Text, length max 256 characters
+
+Validation error handling:
+
+1. none, very unlikely that text can be to long]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>E9A99BED-13E7-C649-E4A9-8C9E6A244777</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Auslaufartikel" id="34F97837-BC5F-E10E-4200-CA5D1758AAF7">
+<createdBy>toz</createdBy>
+<createdTime>2020-12-30 10:38:40 UTC</createdTime>
+<notes><![CDATA[Transformations:
+
+1. WHEN ATT_130975=05 AND ATT_38973 = NULL set value=Yes
+2. WHEN ATT_130975=05 AND ATT_38973 <> NULL set value=Yes-Successor
+3. ELSE set value=No   
+
+Validation rules:
+
+1. Mandatory
+2. Allowed values according to code list "DiscontinuedArticle (Auslaufartikel)"
+
+Validation error handling:
+
+1. none, value is always set by transformation 
+2. none, value is always set according to Code list by transformation ]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Auslaufdatum" id="95C751AB-D5A1-58A7-A5D2-091AE162D4E7">
+<createdBy>toz</createdBy>
+<createdTime>2020-12-30 10:38:40 UTC</createdTime>
+<notes><![CDATA[Transformations:
+
+1. format as date (ddmmyyyy)
+
+Validation rules:
+
+1. Mandatory when Auslaufartikel=Yes-Successor or Yes
+2. Valid date and date format = ddmmyyyy
+
+Validation error handling:
+
+1. In case of NULL, set default value = 01019999
+log in summary file: (Issue;article.csv;[article no];[line number];E0000001;[Code text];M0000003;[Code text];Auslaufdatum;NULL;01019999)
+2. In case of date is not valid or date format <> ddmmyyyy, set default value = 01019999
+log in summary file: (Issue;article.csv;[article no];[line number];E0000004;[Code text];M0000003;[Code text];Auslaufdatum;[Value];01019999)]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="ATT_134021"/>
+</propertyMap>
+</Column>
+<Column name="Bestellfaehigkeit_unterdruecken" id="34E6D437-4333-737D-68C1-64AFC617A836">
+<createdBy>toz</createdBy>
+<createdTime>2020-12-30 10:38:40 UTC</createdTime>
+<notes><![CDATA[Transformations:
+
+1. WHEN ATT_130975<>01,05 AND ATT_134021< ActualDate SET value=true ELSE SET value=false
+
+Validation rules:
+
+1. Boolean value: „true“ or „false“
+
+Validation error handling:
+
+1. none, value is always set according to code list by transformation ]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>018899C1-1063-572C-AD15-2DF35A7821BE</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Anzeige_in" id="83F55F44-5EC2-0897-7220-BE2D6DC4B2DC">
+<createdBy>toz</createdBy>
+<createdTime>2020-12-30 10:38:40 UTC</createdTime>
+<notes><![CDATA[Transformations:
+
+1. none
+
+Validation rules:
+
+1. Mandatory
+2. Allowed values according to code list "Display"
+
+Validation error handling:
+
+1. In case of NULL, set default value = 3
+log in summary file: (Issue;article.csv;[article no];[line number];E0000001;[Code text];M0000003;[Code text];Anzeige_in ;NULL;3)
+2. none, valid value set by default value ]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Exportfaehig" id="7726F6CC-5569-9687-491E-5D26C32DDEF3">
+<createdBy>toz</createdBy>
+<createdTime>2020-12-30 10:38:40 UTC</createdTime>
+<notes><![CDATA[Transformations:
+
+1. WHEN ATT_ATT_326829<> NULL AND ATT_872298 <> NULL SET value=”true” 
+ELSE SET value=”false”
+
+Validation rules:
+
+1. Mandatory
+2. Boolean value: „true“ or „false“
+
+Validation error handling:
+
+1. none, value is always set by transformation
+2. none, value is always set according to code list by transformation]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>018899C1-1063-572C-AD15-2DF35A7821BE</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Warennummer" id="F39B97E3-5C76-D167-7FB3-9D35DC3CEBEB">
+<createdBy>toz</createdBy>
+<createdTime>2020-12-30 10:38:40 UTC</createdTime>
+<notes><![CDATA[Transformations:
+
+1. none
+
+Validation rules:
+
+1. Integer, 8 digits
+
+Validation error handling:
+
+1. In case of value > 8 digits, cut value
+log in summary file: (Issue;article.csv;[article no];[line number];E0000002;[Code text];M0000002;[Code text];Warennummer;[Value];[NewValue])]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="ATT_326829"/>
+</propertyMap>
+</Column>
+<Column name="Ursprungsland" id="90B89099-3960-E3FF-0139-F9A677D5B4C4">
+<createdBy>toz</createdBy>
+<createdTime>2020-12-30 10:38:40 UTC</createdTime>
+<notes><![CDATA[Transformations:
+
+1. mapping of STEP Value ID
+
+Validation rules:
+
+1.Allowed values according to code list "Countries (Herkunftsländer)"
+
+Validation error handling:
+
+1. In case of no match, set default value = DE
+log in summary file: (Issue;article.csv;[article no];[line number];E0000004;[Code text];M0000003;[Code text];Ursprungsland;[Value];DE)]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="ATT_872298"/>
+</propertyMap>
+</Column>
+<Column name="Kennzeichen_Gefahrengut" id="E2EDAA92-8733-704B-ACAD-87436B7AACA0">
+<createdBy>toz</createdBy>
+<createdTime>2020-12-30 10:38:40 UTC</createdTime>
+<notes><![CDATA[Transformations:
+
+1. none
+
+Validation rules:
+
+1. Mandatory
+2. Boolean value: „true“ or „false“
+
+Validation error handling:
+
+1. In case of NULL, set default value = false
+log in summary file: (Issue;article.csv;[article no];[line number];E0000001;[Code text];M0000003;[Code text];Kennzeichen_Gefahrgut;NULL;false)
+2. none, valid value set by default value]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>018899C1-1063-572C-AD15-2DF35A7821BE</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Haltbarkeitszeitraum" id="97BB0A26-F51C-B183-CF4B-A7B1F3F6C52F">
+<createdBy>toz</createdBy>
+<createdTime>2020-12-30 10:38:40 UTC</createdTime>
+<notes><![CDATA[Transformations:
+
+1. none
+
+Validation rules:
+
+1. Mandatory
+2. Integer, values between 1-99
+
+Validation error handling:
+
+1. In case of NULL, set default value = 99
+log in summary file: (Issue;article.csv;[article no];[line number];E0000001;[Code text];M0000003;[Code text];Haltbarkeitszeitraum;NULL;99)
+2. none, valid value set by default value ]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Preis_auf_Anfrage" id="6732DB5E-8679-6454-29E9-017749011799">
+<createdBy>toz</createdBy>
+<createdTime>2020-12-30 10:38:40 UTC</createdTime>
+<notes><![CDATA[Transformations:
+
+1. none
+
+Validation rules:
+
+1. Mandatory
+2. Boolean value: „true“ or „false“
+
+Validation error handling:
+
+1. In case of NULL, set default value = false
+log in summary file: (Issue;article.csv;[article no];[line number];E0000001;[Code text];M0000003;[Code text];Preis_auf_Anfrage;NULL;false)
+2. none, valid value set by default value
+
+]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>018899C1-1063-572C-AD15-2DF35A7821BE</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Mass_A" id="901F00AB-7ED8-B36B-20AB-77C3E06BBD79">
+<createdBy>toz</createdBy>
+<createdTime>2020-12-30 10:38:40 UTC</createdTime>
+<notes><![CDATA[Transformations:
+
+1. = Value from ATT_187109
+
+Validation rules:
+
+1. Mandatory WHEN Artikeltyp IN (STD, ERA, ERB) AND MinBestellmengeEinheit IN (PCE, PR, DZN, SET)
+2. Decimal 16,3 (decimal points only when available)
+
+Validation error handling:
+
+1. In case of it is mandatory and it’s NULL, set default value = 1
+log in summary file: (Issue;article.csv;[article no];[line number];E0000001;[Code text];M0000003;[Code text];Mass_A;NULL;1)]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT026</logicalDatatype>
+<dataTypePrecision>31</dataTypePrecision>
+<domain>51A9CFA5-F52B-5954-41DB-3360B13B1C95</domain>
+<ownDataTypeParameters>,31,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="ATT_187109"/>
+</propertyMap>
+</Column>
+<Column name="Einheit_Mass_A" id="49DD3DFC-3108-176D-B1C6-E71E6F110C32">
+<createdBy>toz</createdBy>
+<createdTime>2020-12-30 10:38:40 UTC</createdTime>
+<notes><![CDATA[Transformations:
+
+1. = Unit from ATT_187109
+2. map value according to LOV mapping table
+(Source Unit / Target Unit)
+mm / MMT
+
+Validation rules:
+
+1. Mandatory WHEN Mass_A <> NULL 
+2. Allowed values according to code list "LengthUnits"
+
+Validation error handling:
+
+1. In case of NULL, set default value = MMT
+log in summary file: (Issue;article.csv;[article no];[line number];E0000001;[Code text];M0000003;[Code text];Einheit_Mass_A;NULL;MMT)
+2. In case of no match, set default value = MMT
+log in summary file: (Issue;article.csv;[article no];[line number];E0000004;[Code text];M0000003;[Code text];Einheit_Mass_A;[Value];MMT)]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT026</logicalDatatype>
+<domain>51A9CFA5-F52B-5954-41DB-3360B13B1C95</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Mass_B" id="D63E5700-432B-8FAC-CF96-5310696C5933">
+<createdBy>toz</createdBy>
+<createdTime>2020-12-30 10:38:40 UTC</createdTime>
+<notes><![CDATA[Transformations:
+
+1. = Value from ATT_187108
+
+Validation rules:
+
+1. Mandatory WHEN Artikeltyp IN (STD, ERA, ERB) AND MinBestellmengeEinheit  IN (PCE, PR, DZN, SET)
+2. Decimal 16,3 (decimal points only when available)
+
+Validation error handling:
+
+1. In case of it is mandatory and it’s NULL, set default value = 1
+log in summary file: (Issue;article.csv;[article no];[line number];E0000001;[Code text];M0000003;[Code text];Mass_B;NULL;1)
+
+]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<dataTypePrecision>31</dataTypePrecision>
+<domain>FC6D7F4C-49DF-86CF-79BE-8956C1132E4C</domain>
+<ownDataTypeParameters>,31,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="ATT_187108"/>
+</propertyMap>
+</Column>
+<Column name="Einheit_Mass_B" id="10BA7F87-9C1C-77E0-6A3C-819D408DE348">
+<createdBy>toz</createdBy>
+<createdTime>2020-12-30 10:38:40 UTC</createdTime>
+<notes><![CDATA[Transformations:
+
+1. = Unit from ATT_187108
+2. map value according to LOV mapping table
+(Source Unit / Target Unit)
+mm / MMT
+
+Validation rules:
+
+1. Mandatory WHEN Mass_B <> NULL 
+2. Allowed values according to code list "LengthUnits"
+
+Validation error handling:
+
+1. In case of NULL, set default value = MMT
+log in summary file: (Issue;article.csv;[article no];[line number];E0000001;[Code text];M0000003;[Code text];Einheit_Mass_B;NULL;MMT)
+2. In case of no match, set default value = MMT
+log in summary file: (Issue;article.csv;[article no];[line number];E0000004;[Code text];M0000003;[Code text];Einheit_Mass_B;[Value];MMT)]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>FC6D7F4C-49DF-86CF-79BE-8956C1132E4C</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Mass_C" id="1B0CD501-AE69-59E9-2C86-AFC7F2934611">
+<createdBy>toz</createdBy>
+<createdTime>2020-12-30 10:38:40 UTC</createdTime>
+<notes><![CDATA[Transformations:
+
+1. = Value from ATT_187110 
+
+Validation rules:
+
+1. Mandatory WHEN Artikeltyp IN (STD, ERA, ERB) AND MinBestellmengeEinheit IN (PCE, PR, DZN, SET)
+2. Decimal 16,3 (decimal points only when available)
+
+Validation error handling:
+
+1. In case of it is mandatory and it’s NULL, set default value = 1
+log in summary file: (Issue;article.csv;[article no];[line number];E0000001;[Code text];M0000003;[Code text];Mass_C;NULL;1)]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT026</logicalDatatype>
+<dataTypePrecision>31</dataTypePrecision>
+<domain>51A9CFA5-F52B-5954-41DB-3360B13B1C95</domain>
+<ownDataTypeParameters>,31,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="ATT_187110"/>
+</propertyMap>
+</Column>
+<Column name="Einheit_Mass_C" id="F7532383-1A67-947B-9FED-EAC942775B43">
+<createdBy>toz</createdBy>
+<createdTime>2020-12-30 10:47:39 UTC</createdTime>
+<notes><![CDATA[Transformations:
+
+1. = Unit from ATT_187110 
+2. map value according to LOV mapping table
+(Source Unit / Target Unit)
+mm / MMT
+
+Validation rules:
+
+1. Mandatory WHEN Mass_C <> NULL 
+2. Allowed values according to code list "LengthUnits"
+
+Validation error handling:
+
+1. In case of NULL, set default value = MMT
+log in summary file: (Issue;article.csv;[article no];[line number];E0000001;[Code text];M0000003;[Code text];Einheit_Mass_C;NULL;MMT)
+2. In case of no match, set default value = MMT
+log in summary file: (Issue;article.csv;[article no];[line number];E0000004;[Code text];M0000003;[Code text];Einheit_Mass_C;[Value];MMT)]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>FC6D7F4C-49DF-86CF-79BE-8956C1132E4C</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Gewicht" id="C905E6F1-4F6A-68AB-343B-823C94BCE01F">
+<createdBy>toz</createdBy>
+<createdTime>2020-12-30 10:47:39 UTC</createdTime>
+<notes><![CDATA[Transformations:
+
+1. = Value from ATT_10765 
+
+Validation rules:
+
+1. Mandatory WHEN Artikeltyp IN (STD, ERA, ERB) AND Mengeneinheit IN (PCE, PR, DZN, SET)
+2. Decimal 16,3
+
+Validation error handling:
+
+1. In case of NULL, set default value = 0.001
+log in summary file: (Issue;article.csv;[article no];[line number];E0000001;[Code text];M0000003;[Code text];Gewicht;NULL;0.001)]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT026</logicalDatatype>
+<dataTypePrecision>31</dataTypePrecision>
+<domain>51A9CFA5-F52B-5954-41DB-3360B13B1C95</domain>
+<ownDataTypeParameters>,31,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="ATT_10765"/>
+</propertyMap>
+</Column>
+<Column name="Einheit_Gewicht" id="7D0AF5F4-06F4-6315-8E53-F7A641B4CA2F">
+<createdBy>toz</createdBy>
+<createdTime>2020-12-30 10:47:39 UTC</createdTime>
+<notes><![CDATA[Transformations:
+
+1. = Unit from ATT_10765 
+2. map value according to LOV mapping table
+(Source Unit / Target Unit)
+g / GRM
+kg / KGM
+
+Validation rules:
+
+1. Mandatory WHEN Gewicht <> NULL 
+2. Allowed values according to code list "WeightUnits"
+
+Validation error handling:
+
+1. In case of NULL, set default value = KGM
+log in summary file:(Issue;article.csv;[article no];[line number];E0000001;[Code text];M0000003;[Code text];Einheit_Gewicht;NULL;KGM)
+2. In case of no match, set default value = KGM
+log in summary file: (Issue;article.csv;[article no];[line number];E0000004;[Code text];M0000003;[Code text];Einheit_Gewicht;[Value];KGM)]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<dataTypeSize>3</dataTypeSize>
+<domain>8F2EBD7B-ABAE-9FCA-B0F8-38B156DAFB65</domain>
+<ownDataTypeParameters>3,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Anzahl_Packstuecke" id="9F3FEAEE-1BE1-199C-4E45-310EA67E325F">
+<createdBy>toz</createdBy>
+<createdTime>2020-12-30 10:47:39 UTC</createdTime>
+<notes><![CDATA[Transformations:
+
+1. none
+
+Validation rules:
+
+1. Mandatory WHEN Artikeltyp IN (STD, ERA, ERB) AND Mengeneinheit IN (PCE, PR, DZN, SET)
+2. Integer, 8 digits
+
+Validation error handling:
+
+1. In case of NULL, set default value = 1
+log in summary file: (Issue;article.csv;[article no];[line number];E0000001;[Code text];M0000003;[Code text];Anzahl_Packstuecke;NULL;1)
+2. none, valid value set by default value
+
+]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Umsatzsteuer" id="9FC45D6E-E50C-F978-F276-2A279ADB3A6E">
+<createdBy>toz</createdBy>
+<createdTime>2020-12-30 10:47:39 UTC</createdTime>
+<notes><![CDATA[Transformations:
+
+1. none
+
+Validation rules:
+
+1. Mandatory
+2. allowed values according to code list "TaxCode"
+
+Validation error handling:
+
+1. In case of NULL, set default value = 0
+log in summary file: (Issue;article.csv;[article no];[line number];E0000001;[Code text];M0000003;[Code text];Umsatzsteuer;NULL;0)
+2. none, valid value set by default value]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Standardlieferzeit" id="C5D934CF-F499-EE0B-9AE4-F68403915BAC">
+<createdBy>toz</createdBy>
+<createdTime>2020-12-30 10:47:39 UTC</createdTime>
+<notes><![CDATA[Transformations:
+
+1. none
+
+Validation rules:
+
+1. Mandatory WHEN Artikeltyp IN (STD, ERA, ERB, VA, STG) 
+2. Integer, 8 digits
+
+Validation error handling:
+
+1. In case of NULL, set default value = 7
+log in summary file: (Issue;article.csv;[article no];[line number];E0000001;[Code text];M0000003;[Code text];Standardlieferzeit;NULL;7)
+2. none, valid value set by default value]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Werkslistenpreis_Preisbasis" id="8801090D-8A5F-411C-B455-2E40C2C9F522">
+<createdBy>toz</createdBy>
+<createdTime>2020-12-30 10:47:39 UTC</createdTime>
+<notes><![CDATA[Transformations:
+
+1. none
+
+Validation rules:
+
+1. Mandatory
+2. Integer, 9 digits
+
+Validation error handling:
+
+1. In case of NULL, set default value = 1
+log in summary file: (Issue;article.csv;[article no];[line number];E0000001;[Code text];M0000003;[Code text];Werkslistenpreis_Preisbasis;NULL;1)
+2. none, valid value set by default value
+
+]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Werkslistenpreis_Preismengeneinheit" id="75BC1C55-19BB-EE79-0FFD-21F467F59637">
+<createdBy>toz</createdBy>
+<createdTime>2020-12-30 11:14:05 UTC</createdTime>
+<notes><![CDATA[Transformations:
+
+1. map value according to LOV mapping table
+(Source Unit ID (LOV) / Target Unit)
+ST / PCE
+G / GRM
+KG / KGM
+L / LTR
+M / MTR
+M2 / MTK
+
+Validation rules:
+
+1. Mandatory WHEN Werkslistenpreis_Preiswert<> NULL 
+2. Allowed values according to code list " Units"
+
+Validation error handling:
+
+1. In case of NULL, set default value = PCE
+log in summary file: (Issue;article.csv;[article no];[line number];E0000001;[Code text];M0000003;[Code text];Werkslistenpreis_Preismengeneinheit;NULL;PCE)
+2. In case of no match, set default value = PCE
+log in summary file: (Issue;article.csv;[article no];[line number];E0000004;[Code text];M0000003;[Code text];Werkslistenpreis_Preismengeneinheit;[Value];PCE)]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="ATT_10671"/>
+</propertyMap>
+</Column>
+<Column name="Kennzeichen_Reach_Liste" id="150AA465-C9B3-8AAC-69E9-56EB68BA709F">
+<createdBy>toz</createdBy>
+<createdTime>2020-12-30 11:14:05 UTC</createdTime>
+<notes><![CDATA[Transformations:
+
+1. = WHEN ATT_1821590 HAS VALUE SET “true” ELSE SET “false”
+
+Validation rules:
+
+1. Mandatory
+2. Allowed values according to code list "Reach"
+
+Validation error handling:
+
+1. none, value is always set by transformation
+2. none, value is always set according to Code list by transformation]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="ATT_1821590"/>
+</propertyMap>
+</Column>
+<Column name="Datum_Reach_Liste" id="DC323811-E761-D382-8D37-4016882BEC8F">
+<createdBy>toz</createdBy>
+<createdTime>2020-12-30 11:14:05 UTC</createdTime>
+<notes><![CDATA[Transformations:
+
+1. WHEN “Kennzeichen_Reach_Liste” = “true” or “false” SET ActualDate() (Example:12082020)
+
+Validation rules:
+
+1. Mandatory when Kennzeichen_Reach_Liste = “true” or “false” 
+2. Date format = ddmmyyyy
+
+Validation error handling:
+
+1. none, value is always set by transformation
+2. none, value is always set by transformation]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="WEEE-Registrierungsnummer" id="29DFCB83-1979-4A28-79A6-1939FF1FB6D7">
+<createdBy>toz</createdBy>
+<createdTime>2020-12-30 11:14:05 UTC</createdTime>
+<notes><![CDATA[Transformations:
+
+1. none
+
+Validation rules:
+
+1. Text, length max 40 characters
+
+Validation error handling:
+
+1. In case of NULL, set default value = DE53108643
+log in summary file: (Issue;article.csv;[article no];[line number];E0000001;[Code text];M0000003;[Code text];WEEE-Registrierungsnummer;NULL;DE53108643)]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>40</dataTypeSize>
+<ownDataTypeParameters>40,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Kennzeichen_Gefahrstoff" id="E11854AC-4E9B-1815-BDF2-9B1B16EE045D">
+<createdBy>toz</createdBy>
+<createdTime>2020-12-30 11:14:05 UTC</createdTime>
+<notes><![CDATA[Transformations:
+
+1. WHEN ATT_234355 HAS VALUE SET “true” ELSE SET “false”
+
+Validation rules:
+
+1. Mandatory
+2. Boolean value: „true“ or „false“
+
+Validation error handling:
+
+1. none, value is always set by transformation
+2. none, value is always set according to Code list by transformation]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>018899C1-1063-572C-AD15-2DF35A7821BE</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="ATT_234355"/>
+</propertyMap>
+</Column>
+<Column name="Langtextnummer" id="65FEFA1E-A25B-E9A4-CA82-7C037431B850">
+<createdBy>toz</createdBy>
+<createdTime>2020-12-30 11:14:05 UTC</createdTime>
+<notes><![CDATA[NOT READY
+
+Transformations:
+
+1. none
+
+Validation rules:
+
+1. Text, length max 8 characters
+2. Value must exist in langtexte.csv
+
+Validation error handling:
+
+1. In case of number does not exists in langtexte.csv set empty value
+log in summary file: ??]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>8 CHAR</dataTypeSize>
+<ownDataTypeParameters>8 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Kennzeichen_UBA_Positivliste" id="C12E8358-890A-86E9-0DBE-2A8D68C34B56">
+<createdBy>toz</createdBy>
+<createdTime>2020-12-30 11:14:05 UTC</createdTime>
+<notes><![CDATA[NOT READY
+
+Transformations:
+
+1. none, attritbute must be filled manually]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Serie" id="C0A48454-7388-33CB-8620-37BECA671A4D">
+<createdBy>toz</createdBy>
+<createdTime>2020-12-30 11:14:05 UTC</createdTime>
+<notes><![CDATA[NOT READY
+
+Transformations:series, product brand and type
+
+1. none
+
+Validation rules:
+
+1. Text, length max 80 characters
+
+Validation error handling:
+
+1. In case of length > 80 characters, cut value
+log in summary file: (Issue;article.csv;[article no];[line number];E0000002;[Code text];M0000002;[Code text];Serie;[Value];[NewValue])]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>80 CHAR</dataTypeSize>
+<ownDataTypeParameters>80 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Kennzeichen_UBA_Anforderung" id="C62B0752-11C0-B9B4-CAC1-89AF64F2E408">
+<createdBy>toz</createdBy>
+<createdTime>2020-12-30 11:14:05 UTC</createdTime>
+<notes><![CDATA[NOT READY
+
+Transformations:
+
+1. none, the attribute must be filled manually
+]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Werkslistenpreis_Preiswert" id="7B3B0227-BC0C-7C88-6387-991699CD715F">
+<createdBy>toz</createdBy>
+<createdTime>2020-12-30 11:14:05 UTC</createdTime>
+<notes><![CDATA[NOT READY
+
+Transformations:
+
+1. none, the attribute must be filled manually]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Werkslistenpreis_Waehrung" id="418096AF-87B0-618B-3F92-68F6B1F6784E">
+<createdBy>toz</createdBy>
+<createdTime>2020-12-30 11:14:05 UTC</createdTime>
+<notes><![CDATA[NOT READY
+
+Transformations:
+
+1. none, the attribute must be filled manually]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Kennzeichen_Lithiumbatterie" id="32A6CB05-1349-0E68-0803-82D7AC60D385">
+<createdBy>toz</createdBy>
+<createdTime>2020-12-30 11:14:05 UTC</createdTime>
+<notes><![CDATA[NOT READY
+
+Transformations:
+
+1. none, the attribute must be filled manually]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="1A0867DD-D8A5-B510-7F79-87F258E1ABBA" name="Artikel_PK">
+<createdBy>toz</createdBy>
+<createdTime>2021-01-20 08:59:21 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="2F0F5D60-0763-6AC0-D321-510AA63559B5"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

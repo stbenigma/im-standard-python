@@ -1,0 +1,44 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_2" id="DE43937F-1C89-7055-513C-49B404DB9DFB" name="Grenzübergangsstelle">
+<createdBy>stb</createdBy>
+<createdTime>2020-01-20 08:11:36 UTC</createdTime>
+<comment><![CDATA[Geographischer Ort, an dem die Grenze ordnungsgemäss überschritten werden darf.
+
+GüG
+Ein Gebäude des Zoll, das nicht dauernd besetzt ist
+
+
+Eine Grenzübergangsstelle ist ein von den zuständigen Behörden für das Überschreiten der Aussengrenzen zugelassenen Ort des Grenzübertritts.
+]]></comment>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<typeID>06A14CAF-CD31-7D91-4C51-88E4B0E99301</typeID>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<hierarchicalParent>0FBD4B59-DE23-A348-25DE-21BEEC972733</hierarchicalParent>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<synonym>Wirkundgsort</synonym>
+<createSurrogateKey>true</createSurrogateKey>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Nr" id="2882EB06-ABDC-2A83-6CBE-4EBD827C66AC">
+<createdBy>stb</createdBy>
+<createdTime>2020-03-16 15:13:26 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+</Entity>

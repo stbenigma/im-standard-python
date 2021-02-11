@@ -1,0 +1,66 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="1710B20C-0D36-C728-C0CB-D22A1630E2AD" name="ETIMVALUE">
+<createdBy>SMINI</createdBy>
+<createdTime>2020-11-23 16:52:33 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<ordsAlias>table_17</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="VALUEID" id="D3CB5DED-CA40-B6B7-F917-A361D11DD41E">
+<createdBy>SMINI</createdBy>
+<createdTime>2020-11-23 16:53:37 UTC</createdTime>
+<commentInRDBMS><![CDATA[Unambiguous identifier of the default value 
+]]></commentInRDBMS>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+</propertyMap>
+</Column>
+<Column name="VALUEDESC_EN" id="EA2B9F40-FEC9-E825-B4C4-CD02D7213479">
+<createdBy>SMINI</createdBy>
+<createdTime>2020-11-23 16:53:37 UTC</createdTime>
+<commentInRDBMS><![CDATA[English description of the default value 
+]]></commentInRDBMS>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+</propertyMap>
+</Column>
+<Column name="VALUEDESC_DE" id="B2890C24-B36A-0F72-BD9D-758CE3324758">
+<createdBy>SMINI</createdBy>
+<createdTime>2020-11-23 16:53:37 UTC</createdTime>
+<commentInRDBMS><![CDATA[German description of the default value 
+]]></commentInRDBMS>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+</propertyMap>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="451A6927-AE8B-683B-0C85-B5794B266FC4" name="ETIMVALUE_PK">
+<createdBy>SMINI</createdBy>
+<createdTime>2020-11-23 16:53:37 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="D3CB5DED-CA40-B6B7-F917-A361D11DD41E"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

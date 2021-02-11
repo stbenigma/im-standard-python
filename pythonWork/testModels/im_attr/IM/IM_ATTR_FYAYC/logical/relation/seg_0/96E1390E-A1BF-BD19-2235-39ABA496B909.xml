@@ -1,0 +1,29 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_40" directorySegmentName="seg_0" id="96E1390E-A1BF-BD19-2235-39ABA496B909">
+<createdBy>stb</createdBy>
+<createdTime>2018-05-30 12:35:44 UTC</createdTime>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
+</engineerTo>
+<useSurrogateKey>true</useSurrogateKey>
+<identifying>false</identifying>
+<nameOnSource>beschrieben durch</nameOnSource>
+<nameOnTarget>beschreibt</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>24DE0E96-342F-AA24-B055-D3E929C2B406</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>E0174576-3FBB-AB41-D37C-7B8076C1313E</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="beschrieben durch"/>
+<property name="DE_RELA_TEXT_TO" value="beschreibt"/>
+<property name="EN_RELA_TEXT_FROM" value="*DE* beschrieben durch"/>
+<property name="EN_RELA_TEXT_TO" value="*DE* beschreibt"/>
+</propertyMap>
+</Relation>

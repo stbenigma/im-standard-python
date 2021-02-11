@@ -1,0 +1,34 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_52" directorySegmentName="seg_0" id="613A7FD9-0BC9-EE8C-CFFE-31E11B01118E">
+<createdBy>cle</createdBy>
+<createdTime>2018-10-19 14:23:44 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<engineerTo>
+<item key="AC362FED-09A7-BA00-8310-29076CD8571C" value="true"/>
+<item key="0F93F29F-E1ED-0300-B3B1-B58C77EE97A7" value="true"/>
+<item key="38668F89-26BC-F63A-555D-54B8056CF413" value="true"/>
+<item key="249E7ABA-8CD0-1978-78A7-F7026DA6A2EB" value="true"/>
+<item key="F8D1D625-33EA-D367-FD1B-8BE01FB72044" value="true"/>
+<item key="D349E673-4EDF-C611-3E51-BBBDE8744098" value="true"/>
+<item key="BFAC4467-8343-0983-11FB-CB866029374C" value="true"/>
+<item key="2DBF4F11-72F7-73ED-22BE-2120810BE40F" value="true"/>
+<item key="E6E75503-6116-388A-72BD-E82DC5E22548" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<nameOnSource>abgeleitet aus</nameOnSource>
+<nameOnTarget>???</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>F29FB42C-ECFB-202C-5CD0-27AE55FEADDF</sourceEntity>
+<targetCardinalityString>1</targetCardinalityString>
+<targetEntity>F29FB42C-ECFB-202C-5CD0-27AE55FEADDF</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="abgeleitet aus"/>
+<property name="DE_RELA_TEXT_TO" value="???"/>
+<property name="EN_RELA_TEXT_FROM" value="derived from"/>
+<property name="EN_RELA_TEXT_TO" value="???"/>
+</propertyMap>
+</Relation>

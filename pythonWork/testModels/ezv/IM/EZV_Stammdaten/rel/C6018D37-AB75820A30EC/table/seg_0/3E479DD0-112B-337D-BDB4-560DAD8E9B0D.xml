@@ -1,0 +1,291 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="3E479DD0-112B-337D-BDB4-560DAD8E9B0D" schemaObject="BD327076-AC83-52B5-BAD4-632D844000BD" name="ZUSANSATZ">
+<sourceDDLFile>cr_zusansatz.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2019-10-22 15:15:48 UTC</createdTime>
+<commentInRDBMS><![CDATA[Zusatzabgabe Ansatz]]></commentInRDBMS>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<importedID>C5A33540-340E-2700-F6C1-7DECEC22BEAD</importedID>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ZAN_ID" id="3D0D9FF6-5311-102F-C324-501FA092F4EC">
+<sourceDDLFile>cr_zusansatz.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2019-10-22 15:15:48 UTC</createdTime>
+<commentInRDBMS><![CDATA[Id der Zusatzabgaben Ansatz]]></commentInRDBMS>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<importedID>3924EA92-F48F-12CA-2582-C73E21AD1521</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>0</dataTypeSize>
+<ownDataTypeParameters>0,10,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ZAN_ZAG_ID" id="670A3828-9959-C172-5030-BC47470B156E">
+<sourceDDLFile>cr_zusansatz.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2019-10-22 15:15:48 UTC</createdTime>
+<commentInRDBMS><![CDATA[Id der Zusatzabgaben]]></commentInRDBMS>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<importedID>C2A927BD-F63F-ED27-E99D-30B72F07E449</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>0</dataTypeSize>
+<ownDataTypeParameters>0,10,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="ADE8ABD1-95F4-C1B5-6D44-083907F408ED" referredColumn="E58B40F8-37C1-F7ED-5720-213FF0043857"/>
+</associations>
+</Column>
+<Column name="ZAN_BMC_ID" id="48BE7402-70F9-AC0A-3ECC-8D1BEE426808">
+<sourceDDLFile>cr_zusansatz.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2019-10-22 15:15:48 UTC</createdTime>
+<commentInRDBMS><![CDATA[Id der Bemessungscode]]></commentInRDBMS>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<importedID>21265EF9-D2AB-3E5C-0B8E-EA6E384B66D6</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>0</dataTypeSize>
+<ownDataTypeParameters>0,10,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ZAN_ANB_ID" id="56B833E1-CB33-B8C1-5884-8808447B6B54">
+<sourceDDLFile>cr_zusansatz.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2019-10-22 15:15:48 UTC</createdTime>
+<commentInRDBMS><![CDATA[Id der Ansatzbemessung]]></commentInRDBMS>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<importedID>18B2231A-939F-E96D-1A67-325C18E5B93C</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>0</dataTypeSize>
+<ownDataTypeParameters>0,10,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ZAN_ANS" id="D58C3F05-9AAE-1CE4-B77C-C35C42DF1F78">
+<sourceDDLFile>cr_zusansatz.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2019-10-22 15:15:48 UTC</createdTime>
+<commentInRDBMS><![CDATA[Ansatz der Zusatzabgabe]]></commentInRDBMS>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<importedID>6B2C83BD-F6C3-9F05-F798-F0C00A3E3433</importedID>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>6</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<dataTypeSize>0</dataTypeSize>
+<ownDataTypeParameters>0,6,2</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ZAN_VDAT" id="606A26CC-049F-85CD-23D8-2AF0749150D5">
+<sourceDDLFile>cr_zusansatz.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2019-10-22 15:15:48 UTC</createdTime>
+<commentInRDBMS><![CDATA[G�ltig von]]></commentInRDBMS>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<importedID>D88CAB5E-EC3E-432E-C568-867A5D5075B0</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ZAN_BDAT" id="B47F23C2-EADD-B881-92F9-DF94217C693B">
+<sourceDDLFile>cr_zusansatz.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2019-10-22 15:15:48 UTC</createdTime>
+<commentInRDBMS><![CDATA[G�ltig bis]]></commentInRDBMS>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<importedID>D0143BA3-9CD0-AB5D-6681-154DD886B628</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ZAN_UC" id="4449029E-8E89-83C5-AC18-31FF3273C29D">
+<sourceDDLFile>cr_zusansatz.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2019-10-22 15:15:48 UTC</createdTime>
+<commentInRDBMS><![CDATA[Ersteller des Datensatzes]]></commentInRDBMS>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<importedID>A4C56616-C1FA-25AF-97CE-5663B2BA8ED8</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypePrecision>0</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,0,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ZAN_DC" id="175CF81F-1F7A-E6F4-9378-37F83FF023D4">
+<sourceDDLFile>cr_zusansatz.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2019-10-22 15:15:48 UTC</createdTime>
+<commentInRDBMS><![CDATA[Erstellungsdatum des Datensatzes]]></commentInRDBMS>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<importedID>14E49070-1692-DAB2-DE1C-72A10AB57FFF</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ZAN_MIN" id="930C36EC-ACE6-4FE4-59EE-EE10674BF093">
+<sourceDDLFile>cr_zusansatz.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2019-10-22 15:15:48 UTC</createdTime>
+<commentInRDBMS><![CDATA[Minimalbetrag]]></commentInRDBMS>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<importedID>20F61083-A8E8-88BB-B411-DBAE85DE2E05</importedID>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>7</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<dataTypeSize>0</dataTypeSize>
+<ownDataTypeParameters>0,7,2</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ZAN_MAX" id="1AAD74AD-BDDF-537E-3DD8-561ABF0DB98E">
+<sourceDDLFile>cr_zusansatz.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2019-10-22 15:15:48 UTC</createdTime>
+<commentInRDBMS><![CDATA[Maximalbetrag]]></commentInRDBMS>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<importedID>98E2BDDB-7101-94BE-B9D7-5513BF903C1C</importedID>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>7</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<dataTypeSize>0</dataTypeSize>
+<ownDataTypeParameters>0,7,2</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ZAN_UM" id="B5CFED5D-6E3E-3E4B-DEEE-AA8CB8108C72">
+<sourceDDLFile>cr_zusansatz.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2019-10-22 15:15:48 UTC</createdTime>
+<commentInRDBMS><![CDATA[Username letzte Mutation]]></commentInRDBMS>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<importedID>4CD37D70-C3B1-F19C-57B4-F7448E5EFFE2</importedID>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypePrecision>0</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,0,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ZAN_DM" id="6D97F686-0341-EDBB-7F89-4A7CB6B7B562">
+<sourceDDLFile>cr_zusansatz.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2019-10-22 15:15:48 UTC</createdTime>
+<commentInRDBMS><![CDATA[Mutationsdatum]]></commentInRDBMS>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<importedID>F9769BF4-4330-4DEC-70F5-7C805D151BBE</importedID>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="117D89C4-F06A-2F68-50BE-4C48EACB0F34" name="ZAN_PK">
+<sourceDDLFile>cr_zusansatz.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2019-10-22 15:15:48 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<importedID>D606960B-DFF6-1B5B-1258-C3EE4B7BC653</importedID>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="3D0D9FF6-5311-102F-C324-501FA092F4EC"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="3A406276-03E7-BA23-033E-414D2926BF00" name="ZAN_ZAN1_UK">
+<sourceDDLFile>cr_zusansatz.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2019-10-22 15:15:48 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<importedID>05979E39-879C-11C4-EF3A-81C6F3AFB60D</importedID>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="670A3828-9959-C172-5030-BC47470B156E"/>
+<colUsage columnID="606A26CC-049F-85CD-23D8-2AF0749150D5"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="D7065E37-8DB7-A2DA-568E-D7CF217B608A" schemaObject="BD327076-AC83-52B5-BAD4-632D844000BD" name="ZAN_ZAG_FK_I">
+<sourceDDLFile>cr_zusansatz.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2019-10-22 15:15:48 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<importedID>73A1619A-38C5-2DAC-D7CF-842E74495567</importedID>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="670A3828-9959-C172-5030-BC47470B156E"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="6EC6142E-3FA5-DAED-7527-3802DFFB8BDF" schemaObject="BD327076-AC83-52B5-BAD4-632D844000BD" name="ZAN_ZAN1_UK">
+<sourceDDLFile>cr_zusansatz.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2019-10-22 15:15:48 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<importedID>1F37E773-7738-79D9-3159-1F6AE8D4E62E</importedID>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="670A3828-9959-C172-5030-BC47470B156E"/>
+<colUsage columnID="606A26CC-049F-85CD-23D8-2AF0749150D5"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="72F307F1-108E-7B2C-E6F1-9D9868664493" schemaObject="BD327076-AC83-52B5-BAD4-632D844000BD" name="ZAN_PK">
+<sourceDDLFile>cr_zusansatz.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2019-10-22 15:15:48 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<importedID>903CD815-1C77-B6AC-AD87-12F1322D0584</importedID>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="3D0D9FF6-5311-102F-C324-501FA092F4EC"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="08556C18-FBBC-F008-B5C1-3CAF4E397A8D" name="ZAN_ZAG_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-22 15:15:48 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="670A3828-9959-C172-5030-BC47470B156E"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

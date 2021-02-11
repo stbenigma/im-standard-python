@@ -1,0 +1,328 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="8D1E5298-83A7-E396-16E8-E753DA134BA2" name="04_REGLEMENTAIRE">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[Regulatory Information
+Objective: To certify the conformity of products with certain regulations that have a direct impact on the marketing of products and the legal responsibility of the actors.
+- This block of data concerns only the references covered by one of the regulations identified (marketing subject to the availability of a data, price repercussions, liability commitment, etc.).
+- Includes, among others, ACS: Attestation of Health Conformity; BATTERY: Air Cargo Control of Batteries and Accumulators; WOOD: EU Wood Regulations; EEC: Energy Saving Certificate; CONTRIB: Eco-contributions (WEEE, AED) and SORECOP; DOP: Declaration Of Performance (Construction Product Regulation); E-ENV-SAN: Environmental and Health Label; ECCN : Export Control; F- GAS: Refrigerant Regulation; SDS: Safety Data Sheet; NFS: Certificate of Compliance with NF S 61937; RECHANG: Duration of Availability of Spare Parts; ROHS: Compliance with RoHS requirements; TRACE: Product Traceability; TRIMAN: Sorting instruction for recycling
+
+Informations réglementaires
+Objectif : Attester la conformité des produits à certaines réglementations ayant une incidence directe sur la commercialisation des produits et la responsabilité juridique des acteurs
+- Ce bloc de données concerne uniquement les références visées par l'une des règlementations identifiées (commercialisation conditionnée à la disponibilité d'une donnée, répercussion tarifaire, engagement de responsabilité...)
+- Comprend notamment, ACS : Attestation de Conformité Sanitaire ; BATTERY : Contrôle du fret aérien des piles et accumulateurs ; BOIS : Réglementation Bois de l'UE ; CEE : Certificat d'Economie d'Energie ; CONTRIB : Eco-contributions (DEEE, DEA) et SORECOP ; DOP : Declaration Of Performance (Règlement Produit de construction) ; E-ENV-SAN : Etiquette environnementale et sanitaire ; ECCN : Contrôle des exportations ; F- GAZ : Règlementation relative aux fluides frigorigènes ; FDS : Fiche de donnée de Sécurité ; NFS : Certificat de conformité à la NF S 61937 ; RECHANG : Durée de la disponibilité des pièces détachées ; ROHS : Conformité aux exigences RoHS ; TRACE : Traçabilité des produits ; TRIMAN : Consigne de tri en vue du recyclage]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<ordsAlias>reglementaire</ordsAlias>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<documents usedDucuments="7EBDC037-8728-C627-4B33-CEDF979E7C13"/>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="MARQUE" id="BC7A012C-B64E-AD6E-A3C1-D0D160DC2E2E">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[Name of the marketing brand of the reference. Is equal, by default, to MANUFACTURER]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<defaultValue>MANUFACTURER</defaultValue>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="108.0"/>
+</propertyMap>
+</Column>
+<Column name="REFCIALE" id="722BBDC2-9A3F-4738-4442-ED5B7725E198">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[Created on 17/1/2020  15:39:32 during import from /Users/stb/Documents/DataModeler/Import/testimport3.csv]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<dataTypeSize>30</dataTypeSize>
+<ownDataTypeParameters>30,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="109.0"/>
+</propertyMap>
+<associations>
+<colAssociation fkAssociation="DECD690F-B7A5-2837-081A-B6101D500DF6" referredColumn="F2E9C92A-951A-E352-A717-B888A485E292"/>
+</associations>
+</Column>
+<Column name="RTYP" id="3287DCB7-AD96-B0B5-D901-4F7851F7475C">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[18 types of Regulations
+ACS : Attestation of Health Conformity
+BATTERY: Air Cargo Control of Batteries and Accumulators
+WOOD: EU Wood Regulations
+EEC: Energy Saving Certificate
+CONTRIB: Eco-contributions (WEEE, AED) and SORECOP (private copy) DOC: Declaration Of Conformity
+DOP: Declaration Of Performance (Construction Product Regulation) E-ENV-SAN: Environmental and Health Labels
+ECCN: Export Controls
+F-GAZ: Refrigerants regulation
+MSDS: Material Safety Data Sheet
+FTFV: End-of-Life Treatment Record
+NFS: Certificate of conformity to NF S 61937
+PEREMP: Type of expiry date, CSD or MDD
+RECHANG: Duration of spare parts availability
+ROHS: RoHS Compliance
+TRACE: Product traceability
+TRIMAN: Sorting instruction for recycling (Triman)
+Each type of Regulation (RTYP) corresponds to an obligation to provide information to customers (professionals or individuals) involving a particular set of fields to be communicated when marketing the product (e.g. date, certificate, amount, code, duration, postal address, etc.). Below is a summary of the fields to be filled in by type of regulation
+the description of the fields is described in the tab "Regulatory table".]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="110.0"/>
+</propertyMap>
+</Column>
+<Column name="RNUM" id="6960C15A-83F4-C061-38B1-53349490C546">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[Order number of the information by trade reference.
+Whole number. Field always filled in, default value = 1]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>3</dataTypePrecision>
+<ownDataTypeParameters>,3,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="111.0"/>
+</propertyMap>
+</Column>
+<Column name="RNAT" id="15A31A04-3BC1-76DE-8431-4D7AB236E26B">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[Nature of the data required by the regulations, associated with RTYP
+The definition and values used for this field are customized for each regulation: see description in the "Regulatory table" tab.]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="112.0"/>
+</propertyMap>
+</Column>
+<Column name="RCOD" id="56F24F33-EF7B-00B8-B2B3-42AD05F70A58">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[Code required by regulation.
+The definition and values used for this field are customized for each regulation: see description in the "Regulatory table" tab.]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="113.0"/>
+</propertyMap>
+</Column>
+<Column name="RNBR" id="D70C111F-8A93-5F4A-B5D6-3BEF3D8092F3">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[Quantity or number of elements associated with RCOD. An integer number.
+The definition and values used for this field are customized for each regulation: see description in the "Regulatory table" tab.
+]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>7</dataTypePrecision>
+<dataTypeScale>3</dataTypeScale>
+<ownDataTypeParameters>,7,3</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="114.0"/>
+</propertyMap>
+</Column>
+<Column name="RTEXTE" id="1FD48E03-6E66-8BD3-4BF4-770ECB25EE84">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[Text required by regulation
+The definition and values used for this field are customized for each regulation: see description in the "Regulatory table" tab.]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<dataTypeSize>240</dataTypeSize>
+<ownDataTypeParameters>240,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="115.0"/>
+</propertyMap>
+</Column>
+<Column name="RDATE" id="B4B48D31-D9A9-D2C6-74EB-DA343E1E56AE">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[Date required by regulation
+The definition and values used for this field are customized for each regulation: see description in the "Regulatory table" tab.]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="116.0"/>
+</propertyMap>
+</Column>
+<Column name="RVAL" id="B7925370-E726-7F7F-3D26-DDB2FC0470BC">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[Numerical value associated with RVU and required by regulation
+The definition and values used for this field are customized for each regulation: see description in the "Regulatory table" tab.]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>7</dataTypePrecision>
+<dataTypeScale>3</dataTypeScale>
+<ownDataTypeParameters>,7,3</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="117.0"/>
+</propertyMap>
+</Column>
+<Column name="RVU" id="F2A76314-C08D-1416-3715-AB7434C3E459">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[Unit of the numerical value required by regulation	]]></comment>
+<notes><![CDATA[https://geberit-projects.atlassian.net/l/c/Q6mFsBa6 (value mapping for BATTERY, PEREMP, RECHANG)]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>99E2CC98-CBAA-2C88-E05A-29F03217068B</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="118.0"/>
+</propertyMap>
+</Column>
+<Column name="RNOM" id="02711053-1C23-010B-CDF9-86544C4BC831">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[Name of document required by regulation
+3 ways of making the document available :
+- in DOCUMENT (see description of this data block on the first page of the manual) - via the download link in the RURLT field
+- via the RURL link for direct display on the merchant site
+Number of free characters.]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<dataTypeSize>1000</dataTypeSize>
+<ownDataTypeParameters>1000,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="119.0"/>
+</propertyMap>
+</Column>
+<Column name="RURL" id="5E33941E-0234-AD09-6FE8-5081E65FB41E">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[RURL: link for displaying the regulatory document without storage by the Distributor Recommended number of characters: less than 2,000]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<dataTypeSize>2000</dataTypeSize>
+<ownDataTypeParameters>2000,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="120.0"/>
+</propertyMap>
+</Column>
+<Column name="RURLT" id="480A39A4-4992-27DB-3151-DEBD04E14974">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[RURLT: URL link to download the document for inclusion in the Distributor's PIM Recommended number of characters: less than 2,000]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<dataTypeSize>2000</dataTypeSize>
+<ownDataTypeParameters>2000,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="121.0"/>
+</propertyMap>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="D099C334-482F-74A8-92BA-F27CBCADD4B3" name="04_REGLEMENTAIRE__UN">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="BC7A012C-B64E-AD6E-A3C1-D0D160DC2E2E"/>
+<colUsage columnID="722BBDC2-9A3F-4738-4442-ED5B7725E198"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="561000DC-970C-D55F-A874-675ABA022A1B" name="04_REGLEMENTAIRE_01_COMMERCE_FK">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="722BBDC2-9A3F-4738-4442-ED5B7725E198"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

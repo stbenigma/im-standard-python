@@ -1,0 +1,74 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="BDCA1A3E-2D35-0209-D6A2-602D207B6859" name="Zusatzabgabe">
+<createdBy>stb</createdBy>
+<createdTime>2018-09-10 07:02:42 UTC</createdTime>
+<comment><![CDATA[Abgabe, die zusätzlich zum Zoll erhoben wird.
+
+Die Mengenangaben aus denen die Zusatzabgaben berechnet werden, werden in den Deklarationen in eigenen Feldern (1 je Zusatzabgabe) erfasst.
+Diese Felder sind nicht Bestandteil der Stammdaten.
+
+Ob (und wie) diese Mengenangaben aus den Deklartionsfeldern (Rohmasse, Eigenmasse, Zusatzmenge) abgeleitet werden kann ist aktuell nicht Bestandteil der Stammdaten. Diese Information würde aber Möglichkeiten der Vereinfachung der Deklaration bieten: Zusatzabgabenmengen werden automatisch nachgeführt.
+
+Beispiele:
+-Tabaksteuer
+-Sota
+-Mineralölsteuer
+-Alkoholbesteuerung
+]]></comment>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<typeID>02969000-CCE3-D244-36A9-7F9B40CCE4D0</typeID>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<hierarchicalParent>E354F9F9-5897-F8F7-15F2-91C38A2D38C8</hierarchicalParent>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<propertyMap>
+<property name="GSD-Tabellenname" value="."/>
+<property name="SAP_Tabellenname" value="."/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Abgabe-Code" id="526D3F99-82AA-8DD2-3C7D-4A27D4CEFA21">
+<createdBy>stb</createdBy>
+<createdTime>2018-09-10 07:03:12 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Beschreibung [L][T]" id="0809647E-EDA1-5E3A-CEA9-EA123E552700">
+<createdBy>stb</createdBy>
+<createdTime>2018-09-10 07:03:56 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Faktor" id="517E9C2A-85A2-D910-DC07-F76D02F0EA1D">
+<createdBy>stb</createdBy>
+<createdTime>2019-06-27 14:16:54 UTC</createdTime>
+<comment><![CDATA[Angabe pro wie viele Einheiten der Bemessungsgrundlage der Ansatz gilt]]></comment>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+</Entity>

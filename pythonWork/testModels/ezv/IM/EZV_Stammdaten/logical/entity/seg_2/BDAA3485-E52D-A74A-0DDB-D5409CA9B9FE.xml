@@ -1,0 +1,27 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_2" id="BDAA3485-E52D-A74A-0DDB-D5409CA9B9FE" name="LSVA-Abfertigungsterminal">
+<createdBy>stb</createdBy>
+<createdTime>2020-01-21 15:12:23 UTC</createdTime>
+<comment><![CDATA[Gerät an dem LSVA-Geschäfte getätigt werden können
+
+Ein LSVA Abfertigungsterminal dient zum Deklarieren und Ausgeben von LSVA Belegen für ausländische Fahrzeuge ohne Erfassungsgerät.
+AT Classic: Die HW Komponenten sind in einem gemeinsamen Gehäuse untergebracht.
+AT Rapid: Wird bei Arbeitsplätzen in Hochkabinen installiert. Die HW Komponenten sind untergebracht im Handgerät und im Basisgehäuse. Zur Bedienung des Handgerätes muss der Fahrer nicht aus dem Fahrzeug aussteigen.]]></comment>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="false"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<typeID>06A14CAF-CD31-7D91-4C51-88E4B0E99301</typeID>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<hierarchicalParent>A3B004E7-3AC3-DA87-1FEA-F675A808FC0C</hierarchicalParent>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<createSurrogateKey>true</createSurrogateKey>
+</Entity>

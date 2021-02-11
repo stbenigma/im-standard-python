@@ -1,0 +1,79 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="FE24056D-69FE-90AF-E273-4A9BA6B9DE35" name="Zollerleichterung">
+<createdBy>stb</createdBy>
+<createdTime>2018-08-22 12:55:29 UTC</createdTime>
+<comment><![CDATA[Zollerleichterung (unterscheidung von Ansätzen) je nach Verwendungszweck (mit Begründung oder Nachweis)
+führt zu einer Reduktion des Normalansatzes
+
+Code war früher in einer eigenen Tabelle ZBCODE
+mit virtuelle (J/N) und dem Code 00 (= virtuell) .. 99
+
+Gesetzliche Grundlagen
+- ZB 
+   ZE TN8 Art. 14 ZG Absatz 1 A
+   ZE Detail Nach Verordnung Zollerleichterungsverordnung Art 14
+   Art 50-55 ZV
+   Zollerleichterungsverordnung
+- Präferenzverordnungen (ZTG, Anhang 1 GT)
+-Abkommen GATT Aviatik
+
+HINCO (verknüpft mit TN8) kann berechnet werden aus ZE-Zuweisung und ZE-Code (ZBG_CODE)
+2 NUR ZE: Code nicht 00 (nicht virtuell)
+1 KEIN ZE: Code 00 nur auf Tariflinie
+3 Beides: Code 00 auf Tariflinie, Darunter nicht-00 Code
+4, 5 MINöSt Codes, können nicht generiert werden. WERDEN DIE NOCH GEBRAUCHT. => JA für rechtlichen Hinweis
+Die beiden Codes (Zollerleichterung / Minöst-Steuervergünstigungi) werden in TN8 geführt.
+Codes 1-3 betreffen die Zollerleichterung und können mit den Einträgen in die ZE abgebildet werden. Es braucht den Code nicht mejhr.
+Codes 4 und 5 betreffen Zusatzabgaben-Schlüssel-Verbindungen und sagen aus, ob es eine Bewilliung braucht. Sie werden neu dort verwaltet
+ENTSCHEID 14.5.2019 te, stb, André?? Der Hinco wird nicht mehr geführt.
+]]></comment>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<typeID>5D665328-E55A-0C47-AF6D-AB589191EF22</typeID>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<synonym>ZE, Zollbegünstigung</synonym>
+<propertyMap>
+<property name="GSD-Tabellenname" value="ZOLLBEGUENSTIGUNG"/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Nr" id="A8F771B5-C5A8-1533-E7B8-6FC21B8F78B9">
+<createdBy>stb</createdBy>
+<createdTime>2018-08-22 12:56:11 UTC</createdTime>
+<comment><![CDATA[2-stellige Nummer für Unterscheidung in einer TN]]></comment>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="GSD-Attributname" value="ZBCODE.ZCO_CODE"/>
+</propertyMap>
+</Attribute>
+<Attribute name="Gültigkeitsperiode" id="C64B1A6A-C804-6DB0-4536-8AED463DB5E8">
+<createdBy>stb</createdBy>
+<createdTime>2019-02-26 08:48:04 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="GSD-Attributname" value="ZBG_VDAT/BDAT"/>
+</propertyMap>
+</Attribute>
+</attributes>
+</Entity>

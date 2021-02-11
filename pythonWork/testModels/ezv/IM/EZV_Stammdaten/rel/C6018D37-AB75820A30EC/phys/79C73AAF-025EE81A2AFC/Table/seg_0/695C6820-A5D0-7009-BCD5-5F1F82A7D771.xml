@@ -1,0 +1,139 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev11g class="oracle.dbtools.crest.model.design.storage.oracle.v12c.TableProxyOraclev12c" name="ZAG_SCL" directorySegmentName="seg_0" id="695C6820-A5D0-7009-BCD5-5F1F82A7D771">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-22 15:15:48 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<schemaObject>BD327076-AC83-52B5-BAD4-632D844000BD</schemaObject>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<temporaryChanged>false</temporaryChanged>
+<accessDriverType>oracle_loader</accessDriverType>
+<rejectLimit></rejectLimit>
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="ZUS_SCI_ID" id="05E4B472-0F9A-9E7B-5CDE-F13B2F9300D4">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-22 15:15:48 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="ZUS_DM" id="1255C4E1-C97F-A34D-8EBF-441C5D438726">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-22 15:15:48 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="ZUS_VDAT" id="130C0302-5F8D-1C92-025B-F247101B98AB">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-22 15:15:48 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="ZUS_SCE_ID" id="1A99FB90-4BD6-3718-DF61-7509319F3FC4">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-22 15:15:48 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="ZUS_STATUS" id="267A85B7-25E1-5079-4288-192503667F02">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-22 15:15:48 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="ZUS_OPT" id="3B8288EE-12D1-8186-ABF7-8F01A326B683">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-22 15:15:48 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="ZUS_ZAG_ID" id="9053F693-E1FC-7739-97A6-DFC46E3FA3B6">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-22 15:15:48 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="ZUS_DC" id="96963AC8-CE60-3580-CC2A-C2DABF50B6CA">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-22 15:15:48 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="ZUS_GRPPFLICHT" id="96BFA2C3-3DB0-2453-11B9-4A9DC66054EC">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-22 15:15:48 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="ZUS_UC" id="9783E7FA-2EB7-315B-D1D4-5B448CB15A8A">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-22 15:15:48 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="ZUS_ID" id="A8D9B484-B958-35DA-F0B9-9BEF0BF93CEE">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-22 15:15:48 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="ZUS_UM" id="CD67DDD2-9E58-0009-9E11-D3582AAE90A4">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-22 15:15:48 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="ZUS_BDAT" id="FCEA24A4-B4EE-F75F-A1FD-8F53F09320AB">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-22 15:15:48 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+<indexProxies>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="ZUS_ZUS1_UK" id="114F7C57-654D-9A87-C766-4061551FD5F2">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-22 15:15:48 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<schemaObject>BD327076-AC83-52B5-BAD4-632D844000BD</schemaObject>
+</IndexProxy>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="ZUS_PK" id="378A86CE-C72C-1414-D9DF-3C2867A1D97D">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-22 15:15:48 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<schemaObject>BD327076-AC83-52B5-BAD4-632D844000BD</schemaObject>
+</IndexProxy>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="ZUS_ZAG_FK_I" id="4F54D488-3505-1397-4107-BBBE89B62687">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-22 15:15:48 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<schemaObject>BD327076-AC83-52B5-BAD4-632D844000BD</schemaObject>
+</IndexProxy>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="ZUS_SCE_FK_I" id="9EBFE926-C323-E74E-FE5B-5285F78ACA6D">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-22 15:15:48 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<schemaObject>BD327076-AC83-52B5-BAD4-632D844000BD</schemaObject>
+</IndexProxy>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="ZUS_SCI_FK_I" id="CC4DFA41-037C-02D4-FAF7-E7B66364C3A8">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-22 15:15:48 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<schemaObject>BD327076-AC83-52B5-BAD4-632D844000BD</schemaObject>
+</IndexProxy>
+</indexProxies>
+<foreignKeys>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="ZUS_SCI_FK" id="34936CFA-4E04-75CD-6AAE-7D9CBD70C882">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-22 15:15:48 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+</ForeignKey>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="ZUS_ZAG_FK" id="BD483AFF-9A5D-FBC4-15D6-FADE5F5CB978">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-22 15:15:48 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+</ForeignKey>
+</foreignKeys>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="ZUS_PK" id="5679F742-B2A0-1227-A465-11359D83400A">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-22 15:15:48 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<indexSort>SORTED</indexSort>
+</PrimaryKey>
+</primaryKeys>
+<uniqueKeys>
+<UniqueKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.UniqueOraclev10g" name="ZUS_ZUS1_UK" id="0BC5BAF8-D091-2FE7-89C7-8AC740023AF9">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-22 15:15:48 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<indexSort>SORTED</indexSort>
+</UniqueKey>
+</uniqueKeys>
+</TableProxyOraclev11g>

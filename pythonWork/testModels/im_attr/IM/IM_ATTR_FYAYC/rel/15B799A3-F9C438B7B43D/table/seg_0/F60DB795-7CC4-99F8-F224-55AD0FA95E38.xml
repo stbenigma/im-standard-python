@@ -1,0 +1,93 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="F60DB795-7CC4-99F8-F224-55AD0FA95E38" name="RLN_90">
+<createdBy>stb</createdBy>
+<createdTime>2018-10-21 13:54:35 UTC</createdTime>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="{REF TABLE  ABBR}_BUS_RUL_ID" id="4BFA3AAA-0806-C2D2-1325-BD4347C4589C">
+<createdBy>stb</createdBy>
+<createdTime>2018-10-21 13:54:35 UTC</createdTime>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="557BE1D3-82FB-541A-D1B1-9DF0091E2646" referredColumn="3B52AAE9-A2C5-80EB-D5DA-758CFDE56E5C"/>
+</associations>
+</Column>
+<Column name="{REF TABLE  ABBR}_ATTRIBUT_ID" id="E9AE0645-EDB3-D077-10DA-586D4A3CFC42">
+<createdBy>stb</createdBy>
+<createdTime>2018-10-21 13:54:35 UTC</createdTime>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="343A3B64-DF51-CACF-8E39-71E3375F4A25" referredColumn="D8469506-6FD4-3358-1C9D-64435152B23C"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="97DEBCF8-6909-F901-78BC-EEEA043059A6" name="RLN_90_PK">
+<createdBy>stb</createdBy>
+<createdTime>2018-10-21 13:54:35 UTC</createdTime>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="4BFA3AAA-0806-C2D2-1325-BD4347C4589C"/>
+<colUsage columnID="E9AE0645-EDB3-D077-10DA-586D4A3CFC42"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="C58E1860-1D84-658D-0ACC-CDF45A7EDE66" name="RLN_90__IDX">
+<createdBy>stb</createdBy>
+<createdTime>2019-01-26 15:45:02 UTC</createdTime>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="4BFA3AAA-0806-C2D2-1325-BD4347C4589C"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="25EB75F4-ED32-FD1E-9391-E5B93AFF7B6D" name="RLN_90__IDXV1">
+<createdBy>stb</createdBy>
+<createdTime>2019-01-26 15:45:02 UTC</createdTime>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="E9AE0645-EDB3-D077-10DA-586D4A3CFC42"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="3AF2649E-86E8-CEC0-59DC-E0D01FB5DEA2" name="RLN_90_BUS_RUL_FK">
+<createdBy>stb</createdBy>
+<createdTime>2018-10-21 13:54:35 UTC</createdTime>
+<generatorID>8C373B73-F94E-1E97-BDC0-16E01909D343</generatorID>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="4BFA3AAA-0806-C2D2-1325-BD4347C4589C"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="18789C12-A16C-33BE-6409-320F2B08F0E2" name="RLN_90_ATTRIBUT_FK">
+<createdBy>stb</createdBy>
+<createdTime>2018-10-21 13:59:23 UTC</createdTime>
+<generatorID>8C373B73-F94E-1E97-BDC0-16E01909D343</generatorID>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="E9AE0645-EDB3-D077-10DA-586D4A3CFC42"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

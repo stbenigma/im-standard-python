@@ -1,0 +1,43 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="9D774DFE-0572-9754-4EC9-08AE8BE7221D" name="Detail ZE">
+<createdBy>stb</createdBy>
+<createdTime>2018-08-22 12:59:51 UTC</createdTime>
+<comment><![CDATA[Zollberleichterung, die für eine TN8 zusätzlich unterteilt.
+Die ZE geben einen Text vor, der den Verwendungszweck umschreibt
+ 
+Nach Verordnung Zollerleichterungsverordnung Art 14]]></comment>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<typeID>5D665328-E55A-0C47-AF6D-AB589191EF22</typeID>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<hierarchicalParent>FE24056D-69FE-90AF-E273-4A9BA6B9DE35</hierarchicalParent>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<propertyMap>
+<property name="GSD-Tabellenname" value="ZOLLBEGUENSTIGUNG (ZBG_TARIFLINIE = &apos;N&apos;)"/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="ZE-Text [L]" id="CA97545D-EC23-BE64-E5D2-007FCFF03D17">
+<createdBy>stb</createdBy>
+<createdTime>2018-10-23 09:03:20 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="GSD-Attributname" value="SPRACHTEXT"/>
+</propertyMap>
+</Attribute>
+</attributes>
+</Entity>

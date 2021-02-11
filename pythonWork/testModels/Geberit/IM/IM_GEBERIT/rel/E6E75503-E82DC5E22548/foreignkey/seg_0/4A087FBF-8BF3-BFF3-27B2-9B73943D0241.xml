@@ -1,0 +1,18 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="4A087FBF-8BF3-BFF3-27B2-9B73943D0241" containerWithKeyObject="36F43ACD-CDD1-1FAB-CBEE-DCEE92C71B4F" localFKIndex="6F0CC0BF-29B0-9EDB-22F4-0DA06B2CF9D8" name="appsFK">
+<sourceDDLFile>model.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2020-09-03 08:39:51 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<importedID>9D26AB10-B6E4-755A-6184-627D183BC990</importedID>
+<referredTableLongName>apps</referredTableLongName>
+<deleteRule>RESTRICT</deleteRule>
+<referredTableID>DF9713E9-AE48-C2F6-D158-E57CF6E94DC3</referredTableID>
+<keyObject>09E89F4F-D1DF-9049-74E5-B6F4C04B0280</keyObject>
+<referredKeyID>09E89F4F-D1DF-9049-74E5-B6F4C04B0280</referredKeyID>
+<mandatory>false</mandatory>
+<refColNames>appsId</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

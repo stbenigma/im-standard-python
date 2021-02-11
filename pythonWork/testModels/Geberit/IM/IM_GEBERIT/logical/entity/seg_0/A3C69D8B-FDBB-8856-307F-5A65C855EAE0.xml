@@ -1,0 +1,102 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="A3C69D8B-FDBB-8856-307F-5A65C855EAE0" name="Ersatzteil">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-06 13:30:37 UTC</createdTime>
+<comment><![CDATA[Teil, das einen Artikel (oder Produkt?)  repariert,  wiederherstellt, aktualisert
+Eintrag (Zeile) eines Ersatzteils auf einer Ersatzteiltafel
+
+Beispiel: 
+Schaube M5  (Handelsübliche Ware)
+Schraube M6  (Handelsübliche Ware)
+Dichtungsring 22mm  (Handelsübliche Ware)
+Funktionseinheit für Geberit AquaClean Sela (bis Baujahr 2018): weiss-alpin
+WC-Sitz für Geberit AquaClean Sela (bis Baujahr 2018): weiss- alpin
+Panzerschlauch 3/8"–1/2", mit Bogen 90°, für Geberit AquaClean]]></comment>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+Teil, das einen Artikel (oder Produkt?)  repariert,  wiederherstellt, aktualisert
+Eintrag (Zeile) eines Ersatzteils auf einer Ersatzteiltafel
+
+Beispiel: 
+Schaube M5  (Handelsübliche Ware)
+Schraube M6  (Handelsübliche Ware)
+Dichtungsring 22mm  (Handelsübliche Ware)
+Funktionseinheit für Geberit AquaClean Sela (bis Baujahr 2018): weiss-alpin
+WC-Sitz für Geberit AquaClean Sela (bis Baujahr 2018): weiss- alpin
+Panzerschlauch 3/8"–1/2", mit Bogen 90°, für Geberit AquaClean
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+*Part that repairs, restores, updates an item (or product?)
+Entry (line) of a spare part on a spare parts panel
+
+Example: 
+Screw M5 (commercially available goods)
+Screw M6 (commercially available product)
+Sealing ring 22mm (commercially available product)
+Functional unit for Geberit AquaClean Sela (until year of construction 2018): white-alpine
+WC seat for Geberit AquaClean Sela (until 2018): white- alpine
+Armoured hose 3/8"-1/2", with bend 90°, for Geberit AquaClean
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<engineerTo>
+<item key="AC362FED-09A7-BA00-8310-29076CD8571C" value="true"/>
+<item key="0F93F29F-E1ED-0300-B3B1-B58C77EE97A7" value="true"/>
+<item key="F20DAA19-2167-0B56-9C12-084D2FED412B" value="true"/>
+<item key="6C289135-CF54-ECFC-0B55-E3D91D089428" value="true"/>
+<item key="249E7ABA-8CD0-1978-78A7-F7026DA6A2EB" value="true"/>
+<item key="D349E673-4EDF-C611-3E51-BBBDE8744098" value="true"/>
+<item key="BFAC4467-8343-0983-11FB-CB866029374C" value="true"/>
+<item key="2DBF4F11-72F7-73ED-22BE-2120810BE40F" value="true"/>
+<item key="B5460996-9C1F-EC84-44E9-B37E525A9693" value="true"/>
+<item key="E6E75503-6116-388A-72BD-E82DC5E22548" value="true"/>
+</engineerTo>
+<typeID>DF49C028-3B17-1BD5-8487-0966D2278D58</typeID>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="DE_ENTI_NAME" value="Ersatzteil"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_NAME" value="Spare Part"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Verfügbar bis" id="45DF2902-9F9E-55C8-95F1-6EC5FA7EB0BB">
+<createdBy>stb</createdBy>
+<createdTime>2020-04-06 07:29:11 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<engineerTo>
+<item key="AC362FED-09A7-BA00-8310-29076CD8571C" value="true"/>
+<item key="0F93F29F-E1ED-0300-B3B1-B58C77EE97A7" value="true"/>
+<item key="F20DAA19-2167-0B56-9C12-084D2FED412B" value="true"/>
+<item key="6C289135-CF54-ECFC-0B55-E3D91D089428" value="true"/>
+<item key="249E7ABA-8CD0-1978-78A7-F7026DA6A2EB" value="true"/>
+<item key="D349E673-4EDF-C611-3E51-BBBDE8744098" value="true"/>
+<item key="BFAC4467-8343-0983-11FB-CB866029374C" value="true"/>
+<item key="2DBF4F11-72F7-73ED-22BE-2120810BE40F" value="true"/>
+<item key="B5460996-9C1F-EC84-44E9-B37E525A9693" value="true"/>
+<item key="E6E75503-6116-388A-72BD-E82DC5E22548" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Verfügbar bis"/>
+<property name="EN_ATTR_NAME" value="**Available until"/>
+</propertyMap>
+</Attribute>
+</attributes>
+</Entity>

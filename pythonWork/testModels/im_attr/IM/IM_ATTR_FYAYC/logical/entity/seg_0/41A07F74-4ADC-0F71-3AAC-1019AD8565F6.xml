@@ -1,0 +1,78 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="41A07F74-4ADC-0F71-3AAC-1019AD8565F6" name="Aufzählung Attribut">
+<createdBy>stb</createdBy>
+<createdTime>2018-05-30 12:15:53 UTC</createdTime>
+<comment><![CDATA[Attribut, das einen Wert aus vordefinierten Liste annehmen kann.]]></comment>
+<notes><![CDATA[[EN_ENTI_COMMENT[
+*DE* Attribut, das einen Wert aus vordefinierten Liste annehmen kann.
+]EN_ENTI_COMMENT]
+[DE_ENTI_COMMENT[
+Attribut, das einen Wert aus vordefinierten Liste annehmen kann. 
+]DE_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<hierarchicalParent>3CEC80DC-9AC7-5783-79EC-A5B9D15FE871</hierarchicalParent>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="DE_ENTI_NAME" value="Aufzählung Attribut"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_NAME" value="*DE* Aufzählung Attribut"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Wertelisteeinschränkung" id="0A904DC6-0255-18DE-2002-20E229EF50F4">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-25 07:34:12 UTC</createdTime>
+<comment><![CDATA[Einschränkung der Werteliste aus der Domäne. Leer-> es sind alle Werte aus der Domäne möglich.]]></comment>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+*DE* Einschränkung der Werteliste aus der Domäne. Leer-> es sind alle Werte aus der Domäne möglich.
+]EN_ATTR_COMMENT]
+[DE_ATTR_COMMENT[
+Einschränkung der Werteliste aus der Domäne. Leer-> es sind alle Werte aus der Domäne möglich.
+]DE_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>IM_ATTR_FYAYC</ownerDesignName>
+<engineerTo>
+<item key="BF9FACA2-1371-6C64-5193-A97C92E149B9" value="true"/>
+<item key="15B799A3-CCBB-0FEF-C24D-F9C438B7B43D" value="true"/>
+<item key="ED7098BC-BD53-4E5E-561D-48A83EBDA614" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AP AttrName" value="."/>
+<property name="AP Transformation" value="."/>
+<property name="AP Typ" value="."/>
+<property name="AP usage" value="."/>
+<property name="CRM-Salesforce" value="."/>
+<property name="DE_ATTR_NAME" value="Wertelisteeinschränkung"/>
+<property name="EN_ATTR_NAME" value="*DE* Wertelisteeinschränkung"/>
+<property name="ERP" value="."/>
+<property name="EXCEL ColumnName" value="."/>
+<property name="Excel" value="."/>
+<property name="SAP AttrName" value="."/>
+<property name="SAP FieldID" value="."/>
+<property name="SAP Qualitylevel" value="."/>
+<property name="SAP Transformation" value="."/>
+<property name="SAP Typ" value="."/>
+<property name="SAP usage" value="."/>
+<property name="Web-Shop" value="."/>
+</propertyMap>
+</Attribute>
+</attributes>
+</Entity>

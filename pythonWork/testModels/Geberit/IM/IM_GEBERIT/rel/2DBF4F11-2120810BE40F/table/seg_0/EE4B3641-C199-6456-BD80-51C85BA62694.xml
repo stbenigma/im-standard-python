@@ -1,0 +1,118 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="EE4B3641-C199-6456-BD80-51C85BA62694" name="ETIMARTCLASS">
+<createdBy>SMINI</createdBy>
+<createdTime>2020-11-23 16:32:40 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<ordsAlias>table_7</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ARTCLASSID" id="7AE14BCD-0B92-363A-9512-8A415E8DA26A">
+<createdBy>SMINI</createdBy>
+<createdTime>2020-11-23 16:33:52 UTC</createdTime>
+<comment><![CDATA[Unambiguous identifier of the article class 
+]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+</propertyMap>
+</Column>
+<Column name="ARTGROUPID" id="453FD147-263E-926D-546F-E95EE3B00882">
+<createdBy>SMINI</createdBy>
+<createdTime>2020-11-23 16:57:11 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+</propertyMap>
+<associations>
+<colAssociation fkAssociation="12F3EEB2-BE74-29F5-ED72-E19BA12550F6" referredColumn="4F69350B-193F-9152-607A-B11A09CD43DA"/>
+</associations>
+</Column>
+<Column name="ARTCLASSDESC_DE" id="146795EF-E96F-755C-D07D-DE1CA188A077">
+<createdBy>SMINI</createdBy>
+<createdTime>2020-11-23 16:33:52 UTC</createdTime>
+<comment><![CDATA[German description of the article class 
+]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+</propertyMap>
+</Column>
+<Column name="ARTCLASSDESC_EN" id="8BD8F916-12C8-28AB-9532-B128BDC4E3EF">
+<createdBy>SMINI</createdBy>
+<createdTime>2020-11-23 16:33:52 UTC</createdTime>
+<comment><![CDATA[English description of the article class 
+]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+</propertyMap>
+</Column>
+<Column name="ARTCLASSVERSION" id="0DA3DEEC-1979-7150-2FA1-3314A53ECC47">
+<createdBy>SMINI</createdBy>
+<createdTime>2020-11-23 16:33:52 UTC</createdTime>
+<comment><![CDATA[Version of the class 
+]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+</propertyMap>
+</Column>
+<Column name="ARTCLASSVERSIONDATE" id="B60BAA34-E009-1843-7141-B83AF527AC3B">
+<createdBy>SMINI</createdBy>
+<createdTime>2020-11-23 16:33:52 UTC</createdTime>
+<comment><![CDATA[Date of the last change]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+</propertyMap>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="3E00AA2F-DAC9-46E6-658A-2D3BB373EE09" name="ETIMARTCLASS_PK">
+<createdBy>SMINI</createdBy>
+<createdTime>2020-11-23 16:33:52 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="7AE14BCD-0B92-363A-9512-8A415E8DA26A"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="DA2974FE-6422-653B-6F1F-70C76C17072F" name="ETIMARTCLASS_ETIMARTGROUP_FK">
+<createdBy>SMINI</createdBy>
+<createdTime>2020-11-23 16:57:11 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="453FD147-263E-926D-546F-E95EE3B00882"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

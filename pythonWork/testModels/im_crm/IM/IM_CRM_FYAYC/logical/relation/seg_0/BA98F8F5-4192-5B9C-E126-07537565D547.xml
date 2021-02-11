@@ -1,0 +1,31 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_48" directorySegmentName="seg_0" id="BA98F8F5-4192-5B9C-E126-07537565D547">
+<createdBy>stb</createdBy>
+<createdTime>2019-05-06 08:05:28 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<engineerTo>
+<item key="1AB27667-C11D-3493-68AA-DF92C84041A7" value="true"/>
+<item key="851DDEFA-B048-37E9-7826-4E48946EAF1C" value="true"/>
+<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="false"/>
+<item key="015DE428-05B6-58DD-323D-ECDC72266F4A" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<nameOnSource>betreut</nameOnSource>
+<nameOnTarget>betreut von</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>9E6FEB02-2D59-5F8B-AFC7-E4122B03AF81</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>D7E28BBB-0BD6-42BD-A970-3BF025E221D7</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="betreut"/>
+<property name="DE_RELA_TEXT_TO" value="betreut von"/>
+<property name="EN_RELA_TEXT_FROM" value="attends"/>
+<property name="EN_RELA_TEXT_TO" value="attended by"/>
+<property name="FR_RELA_TEXT_FROM" value="fréquente"/>
+<property name="FR_RELA_TEXT_TO" value="est fréquenté par"/>
+</propertyMap>
+</Relation>

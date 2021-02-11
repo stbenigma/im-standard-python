@@ -1,0 +1,40 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="DEFA7DD3-8449-B430-CDDB-13305A477722" name="Mengencode(??)">
+<createdBy>stb</createdBy>
+<createdTime>2018-09-10 09:01:24 UTC</createdTime>
+<comment>&quot;Einheiten&quot; für die Bemessung einer Abgabe.&lt;br/&gt;-physikalische Einheiten.&lt;br/&gt;-Wert (Warenwert von dem Prozente abzugeben sind)&lt;br/&gt;-Volk (Bienen)&lt;br/&gt;&lt;br/&gt;Ehemals Mengencode&lt;br/&gt;&lt;br/&gt;Beispiele:&lt;br/&gt;Kilo&lt;br/&gt;Tonne&lt;br/&gt;MhW&lt;br/&gt;(Bienen-)Volk&lt;br/&gt;Wert&lt;br/&gt;Stück&lt;br/&gt;Sendung (z.B. Container für Bewilligungen)</comment>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Grundlageneinheit" id="7996A630-8B7C-DCAA-E016-69F6AF361A84">
+<createdBy>stb</createdBy>
+<createdTime>2018-09-10 09:01:24 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Text [L]" id="068BF8C5-9B48-568E-BA15-5B3E2299ABE6">
+<createdBy>stb</createdBy>
+<createdTime>2018-09-10 09:01:24 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+</Entity>

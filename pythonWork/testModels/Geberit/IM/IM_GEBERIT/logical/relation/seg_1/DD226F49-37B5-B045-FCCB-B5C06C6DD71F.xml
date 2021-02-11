@@ -1,0 +1,34 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_168" directorySegmentName="seg_1" id="DD226F49-37B5-B045-FCCB-B5C06C6DD71F">
+<createdBy>smiai</createdBy>
+<createdTime>2020-10-20 14:00:50 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<engineerTo>
+<item key="AC362FED-09A7-BA00-8310-29076CD8571C" value="true"/>
+<item key="0F93F29F-E1ED-0300-B3B1-B58C77EE97A7" value="true"/>
+<item key="38668F89-26BC-F63A-555D-54B8056CF413" value="true"/>
+<item key="249E7ABA-8CD0-1978-78A7-F7026DA6A2EB" value="true"/>
+<item key="F8D1D625-33EA-D367-FD1B-8BE01FB72044" value="true"/>
+<item key="D349E673-4EDF-C611-3E51-BBBDE8744098" value="true"/>
+<item key="BFAC4467-8343-0983-11FB-CB866029374C" value="true"/>
+<item key="2DBF4F11-72F7-73ED-22BE-2120810BE40F" value="true"/>
+<item key="E6E75503-6116-388A-72BD-E82DC5E22548" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<nameOnSource>verantwortlich für</nameOnSource>
+<nameOnTarget>verantwortet von</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>2567782C-8579-9471-8891-2EB3552E69DD</sourceEntity>
+<targetCardinalityString>1</targetCardinalityString>
+<targetEntity>E5313314-8873-660C-69B7-D20F8C4F073F</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="verantwortlich für"/>
+<property name="DE_RELA_TEXT_TO" value="verantwortet von"/>
+<property name="EN_RELA_TEXT_FROM" value="*DE* verantwortlich für"/>
+<property name="EN_RELA_TEXT_TO" value="*DE* verantwortet von"/>
+</propertyMap>
+</Relation>

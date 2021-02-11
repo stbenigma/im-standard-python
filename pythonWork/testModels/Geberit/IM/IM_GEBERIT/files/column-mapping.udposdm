@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<udp_library>
+	<udp_groups>
+		<group name="EXTERNAL" id="213D805A-D570-303E-2D5D-EE9A794C28F8" />
+	</udp_groups>
+	<properties>
+		<property name="EXT_ATTR_ID" dispalay_name="attribute_id in external system" type="Text" group_id="213D805A-D570-303E-2D5D-EE9A794C28F8" default_value="">
+		<description>
+			<![CDATA[ID of Attribute in external system]]>
+		</description>
+			<objects>
+				<object class="oracle.dbtools.crest.model.design.relational.Column" visible="false" color="-1"/>
+			</objects>
+		</property>
+		<property name="EXT_SORT_ORDER" dispalay_name="Sort Order" type="Text" group_id="213D805A-D570-303E-2D5D-EE9A794C28F8" default_value="">
+		<description>
+			<![CDATA[Sort order of Attribute in external table/system]]>
+		</description>
+			<objects>
+				<object class="oracle.dbtools.crest.model.design.relational.Column" visible="false" color="-1"/>
+			</objects>
+		</property>
+		<property name="EXT_DQM_CHECK_ID" dispalay_name="" type="Text" group_id="213D805A-D570-303E-2D5D-EE9A794C28F8" default_value="">
+			<objects>
+				<object class="oracle.dbtools.crest.model.design.relational.Column" visible="false" color="-1"/>
+			</objects>
+		</property>
+	</properties>
+</udp_library>

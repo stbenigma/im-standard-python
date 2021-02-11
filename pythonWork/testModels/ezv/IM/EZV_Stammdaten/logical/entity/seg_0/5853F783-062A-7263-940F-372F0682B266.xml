@@ -1,0 +1,57 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="5853F783-062A-7263-940F-372F0682B266" name="NST Gütervezeichnis Gruppe">
+<createdBy>stb</createdBy>
+<createdTime>2018-08-21 08:11:19 UTC</createdTime>
+<comment><![CDATA[NST Gütervezeichnis Aussenhandelsstatistik nach Verkehrsmittel
+entspricht dem VTS (Brodbeck)
+
+https://www.ezv.admin.ch/ezv/de/home/themen/schweizerische-aussenhandelsstatistik/methoden-metadaten/metadaten/waren.html
+
+2 stufig
+Gliederung (Anzahl Einheiten)
+01
+01.01	
+Abteilungen
+Gruppen	(20)
+(81)
+
+]]></comment>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<typeID>D05C2668-F0C1-EC40-BB98-6B20C01CCB1F</typeID>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Nr" id="14CB6F10-3B54-166B-A6D9-B15AE1F18F59">
+<createdBy>stb</createdBy>
+<createdTime>2018-08-22 13:11:39 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Bezeichnung [L]" id="53F466E5-AF98-0C07-C123-E9776CC35F5E">
+<createdBy>stb</createdBy>
+<createdTime>2018-08-22 13:11:39 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+</Entity>

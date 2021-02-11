@@ -1,0 +1,31 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_33" directorySegmentName="seg_0" id="B7B3C517-623E-C58E-2C22-6FC53A557B57">
+<createdBy>stb</createdBy>
+<createdTime>2019-05-06 09:34:46 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<engineerTo>
+<item key="1AB27667-C11D-3493-68AA-DF92C84041A7" value="true"/>
+<item key="851DDEFA-B048-37E9-7826-4E48946EAF1C" value="true"/>
+<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true"/>
+<item key="015DE428-05B6-58DD-323D-ECDC72266F4A" value="true"/>
+</engineerTo>
+<useSurrogateKey>true</useSurrogateKey>
+<identifying>false</identifying>
+<nameOnSource>offiziell verwendet in</nameOnSource>
+<nameOnTarget>verwendet offiziell</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>38B61F56-E01A-41E2-D258-AD6114B9B659</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>27E0E472-3045-DA71-C33C-94F83ED0393E</targetEntity>
+<transferable>true</transferable>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="offiziell verwendet in"/>
+<property name="DE_RELA_TEXT_TO" value="verwendet offiziell"/>
+<property name="EN_RELA_TEXT_FROM" value="officially used in"/>
+<property name="EN_RELA_TEXT_TO" value="uses officially"/>
+<property name="FR_RELA_TEXT_FROM" value="utilisé officiellement dans"/>
+<property name="FR_RELA_TEXT_TO" value="utilise officiellement"/>
+</propertyMap>
+</Relation>

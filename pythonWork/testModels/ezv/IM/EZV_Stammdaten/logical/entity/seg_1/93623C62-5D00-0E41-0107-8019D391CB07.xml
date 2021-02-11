@@ -1,0 +1,234 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="93623C62-5D00-0E41-0107-8019D391CB07" name="Bemessungsgrundlage">
+<createdBy>stb</createdBy>
+<createdTime>2018-09-10 14:58:23 UTC</createdTime>
+<comment><![CDATA[Einheit für die Bemessung von Zoll- und Zusatzabgaben und Mittelwerten (aus Statistik)
+
+Die Bemessungsgrundlage sagt aus, wie ein Wert gemessen wird (Temperatur, Druck, Alkoholgehalt etc.) 
+
+Der Text der Bemessungsgrundlage darf keine zusätzlichen Angaben ((wie z.B. 15% Alkoholgehalt) enthal-ten, die nicht mit den Werten der Grundlage übereinstimmt. D.h. der Text sollte aus den Attributen dynamisch (bei Änderungen bzw. bei der Ausgabe) zusammengestellt werden.
+
+Nicht alle Bemessungseinheiten sind für alle Zollmengefelder (Deklarationsfelder) sinnvoll.
+Z.B. gibt es für Rohmasse nur 100 kg (brutto), MWh und Liter.
+
+Bemessungsgrundlagen können im Text die Bemessungseinheit (vor allem Stück) ergänzen um eine Spezifi-kation:
+Volk (1 Stück heisst ein Bienenvolk, nicht 1 Biene)
+
+Der Tarestext ist ein Bestandteil für die Anzeige neben dem Ansatzwert.
+Zusätzlich kommen ggf. dazu: Faktor des Ansatzes, Brutto/Eigenmasse je nach Deklarationsfeld (Rohmas-se/Eigenmasse)
+je 100 kg brutto
+je Liter 100% Alkohol
+
+Beispiele:
+kilo
+tonne
+Volk
+hl
+Liter mit 40% Alkoholgehalt
+Liter gemessen bei 20Grad
+Anwendungseinheit
+(Bienen-)Volk, Hülse,
+Karat, VOC, Sendung,]]></comment>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<typeID>5D665328-E55A-0C47-AF6D-AB589191EF22</typeID>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<propertyMap>
+<property name="GSD-Tabellenname" value="BEMCO, MENGENCO"/>
+<property name="SAP_Tabellenname" value="."/>
+</propertyMap>
+<documents usedDucuments="B69DBF86-C1D6-08B8-9FEA-F1D1021FA31C"/>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Text [L]" id="3DCAD6DE-BD92-626E-4575-672F89A2E576">
+<createdBy>stb</createdBy>
+<createdTime>2018-09-10 14:58:23 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Tares-Text [L]" id="AB9C2766-ABC2-2314-2B7D-C295A4D7BFB7">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-07 12:41:17 UTC</createdTime>
+<comment><![CDATA[Für die Anzeige in tares beim Ansatz]]></comment>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Kurztext [L]" id="ECBE9AAC-B163-7352-DDB7-A7F3489A35E3">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-12 14:48:11 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Inhaltstoffgehalt (J/N)" id="833972D4-BE3D-C179-A4F6-4314473B3C36">
+<createdBy>stb</createdBy>
+<createdTime>2019-02-18 16:09:57 UTC</createdTime>
+<comment><![CDATA[Abgabe geht nicht auf Liter gemessen sondern auf Gehalt-% (Alkohol, VOC, THC), die in der Deklaration angegeben werden müssen]]></comment>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Druck" id="2A759919-E85A-2B65-F5F8-F29DC7977464">
+<createdBy>stb</createdBy>
+<createdTime>2018-09-10 15:22:02 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Feuchtigkeit" id="D2CBCC9E-80E4-887E-F27D-9825EB7E464E">
+<createdBy>stb</createdBy>
+<createdTime>2018-09-10 15:22:06 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Temperatur" id="EC57FD09-82CE-A113-0D95-C06E6F2B7CE4">
+<createdBy>stb</createdBy>
+<createdTime>2018-09-10 15:22:14 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Nachkommastellen" id="8E5E1E35-2DCE-AF17-4AE4-FBDA3B1A3847">
+<createdBy>stb</createdBy>
+<createdTime>2018-09-10 15:22:18 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Tarakategorie" id="69A1759C-D011-DB20-2274-F6BD7BD59A9D">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-10 14:02:24 UTC</createdTime>
+<comment><![CDATA[Wie viel Verpackung ist dabei:
+netto (Eigenmasse)	 keine
+brutto (Rohmasse) alles
+Eigengewicht	netto + Gewicht Primärverpackung (ohne Versandverpackung)
+]]></comment>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<listOfValues>
+<valueDef value="Eigengewicht" description="Eigengewicht"/>
+<valueDef value="brutto" description="Rohmasse"/>
+<valueDef value="netto" description="Eigenmasse"/>
+</listOfValues>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Gültigkeitsperiode" id="7B0B5CD5-3B71-7C69-1179-44258ACE30B5">
+<createdBy>stb</createdBy>
+<createdTime>2018-10-25 14:24:14 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="für Rohmasse (J/N)" id="CBBB2CFC-23D9-1A4E-F2C7-9776AF4E9BDE">
+<createdBy>stb</createdBy>
+<createdTime>2019-06-27 14:18:55 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="für Eigenmasse (J/N)" id="56A68A2F-C45A-9EF0-5D8F-B49361851CDF">
+<createdBy>stb</createdBy>
+<createdTime>2019-06-27 14:19:14 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="für Zusatzmenge (J/N)" id="D6743A77-87FA-44F9-BDC6-8AA82FA7CFED">
+<createdBy>stb</createdBy>
+<createdTime>2019-06-27 14:19:14 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="für Zusatzabgabe (J/N)" id="EF394F85-9ABA-89C5-D4D4-CA1983D2D02C">
+<createdBy>stb</createdBy>
+<createdTime>2019-06-27 14:19:14 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+</Entity>

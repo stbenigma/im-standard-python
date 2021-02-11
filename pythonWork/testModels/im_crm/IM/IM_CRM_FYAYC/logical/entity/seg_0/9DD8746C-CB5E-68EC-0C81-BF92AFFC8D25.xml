@@ -1,0 +1,42 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="9DD8746C-CB5E-68EC-0C81-BF92AFFC8D25" name="Vertriebspartner">
+<createdBy>stb</createdBy>
+<createdTime>2019-05-06 08:04:25 UTC</createdTime>
+<comment><![CDATA[B2B Vertriebsteilnehmer, der unsere Produkte weiter verkauft oder vermittelt]]></comment>
+<notes><![CDATA[[EN_ENTI_COMMENT[
+**B2B sales participant, who resells or mediates our products
+]EN_ENTI_COMMENT]
+[DE_ENTI_COMMENT[
+B2B Vertriebsteilnehmer, der unsere Produkte weiter verkauft oder vermittelt
+]DE_ENTI_COMMENT]
+[FR_ENTI_COMMENT[
+Participant aux ventes B2B qui revend ou négocie nos produits
+]FR_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<engineerTo>
+<item key="1AB27667-C11D-3493-68AA-DF92C84041A7" value="true"/>
+<item key="851DDEFA-B048-37E9-7826-4E48946EAF1C" value="true"/>
+<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="false"/>
+<item key="015DE428-05B6-58DD-323D-ECDC72266F4A" value="true"/>
+</engineerTo>
+<typeID>3153B60C-8013-9183-737B-6F3AD413B048</typeID>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<hierarchicalParent>D7E28BBB-0BD6-42BD-A970-3BF025E221D7</hierarchicalParent>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="DE_ENTI_NAME" value="Vertriebspartner"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_NAME" value="Sales Partner"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+<property name="FR_ENTI_NAME" value="Partenaire commercial"/>
+<property name="FR_ENTI_SYNONYM" value=""/>
+</propertyMap>
+</Entity>

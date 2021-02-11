@@ -1,0 +1,63 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="32E9A13D-CA90-EC5E-58F9-FAEA65B85C26" name="ETIMSYNONYM_EN">
+<createdBy>SMINI</createdBy>
+<createdTime>2020-11-23 16:42:27 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<ordsAlias>table_12</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ARTCLASSID" id="B6A82B96-976D-55FC-DC86-87ED55DD8A16">
+<createdBy>toz</createdBy>
+<createdTime>2020-12-01 08:51:48 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+</propertyMap>
+<associations>
+<colAssociation fkAssociation="75B43690-3B51-6F57-99A6-655C57FAA416" referredColumn="7AE14BCD-0B92-363A-9512-8A415E8DA26A"/>
+</associations>
+</Column>
+<Column name="CLASSSYNONYM_EN" id="FA6D8D88-5DB9-3934-1392-1E93AD348E8F">
+<createdBy>SMINI</createdBy>
+<createdTime>2020-11-23 16:43:24 UTC</createdTime>
+<comment><![CDATA[Description of the synonym/keyword
+]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+</propertyMap>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="61E9DC27-1F5F-D2B0-0E90-1E407F7B7A09" name="ETIMSYNONYM_EN_PK">
+<createdBy>SMINI</createdBy>
+<createdTime>2020-11-23 16:43:24 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="B6A82B96-976D-55FC-DC86-87ED55DD8A16"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="CEC46695-BB97-9E1A-B8F5-4B92D2C86E54" name="ETIMSYNONYM_EN_ETIMARTCLASS_FK">
+<createdBy>toz</createdBy>
+<createdTime>2020-12-01 08:51:48 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="B6A82B96-976D-55FC-DC86-87ED55DD8A16"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -1,0 +1,37 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="31403921-1BF8-C8BA-0D56-1A0F5DEED2F2" name="ZT9CSTEPV4">
+<createdBy>stb</createdBy>
+<createdTime>2020-11-13 14:10:47 UTC</createdTime>
+<comment><![CDATA[Created on 13/11/2020  15:10:47 during import from /Users/stb/Downloads/SAP-Import-ODM.csv]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="auslaufend ab" id="662235D6-77DB-5BF6-E644-6D40CA38B759">
+<createdBy>stb</createdBy>
+<createdTime>2020-11-13 14:10:47 UTC</createdTime>
+<comment><![CDATA[listed in SAP table ZT9CSTEPV4 and used for phase out]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="PASSIV51"/>
+</propertyMap>
+</Column>
+<Column name="im Markt passiv ab" id="EB1D99D4-1EF8-1AF7-1109-EE53297633CE">
+<createdBy>stb</createdBy>
+<createdTime>2020-11-13 14:10:47 UTC</createdTime>
+<comment><![CDATA[listed in SAP table ZT9CSTEPV4 and used for phase out]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="PASSIV"/>
+</propertyMap>
+</Column>
+</columns>
+</Table>

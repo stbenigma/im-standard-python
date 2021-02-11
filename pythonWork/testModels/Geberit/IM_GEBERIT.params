@@ -1,0 +1,95 @@
+[ODM]
+#base directory for all model data (with ending /)
+#odmbasedirec = "/Users/stb/Documents/Projekte/GEBININF/gitHub/DEAP/"
+
+#base directory for odm-model-files (with ending /)
+#default <odmBaseDirec> + odmIMDefaultDirec
+#odmimdirec = "IM/"
+
+#base directory for all local results of model extract (with ending /)
+#default = odmbasedirec
+#localbasedirec = "/Users/stb/Documents/Projekte/GEBININF/gitHub/"
+
+#model name
+#default: single .dmd file in <odmIMDirec> or <odmIMDirec>/IM or <odmIMDirec>/github/IM
+odmmodelname = "IM_GEBERIT"
+
+#directory containing versioned model
+#odmvcsdirec = "gitHub/"
+
+#default directory for odm-model—file (below odmIMDirec)
+#odmimdefaultdirec = "IM/"
+
+#default extension of odm-model-base file
+#odmimextension = ".dmd"
+
+#directory containing odm-configuration-files (below odmIMDirec)
+odmkonfdirec = "configuration/"
+
+#name of user defined property-File containing translations udp"s
+#odmudptranslfilename = "translation"
+
+#name of user defined property-File containing data mapping udp"s
+#odmudpmappingfilename = "datamapping"
+
+######################
+#FROM HERE ON: DO NEVER CHANGE UNLESS ODM-Structures changes
+#name of file in odm-configuration containing domain definitions
+#odmdomainsfile =  "defaultdomains.xml"
+
+#name of file in odm-configuration containing type definitions
+#odmtypesfile =  "types.xml"
+
+#name of file in odm-configuration containing structured type definitions
+#odmstructypesdir =  "datatypes/structuredtype/"
+
+#directory in odm-directory-structure containing files 
+#odmfilesdirec =  "files/"
+
+#directory in odm-directory-structure containing entities 
+#odmentitydirec =  "logical/entity/"
+
+#directory in odm-directory-structure containing relations
+#odmrelationdirec =  "logical/relation/"
+
+#directory in odm-directory-structure containing arcs
+#odmarcdirec =  "logical/arc/"
+
+#directory in odm-directory-structure containing subvies
+#odmentisubviewdirec = "logical/subviews/"
+
+#default file extension for user defined property files
+#odmudpfileextension = ".udposdm"
+########################################
+
+[DB]
+#default language of model in DB
+dbdefaultlang = "en"
+
+#comma separated languages to be maintained, choose from de, en, fr, es
+dblanguages = "en"
+
+#default directory for DB-file (below odmIMDirec)
+#dbdefaultdirec = "DB/"
+
+#directory containing DB-file (with ending /)
+#default: <odmBaseDirec>/<dbDefaultDirec>/
+#dbdirec ="/Users/stb/Documents/Projekte/GEBININF/gitHub/DB/"
+
+#default extension for DB-file
+#dbfileextension = ".db"
+
+#complete pathinformation (path-filename-extension) of DB-file
+#default: <dbDirec>/<odmModelName>/<dbFileExtension>
+#dbfilepath = 
+
+
+[WEB]
+#default directory for web-source output
+#webdefaultdirec = "Web/"
+
+#directory for web-source output
+#default <odmBaseDirec>/<webDefaultDirec>
+webdirec="/Users/stb/Documents/Projekte/GEBININF/gitHub/Web/"
+
+logofilename = Geberit-Logo.png

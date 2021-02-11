@@ -1,0 +1,139 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="D57ABE6C-003F-FB07-BD63-03225C61BBC8" name="06_ETIM">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[Technical data of the products
+Objective: Share technical information in the ETIM standard
+- Main technical data of the products: performance, suitability for use ...
+The characteristics are coded ETIM, in an online structure, native in ETIM.
+- The file can be edited even if not all references are filled in.
+- It is recommended to edit the data in the most recent version of ETIM. Otherwise, data from different versions are accepted.
+
+Caractéristiques techniques des produits
+Objectif : Partager les informations techniques dans le standard ETIM
+- Données techniques principales des produits : performance, aptitude à l'usage ...
+Les caractéristiques sont codées ETIM, dans une structure en ligne, native dans ETIM.
+- Le fichier peut être édité même si toutes les références ne sont pas renseignées
+- Il est recommandé d'éditer les données dans la version d'ETIM la plus récente. A défaut, les données issues de versions différentes sont acceptées.]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<ordsAlias>etim</ordsAlias>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="MARQUE" id="2247F564-9FCA-3C4B-ACE7-E488405F41C5">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[Created on 13/2/2020  9:38:57 during import from /Users/stb/Documents/DataModeler/Import/DM_FAB-DIS_Standard2.csv]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="."/>
+</propertyMap>
+</Column>
+<Column name="REFCIALE" id="CADCA79F-13E8-4841-7CAF-257E14053464">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[Created on 13/2/2020  9:38:57 during import from /Users/stb/Documents/DataModeler/Import/DM_FAB-DIS_Standard2.csv]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<dataTypeSize>30</dataTypeSize>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="."/>
+</propertyMap>
+<associations>
+<colAssociation fkAssociation="88AC85EB-473A-6101-5868-7E0EBA4C1773" referredColumn="F2E9C92A-951A-E352-A717-B888A485E292"/>
+</associations>
+</Column>
+<Column name="ARTCLASSID" id="DAC5A049-626B-F606-4F99-157C9C0D7984">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[ETIM EC class code of the product
+1 REFCIALE may belong to only one ETIM EC class (ARTCLASSID)]]></comment>
+<notes><![CDATA[FAB-DIS doesn't allow EC000000 (pseudo class). All these rows must be removed. --> error code and measure code to be specified]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<dataTypeSize>10</dataTypeSize>
+<ownDataTypeParameters>10,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="."/>
+</propertyMap>
+</Column>
+<Column name="FEATUREID" id="3D5BE079-A4AC-178B-F64F-37C071A1D6BD">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[Property or attribute code ETIM EF of the product	]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<dataTypeSize>10</dataTypeSize>
+<ownDataTypeParameters>10,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="."/>
+</propertyMap>
+</Column>
+<Column name="FVALUE" id="7139D91D-CE01-8A07-0A52-653C68B1519B">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[Value or ETIM EV value code of the product]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<dataTypeSize>80</dataTypeSize>
+<ownDataTypeParameters>80,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="."/>
+</propertyMap>
+</Column>
+<Column name="ARTCLASSVERSION" id="C23B705D-9F04-D90C-8B45-7C34849D7B31">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[Version of the ETIM model. Example values: 6.0, 7.0, 7.1	]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>2</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,2,2</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="."/>
+</propertyMap>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="E5C08A64-B881-C537-C97F-2D8BD43571B0" name="06_ETIM_01_COMMERCE_FK">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="CADCA79F-13E8-4841-7CAF-257E14053464"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

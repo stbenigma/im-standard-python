@@ -1,0 +1,40 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="049472A1-2528-B4A7-EEDF-588E8FD80371" name="Generaleinfuhrbew.-Gruppe">
+<createdBy>stb</createdBy>
+<createdTime>2018-11-01 10:36:50 UTC</createdTime>
+<comment>Diese Gruppe gibt es heute noch nicht.&lt;br/&gt;Es ist der Nummernbereich von Generaleinfuhrbewilliungen.&lt;br/&gt;&lt;br/&gt;Beispiel:&lt;br/&gt;  Speisöle und -fette 100&apos;001 - 120&apos;000&lt;br/&gt;   Reis zu Speisezwecken 120&apos;001 - 140&apos;000&lt;br/&gt;   Zucker 140&apos;001 - 160&apos;000</comment>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Bezeichnung" id="06EC6DB6-BE76-DD3B-7A4A-57D011FCEAD7">
+<createdBy>stb</createdBy>
+<createdTime>2018-11-01 10:36:50 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Gültigkeitsperiode" id="EB65E378-205E-F3FE-90D7-084ECDD45BC2">
+<createdBy>stb</createdBy>
+<createdTime>2018-11-01 10:36:50 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+</Entity>

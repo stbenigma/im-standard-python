@@ -1,0 +1,58 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="F97D367D-2330-C38B-6A05-6AE65F289B54" name="Landspezifischer NZE">
+<createdBy>stb</createdBy>
+<createdTime>2018-09-10 07:24:54 UTC</createdTime>
+<comment><![CDATA[Zuweisung eines NZE zu Ländern.
+Dabei können Ländergruppenzuweisungen gemacht werden und dann einzelne
+Länder davon eingeschlossen (NZE gilt für diese Länder) oder ausgeschlossen werden (NZE nicht für diese Länder anwendbar).
+Die normale Zuteilung ist eine Einschluss (ist_ausschluss = N). Normal ist: Einschluss "Alle Länder", d.h. alle Länder unterliegen dem NZE. Falls ein Land oder eine Ländergruppe nicht dem NZE unterliegt, wird es ausgeschlossen (z.B. Auschluss NZ)
+
+Beispiele: Tarifnummer 0203.1110, 
+ZUAC  290 GTU ZUSCHL 002: Einschluss "Alle Länder", Ausschluss "andere Länder ohne GTU" (z.B. wenn Guadeloupe), "EFTA", "EU" und Neuseeland; 
+ZUAC 290 ZUSCHL 003: Einschluss Neuseeland (andere Gebühr die nur für dieses Land gilt))
+- NZE gilt für Entwicklungsländer
+   gleiche NZE gilt nicht für Brasilien (diesen Fall hatten wir bei den NZE noch nie, keine Ahnung, ob das funktionieren würde (Aktuell keine Ländergruppe EL und für Brasilien in den Ländern für Massnahmen)]]></comment>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<typeID>02969000-CCE3-D244-36A9-7F9B40CCE4D0</typeID>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<propertyMap>
+<property name="GSD-Tabellenname" value="."/>
+<property name="SAP_Tabellenname" value="."/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="ist Auschluss (J/N)" id="CA48B568-FBDA-D6EE-32AE-AD9F6E228A02">
+<createdBy>stb</createdBy>
+<createdTime>2018-09-10 07:24:54 UTC</createdTime>
+<comment><![CDATA[Was nicht Ausschluss ist, ist Einschluss]]></comment>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Gültigkeitsperiode" id="88B0930D-F7C5-31C5-48BA-0106A28C73DA">
+<createdBy>stb</createdBy>
+<createdTime>2018-09-10 07:29:21 UTC</createdTime>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+</Entity>

@@ -1,0 +1,208 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="982B739F-3D57-85A0-F691-671B1FE50E52" name="03_MEDIA">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[Quotation valuation data (see Tab Page 03_MEDIA)
+Objective: To promote offers in all multi-channel publications (web, print, application, ERP, ...).
+- Includes URL links and/or names of data such as: product and/or range sales leaflet, product sheets, instructions, photos, video, Certificate of Conformity Mark (CMC), Product Environmental Profile (PEP), Keywords...
+
+
+Données de valorisation des offres (cf. Onglet 03_MEDIA)
+Objectif : Valoriser les offres dans toutes les publications multi-canal (web, print, applicatif, ERP, ...)
+- Comprend les Liens URL et/ou noms des données de type : argumentaire produit et/ou gamme, fiches produits, notice, photos, vidéo, Certificat Marque de Conformité (CMC), Profil Environnemental Produit (PEP), Mots clés...]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<ordsAlias>media</ordsAlias>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="MARQUE" id="4A8C5466-FC4B-AD94-C62E-10CBA0F8FD47">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[Name of the marketing brand of the reference. Is equal, by default, to MANUFACTURER]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="100.0"/>
+</propertyMap>
+</Column>
+<Column name="REFCIALE" id="2EBD826F-FA16-4185-A201-0E11378A0D66">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[Created on 17/1/2020  15:39:32 during import from /Users/stb/Documents/DataModeler/Import/testimport3.csv]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<dataTypeSize>30</dataTypeSize>
+<ownDataTypeParameters>30,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="101.0"/>
+</propertyMap>
+<associations>
+<colAssociation fkAssociation="018B5C3E-EA9A-3508-3EE3-3BD0065E7A2F" referredColumn="F2E9C92A-951A-E352-A717-B888A485E292"/>
+</associations>
+</Column>
+<Column name="TYPM" id="4D24BF3B-338E-DE83-7A03-7576114B6683">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[Media data types: 17 codes
+Description and codes to be entered in the "media table" tab:
+- Argument of the reference (ARGU)
+- Range of products (ARGUG)
+- Certificate of Conformity Mark (CMC)
+- Environmental and Health Declaration Form (FDES)
+- Product sheet (SHEET)
+- Keywords (MCLES)
+- Notice (NOTICE)
+- Product Environmental Profile (PEP)
+- 360° photo (PHOTO360)
+- 3 dimensional photo (PHOTO3D)
+- Low definition photo (PHOTOBD)
+- High definition photo (PHOTOHD)
+- High definition photo of the product in the atmosphere (PHOTOHDA) - Pictograms (PICTO)
+- Diagram (SCHEMA)
+- Slogan or promotional catchphrase (SLOGAN)
+- Video (VIDEO)
+Each media is described in the tab "Media table".]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<dataTypeSize>10</dataTypeSize>
+<ownDataTypeParameters>10,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="102.0"/>
+</propertyMap>
+</Column>
+<Column name="NUM" id="E04D1935-DE36-3FAD-EDCA-28A887886431">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[Sequence number of values for the same characteristic Integer
+Field filled in systematically, default value = 1
+Example: if the Manufacturer provides 2 photos, the main photo will have order number 1, the next one will have order number 2.]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>3</dataTypePrecision>
+<ownDataTypeParameters>,3,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="103.0"/>
+</propertyMap>
+</Column>
+<Column name="CODVAL" id="F38B7346-2D42-8A8E-EAD9-4D74FE1CCF87">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[This field is used by the media data types "ARGU", "ARGUG", "CMC", "MCLES" and "SLOGAN".
+Personalized description by media, in the "Media table".
+Number of free characters.]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<dataTypeSize>1000</dataTypeSize>
+<ownDataTypeParameters>1000,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="104.0"/>
+</propertyMap>
+</Column>
+<Column name="NOM" id="A6CE5C13-09C0-CB5A-DE00-268B10E4E9D0">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[Name of the document or photo, with its suffix (.pdf or .jpg or .eps or ...)
+3 possibilities to make the document or photo available :
+- in DOCUMENT (see the description of this data block on the first page of the notice - via the download link in the URLT field)
+- via the URL link for direct display on the merchant site
+Number of free characters.]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<dataTypeSize>1000</dataTypeSize>
+<ownDataTypeParameters>1000,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="105.0"/>
+</propertyMap>
+</Column>
+<Column name="URL" id="9F83811D-1AE1-CC1D-299C-E144DB192686">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[URL: link for displaying the media without storage by the Distributor.
+For example:
+* link of a PHOTOBD for direct embedding on a merchant site
+* link with direct display of the pdf of the SHEET or NOTICE or CMC or FDES or PEP * link to the manufacturer's site for dynamic display of the product sheet * link to Youtube for direct display of the video
+Recommended number of characters of the link: less than 2,000]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<dataTypeSize>2000</dataTypeSize>
+<ownDataTypeParameters>2000,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="106.0"/>
+</propertyMap>
+</Column>
+<Column name="URLT" id="7B52DF58-503B-9A27-844B-08949890FB3F">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<comment><![CDATA[URLT: link to download the media for integration into the Distributor's Product Information Management (PIM) system.
+Examples :
+* direct download link of the document containing the argument
+* direct download link for a high definition photo
+* link to download pdf of SHEET or NOTICE or CMC or FDES or PEP Recommended number of characters of the link: less than 2 000]]></comment>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<dataTypeSize>2000</dataTypeSize>
+<ownDataTypeParameters>2000,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="EXT_ATTR_ID" value="."/>
+<property name="EXT_SORT_ORDER" value="107.0"/>
+</propertyMap>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="66C66ADD-2831-4A96-F5C6-464A943B5026" name="03_MEDIA_01_COMMERCE_FK">
+<createdBy>HALAR</createdBy>
+<createdTime>2020-07-21 09:14:29 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="2EBD826F-FA16-4185-A201-0E11378A0D66"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

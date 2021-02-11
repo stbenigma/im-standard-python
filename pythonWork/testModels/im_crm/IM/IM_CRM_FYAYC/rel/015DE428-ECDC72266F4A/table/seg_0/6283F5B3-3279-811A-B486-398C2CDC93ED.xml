@@ -1,0 +1,87 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="6283F5B3-3279-811A-B486-398C2CDC93ED" name="Finanzierungspartner">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:03 UTC</createdTime>
+<comment><![CDATA[Partner der Leasingverträge vergibt, die Produkte deshalb als Eigentum hat , sie aber selber nie nutzt.
+]]></comment>
+<generatorID>92F589FC-F403-9CAB-31A4-2BB1D424480A</generatorID>
+<notes><![CDATA[[EN_ENTI_COMMENT[
+*DE* Partner der Leasingverträge vergibt, die Produkte deshalb als Eigentum hat , sie aber selber nie nutzt.
+
+]EN_ENTI_COMMENT]
+[DE_ENTI_COMMENT[
+Partner der Leasingverträge vergibt, die Produkte deshalb als Eigentum hat , sie aber selber nie nutzt.
+
+]DE_ENTI_COMMENT]
+[FR_ENTI_COMMENT[
+*EN* *DE* Partner der Leasingverträge vergibt, die Produkte deshalb als Eigentum hat , sie aber selber nie nutzt.
+
+]FR_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Vertriebsteilnehmer_Vertriebsteilnehmer_ID" id="E754E73D-841A-96B5-7298-150D756996BF">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:03 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="86F4FC59-71B2-AB90-F228-520B20D65A31" referredColumn="9FE2859F-2F72-2FB6-DE64-40AB2E8668D7"/>
+</associations>
+</Column>
+<Column name="Finanzierungspartner_ID" id="37C5BBBE-FC78-FBBC-9F32-11853F74A01D">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:03 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="375C28CF-5DF7-6E8F-EAC8-45A8B1EE3DB6" name="Finanzierungspartner_PK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:03 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="E754E73D-841A-96B5-7298-150D756996BF"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="FCEEE6D0-9F50-1564-1BCA-3E7E95F53598" name="Finanzierungspartner_Finanzierungspartner_ID_UN">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:03 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="37C5BBBE-FC78-FBBC-9F32-11853F74A01D"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="78F792BE-60AB-C9C8-D83C-9F0C561C16EB" name="Finanzierungspartner_Vertriebsteilnehmer_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-10 03:27:03 UTC</createdTime>
+<generatorID>CA58654E-66F4-6189-A63C-B798EE5C144A</generatorID>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="E754E73D-841A-96B5-7298-150D756996BF"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

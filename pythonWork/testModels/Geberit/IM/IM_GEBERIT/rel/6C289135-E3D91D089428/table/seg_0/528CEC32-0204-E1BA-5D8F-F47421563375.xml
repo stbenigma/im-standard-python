@@ -1,0 +1,66 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="528CEC32-0204-E1BA-5D8F-F47421563375" schemaObject="41F6B39A-6802-F636-A35F-6775EC2673FF" name="SURCHARGE_LIST]">
+<sourceDDLFile>ddl.sql</sourceDDLFile>
+<createdBy>toz</createdBy>
+<createdTime>2021-01-21 15:55:54 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<importedID>12CCEB09-F1C3-284D-210E-A8A5E10C3899</importedID>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="[UDX.EDXF.SURCHARGE_LISTId]" id="034C6ECF-E23F-485F-8080-A252D204074B">
+<sourceDDLFile>ddl.sql</sourceDDLFile>
+<createdBy>toz</createdBy>
+<createdTime>2021-01-21 15:55:54 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<importedID>F968B0A9-6B13-FA17-DEED-A35E26DE652D</importedID>
+<use>0</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<domain>DA823793-0E7A-C240-0EEF-D92AF7925527</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="[USER_DEFINED_EXTENSIONSId]" id="3DC2A499-7BB8-79AE-0DAB-F946701E2E1C">
+<sourceDDLFile>ddl.sql</sourceDDLFile>
+<createdBy>toz</createdBy>
+<createdTime>2021-01-21 15:55:54 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<importedID>5ACC5836-3241-23B2-BB9C-7118F78B2065</importedID>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<domain>DA823793-0E7A-C240-0EEF-D92AF7925527</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="F5038BD1-3675-FCD9-4428-4F16BD9B17F4" referredColumn="5C82D114-CCEA-6B04-E7E3-BD1338E5F237"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="A62C537D-5612-79C6-A9E2-D6E286CC8C3E" name="SURCHARGE_LIST]_PK">
+<sourceDDLFile>ddl.sql</sourceDDLFile>
+<createdBy>toz</createdBy>
+<createdTime>2021-01-21 15:55:54 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<importedID>99232764-530C-8DEE-7E43-24D0DB9CD936</importedID>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="034C6ECF-E23F-485F-8080-A252D204074B"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="3D1245BC-2CBB-88A9-CD4F-8C4DD04B1B14" name="SURCHARGE_LIST]_FK0">
+<createdBy>toz</createdBy>
+<createdTime>2021-01-21 15:55:54 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="3DC2A499-7BB8-79AE-0DAB-F946701E2E1C"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

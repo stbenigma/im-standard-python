@@ -1,0 +1,18 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="444FF3AC-F1B7-4AA3-1919-8F6D204BD40E" containerWithKeyObject="07C594BD-D0D2-ED17-C89C-77BEDB28C80B" localFKIndex="E103898E-6495-5D55-2299-50CBD08D9F98" name="videosItem_FK0">
+<sourceDDLFile>api.sql</sourceDDLFile>
+<createdBy>toz</createdBy>
+<createdTime>2020-12-09 15:09:52 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<importedID>F8CEE722-1082-2DE7-E271-69E2E4F400D3</importedID>
+<referredTableLongName>videos</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>06356035-7330-0FF0-7E14-274DB759A56C</referredTableID>
+<keyObject>C529BF6D-1268-9E63-31F3-09A65CFF2D9A</keyObject>
+<referredKeyID>C529BF6D-1268-9E63-31F3-09A65CFF2D9A</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>videosId</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

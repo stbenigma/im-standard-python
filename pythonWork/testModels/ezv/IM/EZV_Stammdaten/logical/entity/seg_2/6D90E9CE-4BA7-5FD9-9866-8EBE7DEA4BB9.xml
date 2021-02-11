@@ -1,0 +1,35 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_2" id="6D90E9CE-4BA7-5FD9-9866-8EBE7DEA4BB9" name="Leere Deklarationsvorschrift">
+<createdBy>stb</createdBy>
+<createdTime>2020-06-09 14:19:00 UTC</createdTime>
+<comment><![CDATA[Wird gebraucht um explitzit festzuhalten, dass es für eine Tarifposition keine Mengendeklaration braucht.
+in GSD Mengencode 10
+Macht nur Sinn für Zusatzmenge.
+Das Konstrukt wird benötigt, weil ein Steuerungselement keine Zusatzmenge braucht, die übergordnete Nationale Unterposition (TN8) aber eine benötigt.
+
+Umsetzungshinweis: Es wird für jede Tarifnummer für jedes der aktuell 3 Erfassungsfelder (Rohmasse, Eigenmasse, Zusatzmenge) eine Deklarationsvorschrift aus GSD übernommen (in GSD ist sichergestellt, dass jede TN8 mind. die 3 Einträge hat.
+Bei Steuerungselementen werden Deklarationsvorschriften übernommen. Es werden keine DKV für Steuerungslemente generiert. Hat ein Steuerungs keine DKV, gilt die der Vater TN8
+
+Beispiele:
+Keine Mengenangabe notwendig]]></comment>
+<ownerDesignName>EZV_Stammdaten</ownerDesignName>
+<engineerTo>
+<item key="C6018D37-1494-D150-0658-AB75820A30EC" value="true"/>
+<item key="154D2BE6-0140-EE5C-3D3A-3328E07634B0" value="true"/>
+</engineerTo>
+<typeID>5D665328-E55A-0C47-AF6D-AB589191EF22</typeID>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<hierarchicalParent>7D8E6F61-C48C-15C9-AE60-687E856029ED</hierarchicalParent>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="GSD-Tabellenname" value="MENGENCO, BEMCO"/>
+</propertyMap>
+<documents usedDucuments="B69DBF86-C1D6-08B8-9FEA-F1D1021FA31C"/>
+</Entity>

@@ -1,0 +1,32 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_52" directorySegmentName="seg_0" id="5C653051-4213-71D0-2D5C-E4813CD8EDE3">
+<createdBy>stb</createdBy>
+<createdTime>2019-05-06 12:00:17 UTC</createdTime>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<engineerTo>
+<item key="1AB27667-C11D-3493-68AA-DF92C84041A7" value="true"/>
+<item key="851DDEFA-B048-37E9-7826-4E48946EAF1C" value="true"/>
+<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="false"/>
+<item key="015DE428-05B6-58DD-323D-ECDC72266F4A" value="true"/>
+</engineerTo>
+<useSurrogateKey>true</useSurrogateKey>
+<arc>E2852474-F9F8-31CF-DE4C-F1E2D2F6504D</arc>
+<identifying>false</identifying>
+<nameOnSource>ist</nameOnSource>
+<nameOnTarget>tritt auf als</nameOnTarget>
+<optionalSource>false</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>9E6FEB02-2D59-5F8B-AFC7-E4122B03AF81</sourceEntity>
+<targetCardinalityString>1</targetCardinalityString>
+<targetEntity>B7370B42-AB19-CD15-7BA2-87B1C54C7D8C</targetEntity>
+<transferable>true</transferable>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="ist"/>
+<property name="DE_RELA_TEXT_TO" value="tritt auf als"/>
+<property name="EN_RELA_TEXT_FROM" value="is"/>
+<property name="EN_RELA_TEXT_TO" value="appears as"/>
+<property name="FR_RELA_TEXT_FROM" value="est"/>
+<property name="FR_RELA_TEXT_TO" value="apparaît comme"/>
+</propertyMap>
+</Relation>

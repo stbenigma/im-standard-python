@@ -1,0 +1,138 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="BAD32D1D-27C0-CA5F-9F1C-E751D4C3C3AB" name="VPE2">
+<createdBy>toz</createdBy>
+<createdTime>2021-01-20 15:32:41 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<ordsAlias>table_11</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Verpackungsart" id="9CB199BD-976B-3E80-4397-DE6E81E43848">
+<createdBy>toz</createdBy>
+<createdTime>2021-01-20 15:32:41 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<constraintName>CK_VPE1v1_Verpackungsart</constraintName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>2200F8CA-90DB-364B-114B-2AE9CB9A3B6F</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Menge" id="50706072-1B8C-28BF-C417-4B8F488AEA12">
+<createdBy>toz</createdBy>
+<createdTime>2021-01-20 15:32:41 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="GTIN" id="FC4F7AD3-478A-E974-B520-9D0AF468D3A2">
+<createdBy>toz</createdBy>
+<createdTime>2021-01-20 15:32:41 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<constraintName>CK_VPE1v1_GTIN</constraintName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>ECFA3AA0-31D7-8BFE-925D-B8D2D79FACB5</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Mass A" id="4453476B-B442-49D0-52D5-34CBFE7B8E97">
+<createdBy>toz</createdBy>
+<createdTime>2021-01-20 15:32:41 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT026</logicalDatatype>
+<domain>51A9CFA5-F52B-5954-41DB-3360B13B1C95</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Einheit Mass A" id="F4236C38-EA08-AB00-A3A1-57E1C380AED2">
+<createdBy>toz</createdBy>
+<createdTime>2021-01-20 15:32:41 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<constraintName>CK_VPE1v1_Einheit Mass A</constraintName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>FC6D7F4C-49DF-86CF-79BE-8956C1132E4C</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Mass B" id="AC6480C1-2FAF-45A8-B10D-0B90743A720C">
+<createdBy>toz</createdBy>
+<createdTime>2021-01-20 15:32:41 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT026</logicalDatatype>
+<domain>51A9CFA5-F52B-5954-41DB-3360B13B1C95</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Einheit Mass B" id="35DA01E4-939A-48F6-0BAB-89A254F87CF7">
+<createdBy>toz</createdBy>
+<createdTime>2021-01-20 15:32:41 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<constraintName>CK_VPE1v1_Einheit Mass B</constraintName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>FC6D7F4C-49DF-86CF-79BE-8956C1132E4C</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Mass C" id="2CF6462C-CC8A-9CCE-5252-AF8ECB971F88">
+<createdBy>toz</createdBy>
+<createdTime>2021-01-20 15:32:41 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT026</logicalDatatype>
+<domain>51A9CFA5-F52B-5954-41DB-3360B13B1C95</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Einheit Mass C" id="A533E9D6-F1A7-FB32-6D26-41877BE18E50">
+<createdBy>toz</createdBy>
+<createdTime>2021-01-20 15:32:41 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<constraintName>CK_VPE1v1_Einheit Mass C</constraintName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>FC6D7F4C-49DF-86CF-79BE-8956C1132E4C</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Gewicht" id="DB6B61ED-E6CE-BC7F-E01D-B7F4E584B7DB">
+<createdBy>toz</createdBy>
+<createdTime>2021-01-20 15:32:41 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT026</logicalDatatype>
+<domain>51A9CFA5-F52B-5954-41DB-3360B13B1C95</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Einheit Gewicht" id="575FF102-7251-73E6-BEFE-B3AC56D6E332">
+<createdBy>toz</createdBy>
+<createdTime>2021-01-20 15:32:41 UTC</createdTime>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<constraintName>CK_VPE1v1_Einheit Gewicht</constraintName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>8F2EBD7B-ABAE-9FCA-B0F8-38B156DAFB65</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+</Table>

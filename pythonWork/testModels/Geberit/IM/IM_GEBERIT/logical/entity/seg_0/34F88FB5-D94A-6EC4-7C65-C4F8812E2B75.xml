@@ -1,0 +1,859 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="34F88FB5-D94A-6EC4-7C65-C4F8812E2B75" name="Verbindung (BIM?)">
+<createdBy>stb</createdBy>
+<createdTime>2020-03-09 11:09:54 UTC</createdTime>
+<comment><![CDATA[*EN* *derived from BIM.xx1-6yyy attributes from Article]]></comment>
+<notes><![CDATA[[EN_ENTI_COMMENT[
+*derived from BIM.xx1-6yyy attributes from Article
+]EN_ENTI_COMMENT]
+[DE_ENTI_COMMENT[
+*EN* *derived from BIM.xx1-6yyy attributes from Article
+]DE_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<engineerTo>
+<item key="AC362FED-09A7-BA00-8310-29076CD8571C" value="true"/>
+<item key="0F93F29F-E1ED-0300-B3B1-B58C77EE97A7" value="true"/>
+<item key="38668F89-26BC-F63A-555D-54B8056CF413" value="true"/>
+<item key="249E7ABA-8CD0-1978-78A7-F7026DA6A2EB" value="true"/>
+<item key="F8D1D625-33EA-D367-FD1B-8BE01FB72044" value="true"/>
+<item key="D349E673-4EDF-C611-3E51-BBBDE8744098" value="true"/>
+<item key="BFAC4467-8343-0983-11FB-CB866029374C" value="true"/>
+<item key="2DBF4F11-72F7-73ED-22BE-2120810BE40F" value="true"/>
+<item key="E6E75503-6116-388A-72BD-E82DC5E22548" value="true"/>
+</engineerTo>
+<typeID>DF49C028-3B17-1BD5-8487-0966D2278D58</typeID>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="DE_ENTI_NAME" value="Verbindung (BIM?)"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_NAME" value="Connection (BIM?)"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Verbindung nein" id="34A9BF3D-FFDA-07D7-108B-425BBA827E47">
+<createdBy>stb</createdBy>
+<createdTime>2020-03-09 11:10:55 UTC</createdTime>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<engineerTo>
+<item key="AC362FED-09A7-BA00-8310-29076CD8571C" value="true"/>
+<item key="0F93F29F-E1ED-0300-B3B1-B58C77EE97A7" value="true"/>
+<item key="38668F89-26BC-F63A-555D-54B8056CF413" value="true"/>
+<item key="249E7ABA-8CD0-1978-78A7-F7026DA6A2EB" value="true"/>
+<item key="F8D1D625-33EA-D367-FD1B-8BE01FB72044" value="true"/>
+<item key="D349E673-4EDF-C611-3E51-BBBDE8744098" value="true"/>
+<item key="BFAC4467-8343-0983-11FB-CB866029374C" value="true"/>
+<item key="2DBF4F11-72F7-73ED-22BE-2120810BE40F" value="true"/>
+<item key="E6E75503-6116-388A-72BD-E82DC5E22548" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Verbindung nein"/>
+<property name="EN_ATTR_NAME" value="connection no"/>
+</propertyMap>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>1</beginValue>
+</rangeDef>
+</listOfRanges>
+</Attribute>
+<Attribute name="Projektion" id="CE03D662-2B1E-C9D0-302C-E7DBFA0BE878">
+<createdBy>stb</createdBy>
+<createdTime>2020-03-09 11:17:02 UTC</createdTime>
+<comment><![CDATA[Die Dimension, um die ein Objekt (Anschluss 1) herausragt oder hervorsteht. Es ist auch das Maß für den Versatz des Anschlusses 1 von Armaturen.]]></comment>
+<generatorID>25E4D895-C01B-6EFE-24E6-9DA54979B98A</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Die Dimension, um die ein Objekt (Anschluss 1) herausragt oder hervorsteht. Es ist auch das Maß für den Versatz des Anschlusses 1 von Armaturen.
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+The dimension by which an object (connection 1) protrudes or sticks out. It is also the dimension for the offset of connection 1 of fittings.
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<engineerTo>
+<item key="AC362FED-09A7-BA00-8310-29076CD8571C" value="true"/>
+<item key="0F93F29F-E1ED-0300-B3B1-B58C77EE97A7" value="true"/>
+<item key="38668F89-26BC-F63A-555D-54B8056CF413" value="true"/>
+<item key="249E7ABA-8CD0-1978-78A7-F7026DA6A2EB" value="true"/>
+<item key="F8D1D625-33EA-D367-FD1B-8BE01FB72044" value="true"/>
+<item key="D349E673-4EDF-C611-3E51-BBBDE8744098" value="true"/>
+<item key="BFAC4467-8343-0983-11FB-CB866029374C" value="true"/>
+<item key="2DBF4F11-72F7-73ED-22BE-2120810BE40F" value="true"/>
+<item key="E6E75503-6116-388A-72BD-E82DC5E22548" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Projektion"/>
+<property name="EN_ATTR_NAME" value="projection"/>
+</propertyMap>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>0</beginValue>
+<description>&gt;=0</description>
+</rangeDef>
+</listOfRanges>
+</Attribute>
+<Attribute name="Verbindungsbereich" id="16277D9E-4D9B-4371-A12E-5C3910C4A207">
+<createdBy>stb</createdBy>
+<createdTime>2020-03-09 11:17:02 UTC</createdTime>
+<comment><![CDATA[Die Fläche für die Dimension eines Rohres, das an Anschluss 6 angeschlossen werden soll.]]></comment>
+<generatorID>7EA2A80A-51C9-71A8-0281-51C2D459CE5E</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Die Fläche für die Dimension eines Rohres, das an Anschluss 6 angeschlossen werden soll.
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+The area for the dimension of a pipe that is to be connected to connection 6.
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<engineerTo>
+<item key="AC362FED-09A7-BA00-8310-29076CD8571C" value="true"/>
+<item key="0F93F29F-E1ED-0300-B3B1-B58C77EE97A7" value="true"/>
+<item key="38668F89-26BC-F63A-555D-54B8056CF413" value="true"/>
+<item key="249E7ABA-8CD0-1978-78A7-F7026DA6A2EB" value="true"/>
+<item key="F8D1D625-33EA-D367-FD1B-8BE01FB72044" value="true"/>
+<item key="D349E673-4EDF-C611-3E51-BBBDE8744098" value="true"/>
+<item key="BFAC4467-8343-0983-11FB-CB866029374C" value="true"/>
+<item key="2DBF4F11-72F7-73ED-22BE-2120810BE40F" value="true"/>
+<item key="E6E75503-6116-388A-72BD-E82DC5E22548" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Verbindungsbereich"/>
+<property name="EN_ATTR_NAME" value="connection area"/>
+</propertyMap>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>0</beginValue>
+<description>&gt;=0</description>
+</rangeDef>
+</listOfRanges>
+</Attribute>
+<Attribute name="Außendurchmesser" id="25B692BB-FCA4-0EC8-48C7-56AFB877DA06">
+<createdBy>stb</createdBy>
+<createdTime>2020-03-09 11:17:02 UTC</createdTime>
+<comment><![CDATA[Der Außendurchmesser von Anschluss 1 in Rohrleitungssystemen in mm.]]></comment>
+<generatorID>D0E1DA40-EBAD-4C7A-5461-F58B1AF3F337</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Der Außendurchmesser von Anschluss 1 in Rohrleitungssystemen in mm.
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+The outer diameter of connection 1 in piping systems in mm.
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<engineerTo>
+<item key="AC362FED-09A7-BA00-8310-29076CD8571C" value="true"/>
+<item key="0F93F29F-E1ED-0300-B3B1-B58C77EE97A7" value="true"/>
+<item key="38668F89-26BC-F63A-555D-54B8056CF413" value="true"/>
+<item key="249E7ABA-8CD0-1978-78A7-F7026DA6A2EB" value="true"/>
+<item key="F8D1D625-33EA-D367-FD1B-8BE01FB72044" value="true"/>
+<item key="D349E673-4EDF-C611-3E51-BBBDE8744098" value="true"/>
+<item key="BFAC4467-8343-0983-11FB-CB866029374C" value="true"/>
+<item key="2DBF4F11-72F7-73ED-22BE-2120810BE40F" value="true"/>
+<item key="E6E75503-6116-388A-72BD-E82DC5E22548" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Außendurchmesser"/>
+<property name="EN_ATTR_NAME" value="outer diameter"/>
+</propertyMap>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>0</beginValue>
+<description>&gt;=0</description>
+</rangeDef>
+</listOfRanges>
+</Attribute>
+<Attribute name="Innendurchmesser" id="658C7C73-257A-A36E-2FCB-527EA6598970">
+<createdBy>stb</createdBy>
+<createdTime>2020-03-09 11:17:02 UTC</createdTime>
+<comment><![CDATA[Der Innendurchmesser des Anschlusses 6 in mm.]]></comment>
+<generatorID>294FE0F4-93AB-9708-E365-EE7060632AC9</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Der Innendurchmesser des Anschlusses 6 in mm.
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+The inner diameter of connection 6 in mm.
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<engineerTo>
+<item key="AC362FED-09A7-BA00-8310-29076CD8571C" value="true"/>
+<item key="0F93F29F-E1ED-0300-B3B1-B58C77EE97A7" value="true"/>
+<item key="38668F89-26BC-F63A-555D-54B8056CF413" value="true"/>
+<item key="249E7ABA-8CD0-1978-78A7-F7026DA6A2EB" value="true"/>
+<item key="F8D1D625-33EA-D367-FD1B-8BE01FB72044" value="true"/>
+<item key="D349E673-4EDF-C611-3E51-BBBDE8744098" value="true"/>
+<item key="BFAC4467-8343-0983-11FB-CB866029374C" value="true"/>
+<item key="2DBF4F11-72F7-73ED-22BE-2120810BE40F" value="true"/>
+<item key="E6E75503-6116-388A-72BD-E82DC5E22548" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Innendurchmesser"/>
+<property name="EN_ATTR_NAME" value="inner diameter"/>
+</propertyMap>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>0</beginValue>
+<description>&gt;=0</description>
+</rangeDef>
+</listOfRanges>
+</Attribute>
+<Attribute name="Nennweite (St.)" id="D99B23CF-5149-59F6-5C7E-CFF3BED35B7C">
+<createdBy>stb</createdBy>
+<createdTime>2020-03-09 11:17:02 UTC</createdTime>
+<comment><![CDATA[Die Kennzahl für Komponenten in einem Rohrleitungssystem (Anschluss 1); wird zu Referenzzwecken verwendet.]]></comment>
+<generatorID>1C59ED58-949A-8E4B-9C72-989CE978759B</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Die Kennzahl für Komponenten in einem Rohrleitungssystem (Anschluss 1); wird zu Referenzzwecken verwendet.
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+The key figure for components in a piping system (connection 1); used for reference purposes.
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<engineerTo>
+<item key="AC362FED-09A7-BA00-8310-29076CD8571C" value="true"/>
+<item key="0F93F29F-E1ED-0300-B3B1-B58C77EE97A7" value="true"/>
+<item key="38668F89-26BC-F63A-555D-54B8056CF413" value="true"/>
+<item key="249E7ABA-8CD0-1978-78A7-F7026DA6A2EB" value="true"/>
+<item key="F8D1D625-33EA-D367-FD1B-8BE01FB72044" value="true"/>
+<item key="D349E673-4EDF-C611-3E51-BBBDE8744098" value="true"/>
+<item key="BFAC4467-8343-0983-11FB-CB866029374C" value="true"/>
+<item key="2DBF4F11-72F7-73ED-22BE-2120810BE40F" value="true"/>
+<item key="E6E75503-6116-388A-72BD-E82DC5E22548" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Nennweite (St.)"/>
+<property name="EN_ATTR_NAME" value="nominal width"/>
+</propertyMap>
+</Attribute>
+<Attribute name="Einschubtiefe" id="6696BE35-C4E1-7054-0090-F82B5CEC3139">
+<createdBy>stb</createdBy>
+<createdTime>2020-03-09 11:17:02 UTC</createdTime>
+<comment><![CDATA[Das Maß, mit dem ein Rohr in den Anschluss 6 eines Fittings eingeführt werden kann.]]></comment>
+<generatorID>6B99B19E-FAF8-E8F7-AB69-B44FFB1BB177</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Das Maß, mit dem ein Rohr in den Anschluss 6 eines Fittings eingeführt werden kann.
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+The dimension by which a pipe can be inserted into connection 6 of a fitting.
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<engineerTo>
+<item key="AC362FED-09A7-BA00-8310-29076CD8571C" value="true"/>
+<item key="0F93F29F-E1ED-0300-B3B1-B58C77EE97A7" value="true"/>
+<item key="38668F89-26BC-F63A-555D-54B8056CF413" value="true"/>
+<item key="249E7ABA-8CD0-1978-78A7-F7026DA6A2EB" value="true"/>
+<item key="F8D1D625-33EA-D367-FD1B-8BE01FB72044" value="true"/>
+<item key="D349E673-4EDF-C611-3E51-BBBDE8744098" value="true"/>
+<item key="BFAC4467-8343-0983-11FB-CB866029374C" value="true"/>
+<item key="2DBF4F11-72F7-73ED-22BE-2120810BE40F" value="true"/>
+<item key="E6E75503-6116-388A-72BD-E82DC5E22548" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Einschubtiefe"/>
+<property name="EN_ATTR_NAME" value="insertion depth"/>
+</propertyMap>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>0</beginValue>
+<description>&gt;=0</description>
+</rangeDef>
+</listOfRanges>
+</Attribute>
+<Attribute name="Rohrgewinde" id="A48E1B96-2A44-2DB5-8A89-70090849EFD5">
+<createdBy>stb</createdBy>
+<createdTime>2020-03-09 11:17:02 UTC</createdTime>
+<comment><![CDATA[Der Durchmesser des Rohrgewindes von Anschluss 1, wenn an den Gewinden keine druckdichten Verbindungen hergestellt werden.]]></comment>
+<generatorID>5255CDB2-6524-019F-FDF8-FE5A4948EEC3</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Der Durchmesser des Rohrgewindes von Anschluss 1, wenn an den Gewinden keine druckdichten Verbindungen hergestellt werden.
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+The diameter of connection 1's pipe thread where pressure-tight joints are not made on the threads.
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<engineerTo>
+<item key="AC362FED-09A7-BA00-8310-29076CD8571C" value="true"/>
+<item key="0F93F29F-E1ED-0300-B3B1-B58C77EE97A7" value="true"/>
+<item key="38668F89-26BC-F63A-555D-54B8056CF413" value="true"/>
+<item key="249E7ABA-8CD0-1978-78A7-F7026DA6A2EB" value="true"/>
+<item key="F8D1D625-33EA-D367-FD1B-8BE01FB72044" value="true"/>
+<item key="D349E673-4EDF-C611-3E51-BBBDE8744098" value="true"/>
+<item key="BFAC4467-8343-0983-11FB-CB866029374C" value="true"/>
+<item key="2DBF4F11-72F7-73ED-22BE-2120810BE40F" value="true"/>
+<item key="E6E75503-6116-388A-72BD-E82DC5E22548" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Rohrgewinde"/>
+<property name="EN_ATTR_NAME" value="pipe thread"/>
+</propertyMap>
+</Attribute>
+<Attribute name="Höhe" id="0B52CAA0-0F78-818E-53AE-AFFD194CDFA8">
+<createdBy>stb</createdBy>
+<createdTime>2020-03-09 11:17:02 UTC</createdTime>
+<comment><![CDATA[Teilabmessung der Länge des Anschlusses 6 für Fittings.]]></comment>
+<generatorID>6780C027-334B-9C18-5C13-6580CA71F935</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Teilabmessung der Länge des Anschlusses 6 für Fittings.
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Partial dimension of the length of connection 6 for fittings.
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<engineerTo>
+<item key="AC362FED-09A7-BA00-8310-29076CD8571C" value="true"/>
+<item key="0F93F29F-E1ED-0300-B3B1-B58C77EE97A7" value="true"/>
+<item key="38668F89-26BC-F63A-555D-54B8056CF413" value="true"/>
+<item key="249E7ABA-8CD0-1978-78A7-F7026DA6A2EB" value="true"/>
+<item key="F8D1D625-33EA-D367-FD1B-8BE01FB72044" value="true"/>
+<item key="D349E673-4EDF-C611-3E51-BBBDE8744098" value="true"/>
+<item key="BFAC4467-8343-0983-11FB-CB866029374C" value="true"/>
+<item key="2DBF4F11-72F7-73ED-22BE-2120810BE40F" value="true"/>
+<item key="E6E75503-6116-388A-72BD-E82DC5E22548" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Höhe"/>
+<property name="EN_ATTR_NAME" value="height"/>
+</propertyMap>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>0</beginValue>
+<description>&gt;=0</description>
+</rangeDef>
+</listOfRanges>
+</Attribute>
+<Attribute name="maximaler Schnitt" id="4949626F-C85C-0759-AE78-C4E6D1F77CF4">
+<createdBy>stb</createdBy>
+<createdTime>2020-03-09 11:17:02 UTC</createdTime>
+<comment><![CDATA[Das maximale Maß, um das ein Objekt am Anschluss 1 verkürzt werden kann, ohne seine Funktion zu beeinträchtigen.]]></comment>
+<generatorID>BCCF1611-F372-B10C-8611-601E5C79380F</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Das maximale Maß, um das ein Objekt am Anschluss 1 verkürzt werden kann, ohne seine Funktion zu beeinträchtigen.
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+The maximum dimension by which an object can be shortened at connection 1 without impairing its function.
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<engineerTo>
+<item key="AC362FED-09A7-BA00-8310-29076CD8571C" value="true"/>
+<item key="0F93F29F-E1ED-0300-B3B1-B58C77EE97A7" value="true"/>
+<item key="38668F89-26BC-F63A-555D-54B8056CF413" value="true"/>
+<item key="249E7ABA-8CD0-1978-78A7-F7026DA6A2EB" value="true"/>
+<item key="F8D1D625-33EA-D367-FD1B-8BE01FB72044" value="true"/>
+<item key="D349E673-4EDF-C611-3E51-BBBDE8744098" value="true"/>
+<item key="BFAC4467-8343-0983-11FB-CB866029374C" value="true"/>
+<item key="2DBF4F11-72F7-73ED-22BE-2120810BE40F" value="true"/>
+<item key="E6E75503-6116-388A-72BD-E82DC5E22548" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="maximaler Schnitt"/>
+<property name="EN_ATTR_NAME" value="maximum cutting"/>
+</propertyMap>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>0</beginValue>
+<description>&gt;=0</description>
+</rangeDef>
+</listOfRanges>
+</Attribute>
+<Attribute name="Länge, Teilmaß" id="FFA17249-606F-48E6-CF00-B3D752C657A5">
+<createdBy>stb</createdBy>
+<createdTime>2020-03-09 11:17:02 UTC</createdTime>
+<comment><![CDATA[Die Länge eines Fittings von seiner Mitte bis zum Ende der Verbindung 8.]]></comment>
+<generatorID>8581D6E9-54B5-8D14-7CEC-C0EA864866EC</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Die Länge eines Fittings von seiner Mitte bis zum Ende der Verbindung 8.
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+The length of a fitting from its middle to the end of connection 8.
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<engineerTo>
+<item key="AC362FED-09A7-BA00-8310-29076CD8571C" value="true"/>
+<item key="0F93F29F-E1ED-0300-B3B1-B58C77EE97A7" value="true"/>
+<item key="38668F89-26BC-F63A-555D-54B8056CF413" value="true"/>
+<item key="249E7ABA-8CD0-1978-78A7-F7026DA6A2EB" value="true"/>
+<item key="F8D1D625-33EA-D367-FD1B-8BE01FB72044" value="true"/>
+<item key="D349E673-4EDF-C611-3E51-BBBDE8744098" value="true"/>
+<item key="BFAC4467-8343-0983-11FB-CB866029374C" value="true"/>
+<item key="2DBF4F11-72F7-73ED-22BE-2120810BE40F" value="true"/>
+<item key="E6E75503-6116-388A-72BD-E82DC5E22548" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Länge, Teilmaß"/>
+<property name="EN_ATTR_NAME" value="length, partial dimension"/>
+</propertyMap>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>0</beginValue>
+<description>&gt;=0</description>
+</rangeDef>
+</listOfRanges>
+</Attribute>
+<Attribute name="metrisches Gewinde" id="9D1981F0-EC2D-D8A2-D326-A0DBD01A3417">
+<createdBy>stb</createdBy>
+<createdTime>2020-03-09 11:17:02 UTC</createdTime>
+<comment><![CDATA[Der Durchmesser des Anschlusses eines metrischen Gewindes 1.]]></comment>
+<generatorID>FF38FAD0-8449-BB04-5E89-C00643C0E8A0</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Der Durchmesser des Anschlusses eines metrischen Gewindes 1.
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+The diameter of a metric thread's connection 1.
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<engineerTo>
+<item key="AC362FED-09A7-BA00-8310-29076CD8571C" value="true"/>
+<item key="0F93F29F-E1ED-0300-B3B1-B58C77EE97A7" value="true"/>
+<item key="38668F89-26BC-F63A-555D-54B8056CF413" value="true"/>
+<item key="249E7ABA-8CD0-1978-78A7-F7026DA6A2EB" value="true"/>
+<item key="F8D1D625-33EA-D367-FD1B-8BE01FB72044" value="true"/>
+<item key="D349E673-4EDF-C611-3E51-BBBDE8744098" value="true"/>
+<item key="BFAC4467-8343-0983-11FB-CB866029374C" value="true"/>
+<item key="2DBF4F11-72F7-73ED-22BE-2120810BE40F" value="true"/>
+<item key="E6E75503-6116-388A-72BD-E82DC5E22548" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="metrisches Gewinde"/>
+<property name="EN_ATTR_NAME" value="metric thread"/>
+</propertyMap>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>0</beginValue>
+<description>&gt;=0</description>
+</rangeDef>
+</listOfRanges>
+</Attribute>
+<Attribute name="Zoll-Gewinde" id="CF9CB2E6-F1D0-F370-A3CC-AEB2E34C897F">
+<createdBy>stb</createdBy>
+<createdTime>2020-03-09 11:17:02 UTC</createdTime>
+<comment><![CDATA[Größe eines NPT-Zoll-Gewindes des Anschlusses 8. Bezieht sich sowohl auf das Innen- als auch auf das Außengewinde.]]></comment>
+<generatorID>041D4055-FA0E-442B-811A-A0FE1D350519</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Größe eines NPT-Zoll-Gewindes des Anschlusses 8. Bezieht sich sowohl auf das Innen- als auch auf das Außengewinde.
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Size of an NPT inch thread of connection 8. Refers to both, inner and outer thread.
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<engineerTo>
+<item key="AC362FED-09A7-BA00-8310-29076CD8571C" value="true"/>
+<item key="0F93F29F-E1ED-0300-B3B1-B58C77EE97A7" value="true"/>
+<item key="38668F89-26BC-F63A-555D-54B8056CF413" value="true"/>
+<item key="249E7ABA-8CD0-1978-78A7-F7026DA6A2EB" value="true"/>
+<item key="F8D1D625-33EA-D367-FD1B-8BE01FB72044" value="true"/>
+<item key="D349E673-4EDF-C611-3E51-BBBDE8744098" value="true"/>
+<item key="BFAC4467-8343-0983-11FB-CB866029374C" value="true"/>
+<item key="2DBF4F11-72F7-73ED-22BE-2120810BE40F" value="true"/>
+<item key="E6E75503-6116-388A-72BD-E82DC5E22548" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Zoll-Gewinde"/>
+<property name="EN_ATTR_NAME" value="Inch thread"/>
+</propertyMap>
+</Attribute>
+<Attribute name="Radius" id="152D4386-C768-A220-132E-C571FEDA8102">
+<createdBy>stb</createdBy>
+<createdTime>2020-03-09 11:17:02 UTC</createdTime>
+<comment><![CDATA[Manuell gewartet!
+BIM benötigt numerische Pseudo-Parameter für Artikel, wobei "-" (NA) in ATT_10989 gepflegt wird.]]></comment>
+<generatorID>14B40945-52AD-062D-B889-4DA9DDDB29DA</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Manuell gewartet!
+BIM benötigt numerische Pseudo-Parameter für Artikel, wobei "-" (NA) in ATT_10989 gepflegt wird.
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Manually maintained!
+BIM needs numeric pseudo parameters for articles, where "-" (NA) is maintained in  ATT_10989.
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<engineerTo>
+<item key="AC362FED-09A7-BA00-8310-29076CD8571C" value="true"/>
+<item key="0F93F29F-E1ED-0300-B3B1-B58C77EE97A7" value="true"/>
+<item key="38668F89-26BC-F63A-555D-54B8056CF413" value="true"/>
+<item key="249E7ABA-8CD0-1978-78A7-F7026DA6A2EB" value="true"/>
+<item key="F8D1D625-33EA-D367-FD1B-8BE01FB72044" value="true"/>
+<item key="D349E673-4EDF-C611-3E51-BBBDE8744098" value="true"/>
+<item key="BFAC4467-8343-0983-11FB-CB866029374C" value="true"/>
+<item key="2DBF4F11-72F7-73ED-22BE-2120810BE40F" value="true"/>
+<item key="E6E75503-6116-388A-72BD-E82DC5E22548" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Radius"/>
+<property name="EN_ATTR_NAME" value="radius"/>
+</propertyMap>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>0</beginValue>
+<description>&gt;=0</description>
+</rangeDef>
+</listOfRanges>
+</Attribute>
+<Attribute name="konisches Außengewinde" id="60FEEAEB-2324-6E89-A44D-1916F2504BF6">
+<createdBy>stb</createdBy>
+<createdTime>2020-03-09 11:17:02 UTC</createdTime>
+<comment><![CDATA[Der Durchmesser eines konischen Rohraußengewindes am Anschluss 1, wo druckdichte Verbindungen an den Gewinden hergestellt werden.]]></comment>
+<generatorID>1B71BCEF-65C9-139A-78A3-3C8B6BDFB707</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Der Durchmesser eines konischen Rohraußengewindes am Anschluss 1, wo druckdichte Verbindungen an den Gewinden hergestellt werden.
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+The diameter of a taper external pipe thread at connection 1 where pressure-tight joints are made on the threads.
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<engineerTo>
+<item key="AC362FED-09A7-BA00-8310-29076CD8571C" value="true"/>
+<item key="0F93F29F-E1ED-0300-B3B1-B58C77EE97A7" value="true"/>
+<item key="38668F89-26BC-F63A-555D-54B8056CF413" value="true"/>
+<item key="249E7ABA-8CD0-1978-78A7-F7026DA6A2EB" value="true"/>
+<item key="F8D1D625-33EA-D367-FD1B-8BE01FB72044" value="true"/>
+<item key="D349E673-4EDF-C611-3E51-BBBDE8744098" value="true"/>
+<item key="BFAC4467-8343-0983-11FB-CB866029374C" value="true"/>
+<item key="2DBF4F11-72F7-73ED-22BE-2120810BE40F" value="true"/>
+<item key="E6E75503-6116-388A-72BD-E82DC5E22548" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="konisches Außengewinde"/>
+<property name="EN_ATTR_NAME" value="taper external thread"/>
+</propertyMap>
+</Attribute>
+<Attribute name="Rundgewinde" id="80DC4801-479C-DDB8-D151-45653A5E7C75">
+<createdBy>stb</createdBy>
+<createdTime>2020-03-09 11:17:02 UTC</createdTime>
+<comment><![CDATA[Der Durchmesser und die Steigung eines Rundgewindes (Kunststoffgewinde) am Anschluss 6.]]></comment>
+<generatorID>B466A512-D056-DBC1-8E6C-37F1E85FEDBA</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Der Durchmesser und die Steigung eines Rundgewindes (Kunststoffgewinde) am Anschluss 6.
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+The diameter and pitch of a round thread (plastic thread) at connection 6.
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<engineerTo>
+<item key="AC362FED-09A7-BA00-8310-29076CD8571C" value="true"/>
+<item key="0F93F29F-E1ED-0300-B3B1-B58C77EE97A7" value="true"/>
+<item key="38668F89-26BC-F63A-555D-54B8056CF413" value="true"/>
+<item key="249E7ABA-8CD0-1978-78A7-F7026DA6A2EB" value="true"/>
+<item key="F8D1D625-33EA-D367-FD1B-8BE01FB72044" value="true"/>
+<item key="D349E673-4EDF-C611-3E51-BBBDE8744098" value="true"/>
+<item key="BFAC4467-8343-0983-11FB-CB866029374C" value="true"/>
+<item key="2DBF4F11-72F7-73ED-22BE-2120810BE40F" value="true"/>
+<item key="E6E75503-6116-388A-72BD-E82DC5E22548" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Rundgewinde"/>
+<property name="EN_ATTR_NAME" value="round thread"/>
+</propertyMap>
+</Attribute>
+<Attribute name="konisches Außengewinde des Rohres" id="1EB35B5E-B859-EC64-1974-2FE3B5E6247A">
+<createdBy>stb</createdBy>
+<createdTime>2020-03-09 11:17:02 UTC</createdTime>
+<comment><![CDATA[zylindrisches Rohrinnengewinde für MF-Verbindungen, Anschluss 1]]></comment>
+<generatorID>964852A6-30ED-E192-CF91-627348AF293B</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+zylindrisches Rohrinnengewinde für MF-Verbindungen, Anschluss 1
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+cylindric internal pipe thread for MF connections, connection 1
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<engineerTo>
+<item key="AC362FED-09A7-BA00-8310-29076CD8571C" value="true"/>
+<item key="0F93F29F-E1ED-0300-B3B1-B58C77EE97A7" value="true"/>
+<item key="38668F89-26BC-F63A-555D-54B8056CF413" value="true"/>
+<item key="249E7ABA-8CD0-1978-78A7-F7026DA6A2EB" value="true"/>
+<item key="F8D1D625-33EA-D367-FD1B-8BE01FB72044" value="true"/>
+<item key="D349E673-4EDF-C611-3E51-BBBDE8744098" value="true"/>
+<item key="BFAC4467-8343-0983-11FB-CB866029374C" value="true"/>
+<item key="2DBF4F11-72F7-73ED-22BE-2120810BE40F" value="true"/>
+<item key="E6E75503-6116-388A-72BD-E82DC5E22548" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="konisches Außengewinde des Rohres"/>
+<property name="EN_ATTR_NAME" value="taper outer pipe thread"/>
+</propertyMap>
+</Attribute>
+<Attribute name="konisches Rohrinnengewinde" id="BDAB0CCD-18D3-2A4A-5BFF-438677384205">
+<createdBy>stb</createdBy>
+<createdTime>2020-03-09 11:17:02 UTC</createdTime>
+<comment><![CDATA[Der Durchmesser eines konischen Rohrinnengewindes, bei dem druckdichte Verbindungen an den Gewinden am Anschluss 6 hergestellt werden.]]></comment>
+<generatorID>34189EC0-9C6D-F200-99E8-400423EA5E1A</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Der Durchmesser eines konischen Rohrinnengewindes, bei dem druckdichte Verbindungen an den Gewinden am Anschluss 6 hergestellt werden.
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+The diameter of a taper internal pipe thread where pressure-tight joints are made on the threads at connection 6.
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<engineerTo>
+<item key="AC362FED-09A7-BA00-8310-29076CD8571C" value="true"/>
+<item key="0F93F29F-E1ED-0300-B3B1-B58C77EE97A7" value="true"/>
+<item key="38668F89-26BC-F63A-555D-54B8056CF413" value="true"/>
+<item key="249E7ABA-8CD0-1978-78A7-F7026DA6A2EB" value="true"/>
+<item key="F8D1D625-33EA-D367-FD1B-8BE01FB72044" value="true"/>
+<item key="D349E673-4EDF-C611-3E51-BBBDE8744098" value="true"/>
+<item key="BFAC4467-8343-0983-11FB-CB866029374C" value="true"/>
+<item key="2DBF4F11-72F7-73ED-22BE-2120810BE40F" value="true"/>
+<item key="E6E75503-6116-388A-72BD-E82DC5E22548" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="konisches Rohrinnengewinde"/>
+<property name="EN_ATTR_NAME" value="taper internal pipe thread"/>
+</propertyMap>
+</Attribute>
+<Attribute name="Zylindrisches Rohrinnengewinde" id="C563B542-215D-78DD-ED31-63758ED298F3">
+<createdBy>stb</createdBy>
+<createdTime>2020-03-09 11:17:02 UTC</createdTime>
+<comment><![CDATA[Erstellt am 30/1/2020 12:42:19 während des Imports aus /Users/stb/Documents/Projekte/Projekte/GEBINININF/gitHub/STEP_columns2.csv]]></comment>
+<generatorID>7BB40ECF-3341-0F3C-5F5B-7ACC121AA5C5</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Erstellt am 30/1/2020 12:42:19 während des Imports aus /Users/stb/Documents/Projekte/Projekte/GEBINININF/gitHub/STEP_columns2.csv
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Created on 30/1/2020  12:42:19 during import from /Users/stb/Documents/Projekte/GEBININF/gitHub/STEP_columns2.csv
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<engineerTo>
+<item key="AC362FED-09A7-BA00-8310-29076CD8571C" value="true"/>
+<item key="0F93F29F-E1ED-0300-B3B1-B58C77EE97A7" value="true"/>
+<item key="38668F89-26BC-F63A-555D-54B8056CF413" value="true"/>
+<item key="249E7ABA-8CD0-1978-78A7-F7026DA6A2EB" value="true"/>
+<item key="F8D1D625-33EA-D367-FD1B-8BE01FB72044" value="true"/>
+<item key="D349E673-4EDF-C611-3E51-BBBDE8744098" value="true"/>
+<item key="BFAC4467-8343-0983-11FB-CB866029374C" value="true"/>
+<item key="2DBF4F11-72F7-73ED-22BE-2120810BE40F" value="true"/>
+<item key="E6E75503-6116-388A-72BD-E82DC5E22548" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Zylindrisches Rohrinnengewinde"/>
+<property name="EN_ATTR_NAME" value="cylindric internal pipe thread"/>
+</propertyMap>
+</Attribute>
+<Attribute name="Wandstärke" id="9D02A426-8338-EB78-A09F-C07F28280191">
+<createdBy>stb</createdBy>
+<createdTime>2020-03-09 11:17:02 UTC</createdTime>
+<comment><![CDATA[Die Wandstärke der Verbindung 6.]]></comment>
+<generatorID>1BAB865E-BD70-31B5-98A9-9296C1F2838D</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Die Wandstärke der Verbindung 6.
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+The wall thickness of connection 6.
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<engineerTo>
+<item key="AC362FED-09A7-BA00-8310-29076CD8571C" value="true"/>
+<item key="0F93F29F-E1ED-0300-B3B1-B58C77EE97A7" value="true"/>
+<item key="38668F89-26BC-F63A-555D-54B8056CF413" value="true"/>
+<item key="249E7ABA-8CD0-1978-78A7-F7026DA6A2EB" value="true"/>
+<item key="F8D1D625-33EA-D367-FD1B-8BE01FB72044" value="true"/>
+<item key="D349E673-4EDF-C611-3E51-BBBDE8744098" value="true"/>
+<item key="BFAC4467-8343-0983-11FB-CB866029374C" value="true"/>
+<item key="2DBF4F11-72F7-73ED-22BE-2120810BE40F" value="true"/>
+<item key="E6E75503-6116-388A-72BD-E82DC5E22548" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Wandstärke"/>
+<property name="EN_ATTR_NAME" value="wall thickness"/>
+</propertyMap>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>0</beginValue>
+<description>&gt;=0</description>
+</rangeDef>
+</listOfRanges>
+</Attribute>
+<Attribute name="Beinlänge / L-Maß" id="AB60545F-10E1-CF62-6152-6930ECBBAE54">
+<createdBy>stb</createdBy>
+<createdTime>2020-03-09 11:17:02 UTC</createdTime>
+<comment><![CDATA[Die Länge eines Fittings von seiner Mitte bis zum Ende der Verbindung 1.]]></comment>
+<generatorID>FA65DA88-AA56-8E72-7375-68503ABFCC07</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Die Länge eines Fittings von seiner Mitte bis zum Ende der Verbindung 1.
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+The length of a fitting from its middle to the end of connection 1.
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<engineerTo>
+<item key="AC362FED-09A7-BA00-8310-29076CD8571C" value="true"/>
+<item key="0F93F29F-E1ED-0300-B3B1-B58C77EE97A7" value="true"/>
+<item key="38668F89-26BC-F63A-555D-54B8056CF413" value="true"/>
+<item key="249E7ABA-8CD0-1978-78A7-F7026DA6A2EB" value="true"/>
+<item key="F8D1D625-33EA-D367-FD1B-8BE01FB72044" value="true"/>
+<item key="D349E673-4EDF-C611-3E51-BBBDE8744098" value="true"/>
+<item key="BFAC4467-8343-0983-11FB-CB866029374C" value="true"/>
+<item key="2DBF4F11-72F7-73ED-22BE-2120810BE40F" value="true"/>
+<item key="E6E75503-6116-388A-72BD-E82DC5E22548" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Beinlänge / L-Maß"/>
+<property name="EN_ATTR_NAME" value="leg length / L-dimension"/>
+</propertyMap>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>0</beginValue>
+<description>&gt;=0</description>
+</rangeDef>
+</listOfRanges>
+</Attribute>
+<Attribute name="Z / Z-Maß" id="09B1D57D-0D68-D1B8-CBBE-51A9E8B57346">
+<createdBy>stb</createdBy>
+<createdTime>2020-03-09 11:17:02 UTC</createdTime>
+<comment><![CDATA[Das Konstruktionsmaß des Anschlusses 6 von Fittings und automatischen Hähnen, das zur Berechnung der genauen Rohrlängen verwendet wird. Z ist der durchschnittliche Abstand zwischen dem Ende des eingebauten Rohres und der Achse des Fittings oder den Enden zweier eingebauter Rohre. Es ist die Differenz zwischen der Dimension "Stirnseite des Fittings bis Mitte des Fittings" und dem Einführungsabstand des Rohres.]]></comment>
+<generatorID>E0126B35-58AC-C71F-F94B-19E7CA419C35</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Das Konstruktionsmaß des Anschlusses 6 von Fittings und automatischen Hähnen, das zur Berechnung der genauen Rohrlängen verwendet wird. Z ist der durchschnittliche Abstand zwischen dem Ende des eingebauten Rohres und der Achse des Fittings oder den Enden zweier eingebauter Rohre. Es ist die Differenz zwischen der Dimension "Stirnseite des Fittings bis Mitte des Fittings" und dem Einführungsabstand des Rohres.
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+The construction dimension of connection 6 of fittings and automatic taps which is used to calculate the precise pipe lengths. Z is the average distance between the end of the built-in pipe and the axis of the fitting or the ends of two built-in pipes. It is the difference between the "front side of fitting to middle of fitting" dimension and the insertion distance of the pipe.
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<engineerTo>
+<item key="AC362FED-09A7-BA00-8310-29076CD8571C" value="true"/>
+<item key="0F93F29F-E1ED-0300-B3B1-B58C77EE97A7" value="true"/>
+<item key="38668F89-26BC-F63A-555D-54B8056CF413" value="true"/>
+<item key="249E7ABA-8CD0-1978-78A7-F7026DA6A2EB" value="true"/>
+<item key="F8D1D625-33EA-D367-FD1B-8BE01FB72044" value="true"/>
+<item key="D349E673-4EDF-C611-3E51-BBBDE8744098" value="true"/>
+<item key="BFAC4467-8343-0983-11FB-CB866029374C" value="true"/>
+<item key="2DBF4F11-72F7-73ED-22BE-2120810BE40F" value="true"/>
+<item key="E6E75503-6116-388A-72BD-E82DC5E22548" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Z / Z-Maß"/>
+<property name="EN_ATTR_NAME" value="Z / Z-dimension"/>
+</propertyMap>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>0</beginValue>
+<description>&gt;=0</description>
+</rangeDef>
+</listOfRanges>
+</Attribute>
+</attributes>
+</Entity>

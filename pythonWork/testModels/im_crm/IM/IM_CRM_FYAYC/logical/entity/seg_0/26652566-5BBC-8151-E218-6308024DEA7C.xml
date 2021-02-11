@@ -1,0 +1,42 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="26652566-5BBC-8151-E218-6308024DEA7C" name="Servicepartner">
+<createdBy>stb</createdBy>
+<createdTime>2019-05-06 11:52:40 UTC</createdTime>
+<comment><![CDATA[Partner, der die Produkte / Geräte servisiert (pflegt, repariert, ausbaut, betreut)]]></comment>
+<notes><![CDATA[[EN_ENTI_COMMENT[
+**Partner who services the products / devices (maintains, repairs, removes, supports)
+]EN_ENTI_COMMENT]
+[DE_ENTI_COMMENT[
+Partner, der die Produkte / Geräte servisiert (pflegt, repariert, ausbaut, betreut)
+]DE_ENTI_COMMENT]
+[FR_ENTI_COMMENT[
+Partenaire qui assure le service (entretien, réparation, mise à niveau, assistance) des produits/appareils
+]FR_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>IM_CRM_FYAYC</ownerDesignName>
+<engineerTo>
+<item key="1AB27667-C11D-3493-68AA-DF92C84041A7" value="true"/>
+<item key="851DDEFA-B048-37E9-7826-4E48946EAF1C" value="true"/>
+<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="false"/>
+<item key="015DE428-05B6-58DD-323D-ECDC72266F4A" value="true"/>
+</engineerTo>
+<typeID>3153B60C-8013-9183-737B-6F3AD413B048</typeID>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<hierarchicalParent>9E6FEB02-2D59-5F8B-AFC7-E4122B03AF81</hierarchicalParent>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="DE_ENTI_NAME" value="Servicepartner"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_NAME" value="Servicepartner"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+<property name="FR_ENTI_NAME" value="Partenaire de services"/>
+<property name="FR_ENTI_SYNONYM" value=""/>
+</propertyMap>
+</Entity>
