@@ -1205,7 +1205,7 @@ def printcontentdoma(pdomains):
                            Languagetext.transl('geändert'))
             infovalues = (
             parameters.nvl(elem['displdatatype+'][lang]), parameters.nvl(elem['contenttype']),
-                parameters.nvl(elem['contenttypename']), parameters.nvl(elem['uc']) + ',' + parameters.nvl(elem['dc']))
+                parameters.nvl(elem['contenttypename+']), parameters.nvl(elem['uc']) + ',' + parameters.nvl(elem['dc']))
         elif (elem['type'] == Domain.GRP):
             infoheaders = (Languagetext.transl('Datentyp'), Languagetext.transl('geändert'))
             infovalues = (elem['displdatatype+'][lang], parameters.nvl(elem['uc']) + ',' + parameters.nvl(elem['dc']))
